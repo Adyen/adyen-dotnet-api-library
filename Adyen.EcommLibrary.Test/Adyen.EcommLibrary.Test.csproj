@@ -27,7 +27,7 @@
   </ItemGroup>
 
   <Target Name="PostBuild" AfterTargets="PostBuildEvent">
-    <Exec Command="xcopy /Y /E /I &quot;$(SolutionDir)Adyen.EcommLibrary.Test\Mocks&quot; &quot;$(targetDir)\Mocks&quot;&#xD;&#xA;" />
+    <Exec Command="start xcopy /Y /E /I &quot;$(SolutionDir)Adyen.EcommLibrary.Test\Mocks&quot; &quot;$(targetDir)\Mocks&quot;&#xD;&#xA;" />
   </Target>
 
 </Project>
