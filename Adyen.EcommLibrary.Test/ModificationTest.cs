@@ -25,7 +25,7 @@ namespace Adyen.EcommLibrary.Test
         {
             var paymentResultPspReference = MockPaymentDataRequest.GetTestPspReferenceMocked();
             //Call authorization test
-            var client = base.CreateMockTestClientRequest("/Mocks/capture-error-167.json");
+            var client = base.CreateMockTestClientRequest("Mocks/capture-error-167.json");
             var modification = new Modification(client);
             var captureRequest = base.CreateCaptureTestRequest(paymentResultPspReference);
             var captureResult = modification.Capture(captureRequest);
