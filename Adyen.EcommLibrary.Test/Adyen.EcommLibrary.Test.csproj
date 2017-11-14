@@ -6,6 +6,11 @@
     <IsPackable>false</IsPackable>
   </PropertyGroup>
 
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <OutputPath>bin\Debug\</OutputPath>
+    <DocumentationFile></DocumentationFile>
+  </PropertyGroup>
+
   <ItemGroup>
     <Compile Remove="MochFiles\**" />
     <Compile Remove="Mocks\**" />
@@ -26,8 +31,9 @@
     <ProjectReference Include="..\Adyen.EcommLibrary\Adyen.EcommLibrary.csproj" />
   </ItemGroup>
 
-  <Target Name="PostBuild" AfterTargets="PostBuildEvent">
-    <Exec Command="start xcopy /Y /E /I &quot;$(SolutionDir)Adyen.EcommLibrary.Test\Mocks&quot; &quot;$(targetDir)\Mocks&quot;&#xD;&#xA;" />
+  <Target Name="PostBuild" AfterTargets="PostBuildEvent" Condition="'$(OS)' == 'Windows'">
+
+    <Exec Command="&#xD;&#xA;" />
   </Target>
 
 </Project>

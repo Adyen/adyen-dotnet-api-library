@@ -5,6 +5,7 @@ using Adyen.EcommLibrary.Service;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 using System.Linq;
+using System.Reflection;
 
 namespace Adyen.EcommLibrary.Test
 {

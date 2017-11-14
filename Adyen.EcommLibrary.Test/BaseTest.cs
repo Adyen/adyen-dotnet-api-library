@@ -85,7 +85,9 @@ namespace Adyen.EcommLibrary.Test
         /// <returns></returns>
         protected Client CreateMockTestClientRequest(string fileName)
         {
-            var response = MockFileToString(fileName);
+            var mockPath = MockPath(fileName);
+
+            var response = MockFileToString(mockPath);
             //Create a mock interface
             var clientInterfaceMock = new Mock<IClient>();
             var confMock = MockPaymentDataRequest.CreateConfingMock();
@@ -106,7 +108,10 @@ namespace Adyen.EcommLibrary.Test
         /// <returns></returns>
         protected Client CreateMockTestClientPost(string fileName)
         {
-            var response = MockFileToString(fileName);
+
+            var mockPath = MockPath(fileName);
+
+            var response = MockFileToString(mockPath);
             //Create a mock interface
             var clientInterfaceMock = new Mock<IClient>();
             var confMock = MockPaymentDataRequest.CreateConfingMock();
@@ -150,7 +155,7 @@ namespace Adyen.EcommLibrary.Test
         {
             string text = "";
 
-            if (string.IsNullOrEmpty(fileName))
+            if (String.IsNullOrEmpty(fileName))
             {
                 return text;
             }
@@ -197,5 +202,15 @@ namespace Adyen.EcommLibrary.Test
             return paymentResult;
         }
 
+        private static string MockPath(string fileName)
+        {
+            if (string.IsNullOrEmpty(fileName))
+            {
+                return "";
+            }
+            var projectPath = System.IO.Directory.GetParent(Environment.CurrentDirectory).Parent.Parent.FullName;
+            var mockPath = Path.Combine(projectPath, fileName);
+            return mockPath;
+        }
     }
 }
