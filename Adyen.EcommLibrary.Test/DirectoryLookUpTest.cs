@@ -5,7 +5,6 @@ using Adyen.EcommLibrary.Service;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 using System.Linq;
-using System.Reflection;
 
 namespace Adyen.EcommLibrary.Test
 {
@@ -64,8 +63,9 @@ namespace Adyen.EcommLibrary.Test
                 Assert.Fail("Expected exception");
 
             }
-            catch (Exception e)
+            catch (Exception)
             {
+                throw;
             }
         }
 
