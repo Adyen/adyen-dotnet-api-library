@@ -1,4 +1,4 @@
-﻿namespace Adyen.EcommLibrary.Service
+﻿namespace Adyen.EcommLibrary
 {
     public class AbstractService
     {
