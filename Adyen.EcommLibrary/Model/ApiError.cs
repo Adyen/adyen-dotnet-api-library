@@ -92,8 +92,7 @@ namespace Adyen.EcommLibrary.Model
             {
                 int hash = 41;
                 // Suitable nullity checks etc, of course :)
-                if (this.Status != null)
-                    hash = hash * 59 + this.Status.GetHashCode();
+                hash = hash * 59 + this.Status.GetHashCode();
                 if (this.ErrorCode != null)
                     hash = hash * 59 + this.ErrorCode.GetHashCode();
                 if (this.Message != null)
