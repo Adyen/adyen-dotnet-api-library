@@ -61,15 +61,13 @@ namespace Adyen.EcommLibrary.Test
                 var hostedPaymentPages = new HostedPaymentPages(client);
                 var directoryLookupRequest = CreateDirectoryLookupRequest();
                 Assert.Fail("Expected exception");
-
             }
             catch (Exception)
             {
-                throw;
+                
             }
         }
-
-
+        
         private DirectoryLookupRequest CreateDirectoryLookupRequest()
         {
             DirectoryLookupRequest directoryLookupRequest = new DirectoryLookupRequest()
