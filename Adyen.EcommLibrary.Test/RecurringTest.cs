@@ -37,7 +37,9 @@ namespace Adyen.EcommLibrary.Test
             Assert.AreEqual(1L, (long)disableResult.Details.Count);
             Assert.AreEqual("[detail-successfully-disabled]", disableResult.Response);
         }
-        
+
+
+
         [TestMethod]
         public void TestDisable803()
         {
@@ -53,7 +55,9 @@ namespace Adyen.EcommLibrary.Test
             catch (HttpClientException exception)
             {
                 Assert.AreNotEqual(200, exception.Code);
+             
             }
+           
         }
 
         private RecurringDetailsRequest CreateRecurringDetailsRequest()
