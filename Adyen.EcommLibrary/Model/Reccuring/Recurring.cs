@@ -36,14 +36,14 @@ namespace Adyen.EcommLibrary.Model.Reccuring
         /// </summary>
         /// <value>The type of recurring contract to be used. Possible values: * &#x60;ONECLICK&#x60; – The shopper opts to store their card details for future use. The shopper is present for the subsequent transaction, for cards the security code (CVC/CVV) is required. * &#x60;RECURRING&#x60; – Payment details are stored for future use. For cards, the security code (CVC/CVV) is not required for subsequent payments. This is used for shopper not present transactions. * &#x60;ONECLICK, RECURRING&#x60; – Payment details are stored for future use. This allows the use of the stored payment details regardless of whether the shopper is on your site or not.</value>
         [DataMember(Name="contract", EmitDefaultValue=false)]
-        public ContractEnum? Contract { get; set; }
+        public Contract? Contract { get; set; }
         /// <summary>
         /// Initializes a new instance of the <see cref="Recurring" /> class.
         /// </summary>
         /// <param name="TokenService">The name of the token service..</param>
         /// <param name="Contract">The type of recurring contract to be used. Possible values: * &#x60;ONECLICK&#x60; – The shopper opts to store their card details for future use. The shopper is present for the subsequent transaction, for cards the security code (CVC/CVV) is required. * &#x60;RECURRING&#x60; – Payment details are stored for future use. For cards, the security code (CVC/CVV) is not required for subsequent payments. This is used for shopper not present transactions. * &#x60;ONECLICK, RECURRING&#x60; – Payment details are stored for future use. This allows the use of the stored payment details regardless of whether the shopper is on your site or not..</param>
         /// <param name="RecurringDetailName">A descriptive name for this detail..</param>
-        public Recurring(TokenServiceEnum? TokenService = default(TokenServiceEnum?), ContractEnum? Contract = default(ContractEnum?), string RecurringDetailName = default(string))
+        public Recurring(TokenServiceEnum? TokenService = default(TokenServiceEnum?), Contract? Contract = default(Contract?), string RecurringDetailName = default(string))
         {
             this.TokenService = TokenService;
             this.Contract = Contract;

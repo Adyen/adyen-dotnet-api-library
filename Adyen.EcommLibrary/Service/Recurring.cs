@@ -32,5 +32,21 @@ namespace Adyen.EcommLibrary.Service
             return result;
 
         }
+
+        public DisableResult Disable(DisableRequest disableRequest)
+        {
+            DisableResult result = null;
+            try
+            {
+                var jsonRequest = Util.JsonOperation.SerializeRequest(disableRequest);
+                var jsonResponse = _listRecurringDetails.Request(jsonRequest);
+                result = Util.JsonOperation.Deserealize<DisableResult>(jsonResponse);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            return result;
+        } 
     }
 }

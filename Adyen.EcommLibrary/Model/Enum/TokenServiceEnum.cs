@@ -1,9 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Runtime.Serialization;
-using System.Text;
-using Newtonsoft.Json;
+﻿using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
+using System.Runtime.Serialization;
 
 namespace Adyen.EcommLibrary.Model.Enum
 {
@@ -19,7 +16,7 @@ namespace Adyen.EcommLibrary.Model.Enum
         /// Enum VISATOKENSERVICE for "VISATOKENSERVICE"
         /// </summary>
         [EnumMember(Value = "VISATOKENSERVICE")]
-        VISATOKENSERVICE
+        Visatokenservice
     }
 
 }

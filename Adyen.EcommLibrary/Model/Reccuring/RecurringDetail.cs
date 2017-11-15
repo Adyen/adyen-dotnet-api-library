@@ -32,7 +32,6 @@ namespace Adyen.EcommLibrary.Model.Reccuring
         /// <param name="FirstPspReference">FirstPspReference.</param>
         /// <param name="CreationDate">CreationDate.</param>
         /// <param name="Acquirer">Acquirer.</param>
-        /// <param name="Elv">Elv.</param>
         /// <param name="Bank">Bank.</param>
         /// <param name="ShopperName">ShopperName.</param>
         /// <param name="AcquirerAccount">AcquirerAccount.</param>

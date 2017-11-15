@@ -68,6 +68,14 @@ namespace Adyen.EcommLibrary.Model.Reccuring
         [DataMember(Name = "shopperReference", EmitDefaultValue = false)]
         public string ShopperReference { get; set; }
 
+
+        /// <summary>
+        /// details of the result
+        /// </summary>
+        /// <value>details of the result</value>
+        [DataMember(Name = "details", EmitDefaultValue = false)]
+        public List<RecurringDetailContainer> Details=new List<RecurringDetailContainer>();
+
         /// <summary>
         /// Returns the string presentation of the object
         /// </summary>

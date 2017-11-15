@@ -1,9 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Runtime.Serialization;
-using System.Text;
-using Newtonsoft.Json;
+﻿using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
+using System.Runtime.Serialization;
 
 namespace Adyen.EcommLibrary.Model.Enum
 {
@@ -19,73 +16,73 @@ namespace Adyen.EcommLibrary.Model.Enum
         /// Enum APRIL for "APRIL"
         /// </summary>
         [EnumMember(Value = "APRIL")]
-        APRIL,
+        April,
 
         /// <summary>
         /// Enum AUGUST for "AUGUST"
         /// </summary>
         [EnumMember(Value = "AUGUST")]
-        AUGUST,
+        August,
 
         /// <summary>
         /// Enum DECEMBER for "DECEMBER"
         /// </summary>
         [EnumMember(Value = "DECEMBER")]
-        DECEMBER,
+        December,
 
         /// <summary>
         /// Enum FEBRUARY for "FEBRUARY"
         /// </summary>
         [EnumMember(Value = "FEBRUARY")]
-        FEBRUARY,
+        February,
 
         /// <summary>
         /// Enum JANUARY for "JANUARY"
         /// </summary>
         [EnumMember(Value = "JANUARY")]
-        JANUARY,
+        January,
 
         /// <summary>
         /// Enum JULY for "JULY"
         /// </summary>
         [EnumMember(Value = "JULY")]
-        JULY,
+        July,
 
         /// <summary>
         /// Enum JUNE for "JUNE"
         /// </summary>
         [EnumMember(Value = "JUNE")]
-        JUNE,
+        June,
 
         /// <summary>
         /// Enum MARCH for "MARCH"
         /// </summary>
         [EnumMember(Value = "MARCH")]
-        MARCH,
+        March,
 
         /// <summary>
         /// Enum MAY for "MAY"
         /// </summary>
         [EnumMember(Value = "MAY")]
-        MAY,
+        May,
 
         /// <summary>
         /// Enum NOVEMBER for "NOVEMBER"
         /// </summary>
         [EnumMember(Value = "NOVEMBER")]
-        NOVEMBER,
+        November,
 
         /// <summary>
         /// Enum OCTOBER for "OCTOBER"
         /// </summary>
         [EnumMember(Value = "OCTOBER")]
-        OCTOBER,
+        October,
 
         /// <summary>
         /// Enum SEPTEMBER for "SEPTEMBER"
         /// </summary>
         [EnumMember(Value = "SEPTEMBER")]
-        SEPTEMBER
+        September
     }
 
 }
