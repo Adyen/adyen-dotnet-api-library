@@ -11,39 +11,33 @@ namespace Adyen.EcommLibrary.Model.Hpp
         public List<Issuer> Issuers { get; set; }
 
         private readonly List<string> _cards = new List<string>{
-           BrandCodes.Paypal    ,
-           BrandCodes.PaypalEcs ,
-           BrandCodes.Klarna    ,
-           BrandCodes.Afterpay  ,
-           BrandCodes.SepaDirectDebit,
-           BrandCodes.Ideal ,
-           BrandCodes.ChinaUnionPay,
-           BrandCodes.Cartebancaire,
-           BrandCodes.Visa ,
-           BrandCodes.Mastercard,
-           BrandCodes.Uatp ,
-           BrandCodes.Amex,
-           BrandCodes.Maestro ,
-           BrandCodes.MaestroUk ,
-           BrandCodes.Diners,
-           BrandCodes.Discover ,
-           BrandCodes.VisaDankort,
-           BrandCodes.Jcb ,
-           BrandCodes.Laser,
-           BrandCodes.Vias ,
-           BrandCodes.Solo ,
-           BrandCodes.Bcmc ,
-           BrandCodes.Bijcard ,
-           BrandCodes.Dankort,
-           BrandCodes.Hipercard ,
-           BrandCodes.Elo ,
-           BrandCodes.VisaAlphabankBonus,
-           BrandCodes.McAlphabankBonus,
-           BrandCodes.Karenmillen,
-           BrandCodes.Oasis ,
-           BrandCodes.Warehouse
-        };
-        
+            BrandCodes.Mastercard,
+            BrandCodes.VisaDankort,
+            BrandCodes.Visa,
+            BrandCodes.Amex,
+            BrandCodes.Vias,
+            BrandCodes.Diners,
+            BrandCodes.MaestroUk,
+            BrandCodes.Solo,
+            BrandCodes.Laser,
+            BrandCodes.Discover,
+            BrandCodes.Jcb,
+            BrandCodes.Bcmc,
+            BrandCodes.Bijcard,
+            BrandCodes.Dankort,
+            BrandCodes.Hipercard,
+            BrandCodes.Maestro,
+            BrandCodes.Elo,
+            BrandCodes.Uatp,
+            BrandCodes.ChinaUnionPay,
+            BrandCodes.Cartebancaire,
+            BrandCodes.VisaAlphabankBonus,
+            BrandCodes.McAlphabankBonus,
+            BrandCodes.Karenmillen,
+            BrandCodes.Oasis,
+            BrandCodes.Warehouse
+            };
+
         public bool IsCard()
         {
             return _cards.Contains(GetBrandCode());

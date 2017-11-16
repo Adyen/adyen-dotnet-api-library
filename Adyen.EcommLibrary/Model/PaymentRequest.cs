@@ -1,8 +1,8 @@
-﻿using Adyen.EcommLibrary.Model.AdditinalData;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Runtime.Serialization;
 using System.Text;
+using Adyen.EcommLibrary.Model.AdditionalData;
 
 namespace Adyen.EcommLibrary.Model
 {
@@ -18,9 +18,6 @@ namespace Adyen.EcommLibrary.Model
         [DataMember(Name = "bankAccount", EmitDefaultValue = false)]
         public BankAccount BankAccount { get; set; }
 
-        public List<InvoiceLine> InvoiceLines { get; set; }
-
-       
         public override string ToString()
         {
             StringBuilder sb = new StringBuilder();

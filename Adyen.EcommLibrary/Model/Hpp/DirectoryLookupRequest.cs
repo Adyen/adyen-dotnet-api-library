@@ -10,5 +10,6 @@
         public string SkinCode { get; set; }
         public string MerchantAccount { get; set; }
         public string HmacKey { get; set; }
+        public string ShopperLocale { get; set; }
     }
 }

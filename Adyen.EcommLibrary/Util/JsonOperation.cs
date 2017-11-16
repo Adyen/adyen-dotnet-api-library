@@ -24,7 +24,7 @@ namespace Adyen.EcommLibrary.Util
         {
             return JsonConvert.DeserializeObject(request);
         }
-
+        
         public static string SerializeRequest(object request)
         {
             return JsonConvert.SerializeObject(request, Newtonsoft.Json.Formatting.None,

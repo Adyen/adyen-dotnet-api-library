@@ -19,6 +19,7 @@ namespace Adyen.EcommLibrary
                 ApplicationName = applicationName,
                 Environment = environment
             };
+            this.SetEnviroment(environment);
         }
 
         public Client(Config config)

@@ -16,9 +16,9 @@ namespace Adyen.EcommLibrary.Service
 
         public string DirectoryLookup(Dictionary<string, string> postParameters)
         {
-            var endpoint = ClientConstants.HppTest + "/directory.shtml";
-            var clientInterface = this.Client.HttpClient;
             var config = this.Client.Config;
+            var clientInterface = this.Client.HttpClient;
+            var endpoint = config.HppEndpoint + "/directory.shtml";
             return clientInterface.Post(endpoint, postParameters, config);
         }
 
@@ -26,8 +26,13 @@ namespace Adyen.EcommLibrary.Service
         {
             var config = this.Client.Config;
 
-            var postParameters = new Dictionary<string, string>();
-            postParameters.Add(Fields.CurrencyCode, request.CurrencyCode);
+            var postParameters = new Dictionary<string, string>
+            {
+                {Fields.CurrencyCode, request.CurrencyCode },
+                {Fields.MerchantReference, request.MerchantReference},
+                {Fields.SessionValidity, request.SessionValidity},
+                {Fields.CountryCode, request.CountryCode}
+            };
 
             if (!string.IsNullOrEmpty(request.MerchantAccount))
             {
@@ -48,9 +53,7 @@ namespace Adyen.EcommLibrary.Service
                 postParameters.Add(Fields.SkinCode, config.SkinCode);
             }
 
-            postParameters.Add(Fields.MerchantReference, request.MerchantReference);
-            postParameters.Add(Fields.SessionValidity, request.SessionValidity);
-            postParameters.Add(Fields.CountryCode, request.CountryCode);
+           
 
             var hmacValidator = new HmacValidator();
 

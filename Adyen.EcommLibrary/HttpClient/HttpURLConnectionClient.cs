@@ -11,12 +11,12 @@ namespace Adyen.EcommLibrary.HttpClient
 {
     public class HttpUrlConnectionClient : IClient
     {
-        public string Request(string endpoint, string json, Config config)
+        public string Request(string endpoint, string json, Config config )
         {
             string responseText;
             try
             {
-                var url = ClientConstants.EndpointTest + endpoint;
+                var url = endpoint;
                 var httpWebRequest = (HttpWebRequest)WebRequest.Create(url);
                 httpWebRequest.Method = "POST";
                 httpWebRequest.ContentType = "application/json";

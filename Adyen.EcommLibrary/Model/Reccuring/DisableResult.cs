@@ -13,7 +13,13 @@ namespace Adyen.EcommLibrary.Model.Reccuring
         [DataMember(Name = "details", EmitDefaultValue = false)]
         public List<RecurringDetail> Details { get; set; }
 
-        
+        [DataMember(Name = "shopperReference", EmitDefaultValue = false)]
+        public string ShopperReference { get; set; }
+
+        [DataMember(Name = "invalidOneclickContracts", EmitDefaultValue = false)]
+        public string InvalidOneclickContracts { get; set; }
+
+
         /// <summary>
         /// Returns the string presentation of the object
         /// </summary>
@@ -27,8 +33,5 @@ namespace Adyen.EcommLibrary.Model.Reccuring
             sb.Append("}\n");
             return sb.ToString();
         }
-
-
-
     }
 }
