@@ -9,7 +9,7 @@ The Adyen API Library for .net core enables you to work with Adyen APIs and Host
 
 ## Requirements
 
-* .net standard 2.0. It supports .net 4.5 and .net standard 4.5
+* .net standard 2.0. It supports .net 4.5 and .net standard 2.0
 
 ## Installation
   
