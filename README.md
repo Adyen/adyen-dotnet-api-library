@@ -1,6 +1,4 @@
-
-[![Build Status](https://travis-ci.org/Adyen/adyen-dotnet-api-library.svg?token=25KiEoDgKsMYieLx6h9z&branch=master)](https://travis-ci.org/Adyen/adyen-dotnet-api-library)
-
+[![Build Status](https://travis-ci.org/Adyen/adyen-dotnet-api-library.svg?branch=develop)](https://travis-ci.org/Adyen/adyen-dotnet-api-library)
 
 
 # Adyen .net core API Library
