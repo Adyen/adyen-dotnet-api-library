@@ -1,5 +1,5 @@
 
-[![Build Status](https://travis-ci.com/Adyen/adyen-dotnetcore-api-library.svg?token=25KiEoDgKsMYieLx6h9z&branch=master)](https://travis-ci.com/Adyen/adyen-dotnetcore-api-library)
+[![Build Status](https://travis-ci.com/Adyen/adyen-dotnet-api-library.svg?token=25KiEoDgKsMYieLx6h9z&branch=master)](https://travis-ci.com/Adyen/adyen-dotnetcore-api-library)
 
 
 
@@ -9,7 +9,7 @@ The Adyen API Library for .net core enables you to work with Adyen APIs and Host
 
 ## Requirements
 
-* .net core 2.0
+* .net standard 2.0. It supports .net 4.5 and .net standard 4.5
 
 ## Installation
   
