@@ -66,12 +66,11 @@ namespace Adyen.EcommLibrary.Test
         public void TestOpenInvoice()
         {
 
-            var client = CreateMockTestClientRequest("mocks/authorise-success-klarna.json");
+            var client = CreateMockTestClientRequest("Mocks/authorise-success-klarna.json");
             var payment = new Payment(client);
             var paymentRequest = MockOpenInvoicePayment.CreateOpenInvoicePaymentRequest();
             var paymentResult = payment.Authorise(paymentRequest);
-
-
+            
             Assert.AreEqual("2374421290", paymentResult.AdditionalData["additionalData.acquirerReference"]);
             Assert.AreEqual("klarna", paymentResult.AdditionalData["paymentMethodVariant"]);
 
