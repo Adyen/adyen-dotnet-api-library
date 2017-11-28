@@ -20,7 +20,7 @@ namespace Adyen.EcommLibrary.Test
         {
             var client = CreateMockTestClientRequest(fileName);
             var payment = new Payment(client);
-            var paymentRequest = MockPaymentDataRequest.CreateFullPaymentRequest();
+            var paymentRequest = MockPaymentData.CreateFullPaymentRequest();
 
             var paymentResult = payment.Authorise(paymentRequest);
             return GetAdditionaData(paymentResult);
@@ -89,7 +89,7 @@ namespace Adyen.EcommLibrary.Test
             var response = MockFileToString(mockPath);
             //Create a mock interface
             var clientInterfaceMock = new Mock<IClient>();
-            var confMock = MockPaymentDataRequest.CreateConfingMock();
+            var confMock = MockPaymentData.CreateConfingMock();
             clientInterfaceMock.Setup(x => x.Request(It.IsAny<string>(),
                 It.IsAny<string>(), confMock)).Returns(response);
             var clientMock = new Client(It.IsAny<Config>())
@@ -111,7 +111,7 @@ namespace Adyen.EcommLibrary.Test
             var response = MockFileToString(mockPath);
             //Create a mock interface
             var clientInterfaceMock = new Mock<IClient>();
-            var confMock = MockPaymentDataRequest.CreateConfingMock();
+            var confMock = MockPaymentData.CreateConfingMock();
 
             clientInterfaceMock.Setup(x => x.Post(It.IsAny<string>(),
                 It.IsAny<Dictionary<string, string>>(), confMock)).Returns(response);
@@ -135,7 +135,7 @@ namespace Adyen.EcommLibrary.Test
             var response = MockFileToString(mockPath);
             //Create a mock interface
             var clientInterfaceMock = new Mock<IClient>();
-            var confMock = MockPaymentDataRequest.CreateConfingMock();
+            var confMock = MockPaymentData.CreateConfingMock();
             var httpClientException = new HttpClientException(status, "An error occured", new Dictionary<string, List<string>>(), response);
 
             clientInterfaceMock.Setup(x => x.Request(It.IsAny<string>(),
@@ -171,7 +171,7 @@ namespace Adyen.EcommLibrary.Test
             
             return text;
         }
-
+        
         private PaymentResult GetAdditionaData(PaymentResult paymentResult)
         {
             var paymentResultAdditionalData = paymentResult.AdditionalData;
