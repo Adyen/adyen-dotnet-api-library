@@ -30,9 +30,6 @@ namespace Adyen.EcommLibrary.Model
     [DataContract]
     public partial class AuthoriseMpiData :  IEquatable<AuthoriseMpiData>, IValidatableObject
     {
-        
-       
-
         /// <summary>
         /// The authentication response if the shopper was redirected.
         /// </summary>
