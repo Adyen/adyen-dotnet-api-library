@@ -71,16 +71,7 @@ namespace Adyen.EcommLibrary.Test
             return "8514836072314693";
         }
 
-        public static Dictionary<string, string> CreateAdditionalData()
-        {
-            return new Dictionary<string, string>
-            {
-                { "liabilityShift", "true"},
-                { "fraudResultType", "GREEN"},
-                { "authCode", "43733"},
-                { "avsResult", "4 AVS not supported for this card type"}
-            };
-        }
+       
 
         #endregion
     }

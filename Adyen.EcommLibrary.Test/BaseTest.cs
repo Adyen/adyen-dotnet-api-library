@@ -76,8 +76,19 @@ namespace Adyen.EcommLibrary.Test
             };
             return cancelRequest;
         }
+
+        protected static Dictionary<string, string> CreateAdditionalData()
+        {
+            return new Dictionary<string, string>
+            {
+                { "liabilityShift", "true"},
+                { "fraudResultType", "GREEN"},
+                { "authCode", "43733"},
+                { "avsResult", "4 AVS not supported for this card type"}
+            };
+        }
         #endregion
-        
+
         /// <summary>
         /// Creates mock test client 
         /// </summary>
