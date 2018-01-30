@@ -14,7 +14,7 @@ The Adyen API Library for .net core enables you to work with Adyen APIs and Host
 * Simply download and restore nuget packages  
  https://www.nuget.org/packages/Adyen.EcommLibrary/
 * or install it from package manager
- PM> Install-Package Adyen.EcommLibrary -Version 1.0.1 
+ PM> Install-Package Adyen.EcommLibrary -Version 1.0.2 
 
 ## Support
 
