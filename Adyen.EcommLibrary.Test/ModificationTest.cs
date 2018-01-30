@@ -9,7 +9,7 @@ namespace Adyen.EcommLibrary.Test
         [TestMethod]
         public void TestCaptureMockedSuccess()
         {
-            var paymentResultPspReference = MockPaymentDataRequest.GetTestPspReferenceMocked();
+            var paymentResultPspReference = MockPaymentData.GetTestPspReferenceMocked();
             //Call authorization test
             var client = base.CreateMockTestClientRequest("Mocks/capture-success.json");
             var modification = new Modification(client);
@@ -23,7 +23,7 @@ namespace Adyen.EcommLibrary.Test
         [TestMethod]
         public void TestCaptureError167()
         {
-            var paymentResultPspReference = MockPaymentDataRequest.GetTestPspReferenceMocked();
+            var paymentResultPspReference = MockPaymentData.GetTestPspReferenceMocked();
             //Call authorization test
             var client = base.CreateMockTestClientRequest("Mocks/capture-error-167.json");
             var modification = new Modification(client);
@@ -37,7 +37,7 @@ namespace Adyen.EcommLibrary.Test
         [TestMethod]
         public void TestCancelOrRefundReceivedMocked()
         {
-            var paymentResultPspReference = MockPaymentDataRequest.GetTestPspReferenceMocked();
+            var paymentResultPspReference = MockPaymentData.GetTestPspReferenceMocked();
             //Call authorization test
             var client = base.CreateMockTestClientRequest("Mocks/cancelOrRefund-received.json");
             var modification = new Modification(client);
@@ -49,7 +49,7 @@ namespace Adyen.EcommLibrary.Test
         [TestMethod]
         public void TestRefundReceivedMocked()
         {
-            var paymentResultPspReference = MockPaymentDataRequest.GetTestPspReferenceMocked();
+            var paymentResultPspReference = MockPaymentData.GetTestPspReferenceMocked();
             //Call authorization test
             var client = base.CreateMockTestClientRequest("Mocks/refund-received.json");
             var modification = new Modification(client);
@@ -61,7 +61,7 @@ namespace Adyen.EcommLibrary.Test
         [TestMethod]
         public void TestCancelReceivedMocked()
         {
-            var paymentResultPspReference = MockPaymentDataRequest.GetTestPspReferenceMocked();
+            var paymentResultPspReference = MockPaymentData.GetTestPspReferenceMocked();
             //Call authorization test
             var client = base.CreateMockTestClientRequest("Mocks/cancel-received.json");
             var modification = new Modification(client);

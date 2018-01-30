@@ -19,7 +19,7 @@ namespace Adyen.EcommLibrary.Util
             //+1day
            var dateTime=DateTime.Now.AddDays(1);
            return String.Format("{0:s}", dateTime);
-            //"2017-11-10T17:14:57+01:00"
+           
         }
     }
 }

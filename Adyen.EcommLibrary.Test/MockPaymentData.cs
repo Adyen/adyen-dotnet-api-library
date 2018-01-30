@@ -1,10 +1,10 @@
-﻿using Adyen.EcommLibrary;
-using Adyen.EcommLibrary.Model;
+﻿using Adyen.EcommLibrary.Model;
 using System;
+using System.Collections.Generic;
 
 namespace Adyen.EcommLibrary.Test
 {
-    internal class MockPaymentDataRequest
+    internal class MockPaymentData:BaseTest
     {
         #region Mock payment data 
 
@@ -28,7 +28,8 @@ namespace Adyen.EcommLibrary.Test
                 MerchantAccount = "MerchantAccount",
                 Amount = new Amount("EUR", 1500),
                 Card = CreateTestCard(),
-                Reference = "payment - " + DateTime.Now.ToString("yyyyMMdd")
+                Reference = "payment - " + DateTime.Now.ToString("yyyyMMdd"),
+                AdditionalData = CreateAdditionalData()
             };
 
             return paymentRequest;
@@ -69,6 +70,9 @@ namespace Adyen.EcommLibrary.Test
         {
             return "8514836072314693";
         }
+
+       
+
         #endregion
     }
 }

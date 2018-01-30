@@ -1,2 +1,4 @@
 bin/
 obj/
+Adyen.EcommLibrary.nuspec
+nuget.exe

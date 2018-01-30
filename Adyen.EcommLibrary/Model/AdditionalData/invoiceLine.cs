@@ -4,6 +4,7 @@ namespace Adyen.EcommLibrary.Model.AdditionalData
 {
     public class InvoiceLine
     {
+        public long VatAmount { get; set; }
         public string CurrencyCode { get; set; }
         public string Description { get; set; }
         public long ItemAmount { get; set; }

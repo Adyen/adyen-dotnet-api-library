@@ -19,32 +19,32 @@ namespace Adyen.EcommLibrary.Test
             Assert.AreEqual("1 Matches", GetAdditionalData(paymentResult.AdditionalData, "cvcResult"));
             Assert.AreEqual("visa", GetAdditionalData(paymentResult.AdditionalData, "paymentMethod"));
         }
-        
+
         [TestMethod]
         public void TestAuthoriseSuccess3DMocked()
         {
             var client = CreateMockTestClientRequest("Mocks/authorise-success-3d.json");
             var payment = new Payment(client);
-            var paymentRequest = MockPaymentDataRequest.CreateFullPaymentRequest();
+            var paymentRequest = MockPaymentData.CreateFullPaymentRequest();
             var paymentResult = payment.Authorise(paymentRequest);
 
             Assert.IsNotNull(paymentResult.Md);
             Assert.IsNotNull(paymentResult.IssuerUrl);
             Assert.IsNotNull(paymentResult.PaRequest);
         }
-        
+
         [TestMethod]
         public void TestAuthorise3DSuccessMocked()
         {
             var client = CreateMockTestClientRequest("Mocks/authorise3d-success.json");
             var payment = new Payment(client);
-            var paymentRequest = MockPaymentDataRequest.CreateFullPaymentRequest3D();
+            var paymentRequest = MockPaymentData.CreateFullPaymentRequest3D();
             var paymentResult = payment.Authorise3D(paymentRequest);
 
-            Assert.AreEqual(paymentResult.ResultCode,ResultCodeEnum.Authorised);
+            Assert.AreEqual(paymentResult.ResultCode, ResultCodeEnum.Authorised);
             Assert.IsNotNull(paymentResult.PspReference);
         }
-        
+
 
         [TestMethod]
         public void TestAuthoriseErrorCvcDeclinedMocked()
@@ -60,7 +60,23 @@ namespace Adyen.EcommLibrary.Test
             var paymentResult = CreatePaymentResultFromFile("Mocks/authorise-success-cse.json");
             Assert.AreEqual(ResultCodeEnum.Authorised, paymentResult.ResultCode);
         }
-        
+
+
+        [TestMethod]
+        public void TestOpenInvoice()
+        {
+
+            var client = CreateMockTestClientRequest("Mocks/authorise-success-klarna.json");
+            var payment = new Payment(client);
+            var paymentRequest = MockOpenInvoicePayment.CreateOpenInvoicePaymentRequest();
+            var paymentResult = payment.Authorise(paymentRequest);
+            
+            Assert.AreEqual("2374421290", paymentResult.AdditionalData["additionalData.acquirerReference"]);
+            Assert.AreEqual("klarna", paymentResult.AdditionalData["paymentMethodVariant"]);
+
+        }
+
+
         private string GetAdditionalData(Dictionary<string, string> additionalData, string assertKey)
         {
             string result = "";

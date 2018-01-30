@@ -8,7 +8,7 @@
         public static string HppLive = "https://live.adyen.com/hpp";
         public static string RecurringApiVersion = "v25";
         public static string ApiVersion = "v30";
-        public static string UserAgentSuffix = "adyen-dotnetcore-api-library/";
-        public static string LibVersion = "1.0.0";
+        public static string UserAgentSuffix = "adyen-dotnet-api-library/";
+        public static string LibVersion = "1.0.2";
     }
 }
