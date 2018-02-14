@@ -1,9 +1,9 @@
 [![Build Status](https://travis-ci.org/Adyen/adyen-dotnet-api-library.svg?branch=develop)](https://travis-ci.org/Adyen/adyen-dotnet-api-library)
 
 
-# Adyen .net core API Library
+# Adyen .net API Library
 
-The Adyen API Library for .net core enables you to work with Adyen APIs and Hosted Payment Pages with any .net application.
+The Adyen API Library for .net framework enables you to work with Adyen APIs and Hosted Payment Pages with any .net application.
 
 ## Requirements
 
@@ -14,7 +14,7 @@ The Adyen API Library for .net core enables you to work with Adyen APIs and Host
 * Simply download and restore nuget packages  
  https://www.nuget.org/packages/Adyen.EcommLibrary/
 * or install it from package manager
- PM> Install-Package Adyen.EcommLibrary -Version 1.0.1 
+ PM> Install-Package Adyen.EcommLibrary -Version 1.0.2 
 
 ## Support
 
