@@ -47,7 +47,7 @@ namespace Adyen.EcommLibrary.Model
         [DataMember(Name = "merchantOrderReference", EmitDefaultValue = false)]
         public string MerchantOrderReference { get; set; }
         [DataMember(Name = "additionalData", EmitDefaultValue = false)]
-        public KeyValuePair<string, string> AdditionalData { get; set; }
+        public Dictionary<string, string> AdditionalData { get; set; }
         [DataMember(Name = "shopperName", EmitDefaultValue = false)]
         public Name ShopperName { get; set; }
         [DataMember(Name = "shopperLocale", EmitDefaultValue = false)]

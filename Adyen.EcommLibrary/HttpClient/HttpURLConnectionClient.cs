@@ -96,7 +96,7 @@ namespace Adyen.EcommLibrary.HttpClient
         {
             request.Headers.Add("Accept-Charset", "UTF-8");
             request.Headers.Add("Cache-Control", "no-cache");
-            request.Headers.Add("User-Agent", string.Format("{0} {1}{2}", config.ApplicationName, ClientConfig.UserAgentSuffix, ClientConfig.LibVersion));
+            request.UserAgent = string.Format("{0} {1}{2}", config.ApplicationName, ClientConfig.UserAgentSuffix, ClientConfig.LibVersion);
         }
 
         /// <summary>

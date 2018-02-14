@@ -17,23 +17,12 @@ namespace Adyen.EcommLibrary.Model
 
         [DataMember(Name = "bankAccount", EmitDefaultValue = false)]
         public BankAccount BankAccount { get; set; }
-
-        [DataMember(Name = "additionalData", EmitDefaultValue = false)]
-        public Dictionary<string, string> AdditionalData { get; set; }
-
-
-        /**
-   * get additionalData map
-   * Create the map if doesn't exists
-   *
-   * @return
-   */
+        
         public Dictionary<string, string> GetOrCreateAdditionalData()
         {
             return this.AdditionalData ?? (this.AdditionalData = new Dictionary<string, string>());
         }
-
-
+        
         public PaymentRequest InvoiceLines(List<InvoiceLine> invoiceLines)
         {
             int count = 1;
