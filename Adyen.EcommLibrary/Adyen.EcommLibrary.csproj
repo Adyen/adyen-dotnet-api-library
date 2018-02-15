@@ -1,12 +1,22 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFrameworks>net45;netstandard2.0</TargetFrameworks>
+    <TargetFrameworks>netstandard2.0;net45</TargetFrameworks>
     <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
     <Copyright>Adyen</Copyright>
     <Version>1.0.2</Version>
     <AssemblyVersion>1.0.2</AssemblyVersion>
     <FileVersion>1.0.2</FileVersion>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <Description>The Adyen API Library for .net core enables you to work with Adyen APIs and Hosted Payment Pages with any .net application.</Description>
+    <PackageProjectUrl>https://github.com/Adyen/adyen-dotnet-api-library</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/Adyen/adyen-dotnet-api-library</RepositoryUrl>
+    <RepositoryType>git</RepositoryType>
+    <PackageTags>Adyen</PackageTags>
+    <PackageLicenseUrl>https://github.com/Adyen/adyen-dotnet-api-library/blob/master/LICENSE</PackageLicenseUrl>
+    <Authors>Adyen</Authors>
+    <Company>Adyen</Company>
+    <Product>Adyen ecomm library</Product>
   </PropertyGroup>
 
   <ItemGroup>
