@@ -3,6 +3,8 @@ using Adyen.EcommLibrary.Model.Reccuring;
 using System;
 using System.Collections.Generic;
 using System.Runtime.Serialization;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Converters;
 
 namespace Adyen.EcommLibrary.Model
 {
@@ -22,8 +24,10 @@ namespace Adyen.EcommLibrary.Model
         public string MerchantAccount { get; set; }
         [DataMember(Name = "browserInfo", EmitDefaultValue = false)]
         public BrowserInfo BrowserInfo { get; set; }
-        [DataMember(Name = "shopperInteractionEnum", EmitDefaultValue = false)]
-        public ShopperInteractionEnum ShopperInteraction { get; set; }
+
+        [DataMember(Name = "shopperInteraction", EmitDefaultValue = false)]
+        [JsonConverter(typeof(StringEnumConverter))]
+        public ShopperInteraction ShopperInteraction { get; set; }
 
         [DataMember(Name = "shopperEmail", EmitDefaultValue = false)]
         public string ShopperEmail { get; set; }
