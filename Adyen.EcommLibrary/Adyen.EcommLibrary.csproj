@@ -12,11 +12,14 @@
     <PackageProjectUrl>https://github.com/Adyen/adyen-dotnet-api-library</PackageProjectUrl>
     <RepositoryUrl>https://github.com/Adyen/adyen-dotnet-api-library</RepositoryUrl>
     <RepositoryType>git</RepositoryType>
-    <PackageTags>Adyen</PackageTags>
+    <PackageTags>1.0.3</PackageTags>
     <PackageLicenseUrl>https://github.com/Adyen/adyen-dotnet-api-library/blob/master/LICENSE</PackageLicenseUrl>
     <Authors>Adyen</Authors>
     <Company>Adyen</Company>
+    <Title>adyen-dotnet-api-library</Title>
     <Product>Adyen ecomm library</Product>
+    <NeutralLanguage>en</NeutralLanguage>
+    <PackageReleaseNotes>Adding a restricted header causes an exception</PackageReleaseNotes>
   </PropertyGroup>
 
   <ItemGroup>
