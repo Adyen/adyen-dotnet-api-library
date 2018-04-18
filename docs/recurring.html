@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="chrome=1">
-    <title>Adyen-php-api-library by Adyen</title>
+    <title>Adyen-dotnet-api-library by Adyen</title>
 
     <link rel="stylesheet" href="stylesheets/styles.css">
     <link rel="stylesheet" href="stylesheets/github-light.css">
@@ -15,16 +15,14 @@
   <body>
     <div class="wrapper">
       <header>
-        <h1>Adyen-php-api-library</h1>
-        <p>Adyen API Library for PHP</p>
+        <h1>Adyen-dotnet-api-library</h1>
+        <p>Adyen API Library for dotnet</p>
 
-        <p class="view"><a href="https://github.com/Adyen/adyen-php-api-library">View the Project on GitHub <small>Adyen/adyen-php-api-library</small></a></p>
-
-
+      <p class="view"><a href="https://github.com/Adyen/adyen-dotnet-api-library">View the Project on GitHub <small>Adyen/adyen-dotnet-api-library</small></a></p>
         <ul>
-          <li><a href="https://github.com/Adyen/adyen-php-api-library/zipball/master">Download <strong>ZIP File</strong></a></li>
-          <li><a href="https://github.com/Adyen/adyen-php-api-library/tarball/master">Download <strong>TAR Ball</strong></a></li>
-          <li><a href="https://github.com/Adyen/adyen-php-api-library">View On <strong>GitHub</strong></a></li>
+          <li><a href="https://github.com/Adyen/adyen-dotnet-api-library/zipball/master">Download <strong>ZIP File</strong></a></li>
+          <li><a href="https://github.com/Adyen/adyen-dotnet-api-library/tarball/master">Download <strong>TAR Ball</strong></a></li>
+          <li><a href="https://github.com/Adyen/adyen-dotnet-api-library">View On <strong>GitHub</strong></a></li>
         </ul>
       </header>
       <section>
@@ -37,33 +35,34 @@
       			Using you can retrieve all cards from a specific shopper.
       		</p>
       		<div class="highlight highlight-text-html-php"><pre>
-<span class="pl-s1"><span class="pl-smi">$service</span> <span class="pl-k">=</span> <span class="pl-k">new</span> <span class="pl-c1">Service\</span><span class="pl-c1">Recurring<span>(<span class="pl-smi">$client</span>);</span>
-<span class="pl-s1"></span>
-<span class="pl-s1"><span class="pl-smi">$recurring</span> <span class="pl-k">=</span> <span class="pl-c1">array</span>(<span class="pl-s"><span class="pl-pds">'</span>contract<span class="pl-pds">'</span></span> <span class="pl-k">=&gt;</span> <span class="pl-s"><span class="pl-pds">\Adyen\Contract::RECURRING</span>);</span>
-<span class="pl-s1"></span>
-<span class="pl-s1"><span class="pl-smi">$params</span> <span class="pl-k">=</span> <span class="pl-c1">array</span>(</span>
-<span class="pl-s1">    <span class="pl-s"><span class="pl-pds">"</span>merchantAccount<span class="pl-pds">"</span></span> <span class="pl-k">=&gt;</span> <span class="pl-s"><span class="pl-pds">'</span>YOUR MERCHANT ACCOUNT<span class="pl-pds">'</span></span>,</span>
-<span class="pl-s1">    <span class="pl-s"><span class="pl-pds">"</span>recurring<span class="pl-pds">"</span></span> <span class="pl-k">=&gt;</span> <span class="pl-smi">$recurring</span>,</span>
-<span class="pl-s1">    <span class="pl-s"><span class="pl-pds">"</span>shopperReference<span class="pl-pds">"</span></span> <span class="pl-k">=&gt;</span> <span class="pl-s"><span class="pl-pds">'</span>YOUR SHOPPER REFERENCE<span class="pl-pds">'</span></span></span>
-<span class="pl-s1">);</span>
-<span class="pl-s1"></span>
-<span class="pl-s1">$result = $service->listRecurringDetails($params);</span>
-</pre></div>
-
-
+<span class="pl-s1"><span class="pl-smi">var client</span> <span class="pl-k">=</span> <span class="pl-k">new</span> <span class="pl-c1">Client</span><span class="pl-s1">();</span>
+<span class="pl-s1"><span class="pl-smi">var recurring</span> <span class="pl-k">=</span> <span class="pl-k">new</span> <span class="pl-c1">Service.Recurring</span><span class="pl-s1">(client);</span>
+<code>
+var recurringDetailRequest = <span class="pl-k">new</span> RecurringDetailsRequest
+{
+  ShopperReference = "test-123",
+  MerchantAccount = "merchantAccount",
+  Recurring = <span class="pl-k">new</span> PaymentRequest Recurring { Contract = Contract.Oneclick }
+};
+</code>
+<span class="pl-s1"><span class="pl-smi">var recurringDetailResult</span> <span class="pl-k">=</span> <span class="pl-k">new</span> <span class="pl-c1">recurring.ListRecurringDetails</span><span class="pl-s1">(recurringDetailRequest);</span>
+</pre>
+</div>
 
 		<h2>disable</h2>
-<div class="highlight highlight-text-html-php"><pre>
-<span class="pl-s1"><span class="pl-smi">$service</span> <span class="pl-k">=</span> <span class="pl-k">new</span> <span class="pl-c1">Service\</span><span class="pl-c1">Recurring<span>(<span class="pl-smi">$client</span>);</span>
-<span class="pl-s1"></span>
-<span class="pl-s1"><span class="pl-smi">$params</span> <span class="pl-k">=</span> <span class="pl-c1">array</span>(</span>
-<span class="pl-s1">    <span class="pl-s"><span class="pl-pds">"</span>merchantAccount<span class="pl-pds">"</span></span> <span class="pl-k">=&gt;</span> <span class="pl-s"><span class="pl-pds">'</span>YOUR MERCHANT ACCOUNT<span class="pl-pds">'</span></span>,</span>
-<span class="pl-s1">    <span class="pl-s"><span class="pl-pds">"</span>shopperReference<span class="pl-pds">"</span></span> <span class="pl-k">=&gt;</span> <span class="pl-smi">'SHOPPER_REFERENCE'</span>,</span>
-<span class="pl-s1">    <span class="pl-s"><span class="pl-pds">"</span>recurringDetailReference<span class="pl-pds">"</span></span> <span class="pl-k">=&gt;</span> <span class="pl-s"><span class="pl-pds">'</span>RECURRING_DETAIL_REFERENCE<span class="pl-pds">'</span></span></span>
-<span class="pl-s1">);</span>
-<span class="pl-s1"></span>
-<span class="pl-s1">$result = $service->disable($params);</span>
-</pre></div>
+    <div class="highlight highlight-text-html-php"><pre>
+<span class="pl-s1"><span class="pl-smi">var client</span> <span class="pl-k">=</span> <span class="pl-k">new</span> <span class="pl-c1">Client</span><span class="pl-s1">();</span>
+<span class="pl-s1"><span class="pl-smi">var recurring</span> <span class="pl-k">=</span> <span class="pl-k">new</span> <span class="pl-c1">Service.Recurring</span><span class="pl-s1">(client);</span>
+<code>
+var disableRequest = <span class="pl-k">new</span> DisableRequest
+{
+  ShopperReference = "test-123",
+  MerchantAccount = "merchantAccount",
+};
+</code>
+<span class="pl-s1"><span class="pl-smi">var disableResult</span> <span class="pl-k">=</span> <span class="pl-k">new</span> <span class="pl-c1">recurring.Disable</span><span class="pl-s1">(disableRequest);</span>
+</pre>
+</div>
 
 
       </section>
@@ -73,6 +72,6 @@
       </footer>
     </div>
     <script src="javascripts/scale.fix.js"></script>
-    
+
   </body>
 </html>
