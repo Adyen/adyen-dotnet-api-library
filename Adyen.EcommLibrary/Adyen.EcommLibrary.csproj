@@ -4,7 +4,7 @@
     <TargetFrameworks>netstandard2.0;net45</TargetFrameworks>
     <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
     <Copyright>Adyen</Copyright>
-    <Version>1.0.3</Version>
+    <Version>1.0.4</Version>
     <AssemblyVersion>1.0.4</AssemblyVersion>
     <FileVersion>1.0.4</FileVersion>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
@@ -12,7 +12,7 @@
     <PackageProjectUrl>https://github.com/Adyen/adyen-dotnet-api-library</PackageProjectUrl>
     <RepositoryUrl>https://github.com/Adyen/adyen-dotnet-api-library</RepositoryUrl>
     <RepositoryType>git</RepositoryType>
-    <PackageTags>1.0.3</PackageTags>
+    <PackageTags>1.0.4</PackageTags>
     <PackageLicenseUrl>https://github.com/Adyen/adyen-dotnet-api-library/blob/master/LICENSE</PackageLicenseUrl>
     <Authors>Adyen</Authors>
     <Company>Adyen</Company>
