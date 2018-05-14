@@ -4,19 +4,23 @@
     <TargetFrameworks>netstandard2.0;net45</TargetFrameworks>
     <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
     <Copyright>Adyen</Copyright>
-    <Version>1.0.3</Version>
-    <AssemblyVersion>1.0.3</AssemblyVersion>
-    <FileVersion>1.0.3</FileVersion>
+    <Version>1.0.4</Version>
+    <AssemblyVersion>1.0.4</AssemblyVersion>
+    <FileVersion>1.0.4</FileVersion>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <Description>The Adyen API Library for .net core enables you to work with Adyen APIs and Hosted Payment Pages with any .net application.</Description>
     <PackageProjectUrl>https://github.com/Adyen/adyen-dotnet-api-library</PackageProjectUrl>
     <RepositoryUrl>https://github.com/Adyen/adyen-dotnet-api-library</RepositoryUrl>
     <RepositoryType>git</RepositoryType>
-    <PackageTags>Adyen</PackageTags>
+    <PackageTags>1.0.4</PackageTags>
     <PackageLicenseUrl>https://github.com/Adyen/adyen-dotnet-api-library/blob/master/LICENSE</PackageLicenseUrl>
     <Authors>Adyen</Authors>
     <Company>Adyen</Company>
+    <Title>adyen-dotnet-api-library</Title>
     <Product>Adyen ecomm library</Product>
+    <NeutralLanguage>en</NeutralLanguage>
+    <PackageReleaseNotes>Adding a restricted header causes an exception</PackageReleaseNotes>
+    <PackageIconUrl>https://www.adyen.com/dam/jcr:39adc4db-76f7-4b9e-aec6-bfa21db4153c/adyen-logo-green.png</PackageIconUrl>
   </PropertyGroup>
 
   <ItemGroup>
