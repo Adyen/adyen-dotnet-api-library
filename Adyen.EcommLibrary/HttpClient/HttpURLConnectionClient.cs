@@ -11,7 +11,7 @@ namespace Adyen.EcommLibrary.HttpClient
 {
     public class HttpUrlConnectionClient : IClient
     {
-        public string Request(string endpoint, string json, Config config )
+        public string Request(string endpoint, string json, Config config)
         {
             string responseText;
             try
@@ -20,11 +20,10 @@ namespace Adyen.EcommLibrary.HttpClient
                 var httpWebRequest = (HttpWebRequest)WebRequest.Create(url);
                 httpWebRequest.Method = "POST";
                 httpWebRequest.ContentType = "application/json";
-               
                 ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12;
                 AddHeaders(config, httpWebRequest);
                 CreateBasicAuthentication(config, httpWebRequest);
-                
+
                 using (var streamWriter = new StreamWriter(httpWebRequest.GetRequestStream()))
                 {
                     streamWriter.Write(json);
@@ -33,10 +32,10 @@ namespace Adyen.EcommLibrary.HttpClient
                 }
                 var encoding = Encoding.ASCII;
                 var response = (HttpWebResponse)httpWebRequest.GetResponse();
-              
+
                 using (var reader = new StreamReader(response.GetResponseStream(), encoding))
                 {
-                     responseText = reader.ReadToEnd();
+                    responseText = reader.ReadToEnd();
                 }
             }
             catch (Exception e)
@@ -46,7 +45,7 @@ namespace Adyen.EcommLibrary.HttpClient
             }
             return responseText;
         }
-        
+
         public string Post(string endpoint, Dictionary<string, string> postParameters, Config config)
         {
             string responseText;
@@ -59,7 +58,8 @@ namespace Adyen.EcommLibrary.HttpClient
                 httpWebRequest.Method = "POST";
                 httpWebRequest.ContentType = "application/x-www-form-urlencoded";
                 httpWebRequest.ContentLength = postBytes.Length;
-                
+                ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12;
+
                 using (var stream = httpWebRequest.GetRequestStream())
                 {
                     stream.Write(postBytes, 0, postBytes.Length);
@@ -113,7 +113,7 @@ namespace Adyen.EcommLibrary.HttpClient
 
             request.Headers.Add("Authorization", "Basic " + credentials);
             request.UseDefaultCredentials = true;
-        } 
+        }
         #endregion
     }
 }
