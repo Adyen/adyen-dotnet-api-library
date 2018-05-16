@@ -20,10 +20,11 @@ namespace Adyen.EcommLibrary.HttpClient
                 var httpWebRequest = (HttpWebRequest)WebRequest.Create(url);
                 httpWebRequest.Method = "POST";
                 httpWebRequest.ContentType = "application/json";
-
+               
+                ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12;
                 AddHeaders(config, httpWebRequest);
                 CreateBasicAuthentication(config, httpWebRequest);
-
+                
                 using (var streamWriter = new StreamWriter(httpWebRequest.GetRequestStream()))
                 {
                     streamWriter.Write(json);
