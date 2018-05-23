@@ -9,6 +9,9 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Text;
+using Adyen.EcommLibrary.Model.Enum;
+using Adyen.EcommLibrary.Model.Nexo.Message;
+using Environment = System.Environment;
 
 namespace Adyen.EcommLibrary.Test
 {
@@ -182,7 +185,46 @@ namespace Adyen.EcommLibrary.Test
             
             return text;
         }
+
+
+        //Nexo
+
+        /// <summary>
+        /// Create dummy Nexo message header
+        /// </summary>
+        /// <returns></returns>
+        protected MessageHeader MockNexoMessageHeaderRequest()
+        {
+
+            return new MessageHeader
+            {
+
+                MessageType = MessageType.Request,
+                MessageClass = MessageClass.Service,
+                MessageCategory = MessageCategory.Payment,
+                SaleID = "John",
+                POIID = "MX915-284251016",
+                ProtocolVersion = "3.0",
+                ServiceID = (new Random()).Next(1, 9999).ToString()
+
+            };
+        }
         
+        /// <summary>
+        /// Returns dummy Nexo json request
+        /// </summary>
+        /// <returns></returns>
+        protected string MockNexoJsonRequest()
+        {
+            return "{\r\n\t\"SaleToPOIRequest\" : {\r\n\t\t\"MessageHeader\" : {\r\n\t\t\t\"ProtocolVersion\" : \"3.0\",\r\n\t\t\t\"MessageClass\" : " +
+                   "\"Service\",\r\n\t\t\t\"MessageCategory\" : \"Payment\",\r\n\t\t\t\"MessageType\" : \"Request\",\r\n\t\t\t\"ServiceID\" : \"6487\",\r\n\t\t\t\"SaleID\" : \"John\"," +
+                   "\r\n\t\t\t\"POIID\" : \"MX915-284251016\"\r\n\t\t},\r\n\t\t\"PaymentRequest\" : {\r\n\t\t\t\"SaleData\" : " +
+                   "{\r\n\t\t\t\t\"SaleTransactionID\" : {\r\n\t\t\t\t\t\"TransactionID\" : \"22485\",\r\n\t\t\t\t\t\"TimeStamp\" : \"2018-05-23T12:09:19\"\r\n\t\t\t\t}," +
+                   "\r\n\t\t\t\t\"SaleReferenceID\" : \"SalesRefABC\",\r\n\t\t\t\t\"TokenRequestedType\" : \"Customer\"\r\n\t\t\t},\r\n\t\t\t\"PaymentTransaction\" : " +
+                   "{\r\n\t\t\t\t\"AmountsReq\" : {\r\n\t\t\t\t\t\"Currency\" : \"EUR\",\r\n\t\t\t\t\t\"RequestedAmount\" : 10.99\r\n\t\t\t\t}\r\n\t\t\t}\r\n\t\t}\r\n\t}\r\n}\r\n";
+        }
+        
+
         private PaymentResult GetAdditionaData(PaymentResult paymentResult)
         {
             var paymentResultAdditionalData = paymentResult.AdditionalData;
