@@ -1,0 +1,33 @@
+﻿namespace Adyen.EcommLibrary.Model.Enum
+{
+    public enum MessageCategory
+    {
+        Abort,
+        Admin,
+        BalanceInquiry,
+        Batch,
+        CardAcquisition,
+        CardReaderAPDU,
+        CardReaderInit,
+        CardReaderPowerOff,
+        Diagnosis,
+        Display,
+        EnableService,
+        Event,
+        GetTotals,
+        Input,
+        InputUpdate,
+        Login,
+        Logout,
+        Loyalty,
+        Payment,
+        PIN,
+        Print,
+        Reconciliation,
+        Reversal,
+        Sound,
+        StoredValue,
+        TransactionStatus,
+        Transmit,
+    }
+}
