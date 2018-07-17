@@ -11,11 +11,16 @@ namespace Adyen.EcommLibrary
 
         public Environment Environment { get; set; }
         public string Endpoint { get; set; }
+        
         public string ApplicationName { get; set; }
 
         //HPP specific
         public string HppEndpoint { get; set; }
         public string SkinCode{ get; set; }
         public string HmacKey { get; set; }
+
+        //Terminal cloud api
+        public string XApiKey { get; set; }
+        public string TerminalCloudEndPoint { get; set; }
     }
 }

@@ -1,4 +1,5 @@
-﻿using Newtonsoft.Json;
+﻿using System;
+using Newtonsoft.Json;
 using System.ComponentModel.DataAnnotations;
 
 namespace Adyen.EcommLibrary.Model.Nexo.Message
@@ -9,8 +10,6 @@ namespace Adyen.EcommLibrary.Model.Nexo.Message
         public MessageHeader MessageHeader { get; set; }
 
         [Required]
-        public IMessagePayload MessagePayload { get; set; }
-
-      
+        public Object MessagePayload { get; set; }
     }
 }

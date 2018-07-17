@@ -1,6 +1,6 @@
 ﻿using Adyen.EcommLibrary.Constants;
-using Adyen.EcommLibrary.HttpClient;
-using Adyen.EcommLibrary.HttpClient.Interfaces;
+using Adyen.EcommLibrary.HttpClientHandler;
+using Adyen.EcommLibrary.HttpClientHandler.Interfaces;
 using Adyen.EcommLibrary.Model.Enum;
 
 namespace Adyen.EcommLibrary
@@ -9,15 +9,26 @@ namespace Adyen.EcommLibrary
     {
         public Config Config { get; set; }
         private IClient _client;
-        
-        public Client(string username, string password, Environment environment, string applicationName)
+
+        public string ApplicationName { get; set; }
+
+        public Client(string username, string password, Environment environment)
         {
             Config = new Config
             {
                 Username = username,
                 Password = password,
-                ApplicationName = applicationName,
                 Environment = environment
+            };
+            this.SetEnviroment(environment);
+        }
+
+        public Client(string xapikey, Environment environment)
+        {
+            Config = new Config
+            {
+                Environment = environment,
+                XApiKey = xapikey
             };
             this.SetEnviroment(environment);
         }
@@ -35,11 +46,12 @@ namespace Adyen.EcommLibrary
                 case Environment.Test:
                     Config.Endpoint = ClientConfig.EndpointTest;
                     Config.HppEndpoint = ClientConfig.HppTest;
+                    Config.TerminalCloudEndPoint = ClientConfig.TerminalCloudTest;
                     break;
-
                 case Environment.Live:
                     Config.Endpoint = ClientConfig.EndpointLive;
                     Config.HppEndpoint = ClientConfig.HppLive;
+                    Config.TerminalCloudEndPoint = ClientConfig.TerminalCloudLive;
                     break;
             }
         }
@@ -76,7 +88,7 @@ namespace Adyen.EcommLibrary
 
             }
         }
-        
+
     }
 
 }

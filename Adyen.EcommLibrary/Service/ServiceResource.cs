@@ -1,4 +1,4 @@
-using Adyen.EcommLibrary.HttpClient;
+using System;
 using System.Collections.Generic;
 
 namespace Adyen.EcommLibrary.Service
@@ -26,7 +26,7 @@ namespace Adyen.EcommLibrary.Service
             {
                 result = clientInterface.Request(Endpoint, json, config);
             }
-            catch (HttpClientException httpClientException)
+            catch (Exception httpClientException)
             {
                 throw httpClientException;
             }
