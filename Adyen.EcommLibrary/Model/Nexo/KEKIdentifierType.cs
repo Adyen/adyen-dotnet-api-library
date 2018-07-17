@@ -5,18 +5,19 @@
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
-    public partial class KEKIdentifierType {
-        
+    public partial class KEKIdentifierType
+    {
+
         /// <remarks/>
         [System.Xml.Serialization.XmlAttributeAttribute()]
         public string KeyIdentifier;
-        
+
         /// <remarks/>
         [System.Xml.Serialization.XmlAttributeAttribute()]
         public string KeyVersion;
-        
+
         /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute(DataType="base64Binary")]
+        [System.Xml.Serialization.XmlAttributeAttribute(DataType = "base64Binary")]
         public byte[] DerivationIdentifier;
     }
 }

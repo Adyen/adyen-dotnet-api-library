@@ -7,7 +7,7 @@ using System.Text;
 namespace Adyen.EcommLibrary.Model
 {
     [DataContract]
-    public class PaymentRequest:AbstractPaymentRequest
+    public class PaymentRequest : AbstractPaymentRequest
     {
         [DataMember(Name = "card", EmitDefaultValue = false)]
         public Card Card { get; set; }
@@ -17,18 +17,18 @@ namespace Adyen.EcommLibrary.Model
 
         [DataMember(Name = "bankAccount", EmitDefaultValue = false)]
         public BankAccount BankAccount { get; set; }
-        
+
         public Dictionary<string, string> GetOrCreateAdditionalData()
         {
             return this.AdditionalData ?? (this.AdditionalData = new Dictionary<string, string>());
         }
-        
+
         public PaymentRequest InvoiceLines(List<InvoiceLine> invoiceLines)
         {
             int count = 1;
             foreach (var invoiceLine in invoiceLines)
             {
-             
+
                 StringBuilder sb = new StringBuilder();
                 sb.Append("openinvoicedata.line");
                 sb.Append(count.ToString());
@@ -42,7 +42,7 @@ namespace Adyen.EcommLibrary.Model
                 this.GetOrCreateAdditionalData().Add(new StringBuilder().Append(lineNumber).Append(".vatCategory").ToString(), invoiceLine.VatCategory.ToString());
 
                 // Addional field only for RatePay
-                if (invoiceLine.ItemId != null )
+                if (invoiceLine.ItemId != null)
                 {
                     this.GetOrCreateAdditionalData().Add(new StringBuilder().Append(lineNumber).Append(".itemId").ToString(), invoiceLine.ItemId);
                 }
@@ -66,7 +66,7 @@ namespace Adyen.EcommLibrary.Model
             sb.Append("}");
             return sb.ToString();
         }
-        
+
         private string ToIndentedString(Object o)
         {
             if (o == null)

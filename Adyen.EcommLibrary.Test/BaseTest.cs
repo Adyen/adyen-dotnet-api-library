@@ -1,16 +1,18 @@
 ﻿using Adyen.EcommLibrary.Constants;
-using Adyen.EcommLibrary.HttpClient;
-using Adyen.EcommLibrary.HttpClient.Interfaces;
-using Adyen.EcommLibrary.Model;
+using Adyen.EcommLibrary.HttpClientHandler;
+using Adyen.EcommLibrary.HttpClientHandler.Interfaces;
+
+using Adyen.EcommLibrary.Model.Enum;
 using Adyen.EcommLibrary.Model.Modification;
+using Adyen.EcommLibrary.Model.Nexo.Message;
 using Adyen.EcommLibrary.Service;
 using Moq;
 using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Text;
-using Adyen.EcommLibrary.Model.Enum;
-using Adyen.EcommLibrary.Model.Nexo.Message;
+using Adyen.EcommLibrary.Model.Nexo;
+using Adyen.EcommLibrary.Model;
 using Environment = System.Environment;
 
 namespace Adyen.EcommLibrary.Test
@@ -19,7 +21,7 @@ namespace Adyen.EcommLibrary.Test
     {
 
         #region Payment request
-        public PaymentResult CreatePaymentResultFromFile(string fileName)
+        public Model.PaymentResult CreatePaymentResultFromFile(string fileName)
         {
             var client = CreateMockTestClientRequest(fileName);
             var payment = new Payment(client);
@@ -28,9 +30,9 @@ namespace Adyen.EcommLibrary.Test
             var paymentResult = payment.Authorise(paymentRequest);
             return GetAdditionaData(paymentResult);
         }
-       
+
         #endregion
-        
+
         #region Modification objects
 
         protected CaptureRequest CreateCaptureTestRequest(string pspReference)
@@ -38,7 +40,7 @@ namespace Adyen.EcommLibrary.Test
             var captureRequest = new CaptureRequest
             {
                 MerchantAccount = "MerchantAccount",
-                ModificationAmount = new Amount("EUR", 150),
+                ModificationAmount = new Model.Amount("EUR", 150),
                 Reference = "capture - " + DateTime.Now.ToString("yyyyMMdd"),
                 OriginalReference = pspReference
             };
@@ -62,7 +64,7 @@ namespace Adyen.EcommLibrary.Test
             var refundRequest = new RefundRequest()
             {
                 MerchantAccount = "MerchantAccount",
-                ModificationAmount = new Amount("EUR", 150),
+                ModificationAmount = new Model.Amount("EUR", 150),
                 Reference = "refund - " + DateTime.Now.ToString("yyyyMMdd"),
                 OriginalReference = pspReference
             };
@@ -95,8 +97,8 @@ namespace Adyen.EcommLibrary.Test
         /// <summary>
         /// Creates mock test client 
         /// </summary>
-        /// <param name="fileName"></param>
-        /// <returns></returns>
+        /// <param name="fileName">The file that is returned</param>
+        /// <returns>IClient implementation</returns>
         protected Client CreateMockTestClientRequest(string fileName)
         {
             var mockPath = GetMockFilePath(fileName);
@@ -110,6 +112,28 @@ namespace Adyen.EcommLibrary.Test
             {
                 HttpClient = clientInterfaceMock.Object,
                 Config = confMock
+            };
+            return clientMock;
+        }
+
+        /// <summary>
+        /// Creates mock test client for pos cloud api. In that case the xapi should be included
+        /// </summary>
+        /// <param name="fileName">The file that is returned</param>
+        /// <param name="config">config file includes XApiKey</param>
+        /// <returns>IClient implementation</returns>
+        protected Client CreateMockTestClientCloudAPiRequest(string fileName,Config config)
+        {
+            var mockPath = GetMockFilePath(fileName);
+            var response = MockFileToString(mockPath);
+            //Create a mock interface
+            var clientInterfaceMock = new Mock<IClient>();
+            clientInterfaceMock.Setup(x => x.Request(It.IsAny<string>(),
+                It.IsAny<string>(), config)).Returns(response);
+            var clientMock = new Client(It.IsAny<Config>())
+            {
+                HttpClient = clientInterfaceMock.Object,
+                Config = config
             };
             return clientMock;
         }
@@ -172,7 +196,7 @@ namespace Adyen.EcommLibrary.Test
                 return text;
             }
             try
-            {   
+            {
                 using (var streamReader = new StreamReader(fileName, Encoding.UTF8))
                 {
                     text = streamReader.ReadToEnd();
@@ -182,50 +206,31 @@ namespace Adyen.EcommLibrary.Test
             {
                 throw exception;
             }
-            
+
             return text;
         }
-
-
-        //Nexo
-
+        
         /// <summary>
         /// Create dummy Nexo message header
         /// </summary>
         /// <returns></returns>
         protected MessageHeader MockNexoMessageHeaderRequest()
         {
-
             return new MessageHeader
             {
-
-                MessageType = MessageType.Request,
-                MessageClass = MessageClass.Service,
-                MessageCategory = MessageCategory.Payment,
-                SaleID = "John",
+                MessageType = "Request",
+                MessageClass = "Service",
+                MessageCategory = "Payment",
+                SaleID = "POSSystemID12345",
                 POIID = "MX915-284251016",
                 ProtocolVersion = "3.0",
                 ServiceID = (new Random()).Next(1, 9999).ToString()
-
             };
         }
-        
-        /// <summary>
-        /// Returns dummy Nexo json request
-        /// </summary>
-        /// <returns></returns>
-        protected string MockNexoJsonRequest()
-        {
-            return "{\r\n\t\"SaleToPOIRequest\" : {\r\n\t\t\"MessageHeader\" : {\r\n\t\t\t\"ProtocolVersion\" : \"3.0\",\r\n\t\t\t\"MessageClass\" : " +
-                   "\"Service\",\r\n\t\t\t\"MessageCategory\" : \"Payment\",\r\n\t\t\t\"MessageType\" : \"Request\",\r\n\t\t\t\"ServiceID\" : \"6487\",\r\n\t\t\t\"SaleID\" : \"John\"," +
-                   "\r\n\t\t\t\"POIID\" : \"MX915-284251016\"\r\n\t\t},\r\n\t\t\"PaymentRequest\" : {\r\n\t\t\t\"SaleData\" : " +
-                   "{\r\n\t\t\t\t\"SaleTransactionID\" : {\r\n\t\t\t\t\t\"TransactionID\" : \"22485\",\r\n\t\t\t\t\t\"TimeStamp\" : \"2018-05-23T12:09:19\"\r\n\t\t\t\t}," +
-                   "\r\n\t\t\t\t\"SaleReferenceID\" : \"SalesRefABC\",\r\n\t\t\t\t\"TokenRequestedType\" : \"Customer\"\r\n\t\t\t},\r\n\t\t\t\"PaymentTransaction\" : " +
-                   "{\r\n\t\t\t\t\"AmountsReq\" : {\r\n\t\t\t\t\t\"Currency\" : \"EUR\",\r\n\t\t\t\t\t\"RequestedAmount\" : 10.99\r\n\t\t\t\t}\r\n\t\t\t}\r\n\t\t}\r\n\t}\r\n}\r\n";
-        }
-        
 
-        private PaymentResult GetAdditionaData(PaymentResult paymentResult)
+       
+
+        private Model.PaymentResult GetAdditionaData(Model.PaymentResult paymentResult)
         {
             var paymentResultAdditionalData = paymentResult.AdditionalData;
 

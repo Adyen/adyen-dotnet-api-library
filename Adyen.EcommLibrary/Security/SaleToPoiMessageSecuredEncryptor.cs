@@ -1,6 +1,7 @@
 ﻿using Adyen.EcommLibrary.Model.Nexo.Message;
 using System;
 using System.Text;
+using Adyen.EcommLibrary.Model.Nexo;
 
 namespace Adyen.EcommLibrary.Security
 {
