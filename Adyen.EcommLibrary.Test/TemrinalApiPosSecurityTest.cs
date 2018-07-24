@@ -4,7 +4,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 namespace Adyen.EcommLibrary.Test
 {
     [TestClass]
-    public class CloudApiPosSecurityTest : BaseTest
+    public class TemrinalApiPosSecurityTest : BaseTest
     {
         private SaleToPoiMessageSecuredEncryptor _messageSecuredEncryptor;
         private EncryptionCredentialDetails _encryptionCredentialDetails;
@@ -22,7 +22,7 @@ namespace Adyen.EcommLibrary.Test
         }
 
         [TestMethod]
-        public void TestCloudAPiPosEncryption()
+        public void TestTerminalAPiPosEncryption()
         {
             //dummy header
             var messageHeader = MockNexoMessageHeaderRequest();
@@ -32,9 +32,9 @@ namespace Adyen.EcommLibrary.Test
 
             Assert.IsNotNull(saleToPoiMessageSecured);
         }
-
+        
         [TestMethod]
-        public void TestCloudApiPosDecryptionTest()
+        public void TestTerminalApiPosDecryption()
         {
             //dummy header
             var messageHeader = MockNexoMessageHeaderRequest();

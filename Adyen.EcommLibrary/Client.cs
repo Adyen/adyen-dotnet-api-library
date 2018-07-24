@@ -46,12 +46,12 @@ namespace Adyen.EcommLibrary
                 case Environment.Test:
                     Config.Endpoint = ClientConfig.EndpointTest;
                     Config.HppEndpoint = ClientConfig.HppTest;
-                    Config.TerminalCloudEndPoint = ClientConfig.TerminalCloudTest;
+                    Config.CloudApiEndPoint = ClientConfig.CloudApiEndPointTest;
                     break;
                 case Environment.Live:
                     Config.Endpoint = ClientConfig.EndpointLive;
                     Config.HppEndpoint = ClientConfig.HppLive;
-                    Config.TerminalCloudEndPoint = ClientConfig.TerminalCloudLive;
+                    Config.CloudApiEndPoint = ClientConfig.CloudApiEndPointLive;
                     break;
             }
         }
@@ -88,7 +88,5 @@ namespace Adyen.EcommLibrary
 
             }
         }
-
     }
-
 }

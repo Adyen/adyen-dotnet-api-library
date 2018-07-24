@@ -1,5 +1,6 @@
 ﻿using Adyen.EcommLibrary.Model.Nexo;
 using System;
+using Adyen.EcommLibrary.Security;
 
 namespace Adyen.EcommLibrary.Test
 {
@@ -49,9 +50,10 @@ namespace Adyen.EcommLibrary.Test
                     {
                         Payment = transactionType
                     }
-                },SecurityTrailer = new ContentInformationType()
+                },
+                SecurityTrailer = new ContentInformationType()
                 {
-                    
+
                 }
             };
 
@@ -72,11 +74,11 @@ namespace Adyen.EcommLibrary.Test
                     MessageType = "Request",
                     MessageClass = "Service",
                     MessageCategory = "Payment",
-                    SaleID = "John",
-                    
+                    SaleID = "POSSystemID12345",
+
                     POIID = "MX915-284251016",
                     ProtocolVersion = "3.0",
-                    ServiceID = (new Random()).Next(1, 9999).ToString()
+                    ServiceID = DateTime.Now.ToString("ddHHmmss")
                 },
                 Item = new PaymentRequest()
                 {
@@ -87,9 +89,7 @@ namespace Adyen.EcommLibrary.Test
                             TransactionID = "PosAuth",
                             TimeStamp = DateTime.Now
                         },
-
                         TokenRequested = "Customer",
-                        SaleReferenceID = "SalesRefABC",
                     },
                     PaymentTransaction = new PaymentTransaction()
                     {
@@ -103,6 +103,10 @@ namespace Adyen.EcommLibrary.Test
                     {
                         Payment = transactionType
                     }
+                },
+                SecurityTrailer = new ContentInformationType()
+                {
+
                 }
             };
             return saleToPoiRequest;

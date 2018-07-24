@@ -21,6 +21,6 @@ namespace Adyen.EcommLibrary
 
         //Terminal cloud api
         public string XApiKey { get; set; }
-        public string TerminalCloudEndPoint { get; set; }
+        public string CloudApiEndPoint { get; set; }
     }
 }
