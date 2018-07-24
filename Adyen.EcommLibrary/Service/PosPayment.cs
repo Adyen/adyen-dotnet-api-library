@@ -10,8 +10,8 @@ namespace Adyen.EcommLibrary.Service
         private readonly TerminalCloudApi _terminalCloudApiAsync;
         private readonly TerminalCloudApi _terminalCloudApiSync;
         private readonly SaleToPoiMessageSerializer _saleToPoiMessageSerializer;
-        private SaleToPoiMessageSecuredEncryptor _messageSecuredEncryptor;
-        private SaleToPoiMessageSecuredSerializer _saleToPoiMessageSecuredSerializer;
+        private readonly SaleToPoiMessageSecuredEncryptor _messageSecuredEncryptor;
+        private readonly SaleToPoiMessageSecuredSerializer _saleToPoiMessageSecuredSerializer;
 
 
         public PosPayment(Client client)

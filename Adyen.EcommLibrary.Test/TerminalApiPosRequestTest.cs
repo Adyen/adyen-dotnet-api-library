@@ -10,13 +10,12 @@ namespace Adyen.EcommLibrary.Test
     [TestClass]
     public class TerminalApiPosRequestTest : BaseTest
     {
-        private SaleToPoiMessageSecuredEncryptor _messageSecuredEncryptor;
         private EncryptionCredentialDetails _encryptionCredentialDetails;
 
         [TestInitialize]
         public void Initialize()
         {
-            _messageSecuredEncryptor = new SaleToPoiMessageSecuredEncryptor();
+          
             _encryptionCredentialDetails = new EncryptionCredentialDetails
             {
                 AdyenCryptoVersion = 1,
