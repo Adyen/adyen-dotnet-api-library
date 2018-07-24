@@ -7,60 +7,6 @@ namespace Adyen.EcommLibrary.Test
     public class MockCloudApiPosRequest
     {
         /// <summary>
-        /// Encrypted POI cloud api message
-        /// </summary>
-        /// <param name="transactionType"></param>
-        /// <returns></returns>
-        public static SaleToPOIRequest CreatePaymentRequestWithEncryption(string transactionType)
-        {
-            var saleToPoiRequest = new SaleToPOIRequest()
-            {
-                MessageHeader = new MessageHeader
-                {
-                    MessageType = "Request",
-                    MessageClass = "Service",
-                    MessageCategory = "Payment",
-                    SaleID = "John",
-                    POIID = "MX915-284251016",
-                    ProtocolVersion = "3.0",
-                    ServiceID = (new Random()).Next(1, 9999).ToString()
-                },
-                Item = new PaymentRequest()
-                {
-                    SaleData = new SaleData()
-                    {
-                        SaleTransactionID = new TransactionIdentification()
-                        {
-                            TransactionID = "PosAuth",
-                            TimeStamp = DateTime.Now
-                        },
-
-                        TokenRequested = "Customer",
-                        SaleReferenceID = "SalesRefABC",
-                    },
-                    PaymentTransaction = new PaymentTransaction()
-                    {
-                        AmountsReq = new AmountsReq()
-                        {
-                            Currency = "EUR",
-                            RequestedAmount = 10100
-                        }
-                    },
-                    PaymentData = new PaymentData()
-                    {
-                        Payment = transactionType
-                    }
-                },
-                SecurityTrailer = new ContentInformationType()
-                {
-
-                }
-            };
-
-            return saleToPoiRequest;
-        }
-
-        /// <summary>
         /// Plain POI cloud api message
         /// </summary>
         /// <param name="transactionType"></param>

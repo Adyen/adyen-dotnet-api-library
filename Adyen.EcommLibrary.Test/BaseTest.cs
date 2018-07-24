@@ -229,7 +229,6 @@ namespace Adyen.EcommLibrary.Test
         }
 
        
-
         private Model.PaymentResult GetAdditionaData(Model.PaymentResult paymentResult)
         {
             var paymentResultAdditionalData = paymentResult.AdditionalData;
