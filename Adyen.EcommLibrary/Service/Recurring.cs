@@ -39,7 +39,7 @@ namespace Adyen.EcommLibrary.Service
             try
             {
                 var jsonRequest = Util.JsonOperation.SerializeRequest(disableRequest);
-                var jsonResponse = _listRecurringDetails.Request(jsonRequest);
+                var jsonResponse = _disable.Request(jsonRequest);
                 result = Util.JsonOperation.Deserealize<DisableResult>(jsonResponse);
             }
             catch (Exception ex)
