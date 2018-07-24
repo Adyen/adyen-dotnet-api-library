@@ -1,6 +1,4 @@
-﻿using Adyen.EcommLibrary.Exceptions;
-using Newtonsoft.Json;
-using Newtonsoft.Json.Serialization;
+﻿using Newtonsoft.Json;
 
 namespace Adyen.EcommLibrary.CloudApiSerialization.Converter
 {

@@ -1,5 +1,6 @@
 ﻿using System;
 using Adyen.EcommLibrary.Model.Nexo;
+using Adyen.EcommLibrary.Security;
 using Newtonsoft.Json.Linq;
 
 namespace Adyen.EcommLibrary.CloudApiSerialization
@@ -78,5 +79,18 @@ namespace Adyen.EcommLibrary.CloudApiSerialization
                 throw e;
             }
         }
+
+        public string Serialize(SaleToPoiMessageSecured saleToPoiMessage)
+        {
+            try
+            {
+                return Converter.JSonConvertSerializerWrapper.Serialize(saleToPoiMessage);
+            }
+            catch (Exception e)
+            {
+                throw e;
+            }
+        }
+
     }
 }

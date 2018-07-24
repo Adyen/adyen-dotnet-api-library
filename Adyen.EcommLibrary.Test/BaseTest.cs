@@ -258,7 +258,7 @@ namespace Adyen.EcommLibrary.Test
             return paymentResult;
         }
 
-        private static string GetMockFilePath(string fileName)
+        protected static string GetMockFilePath(string fileName)
         {
             if (string.IsNullOrEmpty(fileName))
             {
