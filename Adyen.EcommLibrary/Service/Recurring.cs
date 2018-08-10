@@ -13,7 +13,6 @@ namespace Adyen.EcommLibrary.Service
         {
             _listRecurringDetails = new ListReccuringDetails(this);
             _disable = new Disable(this);
-
         }
 
         public RecurringDetailsResult ListRecurringDetails(RecurringDetailsRequest request)
