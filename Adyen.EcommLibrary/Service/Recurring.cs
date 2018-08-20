@@ -13,7 +13,6 @@ namespace Adyen.EcommLibrary.Service
         {
             _listRecurringDetails = new ListReccuringDetails(this);
             _disable = new Disable(this);
-
         }
 
         public RecurringDetailsResult ListRecurringDetails(RecurringDetailsRequest request)
@@ -39,7 +38,7 @@ namespace Adyen.EcommLibrary.Service
             try
             {
                 var jsonRequest = Util.JsonOperation.SerializeRequest(disableRequest);
-                var jsonResponse = _listRecurringDetails.Request(jsonRequest);
+                var jsonResponse = _disable.Request(jsonRequest);
                 result = Util.JsonOperation.Deserealize<DisableResult>(jsonResponse);
             }
             catch (Exception ex)
