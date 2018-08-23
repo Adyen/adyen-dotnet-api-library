@@ -2,7 +2,7 @@
 {
     public class TerminalCloudApi : ServiceResource
     {
-        public TerminalCloudApi(AbstractService abstractService,bool asynchronous)
+        public TerminalCloudApi(AbstractService abstractService, bool asynchronous)
             : base(abstractService, abstractService.Client.Config.CloudApiEndPoint, null)
         {
             if (asynchronous) {

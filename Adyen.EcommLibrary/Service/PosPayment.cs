@@ -17,6 +17,7 @@ namespace Adyen.EcommLibrary.Service
         public PosPayment(Client client)
             : base(client)
         {
+            client.Config.RequiresXApiKey = RequiresApiKey;
             _saleToPoiMessageSerializer = new SaleToPoiMessageSerializer();
             _messageSecuredEncryptor = new SaleToPoiMessageSecuredEncryptor();
             _saleToPoiMessageSecuredSerializer = new SaleToPoiMessageSecuredSerializer();
@@ -24,6 +25,11 @@ namespace Adyen.EcommLibrary.Service
             _terminalCloudApiSync = new TerminalCloudApi(this, true);
         }
 
+        /// <summary>
+        /// CloudApi asyncronous call
+        /// </summary>
+        /// <param name="saleToPoiRequest"></param>
+        /// <returns></returns>
         public SaleToPOIResponse RunTenderAsync(SaleToPOIRequest saleToPoiRequest)
         {
             var serializedMessage = _saleToPoiMessageSerializer.Serialize(saleToPoiRequest);
@@ -32,6 +38,11 @@ namespace Adyen.EcommLibrary.Service
             return saleToPoiResponse;
         }
 
+        /// <summary>
+        /// CloudApi syncronous call
+        /// </summary>
+        /// <param name="saleToPoiRequest"></param>
+        /// <returns></returns>
         public SaleToPOIResponse RunTenderSync(SaleToPOIRequest saleToPoiRequest)
         {
             var serializedMessage = _saleToPoiMessageSerializer.Serialize(saleToPoiRequest);
@@ -39,8 +50,14 @@ namespace Adyen.EcommLibrary.Service
             var saleToPoiResponse = _saleToPoiMessageSerializer.Deserialize(response);
             return saleToPoiResponse;
         }
-        
-        //Local https call
+
+        /// <summary>
+        /// Terminal Api https call
+        /// </summary>
+        /// <param name="saleToPoiRequest"></param>
+        /// <param name="messageHeader"></param>
+        /// <param name="encryptionCredentialDetails"></param>
+        /// <returns></returns>
         public SaleToPOIResponse RunLocalTenderASync(SaleToPOIRequest saleToPoiRequest, MessageHeader  messageHeader, EncryptionCredentialDetails encryptionCredentialDetails)
         {
             var saleToPoiRequestMessageSerialized = _saleToPoiMessageSerializer.Serialize(saleToPoiRequest);

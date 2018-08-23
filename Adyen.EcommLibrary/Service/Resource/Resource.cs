@@ -22,6 +22,5 @@ namespace Adyen.EcommLibrary.Service.Resource
             
             return clientInterface.Request(this.Endpoint, json, config);
         }
-
     }
 }

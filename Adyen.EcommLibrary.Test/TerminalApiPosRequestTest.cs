@@ -1,9 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using Adyen.EcommLibrary.Security;
+﻿using Adyen.EcommLibrary.Security;
 using Adyen.EcommLibrary.Service;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using System;
 
 namespace Adyen.EcommLibrary.Test
 {
@@ -15,7 +13,6 @@ namespace Adyen.EcommLibrary.Test
         [TestInitialize]
         public void Initialize()
         {
-          
             _encryptionCredentialDetails = new EncryptionCredentialDetails
             {
                 AdyenCryptoVersion = 1,
@@ -27,20 +24,20 @@ namespace Adyen.EcommLibrary.Test
         [TestMethod]
         public void TestTerminalApiRequest()
         {
-            var config = new Config();
             try
             {
                 //dummy header
                 var messageHeader = MockNexoMessageHeaderRequest();
                
                 //encrypt the request using encryption credentials
-                var paymentRequest = MockCloudApiPosRequest.CreatePosPaymentRequest("Request");
+                var paymentRequest = MockPosApiRequest.CreatePosPaymentRequest("Request");
                 //create a mock client
-                var client = CreateMockTestClientCloudAPiRequest("Mocks/pospayment-encrypted-success.json", config);
+                var client = CreateMockTestClientPosApiRequest("Mocks/pospayment-encrypted-success.json");
                 var payment = new PosPayment(client);
                 var saleToPoiResponse = payment.RunLocalTenderASync(paymentRequest, messageHeader, _encryptionCredentialDetails);
 
                 Assert.IsNotNull(saleToPoiResponse);
+                //assert amount merchantaccount etc
             }
             catch (Exception e)
             {

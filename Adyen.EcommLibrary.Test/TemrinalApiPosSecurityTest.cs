@@ -27,7 +27,7 @@ namespace Adyen.EcommLibrary.Test
             //dummy header
             var messageHeader = MockNexoMessageHeaderRequest();
             //dummy json message
-            var saleToPoiRequest = MockCloudApiPosRequest.MockNexoJsonRequest();
+            var saleToPoiRequest = MockPosApiRequest.MockNexoJsonRequest();
             var saleToPoiMessageSecured = _messageSecuredEncryptor.Encrypt(saleToPoiRequest, messageHeader, _encryptionCredentialDetails);
 
             Assert.IsNotNull(saleToPoiMessageSecured);
@@ -39,7 +39,7 @@ namespace Adyen.EcommLibrary.Test
             //dummy header
             var messageHeader = MockNexoMessageHeaderRequest();
             //dummy json message
-            var saleToPoiRequest = MockCloudApiPosRequest.MockNexoJsonRequest();
+            var saleToPoiRequest = MockPosApiRequest.MockNexoJsonRequest();
             var saleToPoiMessageSecured = _messageSecuredEncryptor.Encrypt(saleToPoiRequest, messageHeader, _encryptionCredentialDetails);
             var saleToPoiRequestDecrypt = _messageSecuredEncryptor.Decrypt(saleToPoiMessageSecured, _encryptionCredentialDetails);
 

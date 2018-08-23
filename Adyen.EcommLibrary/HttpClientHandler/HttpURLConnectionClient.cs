@@ -24,8 +24,15 @@ namespace Adyen.EcommLibrary.HttpClientHandler
                 httpWebRequest.Method = "POST";
                 httpWebRequest.ContentType = "application/json";
                 ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12;
-                AddHeaders(config, httpWebRequest);
-                CreateBasicAuthentication(config, httpWebRequest);
+                //Use one of two authentication method.
+                if (config.RequiresXApiKey)
+                {
+                    AddHeaders(config, httpWebRequest);
+                }
+                else
+                {
+                    CreateBasicAuthentication(config, httpWebRequest);
+                }
 
                 using (var streamWriter = new StreamWriter(httpWebRequest.GetRequestStream()))
                 {
@@ -98,8 +105,10 @@ namespace Adyen.EcommLibrary.HttpClientHandler
         /// <param name="request"></param>
         private static void AddHeaders(Config config, HttpWebRequest request)
         {
-            request.Headers.Add("x-api-key", config.XApiKey);
-
+            if (config.RequiresXApiKey)
+            {
+                request.Headers.Add("x-api-key", config.XApiKey);
+            }
             request.Headers.Add("Accept-Charset", "UTF-8");
             request.Headers.Add("Cache-Control", "no-cache");
             request.UserAgent = string.Format("{0} {1}{2}", config.ApplicationName, ClientConfig.UserAgentSuffix, ClientConfig.LibVersion);
