@@ -62,7 +62,11 @@ namespace Adyen.EcommLibrary.Security
                                                                            encryptionDerivedKey,
                                                                            saleToPoiMessageSecured.SecurityTrailer.Nonce);
 
+<<<<<<< HEAD
             return System.Text.Encoding.UTF8.GetString(decryptedSaleToPoiMessageByteArray);
+=======
+            return System.Text.Encoding.Default.GetString(decryptedSaleToPoiMessageByteArray);
+>>>>>>> c8d8d7aa0e209a3eb009ca5104afd52e2233b372
         }
     }
 }

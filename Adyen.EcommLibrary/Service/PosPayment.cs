@@ -17,7 +17,10 @@ namespace Adyen.EcommLibrary.Service
         public PosPayment(Client client)
             : base(client)
         {
+<<<<<<< HEAD
             client.Config.RequiresXApiKey = RequiresApiKey;
+=======
+>>>>>>> c8d8d7aa0e209a3eb009ca5104afd52e2233b372
             _saleToPoiMessageSerializer = new SaleToPoiMessageSerializer();
             _messageSecuredEncryptor = new SaleToPoiMessageSecuredEncryptor();
             _saleToPoiMessageSecuredSerializer = new SaleToPoiMessageSecuredSerializer();
@@ -25,11 +28,14 @@ namespace Adyen.EcommLibrary.Service
             _terminalCloudApiSync = new TerminalCloudApi(this, true);
         }
 
+<<<<<<< HEAD
         /// <summary>
         /// CloudApi asyncronous call
         /// </summary>
         /// <param name="saleToPoiRequest"></param>
         /// <returns></returns>
+=======
+>>>>>>> c8d8d7aa0e209a3eb009ca5104afd52e2233b372
         public SaleToPOIResponse RunTenderAsync(SaleToPOIRequest saleToPoiRequest)
         {
             var serializedMessage = _saleToPoiMessageSerializer.Serialize(saleToPoiRequest);
@@ -38,11 +44,14 @@ namespace Adyen.EcommLibrary.Service
             return saleToPoiResponse;
         }
 
+<<<<<<< HEAD
         /// <summary>
         /// CloudApi syncronous call
         /// </summary>
         /// <param name="saleToPoiRequest"></param>
         /// <returns></returns>
+=======
+>>>>>>> c8d8d7aa0e209a3eb009ca5104afd52e2233b372
         public SaleToPOIResponse RunTenderSync(SaleToPOIRequest saleToPoiRequest)
         {
             var serializedMessage = _saleToPoiMessageSerializer.Serialize(saleToPoiRequest);
@@ -50,6 +59,7 @@ namespace Adyen.EcommLibrary.Service
             var saleToPoiResponse = _saleToPoiMessageSerializer.Deserialize(response);
             return saleToPoiResponse;
         }
+<<<<<<< HEAD
 
         /// <summary>
         /// Terminal Api https call
@@ -58,6 +68,10 @@ namespace Adyen.EcommLibrary.Service
         /// <param name="messageHeader"></param>
         /// <param name="encryptionCredentialDetails"></param>
         /// <returns></returns>
+=======
+        
+        //Local https call
+>>>>>>> c8d8d7aa0e209a3eb009ca5104afd52e2233b372
         public SaleToPOIResponse RunLocalTenderASync(SaleToPOIRequest saleToPoiRequest, MessageHeader  messageHeader, EncryptionCredentialDetails encryptionCredentialDetails)
         {
             var saleToPoiRequestMessageSerialized = _saleToPoiMessageSerializer.Serialize(saleToPoiRequest);

@@ -1,14 +1,26 @@
 ﻿using Adyen.EcommLibrary.Constants;
 using Adyen.EcommLibrary.HttpClientHandler;
 using Adyen.EcommLibrary.HttpClientHandler.Interfaces;
+<<<<<<< HEAD
 using Adyen.EcommLibrary.Model.Modification;
 using Adyen.EcommLibrary.Model.Nexo;
+=======
+
+using Adyen.EcommLibrary.Model.Enum;
+using Adyen.EcommLibrary.Model.Modification;
+using Adyen.EcommLibrary.Model.Nexo.Message;
+>>>>>>> c8d8d7aa0e209a3eb009ca5104afd52e2233b372
 using Adyen.EcommLibrary.Service;
 using Moq;
 using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Text;
+<<<<<<< HEAD
+=======
+using Adyen.EcommLibrary.Model.Nexo;
+using Adyen.EcommLibrary.Model;
+>>>>>>> c8d8d7aa0e209a3eb009ca5104afd52e2233b372
 using Environment = System.Environment;
 
 namespace Adyen.EcommLibrary.Test
@@ -113,6 +125,7 @@ namespace Adyen.EcommLibrary.Test
         }
 
         /// <summary>
+<<<<<<< HEAD
         /// Creates mock test client for pos cloud and terminal api. In case of cloud api the xapi should be included
         /// </summary>
         /// <param name="fileName">The file that is returned</param>
@@ -120,6 +133,15 @@ namespace Adyen.EcommLibrary.Test
         protected Client CreateMockTestClientPosApiRequest(string fileName)
         {
             var config = new Config();
+=======
+        /// Creates mock test client for pos cloud api. In that case the xapi should be included
+        /// </summary>
+        /// <param name="fileName">The file that is returned</param>
+        /// <param name="config">config file includes XApiKey</param>
+        /// <returns>IClient implementation</returns>
+        protected Client CreateMockTestClientCloudAPiRequest(string fileName,Config config)
+        {
+>>>>>>> c8d8d7aa0e209a3eb009ca5104afd52e2233b372
             var mockPath = GetMockFilePath(fileName);
             var response = MockFileToString(mockPath);
             //Create a mock interface
