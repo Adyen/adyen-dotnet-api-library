@@ -54,6 +54,7 @@ var paymentRequest = <span class="pl-k">new</span> PaymentRequest
 			<p>
 				The encryption key is retrieved from our CSE library.
 			</p>
+<div class="highlight highlight-text-html-php"><pre>
 <code>
 var paymentRequest = <span class="pl-k">new</span> PaymentRequest
 {
@@ -63,7 +64,7 @@ var paymentRequest = <span class="pl-k">new</span> PaymentRequest
     AdditionalData = <span class="pl-k">new</span> Dictionary &lt;string, string&gt;{{"card.encrypted.json", "THE ENCRYPTED DATA"}
 };
 </code>
-
+</pre></div>
 		<h2>authorise3D</h2>
     <p>
       With authorise method you can choose between full API integration (for PCI compliant merchants) or our Easy encryption solution.
