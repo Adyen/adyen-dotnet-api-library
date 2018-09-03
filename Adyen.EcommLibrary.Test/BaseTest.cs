@@ -10,6 +10,8 @@ using System.Collections.Generic;
 using System.IO;
 using System.Text;
 using Environment = System.Environment;
+using Amount = Adyen.EcommLibrary.Model.Amount;
+using PaymentResult = Adyen.EcommLibrary.Model.PaymentResult;
 
 namespace Adyen.EcommLibrary.Test
 {
@@ -17,7 +19,7 @@ namespace Adyen.EcommLibrary.Test
     {
 
         #region Payment request
-        public Model.PaymentResult CreatePaymentResultFromFile(string fileName)
+        public PaymentResult CreatePaymentResultFromFile(string fileName)
         {
             var client = CreateMockTestClientRequest(fileName);
             var payment = new Payment(client);
@@ -36,7 +38,7 @@ namespace Adyen.EcommLibrary.Test
             var captureRequest = new CaptureRequest
             {
                 MerchantAccount = "MerchantAccount",
-                ModificationAmount = new Model.Amount("EUR", 150),
+                ModificationAmount = new Amount("EUR", 150),
                 Reference = "capture - " + DateTime.Now.ToString("yyyyMMdd"),
                 OriginalReference = pspReference
             };
@@ -60,7 +62,7 @@ namespace Adyen.EcommLibrary.Test
             var refundRequest = new RefundRequest()
             {
                 MerchantAccount = "MerchantAccount",
-                ModificationAmount = new Model.Amount("EUR", 150),
+                ModificationAmount = new Amount("EUR", 150),
                 Reference = "refund - " + DateTime.Now.ToString("yyyyMMdd"),
                 OriginalReference = pspReference
             };
@@ -225,7 +227,7 @@ namespace Adyen.EcommLibrary.Test
         }
 
        
-        private Model.PaymentResult GetAdditionaData(Model.PaymentResult paymentResult)
+        private PaymentResult GetAdditionaData(PaymentResult paymentResult)
         {
             var paymentResultAdditionalData = paymentResult.AdditionalData;
 
@@ -259,7 +261,7 @@ namespace Adyen.EcommLibrary.Test
             {
                 return "";
             }
-            var projectPath = System.IO.Directory.GetParent(Environment.CurrentDirectory).Parent.Parent.FullName;
+            var projectPath = Directory.GetParent(Environment.CurrentDirectory).Parent.Parent.FullName;
             var mockPath = Path.Combine(projectPath, fileName);
             return mockPath;
         }
