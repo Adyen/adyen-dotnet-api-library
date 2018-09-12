@@ -22,8 +22,9 @@ namespace Adyen.EcommLibrary.Test
                 
                 Assert.IsNotNull(saleToPoiResponse);
             }
-            catch (Exception)
+            catch (Exception ex)
             {
+                Console.WriteLine( ex.StackTrace);
                 Assert.Fail();
             }
         }

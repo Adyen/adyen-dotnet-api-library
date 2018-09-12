@@ -18,10 +18,8 @@ namespace Adyen.EcommLibrary
         public string HppEndpoint { get; set; }
         public string SkinCode{ get; set; }
         public string HmacKey { get; set; }
-
         //Terminal cloud api
         public string XApiKey { get; set; }
-        public bool RequiresXApiKey { get; set; }
         public string CloudApiEndPoint { get; set; }
     }
 }

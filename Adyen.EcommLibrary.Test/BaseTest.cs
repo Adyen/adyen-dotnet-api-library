@@ -8,6 +8,7 @@ using Moq;
 using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Net;
 using System.Text;
 using Environment = System.Environment;
 using Amount = Adyen.EcommLibrary.Model.Amount;
@@ -115,7 +116,7 @@ namespace Adyen.EcommLibrary.Test
         }
 
         /// <summary>
-        /// Creates mock test client for pos cloud and terminal api. In case of cloud api the xapi should be included
+        /// Creates mock test client for POS cloud and terminal api. In case of cloud api the xapi should be included
         /// </summary>
         /// <param name="fileName">The file that is returned</param>
         /// <returns>IClient implementation</returns>
@@ -127,7 +128,7 @@ namespace Adyen.EcommLibrary.Test
             //Create a mock interface
             var clientInterfaceMock = new Mock<IClient>();
             clientInterfaceMock.Setup(x => x.Request(It.IsAny<string>(),
-                It.IsAny<string>(), config)).Returns(response);
+                It.IsAny<string>(), config,It.IsAny<bool>())).Returns(response);
             var clientMock = new Client(It.IsAny<Config>())
             {
                 HttpClient = clientInterfaceMock.Object,
@@ -172,7 +173,8 @@ namespace Adyen.EcommLibrary.Test
             //Create a mock interface
             var clientInterfaceMock = new Mock<IClient>();
             var confMock = MockPaymentData.CreateConfingMock();
-            var httpClientException = new HttpClientException(status, "An error occured", new Dictionary<string, List<string>>(), response);
+            var httpClientException =
+                new HttpClientException(status, "An error occured", new WebHeaderCollection(), response);
 
             clientInterfaceMock.Setup(x => x.Request(It.IsAny<string>(),
                 It.IsAny<string>(), confMock)).Throws(httpClientException);

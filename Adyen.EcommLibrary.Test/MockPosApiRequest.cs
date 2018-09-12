@@ -57,13 +57,7 @@ namespace Adyen.EcommLibrary.Test
             };
             return saleToPoiRequest;
         }
-        //"SaleData":{
-        //    "SaleToAcquirerData":"shopperEmail=hola@gmail.com&shopperReference=fakeRef&recurringContract=RECURRING",
-        //    "TokenRequestedType":"Customer",
-        //    "SaleTransactionID":{
-        //        "TransactionID":"8377",
-        //        "TimeStamp":"2017-11-13T15:24:52+00:00"
-        //    }
+       
         /// <summary>
         /// Dummy Nexo json Cloud api/terminal api request
         /// </summary>

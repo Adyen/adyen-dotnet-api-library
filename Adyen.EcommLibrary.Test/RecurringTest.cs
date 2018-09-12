@@ -1,4 +1,5 @@
-﻿using Adyen.EcommLibrary.HttpClientHandler;
+﻿using System;
+using Adyen.EcommLibrary.HttpClientHandler;
 using Adyen.EcommLibrary.Model.Enum;
 using Adyen.EcommLibrary.Model.Reccuring;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
@@ -50,9 +51,9 @@ namespace Adyen.EcommLibrary.Test
                 var disableResult = recurring.Disable(disableRequest);
                 Assert.Fail("Exception expected!");
             }
-            catch (HttpClientException exception)
+            catch (Exception exception)
             {
-                Assert.AreNotEqual(200, exception.Code);
+                Assert.AreNotEqual(200, exception);
              
             }
            
