@@ -37,12 +37,11 @@ namespace Adyen.EcommLibrary.Test
                 var saleToPoiResponse = payment.RunLocalTenderASync(paymentRequest, messageHeader, _encryptionCredentialDetails);
 
                 Assert.IsNotNull(saleToPoiResponse);
-                //assert amount merchantaccount etc
+                
             }
-            catch (Exception e)
+            catch (Exception)
             {
-                Console.WriteLine(e);
-                throw;
+                Assert.Fail();
             }
         }
     }
