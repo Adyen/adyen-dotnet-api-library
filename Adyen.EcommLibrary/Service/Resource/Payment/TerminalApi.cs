@@ -1,8 +1,8 @@
 ﻿namespace Adyen.EcommLibrary.Service.Resource.Payment
 {
-    public class TerminalCloudApi : ServiceResource
+    public class TerminalApi : ServiceResource
     {
-        public TerminalCloudApi(AbstractService abstractService, bool asynchronous)
+        public TerminalApi(ApiKeyAuthenticatedService abstractService, bool asynchronous)
             : base(abstractService, abstractService.Client.Config.CloudApiEndPoint, null)
         {
             if (asynchronous) {

@@ -20,16 +20,9 @@ namespace Adyen.EcommLibrary.Service
         {
             var clientInterface = _abstractService.Client.HttpClient;
             var config = _abstractService.Client.Config;
-           
+          
             return clientInterface.Request(Endpoint, json, config);
         }
 
-        public string Request(string json,bool isApiKeyRequired)
-        {
-            var clientInterface = _abstractService.Client.HttpClient;
-            var config = _abstractService.Client.Config;
-           
-            return clientInterface.Request(Endpoint, json, config, isApiKeyRequired);
-        }
     }
 }

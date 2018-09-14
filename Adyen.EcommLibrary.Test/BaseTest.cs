@@ -128,7 +128,7 @@ namespace Adyen.EcommLibrary.Test
             //Create a mock interface
             var clientInterfaceMock = new Mock<IClient>();
             clientInterfaceMock.Setup(x => x.Request(It.IsAny<string>(),
-                It.IsAny<string>(), config,It.IsAny<bool>())).Returns(response);
+                It.IsAny<string>(), config)).Returns(response);
             var clientMock = new Client(It.IsAny<Config>())
             {
                 HttpClient = clientInterfaceMock.Object,

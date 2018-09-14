@@ -7,8 +7,8 @@ namespace Adyen.EcommLibrary.Service
 {
     public class PosPayment : ApiKeyAuthenticatedService
     {
-        private readonly TerminalCloudApi _terminalCloudApiAsync;
-        private readonly TerminalCloudApi _terminalCloudApiSync;
+        private readonly TerminalApi _terminalApiAsync;
+        private readonly TerminalApi _terminalApiSync;
         private readonly SaleToPoiMessageSerializer _saleToPoiMessageSerializer;
         private readonly SaleToPoiMessageSecuredEncryptor _messageSecuredEncryptor;
         private readonly SaleToPoiMessageSecuredSerializer _saleToPoiMessageSecuredSerializer;
@@ -20,8 +20,8 @@ namespace Adyen.EcommLibrary.Service
             _saleToPoiMessageSerializer = new SaleToPoiMessageSerializer();
             _messageSecuredEncryptor = new SaleToPoiMessageSecuredEncryptor();
             _saleToPoiMessageSecuredSerializer = new SaleToPoiMessageSecuredSerializer();
-            _terminalCloudApiAsync = new TerminalCloudApi(this, false);
-            _terminalCloudApiSync = new TerminalCloudApi(this, true);
+            _terminalApiAsync = new TerminalApi(this, false);
+            _terminalApiSync = new TerminalApi(this, true);
         }
 
         /// <summary>
@@ -29,10 +29,10 @@ namespace Adyen.EcommLibrary.Service
         /// </summary>
         /// <param name="saleToPoiRequest"></param>
         /// <returns></returns>
-        public SaleToPOIResponse RunTenderAsync(SaleToPOIRequest saleToPoiRequest)
+        public SaleToPOIResponse TerminalApiOverCLoudAsync(SaleToPOIRequest saleToPoiRequest)
         {
             var serializedMessage = _saleToPoiMessageSerializer.Serialize(saleToPoiRequest);
-            var response = _terminalCloudApiAsync.Request(serializedMessage, RequiresApiKey);
+            var response = _terminalApiAsync.Request(serializedMessage);
             var saleToPoiResponse = _saleToPoiMessageSerializer.Deserialize(response);
             return saleToPoiResponse;
         }
@@ -42,10 +42,10 @@ namespace Adyen.EcommLibrary.Service
         /// </summary>
         /// <param name="saleToPoiRequest"></param>
         /// <returns></returns>
-        public SaleToPOIResponse RunTenderSync(SaleToPOIRequest saleToPoiRequest)
+        public SaleToPOIResponse TerminalApiOverCLoudSync(SaleToPOIRequest saleToPoiRequest)
         {
             var serializedMessage = _saleToPoiMessageSerializer.Serialize(saleToPoiRequest);
-            var response = _terminalCloudApiSync.Request(serializedMessage, RequiresApiKey);
+            var response = _terminalApiSync.Request(serializedMessage);
             var saleToPoiResponse = _saleToPoiMessageSerializer.Deserialize(response);
             return saleToPoiResponse;
         }
@@ -57,13 +57,13 @@ namespace Adyen.EcommLibrary.Service
         /// <param name="messageHeader"></param>
         /// <param name="encryptionCredentialDetails"></param>
         /// <returns></returns>
-        public SaleToPOIResponse RunLocalTenderASync(SaleToPOIRequest saleToPoiRequest, MessageHeader messageHeader, EncryptionCredentialDetails encryptionCredentialDetails)
+        public SaleToPOIResponse TerminalApiOverLocal(SaleToPOIRequest saleToPoiRequest, MessageHeader messageHeader, EncryptionCredentialDetails encryptionCredentialDetails)
         {
             var saleToPoiRequestMessageSerialized = _saleToPoiMessageSerializer.Serialize(saleToPoiRequest);
             var saleToPoiRequestMessageSecured = _messageSecuredEncryptor.Encrypt(saleToPoiRequestMessageSerialized, messageHeader, encryptionCredentialDetails);
             var serializeSaleToPoiRequestMessageSecured = _saleToPoiMessageSerializer.Serialize(saleToPoiRequestMessageSecured);
 
-            var response = _terminalCloudApiSync.Request(serializeSaleToPoiRequestMessageSecured, RequiresApiKey);
+            var response = _terminalApiSync.Request(serializeSaleToPoiRequestMessageSecured);
             var saleToPoiResponseSecured = _saleToPoiMessageSecuredSerializer.Deserialize(response);
 
             var decryptResponse = _messageSecuredEncryptor.Decrypt(saleToPoiResponseSecured, encryptionCredentialDetails);
