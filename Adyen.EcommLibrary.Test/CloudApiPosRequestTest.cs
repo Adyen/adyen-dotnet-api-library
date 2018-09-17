@@ -7,7 +7,6 @@ namespace Adyen.EcommLibrary.Test
     [TestClass]
     public class CloudApiPosRequestTest : BaseTest
     {
-        private readonly string _apiKey = "AQEyhmfxK....LAG84XwzP5pSpVd";//mock api key
 
         [TestMethod]
         public void TestCloudApiRequest()

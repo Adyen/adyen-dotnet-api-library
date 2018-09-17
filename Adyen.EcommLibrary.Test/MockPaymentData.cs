@@ -1,10 +1,11 @@
 ﻿using Adyen.EcommLibrary.Model;
 using System;
 using System.Collections.Generic;
+using Environment = Adyen.EcommLibrary.Model.Enum.Environment;
 
 namespace Adyen.EcommLibrary.Test
 {
-    internal class MockPaymentData:BaseTest
+    internal class MockPaymentData
     {
         #region Mock payment data 
 
@@ -21,6 +22,15 @@ namespace Adyen.EcommLibrary.Test
             };
         }
 
+        public static Config CreateConfingApiKeyBasedMock()
+        {
+            return new Config
+            {
+                Environment = Environment.Test,
+                XApiKey = "AQEyhmfxK....LAG84XwzP5pSpVd"//mock api key
+            };
+        }
+        
         public static PaymentRequest CreateFullPaymentRequest()
         {
             var paymentRequest = new PaymentRequest
@@ -33,6 +43,17 @@ namespace Adyen.EcommLibrary.Test
             };
 
             return paymentRequest;
+        }
+
+        protected static Dictionary<string, string> CreateAdditionalData()
+        {
+            return new Dictionary<string, string>
+            {
+                { "liabilityShift", "true"},
+                { "fraudResultType", "GREEN"},
+                { "authCode", "43733"},
+                { "avsResult", "4 AVS not supported for this card type"}
+            };
         }
 
         public static PaymentRequest3D CreateFullPaymentRequest3D()

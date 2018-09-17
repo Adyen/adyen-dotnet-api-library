@@ -19,7 +19,12 @@ namespace Adyen.EcommLibrary.Test
     public class BaseTest
     {
 
-        #region Payment request
+        #region Payment request 
+        /// <summary>
+        /// Payment with basic authentication
+        /// </summary>
+        /// <param name="fileName"></param>
+        /// <returns></returns>
         public PaymentResult CreatePaymentResultFromFile(string fileName)
         {
             var client = CreateMockTestClientRequest(fileName);
@@ -30,6 +35,15 @@ namespace Adyen.EcommLibrary.Test
             return GetAdditionaData(paymentResult);
         }
 
+        public PaymentResult CreatePaymentApiKeyBasedResultFromFile(string fileName)
+        {
+            var client = CreateMockTestClientApiKeyBasedRequest(fileName);
+            var payment = new Payment(client);
+            var paymentRequest = MockPaymentData.CreateFullPaymentRequest();
+
+            var paymentResult = payment.Authorise(paymentRequest);
+            return GetAdditionaData(paymentResult);
+        }
         #endregion
 
         #region Modification objects
@@ -81,16 +95,7 @@ namespace Adyen.EcommLibrary.Test
             return cancelRequest;
         }
 
-        protected static Dictionary<string, string> CreateAdditionalData()
-        {
-            return new Dictionary<string, string>
-            {
-                { "liabilityShift", "true"},
-                { "fraudResultType", "GREEN"},
-                { "authCode", "43733"},
-                { "avsResult", "4 AVS not supported for this card type"}
-            };
-        }
+      
         #endregion
 
         /// <summary>
@@ -107,6 +112,28 @@ namespace Adyen.EcommLibrary.Test
             var confMock = MockPaymentData.CreateConfingMock();
             clientInterfaceMock.Setup(x => x.Request(It.IsAny<string>(),
                 It.IsAny<string>(), confMock)).Returns(response);
+            var clientMock = new Client(It.IsAny<Config>())
+            {
+                HttpClient = clientInterfaceMock.Object,
+                Config = confMock
+            };
+            return clientMock;
+        }
+
+        /// <summary>
+        /// Creates mock test client 
+        /// </summary>
+        /// <param name="fileName">The file that is returned</param>
+        /// <returns>IClient implementation</returns>
+        protected Client CreateMockTestClientApiKeyBasedRequest(string fileName)
+        {
+            var mockPath = GetMockFilePath(fileName);
+            var response = MockFileToString(mockPath);
+            //Create a mock interface
+            var clientInterfaceMock = new Mock<IClient>();
+            var confMock = MockPaymentData.CreateConfingApiKeyBasedMock();
+            clientInterfaceMock.Setup(x => x.Request(It.IsAny<string>(),
+                It.IsAny<string>(), It.IsAny<Config>())).Returns(response);
             var clientMock = new Client(It.IsAny<Config>())
             {
                 HttpClient = clientInterfaceMock.Object,

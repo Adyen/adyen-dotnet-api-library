@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Net;
 using System.Net.Http;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Web;
@@ -17,22 +18,10 @@ namespace Adyen.EcommLibrary.HttpClientHandler
         public string Request(string endpoint, string json, Config config, bool isApiKeyRequired)
         {
             string responseText;
-
-            var httpWebRequest = (HttpWebRequest) WebRequest.Create(endpoint);
-            httpWebRequest.Method = "POST";
-            httpWebRequest.ContentType = "application/json";
             //Set security protocol. Only TLS1.2
             ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12;
-
-            //Use one of two authentication method.
-            if (isApiKeyRequired || !string.IsNullOrEmpty(config.XApiKey))
-            {
-                AddHeaders(config, httpWebRequest);
-            }
-            else
-            {
-                CreateBasicAuthentication(config, httpWebRequest);
-            }
+            
+            var httpWebRequest = GetHttpWebRequest(endpoint, config, isApiKeyRequired);
 
             using (var streamWriter = new StreamWriter(httpWebRequest.GetRequestStream()))
             {
@@ -40,10 +29,9 @@ namespace Adyen.EcommLibrary.HttpClientHandler
                 streamWriter.Flush();
                 streamWriter.Close();
             }
-
-            var encoding = Encoding.ASCII;
+           
             var response = (HttpWebResponse) httpWebRequest.GetResponse();
-
+            var encoding = Encoding.ASCII;
             using (var reader = new StreamReader(response.GetResponseStream(), encoding))
             {
                 responseText = reader.ReadToEnd();
@@ -57,12 +45,34 @@ namespace Adyen.EcommLibrary.HttpClientHandler
 
             return responseText;
         }
-
+        //This is deprecated functionality. Correct use is set the IsRequiredBool
         public string Request(string endpoint, string json, Config config)
         {
             return this.Request(endpoint, json, config, false);
         }
-       
+        
+        public HttpWebRequest GetHttpWebRequest(string endpoint, Config config, bool isApiKeyRequired)
+        {
+            //Add default headers
+            var httpWebRequest = (HttpWebRequest) WebRequest.Create(endpoint);
+            httpWebRequest.Method = "POST";
+            httpWebRequest.ContentType = "application/json";
+            httpWebRequest.Headers.Add("Accept-Charset", "UTF-8");
+            httpWebRequest.Headers.Add("Cache-Control", "no-cache");
+            httpWebRequest.UserAgent = $"{config.ApplicationName} {ClientConfig.UserAgentSuffix}{ClientConfig.LibVersion}";
+
+            //Use one of two authentication method.
+            if (isApiKeyRequired || !string.IsNullOrEmpty(config.XApiKey))
+            {
+                httpWebRequest.Headers.Add("x-api-key", config.XApiKey);
+            }
+            else
+            {
+                CreateBasicAuthentication(config, httpWebRequest);
+            }
+            return httpWebRequest;
+        }
+        
 
         public string Post(string endpoint, Dictionary<string, string> postParameters, Config config)
         {
@@ -95,20 +105,7 @@ namespace Adyen.EcommLibrary.HttpClientHandler
             return string.Join("&", list);
         }
 
-        #region private message helpers
-        /// <summary>
-        /// Add headers to the request message
-        /// </summary>
-        /// <param name="config"></param>
-        /// <param name="request"></param>
-        private static void AddHeaders(Config config, HttpWebRequest request)
-        {
-            request.Headers.Add("x-api-key", config.XApiKey);
-            request.Headers.Add("Accept-Charset", "UTF-8");
-            request.Headers.Add("Cache-Control", "no-cache");
-            request.UserAgent = string.Format("{0} {1}{2}", config.ApplicationName, ClientConfig.UserAgentSuffix, ClientConfig.LibVersion);
-        }
-
+       
         /// <summary>
         /// Create the basic authentication header
         /// </summary>
@@ -123,7 +120,6 @@ namespace Adyen.EcommLibrary.HttpClientHandler
             request.Headers.Add("Authorization", "Basic " + credentials);
             request.UseDefaultCredentials = true;
         }
-        
-        #endregion
+       
     }
 }
