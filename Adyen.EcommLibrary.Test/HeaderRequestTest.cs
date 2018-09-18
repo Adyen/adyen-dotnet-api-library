@@ -8,7 +8,7 @@ namespace Adyen.EcommLibrary.Test
     {
 
         private readonly HttpUrlConnectionClient _httpUrlConnectionClient;
-        private string _endpoint = "https://endpoint:8080";
+        private readonly string _endpoint = "https://endpoint:8080";
 
         public HeaderRequestTest()
         {
@@ -45,7 +45,7 @@ namespace Adyen.EcommLibrary.Test
 
             Assert.IsNull(httpWebRequest.Headers["Authorization"]);
             Assert.IsFalse(httpWebRequest.UseDefaultCredentials);
-            
+
             Assert.IsNotNull(httpWebRequest.Headers["x-api-key"]);
             Assert.AreEqual(httpWebRequest.Headers["x-api-key"], "AQEyhmfxK....LAG84XwzP5pSpVd");
         }

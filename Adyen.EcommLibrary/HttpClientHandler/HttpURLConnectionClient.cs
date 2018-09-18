@@ -30,7 +30,7 @@ namespace Adyen.EcommLibrary.HttpClientHandler
                 streamWriter.Close();
             }
            
-            var response = (HttpWebResponse) httpWebRequest.GetResponse();
+            var response =  (HttpWebResponse) httpWebRequest.GetResponse();
             var encoding = Encoding.ASCII;
             using (var reader = new StreamReader(response.GetResponseStream(), encoding))
             {
@@ -45,8 +45,14 @@ namespace Adyen.EcommLibrary.HttpClientHandler
 
             return responseText;
         }
-        //This is deprecated functionality. Correct use is set the IsRequiredBool
+
+        //This is deprecated functionality. Correct use request method with isApiKeyRequired parameter.
         public string Request(string endpoint, string json, Config config)
+        {
+            return this.Request(endpoint, json, config, false);
+        }
+
+        public string RequestAsync(string endpoint, string json, Config config)
         {
             return this.Request(endpoint, json, config, false);
         }
@@ -68,7 +74,12 @@ namespace Adyen.EcommLibrary.HttpClientHandler
             }
             else
             {
-                CreateBasicAuthentication(config, httpWebRequest);
+                var authString = config.Username + ":" + config.Password;
+                var bytes = Encoding.ASCII.GetBytes(authString);
+                var credentials = Convert.ToBase64String(bytes);
+
+                httpWebRequest.Headers.Add("Authorization", "Basic " + credentials);
+                httpWebRequest.UseDefaultCredentials = true;
             }
             return httpWebRequest;
         }
@@ -104,22 +115,5 @@ namespace Adyen.EcommLibrary.HttpClientHandler
             }
             return string.Join("&", list);
         }
-
-       
-        /// <summary>
-        /// Create the basic authentication header
-        /// </summary>
-        /// <param name="config"></param>
-        /// <param name="request"></param>
-        private static void CreateBasicAuthentication(Config config, HttpWebRequest request)
-        {
-            var authString = config.Username + ":" + config.Password;
-            var bytes = Encoding.ASCII.GetBytes(authString);
-            var credentials = Convert.ToBase64String(bytes);
-
-            request.Headers.Add("Authorization", "Basic " + credentials);
-            request.UseDefaultCredentials = true;
-        }
-       
     }
 }
