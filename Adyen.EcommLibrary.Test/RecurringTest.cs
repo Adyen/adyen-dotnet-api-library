@@ -1,5 +1,5 @@
 ﻿using System;
-using Adyen.EcommLibrary.HttpClientHandler;
+using Adyen.EcommLibrary.HttpClient;
 using Adyen.EcommLibrary.Model.Enum;
 using Adyen.EcommLibrary.Model.Reccuring;
 using Microsoft.VisualStudio.TestTools.UnitTesting;

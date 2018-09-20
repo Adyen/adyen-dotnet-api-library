@@ -1,4 +1,4 @@
-﻿using Adyen.EcommLibrary.HttpClientHandler;
+﻿using Adyen.EcommLibrary.HttpClient;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace Adyen.EcommLibrary.Test

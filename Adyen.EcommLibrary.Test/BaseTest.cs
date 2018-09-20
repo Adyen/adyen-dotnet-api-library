@@ -1,6 +1,5 @@
 ﻿using Adyen.EcommLibrary.Constants;
-using Adyen.EcommLibrary.HttpClientHandler;
-using Adyen.EcommLibrary.HttpClientHandler.Interfaces;
+using Adyen.EcommLibrary.HttpClient;
 using Adyen.EcommLibrary.Model.Modification;
 using Adyen.EcommLibrary.Model.Nexo;
 using Adyen.EcommLibrary.Service;
@@ -10,6 +9,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Net;
 using System.Text;
+using Adyen.EcommLibrary.HttpClient.Interfaces;
 using Environment = System.Environment;
 using Amount = Adyen.EcommLibrary.Model.Amount;
 using PaymentResult = Adyen.EcommLibrary.Model.PaymentResult;

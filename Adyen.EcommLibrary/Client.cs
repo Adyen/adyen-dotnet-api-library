@@ -1,6 +1,6 @@
 ﻿using Adyen.EcommLibrary.Constants;
-using Adyen.EcommLibrary.HttpClientHandler;
-using Adyen.EcommLibrary.HttpClientHandler.Interfaces;
+using Adyen.EcommLibrary.HttpClient.Interfaces;
+using Adyen.EcommLibrary.HttpClient;
 using Adyen.EcommLibrary.Model.Enum;
 
 namespace Adyen.EcommLibrary

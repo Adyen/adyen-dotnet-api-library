@@ -1,6 +1,6 @@
 using System.Collections.Generic;
 
-namespace Adyen.EcommLibrary.HttpClientHandler.Interfaces
+namespace Adyen.EcommLibrary.HttpClient.Interfaces
 {
     public interface IClient
     {

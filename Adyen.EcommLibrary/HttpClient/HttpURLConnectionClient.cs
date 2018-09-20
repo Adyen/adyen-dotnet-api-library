@@ -1,17 +1,14 @@
 ﻿using Adyen.EcommLibrary.Constants;
-using Adyen.EcommLibrary.HttpClientHandler.Interfaces;
-using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Net;
-using System.Net.Http;
-using System.Runtime.CompilerServices;
 using System.Text;
-using System.Threading.Tasks;
 using System.Web;
+using Adyen.EcommLibrary.HttpClient.Interfaces;
 
-namespace Adyen.EcommLibrary.HttpClientHandler
+
+namespace Adyen.EcommLibrary.HttpClient
 {
     public class HttpUrlConnectionClient : IClient
     {
