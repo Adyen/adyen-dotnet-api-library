@@ -54,19 +54,17 @@ var paymentRequest = <span class="pl-k">new</span> PaymentRequest
 			<p>
 				The encryption key is retrieved from our CSE library.
 			</p>
-			<div class="highlight highlight-text-html-php"><pre><span class="pl-s1">{</span>
-<span class="pl-s1">  <span class="pl-s"><span class="pl-pds">"</span>amount<span class="pl-pds">"</span></span>: {</span>
-<span class="pl-s1">    <span class="pl-s"><span class="pl-pds">"</span>value<span class="pl-pds">"</span></span>: <span class="pl-s">1499</span>,</span>
-<span class="pl-s1">    <span class="pl-s"><span class="pl-pds">"</span>currency<span class="pl-pds">"</span></span>: <span class="pl-s"><span class="pl-pds">"</span>GBP<span class="pl-pds">"</span></span></span>
-<span class="pl-s1">  },</span>
-<span class="pl-s1">  <span class="pl-s"><span class="pl-pds">"</span>reference<span class="pl-pds">"</span></span>: <span class="pl-s"><span class="pl-pds">"</span>payment-test<span class="pl-pds">"</span></span>,</span>
-<span class="pl-s1">  <span class="pl-s"><span class="pl-pds">"</span>merchantAccount<span class="pl-pds">"</span></span>: <span class="pl-s"><span class="pl-pds">"</span>YOUR MERCHANT ACCOUNT<span class="pl-pds">"</span></span>,</span>
-<span class="pl-s1">  <span class="pl-s"><span class="pl-pds">"</span>additionalData<span class="pl-pds">"</span></span>: {</span>
-<span class="pl-s1">    <span class="pl-s"><span class="pl-pds">"</span>card.encrypted.json<span class="pl-pds">"</span></span>: <span class="pl-s"><span class="pl-pds">"</span>THE ENCRYPTED DATA<span class="pl-pds">"</span></span></span>
-<span class="pl-s1">  }</span>
-<span class="pl-s1">}</span></pre></div>
-
-
+<div class="highlight highlight-text-html-php"><pre>
+<code>
+var paymentRequest = <span class="pl-k">new</span> PaymentRequest
+{
+    MerchantAccount = "MerchantAccount",
+    Amount = <span class="pl-k">new</span> Amount("EUR", 1500),
+    Reference = "Merchant reference",
+    AdditionalData = <span class="pl-k">new</span> Dictionary &lt;string, string&gt;{{ "card.encrypted.json", "THE ENCRYPTED DATA" }}
+};
+</code>
+</pre></div>
 		<h2>authorise3D</h2>
     <p>
       With authorise method you can choose between full API integration (for PCI compliant merchants) or our Easy encryption solution.
