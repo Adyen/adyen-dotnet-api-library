@@ -1,21 +1,30 @@
 ﻿using Adyen.EcommLibrary.Constants;
 using Adyen.EcommLibrary.HttpClient;
-using Adyen.EcommLibrary.HttpClient.Interfaces;
-using Adyen.EcommLibrary.Model;
 using Adyen.EcommLibrary.Model.Modification;
+using Adyen.EcommLibrary.Model.Nexo;
 using Adyen.EcommLibrary.Service;
 using Moq;
 using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Net;
 using System.Text;
+using Adyen.EcommLibrary.HttpClient.Interfaces;
+using Environment = System.Environment;
+using Amount = Adyen.EcommLibrary.Model.Amount;
+using PaymentResult = Adyen.EcommLibrary.Model.PaymentResult;
 
 namespace Adyen.EcommLibrary.Test
 {
     public class BaseTest
     {
 
-        #region Payment request
+        #region Payment request 
+        /// <summary>
+        /// Payment with basic authentication
+        /// </summary>
+        /// <param name="fileName"></param>
+        /// <returns></returns>
         public PaymentResult CreatePaymentResultFromFile(string fileName)
         {
             var client = CreateMockTestClientRequest(fileName);
@@ -25,9 +34,18 @@ namespace Adyen.EcommLibrary.Test
             var paymentResult = payment.Authorise(paymentRequest);
             return GetAdditionaData(paymentResult);
         }
-       
+
+        public PaymentResult CreatePaymentApiKeyBasedResultFromFile(string fileName)
+        {
+            var client = CreateMockTestClientApiKeyBasedRequest(fileName);
+            var payment = new Payment(client);
+            var paymentRequest = MockPaymentData.CreateFullPaymentRequest();
+
+            var paymentResult = payment.Authorise(paymentRequest);
+            return GetAdditionaData(paymentResult);
+        }
         #endregion
-        
+
         #region Modification objects
 
         protected CaptureRequest CreateCaptureTestRequest(string pspReference)
@@ -77,23 +95,14 @@ namespace Adyen.EcommLibrary.Test
             return cancelRequest;
         }
 
-        protected static Dictionary<string, string> CreateAdditionalData()
-        {
-            return new Dictionary<string, string>
-            {
-                { "liabilityShift", "true"},
-                { "fraudResultType", "GREEN"},
-                { "authCode", "43733"},
-                { "avsResult", "4 AVS not supported for this card type"}
-            };
-        }
+      
         #endregion
 
         /// <summary>
         /// Creates mock test client 
         /// </summary>
-        /// <param name="fileName"></param>
-        /// <returns></returns>
+        /// <param name="fileName">The file that is returned</param>
+        /// <returns>IClient implementation</returns>
         protected Client CreateMockTestClientRequest(string fileName)
         {
             var mockPath = GetMockFilePath(fileName);
@@ -107,6 +116,50 @@ namespace Adyen.EcommLibrary.Test
             {
                 HttpClient = clientInterfaceMock.Object,
                 Config = confMock
+            };
+            return clientMock;
+        }
+
+        /// <summary>
+        /// Creates mock test client 
+        /// </summary>
+        /// <param name="fileName">The file that is returned</param>
+        /// <returns>IClient implementation</returns>
+        protected Client CreateMockTestClientApiKeyBasedRequest(string fileName)
+        {
+            var mockPath = GetMockFilePath(fileName);
+            var response = MockFileToString(mockPath);
+            //Create a mock interface
+            var clientInterfaceMock = new Mock<IClient>();
+            var confMock = MockPaymentData.CreateConfingApiKeyBasedMock();
+            clientInterfaceMock.Setup(x => x.Request(It.IsAny<string>(),
+                It.IsAny<string>(), It.IsAny<Config>())).Returns(response);
+            var clientMock = new Client(It.IsAny<Config>())
+            {
+                HttpClient = clientInterfaceMock.Object,
+                Config = confMock
+            };
+            return clientMock;
+        }
+
+        /// <summary>
+        /// Creates mock test client for POS cloud and terminal api. In case of cloud api the xapi should be included
+        /// </summary>
+        /// <param name="fileName">The file that is returned</param>
+        /// <returns>IClient implementation</returns>
+        protected Client CreateMockTestClientPosApiRequest(string fileName)
+        {
+            var config = new Config();
+            var mockPath = GetMockFilePath(fileName);
+            var response = MockFileToString(mockPath);
+            //Create a mock interface
+            var clientInterfaceMock = new Mock<IClient>();
+            clientInterfaceMock.Setup(x => x.Request(It.IsAny<string>(),
+                It.IsAny<string>(), config)).Returns(response);
+            var clientMock = new Client(It.IsAny<Config>())
+            {
+                HttpClient = clientInterfaceMock.Object,
+                Config = config
             };
             return clientMock;
         }
@@ -147,7 +200,8 @@ namespace Adyen.EcommLibrary.Test
             //Create a mock interface
             var clientInterfaceMock = new Mock<IClient>();
             var confMock = MockPaymentData.CreateConfingMock();
-            var httpClientException = new HttpClientException(status, "An error occured", new Dictionary<string, List<string>>(), response);
+            var httpClientException =
+                new HttpClientException(status, "An error occured", new WebHeaderCollection(), response);
 
             clientInterfaceMock.Setup(x => x.Request(It.IsAny<string>(),
                 It.IsAny<string>(), confMock)).Throws(httpClientException);
@@ -169,7 +223,7 @@ namespace Adyen.EcommLibrary.Test
                 return text;
             }
             try
-            {   
+            {
                 using (var streamReader = new StreamReader(fileName, Encoding.UTF8))
                 {
                     text = streamReader.ReadToEnd();
@@ -179,10 +233,29 @@ namespace Adyen.EcommLibrary.Test
             {
                 throw exception;
             }
-            
+
             return text;
         }
         
+        /// <summary>
+        /// Create dummy Nexo message header
+        /// </summary>
+        /// <returns></returns>
+        protected MessageHeader MockNexoMessageHeaderRequest()
+        {
+            return new MessageHeader
+            {
+                MessageType = "Request",
+                MessageClass = "Service",
+                MessageCategory = "Payment",
+                SaleID = "POSSystemID12345",
+                POIID = "MX915-284251016",
+                ProtocolVersion = "3.0",
+                ServiceID = (new Random()).Next(1, 9999).ToString()
+            };
+        }
+
+       
         private PaymentResult GetAdditionaData(PaymentResult paymentResult)
         {
             var paymentResultAdditionalData = paymentResult.AdditionalData;
@@ -211,13 +284,13 @@ namespace Adyen.EcommLibrary.Test
             return paymentResult;
         }
 
-        private static string GetMockFilePath(string fileName)
+        protected static string GetMockFilePath(string fileName)
         {
             if (string.IsNullOrEmpty(fileName))
             {
                 return "";
             }
-            var projectPath = System.IO.Directory.GetParent(Environment.CurrentDirectory).Parent.Parent.FullName;
+            var projectPath = Directory.GetParent(Environment.CurrentDirectory).Parent.Parent.FullName;
             var mockPath = Path.Combine(projectPath, fileName);
             return mockPath;
         }

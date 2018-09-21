@@ -1,0 +1,362 @@
+{
+  "SaleToPOIResponse": {
+    "PaymentResponse": {
+      "POIData": {
+        "POITransactionID": {
+          "TimeStamp": "2018-06-20T07:51:32.000Z",
+          "TransactionID": "oLkO001529481092000.8815294810981090"
+        }
+      },
+      "SaleData": {
+        "SaleTransactionID": {
+          "TimeStamp": "2018-06-20T09:51:35.000Z",
+          "TransactionID": "TxId-2018-06-20T09:51:35+00:00"
+        }
+      },
+      "PaymentReceipt": [
+        {
+          "RequiredSignatureFlag": false,
+          "DocumentQualifier": "CashierReceipt",
+          "OutputContent": {
+            "OutputFormat": "Text",
+            "OutputText": [
+              {
+                "CharacterStyle": "Bold",
+                "Text": "key=header1",
+                "EndOfLineFlag": true
+              },
+              {
+                "CharacterStyle": "Bold",
+                "Text": "key=header2",
+                "EndOfLineFlag": true
+              },
+              {
+                "Text": "key=filler",
+                "EndOfLineFlag": true
+              },
+              {
+                "CharacterStyle": "Bold",
+                "Text": "name=MERCHANT%20COPY&key=merchantTitle",
+                "EndOfLineFlag": true
+              },
+              {
+                "Text": "key=filler",
+                "EndOfLineFlag": true
+              },
+              {
+                "Text": "name=Date&value=20%2f06%2f18&key=txdate",
+                "EndOfLineFlag": true
+              },
+              {
+                "Text": "name=Time&value=09%3a51%3a32&key=txtime",
+                "EndOfLineFlag": true
+              },
+              {
+                "Text": "key=filler",
+                "EndOfLineFlag": true
+              },
+              {
+                "Text": "name=Card&value=%2a%2a%2a%2a%2a%2a%2a%2a%2a%2a%2a%2a0010&key=pan",
+                "EndOfLineFlag": true
+              },
+              {
+                "Text": "name=PAN%20seq.&value=01&key=panSeq",
+                "EndOfLineFlag": true
+              },
+              {
+                "Text": "name=Pref.%20name&value=VISA%20CREDIT&key=preferredName",
+                "EndOfLineFlag": true
+              },
+              {
+                "Text": "name=Card%20type&value=visa&key=cardType",
+                "EndOfLineFlag": true
+              },
+              {
+                "Text": "name=Payment%20method&value=visa&key=paymentMethod",
+                "EndOfLineFlag": true
+              },
+              {
+                "Text": "name=Payment%20variant&value=visa&key=paymentMethodVariant",
+                "EndOfLineFlag": true
+              },
+              {
+                "Text": "name=Entry%20mode&value=CLESS_CHIP&key=posEntryMode",
+                "EndOfLineFlag": true
+              },
+              {
+                "Text": "key=filler",
+                "EndOfLineFlag": true
+              },
+              {
+                "Text": "name=AID&value=A0000000031010&key=aid",
+                "EndOfLineFlag": true
+              },
+              {
+                "Text": "name=MID&value=41&key=mid",
+                "EndOfLineFlag": true
+              },
+              {
+                "Text": "name=TID&value=MX925-260390740&key=tid",
+                "EndOfLineFlag": true
+              },
+              {
+                "Text": "name=PTID&value=12000000&key=ptid",
+                "EndOfLineFlag": true
+              },
+              {
+                "Text": "key=filler",
+                "EndOfLineFlag": true
+              },
+              {
+                "Text": "name=Auth.%20code&value=123456&key=authCode",
+                "EndOfLineFlag": true
+              },
+              {
+                "Text": "name=ATC&value=3&key=atc",
+                "EndOfLineFlag": true
+              },
+              {
+                "Text": "name=Tender&value=oLkO001529481092000&key=txRef",
+                "EndOfLineFlag": true
+              },
+              {
+                "Text": "name=Reference&value=TxId-2018-06-20T09%3a51%3a35%2b00%3a00&key=mref",
+                "EndOfLineFlag": true
+              },
+              {
+                "Text": "key=filler",
+                "EndOfLineFlag": true
+              },
+              {
+                "Text": "name=Type&value=GOODS_SERVICES&key=txtype",
+                "EndOfLineFlag": true
+              },
+              {
+                "CharacterStyle": "Bold",
+                "Text": "name=TOTAL&value=%e2%82%ac%2015.25%20%20&key=totalAmount",
+                "EndOfLineFlag": true
+              },
+              {
+                "Text": "key=filler",
+                "EndOfLineFlag": true
+              },
+              {
+                "CharacterStyle": "Bold",
+                "Text": "name=APPROVED&key=approved",
+                "EndOfLineFlag": true
+              },
+              {
+                "Text": "key=filler",
+                "EndOfLineFlag": true
+              },
+              {
+                "Text": "key=filler",
+                "EndOfLineFlag": true
+              }
+            ]
+          }
+        },
+        {
+          "RequiredSignatureFlag": false,
+          "DocumentQualifier": "CustomerReceipt",
+          "OutputContent": {
+            "OutputFormat": "Text",
+            "OutputText": [
+              {
+                "CharacterStyle": "Bold",
+                "Text": "key=header1",
+                "EndOfLineFlag": true
+              },
+              {
+                "CharacterStyle": "Bold",
+                "Text": "key=header2",
+                "EndOfLineFlag": true
+              },
+              {
+                "Text": "key=filler",
+                "EndOfLineFlag": true
+              },
+              {
+                "CharacterStyle": "Bold",
+                "Text": "name=CARDHOLDER%20COPY&key=cardholderHeader",
+                "EndOfLineFlag": true
+              },
+              {
+                "Text": "key=filler",
+                "EndOfLineFlag": true
+              },
+              {
+                "Text": "name=Date&value=20%2f06%2f18&key=txdate",
+                "EndOfLineFlag": true
+              },
+              {
+                "Text": "name=Time&value=09%3a51%3a32&key=txtime",
+                "EndOfLineFlag": true
+              },
+              {
+                "Text": "key=filler",
+                "EndOfLineFlag": true
+              },
+              {
+                "Text": "name=Card&value=%2a%2a%2a%2a%2a%2a%2a%2a%2a%2a%2a%2a0010&key=pan",
+                "EndOfLineFlag": true
+              },
+              {
+                "Text": "name=PAN%20seq.&value=01&key=panSeq",
+                "EndOfLineFlag": true
+              },
+              {
+                "Text": "name=Pref.%20name&value=VISA%20CREDIT&key=preferredName",
+                "EndOfLineFlag": true
+              },
+              {
+                "Text": "name=Card%20type&value=visa&key=cardType",
+                "EndOfLineFlag": true
+              },
+              {
+                "Text": "name=Payment%20method&value=visa&key=paymentMethod",
+                "EndOfLineFlag": true
+              },
+              {
+                "Text": "name=Payment%20variant&value=visa&key=paymentMethodVariant",
+                "EndOfLineFlag": true
+              },
+              {
+                "Text": "name=Entry%20mode&value=CLESS_CHIP&key=posEntryMode",
+                "EndOfLineFlag": true
+              },
+              {
+                "Text": "key=filler",
+                "EndOfLineFlag": true
+              },
+              {
+                "Text": "name=AID&value=A0000000031010&key=aid",
+                "EndOfLineFlag": true
+              },
+              {
+                "Text": "name=MID&value=%2a%2a%2a%2a%2a%2a%2a%2a%2a&key=mid",
+                "EndOfLineFlag": true
+              },
+              {
+                "Text": "name=TID&value=MX925-260390740&key=tid",
+                "EndOfLineFlag": true
+              },
+              {
+                "Text": "name=PTID&value=12000000&key=ptid",
+                "EndOfLineFlag": true
+              },
+              {
+                "Text": "key=filler",
+                "EndOfLineFlag": true
+              },
+              {
+                "Text": "name=Auth.%20code&value=123456&key=authCode",
+                "EndOfLineFlag": true
+              },
+              {
+                "Text": "name=ATC&value=3&key=atc",
+                "EndOfLineFlag": true
+              },
+              {
+                "Text": "name=Tender&value=oLkO001529481092000&key=txRef",
+                "EndOfLineFlag": true
+              },
+              {
+                "Text": "name=Reference&value=TxId-2018-06-20T09%3a51%3a35%2b00%3a00&key=mref",
+                "EndOfLineFlag": true
+              },
+              {
+                "Text": "key=filler",
+                "EndOfLineFlag": true
+              },
+              {
+                "Text": "name=Type&value=GOODS_SERVICES&key=txtype",
+                "EndOfLineFlag": true
+              },
+              {
+                "CharacterStyle": "Bold",
+                "Text": "name=TOTAL&value=%e2%82%ac%2015.25%20%20&key=totalAmount",
+                "EndOfLineFlag": true
+              },
+              {
+                "Text": "key=filler",
+                "EndOfLineFlag": true
+              },
+              {
+                "CharacterStyle": "Bold",
+                "Text": "name=APPROVED&key=approved",
+                "EndOfLineFlag": true
+              },
+              {
+                "Text": "key=filler",
+                "EndOfLineFlag": true
+              },
+              {
+                "Text": "name=Please%20retain%20for%20your%20records&key=retain",
+                "EndOfLineFlag": true
+              },
+              {
+                "Text": "key=filler",
+                "EndOfLineFlag": true
+              },
+              {
+                "Text": "key=filler",
+                "EndOfLineFlag": true
+              },
+              {
+                "Text": "name=Thank%20you&key=thanks",
+                "EndOfLineFlag": true
+              }
+            ]
+          }
+        }
+      ],
+      "PaymentResult": {
+        "PaymentAcquirerData": {
+          "AcquirerPOIID": "MX925-260390740",
+          "AcquirerTransactionID": {
+            "TimeStamp": "2018-06-20T07:51:32.000Z",
+            "TransactionID": "8815294810981090"
+          },
+          "MerchantID": "PME_POS"
+        },
+        "PaymentInstrumentData": {
+          "CardData": {
+            "EntryMode": [
+              "Contactless"
+            ],
+            "PaymentToken": {
+              "TokenRequestedType": "Customer",
+              "TokenValue": "B143919407458236"
+            },
+            "PaymentBrand": "visa",
+            "MaskedPan": "476173 dapi.cfg posDirectApiRequest.json posDirectApiResponse.json runTender templates 0010",
+            "SensitiveCardData": {
+              "CardSeqNumb": "01",
+              "ExpiryDate": "1222"
+            }
+          },
+          "PaymentInstrumentType": "Card"
+        },
+        "AmountsResp": {
+          "AuthorizedAmount": 15.25,
+          "Currency": "EUR"
+        },
+        "PaymentType": "Normal"
+      },
+      "Response": {
+        "Result": "Success",
+        "AdditionalResponse": "tid=12000000&AID=A0000000031010&transactionType=GOODS_SERVICES&pspReference=8815294810981090&applicationPreferredName=VISA%20CREDIT&offline=false&shopperReference=69950&tc=8A4C70011CA2E049&mid=41&cardHolderVerificationMethodResults=3F0300"
+      }
+    },
+    "MessageHeader": {
+      "ProtocolVersion": "3.0",
+      "SaleID": "AppieBash-POSSystemID12345",
+      "MessageClass": "Service",
+      "MessageCategory": "Payment",
+      "ServiceID": "20095135",
+      "POIID": "MX925-260390740",
+      "MessageType": "Response"
+    }
+  }
+}

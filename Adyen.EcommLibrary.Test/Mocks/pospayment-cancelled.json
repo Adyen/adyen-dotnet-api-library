@@ -1,0 +1,47 @@
+{
+   "SaleToPOIResponse":{
+      "MessageHeader":{
+         "POIID":"MX925-260193322",
+         "SaleID":"POSSystemID12345",
+         "ServiceID":"16151",
+         "MessageCategory":"Payment",
+         "MessageClass":"Service",
+         "ProtocolVersion":"3.0",
+         "MessageType":"Response"
+      },
+      "PaymentResponse":{
+         "PaymentResult":{
+            "PaymentAcquirerData":{
+               "MerchantID":"TestMerchantPOS",
+               "AcquirerPOIID":"MX925-260193322"
+            },
+            "PaymentInstrumentData":{
+               "CardData":{
+                  "EntryMode":[
+                     "ICC"
+                  ]
+               },
+               "PaymentInstrumentType":"Card"
+            }
+         },
+         "SaleData":{
+            "TokenRequestedType":"Customer",
+            "SaleTransactionID":{
+               "TransactionID":"27040",
+               "TimeStamp":"2017-08-28T15:18:30.000Z"
+            }
+         },
+         "Response":{
+            "Result":"Failure",
+            "ErrorCondition":"Cancel",
+            "AdditionalResponse":"101 Shopper cancelled app selection"
+         },
+         "POIData":{
+            "POITransactionID":{
+               "TransactionID":"oLkO001503933508008",
+               "TimeStamp":"2017-08-28T15:18:28.000Z"
+            }
+         }
+      }
+   }
+}

@@ -9,9 +9,21 @@ namespace Adyen.EcommLibrary.Test
     public class PaymentTest : BaseTest
     {
         [TestMethod]
-        public void TestAuthoriseSuccessMockedResponse()
+        public void TestAuthoriseBasicAuthenticationSuccessMockedResponse()
         {
             var paymentResult = CreatePaymentResultFromFile("Mocks/authorise-success.json");
+            Assert.AreEqual(paymentResult.ResultCode, ResultCodeEnum.Authorised);
+            Assert.AreEqual("411111", GetAdditionalData(paymentResult.AdditionalData, "cardBin"));
+            Assert.AreEqual("43733", GetAdditionalData(paymentResult.AdditionalData, "authCode"));
+            Assert.AreEqual("4 AVS not supported for this card type", GetAdditionalData(paymentResult.AdditionalData, "avsResult"));
+            Assert.AreEqual("1 Matches", GetAdditionalData(paymentResult.AdditionalData, "cvcResult"));
+            Assert.AreEqual("visa", GetAdditionalData(paymentResult.AdditionalData, "paymentMethod"));
+        }
+
+        [TestMethod]
+        public void TestAuthoriseApiKeyBasedSuccessMockedResponse()
+        {
+            var paymentResult = CreatePaymentApiKeyBasedResultFromFile("Mocks/authorise-success.json");
             Assert.AreEqual(paymentResult.ResultCode, ResultCodeEnum.Authorised);
             Assert.AreEqual("411111", GetAdditionalData(paymentResult.AdditionalData, "cardBin"));
             Assert.AreEqual("43733", GetAdditionalData(paymentResult.AdditionalData, "authCode"));
