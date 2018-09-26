@@ -42,6 +42,12 @@
           <p>
             With TerminalApiOverLocal method enables local communication using terminal api over https. Example endpoint name https://_terminal_:8443/nexo/. The local communication is using the same models with Cloud API.
           </p>
+
+          <h2>Encryption</h2>
+          <p>
+            Terminal API supports message encryption. For more information please refere to <a href="https://docs.adyen.com/developers/point-of-sale-integration/terminal-api-integration/getting-started-adyen-terminal-api/adyen-terminal-api-architecture/local-communication-to-the-terminal/terminal-api-out-of-band-encryption" target="_blank">Adyen docs</a>
+          </p>
+
       		<h3>Sale Request Implementation</h3>
       		<div class="highlight highlight-text-html-php"><pre>
 <code>
@@ -66,7 +72,6 @@
               MessageClass = "Service",
               MessageCategory = "Payment",
               SaleID = "POSSystemID12345",
-
               POIID = "MX915-284251016",
               ProtocolVersion = "3.0",
               ServiceID = DateTime.Now.ToString("ddHHmmss")//this should be unique
@@ -103,8 +108,6 @@
 </code>
 </pre>
 </div>
-
     <script src="javascripts/scale.fix.js"></script>
-
   </body>
 </html>
