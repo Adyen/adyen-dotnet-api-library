@@ -1,0 +1,110 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <title>Adyen-dotnet-api-library by Adyen</title>
+
+    <link rel="stylesheet" href="stylesheets/styles.css">
+    <link rel="stylesheet" href="stylesheets/github-light.css">
+    <meta name="viewport" content="width=device-width">
+    <!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+  </head>
+  <body>
+    <div class="wrapper">
+      <header>
+        <h1>Adyen-dotnet-api-library</h1>
+        <p>Adyen API Library for dotnet</p>
+
+      <p class="view"><a href="https://github.com/Adyen/adyen-dotnet-api-library">View the Project on GitHub <small>Adyen/adyen-dotnet-api-library</small></a></p>
+        <ul>
+          <li><a href="https://github.com/Adyen/adyen-dotnet-api-library/zipball/master">Download <strong>ZIP File</strong></a></li>
+          <li><a href="https://github.com/Adyen/adyen-dotnet-api-library/tarball/master">Download <strong>TAR Ball</strong></a></li>
+          <li><a href="https://github.com/Adyen/adyen-dotnet-api-library">View On <strong>GitHub</strong></a></li>
+        </ul>
+      </header>
+      <section>
+      	<h1>Pos payment</h1>
+      		<p>
+      			The PosPayment service has the following methods. PosPayment constructor argument is IClient. Client should include a config with xapi key set for authentication.
+      		</p>
+      		<h2>TerminalApiOverCLoudAsync</h2>
+      		<p>
+      			With TerminalApiOverCLoudAsync method you can send an asynchronous Sale to POI request using clound api. SaleToPOIRequest is part of Adyen.EcommLibrary.Model.Nexo.
+      		</p>
+          <h2>TerminalApiOverCLoudSync</h2>
+          <p>
+            With TerminalApiOverCLoudSync method you can send an synchronous Sale to POI request using clound api. Similar to TerminalApiOverCLoudAsync, the SaleToPOIRequest is part of Adyen.EcommLibrary.Model.Nexo.
+          </p>
+          <h2>TerminalApiOverLocal</h2>
+          <p>
+            With TerminalApiOverLocal method enables local communication using terminal api over https. Example endpoint name https://_terminal_:8443/nexo/. The local communication is using the same models with Cloud API.
+          </p>
+      		<h3>Sale Request Implementation</h3>
+      		<div class="highlight highlight-text-html-php"><pre>
+<code>
+<span class="pl-s1"><span class="pl-smi">//Create PosPayment</span></span>
+<span class="pl-s1"><span class="pl-smi">var posPayment</span> <span class="pl-k">=</span> <span class="pl-k">new</span> <span class="pl-c1">PosPayment(</span><span class="pl-smi">client</span>);</span>
+<span class="pl-s1"><span class="pl-smi">//Do terminal api request for local communication</span></span>
+<span class="pl-s1"><span class="pl-smi">var saleToPoiResponse</span><span class="pl-k">=</span> <span class="pl-k">new</span> <span class="pl-c1">posPayment.TerminalApiOverLocal(</span><span class="pl-smi">paymentRequest, messageHeader, _encryptionCredentialDetails</span>);</span>
+
+</code>
+
+</div>
+	<h3>SaleToPOIRequest example</h3>
+<div class="highlight highlight-text-html-php"><pre>
+<code>
+  public static SaleToPOIRequest CreatePosPaymentRequest(string transactionType)
+  {
+      var saleToPoiRequest = <span class="pl-k">new</span> SaleToPOIRequest()
+      {
+          MessageHeader = <span class="pl-k">new</span> MessageHeader
+          {
+              MessageType = "Request",
+              MessageClass = "Service",
+              MessageCategory = "Payment",
+              SaleID = "POSSystemID12345",
+
+              POIID = "MX915-284251016",
+              ProtocolVersion = "3.0",
+              ServiceID = DateTime.Now.ToString("ddHHmmss")//this should be unique
+          },
+          Item = <span class="pl-k">new</span> PaymentRequest()
+          {
+              SaleData = <span class="pl-k">new</span> SaleData()
+              {
+                  SaleToAcquirerData = "shopperEmail=hola@gmail.com&shopperReference=fakeRef&recurringContract=RECURRING",
+                  SaleTransactionID = <span class="pl-k">new</span> TransactionIdentification()
+                  {
+                      TransactionID = "PosAuth",
+                      TimeStamp = DateTime.Now
+                  },
+                  TokenRequested = "Customer",
+              },
+              PaymentTransaction = <span class="pl-k">new</span> PaymentTransaction()
+              {
+                  AmountsReq = <span class="pl-k">new</span> AmountsReq()
+                  {
+                      Currency = "EUR",
+                      RequestedAmount = 10100
+                  }
+              },
+              PaymentData = <span class="pl-k">new</span> PaymentData()
+              {
+                  Payment = transactionType
+              }
+          },
+          SecurityTrailer = <span class="pl-k">new</span> ContentInformationType(){}
+      };
+      return saleToPoiRequest;
+  }
+</code>
+</pre>
+</div>
+
+    <script src="javascripts/scale.fix.js"></script>
+
+  </body>
+</html>
