@@ -38,16 +38,13 @@
 <span class="pl-s1"><span class="pl-smi">var client</span> <span class="pl-k">=</span> <span class="pl-k">new</span> <span class="pl-c1">Client</span><span class="pl-s1">();</span>
 <span class="pl-s1"><span class="pl-smi">var modification</span> <span class="pl-k">=</span> <span class="pl-k">new</span> <span class="pl-c1">Modification</span><span class="pl-s1">(client);</span>
 <code>
-protected CaptureRequest CreateCaptureTestRequest(string pspReference)
+var captureRequest = <span class="pl-k">new</span> <span class="pl-c1">CaptureRequest</span>
 {
-  var captureRequest = new CaptureRequest
-  {
-    MerchantAccount = "MerchantAccount",
-    ModificationAmount = new Amount("EUR", 150),
-    Reference = "Merchant reference ",
-    OriginalReference = pspReference
-  };
-}
+  MerchantAccount = "MerchantAccount",
+  ModificationAmount = new Amount("EUR", 150),
+  Reference = "Merchant reference ",
+  OriginalReference = pspReference
+};
 </code>
 <span class="pl-s1"><span class="pl-smi">var captureResult</span> <span class="pl-k">=</span> <span class="pl-k">new</span> <span class="pl-c1">modification.Capture</span><span class="pl-s1">(captureRequest);</span>
 </pre>
@@ -58,17 +55,14 @@ protected CaptureRequest CreateCaptureTestRequest(string pspReference)
 <span class="pl-s1"><span class="pl-smi">var client</span> <span class="pl-k">=</span> <span class="pl-k">new</span> <span class="pl-c1">Client</span><span class="pl-s1">();</span>
 <span class="pl-s1"><span class="pl-smi">var modification</span> <span class="pl-k">=</span> <span class="pl-k">new</span> <span class="pl-c1">Modification</span><span class="pl-s1">(client);</span>
 <code>
-pulbic CaptureRequest CreateCaptureTestRequest(string pspReference)
+var captureRequest = <span class="pl-k">new</span> <span class="pl-c1">CancelRequest</span>
 {
-  var captureRequest = <span class="pl-k">new</span> PaymentRequest CaptureRequest
-  {
-    MerchantAccount = "MerchantAccount",
-    Reference = "Merchant reference ",
-    OriginalReference = pspReference
-  };
-}
+  MerchantAccount = "MerchantAccount",
+  Reference = "Merchant reference ",
+  OriginalReference = pspReference
+};
 </code>
-<span class="pl-s1"><span class="pl-smi">var captureResult</span> <span class="pl-k">=</span> <span class="pl-k">new</span> <span class="pl-c1">modification.Cancel</span><span class="pl-s1">(captureRequest);</span>
+<span class="pl-s1"><span class="pl-smi">var captureResult</span> <span class="pl-k">=</span> <span class="pl-c1">modification.Cancel</span><span class="pl-s1">(captureRequest);</span>
 </pre>
 </div>
 
@@ -78,17 +72,14 @@ pulbic CaptureRequest CreateCaptureTestRequest(string pspReference)
 <span class="pl-s1"><span class="pl-smi">var client</span> <span class="pl-k">=</span> <span class="pl-k">new</span> <span class="pl-c1">Client</span><span class="pl-s1">();</span>
 <span class="pl-s1"><span class="pl-smi">var modification</span> <span class="pl-k">=</span> <span class="pl-k">new</span> <span class="pl-c1">Modification</span><span class="pl-s1">(client);</span>
 <code>
-public CaptureRequest CreateCaptureTestRequest(string pspReference)
+var captureRequest = <span class="pl-k">new</span> <span class="pl-c1">CancelOrRefundRequest</span>
 {
-  var captureRequest = new CaptureRequest
-  {
-    MerchantAccount = "MerchantAccount",
-    Reference = "Merchant reference ",
-    OriginalReference = pspReference
-  };
-}
+  MerchantAccount = "MerchantAccount",
+  Reference = "Merchant reference ",
+  OriginalReference = pspReference
+};
 </code>
-<span class="pl-s1"><span class="pl-smi">var captureResult</span> <span class="pl-k">=</span> <span class="pl-k">new</span> <span class="pl-c1">modification.CancelOrRefund</span><span class="pl-s1">(captureRequest);</span>
+<span class="pl-s1"><span class="pl-smi">var captureResult</span> <span class="pl-k">=</span> <span class="pl-c1">modification.CancelOrRefund</span><span class="pl-s1">(captureRequest);</span>
 </pre>
 </div>
 		<h2>refund</h2>
@@ -97,18 +88,15 @@ public CaptureRequest CreateCaptureTestRequest(string pspReference)
 <span class="pl-s1"><span class="pl-smi">var client</span> <span class="pl-k">=</span> <span class="pl-k">new</span> <span class="pl-c1">Client</span><span class="pl-s1">();</span>
 <span class="pl-s1"><span class="pl-smi">var modification</span> <span class="pl-k">=</span> <span class="pl-k">new</span> <span class="pl-c1">Modification</span><span class="pl-s1">(client);</span>
 <code>
-public CaptureRequest CreateCaptureTestRequest(string pspReference)
+var captureRequest = <span class="pl-k">new</span> <span class="pl-c1">RefundRequest</span>
 {
-  var captureRequest = new CaptureRequest
-  {
-    MerchantAccount = "MerchantAccount",
-    ModificationAmount = <span class="pl-k">new</span> PaymentRequest Amount("EUR", 150),
-    Reference = "Merchant reference ",
-    OriginalReference = pspReference
-  };
-}
+  MerchantAccount = "MerchantAccount",
+  ModificationAmount = <span class="pl-k">new</span> Amount("EUR", 150),
+  Reference = "Merchant reference ",
+  OriginalReference = pspReference
+};
 </code>
-<span class="pl-s1"><span class="pl-smi">var captureResult</span> <span class="pl-k">=</span> <span class="pl-k">new</span> <span class="pl-c1">modification.Refund</span><span class="pl-s1">(captureRequest);</span>
+<span class="pl-s1"><span class="pl-smi">var captureResult</span> <span class="pl-k">=</span> <span class="pl-c1">modification.Refund</span><span class="pl-s1">(captureRequest);</span>
 </pre>
 </div>
 
