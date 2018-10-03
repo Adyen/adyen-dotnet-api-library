@@ -34,8 +34,7 @@ namespace Adyen.EcommLibrary.Service
         {
             var serializedMessage = _saleToPoiMessageSerializer.Serialize(saleToPoiRequest);
             var response = _terminalApiAsync.Request(serializedMessage);
-            var saleToPoiResponse = _saleToPoiMessageSerializer.Deserialize(response);
-            return saleToPoiResponse;
+            return _saleToPoiMessageSerializer.Deserialize(response);
         }
 
         /// <summary>
