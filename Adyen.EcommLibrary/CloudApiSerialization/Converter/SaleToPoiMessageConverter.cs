@@ -1,4 +1,5 @@
 ﻿using System;
+using Adyen.EcommLibrary.Model.Nexo;
 using Adyen.EcommLibrary.Model.Nexo.Message;
 using Newtonsoft.Json;
 
@@ -8,14 +9,14 @@ namespace Adyen.EcommLibrary.CloudApiSerialization.Converter
     {
         public override void WriteJson(JsonWriter writer, object value, JsonSerializer serializer)
         {
-            serializer.NullValueHandling = NullValueHandling.Ignore;
+            serializer.NullValueHandling = NullValueHandling.Ignore ;
 
             writer.WriteStartObject();
             writer.WritePropertyName(value.GetType().Name);
 
             writer.WriteStartObject();
 
-            var saleToPoiMessage = value as SaleToPoiMessage;
+            var saleToPoiMessage = value as SaleToPOIMessage;
 
             writer.WritePropertyName(saleToPoiMessage.MessageHeader.GetType().Name);
             serializer.Serialize(writer, saleToPoiMessage.MessageHeader);
@@ -35,7 +36,7 @@ namespace Adyen.EcommLibrary.CloudApiSerialization.Converter
 
         public override bool CanConvert(Type objectType)
         {
-            return typeof(SaleToPoiMessage).IsAssignableFrom(objectType); ;
+            return typeof(SaleToPOIMessage).IsAssignableFrom(objectType); ;
         }
     }
 }

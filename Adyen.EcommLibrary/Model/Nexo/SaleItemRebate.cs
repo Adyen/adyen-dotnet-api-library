@@ -15,11 +15,7 @@
         /// <remarks/>
         [System.Xml.Serialization.XmlElementAttribute(Form = System.Xml.Schema.XmlSchemaForm.Unqualified)]
         public decimal Quantity;
-
-        /// <remarks/>
-        [System.Xml.Serialization.XmlIgnoreAttribute()]
-        public bool QuantitySpecified;
-
+        
         /// <remarks/>
         [System.Xml.Serialization.XmlElementAttribute(Form = System.Xml.Schema.XmlSchemaForm.Unqualified)]
         public string RebateLabel;
@@ -40,8 +36,5 @@
         [System.Xml.Serialization.XmlAttributeAttribute()]
         public decimal ItemAmount;
 
-        /// <remarks/>
-        [System.Xml.Serialization.XmlIgnoreAttribute()]
-        public bool ItemAmountSpecified;
     }
 }

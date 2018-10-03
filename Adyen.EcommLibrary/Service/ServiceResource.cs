@@ -7,13 +7,13 @@ namespace Adyen.EcommLibrary.Service
     {
         private readonly AbstractService _abstractService;
         protected string Endpoint;
-        protected List<string> RequiredFields;
+       
         
         public ServiceResource(AbstractService abstractService, string endpoint, List<string> requiredFields)
         {
             _abstractService = abstractService;
             Endpoint = endpoint;
-            RequiredFields = requiredFields;
+          
         }
 
         public string Request(string json)

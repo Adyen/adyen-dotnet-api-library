@@ -39,10 +39,6 @@
         public decimal TotalAmount;
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlIgnoreAttribute()]
-        public bool TotalAmountSpecified;
-
-        /// <remarks/>
         [System.Xml.Serialization.XmlAttributeAttribute()]
         public string Payment;
 
@@ -50,9 +46,7 @@
         [System.Xml.Serialization.XmlAttributeAttribute()]
         public bool CashBackFlag;
 
-        /// <remarks/>
-        [System.Xml.Serialization.XmlIgnoreAttribute()]
-        public bool CashBackFlagSpecified;
+     
 
         public CardAcquisitionTransaction()
         {

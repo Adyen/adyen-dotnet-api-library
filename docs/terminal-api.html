@@ -30,17 +30,17 @@
       		<p>
       			The PosPayment service has the following methods. PosPayment constructor argument is IClient. Client should include a config with xapi key set for authentication.
       		</p>
-      		<h2>TerminalApiOverCLoudAsync</h2>
+      		<h2>TerminalApiCloudAsync</h2>
       		<p>
-      			With TerminalApiOverCLoudAsync method you can send an asynchronous Sale to POI request using clound api. SaleToPOIRequest is part of Adyen.EcommLibrary.Model.Nexo.
+      			With TerminalApiCloudAsync method you can send an asynchronous Sale to POI request using clound api. SaleToPOIRequest is part of Adyen.EcommLibrary.Model.Nexo.
       		</p>
-          <h2>TerminalApiOverCLoudSync</h2>
+          <h2>TerminalApiCloudSync</h2>
           <p>
-            With TerminalApiOverCLoudSync method you can send an synchronous Sale to POI request using clound api. Similar to TerminalApiOverCLoudAsync, the SaleToPOIRequest is part of Adyen.EcommLibrary.Model.Nexo.
+            With TerminalApiCloudSync method you can send an synchronous Sale to POI request using clound api. Similar to TerminalApiCloudAsync, the SaleToPOIRequest is part of Adyen.EcommLibrary.Model.Nexo.
           </p>
-          <h2>TerminalApiOverLocal</h2>
+          <h2>TerminalApiLocal</h2>
           <p>
-            With TerminalApiOverLocal method enables local communication using terminal api over https. Example endpoint name https://_terminal_:8443/nexo/. The local communication is using the same models with Cloud API.
+            With TerminalApiLocal method enables local communication using terminal api over https. Example endpoint name https://_terminal_:8443/nexo/. The local communication is using the same models with Cloud API.
           </p>
 
           <h2>Encryption</h2>
@@ -54,7 +54,7 @@
 <span class="pl-s1"><span class="pl-smi">//Create PosPayment</span></span>
 <span class="pl-s1"><span class="pl-smi">var posPayment</span> <span class="pl-k">=</span> <span class="pl-k">new</span> <span class="pl-c1">PosPayment(</span><span class="pl-smi">client</span>);</span>
 <span class="pl-s1"><span class="pl-smi">//Do terminal api request for local communication</span></span>
-<span class="pl-s1"><span class="pl-smi">var saleToPoiResponse</span><span class="pl-k">=</span> <span class="pl-k">new</span> <span class="pl-c1">posPayment.TerminalApiOverLocal(</span><span class="pl-smi">paymentRequest, messageHeader, _encryptionCredentialDetails</span>);</span>
+<span class="pl-s1"><span class="pl-smi">var saleToPoiResponse</span><span class="pl-k">=</span> <span class="pl-k">new</span> <span class="pl-c1">posPayment.TerminalApiLocal(</span><span class="pl-smi">paymentRequest, messageHeader, _encryptionCredentialDetails</span>);</span>
 
 </code>
 

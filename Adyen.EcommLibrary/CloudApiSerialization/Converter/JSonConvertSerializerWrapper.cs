@@ -10,12 +10,13 @@ namespace Adyen.EcommLibrary.CloudApiSerialization.Converter
     {
         private const string DateTimeFormat = "yyyy-MM-ddTHH:mm:ss";
 
-        internal static string Serialize(SaleToPOIRequest saleToPoiMessage)
+        internal static string Serialize(SaleToPOIMessage saleToPoiMessage)
         {
-            return JsonConvert.SerializeObject(saleToPoiMessage,
+            var serialize= JsonConvert.SerializeObject(saleToPoiMessage,
                 new SaleToPoiMessageConverter(),
                 new StringEnumConverter(),
                 new IsoDateTimeConverter() { DateTimeFormat = DateTimeFormat });
+            return serialize;
         }
 
         internal static string Serialize(SaleToPoiMessageSecured saleToPoiMessageSecured)

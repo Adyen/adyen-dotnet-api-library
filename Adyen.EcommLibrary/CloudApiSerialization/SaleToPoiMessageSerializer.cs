@@ -1,7 +1,9 @@
 ﻿using System;
+using System.Collections.Generic;
 using Adyen.EcommLibrary.Model.Nexo;
 using Adyen.EcommLibrary.Security;
 using Newtonsoft.Json.Linq;
+using Adyen.EcommLibrary.Model.Nexo.Message;
 
 namespace Adyen.EcommLibrary.CloudApiSerialization
 {
@@ -21,6 +23,17 @@ namespace Adyen.EcommLibrary.CloudApiSerialization
         {
             try
             {
+                //Only for async action
+                if (saleToPoiMessageDto == "ok")
+                {
+                    return new SaleToPOIResponse()
+                    {
+                        MessageHeader = new MessageHeader()
+                        {
+                            
+                        },
+                    };
+                }
                 var saleToPoiMessageJObject = JObject.Parse(saleToPoiMessageDto);
                 var saleToPoiMessageRootJToken = saleToPoiMessageJObject.First;
                 var saleToPoiMessageWithoutRootJToken = saleToPoiMessageRootJToken.First;
@@ -30,7 +43,7 @@ namespace Adyen.EcommLibrary.CloudApiSerialization
                 var deserializedOutputMessage = new SaleToPOIResponse
                 {
                     MessageHeader = messageHeader,
-                    Item = messagePayload
+                    MessagePayload = messagePayload
                 };
                 
                 return deserializedOutputMessage;
@@ -54,6 +67,7 @@ namespace Adyen.EcommLibrary.CloudApiSerialization
         private string GetMessagePayloadJSon(JToken saleToPoiMessageWithoutRootJToken, string messageCategory, string messageType)
         {
             var messagePayloadTypedJson = saleToPoiMessageWithoutRootJToken.SelectToken(messageCategory + messageType.ToString());
+          
             if (messagePayloadTypedJson == null)
             {
                 return saleToPoiMessageWithoutRootJToken.SelectToken("MessagePayload").ToString();
@@ -68,7 +82,7 @@ namespace Adyen.EcommLibrary.CloudApiSerialization
             return messageHeader;
         }
 
-        public string Serialize(SaleToPOIRequest saleToPoiMessage)
+        public string Serialize(SaleToPOIMessage saleToPoiMessage)
         {
             try
             {

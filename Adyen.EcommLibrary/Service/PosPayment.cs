@@ -1,5 +1,6 @@
 ﻿using Adyen.EcommLibrary.CloudApiSerialization;
 using Adyen.EcommLibrary.Model.Nexo;
+using Adyen.EcommLibrary.Model.Nexo.Message;
 using Adyen.EcommLibrary.Security;
 using Adyen.EcommLibrary.Service.Resource.Payment;
 
@@ -29,7 +30,7 @@ namespace Adyen.EcommLibrary.Service
         /// </summary>
         /// <param name="saleToPoiRequest"></param>
         /// <returns></returns>
-        public SaleToPOIResponse TerminalApiOverCLoudAsync(SaleToPOIRequest saleToPoiRequest)
+        public SaleToPOIResponse TerminalApiCloudAsync(SaleToPOIMessage saleToPoiRequest)
         {
             var serializedMessage = _saleToPoiMessageSerializer.Serialize(saleToPoiRequest);
             var response = _terminalApiAsync.Request(serializedMessage);
@@ -42,12 +43,11 @@ namespace Adyen.EcommLibrary.Service
         /// </summary>
         /// <param name="saleToPoiRequest"></param>
         /// <returns></returns>
-        public SaleToPOIResponse TerminalApiOverCLoudSync(SaleToPOIRequest saleToPoiRequest)
+        public SaleToPOIResponse TerminalApiCloudSync(SaleToPOIMessage saleToPoiRequest)
         {
             var serializedMessage = _saleToPoiMessageSerializer.Serialize(saleToPoiRequest);
             var response = _terminalApiSync.Request(serializedMessage);
-            var saleToPoiResponse = _saleToPoiMessageSerializer.Deserialize(response);
-            return saleToPoiResponse;
+            return _saleToPoiMessageSerializer.Deserialize(response);
         }
 
         /// <summary>
@@ -57,7 +57,7 @@ namespace Adyen.EcommLibrary.Service
         /// <param name="messageHeader"></param>
         /// <param name="encryptionCredentialDetails"></param>
         /// <returns></returns>
-        public SaleToPOIResponse TerminalApiOverLocal(SaleToPOIRequest saleToPoiRequest, MessageHeader messageHeader, EncryptionCredentialDetails encryptionCredentialDetails)
+        public SaleToPOIResponse TerminalApiLocal(SaleToPOIMessage saleToPoiRequest, MessageHeader messageHeader, EncryptionCredentialDetails encryptionCredentialDetails)
         {
             var saleToPoiRequestMessageSerialized = _saleToPoiMessageSerializer.Serialize(saleToPoiRequest);
             var saleToPoiRequestMessageSecured = _messageSecuredEncryptor.Encrypt(saleToPoiRequestMessageSerialized, messageHeader, encryptionCredentialDetails);
