@@ -16,10 +16,7 @@
         [System.Xml.Serialization.XmlElementAttribute(Form = System.Xml.Schema.XmlSchemaForm.Unqualified)]
         public decimal Commission;
 
-        /// <remarks/>
-        [System.Xml.Serialization.XmlIgnoreAttribute()]
-        public bool CommissionSpecified;
-
+       
         /// <remarks/>
         [System.Xml.Serialization.XmlElementAttribute(Form = System.Xml.Schema.XmlSchemaForm.Unqualified)]
         public string Declaration;
@@ -34,17 +31,9 @@
         public decimal Rate;
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlIgnoreAttribute()]
-        public bool RateSpecified;
-
-        /// <remarks/>
         [System.Xml.Serialization.XmlAttributeAttribute()]
         public decimal Markup;
-
-        /// <remarks/>
-        [System.Xml.Serialization.XmlIgnoreAttribute()]
-        public bool MarkupSpecified;
-
+        
         public CurrencyConversion()
         {
             this.CustomerApprovedFlag = true;

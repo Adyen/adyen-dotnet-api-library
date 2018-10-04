@@ -32,8 +32,5 @@
         [System.Xml.Serialization.XmlAttributeAttribute()]
         public decimal TotalAmount;
 
-        /// <remarks/>
-        [System.Xml.Serialization.XmlIgnoreAttribute()]
-        public bool TotalAmountSpecified;
     }
 }

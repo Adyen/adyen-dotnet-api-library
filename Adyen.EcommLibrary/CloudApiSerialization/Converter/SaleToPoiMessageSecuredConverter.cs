@@ -39,7 +39,7 @@ namespace Adyen.EcommLibrary.CloudApiSerialization.Converter
 
         private string GetProperTypeNameForSerialization(Type type)
         {
-            if (type == typeof(SaleToPOIRequest))
+            if (type == typeof(SaleToPOIMessage))
             {
                 return SaleToPoiRequestSecuredForSerialization;
             }

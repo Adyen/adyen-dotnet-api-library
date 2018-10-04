@@ -13,6 +13,7 @@
 // 
 
 using System.Xml.Serialization;
+using Adyen.EcommLibrary.Model.Nexo.Message;
 
 namespace Adyen.EcommLibrary.Model.Nexo
 {
@@ -23,7 +24,7 @@ namespace Adyen.EcommLibrary.Model.Nexo
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     [XmlType(AnonymousType = true)]
     [XmlRoot(Namespace = "", IsNullable = false)]
-    public partial class SaleToPOIRequest
+    public partial class SaleToPOIMessage 
     {
 
         /// <remarks/>
@@ -58,7 +59,7 @@ namespace Adyen.EcommLibrary.Model.Nexo
         [XmlElement("StoredValueRequest", typeof(StoredValueRequest), Form = System.Xml.Schema.XmlSchemaForm.Unqualified)]
         [XmlElement("TransactionStatusRequest", typeof(TransactionStatusRequest), Form = System.Xml.Schema.XmlSchemaForm.Unqualified)]
         [XmlElement("TransmitRequest", typeof(TransmitRequest), Form = System.Xml.Schema.XmlSchemaForm.Unqualified)]
-        public object Item;
+        public object MessagePayload;
 
         /// <remarks/>
         [XmlElement(Form = System.Xml.Schema.XmlSchemaForm.Unqualified)]

@@ -13,10 +13,6 @@
         public decimal TotalRebate;
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlIgnoreAttribute()]
-        public bool TotalRebateSpecified;
-
-        /// <remarks/>
         [System.Xml.Serialization.XmlElementAttribute(Form = System.Xml.Schema.XmlSchemaForm.Unqualified)]
         public string RebateLabel;
 

@@ -17,55 +17,27 @@
         public decimal RequestedAmount;
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlIgnoreAttribute()]
-        public bool RequestedAmountSpecified;
-
-        /// <remarks/>
         [System.Xml.Serialization.XmlAttributeAttribute()]
         public decimal CashBackAmount;
-
-        /// <remarks/>
-        [System.Xml.Serialization.XmlIgnoreAttribute()]
-        public bool CashBackAmountSpecified;
 
         /// <remarks/>
         [System.Xml.Serialization.XmlAttributeAttribute()]
         public decimal TipAmount;
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlIgnoreAttribute()]
-        public bool TipAmountSpecified;
-
-        /// <remarks/>
         [System.Xml.Serialization.XmlAttributeAttribute()]
         public decimal PaidAmount;
-
-        /// <remarks/>
-        [System.Xml.Serialization.XmlIgnoreAttribute()]
-        public bool PaidAmountSpecified;
 
         /// <remarks/>
         [System.Xml.Serialization.XmlAttributeAttribute()]
         public decimal MinimumAmountToDeliver;
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlIgnoreAttribute()]
-        public bool MinimumAmountToDeliverSpecified;
-
-        /// <remarks/>
         [System.Xml.Serialization.XmlAttributeAttribute()]
         public decimal MaximumCashBackAmount;
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlIgnoreAttribute()]
-        public bool MaximumCashBackAmountSpecified;
-
-        /// <remarks/>
         [System.Xml.Serialization.XmlAttributeAttribute()]
         public decimal MinimumSplitAmount;
-
-        /// <remarks/>
-        [System.Xml.Serialization.XmlIgnoreAttribute()]
-        public bool MinimumSplitAmountSpecified;
     }
 }

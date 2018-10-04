@@ -17,7 +17,7 @@ namespace Adyen.EcommLibrary.Test
                 var paymentRequest = MockPosApiRequest.CreatePosPaymentRequest("Request");
                 var client = CreateMockTestClientPosApiRequest("Mocks/pospayment-success.json");
                 var payment = new PosPayment(client);
-                var saleToPoiResponse = payment.TerminalApiOverCLoudAsync(paymentRequest);
+                var saleToPoiResponse = payment.TerminalApiCloudAsync(paymentRequest);
 
                 Assert.IsNotNull(saleToPoiResponse);
             }

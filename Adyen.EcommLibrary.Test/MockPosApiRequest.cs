@@ -1,5 +1,6 @@
 ﻿using Adyen.EcommLibrary.Model.Nexo;
 using System;
+using Adyen.EcommLibrary.Model.Nexo.Message;
 
 namespace Adyen.EcommLibrary.Test
 {
@@ -20,12 +21,11 @@ namespace Adyen.EcommLibrary.Test
                     MessageClass = "Service",
                     MessageCategory = "Payment",
                     SaleID = "POSSystemID12345",
-
                     POIID = "MX915-284251016",
                     ProtocolVersion = "3.0",
                     ServiceID = DateTime.Now.ToString("ddHHmmss")//this should be unique
                 },
-                Item = new PaymentRequest()
+                MessagePayload = new PaymentRequest()
                 {
                     SaleData = new SaleData()
                     {
@@ -50,10 +50,7 @@ namespace Adyen.EcommLibrary.Test
                         Payment = transactionType
                     }
                 },
-                SecurityTrailer = new ContentInformationType()
-                {
-
-                }
+                SecurityTrailer = new ContentInformationType(){}
             };
             return saleToPoiRequest;
         }
