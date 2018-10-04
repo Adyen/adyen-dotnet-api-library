@@ -21,8 +21,8 @@ namespace Adyen.EcommLibrary.Service
             _saleToPoiMessageSerializer = new SaleToPoiMessageSerializer();
             _messageSecuredEncryptor = new SaleToPoiMessageSecuredEncryptor();
             _saleToPoiMessageSecuredSerializer = new SaleToPoiMessageSecuredSerializer();
-            _terminalApiAsync = new TerminalApi(this, false);
-            _terminalApiSync = new TerminalApi(this, true);
+            _terminalApiAsync = new TerminalApi(this, true);
+            _terminalApiSync = new TerminalApi(this, false);
         }
 
         /// <summary>
@@ -30,11 +30,10 @@ namespace Adyen.EcommLibrary.Service
         /// </summary>
         /// <param name="saleToPoiRequest"></param>
         /// <returns></returns>
-        public SaleToPOIResponse TerminalApiCloudAsync(SaleToPOIMessage saleToPoiRequest)
+        public string TerminalApiCloudAsync(SaleToPOIMessage saleToPoiRequest)
         {
             var serializedMessage = _saleToPoiMessageSerializer.Serialize(saleToPoiRequest);
-            var response = _terminalApiAsync.Request(serializedMessage);
-            return _saleToPoiMessageSerializer.Deserialize(response);
+            return _terminalApiAsync.Request(serializedMessage);
         }
 
         /// <summary>
