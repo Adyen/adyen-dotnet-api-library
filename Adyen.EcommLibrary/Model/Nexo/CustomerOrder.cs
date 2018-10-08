@@ -28,10 +28,7 @@
         /// <remarks/>
         [System.Xml.Serialization.XmlAttributeAttribute()]
         public System.DateTime EndDate;
-
-        /// <remarks/>
-        [System.Xml.Serialization.XmlIgnoreAttribute()]
-        public bool EndDateSpecified;
+        
 
         /// <remarks/>
         [System.Xml.Serialization.XmlAttributeAttribute()]

@@ -9,7 +9,7 @@ namespace Adyen.EcommLibrary.CloudApiSerialization
     {
         private const string DateTimeFormat = "yyyy-MM-ddTHH:mm:ss";
 
-        internal static string Serialize(SaleToPOIRequest saleToPoiMessage)
+        internal static string Serialize(SaleToPOIMessage saleToPoiMessage)
         {
             return JsonConvert.SerializeObject(saleToPoiMessage,
                

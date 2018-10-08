@@ -35,36 +35,39 @@
       			Using you can retrieve all cards from a specific shopper.
       		</p>
       		<div class="highlight highlight-text-html-php"><pre>
-<span class="pl-s1"><span class="pl-smi">var client</span> <span class="pl-k">=</span> <span class="pl-k">new</span> <span class="pl-c1">Client</span><span class="pl-s1">();</span>
-<span class="pl-s1"><span class="pl-smi">var recurring</span> <span class="pl-k">=</span> <span class="pl-k">new</span> <span class="pl-c1">Service.Recurring</span><span class="pl-s1">(client);</span>
+<span class="pl-s1"><span class="pl-smi">var client</span> = <span class="pl-k">new</span> <span class="pl-c1">Client</span>("apiKey",Environment.Test);
+<span class="pl-s1"><span class="pl-smi">var recurring</span> = <span class="pl-k">new</span> Service.<span class="pl-c1">Recurring</span><span class="pl-s1">(client);</span>
 <code>
-var recurringDetailRequest = <span class="pl-k">new</span> RecurringDetailsRequest
+var recurringDetailRequest = <span class="pl-k">new</span> <span class="pl-c1">RecurringDetailsRequest</span>
 {
   ShopperReference = "test-123",
   MerchantAccount = "merchantAccount",
-  Recurring = <span class="pl-k">new</span> PaymentRequest Recurring { Contract = Contract.Oneclick }
+  Recurring = <span class="pl-k">new</span> <span class="pl-c1">Recurring</span> 
+  { 
+    Contract = Contract.Oneclick 
+  }
 };
 </code>
-<span class="pl-s1"><span class="pl-smi">var recurringDetailResult</span> <span class="pl-k">=</span> <span class="pl-k">new</span> <span class="pl-c1">recurring.ListRecurringDetails</span><span class="pl-s1">(recurringDetailRequest);</span>
+<span class="pl-s1"><span class="pl-smi">var recurringDetailResult</span> = recurring.<span class="pl-c1">ListRecurringDetails</span><span class="pl-s1">(recurringDetailRequest);</span>
 </pre>
 </div>
 
 		<h2>disable</h2>
     <div class="highlight highlight-text-html-php"><pre>
-<span class="pl-s1"><span class="pl-smi">var client</span> <span class="pl-k">=</span> <span class="pl-k">new</span> <span class="pl-c1">Client</span><span class="pl-s1">();</span>
-<span class="pl-s1"><span class="pl-smi">var recurring</span> <span class="pl-k">=</span> <span class="pl-k">new</span> <span class="pl-c1">Service.Recurring</span><span class="pl-s1">(client);</span>
+<span class="pl-s1"><span class="pl-smi">var client</span> = <span class="pl-k">new</span> <span class="pl-c1">Client</span><span class="pl-s1">("apiKey",Environment.Test);</span>
+<span class="pl-s1"><span class="pl-smi">var recurring</span> = <span class="pl-k">new</span> Service.<span class="pl-c1">Recurring</span><span class="pl-s1">(client);</span>
 <code>
-var disableRequest = <span class="pl-k">new</span> DisableRequest
+var disableRequest = <span class="pl-k">new</span> <span class="pl-c1">DisableRequest</span>
 {
   ShopperReference = "test-123",
-  MerchantAccount = "merchantAccount",
+  MerchantAccount = "merchantAccount"
 };
 </code>
-<span class="pl-s1"><span class="pl-smi">var disableResult</span> <span class="pl-k">=</span> <span class="pl-k">new</span> <span class="pl-c1">recurring.Disable</span><span class="pl-s1">(disableRequest);</span>
+<span class="pl-s1"><span class="pl-smi">var disableResult</span> = recurring.<span class="pl-c1">Disable</span><span class="pl-s1">(disableRequest);</span>
 </pre>
 </div>
 
-
+  <p><a href="using-library.html">Go to using the library page</a></p>
       </section>
       <footer>
         <p>This project is maintained by <a href="https://github.com/Adyen">Adyen</a></p>

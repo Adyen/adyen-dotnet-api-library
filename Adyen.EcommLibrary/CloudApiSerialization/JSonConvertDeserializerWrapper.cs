@@ -4,7 +4,6 @@ using Newtonsoft.Json.Serialization;
 
 namespace Adyen.EcommLibrary.CloudApiSerialization
 {
-
     internal class JSonConvertDeserializerWrapper<T>
     {
         internal static T DeserializeObject(string objectToDeserialize)

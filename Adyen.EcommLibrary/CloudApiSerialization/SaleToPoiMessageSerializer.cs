@@ -1,7 +1,9 @@
 ﻿using System;
+using System.Collections.Generic;
 using Adyen.EcommLibrary.Model.Nexo;
 using Adyen.EcommLibrary.Security;
 using Newtonsoft.Json.Linq;
+using Adyen.EcommLibrary.Model.Nexo.Message;
 
 namespace Adyen.EcommLibrary.CloudApiSerialization
 {
@@ -9,7 +11,6 @@ namespace Adyen.EcommLibrary.CloudApiSerialization
     {
         private readonly MessageHeaderSerializer _messageHeaderSerializer;
         private readonly MessagePayloadSerializerFactory _messagePayloadSerializerFactory;
-      
 
         public SaleToPoiMessageSerializer()
         {
@@ -25,14 +26,14 @@ namespace Adyen.EcommLibrary.CloudApiSerialization
                 var saleToPoiMessageRootJToken = saleToPoiMessageJObject.First;
                 var saleToPoiMessageWithoutRootJToken = saleToPoiMessageRootJToken.First;
                 var messageHeader = DeserializeMessageHeader(saleToPoiMessageWithoutRootJToken);
-                var messagePayload = DeserealizeMessagePayload(messageHeader, saleToPoiMessageWithoutRootJToken);
 
+                var messagePayload = DeserializeMessagePayload(messageHeader, saleToPoiMessageWithoutRootJToken);
                 var deserializedOutputMessage = new SaleToPOIResponse
                 {
                     MessageHeader = messageHeader,
-                    Item = messagePayload
+                    MessagePayload = messagePayload
                 };
-                
+
                 return deserializedOutputMessage;
             }
             catch (Exception exception)
@@ -40,8 +41,8 @@ namespace Adyen.EcommLibrary.CloudApiSerialization
                 throw exception;
             }
         }
-        
-        private object DeserealizeMessagePayload(MessageHeader messageHeader, JToken saleToPoiMessageWithoutRootJToken)
+
+        private object DeserializeMessagePayload(MessageHeader messageHeader, JToken saleToPoiMessageWithoutRootJToken)
         {
             var messageCategory = messageHeader.MessageCategory;
             var messageType = messageHeader.MessageType;
@@ -54,6 +55,7 @@ namespace Adyen.EcommLibrary.CloudApiSerialization
         private string GetMessagePayloadJSon(JToken saleToPoiMessageWithoutRootJToken, string messageCategory, string messageType)
         {
             var messagePayloadTypedJson = saleToPoiMessageWithoutRootJToken.SelectToken(messageCategory + messageType.ToString());
+
             if (messagePayloadTypedJson == null)
             {
                 return saleToPoiMessageWithoutRootJToken.SelectToken("MessagePayload").ToString();
@@ -64,11 +66,11 @@ namespace Adyen.EcommLibrary.CloudApiSerialization
         {
             var messageHeaderJson = saleToPoiMessageWithoutRootJObject.SelectToken("MessageHeader").ToString();
             var messageHeader = _messageHeaderSerializer.Deserialize(messageHeaderJson);
-          
+
             return messageHeader;
         }
 
-        public string Serialize(SaleToPOIRequest saleToPoiMessage)
+        public string Serialize(SaleToPOIMessage saleToPoiMessage)
         {
             try
             {

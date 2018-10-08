@@ -25,7 +25,7 @@
         </ul>
       </header>
       <section>
-      	<h1>Directory lookup PHP</h1>
+      	<h1>Directory lookup Hosted Payment Pages</h1>
       		<p>
       			Support additional payment methods using directory lookup. Create a skin on the Adyen side to display these methods.
       		</p>
@@ -35,26 +35,24 @@
 <span class="pl-s1"><span class="pl-smi">var client</span> <span class="pl-k">=</span> <span class="pl-k">new</span> <span class="pl-c1">Client</span><span class="pl-s1">();</span>
 <span class="pl-s1"><span class="pl-smi">var hostedPaymentPages</span> <span class="pl-k">=</span> <span class="pl-k">new</span> <span class="pl-c1">HostedPaymentPages</span><span class="pl-s1">(client);</span>
 <code>
-private DirectoryLookupRequest CreateDirectoryLookupRequest()
+var directoryLookupRequest = <span class="pl-k">new</span><span class="pl-c1"> DirectoryLookupRequest()</span>
 {
-    DirectoryLookupRequest directoryLookupRequest = <span class="pl-k">new</span> DirectoryLookupRequest()
-    {
-      CountryCode = "NL",
-      MerchantReference = "Merchant reference",
-      PaymentAmount = "1000",
-      CurrencyCode = "EUR"
-    };
-    return directoryLookupRequest;
-}
+    CountryCode = "NL",
+    MerchantReference = "Merchant reference",
+    PaymentAmount = "1000",
+    CurrencyCode = "EUR"
+};
 </code>
 
-<span class="pl-s1"><span class="pl-smi">var postParameters</span> <span class="pl-k">=</span> <span class="pl-k">new</span> <span class="pl-c1">hostedPaymentPages.GetPostParametersFromDlRequest</span><span class="pl-s1">(directoryLookupRequest);</span>
+<span class="pl-s1"><span class="pl-smi">var postParameters</span> <span class="pl-k">=</span> hostedPaymentPages.GetPostParametersFromDlRequest<span class="pl-s1">(directoryLookupRequest);</span>
 
 <span class="pl-s1"></span></pre></div>
+  <p><a href="using-library.html">Go to using the library page</a></p>
       </section>
       <footer>
         <p>This project is maintained by <a href="https://github.com/Adyen">Adyen</a></p>
         <p><small>Hosted on GitHub Pages &mdash; Theme by <a href="https://github.com/orderedlist">orderedlist</a></small></p>
+
       </footer>
     </div>
     <script src="javascripts/scale.fix.js"></script>

@@ -20,9 +20,7 @@
         [System.Xml.Serialization.XmlAttributeAttribute()]
         public bool WarmResetFlag;
 
-        /// <remarks/>
-        [System.Xml.Serialization.XmlIgnoreAttribute()]
-        public bool WarmResetFlagSpecified;
+      
 
         /// <remarks/>
         [System.Xml.Serialization.XmlAttributeAttribute()]

@@ -1,5 +1,6 @@
 ﻿using Adyen.EcommLibrary.CloudApiSerialization;
 using Adyen.EcommLibrary.Model.Nexo;
+using Adyen.EcommLibrary.Model.Nexo.Message;
 using Adyen.EcommLibrary.Security;
 using Adyen.EcommLibrary.Service.Resource.Payment;
 
@@ -20,8 +21,8 @@ namespace Adyen.EcommLibrary.Service
             _saleToPoiMessageSerializer = new SaleToPoiMessageSerializer();
             _messageSecuredEncryptor = new SaleToPoiMessageSecuredEncryptor();
             _saleToPoiMessageSecuredSerializer = new SaleToPoiMessageSecuredSerializer();
-            _terminalApiAsync = new TerminalApi(this, false);
-            _terminalApiSync = new TerminalApi(this, true);
+            _terminalApiAsync = new TerminalApi(this, true);
+            _terminalApiSync = new TerminalApi(this, false);
         }
 
         /// <summary>
@@ -29,12 +30,10 @@ namespace Adyen.EcommLibrary.Service
         /// </summary>
         /// <param name="saleToPoiRequest"></param>
         /// <returns></returns>
-        public SaleToPOIResponse TerminalApiOverCLoudAsync(SaleToPOIRequest saleToPoiRequest)
+        public string TerminalApiCloudAsync(SaleToPOIMessage saleToPoiRequest)
         {
             var serializedMessage = _saleToPoiMessageSerializer.Serialize(saleToPoiRequest);
-            var response = _terminalApiAsync.Request(serializedMessage);
-            var saleToPoiResponse = _saleToPoiMessageSerializer.Deserialize(response);
-            return saleToPoiResponse;
+            return _terminalApiAsync.Request(serializedMessage);
         }
 
         /// <summary>
@@ -42,12 +41,11 @@ namespace Adyen.EcommLibrary.Service
         /// </summary>
         /// <param name="saleToPoiRequest"></param>
         /// <returns></returns>
-        public SaleToPOIResponse TerminalApiOverCLoudSync(SaleToPOIRequest saleToPoiRequest)
+        public SaleToPOIResponse TerminalApiCloudSync(SaleToPOIMessage saleToPoiRequest)
         {
             var serializedMessage = _saleToPoiMessageSerializer.Serialize(saleToPoiRequest);
             var response = _terminalApiSync.Request(serializedMessage);
-            var saleToPoiResponse = _saleToPoiMessageSerializer.Deserialize(response);
-            return saleToPoiResponse;
+            return _saleToPoiMessageSerializer.Deserialize(response);
         }
 
         /// <summary>
@@ -57,7 +55,7 @@ namespace Adyen.EcommLibrary.Service
         /// <param name="messageHeader"></param>
         /// <param name="encryptionCredentialDetails"></param>
         /// <returns></returns>
-        public SaleToPOIResponse TerminalApiOverLocal(SaleToPOIRequest saleToPoiRequest, MessageHeader messageHeader, EncryptionCredentialDetails encryptionCredentialDetails)
+        public SaleToPOIResponse TerminalApiLocal(SaleToPOIMessage saleToPoiRequest, MessageHeader messageHeader, EncryptionCredentialDetails encryptionCredentialDetails)
         {
             var saleToPoiRequestMessageSerialized = _saleToPoiMessageSerializer.Serialize(saleToPoiRequest);
             var saleToPoiRequestMessageSecured = _messageSecuredEncryptor.Encrypt(saleToPoiRequestMessageSerialized, messageHeader, encryptionCredentialDetails);

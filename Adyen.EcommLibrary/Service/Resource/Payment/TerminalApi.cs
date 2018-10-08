@@ -3,12 +3,12 @@
     public class TerminalApi : ServiceResource
     {
         public TerminalApi(ApiKeyAuthenticatedService abstractService, bool asynchronous)
-            : base(abstractService, abstractService.Client.Config.CloudApiEndPoint, null)
+            : base(abstractService, abstractService.Client.Config.Endpoint, null)
         {
             if (asynchronous) {
-                abstractService.Client.Config.Endpoint = abstractService.Client.Config.CloudApiEndPoint+ "/async";
+                Endpoint = abstractService.Client.Config.CloudApiEndPoint+ "/async";
             } else {
-                abstractService.Client.Config.Endpoint = abstractService.Client.Config.CloudApiEndPoint + "/sync";
+                Endpoint = abstractService.Client.Config.CloudApiEndPoint + "/sync";
             }
         }
     }

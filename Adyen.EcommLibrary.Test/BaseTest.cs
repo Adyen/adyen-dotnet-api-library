@@ -243,7 +243,7 @@ namespace Adyen.EcommLibrary.Test
         /// <returns></returns>
         protected MessageHeader MockNexoMessageHeaderRequest()
         {
-            return new MessageHeader
+            var header = new MessageHeader
             {
                 MessageType = "Request",
                 MessageClass = "Service",
@@ -253,6 +253,7 @@ namespace Adyen.EcommLibrary.Test
                 ProtocolVersion = "3.0",
                 ServiceID = (new Random()).Next(1, 9999).ToString()
             };
+            return header;
         }
 
        

@@ -32,58 +32,59 @@
       		</p>
       		<h2>authorise</h2>
       		<p>
-      			With authorise method you can choose between full API integration (for PCI compliant merchants) or our Easy encryption solution.
+      			With the authorise method you can choose between full API integration (for PCI compliant merchants) or our Easy encryption solution.
       		</p>
       		<h3>API</h3>
       		<div class="highlight highlight-text-html-php"><pre>
-<span class="pl-s1"><span class="pl-smi">var payment</span> <span class="pl-k">=</span> <span class="pl-k">new</span> <span class="pl-c1">Payment </span><span class="pl-smi">(client</span>);</span>
+<span class="pl-s1"><span class="pl-smi">var payment</span> = <span class="pl-k">new</span> <span class="pl-c1">Payment</span><span class="pl-smi">(client</span>);</span>
 <code>
-var paymentRequest = <span class="pl-k">new</span> PaymentRequest
+var paymentRequest = <span class="pl-k">new</span> <span class="pl-c1">PaymentRequest</span>
 {
     MerchantAccount = "MerchantAccount",
-    Amount = <span class="pl-k">new</span> Amount("EUR", 1500),
-    Card = <span class="pl-k">new</span> Card (Number: "4111111111111111", ExpiryMonth: "08", ExpiryYear: "2018", Cvc: "737", HolderName: "John Smith"),
+    Amount = <span class="pl-k">new</span> <span class="pl-c1">Amount</span>("EUR", 1500),
+    Card = <span class="pl-k">new</span> <span class="pl-c1">Card</span>(Number: "4111111111111111", ExpiryMonth: "08", ExpiryYear: "2018", Cvc: "737", HolderName: "John Smith"),
     Reference = "Merchant reference",
-    AdditionalData = <span class="pl-k">new</span> Dictionary &lt;string, string&gt;()
+    AdditionalData = <span class="pl-k">new</span> <span class="pl-c1">Dictionary</span>&lt;string, string&gt;()
 };
 </code>
-<span class="pl-s1"><span class="pl-smi">var paymentResult</span> <span class="pl-k">=</span> <span class="pl-k">new</span> <span class="pl-c1">payment.Authorise(</span><span class="pl-smi">paymentRequest</span>);</span>
+<span class="pl-s1"><span class="pl-smi">var paymentResult</span> = payment.<span class="pl-c1">Authorise(</span><span class="pl-smi">paymentRequest</span>);</span>
 <span class="pl-s1"></span></pre></div>
 
 			<h3>Client Side Encryption</h3>
 			<p>
 				The encryption key is retrieved from our CSE library.
 			</p>
-<div class="highlight highlight-text-html-php"><pre>
-<code>
-var paymentRequest = <span class="pl-k">new</span> PaymentRequest
+<div class="highlight highlight-text-html-php"><pre><code>var paymentRequest = <span class="pl-k">new</span> <span class="pl-c1">PaymentRequest</span>
 {
     MerchantAccount = "MerchantAccount",
-    Amount = <span class="pl-k">new</span> Amount("EUR", 1500),
+    Amount = <span class="pl-k">new</span> <span class="pl-c1">Amount</span>("EUR", 1500),
     Reference = "Merchant reference",
-    AdditionalData = <span class="pl-k">new</span> Dictionary &lt;string, string&gt;{{ "card.encrypted.json", "THE ENCRYPTED DATA" }}
+    AdditionalData = <span class="pl-k">new</span> <span class="pl-c1">Dictionary</span>&lt;string, string&gt;
+    {
+      { "card.encrypted.json", "THE ENCRYPTED DATA" }
+    }
 };
-</code>
-</pre></div>
+</code></pre></div>
 		<h2>authorise3D</h2>
     <p>
-      With authorise method you can choose between full API integration (for PCI compliant merchants) or our Easy encryption solution.
+      With the authorise3D method you can complete the payment authorisation using the Md and PaResponse parameters returned from the card issuer.
     </p>
     <h3>API</h3>
     <div class="highlight highlight-text-html-php"><pre>
-<span class="pl-s1"><span class="pl-smi">var payment</span> <span class="pl-k">=</span> <span class="pl-k">new</span> <span class="pl-c1">Payment </span><span class="pl-smi">(client</span>);</span>
+<span class="pl-s1"><span class="pl-smi">var payment</span> = <span class="pl-k">new</span> <span class="pl-c1">Payment</span><span class="pl-smi">(client</span>);</span>
     <code>
-var paymentRequest = <span class="pl-k">new</span> PaymentRequest
-  {
-    MerchantAccount = "MerchantAccount",
-    Md = "testtokenMd",
-    PaResponse = "unique pa"
-  };
+var paymentRequest = <span class="pl-k">new</span> <span class="pl-c1">PaymentRequest3D</span>
+{
+  MerchantAccount = "MerchantAccount",
+  Md = "md from issue",
+  PaResponse = "paResponse from issuer"
+};
     </code>
-<span class="pl-s1"><span class="pl-smi">var paymentResult</span> <span class="pl-k">=</span> <span class="pl-k">new</span> <span class="pl-c1">payment.Authorise3d(</span><span class="pl-smi">paymentRequest</span>);</span>
+<span class="pl-s1"><span class="pl-smi">var paymentResult</span> = payment.<span class="pl-c1">Authorise3D(</span><span class="pl-smi">paymentRequest</span>);</span>
     <span class="pl-s1"></span></pre></div>
-
+   <p><a href="using-library.html">Go to using the library page</a></p>
       </section>
+
       <footer>
         <p>This project is maintained by <a href="https://github.com/Adyen">Adyen</a></p>
         <p><small>Hosted on GitHub Pages &mdash; Theme by <a href="https://github.com/orderedlist">orderedlist</a></small></p>
