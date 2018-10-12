@@ -30,18 +30,11 @@
 
         /// <remarks/>
         [System.Xml.Serialization.XmlAttributeAttribute()]
-        [System.ComponentModel.DefaultValueAttribute("Normal")]
-        public string Payment;
+        public string PaymentType;
 
         /// <remarks/>
-        //[System.Xml.Serialization.XmlAttributeAttribute()]
-        //[System.ComponentModel.DefaultValueAttribute(false)]
-        //public bool SplitPaymentFlag;
-
-        //public PaymentData()
-        //{
-        //    this.Payment = "Normal";
-        //    this.SplitPaymentFlag = false;
-        //}
+        [System.Xml.Serialization.XmlAttributeAttribute()]
+        [System.ComponentModel.DefaultValueAttribute(false)]
+        public bool? SplitPaymentFlag;
     }
 }
