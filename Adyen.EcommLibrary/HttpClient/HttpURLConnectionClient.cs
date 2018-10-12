@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Net;
 using System.Text;
+using System.Threading.Tasks;
 using System.Web;
 using Adyen.EcommLibrary.HttpClient.Interfaces;
 
@@ -12,6 +13,8 @@ namespace Adyen.EcommLibrary.HttpClient
 {
     public class HttpUrlConnectionClient : IClient
     {
+        private readonly Encoding _encoding = Encoding.ASCII;
+
         public string Request(string endpoint, string json, Config config, bool isApiKeyRequired)
         {
             string responseText;
@@ -26,34 +29,90 @@ namespace Adyen.EcommLibrary.HttpClient
                 streamWriter.Flush();
                 streamWriter.Close();
             }
-           
-            var response =  (HttpWebResponse) httpWebRequest.GetResponse();
-            var encoding = Encoding.ASCII;
-            using (var reader = new StreamReader(response.GetResponseStream(), encoding))
-            {
-                responseText = reader.ReadToEnd();
-            }
 
-            if (response.StatusCode != HttpStatusCode.OK)
+            using (var response = (HttpWebResponse) httpWebRequest.GetResponse())
             {
-                var httpClientException = new HttpClientException((int)response.StatusCode, "HTTP Exception",  response.Headers, responseText);
-                throw httpClientException;
-            }
+                using (var reader = new StreamReader(response.GetResponseStream(), _encoding))
+                {
+                    responseText = reader.ReadToEnd();
+                }
 
+                if (response.StatusCode != HttpStatusCode.OK)
+                {
+                    var httpClientException = new HttpClientException((int) response.StatusCode, "HTTP Exception", response.Headers, responseText);
+                    throw httpClientException;
+                }
+            }
             return responseText;
         }
 
-        //This is deprecated functionality. Correct use request method with isApiKeyRequired parameter.
+        /// <summary>
+        /// HttpWebRequest asyncronous. 
+        /// </summary>
+        /// <param name="endpoint"></param>
+        /// <param name="json"></param>
+        /// <param name="config"></param>
+        /// <param name="isApiKeyRequired"></param>
+        /// <returns>Task<></returns>
+        public async Task<string> RequestAsync(string endpoint, string json, Config config, bool isApiKeyRequired)
+        {
+            Task<string> responseTextTask;
+            //Set security protocol. Only TLS1.2
+            ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12;
+            
+            var httpWebRequest = GetHttpWebRequest(endpoint, config, isApiKeyRequired);
+
+            using (var streamWriter = new StreamWriter(httpWebRequest.GetRequestStream()))
+            {
+                streamWriter.Write(json);
+                streamWriter.Flush();
+                streamWriter.Close();
+            }
+
+            using (var response = (HttpWebResponse) await httpWebRequest.GetResponseAsync())
+            {
+                using (var reader = new StreamReader(response.GetResponseStream(), _encoding))
+                {
+                    responseTextTask = reader.ReadToEndAsync();
+                }
+
+                if (response.StatusCode != HttpStatusCode.OK)
+                {
+                    var httpClientException = new HttpClientException((int) response.StatusCode, "HTTP Exception",
+                        response.Headers, responseTextTask.Result);
+                    throw httpClientException;
+                }
+            }
+            return await responseTextTask;
+        }
+
+        //This is deprecated functionality by Adyen. Correct use request method with isApiKeyRequired parameter.
         public string Request(string endpoint, string json, Config config)
         {
             return this.Request(endpoint, json, config, false);
         }
 
-        public string RequestAsync(string endpoint, string json, Config config)
+        public string Post(string endpoint, Dictionary<string, string> postParameters, Config config)
         {
-            return this.Request(endpoint, json, config, false);
+            var dictToString = QueryString(postParameters);
+            byte[] postBytes = Encoding.ASCII.GetBytes(dictToString);
+
+            var httpWebRequest = (HttpWebRequest)WebRequest.Create(endpoint);
+            httpWebRequest.Method = "POST";
+            httpWebRequest.ContentType = "application/x-www-form-urlencoded";
+            httpWebRequest.ContentLength = postBytes.Length;
+            ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12;
+
+            using (var stream = httpWebRequest.GetRequestStream())
+            {
+                stream.Write(postBytes, 0, postBytes.Length);
+            }
+
+            var response = (HttpWebResponse)httpWebRequest.GetResponse();
+
+            return new StreamReader(response.GetResponseStream()).ReadToEnd();
         }
-        
+      
         public HttpWebRequest GetHttpWebRequest(string endpoint, Config config, bool isApiKeyRequired)
         {
             //Add default headers
@@ -81,29 +140,7 @@ namespace Adyen.EcommLibrary.HttpClient
             }
             return httpWebRequest;
         }
-        
-
-        public string Post(string endpoint, Dictionary<string, string> postParameters, Config config)
-        {
-            var dictToString = QueryString(postParameters);
-            byte[] postBytes = Encoding.ASCII.GetBytes(dictToString);
-
-            var httpWebRequest = (HttpWebRequest)WebRequest.Create(endpoint);
-            httpWebRequest.Method = "POST";
-            httpWebRequest.ContentType = "application/x-www-form-urlencoded";
-            httpWebRequest.ContentLength = postBytes.Length;
-            ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12;
-
-            using (var stream = httpWebRequest.GetRequestStream())
-            {
-                stream.Write(postBytes, 0, postBytes.Length);
-            }
-
-            var response = (HttpWebResponse)httpWebRequest.GetResponse();
-
-            return new StreamReader(response.GetResponseStream()).ReadToEnd();
-        }
-
+      
         public static string QueryString(IDictionary<string, string> dict)
         {
             var list = new List<string>();

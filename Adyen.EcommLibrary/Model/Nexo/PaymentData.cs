@@ -34,14 +34,14 @@
         public string Payment;
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute()]
-        [System.ComponentModel.DefaultValueAttribute(false)]
-        public bool SplitPaymentFlag;
+        //[System.Xml.Serialization.XmlAttributeAttribute()]
+        //[System.ComponentModel.DefaultValueAttribute(false)]
+        //public bool SplitPaymentFlag;
 
-        public PaymentData()
-        {
-            this.Payment = "Normal";
-            this.SplitPaymentFlag = false;
-        }
+        //public PaymentData()
+        //{
+        //    this.Payment = "Normal";
+        //    this.SplitPaymentFlag = false;
+        //}
     }
 }

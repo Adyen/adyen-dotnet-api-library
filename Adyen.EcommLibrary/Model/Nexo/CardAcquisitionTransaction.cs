@@ -36,7 +36,7 @@
 
         /// <remarks/>
         [System.Xml.Serialization.XmlAttributeAttribute()]
-        public decimal TotalAmount;
+        public decimal? TotalAmount;
 
         /// <remarks/>
         [System.Xml.Serialization.XmlAttributeAttribute()]

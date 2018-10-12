@@ -14,7 +14,7 @@
 
         /// <remarks/>
         [System.Xml.Serialization.XmlElementAttribute(Form = System.Xml.Schema.XmlSchemaForm.Unqualified)]
-        public decimal Commission;
+        public decimal? Commission;
 
        
         /// <remarks/>
@@ -28,11 +28,11 @@
 
         /// <remarks/>
         [System.Xml.Serialization.XmlAttributeAttribute()]
-        public decimal Rate;
+        public decimal? Rate;
 
         /// <remarks/>
         [System.Xml.Serialization.XmlAttributeAttribute()]
-        public decimal Markup;
+        public decimal? Markup;
         
         public CurrencyConversion()
         {

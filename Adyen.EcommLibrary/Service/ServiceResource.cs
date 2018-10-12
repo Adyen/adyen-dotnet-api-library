@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace Adyen.EcommLibrary.Service
 {
@@ -24,5 +25,13 @@ namespace Adyen.EcommLibrary.Service
             return clientInterface.Request(Endpoint, json, config);
         }
 
+
+        public async Task<string> RequestAsync(string json)
+        {
+            var clientInterface = _abstractService.Client.HttpClient;
+            var config = _abstractService.Client.Config;
+          
+            return await clientInterface.RequestAsync(Endpoint, json, config,false);
+        }
     }
 }
