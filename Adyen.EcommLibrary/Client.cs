@@ -12,6 +12,10 @@ namespace Adyen.EcommLibrary
 
         public string ApplicationName { get; set; }
 
+        public delegate void CallbackLogHandler(string message);
+
+        public event CallbackLogHandler LogCallback;
+
         public Client(string username, string password, Environment environment)
         {
             Config = new Config
@@ -86,6 +90,14 @@ namespace Adyen.EcommLibrary
             {
                 return ClientConfig.LibVersion;
 
+            }
+        }
+
+        public void LogLine(string message)
+        {
+            if (LogCallback != null)
+            {
+                LogCallback(message);
             }
         }
     }

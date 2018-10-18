@@ -1,7 +1,5 @@
-﻿using System;
-using Adyen.EcommLibrary.CloudApiSerialization;
+﻿using Adyen.EcommLibrary.CloudApiSerialization;
 using Adyen.EcommLibrary.Model.Nexo;
-using Adyen.EcommLibrary.Model.Nexo.Message;
 using Adyen.EcommLibrary.Security;
 using Adyen.EcommLibrary.Service.Resource.Payment;
 
@@ -47,7 +45,9 @@ namespace Adyen.EcommLibrary.Service
         public SaleToPOIResponse TerminalApiCloudSync(SaleToPOIMessage saleToPoiRequest)
         {
             var serializedMessage = _saleToPoiMessageSerializer.Serialize(saleToPoiRequest);
+            this.Client.LogLine("Request: \n"+serializedMessage);
             var response = _terminalApiSync.Request(serializedMessage);
+            this.Client.LogLine("Response: \n"+serializedMessage);
             return _saleToPoiMessageSerializer.Deserialize(response);
         }
 
@@ -61,10 +61,12 @@ namespace Adyen.EcommLibrary.Service
         public SaleToPOIResponse TerminalApiLocal(SaleToPOIMessage saleToPoiRequest, EncryptionCredentialDetails encryptionCredentialDetails)
         {
             var saleToPoiRequestMessageSerialized = _saleToPoiMessageSerializer.Serialize(saleToPoiRequest);
+            this.Client.LogLine("Request: \n" + saleToPoiRequestMessageSerialized);
             var saleToPoiRequestMessageSecured = _messageSecuredEncryptor.Encrypt(saleToPoiRequestMessageSerialized, saleToPoiRequest.MessageHeader, encryptionCredentialDetails);
             var serializeSaleToPoiRequestMessageSecured = _saleToPoiMessageSerializer.Serialize(saleToPoiRequestMessageSecured);
-
+            this.Client.LogLine("Encrypted Request: \n" + serializeSaleToPoiRequestMessageSecured);
             var response = _terminalApiLocal.Request(serializeSaleToPoiRequestMessageSecured);
+            this.Client.LogLine("Response: \n" + response);
             var saleToPoiResponseSecured = _saleToPoiMessageSecuredSerializer.Deserialize(response);
 
             var decryptResponse = _messageSecuredEncryptor.Decrypt(saleToPoiResponseSecured, encryptionCredentialDetails);
