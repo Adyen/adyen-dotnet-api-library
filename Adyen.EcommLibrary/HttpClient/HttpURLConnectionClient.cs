@@ -20,29 +20,37 @@ namespace Adyen.EcommLibrary.HttpClient
             string responseText;
             //Set security protocol. Only TLS1.2
             ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12;
+            try
+            {
+                var httpWebRequest = GetHttpWebRequest(endpoint, config, isApiKeyRequired);
+
+                using (var streamWriter = new StreamWriter(httpWebRequest.GetRequestStream()))
+                {
+                    streamWriter.Write(json);
+                    streamWriter.Flush();
+                    streamWriter.Close();
+                }
+
+                using (var response = (HttpWebResponse) httpWebRequest.GetResponse())
+                {
+                    using (var reader = new StreamReader(response.GetResponseStream(), _encoding))
+                    {
+                        responseText = reader.ReadToEnd();
+                    }
+
+                    if (response.StatusCode != HttpStatusCode.OK)
+                    {
+                        var httpClientException = new HttpClientException((int) response.StatusCode, "HTTP Exception", response.Headers, responseText);
+                        throw httpClientException;
+                    }
+                }
+            }
+            catch (WebException e)
+            {
+                Console.WriteLine(e);
+                throw;
+            }
             
-            var httpWebRequest = GetHttpWebRequest(endpoint, config, isApiKeyRequired);
-
-            using (var streamWriter = new StreamWriter(httpWebRequest.GetRequestStream()))
-            {
-                streamWriter.Write(json);
-                streamWriter.Flush();
-                streamWriter.Close();
-            }
-
-            using (var response = (HttpWebResponse) httpWebRequest.GetResponse())
-            {
-                using (var reader = new StreamReader(response.GetResponseStream(), _encoding))
-                {
-                    responseText = reader.ReadToEnd();
-                }
-
-                if (response.StatusCode != HttpStatusCode.OK)
-                {
-                    var httpClientException = new HttpClientException((int) response.StatusCode, "HTTP Exception", response.Headers, responseText);
-                    throw httpClientException;
-                }
-            }
             return responseText;
         }
 
