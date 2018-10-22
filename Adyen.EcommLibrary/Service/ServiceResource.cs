@@ -26,12 +26,12 @@ namespace Adyen.EcommLibrary.Service
         }
 
 
-        public async Task<string> RequestAsync(string json)
+        public Task<string> RequestAsync(string json)
         {
             var clientInterface = _abstractService.Client.HttpClient;
             var config = _abstractService.Client.Config;
           
-            return await clientInterface.RequestAsync(Endpoint, json, config,false);
+            return clientInterface.RequestAsync(Endpoint, json, config,false);
         }
     }
 }

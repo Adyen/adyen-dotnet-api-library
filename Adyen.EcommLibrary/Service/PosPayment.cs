@@ -34,7 +34,9 @@ namespace Adyen.EcommLibrary.Service
         public string TerminalApiCloudAsync(SaleToPOIMessage saleToPoiRequest)
         {
             var serializedMessage = _saleToPoiMessageSerializer.Serialize(saleToPoiRequest);
-            return _terminalApiAsync.Request(serializedMessage);
+            var response = _terminalApiAsync.Request(serializedMessage);
+            this.Client.LogLine("Response: \n" + response);
+            return response;
         }
 
         /// <summary>
@@ -45,9 +47,9 @@ namespace Adyen.EcommLibrary.Service
         public SaleToPOIResponse TerminalApiCloudSync(SaleToPOIMessage saleToPoiRequest)
         {
             var serializedMessage = _saleToPoiMessageSerializer.Serialize(saleToPoiRequest);
-            this.Client.LogLine("Request: \n"+serializedMessage);
+            this.Client.LogLine("Request: \n"+ serializedMessage);
             var response = _terminalApiSync.Request(serializedMessage);
-            this.Client.LogLine("Response: \n"+serializedMessage);
+            this.Client.LogLine("Response: \n"+ response);
             return _saleToPoiMessageSerializer.Deserialize(response);
         }
 
@@ -68,8 +70,9 @@ namespace Adyen.EcommLibrary.Service
             var response = _terminalApiLocal.Request(serializeSaleToPoiRequestMessageSecured);
             this.Client.LogLine("Response: \n" + response);
             var saleToPoiResponseSecured = _saleToPoiMessageSecuredSerializer.Deserialize(response);
-
+          
             var decryptResponse = _messageSecuredEncryptor.Decrypt(saleToPoiResponseSecured, encryptionCredentialDetails);
+            this.Client.LogLine("Response: \n" + decryptResponse);
             var saleToPoiResponse = _saleToPoiMessageSerializer.Deserialize(decryptResponse);
             return saleToPoiResponse;
         }

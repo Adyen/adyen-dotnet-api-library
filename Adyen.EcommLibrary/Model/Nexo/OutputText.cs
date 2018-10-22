@@ -7,6 +7,9 @@
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     public partial class OutputText
     {
+        /// <remarks/>
+        [System.Xml.Serialization.XmlTextAttribute()]
+        public string Text;
 
         /// <remarks/>
         [System.Xml.Serialization.XmlAttributeAttribute(DataType = "integer")]
@@ -48,10 +51,6 @@
         [System.Xml.Serialization.XmlAttributeAttribute()]
         [System.ComponentModel.DefaultValueAttribute(true)]
         public bool EndOfLineFlag;
-
-        /// <remarks/>
-        [System.Xml.Serialization.XmlTextAttribute()]
-        public string Value;
 
         public OutputText()
         {

@@ -43,9 +43,9 @@ namespace Adyen.EcommLibrary.Service
                 var jsonResponse = await _authorise.RequestAsync(jsonRequest);
                 paymentResult = JsonConvert.DeserializeObject<PaymentResult>(jsonResponse);
             }
-            catch (Exception )
+            catch (Exception ex)
             {
-                throw ;
+                throw ex;
             }
             return paymentResult;
         }
