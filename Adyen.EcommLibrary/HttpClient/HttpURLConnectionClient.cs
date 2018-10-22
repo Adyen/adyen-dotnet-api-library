@@ -33,6 +33,7 @@ namespace Adyen.EcommLibrary.HttpClient
 
                 using (var response = (HttpWebResponse) httpWebRequest.GetResponse())
                 {
+
                     using (var reader = new StreamReader(response.GetResponseStream(), _encoding))
                     {
                         responseText = reader.ReadToEnd();
@@ -40,7 +41,8 @@ namespace Adyen.EcommLibrary.HttpClient
 
                     if (response.StatusCode != HttpStatusCode.OK)
                     {
-                        var httpClientException = new HttpClientException((int) response.StatusCode, "HTTP Exception", response.Headers, responseText);
+                        var httpClientException = new HttpClientException((int) response.StatusCode, "HTTP Exception",
+                            response.Headers, responseText);
                         throw httpClientException;
                     }
                 }
@@ -131,13 +133,18 @@ namespace Adyen.EcommLibrary.HttpClient
             httpWebRequest.Headers.Add("Cache-Control", "no-cache");
             httpWebRequest.Headers.Add("Expect", "100-continue");
             httpWebRequest.UserAgent = $"{config.ApplicationName} {ClientConfig.UserAgentSuffix}{ClientConfig.LibVersion}";
-
+            
+            if (endpoint.Contains("/nexo/"))
+            {
+                httpWebRequest.ServerCertificateValidationCallback = delegate { return true; };
+                isApiKeyRequired = false;
+            }
             //Use one of two authentication method.
             if (isApiKeyRequired || !string.IsNullOrEmpty(config.XApiKey))
             {
                 httpWebRequest.Headers.Add("x-api-key", config.XApiKey);
             }
-            else
+            else if (!string.IsNullOrEmpty(config.Password))
             {
                 var authString = config.Username + ":" + config.Password;
                 var bytes = Encoding.ASCII.GetBytes(authString);

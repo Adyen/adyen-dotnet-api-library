@@ -6,7 +6,7 @@ namespace Adyen.EcommLibrary
     {
         protected ApiKeyAuthenticatedService(Client client) : base(client)
         {
-            isApiKeyRequired = true;
+            IsApiKeyRequired = true;
         }
     }
 }

@@ -22,7 +22,7 @@ namespace Adyen.EcommLibrary.Service
             var clientInterface = _abstractService.Client.HttpClient;
             var config = _abstractService.Client.Config;
           
-            return clientInterface.Request(Endpoint, json, config);
+            return clientInterface.Request(Endpoint, json, config, _abstractService.IsApiKeyRequired);
         }
 
 
