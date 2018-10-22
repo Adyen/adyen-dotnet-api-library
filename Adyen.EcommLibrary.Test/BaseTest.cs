@@ -149,8 +149,7 @@ namespace Adyen.EcommLibrary.Test
         /// <returns>IClient implementation</returns>
         protected Client CreateMockTestClientPosApiRequest(string fileName)
         {
-            var config = new Config();
-            config.Endpoint = @"http://dummylocalterminalapi:8443";
+            var config = new Config {Endpoint = @"https://_terminal_:8443/nexo/"};
             var mockPath = GetMockFilePath(fileName);
             var response = MockFileToString(mockPath);
             //Create a mock interface

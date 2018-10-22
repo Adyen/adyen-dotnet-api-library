@@ -35,7 +35,7 @@ namespace Adyen.EcommLibrary.Test
                 var configEndpoint = payment.Client.Config.Endpoint;
                 var saleToPoiResponse = payment.TerminalApiLocal(paymentRequest,  _encryptionCredentialDetails);
 
-                Assert.AreEqual(configEndpoint, @"http://dummylocalterminalapi:8443");
+                Assert.AreEqual(configEndpoint, @"https://_terminal_:8443/nexo/");
                 Assert.IsNotNull(saleToPoiResponse);
             }
             catch (Exception)
