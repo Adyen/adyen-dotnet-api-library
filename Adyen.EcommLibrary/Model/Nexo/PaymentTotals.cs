@@ -18,6 +18,6 @@
 
         /// <remarks/>
         [System.Xml.Serialization.XmlAttributeAttribute()]
-        public decimal TransactionAmount;
+        public decimal? TransactionAmount;
     }
 }

@@ -2,6 +2,7 @@
 using Adyen.EcommLibrary.Service.Resource.Payment;
 using Newtonsoft.Json;
 using System;
+using System.Threading.Tasks;
 
 namespace Adyen.EcommLibrary.Service
 {
@@ -10,7 +11,7 @@ namespace Adyen.EcommLibrary.Service
         private Authorise _authorise;
         private Authorise3D _authorise3D;
 
-        public Payment(Client client) 
+        public Payment(Client client)
             : base(client)
         {
             _authorise = new Authorise(this);
@@ -33,13 +34,21 @@ namespace Adyen.EcommLibrary.Service
             return paymentResult;
         }
 
+        public async Task<PaymentResult> AuthoriseAsync(PaymentRequest paymentRequest)
+        {
+            var jsonRequest = Util.JsonOperation.SerializeRequest(paymentRequest);
+            var jsonResponse = await _authorise.RequestAsync(jsonRequest);
+            return JsonConvert.DeserializeObject<PaymentResult>(jsonResponse);
+        }
+
+
         public PaymentResult Authorise3D(PaymentRequest3D paymentRequest3D)
         {
             PaymentResult paymentResult = null;
             try
             {
                 var jsonRequest = JsonConvert.SerializeObject(paymentRequest3D);
-                
+
                 var jsonResponse = _authorise3D.Request(jsonRequest);
                 paymentResult = JsonConvert.DeserializeObject<PaymentResult>(jsonResponse);
             }
@@ -48,6 +57,6 @@ namespace Adyen.EcommLibrary.Service
                 throw ex;
             }
             return paymentResult;
-        }      
+        }
     }
 }

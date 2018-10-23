@@ -47,7 +47,7 @@ namespace Adyen.EcommLibrary.Test
                     },
                     PaymentData = new PaymentData()
                     {
-                        Payment = transactionType
+                        PaymentType = transactionType
                     }
                 },
                 SecurityTrailer = new ContentInformationType(){}

@@ -27,16 +27,15 @@ namespace Adyen.EcommLibrary.Test
         {
             try
             {
-                //dummy header
-                var messageHeader = MockNexoMessageHeaderRequest();
-
-                //encrypt the request using encryption credentials
+               //encrypt the request using encryption credentials
                 var paymentRequest = MockPosApiRequest.CreatePosPaymentRequest("Request");
                 //create a mock client
                 var client = CreateMockTestClientPosApiRequest("Mocks/pospayment-encrypted-success.json");
                 var payment = new PosPayment(client);
-                var saleToPoiResponse = payment.TerminalApiLocal(paymentRequest, messageHeader, _encryptionCredentialDetails);
+                var configEndpoint = payment.Client.Config.Endpoint;
+                var saleToPoiResponse = payment.TerminalApiLocal(paymentRequest,  _encryptionCredentialDetails);
 
+                Assert.AreEqual(configEndpoint, @"http://dummylocalterminalapi:8443");
                 Assert.IsNotNull(saleToPoiResponse);
             }
             catch (Exception)

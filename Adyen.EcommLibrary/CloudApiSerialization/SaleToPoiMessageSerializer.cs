@@ -22,6 +22,11 @@ namespace Adyen.EcommLibrary.CloudApiSerialization
         {
             try
             {
+                //todo temporary solution until we have an improved response 
+                if (string.Equals("ok", saleToPoiMessageDto))
+                {
+                    return null;
+                }
                 var saleToPoiMessageJObject = JObject.Parse(saleToPoiMessageDto);
                 var saleToPoiMessageRootJToken = saleToPoiMessageJObject.First;
                 var saleToPoiMessageWithoutRootJToken = saleToPoiMessageRootJToken.First;
