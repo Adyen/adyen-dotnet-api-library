@@ -50,7 +50,6 @@ namespace Adyen.EcommLibrary.Service
             return paymentResult;
         }
 
-
         public PaymentResult Authorise3D(PaymentRequest3D paymentRequest3D)
         {
             PaymentResult paymentResult = null;
