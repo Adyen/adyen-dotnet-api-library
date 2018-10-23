@@ -31,7 +31,7 @@ namespace Adyen.EcommLibrary.Test
                 var paymentRequest = MockPosApiRequest.CreatePosPaymentRequest("Request");
                 //create a mock client
                 var client = CreateMockTestClientPosApiRequest("Mocks/pospayment-encrypted-success.json");
-                var payment = new PosPayment(client);
+                var payment = new PosPaymentLocalApi(client);
                 var configEndpoint = payment.Client.Config.Endpoint;
                 var saleToPoiResponse = payment.TerminalApiLocal(paymentRequest,  _encryptionCredentialDetails);
 

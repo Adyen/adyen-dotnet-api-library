@@ -57,7 +57,7 @@ namespace Adyen.EcommLibrary.HttpClient
         }
 
         /// <summary>
-        /// HttpWebRequest asyncronous. 
+        /// HttpWebRequest asynchronous. 
         /// </summary>
         /// <param name="endpoint"></param>
         /// <param name="json"></param>
@@ -134,10 +134,9 @@ namespace Adyen.EcommLibrary.HttpClient
             httpWebRequest.Headers.Add("Expect", "100-continue");
             httpWebRequest.UserAgent = $"{config.ApplicationName} {ClientConfig.UserAgentSuffix}{ClientConfig.LibVersion}";
             
-            if (endpoint.Contains("/nexo/"))
+            if (config.SkipCertValidation)
             {
                 httpWebRequest.ServerCertificateValidationCallback = delegate { return true; };
-                isApiKeyRequired = false;
             }
             //Use one of two authentication method.
             if (isApiKeyRequired || !string.IsNullOrEmpty(config.XApiKey))

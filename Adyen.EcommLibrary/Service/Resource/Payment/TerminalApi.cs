@@ -2,7 +2,7 @@
 {
     public class TerminalApi : ServiceResource
     {
-        public TerminalApi(ApiKeyAuthenticatedService abstractService, bool asynchronous)
+        public TerminalApi(AbstractService abstractService, bool asynchronous)
             : base(abstractService, abstractService.Client.Config.Endpoint, null)
         {
             if (asynchronous) {

@@ -5,52 +5,21 @@ using Adyen.EcommLibrary.Service.Resource.Payment;
 
 namespace Adyen.EcommLibrary.Service
 {
-    public class PosPayment : ApiKeyAuthenticatedService
+   public class PosPaymentLocalApi: AbstractService
     {
-        private readonly TerminalApi _terminalApiAsync;
-        private readonly TerminalApi _terminalApiSync;
         private readonly TerminalApiLocal _terminalApiLocal;
         private readonly SaleToPoiMessageSerializer _saleToPoiMessageSerializer;
         private readonly SaleToPoiMessageSecuredEncryptor _messageSecuredEncryptor;
         private readonly SaleToPoiMessageSecuredSerializer _saleToPoiMessageSecuredSerializer;
 
 
-        public PosPayment(Client client)
+        public PosPaymentLocalApi(Client client)
             : base(client)
         {
+            _terminalApiLocal = new TerminalApiLocal(this);
             _saleToPoiMessageSerializer = new SaleToPoiMessageSerializer();
             _messageSecuredEncryptor = new SaleToPoiMessageSecuredEncryptor();
             _saleToPoiMessageSecuredSerializer = new SaleToPoiMessageSecuredSerializer();
-            _terminalApiAsync = new TerminalApi(this, true);
-            _terminalApiSync = new TerminalApi(this, false);
-            _terminalApiLocal=new TerminalApiLocal(this);
-        }
-
-        /// <summary>
-        /// CloudApi asynchronous call
-        /// </summary>
-        /// <param name="saleToPoiRequest"></param>
-        /// <returns></returns>
-        public string TerminalApiCloudAsync(SaleToPOIMessage saleToPoiRequest)
-        {
-            var serializedMessage = _saleToPoiMessageSerializer.Serialize(saleToPoiRequest);
-            var response = _terminalApiAsync.Request(serializedMessage);
-            this.Client.LogLine("Response: \n" + response);
-            return response;
-        }
-
-        /// <summary>
-        /// CloudApi synchronous call
-        /// </summary>
-        /// <param name="saleToPoiRequest"></param>
-        /// <returns></returns>
-        public SaleToPOIResponse TerminalApiCloudSync(SaleToPOIMessage saleToPoiRequest)
-        {
-            var serializedMessage = _saleToPoiMessageSerializer.Serialize(saleToPoiRequest);
-            this.Client.LogLine("Request: \n"+ serializedMessage);
-            var response = _terminalApiSync.Request(serializedMessage);
-            this.Client.LogLine("Response: \n"+ response);
-            return _saleToPoiMessageSerializer.Deserialize(response);
         }
 
         /// <summary>
@@ -75,6 +44,6 @@ namespace Adyen.EcommLibrary.Service
             this.Client.LogLine("Response: \n" + decryptResponse);
             var saleToPoiResponse = _saleToPoiMessageSerializer.Deserialize(decryptResponse);
             return saleToPoiResponse;
-        }
+        }    
     }
 }
