@@ -4,7 +4,7 @@
     {
         public Client Client { get; set; }
 
-        protected bool isApiKeyRequired { get; set; } = false;
+        public bool IsApiKeyRequired { get; set; } = false;
 
         protected AbstractService(Client client)
         {
