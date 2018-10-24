@@ -22,6 +22,6 @@ namespace Adyen.EcommLibrary
         //Terminal cloud api
         public string XApiKey { get; set; }
         public string CloudApiEndPoint { get; set; }
-        public bool SkipCertValidation { get; set; } = true;
+        public bool SkipCertValidation { get; set; } = false;
     }
 }
