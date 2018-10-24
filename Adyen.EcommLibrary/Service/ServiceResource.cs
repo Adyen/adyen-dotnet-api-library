@@ -9,29 +9,24 @@ namespace Adyen.EcommLibrary.Service
         private readonly AbstractService _abstractService;
         protected string Endpoint;
        
-        
         public ServiceResource(AbstractService abstractService, string endpoint, List<string> requiredFields)
         {
             _abstractService = abstractService;
             Endpoint = endpoint;
-          
         }
 
         public string Request(string json)
         {
             var clientInterface = _abstractService.Client.HttpClient;
             var config = _abstractService.Client.Config;
-          
-            return clientInterface.Request(Endpoint, json, config);
+            return clientInterface.Request(Endpoint, json, config, _abstractService.IsApiKeyRequired);
         }
-
 
         public Task<string> RequestAsync(string json)
         {
             var clientInterface = _abstractService.Client.HttpClient;
             var config = _abstractService.Client.Config;
-          
-            return clientInterface.RequestAsync(Endpoint, json, config, false);
+            return clientInterface.RequestAsync(Endpoint, json, config,false);
         }
     }
 }

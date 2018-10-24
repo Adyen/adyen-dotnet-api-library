@@ -36,11 +36,19 @@ namespace Adyen.EcommLibrary.Service
 
         public async Task<PaymentResult> AuthoriseAsync(PaymentRequest paymentRequest)
         {
-            var jsonRequest = Util.JsonOperation.SerializeRequest(paymentRequest);
-            var jsonResponse = await _authorise.RequestAsync(jsonRequest);
-            return JsonConvert.DeserializeObject<PaymentResult>(jsonResponse);
+            PaymentResult paymentResult = null;
+            try
+            {
+                var jsonRequest = Util.JsonOperation.SerializeRequest(paymentRequest);
+                var jsonResponse = await _authorise.RequestAsync(jsonRequest);
+                paymentResult = JsonConvert.DeserializeObject<PaymentResult>(jsonResponse);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            return paymentResult;
         }
-
 
         public PaymentResult Authorise3D(PaymentRequest3D paymentRequest3D)
         {
