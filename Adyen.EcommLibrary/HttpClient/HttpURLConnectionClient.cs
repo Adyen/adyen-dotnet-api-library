@@ -31,19 +31,11 @@ namespace Adyen.EcommLibrary.HttpClient
                     streamWriter.Close();
                 }
 
-                using (var response = (HttpWebResponse) httpWebRequest.GetResponse())
+                using (var response = (HttpWebResponse)httpWebRequest.GetResponse())
                 {
-
                     using (var reader = new StreamReader(response.GetResponseStream(), _encoding))
                     {
                         responseText = reader.ReadToEnd();
-                    }
-
-                    if (response.StatusCode != HttpStatusCode.OK)
-                    {
-                        var httpClientException = new HttpClientException((int) response.StatusCode, "HTTP Exception",
-                            response.Headers, responseText);
-                        throw httpClientException;
                     }
                 }
             }
@@ -52,7 +44,7 @@ namespace Adyen.EcommLibrary.HttpClient
                 Console.WriteLine(e);
                 throw;
             }
-            
+
             return responseText;
         }
 
@@ -66,10 +58,10 @@ namespace Adyen.EcommLibrary.HttpClient
         /// <returns>Task<></returns>
         public async Task<string> RequestAsync(string endpoint, string json, Config config, bool isApiKeyRequired)
         {
-            Task<string> responseTextTask;
+            string responseText;
             //Set security protocol. Only TLS1.2
             ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12;
-            
+
             var httpWebRequest = GetHttpWebRequest(endpoint, config, isApiKeyRequired);
 
             using (var streamWriter = new StreamWriter(httpWebRequest.GetRequestStream()))
@@ -79,21 +71,23 @@ namespace Adyen.EcommLibrary.HttpClient
                 streamWriter.Close();
             }
 
-            using (var response = (HttpWebResponse) await httpWebRequest.GetResponseAsync())
+            try
             {
-                using (var reader = new StreamReader(response.GetResponseStream(), _encoding))
+                using (var response = (HttpWebResponse)await httpWebRequest.GetResponseAsync())
                 {
-                    responseTextTask = reader.ReadToEndAsync();
-                }
-
-                if (response.StatusCode != HttpStatusCode.OK)
-                {
-                    var httpClientException = new HttpClientException((int) response.StatusCode, "HTTP Exception",
-                        response.Headers, responseTextTask.Result);
-                    throw httpClientException;
+                    using (var reader = new StreamReader(response.GetResponseStream(), _encoding))
+                    {
+                        responseText = await reader.ReadToEndAsync();
+                    }
                 }
             }
-            return await responseTextTask;
+            catch (WebException e)
+            {
+                Console.WriteLine(e);
+                throw;
+            }
+
+            return responseText;
         }
 
         //This is deprecated functionality by Adyen. Correct use request method with isApiKeyRequired parameter.
@@ -122,18 +116,17 @@ namespace Adyen.EcommLibrary.HttpClient
 
             return new StreamReader(response.GetResponseStream()).ReadToEnd();
         }
-      
+
         public HttpWebRequest GetHttpWebRequest(string endpoint, Config config, bool isApiKeyRequired)
         {
             //Add default headers
-            var httpWebRequest = (HttpWebRequest) WebRequest.Create(endpoint);
+            var httpWebRequest = (HttpWebRequest)WebRequest.Create(endpoint);
             httpWebRequest.Method = "POST";
             httpWebRequest.ContentType = "application/json";
             httpWebRequest.Headers.Add("Accept-Charset", "UTF-8");
             httpWebRequest.Headers.Add("Cache-Control", "no-cache");
-            httpWebRequest.Headers.Add("Expect", "100-continue");
             httpWebRequest.UserAgent = $"{config.ApplicationName} {ClientConfig.UserAgentSuffix}{ClientConfig.LibVersion}";
-            
+
             if (config.SkipCertValidation)
             {
                 httpWebRequest.ServerCertificateValidationCallback = delegate { return true; };
@@ -154,7 +147,7 @@ namespace Adyen.EcommLibrary.HttpClient
             }
             return httpWebRequest;
         }
-      
+
         public static string QueryString(IDictionary<string, string> dict)
         {
             var list = new List<string>();
