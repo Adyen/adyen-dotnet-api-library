@@ -20,29 +20,22 @@ namespace Adyen.EcommLibrary.HttpClient
             string responseText;
             //Set security protocol. Only TLS1.2
             ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12;
-            try
+
+            var httpWebRequest = GetHttpWebRequest(endpoint, config, isApiKeyRequired);
+
+            using (var streamWriter = new StreamWriter(httpWebRequest.GetRequestStream()))
             {
-                var httpWebRequest = GetHttpWebRequest(endpoint, config, isApiKeyRequired);
-
-                using (var streamWriter = new StreamWriter(httpWebRequest.GetRequestStream()))
-                {
-                    streamWriter.Write(json);
-                    streamWriter.Flush();
-                    streamWriter.Close();
-                }
-
-                using (var response = (HttpWebResponse)httpWebRequest.GetResponse())
-                {
-                    using (var reader = new StreamReader(response.GetResponseStream(), _encoding))
-                    {
-                        responseText = reader.ReadToEnd();
-                    }
-                }
+                streamWriter.Write(json);
+                streamWriter.Flush();
+                streamWriter.Close();
             }
-            catch (WebException e)
+
+            using (var response = (HttpWebResponse)httpWebRequest.GetResponse())
             {
-                Console.WriteLine(e);
-                throw;
+                using (var reader = new StreamReader(response.GetResponseStream(), _encoding))
+                {
+                    responseText = reader.ReadToEnd();
+                }
             }
 
             return responseText;
@@ -71,20 +64,12 @@ namespace Adyen.EcommLibrary.HttpClient
                 streamWriter.Close();
             }
 
-            try
+            using (var response = (HttpWebResponse)await httpWebRequest.GetResponseAsync())
             {
-                using (var response = (HttpWebResponse)await httpWebRequest.GetResponseAsync())
+                using (var reader = new StreamReader(response.GetResponseStream(), _encoding))
                 {
-                    using (var reader = new StreamReader(response.GetResponseStream(), _encoding))
-                    {
-                        responseText = await reader.ReadToEndAsync();
-                    }
+                    responseText = await reader.ReadToEndAsync();
                 }
-            }
-            catch (WebException e)
-            {
-                Console.WriteLine(e);
-                throw;
             }
 
             return responseText;
