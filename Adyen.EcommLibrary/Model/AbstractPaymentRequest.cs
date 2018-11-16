@@ -11,6 +11,10 @@ namespace Adyen.EcommLibrary.Model
     [DataContract]
     public abstract class AbstractPaymentRequest
     {
+        [DataMember(Name = "applicationInfo", EmitDefaultValue = false)]
+
+        public ApplicationInfo ApplicationInfo { get; set; }
+
         [DataMember(Name = "amount", EmitDefaultValue = false)]
         public Amount Amount { get; set; }
         [DataMember(Name = "reference", EmitDefaultValue = false)]

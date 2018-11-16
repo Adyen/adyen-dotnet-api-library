@@ -23,6 +23,10 @@ namespace Adyen.EcommLibrary.Model.Modification
 
         [DataMember(Name = "additionalData", EmitDefaultValue = false)]
         public string AdditionalData { get; set; }
+
+        [DataMember(Name = "applicationInfo", EmitDefaultValue = false)]
+
+        public ApplicationInfo ApplicationInfo { get; set; }
         
         public override string ToString()
         {

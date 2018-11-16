@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Runtime.Serialization;
 using System.Text;
+using Adyen.EcommLibrary.Constants;
 
 namespace Adyen.EcommLibrary.Model
 {
@@ -17,6 +18,16 @@ namespace Adyen.EcommLibrary.Model
 
         [DataMember(Name = "bankAccount", EmitDefaultValue = false)]
         public BankAccount BankAccount { get; set; }
+
+        public PaymentRequest()
+        {
+            var commonField = new CommonField
+            {
+                Name = ClientConfig.LibName,
+                Version = ClientConfig.LibVersion
+            };
+            ApplicationInfo = new ApplicationInfo(commonField);
+        }
 
         public Dictionary<string, string> GetOrCreateAdditionalData()
         {

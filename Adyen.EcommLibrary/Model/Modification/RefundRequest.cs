@@ -2,15 +2,25 @@
 using System.Collections.Generic;
 using System.Runtime.Serialization;
 using System.Text;
+using Adyen.EcommLibrary.Constants;
 using Newtonsoft.Json;
 
 namespace Adyen.EcommLibrary.Model.Modification
 {
     [DataContract]
-    public class RefundRequest:AbstractModificationRequest
+    public class RefundRequest : AbstractModificationRequest
     {
         [DataMember(Name = "modificationAmount", EmitDefaultValue = false)]
         public Amount ModificationAmount { get; set; }
+
+        public RefundRequest()
+        {
+            var commonField = new CommonField
+            {
+                Name = ClientConfig.LibName, Version = ClientConfig.LibVersion
+            };
+            ApplicationInfo = new ApplicationInfo(commonField);
+        }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -23,7 +33,7 @@ namespace Adyen.EcommLibrary.Model.Modification
             sb.Append(base.ToString());
             sb.Append("  modificationAmount.Currency: ").Append(ModificationAmount.Currency).Append("\n");
             sb.Append("  modificationAmount.Value: ").Append(ModificationAmount.Value).Append("\n");
-           
+
             sb.Append("}");
             return sb.ToString();
         }

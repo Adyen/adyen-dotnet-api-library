@@ -2,11 +2,22 @@
 using System.Collections.Generic;
 using System.Text;
 using Newtonsoft.Json;
+using Adyen.EcommLibrary.Constants;
 
 namespace Adyen.EcommLibrary.Model.Modification
 {
     public class CancelOrRefundRequest : AbstractModificationRequest
     {
+        public CancelOrRefundRequest()
+        {
+            var commonField = new CommonField
+            {
+                Name = ClientConfig.LibName, Version = ClientConfig.LibVersion
+            };
+            ApplicationInfo = new ApplicationInfo(commonField);
+        }
+
+
         /// <summary>
         /// Returns the string presentation of the object
         /// </summary>

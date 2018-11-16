@@ -1,11 +1,12 @@
 ﻿using System;
 using System.Runtime.Serialization;
 using System.Text;
+using Adyen.EcommLibrary.Constants;
 
 namespace Adyen.EcommLibrary.Model
 {
     [DataContract]
-    public class PaymentRequest3D:AbstractPaymentRequest
+    public class PaymentRequest3D : AbstractPaymentRequest
     {
         [DataMember(Name = "md", EmitDefaultValue = false)]
         public string Md { get; set; }
@@ -13,7 +14,16 @@ namespace Adyen.EcommLibrary.Model
         [DataMember(Name = "paResponse", EmitDefaultValue = false)]
         public string PaResponse { get; set; }
 
-       
+        public PaymentRequest3D()
+        {
+            var commonField = new CommonField
+            {
+                Name = ClientConfig.LibName,
+                Version = ClientConfig.LibVersion
+            };
+            ApplicationInfo = new ApplicationInfo(commonField);
+        }
+
         public override string ToString()
         {
             StringBuilder sb = new StringBuilder();
