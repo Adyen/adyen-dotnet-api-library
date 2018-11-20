@@ -10,14 +10,6 @@ namespace Adyen.EcommLibrary.Model.Modification
     [DataContract]
     public class CancelRequest: AbstractModificationRequest
     {
-        public CancelRequest()
-        {
-            var commonField = new CommonField
-            {
-                Name = ClientConfig.LibName, Version = ClientConfig.LibVersion
-            };
-            ApplicationInfo = new ApplicationInfo(commonField);
-        }
         /// <summary>
         /// Returns the string presentation of the object
         /// </summary>

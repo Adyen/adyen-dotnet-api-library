@@ -19,16 +19,6 @@ namespace Adyen.EcommLibrary.Model
         [DataMember(Name = "bankAccount", EmitDefaultValue = false)]
         public BankAccount BankAccount { get; set; }
 
-        public PaymentRequest()
-        {
-            var commonField = new CommonField
-            {
-                Name = ClientConfig.LibName,
-                Version = ClientConfig.LibVersion
-            };
-            ApplicationInfo = new ApplicationInfo(commonField);
-        }
-
         public Dictionary<string, string> GetOrCreateAdditionalData()
         {
             return this.AdditionalData ?? (this.AdditionalData = new Dictionary<string, string>());

@@ -13,15 +13,6 @@ namespace Adyen.EcommLibrary.Model.Modification
         [DataMember(Name = "modificationAmount", EmitDefaultValue = false)]
         public Amount ModificationAmount { get; set; }
 
-        public RefundRequest()
-        {
-            var commonField = new CommonField
-            {
-                Name = ClientConfig.LibName, Version = ClientConfig.LibVersion
-            };
-            ApplicationInfo = new ApplicationInfo(commonField);
-        }
-
         /// <summary>
         /// Returns the string presentation of the object
         /// </summary>

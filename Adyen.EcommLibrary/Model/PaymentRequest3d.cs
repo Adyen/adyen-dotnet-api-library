@@ -13,17 +13,7 @@ namespace Adyen.EcommLibrary.Model
 
         [DataMember(Name = "paResponse", EmitDefaultValue = false)]
         public string PaResponse { get; set; }
-
-        public PaymentRequest3D()
-        {
-            var commonField = new CommonField
-            {
-                Name = ClientConfig.LibName,
-                Version = ClientConfig.LibVersion
-            };
-            ApplicationInfo = new ApplicationInfo(commonField);
-        }
-
+        
         public override string ToString()
         {
             StringBuilder sb = new StringBuilder();

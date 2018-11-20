@@ -8,22 +8,31 @@ using Newtonsoft.Json;
 namespace Adyen.EcommLibrary.Model
 {
     /// <summary>
-    /// CommonField
+    /// ExternalPlatform
     /// </summary>
     [DataContract]
-    public partial class CommonField :  IEquatable<CommonField>, IValidatableObject
+    public partial class ExternalPlatform :  IEquatable<ExternalPlatform>, IValidatableObject
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="CommonField" /> class.
+        /// Initializes a new instance of the <see cref="ExternalPlatform" /> class.
         /// </summary>
+        /// <param name="Integrator">External platform integrator..</param>
         /// <param name="Name">Name of the field. For example, Name of External Platform..</param>
         /// <param name="Version">Version of the field. For example, Version of External Platform..</param>
-        public CommonField(string Name = default(string), string Version = default(string))
+        public ExternalPlatform(string Integrator = default(string), string Name = default(string), string Version = default(string))
         {
+            this.Integrator = Integrator;
             this.Name = Name;
             this.Version = Version;
         }
         
+        /// <summary>
+        /// External platform integrator.
+        /// </summary>
+        /// <value>External platform integrator.</value>
+        [DataMember(Name="integrator", EmitDefaultValue=false)]
+        public string Integrator { get; set; }
+
         /// <summary>
         /// Name of the field. For example, Name of External Platform.
         /// </summary>
@@ -45,7 +54,8 @@ namespace Adyen.EcommLibrary.Model
         public override string ToString()
         {
             var sb = new StringBuilder();
-            sb.Append("class CommonField {\n");
+            sb.Append("class ExternalPlatform {\n");
+            sb.Append("  Integrator: ").Append(Integrator).Append("\n");
             sb.Append("  Name: ").Append(Name).Append("\n");
             sb.Append("  Version: ").Append(Version).Append("\n");
             sb.Append("}\n");
@@ -68,20 +78,25 @@ namespace Adyen.EcommLibrary.Model
         /// <returns>Boolean</returns>
         public override bool Equals(object input)
         {
-            return this.Equals(input as CommonField);
+            return this.Equals(input as ExternalPlatform);
         }
 
         /// <summary>
-        /// Returns true if CommonField instances are equal
+        /// Returns true if ExternalPlatform instances are equal
         /// </summary>
-        /// <param name="input">Instance of CommonField to be compared</param>
+        /// <param name="input">Instance of ExternalPlatform to be compared</param>
         /// <returns>Boolean</returns>
-        public bool Equals(CommonField input)
+        public bool Equals(ExternalPlatform input)
         {
             if (input == null)
                 return false;
 
             return 
+                (
+                    this.Integrator == input.Integrator ||
+                    (this.Integrator != null &&
+                    this.Integrator.Equals(input.Integrator))
+                ) && 
                 (
                     this.Name == input.Name ||
                     (this.Name != null &&
@@ -103,6 +118,8 @@ namespace Adyen.EcommLibrary.Model
             unchecked // Overflow is fine, just wrap
             {
                 int hashCode = 41;
+                if (this.Integrator != null)
+                    hashCode = hashCode * 59 + this.Integrator.GetHashCode();
                 if (this.Name != null)
                     hashCode = hashCode * 59 + this.Name.GetHashCode();
                 if (this.Version != null)
@@ -121,4 +138,5 @@ namespace Adyen.EcommLibrary.Model
             yield break;
         }
     }
+
 }

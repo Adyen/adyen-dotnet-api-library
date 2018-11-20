@@ -3,6 +3,7 @@ using Adyen.EcommLibrary.Model.Reccuring;
 using System;
 using System.Collections.Generic;
 using System.Runtime.Serialization;
+using Adyen.EcommLibrary.Constants;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
 
@@ -11,10 +12,6 @@ namespace Adyen.EcommLibrary.Model
     [DataContract]
     public abstract class AbstractPaymentRequest
     {
-        [DataMember(Name = "applicationInfo", EmitDefaultValue = false)]
-
-        public ApplicationInfo ApplicationInfo { get; set; }
-
         [DataMember(Name = "amount", EmitDefaultValue = false)]
         public Amount Amount { get; set; }
         [DataMember(Name = "reference", EmitDefaultValue = false)]
@@ -81,5 +78,21 @@ namespace Adyen.EcommLibrary.Model
 
         public string Mcc = null;
         public KeyValuePair<string, string> Metadata { get; set; }
+
+        [DataMember(Name = "applicationInfo", EmitDefaultValue = false)]
+
+        public ApplicationInfo ApplicationInfo
+        {
+            get
+            {
+                var commonField = new CommonField
+                {
+                    Name = ClientConfig.LibName,
+                    Version = ClientConfig.LibVersion
+                };
+                return new ApplicationInfo(commonField);
+            }
+        }
+
     }
 }
