@@ -34,7 +34,6 @@ namespace Adyen.EcommLibrary.Model
             this.Gender = Gender;
             this.Infix = Infix;
         }
-        
         /// <summary>
         /// A person&#39;s first name.
         /// </summary>
@@ -43,7 +42,7 @@ namespace Adyen.EcommLibrary.Model
         public string FirstName { get; set; }
 
         /// <summary>
-        /// A person&#39;s last name.
+        /// A person&#39s last name.
         /// </summary>
         /// <value>A person&#39;s last name.</value>
         [DataMember(Name="lastName", EmitDefaultValue=false)]
@@ -56,7 +55,6 @@ namespace Adyen.EcommLibrary.Model
         /// <value>A person name&#39;s infix, if applicable. Maximum length: 20 characters.</value>
         [DataMember(Name="infix", EmitDefaultValue=false)]
         public string Infix { get; set; }
-
         /// <summary>
         /// Returns the string presentation of the object
         /// </summary>
@@ -81,7 +79,6 @@ namespace Adyen.EcommLibrary.Model
         {
             return JsonConvert.SerializeObject(this, Formatting.Indented);
         }
-
         /// <summary>
         /// Returns true if objects are equal
         /// </summary>
@@ -92,7 +89,6 @@ namespace Adyen.EcommLibrary.Model
             // credit: http://stackoverflow.com/a/10454552/677735
             return this.Equals(obj as Name);
         }
-
         /// <summary>
         /// Returns true if Name instances are equal
         /// </summary>
@@ -172,5 +168,4 @@ namespace Adyen.EcommLibrary.Model
             yield break;
         }
     }
-
 }

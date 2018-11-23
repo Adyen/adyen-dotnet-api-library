@@ -12,18 +12,14 @@ namespace Adyen.EcommLibrary.Model
     {
         [DataMember(Name = "card", EmitDefaultValue = false)]
         public Card Card { get; set; }
-
         [DataMember(Name = "mpiData", EmitDefaultValue = false)]
         public ThreeDSecureData MpiData { get; set; }
-
         [DataMember(Name = "bankAccount", EmitDefaultValue = false)]
         public BankAccount BankAccount { get; set; }
-
         public Dictionary<string, string> GetOrCreateAdditionalData()
         {
             return this.AdditionalData ?? (this.AdditionalData = new Dictionary<string, string>());
         }
-
         public PaymentRequest InvoiceLines(List<InvoiceLine> invoiceLines)
         {
             int count = 1;
@@ -49,12 +45,9 @@ namespace Adyen.EcommLibrary.Model
                 }
                 count++;
             }
-
             this.GetOrCreateAdditionalData().Add("openinvoicedata.numberOfLines", (invoiceLines.Count.ToString()));
             return this;
         }
-
-
         public override string ToString()
         {
             StringBuilder sb = new StringBuilder();
@@ -67,7 +60,6 @@ namespace Adyen.EcommLibrary.Model
             sb.Append("}");
             return sb.ToString();
         }
-
         private string ToIndentedString(Object o)
         {
             if (o == null)

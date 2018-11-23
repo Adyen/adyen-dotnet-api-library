@@ -197,5 +197,4 @@ namespace Adyen.EcommLibrary.Model
             yield break;
         }
     }
-
 }

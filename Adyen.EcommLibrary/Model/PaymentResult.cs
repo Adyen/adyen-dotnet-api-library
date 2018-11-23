@@ -106,9 +106,7 @@ namespace Adyen.EcommLibrary.Model
 
         [DataMember(Name = "Amount", EmitDefaultValue = false)]
         public Amount DccAmount { get; set; }
-
-
-
+        
         /// <summary>
         /// Adyen&#39;s 16-digit unique reference associated with the transaction/the request. This value is globally unique; quote it when communicating with us about this request.
         /// </summary>
@@ -151,8 +149,6 @@ namespace Adyen.EcommLibrary.Model
 
         [DataMember(Name = "boletoExpirationDate", EmitDefaultValue = false)]
         public string BoletoExpirationDate { get; set; }
-
-
         
         /// <summary>
         /// Returns the string presentation of the object
@@ -307,5 +303,4 @@ namespace Adyen.EcommLibrary.Model
             yield break;
         }
     }
-
 }

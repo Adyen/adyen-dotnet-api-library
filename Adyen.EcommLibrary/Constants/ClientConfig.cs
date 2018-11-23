@@ -1,6 +1,6 @@
 ﻿namespace Adyen.EcommLibrary.Constants
 {
-    internal class ClientConfig
+    public class ClientConfig
     {
         public static string EndpointTest = "https://pal-test.adyen.com";
         public static string EndpointLive = "https://pal-live.adyen.com";

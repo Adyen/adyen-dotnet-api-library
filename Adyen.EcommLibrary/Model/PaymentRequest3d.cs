@@ -10,10 +10,8 @@ namespace Adyen.EcommLibrary.Model
     {
         [DataMember(Name = "md", EmitDefaultValue = false)]
         public string Md { get; set; }
-
         [DataMember(Name = "paResponse", EmitDefaultValue = false)]
         public string PaResponse { get; set; }
-        
         public override string ToString()
         {
             StringBuilder sb = new StringBuilder();
@@ -25,7 +23,6 @@ namespace Adyen.EcommLibrary.Model
             sb.Append("}");
             return sb.ToString();
         }
-
         private string ToIndentedString(Object o)
         {
             if (o == null)
