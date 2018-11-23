@@ -55,9 +55,6 @@ namespace Adyen.EcommLibrary.Test
             var paymentResult = payment.Authorise3D(paymentRequest);
             Assert.AreEqual(paymentResult.ResultCode, ResultCodeEnum.Authorised);
             Assert.IsNotNull(paymentResult.PspReference);
-            Assert.IsNotNull(paymentRequest.ApplicationInfo);
-            Assert.AreEqual(paymentRequest.ApplicationInfo.AdyenLibrary.Name,ClientConfig.LibName);
-            Assert.AreEqual(paymentRequest.ApplicationInfo.AdyenLibrary.Version,ClientConfig.LibVersion);
         }
         
         [TestMethod]
@@ -93,6 +90,14 @@ namespace Adyen.EcommLibrary.Test
         public void TestPaymentRequestApplicationInfo()
         {
             var paymentRequest = MockPaymentData.CreateFullPaymentRequest();
+            Assert.IsNotNull(paymentRequest.ApplicationInfo);
+            Assert.AreEqual(paymentRequest.ApplicationInfo.AdyenLibrary.Name,ClientConfig.LibName);
+            Assert.AreEqual(paymentRequest.ApplicationInfo.AdyenLibrary.Version,ClientConfig.LibVersion);
+        }
+        [TestMethod]
+        public void TestPaymentRequest3DApplicationInfo()
+        {
+            var paymentRequest = MockPaymentData.CreateFullPaymentRequest3D();
             Assert.IsNotNull(paymentRequest.ApplicationInfo);
             Assert.AreEqual(paymentRequest.ApplicationInfo.AdyenLibrary.Name,ClientConfig.LibName);
             Assert.AreEqual(paymentRequest.ApplicationInfo.AdyenLibrary.Version,ClientConfig.LibVersion);
