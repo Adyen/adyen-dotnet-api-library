@@ -4,6 +4,7 @@ using System.ComponentModel.DataAnnotations;
 using System.Runtime.Serialization;
 using System.Text;
 using Adyen.EcommLibrary.Constants;
+using Adyen.EcommLibrary.Model.ApplicationInfo;
 
 namespace Adyen.EcommLibrary.Model.Modification
 {
@@ -27,19 +28,8 @@ namespace Adyen.EcommLibrary.Model.Modification
 
         [DataMember(Name = "applicationInfo", EmitDefaultValue = false)]
 
-        public ApplicationInfo ApplicationInfo
-        {
-            get
-            {
-                var commonField = new CommonField
-                {
-                    Name = ClientConfig.LibName,
-                    Version = ClientConfig.LibVersion
-                };
-                return new ApplicationInfo(commonField);
-            }
-        }
-
+        public ApplicationInfo.ApplicationInfo ApplicationInfo { get; set; }
+        
         public override string ToString()
         {
             var sb = new StringBuilder();

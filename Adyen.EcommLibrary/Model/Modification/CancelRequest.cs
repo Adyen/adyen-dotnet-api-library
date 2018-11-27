@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Runtime.Serialization;
 using System.Text;
 using Adyen.EcommLibrary.Constants;
+using Adyen.EcommLibrary.Model.ApplicationInfo;
 using Newtonsoft.Json;
 
 namespace Adyen.EcommLibrary.Model.Modification
@@ -10,6 +11,15 @@ namespace Adyen.EcommLibrary.Model.Modification
     [DataContract]
     public class CancelRequest: AbstractModificationRequest
     {
+        public CancelRequest()
+        {
+            var commonField = new CommonField
+            {
+                Name = ClientConfig.LibName,
+                Version = ClientConfig.LibVersion
+            };
+            ApplicationInfo = new ApplicationInfo.ApplicationInfo(commonField);
+        }
         /// <summary>
         /// Returns the string presentation of the object
         /// </summary>

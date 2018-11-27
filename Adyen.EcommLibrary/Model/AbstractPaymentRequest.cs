@@ -73,18 +73,9 @@ namespace Adyen.EcommLibrary.Model
         public string TelephoneNumber { get; set; }
         public string Mcc = null;
         public KeyValuePair<string, string> Metadata { get; set; }
+
         [DataMember(Name = "applicationInfo", EmitDefaultValue = false)]
-        public ApplicationInfo ApplicationInfo
-        {
-            get
-            {
-                var commonField = new CommonField
-                {
-                    Name = ClientConfig.LibName,
-                    Version = ClientConfig.LibVersion
-                };
-                return new ApplicationInfo(commonField);
-            }
-        }
+        public ApplicationInfo.ApplicationInfo ApplicationInfo { get;set; }
+
     }
 }

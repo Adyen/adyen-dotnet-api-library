@@ -4,6 +4,7 @@ using Adyen.EcommLibrary.Service;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.Collections.Generic;
 using Adyen.EcommLibrary.Constants;
+using Adyen.EcommLibrary.Model;
 
 namespace Adyen.EcommLibrary.Test
 {

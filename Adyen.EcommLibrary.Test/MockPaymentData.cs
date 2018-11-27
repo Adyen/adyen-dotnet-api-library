@@ -1,6 +1,7 @@
 ﻿using Adyen.EcommLibrary.Model;
 using System;
 using System.Collections.Generic;
+using Adyen.EcommLibrary.Model.ApplicationInfo;
 using Environment = Adyen.EcommLibrary.Model.Enum.Environment;
 
 namespace Adyen.EcommLibrary.Test
@@ -41,7 +42,6 @@ namespace Adyen.EcommLibrary.Test
                 Reference = "payment - " + DateTime.Now.ToString("yyyyMMdd"),
                 AdditionalData = CreateAdditionalData()
             };
-
             return paymentRequest;
         }
 
@@ -64,7 +64,6 @@ namespace Adyen.EcommLibrary.Test
                 BrowserInfo = CreateMockBrowserInfo(),
                 Reference = "payment - " + DateTime.Now.ToString("yyyyMMdd"),
             };
-
             return paymentRequest;
         }
 
