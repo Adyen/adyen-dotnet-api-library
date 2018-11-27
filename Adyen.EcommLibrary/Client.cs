@@ -51,11 +51,13 @@ namespace Adyen.EcommLibrary
                     Config.Endpoint = ClientConfig.EndpointTest;
                     Config.HppEndpoint = ClientConfig.HppTest;
                     Config.CloudApiEndPoint = ClientConfig.CloudApiEndPointTest;
+                    Config.CheckoutEndpoint = ClientConfig.CheckoutEndpointTest;
                     break;
                 case Environment.Live:
                     Config.Endpoint = ClientConfig.EndpointLive;
                     Config.HppEndpoint = ClientConfig.HppLive;
                     Config.CloudApiEndPoint = ClientConfig.CloudApiEndPointLive;
+                    Config.CheckoutEndpoint = ClientConfig.CheckoutEndpointLive;
                     break;
             }
         }

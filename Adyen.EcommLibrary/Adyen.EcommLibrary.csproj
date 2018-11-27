@@ -35,5 +35,8 @@
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Web" />
   </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Model\Checkout\" />
+  </ItemGroup>
   
 </Project>
