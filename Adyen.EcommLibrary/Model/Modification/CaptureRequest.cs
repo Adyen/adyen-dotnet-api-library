@@ -17,7 +17,6 @@ namespace Adyen.EcommLibrary.Model.Modification
            if(ApplicationInfo==null)
                 ApplicationInfo = new ApplicationInfo();
         }
-
         [DataMember(Name = "modificationAmount", EmitDefaultValue = false)]
         public Amount ModificationAmount { get; set; }
 
