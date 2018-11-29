@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Runtime.Serialization;
 using System.Text;
 using Adyen.EcommLibrary.Constants;
-using Adyen.EcommLibrary.Model.ApplicationInfo;
+using Adyen.EcommLibrary.Model.ApplicationInformation;
 using Newtonsoft.Json;
 
 namespace Adyen.EcommLibrary.Model.Modification
@@ -16,12 +16,8 @@ namespace Adyen.EcommLibrary.Model.Modification
 
         public RefundRequest()
         {
-            var commonField = new CommonField
-            {
-                Name = ClientConfig.LibName,
-                Version = ClientConfig.LibVersion
-            };
-            ApplicationInfo = new ApplicationInfo.ApplicationInfo(commonField);
+             if(ApplicationInfo==null)
+                ApplicationInfo = new ApplicationInfo();
         }
         /// <summary>
         /// Returns the string presentation of the object

@@ -5,47 +5,47 @@ using System.Runtime.Serialization;
 using System.Text;
 using Newtonsoft.Json;
 
-namespace Adyen.EcommLibrary.Model.ApplicationInfo
+namespace Adyen.EcommLibrary.Model.ApplicationInformation
 {
     /// <summary>
-    /// PaymentMethodsApplicationInfoShopperInteractionDevice
+    /// MerchantDevice
     /// </summary>
     [DataContract]
-    public partial class ShopperInteractionDevice :  IEquatable<ShopperInteractionDevice>, IValidatableObject
+    public partial class MerchantDevice :  IEquatable<MerchantDevice>, IValidatableObject
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="ShopperInteractionDevice" /> class.
+        /// Initializes a new instance of the <see cref="MerchantDevice" /> class.
         /// </summary>
-        /// <param name="Locale">Locale on the shopper interaction device..</param>
-        /// <param name="Os">Operating system running on the shopper interaction device..</param>
-        /// <param name="OsVersion">Version of the operating system on the shopper interaction device..</param>
-        public ShopperInteractionDevice(string Locale = default(string), string Os = default(string), string OsVersion = default(string))
+        /// <param name="Os">Operating system running on the merchant device..</param>
+        /// <param name="OsVersion">Version of the operating system on the merchant device..</param>
+        /// <param name="Reference">Merchant device reference..</param>
+        public MerchantDevice(string Os = default(string), string OsVersion = default(string), string Reference = default(string))
         {
-            this.Locale = Locale;
             this.Os = Os;
             this.OsVersion = OsVersion;
+            this.Reference = Reference;
         }
         
         /// <summary>
-        /// Locale on the shopper interaction device.
+        /// Operating system running on the merchant device.
         /// </summary>
-        /// <value>Locale on the shopper interaction device.</value>
-        [DataMember(Name="locale", EmitDefaultValue=false)]
-        public string Locale { get; set; }
-
-        /// <summary>
-        /// Operating system running on the shopper interaction device.
-        /// </summary>
-        /// <value>Operating system running on the shopper interaction device.</value>
+        /// <value>Operating system running on the merchant device.</value>
         [DataMember(Name="os", EmitDefaultValue=false)]
         public string Os { get; set; }
 
         /// <summary>
-        /// Version of the operating system on the shopper interaction device.
+        /// Version of the operating system on the merchant device.
         /// </summary>
-        /// <value>Version of the operating system on the shopper interaction device.</value>
+        /// <value>Version of the operating system on the merchant device.</value>
         [DataMember(Name="osVersion", EmitDefaultValue=false)]
         public string OsVersion { get; set; }
+
+        /// <summary>
+        /// Merchant device reference.
+        /// </summary>
+        /// <value>Merchant device reference.</value>
+        [DataMember(Name="reference", EmitDefaultValue=false)]
+        public string Reference { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -54,10 +54,10 @@ namespace Adyen.EcommLibrary.Model.ApplicationInfo
         public override string ToString()
         {
             var sb = new StringBuilder();
-            sb.Append("class PaymentMethodsApplicationInfoShopperInteractionDevice {\n");
-            sb.Append("  Locale: ").Append(Locale).Append("\n");
+            sb.Append("class MerchantDevice {\n");
             sb.Append("  Os: ").Append(Os).Append("\n");
             sb.Append("  OsVersion: ").Append(OsVersion).Append("\n");
+            sb.Append("  Reference: ").Append(Reference).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -78,25 +78,20 @@ namespace Adyen.EcommLibrary.Model.ApplicationInfo
         /// <returns>Boolean</returns>
         public override bool Equals(object input)
         {
-            return this.Equals(input as ShopperInteractionDevice);
+            return this.Equals(input as MerchantDevice);
         }
 
         /// <summary>
-        /// Returns true if PaymentMethodsApplicationInfoShopperInteractionDevice instances are equal
+        /// Returns true if MerchantDevice instances are equal
         /// </summary>
-        /// <param name="input">Instance of PaymentMethodsApplicationInfoShopperInteractionDevice to be compared</param>
+        /// <param name="input">Instance of MerchantDevice to be compared</param>
         /// <returns>Boolean</returns>
-        public bool Equals(ShopperInteractionDevice input)
+        public bool Equals(MerchantDevice input)
         {
             if (input == null)
                 return false;
 
             return 
-                (
-                    this.Locale == input.Locale ||
-                    (this.Locale != null &&
-                    this.Locale.Equals(input.Locale))
-                ) && 
                 (
                     this.Os == input.Os ||
                     (this.Os != null &&
@@ -106,6 +101,11 @@ namespace Adyen.EcommLibrary.Model.ApplicationInfo
                     this.OsVersion == input.OsVersion ||
                     (this.OsVersion != null &&
                     this.OsVersion.Equals(input.OsVersion))
+                ) && 
+                (
+                    this.Reference == input.Reference ||
+                    (this.Reference != null &&
+                    this.Reference.Equals(input.Reference))
                 );
         }
 
@@ -118,12 +118,12 @@ namespace Adyen.EcommLibrary.Model.ApplicationInfo
             unchecked // Overflow is fine, just wrap
             {
                 int hashCode = 41;
-                if (this.Locale != null)
-                    hashCode = hashCode * 59 + this.Locale.GetHashCode();
                 if (this.Os != null)
                     hashCode = hashCode * 59 + this.Os.GetHashCode();
                 if (this.OsVersion != null)
                     hashCode = hashCode * 59 + this.OsVersion.GetHashCode();
+                if (this.Reference != null)
+                    hashCode = hashCode * 59 + this.Reference.GetHashCode();
                 return hashCode;
             }
         }
@@ -138,4 +138,5 @@ namespace Adyen.EcommLibrary.Model.ApplicationInfo
             yield break;
         }
     }
+
 }

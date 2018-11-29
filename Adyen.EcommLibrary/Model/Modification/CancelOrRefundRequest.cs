@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using Newtonsoft.Json;
 using Adyen.EcommLibrary.Constants;
-using Adyen.EcommLibrary.Model.ApplicationInfo;
+using Adyen.EcommLibrary.Model.ApplicationInformation;
 
 namespace Adyen.EcommLibrary.Model.Modification
 {
@@ -11,12 +11,8 @@ namespace Adyen.EcommLibrary.Model.Modification
     {
         public CancelOrRefundRequest()
         {
-            var commonField = new CommonField
-            {
-                Name = ClientConfig.LibName,
-                Version = ClientConfig.LibVersion
-            };
-            ApplicationInfo = new ApplicationInfo.ApplicationInfo(commonField);
+             if(ApplicationInfo==null)
+                ApplicationInfo = new ApplicationInfo();
         }
 
         /// <summary>

@@ -1,7 +1,7 @@
 ﻿using Adyen.EcommLibrary.Model;
 using System;
 using System.Collections.Generic;
-using Adyen.EcommLibrary.Model.ApplicationInfo;
+using Adyen.EcommLibrary.Model.ApplicationInformation;
 using Environment = Adyen.EcommLibrary.Model.Enum.Environment;
 
 namespace Adyen.EcommLibrary.Test

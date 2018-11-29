@@ -75,7 +75,7 @@ namespace Adyen.EcommLibrary.Model
         public KeyValuePair<string, string> Metadata { get; set; }
 
         [DataMember(Name = "applicationInfo", EmitDefaultValue = false)]
-        public ApplicationInfo.ApplicationInfo ApplicationInfo { get;set; }
+        public ApplicationInformation.ApplicationInfo ApplicationInfo { get;set; }
 
     }
 }

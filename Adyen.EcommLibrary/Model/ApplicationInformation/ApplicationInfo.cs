@@ -3,69 +3,63 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Runtime.Serialization;
 using System.Text;
+using Adyen.EcommLibrary.Constants;
 using Newtonsoft.Json;
 
-namespace Adyen.EcommLibrary.Model.ApplicationInfo
+namespace Adyen.EcommLibrary.Model.ApplicationInformation
 {
     /// <summary>
     /// ApplicationInfo
     /// </summary>
     [DataContract]
-    public partial class ApplicationInfo :  IEquatable<ApplicationInfo>, IValidatableObject
+    public partial class ApplicationInfo : IEquatable<ApplicationInfo>, IValidatableObject
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="ApplicationInfo" /> class.
         /// </summary>
-        /// <param name="AdyenLibrary">AdyenLibrary.</param>
-        /// <param name="AdyenPaymentSource">AdyenPaymentSource.</param>
-        /// <param name="ExternalPlatform">ExternalPlatform.</param>
-        /// <param name="MerchantApplication">MerchantApplication.</param>
-        /// <param name="MerchantDevice">MerchantDevice.</param>
-        /// <param name="ShopperInteractionDevice">ShopperInteractionDevice.</param>
-        public ApplicationInfo(CommonField AdyenLibrary = default(CommonField), CommonField AdyenPaymentSource = default(CommonField), ExternalPlatform ExternalPlatform = default(ExternalPlatform), CommonField MerchantApplication = default(CommonField), MerchantDevice MerchantDevice = default(MerchantDevice), ShopperInteractionDevice ShopperInteractionDevice = default(ShopperInteractionDevice))
+        public ApplicationInfo()
         {
-            this.AdyenLibrary = AdyenLibrary;
-            this.AdyenPaymentSource = AdyenPaymentSource;
-            this.ExternalPlatform = ExternalPlatform;
-            this.MerchantApplication = MerchantApplication;
-            this.MerchantDevice = MerchantDevice;
-            this.ShopperInteractionDevice = ShopperInteractionDevice;
+            this.AdyenLibrary = new CommonField
+            {
+                Name = ClientConfig.LibName,
+                Version = ClientConfig.LibVersion
+            };
         }
-        
+
         /// <summary>
         /// Gets or Sets AdyenLibrary
         /// </summary>
-        [DataMember(Name="adyenLibrary", EmitDefaultValue=false)]
-        public CommonField AdyenLibrary { get; set; }
+        [DataMember(Name = "adyenLibrary", EmitDefaultValue = false)]
+        public CommonField AdyenLibrary { get; private set; }
 
         /// <summary>
         /// Gets or Sets AdyenPaymentSource
         /// </summary>
-        [DataMember(Name="adyenPaymentSource", EmitDefaultValue=false)]
+        [DataMember(Name = "adyenPaymentSource", EmitDefaultValue = false)]
         public CommonField AdyenPaymentSource { get; set; }
 
         /// <summary>
         /// Gets or Sets ExternalPlatform
         /// </summary>
-        [DataMember(Name="externalPlatform", EmitDefaultValue=false)]
+        [DataMember(Name = "externalPlatform", EmitDefaultValue = false)]
         public ExternalPlatform ExternalPlatform { get; set; }
 
         /// <summary>
         /// Gets or Sets MerchantApplication
         /// </summary>
-        [DataMember(Name="merchantApplication", EmitDefaultValue=false)]
+        [DataMember(Name = "merchantApplication", EmitDefaultValue = false)]
         public CommonField MerchantApplication { get; set; }
 
         /// <summary>
         /// Gets or Sets MerchantDevice
         /// </summary>
-        [DataMember(Name="merchantDevice", EmitDefaultValue=false)]
+        [DataMember(Name = "merchantDevice", EmitDefaultValue = false)]
         public MerchantDevice MerchantDevice { get; set; }
 
         /// <summary>
         /// Gets or Sets ShopperInteractionDevice
         /// </summary>
-        [DataMember(Name="shopperInteractionDevice", EmitDefaultValue=false)]
+        [DataMember(Name = "shopperInteractionDevice", EmitDefaultValue = false)]
         public ShopperInteractionDevice ShopperInteractionDevice { get; set; }
 
         /// <summary>
@@ -85,7 +79,7 @@ namespace Adyen.EcommLibrary.Model.ApplicationInfo
             sb.Append("}\n");
             return sb.ToString();
         }
-  
+
         /// <summary>
         /// Returns the JSON string presentation of the object
         /// </summary>
@@ -115,32 +109,32 @@ namespace Adyen.EcommLibrary.Model.ApplicationInfo
             if (input == null)
                 return false;
 
-            return 
+            return
                 (
                     this.AdyenLibrary == input.AdyenLibrary ||
                     (this.AdyenLibrary != null &&
                     this.AdyenLibrary.Equals(input.AdyenLibrary))
-                ) && 
+                ) &&
                 (
                     this.AdyenPaymentSource == input.AdyenPaymentSource ||
                     (this.AdyenPaymentSource != null &&
                     this.AdyenPaymentSource.Equals(input.AdyenPaymentSource))
-                ) && 
+                ) &&
                 (
                     this.ExternalPlatform == input.ExternalPlatform ||
                     (this.ExternalPlatform != null &&
                     this.ExternalPlatform.Equals(input.ExternalPlatform))
-                ) && 
+                ) &&
                 (
                     this.MerchantApplication == input.MerchantApplication ||
                     (this.MerchantApplication != null &&
                     this.MerchantApplication.Equals(input.MerchantApplication))
-                ) && 
+                ) &&
                 (
                     this.MerchantDevice == input.MerchantDevice ||
                     (this.MerchantDevice != null &&
                     this.MerchantDevice.Equals(input.MerchantDevice))
-                ) && 
+                ) &&
                 (
                     this.ShopperInteractionDevice == input.ShopperInteractionDevice ||
                     (this.ShopperInteractionDevice != null &&

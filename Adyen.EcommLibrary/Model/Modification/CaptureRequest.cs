@@ -4,7 +4,7 @@ using System.Runtime.Serialization;
 using System.Text;
 using Adyen.EcommLibrary.Constants;
 using Adyen.EcommLibrary.Constants.HPPConstants;
-using Adyen.EcommLibrary.Model.ApplicationInfo;
+using Adyen.EcommLibrary.Model.ApplicationInformation;
 using Newtonsoft.Json;
 
 namespace Adyen.EcommLibrary.Model.Modification
@@ -14,13 +14,10 @@ namespace Adyen.EcommLibrary.Model.Modification
     {
         public CaptureRequest()
         {
-            var commonField = new CommonField
-            {
-                Name = ClientConfig.LibName,
-                Version = ClientConfig.LibVersion
-            };
-            ApplicationInfo = new ApplicationInfo.ApplicationInfo(commonField);
+           if(ApplicationInfo==null)
+                ApplicationInfo = new ApplicationInfo();
         }
+
         [DataMember(Name = "modificationAmount", EmitDefaultValue = false)]
         public Amount ModificationAmount { get; set; }
 

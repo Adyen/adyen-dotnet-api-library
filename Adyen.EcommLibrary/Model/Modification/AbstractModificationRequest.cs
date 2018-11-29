@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations;
 using System.Runtime.Serialization;
 using System.Text;
 using Adyen.EcommLibrary.Constants;
-using Adyen.EcommLibrary.Model.ApplicationInfo;
+using Adyen.EcommLibrary.Model.ApplicationInformation;
 
 namespace Adyen.EcommLibrary.Model.Modification
 {
@@ -28,7 +28,7 @@ namespace Adyen.EcommLibrary.Model.Modification
 
         [DataMember(Name = "applicationInfo", EmitDefaultValue = false)]
 
-        public ApplicationInfo.ApplicationInfo ApplicationInfo { get; set; }
+        public ApplicationInformation.ApplicationInfo ApplicationInfo { get; set; }
         
         public override string ToString()
         {
