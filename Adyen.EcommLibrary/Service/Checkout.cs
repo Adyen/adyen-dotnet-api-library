@@ -24,20 +24,21 @@ namespace Adyen.EcommLibrary.Service
         {
             var jsonRequest = Util.JsonOperation.SerializeRequest(paymentRequest);
             var jsonResponse = _payments.Request(jsonRequest);
-            return JsonConvert.DeserializeObject<Adyen.EcommLibrary.Model.Checkout.PaymentResponse>(jsonResponse);
+            return JsonConvert.DeserializeObject<PaymentResponse>(jsonResponse);
         }
 
         public PaymentMethodsResponse PaymentMethods(PaymentMethodsRequest paymentMethodsRequest)
-        {
-            return null;
-
+        { 
+            var jsonRequest = Util.JsonOperation.SerializeRequest(paymentMethodsRequest);
+            var jsonResponse = _paymentMethods.Request(jsonRequest);
+            return JsonConvert.DeserializeObject<PaymentMethodsResponse>(jsonResponse);
         }
+        
         public PaymentResponse PaymentDetails(DetailsRequest detailsRequest)
         {
-
-            return null;
-
+            var jsonRequest = Util.JsonOperation.SerializeRequest(detailsRequest);
+            var jsonResponse = _paymentDetails.Request(jsonRequest);
+            return JsonConvert.DeserializeObject<PaymentResponse>(jsonResponse);
         }
-
     }
 }

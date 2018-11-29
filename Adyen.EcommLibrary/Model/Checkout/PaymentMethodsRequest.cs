@@ -173,15 +173,6 @@ namespace Adyen.EcommLibrary.Model.Checkout
         /// <param name="TrustedShopper">Set to true if the payment should be routed to a trusted MID..</param>
         public PaymentMethodsRequest(AccountInfo AccountInfo = default(AccountInfo), Amount AdditionalAmount = default(Amount), Dictionary<string, string> AdditionalData = default(Dictionary<string, string>), List<string> AllowedPaymentMethods = default(List<string>), Amount Amount = default(Amount), ApplicationInfo ApplicationInfo = default(ApplicationInfo), Address BillingAddress = default(Address), List<string> BlockedPaymentMethods = default(List<string>), BrowserInfo BrowserInfo = default(BrowserInfo), int? CaptureDelayHours = default(int?), ChannelEnum? Channel = default(ChannelEnum?), string ConfigId = default(string), string CountryCode = default(string), DateTime? DateOfBirth = default(DateTime?), ForexQuote DccQuote = default(ForexQuote), Address DeliveryAddress = default(Address), DateTime? DeliveryDate = default(DateTime?), string DeviceFingerprint = default(string), int? FraudOffset = default(int?), Installments Installments = default(Installments), string Mcc = default(string), string MerchantAccount = default(string), string MerchantOrderReference = default(string), MerchantRiskIndicator MerchantRiskIndicator = default(MerchantRiskIndicator), Dictionary<string, string> Metadata = default(Dictionary<string, string>), string OrderReference = default(string), Recurring Recurring = default(Recurring), RecurringProcessingModelEnum? RecurringProcessingModel = default(RecurringProcessingModelEnum?), string Reference = default(string), string SelectedBrand = default(string), string SelectedRecurringDetailReference = default(string), string SessionId = default(string), string ShopperEmail = default(string), string ShopperIP = default(string), ShopperInteractionEnum? ShopperInteraction = default(ShopperInteractionEnum?), string ShopperLocale = default(string), Name ShopperName = default(Name), string ShopperReference = default(string), string ShopperStatement = default(string), string SocialSecurityNumber = default(string), List<Split> Splits = default(List<Split>), string Store = default(string), string TelephoneNumber = default(string), ThreeDS2RequestData ThreeDS2RequestData = default(ThreeDS2RequestData), string TotalsGroup = default(string), bool? TrustedShopper = default(bool?))
         {
-            // to ensure "Amount" is required (not null)
-            if (Amount == null)
-            {
-                throw new InvalidDataException("Amount is a required property for PaymentMethodsRequest and cannot be null");
-            }
-            else
-            {
-                this.Amount = Amount;
-            }
             // to ensure "MerchantAccount" is required (not null)
             if (MerchantAccount == null)
             {
@@ -190,15 +181,6 @@ namespace Adyen.EcommLibrary.Model.Checkout
             else
             {
                 this.MerchantAccount = MerchantAccount;
-            }
-            // to ensure "Reference" is required (not null)
-            if (Reference == null)
-            {
-                throw new InvalidDataException("Reference is a required property for PaymentMethodsRequest and cannot be null");
-            }
-            else
-            {
-                this.Reference = Reference;
             }
             this.AccountInfo = AccountInfo;
             this.AdditionalAmount = AdditionalAmount;

@@ -25,17 +25,19 @@ namespace Adyen.EcommLibrary.Test
         /// </summary>
         /// <param name="fileName"></param>
         /// <returns></returns>
-        public PaymentResult CreatePaymentResultFromFile(string fileName)
+        protected PaymentResult CreatePaymentResultFromFile(string fileName)
         {
             var client = CreateMockTestClientRequest(fileName);
             var payment = new Payment(client);
             var paymentRequest = MockPaymentData.CreateFullPaymentRequest();
-
+            
+            paymentRequest.ApplicationInfo.ExternalPlatform=new Model.AppInfo.ExternalPlatform("alex","name","1.1");
             var paymentResult = payment.Authorise(paymentRequest);
+
             return GetAdditionaData(paymentResult);
         }
 
-        public PaymentResult CreatePaymentApiKeyBasedResultFromFile(string fileName)
+        protected PaymentResult CreatePaymentApiKeyBasedResultFromFile(string fileName)
         {
             var client = CreateMockTestClientApiKeyBasedRequest(fileName);
             var payment = new Payment(client);
@@ -95,7 +97,54 @@ namespace Adyen.EcommLibrary.Test
             return cancelRequest;
         }
 
-      
+
+        #endregion
+
+        #region Checkout
+        /// <summary>
+        /// Check out payment request
+        /// </summary>
+        /// <param name="merchantAccount"></param>
+        /// <returns></returns>
+        public Model.Checkout.PaymentRequest CreatePaymentRequestCheckout()
+        {
+            var amount = new Model.Checkout.Amount("USD", 1000);
+            var paymentsRequest = new Model.Checkout.PaymentRequest
+            {
+                Reference = "Your order number ",
+                Amount = amount,
+                ReturnUrl = @"https://your-company.com/...",
+                MerchantAccount = "MerchantAccount",
+            };
+            paymentsRequest.AddCardData("4111111111111111", "10", "2020", "737", "John Smith");
+            return paymentsRequest;
+        }
+
+        /// <summary>
+        ///Checkout Details request
+        /// </summary>
+        /// <returns>Returns a sample DetailsRequest object with test data</returns>
+        protected Model.Checkout.DetailsRequest CreateDetailsRequest()
+        {
+            string paymentData = "Ab02b4c0!BQABAgCJN1wRZuGJmq8dMncmypvknj9s7l5Tj...";
+            var details = new Dictionary<string, string>
+            {
+                { "MD", "sdfsdfsdf..." },
+                { "PaRes", "sdfsdfsdf..." }
+            };
+            var paymentsDetailsRequest = new Model.Checkout.DetailsRequest(Details: details, PaymentData: paymentData);
+
+            return paymentsDetailsRequest;
+        }
+
+        /// <summary>
+        /// Checkout paymentMethodsRequest
+        /// </summary>
+        /// <returns></returns>
+        protected Model.Checkout.PaymentMethodsRequest CreatePaymentMethodRequest()
+        {
+            return new Model.Checkout.PaymentMethodsRequest(MerchantAccount: "DotNetAlexandros");
+        }
         #endregion
 
         /// <summary>
@@ -119,9 +168,7 @@ namespace Adyen.EcommLibrary.Test
             };
             return clientMock;
         }
-
-
-
+        
         /// <summary>
         /// Creates mock test client 
         /// </summary>
@@ -143,8 +190,7 @@ namespace Adyen.EcommLibrary.Test
             };
             return clientMock;
         }
-
-
+        
         /// <summary>
         /// Creates mock test client 
         /// </summary>
@@ -166,6 +212,29 @@ namespace Adyen.EcommLibrary.Test
             };
             return clientMock;
         }
+
+          /// <summary>
+        /// Creates mock test check out client 
+        /// </summary>
+        /// <param name="fileName">The file that is returned</param>
+        /// <returns>IClient implementation</returns>
+        protected Client CreateMockTestClientApiKeyCheckoutRequest(string fileName)
+        {
+            var mockPath = GetMockFilePath(fileName);
+            var response = MockFileToString(mockPath);
+            //Create a mock interface
+            var clientInterfaceMock = new Mock<IClient>();
+            var confMock = MockPaymentData.CreateConfingApiKeyBasedMock();
+            clientInterfaceMock.Setup(x => x.Request(It.IsAny<string>(),
+                It.IsAny<string>(), It.IsAny<Config>())).Returns(response);
+            var clientMock = new Client(It.IsAny<Config>())
+            {
+                HttpClient = clientInterfaceMock.Object,
+                Config = confMock
+            };
+            return clientMock;
+        }
+
 
         /// <summary>
         /// Creates mock test client for POS cloud and terminal api. In case of cloud api the xapi should be included

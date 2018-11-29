@@ -151,12 +151,6 @@ namespace Adyen.EcommLibrary.Model.Checkout
         [JsonConstructor]
         public PaymentRequest()
         {
-            var commonField = new CommonField
-            {
-                Name = ClientConfig.LibName,
-                Version = ClientConfig.LibVersion
-            };
-            ApplicationInfo = new ApplicationInfo(commonField);
         }
         /// <summary>
         /// Initializes a new instance of the <see cref="PaymentRequest" /> class.
