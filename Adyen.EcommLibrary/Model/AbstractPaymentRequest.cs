@@ -3,6 +3,7 @@ using Adyen.EcommLibrary.Model.Reccuring;
 using System;
 using System.Collections.Generic;
 using System.Runtime.Serialization;
+using Adyen.EcommLibrary.Constants;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
 
@@ -19,19 +20,15 @@ namespace Adyen.EcommLibrary.Model
         public Address BillingAddress { get; set; }
         [DataMember(Name = "shopperIp", EmitDefaultValue = false)]
         public string ShopperIp { get; set; }
-
         [DataMember(Name = "merchantAccount", EmitDefaultValue = false)]
         public string MerchantAccount { get; set; }
         [DataMember(Name = "browserInfo", EmitDefaultValue = false)]
         public BrowserInfo BrowserInfo { get; set; }
-
         [DataMember(Name = "shopperInteraction", EmitDefaultValue = false)]
         [JsonConverter(typeof(StringEnumConverter))]
         public ShopperInteraction ShopperInteraction { get; set; }
-
         [DataMember(Name = "shopperEmail", EmitDefaultValue = false)]
         public string ShopperEmail { get; set; }
-
         [DataMember(Name = "shopperReference", EmitDefaultValue = false)]
         public string ShopperReference { get; set; }
         [DataMember(Name = "recurring", EmitDefaultValue = false)]
@@ -74,8 +71,11 @@ namespace Adyen.EcommLibrary.Model
         public DateTime DateOfBirth { get; set; }
         [DataMember(Name = "telephoneNumber", EmitDefaultValue = false)]
         public string TelephoneNumber { get; set; }
-
         public string Mcc = null;
         public KeyValuePair<string, string> Metadata { get; set; }
+
+        [DataMember(Name = "applicationInfo", EmitDefaultValue = false)]
+        public ApplicationInformation.ApplicationInfo ApplicationInfo { get;set; }
+
     }
 }

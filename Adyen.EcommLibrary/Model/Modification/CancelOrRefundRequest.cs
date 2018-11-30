@@ -2,11 +2,19 @@
 using System.Collections.Generic;
 using System.Text;
 using Newtonsoft.Json;
+using Adyen.EcommLibrary.Constants;
+using Adyen.EcommLibrary.Model.ApplicationInformation;
 
 namespace Adyen.EcommLibrary.Model.Modification
 {
     public class CancelOrRefundRequest : AbstractModificationRequest
     {
+        public CancelOrRefundRequest()
+        {
+             if(ApplicationInfo==null)
+                ApplicationInfo = new ApplicationInfo();
+        }
+
         /// <summary>
         /// Returns the string presentation of the object
         /// </summary>

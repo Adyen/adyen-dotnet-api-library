@@ -1,19 +1,24 @@
 ﻿using System;
 using System.Runtime.Serialization;
 using System.Text;
+using Adyen.EcommLibrary.Constants;
+using Adyen.EcommLibrary.Model.ApplicationInformation;
 
 namespace Adyen.EcommLibrary.Model
 {
     [DataContract]
-    public class PaymentRequest3D:AbstractPaymentRequest
+    public class PaymentRequest3D : AbstractPaymentRequest
     {
         [DataMember(Name = "md", EmitDefaultValue = false)]
         public string Md { get; set; }
-
         [DataMember(Name = "paResponse", EmitDefaultValue = false)]
         public string PaResponse { get; set; }
 
-       
+        public PaymentRequest3D()
+        {
+             if(ApplicationInfo==null)
+                ApplicationInfo = new ApplicationInfo();
+        }
         public override string ToString()
         {
             StringBuilder sb = new StringBuilder();
@@ -25,7 +30,6 @@ namespace Adyen.EcommLibrary.Model
             sb.Append("}");
             return sb.ToString();
         }
-
         private string ToIndentedString(Object o)
         {
             if (o == null)

@@ -2,7 +2,9 @@
 using System.Collections.Generic;
 using System.Runtime.Serialization;
 using System.Text;
+using Adyen.EcommLibrary.Constants;
 using Adyen.EcommLibrary.Constants.HPPConstants;
+using Adyen.EcommLibrary.Model.ApplicationInformation;
 using Newtonsoft.Json;
 
 namespace Adyen.EcommLibrary.Model.Modification
@@ -10,6 +12,12 @@ namespace Adyen.EcommLibrary.Model.Modification
     [DataContract]
     public class CaptureRequest : AbstractModificationRequest
     {
+        public CaptureRequest()
+        {
+           if(ApplicationInfo==null)
+                ApplicationInfo = new ApplicationInfo();
+        }
+
         [DataMember(Name = "modificationAmount", EmitDefaultValue = false)]
         public Amount ModificationAmount { get; set; }
 
