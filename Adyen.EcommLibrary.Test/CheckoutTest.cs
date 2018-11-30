@@ -25,6 +25,17 @@ namespace Adyen.EcommLibrary.Test
             Assert.AreEqual("411111", paymentResponse.AdditionalData["cardBin"]);
             Assert.AreEqual("visa", paymentResponse.AdditionalData["cardPaymentMethod"]);
         }
+
+        [TestMethod]
+        public void PaymentsErrorTest()
+        {
+            var paymentMethodsRequest = CreatePaymentRequestCheckout();
+            var client = CreateMockTestClientApiKeyCheckoutRequest("Mocks/checkout/payments-error-invalid-data-422.json");
+            var _checkout = new Checkout(client);
+            var paymentResponse = _checkout.Payments(paymentMethodsRequest);
+            Assert.IsNull( paymentResponse.PspReference);
+        }
+        
         [TestMethod]
         public void PaymentDetailsTest()
         {
@@ -36,20 +47,36 @@ namespace Adyen.EcommLibrary.Test
            Assert.AreEqual("8515232733321252", paymentResponse.PspReference);
         }
 
+         [TestMethod]
+        public void PaymentDetailsErrorTest()
+        {
+            var detailsRequest = CreateDetailsRequest();
+            detailsRequest.Details.Add("payload", "Ab02b4c0!BQABAgBQn96RxfJHpp2RXhqQBuhQFWgE...gfGHb4IZSP4IpoCC2==RXhqQBuhQ");
+            var client = CreateMockTestClientApiKeyCheckoutRequest("Mocks/checkout/paymentsdetails-error-invalid-data-422.json");
+            var _checkout = new Checkout(client);
+            var paymentResponse = _checkout.PaymentDetails(detailsRequest);
+           Assert.IsNull( paymentResponse.ResultCode);
+        }
+
         [TestMethod]
         public void PaymentMethodsTest()
         {
-            var paymentMethodsRequest = CreatePaymentMethodRequest();
+            var paymentMethodsRequest = CreatePaymentMethodRequest("YourMerchantAccount");
             var client = CreateMockTestClientApiKeyCheckoutRequest("Mocks/checkout/paymentmethods-success.json");
-
             var _checkout = new Checkout(client);
             var paymentMethodsResponse = _checkout.PaymentMethods(paymentMethodsRequest);
             Assert.AreEqual(paymentMethodsResponse.PaymentMethods.Count, 65);
-            Assert.AreEqual(paymentMethodsResponse.PaymentMethods[0].Name, "AliPay");
-            Assert.AreEqual(paymentMethodsResponse.PaymentMethods[1].Name, "AliPay");
-            Assert.AreEqual(paymentMethodsResponse.PaymentMethods[2].Name, "Credit Card");
+           
+        }
 
-            Assert.AreEqual(paymentMethodsResponse.PaymentMethods[3].Name, "Credit Card via AsiaPay");
+        [TestMethod]
+        public void PaymentMethodsErrorTest()
+        {
+             var paymentMethodsRequest = CreatePaymentMethodRequest("YourMerchantAccount");
+            var client = CreateMockTestClientApiKeyCheckoutRequest("Mocks/checkout/paymentmethods-error-forbidden-403.json");
+            var _checkout = new Checkout(client);
+            var paymentMethodsResponse = _checkout.PaymentMethods(paymentMethodsRequest);
+            Assert.IsNull(paymentMethodsResponse.PaymentMethods);
         }
     }
 }

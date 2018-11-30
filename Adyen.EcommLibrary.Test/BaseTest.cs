@@ -141,9 +141,9 @@ namespace Adyen.EcommLibrary.Test
         /// Checkout paymentMethodsRequest
         /// </summary>
         /// <returns></returns>
-        protected Model.Checkout.PaymentMethodsRequest CreatePaymentMethodRequest()
+        protected Model.Checkout.PaymentMethodsRequest CreatePaymentMethodRequest(string merchantAccount)
         {
-            return new Model.Checkout.PaymentMethodsRequest(MerchantAccount: "DotNetAlexandros");
+            return new Model.Checkout.PaymentMethodsRequest(MerchantAccount: merchantAccount);
         }
         #endregion
 
