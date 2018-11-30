@@ -30,10 +30,7 @@ namespace Adyen.EcommLibrary.Test
             var client = CreateMockTestClientRequest(fileName);
             var payment = new Payment(client);
             var paymentRequest = MockPaymentData.CreateFullPaymentRequest();
-            
-            paymentRequest.ApplicationInfo.ExternalPlatform=new Model.AppInfo.ExternalPlatform("alex","name","1.1");
             var paymentResult = payment.Authorise(paymentRequest);
-
             return GetAdditionaData(paymentResult);
         }
 

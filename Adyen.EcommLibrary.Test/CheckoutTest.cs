@@ -72,11 +72,21 @@ namespace Adyen.EcommLibrary.Test
         [TestMethod]
         public void PaymentMethodsErrorTest()
         {
-             var paymentMethodsRequest = CreatePaymentMethodRequest("YourMerchantAccount");
+            var paymentMethodsRequest = CreatePaymentMethodRequest("YourMerchantAccount");
             var client = CreateMockTestClientApiKeyCheckoutRequest("Mocks/checkout/paymentmethods-error-forbidden-403.json");
             var _checkout = new Checkout(client);
             var paymentMethodsResponse = _checkout.PaymentMethods(paymentMethodsRequest);
             Assert.IsNull(paymentMethodsResponse.PaymentMethods);
+        }
+
+        [TestMethod]
+        public void CheckoutEndpointTest()
+        {
+            var config = new Config();
+            var client = new Client(config);
+            client.SetEnviroment(Model.Enum.Environment.Live, "companyUrl");
+            Assert.AreEqual(config.CheckoutEndpoint, @"https://companyUrl-checkout-live.adyenpayments.com/checkout");
+            Assert.AreEqual(config.Endpoint, @"https://companyUrl-pal-live.adyenpayments.com");
         }
     }
 }

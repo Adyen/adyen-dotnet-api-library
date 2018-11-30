@@ -44,6 +44,11 @@ namespace Adyen.EcommLibrary
 
         public void SetEnviroment(Environment environment)
         {
+            SetEnviroment(environment, null);
+        }
+
+        public void SetEnviroment(Environment environment, string liveEndpointUrlPrefix)
+        {
             Config.Environment = environment;
             switch (environment)
             {
@@ -57,7 +62,12 @@ namespace Adyen.EcommLibrary
                     Config.Endpoint = ClientConfig.EndpointLive;
                     Config.HppEndpoint = ClientConfig.HppLive;
                     Config.CloudApiEndPoint = ClientConfig.CloudApiEndPointLive;
-                    Config.CheckoutEndpoint = ClientConfig.CheckoutEndpointLive;
+                    //set live endpoint for checkout api
+                    if (!string.IsNullOrEmpty(liveEndpointUrlPrefix))
+                    {
+                        Config.Endpoint = ClientConfig.EndpointProtocol + liveEndpointUrlPrefix + ClientConfig.EndpointLiveSuffix;
+                        Config.CheckoutEndpoint = ClientConfig.EndpointProtocol + liveEndpointUrlPrefix + ClientConfig.CheckoutEndpointLiveSuffix;
+                    }
                     break;
             }
         }
