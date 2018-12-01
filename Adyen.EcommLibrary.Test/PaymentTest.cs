@@ -87,6 +87,9 @@ namespace Adyen.EcommLibrary.Test
         public void TestPaymentRequestApplicationInfo()
         {
             var paymentRequest = MockPaymentData.CreateFullPaymentRequest();
+         
+
+
             Assert.IsNotNull(paymentRequest.ApplicationInfo);
             Assert.AreEqual(paymentRequest.ApplicationInfo.AdyenLibrary.Name,ClientConfig.LibName);
             Assert.AreEqual(paymentRequest.ApplicationInfo.AdyenLibrary.Version,ClientConfig.LibVersion);

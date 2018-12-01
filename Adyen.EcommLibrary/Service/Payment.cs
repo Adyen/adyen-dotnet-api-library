@@ -24,6 +24,7 @@ namespace Adyen.EcommLibrary.Service
             try
             {
                 var jsonRequest = Util.JsonOperation.SerializeRequest(paymentRequest);
+
                 var jsonResponse = _authorise.Request(jsonRequest);
                 paymentResult = JsonConvert.DeserializeObject<PaymentResult>(jsonResponse);
             }
