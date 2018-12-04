@@ -142,6 +142,27 @@ namespace Adyen.EcommLibrary.Test
         {
             return new Model.Checkout.PaymentMethodsRequest(MerchantAccount: merchantAccount);
         }
+
+        /// <summary>
+        /// Checkout paymentsessionRequest
+        /// </summary>
+        /// <returns></returns>
+        protected Model.Checkout.PaymentSetupRequest CreatePaymentSetupRequest()
+        {
+            return new Model.Checkout.PaymentSetupRequest(MerchantAccount: "MerchantAccount", Reference: "MerchantReference",
+                 Amount: new Model.Checkout.Amount("EUR", 1200), ReturnUrl: @"https://your-company.com/...", CountryCode: "NL");
+        }
+
+        /// <summary>
+        /// Checkout paymentVerificationRequest
+        /// </summary>
+        /// <returns></returns>
+        protected Model.Checkout.PaymentVerificationRequest CreatePaymentVerificationRequest()
+        {
+            string payload = @"Ab0oCC2/wy96FiEMLvoI8RfayxEmZHQZcw...riRbNBzP3pQscLYBHN/MfZkgfGHdqy7JfQoQbRUmA==";
+            return new Model.Checkout.PaymentVerificationRequest(Payload:payload);
+        }
+
         #endregion
 
         /// <summary>
@@ -209,29 +230,6 @@ namespace Adyen.EcommLibrary.Test
             };
             return clientMock;
         }
-
-          /// <summary>
-        /// Creates mock test check out client 
-        /// </summary>
-        /// <param name="fileName">The file that is returned</param>
-        /// <returns>IClient implementation</returns>
-        protected Client CreateMockTestClientApiKeyCheckoutRequest(string fileName)
-        {
-            var mockPath = GetMockFilePath(fileName);
-            var response = MockFileToString(mockPath);
-            //Create a mock interface
-            var clientInterfaceMock = new Mock<IClient>();
-            var confMock = MockPaymentData.CreateConfingApiKeyBasedMock();
-            clientInterfaceMock.Setup(x => x.Request(It.IsAny<string>(),
-                It.IsAny<string>(), It.IsAny<Config>())).Returns(response);
-            var clientMock = new Client(It.IsAny<Config>())
-            {
-                HttpClient = clientInterfaceMock.Object,
-                Config = confMock
-            };
-            return clientMock;
-        }
-
 
         /// <summary>
         /// Creates mock test client for POS cloud and terminal api. In case of cloud api the xapi should be included

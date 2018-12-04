@@ -14,6 +14,7 @@
         public static string RecurringApiVersion = "v25";
         public static string ApiVersion = "v40";
         public static string CheckoutApiVersion = "v40";
+        public static string CheckoutUtilityApiVersion = "v1";
         public static string UserAgentSuffix = "adyen-dotnet-api-library/";
         public static string EndpointProtocol = "https://";
 
