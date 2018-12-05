@@ -25,13 +25,23 @@ namespace Adyen.EcommLibrary.Service
             _paymentsResult = new PaymentsResult(this);
         }
 
-        public PaymentResponse Payments(PaymentRequest paymentRequest)
+        /// <summary>
+        /// Post /payments API call
+        /// </summary>
+        /// <param name="paymentRequest"></param>
+        /// <returns></returns>
+        public PaymentsResponse Payments(PaymentRequest paymentRequest)
         {
             var jsonRequest = Util.JsonOperation.SerializeRequest(paymentRequest);
             var jsonResponse = _payments.Request(jsonRequest);
-            return JsonConvert.DeserializeObject<PaymentResponse>(jsonResponse);
+            return JsonConvert.DeserializeObject<PaymentsResponse>(jsonResponse);
         }
 
+        /// <summary>
+        /// POST /paymentMethods API call
+        /// </summary>
+        /// <param name="paymentMethodsRequest"></param>
+        /// <returns></returns>
         public PaymentMethodsResponse PaymentMethods(PaymentMethodsRequest paymentMethodsRequest)
         {
             var jsonRequest = Util.JsonOperation.SerializeRequest(paymentMethodsRequest);
@@ -39,25 +49,40 @@ namespace Adyen.EcommLibrary.Service
             return JsonConvert.DeserializeObject<PaymentMethodsResponse>(jsonResponse);
         }
 
-        public PaymentResponse PaymentDetails(DetailsRequest detailsRequest)
+        /// <summary>
+        ///  POST payments/details API call
+        /// </summary>
+        /// <param name="paymentsDetailsRequest"></param>
+        /// <returns></returns>
+        public PaymentsResponse PaymentDetails(PaymentsDetailsRequest paymentsDetailsRequest)
         {
-            var jsonRequest = Util.JsonOperation.SerializeRequest(detailsRequest);
+            var jsonRequest = Util.JsonOperation.SerializeRequest(paymentsDetailsRequest);
             var jsonResponse = _paymentDetails.Request(jsonRequest);
-            return JsonConvert.DeserializeObject<PaymentResponse>(jsonResponse);
+            return JsonConvert.DeserializeObject<PaymentsResponse>(jsonResponse);
         }
 
-        public PaymentSetupResponse PaymentSession(PaymentSetupRequest paymentSetupRequest)
+        /// <summary>
+        /// POST /paymentSession API call
+        /// </summary>
+        /// <param name="paymentSessionRequest"></param>
+        /// <returns></returns>
+        public PaymentSessionResponse PaymentSession(PaymentSessionRequest paymentSessionRequest)
         {
-            var jsonRequest = Util.JsonOperation.SerializeRequest(paymentSetupRequest);
+            var jsonRequest = Util.JsonOperation.SerializeRequest(paymentSessionRequest);
             var jsonResponse = _paymentSession.Request(jsonRequest);
-            return JsonConvert.DeserializeObject<PaymentSetupResponse>(jsonResponse);
+            return JsonConvert.DeserializeObject<PaymentSessionResponse>(jsonResponse);
         }
 
-        public PaymentVerificationResponse PaymentsResult(PaymentVerificationRequest paymentVerificationRequest)
+        /// <summary>
+        /// POST payments/result API call
+        /// </summary>
+        /// <param name="paymentResultRequest"></param>
+        /// <returns></returns>
+        public PaymentResultResponse PaymentsResult(PaymentResultRequest paymentResultRequest)
         {
-            var jsonRequest = Util.JsonOperation.SerializeRequest(paymentVerificationRequest);
+            var jsonRequest = Util.JsonOperation.SerializeRequest(paymentResultRequest);
             var jsonResponse = _paymentsResult.Request(jsonRequest);
-            return JsonConvert.DeserializeObject<PaymentVerificationResponse>(jsonResponse);
+            return JsonConvert.DeserializeObject<PaymentResultResponse>(jsonResponse);
         }
     }
 }

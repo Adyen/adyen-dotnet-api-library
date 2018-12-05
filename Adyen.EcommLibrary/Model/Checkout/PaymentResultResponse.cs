@@ -12,10 +12,10 @@ using Newtonsoft.Json.Converters;
 namespace Adyen.EcommLibrary.Model.Checkout
 {
     /// <summary>
-    /// PaymentVerificationResponse
+    /// PaymentResultResponse
     /// </summary>
     [DataContract]
-    public partial class PaymentVerificationResponse :  IEquatable<PaymentVerificationResponse>, IValidatableObject
+    public partial class PaymentResultResponse :  IEquatable<PaymentResultResponse>, IValidatableObject
     {
         /// <summary>
         /// The result of the payment. Possible values:  * **Authorised** – Indicates the payment authorisation was successfully completed. This state serves as an indicator to proceed with the delivery of goods and services. This is a final state. * **Refused** – Indicates the payment was refused. The reason is given in the &#x60;refusalReason&#x60; field. This is a final state. * **RedirectShopper** – Indicates the shopper should be redirected to an external web page or app to complete the authorisation. * **Received** – Indicates the payment has successfully been received by Adyen, and will be processed. This is the initial state for all payments. * **Cancelled** – Indicates the payment has been cancelled (either by the shopper or the merchant) before processing was completed. This is a final state. * **Pending** – Indicates that it is not possible to obtain the final status of the payment. This can happen if the systems providing final status information for the payment are unavailable, or if the shopper needs to take further action to complete the payment. For more information on handling a pending payment, refer to [Payments with pending status](https://docs.adyen.com/developers/development-resources/payments-with-pending-status). * **Error** – Indicates an error occurred during processing of the payment. The reason is given in the &#x60;refusalReason&#x60; field. This is a final state.
@@ -75,12 +75,12 @@ namespace Adyen.EcommLibrary.Model.Checkout
         [DataMember(Name="resultCode", EmitDefaultValue=false)]
         public ResultCodeEnum? ResultCode { get; set; }
         /// <summary>
-        /// Initializes a new instance of the <see cref="PaymentVerificationResponse" /> class.
+        /// Initializes a new instance of the <see cref="PaymentResultResponse" /> class.
         /// </summary>
         [JsonConstructor]
-        protected PaymentVerificationResponse() { }
+        protected PaymentResultResponse() { }
         /// <summary>
-        /// Initializes a new instance of the <see cref="PaymentVerificationResponse" /> class.
+        /// Initializes a new instance of the <see cref="PaymentResultResponse" /> class.
         /// </summary>
         /// <param name="AdditionalData">This field contains additional data, which may be required to return in a particular payment response. To choose data fields to be returned, go to **Customer Area** &gt; **Account** &gt; **API URLs**..</param>
         /// <param name="FraudResult">The fraud result properties of the payment..</param>
@@ -92,12 +92,12 @@ namespace Adyen.EcommLibrary.Model.Checkout
         /// <param name="ResultCode">The result of the payment. Possible values:  * **Authorised** – Indicates the payment authorisation was successfully completed. This state serves as an indicator to proceed with the delivery of goods and services. This is a final state. * **Refused** – Indicates the payment was refused. The reason is given in the &#x60;refusalReason&#x60; field. This is a final state. * **RedirectShopper** – Indicates the shopper should be redirected to an external web page or app to complete the authorisation. * **Received** – Indicates the payment has successfully been received by Adyen, and will be processed. This is the initial state for all payments. * **Cancelled** – Indicates the payment has been cancelled (either by the shopper or the merchant) before processing was completed. This is a final state. * **Pending** – Indicates that it is not possible to obtain the final status of the payment. This can happen if the systems providing final status information for the payment are unavailable, or if the shopper needs to take further action to complete the payment. For more information on handling a pending payment, refer to [Payments with pending status](https://docs.adyen.com/developers/development-resources/payments-with-pending-status). * **Error** – Indicates an error occurred during processing of the payment. The reason is given in the &#x60;refusalReason&#x60; field. This is a final state..</param>
         /// <param name="ServiceError">The type of the error..</param>
         /// <param name="ShopperLocale">The shopperLocale value provided in the payment request. (required).</param>
-        public PaymentVerificationResponse(Dictionary<string, string> AdditionalData = default(Dictionary<string, string>), FraudResult FraudResult = default(FraudResult), string MerchantReference = default(string), string PaymentMethod = default(string), string PspReference = default(string), string RefusalReason = default(string), string RefusalReasonCode = default(string), ResultCodeEnum? ResultCode = default(ResultCodeEnum?), ServiceError ServiceError = default(ServiceError), string ShopperLocale = default(string))
+        public PaymentResultResponse(Dictionary<string, string> AdditionalData = default(Dictionary<string, string>), FraudResult FraudResult = default(FraudResult), string MerchantReference = default(string), string PaymentMethod = default(string), string PspReference = default(string), string RefusalReason = default(string), string RefusalReasonCode = default(string), ResultCodeEnum? ResultCode = default(ResultCodeEnum?), ServiceError ServiceError = default(ServiceError), string ShopperLocale = default(string))
         {
             // to ensure "MerchantReference" is required (not null)
             if (MerchantReference == null)
             {
-                throw new InvalidDataException("MerchantReference is a required property for PaymentVerificationResponse and cannot be null");
+                throw new InvalidDataException("MerchantReference is a required property for PaymentResultResponse and cannot be null");
             }
             else
             {
@@ -106,7 +106,7 @@ namespace Adyen.EcommLibrary.Model.Checkout
             // to ensure "PaymentMethod" is required (not null)
             if (PaymentMethod == null)
             {
-                throw new InvalidDataException("PaymentMethod is a required property for PaymentVerificationResponse and cannot be null");
+                throw new InvalidDataException("PaymentMethod is a required property for PaymentResultResponse and cannot be null");
             }
             else
             {
@@ -115,7 +115,7 @@ namespace Adyen.EcommLibrary.Model.Checkout
             // to ensure "ShopperLocale" is required (not null)
             if (ShopperLocale == null)
             {
-                throw new InvalidDataException("ShopperLocale is a required property for PaymentVerificationResponse and cannot be null");
+                throw new InvalidDataException("ShopperLocale is a required property for PaymentResultResponse and cannot be null");
             }
             else
             {
@@ -201,7 +201,7 @@ namespace Adyen.EcommLibrary.Model.Checkout
         public override string ToString()
         {
             var sb = new StringBuilder();
-            sb.Append("class PaymentVerificationResponse {\n");
+            sb.Append("class PaymentResultResponse {\n");
             sb.Append("  AdditionalData: ").Append(AdditionalData).Append("\n");
             sb.Append("  FraudResult: ").Append(FraudResult).Append("\n");
             sb.Append("  MerchantReference: ").Append(MerchantReference).Append("\n");
@@ -232,15 +232,15 @@ namespace Adyen.EcommLibrary.Model.Checkout
         /// <returns>Boolean</returns>
         public override bool Equals(object input)
         {
-            return this.Equals(input as PaymentVerificationResponse);
+            return this.Equals(input as PaymentResultResponse);
         }
 
         /// <summary>
-        /// Returns true if PaymentVerificationResponse instances are equal
+        /// Returns true if PaymentResultResponse instances are equal
         /// </summary>
-        /// <param name="input">Instance of PaymentVerificationResponse to be compared</param>
+        /// <param name="input">Instance of PaymentResultResponse to be compared</param>
         /// <returns>Boolean</returns>
-        public bool Equals(PaymentVerificationResponse input)
+        public bool Equals(PaymentResultResponse input)
         {
             if (input == null)
                 return false;

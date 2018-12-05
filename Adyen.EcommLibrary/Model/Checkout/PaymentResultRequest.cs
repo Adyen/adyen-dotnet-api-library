@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.IO;
 using System.Runtime.Serialization;
 using System.Text;
 using Newtonsoft.Json;
@@ -9,26 +10,39 @@ using Newtonsoft.Json;
 namespace Adyen.EcommLibrary.Model.Checkout
 {
     /// <summary>
-    /// PaymentSetupResponse
+    /// PaymentResultRequest
     /// </summary>
     [DataContract]
-    public partial class PaymentSetupResponse :  IEquatable<PaymentSetupResponse>, IValidatableObject
+    public partial class PaymentResultRequest :  IEquatable<PaymentResultRequest>, IValidatableObject
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="PaymentSetupResponse" /> class.
+        /// Initializes a new instance of the <see cref="PaymentResultRequest" /> class.
         /// </summary>
-        /// <param name="PaymentSession">The encoded payment session that you need to pass to the SDK..</param>
-        public PaymentSetupResponse(string PaymentSession = default(string))
+        [JsonConstructor]
+        protected PaymentResultRequest() { }
+        /// <summary>
+        /// Initializes a new instance of the <see cref="PaymentResultRequest" /> class.
+        /// </summary>
+        /// <param name="Payload">Encrypted and signed payment result data. You should receive this value from the Checkout SDK after the shopper completes the payment. (required).</param>
+        public PaymentResultRequest(string Payload = default(string))
         {
-            this.PaymentSession = PaymentSession;
+            // to ensure "Payload" is required (not null)
+            if (Payload == null)
+            {
+                throw new InvalidDataException("Payload is a required property for PaymentResultRequest and cannot be null");
+            }
+            else
+            {
+                this.Payload = Payload;
+            }
         }
         
         /// <summary>
-        /// The encoded payment session that you need to pass to the SDK.
+        /// Encrypted and signed payment result data. You should receive this value from the Checkout SDK after the shopper completes the payment.
         /// </summary>
-        /// <value>The encoded payment session that you need to pass to the SDK.</value>
-        [DataMember(Name="paymentSession", EmitDefaultValue=false)]
-        public string PaymentSession { get; set; }
+        /// <value>Encrypted and signed payment result data. You should receive this value from the Checkout SDK after the shopper completes the payment.</value>
+        [DataMember(Name="payload", EmitDefaultValue=false)]
+        public string Payload { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -37,8 +51,8 @@ namespace Adyen.EcommLibrary.Model.Checkout
         public override string ToString()
         {
             var sb = new StringBuilder();
-            sb.Append("class PaymentSetupResponse {\n");
-            sb.Append("  PaymentSession: ").Append(PaymentSession).Append("\n");
+            sb.Append("class PaymentResultRequest {\n");
+            sb.Append("  Payload: ").Append(Payload).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -59,24 +73,24 @@ namespace Adyen.EcommLibrary.Model.Checkout
         /// <returns>Boolean</returns>
         public override bool Equals(object input)
         {
-            return this.Equals(input as PaymentSetupResponse);
+            return this.Equals(input as PaymentResultRequest);
         }
 
         /// <summary>
-        /// Returns true if PaymentSetupResponse instances are equal
+        /// Returns true if PaymentResultRequest instances are equal
         /// </summary>
-        /// <param name="input">Instance of PaymentSetupResponse to be compared</param>
+        /// <param name="input">Instance of PaymentResultRequest to be compared</param>
         /// <returns>Boolean</returns>
-        public bool Equals(PaymentSetupResponse input)
+        public bool Equals(PaymentResultRequest input)
         {
             if (input == null)
                 return false;
 
             return 
                 (
-                    this.PaymentSession == input.PaymentSession ||
-                    (this.PaymentSession != null &&
-                    this.PaymentSession.Equals(input.PaymentSession))
+                    this.Payload == input.Payload ||
+                    (this.Payload != null &&
+                    this.Payload.Equals(input.Payload))
                 );
         }
 
@@ -89,8 +103,8 @@ namespace Adyen.EcommLibrary.Model.Checkout
             unchecked // Overflow is fine, just wrap
             {
                 int hashCode = 41;
-                if (this.PaymentSession != null)
-                    hashCode = hashCode * 59 + this.PaymentSession.GetHashCode();
+                if (this.Payload != null)
+                    hashCode = hashCode * 59 + this.Payload.GetHashCode();
                 return hashCode;
             }
         }

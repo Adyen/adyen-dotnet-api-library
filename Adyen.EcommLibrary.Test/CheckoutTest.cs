@@ -3,7 +3,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 using System.Collections.Generic;
 using System.Text;
-using static Adyen.EcommLibrary.Model.Checkout.PaymentResponse;
+using static Adyen.EcommLibrary.Model.Checkout.PaymentsResponse;
 
 namespace Adyen.EcommLibrary.Test
 {
@@ -116,7 +116,7 @@ namespace Adyen.EcommLibrary.Test
             var client = CreateMockTestClientApiKeyBasedRequest("Mocks/checkout/paymentsresult-sucess.json");
             var _checkout = new Checkout(client);
             var paymentResultResponse = _checkout.PaymentsResult(paymentVerificationRequest);
-            Assert.AreEqual(paymentResultResponse.ResultCode, Model.Checkout.PaymentVerificationResponse.ResultCodeEnum.Authorised);
+            Assert.AreEqual(paymentResultResponse.ResultCode, Model.Checkout.PaymentResultResponse.ResultCodeEnum.Authorised);
         }
 
         [TestMethod]

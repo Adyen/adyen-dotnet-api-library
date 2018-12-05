@@ -11,27 +11,27 @@ using Newtonsoft.Json;
 namespace Adyen.EcommLibrary.Model.Checkout
 {
     /// <summary>
-    /// DetailsRequest
+    /// PaymentsDetailsRequest
     /// </summary>
     [DataContract]
-    public partial class DetailsRequest :  IEquatable<DetailsRequest>, IValidatableObject
+    public partial class PaymentsDetailsRequest :  IEquatable<PaymentsDetailsRequest>, IValidatableObject
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="DetailsRequest" /> class.
+        /// Initializes a new instance of the <see cref="PaymentsDetailsRequest" /> class.
         /// </summary>
         [JsonConstructor]
-        protected DetailsRequest() { }
+        protected PaymentsDetailsRequest() { }
         /// <summary>
-        /// Initializes a new instance of the <see cref="DetailsRequest" /> class.
+        /// Initializes a new instance of the <see cref="PaymentsDetailsRequest" /> class.
         /// </summary>
         /// <param name="Details">Use this collection to submit the details that were returned as a result of the &#x60;/payments&#x60; call. (required).</param>
         /// <param name="PaymentData">The &#x60;paymentData&#x60; value that you received in the response to the &#x60;/payments&#x60; call. (required).</param>
-        public DetailsRequest(Dictionary<string, string> Details = default(Dictionary<string, string>), string PaymentData = default(string))
+        public PaymentsDetailsRequest(Dictionary<string, string> Details = default(Dictionary<string, string>), string PaymentData = default(string))
         {
             // to ensure "Details" is required (not null)
             if (Details == null)
             {
-                throw new InvalidDataException("Details is a required property for DetailsRequest and cannot be null");
+                throw new InvalidDataException("Details is a required property for PaymentsDetailsRequest and cannot be null");
             }
             else
             {
@@ -40,7 +40,7 @@ namespace Adyen.EcommLibrary.Model.Checkout
             // to ensure "PaymentData" is required (not null)
             if (PaymentData == null)
             {
-                throw new InvalidDataException("PaymentData is a required property for DetailsRequest and cannot be null");
+                throw new InvalidDataException("PaymentData is a required property for PaymentsDetailsRequest and cannot be null");
             }
             else
             {
@@ -69,7 +69,7 @@ namespace Adyen.EcommLibrary.Model.Checkout
         public override string ToString()
         {
             var sb = new StringBuilder();
-            sb.Append("class DetailsRequest {\n");
+            sb.Append("class PaymentsDetailsRequest {\n");
             sb.Append("  Details: ").Append(Details).Append("\n");
             sb.Append("  PaymentData: ").Append(PaymentData).Append("\n");
             sb.Append("}\n");
@@ -92,15 +92,15 @@ namespace Adyen.EcommLibrary.Model.Checkout
         /// <returns>Boolean</returns>
         public override bool Equals(object input)
         {
-            return this.Equals(input as DetailsRequest);
+            return this.Equals(input as PaymentsDetailsRequest);
         }
 
         /// <summary>
-        /// Returns true if DetailsRequest instances are equal
+        /// Returns true if PaymentsDetailsRequest instances are equal
         /// </summary>
-        /// <param name="input">Instance of DetailsRequest to be compared</param>
+        /// <param name="input">Instance of PaymentsDetailsRequest to be compared</param>
         /// <returns>Boolean</returns>
-        public bool Equals(DetailsRequest input)
+        public bool Equals(PaymentsDetailsRequest input)
         {
             if (input == null)
                 return false;

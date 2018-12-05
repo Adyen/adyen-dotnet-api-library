@@ -120,8 +120,8 @@ namespace Adyen.EcommLibrary.Test
         /// <summary>
         ///Checkout Details request
         /// </summary>
-        /// <returns>Returns a sample DetailsRequest object with test data</returns>
-        protected Model.Checkout.DetailsRequest CreateDetailsRequest()
+        /// <returns>Returns a sample PaymentsDetailsRequest object with test data</returns>
+        protected Model.Checkout.PaymentsDetailsRequest CreateDetailsRequest()
         {
             string paymentData = "Ab02b4c0!BQABAgCJN1wRZuGJmq8dMncmypvknj9s7l5Tj...";
             var details = new Dictionary<string, string>
@@ -129,7 +129,7 @@ namespace Adyen.EcommLibrary.Test
                 { "MD", "sdfsdfsdf..." },
                 { "PaRes", "sdfsdfsdf..." }
             };
-            var paymentsDetailsRequest = new Model.Checkout.DetailsRequest(Details: details, PaymentData: paymentData);
+            var paymentsDetailsRequest = new Model.Checkout.PaymentsDetailsRequest(Details: details, PaymentData: paymentData);
 
             return paymentsDetailsRequest;
         }
@@ -147,20 +147,20 @@ namespace Adyen.EcommLibrary.Test
         /// Checkout paymentsessionRequest
         /// </summary>
         /// <returns></returns>
-        protected Model.Checkout.PaymentSetupRequest CreatePaymentSetupRequest()
+        protected Model.Checkout.PaymentSessionRequest CreatePaymentSetupRequest()
         {
-            return new Model.Checkout.PaymentSetupRequest(MerchantAccount: "MerchantAccount", Reference: "MerchantReference",
+            return new Model.Checkout.PaymentSessionRequest(MerchantAccount: "MerchantAccount", Reference: "MerchantReference",
                  Amount: new Model.Checkout.Amount("EUR", 1200), ReturnUrl: @"https://your-company.com/...", CountryCode: "NL");
         }
 
         /// <summary>
-        /// Checkout paymentVerificationRequest
+        /// Checkout paymentResultRequest
         /// </summary>
         /// <returns></returns>
-        protected Model.Checkout.PaymentVerificationRequest CreatePaymentVerificationRequest()
+        protected Model.Checkout.PaymentResultRequest CreatePaymentVerificationRequest()
         {
             string payload = @"Ab0oCC2/wy96FiEMLvoI8RfayxEmZHQZcw...riRbNBzP3pQscLYBHN/MfZkgfGHdqy7JfQoQbRUmA==";
-            return new Model.Checkout.PaymentVerificationRequest(Payload:payload);
+            return new Model.Checkout.PaymentResultRequest(Payload:payload);
         }
 
         #endregion

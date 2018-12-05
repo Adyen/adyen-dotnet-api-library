@@ -13,10 +13,10 @@ using Adyen.EcommLibrary.Model.ApplicationInformation;
 namespace Adyen.EcommLibrary.Model.Checkout
 {
     /// <summary>
-    /// PaymentSetupRequest
+    /// PaymentSessionRequest
     /// </summary>
     [DataContract]
-    public partial class PaymentSetupRequest :  IEquatable<PaymentSetupRequest>, IValidatableObject
+    public partial class PaymentSessionRequest :  IEquatable<PaymentSessionRequest>, IValidatableObject
     {
         /// <summary>
         /// The platform where a payment transaction takes place. This field is optional for filtering out payment methods that are only available on specific platforms. If this value is not set, then we will try to infer it from the &#x60;sdkVersion&#x60; or &#x60;token&#x60;.  Possible values: * iOS * Android * Web
@@ -145,12 +145,12 @@ namespace Adyen.EcommLibrary.Model.Checkout
         [DataMember(Name="shopperInteraction", EmitDefaultValue=false)]
         public ShopperInteractionEnum? ShopperInteraction { get; set; }
         /// <summary>
-        /// Initializes a new instance of the <see cref="PaymentSetupRequest" /> class.
+        /// Initializes a new instance of the <see cref="PaymentSessionRequest" /> class.
         /// </summary>
         [JsonConstructor]
-        protected PaymentSetupRequest() { }
+        protected PaymentSessionRequest() { }
         /// <summary>
-        /// Initializes a new instance of the <see cref="PaymentSetupRequest" /> class.
+        /// Initializes a new instance of the <see cref="PaymentSessionRequest" /> class.
         /// </summary>
         /// <param name="AccountInfo">Shopper account information for 3D Secure 2.0..</param>
         /// <param name="AdditionalAmount">If you want a [BIN or card verification](https://docs.adyen.com/developers/payment-methods/cards/bin-data-and-card-verification) request to use a non-zero value, assign this value to &#x60;additionalAmount&#x60; (while the amount must be still set to 0 to trigger BIN or card verification). Required to be in the same currency as the &#x60;amount&#x60;. .</param>
@@ -214,12 +214,12 @@ namespace Adyen.EcommLibrary.Model.Checkout
         /// <param name="Token">The token obtained when initializing the SDK.  &gt; This parameter is required for iOS and Android; not required for Web..</param>
         /// <param name="TotalsGroup">The reference value to aggregate sales totals in reporting. When not specified, the store field is used (if available)..</param>
         /// <param name="TrustedShopper">Set to true if the payment should be routed to a trusted MID..</param>
-        public PaymentSetupRequest(AccountInfo AccountInfo = default(AccountInfo), Amount AdditionalAmount = default(Amount), Dictionary<string, string> AdditionalData = default(Dictionary<string, string>), List<string> AllowedPaymentMethods = default(List<string>), Amount Amount = default(Amount), ApplicationInformation.ApplicationInfo ApplicationInfo = default(ApplicationInformation.ApplicationInfo), BankAccount BankAccount = default(BankAccount), Address BillingAddress = default(Address), List<string> BlockedPaymentMethods = default(List<string>), BrowserInfo BrowserInfo = default(BrowserInfo), int? CaptureDelayHours = default(int?), Card Card = default(Card), ChannelEnum? Channel = default(ChannelEnum?), Company Company = default(Company), Configuration Configuration = default(Configuration), string CountryCode = default(string), DateTime? DateOfBirth = default(DateTime?), ForexQuote DccQuote = default(ForexQuote), Address DeliveryAddress = default(Address), DateTime? DeliveryDate = default(DateTime?), string DeviceFingerprint = default(string), bool? EnableOneClick = default(bool?), bool? EnablePayOut = default(bool?), bool? EnableRecurring = default(bool?), EntityTypeEnum? EntityType = default(EntityTypeEnum?), int? FraudOffset = default(int?), bool? Html = default(bool?), Installments Installments = default(Installments), List<LineItem> LineItems = default(List<LineItem>), string Mcc = default(string), string MerchantAccount = default(string), string MerchantOrderReference = default(string), MerchantRiskIndicator MerchantRiskIndicator = default(MerchantRiskIndicator), Dictionary<string, string> Metadata = default(Dictionary<string, string>), ThreeDSecureData MpiData = default(ThreeDSecureData), string Nationality = default(string), string OrderReference = default(string), string Origin = default(string), Recurring Recurring = default(Recurring), RecurringProcessingModelEnum? RecurringProcessingModel = default(RecurringProcessingModelEnum?), string Reference = default(string), string ReturnUrl = default(string), string SdkVersion = default(string), string SelectedBrand = default(string), string SelectedRecurringDetailReference = default(string), string SessionId = default(string), string SessionValidity = default(string), string ShopperEmail = default(string), string ShopperIP = default(string), ShopperInteractionEnum? ShopperInteraction = default(ShopperInteractionEnum?), string ShopperLocale = default(string), Name ShopperName = default(Name), string ShopperReference = default(string), string ShopperStatement = default(string), string SocialSecurityNumber = default(string), List<Split> Splits = default(List<Split>), string Store = default(string), string TelephoneNumber = default(string), ThreeDS2RequestData ThreeDS2RequestData = default(ThreeDS2RequestData), string Token = default(string), string TotalsGroup = default(string), bool? TrustedShopper = default(bool?))
+        public PaymentSessionRequest(AccountInfo AccountInfo = default(AccountInfo), Amount AdditionalAmount = default(Amount), Dictionary<string, string> AdditionalData = default(Dictionary<string, string>), List<string> AllowedPaymentMethods = default(List<string>), Amount Amount = default(Amount), ApplicationInformation.ApplicationInfo ApplicationInfo = default(ApplicationInformation.ApplicationInfo), BankAccount BankAccount = default(BankAccount), Address BillingAddress = default(Address), List<string> BlockedPaymentMethods = default(List<string>), BrowserInfo BrowserInfo = default(BrowserInfo), int? CaptureDelayHours = default(int?), Card Card = default(Card), ChannelEnum? Channel = default(ChannelEnum?), Company Company = default(Company), Configuration Configuration = default(Configuration), string CountryCode = default(string), DateTime? DateOfBirth = default(DateTime?), ForexQuote DccQuote = default(ForexQuote), Address DeliveryAddress = default(Address), DateTime? DeliveryDate = default(DateTime?), string DeviceFingerprint = default(string), bool? EnableOneClick = default(bool?), bool? EnablePayOut = default(bool?), bool? EnableRecurring = default(bool?), EntityTypeEnum? EntityType = default(EntityTypeEnum?), int? FraudOffset = default(int?), bool? Html = default(bool?), Installments Installments = default(Installments), List<LineItem> LineItems = default(List<LineItem>), string Mcc = default(string), string MerchantAccount = default(string), string MerchantOrderReference = default(string), MerchantRiskIndicator MerchantRiskIndicator = default(MerchantRiskIndicator), Dictionary<string, string> Metadata = default(Dictionary<string, string>), ThreeDSecureData MpiData = default(ThreeDSecureData), string Nationality = default(string), string OrderReference = default(string), string Origin = default(string), Recurring Recurring = default(Recurring), RecurringProcessingModelEnum? RecurringProcessingModel = default(RecurringProcessingModelEnum?), string Reference = default(string), string ReturnUrl = default(string), string SdkVersion = default(string), string SelectedBrand = default(string), string SelectedRecurringDetailReference = default(string), string SessionId = default(string), string SessionValidity = default(string), string ShopperEmail = default(string), string ShopperIP = default(string), ShopperInteractionEnum? ShopperInteraction = default(ShopperInteractionEnum?), string ShopperLocale = default(string), Name ShopperName = default(Name), string ShopperReference = default(string), string ShopperStatement = default(string), string SocialSecurityNumber = default(string), List<Split> Splits = default(List<Split>), string Store = default(string), string TelephoneNumber = default(string), ThreeDS2RequestData ThreeDS2RequestData = default(ThreeDS2RequestData), string Token = default(string), string TotalsGroup = default(string), bool? TrustedShopper = default(bool?))
         {
             // to ensure "Amount" is required (not null)
             if (Amount == null)
             {
-                throw new InvalidDataException("Amount is a required property for PaymentSetupRequest and cannot be null");
+                throw new InvalidDataException("Amount is a required property for PaymentSessionRequest and cannot be null");
             }
             else
             {
@@ -228,7 +228,7 @@ namespace Adyen.EcommLibrary.Model.Checkout
             // to ensure "CountryCode" is required (not null)
             if (CountryCode == null)
             {
-                throw new InvalidDataException("CountryCode is a required property for PaymentSetupRequest and cannot be null");
+                throw new InvalidDataException("CountryCode is a required property for PaymentSessionRequest and cannot be null");
             }
             else
             {
@@ -237,7 +237,7 @@ namespace Adyen.EcommLibrary.Model.Checkout
             // to ensure "MerchantAccount" is required (not null)
             if (MerchantAccount == null)
             {
-                throw new InvalidDataException("MerchantAccount is a required property for PaymentSetupRequest and cannot be null");
+                throw new InvalidDataException("MerchantAccount is a required property for PaymentSessionRequest and cannot be null");
             }
             else
             {
@@ -246,7 +246,7 @@ namespace Adyen.EcommLibrary.Model.Checkout
             // to ensure "Reference" is required (not null)
             if (Reference == null)
             {
-                throw new InvalidDataException("Reference is a required property for PaymentSetupRequest and cannot be null");
+                throw new InvalidDataException("Reference is a required property for PaymentSessionRequest and cannot be null");
             }
             else
             {
@@ -255,7 +255,7 @@ namespace Adyen.EcommLibrary.Model.Checkout
             // to ensure "ReturnUrl" is required (not null)
             if (ReturnUrl == null)
             {
-                throw new InvalidDataException("ReturnUrl is a required property for PaymentSetupRequest and cannot be null");
+                throw new InvalidDataException("ReturnUrl is a required property for PaymentSessionRequest and cannot be null");
             }
             else
             {
@@ -737,7 +737,7 @@ namespace Adyen.EcommLibrary.Model.Checkout
         public override string ToString()
         {
             var sb = new StringBuilder();
-            sb.Append("class PaymentSetupRequest {\n");
+            sb.Append("class PaymentSessionRequest {\n");
             sb.Append("  AccountInfo: ").Append(AccountInfo).Append("\n");
             sb.Append("  AdditionalAmount: ").Append(AdditionalAmount).Append("\n");
             sb.Append("  AdditionalData: ").Append(AdditionalData).Append("\n");
@@ -820,15 +820,15 @@ namespace Adyen.EcommLibrary.Model.Checkout
         /// <returns>Boolean</returns>
         public override bool Equals(object input)
         {
-            return this.Equals(input as PaymentSetupRequest);
+            return this.Equals(input as PaymentSessionRequest);
         }
 
         /// <summary>
-        /// Returns true if PaymentSetupRequest instances are equal
+        /// Returns true if PaymentSessionRequest instances are equal
         /// </summary>
-        /// <param name="input">Instance of PaymentSetupRequest to be compared</param>
+        /// <param name="input">Instance of PaymentSessionRequest to be compared</param>
         /// <returns>Boolean</returns>
-        public bool Equals(PaymentSetupRequest input)
+        public bool Equals(PaymentSessionRequest input)
         {
             if (input == null)
                 return false;
