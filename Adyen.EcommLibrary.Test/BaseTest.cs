@@ -147,17 +147,18 @@ namespace Adyen.EcommLibrary.Test
         /// Checkout paymentsessionRequest
         /// </summary>
         /// <returns></returns>
-        protected Model.Checkout.PaymentSessionRequest CreatePaymentSetupRequest()
+        protected Model.Checkout.PaymentSessionRequest CreatePaymentSessionRequest()
         {
             return new Model.Checkout.PaymentSessionRequest(MerchantAccount: "MerchantAccount", Reference: "MerchantReference",
-                 Amount: new Model.Checkout.Amount("EUR", 1200), ReturnUrl: @"https://your-company.com/...", CountryCode: "NL");
+                 Amount: new Model.Checkout.Amount("EUR", 1200), ReturnUrl: @"https://your-company.com/...", CountryCode: "NL",
+                 Channel: Model.Checkout.PaymentSessionRequest.ChannelEnum.Web, SdkVersion: "1.3.0");
         }
 
         /// <summary>
         /// Checkout paymentResultRequest
         /// </summary>
         /// <returns></returns>
-        protected Model.Checkout.PaymentResultRequest CreatePaymentVerificationRequest()
+        protected Model.Checkout.PaymentResultRequest CreatePaymentResultRequest()
         {
             string payload = @"Ab0oCC2/wy96FiEMLvoI8RfayxEmZHQZcw...riRbNBzP3pQscLYBHN/MfZkgfGHdqy7JfQoQbRUmA==";
             return new Model.Checkout.PaymentResultRequest(Payload:payload);

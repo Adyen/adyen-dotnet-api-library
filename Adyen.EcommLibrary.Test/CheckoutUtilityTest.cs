@@ -10,6 +10,10 @@ namespace Adyen.EcommLibrary.Test
     [TestClass]
     public class CheckoutUtilityTest : BaseTest
     {
+        /// <summary>
+        /// Test success flow for
+        ///POST /originKeys
+        /// </summary>
         [TestMethod]
         public void OriginKeysSuccessTest()
         {
