@@ -27,6 +27,7 @@ namespace Adyen.EcommLibrary
             this.SetEnviroment(environment);
         }
 
+        
         public Client(string xapikey, Environment environment)
         {
             Config = new Config
@@ -35,6 +36,16 @@ namespace Adyen.EcommLibrary
                 XApiKey = xapikey
             };
             this.SetEnviroment(environment);
+        }
+
+        public Client(string xapikey, Environment environment, string liveEndpointUrlPrefix)
+        {
+            Config = new Config
+            {
+                Environment = environment,
+                XApiKey = xapikey
+            };
+            this.SetEnviroment(environment,liveEndpointUrlPrefix);
         }
 
         public Client(Config config)
