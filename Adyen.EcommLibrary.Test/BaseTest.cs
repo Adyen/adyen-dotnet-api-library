@@ -25,17 +25,16 @@ namespace Adyen.EcommLibrary.Test
         /// </summary>
         /// <param name="fileName"></param>
         /// <returns></returns>
-        public PaymentResult CreatePaymentResultFromFile(string fileName)
+        protected PaymentResult CreatePaymentResultFromFile(string fileName)
         {
             var client = CreateMockTestClientRequest(fileName);
             var payment = new Payment(client);
             var paymentRequest = MockPaymentData.CreateFullPaymentRequest();
-
             var paymentResult = payment.Authorise(paymentRequest);
             return GetAdditionaData(paymentResult);
         }
 
-        public PaymentResult CreatePaymentApiKeyBasedResultFromFile(string fileName)
+        protected PaymentResult CreatePaymentApiKeyBasedResultFromFile(string fileName)
         {
             var client = CreateMockTestClientApiKeyBasedRequest(fileName);
             var payment = new Payment(client);
@@ -95,7 +94,76 @@ namespace Adyen.EcommLibrary.Test
             return cancelRequest;
         }
 
-      
+
+        #endregion
+
+        #region Checkout
+        /// <summary>
+        /// Check out payment request
+        /// </summary>
+        /// <param name="merchantAccount"></param>
+        /// <returns></returns>
+        public Model.Checkout.PaymentRequest CreatePaymentRequestCheckout()
+        {
+            var amount = new Model.Checkout.Amount("USD", 1000);
+            var paymentsRequest = new Model.Checkout.PaymentRequest
+            {
+                Reference = "Your order number ",
+                Amount = amount,
+                ReturnUrl = @"https://your-company.com/...",
+                MerchantAccount = "MerchantAccount",
+            };
+            paymentsRequest.AddCardData("4111111111111111", "10", "2020", "737", "John Smith");
+            return paymentsRequest;
+        }
+
+        /// <summary>
+        ///Checkout Details request
+        /// </summary>
+        /// <returns>Returns a sample PaymentsDetailsRequest object with test data</returns>
+        protected Model.Checkout.PaymentsDetailsRequest CreateDetailsRequest()
+        {
+            string paymentData = "Ab02b4c0!BQABAgCJN1wRZuGJmq8dMncmypvknj9s7l5Tj...";
+            var details = new Dictionary<string, string>
+            {
+                { "MD", "sdfsdfsdf..." },
+                { "PaRes", "sdfsdfsdf..." }
+            };
+            var paymentsDetailsRequest = new Model.Checkout.PaymentsDetailsRequest(Details: details, PaymentData: paymentData);
+
+            return paymentsDetailsRequest;
+        }
+
+        /// <summary>
+        /// Checkout paymentMethodsRequest
+        /// </summary>
+        /// <returns></returns>
+        protected Model.Checkout.PaymentMethodsRequest CreatePaymentMethodRequest(string merchantAccount)
+        {
+            return new Model.Checkout.PaymentMethodsRequest(MerchantAccount: merchantAccount);
+        }
+
+        /// <summary>
+        /// Checkout paymentsessionRequest
+        /// </summary>
+        /// <returns></returns>
+        protected Model.Checkout.PaymentSessionRequest CreatePaymentSessionRequest()
+        {
+            return new Model.Checkout.PaymentSessionRequest(MerchantAccount: "MerchantAccount", Reference: "MerchantReference",
+                 Amount: new Model.Checkout.Amount("EUR", 1200), ReturnUrl: @"https://your-company.com/...", CountryCode: "NL",
+                 Channel: Model.Checkout.PaymentSessionRequest.ChannelEnum.Web, SdkVersion: "1.3.0");
+        }
+
+        /// <summary>
+        /// Checkout paymentResultRequest
+        /// </summary>
+        /// <returns></returns>
+        protected Model.Checkout.PaymentResultRequest CreatePaymentResultRequest()
+        {
+            string payload = @"Ab0oCC2/wy96FiEMLvoI8RfayxEmZHQZcw...riRbNBzP3pQscLYBHN/MfZkgfGHdqy7JfQoQbRUmA==";
+            return new Model.Checkout.PaymentResultRequest(Payload:payload);
+        }
+
         #endregion
 
         /// <summary>
@@ -119,9 +187,7 @@ namespace Adyen.EcommLibrary.Test
             };
             return clientMock;
         }
-
-
-
+        
         /// <summary>
         /// Creates mock test client 
         /// </summary>
@@ -143,8 +209,7 @@ namespace Adyen.EcommLibrary.Test
             };
             return clientMock;
         }
-
-
+        
         /// <summary>
         /// Creates mock test client 
         /// </summary>

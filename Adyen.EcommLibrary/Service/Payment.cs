@@ -24,6 +24,7 @@ namespace Adyen.EcommLibrary.Service
             try
             {
                 var jsonRequest = Util.JsonOperation.SerializeRequest(paymentRequest);
+
                 var jsonResponse = _authorise.Request(jsonRequest);
                 paymentResult = JsonConvert.DeserializeObject<PaymentResult>(jsonResponse);
             }
@@ -56,7 +57,6 @@ namespace Adyen.EcommLibrary.Service
             try
             {
                 var jsonRequest = JsonConvert.SerializeObject(paymentRequest3D);
-
                 var jsonResponse = _authorise3D.Request(jsonRequest);
                 paymentResult = JsonConvert.DeserializeObject<PaymentResult>(jsonResponse);
             }

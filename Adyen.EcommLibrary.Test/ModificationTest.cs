@@ -1,4 +1,5 @@
-﻿using Adyen.EcommLibrary.Service;
+﻿using Adyen.EcommLibrary.Constants;
+using Adyen.EcommLibrary.Service;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace Adyen.EcommLibrary.Test
@@ -18,8 +19,7 @@ namespace Adyen.EcommLibrary.Test
             var captureResult = modification.Capture(captureRequest);
             Assert.AreEqual(captureResult.Response, Adyen.EcommLibrary.Model.Enum.ResponseEnum.CaptureReceived);
         }
-
-       
+        
         [TestMethod]
         public void TestCaptureError167()
         {
@@ -32,8 +32,7 @@ namespace Adyen.EcommLibrary.Test
             Assert.AreEqual(captureResult.Status, "422");
             Assert.AreEqual(captureResult.ErrorCode, "167");
         }
-
-
+        
         [TestMethod]
         public void TestCancelOrRefundReceivedMocked()
         {
@@ -68,6 +67,46 @@ namespace Adyen.EcommLibrary.Test
             var cancelRequest = base.CreateCancelTestRequest(pspReference: paymentResultPspReference);
             var refundResult = modification.Cancel(cancelRequest);
             Assert.AreEqual(refundResult.Response, Adyen.EcommLibrary.Model.Enum.ResponseEnum.CancelReceived);
+        }
+
+        [TestMethod]
+        public void TestCaptureRequest()
+        {
+            var paymentResultPspReference = MockPaymentData.GetTestPspReferenceMocked();
+            var captureRequest = base.CreateCaptureTestRequest(paymentResultPspReference);
+            Assert.IsNotNull(captureRequest.ApplicationInfo);
+            Assert.AreEqual(captureRequest.ApplicationInfo.AdyenLibrary.Name,ClientConfig.LibName);
+            Assert.AreEqual(captureRequest.ApplicationInfo.AdyenLibrary.Version,ClientConfig.LibVersion);
+        }
+
+        [TestMethod]
+        public void TestCancelOrRefundRequest()
+        {
+            var paymentResultPspReference = MockPaymentData.GetTestPspReferenceMocked();
+            var cancelOrRefundRequest = base.CreateCancelOrRefundTestRequest(pspReference: paymentResultPspReference);
+            Assert.IsNotNull(cancelOrRefundRequest.ApplicationInfo);
+            Assert.AreEqual(cancelOrRefundRequest.ApplicationInfo.AdyenLibrary.Name,ClientConfig.LibName);
+            Assert.AreEqual(cancelOrRefundRequest.ApplicationInfo.AdyenLibrary.Version,ClientConfig.LibVersion);
+        }
+        
+        [TestMethod]
+        public void TestRefundRequest()
+        {
+            var paymentResultPspReference = MockPaymentData.GetTestPspReferenceMocked();
+            var refundRequest = base.CreateRefundTestRequest(pspReference: paymentResultPspReference);          
+            Assert.IsNotNull(refundRequest.ApplicationInfo);
+            Assert.AreEqual(refundRequest.ApplicationInfo.AdyenLibrary.Name,ClientConfig.LibName);
+            Assert.AreEqual(refundRequest.ApplicationInfo.AdyenLibrary.Version,ClientConfig.LibVersion);
+        }
+
+        [TestMethod]
+        public void TestCancelRequest()
+        {
+            var paymentResultPspReference = MockPaymentData.GetTestPspReferenceMocked();
+            var cancelRequest = base.CreateCancelTestRequest(pspReference: paymentResultPspReference);
+            Assert.IsNotNull(cancelRequest.ApplicationInfo);
+            Assert.AreEqual(cancelRequest.ApplicationInfo.AdyenLibrary.Name,ClientConfig.LibName);
+            Assert.AreEqual(cancelRequest.ApplicationInfo.AdyenLibrary.Version,ClientConfig.LibVersion);
         }
     }
 }

@@ -7,14 +7,14 @@ The Adyen API Library for .net framework enables you to work with Adyen APIs, Ho
 
 ## Requirements
 
-* It supports .net 4.5 and .net standard 2.0
+* It supports .net standard 2.0
 
 ## Installation
 
 * Simply download and restore nuget packages  
  https://www.nuget.org/packages/Adyen.EcommLibrary/
 * or install it from package manager
- PM> Install-Package Adyen.EcommLibrary -Version 1.1.2
+ PM> Install-Package Adyen.EcommLibrary -Version 1.1.3
 
 ## Documentation
 https://adyen.github.io/adyen-dotnet-api-library/
