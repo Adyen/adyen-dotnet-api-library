@@ -17,7 +17,7 @@ namespace Adyen.EcommLibrary.HttpClient
 
         public string Request(string endpoint, string json, Config config, bool isApiKeyRequired)
         {
-            string responseText;
+            string responseText=null;
             //Set security protocol. Only TLS1.2
             ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12;
 
@@ -30,12 +30,28 @@ namespace Adyen.EcommLibrary.HttpClient
                 streamWriter.Close();
             }
 
-            using (var response = (HttpWebResponse)httpWebRequest.GetResponse())
+            try
             {
-                using (var reader = new StreamReader(response.GetResponseStream(), _encoding))
+                using (var response = (HttpWebResponse)httpWebRequest.GetResponse())
                 {
-                    responseText = reader.ReadToEnd();
+                    using (var reader = new StreamReader(response.GetResponseStream(), _encoding))
+                    {
+                        responseText = reader.ReadToEnd();
+                    }
+                    
                 }
+            }
+            catch (WebException e)
+            {
+                var response = (HttpWebResponse)e.Response;
+                var httpClientException = new HttpClientException((int)response.StatusCode, "HTTP Exception",
+                             response.Headers, response.StatusDescription);
+                throw httpClientException;
+            }
+            catch (Exception)
+            {
+
+                throw;
             }
 
             return responseText;
