@@ -1,8 +1,5 @@
-﻿using System;
-using System.Linq;
-using Adyen.EcommLibrary.Model.Nexo;
+﻿using Adyen.EcommLibrary.Model.Nexo;
 using Adyen.EcommLibrary.Security;
-using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 
 namespace Adyen.EcommLibrary.CloudApiSerialization
@@ -17,7 +14,7 @@ namespace Adyen.EcommLibrary.CloudApiSerialization
             _messageHeaderSerializer = new MessageHeaderSerializer();
             _messagePayloadSerializerFactory = new MessagePayloadSerializerFactory();
         }
-        public SaleToPoiResponse Deserialize(string saleToPoiMessageDto)
+        public SaleToPOIResponse Deserialize(string saleToPoiMessageDto)
         {
             //todo temporary solution until we have an improved response 
             if (string.Equals("ok", saleToPoiMessageDto))
@@ -32,7 +29,7 @@ namespace Adyen.EcommLibrary.CloudApiSerialization
             //Message payload
             object messagePayload = DeserializeMessagePayload(messageHeader, saleToPoiMessageWithoutRootJToken);
 
-            var deserializedOutputMessage = new SaleToPoiResponse
+            var deserializedOutputMessage = new SaleToPOIResponse
             {
                 MessageHeader = messageHeader,
                 MessagePayload = messagePayload

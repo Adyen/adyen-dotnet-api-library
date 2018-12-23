@@ -44,7 +44,7 @@ namespace Adyen.EcommLibrary.CloudApiSerialization.Converter
                 return SaleToPoiRequestSecuredForSerialization;
             }
 
-            if (type == typeof(SaleToPoiResponse) || type == typeof(SaleToPoiResponseSecured))
+            if (type == typeof(SaleToPOIResponse) || type == typeof(SaleToPoiResponseSecured))
             {
                 return SaleToPoiResponseSecuredForSerialization;
             }

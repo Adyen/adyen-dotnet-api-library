@@ -9,7 +9,6 @@ namespace Adyen.EcommLibrary.CloudApiSerialization
         internal IMessagePayloadSerializer<IMessagePayload> CreateSerializer(string messageCategory, string messageType)
         {
             var messagePayoadFullName = CreateMessagePayloadFullName(messageCategory, messageType);
-            
             var messagePayloadSerializer = TypeHelper.CreateGenericTypeFromStringFullNamespace(typeof(MessagePayloadSerializer<>), messagePayoadFullName);
 
             return (IMessagePayloadSerializer<IMessagePayload>)Activator.CreateInstance(messagePayloadSerializer);
