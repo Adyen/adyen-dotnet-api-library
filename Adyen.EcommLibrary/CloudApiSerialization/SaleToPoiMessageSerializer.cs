@@ -1,9 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
+using System.Linq;
 using Adyen.EcommLibrary.Model.Nexo;
 using Adyen.EcommLibrary.Security;
+using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
-using Adyen.EcommLibrary.Model.Nexo.Message;
 
 namespace Adyen.EcommLibrary.CloudApiSerialization
 {
@@ -17,34 +17,35 @@ namespace Adyen.EcommLibrary.CloudApiSerialization
             _messageHeaderSerializer = new MessageHeaderSerializer();
             _messagePayloadSerializerFactory = new MessagePayloadSerializerFactory();
         }
-
-        public SaleToPOIResponse Deserialize(string saleToPoiMessageDto)
+        public SaleToPoiResponse Deserialize(string saleToPoiMessageDto)
         {
-            try
+            //todo temporary solution until we have an improved response 
+            if (string.Equals("ok", saleToPoiMessageDto))
             {
-                //todo temporary solution until we have an improved response 
-                if (string.Equals("ok", saleToPoiMessageDto))
-                {
-                    return null;
-                }
-                var saleToPoiMessageJObject = JObject.Parse(saleToPoiMessageDto);
-                var saleToPoiMessageRootJToken = saleToPoiMessageJObject.First;
-                var saleToPoiMessageWithoutRootJToken = saleToPoiMessageRootJToken.First;
-                var messageHeader = DeserializeMessageHeader(saleToPoiMessageWithoutRootJToken);
-
-                var messagePayload = DeserializeMessagePayload(messageHeader, saleToPoiMessageWithoutRootJToken);
-                var deserializedOutputMessage = new SaleToPOIResponse
-                {
-                    MessageHeader = messageHeader,
-                    MessagePayload = messagePayload
-                };
-
-                return deserializedOutputMessage;
+                return null;
             }
-            catch (Exception exception)
+            var saleToPoiMessageJObject = JObject.Parse(saleToPoiMessageDto);
+            var saleToPoiMessageRootJToken = saleToPoiMessageJObject.First;
+            var saleToPoiMessageWithoutRootJToken = saleToPoiMessageRootJToken.First;
+            //Messageheader
+            var messageHeader = DeserializeMessageHeader(saleToPoiMessageWithoutRootJToken);
+            //Message payload
+            object messagePayload = DeserializeMessagePayload(messageHeader, saleToPoiMessageWithoutRootJToken);
+
+            var deserializedOutputMessage = new SaleToPoiResponse
             {
-                throw exception;
+                MessageHeader = messageHeader,
+                MessagePayload = messagePayload
+            };
+
+            //Check and deserialize RepeatedMessageResponse
+            if (saleToPoiMessageDto.Contains("RepeatedMessageResponse") && saleToPoiMessageDto.Contains("RepeatedResponseMessageBody"))
+            {
+                var response = GetDeserializedRepeatedResponseMessagePayload(saleToPoiMessageWithoutRootJToken);
+                var deserializedOutput = (TransactionStatusResponse)deserializedOutputMessage.MessagePayload;
+                deserializedOutput.RepeatedMessageResponse.RepeatedResponseMessageBody.MessagePayload = response;
             }
+            return deserializedOutputMessage;
         }
 
         private object DeserializeMessagePayload(MessageHeader messageHeader, JToken saleToPoiMessageWithoutRootJToken)
@@ -57,10 +58,19 @@ namespace Adyen.EcommLibrary.CloudApiSerialization
             return messagePayloadSerializer.Deserialize(messagePayloadJson);
         }
 
+        public string Serialize(SaleToPOIMessage saleToPoiMessage)
+        {
+            return Converter.JSonConvertSerializerWrapper.Serialize(saleToPoiMessage);
+        }
+
+        public string Serialize(SaleToPoiMessageSecured saleToPoiMessage)
+        {
+            return Converter.JSonConvertSerializerWrapper.Serialize(saleToPoiMessage);
+        }
+
         private string GetMessagePayloadJSon(JToken saleToPoiMessageWithoutRootJToken, string messageCategory, string messageType)
         {
             var messagePayloadTypedJson = saleToPoiMessageWithoutRootJToken.SelectToken(messageCategory + messageType.ToString());
-
             if (messagePayloadTypedJson == null)
             {
                 return saleToPoiMessageWithoutRootJToken.SelectToken("MessagePayload").ToString();
@@ -70,34 +80,40 @@ namespace Adyen.EcommLibrary.CloudApiSerialization
         private MessageHeader DeserializeMessageHeader(JToken saleToPoiMessageWithoutRootJObject)
         {
             var messageHeaderJson = saleToPoiMessageWithoutRootJObject.SelectToken("MessageHeader").ToString();
-            var messageHeader = _messageHeaderSerializer.Deserialize(messageHeaderJson);
-
-            return messageHeader;
+            return _messageHeaderSerializer.Deserialize(messageHeaderJson);
         }
 
-        public string Serialize(SaleToPOIMessage saleToPoiMessage)
+        private object GetDeserializedRepeatedResponseMessagePayload(JToken saletoPoiMessageJtoken)
         {
-            try
-            {
-                return Converter.JSonConvertSerializerWrapper.Serialize(saleToPoiMessage);
-            }
-            catch (Exception e)
-            {
-                throw e;
-            }
-        }
+            var repeatedMessageResponse = saletoPoiMessageJtoken.ToString();
+            var repeatedMessage = saletoPoiMessageJtoken["TransactionStatusResponse"]["RepeatedMessageResponse"]["RepeatedResponseMessageBody"].ToString();
+            var objMessage = JObject.Parse(repeatedMessage);
 
-        public string Serialize(SaleToPoiMessageSecured saleToPoiMessage)
-        {
-            try
+            if (repeatedMessageResponse.Contains("CardAcquisitionResponse"))
             {
-                return Converter.JSonConvertSerializerWrapper.Serialize(saleToPoiMessage);
+                return objMessage[repeatedMessageResponse].ToObject<CardAcquisitionResponse>();
             }
-            catch (Exception e)
+            if (repeatedMessageResponse.Contains("CardReaderAPDUResponse"))
             {
-                throw e;
+                return objMessage[repeatedMessageResponse].ToObject<CardReaderAPDUResponse>();
             }
+            if (repeatedMessageResponse.Contains("LoyaltyResponse"))
+            {
+                return objMessage[repeatedMessageResponse].ToObject<LoyaltyResponse>();
+            }
+            if (repeatedMessageResponse.Contains("PaymentResponse"))
+            {
+                return objMessage["PaymentResponse"].ToObject<PaymentResponse>();
+            }
+            if (repeatedMessageResponse.Contains("ReversalResponse"))
+            {
+                return objMessage[repeatedMessageResponse].ToObject<ReversalResponse>();
+            }
+            if (repeatedMessageResponse.Contains("StoredValueResponse"))
+            {
+                return objMessage[repeatedMessageResponse].ToObject<StoredValueResponse>();
+            }
+            return null;
         }
-
     }
 }

@@ -29,7 +29,7 @@ namespace Adyen.EcommLibrary.Service
         /// <param name="messageHeader"></param>
         /// <param name="encryptionCredentialDetails"></param>
         /// <returns></returns>
-        public SaleToPOIResponse TerminalApiLocal(SaleToPOIMessage saleToPoiRequest, EncryptionCredentialDetails encryptionCredentialDetails)
+        public SaleToPoiResponse TerminalApiLocal(SaleToPOIMessage saleToPoiRequest, EncryptionCredentialDetails encryptionCredentialDetails)
         {
             var saleToPoiRequestMessageSerialized = _saleToPoiMessageSerializer.Serialize(saleToPoiRequest);
             this.Client.LogLine("Request: \n" + saleToPoiRequestMessageSerialized);
