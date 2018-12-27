@@ -59,7 +59,7 @@ namespace Adyen.EcommLibrary.Test
             {
                 var transactionStatusResponse = (TransactionStatusResponse)saleToPoiResponse.MessagePayload;
                 var messagePayload = transactionStatusResponse.RepeatedMessageResponse.RepeatedResponseMessageBody.MessagePayload;
-                var messagePayloadResponse = DynamicCast(messagePayload, messagePayload.GetType());
+                var messagePayloadResponse = (dynamic)messagePayload;
 
                 Assert.IsNotNull(saleToPoiResponse);
                 Assert.AreEqual(saleToPoiResponse.MessageHeader.ServiceID, "35543420");
@@ -73,11 +73,6 @@ namespace Adyen.EcommLibrary.Test
             {
                 Assert.Fail();
             }
-        }
-
-        private static dynamic DynamicCast(dynamic obj, Type castTo)
-        {
-            return Convert.ChangeType(obj, castTo);
         }
     }
 }
