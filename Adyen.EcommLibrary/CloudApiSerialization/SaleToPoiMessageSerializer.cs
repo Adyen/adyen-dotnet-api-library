@@ -35,12 +35,13 @@ namespace Adyen.EcommLibrary.CloudApiSerialization
                 MessagePayload = messagePayload
             };
 
-            //Check and deserialize RepeatedMessageResponse
-            if (saleToPoiMessageDto.Contains("RepeatedMessageResponse") && saleToPoiMessageDto.Contains("RepeatedResponseMessageBody"))
+            //Check and deserialize RepeatedMessageResponse. RepeatedMessageResponse is optional
+            if (saleToPoiMessageDto.Contains("TransactionStatusResponse") && saleToPoiMessageDto.Contains("RepeatedMessageResponse") && saleToPoiMessageDto.Contains("RepeatedResponseMessageBody"))
             {
                 var response = GetDeserializedRepeatedResponseMessagePayload(saleToPoiMessageWithoutRootJToken);
-                var deserializedOutput = (TransactionStatusResponse)deserializedOutputMessage.MessagePayload;
+                TransactionStatusResponse deserializedOutput = (TransactionStatusResponse)deserializedOutputMessage.MessagePayload;
                 deserializedOutput.RepeatedMessageResponse.RepeatedResponseMessageBody.MessagePayload = response;
+                deserializedOutputMessage.MessagePayload = deserializedOutput;
             }
             return deserializedOutputMessage;
         }

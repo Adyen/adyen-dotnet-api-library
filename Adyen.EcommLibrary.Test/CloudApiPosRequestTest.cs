@@ -58,19 +58,26 @@ namespace Adyen.EcommLibrary.Test
             try
             {
                 var transactionStatusResponse = (TransactionStatusResponse)saleToPoiResponse.MessagePayload;
-                var paymentResponse = (PaymentResponse)transactionStatusResponse.RepeatedMessageResponse.RepeatedResponseMessageBody.MessagePayload;
+                var messagePayload = transactionStatusResponse.RepeatedMessageResponse.RepeatedResponseMessageBody.MessagePayload;
+                var messagePayloadResponse = DynamicCast(messagePayload, messagePayload.GetType());
 
                 Assert.IsNotNull(saleToPoiResponse);
                 Assert.AreEqual(saleToPoiResponse.MessageHeader.ServiceID, "35543420");
                 Assert.AreEqual(saleToPoiResponse.MessageHeader.SaleID, "TOSIM_1_1_6");
                 Assert.AreEqual(saleToPoiResponse.MessageHeader.POIID, "P400Plus-12345678");
                 Assert.AreEqual(transactionStatusResponse.Response.Result, "Success");
-                Assert.AreEqual(paymentResponse.PaymentResult.PaymentInstrumentData.CardData.EntryMode[0], "ICC");
+                Assert.AreEqual(messagePayloadResponse.PaymentResult.PaymentInstrumentData.CardData.EntryMode[0], "ICC");
+                Assert.AreEqual(messagePayloadResponse.POIData.POIReconciliationID, "1000");
             }
             catch (Exception)
             {
                 Assert.Fail();
             }
+        }
+
+        private static dynamic DynamicCast(dynamic obj, Type castTo)
+        {
+            return Convert.ChangeType(obj, castTo);
         }
     }
 }
