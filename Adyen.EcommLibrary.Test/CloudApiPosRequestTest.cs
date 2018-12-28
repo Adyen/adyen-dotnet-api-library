@@ -58,9 +58,8 @@ namespace Adyen.EcommLibrary.Test
             try
             {
                 var transactionStatusResponse = (TransactionStatusResponse)saleToPoiResponse.MessagePayload;
-                var messagePayload = transactionStatusResponse.RepeatedMessageResponse.RepeatedResponseMessageBody.MessagePayload;
-                var messagePayloadResponse = (dynamic)messagePayload;
-
+                var messagePayloadResponse = transactionStatusResponse.RepeatedMessageResponse.RepeatedResponseMessageBody.MessagePayload;
+               
                 Assert.IsNotNull(saleToPoiResponse);
                 Assert.AreEqual(saleToPoiResponse.MessageHeader.ServiceID, "35543420");
                 Assert.AreEqual(saleToPoiResponse.MessageHeader.SaleID, "TOSIM_1_1_6");

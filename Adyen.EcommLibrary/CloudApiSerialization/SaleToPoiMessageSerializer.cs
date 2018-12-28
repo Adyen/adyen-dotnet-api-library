@@ -86,7 +86,7 @@ namespace Adyen.EcommLibrary.CloudApiSerialization
             var repeatedMessageResponse = saletoPoiMessageJtoken.ToString();
             var repeatedMessage = saletoPoiMessageJtoken["TransactionStatusResponse"]["RepeatedMessageResponse"]["RepeatedResponseMessageBody"].ToString();
             var objMessage = JObject.Parse(repeatedMessage);
-
+         
             if (repeatedMessageResponse.Contains("CardAcquisitionResponse"))
             {
                 return objMessage[repeatedMessageResponse].ToObject<CardAcquisitionResponse>();
