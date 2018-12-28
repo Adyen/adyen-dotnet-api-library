@@ -1,0 +1,91 @@
+{
+   "SaleToPOIResponse" : {
+      "MessageHeader" : {
+         "MessageCategory" : "TransactionStatus",
+         "ServiceID" : "35543420",
+         "MessageType" : "Response",
+         "SaleID" : "TOSIM_1_1_6",
+         "POIID" : "P400Plus-12345678",
+         "ProtocolVersion" : "3.0",
+         "MessageClass" : "Service"
+      },
+      "TransactionStatusResponse" : {
+         "Response" : {
+            "Result" : "Success"
+         },
+         "MessageReference" : {
+            "SaleID" : "TOSIM_1_100_6",
+            "ServiceID" : "05140342",
+            "MessageCategory" : "Payment"
+         },
+        
+         "RepeatedMessageResponse" : {
+            "RepeatedResponseMessageBody" : {
+               "PaymentResponse" : {
+                  "PaymentResult" : {
+                     "PaymentInstrumentData" : {
+                        "PaymentInstrumentType" : "Card",
+                        "CardData" : {
+                           "EntryMode" : [
+                              "ICC"
+                           ],
+                           "PaymentBrand" : "mc",
+                           "SensitiveCardData" : {
+                              "ExpiryDate" : "0228",
+                              "CardSeqNumb" : "53"
+                           },
+                           "CardCountryCode" : "056",
+                           "MaskedPan" : "679999 **** 9990"
+                        }
+                     },
+                     "AuthenticationMethod" : [
+                        "SignatureCapture"
+                     ],
+                     "PaymentAcquirerData" : {
+                        "AcquirerPOIID" : "P400Plus-275102737",
+                        "MerchantID" : "EG_Adyen_test",
+                        "AcquirerTransactionID" : {
+                           "TimeStamp" : "2018-12-05T13:03:47.000Z",
+                           "TransactionID" : "8815440150351036"
+                        }
+                     },
+                     "OnlineFlag" : true,
+                     "PaymentType" : "Normal",
+                     "AmountsResp" : {
+                        "AuthorizedAmount" : 79,
+                        "Currency" : "EUR"
+                     },
+                     "MerchantOverrideFlag" : false
+                  },
+                  "SaleData" : {
+                     "SaleTransactionID" : {
+                        "TransactionID" : "0000060001078117",
+                        "TimeStamp" : "2018-12-05T14:03:42.000Z"
+                     }
+                  },
+                  "Response" : {
+                     "Result" : "Success",
+                     "AdditionalResponse" : "tid=75102737&AID=A000000004306001&transactionType=GOODS_SERVICES&backendGiftcardIndicator=false&giftcardIndicator=false&pspReference=8815440150351036&cardHolderName=TC03_MS_Approved&paymentMethodVariant=maestro&applicationPreferredName=ms%20en&offline=false&tc=9011DDEE7EA21173&mid=1000&cardHolderVerificationMethodResults=1E0000"
+                  },
+                  "POIData" : {
+                     "POITransactionID" : {
+                        "TimeStamp" : "2018-12-05T13:03:47.000Z",
+                        "TransactionID" : "57eT001544015027011.8815440150351036"
+                     },
+                     "POIReconciliationID" : "1000"
+                  }
+               }
+            },
+            "MessageHeader" : {
+               "POIID" : "P400Plus-12345678",
+               "ProtocolVersion" : "3.0",
+               "MessageClass" : "Service",
+               "MessageCategory" : "Payment",
+                "ServiceID" : "35543420",
+               "MessageType" : "Response",
+               "SaleID" : "TOSIM_1_1_6"
+            }
+         }
+      }
+   }
+}
