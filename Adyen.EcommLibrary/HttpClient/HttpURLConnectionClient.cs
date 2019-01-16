@@ -117,9 +117,8 @@ namespace Adyen.EcommLibrary.HttpClient
             httpWebRequest.ContentType = "application/json";
             httpWebRequest.Headers.Add("Accept-Charset", "UTF-8");
             httpWebRequest.Headers.Add("Cache-Control", "no-cache");
-            httpWebRequest.Headers.Add("Expect", "100-continue");
             httpWebRequest.UserAgent = $"{config.ApplicationName} {ClientConfig.UserAgentSuffix}{ClientConfig.LibVersion}";
-
+         
             if (config.SkipCertValidation)
             {
                 httpWebRequest.ServerCertificateValidationCallback = delegate { return true; };
