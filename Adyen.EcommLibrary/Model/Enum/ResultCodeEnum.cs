@@ -55,6 +55,31 @@ namespace Adyen.EcommLibrary.Model.Enum
         /// Enum RedirectShopper for "RedirectShopper"
         /// </summary>
         [EnumMember(Value = "RedirectShopper")]
-        RedirectShopper
+        RedirectShopper,
+
+        /// <summary>
+        /// Enum ThreeDS2Method for "ThreeDS2Method"
+        /// </summary>
+        [EnumMember(Value = "ThreeDS2Method")]
+        ThreeDS2Method,
+
+        /// <summary>
+        /// Enum ThreeDS2Challenge for "ThreeDS2Challenge"
+        /// </summary>
+        [EnumMember(Value = "ThreeDS2Challenge")]
+        ThreeDS2Challenge,
+
+        /// <summary>
+        /// Enum IdentifyShopper for "IdentifyShopper"
+        /// </summary>
+
+        [EnumMember(Value = "IdentifyShopper")]
+        IdentifyShopper,
+
+        /// <summary>
+        /// Enum ChallengeShopper for value: ChallengeShopper
+        /// </summary>
+        [EnumMember(Value = "ChallengeShopper")]
+        ChallengeShopper
     }
 }

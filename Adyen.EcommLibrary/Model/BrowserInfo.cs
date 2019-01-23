@@ -1,6 +1,7 @@
 using System;
 using System.Text;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Runtime.Serialization;
 using Newtonsoft.Json;
 using System.ComponentModel.DataAnnotations;
@@ -39,16 +40,66 @@ namespace Adyen.EcommLibrary.Model
         public string UserAgent { get; set; }
 
         /// <summary>
+        /// The language of the shopper&#39;s browser.
+        /// </summary>
+        /// <value>The language of the shopper&#39;s browser.</value>
+        [DataMember(Name = "language", EmitDefaultValue = false)]
+        public string Language { get; set; }
+
+        /// <summary>
+        /// The color depth of the shopper&#39;s browser.
+        /// </summary>
+        /// <value>The Color Depth value of the shopper&#39;s browser.</value>
+        [DataMember(Name = "colorDepth", EmitDefaultValue = false)]
+        public int ColorDepth { get; set; }
+
+        /// <summary>
+        /// The screen height of the shopper&#39;s browser.
+        /// </summary>
+        /// <value>The screen height of the shopper&#39;s browser.</value>
+        [DataMember(Name = "screenHeight", EmitDefaultValue = false)]
+        public int ScreenHeight { get; set; }
+
+        /// <summary>
+        /// The screen width of the shopper&#39;s browser.
+        /// </summary>
+        /// <value>The screen width of the shopper&#39;s browser.</value>
+        [DataMember(Name = "screenWidth", EmitDefaultValue = false)]
+        public int ScreenWidth { get; set; }
+
+        /// <summary>
+        /// The timezone offset of the shopper&#39;s browser.
+        /// </summary>
+        /// <value>The timezone offest of the shopper&#39;s browser.</value>
+        [DataMember(Name = "timeZoneOffset", EmitDefaultValue = false)]
+        [DefaultValue(0)]
+        [JsonProperty(DefaultValueHandling = DefaultValueHandling.Populate)]
+        public int TimeZoneOffset { get; set; }
+
+        /// <summary>
+        /// The java enabled value of the shopper&#39;s browser.
+        /// </summary>
+        /// <value>The java enabled value of the shopper&#39;s browser.</value>
+        [DataMember(Name = "javaEnabled", EmitDefaultValue = false)]
+        public bool JavaEnabled { get; set; }
+
+        /// <summary>
         /// Returns the string presentation of the object
         /// </summary>
         /// <returns>String presentation of the object</returns>
         public override string ToString()
         {
             var sb = new StringBuilder();
-            sb.Append("class BrowserInfo {\n");
-            sb.Append("  AcceptHeader: ").Append(AcceptHeader).Append("\n");
-            sb.Append("  UserAgent: ").Append(UserAgent).Append("\n");
-            sb.Append("}\n");
+            sb.AppendLine($"class {nameof(BrowserInfo)} {{");
+            sb.Append($"  {nameof(AcceptHeader)}: ").AppendLine(AcceptHeader);
+            sb.Append($"  {nameof(UserAgent)}: ").AppendLine(UserAgent);
+            sb.Append($"  {nameof(Language)}: ").AppendLine(Language);
+            sb.Append($"  {nameof(ColorDepth)}: ").AppendLine($"{ColorDepth}");
+            sb.Append($"  {nameof(ScreenHeight)}: ").AppendLine($"{ScreenHeight}");
+            sb.Append($"  {nameof(ScreenWidth)}: ").AppendLine($"{ScreenWidth}");
+            sb.Append($"  {nameof(TimeZoneOffset)}: ").AppendLine($"{TimeZoneOffset}");
+            sb.Append($"  {nameof(JavaEnabled)}: ").AppendLine($"{JavaEnabled}");
+            sb.AppendLine("}");
             return sb.ToString();
         }
   
@@ -93,6 +144,29 @@ namespace Adyen.EcommLibrary.Model
                     this.UserAgent == other.UserAgent ||
                     this.UserAgent != null &&
                     this.UserAgent.Equals(other.UserAgent)
+                ) &&
+                (
+                    this.Language == other.Language ||
+                    this.Language != null &&
+                    this.Language.Equals(other.Language)
+                )
+                &&
+                (
+                    this.ColorDepth == other.ColorDepth
+                )
+                &&
+                (
+                    this.ScreenHeight == other.ScreenHeight
+                )
+                &&
+                (
+                    this.ScreenWidth == other.ScreenWidth
+                ) &&
+                (
+                    this.TimeZoneOffset == other.TimeZoneOffset
+                ) &&
+                (
+                    this.JavaEnabled == other.JavaEnabled
                 );
         }
 
@@ -106,13 +180,26 @@ namespace Adyen.EcommLibrary.Model
             unchecked // Overflow is fine, just wrap
             {
                 int hash = 41;
-                // Suitable nullity checks etc, of course :)
-                if (this.AcceptHeader != null)
-                    hash = hash * 59 + this.AcceptHeader.GetHashCode();
-                if (this.UserAgent != null)
-                    hash = hash * 59 + this.UserAgent.GetHashCode();
+
+                hash = IncrementHash(hash, this.AcceptHeader);
+                hash = IncrementHash(hash, this.UserAgent);
+                hash = IncrementHash(hash, this.Language);
+                hash = IncrementHash(hash, this.ColorDepth);
+                hash = IncrementHash(hash, this.ScreenHeight);
+                hash = IncrementHash(hash, this.ScreenWidth);
+                hash = IncrementHash(hash, this.TimeZoneOffset);
+                hash = IncrementHash(hash, this.JavaEnabled);
+
                 return hash;
             }
+        }
+
+        private static int IncrementHash(int currentHash, object property)
+        {
+            if (property == null)
+                return currentHash;
+
+            return currentHash * 59 + property.GetHashCode();
         }
 
         /// <summary>

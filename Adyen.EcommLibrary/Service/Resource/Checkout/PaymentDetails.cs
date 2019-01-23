@@ -8,7 +8,7 @@ namespace Adyen.EcommLibrary.Service.Resource.Checkout
     public class PaymentDetails : ServiceResource
     {
         public PaymentDetails(AbstractService abstractService) 
-            : base(abstractService, abstractService.Client.Config.CheckoutEndpoint + "/" + ClientConfig.CheckoutApiVersion + "/payments/details", new List<string> {"paymentData", "details" })
+            : base(abstractService, abstractService.Client.Config.CheckoutEndpoint + "/" + ClientConfig.ApiVersion + "/payments/details", new List<string> {"paymentData", "details" })
         {
         }
     }

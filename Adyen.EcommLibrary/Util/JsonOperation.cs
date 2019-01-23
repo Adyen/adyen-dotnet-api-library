@@ -30,7 +30,8 @@ namespace Adyen.EcommLibrary.Util
             return JsonConvert.SerializeObject(request, Newtonsoft.Json.Formatting.None,
                 new JsonSerializerSettings
                 {
-                    NullValueHandling = NullValueHandling.Ignore
+                    NullValueHandling = NullValueHandling.Ignore,
+                    DefaultValueHandling = DefaultValueHandling.Include
                 });
         }
     }

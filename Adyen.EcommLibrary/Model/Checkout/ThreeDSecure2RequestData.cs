@@ -14,7 +14,7 @@ namespace Adyen.EcommLibrary.Model.Checkout
     /// ThreeDS2RequestData
     /// </summary>
     [DataContract]
-    public partial class ThreeDS2RequestData :  IEquatable<ThreeDS2RequestData>, IValidatableObject
+    public partial class ThreeDSecure2RequestData :  IEquatable<ThreeDSecure2RequestData>, IValidatableObject
     {
         /// <summary>
         /// Possibility to specify a preference for receiving a challenge from the issuer.
@@ -50,12 +50,12 @@ namespace Adyen.EcommLibrary.Model.Checkout
         [DataMember(Name="challengeIndicator", EmitDefaultValue=false)]
         public ChallengeIndicatorEnum? ChallengeIndicator { get; set; }
         /// <summary>
-        /// Initializes a new instance of the <see cref="ThreeDS2RequestData" /> class.
+        /// Initializes a new instance of the <see cref="ThreeDSecure2RequestData" /> class.
         /// </summary>
         [JsonConstructor]
-        protected ThreeDS2RequestData() { }
+        protected ThreeDSecure2RequestData() { }
         /// <summary>
-        /// Initializes a new instance of the <see cref="ThreeDS2RequestData" /> class.
+        /// Initializes a new instance of the <see cref="ThreeDSecure2RequestData" /> class.
         /// </summary>
         /// <param name="AuthenticationOnly">If set to true, you will only do the 3D Secure 2.0 authentication, not the payment authorization..</param>
         /// <param name="ChallengeIndicator">Possibility to specify a preference for receiving a challenge from the issuer..</param>
@@ -70,7 +70,7 @@ namespace Adyen.EcommLibrary.Model.Checkout
         /// <param name="SdkTransID">The &#x60;sdkTransID&#x60; value as received from the 3DS 2.0 SDK. Only for &#x60;deviceChannel&#x60; set to **app**..</param>
         /// <param name="ThreeDSCompInd">Completion indicator for the &#x60;threeDSMethodUrl&#x60; fingerprinting..</param>
         /// <param name="ThreeDSRequestorURL">URL of the (customer service) website that will be shown to the shopper in case of technical errors during the 3DS2.0 process..</param>
-        public ThreeDS2RequestData(bool? AuthenticationOnly = default(bool?), ChallengeIndicatorEnum? ChallengeIndicator = default(ChallengeIndicatorEnum?), string DeviceChannel = default(string), DeviceRenderOptions DeviceRenderOptions = default(DeviceRenderOptions), string NotificationURL = default(string), string SdkAppID = default(string), string SdkEncData = default(string), SDKEphemPubKey SdkEphemPubKey = default(SDKEphemPubKey), int? SdkMaxTimeout = default(int?), string SdkReferenceNumber = default(string), string SdkTransID = default(string), string ThreeDSCompInd = default(string), string ThreeDSRequestorURL = default(string))
+        public ThreeDSecure2RequestData(bool? AuthenticationOnly = default(bool?), ChallengeIndicatorEnum? ChallengeIndicator = default(ChallengeIndicatorEnum?), string DeviceChannel = default(string), DeviceRenderOptions DeviceRenderOptions = default(DeviceRenderOptions), string NotificationURL = default(string), string SdkAppID = default(string), string SdkEncData = default(string), SDKEphemPubKey SdkEphemPubKey = default(SDKEphemPubKey), int? SdkMaxTimeout = default(int?), string SdkReferenceNumber = default(string), string SdkTransID = default(string), string ThreeDSCompInd = default(string), string ThreeDSRequestorURL = default(string))
         {
             // to ensure "DeviceChannel" is required (not null)
             if (DeviceChannel == null)
@@ -221,7 +221,7 @@ namespace Adyen.EcommLibrary.Model.Checkout
         /// <returns>Boolean</returns>
         public override bool Equals(object input)
         {
-            return this.Equals(input as ThreeDS2RequestData);
+            return this.Equals(input as ThreeDSecure2RequestData);
         }
 
         /// <summary>
@@ -229,7 +229,7 @@ namespace Adyen.EcommLibrary.Model.Checkout
         /// </summary>
         /// <param name="input">Instance of ThreeDS2RequestData to be compared</param>
         /// <returns>Boolean</returns>
-        public bool Equals(ThreeDS2RequestData input)
+        public bool Equals(ThreeDSecure2RequestData input)
         {
             if (input == null)
                 return false;
