@@ -13,7 +13,6 @@ namespace Adyen.EcommLibrary.Model.Enum
     /// </summary>
     /// <value>Indicates whether device fingerprinting was successfully completed.</value>
     [JsonConverter(typeof(StringEnumConverter))]
-    [DefaultValue(U)]
     public enum DeviceFingerprintCompletedEnum
     {
 

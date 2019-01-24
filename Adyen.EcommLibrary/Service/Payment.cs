@@ -26,7 +26,21 @@ namespace Adyen.EcommLibrary.Service
             return JsonConvert.DeserializeObject<PaymentResult>(jsonResponse);
         }
 
+        public PaymentResult Authorise(PaymentRequestThreeDSecure2 paymentRequest)
+        {
+            var jsonRequest = Util.JsonOperation.SerializeRequest(paymentRequest);
+            var jsonResponse = _authorise.Request(jsonRequest);
+            return JsonConvert.DeserializeObject<PaymentResult>(jsonResponse);
+        }
+
         public async Task<PaymentResult> AuthoriseAsync(PaymentRequest paymentRequest)
+        {
+            var jsonRequest = Util.JsonOperation.SerializeRequest(paymentRequest);
+            var jsonResponse = await _authorise.RequestAsync(jsonRequest);
+            return JsonConvert.DeserializeObject<PaymentResult>(jsonResponse);
+        }
+
+        public async Task<PaymentResult> AuthoriseAsync(PaymentRequestThreeDSecure2 paymentRequest)
         {
             var jsonRequest = Util.JsonOperation.SerializeRequest(paymentRequest);
             var jsonResponse = await _authorise.RequestAsync(jsonRequest);
@@ -40,17 +54,17 @@ namespace Adyen.EcommLibrary.Service
             return JsonConvert.DeserializeObject<PaymentResult>(jsonResponse);
         }
 
-        public async Task<PaymentResult> AuthoriseAsync(PaymentRequestThreeDSecure2 paymentRequest)
+        public async Task<PaymentResult> Authorise3DAsync(PaymentRequest3D paymentRequest3D)
         {
-            var jsonRequest = Util.JsonOperation.SerializeRequest(paymentRequest);
-            var jsonResponse = await _authorise.RequestAsync(jsonRequest);
+            var jsonRequest = JsonConvert.SerializeObject(paymentRequest3D);
+            var jsonResponse = await _authorise3D.RequestAsync(jsonRequest);
             return JsonConvert.DeserializeObject<PaymentResult>(jsonResponse);
         }
 
         public PaymentResult AuthoriseThreeDSecure2(PaymentRequestThreeDSecure2 paymentRequest)
         {
             var jsonRequest = JsonConvert.SerializeObject(paymentRequest);
-            var jsonResponse = _authoriseThreeDSecure2.Request(jsonRequest);
+            var jsonResponse =  _authoriseThreeDSecure2.Request(jsonRequest);
             return JsonConvert.DeserializeObject<PaymentResult>(jsonResponse);
         }
 
