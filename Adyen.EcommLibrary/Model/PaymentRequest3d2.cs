@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Runtime.Serialization;
 using System.Text;
+using Adyen.EcommLibrary.Model.Enum;
 
 namespace Adyen.EcommLibrary.Model
 {
@@ -16,6 +18,9 @@ namespace Adyen.EcommLibrary.Model
 
         [DataMember(Name="deviceFingerprint", EmitDefaultValue = false)]
         public string DeviceFingerPrint { get; set; }
+
+        [DataMember(Name="threeDS2Result", EmitDefaultValue = false)]
+        public ThreeDSecure2Result ThreeDSecure2Result { get; set; }
 
         public override string ToString()
         {
@@ -37,4 +42,5 @@ namespace Adyen.EcommLibrary.Model
         }
 
     }
+
 }

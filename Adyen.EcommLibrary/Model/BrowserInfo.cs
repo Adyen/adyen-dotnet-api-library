@@ -29,58 +29,56 @@ namespace Adyen.EcommLibrary.Model
         /// The accept header value of the shopper&#39;s browser.
         /// </summary>
         /// <value>The accept header value of the shopper&#39;s browser.</value>
-        [DataMember(Name="acceptHeader", EmitDefaultValue=false)]
+        [DataMember(Name="acceptHeader")]
         public string AcceptHeader { get; set; }
 
         /// <summary>
         /// The user agent value of the shopper&#39;s browser.
         /// </summary>
         /// <value>The user agent value of the shopper&#39;s browser.</value>
-        [DataMember(Name="userAgent", EmitDefaultValue=false)]
+        [DataMember(Name="userAgent")]
         public string UserAgent { get; set; }
 
         /// <summary>
         /// The language of the shopper&#39;s browser.
         /// </summary>
         /// <value>The language of the shopper&#39;s browser.</value>
-        [DataMember(Name = "language", EmitDefaultValue = false)]
+        [DataMember(Name = "language")]
         public string Language { get; set; }
 
         /// <summary>
         /// The color depth of the shopper&#39;s browser.
         /// </summary>
         /// <value>The Color Depth value of the shopper&#39;s browser.</value>
-        [DataMember(Name = "colorDepth", EmitDefaultValue = false)]
+        [DataMember(Name = "colorDepth")]
         public int ColorDepth { get; set; }
 
         /// <summary>
         /// The screen height of the shopper&#39;s browser.
         /// </summary>
         /// <value>The screen height of the shopper&#39;s browser.</value>
-        [DataMember(Name = "screenHeight", EmitDefaultValue = false)]
+        [DataMember(Name = "screenHeight")]
         public int ScreenHeight { get; set; }
 
         /// <summary>
         /// The screen width of the shopper&#39;s browser.
         /// </summary>
         /// <value>The screen width of the shopper&#39;s browser.</value>
-        [DataMember(Name = "screenWidth", EmitDefaultValue = false)]
+        [DataMember(Name = "screenWidth")]
         public int ScreenWidth { get; set; }
 
         /// <summary>
         /// The timezone offset of the shopper&#39;s browser.
         /// </summary>
         /// <value>The timezone offest of the shopper&#39;s browser.</value>
-        [DataMember(Name = "timeZoneOffset", EmitDefaultValue = false)]
-        [DefaultValue(0)]
-        [JsonProperty(DefaultValueHandling = DefaultValueHandling.Populate)]
+        [DataMember(Name = "timeZoneOffset")]
         public int TimeZoneOffset { get; set; }
 
         /// <summary>
         /// The java enabled value of the shopper&#39;s browser.
         /// </summary>
         /// <value>The java enabled value of the shopper&#39;s browser.</value>
-        [DataMember(Name = "javaEnabled", EmitDefaultValue = false)]
+        [DataMember(Name = "javaEnabled")]
         public bool JavaEnabled { get; set; }
 
         /// <summary>

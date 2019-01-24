@@ -44,7 +44,7 @@ namespace Adyen.EcommLibrary.Model
         /// Indicates whether device fingerprinting was successfully completed.
         /// </summary>
         /// <value>Indicates whether device fingerprinting was successfully completed.</value>
-        [DataMember(Name = "threeDSCompInd", EmitDefaultValue = false)]
+        [DataMember(Name = "threeDSCompInd")]
         public DeviceFingerprintCompletedEnum ThreeDSecureDeviceFingerprintCompleted { get; set; }
 
         /// <summary>
