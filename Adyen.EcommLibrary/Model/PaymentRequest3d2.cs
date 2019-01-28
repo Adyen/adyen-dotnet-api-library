@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.Runtime.Serialization;
 using System.Text;
 using Adyen.EcommLibrary.Model.Enum;
+using Adyen.EcommLibrary.Util;
 
 namespace Adyen.EcommLibrary.Model
 {
@@ -24,23 +25,8 @@ namespace Adyen.EcommLibrary.Model
 
         public override string ToString()
         {
-            StringBuilder sb = new StringBuilder();
-            sb.Append("class PaymentRequestThreeDSecure2 {\n");
-            sb.Append(base.ToString());
-            sb.Append("    ThreeDSecure2Data: ").Append(ToIndentedString(ThreeDSecure2Data)).Append("\n");
-            sb.Append("}");
-            return sb.ToString();
+            return this.ToClassDefinitionString();
         }
-
-        private string ToIndentedString(Object o)
-        {
-            if (o == null)
-            {
-                return "null";
-            }
-            return o.ToString().Replace("\n", "\n    ");
-        }
-
     }
 
 }

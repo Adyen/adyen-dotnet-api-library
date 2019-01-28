@@ -5,6 +5,7 @@ using System.ComponentModel;
 using System.Runtime.Serialization;
 using Newtonsoft.Json;
 using System.ComponentModel.DataAnnotations;
+using Adyen.EcommLibrary.Util;
 
 namespace Adyen.EcommLibrary.Model
 {
@@ -87,18 +88,7 @@ namespace Adyen.EcommLibrary.Model
         /// <returns>String presentation of the object</returns>
         public override string ToString()
         {
-            var sb = new StringBuilder();
-            sb.AppendLine($"class {nameof(BrowserInfo)} {{");
-            sb.Append($"  {nameof(AcceptHeader)}: ").AppendLine(AcceptHeader);
-            sb.Append($"  {nameof(UserAgent)}: ").AppendLine(UserAgent);
-            sb.Append($"  {nameof(Language)}: ").AppendLine(Language);
-            sb.Append($"  {nameof(ColorDepth)}: ").AppendLine($"{ColorDepth}");
-            sb.Append($"  {nameof(ScreenHeight)}: ").AppendLine($"{ScreenHeight}");
-            sb.Append($"  {nameof(ScreenWidth)}: ").AppendLine($"{ScreenWidth}");
-            sb.Append($"  {nameof(TimeZoneOffset)}: ").AppendLine($"{TimeZoneOffset}");
-            sb.Append($"  {nameof(JavaEnabled)}: ").AppendLine($"{JavaEnabled}");
-            sb.AppendLine("}");
-            return sb.ToString();
+            return this.ToClassDefinitionString();
         }
   
         /// <summary>
@@ -179,25 +169,25 @@ namespace Adyen.EcommLibrary.Model
             {
                 int hash = 41;
 
-                hash = IncrementHash(hash, this.AcceptHeader);
-                hash = IncrementHash(hash, this.UserAgent);
-                hash = IncrementHash(hash, this.Language);
-                hash = IncrementHash(hash, this.ColorDepth);
-                hash = IncrementHash(hash, this.ScreenHeight);
-                hash = IncrementHash(hash, this.ScreenWidth);
-                hash = IncrementHash(hash, this.TimeZoneOffset);
-                hash = IncrementHash(hash, this.JavaEnabled);
-
+                if (this.AcceptHeader != null)
+                    hash = hash * 59 + this.AcceptHeader.GetHashCode();
+                if (this.UserAgent != null)
+                    hash = hash * 59 + this.UserAgent.GetHashCode();
+                if (this.Language != null)
+                    hash = hash * 59 + this.Language.GetHashCode();
+                if (this.ColorDepth != null)
+                    hash = hash * 59 + this.ColorDepth.GetHashCode();
+                if (this.ScreenHeight != null)
+                    hash = hash * 59 + this.ScreenHeight.GetHashCode();
+                if (this.ScreenWidth != null)
+                    hash = hash * 59 + this.ScreenWidth.GetHashCode();
+                if (this.TimeZoneOffset != null)
+                    hash = hash * 59 + this.TimeZoneOffset.GetHashCode();
+                if (this.JavaEnabled != null)
+                    hash = hash * 59 + this.JavaEnabled.GetHashCode();
+                
                 return hash;
             }
-        }
-
-        private static int IncrementHash(int currentHash, object property)
-        {
-            if (property == null)
-                return currentHash;
-
-            return currentHash * 59 + property.GetHashCode();
         }
 
         /// <summary>
@@ -226,9 +216,10 @@ namespace Adyen.EcommLibrary.Model
             }
 
             // UserAgent (string) minLength
-            if(this.UserAgent != null && this.UserAgent.Length < 10)
+            if (this.UserAgent != null && this.UserAgent.Length < 10)
             {
-                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for UserAgent, length must be greater than 10.", new [] { "UserAgent" });
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult(
+                    "Invalid value for UserAgent, length must be greater than 10.", new[] {"UserAgent"});
             }
 
             yield break;

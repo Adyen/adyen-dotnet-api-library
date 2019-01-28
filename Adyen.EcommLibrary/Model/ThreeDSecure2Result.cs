@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Runtime.Serialization;
 using System.Text;
 using Adyen.EcommLibrary.Model.Enum;
+using Adyen.EcommLibrary.Util;
 
 namespace Adyen.EcommLibrary.Model
 {
@@ -11,5 +12,10 @@ namespace Adyen.EcommLibrary.Model
     {
         [DataMember(Name = "transStatus")]
         public ThreeDSecure2TransactionResultStatus TransactionStatus { get; set; }
+
+        public override string ToString()
+        {
+            return this.ToClassDefinitionString();
+        }
     }
 }

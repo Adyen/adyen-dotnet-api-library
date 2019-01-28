@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Runtime.Serialization;
 using System.Text;
 using Adyen.EcommLibrary.Model.Enum;
+using Adyen.EcommLibrary.Util;
 
 namespace Adyen.EcommLibrary.Model
 {
@@ -53,6 +54,11 @@ namespace Adyen.EcommLibrary.Model
         /// <value>The unique identifier for the 3D Secure 2.0 transaction.</value>
         [DataMember(Name = "threeDSServerTransID", EmitDefaultValue = false)]
         public string ThreeDSecureServerTransactionId { get; set; }
+
+        public override string ToString()
+        {
+            return this.ToClassDefinitionString();
+        }
     }
 
 }
