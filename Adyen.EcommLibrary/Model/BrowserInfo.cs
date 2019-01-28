@@ -30,14 +30,14 @@ namespace Adyen.EcommLibrary.Model
         /// The accept header value of the shopper&#39;s browser.
         /// </summary>
         /// <value>The accept header value of the shopper&#39;s browser.</value>
-        [DataMember(Name="acceptHeader")]
+        [DataMember(Name="acceptHeader", EmitDefaultValue=false)]
         public string AcceptHeader { get; set; }
 
         /// <summary>
         /// The user agent value of the shopper&#39;s browser.
         /// </summary>
         /// <value>The user agent value of the shopper&#39;s browser.</value>
-        [DataMember(Name="userAgent")]
+        [DataMember(Name="userAgent", EmitDefaultValue=false)]
         public string UserAgent { get; set; }
 
         /// <summary>
@@ -168,6 +168,7 @@ namespace Adyen.EcommLibrary.Model
             unchecked // Overflow is fine, just wrap
             {
                 int hash = 41;
+                // Suitable nullity checks etc, of course :)
 
                 if (this.AcceptHeader != null)
                     hash = hash * 59 + this.AcceptHeader.GetHashCode();
@@ -216,10 +217,9 @@ namespace Adyen.EcommLibrary.Model
             }
 
             // UserAgent (string) minLength
-            if (this.UserAgent != null && this.UserAgent.Length < 10)
+            if(this.UserAgent != null && this.UserAgent.Length < 10)
             {
-                yield return new System.ComponentModel.DataAnnotations.ValidationResult(
-                    "Invalid value for UserAgent, length must be greater than 10.", new[] {"UserAgent"});
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for UserAgent, length must be greater than 10.", new[] {"UserAgent"});
             }
 
             yield break;
