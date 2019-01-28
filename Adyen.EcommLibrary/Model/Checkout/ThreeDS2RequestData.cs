@@ -51,12 +51,12 @@ namespace Adyen.EcommLibrary.Model.Checkout
         [DataMember(Name="challengeIndicator", EmitDefaultValue=false)]
         public ChallengeIndicatorEnum? ChallengeIndicator { get; set; }
         /// <summary>
-        /// Initializes a new instance of the <see cref="ThreeDSecure2RequestData" /> class.
+        /// Initializes a new instance of the <see cref="ThreeDS2RequestData" /> class.
         /// </summary>
         [JsonConstructor]
         protected ThreeDS2RequestData() { }
         /// <summary>
-        /// Initializes a new instance of the <see cref="ThreeDSecure2RequestData" /> class.
+        /// Initializes a new instance of the <see cref="ThreeDS2RequestData" /> class.
         /// </summary>
         /// <param name="AuthenticationOnly">If set to true, you will only do the 3D Secure 2.0 authentication, not the payment authorization..</param>
         /// <param name="ChallengeIndicator">Possibility to specify a preference for receiving a challenge from the issuer..</param>

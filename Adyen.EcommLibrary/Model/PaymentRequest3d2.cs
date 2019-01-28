@@ -10,7 +10,7 @@ using Adyen.EcommLibrary.Util;
 namespace Adyen.EcommLibrary.Model
 {
     [DataContract]
-    public class PaymentRequestThreeDSecure2 : PaymentRequest
+    public class PaymentRequestThreeDS2 : PaymentRequest
     {
         [DataMember(Name = "threeDS2RequestData", EmitDefaultValue = false)]
         public ThreeDS2RequestData ThreeDS2RequestData { get; set; }
