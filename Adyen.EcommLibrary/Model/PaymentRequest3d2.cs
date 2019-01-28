@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Runtime.Serialization;
 using System.Text;
+using Adyen.EcommLibrary.Model.Checkout;
 using Adyen.EcommLibrary.Model.Enum;
 using Adyen.EcommLibrary.Util;
 
@@ -12,7 +13,7 @@ namespace Adyen.EcommLibrary.Model
     public class PaymentRequestThreeDSecure2 : PaymentRequest
     {
         [DataMember(Name = "threeDS2RequestData", EmitDefaultValue = false)]
-        public ThreeDSecure2Data ThreeDSecure2Data { get; set; }
+        public ThreeDSecure2RequestData ThreeDSecure2RequestData { get; set; }
 
         [DataMember(Name = "threeDS2Token", EmitDefaultValue = false)]
         public string ThreeDSecure2Token { get; set; }
