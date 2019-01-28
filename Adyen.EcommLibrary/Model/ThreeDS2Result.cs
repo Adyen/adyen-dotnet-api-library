@@ -5,7 +5,7 @@ using System.Runtime.Serialization;
 namespace Adyen.EcommLibrary.Model
 {
     [DataContract]
-    public partial class ThreeDSecure2Result
+    public partial class ThreeDS2Result
     {
         /// <summary>
         /// The value for the 3D Secure 2.0 authentication session. The returned value is a Base64-encoded 20-byte array.

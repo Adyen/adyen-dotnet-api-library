@@ -9,14 +9,14 @@ namespace Adyen.EcommLibrary.Service
     {
         private readonly Authorise _authorise;
         private readonly Authorise3D _authorise3D;
-        private readonly AuthoriseThreeDSecure2 _authoriseThreeDSecure2;
+        private readonly Authorise3DS2 _authorise3DS2;
 
         public Payment(Client client)
             : base(client)
         {
             _authorise = new Authorise(this);
             _authorise3D = new Authorise3D(this);
-            _authoriseThreeDSecure2 = new AuthoriseThreeDSecure2(this);
+            _authorise3DS2 = new Authorise3DS2(this);
         }
 
         public PaymentResult Authorise(PaymentRequest paymentRequest)
@@ -61,17 +61,17 @@ namespace Adyen.EcommLibrary.Service
             return JsonConvert.DeserializeObject<PaymentResult>(jsonResponse);
         }
 
-        public PaymentResult AuthoriseThreeDSecure2(PaymentRequestThreeDS2 paymentRequest)
+        public PaymentResult Authorise3DS2(PaymentRequestThreeDS2 paymentRequest)
         {
             var jsonRequest = JsonConvert.SerializeObject(paymentRequest);
-            var jsonResponse =  _authoriseThreeDSecure2.Request(jsonRequest);
+            var jsonResponse =  _authorise3DS2.Request(jsonRequest);
             return JsonConvert.DeserializeObject<PaymentResult>(jsonResponse);
         }
 
-        public async Task<PaymentResult> AuthoriseThreeDSecure2Async(PaymentRequestThreeDS2 paymentRequest)
+        public async Task<PaymentResult> Authorise3DS2Async(PaymentRequestThreeDS2 paymentRequest)
         {
             var jsonRequest = JsonConvert.SerializeObject(paymentRequest);
-            var jsonResponse = await _authoriseThreeDSecure2.RequestAsync(jsonRequest);
+            var jsonResponse = await _authorise3DS2.RequestAsync(jsonRequest);
             return JsonConvert.DeserializeObject<PaymentResult>(jsonResponse);
         }
 

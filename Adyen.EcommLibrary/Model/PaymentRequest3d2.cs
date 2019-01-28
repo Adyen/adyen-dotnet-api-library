@@ -16,13 +16,13 @@ namespace Adyen.EcommLibrary.Model
         public ThreeDS2RequestData ThreeDS2RequestData { get; set; }
 
         [DataMember(Name = "threeDS2Token", EmitDefaultValue = false)]
-        public string ThreeDSecure2Token { get; set; }
+        public string ThreeDS2Token { get; set; }
 
         [DataMember(Name="deviceFingerprint", EmitDefaultValue = false)]
         public string DeviceFingerPrint { get; set; }
 
         [DataMember(Name="threeDS2Result", EmitDefaultValue = false)]
-        public ThreeDSecure2Result ThreeDSecure2Result { get; set; }
+        public ThreeDS2Result ThreeDS2Result { get; set; }
 
         public override string ToString()
         {

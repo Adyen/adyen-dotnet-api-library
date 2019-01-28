@@ -4,9 +4,9 @@ using System.Text;
 
 namespace Adyen.EcommLibrary.Service.Resource.Payment
 {
-    public class AuthoriseThreeDSecure2 : ServiceResource
+    public class Authorise3DS2 : ServiceResource
     {
-        public AuthoriseThreeDSecure2(AbstractService abstractService)
+        public Authorise3DS2(AbstractService abstractService)
             : base(abstractService, abstractService.Client.Config.Endpoint + "/pal/servlet/Payment/" + abstractService.Client.ApiVersion + "/authorise3ds2",
                 new List<string>
                 {
