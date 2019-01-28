@@ -5,15 +5,6 @@ namespace Adyen.EcommLibrary.Util
 {
     public  class Util
     {
-        public static string ToIndentedString(object obj)
-        {
-            if (obj == null)
-            {
-                return "null";
-            }
-            return obj.ToString().Replace("\n", "\n    ");
-        }
-
         public static string CalculateSessionValidity()
         {
             //+1day
