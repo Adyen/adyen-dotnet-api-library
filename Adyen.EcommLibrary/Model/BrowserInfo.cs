@@ -213,7 +213,7 @@ namespace Adyen.EcommLibrary.Model
             // UserAgent (string) maxLength
             if(this.UserAgent != null && this.UserAgent.Length > 50)
             {
-                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for UserAgent, length must be less than 50.", new [] { "UserAgent" });
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for UserAgent, length must be less than 50.", new[] {"UserAgent"});
             }
 
             // UserAgent (string) minLength

@@ -13,7 +13,7 @@ namespace Adyen.EcommLibrary.Model
     public class PaymentRequestThreeDSecure2 : PaymentRequest
     {
         [DataMember(Name = "threeDS2RequestData", EmitDefaultValue = false)]
-        public ThreeDSecure2RequestData ThreeDSecure2RequestData { get; set; }
+        public ThreeDS2RequestData ThreeDS2RequestData { get; set; }
 
         [DataMember(Name = "threeDS2Token", EmitDefaultValue = false)]
         public string ThreeDSecure2Token { get; set; }
