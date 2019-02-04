@@ -10,7 +10,7 @@ namespace Adyen.EcommLibrary.ExampleApp.Pos
     class Program
     {
         private static string _messageCategory = "Payment";
-        private static int _amount = 100;
+        private static int _amount = 10;
         private static Client _client;
         private static PosPaymentCloudApi _posPaymentCloudApi;
         private static PosPaymentLocalApi _posPaymentLocalApi;
