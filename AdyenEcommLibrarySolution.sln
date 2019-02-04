@@ -7,6 +7,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Adyen.EcommLibrary", "Adyen
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Adyen.EcommLibrary.Test", "Adyen.EcommLibrary.Test\Adyen.EcommLibrary.Test.csproj", "{B0005586-6CC5-4AD2-AE84-0D38EF6CA301}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Adyen.EcommLibrary.ExampleApp.Pos", "Adyen.EcommLibrary.ExampleApp.Pos\Adyen.EcommLibrary.ExampleApp.Pos.csproj", "{316C0EE9-46DA-46E3-8959-7CF6AA9F5F6F}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{B0005586-6CC5-4AD2-AE84-0D38EF6CA301}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B0005586-6CC5-4AD2-AE84-0D38EF6CA301}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B0005586-6CC5-4AD2-AE84-0D38EF6CA301}.Release|Any CPU.Build.0 = Release|Any CPU
+		{316C0EE9-46DA-46E3-8959-7CF6AA9F5F6F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{316C0EE9-46DA-46E3-8959-7CF6AA9F5F6F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{316C0EE9-46DA-46E3-8959-7CF6AA9F5F6F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{316C0EE9-46DA-46E3-8959-7CF6AA9F5F6F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
