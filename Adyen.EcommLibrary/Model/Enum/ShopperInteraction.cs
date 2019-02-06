@@ -2,6 +2,8 @@
 {
     public enum ShopperInteraction
     {
-        Moto, Ecommerce, ContAuth
+        Ecommerce = 0,
+        Moto = 1,
+        ContAuth = 2
     }
 }

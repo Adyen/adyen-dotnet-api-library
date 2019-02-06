@@ -1,7 +1,6 @@
 ﻿using Adyen.EcommLibrary.Model;
 using System;
 using System.Collections.Generic;
-using Adyen.EcommLibrary.Model.ApplicationInformation;
 using Environment = Adyen.EcommLibrary.Model.Enum.Environment;
 
 namespace Adyen.EcommLibrary.Test
@@ -31,7 +30,7 @@ namespace Adyen.EcommLibrary.Test
                 XApiKey = "AQEyhmfxK....LAG84XwzP5pSpVd"//mock api key
             };
         }
-        
+
         public static PaymentRequest CreateFullPaymentRequest()
         {
             var paymentRequest = new PaymentRequest
@@ -42,6 +41,13 @@ namespace Adyen.EcommLibrary.Test
                 Reference = "payment - " + DateTime.Now.ToString("yyyyMMdd"),
                 AdditionalData = CreateAdditionalData()
             };
+            return paymentRequest;
+        }
+
+        public static PaymentRequest CreateFullPaymentRequestWithShopperInteraction(Model.Enum.ShopperInteraction shopperInteraction)
+        {
+            var paymentRequest = CreateFullPaymentRequest();
+            paymentRequest.ShopperInteraction = shopperInteraction;
             return paymentRequest;
         }
 
@@ -91,7 +97,7 @@ namespace Adyen.EcommLibrary.Test
             return "8514836072314693";
         }
 
-       
+
 
         #endregion
     }
