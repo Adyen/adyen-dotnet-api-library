@@ -5,6 +5,17 @@
 
 The Adyen API Library for .net framework enables you to work with Adyen APIs, Hosted Payment Pages and Terminal API with any .net application.
 
+
+## Integration
+The Library supports all APIs under the following services:
+
+* checkout
+* checkout utility
+* payments
+* modifications
+* recurring
+* Terminal API (Local and Cloud based)
+
 ## Requirements
 
 * It supports .net standard 2.0
@@ -17,9 +28,10 @@ The Adyen API Library for .net framework enables you to work with Adyen APIs, Ho
  PM> Install-Package Adyen.EcommLibrary -Version 1.1.5
 
 ## Documentation
-https://adyen.github.io/adyen-dotnet-api-library/
-## Support
+https://docs.adyen.com/developers/development-resources/libraries
+https://docs.adyen.com/developers/checkout/api-integration
 
+## Support
 If you have any problems, questions or suggestions, create an issue here or send your inquiry to support@adyen.com.
 
 ## Licence
