@@ -28,8 +28,8 @@ The Library supports all APIs under the following services:
  PM> Install-Package Adyen.EcommLibrary -Version 1.1.5
 
 ## Documentation
-https://docs.adyen.com/developers/development-resources/libraries
-https://docs.adyen.com/developers/checkout/api-integration
+* https://docs.adyen.com/developers/development-resources/libraries
+* https://docs.adyen.com/developers/checkout/api-integration
 
 ## Support
 If you have any problems, questions or suggestions, create an issue here or send your inquiry to support@adyen.com.
