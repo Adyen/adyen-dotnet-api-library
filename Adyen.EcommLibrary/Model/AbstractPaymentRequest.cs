@@ -26,7 +26,7 @@ namespace Adyen.EcommLibrary.Model
         public BrowserInfo BrowserInfo { get; set; }
         [DataMember(Name = "shopperInteraction", EmitDefaultValue = false)]
         [JsonConverter(typeof(StringEnumConverter))]
-        public ShopperInteraction? ShopperInteraction { get; set; }
+        public ShopperInteraction ShopperInteraction { get; set; }
         [DataMember(Name = "shopperEmail", EmitDefaultValue = false)]
         public string ShopperEmail { get; set; }
         [DataMember(Name = "shopperReference", EmitDefaultValue = false)]
