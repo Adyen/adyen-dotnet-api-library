@@ -15,13 +15,13 @@ namespace Adyen.EcommLibrary.HttpClient
     {
         private readonly Encoding _encoding = Encoding.ASCII;
 
-        public string Request(string endpoint, string json, Config config, bool isApiKeyRequired)
+        public string Request(string endpoint, string json, Config config, bool isApiKeyRequired, string idempotencyKey = null)
         {
             string responseText = null;
             //Set security protocol. Only TLS1.2
             ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12;
 
-            var httpWebRequest = GetHttpWebRequest(endpoint, config, isApiKeyRequired);
+            var httpWebRequest = GetHttpWebRequest(endpoint, config, isApiKeyRequired, idempotencyKey);
 
             using (var streamWriter = new StreamWriter(httpWebRequest.GetRequestStream()))
             {
@@ -60,14 +60,14 @@ namespace Adyen.EcommLibrary.HttpClient
         /// <param name="config"></param>
         /// <param name="isApiKeyRequired"></param>
         /// <returns>Task<></returns>
-        public async Task<string> RequestAsync(string endpoint, string json, Config config, bool isApiKeyRequired)
+        public async Task<string> RequestAsync(string endpoint, string json, Config config, bool isApiKeyRequired, string idempotencyKey = null)
         {
             string responseText;
             //Set security protocol. Only TLS1.2
             ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12;
 
-            var httpWebRequest = GetHttpWebRequest(endpoint, config, isApiKeyRequired);
-
+            var httpWebRequest = GetHttpWebRequest(endpoint, config, isApiKeyRequired, idempotencyKey);
+        
             using (var streamWriter = new StreamWriter(httpWebRequest.GetRequestStream()))
             {
                 streamWriter.Write(json);
@@ -86,7 +86,7 @@ namespace Adyen.EcommLibrary.HttpClient
             return responseText;
         }
 
-        //This is deprecated functionality by Adyen. Correct use request method with isApiKeyRequired parameter.
+        [Obsolete("This is deprecated functionality by Adyen. Correct use request method with isApiKeyRequired parameter.")]
         public string Request(string endpoint, string json, Config config)
         {
             return this.Request(endpoint, json, config, false);
@@ -113,7 +113,7 @@ namespace Adyen.EcommLibrary.HttpClient
             return new StreamReader(response.GetResponseStream()).ReadToEnd();
         }
 
-        public HttpWebRequest GetHttpWebRequest(string endpoint, Config config, bool isApiKeyRequired)
+        public HttpWebRequest GetHttpWebRequest(string endpoint, Config config, bool isApiKeyRequired, string idempotencyKey = null)
         {
             //Add default headers
             var httpWebRequest = (HttpWebRequest)WebRequest.Create(endpoint);
@@ -127,6 +127,12 @@ namespace Adyen.EcommLibrary.HttpClient
             {
                 httpWebRequest.ServerCertificateValidationCallback = delegate { return true; };
             }
+
+            if (!string.IsNullOrEmpty(idempotencyKey))
+            {
+                httpWebRequest.Headers.Add("Idempotency-Key", idempotencyKey);
+            }
+
             //Use one of two authentication method.
             if (isApiKeyRequired || !string.IsNullOrEmpty(config.XApiKey))
             {

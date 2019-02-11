@@ -15,18 +15,18 @@ namespace Adyen.EcommLibrary.Service
             Endpoint = endpoint;
         }
 
-        public string Request(string json)
+        public string Request(string json, string idempotencyKey = null)
         {
             var clientInterface = _abstractService.Client.HttpClient;
             var config = _abstractService.Client.Config;
-            return clientInterface.Request(Endpoint, json, config, _abstractService.IsApiKeyRequired);
+            return clientInterface.Request(Endpoint, json, config, _abstractService.IsApiKeyRequired, idempotencyKey);
         }
 
-        public Task<string> RequestAsync(string json)
+        public Task<string> RequestAsync(string json, string idempotencyKey = null)
         {
             var clientInterface = _abstractService.Client.HttpClient;
             var config = _abstractService.Client.Config;
-            return clientInterface.RequestAsync(Endpoint, json, config,false);
+            return clientInterface.RequestAsync(Endpoint, json, config,false, idempotencyKey);
         }
     }
 }

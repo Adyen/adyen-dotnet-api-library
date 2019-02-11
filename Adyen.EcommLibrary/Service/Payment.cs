@@ -17,24 +17,24 @@ namespace Adyen.EcommLibrary.Service
             _authorise3D = new Authorise3D(this);
         }
 
-        public PaymentResult Authorise(PaymentRequest paymentRequest)
+        public PaymentResult Authorise(PaymentRequest paymentRequest, string idempotencyKey = null)
         {
             var jsonRequest = Util.JsonOperation.SerializeRequest(paymentRequest);
-            var jsonResponse = _authorise.Request(jsonRequest);
+            var jsonResponse = _authorise.Request(jsonRequest, idempotencyKey);
             return JsonConvert.DeserializeObject<PaymentResult>(jsonResponse);
         }
 
-        public async Task<PaymentResult> AuthoriseAsync(PaymentRequest paymentRequest)
+        public async Task<PaymentResult> AuthoriseAsync(PaymentRequest paymentRequest, string idempotencyKey = null)
         {
             var jsonRequest = Util.JsonOperation.SerializeRequest(paymentRequest);
-            var jsonResponse = await _authorise.RequestAsync(jsonRequest);
+            var jsonResponse = await _authorise.RequestAsync(jsonRequest, idempotencyKey);
             return JsonConvert.DeserializeObject<PaymentResult>(jsonResponse);
         }
 
-        public PaymentResult Authorise3D(PaymentRequest3D paymentRequest3D)
+        public PaymentResult Authorise3D(PaymentRequest3D paymentRequest3D, string idempotencyKey = null)
         {
             var jsonRequest = JsonConvert.SerializeObject(paymentRequest3D);
-            var jsonResponse = _authorise3D.Request(jsonRequest);
+            var jsonResponse = _authorise3D.Request(jsonRequest, idempotencyKey);
             return JsonConvert.DeserializeObject<PaymentResult>(jsonResponse);
         }
     }
