@@ -36,7 +36,7 @@ namespace Adyen.EcommLibrary.Test
                 XApiKey = "AQEyhmfxK....LAG84XwzP5pSpVd"//mock api key
             };
         }
-        
+
         public static PaymentRequest CreateFullPaymentRequest()
         {
             var paymentRequest = new PaymentRequest
@@ -68,6 +68,12 @@ namespace Adyen.EcommLibrary.Test
             return paymentRequest;
         }
 
+        public static PaymentRequest CreateFullPaymentRequestWithShopperInteraction(Model.Enum.ShopperInteraction shopperInteraction)
+        {
+            var paymentRequest = CreateFullPaymentRequest();
+            paymentRequest.ShopperInteraction = shopperInteraction;
+            return paymentRequest;
+        }
 
         protected static Dictionary<string, string> CreateAdditionalData()
         {
@@ -115,7 +121,7 @@ namespace Adyen.EcommLibrary.Test
             return "8514836072314693";
         }
 
-       
+
 
         #endregion
     }

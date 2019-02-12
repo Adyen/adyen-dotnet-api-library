@@ -39,5 +39,21 @@ namespace Adyen.EcommLibrary.Test
             var ecnrypted = hmacValidator.CalculateHmac(data, key);
             Assert.IsTrue(string.Equals(ecnrypted, "34oR8T1whkQWTv9P+SzKyp8zhusf9n0dpqrm9nsqSJs="));
         }
+
+        [TestMethod]
+        public void TestSerializationShopperInteractionDefault()
+        {
+            var paymentRequest = MockPaymentData.CreateFullPaymentRequestWithShopperInteraction(default(Model.Enum.ShopperInteraction));
+            var serializedPaymentRequest = JsonOperation.SerializeRequest(paymentRequest);
+            Assert.IsFalse(serializedPaymentRequest.Contains("shopperInteraction"));
+        }
+
+        [TestMethod]
+        public void TestSerializationShopperInteractionMoto()
+        {
+            var paymentRequest = MockPaymentData.CreateFullPaymentRequestWithShopperInteraction(Model.Enum.ShopperInteraction.Moto);
+            var serializedPaymentRequest = JsonOperation.SerializeRequest(paymentRequest);
+            StringAssert.Contains(serializedPaymentRequest, nameof(Model.Enum.ShopperInteraction.Moto));
+        }
     }
 }

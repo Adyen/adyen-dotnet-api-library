@@ -43,7 +43,11 @@ namespace Adyen.EcommLibrary.HttpClient
             catch (WebException e)
             {
                 var response = (HttpWebResponse)e.Response;
-                throw new HttpClientException((int)response.StatusCode, "HTTP Exception", response.Headers, response.StatusDescription);
+                using (var sr = new StreamReader(response.GetResponseStream()))
+                {
+                    responseText = sr.ReadToEnd();
+                }
+                throw new HttpClientException((int)response.StatusCode, "HTTP Exception", response.Headers, responseText);
             }
             return responseText;
         }

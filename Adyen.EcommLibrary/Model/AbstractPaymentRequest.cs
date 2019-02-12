@@ -71,8 +71,11 @@ namespace Adyen.EcommLibrary.Model
         public DateTime DateOfBirth { get; set; }
         [DataMember(Name = "telephoneNumber", EmitDefaultValue = false)]
         public string TelephoneNumber { get; set; }
-        public string Mcc = null;
-        public KeyValuePair<string, string> Metadata { get; set; }
+        [DataMember(Name="mcc", EmitDefaultValue = false)]
+        public string Mcc { get; set; }
+
+        [DataMember(Name = "metadata", EmitDefaultValue = false)]
+        public Dictionary<string, string> Metadata { get; set; }
 
         [DataMember(Name = "applicationInfo", EmitDefaultValue = false)]
         public ApplicationInformation.ApplicationInfo ApplicationInfo { get;set; }
