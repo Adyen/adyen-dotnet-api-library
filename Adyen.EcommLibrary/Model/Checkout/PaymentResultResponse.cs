@@ -66,7 +66,6 @@ namespace Adyen.EcommLibrary.Model.Checkout
             /// </summary>
             [EnumMember(Value = "RedirectShopper")]
             RedirectShopper = 7
-
         }
 
         /// <summary>

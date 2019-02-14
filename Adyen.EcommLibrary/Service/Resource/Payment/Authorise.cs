@@ -11,9 +11,7 @@ namespace Adyen.EcommLibrary.Service.Resource.Payment
                     "merchantAccount",
                     "amount.value",
                     "amount.currency",
-                    "reference",
-                    "threeDS2RequestData.deviceChannel",
-                    "threeDS2RequestData.notificationURL"
+                    "reference"
                 })
         {
         }
