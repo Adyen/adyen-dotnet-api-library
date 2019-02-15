@@ -1,6 +1,7 @@
 ﻿using Adyen.EcommLibrary.Constants;
 using System.Collections.Generic;
 using System.Text;
+using Adyen.EcommLibrary.Util;
 
 namespace Adyen.EcommLibrary.Model.Hpp
 {
@@ -53,9 +54,9 @@ namespace Adyen.EcommLibrary.Model.Hpp
         {
             StringBuilder sb = new StringBuilder();
             sb.Append("class PaymentMethod {\n");
-            sb.Append("    brandCode: ").Append(Util.Util.ToIndentedString(this.BrandCode)).Append("\n");
-            sb.Append("    name: ").Append(Util.Util.ToIndentedString(this.Name)).Append("\n");
-            sb.Append("    issuers: ").Append(Util.Util.ToIndentedString(this.Issuers)).Append("\n");
+            sb.Append("    brandCode: ").AppendLine(this.BrandCode.ToIndentedString());
+            sb.Append("    name: ").AppendLine(this.Name.ToIndentedString());
+            sb.Append("    issuers: ").AppendLine(this.Issuers.ToIndentedString());
             sb.Append("}");
             return sb.ToString();
         }

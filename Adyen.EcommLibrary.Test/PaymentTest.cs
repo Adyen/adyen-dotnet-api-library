@@ -1,10 +1,8 @@
-﻿using System;
+﻿using Adyen.EcommLibrary.Constants;
 using Adyen.EcommLibrary.Model.Enum;
 using Adyen.EcommLibrary.Service;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.Collections.Generic;
-using Adyen.EcommLibrary.Constants;
-using Adyen.EcommLibrary.Model;
 
 namespace Adyen.EcommLibrary.Test
 {
@@ -48,6 +46,56 @@ namespace Adyen.EcommLibrary.Test
         }
 
         [TestMethod]
+        public void TestAuthorise3DS2IdentifyShopperMocked()
+        {
+            var client = CreateMockTestClientRequest("Mocks/threedsecure2/authorise-response-identifyshopper.json");
+            var payment = new Payment(client);
+            var paymentRequest = MockPaymentData.CreateFullPaymentRequest3DS2();
+            var paymentResult = payment.Authorise(paymentRequest);
+
+            Assert.AreEqual(paymentResult.ResultCode, ResultCodeEnum.IdentifyShopper);
+            Assert.IsNotNull(paymentResult.PspReference);
+
+            Assert.AreEqual("74044f6c-7d79-4dd1-9859-3b2879a32fb0", GetAdditionalData(paymentResult.AdditionalData, "threeds2.threeDSServerTransID"));
+            Assert.AreEqual(@"https://pal-test.adyen.com/threeds2simulator/acs/startMethod.shtml", GetAdditionalData(paymentResult.AdditionalData, "threeds2.threeDSMethodURL"));
+            Assert.AreEqual("[token]", GetAdditionalData(paymentResult.AdditionalData, "threeds2.threeDS2Token"));
+        }
+
+        [TestMethod]
+        public void TestAuthorise3DS2ChallengeShopperMocked()
+        {
+            var client = CreateMockTestClientRequest("Mocks/threedsecure2/authorise3ds2-response-challengeshopper.json");
+            var payment = new Payment(client);
+            var paymentRequest = MockPaymentData.CreateFullPaymentRequest3DS2();
+            var paymentResult = payment.Authorise3DS2(paymentRequest);
+
+            Assert.AreEqual(paymentResult.ResultCode, ResultCodeEnum.ChallengeShopper);
+            Assert.IsNotNull(paymentResult.PspReference);
+
+            Assert.AreEqual("C", GetAdditionalData(paymentResult.AdditionalData, "threeds2.threeDS2ResponseData.transStatus"));
+            Assert.AreEqual("Y", GetAdditionalData(paymentResult.AdditionalData, "threeds2.threeDS2ResponseData.acsChallengeMandated"));
+            Assert.AreEqual("https://pal-test.adyen.com/threeds2simulator/acs/challenge.shtml", GetAdditionalData(paymentResult.AdditionalData, "threeds2.threeDS2ResponseData.acsURL"));
+            Assert.AreEqual("74044f6c-7d79-4dd1-9859-3b2879a32fb1", GetAdditionalData(paymentResult.AdditionalData, "threeds2.threeDS2ResponseData.threeDSServerTransID"));
+            Assert.AreEqual("01", GetAdditionalData(paymentResult.AdditionalData, "threeds2.threeDS2ResponseData.authenticationType"));
+            Assert.AreEqual("2.1.0", GetAdditionalData(paymentResult.AdditionalData, "threeds2.threeDS2ResponseData.messageVersion"));
+            Assert.AreEqual("[token]", GetAdditionalData(paymentResult.AdditionalData, "threeds2.threeDS2Token"));
+            Assert.AreEqual("ba961c4b-33f2-4830-3141-744b8586aeb0", GetAdditionalData(paymentResult.AdditionalData, "threeds2.threeDS2ResponseData.acsTransID"));
+            Assert.AreEqual("ADYEN-ACS-SIMULATOR", GetAdditionalData(paymentResult.AdditionalData, "threeds2.threeDS2ResponseData.acsReferenceNumber"));
+        }
+
+        [TestMethod]
+        public void TestAuthorise3DS2SuccessMocked()
+        {
+            var client = CreateMockTestClientRequest("Mocks/threedsecure2/authorise3ds2-success.json");
+            var payment = new Payment(client);
+            var paymentRequest = MockPaymentData.CreateFullPaymentRequest3DS2();
+            var paymentResult = payment.Authorise3DS2(paymentRequest);
+
+            Assert.AreEqual(paymentResult.ResultCode, ResultCodeEnum.Authorised);
+            Assert.IsNotNull(paymentResult.PspReference);
+        }
+
+        [TestMethod]
         public void TestAuthorise3DSuccessMocked()
         {
             var client = CreateMockTestClientRequest("Mocks/authorise3d-success.json");
@@ -57,14 +105,16 @@ namespace Adyen.EcommLibrary.Test
             Assert.AreEqual(paymentResult.ResultCode, ResultCodeEnum.Authorised);
             Assert.IsNotNull(paymentResult.PspReference);
         }
-        
+
+
+
         [TestMethod]
         public void TestAuthoriseErrorCvcDeclinedMocked()
         {
             var paymentResult = CreatePaymentResultFromFile("Mocks/authorise-error-cvc-declined.json");
             Assert.AreEqual(ResultCodeEnum.Refused, paymentResult.ResultCode);
         }
-        
+
         [TestMethod]
         public void TestAuthoriseCseSuccessMocked()
         {
@@ -87,20 +137,20 @@ namespace Adyen.EcommLibrary.Test
         public void TestPaymentRequestApplicationInfo()
         {
             var paymentRequest = MockPaymentData.CreateFullPaymentRequest();
-         
+
 
 
             Assert.IsNotNull(paymentRequest.ApplicationInfo);
-            Assert.AreEqual(paymentRequest.ApplicationInfo.AdyenLibrary.Name,ClientConfig.LibName);
-            Assert.AreEqual(paymentRequest.ApplicationInfo.AdyenLibrary.Version,ClientConfig.LibVersion);
+            Assert.AreEqual(paymentRequest.ApplicationInfo.AdyenLibrary.Name, ClientConfig.LibName);
+            Assert.AreEqual(paymentRequest.ApplicationInfo.AdyenLibrary.Version, ClientConfig.LibVersion);
         }
         [TestMethod]
         public void TestPaymentRequest3DApplicationInfo()
         {
             var paymentRequest = MockPaymentData.CreateFullPaymentRequest3D();
             Assert.IsNotNull(paymentRequest.ApplicationInfo);
-            Assert.AreEqual(paymentRequest.ApplicationInfo.AdyenLibrary.Name,ClientConfig.LibName);
-            Assert.AreEqual(paymentRequest.ApplicationInfo.AdyenLibrary.Version,ClientConfig.LibVersion);
+            Assert.AreEqual(paymentRequest.ApplicationInfo.AdyenLibrary.Name, ClientConfig.LibName);
+            Assert.AreEqual(paymentRequest.ApplicationInfo.AdyenLibrary.Version, ClientConfig.LibVersion);
         }
 
         private string GetAdditionalData(Dictionary<string, string> additionalData, string assertKey)

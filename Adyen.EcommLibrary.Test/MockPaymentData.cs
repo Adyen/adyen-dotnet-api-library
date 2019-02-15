@@ -1,7 +1,13 @@
 ﻿using Adyen.EcommLibrary.Model;
 using System;
 using System.Collections.Generic;
+using Adyen.EcommLibrary.Model.Checkout;
+using Adyen.EcommLibrary.Model.Enum;
+using Amount = Adyen.EcommLibrary.Model.Amount;
+using BrowserInfo = Adyen.EcommLibrary.Model.BrowserInfo;
+using Card = Adyen.EcommLibrary.Model.Card;
 using Environment = Adyen.EcommLibrary.Model.Enum.Environment;
+using PaymentRequest = Adyen.EcommLibrary.Model.PaymentRequest;
 
 namespace Adyen.EcommLibrary.Test
 {
@@ -40,6 +46,24 @@ namespace Adyen.EcommLibrary.Test
                 Card = CreateTestCard(),
                 Reference = "payment - " + DateTime.Now.ToString("yyyyMMdd"),
                 AdditionalData = CreateAdditionalData()
+            };
+            return paymentRequest;
+        }
+
+        public static PaymentRequestThreeDS2 CreateFullPaymentRequest3DS2()
+        {
+            var paymentRequest = new PaymentRequestThreeDS2
+            {
+                MerchantAccount = "MerchantAccount",
+                Amount = new Amount("EUR", 1500),
+                Reference = "payment - " + DateTime.Now.ToString("yyyyMMdd"),
+                AdditionalData = CreateAdditionalData(),
+                ThreeDS2RequestData = new ThreeDS2RequestData
+                {
+                    ThreeDSCompInd = DeviceFingerprintCompletedEnum.Y,
+                    DeviceChannel = DeviceChannelEnum.Browser
+                },
+                BrowserInfo = CreateMockBrowserInfo(),
             };
             return paymentRequest;
         }

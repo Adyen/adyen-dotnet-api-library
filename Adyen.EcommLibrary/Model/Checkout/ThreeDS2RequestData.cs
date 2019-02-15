@@ -1,12 +1,13 @@
 
+using Adyen.EcommLibrary.Model.Enum;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Converters;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.IO;
 using System.Runtime.Serialization;
 using System.Text;
-using Newtonsoft.Json;
-using Newtonsoft.Json.Converters;
 
 namespace Adyen.EcommLibrary.Model.Checkout
 {
@@ -23,19 +24,19 @@ namespace Adyen.EcommLibrary.Model.Checkout
         [JsonConverter(typeof(StringEnumConverter))]
         public enum ChallengeIndicatorEnum
         {
-            
+
             /// <summary>
             /// Enum NoPreference for value: noPreference
             /// </summary>
             [EnumMember(Value = "noPreference")]
             NoPreference = 1,
-            
+
             /// <summary>
             /// Enum RequestChallenge for value: requestChallenge
             /// </summary>
             [EnumMember(Value = "requestChallenge")]
             RequestChallenge = 2,
-            
+
             /// <summary>
             /// Enum RequestNoChallenge for value: requestNoChallenge
             /// </summary>
@@ -70,7 +71,7 @@ namespace Adyen.EcommLibrary.Model.Checkout
         /// <param name="SdkTransID">The &#x60;sdkTransID&#x60; value as received from the 3DS 2.0 SDK. Only for &#x60;deviceChannel&#x60; set to **app**..</param>
         /// <param name="ThreeDSCompInd">Completion indicator for the &#x60;threeDSMethodUrl&#x60; fingerprinting..</param>
         /// <param name="ThreeDSRequestorURL">URL of the (customer service) website that will be shown to the shopper in case of technical errors during the 3DS2.0 process..</param>
-        public ThreeDS2RequestData(bool? AuthenticationOnly = default(bool?), ChallengeIndicatorEnum? ChallengeIndicator = default(ChallengeIndicatorEnum?), string DeviceChannel = default(string), DeviceRenderOptions DeviceRenderOptions = default(DeviceRenderOptions), string NotificationURL = default(string), string SdkAppID = default(string), string SdkEncData = default(string), SDKEphemPubKey SdkEphemPubKey = default(SDKEphemPubKey), int? SdkMaxTimeout = default(int?), string SdkReferenceNumber = default(string), string SdkTransID = default(string), string ThreeDSCompInd = default(string), string ThreeDSRequestorURL = default(string))
+        public ThreeDS2RequestData(bool? AuthenticationOnly = default(bool?), ChallengeIndicatorEnum? ChallengeIndicator = default(ChallengeIndicatorEnum?), DeviceChannelEnum DeviceChannel = default(DeviceChannelEnum), DeviceRenderOptions DeviceRenderOptions = default(DeviceRenderOptions), string NotificationURL = default(string), string SdkAppID = default(string), string SdkEncData = default(string), SDKEphemPubKey SdkEphemPubKey = default(SDKEphemPubKey), int? SdkMaxTimeout = default(int?), string SdkReferenceNumber = default(string), string SdkTransID = default(string), DeviceFingerprintCompletedEnum ThreeDSCompInd = default(DeviceFingerprintCompletedEnum), string ThreeDSRequestorURL = default(string))
         {
             // to ensure "DeviceChannel" is required (not null)
             if (DeviceChannel == null)
@@ -94,7 +95,7 @@ namespace Adyen.EcommLibrary.Model.Checkout
             this.ThreeDSCompInd = ThreeDSCompInd;
             this.ThreeDSRequestorURL = ThreeDSRequestorURL;
         }
-        
+
         /// <summary>
         /// If set to true, you will only do the 3D Secure 2.0 authentication, not the payment authorization.
         /// </summary>
@@ -107,8 +108,8 @@ namespace Adyen.EcommLibrary.Model.Checkout
         /// The environment of the shopper. Allowed values: * &#x60;app&#x60; * &#x60;browser&#x60;
         /// </summary>
         /// <value>The environment of the shopper. Allowed values: * &#x60;app&#x60; * &#x60;browser&#x60;</value>
-        [DataMember(Name="deviceChannel", EmitDefaultValue=false)]
-        public string DeviceChannel { get; set; }
+        [DataMember(Name="deviceChannel")]
+        public DeviceChannelEnum DeviceChannel { get; set; }
 
         /// <summary>
         /// Display options for the 3DS2.0 SDK. Only for deviceChannel &#39;app&#39;.
@@ -171,7 +172,7 @@ namespace Adyen.EcommLibrary.Model.Checkout
         /// </summary>
         /// <value>Completion indicator for the &#x60;threeDSMethodUrl&#x60; fingerprinting.</value>
         [DataMember(Name="threeDSCompInd", EmitDefaultValue=false)]
-        public string ThreeDSCompInd { get; set; }
+        public DeviceFingerprintCompletedEnum ThreeDSCompInd { get; set; }
 
         /// <summary>
         /// URL of the (customer service) website that will be shown to the shopper in case of technical errors during the 3DS2.0 process.
@@ -204,7 +205,7 @@ namespace Adyen.EcommLibrary.Model.Checkout
             sb.Append("}\n");
             return sb.ToString();
         }
-  
+ 
         /// <summary>
         /// Returns the JSON string presentation of the object
         /// </summary>
@@ -234,67 +235,65 @@ namespace Adyen.EcommLibrary.Model.Checkout
             if (input == null)
                 return false;
 
-            return 
+            return
                 (
                     this.AuthenticationOnly == input.AuthenticationOnly ||
                     (this.AuthenticationOnly != null &&
                     this.AuthenticationOnly.Equals(input.AuthenticationOnly))
-                ) && 
+                ) &&
                 (
                     this.ChallengeIndicator == input.ChallengeIndicator ||
                     (this.ChallengeIndicator != null &&
                     this.ChallengeIndicator.Equals(input.ChallengeIndicator))
-                ) && 
+                ) &&
                 (
-                    this.DeviceChannel == input.DeviceChannel ||
-                    (this.DeviceChannel != null &&
-                    this.DeviceChannel.Equals(input.DeviceChannel))
-                ) && 
+                    this.DeviceChannel == input.DeviceChannel &&
+                    this.DeviceChannel.Equals(input.DeviceChannel)
+                ) &&
                 (
                     this.DeviceRenderOptions == input.DeviceRenderOptions ||
                     (this.DeviceRenderOptions != null &&
                     this.DeviceRenderOptions.Equals(input.DeviceRenderOptions))
-                ) && 
+                ) &&
                 (
                     this.NotificationURL == input.NotificationURL ||
                     (this.NotificationURL != null &&
                     this.NotificationURL.Equals(input.NotificationURL))
-                ) && 
+                ) &&
                 (
                     this.SdkAppID == input.SdkAppID ||
                     (this.SdkAppID != null &&
                     this.SdkAppID.Equals(input.SdkAppID))
-                ) && 
+                ) &&
                 (
                     this.SdkEncData == input.SdkEncData ||
                     (this.SdkEncData != null &&
                     this.SdkEncData.Equals(input.SdkEncData))
-                ) && 
+                ) &&
                 (
                     this.SdkEphemPubKey == input.SdkEphemPubKey ||
                     (this.SdkEphemPubKey != null &&
                     this.SdkEphemPubKey.Equals(input.SdkEphemPubKey))
-                ) && 
+                ) &&
                 (
                     this.SdkMaxTimeout == input.SdkMaxTimeout ||
                     (this.SdkMaxTimeout != null &&
                     this.SdkMaxTimeout.Equals(input.SdkMaxTimeout))
-                ) && 
+                ) &&
                 (
                     this.SdkReferenceNumber == input.SdkReferenceNumber ||
                     (this.SdkReferenceNumber != null &&
                     this.SdkReferenceNumber.Equals(input.SdkReferenceNumber))
-                ) && 
+                ) &&
                 (
                     this.SdkTransID == input.SdkTransID ||
                     (this.SdkTransID != null &&
                     this.SdkTransID.Equals(input.SdkTransID))
-                ) && 
+                ) &&
                 (
-                    this.ThreeDSCompInd == input.ThreeDSCompInd ||
-                    (this.ThreeDSCompInd != null &&
-                    this.ThreeDSCompInd.Equals(input.ThreeDSCompInd))
-                ) && 
+                    this.ThreeDSCompInd == input.ThreeDSCompInd &&
+                    this.ThreeDSCompInd.Equals(input.ThreeDSCompInd)
+                ) &&
                 (
                     this.ThreeDSRequestorURL == input.ThreeDSRequestorURL ||
                     (this.ThreeDSRequestorURL != null &&
@@ -315,8 +314,9 @@ namespace Adyen.EcommLibrary.Model.Checkout
                     hashCode = hashCode * 59 + this.AuthenticationOnly.GetHashCode();
                 if (this.ChallengeIndicator != null)
                     hashCode = hashCode * 59 + this.ChallengeIndicator.GetHashCode();
-                if (this.DeviceChannel != null)
-                    hashCode = hashCode * 59 + this.DeviceChannel.GetHashCode();
+
+                hashCode = hashCode * 59 + this.DeviceChannel.GetHashCode();
+
                 if (this.DeviceRenderOptions != null)
                     hashCode = hashCode * 59 + this.DeviceRenderOptions.GetHashCode();
                 if (this.NotificationURL != null)
@@ -333,8 +333,9 @@ namespace Adyen.EcommLibrary.Model.Checkout
                     hashCode = hashCode * 59 + this.SdkReferenceNumber.GetHashCode();
                 if (this.SdkTransID != null)
                     hashCode = hashCode * 59 + this.SdkTransID.GetHashCode();
-                if (this.ThreeDSCompInd != null)
-                    hashCode = hashCode * 59 + this.ThreeDSCompInd.GetHashCode();
+
+                hashCode = hashCode * 59 + this.ThreeDSCompInd.GetHashCode();
+
                 if (this.ThreeDSRequestorURL != null)
                     hashCode = hashCode * 59 + this.ThreeDSRequestorURL.GetHashCode();
                 return hashCode;

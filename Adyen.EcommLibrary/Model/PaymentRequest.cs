@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Runtime.Serialization;
 using System.Text;
 using Adyen.EcommLibrary.Model.ApplicationInformation;
+using Adyen.EcommLibrary.Util;
 
 namespace Adyen.EcommLibrary.Model
 {
@@ -61,19 +62,11 @@ namespace Adyen.EcommLibrary.Model
             sb.Append("class PaymentRequest {\n");
 
             sb.Append(base.ToString());
-            sb.Append("    card: ").Append(ToIndentedString(Card)).Append("\n");
-            sb.Append("    mpiData: ").Append(ToIndentedString(MpiData)).Append("\n");
-            sb.Append("    bankAccount: ").Append(ToIndentedString(BankAccount)).Append("\n");
+            sb.Append("    card: ").Append(Card.ToIndentedString()).Append("\n");
+            sb.Append("    mpiData: ").Append(MpiData.ToIndentedString()).Append("\n");
+            sb.Append("    bankAccount: ").Append(BankAccount.ToIndentedString()).Append("\n");
             sb.Append("}");
             return sb.ToString();
-        }
-        private string ToIndentedString(Object o)
-        {
-            if (o == null)
-            {
-                return "null";
-            }
-            return o.ToString().Replace("\n", "\n    ");
         }
     }
 }

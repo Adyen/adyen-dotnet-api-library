@@ -28,6 +28,12 @@ namespace Adyen.EcommLibrary.Model.Enum
         PartiallyAuthorised,
 
         /// <summary>
+        /// Enum for when authentication has finished
+        /// </summary>
+        [EnumMember(Value = "AuthenticationFinished ")]
+        AuthenticationFinished,
+
+        /// <summary>
         /// Enum Refused for "Refused"
         /// </summary>
         [EnumMember(Value = "Refused")]
@@ -55,6 +61,19 @@ namespace Adyen.EcommLibrary.Model.Enum
         /// Enum RedirectShopper for "RedirectShopper"
         /// </summary>
         [EnumMember(Value = "RedirectShopper")]
-        RedirectShopper
+        RedirectShopper,
+
+        /// <summary>
+        /// Enum IdentifyShopper for "IdentifyShopper"
+        /// </summary>
+
+        [EnumMember(Value = "IdentifyShopper")]
+        IdentifyShopper,
+
+        /// <summary>
+        /// Enum ChallengeShopper for value: ChallengeShopper
+        /// </summary>
+        [EnumMember(Value = "ChallengeShopper")]
+        ChallengeShopper
     }
 }
