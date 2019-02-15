@@ -155,6 +155,9 @@ namespace Adyen.EcommLibrary.Model.Checkout
         public string RefusalReasonCode { get; set; }
 
 
+        [DataMember(Name="outputDetails", EmitDefaultValue=false)]
+        public Dictionary<string, string> OutputDetails;
+        
         /// <summary>
         /// Returns the string presentation of the object
         /// </summary>
