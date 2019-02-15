@@ -1,0 +1,15 @@
+﻿{
+  "additionalData": {
+    "expiryDate": "10\/2020",
+    "threeds2.threeDSServerTransID": "74044f6c-7d79-4dd1-9859-3b2879a32fb0",
+    "cardSummary": "1245",
+    "aliasType": "Default",
+    "alias": "G250484829855790",
+    "paymentMethod": "visa",
+    "threeds2.threeDS2Token": "[token]",
+    "paymentMethodVariant": "visa",
+    "threeds2.threeDSMethodURL": "https:\/\/pal-test.adyen.com\/threeds2simulator\/acs\/startMethod.shtml"
+  },
+  "pspReference": "8535432125638799",
+  "resultCode": "IdentifyShopper"
+}

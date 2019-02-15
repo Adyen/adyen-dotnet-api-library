@@ -7,7 +7,7 @@ namespace Adyen.EcommLibrary.Notification
     {
         public NotificationRequest HandleNotificationRequest(string jsonRequest)
         {
-            var notificationRequest = JsonOperation.Deserealize(jsonRequest);
+            var notificationRequest = JsonOperation.Deserialize(jsonRequest);
             
             //var notificationRequest = new NotificationRequest {Live = (bool)live};
             //var live = notificationRequestdynamic.live;

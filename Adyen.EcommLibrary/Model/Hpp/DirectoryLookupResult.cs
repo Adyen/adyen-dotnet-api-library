@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Text;
+using Adyen.EcommLibrary.Util;
 
 namespace Adyen.EcommLibrary.Model.Hpp
 {
@@ -10,9 +11,9 @@ namespace Adyen.EcommLibrary.Model.Hpp
         public override string ToString()
         {
             StringBuilder sb = new StringBuilder();
-            sb.Append("class DirectoryLookupResult {\n");
-            sb.Append("    paymentMethods: ").Append(Util.Util.ToIndentedString(this.PaymentMethods)).Append("\n");
-            sb.Append("}");
+            sb.AppendLine("class DirectoryLookupResult {");
+            sb.Append("    paymentMethods: ").AppendLine(this.PaymentMethods.ToIndentedString());
+            sb.AppendLine("}");
             return sb.ToString();
         }
     }

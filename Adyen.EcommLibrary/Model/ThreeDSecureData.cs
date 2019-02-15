@@ -14,9 +14,6 @@ namespace Adyen.EcommLibrary.Model
     [DataContract]
     public partial class ThreeDSecureData :  IEquatable<ThreeDSecureData>, IValidatableObject
     {
-       
-       
-
         /// <summary>
         /// The authentication response if the shopper was redirected.
         /// </summary>
