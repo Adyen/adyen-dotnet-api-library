@@ -58,15 +58,7 @@ namespace Adyen.EcommLibrary.Test
 
             Assert.IsNull(httpWebRequest.Headers["Idempotency-Key"]);
         }
-
-        [TestMethod]
-        public void IdempotencyKeyNotPresentInHeaderIfRequestOptionsExcluded()
-        {
-            var httpWebRequest = _httpUrlConnectionClient.GetHttpWebRequest(_endpoint, MockPaymentData.CreateConfingApiKeyBasedMock(), true);
-
-            Assert.IsNull(httpWebRequest.Headers["Idempotency-Key"]);
-        }
-
+        
         [TestMethod]
         public void IdempotencyKeyNotPresentInHeaderIfNull()
         {
