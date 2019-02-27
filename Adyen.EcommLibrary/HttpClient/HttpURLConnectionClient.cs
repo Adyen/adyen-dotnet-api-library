@@ -7,6 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Web;
 using Adyen.EcommLibrary.HttpClient.Interfaces;
+using Adyen.EcommLibrary.Model;
 
 
 namespace Adyen.EcommLibrary.HttpClient
@@ -15,11 +16,11 @@ namespace Adyen.EcommLibrary.HttpClient
     {
         private readonly Encoding _encoding = Encoding.ASCII;
 
-        public string Request(string endpoint, string json, Config config, bool isApiKeyRequired, string idempotencyKey = null)
+        public string Request(string endpoint, string json, Config config, bool isApiKeyRequired, RequestOptions requestOptions = null)
         {
             string responseText = null;
          
-            var httpWebRequest = GetHttpWebRequest(endpoint, config, isApiKeyRequired, idempotencyKey);
+            var httpWebRequest = GetHttpWebRequest(endpoint, config, isApiKeyRequired, requestOptions);
 
             using (var streamWriter = new StreamWriter(httpWebRequest.GetRequestStream()))
             {
@@ -59,13 +60,13 @@ namespace Adyen.EcommLibrary.HttpClient
         /// <param name="isApiKeyRequired"></param>
         /// <param name="idempotencyKey">Optional parameter used to specify the idemopotency key for the request</param>
         /// <returns>Task<></returns>
-        public async Task<string> RequestAsync(string endpoint, string json, Config config, bool isApiKeyRequired, string idempotencyKey = null)
+        public async Task<string> RequestAsync(string endpoint, string json, Config config, bool isApiKeyRequired, RequestOptions requestOptions = null)
         {
             string responseText;
             //Set security protocol. Only TLS1.2
             ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12;
 
-            var httpWebRequest = GetHttpWebRequest(endpoint, config, isApiKeyRequired, idempotencyKey);
+            var httpWebRequest = GetHttpWebRequest(endpoint, config, isApiKeyRequired, requestOptions);
         
             using (var streamWriter = new StreamWriter(httpWebRequest.GetRequestStream()))
             {
@@ -112,7 +113,7 @@ namespace Adyen.EcommLibrary.HttpClient
             return new StreamReader(response.GetResponseStream()).ReadToEnd();
         }
 
-        public HttpWebRequest GetHttpWebRequest(string endpoint, Config config, bool isApiKeyRequired, string idempotencyKey = null)
+        public HttpWebRequest GetHttpWebRequest(string endpoint, Config config, bool isApiKeyRequired, RequestOptions requestOptions = null)
         {
             //Add default headers
             var httpWebRequest = (HttpWebRequest)WebRequest.Create(endpoint);
@@ -127,9 +128,9 @@ namespace Adyen.EcommLibrary.HttpClient
                 httpWebRequest.ServerCertificateValidationCallback = delegate { return true; };
             }
 
-            if (!string.IsNullOrEmpty(idempotencyKey))
+            if (!string.IsNullOrWhiteSpace(requestOptions?.IdempotencyKey))
             {
-                httpWebRequest.Headers.Add("Idempotency-Key", idempotencyKey);
+                httpWebRequest.Headers.Add("Idempotency-Key", requestOptions?.IdempotencyKey);
             }
 
             //Use one of two authentication method.

@@ -10,6 +10,7 @@ using System.IO;
 using System.Net;
 using System.Text;
 using Adyen.EcommLibrary.HttpClient.Interfaces;
+using Adyen.EcommLibrary.Model;
 using Environment = System.Environment;
 using Amount = Adyen.EcommLibrary.Model.Amount;
 using PaymentResult = Adyen.EcommLibrary.Model.PaymentResult;
@@ -179,7 +180,7 @@ namespace Adyen.EcommLibrary.Test
             var clientInterfaceMock = new Mock<IClient>();
             var confMock = MockPaymentData.CreateConfingMock();
            
-            clientInterfaceMock.Setup(x => x.Request(It.IsAny<string>(),  It.IsAny<string>(), confMock, It.IsAny<bool>(), It.IsAny<string>())).Returns(response);
+            clientInterfaceMock.Setup(x => x.Request(It.IsAny<string>(),  It.IsAny<string>(), confMock, It.IsAny<bool>(), It.IsAny<RequestOptions>())).Returns(response);
             var clientMock = new Client(It.IsAny<Config>())
             {
                 HttpClient = clientInterfaceMock.Object,
@@ -223,7 +224,7 @@ namespace Adyen.EcommLibrary.Test
             var clientInterfaceMock = new Mock<IClient>();
             var confMock = MockPaymentData.CreateConfingApiKeyBasedMock();
             clientInterfaceMock.Setup(x => x.Request(It.IsAny<string>(),
-                It.IsAny<string>(), It.IsAny<Config>(),It.IsAny<bool>(), It.IsAny<string>())).Returns(response);
+                It.IsAny<string>(), It.IsAny<Config>(),It.IsAny<bool>(), It.IsAny<RequestOptions>())).Returns(response);
             var clientMock = new Client(It.IsAny<Config>())
             {
                 HttpClient = clientInterfaceMock.Object,
@@ -245,7 +246,7 @@ namespace Adyen.EcommLibrary.Test
             //Create a mock interface
             var clientInterfaceMock = new Mock<IClient>();
             clientInterfaceMock.Setup(x => x.Request(It.IsAny<string>(),
-                It.IsAny<string>(), config,It.IsAny<bool>(), It.IsAny<string>())).Returns(response);
+                It.IsAny<string>(), config,It.IsAny<bool>(), It.IsAny<RequestOptions>())).Returns(response);
             var clientMock = new Client(It.IsAny<Config>())
             {
                 HttpClient = clientInterfaceMock.Object,

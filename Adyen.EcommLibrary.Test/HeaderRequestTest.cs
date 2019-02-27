@@ -1,4 +1,5 @@
 ﻿using Adyen.EcommLibrary.HttpClient;
+using Adyen.EcommLibrary.Model;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace Adyen.EcommLibrary.Test
@@ -59,6 +60,14 @@ namespace Adyen.EcommLibrary.Test
         }
 
         [TestMethod]
+        public void IdempotencyKeyNotPresentInHeaderIfRequestOptionsExcluded()
+        {
+            var httpWebRequest = _httpUrlConnectionClient.GetHttpWebRequest(_endpoint, MockPaymentData.CreateConfingApiKeyBasedMock(), true);
+
+            Assert.IsNull(httpWebRequest.Headers["Idempotency-Key"]);
+        }
+
+        [TestMethod]
         public void IdempotencyKeyNotPresentInHeaderIfNull()
         {
             var httpWebRequest = _httpUrlConnectionClient.GetHttpWebRequest(_endpoint, MockPaymentData.CreateConfingApiKeyBasedMock(), true, null);
@@ -69,7 +78,25 @@ namespace Adyen.EcommLibrary.Test
         [TestMethod]
         public void IdempotencyKeyNotPresentInHeaderIfEmptyString()
         {
-            var httpWebRequest = _httpUrlConnectionClient.GetHttpWebRequest(_endpoint, MockPaymentData.CreateConfingApiKeyBasedMock(), true, string.Empty);
+            var requestOptions = new RequestOptions
+            {
+                IdempotencyKey = string.Empty
+            };
+
+            var httpWebRequest = _httpUrlConnectionClient.GetHttpWebRequest(_endpoint, MockPaymentData.CreateConfingApiKeyBasedMock(), true, requestOptions);
+
+            Assert.IsNull(httpWebRequest.Headers["Idempotency-Key"]);
+        }
+
+        [TestMethod]
+        public void IdempotencyKeyNotPresentInHeaderIfWhitespaceString()
+        {
+            var requestOptions = new RequestOptions
+            {
+                IdempotencyKey = " "
+            };
+
+            var httpWebRequest = _httpUrlConnectionClient.GetHttpWebRequest(_endpoint, MockPaymentData.CreateConfingApiKeyBasedMock(), true, requestOptions);
 
             Assert.IsNull(httpWebRequest.Headers["Idempotency-Key"]);
         }
@@ -77,11 +104,15 @@ namespace Adyen.EcommLibrary.Test
         [TestMethod]
         public void IdempotencyKeyPresentInHeaderIfSpecified()
         {
-            var expectedKey = "idempotencyKey";
-            var httpWebRequest = _httpUrlConnectionClient.GetHttpWebRequest(_endpoint, MockPaymentData.CreateConfingApiKeyBasedMock(), true, expectedKey);
+            var requestOptions = new RequestOptions
+            {
+                IdempotencyKey = "idempotencyKey"
+            };
+
+            var httpWebRequest = _httpUrlConnectionClient.GetHttpWebRequest(_endpoint, MockPaymentData.CreateConfingApiKeyBasedMock(), true, requestOptions);
 
             Assert.IsNotNull(httpWebRequest.Headers["Idempotency-Key"]);
-            Assert.AreEqual(expectedKey, httpWebRequest.Headers["Idempotency-Key"]);
+            Assert.AreEqual(requestOptions.IdempotencyKey, httpWebRequest.Headers["Idempotency-Key"]);
         }
     }
 }

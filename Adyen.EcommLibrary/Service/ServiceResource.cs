@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using Adyen.EcommLibrary.Model;
 
 namespace Adyen.EcommLibrary.Service
 {
@@ -15,18 +16,18 @@ namespace Adyen.EcommLibrary.Service
             Endpoint = endpoint;
         }
 
-        public string Request(string json, string idempotencyKey = null)
+        public string Request(string json, RequestOptions requestOptions = null)
         {
             var clientInterface = _abstractService.Client.HttpClient;
             var config = _abstractService.Client.Config;
-            return clientInterface.Request(Endpoint, json, config, _abstractService.IsApiKeyRequired, idempotencyKey);
+            return clientInterface.Request(Endpoint, json, config, _abstractService.IsApiKeyRequired, requestOptions);
         }
 
-        public Task<string> RequestAsync(string json, string idempotencyKey = null)
+        public Task<string> RequestAsync(string json, RequestOptions requestOptions = null)
         {
             var clientInterface = _abstractService.Client.HttpClient;
             var config = _abstractService.Client.Config;
-            return clientInterface.RequestAsync(Endpoint, json, config,false, idempotencyKey);
+            return clientInterface.RequestAsync(Endpoint, json, config,false, requestOptions);
         }
     }
 }
