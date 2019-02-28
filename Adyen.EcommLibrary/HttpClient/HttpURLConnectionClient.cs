@@ -59,7 +59,7 @@ namespace Adyen.EcommLibrary.HttpClient
         /// <param name="config"></param>
         /// <param name="isApiKeyRequired"></param>
         /// <param name="requestOptions">Optional parameter used to specify the options for the request</param>
-        /// <returns>Task<></returns>
+        /// <returns>Task<string></returns>
         public async Task<string> RequestAsync(string endpoint, string json, Config config, bool isApiKeyRequired, RequestOptions requestOptions = null)
         {
             string responseText;
