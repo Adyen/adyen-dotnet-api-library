@@ -58,7 +58,7 @@ namespace Adyen.EcommLibrary.HttpClient
         /// <param name="json"></param>
         /// <param name="config"></param>
         /// <param name="isApiKeyRequired"></param>
-        /// <param name="idempotencyKey">Optional parameter used to specify the idemopotency key for the request</param>
+        /// <param name="requestOptions">Optional parameter used to specify the options for the request</param>
         /// <returns>Task<></returns>
         public async Task<string> RequestAsync(string endpoint, string json, Config config, bool isApiKeyRequired, RequestOptions requestOptions = null)
         {
