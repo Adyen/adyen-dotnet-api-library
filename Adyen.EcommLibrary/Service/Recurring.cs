@@ -22,7 +22,7 @@ namespace Adyen.EcommLibrary.Service
             {
                 var jsonRequest = Util.JsonOperation.SerializeRequest(request);
                 var jsonResponse = _listRecurringDetails.Request(jsonRequest);
-                result = Util.JsonOperation.Deserealize<RecurringDetailsResult>(jsonResponse);
+                result = Util.JsonOperation.Deserialize<RecurringDetailsResult>(jsonResponse);
             }
             catch (Exception ex)
             {
@@ -39,7 +39,7 @@ namespace Adyen.EcommLibrary.Service
             {
                 var jsonRequest = Util.JsonOperation.SerializeRequest(disableRequest);
                 var jsonResponse = _disable.Request(jsonRequest);
-                result = Util.JsonOperation.Deserealize<DisableResult>(jsonResponse);
+                result = Util.JsonOperation.Deserialize<DisableResult>(jsonResponse);
             }
             catch (Exception ex)
             {

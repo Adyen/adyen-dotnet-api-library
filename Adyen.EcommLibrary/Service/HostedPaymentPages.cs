@@ -81,7 +81,7 @@ namespace Adyen.EcommLibrary.Service
             {
                 var postParameters = GetPostParametersFromDlRequest(request);
                 var jsonResult = DirectoryLookup(postParameters);
-                var directoryLookupResult = Util.JsonOperation.Deserealize<DirectoryLookupResult>(jsonResult);
+                var directoryLookupResult = Util.JsonOperation.Deserialize<DirectoryLookupResult>(jsonResult);
 
                 return directoryLookupResult.PaymentMethods;
             }

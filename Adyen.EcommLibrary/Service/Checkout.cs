@@ -1,9 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using Adyen.EcommLibrary.Model;
 using Adyen.EcommLibrary.Model.Checkout;
 using Adyen.EcommLibrary.Service.Resource.Checkout;
 using Newtonsoft.Json;
+using PaymentRequest = Adyen.EcommLibrary.Model.Checkout.PaymentRequest;
 
 namespace Adyen.EcommLibrary.Service
 {
@@ -29,11 +31,12 @@ namespace Adyen.EcommLibrary.Service
         /// Post /payments API call
         /// </summary>
         /// <param name="paymentRequest"></param>
+        /// <param name="requestOptions"></param>
         /// <returns></returns>
-        public PaymentsResponse Payments(PaymentRequest paymentRequest)
+        public PaymentsResponse Payments(PaymentRequest paymentRequest, RequestOptions requestOptions = null)
         {
             var jsonRequest = Util.JsonOperation.SerializeRequest(paymentRequest);
-            var jsonResponse = _payments.Request(jsonRequest);
+            var jsonResponse = _payments.Request(jsonRequest, requestOptions);
             return JsonConvert.DeserializeObject<PaymentsResponse>(jsonResponse);
         }
 

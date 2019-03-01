@@ -7,6 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Web;
 using Adyen.EcommLibrary.HttpClient.Interfaces;
+using Adyen.EcommLibrary.Model;
 
 
 namespace Adyen.EcommLibrary.HttpClient
@@ -15,13 +16,11 @@ namespace Adyen.EcommLibrary.HttpClient
     {
         private readonly Encoding _encoding = Encoding.ASCII;
 
-        public string Request(string endpoint, string json, Config config, bool isApiKeyRequired)
+        public string Request(string endpoint, string json, Config config, bool isApiKeyRequired, RequestOptions requestOptions = null)
         {
             string responseText = null;
-            //Set security protocol. Only TLS1.2
-            ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12;
-
-            var httpWebRequest = GetHttpWebRequest(endpoint, config, isApiKeyRequired);
+         
+            var httpWebRequest = GetHttpWebRequest(endpoint, config, isApiKeyRequired, requestOptions);
 
             using (var streamWriter = new StreamWriter(httpWebRequest.GetRequestStream()))
             {
@@ -43,7 +42,11 @@ namespace Adyen.EcommLibrary.HttpClient
             catch (WebException e)
             {
                 var response = (HttpWebResponse)e.Response;
-                throw new HttpClientException((int)response.StatusCode, "HTTP Exception", response.Headers, response.StatusDescription);
+                using (var sr = new StreamReader(response.GetResponseStream()))
+                {
+                    responseText = sr.ReadToEnd();
+                }
+                throw new HttpClientException((int)response.StatusCode, "HTTP Exception", response.Headers, responseText);
             }
             return responseText;
         }
@@ -55,15 +58,16 @@ namespace Adyen.EcommLibrary.HttpClient
         /// <param name="json"></param>
         /// <param name="config"></param>
         /// <param name="isApiKeyRequired"></param>
-        /// <returns>Task<></returns>
-        public async Task<string> RequestAsync(string endpoint, string json, Config config, bool isApiKeyRequired)
+        /// <param name="requestOptions">Optional parameter used to specify the options for the request</param>
+        /// <returns>Task<string></returns>
+        public async Task<string> RequestAsync(string endpoint, string json, Config config, bool isApiKeyRequired, RequestOptions requestOptions = null)
         {
             string responseText;
             //Set security protocol. Only TLS1.2
             ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12;
 
-            var httpWebRequest = GetHttpWebRequest(endpoint, config, isApiKeyRequired);
-
+            var httpWebRequest = GetHttpWebRequest(endpoint, config, isApiKeyRequired, requestOptions);
+        
             using (var streamWriter = new StreamWriter(httpWebRequest.GetRequestStream()))
             {
                 streamWriter.Write(json);
@@ -82,7 +86,7 @@ namespace Adyen.EcommLibrary.HttpClient
             return responseText;
         }
 
-        //This is deprecated functionality by Adyen. Correct use request method with isApiKeyRequired parameter.
+        [Obsolete("This is deprecated functionality by Adyen. Correct use request method with isApiKeyRequired parameter.")]
         public string Request(string endpoint, string json, Config config)
         {
             return this.Request(endpoint, json, config, false);
@@ -109,7 +113,7 @@ namespace Adyen.EcommLibrary.HttpClient
             return new StreamReader(response.GetResponseStream()).ReadToEnd();
         }
 
-        public HttpWebRequest GetHttpWebRequest(string endpoint, Config config, bool isApiKeyRequired)
+        public HttpWebRequest GetHttpWebRequest(string endpoint, Config config, bool isApiKeyRequired, RequestOptions requestOptions = null)
         {
             //Add default headers
             var httpWebRequest = (HttpWebRequest)WebRequest.Create(endpoint);
@@ -123,6 +127,12 @@ namespace Adyen.EcommLibrary.HttpClient
             {
                 httpWebRequest.ServerCertificateValidationCallback = delegate { return true; };
             }
+
+            if (!string.IsNullOrWhiteSpace(requestOptions?.IdempotencyKey))
+            {
+                httpWebRequest.Headers.Add("Idempotency-Key", requestOptions?.IdempotencyKey);
+            }
+
             //Use one of two authentication method.
             if (isApiKeyRequired || !string.IsNullOrEmpty(config.XApiKey))
             {

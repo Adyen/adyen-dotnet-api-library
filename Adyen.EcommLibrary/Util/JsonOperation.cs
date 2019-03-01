@@ -10,7 +10,7 @@ namespace Adyen.EcommLibrary.Util
         /// <typeparam name="T"></typeparam>
         /// <param name="request"></param>
         /// <returns></returns>
-        public static T Deserealize<T>(string request)
+        public static T Deserialize<T>(string request)
         {
             return JsonConvert.DeserializeObject<T>(request);
         }
@@ -20,7 +20,7 @@ namespace Adyen.EcommLibrary.Util
         /// </summary>
         /// <param name="request"></param>
         /// <returns></returns>
-        public static dynamic Deserealize(string request)
+        public static dynamic Deserialize(string request)
         {
             return JsonConvert.DeserializeObject(request);
         }
@@ -30,7 +30,8 @@ namespace Adyen.EcommLibrary.Util
             return JsonConvert.SerializeObject(request, Newtonsoft.Json.Formatting.None,
                 new JsonSerializerSettings
                 {
-                    NullValueHandling = NullValueHandling.Ignore
+                    NullValueHandling = NullValueHandling.Ignore,
+                    DefaultValueHandling = DefaultValueHandling.Include
                 });
         }
     }

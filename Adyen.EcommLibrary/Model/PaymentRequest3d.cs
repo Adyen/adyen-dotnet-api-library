@@ -3,6 +3,7 @@ using System.Runtime.Serialization;
 using System.Text;
 using Adyen.EcommLibrary.Constants;
 using Adyen.EcommLibrary.Model.ApplicationInformation;
+using Adyen.EcommLibrary.Util;
 
 namespace Adyen.EcommLibrary.Model
 {
@@ -25,18 +26,11 @@ namespace Adyen.EcommLibrary.Model
             sb.Append("class PaymentRequest {\n");
 
             sb.Append(base.ToString());
-            sb.Append("    md: ").Append(ToIndentedString(Md)).Append("\n");
-            sb.Append("    paResponse: ").Append(ToIndentedString(PaResponse)).Append("\n");
+            sb.Append("    md: ").Append(Md.ToIndentedString()).Append("\n");
+            sb.Append("    paResponse: ").Append(PaResponse.ToIndentedString()).Append("\n");
             sb.Append("}");
             return sb.ToString();
         }
-        private string ToIndentedString(Object o)
-        {
-            if (o == null)
-            {
-                return "null";
-            }
-            return o.ToString().Replace("\n", "\n    ");
-        }
+     
     }
 }
