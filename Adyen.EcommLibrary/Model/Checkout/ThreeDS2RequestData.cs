@@ -71,17 +71,12 @@ namespace Adyen.EcommLibrary.Model.Checkout
         /// <param name="SdkTransID">The &#x60;sdkTransID&#x60; value as received from the 3DS 2.0 SDK. Only for &#x60;deviceChannel&#x60; set to **app**..</param>
         /// <param name="ThreeDSCompInd">Completion indicator for the &#x60;threeDSMethodUrl&#x60; fingerprinting..</param>
         /// <param name="ThreeDSRequestorURL">URL of the (customer service) website that will be shown to the shopper in case of technical errors during the 3DS2.0 process..</param>
-        public ThreeDS2RequestData(bool? AuthenticationOnly = default(bool?), ChallengeIndicatorEnum? ChallengeIndicator = default(ChallengeIndicatorEnum?), DeviceChannelEnum DeviceChannel = default(DeviceChannelEnum), DeviceRenderOptions DeviceRenderOptions = default(DeviceRenderOptions), string NotificationURL = default(string), string SdkAppID = default(string), string SdkEncData = default(string), SDKEphemPubKey SdkEphemPubKey = default(SDKEphemPubKey), int? SdkMaxTimeout = default(int?), string SdkReferenceNumber = default(string), string SdkTransID = default(string), DeviceFingerprintCompletedEnum ThreeDSCompInd = default(DeviceFingerprintCompletedEnum), string ThreeDSRequestorURL = default(string))
+        public ThreeDS2RequestData(bool? AuthenticationOnly = default(bool?), ChallengeIndicatorEnum? ChallengeIndicator = default(ChallengeIndicatorEnum?), DeviceChannelEnum? DeviceChannel = default(DeviceChannelEnum), DeviceRenderOptions DeviceRenderOptions = default(DeviceRenderOptions), string NotificationURL = default(string), string SdkAppID = default(string), string SdkEncData = default(string), SDKEphemPubKey SdkEphemPubKey = default(SDKEphemPubKey), int? SdkMaxTimeout = default(int?), string SdkReferenceNumber = default(string), string SdkTransID = default(string), DeviceFingerprintCompletedEnum ThreeDSCompInd = default(DeviceFingerprintCompletedEnum), string ThreeDSRequestorURL = default(string))
         {
             // to ensure "DeviceChannel" is required (not null)
-            if (DeviceChannel == null)
-            {
-                throw new InvalidDataException("DeviceChannel is a required property for ThreeDS2RequestData and cannot be null");
-            }
-            else
-            {
-                this.DeviceChannel = DeviceChannel;
-            }
+            
+            this.DeviceChannel = DeviceChannel ?? throw new InvalidDataException("DeviceChannel is a required property for ThreeDS2RequestData and cannot be null"); ;
+
             this.AuthenticationOnly = AuthenticationOnly;
             this.ChallengeIndicator = ChallengeIndicator;
             this.DeviceRenderOptions = DeviceRenderOptions;
