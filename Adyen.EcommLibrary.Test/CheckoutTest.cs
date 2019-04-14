@@ -170,7 +170,6 @@ namespace Adyen.EcommLibrary.Test
         public void PaymentRequestApplicationInfoTest()
         {
             var paymentRequest = CreatePaymentRequestCheckout();
-
             var name = paymentRequest.ApplicationInfo.AdyenLibrary.Name;
             var version = paymentRequest.ApplicationInfo.AdyenLibrary.Version;
             Assert.AreEqual(version, Constants.ClientConfig.LibVersion);
@@ -182,7 +181,6 @@ namespace Adyen.EcommLibrary.Test
         public void PaymentSessionRequestApplicationInfoTest()
         {
             var paymentSessionRequest = CreatePaymentSessionRequest();
-
             var name = paymentSessionRequest.ApplicationInfo.AdyenLibrary.Name;
             var version = paymentSessionRequest.ApplicationInfo.AdyenLibrary.Version;
             Assert.AreEqual(version, Constants.ClientConfig.LibVersion);
