@@ -165,5 +165,28 @@ namespace Adyen.EcommLibrary.Test
             var paymentResultResponse = checkout.PaymentsResult(paymentResultRequest);
             Assert.IsNull(paymentResultResponse.ResultCode);
         }
+
+        [TestMethod]
+        public void PaymentRequestApplicationInfoTest()
+        {
+            var paymentRequest = CreatePaymentRequestCheckout();
+
+            var name = paymentRequest.ApplicationInfo.AdyenLibrary.Name;
+            var version = paymentRequest.ApplicationInfo.AdyenLibrary.Version;
+            Assert.AreEqual(version, Constants.ClientConfig.LibVersion);
+            Assert.AreEqual(name, Constants.ClientConfig.LibName);
+        }
+
+
+        [TestMethod]
+        public void PaymentSessionRequestApplicationInfoTest()
+        {
+            var paymentSessionRequest = CreatePaymentSessionRequest();
+
+            var name = paymentSessionRequest.ApplicationInfo.AdyenLibrary.Name;
+            var version = paymentSessionRequest.ApplicationInfo.AdyenLibrary.Version;
+            Assert.AreEqual(version, Constants.ClientConfig.LibVersion);
+            Assert.AreEqual(name, Constants.ClientConfig.LibName);
+        }
     }
 }
