@@ -151,6 +151,7 @@ namespace Adyen.EcommLibrary.Model.Checkout
         [JsonConstructor]
         public PaymentRequest()
         {
+            CreateApplicationInfo();
         }
         /// <summary>
         /// Initializes a new instance of the <see cref="PaymentRequest" /> class.
@@ -215,8 +216,9 @@ namespace Adyen.EcommLibrary.Model.Checkout
         /// <param name="ThreeDS2RequestData">Request fields for 3D Secure 2.0..</param>
         /// <param name="TotalsGroup">The reference value to aggregate sales totals in reporting. When not specified, the store field is used (if available)..</param>
         /// <param name="TrustedShopper">Set to true if the payment should be routed to a trusted MID..</param>
-        public PaymentRequest(AccountInfo AccountInfo = default(AccountInfo), Amount AdditionalAmount = default(Amount), Dictionary<string, string> AdditionalData = default(Dictionary<string, string>), List<string> AllowedPaymentMethods = default(List<string>), Amount Amount = default(Amount), ApplicationInfo ApplicationInfo = default(ApplicationInfo), BankAccount BankAccount = default(BankAccount), Address BillingAddress = default(Address), List<string> BlockedPaymentMethods = default(List<string>), BrowserInfo BrowserInfo = default(BrowserInfo), int? CaptureDelayHours = default(int?), Card Card = default(Card), ChannelEnum? Channel = default(ChannelEnum?), Company Company = default(Company), string CountryCode = default(string), DateTime? DateOfBirth = default(DateTime?), ForexQuote DccQuote = default(ForexQuote), Address DeliveryAddress = default(Address), DateTime? DeliveryDate = default(DateTime?), string DeviceFingerprint = default(string), bool? EnableOneClick = default(bool?), bool? EnablePayOut = default(bool?), bool? EnableRecurring = default(bool?), EntityTypeEnum? EntityType = default(EntityTypeEnum?), int? FraudOffset = default(int?), Installments Installments = default(Installments), List<LineItem> LineItems = default(List<LineItem>), string Mcc = default(string), string MerchantAccount = default(string), string MerchantOrderReference = default(string), MerchantRiskIndicator MerchantRiskIndicator = default(MerchantRiskIndicator), Dictionary<string, string> Metadata = default(Dictionary<string, string>), ThreeDSecureData MpiData = default(ThreeDSecureData), string Nationality = default(string), string OrderReference = default(string), DefaultPaymentMethodDetails PaymentMethod = default(DefaultPaymentMethodDetails), Recurring Recurring = default(Recurring), RecurringProcessingModelEnum? RecurringProcessingModel = default(RecurringProcessingModelEnum?), string RedirectFromIssuerMethod = default(string), string RedirectToIssuerMethod = default(string), string Reference = default(string), string ReturnUrl = default(string), string SelectedBrand = default(string), string SelectedRecurringDetailReference = default(string), string SessionId = default(string), string SessionValidity = default(string), string ShopperEmail = default(string), string ShopperIP = default(string), ShopperInteractionEnum? ShopperInteraction = default(ShopperInteractionEnum?), string ShopperLocale = default(string), Name ShopperName = default(Name), string ShopperReference = default(string), string ShopperStatement = default(string), string SocialSecurityNumber = default(string), List<Split> Splits = default(List<Split>), string Store = default(string), string TelephoneNumber = default(string), ThreeDS2RequestData ThreeDS2RequestData = default(ThreeDS2RequestData), string TotalsGroup = default(string), bool? TrustedShopper = default(bool?))
+        public PaymentRequest(AccountInfo AccountInfo = default(AccountInfo), Amount AdditionalAmount = default(Amount), Dictionary<string, string> AdditionalData = default(Dictionary<string, string>), List<string> AllowedPaymentMethods = default(List<string>), Amount Amount = default(Amount), BankAccount BankAccount = default(BankAccount), Address BillingAddress = default(Address), List<string> BlockedPaymentMethods = default(List<string>), BrowserInfo BrowserInfo = default(BrowserInfo), int? CaptureDelayHours = default(int?), Card Card = default(Card), ChannelEnum? Channel = default(ChannelEnum?), Company Company = default(Company), string CountryCode = default(string), DateTime? DateOfBirth = default(DateTime?), ForexQuote DccQuote = default(ForexQuote), Address DeliveryAddress = default(Address), DateTime? DeliveryDate = default(DateTime?), string DeviceFingerprint = default(string), bool? EnableOneClick = default(bool?), bool? EnablePayOut = default(bool?), bool? EnableRecurring = default(bool?), EntityTypeEnum? EntityType = default(EntityTypeEnum?), int? FraudOffset = default(int?), Installments Installments = default(Installments), List<LineItem> LineItems = default(List<LineItem>), string Mcc = default(string), string MerchantAccount = default(string), string MerchantOrderReference = default(string), MerchantRiskIndicator MerchantRiskIndicator = default(MerchantRiskIndicator), Dictionary<string, string> Metadata = default(Dictionary<string, string>), ThreeDSecureData MpiData = default(ThreeDSecureData), string Nationality = default(string), string OrderReference = default(string), DefaultPaymentMethodDetails PaymentMethod = default(DefaultPaymentMethodDetails), Recurring Recurring = default(Recurring), RecurringProcessingModelEnum? RecurringProcessingModel = default(RecurringProcessingModelEnum?), string RedirectFromIssuerMethod = default(string), string RedirectToIssuerMethod = default(string), string Reference = default(string), string ReturnUrl = default(string), string SelectedBrand = default(string), string SelectedRecurringDetailReference = default(string), string SessionId = default(string), string SessionValidity = default(string), string ShopperEmail = default(string), string ShopperIP = default(string), ShopperInteractionEnum? ShopperInteraction = default(ShopperInteractionEnum?), string ShopperLocale = default(string), Name ShopperName = default(Name), string ShopperReference = default(string), string ShopperStatement = default(string), string SocialSecurityNumber = default(string), List<Split> Splits = default(List<Split>), string Store = default(string), string TelephoneNumber = default(string), ThreeDS2RequestData ThreeDS2RequestData = default(ThreeDS2RequestData), string TotalsGroup = default(string), bool? TrustedShopper = default(bool?))
         {
+            CreateApplicationInfo();
             // to ensure "Amount" is required (not null)
             if (Amount == null)
             {
@@ -266,7 +268,6 @@ namespace Adyen.EcommLibrary.Model.Checkout
             this.AdditionalAmount = AdditionalAmount;
             this.AdditionalData = AdditionalData;
             this.AllowedPaymentMethods = AllowedPaymentMethods;
-            this.ApplicationInfo = ApplicationInfo;
             this.BankAccount = BankAccount;
             this.BillingAddress = BillingAddress;
             this.BlockedPaymentMethods = BlockedPaymentMethods;
@@ -359,7 +360,7 @@ namespace Adyen.EcommLibrary.Model.Checkout
         /// </summary>
         /// <value>Application information.</value>
         [DataMember(Name = "applicationInfo", EmitDefaultValue = false)]
-        public ApplicationInfo ApplicationInfo { get; set; }
+        public ApplicationInfo ApplicationInfo { get; private set; }
 
         /// <summary>
         /// The details of the bank account, from which the payment should be made. &gt; Either &#x60;bankAccount&#x60; or &#x60;card&#x60; field must be provided in a payment request.
@@ -744,6 +745,11 @@ namespace Adyen.EcommLibrary.Model.Checkout
             this.PaymentMethod = (defaultPaymentMethodDetails);
         }
 
+        private void CreateApplicationInfo()
+        {
+            if (ApplicationInfo == null)
+                ApplicationInfo = new ApplicationInfo();
+        }
 
         public override string ToString()
         {
