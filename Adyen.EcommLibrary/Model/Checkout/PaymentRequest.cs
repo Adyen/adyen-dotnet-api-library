@@ -191,6 +191,7 @@ namespace Adyen.EcommLibrary.Model.Checkout
         /// <param name="MpiData">Authentication data produced by an MPI (Mastercard SecureCode or Verified By Visa)..</param>
         /// <param name="Nationality">The two-character country code of the shopper&#39;s nationality..</param>
         /// <param name="OrderReference">The order reference to link multiple partial payments..</param>
+        /// <param name="Origin">Required for the 3DS2.0 Web integration.</param>
         /// <param name="PaymentMethod">The collection that contains the type of the payment method and its specific information (e.g. &#x60;idealIssuer&#x60;). (required).</param>
         /// <param name="Recurring">The recurring settings for the payment. Use this property when you want to enable [recurring payments](https://docs.adyen.com/developers/features/recurring-payments)..</param>
         /// <param name="RecurringProcessingModel">Defines a recurring payment type. Allowed values: * &#x60;Subscription&#x60; – A transaction for a fixed or variable amount, which follows a fixed schedule. * &#x60;CardOnFile&#x60; – Card details are stored to enable one-click or omnichannel journeys, or simply to streamline the checkout process. Any subscription not following a fixed schedule is also considered a card-on-file transaction..</param>
@@ -296,6 +297,7 @@ namespace Adyen.EcommLibrary.Model.Checkout
             this.MpiData = MpiData;
             this.Nationality = Nationality;
             this.OrderReference = OrderReference;
+            this.Origin = Origin;
             this.Recurring = Recurring;
             this.RecurringProcessingModel = RecurringProcessingModel;
             this.RedirectFromIssuerMethod = RedirectFromIssuerMethod;
@@ -717,10 +719,13 @@ namespace Adyen.EcommLibrary.Model.Checkout
         public bool? TrustedShopper { get; set; }
 
         /// <summary>
-        /// Returns the string presentation of the object
+        /// Required for the 3DS2.0 Web integration.
         /// </summary>
-        /// <returns>String presentation of the object</returns>
+        /// <value>Required for the 3DS2.0 Web integration.</value>
+        [DataMember(Name = "origin", EmitDefaultValue = false)]
+        public string Origin { get; set; }
 
+       
 
         public void AddCardData(string cardNumber, string expiryMonth, string expiryYear, string securityCode, string holderName)
         {
@@ -751,6 +756,10 @@ namespace Adyen.EcommLibrary.Model.Checkout
                 ApplicationInfo = new ApplicationInfo();
         }
 
+        /// <summary>
+        /// Returns the string presentation of the object
+        /// </summary>
+        /// <returns>String presentation of the object</returns>
         public override string ToString()
         {
             var sb = new StringBuilder();
@@ -790,6 +799,7 @@ namespace Adyen.EcommLibrary.Model.Checkout
             sb.Append("  MpiData: ").Append(MpiData).Append("\n");
             sb.Append("  Nationality: ").Append(Nationality).Append("\n");
             sb.Append("  OrderReference: ").Append(OrderReference).Append("\n");
+            sb.Append("  Origin: ").Append(Origin).Append("\n");
             sb.Append("  PaymentMethod: ").Append(PaymentMethod).Append("\n");
             sb.Append("  Recurring: ").Append(Recurring).Append("\n");
             sb.Append("  RecurringProcessingModel: ").Append(RecurringProcessingModel).Append("\n");
@@ -1024,6 +1034,11 @@ namespace Adyen.EcommLibrary.Model.Checkout
                     (this.OrderReference != null &&
                     this.OrderReference.Equals(input.OrderReference))
                 ) &&
+                 (
+                    this.Origin == input.Origin ||
+                    (this.Origin != null &&
+                    this.Origin.Equals(input.Origin))
+                ) &&
                 (
                     this.PaymentMethod == input.PaymentMethod ||
                     this.PaymentMethod != null &&
@@ -1230,6 +1245,8 @@ namespace Adyen.EcommLibrary.Model.Checkout
                     hashCode = hashCode * 59 + this.Nationality.GetHashCode();
                 if (this.OrderReference != null)
                     hashCode = hashCode * 59 + this.OrderReference.GetHashCode();
+                if (this.Origin != null)
+                    hashCode = hashCode * 59 + this.Origin.GetHashCode();
                 if (this.PaymentMethod != null)
                     hashCode = hashCode * 59 + this.PaymentMethod.GetHashCode();
                 if (this.Recurring != null)
