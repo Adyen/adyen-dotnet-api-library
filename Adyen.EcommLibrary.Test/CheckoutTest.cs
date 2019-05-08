@@ -206,5 +206,14 @@ namespace Adyen.EcommLibrary.Test
             Assert.AreEqual(paymentRequest.ApplicationInfo.MerchantApplication.Name, "MerchantApplicationName");
             Assert.AreEqual(paymentRequest.ApplicationInfo.MerchantApplication.Version, "MerchantApplicationVersion");
         }
+
+
+        [TestMethod]
+        public void PaymentsOriginTest()
+        {
+            var paymentMethodsRequest = CreatePaymentRequestCheckout();
+            paymentMethodsRequest.Origin = "https://localhost:8080";
+            Assert.AreEqual(paymentMethodsRequest.Origin, "https://localhost:8080");
+        }
     }
 }
