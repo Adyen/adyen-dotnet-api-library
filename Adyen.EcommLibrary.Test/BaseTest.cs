@@ -119,7 +119,7 @@ namespace Adyen.EcommLibrary.Test
         }
 
         /// <summary>
-        /// 3DS2 payemnts request
+        /// 3DS2 payments request
         /// </summary>
         /// <returns></returns>
         public Model.Checkout.PaymentRequest CreatePaymentRequest3DS2()
