@@ -28,11 +28,11 @@ namespace Adyen.EcommLibrary.Test
         [TestMethod]
         public void PaymentsTest()
         {
-            var paymentMethodsRequest = CreatePaymentRequestCheckout();
+            var paymentRequest = CreatePaymentRequestCheckout();
             var client = CreateMockTestClientApiKeyBasedRequest("Mocks/checkout/payments-success.json");
 
             var checkout = new Checkout(client);
-            var paymentResponse = checkout.Payments(paymentMethodsRequest);
+            var paymentResponse = checkout.Payments(paymentRequest);
             Assert.AreEqual("8535296650153317", paymentResponse.PspReference);
             Assert.AreEqual(ResultCodeEnum.Authorised, paymentResponse.ResultCode);
             Assert.IsNotNull(paymentResponse.AdditionalData);
@@ -41,6 +41,21 @@ namespace Adyen.EcommLibrary.Test
             Assert.AreEqual("visa", paymentResponse.AdditionalData["cardPaymentMethod"]);
         }
 
+        /// <summary>
+        /// Test success flow for 3DS2
+        /// POST /payments
+        /// </summary>
+        [TestMethod]
+        public void Payments3DS2Test()
+        {
+            var payment3DS2Request = CreatePaymentRequest3DS2();
+            var client = CreateMockTestClientApiKeyBasedRequest("Mocks/checkout/payments-3DS2-IdentifyShopper.json");
+            var checkout = new Checkout(client);
+            var paymentResponse = checkout.Payments(payment3DS2Request);
+            Assert.AreEqual(paymentResponse.ResultCode, ResultCodeEnum.IdentifyShopper);
+            Assert.IsFalse(string.IsNullOrEmpty(paymentResponse.PaymentData));
+        }
+        
         /// <summary>
         /// Test error flow for
         /// POST /payments
