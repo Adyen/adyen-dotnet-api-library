@@ -48,7 +48,7 @@ namespace Adyen.EcommLibrary.Test
         [TestMethod]
         public void Payments3DS2Test()
         {
-            var payment3DS2Request = CreatePaymentRequest3D2S();
+            var payment3DS2Request = CreatePaymentRequest3DS2();
             var client = CreateMockTestClientApiKeyBasedRequest("Mocks/checkout/payments-3DS2-IdentifyShopper.json");
             var checkout = new Checkout(client);
             var paymentResponse = checkout.Payments(payment3DS2Request);

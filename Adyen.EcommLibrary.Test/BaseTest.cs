@@ -122,7 +122,7 @@ namespace Adyen.EcommLibrary.Test
         /// 3DS2 payemnts request
         /// </summary>
         /// <returns></returns>
-        public Model.Checkout.PaymentRequest CreatePaymentRequest3D2S()
+        public Model.Checkout.PaymentRequest CreatePaymentRequest3DS2()
         {
             var amount = new Model.Checkout.Amount("USD", 1000);
             var paymentsRequest = new Model.Checkout.PaymentRequest
