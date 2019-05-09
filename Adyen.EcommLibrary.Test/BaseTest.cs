@@ -34,7 +34,7 @@ namespace Adyen.EcommLibrary.Test
             var paymentResult = payment.Authorise(paymentRequest);
             return GetAdditionaData(paymentResult);
         }
-
+       
         protected PaymentResult CreatePaymentApiKeyBasedResultFromFile(string fileName)
         {
             var client = CreateMockTestClientApiKeyBasedRequest(fileName);
@@ -113,6 +113,26 @@ namespace Adyen.EcommLibrary.Test
                 Amount = amount,
                 ReturnUrl = @"https://your-company.com/...",
                 MerchantAccount = "MerchantAccount",
+            };
+            paymentsRequest.AddCardData("4111111111111111", "10", "2020", "737", "John Smith");
+            return paymentsRequest;
+        }
+
+        /// <summary>
+        /// 3DS2 payemnts request
+        /// </summary>
+        /// <returns></returns>
+        public Model.Checkout.PaymentRequest CreatePaymentRequest3D2S()
+        {
+            var amount = new Model.Checkout.Amount("USD", 1000);
+            var paymentsRequest = new Model.Checkout.PaymentRequest
+            {
+                Reference = "Your order number ",
+                Amount = amount,
+                ReturnUrl = @"https://your-company.com/...",
+                MerchantAccount = "MerchantAccount",
+                AdditionalData = new Dictionary<string, string>() { { "allow3DS2", "true"} },
+                Channel=Model.Checkout.PaymentRequest.ChannelEnum.Web
             };
             paymentsRequest.AddCardData("4111111111111111", "10", "2020", "737", "John Smith");
             return paymentsRequest;
