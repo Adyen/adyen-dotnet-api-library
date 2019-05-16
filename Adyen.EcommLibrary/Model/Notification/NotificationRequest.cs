@@ -7,7 +7,8 @@ namespace Adyen.EcommLibrary.Model.Notification
     public class NotificationRequest
     {
         public string Live { get; set; }
-        
+
+        [JsonProperty("NotificationItems")]
         public List<NotificationRequestItemContainer> NotificationItemContainers { get; set; }
 
         /// <summary>

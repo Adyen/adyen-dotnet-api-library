@@ -1,13 +1,15 @@
-using System;
-using System.Text;
 using Adyen.EcommLibrary.Util;
+using System.Text;
 
 namespace Adyen.EcommLibrary.Model.Notification
 {
+    using Newtonsoft.Json;
+
     public class NotificationRequestItemContainer
     {
+        [JsonProperty("NotificationRequestItem")]
         public NotificationRequestItem NotificationItem { get; set; }
-        
+
         public override string ToString()
         {
             StringBuilder sb = new StringBuilder();
