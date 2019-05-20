@@ -27,8 +27,8 @@
 
         /// <remarks/>
         [System.Xml.Serialization.XmlAttributeAttribute(DataType = "integer")]
-        [System.ComponentModel.DefaultValueAttribute("0")]
-        public string MinimumDisplayTime;
+        [System.ComponentModel.DefaultValueAttribute(0)]
+        public int MinimumDisplayTime;
 
         /// <remarks/>
         [System.Xml.Serialization.XmlAttributeAttribute()]
@@ -41,7 +41,7 @@
         public DisplayOutput()
         {
             this.ResponseRequiredFlag = true;
-            this.MinimumDisplayTime = "0";
+            this.MinimumDisplayTime = 0;
         }
     }
 }
