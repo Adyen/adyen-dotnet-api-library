@@ -35,7 +35,7 @@
 
         /// <remarks/>
         [System.Xml.Serialization.XmlAttributeAttribute(DataType = "integer")]
-        public string MaxInputTime;
+        public int MaxInputTime;
 
         /// <remarks/>
         [System.Xml.Serialization.XmlAttributeAttribute()]
@@ -44,15 +44,15 @@
 
         /// <remarks/>
         [System.Xml.Serialization.XmlAttributeAttribute(DataType = "integer")]
-        public string MinLength;
+        public int MinLength;
 
         /// <remarks/>
         [System.Xml.Serialization.XmlAttributeAttribute(DataType = "integer")]
-        public string MaxLength;
+        public int MaxLength;
 
         /// <remarks/>
         [System.Xml.Serialization.XmlAttributeAttribute(DataType = "integer")]
-        public string MaxDecimalLength;
+        public int MaxDecimalLength;
 
         /// <remarks/>
         [System.Xml.Serialization.XmlAttributeAttribute()]
