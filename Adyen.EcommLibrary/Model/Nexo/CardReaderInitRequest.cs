@@ -19,9 +19,7 @@
         /// <remarks/>
         [System.Xml.Serialization.XmlAttributeAttribute()]
         public bool WarmResetFlag;
-
-      
-
+        
         /// <remarks/>
         [System.Xml.Serialization.XmlAttributeAttribute()]
         [System.ComponentModel.DefaultValueAttribute(true)]
@@ -29,7 +27,7 @@
 
         /// <remarks/>
         [System.Xml.Serialization.XmlAttributeAttribute(DataType = "integer")]
-        public string MaxWaitingTime;
+        public int MaxWaitingTime;
 
         public CardReaderInitRequest()
         {

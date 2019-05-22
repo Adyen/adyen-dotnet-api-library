@@ -14,7 +14,7 @@
 
         /// <remarks/>
         [System.Xml.Serialization.XmlAttributeAttribute()]
-        public string PINFormat;
+        public PINFormatType PINFormat;
 
         /// <remarks/>
         [System.Xml.Serialization.XmlAttributeAttribute()]

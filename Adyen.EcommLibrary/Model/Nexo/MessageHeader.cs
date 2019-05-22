@@ -7,21 +7,22 @@
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     public partial class MessageHeader
     {
+
         /// <remarks/>
         [System.Xml.Serialization.XmlAttributeAttribute()]
         public string ProtocolVersion;
 
         /// <remarks/>
         [System.Xml.Serialization.XmlAttributeAttribute()]
-        public string MessageClass;
+        public MessageClassType MessageClass;
 
         /// <remarks/>
         [System.Xml.Serialization.XmlAttributeAttribute()]
-        public string MessageCategory;
+        public MessageCategoryType MessageCategory;
 
         /// <remarks/>
         [System.Xml.Serialization.XmlAttributeAttribute()]
-        public string MessageType;
+        public MessageType MessageType;
 
         /// <remarks/>
         [System.Xml.Serialization.XmlAttributeAttribute()]

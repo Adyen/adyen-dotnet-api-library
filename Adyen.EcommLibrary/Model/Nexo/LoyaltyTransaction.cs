@@ -22,7 +22,7 @@
 
         /// <remarks/>
         [System.Xml.Serialization.XmlAttributeAttribute("LoyaltyTransaction")]
-        public string LoyaltyTransaction1;
+        public LoyaltyTransactionType LoyaltyTransaction1;
 
         /// <remarks/>
         [System.Xml.Serialization.XmlAttributeAttribute()]
@@ -30,7 +30,7 @@
 
         /// <remarks/>
         [System.Xml.Serialization.XmlAttributeAttribute()]
-        public decimal? TotalAmount;
+        public decimal TotalAmount;
 
     }
 }

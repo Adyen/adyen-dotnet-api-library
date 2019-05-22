@@ -1,13 +1,11 @@
-﻿using Adyen.EcommLibrary.CloudApiSerialization;
-
-namespace Adyen.EcommLibrary.Model.Nexo
+﻿namespace Adyen.EcommLibrary.Model.Nexo
 {
     /// <remarks/>
     [System.CodeDom.Compiler.GeneratedCodeAttribute("xsd", "4.6.1055.0")]
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
-    public partial class EnableServiceRequest:IMessagePayload
+    public partial class EnableServiceRequest
     {
 
         /// <remarks/>
@@ -20,6 +18,6 @@ namespace Adyen.EcommLibrary.Model.Nexo
 
         /// <remarks/>
         [System.Xml.Serialization.XmlAttributeAttribute()]
-        public string TransactionAction;
+        public TransactionActionType TransactionAction;
     }
 }

@@ -46,7 +46,7 @@
 
         /// <remarks/>
         [System.Xml.Serialization.XmlAttributeAttribute()]
-        public string[] EntryMode;
+        public EntryModeType[] EntryMode;
 
         /// <remarks/>
         [System.Xml.Serialization.XmlAttributeAttribute()]

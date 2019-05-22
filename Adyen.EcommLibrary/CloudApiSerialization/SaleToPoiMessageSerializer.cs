@@ -16,7 +16,6 @@ namespace Adyen.EcommLibrary.CloudApiSerialization
         }
         public SaleToPOIResponse Deserialize(string saleToPoiMessageDto)
         {
-            //todo temporary solution until we have an improved response 
             if (string.Equals("ok", saleToPoiMessageDto))
             {
                 return null;
@@ -32,16 +31,16 @@ namespace Adyen.EcommLibrary.CloudApiSerialization
             var deserializedOutputMessage = new SaleToPOIResponse
             {
                 MessageHeader = messageHeader,
-                MessagePayload = messagePayload
+                Item = messagePayload
             };
 
             //Check and deserialize RepeatedMessageResponse. RepeatedMessageResponse is optional
             if (saleToPoiMessageDto.Contains("TransactionStatusResponse") && saleToPoiMessageDto.Contains("RepeatedMessageResponse") && saleToPoiMessageDto.Contains("RepeatedResponseMessageBody"))
             {
                 var response = GetDeserializedRepeatedResponseMessagePayload(saleToPoiMessageWithoutRootJToken);
-                TransactionStatusResponse deserializedOutput = (TransactionStatusResponse)deserializedOutputMessage.MessagePayload;
+                TransactionStatusResponse deserializedOutput = (TransactionStatusResponse)deserializedOutputMessage.Item;
                 deserializedOutput.RepeatedMessageResponse.RepeatedResponseMessageBody.MessagePayload = response;
-                deserializedOutputMessage.MessagePayload = deserializedOutput;
+                deserializedOutputMessage.Item = deserializedOutput;
             }
             return deserializedOutputMessage;
         }
@@ -50,9 +49,9 @@ namespace Adyen.EcommLibrary.CloudApiSerialization
         {
             var messageCategory = messageHeader.MessageCategory;
             var messageType = messageHeader.MessageType;
-            var messagePayloadJson = GetMessagePayloadJSon(saleToPoiMessageWithoutRootJToken, messageCategory, messageType);
+            var messagePayloadJson = GetMessagePayloadJSon(saleToPoiMessageWithoutRootJToken, messageCategory.ToString(), messageType.ToString());
 
-            var messagePayloadSerializer = _messagePayloadSerializerFactory.CreateSerializer(messageCategory, messageType);
+            var messagePayloadSerializer = _messagePayloadSerializerFactory.CreateSerializer(messageCategory.ToString(), messageType.ToString());
             return messagePayloadSerializer.Deserialize(messagePayloadJson);
         }
 

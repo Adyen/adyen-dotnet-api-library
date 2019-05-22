@@ -11,12 +11,12 @@
         /// <remarks/>
         [System.Xml.Serialization.XmlAttributeAttribute(DataType = "integer")]
         [System.ComponentModel.DefaultValueAttribute("2")]
-        public string TrackNumb;
+        public int TrackNumb;
 
         /// <remarks/>
         [System.Xml.Serialization.XmlAttributeAttribute()]
-        [System.ComponentModel.DefaultValueAttribute("ISO")]
-        public string TrackFormat;
+        [System.ComponentModel.DefaultValueAttribute(TrackFormatType.ISO)]
+        public TrackFormatType TrackFormat;
 
         /// <remarks/>
         [System.Xml.Serialization.XmlTextAttribute()]
@@ -24,8 +24,8 @@
 
         public TrackData()
         {
-            this.TrackNumb = "2";
-            this.TrackFormat = "ISO";
+            this.TrackNumb = 2;
+            this.TrackFormat = TrackFormatType.ISO;
         }
     }
 }

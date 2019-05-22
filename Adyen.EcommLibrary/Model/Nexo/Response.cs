@@ -14,10 +14,10 @@
 
         /// <remarks/>
         [System.Xml.Serialization.XmlAttributeAttribute()]
-        public string Result;
+        public ResultType Result;
 
         /// <remarks/>
         [System.Xml.Serialization.XmlAttributeAttribute()]
-        public string ErrorCondition;
+        public ErrorConditionType ErrorCondition;
     }
 }

@@ -14,6 +14,6 @@
 
         /// <remarks/>
         [System.Xml.Serialization.XmlAttributeAttribute()]
-        public string DocumentQualifier;
+        public DocumentQualifierType DocumentQualifier;
     }
 }

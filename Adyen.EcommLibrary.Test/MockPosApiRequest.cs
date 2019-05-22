@@ -9,23 +9,23 @@ namespace Adyen.EcommLibrary.Test
         /// <summary>
         /// Plain POI Cloud api/terminal api message
         /// </summary>
-        /// <param name="transactionType"></param>
+        /// <param name="paymentType"></param>
         /// <returns></returns>
-        public static SaleToPOIRequest CreatePosPaymentRequest(string transactionType)
+        public static SaleToPOIRequest CreatePosPaymentRequest(PaymentType paymentType)
         {
             var saleToPoiRequest = new SaleToPOIRequest()
             {
                 MessageHeader = new MessageHeader
                 {
-                    MessageType = "Request",
-                    MessageClass = "Service",
-                    MessageCategory = "Payment",
+                    MessageType = MessageType.Request,
+                    MessageClass = MessageClassType.Service,
+                    MessageCategory = MessageCategoryType.Payment,
                     SaleID = "POSSystemID12345",
                     POIID = "MX915-284251016",
                     ProtocolVersion = "3.0",
                     ServiceID = DateTime.Now.ToString("ddHHmmss")//this should be unique
                 },
-                MessagePayload = new PaymentRequest()
+                Item = new PaymentRequest()
                 {
                     SaleData = new SaleData()
                     {
@@ -35,7 +35,7 @@ namespace Adyen.EcommLibrary.Test
                             TransactionID = "PosAuth",
                             TimeStamp = DateTime.Now
                         },
-                        TokenRequested = "Customer",
+                        TokenRequested = TokenRequestedType.Customer,
                     },
                     PaymentTransaction = new PaymentTransaction()
                     {
@@ -47,7 +47,7 @@ namespace Adyen.EcommLibrary.Test
                     },
                     PaymentData = new PaymentData()
                     {
-                        PaymentType = transactionType
+                        Payment = paymentType
                     }
                 },
                 SecurityTrailer = new ContentInformationType(){}

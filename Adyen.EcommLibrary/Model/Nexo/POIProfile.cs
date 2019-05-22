@@ -14,12 +14,12 @@
 
         /// <remarks/>
         [System.Xml.Serialization.XmlAttributeAttribute()]
-        [System.ComponentModel.DefaultValueAttribute("Standard")]
-        public string GenericProfile;
+        [System.ComponentModel.DefaultValueAttribute(GenericProfileType.Standard)]
+        public GenericProfileType GenericProfile;
 
         public POIProfile()
         {
-            this.GenericProfile = "Standard";
+            this.GenericProfile = GenericProfileType.Standard;
         }
     }
 }

@@ -28,15 +28,14 @@
         /// <remarks/>
         [System.Xml.Serialization.XmlAttributeAttribute()]
         public System.DateTime EndDate;
-        
 
         /// <remarks/>
         [System.Xml.Serialization.XmlAttributeAttribute()]
-        public decimal? ForecastedAmount;
+        public decimal ForecastedAmount;
 
         /// <remarks/>
         [System.Xml.Serialization.XmlAttributeAttribute()]
-        public decimal? CurrentAmount;
+        public decimal CurrentAmount;
 
         /// <remarks/>
         [System.Xml.Serialization.XmlAttributeAttribute()]

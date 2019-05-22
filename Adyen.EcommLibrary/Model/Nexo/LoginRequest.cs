@@ -39,11 +39,11 @@
 
         /// <remarks/>
         [System.Xml.Serialization.XmlAttributeAttribute()]
-        public string TokenRequested;
+        public TokenRequestedType TokenRequested;
 
-        /// <remarks/>
+         /// <remarks/>
         [System.Xml.Serialization.XmlAttributeAttribute()]
-        public string[] CustomerOrderReq;
+        public CustomerOrderReqType[] CustomerOrderReq;
 
         /// <remarks/>
         [System.Xml.Serialization.XmlAttributeAttribute()]

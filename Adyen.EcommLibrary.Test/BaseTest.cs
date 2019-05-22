@@ -356,9 +356,9 @@ namespace Adyen.EcommLibrary.Test
         {
             var header = new MessageHeader
             {
-                MessageType = "Request",
-                MessageClass = "Service",
-                MessageCategory = "Payment",
+                MessageType = MessageType.Request,
+                MessageClass = MessageClassType.Service,
+                MessageCategory =MessageCategoryType.Payment,
                 SaleID = "POSSystemID12345",
                 POIID = "MX915-284251016",
                 ProtocolVersion = "3.0",

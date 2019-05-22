@@ -22,8 +22,8 @@
 
         /// <remarks/>
         [System.Xml.Serialization.XmlAttributeAttribute()]
-        [System.ComponentModel.DefaultValueAttribute("Allowed")]
-        public string LoyaltyHandling;
+        [System.ComponentModel.DefaultValueAttribute(LoyaltyHandlingType.Allowed)]
+        public LoyaltyHandlingType LoyaltyHandling;
 
         /// <remarks/>
         [System.Xml.Serialization.XmlAttributeAttribute()]
@@ -36,21 +36,19 @@
 
         /// <remarks/>
         [System.Xml.Serialization.XmlAttributeAttribute()]
-        public decimal? TotalAmount;
+        public decimal TotalAmount;
 
         /// <remarks/>
         [System.Xml.Serialization.XmlAttributeAttribute()]
-        public string Payment;
+        public PaymentType Payment;
 
         /// <remarks/>
         [System.Xml.Serialization.XmlAttributeAttribute()]
         public bool CashBackFlag;
 
-     
-
         public CardAcquisitionTransaction()
         {
-            this.LoyaltyHandling = "Allowed";
+            this.LoyaltyHandling = LoyaltyHandlingType.Allowed;
             this.ForceCustomerSelectionFlag = false;
         }
     }

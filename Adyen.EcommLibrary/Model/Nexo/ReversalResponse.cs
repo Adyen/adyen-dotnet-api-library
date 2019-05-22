@@ -29,11 +29,7 @@ namespace Adyen.EcommLibrary.Model.Nexo
         /// <remarks/>
         [System.Xml.Serialization.XmlAttributeAttribute()]
         public decimal ReversedAmount;
-
-        /// <remarks/>
-        [System.Xml.Serialization.XmlIgnoreAttribute()]
-        public bool ReversedAmountSpecified;
-
+        
         /// <remarks/>
         [System.Xml.Serialization.XmlAttributeAttribute()]
         public string CustomerOrderID;

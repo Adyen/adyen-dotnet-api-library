@@ -15,6 +15,6 @@
         /// <remarks/>
         [System.Xml.Serialization.XmlAttributeAttribute()]
         public bool RemoveAllFlag;
-
+        
     }
 }

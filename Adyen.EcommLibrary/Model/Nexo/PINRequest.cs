@@ -14,7 +14,7 @@
 
         /// <remarks/>
         [System.Xml.Serialization.XmlAttributeAttribute("PINRequest")]
-        public string PINRequest1;
+        public PINRequestType PINRequest1;
 
         /// <remarks/>
         [System.Xml.Serialization.XmlAttributeAttribute()]
@@ -30,14 +30,10 @@
 
         /// <remarks/>
         [System.Xml.Serialization.XmlAttributeAttribute()]
-        public string PINFormat;
-
-        /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute()]
-        public string KeyReference;
+        public PINFormatType PINFormat;
 
         /// <remarks/>
         [System.Xml.Serialization.XmlAttributeAttribute(DataType = "integer")]
-        public string MaxWaitingTime;
+        public int MaxWaitingTime;
     }
 }

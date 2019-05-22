@@ -30,8 +30,8 @@
 
         /// <remarks/>
         [System.Xml.Serialization.XmlAttributeAttribute()]
-        [System.ComponentModel.DefaultValueAttribute("Personal")]
-        public string Code;
+        [System.ComponentModel.DefaultValueAttribute(CheckTypeType.Personal)]
+        public CheckTypeType Type;
 
         /// <remarks/>
         [System.Xml.Serialization.XmlAttributeAttribute()]
@@ -39,7 +39,7 @@
 
         public CheckData()
         {
-            this.Code = "Personal";
+            this.Type = CheckTypeType.Personal;
         }
     }
 }

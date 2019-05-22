@@ -10,7 +10,7 @@
 
         /// <remarks/>
         [System.Xml.Serialization.XmlAttributeAttribute()]
-        public string TokenRequested;
+        public TokenRequestedType TokenRequested;
 
         /// <remarks/>
         [System.Xml.Serialization.XmlAttributeAttribute()]
@@ -19,5 +19,6 @@
         /// <remarks/>
         [System.Xml.Serialization.XmlAttributeAttribute()]
         public System.DateTime ExpiryDateTime;
+
     }
 }

@@ -22,12 +22,12 @@
 
         /// <remarks/>
         [System.Xml.Serialization.XmlAttributeAttribute()]
-        [System.ComponentModel.DefaultValueAttribute("Selectable")]
-        public string MenuEntryTag;
+        [System.ComponentModel.DefaultValueAttribute(MenuEntryTagType.Selectable)]
+        public MenuEntryTagType MenuEntryTag;
 
         /// <remarks/>
         [System.Xml.Serialization.XmlAttributeAttribute()]
-        public string OutputFormat;
+        public OutputFormatType OutputFormat;
 
         /// <remarks/>
         [System.Xml.Serialization.XmlAttributeAttribute()]
@@ -36,7 +36,7 @@
 
         public MenuEntry()
         {
-            this.MenuEntryTag = "Selectable";
+            this.MenuEntryTag = MenuEntryTagType.Selectable;
             this.DefaultSelectedFlag = false;
         }
     }
