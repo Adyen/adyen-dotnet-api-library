@@ -132,7 +132,7 @@ namespace Adyen.EcommLibrary.Model.Checkout
         public long? TaxPercentage { get; set; }
 
         /// <summary>
-        /// Url to the item productpage.
+        /// Url to the productpage.
         /// </summary>
         /// <value>Description of the line item.</value>
         [DataMember(Name = "productUrl", EmitDefaultValue = false)]
