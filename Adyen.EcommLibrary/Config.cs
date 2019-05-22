@@ -14,6 +14,8 @@ namespace Adyen.EcommLibrary
         
         public string ApplicationName { get; set; }
 
+        public int HttpClientTimeout { get; set; }
+
         //HPP specific
         public string HppEndpoint { get; set; }
         public string SkinCode{ get; set; }
