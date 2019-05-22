@@ -19,6 +19,6 @@
         public static string EndpointProtocol = "https://";
 
         public static string LibName = "adyen-dotnet-api-library";
-        public static string LibVersion = "2.0.1";
+        public static string LibVersion = "2.0.2";
     }
 }
