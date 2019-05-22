@@ -1,4 +1,5 @@
-﻿using Adyen.EcommLibrary.Service;
+﻿using Adyen.EcommLibrary.Model.ApplicationInformation;
+using Adyen.EcommLibrary.Service;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 using System.Collections.Generic;
@@ -27,11 +28,11 @@ namespace Adyen.EcommLibrary.Test
         [TestMethod]
         public void PaymentsTest()
         {
-            var paymentMethodsRequest = CreatePaymentRequestCheckout();
+            var paymentRequest = CreatePaymentRequestCheckout();
             var client = CreateMockTestClientApiKeyBasedRequest("Mocks/checkout/payments-success.json");
 
             var checkout = new Checkout(client);
-            var paymentResponse = checkout.Payments(paymentMethodsRequest);
+            var paymentResponse = checkout.Payments(paymentRequest);
             Assert.AreEqual("8535296650153317", paymentResponse.PspReference);
             Assert.AreEqual(ResultCodeEnum.Authorised, paymentResponse.ResultCode);
             Assert.IsNotNull(paymentResponse.AdditionalData);
@@ -40,6 +41,21 @@ namespace Adyen.EcommLibrary.Test
             Assert.AreEqual("visa", paymentResponse.AdditionalData["cardPaymentMethod"]);
         }
 
+        /// <summary>
+        /// Test success flow for 3DS2
+        /// POST /payments
+        /// </summary>
+        [TestMethod]
+        public void Payments3DS2Test()
+        {
+            var payment3DS2Request = CreatePaymentRequest3DS2();
+            var client = CreateMockTestClientApiKeyBasedRequest("Mocks/checkout/payments-3DS2-IdentifyShopper.json");
+            var checkout = new Checkout(client);
+            var paymentResponse = checkout.Payments(payment3DS2Request);
+            Assert.AreEqual(paymentResponse.ResultCode, ResultCodeEnum.IdentifyShopper);
+            Assert.IsFalse(string.IsNullOrEmpty(paymentResponse.PaymentData));
+        }
+        
         /// <summary>
         /// Test error flow for
         /// POST /payments
@@ -164,6 +180,55 @@ namespace Adyen.EcommLibrary.Test
             var checkout = new Checkout(client);
             var paymentResultResponse = checkout.PaymentsResult(paymentResultRequest);
             Assert.IsNull(paymentResultResponse.ResultCode);
+        }
+
+        [TestMethod]
+
+        public void ApplicationInfoTest()
+        {
+            ApplicationInfo applicationInfo = new ApplicationInfo();
+            Assert.AreEqual(applicationInfo.AdyenLibrary.Name, Constants.ClientConfig.LibName);
+            Assert.AreEqual(applicationInfo.AdyenLibrary.Version, Constants.ClientConfig.LibVersion);
+
+        }
+        [TestMethod]
+        public void PaymentRequestApplicationInfoTest()
+        {
+            var paymentRequest = CreatePaymentRequestCheckout();
+            var name = paymentRequest.ApplicationInfo.AdyenLibrary.Name;
+            var version = paymentRequest.ApplicationInfo.AdyenLibrary.Version;
+            Assert.AreEqual(version, Constants.ClientConfig.LibVersion);
+            Assert.AreEqual(name, Constants.ClientConfig.LibName);
+        }
+
+
+        [TestMethod]
+        public void PaymentRequestAppInfoExternalTest()
+        {
+            var externalPlatform = new ExternalPlatform();
+            var merchantApplication = new CommonField();
+            externalPlatform.Integrator = "TestExternalPlatformIntegration";
+            externalPlatform.Name = "TestExternalPlatformName";
+            externalPlatform.Version = "TestExternalPlatformVersion";
+            merchantApplication.Name = "MerchantApplicationName";
+            merchantApplication.Version = "MerchantApplicationVersion";
+            var paymentRequest = CreatePaymentRequestCheckout();
+            paymentRequest.ApplicationInfo.ExternalPlatform = externalPlatform;
+            paymentRequest.ApplicationInfo.MerchantApplication = merchantApplication;
+            Assert.AreEqual(paymentRequest.ApplicationInfo.ExternalPlatform.Integrator, "TestExternalPlatformIntegration");
+            Assert.AreEqual(paymentRequest.ApplicationInfo.ExternalPlatform.Name, "TestExternalPlatformName");
+            Assert.AreEqual(paymentRequest.ApplicationInfo.ExternalPlatform.Version, "TestExternalPlatformVersion");
+            Assert.AreEqual(paymentRequest.ApplicationInfo.MerchantApplication.Name, "MerchantApplicationName");
+            Assert.AreEqual(paymentRequest.ApplicationInfo.MerchantApplication.Version, "MerchantApplicationVersion");
+        }
+
+
+        [TestMethod]
+        public void PaymentsOriginTest()
+        {
+            var paymentMethodsRequest = CreatePaymentRequestCheckout();
+            paymentMethodsRequest.Origin = "https://localhost:8080";
+            Assert.AreEqual(paymentMethodsRequest.Origin, "https://localhost:8080");
         }
     }
 }

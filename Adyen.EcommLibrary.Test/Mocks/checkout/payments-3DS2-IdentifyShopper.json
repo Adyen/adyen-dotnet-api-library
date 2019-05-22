@@ -1,0 +1,13 @@
+{
+  "resultCode": "IdentifyShopper",
+  "authentication": {
+    "threeds2.fingerprintToken": "eyJ0aHJlZURTTWV0aG9kTm90aWZpY2F0aW9uVV....MxYzU3YSJ9"
+  },
+  "details": [
+    {
+      "key": "threeds2.fingerprint",
+      "type": "text"
+    }
+  ],
+  "paymentData": "Ab02b4c0!BQAFDem3IFE3v/BDZKHuCSU1gtewaGu+...eyJ0aHJV0aG9kTm90aWZpY2F0aW9uVV"
+}

@@ -37,17 +37,24 @@ namespace Adyen.EcommLibrary.Model.Checkout
             {
                 this.Details = Details;
             }
-            // to ensure "PaymentData" is required (not null)
-            if (PaymentData == null)
+            this.PaymentData = PaymentData;
+        }
+        /// <summary>
+        /// Initializes a new instance of the <see cref="PaymentsDetailsRequest" /> class.
+        /// </summary>
+        /// <param name="Details">Use this collection to submit the details that were returned as a result of the &#x60;/payments&#x60; call. (required).</param>
+        public PaymentsDetailsRequest(Dictionary<string, string> Details = default(Dictionary<string, string>))
+        {
+            // to ensure "Details" is required (not null)
+            if (Details == null)
             {
-                throw new InvalidDataException("PaymentData is a required property for PaymentsDetailsRequest and cannot be null");
+                throw new InvalidDataException("Details is a required property for PaymentsDetailsRequest and cannot be null");
             }
             else
             {
-                this.PaymentData = PaymentData;
+                this.Details = Details;
             }
         }
-        
         /// <summary>
         /// Use this collection to submit the details that were returned as a result of the &#x60;/payments&#x60; call.
         /// </summary>
