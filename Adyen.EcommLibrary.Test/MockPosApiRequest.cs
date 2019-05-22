@@ -11,7 +11,7 @@ namespace Adyen.EcommLibrary.Test
         /// </summary>
         /// <param name="paymentType"></param>
         /// <returns></returns>
-        public static SaleToPOIRequest CreatePosPaymentRequest(PaymentType paymentType)
+        public static SaleToPOIRequest CreatePosPaymentRequest()
         {
             var saleToPoiRequest = new SaleToPOIRequest()
             {
@@ -47,7 +47,7 @@ namespace Adyen.EcommLibrary.Test
                     },
                     PaymentData = new PaymentData()
                     {
-                        Payment = paymentType
+                        Payment = PaymentType.Normal
                     }
                 },
                 SecurityTrailer = new ContentInformationType(){}

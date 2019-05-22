@@ -15,7 +15,7 @@ namespace Adyen.EcommLibrary.Test
             try
             {
                 //Create a mock pos payment request
-                var paymentRequest = MockPosApiRequest.CreatePosPaymentRequest(PaymentType.Normal);
+                var paymentRequest = MockPosApiRequest.CreatePosPaymentRequest();
                 var client = CreateMockTestClientPosApiRequest("Mocks/terminalapi/pospayment-success.json");
                 var payment = new PosPaymentCloudApi(client);
                 var saleToPoiResponse = payment.TerminalApiCloudSync(paymentRequest);
@@ -34,7 +34,7 @@ namespace Adyen.EcommLibrary.Test
             try
             {
                 //Create a mock pos payment request
-                var paymentRequest = MockPosApiRequest.CreatePosPaymentRequest(PaymentType.Normal);
+                var paymentRequest = MockPosApiRequest.CreatePosPaymentRequest();
                 var client = CreateMockTestClientPosApiRequest("Mocks/terminalapi/pospayment-success.json");
                 var payment = new PosPaymentCloudApi(client);
                 var saleToPoiResponse = payment.TerminalApiCloudAsync(paymentRequest);
@@ -50,7 +50,7 @@ namespace Adyen.EcommLibrary.Test
         [TestMethod]
         public void TestCloudApiTransactionStatusResponseSuccess()
         {
-            var paymentRequest = MockPosApiRequest.CreatePosPaymentRequest(PaymentType.Normal);
+            var paymentRequest = MockPosApiRequest.CreatePosPaymentRequest();
             var client = CreateMockTestClientPosApiRequest("Mocks/terminalapi/pospayment-transaction-status-response.json");
             var payment = new PosPaymentCloudApi(client);
             var saleToPoiResponse = payment.TerminalApiCloudSync(paymentRequest);
