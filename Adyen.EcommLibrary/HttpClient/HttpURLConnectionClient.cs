@@ -138,22 +138,16 @@ namespace Adyen.EcommLibrary.HttpClient
         private bool ServerCertificateValidationCallback(object sender, X509Certificate certificate, X509Chain chain,
             SslPolicyErrors sslPolicyErrors)
         {
-            // If the certificate is a valid, signed certificate, return true.
             if (sslPolicyErrors == SslPolicyErrors.None)
             {
                 return true;
             }
-            if (sender is HttpWebRequest)
+            else
             {
-                var certificateSubject = certificate.Subject;
-                if (certificateSubject.Contains( "adyen.com"))
-                {
-                  throw new HttpClientException((int)HttpStatusCode.BadRequest, "Adyen certificate validation failed",null,null );
-                }
+                throw new HttpClientException((int)HttpStatusCode.BadRequest, "Certificate validation failed", null, null);
             }
-            return false;
         }
-        
+
         public static string QueryString(IDictionary<string, string> dict)
         {
             var list = new List<string>();
