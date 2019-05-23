@@ -44,7 +44,7 @@ namespace Adyen.EcommLibrary.HttpClient
             {
                 if (e.Response == null)
                 {
-                    throw new HttpClientException(408, "HTTP Exception timeout", null, "No response");
+                    throw new HttpClientException((int) HttpStatusCode.RequestTimeout, "HTTP Exception timeout", null, "No response");
                 }
                 var response = (HttpWebResponse) e.Response;
                 using (var sr = new StreamReader(response.GetResponseStream()))
