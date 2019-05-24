@@ -144,7 +144,7 @@ namespace Adyen.EcommLibrary.HttpClient
             }
             else
             {
-                throw new HttpClientException((int)HttpStatusCode.BadRequest, "Certificate validation failed", null, null);
+                throw new HttpClientException((int)HttpStatusCode.BadRequest, string.Format("Certificate validation failed SslPolicyErrors: {0}", sslPolicyErrors.ToString()), null, null);
             }
         }
 
