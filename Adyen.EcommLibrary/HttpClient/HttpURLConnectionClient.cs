@@ -44,15 +44,14 @@ namespace Adyen.EcommLibrary.HttpClient
             {
                 if (e.Response == null)
                 {
-                    throw new HttpClientException((int) HttpStatusCode.RequestTimeout, "HTTP Exception timeout", null, "No response");
+                    throw new HttpClientException((int) HttpStatusCode.RequestTimeout, "HTTP Exception timeout", null, "No response", e);
                 }
                 var response = (HttpWebResponse) e.Response;
                 using (var sr = new StreamReader(response.GetResponseStream()))
                 {
                     responseText = sr.ReadToEnd();
                 }
-                throw new HttpClientException((int) response.StatusCode, "HTTP Exception", response.Headers,
-                    responseText);
+                throw new HttpClientException((int) response.StatusCode, "HTTP Exception", response.Headers, responseText);
             }
             return responseText;
         }
