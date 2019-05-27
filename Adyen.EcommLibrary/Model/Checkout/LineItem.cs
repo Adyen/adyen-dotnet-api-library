@@ -65,7 +65,9 @@ namespace Adyen.EcommLibrary.Model.Checkout
         /// <param name="TaxAmount">Tax amount, in minor units..</param>
         /// <param name="TaxCategory">Tax category: High, Low, None, Zero.</param>
         /// <param name="TaxPercentage">Tax percentage, in minor units..</param>
-        public LineItem(long? AmountExcludingTax = default(long?), long? AmountIncludingTax = default(long?), string Description = default(string), string Id = default(string), long? Quantity = default(long?), long? TaxAmount = default(long?), TaxCategoryEnum? TaxCategory = default(TaxCategoryEnum?), long? TaxPercentage = default(long?))
+        /// <param name="ProductUrl">Url to the item productpage.</param>
+        /// <param name="ImageUrl">Url to an image of the item.</param>
+        public LineItem(long? AmountExcludingTax = default(long?), long? AmountIncludingTax = default(long?), string Description = default(string), string Id = default(string), long? Quantity = default(long?), long? TaxAmount = default(long?), TaxCategoryEnum? TaxCategory = default(TaxCategoryEnum?), long? TaxPercentage = default(long?), string ProductUrl = default(string), string ImageUrl = default(string))
         {
             this.AmountExcludingTax = AmountExcludingTax;
             this.AmountIncludingTax = AmountIncludingTax;
@@ -75,6 +77,8 @@ namespace Adyen.EcommLibrary.Model.Checkout
             this.TaxAmount = TaxAmount;
             this.TaxCategory = TaxCategory;
             this.TaxPercentage = TaxPercentage;
+            this.ProductUrl = ProductUrl;
+            this.ImageUrl = ImageUrl;
         }
         
         /// <summary>
@@ -128,6 +132,20 @@ namespace Adyen.EcommLibrary.Model.Checkout
         public long? TaxPercentage { get; set; }
 
         /// <summary>
+        /// Url to the productpage.
+        /// </summary>
+        /// <value>Description of the line item.</value>
+        [DataMember(Name = "productUrl", EmitDefaultValue = false)]
+        public string ProductUrl { get; set; }
+
+        /// <summary>
+        /// Url to an image of the item.
+        /// </summary>
+        /// <value>Description of the line item.</value>
+        [DataMember(Name = "imageUrl", EmitDefaultValue = false)]
+        public string ImageUrl { get; set; }
+
+        /// <summary>
         /// Returns the string presentation of the object
         /// </summary>
         /// <returns>String presentation of the object</returns>
@@ -143,6 +161,8 @@ namespace Adyen.EcommLibrary.Model.Checkout
             sb.Append("  TaxAmount: ").Append(TaxAmount).Append("\n");
             sb.Append("  TaxCategory: ").Append(TaxCategory).Append("\n");
             sb.Append("  TaxPercentage: ").Append(TaxPercentage).Append("\n");
+            sb.Append("  ProductUrl: ").Append(ProductUrl).Append("\n");
+            sb.Append("  ImageUrl: ").Append(ImageUrl).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -216,6 +236,16 @@ namespace Adyen.EcommLibrary.Model.Checkout
                     this.TaxPercentage == input.TaxPercentage ||
                     (this.TaxPercentage != null &&
                     this.TaxPercentage.Equals(input.TaxPercentage))
+                ) &&
+                (
+                    this.ProductUrl == input.ProductUrl ||
+                    (this.ProductUrl != null &&
+                    this.ProductUrl.Equals(input.ProductUrl))
+                ) &&
+                (
+                    this.ImageUrl == input.ImageUrl ||
+                    (this.ImageUrl != null &&
+                    this.ImageUrl.Equals(input.ImageUrl))
                 );
         }
 
@@ -244,6 +274,10 @@ namespace Adyen.EcommLibrary.Model.Checkout
                     hashCode = hashCode * 59 + this.TaxCategory.GetHashCode();
                 if (this.TaxPercentage != null)
                     hashCode = hashCode * 59 + this.TaxPercentage.GetHashCode();
+                if (this.ProductUrl != null)
+                    hashCode = hashCode * 59 + this.ProductUrl.GetHashCode();
+                if (this.ImageUrl != null)
+                    hashCode = hashCode * 59 + this.ImageUrl.GetHashCode();
                 return hashCode;
             }
         }
