@@ -1,4 +1,5 @@
-using Adyen.EcommLibrary.Model.Enum;
+using System;
+using Environment = Adyen.EcommLibrary.Model.Enum.Environment;
 
 namespace Adyen.EcommLibrary
 {
@@ -24,5 +25,8 @@ namespace Adyen.EcommLibrary
         //Terminal cloud api
         public string XApiKey { get; set; }
         public string CloudApiEndPoint { get; set; }
+        [Obsolete("This is deprecated property by Adyen.")]
+        public bool SkipCertValidation { get; set; } = false;
+        public string AdyenCertificatePath { get; set; }
     }
 }

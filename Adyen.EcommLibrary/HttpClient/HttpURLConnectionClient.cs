@@ -11,15 +11,15 @@ using System.Web;
 using Adyen.EcommLibrary.HttpClient.Interfaces;
 using Adyen.EcommLibrary.Model;
 
-
 namespace Adyen.EcommLibrary.HttpClient
 {
     public class HttpUrlConnectionClient : IClient
     {
         private readonly Encoding _encoding = Encoding.ASCII;
-
+        private string _certificatePath;
         public string Request(string endpoint, string json, Config config, bool isApiKeyRequired, RequestOptions requestOptions = null)
         {
+            _certificatePath = config.AdyenCertificatePath;
             string responseText = null;
             var httpWebRequest = GetHttpWebRequest(endpoint, config, isApiKeyRequired, requestOptions);
             using (var streamWriter = new StreamWriter(httpWebRequest.GetRequestStream()))
@@ -128,7 +128,6 @@ namespace Adyen.EcommLibrary.HttpClient
                 var authString = config.Username + ":" + config.Password;
                 var bytes = Encoding.ASCII.GetBytes(authString);
                 var credentials = Convert.ToBase64String(bytes);
-
                 httpWebRequest.Headers.Add("Authorization", "Basic " + credentials);
                 httpWebRequest.UseDefaultCredentials = true;
             }
@@ -142,10 +141,21 @@ namespace Adyen.EcommLibrary.HttpClient
             {
                 return true;
             }
-            else
+            if (sslPolicyErrors == (SslPolicyErrors.RemoteCertificateNameMismatch |
+                                    SslPolicyErrors.RemoteCertificateChainErrors))
             {
-                throw new HttpClientException((int)HttpStatusCode.BadRequest, string.Format("Certificate validation failed SslPolicyErrors: {0}", sslPolicyErrors.ToString()), null, null);
+                if (!string.IsNullOrEmpty(_certificatePath))
+                {
+                    var adyenCertificate = new X509Certificate2(_certificatePath);
+                    var chainPolicy = new X509ChainPolicy()
+                    {
+                        RevocationFlag = X509RevocationFlag.EntireChain
+                    };
+                    chain.ChainPolicy = chainPolicy;
+                    return chain.Build(adyenCertificate);
+                }
             }
+            return false;
         }
 
         public static string QueryString(IDictionary<string, string> dict)
