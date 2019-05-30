@@ -20,7 +20,7 @@ namespace Adyen.EcommLibrary.HttpClient
         {
             string responseText = null;
             var httpWebRequest = GetHttpWebRequest(endpoint, config, isApiKeyRequired, requestOptions);
-            if (config.HttpClientTimeout != 0)
+            if (config.HttpClientTimeout > 0)
             {
                 httpWebRequest.Timeout = config.HttpClientTimeout;
             }
