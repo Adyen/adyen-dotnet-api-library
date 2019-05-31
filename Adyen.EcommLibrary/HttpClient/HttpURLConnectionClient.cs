@@ -19,9 +19,11 @@ namespace Adyen.EcommLibrary.HttpClient
         public string Request(string endpoint, string json, Config config, bool isApiKeyRequired, RequestOptions requestOptions = null)
         {
             string responseText = null;
-         
             var httpWebRequest = GetHttpWebRequest(endpoint, config, isApiKeyRequired, requestOptions);
-
+            if (config.HttpClientTimeout > 0)
+            {
+                httpWebRequest.Timeout = config.HttpClientTimeout;
+            }
             using (var streamWriter = new StreamWriter(httpWebRequest.GetRequestStream()))
             {
                 streamWriter.Write(json);
@@ -30,23 +32,26 @@ namespace Adyen.EcommLibrary.HttpClient
             }
             try
             {
-                using (var response = (HttpWebResponse)httpWebRequest.GetResponse())
+                using (var response = (HttpWebResponse) httpWebRequest.GetResponse())
                 {
                     using (var reader = new StreamReader(response.GetResponseStream(), _encoding))
                     {
                         responseText = reader.ReadToEnd();
                     }
-
                 }
             }
             catch (WebException e)
             {
-                var response = (HttpWebResponse)e.Response;
+                if (e.Response == null)
+                {
+                    throw new HttpClientException((int) HttpStatusCode.RequestTimeout, "HTTP Exception timeout", null, "No response", e);
+                }
+                var response = (HttpWebResponse) e.Response;
                 using (var sr = new StreamReader(response.GetResponseStream()))
                 {
                     responseText = sr.ReadToEnd();
                 }
-                throw new HttpClientException((int)response.StatusCode, "HTTP Exception", response.Headers, responseText);
+                throw new HttpClientException((int) response.StatusCode, "HTTP Exception", response.Headers, responseText);
             }
             return responseText;
         }
