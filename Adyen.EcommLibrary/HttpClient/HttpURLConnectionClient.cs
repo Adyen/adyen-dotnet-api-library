@@ -16,12 +16,11 @@ namespace Adyen.EcommLibrary.HttpClient
     public class HttpUrlConnectionClient : IClient
     {
         private readonly Encoding _encoding = Encoding.ASCII;
-        private string _certificatePath;
-        public string Request(string endpoint, string json, Config config, bool isApiKeyRequired, RequestOptions requestOptions = null)
+
+        public string Request(string endpoint, string json, Config config, bool isApiKeyRequired, RequestOptions requestOptions = null , RemoteCertificateValidationCallback certificateValidationCallback=null)
         {
-            _certificatePath = config.AdyenCertificatePath;
             string responseText = null;
-            var httpWebRequest = GetHttpWebRequest(endpoint, config, isApiKeyRequired, requestOptions);
+            var httpWebRequest = GetHttpWebRequest(endpoint, config, isApiKeyRequired, requestOptions , certificateValidationCallback);
             using (var streamWriter = new StreamWriter(httpWebRequest.GetRequestStream()))
             {
                 streamWriter.Write(json);
@@ -80,11 +79,15 @@ namespace Adyen.EcommLibrary.HttpClient
             }
             return responseText;
         }
+        public string Request(string endpoint, string json, Config config, bool isApiKeyRequired, RequestOptions requestOptions = null)
+        {
+            return this.Request(endpoint, json, config, isApiKeyRequired,requestOptions, null);
+        }
 
         [Obsolete("This is deprecated functionality by Adyen. Correct use request method with isApiKeyRequired parameter.")]
         public string Request(string endpoint, string json, Config config)
         {
-            return this.Request(endpoint, json, config, false);
+            return this.Request(endpoint, json, config, false,null);
         }
 
         public string Post(string endpoint, Dictionary<string, string> postParameters, Config config)
@@ -104,7 +107,7 @@ namespace Adyen.EcommLibrary.HttpClient
             return new StreamReader(response.GetResponseStream()).ReadToEnd();
         }
 
-        public HttpWebRequest GetHttpWebRequest(string endpoint, Config config, bool isApiKeyRequired, RequestOptions requestOptions = null)
+        public HttpWebRequest GetHttpWebRequest(string endpoint, Config config, bool isApiKeyRequired, RequestOptions requestOptions = null, RemoteCertificateValidationCallback certificateValidationCallback=null)
         {
             //Add default headers
             var httpWebRequest = (HttpWebRequest)WebRequest.Create(endpoint);
@@ -113,7 +116,6 @@ namespace Adyen.EcommLibrary.HttpClient
             httpWebRequest.Headers.Add("Accept-Charset", "UTF-8");
             httpWebRequest.Headers.Add("Cache-Control", "no-cache");
             httpWebRequest.UserAgent = $"{config.ApplicationName} {ClientConfig.UserAgentSuffix}{ClientConfig.LibVersion}";
-            httpWebRequest.ServerCertificateValidationCallback = ServerCertificateValidationCallback;
             if (!string.IsNullOrWhiteSpace(requestOptions?.IdempotencyKey))
             {
                 httpWebRequest.Headers.Add("Idempotency-Key", requestOptions?.IdempotencyKey);
@@ -131,33 +133,12 @@ namespace Adyen.EcommLibrary.HttpClient
                 httpWebRequest.Headers.Add("Authorization", "Basic " + credentials);
                 httpWebRequest.UseDefaultCredentials = true;
             }
+            if (certificateValidationCallback != null)
+            {
+                httpWebRequest.ServerCertificateValidationCallback = certificateValidationCallback;
+            }
             return httpWebRequest;
         }
-
-        private bool ServerCertificateValidationCallback(object sender, X509Certificate certificate, X509Chain chain,
-            SslPolicyErrors sslPolicyErrors)
-        {
-            if (sslPolicyErrors == SslPolicyErrors.None)
-            {
-                return true;
-            }
-            if (sslPolicyErrors == (SslPolicyErrors.RemoteCertificateNameMismatch |
-                                    SslPolicyErrors.RemoteCertificateChainErrors))
-            {
-                if (!string.IsNullOrEmpty(_certificatePath))
-                {
-                    var adyenCertificate = new X509Certificate2(_certificatePath);
-                    var chainPolicy = new X509ChainPolicy()
-                    {
-                        RevocationFlag = X509RevocationFlag.EntireChain
-                    };
-                    chain.ChainPolicy = chainPolicy;
-                    return chain.Build(adyenCertificate);
-                }
-            }
-            return false;
-        }
-
         public static string QueryString(IDictionary<string, string> dict)
         {
             var list = new List<string>();

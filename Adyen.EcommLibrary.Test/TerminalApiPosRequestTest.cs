@@ -30,11 +30,10 @@ namespace Adyen.EcommLibrary.Test
                //encrypt the request using encryption credentials
                 var paymentRequest = MockPosApiRequest.CreatePosPaymentRequest("Request");
                 //create a mock client
-                var client = CreateMockTestClientPosApiRequest("Mocks/terminalapi/pospayment-encrypted-success.json");
-                var payment = new PosPaymentLocalApi(client);
-                var configEndpoint = payment.Client.Config.Endpoint;
-                var saleToPoiResponse = payment.TerminalApiLocal(paymentRequest,  _encryptionCredentialDetails);
-
+                var client = CreateMockTestClientPosLocalApiRequest("Mocks/terminalapi/pospayment-encrypted-success.json");
+                var posPaymentLocalApi = new PosPaymentLocalApi(client);
+                var configEndpoint = posPaymentLocalApi.Client.Config.Endpoint;
+                var saleToPoiResponse = posPaymentLocalApi.TerminalApiLocal(paymentRequest, _encryptionCredentialDetails, null);
                 Assert.AreEqual(configEndpoint, @"https://_terminal_:8443/nexo/");
                 Assert.IsNotNull(saleToPoiResponse);
             }
