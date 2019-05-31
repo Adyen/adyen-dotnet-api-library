@@ -13,14 +13,15 @@ namespace Adyen.EcommLibrary.Model
     /// PaymentResult
     /// </summary>
     [DataContract]
-    public partial class PaymentResult :  IEquatable<PaymentResult>, IValidatableObject
+    public partial class PaymentResult : IEquatable<PaymentResult>, IValidatableObject
     {
         /// <summary>
         /// The result of the payment.
         /// </summary>
         /// <value>The result of the payment.</value>
-        [DataMember(Name="resultCode", EmitDefaultValue=false)]
+        [DataMember(Name = "resultCode", EmitDefaultValue = false)]
         public ResultCodeEnum? ResultCode { get; set; }
+
         /// <summary>
         /// Initializes a new instance of the <see cref="PaymentResult" /> class.
         /// </summary>
@@ -35,7 +36,12 @@ namespace Adyen.EcommLibrary.Model
         /// <param name="DccAmount">DccAmount.</param>
         /// <param name="FraudResult">FraudResult.</param>
         /// <param name="PspReference">Adyen&#39;s 16-digit unique reference associated with the transaction/the request. This value is globally unique; quote it when communicating with us about this request..</param>
-        public PaymentResult(string AuthCode = default(string), string PaRequest = default(string), string IssuerUrl = default(string), string Md = default(string), ResultCodeEnum? ResultCode = default(ResultCodeEnum?), string DccSignature = default(string), string RefusalReason = default(string), Dictionary<string, string> AdditionalData = default(Dictionary<string, string>),  FraudResult FraudResult = default(FraudResult), string PspReference = default(string))
+        public PaymentResult(string AuthCode = default(string), string PaRequest = default(string),
+            string IssuerUrl = default(string), string Md = default(string),
+            ResultCodeEnum? ResultCode = default(ResultCodeEnum?), string DccSignature = default(string),
+            string RefusalReason = default(string),
+            Dictionary<string, string> AdditionalData = default(Dictionary<string, string>),
+            FraudResult FraudResult = default(FraudResult), string PspReference = default(string))
         {
             this.AuthCode = AuthCode;
             this.PaRequest = PaRequest;
@@ -48,70 +54,70 @@ namespace Adyen.EcommLibrary.Model
             this.FraudResult = FraudResult;
             this.PspReference = PspReference;
         }
-        
+
         /// <summary>
         /// Authorisation code:  * When the payment is authorised successfully, this field holds the authorisation code for the payment.  * When the payment is not authorised, this field is empty.
         /// </summary>
         /// <value>Authorisation code:  * When the payment is authorised successfully, this field holds the authorisation code for the payment.  * When the payment is not authorised, this field is empty.</value>
-        [DataMember(Name="authCode", EmitDefaultValue=false)]
+        [DataMember(Name = "authCode", EmitDefaultValue = false)]
         public string AuthCode { get; set; }
 
         /// <summary>
         /// The 3D request data for the issuer.  If the value is **CUPSecurePlus-CollectSMSVerificationCode**, collect an SMS code from the shopper and pass it in the &#x60;/authorise3D&#x60; request. For more information, see [3D Secure](https://docs.adyen.com/developers/risk-management/3d-secure).
         /// </summary>
         /// <value>The 3D request data for the issuer.  If the value is **CUPSecurePlus-CollectSMSVerificationCode**, collect an SMS code from the shopper and pass it in the &#x60;/authorise3D&#x60; request. For more information, see [3D Secure](https://docs.adyen.com/developers/risk-management/3d-secure).</value>
-        [DataMember(Name="paRequest", EmitDefaultValue=false)]
+        [DataMember(Name = "paRequest", EmitDefaultValue = false)]
         public string PaRequest { get; set; }
 
         /// <summary>
         /// The URL to direct the shopper to. &gt; In case of SecurePlus, do not redirect a shopper to this URL.
         /// </summary>
         /// <value>The URL to direct the shopper to. &gt; In case of SecurePlus, do not redirect a shopper to this URL.</value>
-        [DataMember(Name="issuerUrl", EmitDefaultValue=false)]
+        [DataMember(Name = "issuerUrl", EmitDefaultValue = false)]
         public string IssuerUrl { get; set; }
 
         /// <summary>
         /// The payment session.
         /// </summary>
         /// <value>The payment session.</value>
-        [DataMember(Name="md", EmitDefaultValue=false)]
+        [DataMember(Name = "md", EmitDefaultValue = false)]
         public string Md { get; set; }
 
 
         /// <summary>
         /// Gets or Sets DccSignature
         /// </summary>
-        [DataMember(Name="dccSignature", EmitDefaultValue=false)]
+        [DataMember(Name = "dccSignature", EmitDefaultValue = false)]
         public string DccSignature { get; set; }
 
         /// <summary>
         /// If the payment&#39;s authorisation is refused or an error occurrs during authorisation, this field holds Adyen&#39;s mapped reason for the refusal or a description of the error.  When a transaction fails, the authorisation response includes &#x60;resultCode&#x60; and &#x60;refusalReason&#x60; values.
         /// </summary>
         /// <value>If the payment&#39;s authorisation is refused or an error occurrs during authorisation, this field holds Adyen&#39;s mapped reason for the refusal or a description of the error.  When a transaction fails, the authorisation response includes &#x60;resultCode&#x60; and &#x60;refusalReason&#x60; values.</value>
-        [DataMember(Name="refusalReason", EmitDefaultValue=false)]
+        [DataMember(Name = "refusalReason", EmitDefaultValue = false)]
         public string RefusalReason { get; set; }
 
         /// <summary>
         /// This field contains additional data, which may be required to return in a particular payment response. To choose data fields to be returned, go to Customer Area -&gt; Settings -&gt; API and Response.
         /// </summary>
         /// <value>This field contains additional data, which may be required to return in a particular payment response. To choose data fields to be returned, go to Customer Area -&gt; Settings -&gt; API and Response.</value>
-        [DataMember(Name="additionalData", EmitDefaultValue=false)]
+        [DataMember(Name = "additionalData", EmitDefaultValue = false)]
         public Dictionary<string, string> AdditionalData { get; set; }
-        
+
         /// <summary>
         /// Gets or Sets FraudResult
         /// </summary>
-        [DataMember(Name="fraudResult", EmitDefaultValue=false)]
+        [DataMember(Name = "fraudResult", EmitDefaultValue = false)]
         public FraudResult FraudResult { get; set; }
 
         [DataMember(Name = "Amount", EmitDefaultValue = false)]
         public Amount DccAmount { get; set; }
-        
+
         /// <summary>
         /// Adyen&#39;s 16-digit unique reference associated with the transaction/the request. This value is globally unique; quote it when communicating with us about this request.
         /// </summary>
         /// <value>Adyen&#39;s 16-digit unique reference associated with the transaction/the request. This value is globally unique; quote it when communicating with us about this request.</value>
-        [DataMember(Name="pspReference", EmitDefaultValue=false)]
+        [DataMember(Name = "pspReference", EmitDefaultValue = false)]
         public string PspReference { get; set; }
 
         [DataMember(Name = "cardBin", EmitDefaultValue = false)]
@@ -136,10 +142,10 @@ namespace Adyen.EcommLibrary.Model
         public bool ThreeDAuthenticated { get; set; }
 
         [DataMember(Name = "boletoBarcodeReference", EmitDefaultValue = false)]
-        public string BoletoBarcodeReference { get;  set; }
+        public string BoletoBarcodeReference { get; set; }
 
         [DataMember(Name = "boletoData", EmitDefaultValue = false)]
-        public string BoletoData { get;  set; }
+        public string BoletoData { get; set; }
 
         [DataMember(Name = "boletoUrl", EmitDefaultValue = false)]
         public string BoletoUrl { get; set; }
@@ -149,7 +155,7 @@ namespace Adyen.EcommLibrary.Model
 
         [DataMember(Name = "boletoExpirationDate", EmitDefaultValue = false)]
         public string BoletoExpirationDate { get; set; }
-        
+
         /// <summary>
         /// Returns the string presentation of the object
         /// </summary>
@@ -166,13 +172,13 @@ namespace Adyen.EcommLibrary.Model
             sb.Append("  ResultCode: ").Append(ResultCode).Append("\n");
             sb.Append("  DccSignature: ").Append(DccSignature).Append("\n");
             sb.Append("  RefusalReason: ").Append(RefusalReason).Append("\n");
-            sb.Append("  AdditionalData: ").Append(AdditionalData).Append("\n");          
+            sb.Append("  AdditionalData: ").Append(AdditionalData).Append("\n");
             sb.Append("  FraudResult: ").Append(FraudResult).Append("\n");
             sb.Append("  PspReference: ").Append(PspReference).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
-  
+
         /// <summary>
         /// Returns the JSON string presentation of the object
         /// </summary>
@@ -190,7 +196,7 @@ namespace Adyen.EcommLibrary.Model
         public override bool Equals(object obj)
         {
             // credit: http://stackoverflow.com/a/10454552/677735
-            return this.Equals(obj as PaymentResult);
+            return Equals(obj as PaymentResult);
         }
 
         /// <summary>
@@ -204,57 +210,56 @@ namespace Adyen.EcommLibrary.Model
             if (other == null)
                 return false;
 
-            return 
+            return
                 (
-                    this.AuthCode == other.AuthCode ||
-                    this.AuthCode != null &&
-                    this.AuthCode.Equals(other.AuthCode)
-                ) && 
+                    AuthCode == other.AuthCode ||
+                    AuthCode != null &&
+                    AuthCode.Equals(other.AuthCode)
+                ) &&
                 (
-                    this.PaRequest == other.PaRequest ||
-                    this.PaRequest != null &&
-                    this.PaRequest.Equals(other.PaRequest)
-                ) && 
+                    PaRequest == other.PaRequest ||
+                    PaRequest != null &&
+                    PaRequest.Equals(other.PaRequest)
+                ) &&
                 (
-                    this.IssuerUrl == other.IssuerUrl ||
-                    this.IssuerUrl != null &&
-                    this.IssuerUrl.Equals(other.IssuerUrl)
-                ) && 
+                    IssuerUrl == other.IssuerUrl ||
+                    IssuerUrl != null &&
+                    IssuerUrl.Equals(other.IssuerUrl)
+                ) &&
                 (
-                    this.Md == other.Md ||
-                    this.Md != null &&
-                    this.Md.Equals(other.Md)
-                ) && 
+                    Md == other.Md ||
+                    Md != null &&
+                    Md.Equals(other.Md)
+                ) &&
                 (
-                    this.ResultCode == other.ResultCode ||
-                    this.ResultCode != null &&
-                    this.ResultCode.Equals(other.ResultCode)
-                ) && 
+                    ResultCode == other.ResultCode ||
+                    ResultCode != null &&
+                    ResultCode.Equals(other.ResultCode)
+                ) &&
                 (
-                    this.DccSignature == other.DccSignature ||
-                    this.DccSignature != null &&
-                    this.DccSignature.Equals(other.DccSignature)
-                ) && 
+                    DccSignature == other.DccSignature ||
+                    DccSignature != null &&
+                    DccSignature.Equals(other.DccSignature)
+                ) &&
                 (
-                    this.RefusalReason == other.RefusalReason ||
-                    this.RefusalReason != null &&
-                    this.RefusalReason.Equals(other.RefusalReason)
-                ) && 
+                    RefusalReason == other.RefusalReason ||
+                    RefusalReason != null &&
+                    RefusalReason.Equals(other.RefusalReason)
+                ) &&
                 (
-                    this.AdditionalData == other.AdditionalData ||
-                    this.AdditionalData != null &&
-                    this.AdditionalData.SequenceEqual(other.AdditionalData)
-                ) && 
-                
+                    AdditionalData == other.AdditionalData ||
+                    AdditionalData != null &&
+                    AdditionalData.SequenceEqual(other.AdditionalData)
+                ) &&
                 (
-                    this.FraudResult == other.FraudResult ||
-                    this.FraudResult != null &&
-                    this.FraudResult.Equals(other.FraudResult)
-                ) && 
+                    FraudResult == other.FraudResult ||
+                    FraudResult != null &&
+                    FraudResult.Equals(other.FraudResult)
+                ) &&
                 (
-                    this.PspReference == other.PspReference ||
-                    this.PspReference != null &&
-                    this.PspReference.Equals(other.PspReference)
+                    PspReference == other.PspReference ||
+                    PspReference != null &&
+                    PspReference.Equals(other.PspReference)
                 );
         }
 
@@ -267,28 +272,28 @@ namespace Adyen.EcommLibrary.Model
             // credit: http://stackoverflow.com/a/263416/677735
             unchecked // Overflow is fine, just wrap
             {
-                int hash = 41;
+                var hash = 41;
                 // Suitable nullity checks etc, of course :)
-                if (this.AuthCode != null)
-                    hash = hash * 59 + this.AuthCode.GetHashCode();
-                if (this.PaRequest != null)
-                    hash = hash * 59 + this.PaRequest.GetHashCode();
-                if (this.IssuerUrl != null)
-                    hash = hash * 59 + this.IssuerUrl.GetHashCode();
-                if (this.Md != null)
-                    hash = hash * 59 + this.Md.GetHashCode();
-                if (this.ResultCode != null)
-                    hash = hash * 59 + this.ResultCode.GetHashCode();
-                if (this.DccSignature != null)
-                    hash = hash * 59 + this.DccSignature.GetHashCode();
-                if (this.RefusalReason != null)
-                    hash = hash * 59 + this.RefusalReason.GetHashCode();
-                if (this.AdditionalData != null)
-                    hash = hash * 59 + this.AdditionalData.GetHashCode();
-                if (this.FraudResult != null)
-                    hash = hash * 59 + this.FraudResult.GetHashCode();
-                if (this.PspReference != null)
-                    hash = hash * 59 + this.PspReference.GetHashCode();
+                if (AuthCode != null)
+                    hash = hash * 59 + AuthCode.GetHashCode();
+                if (PaRequest != null)
+                    hash = hash * 59 + PaRequest.GetHashCode();
+                if (IssuerUrl != null)
+                    hash = hash * 59 + IssuerUrl.GetHashCode();
+                if (Md != null)
+                    hash = hash * 59 + Md.GetHashCode();
+                if (ResultCode != null)
+                    hash = hash * 59 + ResultCode.GetHashCode();
+                if (DccSignature != null)
+                    hash = hash * 59 + DccSignature.GetHashCode();
+                if (RefusalReason != null)
+                    hash = hash * 59 + RefusalReason.GetHashCode();
+                if (AdditionalData != null)
+                    hash = hash * 59 + AdditionalData.GetHashCode();
+                if (FraudResult != null)
+                    hash = hash * 59 + FraudResult.GetHashCode();
+                if (PspReference != null)
+                    hash = hash * 59 + PspReference.GetHashCode();
                 return hash;
             }
         }
@@ -298,7 +303,7 @@ namespace Adyen.EcommLibrary.Model
         /// </summary>
         /// <param name="validationContext">Validation context</param>
         /// <returns>Validation Result</returns>
-        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+        IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
         {
             yield break;
         }

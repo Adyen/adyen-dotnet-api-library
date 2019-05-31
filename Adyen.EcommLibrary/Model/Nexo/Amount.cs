@@ -7,7 +7,6 @@
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     public partial class Amount
     {
-
         /// <remarks/>
         [System.Xml.Serialization.XmlAttributeAttribute()]
         public string Currency;

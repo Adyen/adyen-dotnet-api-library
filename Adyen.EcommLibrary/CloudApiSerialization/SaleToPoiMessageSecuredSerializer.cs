@@ -2,7 +2,6 @@
 using System.Runtime.Serialization;
 using Adyen.EcommLibrary.Exceptions;
 using Adyen.EcommLibrary.Model.Nexo;
-using Adyen.EcommLibrary.Model.Nexo.Message;
 using Adyen.EcommLibrary.Security;
 using Newtonsoft.Json.Linq;
 
@@ -24,11 +23,10 @@ namespace Adyen.EcommLibrary.CloudApiSerialization
             var saleToPoiMessageSecuredJObjectRoot = saleToPoiMessageSecuredJObject.First;
             var saleToPoiMessageSecuredJObjectWithoutRoot = saleToPoiMessageSecuredJObjectRoot?.First;
             if (saleToPoiMessageSecuredJObjectWithoutRoot != null)
-            {
                 return ParseSaleToPoiMessageSecured(saleToPoiMessageSecuredJObjectWithoutRoot);
-            }
 
-            var exceptionMessage = string.Format(ExceptionMessages.ExceptionDuringDeserialization, saleToPoiMessageSecuredJSon, ExceptionMessages.SaleToPoiMessageRootMissing);
+            var exceptionMessage = string.Format(ExceptionMessages.ExceptionDuringDeserialization,
+                saleToPoiMessageSecuredJSon, ExceptionMessages.SaleToPoiMessageRootMissing);
             throw new SerializationException(exceptionMessage);
         }
 
@@ -36,9 +34,7 @@ namespace Adyen.EcommLibrary.CloudApiSerialization
         {
             var possibleTerminalError = terminalResponseJObject.SelectToken("errors");
             if (possibleTerminalError != null)
-            {
                 throw new Exception(string.Format(ExceptionMessages.TerminalErrorResponse, possibleTerminalError));
-            }
         }
 
         private SaleToPoiMessageSecured ParseSaleToPoiMessageSecured(JToken saleToPoiMessageSecuredJToken)
@@ -47,7 +43,8 @@ namespace Adyen.EcommLibrary.CloudApiSerialization
             {
                 MessageHeader = saleToPoiMessageSecuredJToken.SelectToken("MessageHeader").ToObject<MessageHeader>(),
                 NexoBlob = saleToPoiMessageSecuredJToken.SelectToken("NexoBlob").ToObject<string>(),
-                SecurityTrailer = saleToPoiMessageSecuredJToken.SelectToken("SecurityTrailer").ToObject<SecurityTrailer>()
+                SecurityTrailer = saleToPoiMessageSecuredJToken.SelectToken("SecurityTrailer")
+                    .ToObject<SecurityTrailer>()
             };
 
             return saleToPoiMessageSecured;

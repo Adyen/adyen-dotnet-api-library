@@ -7,7 +7,6 @@
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     public partial class InputResult
     {
-
         /// <remarks/>
         [System.Xml.Serialization.XmlElementAttribute(Form = System.Xml.Schema.XmlSchemaForm.Unqualified)]
         public Response Response;

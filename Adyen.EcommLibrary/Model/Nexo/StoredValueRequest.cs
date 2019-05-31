@@ -9,13 +9,13 @@ namespace Adyen.EcommLibrary.Model.Nexo
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     public partial class StoredValueRequest : IMessagePayload
     {
-
         /// <remarks/>
         [System.Xml.Serialization.XmlElementAttribute(Form = System.Xml.Schema.XmlSchemaForm.Unqualified)]
         public SaleData SaleData;
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute("StoredValueData", Form = System.Xml.Schema.XmlSchemaForm.Unqualified)]
+        [System.Xml.Serialization.XmlElementAttribute("StoredValueData", Form =
+            System.Xml.Schema.XmlSchemaForm.Unqualified)]
         public StoredValueData[] StoredValueData;
 
         /// <remarks/>

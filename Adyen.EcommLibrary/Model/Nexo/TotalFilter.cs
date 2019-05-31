@@ -7,7 +7,6 @@
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     public partial class TotalFilter
     {
-
         /// <remarks/>
         [System.Xml.Serialization.XmlAttributeAttribute()]
         public string POIID;

@@ -7,7 +7,6 @@
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     public partial class DigestedDataType
     {
-
         /// <remarks/>
         [System.Xml.Serialization.XmlElementAttribute(Form = System.Xml.Schema.XmlSchemaForm.Unqualified)]
         public AlgorithmIdentifier DigestAlgorithm;
@@ -17,7 +16,8 @@
         public EncapsulatedContentType EncapsulatedContent;
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Form = System.Xml.Schema.XmlSchemaForm.Unqualified, DataType = "base64Binary")]
+        [System.Xml.Serialization.XmlElementAttribute(Form = System.Xml.Schema.XmlSchemaForm.Unqualified,
+            DataType = "base64Binary")]
         public byte[] Digest;
 
         /// <remarks/>

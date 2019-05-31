@@ -10,10 +10,9 @@ namespace Adyen.EcommLibrary.Test
     {
         public static PaymentRequest CreateOpenInvoicePaymentRequest()
         {
+            var dateOfBirth = DateTime.Parse("1970-07-10");
 
-            DateTime dateOfBirth = DateTime.Parse("1970-07-10");
-
-            PaymentRequest paymentRequest = MockPaymentData.CreateFullPaymentRequest();
+            var paymentRequest = MockPaymentData.CreateFullPaymentRequest();
 
             // Set Shopper Data
             paymentRequest.ShopperEmail = "youremail@email.com";
@@ -22,7 +21,7 @@ namespace Adyen.EcommLibrary.Test
             paymentRequest.ShopperReference = "4";
 
             // Set Shopper Info
-            Name shopperName = new Name
+            var shopperName = new Name
             {
                 FirstName = "Testperson-nl",
                 LastName = "Approved",
@@ -31,7 +30,7 @@ namespace Adyen.EcommLibrary.Test
             paymentRequest.ShopperName = shopperName;
 
             // Set Billing and Delivery address
-            Address address = new Address
+            var address = new Address
             {
                 City = "Gravenhage",
                 Country = "NL",
@@ -46,39 +45,39 @@ namespace Adyen.EcommLibrary.Test
             // Use OpenInvoice Provider (klarna, ratepay)
             paymentRequest.SelectedBrand = "klarna";
 
-            long itemAmount = long.Parse("9000");
-            long itemVatAmount = long.Parse("1000");
-            long itemVatPercentage = long.Parse("1000");
+            var itemAmount = long.Parse("9000");
+            var itemVatAmount = long.Parse("1000");
+            var itemVatPercentage = long.Parse("1000");
 
-            List<InvoiceLine> invoiceLines = new List<InvoiceLine>();
+            var invoiceLines = new List<InvoiceLine>();
 
             // invoiceLine1
-            InvoiceLine invoiceLine = new InvoiceLine
+            var invoiceLine = new InvoiceLine
             {
-                CurrencyCode = ("EUR"),
-                Description = ("Test product"),
-                VatAmount = (itemVatAmount),
-                ItemAmount = (itemAmount),
-                ItemVatPercentage = (itemVatPercentage),
-                VatCategory = (VatCategory.None),
-                NumberOfItems = (1),
-                ItemId = ("1234")
+                CurrencyCode = "EUR",
+                Description = "Test product",
+                VatAmount = itemVatAmount,
+                ItemAmount = itemAmount,
+                ItemVatPercentage = itemVatPercentage,
+                VatCategory = VatCategory.None,
+                NumberOfItems = 1,
+                ItemId = "1234"
             };
 
             // invoiceLine2
             // invoiceLine1
-            InvoiceLine invoiceLine2 = new InvoiceLine
+            var invoiceLine2 = new InvoiceLine
             {
-                CurrencyCode = ("EUR"),
-                Description = ("Test product2"),
-                VatAmount = (itemVatAmount),
-                ItemAmount = (itemAmount),
-                ItemVatPercentage = (itemVatPercentage),
-                VatCategory = (VatCategory.None),
-                NumberOfItems = (1),
-                ItemId = ("456")
+                CurrencyCode = "EUR",
+                Description = "Test product2",
+                VatAmount = itemVatAmount,
+                ItemAmount = itemAmount,
+                ItemVatPercentage = itemVatPercentage,
+                VatCategory = VatCategory.None,
+                NumberOfItems = 1,
+                ItemId = "456"
             };
-            
+
             invoiceLines.Add(invoiceLine);
             invoiceLines.Add(invoiceLine2);
 
@@ -86,6 +85,5 @@ namespace Adyen.EcommLibrary.Test
 
             return paymentRequest;
         }
-
     }
 }

@@ -7,7 +7,6 @@
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     public partial class PaymentInstrumentData
     {
-
         /// <remarks/>
         [System.Xml.Serialization.XmlElementAttribute(Form = System.Xml.Schema.XmlSchemaForm.Unqualified)]
         public CardData CardData;

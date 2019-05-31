@@ -7,7 +7,6 @@
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     public partial class LoyaltyTotals
     {
-
         /// <remarks/>
         [System.Xml.Serialization.XmlAttributeAttribute()]
         public string Transaction;

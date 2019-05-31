@@ -7,7 +7,6 @@
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     public partial class PaymentToken
     {
-
         /// <remarks/>
         [System.Xml.Serialization.XmlAttributeAttribute()]
         public string TokenRequested;

@@ -1,6 +1,4 @@
-﻿using Adyen.EcommLibrary.Model.Nexo;
-
-namespace Adyen.EcommLibrary.CloudApiSerialization
+﻿namespace Adyen.EcommLibrary.CloudApiSerialization
 {
     internal interface IMessagePayloadSerializer<out T> where T : IMessagePayload
     {

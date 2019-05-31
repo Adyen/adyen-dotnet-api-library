@@ -1,4 +1,3 @@
-
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -14,7 +13,7 @@ namespace Adyen.EcommLibrary.Model.Checkout
     /// Recurring
     /// </summary>
     [DataContract]
-    public partial class Recurring :  IEquatable<Recurring>, IValidatableObject
+    public partial class Recurring : IEquatable<Recurring>, IValidatableObject
     {
         /// <summary>
         /// The type of recurring contract to be used. Possible values: * &#x60;ONECLICK&#x60; – Payment details can be used to initiate a one-click payment, where the shopper enters the [card security code (CVC/CVV)](https://docs.adyen.com/developers/payment-glossary#cardsecuritycodecvccvvcid). * &#x60;RECURRING&#x60; – Payment details can be used without the card security code to initiate [card-not-present transactions](https://docs.adyen.com/developers/payment-glossary#cardnotpresentcnp). * &#x60;ONECLICK,RECURRING&#x60; – Payment details can be used regardless of whether the shopper is on your site or not. * &#x60;PAYOUT&#x60; – Payment details can be used to [make a payout](https://docs.adyen.com/developers/features/third-party-payouts).
@@ -23,32 +22,29 @@ namespace Adyen.EcommLibrary.Model.Checkout
         [JsonConverter(typeof(StringEnumConverter))]
         public enum ContractEnum
         {
-            
             /// <summary>
             /// Enum ONECLICK for value: ONECLICK
             /// </summary>
-            [EnumMember(Value = "ONECLICK")]
-            ONECLICK = 1,
-            
+            [EnumMember(Value = "ONECLICK")] ONECLICK = 1,
+
             /// <summary>
             /// Enum RECURRING for value: RECURRING
             /// </summary>
-            [EnumMember(Value = "RECURRING")]
-            RECURRING = 2,
-            
+            [EnumMember(Value = "RECURRING")] RECURRING = 2,
+
             /// <summary>
             /// Enum PAYOUT for value: PAYOUT
             /// </summary>
-            [EnumMember(Value = "PAYOUT")]
-            PAYOUT = 3
+            [EnumMember(Value = "PAYOUT")] PAYOUT = 3
         }
 
         /// <summary>
         /// The type of recurring contract to be used. Possible values: * &#x60;ONECLICK&#x60; – Payment details can be used to initiate a one-click payment, where the shopper enters the [card security code (CVC/CVV)](https://docs.adyen.com/developers/payment-glossary#cardsecuritycodecvccvvcid). * &#x60;RECURRING&#x60; – Payment details can be used without the card security code to initiate [card-not-present transactions](https://docs.adyen.com/developers/payment-glossary#cardnotpresentcnp). * &#x60;ONECLICK,RECURRING&#x60; – Payment details can be used regardless of whether the shopper is on your site or not. * &#x60;PAYOUT&#x60; – Payment details can be used to [make a payout](https://docs.adyen.com/developers/features/third-party-payouts).
         /// </summary>
         /// <value>The type of recurring contract to be used. Possible values: * &#x60;ONECLICK&#x60; – Payment details can be used to initiate a one-click payment, where the shopper enters the [card security code (CVC/CVV)](https://docs.adyen.com/developers/payment-glossary#cardsecuritycodecvccvvcid). * &#x60;RECURRING&#x60; – Payment details can be used without the card security code to initiate [card-not-present transactions](https://docs.adyen.com/developers/payment-glossary#cardnotpresentcnp). * &#x60;ONECLICK,RECURRING&#x60; – Payment details can be used regardless of whether the shopper is on your site or not. * &#x60;PAYOUT&#x60; – Payment details can be used to [make a payout](https://docs.adyen.com/developers/features/third-party-payouts).</value>
-        [DataMember(Name="contract", EmitDefaultValue=false)]
+        [DataMember(Name = "contract", EmitDefaultValue = false)]
         public ContractEnum? Contract { get; set; }
+
         /// <summary>
         /// The name of the token service.
         /// </summary>
@@ -56,26 +52,25 @@ namespace Adyen.EcommLibrary.Model.Checkout
         [JsonConverter(typeof(StringEnumConverter))]
         public enum TokenServiceEnum
         {
-            
             /// <summary>
             /// Enum VISATOKENSERVICE for value: VISATOKENSERVICE
             /// </summary>
             [EnumMember(Value = "VISATOKENSERVICE")]
             VISATOKENSERVICE = 1,
-            
+
             /// <summary>
             /// Enum MCTOKENSERVICE for value: MCTOKENSERVICE
             /// </summary>
-            [EnumMember(Value = "MCTOKENSERVICE")]
-            MCTOKENSERVICE = 2
+            [EnumMember(Value = "MCTOKENSERVICE")] MCTOKENSERVICE = 2
         }
 
         /// <summary>
         /// The name of the token service.
         /// </summary>
         /// <value>The name of the token service.</value>
-        [DataMember(Name="tokenService", EmitDefaultValue=false)]
+        [DataMember(Name = "tokenService", EmitDefaultValue = false)]
         public TokenServiceEnum? TokenService { get; set; }
+
         /// <summary>
         /// Initializes a new instance of the <see cref="Recurring" /> class.
         /// </summary>
@@ -85,7 +80,9 @@ namespace Adyen.EcommLibrary.Model.Checkout
         /// <param name="RecurringExpiry">Date after which no further authorisations shall be performed. Only for 3D Secure 2.0..</param>
         /// <param name="RecurringFrequency">Minimum number of days between authorisations. Only for 3D Secure 2.0..</param>
         /// <param name="TokenService">The name of the token service..</param>
-        public Recurring(ContractEnum? Contract = default(ContractEnum?), List<Permit> Permits = default(List<Permit>), string RecurringDetailName = default(string), DateTime? RecurringExpiry = default(DateTime?), string RecurringFrequency = default(string), TokenServiceEnum? TokenService = default(TokenServiceEnum?))
+        public Recurring(ContractEnum? Contract = default(ContractEnum?), List<Permit> Permits = default(List<Permit>),
+            string RecurringDetailName = default(string), DateTime? RecurringExpiry = default(DateTime?),
+            string RecurringFrequency = default(string), TokenServiceEnum? TokenService = default(TokenServiceEnum?))
         {
             this.Contract = Contract;
             this.Permits = Permits;
@@ -94,34 +91,34 @@ namespace Adyen.EcommLibrary.Model.Checkout
             this.RecurringFrequency = RecurringFrequency;
             this.TokenService = TokenService;
         }
-        
+
 
         /// <summary>
         /// Permit requests for this recurring contract.
         /// </summary>
         /// <value>Permit requests for this recurring contract.</value>
-        [DataMember(Name="permits", EmitDefaultValue=false)]
+        [DataMember(Name = "permits", EmitDefaultValue = false)]
         public List<Permit> Permits { get; set; }
 
         /// <summary>
         /// A descriptive name for this detail.
         /// </summary>
         /// <value>A descriptive name for this detail.</value>
-        [DataMember(Name="recurringDetailName", EmitDefaultValue=false)]
+        [DataMember(Name = "recurringDetailName", EmitDefaultValue = false)]
         public string RecurringDetailName { get; set; }
 
         /// <summary>
         /// Date after which no further authorisations shall be performed. Only for 3D Secure 2.0.
         /// </summary>
         /// <value>Date after which no further authorisations shall be performed. Only for 3D Secure 2.0.</value>
-        [DataMember(Name="recurringExpiry", EmitDefaultValue=false)]
+        [DataMember(Name = "recurringExpiry", EmitDefaultValue = false)]
         public DateTime? RecurringExpiry { get; set; }
 
         /// <summary>
         /// Minimum number of days between authorisations. Only for 3D Secure 2.0.
         /// </summary>
         /// <value>Minimum number of days between authorisations. Only for 3D Secure 2.0.</value>
-        [DataMember(Name="recurringFrequency", EmitDefaultValue=false)]
+        [DataMember(Name = "recurringFrequency", EmitDefaultValue = false)]
         public string RecurringFrequency { get; set; }
 
 
@@ -142,7 +139,7 @@ namespace Adyen.EcommLibrary.Model.Checkout
             sb.Append("}\n");
             return sb.ToString();
         }
-  
+
         /// <summary>
         /// Returns the JSON string presentation of the object
         /// </summary>
@@ -159,7 +156,7 @@ namespace Adyen.EcommLibrary.Model.Checkout
         /// <returns>Boolean</returns>
         public override bool Equals(object input)
         {
-            return this.Equals(input as Recurring);
+            return Equals(input as Recurring);
         }
 
         /// <summary>
@@ -172,36 +169,36 @@ namespace Adyen.EcommLibrary.Model.Checkout
             if (input == null)
                 return false;
 
-            return 
+            return
                 (
-                    this.Contract == input.Contract ||
-                    (this.Contract != null &&
-                    this.Contract.Equals(input.Contract))
-                ) && 
+                    Contract == input.Contract ||
+                    Contract != null &&
+                    Contract.Equals(input.Contract)
+                ) &&
                 (
-                    this.Permits == input.Permits ||
-                    this.Permits != null &&
-                    this.Permits.SequenceEqual(input.Permits)
-                ) && 
+                    Permits == input.Permits ||
+                    Permits != null &&
+                    Permits.SequenceEqual(input.Permits)
+                ) &&
                 (
-                    this.RecurringDetailName == input.RecurringDetailName ||
-                    (this.RecurringDetailName != null &&
-                    this.RecurringDetailName.Equals(input.RecurringDetailName))
-                ) && 
+                    RecurringDetailName == input.RecurringDetailName ||
+                    RecurringDetailName != null &&
+                    RecurringDetailName.Equals(input.RecurringDetailName)
+                ) &&
                 (
-                    this.RecurringExpiry == input.RecurringExpiry ||
-                    (this.RecurringExpiry != null &&
-                    this.RecurringExpiry.Equals(input.RecurringExpiry))
-                ) && 
+                    RecurringExpiry == input.RecurringExpiry ||
+                    RecurringExpiry != null &&
+                    RecurringExpiry.Equals(input.RecurringExpiry)
+                ) &&
                 (
-                    this.RecurringFrequency == input.RecurringFrequency ||
-                    (this.RecurringFrequency != null &&
-                    this.RecurringFrequency.Equals(input.RecurringFrequency))
-                ) && 
+                    RecurringFrequency == input.RecurringFrequency ||
+                    RecurringFrequency != null &&
+                    RecurringFrequency.Equals(input.RecurringFrequency)
+                ) &&
                 (
-                    this.TokenService == input.TokenService ||
-                    (this.TokenService != null &&
-                    this.TokenService.Equals(input.TokenService))
+                    TokenService == input.TokenService ||
+                    TokenService != null &&
+                    TokenService.Equals(input.TokenService)
                 );
         }
 
@@ -213,19 +210,19 @@ namespace Adyen.EcommLibrary.Model.Checkout
         {
             unchecked // Overflow is fine, just wrap
             {
-                int hashCode = 41;
-                if (this.Contract != null)
-                    hashCode = hashCode * 59 + this.Contract.GetHashCode();
-                if (this.Permits != null)
-                    hashCode = hashCode * 59 + this.Permits.GetHashCode();
-                if (this.RecurringDetailName != null)
-                    hashCode = hashCode * 59 + this.RecurringDetailName.GetHashCode();
-                if (this.RecurringExpiry != null)
-                    hashCode = hashCode * 59 + this.RecurringExpiry.GetHashCode();
-                if (this.RecurringFrequency != null)
-                    hashCode = hashCode * 59 + this.RecurringFrequency.GetHashCode();
-                if (this.TokenService != null)
-                    hashCode = hashCode * 59 + this.TokenService.GetHashCode();
+                var hashCode = 41;
+                if (Contract != null)
+                    hashCode = hashCode * 59 + Contract.GetHashCode();
+                if (Permits != null)
+                    hashCode = hashCode * 59 + Permits.GetHashCode();
+                if (RecurringDetailName != null)
+                    hashCode = hashCode * 59 + RecurringDetailName.GetHashCode();
+                if (RecurringExpiry != null)
+                    hashCode = hashCode * 59 + RecurringExpiry.GetHashCode();
+                if (RecurringFrequency != null)
+                    hashCode = hashCode * 59 + RecurringFrequency.GetHashCode();
+                if (TokenService != null)
+                    hashCode = hashCode * 59 + TokenService.GetHashCode();
                 return hashCode;
             }
         }
@@ -235,10 +232,9 @@ namespace Adyen.EcommLibrary.Model.Checkout
         /// </summary>
         /// <param name="validationContext">Validation context</param>
         /// <returns>Validation Result</returns>
-        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+        IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
         {
             yield break;
         }
     }
-
 }

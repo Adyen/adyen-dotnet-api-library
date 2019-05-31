@@ -7,10 +7,8 @@
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     public partial class LoyaltyAmount
     {
-
         /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute()]
-        [System.ComponentModel.DefaultValueAttribute("Point")]
+        [System.Xml.Serialization.XmlAttributeAttribute()] [System.ComponentModel.DefaultValueAttribute("Point")]
         public string LoyaltyUnit;
 
         /// <remarks/>
@@ -23,7 +21,7 @@
 
         public LoyaltyAmount()
         {
-            this.LoyaltyUnit = "Point";
+            LoyaltyUnit = "Point";
         }
     }
 }

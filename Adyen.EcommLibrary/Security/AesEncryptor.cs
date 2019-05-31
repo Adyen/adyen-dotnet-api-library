@@ -17,12 +17,13 @@ namespace Adyen.EcommLibrary.Security
             };
         }
 
-        internal byte[] Encrypt(byte[] byteArrayToEncrypt,  EncryptionDerivedKey encryptionDerivedKey, byte[] ivMod)
+        internal byte[] Encrypt(byte[] byteArrayToEncrypt, EncryptionDerivedKey encryptionDerivedKey, byte[] ivMod)
         {
             _aesManaged.Key = encryptionDerivedKey.CipherKey;
             _aesManaged.IV = TransformIV(encryptionDerivedKey.IV, ivMod);
             var encryptTransform = _aesManaged.CreateEncryptor();
-            var byteArrayEncrypted = encryptTransform.TransformFinalBlock(byteArrayToEncrypt, 0, byteArrayToEncrypt.Length);
+            var byteArrayEncrypted =
+                encryptTransform.TransformFinalBlock(byteArrayToEncrypt, 0, byteArrayToEncrypt.Length);
 
             return byteArrayEncrypted;
         }
@@ -30,10 +31,7 @@ namespace Adyen.EcommLibrary.Security
         private byte[] TransformIV(byte[] originalIV, byte[] ivMod)
         {
             var updatedIV = new byte[EncryptionDerivedKey.IVLength];
-            for (int i = 0; i < EncryptionDerivedKey.IVLength; i++)
-            {
-                updatedIV[i] = (byte)(originalIV[i] ^ ivMod[i]);
-            }
+            for (var i = 0; i < EncryptionDerivedKey.IVLength; i++) updatedIV[i] = (byte) (originalIV[i] ^ ivMod[i]);
             return updatedIV;
         }
 

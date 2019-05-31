@@ -1,5 +1,4 @@
 ﻿using System;
-using Adyen.EcommLibrary.HttpClient;
 using Adyen.EcommLibrary.Model.Enum;
 using Adyen.EcommLibrary.Model.Reccuring;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
@@ -9,17 +8,16 @@ using Recurring = Adyen.EcommLibrary.Model.Reccuring.Recurring;
 namespace Adyen.EcommLibrary.Test
 {
     [TestClass]
-    public class RecurringTest:BaseTest
+    public class RecurringTest : BaseTest
     {
-
         [TestMethod]
         public void TestListRecurringDetails()
         {
-            var client = base.CreateMockTestClientRecurringRequest("Mocks/recurring/listRecurringDetails-success.json");
-            var recurring=new Service.Recurring(client);
-            var recurringDetailsRequest = this.CreateRecurringDetailsRequest();
+            var client = CreateMockTestClientRecurringRequest("Mocks/recurring/listRecurringDetails-success.json");
+            var recurring = new Service.Recurring(client);
+            var recurringDetailsRequest = CreateRecurringDetailsRequest();
             var recurringDetailsResult = recurring.ListRecurringDetails(recurringDetailsRequest);
-            Assert.AreEqual(1L, (long)recurringDetailsResult.Details.Count);
+            Assert.AreEqual(1L, (long) recurringDetailsResult.Details.Count);
             var recurringDetail = recurringDetailsResult.Details.FirstOrDefault().RecurringDetail;
             Assert.AreEqual("recurringReference", recurringDetail.RecurringDetailReference);
             Assert.AreEqual("cardAlias", recurringDetail.Alias);
@@ -29,14 +27,13 @@ namespace Adyen.EcommLibrary.Test
         [TestMethod]
         public void TestDisable()
         {
-            var client = base.CreateMockTestClientRecurringRequest("Mocks/recurring/disable-success.json");
+            var client = CreateMockTestClientRecurringRequest("Mocks/recurring/disable-success.json");
             var recurring = new Service.Recurring(client);
-            var disableRequest = this.CreateDisableRequest();
+            var disableRequest = CreateDisableRequest();
             var disableResult = recurring.Disable(disableRequest);
-            Assert.AreEqual(1L, (long)disableResult.Details.Count);
+            Assert.AreEqual(1L, (long) disableResult.Details.Count);
             Assert.AreEqual("[detail-successfully-disabled]", disableResult.Response);
         }
-
 
 
         [TestMethod]
@@ -44,9 +41,9 @@ namespace Adyen.EcommLibrary.Test
         {
             try
             {
-                var client = base.CreateMockTestClientForErrors(422,"Mocks/recurring/disable-error-803.json");
+                var client = CreateMockTestClientForErrors(422, "Mocks/recurring/disable-error-803.json");
                 var recurring = new Service.Recurring(client);
-                var disableRequest = this.CreateDisableRequest();
+                var disableRequest = CreateDisableRequest();
 
                 var disableResult = recurring.Disable(disableRequest);
                 Assert.Fail("Exception expected!");
@@ -54,9 +51,7 @@ namespace Adyen.EcommLibrary.Test
             catch (Exception exception)
             {
                 Assert.AreNotEqual(200, exception);
-             
             }
-           
         }
 
         private RecurringDetailsRequest CreateRecurringDetailsRequest()
@@ -65,7 +60,7 @@ namespace Adyen.EcommLibrary.Test
             {
                 ShopperReference = "test-123",
                 MerchantAccount = "DotNetAlexandros",
-                Recurring = new Recurring { Contract = Contract.Oneclick }
+                Recurring = new Recurring {Contract = Contract.Oneclick}
             };
             return request;
         }
@@ -79,6 +74,5 @@ namespace Adyen.EcommLibrary.Test
             };
             return request;
         }
-
     }
 }

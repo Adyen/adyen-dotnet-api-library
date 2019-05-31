@@ -7,10 +7,8 @@
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     public partial class OutputBarcode
     {
-
         /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute()]
-        [System.ComponentModel.DefaultValueAttribute("EAN13")]
+        [System.Xml.Serialization.XmlAttributeAttribute()] [System.ComponentModel.DefaultValueAttribute("EAN13")]
         public string Barcode;
 
         /// <remarks/>
@@ -19,7 +17,7 @@
 
         public OutputBarcode()
         {
-            this.Barcode = "EAN13";
+            Barcode = "EAN13";
         }
     }
 }

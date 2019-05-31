@@ -7,7 +7,6 @@
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     public partial class OriginalPOITransaction
     {
-
         /// <remarks/>
         [System.Xml.Serialization.XmlElementAttribute(Form = System.Xml.Schema.XmlSchemaForm.Unqualified)]
         public TransactionIdentification POITransactionID;
@@ -29,8 +28,7 @@
         public string POIID;
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute()]
-        [System.ComponentModel.DefaultValueAttribute(true)]
+        [System.Xml.Serialization.XmlAttributeAttribute()] [System.ComponentModel.DefaultValueAttribute(true)]
         public bool ReuseCardDataFlag;
 
         /// <remarks/>
@@ -43,7 +41,7 @@
 
         public OriginalPOITransaction()
         {
-            this.ReuseCardDataFlag = true;
+            ReuseCardDataFlag = true;
         }
     }
 }

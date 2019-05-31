@@ -31,7 +31,9 @@ namespace Adyen.EcommLibrary.Model.Reccuring
         /// <param name="CreationDate">the creation date when the shopper record was created.</param>
         /// <param name="InvalidOneclickContracts">InvalidOneclickContracts.</param>
         /// <param name="ShopperReference">the reference you use to uniquely identify the shopper (e.g. user ID or account ID).</param>
-        public RecurringDetailsResult(string LastKnownShopperEmail = default(string), DateTime? CreationDate = default(DateTime?), bool? InvalidOneclickContracts = default(bool?), string ShopperReference = default(string))
+        public RecurringDetailsResult(string LastKnownShopperEmail = default(string),
+            DateTime? CreationDate = default(DateTime?), bool? InvalidOneclickContracts = default(bool?),
+            string ShopperReference = default(string))
         {
             this.LastKnownShopperEmail = LastKnownShopperEmail;
             this.CreationDate = CreationDate;
@@ -45,7 +47,6 @@ namespace Adyen.EcommLibrary.Model.Reccuring
         /// <value>the most recent email for this shopper (if available)</value>
         [DataMember(Name = "lastKnownShopperEmail", EmitDefaultValue = false)]
         public string LastKnownShopperEmail { get; set; }
-
 
 
         /// <summary>
@@ -74,7 +75,7 @@ namespace Adyen.EcommLibrary.Model.Reccuring
         /// </summary>
         /// <value>details of the result</value>
         [DataMember(Name = "details", EmitDefaultValue = false)]
-        public List<RecurringDetailContainer> Details=new List<RecurringDetailContainer>();
+        public List<RecurringDetailContainer> Details = new List<RecurringDetailContainer>();
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -109,7 +110,7 @@ namespace Adyen.EcommLibrary.Model.Reccuring
         public override bool Equals(object obj)
         {
             // credit: http://stackoverflow.com/a/10454552/677735
-            return this.Equals(obj as RecurringDetailsResult);
+            return Equals(obj as RecurringDetailsResult);
         }
 
         /// <summary>
@@ -125,24 +126,24 @@ namespace Adyen.EcommLibrary.Model.Reccuring
 
             return
                 (
-                    this.LastKnownShopperEmail == other.LastKnownShopperEmail ||
-                    this.LastKnownShopperEmail != null &&
-                    this.LastKnownShopperEmail.Equals(other.LastKnownShopperEmail)
+                    LastKnownShopperEmail == other.LastKnownShopperEmail ||
+                    LastKnownShopperEmail != null &&
+                    LastKnownShopperEmail.Equals(other.LastKnownShopperEmail)
                 ) &&
                 (
-                    this.CreationDate == other.CreationDate ||
-                    this.CreationDate != null &&
-                    this.CreationDate.Equals(other.CreationDate)
+                    CreationDate == other.CreationDate ||
+                    CreationDate != null &&
+                    CreationDate.Equals(other.CreationDate)
                 ) &&
                 (
-                    this.InvalidOneclickContracts == other.InvalidOneclickContracts ||
-                    this.InvalidOneclickContracts != null &&
-                    this.InvalidOneclickContracts.Equals(other.InvalidOneclickContracts)
+                    InvalidOneclickContracts == other.InvalidOneclickContracts ||
+                    InvalidOneclickContracts != null &&
+                    InvalidOneclickContracts.Equals(other.InvalidOneclickContracts)
                 ) &&
                 (
-                    this.ShopperReference == other.ShopperReference ||
-                    this.ShopperReference != null &&
-                    this.ShopperReference.Equals(other.ShopperReference)
+                    ShopperReference == other.ShopperReference ||
+                    ShopperReference != null &&
+                    ShopperReference.Equals(other.ShopperReference)
                 );
         }
 
@@ -155,16 +156,16 @@ namespace Adyen.EcommLibrary.Model.Reccuring
             // credit: http://stackoverflow.com/a/263416/677735
             unchecked // Overflow is fine, just wrap
             {
-                int hash = 41;
+                var hash = 41;
                 // Suitable nullity checks etc, of course :)
-                if (this.LastKnownShopperEmail != null)
-                    hash = hash * 59 + this.LastKnownShopperEmail.GetHashCode();
-                if (this.CreationDate != null)
-                    hash = hash * 59 + this.CreationDate.GetHashCode();
-                if (this.InvalidOneclickContracts != null)
-                    hash = hash * 59 + this.InvalidOneclickContracts.GetHashCode();
-                if (this.ShopperReference != null)
-                    hash = hash * 59 + this.ShopperReference.GetHashCode();
+                if (LastKnownShopperEmail != null)
+                    hash = hash * 59 + LastKnownShopperEmail.GetHashCode();
+                if (CreationDate != null)
+                    hash = hash * 59 + CreationDate.GetHashCode();
+                if (InvalidOneclickContracts != null)
+                    hash = hash * 59 + InvalidOneclickContracts.GetHashCode();
+                if (ShopperReference != null)
+                    hash = hash * 59 + ShopperReference.GetHashCode();
                 return hash;
             }
         }
@@ -174,10 +175,9 @@ namespace Adyen.EcommLibrary.Model.Reccuring
         /// </summary>
         /// <param name="validationContext">Validation context</param>
         /// <returns>Validation Result</returns>
-        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+        IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
         {
             yield break;
         }
     }
-
 }

@@ -1,4 +1,3 @@
-
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -13,7 +12,7 @@ namespace Adyen.EcommLibrary.Model.Checkout
     /// RecurringDetail
     /// </summary>
     [DataContract]
-    public partial class RecurringDetail :  IEquatable<RecurringDetail>, IValidatableObject
+    public partial class RecurringDetail : IEquatable<RecurringDetail>, IValidatableObject
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="RecurringDetail" /> class.
@@ -27,7 +26,12 @@ namespace Adyen.EcommLibrary.Model.Checkout
         /// <param name="StoredDetails">Contains information on previously stored payment details..</param>
         /// <param name="SupportsRecurring">Indicates whether this payment method supports tokenization or not..</param>
         /// <param name="Type">The unique payment method code..</param>
-        public RecurringDetail(Dictionary<string, string> Configuration = default(Dictionary<string, string>), List<InputDetail> Details = default(List<InputDetail>), PaymentMethodGroup Group = default(PaymentMethodGroup), string Name = default(string), string PaymentMethodData = default(string), string RecurringDetailReference = default(string), StoredDetails StoredDetails = default(StoredDetails), bool? SupportsRecurring = default(bool?), string Type = default(string))
+        public RecurringDetail(Dictionary<string, string> Configuration = default(Dictionary<string, string>),
+            List<InputDetail> Details = default(List<InputDetail>),
+            PaymentMethodGroup Group = default(PaymentMethodGroup), string Name = default(string),
+            string PaymentMethodData = default(string), string RecurringDetailReference = default(string),
+            StoredDetails StoredDetails = default(StoredDetails), bool? SupportsRecurring = default(bool?),
+            string Type = default(string))
         {
             this.Configuration = Configuration;
             this.Details = Details;
@@ -39,68 +43,68 @@ namespace Adyen.EcommLibrary.Model.Checkout
             this.SupportsRecurring = SupportsRecurring;
             this.Type = Type;
         }
-        
+
         /// <summary>
         /// The configuration of the payment method.
         /// </summary>
         /// <value>The configuration of the payment method.</value>
-        [DataMember(Name="configuration", EmitDefaultValue=false)]
+        [DataMember(Name = "configuration", EmitDefaultValue = false)]
         public Dictionary<string, string> Configuration { get; set; }
 
         /// <summary>
         /// All input details to be provided to complete the payment with this payment method.
         /// </summary>
         /// <value>All input details to be provided to complete the payment with this payment method.</value>
-        [DataMember(Name="details", EmitDefaultValue=false)]
+        [DataMember(Name = "details", EmitDefaultValue = false)]
         public List<InputDetail> Details { get; set; }
 
         /// <summary>
         /// The group where this payment method belongs to.
         /// </summary>
         /// <value>The group where this payment method belongs to.</value>
-        [DataMember(Name="group", EmitDefaultValue=false)]
+        [DataMember(Name = "group", EmitDefaultValue = false)]
         public PaymentMethodGroup Group { get; set; }
 
         /// <summary>
         /// The displayable name of this payment method.
         /// </summary>
         /// <value>The displayable name of this payment method.</value>
-        [DataMember(Name="name", EmitDefaultValue=false)]
+        [DataMember(Name = "name", EmitDefaultValue = false)]
         public string Name { get; set; }
 
         /// <summary>
         /// Echo data required to send in next calls.
         /// </summary>
         /// <value>Echo data required to send in next calls.</value>
-        [DataMember(Name="paymentMethodData", EmitDefaultValue=false)]
+        [DataMember(Name = "paymentMethodData", EmitDefaultValue = false)]
         public string PaymentMethodData { get; set; }
 
         /// <summary>
         /// The reference that uniquely identifies the recurring detail.
         /// </summary>
         /// <value>The reference that uniquely identifies the recurring detail.</value>
-        [DataMember(Name="recurringDetailReference", EmitDefaultValue=false)]
+        [DataMember(Name = "recurringDetailReference", EmitDefaultValue = false)]
         public string RecurringDetailReference { get; set; }
 
         /// <summary>
         /// Contains information on previously stored payment details.
         /// </summary>
         /// <value>Contains information on previously stored payment details.</value>
-        [DataMember(Name="storedDetails", EmitDefaultValue=false)]
+        [DataMember(Name = "storedDetails", EmitDefaultValue = false)]
         public StoredDetails StoredDetails { get; set; }
 
         /// <summary>
         /// Indicates whether this payment method supports tokenization or not.
         /// </summary>
         /// <value>Indicates whether this payment method supports tokenization or not.</value>
-        [DataMember(Name="supportsRecurring", EmitDefaultValue=false)]
+        [DataMember(Name = "supportsRecurring", EmitDefaultValue = false)]
         public bool? SupportsRecurring { get; set; }
 
         /// <summary>
         /// The unique payment method code.
         /// </summary>
         /// <value>The unique payment method code.</value>
-        [DataMember(Name="type", EmitDefaultValue=false)]
+        [DataMember(Name = "type", EmitDefaultValue = false)]
         public string Type { get; set; }
 
         /// <summary>
@@ -123,7 +127,7 @@ namespace Adyen.EcommLibrary.Model.Checkout
             sb.Append("}\n");
             return sb.ToString();
         }
-  
+
         /// <summary>
         /// Returns the JSON string presentation of the object
         /// </summary>
@@ -140,7 +144,7 @@ namespace Adyen.EcommLibrary.Model.Checkout
         /// <returns>Boolean</returns>
         public override bool Equals(object input)
         {
-            return this.Equals(input as RecurringDetail);
+            return Equals(input as RecurringDetail);
         }
 
         /// <summary>
@@ -153,51 +157,51 @@ namespace Adyen.EcommLibrary.Model.Checkout
             if (input == null)
                 return false;
 
-            return 
+            return
                 (
-                    this.Configuration == input.Configuration ||
-                    this.Configuration != null &&
-                    this.Configuration.SequenceEqual(input.Configuration)
-                ) && 
+                    Configuration == input.Configuration ||
+                    Configuration != null &&
+                    Configuration.SequenceEqual(input.Configuration)
+                ) &&
                 (
-                    this.Details == input.Details ||
-                    this.Details != null &&
-                    this.Details.SequenceEqual(input.Details)
-                ) && 
+                    Details == input.Details ||
+                    Details != null &&
+                    Details.SequenceEqual(input.Details)
+                ) &&
                 (
-                    this.Group == input.Group ||
-                    (this.Group != null &&
-                    this.Group.Equals(input.Group))
-                ) && 
+                    Group == input.Group ||
+                    Group != null &&
+                    Group.Equals(input.Group)
+                ) &&
                 (
-                    this.Name == input.Name ||
-                    (this.Name != null &&
-                    this.Name.Equals(input.Name))
-                ) && 
+                    Name == input.Name ||
+                    Name != null &&
+                    Name.Equals(input.Name)
+                ) &&
                 (
-                    this.PaymentMethodData == input.PaymentMethodData ||
-                    (this.PaymentMethodData != null &&
-                    this.PaymentMethodData.Equals(input.PaymentMethodData))
-                ) && 
+                    PaymentMethodData == input.PaymentMethodData ||
+                    PaymentMethodData != null &&
+                    PaymentMethodData.Equals(input.PaymentMethodData)
+                ) &&
                 (
-                    this.RecurringDetailReference == input.RecurringDetailReference ||
-                    (this.RecurringDetailReference != null &&
-                    this.RecurringDetailReference.Equals(input.RecurringDetailReference))
-                ) && 
+                    RecurringDetailReference == input.RecurringDetailReference ||
+                    RecurringDetailReference != null &&
+                    RecurringDetailReference.Equals(input.RecurringDetailReference)
+                ) &&
                 (
-                    this.StoredDetails == input.StoredDetails ||
-                    (this.StoredDetails != null &&
-                    this.StoredDetails.Equals(input.StoredDetails))
-                ) && 
+                    StoredDetails == input.StoredDetails ||
+                    StoredDetails != null &&
+                    StoredDetails.Equals(input.StoredDetails)
+                ) &&
                 (
-                    this.SupportsRecurring == input.SupportsRecurring ||
-                    (this.SupportsRecurring != null &&
-                    this.SupportsRecurring.Equals(input.SupportsRecurring))
-                ) && 
+                    SupportsRecurring == input.SupportsRecurring ||
+                    SupportsRecurring != null &&
+                    SupportsRecurring.Equals(input.SupportsRecurring)
+                ) &&
                 (
-                    this.Type == input.Type ||
-                    (this.Type != null &&
-                    this.Type.Equals(input.Type))
+                    Type == input.Type ||
+                    Type != null &&
+                    Type.Equals(input.Type)
                 );
         }
 
@@ -209,25 +213,25 @@ namespace Adyen.EcommLibrary.Model.Checkout
         {
             unchecked // Overflow is fine, just wrap
             {
-                int hashCode = 41;
-                if (this.Configuration != null)
-                    hashCode = hashCode * 59 + this.Configuration.GetHashCode();
-                if (this.Details != null)
-                    hashCode = hashCode * 59 + this.Details.GetHashCode();
-                if (this.Group != null)
-                    hashCode = hashCode * 59 + this.Group.GetHashCode();
-                if (this.Name != null)
-                    hashCode = hashCode * 59 + this.Name.GetHashCode();
-                if (this.PaymentMethodData != null)
-                    hashCode = hashCode * 59 + this.PaymentMethodData.GetHashCode();
-                if (this.RecurringDetailReference != null)
-                    hashCode = hashCode * 59 + this.RecurringDetailReference.GetHashCode();
-                if (this.StoredDetails != null)
-                    hashCode = hashCode * 59 + this.StoredDetails.GetHashCode();
-                if (this.SupportsRecurring != null)
-                    hashCode = hashCode * 59 + this.SupportsRecurring.GetHashCode();
-                if (this.Type != null)
-                    hashCode = hashCode * 59 + this.Type.GetHashCode();
+                var hashCode = 41;
+                if (Configuration != null)
+                    hashCode = hashCode * 59 + Configuration.GetHashCode();
+                if (Details != null)
+                    hashCode = hashCode * 59 + Details.GetHashCode();
+                if (Group != null)
+                    hashCode = hashCode * 59 + Group.GetHashCode();
+                if (Name != null)
+                    hashCode = hashCode * 59 + Name.GetHashCode();
+                if (PaymentMethodData != null)
+                    hashCode = hashCode * 59 + PaymentMethodData.GetHashCode();
+                if (RecurringDetailReference != null)
+                    hashCode = hashCode * 59 + RecurringDetailReference.GetHashCode();
+                if (StoredDetails != null)
+                    hashCode = hashCode * 59 + StoredDetails.GetHashCode();
+                if (SupportsRecurring != null)
+                    hashCode = hashCode * 59 + SupportsRecurring.GetHashCode();
+                if (Type != null)
+                    hashCode = hashCode * 59 + Type.GetHashCode();
                 return hashCode;
             }
         }
@@ -237,10 +241,9 @@ namespace Adyen.EcommLibrary.Model.Checkout
         /// </summary>
         /// <param name="validationContext">Validation context</param>
         /// <returns>Validation Result</returns>
-        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+        IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
         {
             yield break;
         }
     }
-
 }

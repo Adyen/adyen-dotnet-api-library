@@ -11,12 +11,10 @@ namespace Adyen.EcommLibrary.Model.Enum
     [JsonConverter(typeof(StringEnumConverter))]
     public enum TokenServiceEnum
     {
-
         /// <summary>
         /// Enum VISATOKENSERVICE for "VISATOKENSERVICE"
         /// </summary>
         [EnumMember(Value = "VISATOKENSERVICE")]
         Visatokenservice
     }
-
 }

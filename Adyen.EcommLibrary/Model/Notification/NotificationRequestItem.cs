@@ -7,7 +7,7 @@ namespace Adyen.EcommLibrary.Model.Notification
         public Amount Amount { get; set; }
         public string EventCode { get; set; }
         public string EventDate { get; set; }
-        public string MerchantAccountCode  { get; set; }
+        public string MerchantAccountCode { get; set; }
         public string MerchantReference { get; set; }
         public string OriginalReference { get; set; }
         public string PspReference { get; set; }

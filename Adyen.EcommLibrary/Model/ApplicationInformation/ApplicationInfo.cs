@@ -19,7 +19,7 @@ namespace Adyen.EcommLibrary.Model.ApplicationInformation
         /// </summary>
         public ApplicationInfo()
         {
-            this.AdyenLibrary = new CommonField
+            AdyenLibrary = new CommonField
             {
                 Name = ClientConfig.LibName,
                 Version = ClientConfig.LibVersion
@@ -96,7 +96,7 @@ namespace Adyen.EcommLibrary.Model.ApplicationInformation
         /// <returns>Boolean</returns>
         public override bool Equals(object input)
         {
-            return this.Equals(input as ApplicationInfo);
+            return Equals(input as ApplicationInfo);
         }
 
         /// <summary>
@@ -111,34 +111,34 @@ namespace Adyen.EcommLibrary.Model.ApplicationInformation
 
             return
                 (
-                    this.AdyenLibrary == input.AdyenLibrary ||
-                    (this.AdyenLibrary != null &&
-                    this.AdyenLibrary.Equals(input.AdyenLibrary))
+                    AdyenLibrary == input.AdyenLibrary ||
+                    AdyenLibrary != null &&
+                    AdyenLibrary.Equals(input.AdyenLibrary)
                 ) &&
                 (
-                    this.AdyenPaymentSource == input.AdyenPaymentSource ||
-                    (this.AdyenPaymentSource != null &&
-                    this.AdyenPaymentSource.Equals(input.AdyenPaymentSource))
+                    AdyenPaymentSource == input.AdyenPaymentSource ||
+                    AdyenPaymentSource != null &&
+                    AdyenPaymentSource.Equals(input.AdyenPaymentSource)
                 ) &&
                 (
-                    this.ExternalPlatform == input.ExternalPlatform ||
-                    (this.ExternalPlatform != null &&
-                    this.ExternalPlatform.Equals(input.ExternalPlatform))
+                    ExternalPlatform == input.ExternalPlatform ||
+                    ExternalPlatform != null &&
+                    ExternalPlatform.Equals(input.ExternalPlatform)
                 ) &&
                 (
-                    this.MerchantApplication == input.MerchantApplication ||
-                    (this.MerchantApplication != null &&
-                    this.MerchantApplication.Equals(input.MerchantApplication))
+                    MerchantApplication == input.MerchantApplication ||
+                    MerchantApplication != null &&
+                    MerchantApplication.Equals(input.MerchantApplication)
                 ) &&
                 (
-                    this.MerchantDevice == input.MerchantDevice ||
-                    (this.MerchantDevice != null &&
-                    this.MerchantDevice.Equals(input.MerchantDevice))
+                    MerchantDevice == input.MerchantDevice ||
+                    MerchantDevice != null &&
+                    MerchantDevice.Equals(input.MerchantDevice)
                 ) &&
                 (
-                    this.ShopperInteractionDevice == input.ShopperInteractionDevice ||
-                    (this.ShopperInteractionDevice != null &&
-                    this.ShopperInteractionDevice.Equals(input.ShopperInteractionDevice))
+                    ShopperInteractionDevice == input.ShopperInteractionDevice ||
+                    ShopperInteractionDevice != null &&
+                    ShopperInteractionDevice.Equals(input.ShopperInteractionDevice)
                 );
         }
 
@@ -150,19 +150,19 @@ namespace Adyen.EcommLibrary.Model.ApplicationInformation
         {
             unchecked // Overflow is fine, just wrap
             {
-                int hashCode = 41;
-                if (this.AdyenLibrary != null)
-                    hashCode = hashCode * 59 + this.AdyenLibrary.GetHashCode();
-                if (this.AdyenPaymentSource != null)
-                    hashCode = hashCode * 59 + this.AdyenPaymentSource.GetHashCode();
-                if (this.ExternalPlatform != null)
-                    hashCode = hashCode * 59 + this.ExternalPlatform.GetHashCode();
-                if (this.MerchantApplication != null)
-                    hashCode = hashCode * 59 + this.MerchantApplication.GetHashCode();
-                if (this.MerchantDevice != null)
-                    hashCode = hashCode * 59 + this.MerchantDevice.GetHashCode();
-                if (this.ShopperInteractionDevice != null)
-                    hashCode = hashCode * 59 + this.ShopperInteractionDevice.GetHashCode();
+                var hashCode = 41;
+                if (AdyenLibrary != null)
+                    hashCode = hashCode * 59 + AdyenLibrary.GetHashCode();
+                if (AdyenPaymentSource != null)
+                    hashCode = hashCode * 59 + AdyenPaymentSource.GetHashCode();
+                if (ExternalPlatform != null)
+                    hashCode = hashCode * 59 + ExternalPlatform.GetHashCode();
+                if (MerchantApplication != null)
+                    hashCode = hashCode * 59 + MerchantApplication.GetHashCode();
+                if (MerchantDevice != null)
+                    hashCode = hashCode * 59 + MerchantDevice.GetHashCode();
+                if (ShopperInteractionDevice != null)
+                    hashCode = hashCode * 59 + ShopperInteractionDevice.GetHashCode();
                 return hashCode;
             }
         }
@@ -172,10 +172,9 @@ namespace Adyen.EcommLibrary.Model.ApplicationInformation
         /// </summary>
         /// <param name="validationContext">Validation context</param>
         /// <returns>Validation Result</returns>
-        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+        IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
         {
             yield break;
         }
     }
-
 }

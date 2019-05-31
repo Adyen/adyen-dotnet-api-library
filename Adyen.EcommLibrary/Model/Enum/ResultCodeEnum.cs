@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Runtime.Serialization;
-using System.Text;
+﻿using System.Runtime.Serialization;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
 
@@ -14,12 +11,10 @@ namespace Adyen.EcommLibrary.Model.Enum
     [JsonConverter(typeof(StringEnumConverter))]
     public enum ResultCodeEnum
     {
-
         /// <summary>
         /// Enum Authorised for "Authorised"
         /// </summary>
-        [EnumMember(Value = "Authorised")]
-        Authorised,
+        [EnumMember(Value = "Authorised")] Authorised,
 
         /// <summary>
         /// Enum PartiallyAuthorised for "PartiallyAuthorised"
@@ -36,26 +31,22 @@ namespace Adyen.EcommLibrary.Model.Enum
         /// <summary>
         /// Enum Refused for "Refused"
         /// </summary>
-        [EnumMember(Value = "Refused")]
-        Refused,
+        [EnumMember(Value = "Refused")] Refused,
 
         /// <summary>
         /// Enum Error for "Error"
         /// </summary>
-        [EnumMember(Value = "Error")]
-        Error,
+        [EnumMember(Value = "Error")] Error,
 
         /// <summary>
         /// Enum Cancelled for "Cancelled"
         /// </summary>
-        [EnumMember(Value = "Cancelled")]
-        Cancelled,
+        [EnumMember(Value = "Cancelled")] Cancelled,
 
         /// <summary>
         /// Enum Received for "Received"
         /// </summary>
-        [EnumMember(Value = "Received")]
-        Received,
+        [EnumMember(Value = "Received")] Received,
 
         /// <summary>
         /// Enum RedirectShopper for "RedirectShopper"
@@ -66,7 +57,6 @@ namespace Adyen.EcommLibrary.Model.Enum
         /// <summary>
         /// Enum IdentifyShopper for "IdentifyShopper"
         /// </summary>
-
         [EnumMember(Value = "IdentifyShopper")]
         IdentifyShopper,
 

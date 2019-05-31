@@ -1,6 +1,4 @@
-﻿using Adyen.EcommLibrary.CloudApiSerialization;
-using Adyen.EcommLibrary.Model.Nexo;
-using Adyen.EcommLibrary.Model.Nexo.Message;
+﻿using Adyen.EcommLibrary.Model.Nexo;
 
 namespace Adyen.EcommLibrary.Security
 {

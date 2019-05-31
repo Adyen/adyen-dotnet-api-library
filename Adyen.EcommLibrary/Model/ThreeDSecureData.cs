@@ -12,20 +12,22 @@ namespace Adyen.EcommLibrary.Model
     /// ThreeDSecureData
     /// </summary>
     [DataContract]
-    public partial class ThreeDSecureData :  IEquatable<ThreeDSecureData>, IValidatableObject
+    public partial class ThreeDSecureData : IEquatable<ThreeDSecureData>, IValidatableObject
     {
         /// <summary>
         /// The authentication response if the shopper was redirected.
         /// </summary>
         /// <value>The authentication response if the shopper was redirected.</value>
-        [DataMember(Name="authenticationResponse", EmitDefaultValue=false)]
+        [DataMember(Name = "authenticationResponse", EmitDefaultValue = false)]
         public AuthenticationResponseEnum? AuthenticationResponse { get; set; }
+
         /// <summary>
         /// The enrollment response from the 3D directory server.
         /// </summary>
         /// <value>The enrollment response from the 3D directory server.</value>
-        [DataMember(Name="directoryResponse", EmitDefaultValue=false)]
+        [DataMember(Name = "directoryResponse", EmitDefaultValue = false)]
         public DirectoryResponseEnum? DirectoryResponse { get; set; }
+
         /// <summary>
         /// Initializes a new instance of the <see cref="ThreeDSecureData" /> class.
         /// </summary>
@@ -35,7 +37,10 @@ namespace Adyen.EcommLibrary.Model
         /// <param name="CavvAlgorithm">The CAVV algorithm used..</param>
         /// <param name="DirectoryResponse">The enrollment response from the 3D directory server..</param>
         /// <param name="Eci">The electronic commerce indicator..</param>
-        public ThreeDSecureData(byte[] Cavv = default(byte[]), AuthenticationResponseEnum? AuthenticationResponse = default(AuthenticationResponseEnum?), byte[] Xid = default(byte[]), string CavvAlgorithm = default(string), DirectoryResponseEnum? DirectoryResponse = default(DirectoryResponseEnum?), string Eci = default(string))
+        public ThreeDSecureData(byte[] Cavv = default(byte[]),
+            AuthenticationResponseEnum? AuthenticationResponse = default(AuthenticationResponseEnum?),
+            byte[] Xid = default(byte[]), string CavvAlgorithm = default(string),
+            DirectoryResponseEnum? DirectoryResponse = default(DirectoryResponseEnum?), string Eci = default(string))
         {
             this.Cavv = Cavv;
             this.AuthenticationResponse = AuthenticationResponse;
@@ -44,12 +49,12 @@ namespace Adyen.EcommLibrary.Model
             this.DirectoryResponse = DirectoryResponse;
             this.Eci = Eci;
         }
-        
+
         /// <summary>
         /// The cardholder authentication value (base64 encoded, 20 bytes in a decoded form).
         /// </summary>
         /// <value>The cardholder authentication value (base64 encoded, 20 bytes in a decoded form).</value>
-        [DataMember(Name="cavv", EmitDefaultValue=false)]
+        [DataMember(Name = "cavv", EmitDefaultValue = false)]
         public byte[] Cavv { get; set; }
 
 
@@ -57,14 +62,14 @@ namespace Adyen.EcommLibrary.Model
         /// The transaction identifier (base64 encoded, 20 bytes in a decoded form).
         /// </summary>
         /// <value>The transaction identifier (base64 encoded, 20 bytes in a decoded form).</value>
-        [DataMember(Name="xid", EmitDefaultValue=false)]
+        [DataMember(Name = "xid", EmitDefaultValue = false)]
         public byte[] Xid { get; set; }
 
         /// <summary>
         /// The CAVV algorithm used.
         /// </summary>
         /// <value>The CAVV algorithm used.</value>
-        [DataMember(Name="cavvAlgorithm", EmitDefaultValue=false)]
+        [DataMember(Name = "cavvAlgorithm", EmitDefaultValue = false)]
         public string CavvAlgorithm { get; set; }
 
 
@@ -72,7 +77,7 @@ namespace Adyen.EcommLibrary.Model
         /// The electronic commerce indicator.
         /// </summary>
         /// <value>The electronic commerce indicator.</value>
-        [DataMember(Name="eci", EmitDefaultValue=false)]
+        [DataMember(Name = "eci", EmitDefaultValue = false)]
         public string Eci { get; set; }
 
         /// <summary>
@@ -92,7 +97,7 @@ namespace Adyen.EcommLibrary.Model
             sb.Append("}\n");
             return sb.ToString();
         }
-  
+
         /// <summary>
         /// Returns the JSON string presentation of the object
         /// </summary>
@@ -110,7 +115,7 @@ namespace Adyen.EcommLibrary.Model
         public override bool Equals(object obj)
         {
             // credit: http://stackoverflow.com/a/10454552/677735
-            return this.Equals(obj as ThreeDSecureData);
+            return Equals(obj as ThreeDSecureData);
         }
 
         /// <summary>
@@ -124,36 +129,36 @@ namespace Adyen.EcommLibrary.Model
             if (other == null)
                 return false;
 
-            return 
+            return
                 (
-                    this.Cavv == other.Cavv ||
-                    this.Cavv != null &&
-                    this.Cavv.Equals(other.Cavv)
-                ) && 
+                    Cavv == other.Cavv ||
+                    Cavv != null &&
+                    Cavv.Equals(other.Cavv)
+                ) &&
                 (
-                    this.AuthenticationResponse == other.AuthenticationResponse ||
-                    this.AuthenticationResponse != null &&
-                    this.AuthenticationResponse.Equals(other.AuthenticationResponse)
-                ) && 
+                    AuthenticationResponse == other.AuthenticationResponse ||
+                    AuthenticationResponse != null &&
+                    AuthenticationResponse.Equals(other.AuthenticationResponse)
+                ) &&
                 (
-                    this.Xid == other.Xid ||
-                    this.Xid != null &&
-                    this.Xid.Equals(other.Xid)
-                ) && 
+                    Xid == other.Xid ||
+                    Xid != null &&
+                    Xid.Equals(other.Xid)
+                ) &&
                 (
-                    this.CavvAlgorithm == other.CavvAlgorithm ||
-                    this.CavvAlgorithm != null &&
-                    this.CavvAlgorithm.Equals(other.CavvAlgorithm)
-                ) && 
+                    CavvAlgorithm == other.CavvAlgorithm ||
+                    CavvAlgorithm != null &&
+                    CavvAlgorithm.Equals(other.CavvAlgorithm)
+                ) &&
                 (
-                    this.DirectoryResponse == other.DirectoryResponse ||
-                    this.DirectoryResponse != null &&
-                    this.DirectoryResponse.Equals(other.DirectoryResponse)
-                ) && 
+                    DirectoryResponse == other.DirectoryResponse ||
+                    DirectoryResponse != null &&
+                    DirectoryResponse.Equals(other.DirectoryResponse)
+                ) &&
                 (
-                    this.Eci == other.Eci ||
-                    this.Eci != null &&
-                    this.Eci.Equals(other.Eci)
+                    Eci == other.Eci ||
+                    Eci != null &&
+                    Eci.Equals(other.Eci)
                 );
         }
 
@@ -166,20 +171,20 @@ namespace Adyen.EcommLibrary.Model
             // credit: http://stackoverflow.com/a/263416/677735
             unchecked // Overflow is fine, just wrap
             {
-                int hash = 41;
+                var hash = 41;
                 // Suitable nullity checks etc, of course :)
-                if (this.Cavv != null)
-                    hash = hash * 59 + this.Cavv.GetHashCode();
-                if (this.AuthenticationResponse != null)
-                    hash = hash * 59 + this.AuthenticationResponse.GetHashCode();
-                if (this.Xid != null)
-                    hash = hash * 59 + this.Xid.GetHashCode();
-                if (this.CavvAlgorithm != null)
-                    hash = hash * 59 + this.CavvAlgorithm.GetHashCode();
-                if (this.DirectoryResponse != null)
-                    hash = hash * 59 + this.DirectoryResponse.GetHashCode();
-                if (this.Eci != null)
-                    hash = hash * 59 + this.Eci.GetHashCode();
+                if (Cavv != null)
+                    hash = hash * 59 + Cavv.GetHashCode();
+                if (AuthenticationResponse != null)
+                    hash = hash * 59 + AuthenticationResponse.GetHashCode();
+                if (Xid != null)
+                    hash = hash * 59 + Xid.GetHashCode();
+                if (CavvAlgorithm != null)
+                    hash = hash * 59 + CavvAlgorithm.GetHashCode();
+                if (DirectoryResponse != null)
+                    hash = hash * 59 + DirectoryResponse.GetHashCode();
+                if (Eci != null)
+                    hash = hash * 59 + Eci.GetHashCode();
                 return hash;
             }
         }
@@ -189,7 +194,7 @@ namespace Adyen.EcommLibrary.Model
         /// </summary>
         /// <param name="validationContext">Validation context</param>
         /// <returns>Validation Result</returns>
-        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+        IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
         {
             yield break;
         }

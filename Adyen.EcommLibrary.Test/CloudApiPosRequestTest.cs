@@ -8,7 +8,6 @@ namespace Adyen.EcommLibrary.Test
     [TestClass]
     public class CloudApiPosRequestTest : BaseTest
     {
-
         [TestMethod]
         public void TestCloudApiSyncRequest()
         {
@@ -51,21 +50,24 @@ namespace Adyen.EcommLibrary.Test
         public void TestCloudApiTransactionStatusResponseSuccess()
         {
             var paymentRequest = MockPosApiRequest.CreatePosPaymentRequest("Request");
-            var client = CreateMockTestClientPosApiRequest("Mocks/terminalapi/pospayment-transaction-status-response.json");
+            var client =
+                CreateMockTestClientPosApiRequest("Mocks/terminalapi/pospayment-transaction-status-response.json");
             var payment = new PosPaymentCloudApi(client);
             var saleToPoiResponse = payment.TerminalApiCloudSync(paymentRequest);
 
             try
             {
-                var transactionStatusResponse = (TransactionStatusResponse)saleToPoiResponse.MessagePayload;
-                var messagePayloadResponse = transactionStatusResponse.RepeatedMessageResponse.RepeatedResponseMessageBody.MessagePayload;
-               
+                var transactionStatusResponse = (TransactionStatusResponse) saleToPoiResponse.MessagePayload;
+                var messagePayloadResponse = transactionStatusResponse.RepeatedMessageResponse
+                    .RepeatedResponseMessageBody.MessagePayload;
+
                 Assert.IsNotNull(saleToPoiResponse);
                 Assert.AreEqual(saleToPoiResponse.MessageHeader.ServiceID, "35543420");
                 Assert.AreEqual(saleToPoiResponse.MessageHeader.SaleID, "TOSIM_1_1_6");
                 Assert.AreEqual(saleToPoiResponse.MessageHeader.POIID, "P400Plus-12345678");
                 Assert.AreEqual(transactionStatusResponse.Response.Result, "Success");
-                Assert.AreEqual(messagePayloadResponse.PaymentResult.PaymentInstrumentData.CardData.EntryMode[0], "ICC");
+                Assert.AreEqual(messagePayloadResponse.PaymentResult.PaymentInstrumentData.CardData.EntryMode[0],
+                    "ICC");
                 Assert.AreEqual(messagePayloadResponse.POIData.POIReconciliationID, "1000");
             }
             catch (Exception)

@@ -1,4 +1,3 @@
-
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -12,7 +11,7 @@ namespace Adyen.EcommLibrary.Model.Checkout
     /// ServiceError
     /// </summary>
     [DataContract]
-    public partial class ServiceError :  IEquatable<ServiceError>, IValidatableObject
+    public partial class ServiceError : IEquatable<ServiceError>, IValidatableObject
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="ServiceError" /> class.
@@ -20,29 +19,30 @@ namespace Adyen.EcommLibrary.Model.Checkout
         /// <param name="ErrorCode">ErrorCode.</param>
         /// <param name="ErrorType">ErrorType.</param>
         /// <param name="Message">Message.</param>
-        public ServiceError(string ErrorCode = default(string), string ErrorType = default(string), string Message = default(string))
+        public ServiceError(string ErrorCode = default(string), string ErrorType = default(string),
+            string Message = default(string))
         {
             this.ErrorCode = ErrorCode;
             this.ErrorType = ErrorType;
             this.Message = Message;
         }
-        
+
         /// <summary>
         /// Gets or Sets ErrorCode
         /// </summary>
-        [DataMember(Name="errorCode", EmitDefaultValue=false)]
+        [DataMember(Name = "errorCode", EmitDefaultValue = false)]
         public string ErrorCode { get; set; }
 
         /// <summary>
         /// Gets or Sets ErrorType
         /// </summary>
-        [DataMember(Name="errorType", EmitDefaultValue=false)]
+        [DataMember(Name = "errorType", EmitDefaultValue = false)]
         public string ErrorType { get; set; }
 
         /// <summary>
         /// Gets or Sets Message
         /// </summary>
-        [DataMember(Name="message", EmitDefaultValue=false)]
+        [DataMember(Name = "message", EmitDefaultValue = false)]
         public string Message { get; set; }
 
         /// <summary>
@@ -59,7 +59,7 @@ namespace Adyen.EcommLibrary.Model.Checkout
             sb.Append("}\n");
             return sb.ToString();
         }
-  
+
         /// <summary>
         /// Returns the JSON string presentation of the object
         /// </summary>
@@ -76,7 +76,7 @@ namespace Adyen.EcommLibrary.Model.Checkout
         /// <returns>Boolean</returns>
         public override bool Equals(object input)
         {
-            return this.Equals(input as ServiceError);
+            return Equals(input as ServiceError);
         }
 
         /// <summary>
@@ -89,21 +89,21 @@ namespace Adyen.EcommLibrary.Model.Checkout
             if (input == null)
                 return false;
 
-            return 
+            return
                 (
-                    this.ErrorCode == input.ErrorCode ||
-                    (this.ErrorCode != null &&
-                    this.ErrorCode.Equals(input.ErrorCode))
-                ) && 
+                    ErrorCode == input.ErrorCode ||
+                    ErrorCode != null &&
+                    ErrorCode.Equals(input.ErrorCode)
+                ) &&
                 (
-                    this.ErrorType == input.ErrorType ||
-                    (this.ErrorType != null &&
-                    this.ErrorType.Equals(input.ErrorType))
-                ) && 
+                    ErrorType == input.ErrorType ||
+                    ErrorType != null &&
+                    ErrorType.Equals(input.ErrorType)
+                ) &&
                 (
-                    this.Message == input.Message ||
-                    (this.Message != null &&
-                    this.Message.Equals(input.Message))
+                    Message == input.Message ||
+                    Message != null &&
+                    Message.Equals(input.Message)
                 );
         }
 
@@ -115,13 +115,13 @@ namespace Adyen.EcommLibrary.Model.Checkout
         {
             unchecked // Overflow is fine, just wrap
             {
-                int hashCode = 41;
-                if (this.ErrorCode != null)
-                    hashCode = hashCode * 59 + this.ErrorCode.GetHashCode();
-                if (this.ErrorType != null)
-                    hashCode = hashCode * 59 + this.ErrorType.GetHashCode();
-                if (this.Message != null)
-                    hashCode = hashCode * 59 + this.Message.GetHashCode();
+                var hashCode = 41;
+                if (ErrorCode != null)
+                    hashCode = hashCode * 59 + ErrorCode.GetHashCode();
+                if (ErrorType != null)
+                    hashCode = hashCode * 59 + ErrorType.GetHashCode();
+                if (Message != null)
+                    hashCode = hashCode * 59 + Message.GetHashCode();
                 return hashCode;
             }
         }
@@ -131,10 +131,9 @@ namespace Adyen.EcommLibrary.Model.Checkout
         /// </summary>
         /// <param name="validationContext">Validation context</param>
         /// <returns>Validation Result</returns>
-        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+        IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
         {
             yield break;
         }
     }
-
 }

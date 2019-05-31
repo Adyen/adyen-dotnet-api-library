@@ -7,19 +7,17 @@
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     public partial class HostStatus
     {
-
         /// <remarks/>
         [System.Xml.Serialization.XmlAttributeAttribute()]
         public string AcquirerID;
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute()]
-        [System.ComponentModel.DefaultValueAttribute(true)]
+        [System.Xml.Serialization.XmlAttributeAttribute()] [System.ComponentModel.DefaultValueAttribute(true)]
         public bool IsReachableFlag;
 
         public HostStatus()
         {
-            this.IsReachableFlag = true;
+            IsReachableFlag = true;
         }
     }
 }

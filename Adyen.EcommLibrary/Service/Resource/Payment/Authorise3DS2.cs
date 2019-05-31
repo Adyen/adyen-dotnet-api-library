@@ -1,13 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using System.Collections.Generic;
 
 namespace Adyen.EcommLibrary.Service.Resource.Payment
 {
     public class Authorise3DS2 : ServiceResource
     {
         public Authorise3DS2(AbstractService abstractService)
-            : base(abstractService, abstractService.Client.Config.Endpoint + "/pal/servlet/Payment/" + abstractService.Client.ApiVersion + "/authorise3ds2",
+            : base(abstractService,
+                abstractService.Client.Config.Endpoint + "/pal/servlet/Payment/" + abstractService.Client.ApiVersion +
+                "/authorise3ds2",
                 new List<string>
                 {
                     "merchantAccount",
@@ -18,5 +18,4 @@ namespace Adyen.EcommLibrary.Service.Resource.Payment
         {
         }
     }
-
 }

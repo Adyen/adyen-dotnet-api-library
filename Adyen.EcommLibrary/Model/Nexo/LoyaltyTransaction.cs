@@ -7,7 +7,6 @@
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     public partial class LoyaltyTransaction
     {
-
         /// <remarks/>
         [System.Xml.Serialization.XmlElementAttribute(Form = System.Xml.Schema.XmlSchemaForm.Unqualified)]
         public OriginalPOITransaction OriginalPOITransaction;
@@ -31,6 +30,5 @@
         /// <remarks/>
         [System.Xml.Serialization.XmlAttributeAttribute()]
         public decimal? TotalAmount;
-
     }
 }

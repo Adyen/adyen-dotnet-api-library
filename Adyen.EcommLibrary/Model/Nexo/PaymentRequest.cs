@@ -9,7 +9,6 @@ namespace Adyen.EcommLibrary.Model.Nexo
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     public partial class PaymentRequest : IMessagePayload
     {
-
         /// <remarks/>
         [System.Xml.Serialization.XmlElementAttribute(Form = System.Xml.Schema.XmlSchemaForm.Unqualified)]
         public SaleData SaleData;
@@ -23,7 +22,8 @@ namespace Adyen.EcommLibrary.Model.Nexo
         public PaymentData PaymentData;
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute("LoyaltyData", Form = System.Xml.Schema.XmlSchemaForm.Unqualified)]
+        [System.Xml.Serialization.XmlElementAttribute("LoyaltyData", Form =
+            System.Xml.Schema.XmlSchemaForm.Unqualified)]
         public LoyaltyData[] LoyaltyData;
     }
 }

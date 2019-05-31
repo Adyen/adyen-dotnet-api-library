@@ -7,13 +7,14 @@
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     public partial class TransactionTotals
     {
-
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute("PaymentTotals", Form = System.Xml.Schema.XmlSchemaForm.Unqualified)]
+        [System.Xml.Serialization.XmlElementAttribute("PaymentTotals", Form =
+            System.Xml.Schema.XmlSchemaForm.Unqualified)]
         public PaymentTotals[] PaymentTotals;
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute("LoyaltyTotals", Form = System.Xml.Schema.XmlSchemaForm.Unqualified)]
+        [System.Xml.Serialization.XmlElementAttribute("LoyaltyTotals", Form =
+            System.Xml.Schema.XmlSchemaForm.Unqualified)]
         public LoyaltyTotals[] LoyaltyTotals;
 
         /// <remarks/>
@@ -61,8 +62,7 @@
         public string PaymentCurrency;
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute()]
-        [System.ComponentModel.DefaultValueAttribute("Point")]
+        [System.Xml.Serialization.XmlAttributeAttribute()] [System.ComponentModel.DefaultValueAttribute("Point")]
         public string LoyaltyUnit;
 
         /// <remarks/>
@@ -71,7 +71,7 @@
 
         public TransactionTotals()
         {
-            this.LoyaltyUnit = "Point";
+            LoyaltyUnit = "Point";
         }
     }
 }

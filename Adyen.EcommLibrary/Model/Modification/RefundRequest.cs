@@ -1,8 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Runtime.Serialization;
+﻿using System.Runtime.Serialization;
 using System.Text;
-using Adyen.EcommLibrary.Constants;
 using Adyen.EcommLibrary.Model.ApplicationInformation;
 using Newtonsoft.Json;
 
@@ -16,9 +13,10 @@ namespace Adyen.EcommLibrary.Model.Modification
 
         public RefundRequest()
         {
-             if(ApplicationInfo==null)
+            if (ApplicationInfo == null)
                 ApplicationInfo = new ApplicationInfo();
         }
+
         /// <summary>
         /// Returns the string presentation of the object
         /// </summary>
@@ -34,6 +32,7 @@ namespace Adyen.EcommLibrary.Model.Modification
             sb.Append("}");
             return sb.ToString();
         }
+
         /// <summary>
         /// Returns the JSON string presentation of the object
         /// </summary>

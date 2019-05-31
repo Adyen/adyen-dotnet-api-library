@@ -1,4 +1,3 @@
-
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -12,7 +11,7 @@ namespace Adyen.EcommLibrary.Model.Checkout
     /// PaymentSessionResponse
     /// </summary>
     [DataContract]
-    public partial class PaymentSessionResponse :  IEquatable<PaymentSessionResponse>, IValidatableObject
+    public partial class PaymentSessionResponse : IEquatable<PaymentSessionResponse>, IValidatableObject
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="PaymentSessionResponse" /> class.
@@ -22,12 +21,12 @@ namespace Adyen.EcommLibrary.Model.Checkout
         {
             this.PaymentSession = PaymentSession;
         }
-        
+
         /// <summary>
         /// The encoded payment session that you need to pass to the SDK.
         /// </summary>
         /// <value>The encoded payment session that you need to pass to the SDK.</value>
-        [DataMember(Name="paymentSession", EmitDefaultValue=false)]
+        [DataMember(Name = "paymentSession", EmitDefaultValue = false)]
         public string PaymentSession { get; set; }
 
         /// <summary>
@@ -42,7 +41,7 @@ namespace Adyen.EcommLibrary.Model.Checkout
             sb.Append("}\n");
             return sb.ToString();
         }
-  
+
         /// <summary>
         /// Returns the JSON string presentation of the object
         /// </summary>
@@ -59,7 +58,7 @@ namespace Adyen.EcommLibrary.Model.Checkout
         /// <returns>Boolean</returns>
         public override bool Equals(object input)
         {
-            return this.Equals(input as PaymentSessionResponse);
+            return Equals(input as PaymentSessionResponse);
         }
 
         /// <summary>
@@ -72,12 +71,10 @@ namespace Adyen.EcommLibrary.Model.Checkout
             if (input == null)
                 return false;
 
-            return 
-                (
-                    this.PaymentSession == input.PaymentSession ||
-                    (this.PaymentSession != null &&
-                    this.PaymentSession.Equals(input.PaymentSession))
-                );
+            return
+                PaymentSession == input.PaymentSession ||
+                PaymentSession != null &&
+                PaymentSession.Equals(input.PaymentSession);
         }
 
         /// <summary>
@@ -88,9 +85,9 @@ namespace Adyen.EcommLibrary.Model.Checkout
         {
             unchecked // Overflow is fine, just wrap
             {
-                int hashCode = 41;
-                if (this.PaymentSession != null)
-                    hashCode = hashCode * 59 + this.PaymentSession.GetHashCode();
+                var hashCode = 41;
+                if (PaymentSession != null)
+                    hashCode = hashCode * 59 + PaymentSession.GetHashCode();
                 return hashCode;
             }
         }
@@ -100,10 +97,9 @@ namespace Adyen.EcommLibrary.Model.Checkout
         /// </summary>
         /// <param name="validationContext">Validation context</param>
         /// <returns>Validation Result</returns>
-        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+        IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
         {
             yield break;
         }
     }
-
 }

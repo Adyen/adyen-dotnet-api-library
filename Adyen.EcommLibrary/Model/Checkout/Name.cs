@@ -1,4 +1,3 @@
-
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -14,7 +13,7 @@ namespace Adyen.EcommLibrary.Model.Checkout
     /// Name
     /// </summary>
     [DataContract]
-    public partial class Name :  IEquatable<Name>, IValidatableObject
+    public partial class Name : IEquatable<Name>, IValidatableObject
     {
         /// <summary>
         /// The gender. &gt;The following values are permitted: &#x60;MALE&#x60;, &#x60;FEMALE&#x60;, &#x60;UNKNOWN&#x60;.
@@ -23,37 +22,37 @@ namespace Adyen.EcommLibrary.Model.Checkout
         [JsonConverter(typeof(StringEnumConverter))]
         public enum GenderEnum
         {
-            
             /// <summary>
             /// Enum MALE for value: MALE
             /// </summary>
-            [EnumMember(Value = "MALE")]
-            MALE = 1,
-            
+            [EnumMember(Value = "MALE")] MALE = 1,
+
             /// <summary>
             /// Enum FEMALE for value: FEMALE
             /// </summary>
-            [EnumMember(Value = "FEMALE")]
-            FEMALE = 2,
-            
+            [EnumMember(Value = "FEMALE")] FEMALE = 2,
+
             /// <summary>
             /// Enum UNKNOWN for value: UNKNOWN
             /// </summary>
-            [EnumMember(Value = "UNKNOWN")]
-            UNKNOWN = 3
+            [EnumMember(Value = "UNKNOWN")] UNKNOWN = 3
         }
 
         /// <summary>
         /// The gender. &gt;The following values are permitted: &#x60;MALE&#x60;, &#x60;FEMALE&#x60;, &#x60;UNKNOWN&#x60;.
         /// </summary>
         /// <value>The gender. &gt;The following values are permitted: &#x60;MALE&#x60;, &#x60;FEMALE&#x60;, &#x60;UNKNOWN&#x60;.</value>
-        [DataMember(Name="gender", EmitDefaultValue=false)]
+        [DataMember(Name = "gender", EmitDefaultValue = false)]
         public GenderEnum Gender { get; set; }
+
         /// <summary>
         /// Initializes a new instance of the <see cref="Name" /> class.
         /// </summary>
         [JsonConstructor]
-        protected Name() { }
+        protected Name()
+        {
+        }
+
         /// <summary>
         /// Initializes a new instance of the <see cref="Name" /> class.
         /// </summary>
@@ -61,43 +60,32 @@ namespace Adyen.EcommLibrary.Model.Checkout
         /// <param name="Gender">The gender. &gt;The following values are permitted: &#x60;MALE&#x60;, &#x60;FEMALE&#x60;, &#x60;UNKNOWN&#x60;. (required).</param>
         /// <param name="Infix">The name&#39;s infix, if applicable. &gt;A maximum length of twenty (20) characters is imposed..</param>
         /// <param name="LastName">The last name. (required).</param>
-        public Name(string FirstName = default(string), GenderEnum Gender = default(GenderEnum), string Infix = default(string), string LastName = default(string))
+        public Name(string FirstName = default(string), GenderEnum Gender = default(GenderEnum),
+            string Infix = default(string), string LastName = default(string))
         {
             // to ensure "FirstName" is required (not null)
             if (FirstName == null)
-            {
                 throw new InvalidDataException("FirstName is a required property for Name and cannot be null");
-            }
             else
-            {
                 this.FirstName = FirstName;
-            }
             // to ensure "Gender" is required (not null)
             if (Gender == null)
-            {
                 throw new InvalidDataException("Gender is a required property for Name and cannot be null");
-            }
             else
-            {
                 this.Gender = Gender;
-            }
             // to ensure "LastName" is required (not null)
             if (LastName == null)
-            {
                 throw new InvalidDataException("LastName is a required property for Name and cannot be null");
-            }
             else
-            {
                 this.LastName = LastName;
-            }
             this.Infix = Infix;
         }
-        
+
         /// <summary>
         /// The first name.
         /// </summary>
         /// <value>The first name.</value>
-        [DataMember(Name="firstName", EmitDefaultValue=false)]
+        [DataMember(Name = "firstName", EmitDefaultValue = false)]
         public string FirstName { get; set; }
 
 
@@ -105,14 +93,14 @@ namespace Adyen.EcommLibrary.Model.Checkout
         /// The name&#39;s infix, if applicable. &gt;A maximum length of twenty (20) characters is imposed.
         /// </summary>
         /// <value>The name&#39;s infix, if applicable. &gt;A maximum length of twenty (20) characters is imposed.</value>
-        [DataMember(Name="infix", EmitDefaultValue=false)]
+        [DataMember(Name = "infix", EmitDefaultValue = false)]
         public string Infix { get; set; }
 
         /// <summary>
         /// The last name.
         /// </summary>
         /// <value>The last name.</value>
-        [DataMember(Name="lastName", EmitDefaultValue=false)]
+        [DataMember(Name = "lastName", EmitDefaultValue = false)]
         public string LastName { get; set; }
 
         /// <summary>
@@ -130,7 +118,7 @@ namespace Adyen.EcommLibrary.Model.Checkout
             sb.Append("}\n");
             return sb.ToString();
         }
-  
+
         /// <summary>
         /// Returns the JSON string presentation of the object
         /// </summary>
@@ -147,7 +135,7 @@ namespace Adyen.EcommLibrary.Model.Checkout
         /// <returns>Boolean</returns>
         public override bool Equals(object input)
         {
-            return this.Equals(input as Name);
+            return Equals(input as Name);
         }
 
         /// <summary>
@@ -160,26 +148,26 @@ namespace Adyen.EcommLibrary.Model.Checkout
             if (input == null)
                 return false;
 
-            return 
+            return
                 (
-                    this.FirstName == input.FirstName ||
-                    (this.FirstName != null &&
-                    this.FirstName.Equals(input.FirstName))
-                ) && 
+                    FirstName == input.FirstName ||
+                    FirstName != null &&
+                    FirstName.Equals(input.FirstName)
+                ) &&
                 (
-                    this.Gender == input.Gender ||
-                    (this.Gender != null &&
-                    this.Gender.Equals(input.Gender))
-                ) && 
+                    Gender == input.Gender ||
+                    Gender != null &&
+                    Gender.Equals(input.Gender)
+                ) &&
                 (
-                    this.Infix == input.Infix ||
-                    (this.Infix != null &&
-                    this.Infix.Equals(input.Infix))
-                ) && 
+                    Infix == input.Infix ||
+                    Infix != null &&
+                    Infix.Equals(input.Infix)
+                ) &&
                 (
-                    this.LastName == input.LastName ||
-                    (this.LastName != null &&
-                    this.LastName.Equals(input.LastName))
+                    LastName == input.LastName ||
+                    LastName != null &&
+                    LastName.Equals(input.LastName)
                 );
         }
 
@@ -191,15 +179,15 @@ namespace Adyen.EcommLibrary.Model.Checkout
         {
             unchecked // Overflow is fine, just wrap
             {
-                int hashCode = 41;
-                if (this.FirstName != null)
-                    hashCode = hashCode * 59 + this.FirstName.GetHashCode();
-                if (this.Gender != null)
-                    hashCode = hashCode * 59 + this.Gender.GetHashCode();
-                if (this.Infix != null)
-                    hashCode = hashCode * 59 + this.Infix.GetHashCode();
-                if (this.LastName != null)
-                    hashCode = hashCode * 59 + this.LastName.GetHashCode();
+                var hashCode = 41;
+                if (FirstName != null)
+                    hashCode = hashCode * 59 + FirstName.GetHashCode();
+                if (Gender != null)
+                    hashCode = hashCode * 59 + Gender.GetHashCode();
+                if (Infix != null)
+                    hashCode = hashCode * 59 + Infix.GetHashCode();
+                if (LastName != null)
+                    hashCode = hashCode * 59 + LastName.GetHashCode();
                 return hashCode;
             }
         }
@@ -209,22 +197,19 @@ namespace Adyen.EcommLibrary.Model.Checkout
         /// </summary>
         /// <param name="validationContext">Validation context</param>
         /// <returns>Validation Result</returns>
-        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+        IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
         {
             // Gender (string) maxLength
-            if(this.Gender != null && this.Gender.ToString().Length > 1)
-            {
-                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for Gender, length must be less than 1.", new [] { "Gender" });
-            }
+            if (Gender != null && Gender.ToString().Length > 1)
+                yield return new ValidationResult("Invalid value for Gender, length must be less than 1.",
+                    new[] {"Gender"});
 
             // Gender (string) minLength
-            if(this.Gender != null && this.Gender.ToString().Length < 1)
-            {
-                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for Gender, length must be greater than 1.", new [] { "Gender" });
-            }
+            if (Gender != null && Gender.ToString().Length < 1)
+                yield return new ValidationResult("Invalid value for Gender, length must be greater than 1.",
+                    new[] {"Gender"});
 
             yield break;
         }
     }
-
 }

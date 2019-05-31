@@ -1,8 +1,4 @@
-﻿using Adyen.EcommLibrary.Model.Nexo;
-using Newtonsoft.Json.Linq;
-using System;
-
-namespace Adyen.EcommLibrary.CloudApiSerialization
+﻿namespace Adyen.EcommLibrary.CloudApiSerialization
 {
     internal class MessagePayloadSerializer<T> : IMessagePayloadSerializer<T> where T : IMessagePayload
     {
@@ -10,6 +6,5 @@ namespace Adyen.EcommLibrary.CloudApiSerialization
         {
             return Converter.JSonConvertDeserializerWrapper<T>.DeserializeObject(messagePayloadJson);
         }
-
     }
 }

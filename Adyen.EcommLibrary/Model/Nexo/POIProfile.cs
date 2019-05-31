@@ -7,19 +7,17 @@
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     public partial class POIProfile
     {
-
         /// <remarks/>
         [System.Xml.Serialization.XmlElementAttribute(Form = System.Xml.Schema.XmlSchemaForm.Unqualified)]
         public string ServiceProfiles;
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute()]
-        [System.ComponentModel.DefaultValueAttribute("Standard")]
+        [System.Xml.Serialization.XmlAttributeAttribute()] [System.ComponentModel.DefaultValueAttribute("Standard")]
         public string GenericProfile;
 
         public POIProfile()
         {
-            this.GenericProfile = "Standard";
+            GenericProfile = "Standard";
         }
     }
 }

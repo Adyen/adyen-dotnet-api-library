@@ -7,7 +7,6 @@
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     public partial class SaleData
     {
-
         /// <remarks/>
         [System.Xml.Serialization.XmlElementAttribute(Form = System.Xml.Schema.XmlSchemaForm.Unqualified)]
         public TransactionIdentification SaleTransactionID;
@@ -17,7 +16,8 @@
         public SaleTerminalData SaleTerminalData;
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute("SponsoredMerchant", Form = System.Xml.Schema.XmlSchemaForm.Unqualified)]
+        [System.Xml.Serialization.XmlElementAttribute("SponsoredMerchant", Form =
+            System.Xml.Schema.XmlSchemaForm.Unqualified)]
         public SponsoredMerchant[] SponsoredMerchant;
 
         /// <remarks/>

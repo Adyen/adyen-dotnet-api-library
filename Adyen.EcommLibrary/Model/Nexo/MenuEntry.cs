@@ -7,7 +7,6 @@
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     public partial class MenuEntry
     {
-
         /// <remarks/>
         [System.Xml.Serialization.XmlElementAttribute(Form = System.Xml.Schema.XmlSchemaForm.Unqualified)]
         public PredefinedContent PredefinedContent;
@@ -17,12 +16,12 @@
         public OutputText[] OutputText;
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Form = System.Xml.Schema.XmlSchemaForm.Unqualified, DataType = "base64Binary")]
+        [System.Xml.Serialization.XmlElementAttribute(Form = System.Xml.Schema.XmlSchemaForm.Unqualified,
+            DataType = "base64Binary")]
         public byte[] OutputXHTML;
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute()]
-        [System.ComponentModel.DefaultValueAttribute("Selectable")]
+        [System.Xml.Serialization.XmlAttributeAttribute()] [System.ComponentModel.DefaultValueAttribute("Selectable")]
         public string MenuEntryTag;
 
         /// <remarks/>
@@ -30,14 +29,13 @@
         public string OutputFormat;
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute()]
-        [System.ComponentModel.DefaultValueAttribute(false)]
+        [System.Xml.Serialization.XmlAttributeAttribute()] [System.ComponentModel.DefaultValueAttribute(false)]
         public bool DefaultSelectedFlag;
 
         public MenuEntry()
         {
-            this.MenuEntryTag = "Selectable";
-            this.DefaultSelectedFlag = false;
+            MenuEntryTag = "Selectable";
+            DefaultSelectedFlag = false;
         }
     }
 }

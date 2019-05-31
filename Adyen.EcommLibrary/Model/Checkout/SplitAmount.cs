@@ -1,4 +1,3 @@
-
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -13,13 +12,16 @@ namespace Adyen.EcommLibrary.Model.Checkout
     /// SplitAmount
     /// </summary>
     [DataContract]
-    public partial class SplitAmount :  IEquatable<SplitAmount>, IValidatableObject
+    public partial class SplitAmount : IEquatable<SplitAmount>, IValidatableObject
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="SplitAmount" /> class.
         /// </summary>
         [JsonConstructor]
-        protected SplitAmount() { }
+        protected SplitAmount()
+        {
+        }
+
         /// <summary>
         /// Initializes a new instance of the <see cref="SplitAmount" /> class.
         /// </summary>
@@ -29,28 +31,24 @@ namespace Adyen.EcommLibrary.Model.Checkout
         {
             // to ensure "Value" is required (not null)
             if (Value == null)
-            {
                 throw new InvalidDataException("Value is a required property for SplitAmount and cannot be null");
-            }
             else
-            {
                 this.Value = Value;
-            }
             this.Currency = Currency;
         }
-        
+
         /// <summary>
         /// The three-character [ISO currency code](https://docs.adyen.com/developers/development-resources/currency-codes).  If this value is not provided, the currency in which the payment is made will be used.
         /// </summary>
         /// <value>The three-character [ISO currency code](https://docs.adyen.com/developers/development-resources/currency-codes).  If this value is not provided, the currency in which the payment is made will be used.</value>
-        [DataMember(Name="currency", EmitDefaultValue=false)]
+        [DataMember(Name = "currency", EmitDefaultValue = false)]
         public string Currency { get; set; }
 
         /// <summary>
         /// The payable amount that can be charged for the transaction.  The transaction amount needs to be represented in minor units according to the [following table](https://docs.adyen.com/developers/development-resources/currency-codes).
         /// </summary>
         /// <value>The payable amount that can be charged for the transaction.  The transaction amount needs to be represented in minor units according to the [following table](https://docs.adyen.com/developers/development-resources/currency-codes).</value>
-        [DataMember(Name="value", EmitDefaultValue=false)]
+        [DataMember(Name = "value", EmitDefaultValue = false)]
         public long? Value { get; set; }
 
         /// <summary>
@@ -66,7 +64,7 @@ namespace Adyen.EcommLibrary.Model.Checkout
             sb.Append("}\n");
             return sb.ToString();
         }
-  
+
         /// <summary>
         /// Returns the JSON string presentation of the object
         /// </summary>
@@ -83,7 +81,7 @@ namespace Adyen.EcommLibrary.Model.Checkout
         /// <returns>Boolean</returns>
         public override bool Equals(object input)
         {
-            return this.Equals(input as SplitAmount);
+            return Equals(input as SplitAmount);
         }
 
         /// <summary>
@@ -96,16 +94,16 @@ namespace Adyen.EcommLibrary.Model.Checkout
             if (input == null)
                 return false;
 
-            return 
+            return
                 (
-                    this.Currency == input.Currency ||
-                    (this.Currency != null &&
-                    this.Currency.Equals(input.Currency))
-                ) && 
+                    Currency == input.Currency ||
+                    Currency != null &&
+                    Currency.Equals(input.Currency)
+                ) &&
                 (
-                    this.Value == input.Value ||
-                    (this.Value != null &&
-                    this.Value.Equals(input.Value))
+                    Value == input.Value ||
+                    Value != null &&
+                    Value.Equals(input.Value)
                 );
         }
 
@@ -117,11 +115,11 @@ namespace Adyen.EcommLibrary.Model.Checkout
         {
             unchecked // Overflow is fine, just wrap
             {
-                int hashCode = 41;
-                if (this.Currency != null)
-                    hashCode = hashCode * 59 + this.Currency.GetHashCode();
-                if (this.Value != null)
-                    hashCode = hashCode * 59 + this.Value.GetHashCode();
+                var hashCode = 41;
+                if (Currency != null)
+                    hashCode = hashCode * 59 + Currency.GetHashCode();
+                if (Value != null)
+                    hashCode = hashCode * 59 + Value.GetHashCode();
                 return hashCode;
             }
         }
@@ -131,22 +129,19 @@ namespace Adyen.EcommLibrary.Model.Checkout
         /// </summary>
         /// <param name="validationContext">Validation context</param>
         /// <returns>Validation Result</returns>
-        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+        IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
         {
             // Currency (string) maxLength
-            if(this.Currency != null && this.Currency.Length > 3)
-            {
-                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for Currency, length must be less than 3.", new [] { "Currency" });
-            }
+            if (Currency != null && Currency.Length > 3)
+                yield return new ValidationResult("Invalid value for Currency, length must be less than 3.",
+                    new[] {"Currency"});
 
             // Currency (string) minLength
-            if(this.Currency != null && this.Currency.Length < 3)
-            {
-                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for Currency, length must be greater than 3.", new [] { "Currency" });
-            }
+            if (Currency != null && Currency.Length < 3)
+                yield return new ValidationResult("Invalid value for Currency, length must be greater than 3.",
+                    new[] {"Currency"});
 
             yield break;
         }
     }
-
 }

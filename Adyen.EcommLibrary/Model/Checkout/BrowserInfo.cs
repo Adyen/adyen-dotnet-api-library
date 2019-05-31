@@ -12,13 +12,16 @@ namespace Adyen.EcommLibrary.Model.Checkout
     /// BrowserInfo
     /// </summary>
     [DataContract]
-    public partial class BrowserInfo :  IEquatable<BrowserInfo>, IValidatableObject
+    public partial class BrowserInfo : IEquatable<BrowserInfo>, IValidatableObject
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="BrowserInfo" /> class.
         /// </summary>
         [JsonConstructor]
-        protected BrowserInfo() { }
+        protected BrowserInfo()
+        {
+        }
+
         /// <summary>
         /// Initializes a new instance of the <see cref="BrowserInfo" /> class.
         /// </summary>
@@ -30,26 +33,21 @@ namespace Adyen.EcommLibrary.Model.Checkout
         /// <param name="ScreenWidth">The total width of the shopper&#39;s device screen in pixels..</param>
         /// <param name="TimeZoneOffset">Time difference between UTC time and the shopper&#39;s browser local time, in minutes..</param>
         /// <param name="UserAgent">The user agent value of the shopper&#39;s browser. (required).</param>
-        public BrowserInfo(string AcceptHeader = default(string), int? ColorDepth = default(int?), bool? JavaEnabled = default(bool?), string Language = default(string), int? ScreenHeight = default(int?), int? ScreenWidth = default(int?), int? TimeZoneOffset = default(int?), string UserAgent = default(string))
+        public BrowserInfo(string AcceptHeader = default(string), int? ColorDepth = default(int?),
+            bool? JavaEnabled = default(bool?), string Language = default(string), int? ScreenHeight = default(int?),
+            int? ScreenWidth = default(int?), int? TimeZoneOffset = default(int?), string UserAgent = default(string))
         {
             // to ensure "AcceptHeader" is required (not null)
             if (AcceptHeader == null)
-            {
-                throw new InvalidDataException("AcceptHeader is a required property for BrowserInfo and cannot be null");
-            }
+                throw new InvalidDataException(
+                    "AcceptHeader is a required property for BrowserInfo and cannot be null");
             else
-            {
                 this.AcceptHeader = AcceptHeader;
-            }
             // to ensure "UserAgent" is required (not null)
             if (UserAgent == null)
-            {
                 throw new InvalidDataException("UserAgent is a required property for BrowserInfo and cannot be null");
-            }
             else
-            {
                 this.UserAgent = UserAgent;
-            }
             this.ColorDepth = ColorDepth;
             this.JavaEnabled = JavaEnabled;
             this.Language = Language;
@@ -57,61 +55,61 @@ namespace Adyen.EcommLibrary.Model.Checkout
             this.ScreenWidth = ScreenWidth;
             this.TimeZoneOffset = TimeZoneOffset;
         }
-        
+
         /// <summary>
         /// The accept header value of the shopper&#39;s browser.
         /// </summary>
         /// <value>The accept header value of the shopper&#39;s browser.</value>
-        [DataMember(Name="acceptHeader", EmitDefaultValue=false)]
+        [DataMember(Name = "acceptHeader", EmitDefaultValue = false)]
         public string AcceptHeader { get; set; }
 
         /// <summary>
         /// The color depth of the shopper&#39;s device in bits per pixel. Should be obtained by using the browser&#39;s screen.colorDepth property.
         /// </summary>
         /// <value>The color depth of the shopper&#39;s device in bits per pixel. Should be obtained by using the browser&#39;s screen.colorDepth property.</value>
-        [DataMember(Name="colorDepth", EmitDefaultValue=false)]
+        [DataMember(Name = "colorDepth", EmitDefaultValue = false)]
         public int? ColorDepth { get; set; }
 
         /// <summary>
         /// Boolean value indicating if the shopper&#39;s browser is able to execute Java.
         /// </summary>
         /// <value>Boolean value indicating if the shopper&#39;s browser is able to execute Java.</value>
-        [DataMember(Name="javaEnabled", EmitDefaultValue=false)]
+        [DataMember(Name = "javaEnabled", EmitDefaultValue = false)]
         public bool? JavaEnabled { get; set; }
 
         /// <summary>
         /// The navigator.language value of the shopper&#39;s browser (as defined in IETF BCP 47).
         /// </summary>
         /// <value>The navigator.language value of the shopper&#39;s browser (as defined in IETF BCP 47).</value>
-        [DataMember(Name="language", EmitDefaultValue=false)]
+        [DataMember(Name = "language", EmitDefaultValue = false)]
         public string Language { get; set; }
 
         /// <summary>
         /// The total height of the shopper&#39;s device screen in pixels.
         /// </summary>
         /// <value>The total height of the shopper&#39;s device screen in pixels.</value>
-        [DataMember(Name="screenHeight", EmitDefaultValue=false)]
+        [DataMember(Name = "screenHeight", EmitDefaultValue = false)]
         public int? ScreenHeight { get; set; }
 
         /// <summary>
         /// The total width of the shopper&#39;s device screen in pixels.
         /// </summary>
         /// <value>The total width of the shopper&#39;s device screen in pixels.</value>
-        [DataMember(Name="screenWidth", EmitDefaultValue=false)]
+        [DataMember(Name = "screenWidth", EmitDefaultValue = false)]
         public int? ScreenWidth { get; set; }
 
         /// <summary>
         /// Time difference between UTC time and the shopper&#39;s browser local time, in minutes.
         /// </summary>
         /// <value>Time difference between UTC time and the shopper&#39;s browser local time, in minutes.</value>
-        [DataMember(Name="timeZoneOffset", EmitDefaultValue=false)]
+        [DataMember(Name = "timeZoneOffset", EmitDefaultValue = false)]
         public int? TimeZoneOffset { get; set; }
 
         /// <summary>
         /// The user agent value of the shopper&#39;s browser.
         /// </summary>
         /// <value>The user agent value of the shopper&#39;s browser.</value>
-        [DataMember(Name="userAgent", EmitDefaultValue=false)]
+        [DataMember(Name = "userAgent", EmitDefaultValue = false)]
         public string UserAgent { get; set; }
 
         /// <summary>
@@ -133,7 +131,7 @@ namespace Adyen.EcommLibrary.Model.Checkout
             sb.Append("}\n");
             return sb.ToString();
         }
-  
+
         /// <summary>
         /// Returns the JSON string presentation of the object
         /// </summary>
@@ -150,7 +148,7 @@ namespace Adyen.EcommLibrary.Model.Checkout
         /// <returns>Boolean</returns>
         public override bool Equals(object input)
         {
-            return this.Equals(input as BrowserInfo);
+            return Equals(input as BrowserInfo);
         }
 
         /// <summary>
@@ -163,46 +161,46 @@ namespace Adyen.EcommLibrary.Model.Checkout
             if (input == null)
                 return false;
 
-            return 
+            return
                 (
-                    this.AcceptHeader == input.AcceptHeader ||
-                    (this.AcceptHeader != null &&
-                    this.AcceptHeader.Equals(input.AcceptHeader))
-                ) && 
+                    AcceptHeader == input.AcceptHeader ||
+                    AcceptHeader != null &&
+                    AcceptHeader.Equals(input.AcceptHeader)
+                ) &&
                 (
-                    this.ColorDepth == input.ColorDepth ||
-                    (this.ColorDepth != null &&
-                    this.ColorDepth.Equals(input.ColorDepth))
-                ) && 
+                    ColorDepth == input.ColorDepth ||
+                    ColorDepth != null &&
+                    ColorDepth.Equals(input.ColorDepth)
+                ) &&
                 (
-                    this.JavaEnabled == input.JavaEnabled ||
-                    (this.JavaEnabled != null &&
-                    this.JavaEnabled.Equals(input.JavaEnabled))
-                ) && 
+                    JavaEnabled == input.JavaEnabled ||
+                    JavaEnabled != null &&
+                    JavaEnabled.Equals(input.JavaEnabled)
+                ) &&
                 (
-                    this.Language == input.Language ||
-                    (this.Language != null &&
-                    this.Language.Equals(input.Language))
-                ) && 
+                    Language == input.Language ||
+                    Language != null &&
+                    Language.Equals(input.Language)
+                ) &&
                 (
-                    this.ScreenHeight == input.ScreenHeight ||
-                    (this.ScreenHeight != null &&
-                    this.ScreenHeight.Equals(input.ScreenHeight))
-                ) && 
+                    ScreenHeight == input.ScreenHeight ||
+                    ScreenHeight != null &&
+                    ScreenHeight.Equals(input.ScreenHeight)
+                ) &&
                 (
-                    this.ScreenWidth == input.ScreenWidth ||
-                    (this.ScreenWidth != null &&
-                    this.ScreenWidth.Equals(input.ScreenWidth))
-                ) && 
+                    ScreenWidth == input.ScreenWidth ||
+                    ScreenWidth != null &&
+                    ScreenWidth.Equals(input.ScreenWidth)
+                ) &&
                 (
-                    this.TimeZoneOffset == input.TimeZoneOffset ||
-                    (this.TimeZoneOffset != null &&
-                    this.TimeZoneOffset.Equals(input.TimeZoneOffset))
-                ) && 
+                    TimeZoneOffset == input.TimeZoneOffset ||
+                    TimeZoneOffset != null &&
+                    TimeZoneOffset.Equals(input.TimeZoneOffset)
+                ) &&
                 (
-                    this.UserAgent == input.UserAgent ||
-                    (this.UserAgent != null &&
-                    this.UserAgent.Equals(input.UserAgent))
+                    UserAgent == input.UserAgent ||
+                    UserAgent != null &&
+                    UserAgent.Equals(input.UserAgent)
                 );
         }
 
@@ -214,23 +212,23 @@ namespace Adyen.EcommLibrary.Model.Checkout
         {
             unchecked // Overflow is fine, just wrap
             {
-                int hashCode = 41;
-                if (this.AcceptHeader != null)
-                    hashCode = hashCode * 59 + this.AcceptHeader.GetHashCode();
-                if (this.ColorDepth != null)
-                    hashCode = hashCode * 59 + this.ColorDepth.GetHashCode();
-                if (this.JavaEnabled != null)
-                    hashCode = hashCode * 59 + this.JavaEnabled.GetHashCode();
-                if (this.Language != null)
-                    hashCode = hashCode * 59 + this.Language.GetHashCode();
-                if (this.ScreenHeight != null)
-                    hashCode = hashCode * 59 + this.ScreenHeight.GetHashCode();
-                if (this.ScreenWidth != null)
-                    hashCode = hashCode * 59 + this.ScreenWidth.GetHashCode();
-                if (this.TimeZoneOffset != null)
-                    hashCode = hashCode * 59 + this.TimeZoneOffset.GetHashCode();
-                if (this.UserAgent != null)
-                    hashCode = hashCode * 59 + this.UserAgent.GetHashCode();
+                var hashCode = 41;
+                if (AcceptHeader != null)
+                    hashCode = hashCode * 59 + AcceptHeader.GetHashCode();
+                if (ColorDepth != null)
+                    hashCode = hashCode * 59 + ColorDepth.GetHashCode();
+                if (JavaEnabled != null)
+                    hashCode = hashCode * 59 + JavaEnabled.GetHashCode();
+                if (Language != null)
+                    hashCode = hashCode * 59 + Language.GetHashCode();
+                if (ScreenHeight != null)
+                    hashCode = hashCode * 59 + ScreenHeight.GetHashCode();
+                if (ScreenWidth != null)
+                    hashCode = hashCode * 59 + ScreenWidth.GetHashCode();
+                if (TimeZoneOffset != null)
+                    hashCode = hashCode * 59 + TimeZoneOffset.GetHashCode();
+                if (UserAgent != null)
+                    hashCode = hashCode * 59 + UserAgent.GetHashCode();
                 return hashCode;
             }
         }
@@ -240,34 +238,29 @@ namespace Adyen.EcommLibrary.Model.Checkout
         /// </summary>
         /// <param name="validationContext">Validation context</param>
         /// <returns>Validation Result</returns>
-        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+        IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
         {
             // AcceptHeader (string) maxLength
-            if(this.AcceptHeader != null && this.AcceptHeader.Length > 50)
-            {
-                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for AcceptHeader, length must be less than 50.", new [] { "AcceptHeader" });
-            }
+            if (AcceptHeader != null && AcceptHeader.Length > 50)
+                yield return new ValidationResult("Invalid value for AcceptHeader, length must be less than 50.",
+                    new[] {"AcceptHeader"});
 
             // AcceptHeader (string) minLength
-            if(this.AcceptHeader != null && this.AcceptHeader.Length < 10)
-            {
-                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for AcceptHeader, length must be greater than 10.", new [] { "AcceptHeader" });
-            }
+            if (AcceptHeader != null && AcceptHeader.Length < 10)
+                yield return new ValidationResult("Invalid value for AcceptHeader, length must be greater than 10.",
+                    new[] {"AcceptHeader"});
 
             // UserAgent (string) maxLength
-            if(this.UserAgent != null && this.UserAgent.Length > 50)
-            {
-                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for UserAgent, length must be less than 50.", new [] { "UserAgent" });
-            }
+            if (UserAgent != null && UserAgent.Length > 50)
+                yield return new ValidationResult("Invalid value for UserAgent, length must be less than 50.",
+                    new[] {"UserAgent"});
 
             // UserAgent (string) minLength
-            if(this.UserAgent != null && this.UserAgent.Length < 10)
-            {
-                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for UserAgent, length must be greater than 10.", new [] { "UserAgent" });
-            }
+            if (UserAgent != null && UserAgent.Length < 10)
+                yield return new ValidationResult("Invalid value for UserAgent, length must be greater than 10.",
+                    new[] {"UserAgent"});
 
             yield break;
         }
     }
-
 }

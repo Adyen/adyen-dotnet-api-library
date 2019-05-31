@@ -1,4 +1,3 @@
-
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -12,7 +11,7 @@ namespace Adyen.EcommLibrary.Model.Checkout
     /// PermitRestriction
     /// </summary>
     [DataContract]
-    public partial class PermitRestriction :  IEquatable<PermitRestriction>, IValidatableObject
+    public partial class PermitRestriction : IEquatable<PermitRestriction>, IValidatableObject
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="PermitRestriction" /> class.
@@ -20,32 +19,33 @@ namespace Adyen.EcommLibrary.Model.Checkout
         /// <param name="MaxAmount">The total sum amount of one or more payments made using this permit may not exceed this amount if set..</param>
         /// <param name="SingleTransactionLimit">The amount of any single payment using this permit may not exceed this amount if set..</param>
         /// <param name="SingleUse">Only a single payment can be made using this permit if set to true, otherwise multiple payments are allowed..</param>
-        public PermitRestriction(Amount MaxAmount = default(Amount), Amount SingleTransactionLimit = default(Amount), bool? SingleUse = default(bool?))
+        public PermitRestriction(Amount MaxAmount = default(Amount), Amount SingleTransactionLimit = default(Amount),
+            bool? SingleUse = default(bool?))
         {
             this.MaxAmount = MaxAmount;
             this.SingleTransactionLimit = SingleTransactionLimit;
             this.SingleUse = SingleUse;
         }
-        
+
         /// <summary>
         /// The total sum amount of one or more payments made using this permit may not exceed this amount if set.
         /// </summary>
         /// <value>The total sum amount of one or more payments made using this permit may not exceed this amount if set.</value>
-        [DataMember(Name="maxAmount", EmitDefaultValue=false)]
+        [DataMember(Name = "maxAmount", EmitDefaultValue = false)]
         public Amount MaxAmount { get; set; }
 
         /// <summary>
         /// The amount of any single payment using this permit may not exceed this amount if set.
         /// </summary>
         /// <value>The amount of any single payment using this permit may not exceed this amount if set.</value>
-        [DataMember(Name="singleTransactionLimit", EmitDefaultValue=false)]
+        [DataMember(Name = "singleTransactionLimit", EmitDefaultValue = false)]
         public Amount SingleTransactionLimit { get; set; }
 
         /// <summary>
         /// Only a single payment can be made using this permit if set to true, otherwise multiple payments are allowed.
         /// </summary>
         /// <value>Only a single payment can be made using this permit if set to true, otherwise multiple payments are allowed.</value>
-        [DataMember(Name="singleUse", EmitDefaultValue=false)]
+        [DataMember(Name = "singleUse", EmitDefaultValue = false)]
         public bool? SingleUse { get; set; }
 
         /// <summary>
@@ -62,7 +62,7 @@ namespace Adyen.EcommLibrary.Model.Checkout
             sb.Append("}\n");
             return sb.ToString();
         }
-  
+
         /// <summary>
         /// Returns the JSON string presentation of the object
         /// </summary>
@@ -79,7 +79,7 @@ namespace Adyen.EcommLibrary.Model.Checkout
         /// <returns>Boolean</returns>
         public override bool Equals(object input)
         {
-            return this.Equals(input as PermitRestriction);
+            return Equals(input as PermitRestriction);
         }
 
         /// <summary>
@@ -92,21 +92,21 @@ namespace Adyen.EcommLibrary.Model.Checkout
             if (input == null)
                 return false;
 
-            return 
+            return
                 (
-                    this.MaxAmount == input.MaxAmount ||
-                    (this.MaxAmount != null &&
-                    this.MaxAmount.Equals(input.MaxAmount))
-                ) && 
+                    MaxAmount == input.MaxAmount ||
+                    MaxAmount != null &&
+                    MaxAmount.Equals(input.MaxAmount)
+                ) &&
                 (
-                    this.SingleTransactionLimit == input.SingleTransactionLimit ||
-                    (this.SingleTransactionLimit != null &&
-                    this.SingleTransactionLimit.Equals(input.SingleTransactionLimit))
-                ) && 
+                    SingleTransactionLimit == input.SingleTransactionLimit ||
+                    SingleTransactionLimit != null &&
+                    SingleTransactionLimit.Equals(input.SingleTransactionLimit)
+                ) &&
                 (
-                    this.SingleUse == input.SingleUse ||
-                    (this.SingleUse != null &&
-                    this.SingleUse.Equals(input.SingleUse))
+                    SingleUse == input.SingleUse ||
+                    SingleUse != null &&
+                    SingleUse.Equals(input.SingleUse)
                 );
         }
 
@@ -118,13 +118,13 @@ namespace Adyen.EcommLibrary.Model.Checkout
         {
             unchecked // Overflow is fine, just wrap
             {
-                int hashCode = 41;
-                if (this.MaxAmount != null)
-                    hashCode = hashCode * 59 + this.MaxAmount.GetHashCode();
-                if (this.SingleTransactionLimit != null)
-                    hashCode = hashCode * 59 + this.SingleTransactionLimit.GetHashCode();
-                if (this.SingleUse != null)
-                    hashCode = hashCode * 59 + this.SingleUse.GetHashCode();
+                var hashCode = 41;
+                if (MaxAmount != null)
+                    hashCode = hashCode * 59 + MaxAmount.GetHashCode();
+                if (SingleTransactionLimit != null)
+                    hashCode = hashCode * 59 + SingleTransactionLimit.GetHashCode();
+                if (SingleUse != null)
+                    hashCode = hashCode * 59 + SingleUse.GetHashCode();
                 return hashCode;
             }
         }
@@ -134,10 +134,9 @@ namespace Adyen.EcommLibrary.Model.Checkout
         /// </summary>
         /// <param name="validationContext">Validation context</param>
         /// <returns>Validation Result</returns>
-        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+        IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
         {
             yield break;
         }
     }
-
 }

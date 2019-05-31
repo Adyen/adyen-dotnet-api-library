@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Net;
 
 namespace Adyen.EcommLibrary.HttpClient
@@ -12,18 +11,22 @@ namespace Adyen.EcommLibrary.HttpClient
         public string ResponseBody { get; private set; }
 
         public Exception Exception { get; private set; }
-        public HttpClientException(int code, string message, WebHeaderCollection webHeaderCollection, string responseBody) : base(message)
+
+        public HttpClientException(int code, string message, WebHeaderCollection webHeaderCollection,
+            string responseBody) : base(message)
         {
-            this.Code = code;
-            this.WebHeaderCollection = webHeaderCollection;
-            this.ResponseBody = responseBody;
+            Code = code;
+            WebHeaderCollection = webHeaderCollection;
+            ResponseBody = responseBody;
         }
-        public HttpClientException(int code, string message, WebHeaderCollection webHeaderCollection, string responseBody, Exception exception) : base(message)
+
+        public HttpClientException(int code, string message, WebHeaderCollection webHeaderCollection,
+            string responseBody, Exception exception) : base(message)
         {
-            this.Code = code;
-            this.WebHeaderCollection = webHeaderCollection;
-            this.ResponseBody = responseBody;
-            this.Exception = exception;
+            Code = code;
+            WebHeaderCollection = webHeaderCollection;
+            ResponseBody = responseBody;
+            Exception = exception;
         }
     }
 }

@@ -7,7 +7,6 @@
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     public partial class LoyaltyAccountStatus
     {
-
         /// <remarks/>
         [System.Xml.Serialization.XmlElementAttribute(Form = System.Xml.Schema.XmlSchemaForm.Unqualified)]
         public LoyaltyAccount LoyaltyAccount;
@@ -16,10 +15,9 @@
         [System.Xml.Serialization.XmlAttributeAttribute()]
         public decimal? CurrentBalance;
 
-       
+
         /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute()]
-        [System.ComponentModel.DefaultValueAttribute("Point")]
+        [System.Xml.Serialization.XmlAttributeAttribute()] [System.ComponentModel.DefaultValueAttribute("Point")]
         public string LoyaltyUnit;
 
         /// <remarks/>
@@ -28,7 +26,7 @@
 
         public LoyaltyAccountStatus()
         {
-            this.LoyaltyUnit = "Point";
+            LoyaltyUnit = "Point";
         }
     }
 }

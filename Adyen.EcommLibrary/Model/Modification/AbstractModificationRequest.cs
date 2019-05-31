@@ -1,9 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Runtime.Serialization;
 using System.Text;
-using Adyen.EcommLibrary.Constants;
 using Adyen.EcommLibrary.Model.ApplicationInformation;
 
 namespace Adyen.EcommLibrary.Model.Modification
@@ -28,12 +26,12 @@ namespace Adyen.EcommLibrary.Model.Modification
 
         [DataMember(Name = "applicationInfo", EmitDefaultValue = false)]
 
-        public ApplicationInformation.ApplicationInfo ApplicationInfo { get; set; }
-        
+        public ApplicationInfo ApplicationInfo { get; set; }
+
         public override string ToString()
         {
             var sb = new StringBuilder();
-           
+
             sb.Append("  Reference:  ").Append(Reference).Append("\n");
             sb.Append("  OriginalReference: ").Append(OriginalReference).Append("\n");
             sb.Append("  MerchantAccount: ").Append(MerchantAccount).Append("\n");
@@ -50,7 +48,7 @@ namespace Adyen.EcommLibrary.Model.Modification
         /// <returns>Boolean</returns>
         public override bool Equals(object obj)
         {
-            return this.Equals(obj as AbstractModificationRequest);
+            return Equals(obj as AbstractModificationRequest);
         }
 
         /// <summary>
@@ -65,24 +63,24 @@ namespace Adyen.EcommLibrary.Model.Modification
 
             return
                 (
-                    this.Reference == other.Reference ||
-                    this.Reference != null &&
-                    this.Reference.Equals(other.Reference)
+                    Reference == other.Reference ||
+                    Reference != null &&
+                    Reference.Equals(other.Reference)
                 ) &&
                 (
-                    this.OriginalReference == other.OriginalReference ||
-                    this.OriginalReference != null &&
-                    this.OriginalReference.Equals(other.OriginalReference)
+                    OriginalReference == other.OriginalReference ||
+                    OriginalReference != null &&
+                    OriginalReference.Equals(other.OriginalReference)
                 ) &&
                 (
-                    this.MerchantAccount == other.MerchantAccount ||
-                    this.MerchantAccount != null &&
-                    this.MerchantAccount.Equals(other.MerchantAccount)
+                    MerchantAccount == other.MerchantAccount ||
+                    MerchantAccount != null &&
+                    MerchantAccount.Equals(other.MerchantAccount)
                 ) &&
                 (
-                    this.AuthorisationCode == other.AuthorisationCode ||
-                    this.AuthorisationCode != null &&
-                    this.AuthorisationCode.Equals(other.AuthorisationCode)
+                    AuthorisationCode == other.AuthorisationCode ||
+                    AuthorisationCode != null &&
+                    AuthorisationCode.Equals(other.AuthorisationCode)
                 );
         }
 
@@ -94,20 +92,20 @@ namespace Adyen.EcommLibrary.Model.Modification
         {
             unchecked // Overflow is fine, just wrap
             {
-                int hash = 41;
+                var hash = 41;
                 // Suitable nullity checks etc, of course :)
-                if (this.Reference != null)
-                    hash = hash * 59 + this.Reference.GetHashCode();
-                if (this.OriginalReference != null)
-                    hash = hash * 59 + this.OriginalReference.GetHashCode();
-                if (this.AuthorisationCode != null)
-                    hash = hash * 59 + this.AuthorisationCode.GetHashCode();
-                if (this.MerchantAccount != null)
-                    hash = hash * 59 + this.MerchantAccount.GetHashCode();
-                if (this.AdditionalData != null)
-                    hash = hash * 59 + this.AdditionalData.GetHashCode();
-                if (this.AuthorisationCode != null)
-                    hash = hash * 59 + this.AuthorisationCode.GetHashCode();
+                if (Reference != null)
+                    hash = hash * 59 + Reference.GetHashCode();
+                if (OriginalReference != null)
+                    hash = hash * 59 + OriginalReference.GetHashCode();
+                if (AuthorisationCode != null)
+                    hash = hash * 59 + AuthorisationCode.GetHashCode();
+                if (MerchantAccount != null)
+                    hash = hash * 59 + MerchantAccount.GetHashCode();
+                if (AdditionalData != null)
+                    hash = hash * 59 + AdditionalData.GetHashCode();
+                if (AuthorisationCode != null)
+                    hash = hash * 59 + AuthorisationCode.GetHashCode();
                 return hash;
             }
         }
@@ -117,7 +115,7 @@ namespace Adyen.EcommLibrary.Model.Modification
         /// </summary>
         /// <param name="validationContext">Validation context</param>
         /// <returns>Validation Result</returns>
-        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+        IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
         {
             yield break;
         }

@@ -11,7 +11,7 @@ namespace Adyen.EcommLibrary.Model
     /// BankAccount
     /// </summary>
     [DataContract]
-    public partial class BankAccount :  IEquatable<BankAccount>, IValidatableObject
+    public partial class BankAccount : IEquatable<BankAccount>, IValidatableObject
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="BankAccount" /> class.
@@ -25,7 +25,10 @@ namespace Adyen.EcommLibrary.Model
         /// <param name="BankLocationId">The location id of the bank. The field value is &#x60;nil&#x60; in most cases..</param>
         /// <param name="Bic">The [Business Identifier Code](https://en.wikipedia.org/wiki/ISO_9362) (BIC) is the SWIFT address assigned to a bank. The field value is &#x60;nil&#x60; in most cases..</param>
         /// <param name="BankCity">The bank city..</param>
-        public BankAccount(string OwnerName = default(string), string CountryCode = default(string), string TaxId = default(string), string Iban = default(string), string BankAccountNumber = default(string), string BankName = default(string), string BankLocationId = default(string), string Bic = default(string), string BankCity = default(string))
+        public BankAccount(string OwnerName = default(string), string CountryCode = default(string),
+            string TaxId = default(string), string Iban = default(string), string BankAccountNumber = default(string),
+            string BankName = default(string), string BankLocationId = default(string), string Bic = default(string),
+            string BankCity = default(string))
         {
             this.OwnerName = OwnerName;
             this.CountryCode = CountryCode;
@@ -37,68 +40,68 @@ namespace Adyen.EcommLibrary.Model
             this.Bic = Bic;
             this.BankCity = BankCity;
         }
-        
+
         /// <summary>
         /// The name of the bank account holder.
         /// </summary>
         /// <value>The name of the bank account holder.</value>
-        [DataMember(Name="ownerName", EmitDefaultValue=false)]
+        [DataMember(Name = "ownerName", EmitDefaultValue = false)]
         public string OwnerName { get; set; }
 
         /// <summary>
         /// Country code where the bank is located.  A valid value is an ISO two-character country code (e.g. &#39;NL&#39;).
         /// </summary>
         /// <value>Country code where the bank is located.  A valid value is an ISO two-character country code (e.g. &#39;NL&#39;).</value>
-        [DataMember(Name="countryCode", EmitDefaultValue=false)]
+        [DataMember(Name = "countryCode", EmitDefaultValue = false)]
         public string CountryCode { get; set; }
 
         /// <summary>
         /// The bank account holder&#39;s tax ID.
         /// </summary>
         /// <value>The bank account holder&#39;s tax ID.</value>
-        [DataMember(Name="taxId", EmitDefaultValue=false)]
+        [DataMember(Name = "taxId", EmitDefaultValue = false)]
         public string TaxId { get; set; }
 
         /// <summary>
         /// The [International Bank Account Number](https://en.wikipedia.org/wiki/International_Bank_Account_Number) (IBAN).
         /// </summary>
         /// <value>The [International Bank Account Number](https://en.wikipedia.org/wiki/International_Bank_Account_Number) (IBAN).</value>
-        [DataMember(Name="iban", EmitDefaultValue=false)]
+        [DataMember(Name = "iban", EmitDefaultValue = false)]
         public string Iban { get; set; }
 
         /// <summary>
         /// The bank account number (without separators).
         /// </summary>
         /// <value>The bank account number (without separators).</value>
-        [DataMember(Name="bankAccountNumber", EmitDefaultValue=false)]
+        [DataMember(Name = "bankAccountNumber", EmitDefaultValue = false)]
         public string BankAccountNumber { get; set; }
 
         /// <summary>
         /// The name of the bank.
         /// </summary>
         /// <value>The name of the bank.</value>
-        [DataMember(Name="bankName", EmitDefaultValue=false)]
+        [DataMember(Name = "bankName", EmitDefaultValue = false)]
         public string BankName { get; set; }
 
         /// <summary>
         /// The location id of the bank. The field value is &#x60;nil&#x60; in most cases.
         /// </summary>
         /// <value>The location id of the bank. The field value is &#x60;nil&#x60; in most cases.</value>
-        [DataMember(Name="bankLocationId", EmitDefaultValue=false)]
+        [DataMember(Name = "bankLocationId", EmitDefaultValue = false)]
         public string BankLocationId { get; set; }
 
         /// <summary>
         /// The [Business Identifier Code](https://en.wikipedia.org/wiki/ISO_9362) (BIC) is the SWIFT address assigned to a bank. The field value is &#x60;nil&#x60; in most cases.
         /// </summary>
         /// <value>The [Business Identifier Code](https://en.wikipedia.org/wiki/ISO_9362) (BIC) is the SWIFT address assigned to a bank. The field value is &#x60;nil&#x60; in most cases.</value>
-        [DataMember(Name="bic", EmitDefaultValue=false)]
+        [DataMember(Name = "bic", EmitDefaultValue = false)]
         public string Bic { get; set; }
 
         /// <summary>
         /// The bank city.
         /// </summary>
         /// <value>The bank city.</value>
-        [DataMember(Name="bankCity", EmitDefaultValue=false)]
+        [DataMember(Name = "bankCity", EmitDefaultValue = false)]
         public string BankCity { get; set; }
 
         /// <summary>
@@ -121,7 +124,7 @@ namespace Adyen.EcommLibrary.Model
             sb.Append("}\n");
             return sb.ToString();
         }
-  
+
         /// <summary>
         /// Returns the JSON string presentation of the object
         /// </summary>
@@ -139,7 +142,7 @@ namespace Adyen.EcommLibrary.Model
         public override bool Equals(object obj)
         {
             // credit: http://stackoverflow.com/a/10454552/677735
-            return this.Equals(obj as BankAccount);
+            return Equals(obj as BankAccount);
         }
 
         /// <summary>
@@ -153,51 +156,51 @@ namespace Adyen.EcommLibrary.Model
             if (other == null)
                 return false;
 
-            return 
+            return
                 (
-                    this.OwnerName == other.OwnerName ||
-                    this.OwnerName != null &&
-                    this.OwnerName.Equals(other.OwnerName)
-                ) && 
+                    OwnerName == other.OwnerName ||
+                    OwnerName != null &&
+                    OwnerName.Equals(other.OwnerName)
+                ) &&
                 (
-                    this.CountryCode == other.CountryCode ||
-                    this.CountryCode != null &&
-                    this.CountryCode.Equals(other.CountryCode)
-                ) && 
+                    CountryCode == other.CountryCode ||
+                    CountryCode != null &&
+                    CountryCode.Equals(other.CountryCode)
+                ) &&
                 (
-                    this.TaxId == other.TaxId ||
-                    this.TaxId != null &&
-                    this.TaxId.Equals(other.TaxId)
-                ) && 
+                    TaxId == other.TaxId ||
+                    TaxId != null &&
+                    TaxId.Equals(other.TaxId)
+                ) &&
                 (
-                    this.Iban == other.Iban ||
-                    this.Iban != null &&
-                    this.Iban.Equals(other.Iban)
-                ) && 
+                    Iban == other.Iban ||
+                    Iban != null &&
+                    Iban.Equals(other.Iban)
+                ) &&
                 (
-                    this.BankAccountNumber == other.BankAccountNumber ||
-                    this.BankAccountNumber != null &&
-                    this.BankAccountNumber.Equals(other.BankAccountNumber)
-                ) && 
+                    BankAccountNumber == other.BankAccountNumber ||
+                    BankAccountNumber != null &&
+                    BankAccountNumber.Equals(other.BankAccountNumber)
+                ) &&
                 (
-                    this.BankName == other.BankName ||
-                    this.BankName != null &&
-                    this.BankName.Equals(other.BankName)
-                ) && 
+                    BankName == other.BankName ||
+                    BankName != null &&
+                    BankName.Equals(other.BankName)
+                ) &&
                 (
-                    this.BankLocationId == other.BankLocationId ||
-                    this.BankLocationId != null &&
-                    this.BankLocationId.Equals(other.BankLocationId)
-                ) && 
+                    BankLocationId == other.BankLocationId ||
+                    BankLocationId != null &&
+                    BankLocationId.Equals(other.BankLocationId)
+                ) &&
                 (
-                    this.Bic == other.Bic ||
-                    this.Bic != null &&
-                    this.Bic.Equals(other.Bic)
-                ) && 
+                    Bic == other.Bic ||
+                    Bic != null &&
+                    Bic.Equals(other.Bic)
+                ) &&
                 (
-                    this.BankCity == other.BankCity ||
-                    this.BankCity != null &&
-                    this.BankCity.Equals(other.BankCity)
+                    BankCity == other.BankCity ||
+                    BankCity != null &&
+                    BankCity.Equals(other.BankCity)
                 );
         }
 
@@ -210,26 +213,26 @@ namespace Adyen.EcommLibrary.Model
             // credit: http://stackoverflow.com/a/263416/677735
             unchecked // Overflow is fine, just wrap
             {
-                int hash = 41;
+                var hash = 41;
                 // Suitable nullity checks etc, of course :)
-                if (this.OwnerName != null)
-                    hash = hash * 59 + this.OwnerName.GetHashCode();
-                if (this.CountryCode != null)
-                    hash = hash * 59 + this.CountryCode.GetHashCode();
-                if (this.TaxId != null)
-                    hash = hash * 59 + this.TaxId.GetHashCode();
-                if (this.Iban != null)
-                    hash = hash * 59 + this.Iban.GetHashCode();
-                if (this.BankAccountNumber != null)
-                    hash = hash * 59 + this.BankAccountNumber.GetHashCode();
-                if (this.BankName != null)
-                    hash = hash * 59 + this.BankName.GetHashCode();
-                if (this.BankLocationId != null)
-                    hash = hash * 59 + this.BankLocationId.GetHashCode();
-                if (this.Bic != null)
-                    hash = hash * 59 + this.Bic.GetHashCode();
-                if (this.BankCity != null)
-                    hash = hash * 59 + this.BankCity.GetHashCode();
+                if (OwnerName != null)
+                    hash = hash * 59 + OwnerName.GetHashCode();
+                if (CountryCode != null)
+                    hash = hash * 59 + CountryCode.GetHashCode();
+                if (TaxId != null)
+                    hash = hash * 59 + TaxId.GetHashCode();
+                if (Iban != null)
+                    hash = hash * 59 + Iban.GetHashCode();
+                if (BankAccountNumber != null)
+                    hash = hash * 59 + BankAccountNumber.GetHashCode();
+                if (BankName != null)
+                    hash = hash * 59 + BankName.GetHashCode();
+                if (BankLocationId != null)
+                    hash = hash * 59 + BankLocationId.GetHashCode();
+                if (Bic != null)
+                    hash = hash * 59 + Bic.GetHashCode();
+                if (BankCity != null)
+                    hash = hash * 59 + BankCity.GetHashCode();
                 return hash;
             }
         }
@@ -239,10 +242,9 @@ namespace Adyen.EcommLibrary.Model
         /// </summary>
         /// <param name="validationContext">Validation context</param>
         /// <returns>Validation Result</returns>
-        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+        IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
         {
             yield break;
         }
     }
-
 }

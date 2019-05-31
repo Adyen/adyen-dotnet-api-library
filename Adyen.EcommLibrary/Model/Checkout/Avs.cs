@@ -12,7 +12,7 @@ namespace Adyen.EcommLibrary.Model.Checkout
     /// Avs
     /// </summary>
     [DataContract]
-    public partial class Avs :  IEquatable<Avs>, IValidatableObject
+    public partial class Avs : IEquatable<Avs>, IValidatableObject
     {
         /// <summary>
         /// Specifies whether the shopper should enter their billing address during checkout.  Allowed values: * yes — Perform AVS checks for every card payment. * automatic — Perform AVS checks only when required to optimize the conversion rate. * no — Do not perform AVS checks.
@@ -21,32 +21,29 @@ namespace Adyen.EcommLibrary.Model.Checkout
         [JsonConverter(typeof(StringEnumConverter))]
         public enum EnabledEnum
         {
-            
             /// <summary>
             /// Enum Yes for value: yes
             /// </summary>
-            [EnumMember(Value = "yes")]
-            Yes = 1,
-            
+            [EnumMember(Value = "yes")] Yes = 1,
+
             /// <summary>
             /// Enum No for value: no
             /// </summary>
-            [EnumMember(Value = "no")]
-            No = 2,
-            
+            [EnumMember(Value = "no")] No = 2,
+
             /// <summary>
             /// Enum Automatic for value: automatic
             /// </summary>
-            [EnumMember(Value = "automatic")]
-            Automatic = 3
+            [EnumMember(Value = "automatic")] Automatic = 3
         }
 
         /// <summary>
         /// Specifies whether the shopper should enter their billing address during checkout.  Allowed values: * yes — Perform AVS checks for every card payment. * automatic — Perform AVS checks only when required to optimize the conversion rate. * no — Do not perform AVS checks.
         /// </summary>
         /// <value>Specifies whether the shopper should enter their billing address during checkout.  Allowed values: * yes — Perform AVS checks for every card payment. * automatic — Perform AVS checks only when required to optimize the conversion rate. * no — Do not perform AVS checks.</value>
-        [DataMember(Name="enabled", EmitDefaultValue=false)]
+        [DataMember(Name = "enabled", EmitDefaultValue = false)]
         public EnabledEnum? Enabled { get; set; }
+
         /// <summary>
         /// Initializes a new instance of the <see cref="Avs" /> class.
         /// </summary>
@@ -57,12 +54,12 @@ namespace Adyen.EcommLibrary.Model.Checkout
             this.AddressEditable = AddressEditable;
             this.Enabled = Enabled;
         }
-        
+
         /// <summary>
         /// Indicates whether the shopper is allowed to modify the billing address for the current payment request.
         /// </summary>
         /// <value>Indicates whether the shopper is allowed to modify the billing address for the current payment request.</value>
-        [DataMember(Name="addressEditable", EmitDefaultValue=false)]
+        [DataMember(Name = "addressEditable", EmitDefaultValue = false)]
         public bool? AddressEditable { get; set; }
 
 
@@ -79,7 +76,7 @@ namespace Adyen.EcommLibrary.Model.Checkout
             sb.Append("}\n");
             return sb.ToString();
         }
-  
+
         /// <summary>
         /// Returns the JSON string presentation of the object
         /// </summary>
@@ -96,7 +93,7 @@ namespace Adyen.EcommLibrary.Model.Checkout
         /// <returns>Boolean</returns>
         public override bool Equals(object input)
         {
-            return this.Equals(input as Avs);
+            return Equals(input as Avs);
         }
 
         /// <summary>
@@ -109,16 +106,16 @@ namespace Adyen.EcommLibrary.Model.Checkout
             if (input == null)
                 return false;
 
-            return 
+            return
                 (
-                    this.AddressEditable == input.AddressEditable ||
-                    (this.AddressEditable != null &&
-                    this.AddressEditable.Equals(input.AddressEditable))
-                ) && 
+                    AddressEditable == input.AddressEditable ||
+                    AddressEditable != null &&
+                    AddressEditable.Equals(input.AddressEditable)
+                ) &&
                 (
-                    this.Enabled == input.Enabled ||
-                    (this.Enabled != null &&
-                    this.Enabled.Equals(input.Enabled))
+                    Enabled == input.Enabled ||
+                    Enabled != null &&
+                    Enabled.Equals(input.Enabled)
                 );
         }
 
@@ -130,11 +127,11 @@ namespace Adyen.EcommLibrary.Model.Checkout
         {
             unchecked // Overflow is fine, just wrap
             {
-                int hashCode = 41;
-                if (this.AddressEditable != null)
-                    hashCode = hashCode * 59 + this.AddressEditable.GetHashCode();
-                if (this.Enabled != null)
-                    hashCode = hashCode * 59 + this.Enabled.GetHashCode();
+                var hashCode = 41;
+                if (AddressEditable != null)
+                    hashCode = hashCode * 59 + AddressEditable.GetHashCode();
+                if (Enabled != null)
+                    hashCode = hashCode * 59 + Enabled.GetHashCode();
                 return hashCode;
             }
         }
@@ -144,10 +141,9 @@ namespace Adyen.EcommLibrary.Model.Checkout
         /// </summary>
         /// <param name="validationContext">Validation context</param>
         /// <returns>Validation Result</returns>
-        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+        IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
         {
             yield break;
         }
     }
-
 }

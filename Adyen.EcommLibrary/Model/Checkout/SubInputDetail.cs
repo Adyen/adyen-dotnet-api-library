@@ -1,4 +1,3 @@
-
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -13,7 +12,7 @@ namespace Adyen.EcommLibrary.Model.Checkout
     /// SubInputDetail
     /// </summary>
     [DataContract]
-    public partial class SubInputDetail :  IEquatable<SubInputDetail>, IValidatableObject
+    public partial class SubInputDetail : IEquatable<SubInputDetail>, IValidatableObject
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="SubInputDetail" /> class.
@@ -24,7 +23,9 @@ namespace Adyen.EcommLibrary.Model.Checkout
         /// <param name="Optional">True if this input is optional to provide..</param>
         /// <param name="Type">The type of the required input..</param>
         /// <param name="Value">The value can be pre-filled, if available..</param>
-        public SubInputDetail(Dictionary<string, string> Configuration = default(Dictionary<string, string>), List<Item> Items = default(List<Item>), string Key = default(string), bool? Optional = default(bool?), string Type = default(string), string Value = default(string))
+        public SubInputDetail(Dictionary<string, string> Configuration = default(Dictionary<string, string>),
+            List<Item> Items = default(List<Item>), string Key = default(string), bool? Optional = default(bool?),
+            string Type = default(string), string Value = default(string))
         {
             this.Configuration = Configuration;
             this.Items = Items;
@@ -33,47 +34,47 @@ namespace Adyen.EcommLibrary.Model.Checkout
             this.Type = Type;
             this.Value = Value;
         }
-        
+
         /// <summary>
         /// Configuration parameters for the required input.
         /// </summary>
         /// <value>Configuration parameters for the required input.</value>
-        [DataMember(Name="configuration", EmitDefaultValue=false)]
+        [DataMember(Name = "configuration", EmitDefaultValue = false)]
         public Dictionary<string, string> Configuration { get; set; }
 
         /// <summary>
         /// In case of a select, the items to choose from.
         /// </summary>
         /// <value>In case of a select, the items to choose from.</value>
-        [DataMember(Name="items", EmitDefaultValue=false)]
+        [DataMember(Name = "items", EmitDefaultValue = false)]
         public List<Item> Items { get; set; }
 
         /// <summary>
         /// The value to provide in the result.
         /// </summary>
         /// <value>The value to provide in the result.</value>
-        [DataMember(Name="key", EmitDefaultValue=false)]
+        [DataMember(Name = "key", EmitDefaultValue = false)]
         public string Key { get; set; }
 
         /// <summary>
         /// True if this input is optional to provide.
         /// </summary>
         /// <value>True if this input is optional to provide.</value>
-        [DataMember(Name="optional", EmitDefaultValue=false)]
+        [DataMember(Name = "optional", EmitDefaultValue = false)]
         public bool? Optional { get; set; }
 
         /// <summary>
         /// The type of the required input.
         /// </summary>
         /// <value>The type of the required input.</value>
-        [DataMember(Name="type", EmitDefaultValue=false)]
+        [DataMember(Name = "type", EmitDefaultValue = false)]
         public string Type { get; set; }
 
         /// <summary>
         /// The value can be pre-filled, if available.
         /// </summary>
         /// <value>The value can be pre-filled, if available.</value>
-        [DataMember(Name="value", EmitDefaultValue=false)]
+        [DataMember(Name = "value", EmitDefaultValue = false)]
         public string Value { get; set; }
 
         /// <summary>
@@ -93,7 +94,7 @@ namespace Adyen.EcommLibrary.Model.Checkout
             sb.Append("}\n");
             return sb.ToString();
         }
-  
+
         /// <summary>
         /// Returns the JSON string presentation of the object
         /// </summary>
@@ -110,7 +111,7 @@ namespace Adyen.EcommLibrary.Model.Checkout
         /// <returns>Boolean</returns>
         public override bool Equals(object input)
         {
-            return this.Equals(input as SubInputDetail);
+            return Equals(input as SubInputDetail);
         }
 
         /// <summary>
@@ -123,36 +124,36 @@ namespace Adyen.EcommLibrary.Model.Checkout
             if (input == null)
                 return false;
 
-            return 
+            return
                 (
-                    this.Configuration == input.Configuration ||
-                    this.Configuration != null &&
-                    this.Configuration.SequenceEqual(input.Configuration)
-                ) && 
+                    Configuration == input.Configuration ||
+                    Configuration != null &&
+                    Configuration.SequenceEqual(input.Configuration)
+                ) &&
                 (
-                    this.Items == input.Items ||
-                    this.Items != null &&
-                    this.Items.SequenceEqual(input.Items)
-                ) && 
+                    Items == input.Items ||
+                    Items != null &&
+                    Items.SequenceEqual(input.Items)
+                ) &&
                 (
-                    this.Key == input.Key ||
-                    (this.Key != null &&
-                    this.Key.Equals(input.Key))
-                ) && 
+                    Key == input.Key ||
+                    Key != null &&
+                    Key.Equals(input.Key)
+                ) &&
                 (
-                    this.Optional == input.Optional ||
-                    (this.Optional != null &&
-                    this.Optional.Equals(input.Optional))
-                ) && 
+                    Optional == input.Optional ||
+                    Optional != null &&
+                    Optional.Equals(input.Optional)
+                ) &&
                 (
-                    this.Type == input.Type ||
-                    (this.Type != null &&
-                    this.Type.Equals(input.Type))
-                ) && 
+                    Type == input.Type ||
+                    Type != null &&
+                    Type.Equals(input.Type)
+                ) &&
                 (
-                    this.Value == input.Value ||
-                    (this.Value != null &&
-                    this.Value.Equals(input.Value))
+                    Value == input.Value ||
+                    Value != null &&
+                    Value.Equals(input.Value)
                 );
         }
 
@@ -164,19 +165,19 @@ namespace Adyen.EcommLibrary.Model.Checkout
         {
             unchecked // Overflow is fine, just wrap
             {
-                int hashCode = 41;
-                if (this.Configuration != null)
-                    hashCode = hashCode * 59 + this.Configuration.GetHashCode();
-                if (this.Items != null)
-                    hashCode = hashCode * 59 + this.Items.GetHashCode();
-                if (this.Key != null)
-                    hashCode = hashCode * 59 + this.Key.GetHashCode();
-                if (this.Optional != null)
-                    hashCode = hashCode * 59 + this.Optional.GetHashCode();
-                if (this.Type != null)
-                    hashCode = hashCode * 59 + this.Type.GetHashCode();
-                if (this.Value != null)
-                    hashCode = hashCode * 59 + this.Value.GetHashCode();
+                var hashCode = 41;
+                if (Configuration != null)
+                    hashCode = hashCode * 59 + Configuration.GetHashCode();
+                if (Items != null)
+                    hashCode = hashCode * 59 + Items.GetHashCode();
+                if (Key != null)
+                    hashCode = hashCode * 59 + Key.GetHashCode();
+                if (Optional != null)
+                    hashCode = hashCode * 59 + Optional.GetHashCode();
+                if (Type != null)
+                    hashCode = hashCode * 59 + Type.GetHashCode();
+                if (Value != null)
+                    hashCode = hashCode * 59 + Value.GetHashCode();
                 return hashCode;
             }
         }
@@ -186,10 +187,9 @@ namespace Adyen.EcommLibrary.Model.Checkout
         /// </summary>
         /// <param name="validationContext">Validation context</param>
         /// <returns>Validation Result</returns>
-        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+        IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
         {
             yield break;
         }
     }
-
 }

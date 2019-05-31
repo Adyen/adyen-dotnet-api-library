@@ -1,4 +1,3 @@
-
 using Adyen.EcommLibrary.Model.Enum;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
@@ -15,7 +14,7 @@ namespace Adyen.EcommLibrary.Model.Checkout
     /// ThreeDS2RequestData
     /// </summary>
     [DataContract]
-    public partial class ThreeDS2RequestData :  IEquatable<ThreeDS2RequestData>, IValidatableObject
+    public partial class ThreeDS2RequestData : IEquatable<ThreeDS2RequestData>, IValidatableObject
     {
         /// <summary>
         /// Possibility to specify a preference for receiving a challenge from the issuer.
@@ -24,12 +23,10 @@ namespace Adyen.EcommLibrary.Model.Checkout
         [JsonConverter(typeof(StringEnumConverter))]
         public enum ChallengeIndicatorEnum
         {
-
             /// <summary>
             /// Enum NoPreference for value: noPreference
             /// </summary>
-            [EnumMember(Value = "noPreference")]
-            NoPreference = 1,
+            [EnumMember(Value = "noPreference")] NoPreference = 1,
 
             /// <summary>
             /// Enum RequestChallenge for value: requestChallenge
@@ -48,13 +45,17 @@ namespace Adyen.EcommLibrary.Model.Checkout
         /// Possibility to specify a preference for receiving a challenge from the issuer.
         /// </summary>
         /// <value>Possibility to specify a preference for receiving a challenge from the issuer.</value>
-        [DataMember(Name="challengeIndicator", EmitDefaultValue=false)]
+        [DataMember(Name = "challengeIndicator", EmitDefaultValue = false)]
         public ChallengeIndicatorEnum? ChallengeIndicator { get; set; }
+
         /// <summary>
         /// Initializes a new instance of the <see cref="ThreeDS2RequestData" /> class.
         /// </summary>
         [JsonConstructor]
-        protected ThreeDS2RequestData() { }
+        protected ThreeDS2RequestData()
+        {
+        }
+
         /// <summary>
         /// Initializes a new instance of the <see cref="ThreeDS2RequestData" /> class.
         /// </summary>
@@ -71,11 +72,23 @@ namespace Adyen.EcommLibrary.Model.Checkout
         /// <param name="SdkTransID">The &#x60;sdkTransID&#x60; value as received from the 3DS 2.0 SDK. Only for &#x60;deviceChannel&#x60; set to **app**..</param>
         /// <param name="ThreeDSCompInd">Completion indicator for the &#x60;threeDSMethodUrl&#x60; fingerprinting..</param>
         /// <param name="ThreeDSRequestorURL">URL of the (customer service) website that will be shown to the shopper in case of technical errors during the 3DS2.0 process..</param>
-        public ThreeDS2RequestData(bool? AuthenticationOnly = default(bool?), ChallengeIndicatorEnum? ChallengeIndicator = default(ChallengeIndicatorEnum?), DeviceChannelEnum? DeviceChannel = default(DeviceChannelEnum), DeviceRenderOptions DeviceRenderOptions = default(DeviceRenderOptions), string NotificationURL = default(string), string SdkAppID = default(string), string SdkEncData = default(string), SDKEphemPubKey SdkEphemPubKey = default(SDKEphemPubKey), int? SdkMaxTimeout = default(int?), string SdkReferenceNumber = default(string), string SdkTransID = default(string), DeviceFingerprintCompletedEnum ThreeDSCompInd = default(DeviceFingerprintCompletedEnum), string ThreeDSRequestorURL = default(string))
+        public ThreeDS2RequestData(bool? AuthenticationOnly = default(bool?),
+            ChallengeIndicatorEnum? ChallengeIndicator = default(ChallengeIndicatorEnum?),
+            DeviceChannelEnum? DeviceChannel = default(DeviceChannelEnum),
+            DeviceRenderOptions DeviceRenderOptions = default(DeviceRenderOptions),
+            string NotificationURL = default(string), string SdkAppID = default(string),
+            string SdkEncData = default(string), SDKEphemPubKey SdkEphemPubKey = default(SDKEphemPubKey),
+            int? SdkMaxTimeout = default(int?), string SdkReferenceNumber = default(string),
+            string SdkTransID = default(string),
+            DeviceFingerprintCompletedEnum ThreeDSCompInd = default(DeviceFingerprintCompletedEnum),
+            string ThreeDSRequestorURL = default(string))
         {
             // to ensure "DeviceChannel" is required (not null)
-            
-            this.DeviceChannel = DeviceChannel ?? throw new InvalidDataException("DeviceChannel is a required property for ThreeDS2RequestData and cannot be null"); ;
+
+            this.DeviceChannel = DeviceChannel ??
+                                 throw new InvalidDataException(
+                                     "DeviceChannel is a required property for ThreeDS2RequestData and cannot be null");
+            ;
 
             this.AuthenticationOnly = AuthenticationOnly;
             this.ChallengeIndicator = ChallengeIndicator;
@@ -95,7 +108,7 @@ namespace Adyen.EcommLibrary.Model.Checkout
         /// If set to true, you will only do the 3D Secure 2.0 authentication, not the payment authorization.
         /// </summary>
         /// <value>If set to true, you will only do the 3D Secure 2.0 authentication, not the payment authorization.</value>
-        [DataMember(Name="authenticationOnly", EmitDefaultValue=false)]
+        [DataMember(Name = "authenticationOnly", EmitDefaultValue = false)]
         public bool? AuthenticationOnly { get; set; }
 
 
@@ -103,77 +116,77 @@ namespace Adyen.EcommLibrary.Model.Checkout
         /// The environment of the shopper. Allowed values: * &#x60;app&#x60; * &#x60;browser&#x60;
         /// </summary>
         /// <value>The environment of the shopper. Allowed values: * &#x60;app&#x60; * &#x60;browser&#x60;</value>
-        [DataMember(Name="deviceChannel")]
+        [DataMember(Name = "deviceChannel")]
         public DeviceChannelEnum DeviceChannel { get; set; }
 
         /// <summary>
         /// Display options for the 3DS2.0 SDK. Only for deviceChannel &#39;app&#39;.
         /// </summary>
         /// <value>Display options for the 3DS2.0 SDK. Only for deviceChannel &#39;app&#39;.</value>
-        [DataMember(Name="deviceRenderOptions", EmitDefaultValue=false)]
+        [DataMember(Name = "deviceRenderOptions", EmitDefaultValue = false)]
         public DeviceRenderOptions DeviceRenderOptions { get; set; }
 
         /// <summary>
         /// URL the &#x60;CRes&#x60; value will be sent. Only for &#x60;deviceChannel&#x60; set to **browser**.
         /// </summary>
         /// <value>URL the &#x60;CRes&#x60; value will be sent. Only for &#x60;deviceChannel&#x60; set to **browser**.</value>
-        [DataMember(Name="notificationURL", EmitDefaultValue=false)]
+        [DataMember(Name = "notificationURL", EmitDefaultValue = false)]
         public string NotificationURL { get; set; }
 
         /// <summary>
         /// The &#x60;sdkAppID&#x60; value as received from the 3DS 2.0 SDK. Only for &#x60;deviceChannel&#x60; set to **app**.
         /// </summary>
         /// <value>The &#x60;sdkAppID&#x60; value as received from the 3DS 2.0 SDK. Only for &#x60;deviceChannel&#x60; set to **app**.</value>
-        [DataMember(Name="sdkAppID", EmitDefaultValue=false)]
+        [DataMember(Name = "sdkAppID", EmitDefaultValue = false)]
         public string SdkAppID { get; set; }
 
         /// <summary>
         /// The &#x60;sdkEncData&#x60; value as received from the 3DS 2.0 SDK. Only for &#x60;deviceChannel&#x60; set to **app**.
         /// </summary>
         /// <value>The &#x60;sdkEncData&#x60; value as received from the 3DS 2.0 SDK. Only for &#x60;deviceChannel&#x60; set to **app**.</value>
-        [DataMember(Name="sdkEncData", EmitDefaultValue=false)]
+        [DataMember(Name = "sdkEncData", EmitDefaultValue = false)]
         public string SdkEncData { get; set; }
 
         /// <summary>
         /// The &#x60;sdkEphemPubKey&#x60; value as received from the 3DS 2.0 SDK. Only for &#x60;deviceChannel&#x60; set to **app**.
         /// </summary>
         /// <value>The &#x60;sdkEphemPubKey&#x60; value as received from the 3DS 2.0 SDK. Only for &#x60;deviceChannel&#x60; set to **app**.</value>
-        [DataMember(Name="sdkEphemPubKey", EmitDefaultValue=false)]
+        [DataMember(Name = "sdkEphemPubKey", EmitDefaultValue = false)]
         public SDKEphemPubKey SdkEphemPubKey { get; set; }
 
         /// <summary>
         /// The maximum amount of time in minutes for the 3DS 2.0 authentication process. Only for &#x60;deviceChannel&#x60; set to **app**.
         /// </summary>
         /// <value>The maximum amount of time in minutes for the 3DS 2.0 authentication process. Only for &#x60;deviceChannel&#x60; set to **app**.</value>
-        [DataMember(Name="sdkMaxTimeout", EmitDefaultValue=false)]
+        [DataMember(Name = "sdkMaxTimeout", EmitDefaultValue = false)]
         public int? SdkMaxTimeout { get; set; }
 
         /// <summary>
         /// The &#x60;sdkReferenceNumber&#x60; value as received from the 3DS 2.0 SDK. Only for &#x60;deviceChannel&#x60; set to **app**.
         /// </summary>
         /// <value>The &#x60;sdkReferenceNumber&#x60; value as received from the 3DS 2.0 SDK. Only for &#x60;deviceChannel&#x60; set to **app**.</value>
-        [DataMember(Name="sdkReferenceNumber", EmitDefaultValue=false)]
+        [DataMember(Name = "sdkReferenceNumber", EmitDefaultValue = false)]
         public string SdkReferenceNumber { get; set; }
 
         /// <summary>
         /// The &#x60;sdkTransID&#x60; value as received from the 3DS 2.0 SDK. Only for &#x60;deviceChannel&#x60; set to **app**.
         /// </summary>
         /// <value>The &#x60;sdkTransID&#x60; value as received from the 3DS 2.0 SDK. Only for &#x60;deviceChannel&#x60; set to **app**.</value>
-        [DataMember(Name="sdkTransID", EmitDefaultValue=false)]
+        [DataMember(Name = "sdkTransID", EmitDefaultValue = false)]
         public string SdkTransID { get; set; }
 
         /// <summary>
         /// Completion indicator for the &#x60;threeDSMethodUrl&#x60; fingerprinting.
         /// </summary>
         /// <value>Completion indicator for the &#x60;threeDSMethodUrl&#x60; fingerprinting.</value>
-        [DataMember(Name="threeDSCompInd", EmitDefaultValue=false)]
+        [DataMember(Name = "threeDSCompInd", EmitDefaultValue = false)]
         public DeviceFingerprintCompletedEnum ThreeDSCompInd { get; set; }
 
         /// <summary>
         /// URL of the (customer service) website that will be shown to the shopper in case of technical errors during the 3DS2.0 process.
         /// </summary>
         /// <value>URL of the (customer service) website that will be shown to the shopper in case of technical errors during the 3DS2.0 process.</value>
-        [DataMember(Name="threeDSRequestorURL", EmitDefaultValue=false)]
+        [DataMember(Name = "threeDSRequestorURL", EmitDefaultValue = false)]
         public string ThreeDSRequestorURL { get; set; }
 
         /// <summary>
@@ -200,7 +213,7 @@ namespace Adyen.EcommLibrary.Model.Checkout
             sb.Append("}\n");
             return sb.ToString();
         }
- 
+
         /// <summary>
         /// Returns the JSON string presentation of the object
         /// </summary>
@@ -217,7 +230,7 @@ namespace Adyen.EcommLibrary.Model.Checkout
         /// <returns>Boolean</returns>
         public override bool Equals(object input)
         {
-            return this.Equals(input as ThreeDS2RequestData);
+            return Equals(input as ThreeDS2RequestData);
         }
 
         /// <summary>
@@ -232,67 +245,50 @@ namespace Adyen.EcommLibrary.Model.Checkout
 
             return
                 (
-                    this.AuthenticationOnly == input.AuthenticationOnly ||
-                    (this.AuthenticationOnly != null &&
-                    this.AuthenticationOnly.Equals(input.AuthenticationOnly))
+                    AuthenticationOnly == input.AuthenticationOnly ||
+                    AuthenticationOnly != null &&
+                    AuthenticationOnly.Equals(input.AuthenticationOnly)
                 ) &&
                 (
-                    this.ChallengeIndicator == input.ChallengeIndicator ||
-                    (this.ChallengeIndicator != null &&
-                    this.ChallengeIndicator.Equals(input.ChallengeIndicator))
-                ) &&
-                (
-                    this.DeviceChannel == input.DeviceChannel &&
-                    this.DeviceChannel.Equals(input.DeviceChannel)
-                ) &&
-                (
-                    this.DeviceRenderOptions == input.DeviceRenderOptions ||
-                    (this.DeviceRenderOptions != null &&
-                    this.DeviceRenderOptions.Equals(input.DeviceRenderOptions))
-                ) &&
-                (
-                    this.NotificationURL == input.NotificationURL ||
-                    (this.NotificationURL != null &&
-                    this.NotificationURL.Equals(input.NotificationURL))
-                ) &&
-                (
-                    this.SdkAppID == input.SdkAppID ||
-                    (this.SdkAppID != null &&
-                    this.SdkAppID.Equals(input.SdkAppID))
-                ) &&
-                (
-                    this.SdkEncData == input.SdkEncData ||
-                    (this.SdkEncData != null &&
-                    this.SdkEncData.Equals(input.SdkEncData))
-                ) &&
-                (
-                    this.SdkEphemPubKey == input.SdkEphemPubKey ||
-                    (this.SdkEphemPubKey != null &&
-                    this.SdkEphemPubKey.Equals(input.SdkEphemPubKey))
-                ) &&
-                (
-                    this.SdkMaxTimeout == input.SdkMaxTimeout ||
-                    (this.SdkMaxTimeout != null &&
-                    this.SdkMaxTimeout.Equals(input.SdkMaxTimeout))
-                ) &&
-                (
-                    this.SdkReferenceNumber == input.SdkReferenceNumber ||
-                    (this.SdkReferenceNumber != null &&
-                    this.SdkReferenceNumber.Equals(input.SdkReferenceNumber))
-                ) &&
-                (
-                    this.SdkTransID == input.SdkTransID ||
-                    (this.SdkTransID != null &&
-                    this.SdkTransID.Equals(input.SdkTransID))
-                ) &&
-                (
-                    this.ThreeDSCompInd == input.ThreeDSCompInd &&
-                    this.ThreeDSCompInd.Equals(input.ThreeDSCompInd)
-                ) &&
-                (
-                    this.ThreeDSRequestorURL == input.ThreeDSRequestorURL ||
-                    (this.ThreeDSRequestorURL != null &&
-                    this.ThreeDSRequestorURL.Equals(input.ThreeDSRequestorURL))
+                    ChallengeIndicator == input.ChallengeIndicator ||
+                    ChallengeIndicator != null &&
+                    ChallengeIndicator.Equals(input.ChallengeIndicator)
+                ) && DeviceChannel == input.DeviceChannel && DeviceChannel.Equals(input.DeviceChannel) && (
+                    DeviceRenderOptions == input.DeviceRenderOptions ||
+                    DeviceRenderOptions != null &&
+                    DeviceRenderOptions.Equals(input.DeviceRenderOptions)
+                ) && (
+                    NotificationURL == input.NotificationURL ||
+                    NotificationURL != null &&
+                    NotificationURL.Equals(input.NotificationURL)
+                ) && (
+                    SdkAppID == input.SdkAppID ||
+                    SdkAppID != null &&
+                    SdkAppID.Equals(input.SdkAppID)
+                ) && (
+                    SdkEncData == input.SdkEncData ||
+                    SdkEncData != null &&
+                    SdkEncData.Equals(input.SdkEncData)
+                ) && (
+                    SdkEphemPubKey == input.SdkEphemPubKey ||
+                    SdkEphemPubKey != null &&
+                    SdkEphemPubKey.Equals(input.SdkEphemPubKey)
+                ) && (
+                    SdkMaxTimeout == input.SdkMaxTimeout ||
+                    SdkMaxTimeout != null &&
+                    SdkMaxTimeout.Equals(input.SdkMaxTimeout)
+                ) && (
+                    SdkReferenceNumber == input.SdkReferenceNumber ||
+                    SdkReferenceNumber != null &&
+                    SdkReferenceNumber.Equals(input.SdkReferenceNumber)
+                ) && (
+                    SdkTransID == input.SdkTransID ||
+                    SdkTransID != null &&
+                    SdkTransID.Equals(input.SdkTransID)
+                ) && ThreeDSCompInd == input.ThreeDSCompInd && ThreeDSCompInd.Equals(input.ThreeDSCompInd) && (
+                    ThreeDSRequestorURL == input.ThreeDSRequestorURL ||
+                    ThreeDSRequestorURL != null &&
+                    ThreeDSRequestorURL.Equals(input.ThreeDSRequestorURL)
                 );
         }
 
@@ -304,35 +300,35 @@ namespace Adyen.EcommLibrary.Model.Checkout
         {
             unchecked // Overflow is fine, just wrap
             {
-                int hashCode = 41;
-                if (this.AuthenticationOnly != null)
-                    hashCode = hashCode * 59 + this.AuthenticationOnly.GetHashCode();
-                if (this.ChallengeIndicator != null)
-                    hashCode = hashCode * 59 + this.ChallengeIndicator.GetHashCode();
+                var hashCode = 41;
+                if (AuthenticationOnly != null)
+                    hashCode = hashCode * 59 + AuthenticationOnly.GetHashCode();
+                if (ChallengeIndicator != null)
+                    hashCode = hashCode * 59 + ChallengeIndicator.GetHashCode();
 
-                hashCode = hashCode * 59 + this.DeviceChannel.GetHashCode();
+                hashCode = hashCode * 59 + DeviceChannel.GetHashCode();
 
-                if (this.DeviceRenderOptions != null)
-                    hashCode = hashCode * 59 + this.DeviceRenderOptions.GetHashCode();
-                if (this.NotificationURL != null)
-                    hashCode = hashCode * 59 + this.NotificationURL.GetHashCode();
-                if (this.SdkAppID != null)
-                    hashCode = hashCode * 59 + this.SdkAppID.GetHashCode();
-                if (this.SdkEncData != null)
-                    hashCode = hashCode * 59 + this.SdkEncData.GetHashCode();
-                if (this.SdkEphemPubKey != null)
-                    hashCode = hashCode * 59 + this.SdkEphemPubKey.GetHashCode();
-                if (this.SdkMaxTimeout != null)
-                    hashCode = hashCode * 59 + this.SdkMaxTimeout.GetHashCode();
-                if (this.SdkReferenceNumber != null)
-                    hashCode = hashCode * 59 + this.SdkReferenceNumber.GetHashCode();
-                if (this.SdkTransID != null)
-                    hashCode = hashCode * 59 + this.SdkTransID.GetHashCode();
+                if (DeviceRenderOptions != null)
+                    hashCode = hashCode * 59 + DeviceRenderOptions.GetHashCode();
+                if (NotificationURL != null)
+                    hashCode = hashCode * 59 + NotificationURL.GetHashCode();
+                if (SdkAppID != null)
+                    hashCode = hashCode * 59 + SdkAppID.GetHashCode();
+                if (SdkEncData != null)
+                    hashCode = hashCode * 59 + SdkEncData.GetHashCode();
+                if (SdkEphemPubKey != null)
+                    hashCode = hashCode * 59 + SdkEphemPubKey.GetHashCode();
+                if (SdkMaxTimeout != null)
+                    hashCode = hashCode * 59 + SdkMaxTimeout.GetHashCode();
+                if (SdkReferenceNumber != null)
+                    hashCode = hashCode * 59 + SdkReferenceNumber.GetHashCode();
+                if (SdkTransID != null)
+                    hashCode = hashCode * 59 + SdkTransID.GetHashCode();
 
-                hashCode = hashCode * 59 + this.ThreeDSCompInd.GetHashCode();
+                hashCode = hashCode * 59 + ThreeDSCompInd.GetHashCode();
 
-                if (this.ThreeDSRequestorURL != null)
-                    hashCode = hashCode * 59 + this.ThreeDSRequestorURL.GetHashCode();
+                if (ThreeDSRequestorURL != null)
+                    hashCode = hashCode * 59 + ThreeDSRequestorURL.GetHashCode();
                 return hashCode;
             }
         }
@@ -342,10 +338,9 @@ namespace Adyen.EcommLibrary.Model.Checkout
         /// </summary>
         /// <param name="validationContext">Validation context</param>
         /// <returns>Validation Result</returns>
-        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+        IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
         {
             yield break;
         }
     }
-
 }

@@ -7,15 +7,13 @@
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     public partial class TrackData
     {
-
         /// <remarks/>
         [System.Xml.Serialization.XmlAttributeAttribute(DataType = "integer")]
         [System.ComponentModel.DefaultValueAttribute("2")]
         public string TrackNumb;
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute()]
-        [System.ComponentModel.DefaultValueAttribute("ISO")]
+        [System.Xml.Serialization.XmlAttributeAttribute()] [System.ComponentModel.DefaultValueAttribute("ISO")]
         public string TrackFormat;
 
         /// <remarks/>
@@ -24,8 +22,8 @@
 
         public TrackData()
         {
-            this.TrackNumb = "2";
-            this.TrackFormat = "ISO";
+            TrackNumb = "2";
+            TrackFormat = "ISO";
         }
     }
 }

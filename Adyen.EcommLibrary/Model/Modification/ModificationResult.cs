@@ -23,10 +23,8 @@ namespace Adyen.EcommLibrary.Model.Modification
     /// ModificationResult
     /// </summary>
     [DataContract]
-    public class ModificationResult :  IEquatable<ModificationResult>, IValidatableObject
+    public class ModificationResult : IEquatable<ModificationResult>, IValidatableObject
     {
-
-
         /// <summary>
         /// Indicates if the modification request has been received for processing.
         /// </summary>
@@ -83,13 +81,15 @@ namespace Adyen.EcommLibrary.Model.Modification
         /// <param name="Response">Indicates if the modification request has been received for processing..</param>
         /// <param name="AdditionalData">This field contains additional data, which may be returned in a particular modification response..</param>
         /// <param name="PspReference">Adyen&#39;s 16-digit unique reference associated with the transaction/the request. This value is globally unique; quote it when communicating with us about this request..</param>
-        public ModificationResult(ResponseEnum? Response = default(ResponseEnum?), Dictionary<string, string> AdditionalData = default(Dictionary<string, string>), string PspReference = default(string))
+        public ModificationResult(ResponseEnum? Response = default(ResponseEnum?),
+            Dictionary<string, string> AdditionalData = default(Dictionary<string, string>),
+            string PspReference = default(string))
         {
             this.Response = Response;
             this.AdditionalData = AdditionalData;
             this.PspReference = PspReference;
         }
-        
+
         /// <summary>
         /// Returns the string presentation of the object
         /// </summary>
@@ -104,7 +104,7 @@ namespace Adyen.EcommLibrary.Model.Modification
             sb.Append("}\n");
             return sb.ToString();
         }
-  
+
         /// <summary>
         /// Returns the JSON string presentation of the object
         /// </summary>
@@ -121,7 +121,7 @@ namespace Adyen.EcommLibrary.Model.Modification
         /// <returns>Boolean</returns>
         public override bool Equals(object obj)
         {
-            return this.Equals(obj as ModificationResult);
+            return Equals(obj as ModificationResult);
         }
 
         /// <summary>
@@ -134,21 +134,21 @@ namespace Adyen.EcommLibrary.Model.Modification
             if (other == null)
                 return false;
 
-            return 
+            return
                 (
-                    this.Response == other.Response ||
-                    this.Response != null &&
-                    this.Response.Equals(other.Response)
-                ) && 
+                    Response == other.Response ||
+                    Response != null &&
+                    Response.Equals(other.Response)
+                ) &&
                 (
-                    this.AdditionalData == other.AdditionalData ||
-                    this.AdditionalData != null &&
-                    this.AdditionalData.SequenceEqual(other.AdditionalData)
-                ) && 
+                    AdditionalData == other.AdditionalData ||
+                    AdditionalData != null &&
+                    AdditionalData.SequenceEqual(other.AdditionalData)
+                ) &&
                 (
-                    this.PspReference == other.PspReference ||
-                    this.PspReference != null &&
-                    this.PspReference.Equals(other.PspReference)
+                    PspReference == other.PspReference ||
+                    PspReference != null &&
+                    PspReference.Equals(other.PspReference)
                 );
         }
 
@@ -160,14 +160,14 @@ namespace Adyen.EcommLibrary.Model.Modification
         {
             unchecked // Overflow is fine, just wrap
             {
-                int hash = 41;
+                var hash = 41;
                 // Suitable nullity checks etc, of course :)
-                if (this.Response != null)
-                    hash = hash * 59 + this.Response.GetHashCode();
-                if (this.AdditionalData != null)
-                    hash = hash * 59 + this.AdditionalData.GetHashCode();
-                if (this.PspReference != null)
-                    hash = hash * 59 + this.PspReference.GetHashCode();
+                if (Response != null)
+                    hash = hash * 59 + Response.GetHashCode();
+                if (AdditionalData != null)
+                    hash = hash * 59 + AdditionalData.GetHashCode();
+                if (PspReference != null)
+                    hash = hash * 59 + PspReference.GetHashCode();
                 return hash;
             }
         }
@@ -177,10 +177,9 @@ namespace Adyen.EcommLibrary.Model.Modification
         /// </summary>
         /// <param name="validationContext">Validation context</param>
         /// <returns>Validation Result</returns>
-        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+        IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
         {
             yield break;
         }
     }
-
 }

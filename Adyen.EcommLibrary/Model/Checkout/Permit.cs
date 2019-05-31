@@ -1,4 +1,3 @@
-
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -12,7 +11,7 @@ namespace Adyen.EcommLibrary.Model.Checkout
     /// Permit
     /// </summary>
     [DataContract]
-    public partial class Permit :  IEquatable<Permit>, IValidatableObject
+    public partial class Permit : IEquatable<Permit>, IValidatableObject
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="Permit" /> class.
@@ -22,7 +21,9 @@ namespace Adyen.EcommLibrary.Model.Checkout
         /// <param name="Restriction">Permit level restriction overrides..</param>
         /// <param name="ResultKey">The key to link permit requests to permit results..</param>
         /// <param name="ValidTillDate">The expiry date for this permit..</param>
-        public Permit(string PartnerId = default(string), string ProfileReference = default(string), PermitRestriction Restriction = default(PermitRestriction), string ResultKey = default(string), DateTime? ValidTillDate = default(DateTime?))
+        public Permit(string PartnerId = default(string), string ProfileReference = default(string),
+            PermitRestriction Restriction = default(PermitRestriction), string ResultKey = default(string),
+            DateTime? ValidTillDate = default(DateTime?))
         {
             this.PartnerId = PartnerId;
             this.ProfileReference = ProfileReference;
@@ -30,40 +31,40 @@ namespace Adyen.EcommLibrary.Model.Checkout
             this.ResultKey = ResultKey;
             this.ValidTillDate = ValidTillDate;
         }
-        
+
         /// <summary>
         /// Partner ID (when using the permit-per-partner token sharing model).
         /// </summary>
         /// <value>Partner ID (when using the permit-per-partner token sharing model).</value>
-        [DataMember(Name="partnerId", EmitDefaultValue=false)]
+        [DataMember(Name = "partnerId", EmitDefaultValue = false)]
         public string PartnerId { get; set; }
 
         /// <summary>
         /// The profile to apply to this permit (when using the shared permits model).
         /// </summary>
         /// <value>The profile to apply to this permit (when using the shared permits model).</value>
-        [DataMember(Name="profileReference", EmitDefaultValue=false)]
+        [DataMember(Name = "profileReference", EmitDefaultValue = false)]
         public string ProfileReference { get; set; }
 
         /// <summary>
         /// Permit level restriction overrides.
         /// </summary>
         /// <value>Permit level restriction overrides.</value>
-        [DataMember(Name="restriction", EmitDefaultValue=false)]
+        [DataMember(Name = "restriction", EmitDefaultValue = false)]
         public PermitRestriction Restriction { get; set; }
 
         /// <summary>
         /// The key to link permit requests to permit results.
         /// </summary>
         /// <value>The key to link permit requests to permit results.</value>
-        [DataMember(Name="resultKey", EmitDefaultValue=false)]
+        [DataMember(Name = "resultKey", EmitDefaultValue = false)]
         public string ResultKey { get; set; }
 
         /// <summary>
         /// The expiry date for this permit.
         /// </summary>
         /// <value>The expiry date for this permit.</value>
-        [DataMember(Name="validTillDate", EmitDefaultValue=false)]
+        [DataMember(Name = "validTillDate", EmitDefaultValue = false)]
         public DateTime? ValidTillDate { get; set; }
 
         /// <summary>
@@ -82,7 +83,7 @@ namespace Adyen.EcommLibrary.Model.Checkout
             sb.Append("}\n");
             return sb.ToString();
         }
-  
+
         /// <summary>
         /// Returns the JSON string presentation of the object
         /// </summary>
@@ -99,7 +100,7 @@ namespace Adyen.EcommLibrary.Model.Checkout
         /// <returns>Boolean</returns>
         public override bool Equals(object input)
         {
-            return this.Equals(input as Permit);
+            return Equals(input as Permit);
         }
 
         /// <summary>
@@ -112,31 +113,31 @@ namespace Adyen.EcommLibrary.Model.Checkout
             if (input == null)
                 return false;
 
-            return 
+            return
                 (
-                    this.PartnerId == input.PartnerId ||
-                    (this.PartnerId != null &&
-                    this.PartnerId.Equals(input.PartnerId))
-                ) && 
+                    PartnerId == input.PartnerId ||
+                    PartnerId != null &&
+                    PartnerId.Equals(input.PartnerId)
+                ) &&
                 (
-                    this.ProfileReference == input.ProfileReference ||
-                    (this.ProfileReference != null &&
-                    this.ProfileReference.Equals(input.ProfileReference))
-                ) && 
+                    ProfileReference == input.ProfileReference ||
+                    ProfileReference != null &&
+                    ProfileReference.Equals(input.ProfileReference)
+                ) &&
                 (
-                    this.Restriction == input.Restriction ||
-                    (this.Restriction != null &&
-                    this.Restriction.Equals(input.Restriction))
-                ) && 
+                    Restriction == input.Restriction ||
+                    Restriction != null &&
+                    Restriction.Equals(input.Restriction)
+                ) &&
                 (
-                    this.ResultKey == input.ResultKey ||
-                    (this.ResultKey != null &&
-                    this.ResultKey.Equals(input.ResultKey))
-                ) && 
+                    ResultKey == input.ResultKey ||
+                    ResultKey != null &&
+                    ResultKey.Equals(input.ResultKey)
+                ) &&
                 (
-                    this.ValidTillDate == input.ValidTillDate ||
-                    (this.ValidTillDate != null &&
-                    this.ValidTillDate.Equals(input.ValidTillDate))
+                    ValidTillDate == input.ValidTillDate ||
+                    ValidTillDate != null &&
+                    ValidTillDate.Equals(input.ValidTillDate)
                 );
         }
 
@@ -148,17 +149,17 @@ namespace Adyen.EcommLibrary.Model.Checkout
         {
             unchecked // Overflow is fine, just wrap
             {
-                int hashCode = 41;
-                if (this.PartnerId != null)
-                    hashCode = hashCode * 59 + this.PartnerId.GetHashCode();
-                if (this.ProfileReference != null)
-                    hashCode = hashCode * 59 + this.ProfileReference.GetHashCode();
-                if (this.Restriction != null)
-                    hashCode = hashCode * 59 + this.Restriction.GetHashCode();
-                if (this.ResultKey != null)
-                    hashCode = hashCode * 59 + this.ResultKey.GetHashCode();
-                if (this.ValidTillDate != null)
-                    hashCode = hashCode * 59 + this.ValidTillDate.GetHashCode();
+                var hashCode = 41;
+                if (PartnerId != null)
+                    hashCode = hashCode * 59 + PartnerId.GetHashCode();
+                if (ProfileReference != null)
+                    hashCode = hashCode * 59 + ProfileReference.GetHashCode();
+                if (Restriction != null)
+                    hashCode = hashCode * 59 + Restriction.GetHashCode();
+                if (ResultKey != null)
+                    hashCode = hashCode * 59 + ResultKey.GetHashCode();
+                if (ValidTillDate != null)
+                    hashCode = hashCode * 59 + ValidTillDate.GetHashCode();
                 return hashCode;
             }
         }
@@ -168,10 +169,9 @@ namespace Adyen.EcommLibrary.Model.Checkout
         /// </summary>
         /// <param name="validationContext">Validation context</param>
         /// <returns>Validation Result</returns>
-        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+        IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
         {
             yield break;
         }
     }
-
 }

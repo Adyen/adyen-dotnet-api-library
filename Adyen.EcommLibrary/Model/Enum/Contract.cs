@@ -11,24 +11,19 @@ namespace Adyen.EcommLibrary.Model.Enum
     [JsonConverter(typeof(StringEnumConverter))]
     public enum Contract
     {
-
         /// <summary>
         /// Enum ONECLICK for "ONECLICK"
         /// </summary>
-        [EnumMember(Value = "ONECLICK")]
-        Oneclick,
+        [EnumMember(Value = "ONECLICK")] Oneclick,
 
         /// <summary>
         /// Enum RECURRING for "RECURRING"
         /// </summary>
-        [EnumMember(Value = "RECURRING")]
-        Recurring,
+        [EnumMember(Value = "RECURRING")] Recurring,
 
         /// <summary>
         /// Enum PAYOUT for "PAYOUT"
         /// </summary>
-        [EnumMember(Value = "PAYOUT")]
-        Payout
+        [EnumMember(Value = "PAYOUT")] Payout
     }
-
 }

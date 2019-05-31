@@ -1,4 +1,3 @@
-
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -12,7 +11,7 @@ namespace Adyen.EcommLibrary.Model.Checkout
     /// ShopperInteractionDevice
     /// </summary>
     [DataContract]
-    public partial class ShopperInteractionDevice :  IEquatable<ShopperInteractionDevice>, IValidatableObject
+    public partial class ShopperInteractionDevice : IEquatable<ShopperInteractionDevice>, IValidatableObject
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="ShopperInteractionDevice" /> class.
@@ -20,32 +19,33 @@ namespace Adyen.EcommLibrary.Model.Checkout
         /// <param name="Locale">Locale on the shopper interaction device..</param>
         /// <param name="Os">Operating system running on the shopper interaction device..</param>
         /// <param name="OsVersion">Version of the operating system on the shopper interaction device..</param>
-        public ShopperInteractionDevice(string Locale = default(string), string Os = default(string), string OsVersion = default(string))
+        public ShopperInteractionDevice(string Locale = default(string), string Os = default(string),
+            string OsVersion = default(string))
         {
             this.Locale = Locale;
             this.Os = Os;
             this.OsVersion = OsVersion;
         }
-        
+
         /// <summary>
         /// Locale on the shopper interaction device.
         /// </summary>
         /// <value>Locale on the shopper interaction device.</value>
-        [DataMember(Name="locale", EmitDefaultValue=false)]
+        [DataMember(Name = "locale", EmitDefaultValue = false)]
         public string Locale { get; set; }
 
         /// <summary>
         /// Operating system running on the shopper interaction device.
         /// </summary>
         /// <value>Operating system running on the shopper interaction device.</value>
-        [DataMember(Name="os", EmitDefaultValue=false)]
+        [DataMember(Name = "os", EmitDefaultValue = false)]
         public string Os { get; set; }
 
         /// <summary>
         /// Version of the operating system on the shopper interaction device.
         /// </summary>
         /// <value>Version of the operating system on the shopper interaction device.</value>
-        [DataMember(Name="osVersion", EmitDefaultValue=false)]
+        [DataMember(Name = "osVersion", EmitDefaultValue = false)]
         public string OsVersion { get; set; }
 
         /// <summary>
@@ -62,7 +62,7 @@ namespace Adyen.EcommLibrary.Model.Checkout
             sb.Append("}\n");
             return sb.ToString();
         }
-  
+
         /// <summary>
         /// Returns the JSON string presentation of the object
         /// </summary>
@@ -79,7 +79,7 @@ namespace Adyen.EcommLibrary.Model.Checkout
         /// <returns>Boolean</returns>
         public override bool Equals(object input)
         {
-            return this.Equals(input as ShopperInteractionDevice);
+            return Equals(input as ShopperInteractionDevice);
         }
 
         /// <summary>
@@ -92,21 +92,21 @@ namespace Adyen.EcommLibrary.Model.Checkout
             if (input == null)
                 return false;
 
-            return 
+            return
                 (
-                    this.Locale == input.Locale ||
-                    (this.Locale != null &&
-                    this.Locale.Equals(input.Locale))
-                ) && 
+                    Locale == input.Locale ||
+                    Locale != null &&
+                    Locale.Equals(input.Locale)
+                ) &&
                 (
-                    this.Os == input.Os ||
-                    (this.Os != null &&
-                    this.Os.Equals(input.Os))
-                ) && 
+                    Os == input.Os ||
+                    Os != null &&
+                    Os.Equals(input.Os)
+                ) &&
                 (
-                    this.OsVersion == input.OsVersion ||
-                    (this.OsVersion != null &&
-                    this.OsVersion.Equals(input.OsVersion))
+                    OsVersion == input.OsVersion ||
+                    OsVersion != null &&
+                    OsVersion.Equals(input.OsVersion)
                 );
         }
 
@@ -118,13 +118,13 @@ namespace Adyen.EcommLibrary.Model.Checkout
         {
             unchecked // Overflow is fine, just wrap
             {
-                int hashCode = 41;
-                if (this.Locale != null)
-                    hashCode = hashCode * 59 + this.Locale.GetHashCode();
-                if (this.Os != null)
-                    hashCode = hashCode * 59 + this.Os.GetHashCode();
-                if (this.OsVersion != null)
-                    hashCode = hashCode * 59 + this.OsVersion.GetHashCode();
+                var hashCode = 41;
+                if (Locale != null)
+                    hashCode = hashCode * 59 + Locale.GetHashCode();
+                if (Os != null)
+                    hashCode = hashCode * 59 + Os.GetHashCode();
+                if (OsVersion != null)
+                    hashCode = hashCode * 59 + OsVersion.GetHashCode();
                 return hashCode;
             }
         }
@@ -134,10 +134,9 @@ namespace Adyen.EcommLibrary.Model.Checkout
         /// </summary>
         /// <param name="validationContext">Validation context</param>
         /// <returns>Validation Result</returns>
-        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+        IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
         {
             yield break;
         }
     }
-
 }

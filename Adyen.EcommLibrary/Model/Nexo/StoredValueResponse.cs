@@ -9,7 +9,6 @@ namespace Adyen.EcommLibrary.Model.Nexo
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     public partial class StoredValueResponse : IMessagePayload
     {
-
         /// <remarks/>
         [System.Xml.Serialization.XmlElementAttribute(Form = System.Xml.Schema.XmlSchemaForm.Unqualified)]
         public Response Response;
@@ -23,7 +22,8 @@ namespace Adyen.EcommLibrary.Model.Nexo
         public POIData POIData;
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute("StoredValueResult", Form = System.Xml.Schema.XmlSchemaForm.Unqualified)]
+        [System.Xml.Serialization.XmlElementAttribute("StoredValueResult", Form =
+            System.Xml.Schema.XmlSchemaForm.Unqualified)]
         public StoredValueResult[] StoredValueResult;
     }
 }

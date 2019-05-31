@@ -11,7 +11,7 @@ namespace Adyen.EcommLibrary.CloudApiSerialization
             return JsonConvert.DeserializeObject<T>(objectToDeserialize, new JsonSerializerSettings
             {
                 MissingMemberHandling = MissingMemberHandling.Error,
-                Error = delegate (object sender, ErrorEventArgs args)
+                Error = delegate(object sender, ErrorEventArgs args)
                 {
                     var exceptionMessage = string.Format(ExceptionMessages.ExceptionDuringDeserialization,
                         objectToDeserialize,

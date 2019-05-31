@@ -28,8 +28,8 @@ namespace Adyen.EcommLibrary.Service
             {
                 throw ex;
             }
-            return result;
 
+            return result;
         }
 
         public DisableResult Disable(DisableRequest disableRequest)
@@ -45,7 +45,8 @@ namespace Adyen.EcommLibrary.Service
             {
                 throw ex;
             }
+
             return result;
-        } 
+        }
     }
 }

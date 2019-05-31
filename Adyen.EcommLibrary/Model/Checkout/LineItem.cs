@@ -1,4 +1,3 @@
-
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -13,7 +12,7 @@ namespace Adyen.EcommLibrary.Model.Checkout
     /// LineItem
     /// </summary>
     [DataContract]
-    public partial class LineItem :  IEquatable<LineItem>, IValidatableObject
+    public partial class LineItem : IEquatable<LineItem>, IValidatableObject
     {
         /// <summary>
         /// Tax category: High, Low, None, Zero
@@ -22,38 +21,34 @@ namespace Adyen.EcommLibrary.Model.Checkout
         [JsonConverter(typeof(StringEnumConverter))]
         public enum TaxCategoryEnum
         {
-            
             /// <summary>
             /// Enum High for value: High
             /// </summary>
-            [EnumMember(Value = "High")]
-            High = 1,
-            
+            [EnumMember(Value = "High")] High = 1,
+
             /// <summary>
             /// Enum Low for value: Low
             /// </summary>
-            [EnumMember(Value = "Low")]
-            Low = 2,
-            
+            [EnumMember(Value = "Low")] Low = 2,
+
             /// <summary>
             /// Enum None for value: None
             /// </summary>
-            [EnumMember(Value = "None")]
-            None = 3,
-            
+            [EnumMember(Value = "None")] None = 3,
+
             /// <summary>
             /// Enum Zero for value: Zero
             /// </summary>
-            [EnumMember(Value = "Zero")]
-            Zero = 4
+            [EnumMember(Value = "Zero")] Zero = 4
         }
 
         /// <summary>
         /// Tax category: High, Low, None, Zero
         /// </summary>
         /// <value>Tax category: High, Low, None, Zero</value>
-        [DataMember(Name="taxCategory", EmitDefaultValue=false)]
+        [DataMember(Name = "taxCategory", EmitDefaultValue = false)]
         public TaxCategoryEnum? TaxCategory { get; set; }
+
         /// <summary>
         /// Initializes a new instance of the <see cref="LineItem" /> class.
         /// </summary>
@@ -67,7 +62,11 @@ namespace Adyen.EcommLibrary.Model.Checkout
         /// <param name="TaxPercentage">Tax percentage, in minor units..</param>
         /// <param name="ProductUrl">Url to the item productpage.</param>
         /// <param name="ImageUrl">Url to an image of the item.</param>
-        public LineItem(long? AmountExcludingTax = default(long?), long? AmountIncludingTax = default(long?), string Description = default(string), string Id = default(string), long? Quantity = default(long?), long? TaxAmount = default(long?), TaxCategoryEnum? TaxCategory = default(TaxCategoryEnum?), long? TaxPercentage = default(long?), string ProductUrl = default(string), string ImageUrl = default(string))
+        public LineItem(long? AmountExcludingTax = default(long?), long? AmountIncludingTax = default(long?),
+            string Description = default(string), string Id = default(string), long? Quantity = default(long?),
+            long? TaxAmount = default(long?), TaxCategoryEnum? TaxCategory = default(TaxCategoryEnum?),
+            long? TaxPercentage = default(long?), string ProductUrl = default(string),
+            string ImageUrl = default(string))
         {
             this.AmountExcludingTax = AmountExcludingTax;
             this.AmountIncludingTax = AmountIncludingTax;
@@ -80,47 +79,47 @@ namespace Adyen.EcommLibrary.Model.Checkout
             this.ProductUrl = ProductUrl;
             this.ImageUrl = ImageUrl;
         }
-        
+
         /// <summary>
         /// Item amount excluding the tax, in minor units.
         /// </summary>
         /// <value>Item amount excluding the tax, in minor units.</value>
-        [DataMember(Name="amountExcludingTax", EmitDefaultValue=false)]
+        [DataMember(Name = "amountExcludingTax", EmitDefaultValue = false)]
         public long? AmountExcludingTax { get; set; }
 
         /// <summary>
         /// Item amount including the tax, in minor units.
         /// </summary>
         /// <value>Item amount including the tax, in minor units.</value>
-        [DataMember(Name="amountIncludingTax", EmitDefaultValue=false)]
+        [DataMember(Name = "amountIncludingTax", EmitDefaultValue = false)]
         public long? AmountIncludingTax { get; set; }
 
         /// <summary>
         /// Description of the line item.
         /// </summary>
         /// <value>Description of the line item.</value>
-        [DataMember(Name="description", EmitDefaultValue=false)]
+        [DataMember(Name = "description", EmitDefaultValue = false)]
         public string Description { get; set; }
 
         /// <summary>
         /// ID of the line item.
         /// </summary>
         /// <value>ID of the line item.</value>
-        [DataMember(Name="id", EmitDefaultValue=false)]
+        [DataMember(Name = "id", EmitDefaultValue = false)]
         public string Id { get; set; }
 
         /// <summary>
         /// Number of items.
         /// </summary>
         /// <value>Number of items.</value>
-        [DataMember(Name="quantity", EmitDefaultValue=false)]
+        [DataMember(Name = "quantity", EmitDefaultValue = false)]
         public long? Quantity { get; set; }
 
         /// <summary>
         /// Tax amount, in minor units.
         /// </summary>
         /// <value>Tax amount, in minor units.</value>
-        [DataMember(Name="taxAmount", EmitDefaultValue=false)]
+        [DataMember(Name = "taxAmount", EmitDefaultValue = false)]
         public long? TaxAmount { get; set; }
 
 
@@ -128,7 +127,7 @@ namespace Adyen.EcommLibrary.Model.Checkout
         /// Tax percentage, in minor units.
         /// </summary>
         /// <value>Tax percentage, in minor units.</value>
-        [DataMember(Name="taxPercentage", EmitDefaultValue=false)]
+        [DataMember(Name = "taxPercentage", EmitDefaultValue = false)]
         public long? TaxPercentage { get; set; }
 
         /// <summary>
@@ -166,7 +165,7 @@ namespace Adyen.EcommLibrary.Model.Checkout
             sb.Append("}\n");
             return sb.ToString();
         }
-  
+
         /// <summary>
         /// Returns the JSON string presentation of the object
         /// </summary>
@@ -183,7 +182,7 @@ namespace Adyen.EcommLibrary.Model.Checkout
         /// <returns>Boolean</returns>
         public override bool Equals(object input)
         {
-            return this.Equals(input as LineItem);
+            return Equals(input as LineItem);
         }
 
         /// <summary>
@@ -196,56 +195,56 @@ namespace Adyen.EcommLibrary.Model.Checkout
             if (input == null)
                 return false;
 
-            return 
+            return
                 (
-                    this.AmountExcludingTax == input.AmountExcludingTax ||
-                    (this.AmountExcludingTax != null &&
-                    this.AmountExcludingTax.Equals(input.AmountExcludingTax))
-                ) && 
-                (
-                    this.AmountIncludingTax == input.AmountIncludingTax ||
-                    (this.AmountIncludingTax != null &&
-                    this.AmountIncludingTax.Equals(input.AmountIncludingTax))
-                ) && 
-                (
-                    this.Description == input.Description ||
-                    (this.Description != null &&
-                    this.Description.Equals(input.Description))
-                ) && 
-                (
-                    this.Id == input.Id ||
-                    (this.Id != null &&
-                    this.Id.Equals(input.Id))
-                ) && 
-                (
-                    this.Quantity == input.Quantity ||
-                    (this.Quantity != null &&
-                    this.Quantity.Equals(input.Quantity))
-                ) && 
-                (
-                    this.TaxAmount == input.TaxAmount ||
-                    (this.TaxAmount != null &&
-                    this.TaxAmount.Equals(input.TaxAmount))
-                ) && 
-                (
-                    this.TaxCategory == input.TaxCategory ||
-                    (this.TaxCategory != null &&
-                    this.TaxCategory.Equals(input.TaxCategory))
-                ) && 
-                (
-                    this.TaxPercentage == input.TaxPercentage ||
-                    (this.TaxPercentage != null &&
-                    this.TaxPercentage.Equals(input.TaxPercentage))
+                    AmountExcludingTax == input.AmountExcludingTax ||
+                    AmountExcludingTax != null &&
+                    AmountExcludingTax.Equals(input.AmountExcludingTax)
                 ) &&
                 (
-                    this.ProductUrl == input.ProductUrl ||
-                    (this.ProductUrl != null &&
-                    this.ProductUrl.Equals(input.ProductUrl))
+                    AmountIncludingTax == input.AmountIncludingTax ||
+                    AmountIncludingTax != null &&
+                    AmountIncludingTax.Equals(input.AmountIncludingTax)
                 ) &&
                 (
-                    this.ImageUrl == input.ImageUrl ||
-                    (this.ImageUrl != null &&
-                    this.ImageUrl.Equals(input.ImageUrl))
+                    Description == input.Description ||
+                    Description != null &&
+                    Description.Equals(input.Description)
+                ) &&
+                (
+                    Id == input.Id ||
+                    Id != null &&
+                    Id.Equals(input.Id)
+                ) &&
+                (
+                    Quantity == input.Quantity ||
+                    Quantity != null &&
+                    Quantity.Equals(input.Quantity)
+                ) &&
+                (
+                    TaxAmount == input.TaxAmount ||
+                    TaxAmount != null &&
+                    TaxAmount.Equals(input.TaxAmount)
+                ) &&
+                (
+                    TaxCategory == input.TaxCategory ||
+                    TaxCategory != null &&
+                    TaxCategory.Equals(input.TaxCategory)
+                ) &&
+                (
+                    TaxPercentage == input.TaxPercentage ||
+                    TaxPercentage != null &&
+                    TaxPercentage.Equals(input.TaxPercentage)
+                ) &&
+                (
+                    ProductUrl == input.ProductUrl ||
+                    ProductUrl != null &&
+                    ProductUrl.Equals(input.ProductUrl)
+                ) &&
+                (
+                    ImageUrl == input.ImageUrl ||
+                    ImageUrl != null &&
+                    ImageUrl.Equals(input.ImageUrl)
                 );
         }
 
@@ -257,27 +256,27 @@ namespace Adyen.EcommLibrary.Model.Checkout
         {
             unchecked // Overflow is fine, just wrap
             {
-                int hashCode = 41;
-                if (this.AmountExcludingTax != null)
-                    hashCode = hashCode * 59 + this.AmountExcludingTax.GetHashCode();
-                if (this.AmountIncludingTax != null)
-                    hashCode = hashCode * 59 + this.AmountIncludingTax.GetHashCode();
-                if (this.Description != null)
-                    hashCode = hashCode * 59 + this.Description.GetHashCode();
-                if (this.Id != null)
-                    hashCode = hashCode * 59 + this.Id.GetHashCode();
-                if (this.Quantity != null)
-                    hashCode = hashCode * 59 + this.Quantity.GetHashCode();
-                if (this.TaxAmount != null)
-                    hashCode = hashCode * 59 + this.TaxAmount.GetHashCode();
-                if (this.TaxCategory != null)
-                    hashCode = hashCode * 59 + this.TaxCategory.GetHashCode();
-                if (this.TaxPercentage != null)
-                    hashCode = hashCode * 59 + this.TaxPercentage.GetHashCode();
-                if (this.ProductUrl != null)
-                    hashCode = hashCode * 59 + this.ProductUrl.GetHashCode();
-                if (this.ImageUrl != null)
-                    hashCode = hashCode * 59 + this.ImageUrl.GetHashCode();
+                var hashCode = 41;
+                if (AmountExcludingTax != null)
+                    hashCode = hashCode * 59 + AmountExcludingTax.GetHashCode();
+                if (AmountIncludingTax != null)
+                    hashCode = hashCode * 59 + AmountIncludingTax.GetHashCode();
+                if (Description != null)
+                    hashCode = hashCode * 59 + Description.GetHashCode();
+                if (Id != null)
+                    hashCode = hashCode * 59 + Id.GetHashCode();
+                if (Quantity != null)
+                    hashCode = hashCode * 59 + Quantity.GetHashCode();
+                if (TaxAmount != null)
+                    hashCode = hashCode * 59 + TaxAmount.GetHashCode();
+                if (TaxCategory != null)
+                    hashCode = hashCode * 59 + TaxCategory.GetHashCode();
+                if (TaxPercentage != null)
+                    hashCode = hashCode * 59 + TaxPercentage.GetHashCode();
+                if (ProductUrl != null)
+                    hashCode = hashCode * 59 + ProductUrl.GetHashCode();
+                if (ImageUrl != null)
+                    hashCode = hashCode * 59 + ImageUrl.GetHashCode();
                 return hashCode;
             }
         }
@@ -287,10 +286,9 @@ namespace Adyen.EcommLibrary.Model.Checkout
         /// </summary>
         /// <param name="validationContext">Validation context</param>
         /// <returns>Validation Result</returns>
-        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+        IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
         {
             yield break;
         }
     }
-
 }

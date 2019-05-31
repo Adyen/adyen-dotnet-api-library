@@ -1,5 +1,4 @@
-﻿using Adyen.EcommLibrary.Constants;
-using Adyen.EcommLibrary.Constants.HPPConstants;
+﻿using Adyen.EcommLibrary.Constants.HPPConstants;
 using Adyen.EcommLibrary.Model.Hpp;
 using Adyen.EcommLibrary.Util;
 using System;
@@ -16,44 +15,35 @@ namespace Adyen.EcommLibrary.Service
 
         public string DirectoryLookup(Dictionary<string, string> postParameters)
         {
-            var config = this.Client.Config;
-            var clientInterface = this.Client.HttpClient;
+            var config = Client.Config;
+            var clientInterface = Client.HttpClient;
             var endpoint = config.HppEndpoint + "/directory.shtml";
             return clientInterface.Post(endpoint, postParameters, config);
         }
 
         public Dictionary<string, string> GetPostParametersFromDlRequest(DirectoryLookupRequest request)
         {
-            var config = this.Client.Config;
+            var config = Client.Config;
 
             var postParameters = new Dictionary<string, string>
             {
-                {Fields.CurrencyCode, request.CurrencyCode },
+                {Fields.CurrencyCode, request.CurrencyCode},
                 {Fields.MerchantReference, request.MerchantReference},
                 {Fields.SessionValidity, request.SessionValidity},
                 {Fields.CountryCode, request.CountryCode}
             };
 
             if (!string.IsNullOrEmpty(request.MerchantAccount))
-            {
                 postParameters.Add(Fields.MerchantAccount, request.MerchantAccount);
-            }
             else
-            {
                 postParameters.Add(Fields.MerchantAccount, config.MerchantAccount);
-            }
             postParameters.Add(Fields.PaymentAmount, request.PaymentAmount);
 
             if (!string.IsNullOrEmpty(request.SkinCode))
-            {
                 postParameters.Add(Fields.SkinCode, request.SkinCode);
-            }
             else
-            {
                 postParameters.Add(Fields.SkinCode, config.SkinCode);
-            }
 
-           
 
             var hmacValidator = new HmacValidator();
 
@@ -61,13 +51,9 @@ namespace Adyen.EcommLibrary.Service
 
             string hmacKey;
             if (!string.IsNullOrEmpty(request.HmacKey))
-            {
                 hmacKey = request.HmacKey;
-            }
             else
-            {
                 hmacKey = config.HmacKey;
-            }
 
             var merchantSig = hmacValidator.CalculateHmac(dataToSign, hmacKey);
             postParameters.Add(Fields.MerchantSig, merchantSig);
@@ -81,7 +67,7 @@ namespace Adyen.EcommLibrary.Service
             {
                 var postParameters = GetPostParametersFromDlRequest(request);
                 var jsonResult = DirectoryLookup(postParameters);
-                var directoryLookupResult = Util.JsonOperation.Deserialize<DirectoryLookupResult>(jsonResult);
+                var directoryLookupResult = JsonOperation.Deserialize<DirectoryLookupResult>(jsonResult);
 
                 return directoryLookupResult.PaymentMethods;
             }

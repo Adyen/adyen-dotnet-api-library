@@ -1,4 +1,3 @@
-
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -13,7 +12,7 @@ namespace Adyen.EcommLibrary.Model.Checkout
     /// Configuration
     /// </summary>
     [DataContract]
-    public partial class Configuration :  IEquatable<Configuration>, IValidatableObject
+    public partial class Configuration : IEquatable<Configuration>, IValidatableObject
     {
         /// <summary>
         /// Determines whether the cardholder name should be provided or not.  Permitted values: * NONE * OPTIONAL * REQUIRED
@@ -22,32 +21,29 @@ namespace Adyen.EcommLibrary.Model.Checkout
         [JsonConverter(typeof(StringEnumConverter))]
         public enum CardHolderNameEnum
         {
-            
             /// <summary>
             /// Enum NONE for value: NONE
             /// </summary>
-            [EnumMember(Value = "NONE")]
-            NONE = 1,
-            
+            [EnumMember(Value = "NONE")] NONE = 1,
+
             /// <summary>
             /// Enum OPTIONAL for value: OPTIONAL
             /// </summary>
-            [EnumMember(Value = "OPTIONAL")]
-            OPTIONAL = 2,
-            
+            [EnumMember(Value = "OPTIONAL")] OPTIONAL = 2,
+
             /// <summary>
             /// Enum REQUIRED for value: REQUIRED
             /// </summary>
-            [EnumMember(Value = "REQUIRED")]
-            REQUIRED = 3
+            [EnumMember(Value = "REQUIRED")] REQUIRED = 3
         }
 
         /// <summary>
         /// Determines whether the cardholder name should be provided or not.  Permitted values: * NONE * OPTIONAL * REQUIRED
         /// </summary>
         /// <value>Determines whether the cardholder name should be provided or not.  Permitted values: * NONE * OPTIONAL * REQUIRED</value>
-        [DataMember(Name="cardHolderName", EmitDefaultValue=false)]
+        [DataMember(Name = "cardHolderName", EmitDefaultValue = false)]
         public CardHolderNameEnum? CardHolderName { get; set; }
+
         /// <summary>
         /// Initializes a new instance of the <see cref="Configuration" /> class.
         /// </summary>
@@ -55,19 +51,20 @@ namespace Adyen.EcommLibrary.Model.Checkout
         /// <param name="CardHolderName">Determines whether the cardholder name should be provided or not.  Permitted values: * NONE * OPTIONAL * REQUIRED.</param>
         /// <param name="Installments">Describes the configuration for [installment payments](https://docs.adyen.com/developers/payment-methods/installment-payments)..</param>
         /// <param name="ShopperInput">Determines how to display the details fields..</param>
-        public Configuration(Avs Avs = default(Avs), CardHolderNameEnum? CardHolderName = default(CardHolderNameEnum?), Installments Installments = default(Installments), ShopperInput ShopperInput = default(ShopperInput))
+        public Configuration(Avs Avs = default(Avs), CardHolderNameEnum? CardHolderName = default(CardHolderNameEnum?),
+            Installments Installments = default(Installments), ShopperInput ShopperInput = default(ShopperInput))
         {
             this.Avs = Avs;
             this.CardHolderName = CardHolderName;
             this.Installments = Installments;
             this.ShopperInput = ShopperInput;
         }
-        
+
         /// <summary>
         /// Describes the configuration for AVS ([Address Verification System](https://en.wikipedia.org/wiki/Address_Verification_System)).
         /// </summary>
         /// <value>Describes the configuration for AVS ([Address Verification System](https://en.wikipedia.org/wiki/Address_Verification_System)).</value>
-        [DataMember(Name="avs", EmitDefaultValue=false)]
+        [DataMember(Name = "avs", EmitDefaultValue = false)]
         public Avs Avs { get; set; }
 
 
@@ -75,14 +72,14 @@ namespace Adyen.EcommLibrary.Model.Checkout
         /// Describes the configuration for [installment payments](https://docs.adyen.com/developers/payment-methods/installment-payments).
         /// </summary>
         /// <value>Describes the configuration for [installment payments](https://docs.adyen.com/developers/payment-methods/installment-payments).</value>
-        [DataMember(Name="installments", EmitDefaultValue=false)]
+        [DataMember(Name = "installments", EmitDefaultValue = false)]
         public Installments Installments { get; set; }
 
         /// <summary>
         /// Determines how to display the details fields.
         /// </summary>
         /// <value>Determines how to display the details fields.</value>
-        [DataMember(Name="shopperInput", EmitDefaultValue=false)]
+        [DataMember(Name = "shopperInput", EmitDefaultValue = false)]
         public ShopperInput ShopperInput { get; set; }
 
         /// <summary>
@@ -100,7 +97,7 @@ namespace Adyen.EcommLibrary.Model.Checkout
             sb.Append("}\n");
             return sb.ToString();
         }
-  
+
         /// <summary>
         /// Returns the JSON string presentation of the object
         /// </summary>
@@ -117,7 +114,7 @@ namespace Adyen.EcommLibrary.Model.Checkout
         /// <returns>Boolean</returns>
         public override bool Equals(object input)
         {
-            return this.Equals(input as Configuration);
+            return Equals(input as Configuration);
         }
 
         /// <summary>
@@ -130,26 +127,26 @@ namespace Adyen.EcommLibrary.Model.Checkout
             if (input == null)
                 return false;
 
-            return 
+            return
                 (
-                    this.Avs == input.Avs ||
-                    (this.Avs != null &&
-                    this.Avs.Equals(input.Avs))
-                ) && 
+                    Avs == input.Avs ||
+                    Avs != null &&
+                    Avs.Equals(input.Avs)
+                ) &&
                 (
-                    this.CardHolderName == input.CardHolderName ||
-                    (this.CardHolderName != null &&
-                    this.CardHolderName.Equals(input.CardHolderName))
-                ) && 
+                    CardHolderName == input.CardHolderName ||
+                    CardHolderName != null &&
+                    CardHolderName.Equals(input.CardHolderName)
+                ) &&
                 (
-                    this.Installments == input.Installments ||
-                    (this.Installments != null &&
-                    this.Installments.Equals(input.Installments))
-                ) && 
+                    Installments == input.Installments ||
+                    Installments != null &&
+                    Installments.Equals(input.Installments)
+                ) &&
                 (
-                    this.ShopperInput == input.ShopperInput ||
-                    (this.ShopperInput != null &&
-                    this.ShopperInput.Equals(input.ShopperInput))
+                    ShopperInput == input.ShopperInput ||
+                    ShopperInput != null &&
+                    ShopperInput.Equals(input.ShopperInput)
                 );
         }
 
@@ -161,15 +158,15 @@ namespace Adyen.EcommLibrary.Model.Checkout
         {
             unchecked // Overflow is fine, just wrap
             {
-                int hashCode = 41;
-                if (this.Avs != null)
-                    hashCode = hashCode * 59 + this.Avs.GetHashCode();
-                if (this.CardHolderName != null)
-                    hashCode = hashCode * 59 + this.CardHolderName.GetHashCode();
-                if (this.Installments != null)
-                    hashCode = hashCode * 59 + this.Installments.GetHashCode();
-                if (this.ShopperInput != null)
-                    hashCode = hashCode * 59 + this.ShopperInput.GetHashCode();
+                var hashCode = 41;
+                if (Avs != null)
+                    hashCode = hashCode * 59 + Avs.GetHashCode();
+                if (CardHolderName != null)
+                    hashCode = hashCode * 59 + CardHolderName.GetHashCode();
+                if (Installments != null)
+                    hashCode = hashCode * 59 + Installments.GetHashCode();
+                if (ShopperInput != null)
+                    hashCode = hashCode * 59 + ShopperInput.GetHashCode();
                 return hashCode;
             }
         }
@@ -179,10 +176,9 @@ namespace Adyen.EcommLibrary.Model.Checkout
         /// </summary>
         /// <param name="validationContext">Validation context</param>
         /// <returns>Validation Result</returns>
-        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+        IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
         {
             yield break;
         }
     }
-
 }

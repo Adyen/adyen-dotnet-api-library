@@ -7,9 +7,8 @@ namespace Adyen.EcommLibrary.Model.Nexo
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
-    public partial class DiagnosisRequest: IMessagePayload
+    public partial class DiagnosisRequest : IMessagePayload
     {
-
         /// <remarks/>
         [System.Xml.Serialization.XmlElementAttribute("AcquirerID", Form = System.Xml.Schema.XmlSchemaForm.Unqualified)]
         public string[] AcquirerID;
@@ -19,13 +18,12 @@ namespace Adyen.EcommLibrary.Model.Nexo
         public string POIID;
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute()]
-        [System.ComponentModel.DefaultValueAttribute(false)]
+        [System.Xml.Serialization.XmlAttributeAttribute()] [System.ComponentModel.DefaultValueAttribute(false)]
         public bool HostDiagnosisFlag;
 
         public DiagnosisRequest()
         {
-            this.HostDiagnosisFlag = false;
+            HostDiagnosisFlag = false;
         }
     }
 }

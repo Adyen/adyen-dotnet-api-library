@@ -7,14 +7,12 @@
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     public partial class SoundRequest
     {
-
         /// <remarks/>
         [System.Xml.Serialization.XmlElementAttribute(Form = System.Xml.Schema.XmlSchemaForm.Unqualified)]
         public SoundContent SoundContent;
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute()]
-        [System.ComponentModel.DefaultValueAttribute("NotRequired")]
+        [System.Xml.Serialization.XmlAttributeAttribute()] [System.ComponentModel.DefaultValueAttribute("NotRequired")]
         public string ResponseMode;
 
         /// <remarks/>
@@ -27,7 +25,7 @@
 
         public SoundRequest()
         {
-            this.ResponseMode = "NotRequired";
+            ResponseMode = "NotRequired";
         }
     }
 }

@@ -7,9 +7,9 @@
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     public partial class EncapsulatedContentType
     {
-
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Form = System.Xml.Schema.XmlSchemaForm.Unqualified, DataType = "base64Binary")]
+        [System.Xml.Serialization.XmlElementAttribute(Form = System.Xml.Schema.XmlSchemaForm.Unqualified,
+            DataType = "base64Binary")]
         public byte[] Content;
 
         /// <remarks/>

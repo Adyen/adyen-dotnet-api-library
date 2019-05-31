@@ -14,13 +14,13 @@ namespace Adyen.EcommLibrary.Service.Resource
             Endpoint = endpoint;
             RequiredFields = requiredFields;
         }
-        
+
         public string Request(string json)
         {
-            var clientInterface = this._abstractService.Client.HttpClient;
-            var config = this._abstractService.Client.Config;
-            
-            return clientInterface.Request(this.Endpoint, json, config);
+            var clientInterface = _abstractService.Client.HttpClient;
+            var config = _abstractService.Client.Config;
+
+            return clientInterface.Request(Endpoint, json, config);
         }
     }
 }

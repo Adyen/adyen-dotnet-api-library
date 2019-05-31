@@ -16,7 +16,8 @@ namespace Adyen.EcommLibrary.Test
             Assert.AreEqual(paymentResult.ResultCode, ResultCodeEnum.Authorised);
             Assert.AreEqual("411111", GetAdditionalData(paymentResult.AdditionalData, "cardBin"));
             Assert.AreEqual("43733", GetAdditionalData(paymentResult.AdditionalData, "authCode"));
-            Assert.AreEqual("4 AVS not supported for this card type", GetAdditionalData(paymentResult.AdditionalData, "avsResult"));
+            Assert.AreEqual("4 AVS not supported for this card type",
+                GetAdditionalData(paymentResult.AdditionalData, "avsResult"));
             Assert.AreEqual("1 Matches", GetAdditionalData(paymentResult.AdditionalData, "cvcResult"));
             Assert.AreEqual("visa", GetAdditionalData(paymentResult.AdditionalData, "paymentMethod"));
         }
@@ -28,7 +29,8 @@ namespace Adyen.EcommLibrary.Test
             Assert.AreEqual(paymentResult.ResultCode, ResultCodeEnum.Authorised);
             Assert.AreEqual("411111", GetAdditionalData(paymentResult.AdditionalData, "cardBin"));
             Assert.AreEqual("43733", GetAdditionalData(paymentResult.AdditionalData, "authCode"));
-            Assert.AreEqual("4 AVS not supported for this card type", GetAdditionalData(paymentResult.AdditionalData, "avsResult"));
+            Assert.AreEqual("4 AVS not supported for this card type",
+                GetAdditionalData(paymentResult.AdditionalData, "avsResult"));
             Assert.AreEqual("1 Matches", GetAdditionalData(paymentResult.AdditionalData, "cvcResult"));
             Assert.AreEqual("visa", GetAdditionalData(paymentResult.AdditionalData, "paymentMethod"));
         }
@@ -56,15 +58,18 @@ namespace Adyen.EcommLibrary.Test
             Assert.AreEqual(paymentResult.ResultCode, ResultCodeEnum.IdentifyShopper);
             Assert.IsNotNull(paymentResult.PspReference);
 
-            Assert.AreEqual("74044f6c-7d79-4dd1-9859-3b2879a32fb0", GetAdditionalData(paymentResult.AdditionalData, "threeds2.threeDSServerTransID"));
-            Assert.AreEqual(@"https://pal-test.adyen.com/threeds2simulator/acs/startMethod.shtml", GetAdditionalData(paymentResult.AdditionalData, "threeds2.threeDSMethodURL"));
+            Assert.AreEqual("74044f6c-7d79-4dd1-9859-3b2879a32fb0",
+                GetAdditionalData(paymentResult.AdditionalData, "threeds2.threeDSServerTransID"));
+            Assert.AreEqual(@"https://pal-test.adyen.com/threeds2simulator/acs/startMethod.shtml",
+                GetAdditionalData(paymentResult.AdditionalData, "threeds2.threeDSMethodURL"));
             Assert.AreEqual("[token]", GetAdditionalData(paymentResult.AdditionalData, "threeds2.threeDS2Token"));
         }
 
         [TestMethod]
         public void TestAuthorise3DS2ChallengeShopperMocked()
         {
-            var client = CreateMockTestClientRequest("Mocks/threedsecure2/authorise3ds2-response-challengeshopper.json");
+            var client =
+                CreateMockTestClientRequest("Mocks/threedsecure2/authorise3ds2-response-challengeshopper.json");
             var payment = new Payment(client);
             var paymentRequest = MockPaymentData.CreateFullPaymentRequest3DS2();
             var paymentResult = payment.Authorise3DS2(paymentRequest);
@@ -72,15 +77,23 @@ namespace Adyen.EcommLibrary.Test
             Assert.AreEqual(paymentResult.ResultCode, ResultCodeEnum.ChallengeShopper);
             Assert.IsNotNull(paymentResult.PspReference);
 
-            Assert.AreEqual("C", GetAdditionalData(paymentResult.AdditionalData, "threeds2.threeDS2ResponseData.transStatus"));
-            Assert.AreEqual("Y", GetAdditionalData(paymentResult.AdditionalData, "threeds2.threeDS2ResponseData.acsChallengeMandated"));
-            Assert.AreEqual("https://pal-test.adyen.com/threeds2simulator/acs/challenge.shtml", GetAdditionalData(paymentResult.AdditionalData, "threeds2.threeDS2ResponseData.acsURL"));
-            Assert.AreEqual("74044f6c-7d79-4dd1-9859-3b2879a32fb1", GetAdditionalData(paymentResult.AdditionalData, "threeds2.threeDS2ResponseData.threeDSServerTransID"));
-            Assert.AreEqual("01", GetAdditionalData(paymentResult.AdditionalData, "threeds2.threeDS2ResponseData.authenticationType"));
-            Assert.AreEqual("2.1.0", GetAdditionalData(paymentResult.AdditionalData, "threeds2.threeDS2ResponseData.messageVersion"));
+            Assert.AreEqual("C",
+                GetAdditionalData(paymentResult.AdditionalData, "threeds2.threeDS2ResponseData.transStatus"));
+            Assert.AreEqual("Y",
+                GetAdditionalData(paymentResult.AdditionalData, "threeds2.threeDS2ResponseData.acsChallengeMandated"));
+            Assert.AreEqual("https://pal-test.adyen.com/threeds2simulator/acs/challenge.shtml",
+                GetAdditionalData(paymentResult.AdditionalData, "threeds2.threeDS2ResponseData.acsURL"));
+            Assert.AreEqual("74044f6c-7d79-4dd1-9859-3b2879a32fb1",
+                GetAdditionalData(paymentResult.AdditionalData, "threeds2.threeDS2ResponseData.threeDSServerTransID"));
+            Assert.AreEqual("01",
+                GetAdditionalData(paymentResult.AdditionalData, "threeds2.threeDS2ResponseData.authenticationType"));
+            Assert.AreEqual("2.1.0",
+                GetAdditionalData(paymentResult.AdditionalData, "threeds2.threeDS2ResponseData.messageVersion"));
             Assert.AreEqual("[token]", GetAdditionalData(paymentResult.AdditionalData, "threeds2.threeDS2Token"));
-            Assert.AreEqual("ba961c4b-33f2-4830-3141-744b8586aeb0", GetAdditionalData(paymentResult.AdditionalData, "threeds2.threeDS2ResponseData.acsTransID"));
-            Assert.AreEqual("ADYEN-ACS-SIMULATOR", GetAdditionalData(paymentResult.AdditionalData, "threeds2.threeDS2ResponseData.acsReferenceNumber"));
+            Assert.AreEqual("ba961c4b-33f2-4830-3141-744b8586aeb0",
+                GetAdditionalData(paymentResult.AdditionalData, "threeds2.threeDS2ResponseData.acsTransID"));
+            Assert.AreEqual("ADYEN-ACS-SIMULATOR",
+                GetAdditionalData(paymentResult.AdditionalData, "threeds2.threeDS2ResponseData.acsReferenceNumber"));
         }
 
         [TestMethod]
@@ -105,7 +118,6 @@ namespace Adyen.EcommLibrary.Test
             Assert.AreEqual(paymentResult.ResultCode, ResultCodeEnum.Authorised);
             Assert.IsNotNull(paymentResult.PspReference);
         }
-
 
 
         [TestMethod]
@@ -139,11 +151,11 @@ namespace Adyen.EcommLibrary.Test
             var paymentRequest = MockPaymentData.CreateFullPaymentRequest();
 
 
-
             Assert.IsNotNull(paymentRequest.ApplicationInfo);
             Assert.AreEqual(paymentRequest.ApplicationInfo.AdyenLibrary.Name, ClientConfig.LibName);
             Assert.AreEqual(paymentRequest.ApplicationInfo.AdyenLibrary.Version, ClientConfig.LibVersion);
         }
+
         [TestMethod]
         public void TestPaymentRequest3DApplicationInfo()
         {
@@ -155,11 +167,8 @@ namespace Adyen.EcommLibrary.Test
 
         private string GetAdditionalData(Dictionary<string, string> additionalData, string assertKey)
         {
-            string result = "";
-            if (additionalData.ContainsKey(assertKey))
-            {
-                result = additionalData[assertKey];
-            }
+            var result = "";
+            if (additionalData.ContainsKey(assertKey)) result = additionalData[assertKey];
             return result;
         }
     }

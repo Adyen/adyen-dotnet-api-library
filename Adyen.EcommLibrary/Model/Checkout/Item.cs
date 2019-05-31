@@ -1,4 +1,3 @@
-
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -12,7 +11,7 @@ namespace Adyen.EcommLibrary.Model.Checkout
     /// Item
     /// </summary>
     [DataContract]
-    public partial class Item :  IEquatable<Item>, IValidatableObject
+    public partial class Item : IEquatable<Item>, IValidatableObject
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="Item" /> class.
@@ -24,19 +23,19 @@ namespace Adyen.EcommLibrary.Model.Checkout
             this.Id = Id;
             this.Name = Name;
         }
-        
+
         /// <summary>
         /// The value to provide in the result.
         /// </summary>
         /// <value>The value to provide in the result.</value>
-        [DataMember(Name="id", EmitDefaultValue=false)]
+        [DataMember(Name = "id", EmitDefaultValue = false)]
         public string Id { get; set; }
 
         /// <summary>
         /// The display name.
         /// </summary>
         /// <value>The display name.</value>
-        [DataMember(Name="name", EmitDefaultValue=false)]
+        [DataMember(Name = "name", EmitDefaultValue = false)]
         public string Name { get; set; }
 
         /// <summary>
@@ -52,7 +51,7 @@ namespace Adyen.EcommLibrary.Model.Checkout
             sb.Append("}\n");
             return sb.ToString();
         }
-  
+
         /// <summary>
         /// Returns the JSON string presentation of the object
         /// </summary>
@@ -69,7 +68,7 @@ namespace Adyen.EcommLibrary.Model.Checkout
         /// <returns>Boolean</returns>
         public override bool Equals(object input)
         {
-            return this.Equals(input as Item);
+            return Equals(input as Item);
         }
 
         /// <summary>
@@ -82,16 +81,16 @@ namespace Adyen.EcommLibrary.Model.Checkout
             if (input == null)
                 return false;
 
-            return 
+            return
                 (
-                    this.Id == input.Id ||
-                    (this.Id != null &&
-                    this.Id.Equals(input.Id))
-                ) && 
+                    Id == input.Id ||
+                    Id != null &&
+                    Id.Equals(input.Id)
+                ) &&
                 (
-                    this.Name == input.Name ||
-                    (this.Name != null &&
-                    this.Name.Equals(input.Name))
+                    Name == input.Name ||
+                    Name != null &&
+                    Name.Equals(input.Name)
                 );
         }
 
@@ -103,11 +102,11 @@ namespace Adyen.EcommLibrary.Model.Checkout
         {
             unchecked // Overflow is fine, just wrap
             {
-                int hashCode = 41;
-                if (this.Id != null)
-                    hashCode = hashCode * 59 + this.Id.GetHashCode();
-                if (this.Name != null)
-                    hashCode = hashCode * 59 + this.Name.GetHashCode();
+                var hashCode = 41;
+                if (Id != null)
+                    hashCode = hashCode * 59 + Id.GetHashCode();
+                if (Name != null)
+                    hashCode = hashCode * 59 + Name.GetHashCode();
                 return hashCode;
             }
         }
@@ -117,10 +116,9 @@ namespace Adyen.EcommLibrary.Model.Checkout
         /// </summary>
         /// <param name="validationContext">Validation context</param>
         /// <returns>Validation Result</returns>
-        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+        IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
         {
             yield break;
         }
     }
-
 }

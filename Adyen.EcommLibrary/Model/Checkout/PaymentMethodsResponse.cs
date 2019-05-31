@@ -1,4 +1,3 @@
-
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -13,7 +12,7 @@ namespace Adyen.EcommLibrary.Model.Checkout
     /// PaymentMethodsResponse
     /// </summary>
     [DataContract]
-    public partial class PaymentMethodsResponse :  IEquatable<PaymentMethodsResponse>, IValidatableObject
+    public partial class PaymentMethodsResponse : IEquatable<PaymentMethodsResponse>, IValidatableObject
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="PaymentMethodsResponse" /> class.
@@ -21,32 +20,34 @@ namespace Adyen.EcommLibrary.Model.Checkout
         /// <param name="Groups">Groups of payment methods..</param>
         /// <param name="OneClickPaymentMethods">Detailed list of one-click payment methods..</param>
         /// <param name="PaymentMethods">Detailed list of payment methods required to generate payment forms..</param>
-        public PaymentMethodsResponse(List<PaymentMethodsGroup> Groups = default(List<PaymentMethodsGroup>), List<RecurringDetail> OneClickPaymentMethods = default(List<RecurringDetail>), List<PaymentMethod> PaymentMethods = default(List<PaymentMethod>))
+        public PaymentMethodsResponse(List<PaymentMethodsGroup> Groups = default(List<PaymentMethodsGroup>),
+            List<RecurringDetail> OneClickPaymentMethods = default(List<RecurringDetail>),
+            List<PaymentMethod> PaymentMethods = default(List<PaymentMethod>))
         {
             this.Groups = Groups;
             this.OneClickPaymentMethods = OneClickPaymentMethods;
             this.PaymentMethods = PaymentMethods;
         }
-        
+
         /// <summary>
         /// Groups of payment methods.
         /// </summary>
         /// <value>Groups of payment methods.</value>
-        [DataMember(Name="groups", EmitDefaultValue=false)]
+        [DataMember(Name = "groups", EmitDefaultValue = false)]
         public List<PaymentMethodsGroup> Groups { get; set; }
 
         /// <summary>
         /// Detailed list of one-click payment methods.
         /// </summary>
         /// <value>Detailed list of one-click payment methods.</value>
-        [DataMember(Name="oneClickPaymentMethods", EmitDefaultValue=false)]
+        [DataMember(Name = "oneClickPaymentMethods", EmitDefaultValue = false)]
         public List<RecurringDetail> OneClickPaymentMethods { get; set; }
 
         /// <summary>
         /// Detailed list of payment methods required to generate payment forms.
         /// </summary>
         /// <value>Detailed list of payment methods required to generate payment forms.</value>
-        [DataMember(Name="paymentMethods", EmitDefaultValue=false)]
+        [DataMember(Name = "paymentMethods", EmitDefaultValue = false)]
         public List<PaymentMethod> PaymentMethods { get; set; }
 
         /// <summary>
@@ -63,7 +64,7 @@ namespace Adyen.EcommLibrary.Model.Checkout
             sb.Append("}\n");
             return sb.ToString();
         }
-  
+
         /// <summary>
         /// Returns the JSON string presentation of the object
         /// </summary>
@@ -80,7 +81,7 @@ namespace Adyen.EcommLibrary.Model.Checkout
         /// <returns>Boolean</returns>
         public override bool Equals(object input)
         {
-            return this.Equals(input as PaymentMethodsResponse);
+            return Equals(input as PaymentMethodsResponse);
         }
 
         /// <summary>
@@ -93,21 +94,21 @@ namespace Adyen.EcommLibrary.Model.Checkout
             if (input == null)
                 return false;
 
-            return 
+            return
                 (
-                    this.Groups == input.Groups ||
-                    this.Groups != null &&
-                    this.Groups.SequenceEqual(input.Groups)
-                ) && 
+                    Groups == input.Groups ||
+                    Groups != null &&
+                    Groups.SequenceEqual(input.Groups)
+                ) &&
                 (
-                    this.OneClickPaymentMethods == input.OneClickPaymentMethods ||
-                    this.OneClickPaymentMethods != null &&
-                    this.OneClickPaymentMethods.SequenceEqual(input.OneClickPaymentMethods)
-                ) && 
+                    OneClickPaymentMethods == input.OneClickPaymentMethods ||
+                    OneClickPaymentMethods != null &&
+                    OneClickPaymentMethods.SequenceEqual(input.OneClickPaymentMethods)
+                ) &&
                 (
-                    this.PaymentMethods == input.PaymentMethods ||
-                    this.PaymentMethods != null &&
-                    this.PaymentMethods.SequenceEqual(input.PaymentMethods)
+                    PaymentMethods == input.PaymentMethods ||
+                    PaymentMethods != null &&
+                    PaymentMethods.SequenceEqual(input.PaymentMethods)
                 );
         }
 
@@ -119,13 +120,13 @@ namespace Adyen.EcommLibrary.Model.Checkout
         {
             unchecked // Overflow is fine, just wrap
             {
-                int hashCode = 41;
-                if (this.Groups != null)
-                    hashCode = hashCode * 59 + this.Groups.GetHashCode();
-                if (this.OneClickPaymentMethods != null)
-                    hashCode = hashCode * 59 + this.OneClickPaymentMethods.GetHashCode();
-                if (this.PaymentMethods != null)
-                    hashCode = hashCode * 59 + this.PaymentMethods.GetHashCode();
+                var hashCode = 41;
+                if (Groups != null)
+                    hashCode = hashCode * 59 + Groups.GetHashCode();
+                if (OneClickPaymentMethods != null)
+                    hashCode = hashCode * 59 + OneClickPaymentMethods.GetHashCode();
+                if (PaymentMethods != null)
+                    hashCode = hashCode * 59 + PaymentMethods.GetHashCode();
                 return hashCode;
             }
         }
@@ -135,10 +136,9 @@ namespace Adyen.EcommLibrary.Model.Checkout
         /// </summary>
         /// <param name="validationContext">Validation context</param>
         /// <returns>Validation Result</returns>
-        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+        IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
         {
             yield break;
         }
     }
-
 }

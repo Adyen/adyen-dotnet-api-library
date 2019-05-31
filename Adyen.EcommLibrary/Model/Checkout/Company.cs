@@ -1,4 +1,3 @@
-
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -12,7 +11,7 @@ namespace Adyen.EcommLibrary.Model.Checkout
     /// Company
     /// </summary>
     [DataContract]
-    public partial class Company :  IEquatable<Company>, IValidatableObject
+    public partial class Company : IEquatable<Company>, IValidatableObject
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="Company" /> class.
@@ -23,7 +22,9 @@ namespace Adyen.EcommLibrary.Model.Checkout
         /// <param name="RegistryLocation">Registry location of the company..</param>
         /// <param name="TaxId">Tax ID of the company..</param>
         /// <param name="Type">The company type..</param>
-        public Company(string Homepage = default(string), string Name = default(string), string RegistrationNumber = default(string), string RegistryLocation = default(string), string TaxId = default(string), string Type = default(string))
+        public Company(string Homepage = default(string), string Name = default(string),
+            string RegistrationNumber = default(string), string RegistryLocation = default(string),
+            string TaxId = default(string), string Type = default(string))
         {
             this.Homepage = Homepage;
             this.Name = Name;
@@ -32,47 +33,47 @@ namespace Adyen.EcommLibrary.Model.Checkout
             this.TaxId = TaxId;
             this.Type = Type;
         }
-        
+
         /// <summary>
         /// The company website&#39;s home page.
         /// </summary>
         /// <value>The company website&#39;s home page.</value>
-        [DataMember(Name="homepage", EmitDefaultValue=false)]
+        [DataMember(Name = "homepage", EmitDefaultValue = false)]
         public string Homepage { get; set; }
 
         /// <summary>
         /// The company name.
         /// </summary>
         /// <value>The company name.</value>
-        [DataMember(Name="name", EmitDefaultValue=false)]
+        [DataMember(Name = "name", EmitDefaultValue = false)]
         public string Name { get; set; }
 
         /// <summary>
         /// Registration number of the company.
         /// </summary>
         /// <value>Registration number of the company.</value>
-        [DataMember(Name="registrationNumber", EmitDefaultValue=false)]
+        [DataMember(Name = "registrationNumber", EmitDefaultValue = false)]
         public string RegistrationNumber { get; set; }
 
         /// <summary>
         /// Registry location of the company.
         /// </summary>
         /// <value>Registry location of the company.</value>
-        [DataMember(Name="registryLocation", EmitDefaultValue=false)]
+        [DataMember(Name = "registryLocation", EmitDefaultValue = false)]
         public string RegistryLocation { get; set; }
 
         /// <summary>
         /// Tax ID of the company.
         /// </summary>
         /// <value>Tax ID of the company.</value>
-        [DataMember(Name="taxId", EmitDefaultValue=false)]
+        [DataMember(Name = "taxId", EmitDefaultValue = false)]
         public string TaxId { get; set; }
 
         /// <summary>
         /// The company type.
         /// </summary>
         /// <value>The company type.</value>
-        [DataMember(Name="type", EmitDefaultValue=false)]
+        [DataMember(Name = "type", EmitDefaultValue = false)]
         public string Type { get; set; }
 
         /// <summary>
@@ -92,7 +93,7 @@ namespace Adyen.EcommLibrary.Model.Checkout
             sb.Append("}\n");
             return sb.ToString();
         }
-  
+
         /// <summary>
         /// Returns the JSON string presentation of the object
         /// </summary>
@@ -109,7 +110,7 @@ namespace Adyen.EcommLibrary.Model.Checkout
         /// <returns>Boolean</returns>
         public override bool Equals(object input)
         {
-            return this.Equals(input as Company);
+            return Equals(input as Company);
         }
 
         /// <summary>
@@ -122,36 +123,36 @@ namespace Adyen.EcommLibrary.Model.Checkout
             if (input == null)
                 return false;
 
-            return 
+            return
                 (
-                    this.Homepage == input.Homepage ||
-                    (this.Homepage != null &&
-                    this.Homepage.Equals(input.Homepage))
-                ) && 
+                    Homepage == input.Homepage ||
+                    Homepage != null &&
+                    Homepage.Equals(input.Homepage)
+                ) &&
                 (
-                    this.Name == input.Name ||
-                    (this.Name != null &&
-                    this.Name.Equals(input.Name))
-                ) && 
+                    Name == input.Name ||
+                    Name != null &&
+                    Name.Equals(input.Name)
+                ) &&
                 (
-                    this.RegistrationNumber == input.RegistrationNumber ||
-                    (this.RegistrationNumber != null &&
-                    this.RegistrationNumber.Equals(input.RegistrationNumber))
-                ) && 
+                    RegistrationNumber == input.RegistrationNumber ||
+                    RegistrationNumber != null &&
+                    RegistrationNumber.Equals(input.RegistrationNumber)
+                ) &&
                 (
-                    this.RegistryLocation == input.RegistryLocation ||
-                    (this.RegistryLocation != null &&
-                    this.RegistryLocation.Equals(input.RegistryLocation))
-                ) && 
+                    RegistryLocation == input.RegistryLocation ||
+                    RegistryLocation != null &&
+                    RegistryLocation.Equals(input.RegistryLocation)
+                ) &&
                 (
-                    this.TaxId == input.TaxId ||
-                    (this.TaxId != null &&
-                    this.TaxId.Equals(input.TaxId))
-                ) && 
+                    TaxId == input.TaxId ||
+                    TaxId != null &&
+                    TaxId.Equals(input.TaxId)
+                ) &&
                 (
-                    this.Type == input.Type ||
-                    (this.Type != null &&
-                    this.Type.Equals(input.Type))
+                    Type == input.Type ||
+                    Type != null &&
+                    Type.Equals(input.Type)
                 );
         }
 
@@ -163,19 +164,19 @@ namespace Adyen.EcommLibrary.Model.Checkout
         {
             unchecked // Overflow is fine, just wrap
             {
-                int hashCode = 41;
-                if (this.Homepage != null)
-                    hashCode = hashCode * 59 + this.Homepage.GetHashCode();
-                if (this.Name != null)
-                    hashCode = hashCode * 59 + this.Name.GetHashCode();
-                if (this.RegistrationNumber != null)
-                    hashCode = hashCode * 59 + this.RegistrationNumber.GetHashCode();
-                if (this.RegistryLocation != null)
-                    hashCode = hashCode * 59 + this.RegistryLocation.GetHashCode();
-                if (this.TaxId != null)
-                    hashCode = hashCode * 59 + this.TaxId.GetHashCode();
-                if (this.Type != null)
-                    hashCode = hashCode * 59 + this.Type.GetHashCode();
+                var hashCode = 41;
+                if (Homepage != null)
+                    hashCode = hashCode * 59 + Homepage.GetHashCode();
+                if (Name != null)
+                    hashCode = hashCode * 59 + Name.GetHashCode();
+                if (RegistrationNumber != null)
+                    hashCode = hashCode * 59 + RegistrationNumber.GetHashCode();
+                if (RegistryLocation != null)
+                    hashCode = hashCode * 59 + RegistryLocation.GetHashCode();
+                if (TaxId != null)
+                    hashCode = hashCode * 59 + TaxId.GetHashCode();
+                if (Type != null)
+                    hashCode = hashCode * 59 + Type.GetHashCode();
                 return hashCode;
             }
         }
@@ -185,10 +186,9 @@ namespace Adyen.EcommLibrary.Model.Checkout
         /// </summary>
         /// <param name="validationContext">Validation context</param>
         /// <returns>Validation Result</returns>
-        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+        IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
         {
             yield break;
         }
     }
-
 }

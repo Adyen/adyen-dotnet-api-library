@@ -18,7 +18,7 @@ namespace Adyen.EcommLibrary.Service
             _refund = new Refund(this);
             _cancel = new Cancel(this);
         }
-        
+
         public ModificationResult Capture(CaptureRequest request)
         {
             var jsonRequest = Util.JsonOperation.SerializeRequest(request);
@@ -26,7 +26,7 @@ namespace Adyen.EcommLibrary.Service
 
             return Util.JsonOperation.Deserialize<ModificationResult>(jsonResult);
         }
-        
+
         public ModificationResult CancelOrRefund(CancelOrRefundRequest request)
         {
             var jsonRequest = Util.JsonOperation.SerializeRequest(request);
@@ -34,7 +34,7 @@ namespace Adyen.EcommLibrary.Service
 
             return Util.JsonOperation.Deserialize<ModificationResult>(jsonResult);
         }
-        
+
         public ModificationResult Refund(RefundRequest request)
         {
             var jsonRequest = Util.JsonOperation.SerializeRequest(request);
@@ -42,7 +42,7 @@ namespace Adyen.EcommLibrary.Service
 
             return Util.JsonOperation.Deserialize<ModificationResult>(jsonResult);
         }
-        
+
         public ModificationResult Cancel(CancelRequest request)
         {
             var jsonRequest = Util.JsonOperation.SerializeRequest(request);

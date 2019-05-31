@@ -7,7 +7,6 @@
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     public partial class PaymentAccountReq
     {
-
         /// <remarks/>
         [System.Xml.Serialization.XmlElementAttribute(Form = System.Xml.Schema.XmlSchemaForm.Unqualified)]
         public TransactionIdentification CardAcquisitionReference;
@@ -17,13 +16,12 @@
         public PaymentInstrumentData PaymentInstrumentData;
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute()]
-        [System.ComponentModel.DefaultValueAttribute("Default")]
+        [System.Xml.Serialization.XmlAttributeAttribute()] [System.ComponentModel.DefaultValueAttribute("Default")]
         public string Account;
 
         public PaymentAccountReq()
         {
-            this.Account = "Default";
+            Account = "Default";
         }
     }
 }

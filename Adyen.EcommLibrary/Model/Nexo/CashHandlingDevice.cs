@@ -7,9 +7,9 @@
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     public partial class CashHandlingDevice
     {
-
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute("CoinsOrBills", Form = System.Xml.Schema.XmlSchemaForm.Unqualified)]
+        [System.Xml.Serialization.XmlElementAttribute("CoinsOrBills", Form =
+            System.Xml.Schema.XmlSchemaForm.Unqualified)]
         public CoinsOrBills[] CoinsOrBills;
 
         /// <remarks/>

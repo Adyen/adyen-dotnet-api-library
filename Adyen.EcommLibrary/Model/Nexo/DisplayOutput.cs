@@ -7,7 +7,6 @@
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     public partial class DisplayOutput
     {
-
         /// <remarks/>
         [System.Xml.Serialization.XmlElementAttribute(Form = System.Xml.Schema.XmlSchemaForm.Unqualified)]
         public OutputContent OutputContent;
@@ -17,12 +16,12 @@
         public MenuEntry[] MenuEntry;
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Form = System.Xml.Schema.XmlSchemaForm.Unqualified, DataType = "base64Binary")]
+        [System.Xml.Serialization.XmlElementAttribute(Form = System.Xml.Schema.XmlSchemaForm.Unqualified,
+            DataType = "base64Binary")]
         public byte[] OutputSignature;
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute()]
-        [System.ComponentModel.DefaultValueAttribute(true)]
+        [System.Xml.Serialization.XmlAttributeAttribute()] [System.ComponentModel.DefaultValueAttribute(true)]
         public bool ResponseRequiredFlag;
 
         /// <remarks/>
@@ -40,8 +39,8 @@
 
         public DisplayOutput()
         {
-            this.ResponseRequiredFlag = true;
-            this.MinimumDisplayTime = "0";
+            ResponseRequiredFlag = true;
+            MinimumDisplayTime = "0";
         }
     }
 }

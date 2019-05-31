@@ -7,7 +7,6 @@
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     public partial class CardData
     {
-
         /// <remarks/>
         [System.Xml.Serialization.XmlElementAttribute(Form = System.Xml.Schema.XmlSchemaForm.Unqualified)]
         public ContentInformationType ProtectedCardData;
@@ -17,11 +16,13 @@
         public SensitiveCardData SensitiveCardData;
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute("AllowedProductCode", Form = System.Xml.Schema.XmlSchemaForm.Unqualified)]
+        [System.Xml.Serialization.XmlElementAttribute("AllowedProductCode", Form =
+            System.Xml.Schema.XmlSchemaForm.Unqualified)]
         public string[] AllowedProductCode;
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute("AllowedProduct", Form = System.Xml.Schema.XmlSchemaForm.Unqualified)]
+        [System.Xml.Serialization.XmlElementAttribute("AllowedProduct", Form =
+            System.Xml.Schema.XmlSchemaForm.Unqualified)]
         public AllowedProduct[] AllowedProduct;
 
         /// <remarks/>
@@ -29,7 +30,8 @@
         public PaymentToken PaymentToken;
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute("CustomerOrder", Form = System.Xml.Schema.XmlSchemaForm.Unqualified)]
+        [System.Xml.Serialization.XmlElementAttribute("CustomerOrder", Form =
+            System.Xml.Schema.XmlSchemaForm.Unqualified)]
         public CustomerOrder[] CustomerOrder;
 
         /// <remarks/>

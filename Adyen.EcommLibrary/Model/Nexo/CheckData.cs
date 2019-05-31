@@ -7,7 +7,6 @@
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     public partial class CheckData
     {
-
         /// <remarks/>
         [System.Xml.Serialization.XmlElementAttribute(Form = System.Xml.Schema.XmlSchemaForm.Unqualified)]
         public string BankID;
@@ -29,8 +28,7 @@
         public string CheckCardNumber;
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute()]
-        [System.ComponentModel.DefaultValueAttribute("Personal")]
+        [System.Xml.Serialization.XmlAttributeAttribute()] [System.ComponentModel.DefaultValueAttribute("Personal")]
         public string Code;
 
         /// <remarks/>
@@ -39,7 +37,7 @@
 
         public CheckData()
         {
-            this.Code = "Personal";
+            Code = "Personal";
         }
     }
 }

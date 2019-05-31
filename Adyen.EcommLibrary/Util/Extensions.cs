@@ -35,8 +35,9 @@ namespace Adyen.EcommLibrary.Util
 
         public static string ToIndentedString(this object o)
         {
-            return o == null ? "null"
-                             : o.ToString().Replace("\n", "\n\t\t\t");
+            return o == null
+                ? "null"
+                : o.ToString().Replace("\n", "\n\t\t\t");
         }
     }
 }

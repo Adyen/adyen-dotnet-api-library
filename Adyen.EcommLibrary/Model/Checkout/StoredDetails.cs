@@ -1,4 +1,3 @@
-
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -12,7 +11,7 @@ namespace Adyen.EcommLibrary.Model.Checkout
     /// StoredDetails
     /// </summary>
     [DataContract]
-    public partial class StoredDetails :  IEquatable<StoredDetails>, IValidatableObject
+    public partial class StoredDetails : IEquatable<StoredDetails>, IValidatableObject
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="StoredDetails" /> class.
@@ -20,32 +19,33 @@ namespace Adyen.EcommLibrary.Model.Checkout
         /// <param name="Bank">The stored bank account..</param>
         /// <param name="Card">The stored card information..</param>
         /// <param name="EmailAddress">The email associated with stored payment details..</param>
-        public StoredDetails(BankAccount Bank = default(BankAccount), Card Card = default(Card), string EmailAddress = default(string))
+        public StoredDetails(BankAccount Bank = default(BankAccount), Card Card = default(Card),
+            string EmailAddress = default(string))
         {
             this.Bank = Bank;
             this.Card = Card;
             this.EmailAddress = EmailAddress;
         }
-        
+
         /// <summary>
         /// The stored bank account.
         /// </summary>
         /// <value>The stored bank account.</value>
-        [DataMember(Name="bank", EmitDefaultValue=false)]
+        [DataMember(Name = "bank", EmitDefaultValue = false)]
         public BankAccount Bank { get; set; }
 
         /// <summary>
         /// The stored card information.
         /// </summary>
         /// <value>The stored card information.</value>
-        [DataMember(Name="card", EmitDefaultValue=false)]
+        [DataMember(Name = "card", EmitDefaultValue = false)]
         public Card Card { get; set; }
 
         /// <summary>
         /// The email associated with stored payment details.
         /// </summary>
         /// <value>The email associated with stored payment details.</value>
-        [DataMember(Name="emailAddress", EmitDefaultValue=false)]
+        [DataMember(Name = "emailAddress", EmitDefaultValue = false)]
         public string EmailAddress { get; set; }
 
         /// <summary>
@@ -62,7 +62,7 @@ namespace Adyen.EcommLibrary.Model.Checkout
             sb.Append("}\n");
             return sb.ToString();
         }
-  
+
         /// <summary>
         /// Returns the JSON string presentation of the object
         /// </summary>
@@ -79,7 +79,7 @@ namespace Adyen.EcommLibrary.Model.Checkout
         /// <returns>Boolean</returns>
         public override bool Equals(object input)
         {
-            return this.Equals(input as StoredDetails);
+            return Equals(input as StoredDetails);
         }
 
         /// <summary>
@@ -92,21 +92,21 @@ namespace Adyen.EcommLibrary.Model.Checkout
             if (input == null)
                 return false;
 
-            return 
+            return
                 (
-                    this.Bank == input.Bank ||
-                    (this.Bank != null &&
-                    this.Bank.Equals(input.Bank))
-                ) && 
+                    Bank == input.Bank ||
+                    Bank != null &&
+                    Bank.Equals(input.Bank)
+                ) &&
                 (
-                    this.Card == input.Card ||
-                    (this.Card != null &&
-                    this.Card.Equals(input.Card))
-                ) && 
+                    Card == input.Card ||
+                    Card != null &&
+                    Card.Equals(input.Card)
+                ) &&
                 (
-                    this.EmailAddress == input.EmailAddress ||
-                    (this.EmailAddress != null &&
-                    this.EmailAddress.Equals(input.EmailAddress))
+                    EmailAddress == input.EmailAddress ||
+                    EmailAddress != null &&
+                    EmailAddress.Equals(input.EmailAddress)
                 );
         }
 
@@ -118,13 +118,13 @@ namespace Adyen.EcommLibrary.Model.Checkout
         {
             unchecked // Overflow is fine, just wrap
             {
-                int hashCode = 41;
-                if (this.Bank != null)
-                    hashCode = hashCode * 59 + this.Bank.GetHashCode();
-                if (this.Card != null)
-                    hashCode = hashCode * 59 + this.Card.GetHashCode();
-                if (this.EmailAddress != null)
-                    hashCode = hashCode * 59 + this.EmailAddress.GetHashCode();
+                var hashCode = 41;
+                if (Bank != null)
+                    hashCode = hashCode * 59 + Bank.GetHashCode();
+                if (Card != null)
+                    hashCode = hashCode * 59 + Card.GetHashCode();
+                if (EmailAddress != null)
+                    hashCode = hashCode * 59 + EmailAddress.GetHashCode();
                 return hashCode;
             }
         }
@@ -134,10 +134,9 @@ namespace Adyen.EcommLibrary.Model.Checkout
         /// </summary>
         /// <param name="validationContext">Validation context</param>
         /// <returns>Validation Result</returns>
-        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+        IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
         {
             yield break;
         }
     }
-
 }

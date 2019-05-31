@@ -9,16 +9,10 @@
  */
 
 using System;
-using System.Linq;
-using System.IO;
 using System.Text;
-using System.Text.RegularExpressions;
-using System.Collections;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
 using System.Runtime.Serialization;
 using Newtonsoft.Json;
-using Newtonsoft.Json.Converters;
 using System.ComponentModel.DataAnnotations;
 
 namespace Adyen.EcommLibrary.Model
@@ -27,7 +21,7 @@ namespace Adyen.EcommLibrary.Model
     /// Address
     /// </summary>
     [DataContract]
-    public partial class Address :  IEquatable<Address>, IValidatableObject
+    public partial class Address : IEquatable<Address>, IValidatableObject
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="Address" /> class.
@@ -38,7 +32,9 @@ namespace Adyen.EcommLibrary.Model
         /// <param name="Street">The street name..</param>
         /// <param name="HouseNumberOrName">The house number or name. Note: this field is required for US and Canada..</param>
         /// <param name="PostalCode">The postal/zip code with a maximum of 5 characters for US, and maximum of 10 characters for any other country..</param>
-        public Address(string Country = default(string), string StateOrProvince = default(string), string City = default(string), string Street = default(string), string HouseNumberOrName = default(string), string PostalCode = default(string))
+        public Address(string Country = default(string), string StateOrProvince = default(string),
+            string City = default(string), string Street = default(string), string HouseNumberOrName = default(string),
+            string PostalCode = default(string))
         {
             this.Country = Country;
             this.StateOrProvince = StateOrProvince;
@@ -47,47 +43,47 @@ namespace Adyen.EcommLibrary.Model
             this.HouseNumberOrName = HouseNumberOrName;
             this.PostalCode = PostalCode;
         }
-        
+
         /// <summary>
         /// A valid value is an ISO two-character country code (e.g. &#39;NL&#39;).
         /// </summary>
         /// <value>A valid value is an ISO two-character country code (e.g. &#39;NL&#39;).</value>
-        [DataMember(Name="country", EmitDefaultValue=false)]
+        [DataMember(Name = "country", EmitDefaultValue = false)]
         public string Country { get; set; }
 
         /// <summary>
         /// For US or Canada: a valid 2-character abbreviation for the state or province, respectively. For other countries: any abbreviation with maximum 3 characters for the state or province.
         /// </summary>
         /// <value>For US or Canada: a valid 2-character abbreviation for the state or province, respectively. For other countries: any abbreviation with maximum 3 characters for the state or province.</value>
-        [DataMember(Name="stateOrProvince", EmitDefaultValue=false)]
+        [DataMember(Name = "stateOrProvince", EmitDefaultValue = false)]
         public string StateOrProvince { get; set; }
 
         /// <summary>
         /// The city name.
         /// </summary>
         /// <value>The city name.</value>
-        [DataMember(Name="city", EmitDefaultValue=false)]
+        [DataMember(Name = "city", EmitDefaultValue = false)]
         public string City { get; set; }
 
         /// <summary>
         /// The street name.
         /// </summary>
         /// <value>The street name.</value>
-        [DataMember(Name="street", EmitDefaultValue=false)]
+        [DataMember(Name = "street", EmitDefaultValue = false)]
         public string Street { get; set; }
 
         /// <summary>
         /// The house number or name. Note: this field is required for US and Canada.
         /// </summary>
         /// <value>The house number or name. Note: this field is required for US and Canada.</value>
-        [DataMember(Name="houseNumberOrName", EmitDefaultValue=false)]
+        [DataMember(Name = "houseNumberOrName", EmitDefaultValue = false)]
         public string HouseNumberOrName { get; set; }
 
         /// <summary>
         /// The postal/zip code with a maximum of 5 characters for US, and maximum of 10 characters for any other country.
         /// </summary>
         /// <value>The postal/zip code with a maximum of 5 characters for US, and maximum of 10 characters for any other country.</value>
-        [DataMember(Name="postalCode", EmitDefaultValue=false)]
+        [DataMember(Name = "postalCode", EmitDefaultValue = false)]
         public string PostalCode { get; set; }
 
         /// <summary>
@@ -107,7 +103,7 @@ namespace Adyen.EcommLibrary.Model
             sb.Append("}\n");
             return sb.ToString();
         }
-  
+
         /// <summary>
         /// Returns the JSON string presentation of the object
         /// </summary>
@@ -125,7 +121,7 @@ namespace Adyen.EcommLibrary.Model
         public override bool Equals(object obj)
         {
             // credit: http://stackoverflow.com/a/10454552/677735
-            return this.Equals(obj as Address);
+            return Equals(obj as Address);
         }
 
         /// <summary>
@@ -139,36 +135,36 @@ namespace Adyen.EcommLibrary.Model
             if (other == null)
                 return false;
 
-            return 
+            return
                 (
-                    this.Country == other.Country ||
-                    this.Country != null &&
-                    this.Country.Equals(other.Country)
-                ) && 
+                    Country == other.Country ||
+                    Country != null &&
+                    Country.Equals(other.Country)
+                ) &&
                 (
-                    this.StateOrProvince == other.StateOrProvince ||
-                    this.StateOrProvince != null &&
-                    this.StateOrProvince.Equals(other.StateOrProvince)
-                ) && 
+                    StateOrProvince == other.StateOrProvince ||
+                    StateOrProvince != null &&
+                    StateOrProvince.Equals(other.StateOrProvince)
+                ) &&
                 (
-                    this.City == other.City ||
-                    this.City != null &&
-                    this.City.Equals(other.City)
-                ) && 
+                    City == other.City ||
+                    City != null &&
+                    City.Equals(other.City)
+                ) &&
                 (
-                    this.Street == other.Street ||
-                    this.Street != null &&
-                    this.Street.Equals(other.Street)
-                ) && 
+                    Street == other.Street ||
+                    Street != null &&
+                    Street.Equals(other.Street)
+                ) &&
                 (
-                    this.HouseNumberOrName == other.HouseNumberOrName ||
-                    this.HouseNumberOrName != null &&
-                    this.HouseNumberOrName.Equals(other.HouseNumberOrName)
-                ) && 
+                    HouseNumberOrName == other.HouseNumberOrName ||
+                    HouseNumberOrName != null &&
+                    HouseNumberOrName.Equals(other.HouseNumberOrName)
+                ) &&
                 (
-                    this.PostalCode == other.PostalCode ||
-                    this.PostalCode != null &&
-                    this.PostalCode.Equals(other.PostalCode)
+                    PostalCode == other.PostalCode ||
+                    PostalCode != null &&
+                    PostalCode.Equals(other.PostalCode)
                 );
         }
 
@@ -181,20 +177,20 @@ namespace Adyen.EcommLibrary.Model
             // credit: http://stackoverflow.com/a/263416/677735
             unchecked // Overflow is fine, just wrap
             {
-                int hash = 41;
+                var hash = 41;
                 // Suitable nullity checks etc, of course :)
-                if (this.Country != null)
-                    hash = hash * 59 + this.Country.GetHashCode();
-                if (this.StateOrProvince != null)
-                    hash = hash * 59 + this.StateOrProvince.GetHashCode();
-                if (this.City != null)
-                    hash = hash * 59 + this.City.GetHashCode();
-                if (this.Street != null)
-                    hash = hash * 59 + this.Street.GetHashCode();
-                if (this.HouseNumberOrName != null)
-                    hash = hash * 59 + this.HouseNumberOrName.GetHashCode();
-                if (this.PostalCode != null)
-                    hash = hash * 59 + this.PostalCode.GetHashCode();
+                if (Country != null)
+                    hash = hash * 59 + Country.GetHashCode();
+                if (StateOrProvince != null)
+                    hash = hash * 59 + StateOrProvince.GetHashCode();
+                if (City != null)
+                    hash = hash * 59 + City.GetHashCode();
+                if (Street != null)
+                    hash = hash * 59 + Street.GetHashCode();
+                if (HouseNumberOrName != null)
+                    hash = hash * 59 + HouseNumberOrName.GetHashCode();
+                if (PostalCode != null)
+                    hash = hash * 59 + PostalCode.GetHashCode();
                 return hash;
             }
         }
@@ -204,10 +200,9 @@ namespace Adyen.EcommLibrary.Model
         /// </summary>
         /// <param name="validationContext">Validation context</param>
         /// <returns>Validation Result</returns>
-        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+        IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
         {
             yield break;
         }
     }
-
 }

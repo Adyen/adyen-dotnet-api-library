@@ -7,7 +7,6 @@
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     public partial class KEKType
     {
-
         /// <remarks/>
         [System.Xml.Serialization.XmlElementAttribute(Form = System.Xml.Schema.XmlSchemaForm.Unqualified)]
         public KEKIdentifierType KEKIdentifier;
@@ -17,8 +16,7 @@
         public AlgorithmIdentifier KeyEncryptionAlgorithm;
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute()]
-        [System.ComponentModel.DefaultValueAttribute("v4")]
+        [System.Xml.Serialization.XmlAttributeAttribute()] [System.ComponentModel.DefaultValueAttribute("v4")]
         public string Version;
 
         /// <remarks/>
@@ -27,7 +25,7 @@
 
         public KEKType()
         {
-            this.Version = "v4";
+            Version = "v4";
         }
     }
 }

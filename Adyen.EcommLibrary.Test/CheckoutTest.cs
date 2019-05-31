@@ -1,9 +1,6 @@
 ﻿using Adyen.EcommLibrary.Model.ApplicationInformation;
 using Adyen.EcommLibrary.Service;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using System;
-using System.Collections.Generic;
-using System.Text;
 using static Adyen.EcommLibrary.Model.Checkout.PaymentsResponse;
 
 namespace Adyen.EcommLibrary.Test
@@ -55,7 +52,7 @@ namespace Adyen.EcommLibrary.Test
             Assert.AreEqual(paymentResponse.ResultCode, ResultCodeEnum.IdentifyShopper);
             Assert.IsFalse(string.IsNullOrEmpty(paymentResponse.PaymentData));
         }
-        
+
         /// <summary>
         /// Test error flow for
         /// POST /payments
@@ -78,7 +75,8 @@ namespace Adyen.EcommLibrary.Test
         public void PaymentDetailsTest()
         {
             var detailsRequest = CreateDetailsRequest();
-            detailsRequest.Details.Add("payload", "Ab02b4c0!BQABAgBQn96RxfJHpp2RXhqQBuhQFWgE...gfGHb4IZSP4IpoCC2==RXhqQBuhQ");
+            detailsRequest.Details.Add("payload",
+                "Ab02b4c0!BQABAgBQn96RxfJHpp2RXhqQBuhQFWgE...gfGHb4IZSP4IpoCC2==RXhqQBuhQ");
             var client = CreateMockTestClientApiKeyBasedRequest("Mocks/checkout/paymentsdetails-sucess.json");
             var checkout = new Checkout(client);
             var paymentResponse = checkout.PaymentDetails(detailsRequest);
@@ -93,12 +91,15 @@ namespace Adyen.EcommLibrary.Test
         public void PaymentDetailsErrorTest()
         {
             var detailsRequest = CreateDetailsRequest();
-            detailsRequest.Details.Add("payload", "Ab02b4c0!BQABAgBQn96RxfJHpp2RXhqQBuhQFWgE...gfGHb4IZSP4IpoCC2==RXhqQBuhQ");
-            var client = CreateMockTestClientApiKeyBasedRequest("Mocks/checkout/paymentsdetails-error-invalid-data-422.json");
+            detailsRequest.Details.Add("payload",
+                "Ab02b4c0!BQABAgBQn96RxfJHpp2RXhqQBuhQFWgE...gfGHb4IZSP4IpoCC2==RXhqQBuhQ");
+            var client =
+                CreateMockTestClientApiKeyBasedRequest("Mocks/checkout/paymentsdetails-error-invalid-data-422.json");
             var checkout = new Checkout(client);
             var paymentResponse = checkout.PaymentDetails(detailsRequest);
             Assert.IsNull(paymentResponse.ResultCode);
         }
+
         /// <summary>
         /// Test success flow for
         /// POST /paymentMethods
@@ -111,8 +112,8 @@ namespace Adyen.EcommLibrary.Test
             var checkout = new Checkout(client);
             var paymentMethodsResponse = checkout.PaymentMethods(paymentMethodsRequest);
             Assert.AreEqual(paymentMethodsResponse.PaymentMethods.Count, 65);
-
         }
+
         /// <summary>
         /// Test error flow for
         /// POST /paymentMethods
@@ -121,7 +122,8 @@ namespace Adyen.EcommLibrary.Test
         public void PaymentMethodsErrorTest()
         {
             var paymentMethodsRequest = CreatePaymentMethodRequest("YourMerchantAccount");
-            var client = CreateMockTestClientApiKeyBasedRequest("Mocks/checkout/paymentmethods-error-forbidden-403.json");
+            var client =
+                CreateMockTestClientApiKeyBasedRequest("Mocks/checkout/paymentmethods-error-forbidden-403.json");
             var checkout = new Checkout(client);
             var paymentMethodsResponse = checkout.PaymentMethods(paymentMethodsRequest);
             Assert.IsNull(paymentMethodsResponse.PaymentMethods);
@@ -149,7 +151,8 @@ namespace Adyen.EcommLibrary.Test
         public void PaymentSessionErrorTest()
         {
             var paymentSessionRequest = CreatePaymentSessionRequest();
-            var client = CreateMockTestClientApiKeyBasedRequest("Mocks/checkout/paymentsession-error-invalid-data-422.json");
+            var client =
+                CreateMockTestClientApiKeyBasedRequest("Mocks/checkout/paymentsession-error-invalid-data-422.json");
             var checkout = new Checkout(client);
             var paymentSessionResponse = checkout.PaymentSession(paymentSessionRequest);
             Assert.IsNull(paymentSessionResponse.PaymentSession);
@@ -166,8 +169,10 @@ namespace Adyen.EcommLibrary.Test
             var client = CreateMockTestClientApiKeyBasedRequest("Mocks/checkout/paymentsresult-sucess.json");
             var checkout = new Checkout(client);
             var paymentResultResponse = checkout.PaymentsResult(paymentResultRequest);
-            Assert.AreEqual(paymentResultResponse.ResultCode, Model.Checkout.PaymentResultResponse.ResultCodeEnum.Authorised);
+            Assert.AreEqual(paymentResultResponse.ResultCode,
+                Model.Checkout.PaymentResultResponse.ResultCodeEnum.Authorised);
         }
+
         /// <summary>
         /// Test success flow for
         /// POST  /payments/result
@@ -176,21 +181,22 @@ namespace Adyen.EcommLibrary.Test
         public void PaymentsResultErrorTest()
         {
             var paymentResultRequest = CreatePaymentResultRequest();
-            var client = CreateMockTestClientApiKeyBasedRequest("Mocks/checkout/paymentsresult-error-invalid-data-payload-422.json");
+            var client =
+                CreateMockTestClientApiKeyBasedRequest(
+                    "Mocks/checkout/paymentsresult-error-invalid-data-payload-422.json");
             var checkout = new Checkout(client);
             var paymentResultResponse = checkout.PaymentsResult(paymentResultRequest);
             Assert.IsNull(paymentResultResponse.ResultCode);
         }
 
         [TestMethod]
-
         public void ApplicationInfoTest()
         {
-            ApplicationInfo applicationInfo = new ApplicationInfo();
+            var applicationInfo = new ApplicationInfo();
             Assert.AreEqual(applicationInfo.AdyenLibrary.Name, Constants.ClientConfig.LibName);
             Assert.AreEqual(applicationInfo.AdyenLibrary.Version, Constants.ClientConfig.LibVersion);
-
         }
+
         [TestMethod]
         public void PaymentRequestApplicationInfoTest()
         {
@@ -215,7 +221,8 @@ namespace Adyen.EcommLibrary.Test
             var paymentRequest = CreatePaymentRequestCheckout();
             paymentRequest.ApplicationInfo.ExternalPlatform = externalPlatform;
             paymentRequest.ApplicationInfo.MerchantApplication = merchantApplication;
-            Assert.AreEqual(paymentRequest.ApplicationInfo.ExternalPlatform.Integrator, "TestExternalPlatformIntegration");
+            Assert.AreEqual(paymentRequest.ApplicationInfo.ExternalPlatform.Integrator,
+                "TestExternalPlatformIntegration");
             Assert.AreEqual(paymentRequest.ApplicationInfo.ExternalPlatform.Name, "TestExternalPlatformName");
             Assert.AreEqual(paymentRequest.ApplicationInfo.ExternalPlatform.Version, "TestExternalPlatformVersion");
             Assert.AreEqual(paymentRequest.ApplicationInfo.MerchantApplication.Name, "MerchantApplicationName");

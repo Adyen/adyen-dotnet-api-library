@@ -33,7 +33,8 @@ namespace Adyen.EcommLibrary.Test
         [TestMethod]
         public void TestHmac()
         {
-            var data = "countryCode:currencyCode:merchantAccount:merchantReference:paymentAmount:sessionValidity:skinCode:NL:EUR:MagentoMerchantTest2:TEST-PAYMENT-2017-02-01-14\\:02\\:05:199:2017-02-02T14\\:02\\:05+01\\:00:PKz2KML1";
+            var data =
+                "countryCode:currencyCode:merchantAccount:merchantReference:paymentAmount:sessionValidity:skinCode:NL:EUR:MagentoMerchantTest2:TEST-PAYMENT-2017-02-01-14\\:02\\:05:199:2017-02-02T14\\:02\\:05+01\\:00:PKz2KML1";
             var key = "DFB1EB5485895CFA84146406857104ABB4CBCABDC8AAF103A624C8F6A3EAAB00";
             var hmacValidator = new HmacValidator();
             var ecnrypted = hmacValidator.CalculateHmac(data, key);
@@ -43,7 +44,8 @@ namespace Adyen.EcommLibrary.Test
         [TestMethod]
         public void TestSerializationShopperInteractionDefault()
         {
-            var paymentRequest = MockPaymentData.CreateFullPaymentRequestWithShopperInteraction(default(Model.Enum.ShopperInteraction));
+            var paymentRequest =
+                MockPaymentData.CreateFullPaymentRequestWithShopperInteraction(default(Model.Enum.ShopperInteraction));
             var serializedPaymentRequest = JsonOperation.SerializeRequest(paymentRequest);
             Assert.IsFalse(serializedPaymentRequest.Contains("shopperInteraction"));
         }
@@ -51,7 +53,8 @@ namespace Adyen.EcommLibrary.Test
         [TestMethod]
         public void TestSerializationShopperInteractionMoto()
         {
-            var paymentRequest = MockPaymentData.CreateFullPaymentRequestWithShopperInteraction(Model.Enum.ShopperInteraction.Moto);
+            var paymentRequest =
+                MockPaymentData.CreateFullPaymentRequestWithShopperInteraction(Model.Enum.ShopperInteraction.Moto);
             var serializedPaymentRequest = JsonOperation.SerializeRequest(paymentRequest);
             StringAssert.Contains(serializedPaymentRequest, nameof(Model.Enum.ShopperInteraction.Moto));
         }

@@ -19,21 +19,20 @@ namespace Adyen.EcommLibrary.Security
             _aesEncryptor = new AesEncryptor();
             _hmacSha256Wrapper = new HmacSha256Wrapper();
             _ivModGenerator = new IvModGenerator();
-           
         }
 
         public SaleToPoiMessageSecured Encrypt(string saleToPoiMessage, MessageHeader messageHeader,
-                                                 EncryptionCredentialDetails encryptionCredentialDetails)
+            EncryptionCredentialDetails encryptionCredentialDetails)
         {
             var encryptionDerivedKey = _encryptionDerivedKeyGenerator.Generate(encryptionCredentialDetails);
             var saleToPoiMessageJson = saleToPoiMessage;
             var saleToPoiMessageByteArray = Encoding.ASCII.GetBytes(saleToPoiMessageJson);
             var ivMod = _ivModGenerator.GenerateRandomMod();
             var saleToPoiMessageAesEncrypted = _aesEncryptor.Encrypt(saleToPoiMessageByteArray,
-                                                                     encryptionDerivedKey,
-                                                                     ivMod);
+                encryptionDerivedKey,
+                ivMod);
             var saleToPoiMessageAesEncryptedHmac = _hmacSha256Wrapper.HMac(saleToPoiMessageByteArray,
-                                                                           encryptionDerivedKey.HmacKey);
+                encryptionDerivedKey.HmacKey);
 
 
             var saleToPoiMessageSecured = new SaleToPoiRequestSecured
@@ -49,20 +48,21 @@ namespace Adyen.EcommLibrary.Security
                     AdyenCryptoVersion = encryptionCredentialDetails.AdyenCryptoVersion
                 }
             };
-            
+
             return saleToPoiMessageSecured;
         }
 
-        public string Decrypt(SaleToPoiMessageSecured saleToPoiMessageSecured, EncryptionCredentialDetails encryptionCredentialDetails)
+        public string Decrypt(SaleToPoiMessageSecured saleToPoiMessageSecured,
+            EncryptionCredentialDetails encryptionCredentialDetails)
         {
             var encryptedSaleToPoiMessageByteArray = Convert.FromBase64String(saleToPoiMessageSecured.NexoBlob);
             var encryptionDerivedKey = _encryptionDerivedKeyGenerator.Generate(encryptionCredentialDetails);
 
             var decryptedSaleToPoiMessageByteArray = _aesEncryptor.Decrypt(encryptedSaleToPoiMessageByteArray,
-                                                                           encryptionDerivedKey,
-                                                                           saleToPoiMessageSecured.SecurityTrailer.Nonce);
+                encryptionDerivedKey,
+                saleToPoiMessageSecured.SecurityTrailer.Nonce);
 
-            return System.Text.Encoding.UTF8.GetString(decryptedSaleToPoiMessageByteArray);
+            return Encoding.UTF8.GetString(decryptedSaleToPoiMessageByteArray);
         }
     }
 }

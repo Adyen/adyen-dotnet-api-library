@@ -11,23 +11,19 @@ namespace Adyen.EcommLibrary.Model.Enum
     [JsonConverter(typeof(StringEnumConverter))]
     public enum GenderEnum
     {
-
         /// <summary>
         /// Enum MALE for "MALE"
         /// </summary>
-        [EnumMember(Value = "MALE")]
-        MALE,
+        [EnumMember(Value = "MALE")] MALE,
 
         /// <summary>
         /// Enum FEMALE for "FEMALE"
         /// </summary>
-        [EnumMember(Value = "FEMALE")]
-        FEMALE,
+        [EnumMember(Value = "FEMALE")] FEMALE,
 
         /// <summary>
         /// Enum UNKNOWN for "UNKNOWN"
         /// </summary>
-        [EnumMember(Value = "UNKNOWN")]
-        UNKNOWN
+        [EnumMember(Value = "UNKNOWN")] UNKNOWN
     }
 }

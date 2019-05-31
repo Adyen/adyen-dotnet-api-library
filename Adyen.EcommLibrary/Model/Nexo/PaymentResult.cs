@@ -7,7 +7,6 @@
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     public partial class PaymentResult
     {
-
         /// <remarks/>
         [System.Xml.Serialization.XmlElementAttribute(Form = System.Xml.Schema.XmlSchemaForm.Unqualified)]
         public PaymentInstrumentData PaymentInstrumentData;
@@ -21,7 +20,8 @@
         public string Instalment;
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute("CurrencyConversion", Form = System.Xml.Schema.XmlSchemaForm.Unqualified)]
+        [System.Xml.Serialization.XmlElementAttribute("CurrencyConversion", Form =
+            System.Xml.Schema.XmlSchemaForm.Unqualified)]
         public CurrencyConversion[] CurrencyConversion;
 
         /// <remarks/>
@@ -37,13 +37,11 @@
         public PaymentAcquirerData PaymentAcquirerData;
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute()]
-        [System.ComponentModel.DefaultValueAttribute("Normal")]
+        [System.Xml.Serialization.XmlAttributeAttribute()] [System.ComponentModel.DefaultValueAttribute("Normal")]
         public string Payment;
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute()]
-        [System.ComponentModel.DefaultValueAttribute(false)]
+        [System.Xml.Serialization.XmlAttributeAttribute()] [System.ComponentModel.DefaultValueAttribute(false)]
         public bool MerchantOverrideFlag;
 
         /// <remarks/>
@@ -51,8 +49,7 @@
         public string CustomerLanguage;
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute()]
-        [System.ComponentModel.DefaultValueAttribute(true)]
+        [System.Xml.Serialization.XmlAttributeAttribute()] [System.ComponentModel.DefaultValueAttribute(true)]
         public bool OnlineFlag;
 
         /// <remarks/>
@@ -65,9 +62,9 @@
 
         public PaymentResult()
         {
-            this.Payment = "Normal";
-            this.MerchantOverrideFlag = false;
-            this.OnlineFlag = true;
+            Payment = "Normal";
+            MerchantOverrideFlag = false;
+            OnlineFlag = true;
         }
     }
 }

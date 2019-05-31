@@ -7,9 +7,9 @@
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     public partial class CardReaderInitRequest
     {
-
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute("ForceEntryMode", Form = System.Xml.Schema.XmlSchemaForm.Unqualified)]
+        [System.Xml.Serialization.XmlElementAttribute("ForceEntryMode", Form =
+            System.Xml.Schema.XmlSchemaForm.Unqualified)]
         public string[] ForceEntryMode;
 
         /// <remarks/>
@@ -20,11 +20,9 @@
         [System.Xml.Serialization.XmlAttributeAttribute()]
         public bool WarmResetFlag;
 
-      
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute()]
-        [System.ComponentModel.DefaultValueAttribute(true)]
+        [System.Xml.Serialization.XmlAttributeAttribute()] [System.ComponentModel.DefaultValueAttribute(true)]
         public bool LeaveCardFlag;
 
         /// <remarks/>
@@ -33,7 +31,7 @@
 
         public CardReaderInitRequest()
         {
-            this.LeaveCardFlag = true;
+            LeaveCardFlag = true;
         }
     }
 }

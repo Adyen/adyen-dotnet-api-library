@@ -1,15 +1,13 @@
 ﻿using Adyen.EcommLibrary.Model.CheckoutUtility;
 using Adyen.EcommLibrary.Service.Resource.CheckoutUtility;
 using Newtonsoft.Json;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace Adyen.EcommLibrary.Service
 {
     public class CheckoutUtility : AbstractService
     {
         private OriginKeys _originKeys;
+
         public CheckoutUtility(Client client)
             : base(client)
         {
