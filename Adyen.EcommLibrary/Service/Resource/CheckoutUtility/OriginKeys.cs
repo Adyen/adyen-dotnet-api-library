@@ -8,7 +8,7 @@ namespace Adyen.EcommLibrary.Service.Resource.CheckoutUtility
     public class OriginKeys : ServiceResource
     {
         public OriginKeys(AbstractService abstractService)
-            : base(abstractService, abstractService.Client.Config.CheckoutEndpoint + "/" + ClientConfig.CheckoutUtilityApiVersion + "/originkeys", new List<string> { "originDomains" })
+            : base(abstractService, abstractService.Client.Config.CheckoutEndpoint + "/" + ClientConfig.CheckoutUtilityApiVersion + "/originKeys", new List<string> { "originDomains" })
         {
         }
     }
