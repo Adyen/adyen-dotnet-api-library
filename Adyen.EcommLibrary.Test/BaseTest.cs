@@ -259,9 +259,9 @@ namespace Adyen.EcommLibrary.Test
         /// </summary>
         /// <param name="fileName">The file that is returned</param>
         /// <returns>IClient implementation</returns>
-        protected Client CreateMockTestClientCloudPosApiRequest(string fileName)
+        protected Client CreateMockTestClientPosCloudApiRequest(string fileName)
         {
-            var config = new Config {Endpoint = @"https://cloudapi/"};
+            var config = new Config {Endpoint =ClientConfig.CloudApiEndPointTest};
             var mockPath = GetMockFilePath(fileName);
             var response = MockFileToString(mockPath);
             //Create a mock interface
