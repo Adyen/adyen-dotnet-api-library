@@ -1,4 +1,7 @@
-﻿using System.Net.Security;
+﻿using System;
+using System.ComponentModel;
+using System.IO;
+using System.Net.Security;
 using Adyen.EcommLibrary.CloudApiSerialization;
 using Adyen.EcommLibrary.Model.Nexo;
 using Adyen.EcommLibrary.Security;
@@ -27,11 +30,15 @@ namespace Adyen.EcommLibrary.Service
         /// Terminal Api https call
         /// </summary>
         /// <param name="saleToPoiRequest"></param>
-        /// <param name="messageHeader"></param>
         /// <param name="encryptionCredentialDetails"></param>
+        /// <param name="remoteCertificateValidationCallback"></param>
         /// <returns></returns>
         public SaleToPOIResponse TerminalApiLocal(SaleToPOIMessage saleToPoiRequest, EncryptionCredentialDetails encryptionCredentialDetails, RemoteCertificateValidationCallback remoteCertificateValidationCallback)
         {
+            if (remoteCertificateValidationCallback == null)
+            {
+                throw new InvalidDataException("RemoteCertificateValidationCallback is a required property for TerminalApiLocal and cannot be null");
+            }
             var saleToPoiRequestMessageSerialized = _saleToPoiMessageSerializer.Serialize(saleToPoiRequest);
             this.Client.LogLine("Request: \n" + saleToPoiRequestMessageSerialized);
             var saleToPoiRequestMessageSecured = _messageSecuredEncryptor.Encrypt(saleToPoiRequestMessageSerialized, saleToPoiRequest.MessageHeader, encryptionCredentialDetails);
