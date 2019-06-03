@@ -19,6 +19,7 @@ namespace Adyen.EcommLibrary.Service.Resource
         {
             var clientInterface = this._abstractService.Client.HttpClient;
             var config = this._abstractService.Client.Config;
+            
             return clientInterface.Request(this.Endpoint, json, config);
         }
     }

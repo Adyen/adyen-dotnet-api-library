@@ -1,8 +1,4 @@
-﻿using System;
-using System.ComponentModel;
-using System.IO;
-using System.Net.Security;
-using Adyen.EcommLibrary.CloudApiSerialization;
+﻿using Adyen.EcommLibrary.CloudApiSerialization;
 using Adyen.EcommLibrary.Model.Nexo;
 using Adyen.EcommLibrary.Security;
 using Adyen.EcommLibrary.Service.Resource.Payment;
@@ -30,21 +26,17 @@ namespace Adyen.EcommLibrary.Service
         /// Terminal Api https call
         /// </summary>
         /// <param name="saleToPoiRequest"></param>
+        /// <param name="messageHeader"></param>
         /// <param name="encryptionCredentialDetails"></param>
-        /// <param name="remoteCertificateValidationCallback"></param>
         /// <returns></returns>
-        public SaleToPOIResponse TerminalApiLocal(SaleToPOIMessage saleToPoiRequest, EncryptionCredentialDetails encryptionCredentialDetails, RemoteCertificateValidationCallback remoteCertificateValidationCallback)
+        public SaleToPOIResponse TerminalApiLocal(SaleToPOIMessage saleToPoiRequest, EncryptionCredentialDetails encryptionCredentialDetails)
         {
-            if (remoteCertificateValidationCallback == null)
-            {
-                throw new InvalidDataException("RemoteCertificateValidationCallback is a required property for TerminalApiLocal and cannot be null");
-            }
             var saleToPoiRequestMessageSerialized = _saleToPoiMessageSerializer.Serialize(saleToPoiRequest);
             this.Client.LogLine("Request: \n" + saleToPoiRequestMessageSerialized);
             var saleToPoiRequestMessageSecured = _messageSecuredEncryptor.Encrypt(saleToPoiRequestMessageSerialized, saleToPoiRequest.MessageHeader, encryptionCredentialDetails);
             var serializeSaleToPoiRequestMessageSecured = _saleToPoiMessageSerializer.Serialize(saleToPoiRequestMessageSecured);
             this.Client.LogLine("Encrypted Request: \n" + serializeSaleToPoiRequestMessageSecured);
-            var response = _terminalApiLocal.Request(serializeSaleToPoiRequestMessageSecured, remoteCertificateValidationCallback);
+            var response = _terminalApiLocal.Request(serializeSaleToPoiRequestMessageSecured);
             this.Client.LogLine("Response: \n" + response);
             var saleToPoiResponseSecured = _saleToPoiMessageSecuredSerializer.Deserialize(response);
           
