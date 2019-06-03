@@ -3,12 +3,13 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Net;
+using System.Net.Security;
+using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Threading.Tasks;
 using System.Web;
 using Adyen.EcommLibrary.HttpClient.Interfaces;
 using Adyen.EcommLibrary.Model;
-
 
 namespace Adyen.EcommLibrary.HttpClient
 {
@@ -16,10 +17,10 @@ namespace Adyen.EcommLibrary.HttpClient
     {
         private readonly Encoding _encoding = Encoding.ASCII;
 
-        public string Request(string endpoint, string json, Config config, bool isApiKeyRequired, RequestOptions requestOptions = null)
+        public string Request(string endpoint, string json, Config config, bool isApiKeyRequired, RequestOptions requestOptions = null , RemoteCertificateValidationCallback certificateValidationCallback=null)
         {
             string responseText = null;
-            var httpWebRequest = GetHttpWebRequest(endpoint, config, isApiKeyRequired, requestOptions);
+            var httpWebRequest = GetHttpWebRequest(endpoint, config, isApiKeyRequired, requestOptions , certificateValidationCallback);
             if (config.HttpClientTimeout > 0)
             {
                 httpWebRequest.Timeout = config.HttpClientTimeout;
@@ -70,16 +71,13 @@ namespace Adyen.EcommLibrary.HttpClient
             string responseText;
             //Set security protocol. Only TLS1.2
             ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12;
-
             var httpWebRequest = GetHttpWebRequest(endpoint, config, isApiKeyRequired, requestOptions);
-        
             using (var streamWriter = new StreamWriter(httpWebRequest.GetRequestStream()))
             {
                 streamWriter.Write(json);
                 streamWriter.Flush();
                 streamWriter.Close();
             }
-
             using (var response = (HttpWebResponse)await httpWebRequest.GetResponseAsync())
             {
                 using (var reader = new StreamReader(response.GetResponseStream(), _encoding))
@@ -87,38 +85,37 @@ namespace Adyen.EcommLibrary.HttpClient
                     responseText = await reader.ReadToEndAsync();
                 }
             }
-
             return responseText;
+        }
+        public string Request(string endpoint, string json, Config config, bool isApiKeyRequired, RequestOptions requestOptions = null)
+        {
+            return this.Request(endpoint, json, config, isApiKeyRequired,requestOptions, null);
         }
 
         [Obsolete("This is deprecated functionality by Adyen. Correct use request method with isApiKeyRequired parameter.")]
         public string Request(string endpoint, string json, Config config)
         {
-            return this.Request(endpoint, json, config, false);
+            return this.Request(endpoint, json, config, false,null);
         }
 
         public string Post(string endpoint, Dictionary<string, string> postParameters, Config config)
         {
             var dictToString = QueryString(postParameters);
             byte[] postBytes = Encoding.ASCII.GetBytes(dictToString);
-
             var httpWebRequest = (HttpWebRequest)WebRequest.Create(endpoint);
             httpWebRequest.Method = "POST";
             httpWebRequest.ContentType = "application/x-www-form-urlencoded";
             httpWebRequest.ContentLength = postBytes.Length;
             ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12;
-
             using (var stream = httpWebRequest.GetRequestStream())
             {
                 stream.Write(postBytes, 0, postBytes.Length);
             }
-
             var response = (HttpWebResponse)httpWebRequest.GetResponse();
-
             return new StreamReader(response.GetResponseStream()).ReadToEnd();
         }
 
-        public HttpWebRequest GetHttpWebRequest(string endpoint, Config config, bool isApiKeyRequired, RequestOptions requestOptions = null)
+        public HttpWebRequest GetHttpWebRequest(string endpoint, Config config, bool isApiKeyRequired, RequestOptions requestOptions = null, RemoteCertificateValidationCallback certificateValidationCallback=null)
         {
             //Add default headers
             var httpWebRequest = (HttpWebRequest)WebRequest.Create(endpoint);
@@ -127,17 +124,10 @@ namespace Adyen.EcommLibrary.HttpClient
             httpWebRequest.Headers.Add("Accept-Charset", "UTF-8");
             httpWebRequest.Headers.Add("Cache-Control", "no-cache");
             httpWebRequest.UserAgent = $"{config.ApplicationName} {ClientConfig.UserAgentSuffix}{ClientConfig.LibVersion}";
-         
-            if (config.SkipCertValidation)
-            {
-                httpWebRequest.ServerCertificateValidationCallback = delegate { return true; };
-            }
-
             if (!string.IsNullOrWhiteSpace(requestOptions?.IdempotencyKey))
             {
                 httpWebRequest.Headers.Add("Idempotency-Key", requestOptions?.IdempotencyKey);
             }
-
             //Use one of two authentication method.
             if (isApiKeyRequired || !string.IsNullOrEmpty(config.XApiKey))
             {
@@ -148,13 +138,15 @@ namespace Adyen.EcommLibrary.HttpClient
                 var authString = config.Username + ":" + config.Password;
                 var bytes = Encoding.ASCII.GetBytes(authString);
                 var credentials = Convert.ToBase64String(bytes);
-
                 httpWebRequest.Headers.Add("Authorization", "Basic " + credentials);
                 httpWebRequest.UseDefaultCredentials = true;
             }
+            if (certificateValidationCallback != null)
+            {
+                httpWebRequest.ServerCertificateValidationCallback = certificateValidationCallback;
+            }
             return httpWebRequest;
         }
-
         public static string QueryString(IDictionary<string, string> dict)
         {
             var list = new List<string>();

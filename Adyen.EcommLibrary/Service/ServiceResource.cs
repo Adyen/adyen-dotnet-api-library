@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Net.Security;
 using System.Threading.Tasks;
 using Adyen.EcommLibrary.Model;
 
@@ -21,6 +22,13 @@ namespace Adyen.EcommLibrary.Service
             var clientInterface = _abstractService.Client.HttpClient;
             var config = _abstractService.Client.Config;
             return clientInterface.Request(Endpoint, json, config, _abstractService.IsApiKeyRequired, requestOptions);
+        }
+
+        public string Request(string json, RemoteCertificateValidationCallback remoteCertificateValidationCallback, RequestOptions requestOptions = null)
+        {
+            var clientInterface = _abstractService.Client.HttpClient;
+            var config = _abstractService.Client.Config;
+            return clientInterface.Request(Endpoint, json, config, _abstractService.IsApiKeyRequired, requestOptions, remoteCertificateValidationCallback);
         }
 
         public Task<string> RequestAsync(string json, RequestOptions requestOptions = null)
