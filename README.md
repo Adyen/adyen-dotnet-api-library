@@ -25,7 +25,7 @@ The Library supports all APIs under the following services:
 * Simply download and restore nuget packages  
  https://www.nuget.org/packages/Adyen.EcommLibrary/
 * or install it from package manager
- PM> Install-Package Adyen.EcommLibrary -Version 2.0.2
+ PM> Install-Package Adyen.EcommLibrary -Version 2.1.0
 
 ## Documentation
 * https://docs.adyen.com/developers/development-resources/libraries
