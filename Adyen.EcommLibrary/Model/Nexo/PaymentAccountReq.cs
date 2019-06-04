@@ -18,12 +18,12 @@
 
         /// <remarks/>
         [System.Xml.Serialization.XmlAttributeAttribute()]
-        [System.ComponentModel.DefaultValueAttribute("Default")]
-        public string Account;
+        [System.ComponentModel.DefaultValueAttribute(AccountType.Default)]
+        public AccountType Account;
 
         public PaymentAccountReq()
         {
-            this.Account = "Default";
+            this.Account = AccountType.Default;
         }
     }
 }

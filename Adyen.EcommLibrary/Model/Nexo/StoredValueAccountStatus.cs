@@ -14,7 +14,7 @@
 
         /// <remarks/>
         [System.Xml.Serialization.XmlAttributeAttribute()]
-        public decimal? CurrentBalance;
-
+        public decimal CurrentBalance;
+        
     }
 }

@@ -18,10 +18,10 @@
 
         /// <remarks/>
         [System.Xml.Serialization.XmlAttributeAttribute()]
-        public string Device;
+        public DeviceType Device;
 
         /// <remarks/>
         [System.Xml.Serialization.XmlAttributeAttribute()]
-        public string InfoQualify;
+        public InfoQualifyType InfoQualify;
     }
 }

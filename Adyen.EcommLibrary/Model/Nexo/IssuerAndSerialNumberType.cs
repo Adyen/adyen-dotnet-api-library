@@ -15,6 +15,6 @@
 
         /// <remarks/>
         [System.Xml.Serialization.XmlElementAttribute(Form = System.Xml.Schema.XmlSchemaForm.Unqualified, DataType = "integer")]
-        public string SerialNumber;
+        public int SerialNumber;
     }
 }

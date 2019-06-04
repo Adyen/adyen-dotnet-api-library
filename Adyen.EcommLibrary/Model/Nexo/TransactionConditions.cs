@@ -31,8 +31,8 @@
 
         /// <remarks/>
         [System.Xml.Serialization.XmlAttributeAttribute()]
-        [System.ComponentModel.DefaultValueAttribute("Forbidden")]
-        public string LoyaltyHandling;
+        [System.ComponentModel.DefaultValueAttribute(LoyaltyHandlingType.Forbidden)]
+        public LoyaltyHandlingType LoyaltyHandling;
 
         /// <remarks/>
         [System.Xml.Serialization.XmlAttributeAttribute()]
@@ -50,7 +50,7 @@
         public TransactionConditions()
         {
             this.DebitPreferredFlag = false;
-            this.LoyaltyHandling = "Forbidden";
+            this.LoyaltyHandling = LoyaltyHandlingType.Forbidden;
             this.ForceOnlineFlag = false;
         }
     }

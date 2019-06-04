@@ -14,13 +14,12 @@
 
         /// <remarks/>
         [System.Xml.Serialization.XmlAttributeAttribute()]
-        public decimal? CurrentBalance;
+        public decimal CurrentBalance;
 
-       
         /// <remarks/>
         [System.Xml.Serialization.XmlAttributeAttribute()]
-        [System.ComponentModel.DefaultValueAttribute("Point")]
-        public string LoyaltyUnit;
+        [System.ComponentModel.DefaultValueAttribute(LoyaltyUnitType.Point)]
+        public LoyaltyUnitType LoyaltyUnit;
 
         /// <remarks/>
         [System.Xml.Serialization.XmlAttributeAttribute()]
@@ -28,7 +27,7 @@
 
         public LoyaltyAccountStatus()
         {
-            this.LoyaltyUnit = "Point";
+            this.LoyaltyUnit = LoyaltyUnitType.Point;
         }
     }
 }

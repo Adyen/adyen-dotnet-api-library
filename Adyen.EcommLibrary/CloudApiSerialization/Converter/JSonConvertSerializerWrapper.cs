@@ -1,5 +1,4 @@
 ﻿using Adyen.EcommLibrary.Model.Nexo;
-using Adyen.EcommLibrary.Model.Nexo.Message;
 using Adyen.EcommLibrary.Security;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
@@ -14,7 +13,7 @@ namespace Adyen.EcommLibrary.CloudApiSerialization.Converter
         {
             var serialize= JsonConvert.SerializeObject(saleToPoiMessage,
                 new SaleToPoiMessageConverter(),
-                new StringEnumConverter(),
+                new StringEnumConverter(), 
                 new IsoDateTimeConverter() { DateTimeFormat = DateTimeFormat });
             return serialize;
         }

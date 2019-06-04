@@ -14,7 +14,7 @@
 
         /// <remarks/>
         [System.Xml.Serialization.XmlAttributeAttribute()]
-        public string Reconciliation;
+        public ReconciliationType Reconciliation;
 
         /// <remarks/>
         [System.Xml.Serialization.XmlAttributeAttribute()]

@@ -18,7 +18,7 @@
 
         /// <remarks/>
         [System.Xml.Serialization.XmlAttributeAttribute()]
-        public string PaymentInstrument;
+        public PaymentInstrumentType PaymentInstrument;
 
         /// <remarks/>
         [System.Xml.Serialization.XmlAttributeAttribute()]
@@ -26,8 +26,8 @@
 
         /// <remarks/>
         [System.Xml.Serialization.XmlAttributeAttribute()]
-        public string ErrorCondition;
-
+        public ErrorConditionType ErrorCondition;
+        
         /// <remarks/>
         [System.Xml.Serialization.XmlAttributeAttribute()]
         public string HostReconciliationID;
@@ -62,8 +62,8 @@
 
         /// <remarks/>
         [System.Xml.Serialization.XmlAttributeAttribute()]
-        [System.ComponentModel.DefaultValueAttribute("Point")]
-        public string LoyaltyUnit;
+        [System.ComponentModel.DefaultValueAttribute(LoyaltyUnitType.Point)]
+        public LoyaltyUnitType LoyaltyUnit;
 
         /// <remarks/>
         [System.Xml.Serialization.XmlAttributeAttribute()]
@@ -71,7 +71,7 @@
 
         public TransactionTotals()
         {
-            this.LoyaltyUnit = "Point";
+            this.LoyaltyUnit = LoyaltyUnitType.Point;
         }
     }
 }

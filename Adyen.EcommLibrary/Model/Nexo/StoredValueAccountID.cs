@@ -10,7 +10,7 @@
 
         /// <remarks/>
         [System.Xml.Serialization.XmlAttributeAttribute()]
-        public string StoredValueAccount;
+        public StoredValueAccountType StoredValueAccount;
 
         /// <remarks/>
         [System.Xml.Serialization.XmlAttributeAttribute()]
@@ -26,11 +26,11 @@
 
         /// <remarks/>
         [System.Xml.Serialization.XmlAttributeAttribute()]
-        public string[] EntryMode;
+        public EntryModeType[] EntryMode;
 
         /// <remarks/>
         [System.Xml.Serialization.XmlAttributeAttribute()]
-        public string Identification;
+        public IdentificationType Identification;
 
         /// <remarks/>
         [System.Xml.Serialization.XmlTextAttribute()]

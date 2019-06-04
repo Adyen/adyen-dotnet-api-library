@@ -18,7 +18,7 @@
 
         /// <remarks/>
         [System.Xml.Serialization.XmlElementAttribute(Form = System.Xml.Schema.XmlSchemaForm.Unqualified)]
-        public string Instalment;
+        public Instalment Instalment;
 
         /// <remarks/>
         [System.Xml.Serialization.XmlElementAttribute("CurrencyConversion", Form = System.Xml.Schema.XmlSchemaForm.Unqualified)]
@@ -38,8 +38,8 @@
 
         /// <remarks/>
         [System.Xml.Serialization.XmlAttributeAttribute()]
-        [System.ComponentModel.DefaultValueAttribute("Normal")]
-        public string Payment;
+        [System.ComponentModel.DefaultValueAttribute(PaymentType.Normal)]
+        public PaymentType Payment;
 
         /// <remarks/>
         [System.Xml.Serialization.XmlAttributeAttribute()]
@@ -57,7 +57,7 @@
 
         /// <remarks/>
         [System.Xml.Serialization.XmlAttributeAttribute()]
-        public string[] AuthenticationMethod;
+        public AuthenticationMethodType[] AuthenticationMethod;
 
         /// <remarks/>
         [System.Xml.Serialization.XmlAttributeAttribute()]
@@ -65,7 +65,7 @@
 
         public PaymentResult()
         {
-            this.Payment = "Normal";
+            this.Payment = PaymentType.Normal;
             this.MerchantOverrideFlag = false;
             this.OnlineFlag = true;
         }

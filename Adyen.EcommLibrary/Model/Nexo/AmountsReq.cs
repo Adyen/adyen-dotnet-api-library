@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Adyen.EcommLibrary.CloudApiSerialization.Converter;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Converters;
 
 namespace Adyen.EcommLibrary.Model.Nexo
 {
@@ -9,37 +11,37 @@ namespace Adyen.EcommLibrary.Model.Nexo
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     public partial class AmountsReq
     {
+
         /// <remarks/>
         [System.Xml.Serialization.XmlAttributeAttribute()]
         public string Currency;
 
         /// <remarks/>
         [System.Xml.Serialization.XmlAttributeAttribute()]
-        public decimal? RequestedAmount;
+        public decimal RequestedAmount;
 
         /// <remarks/>
         [System.Xml.Serialization.XmlAttributeAttribute()]
-        public decimal? CashBackAmount;
+        public decimal CashBackAmount;
 
         /// <remarks/>
         [System.Xml.Serialization.XmlAttributeAttribute()]
-        public decimal? TipAmount;
+        public decimal TipAmount;
 
         /// <remarks/>
         [System.Xml.Serialization.XmlAttributeAttribute()]
-        public decimal? PaidAmount;
+        public decimal PaidAmount;
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlAttributeAttribute()]
+        public decimal MinimumAmountToDeliver;
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlAttributeAttribute()]
+        public decimal MaximumCashBackAmount;
 
         /// <remarks/>
         [System.Xml.Serialization.XmlAttributeAttribute()]
-        public decimal? MinimumAmountToDeliver;
-
-        /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute()]
-        public decimal? MaximumCashBackAmount;
-
-        /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute()]
-        public decimal? MinimumSplitAmount;
-
-    }
+        public decimal MinimumSplitAmount;
+     }
 }

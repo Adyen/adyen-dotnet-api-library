@@ -28,20 +28,20 @@
         /// <remarks/>
         [System.Xml.Serialization.XmlAttributeAttribute(DataType = "integer")]
         [System.ComponentModel.DefaultValueAttribute("0")]
-        public string MinimumDisplayTime;
+        public int MinimumDisplayTime;
 
         /// <remarks/>
         [System.Xml.Serialization.XmlAttributeAttribute()]
-        public string Device;
+        public DeviceType Device;
 
         /// <remarks/>
         [System.Xml.Serialization.XmlAttributeAttribute()]
-        public string InfoQualify;
+        public InfoQualifyType InfoQualify;
 
         public DisplayOutput()
         {
             this.ResponseRequiredFlag = true;
-            this.MinimumDisplayTime = "0";
+            this.MinimumDisplayTime = 0;
         }
     }
 }

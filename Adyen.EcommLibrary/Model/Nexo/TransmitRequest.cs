@@ -19,7 +19,7 @@
 
         /// <remarks/>
         [System.Xml.Serialization.XmlAttributeAttribute(DataType = "integer")]
-        public string MaximumTransmitTime;
+        public int MaximumTransmitTime;
 
         /// <remarks/>
         [System.Xml.Serialization.XmlAttributeAttribute()]

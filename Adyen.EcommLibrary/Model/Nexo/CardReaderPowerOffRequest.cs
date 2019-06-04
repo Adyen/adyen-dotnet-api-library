@@ -14,6 +14,6 @@
 
         /// <remarks/>
         [System.Xml.Serialization.XmlAttributeAttribute(DataType = "integer")]
-        public string MaxWaitingTime;
+        public int MaxWaitingTime;
     }
 }

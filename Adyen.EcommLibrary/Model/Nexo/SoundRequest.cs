@@ -14,20 +14,20 @@
 
         /// <remarks/>
         [System.Xml.Serialization.XmlAttributeAttribute()]
-        [System.ComponentModel.DefaultValueAttribute("NotRequired")]
-        public string ResponseMode;
+        [System.ComponentModel.DefaultValueAttribute(ResponseModeType.NotRequired)]
+        public ResponseModeType ResponseMode;
 
         /// <remarks/>
         [System.Xml.Serialization.XmlAttributeAttribute()]
-        public string SoundAction;
+        public SoundActionType SoundAction;
 
         /// <remarks/>
         [System.Xml.Serialization.XmlAttributeAttribute(DataType = "integer")]
-        public string SoundVolume;
+        public int SoundVolume;
 
         public SoundRequest()
         {
-            this.ResponseMode = "NotRequired";
+            this.ResponseMode = ResponseModeType.NotRequired;
         }
     }
 }

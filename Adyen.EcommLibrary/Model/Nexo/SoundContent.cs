@@ -10,8 +10,8 @@
 
         /// <remarks/>
         [System.Xml.Serialization.XmlAttributeAttribute()]
-        public string SoundFormat;
-
+        public SoundFormatType SoundFormat;
+        
         /// <remarks/>
         [System.Xml.Serialization.XmlAttributeAttribute()]
         public string Language;
