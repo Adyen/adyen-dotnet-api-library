@@ -76,7 +76,13 @@ namespace Adyen.EcommLibrary.Model.Checkout
             /// Enum ChallengeShopper for value: ChallengeShopper
             /// </summary>
             [EnumMember(Value = "ChallengeShopper")]
-            ChallengeShopper = 9
+            ChallengeShopper = 9,
+
+            /// <summary>
+            /// Enum PresentToShopper for value: PresentToShopper
+            /// </summary>
+            [EnumMember(Value = "PresentToShopper")]
+            PresentToShopper = 10
         }
 
         /// <summary>
