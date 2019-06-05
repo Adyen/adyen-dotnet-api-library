@@ -10,8 +10,9 @@
 
         /// <remarks/>
         [System.Xml.Serialization.XmlAttributeAttribute()]
-        public string MessageCategory;
+        public MessageCategoryType MessageCategory;
 
+      
         /// <remarks/>
         [System.Xml.Serialization.XmlAttributeAttribute()]
         public string ServiceID;

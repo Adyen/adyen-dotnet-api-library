@@ -18,7 +18,7 @@
 
         /// <remarks/>
         [System.Xml.Serialization.XmlElementAttribute(Form = System.Xml.Schema.XmlSchemaForm.Unqualified)]
-        public string Instalment;
+        public Instalment Instalment;
 
         /// <remarks/>
         [System.Xml.Serialization.XmlElementAttribute(Form = System.Xml.Schema.XmlSchemaForm.Unqualified)]
@@ -30,11 +30,18 @@
 
         /// <remarks/>
         [System.Xml.Serialization.XmlAttributeAttribute()]
-        public string PaymentType;
+        [System.ComponentModel.DefaultValueAttribute(PaymentType.Normal)]
+        public PaymentType Payment;
 
         /// <remarks/>
         [System.Xml.Serialization.XmlAttributeAttribute()]
         [System.ComponentModel.DefaultValueAttribute(false)]
-        public bool? SplitPaymentFlag;
+        public bool SplitPaymentFlag;
+
+        public PaymentData()
+        {
+            this.Payment = PaymentType.Normal;
+            this.SplitPaymentFlag = false;
+        }
     }
 }

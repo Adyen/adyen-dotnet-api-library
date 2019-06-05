@@ -18,8 +18,8 @@
 
         /// <remarks/>
         [System.Xml.Serialization.XmlAttributeAttribute()]
-        public string TerminalEnvironment;
-
+        public TerminalEnvironmentType TerminalEnvironment;
+        
         /// <remarks/>
         [System.Xml.Serialization.XmlAttributeAttribute()]
         public string TotalsGroupID;

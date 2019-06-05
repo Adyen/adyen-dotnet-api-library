@@ -15,7 +15,7 @@ namespace Adyen.EcommLibrary.Test
             try
             {
                 //Create a mock pos payment request
-                var paymentRequest = MockPosApiRequest.CreatePosPaymentRequest("Request");
+                var paymentRequest = MockPosApiRequest.CreatePosPaymentRequest();
                 var client = CreateMockTestClientPosCloudApiRequest("Mocks/terminalapi/pospayment-success.json");
                 var payment = new PosPaymentCloudApi(client);
                 var saleToPoiResponse = payment.TerminalApiCloudSync(paymentRequest);
@@ -34,7 +34,7 @@ namespace Adyen.EcommLibrary.Test
             try
             {
                 //Create a mock pos payment request
-                var paymentRequest = MockPosApiRequest.CreatePosPaymentRequest("Request");
+                Model.Nexo.Message.SaleToPOIRequest paymentRequest = MockPosApiRequest.CreatePosPaymentRequest();
                 var client = CreateMockTestClientPosCloudApiRequest("Mocks/terminalapi/pospayment-success.json");
                 var payment = new PosPaymentCloudApi(client);
                 var saleToPoiResponse = payment.TerminalApiCloudAsync(paymentRequest);
@@ -50,22 +50,21 @@ namespace Adyen.EcommLibrary.Test
         [TestMethod]
         public void TestCloudApiTransactionStatusResponseSuccess()
         {
-            var paymentRequest = MockPosApiRequest.CreatePosPaymentRequest("Request");
+            var paymentRequest = MockPosApiRequest.CreatePosPaymentRequest();
             var client = CreateMockTestClientPosCloudApiRequest("Mocks/terminalapi/pospayment-transaction-status-response.json");
             var payment = new PosPaymentCloudApi(client);
             var saleToPoiResponse = payment.TerminalApiCloudSync(paymentRequest);
 
             try
             {
-                var transactionStatusResponse = (TransactionStatusResponse)saleToPoiResponse.MessagePayload;
-                var messagePayloadResponse = transactionStatusResponse.RepeatedMessageResponse.RepeatedResponseMessageBody.MessagePayload;
-               
+                var transactionStatusResponse = (TransactionStatusResponse)saleToPoiResponse.Item;
+                var messagePayloadResponse = transactionStatusResponse.RepeatedMessageResponse.RepeatedResponseMessageBody.MessagePayload;               
                 Assert.IsNotNull(saleToPoiResponse);
                 Assert.AreEqual(saleToPoiResponse.MessageHeader.ServiceID, "35543420");
                 Assert.AreEqual(saleToPoiResponse.MessageHeader.SaleID, "TOSIM_1_1_6");
                 Assert.AreEqual(saleToPoiResponse.MessageHeader.POIID, "P400Plus-12345678");
-                Assert.AreEqual(transactionStatusResponse.Response.Result, "Success");
-                Assert.AreEqual(messagePayloadResponse.PaymentResult.PaymentInstrumentData.CardData.EntryMode[0], "ICC");
+                Assert.AreEqual(transactionStatusResponse.Response.Result, ResultType.Success);
+                Assert.AreEqual(messagePayloadResponse.PaymentResult.PaymentInstrumentData.CardData.EntryMode[0], EntryModeType.ICC);
                 Assert.AreEqual(messagePayloadResponse.POIData.POIReconciliationID, "1000");
             }
             catch (Exception)

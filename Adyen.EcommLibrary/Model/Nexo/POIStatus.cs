@@ -14,32 +14,28 @@
 
         /// <remarks/>
         [System.Xml.Serialization.XmlAttributeAttribute()]
-        public string GlobalStatus;
+        public GlobalStatusType GlobalStatus;
 
         /// <remarks/>
         [System.Xml.Serialization.XmlAttributeAttribute()]
         public bool SecurityOKFlag;
-
-  
-
+        
         /// <remarks/>
         [System.Xml.Serialization.XmlAttributeAttribute()]
         public bool PEDOKFlag;
-
-  
+      
         /// <remarks/>
         [System.Xml.Serialization.XmlAttributeAttribute()]
         public bool CardReaderOKFlag;
-
-     
+        
         /// <remarks/>
         [System.Xml.Serialization.XmlAttributeAttribute()]
-        public string PrinterStatus;
-
+        public PrinterStatusType PrinterStatus;
+    
         /// <remarks/>
         [System.Xml.Serialization.XmlAttributeAttribute()]
         public bool CommunicationOKFlag;
-        
+
         /// <remarks/>
         [System.Xml.Serialization.XmlAttributeAttribute()]
         public bool FraudPreventionFlag;

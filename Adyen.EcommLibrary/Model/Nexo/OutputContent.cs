@@ -26,6 +26,6 @@
 
         /// <remarks/>
         [System.Xml.Serialization.XmlAttributeAttribute()]
-        public string OutputFormat;
+        public OutputFormatType OutputFormat;
     }
 }

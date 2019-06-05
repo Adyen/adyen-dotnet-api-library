@@ -18,7 +18,7 @@
 
         /// <remarks/>
         [System.Xml.Serialization.XmlAttributeAttribute()]
-        public string StoredValueTransaction;
+        public StoredValueTransactionType StoredValueTransaction;
 
         /// <remarks/>
         [System.Xml.Serialization.XmlAttributeAttribute()]
@@ -30,7 +30,7 @@
 
         /// <remarks/>
         [System.Xml.Serialization.XmlAttributeAttribute()]
-        public decimal? ItemAmount;
+        public decimal ItemAmount;
 
         /// <remarks/>
         [System.Xml.Serialization.XmlAttributeAttribute()]

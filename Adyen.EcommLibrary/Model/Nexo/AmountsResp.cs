@@ -18,19 +18,18 @@
 
         /// <remarks/>
         [System.Xml.Serialization.XmlAttributeAttribute()]
-        public decimal? TotalRebatesAmount;
+        public decimal TotalRebatesAmount;
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlAttributeAttribute()]
+        public decimal TotalFeesAmount;
 
         /// <remarks/>
         [System.Xml.Serialization.XmlAttributeAttribute()]
-        public decimal? TotalFeesAmount;
+        public decimal CashBackAmount;
 
         /// <remarks/>
         [System.Xml.Serialization.XmlAttributeAttribute()]
-        public decimal? CashBackAmount;
-
-        /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute()]
-        public decimal? TipAmount;
-
+        public decimal TipAmount;
     }
 }

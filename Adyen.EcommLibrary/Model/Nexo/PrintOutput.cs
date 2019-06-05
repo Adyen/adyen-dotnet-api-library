@@ -18,11 +18,11 @@
 
         /// <remarks/>
         [System.Xml.Serialization.XmlAttributeAttribute()]
-        public string DocumentQualifier;
+        public DocumentQualifierType DocumentQualifier;
 
         /// <remarks/>
         [System.Xml.Serialization.XmlAttributeAttribute()]
-        public string ResponseMode;
+        public ResponseModeType ResponseMode;
 
         /// <remarks/>
         [System.Xml.Serialization.XmlAttributeAttribute()]

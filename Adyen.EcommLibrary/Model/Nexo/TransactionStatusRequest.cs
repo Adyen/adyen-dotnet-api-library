@@ -1,13 +1,11 @@
-﻿using Adyen.EcommLibrary.CloudApiSerialization;
-
-namespace Adyen.EcommLibrary.Model.Nexo
+﻿namespace Adyen.EcommLibrary.Model.Nexo
 {
     /// <remarks/>
     [System.CodeDom.Compiler.GeneratedCodeAttribute("xsd", "4.6.1055.0")]
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
-    public partial class TransactionStatusRequest : IMessagePayload
+    public partial class TransactionStatusRequest
     {
 
         /// <remarks/>
@@ -16,7 +14,7 @@ namespace Adyen.EcommLibrary.Model.Nexo
 
         /// <remarks/>
         [System.Xml.Serialization.XmlElementAttribute("DocumentQualifier", Form = System.Xml.Schema.XmlSchemaForm.Unqualified)]
-        public string[] DocumentQualifier;
+        public DocumentQualifierType[] DocumentQualifier;
 
         /// <remarks/>
         [System.Xml.Serialization.XmlAttributeAttribute()]

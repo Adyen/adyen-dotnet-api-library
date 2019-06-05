@@ -13,10 +13,6 @@
         public bool ConfirmedFlag;
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlIgnoreAttribute()]
-        public bool ConfirmedFlagSpecified;
-
-        /// <remarks/>
         [System.Xml.Serialization.XmlElementAttribute(Form = System.Xml.Schema.XmlSchemaForm.Unqualified)]
         public string FunctionKey;
 
@@ -34,10 +30,10 @@
 
         /// <remarks/>
         [System.Xml.Serialization.XmlElementAttribute(Form = System.Xml.Schema.XmlSchemaForm.Unqualified, DataType = "integer")]
-        public string MenuEntryNumber;
+        public int MenuEntryNumber;
 
         /// <remarks/>
         [System.Xml.Serialization.XmlAttributeAttribute()]
-        public string InputCommand;
+        public InputCommandType InputCommand;
     }
 }
