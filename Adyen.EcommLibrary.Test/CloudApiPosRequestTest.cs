@@ -34,7 +34,7 @@ namespace Adyen.EcommLibrary.Test
             try
             {
                 //Create a mock pos payment request
-                Model.Nexo.Message.SaleToPOIRequest paymentRequest = MockPosApiRequest.CreatePosPaymentRequest();
+                var paymentRequest = MockPosApiRequest.CreatePosPaymentRequest();
                 var client = CreateMockTestClientPosCloudApiRequest("Mocks/terminalapi/pospayment-success.json");
                 var payment = new PosPaymentCloudApi(client);
                 var saleToPoiResponse = payment.TerminalApiCloudAsync(paymentRequest);
