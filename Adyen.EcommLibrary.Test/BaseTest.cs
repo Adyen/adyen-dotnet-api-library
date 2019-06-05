@@ -8,6 +8,7 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Net;
+using System.Net.Security;
 using System.Text;
 using Adyen.EcommLibrary.HttpClient.Interfaces;
 using Adyen.EcommLibrary.Model;
@@ -254,13 +255,13 @@ namespace Adyen.EcommLibrary.Test
         }
 
         /// <summary>
-        /// Creates mock test client for POS cloud and terminal api. In case of cloud api the xapi should be included
+        /// Creates mock test client for POS cloud. In case of cloud api the xapi should be included
         /// </summary>
         /// <param name="fileName">The file that is returned</param>
         /// <returns>IClient implementation</returns>
-        protected Client CreateMockTestClientPosApiRequest(string fileName)
+        protected Client CreateMockTestClientPosCloudApiRequest(string fileName)
         {
-            var config = new Config {Endpoint = @"https://_terminal_:8443/nexo/"};
+            var config = new Config {Endpoint =ClientConfig.CloudApiEndPointTest};
             var mockPath = GetMockFilePath(fileName);
             var response = MockFileToString(mockPath);
             //Create a mock interface
@@ -275,6 +276,30 @@ namespace Adyen.EcommLibrary.Test
             return clientMock;
         }
 
+        /// <summary>
+        /// Creates mock test client for terminal api.
+        /// </summary>
+        /// <param name="fileName">The file that is returned</param>
+        /// <returns>IClient implementation</returns>
+        protected Client CreateMockTestClientPosLocalApiRequest(string fileName)
+        {
+            var config = new Config { Endpoint = @"https://_terminal_:8443/nexo/" };
+            var mockPath = GetMockFilePath(fileName);
+            var response = MockFileToString(mockPath);
+            //Create a mock interface
+            var clientInterfaceMock = new Mock<IClient>();
+            clientInterfaceMock.Setup(x => x.Request(It.IsAny<string>(),
+                It.IsAny<string>(), config, It.IsAny<bool>(), 
+                It.IsAny<RequestOptions>(), 
+                It.IsAny<RemoteCertificateValidationCallback>()))
+                .Returns(response);
+            var clientMock = new Client(It.IsAny<Config>())
+            {
+                HttpClient = clientInterfaceMock.Object,
+                Config = config
+            };
+            return clientMock;
+        }
         /// <summary>
         /// Creates mock test client 
         /// </summary>

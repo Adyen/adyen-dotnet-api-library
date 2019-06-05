@@ -2,6 +2,7 @@
 using Adyen.EcommLibrary.HttpClient.Interfaces;
 using Adyen.EcommLibrary.HttpClient;
 using Adyen.EcommLibrary.Model.Enum;
+using System.Net.Security;
 
 namespace Adyen.EcommLibrary
 {
@@ -26,7 +27,6 @@ namespace Adyen.EcommLibrary
             };
             this.SetEnviroment(environment);
         }
-
         
         public Client(string xapikey, Environment environment)
         {
