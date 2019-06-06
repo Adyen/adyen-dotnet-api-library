@@ -17,6 +17,10 @@ namespace Adyen.EcommLibrary.CloudApiSerialization
 
         internal SaleToPoiMessageSecured Deserialize(string saleToPoiMessageSecuredJSon)
         {
+            if (string.IsNullOrEmpty(saleToPoiMessageSecuredJSon))
+            {
+                return null;
+            }
             var saleToPoiMessageSecuredJObject = JObject.Parse(saleToPoiMessageSecuredJSon);
 
             CheckForTerminalError(saleToPoiMessageSecuredJObject);

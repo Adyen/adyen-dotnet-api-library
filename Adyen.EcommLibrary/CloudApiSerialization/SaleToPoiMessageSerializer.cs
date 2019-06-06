@@ -16,7 +16,7 @@ namespace Adyen.EcommLibrary.CloudApiSerialization
         }
         public SaleToPOIResponse Deserialize(string saleToPoiMessageDto)
         {
-            if (string.Equals("ok", saleToPoiMessageDto))
+            if (string.Equals("ok", saleToPoiMessageDto) || string.IsNullOrEmpty(saleToPoiMessageDto))
             {
                 return null;
             }

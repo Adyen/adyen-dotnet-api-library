@@ -72,5 +72,23 @@ namespace Adyen.EcommLibrary.Test
                 Assert.Fail();
             }
         }
+
+        [TestMethod]
+        public void TestCloudApiSyncRequestEmptyResponse()
+        {
+            try
+            {
+                //Create a mock pos payment request
+                var paymentRequest = MockPosApiRequest.CreatePosPaymentRequest();
+                var client = CreateMockTestClientPosCloudApiRequest("");
+                var payment = new PosPaymentCloudApi(client);
+                var saleToPoiResponse = payment.TerminalApiCloudSync(paymentRequest);
+                Assert.IsNull(saleToPoiResponse);
+            }
+            catch (Exception)
+            {
+                Assert.Fail();
+            }
+        }
     }
 }
