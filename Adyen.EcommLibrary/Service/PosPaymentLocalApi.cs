@@ -46,8 +46,11 @@ namespace Adyen.EcommLibrary.Service
             this.Client.LogLine("Encrypted Request: \n" + serializeSaleToPoiRequestMessageSecured);
             var response = _terminalApiLocal.Request(serializeSaleToPoiRequestMessageSecured, remoteCertificateValidationCallback);
             this.Client.LogLine("Response: \n" + response);
+            if (string.IsNullOrEmpty(response))
+            {
+                return null;
+            }
             var saleToPoiResponseSecured = _saleToPoiMessageSecuredSerializer.Deserialize(response);
-          
             var decryptResponse = _messageSecuredEncryptor.Decrypt(saleToPoiResponseSecured, encryptionCredentialDetails);
             this.Client.LogLine("Response: \n" + decryptResponse);
             var saleToPoiResponse = _saleToPoiMessageSerializer.Deserialize(decryptResponse);
