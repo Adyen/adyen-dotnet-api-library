@@ -6,4 +6,4 @@ install:
 - dotnet restore
 script:
 - dotnet build /p:TargetFrameworks=netcoreapp2.0
-- dotnet test Adyen.EcommLibrary.Test/Adyen.EcommLibrary.Test.csproj
+- dotnet test Adyen.Test/Adyen.Test.csproj
