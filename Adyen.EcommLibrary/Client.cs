@@ -8,6 +8,7 @@ namespace Adyen.EcommLibrary
 {
     public class Client
     {
+      //test
         public Config Config { get; set; }
         private IClient _client;
 
@@ -27,7 +28,7 @@ namespace Adyen.EcommLibrary
             };
             this.SetEnviroment(environment);
         }
-        
+
         public Client(string xapikey, Environment environment)
         {
             Config = new Config
