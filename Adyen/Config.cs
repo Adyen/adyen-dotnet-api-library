@@ -1,7 +1,7 @@
 using System;
-using Environment = Adyen.EcommLibrary.Model.Enum.Environment;
+using Environment = Adyen.Model.Enum.Environment;
 
-namespace Adyen.EcommLibrary
+namespace Adyen
 {
     public class Config
     {

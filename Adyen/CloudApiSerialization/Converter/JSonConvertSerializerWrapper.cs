@@ -1,9 +1,9 @@
-﻿using Adyen.EcommLibrary.Model.Nexo;
-using Adyen.EcommLibrary.Security;
+﻿using Adyen.Model.Nexo;
+using Adyen.Security;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
 
-namespace Adyen.EcommLibrary.CloudApiSerialization.Converter
+namespace Adyen.CloudApiSerialization.Converter
 {
     internal class JSonConvertSerializerWrapper
     {

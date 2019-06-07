@@ -1,10 +1,10 @@
-﻿using Adyen.EcommLibrary.Model;
-using Adyen.EcommLibrary.Model.AdditionalData;
-using Adyen.EcommLibrary.Model.Enum;
+﻿using Adyen.Model;
+using Adyen.Model.AdditionalData;
+using Adyen.Model.Enum;
 using System;
 using System.Collections.Generic;
 
-namespace Adyen.EcommLibrary.Test
+namespace Adyen.Test
 {
     public class MockOpenInvoicePayment
     {

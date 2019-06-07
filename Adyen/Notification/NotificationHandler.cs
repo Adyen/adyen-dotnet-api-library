@@ -1,7 +1,7 @@
-﻿using Adyen.EcommLibrary.Model.Notification;
-using Adyen.EcommLibrary.Util;
+﻿using Adyen.Model.Notification;
+using Adyen.Util;
 
-namespace Adyen.EcommLibrary.Notification
+namespace Adyen.Notification
 {
     public class NotificationHandler
     {

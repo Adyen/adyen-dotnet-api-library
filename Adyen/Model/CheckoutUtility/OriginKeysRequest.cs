@@ -6,7 +6,7 @@ using System.Linq;
 using System.Runtime.Serialization;
 using System.Text;
 
-namespace Adyen.EcommLibrary.Model.CheckoutUtility
+namespace Adyen.Model.CheckoutUtility
 {
     /// <summary>
     /// OriginKeysRequest

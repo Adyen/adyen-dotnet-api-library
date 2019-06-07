@@ -1,4 +1,4 @@
-﻿namespace Adyen.EcommLibrary.Constants
+﻿namespace Adyen.Constants
 {
     public class ClientConfig
     {

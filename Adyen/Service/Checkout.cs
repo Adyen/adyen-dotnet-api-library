@@ -1,13 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
-using Adyen.EcommLibrary.Model;
-using Adyen.EcommLibrary.Model.Checkout;
-using Adyen.EcommLibrary.Service.Resource.Checkout;
+using Adyen.Model;
+using Adyen.Model.Checkout;
+using Adyen.Service.Resource.Checkout;
 using Newtonsoft.Json;
-using PaymentRequest = Adyen.EcommLibrary.Model.Checkout.PaymentRequest;
+using PaymentRequest = Adyen.Model.Checkout.PaymentRequest;
 
-namespace Adyen.EcommLibrary.Service
+namespace Adyen.Service
 {
     public class Checkout : AbstractService
     {

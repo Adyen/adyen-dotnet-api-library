@@ -1,8 +1,8 @@
-﻿using Adyen.EcommLibrary.Exceptions;
+﻿using Adyen.Exceptions;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Serialization;
 
-namespace Adyen.EcommLibrary.CloudApiSerialization
+namespace Adyen.CloudApiSerialization
 {
     internal class JSonConvertDeserializerWrapper<T>
     {

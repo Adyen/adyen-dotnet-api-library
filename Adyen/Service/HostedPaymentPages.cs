@@ -1,11 +1,11 @@
-﻿using Adyen.EcommLibrary.Constants;
-using Adyen.EcommLibrary.Constants.HPPConstants;
-using Adyen.EcommLibrary.Model.Hpp;
-using Adyen.EcommLibrary.Util;
+﻿using Adyen.Constants;
+using Adyen.Constants.HPPConstants;
+using Adyen.Model.Hpp;
+using Adyen.Util;
 using System;
 using System.Collections.Generic;
 
-namespace Adyen.EcommLibrary.Service
+namespace Adyen.Service
 {
     public class HostedPaymentPages : AbstractService
     {

@@ -1,12 +1,12 @@
-﻿using Adyen.EcommLibrary.Constants;
-using Adyen.EcommLibrary.Constants.HPPConstants;
-using Adyen.EcommLibrary.Model.Hpp;
-using Adyen.EcommLibrary.Service;
+﻿using Adyen.Constants;
+using Adyen.Constants.HPPConstants;
+using Adyen.Model.Hpp;
+using Adyen.Service;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 using System.Linq;
 
-namespace Adyen.EcommLibrary.Test
+namespace Adyen.Test
 {
     [TestClass]
     public class DirectoryLookupTest : BaseTest

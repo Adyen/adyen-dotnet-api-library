@@ -1,9 +1,9 @@
-﻿using Adyen.EcommLibrary.Model;
-using Adyen.EcommLibrary.Service.Resource.Payment;
+﻿using Adyen.Model;
+using Adyen.Service.Resource.Payment;
 using Newtonsoft.Json;
 using System.Threading.Tasks;
 
-namespace Adyen.EcommLibrary.Service
+namespace Adyen.Service
 {
     public class Payment : AbstractService
     {

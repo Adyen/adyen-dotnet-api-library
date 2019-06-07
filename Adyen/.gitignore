@@ -1,6 +1,6 @@
 bin/
 obj/
 Properties/
-Adyen.EcommLibrary.nuspec
+Adyen.nuspec
 nuget.exe
 *.user

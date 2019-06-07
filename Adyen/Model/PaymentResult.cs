@@ -1,4 +1,4 @@
-using Adyen.EcommLibrary.Model.Enum;
+using Adyen.Model.Enum;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
@@ -7,7 +7,7 @@ using System.Linq;
 using System.Runtime.Serialization;
 using System.Text;
 
-namespace Adyen.EcommLibrary.Model
+namespace Adyen.Model
 {
     /// <summary>
     /// PaymentResult

@@ -5,7 +5,7 @@ using System.Text;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
 
-namespace Adyen.EcommLibrary.Model.Enum
+namespace Adyen.Model.Enum
 {
     /// <summary>
     /// the response from the directory server indicating if the card holder is enrolled in a 3D secure service

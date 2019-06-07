@@ -1,9 +1,9 @@
-﻿using Adyen.EcommLibrary.Security;
-using Adyen.EcommLibrary.Service;
+﻿using Adyen.Security;
+using Adyen.Service;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 
-namespace Adyen.EcommLibrary.Test
+namespace Adyen.Test
 {
     [TestClass]
     public class TerminalApiPosRequestTest : BaseTest

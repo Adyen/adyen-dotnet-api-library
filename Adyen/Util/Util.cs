@@ -1,7 +1,7 @@
 ﻿using System;
 using System.IO;
 
-namespace Adyen.EcommLibrary.Util
+namespace Adyen.Util
 {
     public  class Util
     {

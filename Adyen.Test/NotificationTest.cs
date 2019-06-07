@@ -1,4 +1,4 @@
-﻿namespace Adyen.EcommLibrary.Test
+﻿namespace Adyen.Test
 {
     using Microsoft.VisualStudio.TestTools.UnitTesting;
     using Notification;

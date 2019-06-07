@@ -2,7 +2,7 @@
 using System.Runtime.Serialization;
 using System.Text;
 
-namespace Adyen.EcommLibrary.Model.Reccuring
+namespace Adyen.Model.Reccuring
 {
     [DataContract]
     public class DisableResult

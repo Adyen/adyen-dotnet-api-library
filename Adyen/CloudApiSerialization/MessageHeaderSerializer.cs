@@ -1,7 +1,7 @@
-﻿using Adyen.EcommLibrary.Model.Nexo;
-using Adyen.EcommLibrary.Model.Nexo.Message;
+﻿using Adyen.Model.Nexo;
+using Adyen.Model.Nexo.Message;
 
-namespace Adyen.EcommLibrary.CloudApiSerialization
+namespace Adyen.CloudApiSerialization
 {
     internal class MessageHeaderSerializer
     {

@@ -1,8 +1,8 @@
-﻿using Adyen.EcommLibrary.Security.Extension;
+﻿using Adyen.Security.Extension;
 using System.Security.Cryptography;
 using System.Text;
 
-namespace Adyen.EcommLibrary.Security
+namespace Adyen.Security
 {
     internal class EncryptionDerivedKeyGenerator
     {

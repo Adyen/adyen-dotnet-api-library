@@ -1,4 +1,4 @@
-﻿namespace Adyen.EcommLibrary.Model.Hpp
+﻿namespace Adyen.Model.Hpp
 {
     public class Issuer
     {

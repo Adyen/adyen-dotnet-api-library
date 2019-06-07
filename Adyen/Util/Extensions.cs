@@ -1,6 +1,6 @@
 ﻿using System.Text;
 
-namespace Adyen.EcommLibrary.Util
+namespace Adyen.Util
 {
     internal static class Extensions
     {

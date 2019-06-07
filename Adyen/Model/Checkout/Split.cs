@@ -8,7 +8,7 @@ using System.Text;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
 
-namespace Adyen.EcommLibrary.Model.Checkout
+namespace Adyen.Model.Checkout
 {
     /// <summary>
     /// Split

@@ -1,15 +1,15 @@
-﻿using Adyen.EcommLibrary.Model;
+﻿using Adyen.Model;
 using System;
 using System.Collections.Generic;
-using Adyen.EcommLibrary.Model.Checkout;
-using Adyen.EcommLibrary.Model.Enum;
-using Amount = Adyen.EcommLibrary.Model.Amount;
-using BrowserInfo = Adyen.EcommLibrary.Model.BrowserInfo;
-using Card = Adyen.EcommLibrary.Model.Card;
-using Environment = Adyen.EcommLibrary.Model.Enum.Environment;
-using PaymentRequest = Adyen.EcommLibrary.Model.PaymentRequest;
+using Adyen.Model.Checkout;
+using Adyen.Model.Enum;
+using Amount = Adyen.Model.Amount;
+using BrowserInfo = Adyen.Model.BrowserInfo;
+using Card = Adyen.Model.Card;
+using Environment = Adyen.Model.Enum.Environment;
+using PaymentRequest = Adyen.Model.PaymentRequest;
 
-namespace Adyen.EcommLibrary.Test
+namespace Adyen.Test
 {
     internal class MockPaymentData
     {

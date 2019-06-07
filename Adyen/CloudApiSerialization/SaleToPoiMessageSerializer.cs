@@ -1,8 +1,8 @@
-﻿using Adyen.EcommLibrary.Model.Nexo;
-using Adyen.EcommLibrary.Security;
+﻿using Adyen.Model.Nexo;
+using Adyen.Security;
 using Newtonsoft.Json.Linq;
 
-namespace Adyen.EcommLibrary.CloudApiSerialization
+namespace Adyen.CloudApiSerialization
 {
     public class SaleToPoiMessageSerializer
     {

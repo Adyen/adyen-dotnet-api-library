@@ -21,7 +21,7 @@ using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
 using System.ComponentModel.DataAnnotations;
 
-namespace Adyen.EcommLibrary.Model
+namespace Adyen.Model
 {
     /// <summary>
     /// Address

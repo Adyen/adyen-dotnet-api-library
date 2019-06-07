@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Adyen.EcommLibrary.Security
+namespace Adyen.Security
 {
     internal class IvModGenerator
     {

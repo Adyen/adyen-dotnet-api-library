@@ -2,7 +2,7 @@
 using Newtonsoft.Json.Converters;
 using System.ComponentModel.DataAnnotations;
 
-namespace Adyen.EcommLibrary.Security
+namespace Adyen.Security
 {
     ///<usage>
     ///It contains information related to the security of the message

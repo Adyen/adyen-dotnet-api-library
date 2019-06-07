@@ -1,12 +1,12 @@
-﻿using Adyen.EcommLibrary.Model.ApplicationInformation;
-using Adyen.EcommLibrary.Service;
+﻿using Adyen.Model.ApplicationInformation;
+using Adyen.Service;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 using System.Collections.Generic;
 using System.Text;
-using static Adyen.EcommLibrary.Model.Checkout.PaymentsResponse;
+using static Adyen.Model.Checkout.PaymentsResponse;
 
-namespace Adyen.EcommLibrary.Test
+namespace Adyen.Test
 {
     [TestClass]
     public class CheckoutTest : BaseTest

@@ -1,8 +1,8 @@
-﻿using Adyen.EcommLibrary.Model.Reccuring;
-using Adyen.EcommLibrary.Service.Resource.Reccuring;
+﻿using Adyen.Model.Reccuring;
+using Adyen.Service.Resource.Reccuring;
 using System;
 
-namespace Adyen.EcommLibrary.Service
+namespace Adyen.Service
 {
     public class Recurring : AbstractService
     {

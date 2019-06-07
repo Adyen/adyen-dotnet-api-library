@@ -3,10 +3,10 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Runtime.Serialization;
 using System.Text;
-using Adyen.EcommLibrary.Constants;
-using Adyen.EcommLibrary.Model.ApplicationInformation;
+using Adyen.Constants;
+using Adyen.Model.ApplicationInformation;
 
-namespace Adyen.EcommLibrary.Model.Modification
+namespace Adyen.Model.Modification
 {
     [DataContract]
     public class AbstractModificationRequest : IValidatableObject

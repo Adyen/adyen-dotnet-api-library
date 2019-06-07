@@ -3,11 +3,11 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Runtime.Serialization;
 using System.Text;
-using Adyen.EcommLibrary.Model.Checkout;
-using Adyen.EcommLibrary.Model.Enum;
-using Adyen.EcommLibrary.Util;
+using Adyen.Model.Checkout;
+using Adyen.Model.Enum;
+using Adyen.Util;
 
-namespace Adyen.EcommLibrary.Model
+namespace Adyen.Model
 {
     [DataContract]
     public class PaymentRequestThreeDS2 : PaymentRequest

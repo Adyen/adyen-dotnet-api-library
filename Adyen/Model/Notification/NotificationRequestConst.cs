@@ -1,4 +1,4 @@
-namespace Adyen.EcommLibrary.Model.Notification
+namespace Adyen.Model.Notification
 {
     public class NotificationRequestConst
     {

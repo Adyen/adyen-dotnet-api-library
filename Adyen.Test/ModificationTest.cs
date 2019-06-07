@@ -1,8 +1,8 @@
-﻿using Adyen.EcommLibrary.Constants;
-using Adyen.EcommLibrary.Service;
+﻿using Adyen.Constants;
+using Adyen.Service;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-namespace Adyen.EcommLibrary.Test
+namespace Adyen.Test
 {
     [TestClass]
     public class ModificationTest : BaseTest
@@ -17,7 +17,7 @@ namespace Adyen.EcommLibrary.Test
             //Send capture call with psp refernce
             var captureRequest = base.CreateCaptureTestRequest(paymentResultPspReference);
             var captureResult = modification.Capture(captureRequest);
-            Assert.AreEqual(captureResult.Response, Adyen.EcommLibrary.Model.Enum.ResponseEnum.CaptureReceived);
+            Assert.AreEqual(captureResult.Response, Adyen.Model.Enum.ResponseEnum.CaptureReceived);
         }
         
         [TestMethod]
@@ -42,7 +42,7 @@ namespace Adyen.EcommLibrary.Test
             var modification = new Modification(client);
             var cancelOrRefundRequest = base.CreateCancelOrRefundTestRequest(pspReference: paymentResultPspReference);
             var cancelOrRefundResult = modification.CancelOrRefund(cancelOrRefundRequest);
-            Assert.AreEqual(cancelOrRefundResult.Response, Adyen.EcommLibrary.Model.Enum.ResponseEnum.CancelOrRefundReceived);
+            Assert.AreEqual(cancelOrRefundResult.Response, Adyen.Model.Enum.ResponseEnum.CancelOrRefundReceived);
         }
 
         [TestMethod]
@@ -54,7 +54,7 @@ namespace Adyen.EcommLibrary.Test
             var modification = new Modification(client);
             var refundRequest = base.CreateRefundTestRequest(pspReference: paymentResultPspReference);
             var refundResult = modification.Refund(refundRequest);
-            Assert.AreEqual(refundResult.Response, Adyen.EcommLibrary.Model.Enum.ResponseEnum.RefundReceived);
+            Assert.AreEqual(refundResult.Response, Adyen.Model.Enum.ResponseEnum.RefundReceived);
         }
 
         [TestMethod]
@@ -66,7 +66,7 @@ namespace Adyen.EcommLibrary.Test
             var modification = new Modification(client);
             var cancelRequest = base.CreateCancelTestRequest(pspReference: paymentResultPspReference);
             var refundResult = modification.Cancel(cancelRequest);
-            Assert.AreEqual(refundResult.Response, Adyen.EcommLibrary.Model.Enum.ResponseEnum.CancelReceived);
+            Assert.AreEqual(refundResult.Response, Adyen.Model.Enum.ResponseEnum.CancelReceived);
         }
 
         [TestMethod]

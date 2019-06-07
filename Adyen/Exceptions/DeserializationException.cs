@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace Adyen.EcommLibrary.Exceptions
+namespace Adyen.Exceptions
 {
     public class DeserializationException : Exception
     {

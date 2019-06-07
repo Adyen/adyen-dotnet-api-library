@@ -1,6 +1,6 @@
 ﻿using Newtonsoft.Json;
 
-namespace Adyen.EcommLibrary.CloudApiSerialization.Converter
+namespace Adyen.CloudApiSerialization.Converter
 {
     internal class JSonConvertDeserializerWrapper<T>
     {

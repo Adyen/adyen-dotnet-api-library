@@ -1,10 +1,10 @@
-﻿using Adyen.EcommLibrary.Constants;
-using Adyen.EcommLibrary.HttpClient.Interfaces;
-using Adyen.EcommLibrary.HttpClient;
-using Adyen.EcommLibrary.Model.Enum;
+﻿using Adyen.Constants;
+using Adyen.HttpClient.Interfaces;
+using Adyen.HttpClient;
+using Adyen.Model.Enum;
 using System.Net.Security;
 
-namespace Adyen.EcommLibrary
+namespace Adyen
 {
     public class Client
     {

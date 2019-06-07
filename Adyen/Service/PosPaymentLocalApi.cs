@@ -2,12 +2,12 @@
 using System.ComponentModel;
 using System.IO;
 using System.Net.Security;
-using Adyen.EcommLibrary.CloudApiSerialization;
-using Adyen.EcommLibrary.Model.Nexo;
-using Adyen.EcommLibrary.Security;
-using Adyen.EcommLibrary.Service.Resource.Payment;
+using Adyen.CloudApiSerialization;
+using Adyen.Model.Nexo;
+using Adyen.Security;
+using Adyen.Service.Resource.Payment;
 
-namespace Adyen.EcommLibrary.Service
+namespace Adyen.Service
 {
    public class PosPaymentLocalApi: AbstractService
     {

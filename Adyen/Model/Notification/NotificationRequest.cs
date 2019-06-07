@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace Adyen.EcommLibrary.Model.Notification
+namespace Adyen.Model.Notification
 {
     public class NotificationRequest
     {

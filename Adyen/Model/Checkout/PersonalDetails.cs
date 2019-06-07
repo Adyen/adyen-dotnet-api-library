@@ -4,7 +4,7 @@ using System.Runtime.Serialization;
 using System.Text;
 using Newtonsoft.Json;
 
-namespace Adyen.EcommLibrary.Model.Checkout
+namespace Adyen.Model.Checkout
 {
     [DataContract]
     public class PersonalDetails : IValidatableObject

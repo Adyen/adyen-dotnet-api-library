@@ -1,8 +1,8 @@
-﻿using Adyen.EcommLibrary.Model.Nexo;
+﻿using Adyen.Model.Nexo;
 using Newtonsoft.Json.Linq;
 using System;
 
-namespace Adyen.EcommLibrary.CloudApiSerialization
+namespace Adyen.CloudApiSerialization
 {
     internal class MessagePayloadSerializer<T> : IMessagePayloadSerializer<T> where T : IMessagePayload
     {

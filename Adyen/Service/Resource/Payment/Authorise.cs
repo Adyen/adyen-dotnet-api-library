@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace Adyen.EcommLibrary.Service.Resource.Payment
+namespace Adyen.Service.Resource.Payment
 {
     public class Authorise : ServiceResource
     {

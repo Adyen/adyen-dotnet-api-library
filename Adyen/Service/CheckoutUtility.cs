@@ -1,11 +1,11 @@
-﻿using Adyen.EcommLibrary.Model.CheckoutUtility;
-using Adyen.EcommLibrary.Service.Resource.CheckoutUtility;
+﻿using Adyen.Model.CheckoutUtility;
+using Adyen.Service.Resource.CheckoutUtility;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace Adyen.EcommLibrary.Service
+namespace Adyen.Service
 {
     public class CheckoutUtility : AbstractService
     {

@@ -5,7 +5,7 @@ using System.Text;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
 
-namespace Adyen.EcommLibrary.Model.Enum
+namespace Adyen.Model.Enum
 {
     /// <summary>
     /// The enrollment response from the 3D directory server.

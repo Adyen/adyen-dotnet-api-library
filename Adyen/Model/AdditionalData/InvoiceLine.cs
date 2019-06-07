@@ -1,6 +1,6 @@
-﻿using Adyen.EcommLibrary.Model.Enum;
+﻿using Adyen.Model.Enum;
 
-namespace Adyen.EcommLibrary.Model.AdditionalData
+namespace Adyen.Model.AdditionalData
 {
     public class InvoiceLine
     {

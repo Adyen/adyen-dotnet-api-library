@@ -1,8 +1,8 @@
 ﻿using System;
-using Adyen.EcommLibrary.Model.Enum;
-using Adyen.EcommLibrary.Model.Nexo;
+using Adyen.Model.Enum;
+using Adyen.Model.Nexo;
 
-namespace Adyen.EcommLibrary.CloudApiSerialization
+namespace Adyen.CloudApiSerialization
 {
     internal class MessagePayloadSerializerFactory
     {

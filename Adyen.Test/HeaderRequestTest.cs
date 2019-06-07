@@ -1,8 +1,8 @@
-﻿using Adyen.EcommLibrary.HttpClient;
-using Adyen.EcommLibrary.Model;
+﻿using Adyen.HttpClient;
+using Adyen.Model;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-namespace Adyen.EcommLibrary.Test
+namespace Adyen.Test
 {
     [TestClass]
     public class HeaderRequestTest

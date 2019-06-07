@@ -6,7 +6,7 @@ using System.Text;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
 
-namespace Adyen.EcommLibrary.Model.Enum
+namespace Adyen.Model.Enum
 {
     /// <summary>
     /// Indicates whether device fingerprinting was successfully completed.

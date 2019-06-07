@@ -1,10 +1,10 @@
 ﻿using System;
-using Adyen.EcommLibrary.Model.Nexo;
-using Adyen.EcommLibrary.Model.Nexo.Message;
-using Adyen.EcommLibrary.Security;
+using Adyen.Model.Nexo;
+using Adyen.Model.Nexo.Message;
+using Adyen.Security;
 using Newtonsoft.Json;
 
-namespace Adyen.EcommLibrary.CloudApiSerialization.Converter
+namespace Adyen.CloudApiSerialization.Converter
 {
     internal class SaleToPoiMessageSecuredConverter : JsonConverter
     {

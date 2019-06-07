@@ -1,12 +1,12 @@
-﻿using Adyen.EcommLibrary.Model.AdditionalData;
+﻿using Adyen.Model.AdditionalData;
 using System;
 using System.Collections.Generic;
 using System.Runtime.Serialization;
 using System.Text;
-using Adyen.EcommLibrary.Model.ApplicationInformation;
-using Adyen.EcommLibrary.Util;
+using Adyen.Model.ApplicationInformation;
+using Adyen.Util;
 
-namespace Adyen.EcommLibrary.Model
+namespace Adyen.Model
 {
     [DataContract]
     public class PaymentRequest : AbstractPaymentRequest

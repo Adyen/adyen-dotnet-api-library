@@ -38,7 +38,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Adyen.EcommLibrary\Adyen.EcommLibrary.csproj" />
+    <ProjectReference Include="..\Adyen\Adyen.csproj" />
   </ItemGroup>
 
   <Target Name="PostBuild" AfterTargets="PostBuildEvent" Condition="'$(OS)' == 'Windows'">

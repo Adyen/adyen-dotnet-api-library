@@ -1,8 +1,8 @@
-﻿using Adyen.EcommLibrary.Util;
+﻿using Adyen.Util;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.Collections.Generic;
 
-namespace Adyen.EcommLibrary.Test
+namespace Adyen.Test
 {
     [TestClass]
     public class UtilTest : BaseTest

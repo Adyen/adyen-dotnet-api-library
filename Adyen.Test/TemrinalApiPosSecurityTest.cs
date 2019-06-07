@@ -1,7 +1,7 @@
-﻿using Adyen.EcommLibrary.Security;
+﻿using Adyen.Security;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-namespace Adyen.EcommLibrary.Test
+namespace Adyen.Test
 {
     [TestClass]
     public class TemrinalApiPosSecurityTest : BaseTest

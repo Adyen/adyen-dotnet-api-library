@@ -1,7 +1,7 @@
-using Adyen.EcommLibrary.Util;
+using Adyen.Util;
 using System.Text;
 
-namespace Adyen.EcommLibrary.Model.Notification
+namespace Adyen.Model.Notification
 {
     using Newtonsoft.Json;
 

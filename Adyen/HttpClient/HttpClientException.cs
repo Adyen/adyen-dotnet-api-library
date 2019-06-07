@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Net;
 
-namespace Adyen.EcommLibrary.HttpClient
+namespace Adyen.HttpClient
 {
     public class HttpClientException : Exception
     {

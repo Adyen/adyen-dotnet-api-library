@@ -1,7 +1,7 @@
-﻿using Adyen.EcommLibrary.Model.Modification;
-using Adyen.EcommLibrary.Service.Resource.Modification;
+﻿using Adyen.Model.Modification;
+using Adyen.Service.Resource.Modification;
 
-namespace Adyen.EcommLibrary.Service
+namespace Adyen.Service
 {
     public class Modification : AbstractService
     {

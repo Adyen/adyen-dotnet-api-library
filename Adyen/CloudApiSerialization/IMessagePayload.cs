@@ -1,4 +1,4 @@
-﻿namespace Adyen.EcommLibrary.CloudApiSerialization
+﻿namespace Adyen.CloudApiSerialization
 {
     public interface IMessagePayload { }
 }

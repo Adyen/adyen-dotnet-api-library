@@ -1,8 +1,8 @@
-﻿using Adyen.EcommLibrary.CloudApiSerialization;
+﻿using Adyen.CloudApiSerialization;
 using Newtonsoft.Json;
 using System.Runtime.Serialization;
 
-namespace Adyen.EcommLibrary.Model.Nexo
+namespace Adyen.Model.Nexo
 {
     /// <remarks/>
     [System.CodeDom.Compiler.GeneratedCodeAttribute("xsd", "4.6.1055.0")]

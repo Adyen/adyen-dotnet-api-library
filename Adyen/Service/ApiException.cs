@@ -1,7 +1,7 @@
-﻿using Adyen.EcommLibrary.Model;
+﻿using Adyen.Model;
 using System;
 
-namespace Adyen.EcommLibrary.Service
+namespace Adyen.Service
 {
     public class ApiException:Exception
     {

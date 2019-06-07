@@ -1,10 +1,10 @@
-﻿using Adyen.EcommLibrary.Model.Reccuring;
+﻿using Adyen.Model.Reccuring;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Text;
 
-namespace Adyen.EcommLibrary.Model
+namespace Adyen.Model
 {
     public class ApiError : IEquatable<ApiError>, IValidatableObject
     {

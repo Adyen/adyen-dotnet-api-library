@@ -1,9 +1,9 @@
-﻿using Adyen.EcommLibrary.Constants;
+﻿using Adyen.Constants;
 using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace Adyen.EcommLibrary.Service.Resource.CheckoutUtility
+namespace Adyen.Service.Resource.CheckoutUtility
 {
     public class OriginKeys : ServiceResource
     {

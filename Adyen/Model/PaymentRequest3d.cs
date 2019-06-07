@@ -1,11 +1,11 @@
 ﻿using System;
 using System.Runtime.Serialization;
 using System.Text;
-using Adyen.EcommLibrary.Constants;
-using Adyen.EcommLibrary.Model.ApplicationInformation;
-using Adyen.EcommLibrary.Util;
+using Adyen.Constants;
+using Adyen.Model.ApplicationInformation;
+using Adyen.Util;
 
-namespace Adyen.EcommLibrary.Model
+namespace Adyen.Model
 {
     [DataContract]
     public class PaymentRequest3D : AbstractPaymentRequest

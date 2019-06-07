@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace Adyen.EcommLibrary.Constants
+namespace Adyen.Constants
 {
     public class ApiConstants
     {

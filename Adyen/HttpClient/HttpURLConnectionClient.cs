@@ -1,4 +1,4 @@
-﻿using Adyen.EcommLibrary.Constants;
+﻿using Adyen.Constants;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -8,10 +8,10 @@ using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Threading.Tasks;
 using System.Web;
-using Adyen.EcommLibrary.HttpClient.Interfaces;
-using Adyen.EcommLibrary.Model;
+using Adyen.HttpClient.Interfaces;
+using Adyen.Model;
 
-namespace Adyen.EcommLibrary.HttpClient
+namespace Adyen.HttpClient
 {
     public class HttpUrlConnectionClient : IClient
     {

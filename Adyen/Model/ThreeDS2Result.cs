@@ -1,8 +1,8 @@
-﻿using Adyen.EcommLibrary.Model.Enum;
-using Adyen.EcommLibrary.Util;
+﻿using Adyen.Model.Enum;
+using Adyen.Util;
 using System.Runtime.Serialization;
 
-namespace Adyen.EcommLibrary.Model
+namespace Adyen.Model
 {
     [DataContract]
     public partial class ThreeDS2Result

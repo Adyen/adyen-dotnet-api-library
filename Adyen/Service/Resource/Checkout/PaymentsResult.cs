@@ -1,9 +1,9 @@
-﻿using Adyen.EcommLibrary.Constants;
+﻿using Adyen.Constants;
 using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace Adyen.EcommLibrary.Service.Resource.Checkout
+namespace Adyen.Service.Resource.Checkout
 {
     public class PaymentsResult : ServiceResource
     {

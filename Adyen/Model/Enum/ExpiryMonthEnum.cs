@@ -2,7 +2,7 @@
 using Newtonsoft.Json.Converters;
 using System.Runtime.Serialization;
 
-namespace Adyen.EcommLibrary.Model.Enum
+namespace Adyen.Model.Enum
 {
     /// <summary>
     /// the month of the expiry date of the card

@@ -1,5 +1,5 @@
 
-using Adyen.EcommLibrary.Model.Enum;
+using Adyen.Model.Enum;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
 using System;
@@ -9,7 +9,7 @@ using System.IO;
 using System.Runtime.Serialization;
 using System.Text;
 
-namespace Adyen.EcommLibrary.Model.Checkout
+namespace Adyen.Model.Checkout
 {
     /// <summary>
     /// ThreeDS2RequestData

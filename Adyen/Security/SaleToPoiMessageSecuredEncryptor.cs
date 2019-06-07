@@ -1,9 +1,9 @@
-﻿using Adyen.EcommLibrary.Model.Nexo.Message;
+﻿using Adyen.Model.Nexo.Message;
 using System;
 using System.Text;
-using Adyen.EcommLibrary.Model.Nexo;
+using Adyen.Model.Nexo;
 
-namespace Adyen.EcommLibrary.Security
+namespace Adyen.Security
 {
     public class SaleToPoiMessageSecuredEncryptor
     {

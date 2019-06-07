@@ -2,9 +2,9 @@ using System;
 using System.Collections.Generic;
 using System.Net.Security;
 using System.Threading.Tasks;
-using Adyen.EcommLibrary.Model;
+using Adyen.Model;
 
-namespace Adyen.EcommLibrary.Service
+namespace Adyen.Service
 {
     public class ServiceResource
     {

@@ -1,6 +1,6 @@
 ﻿using Newtonsoft.Json;
 
-namespace Adyen.EcommLibrary.Util
+namespace Adyen.Util
 {
     public class JsonOperation
     {

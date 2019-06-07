@@ -1,12 +1,12 @@
 ﻿using System;
-using Adyen.EcommLibrary.HttpClient;
-using Adyen.EcommLibrary.Model.Enum;
-using Adyen.EcommLibrary.Model.Reccuring;
+using Adyen.HttpClient;
+using Adyen.Model.Enum;
+using Adyen.Model.Reccuring;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.Linq;
-using Recurring = Adyen.EcommLibrary.Model.Reccuring.Recurring;
+using Recurring = Adyen.Model.Reccuring.Recurring;
 
-namespace Adyen.EcommLibrary.Test
+namespace Adyen.Test
 {
     [TestClass]
     public class RecurringTest:BaseTest

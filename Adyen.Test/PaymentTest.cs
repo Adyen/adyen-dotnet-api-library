@@ -1,10 +1,10 @@
-﻿using Adyen.EcommLibrary.Constants;
-using Adyen.EcommLibrary.Model.Enum;
-using Adyen.EcommLibrary.Service;
+﻿using Adyen.Constants;
+using Adyen.Model.Enum;
+using Adyen.Service;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.Collections.Generic;
 
-namespace Adyen.EcommLibrary.Test
+namespace Adyen.Test
 {
     [TestClass]
     public class PaymentTest : BaseTest

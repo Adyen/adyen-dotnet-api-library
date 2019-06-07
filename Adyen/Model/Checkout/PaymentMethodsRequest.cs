@@ -8,9 +8,9 @@ using System.Runtime.Serialization;
 using System.Text;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
-using Adyen.EcommLibrary.Model.ApplicationInformation;
+using Adyen.Model.ApplicationInformation;
 
-namespace Adyen.EcommLibrary.Model.Checkout
+namespace Adyen.Model.Checkout
 {
     /// <summary>
     /// PaymentMethodsRequest

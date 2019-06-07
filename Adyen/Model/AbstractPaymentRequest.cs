@@ -1,13 +1,13 @@
-﻿using Adyen.EcommLibrary.Model.Enum;
-using Adyen.EcommLibrary.Model.Reccuring;
+﻿using Adyen.Model.Enum;
+using Adyen.Model.Reccuring;
 using System;
 using System.Collections.Generic;
 using System.Runtime.Serialization;
-using Adyen.EcommLibrary.Constants;
+using Adyen.Constants;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
 
-namespace Adyen.EcommLibrary.Model
+namespace Adyen.Model
 {
     [DataContract]
     public abstract class AbstractPaymentRequest

@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace Adyen.EcommLibrary.Service.Resource.Modification
+namespace Adyen.Service.Resource.Modification
 {
     public class Capture : ServiceResource
     {

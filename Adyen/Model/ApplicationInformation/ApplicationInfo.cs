@@ -3,10 +3,10 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Runtime.Serialization;
 using System.Text;
-using Adyen.EcommLibrary.Constants;
+using Adyen.Constants;
 using Newtonsoft.Json;
 
-namespace Adyen.EcommLibrary.Model.ApplicationInformation
+namespace Adyen.Model.ApplicationInformation
 {
     /// <summary>
     /// ApplicationInfo

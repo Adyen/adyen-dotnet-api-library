@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
-using Adyen.EcommLibrary.Constants;
+using Adyen.Constants;
 
-namespace Adyen.EcommLibrary.Service.Resource.Checkout
+namespace Adyen.Service.Resource.Checkout
 {
     public class PaymentMethods : ServiceResource
     {

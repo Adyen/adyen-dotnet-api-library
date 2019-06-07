@@ -2,7 +2,7 @@
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
 
-namespace Adyen.EcommLibrary.Model.Enum
+namespace Adyen.Model.Enum
 {
     [JsonConverter(typeof(StringEnumConverter))]
     public enum ThreeDSecure2TransactionResultStatus

@@ -16,7 +16,7 @@ using System.Runtime.Serialization;
 using System.Text;
 using Newtonsoft.Json;
 
-namespace Adyen.EcommLibrary.Model.Reccuring
+namespace Adyen.Model.Reccuring
 {
     /// <summary>
     /// TokenDetails

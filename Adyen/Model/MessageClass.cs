@@ -1,4 +1,4 @@
-﻿namespace Adyen.EcommLibrary.Model
+﻿namespace Adyen.Model
 {
     public enum MessageClass
     {

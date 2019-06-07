@@ -1,8 +1,8 @@
-﻿using Adyen.EcommLibrary.Constants;
-using Adyen.EcommLibrary.HttpClient;
-using Adyen.EcommLibrary.Model.Modification;
-using Adyen.EcommLibrary.Model.Nexo;
-using Adyen.EcommLibrary.Service;
+﻿using Adyen.Constants;
+using Adyen.HttpClient;
+using Adyen.Model.Modification;
+using Adyen.Model.Nexo;
+using Adyen.Service;
 using Moq;
 using System;
 using System.Collections.Generic;
@@ -10,13 +10,13 @@ using System.IO;
 using System.Net;
 using System.Net.Security;
 using System.Text;
-using Adyen.EcommLibrary.HttpClient.Interfaces;
-using Adyen.EcommLibrary.Model;
+using Adyen.HttpClient.Interfaces;
+using Adyen.Model;
 using Environment = System.Environment;
-using Amount = Adyen.EcommLibrary.Model.Amount;
-using PaymentResult = Adyen.EcommLibrary.Model.PaymentResult;
+using Amount = Adyen.Model.Amount;
+using PaymentResult = Adyen.Model.PaymentResult;
 
-namespace Adyen.EcommLibrary.Test
+namespace Adyen.Test
 {
     public class BaseTest
     {

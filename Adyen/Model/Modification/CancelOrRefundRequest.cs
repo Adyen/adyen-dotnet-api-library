@@ -2,10 +2,10 @@
 using System.Collections.Generic;
 using System.Text;
 using Newtonsoft.Json;
-using Adyen.EcommLibrary.Constants;
-using Adyen.EcommLibrary.Model.ApplicationInformation;
+using Adyen.Constants;
+using Adyen.Model.ApplicationInformation;
 
-namespace Adyen.EcommLibrary.Model.Modification
+namespace Adyen.Model.Modification
 {
     public class CancelOrRefundRequest : AbstractModificationRequest
     {

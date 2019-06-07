@@ -1,9 +1,9 @@
-﻿using Adyen.EcommLibrary.Constants;
+﻿using Adyen.Constants;
 using System.Collections.Generic;
 using System.Text;
-using Adyen.EcommLibrary.Util;
+using Adyen.Util;
 
-namespace Adyen.EcommLibrary.Model.Hpp
+namespace Adyen.Model.Hpp
 {
     public class PaymentMethod
     {

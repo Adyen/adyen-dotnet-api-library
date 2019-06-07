@@ -1,6 +1,6 @@
 ﻿using System.Security.Cryptography;
 
-namespace Adyen.EcommLibrary.Security
+namespace Adyen.Security
 {
     internal class HmacSha256Wrapper
     {

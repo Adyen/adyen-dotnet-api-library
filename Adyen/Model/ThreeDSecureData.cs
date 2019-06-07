@@ -4,9 +4,9 @@ using System.Collections.Generic;
 using System.Runtime.Serialization;
 using Newtonsoft.Json;
 using System.ComponentModel.DataAnnotations;
-using Adyen.EcommLibrary.Model.Enum;
+using Adyen.Model.Enum;
 
-namespace Adyen.EcommLibrary.Model
+namespace Adyen.Model
 {
     /// <summary>
     /// ThreeDSecureData

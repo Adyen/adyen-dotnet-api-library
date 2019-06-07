@@ -1,6 +1,6 @@
 using System.Collections.Generic;
 
-namespace Adyen.EcommLibrary.Service.Resource
+namespace Adyen.Service.Resource
 {
     public class Resource
     {

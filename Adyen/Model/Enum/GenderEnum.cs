@@ -2,7 +2,7 @@
 using System.Runtime.Serialization;
 using Newtonsoft.Json.Converters;
 
-namespace Adyen.EcommLibrary.Model.Enum
+namespace Adyen.Model.Enum
 {
     /// <summary>
     /// A person&#39;s gender (can be unknown).

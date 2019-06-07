@@ -1,4 +1,4 @@
-﻿namespace Adyen.EcommLibrary.Security.Extension
+﻿namespace Adyen.Security.Extension
 {
     internal static class ArrayExtension
     {

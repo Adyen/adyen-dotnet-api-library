@@ -1,9 +1,9 @@
 using System.Collections.Generic;
 using System.Net.Security;
 using System.Threading.Tasks;
-using Adyen.EcommLibrary.Model;
+using Adyen.Model;
 
-namespace Adyen.EcommLibrary.HttpClient.Interfaces
+namespace Adyen.HttpClient.Interfaces
 {
     public interface IClient
     {

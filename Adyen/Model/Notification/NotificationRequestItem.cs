@@ -1,6 +1,6 @@
 using System.Collections.Generic;
 
-namespace Adyen.EcommLibrary.Model.Notification
+namespace Adyen.Model.Notification
 {
     public class NotificationRequestItem
     {

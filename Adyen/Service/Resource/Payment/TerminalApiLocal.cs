@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace Adyen.EcommLibrary.Service.Resource.Payment
+namespace Adyen.Service.Resource.Payment
 {
     public class TerminalApiLocal: ServiceResource
     {

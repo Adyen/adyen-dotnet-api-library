@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace Adyen.EcommLibrary.Service.Resource.Reccuring
+namespace Adyen.Service.Resource.Reccuring
 {
     public class ListReccuringDetails:Resource
     {

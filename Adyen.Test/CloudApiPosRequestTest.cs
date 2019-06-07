@@ -1,9 +1,9 @@
-﻿using Adyen.EcommLibrary.Model.Nexo;
-using Adyen.EcommLibrary.Service;
+﻿using Adyen.Model.Nexo;
+using Adyen.Service;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 
-namespace Adyen.EcommLibrary.Test
+namespace Adyen.Test
 {
     [TestClass]
     public class CloudApiPosRequestTest : BaseTest

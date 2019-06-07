@@ -1,4 +1,4 @@
-namespace Adyen.EcommLibrary.Constants.HPPConstants
+namespace Adyen.Constants.HPPConstants
 {
     public class Response
     {

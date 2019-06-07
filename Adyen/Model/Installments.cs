@@ -5,7 +5,7 @@ using System.Runtime.Serialization;
 using Newtonsoft.Json;
 using System.ComponentModel.DataAnnotations;
 
-namespace Adyen.EcommLibrary.Model
+namespace Adyen.Model
 {
     /// <summary>
     /// Installments

@@ -6,7 +6,7 @@ using System.Text;
 using System.Linq;
 using Newtonsoft.Json;
 
-namespace Adyen.EcommLibrary.Model.CheckoutUtility
+namespace Adyen.Model.CheckoutUtility
 {
    /// <summary>
     /// OriginKeysResponse

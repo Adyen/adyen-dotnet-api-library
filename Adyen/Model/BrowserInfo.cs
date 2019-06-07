@@ -5,9 +5,9 @@ using System.ComponentModel;
 using System.Runtime.Serialization;
 using Newtonsoft.Json;
 using System.ComponentModel.DataAnnotations;
-using Adyen.EcommLibrary.Util;
+using Adyen.Util;
 
-namespace Adyen.EcommLibrary.Model
+namespace Adyen.Model
 {
     /// <summary>
     /// BrowserInfo
