@@ -1,0 +1,14 @@
+Y:\adyen-dotnet-api-library\Adyen.EcommLibrary\bin\Debug\netstandard2.0\Adyen.EcommLibrary.deps.json
+Y:\adyen-dotnet-api-library\Adyen.EcommLibrary\bin\Debug\netstandard2.0\Adyen.EcommLibrary.dll
+Y:\adyen-dotnet-api-library\Adyen.EcommLibrary\bin\Debug\netstandard2.0\Adyen.EcommLibrary.pdb
+Y:\adyen-dotnet-api-library\Adyen.EcommLibrary\bin\Debug\netstandard2.0\Microsoft.Build.Framework.dll
+Y:\adyen-dotnet-api-library\Adyen.EcommLibrary\bin\Debug\netstandard2.0\System.Xaml.dll
+Y:\adyen-dotnet-api-library\Adyen.EcommLibrary\bin\Debug\netstandard2.0\Microsoft.Build.Framework.xml
+Y:\adyen-dotnet-api-library\Adyen.EcommLibrary\bin\Debug\netstandard2.0\System.Xaml.xml
+Y:\adyen-dotnet-api-library\Adyen.EcommLibrary\obj\Debug\netstandard2.0\Adyen.EcommLibrary.csprojAssemblyReference.cache
+Y:\adyen-dotnet-api-library\Adyen.EcommLibrary\obj\Debug\netstandard2.0\Adyen.EcommLibrary.csproj.CoreCompileInputs.cache
+Y:\adyen-dotnet-api-library\Adyen.EcommLibrary\obj\Debug\netstandard2.0\Adyen.EcommLibrary.AssemblyInfoInputs.cache
+Y:\adyen-dotnet-api-library\Adyen.EcommLibrary\obj\Debug\netstandard2.0\Adyen.EcommLibrary.AssemblyInfo.cs
+Y:\adyen-dotnet-api-library\Adyen.EcommLibrary\obj\Debug\netstandard2.0\Adyen.EcommLibrary.csproj.CopyComplete
+Y:\adyen-dotnet-api-library\Adyen.EcommLibrary\obj\Debug\netstandard2.0\Adyen.EcommLibrary.dll
+Y:\adyen-dotnet-api-library\Adyen.EcommLibrary\obj\Debug\netstandard2.0\Adyen.EcommLibrary.pdb
