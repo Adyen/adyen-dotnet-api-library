@@ -5,16 +5,22 @@ using System.Runtime.Serialization;
 using System.Text;
 using Newtonsoft.Json;
 
-namespace Adyen.EcommLibrary.Model
+namespace Adyen.EcommLibrary.Model.Checkout
 {
     [DataContract]
     public partial class Authentication : IEquatable<Authentication>, IValidatableObject
     {
-        [DataMember(Name = "threeds2.fingerprintToken")]
+        [DataMember(Name = "threeds2.fingerprintToken", EmitDefaultValue = false)]
         public string FingerprintToken { get; set; }
 
-        [DataMember(Name = "threeds2.challengeToken")]
+        [DataMember(Name = "threeds2.challengeToken", EmitDefaultValue = false)]
         public string ChallengeToken { get; set; }
+
+        public Authentication(string FingerprintToken = default(string), string ChallengeToken = default(string))
+        {
+            this.FingerprintToken = FingerprintToken;
+            this.ChallengeToken = ChallengeToken;
+        }
 
         public override string ToString()
         {

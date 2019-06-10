@@ -97,11 +97,13 @@ namespace Adyen.EcommLibrary.Model.Checkout
         /// <param name="RefusalReason">If the payment&#39;s authorisation is refused or an error occurs during authorisation, this field holds Adyen&#39;s mapped reason for the refusal or a description of the error.  When a transaction fails, the authorisation response includes &#x60;resultCode&#x60; and &#x60;refusalReason&#x60; values..</param>
         /// <param name="RefusalReasonCode">Code that specifies the refusal reason. For more information, see [Authorisation refusal reasons](https://docs.adyen.com/developers/development-resources/response-handling#authorisationrefusalreasons)..</param>
         /// <param name="ResultCode">The result of the payment. Possible values:  * **Authorised** – Indicates the payment authorisation was successfully completed. This state serves as an indicator to proceed with the delivery of goods and services. This is a final state. * **Refused** – Indicates the payment was refused. The reason is given in the &#x60;refusalReason&#x60; field. This is a final state. * **RedirectShopper** – Indicates the shopper should be redirected to an external web page or app to complete the authorisation. * **Received** – Indicates the payment has successfully been received by Adyen, and will be processed. This is the initial state for all payments. * **Cancelled** – Indicates the payment has been cancelled (either by the shopper or the merchant) before processing was completed. This is a final state. * **Pending** – Indicates that it is not possible to obtain the final status of the payment. This can happen if the systems providing final status information for the payment are unavailable, or if the shopper needs to take further action to complete the payment. For more information on handling a pending payment, refer to [Payments with pending status](https://docs.adyen.com/developers/development-resources/payments-with-pending-status). * **Error** – Indicates an error occurred during processing of the payment. The reason is given in the &#x60;refusalReason&#x60; field. This is a final state..</param>
+        /// <param name="Authentication">Contains tokens for fingerprint and challenge</param>
         public PaymentsResponse(Dictionary<string, string> AdditionalData = default(Dictionary<string, string>),
             List<InputDetail> Details = default(List<InputDetail>), FraudResult FraudResult = default(FraudResult),
             string PaymentData = default(string), string PspReference = default(string),
             Redirect Redirect = default(Redirect), string RefusalReason = default(string),
-            string RefusalReasonCode = default(string), ResultCodeEnum? ResultCode = default(ResultCodeEnum?))
+            string RefusalReasonCode = default(string), ResultCodeEnum? ResultCode = default(ResultCodeEnum?),
+            Authentication Authentication = default(Authentication))
         {
             this.AdditionalData = AdditionalData;
             this.Details = Details;
@@ -112,7 +114,9 @@ namespace Adyen.EcommLibrary.Model.Checkout
             this.RefusalReason = RefusalReason;
             this.RefusalReasonCode = RefusalReasonCode;
             this.ResultCode = ResultCode;
+            this.Authentication = Authentication;
         }
+
 
         /// <summary>
         /// This field contains additional data, which may be required to return in a particular payment response. To choose data fields to be returned, go to **Customer Area** &gt; **Account** &gt; **API URLs**.
@@ -174,6 +178,9 @@ namespace Adyen.EcommLibrary.Model.Checkout
         [DataMember(Name = "outputDetails", EmitDefaultValue = false)]
         public Dictionary<string, string> OutputDetails;
 
+        [DataMember(Name= "authentication", EmitDefaultValue = false)]
+        public Authentication Authentication { get; set; }
+
         /// <summary>
         /// Returns the string presentation of the object
         /// </summary>
@@ -191,6 +198,7 @@ namespace Adyen.EcommLibrary.Model.Checkout
             sb.Append("  RefusalReason: ").Append(RefusalReason).Append("\n");
             sb.Append("  RefusalReasonCode: ").Append(RefusalReasonCode).Append("\n");
             sb.Append("  ResultCode: ").Append(ResultCode).Append("\n");
+            sb.Append("  Authentication: ").Append(Authentication).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -269,6 +277,11 @@ namespace Adyen.EcommLibrary.Model.Checkout
                     ResultCode == input.ResultCode ||
                     ResultCode != null &&
                     ResultCode.Equals(input.ResultCode)
+                ) &&
+                (
+                    Authentication == input.Authentication ||
+                    Authentication != null &&
+                    Authentication.Equals(input.Authentication)
                 );
         }
 
@@ -299,6 +312,8 @@ namespace Adyen.EcommLibrary.Model.Checkout
                     hashCode = hashCode * 59 + RefusalReasonCode.GetHashCode();
                 if (ResultCode != null)
                     hashCode = hashCode * 59 + ResultCode.GetHashCode();
+                if (Authentication != null)
+                    hashCode = hashCode * 59 + Authentication.GetHashCode();
                 return hashCode;
             }
         }
