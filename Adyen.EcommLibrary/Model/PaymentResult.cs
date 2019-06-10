@@ -36,12 +36,13 @@ namespace Adyen.EcommLibrary.Model
         /// <param name="DccAmount">DccAmount.</param>
         /// <param name="FraudResult">FraudResult.</param>
         /// <param name="PspReference">Adyen&#39;s 16-digit unique reference associated with the transaction/the request. This value is globally unique; quote it when communicating with us about this request..</param>
+        /// <param name="Authentication"></param>
         public PaymentResult(string AuthCode = default(string), string PaRequest = default(string),
             string IssuerUrl = default(string), string Md = default(string),
             ResultCodeEnum? ResultCode = default(ResultCodeEnum?), string DccSignature = default(string),
             string RefusalReason = default(string),
             Dictionary<string, string> AdditionalData = default(Dictionary<string, string>),
-            FraudResult FraudResult = default(FraudResult), string PspReference = default(string))
+            FraudResult FraudResult = default(FraudResult), string PspReference = default(string), Authentication Authentication = default(Authentication))
         {
             this.AuthCode = AuthCode;
             this.PaRequest = PaRequest;
@@ -53,6 +54,7 @@ namespace Adyen.EcommLibrary.Model
             this.AdditionalData = AdditionalData;
             this.FraudResult = FraudResult;
             this.PspReference = PspReference;
+            this.Authentication = Authentication;
         }
 
         /// <summary>
@@ -156,6 +158,9 @@ namespace Adyen.EcommLibrary.Model
         [DataMember(Name = "boletoExpirationDate", EmitDefaultValue = false)]
         public string BoletoExpirationDate { get; set; }
 
+        [DataMember(Name = "authentication", EmitDefaultValue = false)]
+        public Authentication Authentication { get; set; }
+
         /// <summary>
         /// Returns the string presentation of the object
         /// </summary>
@@ -175,6 +180,7 @@ namespace Adyen.EcommLibrary.Model
             sb.Append("  AdditionalData: ").Append(AdditionalData).Append("\n");
             sb.Append("  FraudResult: ").Append(FraudResult).Append("\n");
             sb.Append("  PspReference: ").Append(PspReference).Append("\n");
+            sb.Append("  Authentication: ").Append(Authentication).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -260,6 +266,11 @@ namespace Adyen.EcommLibrary.Model
                     PspReference == other.PspReference ||
                     PspReference != null &&
                     PspReference.Equals(other.PspReference)
+                ) &&
+                (
+                    Authentication == other.Authentication ||
+                    Authentication != null &&
+                    Authentication.Equals(other.Authentication)
                 );
         }
 
@@ -294,6 +305,8 @@ namespace Adyen.EcommLibrary.Model
                     hash = hash * 59 + FraudResult.GetHashCode();
                 if (PspReference != null)
                     hash = hash * 59 + PspReference.GetHashCode();
+                if (Authentication != null)
+                    hash = hash * 59 + Authentication.GetHashCode();
                 return hash;
             }
         }
