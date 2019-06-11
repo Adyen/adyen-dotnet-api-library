@@ -22,7 +22,6 @@ namespace Adyen.Test
                     MessageCategory = MessageCategoryType.Payment,
                     SaleID = "POSSystemID12345",
                     POIID = "MX915-284251016",
-                    ProtocolVersion = "3.0",
                     ServiceID = DateTime.Now.ToString("ddHHmmss")//this should be unique
                 },
                 MessagePayload = new PaymentRequest()
