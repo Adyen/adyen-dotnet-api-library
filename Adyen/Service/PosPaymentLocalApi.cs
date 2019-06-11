@@ -53,8 +53,7 @@ namespace Adyen.Service
             var saleToPoiResponseSecured = _saleToPoiMessageSecuredSerializer.Deserialize(response);
             var decryptResponse = _messageSecuredEncryptor.Decrypt(saleToPoiResponseSecured, encryptionCredentialDetails);
             this.Client.LogLine("Response: \n" + decryptResponse);
-            var saleToPoiResponse = _saleToPoiMessageSerializer.Deserialize(decryptResponse);
-            return saleToPoiResponse;
+            return _saleToPoiMessageSerializer.Deserialize(decryptResponse);
         }    
     }
 }

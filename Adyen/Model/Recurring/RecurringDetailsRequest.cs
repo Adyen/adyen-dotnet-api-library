@@ -15,26 +15,24 @@ using System.ComponentModel.DataAnnotations;
 using System.Runtime.Serialization;
 using System.Text;
 
-namespace Adyen.Model.Reccuring
+namespace Adyen.Model.Recurring
 {
     /// <summary>
-    /// DisableRequest
+    /// RecurringDetailsRequest
     /// </summary>
     [DataContract]
-    public partial class DisableRequest :  IEquatable<DisableRequest>, IValidatableObject
+    public partial class RecurringDetailsRequest :  IEquatable<RecurringDetailsRequest>, IValidatableObject
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="DisableRequest" /> class.
+        /// Initializes a new instance of the <see cref="RecurringDetailsRequest" /> class.
         /// </summary>
         /// <param name="MerchantAccount">the merchant account which will be used for processing this request.</param>
-        /// <param name="Contract">specify the contract if you only want to disable a specific use.</param>
-        /// <param name="RecurringDetailReference">the recurring detail you wish to disable.</param>
+        /// <param name="Recurring">Recurring.</param>
         /// <param name="ShopperReference">a reference you use to uniquely identify the shopper (e.g. user ID or account ID).</param>
-        public DisableRequest(string MerchantAccount = default(string), string Contract = default(string), string RecurringDetailReference = default(string), string ShopperReference = default(string))
+        public RecurringDetailsRequest(string MerchantAccount = default(string), Recurring Recurring = default(Recurring), string ShopperReference = default(string))
         {
             this.MerchantAccount = MerchantAccount;
-            this.Contract = Contract;
-            this.RecurringDetailReference = RecurringDetailReference;
+            this.Recurring = Recurring;
             this.ShopperReference = ShopperReference;
         }
         
@@ -46,18 +44,10 @@ namespace Adyen.Model.Reccuring
         public string MerchantAccount { get; set; }
 
         /// <summary>
-        /// specify the contract if you only want to disable a specific use
+        /// Gets or Sets Recurring
         /// </summary>
-        /// <value>specify the contract if you only want to disable a specific use</value>
-        [DataMember(Name="contract", EmitDefaultValue=false)]
-        public string Contract { get; set; }
-
-        /// <summary>
-        /// the recurring detail you wish to disable
-        /// </summary>
-        /// <value>the recurring detail you wish to disable</value>
-        [DataMember(Name="recurringDetailReference", EmitDefaultValue=false)]
-        public string RecurringDetailReference { get; set; }
+        [DataMember(Name="recurring", EmitDefaultValue=false)]
+        public Recurring Recurring { get; set; }
 
         /// <summary>
         /// a reference you use to uniquely identify the shopper (e.g. user ID or account ID)
@@ -73,10 +63,9 @@ namespace Adyen.Model.Reccuring
         public override string ToString()
         {
             var sb = new StringBuilder();
-            sb.Append("class DisableRequest {\n");
+            sb.Append("class RecurringDetailsRequest {\n");
             sb.Append("  MerchantAccount: ").Append(MerchantAccount).Append("\n");
-            sb.Append("  Contract: ").Append(Contract).Append("\n");
-            sb.Append("  RecurringDetailReference: ").Append(RecurringDetailReference).Append("\n");
+            sb.Append("  Recurring: ").Append(Recurring).Append("\n");
             sb.Append("  ShopperReference: ").Append(ShopperReference).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
@@ -99,15 +88,15 @@ namespace Adyen.Model.Reccuring
         public override bool Equals(object obj)
         {
             // credit: http://stackoverflow.com/a/10454552/677735
-            return this.Equals(obj as DisableRequest);
+            return this.Equals(obj as RecurringDetailsRequest);
         }
 
         /// <summary>
-        /// Returns true if DisableRequest instances are equal
+        /// Returns true if RecurringDetailsRequest instances are equal
         /// </summary>
-        /// <param name="other">Instance of DisableRequest to be compared</param>
+        /// <param name="other">Instance of RecurringDetailsRequest to be compared</param>
         /// <returns>Boolean</returns>
-        public bool Equals(DisableRequest other)
+        public bool Equals(RecurringDetailsRequest other)
         {
             // credit: http://stackoverflow.com/a/10454552/677735
             if (other == null)
@@ -120,14 +109,9 @@ namespace Adyen.Model.Reccuring
                     this.MerchantAccount.Equals(other.MerchantAccount)
                 ) && 
                 (
-                    this.Contract == other.Contract ||
-                    this.Contract != null &&
-                    this.Contract.Equals(other.Contract)
-                ) && 
-                (
-                    this.RecurringDetailReference == other.RecurringDetailReference ||
-                    this.RecurringDetailReference != null &&
-                    this.RecurringDetailReference.Equals(other.RecurringDetailReference)
+                    this.Recurring == other.Recurring ||
+                    this.Recurring != null &&
+                    this.Recurring.Equals(other.Recurring)
                 ) && 
                 (
                     this.ShopperReference == other.ShopperReference ||
@@ -149,10 +133,8 @@ namespace Adyen.Model.Reccuring
                 // Suitable nullity checks etc, of course :)
                 if (this.MerchantAccount != null)
                     hash = hash * 59 + this.MerchantAccount.GetHashCode();
-                if (this.Contract != null)
-                    hash = hash * 59 + this.Contract.GetHashCode();
-                if (this.RecurringDetailReference != null)
-                    hash = hash * 59 + this.RecurringDetailReference.GetHashCode();
+                if (this.Recurring != null)
+                    hash = hash * 59 + this.Recurring.GetHashCode();
                 if (this.ShopperReference != null)
                     hash = hash * 59 + this.ShopperReference.GetHashCode();
                 return hash;

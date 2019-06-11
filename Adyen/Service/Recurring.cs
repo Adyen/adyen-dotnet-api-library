@@ -1,17 +1,17 @@
-﻿using Adyen.Model.Reccuring;
-using Adyen.Service.Resource.Reccuring;
+﻿using Adyen.Model.Recurring;
+using Adyen.Service.Resource.Recurring;
 using System;
 
 namespace Adyen.Service
 {
     public class Recurring : AbstractService
     {
-        private readonly ListReccuringDetails _listRecurringDetails;
+        private readonly ListRecurringDetails _listRecurringDetails;
         private Disable _disable;
 
         public Recurring(Client client) : base(client)
         {
-            _listRecurringDetails = new ListReccuringDetails(this);
+            _listRecurringDetails = new ListRecurringDetails(this);
             _disable = new Disable(this);
         }
 

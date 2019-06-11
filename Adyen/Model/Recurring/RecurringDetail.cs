@@ -16,7 +16,7 @@ using System.Linq;
 using System.Runtime.Serialization;
 using System.Text;
 
-namespace Adyen.Model.Reccuring
+namespace Adyen.Model.Recurring
 {
     /// <summary>
     /// RecurringDetail

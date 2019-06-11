@@ -1,10 +1,10 @@
 ﻿using System;
 using Adyen.HttpClient;
 using Adyen.Model.Enum;
-using Adyen.Model.Reccuring;
+using Adyen.Model.Recurring;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.Linq;
-using Recurring = Adyen.Model.Reccuring.Recurring;
+using Recurring = Adyen.Model.Recurring.Recurring;
 
 namespace Adyen.Test
 {

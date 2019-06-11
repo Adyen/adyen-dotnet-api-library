@@ -16,10 +16,6 @@ namespace Adyen.CloudApiSerialization
         }
         public SaleToPOIResponse Deserialize(string saleToPoiMessageDto)
         {
-            if (string.Equals("ok", saleToPoiMessageDto) || string.IsNullOrEmpty(saleToPoiMessageDto))
-            {
-                return null;
-            }
             var saleToPoiMessageJObject = JObject.Parse(saleToPoiMessageDto);
             var saleToPoiMessageRootJToken = saleToPoiMessageJObject.First;
             var saleToPoiMessageWithoutRootJToken = saleToPoiMessageRootJToken.First;
