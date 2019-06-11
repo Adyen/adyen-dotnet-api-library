@@ -58,7 +58,7 @@ namespace Adyen.Model.Nexo
         [System.Xml.Serialization.XmlElementAttribute("StoredValueRequest", typeof(StoredValueRequest), Form = System.Xml.Schema.XmlSchemaForm.Unqualified)]
         [System.Xml.Serialization.XmlElementAttribute("TransactionStatusRequest", typeof(TransactionStatusRequest), Form = System.Xml.Schema.XmlSchemaForm.Unqualified)]
         [System.Xml.Serialization.XmlElementAttribute("TransmitRequest", typeof(TransmitRequest), Form = System.Xml.Schema.XmlSchemaForm.Unqualified)]
-        public object Item;
+        public object MessagePayload;
 
         /// <remarks/>
         [System.Xml.Serialization.XmlElementAttribute(Form = System.Xml.Schema.XmlSchemaForm.Unqualified)]

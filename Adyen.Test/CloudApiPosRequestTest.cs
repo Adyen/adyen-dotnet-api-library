@@ -57,7 +57,7 @@ namespace Adyen.Test
 
             try
             {
-                var transactionStatusResponse = (TransactionStatusResponse)saleToPoiResponse.Item;
+                var transactionStatusResponse = (TransactionStatusResponse)saleToPoiResponse.MessagePayload;
                 var messagePayloadResponse = transactionStatusResponse.RepeatedMessageResponse.RepeatedResponseMessageBody.MessagePayload;               
                 Assert.IsNotNull(saleToPoiResponse);
                 Assert.AreEqual(saleToPoiResponse.MessageHeader.ServiceID, "35543420");

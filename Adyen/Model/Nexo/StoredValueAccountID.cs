@@ -34,6 +34,6 @@
 
         /// <remarks/>
         [System.Xml.Serialization.XmlTextAttribute()]
-        public string Value;
+        public string StoredValueID;
     }
 }

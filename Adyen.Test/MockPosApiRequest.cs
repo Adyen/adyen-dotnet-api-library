@@ -25,7 +25,7 @@ namespace Adyen.Test
                     ProtocolVersion = "3.0",
                     ServiceID = DateTime.Now.ToString("ddHHmmss")//this should be unique
                 },
-                Item = new PaymentRequest()
+                MessagePayload = new PaymentRequest()
                 {
                     SaleData = new SaleData()
                     {

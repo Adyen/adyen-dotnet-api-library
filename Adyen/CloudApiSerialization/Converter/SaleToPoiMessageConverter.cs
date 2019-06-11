@@ -13,16 +13,12 @@ namespace Adyen.CloudApiSerialization.Converter
             writer.WriteStartObject();
             writer.WritePropertyName(value.GetType().Name);
             writer.WriteStartObject();
-
             var saleToPoiMessage = value as SaleToPOIMessage;
-
             writer.WritePropertyName(saleToPoiMessage.MessageHeader.GetType().Name);
             serializer.Serialize(writer, saleToPoiMessage.MessageHeader);
-            writer.WritePropertyName(saleToPoiMessage.Item.GetType().Name);
-            serializer.Serialize(writer, saleToPoiMessage.Item);
-
+            writer.WritePropertyName(saleToPoiMessage.MessagePayload.GetType().Name);
+            serializer.Serialize(writer, saleToPoiMessage.MessagePayload);
             writer.WriteEndObject();
-
             writer.WriteEndObject();
         }
 
