@@ -90,5 +90,30 @@ namespace Adyen.Test
                 Assert.Fail();
             }
         }
+
+        [TestMethod]
+        public void TestCloudApiSyncErrorResponse()
+        {
+            try
+            {
+                //Create a mock pos payment request
+                var paymentRequest = MockPosApiRequest.CreatePosPaymentRequest();
+                var client = CreateMockTestClientPosCloudApiRequest("Mocks/terminalapi/pospayment-notification-error-response.json");
+                var payment = new PosPaymentCloudApi(client);
+                var saleToPoiResponse = payment.TerminalApiCloudSync(paymentRequest);
+                var messagePayload = (EventNotification)saleToPoiResponse.MessagePayload;
+                Assert.AreEqual(saleToPoiResponse.MessageHeader.MessageClass, MessageClassType.Event);
+                Assert.AreEqual(saleToPoiResponse.MessageHeader.MessageCategory, MessageCategoryType.Event);
+                Assert.AreEqual(saleToPoiResponse.MessageHeader.SaleID, "POSSystemID12345");
+                Assert.AreEqual(saleToPoiResponse.MessageHeader.POIID, "P400Plus-12345678");
+                Assert.AreEqual(messagePayload.EventToNotify,EventToNotifyType.Reject);
+            }
+            catch (Exception)
+            {
+                Assert.Fail();
+            }
+        }
+
+        
     }
 }
