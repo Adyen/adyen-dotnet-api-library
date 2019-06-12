@@ -7,8 +7,6 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Adyen", "Adyen\Adyen.csproj
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Adyen.Test", "Adyen.Test\Adyen.Test.csproj", "{100ADBA3-8ABA-47EB-9D5D-9EFD3D213AE8}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Adyen.EcommLibrary.ExampleApp.Pos", "..\adyen-dotnet-sample-code\Adyen.EcommLibrary.ExampleApp.Pos\Adyen.EcommLibrary.ExampleApp.Pos.csproj", "{AA2980AB-4624-439A-AFC0-82CE3BBEFB78}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
