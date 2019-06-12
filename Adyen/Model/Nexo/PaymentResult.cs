@@ -30,7 +30,7 @@
 
         /// <remarks/>
         [System.Xml.Serialization.XmlElementAttribute(Form = System.Xml.Schema.XmlSchemaForm.Unqualified)]
-        public ContentInformationType ProtectedSignature;
+        public ContentInformation ProtectedSignature;
 
         /// <remarks/>
         [System.Xml.Serialization.XmlElementAttribute(Form = System.Xml.Schema.XmlSchemaForm.Unqualified)]
@@ -39,12 +39,12 @@
         /// <remarks/>
         [System.Xml.Serialization.XmlAttributeAttribute()]
         [System.ComponentModel.DefaultValueAttribute(PaymentType.Normal)]
-        public PaymentType Payment;
+        public PaymentType PaymentType;
 
         /// <remarks/>
         [System.Xml.Serialization.XmlAttributeAttribute()]
         [System.ComponentModel.DefaultValueAttribute(false)]
-        public bool MerchantOverrideFlag;
+        public bool? MerchantOverrideFlag;
 
         /// <remarks/>
         [System.Xml.Serialization.XmlAttributeAttribute()]
@@ -53,7 +53,7 @@
         /// <remarks/>
         [System.Xml.Serialization.XmlAttributeAttribute()]
         [System.ComponentModel.DefaultValueAttribute(true)]
-        public bool OnlineFlag;
+        public bool? OnlineFlag;
 
         /// <remarks/>
         [System.Xml.Serialization.XmlAttributeAttribute()]
@@ -62,12 +62,5 @@
         /// <remarks/>
         [System.Xml.Serialization.XmlAttributeAttribute()]
         public string ValidityDate;
-
-        public PaymentResult()
-        {
-            this.Payment = PaymentType.Normal;
-            this.MerchantOverrideFlag = false;
-            this.OnlineFlag = true;
-        }
     }
 }

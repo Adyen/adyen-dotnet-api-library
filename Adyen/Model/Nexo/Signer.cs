@@ -5,12 +5,12 @@
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
-    public partial class SignerType
+    public partial class Signer
     {
 
         /// <remarks/>
         [System.Xml.Serialization.XmlElementAttribute(Form = System.Xml.Schema.XmlSchemaForm.Unqualified)]
-        public SignerIdentifierType SignerIdentifier;
+        public SignerIdentifier SignerIdentifier;
 
         /// <remarks/>
         [System.Xml.Serialization.XmlElementAttribute(Form = System.Xml.Schema.XmlSchemaForm.Unqualified)]
@@ -26,12 +26,7 @@
 
         /// <remarks/>
         [System.Xml.Serialization.XmlAttributeAttribute()]
-        [System.ComponentModel.DefaultValueAttribute("v1")]
-        public string Version;
-
-        public SignerType()
-        {
-            this.Version = "v1";
-        }
+        [System.ComponentModel.DefaultValueAttribute(VersionType.v1)]
+        public VersionType Version;
     }
 }

@@ -5,7 +5,7 @@
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
-    public partial class SignedDataType
+    public partial class SignedData
     {
 
         /// <remarks/>
@@ -14,7 +14,7 @@
 
         /// <remarks/>
         [System.Xml.Serialization.XmlElementAttribute(Form = System.Xml.Schema.XmlSchemaForm.Unqualified)]
-        public EncapsulatedContentType EncapsulatedContent;
+        public EncapsulatedContent EncapsulatedContent;
 
         /// <remarks/>
         [System.Xml.Serialization.XmlElementAttribute("Certificate", Form = System.Xml.Schema.XmlSchemaForm.Unqualified, DataType = "base64Binary")]
@@ -22,16 +22,11 @@
 
         /// <remarks/>
         [System.Xml.Serialization.XmlElementAttribute("Signer", Form = System.Xml.Schema.XmlSchemaForm.Unqualified)]
-        public SignerType[] Signer;
+        public Signer[] Signer;
 
         /// <remarks/>
         [System.Xml.Serialization.XmlAttributeAttribute()]
-        [System.ComponentModel.DefaultValueAttribute("v1")]
-        public string Version;
-
-        public SignedDataType()
-        {
-            this.Version = "v1";
-        }
+        [System.ComponentModel.DefaultValueAttribute(VersionType.v1)]
+        public VersionType Version;
     }
 }

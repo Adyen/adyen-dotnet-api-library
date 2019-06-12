@@ -14,7 +14,10 @@
 
         /// <remarks/>
         [System.Xml.Serialization.XmlAttributeAttribute()]
-        public bool RemoveAllFlag;
-        
+        public bool? RemoveAllFlag;
+
+        /// <remarks/>
+        [System.Xml.Serialization.XmlIgnoreAttribute()]
+        public bool? RemoveAllFlagSpecified;
     }
 }

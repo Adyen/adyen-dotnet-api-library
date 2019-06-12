@@ -5,15 +5,11 @@
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
-    public partial class Amount
+    public partial class Parameter
     {
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute()]
-        public string Currency;
-
-        /// <remarks/>
-        [System.Xml.Serialization.XmlTextAttribute()]
-        public decimal? Value;
+        [System.Xml.Serialization.XmlAttributeAttribute(DataType = "base64Binary")]
+        public byte[] InitialisationVector;
     }
 }

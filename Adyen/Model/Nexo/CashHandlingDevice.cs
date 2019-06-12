@@ -14,7 +14,7 @@
 
         /// <remarks/>
         [System.Xml.Serialization.XmlAttributeAttribute()]
-        public bool CashHandlingOKFlag;
+        public bool? CashHandlingOKFlag;
 
         /// <remarks/>
         [System.Xml.Serialization.XmlAttributeAttribute()]

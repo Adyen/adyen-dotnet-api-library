@@ -5,26 +5,22 @@
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
-    public partial class EnvelopedDataType
+    public partial class EnvelopedData
     {
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute("KEK", typeof(KEKType), Form = System.Xml.Schema.XmlSchemaForm.Unqualified)]
-        [System.Xml.Serialization.XmlElementAttribute("KeyTransport", typeof(KeyTransportType), Form = System.Xml.Schema.XmlSchemaForm.Unqualified)]
+        [System.Xml.Serialization.XmlElementAttribute("KEK", typeof(KEK), Form = System.Xml.Schema.XmlSchemaForm.Unqualified)]
+        [System.Xml.Serialization.XmlElementAttribute("KeyTransport", typeof(KeyTransport), Form = System.Xml.Schema.XmlSchemaForm.Unqualified)]
         public object[] Items;
 
         /// <remarks/>
         [System.Xml.Serialization.XmlElementAttribute(Form = System.Xml.Schema.XmlSchemaForm.Unqualified)]
-        public EncryptedContentType EncryptedContent;
+        public EncryptedContent EncryptedContent;
 
         /// <remarks/>
         [System.Xml.Serialization.XmlAttributeAttribute()]
-        [System.ComponentModel.DefaultValueAttribute("v0")]
-        public string Version;
-
-        public EnvelopedDataType()
-        {
-            this.Version = "v0";
-        }
+        [System.ComponentModel.DefaultValueAttribute(VersionType.v0)]
+        public VersionType Version;
+        
     }
 }

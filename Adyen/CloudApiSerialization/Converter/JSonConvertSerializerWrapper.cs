@@ -13,7 +13,7 @@ namespace Adyen.CloudApiSerialization.Converter
         {
             var serialize= JsonConvert.SerializeObject(saleToPoiMessage,
                 new SaleToPoiMessageConverter(),
-                new StringEnumConverter(), 
+                new StringEnumConverter(),
                 new IsoDateTimeConverter() { DateTimeFormat = DateTimeFormat });
             return serialize;
         }

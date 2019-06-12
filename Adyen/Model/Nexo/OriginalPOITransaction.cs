@@ -31,7 +31,7 @@
         /// <remarks/>
         [System.Xml.Serialization.XmlAttributeAttribute()]
         [System.ComponentModel.DefaultValueAttribute(true)]
-        public bool ReuseCardDataFlag;
+        public bool? ReuseCardDataFlag;
 
         /// <remarks/>
         [System.Xml.Serialization.XmlAttributeAttribute()]

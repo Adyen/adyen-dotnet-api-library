@@ -18,20 +18,19 @@
 
         /// <remarks/>
         [System.Xml.Serialization.XmlAttributeAttribute()]
-        public bool WarmResetFlag;
-        
+        public bool? WarmResetFlag;
+
+        /// <remarks/>
+        [System.Xml.Serialization.XmlIgnoreAttribute()]
+        public bool? WarmResetFlagSpecified;
+
         /// <remarks/>
         [System.Xml.Serialization.XmlAttributeAttribute()]
         [System.ComponentModel.DefaultValueAttribute(true)]
-        public bool LeaveCardFlag;
+        public bool? LeaveCardFlag;
 
         /// <remarks/>
         [System.Xml.Serialization.XmlAttributeAttribute(DataType = "integer")]
-        public int MaxWaitingTime;
-
-        public CardReaderInitRequest()
-        {
-            this.LeaveCardFlag = true;
-        }
+        public int? MaxWaitingTime;
     }
 }

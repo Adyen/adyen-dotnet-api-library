@@ -30,16 +30,11 @@
 
         /// <remarks/>
         [System.Xml.Serialization.XmlAttributeAttribute()]
-        [System.ComponentModel.DefaultValueAttribute(CheckTypeType.Personal)]
-        public CheckTypeType Type;
+        [System.ComponentModel.DefaultValueAttribute(CheckTypeCodeType.Personal)]
+        public CheckTypeCodeType Type;
 
         /// <remarks/>
         [System.Xml.Serialization.XmlAttributeAttribute()]
         public string Country;
-
-        public CheckData()
-        {
-            this.Type = CheckTypeType.Personal;
-        }
     }
 }

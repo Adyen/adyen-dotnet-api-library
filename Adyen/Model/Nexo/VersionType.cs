@@ -3,34 +3,25 @@
     /// <remarks/>
     [System.CodeDom.Compiler.GeneratedCodeAttribute("xsd", "4.6.1055.0")]
     [System.SerializableAttribute()]
-    public enum InputCommandType
+    public enum VersionType
     {
 
         /// <remarks/>
-        GetAnyKey,
+        v0,
 
         /// <remarks/>
-        GetConfirmation,
+        v1,
 
         /// <remarks/>
-        SiteManager,
+        v2,
 
         /// <remarks/>
-        TextString,
+        v3,
 
         /// <remarks/>
-        DigitString,
+        v4,
 
         /// <remarks/>
-        decimalString,
-
-        /// <remarks/>
-        GetFunctionKey,
-
-        /// <remarks/>
-        GetMenuEntry,
-
-        /// <remarks/>
-        Password,
+        v5,
     }
 }

@@ -5,23 +5,24 @@
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
-    public partial class DigestedDataType
+    public partial class KEK
     {
 
         /// <remarks/>
         [System.Xml.Serialization.XmlElementAttribute(Form = System.Xml.Schema.XmlSchemaForm.Unqualified)]
-        public AlgorithmIdentifier DigestAlgorithm;
+        public KEKIdentifier KEKIdentifier;
 
         /// <remarks/>
         [System.Xml.Serialization.XmlElementAttribute(Form = System.Xml.Schema.XmlSchemaForm.Unqualified)]
-        public EncapsulatedContentType EncapsulatedContent;
-
-        /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Form = System.Xml.Schema.XmlSchemaForm.Unqualified, DataType = "base64Binary")]
-        public byte[] Digest;
+        public AlgorithmIdentifier KeyEncryptionAlgorithm;
 
         /// <remarks/>
         [System.Xml.Serialization.XmlAttributeAttribute()]
-        public string Version;
+        [System.ComponentModel.DefaultValueAttribute(VersionType.v4)]
+        public VersionType Version;
+
+        /// <remarks/>
+        [System.Xml.Serialization.XmlAttributeAttribute(DataType = "base64Binary")]
+        public byte[] EncryptedKey;
     }
 }

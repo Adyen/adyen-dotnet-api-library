@@ -5,11 +5,11 @@
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
-    public partial class ParameterType
+    public partial class SignerIdentifier
     {
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute(DataType = "base64Binary")]
-        public byte[] InitialisationVector;
+        [System.Xml.Serialization.XmlElementAttribute(Form = System.Xml.Schema.XmlSchemaForm.Unqualified)]
+        public IssuerAndSerialNumber IssuerAndSerialNumber;
     }
 }

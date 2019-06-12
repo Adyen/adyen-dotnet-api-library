@@ -18,27 +18,50 @@
 
         /// <remarks/>
         [System.Xml.Serialization.XmlAttributeAttribute()]
-        public bool SecurityOKFlag;
-        
+        public bool? SecurityOKFlag;
+
+        /// <remarks/>
+        [System.Xml.Serialization.XmlIgnoreAttribute()]
+        public bool? SecurityOKFlagSpecified;
+
         /// <remarks/>
         [System.Xml.Serialization.XmlAttributeAttribute()]
-        public bool PEDOKFlag;
-      
+        public bool? PEDOKFlag;
+
+        /// <remarks/>
+        [System.Xml.Serialization.XmlIgnoreAttribute()]
+        public bool? PEDOKFlagSpecified;
+
         /// <remarks/>
         [System.Xml.Serialization.XmlAttributeAttribute()]
-        public bool CardReaderOKFlag;
-        
+        public bool? CardReaderOKFlag;
+
+        /// <remarks/>
+        [System.Xml.Serialization.XmlIgnoreAttribute()]
+        public bool? CardReaderOKFlagSpecified;
+
         /// <remarks/>
         [System.Xml.Serialization.XmlAttributeAttribute()]
         public PrinterStatusType PrinterStatus;
-    
+
         /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute()]
-        public bool CommunicationOKFlag;
+        [System.Xml.Serialization.XmlIgnoreAttribute()]
+        public bool? PrinterStatusSpecified;
 
         /// <remarks/>
         [System.Xml.Serialization.XmlAttributeAttribute()]
-        public bool FraudPreventionFlag;
+        public bool? CommunicationOKFlag;
 
+        /// <remarks/>
+        [System.Xml.Serialization.XmlIgnoreAttribute()]
+        public bool? CommunicationOKFlagSpecified;
+
+        /// <remarks/>
+        [System.Xml.Serialization.XmlAttributeAttribute()]
+        public bool? FraudPreventionFlag;
+
+        /// <remarks/>
+        [System.Xml.Serialization.XmlIgnoreAttribute()]
+        public bool? FraudPreventionFlagSpecified;
     }
 }

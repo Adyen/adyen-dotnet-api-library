@@ -14,12 +14,16 @@
 
         /// <remarks/>
         [System.Xml.Serialization.XmlAttributeAttribute()]
-        public IdentificationType Identification;
+        public IdentificationType IdentificationType;
 
         /// <remarks/>
         [System.Xml.Serialization.XmlAttributeAttribute()]
         public IdentificationSupportType IdentificationSupport;
-        
+
+        /// <remarks/>
+        [System.Xml.Serialization.XmlIgnoreAttribute()]
+        public bool? IdentificationSupportSpecified;
+
         /// <remarks/>
         [System.Xml.Serialization.XmlTextAttribute()]
         public string Value;

@@ -5,7 +5,7 @@
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
-    public partial class EncapsulatedContentType
+    public partial class EncapsulatedContent
     {
 
         /// <remarks/>
@@ -14,6 +14,6 @@
 
         /// <remarks/>
         [System.Xml.Serialization.XmlAttributeAttribute()]
-        public string ContentType;
+        public ContentType ContentType;
     }
 }

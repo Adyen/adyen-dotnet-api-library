@@ -9,6 +9,7 @@ namespace Adyen.Model.Nexo
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     public partial class MessageHeader
     {
+
         /// <remarks/>
         [System.Xml.Serialization.XmlAttributeAttribute()]
         public string ProtocolVersion { private set; get; }
@@ -43,7 +44,7 @@ namespace Adyen.Model.Nexo
 
         public MessageHeader()
         {
-            this.ProtocolVersion = ClientConfig.NexoProtocolVersion;
+            ProtocolVersion = ClientConfig.NexoProtocolVersion;
         }
     }
 }

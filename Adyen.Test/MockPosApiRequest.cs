@@ -34,7 +34,7 @@ namespace Adyen.Test
                             TransactionID = "PosAuth",
                             TimeStamp = DateTime.Now
                         },
-                        TokenRequested = TokenRequestedType.Customer,
+                        TokenRequestedType = TokenRequestedType.Customer,
                     },
                     PaymentTransaction = new PaymentTransaction()
                     {
@@ -46,10 +46,10 @@ namespace Adyen.Test
                     },
                     PaymentData = new PaymentData()
                     {
-                        Payment = PaymentType.Normal
+                        PaymentType = PaymentType.Normal
                     }
                 },
-                SecurityTrailer = new ContentInformationType(){}
+                SecurityTrailer = new ContentInformation(){}
             };
             return saleToPoiRequest;
         }

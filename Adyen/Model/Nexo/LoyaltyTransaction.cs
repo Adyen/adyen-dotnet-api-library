@@ -21,8 +21,8 @@
         public SaleItem[] SaleItem;
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute("LoyaltyTransaction")]
-        public LoyaltyTransactionType LoyaltyTransaction1;
+        [System.Xml.Serialization.XmlAttributeAttribute()]
+        public LoyaltyTransactionType LoyaltyTransactionType;
 
         /// <remarks/>
         [System.Xml.Serialization.XmlAttributeAttribute()]
@@ -30,7 +30,10 @@
 
         /// <remarks/>
         [System.Xml.Serialization.XmlAttributeAttribute()]
-        public decimal TotalAmount;
+        public decimal? TotalAmount;
 
+        /// <remarks/>
+        [System.Xml.Serialization.XmlIgnoreAttribute()]
+        public bool? TotalAmountSpecified;
     }
 }

@@ -12,7 +12,10 @@
         [System.Xml.Serialization.XmlAttributeAttribute()]
         public MessageCategoryType MessageCategory;
 
-      
+        /// <remarks/>
+        [System.Xml.Serialization.XmlIgnoreAttribute()]
+        public bool? MessageCategorySpecified;
+
         /// <remarks/>
         [System.Xml.Serialization.XmlAttributeAttribute()]
         public string ServiceID;

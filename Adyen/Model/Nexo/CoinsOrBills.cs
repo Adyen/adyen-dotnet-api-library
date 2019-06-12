@@ -10,10 +10,10 @@
 
         /// <remarks/>
         [System.Xml.Serialization.XmlAttributeAttribute()]
-        public decimal UnitValue;
+        public decimal? UnitValue;
 
         /// <remarks/>
         [System.Xml.Serialization.XmlAttributeAttribute(DataType = "integer")]
-        public int Number;
+        public int? Number;
     }
 }

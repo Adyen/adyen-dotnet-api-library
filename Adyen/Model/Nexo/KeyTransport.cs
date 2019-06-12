@@ -5,34 +5,24 @@
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
-    public partial class AuthenticatedDataType
+    public partial class KeyTransport
     {
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute("KEK", typeof(KEKType), Form = System.Xml.Schema.XmlSchemaForm.Unqualified)]
-        [System.Xml.Serialization.XmlElementAttribute("KeyTransport", typeof(KeyTransportType), Form = System.Xml.Schema.XmlSchemaForm.Unqualified)]
-        public object[] Items;
+        [System.Xml.Serialization.XmlElementAttribute(Form = System.Xml.Schema.XmlSchemaForm.Unqualified)]
+        public RecipientIdentifier RecipientIdentifier;
 
         /// <remarks/>
         [System.Xml.Serialization.XmlElementAttribute(Form = System.Xml.Schema.XmlSchemaForm.Unqualified)]
-        public AlgorithmIdentifier MACAlgorithm;
-
-        /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Form = System.Xml.Schema.XmlSchemaForm.Unqualified)]
-        public EncapsulatedContentType EncapsulatedContent;
+        public AlgorithmIdentifier KeyEncryptionAlgorithm;
 
         /// <remarks/>
         [System.Xml.Serialization.XmlAttributeAttribute()]
-        [System.ComponentModel.DefaultValueAttribute("v0")]
-        public string Version;
+        [System.ComponentModel.DefaultValueAttribute(VersionType.v0)]
+        public VersionType Version;
 
         /// <remarks/>
         [System.Xml.Serialization.XmlAttributeAttribute(DataType = "base64Binary")]
-        public byte[] MAC;
-
-        public AuthenticatedDataType()
-        {
-            this.Version = "v0";
-        }
+        public byte[] EncryptedKey;
     }
 }

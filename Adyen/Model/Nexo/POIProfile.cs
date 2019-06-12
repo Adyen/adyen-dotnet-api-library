@@ -16,10 +16,5 @@
         [System.Xml.Serialization.XmlAttributeAttribute()]
         [System.ComponentModel.DefaultValueAttribute(GenericProfileType.Standard)]
         public GenericProfileType GenericProfile;
-
-        public POIProfile()
-        {
-            this.GenericProfile = GenericProfileType.Standard;
-        }
     }
 }

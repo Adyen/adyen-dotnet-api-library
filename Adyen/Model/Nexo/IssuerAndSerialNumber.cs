@@ -5,16 +5,16 @@
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
-    public partial class IssuerAndSerialNumberType
+    public partial class IssuerAndSerialNumber
     {
 
         /// <remarks/>
         [System.Xml.Serialization.XmlArrayAttribute(Form = System.Xml.Schema.XmlSchemaForm.Unqualified)]
-        [System.Xml.Serialization.XmlArrayItemAttribute("RelativeDistinguishedName", Form = System.Xml.Schema.XmlSchemaForm.Unqualified, IsNullable = false)]
-        public RelativeDistinguishedNameType[] Issuer;
+        [System.Xml.Serialization.XmlArrayItemAttribute(Form = System.Xml.Schema.XmlSchemaForm.Unqualified, IsNullable = false)]
+        public RelativeDistinguishedName[] Issuer;
 
         /// <remarks/>
         [System.Xml.Serialization.XmlElementAttribute(Form = System.Xml.Schema.XmlSchemaForm.Unqualified, DataType = "integer")]
-        public int SerialNumber;
+        public int? SerialNumber;
     }
 }

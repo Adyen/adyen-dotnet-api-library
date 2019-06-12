@@ -23,11 +23,6 @@
 
         /// <remarks/>
         [System.Xml.Serialization.XmlAttributeAttribute(DataType = "integer")]
-        public int SoundVolume;
-
-        public SoundRequest()
-        {
-            this.ResponseMode = ResponseModeType.NotRequired;
-        }
+        public int? SoundVolume;
     }
 }

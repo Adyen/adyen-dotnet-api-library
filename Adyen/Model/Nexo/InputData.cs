@@ -31,87 +31,72 @@
         /// <remarks/>
         [System.Xml.Serialization.XmlAttributeAttribute()]
         [System.ComponentModel.DefaultValueAttribute(false)]
-        public bool NotifyCardInputFlag;
+        public bool? NotifyCardInputFlag;
 
         /// <remarks/>
         [System.Xml.Serialization.XmlAttributeAttribute(DataType = "integer")]
-        public int MaxInputTime;
+        public int? MaxInputTime;
 
         /// <remarks/>
         [System.Xml.Serialization.XmlAttributeAttribute()]
         [System.ComponentModel.DefaultValueAttribute(false)]
-        public bool ImmediateResponseFlag;
+        public bool? ImmediateResponseFlag;
 
         /// <remarks/>
         [System.Xml.Serialization.XmlAttributeAttribute(DataType = "integer")]
-        public int MinLength;
+        public int? MinLength;
 
         /// <remarks/>
         [System.Xml.Serialization.XmlAttributeAttribute(DataType = "integer")]
-        public int MaxLength;
+        public int? MaxLength;
 
         /// <remarks/>
         [System.Xml.Serialization.XmlAttributeAttribute(DataType = "integer")]
-        public int MaxDecimalLength;
+        public int? MaxdecimalLength;
 
         /// <remarks/>
         [System.Xml.Serialization.XmlAttributeAttribute()]
         [System.ComponentModel.DefaultValueAttribute(true)]
-        public bool WaitUserValidationFlag;
+        public bool? WaitUserValidationFlag;
 
         /// <remarks/>
         [System.Xml.Serialization.XmlAttributeAttribute()]
         [System.ComponentModel.DefaultValueAttribute(false)]
-        public bool FromRightToLeftFlag;
+        public bool? FromRightToLeftFlag;
 
         /// <remarks/>
         [System.Xml.Serialization.XmlAttributeAttribute()]
         [System.ComponentModel.DefaultValueAttribute(false)]
-        public bool MaskCharactersFlag;
+        public bool? MaskCharactersFlag;
 
         /// <remarks/>
         [System.Xml.Serialization.XmlAttributeAttribute()]
         [System.ComponentModel.DefaultValueAttribute(false)]
-        public bool BeepKeyFlag;
+        public bool? BeepKeyFlag;
 
         /// <remarks/>
         [System.Xml.Serialization.XmlAttributeAttribute()]
         [System.ComponentModel.DefaultValueAttribute(false)]
-        public bool GlobalCorrectionFlag;
+        public bool? GlobalCorrectionFlag;
 
         /// <remarks/>
         [System.Xml.Serialization.XmlAttributeAttribute()]
         [System.ComponentModel.DefaultValueAttribute(false)]
-        public bool DisableCancelFlag;
+        public bool? DisableCancelFlag;
 
         /// <remarks/>
         [System.Xml.Serialization.XmlAttributeAttribute()]
         [System.ComponentModel.DefaultValueAttribute(false)]
-        public bool DisableCorrectFlag;
+        public bool? DisableCorrectFlag;
 
         /// <remarks/>
         [System.Xml.Serialization.XmlAttributeAttribute()]
         [System.ComponentModel.DefaultValueAttribute(false)]
-        public bool DisableValidFlag;
+        public bool? DisableValidFlag;
 
         /// <remarks/>
         [System.Xml.Serialization.XmlAttributeAttribute()]
         [System.ComponentModel.DefaultValueAttribute(false)]
-        public bool MenuBackFlag;
-
-        public InputData()
-        {
-            this.NotifyCardInputFlag = false;
-            this.ImmediateResponseFlag = false;
-            this.WaitUserValidationFlag = true;
-            this.FromRightToLeftFlag = false;
-            this.MaskCharactersFlag = false;
-            this.BeepKeyFlag = false;
-            this.GlobalCorrectionFlag = false;
-            this.DisableCancelFlag = false;
-            this.DisableCorrectFlag = false;
-            this.DisableValidFlag = false;
-            this.MenuBackFlag = false;
-        }
+        public bool? MenuBackFlag;
     }
 }

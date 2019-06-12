@@ -27,17 +27,11 @@
         /// <remarks/>
         [System.Xml.Serialization.XmlAttributeAttribute()]
         [System.ComponentModel.DefaultValueAttribute(false)]
-        public bool IntegratedPrintFlag;
+        public bool? integratedPrintFlag;
 
         /// <remarks/>
         [System.Xml.Serialization.XmlAttributeAttribute()]
         [System.ComponentModel.DefaultValueAttribute(false)]
-        public bool RequiredSignatureFlag;
-
-        public PrintOutput()
-        {
-            this.IntegratedPrintFlag = false;
-            this.RequiredSignatureFlag = false;
-        }
+        public bool? RequiredSignatureFlag;
     }
 }

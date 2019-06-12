@@ -9,7 +9,8 @@ namespace Adyen.CloudApiSerialization.Converter
     {
         public override void WriteJson(JsonWriter writer, object value, JsonSerializer serializer)
         {
-            serializer.NullValueHandling = NullValueHandling.Ignore ;
+            serializer.NullValueHandling = NullValueHandling.Ignore;
+            serializer.MissingMemberHandling = MissingMemberHandling.Ignore;
             writer.WriteStartObject();
             writer.WritePropertyName(value.GetType().Name);
             writer.WriteStartObject();

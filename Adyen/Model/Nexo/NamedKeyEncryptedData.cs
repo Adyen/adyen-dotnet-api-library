@@ -5,29 +5,20 @@
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
-    public partial class KEKType
+    public partial class NamedKeyEncryptedData
     {
 
         /// <remarks/>
         [System.Xml.Serialization.XmlElementAttribute(Form = System.Xml.Schema.XmlSchemaForm.Unqualified)]
-        public KEKIdentifierType KEKIdentifier;
+        public string KeyName;
 
         /// <remarks/>
         [System.Xml.Serialization.XmlElementAttribute(Form = System.Xml.Schema.XmlSchemaForm.Unqualified)]
-        public AlgorithmIdentifier KeyEncryptionAlgorithm;
+        public EncryptedContent EncryptedContent;
 
         /// <remarks/>
         [System.Xml.Serialization.XmlAttributeAttribute()]
-        [System.ComponentModel.DefaultValueAttribute("v4")]
-        public string Version;
-
-        /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute(DataType = "base64Binary")]
-        public byte[] EncryptedKey;
-
-        public KEKType()
-        {
-            this.Version = "v4";
-        }
+        [System.ComponentModel.DefaultValueAttribute(VersionType.v0)]
+        public VersionType Version;
     }
 }

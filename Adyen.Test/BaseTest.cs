@@ -386,7 +386,7 @@ namespace Adyen.Test
                 MessageCategory =MessageCategoryType.Payment,
                 SaleID = "POSSystemID12345",
                 POIID = "MX915-284251016",
-                ProtocolVersion = "3.0",
+              
                 ServiceID = (new Random()).Next(1, 9999).ToString()
             };
             return header;

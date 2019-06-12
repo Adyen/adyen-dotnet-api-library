@@ -27,7 +27,7 @@
         /// <remarks/>
         [System.Xml.Serialization.XmlAttributeAttribute()]
         [System.ComponentModel.DefaultValueAttribute(false)]
-        public bool DebitPreferredFlag;
+        public bool? DebitPreferredFlag;
 
         /// <remarks/>
         [System.Xml.Serialization.XmlAttributeAttribute()]
@@ -41,17 +41,10 @@
         /// <remarks/>
         [System.Xml.Serialization.XmlAttributeAttribute()]
         [System.ComponentModel.DefaultValueAttribute(false)]
-        public bool ForceOnlineFlag;
+        public bool? ForceOnlineFlag;
 
         /// <remarks/>
         [System.Xml.Serialization.XmlAttributeAttribute()]
         public string MerchantCategoryCode;
-
-        public TransactionConditions()
-        {
-            this.DebitPreferredFlag = false;
-            this.LoyaltyHandling = LoyaltyHandlingType.Forbidden;
-            this.ForceOnlineFlag = false;
-        }
     }
 }

@@ -5,7 +5,7 @@
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
-    public partial class KEKIdentifierType
+    public partial class KEKIdentifier
     {
 
         /// <remarks/>

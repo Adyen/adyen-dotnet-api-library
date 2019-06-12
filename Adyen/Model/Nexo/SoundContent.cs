@@ -11,7 +11,11 @@
         /// <remarks/>
         [System.Xml.Serialization.XmlAttributeAttribute()]
         public SoundFormatType SoundFormat;
-        
+
+        /// <remarks/>
+        [System.Xml.Serialization.XmlIgnoreAttribute()]
+        public bool? SoundFormatSpecified;
+
         /// <remarks/>
         [System.Xml.Serialization.XmlAttributeAttribute()]
         public string Language;

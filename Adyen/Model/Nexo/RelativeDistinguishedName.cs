@@ -5,25 +5,15 @@
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
-    public partial class NamedKeyEncryptedDataType
+    public partial class RelativeDistinguishedName
     {
 
         /// <remarks/>
         [System.Xml.Serialization.XmlElementAttribute(Form = System.Xml.Schema.XmlSchemaForm.Unqualified)]
-        public string KeyName;
+        public string Attribute;
 
         /// <remarks/>
         [System.Xml.Serialization.XmlElementAttribute(Form = System.Xml.Schema.XmlSchemaForm.Unqualified)]
-        public EncryptedContentType EncryptedContent;
-
-        /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute()]
-        [System.ComponentModel.DefaultValueAttribute("v0")]
-        public string Version;
-
-        public NamedKeyEncryptedDataType()
-        {
-            this.Version = "v0";
-        }
+        public string AttributeValue;
     }
 }
