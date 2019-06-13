@@ -1,0 +1,6 @@
+bin/
+obj/
+Properties/
+Adyen.nuspec
+nuget.exe
+*.user
