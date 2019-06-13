@@ -4,7 +4,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 namespace Adyen.Test
 {
     [TestClass]
-    public class TemrinalApiPosSecurityTest : BaseTest
+    public class TerminalApiPosSecurityTest : BaseTest
     {
         private SaleToPoiMessageSecuredEncryptor _messageSecuredEncryptor;
         private EncryptionCredentialDetails _encryptionCredentialDetails;
