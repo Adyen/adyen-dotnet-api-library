@@ -19,7 +19,11 @@
         /// <remarks/>
         [System.Xml.Serialization.XmlAttributeAttribute()]
         public TerminalEnvironmentType TerminalEnvironment;
-        
+
+        /// <remarks/>
+        [System.Xml.Serialization.XmlIgnoreAttribute()]
+        public bool? TerminalEnvironmentSpecified;
+
         /// <remarks/>
         [System.Xml.Serialization.XmlAttributeAttribute()]
         public string TotalsGroupID;

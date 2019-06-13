@@ -16,10 +16,6 @@ namespace Adyen.CloudApiSerialization
         }
         public SaleToPOIResponse Deserialize(string saleToPoiMessageDto)
         {
-            if (string.Equals("ok", saleToPoiMessageDto) || string.IsNullOrEmpty(saleToPoiMessageDto))
-            {
-                return null;
-            }
             var saleToPoiMessageJObject = JObject.Parse(saleToPoiMessageDto);
             var saleToPoiMessageRootJToken = saleToPoiMessageJObject.First;
             var saleToPoiMessageWithoutRootJToken = saleToPoiMessageRootJToken.First;
@@ -31,16 +27,16 @@ namespace Adyen.CloudApiSerialization
             var deserializedOutputMessage = new SaleToPOIResponse
             {
                 MessageHeader = messageHeader,
-                Item = messagePayload
+                MessagePayload = messagePayload
             };
 
             //Check and deserialize RepeatedMessageResponse. RepeatedMessageResponse is optional
             if (saleToPoiMessageDto.Contains("TransactionStatusResponse") && saleToPoiMessageDto.Contains("RepeatedMessageResponse") && saleToPoiMessageDto.Contains("RepeatedResponseMessageBody"))
             {
                 var response = GetDeserializedRepeatedResponseMessagePayload(saleToPoiMessageWithoutRootJToken);
-                TransactionStatusResponse deserializedOutput = (TransactionStatusResponse)deserializedOutputMessage.Item;
+                TransactionStatusResponse deserializedOutput = (TransactionStatusResponse)deserializedOutputMessage.MessagePayload;
                 deserializedOutput.RepeatedMessageResponse.RepeatedResponseMessageBody.MessagePayload = response;
-                deserializedOutputMessage.Item = deserializedOutput;
+                deserializedOutputMessage.MessagePayload = deserializedOutput;
             }
             return deserializedOutputMessage;
         }

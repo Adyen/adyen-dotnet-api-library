@@ -1,9 +1,7 @@
 ﻿using Adyen.Model.Enum;
-using Adyen.Model.Reccuring;
 using System;
 using System.Collections.Generic;
 using System.Runtime.Serialization;
-using Adyen.Constants;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
 
@@ -32,7 +30,7 @@ namespace Adyen.Model
         [DataMember(Name = "shopperReference", EmitDefaultValue = false)]
         public string ShopperReference { get; set; }
         [DataMember(Name = "recurring", EmitDefaultValue = false)]
-        public Recurring Recurring { get; set; }
+        public Recurring.Recurring Recurring { get; set; }
         [DataMember(Name = "shopperStatement", EmitDefaultValue = false)]
         public string ShopperStatement { get; set; }
         [DataMember(Name = "fraudOffset", EmitDefaultValue = false)]

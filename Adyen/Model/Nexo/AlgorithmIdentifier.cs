@@ -10,10 +10,10 @@
 
         /// <remarks/>
         [System.Xml.Serialization.XmlElementAttribute(Form = System.Xml.Schema.XmlSchemaForm.Unqualified)]
-        public ParameterType Parameter;
+        public Parameter Parameter;
 
         /// <remarks/>
         [System.Xml.Serialization.XmlAttributeAttribute()]
-        public string Algorithm;
+        public AlgorithmType Algorithm;
     }
 }

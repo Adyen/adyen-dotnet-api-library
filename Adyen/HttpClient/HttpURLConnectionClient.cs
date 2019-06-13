@@ -4,7 +4,6 @@ using System.Collections.Generic;
 using System.IO;
 using System.Net;
 using System.Net.Security;
-using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Threading.Tasks;
 using System.Web;
@@ -21,9 +20,9 @@ namespace Adyen.HttpClient
         {
             string responseText = null;
             var httpWebRequest = GetHttpWebRequest(endpoint, config, isApiKeyRequired, requestOptions , certificateValidationCallback);
-            if (config.HttpClientTimeout > 0)
+            if (config.HttpRequestTimeout > 0)
             {
-                httpWebRequest.Timeout = config.HttpClientTimeout;
+                httpWebRequest.Timeout = config.HttpRequestTimeout;
             }
             using (var streamWriter = new StreamWriter(httpWebRequest.GetRequestStream()))
             {

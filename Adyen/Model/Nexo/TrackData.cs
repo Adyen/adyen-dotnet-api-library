@@ -11,7 +11,7 @@
         /// <remarks/>
         [System.Xml.Serialization.XmlAttributeAttribute(DataType = "integer")]
         [System.ComponentModel.DefaultValueAttribute("2")]
-        public int TrackNumb;
+        public int? TrackNumb;
 
         /// <remarks/>
         [System.Xml.Serialization.XmlAttributeAttribute()]
@@ -22,10 +22,5 @@
         [System.Xml.Serialization.XmlTextAttribute()]
         public string Value;
 
-        public TrackData()
-        {
-            this.TrackNumb = 2;
-            this.TrackFormat = TrackFormatType.ISO;
-        }
     }
 }

@@ -26,14 +26,14 @@
 
         /// <remarks/>
         [System.Xml.Serialization.XmlAttributeAttribute(DataType = "integer")]
-        public int MinLength;
+        public int? MinLength;
 
         /// <remarks/>
         [System.Xml.Serialization.XmlAttributeAttribute(DataType = "integer")]
-        public int MaxLength;
+        public int? MaxLength;
 
         /// <remarks/>
         [System.Xml.Serialization.XmlAttributeAttribute(DataType = "integer")]
-        public int MaxDecimalLength;
+        public int? MaxdecimalLength;
     }
 }

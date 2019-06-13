@@ -1,0 +1,20 @@
+{
+	"SaleToPOIRequest": {
+		"MessageHeader": {
+			"DeviceID": "199588775",
+			"MessageCategory": "Event",
+			"MessageClass": "Event",
+			"MessageType": "Notification",
+			 "POIID" : "P400Plus-12345678",
+         "ProtocolVersion" : "3.0",
+			"SaleID": "POSSystemID12345",
+			"ServiceID": "12150936"
+		},
+		"EventNotification": {
+			"RejectedMessage": "eyJTYWxlVG9QT0lSZXF1ZXN0Ijp7Ik1lc3NhZ2VIZWFkZXIiOnsiTWVzc2FnZUNsYXNzIjoiU2VydmljZSIsIk1lc3NhZ2VDYXRlZ29yeSI6IlBheW1lbnQiLCJNZXNzYWdlVHlwZSI6IlJlcXVlc3QiLCJTZXJ2aWNlSUQiOiIxMjE1MDkzNiIsIlNhbGVJRCI6IlBPU1N5c3RlbUlEMTIzNDVBcHBpZSIsIlBPSUlEIjoiTVg5MjUtMjg0NjkxNDA4IiwiUHJvdG9jb2xWZXJzaW9uIjoiMy4wIn0sIlBheW1lbnRSZXF1ZXN0Ijp7IlNhbGVEYXRhIjp7IlNhbGVUcmFuc2FjdGlvbklEIjp7IlRyYW5zYWN0aW9uSUQiOiJUeElkLTEyMTUwOTM2IiwiVGltZVN0YW1wIjoiMjAxOS0wNi0xMlQxNTowOTozNiJ9LCJTYWxlVG9BY3F1aXJlckRhdGEiOiJlMzA9IiwiVG9rZW5SZXF1ZXN0ZWRUeXBlIjoiQ3VzdG9tZXIifSwiUGF5bWVudFRyYW5zYWN0aW9uIjp7IkFtb3VudHNSZXEiOnsiQ3VycmVuY3kiOiJVU0QiLCJSZXF1ZXN0ZWRBbW91bnQiOjE0LjkwfSwiVHJhbnNhY3Rpb25Db25kaXRpb25zIjp7fX0sIlBheW1lbnREYXRhIjp7IlBheW1lbnQiOiJOb3JtYWwifX19fQ==",
+			"EventToNotify": "Reject",
+			"TimeStamp": "2019-06-12T13:10:32.392Z",
+			"EventDetails": "message=Failed+to+send+message+to+POI.+There+may+be+a+network+issue+or+it+may+not+have+the+websocket+connected."
+		}
+	}
+}

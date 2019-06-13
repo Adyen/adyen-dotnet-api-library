@@ -13,8 +13,8 @@
         public CardholderPIN CardholderPIN;
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute("PINRequest")]
-        public PINRequestType PINRequest1;
+        [System.Xml.Serialization.XmlAttributeAttribute()]
+        public PINRequestType PINRequestType;
 
         /// <remarks/>
         [System.Xml.Serialization.XmlAttributeAttribute()]
@@ -33,7 +33,15 @@
         public PINFormatType PINFormat;
 
         /// <remarks/>
+        [System.Xml.Serialization.XmlIgnoreAttribute()]
+        public bool? PINFormatSpecified;
+
+        /// <remarks/>
+        [System.Xml.Serialization.XmlAttributeAttribute()]
+        public string KeyReference;
+
+        /// <remarks/>
         [System.Xml.Serialization.XmlAttributeAttribute(DataType = "integer")]
-        public int MaxWaitingTime;
+        public int? MaxWaitingTime;
     }
 }

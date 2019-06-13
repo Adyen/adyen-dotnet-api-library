@@ -23,7 +23,7 @@
         /// <remarks/>
         [System.Xml.Serialization.XmlAttributeAttribute()]
         [System.ComponentModel.DefaultValueAttribute(false)]
-        public bool TrainingModeFlag;
+        public bool? TrainingModeFlag;
 
         /// <remarks/>
         [System.Xml.Serialization.XmlAttributeAttribute()]
@@ -39,19 +39,18 @@
 
         /// <remarks/>
         [System.Xml.Serialization.XmlAttributeAttribute()]
-        public TokenRequestedType TokenRequested;
+        public TokenRequestedType TokenRequestedType;
 
-         /// <remarks/>
+        /// <remarks/>
+        [System.Xml.Serialization.XmlIgnoreAttribute()]
+        public bool? TokenRequestedTypeSpecified;
+
+        /// <remarks/>
         [System.Xml.Serialization.XmlAttributeAttribute()]
         public CustomerOrderReqType[] CustomerOrderReq;
 
         /// <remarks/>
         [System.Xml.Serialization.XmlAttributeAttribute()]
         public string POISerialNumber;
-
-        public LoginRequest()
-        {
-            this.TrainingModeFlag = false;
-        }
     }
 }

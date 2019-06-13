@@ -26,8 +26,10 @@
 
         /// <remarks/>
         [System.Xml.Serialization.XmlAttributeAttribute()]
-        public decimal ReversedAmount;
+        public decimal? ReversedAmount;
 
-     
+        /// <remarks/>
+        [System.Xml.Serialization.XmlIgnoreAttribute()]
+        public bool? ReversedAmountSpecified;
     }
 }

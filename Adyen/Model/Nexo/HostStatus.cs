@@ -15,7 +15,7 @@
         /// <remarks/>
         [System.Xml.Serialization.XmlAttributeAttribute()]
         [System.ComponentModel.DefaultValueAttribute(true)]
-        public bool IsReachableFlag;
+        public bool? IsReachableFlag;
 
         public HostStatus()
         {

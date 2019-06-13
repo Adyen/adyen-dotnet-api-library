@@ -19,11 +19,6 @@
         /// <remarks/>
         [System.Xml.Serialization.XmlAttributeAttribute()]
         [System.ComponentModel.DefaultValueAttribute(false)]
-        public bool ReceiptReprintFlag;
-
-        public TransactionStatusRequest()
-        {
-            this.ReceiptReprintFlag = false;
-        }
+        public bool? ReceiptReprintFlag;
     }
 }

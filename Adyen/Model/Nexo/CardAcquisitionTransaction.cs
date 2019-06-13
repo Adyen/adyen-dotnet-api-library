@@ -32,24 +32,30 @@
         /// <remarks/>
         [System.Xml.Serialization.XmlAttributeAttribute()]
         [System.ComponentModel.DefaultValueAttribute(false)]
-        public bool ForceCustomerSelectionFlag;
+        public bool? ForceCustomerSelectionFlag;
 
         /// <remarks/>
         [System.Xml.Serialization.XmlAttributeAttribute()]
-        public decimal TotalAmount;
+        public decimal? TotalAmount;
+
+        /// <remarks/>
+        [System.Xml.Serialization.XmlIgnoreAttribute()]
+        public bool? TotalAmountSpecified;
 
         /// <remarks/>
         [System.Xml.Serialization.XmlAttributeAttribute()]
-        public PaymentType Payment;
+        public PaymentType PaymentType;
+
+        /// <remarks/>
+        [System.Xml.Serialization.XmlIgnoreAttribute()]
+        public bool? PaymentTypeSpecified;
 
         /// <remarks/>
         [System.Xml.Serialization.XmlAttributeAttribute()]
-        public bool CashBackFlag;
+        public bool? CashBackFlag;
 
-        public CardAcquisitionTransaction()
-        {
-            this.LoyaltyHandling = LoyaltyHandlingType.Allowed;
-            this.ForceCustomerSelectionFlag = false;
-        }
+        /// <remarks/>
+        [System.Xml.Serialization.XmlIgnoreAttribute()]
+        public bool? CashBackFlagSpecified;
     }
 }

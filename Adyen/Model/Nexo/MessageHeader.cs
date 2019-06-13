@@ -1,4 +1,6 @@
-﻿namespace Adyen.Model.Nexo
+﻿using Adyen.Constants;
+
+namespace Adyen.Model.Nexo
 {
     /// <remarks/>
     [System.CodeDom.Compiler.GeneratedCodeAttribute("xsd", "4.6.1055.0")]
@@ -10,7 +12,7 @@
 
         /// <remarks/>
         [System.Xml.Serialization.XmlAttributeAttribute()]
-        public string ProtocolVersion;
+        public string ProtocolVersion { private set; get; }
 
         /// <remarks/>
         [System.Xml.Serialization.XmlAttributeAttribute()]
@@ -39,5 +41,10 @@
         /// <remarks/>
         [System.Xml.Serialization.XmlAttributeAttribute()]
         public string POIID;
+
+        public MessageHeader()
+        {
+            ProtocolVersion = ClientConfig.NexoProtocolVersion;
+        }
     }
 }

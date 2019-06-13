@@ -25,12 +25,16 @@ namespace Adyen.Service
         /// </summary>
         /// <param name="saleToPoiRequest"></param>
         /// <returns></returns>
-        public string TerminalApiCloudAsync(SaleToPOIMessage saleToPoiRequest)
+        public SaleToPOIResponse TerminalApiCloudAsync(SaleToPOIMessage saleToPoiRequest)
         {
             var serializedMessage = _saleToPoiMessageSerializer.Serialize(saleToPoiRequest);
             var response = _terminalApiAsync.Request(serializedMessage);
             this.Client.LogLine("Response: \n" + response);
-            return response;
+            if (string.IsNullOrEmpty(response) || string.Equals("ok", response))
+            {
+                return null;
+            }
+            return _saleToPoiMessageSerializer.Deserialize(response);
         }
 
         /// <summary>
@@ -44,6 +48,10 @@ namespace Adyen.Service
             this.Client.LogLine("Request: \n"+ serializedMessage);
             var response = _terminalApiSync.Request(serializedMessage);
             this.Client.LogLine("Response: \n"+ response);
+            if (string.IsNullOrEmpty(response))
+            {
+                return null;
+            }
             return _saleToPoiMessageSerializer.Deserialize(response);
         }
     }

@@ -9,20 +9,17 @@ namespace Adyen.CloudApiSerialization.Converter
     {
         public override void WriteJson(JsonWriter writer, object value, JsonSerializer serializer)
         {
-            serializer.NullValueHandling = NullValueHandling.Ignore ;
+            serializer.NullValueHandling = NullValueHandling.Ignore;
+            serializer.MissingMemberHandling = MissingMemberHandling.Ignore;
             writer.WriteStartObject();
             writer.WritePropertyName(value.GetType().Name);
             writer.WriteStartObject();
-
             var saleToPoiMessage = value as SaleToPOIMessage;
-
             writer.WritePropertyName(saleToPoiMessage.MessageHeader.GetType().Name);
             serializer.Serialize(writer, saleToPoiMessage.MessageHeader);
-            writer.WritePropertyName(saleToPoiMessage.Item.GetType().Name);
-            serializer.Serialize(writer, saleToPoiMessage.Item);
-
+            writer.WritePropertyName(saleToPoiMessage.MessagePayload.GetType().Name);
+            serializer.Serialize(writer, saleToPoiMessage.MessagePayload);
             writer.WriteEndObject();
-
             writer.WriteEndObject();
         }
 

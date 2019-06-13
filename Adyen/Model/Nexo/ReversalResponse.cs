@@ -1,13 +1,11 @@
-﻿using Adyen.CloudApiSerialization;
-
-namespace Adyen.Model.Nexo
+﻿namespace Adyen.Model.Nexo
 {
     /// <remarks/>
     [System.CodeDom.Compiler.GeneratedCodeAttribute("xsd", "4.6.1055.0")]
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
-    public partial class ReversalResponse : IMessagePayload
+    public partial class ReversalResponse
     {
 
         /// <remarks/>
@@ -28,8 +26,12 @@ namespace Adyen.Model.Nexo
 
         /// <remarks/>
         [System.Xml.Serialization.XmlAttributeAttribute()]
-        public decimal ReversedAmount;
-        
+        public decimal? ReversedAmount;
+
+        /// <remarks/>
+        [System.Xml.Serialization.XmlIgnoreAttribute()]
+        public bool? ReversedAmountSpecified;
+
         /// <remarks/>
         [System.Xml.Serialization.XmlAttributeAttribute()]
         public string CustomerOrderID;

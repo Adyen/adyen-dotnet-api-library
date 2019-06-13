@@ -10,7 +10,7 @@
 
         /// <remarks/>
         [System.Xml.Serialization.XmlAttributeAttribute()]
-        public StoredValueAccountType StoredValueAccount;
+        public StoredValueAccountType StoredValueAccountType;
 
         /// <remarks/>
         [System.Xml.Serialization.XmlAttributeAttribute()]
@@ -30,10 +30,10 @@
 
         /// <remarks/>
         [System.Xml.Serialization.XmlAttributeAttribute()]
-        public IdentificationType Identification;
+        public IdentificationType IdentificationType;
 
         /// <remarks/>
         [System.Xml.Serialization.XmlTextAttribute()]
-        public string Value;
+        public string StoredValueID;
     }
 }

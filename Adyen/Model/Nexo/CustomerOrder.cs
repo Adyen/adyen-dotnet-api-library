@@ -19,7 +19,7 @@
         /// <remarks/>
         [System.Xml.Serialization.XmlAttributeAttribute()]
         [System.ComponentModel.DefaultValueAttribute(false)]
-        public bool OpenOrderState;
+        public bool? OpenOrderState;
 
         /// <remarks/>
         [System.Xml.Serialization.XmlAttributeAttribute()]
@@ -30,12 +30,16 @@
         public System.DateTime EndDate;
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute()]
-        public decimal ForecastedAmount;
+        [System.Xml.Serialization.XmlIgnoreAttribute()]
+        public bool? EndDateSpecified;
 
         /// <remarks/>
         [System.Xml.Serialization.XmlAttributeAttribute()]
-        public decimal CurrentAmount;
+        public decimal? ForecastedAmount;
+
+        /// <remarks/>
+        [System.Xml.Serialization.XmlAttributeAttribute()]
+        public decimal? CurrentAmount;
 
         /// <remarks/>
         [System.Xml.Serialization.XmlAttributeAttribute()]
@@ -44,10 +48,5 @@
         /// <remarks/>
         [System.Xml.Serialization.XmlAttributeAttribute()]
         public string AccessedBy;
-
-        public CustomerOrder()
-        {
-            this.OpenOrderState = false;
-        }
     }
 }

@@ -7,7 +7,7 @@ namespace Adyen.Model.Nexo
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
-    public partial class CardAcquisitionResponse : IMessagePayload
+    public partial class CardAcquisitionResponse: IMessagePayload
     {
 
         /// <remarks/>

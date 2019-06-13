@@ -22,10 +22,9 @@ namespace Adyen.Test
                     MessageCategory = MessageCategoryType.Payment,
                     SaleID = "POSSystemID12345",
                     POIID = "MX915-284251016",
-                    ProtocolVersion = "3.0",
                     ServiceID = DateTime.Now.ToString("ddHHmmss")//this should be unique
                 },
-                Item = new PaymentRequest()
+                MessagePayload = new PaymentRequest()
                 {
                     SaleData = new SaleData()
                     {
@@ -35,7 +34,7 @@ namespace Adyen.Test
                             TransactionID = "PosAuth",
                             TimeStamp = DateTime.Now
                         },
-                        TokenRequested = TokenRequestedType.Customer,
+                        TokenRequestedType = TokenRequestedType.Customer,
                     },
                     PaymentTransaction = new PaymentTransaction()
                     {
@@ -47,10 +46,10 @@ namespace Adyen.Test
                     },
                     PaymentData = new PaymentData()
                     {
-                        Payment = PaymentType.Normal
+                        PaymentType = PaymentType.Normal
                     }
                 },
-                SecurityTrailer = new ContentInformationType(){}
+                SecurityTrailer = new ContentInformation(){}
             };
             return saleToPoiRequest;
         }

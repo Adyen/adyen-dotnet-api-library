@@ -11,15 +11,10 @@
         /// <remarks/>
         [System.Xml.Serialization.XmlAttributeAttribute()]
         [System.ComponentModel.DefaultValueAttribute(BarcodeType.EAN13)]
-        public BarcodeType Barcode;
+        public BarcodeType BarcodeType;
 
         /// <remarks/>
         [System.Xml.Serialization.XmlTextAttribute()]
         public string Value;
-
-        public OutputBarcode()
-        {
-            this.Barcode = BarcodeType.EAN13;
-        }
     }
 }

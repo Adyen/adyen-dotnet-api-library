@@ -22,6 +22,6 @@
 
         /// <remarks/>
         [System.Xml.Serialization.XmlAttributeAttribute()]
-        public PaymentInstrumentType PaymentInstrument;
+        public PaymentInstrumentType PaymentInstrumentType;
     }
 }

@@ -19,5 +19,9 @@
         /// <remarks/>
         [System.Xml.Serialization.XmlAttributeAttribute()]
         public ErrorConditionType ErrorCondition;
+
+        /// <remarks/>
+        [System.Xml.Serialization.XmlIgnoreAttribute()]
+        public bool? ErrorConditionSpecified;
     }
 }

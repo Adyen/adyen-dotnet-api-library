@@ -23,12 +23,12 @@
         /// <remarks/>
         [System.Xml.Serialization.XmlAttributeAttribute()]
         [System.ComponentModel.DefaultValueAttribute(true)]
-        public bool ResponseRequiredFlag;
+        public bool? ResponseRequiredFlag;
 
         /// <remarks/>
         [System.Xml.Serialization.XmlAttributeAttribute(DataType = "integer")]
-        [System.ComponentModel.DefaultValueAttribute("0")]
-        public int MinimumDisplayTime;
+        [System.ComponentModel.DefaultValueAttribute(0)]
+        public int? MinimumDisplayTime;
 
         /// <remarks/>
         [System.Xml.Serialization.XmlAttributeAttribute()]
@@ -37,11 +37,5 @@
         /// <remarks/>
         [System.Xml.Serialization.XmlAttributeAttribute()]
         public InfoQualifyType InfoQualify;
-
-        public DisplayOutput()
-        {
-            this.ResponseRequiredFlag = true;
-            this.MinimumDisplayTime = 0;
-        }
     }
 }

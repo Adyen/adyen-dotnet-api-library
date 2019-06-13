@@ -10,14 +10,14 @@
 
         /// <remarks/>
         [System.Xml.Serialization.XmlAttributeAttribute()]
-        public TransactionType Transaction;
+        public TransactionType TransactionType;
 
         /// <remarks/>
         [System.Xml.Serialization.XmlAttributeAttribute(DataType = "integer")]
-        public int TransactionCount;
+        public int? TransactionCount;
 
         /// <remarks/>
         [System.Xml.Serialization.XmlAttributeAttribute()]
-        public decimal TransactionAmount;
+        public decimal? TransactionAmount;
     }
 }

@@ -19,11 +19,6 @@
 
         /// <remarks/>
         [System.Xml.Serialization.XmlTextAttribute()]
-        public decimal Value;
-
-        public LoyaltyAmount()
-        {
-            this.LoyaltyUnit = LoyaltyUnitType.Point;
-        }
+        public decimal? Value;
     }
 }

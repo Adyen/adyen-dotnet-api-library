@@ -1,4 +1,6 @@
-﻿namespace Adyen.Model.Nexo
+﻿using Adyen.CloudApiSerialization;
+
+namespace Adyen.Model.Nexo
 {
     /// <remarks/>
     [System.CodeDom.Compiler.GeneratedCodeAttribute("xsd", "4.6.1055.0")]
@@ -7,7 +9,7 @@
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     [System.Xml.Serialization.XmlTypeAttribute(AnonymousType = true)]
     [System.Xml.Serialization.XmlRootAttribute(Namespace = "", IsNullable = false)]
-    public partial class SaleToPOIResponse
+    public partial class SaleToPOIResponse:IMessagePayload
     {
 
         /// <remarks/>
@@ -39,10 +41,10 @@
         [System.Xml.Serialization.XmlElementAttribute("StoredValueResponse", typeof(StoredValueResponse), Form = System.Xml.Schema.XmlSchemaForm.Unqualified)]
         [System.Xml.Serialization.XmlElementAttribute("TransactionStatusResponse", typeof(TransactionStatusResponse), Form = System.Xml.Schema.XmlSchemaForm.Unqualified)]
         [System.Xml.Serialization.XmlElementAttribute("TransmitResponse", typeof(TransmitResponse), Form = System.Xml.Schema.XmlSchemaForm.Unqualified)]
-        public object Item;
+        public object MessagePayload;
 
         /// <remarks/>
         [System.Xml.Serialization.XmlElementAttribute(Form = System.Xml.Schema.XmlSchemaForm.Unqualified)]
-        public ContentInformationType SecurityTrailer;
+        public ContentInformation SecurityTrailer;
     }
 }

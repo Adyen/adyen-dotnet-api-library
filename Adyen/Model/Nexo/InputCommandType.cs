@@ -22,7 +22,7 @@
         DigitString,
 
         /// <remarks/>
-        DecimalString,
+        decimalString,
 
         /// <remarks/>
         GetFunctionKey,

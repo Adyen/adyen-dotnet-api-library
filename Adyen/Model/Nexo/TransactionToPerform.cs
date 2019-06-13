@@ -12,6 +12,6 @@
         [System.Xml.Serialization.XmlElementAttribute("LoyaltyRequest", typeof(LoyaltyRequest), Form = System.Xml.Schema.XmlSchemaForm.Unqualified)]
         [System.Xml.Serialization.XmlElementAttribute("PaymentRequest", typeof(PaymentRequest), Form = System.Xml.Schema.XmlSchemaForm.Unqualified)]
         [System.Xml.Serialization.XmlElementAttribute("ReversalRequest", typeof(ReversalRequest), Form = System.Xml.Schema.XmlSchemaForm.Unqualified)]
-        public object Item;
+        public object MessagePayload;
     }
 }

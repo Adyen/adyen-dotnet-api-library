@@ -1,4 +1,4 @@
-﻿using Adyen.Model.Reccuring;
+﻿using Adyen.Model.Recurring;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;

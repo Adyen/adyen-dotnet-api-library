@@ -14,22 +14,38 @@
 
         /// <remarks/>
         [System.Xml.Serialization.XmlAttributeAttribute()]
-        public decimal AuthorizedAmount;
+        public decimal? AuthorizedAmount;
 
         /// <remarks/>
         [System.Xml.Serialization.XmlAttributeAttribute()]
-        public decimal TotalRebatesAmount;
-        
+        public decimal? TotalRebatesAmount;
+
         /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute()]
-        public decimal TotalFeesAmount;
+        [System.Xml.Serialization.XmlIgnoreAttribute()]
+        public bool? TotalRebatesAmountSpecified;
 
         /// <remarks/>
         [System.Xml.Serialization.XmlAttributeAttribute()]
-        public decimal CashBackAmount;
+        public decimal? TotalFeesAmount;
+
+        /// <remarks/>
+        [System.Xml.Serialization.XmlIgnoreAttribute()]
+        public bool? TotalFeesAmountSpecified;
 
         /// <remarks/>
         [System.Xml.Serialization.XmlAttributeAttribute()]
-        public decimal TipAmount;
+        public decimal? CashBackAmount;
+
+        /// <remarks/>
+        [System.Xml.Serialization.XmlIgnoreAttribute()]
+        public bool? CashBackAmountSpecified;
+
+        /// <remarks/>
+        [System.Xml.Serialization.XmlAttributeAttribute()]
+        public decimal? TipAmount;
+
+        /// <remarks/>
+        [System.Xml.Serialization.XmlIgnoreAttribute()]
+        public bool? TipAmountSpecified;
     }
 }

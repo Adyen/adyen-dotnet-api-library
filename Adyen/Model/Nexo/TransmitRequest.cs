@@ -15,19 +15,14 @@
         /// <remarks/>
         [System.Xml.Serialization.XmlAttributeAttribute()]
         [System.ComponentModel.DefaultValueAttribute(false)]
-        public bool WaitResponseFlag;
+        public bool? WaitResponseFlag;
 
         /// <remarks/>
         [System.Xml.Serialization.XmlAttributeAttribute(DataType = "integer")]
-        public int MaximumTransmitTime;
+        public int? MaximumTransmitTime;
 
         /// <remarks/>
         [System.Xml.Serialization.XmlAttributeAttribute()]
         public string DestinationAddress;
-
-        public TransmitRequest()
-        {
-            this.WaitResponseFlag = false;
-        }
     }
 }

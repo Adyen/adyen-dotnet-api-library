@@ -14,6 +14,6 @@
 
         /// <remarks/>
         [System.Xml.Serialization.XmlTextAttribute()]
-        public decimal Value;
+        public decimal? Value;
     }
 }

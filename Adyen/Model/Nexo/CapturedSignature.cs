@@ -13,7 +13,7 @@
         public AreaSize AreaSize;
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute("SignaturePoint", Form = System.Xml.Schema.XmlSchemaForm.Unqualified)]
+        [System.Xml.Serialization.XmlElementAttribute("SignaturePoint?", Form = System.Xml.Schema.XmlSchemaForm.Unqualified)]
         public SignaturePoint[] SignaturePoint;
     }
 }

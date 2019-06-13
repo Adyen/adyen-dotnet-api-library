@@ -19,7 +19,7 @@
         /// <remarks/>
         [System.Xml.Serialization.XmlAttributeAttribute()]
         [System.ComponentModel.DefaultValueAttribute(false)]
-        public bool HostDiagnosisFlag;
+        public bool? HostDiagnosisFlag;
 
         public DiagnosisRequest()
         {

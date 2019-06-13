@@ -14,7 +14,10 @@
 
         /// <remarks/>
         [System.Xml.Serialization.XmlAttributeAttribute()]
-        public decimal CurrentBalance;
-        
+        public decimal? CurrentBalance;
+
+        /// <remarks/>
+        [System.Xml.Serialization.XmlIgnoreAttribute()]
+        public bool? CurrentBalanceSpecified;
     }
 }

@@ -10,7 +10,7 @@
 
         /// <remarks/>
         [System.Xml.Serialization.XmlElementAttribute(Form = System.Xml.Schema.XmlSchemaForm.Unqualified)]
-        public ContentInformationType EncrPINBlock;
+        public ContentInformation EncrPINBlock;
 
         /// <remarks/>
         [System.Xml.Serialization.XmlAttributeAttribute()]
