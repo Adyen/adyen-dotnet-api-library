@@ -13,6 +13,7 @@ namespace Adyen.EcommLibrary.Model.Notification
         public const string EventCodeRefundFailed = "REFUND_FAILED";
         public const string EventCodeRefundedReversed = "REFUNDED_REVERSED";
         public const string EventCodePaidoutReversed = "PAIDOUT_REVERSED";
+        public const string EventCodeRecurringContract = "RECURRING_CONTRACT";
 
         //Additional Data
         public const string AdditionalDataTotalFraudScore = "totalFraudScore";
