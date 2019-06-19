@@ -22,7 +22,6 @@
 
         /// <remarks/>
         [System.Xml.Serialization.XmlAttributeAttribute()]
-        [System.ComponentModel.DefaultValueAttribute(LoyaltyHandlingType.Allowed)]
         public LoyaltyHandlingType LoyaltyHandling;
 
         /// <remarks/>

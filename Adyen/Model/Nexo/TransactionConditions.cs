@@ -31,7 +31,6 @@
 
         /// <remarks/>
         [System.Xml.Serialization.XmlAttributeAttribute()]
-        [System.ComponentModel.DefaultValueAttribute(LoyaltyHandlingType.Forbidden)]
         public LoyaltyHandlingType LoyaltyHandling;
 
         /// <remarks/>
