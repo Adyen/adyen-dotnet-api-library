@@ -1,0 +1,22 @@
+{
+	"SaleToPOIResponse": {
+		"DisplayResponse": {
+			"OutputResult": [{
+				"Device": "CustomerDisplay",
+				"InfoQualify": "Display",
+				"Response": {
+					"Result": "Success"
+				}
+			}]
+		},
+		"MessageHeader": {
+			"ProtocolVersion": "3.0",
+			"SaleID": "POSSystemID12345Appie",
+			"MessageClass": "Device",
+			"MessageCategory": "Display",
+			"ServiceID": "20135010",
+			"POIID": "MX925-284691408",
+			"MessageType": "Response"
+		}
+	}
+}
