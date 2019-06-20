@@ -11,5 +11,6 @@ namespace Adyen.Exceptions
         internal const string InvalidMessageType = "Invalid Message Type for the message: {0}";
         internal const string TerminalErrorResponse = "Terminal Error Response: {0}";
         internal const string ExceptionDuringDeserialization = "Exception during deserialization of object: {0}, Exception Message: {1}";
+        internal const string MissingLiveEndpointUrlPrefix = "Missing liveEndpointUrlPrefix for endpoint generation";
     }
 }

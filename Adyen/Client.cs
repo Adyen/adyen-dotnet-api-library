@@ -1,8 +1,9 @@
-﻿using Adyen.Constants;
+﻿using System;
+using Adyen.Constants;
 using Adyen.HttpClient.Interfaces;
 using Adyen.HttpClient;
-using Adyen.Model.Enum;
-using System.Net.Security;
+using Adyen.Exceptions;
+using Environment = Adyen.Model.Enum.Environment;
 
 namespace Adyen
 {
@@ -70,15 +71,15 @@ namespace Adyen
                     Config.CheckoutEndpoint = ClientConfig.CheckoutEndpointTest;
                     break;
                 case Environment.Live:
-                    Config.Endpoint = ClientConfig.EndpointLive;
+                    if (string.IsNullOrEmpty(liveEndpointUrlPrefix))
+                    {
+                        throw new InvalidOperationException(ExceptionMessages.MissingLiveEndpointUrlPrefix);
+                    }
+
+                    Config.Endpoint = ClientConfig.EndpointProtocol + liveEndpointUrlPrefix + ClientConfig.EndpointLiveSuffix;
                     Config.HppEndpoint = ClientConfig.HppLive;
                     Config.CloudApiEndPoint = ClientConfig.CloudApiEndPointLive;
-                    //set live endpoint for checkout api
-                    if (!string.IsNullOrEmpty(liveEndpointUrlPrefix))
-                    {
-                        Config.Endpoint = ClientConfig.EndpointProtocol + liveEndpointUrlPrefix + ClientConfig.EndpointLiveSuffix;
-                        Config.CheckoutEndpoint = ClientConfig.EndpointProtocol + liveEndpointUrlPrefix + ClientConfig.CheckoutEndpointLiveSuffix;
-                    }
+                    Config.CheckoutEndpoint = ClientConfig.EndpointProtocol + liveEndpointUrlPrefix + ClientConfig.CheckoutEndpointLiveSuffix;
                     break;
             }
         }

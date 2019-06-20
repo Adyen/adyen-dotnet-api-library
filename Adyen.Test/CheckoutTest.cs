@@ -11,14 +11,42 @@ namespace Adyen.Test
     [TestClass]
     public class CheckoutTest : BaseTest
     {
+        /// <summary>
+        /// Tests successful checkout client Test URL generation.
+        /// </summary>
         [TestMethod]
-        public void CheckoutEndpointTest()
+        public void CheckoutEndpointTestEnvironmentSuccessTest()
+        {
+            var config = new Config();
+            var client = new Client(config);
+            client.SetEnviroment(Model.Enum.Environment.Test, "companyUrl");
+            Assert.AreEqual(config.CheckoutEndpoint, @"https://checkout-test.adyen.com");
+            Assert.AreEqual(config.Endpoint, @"https://pal-test.adyen.com");
+        }
+
+        /// <summary>
+        /// Tests successful checkout client Live URL generation.
+        /// </summary>
+        [TestMethod]
+        public void CheckoutEndpointLiveEnvironmentSuccessTest()
         {
             var config = new Config();
             var client = new Client(config);
             client.SetEnviroment(Model.Enum.Environment.Live, "companyUrl");
             Assert.AreEqual(config.CheckoutEndpoint, @"https://companyUrl-checkout-live.adyenpayments.com/checkout");
             Assert.AreEqual(config.Endpoint, @"https://companyUrl-pal-live.adyenpayments.com");
+        }
+
+        /// <summary>
+        /// Tests unsuccessful checkout client Live URL generation.
+        /// </summary>
+        [TestMethod]
+        [ExpectedException(typeof(InvalidOperationException), "Missing liveEndpointUrlPrefix for endpoint generation")]
+        public void CheckoutEndpointLiveErrorTest()
+        {
+            var config = new Config();
+            var client = new Client(config);
+            client.SetEnviroment(Model.Enum.Environment.Live);
         }
 
         /// <summary>
