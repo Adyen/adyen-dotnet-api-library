@@ -74,7 +74,5 @@ namespace Adyen.Service
             var jsonResponse = await _authorise3DS2.RequestAsync(jsonRequest, requestOptions);
             return JsonConvert.DeserializeObject<PaymentResult>(jsonResponse);
         }
-
-
     }
 }

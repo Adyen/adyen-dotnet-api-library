@@ -31,10 +31,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <None Remove=".DS_Store" />
-  </ItemGroup>
-
-  <ItemGroup>
     <PackageReference Include="Microsoft.NET.Test.Sdk" Version="15.5.0" />
     <PackageReference Include="Moq" Version="4.7.145" />
     <PackageReference Include="MSTest.TestAdapter" Version="1.2.0" />
