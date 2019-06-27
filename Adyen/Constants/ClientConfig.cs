@@ -18,6 +18,8 @@
         public static string UserAgentSuffix = "adyen-dotnet-api-library/";
         public static string EndpointProtocol = "https://";
         public static string NexoProtocolVersion = "3.0";
+        public static string BinLookupPalSuffix = "/pal/servlet/BinLookup/";
+        public static string BinLookupApiVersion = "v50";
 
         public static string LibName = "adyen-dotnet-api-library";
         public static string LibVersion = "3.0.2";
