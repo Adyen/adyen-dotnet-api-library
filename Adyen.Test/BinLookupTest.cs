@@ -1,6 +1,7 @@
 ﻿using Adyen.Model.BinLookup;
 using Adyen.Model.Enum;
 using Adyen.Service;
+using Adyen.Service.Resource.BinLookup;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace Adyen.Test
@@ -27,7 +28,6 @@ namespace Adyen.Test
         [TestMethod]
         public void GetCostEstimateSuccessMockedTest()
         {
-
             var client = CreateMockTestClientApiKeyBasedRequest("Mocks/binlookup/getcostestimate-success.json");
             var binLookup = new BinLookup(client);
             var costEstimateRequest = new CostEstimateRequest();

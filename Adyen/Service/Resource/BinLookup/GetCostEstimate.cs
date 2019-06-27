@@ -6,7 +6,7 @@ namespace Adyen.Service.Resource.BinLookup
     public class GetCostEstimate : ServiceResource
     {
         public GetCostEstimate(AbstractService abstractService)
-            : base(abstractService, abstractService.Client.Config.CheckoutEndpoint + "/" + ClientConfig.BinLookupPalSuffix + ClientConfig.BinLookupApiVersion + "/getCostEstimate", new List<string> { "merchantAccount", "amount" })
+            : base(abstractService, abstractService.Client.Config.Endpoint + ClientConfig.BinLookupPalSuffix + ClientConfig.BinLookupApiVersion + "/getCostEstimate", new List<string> { "merchantAccount", "amount" })
         {
         }
     }
