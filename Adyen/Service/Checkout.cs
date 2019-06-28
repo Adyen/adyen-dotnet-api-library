@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using Adyen.EcommLibrary.Model.Checkout;
 using Adyen.Model;
 using Adyen.Model.Checkout;
 using Adyen.Service.Resource.Checkout;

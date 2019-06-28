@@ -4,11 +4,11 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Runtime.Serialization;
 using System.Text;
-using Adyen.Model.Checkout;
+using Adyen.EcommLibrary.Model.Checkout;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
 
-namespace Adyen.EcommLibrary.Model.Checkout
+namespace Adyen.Model.Checkout
 {
     /// <summary>
     /// PaymentsResponse
