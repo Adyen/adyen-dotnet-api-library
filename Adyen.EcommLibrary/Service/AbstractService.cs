@@ -5,10 +5,10 @@
         public Client Client { get; set; }
 
         public bool IsApiKeyRequired { get; set; } = false;
-
+        
         protected AbstractService(Client client)
         {
-            Client = client;
+            this.Client = client;
         }
     }
 }

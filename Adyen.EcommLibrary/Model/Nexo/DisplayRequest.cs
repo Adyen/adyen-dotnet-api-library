@@ -9,9 +9,9 @@ namespace Adyen.EcommLibrary.Model.Nexo
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     public partial class DisplayRequest : IMessagePayload
     {
+
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute("DisplayOutput", Form =
-            System.Xml.Schema.XmlSchemaForm.Unqualified)]
+        [System.Xml.Serialization.XmlElementAttribute("DisplayOutput", Form = System.Xml.Schema.XmlSchemaForm.Unqualified)]
         public DisplayOutput[] DisplayOutput;
     }
 }

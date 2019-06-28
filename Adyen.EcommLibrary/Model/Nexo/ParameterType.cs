@@ -7,6 +7,7 @@
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     public partial class ParameterType
     {
+
         /// <remarks/>
         [System.Xml.Serialization.XmlAttributeAttribute(DataType = "base64Binary")]
         public byte[] InitialisationVector;

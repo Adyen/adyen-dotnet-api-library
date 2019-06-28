@@ -7,6 +7,7 @@
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     public partial class LoyaltyResult
     {
+
         /// <remarks/>
         [System.Xml.Serialization.XmlElementAttribute(Form = System.Xml.Schema.XmlSchemaForm.Unqualified)]
         public LoyaltyAccount LoyaltyAccount;
@@ -26,5 +27,6 @@
         /// <remarks/>
         [System.Xml.Serialization.XmlAttributeAttribute()]
         public decimal? CurrentBalance;
+
     }
 }

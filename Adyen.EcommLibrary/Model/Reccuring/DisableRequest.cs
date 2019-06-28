@@ -21,7 +21,7 @@ namespace Adyen.EcommLibrary.Model.Reccuring
     /// DisableRequest
     /// </summary>
     [DataContract]
-    public partial class DisableRequest : IEquatable<DisableRequest>, IValidatableObject
+    public partial class DisableRequest :  IEquatable<DisableRequest>, IValidatableObject
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="DisableRequest" /> class.
@@ -30,41 +30,40 @@ namespace Adyen.EcommLibrary.Model.Reccuring
         /// <param name="Contract">specify the contract if you only want to disable a specific use.</param>
         /// <param name="RecurringDetailReference">the recurring detail you wish to disable.</param>
         /// <param name="ShopperReference">a reference you use to uniquely identify the shopper (e.g. user ID or account ID).</param>
-        public DisableRequest(string MerchantAccount = default(string), string Contract = default(string),
-            string RecurringDetailReference = default(string), string ShopperReference = default(string))
+        public DisableRequest(string MerchantAccount = default(string), string Contract = default(string), string RecurringDetailReference = default(string), string ShopperReference = default(string))
         {
             this.MerchantAccount = MerchantAccount;
             this.Contract = Contract;
             this.RecurringDetailReference = RecurringDetailReference;
             this.ShopperReference = ShopperReference;
         }
-
+        
         /// <summary>
         /// the merchant account which will be used for processing this request
         /// </summary>
         /// <value>the merchant account which will be used for processing this request</value>
-        [DataMember(Name = "merchantAccount", EmitDefaultValue = false)]
+        [DataMember(Name="merchantAccount", EmitDefaultValue=false)]
         public string MerchantAccount { get; set; }
 
         /// <summary>
         /// specify the contract if you only want to disable a specific use
         /// </summary>
         /// <value>specify the contract if you only want to disable a specific use</value>
-        [DataMember(Name = "contract", EmitDefaultValue = false)]
+        [DataMember(Name="contract", EmitDefaultValue=false)]
         public string Contract { get; set; }
 
         /// <summary>
         /// the recurring detail you wish to disable
         /// </summary>
         /// <value>the recurring detail you wish to disable</value>
-        [DataMember(Name = "recurringDetailReference", EmitDefaultValue = false)]
+        [DataMember(Name="recurringDetailReference", EmitDefaultValue=false)]
         public string RecurringDetailReference { get; set; }
 
         /// <summary>
         /// a reference you use to uniquely identify the shopper (e.g. user ID or account ID)
         /// </summary>
         /// <value>a reference you use to uniquely identify the shopper (e.g. user ID or account ID)</value>
-        [DataMember(Name = "shopperReference", EmitDefaultValue = false)]
+        [DataMember(Name="shopperReference", EmitDefaultValue=false)]
         public string ShopperReference { get; set; }
 
         /// <summary>
@@ -82,7 +81,7 @@ namespace Adyen.EcommLibrary.Model.Reccuring
             sb.Append("}\n");
             return sb.ToString();
         }
-
+  
         /// <summary>
         /// Returns the JSON string presentation of the object
         /// </summary>
@@ -100,7 +99,7 @@ namespace Adyen.EcommLibrary.Model.Reccuring
         public override bool Equals(object obj)
         {
             // credit: http://stackoverflow.com/a/10454552/677735
-            return Equals(obj as DisableRequest);
+            return this.Equals(obj as DisableRequest);
         }
 
         /// <summary>
@@ -114,26 +113,26 @@ namespace Adyen.EcommLibrary.Model.Reccuring
             if (other == null)
                 return false;
 
-            return
+            return 
                 (
-                    MerchantAccount == other.MerchantAccount ||
-                    MerchantAccount != null &&
-                    MerchantAccount.Equals(other.MerchantAccount)
-                ) &&
+                    this.MerchantAccount == other.MerchantAccount ||
+                    this.MerchantAccount != null &&
+                    this.MerchantAccount.Equals(other.MerchantAccount)
+                ) && 
                 (
-                    Contract == other.Contract ||
-                    Contract != null &&
-                    Contract.Equals(other.Contract)
-                ) &&
+                    this.Contract == other.Contract ||
+                    this.Contract != null &&
+                    this.Contract.Equals(other.Contract)
+                ) && 
                 (
-                    RecurringDetailReference == other.RecurringDetailReference ||
-                    RecurringDetailReference != null &&
-                    RecurringDetailReference.Equals(other.RecurringDetailReference)
-                ) &&
+                    this.RecurringDetailReference == other.RecurringDetailReference ||
+                    this.RecurringDetailReference != null &&
+                    this.RecurringDetailReference.Equals(other.RecurringDetailReference)
+                ) && 
                 (
-                    ShopperReference == other.ShopperReference ||
-                    ShopperReference != null &&
-                    ShopperReference.Equals(other.ShopperReference)
+                    this.ShopperReference == other.ShopperReference ||
+                    this.ShopperReference != null &&
+                    this.ShopperReference.Equals(other.ShopperReference)
                 );
         }
 
@@ -146,16 +145,16 @@ namespace Adyen.EcommLibrary.Model.Reccuring
             // credit: http://stackoverflow.com/a/263416/677735
             unchecked // Overflow is fine, just wrap
             {
-                var hash = 41;
+                int hash = 41;
                 // Suitable nullity checks etc, of course :)
-                if (MerchantAccount != null)
-                    hash = hash * 59 + MerchantAccount.GetHashCode();
-                if (Contract != null)
-                    hash = hash * 59 + Contract.GetHashCode();
-                if (RecurringDetailReference != null)
-                    hash = hash * 59 + RecurringDetailReference.GetHashCode();
-                if (ShopperReference != null)
-                    hash = hash * 59 + ShopperReference.GetHashCode();
+                if (this.MerchantAccount != null)
+                    hash = hash * 59 + this.MerchantAccount.GetHashCode();
+                if (this.Contract != null)
+                    hash = hash * 59 + this.Contract.GetHashCode();
+                if (this.RecurringDetailReference != null)
+                    hash = hash * 59 + this.RecurringDetailReference.GetHashCode();
+                if (this.ShopperReference != null)
+                    hash = hash * 59 + this.ShopperReference.GetHashCode();
                 return hash;
             }
         }
@@ -165,9 +164,10 @@ namespace Adyen.EcommLibrary.Model.Reccuring
         /// </summary>
         /// <param name="validationContext">Validation context</param>
         /// <returns>Validation Result</returns>
-        IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
         {
             yield break;
         }
     }
+
 }

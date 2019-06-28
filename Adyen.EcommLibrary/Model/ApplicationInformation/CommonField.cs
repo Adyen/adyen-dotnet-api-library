@@ -11,7 +11,7 @@ namespace Adyen.EcommLibrary.Model.ApplicationInformation
     /// CommonField
     /// </summary>
     [DataContract]
-    public partial class CommonField : IEquatable<CommonField>, IValidatableObject
+    public partial class CommonField :  IEquatable<CommonField>, IValidatableObject
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="CommonField" /> class.
@@ -23,19 +23,19 @@ namespace Adyen.EcommLibrary.Model.ApplicationInformation
             this.Name = Name;
             this.Version = Version;
         }
-
+        
         /// <summary>
         /// Name of the field. For example, Name of External Platform.
         /// </summary>
         /// <value>Name of the field. For example, Name of External Platform.</value>
-        [DataMember(Name = "name", EmitDefaultValue = false)]
+        [DataMember(Name="name", EmitDefaultValue=false)]
         public string Name { get; set; }
 
         /// <summary>
         /// Version of the field. For example, Version of External Platform.
         /// </summary>
         /// <value>Version of the field. For example, Version of External Platform.</value>
-        [DataMember(Name = "version", EmitDefaultValue = false)]
+        [DataMember(Name="version", EmitDefaultValue=false)]
         public string Version { get; set; }
 
         /// <summary>
@@ -51,7 +51,7 @@ namespace Adyen.EcommLibrary.Model.ApplicationInformation
             sb.Append("}\n");
             return sb.ToString();
         }
-
+  
         /// <summary>
         /// Returns the JSON string presentation of the object
         /// </summary>
@@ -68,7 +68,7 @@ namespace Adyen.EcommLibrary.Model.ApplicationInformation
         /// <returns>Boolean</returns>
         public override bool Equals(object input)
         {
-            return Equals(input as CommonField);
+            return this.Equals(input as CommonField);
         }
 
         /// <summary>
@@ -81,16 +81,16 @@ namespace Adyen.EcommLibrary.Model.ApplicationInformation
             if (input == null)
                 return false;
 
-            return
+            return 
                 (
-                    Name == input.Name ||
-                    Name != null &&
-                    Name.Equals(input.Name)
-                ) &&
+                    this.Name == input.Name ||
+                    (this.Name != null &&
+                    this.Name.Equals(input.Name))
+                ) && 
                 (
-                    Version == input.Version ||
-                    Version != null &&
-                    Version.Equals(input.Version)
+                    this.Version == input.Version ||
+                    (this.Version != null &&
+                    this.Version.Equals(input.Version))
                 );
         }
 
@@ -102,11 +102,11 @@ namespace Adyen.EcommLibrary.Model.ApplicationInformation
         {
             unchecked // Overflow is fine, just wrap
             {
-                var hashCode = 41;
-                if (Name != null)
-                    hashCode = hashCode * 59 + Name.GetHashCode();
-                if (Version != null)
-                    hashCode = hashCode * 59 + Version.GetHashCode();
+                int hashCode = 41;
+                if (this.Name != null)
+                    hashCode = hashCode * 59 + this.Name.GetHashCode();
+                if (this.Version != null)
+                    hashCode = hashCode * 59 + this.Version.GetHashCode();
                 return hashCode;
             }
         }
@@ -116,7 +116,7 @@ namespace Adyen.EcommLibrary.Model.ApplicationInformation
         /// </summary>
         /// <param name="validationContext">Validation context</param>
         /// <returns>Validation Result</returns>
-        IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
         {
             yield break;
         }

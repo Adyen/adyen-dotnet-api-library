@@ -1,3 +1,4 @@
+
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -12,16 +13,13 @@ namespace Adyen.EcommLibrary.Model.Checkout
     /// PaymentResultRequest
     /// </summary>
     [DataContract]
-    public partial class PaymentResultRequest : IEquatable<PaymentResultRequest>, IValidatableObject
+    public partial class PaymentResultRequest :  IEquatable<PaymentResultRequest>, IValidatableObject
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="PaymentResultRequest" /> class.
         /// </summary>
         [JsonConstructor]
-        protected PaymentResultRequest()
-        {
-        }
-
+        protected PaymentResultRequest() { }
         /// <summary>
         /// Initializes a new instance of the <see cref="PaymentResultRequest" /> class.
         /// </summary>
@@ -30,17 +28,20 @@ namespace Adyen.EcommLibrary.Model.Checkout
         {
             // to ensure "Payload" is required (not null)
             if (Payload == null)
-                throw new InvalidDataException(
-                    "Payload is a required property for PaymentResultRequest and cannot be null");
+            {
+                throw new InvalidDataException("Payload is a required property for PaymentResultRequest and cannot be null");
+            }
             else
+            {
                 this.Payload = Payload;
+            }
         }
-
+        
         /// <summary>
         /// Encrypted and signed payment result data. You should receive this value from the Checkout SDK after the shopper completes the payment.
         /// </summary>
         /// <value>Encrypted and signed payment result data. You should receive this value from the Checkout SDK after the shopper completes the payment.</value>
-        [DataMember(Name = "payload", EmitDefaultValue = false)]
+        [DataMember(Name="payload", EmitDefaultValue=false)]
         public string Payload { get; set; }
 
         /// <summary>
@@ -55,7 +56,7 @@ namespace Adyen.EcommLibrary.Model.Checkout
             sb.Append("}\n");
             return sb.ToString();
         }
-
+  
         /// <summary>
         /// Returns the JSON string presentation of the object
         /// </summary>
@@ -72,7 +73,7 @@ namespace Adyen.EcommLibrary.Model.Checkout
         /// <returns>Boolean</returns>
         public override bool Equals(object input)
         {
-            return Equals(input as PaymentResultRequest);
+            return this.Equals(input as PaymentResultRequest);
         }
 
         /// <summary>
@@ -85,10 +86,12 @@ namespace Adyen.EcommLibrary.Model.Checkout
             if (input == null)
                 return false;
 
-            return
-                Payload == input.Payload ||
-                Payload != null &&
-                Payload.Equals(input.Payload);
+            return 
+                (
+                    this.Payload == input.Payload ||
+                    (this.Payload != null &&
+                    this.Payload.Equals(input.Payload))
+                );
         }
 
         /// <summary>
@@ -99,9 +102,9 @@ namespace Adyen.EcommLibrary.Model.Checkout
         {
             unchecked // Overflow is fine, just wrap
             {
-                var hashCode = 41;
-                if (Payload != null)
-                    hashCode = hashCode * 59 + Payload.GetHashCode();
+                int hashCode = 41;
+                if (this.Payload != null)
+                    hashCode = hashCode * 59 + this.Payload.GetHashCode();
                 return hashCode;
             }
         }
@@ -111,9 +114,10 @@ namespace Adyen.EcommLibrary.Model.Checkout
         /// </summary>
         /// <param name="validationContext">Validation context</param>
         /// <returns>Validation Result</returns>
-        IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
         {
             yield break;
         }
     }
+
 }

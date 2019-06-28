@@ -11,25 +11,19 @@ namespace Adyen.EcommLibrary.Model.Checkout
     {
         [DataMember(Name = "firstName", EmitDefaultValue = false)]
         public string FirstName { get; set; }
-
         [DataMember(Name = "infix", EmitDefaultValue = false)]
         public string Infix { get; set; }
-
         [DataMember(Name = "lastName", EmitDefaultValue = false)]
         public string LastName { get; set; }
-
         [DataMember(Name = "dateOfBirth", EmitDefaultValue = false)]
         public string DateOfBirth { get; set; }
-
         [DataMember(Name = "telephoneNumber", EmitDefaultValue = false)]
         public string TelephoneNumber { get; set; }
-
         [DataMember(Name = "socialSecurityNumber", EmitDefaultValue = false)]
         public string SocialSecurityNumber { get; set; }
-
         [DataMember(Name = "shopperEmail", EmitDefaultValue = false)]
         public string ShopperEmail { get; set; }
-
+        
         public override string ToString()
         {
             var sb = new StringBuilder();
@@ -61,7 +55,7 @@ namespace Adyen.EcommLibrary.Model.Checkout
         /// <returns>Boolean</returns>
         public override bool Equals(object input)
         {
-            return Equals(input as PersonalDetails);
+            return this.Equals(input as PersonalDetails);
         }
 
         /// <summary>
@@ -69,9 +63,10 @@ namespace Adyen.EcommLibrary.Model.Checkout
         /// </summary>
         /// <param name="validationContext">Validation context</param>
         /// <returns>Validation Result</returns>
-        IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
         {
             yield break;
         }
     }
+
 }

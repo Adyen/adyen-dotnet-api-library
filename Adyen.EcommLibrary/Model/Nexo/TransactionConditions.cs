@@ -7,9 +7,9 @@
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     public partial class TransactionConditions
     {
+
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute("AllowedPaymentBrand", Form =
-            System.Xml.Schema.XmlSchemaForm.Unqualified)]
+        [System.Xml.Serialization.XmlElementAttribute("AllowedPaymentBrand", Form = System.Xml.Schema.XmlSchemaForm.Unqualified)]
         public string[] AllowedPaymentBrand;
 
         /// <remarks/>
@@ -17,21 +17,21 @@
         public string[] AcquirerID;
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute("AllowedLoyaltyBrand", Form =
-            System.Xml.Schema.XmlSchemaForm.Unqualified)]
+        [System.Xml.Serialization.XmlElementAttribute("AllowedLoyaltyBrand", Form = System.Xml.Schema.XmlSchemaForm.Unqualified)]
         public string[] AllowedLoyaltyBrand;
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute("ForceEntryMode", Form =
-            System.Xml.Schema.XmlSchemaForm.Unqualified)]
+        [System.Xml.Serialization.XmlElementAttribute("ForceEntryMode", Form = System.Xml.Schema.XmlSchemaForm.Unqualified)]
         public string[] ForceEntryMode;
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute()] [System.ComponentModel.DefaultValueAttribute(false)]
+        [System.Xml.Serialization.XmlAttributeAttribute()]
+        [System.ComponentModel.DefaultValueAttribute(false)]
         public bool DebitPreferredFlag;
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute()] [System.ComponentModel.DefaultValueAttribute("Forbidden")]
+        [System.Xml.Serialization.XmlAttributeAttribute()]
+        [System.ComponentModel.DefaultValueAttribute("Forbidden")]
         public string LoyaltyHandling;
 
         /// <remarks/>
@@ -39,7 +39,8 @@
         public string CustomerLanguage;
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute()] [System.ComponentModel.DefaultValueAttribute(false)]
+        [System.Xml.Serialization.XmlAttributeAttribute()]
+        [System.ComponentModel.DefaultValueAttribute(false)]
         public bool ForceOnlineFlag;
 
         /// <remarks/>
@@ -48,9 +49,9 @@
 
         public TransactionConditions()
         {
-            DebitPreferredFlag = false;
-            LoyaltyHandling = "Forbidden";
-            ForceOnlineFlag = false;
+            this.DebitPreferredFlag = false;
+            this.LoyaltyHandling = "Forbidden";
+            this.ForceOnlineFlag = false;
         }
     }
 }

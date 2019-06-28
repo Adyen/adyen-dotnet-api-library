@@ -7,6 +7,7 @@
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     public partial class AmountsResp
     {
+
         /// <remarks/>
         [System.Xml.Serialization.XmlAttributeAttribute()]
         public string Currency;
@@ -30,5 +31,6 @@
         /// <remarks/>
         [System.Xml.Serialization.XmlAttributeAttribute()]
         public decimal? TipAmount;
+
     }
 }

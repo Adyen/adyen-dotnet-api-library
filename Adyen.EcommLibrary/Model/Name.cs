@@ -12,15 +12,14 @@ namespace Adyen.EcommLibrary.Model
     /// Name
     /// </summary>
     [DataContract]
-    public partial class Name : IEquatable<Name>, IValidatableObject
+    public partial class Name :  IEquatable<Name>, IValidatableObject
     {
         /// <summary>
         /// A person&#39;s gender (can be unknown).
         /// </summary>
         /// <value>A person&#39;s gender (can be unknown).</value>
-        [DataMember(Name = "gender", EmitDefaultValue = false)]
+        [DataMember(Name="gender", EmitDefaultValue=false)]
         public GenderEnum? Gender { get; set; }
-
         /// <summary>
         /// Initializes a new instance of the <see cref="Name" /> class.
         /// </summary>
@@ -28,27 +27,25 @@ namespace Adyen.EcommLibrary.Model
         /// <param name="LastName">A person&#39;s last name..</param>
         /// <param name="Gender">A person&#39;s gender (can be unknown)..</param>
         /// <param name="Infix">A person name&#39;s infix, if applicable. Maximum length: 20 characters..</param>
-        public Name(string FirstName = default(string), string LastName = default(string),
-            GenderEnum? Gender = default(GenderEnum?), string Infix = default(string))
+        public Name(string FirstName = default(string), string LastName = default(string), GenderEnum? Gender = default(GenderEnum?), string Infix = default(string))
         {
             this.FirstName = FirstName;
             this.LastName = LastName;
             this.Gender = Gender;
             this.Infix = Infix;
         }
-
         /// <summary>
         /// A person&#39;s first name.
         /// </summary>
         /// <value>A person&#39;s first name.</value>
-        [DataMember(Name = "firstName", EmitDefaultValue = false)]
+        [DataMember(Name="firstName", EmitDefaultValue=false)]
         public string FirstName { get; set; }
 
         /// <summary>
         /// A person&#39s last name.
         /// </summary>
         /// <value>A person&#39;s last name.</value>
-        [DataMember(Name = "lastName", EmitDefaultValue = false)]
+        [DataMember(Name="lastName", EmitDefaultValue=false)]
         public string LastName { get; set; }
 
 
@@ -56,9 +53,8 @@ namespace Adyen.EcommLibrary.Model
         /// A person name&#39;s infix, if applicable. Maximum length: 20 characters.
         /// </summary>
         /// <value>A person name&#39;s infix, if applicable. Maximum length: 20 characters.</value>
-        [DataMember(Name = "infix", EmitDefaultValue = false)]
+        [DataMember(Name="infix", EmitDefaultValue=false)]
         public string Infix { get; set; }
-
         /// <summary>
         /// Returns the string presentation of the object
         /// </summary>
@@ -74,7 +70,7 @@ namespace Adyen.EcommLibrary.Model
             sb.Append("}\n");
             return sb.ToString();
         }
-
+  
         /// <summary>
         /// Returns the JSON string presentation of the object
         /// </summary>
@@ -83,7 +79,6 @@ namespace Adyen.EcommLibrary.Model
         {
             return JsonConvert.SerializeObject(this, Formatting.Indented);
         }
-
         /// <summary>
         /// Returns true if objects are equal
         /// </summary>
@@ -92,9 +87,8 @@ namespace Adyen.EcommLibrary.Model
         public override bool Equals(object obj)
         {
             // credit: http://stackoverflow.com/a/10454552/677735
-            return Equals(obj as Name);
+            return this.Equals(obj as Name);
         }
-
         /// <summary>
         /// Returns true if Name instances are equal
         /// </summary>
@@ -106,26 +100,26 @@ namespace Adyen.EcommLibrary.Model
             if (other == null)
                 return false;
 
-            return
+            return 
                 (
-                    FirstName == other.FirstName ||
-                    FirstName != null &&
-                    FirstName.Equals(other.FirstName)
-                ) &&
+                    this.FirstName == other.FirstName ||
+                    this.FirstName != null &&
+                    this.FirstName.Equals(other.FirstName)
+                ) && 
                 (
-                    LastName == other.LastName ||
-                    LastName != null &&
-                    LastName.Equals(other.LastName)
-                ) &&
+                    this.LastName == other.LastName ||
+                    this.LastName != null &&
+                    this.LastName.Equals(other.LastName)
+                ) && 
                 (
-                    Gender == other.Gender ||
-                    Gender != null &&
-                    Gender.Equals(other.Gender)
-                ) &&
+                    this.Gender == other.Gender ||
+                    this.Gender != null &&
+                    this.Gender.Equals(other.Gender)
+                ) && 
                 (
-                    Infix == other.Infix ||
-                    Infix != null &&
-                    Infix.Equals(other.Infix)
+                    this.Infix == other.Infix ||
+                    this.Infix != null &&
+                    this.Infix.Equals(other.Infix)
                 );
         }
 
@@ -138,16 +132,16 @@ namespace Adyen.EcommLibrary.Model
             // credit: http://stackoverflow.com/a/263416/677735
             unchecked // Overflow is fine, just wrap
             {
-                var hash = 41;
+                int hash = 41;
                 // Suitable nullity checks etc, of course :)
-                if (FirstName != null)
-                    hash = hash * 59 + FirstName.GetHashCode();
-                if (LastName != null)
-                    hash = hash * 59 + LastName.GetHashCode();
-                if (Gender != null)
-                    hash = hash * 59 + Gender.GetHashCode();
-                if (Infix != null)
-                    hash = hash * 59 + Infix.GetHashCode();
+                if (this.FirstName != null)
+                    hash = hash * 59 + this.FirstName.GetHashCode();
+                if (this.LastName != null)
+                    hash = hash * 59 + this.LastName.GetHashCode();
+                if (this.Gender != null)
+                    hash = hash * 59 + this.Gender.GetHashCode();
+                if (this.Infix != null)
+                    hash = hash * 59 + this.Infix.GetHashCode();
                 return hash;
             }
         }
@@ -157,7 +151,7 @@ namespace Adyen.EcommLibrary.Model
         /// </summary>
         /// <param name="validationContext">Validation context</param>
         /// <returns>Validation Result</returns>
-        IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
         {
             // Gender (string) maxLength
             //if(this.Gender != null && this.Gender.Length > 1)

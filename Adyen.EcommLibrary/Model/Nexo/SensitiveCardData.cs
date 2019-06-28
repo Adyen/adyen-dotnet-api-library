@@ -7,6 +7,7 @@
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     public partial class SensitiveCardData
     {
+
         /// <remarks/>
         [System.Xml.Serialization.XmlElementAttribute("TrackData", Form = System.Xml.Schema.XmlSchemaForm.Unqualified)]
         public TrackData[] TrackData;

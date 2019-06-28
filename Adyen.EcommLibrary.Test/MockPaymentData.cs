@@ -33,7 +33,7 @@ namespace Adyen.EcommLibrary.Test
             return new Config
             {
                 Environment = Environment.Test,
-                XApiKey = "AQEyhmfxK....LAG84XwzP5pSpVd" //mock api key
+                XApiKey = "AQEyhmfxK....LAG84XwzP5pSpVd"//mock api key
             };
         }
 
@@ -68,8 +68,7 @@ namespace Adyen.EcommLibrary.Test
             return paymentRequest;
         }
 
-        public static PaymentRequest CreateFullPaymentRequestWithShopperInteraction(
-            ShopperInteraction shopperInteraction)
+        public static PaymentRequest CreateFullPaymentRequestWithShopperInteraction(Model.Enum.ShopperInteraction shopperInteraction)
         {
             var paymentRequest = CreateFullPaymentRequest();
             paymentRequest.ShopperInteraction = shopperInteraction;
@@ -80,10 +79,10 @@ namespace Adyen.EcommLibrary.Test
         {
             return new Dictionary<string, string>
             {
-                {"liabilityShift", "true"},
-                {"fraudResultType", "GREEN"},
-                {"authCode", "43733"},
-                {"avsResult", "4 AVS not supported for this card type"}
+                { "liabilityShift", "true"},
+                { "fraudResultType", "GREEN"},
+                { "authCode", "43733"},
+                { "avsResult", "4 AVS not supported for this card type"}
             };
         }
 
@@ -102,28 +101,27 @@ namespace Adyen.EcommLibrary.Test
         {
             return new BrowserInfo
             {
-                UserAgent =
-                    "User-Agent:Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_5) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/55.0.2883.95 Safari/537.36",
+                UserAgent = "User-Agent:Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_5) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/55.0.2883.95 Safari/537.36",
                 AcceptHeader = "*/*"
             };
         }
 
         public static Card CreateTestCard()
         {
-            return new Card("4111111111111111", ExpiryMonth: "08", ExpiryYear: "2018", Cvc: "737",
-                HolderName: "John Smith");
+            return new Card(Number: "4111111111111111", ExpiryMonth: "08", ExpiryYear: "2018", Cvc: "737", HolderName: "John Smith");
         }
 
         public static Card CreateTestCard3D()
         {
-            return new Card("5212345678901234", ExpiryMonth: "08", ExpiryYear: "2018", Cvc: "737",
-                HolderName: "John Smith");
+            return new Card(Number: "5212345678901234", ExpiryMonth: "08", ExpiryYear: "2018", Cvc: "737", HolderName: "John Smith");
         }
 
         public static string GetTestPspReferenceMocked()
         {
             return "8514836072314693";
         }
+
+
 
         #endregion
     }

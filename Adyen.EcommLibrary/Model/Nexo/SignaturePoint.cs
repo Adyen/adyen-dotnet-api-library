@@ -7,6 +7,7 @@
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     public partial class SignaturePoint
     {
+
         /// <remarks/>
         [System.Xml.Serialization.XmlAttributeAttribute()]
         public string X;

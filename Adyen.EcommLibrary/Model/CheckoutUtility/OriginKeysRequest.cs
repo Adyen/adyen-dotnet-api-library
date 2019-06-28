@@ -15,19 +15,20 @@ namespace Adyen.EcommLibrary.Model.CheckoutUtility
     public class OriginKeysRequest : IEquatable<OriginKeysRequest>, IValidatableObject
     {
         [DataMember(Name = "originDomains", EmitDefaultValue = false)]
-        public List<string> OriginDomains { get; set; }
-
+        public List<string> OriginDomains { get;set;}
+        
         public bool Equals(OriginKeysRequest input)
         {
             if (input == null)
                 return false;
 
-            return OriginDomains == input.OriginDomains ||
-                   OriginDomains != null &&
-                   OriginDomains.SequenceEqual(input.OriginDomains);
-        }
+            return (
+             this.OriginDomains == input.OriginDomains ||
+                    this.OriginDomains != null &&
+                    this.OriginDomains.SequenceEqual(input.OriginDomains));
+        } 
 
-
+        
         /// <summary>
         /// Returns the string presentation of the object
         /// </summary>
@@ -40,7 +41,7 @@ namespace Adyen.EcommLibrary.Model.CheckoutUtility
             sb.Append("}\n");
             return sb.ToString();
         }
-
+  
         /// <summary>
         /// Returns the JSON string presentation of the object
         /// </summary>
@@ -57,13 +58,13 @@ namespace Adyen.EcommLibrary.Model.CheckoutUtility
         /// <returns>Boolean</returns>
         public override bool Equals(object input)
         {
-            return Equals(input as OriginKeysRequest);
+            return this.Equals(input as OriginKeysRequest);
         }
 
 
         public IEnumerable<ValidationResult> Validate(ValidationContext validationContext)
         {
-            yield break;
+              yield break;
         }
     }
 }

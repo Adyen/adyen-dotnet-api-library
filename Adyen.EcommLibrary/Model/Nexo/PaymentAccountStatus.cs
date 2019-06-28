@@ -7,6 +7,7 @@
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     public partial class PaymentAccountStatus
     {
+
         /// <remarks/>
         [System.Xml.Serialization.XmlElementAttribute(Form = System.Xml.Schema.XmlSchemaForm.Unqualified)]
         public PaymentInstrumentData PaymentInstrumentData;
@@ -26,5 +27,6 @@
         /// <remarks/>
         [System.Xml.Serialization.XmlAttributeAttribute()]
         public decimal? CurrentBalance;
+
     }
 }

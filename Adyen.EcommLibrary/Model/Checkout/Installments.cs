@@ -1,3 +1,4 @@
+
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -12,16 +13,13 @@ namespace Adyen.EcommLibrary.Model.Checkout
     /// Installments
     /// </summary>
     [DataContract]
-    public partial class Installments : IEquatable<Installments>, IValidatableObject
+    public partial class Installments :  IEquatable<Installments>, IValidatableObject
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="Installments" /> class.
         /// </summary>
         [JsonConstructor]
-        protected Installments()
-        {
-        }
-
+        protected Installments() { }
         /// <summary>
         /// Initializes a new instance of the <see cref="Installments" /> class.
         /// </summary>
@@ -30,16 +28,20 @@ namespace Adyen.EcommLibrary.Model.Checkout
         {
             // to ensure "Value" is required (not null)
             if (Value == null)
+            {
                 throw new InvalidDataException("Value is a required property for Installments and cannot be null");
+            }
             else
+            {
                 this.Value = Value;
+            }
         }
-
+        
         /// <summary>
         /// Defines the number of installments. Its value needs to be greater than zero.  Usually, the maximum allowed number of installments is capped. For example, it may not be possible to split a payment in more than 24 installments. The acquirer sets this upper limit, so its value may vary.
         /// </summary>
         /// <value>Defines the number of installments. Its value needs to be greater than zero.  Usually, the maximum allowed number of installments is capped. For example, it may not be possible to split a payment in more than 24 installments. The acquirer sets this upper limit, so its value may vary.</value>
-        [DataMember(Name = "value", EmitDefaultValue = false)]
+        [DataMember(Name="value", EmitDefaultValue=false)]
         public int? Value { get; set; }
 
         /// <summary>
@@ -54,7 +56,7 @@ namespace Adyen.EcommLibrary.Model.Checkout
             sb.Append("}\n");
             return sb.ToString();
         }
-
+  
         /// <summary>
         /// Returns the JSON string presentation of the object
         /// </summary>
@@ -71,7 +73,7 @@ namespace Adyen.EcommLibrary.Model.Checkout
         /// <returns>Boolean</returns>
         public override bool Equals(object input)
         {
-            return Equals(input as Installments);
+            return this.Equals(input as Installments);
         }
 
         /// <summary>
@@ -84,10 +86,12 @@ namespace Adyen.EcommLibrary.Model.Checkout
             if (input == null)
                 return false;
 
-            return
-                Value == input.Value ||
-                Value != null &&
-                Value.Equals(input.Value);
+            return 
+                (
+                    this.Value == input.Value ||
+                    (this.Value != null &&
+                    this.Value.Equals(input.Value))
+                );
         }
 
         /// <summary>
@@ -98,9 +102,9 @@ namespace Adyen.EcommLibrary.Model.Checkout
         {
             unchecked // Overflow is fine, just wrap
             {
-                var hashCode = 41;
-                if (Value != null)
-                    hashCode = hashCode * 59 + Value.GetHashCode();
+                int hashCode = 41;
+                if (this.Value != null)
+                    hashCode = hashCode * 59 + this.Value.GetHashCode();
                 return hashCode;
             }
         }
@@ -110,9 +114,10 @@ namespace Adyen.EcommLibrary.Model.Checkout
         /// </summary>
         /// <param name="validationContext">Validation context</param>
         /// <returns>Validation Result</returns>
-        IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
         {
             yield break;
         }
     }
+
 }

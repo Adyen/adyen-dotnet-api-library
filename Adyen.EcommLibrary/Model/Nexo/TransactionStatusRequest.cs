@@ -9,22 +9,23 @@ namespace Adyen.EcommLibrary.Model.Nexo
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     public partial class TransactionStatusRequest : IMessagePayload
     {
+
         /// <remarks/>
         [System.Xml.Serialization.XmlElementAttribute(Form = System.Xml.Schema.XmlSchemaForm.Unqualified)]
         public MessageReference MessageReference;
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute("DocumentQualifier", Form =
-            System.Xml.Schema.XmlSchemaForm.Unqualified)]
+        [System.Xml.Serialization.XmlElementAttribute("DocumentQualifier", Form = System.Xml.Schema.XmlSchemaForm.Unqualified)]
         public string[] DocumentQualifier;
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute()] [System.ComponentModel.DefaultValueAttribute(false)]
+        [System.Xml.Serialization.XmlAttributeAttribute()]
+        [System.ComponentModel.DefaultValueAttribute(false)]
         public bool ReceiptReprintFlag;
 
         public TransactionStatusRequest()
         {
-            ReceiptReprintFlag = false;
+            this.ReceiptReprintFlag = false;
         }
     }
 }

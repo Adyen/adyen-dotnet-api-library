@@ -7,6 +7,7 @@
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     public partial class OutputContent
     {
+
         /// <remarks/>
         [System.Xml.Serialization.XmlElementAttribute(Form = System.Xml.Schema.XmlSchemaForm.Unqualified)]
         public PredefinedContent PredefinedContent;
@@ -16,8 +17,7 @@
         public OutputText[] OutputText;
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Form = System.Xml.Schema.XmlSchemaForm.Unqualified,
-            DataType = "base64Binary")]
+        [System.Xml.Serialization.XmlElementAttribute(Form = System.Xml.Schema.XmlSchemaForm.Unqualified, DataType = "base64Binary")]
         public byte[] OutputXHTML;
 
         /// <remarks/>

@@ -7,6 +7,7 @@
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     public partial class LoyaltyRequest
     {
+
         /// <remarks/>
         [System.Xml.Serialization.XmlElementAttribute(Form = System.Xml.Schema.XmlSchemaForm.Unqualified)]
         public SaleData SaleData;
@@ -16,8 +17,7 @@
         public LoyaltyTransaction LoyaltyTransaction;
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute("LoyaltyData", Form =
-            System.Xml.Schema.XmlSchemaForm.Unqualified)]
+        [System.Xml.Serialization.XmlElementAttribute("LoyaltyData", Form = System.Xml.Schema.XmlSchemaForm.Unqualified)]
         public LoyaltyData[] LoyaltyData;
     }
 }

@@ -1,4 +1,7 @@
-﻿using Adyen.EcommLibrary.Model;
+﻿using System;
+using System.Collections.Generic;
+using System.Text;
+using Adyen.EcommLibrary.Model;
 using Adyen.EcommLibrary.Model.Checkout;
 using Adyen.EcommLibrary.Service.Resource.Checkout;
 using Newtonsoft.Json;
@@ -16,7 +19,7 @@ namespace Adyen.EcommLibrary.Service
 
         public Checkout(Client client) : base(client)
         {
-            IsApiKeyRequired = true;
+             IsApiKeyRequired = true;
             _payments = new Payments(this);
             _paymentMethods = new PaymentMethods(this);
             _paymentDetails = new PaymentDetails(this);

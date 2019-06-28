@@ -12,7 +12,7 @@ namespace Adyen.EcommLibrary.Model.Notification
 
         public override string ToString()
         {
-            var sb = new StringBuilder();
+            StringBuilder sb = new StringBuilder();
             sb.Append("class NotificationRequestItemContainer {\n");
 
             sb.Append("  notificationItem: ").Append(NotificationItem.ToIndentedString()).Append("\n");

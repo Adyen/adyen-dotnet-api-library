@@ -11,8 +11,7 @@ namespace Adyen.EcommLibrary.Model.Hpp
         public string Name { get; set; }
         public List<Issuer> Issuers { get; set; }
 
-        private readonly List<string> _cards = new List<string>
-        {
+        private readonly List<string> _cards = new List<string>{
             BrandCodes.Mastercard,
             BrandCodes.VisaDankort,
             BrandCodes.Visa,
@@ -38,7 +37,7 @@ namespace Adyen.EcommLibrary.Model.Hpp
             BrandCodes.Karenmillen,
             BrandCodes.Oasis,
             BrandCodes.Warehouse
-        };
+            };
 
         public bool IsCard()
         {
@@ -50,14 +49,14 @@ namespace Adyen.EcommLibrary.Model.Hpp
             return BrandCode;
         }
 
-
+        
         public override string ToString()
         {
-            var sb = new StringBuilder();
+            StringBuilder sb = new StringBuilder();
             sb.Append("class PaymentMethod {\n");
-            sb.Append("    brandCode: ").AppendLine(BrandCode.ToIndentedString());
-            sb.Append("    name: ").AppendLine(Name.ToIndentedString());
-            sb.Append("    issuers: ").AppendLine(Issuers.ToIndentedString());
+            sb.Append("    brandCode: ").AppendLine(this.BrandCode.ToIndentedString());
+            sb.Append("    name: ").AppendLine(this.Name.ToIndentedString());
+            sb.Append("    issuers: ").AppendLine(this.Issuers.ToIndentedString());
             sb.Append("}");
             return sb.ToString();
         }

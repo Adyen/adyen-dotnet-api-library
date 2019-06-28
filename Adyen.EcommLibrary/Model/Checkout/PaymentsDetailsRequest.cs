@@ -1,3 +1,4 @@
+
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -13,33 +14,31 @@ namespace Adyen.EcommLibrary.Model.Checkout
     /// PaymentsDetailsRequest
     /// </summary>
     [DataContract]
-    public partial class PaymentsDetailsRequest : IEquatable<PaymentsDetailsRequest>, IValidatableObject
+    public partial class PaymentsDetailsRequest :  IEquatable<PaymentsDetailsRequest>, IValidatableObject
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="PaymentsDetailsRequest" /> class.
         /// </summary>
         [JsonConstructor]
-        protected PaymentsDetailsRequest()
-        {
-        }
-
+        protected PaymentsDetailsRequest() { }
         /// <summary>
         /// Initializes a new instance of the <see cref="PaymentsDetailsRequest" /> class.
         /// </summary>
         /// <param name="Details">Use this collection to submit the details that were returned as a result of the &#x60;/payments&#x60; call. (required).</param>
         /// <param name="PaymentData">The &#x60;paymentData&#x60; value that you received in the response to the &#x60;/payments&#x60; call. (required).</param>
-        public PaymentsDetailsRequest(Dictionary<string, string> Details = default(Dictionary<string, string>),
-            string PaymentData = default(string))
+        public PaymentsDetailsRequest(Dictionary<string, string> Details = default(Dictionary<string, string>), string PaymentData = default(string))
         {
             // to ensure "Details" is required (not null)
             if (Details == null)
-                throw new InvalidDataException(
-                    "Details is a required property for PaymentsDetailsRequest and cannot be null");
+            {
+                throw new InvalidDataException("Details is a required property for PaymentsDetailsRequest and cannot be null");
+            }
             else
+            {
                 this.Details = Details;
+            }
             this.PaymentData = PaymentData;
         }
-
         /// <summary>
         /// Initializes a new instance of the <see cref="PaymentsDetailsRequest" /> class.
         /// </summary>
@@ -48,24 +47,26 @@ namespace Adyen.EcommLibrary.Model.Checkout
         {
             // to ensure "Details" is required (not null)
             if (Details == null)
-                throw new InvalidDataException(
-                    "Details is a required property for PaymentsDetailsRequest and cannot be null");
+            {
+                throw new InvalidDataException("Details is a required property for PaymentsDetailsRequest and cannot be null");
+            }
             else
+            {
                 this.Details = Details;
+            }
         }
-
         /// <summary>
         /// Use this collection to submit the details that were returned as a result of the &#x60;/payments&#x60; call.
         /// </summary>
         /// <value>Use this collection to submit the details that were returned as a result of the &#x60;/payments&#x60; call.</value>
-        [DataMember(Name = "details", EmitDefaultValue = false)]
+        [DataMember(Name="details", EmitDefaultValue=false)]
         public Dictionary<string, string> Details { get; set; }
 
         /// <summary>
         /// The &#x60;paymentData&#x60; value that you received in the response to the &#x60;/payments&#x60; call.
         /// </summary>
         /// <value>The &#x60;paymentData&#x60; value that you received in the response to the &#x60;/payments&#x60; call.</value>
-        [DataMember(Name = "paymentData", EmitDefaultValue = false)]
+        [DataMember(Name="paymentData", EmitDefaultValue=false)]
         public string PaymentData { get; set; }
 
         /// <summary>
@@ -81,7 +82,7 @@ namespace Adyen.EcommLibrary.Model.Checkout
             sb.Append("}\n");
             return sb.ToString();
         }
-
+  
         /// <summary>
         /// Returns the JSON string presentation of the object
         /// </summary>
@@ -98,7 +99,7 @@ namespace Adyen.EcommLibrary.Model.Checkout
         /// <returns>Boolean</returns>
         public override bool Equals(object input)
         {
-            return Equals(input as PaymentsDetailsRequest);
+            return this.Equals(input as PaymentsDetailsRequest);
         }
 
         /// <summary>
@@ -111,16 +112,16 @@ namespace Adyen.EcommLibrary.Model.Checkout
             if (input == null)
                 return false;
 
-            return
+            return 
                 (
-                    Details == input.Details ||
-                    Details != null &&
-                    Details.SequenceEqual(input.Details)
-                ) &&
+                    this.Details == input.Details ||
+                    this.Details != null &&
+                    this.Details.SequenceEqual(input.Details)
+                ) && 
                 (
-                    PaymentData == input.PaymentData ||
-                    PaymentData != null &&
-                    PaymentData.Equals(input.PaymentData)
+                    this.PaymentData == input.PaymentData ||
+                    (this.PaymentData != null &&
+                    this.PaymentData.Equals(input.PaymentData))
                 );
         }
 
@@ -132,11 +133,11 @@ namespace Adyen.EcommLibrary.Model.Checkout
         {
             unchecked // Overflow is fine, just wrap
             {
-                var hashCode = 41;
-                if (Details != null)
-                    hashCode = hashCode * 59 + Details.GetHashCode();
-                if (PaymentData != null)
-                    hashCode = hashCode * 59 + PaymentData.GetHashCode();
+                int hashCode = 41;
+                if (this.Details != null)
+                    hashCode = hashCode * 59 + this.Details.GetHashCode();
+                if (this.PaymentData != null)
+                    hashCode = hashCode * 59 + this.PaymentData.GetHashCode();
                 return hashCode;
             }
         }
@@ -146,9 +147,10 @@ namespace Adyen.EcommLibrary.Model.Checkout
         /// </summary>
         /// <param name="validationContext">Validation context</param>
         /// <returns>Validation Result</returns>
-        IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
         {
             yield break;
         }
     }
+
 }

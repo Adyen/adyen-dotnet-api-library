@@ -7,6 +7,7 @@
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     public partial class Rebates
     {
+
         /// <remarks/>
         [System.Xml.Serialization.XmlElementAttribute(Form = System.Xml.Schema.XmlSchemaForm.Unqualified)]
         public decimal? TotalRebate;
@@ -16,8 +17,7 @@
         public string RebateLabel;
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute("SaleItemRebate", Form =
-            System.Xml.Schema.XmlSchemaForm.Unqualified)]
+        [System.Xml.Serialization.XmlElementAttribute("SaleItemRebate", Form = System.Xml.Schema.XmlSchemaForm.Unqualified)]
         public SaleItemRebate[] SaleItemRebate;
     }
 }

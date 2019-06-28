@@ -7,23 +7,22 @@
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     public partial class CardAcquisitionTransaction
     {
+
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute("AllowedPaymentBrand", Form =
-            System.Xml.Schema.XmlSchemaForm.Unqualified)]
+        [System.Xml.Serialization.XmlElementAttribute("AllowedPaymentBrand", Form = System.Xml.Schema.XmlSchemaForm.Unqualified)]
         public string[] AllowedPaymentBrand;
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute("AllowedLoyaltyBrand", Form =
-            System.Xml.Schema.XmlSchemaForm.Unqualified)]
+        [System.Xml.Serialization.XmlElementAttribute("AllowedLoyaltyBrand", Form = System.Xml.Schema.XmlSchemaForm.Unqualified)]
         public string[] AllowedLoyaltyBrand;
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute("ForceEntryMode", Form =
-            System.Xml.Schema.XmlSchemaForm.Unqualified)]
+        [System.Xml.Serialization.XmlElementAttribute("ForceEntryMode", Form = System.Xml.Schema.XmlSchemaForm.Unqualified)]
         public string[] ForceEntryMode;
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute()] [System.ComponentModel.DefaultValueAttribute("Allowed")]
+        [System.Xml.Serialization.XmlAttributeAttribute()]
+        [System.ComponentModel.DefaultValueAttribute("Allowed")]
         public string LoyaltyHandling;
 
         /// <remarks/>
@@ -31,7 +30,8 @@
         public string CustomerLanguage;
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute()] [System.ComponentModel.DefaultValueAttribute(false)]
+        [System.Xml.Serialization.XmlAttributeAttribute()]
+        [System.ComponentModel.DefaultValueAttribute(false)]
         public bool ForceCustomerSelectionFlag;
 
         /// <remarks/>
@@ -46,11 +46,12 @@
         [System.Xml.Serialization.XmlAttributeAttribute()]
         public bool CashBackFlag;
 
+     
 
         public CardAcquisitionTransaction()
         {
-            LoyaltyHandling = "Allowed";
-            ForceCustomerSelectionFlag = false;
+            this.LoyaltyHandling = "Allowed";
+            this.ForceCustomerSelectionFlag = false;
         }
     }
 }

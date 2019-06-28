@@ -7,6 +7,7 @@
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     public partial class StoredValueAccountID
     {
+
         /// <remarks/>
         [System.Xml.Serialization.XmlAttributeAttribute()]
         public string StoredValueAccount;

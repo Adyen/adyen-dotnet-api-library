@@ -1,3 +1,4 @@
+
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -11,7 +12,7 @@ namespace Adyen.EcommLibrary.Model.Checkout
     /// SDKEphemPubKey
     /// </summary>
     [DataContract]
-    public partial class SDKEphemPubKey : IEquatable<SDKEphemPubKey>, IValidatableObject
+    public partial class SDKEphemPubKey :  IEquatable<SDKEphemPubKey>, IValidatableObject
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="SDKEphemPubKey" /> class.
@@ -20,41 +21,40 @@ namespace Adyen.EcommLibrary.Model.Checkout
         /// <param name="Kty">The &#x60;kty&#x60; value as received from the 3D Secure 2.0 SDK..</param>
         /// <param name="X">The &#x60;x&#x60; value as received from the 3D Secure 2.0 SDK..</param>
         /// <param name="Y">The &#x60;y&#x60; value as received from the 3D Secure 2.0 SDK..</param>
-        public SDKEphemPubKey(string Crv = default(string), string Kty = default(string), string X = default(string),
-            string Y = default(string))
+        public SDKEphemPubKey(string Crv = default(string), string Kty = default(string), string X = default(string), string Y = default(string))
         {
             this.Crv = Crv;
             this.Kty = Kty;
             this.X = X;
             this.Y = Y;
         }
-
+        
         /// <summary>
         /// The &#x60;crv&#x60; value as received from the 3D Secure 2.0 SDK.
         /// </summary>
         /// <value>The &#x60;crv&#x60; value as received from the 3D Secure 2.0 SDK.</value>
-        [DataMember(Name = "crv", EmitDefaultValue = false)]
+        [DataMember(Name="crv", EmitDefaultValue=false)]
         public string Crv { get; set; }
 
         /// <summary>
         /// The &#x60;kty&#x60; value as received from the 3D Secure 2.0 SDK.
         /// </summary>
         /// <value>The &#x60;kty&#x60; value as received from the 3D Secure 2.0 SDK.</value>
-        [DataMember(Name = "kty", EmitDefaultValue = false)]
+        [DataMember(Name="kty", EmitDefaultValue=false)]
         public string Kty { get; set; }
 
         /// <summary>
         /// The &#x60;x&#x60; value as received from the 3D Secure 2.0 SDK.
         /// </summary>
         /// <value>The &#x60;x&#x60; value as received from the 3D Secure 2.0 SDK.</value>
-        [DataMember(Name = "x", EmitDefaultValue = false)]
+        [DataMember(Name="x", EmitDefaultValue=false)]
         public string X { get; set; }
 
         /// <summary>
         /// The &#x60;y&#x60; value as received from the 3D Secure 2.0 SDK.
         /// </summary>
         /// <value>The &#x60;y&#x60; value as received from the 3D Secure 2.0 SDK.</value>
-        [DataMember(Name = "y", EmitDefaultValue = false)]
+        [DataMember(Name="y", EmitDefaultValue=false)]
         public string Y { get; set; }
 
         /// <summary>
@@ -72,7 +72,7 @@ namespace Adyen.EcommLibrary.Model.Checkout
             sb.Append("}\n");
             return sb.ToString();
         }
-
+  
         /// <summary>
         /// Returns the JSON string presentation of the object
         /// </summary>
@@ -89,7 +89,7 @@ namespace Adyen.EcommLibrary.Model.Checkout
         /// <returns>Boolean</returns>
         public override bool Equals(object input)
         {
-            return Equals(input as SDKEphemPubKey);
+            return this.Equals(input as SDKEphemPubKey);
         }
 
         /// <summary>
@@ -102,26 +102,26 @@ namespace Adyen.EcommLibrary.Model.Checkout
             if (input == null)
                 return false;
 
-            return
+            return 
                 (
-                    Crv == input.Crv ||
-                    Crv != null &&
-                    Crv.Equals(input.Crv)
-                ) &&
+                    this.Crv == input.Crv ||
+                    (this.Crv != null &&
+                    this.Crv.Equals(input.Crv))
+                ) && 
                 (
-                    Kty == input.Kty ||
-                    Kty != null &&
-                    Kty.Equals(input.Kty)
-                ) &&
+                    this.Kty == input.Kty ||
+                    (this.Kty != null &&
+                    this.Kty.Equals(input.Kty))
+                ) && 
                 (
-                    X == input.X ||
-                    X != null &&
-                    X.Equals(input.X)
-                ) &&
+                    this.X == input.X ||
+                    (this.X != null &&
+                    this.X.Equals(input.X))
+                ) && 
                 (
-                    Y == input.Y ||
-                    Y != null &&
-                    Y.Equals(input.Y)
+                    this.Y == input.Y ||
+                    (this.Y != null &&
+                    this.Y.Equals(input.Y))
                 );
         }
 
@@ -133,15 +133,15 @@ namespace Adyen.EcommLibrary.Model.Checkout
         {
             unchecked // Overflow is fine, just wrap
             {
-                var hashCode = 41;
-                if (Crv != null)
-                    hashCode = hashCode * 59 + Crv.GetHashCode();
-                if (Kty != null)
-                    hashCode = hashCode * 59 + Kty.GetHashCode();
-                if (X != null)
-                    hashCode = hashCode * 59 + X.GetHashCode();
-                if (Y != null)
-                    hashCode = hashCode * 59 + Y.GetHashCode();
+                int hashCode = 41;
+                if (this.Crv != null)
+                    hashCode = hashCode * 59 + this.Crv.GetHashCode();
+                if (this.Kty != null)
+                    hashCode = hashCode * 59 + this.Kty.GetHashCode();
+                if (this.X != null)
+                    hashCode = hashCode * 59 + this.X.GetHashCode();
+                if (this.Y != null)
+                    hashCode = hashCode * 59 + this.Y.GetHashCode();
                 return hashCode;
             }
         }
@@ -151,9 +151,10 @@ namespace Adyen.EcommLibrary.Model.Checkout
         /// </summary>
         /// <param name="validationContext">Validation context</param>
         /// <returns>Validation Result</returns>
-        IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
         {
             yield break;
         }
     }
+
 }

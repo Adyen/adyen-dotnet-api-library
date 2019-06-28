@@ -11,7 +11,7 @@ namespace Adyen.EcommLibrary.Model.ApplicationInformation
     /// ExternalPlatform
     /// </summary>
     [DataContract]
-    public partial class ExternalPlatform : IEquatable<ExternalPlatform>, IValidatableObject
+    public partial class ExternalPlatform :  IEquatable<ExternalPlatform>, IValidatableObject
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="ExternalPlatform" /> class.
@@ -19,33 +19,32 @@ namespace Adyen.EcommLibrary.Model.ApplicationInformation
         /// <param name="Integrator">External platform integrator..</param>
         /// <param name="Name">Name of the field. For example, Name of External Platform..</param>
         /// <param name="Version">Version of the field. For example, Version of External Platform..</param>
-        public ExternalPlatform(string Integrator = default(string), string Name = default(string),
-            string Version = default(string))
+        public ExternalPlatform(string Integrator = default(string), string Name = default(string), string Version = default(string))
         {
             this.Integrator = Integrator;
             this.Name = Name;
             this.Version = Version;
         }
-
+        
         /// <summary>
         /// External platform integrator.
         /// </summary>
         /// <value>External platform integrator.</value>
-        [DataMember(Name = "integrator", EmitDefaultValue = false)]
+        [DataMember(Name="integrator", EmitDefaultValue=false)]
         public string Integrator { get; set; }
 
         /// <summary>
         /// Name of the field. For example, Name of External Platform.
         /// </summary>
         /// <value>Name of the field. For example, Name of External Platform.</value>
-        [DataMember(Name = "name", EmitDefaultValue = false)]
+        [DataMember(Name="name", EmitDefaultValue=false)]
         public string Name { get; set; }
 
         /// <summary>
         /// Version of the field. For example, Version of External Platform.
         /// </summary>
         /// <value>Version of the field. For example, Version of External Platform.</value>
-        [DataMember(Name = "version", EmitDefaultValue = false)]
+        [DataMember(Name="version", EmitDefaultValue=false)]
         public string Version { get; set; }
 
         /// <summary>
@@ -62,7 +61,7 @@ namespace Adyen.EcommLibrary.Model.ApplicationInformation
             sb.Append("}\n");
             return sb.ToString();
         }
-
+  
         /// <summary>
         /// Returns the JSON string presentation of the object
         /// </summary>
@@ -79,7 +78,7 @@ namespace Adyen.EcommLibrary.Model.ApplicationInformation
         /// <returns>Boolean</returns>
         public override bool Equals(object input)
         {
-            return Equals(input as ExternalPlatform);
+            return this.Equals(input as ExternalPlatform);
         }
 
         /// <summary>
@@ -92,21 +91,21 @@ namespace Adyen.EcommLibrary.Model.ApplicationInformation
             if (input == null)
                 return false;
 
-            return
+            return 
                 (
-                    Integrator == input.Integrator ||
-                    Integrator != null &&
-                    Integrator.Equals(input.Integrator)
-                ) &&
+                    this.Integrator == input.Integrator ||
+                    (this.Integrator != null &&
+                    this.Integrator.Equals(input.Integrator))
+                ) && 
                 (
-                    Name == input.Name ||
-                    Name != null &&
-                    Name.Equals(input.Name)
-                ) &&
+                    this.Name == input.Name ||
+                    (this.Name != null &&
+                    this.Name.Equals(input.Name))
+                ) && 
                 (
-                    Version == input.Version ||
-                    Version != null &&
-                    Version.Equals(input.Version)
+                    this.Version == input.Version ||
+                    (this.Version != null &&
+                    this.Version.Equals(input.Version))
                 );
         }
 
@@ -118,13 +117,13 @@ namespace Adyen.EcommLibrary.Model.ApplicationInformation
         {
             unchecked // Overflow is fine, just wrap
             {
-                var hashCode = 41;
-                if (Integrator != null)
-                    hashCode = hashCode * 59 + Integrator.GetHashCode();
-                if (Name != null)
-                    hashCode = hashCode * 59 + Name.GetHashCode();
-                if (Version != null)
-                    hashCode = hashCode * 59 + Version.GetHashCode();
+                int hashCode = 41;
+                if (this.Integrator != null)
+                    hashCode = hashCode * 59 + this.Integrator.GetHashCode();
+                if (this.Name != null)
+                    hashCode = hashCode * 59 + this.Name.GetHashCode();
+                if (this.Version != null)
+                    hashCode = hashCode * 59 + this.Version.GetHashCode();
                 return hashCode;
             }
         }
@@ -134,9 +133,10 @@ namespace Adyen.EcommLibrary.Model.ApplicationInformation
         /// </summary>
         /// <param name="validationContext">Validation context</param>
         /// <returns>Validation Result</returns>
-        IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
         {
             yield break;
         }
     }
+
 }

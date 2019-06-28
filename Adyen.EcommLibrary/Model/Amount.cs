@@ -11,7 +11,7 @@ namespace Adyen.EcommLibrary.Model
     /// Amount
     /// </summary>
     [DataContract]
-    public partial class Amount : IEquatable<Amount>, IValidatableObject
+    public partial class Amount :  IEquatable<Amount>, IValidatableObject
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="Amount" /> class.
@@ -21,15 +21,15 @@ namespace Adyen.EcommLibrary.Model
             this.Currency = Currency;
             this.Value = Value;
         }
-
-        [DataMember(Name = "currency", EmitDefaultValue = false)]
+       
+        [DataMember(Name="currency", EmitDefaultValue=false)]
         public string Currency { get; set; }
 
         /// <summary>
         /// The payable amount that can be charged for the transaction.  The transaction amount needs to be represented in minor units according to the [following table](https://docs.adyen.com/developers/currency-codes).
         /// </summary>
         /// <value>The payable amount that can be charged for the transaction.  The transaction amount needs to be represented in minor units according to the [following table](https://docs.adyen.com/developers/currency-codes).</value>
-        [DataMember(Name = "value", EmitDefaultValue = false)]
+        [DataMember(Name="value", EmitDefaultValue=false)]
         public long? Value { get; set; }
 
         /// <summary>
@@ -45,7 +45,7 @@ namespace Adyen.EcommLibrary.Model
             sb.Append("}\n");
             return sb.ToString();
         }
-
+  
         /// <summary>
         /// Returns the JSON string presentation of the object
         /// </summary>
@@ -62,7 +62,7 @@ namespace Adyen.EcommLibrary.Model
         /// <returns>Boolean</returns>
         public override bool Equals(object obj)
         {
-            return Equals(obj as Amount);
+            return this.Equals(obj as Amount);
         }
 
         /// <summary>
@@ -75,16 +75,16 @@ namespace Adyen.EcommLibrary.Model
             if (other == null)
                 return false;
 
-            return
+            return 
                 (
-                    Currency == other.Currency ||
-                    Currency != null &&
-                    Currency.Equals(other.Currency)
-                ) &&
+                    this.Currency == other.Currency ||
+                    this.Currency != null &&
+                    this.Currency.Equals(other.Currency)
+                ) && 
                 (
-                    Value == other.Value ||
-                    Value != null &&
-                    Value.Equals(other.Value)
+                    this.Value == other.Value ||
+                    this.Value != null &&
+                    this.Value.Equals(other.Value)
                 );
         }
 
@@ -96,12 +96,12 @@ namespace Adyen.EcommLibrary.Model
         {
             unchecked // Overflow is fine, just wrap
             {
-                var hash = 41;
+                int hash = 41;
                 // Suitable nullity checks etc, of course :)
-                if (Currency != null)
-                    hash = hash * 59 + Currency.GetHashCode();
-                if (Value != null)
-                    hash = hash * 59 + Value.GetHashCode();
+                if (this.Currency != null)
+                    hash = hash * 59 + this.Currency.GetHashCode();
+                if (this.Value != null)
+                    hash = hash * 59 + this.Value.GetHashCode();
                 return hash;
             }
         }
@@ -111,19 +111,22 @@ namespace Adyen.EcommLibrary.Model
         /// </summary>
         /// <param name="validationContext">Validation context</param>
         /// <returns>Validation Result</returns>
-        IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
         {
             // Currency (string) maxLength
-            if (Currency != null && Currency.Length > 3)
-                yield return new ValidationResult("Invalid value for Currency, length must be less than 3.",
-                    new[] {"Currency"});
+            if(this.Currency != null && this.Currency.Length > 3)
+            {
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for Currency, length must be less than 3.", new [] { "Currency" });
+            }
 
             // Currency (string) minLength
-            if (Currency != null && Currency.Length < 3)
-                yield return new ValidationResult("Invalid value for Currency, length must be greater than 3.",
-                    new[] {"Currency"});
+            if(this.Currency != null && this.Currency.Length < 3)
+            {
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for Currency, length must be greater than 3.", new [] { "Currency" });
+            }
 
             yield break;
         }
     }
+
 }

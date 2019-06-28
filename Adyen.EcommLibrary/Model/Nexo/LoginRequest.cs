@@ -7,6 +7,7 @@
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     public partial class LoginRequest
     {
+
         /// <remarks/>
         [System.Xml.Serialization.XmlElementAttribute(Form = System.Xml.Schema.XmlSchemaForm.Unqualified)]
         public System.DateTime DateTime;
@@ -20,7 +21,8 @@
         public SaleTerminalData SaleTerminalData;
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute()] [System.ComponentModel.DefaultValueAttribute(false)]
+        [System.Xml.Serialization.XmlAttributeAttribute()]
+        [System.ComponentModel.DefaultValueAttribute(false)]
         public bool TrainingModeFlag;
 
         /// <remarks/>
@@ -49,7 +51,7 @@
 
         public LoginRequest()
         {
-            TrainingModeFlag = false;
+            this.TrainingModeFlag = false;
         }
     }
 }

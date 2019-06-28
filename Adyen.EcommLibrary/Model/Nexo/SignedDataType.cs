@@ -7,9 +7,9 @@
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     public partial class SignedDataType
     {
+
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute("DigestAlgorithm", Form =
-            System.Xml.Schema.XmlSchemaForm.Unqualified)]
+        [System.Xml.Serialization.XmlElementAttribute("DigestAlgorithm", Form = System.Xml.Schema.XmlSchemaForm.Unqualified)]
         public AlgorithmIdentifier[] DigestAlgorithm;
 
         /// <remarks/>
@@ -17,8 +17,7 @@
         public EncapsulatedContentType EncapsulatedContent;
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute("Certificate", Form = System.Xml.Schema.XmlSchemaForm.Unqualified,
-            DataType = "base64Binary")]
+        [System.Xml.Serialization.XmlElementAttribute("Certificate", Form = System.Xml.Schema.XmlSchemaForm.Unqualified, DataType = "base64Binary")]
         public byte[][] Certificate;
 
         /// <remarks/>
@@ -26,12 +25,13 @@
         public SignerType[] Signer;
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute()] [System.ComponentModel.DefaultValueAttribute("v1")]
+        [System.Xml.Serialization.XmlAttributeAttribute()]
+        [System.ComponentModel.DefaultValueAttribute("v1")]
         public string Version;
 
         public SignedDataType()
         {
-            Version = "v1";
+            this.Version = "v1";
         }
     }
 }

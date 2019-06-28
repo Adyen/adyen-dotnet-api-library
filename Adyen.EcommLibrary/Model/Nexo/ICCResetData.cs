@@ -7,6 +7,7 @@
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     public partial class ICCResetData
     {
+
         /// <remarks/>
         [System.Xml.Serialization.XmlAttributeAttribute(DataType = "base64Binary")]
         public byte[] ATRValue;

@@ -14,18 +14,20 @@ namespace Adyen.EcommLibrary.CloudApiSerialization
             _messageHeaderSerializer = new MessageHeaderSerializer();
             _messagePayloadSerializerFactory = new MessagePayloadSerializerFactory();
         }
-
         public SaleToPOIResponse Deserialize(string saleToPoiMessageDto)
         {
             //todo temporary solution until we have an improved response 
-            if (string.Equals("ok", saleToPoiMessageDto)) return null;
+            if (string.Equals("ok", saleToPoiMessageDto))
+            {
+                return null;
+            }
             var saleToPoiMessageJObject = JObject.Parse(saleToPoiMessageDto);
             var saleToPoiMessageRootJToken = saleToPoiMessageJObject.First;
             var saleToPoiMessageWithoutRootJToken = saleToPoiMessageRootJToken.First;
             //Messageheader
             var messageHeader = DeserializeMessageHeader(saleToPoiMessageWithoutRootJToken);
             //Message payload
-            var messagePayload = DeserializeMessagePayload(messageHeader, saleToPoiMessageWithoutRootJToken);
+            object messagePayload = DeserializeMessagePayload(messageHeader, saleToPoiMessageWithoutRootJToken);
 
             var deserializedOutputMessage = new SaleToPOIResponse
             {
@@ -34,16 +36,13 @@ namespace Adyen.EcommLibrary.CloudApiSerialization
             };
 
             //Check and deserialize RepeatedMessageResponse. RepeatedMessageResponse is optional
-            if (saleToPoiMessageDto.Contains("TransactionStatusResponse") &&
-                saleToPoiMessageDto.Contains("RepeatedMessageResponse") &&
-                saleToPoiMessageDto.Contains("RepeatedResponseMessageBody"))
+            if (saleToPoiMessageDto.Contains("TransactionStatusResponse") && saleToPoiMessageDto.Contains("RepeatedMessageResponse") && saleToPoiMessageDto.Contains("RepeatedResponseMessageBody"))
             {
                 var response = GetDeserializedRepeatedResponseMessagePayload(saleToPoiMessageWithoutRootJToken);
-                var deserializedOutput = (TransactionStatusResponse) deserializedOutputMessage.MessagePayload;
+                TransactionStatusResponse deserializedOutput = (TransactionStatusResponse)deserializedOutputMessage.MessagePayload;
                 deserializedOutput.RepeatedMessageResponse.RepeatedResponseMessageBody.MessagePayload = response;
                 deserializedOutputMessage.MessagePayload = deserializedOutput;
             }
-
             return deserializedOutputMessage;
         }
 
@@ -51,11 +50,9 @@ namespace Adyen.EcommLibrary.CloudApiSerialization
         {
             var messageCategory = messageHeader.MessageCategory;
             var messageType = messageHeader.MessageType;
-            var messagePayloadJson =
-                GetMessagePayloadJSon(saleToPoiMessageWithoutRootJToken, messageCategory, messageType);
+            var messagePayloadJson = GetMessagePayloadJSon(saleToPoiMessageWithoutRootJToken, messageCategory, messageType);
 
-            var messagePayloadSerializer =
-                _messagePayloadSerializerFactory.CreateSerializer(messageCategory, messageType);
+            var messagePayloadSerializer = _messagePayloadSerializerFactory.CreateSerializer(messageCategory, messageType);
             return messagePayloadSerializer.Deserialize(messagePayloadJson);
         }
 
@@ -69,16 +66,15 @@ namespace Adyen.EcommLibrary.CloudApiSerialization
             return Converter.JSonConvertSerializerWrapper.Serialize(saleToPoiMessage);
         }
 
-        private string GetMessagePayloadJSon(JToken saleToPoiMessageWithoutRootJToken, string messageCategory,
-            string messageType)
+        private string GetMessagePayloadJSon(JToken saleToPoiMessageWithoutRootJToken, string messageCategory, string messageType)
         {
-            var messagePayloadTypedJson =
-                saleToPoiMessageWithoutRootJToken.SelectToken(messageCategory + messageType.ToString());
+            var messagePayloadTypedJson = saleToPoiMessageWithoutRootJToken.SelectToken(messageCategory + messageType.ToString());
             if (messagePayloadTypedJson == null)
+            {
                 return saleToPoiMessageWithoutRootJToken.SelectToken("MessagePayload").ToString();
+            }
             return messagePayloadTypedJson.ToString();
         }
-
         private MessageHeader DeserializeMessageHeader(JToken saleToPoiMessageWithoutRootJObject)
         {
             var messageHeaderJson = saleToPoiMessageWithoutRootJObject.SelectToken("MessageHeader").ToString();
@@ -88,23 +84,33 @@ namespace Adyen.EcommLibrary.CloudApiSerialization
         private object GetDeserializedRepeatedResponseMessagePayload(JToken saletoPoiMessageJtoken)
         {
             var repeatedMessageResponse = saletoPoiMessageJtoken.ToString();
-            var repeatedMessage =
-                saletoPoiMessageJtoken["TransactionStatusResponse"]["RepeatedMessageResponse"][
-                    "RepeatedResponseMessageBody"].ToString();
+            var repeatedMessage = saletoPoiMessageJtoken["TransactionStatusResponse"]["RepeatedMessageResponse"]["RepeatedResponseMessageBody"].ToString();
             var objMessage = JObject.Parse(repeatedMessage);
-
+         
             if (repeatedMessageResponse.Contains("CardAcquisitionResponse"))
+            {
                 return objMessage[repeatedMessageResponse].ToObject<CardAcquisitionResponse>();
+            }
             if (repeatedMessageResponse.Contains("CardReaderAPDUResponse"))
+            {
                 return objMessage[repeatedMessageResponse].ToObject<CardReaderAPDUResponse>();
+            }
             if (repeatedMessageResponse.Contains("LoyaltyResponse"))
+            {
                 return objMessage[repeatedMessageResponse].ToObject<LoyaltyResponse>();
+            }
             if (repeatedMessageResponse.Contains("PaymentResponse"))
+            {
                 return objMessage["PaymentResponse"].ToObject<PaymentResponse>();
+            }
             if (repeatedMessageResponse.Contains("ReversalResponse"))
+            {
                 return objMessage[repeatedMessageResponse].ToObject<ReversalResponse>();
+            }
             if (repeatedMessageResponse.Contains("StoredValueResponse"))
+            {
                 return objMessage[repeatedMessageResponse].ToObject<StoredValueResponse>();
+            }
             return null;
         }
     }

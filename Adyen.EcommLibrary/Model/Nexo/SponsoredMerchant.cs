@@ -7,6 +7,7 @@
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     public partial class SponsoredMerchant
     {
+
         /// <remarks/>
         [System.Xml.Serialization.XmlAttributeAttribute()]
         public string MerchantName;

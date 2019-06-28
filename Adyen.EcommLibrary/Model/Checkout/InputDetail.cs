@@ -1,3 +1,4 @@
+
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -13,7 +14,7 @@ namespace Adyen.EcommLibrary.Model.Checkout
     /// InputDetail
     /// </summary>
     [DataContract]
-    public partial class InputDetail : IEquatable<InputDetail>, IValidatableObject
+    public partial class InputDetail :  IEquatable<InputDetail>, IValidatableObject
     {
         /// <summary>
         /// The type of validation to be applied to the input value.
@@ -22,24 +23,26 @@ namespace Adyen.EcommLibrary.Model.Checkout
         [JsonConverter(typeof(StringEnumConverter))]
         public enum ValidationTypeEnum
         {
+            
             /// <summary>
             /// Enum IBAN for value: IBAN
             /// </summary>
-            [EnumMember(Value = "IBAN")] IBAN = 1,
-
+            [EnumMember(Value = "IBAN")]
+            IBAN = 1,
+            
             /// <summary>
             /// Enum Name for value: Name
             /// </summary>
-            [EnumMember(Value = "Name")] Name = 2
+            [EnumMember(Value = "Name")]
+            Name = 2
         }
 
         /// <summary>
         /// The type of validation to be applied to the input value.
         /// </summary>
         /// <value>The type of validation to be applied to the input value.</value>
-        [DataMember(Name = "validationType", EmitDefaultValue = false)]
+        [DataMember(Name="validationType", EmitDefaultValue=false)]
         public ValidationTypeEnum? ValidationType { get; set; }
-
         /// <summary>
         /// Initializes a new instance of the <see cref="InputDetail" /> class.
         /// </summary>
@@ -53,11 +56,7 @@ namespace Adyen.EcommLibrary.Model.Checkout
         /// <param name="Type">The type of the required input..</param>
         /// <param name="ValidationType">The type of validation to be applied to the input value..</param>
         /// <param name="Value">The value can be pre-filled, if available..</param>
-        public InputDetail(Dictionary<string, string> Configuration = default(Dictionary<string, string>),
-            List<SubInputDetail> Details = default(List<SubInputDetail>), string ItemSearchUrl = default(string),
-            List<Item> Items = default(List<Item>), string Key = default(string), string Name = default(string),
-            bool? Optional = default(bool?), string Type = default(string),
-            ValidationTypeEnum? ValidationType = default(ValidationTypeEnum?), string Value = default(string))
+        public InputDetail(Dictionary<string, string> Configuration = default(Dictionary<string, string>), List<SubInputDetail> Details = default(List<SubInputDetail>), string ItemSearchUrl = default(string), List<Item> Items = default(List<Item>), string Key = default(string), string Name = default(string), bool? Optional = default(bool?), string Type = default(string), ValidationTypeEnum? ValidationType = default(ValidationTypeEnum?), string Value = default(string))
         {
             this.Configuration = Configuration;
             this.Details = Details;
@@ -70,61 +69,61 @@ namespace Adyen.EcommLibrary.Model.Checkout
             this.ValidationType = ValidationType;
             this.Value = Value;
         }
-
+        
         /// <summary>
         /// Configuration parameters for the required input.
         /// </summary>
         /// <value>Configuration parameters for the required input.</value>
-        [DataMember(Name = "configuration", EmitDefaultValue = false)]
+        [DataMember(Name="configuration", EmitDefaultValue=false)]
         public Dictionary<string, string> Configuration { get; set; }
 
         /// <summary>
         /// Input details can also be provided recursively.
         /// </summary>
         /// <value>Input details can also be provided recursively.</value>
-        [DataMember(Name = "details", EmitDefaultValue = false)]
+        [DataMember(Name="details", EmitDefaultValue=false)]
         public List<SubInputDetail> Details { get; set; }
 
         /// <summary>
         /// In case of a select, the URL from which to query the items.
         /// </summary>
         /// <value>In case of a select, the URL from which to query the items.</value>
-        [DataMember(Name = "itemSearchUrl", EmitDefaultValue = false)]
+        [DataMember(Name="itemSearchUrl", EmitDefaultValue=false)]
         public string ItemSearchUrl { get; set; }
 
         /// <summary>
         /// In case of a select, the items to choose from.
         /// </summary>
         /// <value>In case of a select, the items to choose from.</value>
-        [DataMember(Name = "items", EmitDefaultValue = false)]
+        [DataMember(Name="items", EmitDefaultValue=false)]
         public List<Item> Items { get; set; }
 
         /// <summary>
         /// The value to provide in the result.
         /// </summary>
         /// <value>The value to provide in the result.</value>
-        [DataMember(Name = "key", EmitDefaultValue = false)]
+        [DataMember(Name="key", EmitDefaultValue=false)]
         public string Key { get; set; }
 
         /// <summary>
         /// The default name for this input field, which will be displayed by the SDKs.
         /// </summary>
         /// <value>The default name for this input field, which will be displayed by the SDKs.</value>
-        [DataMember(Name = "name", EmitDefaultValue = false)]
+        [DataMember(Name="name", EmitDefaultValue=false)]
         public string Name { get; set; }
 
         /// <summary>
         /// True if this input value is optional.
         /// </summary>
         /// <value>True if this input value is optional.</value>
-        [DataMember(Name = "optional", EmitDefaultValue = false)]
+        [DataMember(Name="optional", EmitDefaultValue=false)]
         public bool? Optional { get; set; }
 
         /// <summary>
         /// The type of the required input.
         /// </summary>
         /// <value>The type of the required input.</value>
-        [DataMember(Name = "type", EmitDefaultValue = false)]
+        [DataMember(Name="type", EmitDefaultValue=false)]
         public string Type { get; set; }
 
 
@@ -132,7 +131,7 @@ namespace Adyen.EcommLibrary.Model.Checkout
         /// The value can be pre-filled, if available.
         /// </summary>
         /// <value>The value can be pre-filled, if available.</value>
-        [DataMember(Name = "value", EmitDefaultValue = false)]
+        [DataMember(Name="value", EmitDefaultValue=false)]
         public string Value { get; set; }
 
         /// <summary>
@@ -156,7 +155,7 @@ namespace Adyen.EcommLibrary.Model.Checkout
             sb.Append("}\n");
             return sb.ToString();
         }
-
+  
         /// <summary>
         /// Returns the JSON string presentation of the object
         /// </summary>
@@ -173,7 +172,7 @@ namespace Adyen.EcommLibrary.Model.Checkout
         /// <returns>Boolean</returns>
         public override bool Equals(object input)
         {
-            return Equals(input as InputDetail);
+            return this.Equals(input as InputDetail);
         }
 
         /// <summary>
@@ -186,56 +185,56 @@ namespace Adyen.EcommLibrary.Model.Checkout
             if (input == null)
                 return false;
 
-            return
+            return 
                 (
-                    Configuration == input.Configuration ||
-                    Configuration != null &&
-                    Configuration.SequenceEqual(input.Configuration)
-                ) &&
+                    this.Configuration == input.Configuration ||
+                    this.Configuration != null &&
+                    this.Configuration.SequenceEqual(input.Configuration)
+                ) && 
                 (
-                    Details == input.Details ||
-                    Details != null &&
-                    Details.SequenceEqual(input.Details)
-                ) &&
+                    this.Details == input.Details ||
+                    this.Details != null &&
+                    this.Details.SequenceEqual(input.Details)
+                ) && 
                 (
-                    ItemSearchUrl == input.ItemSearchUrl ||
-                    ItemSearchUrl != null &&
-                    ItemSearchUrl.Equals(input.ItemSearchUrl)
-                ) &&
+                    this.ItemSearchUrl == input.ItemSearchUrl ||
+                    (this.ItemSearchUrl != null &&
+                    this.ItemSearchUrl.Equals(input.ItemSearchUrl))
+                ) && 
                 (
-                    Items == input.Items ||
-                    Items != null &&
-                    Items.SequenceEqual(input.Items)
-                ) &&
+                    this.Items == input.Items ||
+                    this.Items != null &&
+                    this.Items.SequenceEqual(input.Items)
+                ) && 
                 (
-                    Key == input.Key ||
-                    Key != null &&
-                    Key.Equals(input.Key)
-                ) &&
+                    this.Key == input.Key ||
+                    (this.Key != null &&
+                    this.Key.Equals(input.Key))
+                ) && 
                 (
-                    Name == input.Name ||
-                    Name != null &&
-                    Name.Equals(input.Name)
-                ) &&
+                    this.Name == input.Name ||
+                    (this.Name != null &&
+                    this.Name.Equals(input.Name))
+                ) && 
                 (
-                    Optional == input.Optional ||
-                    Optional != null &&
-                    Optional.Equals(input.Optional)
-                ) &&
+                    this.Optional == input.Optional ||
+                    (this.Optional != null &&
+                    this.Optional.Equals(input.Optional))
+                ) && 
                 (
-                    Type == input.Type ||
-                    Type != null &&
-                    Type.Equals(input.Type)
-                ) &&
+                    this.Type == input.Type ||
+                    (this.Type != null &&
+                    this.Type.Equals(input.Type))
+                ) && 
                 (
-                    ValidationType == input.ValidationType ||
-                    ValidationType != null &&
-                    ValidationType.Equals(input.ValidationType)
-                ) &&
+                    this.ValidationType == input.ValidationType ||
+                    (this.ValidationType != null &&
+                    this.ValidationType.Equals(input.ValidationType))
+                ) && 
                 (
-                    Value == input.Value ||
-                    Value != null &&
-                    Value.Equals(input.Value)
+                    this.Value == input.Value ||
+                    (this.Value != null &&
+                    this.Value.Equals(input.Value))
                 );
         }
 
@@ -247,27 +246,27 @@ namespace Adyen.EcommLibrary.Model.Checkout
         {
             unchecked // Overflow is fine, just wrap
             {
-                var hashCode = 41;
-                if (Configuration != null)
-                    hashCode = hashCode * 59 + Configuration.GetHashCode();
-                if (Details != null)
-                    hashCode = hashCode * 59 + Details.GetHashCode();
-                if (ItemSearchUrl != null)
-                    hashCode = hashCode * 59 + ItemSearchUrl.GetHashCode();
-                if (Items != null)
-                    hashCode = hashCode * 59 + Items.GetHashCode();
-                if (Key != null)
-                    hashCode = hashCode * 59 + Key.GetHashCode();
-                if (Name != null)
-                    hashCode = hashCode * 59 + Name.GetHashCode();
-                if (Optional != null)
-                    hashCode = hashCode * 59 + Optional.GetHashCode();
-                if (Type != null)
-                    hashCode = hashCode * 59 + Type.GetHashCode();
-                if (ValidationType != null)
-                    hashCode = hashCode * 59 + ValidationType.GetHashCode();
-                if (Value != null)
-                    hashCode = hashCode * 59 + Value.GetHashCode();
+                int hashCode = 41;
+                if (this.Configuration != null)
+                    hashCode = hashCode * 59 + this.Configuration.GetHashCode();
+                if (this.Details != null)
+                    hashCode = hashCode * 59 + this.Details.GetHashCode();
+                if (this.ItemSearchUrl != null)
+                    hashCode = hashCode * 59 + this.ItemSearchUrl.GetHashCode();
+                if (this.Items != null)
+                    hashCode = hashCode * 59 + this.Items.GetHashCode();
+                if (this.Key != null)
+                    hashCode = hashCode * 59 + this.Key.GetHashCode();
+                if (this.Name != null)
+                    hashCode = hashCode * 59 + this.Name.GetHashCode();
+                if (this.Optional != null)
+                    hashCode = hashCode * 59 + this.Optional.GetHashCode();
+                if (this.Type != null)
+                    hashCode = hashCode * 59 + this.Type.GetHashCode();
+                if (this.ValidationType != null)
+                    hashCode = hashCode * 59 + this.ValidationType.GetHashCode();
+                if (this.Value != null)
+                    hashCode = hashCode * 59 + this.Value.GetHashCode();
                 return hashCode;
             }
         }
@@ -277,9 +276,10 @@ namespace Adyen.EcommLibrary.Model.Checkout
         /// </summary>
         /// <param name="validationContext">Validation context</param>
         /// <returns>Validation Result</returns>
-        IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
         {
             yield break;
         }
     }
+
 }

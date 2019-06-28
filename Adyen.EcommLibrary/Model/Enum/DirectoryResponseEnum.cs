@@ -1,4 +1,7 @@
-﻿using System.Runtime.Serialization;
+﻿using System;
+using System.Collections.Generic;
+using System.Runtime.Serialization;
+using System.Text;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
 
@@ -11,24 +14,29 @@ namespace Adyen.EcommLibrary.Model.Enum
     [JsonConverter(typeof(StringEnumConverter))]
     public enum DirectoryResponseEnum
     {
+
         /// <summary>
         /// Enum Y for "Y"
         /// </summary>
-        [EnumMember(Value = "Y")] Y,
+        [EnumMember(Value = "Y")]
+        Y,
 
         /// <summary>
         /// Enum N for "N"
         /// </summary>
-        [EnumMember(Value = "N")] N,
+        [EnumMember(Value = "N")]
+        N,
 
         /// <summary>
         /// Enum U for "U"
         /// </summary>
-        [EnumMember(Value = "U")] U,
+        [EnumMember(Value = "U")]
+        U,
 
         /// <summary>
         /// Enum E for "E"
         /// </summary>
-        [EnumMember(Value = "E")] E
+        [EnumMember(Value = "E")]
+        E
     }
 }

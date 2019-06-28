@@ -1,4 +1,8 @@
-﻿using System.Runtime.Serialization;
+﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Runtime.Serialization;
+using System.Text;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
 
@@ -11,19 +15,24 @@ namespace Adyen.EcommLibrary.Model.Enum
     [JsonConverter(typeof(StringEnumConverter))]
     public enum DeviceFingerprintCompletedEnum
     {
+
         /// <summary>
         /// Enum U for "Unavailable"
         /// </summary>
-        [EnumMember(Value = "U")] U,
+        [EnumMember(Value = "U")]
+        U,
 
         /// <summary>
         /// Enum Y for "Successfully Completed"
         /// </summary>
-        [EnumMember(Value = "Y")] Y,
+        [EnumMember(Value = "Y")]
+        Y,
 
         /// <summary>
         /// Enum N for "Did not successfully complete"
         /// </summary>
-        [EnumMember(Value = "N")] N
+        [EnumMember(Value = "N")]
+        N
     }
+
 }

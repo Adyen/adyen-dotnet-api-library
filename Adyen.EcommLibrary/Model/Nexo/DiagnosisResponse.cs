@@ -7,15 +7,15 @@ namespace Adyen.EcommLibrary.Model.Nexo
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
-    public partial class DiagnosisResponse : IMessagePayload
+    public partial class DiagnosisResponse: IMessagePayload
     {
+
         /// <remarks/>
         [System.Xml.Serialization.XmlElementAttribute(Form = System.Xml.Schema.XmlSchemaForm.Unqualified)]
         public Response Response;
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute("LoggedSaleID", Form =
-            System.Xml.Schema.XmlSchemaForm.Unqualified)]
+        [System.Xml.Serialization.XmlElementAttribute("LoggedSaleID", Form = System.Xml.Schema.XmlSchemaForm.Unqualified)]
         public string[] LoggedSaleID;
 
         /// <remarks/>

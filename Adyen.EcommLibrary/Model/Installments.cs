@@ -11,7 +11,7 @@ namespace Adyen.EcommLibrary.Model
     /// Installments
     /// </summary>
     [DataContract]
-    public partial class Installments : IEquatable<Installments>, IValidatableObject
+    public partial class Installments :  IEquatable<Installments>, IValidatableObject
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="Installments" /> class.
@@ -21,12 +21,12 @@ namespace Adyen.EcommLibrary.Model
         {
             this.Value = Value;
         }
-
+        
         /// <summary>
         /// Defines the number of installments. Its value needs to be greater than zero.  Usually, the maximum allowed number of installments is capped. For example, it may not be possible to split a payment in more than 24 installments. The acquirer sets this upper limit, so its value may vary.
         /// </summary>
         /// <value>Defines the number of installments. Its value needs to be greater than zero.  Usually, the maximum allowed number of installments is capped. For example, it may not be possible to split a payment in more than 24 installments. The acquirer sets this upper limit, so its value may vary.</value>
-        [DataMember(Name = "value", EmitDefaultValue = false)]
+        [DataMember(Name="value", EmitDefaultValue=false)]
         public int? Value { get; set; }
 
         /// <summary>
@@ -41,7 +41,7 @@ namespace Adyen.EcommLibrary.Model
             sb.Append("}\n");
             return sb.ToString();
         }
-
+  
         /// <summary>
         /// Returns the JSON string presentation of the object
         /// </summary>
@@ -59,7 +59,7 @@ namespace Adyen.EcommLibrary.Model
         public override bool Equals(object obj)
         {
             // credit: http://stackoverflow.com/a/10454552/677735
-            return Equals(obj as Installments);
+            return this.Equals(obj as Installments);
         }
 
         /// <summary>
@@ -73,10 +73,12 @@ namespace Adyen.EcommLibrary.Model
             if (other == null)
                 return false;
 
-            return
-                Value == other.Value ||
-                Value != null &&
-                Value.Equals(other.Value);
+            return 
+                (
+                    this.Value == other.Value ||
+                    this.Value != null &&
+                    this.Value.Equals(other.Value)
+                );
         }
 
         /// <summary>
@@ -88,10 +90,10 @@ namespace Adyen.EcommLibrary.Model
             // credit: http://stackoverflow.com/a/263416/677735
             unchecked // Overflow is fine, just wrap
             {
-                var hash = 41;
+                int hash = 41;
                 // Suitable nullity checks etc, of course :)
-                if (Value != null)
-                    hash = hash * 59 + Value.GetHashCode();
+                if (this.Value != null)
+                    hash = hash * 59 + this.Value.GetHashCode();
                 return hash;
             }
         }
@@ -101,9 +103,10 @@ namespace Adyen.EcommLibrary.Model
         /// </summary>
         /// <param name="validationContext">Validation context</param>
         /// <returns>Validation Result</returns>
-        IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
         {
             yield break;
         }
     }
+
 }

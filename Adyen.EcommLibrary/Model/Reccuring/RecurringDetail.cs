@@ -22,7 +22,7 @@ namespace Adyen.EcommLibrary.Model.Reccuring
     /// RecurringDetail
     /// </summary>
     [DataContract]
-    public partial class RecurringDetail : IEquatable<RecurringDetail>, IValidatableObject
+    public partial class RecurringDetail :  IEquatable<RecurringDetail>, IValidatableObject
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="RecurringDetail" /> class.
@@ -45,22 +45,14 @@ namespace Adyen.EcommLibrary.Model.Reccuring
         /// <param name="BillingAddress">BillingAddress.</param>
         /// <param name="AdditionalData">AdditionalData.</param>
         /// <param name="Card">Card.</param>
-        public RecurringDetail(TokenDetails TokenDetails = default(TokenDetails),
-            string SocialSecurityNumber = default(string), string FirstPspReference = default(string),
-            DateTime? CreationDate = default(DateTime?), string Acquirer = default(string),
-            BankAccount Bank = default(BankAccount), Name ShopperName = default(Name),
-            string AcquirerAccount = default(string), string AliasType = default(string), string Name = default(string),
-            string Variant = default(string), string RecurringDetailReference = default(string),
-            string Alias = default(string), List<string> ContractTypes = default(List<string>),
-            string PaymentMethodVariant = default(string), Address BillingAddress = default(Address),
-            Dictionary<string, string> AdditionalData = default(Dictionary<string, string>), Card Card = default(Card))
+        public RecurringDetail(TokenDetails TokenDetails = default(TokenDetails), string SocialSecurityNumber = default(string), string FirstPspReference = default(string), DateTime? CreationDate = default(DateTime?), string Acquirer = default(string), BankAccount Bank = default(BankAccount), Name ShopperName = default(Name), string AcquirerAccount = default(string), string AliasType = default(string), string Name = default(string), string Variant = default(string), string RecurringDetailReference = default(string), string Alias = default(string), List<string> ContractTypes = default(List<string>), string PaymentMethodVariant = default(string), Address BillingAddress = default(Address), Dictionary<string, string> AdditionalData = default(Dictionary<string, string>), Card Card = default(Card))
         {
             this.TokenDetails = TokenDetails;
             this.SocialSecurityNumber = SocialSecurityNumber;
             this.FirstPspReference = FirstPspReference;
             this.CreationDate = CreationDate;
             this.Acquirer = Acquirer;
-
+          
             this.Bank = Bank;
             this.ShopperName = ShopperName;
             this.AcquirerAccount = AcquirerAccount;
@@ -75,116 +67,117 @@ namespace Adyen.EcommLibrary.Model.Reccuring
             this.AdditionalData = AdditionalData;
             this.Card = Card;
         }
-
+        
         /// <summary>
         /// Gets or Sets TokenDetails
         /// </summary>
-        [DataMember(Name = "tokenDetails", EmitDefaultValue = false)]
+        [DataMember(Name="tokenDetails", EmitDefaultValue=false)]
         public TokenDetails TokenDetails { get; set; }
 
         /// <summary>
         /// Gets or Sets SocialSecurityNumber
         /// </summary>
-        [DataMember(Name = "socialSecurityNumber", EmitDefaultValue = false)]
+        [DataMember(Name="socialSecurityNumber", EmitDefaultValue=false)]
         public string SocialSecurityNumber { get; set; }
 
         /// <summary>
         /// Gets or Sets FirstPspReference
         /// </summary>
-        [DataMember(Name = "firstPspReference", EmitDefaultValue = false)]
+        [DataMember(Name="firstPspReference", EmitDefaultValue=false)]
         public string FirstPspReference { get; set; }
 
         /// <summary>
         /// Gets or Sets CreationDate
         /// </summary>
-        [DataMember(Name = "creationDate", EmitDefaultValue = false)]
+        [DataMember(Name="creationDate", EmitDefaultValue=false)]
         public DateTime? CreationDate { get; set; }
 
         /// <summary>
         /// Gets or Sets Acquirer
         /// </summary>
-        [DataMember(Name = "acquirer", EmitDefaultValue = false)]
+        [DataMember(Name="acquirer", EmitDefaultValue=false)]
         public string Acquirer { get; set; }
 
+       
 
         /// <summary>
         /// Gets or Sets Bank
         /// </summary>
-        [DataMember(Name = "bank", EmitDefaultValue = false)]
+        [DataMember(Name="bank", EmitDefaultValue=false)]
         public BankAccount Bank { get; set; }
 
         /// <summary>
         /// Gets or Sets ShopperName
         /// </summary>
-        [DataMember(Name = "shopperName", EmitDefaultValue = false)]
+        [DataMember(Name="shopperName", EmitDefaultValue=false)]
         public Name ShopperName { get; set; }
 
         /// <summary>
         /// Gets or Sets AcquirerAccount
         /// </summary>
-        [DataMember(Name = "acquirerAccount", EmitDefaultValue = false)]
+        [DataMember(Name="acquirerAccount", EmitDefaultValue=false)]
         public string AcquirerAccount { get; set; }
 
         /// <summary>
         /// Gets or Sets AliasType
         /// </summary>
-        [DataMember(Name = "aliasType", EmitDefaultValue = false)]
+        [DataMember(Name="aliasType", EmitDefaultValue=false)]
         public string AliasType { get; set; }
 
         /// <summary>
         /// An optional descriptive name for this recurring detail
         /// </summary>
         /// <value>An optional descriptive name for this recurring detail</value>
-        [DataMember(Name = "name", EmitDefaultValue = false)]
+        [DataMember(Name="name", EmitDefaultValue=false)]
         public string Name { get; set; }
 
         /// <summary>
         /// Gets or Sets Variant
         /// </summary>
-        [DataMember(Name = "variant", EmitDefaultValue = false)]
+        [DataMember(Name="variant", EmitDefaultValue=false)]
         public string Variant { get; set; }
 
         /// <summary>
         /// The reference that uniquely identifies the recurring detail
         /// </summary>
         /// <value>The reference that uniquely identifies the recurring detail</value>
-        [DataMember(Name = "recurringDetailReference", EmitDefaultValue = false)]
+        [DataMember(Name="recurringDetailReference", EmitDefaultValue=false)]
         public string RecurringDetailReference { get; set; }
 
         /// <summary>
         /// Gets or Sets Alias
         /// </summary>
-        [DataMember(Name = "alias", EmitDefaultValue = false)]
+        [DataMember(Name="alias", EmitDefaultValue=false)]
         public string Alias { get; set; }
 
         /// <summary>
         /// Gets or Sets ContractTypes
         /// </summary>
-        [DataMember(Name = "contractTypes", EmitDefaultValue = false)]
+        [DataMember(Name="contractTypes", EmitDefaultValue=false)]
         public List<string> ContractTypes { get; set; }
 
         /// <summary>
         /// Gets or Sets PaymentMethodVariant
         /// </summary>
-        [DataMember(Name = "paymentMethodVariant", EmitDefaultValue = false)]
+        [DataMember(Name="paymentMethodVariant", EmitDefaultValue=false)]
         public string PaymentMethodVariant { get; set; }
 
         /// <summary>
         /// Gets or Sets BillingAddress
         /// </summary>
-        [DataMember(Name = "billingAddress", EmitDefaultValue = false)]
+        [DataMember(Name="billingAddress", EmitDefaultValue=false)]
         public Address BillingAddress { get; set; }
 
         /// <summary>
         /// Gets or Sets AdditionalData
         /// </summary>
-        [DataMember(Name = "additionalData", EmitDefaultValue = false)]
+        [DataMember(Name="additionalData", EmitDefaultValue=false)]
         public Dictionary<string, string> AdditionalData { get; set; }
 
         /// <summary>
         /// Gets or Sets Card
         /// </summary>
-        [DataMember(Name = "card", EmitDefaultValue = false)]
+        [DataMember(Name="card", EmitDefaultValue=false)]
         public Card Card { get; set; }
 
         /// <summary>
@@ -200,7 +193,7 @@ namespace Adyen.EcommLibrary.Model.Reccuring
             sb.Append("  FirstPspReference: ").Append(FirstPspReference).Append("\n");
             sb.Append("  CreationDate: ").Append(CreationDate).Append("\n");
             sb.Append("  Acquirer: ").Append(Acquirer).Append("\n");
-
+           
             sb.Append("  Bank: ").Append(Bank).Append("\n");
             sb.Append("  ShopperName: ").Append(ShopperName).Append("\n");
             sb.Append("  AcquirerAccount: ").Append(AcquirerAccount).Append("\n");
@@ -217,7 +210,7 @@ namespace Adyen.EcommLibrary.Model.Reccuring
             sb.Append("}\n");
             return sb.ToString();
         }
-
+  
         /// <summary>
         /// Returns the JSON string presentation of the object
         /// </summary>
@@ -235,7 +228,7 @@ namespace Adyen.EcommLibrary.Model.Reccuring
         public override bool Equals(object obj)
         {
             // credit: http://stackoverflow.com/a/10454552/677735
-            return Equals(obj as RecurringDetail);
+            return this.Equals(obj as RecurringDetail);
         }
 
         /// <summary>
@@ -249,96 +242,97 @@ namespace Adyen.EcommLibrary.Model.Reccuring
             if (other == null)
                 return false;
 
-            return
+            return 
                 (
-                    TokenDetails == other.TokenDetails ||
-                    TokenDetails != null &&
-                    TokenDetails.Equals(other.TokenDetails)
-                ) &&
+                    this.TokenDetails == other.TokenDetails ||
+                    this.TokenDetails != null &&
+                    this.TokenDetails.Equals(other.TokenDetails)
+                ) && 
                 (
-                    SocialSecurityNumber == other.SocialSecurityNumber ||
-                    SocialSecurityNumber != null &&
-                    SocialSecurityNumber.Equals(other.SocialSecurityNumber)
-                ) &&
+                    this.SocialSecurityNumber == other.SocialSecurityNumber ||
+                    this.SocialSecurityNumber != null &&
+                    this.SocialSecurityNumber.Equals(other.SocialSecurityNumber)
+                ) && 
                 (
-                    FirstPspReference == other.FirstPspReference ||
-                    FirstPspReference != null &&
-                    FirstPspReference.Equals(other.FirstPspReference)
-                ) &&
+                    this.FirstPspReference == other.FirstPspReference ||
+                    this.FirstPspReference != null &&
+                    this.FirstPspReference.Equals(other.FirstPspReference)
+                ) && 
                 (
-                    CreationDate == other.CreationDate ||
-                    CreationDate != null &&
-                    CreationDate.Equals(other.CreationDate)
-                ) &&
+                    this.CreationDate == other.CreationDate ||
+                    this.CreationDate != null &&
+                    this.CreationDate.Equals(other.CreationDate)
+                ) && 
                 (
-                    Acquirer == other.Acquirer ||
-                    Acquirer != null &&
-                    Acquirer.Equals(other.Acquirer)
-                ) &&
+                    this.Acquirer == other.Acquirer ||
+                    this.Acquirer != null &&
+                    this.Acquirer.Equals(other.Acquirer)
+                ) && 
+                
                 (
-                    Bank == other.Bank ||
-                    Bank != null &&
-                    Bank.Equals(other.Bank)
-                ) &&
+                    this.Bank == other.Bank ||
+                    this.Bank != null &&
+                    this.Bank.Equals(other.Bank)
+                ) && 
                 (
-                    ShopperName == other.ShopperName ||
-                    ShopperName != null &&
-                    ShopperName.Equals(other.ShopperName)
-                ) &&
+                    this.ShopperName == other.ShopperName ||
+                    this.ShopperName != null &&
+                    this.ShopperName.Equals(other.ShopperName)
+                ) && 
                 (
-                    AcquirerAccount == other.AcquirerAccount ||
-                    AcquirerAccount != null &&
-                    AcquirerAccount.Equals(other.AcquirerAccount)
-                ) &&
+                    this.AcquirerAccount == other.AcquirerAccount ||
+                    this.AcquirerAccount != null &&
+                    this.AcquirerAccount.Equals(other.AcquirerAccount)
+                ) && 
                 (
-                    AliasType == other.AliasType ||
-                    AliasType != null &&
-                    AliasType.Equals(other.AliasType)
-                ) &&
+                    this.AliasType == other.AliasType ||
+                    this.AliasType != null &&
+                    this.AliasType.Equals(other.AliasType)
+                ) && 
                 (
-                    Name == other.Name ||
-                    Name != null &&
-                    Name.Equals(other.Name)
-                ) &&
+                    this.Name == other.Name ||
+                    this.Name != null &&
+                    this.Name.Equals(other.Name)
+                ) && 
                 (
-                    Variant == other.Variant ||
-                    Variant != null &&
-                    Variant.Equals(other.Variant)
-                ) &&
+                    this.Variant == other.Variant ||
+                    this.Variant != null &&
+                    this.Variant.Equals(other.Variant)
+                ) && 
                 (
-                    RecurringDetailReference == other.RecurringDetailReference ||
-                    RecurringDetailReference != null &&
-                    RecurringDetailReference.Equals(other.RecurringDetailReference)
-                ) &&
+                    this.RecurringDetailReference == other.RecurringDetailReference ||
+                    this.RecurringDetailReference != null &&
+                    this.RecurringDetailReference.Equals(other.RecurringDetailReference)
+                ) && 
                 (
-                    Alias == other.Alias ||
-                    Alias != null &&
-                    Alias.Equals(other.Alias)
-                ) &&
+                    this.Alias == other.Alias ||
+                    this.Alias != null &&
+                    this.Alias.Equals(other.Alias)
+                ) && 
                 (
-                    ContractTypes == other.ContractTypes ||
-                    ContractTypes != null &&
-                    ContractTypes.SequenceEqual(other.ContractTypes)
-                ) &&
+                    this.ContractTypes == other.ContractTypes ||
+                    this.ContractTypes != null &&
+                    this.ContractTypes.SequenceEqual(other.ContractTypes)
+                ) && 
                 (
-                    PaymentMethodVariant == other.PaymentMethodVariant ||
-                    PaymentMethodVariant != null &&
-                    PaymentMethodVariant.Equals(other.PaymentMethodVariant)
-                ) &&
+                    this.PaymentMethodVariant == other.PaymentMethodVariant ||
+                    this.PaymentMethodVariant != null &&
+                    this.PaymentMethodVariant.Equals(other.PaymentMethodVariant)
+                ) && 
                 (
-                    BillingAddress == other.BillingAddress ||
-                    BillingAddress != null &&
-                    BillingAddress.Equals(other.BillingAddress)
-                ) &&
+                    this.BillingAddress == other.BillingAddress ||
+                    this.BillingAddress != null &&
+                    this.BillingAddress.Equals(other.BillingAddress)
+                ) && 
                 (
-                    AdditionalData == other.AdditionalData ||
-                    AdditionalData != null &&
-                    AdditionalData.SequenceEqual(other.AdditionalData)
-                ) &&
+                    this.AdditionalData == other.AdditionalData ||
+                    this.AdditionalData != null &&
+                    this.AdditionalData.SequenceEqual(other.AdditionalData)
+                ) && 
                 (
-                    Card == other.Card ||
-                    Card != null &&
-                    Card.Equals(other.Card)
+                    this.Card == other.Card ||
+                    this.Card != null &&
+                    this.Card.Equals(other.Card)
                 );
         }
 
@@ -351,45 +345,45 @@ namespace Adyen.EcommLibrary.Model.Reccuring
             // credit: http://stackoverflow.com/a/263416/677735
             unchecked // Overflow is fine, just wrap
             {
-                var hash = 41;
+                int hash = 41;
                 // Suitable nullity checks etc, of course :)
-                if (TokenDetails != null)
-                    hash = hash * 59 + TokenDetails.GetHashCode();
-                if (SocialSecurityNumber != null)
-                    hash = hash * 59 + SocialSecurityNumber.GetHashCode();
-                if (FirstPspReference != null)
-                    hash = hash * 59 + FirstPspReference.GetHashCode();
-                if (CreationDate != null)
-                    hash = hash * 59 + CreationDate.GetHashCode();
-                if (Acquirer != null)
-                    hash = hash * 59 + Acquirer.GetHashCode();
-
-                if (Bank != null)
-                    hash = hash * 59 + Bank.GetHashCode();
-                if (ShopperName != null)
-                    hash = hash * 59 + ShopperName.GetHashCode();
-                if (AcquirerAccount != null)
-                    hash = hash * 59 + AcquirerAccount.GetHashCode();
-                if (AliasType != null)
-                    hash = hash * 59 + AliasType.GetHashCode();
-                if (Name != null)
-                    hash = hash * 59 + Name.GetHashCode();
-                if (Variant != null)
-                    hash = hash * 59 + Variant.GetHashCode();
-                if (RecurringDetailReference != null)
-                    hash = hash * 59 + RecurringDetailReference.GetHashCode();
-                if (Alias != null)
-                    hash = hash * 59 + Alias.GetHashCode();
-                if (ContractTypes != null)
-                    hash = hash * 59 + ContractTypes.GetHashCode();
-                if (PaymentMethodVariant != null)
-                    hash = hash * 59 + PaymentMethodVariant.GetHashCode();
-                if (BillingAddress != null)
-                    hash = hash * 59 + BillingAddress.GetHashCode();
-                if (AdditionalData != null)
-                    hash = hash * 59 + AdditionalData.GetHashCode();
-                if (Card != null)
-                    hash = hash * 59 + Card.GetHashCode();
+                if (this.TokenDetails != null)
+                    hash = hash * 59 + this.TokenDetails.GetHashCode();
+                if (this.SocialSecurityNumber != null)
+                    hash = hash * 59 + this.SocialSecurityNumber.GetHashCode();
+                if (this.FirstPspReference != null)
+                    hash = hash * 59 + this.FirstPspReference.GetHashCode();
+                if (this.CreationDate != null)
+                    hash = hash * 59 + this.CreationDate.GetHashCode();
+                if (this.Acquirer != null)
+                    hash = hash * 59 + this.Acquirer.GetHashCode();
+               
+                if (this.Bank != null)
+                    hash = hash * 59 + this.Bank.GetHashCode();
+                if (this.ShopperName != null)
+                    hash = hash * 59 + this.ShopperName.GetHashCode();
+                if (this.AcquirerAccount != null)
+                    hash = hash * 59 + this.AcquirerAccount.GetHashCode();
+                if (this.AliasType != null)
+                    hash = hash * 59 + this.AliasType.GetHashCode();
+                if (this.Name != null)
+                    hash = hash * 59 + this.Name.GetHashCode();
+                if (this.Variant != null)
+                    hash = hash * 59 + this.Variant.GetHashCode();
+                if (this.RecurringDetailReference != null)
+                    hash = hash * 59 + this.RecurringDetailReference.GetHashCode();
+                if (this.Alias != null)
+                    hash = hash * 59 + this.Alias.GetHashCode();
+                if (this.ContractTypes != null)
+                    hash = hash * 59 + this.ContractTypes.GetHashCode();
+                if (this.PaymentMethodVariant != null)
+                    hash = hash * 59 + this.PaymentMethodVariant.GetHashCode();
+                if (this.BillingAddress != null)
+                    hash = hash * 59 + this.BillingAddress.GetHashCode();
+                if (this.AdditionalData != null)
+                    hash = hash * 59 + this.AdditionalData.GetHashCode();
+                if (this.Card != null)
+                    hash = hash * 59 + this.Card.GetHashCode();
                 return hash;
             }
         }
@@ -399,9 +393,10 @@ namespace Adyen.EcommLibrary.Model.Reccuring
         /// </summary>
         /// <param name="validationContext">Validation context</param>
         /// <returns>Validation Result</returns>
-        IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
         {
             yield break;
         }
     }
+
 }

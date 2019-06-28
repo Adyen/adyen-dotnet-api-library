@@ -19,8 +19,8 @@ namespace Adyen.EcommLibrary.Model.Notification
         {
             var sb = new StringBuilder();
             sb.Append("class NotificationRequest {\n");
-            sb.Append("  Live: ").Append(Live).Append("\n");
-            sb.Append("  NotificationItemContainers: ").Append(NotificationItemContainers).Append("\n");
+            sb.Append("  Live: ").Append(this.Live).Append("\n");
+            sb.Append("  NotificationItemContainers: ").Append(this.NotificationItemContainers).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }

@@ -7,13 +7,14 @@
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     public partial class TransmitRequest
     {
+
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Form = System.Xml.Schema.XmlSchemaForm.Unqualified,
-            DataType = "base64Binary")]
+        [System.Xml.Serialization.XmlElementAttribute(Form = System.Xml.Schema.XmlSchemaForm.Unqualified, DataType = "base64Binary")]
         public byte[] Message;
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute()] [System.ComponentModel.DefaultValueAttribute(false)]
+        [System.Xml.Serialization.XmlAttributeAttribute()]
+        [System.ComponentModel.DefaultValueAttribute(false)]
         public bool WaitResponseFlag;
 
         /// <remarks/>
@@ -26,7 +27,7 @@
 
         public TransmitRequest()
         {
-            WaitResponseFlag = false;
+            this.WaitResponseFlag = false;
         }
     }
 }

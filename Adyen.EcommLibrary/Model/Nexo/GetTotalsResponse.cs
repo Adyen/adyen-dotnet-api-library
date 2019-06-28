@@ -7,13 +7,13 @@
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     public partial class GetTotalsResponse
     {
+
         /// <remarks/>
         [System.Xml.Serialization.XmlElementAttribute(Form = System.Xml.Schema.XmlSchemaForm.Unqualified)]
         public Response Response;
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute("TransactionTotals", Form =
-            System.Xml.Schema.XmlSchemaForm.Unqualified)]
+        [System.Xml.Serialization.XmlElementAttribute("TransactionTotals", Form = System.Xml.Schema.XmlSchemaForm.Unqualified)]
         public TransactionTotals[] TransactionTotals;
 
         /// <remarks/>

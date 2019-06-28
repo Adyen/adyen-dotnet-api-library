@@ -8,26 +8,27 @@ using Newtonsoft.Json;
 
 namespace Adyen.EcommLibrary.Model.CheckoutUtility
 {
-    /// <summary>
+   /// <summary>
     /// OriginKeysResponse
     /// </summary>
     [DataContract]
     public class OriginKeysResponse : IEquatable<OriginKeysResponse>, IValidatableObject
     {
         [DataMember(Name = "originKeys", EmitDefaultValue = false)]
-        public Dictionary<string, string> OriginKeys { get; set; }
-
+        public Dictionary<string,string> OriginKeys { get;set;}
+        
         public bool Equals(OriginKeysResponse input)
         {
             if (input == null)
                 return false;
 
-            return OriginKeys == input.OriginKeys ||
-                   OriginKeys != null &&
-                   OriginKeys.SequenceEqual(input.OriginKeys);
-        }
+            return (
+             this.OriginKeys == input.OriginKeys ||
+                    this.OriginKeys != null &&
+                    this.OriginKeys.SequenceEqual(input.OriginKeys));
+        } 
 
-
+        
         /// <summary>
         /// Returns the string presentation of the object
         /// </summary>
@@ -37,11 +38,11 @@ namespace Adyen.EcommLibrary.Model.CheckoutUtility
             var sb = new StringBuilder();
             sb.Append("class OriginKeysResponse {\n");
             sb.Append("  OriginKeys: ").Append(OriginKeys).Append("\n");
-
+         
             sb.Append("}\n");
             return sb.ToString();
         }
-
+  
         /// <summary>
         /// Returns the JSON string presentation of the object
         /// </summary>
@@ -58,12 +59,12 @@ namespace Adyen.EcommLibrary.Model.CheckoutUtility
         /// <returns>Boolean</returns>
         public override bool Equals(object input)
         {
-            return Equals(input as OriginKeysResponse);
+            return this.Equals(input as OriginKeysResponse);
         }
-
+        
         public IEnumerable<ValidationResult> Validate(ValidationContext validationContext)
         {
-            yield break;
+              yield break;
         }
     }
 }

@@ -1,3 +1,4 @@
+
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -13,7 +14,7 @@ namespace Adyen.EcommLibrary.Model.Checkout
     /// Redirect
     /// </summary>
     [DataContract]
-    public partial class Redirect : IEquatable<Redirect>, IValidatableObject
+    public partial class Redirect :  IEquatable<Redirect>, IValidatableObject
     {
         /// <summary>
         /// The web method that you must use to access the redirect URL.  Possible values: GET, POST.
@@ -22,43 +23,44 @@ namespace Adyen.EcommLibrary.Model.Checkout
         [JsonConverter(typeof(StringEnumConverter))]
         public enum MethodEnum
         {
+            
             /// <summary>
             /// Enum GET for value: GET
             /// </summary>
-            [EnumMember(Value = "GET")] GET = 1,
-
+            [EnumMember(Value = "GET")]
+            GET = 1,
+            
             /// <summary>
             /// Enum POST for value: POST
             /// </summary>
-            [EnumMember(Value = "POST")] POST = 2
+            [EnumMember(Value = "POST")]
+            POST = 2
         }
 
         /// <summary>
         /// The web method that you must use to access the redirect URL.  Possible values: GET, POST.
         /// </summary>
         /// <value>The web method that you must use to access the redirect URL.  Possible values: GET, POST.</value>
-        [DataMember(Name = "method", EmitDefaultValue = false)]
+        [DataMember(Name="method", EmitDefaultValue=false)]
         public MethodEnum? Method { get; set; }
-
         /// <summary>
         /// Initializes a new instance of the <see cref="Redirect" /> class.
         /// </summary>
         /// <param name="Data">When the redirect URL must be accessed via POST, use this data to post to the redirect URL..</param>
         /// <param name="Method">The web method that you must use to access the redirect URL.  Possible values: GET, POST..</param>
         /// <param name="Url">The URL, to which you must redirect a shopper to complete a payment..</param>
-        public Redirect(Dictionary<string, string> Data = default(Dictionary<string, string>),
-            MethodEnum? Method = default(MethodEnum?), string Url = default(string))
+        public Redirect(Dictionary<string, string> Data = default(Dictionary<string, string>), MethodEnum? Method = default(MethodEnum?), string Url = default(string))
         {
             this.Data = Data;
             this.Method = Method;
             this.Url = Url;
         }
-
+        
         /// <summary>
         /// When the redirect URL must be accessed via POST, use this data to post to the redirect URL.
         /// </summary>
         /// <value>When the redirect URL must be accessed via POST, use this data to post to the redirect URL.</value>
-        [DataMember(Name = "data", EmitDefaultValue = false)]
+        [DataMember(Name="data", EmitDefaultValue=false)]
         public Dictionary<string, string> Data { get; set; }
 
 
@@ -66,7 +68,7 @@ namespace Adyen.EcommLibrary.Model.Checkout
         /// The URL, to which you must redirect a shopper to complete a payment.
         /// </summary>
         /// <value>The URL, to which you must redirect a shopper to complete a payment.</value>
-        [DataMember(Name = "url", EmitDefaultValue = false)]
+        [DataMember(Name="url", EmitDefaultValue=false)]
         public string Url { get; set; }
 
         /// <summary>
@@ -83,7 +85,7 @@ namespace Adyen.EcommLibrary.Model.Checkout
             sb.Append("}\n");
             return sb.ToString();
         }
-
+  
         /// <summary>
         /// Returns the JSON string presentation of the object
         /// </summary>
@@ -100,7 +102,7 @@ namespace Adyen.EcommLibrary.Model.Checkout
         /// <returns>Boolean</returns>
         public override bool Equals(object input)
         {
-            return Equals(input as Redirect);
+            return this.Equals(input as Redirect);
         }
 
         /// <summary>
@@ -113,21 +115,21 @@ namespace Adyen.EcommLibrary.Model.Checkout
             if (input == null)
                 return false;
 
-            return
+            return 
                 (
-                    Data == input.Data ||
-                    Data != null &&
-                    Data.SequenceEqual(input.Data)
-                ) &&
+                    this.Data == input.Data ||
+                    this.Data != null &&
+                    this.Data.SequenceEqual(input.Data)
+                ) && 
                 (
-                    Method == input.Method ||
-                    Method != null &&
-                    Method.Equals(input.Method)
-                ) &&
+                    this.Method == input.Method ||
+                    (this.Method != null &&
+                    this.Method.Equals(input.Method))
+                ) && 
                 (
-                    Url == input.Url ||
-                    Url != null &&
-                    Url.Equals(input.Url)
+                    this.Url == input.Url ||
+                    (this.Url != null &&
+                    this.Url.Equals(input.Url))
                 );
         }
 
@@ -139,13 +141,13 @@ namespace Adyen.EcommLibrary.Model.Checkout
         {
             unchecked // Overflow is fine, just wrap
             {
-                var hashCode = 41;
-                if (Data != null)
-                    hashCode = hashCode * 59 + Data.GetHashCode();
-                if (Method != null)
-                    hashCode = hashCode * 59 + Method.GetHashCode();
-                if (Url != null)
-                    hashCode = hashCode * 59 + Url.GetHashCode();
+                int hashCode = 41;
+                if (this.Data != null)
+                    hashCode = hashCode * 59 + this.Data.GetHashCode();
+                if (this.Method != null)
+                    hashCode = hashCode * 59 + this.Method.GetHashCode();
+                if (this.Url != null)
+                    hashCode = hashCode * 59 + this.Url.GetHashCode();
                 return hashCode;
             }
         }
@@ -155,9 +157,10 @@ namespace Adyen.EcommLibrary.Model.Checkout
         /// </summary>
         /// <param name="validationContext">Validation context</param>
         /// <returns>Validation Result</returns>
-        IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
         {
             yield break;
         }
     }
+
 }

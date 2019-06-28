@@ -48,12 +48,13 @@
         public string Alignment;
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute()] [System.ComponentModel.DefaultValueAttribute(true)]
+        [System.Xml.Serialization.XmlAttributeAttribute()]
+        [System.ComponentModel.DefaultValueAttribute(true)]
         public bool EndOfLineFlag;
 
         public OutputText()
         {
-            EndOfLineFlag = true;
+            this.EndOfLineFlag = true;
         }
     }
 }

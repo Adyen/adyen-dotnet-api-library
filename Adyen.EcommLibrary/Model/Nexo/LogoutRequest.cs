@@ -7,13 +7,15 @@
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     public partial class LogoutRequest
     {
+
         /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute()] [System.ComponentModel.DefaultValueAttribute(false)]
+        [System.Xml.Serialization.XmlAttributeAttribute()]
+        [System.ComponentModel.DefaultValueAttribute(false)]
         public bool MaintenanceAllowed;
 
         public LogoutRequest()
         {
-            MaintenanceAllowed = false;
+            this.MaintenanceAllowed = false;
         }
     }
 }

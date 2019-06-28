@@ -5,7 +5,7 @@ using Adyen.EcommLibrary.Service.Resource.Payment;
 
 namespace Adyen.EcommLibrary.Service
 {
-    public class PosPaymentLocalApi : AbstractService
+   public class PosPaymentLocalApi: AbstractService
     {
         private readonly TerminalApiLocal _terminalApiLocal;
         private readonly SaleToPoiMessageSerializer _saleToPoiMessageSerializer;
@@ -29,25 +29,21 @@ namespace Adyen.EcommLibrary.Service
         /// <param name="messageHeader"></param>
         /// <param name="encryptionCredentialDetails"></param>
         /// <returns></returns>
-        public SaleToPOIResponse TerminalApiLocal(SaleToPOIMessage saleToPoiRequest,
-            EncryptionCredentialDetails encryptionCredentialDetails)
+        public SaleToPOIResponse TerminalApiLocal(SaleToPOIMessage saleToPoiRequest, EncryptionCredentialDetails encryptionCredentialDetails)
         {
             var saleToPoiRequestMessageSerialized = _saleToPoiMessageSerializer.Serialize(saleToPoiRequest);
-            Client.LogLine("Request: \n" + saleToPoiRequestMessageSerialized);
-            var saleToPoiRequestMessageSecured = _messageSecuredEncryptor.Encrypt(saleToPoiRequestMessageSerialized,
-                saleToPoiRequest.MessageHeader, encryptionCredentialDetails);
-            var serializeSaleToPoiRequestMessageSecured =
-                _saleToPoiMessageSerializer.Serialize(saleToPoiRequestMessageSecured);
-            Client.LogLine("Encrypted Request: \n" + serializeSaleToPoiRequestMessageSecured);
+            this.Client.LogLine("Request: \n" + saleToPoiRequestMessageSerialized);
+            var saleToPoiRequestMessageSecured = _messageSecuredEncryptor.Encrypt(saleToPoiRequestMessageSerialized, saleToPoiRequest.MessageHeader, encryptionCredentialDetails);
+            var serializeSaleToPoiRequestMessageSecured = _saleToPoiMessageSerializer.Serialize(saleToPoiRequestMessageSecured);
+            this.Client.LogLine("Encrypted Request: \n" + serializeSaleToPoiRequestMessageSecured);
             var response = _terminalApiLocal.Request(serializeSaleToPoiRequestMessageSecured);
-            Client.LogLine("Response: \n" + response);
+            this.Client.LogLine("Response: \n" + response);
             var saleToPoiResponseSecured = _saleToPoiMessageSecuredSerializer.Deserialize(response);
-
-            var decryptResponse =
-                _messageSecuredEncryptor.Decrypt(saleToPoiResponseSecured, encryptionCredentialDetails);
-            Client.LogLine("Response: \n" + decryptResponse);
+          
+            var decryptResponse = _messageSecuredEncryptor.Decrypt(saleToPoiResponseSecured, encryptionCredentialDetails);
+            this.Client.LogLine("Response: \n" + decryptResponse);
             var saleToPoiResponse = _saleToPoiMessageSerializer.Deserialize(decryptResponse);
             return saleToPoiResponse;
-        }
+        }    
     }
 }

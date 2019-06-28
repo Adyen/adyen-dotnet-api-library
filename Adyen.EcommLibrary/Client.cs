@@ -24,10 +24,10 @@ namespace Adyen.EcommLibrary
                 Password = password,
                 Environment = environment
             };
-            SetEnviroment(environment);
+            this.SetEnviroment(environment);
         }
 
-
+        
         public Client(string xapikey, Environment environment)
         {
             Config = new Config
@@ -35,7 +35,7 @@ namespace Adyen.EcommLibrary
                 Environment = environment,
                 XApiKey = xapikey
             };
-            SetEnviroment(environment);
+            this.SetEnviroment(environment);
         }
 
         public Client(string xapikey, Environment environment, string liveEndpointUrlPrefix)
@@ -45,7 +45,7 @@ namespace Adyen.EcommLibrary
                 Environment = environment,
                 XApiKey = xapikey
             };
-            SetEnviroment(environment, liveEndpointUrlPrefix);
+            this.SetEnviroment(environment,liveEndpointUrlPrefix);
         }
 
         public Client(Config config)
@@ -76,12 +76,9 @@ namespace Adyen.EcommLibrary
                     //set live endpoint for checkout api
                     if (!string.IsNullOrEmpty(liveEndpointUrlPrefix))
                     {
-                        Config.Endpoint = ClientConfig.EndpointProtocol + liveEndpointUrlPrefix +
-                                          ClientConfig.EndpointLiveSuffix;
-                        Config.CheckoutEndpoint = ClientConfig.EndpointProtocol + liveEndpointUrlPrefix +
-                                                  ClientConfig.CheckoutEndpointLiveSuffix;
+                        Config.Endpoint = ClientConfig.EndpointProtocol + liveEndpointUrlPrefix + ClientConfig.EndpointLiveSuffix;
+                        Config.CheckoutEndpoint = ClientConfig.EndpointProtocol + liveEndpointUrlPrefix + ClientConfig.CheckoutEndpointLiveSuffix;
                     }
-
                     break;
             }
         }
@@ -90,19 +87,41 @@ namespace Adyen.EcommLibrary
         {
             get
             {
-                if (_client == null) _client = new HttpUrlConnectionClient();
+                if (_client == null)
+                {
+                    _client = new HttpUrlConnectionClient();
+                }
                 return _client;
             }
-            set => _client = value;
+            set
+            {
+                _client = value;
+            }
         }
 
-        public string ApiVersion => ClientConfig.ApiVersion;
+        public string ApiVersion
+        {
+            get
+            {
+                return ClientConfig.ApiVersion;
+            }
+        }
 
-        public string LibraryVersion => ClientConfig.LibVersion;
+        public string LibraryVersion
+        {
+            get
+            {
+                return ClientConfig.LibVersion;
+
+            }
+        }
 
         public void LogLine(string message)
         {
-            if (LogCallback != null) LogCallback(message);
+            if (LogCallback != null)
+            {
+                LogCallback(message);
+            }
         }
     }
 }

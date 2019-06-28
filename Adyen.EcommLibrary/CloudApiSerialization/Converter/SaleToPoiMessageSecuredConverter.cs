@@ -40,24 +40,26 @@ namespace Adyen.EcommLibrary.CloudApiSerialization.Converter
         private string GetProperTypeNameForSerialization(Type type)
         {
             if (type == typeof(SaleToPOIMessage) || type == typeof(SaleToPoiRequestSecured))
+            {
                 return SaleToPoiRequestSecuredForSerialization;
+            }
 
             if (type == typeof(SaleToPOIResponse) || type == typeof(SaleToPoiResponseSecured))
+            {
                 return SaleToPoiResponseSecuredForSerialization;
+            }
 
             return string.Empty;
         }
 
-        public override object ReadJson(JsonReader reader, Type objectType, object existingValue,
-            JsonSerializer serializer)
+        public override object ReadJson(JsonReader reader, Type objectType, object existingValue, JsonSerializer serializer)
         {
             throw new NotImplementedException();
         }
 
         public override bool CanConvert(Type objectType)
         {
-            return typeof(SaleToPoiMessageSecured).IsAssignableFrom(objectType);
-            ;
+            return typeof(SaleToPoiMessageSecured).IsAssignableFrom(objectType); ;
         }
     }
 }

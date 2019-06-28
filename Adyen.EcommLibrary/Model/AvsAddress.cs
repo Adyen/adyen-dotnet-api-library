@@ -12,16 +12,13 @@ namespace Adyen.EcommLibrary.Model
     /// AvsAddress
     /// </summary>
     [DataContract]
-    public partial class AvsAddress : IEquatable<AvsAddress>, IValidatableObject
+    public partial class AvsAddress :  IEquatable<AvsAddress>, IValidatableObject
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="AvsAddress" /> class.
         /// </summary>
         [JsonConstructor]
-        protected AvsAddress()
-        {
-        }
-
+        protected AvsAddress() { }
         /// <summary>
         /// Initializes a new instance of the <see cref="AvsAddress" /> class.
         /// </summary>
@@ -31,25 +28,28 @@ namespace Adyen.EcommLibrary.Model
         {
             // to ensure "StreetAddress" is required (not null)
             if (StreetAddress == null)
-                throw new InvalidDataException(
-                    "StreetAddress is a required property for AvsAddress and cannot be null");
+            {
+                throw new InvalidDataException("StreetAddress is a required property for AvsAddress and cannot be null");
+            }
             else
+            {
                 this.StreetAddress = StreetAddress;
+            }
             this.Zip = Zip;
         }
-
+        
         /// <summary>
         /// the zip or post code of the address
         /// </summary>
         /// <value>the zip or post code of the address</value>
-        [DataMember(Name = "zip", EmitDefaultValue = false)]
+        [DataMember(Name="zip", EmitDefaultValue=false)]
         public string Zip { get; set; }
 
         /// <summary>
         /// the street and house number of the address
         /// </summary>
         /// <value>the street and house number of the address</value>
-        [DataMember(Name = "streetAddress", EmitDefaultValue = false)]
+        [DataMember(Name="streetAddress", EmitDefaultValue=false)]
         public string StreetAddress { get; set; }
 
         /// <summary>
@@ -65,7 +65,7 @@ namespace Adyen.EcommLibrary.Model
             sb.Append("}\n");
             return sb.ToString();
         }
-
+  
         /// <summary>
         /// Returns the JSON string presentation of the object
         /// </summary>
@@ -83,7 +83,7 @@ namespace Adyen.EcommLibrary.Model
         public override bool Equals(object obj)
         {
             // credit: http://stackoverflow.com/a/10454552/677735
-            return Equals(obj as AvsAddress);
+            return this.Equals(obj as AvsAddress);
         }
 
         /// <summary>
@@ -97,16 +97,16 @@ namespace Adyen.EcommLibrary.Model
             if (other == null)
                 return false;
 
-            return
+            return 
                 (
-                    Zip == other.Zip ||
-                    Zip != null &&
-                    Zip.Equals(other.Zip)
-                ) &&
+                    this.Zip == other.Zip ||
+                    this.Zip != null &&
+                    this.Zip.Equals(other.Zip)
+                ) && 
                 (
-                    StreetAddress == other.StreetAddress ||
-                    StreetAddress != null &&
-                    StreetAddress.Equals(other.StreetAddress)
+                    this.StreetAddress == other.StreetAddress ||
+                    this.StreetAddress != null &&
+                    this.StreetAddress.Equals(other.StreetAddress)
                 );
         }
 
@@ -119,12 +119,12 @@ namespace Adyen.EcommLibrary.Model
             // credit: http://stackoverflow.com/a/263416/677735
             unchecked // Overflow is fine, just wrap
             {
-                var hash = 41;
+                int hash = 41;
                 // Suitable nullity checks etc, of course :)
-                if (Zip != null)
-                    hash = hash * 59 + Zip.GetHashCode();
-                if (StreetAddress != null)
-                    hash = hash * 59 + StreetAddress.GetHashCode();
+                if (this.Zip != null)
+                    hash = hash * 59 + this.Zip.GetHashCode();
+                if (this.StreetAddress != null)
+                    hash = hash * 59 + this.StreetAddress.GetHashCode();
                 return hash;
             }
         }
@@ -134,9 +134,10 @@ namespace Adyen.EcommLibrary.Model
         /// </summary>
         /// <param name="validationContext">Validation context</param>
         /// <returns>Validation Result</returns>
-        IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
         {
             yield break;
         }
     }
+
 }

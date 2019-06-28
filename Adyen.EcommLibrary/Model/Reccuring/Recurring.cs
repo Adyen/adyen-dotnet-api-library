@@ -22,42 +22,41 @@ namespace Adyen.EcommLibrary.Model.Reccuring
     /// Recurring
     /// </summary>
     [DataContract]
-    public partial class Recurring : IEquatable<Recurring>, IValidatableObject
+    public partial class Recurring :  IEquatable<Recurring>, IValidatableObject
     {
+       
         /// <summary>
         /// The name of the token service.
         /// </summary>
         /// <value>The name of the token service.</value>
-        [DataMember(Name = "tokenService", EmitDefaultValue = false)]
+        [DataMember(Name="tokenService", EmitDefaultValue=false)]
         public TokenServiceEnum? TokenService { get; set; }
-
         /// <summary>
         /// The type of recurring contract to be used. Possible values: * &#x60;ONECLICK&#x60; – The shopper opts to store their card details for future use. The shopper is present for the subsequent transaction, for cards the security code (CVC/CVV) is required. * &#x60;RECURRING&#x60; – Payment details are stored for future use. For cards, the security code (CVC/CVV) is not required for subsequent payments. This is used for shopper not present transactions. * &#x60;ONECLICK, RECURRING&#x60; – Payment details are stored for future use. This allows the use of the stored payment details regardless of whether the shopper is on your site or not.
         /// </summary>
         /// <value>The type of recurring contract to be used. Possible values: * &#x60;ONECLICK&#x60; – The shopper opts to store their card details for future use. The shopper is present for the subsequent transaction, for cards the security code (CVC/CVV) is required. * &#x60;RECURRING&#x60; – Payment details are stored for future use. For cards, the security code (CVC/CVV) is not required for subsequent payments. This is used for shopper not present transactions. * &#x60;ONECLICK, RECURRING&#x60; – Payment details are stored for future use. This allows the use of the stored payment details regardless of whether the shopper is on your site or not.</value>
-        [DataMember(Name = "contract", EmitDefaultValue = false)]
+        [DataMember(Name="contract", EmitDefaultValue=false)]
         public Contract? Contract { get; set; }
-
         /// <summary>
         /// Initializes a new instance of the <see cref="Recurring" /> class.
         /// </summary>
         /// <param name="TokenService">The name of the token service..</param>
         /// <param name="Contract">The type of recurring contract to be used. Possible values: * &#x60;ONECLICK&#x60; – The shopper opts to store their card details for future use. The shopper is present for the subsequent transaction, for cards the security code (CVC/CVV) is required. * &#x60;RECURRING&#x60; – Payment details are stored for future use. For cards, the security code (CVC/CVV) is not required for subsequent payments. This is used for shopper not present transactions. * &#x60;ONECLICK, RECURRING&#x60; – Payment details are stored for future use. This allows the use of the stored payment details regardless of whether the shopper is on your site or not..</param>
         /// <param name="RecurringDetailName">A descriptive name for this detail..</param>
-        public Recurring(TokenServiceEnum? TokenService = default(TokenServiceEnum?),
-            Contract? Contract = default(Contract?), string RecurringDetailName = default(string))
+        public Recurring(TokenServiceEnum? TokenService = default(TokenServiceEnum?), Contract? Contract = default(Contract?), string RecurringDetailName = default(string))
         {
             this.TokenService = TokenService;
             this.Contract = Contract;
             this.RecurringDetailName = RecurringDetailName;
         }
+        
 
 
         /// <summary>
         /// A descriptive name for this detail.
         /// </summary>
         /// <value>A descriptive name for this detail.</value>
-        [DataMember(Name = "recurringDetailName", EmitDefaultValue = false)]
+        [DataMember(Name="recurringDetailName", EmitDefaultValue=false)]
         public string RecurringDetailName { get; set; }
 
         /// <summary>
@@ -74,7 +73,7 @@ namespace Adyen.EcommLibrary.Model.Reccuring
             sb.Append("}\n");
             return sb.ToString();
         }
-
+  
         /// <summary>
         /// Returns the JSON string presentation of the object
         /// </summary>
@@ -92,7 +91,7 @@ namespace Adyen.EcommLibrary.Model.Reccuring
         public override bool Equals(object obj)
         {
             // credit: http://stackoverflow.com/a/10454552/677735
-            return Equals(obj as Recurring);
+            return this.Equals(obj as Recurring);
         }
 
         /// <summary>
@@ -106,21 +105,21 @@ namespace Adyen.EcommLibrary.Model.Reccuring
             if (other == null)
                 return false;
 
-            return
+            return 
                 (
-                    TokenService == other.TokenService ||
-                    TokenService != null &&
-                    TokenService.Equals(other.TokenService)
-                ) &&
+                    this.TokenService == other.TokenService ||
+                    this.TokenService != null &&
+                    this.TokenService.Equals(other.TokenService)
+                ) && 
                 (
-                    Contract == other.Contract ||
-                    Contract != null &&
-                    Contract.Equals(other.Contract)
-                ) &&
+                    this.Contract == other.Contract ||
+                    this.Contract != null &&
+                    this.Contract.Equals(other.Contract)
+                ) && 
                 (
-                    RecurringDetailName == other.RecurringDetailName ||
-                    RecurringDetailName != null &&
-                    RecurringDetailName.Equals(other.RecurringDetailName)
+                    this.RecurringDetailName == other.RecurringDetailName ||
+                    this.RecurringDetailName != null &&
+                    this.RecurringDetailName.Equals(other.RecurringDetailName)
                 );
         }
 
@@ -133,14 +132,14 @@ namespace Adyen.EcommLibrary.Model.Reccuring
             // credit: http://stackoverflow.com/a/263416/677735
             unchecked // Overflow is fine, just wrap
             {
-                var hash = 41;
+                int hash = 41;
                 // Suitable nullity checks etc, of course :)
-                if (TokenService != null)
-                    hash = hash * 59 + TokenService.GetHashCode();
-                if (Contract != null)
-                    hash = hash * 59 + Contract.GetHashCode();
-                if (RecurringDetailName != null)
-                    hash = hash * 59 + RecurringDetailName.GetHashCode();
+                if (this.TokenService != null)
+                    hash = hash * 59 + this.TokenService.GetHashCode();
+                if (this.Contract != null)
+                    hash = hash * 59 + this.Contract.GetHashCode();
+                if (this.RecurringDetailName != null)
+                    hash = hash * 59 + this.RecurringDetailName.GetHashCode();
                 return hash;
             }
         }
@@ -150,9 +149,10 @@ namespace Adyen.EcommLibrary.Model.Reccuring
         /// </summary>
         /// <param name="validationContext">Validation context</param>
         /// <returns>Validation Result</returns>
-        IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
         {
             yield break;
         }
     }
+
 }

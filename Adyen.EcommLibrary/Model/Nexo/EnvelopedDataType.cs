@@ -7,11 +7,10 @@
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     public partial class EnvelopedDataType
     {
+
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute("KEK", typeof(KEKType), Form =
-            System.Xml.Schema.XmlSchemaForm.Unqualified)]
-        [System.Xml.Serialization.XmlElementAttribute("KeyTransport", typeof(KeyTransportType), Form =
-            System.Xml.Schema.XmlSchemaForm.Unqualified)]
+        [System.Xml.Serialization.XmlElementAttribute("KEK", typeof(KEKType), Form = System.Xml.Schema.XmlSchemaForm.Unqualified)]
+        [System.Xml.Serialization.XmlElementAttribute("KeyTransport", typeof(KeyTransportType), Form = System.Xml.Schema.XmlSchemaForm.Unqualified)]
         public object[] Items;
 
         /// <remarks/>
@@ -19,12 +18,13 @@
         public EncryptedContentType EncryptedContent;
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute()] [System.ComponentModel.DefaultValueAttribute("v0")]
+        [System.Xml.Serialization.XmlAttributeAttribute()]
+        [System.ComponentModel.DefaultValueAttribute("v0")]
         public string Version;
 
         public EnvelopedDataType()
         {
-            Version = "v0";
+            this.Version = "v0";
         }
     }
 }

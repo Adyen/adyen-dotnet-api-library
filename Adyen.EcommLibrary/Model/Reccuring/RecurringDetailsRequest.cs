@@ -21,7 +21,7 @@ namespace Adyen.EcommLibrary.Model.Reccuring
     /// RecurringDetailsRequest
     /// </summary>
     [DataContract]
-    public partial class RecurringDetailsRequest : IEquatable<RecurringDetailsRequest>, IValidatableObject
+    public partial class RecurringDetailsRequest :  IEquatable<RecurringDetailsRequest>, IValidatableObject
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="RecurringDetailsRequest" /> class.
@@ -29,32 +29,31 @@ namespace Adyen.EcommLibrary.Model.Reccuring
         /// <param name="MerchantAccount">the merchant account which will be used for processing this request.</param>
         /// <param name="Recurring">Recurring.</param>
         /// <param name="ShopperReference">a reference you use to uniquely identify the shopper (e.g. user ID or account ID).</param>
-        public RecurringDetailsRequest(string MerchantAccount = default(string),
-            Recurring Recurring = default(Recurring), string ShopperReference = default(string))
+        public RecurringDetailsRequest(string MerchantAccount = default(string), Recurring Recurring = default(Recurring), string ShopperReference = default(string))
         {
             this.MerchantAccount = MerchantAccount;
             this.Recurring = Recurring;
             this.ShopperReference = ShopperReference;
         }
-
+        
         /// <summary>
         /// the merchant account which will be used for processing this request
         /// </summary>
         /// <value>the merchant account which will be used for processing this request</value>
-        [DataMember(Name = "merchantAccount", EmitDefaultValue = false)]
+        [DataMember(Name="merchantAccount", EmitDefaultValue=false)]
         public string MerchantAccount { get; set; }
 
         /// <summary>
         /// Gets or Sets Recurring
         /// </summary>
-        [DataMember(Name = "recurring", EmitDefaultValue = false)]
+        [DataMember(Name="recurring", EmitDefaultValue=false)]
         public Recurring Recurring { get; set; }
 
         /// <summary>
         /// a reference you use to uniquely identify the shopper (e.g. user ID or account ID)
         /// </summary>
         /// <value>a reference you use to uniquely identify the shopper (e.g. user ID or account ID)</value>
-        [DataMember(Name = "shopperReference", EmitDefaultValue = false)]
+        [DataMember(Name="shopperReference", EmitDefaultValue=false)]
         public string ShopperReference { get; set; }
 
         /// <summary>
@@ -71,7 +70,7 @@ namespace Adyen.EcommLibrary.Model.Reccuring
             sb.Append("}\n");
             return sb.ToString();
         }
-
+  
         /// <summary>
         /// Returns the JSON string presentation of the object
         /// </summary>
@@ -89,7 +88,7 @@ namespace Adyen.EcommLibrary.Model.Reccuring
         public override bool Equals(object obj)
         {
             // credit: http://stackoverflow.com/a/10454552/677735
-            return Equals(obj as RecurringDetailsRequest);
+            return this.Equals(obj as RecurringDetailsRequest);
         }
 
         /// <summary>
@@ -103,21 +102,21 @@ namespace Adyen.EcommLibrary.Model.Reccuring
             if (other == null)
                 return false;
 
-            return
+            return 
                 (
-                    MerchantAccount == other.MerchantAccount ||
-                    MerchantAccount != null &&
-                    MerchantAccount.Equals(other.MerchantAccount)
-                ) &&
+                    this.MerchantAccount == other.MerchantAccount ||
+                    this.MerchantAccount != null &&
+                    this.MerchantAccount.Equals(other.MerchantAccount)
+                ) && 
                 (
-                    Recurring == other.Recurring ||
-                    Recurring != null &&
-                    Recurring.Equals(other.Recurring)
-                ) &&
+                    this.Recurring == other.Recurring ||
+                    this.Recurring != null &&
+                    this.Recurring.Equals(other.Recurring)
+                ) && 
                 (
-                    ShopperReference == other.ShopperReference ||
-                    ShopperReference != null &&
-                    ShopperReference.Equals(other.ShopperReference)
+                    this.ShopperReference == other.ShopperReference ||
+                    this.ShopperReference != null &&
+                    this.ShopperReference.Equals(other.ShopperReference)
                 );
         }
 
@@ -130,14 +129,14 @@ namespace Adyen.EcommLibrary.Model.Reccuring
             // credit: http://stackoverflow.com/a/263416/677735
             unchecked // Overflow is fine, just wrap
             {
-                var hash = 41;
+                int hash = 41;
                 // Suitable nullity checks etc, of course :)
-                if (MerchantAccount != null)
-                    hash = hash * 59 + MerchantAccount.GetHashCode();
-                if (Recurring != null)
-                    hash = hash * 59 + Recurring.GetHashCode();
-                if (ShopperReference != null)
-                    hash = hash * 59 + ShopperReference.GetHashCode();
+                if (this.MerchantAccount != null)
+                    hash = hash * 59 + this.MerchantAccount.GetHashCode();
+                if (this.Recurring != null)
+                    hash = hash * 59 + this.Recurring.GetHashCode();
+                if (this.ShopperReference != null)
+                    hash = hash * 59 + this.ShopperReference.GetHashCode();
                 return hash;
             }
         }
@@ -147,9 +146,10 @@ namespace Adyen.EcommLibrary.Model.Reccuring
         /// </summary>
         /// <param name="validationContext">Validation context</param>
         /// <returns>Validation Result</returns>
-        IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
         {
             yield break;
         }
     }
+
 }

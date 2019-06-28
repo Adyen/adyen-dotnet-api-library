@@ -1,5 +1,8 @@
-﻿using System.ComponentModel;
+﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel;
 using System.Runtime.Serialization;
+using System.Text;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
 
@@ -16,11 +19,15 @@ namespace Adyen.EcommLibrary.Model.Enum
         /// <summary>
         /// Enum Browser for "browser"
         /// </summary>
-        [EnumMember(Value = "browser")] Browser,
+        [EnumMember(Value = "browser")]
+        Browser,
 
         /// <summary>
         /// Enum App for "app"
         /// </summary>
-        [EnumMember(Value = "app")] App
+        [EnumMember(Value = "app")]
+        App
+
     }
+
 }

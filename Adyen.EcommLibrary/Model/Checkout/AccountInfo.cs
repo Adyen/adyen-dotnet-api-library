@@ -12,7 +12,7 @@ namespace Adyen.EcommLibrary.Model.Checkout
     /// AccountInfo
     /// </summary>
     [DataContract]
-    public partial class AccountInfo : IEquatable<AccountInfo>, IValidatableObject
+    public partial class AccountInfo :  IEquatable<AccountInfo>, IValidatableObject
     {
         /// <summary>
         /// Indicator of how long this shopper account exists in the merchant&#39;s environment.
@@ -21,40 +21,44 @@ namespace Adyen.EcommLibrary.Model.Checkout
         [JsonConverter(typeof(StringEnumConverter))]
         public enum AccountAgeIndicatorEnum
         {
+            
             /// <summary>
             /// Enum NotApplicable for value: notApplicable
             /// </summary>
-            [EnumMember(Value = "notApplicable")] NotApplicable = 1,
-
+            [EnumMember(Value = "notApplicable")]
+            NotApplicable = 1,
+            
             /// <summary>
             /// Enum ThisTransaction for value: thisTransaction
             /// </summary>
             [EnumMember(Value = "thisTransaction")]
             ThisTransaction = 2,
-
+            
             /// <summary>
             /// Enum LessThan30Days for value: lessThan30Days
             /// </summary>
-            [EnumMember(Value = "lessThan30Days")] LessThan30Days = 3,
-
+            [EnumMember(Value = "lessThan30Days")]
+            LessThan30Days = 3,
+            
             /// <summary>
             /// Enum From30To60Days for value: from30To60Days
             /// </summary>
-            [EnumMember(Value = "from30To60Days")] From30To60Days = 4,
-
+            [EnumMember(Value = "from30To60Days")]
+            From30To60Days = 4,
+            
             /// <summary>
             /// Enum MoreThan60Days for value: moreThan60Days
             /// </summary>
-            [EnumMember(Value = "moreThan60Days")] MoreThan60Days = 5
+            [EnumMember(Value = "moreThan60Days")]
+            MoreThan60Days = 5
         }
 
         /// <summary>
         /// Indicator of how long this shopper account exists in the merchant&#39;s environment.
         /// </summary>
         /// <value>Indicator of how long this shopper account exists in the merchant&#39;s environment.</value>
-        [DataMember(Name = "accountAgeIndicator", EmitDefaultValue = false)]
+        [DataMember(Name="accountAgeIndicator", EmitDefaultValue=false)]
         public AccountAgeIndicatorEnum? AccountAgeIndicator { get; set; }
-
         /// <summary>
         /// Indicator when the shopper&#39;s account was last changed.
         /// </summary>
@@ -62,35 +66,38 @@ namespace Adyen.EcommLibrary.Model.Checkout
         [JsonConverter(typeof(StringEnumConverter))]
         public enum AccountChangeIndicatorEnum
         {
+            
             /// <summary>
             /// Enum ThisTransaction for value: thisTransaction
             /// </summary>
             [EnumMember(Value = "thisTransaction")]
             ThisTransaction = 1,
-
+            
             /// <summary>
             /// Enum LessThan30Days for value: lessThan30Days
             /// </summary>
-            [EnumMember(Value = "lessThan30Days")] LessThan30Days = 2,
-
+            [EnumMember(Value = "lessThan30Days")]
+            LessThan30Days = 2,
+            
             /// <summary>
             /// Enum From30To60Days for value: from30To60Days
             /// </summary>
-            [EnumMember(Value = "from30To60Days")] From30To60Days = 3,
-
+            [EnumMember(Value = "from30To60Days")]
+            From30To60Days = 3,
+            
             /// <summary>
             /// Enum MoreThan60Days for value: moreThan60Days
             /// </summary>
-            [EnumMember(Value = "moreThan60Days")] MoreThan60Days = 4
+            [EnumMember(Value = "moreThan60Days")]
+            MoreThan60Days = 4
         }
 
         /// <summary>
         /// Indicator when the shopper&#39;s account was last changed.
         /// </summary>
         /// <value>Indicator when the shopper&#39;s account was last changed.</value>
-        [DataMember(Name = "accountChangeIndicator", EmitDefaultValue = false)]
+        [DataMember(Name="accountChangeIndicator", EmitDefaultValue=false)]
         public AccountChangeIndicatorEnum? AccountChangeIndicator { get; set; }
-
         /// <summary>
         /// Indicator for when this delivery address was last used.
         /// </summary>
@@ -98,35 +105,38 @@ namespace Adyen.EcommLibrary.Model.Checkout
         [JsonConverter(typeof(StringEnumConverter))]
         public enum DeliveryAddressUsageIndicatorEnum
         {
+            
             /// <summary>
             /// Enum ThisTransaction for value: thisTransaction
             /// </summary>
             [EnumMember(Value = "thisTransaction")]
             ThisTransaction = 1,
-
+            
             /// <summary>
             /// Enum LessThan30Days for value: lessThan30Days
             /// </summary>
-            [EnumMember(Value = "lessThan30Days")] LessThan30Days = 2,
-
+            [EnumMember(Value = "lessThan30Days")]
+            LessThan30Days = 2,
+            
             /// <summary>
             /// Enum From30To60Days for value: from30To60Days
             /// </summary>
-            [EnumMember(Value = "from30To60Days")] From30To60Days = 3,
-
+            [EnumMember(Value = "from30To60Days")]
+            From30To60Days = 3,
+            
             /// <summary>
             /// Enum MoreThan60Days for value: moreThan60Days
             /// </summary>
-            [EnumMember(Value = "moreThan60Days")] MoreThan60Days = 4
+            [EnumMember(Value = "moreThan60Days")]
+            MoreThan60Days = 4
         }
 
         /// <summary>
         /// Indicator for when this delivery address was last used.
         /// </summary>
         /// <value>Indicator for when this delivery address was last used.</value>
-        [DataMember(Name = "deliveryAddressUsageIndicator", EmitDefaultValue = false)]
+        [DataMember(Name="deliveryAddressUsageIndicator", EmitDefaultValue=false)]
         public DeliveryAddressUsageIndicatorEnum? DeliveryAddressUsageIndicator { get; set; }
-
         /// <summary>
         /// Indicator when the shopper has changed their password.
         /// </summary>
@@ -134,40 +144,44 @@ namespace Adyen.EcommLibrary.Model.Checkout
         [JsonConverter(typeof(StringEnumConverter))]
         public enum PasswordChangeIndicatorEnum
         {
+            
             /// <summary>
             /// Enum NotApplicable for value: notApplicable
             /// </summary>
-            [EnumMember(Value = "notApplicable")] NotApplicable = 1,
-
+            [EnumMember(Value = "notApplicable")]
+            NotApplicable = 1,
+            
             /// <summary>
             /// Enum ThisTransaction for value: thisTransaction
             /// </summary>
             [EnumMember(Value = "thisTransaction")]
             ThisTransaction = 2,
-
+            
             /// <summary>
             /// Enum LessThan30Days for value: lessThan30Days
             /// </summary>
-            [EnumMember(Value = "lessThan30Days")] LessThan30Days = 3,
-
+            [EnumMember(Value = "lessThan30Days")]
+            LessThan30Days = 3,
+            
             /// <summary>
             /// Enum From30To60Days for value: from30To60Days
             /// </summary>
-            [EnumMember(Value = "from30To60Days")] From30To60Days = 4,
-
+            [EnumMember(Value = "from30To60Days")]
+            From30To60Days = 4,
+            
             /// <summary>
             /// Enum MoreThan60Days for value: moreThan60Days
             /// </summary>
-            [EnumMember(Value = "moreThan60Days")] MoreThan60Days = 5
+            [EnumMember(Value = "moreThan60Days")]
+            MoreThan60Days = 5
         }
 
         /// <summary>
         /// Indicator when the shopper has changed their password.
         /// </summary>
         /// <value>Indicator when the shopper has changed their password.</value>
-        [DataMember(Name = "passwordChangeIndicator", EmitDefaultValue = false)]
+        [DataMember(Name="passwordChangeIndicator", EmitDefaultValue=false)]
         public PasswordChangeIndicatorEnum? PasswordChangeIndicator { get; set; }
-
         /// <summary>
         /// Indicator for the amount of time this payment method was enrolled with this account.
         /// </summary>
@@ -175,40 +189,44 @@ namespace Adyen.EcommLibrary.Model.Checkout
         [JsonConverter(typeof(StringEnumConverter))]
         public enum PaymentAccountIndicatorEnum
         {
+            
             /// <summary>
             /// Enum NotApplicable for value: notApplicable
             /// </summary>
-            [EnumMember(Value = "notApplicable")] NotApplicable = 1,
-
+            [EnumMember(Value = "notApplicable")]
+            NotApplicable = 1,
+            
             /// <summary>
             /// Enum ThisTransaction for value: thisTransaction
             /// </summary>
             [EnumMember(Value = "thisTransaction")]
             ThisTransaction = 2,
-
+            
             /// <summary>
             /// Enum LessThan30Days for value: lessThan30Days
             /// </summary>
-            [EnumMember(Value = "lessThan30Days")] LessThan30Days = 3,
-
+            [EnumMember(Value = "lessThan30Days")]
+            LessThan30Days = 3,
+            
             /// <summary>
             /// Enum From30To60Days for value: from30To60Days
             /// </summary>
-            [EnumMember(Value = "from30To60Days")] From30To60Days = 4,
-
+            [EnumMember(Value = "from30To60Days")]
+            From30To60Days = 4,
+            
             /// <summary>
             /// Enum MoreThan60Days for value: moreThan60Days
             /// </summary>
-            [EnumMember(Value = "moreThan60Days")] MoreThan60Days = 5
+            [EnumMember(Value = "moreThan60Days")]
+            MoreThan60Days = 5
         }
 
         /// <summary>
         /// Indicator for the amount of time this payment method was enrolled with this account.
         /// </summary>
         /// <value>Indicator for the amount of time this payment method was enrolled with this account.</value>
-        [DataMember(Name = "paymentAccountIndicator", EmitDefaultValue = false)]
+        [DataMember(Name="paymentAccountIndicator", EmitDefaultValue=false)]
         public PaymentAccountIndicatorEnum? PaymentAccountIndicator { get; set; }
-
         /// <summary>
         /// Initializes a new instance of the <see cref="AccountInfo" /> class.
         /// </summary>
@@ -230,20 +248,7 @@ namespace Adyen.EcommLibrary.Model.Checkout
         /// <param name="PurchasesLast6Months">Number of purchases in the last 6 months..</param>
         /// <param name="SuspiciousActivity">Whether suspicious activity was recorded on this account..</param>
         /// <param name="WorkPhone">Shopper&#39;s work phone number (including the country code)..</param>
-        public AccountInfo(AccountAgeIndicatorEnum? AccountAgeIndicator = default(AccountAgeIndicatorEnum?),
-            DateTime? AccountChangeDate = default(DateTime?),
-            AccountChangeIndicatorEnum? AccountChangeIndicator = default(AccountChangeIndicatorEnum?),
-            DateTime? AccountCreationDate = default(DateTime?), int? AddCardAttemptsDay = default(int?),
-            DateTime? DeliveryAddressUsageDate = default(DateTime?),
-            DeliveryAddressUsageIndicatorEnum? DeliveryAddressUsageIndicator =
-                default(DeliveryAddressUsageIndicatorEnum?), string HomePhone = default(string),
-            string MobilePhone = default(string), DateTime? PasswordChangeDate = default(DateTime?),
-            PasswordChangeIndicatorEnum? PasswordChangeIndicator = default(PasswordChangeIndicatorEnum?),
-            int? PastTransactionsDay = default(int?), int? PastTransactionsYear = default(int?),
-            DateTime? PaymentAccountAge = default(DateTime?),
-            PaymentAccountIndicatorEnum? PaymentAccountIndicator = default(PaymentAccountIndicatorEnum?),
-            int? PurchasesLast6Months = default(int?), bool? SuspiciousActivity = default(bool?),
-            string WorkPhone = default(string))
+        public AccountInfo(AccountAgeIndicatorEnum? AccountAgeIndicator = default(AccountAgeIndicatorEnum?), DateTime? AccountChangeDate = default(DateTime?), AccountChangeIndicatorEnum? AccountChangeIndicator = default(AccountChangeIndicatorEnum?), DateTime? AccountCreationDate = default(DateTime?), int? AddCardAttemptsDay = default(int?), DateTime? DeliveryAddressUsageDate = default(DateTime?), DeliveryAddressUsageIndicatorEnum? DeliveryAddressUsageIndicator = default(DeliveryAddressUsageIndicatorEnum?), string HomePhone = default(string), string MobilePhone = default(string), DateTime? PasswordChangeDate = default(DateTime?), PasswordChangeIndicatorEnum? PasswordChangeIndicator = default(PasswordChangeIndicatorEnum?), int? PastTransactionsDay = default(int?), int? PastTransactionsYear = default(int?), DateTime? PaymentAccountAge = default(DateTime?), PaymentAccountIndicatorEnum? PaymentAccountIndicator = default(PaymentAccountIndicatorEnum?), int? PurchasesLast6Months = default(int?), bool? SuspiciousActivity = default(bool?), string WorkPhone = default(string))
         {
             this.AccountAgeIndicator = AccountAgeIndicator;
             this.AccountChangeDate = AccountChangeDate;
@@ -264,13 +269,13 @@ namespace Adyen.EcommLibrary.Model.Checkout
             this.SuspiciousActivity = SuspiciousActivity;
             this.WorkPhone = WorkPhone;
         }
-
+        
 
         /// <summary>
         /// Date when the shopper&#39;s account was last changed.
         /// </summary>
         /// <value>Date when the shopper&#39;s account was last changed.</value>
-        [DataMember(Name = "accountChangeDate", EmitDefaultValue = false)]
+        [DataMember(Name="accountChangeDate", EmitDefaultValue=false)]
         public DateTime? AccountChangeDate { get; set; }
 
 
@@ -278,21 +283,21 @@ namespace Adyen.EcommLibrary.Model.Checkout
         /// Date when the shopper&#39;s account was created.
         /// </summary>
         /// <value>Date when the shopper&#39;s account was created.</value>
-        [DataMember(Name = "accountCreationDate", EmitDefaultValue = false)]
+        [DataMember(Name="accountCreationDate", EmitDefaultValue=false)]
         public DateTime? AccountCreationDate { get; set; }
 
         /// <summary>
         /// Number of attempts the shopper tried to add a card to their account in the last day.
         /// </summary>
         /// <value>Number of attempts the shopper tried to add a card to their account in the last day.</value>
-        [DataMember(Name = "addCardAttemptsDay", EmitDefaultValue = false)]
+        [DataMember(Name="addCardAttemptsDay", EmitDefaultValue=false)]
         public int? AddCardAttemptsDay { get; set; }
 
         /// <summary>
         /// Date the selected delivery address was last used.
         /// </summary>
         /// <value>Date the selected delivery address was last used.</value>
-        [DataMember(Name = "deliveryAddressUsageDate", EmitDefaultValue = false)]
+        [DataMember(Name="deliveryAddressUsageDate", EmitDefaultValue=false)]
         public DateTime? DeliveryAddressUsageDate { get; set; }
 
 
@@ -300,21 +305,21 @@ namespace Adyen.EcommLibrary.Model.Checkout
         /// Shopper&#39;s home phone number (including the country code).
         /// </summary>
         /// <value>Shopper&#39;s home phone number (including the country code).</value>
-        [DataMember(Name = "homePhone", EmitDefaultValue = false)]
+        [DataMember(Name="homePhone", EmitDefaultValue=false)]
         public string HomePhone { get; set; }
 
         /// <summary>
         /// Shopper&#39;s mobile phone number (including the country code).
         /// </summary>
         /// <value>Shopper&#39;s mobile phone number (including the country code).</value>
-        [DataMember(Name = "mobilePhone", EmitDefaultValue = false)]
+        [DataMember(Name="mobilePhone", EmitDefaultValue=false)]
         public string MobilePhone { get; set; }
 
         /// <summary>
         /// Date when the shopper has changed their password.
         /// </summary>
         /// <value>Date when the shopper has changed their password.</value>
-        [DataMember(Name = "passwordChangeDate", EmitDefaultValue = false)]
+        [DataMember(Name="passwordChangeDate", EmitDefaultValue=false)]
         public DateTime? PasswordChangeDate { get; set; }
 
 
@@ -322,21 +327,21 @@ namespace Adyen.EcommLibrary.Model.Checkout
         /// Number of transactions of this shopper in the past 24 hours.
         /// </summary>
         /// <value>Number of transactions of this shopper in the past 24 hours.</value>
-        [DataMember(Name = "pastTransactionsDay", EmitDefaultValue = false)]
+        [DataMember(Name="pastTransactionsDay", EmitDefaultValue=false)]
         public int? PastTransactionsDay { get; set; }
 
         /// <summary>
         /// Number of transactions of this shopper in the past year.
         /// </summary>
         /// <value>Number of transactions of this shopper in the past year.</value>
-        [DataMember(Name = "pastTransactionsYear", EmitDefaultValue = false)]
+        [DataMember(Name="pastTransactionsYear", EmitDefaultValue=false)]
         public int? PastTransactionsYear { get; set; }
 
         /// <summary>
         /// Date this payment method was added to the shopper&#39;s account.
         /// </summary>
         /// <value>Date this payment method was added to the shopper&#39;s account.</value>
-        [DataMember(Name = "paymentAccountAge", EmitDefaultValue = false)]
+        [DataMember(Name="paymentAccountAge", EmitDefaultValue=false)]
         public DateTime? PaymentAccountAge { get; set; }
 
 
@@ -344,21 +349,21 @@ namespace Adyen.EcommLibrary.Model.Checkout
         /// Number of purchases in the last 6 months.
         /// </summary>
         /// <value>Number of purchases in the last 6 months.</value>
-        [DataMember(Name = "purchasesLast6Months", EmitDefaultValue = false)]
+        [DataMember(Name="purchasesLast6Months", EmitDefaultValue=false)]
         public int? PurchasesLast6Months { get; set; }
 
         /// <summary>
         /// Whether suspicious activity was recorded on this account.
         /// </summary>
         /// <value>Whether suspicious activity was recorded on this account.</value>
-        [DataMember(Name = "suspiciousActivity", EmitDefaultValue = false)]
+        [DataMember(Name="suspiciousActivity", EmitDefaultValue=false)]
         public bool? SuspiciousActivity { get; set; }
 
         /// <summary>
         /// Shopper&#39;s work phone number (including the country code).
         /// </summary>
         /// <value>Shopper&#39;s work phone number (including the country code).</value>
-        [DataMember(Name = "workPhone", EmitDefaultValue = false)]
+        [DataMember(Name="workPhone", EmitDefaultValue=false)]
         public string WorkPhone { get; set; }
 
         /// <summary>
@@ -390,7 +395,7 @@ namespace Adyen.EcommLibrary.Model.Checkout
             sb.Append("}\n");
             return sb.ToString();
         }
-
+  
         /// <summary>
         /// Returns the JSON string presentation of the object
         /// </summary>
@@ -407,7 +412,7 @@ namespace Adyen.EcommLibrary.Model.Checkout
         /// <returns>Boolean</returns>
         public override bool Equals(object input)
         {
-            return Equals(input as AccountInfo);
+            return this.Equals(input as AccountInfo);
         }
 
         /// <summary>
@@ -420,96 +425,96 @@ namespace Adyen.EcommLibrary.Model.Checkout
             if (input == null)
                 return false;
 
-            return
+            return 
                 (
-                    AccountAgeIndicator == input.AccountAgeIndicator ||
-                    AccountAgeIndicator != null &&
-                    AccountAgeIndicator.Equals(input.AccountAgeIndicator)
-                ) &&
+                    this.AccountAgeIndicator == input.AccountAgeIndicator ||
+                    (this.AccountAgeIndicator != null &&
+                    this.AccountAgeIndicator.Equals(input.AccountAgeIndicator))
+                ) && 
                 (
-                    AccountChangeDate == input.AccountChangeDate ||
-                    AccountChangeDate != null &&
-                    AccountChangeDate.Equals(input.AccountChangeDate)
-                ) &&
+                    this.AccountChangeDate == input.AccountChangeDate ||
+                    (this.AccountChangeDate != null &&
+                    this.AccountChangeDate.Equals(input.AccountChangeDate))
+                ) && 
                 (
-                    AccountChangeIndicator == input.AccountChangeIndicator ||
-                    AccountChangeIndicator != null &&
-                    AccountChangeIndicator.Equals(input.AccountChangeIndicator)
-                ) &&
+                    this.AccountChangeIndicator == input.AccountChangeIndicator ||
+                    (this.AccountChangeIndicator != null &&
+                    this.AccountChangeIndicator.Equals(input.AccountChangeIndicator))
+                ) && 
                 (
-                    AccountCreationDate == input.AccountCreationDate ||
-                    AccountCreationDate != null &&
-                    AccountCreationDate.Equals(input.AccountCreationDate)
-                ) &&
+                    this.AccountCreationDate == input.AccountCreationDate ||
+                    (this.AccountCreationDate != null &&
+                    this.AccountCreationDate.Equals(input.AccountCreationDate))
+                ) && 
                 (
-                    AddCardAttemptsDay == input.AddCardAttemptsDay ||
-                    AddCardAttemptsDay != null &&
-                    AddCardAttemptsDay.Equals(input.AddCardAttemptsDay)
-                ) &&
+                    this.AddCardAttemptsDay == input.AddCardAttemptsDay ||
+                    (this.AddCardAttemptsDay != null &&
+                    this.AddCardAttemptsDay.Equals(input.AddCardAttemptsDay))
+                ) && 
                 (
-                    DeliveryAddressUsageDate == input.DeliveryAddressUsageDate ||
-                    DeliveryAddressUsageDate != null &&
-                    DeliveryAddressUsageDate.Equals(input.DeliveryAddressUsageDate)
-                ) &&
+                    this.DeliveryAddressUsageDate == input.DeliveryAddressUsageDate ||
+                    (this.DeliveryAddressUsageDate != null &&
+                    this.DeliveryAddressUsageDate.Equals(input.DeliveryAddressUsageDate))
+                ) && 
                 (
-                    DeliveryAddressUsageIndicator == input.DeliveryAddressUsageIndicator ||
-                    DeliveryAddressUsageIndicator != null &&
-                    DeliveryAddressUsageIndicator.Equals(input.DeliveryAddressUsageIndicator)
-                ) &&
+                    this.DeliveryAddressUsageIndicator == input.DeliveryAddressUsageIndicator ||
+                    (this.DeliveryAddressUsageIndicator != null &&
+                    this.DeliveryAddressUsageIndicator.Equals(input.DeliveryAddressUsageIndicator))
+                ) && 
                 (
-                    HomePhone == input.HomePhone ||
-                    HomePhone != null &&
-                    HomePhone.Equals(input.HomePhone)
-                ) &&
+                    this.HomePhone == input.HomePhone ||
+                    (this.HomePhone != null &&
+                    this.HomePhone.Equals(input.HomePhone))
+                ) && 
                 (
-                    MobilePhone == input.MobilePhone ||
-                    MobilePhone != null &&
-                    MobilePhone.Equals(input.MobilePhone)
-                ) &&
+                    this.MobilePhone == input.MobilePhone ||
+                    (this.MobilePhone != null &&
+                    this.MobilePhone.Equals(input.MobilePhone))
+                ) && 
                 (
-                    PasswordChangeDate == input.PasswordChangeDate ||
-                    PasswordChangeDate != null &&
-                    PasswordChangeDate.Equals(input.PasswordChangeDate)
-                ) &&
+                    this.PasswordChangeDate == input.PasswordChangeDate ||
+                    (this.PasswordChangeDate != null &&
+                    this.PasswordChangeDate.Equals(input.PasswordChangeDate))
+                ) && 
                 (
-                    PasswordChangeIndicator == input.PasswordChangeIndicator ||
-                    PasswordChangeIndicator != null &&
-                    PasswordChangeIndicator.Equals(input.PasswordChangeIndicator)
-                ) &&
+                    this.PasswordChangeIndicator == input.PasswordChangeIndicator ||
+                    (this.PasswordChangeIndicator != null &&
+                    this.PasswordChangeIndicator.Equals(input.PasswordChangeIndicator))
+                ) && 
                 (
-                    PastTransactionsDay == input.PastTransactionsDay ||
-                    PastTransactionsDay != null &&
-                    PastTransactionsDay.Equals(input.PastTransactionsDay)
-                ) &&
+                    this.PastTransactionsDay == input.PastTransactionsDay ||
+                    (this.PastTransactionsDay != null &&
+                    this.PastTransactionsDay.Equals(input.PastTransactionsDay))
+                ) && 
                 (
-                    PastTransactionsYear == input.PastTransactionsYear ||
-                    PastTransactionsYear != null &&
-                    PastTransactionsYear.Equals(input.PastTransactionsYear)
-                ) &&
+                    this.PastTransactionsYear == input.PastTransactionsYear ||
+                    (this.PastTransactionsYear != null &&
+                    this.PastTransactionsYear.Equals(input.PastTransactionsYear))
+                ) && 
                 (
-                    PaymentAccountAge == input.PaymentAccountAge ||
-                    PaymentAccountAge != null &&
-                    PaymentAccountAge.Equals(input.PaymentAccountAge)
-                ) &&
+                    this.PaymentAccountAge == input.PaymentAccountAge ||
+                    (this.PaymentAccountAge != null &&
+                    this.PaymentAccountAge.Equals(input.PaymentAccountAge))
+                ) && 
                 (
-                    PaymentAccountIndicator == input.PaymentAccountIndicator ||
-                    PaymentAccountIndicator != null &&
-                    PaymentAccountIndicator.Equals(input.PaymentAccountIndicator)
-                ) &&
+                    this.PaymentAccountIndicator == input.PaymentAccountIndicator ||
+                    (this.PaymentAccountIndicator != null &&
+                    this.PaymentAccountIndicator.Equals(input.PaymentAccountIndicator))
+                ) && 
                 (
-                    PurchasesLast6Months == input.PurchasesLast6Months ||
-                    PurchasesLast6Months != null &&
-                    PurchasesLast6Months.Equals(input.PurchasesLast6Months)
-                ) &&
+                    this.PurchasesLast6Months == input.PurchasesLast6Months ||
+                    (this.PurchasesLast6Months != null &&
+                    this.PurchasesLast6Months.Equals(input.PurchasesLast6Months))
+                ) && 
                 (
-                    SuspiciousActivity == input.SuspiciousActivity ||
-                    SuspiciousActivity != null &&
-                    SuspiciousActivity.Equals(input.SuspiciousActivity)
-                ) &&
+                    this.SuspiciousActivity == input.SuspiciousActivity ||
+                    (this.SuspiciousActivity != null &&
+                    this.SuspiciousActivity.Equals(input.SuspiciousActivity))
+                ) && 
                 (
-                    WorkPhone == input.WorkPhone ||
-                    WorkPhone != null &&
-                    WorkPhone.Equals(input.WorkPhone)
+                    this.WorkPhone == input.WorkPhone ||
+                    (this.WorkPhone != null &&
+                    this.WorkPhone.Equals(input.WorkPhone))
                 );
         }
 
@@ -521,43 +526,43 @@ namespace Adyen.EcommLibrary.Model.Checkout
         {
             unchecked // Overflow is fine, just wrap
             {
-                var hashCode = 41;
-                if (AccountAgeIndicator != null)
-                    hashCode = hashCode * 59 + AccountAgeIndicator.GetHashCode();
-                if (AccountChangeDate != null)
-                    hashCode = hashCode * 59 + AccountChangeDate.GetHashCode();
-                if (AccountChangeIndicator != null)
-                    hashCode = hashCode * 59 + AccountChangeIndicator.GetHashCode();
-                if (AccountCreationDate != null)
-                    hashCode = hashCode * 59 + AccountCreationDate.GetHashCode();
-                if (AddCardAttemptsDay != null)
-                    hashCode = hashCode * 59 + AddCardAttemptsDay.GetHashCode();
-                if (DeliveryAddressUsageDate != null)
-                    hashCode = hashCode * 59 + DeliveryAddressUsageDate.GetHashCode();
-                if (DeliveryAddressUsageIndicator != null)
-                    hashCode = hashCode * 59 + DeliveryAddressUsageIndicator.GetHashCode();
-                if (HomePhone != null)
-                    hashCode = hashCode * 59 + HomePhone.GetHashCode();
-                if (MobilePhone != null)
-                    hashCode = hashCode * 59 + MobilePhone.GetHashCode();
-                if (PasswordChangeDate != null)
-                    hashCode = hashCode * 59 + PasswordChangeDate.GetHashCode();
-                if (PasswordChangeIndicator != null)
-                    hashCode = hashCode * 59 + PasswordChangeIndicator.GetHashCode();
-                if (PastTransactionsDay != null)
-                    hashCode = hashCode * 59 + PastTransactionsDay.GetHashCode();
-                if (PastTransactionsYear != null)
-                    hashCode = hashCode * 59 + PastTransactionsYear.GetHashCode();
-                if (PaymentAccountAge != null)
-                    hashCode = hashCode * 59 + PaymentAccountAge.GetHashCode();
-                if (PaymentAccountIndicator != null)
-                    hashCode = hashCode * 59 + PaymentAccountIndicator.GetHashCode();
-                if (PurchasesLast6Months != null)
-                    hashCode = hashCode * 59 + PurchasesLast6Months.GetHashCode();
-                if (SuspiciousActivity != null)
-                    hashCode = hashCode * 59 + SuspiciousActivity.GetHashCode();
-                if (WorkPhone != null)
-                    hashCode = hashCode * 59 + WorkPhone.GetHashCode();
+                int hashCode = 41;
+                if (this.AccountAgeIndicator != null)
+                    hashCode = hashCode * 59 + this.AccountAgeIndicator.GetHashCode();
+                if (this.AccountChangeDate != null)
+                    hashCode = hashCode * 59 + this.AccountChangeDate.GetHashCode();
+                if (this.AccountChangeIndicator != null)
+                    hashCode = hashCode * 59 + this.AccountChangeIndicator.GetHashCode();
+                if (this.AccountCreationDate != null)
+                    hashCode = hashCode * 59 + this.AccountCreationDate.GetHashCode();
+                if (this.AddCardAttemptsDay != null)
+                    hashCode = hashCode * 59 + this.AddCardAttemptsDay.GetHashCode();
+                if (this.DeliveryAddressUsageDate != null)
+                    hashCode = hashCode * 59 + this.DeliveryAddressUsageDate.GetHashCode();
+                if (this.DeliveryAddressUsageIndicator != null)
+                    hashCode = hashCode * 59 + this.DeliveryAddressUsageIndicator.GetHashCode();
+                if (this.HomePhone != null)
+                    hashCode = hashCode * 59 + this.HomePhone.GetHashCode();
+                if (this.MobilePhone != null)
+                    hashCode = hashCode * 59 + this.MobilePhone.GetHashCode();
+                if (this.PasswordChangeDate != null)
+                    hashCode = hashCode * 59 + this.PasswordChangeDate.GetHashCode();
+                if (this.PasswordChangeIndicator != null)
+                    hashCode = hashCode * 59 + this.PasswordChangeIndicator.GetHashCode();
+                if (this.PastTransactionsDay != null)
+                    hashCode = hashCode * 59 + this.PastTransactionsDay.GetHashCode();
+                if (this.PastTransactionsYear != null)
+                    hashCode = hashCode * 59 + this.PastTransactionsYear.GetHashCode();
+                if (this.PaymentAccountAge != null)
+                    hashCode = hashCode * 59 + this.PaymentAccountAge.GetHashCode();
+                if (this.PaymentAccountIndicator != null)
+                    hashCode = hashCode * 59 + this.PaymentAccountIndicator.GetHashCode();
+                if (this.PurchasesLast6Months != null)
+                    hashCode = hashCode * 59 + this.PurchasesLast6Months.GetHashCode();
+                if (this.SuspiciousActivity != null)
+                    hashCode = hashCode * 59 + this.SuspiciousActivity.GetHashCode();
+                if (this.WorkPhone != null)
+                    hashCode = hashCode * 59 + this.WorkPhone.GetHashCode();
                 return hashCode;
             }
         }
@@ -567,9 +572,10 @@ namespace Adyen.EcommLibrary.Model.Checkout
         /// </summary>
         /// <param name="validationContext">Validation context</param>
         /// <returns>Validation Result</returns>
-        IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
         {
             yield break;
         }
     }
+
 }

@@ -14,19 +14,20 @@ namespace Adyen.EcommLibrary.Test
         [TestMethod]
         public void TestGetPostParameters()
         {
-            var client = CreateMockTestClientRequest("");
+            var client = base.CreateMockTestClientRequest("");
             var hostedPaymentPages = new HostedPaymentPages(client);
             var directoryLookupRequest = CreateDirectoryLookupRequest();
             var postParameters = hostedPaymentPages.GetPostParametersFromDlRequest(directoryLookupRequest);
 
             Assert.AreEqual("EUR", postParameters[Fields.CurrencyCode]);
             Assert.AreEqual(44, postParameters[Fields.MerchantSig].Length);
+
         }
 
         [TestMethod]
         public void TestGetPaymentMethods()
         {
-            var client = CreateMockTestClientPost("Mocks/hpp/directoryLookup-success.json");
+            var client = base.CreateMockTestClientPost("Mocks/hpp/directoryLookup-success.json");
             var hostedPaymentPages = new HostedPaymentPages(client);
             var directoryLookupRequest = CreateDirectoryLookupRequest();
             var paymentMethods = hostedPaymentPages.GetPaymentMethods(directoryLookupRequest);
@@ -56,19 +57,20 @@ namespace Adyen.EcommLibrary.Test
         {
             try
             {
-                var client = CreateMockTestClientPost("Mocks/hpp/directoryLookup-error.htm");
+                var client = base.CreateMockTestClientPost("Mocks/hpp/directoryLookup-error.htm");
                 var hostedPaymentPages = new HostedPaymentPages(client);
                 var directoryLookupRequest = CreateDirectoryLookupRequest();
                 Assert.Fail("Expected exception");
             }
             catch (Exception)
             {
+                
             }
         }
-
+        
         private DirectoryLookupRequest CreateDirectoryLookupRequest()
         {
-            var directoryLookupRequest = new DirectoryLookupRequest()
+            DirectoryLookupRequest directoryLookupRequest = new DirectoryLookupRequest()
             {
                 CountryCode = "NL",
                 MerchantReference = "test:\\'test",

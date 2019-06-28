@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Text;
 
 namespace Adyen.EcommLibrary
 {
@@ -6,8 +8,8 @@ namespace Adyen.EcommLibrary
     {
         internal static Type CreateGenericTypeFromStringFullNamespace(Type genericType, string tFullNamespace)
         {
-            Type[] typeArgs = {Type.GetType(tFullNamespace)};
-            var repositoryType = genericType.MakeGenericType(typeArgs);
+            Type[] typeArgs = { Type.GetType(tFullNamespace) };
+            Type repositoryType = genericType.MakeGenericType(typeArgs);
 
             return repositoryType;
         }

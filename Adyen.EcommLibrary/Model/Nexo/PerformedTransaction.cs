@@ -7,6 +7,7 @@
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     public partial class PerformedTransaction
     {
+
         /// <remarks/>
         [System.Xml.Serialization.XmlElementAttribute(Form = System.Xml.Schema.XmlSchemaForm.Unqualified)]
         public Response Response;
@@ -24,12 +25,12 @@
         public PaymentResult PaymentResult;
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute("LoyaltyResult", Form =
-            System.Xml.Schema.XmlSchemaForm.Unqualified)]
+        [System.Xml.Serialization.XmlElementAttribute("LoyaltyResult", Form = System.Xml.Schema.XmlSchemaForm.Unqualified)]
         public LoyaltyResult[] LoyaltyResult;
 
         /// <remarks/>
         [System.Xml.Serialization.XmlAttributeAttribute()]
         public decimal? ReversedAmount;
+
     }
 }

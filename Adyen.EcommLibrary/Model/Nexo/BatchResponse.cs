@@ -7,13 +7,13 @@
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     public partial class BatchResponse
     {
+
         /// <remarks/>
         [System.Xml.Serialization.XmlElementAttribute(Form = System.Xml.Schema.XmlSchemaForm.Unqualified)]
         public Response Response;
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute("PerformedTransaction", Form =
-            System.Xml.Schema.XmlSchemaForm.Unqualified)]
+        [System.Xml.Serialization.XmlElementAttribute("PerformedTransaction", Form = System.Xml.Schema.XmlSchemaForm.Unqualified)]
         public PerformedTransaction[] PerformedTransaction;
     }
 }

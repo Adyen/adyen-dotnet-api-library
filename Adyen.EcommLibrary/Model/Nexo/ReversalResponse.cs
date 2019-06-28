@@ -9,6 +9,7 @@ namespace Adyen.EcommLibrary.Model.Nexo
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     public partial class ReversalResponse : IMessagePayload
     {
+
         /// <remarks/>
         [System.Xml.Serialization.XmlElementAttribute(Form = System.Xml.Schema.XmlSchemaForm.Unqualified)]
         public Response Response;
@@ -22,8 +23,7 @@ namespace Adyen.EcommLibrary.Model.Nexo
         public OriginalPOITransaction OriginalPOITransaction;
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute("PaymentReceipt", Form =
-            System.Xml.Schema.XmlSchemaForm.Unqualified)]
+        [System.Xml.Serialization.XmlElementAttribute("PaymentReceipt", Form = System.Xml.Schema.XmlSchemaForm.Unqualified)]
         public PaymentReceipt[] PaymentReceipt;
 
         /// <remarks/>

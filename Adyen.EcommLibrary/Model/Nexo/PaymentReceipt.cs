@@ -7,6 +7,7 @@
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     public partial class PaymentReceipt
     {
+
         /// <remarks/>
         [System.Xml.Serialization.XmlElementAttribute(Form = System.Xml.Schema.XmlSchemaForm.Unqualified)]
         public OutputContent OutputContent;
@@ -16,17 +17,19 @@
         public string DocumentQualifier;
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute()] [System.ComponentModel.DefaultValueAttribute(false)]
+        [System.Xml.Serialization.XmlAttributeAttribute()]
+        [System.ComponentModel.DefaultValueAttribute(false)]
         public bool IntegratedPrintFlag;
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute()] [System.ComponentModel.DefaultValueAttribute(false)]
+        [System.Xml.Serialization.XmlAttributeAttribute()]
+        [System.ComponentModel.DefaultValueAttribute(false)]
         public bool RequiredSignatureFlag;
 
         public PaymentReceipt()
         {
-            IntegratedPrintFlag = false;
-            RequiredSignatureFlag = false;
+            this.IntegratedPrintFlag = false;
+            this.RequiredSignatureFlag = false;
         }
     }
 }

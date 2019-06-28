@@ -7,6 +7,7 @@
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     public partial class KeyTransportType
     {
+
         /// <remarks/>
         [System.Xml.Serialization.XmlElementAttribute(Form = System.Xml.Schema.XmlSchemaForm.Unqualified)]
         public RecipientIdentifierType RecipientIdentifier;
@@ -16,7 +17,8 @@
         public AlgorithmIdentifier KeyEncryptionAlgorithm;
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute()] [System.ComponentModel.DefaultValueAttribute("v0")]
+        [System.Xml.Serialization.XmlAttributeAttribute()]
+        [System.ComponentModel.DefaultValueAttribute("v0")]
         public string Version;
 
         /// <remarks/>
@@ -25,7 +27,7 @@
 
         public KeyTransportType()
         {
-            Version = "v0";
+            this.Version = "v0";
         }
     }
 }

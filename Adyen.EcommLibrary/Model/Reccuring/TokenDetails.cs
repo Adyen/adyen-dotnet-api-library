@@ -22,30 +22,29 @@ namespace Adyen.EcommLibrary.Model.Reccuring
     /// TokenDetails
     /// </summary>
     [DataContract]
-    public partial class TokenDetails : IEquatable<TokenDetails>, IValidatableObject
+    public partial class TokenDetails :  IEquatable<TokenDetails>, IValidatableObject
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="TokenDetails" /> class.
         /// </summary>
         /// <param name="TokenData">TokenData.</param>
         /// <param name="TokenDataType">TokenDataType.</param>
-        public TokenDetails(Dictionary<string, string> TokenData = default(Dictionary<string, string>),
-            string TokenDataType = default(string))
+        public TokenDetails(Dictionary<string, string> TokenData = default(Dictionary<string, string>), string TokenDataType = default(string))
         {
             this.TokenData = TokenData;
             this.TokenDataType = TokenDataType;
         }
-
+        
         /// <summary>
         /// Gets or Sets TokenData
         /// </summary>
-        [DataMember(Name = "tokenData", EmitDefaultValue = false)]
+        [DataMember(Name="tokenData", EmitDefaultValue=false)]
         public Dictionary<string, string> TokenData { get; set; }
 
         /// <summary>
         /// Gets or Sets TokenDataType
         /// </summary>
-        [DataMember(Name = "tokenDataType", EmitDefaultValue = false)]
+        [DataMember(Name="tokenDataType", EmitDefaultValue=false)]
         public string TokenDataType { get; set; }
 
         /// <summary>
@@ -61,7 +60,7 @@ namespace Adyen.EcommLibrary.Model.Reccuring
             sb.Append("}\n");
             return sb.ToString();
         }
-
+  
         /// <summary>
         /// Returns the JSON string presentation of the object
         /// </summary>
@@ -79,7 +78,7 @@ namespace Adyen.EcommLibrary.Model.Reccuring
         public override bool Equals(object obj)
         {
             // credit: http://stackoverflow.com/a/10454552/677735
-            return Equals(obj as TokenDetails);
+            return this.Equals(obj as TokenDetails);
         }
 
         /// <summary>
@@ -93,16 +92,16 @@ namespace Adyen.EcommLibrary.Model.Reccuring
             if (other == null)
                 return false;
 
-            return
+            return 
                 (
-                    TokenData == other.TokenData ||
-                    TokenData != null &&
-                    TokenData.SequenceEqual(other.TokenData)
-                ) &&
+                    this.TokenData == other.TokenData ||
+                    this.TokenData != null &&
+                    this.TokenData.SequenceEqual(other.TokenData)
+                ) && 
                 (
-                    TokenDataType == other.TokenDataType ||
-                    TokenDataType != null &&
-                    TokenDataType.Equals(other.TokenDataType)
+                    this.TokenDataType == other.TokenDataType ||
+                    this.TokenDataType != null &&
+                    this.TokenDataType.Equals(other.TokenDataType)
                 );
         }
 
@@ -115,12 +114,12 @@ namespace Adyen.EcommLibrary.Model.Reccuring
             // credit: http://stackoverflow.com/a/263416/677735
             unchecked // Overflow is fine, just wrap
             {
-                var hash = 41;
+                int hash = 41;
                 // Suitable nullity checks etc, of course :)
-                if (TokenData != null)
-                    hash = hash * 59 + TokenData.GetHashCode();
-                if (TokenDataType != null)
-                    hash = hash * 59 + TokenDataType.GetHashCode();
+                if (this.TokenData != null)
+                    hash = hash * 59 + this.TokenData.GetHashCode();
+                if (this.TokenDataType != null)
+                    hash = hash * 59 + this.TokenDataType.GetHashCode();
                 return hash;
             }
         }
@@ -130,9 +129,10 @@ namespace Adyen.EcommLibrary.Model.Reccuring
         /// </summary>
         /// <param name="validationContext">Validation context</param>
         /// <returns>Validation Result</returns>
-        IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
         {
             yield break;
         }
     }
+
 }

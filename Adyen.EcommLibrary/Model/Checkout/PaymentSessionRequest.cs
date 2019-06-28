@@ -1,3 +1,4 @@
+
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -15,7 +16,7 @@ namespace Adyen.EcommLibrary.Model.Checkout
     /// PaymentSessionRequest
     /// </summary>
     [DataContract]
-    public partial class PaymentSessionRequest : IEquatable<PaymentSessionRequest>, IValidatableObject
+    public partial class PaymentSessionRequest :  IEquatable<PaymentSessionRequest>, IValidatableObject
     {
         /// <summary>
         /// The platform where a payment transaction takes place. This field is optional for filtering out payment methods that are only available on specific platforms. If this value is not set, then we will try to infer it from the &#x60;sdkVersion&#x60; or &#x60;token&#x60;.  Possible values: * iOS * Android * Web
@@ -24,29 +25,32 @@ namespace Adyen.EcommLibrary.Model.Checkout
         [JsonConverter(typeof(StringEnumConverter))]
         public enum ChannelEnum
         {
+            
             /// <summary>
             /// Enum IOS for value: iOS
             /// </summary>
-            [EnumMember(Value = "iOS")] IOS = 1,
-
+            [EnumMember(Value = "iOS")]
+            IOS = 1,
+            
             /// <summary>
             /// Enum Android for value: Android
             /// </summary>
-            [EnumMember(Value = "Android")] Android = 2,
-
+            [EnumMember(Value = "Android")]
+            Android = 2,
+            
             /// <summary>
             /// Enum Web for value: Web
             /// </summary>
-            [EnumMember(Value = "Web")] Web = 3
+            [EnumMember(Value = "Web")]
+            Web = 3
         }
 
         /// <summary>
         /// The platform where a payment transaction takes place. This field is optional for filtering out payment methods that are only available on specific platforms. If this value is not set, then we will try to infer it from the &#x60;sdkVersion&#x60; or &#x60;token&#x60;.  Possible values: * iOS * Android * Web
         /// </summary>
         /// <value>The platform where a payment transaction takes place. This field is optional for filtering out payment methods that are only available on specific platforms. If this value is not set, then we will try to infer it from the &#x60;sdkVersion&#x60; or &#x60;token&#x60;.  Possible values: * iOS * Android * Web</value>
-        [DataMember(Name = "channel", EmitDefaultValue = false)]
+        [DataMember(Name="channel", EmitDefaultValue=false)]
         public ChannelEnum? Channel { get; set; }
-
         /// <summary>
         /// The type of the entity the payment is processed for.
         /// </summary>
@@ -54,24 +58,26 @@ namespace Adyen.EcommLibrary.Model.Checkout
         [JsonConverter(typeof(StringEnumConverter))]
         public enum EntityTypeEnum
         {
+            
             /// <summary>
             /// Enum NaturalPerson for value: NaturalPerson
             /// </summary>
-            [EnumMember(Value = "NaturalPerson")] NaturalPerson = 1,
-
+            [EnumMember(Value = "NaturalPerson")]
+            NaturalPerson = 1,
+            
             /// <summary>
             /// Enum CompanyName for value: CompanyName
             /// </summary>
-            [EnumMember(Value = "CompanyName")] CompanyName = 2
+            [EnumMember(Value = "CompanyName")]
+            CompanyName = 2
         }
 
         /// <summary>
         /// The type of the entity the payment is processed for.
         /// </summary>
         /// <value>The type of the entity the payment is processed for.</value>
-        [DataMember(Name = "entityType", EmitDefaultValue = false)]
+        [DataMember(Name="entityType", EmitDefaultValue=false)]
         public EntityTypeEnum? EntityType { get; set; }
-
         /// <summary>
         /// Defines a recurring payment type. Allowed values: * &#x60;Subscription&#x60; – A transaction for a fixed or variable amount, which follows a fixed schedule. * &#x60;CardOnFile&#x60; – Card details are stored to enable one-click or omnichannel journeys, or simply to streamline the checkout process. Any subscription not following a fixed schedule is also considered a card-on-file transaction.
         /// </summary>
@@ -79,24 +85,26 @@ namespace Adyen.EcommLibrary.Model.Checkout
         [JsonConverter(typeof(StringEnumConverter))]
         public enum RecurringProcessingModelEnum
         {
+            
             /// <summary>
             /// Enum CardOnFile for value: CardOnFile
             /// </summary>
-            [EnumMember(Value = "CardOnFile")] CardOnFile = 1,
-
+            [EnumMember(Value = "CardOnFile")]
+            CardOnFile = 1,
+            
             /// <summary>
             /// Enum Subscription for value: Subscription
             /// </summary>
-            [EnumMember(Value = "Subscription")] Subscription = 2
+            [EnumMember(Value = "Subscription")]
+            Subscription = 2
         }
 
         /// <summary>
         /// Defines a recurring payment type. Allowed values: * &#x60;Subscription&#x60; – A transaction for a fixed or variable amount, which follows a fixed schedule. * &#x60;CardOnFile&#x60; – Card details are stored to enable one-click or omnichannel journeys, or simply to streamline the checkout process. Any subscription not following a fixed schedule is also considered a card-on-file transaction.
         /// </summary>
         /// <value>Defines a recurring payment type. Allowed values: * &#x60;Subscription&#x60; – A transaction for a fixed or variable amount, which follows a fixed schedule. * &#x60;CardOnFile&#x60; – Card details are stored to enable one-click or omnichannel journeys, or simply to streamline the checkout process. Any subscription not following a fixed schedule is also considered a card-on-file transaction.</value>
-        [DataMember(Name = "recurringProcessingModel", EmitDefaultValue = false)]
+        [DataMember(Name="recurringProcessingModel", EmitDefaultValue=false)]
         public RecurringProcessingModelEnum? RecurringProcessingModel { get; set; }
-
         /// <summary>
         /// Specifies the sales channel, through which the shopper gives their card details, and whether the shopper is a returning customer. For the web service API, Adyen assumes Ecommerce shopper interaction by default.  This field has the following possible values: * &#x60;Ecommerce&#x60; - Online transactions where the cardholder is present (online). For better authorisation rates, we recommend sending the card security code (CSC) along with the request. * &#x60;ContAuth&#x60; - Card on file and/or subscription transactions, where the cardholder is known to the merchant (returning customer). If the shopper is present (online), you can supply also the CSC to improve authorisation (one-click payment). * &#x60;Moto&#x60; - Mail-order and telephone-order transactions where the shopper is in contact with the merchant via email or telephone. * &#x60;POS&#x60; - Point-of-sale transactions where the shopper is physically present to make a payment using a secure payment terminal.
         /// </summary>
@@ -104,42 +112,43 @@ namespace Adyen.EcommLibrary.Model.Checkout
         [JsonConverter(typeof(StringEnumConverter))]
         public enum ShopperInteractionEnum
         {
+            
             /// <summary>
             /// Enum Ecommerce for value: Ecommerce
             /// </summary>
-            [EnumMember(Value = "Ecommerce")] Ecommerce = 1,
-
+            [EnumMember(Value = "Ecommerce")]
+            Ecommerce = 1,
+            
             /// <summary>
             /// Enum ContAuth for value: ContAuth
             /// </summary>
-            [EnumMember(Value = "ContAuth")] ContAuth = 2,
-
+            [EnumMember(Value = "ContAuth")]
+            ContAuth = 2,
+            
             /// <summary>
             /// Enum Moto for value: Moto
             /// </summary>
-            [EnumMember(Value = "Moto")] Moto = 3,
-
+            [EnumMember(Value = "Moto")]
+            Moto = 3,
+            
             /// <summary>
             /// Enum POS for value: POS
             /// </summary>
-            [EnumMember(Value = "POS")] POS = 4
+            [EnumMember(Value = "POS")]
+            POS = 4
         }
 
         /// <summary>
         /// Specifies the sales channel, through which the shopper gives their card details, and whether the shopper is a returning customer. For the web service API, Adyen assumes Ecommerce shopper interaction by default.  This field has the following possible values: * &#x60;Ecommerce&#x60; - Online transactions where the cardholder is present (online). For better authorisation rates, we recommend sending the card security code (CSC) along with the request. * &#x60;ContAuth&#x60; - Card on file and/or subscription transactions, where the cardholder is known to the merchant (returning customer). If the shopper is present (online), you can supply also the CSC to improve authorisation (one-click payment). * &#x60;Moto&#x60; - Mail-order and telephone-order transactions where the shopper is in contact with the merchant via email or telephone. * &#x60;POS&#x60; - Point-of-sale transactions where the shopper is physically present to make a payment using a secure payment terminal.
         /// </summary>
         /// <value>Specifies the sales channel, through which the shopper gives their card details, and whether the shopper is a returning customer. For the web service API, Adyen assumes Ecommerce shopper interaction by default.  This field has the following possible values: * &#x60;Ecommerce&#x60; - Online transactions where the cardholder is present (online). For better authorisation rates, we recommend sending the card security code (CSC) along with the request. * &#x60;ContAuth&#x60; - Card on file and/or subscription transactions, where the cardholder is known to the merchant (returning customer). If the shopper is present (online), you can supply also the CSC to improve authorisation (one-click payment). * &#x60;Moto&#x60; - Mail-order and telephone-order transactions where the shopper is in contact with the merchant via email or telephone. * &#x60;POS&#x60; - Point-of-sale transactions where the shopper is physically present to make a payment using a secure payment terminal.</value>
-        [DataMember(Name = "shopperInteraction", EmitDefaultValue = false)]
+        [DataMember(Name="shopperInteraction", EmitDefaultValue=false)]
         public ShopperInteractionEnum? ShopperInteraction { get; set; }
-
         /// <summary>
         /// Initializes a new instance of the <see cref="PaymentSessionRequest" /> class.
         /// </summary>
         [JsonConstructor]
-        protected PaymentSessionRequest()
-        {
-        }
-
+        protected PaymentSessionRequest() { }
         /// <summary>
         /// Initializes a new instance of the <see cref="PaymentSessionRequest" /> class.
         /// </summary>
@@ -205,71 +214,53 @@ namespace Adyen.EcommLibrary.Model.Checkout
         /// <param name="Token">The token obtained when initializing the SDK.  &gt; This parameter is required for iOS and Android; not required for Web..</param>
         /// <param name="TotalsGroup">The reference value to aggregate sales totals in reporting. When not specified, the store field is used (if available)..</param>
         /// <param name="TrustedShopper">Set to true if the payment should be routed to a trusted MID..</param>
-        public PaymentSessionRequest(AccountInfo AccountInfo = default(AccountInfo),
-            Amount AdditionalAmount = default(Amount),
-            Dictionary<string, string> AdditionalData = default(Dictionary<string, string>),
-            List<string> AllowedPaymentMethods = default(List<string>), Amount Amount = default(Amount),
-            ApplicationInfo ApplicationInfo = default(ApplicationInfo), BankAccount BankAccount = default(BankAccount),
-            Address BillingAddress = default(Address), List<string> BlockedPaymentMethods = default(List<string>),
-            BrowserInfo BrowserInfo = default(BrowserInfo), int? CaptureDelayHours = default(int?),
-            Card Card = default(Card), ChannelEnum? Channel = default(ChannelEnum?), Company Company = default(Company),
-            Configuration Configuration = default(Configuration), string CountryCode = default(string),
-            DateTime? DateOfBirth = default(DateTime?), ForexQuote DccQuote = default(ForexQuote),
-            Address DeliveryAddress = default(Address), DateTime? DeliveryDate = default(DateTime?),
-            string DeviceFingerprint = default(string), bool? EnableOneClick = default(bool?),
-            bool? EnablePayOut = default(bool?), bool? EnableRecurring = default(bool?),
-            EntityTypeEnum? EntityType = default(EntityTypeEnum?), int? FraudOffset = default(int?),
-            bool? Html = default(bool?), Installments Installments = default(Installments),
-            List<LineItem> LineItems = default(List<LineItem>), string Mcc = default(string),
-            string MerchantAccount = default(string), string MerchantOrderReference = default(string),
-            MerchantRiskIndicator MerchantRiskIndicator = default(MerchantRiskIndicator),
-            Dictionary<string, string> Metadata = default(Dictionary<string, string>),
-            ThreeDSecureData MpiData = default(ThreeDSecureData), string Nationality = default(string),
-            string OrderReference = default(string), string Origin = default(string),
-            Recurring Recurring = default(Recurring),
-            RecurringProcessingModelEnum? RecurringProcessingModel = default(RecurringProcessingModelEnum?),
-            string Reference = default(string), string ReturnUrl = default(string), string SdkVersion = default(string),
-            string SelectedBrand = default(string), string SelectedRecurringDetailReference = default(string),
-            string SessionId = default(string), string SessionValidity = default(string),
-            string ShopperEmail = default(string), string ShopperIP = default(string),
-            ShopperInteractionEnum? ShopperInteraction = default(ShopperInteractionEnum?),
-            string ShopperLocale = default(string), Name ShopperName = default(Name),
-            string ShopperReference = default(string), string ShopperStatement = default(string),
-            string SocialSecurityNumber = default(string), List<Split> Splits = default(List<Split>),
-            string Store = default(string), string TelephoneNumber = default(string),
-            ThreeDS2RequestData ThreeDS2RequestData = default(ThreeDS2RequestData), string Token = default(string),
-            string TotalsGroup = default(string), bool? TrustedShopper = default(bool?))
+        public PaymentSessionRequest(AccountInfo AccountInfo = default(AccountInfo), Amount AdditionalAmount = default(Amount), Dictionary<string, string> AdditionalData = default(Dictionary<string, string>), List<string> AllowedPaymentMethods = default(List<string>), Amount Amount = default(Amount), ApplicationInformation.ApplicationInfo ApplicationInfo = default(ApplicationInformation.ApplicationInfo), BankAccount BankAccount = default(BankAccount), Address BillingAddress = default(Address), List<string> BlockedPaymentMethods = default(List<string>), BrowserInfo BrowserInfo = default(BrowserInfo), int? CaptureDelayHours = default(int?), Card Card = default(Card), ChannelEnum? Channel = default(ChannelEnum?), Company Company = default(Company), Configuration Configuration = default(Configuration), string CountryCode = default(string), DateTime? DateOfBirth = default(DateTime?), ForexQuote DccQuote = default(ForexQuote), Address DeliveryAddress = default(Address), DateTime? DeliveryDate = default(DateTime?), string DeviceFingerprint = default(string), bool? EnableOneClick = default(bool?), bool? EnablePayOut = default(bool?), bool? EnableRecurring = default(bool?), EntityTypeEnum? EntityType = default(EntityTypeEnum?), int? FraudOffset = default(int?), bool? Html = default(bool?), Installments Installments = default(Installments), List<LineItem> LineItems = default(List<LineItem>), string Mcc = default(string), string MerchantAccount = default(string), string MerchantOrderReference = default(string), MerchantRiskIndicator MerchantRiskIndicator = default(MerchantRiskIndicator), Dictionary<string, string> Metadata = default(Dictionary<string, string>), ThreeDSecureData MpiData = default(ThreeDSecureData), string Nationality = default(string), string OrderReference = default(string), string Origin = default(string), Recurring Recurring = default(Recurring), RecurringProcessingModelEnum? RecurringProcessingModel = default(RecurringProcessingModelEnum?), string Reference = default(string), string ReturnUrl = default(string), string SdkVersion = default(string), string SelectedBrand = default(string), string SelectedRecurringDetailReference = default(string), string SessionId = default(string), string SessionValidity = default(string), string ShopperEmail = default(string), string ShopperIP = default(string), ShopperInteractionEnum? ShopperInteraction = default(ShopperInteractionEnum?), string ShopperLocale = default(string), Name ShopperName = default(Name), string ShopperReference = default(string), string ShopperStatement = default(string), string SocialSecurityNumber = default(string), List<Split> Splits = default(List<Split>), string Store = default(string), string TelephoneNumber = default(string), ThreeDS2RequestData ThreeDS2RequestData = default(ThreeDS2RequestData), string Token = default(string), string TotalsGroup = default(string), bool? TrustedShopper = default(bool?))
         {
             // to ensure "Amount" is required (not null)
             if (Amount == null)
-                throw new InvalidDataException(
-                    "Amount is a required property for PaymentSessionRequest and cannot be null");
+            {
+                throw new InvalidDataException("Amount is a required property for PaymentSessionRequest and cannot be null");
+            }
             else
+            {
                 this.Amount = Amount;
+            }
             // to ensure "CountryCode" is required (not null)
             if (CountryCode == null)
-                throw new InvalidDataException(
-                    "CountryCode is a required property for PaymentSessionRequest and cannot be null");
+            {
+                throw new InvalidDataException("CountryCode is a required property for PaymentSessionRequest and cannot be null");
+            }
             else
+            {
                 this.CountryCode = CountryCode;
+            }
             // to ensure "MerchantAccount" is required (not null)
             if (MerchantAccount == null)
-                throw new InvalidDataException(
-                    "MerchantAccount is a required property for PaymentSessionRequest and cannot be null");
+            {
+                throw new InvalidDataException("MerchantAccount is a required property for PaymentSessionRequest and cannot be null");
+            }
             else
+            {
                 this.MerchantAccount = MerchantAccount;
+            }
             // to ensure "Reference" is required (not null)
             if (Reference == null)
-                throw new InvalidDataException(
-                    "Reference is a required property for PaymentSessionRequest and cannot be null");
+            {
+                throw new InvalidDataException("Reference is a required property for PaymentSessionRequest and cannot be null");
+            }
             else
+            {
                 this.Reference = Reference;
+            }
             // to ensure "ReturnUrl" is required (not null)
             if (ReturnUrl == null)
-                throw new InvalidDataException(
-                    "ReturnUrl is a required property for PaymentSessionRequest and cannot be null");
+            {
+                throw new InvalidDataException("ReturnUrl is a required property for PaymentSessionRequest and cannot be null");
+            }
             else
+            {
                 this.ReturnUrl = ReturnUrl;
+            }
             this.AccountInfo = AccountInfo;
             this.AdditionalAmount = AdditionalAmount;
             this.AdditionalData = AdditionalData;
@@ -328,89 +319,89 @@ namespace Adyen.EcommLibrary.Model.Checkout
             this.TotalsGroup = TotalsGroup;
             this.TrustedShopper = TrustedShopper;
         }
-
+        
         /// <summary>
         /// Shopper account information for 3D Secure 2.0.
         /// </summary>
         /// <value>Shopper account information for 3D Secure 2.0.</value>
-        [DataMember(Name = "accountInfo", EmitDefaultValue = false)]
+        [DataMember(Name="accountInfo", EmitDefaultValue=false)]
         public AccountInfo AccountInfo { get; set; }
 
         /// <summary>
         /// If you want a [BIN or card verification](https://docs.adyen.com/developers/payment-methods/cards/bin-data-and-card-verification) request to use a non-zero value, assign this value to &#x60;additionalAmount&#x60; (while the amount must be still set to 0 to trigger BIN or card verification). Required to be in the same currency as the &#x60;amount&#x60;. 
         /// </summary>
         /// <value>If you want a [BIN or card verification](https://docs.adyen.com/developers/payment-methods/cards/bin-data-and-card-verification) request to use a non-zero value, assign this value to &#x60;additionalAmount&#x60; (while the amount must be still set to 0 to trigger BIN or card verification). Required to be in the same currency as the &#x60;amount&#x60;. </value>
-        [DataMember(Name = "additionalAmount", EmitDefaultValue = false)]
+        [DataMember(Name="additionalAmount", EmitDefaultValue=false)]
         public Amount AdditionalAmount { get; set; }
 
         /// <summary>
         /// This field contains additional data, which may be required for a particular payment request.  The &#x60;additionalData&#x60; object consists of entries, each of which includes the key and value. For more information on possible key-value pairs, refer to the [additionalData section](https://docs.adyen.com/developers/api-reference/payments-api#paymentrequestadditionaldata).
         /// </summary>
         /// <value>This field contains additional data, which may be required for a particular payment request.  The &#x60;additionalData&#x60; object consists of entries, each of which includes the key and value. For more information on possible key-value pairs, refer to the [additionalData section](https://docs.adyen.com/developers/api-reference/payments-api#paymentrequestadditionaldata).</value>
-        [DataMember(Name = "additionalData", EmitDefaultValue = false)]
+        [DataMember(Name="additionalData", EmitDefaultValue=false)]
         public Dictionary<string, string> AdditionalData { get; set; }
 
         /// <summary>
         /// List of payments methods to be presented to the shopper. To refer to payment methods, use their &#x60;brandCode&#x60; from [Payment methods overview](https://docs.adyen.com/developers/payment-methods/payment-methods-overview).
         /// </summary>
         /// <value>List of payments methods to be presented to the shopper. To refer to payment methods, use their &#x60;brandCode&#x60; from [Payment methods overview](https://docs.adyen.com/developers/payment-methods/payment-methods-overview).</value>
-        [DataMember(Name = "allowedPaymentMethods", EmitDefaultValue = false)]
+        [DataMember(Name="allowedPaymentMethods", EmitDefaultValue=false)]
         public List<string> AllowedPaymentMethods { get; set; }
 
         /// <summary>
         /// The amount information for the transaction. For [BIN or card verification](https://docs.adyen.com/developers/payment-methods/cards/bin-data-and-card-verification) requests, set amount to 0 (zero).
         /// </summary>
         /// <value>The amount information for the transaction. For [BIN or card verification](https://docs.adyen.com/developers/payment-methods/cards/bin-data-and-card-verification) requests, set amount to 0 (zero).</value>
-        [DataMember(Name = "amount", EmitDefaultValue = false)]
+        [DataMember(Name="amount", EmitDefaultValue=false)]
         public Amount Amount { get; set; }
 
         /// <summary>
         /// Application information.
         /// </summary>
         /// <value>Application information.</value>
-        [DataMember(Name = "applicationInfo", EmitDefaultValue = false)]
-        public ApplicationInfo ApplicationInfo { get; set; }
+        [DataMember(Name="applicationInfo", EmitDefaultValue=false)]
+        public ApplicationInformation.ApplicationInfo ApplicationInfo { get; set; }
 
         /// <summary>
         /// The details of the bank account, from which the payment should be made. &gt; Either &#x60;bankAccount&#x60; or &#x60;card&#x60; field must be provided in a payment request.
         /// </summary>
         /// <value>The details of the bank account, from which the payment should be made. &gt; Either &#x60;bankAccount&#x60; or &#x60;card&#x60; field must be provided in a payment request.</value>
-        [DataMember(Name = "bankAccount", EmitDefaultValue = false)]
+        [DataMember(Name="bankAccount", EmitDefaultValue=false)]
         public BankAccount BankAccount { get; set; }
 
         /// <summary>
         /// The address where to send the invoice.
         /// </summary>
         /// <value>The address where to send the invoice.</value>
-        [DataMember(Name = "billingAddress", EmitDefaultValue = false)]
+        [DataMember(Name="billingAddress", EmitDefaultValue=false)]
         public Address BillingAddress { get; set; }
 
         /// <summary>
         /// List of payments methods to be hidden from the shopper. To refer to payment methods, use their &#x60;brandCode&#x60; from [Payment methods overview](https://docs.adyen.com/developers/payment-methods/payment-methods-overview).
         /// </summary>
         /// <value>List of payments methods to be hidden from the shopper. To refer to payment methods, use their &#x60;brandCode&#x60; from [Payment methods overview](https://docs.adyen.com/developers/payment-methods/payment-methods-overview).</value>
-        [DataMember(Name = "blockedPaymentMethods", EmitDefaultValue = false)]
+        [DataMember(Name="blockedPaymentMethods", EmitDefaultValue=false)]
         public List<string> BlockedPaymentMethods { get; set; }
 
         /// <summary>
         /// The shopper&#39;s browser information.
         /// </summary>
         /// <value>The shopper&#39;s browser information.</value>
-        [DataMember(Name = "browserInfo", EmitDefaultValue = false)]
+        [DataMember(Name="browserInfo", EmitDefaultValue=false)]
         public BrowserInfo BrowserInfo { get; set; }
 
         /// <summary>
         /// The delay between the authorisation and scheduled auto-capture, specified in hours.
         /// </summary>
         /// <value>The delay between the authorisation and scheduled auto-capture, specified in hours.</value>
-        [DataMember(Name = "captureDelayHours", EmitDefaultValue = false)]
+        [DataMember(Name="captureDelayHours", EmitDefaultValue=false)]
         public int? CaptureDelayHours { get; set; }
 
         /// <summary>
         /// A container for card data. &gt; Either &#x60;bankAccount&#x60; or &#x60;card&#x60; field must be provided in a payment request.
         /// </summary>
         /// <value>A container for card data. &gt; Either &#x60;bankAccount&#x60; or &#x60;card&#x60; field must be provided in a payment request.</value>
-        [DataMember(Name = "card", EmitDefaultValue = false)]
+        [DataMember(Name="card", EmitDefaultValue=false)]
         public Card Card { get; set; }
 
 
@@ -418,77 +409,77 @@ namespace Adyen.EcommLibrary.Model.Checkout
         /// Information regarding the company
         /// </summary>
         /// <value>Information regarding the company</value>
-        [DataMember(Name = "company", EmitDefaultValue = false)]
+        [DataMember(Name="company", EmitDefaultValue=false)]
         public Company Company { get; set; }
 
         /// <summary>
         /// Specify configurations to enable additional features.
         /// </summary>
         /// <value>Specify configurations to enable additional features.</value>
-        [DataMember(Name = "configuration", EmitDefaultValue = false)]
+        [DataMember(Name="configuration", EmitDefaultValue=false)]
         public Configuration Configuration { get; set; }
 
         /// <summary>
         /// The shopper country.  Format: [ISO 3166-1 alpha-2](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2) Example: NL or DE
         /// </summary>
         /// <value>The shopper country.  Format: [ISO 3166-1 alpha-2](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2) Example: NL or DE</value>
-        [DataMember(Name = "countryCode", EmitDefaultValue = false)]
+        [DataMember(Name="countryCode", EmitDefaultValue=false)]
         public string CountryCode { get; set; }
 
         /// <summary>
         /// The shopper&#39;s date of birth.  Format [ISO-8601](https://www.w3.org/TR/NOTE-datetime): YYYY-MM-DD
         /// </summary>
         /// <value>The shopper&#39;s date of birth.  Format [ISO-8601](https://www.w3.org/TR/NOTE-datetime): YYYY-MM-DD</value>
-        [DataMember(Name = "dateOfBirth", EmitDefaultValue = false)]
+        [DataMember(Name="dateOfBirth", EmitDefaultValue=false)]
         public DateTime? DateOfBirth { get; set; }
 
         /// <summary>
         /// The forex quote as returned in the response of the forex service.
         /// </summary>
         /// <value>The forex quote as returned in the response of the forex service.</value>
-        [DataMember(Name = "dccQuote", EmitDefaultValue = false)]
+        [DataMember(Name="dccQuote", EmitDefaultValue=false)]
         public ForexQuote DccQuote { get; set; }
 
         /// <summary>
         /// The address where the purchased goods should be delivered.
         /// </summary>
         /// <value>The address where the purchased goods should be delivered.</value>
-        [DataMember(Name = "deliveryAddress", EmitDefaultValue = false)]
+        [DataMember(Name="deliveryAddress", EmitDefaultValue=false)]
         public Address DeliveryAddress { get; set; }
 
         /// <summary>
         /// The date and time the purchased goods should be delivered.  Format [ISO 8601](https://www.w3.org/TR/NOTE-datetime): YYYY-MM-DDThh:mm:ss.sssTZD  Example: 2017-07-17T13:42:40.428+01:00
         /// </summary>
         /// <value>The date and time the purchased goods should be delivered.  Format [ISO 8601](https://www.w3.org/TR/NOTE-datetime): YYYY-MM-DDThh:mm:ss.sssTZD  Example: 2017-07-17T13:42:40.428+01:00</value>
-        [DataMember(Name = "deliveryDate", EmitDefaultValue = false)]
+        [DataMember(Name="deliveryDate", EmitDefaultValue=false)]
         public DateTime? DeliveryDate { get; set; }
 
         /// <summary>
         /// A string containing the shopper&#39;s device fingerprint. For more information, refer to [Device fingerprinting](https://docs.adyen.com/developers/risk-management/device-fingerprinting).
         /// </summary>
         /// <value>A string containing the shopper&#39;s device fingerprint. For more information, refer to [Device fingerprinting](https://docs.adyen.com/developers/risk-management/device-fingerprinting).</value>
-        [DataMember(Name = "deviceFingerprint", EmitDefaultValue = false)]
+        [DataMember(Name="deviceFingerprint", EmitDefaultValue=false)]
         public string DeviceFingerprint { get; set; }
 
         /// <summary>
         /// When true and &#x60;shopperReference&#x60; is provided, the shopper will be asked if the payment details should be stored for future one-click payments.
         /// </summary>
         /// <value>When true and &#x60;shopperReference&#x60; is provided, the shopper will be asked if the payment details should be stored for future one-click payments.</value>
-        [DataMember(Name = "enableOneClick", EmitDefaultValue = false)]
+        [DataMember(Name="enableOneClick", EmitDefaultValue=false)]
         public bool? EnableOneClick { get; set; }
 
         /// <summary>
         /// When true and &#x60;shopperReference&#x60; is provided, the payment details will be tokenized for payouts.
         /// </summary>
         /// <value>When true and &#x60;shopperReference&#x60; is provided, the payment details will be tokenized for payouts.</value>
-        [DataMember(Name = "enablePayOut", EmitDefaultValue = false)]
+        [DataMember(Name="enablePayOut", EmitDefaultValue=false)]
         public bool? EnablePayOut { get; set; }
 
         /// <summary>
         /// When true and &#x60;shopperReference&#x60; is provided, the payment details will be tokenized for recurring payments.
         /// </summary>
         /// <value>When true and &#x60;shopperReference&#x60; is provided, the payment details will be tokenized for recurring payments.</value>
-        [DataMember(Name = "enableRecurring", EmitDefaultValue = false)]
+        [DataMember(Name="enableRecurring", EmitDefaultValue=false)]
         public bool? EnableRecurring { get; set; }
 
 
@@ -496,98 +487,98 @@ namespace Adyen.EcommLibrary.Model.Checkout
         /// An integer value that is added to the normal fraud score. The value can be either positive or negative.
         /// </summary>
         /// <value>An integer value that is added to the normal fraud score. The value can be either positive or negative.</value>
-        [DataMember(Name = "fraudOffset", EmitDefaultValue = false)]
+        [DataMember(Name="fraudOffset", EmitDefaultValue=false)]
         public int? FraudOffset { get; set; }
 
         /// <summary>
         /// Required for the Web integration.  Set this parameter to true to use the default Checkout UI from the SDK.
         /// </summary>
         /// <value>Required for the Web integration.  Set this parameter to true to use the default Checkout UI from the SDK.</value>
-        [DataMember(Name = "html", EmitDefaultValue = false)]
+        [DataMember(Name="html", EmitDefaultValue=false)]
         public bool? Html { get; set; }
 
         /// <summary>
         /// Contains installment settings. For more information, refer to [Installments](https://docs.adyen.com/developers/payment-methods/installment-payments).
         /// </summary>
         /// <value>Contains installment settings. For more information, refer to [Installments](https://docs.adyen.com/developers/payment-methods/installment-payments).</value>
-        [DataMember(Name = "installments", EmitDefaultValue = false)]
+        [DataMember(Name="installments", EmitDefaultValue=false)]
         public Installments Installments { get; set; }
 
         /// <summary>
         /// Line items regarding the payment.
         /// </summary>
         /// <value>Line items regarding the payment.</value>
-        [DataMember(Name = "lineItems", EmitDefaultValue = false)]
+        [DataMember(Name="lineItems", EmitDefaultValue=false)]
         public List<LineItem> LineItems { get; set; }
 
         /// <summary>
         /// The [merchant category code](https://en.wikipedia.org/wiki/Merchant_category_code) (MCC) is a four-digit number, which relates to a particular market segment. This code reflects the predominant activity that is conducted by the merchant.
         /// </summary>
         /// <value>The [merchant category code](https://en.wikipedia.org/wiki/Merchant_category_code) (MCC) is a four-digit number, which relates to a particular market segment. This code reflects the predominant activity that is conducted by the merchant.</value>
-        [DataMember(Name = "mcc", EmitDefaultValue = false)]
+        [DataMember(Name="mcc", EmitDefaultValue=false)]
         public string Mcc { get; set; }
 
         /// <summary>
         /// The merchant account identifier, with which you want to process the transaction.
         /// </summary>
         /// <value>The merchant account identifier, with which you want to process the transaction.</value>
-        [DataMember(Name = "merchantAccount", EmitDefaultValue = false)]
+        [DataMember(Name="merchantAccount", EmitDefaultValue=false)]
         public string MerchantAccount { get; set; }
 
         /// <summary>
         /// This reference allows linking multiple transactions to each other. &gt; We strongly recommend you send the &#x60;merchantOrderReference&#x60; value to benefit from linking payment requests when authorisation retries take place. In addition, we recommend you provide &#x60;retry.orderAttemptNumber&#x60;, &#x60;retry.chainAttemptNumber&#x60;, and &#x60;retry.skipRetry&#x60; values in &#x60;PaymentRequest.additionalData&#x60;.
         /// </summary>
         /// <value>This reference allows linking multiple transactions to each other. &gt; We strongly recommend you send the &#x60;merchantOrderReference&#x60; value to benefit from linking payment requests when authorisation retries take place. In addition, we recommend you provide &#x60;retry.orderAttemptNumber&#x60;, &#x60;retry.chainAttemptNumber&#x60;, and &#x60;retry.skipRetry&#x60; values in &#x60;PaymentRequest.additionalData&#x60;.</value>
-        [DataMember(Name = "merchantOrderReference", EmitDefaultValue = false)]
+        [DataMember(Name="merchantOrderReference", EmitDefaultValue=false)]
         public string MerchantOrderReference { get; set; }
 
         /// <summary>
         /// Additional risk fields for 3D Secure 2.0.
         /// </summary>
         /// <value>Additional risk fields for 3D Secure 2.0.</value>
-        [DataMember(Name = "merchantRiskIndicator", EmitDefaultValue = false)]
+        [DataMember(Name="merchantRiskIndicator", EmitDefaultValue=false)]
         public MerchantRiskIndicator MerchantRiskIndicator { get; set; }
 
         /// <summary>
         /// Metadata consists of entries, each of which includes a key and a value. Limitations: Error \&quot;177\&quot;, \&quot;Metadata size exceeds limit\&quot;
         /// </summary>
         /// <value>Metadata consists of entries, each of which includes a key and a value. Limitations: Error \&quot;177\&quot;, \&quot;Metadata size exceeds limit\&quot;</value>
-        [DataMember(Name = "metadata", EmitDefaultValue = false)]
+        [DataMember(Name="metadata", EmitDefaultValue=false)]
         public Dictionary<string, string> Metadata { get; set; }
 
         /// <summary>
         /// Authentication data produced by an MPI (Mastercard SecureCode or Verified By Visa).
         /// </summary>
         /// <value>Authentication data produced by an MPI (Mastercard SecureCode or Verified By Visa).</value>
-        [DataMember(Name = "mpiData", EmitDefaultValue = false)]
+        [DataMember(Name="mpiData", EmitDefaultValue=false)]
         public ThreeDSecureData MpiData { get; set; }
 
         /// <summary>
         /// The two-character country code of the shopper&#39;s nationality.
         /// </summary>
         /// <value>The two-character country code of the shopper&#39;s nationality.</value>
-        [DataMember(Name = "nationality", EmitDefaultValue = false)]
+        [DataMember(Name="nationality", EmitDefaultValue=false)]
         public string Nationality { get; set; }
 
         /// <summary>
         /// The order reference to link multiple partial payments.
         /// </summary>
         /// <value>The order reference to link multiple partial payments.</value>
-        [DataMember(Name = "orderReference", EmitDefaultValue = false)]
+        [DataMember(Name="orderReference", EmitDefaultValue=false)]
         public string OrderReference { get; set; }
 
         /// <summary>
         /// Required for the Web integration.  Set this parameter to the page URL, on which you are loading the SDK.
         /// </summary>
         /// <value>Required for the Web integration.  Set this parameter to the page URL, on which you are loading the SDK.</value>
-        [DataMember(Name = "origin", EmitDefaultValue = false)]
+        [DataMember(Name="origin", EmitDefaultValue=false)]
         public string Origin { get; set; }
 
         /// <summary>
         /// The recurring settings for the payment. Use this property when you want to enable [recurring payments](https://docs.adyen.com/developers/features/recurring-payments).
         /// </summary>
         /// <value>The recurring settings for the payment. Use this property when you want to enable [recurring payments](https://docs.adyen.com/developers/features/recurring-payments).</value>
-        [DataMember(Name = "recurring", EmitDefaultValue = false)]
+        [DataMember(Name="recurring", EmitDefaultValue=false)]
         public Recurring Recurring { get; set; }
 
 
@@ -595,63 +586,63 @@ namespace Adyen.EcommLibrary.Model.Checkout
         /// The reference to uniquely identify a payment. This reference is used in all communication with you about the payment status. We recommend using a unique value per payment; however, it is not a requirement. If you need to provide multiple references for a transaction, separate them with hyphens (\&quot;-\&quot;). Maximum length: 80 characters.
         /// </summary>
         /// <value>The reference to uniquely identify a payment. This reference is used in all communication with you about the payment status. We recommend using a unique value per payment; however, it is not a requirement. If you need to provide multiple references for a transaction, separate them with hyphens (\&quot;-\&quot;). Maximum length: 80 characters.</value>
-        [DataMember(Name = "reference", EmitDefaultValue = false)]
+        [DataMember(Name="reference", EmitDefaultValue=false)]
         public string Reference { get; set; }
 
         /// <summary>
         /// The URL to return to.
         /// </summary>
         /// <value>The URL to return to.</value>
-        [DataMember(Name = "returnUrl", EmitDefaultValue = false)]
+        [DataMember(Name="returnUrl", EmitDefaultValue=false)]
         public string ReturnUrl { get; set; }
 
         /// <summary>
         /// The version of the SDK you are using (for Web SDK integrations only).
         /// </summary>
         /// <value>The version of the SDK you are using (for Web SDK integrations only).</value>
-        [DataMember(Name = "sdkVersion", EmitDefaultValue = false)]
+        [DataMember(Name="sdkVersion", EmitDefaultValue=false)]
         public string SdkVersion { get; set; }
 
         /// <summary>
         /// Some payment methods require defining a value for this field to specify how to process the transaction.  For the Bancontact payment method, it can be set to: * &#x60;maestro&#x60; (default), to be processed like a Maestro card, or * &#x60;bcmc&#x60;, to be processed like a Bancontact card.
         /// </summary>
         /// <value>Some payment methods require defining a value for this field to specify how to process the transaction.  For the Bancontact payment method, it can be set to: * &#x60;maestro&#x60; (default), to be processed like a Maestro card, or * &#x60;bcmc&#x60;, to be processed like a Bancontact card.</value>
-        [DataMember(Name = "selectedBrand", EmitDefaultValue = false)]
+        [DataMember(Name="selectedBrand", EmitDefaultValue=false)]
         public string SelectedBrand { get; set; }
 
         /// <summary>
         /// The &#x60;recurringDetailReference&#x60; you want to use for this payment. The value &#x60;LATEST&#x60; can be used to select the most recently stored recurring detail.
         /// </summary>
         /// <value>The &#x60;recurringDetailReference&#x60; you want to use for this payment. The value &#x60;LATEST&#x60; can be used to select the most recently stored recurring detail.</value>
-        [DataMember(Name = "selectedRecurringDetailReference", EmitDefaultValue = false)]
+        [DataMember(Name="selectedRecurringDetailReference", EmitDefaultValue=false)]
         public string SelectedRecurringDetailReference { get; set; }
 
         /// <summary>
         /// A session ID used to identify a payment session.
         /// </summary>
         /// <value>A session ID used to identify a payment session.</value>
-        [DataMember(Name = "sessionId", EmitDefaultValue = false)]
+        [DataMember(Name="sessionId", EmitDefaultValue=false)]
         public string SessionId { get; set; }
 
         /// <summary>
         /// The maximum validity of the session.
         /// </summary>
         /// <value>The maximum validity of the session.</value>
-        [DataMember(Name = "sessionValidity", EmitDefaultValue = false)]
+        [DataMember(Name="sessionValidity", EmitDefaultValue=false)]
         public string SessionValidity { get; set; }
 
         /// <summary>
         /// The shopper&#39;s email address. We recommend that you provide this data, as it is used in velocity fraud checks.
         /// </summary>
         /// <value>The shopper&#39;s email address. We recommend that you provide this data, as it is used in velocity fraud checks.</value>
-        [DataMember(Name = "shopperEmail", EmitDefaultValue = false)]
+        [DataMember(Name="shopperEmail", EmitDefaultValue=false)]
         public string ShopperEmail { get; set; }
 
         /// <summary>
         /// The shopper&#39;s IP address. We recommend that you provide this data, as it is used in a number of risk checks (for instance, number of payment attempts or location-based checks). &gt; This field is mandatory for some merchants depending on your business model. For more information, [contact Support](https://support.adyen.com/hc/en-us/requests/new).
         /// </summary>
         /// <value>The shopper&#39;s IP address. We recommend that you provide this data, as it is used in a number of risk checks (for instance, number of payment attempts or location-based checks). &gt; This field is mandatory for some merchants depending on your business model. For more information, [contact Support](https://support.adyen.com/hc/en-us/requests/new).</value>
-        [DataMember(Name = "shopperIP", EmitDefaultValue = false)]
+        [DataMember(Name="shopperIP", EmitDefaultValue=false)]
         public string ShopperIP { get; set; }
 
 
@@ -659,84 +650,84 @@ namespace Adyen.EcommLibrary.Model.Checkout
         /// The combination of a language code and a country code to specify the language to be used in the payment.
         /// </summary>
         /// <value>The combination of a language code and a country code to specify the language to be used in the payment.</value>
-        [DataMember(Name = "shopperLocale", EmitDefaultValue = false)]
+        [DataMember(Name="shopperLocale", EmitDefaultValue=false)]
         public string ShopperLocale { get; set; }
 
         /// <summary>
         /// The shopper&#39;s full name and gender (if specified).
         /// </summary>
         /// <value>The shopper&#39;s full name and gender (if specified).</value>
-        [DataMember(Name = "shopperName", EmitDefaultValue = false)]
+        [DataMember(Name="shopperName", EmitDefaultValue=false)]
         public Name ShopperName { get; set; }
 
         /// <summary>
         /// The shopper&#39;s reference to uniquely identify this shopper (e.g. user ID or account ID). &gt; This field is required for recurring payments.
         /// </summary>
         /// <value>The shopper&#39;s reference to uniquely identify this shopper (e.g. user ID or account ID). &gt; This field is required for recurring payments.</value>
-        [DataMember(Name = "shopperReference", EmitDefaultValue = false)]
+        [DataMember(Name="shopperReference", EmitDefaultValue=false)]
         public string ShopperReference { get; set; }
 
         /// <summary>
         /// The text to appear on the shopper&#39;s bank statement.
         /// </summary>
         /// <value>The text to appear on the shopper&#39;s bank statement.</value>
-        [DataMember(Name = "shopperStatement", EmitDefaultValue = false)]
+        [DataMember(Name="shopperStatement", EmitDefaultValue=false)]
         public string ShopperStatement { get; set; }
 
         /// <summary>
         /// The shopper&#39;s social security number.
         /// </summary>
         /// <value>The shopper&#39;s social security number.</value>
-        [DataMember(Name = "socialSecurityNumber", EmitDefaultValue = false)]
+        [DataMember(Name="socialSecurityNumber", EmitDefaultValue=false)]
         public string SocialSecurityNumber { get; set; }
 
         /// <summary>
         /// The details of how the payment should be split when distributing a payment to a MarketPay Marketplace and its Accounts.
         /// </summary>
         /// <value>The details of how the payment should be split when distributing a payment to a MarketPay Marketplace and its Accounts.</value>
-        [DataMember(Name = "splits", EmitDefaultValue = false)]
+        [DataMember(Name="splits", EmitDefaultValue=false)]
         public List<Split> Splits { get; set; }
 
         /// <summary>
         /// The physical store, for which this payment is processed.
         /// </summary>
         /// <value>The physical store, for which this payment is processed.</value>
-        [DataMember(Name = "store", EmitDefaultValue = false)]
+        [DataMember(Name="store", EmitDefaultValue=false)]
         public string Store { get; set; }
 
         /// <summary>
         /// The shopper&#39;s telephone number.
         /// </summary>
         /// <value>The shopper&#39;s telephone number.</value>
-        [DataMember(Name = "telephoneNumber", EmitDefaultValue = false)]
+        [DataMember(Name="telephoneNumber", EmitDefaultValue=false)]
         public string TelephoneNumber { get; set; }
 
         /// <summary>
         /// Request fields for 3D Secure 2.0.
         /// </summary>
         /// <value>Request fields for 3D Secure 2.0.</value>
-        [DataMember(Name = "threeDS2RequestData", EmitDefaultValue = false)]
+        [DataMember(Name="threeDS2RequestData", EmitDefaultValue=false)]
         public ThreeDS2RequestData ThreeDS2RequestData { get; set; }
 
         /// <summary>
         /// The token obtained when initializing the SDK.  &gt; This parameter is required for iOS and Android; not required for Web.
         /// </summary>
         /// <value>The token obtained when initializing the SDK.  &gt; This parameter is required for iOS and Android; not required for Web.</value>
-        [DataMember(Name = "token", EmitDefaultValue = false)]
+        [DataMember(Name="token", EmitDefaultValue=false)]
         public string Token { get; set; }
 
         /// <summary>
         /// The reference value to aggregate sales totals in reporting. When not specified, the store field is used (if available).
         /// </summary>
         /// <value>The reference value to aggregate sales totals in reporting. When not specified, the store field is used (if available).</value>
-        [DataMember(Name = "totalsGroup", EmitDefaultValue = false)]
+        [DataMember(Name="totalsGroup", EmitDefaultValue=false)]
         public string TotalsGroup { get; set; }
 
         /// <summary>
         /// Set to true if the payment should be routed to a trusted MID.
         /// </summary>
         /// <value>Set to true if the payment should be routed to a trusted MID.</value>
-        [DataMember(Name = "trustedShopper", EmitDefaultValue = false)]
+        [DataMember(Name="trustedShopper", EmitDefaultValue=false)]
         public bool? TrustedShopper { get; set; }
 
         /// <summary>
@@ -812,7 +803,7 @@ namespace Adyen.EcommLibrary.Model.Checkout
             sb.Append("}\n");
             return sb.ToString();
         }
-
+  
         /// <summary>
         /// Returns the JSON string presentation of the object
         /// </summary>
@@ -829,7 +820,7 @@ namespace Adyen.EcommLibrary.Model.Checkout
         /// <returns>Boolean</returns>
         public override bool Equals(object input)
         {
-            return Equals(input as PaymentSessionRequest);
+            return this.Equals(input as PaymentSessionRequest);
         }
 
         /// <summary>
@@ -842,316 +833,316 @@ namespace Adyen.EcommLibrary.Model.Checkout
             if (input == null)
                 return false;
 
-            return
+            return 
                 (
-                    AccountInfo == input.AccountInfo ||
-                    AccountInfo != null &&
-                    AccountInfo.Equals(input.AccountInfo)
-                ) &&
+                    this.AccountInfo == input.AccountInfo ||
+                    (this.AccountInfo != null &&
+                    this.AccountInfo.Equals(input.AccountInfo))
+                ) && 
                 (
-                    AdditionalAmount == input.AdditionalAmount ||
-                    AdditionalAmount != null &&
-                    AdditionalAmount.Equals(input.AdditionalAmount)
-                ) &&
+                    this.AdditionalAmount == input.AdditionalAmount ||
+                    (this.AdditionalAmount != null &&
+                    this.AdditionalAmount.Equals(input.AdditionalAmount))
+                ) && 
                 (
-                    AdditionalData == input.AdditionalData ||
-                    AdditionalData != null &&
-                    AdditionalData.SequenceEqual(input.AdditionalData)
-                ) &&
+                    this.AdditionalData == input.AdditionalData ||
+                    this.AdditionalData != null &&
+                    this.AdditionalData.SequenceEqual(input.AdditionalData)
+                ) && 
                 (
-                    AllowedPaymentMethods == input.AllowedPaymentMethods ||
-                    AllowedPaymentMethods != null &&
-                    AllowedPaymentMethods.SequenceEqual(input.AllowedPaymentMethods)
-                ) &&
+                    this.AllowedPaymentMethods == input.AllowedPaymentMethods ||
+                    this.AllowedPaymentMethods != null &&
+                    this.AllowedPaymentMethods.SequenceEqual(input.AllowedPaymentMethods)
+                ) && 
                 (
-                    Amount == input.Amount ||
-                    Amount != null &&
-                    Amount.Equals(input.Amount)
-                ) &&
+                    this.Amount == input.Amount ||
+                    (this.Amount != null &&
+                    this.Amount.Equals(input.Amount))
+                ) && 
                 (
-                    ApplicationInfo == input.ApplicationInfo ||
-                    ApplicationInfo != null &&
-                    ApplicationInfo.Equals(input.ApplicationInfo)
-                ) &&
+                    this.ApplicationInfo == input.ApplicationInfo ||
+                    (this.ApplicationInfo != null &&
+                    this.ApplicationInfo.Equals(input.ApplicationInfo))
+                ) && 
                 (
-                    BankAccount == input.BankAccount ||
-                    BankAccount != null &&
-                    BankAccount.Equals(input.BankAccount)
-                ) &&
+                    this.BankAccount == input.BankAccount ||
+                    (this.BankAccount != null &&
+                    this.BankAccount.Equals(input.BankAccount))
+                ) && 
                 (
-                    BillingAddress == input.BillingAddress ||
-                    BillingAddress != null &&
-                    BillingAddress.Equals(input.BillingAddress)
-                ) &&
+                    this.BillingAddress == input.BillingAddress ||
+                    (this.BillingAddress != null &&
+                    this.BillingAddress.Equals(input.BillingAddress))
+                ) && 
                 (
-                    BlockedPaymentMethods == input.BlockedPaymentMethods ||
-                    BlockedPaymentMethods != null &&
-                    BlockedPaymentMethods.SequenceEqual(input.BlockedPaymentMethods)
-                ) &&
+                    this.BlockedPaymentMethods == input.BlockedPaymentMethods ||
+                    this.BlockedPaymentMethods != null &&
+                    this.BlockedPaymentMethods.SequenceEqual(input.BlockedPaymentMethods)
+                ) && 
                 (
-                    BrowserInfo == input.BrowserInfo ||
-                    BrowserInfo != null &&
-                    BrowserInfo.Equals(input.BrowserInfo)
-                ) &&
+                    this.BrowserInfo == input.BrowserInfo ||
+                    (this.BrowserInfo != null &&
+                    this.BrowserInfo.Equals(input.BrowserInfo))
+                ) && 
                 (
-                    CaptureDelayHours == input.CaptureDelayHours ||
-                    CaptureDelayHours != null &&
-                    CaptureDelayHours.Equals(input.CaptureDelayHours)
-                ) &&
+                    this.CaptureDelayHours == input.CaptureDelayHours ||
+                    (this.CaptureDelayHours != null &&
+                    this.CaptureDelayHours.Equals(input.CaptureDelayHours))
+                ) && 
                 (
-                    Card == input.Card ||
-                    Card != null &&
-                    Card.Equals(input.Card)
-                ) &&
+                    this.Card == input.Card ||
+                    (this.Card != null &&
+                    this.Card.Equals(input.Card))
+                ) && 
                 (
-                    Channel == input.Channel ||
-                    Channel != null &&
-                    Channel.Equals(input.Channel)
-                ) &&
+                    this.Channel == input.Channel ||
+                    (this.Channel != null &&
+                    this.Channel.Equals(input.Channel))
+                ) && 
                 (
-                    Company == input.Company ||
-                    Company != null &&
-                    Company.Equals(input.Company)
-                ) &&
+                    this.Company == input.Company ||
+                    (this.Company != null &&
+                    this.Company.Equals(input.Company))
+                ) && 
                 (
-                    Configuration == input.Configuration ||
-                    Configuration != null &&
-                    Configuration.Equals(input.Configuration)
-                ) &&
+                    this.Configuration == input.Configuration ||
+                    (this.Configuration != null &&
+                    this.Configuration.Equals(input.Configuration))
+                ) && 
                 (
-                    CountryCode == input.CountryCode ||
-                    CountryCode != null &&
-                    CountryCode.Equals(input.CountryCode)
-                ) &&
+                    this.CountryCode == input.CountryCode ||
+                    (this.CountryCode != null &&
+                    this.CountryCode.Equals(input.CountryCode))
+                ) && 
                 (
-                    DateOfBirth == input.DateOfBirth ||
-                    DateOfBirth != null &&
-                    DateOfBirth.Equals(input.DateOfBirth)
-                ) &&
+                    this.DateOfBirth == input.DateOfBirth ||
+                    (this.DateOfBirth != null &&
+                    this.DateOfBirth.Equals(input.DateOfBirth))
+                ) && 
                 (
-                    DccQuote == input.DccQuote ||
-                    DccQuote != null &&
-                    DccQuote.Equals(input.DccQuote)
-                ) &&
+                    this.DccQuote == input.DccQuote ||
+                    (this.DccQuote != null &&
+                    this.DccQuote.Equals(input.DccQuote))
+                ) && 
                 (
-                    DeliveryAddress == input.DeliveryAddress ||
-                    DeliveryAddress != null &&
-                    DeliveryAddress.Equals(input.DeliveryAddress)
-                ) &&
+                    this.DeliveryAddress == input.DeliveryAddress ||
+                    (this.DeliveryAddress != null &&
+                    this.DeliveryAddress.Equals(input.DeliveryAddress))
+                ) && 
                 (
-                    DeliveryDate == input.DeliveryDate ||
-                    DeliveryDate != null &&
-                    DeliveryDate.Equals(input.DeliveryDate)
-                ) &&
+                    this.DeliveryDate == input.DeliveryDate ||
+                    (this.DeliveryDate != null &&
+                    this.DeliveryDate.Equals(input.DeliveryDate))
+                ) && 
                 (
-                    DeviceFingerprint == input.DeviceFingerprint ||
-                    DeviceFingerprint != null &&
-                    DeviceFingerprint.Equals(input.DeviceFingerprint)
-                ) &&
+                    this.DeviceFingerprint == input.DeviceFingerprint ||
+                    (this.DeviceFingerprint != null &&
+                    this.DeviceFingerprint.Equals(input.DeviceFingerprint))
+                ) && 
                 (
-                    EnableOneClick == input.EnableOneClick ||
-                    EnableOneClick != null &&
-                    EnableOneClick.Equals(input.EnableOneClick)
-                ) &&
+                    this.EnableOneClick == input.EnableOneClick ||
+                    (this.EnableOneClick != null &&
+                    this.EnableOneClick.Equals(input.EnableOneClick))
+                ) && 
                 (
-                    EnablePayOut == input.EnablePayOut ||
-                    EnablePayOut != null &&
-                    EnablePayOut.Equals(input.EnablePayOut)
-                ) &&
+                    this.EnablePayOut == input.EnablePayOut ||
+                    (this.EnablePayOut != null &&
+                    this.EnablePayOut.Equals(input.EnablePayOut))
+                ) && 
                 (
-                    EnableRecurring == input.EnableRecurring ||
-                    EnableRecurring != null &&
-                    EnableRecurring.Equals(input.EnableRecurring)
-                ) &&
+                    this.EnableRecurring == input.EnableRecurring ||
+                    (this.EnableRecurring != null &&
+                    this.EnableRecurring.Equals(input.EnableRecurring))
+                ) && 
                 (
-                    EntityType == input.EntityType ||
-                    EntityType != null &&
-                    EntityType.Equals(input.EntityType)
-                ) &&
+                    this.EntityType == input.EntityType ||
+                    (this.EntityType != null &&
+                    this.EntityType.Equals(input.EntityType))
+                ) && 
                 (
-                    FraudOffset == input.FraudOffset ||
-                    FraudOffset != null &&
-                    FraudOffset.Equals(input.FraudOffset)
-                ) &&
+                    this.FraudOffset == input.FraudOffset ||
+                    (this.FraudOffset != null &&
+                    this.FraudOffset.Equals(input.FraudOffset))
+                ) && 
                 (
-                    Html == input.Html ||
-                    Html != null &&
-                    Html.Equals(input.Html)
-                ) &&
+                    this.Html == input.Html ||
+                    (this.Html != null &&
+                    this.Html.Equals(input.Html))
+                ) && 
                 (
-                    Installments == input.Installments ||
-                    Installments != null &&
-                    Installments.Equals(input.Installments)
-                ) &&
+                    this.Installments == input.Installments ||
+                    (this.Installments != null &&
+                    this.Installments.Equals(input.Installments))
+                ) && 
                 (
-                    LineItems == input.LineItems ||
-                    LineItems != null &&
-                    LineItems.SequenceEqual(input.LineItems)
-                ) &&
+                    this.LineItems == input.LineItems ||
+                    this.LineItems != null &&
+                    this.LineItems.SequenceEqual(input.LineItems)
+                ) && 
                 (
-                    Mcc == input.Mcc ||
-                    Mcc != null &&
-                    Mcc.Equals(input.Mcc)
-                ) &&
+                    this.Mcc == input.Mcc ||
+                    (this.Mcc != null &&
+                    this.Mcc.Equals(input.Mcc))
+                ) && 
                 (
-                    MerchantAccount == input.MerchantAccount ||
-                    MerchantAccount != null &&
-                    MerchantAccount.Equals(input.MerchantAccount)
-                ) &&
+                    this.MerchantAccount == input.MerchantAccount ||
+                    (this.MerchantAccount != null &&
+                    this.MerchantAccount.Equals(input.MerchantAccount))
+                ) && 
                 (
-                    MerchantOrderReference == input.MerchantOrderReference ||
-                    MerchantOrderReference != null &&
-                    MerchantOrderReference.Equals(input.MerchantOrderReference)
-                ) &&
+                    this.MerchantOrderReference == input.MerchantOrderReference ||
+                    (this.MerchantOrderReference != null &&
+                    this.MerchantOrderReference.Equals(input.MerchantOrderReference))
+                ) && 
                 (
-                    MerchantRiskIndicator == input.MerchantRiskIndicator ||
-                    MerchantRiskIndicator != null &&
-                    MerchantRiskIndicator.Equals(input.MerchantRiskIndicator)
-                ) &&
+                    this.MerchantRiskIndicator == input.MerchantRiskIndicator ||
+                    (this.MerchantRiskIndicator != null &&
+                    this.MerchantRiskIndicator.Equals(input.MerchantRiskIndicator))
+                ) && 
                 (
-                    Metadata == input.Metadata ||
-                    Metadata != null &&
-                    Metadata.SequenceEqual(input.Metadata)
-                ) &&
+                    this.Metadata == input.Metadata ||
+                    this.Metadata != null &&
+                    this.Metadata.SequenceEqual(input.Metadata)
+                ) && 
                 (
-                    MpiData == input.MpiData ||
-                    MpiData != null &&
-                    MpiData.Equals(input.MpiData)
-                ) &&
+                    this.MpiData == input.MpiData ||
+                    (this.MpiData != null &&
+                    this.MpiData.Equals(input.MpiData))
+                ) && 
                 (
-                    Nationality == input.Nationality ||
-                    Nationality != null &&
-                    Nationality.Equals(input.Nationality)
-                ) &&
+                    this.Nationality == input.Nationality ||
+                    (this.Nationality != null &&
+                    this.Nationality.Equals(input.Nationality))
+                ) && 
                 (
-                    OrderReference == input.OrderReference ||
-                    OrderReference != null &&
-                    OrderReference.Equals(input.OrderReference)
-                ) &&
+                    this.OrderReference == input.OrderReference ||
+                    (this.OrderReference != null &&
+                    this.OrderReference.Equals(input.OrderReference))
+                ) && 
                 (
-                    Origin == input.Origin ||
-                    Origin != null &&
-                    Origin.Equals(input.Origin)
-                ) &&
+                    this.Origin == input.Origin ||
+                    (this.Origin != null &&
+                    this.Origin.Equals(input.Origin))
+                ) && 
                 (
-                    Recurring == input.Recurring ||
-                    Recurring != null &&
-                    Recurring.Equals(input.Recurring)
-                ) &&
+                    this.Recurring == input.Recurring ||
+                    (this.Recurring != null &&
+                    this.Recurring.Equals(input.Recurring))
+                ) && 
                 (
-                    RecurringProcessingModel == input.RecurringProcessingModel ||
-                    RecurringProcessingModel != null &&
-                    RecurringProcessingModel.Equals(input.RecurringProcessingModel)
-                ) &&
+                    this.RecurringProcessingModel == input.RecurringProcessingModel ||
+                    (this.RecurringProcessingModel != null &&
+                    this.RecurringProcessingModel.Equals(input.RecurringProcessingModel))
+                ) && 
                 (
-                    Reference == input.Reference ||
-                    Reference != null &&
-                    Reference.Equals(input.Reference)
-                ) &&
+                    this.Reference == input.Reference ||
+                    (this.Reference != null &&
+                    this.Reference.Equals(input.Reference))
+                ) && 
                 (
-                    ReturnUrl == input.ReturnUrl ||
-                    ReturnUrl != null &&
-                    ReturnUrl.Equals(input.ReturnUrl)
-                ) &&
+                    this.ReturnUrl == input.ReturnUrl ||
+                    (this.ReturnUrl != null &&
+                    this.ReturnUrl.Equals(input.ReturnUrl))
+                ) && 
                 (
-                    SdkVersion == input.SdkVersion ||
-                    SdkVersion != null &&
-                    SdkVersion.Equals(input.SdkVersion)
-                ) &&
+                    this.SdkVersion == input.SdkVersion ||
+                    (this.SdkVersion != null &&
+                    this.SdkVersion.Equals(input.SdkVersion))
+                ) && 
                 (
-                    SelectedBrand == input.SelectedBrand ||
-                    SelectedBrand != null &&
-                    SelectedBrand.Equals(input.SelectedBrand)
-                ) &&
+                    this.SelectedBrand == input.SelectedBrand ||
+                    (this.SelectedBrand != null &&
+                    this.SelectedBrand.Equals(input.SelectedBrand))
+                ) && 
                 (
-                    SelectedRecurringDetailReference == input.SelectedRecurringDetailReference ||
-                    SelectedRecurringDetailReference != null &&
-                    SelectedRecurringDetailReference.Equals(input.SelectedRecurringDetailReference)
-                ) &&
+                    this.SelectedRecurringDetailReference == input.SelectedRecurringDetailReference ||
+                    (this.SelectedRecurringDetailReference != null &&
+                    this.SelectedRecurringDetailReference.Equals(input.SelectedRecurringDetailReference))
+                ) && 
                 (
-                    SessionId == input.SessionId ||
-                    SessionId != null &&
-                    SessionId.Equals(input.SessionId)
-                ) &&
+                    this.SessionId == input.SessionId ||
+                    (this.SessionId != null &&
+                    this.SessionId.Equals(input.SessionId))
+                ) && 
                 (
-                    SessionValidity == input.SessionValidity ||
-                    SessionValidity != null &&
-                    SessionValidity.Equals(input.SessionValidity)
-                ) &&
+                    this.SessionValidity == input.SessionValidity ||
+                    (this.SessionValidity != null &&
+                    this.SessionValidity.Equals(input.SessionValidity))
+                ) && 
                 (
-                    ShopperEmail == input.ShopperEmail ||
-                    ShopperEmail != null &&
-                    ShopperEmail.Equals(input.ShopperEmail)
-                ) &&
+                    this.ShopperEmail == input.ShopperEmail ||
+                    (this.ShopperEmail != null &&
+                    this.ShopperEmail.Equals(input.ShopperEmail))
+                ) && 
                 (
-                    ShopperIP == input.ShopperIP ||
-                    ShopperIP != null &&
-                    ShopperIP.Equals(input.ShopperIP)
-                ) &&
+                    this.ShopperIP == input.ShopperIP ||
+                    (this.ShopperIP != null &&
+                    this.ShopperIP.Equals(input.ShopperIP))
+                ) && 
                 (
-                    ShopperInteraction == input.ShopperInteraction ||
-                    ShopperInteraction != null &&
-                    ShopperInteraction.Equals(input.ShopperInteraction)
-                ) &&
+                    this.ShopperInteraction == input.ShopperInteraction ||
+                    (this.ShopperInteraction != null &&
+                    this.ShopperInteraction.Equals(input.ShopperInteraction))
+                ) && 
                 (
-                    ShopperLocale == input.ShopperLocale ||
-                    ShopperLocale != null &&
-                    ShopperLocale.Equals(input.ShopperLocale)
-                ) &&
+                    this.ShopperLocale == input.ShopperLocale ||
+                    (this.ShopperLocale != null &&
+                    this.ShopperLocale.Equals(input.ShopperLocale))
+                ) && 
                 (
-                    ShopperName == input.ShopperName ||
-                    ShopperName != null &&
-                    ShopperName.Equals(input.ShopperName)
-                ) &&
+                    this.ShopperName == input.ShopperName ||
+                    (this.ShopperName != null &&
+                    this.ShopperName.Equals(input.ShopperName))
+                ) && 
                 (
-                    ShopperReference == input.ShopperReference ||
-                    ShopperReference != null &&
-                    ShopperReference.Equals(input.ShopperReference)
-                ) &&
+                    this.ShopperReference == input.ShopperReference ||
+                    (this.ShopperReference != null &&
+                    this.ShopperReference.Equals(input.ShopperReference))
+                ) && 
                 (
-                    ShopperStatement == input.ShopperStatement ||
-                    ShopperStatement != null &&
-                    ShopperStatement.Equals(input.ShopperStatement)
-                ) &&
+                    this.ShopperStatement == input.ShopperStatement ||
+                    (this.ShopperStatement != null &&
+                    this.ShopperStatement.Equals(input.ShopperStatement))
+                ) && 
                 (
-                    SocialSecurityNumber == input.SocialSecurityNumber ||
-                    SocialSecurityNumber != null &&
-                    SocialSecurityNumber.Equals(input.SocialSecurityNumber)
-                ) &&
+                    this.SocialSecurityNumber == input.SocialSecurityNumber ||
+                    (this.SocialSecurityNumber != null &&
+                    this.SocialSecurityNumber.Equals(input.SocialSecurityNumber))
+                ) && 
                 (
-                    Splits == input.Splits ||
-                    Splits != null &&
-                    Splits.SequenceEqual(input.Splits)
-                ) &&
+                    this.Splits == input.Splits ||
+                    this.Splits != null &&
+                    this.Splits.SequenceEqual(input.Splits)
+                ) && 
                 (
-                    Store == input.Store ||
-                    Store != null &&
-                    Store.Equals(input.Store)
-                ) &&
+                    this.Store == input.Store ||
+                    (this.Store != null &&
+                    this.Store.Equals(input.Store))
+                ) && 
                 (
-                    TelephoneNumber == input.TelephoneNumber ||
-                    TelephoneNumber != null &&
-                    TelephoneNumber.Equals(input.TelephoneNumber)
-                ) &&
+                    this.TelephoneNumber == input.TelephoneNumber ||
+                    (this.TelephoneNumber != null &&
+                    this.TelephoneNumber.Equals(input.TelephoneNumber))
+                ) && 
                 (
-                    ThreeDS2RequestData == input.ThreeDS2RequestData ||
-                    ThreeDS2RequestData != null &&
-                    ThreeDS2RequestData.Equals(input.ThreeDS2RequestData)
-                ) &&
+                    this.ThreeDS2RequestData == input.ThreeDS2RequestData ||
+                    (this.ThreeDS2RequestData != null &&
+                    this.ThreeDS2RequestData.Equals(input.ThreeDS2RequestData))
+                ) && 
                 (
-                    Token == input.Token ||
-                    Token != null &&
-                    Token.Equals(input.Token)
-                ) &&
+                    this.Token == input.Token ||
+                    (this.Token != null &&
+                    this.Token.Equals(input.Token))
+                ) && 
                 (
-                    TotalsGroup == input.TotalsGroup ||
-                    TotalsGroup != null &&
-                    TotalsGroup.Equals(input.TotalsGroup)
-                ) &&
+                    this.TotalsGroup == input.TotalsGroup ||
+                    (this.TotalsGroup != null &&
+                    this.TotalsGroup.Equals(input.TotalsGroup))
+                ) && 
                 (
-                    TrustedShopper == input.TrustedShopper ||
-                    TrustedShopper != null &&
-                    TrustedShopper.Equals(input.TrustedShopper)
+                    this.TrustedShopper == input.TrustedShopper ||
+                    (this.TrustedShopper != null &&
+                    this.TrustedShopper.Equals(input.TrustedShopper))
                 );
         }
 
@@ -1163,131 +1154,131 @@ namespace Adyen.EcommLibrary.Model.Checkout
         {
             unchecked // Overflow is fine, just wrap
             {
-                var hashCode = 41;
-                if (AccountInfo != null)
-                    hashCode = hashCode * 59 + AccountInfo.GetHashCode();
-                if (AdditionalAmount != null)
-                    hashCode = hashCode * 59 + AdditionalAmount.GetHashCode();
-                if (AdditionalData != null)
-                    hashCode = hashCode * 59 + AdditionalData.GetHashCode();
-                if (AllowedPaymentMethods != null)
-                    hashCode = hashCode * 59 + AllowedPaymentMethods.GetHashCode();
-                if (Amount != null)
-                    hashCode = hashCode * 59 + Amount.GetHashCode();
-                if (ApplicationInfo != null)
-                    hashCode = hashCode * 59 + ApplicationInfo.GetHashCode();
-                if (BankAccount != null)
-                    hashCode = hashCode * 59 + BankAccount.GetHashCode();
-                if (BillingAddress != null)
-                    hashCode = hashCode * 59 + BillingAddress.GetHashCode();
-                if (BlockedPaymentMethods != null)
-                    hashCode = hashCode * 59 + BlockedPaymentMethods.GetHashCode();
-                if (BrowserInfo != null)
-                    hashCode = hashCode * 59 + BrowserInfo.GetHashCode();
-                if (CaptureDelayHours != null)
-                    hashCode = hashCode * 59 + CaptureDelayHours.GetHashCode();
-                if (Card != null)
-                    hashCode = hashCode * 59 + Card.GetHashCode();
-                if (Channel != null)
-                    hashCode = hashCode * 59 + Channel.GetHashCode();
-                if (Company != null)
-                    hashCode = hashCode * 59 + Company.GetHashCode();
-                if (Configuration != null)
-                    hashCode = hashCode * 59 + Configuration.GetHashCode();
-                if (CountryCode != null)
-                    hashCode = hashCode * 59 + CountryCode.GetHashCode();
-                if (DateOfBirth != null)
-                    hashCode = hashCode * 59 + DateOfBirth.GetHashCode();
-                if (DccQuote != null)
-                    hashCode = hashCode * 59 + DccQuote.GetHashCode();
-                if (DeliveryAddress != null)
-                    hashCode = hashCode * 59 + DeliveryAddress.GetHashCode();
-                if (DeliveryDate != null)
-                    hashCode = hashCode * 59 + DeliveryDate.GetHashCode();
-                if (DeviceFingerprint != null)
-                    hashCode = hashCode * 59 + DeviceFingerprint.GetHashCode();
-                if (EnableOneClick != null)
-                    hashCode = hashCode * 59 + EnableOneClick.GetHashCode();
-                if (EnablePayOut != null)
-                    hashCode = hashCode * 59 + EnablePayOut.GetHashCode();
-                if (EnableRecurring != null)
-                    hashCode = hashCode * 59 + EnableRecurring.GetHashCode();
-                if (EntityType != null)
-                    hashCode = hashCode * 59 + EntityType.GetHashCode();
-                if (FraudOffset != null)
-                    hashCode = hashCode * 59 + FraudOffset.GetHashCode();
-                if (Html != null)
-                    hashCode = hashCode * 59 + Html.GetHashCode();
-                if (Installments != null)
-                    hashCode = hashCode * 59 + Installments.GetHashCode();
-                if (LineItems != null)
-                    hashCode = hashCode * 59 + LineItems.GetHashCode();
-                if (Mcc != null)
-                    hashCode = hashCode * 59 + Mcc.GetHashCode();
-                if (MerchantAccount != null)
-                    hashCode = hashCode * 59 + MerchantAccount.GetHashCode();
-                if (MerchantOrderReference != null)
-                    hashCode = hashCode * 59 + MerchantOrderReference.GetHashCode();
-                if (MerchantRiskIndicator != null)
-                    hashCode = hashCode * 59 + MerchantRiskIndicator.GetHashCode();
-                if (Metadata != null)
-                    hashCode = hashCode * 59 + Metadata.GetHashCode();
-                if (MpiData != null)
-                    hashCode = hashCode * 59 + MpiData.GetHashCode();
-                if (Nationality != null)
-                    hashCode = hashCode * 59 + Nationality.GetHashCode();
-                if (OrderReference != null)
-                    hashCode = hashCode * 59 + OrderReference.GetHashCode();
-                if (Origin != null)
-                    hashCode = hashCode * 59 + Origin.GetHashCode();
-                if (Recurring != null)
-                    hashCode = hashCode * 59 + Recurring.GetHashCode();
-                if (RecurringProcessingModel != null)
-                    hashCode = hashCode * 59 + RecurringProcessingModel.GetHashCode();
-                if (Reference != null)
-                    hashCode = hashCode * 59 + Reference.GetHashCode();
-                if (ReturnUrl != null)
-                    hashCode = hashCode * 59 + ReturnUrl.GetHashCode();
-                if (SdkVersion != null)
-                    hashCode = hashCode * 59 + SdkVersion.GetHashCode();
-                if (SelectedBrand != null)
-                    hashCode = hashCode * 59 + SelectedBrand.GetHashCode();
-                if (SelectedRecurringDetailReference != null)
-                    hashCode = hashCode * 59 + SelectedRecurringDetailReference.GetHashCode();
-                if (SessionId != null)
-                    hashCode = hashCode * 59 + SessionId.GetHashCode();
-                if (SessionValidity != null)
-                    hashCode = hashCode * 59 + SessionValidity.GetHashCode();
-                if (ShopperEmail != null)
-                    hashCode = hashCode * 59 + ShopperEmail.GetHashCode();
-                if (ShopperIP != null)
-                    hashCode = hashCode * 59 + ShopperIP.GetHashCode();
-                if (ShopperInteraction != null)
-                    hashCode = hashCode * 59 + ShopperInteraction.GetHashCode();
-                if (ShopperLocale != null)
-                    hashCode = hashCode * 59 + ShopperLocale.GetHashCode();
-                if (ShopperName != null)
-                    hashCode = hashCode * 59 + ShopperName.GetHashCode();
-                if (ShopperReference != null)
-                    hashCode = hashCode * 59 + ShopperReference.GetHashCode();
-                if (ShopperStatement != null)
-                    hashCode = hashCode * 59 + ShopperStatement.GetHashCode();
-                if (SocialSecurityNumber != null)
-                    hashCode = hashCode * 59 + SocialSecurityNumber.GetHashCode();
-                if (Splits != null)
-                    hashCode = hashCode * 59 + Splits.GetHashCode();
-                if (Store != null)
-                    hashCode = hashCode * 59 + Store.GetHashCode();
-                if (TelephoneNumber != null)
-                    hashCode = hashCode * 59 + TelephoneNumber.GetHashCode();
-                if (ThreeDS2RequestData != null)
-                    hashCode = hashCode * 59 + ThreeDS2RequestData.GetHashCode();
-                if (Token != null)
-                    hashCode = hashCode * 59 + Token.GetHashCode();
-                if (TotalsGroup != null)
-                    hashCode = hashCode * 59 + TotalsGroup.GetHashCode();
-                if (TrustedShopper != null)
-                    hashCode = hashCode * 59 + TrustedShopper.GetHashCode();
+                int hashCode = 41;
+                if (this.AccountInfo != null)
+                    hashCode = hashCode * 59 + this.AccountInfo.GetHashCode();
+                if (this.AdditionalAmount != null)
+                    hashCode = hashCode * 59 + this.AdditionalAmount.GetHashCode();
+                if (this.AdditionalData != null)
+                    hashCode = hashCode * 59 + this.AdditionalData.GetHashCode();
+                if (this.AllowedPaymentMethods != null)
+                    hashCode = hashCode * 59 + this.AllowedPaymentMethods.GetHashCode();
+                if (this.Amount != null)
+                    hashCode = hashCode * 59 + this.Amount.GetHashCode();
+                if (this.ApplicationInfo != null)
+                    hashCode = hashCode * 59 + this.ApplicationInfo.GetHashCode();
+                if (this.BankAccount != null)
+                    hashCode = hashCode * 59 + this.BankAccount.GetHashCode();
+                if (this.BillingAddress != null)
+                    hashCode = hashCode * 59 + this.BillingAddress.GetHashCode();
+                if (this.BlockedPaymentMethods != null)
+                    hashCode = hashCode * 59 + this.BlockedPaymentMethods.GetHashCode();
+                if (this.BrowserInfo != null)
+                    hashCode = hashCode * 59 + this.BrowserInfo.GetHashCode();
+                if (this.CaptureDelayHours != null)
+                    hashCode = hashCode * 59 + this.CaptureDelayHours.GetHashCode();
+                if (this.Card != null)
+                    hashCode = hashCode * 59 + this.Card.GetHashCode();
+                if (this.Channel != null)
+                    hashCode = hashCode * 59 + this.Channel.GetHashCode();
+                if (this.Company != null)
+                    hashCode = hashCode * 59 + this.Company.GetHashCode();
+                if (this.Configuration != null)
+                    hashCode = hashCode * 59 + this.Configuration.GetHashCode();
+                if (this.CountryCode != null)
+                    hashCode = hashCode * 59 + this.CountryCode.GetHashCode();
+                if (this.DateOfBirth != null)
+                    hashCode = hashCode * 59 + this.DateOfBirth.GetHashCode();
+                if (this.DccQuote != null)
+                    hashCode = hashCode * 59 + this.DccQuote.GetHashCode();
+                if (this.DeliveryAddress != null)
+                    hashCode = hashCode * 59 + this.DeliveryAddress.GetHashCode();
+                if (this.DeliveryDate != null)
+                    hashCode = hashCode * 59 + this.DeliveryDate.GetHashCode();
+                if (this.DeviceFingerprint != null)
+                    hashCode = hashCode * 59 + this.DeviceFingerprint.GetHashCode();
+                if (this.EnableOneClick != null)
+                    hashCode = hashCode * 59 + this.EnableOneClick.GetHashCode();
+                if (this.EnablePayOut != null)
+                    hashCode = hashCode * 59 + this.EnablePayOut.GetHashCode();
+                if (this.EnableRecurring != null)
+                    hashCode = hashCode * 59 + this.EnableRecurring.GetHashCode();
+                if (this.EntityType != null)
+                    hashCode = hashCode * 59 + this.EntityType.GetHashCode();
+                if (this.FraudOffset != null)
+                    hashCode = hashCode * 59 + this.FraudOffset.GetHashCode();
+                if (this.Html != null)
+                    hashCode = hashCode * 59 + this.Html.GetHashCode();
+                if (this.Installments != null)
+                    hashCode = hashCode * 59 + this.Installments.GetHashCode();
+                if (this.LineItems != null)
+                    hashCode = hashCode * 59 + this.LineItems.GetHashCode();
+                if (this.Mcc != null)
+                    hashCode = hashCode * 59 + this.Mcc.GetHashCode();
+                if (this.MerchantAccount != null)
+                    hashCode = hashCode * 59 + this.MerchantAccount.GetHashCode();
+                if (this.MerchantOrderReference != null)
+                    hashCode = hashCode * 59 + this.MerchantOrderReference.GetHashCode();
+                if (this.MerchantRiskIndicator != null)
+                    hashCode = hashCode * 59 + this.MerchantRiskIndicator.GetHashCode();
+                if (this.Metadata != null)
+                    hashCode = hashCode * 59 + this.Metadata.GetHashCode();
+                if (this.MpiData != null)
+                    hashCode = hashCode * 59 + this.MpiData.GetHashCode();
+                if (this.Nationality != null)
+                    hashCode = hashCode * 59 + this.Nationality.GetHashCode();
+                if (this.OrderReference != null)
+                    hashCode = hashCode * 59 + this.OrderReference.GetHashCode();
+                if (this.Origin != null)
+                    hashCode = hashCode * 59 + this.Origin.GetHashCode();
+                if (this.Recurring != null)
+                    hashCode = hashCode * 59 + this.Recurring.GetHashCode();
+                if (this.RecurringProcessingModel != null)
+                    hashCode = hashCode * 59 + this.RecurringProcessingModel.GetHashCode();
+                if (this.Reference != null)
+                    hashCode = hashCode * 59 + this.Reference.GetHashCode();
+                if (this.ReturnUrl != null)
+                    hashCode = hashCode * 59 + this.ReturnUrl.GetHashCode();
+                if (this.SdkVersion != null)
+                    hashCode = hashCode * 59 + this.SdkVersion.GetHashCode();
+                if (this.SelectedBrand != null)
+                    hashCode = hashCode * 59 + this.SelectedBrand.GetHashCode();
+                if (this.SelectedRecurringDetailReference != null)
+                    hashCode = hashCode * 59 + this.SelectedRecurringDetailReference.GetHashCode();
+                if (this.SessionId != null)
+                    hashCode = hashCode * 59 + this.SessionId.GetHashCode();
+                if (this.SessionValidity != null)
+                    hashCode = hashCode * 59 + this.SessionValidity.GetHashCode();
+                if (this.ShopperEmail != null)
+                    hashCode = hashCode * 59 + this.ShopperEmail.GetHashCode();
+                if (this.ShopperIP != null)
+                    hashCode = hashCode * 59 + this.ShopperIP.GetHashCode();
+                if (this.ShopperInteraction != null)
+                    hashCode = hashCode * 59 + this.ShopperInteraction.GetHashCode();
+                if (this.ShopperLocale != null)
+                    hashCode = hashCode * 59 + this.ShopperLocale.GetHashCode();
+                if (this.ShopperName != null)
+                    hashCode = hashCode * 59 + this.ShopperName.GetHashCode();
+                if (this.ShopperReference != null)
+                    hashCode = hashCode * 59 + this.ShopperReference.GetHashCode();
+                if (this.ShopperStatement != null)
+                    hashCode = hashCode * 59 + this.ShopperStatement.GetHashCode();
+                if (this.SocialSecurityNumber != null)
+                    hashCode = hashCode * 59 + this.SocialSecurityNumber.GetHashCode();
+                if (this.Splits != null)
+                    hashCode = hashCode * 59 + this.Splits.GetHashCode();
+                if (this.Store != null)
+                    hashCode = hashCode * 59 + this.Store.GetHashCode();
+                if (this.TelephoneNumber != null)
+                    hashCode = hashCode * 59 + this.TelephoneNumber.GetHashCode();
+                if (this.ThreeDS2RequestData != null)
+                    hashCode = hashCode * 59 + this.ThreeDS2RequestData.GetHashCode();
+                if (this.Token != null)
+                    hashCode = hashCode * 59 + this.Token.GetHashCode();
+                if (this.TotalsGroup != null)
+                    hashCode = hashCode * 59 + this.TotalsGroup.GetHashCode();
+                if (this.TrustedShopper != null)
+                    hashCode = hashCode * 59 + this.TrustedShopper.GetHashCode();
                 return hashCode;
             }
         }
@@ -1297,34 +1288,40 @@ namespace Adyen.EcommLibrary.Model.Checkout
         /// </summary>
         /// <param name="validationContext">Validation context</param>
         /// <returns>Validation Result</returns>
-        IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
         {
             // Nationality (string) maxLength
-            if (Nationality != null && Nationality.Length > 2)
-                yield return new ValidationResult("Invalid value for Nationality, length must be less than 2.",
-                    new[] {"Nationality"});
+            if(this.Nationality != null && this.Nationality.Length > 2)
+            {
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for Nationality, length must be less than 2.", new [] { "Nationality" });
+            }
 
             // Store (string) maxLength
-            if (Store != null && Store.Length > 16)
-                yield return new ValidationResult("Invalid value for Store, length must be less than 16.",
-                    new[] {"Store"});
+            if(this.Store != null && this.Store.Length > 16)
+            {
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for Store, length must be less than 16.", new [] { "Store" });
+            }
 
             // Store (string) minLength
-            if (Store != null && Store.Length < 1)
-                yield return new ValidationResult("Invalid value for Store, length must be greater than 1.",
-                    new[] {"Store"});
+            if(this.Store != null && this.Store.Length < 1)
+            {
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for Store, length must be greater than 1.", new [] { "Store" });
+            }
 
             // TotalsGroup (string) maxLength
-            if (TotalsGroup != null && TotalsGroup.Length > 16)
-                yield return new ValidationResult("Invalid value for TotalsGroup, length must be less than 16.",
-                    new[] {"TotalsGroup"});
+            if(this.TotalsGroup != null && this.TotalsGroup.Length > 16)
+            {
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for TotalsGroup, length must be less than 16.", new [] { "TotalsGroup" });
+            }
 
             // TotalsGroup (string) minLength
-            if (TotalsGroup != null && TotalsGroup.Length < 1)
-                yield return new ValidationResult("Invalid value for TotalsGroup, length must be greater than 1.",
-                    new[] {"TotalsGroup"});
+            if(this.TotalsGroup != null && this.TotalsGroup.Length < 1)
+            {
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for TotalsGroup, length must be greater than 1.", new [] { "TotalsGroup" });
+            }
 
             yield break;
         }
     }
+
 }

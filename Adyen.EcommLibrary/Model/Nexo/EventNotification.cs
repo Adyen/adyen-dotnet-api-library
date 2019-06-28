@@ -7,15 +7,15 @@ namespace Adyen.EcommLibrary.Model.Nexo
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
-    public partial class EventNotification : IMessagePayload
+    public partial class EventNotification:IMessagePayload
     {
+
         /// <remarks/>
         [System.Xml.Serialization.XmlElementAttribute(Form = System.Xml.Schema.XmlSchemaForm.Unqualified)]
         public string EventDetails;
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Form = System.Xml.Schema.XmlSchemaForm.Unqualified,
-            DataType = "base64Binary")]
+        [System.Xml.Serialization.XmlElementAttribute(Form = System.Xml.Schema.XmlSchemaForm.Unqualified, DataType = "base64Binary")]
         public byte[] RejectedMessage;
 
         /// <remarks/>
@@ -31,7 +31,8 @@ namespace Adyen.EcommLibrary.Model.Nexo
         public string EventToNotify;
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute()] [System.ComponentModel.DefaultValueAttribute(false)]
+        [System.Xml.Serialization.XmlAttributeAttribute()]
+        [System.ComponentModel.DefaultValueAttribute(false)]
         public bool MaintenanceRequiredFlag;
 
         /// <remarks/>
@@ -40,7 +41,7 @@ namespace Adyen.EcommLibrary.Model.Nexo
 
         public EventNotification()
         {
-            MaintenanceRequiredFlag = false;
+            this.MaintenanceRequiredFlag = false;
         }
     }
 }

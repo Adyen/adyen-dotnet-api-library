@@ -1,5 +1,6 @@
 ﻿using Adyen.EcommLibrary.CloudApiSerialization;
 using Adyen.EcommLibrary.Model.Nexo;
+using Adyen.EcommLibrary.Security;
 using Adyen.EcommLibrary.Service.Resource.Payment;
 
 namespace Adyen.EcommLibrary.Service
@@ -9,7 +10,7 @@ namespace Adyen.EcommLibrary.Service
         private readonly TerminalApi _terminalApiAsync;
         private readonly TerminalApi _terminalApiSync;
         private readonly SaleToPoiMessageSerializer _saleToPoiMessageSerializer;
-
+       
         public PosPaymentCloudApi(Client client)
             : base(client)
         {
@@ -28,7 +29,7 @@ namespace Adyen.EcommLibrary.Service
         {
             var serializedMessage = _saleToPoiMessageSerializer.Serialize(saleToPoiRequest);
             var response = _terminalApiAsync.Request(serializedMessage);
-            Client.LogLine("Response: \n" + response);
+            this.Client.LogLine("Response: \n" + response);
             return response;
         }
 
@@ -40,9 +41,9 @@ namespace Adyen.EcommLibrary.Service
         public SaleToPOIResponse TerminalApiCloudSync(SaleToPOIMessage saleToPoiRequest)
         {
             var serializedMessage = _saleToPoiMessageSerializer.Serialize(saleToPoiRequest);
-            Client.LogLine("Request: \n" + serializedMessage);
+            this.Client.LogLine("Request: \n"+ serializedMessage);
             var response = _terminalApiSync.Request(serializedMessage);
-            Client.LogLine("Response: \n" + response);
+            this.Client.LogLine("Response: \n"+ response);
             return _saleToPoiMessageSerializer.Deserialize(response);
         }
     }

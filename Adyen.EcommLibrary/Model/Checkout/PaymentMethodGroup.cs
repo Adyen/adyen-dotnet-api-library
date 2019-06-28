@@ -1,3 +1,4 @@
+
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -11,7 +12,7 @@ namespace Adyen.EcommLibrary.Model.Checkout
     /// PaymentMethodGroup
     /// </summary>
     [DataContract]
-    public partial class PaymentMethodGroup : IEquatable<PaymentMethodGroup>, IValidatableObject
+    public partial class PaymentMethodGroup :  IEquatable<PaymentMethodGroup>, IValidatableObject
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="PaymentMethodGroup" /> class.
@@ -19,33 +20,32 @@ namespace Adyen.EcommLibrary.Model.Checkout
         /// <param name="Name">The name of the group..</param>
         /// <param name="PaymentMethodData">Echo data to be used if the payment method is displayed as part of this group..</param>
         /// <param name="Type">The unique code of the group..</param>
-        public PaymentMethodGroup(string Name = default(string), string PaymentMethodData = default(string),
-            string Type = default(string))
+        public PaymentMethodGroup(string Name = default(string), string PaymentMethodData = default(string), string Type = default(string))
         {
             this.Name = Name;
             this.PaymentMethodData = PaymentMethodData;
             this.Type = Type;
         }
-
+        
         /// <summary>
         /// The name of the group.
         /// </summary>
         /// <value>The name of the group.</value>
-        [DataMember(Name = "name", EmitDefaultValue = false)]
+        [DataMember(Name="name", EmitDefaultValue=false)]
         public string Name { get; set; }
 
         /// <summary>
         /// Echo data to be used if the payment method is displayed as part of this group.
         /// </summary>
         /// <value>Echo data to be used if the payment method is displayed as part of this group.</value>
-        [DataMember(Name = "paymentMethodData", EmitDefaultValue = false)]
+        [DataMember(Name="paymentMethodData", EmitDefaultValue=false)]
         public string PaymentMethodData { get; set; }
 
         /// <summary>
         /// The unique code of the group.
         /// </summary>
         /// <value>The unique code of the group.</value>
-        [DataMember(Name = "type", EmitDefaultValue = false)]
+        [DataMember(Name="type", EmitDefaultValue=false)]
         public string Type { get; set; }
 
         /// <summary>
@@ -62,7 +62,7 @@ namespace Adyen.EcommLibrary.Model.Checkout
             sb.Append("}\n");
             return sb.ToString();
         }
-
+  
         /// <summary>
         /// Returns the JSON string presentation of the object
         /// </summary>
@@ -79,7 +79,7 @@ namespace Adyen.EcommLibrary.Model.Checkout
         /// <returns>Boolean</returns>
         public override bool Equals(object input)
         {
-            return Equals(input as PaymentMethodGroup);
+            return this.Equals(input as PaymentMethodGroup);
         }
 
         /// <summary>
@@ -92,21 +92,21 @@ namespace Adyen.EcommLibrary.Model.Checkout
             if (input == null)
                 return false;
 
-            return
+            return 
                 (
-                    Name == input.Name ||
-                    Name != null &&
-                    Name.Equals(input.Name)
-                ) &&
+                    this.Name == input.Name ||
+                    (this.Name != null &&
+                    this.Name.Equals(input.Name))
+                ) && 
                 (
-                    PaymentMethodData == input.PaymentMethodData ||
-                    PaymentMethodData != null &&
-                    PaymentMethodData.Equals(input.PaymentMethodData)
-                ) &&
+                    this.PaymentMethodData == input.PaymentMethodData ||
+                    (this.PaymentMethodData != null &&
+                    this.PaymentMethodData.Equals(input.PaymentMethodData))
+                ) && 
                 (
-                    Type == input.Type ||
-                    Type != null &&
-                    Type.Equals(input.Type)
+                    this.Type == input.Type ||
+                    (this.Type != null &&
+                    this.Type.Equals(input.Type))
                 );
         }
 
@@ -118,13 +118,13 @@ namespace Adyen.EcommLibrary.Model.Checkout
         {
             unchecked // Overflow is fine, just wrap
             {
-                var hashCode = 41;
-                if (Name != null)
-                    hashCode = hashCode * 59 + Name.GetHashCode();
-                if (PaymentMethodData != null)
-                    hashCode = hashCode * 59 + PaymentMethodData.GetHashCode();
-                if (Type != null)
-                    hashCode = hashCode * 59 + Type.GetHashCode();
+                int hashCode = 41;
+                if (this.Name != null)
+                    hashCode = hashCode * 59 + this.Name.GetHashCode();
+                if (this.PaymentMethodData != null)
+                    hashCode = hashCode * 59 + this.PaymentMethodData.GetHashCode();
+                if (this.Type != null)
+                    hashCode = hashCode * 59 + this.Type.GetHashCode();
                 return hashCode;
             }
         }
@@ -134,9 +134,10 @@ namespace Adyen.EcommLibrary.Model.Checkout
         /// </summary>
         /// <param name="validationContext">Validation context</param>
         /// <returns>Validation Result</returns>
-        IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
         {
             yield break;
         }
     }
+
 }

@@ -12,7 +12,7 @@ namespace Adyen.EcommLibrary.Model.Reccuring
         /// <value>details of the result</value>
         [DataMember(Name = "recurringDetail", EmitDefaultValue = false)]
         public RecurringDetail RecurringDetail { get; set; }
-
+        
         /// <summary>
         /// Returns the string presentation of the object
         /// </summary>
@@ -25,5 +25,6 @@ namespace Adyen.EcommLibrary.Model.Reccuring
             sb.Append("}\n");
             return sb.ToString();
         }
+
     }
 }

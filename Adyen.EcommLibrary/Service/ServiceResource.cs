@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using Adyen.EcommLibrary.Model;
@@ -8,7 +9,7 @@ namespace Adyen.EcommLibrary.Service
     {
         private readonly AbstractService _abstractService;
         protected string Endpoint;
-
+       
         public ServiceResource(AbstractService abstractService, string endpoint, List<string> requiredFields)
         {
             _abstractService = abstractService;
@@ -26,7 +27,7 @@ namespace Adyen.EcommLibrary.Service
         {
             var clientInterface = _abstractService.Client.HttpClient;
             var config = _abstractService.Client.Config;
-            return clientInterface.RequestAsync(Endpoint, json, config, false, requestOptions);
+            return clientInterface.RequestAsync(Endpoint, json, config,false, requestOptions);
         }
     }
 }

@@ -16,19 +16,20 @@ namespace Adyen.EcommLibrary.HttpClient
     {
         private readonly Encoding _encoding = Encoding.ASCII;
 
-        public string Request(string endpoint, string json, Config config, bool isApiKeyRequired,
-            RequestOptions requestOptions = null)
+        public string Request(string endpoint, string json, Config config, bool isApiKeyRequired, RequestOptions requestOptions = null)
         {
             string responseText = null;
             var httpWebRequest = GetHttpWebRequest(endpoint, config, isApiKeyRequired, requestOptions);
-            if (config.HttpClientTimeout > 0) httpWebRequest.Timeout = config.HttpClientTimeout;
+            if (config.HttpClientTimeout > 0)
+            {
+                httpWebRequest.Timeout = config.HttpClientTimeout;
+            }
             using (var streamWriter = new StreamWriter(httpWebRequest.GetRequestStream()))
             {
                 streamWriter.Write(json);
                 streamWriter.Flush();
                 streamWriter.Close();
             }
-
             try
             {
                 using (var response = (HttpWebResponse) httpWebRequest.GetResponse())
@@ -42,18 +43,16 @@ namespace Adyen.EcommLibrary.HttpClient
             catch (WebException e)
             {
                 if (e.Response == null)
-                    throw new HttpClientException((int) HttpStatusCode.RequestTimeout, "HTTP Exception timeout", null,
-                        "No response", e);
+                {
+                    throw new HttpClientException((int) HttpStatusCode.RequestTimeout, "HTTP Exception timeout", null, "No response", e);
+                }
                 var response = (HttpWebResponse) e.Response;
                 using (var sr = new StreamReader(response.GetResponseStream()))
                 {
                     responseText = sr.ReadToEnd();
                 }
-
-                throw new HttpClientException((int) response.StatusCode, "HTTP Exception", response.Headers,
-                    responseText);
+                throw new HttpClientException((int) response.StatusCode, "HTTP Exception", response.Headers, responseText);
             }
-
             return responseText;
         }
 
@@ -66,15 +65,14 @@ namespace Adyen.EcommLibrary.HttpClient
         /// <param name="isApiKeyRequired"></param>
         /// <param name="requestOptions">Optional parameter used to specify the options for the request</param>
         /// <returns>Task<string></returns>
-        public async Task<string> RequestAsync(string endpoint, string json, Config config, bool isApiKeyRequired,
-            RequestOptions requestOptions = null)
+        public async Task<string> RequestAsync(string endpoint, string json, Config config, bool isApiKeyRequired, RequestOptions requestOptions = null)
         {
             string responseText;
             //Set security protocol. Only TLS1.2
             ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12;
 
             var httpWebRequest = GetHttpWebRequest(endpoint, config, isApiKeyRequired, requestOptions);
-
+        
             using (var streamWriter = new StreamWriter(httpWebRequest.GetRequestStream()))
             {
                 streamWriter.Write(json);
@@ -82,7 +80,7 @@ namespace Adyen.EcommLibrary.HttpClient
                 streamWriter.Close();
             }
 
-            using (var response = (HttpWebResponse) await httpWebRequest.GetResponseAsync())
+            using (var response = (HttpWebResponse)await httpWebRequest.GetResponseAsync())
             {
                 using (var reader = new StreamReader(response.GetResponseStream(), _encoding))
                 {
@@ -93,19 +91,18 @@ namespace Adyen.EcommLibrary.HttpClient
             return responseText;
         }
 
-        [Obsolete(
-            "This is deprecated functionality by Adyen. Correct use request method with isApiKeyRequired parameter.")]
+        [Obsolete("This is deprecated functionality by Adyen. Correct use request method with isApiKeyRequired parameter.")]
         public string Request(string endpoint, string json, Config config)
         {
-            return Request(endpoint, json, config, false);
+            return this.Request(endpoint, json, config, false);
         }
 
         public string Post(string endpoint, Dictionary<string, string> postParameters, Config config)
         {
             var dictToString = QueryString(postParameters);
-            var postBytes = Encoding.ASCII.GetBytes(dictToString);
+            byte[] postBytes = Encoding.ASCII.GetBytes(dictToString);
 
-            var httpWebRequest = (HttpWebRequest) WebRequest.Create(endpoint);
+            var httpWebRequest = (HttpWebRequest)WebRequest.Create(endpoint);
             httpWebRequest.Method = "POST";
             httpWebRequest.ContentType = "application/x-www-form-urlencoded";
             httpWebRequest.ContentLength = postBytes.Length;
@@ -116,28 +113,30 @@ namespace Adyen.EcommLibrary.HttpClient
                 stream.Write(postBytes, 0, postBytes.Length);
             }
 
-            var response = (HttpWebResponse) httpWebRequest.GetResponse();
+            var response = (HttpWebResponse)httpWebRequest.GetResponse();
 
             return new StreamReader(response.GetResponseStream()).ReadToEnd();
         }
 
-        public HttpWebRequest GetHttpWebRequest(string endpoint, Config config, bool isApiKeyRequired,
-            RequestOptions requestOptions = null)
+        public HttpWebRequest GetHttpWebRequest(string endpoint, Config config, bool isApiKeyRequired, RequestOptions requestOptions = null)
         {
             //Add default headers
-            var httpWebRequest = (HttpWebRequest) WebRequest.Create(endpoint);
+            var httpWebRequest = (HttpWebRequest)WebRequest.Create(endpoint);
             httpWebRequest.Method = "POST";
             httpWebRequest.ContentType = "application/json";
             httpWebRequest.Headers.Add("Accept-Charset", "UTF-8");
             httpWebRequest.Headers.Add("Cache-Control", "no-cache");
-            httpWebRequest.UserAgent =
-                $"{config.ApplicationName} {ClientConfig.UserAgentSuffix}{ClientConfig.LibVersion}";
-
+            httpWebRequest.UserAgent = $"{config.ApplicationName} {ClientConfig.UserAgentSuffix}{ClientConfig.LibVersion}";
+         
             if (config.SkipCertValidation)
+            {
                 httpWebRequest.ServerCertificateValidationCallback = delegate { return true; };
+            }
 
             if (!string.IsNullOrWhiteSpace(requestOptions?.IdempotencyKey))
+            {
                 httpWebRequest.Headers.Add("Idempotency-Key", requestOptions?.IdempotencyKey);
+            }
 
             //Use one of two authentication method.
             if (isApiKeyRequired || !string.IsNullOrEmpty(config.XApiKey))
@@ -153,14 +152,16 @@ namespace Adyen.EcommLibrary.HttpClient
                 httpWebRequest.Headers.Add("Authorization", "Basic " + credentials);
                 httpWebRequest.UseDefaultCredentials = true;
             }
-
             return httpWebRequest;
         }
 
         public static string QueryString(IDictionary<string, string> dict)
         {
             var list = new List<string>();
-            foreach (var item in dict) list.Add(item.Key + "=" + HttpUtility.UrlEncode(item.Value));
+            foreach (var item in dict)
+            {
+                list.Add(item.Key + "=" + HttpUtility.UrlEncode(item.Value));
+            }
             return string.Join("&", list);
         }
     }
