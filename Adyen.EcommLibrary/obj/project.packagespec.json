@@ -1,0 +1,59 @@
+﻿{
+  "version": "2.1.2",
+  "restore": {
+    "projectUniqueName": "/Users/johanhugg/Git/adyen-dotnet-api-library/Adyen.EcommLibrary/Adyen.EcommLibrary.csproj",
+    "projectName": "Storytel.AdyenEcommLibrary",
+    "projectPath": "/Users/johanhugg/Git/adyen-dotnet-api-library/Adyen.EcommLibrary/Adyen.EcommLibrary.csproj",
+    "outputPath": "/Users/johanhugg/Git/adyen-dotnet-api-library/Adyen.EcommLibrary/obj/",
+    "projectStyle": "PackageReference",
+    "crossTargeting": true,
+    "fallbackFolders": [
+      "/usr/local/share/dotnet/sdk/NuGetFallbackFolder"
+    ],
+    "originalTargetFrameworks": [
+      "netstandard2.0"
+    ],
+    "sources": {
+      "https://api.nuget.org/v3/index.json": {}
+    },
+    "frameworks": {
+      "netstandard2.0": {
+        "projectReferences": {}
+      }
+    },
+    "warningProperties": {
+      "warnAsError": [
+        "NU1605"
+      ]
+    }
+  },
+  "frameworks": {
+    "netstandard2.0": {
+      "dependencies": {
+        "NETStandard.Library": {
+          "suppressParent": "All",
+          "target": "Package",
+          "version": "[2.0.3, )",
+          "autoReferenced": true
+        },
+        "Newtonsoft.Json": {
+          "target": "Package",
+          "version": "[10.0.3, )"
+        },
+        "System.ComponentModel.Annotations": {
+          "target": "Package",
+          "version": "[4.4.0, )"
+        },
+        "System.Net.Http": {
+          "target": "Package",
+          "version": "[4.3.3, )"
+        }
+      },
+      "imports": [
+        "net461"
+      ],
+      "assetTargetFallback": true,
+      "warn": true
+    }
+  }
+}

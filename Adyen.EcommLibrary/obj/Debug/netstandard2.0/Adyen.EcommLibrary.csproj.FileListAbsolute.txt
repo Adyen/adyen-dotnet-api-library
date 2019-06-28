@@ -1,0 +1,9 @@
+/Users/johanhugg/Git/adyen-dotnet-api-library/Adyen.EcommLibrary/bin/Debug/netstandard2.0/Adyen.EcommLibrary.deps.json
+/Users/johanhugg/Git/adyen-dotnet-api-library/Adyen.EcommLibrary/bin/Debug/netstandard2.0/Adyen.EcommLibrary.dll
+/Users/johanhugg/Git/adyen-dotnet-api-library/Adyen.EcommLibrary/bin/Debug/netstandard2.0/Adyen.EcommLibrary.pdb
+/Users/johanhugg/Git/adyen-dotnet-api-library/Adyen.EcommLibrary/obj/Debug/netstandard2.0/Adyen.EcommLibrary.csprojAssemblyReference.cache
+/Users/johanhugg/Git/adyen-dotnet-api-library/Adyen.EcommLibrary/obj/Debug/netstandard2.0/Adyen.EcommLibrary.csproj.CoreCompileInputs.cache
+/Users/johanhugg/Git/adyen-dotnet-api-library/Adyen.EcommLibrary/obj/Debug/netstandard2.0/Adyen.EcommLibrary.AssemblyInfoInputs.cache
+/Users/johanhugg/Git/adyen-dotnet-api-library/Adyen.EcommLibrary/obj/Debug/netstandard2.0/Adyen.EcommLibrary.AssemblyInfo.cs
+/Users/johanhugg/Git/adyen-dotnet-api-library/Adyen.EcommLibrary/obj/Debug/netstandard2.0/Adyen.EcommLibrary.dll
+/Users/johanhugg/Git/adyen-dotnet-api-library/Adyen.EcommLibrary/obj/Debug/netstandard2.0/Adyen.EcommLibrary.pdb
