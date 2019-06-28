@@ -178,7 +178,7 @@ namespace Adyen.EcommLibrary.Model.Checkout
         [DataMember(Name = "outputDetails", EmitDefaultValue = false)]
         public Dictionary<string, string> OutputDetails;
 
-        [DataMember(Name= "authentication", EmitDefaultValue = false)]
+        [DataMember(Name = "authentication", EmitDefaultValue = false)]
         public Authentication Authentication { get; set; }
 
         /// <summary>
