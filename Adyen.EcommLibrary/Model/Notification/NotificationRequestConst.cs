@@ -14,6 +14,8 @@ namespace Adyen.EcommLibrary.Model.Notification
         public const string EventCodeRefundedReversed = "REFUNDED_REVERSED";
         public const string EventCodePaidoutReversed = "PAIDOUT_REVERSED";
         public const string EventCodeRecurringContract = "RECURRING_CONTRACT";
+        public const string EventCodeNotificationOfChargeback = "NOTIFICATION_OF_CHARGEBACK";
+        public const string EventCodeChargeback = "CHARGEBACK";
 
         //Additional Data
         public const string AdditionalDataTotalFraudScore = "totalFraudScore";
