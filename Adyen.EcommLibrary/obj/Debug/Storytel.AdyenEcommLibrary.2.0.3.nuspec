@@ -1,0 +1,29 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2012/06/nuspec.xsd">
+  <metadata>
+    <id>Storytel.AdyenEcommLibrary</id>
+    <version>2.0.3</version>
+    <title>adyen-dotnet-api-library</title>
+    <authors>Adyen</authors>
+    <owners>Adyen</owners>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <licenseUrl>https://github.com/Adyen/adyen-dotnet-api-library/blob/master/LICENSE</licenseUrl>
+    <projectUrl>https://github.com/Adyen/adyen-dotnet-api-library</projectUrl>
+    <iconUrl>https://www.adyen.com/dam/jcr:39adc4db-76f7-4b9e-aec6-bfa21db4153c/adyen-logo-green.png</iconUrl>
+    <description>The Adyen API Library for .net core enables you to work with Adyen APIs, Hosted Payment Pages and terminal api with any .net application.</description>
+    <releaseNotes>Supports terminal api integration</releaseNotes>
+    <copyright>Adyen</copyright>
+    <tags>2.0.3</tags>
+    <repository type="git" url="https://github.com/Adyen/adyen-dotnet-api-library" />
+    <dependencies>
+      <group targetFramework=".NETStandard2.0">
+        <dependency id="Newtonsoft.Json" version="10.0.3" exclude="Build,Analyzers" />
+        <dependency id="System.ComponentModel.Annotations" version="4.4.0" exclude="Build,Analyzers" />
+        <dependency id="System.Net.Http" version="4.3.3" exclude="Build,Analyzers" />
+      </group>
+    </dependencies>
+  </metadata>
+  <files>
+    <file src="/Users/johanhugg/Git/adyen-dotnet-api-library/Adyen.EcommLibrary/bin/Debug/netstandard2.0/Adyen.EcommLibrary.dll" target="lib/netstandard2.0/Adyen.EcommLibrary.dll" />
+  </files>
+</package>
