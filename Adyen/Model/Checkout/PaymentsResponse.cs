@@ -103,9 +103,10 @@ namespace Adyen.Model.Checkout
         /// <param name="RefusalReason">If the payment&#39;s authorisation is refused or an error occurs during authorisation, this field holds Adyen&#39;s mapped reason for the refusal or a description of the error.  When a transaction fails, the authorisation response includes &#x60;resultCode&#x60; and &#x60;refusalReason&#x60; values..</param>
         /// <param name="RefusalReasonCode">Code that specifies the refusal reason. For more information, see [Authorisation refusal reasons](https://docs.adyen.com/developers/development-resources/response-handling#authorisationrefusalreasons)..</param>
         /// <param name="ResultCode">The result of the payment. Possible values:  * **Authorised** – Indicates the payment authorisation was successfully completed. This state serves as an indicator to proceed with the delivery of goods and services. This is a final state. * **Refused** – Indicates the payment was refused. The reason is given in the &#x60;refusalReason&#x60; field. This is a final state. * **RedirectShopper** – Indicates the shopper should be redirected to an external web page or app to complete the authorisation. * **Received** – Indicates the payment has successfully been received by Adyen, and will be processed. This is the initial state for all payments. * **Cancelled** – Indicates the payment has been cancelled (either by the shopper or the merchant) before processing was completed. This is a final state. * **Pending** – Indicates that it is not possible to obtain the final status of the payment. This can happen if the systems providing final status information for the payment are unavailable, or if the shopper needs to take further action to complete the payment. For more information on handling a pending payment, refer to [Payments with pending status](https://docs.adyen.com/developers/development-resources/payments-with-pending-status). * **Error** – Indicates an error occurred during processing of the payment. The reason is given in the &#x60;refusalReason&#x60; field. This is a final state..</param>
-        public PaymentsResponse(Dictionary<string, string> AdditionalData = default(Dictionary<string, string>), List<InputDetail> Details = default(List<InputDetail>), FraudResult FraudResult = default(FraudResult), string PaymentData = default(string), string PspReference = default(string), Redirect Redirect = default(Redirect), string RefusalReason = default(string), string RefusalReasonCode = default(string), ResultCodeEnum? ResultCode = default(ResultCodeEnum?))
+        public PaymentsResponse(Dictionary<string, string> Authentication = default(Dictionary<string, string>), Dictionary<string, string> AdditionalData = default(Dictionary<string, string>), List<InputDetail> Details = default(List<InputDetail>), FraudResult FraudResult = default(FraudResult), string PaymentData = default(string), string PspReference = default(string), Redirect Redirect = default(Redirect), string RefusalReason = default(string), string RefusalReasonCode = default(string), ResultCodeEnum? ResultCode = default(ResultCodeEnum?))
         {
             this.AdditionalData = AdditionalData;
+            this.Authentication = Authentication;
             this.Details = Details;
             this.FraudResult = FraudResult;
             this.PaymentData = PaymentData;
@@ -122,6 +123,13 @@ namespace Adyen.Model.Checkout
         /// <value>This field contains additional data, which may be required to return in a particular payment response. To choose data fields to be returned, go to **Customer Area** &gt; **Account** &gt; **API URLs**.</value>
         [DataMember(Name="additionalData", EmitDefaultValue=false)]
         public Dictionary<string, string> AdditionalData { get; set; }
+
+        /// <summary>
+        /// This field contains authentication data, which may be required to return in a particular payment response.
+        /// </summary>
+        /// <value>This field contains authentication data, which may be required to return in a particular payment response.</value>
+        [DataMember(Name = "authentication", EmitDefaultValue = false)]
+        public Dictionary<string, string> Authentication { get; set; }
 
         /// <summary>
         /// When non-empty, contains all the fields that you must submit to the &#x60;/payments/details&#x60; endpoint.
@@ -185,6 +193,7 @@ namespace Adyen.Model.Checkout
             var sb = new StringBuilder();
             sb.Append("class PaymentsResponse {\n");
             sb.Append("  AdditionalData: ").Append(AdditionalData).Append("\n");
+            sb.Append("  Authentication: ").Append(Authentication).Append("\n");
             sb.Append("  Details: ").Append(Details).Append("\n");
             sb.Append("  FraudResult: ").Append(FraudResult).Append("\n");
             sb.Append("  PaymentData: ").Append(PaymentData).Append("\n");
@@ -231,7 +240,12 @@ namespace Adyen.Model.Checkout
                     this.AdditionalData == input.AdditionalData ||
                     this.AdditionalData != null &&
                     this.AdditionalData.SequenceEqual(input.AdditionalData)
-                ) && 
+                ) &&
+                (
+                    this.Authentication == input.Authentication ||
+                    this.Authentication != null &&
+                    this.Authentication.SequenceEqual(input.Authentication)
+                ) &&
                 (
                     this.Details == input.Details ||
                     this.Details != null &&
@@ -285,6 +299,8 @@ namespace Adyen.Model.Checkout
                 int hashCode = 41;
                 if (this.AdditionalData != null)
                     hashCode = hashCode * 59 + this.AdditionalData.GetHashCode();
+                if (this.Authentication != null)
+                    hashCode = hashCode * 59 + this.Authentication.GetHashCode();
                 if (this.Details != null)
                     hashCode = hashCode * 59 + this.Details.GetHashCode();
                 if (this.FraudResult != null)
