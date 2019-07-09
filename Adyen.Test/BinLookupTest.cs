@@ -58,5 +58,17 @@ namespace Adyen.Test
             Assert.AreEqual("Unsupported", costEstimateResponse.ResultCode);
             Assert.AreEqual("ZERO", costEstimateResponse.SurchargeType);
         }
+
+        [TestMethod]
+        public void GetCostEstimateSuccessGenerateShopperInteractionFromEnum()
+        {
+            var ecommerce = Util.JsonOperation.SerializeRequest(ShopperInteraction.Ecommerce);
+            var contAuth = Util.JsonOperation.SerializeRequest(ShopperInteraction.ContAuth);
+            var moto = Util.JsonOperation.SerializeRequest(ShopperInteraction.Moto);
+
+            Assert.AreEqual("\"Ecommerce\"", ecommerce);
+            Assert.AreEqual("\"ContAuth\"", contAuth);
+            Assert.AreEqual("\"Moto\"", moto);
+        }
     }
 }
