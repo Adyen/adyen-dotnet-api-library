@@ -82,7 +82,7 @@ namespace Adyen.Model.Checkout
             /// Enum PresentToShopper for value: PresentToShopper
             /// </summary>
             [EnumMember(Value = "PresentToShopper")]
-            PresentToShopper = 10
+            PresentToShopper = 10,
 
             /// <summary>
             /// Enum AuthenticationFinished for value: AuthenticationFinished
