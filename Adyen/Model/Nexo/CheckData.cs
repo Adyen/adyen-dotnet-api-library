@@ -31,7 +31,7 @@
         /// <remarks/>
         [System.Xml.Serialization.XmlAttributeAttribute()]
         [System.ComponentModel.DefaultValueAttribute(CheckTypeCodeType.Personal)]
-        public CheckTypeCodeType Type;
+        public CheckTypeCodeType TypeCode;
 
         /// <remarks/>
         [System.Xml.Serialization.XmlAttributeAttribute()]

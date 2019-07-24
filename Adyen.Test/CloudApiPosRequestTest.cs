@@ -1,4 +1,5 @@
-﻿using Adyen.Model.Nexo;
+﻿using Adyen.CloudApiSerialization;
+using Adyen.Model.Nexo;
 using Adyen.Service;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
@@ -136,6 +137,27 @@ namespace Adyen.Test
                 var response = (DisplayResponse)saleToPoiResponse.MessagePayload;
                 Assert.AreEqual(response.OutputResult[0].InfoQualify, InfoQualifyType.Display);
                 Assert.AreEqual(response.OutputResult[0].Device, DeviceType.CustomerDisplay);
+            }
+            catch (Exception)
+            {
+                Assert.Fail();
+            }
+        }
+
+        [TestMethod]
+        public void TestCloudApiCardAcquisition()
+        {
+            try
+            {
+                var mockPath = GetMockFilePath("Mocks/terminalapi/pospayment-card-acquisition-request.json");
+                var message = MockFileToString(mockPath);
+                var saleToPoiMessageSerializer = new SaleToPoiMessageSerializer();
+                var saleToMessage = saleToPoiMessageSerializer.Deserialize(message);
+                var messagePayload = (CardAcquisitionRequest)saleToMessage.MessagePayload;
+                Assert.IsNotNull(messagePayload);
+                Assert.IsNotNull(messagePayload.CardAcquisitionTransaction.ForceEntryMode);
+                Assert.AreEqual(messagePayload.CardAcquisitionTransaction.ForceEntryMode[0],ForceEntryModeType.MagStripe);
+                Assert.AreEqual(messagePayload.CardAcquisitionTransaction.ForceEntryMode[1], ForceEntryModeType.Contactless);
             }
             catch (Exception)
             {

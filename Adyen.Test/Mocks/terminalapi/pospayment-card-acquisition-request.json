@@ -1,0 +1,27 @@
+{
+   "SaleToPOIRequest":{
+      "MessageHeader":{
+         "ProtocolVersion":"3.0",
+         "MessageClass":"Service",
+         "MessageCategory":"CardAcquisition",
+         "MessageType":"Request",
+         "ServiceID":"0612120526",
+         "SaleID":"CashRegB3",
+         "POIID":"V400m-324689783"
+      },
+      "CardAcquisitionRequest":{
+         "SaleData":{
+            "SaleTransactionID":{
+               "TransactionID":"TID-2018-08-01-16:43:01",
+               "TimeStamp":"2018-08-01T16:43:01"
+            },
+            "TokenRequestedType":"Customer" 
+         },
+         "CardAcquisitionTransaction":{
+            "TotalAmount":10,
+			"ForceEntryMode": ["MagStripe","Contactless"],
+			"PaymentType":"Refund"
+		 },
+      }
+   }
+}
