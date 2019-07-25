@@ -32,7 +32,6 @@ namespace Adyen.Test
             var jsonRequest = Util.JsonOperation.Deserialize<ThreeDSecureData>(json);
             var xid = Encoding.ASCII.GetString(jsonRequest.Xid);
             var cavv = Encoding.ASCII.GetString(jsonRequest.Cavv);
-
             var jsonElementBase64 = "Qnl0ZXMtVG8tQmUtRW5jb2RlZA==";
             Assert.AreEqual(jsonElementBase64, xid);
             Assert.AreEqual(jsonElementBase64, cavv);

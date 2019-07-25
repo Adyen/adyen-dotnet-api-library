@@ -18,7 +18,6 @@ namespace Adyen.Util
         {
             if (reader.TokenType == JsonToken.Null)
                 return null;
-
             return Encoding.UTF8.GetBytes((string)reader.Value);
         }
 

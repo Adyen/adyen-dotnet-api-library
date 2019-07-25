@@ -12,9 +12,7 @@ namespace Adyen.Util
         /// <returns></returns>
         public static T Deserialize<T>(string request)
         {
-            var jsonSettings = new JsonSerializerSettings
-            {
-            };
+            var jsonSettings = new JsonSerializerSettings();
             jsonSettings.Converters.Add(new ByteArrayConverter());
             return JsonConvert.DeserializeObject<T>(request, jsonSettings);
         }
@@ -35,7 +33,6 @@ namespace Adyen.Util
             {
                 NullValueHandling = NullValueHandling.Ignore,
                 DefaultValueHandling = DefaultValueHandling.Include,
-                
             };
             jsonSettings.Converters.Add(new ByteArrayConverter());
             return JsonConvert.SerializeObject(request, Newtonsoft.Json.Formatting.None, jsonSettings);
