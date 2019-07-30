@@ -25,8 +25,6 @@ namespace Adyen.Model.Modification
     [DataContract]
     public class ModificationResult :  IEquatable<ModificationResult>, IValidatableObject
     {
-
-
         /// <summary>
         /// Indicates if the modification request has been received for processing.
         /// </summary>

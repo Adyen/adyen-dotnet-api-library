@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Runtime.Serialization;
-using System.Text;
+﻿using System.Runtime.Serialization;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
 
@@ -37,6 +34,12 @@ namespace Adyen.Model.Enum
         /// Enum CancelOrRefundReceived for "[cancelOrRefund-received]"
         /// </summary>
         [EnumMember(Value = "[cancelOrRefund-received]")]
-        CancelOrRefundReceived
+        CancelOrRefundReceived,
+
+        /// <summary>
+        /// Enum CancelOrRefundReceived for "[cancelOrRefund-received]"
+        /// </summary>
+        [EnumMember(Value = "[adjustAuthorisation-received]")]
+        AdjustAuthorisationReceived
     }
 }

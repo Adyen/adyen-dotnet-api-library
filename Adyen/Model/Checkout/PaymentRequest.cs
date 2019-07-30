@@ -212,12 +212,13 @@ namespace Adyen.Model.Checkout
         /// <param name="ShopperStatement">The text to appear on the shopper&#39;s bank statement..</param>
         /// <param name="SocialSecurityNumber">The shopper&#39;s social security number..</param>
         /// <param name="Splits">The details of how the payment should be split when distributing a payment to a MarketPay Marketplace and its Accounts..</param>
+        /// <param name="storePaymentMethod">When true and &#x60;shopperReference&#x60; is provided, the payment details will be stored..</param>
         /// <param name="Store">The physical store, for which this payment is processed..</param>
         /// <param name="TelephoneNumber">The shopper&#39;s telephone number..</param>
         /// <param name="ThreeDS2RequestData">Request fields for 3D Secure 2.0..</param>
         /// <param name="TotalsGroup">The reference value to aggregate sales totals in reporting. When not specified, the store field is used (if available)..</param>
         /// <param name="TrustedShopper">Set to true if the payment should be routed to a trusted MID..</param>
-        public PaymentRequest(AccountInfo AccountInfo = default(AccountInfo), Amount AdditionalAmount = default(Amount), Dictionary<string, string> AdditionalData = default(Dictionary<string, string>), List<string> AllowedPaymentMethods = default(List<string>), Amount Amount = default(Amount), BankAccount BankAccount = default(BankAccount), Address BillingAddress = default(Address), List<string> BlockedPaymentMethods = default(List<string>), BrowserInfo BrowserInfo = default(BrowserInfo), int? CaptureDelayHours = default(int?), Card Card = default(Card), ChannelEnum? Channel = default(ChannelEnum?), Company Company = default(Company), string CountryCode = default(string), DateTime? DateOfBirth = default(DateTime?), ForexQuote DccQuote = default(ForexQuote), Address DeliveryAddress = default(Address), DateTime? DeliveryDate = default(DateTime?), string DeviceFingerprint = default(string), bool? EnableOneClick = default(bool?), bool? EnablePayOut = default(bool?), bool? EnableRecurring = default(bool?), EntityTypeEnum? EntityType = default(EntityTypeEnum?), int? FraudOffset = default(int?), Installments Installments = default(Installments), List<LineItem> LineItems = default(List<LineItem>), string Mcc = default(string), string MerchantAccount = default(string), string MerchantOrderReference = default(string), MerchantRiskIndicator MerchantRiskIndicator = default(MerchantRiskIndicator), Dictionary<string, string> Metadata = default(Dictionary<string, string>), ThreeDSecureData MpiData = default(ThreeDSecureData), string Nationality = default(string), string OrderReference = default(string), DefaultPaymentMethodDetails PaymentMethod = default(DefaultPaymentMethodDetails), Recurring Recurring = default(Recurring), RecurringProcessingModelEnum? RecurringProcessingModel = default(RecurringProcessingModelEnum?), string RedirectFromIssuerMethod = default(string), string RedirectToIssuerMethod = default(string), string Reference = default(string), string ReturnUrl = default(string), string SelectedBrand = default(string), string SelectedRecurringDetailReference = default(string), string SessionId = default(string), string SessionValidity = default(string), string ShopperEmail = default(string), string ShopperIP = default(string), ShopperInteractionEnum? ShopperInteraction = default(ShopperInteractionEnum?), string ShopperLocale = default(string), Name ShopperName = default(Name), string ShopperReference = default(string), string ShopperStatement = default(string), string SocialSecurityNumber = default(string), List<Split> Splits = default(List<Split>), string Store = default(string), string TelephoneNumber = default(string), ThreeDS2RequestData ThreeDS2RequestData = default(ThreeDS2RequestData), string TotalsGroup = default(string), bool? TrustedShopper = default(bool?))
+        public PaymentRequest(AccountInfo AccountInfo = default(AccountInfo), Amount AdditionalAmount = default(Amount), Dictionary<string, string> AdditionalData = default(Dictionary<string, string>), List<string> AllowedPaymentMethods = default(List<string>), Amount Amount = default(Amount), BankAccount BankAccount = default(BankAccount), Address BillingAddress = default(Address), List<string> BlockedPaymentMethods = default(List<string>), BrowserInfo BrowserInfo = default(BrowserInfo), int? CaptureDelayHours = default(int?), Card Card = default(Card), ChannelEnum? Channel = default(ChannelEnum?), Company Company = default(Company), string CountryCode = default(string), DateTime? DateOfBirth = default(DateTime?), ForexQuote DccQuote = default(ForexQuote), Address DeliveryAddress = default(Address), DateTime? DeliveryDate = default(DateTime?), string DeviceFingerprint = default(string), bool? EnableOneClick = default(bool?), bool? EnablePayOut = default(bool?), bool? EnableRecurring = default(bool?), EntityTypeEnum? EntityType = default(EntityTypeEnum?), int? FraudOffset = default(int?), Installments Installments = default(Installments), List<LineItem> LineItems = default(List<LineItem>), string Mcc = default(string), string MerchantAccount = default(string), string MerchantOrderReference = default(string), MerchantRiskIndicator MerchantRiskIndicator = default(MerchantRiskIndicator), Dictionary<string, string> Metadata = default(Dictionary<string, string>), ThreeDSecureData MpiData = default(ThreeDSecureData), CheckoutOrder order = default(CheckoutOrder), string Nationality = default(string), string OrderReference = default(string), DefaultPaymentMethodDetails PaymentMethod = default(DefaultPaymentMethodDetails), Recurring Recurring = default(Recurring), RecurringProcessingModelEnum? RecurringProcessingModel = default(RecurringProcessingModelEnum?), string RedirectFromIssuerMethod = default(string), string RedirectToIssuerMethod = default(string), string Reference = default(string), string ReturnUrl = default(string), string SelectedBrand = default(string), string SelectedRecurringDetailReference = default(string), string SessionId = default(string), string SessionValidity = default(string), string ShopperEmail = default(string), string ShopperIP = default(string), ShopperInteractionEnum? ShopperInteraction = default(ShopperInteractionEnum?), string ShopperLocale = default(string), Name ShopperName = default(Name), string ShopperReference = default(string), string ShopperStatement = default(string), string SocialSecurityNumber = default(string), List<Split> Splits = default(List<Split>), bool? storePaymentMethod = default(bool?), string Store = default(string), string TelephoneNumber = default(string), ThreeDS2RequestData ThreeDS2RequestData = default(ThreeDS2RequestData), string TotalsGroup = default(string), bool? TrustedShopper = default(bool?))
         {
             CreateApplicationInfo();
             // to ensure "Amount" is required (not null)
@@ -295,7 +296,7 @@ namespace Adyen.Model.Checkout
             this.MerchantRiskIndicator = MerchantRiskIndicator;
             this.Metadata = Metadata;
             this.MpiData = MpiData;
-            this.Nationality = Nationality;
+            this.Order = order;
             this.OrderReference = OrderReference;
             this.Origin = Origin;
             this.Recurring = Recurring;
@@ -315,6 +316,7 @@ namespace Adyen.Model.Checkout
             this.ShopperStatement = ShopperStatement;
             this.SocialSecurityNumber = SocialSecurityNumber;
             this.Splits = Splits;
+            this.StorePaymentMethod = storePaymentMethod;
             this.Store = Store;
             this.TelephoneNumber = TelephoneNumber;
             this.ThreeDS2RequestData = ThreeDS2RequestData;
@@ -542,12 +544,11 @@ namespace Adyen.Model.Checkout
         public ThreeDSecureData MpiData { get; set; }
 
         /// <summary>
-        /// The two-character country code of the shopper&#39;s nationality.
+        /// Gets or Sets Order
         /// </summary>
-        /// <value>The two-character country code of the shopper&#39;s nationality.</value>
-        [DataMember(Name = "nationality", EmitDefaultValue = false)]
-        public string Nationality { get; set; }
-
+        [DataMember(Name = "order", EmitDefaultValue = false)]
+        public CheckoutOrder Order { get; set; }
+        
         /// <summary>
         /// The order reference to link multiple partial payments.
         /// </summary>
@@ -684,6 +685,12 @@ namespace Adyen.Model.Checkout
         public List<Split> Splits { get; set; }
 
         /// <summary>
+        /// When true and &#x60;shopperReference&#x60; is provided, the payment details will be stored.
+        /// </summary>
+        /// <value>When true and &#x60;shopperReference&#x60; is provided, the payment details will be stored.</value>
+        [DataMember(Name = "storePaymentMethod", EmitDefaultValue = false)]
+        public bool? StorePaymentMethod { get; set; }
+        /// <summary>
         /// The physical store, for which this payment is processed.
         /// </summary>
         /// <value>The physical store, for which this payment is processed.</value>
@@ -724,8 +731,7 @@ namespace Adyen.Model.Checkout
         /// <value>Required for the 3DS2.0 Web integration.</value>
         [DataMember(Name = "origin", EmitDefaultValue = false)]
         public string Origin { get; set; }
-
-       
+        
 
         public void AddCardData(string cardNumber, string expiryMonth, string expiryYear, string securityCode, string holderName)
         {
@@ -797,7 +803,7 @@ namespace Adyen.Model.Checkout
             sb.Append("  MerchantRiskIndicator: ").Append(MerchantRiskIndicator).Append("\n");
             sb.Append("  Metadata: ").Append(Metadata).Append("\n");
             sb.Append("  MpiData: ").Append(MpiData).Append("\n");
-            sb.Append("  Nationality: ").Append(Nationality).Append("\n");
+            sb.Append("  Order: ").Append(Order).Append("\n");
             sb.Append("  OrderReference: ").Append(OrderReference).Append("\n");
             sb.Append("  Origin: ").Append(Origin).Append("\n");
             sb.Append("  PaymentMethod: ").Append(PaymentMethod).Append("\n");
@@ -820,6 +826,7 @@ namespace Adyen.Model.Checkout
             sb.Append("  ShopperStatement: ").Append(ShopperStatement).Append("\n");
             sb.Append("  SocialSecurityNumber: ").Append(SocialSecurityNumber).Append("\n");
             sb.Append("  Splits: ").Append(Splits).Append("\n");
+            sb.Append("  StorePaymentMethod: ").Append(StorePaymentMethod).Append("\n");
             sb.Append("  Store: ").Append(Store).Append("\n");
             sb.Append("  TelephoneNumber: ").Append(TelephoneNumber).Append("\n");
             sb.Append("  ThreeDS2RequestData: ").Append(ThreeDS2RequestData).Append("\n");
@@ -1025,9 +1032,9 @@ namespace Adyen.Model.Checkout
                     this.MpiData.Equals(input.MpiData))
                 ) &&
                 (
-                    this.Nationality == input.Nationality ||
-                    (this.Nationality != null &&
-                    this.Nationality.Equals(input.Nationality))
+                    this.Order == input.Order ||
+                    (this.Order != null &&
+                    this.Order.Equals(input.Order))
                 ) &&
                 (
                     this.OrderReference == input.OrderReference ||
@@ -1138,6 +1145,11 @@ namespace Adyen.Model.Checkout
                     this.Splits == input.Splits ||
                     this.Splits != null &&
                     this.Splits.SequenceEqual(input.Splits)
+                )&&
+                (
+                    this.StorePaymentMethod == input.StorePaymentMethod ||
+                    (this.StorePaymentMethod != null &&
+                    this.StorePaymentMethod.Equals(input.StorePaymentMethod))
                 ) &&
                 (
                     this.Store == input.Store ||
@@ -1241,8 +1253,8 @@ namespace Adyen.Model.Checkout
                     hashCode = hashCode * 59 + this.Metadata.GetHashCode();
                 if (this.MpiData != null)
                     hashCode = hashCode * 59 + this.MpiData.GetHashCode();
-                if (this.Nationality != null)
-                    hashCode = hashCode * 59 + this.Nationality.GetHashCode();
+                if (this.Order != null)
+                    hashCode = hashCode * 59 + this.Order.GetHashCode();
                 if (this.OrderReference != null)
                     hashCode = hashCode * 59 + this.OrderReference.GetHashCode();
                 if (this.Origin != null)
@@ -1289,6 +1301,8 @@ namespace Adyen.Model.Checkout
                     hashCode = hashCode * 59 + this.Splits.GetHashCode();
                 if (this.Store != null)
                     hashCode = hashCode * 59 + this.Store.GetHashCode();
+                if (this.StorePaymentMethod != null)
+                    hashCode = hashCode * 59 + this.StorePaymentMethod.GetHashCode();
                 if (this.TelephoneNumber != null)
                     hashCode = hashCode * 59 + this.TelephoneNumber.GetHashCode();
                 if (this.ThreeDS2RequestData != null)
@@ -1308,12 +1322,6 @@ namespace Adyen.Model.Checkout
         /// <returns>Validation Result</returns>
         IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
         {
-            // Nationality (string) maxLength
-            if (this.Nationality != null && this.Nationality.Length > 2)
-            {
-                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for Nationality, length must be less than 2.", new[] { "Nationality" });
-            }
-
             // Store (string) maxLength
             if (this.Store != null && this.Store.Length > 16)
             {

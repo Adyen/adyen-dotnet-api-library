@@ -30,7 +30,9 @@ namespace Adyen.Model.Checkout
         /// <param name="ScreenWidth">The total width of the shopper&#39;s device screen in pixels..</param>
         /// <param name="TimeZoneOffset">Time difference between UTC time and the shopper&#39;s browser local time, in minutes..</param>
         /// <param name="UserAgent">The user agent value of the shopper&#39;s browser. (required).</param>
-        public BrowserInfo(string AcceptHeader = default(string), int? ColorDepth = default(int?), bool? JavaEnabled = default(bool?), string Language = default(string), int? ScreenHeight = default(int?), int? ScreenWidth = default(int?), int? TimeZoneOffset = default(int?), string UserAgent = default(string))
+        /// <param name="JavaScriptEnabled">Boolean value indicating if the shopper's browser is able to execute JavaScript..</param>
+
+        public BrowserInfo(string AcceptHeader = default(string), int? ColorDepth = default(int?), bool? JavaEnabled = default(bool?), string Language = default(string), int? ScreenHeight = default(int?), int? ScreenWidth = default(int?), int? TimeZoneOffset = default(int?), string UserAgent = default(string), bool? JavaScriptEnabled = default(bool?))
         {
             // to ensure "AcceptHeader" is required (not null)
             if (AcceptHeader == null)
@@ -56,6 +58,7 @@ namespace Adyen.Model.Checkout
             this.ScreenHeight = ScreenHeight;
             this.ScreenWidth = ScreenWidth;
             this.TimeZoneOffset = TimeZoneOffset;
+            this.JavaScriptEnabled = JavaScriptEnabled;
         }
         
         /// <summary>
@@ -113,7 +116,13 @@ namespace Adyen.Model.Checkout
         /// <value>The user agent value of the shopper&#39;s browser.</value>
         [DataMember(Name="userAgent", EmitDefaultValue=false)]
         public string UserAgent { get; set; }
-
+        /// <summary>
+        /// Boolean value indicating if the shopper&#39;s browser is able to execute Java.
+        /// </summary>
+        /// <value>Boolean value indicating if the shopper&#39;s browser is able to execute Java.</value>
+        [DataMember(Name = "javaScriptEnabled", EmitDefaultValue = false)]
+        public bool? JavaScriptEnabled { get; set; }
+        
         /// <summary>
         /// Returns the string presentation of the object
         /// </summary>
@@ -130,6 +139,7 @@ namespace Adyen.Model.Checkout
             sb.Append("  ScreenWidth: ").Append(ScreenWidth).Append("\n");
             sb.Append("  TimeZoneOffset: ").Append(TimeZoneOffset).Append("\n");
             sb.Append("  UserAgent: ").Append(UserAgent).Append("\n");
+            sb.Append("  JavaScriptEnabled: ").Append(JavaEnabled).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -203,6 +213,11 @@ namespace Adyen.Model.Checkout
                     this.UserAgent == input.UserAgent ||
                     (this.UserAgent != null &&
                     this.UserAgent.Equals(input.UserAgent))
+                )&&
+                 (
+                    this.JavaScriptEnabled == input.JavaScriptEnabled ||
+                    (this.JavaScriptEnabled != null &&
+                    this.JavaScriptEnabled.Equals(input.JavaScriptEnabled))
                 );
         }
 
@@ -231,6 +246,8 @@ namespace Adyen.Model.Checkout
                     hashCode = hashCode * 59 + this.TimeZoneOffset.GetHashCode();
                 if (this.UserAgent != null)
                     hashCode = hashCode * 59 + this.UserAgent.GetHashCode();
+                if (this.JavaScriptEnabled != null)
+                    hashCode = hashCode * 59 + this.JavaScriptEnabled.GetHashCode();
                 return hashCode;
             }
         }
