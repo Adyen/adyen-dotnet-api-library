@@ -34,5 +34,4 @@ namespace Adyen.Model.Enum
         [EnumMember(Value = "N")]
         N
     }
-
 }

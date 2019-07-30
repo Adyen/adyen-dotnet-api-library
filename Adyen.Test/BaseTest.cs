@@ -111,7 +111,6 @@ namespace Adyen.Test
             var paymentsRequest = new Model.Checkout.PaymentRequest
             {
                 Reference = "Your order number ",
-                Amount = amount,
                 ReturnUrl = @"https://your-company.com/...",
                 MerchantAccount = "MerchantAccount",
             };

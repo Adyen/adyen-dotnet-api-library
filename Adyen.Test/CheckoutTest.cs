@@ -228,8 +228,7 @@ namespace Adyen.Test
             Assert.AreEqual(version, Constants.ClientConfig.LibVersion);
             Assert.AreEqual(name, Constants.ClientConfig.LibName);
         }
-
-
+        
         [TestMethod]
         public void PaymentRequestAppInfoExternalTest()
         {
