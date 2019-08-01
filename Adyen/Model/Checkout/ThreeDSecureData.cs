@@ -1,11 +1,11 @@
-
 using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.Runtime.Serialization;
 using System.Text;
+using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.Runtime.Serialization;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
+using System.ComponentModel.DataAnnotations;
 
 namespace Adyen.Model.Checkout
 {
@@ -13,142 +13,146 @@ namespace Adyen.Model.Checkout
     /// ThreeDSecureData
     /// </summary>
     [DataContract]
-    public partial class ThreeDSecureData :  IEquatable<ThreeDSecureData>, IValidatableObject
+    public partial class ThreeDSecureData : IEquatable<ThreeDSecureData>, IValidatableObject
     {
         /// <summary>
-        /// The authentication response if the shopper was redirected.
+        /// In 3D Secure 1, the authentication response if the shopper was redirected.  In 3D Secure 2, this is the &#x60;transStatus&#x60; from challenge flow. If the transaction was frictionless, set this value to **Y**.
         /// </summary>
-        /// <value>The authentication response if the shopper was redirected.</value>
+        /// <value>In 3D Secure 1, the authentication response if the shopper was redirected.  In 3D Secure 2, this is the &#x60;transStatus&#x60; from challenge flow. If the transaction was frictionless, set this value to **Y**.</value>
         [JsonConverter(typeof(StringEnumConverter))]
         public enum AuthenticationResponseEnum
         {
-            
             /// <summary>
             /// Enum Y for value: Y
             /// </summary>
             [EnumMember(Value = "Y")]
-            Y = 1,
-            
+            Y = 0,
             /// <summary>
             /// Enum N for value: N
             /// </summary>
             [EnumMember(Value = "N")]
-            N = 2,
-            
+            N = 1,
             /// <summary>
             /// Enum U for value: U
             /// </summary>
             [EnumMember(Value = "U")]
-            U = 3,
-            
+            U = 2,
             /// <summary>
             /// Enum A for value: A
             /// </summary>
             [EnumMember(Value = "A")]
-            A = 4
+            A = 3
         }
-
         /// <summary>
-        /// The authentication response if the shopper was redirected.
+        /// In 3D Secure 1, the authentication response if the shopper was redirected.  In 3D Secure 2, this is the &#x60;transStatus&#x60; from challenge flow. If the transaction was frictionless, set this value to **Y**.
         /// </summary>
-        /// <value>The authentication response if the shopper was redirected.</value>
-        [DataMember(Name="authenticationResponse", EmitDefaultValue=false)]
+        /// <value>In 3D Secure 1, the authentication response if the shopper was redirected.  In 3D Secure 2, this is the &#x60;transStatus&#x60; from challenge flow. If the transaction was frictionless, set this value to **Y**.</value>
+        [DataMember(Name = "authenticationResponse", EmitDefaultValue = false)]
         public AuthenticationResponseEnum? AuthenticationResponse { get; set; }
         /// <summary>
-        /// The enrollment response from the 3D directory server.
+        /// In 3D Secure 1, this is the enrollment response from the 3D directory server.  In 3D Secure 2, this is the &#x60;transStatus&#x60; from 3D Secure device fingerprinting result.
         /// </summary>
-        /// <value>The enrollment response from the 3D directory server.</value>
+        /// <value>In 3D Secure 1, this is the enrollment response from the 3D directory server.  In 3D Secure 2, this is the &#x60;transStatus&#x60; from 3D Secure device fingerprinting result.</value>
         [JsonConverter(typeof(StringEnumConverter))]
         public enum DirectoryResponseEnum
         {
-            
             /// <summary>
             /// Enum Y for value: Y
             /// </summary>
             [EnumMember(Value = "Y")]
-            Y = 1,
-            
+            Y = 0,
             /// <summary>
             /// Enum N for value: N
             /// </summary>
             [EnumMember(Value = "N")]
-            N = 2,
-            
+            N = 1,
             /// <summary>
             /// Enum U for value: U
             /// </summary>
             [EnumMember(Value = "U")]
-            U = 3,
-            
+            U = 2,
             /// <summary>
             /// Enum E for value: E
             /// </summary>
             [EnumMember(Value = "E")]
-            E = 4
+            E = 3,
+            /// <summary>
+            /// Enum C for value: C
+            /// </summary>
+            [EnumMember(Value = "C")]
+            C = 4
         }
-
         /// <summary>
-        /// The enrollment response from the 3D directory server.
+        /// In 3D Secure 1, this is the enrollment response from the 3D directory server.  In 3D Secure 2, this is the &#x60;transStatus&#x60; from 3D Secure device fingerprinting result.
         /// </summary>
-        /// <value>The enrollment response from the 3D directory server.</value>
-        [DataMember(Name="directoryResponse", EmitDefaultValue=false)]
+        /// <value>In 3D Secure 1, this is the enrollment response from the 3D directory server.  In 3D Secure 2, this is the &#x60;transStatus&#x60; from 3D Secure device fingerprinting result.</value>
+        [DataMember(Name = "directoryResponse", EmitDefaultValue = false)]
         public DirectoryResponseEnum? DirectoryResponse { get; set; }
         /// <summary>
         /// Initializes a new instance of the <see cref="ThreeDSecureData" /> class.
         /// </summary>
-        /// <param name="AuthenticationResponse">The authentication response if the shopper was redirected..</param>
-        /// <param name="Cavv">The cardholder authentication value (base64 encoded, 20 bytes in a decoded form)..</param>
-        /// <param name="CavvAlgorithm">The CAVV algorithm used..</param>
-        /// <param name="DirectoryResponse">The enrollment response from the 3D directory server..</param>
-        /// <param name="Eci">The electronic commerce indicator..</param>
-        /// <param name="ThreeDSVersion">The version of the 3D Secure protocol..</param>
-        /// <param name="Xid">The transaction identifier (base64 encoded, 20 bytes in a decoded form)..</param>
-        public ThreeDSecureData(AuthenticationResponseEnum? AuthenticationResponse = default(AuthenticationResponseEnum?), byte[] Cavv = default(byte[]), string CavvAlgorithm = default(string), DirectoryResponseEnum? DirectoryResponse = default(DirectoryResponseEnum?), string Eci = default(string), string ThreeDSVersion = default(string), byte[] Xid = default(byte[]))
+        /// <param name="authenticationResponse">In 3D Secure 1, the authentication response if the shopper was redirected.  In 3D Secure 2, this is the &#x60;transStatus&#x60; from challenge flow. If the transaction was frictionless, set this value to **Y**..</param>
+        /// <param name="cavv">The cardholder authentication value (base64 encoded, 20 bytes in a decoded form)..</param>
+        /// <param name="cavvAlgorithm">The CAVV algorithm used. Include this only for 3D Secure 1..</param>
+        /// <param name="directoryResponse">In 3D Secure 1, this is the enrollment response from the 3D directory server.  In 3D Secure 2, this is the &#x60;transStatus&#x60; from 3D Secure device fingerprinting result..</param>
+        /// <param name="dsTransID">Supported for 3D Secure 2. The unique transaction identifier assigned by the Directory Server (DS) to identify a single transaction..</param>
+        /// <param name="eci">The electronic commerce indicator..</param>
+        /// <param name="threeDSVersion">The version of the 3D Secure protocol..</param>
+        /// <param name="xid">Supported for 3D Secure 1. The transaction identifier (Base64-encoded, 20 bytes in a decoded form)..</param>
+        public ThreeDSecureData(AuthenticationResponseEnum? authenticationResponse = default(AuthenticationResponseEnum?), byte[] cavv = default(byte[]), string cavvAlgorithm = default(string), DirectoryResponseEnum? directoryResponse = default(DirectoryResponseEnum?), string dsTransID = default(string), string eci = default(string), string threeDSVersion = default(string), byte[] xid = default(byte[]))
         {
-            this.AuthenticationResponse = AuthenticationResponse;
-            this.Cavv = Cavv;
-            this.CavvAlgorithm = CavvAlgorithm;
-            this.DirectoryResponse = DirectoryResponse;
-            this.Eci = Eci;
-            this.ThreeDSVersion = ThreeDSVersion;
-            this.Xid = Xid;
+            this.AuthenticationResponse = authenticationResponse;
+            this.Cavv = cavv;
+            this.CavvAlgorithm = cavvAlgorithm;
+            this.DirectoryResponse = directoryResponse;
+            this.DsTransID = dsTransID;
+            this.Eci = eci;
+            this.ThreeDSVersion = threeDSVersion;
+            this.Xid = xid;
         }
-        
+
 
         /// <summary>
         /// The cardholder authentication value (base64 encoded, 20 bytes in a decoded form).
         /// </summary>
         /// <value>The cardholder authentication value (base64 encoded, 20 bytes in a decoded form).</value>
-        [DataMember(Name="cavv", EmitDefaultValue=false)]
+        [DataMember(Name = "cavv", EmitDefaultValue = false)]
         public byte[] Cavv { get; set; }
 
         /// <summary>
-        /// The CAVV algorithm used.
+        /// The CAVV algorithm used. Include this only for 3D Secure 1.
         /// </summary>
-        /// <value>The CAVV algorithm used.</value>
-        [DataMember(Name="cavvAlgorithm", EmitDefaultValue=false)]
+        /// <value>The CAVV algorithm used. Include this only for 3D Secure 1.</value>
+        [DataMember(Name = "cavvAlgorithm", EmitDefaultValue = false)]
         public string CavvAlgorithm { get; set; }
 
+
+        /// <summary>
+        /// Supported for 3D Secure 2. The unique transaction identifier assigned by the Directory Server (DS) to identify a single transaction.
+        /// </summary>
+        /// <value>Supported for 3D Secure 2. The unique transaction identifier assigned by the Directory Server (DS) to identify a single transaction.</value>
+        [DataMember(Name = "dsTransID", EmitDefaultValue = false)]
+        public string DsTransID { get; set; }
 
         /// <summary>
         /// The electronic commerce indicator.
         /// </summary>
         /// <value>The electronic commerce indicator.</value>
-        [DataMember(Name="eci", EmitDefaultValue=false)]
+        [DataMember(Name = "eci", EmitDefaultValue = false)]
         public string Eci { get; set; }
 
         /// <summary>
         /// The version of the 3D Secure protocol.
         /// </summary>
         /// <value>The version of the 3D Secure protocol.</value>
-        [DataMember(Name="threeDSVersion", EmitDefaultValue=false)]
+        [DataMember(Name = "threeDSVersion", EmitDefaultValue = false)]
         public string ThreeDSVersion { get; set; }
 
         /// <summary>
-        /// The transaction identifier (base64 encoded, 20 bytes in a decoded form).
+        /// Supported for 3D Secure 1. The transaction identifier (Base64-encoded, 20 bytes in a decoded form).
         /// </summary>
-        /// <value>The transaction identifier (base64 encoded, 20 bytes in a decoded form).</value>
-        [DataMember(Name="xid", EmitDefaultValue=false)]
+        /// <value>Supported for 3D Secure 1. The transaction identifier (Base64-encoded, 20 bytes in a decoded form).</value>
+        [DataMember(Name = "xid", EmitDefaultValue = false)]
         public byte[] Xid { get; set; }
 
         /// <summary>
@@ -163,18 +167,19 @@ namespace Adyen.Model.Checkout
             sb.Append("  Cavv: ").Append(Cavv).Append("\n");
             sb.Append("  CavvAlgorithm: ").Append(CavvAlgorithm).Append("\n");
             sb.Append("  DirectoryResponse: ").Append(DirectoryResponse).Append("\n");
+            sb.Append("  DsTransID: ").Append(DsTransID).Append("\n");
             sb.Append("  Eci: ").Append(Eci).Append("\n");
             sb.Append("  ThreeDSVersion: ").Append(ThreeDSVersion).Append("\n");
             sb.Append("  Xid: ").Append(Xid).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
-  
+
         /// <summary>
         /// Returns the JSON string presentation of the object
         /// </summary>
         /// <returns>JSON string presentation of the object</returns>
-        public string ToJson()
+        public virtual string ToJson()
         {
             return JsonConvert.SerializeObject(this, Formatting.Indented);
         }
@@ -199,37 +204,42 @@ namespace Adyen.Model.Checkout
             if (input == null)
                 return false;
 
-            return 
+            return
                 (
                     this.AuthenticationResponse == input.AuthenticationResponse ||
                     (this.AuthenticationResponse != null &&
                     this.AuthenticationResponse.Equals(input.AuthenticationResponse))
-                ) && 
+                ) &&
                 (
                     this.Cavv == input.Cavv ||
                     (this.Cavv != null &&
                     this.Cavv.Equals(input.Cavv))
-                ) && 
+                ) &&
                 (
                     this.CavvAlgorithm == input.CavvAlgorithm ||
                     (this.CavvAlgorithm != null &&
                     this.CavvAlgorithm.Equals(input.CavvAlgorithm))
-                ) && 
+                ) &&
                 (
                     this.DirectoryResponse == input.DirectoryResponse ||
                     (this.DirectoryResponse != null &&
                     this.DirectoryResponse.Equals(input.DirectoryResponse))
-                ) && 
+                ) &&
+                (
+                    this.DsTransID == input.DsTransID ||
+                    (this.DsTransID != null &&
+                    this.DsTransID.Equals(input.DsTransID))
+                ) &&
                 (
                     this.Eci == input.Eci ||
                     (this.Eci != null &&
                     this.Eci.Equals(input.Eci))
-                ) && 
+                ) &&
                 (
                     this.ThreeDSVersion == input.ThreeDSVersion ||
                     (this.ThreeDSVersion != null &&
                     this.ThreeDSVersion.Equals(input.ThreeDSVersion))
-                ) && 
+                ) &&
                 (
                     this.Xid == input.Xid ||
                     (this.Xid != null &&
@@ -254,6 +264,8 @@ namespace Adyen.Model.Checkout
                     hashCode = hashCode * 59 + this.CavvAlgorithm.GetHashCode();
                 if (this.DirectoryResponse != null)
                     hashCode = hashCode * 59 + this.DirectoryResponse.GetHashCode();
+                if (this.DsTransID != null)
+                    hashCode = hashCode * 59 + this.DsTransID.GetHashCode();
                 if (this.Eci != null)
                     hashCode = hashCode * 59 + this.Eci.GetHashCode();
                 if (this.ThreeDSVersion != null)
@@ -274,5 +286,4 @@ namespace Adyen.Model.Checkout
             yield break;
         }
     }
-
 }

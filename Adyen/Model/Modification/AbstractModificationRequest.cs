@@ -29,7 +29,12 @@ namespace Adyen.Model.Modification
         [DataMember(Name = "applicationInfo", EmitDefaultValue = false)]
 
         public ApplicationInformation.ApplicationInfo ApplicationInfo { get; set; }
-        
+
+        [DataMember(Name = "threeDSecureData", EmitDefaultValue = false)]
+
+        public ThreeDSecureData ThreeDSecureData { get; set; }
+
+
         public override string ToString()
         {
             var sb = new StringBuilder();
@@ -39,6 +44,7 @@ namespace Adyen.Model.Modification
             sb.Append("  MerchantAccount: ").Append(MerchantAccount).Append("\n");
             sb.Append("  AdditionalData: ").Append(AdditionalData).Append("\n");
             sb.Append("  AuthorisationCode: ").Append(AuthorisationCode).Append("\n");
+            sb.Append("  ThreeDSecureData: ").Append(ThreeDSecureData).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -83,6 +89,11 @@ namespace Adyen.Model.Modification
                     this.AuthorisationCode == other.AuthorisationCode ||
                     this.AuthorisationCode != null &&
                     this.AuthorisationCode.Equals(other.AuthorisationCode)
+                ) &&
+                (
+                    this.ThreeDSecureData == other.ThreeDSecureData ||
+                    this.ThreeDSecureData != null &&
+                    this.ThreeDSecureData.Equals(other.ThreeDSecureData)
                 );
         }
 
@@ -108,6 +119,8 @@ namespace Adyen.Model.Modification
                     hash = hash * 59 + this.AdditionalData.GetHashCode();
                 if (this.AuthorisationCode != null)
                     hash = hash * 59 + this.AuthorisationCode.GetHashCode();
+                if (this.ThreeDSecureData != null)
+                    hash = hash * 59 + this.ThreeDSecureData.GetHashCode();
                 return hash;
             }
         }

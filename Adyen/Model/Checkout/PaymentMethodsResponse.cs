@@ -1,11 +1,10 @@
-
 using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
 using System.Linq;
-using System.Runtime.Serialization;
 using System.Text;
+using System.Collections.Generic;
+using System.Runtime.Serialization;
 using Newtonsoft.Json;
+using System.ComponentModel.DataAnnotations;
 
 namespace Adyen.Model.Checkout
 {
@@ -13,41 +12,50 @@ namespace Adyen.Model.Checkout
     /// PaymentMethodsResponse
     /// </summary>
     [DataContract]
-    public partial class PaymentMethodsResponse :  IEquatable<PaymentMethodsResponse>, IValidatableObject
+    public partial class PaymentMethodsResponse : IEquatable<PaymentMethodsResponse>, IValidatableObject
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="PaymentMethodsResponse" /> class.
         /// </summary>
-        /// <param name="Groups">Groups of payment methods..</param>
-        /// <param name="OneClickPaymentMethods">Detailed list of one-click payment methods..</param>
-        /// <param name="PaymentMethods">Detailed list of payment methods required to generate payment forms..</param>
-        public PaymentMethodsResponse(List<PaymentMethodsGroup> Groups = default(List<PaymentMethodsGroup>), List<RecurringDetail> OneClickPaymentMethods = default(List<RecurringDetail>), List<PaymentMethod> PaymentMethods = default(List<PaymentMethod>))
+        /// <param name="groups">Groups of payment methods..</param>
+        /// <param name="oneClickPaymentMethods">Detailed list of one-click payment methods..</param>
+        /// <param name="paymentMethods">Detailed list of payment methods required to generate payment forms..</param>
+        /// <param name="storedPaymentMethods">List of all stored payment methods..</param>
+        public PaymentMethodsResponse(List<PaymentMethodsGroup> groups = default(List<PaymentMethodsGroup>), List<RecurringDetail> oneClickPaymentMethods = default(List<RecurringDetail>), List<PaymentMethod> paymentMethods = default(List<PaymentMethod>), List<StoredPaymentMethod> storedPaymentMethods = default(List<StoredPaymentMethod>))
         {
-            this.Groups = Groups;
-            this.OneClickPaymentMethods = OneClickPaymentMethods;
-            this.PaymentMethods = PaymentMethods;
+            this.Groups = groups;
+            this.OneClickPaymentMethods = oneClickPaymentMethods;
+            this.PaymentMethods = paymentMethods;
+            this.StoredPaymentMethods = storedPaymentMethods;
         }
-        
+
         /// <summary>
         /// Groups of payment methods.
         /// </summary>
         /// <value>Groups of payment methods.</value>
-        [DataMember(Name="groups", EmitDefaultValue=false)]
+        [DataMember(Name = "groups", EmitDefaultValue = false)]
         public List<PaymentMethodsGroup> Groups { get; set; }
 
         /// <summary>
         /// Detailed list of one-click payment methods.
         /// </summary>
         /// <value>Detailed list of one-click payment methods.</value>
-        [DataMember(Name="oneClickPaymentMethods", EmitDefaultValue=false)]
+        [DataMember(Name = "oneClickPaymentMethods", EmitDefaultValue = false)]
         public List<RecurringDetail> OneClickPaymentMethods { get; set; }
 
         /// <summary>
         /// Detailed list of payment methods required to generate payment forms.
         /// </summary>
         /// <value>Detailed list of payment methods required to generate payment forms.</value>
-        [DataMember(Name="paymentMethods", EmitDefaultValue=false)]
+        [DataMember(Name = "paymentMethods", EmitDefaultValue = false)]
         public List<PaymentMethod> PaymentMethods { get; set; }
+
+        /// <summary>
+        /// List of all stored payment methods.
+        /// </summary>
+        /// <value>List of all stored payment methods.</value>
+        [DataMember(Name = "storedPaymentMethods", EmitDefaultValue = false)]
+        public List<StoredPaymentMethod> StoredPaymentMethods { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -60,15 +68,16 @@ namespace Adyen.Model.Checkout
             sb.Append("  Groups: ").Append(Groups).Append("\n");
             sb.Append("  OneClickPaymentMethods: ").Append(OneClickPaymentMethods).Append("\n");
             sb.Append("  PaymentMethods: ").Append(PaymentMethods).Append("\n");
+            sb.Append("  StoredPaymentMethods: ").Append(StoredPaymentMethods).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
-  
+
         /// <summary>
         /// Returns the JSON string presentation of the object
         /// </summary>
         /// <returns>JSON string presentation of the object</returns>
-        public string ToJson()
+        public virtual string ToJson()
         {
             return JsonConvert.SerializeObject(this, Formatting.Indented);
         }
@@ -93,21 +102,30 @@ namespace Adyen.Model.Checkout
             if (input == null)
                 return false;
 
-            return 
+            return
                 (
                     this.Groups == input.Groups ||
                     this.Groups != null &&
+                    input.Groups != null &&
                     this.Groups.SequenceEqual(input.Groups)
-                ) && 
+                ) &&
                 (
                     this.OneClickPaymentMethods == input.OneClickPaymentMethods ||
                     this.OneClickPaymentMethods != null &&
+                    input.OneClickPaymentMethods != null &&
                     this.OneClickPaymentMethods.SequenceEqual(input.OneClickPaymentMethods)
-                ) && 
+                ) &&
                 (
                     this.PaymentMethods == input.PaymentMethods ||
                     this.PaymentMethods != null &&
+                    input.PaymentMethods != null &&
                     this.PaymentMethods.SequenceEqual(input.PaymentMethods)
+                ) &&
+                (
+                    this.StoredPaymentMethods == input.StoredPaymentMethods ||
+                    this.StoredPaymentMethods != null &&
+                    input.StoredPaymentMethods != null &&
+                    this.StoredPaymentMethods.SequenceEqual(input.StoredPaymentMethods)
                 );
         }
 
@@ -126,6 +144,8 @@ namespace Adyen.Model.Checkout
                     hashCode = hashCode * 59 + this.OneClickPaymentMethods.GetHashCode();
                 if (this.PaymentMethods != null)
                     hashCode = hashCode * 59 + this.PaymentMethods.GetHashCode();
+                if (this.StoredPaymentMethods != null)
+                    hashCode = hashCode * 59 + this.StoredPaymentMethods.GetHashCode();
                 return hashCode;
             }
         }
@@ -140,5 +160,4 @@ namespace Adyen.Model.Checkout
             yield break;
         }
     }
-
 }

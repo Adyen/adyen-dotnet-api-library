@@ -21,8 +21,8 @@
         public string[] AllowedLoyaltyBrand;
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute("ForceEntryMode", Form = System.Xml.Schema.XmlSchemaForm.Unqualified)]
-        public string[] ForceEntryMode;
+        [System.Xml.Serialization.XmlAttributeAttribute()]
+        public ForceEntryModeType[] ForceEntryMode;
 
         /// <remarks/>
         [System.Xml.Serialization.XmlAttributeAttribute()]

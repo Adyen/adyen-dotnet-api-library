@@ -10,7 +10,7 @@
 
         /// <remarks/>
         [System.Xml.Serialization.XmlElementAttribute("Instalment", Form = System.Xml.Schema.XmlSchemaForm.Unqualified)]
-        public string Instalment1;
+        public string InstalmentType;
 
         /// <remarks/>
         [System.Xml.Serialization.XmlAttributeAttribute(DataType = "integer")]
