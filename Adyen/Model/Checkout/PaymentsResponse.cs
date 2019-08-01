@@ -95,7 +95,7 @@ namespace Adyen.Model.Checkout
         /// <param name="refusalReason">If the payment&#x27;s authorisation is refused or an error occurs during authorisation, this field holds Adyen&#x27;s mapped reason for the refusal or a description of the error.  When a transaction fails, the authorisation response includes &#x60;resultCode&#x60; and &#x60;refusalReason&#x60; values..</param>
         /// <param name="refusalReasonCode">Code that specifies the refusal reason. For more information, see [Authorisation refusal reasons](https://docs.adyen.com/development-resources/refusal-reasons)..</param>
         /// <param name="resultCode">The result of the payment. Possible values:  * **AuthenticationFinished** – The payment has been successfully authenticated with 3D Secure 2. Returned for 3D Secure 2 authentication-only transactions. * **Authorised** – The payment was successfully authorised. This state serves as an indicator to proceed with the delivery of goods and services. This is a final state. * **Cancelled** – Indicates the payment has been cancelled (either by the shopper or the merchant) before processing was completed. This is a final state. * **ChallengeShopper** – The issuer requires further shopper interaction before the payment can be authenticated. Returned for 3D Secure 2 transactions. * **Error** – There was an error when the payment was being processed. The reason is given in the &#x60;refusalReason&#x60; field. This is a final state. * **IdentifyShopper** – The issuer requires the shopper&#x27;s device fingerprint before the payment can be authenticated. Returned for 3D Secure 2 transactions. * **Refused** – Indicates the payment was refused. The reason is given in the &#x60;refusalReason&#x60; field. This is a final state. * **Pending** – Indicates that it is not possible to obtain the final status of the payment. This can happen if the systems providing final status information for the payment are unavailable, or if the shopper needs to take further action to complete the payment. For more information on handling a pending payment, refer to [Payments with pending status](https://docs.adyen.com/development-resources/payments-with-pending-status). * **Received** – Indicates the payment has successfully been received by Adyen, and will be processed. This is the initial state for all payments. * **RedirectShopper** – Indicates the shopper should be redirected to an external web page or app to complete the authorisation. .</param>
-        public PaymentsResponse(Dictionary<string, string> additionalData = default(Dictionary<string, string>), Dictionary<string, string> authentication = default(Dictionary<string, string>), List<InputDetail> details = default(List<InputDetail>), FraudResult fraudResult = default(FraudResult), string merchantReference = default(string), Object outputDetails = default(Object), string paymentData = default(string), string pspReference = default(string), Redirect redirect = default(Redirect), string refusalReason = default(string), string refusalReasonCode = default(string), ResultCodeEnum? resultCode = default(ResultCodeEnum?))
+        public PaymentsResponse(Dictionary<string, string> additionalData = default(Dictionary<string, string>), Dictionary<string, string> authentication = default(Dictionary<string, string>), List<InputDetail> details = default(List<InputDetail>), FraudResult fraudResult = default(FraudResult), string merchantReference = default(string), Object outputDetails = default(Object), string paymentData = default(string), string pspReference = default(string), Redirect redirect = default(Redirect), string refusalReason = default(string), string refusalReasonCode = default(string), ResultCodeEnum? resultCode = default(ResultCodeEnum?),CheckoutPaymentsAction action=default(CheckoutPaymentsAction))
         {
             this.AdditionalData = additionalData;
             this.Authentication = authentication;
@@ -108,6 +108,7 @@ namespace Adyen.Model.Checkout
             this.RefusalReason = refusalReason;
             this.RefusalReasonCode = refusalReasonCode;
             this.ResultCode = resultCode;
+            this.Action = action;
         }
 
         /// <summary>
@@ -185,6 +186,8 @@ namespace Adyen.Model.Checkout
         [DataMember(Name = "refusalReasonCode", EmitDefaultValue = false)]
         public string RefusalReasonCode { get; set; }
 
+        [DataMember(Name = "action", EmitDefaultValue = false)]
+        public CheckoutPaymentsAction Action { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -206,6 +209,7 @@ namespace Adyen.Model.Checkout
             sb.Append("  RefusalReason: ").Append(RefusalReason).Append("\n");
             sb.Append("  RefusalReasonCode: ").Append(RefusalReasonCode).Append("\n");
             sb.Append("  ResultCode: ").Append(ResultCode).Append("\n");
+            sb.Append("  Action: ").Append(Action).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -300,6 +304,11 @@ namespace Adyen.Model.Checkout
                     this.ResultCode == input.ResultCode ||
                     (this.ResultCode != null &&
                     this.ResultCode.Equals(input.ResultCode))
+                ) &&
+                (
+                    this.Action == input.Action ||
+                    (this.Action != null &&
+                    this.Action.Equals(input.Action))
                 );
         }
 
@@ -336,6 +345,8 @@ namespace Adyen.Model.Checkout
                     hashCode = hashCode * 59 + this.RefusalReasonCode.GetHashCode();
                 if (this.ResultCode != null)
                     hashCode = hashCode * 59 + this.ResultCode.GetHashCode();
+                if (this.Action != null)
+                    hashCode = hashCode * 59 + this.Action.GetHashCode();
                 return hashCode;
             }
         }
