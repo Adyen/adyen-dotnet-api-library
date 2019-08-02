@@ -1,229 +1,194 @@
-
 using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
 using System.Linq;
-using System.Runtime.Serialization;
+using System.IO;
 using System.Text;
+using System.Collections.Generic;
+using System.Runtime.Serialization;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
+using System.ComponentModel.DataAnnotations;
 
 namespace Adyen.Model.Checkout
 {
     /// <summary>
-    /// PaymentsResponse
+    /// PaymentResponse
     /// </summary>
     [DataContract]
-    public partial class PaymentsResponse :  IEquatable<PaymentsResponse>, IValidatableObject
+    public partial class PaymentsResponse : IEquatable<PaymentsResponse>, IValidatableObject
     {
         /// <summary>
-        /// The result of the payment. Possible values: * **AuthenticationFinished** – The payment has been successfully authenticated with 3D Secure 2. Returned for 3D Secure 2 authentication-only transactions. * **Authorised** – Indicates the payment authorisation was successfully completed. This state serves as an indicator to proceed with the delivery of goods and services. This is a final state. * **Refused** – Indicates the payment was refused. The reason is given in the &#x60;refusalReason&#x60; field. This is a final state. * **RedirectShopper** – Indicates the shopper should be redirected to an external web page or app to complete the authorisation. * **Received** – Indicates the payment has successfully been received by Adyen, and will be processed. This is the initial state for all payments. * **Cancelled** – Indicates the payment has been cancelled (either by the shopper or the merchant) before processing was completed. This is a final state. * **Pending** – Indicates that it is not possible to obtain the final status of the payment. This can happen if the systems providing final status information for the payment are unavailable, or if the shopper needs to take further action to complete the payment. For more information on handling a pending payment, refer to [Payments with pending status](https://docs.adyen.com/developers/development-resources/payments-with-pending-status). * **Error** – Indicates an error occurred during processing of the payment. The reason is given in the &#x60;refusalReason&#x60; field. This is a final state.
+        /// The result of the payment. Possible values:  * **AuthenticationFinished** – The payment has been successfully authenticated with 3D Secure 2. Returned for 3D Secure 2 authentication-only transactions. * **Authorised** – The payment was successfully authorised. This state serves as an indicator to proceed with the delivery of goods and services. This is a final state. * **Cancelled** – Indicates the payment has been cancelled (either by the shopper or the merchant) before processing was completed. This is a final state. * **ChallengeShopper** – The issuer requires further shopper interaction before the payment can be authenticated. Returned for 3D Secure 2 transactions. * **Error** – There was an error when the payment was being processed. The reason is given in the &#x60;refusalReason&#x60; field. This is a final state. * **IdentifyShopper** – The issuer requires the shopper&#x27;s device fingerprint before the payment can be authenticated. Returned for 3D Secure 2 transactions. * **Refused** – Indicates the payment was refused. The reason is given in the &#x60;refusalReason&#x60; field. This is a final state. * **Pending** – Indicates that it is not possible to obtain the final status of the payment. This can happen if the systems providing final status information for the payment are unavailable, or if the shopper needs to take further action to complete the payment. For more information on handling a pending payment, refer to [Payments with pending status](https://docs.adyen.com/development-resources/payments-with-pending-status). * **Received** – Indicates the payment has successfully been received by Adyen, and will be processed. This is the initial state for all payments. * **RedirectShopper** – Indicates the shopper should be redirected to an external web page or app to complete the authorisation. 
         /// </summary>
-        /// <value>The result of the payment. Possible values: * **AuthenticationFinished** – The payment has been successfully authenticated with 3D Secure 2. Returned for 3D Secure 2 authentication-only transactions. * **Authorised** – Indicates the payment authorisation was successfully completed. This state serves as an indicator to proceed with the delivery of goods and services. This is a final state. * **Refused** – Indicates the payment was refused. The reason is given in the &#x60;refusalReason&#x60; field. This is a final state. * **RedirectShopper** – Indicates the shopper should be redirected to an external web page or app to complete the authorisation. * **Received** – Indicates the payment has successfully been received by Adyen, and will be processed. This is the initial state for all payments. * **Cancelled** – Indicates the payment has been cancelled (either by the shopper or the merchant) before processing was completed. This is a final state. * **Pending** – Indicates that it is not possible to obtain the final status of the payment. This can happen if the systems providing final status information for the payment are unavailable, or if the shopper needs to take further action to complete the payment. For more information on handling a pending payment, refer to [Payments with pending status](https://docs.adyen.com/developers/development-resources/payments-with-pending-status). * **Error** – Indicates an error occurred during processing of the payment. The reason is given in the &#x60;refusalReason&#x60; field. This is a final state.</value>
+        /// <value>The result of the payment. Possible values:  * **AuthenticationFinished** – The payment has been successfully authenticated with 3D Secure 2. Returned for 3D Secure 2 authentication-only transactions. * **Authorised** – The payment was successfully authorised. This state serves as an indicator to proceed with the delivery of goods and services. This is a final state. * **Cancelled** – Indicates the payment has been cancelled (either by the shopper or the merchant) before processing was completed. This is a final state. * **ChallengeShopper** – The issuer requires further shopper interaction before the payment can be authenticated. Returned for 3D Secure 2 transactions. * **Error** – There was an error when the payment was being processed. The reason is given in the &#x60;refusalReason&#x60; field. This is a final state. * **IdentifyShopper** – The issuer requires the shopper&#x27;s device fingerprint before the payment can be authenticated. Returned for 3D Secure 2 transactions. * **Refused** – Indicates the payment was refused. The reason is given in the &#x60;refusalReason&#x60; field. This is a final state. * **Pending** – Indicates that it is not possible to obtain the final status of the payment. This can happen if the systems providing final status information for the payment are unavailable, or if the shopper needs to take further action to complete the payment. For more information on handling a pending payment, refer to [Payments with pending status](https://docs.adyen.com/development-resources/payments-with-pending-status). * **Received** – Indicates the payment has successfully been received by Adyen, and will be processed. This is the initial state for all payments. * **RedirectShopper** – Indicates the shopper should be redirected to an external web page or app to complete the authorisation. </value>
         [JsonConverter(typeof(StringEnumConverter))]
         public enum ResultCodeEnum
         {
-
+            /// <summary>
+            /// Enum AuthenticationFinished for value: AuthenticationFinished
+            /// </summary>
+            [EnumMember(Value = "AuthenticationFinished")]
+            AuthenticationFinished = 0,
             /// <summary>
             /// Enum Authorised for value: Authorised
             /// </summary>
             [EnumMember(Value = "Authorised")]
             Authorised = 1,
-
             /// <summary>
-            /// Enum PartiallyAuthorised for value: PartiallyAuthorised
+            /// Enum Cancelled for value: Cancelled
             /// </summary>
-            [EnumMember(Value = "PartiallyAuthorised")]
-            PartiallyAuthorised = 2,
-
+            [EnumMember(Value = "Cancelled")]
+            Cancelled = 2,
             /// <summary>
-            /// Enum Refused for value: Refused
+            /// Enum ChallengeShopper for value: ChallengeShopper
             /// </summary>
-            [EnumMember(Value = "Refused")]
-            Refused = 3,
-
+            [EnumMember(Value = "ChallengeShopper")]
+            ChallengeShopper = 3,
             /// <summary>
             /// Enum Error for value: Error
             /// </summary>
             [EnumMember(Value = "Error")]
             Error = 4,
-
-            /// <summary>
-            /// Enum Cancelled for value: Cancelled
-            /// </summary>
-            [EnumMember(Value = "Cancelled")]
-            Cancelled = 5,
-
-            /// <summary>
-            /// Enum Received for value: Received
-            /// </summary>
-            [EnumMember(Value = "Received")]
-            Received = 6,
-
-            /// <summary>
-            /// Enum RedirectShopper for value: RedirectShopper
-            /// </summary>
-            [EnumMember(Value = "RedirectShopper")]
-            RedirectShopper = 7,
-
             /// <summary>
             /// Enum IdentifyShopper for value: IdentifyShopper
             /// </summary>
             [EnumMember(Value = "IdentifyShopper")]
-            IdentifyShopper = 8,
-
+            IdentifyShopper = 5,
             /// <summary>
-            /// Enum ChallengeShopper for value: ChallengeShopper
+            /// Enum Pending for value: Pending
             /// </summary>
-            [EnumMember(Value = "ChallengeShopper")]
-            ChallengeShopper = 9,
-
+            [EnumMember(Value = "Pending")]
+            Pending = 6,
             /// <summary>
-            /// Enum PresentToShopper for value: PresentToShopper
+            /// Enum Received for value: Received
             /// </summary>
-            [EnumMember(Value = "PresentToShopper")]
-            PresentToShopper = 10,
-
+            [EnumMember(Value = "Received")]
+            Received = 7,
             /// <summary>
-            /// Enum AuthenticationFinished for value: AuthenticationFinished
+            /// Enum RedirectShopper for value: RedirectShopper
             /// </summary>
-            [EnumMember(Value = "AuthenticationFinished")]
-            AuthenticationFinished = 11
+            [EnumMember(Value = "RedirectShopper")]
+            RedirectShopper = 8,
+            /// <summary>
+            /// Enum Refused for value: Refused
+            /// </summary>
+            [EnumMember(Value = "Refused")]
+            Refused = 9
         }
-
         /// <summary>
-        /// The result of the payment. Possible values: * **AuthenticationFinished** – The payment has been successfully authenticated with 3D Secure 2. Returned for 3D Secure 2 authentication-only transactions. * **Authorised** – Indicates the payment authorisation was successfully completed. This state serves as an indicator to proceed with the delivery of goods and services. This is a final state. * **Refused** – Indicates the payment was refused. The reason is given in the &#x60;refusalReason&#x60; field. This is a final state. * **RedirectShopper** – Indicates the shopper should be redirected to an external web page or app to complete the authorisation. * **Received** – Indicates the payment has successfully been received by Adyen, and will be processed. This is the initial state for all payments. * **Cancelled** – Indicates the payment has been cancelled (either by the shopper or the merchant) before processing was completed. This is a final state. * **Pending** – Indicates that it is not possible to obtain the final status of the payment. This can happen if the systems providing final status information for the payment are unavailable, or if the shopper needs to take further action to complete the payment. For more information on handling a pending payment, refer to [Payments with pending status](https://docs.adyen.com/developers/development-resources/payments-with-pending-status). * **Error** – Indicates an error occurred during processing of the payment. The reason is given in the &#x60;refusalReason&#x60; field. This is a final state.
+        /// The result of the payment. Possible values:  * **AuthenticationFinished** – The payment has been successfully authenticated with 3D Secure 2. Returned for 3D Secure 2 authentication-only transactions. * **Authorised** – The payment was successfully authorised. This state serves as an indicator to proceed with the delivery of goods and services. This is a final state. * **Cancelled** – Indicates the payment has been cancelled (either by the shopper or the merchant) before processing was completed. This is a final state. * **ChallengeShopper** – The issuer requires further shopper interaction before the payment can be authenticated. Returned for 3D Secure 2 transactions. * **Error** – There was an error when the payment was being processed. The reason is given in the &#x60;refusalReason&#x60; field. This is a final state. * **IdentifyShopper** – The issuer requires the shopper&#x27;s device fingerprint before the payment can be authenticated. Returned for 3D Secure 2 transactions. * **Refused** – Indicates the payment was refused. The reason is given in the &#x60;refusalReason&#x60; field. This is a final state. * **Pending** – Indicates that it is not possible to obtain the final status of the payment. This can happen if the systems providing final status information for the payment are unavailable, or if the shopper needs to take further action to complete the payment. For more information on handling a pending payment, refer to [Payments with pending status](https://docs.adyen.com/development-resources/payments-with-pending-status). * **Received** – Indicates the payment has successfully been received by Adyen, and will be processed. This is the initial state for all payments. * **RedirectShopper** – Indicates the shopper should be redirected to an external web page or app to complete the authorisation. 
         /// </summary>
-        /// <value>The result of the payment. Possible values: * **AuthenticationFinished** – The payment has been successfully authenticated with 3D Secure 2. Returned for 3D Secure 2 authentication-only transactions. * **Authorised** – Indicates the payment authorisation was successfully completed. This state serves as an indicator to proceed with the delivery of goods and services. This is a final state. * **Refused** – Indicates the payment was refused. The reason is given in the &#x60;refusalReason&#x60; field. This is a final state. * **RedirectShopper** – Indicates the shopper should be redirected to an external web page or app to complete the authorisation. * **Received** – Indicates the payment has successfully been received by Adyen, and will be processed. This is the initial state for all payments. * **Cancelled** – Indicates the payment has been cancelled (either by the shopper or the merchant) before processing was completed. This is a final state. * **Pending** – Indicates that it is not possible to obtain the final status of the payment. This can happen if the systems providing final status information for the payment are unavailable, or if the shopper needs to take further action to complete the payment. For more information on handling a pending payment, refer to [Payments with pending status](https://docs.adyen.com/developers/development-resources/payments-with-pending-status). * **Error** – Indicates an error occurred during processing of the payment. The reason is given in the &#x60;refusalReason&#x60; field. This is a final state.</value>
-        [DataMember(Name="resultCode", EmitDefaultValue=false)]
+        /// <value>The result of the payment. Possible values:  * **AuthenticationFinished** – The payment has been successfully authenticated with 3D Secure 2. Returned for 3D Secure 2 authentication-only transactions. * **Authorised** – The payment was successfully authorised. This state serves as an indicator to proceed with the delivery of goods and services. This is a final state. * **Cancelled** – Indicates the payment has been cancelled (either by the shopper or the merchant) before processing was completed. This is a final state. * **ChallengeShopper** – The issuer requires further shopper interaction before the payment can be authenticated. Returned for 3D Secure 2 transactions. * **Error** – There was an error when the payment was being processed. The reason is given in the &#x60;refusalReason&#x60; field. This is a final state. * **IdentifyShopper** – The issuer requires the shopper&#x27;s device fingerprint before the payment can be authenticated. Returned for 3D Secure 2 transactions. * **Refused** – Indicates the payment was refused. The reason is given in the &#x60;refusalReason&#x60; field. This is a final state. * **Pending** – Indicates that it is not possible to obtain the final status of the payment. This can happen if the systems providing final status information for the payment are unavailable, or if the shopper needs to take further action to complete the payment. For more information on handling a pending payment, refer to [Payments with pending status](https://docs.adyen.com/development-resources/payments-with-pending-status). * **Received** – Indicates the payment has successfully been received by Adyen, and will be processed. This is the initial state for all payments. * **RedirectShopper** – Indicates the shopper should be redirected to an external web page or app to complete the authorisation. </value>
+        [DataMember(Name = "resultCode", EmitDefaultValue = false)]
         public ResultCodeEnum? ResultCode { get; set; }
         /// <summary>
         /// Initializes a new instance of the <see cref="PaymentsResponse" /> class.
         /// </summary>
-        /// <param name="AdditionalData">This field contains additional data, which may be required to return in a particular payment response. To choose data fields to be returned, go to **Customer Area** &gt; **Account** &gt; **API URLs**..</param>
-        /// <param name="AuthResponse">Possible values: * **AuthenticationFinished** – The payment has been successfully authenticated with 3D Secure 2. Returned for 3D Secure 2 authentication-only transactions. * **Authorised** – Indicates the payment authorisation was successfully completed. This state serves as an indicator to proceed with the delivery of goods and services. This is a final state. * **Refused** – Indicates the payment was refused. The reason is given in the &#x60;refusalReason&#x60; field. This is a final state. * **RedirectShopper** – Indicates the shopper should be redirected to an external web page or app to complete the authorisation. * **Received** – Indicates the payment has successfully been received by Adyen, and will be processed. This is the initial state for all payments. * **Cancelled** – Indicates the payment has been cancelled (either by the shopper or the merchant) before processing was completed. This is a final state. * **Pending** – Indicates that it is not possible to obtain the final status of the payment. This can happen if the systems providing final status information for the payment are unavailable, or if the shopper needs to take further action to complete the payment. For more information on handling a pending payment, refer to [Payments with pending status](https://docs.adyen.com/developers/development-resources/payments-with-pending-status). * **Error** – Indicates an error occurred during processing of the payment. The reason is given in the &#x60;refusalReason&#x60; field. This is a final state..</param>
-        /// <param name="Details">When non-empty, contains all the fields that you must submit to the &#x60;/payments/details&#x60; endpoint..</param>
-        /// <param name="FraudResult">The fraud result properties of the payment..</param>
-        /// <param name="MerchantReference">A unique value that you provided in the initial &#x60;/paymentSession&#x60; request as a &#x60;reference&#x60; field.</param>
-        /// <param name="PaymentData">When non-empty, contains a value that you must submit to the &#x60;/payments/details&#x60; endpoint..</param>
-        /// <param name="PspReference">Adyen&#39;s 16-character string reference associated with the transaction/request. This value is globally unique; quote it when communicating with us about this request.  &gt; &#x60;pspReference&#x60; is returned only for non-redirect payment methods..</param>
-        /// <param name="Redirect">When the payment flow requires a redirect, this object contains information about the redirect URL..</param>
-        /// <param name="RefusalReason">If the payment&#39;s authorisation is refused or an error occurs during authorisation, this field holds Adyen&#39;s mapped reason for the refusal or a description of the error.  When a transaction fails, the authorisation response includes &#x60;resultCode&#x60; and &#x60;refusalReason&#x60; values..</param>
-        /// <param name="RefusalReasonCode">Code that specifies the refusal reason. For more information, see [Authorisation refusal reasons](https://docs.adyen.com/developers/development-resources/response-handling#authorisationrefusalreasons)..</param>
-        /// <param name="ResultCode">The result of the payment. Possible values: * **AuthenticationFinished** – The payment has been successfully authenticated with 3D Secure 2. Returned for 3D Secure 2 authentication-only transactions. * **Authorised** – Indicates the payment authorisation was successfully completed. This state serves as an indicator to proceed with the delivery of goods and services. This is a final state. * **Refused** – Indicates the payment was refused. The reason is given in the &#x60;refusalReason&#x60; field. This is a final state. * **RedirectShopper** – Indicates the shopper should be redirected to an external web page or app to complete the authorisation. * **Received** – Indicates the payment has successfully been received by Adyen, and will be processed. This is the initial state for all payments. * **Cancelled** – Indicates the payment has been cancelled (either by the shopper or the merchant) before processing was completed. This is a final state. * **Pending** – Indicates that it is not possible to obtain the final status of the payment. This can happen if the systems providing final status information for the payment are unavailable, or if the shopper needs to take further action to complete the payment. For more information on handling a pending payment, refer to [Payments with pending status](https://docs.adyen.com/developers/development-resources/payments-with-pending-status). * **Error** – Indicates an error occurred during processing of the payment. The reason is given in the &#x60;refusalReason&#x60; field. This is a final state..</param>
-        /// <param name="ServiceError">The type of the error.</param>
-        /// <param name="ShopperLocale">The shopperLocale value provided in the payment request.</param>
-        public PaymentsResponse(Dictionary<string, string> Authentication = default(Dictionary<string, string>), Dictionary<string, string> AdditionalData = default(Dictionary<string, string>), ResultCodeEnum? AuthResponse = default(ResultCodeEnum?), List<InputDetail> Details = default(List<InputDetail>), FraudResult FraudResult = default(FraudResult), string MerchantReference = default(string), string PaymentData = default(string), string PspReference = default(string), Redirect Redirect = default(Redirect), string RefusalReason = default(string), string RefusalReasonCode = default(string), ResultCodeEnum? ResultCode = default(ResultCodeEnum?), string ShopperLocale = default(string), ServiceError ServiceError = default(ServiceError))
+        /// <param name="additionalData">This field contains additional data, which may be required to return in a particular payment response. To choose data fields to be returned, go to **Customer Area** &gt; **Account** &gt; **API URLs**..</param>
+        /// <param name="authentication">Contains &#x60;threeds2.fingerprint&#x60; or &#x60;threeds2.challengeToken&#x60; values to be used in further calls to &#x60;/payments/details&#x60; endpoint. .</param>
+        /// <param name="details">When non-empty, contains all the fields that you must submit to the &#x60;/payments/details&#x60; endpoint..</param>
+        /// <param name="fraudResult">fraudResult.</param>
+        /// <param name="merchantReference">The reference to uniquely identify a payment. This reference is used in all communication with you about the payment status. We recommend using a unique value per payment; however, it is not a requirement. If you need to provide multiple references for a transaction, separate them with hyphens (\&quot;-\&quot;). Maximum length: 80 characters. (required).</param>
+        /// <param name="outputDetails">Contains the details that will be presented to the shopper..</param>
+        /// <param name="paymentData">When non-empty, contains a value that you must submit to the &#x60;/payments/details&#x60; endpoint..</param>
+        /// <param name="pspReference">Adyen&#x27;s 16-character string reference associated with the transaction/request. This value is globally unique; quote it when communicating with us about this request.  &gt; &#x60;pspReference&#x60; is returned only for non-redirect payment methods..</param>
+        /// <param name="redirect">redirect.</param>
+        /// <param name="refusalReason">If the payment&#x27;s authorisation is refused or an error occurs during authorisation, this field holds Adyen&#x27;s mapped reason for the refusal or a description of the error.  When a transaction fails, the authorisation response includes &#x60;resultCode&#x60; and &#x60;refusalReason&#x60; values..</param>
+        /// <param name="refusalReasonCode">Code that specifies the refusal reason. For more information, see [Authorisation refusal reasons](https://docs.adyen.com/development-resources/refusal-reasons)..</param>
+        /// <param name="resultCode">The result of the payment. Possible values:  * **AuthenticationFinished** – The payment has been successfully authenticated with 3D Secure 2. Returned for 3D Secure 2 authentication-only transactions. * **Authorised** – The payment was successfully authorised. This state serves as an indicator to proceed with the delivery of goods and services. This is a final state. * **Cancelled** – Indicates the payment has been cancelled (either by the shopper or the merchant) before processing was completed. This is a final state. * **ChallengeShopper** – The issuer requires further shopper interaction before the payment can be authenticated. Returned for 3D Secure 2 transactions. * **Error** – There was an error when the payment was being processed. The reason is given in the &#x60;refusalReason&#x60; field. This is a final state. * **IdentifyShopper** – The issuer requires the shopper&#x27;s device fingerprint before the payment can be authenticated. Returned for 3D Secure 2 transactions. * **Refused** – Indicates the payment was refused. The reason is given in the &#x60;refusalReason&#x60; field. This is a final state. * **Pending** – Indicates that it is not possible to obtain the final status of the payment. This can happen if the systems providing final status information for the payment are unavailable, or if the shopper needs to take further action to complete the payment. For more information on handling a pending payment, refer to [Payments with pending status](https://docs.adyen.com/development-resources/payments-with-pending-status). * **Received** – Indicates the payment has successfully been received by Adyen, and will be processed. This is the initial state for all payments. * **RedirectShopper** – Indicates the shopper should be redirected to an external web page or app to complete the authorisation. .</param>
+        /// <param name="action">If your server received an action object in the/payments response, pass the object back to your front end. Make sure that you only pass the action object and not the full response.</param>
+        public PaymentsResponse(Dictionary<string, string> additionalData = default(Dictionary<string, string>), Dictionary<string, string> authentication = default(Dictionary<string, string>), List<InputDetail> details = default(List<InputDetail>), FraudResult fraudResult = default(FraudResult), string merchantReference = default(string), Object outputDetails = default(Object), string paymentData = default(string), string pspReference = default(string), Redirect redirect = default(Redirect), string refusalReason = default(string), string refusalReasonCode = default(string), ResultCodeEnum? resultCode = default(ResultCodeEnum?),CheckoutPaymentsAction action=default(CheckoutPaymentsAction))
         {
-            this.AdditionalData = AdditionalData;
-            this.Authentication = Authentication;
-            this.AuthResponse = AuthResponse;
-            this.Details = Details;
-            this.FraudResult = FraudResult;
-            this.MerchantReference = MerchantReference;
-            this.PaymentData = PaymentData;
-            this.PspReference = PspReference;
-            this.Redirect = Redirect;
-            this.RefusalReason = RefusalReason;
-            this.RefusalReasonCode = RefusalReasonCode;
-            this.ResultCode = ResultCode;
-            this.ServiceError = ServiceError;
-            this.ShopperLocale = ShopperLocale;
+            this.AdditionalData = additionalData;
+            this.Authentication = authentication;
+            this.Details = details;
+            this.FraudResult = fraudResult;
+            this.OutputDetails = outputDetails;
+            this.PaymentData = paymentData;
+            this.PspReference = pspReference;
+            this.Redirect = redirect;
+            this.RefusalReason = refusalReason;
+            this.RefusalReasonCode = refusalReasonCode;
+            this.ResultCode = resultCode;
+            this.Action = action;
         }
 
         /// <summary>
         /// This field contains additional data, which may be required to return in a particular payment response. To choose data fields to be returned, go to **Customer Area** &gt; **Account** &gt; **API URLs**.
         /// </summary>
         /// <value>This field contains additional data, which may be required to return in a particular payment response. To choose data fields to be returned, go to **Customer Area** &gt; **Account** &gt; **API URLs**.</value>
-        [DataMember(Name="additionalData", EmitDefaultValue=false)]
+        [DataMember(Name = "additionalData", EmitDefaultValue = false)]
         public Dictionary<string, string> AdditionalData { get; set; }
 
         /// <summary>
-        /// This field contains authentication data, which may be required to return in a particular payment response.
+        /// Contains &#x60;threeds2.fingerprint&#x60; or &#x60;threeds2.challengeToken&#x60; values to be used in further calls to &#x60;/payments/details&#x60; endpoint. 
         /// </summary>
-        /// <value>This field contains authentication data, which may be required to return in a particular payment response.</value>
+        /// <value>Contains &#x60;threeds2.fingerprint&#x60; or &#x60;threeds2.challengeToken&#x60; values to be used in further calls to &#x60;/payments/details&#x60; endpoint. </value>
         [DataMember(Name = "authentication", EmitDefaultValue = false)]
         public Dictionary<string, string> Authentication { get; set; }
-
-        /// <summary>
-        /// Possible values: * **AuthenticationFinished** – The payment has been successfully authenticated with 3D Secure 2. Returned for 3D Secure 2 authentication-only transactions. * **Authorised** – Indicates the payment authorisation was successfully completed. This state serves as an indicator to proceed with the delivery of goods and services. This is a final state. * **Refused** – Indicates the payment was refused. The reason is given in the &#x60;refusalReason&#x60; field. This is a final state. * **RedirectShopper** – Indicates the shopper should be redirected to an external web page or app to complete the authorisation. * **Received** – Indicates the payment has successfully been received by Adyen, and will be processed. This is the initial state for all payments. * **Cancelled** – Indicates the payment has been cancelled (either by the shopper or the merchant) before processing was completed. This is a final state. * **Pending** – Indicates that it is not possible to obtain the final status of the payment. This can happen if the systems providing final status information for the payment are unavailable, or if the shopper needs to take further action to complete the payment. For more information on handling a pending payment, refer to [Payments with pending status](https://docs.adyen.com/developers/development-resources/payments-with-pending-status). * **Error** – Indicates an error occurred during processing of the payment. The reason is given in the &#x60;refusalReason&#x60; field. This is a final state.
-        /// </summary>
-        /// <value>Possible values: * **AuthenticationFinished** – The payment has been successfully authenticated with 3D Secure 2. Returned for 3D Secure 2 authentication-only transactions. * **Authorised** – Indicates the payment authorisation was successfully completed. This state serves as an indicator to proceed with the delivery of goods and services. This is a final state. * **Refused** – Indicates the payment was refused. The reason is given in the &#x60;refusalReason&#x60; field. This is a final state. * **RedirectShopper** – Indicates the shopper should be redirected to an external web page or app to complete the authorisation. * **Received** – Indicates the payment has successfully been received by Adyen, and will be processed. This is the initial state for all payments. * **Cancelled** – Indicates the payment has been cancelled (either by the shopper or the merchant) before processing was completed. This is a final state. * **Pending** – Indicates that it is not possible to obtain the final status of the payment. This can happen if the systems providing final status information for the payment are unavailable, or if the shopper needs to take further action to complete the payment. For more information on handling a pending payment, refer to [Payments with pending status](https://docs.adyen.com/developers/development-resources/payments-with-pending-status). * **Error** – Indicates an error occurred during processing of the payment. The reason is given in the &#x60;refusalReason&#x60; field. This is a final state.</value>
-        [DataMember(Name="authResponse", EmitDefaultValue=false)]
-        public ResultCodeEnum? AuthResponse { get; set; }
 
         /// <summary>
         /// When non-empty, contains all the fields that you must submit to the &#x60;/payments/details&#x60; endpoint.
         /// </summary>
         /// <value>When non-empty, contains all the fields that you must submit to the &#x60;/payments/details&#x60; endpoint.</value>
-        [DataMember(Name="details", EmitDefaultValue=false)]
+        [DataMember(Name = "details", EmitDefaultValue = false)]
         public List<InputDetail> Details { get; set; }
 
         /// <summary>
-        /// The fraud result properties of the payment.
+        /// Gets or Sets FraudResult
         /// </summary>
-        /// <value>The fraud result properties of the payment.</value>
-        [DataMember(Name="fraudResult", EmitDefaultValue=false)]
+        [DataMember(Name = "fraudResult", EmitDefaultValue = false)]
         public FraudResult FraudResult { get; set; }
 
         /// <summary>
-        /// A unique value that you provided in the initial &#x60;/paymentSession&#x60; request as a &#x60;reference&#x60; field.
+        /// The reference to uniquely identify a payment. This reference is used in all communication with you about the payment status. We recommend using a unique value per payment; however, it is not a requirement. If you need to provide multiple references for a transaction, separate them with hyphens (\&quot;-\&quot;). Maximum length: 80 characters.
         /// </summary>
-        /// <value>A unique value that you provided in the initial &#x60;/paymentSession&#x60; request as a &#x60;reference&#x60; field.</value>
-        [DataMember(Name="merchantReference", EmitDefaultValue=false)]
+        /// <value>The reference to uniquely identify a payment. This reference is used in all communication with you about the payment status. We recommend using a unique value per payment; however, it is not a requirement. If you need to provide multiple references for a transaction, separate them with hyphens (\&quot;-\&quot;). Maximum length: 80 characters.</value>
+        [DataMember(Name = "merchantReference", EmitDefaultValue = false)]
         public string MerchantReference { get; set; }
+
+        /// <summary>
+        /// Contains the details that will be presented to the shopper.
+        /// </summary>
+        /// <value>Contains the details that will be presented to the shopper.</value>
+        [DataMember(Name = "outputDetails", EmitDefaultValue = false)]
+        public Object OutputDetails { get; set; }
 
         /// <summary>
         /// When non-empty, contains a value that you must submit to the &#x60;/payments/details&#x60; endpoint.
         /// </summary>
         /// <value>When non-empty, contains a value that you must submit to the &#x60;/payments/details&#x60; endpoint.</value>
-        [DataMember(Name="paymentData", EmitDefaultValue=false)]
+        [DataMember(Name = "paymentData", EmitDefaultValue = false)]
         public string PaymentData { get; set; }
 
         /// <summary>
-        /// Adyen&#39;s 16-character string reference associated with the transaction/request. This value is globally unique; quote it when communicating with us about this request.  &gt; &#x60;pspReference&#x60; is returned only for non-redirect payment methods.
+        /// Adyen&#x27;s 16-character string reference associated with the transaction/request. This value is globally unique; quote it when communicating with us about this request.  &gt; &#x60;pspReference&#x60; is returned only for non-redirect payment methods.
         /// </summary>
-        /// <value>Adyen&#39;s 16-character string reference associated with the transaction/request. This value is globally unique; quote it when communicating with us about this request.  &gt; &#x60;pspReference&#x60; is returned only for non-redirect payment methods.</value>
-        [DataMember(Name="pspReference", EmitDefaultValue=false)]
+        /// <value>Adyen&#x27;s 16-character string reference associated with the transaction/request. This value is globally unique; quote it when communicating with us about this request.  &gt; &#x60;pspReference&#x60; is returned only for non-redirect payment methods.</value>
+        [DataMember(Name = "pspReference", EmitDefaultValue = false)]
         public string PspReference { get; set; }
 
         /// <summary>
-        /// When the payment flow requires a redirect, this object contains information about the redirect URL.
+        /// Gets or Sets Redirect
         /// </summary>
-        /// <value>When the payment flow requires a redirect, this object contains information about the redirect URL.</value>
-        [DataMember(Name="redirect", EmitDefaultValue=false)]
+        [DataMember(Name = "redirect", EmitDefaultValue = false)]
         public Redirect Redirect { get; set; }
 
         /// <summary>
-        /// If the payment&#39;s authorisation is refused or an error occurs during authorisation, this field holds Adyen&#39;s mapped reason for the refusal or a description of the error.  When a transaction fails, the authorisation response includes &#x60;resultCode&#x60; and &#x60;refusalReason&#x60; values.
+        /// If the payment&#x27;s authorisation is refused or an error occurs during authorisation, this field holds Adyen&#x27;s mapped reason for the refusal or a description of the error.  When a transaction fails, the authorisation response includes &#x60;resultCode&#x60; and &#x60;refusalReason&#x60; values.
         /// </summary>
-        /// <value>If the payment&#39;s authorisation is refused or an error occurs during authorisation, this field holds Adyen&#39;s mapped reason for the refusal or a description of the error.  When a transaction fails, the authorisation response includes &#x60;resultCode&#x60; and &#x60;refusalReason&#x60; values.</value>
-        [DataMember(Name="refusalReason", EmitDefaultValue=false)]
+        /// <value>If the payment&#x27;s authorisation is refused or an error occurs during authorisation, this field holds Adyen&#x27;s mapped reason for the refusal or a description of the error.  When a transaction fails, the authorisation response includes &#x60;resultCode&#x60; and &#x60;refusalReason&#x60; values.</value>
+        [DataMember(Name = "refusalReason", EmitDefaultValue = false)]
         public string RefusalReason { get; set; }
 
         /// <summary>
-        /// Code that specifies the refusal reason. For more information, see [Authorisation refusal reasons](https://docs.adyen.com/developers/development-resources/response-handling#authorisationrefusalreasons).
+        /// Code that specifies the refusal reason. For more information, see [Authorisation refusal reasons](https://docs.adyen.com/development-resources/refusal-reasons).
         /// </summary>
-        /// <value>Code that specifies the refusal reason. For more information, see [Authorisation refusal reasons](https://docs.adyen.com/developers/development-resources/response-handling#authorisationrefusalreasons).</value>
-        [DataMember(Name="refusalReasonCode", EmitDefaultValue=false)]
+        /// <value>Code that specifies the refusal reason. For more information, see [Authorisation refusal reasons](https://docs.adyen.com/development-resources/refusal-reasons).</value>
+        [DataMember(Name = "refusalReasonCode", EmitDefaultValue = false)]
         public string RefusalReasonCode { get; set; }
 
-        /// <summary>
-        /// The type of the error.
-        /// </summary>
-        /// <value>The type of the error.</value>
-        [DataMember(Name="serviceError", EmitDefaultValue=false)]
-        public ServiceError ServiceError { get; set; }
-
-        /// <summary>
-        /// The shopperLocale value provided in the payment request.
-        /// </summary>
-        /// <value>The shopperLocale value provided in the payment request.</value>
-        [DataMember(Name="shopperLocale", EmitDefaultValue=false)]
-        public string ShopperLocale { get; set; }
-
-        [DataMember(Name="outputDetails", EmitDefaultValue=false)]
-        public Dictionary<string, string> OutputDetails;
+        [DataMember(Name = "action", EmitDefaultValue = false)]
+        public CheckoutPaymentsAction Action { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -235,18 +200,17 @@ namespace Adyen.Model.Checkout
             sb.Append("class PaymentsResponse {\n");
             sb.Append("  AdditionalData: ").Append(AdditionalData).Append("\n");
             sb.Append("  Authentication: ").Append(Authentication).Append("\n");
-            sb.Append("  AuthResponse: ").Append(AuthResponse).Append("\n");
             sb.Append("  Details: ").Append(Details).Append("\n");
             sb.Append("  FraudResult: ").Append(FraudResult).Append("\n");
             sb.Append("  MerchantReference: ").Append(MerchantReference).Append("\n");
+            sb.Append("  OutputDetails: ").Append(OutputDetails).Append("\n");
             sb.Append("  PaymentData: ").Append(PaymentData).Append("\n");
             sb.Append("  PspReference: ").Append(PspReference).Append("\n");
             sb.Append("  Redirect: ").Append(Redirect).Append("\n");
             sb.Append("  RefusalReason: ").Append(RefusalReason).Append("\n");
             sb.Append("  RefusalReasonCode: ").Append(RefusalReasonCode).Append("\n");
             sb.Append("  ResultCode: ").Append(ResultCode).Append("\n");
-            sb.Append("  ServiceError: ").Append(ServiceError).Append("\n");
-            sb.Append("  ShopperLocale: ").Append(ShopperLocale).Append("\n");
+            sb.Append("  Action: ").Append(Action).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -255,7 +219,7 @@ namespace Adyen.Model.Checkout
         /// Returns the JSON string presentation of the object
         /// </summary>
         /// <returns>JSON string presentation of the object</returns>
-        public string ToJson()
+        public virtual string ToJson()
         {
             return JsonConvert.SerializeObject(this, Formatting.Indented);
         }
@@ -271,9 +235,9 @@ namespace Adyen.Model.Checkout
         }
 
         /// <summary>
-        /// Returns true if PaymentsResponse instances are equal
+        /// Returns true if PaymentResponse instances are equal
         /// </summary>
-        /// <param name="input">Instance of PaymentsResponse to be compared</param>
+        /// <param name="input">Instance of PaymentResponse to be compared</param>
         /// <returns>Boolean</returns>
         public bool Equals(PaymentsResponse input)
         {
@@ -283,22 +247,18 @@ namespace Adyen.Model.Checkout
             return
                 (
                     this.AdditionalData == input.AdditionalData ||
-                    this.AdditionalData != null &&
-                    this.AdditionalData.SequenceEqual(input.AdditionalData)
+                    (this.AdditionalData != null &&
+                    this.AdditionalData.Equals(input.AdditionalData))
                 ) &&
                 (
                     this.Authentication == input.Authentication ||
-                    this.Authentication != null &&
-                    this.Authentication.SequenceEqual(input.Authentication)
-                ) &&
-                (
-                    this.AuthResponse == input.AuthResponse ||
-                    this.AuthResponse != null &&
-                    this.AuthResponse.Equals(input.AuthResponse)
+                    (this.Authentication != null &&
+                    this.Authentication.Equals(input.Authentication))
                 ) &&
                 (
                     this.Details == input.Details ||
                     this.Details != null &&
+                    input.Details != null &&
                     this.Details.SequenceEqual(input.Details)
                 ) &&
                 (
@@ -310,6 +270,11 @@ namespace Adyen.Model.Checkout
                     this.MerchantReference == input.MerchantReference ||
                     (this.MerchantReference != null &&
                     this.MerchantReference.Equals(input.MerchantReference))
+                ) &&
+                (
+                    this.OutputDetails == input.OutputDetails ||
+                    (this.OutputDetails != null &&
+                    this.OutputDetails.Equals(input.OutputDetails))
                 ) &&
                 (
                     this.PaymentData == input.PaymentData ||
@@ -342,14 +307,9 @@ namespace Adyen.Model.Checkout
                     this.ResultCode.Equals(input.ResultCode))
                 ) &&
                 (
-                    this.ServiceError == input.ServiceError ||
-                    (this.ServiceError != null &&
-                    this.ServiceError.Equals(input.ServiceError))
-                ) &&
-                (
-                    this.ShopperLocale == input.ShopperLocale ||
-                    (this.ShopperLocale != null &&
-                    this.ShopperLocale.Equals(input.ShopperLocale))
+                    this.Action == input.Action ||
+                    (this.Action != null &&
+                    this.Action.Equals(input.Action))
                 );
         }
 
@@ -366,14 +326,14 @@ namespace Adyen.Model.Checkout
                     hashCode = hashCode * 59 + this.AdditionalData.GetHashCode();
                 if (this.Authentication != null)
                     hashCode = hashCode * 59 + this.Authentication.GetHashCode();
-                if (this.AuthResponse != null)
-                    hashCode = hashCode * 59 + this.AuthResponse.GetHashCode();
                 if (this.Details != null)
                     hashCode = hashCode * 59 + this.Details.GetHashCode();
                 if (this.FraudResult != null)
                     hashCode = hashCode * 59 + this.FraudResult.GetHashCode();
                 if (this.MerchantReference != null)
                     hashCode = hashCode * 59 + this.MerchantReference.GetHashCode();
+                if (this.OutputDetails != null)
+                    hashCode = hashCode * 59 + this.OutputDetails.GetHashCode();
                 if (this.PaymentData != null)
                     hashCode = hashCode * 59 + this.PaymentData.GetHashCode();
                 if (this.PspReference != null)
@@ -386,10 +346,8 @@ namespace Adyen.Model.Checkout
                     hashCode = hashCode * 59 + this.RefusalReasonCode.GetHashCode();
                 if (this.ResultCode != null)
                     hashCode = hashCode * 59 + this.ResultCode.GetHashCode();
-                if (this.ServiceError != null)
-                    hashCode = hashCode * 59 + this.ServiceError.GetHashCode();
-                if (this.ShopperLocale != null)
-                    hashCode = hashCode * 59 + this.ShopperLocale.GetHashCode();
+                if (this.Action != null)
+                    hashCode = hashCode * 59 + this.Action.GetHashCode();
                 return hashCode;
             }
         }
@@ -404,5 +362,4 @@ namespace Adyen.Model.Checkout
             yield break;
         }
     }
-
 }
