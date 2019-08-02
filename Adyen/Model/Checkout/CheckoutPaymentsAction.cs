@@ -34,7 +34,7 @@ namespace Adyen.Model.Checkout
             [EnumMember(Value = "voucher")]
             Voucher = 2,
             /// <summary>
-            /// Enum qrCode for value: qrCode
+            /// Enum redirect for value: redirect
             /// </summary>
             [EnumMember(Value = "redirect")]
             Redirect = 3,
@@ -101,7 +101,7 @@ namespace Adyen.Model.Checkout
         /// <returns>Boolean</returns>
         public override bool Equals(object input)
         {
-            return this.Equals(input as PaymentsResponse);
+            return this.Equals(input as CheckoutPaymentsAction);
         }
 
         public IEnumerable<ValidationResult> Validate(ValidationContext validationContext)
@@ -111,9 +111,9 @@ namespace Adyen.Model.Checkout
 
 
         /// <summary>
-        /// Returns true if PaymentResponse instances are equal
+        /// Returns true if CheckoutPaymentsAction instances are equal
         /// </summary>
-        /// <param name="input">Instance of PaymentResponse to be compared</param>
+        /// <param name="input">Instance of CheckoutPaymentsAction to be compared</param>
         /// <returns>Boolean</returns>
         public bool Equals(CheckoutPaymentsAction input)
         {
