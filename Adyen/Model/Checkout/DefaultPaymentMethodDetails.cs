@@ -47,6 +47,10 @@ namespace Adyen.Model.Checkout
         public bool StoreDetails { get; set; }
         [DataMember(Name = "idealIssuer", EmitDefaultValue = false)]
         public string IdealIssuer { get; set; }
+        [DataMember(Name = "sepa.ownerName", EmitDefaultValue = false)]
+        public string SepaOwnerName { get; set; }
+        [DataMember(Name = "sepa.ibanNumber", EmitDefaultValue = false)]
+        public string SepaIbanNumber { get; set; }
 
 
         public override string ToString()
@@ -70,6 +74,8 @@ namespace Adyen.Model.Checkout
             sb.Append("  RecurringDetailReference: ").Append(RecurringDetailReference).Append("\n");
             sb.Append("  StoreDetails: ").Append(StoreDetails).Append("\n");
             sb.Append("  IdealIssuer: ").Append(IdealIssuer).Append("\n");
+            sb.Append("  SepaOwnerName: ").Append(SepaOwnerName).Append("\n");
+            sb.Append("  SepaIbanNumber: ").Append(SepaIbanNumber).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -90,7 +96,115 @@ namespace Adyen.Model.Checkout
         /// <returns>Boolean</returns>
         public override bool Equals(object input)
         {
-            return this.Equals(input as DefaultPaymentMethodDetails);
+            return this.Equals(input as Configuration);
+        }
+
+        /// <summary>
+        /// Returns true if Address instances are equal
+        /// </summary>
+        /// <param name="input">Instance of Address to be compared</param>
+        /// <returns>Boolean</returns>
+        public bool Equals(DefaultPaymentMethodDetails input)
+        {
+            if (input == null)
+                return false;
+
+            return
+                (
+                    this.Type == input.Type ||
+                    (this.Type != null &&
+                    this.Type.Equals(input.Type))
+                ) &&
+                (
+                    this.Number == input.Number ||
+                    (this.Number != null &&
+                    this.Number.Equals(input.Number))
+                ) &&
+                (
+                    this.ExpiryMonth == input.ExpiryMonth ||
+                    (this.ExpiryMonth != null &&
+                    this.ExpiryMonth.Equals(input.ExpiryMonth))
+                ) &&
+                (
+                    this.ExpiryYear == input.ExpiryYear ||
+                    (this.ExpiryYear != null &&
+                    this.ExpiryYear.Equals(input.ExpiryYear))
+                ) &&
+                (
+                    this.HolderName == input.HolderName ||
+                    (this.HolderName != null &&
+                    this.HolderName.Equals(input.HolderName))
+                ) &&
+                (
+                    this.Cvc == input.Cvc ||
+                    (this.Cvc != null &&
+                    this.Cvc.Equals(input.Cvc))
+                ) &&
+                (
+                    this.InstallmentConfigurationKey == input.InstallmentConfigurationKey ||
+                    (this.InstallmentConfigurationKey != null &&
+                    this.InstallmentConfigurationKey.Equals(input.InstallmentConfigurationKey))
+                ) &&
+                (
+                    this.PersonalDetails == input.PersonalDetails ||
+                    (this.PersonalDetails != null &&
+                    this.PersonalDetails.Equals(input.PersonalDetails))
+                ) &&
+                (
+                    this.BillingAddress == input.BillingAddress ||
+                    (this.BillingAddress != null &&
+                    this.BillingAddress.Equals(input.BillingAddress))
+                ) &&
+                (
+                    this.DeliveryAddress == input.DeliveryAddress ||
+                    (this.DeliveryAddress != null &&
+                    this.DeliveryAddress.Equals(input.DeliveryAddress))
+                ) &&
+                (
+                    this.EncryptedCardNumber == input.EncryptedCardNumber ||
+                    (this.EncryptedCardNumber != null &&
+                    this.EncryptedCardNumber.Equals(input.EncryptedCardNumber))
+                ) &&
+                (
+                    this.EncryptedExpiryMonth == input.EncryptedExpiryMonth ||
+                    (this.EncryptedExpiryMonth != null &&
+                    this.EncryptedExpiryMonth.Equals(input.EncryptedExpiryMonth))
+                ) &&
+                (
+                    this.EncryptedExpiryYear == input.EncryptedExpiryYear ||
+                    (this.EncryptedExpiryYear != null &&
+                    this.EncryptedExpiryYear.Equals(input.EncryptedExpiryYear))
+                ) &&
+                (
+                    this.EncryptedSecurityCode == input.EncryptedSecurityCode ||
+                    (this.EncryptedSecurityCode != null &&
+                    this.EncryptedSecurityCode.Equals(input.EncryptedSecurityCode))
+                ) &&
+                (
+                    this.RecurringDetailReference == input.RecurringDetailReference ||
+                    (this.RecurringDetailReference != null &&
+                    this.RecurringDetailReference.Equals(input.RecurringDetailReference))
+                ) &&
+                (
+                    this.StoreDetails == input.StoreDetails ||
+                    (this.StoreDetails != null &&
+                    this.StoreDetails.Equals(input.StoreDetails))
+                ) &&
+                (
+                    this.IdealIssuer == input.IdealIssuer ||
+                    (this.IdealIssuer != null &&
+                    this.IdealIssuer.Equals(input.IdealIssuer))
+                ) &&
+                (
+                    this.SepaOwnerName == input.SepaOwnerName ||
+                    (this.SepaOwnerName != null &&
+                    this.SepaOwnerName.Equals(input.SepaOwnerName))
+                ) &&
+                (
+                    this.SepaIbanNumber == input.SepaIbanNumber ||
+                    (this.SepaIbanNumber != null &&
+                    this.SepaIbanNumber.Equals(input.SepaIbanNumber))
+                );
         }
 
         /// <summary>
@@ -102,6 +216,5 @@ namespace Adyen.Model.Checkout
         {
             yield break;
         }
-
     }
 }
