@@ -54,21 +54,26 @@ namespace Adyen.Test
         /// POST /payments
         /// </summary>
         [TestMethod]
-        public void PaymentsTest()
+        public void PaymentsAdditionalDataParsingTest()
         {
             var paymentRequest = CreatePaymentRequestCheckout();
             var client = CreateMockTestClientApiKeyBasedRequest("Mocks/checkout/payments-success.json");
-
             var checkout = new Checkout(client);
             var paymentResponse = checkout.Payments(paymentRequest);
             Assert.AreEqual("8535296650153317", paymentResponse.PspReference);
             Assert.AreEqual(ResultCodeEnum.Authorised, paymentResponse.ResultCode);
             Assert.IsNotNull(paymentResponse.AdditionalData);
             Assert.AreEqual(9, paymentResponse.AdditionalData.Count);
+            Assert.AreEqual("8/2018", paymentResponse.AdditionalData["expiryDate"]);
+            Assert.AreEqual("GREEN", paymentResponse.AdditionalData["fraudResultType"]);
             Assert.AreEqual("411111", paymentResponse.AdditionalData["cardBin"]);
+            Assert.AreEqual("1111", paymentResponse.AdditionalData["cardSummary"]);
+            Assert.AreEqual("false", paymentResponse.AdditionalData["fraudManualReview"]);
+            Assert.AreEqual("Default", paymentResponse.AdditionalData["aliasType"]);
+            Assert.AreEqual("H167852639363479", paymentResponse.AdditionalData["alias"]);
             Assert.AreEqual("visa", paymentResponse.AdditionalData["cardPaymentMethod"]);
+            Assert.AreEqual("NL", paymentResponse.AdditionalData["cardIssuingCountry"]);
         }
-
         /// <summary>
         /// Test success flow for 3DS2
         /// POST /payments
@@ -83,7 +88,23 @@ namespace Adyen.Test
             Assert.AreEqual(paymentResponse.ResultCode, ResultCodeEnum.IdentifyShopper);
             Assert.IsFalse(string.IsNullOrEmpty(paymentResponse.PaymentData));
         }
-        
+
+        /// <summary>
+        /// Test 3ds success flow for
+        /// POST  /payments/result
+        /// </summary>
+        [TestMethod]
+        public void PaymentsAuthorise3ds2ResultSuccessTest()
+        {
+            var paymentResultRequest = CreatePaymentResultRequest();
+            var client = CreateMockTestClientApiKeyBasedRequest("Mocks/threedsecure2/authorise3ds2-success.json");
+            var checkout = new Checkout(client);
+            var paymentResultResponse = checkout.PaymentsResult(paymentResultRequest);
+            Assert.IsNotNull(paymentResultResponse.AdditionalData);
+            Assert.AreEqual(paymentResultResponse.AdditionalData["cvcResult"], "1 Matches");
+            Assert.AreEqual(paymentResultResponse.ResultCode, Model.Checkout.PaymentResultResponse.ResultCodeEnum.Authorised);
+        }
+
         /// <summary>
         /// Test error flow for
         /// POST /payments
@@ -107,7 +128,7 @@ namespace Adyen.Test
         {
             var detailsRequest = CreateDetailsRequest();
             detailsRequest.Details.Add("payload", "Ab02b4c0!BQABAgBQn96RxfJHpp2RXhqQBuhQFWgE...gfGHb4IZSP4IpoCC2==RXhqQBuhQ");
-            var client = CreateMockTestClientApiKeyBasedRequest("Mocks/checkout/paymentsdetails-sucess.json");
+            var client = CreateMockTestClientApiKeyBasedRequest("Mocks/checkout/paymentsdetails-success.json");
             var checkout = new Checkout(client);
             var paymentResponse = checkout.PaymentDetails(detailsRequest);
             Assert.AreEqual("8515232733321252", paymentResponse.PspReference);
@@ -191,11 +212,12 @@ namespace Adyen.Test
         public void PaymentsResultSuccessTest()
         {
             var paymentResultRequest = CreatePaymentResultRequest();
-            var client = CreateMockTestClientApiKeyBasedRequest("Mocks/checkout/paymentsresult-sucess.json");
+            var client = CreateMockTestClientApiKeyBasedRequest("Mocks/checkout/paymentsresult-success.json");
             var checkout = new Checkout(client);
             var paymentResultResponse = checkout.PaymentsResult(paymentResultRequest);
             Assert.AreEqual(paymentResultResponse.ResultCode, Model.Checkout.PaymentResultResponse.ResultCodeEnum.Authorised);
         }
+        
         /// <summary>
         /// Test success flow for
         /// POST  /payments/result

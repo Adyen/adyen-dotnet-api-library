@@ -8,25 +8,15 @@ namespace Adyen.Util
         /// Deserialize to an object T
         /// </summary>
         /// <typeparam name="T"></typeparam>
-        /// <param name="request"></param>
+        /// <param name="response"></param>
         /// <returns></returns>
-        public static T Deserialize<T>(string request)
+        public static T Deserialize<T>(string response)
         {
             var jsonSettings = new JsonSerializerSettings();
             jsonSettings.Converters.Add(new ByteArrayConverter());
-            return JsonConvert.DeserializeObject<T>(request, jsonSettings);
+            return JsonConvert.DeserializeObject<T>(response, jsonSettings);
         }
-
-        /// <summary>
-        /// Deseralize to a dynamic object
-        /// </summary>
-        /// <param name="request"></param>
-        /// <returns></returns>
-        public static dynamic Deserialize(string request)
-        {
-            return JsonConvert.DeserializeObject(request);
-        }
-
+        
         public static string SerializeRequest(object request)
         {
             var jsonSettings = new JsonSerializerSettings
