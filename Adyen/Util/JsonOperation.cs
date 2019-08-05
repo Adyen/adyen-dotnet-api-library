@@ -12,7 +12,9 @@ namespace Adyen.Util
         /// <returns></returns>
         public static T Deserialize<T>(string request)
         {
-            return JsonConvert.DeserializeObject<T>(request);
+            var jsonSettings = new JsonSerializerSettings();
+            jsonSettings.Converters.Add(new ByteArrayConverter());
+            return JsonConvert.DeserializeObject<T>(request, jsonSettings);
         }
 
         /// <summary>
@@ -24,15 +26,16 @@ namespace Adyen.Util
         {
             return JsonConvert.DeserializeObject(request);
         }
-        
+
         public static string SerializeRequest(object request)
         {
-            return JsonConvert.SerializeObject(request, Newtonsoft.Json.Formatting.None,
-                new JsonSerializerSettings
-                {
-                    NullValueHandling = NullValueHandling.Ignore,
-                    DefaultValueHandling = DefaultValueHandling.Include
-                });
+            var jsonSettings = new JsonSerializerSettings
+            {
+                NullValueHandling = NullValueHandling.Ignore,
+                DefaultValueHandling = DefaultValueHandling.Include,
+            };
+            jsonSettings.Converters.Add(new ByteArrayConverter());
+            return JsonConvert.SerializeObject(request, Newtonsoft.Json.Formatting.None, jsonSettings);
         }
     }
 }

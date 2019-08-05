@@ -12,14 +12,16 @@
         public static string CloudApiEndPointTest = "https://terminal-api-test.adyen.com";
         public static string CloudApiEndPointLive = "https://terminal-api-live.adyen.com";
         public static string RecurringApiVersion = "v25";
-        public static string ApiVersion = "v40";
-        public static string CheckoutApiVersion = "v41";
+        public static string ApiVersion = "v49";
+        public static string CheckoutApiVersion = "v49";
         public static string CheckoutUtilityApiVersion = "v1";
         public static string UserAgentSuffix = "adyen-dotnet-api-library/";
         public static string EndpointProtocol = "https://";
         public static string NexoProtocolVersion = "3.0";
+        public static string BinLookupPalSuffix = "/pal/servlet/BinLookup/";
+        public static string BinLookupApiVersion = "v50";
 
         public static string LibName = "adyen-dotnet-api-library";
-        public static string LibVersion = "3.0.2";
+        public static string LibVersion = "3.2.0";
     }
 }
