@@ -71,7 +71,7 @@
 
         /// <remarks/>
         [System.Xml.Serialization.XmlTextAttribute()]
-        public string Value;
+        public string Text;
 
         public OutputText()
         {
