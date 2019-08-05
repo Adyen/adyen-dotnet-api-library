@@ -96,7 +96,7 @@ namespace Adyen.Model.Checkout
         /// <returns>Boolean</returns>
         public override bool Equals(object input)
         {
-            return this.Equals(input as Configuration);
+            return this.Equals(input as DefaultPaymentMethodDetails);
         }
 
         /// <summary>
