@@ -271,7 +271,23 @@ namespace Adyen.Test
             Assert.AreEqual(paymentRequest.ApplicationInfo.MerchantApplication.Version, "MerchantApplicationVersion");
         }
 
-
+        [TestMethod]
+        public void PaymentsResponseParsingTest()
+        {
+            var paymentRequest = CreatePaymentRequestCheckout();
+            var client = CreateMockTestClientApiKeyBasedRequest("Mocks/checkout/paymentResponse-3DS-ChallengeShopper.json");
+            var checkout = new Checkout(client);
+            var paymentResponse = checkout.Payments(paymentRequest);
+            Assert.AreEqual(paymentResponse.ResultCode, ResultCodeEnum.ChallengeShopper);
+            Assert.AreEqual(paymentResponse.PaymentData, "Te1CMIy1vKQTYsSHZ+gRbFpQy4d4n2HLD3c2b7xKnRNpWzWPuI=");
+            Assert.AreEqual(paymentResponse.Action.PaymentData, "Te1CMIy1vKQTYsSHZ+gRbFpQy4d4n2HLD3c2b7xKnRNpWzWPuI=");
+            Assert.AreEqual(paymentResponse.Action.Type, Model.Checkout.CheckoutPaymentsAction.CheckoutActionType.ThreeDS2Challenge);
+            Assert.AreEqual(paymentResponse.Action.Token, "S0zYWQ0MGEwMjU2MjEifQ==");
+            Assert.AreEqual(paymentResponse.Action.PaymentMethodType, "scheme");
+            Assert.AreEqual(paymentResponse.Details[0].Key, "threeds2.challengeResult");
+            Assert.AreEqual(paymentResponse.Details[0].Type, "text");
+            Assert.AreEqual(paymentResponse.Authentication["threeds2.challengeToken"], "S0zYWQ0MGEwMjU2MjEifQ==");
+        }
         [TestMethod]
         public void PaymentsOriginTest()
         {

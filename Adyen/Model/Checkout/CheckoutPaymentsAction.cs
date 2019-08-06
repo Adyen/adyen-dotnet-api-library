@@ -29,15 +29,20 @@ namespace Adyen.Model.Checkout
             [EnumMember(Value = "threeDS2Fingerprint")]
             ThreeDS2Fingerprint = 1,
             /// <summary>
+            /// Enum threeDS2Fingerprint for value: threeDS2Fingerprint
+            /// </summary>
+            [EnumMember(Value = "threeDS2Challenge")]
+            ThreeDS2Challenge = 2,
+            /// <summary>
             /// Enum voucher for value: voucher
             /// </summary>
             [EnumMember(Value = "voucher")]
-            Voucher = 2,
+            Voucher = 3,
             /// <summary>
             /// Enum redirect for value: redirect
             /// </summary>
             [EnumMember(Value = "redirect")]
-            Redirect = 3,
+            Redirect = 4,
         }
 
         [DataMember(Name = "type", EmitDefaultValue = false)]
