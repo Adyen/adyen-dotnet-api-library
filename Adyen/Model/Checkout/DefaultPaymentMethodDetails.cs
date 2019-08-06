@@ -103,9 +103,9 @@ namespace Adyen.Model.Checkout
         }
 
         /// <summary>
-        /// Returns true if Address instances are equal
+        /// Returns true if DefaultPaymentMethodDetails instances are equal
         /// </summary>
-        /// <param name="input">Instance of Address to be compared</param>
+        /// <param name="input">Instance of DefaultPaymentMethodDetails to be compared</param>
         /// <returns>Boolean</returns>
         public bool Equals(DefaultPaymentMethodDetails input)
         {
