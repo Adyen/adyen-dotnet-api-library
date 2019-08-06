@@ -288,6 +288,7 @@ namespace Adyen.Test
             Assert.AreEqual(paymentResponse.Details[0].Type, "text");
             Assert.AreEqual(paymentResponse.Authentication["threeds2.challengeToken"], "S0zYWQ0MGEwMjU2MjEifQ==");
         }
+
         [TestMethod]
         public void PaymentsOriginTest()
         {
