@@ -3,6 +3,7 @@ using Adyen.Model.Enum;
 using Adyen.Service;
 using Adyen.Service.Resource.BinLookup;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using System.Text;
 
 namespace Adyen.Test
 {
@@ -20,9 +21,14 @@ namespace Adyen.Test
                 CardNumber = "4111111111111111"
             };
             var threeDsAvailabilityResponse = binLookup.ThreeDsAvailability(threeDsAvailabilityRequest);
+            Assert.AreEqual("F013371337", threeDsAvailabilityResponse.DsPublicKeys[0].DirectoryServerId);
             Assert.AreEqual("visa", threeDsAvailabilityResponse.DsPublicKeys[0].Brand);
-            Assert.AreEqual("visa", threeDsAvailabilityResponse.ThreeDS2CardRangeDetails[0].BrandCode);
+            Assert.AreEqual("411111111111", threeDsAvailabilityResponse.ThreeDS2CardRangeDetails[0].StartRange);
+            Assert.AreEqual("411111111111", threeDsAvailabilityResponse.ThreeDS2CardRangeDetails[0].EndRange);
+            Assert.AreEqual("2.1.0", threeDsAvailabilityResponse.ThreeDS2CardRangeDetails[0].ThreeDS2Version);
+            Assert.AreEqual("https://pal-test.adyen.com/threeds2simulator/acs/startMethod.shtml", threeDsAvailabilityResponse.ThreeDS2CardRangeDetails[0].ThreeDSMethodURL);
             Assert.AreEqual(true, threeDsAvailabilityResponse.ThreeDS1Supported);
+            Assert.AreEqual(true, threeDsAvailabilityResponse.ThreeDS2supported);
         }
 
         [TestMethod]
@@ -65,7 +71,6 @@ namespace Adyen.Test
             var ecommerce = Util.JsonOperation.SerializeRequest(ShopperInteraction.Ecommerce);
             var contAuth = Util.JsonOperation.SerializeRequest(ShopperInteraction.ContAuth);
             var moto = Util.JsonOperation.SerializeRequest(ShopperInteraction.Moto);
-
             Assert.AreEqual("\"Ecommerce\"", ecommerce);
             Assert.AreEqual("\"ContAuth\"", contAuth);
             Assert.AreEqual("\"Moto\"", moto);
