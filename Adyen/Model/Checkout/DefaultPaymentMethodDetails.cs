@@ -52,6 +52,8 @@ namespace Adyen.Model.Checkout
         [DataMember(Name = "sepa.ibanNumber", EmitDefaultValue = false)]
         public string SepaIbanNumber { get; set; }
 
+        [DataMember(Name = "bankAccount", EmitDefaultValue = false)]
+        public BankAccount BankAccount { get; set; }
 
         public override string ToString()
         {
@@ -76,6 +78,7 @@ namespace Adyen.Model.Checkout
             sb.Append("  IdealIssuer: ").Append(IdealIssuer).Append("\n");
             sb.Append("  SepaOwnerName: ").Append(SepaOwnerName).Append("\n");
             sb.Append("  SepaIbanNumber: ").Append(SepaIbanNumber).Append("\n");
+            sb.Append("  BankAccount: ").Append(BankAccount).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -204,6 +207,11 @@ namespace Adyen.Model.Checkout
                     this.SepaIbanNumber == input.SepaIbanNumber ||
                     (this.SepaIbanNumber != null &&
                     this.SepaIbanNumber.Equals(input.SepaIbanNumber))
+                ) &&
+                (
+                    this.BankAccount == input.BankAccount ||
+                    (this.BankAccount != null &&
+                    this.BankAccount.Equals(input.BankAccount))
                 );
         }
 
