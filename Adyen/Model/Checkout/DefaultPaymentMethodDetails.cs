@@ -58,7 +58,7 @@ namespace Adyen.Model.Checkout
         public override string ToString()
         {
             var sb = new StringBuilder();
-            sb.Append("class PermitRestriction {\n");
+            sb.Append("class DefaultPaymentMethodDetails {\n");
             sb.Append("  Type: ").Append(Type).Append("\n");
             sb.Append("  Number: ").Append(Number).Append("\n");
             sb.Append("  ExpiryMonth: ").Append(ExpiryMonth).Append("\n");
