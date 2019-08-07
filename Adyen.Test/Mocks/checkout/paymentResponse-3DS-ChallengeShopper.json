@@ -1,0 +1,18 @@
+{
+  "resultCode": "ChallengeShopper",
+  "action": {
+    "paymentData": "Te1CMIy1vKQTYsSHZ+gRbFpQy4d4n2HLD3c2b7xKnRNpWzWPuI=",
+    "paymentMethodType": "scheme",
+    "token": "S0zYWQ0MGEwMjU2MjEifQ==",
+    "type": "threeDS2Challenge"
+  },
+  "authentication": { "threeds2.challengeToken": "S0zYWQ0MGEwMjU2MjEifQ==" },
+  "details": [
+    {
+      "key": "threeds2.challengeResult",
+      "type": "text"
+    }
+  ],
+  "paymentData": "Te1CMIy1vKQTYsSHZ+gRbFpQy4d4n2HLD3c2b7xKnRNpWzWPuI="
+}                                                 
+                           
