@@ -96,7 +96,9 @@ namespace Adyen.Model.Checkout
         /// <param name="refusalReasonCode">Code that specifies the refusal reason. For more information, see [Authorisation refusal reasons](https://docs.adyen.com/development-resources/refusal-reasons)..</param>
         /// <param name="resultCode">The result of the payment. Possible values:  * **AuthenticationFinished** – The payment has been successfully authenticated with 3D Secure 2. Returned for 3D Secure 2 authentication-only transactions. * **Authorised** – The payment was successfully authorised. This state serves as an indicator to proceed with the delivery of goods and services. This is a final state. * **Cancelled** – Indicates the payment has been cancelled (either by the shopper or the merchant) before processing was completed. This is a final state. * **ChallengeShopper** – The issuer requires further shopper interaction before the payment can be authenticated. Returned for 3D Secure 2 transactions. * **Error** – There was an error when the payment was being processed. The reason is given in the &#x60;refusalReason&#x60; field. This is a final state. * **IdentifyShopper** – The issuer requires the shopper&#x27;s device fingerprint before the payment can be authenticated. Returned for 3D Secure 2 transactions. * **Refused** – Indicates the payment was refused. The reason is given in the &#x60;refusalReason&#x60; field. This is a final state. * **Pending** – Indicates that it is not possible to obtain the final status of the payment. This can happen if the systems providing final status information for the payment are unavailable, or if the shopper needs to take further action to complete the payment. For more information on handling a pending payment, refer to [Payments with pending status](https://docs.adyen.com/development-resources/payments-with-pending-status). * **Received** – Indicates the payment has successfully been received by Adyen, and will be processed. This is the initial state for all payments. * **RedirectShopper** – Indicates the shopper should be redirected to an external web page or app to complete the authorisation. .</param>
         /// <param name="action">If your server received an action object in the/payments response, pass the object back to your front end. Make sure that you only pass the action object and not the full response.</param>
-        public PaymentsResponse(Dictionary<string, string> additionalData = default(Dictionary<string, string>), Dictionary<string, string> authentication = default(Dictionary<string, string>), List<InputDetail> details = default(List<InputDetail>), FraudResult fraudResult = default(FraudResult), string merchantReference = default(string), Object outputDetails = default(Object), string paymentData = default(string), string pspReference = default(string), Redirect redirect = default(Redirect), string refusalReason = default(string), string refusalReasonCode = default(string), ResultCodeEnum? resultCode = default(ResultCodeEnum?),CheckoutPaymentsAction action=default(CheckoutPaymentsAction))
+        /// <param name="threeDS2Result">Send the property below within the threeDS2Result object to submit the results of the challenge flow</param>
+        /// <param name="serviceError"></param>
+        public PaymentsResponse(Dictionary<string, string> additionalData = default(Dictionary<string, string>), Dictionary<string, string> authentication = default(Dictionary<string, string>), List<InputDetail> details = default(List<InputDetail>), FraudResult fraudResult = default(FraudResult), string merchantReference = default(string), Dictionary<string, string> outputDetails = default(Dictionary<string, string>), string paymentData = default(string), string pspReference = default(string), Redirect redirect = default(Redirect), string refusalReason = default(string), string refusalReasonCode = default(string), ResultCodeEnum? resultCode = default(ResultCodeEnum?),CheckoutPaymentsAction action=default(CheckoutPaymentsAction), ThreeDS2Result threeDS2Result=default(ThreeDS2Result),ServiceError serviceError=default(ServiceError))
         {
             this.AdditionalData = additionalData;
             this.Authentication = authentication;
@@ -110,6 +112,9 @@ namespace Adyen.Model.Checkout
             this.RefusalReasonCode = refusalReasonCode;
             this.ResultCode = resultCode;
             this.Action = action;
+            this.MerchantReference = merchantReference;
+            this.ServiceError = serviceError;
+            this.ThreeDS2Result = threeDS2Result;
         }
 
         /// <summary>
@@ -151,7 +156,7 @@ namespace Adyen.Model.Checkout
         /// </summary>
         /// <value>Contains the details that will be presented to the shopper.</value>
         [DataMember(Name = "outputDetails", EmitDefaultValue = false)]
-        public Object OutputDetails { get; set; }
+        public Dictionary<string, string> OutputDetails { get; set; }
 
         /// <summary>
         /// When non-empty, contains a value that you must submit to the &#x60;/payments/details&#x60; endpoint.
@@ -189,7 +194,15 @@ namespace Adyen.Model.Checkout
 
         [DataMember(Name = "action", EmitDefaultValue = false)]
         public CheckoutPaymentsAction Action { get; set; }
+        /// <summary>
+        /// Send the property below within the threeDS2Result object to submit the results of the challenge flow
+        /// </summary>
+        [DataMember(Name = "threeDS2Result", EmitDefaultValue = false)]
+        public ThreeDS2Result ThreeDS2Result { get; set; }
 
+        [DataMember(Name = "serviceError", EmitDefaultValue = false)]
+        public ServiceError ServiceError { get; set; }
+       
         /// <summary>
         /// Returns the string presentation of the object
         /// </summary>
@@ -211,6 +224,8 @@ namespace Adyen.Model.Checkout
             sb.Append("  RefusalReasonCode: ").Append(RefusalReasonCode).Append("\n");
             sb.Append("  ResultCode: ").Append(ResultCode).Append("\n");
             sb.Append("  Action: ").Append(Action).Append("\n");
+            sb.Append("  ThreeDS2Result: ").Append(ThreeDS2Result).Append("\n");
+            sb.Append("  ServiceError: ").Append(ServiceError).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -310,6 +325,16 @@ namespace Adyen.Model.Checkout
                     this.Action == input.Action ||
                     (this.Action != null &&
                     this.Action.Equals(input.Action))
+                ) &&
+                (
+                    this.ThreeDS2Result == input.ThreeDS2Result ||
+                    (this.ThreeDS2Result != null &&
+                    this.ThreeDS2Result.Equals(input.ThreeDS2Result))
+                ) &&
+                (
+                    this.ServiceError == input.ServiceError ||
+                    (this.ServiceError != null &&
+                    this.ServiceError.Equals(input.ServiceError))
                 );
         }
 
@@ -348,6 +373,10 @@ namespace Adyen.Model.Checkout
                     hashCode = hashCode * 59 + this.ResultCode.GetHashCode();
                 if (this.Action != null)
                     hashCode = hashCode * 59 + this.Action.GetHashCode();
+                if (this.ThreeDS2Result != null)
+                    hashCode = hashCode * 59 + this.ThreeDS2Result.GetHashCode();
+                if (this.ServiceError != null)
+                    hashCode = hashCode * 59 + this.ServiceError.GetHashCode();
                 return hashCode;
             }
         }

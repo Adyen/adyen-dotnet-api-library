@@ -290,6 +290,24 @@ namespace Adyen.Test
         }
 
         [TestMethod]
+        public void PaymentsResponseThreeDS2ParsingTest()
+        {
+            var paymentRequest = CreatePaymentRequestCheckout();
+            var client = CreateMockTestClientApiKeyBasedRequest("Mocks/checkout/paymentsResponse-ThreeDS2Result.json");
+            var checkout = new Checkout(client);
+            var paymentResponse = checkout.Payments(paymentRequest);
+            Assert.AreEqual(paymentResponse.ResultCode, ResultCodeEnum.AuthenticationFinished);
+            Assert.AreEqual(paymentResponse.PspReference, "812345678912345A");
+            Assert.AreEqual(paymentResponse.MerchantReference, "ABC1234");
+            Assert.AreEqual(paymentResponse.ThreeDS2Result.AuthenticationValue, "3q263q263q263q263q263q263q263q263q26");
+            Assert.AreEqual(paymentResponse.ThreeDS2Result.ECI, "05");
+            Assert.AreEqual(paymentResponse.ThreeDS2Result.TransStatus, "Y");
+            Assert.AreEqual(paymentResponse.ThreeDS2Result.ThreeDSServerTransID, "abcd1234-abcd1234-abcd1234-abcd1234-");
+            Assert.AreEqual(paymentResponse.ThreeDS2Result.DsTransID, "abcd9a67-abcd9a67-abcd9a67-abcd9a671");
+            Assert.AreEqual(paymentResponse.ThreeDS2Result.MessageVersion,"2.1.0");
+        }
+
+        [TestMethod]
         public void PaymentsOriginTest()
         {
             var paymentMethodsRequest = CreatePaymentRequestCheckout();
