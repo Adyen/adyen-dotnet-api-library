@@ -46,13 +46,16 @@ namespace Adyen.Model
         /// Supported for 3D Secure 2. The unique transaction identifier assigned by the Directory Server (DS) to identify a single transaction.
         /// </summary>
         [DataMember(Name = "dsTransID")]
-        private string DsTransID { get; set; }
+        public string DsTransID { get; set; }
 
         /// <summary>
         /// Provides information on why the transStatus field has the specified value.
         /// </summary>
         [DataMember(Name = "transStatusReason", EmitDefaultValue = false)]
         public string TransStatusReason { get; set; }
+
+        [DataMember(Name = "messageVersion", EmitDefaultValue = false)]
+        public string MessageVersion { get; set; }
 
 
         /// <summary>
@@ -70,6 +73,7 @@ namespace Adyen.Model
             sb.Append("  TransStatus: ").Append(TransStatus).Append("\n");
             sb.Append("  DsTransID: ").Append(DsTransID).Append("\n");
             sb.Append("  TransStatusReason: ").Append(TransStatusReason).Append("\n");
+            sb.Append("  MessageVersion: ").Append(MessageVersion).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -140,6 +144,11 @@ namespace Adyen.Model
                     this.TransStatusReason == other.TransStatusReason ||
                     this.TransStatusReason != null &&
                     this.TransStatusReason.Equals(other.TransStatusReason)
+                ) &&
+                (
+                    this.MessageVersion == other.MessageVersion ||
+                    this.MessageVersion != null &&
+                    this.MessageVersion.Equals(other.MessageVersion)
                 );
         }
 
@@ -168,6 +177,8 @@ namespace Adyen.Model
                     hash = hash * 59 + this.DsTransID.GetHashCode();
                 if (this.TransStatusReason != null)
                     hash = hash * 59 + this.TransStatusReason.GetHashCode();
+                if (this.MessageVersion != null)
+                    hash = hash * 59 + this.MessageVersion.GetHashCode();
                 return hash;
             }
            

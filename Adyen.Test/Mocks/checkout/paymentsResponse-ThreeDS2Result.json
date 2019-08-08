@@ -1,0 +1,13 @@
+{
+	"pspReference": "812345678912345A",
+	"resultCode": "AuthenticationFinished",
+	"merchantReference": "ABC1234",
+	"threeDS2Result": {
+		"authenticationValue": "3q263q263q263q263q263q263q263q263q26",
+		"dsTransID": "abcd9a67-abcd9a67-abcd9a67-abcd9a671",
+		"eci": "05",
+		"messageVersion": "2.1.0",
+		"threeDSServerTransID": "abcd1234-abcd1234-abcd1234-abcd1234-",
+		"transStatus": "Y"
+	}
+}
