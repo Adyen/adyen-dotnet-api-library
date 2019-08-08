@@ -53,7 +53,9 @@ namespace Adyen.Model
         /// </summary>
         [DataMember(Name = "transStatusReason", EmitDefaultValue = false)]
         public string TransStatusReason { get; set; }
-
+        /// <summary>
+        /// The messageVersion value as defined in the 3D Secure 2 specification
+        /// </summary>
         [DataMember(Name = "messageVersion", EmitDefaultValue = false)]
         public string MessageVersion { get; set; }
 
