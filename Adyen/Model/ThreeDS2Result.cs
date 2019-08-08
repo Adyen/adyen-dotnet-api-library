@@ -58,8 +58,7 @@ namespace Adyen.Model
         /// </summary>
         [DataMember(Name = "messageVersion", EmitDefaultValue = false)]
         public string MessageVersion { get; set; }
-
-
+        
         /// <summary>
         /// Returns the string presentation of the object
         /// </summary>
