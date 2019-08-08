@@ -98,7 +98,7 @@ namespace Adyen.Model.Checkout
         /// <param name="action">If your server received an action object in the/payments response, pass the object back to your front end. Make sure that you only pass the action object and not the full response.</param>
         /// <param name="threeDS2Result">Send the property below within the threeDS2Result object to submit the results of the challenge flow</param>
         /// <param name="serviceError"></param>
-        public PaymentsResponse(Dictionary<string, string> additionalData = default(Dictionary<string, string>), Dictionary<string, string> authentication = default(Dictionary<string, string>), List<InputDetail> details = default(List<InputDetail>), FraudResult fraudResult = default(FraudResult), string merchantReference = default(string), Object outputDetails = default(Object), string paymentData = default(string), string pspReference = default(string), Redirect redirect = default(Redirect), string refusalReason = default(string), string refusalReasonCode = default(string), ResultCodeEnum? resultCode = default(ResultCodeEnum?),CheckoutPaymentsAction action=default(CheckoutPaymentsAction), ThreeDS2Result threeDS2Result=default(ThreeDS2Result),ServiceError serviceError=default(ServiceError))
+        public PaymentsResponse(Dictionary<string, string> additionalData = default(Dictionary<string, string>), Dictionary<string, string> authentication = default(Dictionary<string, string>), List<InputDetail> details = default(List<InputDetail>), FraudResult fraudResult = default(FraudResult), string merchantReference = default(string), Dictionary<string, string> outputDetails = default(Dictionary<string, string>), string paymentData = default(string), string pspReference = default(string), Redirect redirect = default(Redirect), string refusalReason = default(string), string refusalReasonCode = default(string), ResultCodeEnum? resultCode = default(ResultCodeEnum?),CheckoutPaymentsAction action=default(CheckoutPaymentsAction), ThreeDS2Result threeDS2Result=default(ThreeDS2Result),ServiceError serviceError=default(ServiceError))
         {
             this.AdditionalData = additionalData;
             this.Authentication = authentication;
@@ -156,7 +156,7 @@ namespace Adyen.Model.Checkout
         /// </summary>
         /// <value>Contains the details that will be presented to the shopper.</value>
         [DataMember(Name = "outputDetails", EmitDefaultValue = false)]
-        public Object OutputDetails { get; set; }
+        public Dictionary<string, string> OutputDetails { get; set; }
 
         /// <summary>
         /// When non-empty, contains a value that you must submit to the &#x60;/payments/details&#x60; endpoint.
