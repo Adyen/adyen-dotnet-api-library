@@ -17,5 +17,6 @@
         public const string BoletoDueDate = "boletobancario.dueDate";
         public const string BoletoUrl = "boletobancario.url";
         public const string BoletoExpirationDate = "boletobancario.expirationDate";
+        public const string HmacSignature = "hmacSignature";
     }
 }
