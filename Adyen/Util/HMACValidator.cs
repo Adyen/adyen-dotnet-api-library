@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Adyen.Model.Notification;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Security.Cryptography;
@@ -9,7 +10,7 @@ namespace Adyen.Util
     public class HmacValidator
     {
         // Computes the Base64 encoded signature using the HMAC algorithm with the HMACSHA256 hashing function.
-        public string CalculateHmac( string signingstring,string hmacKey)
+        public string CalculateHmac(string signingstring, string hmacKey)
         {
             byte[] key = PackH(hmacKey);
             byte[] data = Encoding.UTF8.GetBytes(signingstring);
@@ -31,6 +32,12 @@ namespace Adyen.Util
             }
         }
 
+        public string CalculateHmac(NotificationRequestItem notificationRequestItem, string key)
+        {
+            var notificationRequestItemData = GetDataToSign(notificationRequestItem);
+            return CalculateHmac(notificationRequestItemData, key);
+        }
+
         private byte[] PackH(string hex)
         {
             if ((hex.Length % 2) == 1)
@@ -50,12 +57,11 @@ namespace Adyen.Util
 
         public string BuildSigningString(IDictionary<string, string> dict)
         {
-          
             var signDict = dict.OrderBy(d => d.Key).ToDictionary(pair => pair.Key, pair => pair.Value);
 
             string keystring = string.Join(":", signDict.Keys);
             string valuestring = string.Join(":", signDict.Values.Select(EscapeVal));
-            
+
             return string.Format("{0}:{1}", keystring, valuestring);
         }
 
@@ -73,11 +79,35 @@ namespace Adyen.Util
             {
                 parts.Add(EscapeVal(postParameter.Value));
             }
-           
+
             return String.Join("", parts);
         }
+        
+        public string GetDataToSign(NotificationRequestItem notificationRequestItem)
+        {
+            var amount = notificationRequestItem.Amount;
+            var signedDataList = new List<string>
+            {
+                notificationRequestItem.PspReference,
+                notificationRequestItem.OriginalReference,
+                notificationRequestItem.MerchantAccountCode,
+                notificationRequestItem.MerchantReference,
+                Convert.ToString(amount.Value),
+                amount.Currency,
+                notificationRequestItem.EventCode,
+                notificationRequestItem.Success.ToString()
+            };
+            return String.Join(":", signedDataList);
+        }
 
-       
+        public bool IsValidHmac(NotificationRequestItem notificationRequestItem, string key)
+        {
+            string expectedSign = CalculateHmac(notificationRequestItem, key);
+            string merchantSign = notificationRequestItem.AdditionalData[Constants.AdditionalData.HmacSignature];
+
+            return string.Equals(expectedSign, merchantSign);
+        }
+
         private string EscapeVal(string val)
         {
             if (val == null)
