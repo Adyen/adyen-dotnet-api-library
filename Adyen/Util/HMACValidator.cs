@@ -95,7 +95,7 @@ namespace Adyen.Util
                 Convert.ToString(amount.Value),
                 amount.Currency,
                 notificationRequestItem.EventCode,
-                notificationRequestItem.Success.ToString()
+                notificationRequestItem.Success.ToString().ToLower()
             };
             return String.Join(":", signedDataList);
         }
