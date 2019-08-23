@@ -145,6 +145,35 @@ namespace Adyen.Test
         }
 
         [TestMethod]
+        public void TestCloudApiReversalResponse()
+        {
+            try
+            {
+                //Create a mock pos payment request
+                var paymentRequest = MockPosApiRequest.CreatePosPaymentRequest();
+                var client =
+                    CreateMockTestClientPosCloudApiRequest(
+                        "Mocks/terminalapi/pospayment-reversal-response-success.json");
+                var payment = new PosPaymentCloudApi(client);
+                var saleToPoiResponse = payment.TerminalApiCloudSync(paymentRequest);
+                Assert.IsNotNull(saleToPoiResponse);
+                var response = (ReversalResponse)saleToPoiResponse.MessagePayload;
+                Assert.AreEqual(response.Response.Result, ResultType.Success);
+                Assert.AreEqual(response.Response.AdditionalResponse, "store=Store1234&currency=EUR");
+                Assert.AreEqual(response.POIData.POITransactionID.TransactionID, "8515661234567890C");
+                Assert.AreEqual(response.Response.Result, ResultType.Success);
+                Assert.AreEqual(saleToPoiResponse.MessageHeader.MessageClass, MessageClassType.Service);
+                Assert.AreEqual(saleToPoiResponse.MessageHeader.MessageCategory, MessageCategoryType.Reversal);
+                Assert.AreEqual(saleToPoiResponse.MessageHeader.SaleID, "POSSystemID123456");
+                Assert.AreEqual(saleToPoiResponse.MessageHeader.POIID, "P400Plus-1234567890");
+            }
+            catch (Exception)
+            {
+                Assert.Fail();
+            }
+        }
+
+        [TestMethod]
         public void TestCloudApiCardAcquisition()
         {
             try
