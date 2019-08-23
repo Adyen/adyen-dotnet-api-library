@@ -1,0 +1,112 @@
+{
+  "version": 3,
+  "targets": {
+    ".NETCoreApp,Version=v2.1": {
+      "coveralls.net/1.0.0": {
+        "type": "package"
+      }
+    },
+    ".NETCoreApp,Version=v2.1/any": {
+      "coveralls.net/1.0.0": {
+        "type": "package",
+        "tools": {
+          "tools/netcoreapp2.1/any/BCLExtensions.dll": {},
+          "tools/netcoreapp2.1/any/Beefeater.dll": {},
+          "tools/netcoreapp2.1/any/DocoptNet.dll": {},
+          "tools/netcoreapp2.1/any/DotnetToolSettings.xml": {},
+          "tools/netcoreapp2.1/any/JetBrains.Annotations.dll": {},
+          "tools/netcoreapp2.1/any/Newtonsoft.Json.dll": {},
+          "tools/netcoreapp2.1/any/csmacnz.Coveralls.deps.json": {},
+          "tools/netcoreapp2.1/any/csmacnz.Coveralls.dll": {},
+          "tools/netcoreapp2.1/any/csmacnz.Coveralls.pdb": {},
+          "tools/netcoreapp2.1/any/csmacnz.Coveralls.runtimeconfig.json": {}
+        }
+      }
+    }
+  },
+  "libraries": {
+    "coveralls.net/1.0.0": {
+      "sha512": "BSmWFVXMA8EBkypX/3eJEth/0IGUCsNf3Z+4thlJuo02l0vt5vc/Ngxv5RO0rZZ6j3nS5fbxIktiMItdA7CmTQ==",
+      "type": "package",
+      "path": "coveralls.net/1.0.0",
+      "hasTools": true,
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "coveralls.net.1.0.0.nupkg.sha512",
+        "coveralls.net.nuspec",
+        "tools/netcoreapp2.1/any/BCLExtensions.dll",
+        "tools/netcoreapp2.1/any/Beefeater.dll",
+        "tools/netcoreapp2.1/any/DocoptNet.dll",
+        "tools/netcoreapp2.1/any/DotnetToolSettings.xml",
+        "tools/netcoreapp2.1/any/JetBrains.Annotations.dll",
+        "tools/netcoreapp2.1/any/Newtonsoft.Json.dll",
+        "tools/netcoreapp2.1/any/csmacnz.Coveralls.deps.json",
+        "tools/netcoreapp2.1/any/csmacnz.Coveralls.dll",
+        "tools/netcoreapp2.1/any/csmacnz.Coveralls.pdb",
+        "tools/netcoreapp2.1/any/csmacnz.Coveralls.runtimeconfig.json"
+      ]
+    }
+  },
+  "projectFileDependencyGroups": {
+    ".NETCoreApp,Version=v2.1": [
+      "coveralls.net >= 1.0.0"
+    ]
+  },
+  "packageFolders": {
+    "Y:\\adyen-dotnet-api-library\\tools\\.store\\.stage\\labur0rz.15e": {}
+  },
+  "project": {
+    "version": "1.0.0",
+    "restore": {
+      "projectUniqueName": "C:\\Users\\Dev\\AppData\\Local\\Temp\\lotmua0y.aw5\\restore.csproj",
+      "projectName": "restore",
+      "projectPath": "C:\\Users\\Dev\\AppData\\Local\\Temp\\lotmua0y.aw5\\restore.csproj",
+      "packagesPath": "Y:\\adyen-dotnet-api-library\\tools\\.store\\.stage\\labur0rz.15e",
+      "outputPath": "Y:\\adyen-dotnet-api-library\\tools\\.store\\.stage\\labur0rz.15e\\",
+      "projectStyle": "DotnetToolReference",
+      "configFilePaths": [
+        "C:\\Users\\Dev\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+      ],
+      "originalTargetFrameworks": [
+        "netcoreapp2.1"
+      ],
+      "sources": {
+        "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder": {},
+        "C:\\Users\\Dev\\Documents\\nuget": {},
+        "https://www.nuget.org/api/v2/": {}
+      },
+      "frameworks": {
+        "netcoreapp2.1": {
+          "projectReferences": {}
+        }
+      },
+      "warningProperties": {
+        "warnAsError": [
+          "NU1605"
+        ]
+      }
+    },
+    "frameworks": {
+      "netcoreapp2.1": {
+        "dependencies": {
+          "coveralls.net": {
+            "target": "Package",
+            "version": "[1.0.0, )"
+          }
+        },
+        "imports": [
+          "net461"
+        ],
+        "assetTargetFallback": true,
+        "warn": true
+      }
+    },
+    "runtimes": {
+      "any": {
+        "#import": []
+      }
+    }
+  }
+}
