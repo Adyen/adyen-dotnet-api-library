@@ -119,6 +119,54 @@ namespace Adyen.Test
         }
 
         /// <summary>
+        /// Check out Apple Pay payment request
+        /// </summary>
+        /// <returns></returns>
+        public Model.Checkout.PaymentRequest CreateApplePayPaymentRequestCheckout()
+        {
+            var amount = new Model.Checkout.Amount("USD", 1000);
+            var applePay = new Model.Checkout.DefaultPaymentMethodDetails()
+            {
+                Type = "applepay",
+                ApplePayToken = "VNRWtuNlNEWkRCSm1xWndjMDFFbktkQU..."
+            };
+            var paymentsRequest = new Model.Checkout.PaymentRequest
+            {
+                Amount = amount,
+                Reference = "Your order number ",
+                ReturnUrl = @"https://your-company.com/...",
+                MerchantAccount = "MerchantAccount",
+                PaymentMethod = applePay
+            };
+
+            return paymentsRequest;
+        }
+
+        /// <summary>
+        /// Check out Google Pay payment request
+        /// </summary>
+        /// <returns></returns>
+        public Model.Checkout.PaymentRequest CreateGooglePayPaymentRequestCheckout()
+        {
+            var amount = new Model.Checkout.Amount("USD", 1000);
+            var googlePay = new Model.Checkout.DefaultPaymentMethodDetails()
+            {
+                Type = "paywithgoogle",
+                GooglePayToken = "==Payload as retrieved from Google Pay response=="
+            };
+            var paymentsRequest = new Model.Checkout.PaymentRequest
+            {
+                Amount = amount,
+                Reference = "Your order number ",
+                ReturnUrl = @"https://your-company.com/...",
+                MerchantAccount = "MerchantAccount",
+                PaymentMethod = googlePay
+            };
+
+            return paymentsRequest;
+        }
+
+        /// <summary>
         /// 3DS2 payments request
         /// </summary>
         /// <returns></returns>

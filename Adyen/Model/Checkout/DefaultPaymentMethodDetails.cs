@@ -51,9 +51,12 @@ namespace Adyen.Model.Checkout
         public string SepaOwnerName { get; set; }
         [DataMember(Name = "sepa.ibanNumber", EmitDefaultValue = false)]
         public string SepaIbanNumber { get; set; }
-
         [DataMember(Name = "bankAccount", EmitDefaultValue = false)]
         public BankAccount BankAccount { get; set; }
+        [DataMember(Name = "additionalData.applepay.token", EmitDefaultValue = false)]
+        public string ApplePayToken { get; set; }
+        [DataMember(Name = "paywithgoogle.token", EmitDefaultValue = false)]  
+        public string GooglePayToken { get; set; }
 
         public override string ToString()
         {
@@ -79,6 +82,8 @@ namespace Adyen.Model.Checkout
             sb.Append("  SepaOwnerName: ").Append(SepaOwnerName).Append("\n");
             sb.Append("  SepaIbanNumber: ").Append(SepaIbanNumber).Append("\n");
             sb.Append("  BankAccount: ").Append(BankAccount).Append("\n");
+            sb.Append("  ApplePayToken: ").Append(BankAccount).Append("\n");
+            sb.Append("  GooglePayToken: ").Append(BankAccount).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -212,6 +217,16 @@ namespace Adyen.Model.Checkout
                     this.BankAccount == input.BankAccount ||
                     (this.BankAccount != null &&
                     this.BankAccount.Equals(input.BankAccount))
+                ) &&
+                (
+                    this.ApplePayToken == input.ApplePayToken ||
+                    (this.ApplePayToken != null &&
+                    this.ApplePayToken.Equals(input.ApplePayToken))
+                ) &&
+                (
+                    this.GooglePayToken == input.GooglePayToken ||
+                    (this.GooglePayToken != null &&
+                    this.GooglePayToken.Equals(input.GooglePayToken))
                 );
         }
 
