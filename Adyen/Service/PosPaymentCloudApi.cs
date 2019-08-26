@@ -1,4 +1,27 @@
-﻿using Adyen.CloudApiSerialization;
+﻿#region Licence
+// /*
+//  *                       ######
+//  *                       ######
+//  * ############    ####( ######  #####. ######  ############   ############
+//  * #############  #####( ######  #####. ######  #############  #############
+//  *        ######  #####( ######  #####. ######  #####  ######  #####  ######
+//  * ###### ######  #####( ######  #####. ######  #####  #####   #####  ######
+//  * ###### ######  #####( ######  #####. ######  #####          #####  ######
+//  * #############  #############  #############  #############  #####  ######
+//  *  ############   ############  #############   ############  #####  ######
+//  *                                      ######
+//  *                               #############
+//  *                               ############
+//  *
+//  * Adyen Dotnet API Library
+//  *
+//  * Copyright (c) 2019 Adyen B.V.
+//  * This file is open source and available under the MIT license.
+//  * See the LICENSE file for more info.
+//  */
+#endregion
+
+using Adyen.CloudApiSerialization;
 using Adyen.Model.Nexo;
 using Adyen.Security;
 using Adyen.Service.Resource.Payment;
