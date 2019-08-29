@@ -360,8 +360,8 @@ namespace Adyen.Test
             var clientInterfaceMock = new Mock<IClient>();
             clientInterfaceMock.Setup(x => x.Request(It.IsAny<string>(),
                 It.IsAny<string>(), config, It.IsAny<bool>(), 
-                It.IsAny<RequestOptions>(), 
-                It.IsAny<RemoteCertificateValidationCallback>()))
+                It.IsAny<RequestOptions>() 
+               ))
                 .Returns(response);
             var clientMock = new Client(It.IsAny<Config>())
             {
