@@ -59,7 +59,7 @@ namespace Adyen.Test
                 Assert.AreEqual(configEndpoint, @"https://_terminal_:8443/nexo/");
                 Assert.IsNotNull(saleToPoiResponse);
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 Assert.Fail();
             }
