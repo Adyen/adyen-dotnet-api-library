@@ -74,7 +74,7 @@ namespace Adyen.Test
         public void TestNotificationRequestItemHmac()
         {
             string key = "DFB1EB5485895CFA84146406857104ABB4CBCABDC8AAF103A624C8F6A3EAAB00";
-            var expectedSign = "Awgfqd8xaKOgp6qZA3m+eCToAIWIPWvv4pBtXMzJL0Q=";
+            var expectedSign = "ipnxGCaUZ4l8TUW75a71/ghd2Fe5ffvX0pV4TLTntIc=";
             var additionalData = new Dictionary<string, string>
             {
                 { Constants.AdditionalData.HmacSignature, expectedSign }
@@ -92,7 +92,7 @@ namespace Adyen.Test
             };
             var hmacValidator = new HmacValidator();
             var data = hmacValidator.GetDataToSign(notificationRequestItem);
-            Assert.AreEqual("pspReference:originalReference:merchantAccount:reference:1000:EUR:EVENT:True", data);
+            Assert.AreEqual("pspReference:originalReference:merchantAccount:reference:1000:EUR:EVENT:true", data);
             var encrypted = hmacValidator.CalculateHmac(notificationRequestItem, key);
             Assert.AreEqual(expectedSign, encrypted);
             notificationRequestItem.AdditionalData[Constants.AdditionalData.HmacSignature] = expectedSign;
