@@ -32,17 +32,20 @@ using System.Threading.Tasks;
 using System.Web;
 using Adyen.HttpClient.Interfaces;
 using Adyen.Model;
+using System.Security.Cryptography.X509Certificates;
+using Adyen.Security;
 
 namespace Adyen.HttpClient
 {
     public class HttpUrlConnectionClient : IClient
     {
         private readonly Encoding _encoding = Encoding.ASCII;
-
-        public string Request(string endpoint, string json, Config config, bool isApiKeyRequired, RequestOptions requestOptions = null , RemoteCertificateValidationCallback certificateValidationCallback=null)
+        private Model.Enum.Environment _environment;
+        public string Request(string endpoint, string json, Config config, bool isApiKeyRequired, RequestOptions requestOptions = null )
         {
             string responseText = null;
-            var httpWebRequest = GetHttpWebRequest(endpoint, config, isApiKeyRequired, requestOptions , certificateValidationCallback);
+            _environment = config.Environment;
+            var httpWebRequest = GetHttpWebRequest(endpoint, config, isApiKeyRequired, requestOptions );
             if (config.HttpRequestTimeout > 0)
             {
                 httpWebRequest.Timeout = config.HttpRequestTimeout;
@@ -109,10 +112,7 @@ namespace Adyen.HttpClient
             }
             return responseText;
         }
-        public string Request(string endpoint, string json, Config config, bool isApiKeyRequired, RequestOptions requestOptions = null)
-        {
-            return this.Request(endpoint, json, config, isApiKeyRequired,requestOptions, null);
-        }
+
 
         [Obsolete("This is deprecated functionality by Adyen. Correct use request method with isApiKeyRequired parameter.")]
         public string Request(string endpoint, string json, Config config)
@@ -137,7 +137,7 @@ namespace Adyen.HttpClient
             return new StreamReader(response.GetResponseStream()).ReadToEnd();
         }
 
-        public HttpWebRequest GetHttpWebRequest(string endpoint, Config config, bool isApiKeyRequired, RequestOptions requestOptions = null, RemoteCertificateValidationCallback certificateValidationCallback=null)
+        public HttpWebRequest GetHttpWebRequest(string endpoint, Config config, bool isApiKeyRequired, RequestOptions requestOptions = null)
         {
             //Add default headers
             var httpWebRequest = (HttpWebRequest)WebRequest.Create(endpoint);
@@ -163,12 +163,23 @@ namespace Adyen.HttpClient
                 httpWebRequest.Headers.Add("Authorization", "Basic " + credentials);
                 httpWebRequest.UseDefaultCredentials = true;
             }
-            if (certificateValidationCallback != null)
-            {
-                httpWebRequest.ServerCertificateValidationCallback = certificateValidationCallback;
-            }
+            httpWebRequest.ServerCertificateValidationCallback = ServerCertificateValidationCallback;
             return httpWebRequest;
         }
+
+        private bool ServerCertificateValidationCallback(object sender, X509Certificate certificate, X509Chain chain, SslPolicyErrors sslPolicyErrors)
+        {
+            switch (sslPolicyErrors)
+            {
+                case SslPolicyErrors.None:
+                    return true;
+                case SslPolicyErrors.RemoteCertificateNameMismatch:
+                    return TerminalCommonNameValidator.ValidateCertificate(certificate.Subject, _environment);
+                default:
+                    return false;
+            }
+        }
+
         public static string QueryString(IDictionary<string, string> dict)
         {
             var list = new List<string>();
