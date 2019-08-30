@@ -1,0 +1,26 @@
+{
+	"SaleToPOIResponse": {
+		"ReversalResponse": {
+			"POIData": {
+				"POITransactionID": {
+					"TimeStamp": "2019-08-22T11:09:22.575Z",
+					"TransactionID": "8515661234567890C"
+				}
+			},
+			"ReversedAmount": 10100,
+			"Response": {
+				"Result": "Success",
+				"AdditionalResponse": "store=Store1234&currency=EUR"
+			}
+		},
+		"MessageHeader": {
+			"ProtocolVersion": "3.0",
+			"SaleID": "POSSystemID123456",
+			"MessageClass": "Service",
+			"MessageCategory": "Reversal",
+			"ServiceID": "22123456",
+			"POIID": "P400Plus-1234567890",
+			"MessageType": "Response"
+		}
+	}
+}

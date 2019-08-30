@@ -1,4 +1,27 @@
-﻿using Adyen.Security;
+﻿#region Licence
+// /*
+//  *                       ######
+//  *                       ######
+//  * ############    ####( ######  #####. ######  ############   ############
+//  * #############  #####( ######  #####. ######  #############  #############
+//  *        ######  #####( ######  #####. ######  #####  ######  #####  ######
+//  * ###### ######  #####( ######  #####. ######  #####  #####   #####  ######
+//  * ###### ######  #####( ######  #####. ######  #####          #####  ######
+//  * #############  #############  #############  #############  #####  ######
+//  *  ############   ############  #############   ############  #####  ######
+//  *                                      ######
+//  *                               #############
+//  *                               ############
+//  *
+//  * Adyen Dotnet API Library
+//  *
+//  * Copyright (c) 2019 Adyen B.V.
+//  * This file is open source and available under the MIT license.
+//  * See the LICENSE file for more info.
+//  */
+#endregion
+
+using Adyen.Security;
 using Adyen.Service;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
@@ -32,8 +55,7 @@ namespace Adyen.Test
                 var client = CreateMockTestClientPosLocalApiRequest("Mocks/terminalapi/pospayment-encrypted-success.json");
                 var posPaymentLocalApi = new PosPaymentLocalApi(client);
                 var configEndpoint = posPaymentLocalApi.Client.Config.Endpoint;
-                var saleToPoiResponse = posPaymentLocalApi.TerminalApiLocal(paymentRequest, _encryptionCredentialDetails,
-                    (sender, certificate, chain, errors) => { return true;});
+                var saleToPoiResponse = posPaymentLocalApi.TerminalApiLocal(paymentRequest, _encryptionCredentialDetails);
                 Assert.AreEqual(configEndpoint, @"https://_terminal_:8443/nexo/");
                 Assert.IsNotNull(saleToPoiResponse);
             }
@@ -62,26 +84,6 @@ namespace Adyen.Test
             {
                 Assert.Fail();
             }
-        }
-
-        [TestMethod]
-        public void TestTerminalApiRequestRemoteCertificationException()
-        {
-            try
-            {
-                //encrypt the request using encryption credentials
-                var paymentRequest = MockPosApiRequest.CreatePosPaymentRequest();
-                //create a mock client
-                var client = CreateMockTestClientPosLocalApiRequest("Mocks/terminalapi/pospayment-encrypted-success.json");
-                var posPaymentLocalApi = new PosPaymentLocalApi(client);
-                var configEndpoint = posPaymentLocalApi.Client.Config.Endpoint;
-                var saleToPoiResponse = posPaymentLocalApi.TerminalApiLocal(paymentRequest, _encryptionCredentialDetails,
-                    null);
-            }
-            catch (Exception ex)
-            {
-                Assert.AreEqual(ex.Message, "RemoteCertificateValidationCallback is a required property for TerminalApiLocal and cannot be null");
-            }
-        }
+        }      
     }
 }

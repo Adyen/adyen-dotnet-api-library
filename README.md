@@ -18,14 +18,14 @@ The Library supports all APIs under the following services:
 
 ## Requirements
 
-* It supports .net standard 2.0
-
+* Adyen API Library supports .net standard 2.0
+* In order for Adyen API Library to support local terminal api certificate validation the application should be set to .net core 2.1 and above or .net framework 4.6.1 and above
 ## Installation
 
 * Simply download and restore nuget packages  
  https://www.nuget.org/packages/Adyen/
 * or install it from package manager
- PM> Install-Package Adyen -Version 3.2.3
+ PM> Install-Package Adyen -Version 3.3.0
 
 ## Documentation
 * https://docs.adyen.com/developers/development-resources/libraries

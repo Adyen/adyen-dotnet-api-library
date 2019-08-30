@@ -1,4 +1,27 @@
-﻿using Adyen.Model;
+﻿#region Licence
+// /*
+//  *                       ######
+//  *                       ######
+//  * ############    ####( ######  #####. ######  ############   ############
+//  * #############  #####( ######  #####. ######  #############  #############
+//  *        ######  #####( ######  #####. ######  #####  ######  #####  ######
+//  * ###### ######  #####( ######  #####. ######  #####  #####   #####  ######
+//  * ###### ######  #####( ######  #####. ######  #####          #####  ######
+//  * #############  #############  #############  #############  #####  ######
+//  *  ############   ############  #############   ############  #####  ######
+//  *                                      ######
+//  *                               #############
+//  *                               ############
+//  *
+//  * Adyen Dotnet API Library
+//  *
+//  * Copyright (c) 2019 Adyen B.V.
+//  * This file is open source and available under the MIT license.
+//  * See the LICENSE file for more info.
+//  */
+#endregion
+
+using Adyen.Model;
 using System;
 using System.Collections.Generic;
 using Adyen.Model.Checkout;
@@ -94,6 +117,22 @@ namespace Adyen.Test
                 BrowserInfo = CreateMockBrowserInfo(),
                 Reference = "payment - " + DateTime.Now.ToString("yyyyMMdd"),
             };
+            return paymentRequest;
+        }
+
+        public static Adyen.Model.Checkout.PaymentRequest CreateApplePayPaymentRequest()
+        {
+            var paymentRequest = new Adyen.Model.Checkout.PaymentRequest
+            {
+                MerchantAccount = "MerchantAccount",
+                Reference = "payment - " + DateTime.Now.ToString("yyyyMMdd"),
+                PaymentMethod = new DefaultPaymentMethodDetails
+                {
+                    Type = "applepay",
+                    ApplePayToken = "ApplePayToken"
+                }
+            };
+            
             return paymentRequest;
         }
 

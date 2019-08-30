@@ -1,3 +1,26 @@
+#region Licence
+// /*
+//  *                       ######
+//  *                       ######
+//  * ############    ####( ######  #####. ######  ############   ############
+//  * #############  #####( ######  #####. ######  #############  #############
+//  *        ######  #####( ######  #####. ######  #####  ######  #####  ######
+//  * ###### ######  #####( ######  #####. ######  #####  #####   #####  ######
+//  * ###### ######  #####( ######  #####. ######  #####          #####  ######
+//  * #############  #############  #############  #############  #####  ######
+//  *  ############   ############  #############   ############  #####  ######
+//  *                                      ######
+//  *                               #############
+//  *                               ############
+//  *
+//  * Adyen Dotnet API Library
+//  *
+//  * Copyright (c) 2019 Adyen B.V.
+//  * This file is open source and available under the MIT license.
+//  * See the LICENSE file for more info.
+//  */
+#endregion
+
 using System;
 using System.Collections.Generic;
 using System.Net.Security;
@@ -22,13 +45,6 @@ namespace Adyen.Service
             var clientInterface = _abstractService.Client.HttpClient;
             var config = _abstractService.Client.Config;
             return clientInterface.Request(Endpoint, json, config, _abstractService.IsApiKeyRequired, requestOptions);
-        }
-
-        public string Request(string json, RemoteCertificateValidationCallback remoteCertificateValidationCallback, RequestOptions requestOptions = null)
-        {
-            var clientInterface = _abstractService.Client.HttpClient;
-            var config = _abstractService.Client.Config;
-            return clientInterface.Request(Endpoint, json, config, _abstractService.IsApiKeyRequired, requestOptions, remoteCertificateValidationCallback);
         }
 
         public Task<string> RequestAsync(string json, RequestOptions requestOptions = null)

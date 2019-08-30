@@ -1,4 +1,27 @@
-﻿using Adyen.Constants;
+﻿#region Licence
+// /*
+//  *                       ######
+//  *                       ######
+//  * ############    ####( ######  #####. ######  ############   ############
+//  * #############  #####( ######  #####. ######  #############  #############
+//  *        ######  #####( ######  #####. ######  #####  ######  #####  ######
+//  * ###### ######  #####( ######  #####. ######  #####  #####   #####  ######
+//  * ###### ######  #####( ######  #####. ######  #####          #####  ######
+//  * #############  #############  #############  #############  #####  ######
+//  *  ############   ############  #############   ############  #####  ######
+//  *                                      ######
+//  *                               #############
+//  *                               ############
+//  *
+//  * Adyen Dotnet API Library
+//  *
+//  * Copyright (c) 2019 Adyen B.V.
+//  * This file is open source and available under the MIT license.
+//  * See the LICENSE file for more info.
+//  */
+#endregion
+
+using Adyen.Constants;
 using Adyen.HttpClient;
 using Adyen.Model.Modification;
 using Adyen.Model.Nexo;
@@ -115,6 +138,54 @@ namespace Adyen.Test
                 MerchantAccount = "MerchantAccount",
             };
             paymentsRequest.AddCardData("4111111111111111", "10", "2020", "737", "John Smith");
+            return paymentsRequest;
+        }
+
+        /// <summary>
+        /// Check out Apple Pay payment request
+        /// </summary>
+        /// <returns></returns>
+        public Model.Checkout.PaymentRequest CreateApplePayPaymentRequestCheckout()
+        {
+            var amount = new Model.Checkout.Amount("USD", 1000);
+            var applePay = new Model.Checkout.DefaultPaymentMethodDetails()
+            {
+                Type = "applepay",
+                ApplePayToken = "VNRWtuNlNEWkRCSm1xWndjMDFFbktkQU..."
+            };
+            var paymentsRequest = new Model.Checkout.PaymentRequest
+            {
+                Amount = amount,
+                Reference = "Your order number ",
+                ReturnUrl = @"https://your-company.com/...",
+                MerchantAccount = "MerchantAccount",
+                PaymentMethod = applePay
+            };
+
+            return paymentsRequest;
+        }
+
+        /// <summary>
+        /// Check out Google Pay payment request
+        /// </summary>
+        /// <returns></returns>
+        public Model.Checkout.PaymentRequest CreateGooglePayPaymentRequestCheckout()
+        {
+            var amount = new Model.Checkout.Amount("USD", 1000);
+            var googlePay = new Model.Checkout.DefaultPaymentMethodDetails()
+            {
+                Type = "paywithgoogle",
+                GooglePayToken = "==Payload as retrieved from Google Pay response=="
+            };
+            var paymentsRequest = new Model.Checkout.PaymentRequest
+            {
+                Amount = amount,
+                Reference = "Your order number ",
+                ReturnUrl = @"https://your-company.com/...",
+                MerchantAccount = "MerchantAccount",
+                PaymentMethod = googlePay
+            };
+
             return paymentsRequest;
         }
 
@@ -289,8 +360,8 @@ namespace Adyen.Test
             var clientInterfaceMock = new Mock<IClient>();
             clientInterfaceMock.Setup(x => x.Request(It.IsAny<string>(),
                 It.IsAny<string>(), config, It.IsAny<bool>(), 
-                It.IsAny<RequestOptions>(), 
-                It.IsAny<RemoteCertificateValidationCallback>()))
+                It.IsAny<RequestOptions>() 
+               ))
                 .Returns(response);
             var clientMock = new Client(It.IsAny<Config>())
             {

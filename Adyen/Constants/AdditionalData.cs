@@ -1,4 +1,27 @@
-﻿namespace Adyen.Constants
+﻿#region Licence
+// /*
+//  *                       ######
+//  *                       ######
+//  * ############    ####( ######  #####. ######  ############   ############
+//  * #############  #####( ######  #####. ######  #############  #############
+//  *        ######  #####( ######  #####. ######  #####  ######  #####  ######
+//  * ###### ######  #####( ######  #####. ######  #####  #####   #####  ######
+//  * ###### ######  #####( ######  #####. ######  #####          #####  ######
+//  * #############  #############  #############  #############  #####  ######
+//  *  ############   ############  #############   ############  #####  ######
+//  *                                      ######
+//  *                               #############
+//  *                               ############
+//  *
+//  * Adyen Dotnet API Library
+//  *
+//  * Copyright (c) 2019 Adyen B.V.
+//  * This file is open source and available under the MIT license.
+//  * See the LICENSE file for more info.
+//  */
+#endregion
+
+namespace Adyen.Constants
 {
     public class AdditionalData
     {
@@ -17,5 +40,6 @@
         public const string BoletoDueDate = "boletobancario.dueDate";
         public const string BoletoUrl = "boletobancario.url";
         public const string BoletoExpirationDate = "boletobancario.expirationDate";
+        public const string HmacSignature = "hmacSignature";
     }
 }

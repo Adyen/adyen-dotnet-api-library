@@ -1,4 +1,28 @@
-﻿using Adyen.Util;
+﻿#region Licence
+// /*
+//  *                       ######
+//  *                       ######
+//  * ############    ####( ######  #####. ######  ############   ############
+//  * #############  #####( ######  #####. ######  #############  #############
+//  *        ######  #####( ######  #####. ######  #####  ######  #####  ######
+//  * ###### ######  #####( ######  #####. ######  #####  #####   #####  ######
+//  * ###### ######  #####( ######  #####. ######  #####          #####  ######
+//  * #############  #############  #############  #############  #####  ######
+//  *  ############   ############  #############   ############  #####  ######
+//  *                                      ######
+//  *                               #############
+//  *                               ############
+//  *
+//  * Adyen Dotnet API Library
+//  *
+//  * Copyright (c) 2019 Adyen B.V.
+//  * This file is open source and available under the MIT license.
+//  * See the LICENSE file for more info.
+//  */
+#endregion
+
+using Adyen.Model.Notification;
+using Adyen.Util;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.Collections.Generic;
 
@@ -15,11 +39,9 @@ namespace Adyen.Test
                 {Constants.HPPConstants.Fields.MerchantAccount, "ACC"},
                 {Constants.HPPConstants.Fields.CurrencyCode, "EUR"}
             };
-
             var hmacValidator = new HmacValidator();
             var buildSigningString = hmacValidator.BuildSigningString(postParameters);
             Assert.IsTrue(string.Equals("currencyCode:merchantAccount:EUR:ACC", buildSigningString));
-
             postParameters = new Dictionary<string, string>
             {
                 {Constants.HPPConstants.Fields.CurrencyCode, "EUR"},
@@ -47,6 +69,38 @@ namespace Adyen.Test
             var serializedPaymentRequest = JsonOperation.SerializeRequest(paymentRequest);
             Assert.IsFalse(serializedPaymentRequest.Contains("shopperInteraction"));
         }
+
+        [TestMethod]
+        public void TestNotificationRequestItemHmac()
+        {
+            string key = "DFB1EB5485895CFA84146406857104ABB4CBCABDC8AAF103A624C8F6A3EAAB00";
+            var expectedSign = "ipnxGCaUZ4l8TUW75a71/ghd2Fe5ffvX0pV4TLTntIc=";
+            var additionalData = new Dictionary<string, string>
+            {
+                { Constants.AdditionalData.HmacSignature, expectedSign }
+            };
+            var notificationRequestItem = new NotificationRequestItem
+            {
+                PspReference = "pspReference",
+                OriginalReference = "originalReference",
+                MerchantAccountCode = "merchantAccount",
+                MerchantReference = "reference",
+                Amount = new Model.Amount("EUR", 1000),
+                EventCode = "EVENT",
+                Success = true,
+                AdditionalData = additionalData
+            };
+            var hmacValidator = new HmacValidator();
+            var data = hmacValidator.GetDataToSign(notificationRequestItem);
+            Assert.AreEqual("pspReference:originalReference:merchantAccount:reference:1000:EUR:EVENT:true", data);
+            var encrypted = hmacValidator.CalculateHmac(notificationRequestItem, key);
+            Assert.AreEqual(expectedSign, encrypted);
+            notificationRequestItem.AdditionalData[Constants.AdditionalData.HmacSignature] = expectedSign;
+            Assert.IsTrue(hmacValidator.IsValidHmac(notificationRequestItem, key));
+            notificationRequestItem.AdditionalData[Constants.AdditionalData.HmacSignature] = "notValidSign";
+            Assert.IsFalse(hmacValidator.IsValidHmac(notificationRequestItem, key));
+        }
+
 
         [TestMethod]
         public void TestSerializationShopperInteractionMoto()

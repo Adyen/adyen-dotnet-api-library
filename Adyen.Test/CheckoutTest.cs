@@ -1,4 +1,27 @@
-﻿using Adyen.Model.ApplicationInformation;
+﻿#region Licence
+// /*
+//  *                       ######
+//  *                       ######
+//  * ############    ####( ######  #####. ######  ############   ############
+//  * #############  #####( ######  #####. ######  #############  #############
+//  *        ######  #####( ######  #####. ######  #####  ######  #####  ######
+//  * ###### ######  #####( ######  #####. ######  #####  #####   #####  ######
+//  * ###### ######  #####( ######  #####. ######  #####          #####  ######
+//  * #############  #############  #############  #############  #####  ######
+//  *  ############   ############  #############   ############  #####  ######
+//  *                                      ######
+//  *                               #############
+//  *                               ############
+//  *
+//  * Adyen Dotnet API Library
+//  *
+//  * Copyright (c) 2019 Adyen B.V.
+//  * This file is open source and available under the MIT license.
+//  * See the LICENSE file for more info.
+//  */
+#endregion
+
+using Adyen.Model.ApplicationInformation;
 using Adyen.Service;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
@@ -74,6 +97,37 @@ namespace Adyen.Test
             Assert.AreEqual("visa", paymentResponse.AdditionalData["cardPaymentMethod"]);
             Assert.AreEqual("NL", paymentResponse.AdditionalData["cardIssuingCountry"]);
         }
+
+        /// <summary>
+        /// Test success flow for Apple Pay
+        /// POST /payments
+        /// </summary>
+        [TestMethod]
+        public void PaymentsApplePayTest()
+        {
+            var paymentRequest = CreateApplePayPaymentRequestCheckout();
+            var client = CreateMockTestClientApiKeyBasedRequest("Mocks/checkout/payments-applepay-success.json");
+            var checkout = new Checkout(client);
+            var paymentResponse = checkout.Payments(paymentRequest);
+            Assert.AreEqual("9035798957043214", paymentResponse.PspReference);
+            Assert.AreEqual(ResultCodeEnum.Authorised, paymentResponse.ResultCode);
+        }
+
+        /// <summary>
+        /// Test success flow for Google Pay
+        /// POST /payments
+        /// </summary>
+        [TestMethod]
+        public void PaymentsGooglePayTest()
+        {
+            var paymentRequest = CreateGooglePayPaymentRequestCheckout();
+            var client = CreateMockTestClientApiKeyBasedRequest("Mocks/checkout/payments-googlepay-success.json");
+            var checkout = new Checkout(client);
+            var paymentResponse = checkout.Payments(paymentRequest);
+            Assert.AreEqual("9035798960987345", paymentResponse.PspReference);
+            Assert.AreEqual(ResultCodeEnum.Authorised, paymentResponse.ResultCode);
+        }
+
         /// <summary>
         /// Test success flow for 3DS2
         /// POST /payments
