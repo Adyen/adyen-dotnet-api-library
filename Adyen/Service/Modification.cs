@@ -32,6 +32,7 @@ namespace Adyen.Service
         private readonly CancelOrRefund _cancelOrRefund;
         private readonly Refund _refund;
         private readonly Cancel _cancel;
+        private readonly AdjustAuthorisation _adjustAuthorisation;
 
         public Modification(Client clinet)
             : base(clinet)
@@ -40,6 +41,7 @@ namespace Adyen.Service
             _cancelOrRefund = new CancelOrRefund(this);
             _refund = new Refund(this);
             _cancel = new Cancel(this);
+            _adjustAuthorisation = new AdjustAuthorisation(this);
         }
         
         public ModificationResult Capture(CaptureRequest request)
@@ -77,7 +79,7 @@ namespace Adyen.Service
         public ModificationResult AdjustAuthorisation(AdjustAuthorisationRequest request)
         {
             var jsonRequest = Util.JsonOperation.SerializeRequest(request);
-            var jsonResult = _cancel.Request(jsonRequest);
+            var jsonResult = _adjustAuthorisation.Request(jsonRequest);
 
             return Util.JsonOperation.Deserialize<ModificationResult>(jsonResult);
         }
