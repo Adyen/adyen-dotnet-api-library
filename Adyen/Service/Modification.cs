@@ -73,5 +73,13 @@ namespace Adyen.Service
 
             return Util.JsonOperation.Deserialize<ModificationResult>(jsonResult);
         }
+
+        public ModificationResult AdjustAuthorisation(AdjustAuthorisationRequest request)
+        {
+            var jsonRequest = Util.JsonOperation.SerializeRequest(request);
+            var jsonResult = _cancel.Request(jsonRequest);
+
+            return Util.JsonOperation.Deserialize<ModificationResult>(jsonResult);
+        }
     }
 }
