@@ -54,5 +54,9 @@ namespace Adyen.Model.Nexo
         /// <remarks/>
         [System.Xml.Serialization.XmlIgnoreAttribute()]
         public bool? ReversedAmountSpecified;
+
+        /// <remarks/>
+        [System.Xml.Serialization.XmlAttributeAttribute()]
+        public SaleData SaleData;
     }
 }
