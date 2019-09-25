@@ -38,7 +38,7 @@ namespace Adyen.Model.Modification
             if (ApplicationInfo == null)
                 ApplicationInfo = new ApplicationInfo();
         }
-        [DataMember(Name = "AdjustAuthorisationRequest", EmitDefaultValue = false)]
+        [DataMember(Name = "modificationAmount", EmitDefaultValue = false)]
         public Amount ModificationAmount { get; set; }
 
         /// <summary>
