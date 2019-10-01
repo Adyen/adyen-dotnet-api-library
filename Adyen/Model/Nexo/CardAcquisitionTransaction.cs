@@ -45,7 +45,7 @@ namespace Adyen.Model.Nexo
 
         /// <remarks/>
         [System.Xml.Serialization.XmlAttributeAttribute()]
-        public LoyaltyHandlingType LoyaltyHandling;
+        public LoyaltyHandlingType? LoyaltyHandling;
 
         /// <remarks/>
         [System.Xml.Serialization.XmlAttributeAttribute()]
@@ -66,7 +66,7 @@ namespace Adyen.Model.Nexo
 
         /// <remarks/>
         [System.Xml.Serialization.XmlAttributeAttribute()]
-        public PaymentType PaymentType;
+        public PaymentType? PaymentType;
 
         /// <remarks/>
         [System.Xml.Serialization.XmlIgnoreAttribute()]
