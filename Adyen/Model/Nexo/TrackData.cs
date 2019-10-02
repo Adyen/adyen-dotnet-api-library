@@ -43,7 +43,7 @@ namespace Adyen.Model.Nexo
 
         /// <remarks/>
         [System.Xml.Serialization.XmlTextAttribute()]
-        public string Value;
+        public string TrackValue;
 
     }
 }

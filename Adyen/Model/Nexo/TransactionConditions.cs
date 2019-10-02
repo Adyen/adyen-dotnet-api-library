@@ -54,7 +54,7 @@ namespace Adyen.Model.Nexo
 
         /// <remarks/>
         [System.Xml.Serialization.XmlAttributeAttribute()]
-        public LoyaltyHandlingType LoyaltyHandling;
+        public LoyaltyHandlingType? LoyaltyHandling;
 
         /// <remarks/>
         [System.Xml.Serialization.XmlAttributeAttribute()]

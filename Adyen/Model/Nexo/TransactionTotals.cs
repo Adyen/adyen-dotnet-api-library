@@ -49,7 +49,7 @@ namespace Adyen.Model.Nexo
 
         /// <remarks/>
         [System.Xml.Serialization.XmlAttributeAttribute()]
-        public ErrorConditionType ErrorCondition;
+        public ErrorConditionType? ErrorCondition;
 
         /// <remarks/>
         [System.Xml.Serialization.XmlIgnoreAttribute()]

@@ -88,8 +88,22 @@ namespace Adyen.Test
             var client = base.CreateMockTestClientRequest("Mocks/cancel-received.json");
             var modification = new Modification(client);
             var cancelRequest = base.CreateCancelTestRequest(pspReference: paymentResultPspReference);
-            var refundResult = modification.Cancel(cancelRequest);
-            Assert.AreEqual(refundResult.Response, Adyen.Model.Enum.ResponseEnum.CancelReceived);
+            var cancelResult = modification.Cancel(cancelRequest);
+            Assert.AreEqual(cancelResult.Response, Adyen.Model.Enum.ResponseEnum.CancelReceived);
+        }
+
+        [TestMethod]
+        public void TestAdjustAuthorisationReceivedMocked()
+        {
+            var paymentResultPspReference = MockPaymentData.GetTestPspReferenceMocked();
+            //Call authorization test
+            var client = base.CreateMockTestClientRequest("Mocks/adjustAuthorisation-received.json");
+            var modification = new Modification(client);
+            var authorisationRequest = base.CreateAdjustAuthorisationRequest(pspReference: paymentResultPspReference);
+            var adjustAuthorisationResult = modification.AdjustAuthorisation(authorisationRequest);
+            Assert.AreEqual(adjustAuthorisationResult.Response, Adyen.Model.Enum.ResponseEnum.AdjustAuthorisationReceived);
+            Assert.AreEqual(adjustAuthorisationResult.PspReference, "853569123456789D");
+            Assert.AreEqual(adjustAuthorisationResult.AdditionalData["merchantReference"], "payment - 20190901");
         }
 
         [TestMethod]
@@ -120,6 +134,16 @@ namespace Adyen.Test
             Assert.IsNotNull(refundRequest.ApplicationInfo);
             Assert.AreEqual(refundRequest.ApplicationInfo.AdyenLibrary.Name,ClientConfig.LibName);
             Assert.AreEqual(refundRequest.ApplicationInfo.AdyenLibrary.Version,ClientConfig.LibVersion);
+        }
+
+        [TestMethod]
+        public void TestAdjustAuthorisationRequest()
+        {
+            var paymentResultPspReference = MockPaymentData.GetTestPspReferenceMocked();
+            var authorisationRequest = base.CreateAdjustAuthorisationRequest(pspReference: paymentResultPspReference);
+            Assert.IsNotNull(authorisationRequest.ApplicationInfo);
+            Assert.AreEqual(authorisationRequest.ApplicationInfo.AdyenLibrary.Name, ClientConfig.LibName);
+            Assert.AreEqual(authorisationRequest.ApplicationInfo.AdyenLibrary.Version, ClientConfig.LibVersion);
         }
 
         [TestMethod]

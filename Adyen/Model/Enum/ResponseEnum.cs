@@ -34,7 +34,6 @@ namespace Adyen.Model.Enum
     [JsonConverter(typeof(StringEnumConverter))]
     public enum ResponseEnum
     {
-
         /// <summary>
         /// Enum CaptureReceived for "[capture-received]"
         /// </summary>

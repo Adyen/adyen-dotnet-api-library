@@ -68,8 +68,8 @@ namespace Adyen.Model.Checkout
         public string RecurringDetailReference { get; set; }
         [DataMember(Name = "storeDetails", EmitDefaultValue = false)]
         public bool StoreDetails { get; set; }
-        [DataMember(Name = "idealIssuer", EmitDefaultValue = false)]
-        public string IdealIssuer { get; set; }
+        [DataMember(Name = "issuer", EmitDefaultValue = false)]
+        public string Issuer { get; set; }
         [DataMember(Name = "sepa.ownerName", EmitDefaultValue = false)]
         public string SepaOwnerName { get; set; }
         [DataMember(Name = "sepa.ibanNumber", EmitDefaultValue = false)]
@@ -101,7 +101,7 @@ namespace Adyen.Model.Checkout
             sb.Append("  EncryptedSecurityCode: ").Append(EncryptedSecurityCode).Append("\n");
             sb.Append("  RecurringDetailReference: ").Append(RecurringDetailReference).Append("\n");
             sb.Append("  StoreDetails: ").Append(StoreDetails).Append("\n");
-            sb.Append("  IdealIssuer: ").Append(IdealIssuer).Append("\n");
+            sb.Append("  Issuer: ").Append(Issuer).Append("\n");
             sb.Append("  SepaOwnerName: ").Append(SepaOwnerName).Append("\n");
             sb.Append("  SepaIbanNumber: ").Append(SepaIbanNumber).Append("\n");
             sb.Append("  BankAccount: ").Append(BankAccount).Append("\n");
@@ -222,9 +222,9 @@ namespace Adyen.Model.Checkout
                     this.StoreDetails.Equals(input.StoreDetails))
                 ) &&
                 (
-                    this.IdealIssuer == input.IdealIssuer ||
-                    (this.IdealIssuer != null &&
-                    this.IdealIssuer.Equals(input.IdealIssuer))
+                    this.Issuer == input.Issuer ||
+                    (this.Issuer != null &&
+                    this.Issuer.Equals(input.Issuer))
                 ) &&
                 (
                     this.SepaOwnerName == input.SepaOwnerName ||

@@ -119,7 +119,17 @@ namespace Adyen.Test
             return cancelRequest;
         }
 
-
+        protected AdjustAuthorisationRequest CreateAdjustAuthorisationRequest(string pspReference)
+        {
+            var adjustAuthorisationRequest = new AdjustAuthorisationRequest()
+            {
+                MerchantAccount = "MerchantAccount",
+                ModificationAmount = new Amount("EUR", 150),
+                Reference = "adjustAuthorisationRequest - " + DateTime.Now.ToString("yyyyMMdd"),
+                OriginalReference = pspReference,
+            };
+            return adjustAuthorisationRequest;
+        }
         #endregion
 
         #region Checkout

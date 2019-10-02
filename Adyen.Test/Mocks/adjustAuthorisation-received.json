@@ -1,0 +1,7 @@
+{
+    "additionalData": {
+        "merchantReference": "payment - 20190901"
+    },
+    "pspReference": "853569123456789D",
+    "response": "[adjustAuthorisation-received]"
+}

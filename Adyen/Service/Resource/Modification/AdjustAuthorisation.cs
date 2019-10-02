@@ -21,34 +21,24 @@
 //  */
 #endregion
 
-namespace Adyen.Model.Nexo
+using System.Collections.Generic;
+
+namespace Adyen.Service.Resource.Modification
 {
-    /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("xsd", "4.6.1055.0")]
-    [System.SerializableAttribute()]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.ComponentModel.DesignerCategoryAttribute("code")]
-    public partial class SoundContent
+    public class AdjustAuthorisation : ServiceResource
     {
+        public AdjustAuthorisation(AbstractService abstractService)
+            : base(abstractService, abstractService.Client.Config.Endpoint + "/pal/servlet/Payment/" + abstractService.Client.ApiVersion + "/adjustAuthorisation",
+                new List<string>
+            {
+                "merchantAccount",
+                "modificationAmount",
+                "modificationAmount.value",
+                "modificationAmount.currency",
+                "originalReference"
+            })
+        {
 
-        /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute()]
-        public SoundFormatType SoundFormat;
-
-        /// <remarks/>
-        [System.Xml.Serialization.XmlIgnoreAttribute()]
-        public bool? SoundFormatSpecified;
-
-        /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute()]
-        public string Language;
-
-        /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute()]
-        public string ReferenceID;
-
-        /// <remarks/>
-        [System.Xml.Serialization.XmlTextAttribute()]
-        public string Text;
+        }
     }
 }
