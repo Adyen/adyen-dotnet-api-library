@@ -25,7 +25,7 @@ The Library supports all APIs under the following services:
 * Simply download and restore nuget packages  
  https://www.nuget.org/packages/Adyen/
 * or install it from package manager
- PM> Install-Package Adyen -Version 3.3.0
+ PM> Install-Package Adyen -Version 3.4.0
 
 ## Documentation
 * https://docs.adyen.com/developers/development-resources/libraries
