@@ -216,7 +216,25 @@ namespace Adyen.Test
             Assert.AreEqual(paymentMethodsResponse.PaymentMethods.Count, 65);
 
         }
+        
+        /// <summary>
+        /// Test error flow for
+        /// POST /paymentMethods
+        /// </summary>
+        [TestMethod]
+        public void PaymentMethodsErrorTest()
+        {
+            var paymentMethodsRequest = CreatePaymentMethodRequest("YourMerchantAccount");
+            var client = CreateMockTestClientApiKeyBasedRequest("Mocks/checkout/paymentmethods-error-forbidden-403.json");
+            var checkout = new Checkout(client);
+            var paymentMethodsResponse = checkout.PaymentMethods(paymentMethodsRequest);
+            Assert.IsNull(paymentMethodsResponse.PaymentMethods);
+        }
 
+        /// <summary>
+        /// Test success flow including brands check for
+        /// POST /paymentMethods
+        /// </summary>
         [TestMethod]
         public void PaymentMethodsWithBrandsTest()
         {
@@ -234,18 +252,25 @@ namespace Adyen.Test
         }
 
         /// <summary>
-        /// Test error flow for
+        /// Test negative flow including brands check for
         /// POST /paymentMethods
         /// </summary>
         [TestMethod]
-        public void PaymentMethodsErrorTest()
+        public void PaymentMethodsWithBrandsNegativeFlowTest()
         {
             var paymentMethodsRequest = CreatePaymentMethodRequest("YourMerchantAccount");
-            var client = CreateMockTestClientApiKeyBasedRequest("Mocks/checkout/paymentmethods-error-forbidden-403.json");
+            var client = CreateMockTestClientApiKeyBasedRequest("Mocks/checkout/paymentmethods-brands-success.json");
             var checkout = new Checkout(client);
             var paymentMethodsResponse = checkout.PaymentMethods(paymentMethodsRequest);
-            Assert.IsNull(paymentMethodsResponse.PaymentMethods);
+            Assert.AreEqual(paymentMethodsResponse.PaymentMethods.Count, 7);
+            Assert.AreEqual(paymentMethodsResponse.PaymentMethods[0].Brands.Count, 5);
+            Assert.AreNotEqual(paymentMethodsResponse.PaymentMethods[0].Brands[0], "amex");
+            Assert.AreNotEqual(paymentMethodsResponse.PaymentMethods[0].Brands[1], "amex");
+            Assert.AreEqual(paymentMethodsResponse.PaymentMethods[0].Brands[2], "amex");
+            Assert.AreNotEqual(paymentMethodsResponse.PaymentMethods[0].Brands[3], "amex");
+            Assert.AreNotEqual(paymentMethodsResponse.PaymentMethods[0].Brands[4], "amex");
         }
+
 
         /// <summary>
         /// Test success flow for
