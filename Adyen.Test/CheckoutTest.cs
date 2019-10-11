@@ -252,23 +252,17 @@ namespace Adyen.Test
         }
 
         /// <summary>
-        /// Test negative flow including brands check for
+        /// Test flow without including brands check for
         /// POST /paymentMethods
         /// </summary>
         [TestMethod]
-        public void PaymentMethodsWithBrandsNegativeFlowTest()
+        public void PaymentMethodsWithoutBrandsTest()
         {
             var paymentMethodsRequest = CreatePaymentMethodRequest("YourMerchantAccount");
-            var client = CreateMockTestClientApiKeyBasedRequest("Mocks/checkout/paymentmethods-brands-success.json");
+            var client = CreateMockTestClientApiKeyBasedRequest("Mocks/checkout/paymentmethods-without-brands-success.json");
             var checkout = new Checkout(client);
             var paymentMethodsResponse = checkout.PaymentMethods(paymentMethodsRequest);
-            Assert.AreEqual(paymentMethodsResponse.PaymentMethods.Count, 7);
-            Assert.AreEqual(paymentMethodsResponse.PaymentMethods[0].Brands.Count, 5);
-            Assert.AreNotEqual(paymentMethodsResponse.PaymentMethods[0].Brands[0], "amex");
-            Assert.AreNotEqual(paymentMethodsResponse.PaymentMethods[0].Brands[1], "amex");
-            Assert.AreEqual(paymentMethodsResponse.PaymentMethods[0].Brands[2], "amex");
-            Assert.AreNotEqual(paymentMethodsResponse.PaymentMethods[0].Brands[3], "amex");
-            Assert.AreNotEqual(paymentMethodsResponse.PaymentMethods[0].Brands[4], "amex");
+            Assert.AreEqual(paymentMethodsResponse.PaymentMethods.Count, 50);
         }
 
 
