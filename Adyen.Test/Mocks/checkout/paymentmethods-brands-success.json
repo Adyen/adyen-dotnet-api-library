@@ -1,0 +1,132 @@
+{
+    "groups": [
+        {
+            "name": "Credit Card",
+            "types": [
+                "visa",
+                "mc",
+                "amex",
+                "bcmc",
+                "maestro"
+            ]
+        },
+        {
+            "name": "WeChatPay",
+            "types": [
+                "wechatpayQR",
+                "wechatpayWeb"
+            ]
+        }
+    ],
+    "paymentMethods": [
+        {
+            "brands": [
+                "visa",
+                "mc",
+                "amex",
+                "bcmc",
+                "maestro"
+            ],
+            "details": [
+                {
+                    "key": "number",
+                    "type": "text"
+                },
+                {
+                    "key": "expiryMonth",
+                    "type": "text"
+                },
+                {
+                    "key": "expiryYear",
+                    "type": "text"
+                },
+                {
+                    "key": "cvc",
+                    "type": "text"
+                },
+                {
+                    "key": "holderName",
+                    "optional": true,
+                    "type": "text"
+                }
+            ],
+            "name": "Credit Card",
+            "type": "scheme"
+        },
+        {
+            "details": [
+                {
+                    "key": "number",
+                    "type": "text"
+                },
+                {
+                    "key": "expiryMonth",
+                    "type": "text"
+                },
+                {
+                    "key": "expiryYear",
+                    "type": "text"
+                },
+                {
+                    "key": "holderName",
+                    "optional": true,
+                    "type": "text"
+                }
+            ],
+            "name": "Bancontact card",
+            "supportsRecurring": false,
+            "type": "bcmc"
+        },
+        {
+            "name": "Moneybookers",
+            "supportsRecurring": true,
+            "type": "moneybookers"
+        },
+        {
+            "name": "NETELLER",
+            "supportsRecurring": false,
+            "type": "neteller"
+        },
+        {
+            "details": [
+                {
+                    "key": "number",
+                    "type": "text"
+                },
+                {
+                    "key": "expiryMonth",
+                    "optional": true,
+                    "type": "text"
+                },
+                {
+                    "key": "expiryYear",
+                    "optional": true,
+                    "type": "text"
+                },
+                {
+                    "key": "cvc",
+                    "optional": true,
+                    "type": "text"
+                },
+                {
+                    "key": "holderName",
+                    "optional": true,
+                    "type": "text"
+                }
+            ],
+            "name": "Webshop Giftcard",
+            "supportsRecurring": false,
+            "type": "webshopgiftcard"
+        },
+        {
+            "name": "WeChat Pay",
+            "supportsRecurring": true,
+            "type": "wechatpayQR"
+        },
+        {
+            "name": "WeChat Pay",
+            "supportsRecurring": true,
+            "type": "wechatpayWeb"
+        }
+    ]
+}

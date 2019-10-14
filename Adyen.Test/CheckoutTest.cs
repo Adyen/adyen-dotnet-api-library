@@ -216,6 +216,7 @@ namespace Adyen.Test
             Assert.AreEqual(paymentMethodsResponse.PaymentMethods.Count, 65);
 
         }
+        
         /// <summary>
         /// Test error flow for
         /// POST /paymentMethods
@@ -229,6 +230,41 @@ namespace Adyen.Test
             var paymentMethodsResponse = checkout.PaymentMethods(paymentMethodsRequest);
             Assert.IsNull(paymentMethodsResponse.PaymentMethods);
         }
+
+        /// <summary>
+        /// Test success flow including brands check for
+        /// POST /paymentMethods
+        /// </summary>
+        [TestMethod]
+        public void PaymentMethodsWithBrandsTest()
+        {
+            var paymentMethodsRequest = CreatePaymentMethodRequest("YourMerchantAccount");
+            var client = CreateMockTestClientApiKeyBasedRequest("Mocks/checkout/paymentmethods-brands-success.json");
+            var checkout = new Checkout(client);
+            var paymentMethodsResponse = checkout.PaymentMethods(paymentMethodsRequest);
+            Assert.AreEqual(paymentMethodsResponse.PaymentMethods.Count, 7);
+            Assert.AreEqual(paymentMethodsResponse.PaymentMethods[0].Brands.Count, 5);
+            Assert.AreEqual(paymentMethodsResponse.PaymentMethods[0].Brands[0], "visa");
+            Assert.AreEqual(paymentMethodsResponse.PaymentMethods[0].Brands[1], "mc");
+            Assert.AreEqual(paymentMethodsResponse.PaymentMethods[0].Brands[2], "amex");
+            Assert.AreEqual(paymentMethodsResponse.PaymentMethods[0].Brands[3], "bcmc");
+            Assert.AreEqual(paymentMethodsResponse.PaymentMethods[0].Brands[4], "maestro");
+        }
+
+        /// <summary>
+        /// Test flow without including brands check for
+        /// POST /paymentMethods
+        /// </summary>
+        [TestMethod]
+        public void PaymentMethodsWithoutBrandsTest()
+        {
+            var paymentMethodsRequest = CreatePaymentMethodRequest("YourMerchantAccount");
+            var client = CreateMockTestClientApiKeyBasedRequest("Mocks/checkout/paymentmethods-without-brands-success.json");
+            var checkout = new Checkout(client);
+            var paymentMethodsResponse = checkout.PaymentMethods(paymentMethodsRequest);
+            Assert.AreEqual(paymentMethodsResponse.PaymentMethods.Count, 50);
+        }
+
 
         /// <summary>
         /// Test success flow for
@@ -271,7 +307,7 @@ namespace Adyen.Test
             var paymentResultResponse = checkout.PaymentsResult(paymentResultRequest);
             Assert.AreEqual(paymentResultResponse.ResultCode, Model.Checkout.PaymentResultResponse.ResultCodeEnum.Authorised);
         }
-        
+
         /// <summary>
         /// Test success flow for
         /// POST  /payments/result
@@ -304,7 +340,7 @@ namespace Adyen.Test
             Assert.AreEqual(version, Constants.ClientConfig.LibVersion);
             Assert.AreEqual(name, Constants.ClientConfig.LibName);
         }
-        
+
         [TestMethod]
         public void PaymentRequestAppInfoExternalTest()
         {
@@ -358,7 +394,7 @@ namespace Adyen.Test
             Assert.AreEqual(paymentResponse.ThreeDS2Result.TransStatus, "Y");
             Assert.AreEqual(paymentResponse.ThreeDS2Result.ThreeDSServerTransID, "abcd1234-abcd1234-abcd1234-abcd1234-");
             Assert.AreEqual(paymentResponse.ThreeDS2Result.DsTransID, "abcd9a67-abcd9a67-abcd9a67-abcd9a671");
-            Assert.AreEqual(paymentResponse.ThreeDS2Result.MessageVersion,"2.1.0");
+            Assert.AreEqual(paymentResponse.ThreeDS2Result.MessageVersion, "2.1.0");
         }
 
         [TestMethod]

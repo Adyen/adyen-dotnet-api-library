@@ -47,7 +47,8 @@ namespace Adyen.Model.Checkout
         /// <param name="PaymentMethodData">Echo data required to send in next calls..</param>
         /// <param name="SupportsRecurring">Indicates whether this payment method supports tokenization or not..</param>
         /// <param name="Type">The unique payment method code..</param>
-        public PaymentMethod(Dictionary<string, string> Configuration = default(Dictionary<string, string>), List<InputDetail> Details = default(List<InputDetail>), PaymentMethodGroup Group = default(PaymentMethodGroup), string Name = default(string), string PaymentMethodData = default(string), bool? SupportsRecurring = default(bool?), string Type = default(string))
+        /// <param name="Brands">List of card brands</param>
+        public PaymentMethod(Dictionary<string, string> Configuration = default(Dictionary<string, string>), List<InputDetail> Details = default(List<InputDetail>), PaymentMethodGroup Group = default(PaymentMethodGroup), string Name = default(string), string PaymentMethodData = default(string), bool? SupportsRecurring = default(bool?), string Type = default(string), List<string> Brands = default(List<string>))
         {
             this.Configuration = Configuration;
             this.Details = Details;
@@ -56,6 +57,7 @@ namespace Adyen.Model.Checkout
             this.PaymentMethodData = PaymentMethodData;
             this.SupportsRecurring = SupportsRecurring;
             this.Type = Type;
+            this.Brands = Brands;
         }
         
         /// <summary>
@@ -108,6 +110,13 @@ namespace Adyen.Model.Checkout
         public string Type { get; set; }
 
         /// <summary>
+        /// List of brand codes
+        /// </summary>
+        /// <value>The unique payment method code.</value>
+        [DataMember(Name = "brands", EmitDefaultValue = false)]
+        public List<string> Brands { get; set; }
+
+        /// <summary>
         /// Returns the string presentation of the object
         /// </summary>
         /// <returns>String presentation of the object</returns>
@@ -122,6 +131,7 @@ namespace Adyen.Model.Checkout
             sb.Append("  PaymentMethodData: ").Append(PaymentMethodData).Append("\n");
             sb.Append("  SupportsRecurring: ").Append(SupportsRecurring).Append("\n");
             sb.Append("  Type: ").Append(Type).Append("\n");
+            sb.Append("  Brands: ").Append(Brands).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -190,6 +200,11 @@ namespace Adyen.Model.Checkout
                     this.Type == input.Type ||
                     (this.Type != null &&
                     this.Type.Equals(input.Type))
+                ) &&
+                (
+                    this.Brands == input.Brands ||
+                    (this.Brands != null &&
+                    this.Brands.Equals(input.Brands))
                 );
         }
 
@@ -216,6 +231,8 @@ namespace Adyen.Model.Checkout
                     hashCode = hashCode * 59 + this.SupportsRecurring.GetHashCode();
                 if (this.Type != null)
                     hashCode = hashCode * 59 + this.Type.GetHashCode();
+                if (this.Brands != null)
+                    hashCode = hashCode * 59 + this.Brands.GetHashCode();
                 return hashCode;
             }
         }
