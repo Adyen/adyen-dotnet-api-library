@@ -47,6 +47,7 @@ namespace Adyen.Model.Checkout
         /// <param name="PaymentMethodData">Echo data required to send in next calls..</param>
         /// <param name="SupportsRecurring">Indicates whether this payment method supports tokenization or not..</param>
         /// <param name="Type">The unique payment method code..</param>
+        /// <param name="Brands">List of card brands</param>
         public PaymentMethod(Dictionary<string, string> Configuration = default(Dictionary<string, string>), List<InputDetail> Details = default(List<InputDetail>), PaymentMethodGroup Group = default(PaymentMethodGroup), string Name = default(string), string PaymentMethodData = default(string), bool? SupportsRecurring = default(bool?), string Type = default(string), List<string> Brands = default(List<string>))
         {
             this.Configuration = Configuration;
