@@ -21,6 +21,7 @@
 //  */
 #endregion
 
+using System.Linq;
 using System.Text.RegularExpressions;
 
 namespace Adyen.Security
@@ -31,29 +32,23 @@ namespace Adyen.Security
         private static string _terminalApiCnRegex = "[a-zA-Z0-9]{4,}-[0-9]{9}\\." + _enviromentWildcard + "\\.terminal\\.adyen\\.com";
         private static string _terminalApiLegacy = "legacy-terminal-certificate." + _enviromentWildcard + ".terminal.adyen.com";
 
-        public static bool ValidateCertificate(string certificateCommonName, Model.Enum.Environment environment)
-        {
-            var enviromentName = environment.ToString().ToLower();
-            var patternRegex = "(?:^|,\\s?)(?:(?<name>[A-Z]+)=(?<val>\"(?:[^\"]|\"\")+\"|[^,]+))+";
-            var regex = new Regex(patternRegex);
-            var groupsName = regex.GetGroupNames();
-            var matches = regex.Matches(certificateCommonName);
-
-            foreach (Match match in matches)
-            {
-                string groupName = match.Groups["name"].Value;
-                if ("CN".Equals(groupName))
+        public static bool ValidateCertificate(string certificateSubject, Model.Enum.Environment environment)
+        {       var enviromentName = environment.ToString().ToLower();
+                var regexPatternTerminalSpecificCert = _terminalApiCnRegex.Replace(_enviromentWildcard, enviromentName);
+                var regexPatternLegacyCert = _terminalApiLegacy.Replace(_enviromentWildcard, enviromentName);
+                var subject = certificateSubject.Split(',')
+                         .Select(x => x.Split('='))
+                         .ToDictionary(x => x[0].Trim(' '), x => x[1]);
+                if(subject.ContainsKey("CN"))
                 {
-                    var commonNameValue = match.Groups["val"].Value;
-                    var regexPattern = _terminalApiCnRegex.Replace(_enviromentWildcard, environment.ToString().ToLower());
-                    var legacyCert = _terminalApiLegacy.Replace(_enviromentWildcard, environment.ToString().ToLower());
-                    if (Regex.Match(commonNameValue, regexPattern).Success || string.Equals(commonNameValue, legacyCert))
+                    string commonNameValue = subject["CN"];
+                    if (Regex.Match(commonNameValue, regexPatternTerminalSpecificCert).Success || string.Equals(commonNameValue, regexPatternLegacyCert))
                     {
                         return true;
                     }
                 }
-            }
-            return false;
+                return false;
+         
         }
     }
 }
