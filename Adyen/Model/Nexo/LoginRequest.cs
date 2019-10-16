@@ -62,7 +62,7 @@ namespace Adyen.Model.Nexo
 
         /// <remarks/>
         [System.Xml.Serialization.XmlAttributeAttribute()]
-        public TokenRequestedType TokenRequestedType;
+        public TokenRequestedType? TokenRequestedType;
 
         /// <remarks/>
         [System.Xml.Serialization.XmlIgnoreAttribute()]
