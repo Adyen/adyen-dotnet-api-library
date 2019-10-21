@@ -28,7 +28,7 @@ namespace Adyen.Security
 {
     public static class TerminalCommonNameValidator
     {
-        private static readonly string _environmentWildcard = "{enviroment}";
+        private static readonly string _environmentWildcard = "{environment}";
         private static string _terminalApiCnRegex = "[a-zA-Z0-9]{4,}-[0-9]{9}\\." + _environmentWildcard + "\\.terminal\\.adyen\\.com";
         private static string _terminalApiLegacy = "legacy-terminal-certificate." + _environmentWildcard + ".terminal.adyen.com";
 
