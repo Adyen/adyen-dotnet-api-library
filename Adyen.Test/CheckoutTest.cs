@@ -286,6 +286,41 @@ namespace Adyen.Test
         }
 
         /// <summary>
+        /// Test success flow including brands check for
+        /// POST /paymentMethods
+        /// </summary>
+        [TestMethod]
+        public void PaymentMethodsWithBrandsTest()
+        {
+            var paymentMethodsRequest = CreatePaymentMethodRequest("YourMerchantAccount");
+            var client = CreateMockTestClientApiKeyBasedRequest("Mocks/checkout/paymentmethods-brands-success.json");
+            var checkout = new Checkout(client);
+            var paymentMethodsResponse = checkout.PaymentMethods(paymentMethodsRequest);
+            Assert.AreEqual(paymentMethodsResponse.PaymentMethods.Count, 7);
+            Assert.AreEqual(paymentMethodsResponse.PaymentMethods[0].Brands.Count, 5);
+            Assert.AreEqual(paymentMethodsResponse.PaymentMethods[0].Brands[0], "visa");
+            Assert.AreEqual(paymentMethodsResponse.PaymentMethods[0].Brands[1], "mc");
+            Assert.AreEqual(paymentMethodsResponse.PaymentMethods[0].Brands[2], "amex");
+            Assert.AreEqual(paymentMethodsResponse.PaymentMethods[0].Brands[3], "bcmc");
+            Assert.AreEqual(paymentMethodsResponse.PaymentMethods[0].Brands[4], "maestro");
+        }
+
+        /// <summary>
+        /// Test flow without including brands check for
+        /// POST /paymentMethods
+        /// </summary>
+        [TestMethod]
+        public void PaymentMethodsWithoutBrandsTest()
+        {
+            var paymentMethodsRequest = CreatePaymentMethodRequest("YourMerchantAccount");
+            var client = CreateMockTestClientApiKeyBasedRequest("Mocks/checkout/paymentmethods-without-brands-success.json");
+            var checkout = new Checkout(client);
+            var paymentMethodsResponse = checkout.PaymentMethods(paymentMethodsRequest);
+            Assert.AreEqual(paymentMethodsResponse.PaymentMethods.Count, 50);
+        }
+
+
+        /// <summary>
         /// Test success flow for
         /// POST  /paymentSession
         /// </summary>
