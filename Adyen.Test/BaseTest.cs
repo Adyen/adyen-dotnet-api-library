@@ -295,7 +295,29 @@ namespace Adyen.Test
         /// </summary>
         /// <param name="fileName">The file that is returned</param>
         /// <returns>IClient implementation</returns>
-        protected Client CreateMockTestClientRecurringRequest(string fileName)
+        protected Client CreateMockTestClientNullRequiredFieldsRequest(string fileName)
+        {
+            var mockPath = GetMockFilePath(fileName);
+            var response = MockFileToString(mockPath);
+            //Create a mock interface
+            var clientInterfaceMock = new Mock<IClient>();
+            var confMock = MockPaymentData.CreateConfingMock();
+
+            clientInterfaceMock.Setup(x => x.Request(It.IsAny<string>(), It.IsAny<string>(), confMock)).Returns(response);
+            var clientMock = new Client(It.IsAny<Config>())
+            {
+                HttpClient = clientInterfaceMock.Object,
+                Config = confMock
+            };
+            return clientMock;
+        }
+
+        /// <summary>
+        /// Creates mock test client 
+        /// </summary>
+        /// <param name="fileName">The file that is returned</param>
+        /// <returns>IClient implementation</returns>
+        protected Client CreateMockTestClientPayoutRequest(string fileName)
         {
             var mockPath = GetMockFilePath(fileName);
             var response = MockFileToString(mockPath);
