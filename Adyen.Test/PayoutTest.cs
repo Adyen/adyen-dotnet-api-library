@@ -56,7 +56,7 @@ namespace Adyen.Test
             Client client = CreateMockTestClientNullRequiredFieldsRequest("Mocks/payout/submitResponse-success.json");
             Payout payout = new Payout(client);
             SubmitRequest request = new SubmitRequest();
-            SubmitResponse result = payout.SubmitThirdparty(request);
+            SubmitResponse result = payout.SubmitThirdParty(request);
             Assert.AreEqual("[payout-submit-received]", result.ResultCode);
             Assert.AreEqual("8815131768219992", result.PspReference);
             Assert.AreEqual("GREEN", result.AdditionalData["fraudResultType"]);

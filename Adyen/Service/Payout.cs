@@ -10,7 +10,7 @@ namespace Adyen.Service
         private ConfirmThirdParty _confirmThirdParty;
         private DeclineThirdParty _declineThirdParty;
         private StoreDetail _storeDetail;
-        private SubmitThirdParty _submitThirdparty;
+        private SubmitThirdParty _submitThirdParty;
         private PayoutService _payoutService;
 
         public Payout(Client client)
@@ -20,7 +20,7 @@ namespace Adyen.Service
             _confirmThirdParty = new ConfirmThirdParty(this);
             _declineThirdParty = new DeclineThirdParty(this);
             _storeDetail = new StoreDetail(this);
-            _submitThirdparty = new SubmitThirdParty(this);
+            _submitThirdParty = new SubmitThirdParty(this);
             _payoutService = new PayoutService(this);
         }
 
@@ -34,35 +34,35 @@ namespace Adyen.Service
         public ConfirmThirdPartyResponse ConfirmThirdParty(ConfirmThirdPartyRequest request)
         {
             var jsonRequest = Util.JsonOperation.SerializeRequest(request);
-            var jsonResponse = _storeDetailAndSubmitThirdParty.Request(jsonRequest);
+            var jsonResponse = _confirmThirdParty.Request(jsonRequest);
             return JsonConvert.DeserializeObject<ConfirmThirdPartyResponse>(jsonResponse);
         }
         
         public DeclineThirdPartyResponse DeclineThirdParty(DeclineThirdPartyRequest request)
         {
             var jsonRequest = Util.JsonOperation.SerializeRequest(request);
-            var jsonResponse = _storeDetailAndSubmitThirdParty.Request(jsonRequest);
+            var jsonResponse = _declineThirdParty.Request(jsonRequest);
             return JsonConvert.DeserializeObject<DeclineThirdPartyResponse>(jsonResponse);
         }
 
         public StoreDetailResponse StoreDetail(StoreDetailRequest request)
         {
             var jsonRequest = Util.JsonOperation.SerializeRequest(request);
-            var jsonResponse = _storeDetailAndSubmitThirdParty.Request(jsonRequest);
+            var jsonResponse = _storeDetail.Request(jsonRequest);
             return JsonConvert.DeserializeObject<StoreDetailResponse>(jsonResponse);
         }
 
-        public SubmitResponse SubmitThirdparty(SubmitRequest request)
+        public SubmitResponse SubmitThirdParty(SubmitRequest request)
         {
             var jsonRequest = Util.JsonOperation.SerializeRequest(request);
-            var jsonResponse = _storeDetailAndSubmitThirdParty.Request(jsonRequest);
+            var jsonResponse = _submitThirdParty.Request(jsonRequest);
             return JsonConvert.DeserializeObject<SubmitResponse>(jsonResponse);
         }
 
         public PayoutResponse payout(PayoutRequest request)
         {
             var jsonRequest = Util.JsonOperation.SerializeRequest(request);
-            var jsonResponse = _storeDetailAndSubmitThirdParty.Request(jsonRequest);
+            var jsonResponse = _payoutService.Request(jsonRequest);
             return JsonConvert.DeserializeObject<PayoutResponse>(jsonResponse);
         }
     }
