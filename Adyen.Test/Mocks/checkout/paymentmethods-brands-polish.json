@@ -1,0 +1,48 @@
+{
+   "groups":[
+      {
+         "name":"Credit Card",
+         "types":[
+            "visa",
+            "mc",
+            "amex",
+            "maestro",
+            "cup",
+            "diners",
+            "discover",
+            "eftpos_australia",
+            "uatp"
+         ]
+      }
+   ],
+   "paymentMethods":[
+      {
+         "details":[
+            {
+               "items":[
+                  {
+                     "id":"92",
+                     "name":"Bank Spółdzielczy w Brodnicy"
+                  },
+                  {
+                     "id":"11",
+                     "name":"Bank transfer / postal"
+                  },
+                  {
+                     "id":"74",
+                     "name":"Banki Spółdzielcze"
+                  },
+                  {
+                     "id":"73",
+                     "name":"BLIK"
+                  },
+                  {
+                     "id":"48",
+                     "name":"BNP Paribas - Płacę z Żółty"
+                  }
+               ]
+            }
+         ]
+      }
+   ]
+}
