@@ -39,7 +39,7 @@ namespace Adyen.HttpClient
 {
     public class HttpUrlConnectionClient : IClient
     {
-        private readonly Encoding _encoding = Encoding.ASCII;
+        private readonly Encoding _encoding = Encoding.Unicode;
         private Model.Enum.Environment _environment;
         public string Request(string endpoint, string json, Config config, bool isApiKeyRequired, RequestOptions requestOptions = null )
         {
