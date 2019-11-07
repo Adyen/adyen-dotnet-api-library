@@ -80,7 +80,7 @@ namespace Adyen.Test
             Client client = CreateMockTestClientNullRequiredFieldsRequest("Mocks/payout/payout-success.json");
             Payout payout = new Payout(client);
             PayoutRequest request = new PayoutRequest();
-            PayoutResponse result = payout.payout(request);
+            PayoutResponse result = payout.PayoutSubmit(request);
             Assert.AreEqual("8814689190961342", result.PspReference);
             Assert.AreEqual("12345", result.AuthCode);
         }
@@ -93,7 +93,7 @@ namespace Adyen.Test
             PayoutRequest request = new PayoutRequest();
             try
             {
-                payout.payout(request);
+                payout.PayoutSubmit(request);
             }
             catch (HttpClient.HttpClientException e)
             {
@@ -110,7 +110,7 @@ namespace Adyen.Test
             PayoutRequest request = new PayoutRequest();
             try
             {
-                payout.payout(request);
+                payout.PayoutSubmit(request);
             }
             catch (HttpClient.HttpClientException e)
             {

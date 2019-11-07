@@ -59,7 +59,7 @@ namespace Adyen.Service
             return JsonConvert.DeserializeObject<SubmitResponse>(jsonResponse);
         }
 
-        public PayoutResponse payout(PayoutRequest request)
+        public PayoutResponse PayoutSubmit(PayoutRequest request)
         {
             var jsonRequest = Util.JsonOperation.SerializeRequest(request);
             var jsonResponse = _payoutService.Request(jsonRequest);
