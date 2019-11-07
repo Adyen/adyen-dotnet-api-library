@@ -36,6 +36,7 @@ namespace Adyen.Constants
         public static string CloudApiEndPointLive = "https://terminal-api-live.adyen.com";
         public static string RecurringApiVersion = "v25";
         public static string ApiVersion = "v49";
+        public static string PayoutApiVersion = "v51";
         public static string CheckoutApiVersion = "v49";
         public static string CheckoutUtilityApiVersion = "v1";
         public static string UserAgentSuffix = "adyen-dotnet-api-library/";

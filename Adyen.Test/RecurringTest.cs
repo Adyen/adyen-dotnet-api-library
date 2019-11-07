@@ -38,7 +38,7 @@ namespace Adyen.Test
         [TestMethod]
         public void TestListRecurringDetails()
         {
-            var client = base.CreateMockTestClientRecurringRequest("Mocks/recurring/listRecurringDetails-success.json");
+            var client = base.CreateMockTestClientNullRequiredFieldsRequest("Mocks/recurring/listRecurringDetails-success.json");
             var recurring=new Service.Recurring(client);
             var recurringDetailsRequest = this.CreateRecurringDetailsRequest();
             var recurringDetailsResult = recurring.ListRecurringDetails(recurringDetailsRequest);
@@ -52,7 +52,7 @@ namespace Adyen.Test
         [TestMethod]
         public void TestDisable()
         {
-            var client = base.CreateMockTestClientRecurringRequest("Mocks/recurring/disable-success.json");
+            var client = base.CreateMockTestClientNullRequiredFieldsRequest("Mocks/recurring/disable-success.json");
             var recurring = new Service.Recurring(client);
             var disableRequest = this.CreateDisableRequest();
             var disableResult = recurring.Disable(disableRequest);

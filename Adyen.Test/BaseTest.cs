@@ -295,7 +295,7 @@ namespace Adyen.Test
         /// </summary>
         /// <param name="fileName">The file that is returned</param>
         /// <returns>IClient implementation</returns>
-        protected Client CreateMockTestClientRecurringRequest(string fileName)
+        protected Client CreateMockTestClientNullRequiredFieldsRequest(string fileName)
         {
             var mockPath = GetMockFilePath(fileName);
             var response = MockFileToString(mockPath);
