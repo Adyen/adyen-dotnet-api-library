@@ -39,7 +39,7 @@ namespace Adyen.HttpClient
 {
     public class HttpUrlConnectionClient : IClient
     {
-        private readonly Encoding _encoding = Encoding.Unicode;
+        private readonly Encoding _encoding = Encoding.UTF8;
         private Model.Enum.Environment _environment;
         public string Request(string endpoint, string json, Config config, bool isApiKeyRequired, RequestOptions requestOptions = null )
         {
@@ -123,7 +123,7 @@ namespace Adyen.HttpClient
         public string Post(string endpoint, Dictionary<string, string> postParameters, Config config)
         {
             var dictToString = QueryString(postParameters);
-            byte[] postBytes = Encoding.ASCII.GetBytes(dictToString);
+            byte[] postBytes = Encoding.UTF8.GetBytes(dictToString);
             var httpWebRequest = (HttpWebRequest)WebRequest.Create(endpoint);
             httpWebRequest.Method = "POST";
             httpWebRequest.ContentType = "application/x-www-form-urlencoded";
@@ -158,7 +158,7 @@ namespace Adyen.HttpClient
             else if (!string.IsNullOrEmpty(config.Password))
             {
                 var authString = config.Username + ":" + config.Password;
-                var bytes = Encoding.ASCII.GetBytes(authString);
+                var bytes = Encoding.UTF8.GetBytes(authString);
                 var credentials = Convert.ToBase64String(bytes);
                 httpWebRequest.Headers.Add("Authorization", "Basic " + credentials);
                 httpWebRequest.UseDefaultCredentials = true;
