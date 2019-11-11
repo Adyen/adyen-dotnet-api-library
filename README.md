@@ -9,12 +9,14 @@ The Adyen API Library for .net framework enables you to work with Adyen APIs, Ho
 ## Integration
 The Library supports all APIs under the following services:
 
-* checkout
-* checkout utility
-* payments
-* modifications
-* recurring
-* Terminal API (Local and Cloud based)
+* [x] bin lookup
+* [x] checkout
+* [x] checkout utility
+* [x] payments
+* [x] modifications
+* [x] recurring
+* [x] notifications
+* [x] Terminal API (Local and Cloud based)
 
 ## Requirements
 
@@ -30,6 +32,16 @@ The Library supports all APIs under the following services:
 ## Documentation
 * https://docs.adyen.com/developers/development-resources/libraries
 * https://docs.adyen.com/developers/checkout/api-integration
+
+## HTTP Client Configuration
+
+In order to submit http requests to adyen api you need to initialize the client. The following example makes a checkout payment request:
+
+```csharp
+var client = new Client("YOUR-XAPI-KEY", Model.Enum.Environment.Test); //or Model.Enum.Environment.Live
+var checkout = new Checkout(client);
+var paymentsResponse = checkout.Payments(paymentsRequest);
+```
 
 ## Support
 If you have any problems, questions or suggestions, create an issue here or send your inquiry to support@adyen.com.
