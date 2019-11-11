@@ -37,8 +37,20 @@ The Library supports all APIs under the following services:
 ## HTTP Client Configuration
 
 In order to submit http requests to adyen api you need to initialize the client. The following example makes a checkout payment request:
-
 ```csharp
+// paymentsRequest
+var amount = new Model.Checkout.Amount("USD", 1000);
+var paymentsRequest = new Model.Checkout.PaymentRequest
+{
+      Reference = "Your order number",
+      Amount = amount,
+      ReturnUrl = @"https://your-company.com/...",
+      MerchantAccount = ClientConstants.MerchantAccount,
+};
+paymentsRequest.AddCardData("4111111111111111", "10", "2020", "737", "John Smith");
+```
+```csharp
+// http client
 var client = new Client("YOUR-XAPI-KEY", Model.Enum.Environment.Test); //or Model.Enum.Environment.Live
 var checkout = new Checkout(client);
 var paymentsResponse = checkout.Payments(paymentsRequest);
