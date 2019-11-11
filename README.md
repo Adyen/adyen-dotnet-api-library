@@ -13,6 +13,7 @@ The Library supports all APIs under the following services:
 * [x] checkout
 * [x] checkout utility
 * [x] payments
+* [x] payout
 * [x] modifications
 * [x] recurring
 * [x] notifications
