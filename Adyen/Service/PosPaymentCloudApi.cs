@@ -71,7 +71,7 @@ namespace Adyen.Service
             this.Client.LogLine("Request: \n"+ serializedMessage);
             var response = _terminalApiSync.Request(serializedMessage);
             this.Client.LogLine("Response: \n"+ response);
-            if (string.IsNullOrEmpty(response))
+            if (string.IsNullOrEmpty(response) || string.Equals("ok", response))
             {
                 return null;
             }

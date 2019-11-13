@@ -21,36 +21,31 @@
 //  */
 #endregion
 
+using System.Linq;
 using System.Text.RegularExpressions;
 
 namespace Adyen.Security
 {
     public static class TerminalCommonNameValidator
     {
-        private static readonly string _enviromentWildcard = "{enviroment}";
-        private static string _terminalApiCnRegex = "[a-zA-Z0-9]{4,}-[0-9]{9}\\." + _enviromentWildcard + "\\.terminal\\.adyen\\.com";
-        private static string _terminalApiLegacy = "legacy-terminal-certificate." + _enviromentWildcard + ".terminal.adyen.com";
+        private static readonly string _environmentWildcard = "{environment}";
+        private static string _terminalApiCnRegex = "[a-zA-Z0-9]{4,}-[0-9]{9}\\." + _environmentWildcard + "\\.terminal\\.adyen\\.com";
+        private static string _terminalApiLegacy = "legacy-terminal-certificate." + _environmentWildcard + ".terminal.adyen.com";
 
-        public static bool ValidateCertificate(string certificateCommonName, Model.Enum.Environment environment)
+        public static bool ValidateCertificate(string certificateSubject, Model.Enum.Environment environment)
         {
-            var enviromentName = environment.ToString().ToLower();
-            var patternRegex = "(?:^|,\\s?)(?:(?<name>[A-Z]+)=(?<val>\"(?:[^\"]|\"\")+\"|[^,]+))+";
-            var regex = new Regex(patternRegex);
-            var groupsName = regex.GetGroupNames();
-            var matches = regex.Matches(certificateCommonName);
-
-            foreach (Match match in matches)
+            var environmentName = environment.ToString().ToLower();
+            var regexPatternTerminalSpecificCert = _terminalApiCnRegex.Replace(_environmentWildcard, environmentName);
+            var regexPatternLegacyCert = _terminalApiLegacy.Replace(_environmentWildcard, environmentName);
+            var subject = certificateSubject.Split(',')
+                     .Select(x => x.Split('='))
+                     .ToDictionary(x => x[0].Trim(' '), x => x[1]);
+            if (subject.ContainsKey("CN"))
             {
-                string groupName = match.Groups["name"].Value;
-                if ("CN".Equals(groupName))
+                string commonNameValue = subject["CN"];
+                if (Regex.Match(commonNameValue, regexPatternTerminalSpecificCert).Success || string.Equals(commonNameValue, regexPatternLegacyCert))
                 {
-                    var commonNameValue = match.Groups["val"].Value;
-                    var regexPattern = _terminalApiCnRegex.Replace(_enviromentWildcard, environment.ToString().ToLower());
-                    var legacyCert = _terminalApiLegacy.Replace(_enviromentWildcard, environment.ToString().ToLower());
-                    if (Regex.Match(commonNameValue, regexPattern).Success || string.Equals(commonNameValue, legacyCert))
-                    {
-                        return true;
-                    }
+                    return true;
                 }
             }
             return false;
