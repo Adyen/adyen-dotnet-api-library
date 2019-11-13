@@ -39,9 +39,9 @@ var paymentsRequest = new Model.Checkout.PaymentRequest
 paymentsRequest.AddCardData("4111111111111111", "10", "2020", "737", "John Smith");
 
 //Create the http client
-var client = new Client("YOUR-XAPI-KEY", Model.Enum.Environment.Test); //or Model.Enum.Environment.Live
+var client = new Client("YOUR-XAPI-KEY", Model.Enum.Environment.Test);//or Model.Enum.Environment.Live
 var checkout = new Checkout(client);
-//Make the call to the service. This example is making a call to /payments
+//Make the call to the service. This example code makes a call to /payments
 var paymentsResponse = checkout.Payments(paymentsRequest);
 ```
 
