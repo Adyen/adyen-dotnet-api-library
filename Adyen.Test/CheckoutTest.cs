@@ -41,7 +41,7 @@ namespace Adyen.Test
         {
             var config = new Config();
             var client = new Client(config);
-            client.SetEnviroment(Model.Enum.Environment.Test, "companyUrl");
+            client.SetEnvironment(Model.Enum.Environment.Test, "companyUrl");
             Assert.AreEqual(config.CheckoutEndpoint, @"https://checkout-test.adyen.com");
             Assert.AreEqual(config.Endpoint, @"https://pal-test.adyen.com");
         }
@@ -54,7 +54,7 @@ namespace Adyen.Test
         {
             var config = new Config();
             var client = new Client(config);
-            client.SetEnviroment(Model.Enum.Environment.Live, "companyUrl");
+            client.SetEnvironment(Model.Enum.Environment.Live, "companyUrl");
             Assert.AreEqual(config.CheckoutEndpoint, @"https://companyUrl-checkout-live.adyenpayments.com/checkout");
             Assert.AreEqual(config.Endpoint, @"https://companyUrl-pal-live.adyenpayments.com");
         }
@@ -68,7 +68,7 @@ namespace Adyen.Test
         {
             var config = new Config();
             var client = new Client(config);
-            client.SetEnviroment(Model.Enum.Environment.Live);
+            client.SetEnvironment(Model.Enum.Environment.Live);
         }
 
         /// <summary>

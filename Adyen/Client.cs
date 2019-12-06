@@ -49,7 +49,7 @@ namespace Adyen
                 Password = password,
                 Environment = environment
             };
-            this.SetEnviroment(environment);
+            this.SetEnvironment(environment);
         }
         
         public Client(string xapikey, Environment environment)
@@ -59,7 +59,7 @@ namespace Adyen
                 Environment = environment,
                 XApiKey = xapikey
             };
-            this.SetEnviroment(environment);
+            this.SetEnvironment(environment);
         }
 
         public Client(string xapikey, Environment environment, string liveEndpointUrlPrefix)
@@ -69,7 +69,7 @@ namespace Adyen
                 Environment = environment,
                 XApiKey = xapikey
             };
-            this.SetEnviroment(environment,liveEndpointUrlPrefix);
+            this.SetEnvironment(environment,liveEndpointUrlPrefix);
         }
 
         public Client(Config config)
@@ -77,12 +77,12 @@ namespace Adyen
             Config = config;
         }
 
-        public void SetEnviroment(Environment environment)
+        public void SetEnvironment(Environment environment)
         {
-            SetEnviroment(environment, null);
+            SetEnvironment(environment, null);
         }
 
-        public void SetEnviroment(Environment environment, string liveEndpointUrlPrefix)
+        public void SetEnvironment(Environment environment, string liveEndpointUrlPrefix)
         {
             Config.Environment = environment;
             switch (environment)
