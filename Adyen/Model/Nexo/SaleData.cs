@@ -21,6 +21,8 @@
 //  */
 #endregion
 
+using Adyen.Model.Terminal;
+
 namespace Adyen.Model.Nexo
 {
     /// <remarks/>
@@ -49,7 +51,7 @@ namespace Adyen.Model.Nexo
 
         /// <remarks/>
         [System.Xml.Serialization.XmlElementAttribute(Form = System.Xml.Schema.XmlSchemaForm.Unqualified)]
-        public string SaleToAcquirerData;
+        public SaleToAcquirerData SaleToAcquirerData;
 
         /// <remarks/>
         [System.Xml.Serialization.XmlElementAttribute(Form = System.Xml.Schema.XmlSchemaForm.Unqualified)]

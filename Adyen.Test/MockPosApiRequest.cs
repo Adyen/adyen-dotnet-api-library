@@ -51,7 +51,6 @@ namespace Adyen.Test
                 {
                     SaleData = new SaleData()
                     {
-                        SaleToAcquirerData = "shopperEmail=hola@gmail.com&shopperReference=fakeRef&recurringContract=RECURRING",
                         SaleTransactionID = new TransactionIdentification()
                         {
                             TransactionID = "PosAuth",
@@ -87,7 +86,7 @@ namespace Adyen.Test
                    "   \"MessageCategory\" : \"Payment\",\r\n         \"SaleID\" : \"AppieBash-POSSystemID12345\",\r\n         \"POIID\" : \"MX925-260390740\",\r\n         \"ProtocolVersion\" : \"3.0\",\r\n      " +
                    "   \"ServiceID\" : \"19681717\"\r\n      },\r\n      \"PaymentRequest\" : {\r\n         \"SaleData\" : {\r\n            \"SaleTransactionID\" : {\r\n               " +
                    "\"TransactionID\" : \"TxId-2018-06-19T18:07:07+00:00\",\r\n               \"TimeStamp\" : \"2018-06-19T18:07:07+00:00\"\r\n            },\r\n\t\t\"TokenRequestedType\" : " +
-                   "\"Customer\",\r\n\t\t\"SaleToAcquirerData\" : \"billingAddress.city=Amsterdam\"\r\n          },\r\n         \"PaymentTransaction\" : {\r\n            \"AmountsReq\" : {\r\n          " +
+                   "\"Customer\",\r\n         \"PaymentTransaction\" : {\r\n            \"AmountsReq\" : {\r\n          " +
                    "     \"Currency\" : \"EUR\",\r\n               \"RequestedAmount\" : 15.25 \r\n            },\r\n            \"TransactionConditions\" : {}\r\n         },\r\n      " +
                    "   \"PaymentData\" : {\"PaymentType\" : \"Normal\"}\r\n      }\r\n   }\r\n}\r\n";
         }
