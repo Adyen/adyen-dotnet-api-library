@@ -57,7 +57,7 @@ namespace Adyen.Model.Terminal
         public override string ToString()
         {
             var sb = new StringBuilder();
-            sb.Append("class Company {\n");
+            sb.Append("class SaleToAcquirerData {\n");
             sb.Append("  Metadata: ").Append(Metadata).Append("\n");
             sb.Append("  ShopperEmail: ").Append(ShopperEmail).Append("\n");
             sb.Append("  ShopperReference: ").Append(ShopperReference).Append("\n");
@@ -69,7 +69,7 @@ namespace Adyen.Model.Terminal
             sb.Append("  MerchantAccount: ").Append(MerchantAccount).Append("\n");
             sb.Append("  Currency: ").Append(Currency).Append("\n");
             sb.Append("  ApplicationInfo: ").Append(ApplicationInfo).Append("\n");
-            sb.Append("  TenderOption: ").Append(Currency).Append("\n");
+            sb.Append("  TenderOption: ").Append(TenderOption).Append("\n");
             sb.Append("  AdditionalData: ").Append(AdditionalData).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
