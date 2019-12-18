@@ -64,8 +64,11 @@ namespace Adyen.Model.Checkout
         public string EncryptedExpiryYear { get; set; }
         [DataMember(Name = "encryptedSecurityCode", EmitDefaultValue = false)]
         public string EncryptedSecurityCode { get; set; }
+        [Obsolete("Deprecated. Use StoredPaymentMethodId instead")]
         [DataMember(Name = "recurringDetailReference", EmitDefaultValue = false)]
         public string RecurringDetailReference { get; set; }
+        [DataMember(Name = "storedPaymentMethodId", EmitDefaultValue = false)]
+        public string StoredPaymentMethodId { get; set; }
         [DataMember(Name = "storeDetails", EmitDefaultValue = false)]
         public bool StoreDetails { get; set; }
         [DataMember(Name = "issuer", EmitDefaultValue = false)]
@@ -100,6 +103,7 @@ namespace Adyen.Model.Checkout
             sb.Append("  EncryptedExpiryYear: ").Append(EncryptedExpiryYear).Append("\n");
             sb.Append("  EncryptedSecurityCode: ").Append(EncryptedSecurityCode).Append("\n");
             sb.Append("  RecurringDetailReference: ").Append(RecurringDetailReference).Append("\n");
+            sb.Append("  StoredPaymentMethodId: ").Append(StoredPaymentMethodId).Append("\n");
             sb.Append("  StoreDetails: ").Append(StoreDetails).Append("\n");
             sb.Append("  Issuer: ").Append(Issuer).Append("\n");
             sb.Append("  SepaOwnerName: ").Append(SepaOwnerName).Append("\n");
@@ -214,7 +218,12 @@ namespace Adyen.Model.Checkout
                 (
                     this.RecurringDetailReference == input.RecurringDetailReference ||
                     (this.RecurringDetailReference != null &&
-                    this.RecurringDetailReference.Equals(input.RecurringDetailReference))
+                     this.RecurringDetailReference.Equals(input.RecurringDetailReference))
+                ) &&
+                (
+                    this.StoredPaymentMethodId == input.StoredPaymentMethodId ||
+                    (this.StoredPaymentMethodId != null &&
+                     this.StoredPaymentMethodId.Equals(input.StoredPaymentMethodId))
                 ) &&
                 (
                     this.StoreDetails == input.StoreDetails ||
