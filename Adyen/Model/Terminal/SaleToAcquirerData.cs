@@ -7,19 +7,31 @@ namespace Adyen.Model.Terminal
 {
     public class SaleToAcquirerData
     {
+        [JsonProperty(PropertyName = "metadata")]
         public Dictionary<string, string> Metadata { get; set; }
+        [JsonProperty(PropertyName = "shopperEmail")]
         public string ShopperEmail { get; set; }
+        [JsonProperty(PropertyName = "shopperReference")]
         public string ShopperReference { get; set; }
+        [JsonProperty(PropertyName = "recurringContract")]
         public string RecurringContract { get; set; }
+        [JsonProperty(PropertyName = "shopperStatement")]
         public string ShopperStatement { get; set; }
+        [JsonProperty(PropertyName = "recurringDetailName")]
         public string RecurringDetailName { get; set; }
+        [JsonProperty(PropertyName = "recurringTokenService")]
         public string RecurringTokenService { get; set; }
+        [JsonProperty(PropertyName = "store")]
         public string Store { get; set; }
+        [JsonProperty(PropertyName = "merchantAccount")]
         public string MerchantAccount { get; set; }
+        [JsonProperty(PropertyName = "currency")]
         public string Currency { get; set; }
+        [JsonProperty(PropertyName = "applicationInfo")]
         public ApplicationInfo ApplicationInfo { get; set; }
-
+        [JsonProperty(PropertyName = "tenderOption")]
         public string TenderOption { get; set; }
+        [JsonProperty(PropertyName = "additionalData")]
         public Dictionary<string, string> AdditionalData { get; set; }
 
 
@@ -33,7 +45,7 @@ namespace Adyen.Model.Terminal
 
         public string ToBase64()
         {
-            var json = this.ToJson();
+            var json = JsonConvert.SerializeObject(this, Formatting.Indented);
             var bytes = System.Text.Encoding.UTF8.GetBytes(json);
             return System.Convert.ToBase64String(bytes);
         }
@@ -61,25 +73,6 @@ namespace Adyen.Model.Terminal
             sb.Append("  AdditionalData: ").Append(AdditionalData).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
-        }
-
-        /// <summary>
-        /// Returns the JSON string presentation of the object
-        /// </summary>
-        /// <returns>JSON string presentation of the object</returns>
-        public string ToJson()
-        {
-            return JsonConvert.SerializeObject(this, Formatting.Indented);
-        }
-
-        /// <summary>
-        /// Returns true if objects are equal
-        /// </summary>
-        /// <param name="input">Object to be compared</param>
-        /// <returns>Boolean</returns>
-        public override bool Equals(object input)
-        {
-            return this.Equals(input as SaleToAcquirerData);
         }
     }
 }

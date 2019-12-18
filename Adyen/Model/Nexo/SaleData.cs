@@ -21,7 +21,9 @@
 //  */
 #endregion
 
+using Adyen.CloudApiSerialization.Converter;
 using Adyen.Model.Terminal;
+using Newtonsoft.Json;
 
 namespace Adyen.Model.Nexo
 {
@@ -51,6 +53,8 @@ namespace Adyen.Model.Nexo
 
         /// <remarks/>
         [System.Xml.Serialization.XmlElementAttribute(Form = System.Xml.Schema.XmlSchemaForm.Unqualified)]
+        [JsonConverter(typeof(JsonBase64Converter))]
+
         public SaleToAcquirerData SaleToAcquirerData;
 
         /// <remarks/>
