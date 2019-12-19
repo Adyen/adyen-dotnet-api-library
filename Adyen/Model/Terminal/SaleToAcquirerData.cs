@@ -1,5 +1,28 @@
-﻿using Adyen.Model.ApplicationInformation;
+﻿#region Licence
+// /*
+//  *                       ######
+//  *                       ######
+//  * ############    ####( ######  #####. ######  ############   ############
+//  * #############  #####( ######  #####. ######  #############  #############
+//  *        ######  #####( ######  #####. ######  #####  ######  #####  ######
+//  * ###### ######  #####( ######  #####. ######  #####  #####   #####  ######
+//  * ###### ######  #####( ######  #####. ######  #####          #####  ######
+//  * #############  #############  #############  #############  #####  ######
+//  *  ############   ############  #############   ############  #####  ######
+//  *                                      ######
+//  *                               #############
+//  *                               ############
+//  *
+//  * Adyen Dotnet API Library
+//  *
+//  * Copyright (c) 2019 Adyen B.V.
+//  * This file is open source and available under the MIT license.
+//  * See the LICENSE file for more info.
+//  */
+#endregion
+using Adyen.Model.ApplicationInformation;
 using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
@@ -45,9 +68,8 @@ namespace Adyen.Model.Terminal
 
         public string ToBase64()
         {
-            var json = JsonConvert.SerializeObject(this, Formatting.Indented);
-            var bytes = System.Text.Encoding.UTF8.GetBytes(json);
-            return System.Convert.ToBase64String(bytes);
+            var json = JsonConvert.SerializeObject(this);
+            return Convert.ToBase64String(Encoding.UTF8.GetBytes((string)json));
         }
 
         /// <summary>

@@ -1,6 +1,29 @@
-﻿using Adyen.Model.ApplicationInformation;
+﻿#region Licence
+// /*
+//  *                       ######
+//  *                       ######
+//  * ############    ####( ######  #####. ######  ############   ############
+//  * #############  #####( ######  #####. ######  #############  #############
+//  *        ######  #####( ######  #####. ######  #####  ######  #####  ######
+//  * ###### ######  #####( ######  #####. ######  #####  #####   #####  ######
+//  * ###### ######  #####( ######  #####. ######  #####          #####  ######
+//  * #############  #############  #############  #############  #####  ######
+//  *  ############   ############  #############   ############  #####  ######
+//  *                                      ######
+//  *                               #############
+//  *                               ############
+//  *
+//  * Adyen Dotnet API Library
+//  *
+//  * Copyright (c) 2019 Adyen B.V.
+//  * This file is open source and available under the MIT license.
+//  * See the LICENSE file for more info.
+//  */
+#endregion
+using Adyen.Model.ApplicationInformation;
 using Adyen.Model.Terminal;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using System;
 using System.Collections.Generic;
 
 namespace Adyen.Test
@@ -8,12 +31,12 @@ namespace Adyen.Test
     [TestClass]
     public class SaleToAcquirerDataTest
     {
-       private string json = "{\r\n  \"metadata\": {\r\n    \"key\": \"value\"\r\n  },\r\n  \"shopperEmail\": \"myemail@mail.com\",\r\n  \"shopperReference\": \"13164308\",\r\n  \"recurringContract\": \"RECURRING,ONECLICK\",\r\n  \"shopperStatement\": \"YOUR SHOPPER STATEMENT\",\r\n  \"recurringDetailName\": \"VALUE\",\r\n  \"recurringTokenService\": \"VALUE\",\r\n  \"store\": \"store value\",\r\n  \"merchantAccount\": \"merchantAccount\",\r\n  \"currency\": \"EUR\",\r\n  \"applicationInfo\": {\r\n    \"adyenLibrary\": {\r\n      \"name\": \"adyen-dotnet-api-library\",\r\n      \"version\": \"3.5.0\"\r\n    },\r\n    \"externalPlatform\": {\r\n      \"integrator\": \"externalPlatformIntegrator\",\r\n      \"name\": \"externalPlatformName\",\r\n      \"version\": \"2.0.0\"\r\n    },\r\n    \"merchantDevice\": {\r\n      \"os\": \"merchantDeviceOS\",\r\n      \"osVersion\": \"10.12.6\",\r\n      \"reference\": \"4c32759faaa7\"\r\n    }\r\n  },\r\n  \"tenderOption\": \"ReceiptHandler,AllowPartialAuthorisation,AskGratuity\",\r\n  \"additionalData\": {\r\n    \"key.key\": \"value\",\r\n    \"key.keyTwo\": \"value2\"\r\n  }\r\n}";
-        
-       [TestMethod]
+        private string json = "{\"metadata\":{\"key\":\"value\"},\"shopperEmail\":\"myemail@mail.com\",\"shopperReference\":\"13164308\",\"recurringContract\":\"RECURRING,ONECLICK\",\"shopperStatement\":\"YOUR SHOPPER STATEMENT\",\"recurringDetailName\":\"VALUE\",\"recurringTokenService\":\"VALUE\",\"store\":\"store value\",\"merchantAccount\":\"merchantAccount\",\"currency\":\"EUR\",\"applicationInfo\":{\"adyenLibrary\":{\"name\":\"adyen-dotnet-api-library\",\"version\":\"3.5.0\"},\"externalPlatform\":{\"integrator\":\"externalPlatformIntegrator\",\"name\":\"externalPlatformName\",\"version\":\"2.0.0\"},\"merchantDevice\":{\"os\":\"merchantDeviceOS\",\"osVersion\":\"10.12.6\",\"reference\":\"4c32759faaa7\"}},\"tenderOption\":\"ReceiptHandler,AllowPartialAuthorisation,AskGratuity\",\"additionalData\":{\"key.key\":\"value\",\"key.keyTwo\":\"value2\"}}";
+
+        [TestMethod]
         public void SerializationTest()
         {
-            var saleToAcquirerData = new SaleToAcquirerData
+            SaleToAcquirerData saleToAcquirerData = new SaleToAcquirerData
             {
                 Metadata = new Dictionary<string, string> { { "key", "value" } },
                 ShopperEmail = "myemail@mail.com",
@@ -40,20 +63,17 @@ namespace Adyen.Test
                 OsVersion = "10.12.6",
                 Reference = "4c32759faaa7"
             };
-            applicationInfo.MerchantDevice = merchantDevice ;
+            applicationInfo.MerchantDevice = merchantDevice;
             saleToAcquirerData.ApplicationInfo = applicationInfo;
             saleToAcquirerData.TenderOption = "ReceiptHandler,AllowPartialAuthorisation,AskGratuity";
-            var additionalData = new Dictionary<string, string> { { "key.key", "value" },{ "key.keyTwo", "value2" } };
+            var additionalData = new Dictionary<string, string> { { "key.key", "value" }, { "key.keyTwo", "value2" } };
             saleToAcquirerData.AdditionalData = additionalData;
-            
-            string saleToAcquirerDataToBase64 = saleToAcquirerData.ToBase64();
-            Assert.AreEqual(JsonToBase64(), saleToAcquirerDataToBase64);
+            Assert.AreEqual(saleToAcquirerData.ToBase64(), JsonToBase64());
         }
 
         private string JsonToBase64()
         {
-            var bytes = System.Text.Encoding.UTF8.GetBytes(json);
-            return System.Convert.ToBase64String(bytes);
+            return Convert.ToBase64String(System.Text.Encoding.UTF8.GetBytes(json));
         }
     }
 }
