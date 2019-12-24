@@ -1,4 +1,4 @@
-﻿#region Licence
+﻿#region License
 // /*
 //  *                       ######
 //  *                       ######
