@@ -92,5 +92,13 @@ namespace Adyen.Model.Nexo
         /// <remarks/>
         [System.Xml.Serialization.XmlAttributeAttribute()]
         public CustomerOrderReqType[] CustomerOrderReq;
+
+        public SaleData()
+        {
+            if (SaleToAcquirerData == null)
+            {
+                SaleToAcquirerData = new SaleToAcquirerData();
+            }
+        }
     }
 }
