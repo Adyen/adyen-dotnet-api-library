@@ -1,7 +1,28 @@
-﻿using Adyen.Model.Payout;
+﻿#region License
+// /*
+//  *                       ######
+//  *                       ######
+//  * ############    ####( ######  #####. ######  ############   ############
+//  * #############  #####( ######  #####. ######  #############  #############
+//  *        ######  #####( ######  #####. ######  #####  ######  #####  ######
+//  * ###### ######  #####( ######  #####. ######  #####  #####   #####  ######
+//  * ###### ######  #####( ######  #####. ######  #####          #####  ######
+//  * #############  #############  #############  #############  #####  ######
+//  *  ############   ############  #############   ############  #####  ######
+//  *                                      ######
+//  *                               #############
+//  *                               ############
+//  *
+//  * Adyen Dotnet API Library
+//  *
+//  * Copyright (c) 2019 Adyen B.V.
+//  * This file is open source and available under the MIT license.
+//  * See the LICENSE file for more info.
+//  */
+#endregion
+using Adyen.Model.Payout;
 using Adyen.Service;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using System;
 
 namespace Adyen.Test
 {

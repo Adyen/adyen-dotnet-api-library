@@ -1,4 +1,4 @@
-﻿#region Licence
+﻿#region License
 // /*
 //  *                       ######
 //  *                       ######
@@ -20,6 +20,10 @@
 //  * See the LICENSE file for more info.
 //  */
 #endregion
+
+using Adyen.CloudApiSerialization.Converter;
+using Adyen.Model.Terminal;
+using Newtonsoft.Json;
 
 namespace Adyen.Model.Nexo
 {
@@ -49,7 +53,9 @@ namespace Adyen.Model.Nexo
 
         /// <remarks/>
         [System.Xml.Serialization.XmlElementAttribute(Form = System.Xml.Schema.XmlSchemaForm.Unqualified)]
-        public string SaleToAcquirerData;
+        [JsonConverter(typeof(JsonBase64Converter))]
+
+        public SaleToAcquirerData SaleToAcquirerData;
 
         /// <remarks/>
         [System.Xml.Serialization.XmlElementAttribute(Form = System.Xml.Schema.XmlSchemaForm.Unqualified)]
@@ -86,5 +92,13 @@ namespace Adyen.Model.Nexo
         /// <remarks/>
         [System.Xml.Serialization.XmlAttributeAttribute()]
         public CustomerOrderReqType[] CustomerOrderReq;
+
+        public SaleData()
+        {
+            if (SaleToAcquirerData == null)
+            {
+                SaleToAcquirerData = new SaleToAcquirerData();
+            }
+        }
     }
 }
