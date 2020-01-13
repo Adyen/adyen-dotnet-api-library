@@ -24,7 +24,7 @@
 using Adyen.Constants;
 using Adyen.Service;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-
+using Adyen.Model.Modification;
 namespace Adyen.Test
 {
     [TestClass]
@@ -155,5 +155,17 @@ namespace Adyen.Test
             Assert.AreEqual(cancelRequest.ApplicationInfo.AdyenLibrary.Name,ClientConfig.LibName);
             Assert.AreEqual(cancelRequest.ApplicationInfo.AdyenLibrary.Version,ClientConfig.LibVersion);
         }
+
+        [TestMethod]
+        public void TestPendingRefundReceived()
+        {
+            var client = CreateMockTestClientApiKeyBasedRequest("Mocks/voidPendingRefund-received.json");
+            var checkout = new Checkout(client);
+            var modification = new Modification(client);
+            var voidPendingRefundRequest = new VoidPendingRefundRequest();
+            var modificationResult = modification.VoidPendingRefund(voidPendingRefundRequest);
+            Assert.AreEqual(modificationResult.Response, Model.Enum.ResponseEnum.VoidPendingRefundReceived);
+        }
+
     }
 }

@@ -22,14 +22,18 @@
 #endregion
 
 using System.Collections.Generic;
-using Adyen.Constants;
 
-namespace Adyen.Service.Resource.Checkout
+namespace Adyen.Service.Resource.Payment
 {
-    public class PaymentMethods : ServiceResource
+    public class GetAuthenticationResult : ServiceResource
     {
-        public PaymentMethods(AbstractService abstractService)
-            : base(abstractService, abstractService.Client.Config.CheckoutEndpoint + "/" + ClientConfig.CheckoutApiVersion + "/paymentsLinks", new List<string> { "MerchantAccount", "reference", "amount" })
+        public GetAuthenticationResult(AbstractService abstractService)
+            : base(abstractService, abstractService.Client.Config.Endpoint + "/pal/servlet/Payment/" + abstractService.Client.ApiVersion + "/getAuthenticationResult",
+                new List<string>
+                {
+                    "merchantAccount",
+                    "pspReference"
+                })
         {
         }
     }

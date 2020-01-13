@@ -22,14 +22,17 @@
 #endregion
 
 using System.Collections.Generic;
-using Adyen.Constants;
 
-namespace Adyen.Service.Resource.Checkout
+namespace Adyen.Service.Resource.Modification
 {
-    public class PaymentMethods : ServiceResource
+    public class VoidPendingRefund : ServiceResource
     {
-        public PaymentMethods(AbstractService abstractService)
-            : base(abstractService, abstractService.Client.Config.CheckoutEndpoint + "/" + ClientConfig.CheckoutApiVersion + "/paymentsLinks", new List<string> { "MerchantAccount", "reference", "amount" })
+        public VoidPendingRefund(AbstractService abstractService) : base(abstractService, abstractService.Client.Config.Endpoint + "/pal/servlet/Payment/" + abstractService.Client.ApiVersion + "/voidPendingRefund",
+            new List<string>
+            {
+                "merchantAccount",
+                "originalReference"
+            })
         {
         }
     }

@@ -21,15 +21,17 @@
 //  */
 #endregion
 
-using System.Collections.Generic;
 using Adyen.Constants;
+using System;
+using System.Collections.Generic;
+using System.Text;
 
 namespace Adyen.Service.Resource.Checkout
 {
-    public class PaymentMethods : ServiceResource
+    public class PaymentLinks : ServiceResource
     {
-        public PaymentMethods(AbstractService abstractService)
-            : base(abstractService, abstractService.Client.Config.CheckoutEndpoint + "/" + ClientConfig.CheckoutApiVersion + "/paymentsLinks", new List<string> { "MerchantAccount", "reference", "amount" })
+        public PaymentLinks(AbstractService abstractService)
+            : base(abstractService, abstractService.Client.Config.CheckoutEndpoint + "/" + ClientConfig.CheckoutApiVersion + "/payments/details", new List<string> { "paymentData", "details" })
         {
         }
     }

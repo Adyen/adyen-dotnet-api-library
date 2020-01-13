@@ -62,6 +62,11 @@ namespace Adyen.Model.Enum
         /// Enum CancelOrRefundReceived for "[cancelOrRefund-received]"
         /// </summary>
         [EnumMember(Value = "[adjustAuthorisation-received]")]
-        AdjustAuthorisationReceived
+        AdjustAuthorisationReceived,
+        /// <summary>
+        /// Enum VoidPendingRefundReceived for "[voidPendingRefund-received]"
+        /// </summary>
+        [EnumMember(Value = "[voidPendingRefund-received]")]
+        VoidPendingRefundReceived
     }
 }
