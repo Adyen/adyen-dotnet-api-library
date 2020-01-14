@@ -181,7 +181,7 @@ namespace Adyen.Test
             var client = CreateMockTestClientRequest("Mocks/authentication-result-success-3ds1.json");
             var payment = new Payment(client);
             var authenticationResultRequest = new AuthenticationResultRequest();
-            var authenticationResultResponse = payment.AuthenticationResult(authenticationResultRequest);
+            var authenticationResultResponse = payment.GetAuthenticationResult(authenticationResultRequest);
             Assert.IsNotNull(authenticationResultResponse);
             Assert.IsNotNull(authenticationResultResponse.ThreeDS1Result);
             Assert.IsNull(authenticationResultResponse.ThreeDS2Result);
@@ -193,8 +193,7 @@ namespace Adyen.Test
             var client = CreateMockTestClientRequest("Mocks/authentication-result-success-3ds2.json");
             var payment = new Payment(client);
             var authenticationResultRequest = new AuthenticationResultRequest();
-            payment.AuthenticationResult(authenticationResultRequest);
-            var authenticationResultResponse = payment.AuthenticationResult(authenticationResultRequest);
+            var authenticationResultResponse = payment.GetAuthenticationResult(authenticationResultRequest);
             Assert.IsNotNull(authenticationResultResponse);
             Assert.IsNull(authenticationResultResponse.ThreeDS1Result);
             Assert.IsNotNull(authenticationResultResponse.ThreeDS2Result);

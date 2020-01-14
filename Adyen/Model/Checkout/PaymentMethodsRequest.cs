@@ -30,7 +30,6 @@ using System.Runtime.Serialization;
 using System.Text;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
-using Adyen.Model.ApplicationInformation;
 
 namespace Adyen.Model.Checkout
 {
@@ -83,7 +82,7 @@ namespace Adyen.Model.Checkout
         /// <param name="shopperLocale">The combination of a language code and a country code to specify the language to be used in the payment..</param>
         /// <param name="shopperReference">The shopper&#x27;s reference to uniquely identify this shopper (e.g. user ID or account ID). &gt; This field is required for recurring payments..</param>
         /// <param name="threeDSAuthenticationOnly">If set to true, you will only perform the [3D Secure 2 authentication](https://docs.adyen.com/checkout/3d-secure/other-3ds-flows/authentication-only), and not the payment authorisation..</param>
-        public PaymentMethodsRequest(AnyOfPaymentMethodsRequestAdditionalData additionalData = default(AnyOfPaymentMethodsRequestAdditionalData), List<string> allowedPaymentMethods = default(List<string>), Amount amount = default(Amount), List<string> blockedPaymentMethods = default(List<string>), ChannelEnum? channel = default(ChannelEnum?), string countryCode = default(string), bool? enableRealTimeUpdate = default(bool?), string merchantAccount = default(string), string shopperLocale = default(string), string shopperReference = default(string), bool? threeDSAuthenticationOnly = default(bool?))
+        public PaymentMethodsRequest(Dictionary<string, string> additionalData = default(Dictionary<string, string>), List<string> allowedPaymentMethods = default(List<string>), Amount amount = default(Amount), List<string> blockedPaymentMethods = default(List<string>), ChannelEnum? channel = default(ChannelEnum?), string countryCode = default(string), bool? enableRealTimeUpdate = default(bool?), string merchantAccount = default(string), string shopperLocale = default(string), string shopperReference = default(string), bool? threeDSAuthenticationOnly = default(bool?))
         {
             // to ensure "merchantAccount" is required (not null)
             if (merchantAccount == null)
@@ -111,7 +110,7 @@ namespace Adyen.Model.Checkout
         /// </summary>
         /// <value>This field contains additional data, which may be required for a particular payment request.  The &#x60;additionalData&#x60; object consists of entries, each of which includes the key and value.</value>
         [DataMember(Name = "additionalData", EmitDefaultValue = false)]
-        public AnyOfPaymentMethodsRequestAdditionalData AdditionalData { get; set; }
+        public Dictionary<string, string> AdditionalData { get; set; }
 
         /// <summary>
         /// List of payments methods to be presented to the shopper. To refer to payment methods, use their &#x60;brandCode&#x60; from [Payment methods overview](https://docs.adyen.com/payment-methods).
