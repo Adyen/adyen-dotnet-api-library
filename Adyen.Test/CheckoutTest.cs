@@ -455,7 +455,7 @@ namespace Adyen.Test
             Assert.AreEqual(paymentResponse.ResultCode, ResultCodeEnum.ChallengeShopper);
             Assert.AreEqual(paymentResponse.PaymentData, "Te1CMIy1vKQTYsSHZ+gRbFpQy4d4n2HLD3c2b7xKnRNpWzWPuI=");
             Assert.AreEqual(paymentResponse.Action.PaymentData, "Te1CMIy1vKQTYsSHZ+gRbFpQy4d4n2HLD3c2b7xKnRNpWzWPuI=");
-            Assert.AreEqual(paymentResponse.Action.Type, Model.Checkout.CheckoutPaymentsAction.CheckoutActionType.ThreeDS2Challenge);
+            Assert.AreEqual(paymentResponse.Action.Type, Model.Checkout.CheckoutPaymentsAction.TypeEnum.ThreeDS2Challenge);
             Assert.AreEqual(paymentResponse.Action.Token, "S0zYWQ0MGEwMjU2MjEifQ==");
             Assert.AreEqual(paymentResponse.Action.PaymentMethodType, "scheme");
             Assert.AreEqual(paymentResponse.Details[0].Key, "threeds2.challengeResult");
@@ -504,6 +504,23 @@ namespace Adyen.Test
             Assert.AreEqual(paymentLinksResponse.ExpiresAt, "2019-12-17T10:05:29Z");
             Assert.AreEqual(paymentLinksResponse.Reference, "YOUR_ORDER_NUMBER");
             Assert.IsNotNull(paymentLinksResponse.Amount);
+        }
+
+        /// <summary>
+        /// Test success flow for multibanco
+        /// Post /payments 
+        /// </summary>
+        [TestMethod]
+        public void MultibancoPaymentSuccessMockedTest()
+        {
+            var client = CreateMockTestClientRequest("Mocks/checkout/paymentsresult-multibanco-success.json");
+            var checkout = new Checkout(client);
+            var paymentRequest = CreatePaymentRequestCheckout();
+            var paymentResponse = checkout.Payments(paymentRequest);
+            Assert.AreEqual(paymentResponse.Action.PaymentMethodType,"multibanco");
+            Assert.AreEqual(paymentResponse.Action.ExpiresAt, "2020-01-12T09:37:49");
+            Assert.AreEqual(paymentResponse.Action.Reference, "501 422 944");
+            Assert.AreEqual(paymentResponse.Action.Entity, "12101");
         }
     }
 }

@@ -199,6 +199,7 @@ namespace Adyen.Test
             Assert.IsNull(authenticationResultResponse.ThreeDS1Result);
             Assert.IsNotNull(authenticationResultResponse.ThreeDS2Result);
         }
+        
         private string GetAdditionalData(Dictionary<string, string> additionalData, string assertKey)
         {
             string result = "";
