@@ -35,7 +35,7 @@ namespace Adyen.Model.Checkout
     /// CheckoutPaymentsAction
     /// </summary>
     [DataContract]
-    public partial class CheckoutPaymentsAction : IEquatable<CheckoutPaymentsAction>, IValidatableObject
+    public class CheckoutPaymentsAction : IEquatable<CheckoutPaymentsAction>, IValidatableObject
     {
         /// <summary>
         /// Enum that specifies the action that needs to be taken by the client.
