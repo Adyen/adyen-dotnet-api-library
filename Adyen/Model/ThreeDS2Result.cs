@@ -1,4 +1,4 @@
-﻿#region Licence
+﻿#region License
 // /*
 //  *                       ######
 //  *                       ######
@@ -20,9 +20,6 @@
 //  * See the LICENSE file for more info.
 //  */
 #endregion
-
-using Adyen.Model.Enum;
-using Adyen.Util;
 using Newtonsoft.Json;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;

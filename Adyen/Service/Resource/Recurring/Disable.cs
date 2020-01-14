@@ -1,4 +1,4 @@
-﻿#region Licence
+﻿#region License
 // /*
 //  *                       ######
 //  *                       ######
@@ -28,7 +28,7 @@ namespace Adyen.Service.Resource.Recurring
     public class Disable:Resource
     {
         public Disable(AbstractService abstractService)
-            : base(abstractService, abstractService.Client.Config.Endpoint + "/pal/servlet/Recurring/" + abstractService.Client.ApiVersion + "/disable",
+            : base(abstractService, abstractService.Client.Config.Endpoint + "/pal/servlet/Recurring/" + abstractService.Client.RecurringApiVersion + "/disable",
                 new List<string>
                 {
                     "merchantAccount",

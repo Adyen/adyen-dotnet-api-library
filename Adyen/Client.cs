@@ -1,4 +1,4 @@
-﻿#region Licence
+﻿#region License
 // /*
 //  *                       ######
 //  *                       ######
@@ -128,6 +128,14 @@ namespace Adyen
             get
             {
                 return ClientConfig.ApiVersion;
+            }
+        }
+
+        public string RecurringApiVersion
+        {
+            get
+            {
+                return ClientConfig.RecurringApiVersion;
             }
         }
 
