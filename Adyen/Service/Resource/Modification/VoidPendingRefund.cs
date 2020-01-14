@@ -23,20 +23,17 @@
 
 using System.Collections.Generic;
 
-namespace Adyen.Service.Resource.Recurring
+namespace Adyen.Service.Resource.Modification
 {
-    public class Disable:Resource
+    public class VoidPendingRefund : ServiceResource
     {
-        public Disable(AbstractService abstractService)
-            : base(abstractService, abstractService.Client.Config.Endpoint + "/pal/servlet/Recurring/" + abstractService.Client.RecurringApiVersion + "/disable",
-                new List<string>
-                {
-                    "merchantAccount",
-                    "recurring.contract",
-                    "shopperReference"
-                })
+        public VoidPendingRefund(AbstractService abstractService) : base(abstractService, abstractService.Client.Config.Endpoint + "/pal/servlet/Payment/" + abstractService.Client.ApiVersion + "/voidPendingRefund",
+            new List<string>
+            {
+                "merchantAccount",
+                "originalReference"
+            })
         {
-
         }
     }
 }

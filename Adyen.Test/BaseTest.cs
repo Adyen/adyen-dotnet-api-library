@@ -38,6 +38,7 @@ using Adyen.Model;
 using Environment = System.Environment;
 using Amount = Adyen.Model.Amount;
 using PaymentResult = Adyen.Model.PaymentResult;
+using Adyen.Model.Checkout;
 
 namespace Adyen.Test
 {
@@ -171,7 +172,6 @@ namespace Adyen.Test
                 MerchantAccount = "MerchantAccount",
                 PaymentMethod = applePay
             };
-
             return paymentsRequest;
         }
 
@@ -195,7 +195,6 @@ namespace Adyen.Test
                 MerchantAccount = "MerchantAccount",
                 PaymentMethod = googlePay
             };
-
             return paymentsRequest;
         }
 
@@ -240,20 +239,20 @@ namespace Adyen.Test
         /// Checkout paymentMethodsRequest
         /// </summary>
         /// <returns></returns>
-        protected Model.Checkout.PaymentMethodsRequest CreatePaymentMethodRequest(string merchantAccount)
+        protected PaymentMethodsRequest CreatePaymentMethodRequest(string merchantAccount)
         {
-            return new Model.Checkout.PaymentMethodsRequest(MerchantAccount: merchantAccount);
+            return new PaymentMethodsRequest(merchantAccount: merchantAccount);
         }
 
         /// <summary>
         /// Checkout paymentsessionRequest
         /// </summary>
         /// <returns></returns>
-        protected Model.Checkout.PaymentSessionRequest CreatePaymentSessionRequest()
+        protected PaymentSessionRequest CreatePaymentSessionRequest()
         {
-            return new Model.Checkout.PaymentSessionRequest(MerchantAccount: "MerchantAccount", Reference: "MerchantReference",
+            return new PaymentSessionRequest(MerchantAccount: "MerchantAccount", Reference: "MerchantReference",
                  Amount: new Model.Checkout.Amount("EUR", 1200), ReturnUrl: @"https://your-company.com/...", CountryCode: "NL",
-                 Channel: Model.Checkout.PaymentSessionRequest.ChannelEnum.Web, SdkVersion: "1.3.0");
+                 Channel: PaymentSessionRequest.ChannelEnum.Web, SdkVersion: "1.3.0");
         }
 
         /// <summary>
@@ -495,6 +494,52 @@ namespace Adyen.Test
             return header;
         }
 
+        /// <summary>
+        /// Create dummy VoidPendingRefundRequest
+        /// </summary>
+        /// <returns>VoidPendingRefundRequest</returns>
+        protected VoidPendingRefundRequest CreateVoidPendingRefundRequest()
+        {
+            return new VoidPendingRefundRequest
+            {
+                TenderReference = "TenderReference"
+            };
+        }
+
+        /// <summary>
+        /// Create dummy AuthenticationResultRequest
+        /// </summary>
+        /// <returns>AuthenticationResultRequest</returns>
+        protected AuthenticationResultRequest CreateAuthenticationResultRequest()
+        {
+            return new AuthenticationResultRequest
+            {
+                MerchantAccount = "MerchantAccount",
+                PspReference = "pspReference"
+            };
+        }
+
+
+        /// <summary>
+        /// Create dummy CreatePaymentLinkRequest
+        /// </summary>
+        /// <returns>CreatePaymentLinkRequest</returns>
+        protected CreatePaymentLinkRequest CreatePaymentLinkRequestSuccess()
+        {
+            return new CreatePaymentLinkRequest()
+            {
+                Reference = "YOUR_REFERENCE_NUMBER",
+                Amount = new Model.Checkout.Amount("EUR", 100),
+                CountryCode = "GR",
+                MerchantAccount = "MerchantAccount",
+                ShopperReference = "ShopperReference",
+                ShopperEmail = "info@ShopperEmail.com",
+                ShopperLocale = "GR",
+                ExpiresAt = "2019-12-17T10:59:29",
+                BillingAddress = new Model.Checkout.Address(Country: "GR"),
+                DeliveryAddress = new Model.Checkout.Address(Country: "GR"),
+            };
+        }
 
         private PaymentResult GetAdditionaData(PaymentResult paymentResult)
         {

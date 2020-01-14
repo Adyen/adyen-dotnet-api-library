@@ -33,13 +33,14 @@ namespace Adyen.Service
         private readonly Authorise _authorise;
         private readonly Authorise3D _authorise3D;
         private readonly Authorise3DS2 _authorise3DS2;
-
+        private readonly GetAuthenticationResult _getAuthenticationResult;
         public Payment(Client client)
             : base(client)
         {
             _authorise = new Authorise(this);
             _authorise3D = new Authorise3D(this);
             _authorise3DS2 = new Authorise3DS2(this);
+            _getAuthenticationResult = new GetAuthenticationResult(this);
         }
 
         public PaymentResult Authorise(PaymentRequest paymentRequest, RequestOptions requestOptions = null)
@@ -96,6 +97,13 @@ namespace Adyen.Service
             var jsonRequest = JsonConvert.SerializeObject(paymentRequest);
             var jsonResponse = await _authorise3DS2.RequestAsync(jsonRequest, requestOptions);
             return JsonConvert.DeserializeObject<PaymentResult>(jsonResponse);
+        }
+
+        public AuthenticationResultResponse GetAuthenticationResult(AuthenticationResultRequest authenticationResultRequest)
+        {
+            var jsonRequest = JsonConvert.SerializeObject(authenticationResultRequest);
+            var jsonResponse = _getAuthenticationResult.Request(jsonRequest);
+            return JsonConvert.DeserializeObject<AuthenticationResultResponse>(jsonResponse);
         }
     }
 }

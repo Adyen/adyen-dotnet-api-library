@@ -23,20 +23,18 @@
 
 using System.Collections.Generic;
 
-namespace Adyen.Service.Resource.Recurring
+namespace Adyen.Service.Resource.Payment
 {
-    public class Disable:Resource
+    public class GetAuthenticationResult : ServiceResource
     {
-        public Disable(AbstractService abstractService)
-            : base(abstractService, abstractService.Client.Config.Endpoint + "/pal/servlet/Recurring/" + abstractService.Client.RecurringApiVersion + "/disable",
+        public GetAuthenticationResult(AbstractService abstractService)
+            : base(abstractService, abstractService.Client.Config.Endpoint + "/pal/servlet/Payment/" + abstractService.Client.ApiVersion + "/getAuthenticationResult",
                 new List<string>
                 {
                     "merchantAccount",
-                    "recurring.contract",
-                    "shopperReference"
+                    "pspReference"
                 })
         {
-
         }
     }
 }

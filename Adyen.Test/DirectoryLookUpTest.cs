@@ -71,8 +71,6 @@ namespace Adyen.Test
             //Get payment method by name
             var visa = paymentMethods.FirstOrDefault(x => x.Name == "VISA");
             Assert.AreEqual(BrandCodes.Visa, visa.BrandCode);
-
-            //Assert.IsTrue(visa.IsCard());
         }
 
         [TestMethod]

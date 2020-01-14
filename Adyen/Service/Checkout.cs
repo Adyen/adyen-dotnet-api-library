@@ -37,6 +37,7 @@ namespace Adyen.Service
         private PaymentDetails _paymentDetails;
         private PaymentSession _paymentSession;
         private PaymentsResult _paymentsResult;
+        private PaymentLinks _paymentLinksResult;
 
         public Checkout(Client client) : base(client)
         {
@@ -46,6 +47,7 @@ namespace Adyen.Service
             _paymentDetails = new PaymentDetails(this);
             _paymentSession = new PaymentSession(this);
             _paymentsResult = new PaymentsResult(this);
+            _paymentLinksResult = new PaymentLinks(this);
         }
 
         /// <summary>
@@ -53,7 +55,7 @@ namespace Adyen.Service
         /// </summary>
         /// <param name="paymentRequest"></param>
         /// <param name="requestOptions"></param>
-        /// <returns></returns>
+        /// <returns>PaymentsResponse</returns>
         public PaymentsResponse Payments(PaymentRequest paymentRequest, RequestOptions requestOptions = null)
         {
             var jsonRequest = Util.JsonOperation.SerializeRequest(paymentRequest);
@@ -66,7 +68,7 @@ namespace Adyen.Service
         /// </summary>
         /// <param name="paymentRequest"></param>
         /// <param name="requestOptions"></param>
-        /// <returns></returns>
+        /// <returns>PaymentsResponse</returns>
         public async Task<PaymentsResponse> PaymentsAsync(PaymentRequest paymentRequest, RequestOptions requestOptions = null)
         {
             var jsonRequest = Util.JsonOperation.SerializeRequest(paymentRequest);
@@ -78,7 +80,7 @@ namespace Adyen.Service
         /// POST /paymentMethods API call
         /// </summary>
         /// <param name="paymentMethodsRequest"></param>
-        /// <returns></returns>
+        /// <returns>PaymentMethodsResponse</returns>
         public PaymentMethodsResponse PaymentMethods(PaymentMethodsRequest paymentMethodsRequest)
         {
             var jsonRequest = Util.JsonOperation.SerializeRequest(paymentMethodsRequest);
@@ -90,7 +92,7 @@ namespace Adyen.Service
         /// POST /paymentMethods API call async
         /// </summary>
         /// <param name="paymentMethodsRequest"></param>
-        /// <returns></returns>
+        /// <returns>PaymentMethodsResponse</returns>
         public async Task<PaymentMethodsResponse> PaymentMethodsAsync(PaymentMethodsRequest paymentMethodsRequest)
         {
             var jsonRequest = Util.JsonOperation.SerializeRequest(paymentMethodsRequest);
@@ -102,7 +104,7 @@ namespace Adyen.Service
         ///  POST payments/details API call
         /// </summary>
         /// <param name="paymentsDetailsRequest"></param>
-        /// <returns></returns>
+        /// <returns>PaymentsResponse</returns>
         public PaymentsResponse PaymentDetails(PaymentsDetailsRequest paymentsDetailsRequest)
         {
             var jsonRequest = Util.JsonOperation.SerializeRequest(paymentsDetailsRequest);
@@ -114,7 +116,7 @@ namespace Adyen.Service
         ///  POST payments/details API call async
         /// </summary>
         /// <param name="paymentsDetailsRequest"></param>
-        /// <returns></returns>
+        /// <returns>PaymentsResponse</returns>
         public async Task<PaymentsResponse> PaymentDetailsAsync(PaymentsDetailsRequest paymentsDetailsRequest)
         {
             var jsonRequest = Util.JsonOperation.SerializeRequest(paymentsDetailsRequest);
@@ -126,7 +128,7 @@ namespace Adyen.Service
         /// POST /paymentSession API call
         /// </summary>
         /// <param name="paymentSessionRequest"></param>
-        /// <returns></returns>
+        /// <returns>PaymentSessionResponse</returns>
         public PaymentSessionResponse PaymentSession(PaymentSessionRequest paymentSessionRequest)
         {
             var jsonRequest = Util.JsonOperation.SerializeRequest(paymentSessionRequest);
@@ -138,7 +140,7 @@ namespace Adyen.Service
         /// POST /paymentSession API call async
         /// </summary>
         /// <param name="paymentSessionRequest"></param>
-        /// <returns></returns>
+        /// <returns>PaymentSessionResponse</returns>
         public async Task<PaymentSessionResponse> PaymentSessionAsync(PaymentSessionRequest paymentSessionRequest)
         {
             var jsonRequest = Util.JsonOperation.SerializeRequest(paymentSessionRequest);
@@ -150,7 +152,7 @@ namespace Adyen.Service
         /// POST payments/result API call
         /// </summary>
         /// <param name="paymentResultRequest"></param>
-        /// <returns></returns>
+        /// <returns>PaymentResultResponse</returns>
         public PaymentResultResponse PaymentsResult(PaymentResultRequest paymentResultRequest)
         {
             var jsonRequest = Util.JsonOperation.SerializeRequest(paymentResultRequest);
@@ -162,12 +164,24 @@ namespace Adyen.Service
         /// POST payments/result API call async
         /// </summary>
         /// <param name="paymentResultRequest"></param>
-        /// <returns></returns>
+        /// <returns>PaymentResultResponse</returns>
         public async Task<PaymentResultResponse> PaymentsResultAsync(PaymentResultRequest paymentResultRequest)
         {
             var jsonRequest = Util.JsonOperation.SerializeRequest(paymentResultRequest);
             var jsonResponse = await _paymentsResult.RequestAsync(jsonRequest);
             return JsonConvert.DeserializeObject<PaymentResultResponse>(jsonResponse);
+        }
+
+        /// <summary>
+        /// POST /paymentsLinks API call 
+        /// </summary>
+        /// <param name="createPaymentLinkRequest"></param>
+        /// <returns>CreatePaymentLinkResponse</returns>
+        public CreatePaymentLinkResponse PaymentLinks(CreatePaymentLinkRequest createPaymentLinkRequest)
+        {
+            var jsonRequest = Util.JsonOperation.SerializeRequest(createPaymentLinkRequest);
+            var jsonResponse =  _paymentLinksResult.Request(jsonRequest);
+            return JsonConvert.DeserializeObject<CreatePaymentLinkResponse>(jsonResponse);
         }
     }
 }

@@ -22,6 +22,7 @@
 #endregion
 
 using Adyen.Constants;
+using Adyen.Model;
 using Adyen.Model.Enum;
 using Adyen.Service;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
@@ -160,13 +161,11 @@ namespace Adyen.Test
         public void TestPaymentRequestApplicationInfo()
         {
             var paymentRequest = MockPaymentData.CreateFullPaymentRequest();
-
-
-
             Assert.IsNotNull(paymentRequest.ApplicationInfo);
             Assert.AreEqual(paymentRequest.ApplicationInfo.AdyenLibrary.Name, ClientConfig.LibName);
             Assert.AreEqual(paymentRequest.ApplicationInfo.AdyenLibrary.Version, ClientConfig.LibVersion);
         }
+
         [TestMethod]
         public void TestPaymentRequest3DApplicationInfo()
         {
@@ -176,6 +175,30 @@ namespace Adyen.Test
             Assert.AreEqual(paymentRequest.ApplicationInfo.AdyenLibrary.Version, ClientConfig.LibVersion);
         }
 
+        [TestMethod]
+        public void TestAuthenticationResult3ds1Success()
+        {
+            var client = CreateMockTestClientRequest("Mocks/authentication-result-success-3ds1.json");
+            var payment = new Payment(client);
+            var authenticationResultRequest = new AuthenticationResultRequest();
+            var authenticationResultResponse = payment.GetAuthenticationResult(authenticationResultRequest);
+            Assert.IsNotNull(authenticationResultResponse);
+            Assert.IsNotNull(authenticationResultResponse.ThreeDS1Result);
+            Assert.IsNull(authenticationResultResponse.ThreeDS2Result);
+        }
+
+        [TestMethod]
+        public void TestAuthenticationResult3ds2Success()
+        {
+            var client = CreateMockTestClientRequest("Mocks/authentication-result-success-3ds2.json");
+            var payment = new Payment(client);
+            var authenticationResultRequest = new AuthenticationResultRequest();
+            var authenticationResultResponse = payment.GetAuthenticationResult(authenticationResultRequest);
+            Assert.IsNotNull(authenticationResultResponse);
+            Assert.IsNull(authenticationResultResponse.ThreeDS1Result);
+            Assert.IsNotNull(authenticationResultResponse.ThreeDS2Result);
+        }
+        
         private string GetAdditionalData(Dictionary<string, string> additionalData, string assertKey)
         {
             string result = "";

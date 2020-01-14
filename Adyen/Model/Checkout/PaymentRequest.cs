@@ -508,6 +508,13 @@ namespace Adyen.Model.Checkout
         [DataMember(Name = "enableRecurring", EmitDefaultValue = false)]
         public bool? EnableRecurring { get; set; }
 
+        /// <summary>
+        /// Choose if a specific transaction should use the Real-time Account Updater, regardless of other settings.
+        /// </summary>
+        /// <value>Choose if a specific transaction should use the Real-time Account Updater, regardless of other settings.</value>
+        [DataMember(Name = "enableRealTimeUpdate", EmitDefaultValue = false)]
+        [JsonProperty(PropertyName = "enableRealTimeUpdate")]
+        public bool? EnableRealTimeUpdate { get; set; }
 
         /// <summary>
         /// An integer value that is added to the normal fraud score. The value can be either positive or negative.
@@ -571,6 +578,14 @@ namespace Adyen.Model.Checkout
         /// <value>Authentication data produced by an MPI (Mastercard SecureCode or Verified By Visa).</value>
         [DataMember(Name = "mpiData", EmitDefaultValue = false)]
         public ThreeDSecureData MpiData { get; set; }
+
+
+        /// <summary>
+        /// If set to true, you will only perform the [3D Secure 2 authentication](https://docs.adyen.com/checkout/3d-secure/other-3ds-flows/authentication-only), and not the payment authorisation.
+        /// </summary>
+        /// <value>If set to true, you will only perform the [3D Secure 2 authentication](https://docs.adyen.com/checkout/3d-secure/other-3ds-flows/authentication-only), and not the payment authorisation.</value>
+        [DataMember(Name = "threeDSAuthenticationOnly", EmitDefaultValue = false)]
+        public bool? ThreeDSAuthenticationOnly { get; set; }
 
         /// <summary>
         /// Gets or Sets Order
@@ -822,6 +837,7 @@ namespace Adyen.Model.Checkout
             sb.Append("  EnableOneClick: ").Append(EnableOneClick).Append("\n");
             sb.Append("  EnablePayOut: ").Append(EnablePayOut).Append("\n");
             sb.Append("  EnableRecurring: ").Append(EnableRecurring).Append("\n");
+            sb.Append("  EnableRealTimeUpdate: ").Append(EnableRealTimeUpdate).Append("\n");
             sb.Append("  EntityType: ").Append(EntityType).Append("\n");
             sb.Append("  FraudOffset: ").Append(FraudOffset).Append("\n");
             sb.Append("  Installments: ").Append(Installments).Append("\n");
@@ -859,6 +875,7 @@ namespace Adyen.Model.Checkout
             sb.Append("  Store: ").Append(Store).Append("\n");
             sb.Append("  TelephoneNumber: ").Append(TelephoneNumber).Append("\n");
             sb.Append("  ThreeDS2RequestData: ").Append(ThreeDS2RequestData).Append("\n");
+            sb.Append("  ThreeDSAuthenticationOnly: ").Append(ThreeDSAuthenticationOnly).Append("\n");
             sb.Append("  TotalsGroup: ").Append(TotalsGroup).Append("\n");
             sb.Append("  TrustedShopper: ").Append(TrustedShopper).Append("\n");
             sb.Append("}\n");
@@ -1009,6 +1026,10 @@ namespace Adyen.Model.Checkout
                     this.EnableRecurring == input.EnableRecurring ||
                     (this.EnableRecurring != null &&
                     this.EnableRecurring.Equals(input.EnableRecurring))
+                ) && (
+                    this.EnableRealTimeUpdate == input.EnableRealTimeUpdate ||
+                    (this.EnableRecurring != null &&
+                    this.EnableRealTimeUpdate.Equals(input.EnableRealTimeUpdate))
                 ) &&
                 (
                     this.EntityType == input.EntityType ||
@@ -1196,6 +1217,11 @@ namespace Adyen.Model.Checkout
                     this.ThreeDS2RequestData.Equals(input.ThreeDS2RequestData))
                 ) &&
                 (
+                    this.ThreeDSAuthenticationOnly == input.ThreeDSAuthenticationOnly ||
+                    (this.ThreeDSAuthenticationOnly != null &&
+                    this.ThreeDSAuthenticationOnly.Equals(input.ThreeDSAuthenticationOnly))
+                ) &&
+                (
                     this.TotalsGroup == input.TotalsGroup ||
                     (this.TotalsGroup != null &&
                     this.TotalsGroup.Equals(input.TotalsGroup))
@@ -1262,6 +1288,8 @@ namespace Adyen.Model.Checkout
                     hashCode = hashCode * 59 + this.EnablePayOut.GetHashCode();
                 if (this.EnableRecurring != null)
                     hashCode = hashCode * 59 + this.EnableRecurring.GetHashCode();
+                if (this.EnableRealTimeUpdate != null)
+                    hashCode = hashCode * 59 + this.EnableRealTimeUpdate.GetHashCode();
                 if (this.EntityType != null)
                     hashCode = hashCode * 59 + this.EntityType.GetHashCode();
                 if (this.FraudOffset != null)
@@ -1336,6 +1364,8 @@ namespace Adyen.Model.Checkout
                     hashCode = hashCode * 59 + this.TelephoneNumber.GetHashCode();
                 if (this.ThreeDS2RequestData != null)
                     hashCode = hashCode * 59 + this.ThreeDS2RequestData.GetHashCode();
+                if (this.ThreeDSAuthenticationOnly != null)
+                    hashCode = hashCode * 59 + this.ThreeDSAuthenticationOnly.GetHashCode();
                 if (this.TotalsGroup != null)
                     hashCode = hashCode * 59 + this.TotalsGroup.GetHashCode();
                 if (this.TrustedShopper != null)
@@ -1380,3 +1410,5 @@ namespace Adyen.Model.Checkout
     }
 
 }
+
+

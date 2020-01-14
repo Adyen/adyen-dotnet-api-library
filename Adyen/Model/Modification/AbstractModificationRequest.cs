@@ -21,13 +21,10 @@
 //  */
 #endregion
 
-using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Runtime.Serialization;
 using System.Text;
-using Adyen.Constants;
-using Adyen.Model.ApplicationInformation;
 
 namespace Adyen.Model.Modification
 {
@@ -57,17 +54,31 @@ namespace Adyen.Model.Modification
 
         public ThreeDSecureData ThreeDSecureData { get; set; }
 
+        [DataMember(Name = "uniqueTerminalId", EmitDefaultValue = false)]
+
+        public string UniqueTerminalId { get; set; }
+
+        [DataMember(Name = "originalMerchantReference", EmitDefaultValue = false)]
+
+        public string OriginalMerchantReference { get; set; }
+
+        [DataMember(Name = "tenderReference", EmitDefaultValue = false)]
+
+        public string TenderReference { get; set; }
+
 
         public override string ToString()
         {
             var sb = new StringBuilder();
-           
             sb.Append("  Reference:  ").Append(Reference).Append("\n");
             sb.Append("  OriginalReference: ").Append(OriginalReference).Append("\n");
             sb.Append("  MerchantAccount: ").Append(MerchantAccount).Append("\n");
             sb.Append("  AdditionalData: ").Append(AdditionalData).Append("\n");
             sb.Append("  AuthorisationCode: ").Append(AuthorisationCode).Append("\n");
             sb.Append("  ThreeDSecureData: ").Append(ThreeDSecureData).Append("\n");
+            sb.Append("  TenderReference: ").Append(TenderReference).Append("\n");
+            sb.Append("  UniqueTerminalId: ").Append(UniqueTerminalId).Append("\n");
+            sb.Append("  OriginalMerchantReference: ").Append(OriginalMerchantReference).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -117,6 +128,21 @@ namespace Adyen.Model.Modification
                     this.ThreeDSecureData == other.ThreeDSecureData ||
                     this.ThreeDSecureData != null &&
                     this.ThreeDSecureData.Equals(other.ThreeDSecureData)
+                ) &&
+                (
+                    this.UniqueTerminalId == other.UniqueTerminalId ||
+                    this.UniqueTerminalId != null &&
+                    this.UniqueTerminalId.Equals(other.UniqueTerminalId)
+                ) &&
+                (
+                    this.TenderReference == other.TenderReference ||
+                    this.TenderReference != null &&
+                    this.TenderReference.Equals(other.TenderReference)
+                ) &&
+                (
+                    this.OriginalMerchantReference == other.OriginalMerchantReference ||
+                    this.OriginalMerchantReference != null &&
+                    this.OriginalMerchantReference.Equals(other.OriginalMerchantReference)
                 );
         }
 
@@ -144,6 +170,12 @@ namespace Adyen.Model.Modification
                     hash = hash * 59 + this.AuthorisationCode.GetHashCode();
                 if (this.ThreeDSecureData != null)
                     hash = hash * 59 + this.ThreeDSecureData.GetHashCode();
+                if (this.OriginalMerchantReference != null)
+                    hash = hash * 59 + this.OriginalMerchantReference.GetHashCode();
+                if (this.TenderReference != null)
+                    hash = hash * 59 + this.TenderReference.GetHashCode();
+                if (this.UniqueTerminalId != null)
+                    hash = hash * 59 + this.UniqueTerminalId.GetHashCode();
                 return hash;
             }
         }
