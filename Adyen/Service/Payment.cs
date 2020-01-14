@@ -99,7 +99,7 @@ namespace Adyen.Service
             return JsonConvert.DeserializeObject<PaymentResult>(jsonResponse);
         }
 
-        public AuthenticationResultResponse AuthenticationResult(AuthenticationResultRequest authenticationResultRequest)
+        public AuthenticationResultResponse GetAuthenticationResult(AuthenticationResultRequest authenticationResultRequest)
         {
             var jsonRequest = JsonConvert.SerializeObject(authenticationResultRequest);
             var jsonResponse = _getAuthenticationResult.Request(jsonRequest);

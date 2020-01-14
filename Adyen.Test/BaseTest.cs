@@ -529,14 +529,14 @@ namespace Adyen.Test
             return new CreatePaymentLinkRequest()
             {
                 Reference = "YOUR_REFERENCE_NUMBER",
-                Amount = new Model.Checkout.Amount("EUR",100),
+                Amount = new Model.Checkout.Amount("EUR", 100),
                 CountryCode = "GR",
                 MerchantAccount = "MerchantAccount",
                 ShopperReference = "ShopperReference",
                 ShopperEmail = "info@ShopperEmail.com",
                 ShopperLocale = "GR",
                 ExpiresAt = "2019-12-17T10:59:29",
-                BillingAddress=new Model.Checkout.Address(Country:"GR"),
+                BillingAddress = new Model.Checkout.Address(Country: "GR"),
                 DeliveryAddress = new Model.Checkout.Address(Country: "GR"),
             };
         }

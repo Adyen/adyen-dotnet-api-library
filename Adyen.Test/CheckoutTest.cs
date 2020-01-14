@@ -455,7 +455,7 @@ namespace Adyen.Test
             Assert.AreEqual(paymentResponse.ResultCode, ResultCodeEnum.ChallengeShopper);
             Assert.AreEqual(paymentResponse.PaymentData, "Te1CMIy1vKQTYsSHZ+gRbFpQy4d4n2HLD3c2b7xKnRNpWzWPuI=");
             Assert.AreEqual(paymentResponse.Action.PaymentData, "Te1CMIy1vKQTYsSHZ+gRbFpQy4d4n2HLD3c2b7xKnRNpWzWPuI=");
-            Assert.AreEqual(paymentResponse.Action.Type, Model.Checkout.CheckoutPaymentsAction.TypeEnum.ThreeDS2Challenge);
+            Assert.AreEqual(paymentResponse.Action.Type, Model.Checkout.CheckoutPaymentsAction.CheckoutActionType.ThreeDS2Challenge);
             Assert.AreEqual(paymentResponse.Action.Token, "S0zYWQ0MGEwMjU2MjEifQ==");
             Assert.AreEqual(paymentResponse.Action.PaymentMethodType, "scheme");
             Assert.AreEqual(paymentResponse.Details[0].Key, "threeds2.challengeResult");

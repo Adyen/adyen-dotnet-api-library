@@ -45,7 +45,7 @@ namespace Adyen.Model.Modification
         public override string ToString()
         {
             var sb = new StringBuilder();
-            sb.Append("class RefundRequest {\n");
+            sb.Append("class VoidPendingRefundRequest {\n");
             sb.Append(base.ToString());
             sb.Append("}");
             return sb.ToString();

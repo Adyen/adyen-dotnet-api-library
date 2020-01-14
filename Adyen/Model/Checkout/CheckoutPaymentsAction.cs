@@ -42,7 +42,7 @@ namespace Adyen.Model.Checkout
         /// </summary>
         /// <value>Enum that specifies the action that needs to be taken by the client.</value>
         [JsonConverter(typeof(StringEnumConverter))]
-        public enum TypeEnum
+        public enum CheckoutActionType
         {
             /// <summary>
             /// Enum Await for value: await
@@ -96,7 +96,7 @@ namespace Adyen.Model.Checkout
         /// </summary>
         /// <value>Enum that specifies the action that needs to be taken by the client.</value>
         [DataMember(Name = "type", EmitDefaultValue = false)]
-        public TypeEnum? Type { get; set; }
+        public CheckoutActionType? Type { get; set; }
         /// <summary>
         /// Initializes a new instance of the <see cref="CheckoutPaymentsAction" /> class.
         /// </summary>
@@ -123,7 +123,7 @@ namespace Adyen.Model.Checkout
         /// <param name="totalAmount">totalAmount.</param>
         /// <param name="type">Enum that specifies the action that needs to be taken by the client..</param>
         /// <param name="url">Specifies the URL to redirect to..</param>
-        public CheckoutPaymentsAction(string alternativeReference = default(string), Object data = default(Object), string downloadUrl = default(string), string expiresAt = default(string), string entity = default(string), Amount initialAmount = default(Amount), string instructionsUrl = default(string), string issuer = default(string), string maskedTelephoneNumber = default(string), string merchantName = default(string), string merchantReference = default(string), string method = default(string), string paymentData = default(string), string paymentMethodType = default(string), string qrCodeData = default(string), string reference = default(string), string shopperEmail = default(string), string shopperName = default(string), Amount surcharge = default(Amount), string token = default(string), Amount totalAmount = default(Amount), TypeEnum? type = default(TypeEnum?), string url = default(string))
+        public CheckoutPaymentsAction(string alternativeReference = default(string), Object data = default(Object), string downloadUrl = default(string), string expiresAt = default(string), string entity = default(string), Amount initialAmount = default(Amount), string instructionsUrl = default(string), string issuer = default(string), string maskedTelephoneNumber = default(string), string merchantName = default(string), string merchantReference = default(string), string method = default(string), string paymentData = default(string), string paymentMethodType = default(string), string qrCodeData = default(string), string reference = default(string), string shopperEmail = default(string), string shopperName = default(string), Amount surcharge = default(Amount), string token = default(string), Amount totalAmount = default(Amount), CheckoutActionType? type = default(CheckoutActionType?), string url = default(string))
         {
             this.AlternativeReference = alternativeReference;
             this.Data = data;
@@ -501,7 +501,7 @@ namespace Adyen.Model.Checkout
                 if (this.ExpiresAt != null)
                     hashCode = hashCode * 59 + this.ExpiresAt.GetHashCode();
                 if (this.Entity != null)
-                    hashCode = hashCode * 59 + this.ExpiresAt.GetHashCode();
+                    hashCode = hashCode * 59 + this.Entity.GetHashCode();
                 if (this.InitialAmount != null)
                     hashCode = hashCode * 59 + this.InitialAmount.GetHashCode();
                 if (this.InstructionsUrl != null)
