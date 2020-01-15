@@ -35,9 +35,9 @@ namespace Adyen.Constants
         public static string CloudApiEndPointTest = "https://terminal-api-test.adyen.com";
         public static string CloudApiEndPointLive = "https://terminal-api-live.adyen.com";
         public static string RecurringApiVersion = "v25";
-        public static string ApiVersion = "v49";
+        public static string ApiVersion = "v51";
         public static string PayoutApiVersion = "v51";
-        public static string CheckoutApiVersion = "v49";
+        public static string CheckoutApiVersion = "v51";
         public static string CheckoutUtilityApiVersion = "v1";
         public static string UserAgentSuffix = "adyen-dotnet-api-library/";
         public static string EndpointProtocol = "https://";
@@ -46,6 +46,6 @@ namespace Adyen.Constants
         public static string BinLookupApiVersion = "v50";
 
         public static string LibName = "adyen-dotnet-api-library";
-        public static string LibVersion = "4.0.0";
+        public static string LibVersion = "5.0.0";
     }
 }

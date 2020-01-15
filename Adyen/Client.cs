@@ -131,6 +131,14 @@ namespace Adyen
             }
         }
 
+        public string RecurringApiVersion
+        {
+            get
+            {
+                return ClientConfig.RecurringApiVersion;
+            }
+        }
+
         public string LibraryVersion
         {
             get

@@ -21,22 +21,18 @@
 //  */
 #endregion
 
+using Adyen.Constants;
+using System;
 using System.Collections.Generic;
+using System.Text;
 
-namespace Adyen.Service.Resource.Recurring
+namespace Adyen.Service.Resource.Checkout
 {
-    public class Disable:Resource
+    public class PaymentLinks : ServiceResource
     {
-        public Disable(AbstractService abstractService)
-            : base(abstractService, abstractService.Client.Config.Endpoint + "/pal/servlet/Recurring/" + abstractService.Client.RecurringApiVersion + "/disable",
-                new List<string>
-                {
-                    "merchantAccount",
-                    "recurring.contract",
-                    "shopperReference"
-                })
+        public PaymentLinks(AbstractService abstractService)
+            : base(abstractService, abstractService.Client.Config.CheckoutEndpoint + "/" + ClientConfig.CheckoutApiVersion + "/paymentLinks", new List<string> { "paymentData", "details" })
         {
-
         }
     }
 }
