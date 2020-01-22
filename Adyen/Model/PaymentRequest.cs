@@ -93,7 +93,8 @@ namespace Adyen.Model
             sb.Append("    card: ").Append(Card.ToIndentedString()).Append("\n");
             sb.Append("    mpiData: ").Append(MpiData.ToIndentedString()).Append("\n");
             sb.Append("    bankAccount: ").Append(BankAccount.ToIndentedString()).Append("\n");
-            sb.Append("    recurringProcessingModel: ").Append(BankAccount.ToIndentedString()).Append("\n");
+            sb.Append("    recurringProcessingModel: ").Append(RecurringProcessingModel.ToIndentedString()).Append("\n");
+
             sb.Append("}");
             return sb.ToString();
         }
