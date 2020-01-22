@@ -22,18 +22,25 @@
 #endregion
 
 using Adyen.Model.AdditionalData;
-using System;
 using System.Collections.Generic;
 using System.Runtime.Serialization;
 using System.Text;
 using Adyen.Model.ApplicationInformation;
 using Adyen.Util;
+using Adyen.Model.Enum;
 
 namespace Adyen.Model
 {
     [DataContract]
     public class PaymentRequest : AbstractPaymentRequest
-    {
+    { 
+        /// <summary>
+        /// Defines a recurring payment type. Allowed values: * &#x60;Subscription&#x60; – A transaction for a fixed or variable amount, which follows a fixed schedule. * &#x60;CardOnFile&#x60; – Card details are stored to enable one-click or omnichannel journeys, or simply to streamline the checkout process. Any subscription not following a fixed schedule is also considered a card-on-file transaction.
+        /// </summary>
+        /// <value>Defines a recurring payment type. Allowed values: * &#x60;Subscription&#x60; – A transaction for a fixed or variable amount, which follows a fixed schedule. * &#x60;CardOnFile&#x60; – Card details are stored to enable one-click or omnichannel journeys, or simply to streamline the checkout process. Any subscription not following a fixed schedule is also considered a card-on-file transaction.</value>
+        [DataMember(Name = "recurringProcessingModel", EmitDefaultValue = false)]
+        public RecurringProcessingModelEnum? RecurringProcessingModel { get; set; }
+
         [DataMember(Name = "card", EmitDefaultValue = false)]
         public Card Card { get; set; }
         [DataMember(Name = "mpiData", EmitDefaultValue = false)]
@@ -83,11 +90,11 @@ namespace Adyen.Model
         {
             StringBuilder sb = new StringBuilder();
             sb.Append("class PaymentRequest {\n");
-
             sb.Append(base.ToString());
             sb.Append("    card: ").Append(Card.ToIndentedString()).Append("\n");
             sb.Append("    mpiData: ").Append(MpiData.ToIndentedString()).Append("\n");
             sb.Append("    bankAccount: ").Append(BankAccount.ToIndentedString()).Append("\n");
+            sb.Append("    recurringProcessingModel: ").Append(BankAccount.ToIndentedString()).Append("\n");
             sb.Append("}");
             return sb.ToString();
         }
