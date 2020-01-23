@@ -13,7 +13,6 @@ namespace Adyen.Test
             config.Proxy = null;
             var client = new Client(config);
             Assert.AreEqual(client.Config.Proxy, config.Proxy);
-
         }
 
         [TestMethod]
