@@ -34,6 +34,7 @@ namespace Adyen
         public string MerchantAccount { get; set; }
         public Environment Environment { get; set; }
         public string Endpoint { get; set; }
+        public string MarketPayEndpoint { get; set; }
         public string ApplicationName { get; set; }
         public int HttpRequestTimeout { get; set; }
         //HPP specific

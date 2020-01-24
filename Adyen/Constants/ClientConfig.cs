@@ -34,6 +34,9 @@ namespace Adyen.Constants
         public static string CheckoutEndpointLiveSuffix = "-checkout-live.adyenpayments.com/checkout";
         public static string CloudApiEndPointTest = "https://terminal-api-test.adyen.com";
         public static string CloudApiEndPointLive = "https://terminal-api-live.adyen.com";
+        public static string MarketpayEndPointTest = "https://cal-test.adyen.com/cal/services";
+        public static string MarketpayEndPointLive = "https://cal-live.adyen.com/cal/services";
+        public static string MarketPayFundApiVersion = "v3";
         public static string RecurringApiVersion = "v25";
         public static string ApiVersion = "v51";
         public static string PayoutApiVersion = "v51";
