@@ -34,7 +34,7 @@ namespace Adyen.Model.MarketPay
     /// DetailBalance
     /// </summary>
     [DataContract]
-    public class DetailBalance : IEquatable<DetailBalance>, IValidatableObject
+    public partial class DetailBalance : IEquatable<DetailBalance>, IValidatableObject
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="DetailBalance" /> class.
@@ -42,7 +42,7 @@ namespace Adyen.Model.MarketPay
         /// <param name="balance">The list of balances held by the account..</param>
         /// <param name="onHoldBalance">The list of on hold balances held by the account..</param>
         /// <param name="pendingBalance">The list of pending balances held by the account..</param>
-        public DetailBalance(List<Amount> balance = default(List<Amount>), List<Amount> onHoldBalance = default(List<Amount>), List<Amount> pendingBalance = default(List<Amount>))
+        public DetailBalance(List<RootAmount> balance = default(List<RootAmount>), List<RootAmount> onHoldBalance = default(List<RootAmount>), List<RootAmount> pendingBalance = default(List<RootAmount>))
         {
             this.Balance = balance;
             this.OnHoldBalance = onHoldBalance;
@@ -54,21 +54,22 @@ namespace Adyen.Model.MarketPay
         /// </summary>
         /// <value>The list of balances held by the account.</value>
         [DataMember(Name = "balance", EmitDefaultValue = false)]
-        public List<Amount> Balance { get; set; }
+        [JsonProperty("balance")]       
+        public List<RootAmount> Balance { get; set; }
 
         /// <summary>
         /// The list of on hold balances held by the account.
         /// </summary>
         /// <value>The list of on hold balances held by the account.</value>
         [DataMember(Name = "onHoldBalance", EmitDefaultValue = false)]
-        public List<Amount> OnHoldBalance { get; set; }
+        public List<RootAmount> OnHoldBalance { get; set; }
 
         /// <summary>
         /// The list of pending balances held by the account.
         /// </summary>
         /// <value>The list of pending balances held by the account.</value>
         [DataMember(Name = "pendingBalance", EmitDefaultValue = false)]
-        public List<Amount> PendingBalance { get; set; }
+        public List<RootAmount> PendingBalance { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object

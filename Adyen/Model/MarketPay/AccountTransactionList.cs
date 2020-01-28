@@ -37,12 +37,12 @@ namespace Adyen.Model.MarketPay
     public class AccountTransactionList : IEquatable<AccountTransactionList>, IValidatableObject
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="AccountTransactionList" /> class.
+        /// Initializes a new instance of the <see cref="AccountTransactionListc" /> class.
         /// </summary>
         /// <param name="accountCode">The code of the account..</param>
         /// <param name="hasNextPage">Indicates whether there is a next page of transactions available..</param>
         /// <param name="transactions">The list of transactions..</param>
-        public AccountTransactionList(string accountCode = default(string), bool? hasNextPage = default(bool?), List<Transaction> transactions = default(List<Transaction>))
+        public AccountTransactionList(string accountCode = default(string), bool? hasNextPage = default(bool?), List<RootTransaction> transactions = default(List<RootTransaction>))
         {
             this.AccountCode = accountCode;
             this.HasNextPage = hasNextPage;
@@ -68,7 +68,7 @@ namespace Adyen.Model.MarketPay
         /// </summary>
         /// <value>The list of transactions.</value>
         [DataMember(Name = "transactions", EmitDefaultValue = false)]
-        public List<Transaction> Transactions { get; set; }
+        public List<RootTransaction> Transactions { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object

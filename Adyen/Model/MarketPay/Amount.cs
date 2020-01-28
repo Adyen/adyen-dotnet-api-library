@@ -33,7 +33,7 @@ namespace Adyen.Model.MarketPay
     /// Amount
     /// </summary>
     [DataContract]
-    public class Amount : IEquatable<Amount>, IValidatableObject
+    public partial class Amount : IEquatable<Amount>, IValidatableObject
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="Amount" /> class.

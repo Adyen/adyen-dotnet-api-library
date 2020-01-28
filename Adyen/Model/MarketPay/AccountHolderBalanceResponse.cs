@@ -23,7 +23,6 @@
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.IO;
 using System.Linq;
 using System.Runtime.Serialization;
 using System.Text;
@@ -35,15 +34,14 @@ namespace Adyen.Model.MarketPay
     /// AccountHolderBalanceResponse
     /// </summary>
     [DataContract]
-    public class AccountHolderBalanceResponse : IEquatable<AccountHolderBalanceResponse>, IValidatableObject
+    public partial class AccountHolderBalanceResponse : IEquatable<AccountHolderBalanceResponse>, IValidatableObject
     {
         /// <summary>
         /// A list of each account and their balances.
         /// </summary>
         /// <value>A list of each account and their balances.</value>
         [DataMember(Name = "balancePerAccount", EmitDefaultValue = false)]
-        [JsonProperty("balancePerAccount")]
-        public List<AccountDetailBalance> BalancePerAccount { get; set; }
+        public List<RootAccountDetailBalance> BalancePerAccount { get; set; }
 
         /// <summary>
         /// Contains field validation errors that would prevent requests from being processed.
@@ -126,8 +124,7 @@ namespace Adyen.Model.MarketPay
                 (
                     this.BalancePerAccount == input.BalancePerAccount ||
                     this.BalancePerAccount != null &&
-                    input.BalancePerAccount != null &&
-                    this.BalancePerAccount.SequenceEqual(input.BalancePerAccount)
+                    input.BalancePerAccount != null
                 ) &&
                 (
                     this.InvalidFields == input.InvalidFields ||

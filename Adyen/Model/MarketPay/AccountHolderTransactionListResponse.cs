@@ -44,7 +44,7 @@ namespace Adyen.Model.MarketPay
         /// <param name="invalidFields">Contains field validation errors that would prevent requests from being processed..</param>
         /// <param name="pspReference">The reference of a request.  Can be used to uniquely identify the request. (required).</param>
         /// <param name="resultCode">The result code..</param>
-        public AccountHolderTransactionListResponse(List<AccountTransactionList> accountTransactionLists = default(List<AccountTransactionList>), List<ErrorFieldType> invalidFields = default(List<ErrorFieldType>), string pspReference = default(string), string resultCode = default(string))
+        public AccountHolderTransactionListResponse(List<RootAccountTransactionList> accountTransactionLists = default(List<RootAccountTransactionList>), List<ErrorFieldType> invalidFields = default(List<ErrorFieldType>), string pspReference = default(string), string resultCode = default(string))
         {
             // to ensure "pspReference" is required (not null)
             if (pspReference == null)
@@ -65,7 +65,7 @@ namespace Adyen.Model.MarketPay
         /// </summary>
         /// <value>A list of the transactions.</value>
         [DataMember(Name = "accountTransactionLists", EmitDefaultValue = false)]
-        public List<AccountTransactionList> AccountTransactionLists { get; set; }
+        public List<RootAccountTransactionList> AccountTransactionLists { get; set; }
 
         /// <summary>
         /// Contains field validation errors that would prevent requests from being processed.
