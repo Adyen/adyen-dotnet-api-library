@@ -103,7 +103,7 @@ namespace Adyen.Test
         }
         
         [TestMethod]
-        public void TestHmacCalculationModification()
+        public void TestHmacCalculationNotificationRequestWithSpecialChars()
         {
             string key = "66B61474A0AA3736BA8789EDC6D6CD9EBA0C4F414A554E32A407F849C045C69D";
             var mockPath = GetMockFilePath("Mocks/notification-response-refund-fail.json");
