@@ -111,8 +111,6 @@ namespace Adyen.Test
             var hmacValidator = new HmacValidator();
             var notificationRequest = JsonOperation.Deserialize<NotificationRequest>(response);
             var notificationItem = notificationRequest.NotificationItemContainers[0].NotificationItem;
-            var data = hmacValidator.GetDataToSign(notificationItem);
-            var encrypted = hmacValidator.CalculateHmac(notificationItem, key);
             var isValidHmac = hmacValidator.IsValidHmac(notificationItem, key);
             Assert.IsTrue(isValidHmac);
         }
