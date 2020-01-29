@@ -92,6 +92,7 @@ namespace Adyen
                     Config.HppEndpoint = ClientConfig.HppTest;
                     Config.CloudApiEndPoint = ClientConfig.CloudApiEndPointTest;
                     Config.CheckoutEndpoint = ClientConfig.CheckoutEndpointTest;
+                    Config.MarketPayEndpoint = ClientConfig.MarketpayEndPointTest;
                     break;
                 case Environment.Live:
                     if (string.IsNullOrEmpty(liveEndpointUrlPrefix))
@@ -103,6 +104,7 @@ namespace Adyen
                     Config.HppEndpoint = ClientConfig.HppLive;
                     Config.CloudApiEndPoint = ClientConfig.CloudApiEndPointLive;
                     Config.CheckoutEndpoint = ClientConfig.EndpointProtocol + liveEndpointUrlPrefix + ClientConfig.CheckoutEndpointLiveSuffix;
+                    Config.MarketPayEndpoint = ClientConfig.MarketpayEndPointLive;
                     break;
             }
         }
