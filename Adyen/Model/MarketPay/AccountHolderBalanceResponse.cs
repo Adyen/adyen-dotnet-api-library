@@ -41,7 +41,7 @@ namespace Adyen.Model.MarketPay
         /// </summary>
         /// <value>A list of each account and their balances.</value>
         [DataMember(Name = "balancePerAccount", EmitDefaultValue = false)]
-        public List<RootAccountDetailBalance> BalancePerAccount { get; set; }
+        public List<AccountDetailBalance> BalancePerAccount { get; set; }
 
         /// <summary>
         /// Contains field validation errors that would prevent requests from being processed.

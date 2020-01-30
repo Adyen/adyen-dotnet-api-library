@@ -42,7 +42,7 @@ namespace Adyen.Model.MarketPay
         /// <param name="accountCode">The code of the account..</param>
         /// <param name="hasNextPage">Indicates whether there is a next page of transactions available..</param>
         /// <param name="transactions">The list of transactions..</param>
-        public AccountTransactionList(string accountCode = default(string), bool? hasNextPage = default(bool?), List<RootTransaction> transactions = default(List<RootTransaction>))
+        public AccountTransactionList(string accountCode = default(string), bool? hasNextPage = default(bool?), List<Transaction> transactions = default(List<Transaction>))
         {
             this.AccountCode = accountCode;
             this.HasNextPage = hasNextPage;
@@ -68,7 +68,7 @@ namespace Adyen.Model.MarketPay
         /// </summary>
         /// <value>The list of transactions.</value>
         [DataMember(Name = "transactions", EmitDefaultValue = false)]
-        public List<RootTransaction> Transactions { get; set; }
+        public List<Transaction> Transactions { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object

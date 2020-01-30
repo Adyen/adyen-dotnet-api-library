@@ -42,7 +42,7 @@ namespace Adyen.Model.MarketPay
         /// <param name="balance">The list of balances held by the account..</param>
         /// <param name="onHoldBalance">The list of on hold balances held by the account..</param>
         /// <param name="pendingBalance">The list of pending balances held by the account..</param>
-        public DetailBalance(List<RootAmount> balance = default(List<RootAmount>), List<RootAmount> onHoldBalance = default(List<RootAmount>), List<RootAmount> pendingBalance = default(List<RootAmount>))
+        public DetailBalance(List<Amount> balance = default(List<Amount>), List<Amount> onHoldBalance = default(List<Amount>), List<Amount> pendingBalance = default(List<Amount>))
         {
             this.Balance = balance;
             this.OnHoldBalance = onHoldBalance;
@@ -55,21 +55,21 @@ namespace Adyen.Model.MarketPay
         /// <value>The list of balances held by the account.</value>
         [DataMember(Name = "balance", EmitDefaultValue = false)]
         [JsonProperty("balance")]       
-        public List<RootAmount> Balance { get; set; }
+        public List<Amount> Balance { get; set; }
 
         /// <summary>
         /// The list of on hold balances held by the account.
         /// </summary>
         /// <value>The list of on hold balances held by the account.</value>
         [DataMember(Name = "onHoldBalance", EmitDefaultValue = false)]
-        public List<RootAmount> OnHoldBalance { get; set; }
+        public List<Amount> OnHoldBalance { get; set; }
 
         /// <summary>
         /// The list of pending balances held by the account.
         /// </summary>
         /// <value>The list of pending balances held by the account.</value>
         [DataMember(Name = "pendingBalance", EmitDefaultValue = false)]
-        public List<RootAmount> PendingBalance { get; set; }
+        public List<Amount> PendingBalance { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object

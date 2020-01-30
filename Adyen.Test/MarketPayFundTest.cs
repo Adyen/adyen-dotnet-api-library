@@ -22,11 +22,9 @@
 #endregion
 
 using System.Collections.Generic;
-using System.IO;
 using Adyen.Model.MarketPay;
 using Adyen.Service;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using Newtonsoft.Json;
 
 namespace Adyen.Test
 {
@@ -40,13 +38,25 @@ namespace Adyen.Test
             var fund = new Fund(client);
             var accountHolderBalanceRequest = new AccountHolderBalanceRequest("TestAccountHolder877209");
             var accountHolderBalanceResponse = fund.AccountHolderBalance(accountHolderBalanceRequest);
-            Assert.AreEqual(42058L, accountHolderBalanceResponse.TotalBalance.PendingBalance[0].Amount.Value);
-            Assert.AreEqual(99792L, accountHolderBalanceResponse.TotalBalance.Balance[0].Amount.Value);
-            Assert.AreEqual("9914719436100053", accountHolderBalanceResponse.PspReference);
-            Assert.AreEqual("Success", accountHolderBalanceResponse.ResultCode);
-            Assert.AreEqual(42058L, accountHolderBalanceResponse.BalancePerAccount[0].AccountDetailBalance.DetailBalance.PendingBalance[0].Amount.Value);
-            Assert.AreEqual(99792L, accountHolderBalanceResponse.BalancePerAccount[0].AccountDetailBalance.DetailBalance.Balance[0].Amount.Value);
-            Assert.AreEqual("118731451", accountHolderBalanceResponse.BalancePerAccount[0].AccountDetailBalance.AccountCode);
+            Assert.AreEqual("8515803871979158", accountHolderBalanceResponse.PspReference);
+            Assert.AreEqual("112548519", accountHolderBalanceResponse.BalancePerAccount[0].AccountCode);
+            Assert.AreEqual("128653506", accountHolderBalanceResponse.BalancePerAccount[1].AccountCode);
+            Assert.AreEqual("162991090", accountHolderBalanceResponse.BalancePerAccount[2].AccountCode);
+            Assert.AreEqual("EUR", accountHolderBalanceResponse.BalancePerAccount[0].DetailBalance.Balance[0].Currency);
+            Assert.AreEqual(-1080670, accountHolderBalanceResponse.BalancePerAccount[0].DetailBalance.Balance[0].Value);
+            Assert.AreEqual("USD", accountHolderBalanceResponse.BalancePerAccount[0].DetailBalance.Balance[1].Currency);
+            Assert.AreEqual(-1085000, accountHolderBalanceResponse.BalancePerAccount[0].DetailBalance.Balance[1].Value);
+            Assert.AreEqual("GBP", accountHolderBalanceResponse.BalancePerAccount[0].DetailBalance.Balance[2].Currency);
+            Assert.AreEqual(-1085000, accountHolderBalanceResponse.BalancePerAccount[0].DetailBalance.Balance[2].Value);
+            Assert.AreEqual(0 ,accountHolderBalanceResponse.TotalBalance.PendingBalance.Count);
+            Assert.AreEqual(0, accountHolderBalanceResponse.TotalBalance.OnHoldBalance.Count);
+            Assert.AreEqual(3, accountHolderBalanceResponse.TotalBalance.Balance.Count);
+            Assert.AreEqual(-1080670, accountHolderBalanceResponse.TotalBalance.Balance[0].Value);
+            Assert.AreEqual("EUR", accountHolderBalanceResponse.TotalBalance.Balance[0].Currency);
+            Assert.AreEqual(-1085000, accountHolderBalanceResponse.TotalBalance.Balance[1].Value);
+            Assert.AreEqual("USD", accountHolderBalanceResponse.TotalBalance.Balance[1].Currency);
+            Assert.AreEqual(-1085000, accountHolderBalanceResponse.TotalBalance.Balance[2].Value);
+            Assert.AreEqual("GBP", accountHolderBalanceResponse.TotalBalance.Balance[2].Currency);
         }
 
         [TestMethod]
@@ -69,20 +79,20 @@ namespace Adyen.Test
             var accountHolderTransactionListResponse = fund.AccountHolderTransactionList(accountHolderTransactionListRequest);
             Assert.AreEqual("9914721175530029", accountHolderTransactionListResponse.PspReference);
             Assert.AreEqual("Success", accountHolderTransactionListResponse.ResultCode);
-            var transactions = accountHolderTransactionListResponse.AccountTransactionLists[0].AccountTransactionList.Transactions;
+            var transactions = accountHolderTransactionListResponse.AccountTransactionLists[0].Transactions;
             Assert.AreEqual(4, transactions.Count);
-            Assert.AreEqual("9914716081770032", transactions[0].Transaction.PspReference);
-            Assert.AreEqual("9914716081760025", transactions[1].Transaction.PspReference);
-            Assert.AreEqual("9914716081730010", transactions[2].Transaction.PspReference);
-            Assert.AreEqual("9914716006590028", transactions[3].Transaction.PspReference);
-            Assert.AreEqual("testReference", transactions[0].Transaction.MerchantReference);
-            Assert.AreEqual("testReference2", transactions[1].Transaction.MerchantReference);
-            Assert.AreEqual("testReference3", transactions[2].Transaction.MerchantReference);
-            Assert.AreEqual("testReference4", transactions[3].Transaction.MerchantReference);
-            Assert.AreEqual(Transaction.TransactionStatusEnum.PendingCredit,  transactions[0].Transaction.TransactionStatus);
-            Assert.AreEqual(Transaction.TransactionStatusEnum.Credited, transactions[1].Transaction.TransactionStatus);
-            Assert.AreEqual(Transaction.TransactionStatusEnum.Credited, transactions[2].Transaction.TransactionStatus);
-            Assert.AreEqual(Transaction.TransactionStatusEnum.Debited, transactions[3].Transaction.TransactionStatus);
+            Assert.AreEqual("9914716081770032", transactions[0].PspReference);
+            Assert.AreEqual("9914716081760025", transactions[1].PspReference);
+            Assert.AreEqual("9914716081730010", transactions[2].PspReference);
+            Assert.AreEqual("9914716006590028", transactions[3].PspReference);
+            Assert.AreEqual("testReference", transactions[0].MerchantReference);
+            Assert.AreEqual("testReference2", transactions[1].MerchantReference);
+            Assert.AreEqual("testReference3", transactions[2].MerchantReference);
+            Assert.AreEqual("testReference4", transactions[3].MerchantReference);
+            Assert.AreEqual(Transaction.TransactionStatusEnum.PendingCredit,  transactions[0].TransactionStatus);
+            Assert.AreEqual(Transaction.TransactionStatusEnum.Credited, transactions[1].TransactionStatus);
+            Assert.AreEqual(Transaction.TransactionStatusEnum.Credited, transactions[2].TransactionStatus);
+            Assert.AreEqual(Transaction.TransactionStatusEnum.Debited, transactions[3].TransactionStatus);
 
         }
 
