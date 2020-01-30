@@ -31,6 +31,9 @@ namespace Adyen.Test
     [TestClass]
     public class MarketPayFundTest : BaseTest
     {
+        /// <summary>
+        /// test /accountHolderBalance
+        /// </summary>
         [TestMethod]
         public void TestAccountHolderBalanceSuccess()
         {
@@ -59,6 +62,9 @@ namespace Adyen.Test
             Assert.AreEqual("GBP", accountHolderBalanceResponse.TotalBalance.Balance[2].Currency);
         }
 
+        /// <summary>
+        /// test /accountHolderTransactionList 
+        /// </summary>
         [TestMethod]
         public void TestAccountHolderTransactionListSuccess()
         {
@@ -70,32 +76,32 @@ namespace Adyen.Test
                     TransactionStatuses = new List<AccountHolderTransactionListRequest.TransactionStatusesEnum>
                     {
                         AccountHolderTransactionListRequest.TransactionStatusesEnum.PendingCredit,
-                        AccountHolderTransactionListRequest.TransactionStatusesEnum.Credited,
-                        AccountHolderTransactionListRequest.TransactionStatusesEnum.Debited
                     }
                 };
             var transactionListForAccount = new TransactionListForAccount("2e64b396-1200-4474-b848-0cb06b52b3c7", 2);
             accountHolderTransactionListRequest.TransactionListsPerAccount = new List<TransactionListForAccount> { transactionListForAccount };
             var accountHolderTransactionListResponse = fund.AccountHolderTransactionList(accountHolderTransactionListRequest);
-            Assert.AreEqual("9914721175530029", accountHolderTransactionListResponse.PspReference);
+            Assert.AreEqual("881580394403000", accountHolderTransactionListResponse.PspReference);
             Assert.AreEqual("Success", accountHolderTransactionListResponse.ResultCode);
+            Assert.AreEqual(3, accountHolderTransactionListResponse.AccountTransactionLists.Count);
+            Assert.AreEqual("112548561", accountHolderTransactionListResponse.AccountTransactionLists[0].AccountCode);
             var transactions = accountHolderTransactionListResponse.AccountTransactionLists[0].Transactions;
-            Assert.AreEqual(4, transactions.Count);
-            Assert.AreEqual("9914716081770032", transactions[0].PspReference);
-            Assert.AreEqual("9914716081760025", transactions[1].PspReference);
-            Assert.AreEqual("9914716081730010", transactions[2].PspReference);
-            Assert.AreEqual("9914716006590028", transactions[3].PspReference);
-            Assert.AreEqual("testReference", transactions[0].MerchantReference);
-            Assert.AreEqual("testReference2", transactions[1].MerchantReference);
-            Assert.AreEqual("testReference3", transactions[2].MerchantReference);
-            Assert.AreEqual("testReference4", transactions[3].MerchantReference);
-            Assert.AreEqual(Transaction.TransactionStatusEnum.PendingCredit,  transactions[0].TransactionStatus);
-            Assert.AreEqual(Transaction.TransactionStatusEnum.Credited, transactions[1].TransactionStatus);
-            Assert.AreEqual(Transaction.TransactionStatusEnum.Credited, transactions[2].TransactionStatus);
-            Assert.AreEqual(Transaction.TransactionStatusEnum.Debited, transactions[3].TransactionStatus);
-
+            Assert.AreEqual(50, transactions.Count);
+            Assert.AreEqual(new Amount("USD",-35000), transactions[0].Amount);
+            Assert.AreEqual("PluginDemo - 126", transactions[0].Description);
+            Assert.AreEqual(Transaction.TransactionStatusEnum.Debited, transactions[0].TransactionStatus);
+            Assert.AreEqual(new Amount("USD", -17500), transactions[1].Amount);
+            Assert.AreEqual("PluginDemo - 125", transactions[1].Description);
+            Assert.AreEqual(Transaction.TransactionStatusEnum.Debited, transactions[1].TransactionStatus);
+            Assert.AreEqual("162991091", accountHolderTransactionListResponse.AccountTransactionLists[1].AccountCode);
+            Assert.AreEqual(false, accountHolderTransactionListResponse.AccountTransactionLists[1].HasNextPage);
+            Assert.AreEqual("128653501", accountHolderTransactionListResponse.AccountTransactionLists[2].AccountCode);
+            Assert.AreEqual(false, accountHolderTransactionListResponse.AccountTransactionLists[2].HasNextPage);
         }
 
+        /// <summary>
+        /// test /transferFunds
+        /// </summary>
         [TestMethod]
         public void TestTransferFundsSuccess()
         {
@@ -109,6 +115,9 @@ namespace Adyen.Test
             Assert.AreEqual("Received", transferFundsResponse.ResultCode);
         }
 
+        /// <summary>
+        /// test /refundNotPaidOutTransfers
+        /// </summary>
         [TestMethod]
         public void TestRefundNotPaidOutTransfersSuccess()
         {
@@ -120,6 +129,9 @@ namespace Adyen.Test
             Assert.AreEqual("Failed", refundNotPaidOutTransfersResponse.ResultCode);
         }
 
+        /// <summary>
+        /// test /setupBeneficiar
+        /// </summary>
         [TestMethod]
         public void TestSetupBeneficiary()
         {
@@ -131,6 +143,9 @@ namespace Adyen.Test
             Assert.AreEqual("Success", setupBeneficiaryResponse.ResultCode);
         }
 
+        /// <summary>
+        /// test /payoutAccountHolder
+        /// </summary>
         [TestMethod]
         public void TestPayoutAccountHolderSuccess()
         {
