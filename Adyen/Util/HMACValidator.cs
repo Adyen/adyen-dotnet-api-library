@@ -127,7 +127,6 @@ namespace Adyen.Util
         {
             string expectedSign = CalculateHmac(notificationRequestItem, key);
             string merchantSign = notificationRequestItem.AdditionalData[Constants.AdditionalData.HmacSignature];
-
             return string.Equals(expectedSign, merchantSign);
         }
 

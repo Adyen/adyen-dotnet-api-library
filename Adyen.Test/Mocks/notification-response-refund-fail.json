@@ -1,0 +1,23 @@
+{
+	"live": "false",
+	"notificationItems": [{
+		"NotificationRequestItem": {
+			"additionalData": {
+				"hmacSignature": "lQnzbwY09e5mwkC8YZozlHu5v\/2SFzAx6WRrvHx+3b8="
+			},
+			"amount": {
+				"currency": "EUR",
+				"value": 100
+			},
+			"eventCode": "CAPTURE",
+			"eventDate": "2020-01-21T12:30:00+01:00",
+			"merchantAccountCode": "DotNetAlexandros",
+			"merchantReference": "UseqNbr006-orderId006\\\/",
+			"originalReference": "TEST_CUSTOM_881578412007338A",
+			"paymentMethod": "mc",
+			"pspReference": "TEST_CUSTOM_881578412137072J",
+			"reason": "sf",
+			"success": "false"
+		}
+	}]
+}
