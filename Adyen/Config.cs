@@ -22,6 +22,7 @@
 #endregion
 
 using System;
+using System.Net;
 using Environment = Adyen.Model.Enum.Environment;
 
 namespace Adyen
@@ -36,6 +37,7 @@ namespace Adyen
         public string Endpoint { get; set; }
         public string MarketPayEndpoint { get; set; }
         public string ApplicationName { get; set; }
+        public IWebProxy Proxy { get; set; }
         public int HttpRequestTimeout { get; set; }
         //HPP specific
         public string HppEndpoint { get; set; }
