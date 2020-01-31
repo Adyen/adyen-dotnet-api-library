@@ -15,7 +15,7 @@
 //  *
 //  * Adyen Dotnet API Library
 //  *
-//  * Copyright (c) 2019 Adyen B.V.
+//  * Copyright (c) 2020 Adyen B.V.
 //  * This file is open source and available under the MIT license.
 //  * See the LICENSE file for more info.
 //  */
@@ -128,6 +128,10 @@ namespace Adyen.HttpClient
             httpWebRequest.Method = "POST";
             httpWebRequest.ContentType = "application/x-www-form-urlencoded";
             httpWebRequest.ContentLength = postBytes.Length;
+            if (config.Proxy != null)
+            {
+                httpWebRequest.Proxy = config.Proxy;
+            }
             ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12;
             using (var stream = httpWebRequest.GetRequestStream())
             {
@@ -162,6 +166,10 @@ namespace Adyen.HttpClient
                 var credentials = Convert.ToBase64String(bytes);
                 httpWebRequest.Headers.Add("Authorization", "Basic " + credentials);
                 httpWebRequest.UseDefaultCredentials = true;
+            }
+            if (config.Proxy != null)
+            {
+                httpWebRequest.Proxy = config.Proxy;
             }
             httpWebRequest.ServerCertificateValidationCallback = ServerCertificateValidationCallback;
             return httpWebRequest;

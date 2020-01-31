@@ -15,7 +15,7 @@
 //  *
 //  * Adyen Dotnet API Library
 //  *
-//  * Copyright (c) 2019 Adyen B.V.
+//  * Copyright (c) 2020 Adyen B.V.
 //  * This file is open source and available under the MIT license.
 //  * See the LICENSE file for more info.
 //  */
@@ -25,6 +25,7 @@ using Adyen.Model.Notification;
 using Adyen.Util;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.Collections.Generic;
+using System.Text.RegularExpressions;
 
 namespace Adyen.Test
 {
@@ -51,7 +52,7 @@ namespace Adyen.Test
             buildSigningString = hmacValidator.BuildSigningString(postParameters);
             Assert.IsTrue(string.Equals("currencyCode:merchantAccount:EUR:ACC\\:\\\\", buildSigningString));
         }
-
+        
         [TestMethod]
         public void TestHmac()
         {
@@ -69,7 +70,7 @@ namespace Adyen.Test
             var serializedPaymentRequest = JsonOperation.SerializeRequest(paymentRequest);
             Assert.IsFalse(serializedPaymentRequest.Contains("shopperInteraction"));
         }
-
+        
         [TestMethod]
         public void TestNotificationRequestItemHmac()
         {
@@ -100,7 +101,19 @@ namespace Adyen.Test
             notificationRequestItem.AdditionalData[Constants.AdditionalData.HmacSignature] = "notValidSign";
             Assert.IsFalse(hmacValidator.IsValidHmac(notificationRequestItem, key));
         }
-
+        
+        [TestMethod]
+        public void TestHmacCalculationNotificationRequestWithSpecialChars()
+        {
+            string key = "66B61474A0AA3736BA8789EDC6D6CD9EBA0C4F414A554E32A407F849C045C69D";
+            var mockPath = GetMockFilePath("Mocks/notification-response-refund-fail.json");
+            var response = MockFileToString(mockPath);
+            var hmacValidator = new HmacValidator();
+            var notificationRequest = JsonOperation.Deserialize<NotificationRequest>(response);
+            var notificationItem = notificationRequest.NotificationItemContainers[0].NotificationItem;
+            var isValidHmac = hmacValidator.IsValidHmac(notificationItem, key);
+            Assert.IsTrue(isValidHmac);
+        }
 
         [TestMethod]
         public void TestSerializationShopperInteractionMoto()
