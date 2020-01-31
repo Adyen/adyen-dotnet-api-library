@@ -152,11 +152,26 @@ namespace Adyen.Test
             var amount = new Amount("EUR", 1000);
             var client = CreateMockTestClientNullRequiredFieldsRequest("Mocks/marketpay/fund/payout-account-holder-success.json");
             var fund = new Fund(client);
-            PayoutAccountHolderRequest payoutAccountHolderRequest = new PayoutAccountHolderRequest(accountCode: "189184578", accountHolderCode: "TestAccountHolder502924", amount: amount);
+            var payoutAccountHolderRequest = new PayoutAccountHolderRequest(accountCode: "189184578", accountHolderCode: "TestAccountHolder502924", amount: amount);
             var payoutAccountHolderResponse = fund.PayoutAccountHolder(payoutAccountHolderRequest);
             Assert.AreEqual("9915090894325643", payoutAccountHolderResponse.PspReference);
             Assert.AreEqual("testbankaccount", payoutAccountHolderResponse.BankAccountUUID);
             Assert.AreEqual("MerchantReference", payoutAccountHolderResponse.MerchantReference);
+        }
+
+        /// <summary>
+        /// test /refundFundsTransfer
+        /// </summary>
+        [TestMethod]
+        public void TestRefundFundsTransferSuccess()
+        {
+            var amount = new Amount("EUR", 1000);
+            var client = CreateMockTestClientNullRequiredFieldsRequest("Mocks/marketpay/fund/refund-funds-transfer.json");
+            var fund = new Fund(client);
+            var refundFundsTransferRequest = new RefundFundsTransferRequest(originalReference: "reference", amount: amount);
+            var refundFundsTransferResponse = fund.RefundFundsTransfer(refundFundsTransferRequest);
+            Assert.AreEqual("9915090893984580", refundFundsTransferResponse.PspReference);
+            Assert.AreEqual("Received", refundFundsTransferResponse.ResultCode);
         }
     }
 }

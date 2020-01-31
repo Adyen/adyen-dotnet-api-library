@@ -46,16 +46,7 @@ namespace Adyen.Model.MarketPay
         /// <param name="pspReference">The reference of a request.  Can be used to uniquely identify the request. (required).</param>
         /// <param name="resultCode">The result code..</param>
         public PayoutAccountHolderResponse(string bankAccountUUID = default(string), List<ErrorFieldType> invalidFields = default(List<ErrorFieldType>), string merchantReference = default(string), string pspReference = default(string), string resultCode = default(string))
-        {
-            // to ensure "bankAccountUUID" is required (not null)
-            if (bankAccountUUID == null)
-            {
-                throw new InvalidDataException("bankAccountUUID is a required property for PayoutAccountHolderResponse and cannot be null");
-            }
-            else
-            {
-                this.BankAccountUUID = bankAccountUUID;
-            }
+        { 
             // to ensure "pspReference" is required (not null)
             if (pspReference == null)
             {
@@ -65,6 +56,7 @@ namespace Adyen.Model.MarketPay
             {
                 this.PspReference = pspReference;
             }
+            this.BankAccountUUID = bankAccountUUID;
             this.InvalidFields = invalidFields;
             this.MerchantReference = merchantReference;
             this.ResultCode = resultCode;
