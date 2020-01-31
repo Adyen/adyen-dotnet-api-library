@@ -32,7 +32,7 @@ namespace Adyen.Model.MarketPay
     /// <summary>
     /// AccountDetailBalance
     /// </summary>
-   [JsonObject("")]
+    [DataContract]
     public class AccountDetailBalance : IEquatable<AccountDetailBalance>, IValidatableObject
     {
         /// <summary>
