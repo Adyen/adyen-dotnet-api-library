@@ -1,0 +1,60 @@
+{
+    "pspReference": "8515803871979158",
+    "balancePerAccount": [
+        {
+            "accountCode": "112548519",
+            "detailBalance": {
+                "balance": [
+                    {
+                        "currency": "EUR",
+                        "value": -1080670
+                    },
+                    {
+                        "currency": "USD",
+                        "value": -1085000
+                    },
+                    {
+                        "currency": "GBP",
+                        "value": -1085000
+                    }
+                ],
+                "onHoldBalance": [],
+                "pendingBalance": []
+            }
+        },
+        {
+            "accountCode": "128653506",
+            "detailBalance": {
+                "balance": [],
+                "onHoldBalance": [],
+                "pendingBalance": []
+            }
+        },
+        {
+            "accountCode": "162991090",
+            "detailBalance": {
+                "balance": [],
+                "onHoldBalance": [],
+                "pendingBalance": []
+            }
+        }
+    ],
+    "totalBalance": {
+        "balance": [
+            {
+                "currency": "EUR",
+                "value": -1080670
+            },
+            {
+                "currency": "USD",
+                "value": -1085000
+            },
+            {
+                "currency": "GBP",
+                "value": -1085000
+            }
+        ],
+        "onHoldBalance": [],
+        "pendingBalance": []
+    }
+}

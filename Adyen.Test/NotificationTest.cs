@@ -34,7 +34,8 @@ namespace Adyen.Test
         public void TestAuthorisationSuccess()
         {
             var mockPath = GetMockFilePath("Mocks/notification/authorisation-true.json");
-            var jsonRequest = MockFileToString(mockPath); var notificationHandler = new NotificationHandler();
+            var jsonRequest = MockFileToString(mockPath);
+            var notificationHandler = new NotificationHandler();
             var handleNotificationRequest = notificationHandler.HandleNotificationRequest(jsonRequest);
             var notificationRequestItemContainer = handleNotificationRequest.NotificationItemContainers.FirstOrDefault();
             if (notificationRequestItemContainer == null)
