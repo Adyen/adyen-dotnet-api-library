@@ -216,5 +216,75 @@ namespace Adyen.Test
                 Assert.Fail();
             }
         }
+
+        /// <summary>
+        /// Test the async Task TerminalApiCloudSyncronousAsync
+        /// </summary>
+        [TestMethod]
+        public void TestCloudApiSyncRequestAsync()
+        {
+            try
+            {
+                //Create a mock pos payment request
+                var paymentRequest = MockPosApiRequest.CreatePosPaymentRequest();
+                var client = CreateAsyncMockTestClientApiKeyBasedRequest("Mocks/terminalapi/pospayment-success.json");
+                var payment = new PosPaymentCloudApi(client);
+                var saleToPoiResponse =  payment.TerminalApiCloudSyncronousAsync(paymentRequest).Result;
+                Assert.IsNotNull(saleToPoiResponse);
+            }
+            catch (Exception)
+            {
+                Assert.Fail();
+            }
+        }
+
+        /// <summary>
+        /// Test the async Task TerminalApiCloudAsyncrounousAsync
+        /// </summary>
+        [TestMethod]
+        public void TestCloudApiAsyncRequestAsync()
+        {
+            try
+            {
+                //Create a mock pos payment request
+                var paymentRequest = MockPosApiRequest.CreatePosPaymentRequest();
+                var client = CreateAsyncMockTestClientApiKeyBasedRequest("Mocks/terminalapi/pospayment-success.json");
+                var payment = new PosPaymentCloudApi(client);
+                var saleToPoiResponse = payment.TerminalApiCloudAsyncrounousAsync(paymentRequest).Result;
+                Assert.IsNotNull(saleToPoiResponse);
+            }
+            catch (Exception)
+            {
+                Assert.Fail();
+            }
+        }
+
+        /// <summary>
+        /// Test the async Task TerminalApiCloudSyncronousAsync
+        /// </summary>
+        [TestMethod]
+        public void TestCloudApiSyncErrorResponseAsync()
+        {
+            try
+            {
+                //Create a mock pos payment request
+                var paymentRequest = MockPosApiRequest.CreatePosPaymentRequest();
+                var client =
+                    CreateAsyncMockTestClientApiKeyBasedRequest(
+                        "Mocks/terminalapi/pospayment-notification-error-response.json");
+                var payment = new PosPaymentCloudApi(client);
+                var saleToPoiResponse = payment.TerminalApiCloudSyncronousAsync(paymentRequest).Result;
+                var messagePayload = (EventNotification)saleToPoiResponse.MessagePayload;
+                Assert.AreEqual(saleToPoiResponse.MessageHeader.MessageClass, MessageClassType.Event);
+                Assert.AreEqual(saleToPoiResponse.MessageHeader.MessageCategory, MessageCategoryType.Event);
+                Assert.AreEqual(saleToPoiResponse.MessageHeader.SaleID, "POSSystemID12345");
+                Assert.AreEqual(saleToPoiResponse.MessageHeader.POIID, "P400Plus-12345678");
+                Assert.AreEqual(messagePayload.EventToNotify, EventToNotifyType.Reject);
+            }
+            catch (Exception)
+            {
+                Assert.Fail();
+            }
+        }
     }
 }
