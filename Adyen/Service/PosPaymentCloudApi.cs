@@ -84,7 +84,7 @@ namespace Adyen.Service
         /// </summary>
         /// <param name="saleToPoiRequest"></param>
         /// <returns></returns>
-        public async Task<SaleToPOIResponse> TerminalApiCloudAsyncrounousAsync(SaleToPOIMessage saleToPoiRequest)
+        public async Task<SaleToPOIResponse> TerminalApiCloudAsynchronousAsync(SaleToPOIMessage saleToPoiRequest)
         {
             var serializedMessage = _saleToPoiMessageSerializer.Serialize(saleToPoiRequest);
             Client.LogLine("Request: \n" + serializedMessage);
@@ -102,7 +102,7 @@ namespace Adyen.Service
         /// </summary>
         /// <param name="saleToPoiRequest"></param>
         /// <returns></returns>
-        public async Task<SaleToPOIResponse> TerminalApiCloudSyncronousAsync(SaleToPOIMessage saleToPoiRequest)
+        public async Task<SaleToPOIResponse> TerminalApiCloudSynchronousAsync(SaleToPOIMessage saleToPoiRequest)
         {
             var serializedMessage = _saleToPoiMessageSerializer.Serialize(saleToPoiRequest);
             Client.LogLine("Request: \n" + serializedMessage);

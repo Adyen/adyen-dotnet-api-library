@@ -218,10 +218,10 @@ namespace Adyen.Test
         }
 
         /// <summary>
-        /// Test the async Task TerminalApiCloudSyncronousAsync
+        /// Test the async Task TerminalApiCloudSynchronousAsync
         /// </summary>
         [TestMethod]
-        public void TestCloudApiSyncRequestAsync()
+        public void TestTerminalApiCloudSynchronousAsyncSuccess()
         {
             try
             {
@@ -229,7 +229,7 @@ namespace Adyen.Test
                 var paymentRequest = MockPosApiRequest.CreatePosPaymentRequest();
                 var client = CreateAsyncMockTestClientApiKeyBasedRequest("Mocks/terminalapi/pospayment-success.json");
                 var payment = new PosPaymentCloudApi(client);
-                var saleToPoiResponse =  payment.TerminalApiCloudSyncronousAsync(paymentRequest).Result;
+                var saleToPoiResponse =  payment.TerminalApiCloudSynchronousAsync(paymentRequest).Result;
                 Assert.IsNotNull(saleToPoiResponse);
             }
             catch (Exception)
@@ -239,10 +239,10 @@ namespace Adyen.Test
         }
 
         /// <summary>
-        /// Test the async Task TerminalApiCloudAsyncrounousAsync
+        /// Test the async Task TerminalApiCloudAsynchronousAsync
         /// </summary>
         [TestMethod]
-        public void TestCloudApiAsyncRequestAsync()
+        public void TestTerminalApiCloudAsynchronousSuccess()
         {
             try
             {
@@ -250,7 +250,7 @@ namespace Adyen.Test
                 var paymentRequest = MockPosApiRequest.CreatePosPaymentRequest();
                 var client = CreateAsyncMockTestClientApiKeyBasedRequest("Mocks/terminalapi/pospayment-success.json");
                 var payment = new PosPaymentCloudApi(client);
-                var saleToPoiResponse = payment.TerminalApiCloudAsyncrounousAsync(paymentRequest).Result;
+                var saleToPoiResponse = payment.TerminalApiCloudAsynchronousAsync(paymentRequest).Result;
                 Assert.IsNotNull(saleToPoiResponse);
             }
             catch (Exception)
@@ -263,7 +263,7 @@ namespace Adyen.Test
         /// Test the async Task TerminalApiCloudSyncronousAsync
         /// </summary>
         [TestMethod]
-        public void TestCloudApiSyncErrorResponseAsync()
+        public void TestTerminalApiCloudSynchronousAsyncError()
         {
             try
             {
@@ -273,7 +273,7 @@ namespace Adyen.Test
                     CreateAsyncMockTestClientApiKeyBasedRequest(
                         "Mocks/terminalapi/pospayment-notification-error-response.json");
                 var payment = new PosPaymentCloudApi(client);
-                var saleToPoiResponse = payment.TerminalApiCloudSyncronousAsync(paymentRequest).Result;
+                var saleToPoiResponse = payment.TerminalApiCloudSynchronousAsync(paymentRequest).Result;
                 var messagePayload = (EventNotification)saleToPoiResponse.MessagePayload;
                 Assert.AreEqual(saleToPoiResponse.MessageHeader.MessageClass, MessageClassType.Event);
                 Assert.AreEqual(saleToPoiResponse.MessageHeader.MessageCategory, MessageCategoryType.Event);
