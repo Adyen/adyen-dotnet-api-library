@@ -21,9 +21,9 @@
 //  */
 #endregion
 
+using System.Threading.Tasks;
 using Adyen.CloudApiSerialization;
 using Adyen.Model.Nexo;
-using Adyen.Security;
 using Adyen.Service.Resource.Payment;
 
 namespace Adyen.Service
@@ -51,8 +51,9 @@ namespace Adyen.Service
         public SaleToPOIResponse TerminalApiCloudAsync(SaleToPOIMessage saleToPoiRequest)
         {
             var serializedMessage = _saleToPoiMessageSerializer.Serialize(saleToPoiRequest);
+            Client.LogLine("Request: \n" + serializedMessage);
             var response = _terminalApiAsync.Request(serializedMessage);
-            this.Client.LogLine("Response: \n" + response);
+            Client.LogLine("Response: \n" + response);
             if (string.IsNullOrEmpty(response) || string.Equals("ok", response))
             {
                 return null;
@@ -68,9 +69,45 @@ namespace Adyen.Service
         public SaleToPOIResponse TerminalApiCloudSync(SaleToPOIMessage saleToPoiRequest)
         {
             var serializedMessage = _saleToPoiMessageSerializer.Serialize(saleToPoiRequest);
-            this.Client.LogLine("Request: \n"+ serializedMessage);
+            Client.LogLine("Request: \n"+ serializedMessage);
             var response = _terminalApiSync.Request(serializedMessage);
-            this.Client.LogLine("Response: \n"+ response);
+            Client.LogLine("Response: \n"+ response);
+            if (string.IsNullOrEmpty(response) || string.Equals("ok", response))
+            {
+                return null;
+            }
+            return _saleToPoiMessageSerializer.Deserialize(response);
+        }
+
+        /// <summary>
+        ///  Task async CloudApi asynchronous call
+        /// </summary>
+        /// <param name="saleToPoiRequest"></param>
+        /// <returns></returns>
+        public async Task<SaleToPOIResponse> TerminalApiCloudAsynchronousAsync(SaleToPOIMessage saleToPoiRequest)
+        {
+            var serializedMessage = _saleToPoiMessageSerializer.Serialize(saleToPoiRequest);
+            Client.LogLine("Request: \n" + serializedMessage);
+            var response = await _terminalApiAsync.RequestAsync(serializedMessage);
+            Client.LogLine("Response: \n" + response);
+            if (string.IsNullOrEmpty(response) || string.Equals("ok", response))
+            {
+                return null;
+            }
+            return _saleToPoiMessageSerializer.Deserialize(response);
+        }
+
+        /// <summary>
+        ///  Task async CloudApi synchronous call
+        /// </summary>
+        /// <param name="saleToPoiRequest"></param>
+        /// <returns></returns>
+        public async Task<SaleToPOIResponse> TerminalApiCloudSynchronousAsync(SaleToPOIMessage saleToPoiRequest)
+        {
+            var serializedMessage = _saleToPoiMessageSerializer.Serialize(saleToPoiRequest);
+            Client.LogLine("Request: \n" + serializedMessage);
+            var response = await _terminalApiSync.RequestAsync(serializedMessage);
+            Client.LogLine("Response: \n" + response);
             if (string.IsNullOrEmpty(response) || string.Equals("ok", response))
             {
                 return null;
