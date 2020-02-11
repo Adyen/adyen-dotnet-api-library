@@ -27,7 +27,7 @@ namespace Adyen.Service.Resource.Account
     public class DeleteBankAccount : Resource
     {
         public DeleteBankAccount(AbstractService abstractService)
-            : base(abstractService, abstractService.Client.Config.MarketPayEndpoint + "/Account/" + ClientConfig.MarketPayAccountApiVersion + ClientConfig.BinLookupApiVersion + "/deleteBankAccounts", null)
+            : base(abstractService, abstractService.Client.Config.MarketPayEndpoint + "/Account/" + ClientConfig.MarketPayAccountApiVersion + "/deleteBankAccounts", null)
         {
         }
     }

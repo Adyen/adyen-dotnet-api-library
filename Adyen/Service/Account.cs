@@ -200,9 +200,9 @@ namespace Adyen.Service
         /// </summary>
         /// <param name="updateAccountRequest"></param>
         /// <returns>UpdateAccountHolderResponse</returns>
-        public UpdateAccountHolderResponse UpdateAccountHolder(UpdateAccountRequest updateAccountRequest)
+        public UpdateAccountHolderResponse UpdateAccountHolder(UpdateAccountHolderRequest updateAccountHolderRequest)
         {
-            var jsonRequest = Util.JsonOperation.SerializeRequest(updateAccountRequest);
+            var jsonRequest = Util.JsonOperation.SerializeRequest(updateAccountHolderRequest);
             var jsonResponse = _updateAccountHolder.Request(jsonRequest);
             return JsonConvert.DeserializeObject<UpdateAccountHolderResponse>(jsonResponse);
         }

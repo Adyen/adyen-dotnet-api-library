@@ -28,7 +28,7 @@ namespace Adyen.Service.Resource.Account
     public class UploadDocument : Resource
     {
         public UploadDocument(AbstractService abstractService)
-            : base(abstractService, abstractService.Client.Config.MarketPayEndpoint + "/Account/" + ClientConfig.MarketPayAccountApiVersion + ClientConfig.BinLookupApiVersion + "/uploadDocument", null)
+            : base(abstractService, abstractService.Client.Config.MarketPayEndpoint + "/Account/" + ClientConfig.MarketPayAccountApiVersion + "/uploadDocument", null)
         {
         }
     }

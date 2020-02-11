@@ -11,9 +11,9 @@
         "email": "test@test.com",
         "individualDetails": {
             "name": {
-                "firstName": "Alex",
+                "firstName": "John",
                 "gender": "MALE",
-                "lastName": "Alex"
+                "lastName": "Smith"
             }
         },
         "merchantCategoryCode": null,

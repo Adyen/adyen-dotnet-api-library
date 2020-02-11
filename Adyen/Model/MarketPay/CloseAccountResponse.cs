@@ -79,30 +79,33 @@ namespace Adyen.Model.MarketPay
         /// <param name="pspReference">The reference of a request.  Can be used to uniquely identify the request. (required).</param>
         /// <param name="resultCode">The result code..</param>
         /// <param name="status">The new status of the account. &gt;Permitted values: &#x60;Active&#x60;, &#x60;Inactive&#x60;, &#x60;Suspended&#x60;, &#x60;Closed&#x60;. (required).</param>
-        public CloseAccountResponse(List<ErrorFieldType> invalidFields = default(List<ErrorFieldType>), string pspReference = default(string), string resultCode = default(string), StatusEnum status = default(StatusEnum))
+        //public CloseAccountResponse(List<ErrorFieldType> invalidFields = default(List<ErrorFieldType>), string pspReference = default(string), string resultCode = default(string), StatusEnum status = default(StatusEnum))
+        //{
+        //    // to ensure "pspReference" is required (not null)
+        //    if (pspReference == null)
+        //    {
+        //        throw new InvalidDataException("pspReference is a required property for CloseAccountResponse and cannot be null");
+        //    }
+        //    else
+        //    {
+        //        this.PspReference = pspReference;
+        //    }
+        //    // to ensure "status" is required (not null)
+        //    if (status == null)
+        //    {
+        //        throw new InvalidDataException("status is a required property for CloseAccountResponse and cannot be null");
+        //    }
+        //    else
+        //    {
+        //        this.Status = status;
+        //    }
+        //    this.InvalidFields = invalidFields;
+        //    this.ResultCode = resultCode;
+        //}
+        public CloseAccountResponse()
         {
-            // to ensure "pspReference" is required (not null)
-            if (pspReference == null)
-            {
-                throw new InvalidDataException("pspReference is a required property for CloseAccountResponse and cannot be null");
-            }
-            else
-            {
-                this.PspReference = pspReference;
-            }
-            // to ensure "status" is required (not null)
-            if (status == null)
-            {
-                throw new InvalidDataException("status is a required property for CloseAccountResponse and cannot be null");
-            }
-            else
-            {
-                this.Status = status;
-            }
-            this.InvalidFields = invalidFields;
-            this.ResultCode = resultCode;
+
         }
-        
         /// <summary>
         /// Contains field validation errors that would prevent requests from being processed.
         /// </summary>

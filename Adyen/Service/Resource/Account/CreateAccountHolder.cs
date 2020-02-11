@@ -28,7 +28,7 @@ namespace Adyen.Service.Resource.Account
     public class CreateAccountHolder : Resource
     {
         public CreateAccountHolder(AbstractService abstractService)
-            : base(abstractService, abstractService.Client.Config.MarketPayEndpoint + "/Account/" + ClientConfig.MarketPayAccountApiVersion + ClientConfig.BinLookupApiVersion + "/createAccountHolder", null)
+            : base(abstractService, abstractService.Client.Config.MarketPayEndpoint + "/Account/" + ClientConfig.MarketPayAccountApiVersion + "/createAccountHolder", null)
         {
         }
     }

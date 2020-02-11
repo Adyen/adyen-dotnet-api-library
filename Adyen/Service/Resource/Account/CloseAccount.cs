@@ -27,7 +27,7 @@ namespace Adyen.Service.Resource.Account
     public class CloseAccount : ServiceResource
     {
         public CloseAccount(AbstractService abstractService)
-            : base(abstractService, abstractService.Client.Config.MarketPayEndpoint + "/Account/" + ClientConfig.MarketPayAccountApiVersion + ClientConfig.BinLookupApiVersion + "/closeAccount", null)
+            : base(abstractService, abstractService.Client.Config.MarketPayEndpoint + "/Account/" + ClientConfig.MarketPayAccountApiVersion + "/closeAccount", null)
         {
         }
     }

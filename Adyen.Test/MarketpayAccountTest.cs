@@ -30,20 +30,20 @@ namespace Adyen.Test
     [TestClass]
     public class MarketpayAccountTest : BaseTest
     {
-        //// <summary>
-        //// Test /closeAccount
-        //// </summary>
-        //[TestMethod]
-        //public void TestCloseAccountSuccess()
-        //{
-        //    var client = CreateMockTestClientNullRequiredFieldsRequest("Mocks/marketpay/account/close-account-success.json");
-        //    var account = new Account(client);
-        //    var closeAccountRequest = new CloseAccountRequest(accountCode: "123456");
-        //    var closeAccountResponse = account.CloseAccount(closeAccountRequest);
-        //    //Assert.IsNotNull(closeAccountResponse);
-        //    //Assert.AreEqual(closeAccountResponse.PspReference, "8515810799236011");
-        //    //Assert.AreEqual(closeAccountResponse.Status,CloseAccountResponse.StatusEnum.Closed);
-        //}
+        // <summary>
+        // Test /closeAccount
+        // </summary>
+        [TestMethod]
+        public void TestCloseAccountSuccess()
+        {
+            var client = CreateMockTestClientNullRequiredFieldsRequest("Mocks/marketpay/account/close-account-success.json");
+            var account = new Account(client);
+            var closeAccountRequest = new CloseAccountRequest(accountCode: "123456");
+            var closeAccountResponse = account.CloseAccount(closeAccountRequest);
+            //Assert.IsNotNull(closeAccountResponse);
+            //Assert.AreEqual(closeAccountResponse.PspReference, "8515810799236011");
+            //Assert.AreEqual(closeAccountResponse.Status,CloseAccountResponse.StatusEnum.Closed);
+        }
 
         /// <summary>
         /// Test /closeAccountHolder API call/
@@ -91,15 +91,15 @@ namespace Adyen.Test
         {
             var client = CreateMockTestClientNullRequiredFieldsRequest("Mocks/marketpay/account/create-account-holder-success.json");
             var account = new Account(client);
-            var createAccountHolderRequest=new CreateAccountHolderRequest(accountHolderCode:"123456",accountHolderDetails:new AccountHolderDetails( email:"test@test.com", fullPhoneNumber:"123456789", webAddress: "webaddress"));
+            var createAccountHolderRequest = new CreateAccountHolderRequest(accountHolderCode: "123456", accountHolderDetails: new AccountHolderDetails(email: "test@test.com", fullPhoneNumber: "123456789", webAddress: "webaddress"));
             var createAccountHolderResponse = account.CreateAccountHolder(createAccountHolderRequest);
             Assert.AreEqual(createAccountHolderResponse.PspReference, "8815810875863517");
             Assert.AreEqual(createAccountHolderResponse.AccountCode, "8815810875863525");
             Assert.AreEqual(createAccountHolderResponse.AccountHolderCode, "97112729718522222");
             Assert.AreEqual(createAccountHolderResponse.AccountHolderDetails.Address.Country, "US");
-            Assert.AreEqual(createAccountHolderResponse.AccountHolderDetails.IndividualDetails.Name.FirstName, "Alex");
-            Assert.AreEqual(createAccountHolderResponse.AccountHolderDetails.IndividualDetails.Name.Gender, ViasName.GenderEnum.MALE); 
-            Assert.AreEqual(createAccountHolderResponse.AccountHolderDetails.IndividualDetails.Name.LastName, "Alex");
+            Assert.AreEqual(createAccountHolderResponse.AccountHolderDetails.IndividualDetails.Name.FirstName, "John");
+            Assert.AreEqual(createAccountHolderResponse.AccountHolderDetails.IndividualDetails.Name.Gender, ViasName.GenderEnum.MALE);
+            Assert.AreEqual(createAccountHolderResponse.AccountHolderDetails.IndividualDetails.Name.LastName, "Smith");
             Assert.AreEqual(createAccountHolderResponse.AccountHolderStatus.Status,
                 AccountHolderStatus.StatusEnum.Active);
             Assert.AreEqual(createAccountHolderResponse.LegalEntity, CreateAccountHolderResponse.LegalEntityEnum.Individual);
@@ -209,20 +209,6 @@ namespace Adyen.Test
             Assert.AreEqual(getUploadDocumentsResponse.DocumentDetails[0].AccountHolderCode, "TestAccountHolder8031");
         }
 
-        ///// <summary>
-        ///// Test /uploadedDocuments API call/
-        ///// </summary>
-        //[TestMethod]
-        //public void TestUploadDocuments()
-        //{
-        //    var client = CreateMockTestClientNullRequiredFieldsRequest("Mocks/marketpay/account/upload-document-success.json");
-        //    var account = new Account(client);
-        //    var uploadDocumentsRequest = new UploadDocumentRequest(documentContent:new byte[100],documentDetail:new DocumentDetail(accountHolderCode:"12345678",filename:"filename"));
-        //    var updateAccountHolderResponse = account.UploadDocument(uploadDocumentsRequest);
-        //    Assert.AreEqual(updateAccountHolderResponse.PspReference, "9914762681460244");
-
-        //}
-
         /// <summary>
         /// Test /suspendAccountHolder API call/
         /// </summary>
@@ -238,6 +224,87 @@ namespace Adyen.Test
             Assert.AreEqual(suspendAccountHolderResponse.AccountHolderStatus.PayoutState.AllowPayout, false);
             Assert.AreEqual(suspendAccountHolderResponse.AccountHolderStatus.PayoutState.Disabled, false);
         }
-        
+
+        /// <summary>
+        /// Test /unSuspendAccountHolder API call/
+        /// </summary>
+        [TestMethod]
+        public void TestUnSuspendAccountHolderSuccess()
+        {
+            var client = CreateMockTestClientNullRequiredFieldsRequest("Mocks/marketpay/account/un-suspend-account-holder-success.json");
+            var account = new Account(client);
+            var suspendAccountHolderRequest = new SuspendAccountHolderRequest(accountHolderCode: "123456");
+            var suspendAccountHolderResponse = account.SuspendAccountHolder(suspendAccountHolderRequest);
+            Assert.AreEqual(suspendAccountHolderResponse.PspReference, "8815813528286482");
+            Assert.AreEqual(suspendAccountHolderResponse.AccountHolderStatus.Status, AccountHolderStatus.StatusEnum.Active);
+            Assert.AreEqual(suspendAccountHolderResponse.AccountHolderStatus.PayoutState.AllowPayout, false);
+            Assert.AreEqual(suspendAccountHolderResponse.AccountHolderStatus.PayoutState.Disabled, false);
+        }
+
+        /// <summary>
+        /// Test /updateAccount API call
+        /// </summary>
+        [TestMethod]
+        public void TestUpdateAccountSuccess()
+        {
+            var client = CreateMockTestClientNullRequiredFieldsRequest("Mocks/marketpay/account/update-account-success.json");
+            var account = new Account(client);
+            var updateAccountRequest = new UpdateAccountRequest(accountCode: "123456");
+            var updateAccountResponse = account.UpdateAccount(updateAccountRequest);
+            Assert.AreEqual(updateAccountResponse.PspReference, "9914860311411119");
+            Assert.AreEqual(updateAccountResponse.AccountCode, "198360329231");
+            Assert.AreEqual(updateAccountResponse.PayoutSchedule.Schedule, PayoutScheduleResponse.ScheduleEnum.WEEKLY);
+        }
+
+        /// <summary>
+        /// Test /updateAccountHolder API call
+        /// </summary>
+        [TestMethod]
+        public void TestUpdateAccountHolderSuccess()
+        {
+            var client = CreateMockTestClientNullRequiredFieldsRequest("Mocks/marketpay/account/update-account-holder-success.json");
+            var account = new Account(client);
+            var updateAccountHolderRequest = new UpdateAccountHolderRequest(accountHolderCode: "123456");
+            var updateAccountHolderResponse = account.UpdateAccountHolder(updateAccountHolderRequest);
+            Assert.AreEqual(updateAccountHolderResponse.PspReference, "8515813355311349");
+            Assert.AreEqual(updateAccountHolderResponse.AccountHolderCode, "8515843355311359");
+            Assert.AreEqual(updateAccountHolderResponse.AccountHolderDetails.Email, "test@test.com");
+            Assert.AreEqual(updateAccountHolderResponse.AccountHolderDetails.Address, new ViasAddress(country: "US"));
+            Assert.AreEqual(updateAccountHolderResponse.AccountHolderDetails.IndividualDetails.Name.FirstName, "John");
+            Assert.AreEqual(updateAccountHolderResponse.AccountHolderDetails.IndividualDetails.Name.Gender, ViasName.GenderEnum.MALE);
+            Assert.AreEqual(updateAccountHolderResponse.AccountHolderDetails.IndividualDetails.Name.LastName, "Smith");
+            Assert.AreEqual(updateAccountHolderResponse.AccountHolderStatus.Status,
+                AccountHolderStatus.StatusEnum.Active);
+            Assert.AreEqual(updateAccountHolderResponse.AccountHolderStatus.Events.Count, 0);
+            Assert.AreEqual(updateAccountHolderResponse.AccountHolderStatus.ProcessingState.Disabled, false);
+            Assert.AreEqual(updateAccountHolderResponse.AccountHolderStatus.ProcessingState.ProcessedFrom, new Amount("USD", 0));
+            Assert.AreEqual(updateAccountHolderResponse.AccountHolderStatus.ProcessingState.ProcessedTo, new Amount("USD", 9999));
+            Assert.AreEqual(updateAccountHolderResponse.AccountHolderStatus.PayoutState.AllowPayout, false);
+            Assert.AreEqual(updateAccountHolderResponse.AccountHolderStatus.PayoutState.Disabled, false);
+            Assert.IsNotNull(updateAccountHolderResponse.Verification.AccountHolder.Checks);
+        }
+
+        /// <summary>
+        /// Test /updateAccountHolderState API call
+        /// </summary>
+        [TestMethod]
+        public void TestUpdateAccountHolderStateSuccess()
+        {
+            var client = CreateMockTestClientNullRequiredFieldsRequest("Mocks/marketpay/account/update-account-holder-state-success.json");
+            var account = new Account(client);
+            var updateAccountHolderStateRequest = new UpdateAccountHolderStateRequest(accountHolderCode: "123456", reason: "test reason payout", stateType: UpdateAccountHolderStateRequest.StateTypeEnum.Payout, disable: false);
+            var updateAccountHolderStateResponse = account.UpdateAccountHolderState(updateAccountHolderStateRequest);
+            Assert.AreEqual(updateAccountHolderStateResponse.PspReference, "8515813355311349");
+            Assert.AreEqual(updateAccountHolderStateResponse.AccountHolderCode, "8515843355311359");
+            Assert.AreEqual(updateAccountHolderStateResponse.AccountHolderStatus.Status,
+            AccountHolderStatus.StatusEnum.Active);
+            Assert.AreEqual(updateAccountHolderStateResponse.AccountHolderStatus.Events.Count, 0);
+            Assert.AreEqual(updateAccountHolderStateResponse.AccountHolderStatus.ProcessingState.Disabled, false);
+            Assert.AreEqual(updateAccountHolderStateResponse.AccountHolderStatus.ProcessingState.ProcessedFrom, new Amount("USD", 0));
+            Assert.AreEqual(updateAccountHolderStateResponse.AccountHolderStatus.ProcessingState.ProcessedTo, new Amount("USD", 9999));
+            Assert.AreEqual(updateAccountHolderStateResponse.AccountHolderStatus.PayoutState.AllowPayout, false);
+            Assert.AreEqual(updateAccountHolderStateResponse.AccountHolderStatus.PayoutState.Disabled, true);
+            Assert.AreEqual(updateAccountHolderStateResponse.AccountHolderStatus.PayoutState.DisableReason, "test reason payout");
+        }
     }
 }

@@ -18,7 +18,8 @@
   },
   "accountHolderStatus":{
     "status":"Active",
-    "processingState":{
+	"disabled":"true",
+	"processingState":{
       "processedFrom":{
         "currency":"GBP",
         "value":0
