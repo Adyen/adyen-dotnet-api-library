@@ -46,16 +46,7 @@ namespace Adyen.Model.MarketPay
         /// <param name="shareholders">The result(s) of the checks on the shareholder(s). (required).</param>
         public KYCVerificationResult(KYCCheckResult accountHolder = default(KYCCheckResult), List<KYCBankAccountCheckResult> bankAccounts = default(List<KYCBankAccountCheckResult>), List<KYCShareholderCheckResult> shareholders = default(List<KYCShareholderCheckResult>))
         {
-            // to ensure "accountHolder" is required (not null)
-            if (accountHolder == null)
-            {
-                throw new InvalidDataException("accountHolder is a required property for KYCVerificationResult and cannot be null");
-            }
-            else
-            {
-                this.AccountHolder = accountHolder;
-            }
-           
+            this.AccountHolder = accountHolder;
             this.Shareholders = shareholders;
             this.BankAccounts = bankAccounts;
         }

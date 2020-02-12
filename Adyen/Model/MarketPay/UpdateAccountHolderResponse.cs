@@ -87,42 +87,10 @@ namespace Adyen.Model.MarketPay
         /// <param name="verification">verification (required).</param>
         public UpdateAccountHolderResponse(string accountHolderCode = default(string), AccountHolderDetails accountHolderDetails = default(AccountHolderDetails), AccountHolderStatus accountHolderStatus = default(AccountHolderStatus), string description = default(string), List<ErrorFieldType> invalidFields = default(List<ErrorFieldType>), LegalEntityEnum legalEntity = default(LegalEntityEnum), string primaryCurrency = default(string), string pspReference = default(string), string resultCode = default(string), KYCVerificationResult verification = default(KYCVerificationResult))
         {
-            // to ensure "accountHolderStatus" is required (not null)
-            if (accountHolderStatus == null)
-            {
-                throw new InvalidDataException("accountHolderStatus is a required property for UpdateAccountHolderResponse and cannot be null");
-            }
-            else
-            {
-                this.AccountHolderStatus = accountHolderStatus;
-            }
-            // to ensure "legalEntity" is required (not null)
-            if (legalEntity == null)
-            {
-                throw new InvalidDataException("legalEntity is a required property for UpdateAccountHolderResponse and cannot be null");
-            }
-            else
-            {
-                this.LegalEntity = legalEntity;
-            }
-            // to ensure "pspReference" is required (not null)
-            if (pspReference == null)
-            {
-                throw new InvalidDataException("pspReference is a required property for UpdateAccountHolderResponse and cannot be null");
-            }
-            else
-            {
-                this.PspReference = pspReference;
-            }
-            // to ensure "verification" is required (not null)
-            if (verification == null)
-            {
-                throw new InvalidDataException("verification is a required property for UpdateAccountHolderResponse and cannot be null");
-            }
-            else
-            {
-                this.Verification = verification;
-            }
+            this.AccountHolderStatus = accountHolderStatus;
+            this.LegalEntity = legalEntity;
+            this.PspReference = pspReference;
+            this.Verification = verification;
             this.AccountHolderCode = accountHolderCode;
             this.AccountHolderDetails = accountHolderDetails;
             this.Description = description;

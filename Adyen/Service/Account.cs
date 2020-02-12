@@ -224,11 +224,11 @@ namespace Adyen.Service
         /// </summary>
         /// <param name="uploadDocumentRequest"></param>
         /// <returns>UpdateAccountHolderResponse</returns>
-        public UpdateAccountHolderResponse UploadDocument(UploadDocumentRequest uploadDocumentRequest)
+        public UploadDocumentResponse UploadDocument(UploadDocumentRequest uploadDocumentRequest)
         {
             var jsonRequest = Util.JsonOperation.SerializeRequest(uploadDocumentRequest);
             var jsonResponse = _uploadDocument.Request(jsonRequest);
-            return JsonConvert.DeserializeObject<UpdateAccountHolderResponse>(jsonResponse);
+            return JsonConvert.DeserializeObject<UploadDocumentResponse>(jsonResponse);
         }
     }
 }

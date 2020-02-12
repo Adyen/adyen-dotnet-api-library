@@ -40,9 +40,9 @@ namespace Adyen.Test
             var account = new Account(client);
             var closeAccountRequest = new CloseAccountRequest(accountCode: "123456");
             var closeAccountResponse = account.CloseAccount(closeAccountRequest);
-            //Assert.IsNotNull(closeAccountResponse);
-            //Assert.AreEqual(closeAccountResponse.PspReference, "8515810799236011");
-            //Assert.AreEqual(closeAccountResponse.Status,CloseAccountResponse.StatusEnum.Closed);
+            Assert.IsNotNull(closeAccountResponse);
+            Assert.AreEqual(closeAccountResponse.PspReference, "8515810799236011");
+            Assert.AreEqual(closeAccountResponse.Status,CloseAccountResponse.StatusEnum.Closed);
         }
 
         /// <summary>
@@ -233,12 +233,12 @@ namespace Adyen.Test
         {
             var client = CreateMockTestClientNullRequiredFieldsRequest("Mocks/marketpay/account/un-suspend-account-holder-success.json");
             var account = new Account(client);
-            var suspendAccountHolderRequest = new SuspendAccountHolderRequest(accountHolderCode: "123456");
-            var suspendAccountHolderResponse = account.SuspendAccountHolder(suspendAccountHolderRequest);
-            Assert.AreEqual(suspendAccountHolderResponse.PspReference, "8815813528286482");
-            Assert.AreEqual(suspendAccountHolderResponse.AccountHolderStatus.Status, AccountHolderStatus.StatusEnum.Active);
-            Assert.AreEqual(suspendAccountHolderResponse.AccountHolderStatus.PayoutState.AllowPayout, false);
-            Assert.AreEqual(suspendAccountHolderResponse.AccountHolderStatus.PayoutState.Disabled, false);
+            var unSuspendAccountHolderRequest = new UnSuspendAccountHolderRequest(accountHolderCode: "123456");
+            var unSuspendAccountHolderResponse = account.UnSuspendAccountHolder(unSuspendAccountHolderRequest);
+            Assert.AreEqual(unSuspendAccountHolderResponse.PspReference, "8815813528286482");
+            Assert.AreEqual(unSuspendAccountHolderResponse.AccountHolderStatus.Status, AccountHolderStatus.StatusEnum.Active);
+            Assert.AreEqual(unSuspendAccountHolderResponse.AccountHolderStatus.PayoutState.AllowPayout, false);
+            Assert.AreEqual(unSuspendAccountHolderResponse.AccountHolderStatus.PayoutState.Disabled, false);
         }
 
         /// <summary>
@@ -305,6 +305,21 @@ namespace Adyen.Test
             Assert.AreEqual(updateAccountHolderStateResponse.AccountHolderStatus.PayoutState.AllowPayout, false);
             Assert.AreEqual(updateAccountHolderStateResponse.AccountHolderStatus.PayoutState.Disabled, true);
             Assert.AreEqual(updateAccountHolderStateResponse.AccountHolderStatus.PayoutState.DisableReason, "test reason payout");
+        }
+
+        /// <summary>
+        /// Test /uploadDocument API call
+        /// </summary>
+        [TestMethod]
+        public void TestUpdateDocumentSuccess()
+        {
+            var client = CreateMockTestClientNullRequiredFieldsRequest("Mocks/marketpay/account/upload-document-success.json");
+            var account = new Account(client);
+            var documentDetail = new DocumentDetail(accountHolderCode: "123456", filename: "stament.pdf", bankAccountUUID: "aaaaaaaa-7863-f943-4e3s-ffffffff", documentType: DocumentDetail.DocumentTypeEnum.BANKSTATEMENT);          
+            var uploadDocumentRequest = new UploadDocumentRequest(documentDetail:documentDetail,documentContent:new byte[1000]);
+            var uploadDocumentResponse = account.UploadDocument(uploadDocumentRequest);
+            Assert.AreEqual(uploadDocumentResponse.PspReference, "8815815165741111");
+            Assert.AreEqual(uploadDocumentResponse.AccountHolderCode, "TestAccountHolder8031");
         }
     }
 }

@@ -20,15 +20,10 @@
 //  * See the LICENSE file for more info.
 //  */
 #endregion
-using Adyen.Constants;
 
-namespace Adyen.Service.Resource.Account
+namespace Adyen.Model.MarketPay
 {
-    public class CloseAccount : Resource
+    public class UploadDocumentResponse : UpdateAccountHolderResponse
     {
-        public CloseAccount(AbstractService abstractService)
-            : base(abstractService, abstractService.Client.Config.MarketPayEndpoint + "/Account/" + ClientConfig.MarketPayAccountApiVersion + "/closeAccount", null)
-        {
-        }
     }
 }
