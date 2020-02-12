@@ -33,6 +33,8 @@ namespace Adyen.Service
         private readonly CloseAccountHolder _closeAccountHolder;
         private readonly CreateAccount _createAccount;
         private readonly CreateAccountHolder _createAccountHolder;
+        private readonly CheckAccountHolder _checkAccountHolder;
+        private readonly DeletePayoutMethods _deletePayoutMethods;
         private readonly DeleteBankAccount _deleteBankAccount;
         private readonly DeleteShareholder _deleteShareholder;
         private readonly GetAccountHolder _getAccountHolder;
@@ -51,6 +53,8 @@ namespace Adyen.Service
             _closeAccountHolder = new CloseAccountHolder(this);
             _createAccount = new CreateAccount(this);
             _createAccountHolder = new CreateAccountHolder(this);
+            _checkAccountHolder = new CheckAccountHolder(this);
+            _deletePayoutMethods = new DeletePayoutMethods(this);
             _deleteBankAccount = new DeleteBankAccount(this);
             _deleteShareholder = new DeleteShareholder(this);
             _getAccountHolder = new GetAccountHolder(this);
@@ -229,6 +233,30 @@ namespace Adyen.Service
             var jsonRequest = Util.JsonOperation.SerializeRequest(uploadDocumentRequest);
             var jsonResponse = _uploadDocument.Request(jsonRequest);
             return JsonConvert.DeserializeObject<UploadDocumentResponse>(jsonResponse);
+        }
+
+        /// <summary>
+        /// Post /checkAccountholder API call
+        /// </summary>
+        /// <param name="performVerificationRequest"></param>
+        /// <returns>UpdateAccountHolderResponse</returns>
+        public GenericResponse CheckAccountholder(PerformVerificationRequest performVerificationRequest)
+        {
+            var jsonRequest = Util.JsonOperation.SerializeRequest(performVerificationRequest);
+            var jsonResponse = _checkAccountHolder.Request(jsonRequest);
+            return JsonConvert.DeserializeObject<GenericResponse>(jsonResponse);
+        }
+
+        /// <summary>
+        /// Post /deletePayoutMethods API call
+        /// </summary>
+        /// <param name="deletePayoutMethodRequest"></param>
+        /// <returns>UpdateAccountHolderResponse</returns>
+        public GenericResponse DeletePayoutMethods(DeletePayoutMethodRequest deletePayoutMethodRequest)
+        {
+            var jsonRequest = Util.JsonOperation.SerializeRequest(deletePayoutMethodRequest);
+            var jsonResponse = _checkAccountHolder.Request(jsonRequest);
+            return JsonConvert.DeserializeObject<GenericResponse>(jsonResponse);
         }
     }
 }

@@ -321,5 +321,33 @@ namespace Adyen.Test
             Assert.AreEqual(uploadDocumentResponse.PspReference, "8815815165741111");
             Assert.AreEqual(uploadDocumentResponse.AccountHolderCode, "TestAccountHolder8031");
         }
+
+        /// <summary>
+        /// Test /deletePayoutMethods API call
+        /// </summary>
+        [TestMethod]
+        public void TestDeletePayoutMethodsSuccess()
+        {
+            var client = CreateMockTestClientNullRequiredFieldsRequest("Mocks/marketpay/account/delete-payout-methods.json");
+            var account = new Account(client);
+            var deletePayoutMethodRequest = new DeletePayoutMethodRequest(accountHolderCode: "123456",payoutMethodCodes:new List<string>());
+            var genericResponse = account.DeletePayoutMethods(deletePayoutMethodRequest);
+            Assert.AreEqual(genericResponse.PspReference, "85158152328111154");
+            Assert.AreEqual(genericResponse.ResultCode, "Success");
+        }
+
+        /// <summary>
+        /// Test /checkoutAccountHolder API call
+        /// </summary>
+        [TestMethod]
+        public void TestCheckAccountHolderSuccess()
+        {
+            var client = CreateMockTestClientNullRequiredFieldsRequest("Mocks/marketpay/account/check-account-holder-success.json");
+            var account = new Account(client);
+            var performVerificationRequest = new PerformVerificationRequest(accountHolderCode: "TestAccountHolder8031", accountStateType: PerformVerificationRequest.AccountStateTypeEnum.Processing, tier: 2);
+            var genericResponse = account.CheckAccountholder(performVerificationRequest);
+            Assert.AreEqual(genericResponse.PspReference, "85158152328111154");
+            Assert.AreEqual(genericResponse.ResultCode, "Success");
+        }
     }
 }
