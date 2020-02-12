@@ -255,7 +255,7 @@ namespace Adyen.Service
         public GenericResponse DeletePayoutMethods(DeletePayoutMethodRequest deletePayoutMethodRequest)
         {
             var jsonRequest = Util.JsonOperation.SerializeRequest(deletePayoutMethodRequest);
-            var jsonResponse = _checkAccountHolder.Request(jsonRequest);
+            var jsonResponse = _deletePayoutMethods.Request(jsonRequest);
             return JsonConvert.DeserializeObject<GenericResponse>(jsonResponse);
         }
     }
