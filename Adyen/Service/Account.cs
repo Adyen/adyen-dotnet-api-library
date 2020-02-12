@@ -68,7 +68,7 @@ namespace Adyen.Service
         }
 
         /// <summary>
-        /// Post /closeAccountResponse API call
+        /// Post /closeAccount API call
         /// </summary>
         /// <param name="closeAccountRequest"></param>
         /// <returns>CloseAccountResponse</returns>
@@ -176,7 +176,7 @@ namespace Adyen.Service
         }
 
         /// <summary>
-        /// Post /suspendAccountHolder API call
+        /// Post /unSuspendAccountHolder API call
         /// </summary>
         /// <param name="unSuspendAccountHolderRequest"></param>
         /// <returns>UnSuspendAccountHolderResponse</returns>
@@ -188,7 +188,7 @@ namespace Adyen.Service
         }
 
         /// <summary>
-        /// Post /suspendAccountHolder API call
+        /// Post /updateAccount API call
         /// </summary>
         /// <param name="updateAccountRequest"></param>
         /// <returns>UpdateAccountResponse</returns>
