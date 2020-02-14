@@ -150,7 +150,7 @@ namespace Adyen.Test
             var client = CreateMockTestClientNullRequiredFieldsRequest("Mocks/marketpay/account/delete-shareholder-success.json");
             var account = new Account(client);
             var deleteShareholderRequest = new DeleteShareholderRequest(accountHolderCode: "123456", shareholderCodes: new List<string>());
-            var deleteAccountSuccessResponse = account.DeleteShareHolder(deleteShareholderRequest);
+            var deleteShareholderResponse = account.DeleteShareHolder(deleteShareholderRequest);
             Assert.AreEqual(deleteAccountSuccessResponse.PspReference, "9914694372990637");
         }
 
