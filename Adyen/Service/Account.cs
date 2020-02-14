@@ -202,7 +202,7 @@ namespace Adyen.Service
         /// <summary>
         /// Post /updateAccountHolder API call
         /// </summary>
-        /// <param name="updateAccountRequest"></param>
+        /// <param name="updateAccountHolderRequest"></param>
         /// <returns>UpdateAccountHolderResponse</returns>
         public UpdateAccountHolderResponse UpdateAccountHolder(UpdateAccountHolderRequest updateAccountHolderRequest)
         {
