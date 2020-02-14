@@ -200,7 +200,7 @@ namespace Adyen.Test
             var client = CreateMockTestClientNullRequiredFieldsRequest("Mocks/marketpay/account/get-uploaded-documents-success.json");
             var account = new Account(client);
             var getUploadedDocumentsRequest = new GetUploadedDocumentsRequest(accountHolderCode: "123456");
-            var getUploadDocumentsResponse = account.GetUploadedDocuments(getUploadDocumentsRequest);
+            var getUploadedDocumentsResponse = account.GetUploadedDocuments(getUploadedDocumentsRequest);
             Assert.AreEqual(getUploadDocumentsResponse.PspReference, "9914694369860322");
             Assert.AreEqual(getUploadDocumentsResponse.DocumentDetails[0].AccountHolderCode, "TestAccountHolder8031");
             Assert.AreEqual(getUploadDocumentsResponse.DocumentDetails[0].BankAccountUUID, "EXAMPLE_UUID");
