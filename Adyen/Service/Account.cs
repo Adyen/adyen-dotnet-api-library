@@ -227,7 +227,7 @@ namespace Adyen.Service
         /// Post /uploadDocument API call
         /// </summary>
         /// <param name="uploadDocumentRequest"></param>
-        /// <returns>UpdateAccountHolderResponse</returns>
+        /// <returns> UploadDocumentResponse </returns>
         public UploadDocumentResponse UploadDocument(UploadDocumentRequest uploadDocumentRequest)
         {
             var jsonRequest = Util.JsonOperation.SerializeRequest(uploadDocumentRequest);
