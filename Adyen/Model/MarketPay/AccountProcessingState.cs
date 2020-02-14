@@ -67,15 +67,6 @@ namespace Adyen.Model.MarketPay
             {
                 this.ProcessedFrom = processedFrom;
             }
-            // to ensure "processedTo" is required (not null)
-            if (processedTo == null)
-            {
-                throw new InvalidDataException("processedTo is a required property for AccountProcessingState and cannot be null");
-            }
-            else
-            {
-                this.ProcessedTo = processedTo;
-            }
             // to ensure "tierNumber" is required (not null)
             if (tierNumber == null)
             {
@@ -85,6 +76,7 @@ namespace Adyen.Model.MarketPay
             {
                 this.TierNumber = tierNumber;
             }
+            this.ProcessedTo = processedTo;
         }
         
         /// <summary>
