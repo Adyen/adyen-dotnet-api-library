@@ -239,7 +239,7 @@ namespace Adyen.Service
         /// Post /checkAccountholder API call
         /// </summary>
         /// <param name="performVerificationRequest"></param>
-        /// <returns>UpdateAccountHolderResponse</returns>
+        /// <returns>GenericResponse</returns>
         public GenericResponse CheckAccountholder(PerformVerificationRequest performVerificationRequest)
         {
             var jsonRequest = Util.JsonOperation.SerializeRequest(performVerificationRequest);
