@@ -195,7 +195,7 @@ namespace Adyen.Test
         /// Test /getUploadedDocuments API call/
         /// </summary>
         [TestMethod]
-        public void TestGetUploadDocumentsSuccess()
+        public void TestGetUploadedDocumentsSuccess()
         {
             var client = CreateMockTestClientNullRequiredFieldsRequest("Mocks/marketpay/account/get-uploaded-documents-success.json");
             var account = new Account(client);
