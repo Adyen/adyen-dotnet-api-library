@@ -151,7 +151,7 @@ namespace Adyen.Test
             var account = new Account(client);
             var deleteShareholderRequest = new DeleteShareholderRequest(accountHolderCode: "123456", shareholderCodes: new List<string>());
             var deleteShareholderResponse = account.DeleteShareHolder(deleteShareholderRequest);
-            Assert.AreEqual(deleteAccountSuccessResponse.PspReference, "9914694372990637");
+            Assert.AreEqual(deleteShareholderResponse.PspReference, "9914694372990637");
         }
 
         /// <summary>
@@ -201,12 +201,12 @@ namespace Adyen.Test
             var account = new Account(client);
             var getUploadedDocumentsRequest = new GetUploadedDocumentsRequest(accountHolderCode: "123456");
             var getUploadedDocumentsResponse = account.GetUploadedDocuments(getUploadedDocumentsRequest);
-            Assert.AreEqual(getUploadDocumentsResponse.PspReference, "9914694369860322");
-            Assert.AreEqual(getUploadDocumentsResponse.DocumentDetails[0].AccountHolderCode, "TestAccountHolder8031");
-            Assert.AreEqual(getUploadDocumentsResponse.DocumentDetails[0].BankAccountUUID, "EXAMPLE_UUID");
-            Assert.AreEqual(getUploadDocumentsResponse.DocumentDetails[0].Description, "description1");
-            Assert.AreEqual(getUploadDocumentsResponse.DocumentDetails[0].DocumentType, DocumentDetail.DocumentTypeEnum.BANKSTATEMENT);
-            Assert.AreEqual(getUploadDocumentsResponse.DocumentDetails[0].AccountHolderCode, "TestAccountHolder8031");
+            Assert.AreEqual(getUploadedDocumentsResponse.PspReference, "9914694369860322");
+            Assert.AreEqual(getUploadedDocumentsResponse.DocumentDetails[0].AccountHolderCode, "TestAccountHolder8031");
+            Assert.AreEqual(getUploadedDocumentsResponse.DocumentDetails[0].BankAccountUUID, "EXAMPLE_UUID");
+            Assert.AreEqual(getUploadedDocumentsResponse.DocumentDetails[0].Description, "description1");
+            Assert.AreEqual(getUploadedDocumentsResponse.DocumentDetails[0].DocumentType, DocumentDetail.DocumentTypeEnum.BANKSTATEMENT);
+            Assert.AreEqual(getUploadedDocumentsResponse.DocumentDetails[0].AccountHolderCode, "TestAccountHolder8031");
         }
 
         /// <summary>
