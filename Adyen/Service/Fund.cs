@@ -21,13 +21,9 @@
 //  */
 #endregion
 
-using System;
-using System.IO;
 using Adyen.Model.MarketPay;
 using Adyen.Service.Resource.Fund;
 using Newtonsoft.Json;
-using Newtonsoft.Json.Converters;
-using Newtonsoft.Json.Linq;
 
 namespace Adyen.Service
 {
