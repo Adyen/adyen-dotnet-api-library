@@ -47,38 +47,13 @@ namespace Adyen.Model.MarketPay
         /// <param name="tierNumber">The processing tier that the account holder occupies. (required).</param>
         public AccountProcessingState(string disableReason = default(string), bool? disabled = default(bool?), Amount processedFrom = default(Amount), Amount processedTo = default(Amount), int? tierNumber = default(int?))
         {
-           this.DisableReason = disableReason;
-            
-            // to ensure "disabled" is required (not null)
-            if (disabled == null)
-            {
-                throw new InvalidDataException("disabled is a required property for AccountProcessingState and cannot be null");
-            }
-            else
-            {
-                this.Disabled = disabled;
-            }
-            // to ensure "processedFrom" is required (not null)
-            if (processedFrom == null)
-            {
-                throw new InvalidDataException("processedFrom is a required property for AccountProcessingState and cannot be null");
-            }
-            else
-            {
-                this.ProcessedFrom = processedFrom;
-            }
-            // to ensure "tierNumber" is required (not null)
-            if (tierNumber == null)
-            {
-                throw new InvalidDataException("tierNumber is a required property for AccountProcessingState and cannot be null");
-            }
-            else
-            {
-                this.TierNumber = tierNumber;
-            }
+            this.TierNumber = tierNumber;
             this.ProcessedTo = processedTo;
+            this.DisableReason = disableReason;
+            this.Disabled = disabled;
+            this.ProcessedFrom = processedFrom;
         }
-        
+
         /// <summary>
         /// The reason why processing has been disabled.
         /// </summary>

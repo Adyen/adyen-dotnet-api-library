@@ -47,15 +47,6 @@ namespace Adyen.Model.MarketPay
         /// <param name="resultCode">The result code..</param>
         public SuspendAccountHolderResponse(AccountHolderStatus accountHolderStatus = default(AccountHolderStatus), List<ErrorFieldType> invalidFields = default(List<ErrorFieldType>), string pspReference = default(string), string resultCode = default(string))
         {
-            // to ensure "accountHolderStatus" is required (not null)
-            if (accountHolderStatus == null)
-            {
-                throw new InvalidDataException("accountHolderStatus is a required property for SuspendAccountHolderResponse and cannot be null");
-            }
-            else
-            {
-                this.AccountHolderStatus = accountHolderStatus;
-            }
             // to ensure "pspReference" is required (not null)
             if (pspReference == null)
             {
@@ -65,6 +56,7 @@ namespace Adyen.Model.MarketPay
             {
                 this.PspReference = pspReference;
             }
+            this.AccountHolderStatus = accountHolderStatus;
             this.InvalidFields = invalidFields;
             this.ResultCode = resultCode;
         }

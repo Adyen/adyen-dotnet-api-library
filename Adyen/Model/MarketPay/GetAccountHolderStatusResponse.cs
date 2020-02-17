@@ -57,15 +57,6 @@ namespace Adyen.Model.MarketPay
             {
                 this.AccountHolderCode = accountHolderCode;
             }
-            // to ensure "accountHolderStatus" is required (not null)
-            if (accountHolderStatus == null)
-            {
-                throw new InvalidDataException("accountHolderStatus is a required property for GetAccountHolderStatusResponse and cannot be null");
-            }
-            else
-            {
-                this.AccountHolderStatus = accountHolderStatus;
-            }
             // to ensure "pspReference" is required (not null)
             if (pspReference == null)
             {
@@ -75,6 +66,7 @@ namespace Adyen.Model.MarketPay
             {
                 this.PspReference = pspReference;
             }
+            this.AccountHolderStatus = accountHolderStatus;
             this.InvalidFields = invalidFields;
             this.ResultCode = resultCode;
         }
