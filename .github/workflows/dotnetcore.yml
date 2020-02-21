@@ -14,4 +14,6 @@ jobs:
       with:
         dotnet-version: 2.2.108
     - name: Build with dotnet
-      run: dotnet build --configuration Release
+      run: |
+        dotnet build /p:TargetFrameworks=netcoreapp2.0
+        dotnet test Adyen.Test/Adyen.Test.csproj
