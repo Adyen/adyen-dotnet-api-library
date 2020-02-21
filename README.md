@@ -1,8 +1,5 @@
 # Adyen dotnet API Library
-[![Build Status](https://travis-ci.org/Adyen/adyen-dotnet-api-library.svg?branch=develop)](https://travis-ci.org/Adyen/adyen-dotnet-api-library) [![nuget](https://img.shields.io/nuget/v/adyen.svg)](https://www.nuget.org/packages/adyen/) <p>
-  <a href="https://github.com/adyen/adyen-dotnet-api-library"><img alt="GitHub Actions status" src="https://github.com/adyen/adyen-dotnet-api-library/workflows/Main%20workflow/badge.svg"></a>
-</p>
-
+[![Build Status](https://travis-ci.org/Adyen/adyen-dotnet-api-library.svg?branch=develop)](https://travis-ci.org/Adyen/adyen-dotnet-api-library) [![nuget](https://img.shields.io/nuget/v/adyen.svg)](https://www.nuget.org/packages/adyen/) 
 The Adyen API Library for .net framework enables you to work with Adyen APIs, Hosted Payment Pages and Terminal API with any .net application.
 
 The Library supports all APIs under the following services:
