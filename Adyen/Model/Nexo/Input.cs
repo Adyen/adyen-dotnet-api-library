@@ -56,7 +56,7 @@ namespace Adyen.Model.Nexo
         public ContentInformation Password;
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Form = System.Xml.Schema.XmlSchemaForm.Unqualified, DataType = "integer")]
+        [System.Xml.Serialization.XmlElementAttribute("MenuEntryNumber", Form = System.Xml.Schema.XmlSchemaForm.Unqualified)]
         public int[] MenuEntryNumber;
 
         /// <remarks/>
