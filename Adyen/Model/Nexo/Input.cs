@@ -57,7 +57,7 @@ namespace Adyen.Model.Nexo
 
         /// <remarks/>
         [System.Xml.Serialization.XmlElementAttribute(Form = System.Xml.Schema.XmlSchemaForm.Unqualified, DataType = "integer")]
-        public int? MenuEntryNumber;
+        public int[] MenuEntryNumber;
 
         /// <remarks/>
         [System.Xml.Serialization.XmlAttributeAttribute()]
