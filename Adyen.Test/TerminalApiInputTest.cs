@@ -1,14 +1,12 @@
-﻿using Adyen.Service;
-using Microsoft.VisualStudio.TestPlatform.ObjectModel;
+﻿using Adyen.Model.Nexo;
+using Adyen.Service;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace Adyen.Test
 {
     [TestClass]
-    public class InputTest : BaseTest
+    public class TerminalApiInputTest : BaseTest
     {
         [TestMethod]
         public void InpturequestTest()
@@ -23,6 +21,8 @@ namespace Adyen.Test
                 var configEndpoint = posPaymentLocalApi.Client.Config.Endpoint;
                 var saleToPoiResponse = posPaymentLocalApi.TerminalApiCloudSync(paymentRequest);
                 Assert.IsNotNull(saleToPoiResponse);
+                var inputResponse = (InputResponse)saleToPoiResponse.MessagePayload;
+                Assert.AreEqual(inputResponse.InputResult.Input.MenuEntryNumber.Length,2);
             }
             catch (Exception ex)
             {
