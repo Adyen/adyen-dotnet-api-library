@@ -9,7 +9,7 @@ namespace Adyen.Test
     public class TerminalApiInputTest : BaseTest
     {
         [TestMethod]
-        public void InpturequestTest()
+        public void InputRequestTest()
         {
             try
             {
