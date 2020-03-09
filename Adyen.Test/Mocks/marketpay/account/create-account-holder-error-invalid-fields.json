@@ -1,0 +1,13 @@
+{
+  "invalidFields": [
+    {
+      "errorCode": 28,
+      "errorDescription": "Account holder already exists with the accountHolderCode: GENERATE_CODE",
+      "fieldType": {
+        "field": "accountHolderCode",
+        "fieldName": "accountHolderCode"
+      }
+    }
+  ],
+  "pspReference": "8815813233102537"
+}

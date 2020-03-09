@@ -1,0 +1,472 @@
+{
+    "pspReference": "881580394403000",
+    "resultCode": "Success",
+    "accountTransactionLists": [
+        {
+            "accountCode": "112548561",
+            "hasNextPage": true,
+            "transactions": [
+                {
+                    "amount": {
+                        "currency": "USD",
+                        "value": -35000
+                    },
+                    "creationDate": "2019-08-03T01:24:50+02:00",
+                    "description": "PluginDemo - 126",
+                    "transactionStatus": "Debited"
+                },
+                {
+                    "amount": {
+                        "currency": "USD",
+                        "value": -17500
+                    },
+                    "creationDate": "2019-08-02T20:27:03+02:00",
+                    "description": "PluginDemo - 125",
+                    "transactionStatus": "Debited"
+                },
+                {
+                    "amount": {
+                        "currency": "EUR",
+                        "value": -17525
+                    },
+                    "creationDate": "2019-08-02T20:27:03+02:00",
+                    "description": "PluginDemo - 125",
+                    "transactionStatus": "Debited"
+                },
+                {
+                    "amount": {
+                        "currency": "GBP",
+                        "value": -17500
+                    },
+                    "creationDate": "2019-08-02T20:27:03+02:00",
+                    "description": "PluginDemo - 125",
+                    "transactionStatus": "Debited"
+                },
+                {
+                    "amount": {
+                        "currency": "GBP",
+                        "value": -17500
+                    },
+                    "creationDate": "2019-08-01T20:24:42+02:00",
+                    "description": "PluginDemo - 124",
+                    "transactionStatus": "Debited"
+                },
+                {
+                    "amount": {
+                        "currency": "USD",
+                        "value": -17500
+                    },
+                    "creationDate": "2019-08-01T20:24:42+02:00",
+                    "description": "PluginDemo - 124",
+                    "transactionStatus": "Debited"
+                },
+                {
+                    "amount": {
+                        "currency": "EUR",
+                        "value": -17500
+                    },
+                    "creationDate": "2019-08-01T20:24:42+02:00",
+                    "description": "PluginDemo - 124",
+                    "transactionStatus": "Debited"
+                },
+                {
+                    "amount": {
+                        "currency": "USD",
+                        "value": -17500
+                    },
+                    "creationDate": "2019-07-31T01:20:29+02:00",
+                    "description": "PluginDemo - 123",
+                    "transactionStatus": "Debited"
+                },
+                {
+                    "amount": {
+                        "currency": "GBP",
+                        "value": -17500
+                    },
+                    "creationDate": "2019-07-31T01:20:29+02:00",
+                    "description": "PluginDemo - 123",
+                    "transactionStatus": "Debited"
+                },
+                {
+                    "amount": {
+                        "currency": "EUR",
+                        "value": -17574
+                    },
+                    "creationDate": "2019-07-31T01:20:29+02:00",
+                    "description": "PluginDemo - 123",
+                    "transactionStatus": "Debited"
+                },
+                {
+                    "amount": {
+                        "currency": "EUR",
+                        "value": -35049
+                    },
+                    "creationDate": "2019-07-26T19:26:35+02:00",
+                    "description": "PluginDemo - 122",
+                    "transactionStatus": "Debited"
+                },
+                {
+                    "amount": {
+                        "currency": "GBP",
+                        "value": -35000
+                    },
+                    "creationDate": "2019-07-26T19:26:35+02:00",
+                    "description": "PluginDemo - 122",
+                    "transactionStatus": "Debited"
+                },
+                {
+                    "amount": {
+                        "currency": "USD",
+                        "value": -35000
+                    },
+                    "creationDate": "2019-07-26T19:26:34+02:00",
+                    "description": "PluginDemo - 122",
+                    "transactionStatus": "Debited"
+                },
+                {
+                    "amount": {
+                        "currency": "USD",
+                        "value": -35000
+                    },
+                    "creationDate": "2019-07-12T15:29:55+02:00",
+                    "description": "PluginDemo - 121",
+                    "transactionStatus": "Debited"
+                },
+                {
+                    "amount": {
+                        "currency": "GBP",
+                        "value": -35000
+                    },
+                    "creationDate": "2019-07-12T15:29:55+02:00",
+                    "description": "PluginDemo - 121",
+                    "transactionStatus": "Debited"
+                },
+                {
+                    "amount": {
+                        "currency": "EUR",
+                        "value": -35196
+                    },
+                    "creationDate": "2019-07-12T15:29:55+02:00",
+                    "description": "PluginDemo - 121",
+                    "transactionStatus": "Debited"
+                },
+                {
+                    "amount": {
+                        "currency": "USD",
+                        "value": -122500
+                    },
+                    "creationDate": "2019-07-11T21:18:09+02:00",
+                    "description": "PluginDemo - 120",
+                    "transactionStatus": "Debited"
+                },
+                {
+                    "amount": {
+                        "currency": "GBP",
+                        "value": -122500
+                    },
+                    "creationDate": "2019-07-11T21:18:08+02:00",
+                    "description": "PluginDemo - 120",
+                    "transactionStatus": "Debited"
+                },
+                {
+                    "amount": {
+                        "currency": "EUR",
+                        "value": -122500
+                    },
+                    "creationDate": "2019-07-11T21:18:08+02:00",
+                    "description": "PluginDemo - 120",
+                    "transactionStatus": "Debited"
+                },
+                {
+                    "amount": {
+                        "currency": "EUR",
+                        "value": -17549
+                    },
+                    "creationDate": "2019-07-11T15:20:16+02:00",
+                    "description": "PluginDemo - 119",
+                    "transactionStatus": "Debited"
+                },
+                {
+                    "amount": {
+                        "currency": "GBP",
+                        "value": -17500
+                    },
+                    "creationDate": "2019-07-11T15:20:16+02:00",
+                    "description": "PluginDemo - 119",
+                    "transactionStatus": "Debited"
+                },
+                {
+                    "amount": {
+                        "currency": "USD",
+                        "value": -17500
+                    },
+                    "creationDate": "2019-07-11T15:20:15+02:00",
+                    "description": "PluginDemo - 119",
+                    "transactionStatus": "Debited"
+                },
+                {
+                    "amount": {
+                        "currency": "EUR",
+                        "value": -35098
+                    },
+                    "creationDate": "2019-07-09T15:20:52+02:00",
+                    "description": "PluginDemo - 118",
+                    "transactionStatus": "Debited"
+                },
+                {
+                    "amount": {
+                        "currency": "GBP",
+                        "value": -35000
+                    },
+                    "creationDate": "2019-07-09T15:20:52+02:00",
+                    "description": "PluginDemo - 118",
+                    "transactionStatus": "Debited"
+                },
+                {
+                    "amount": {
+                        "currency": "USD",
+                        "value": -35000
+                    },
+                    "creationDate": "2019-07-09T15:20:52+02:00",
+                    "description": "PluginDemo - 118",
+                    "transactionStatus": "Debited"
+                },
+                {
+                    "amount": {
+                        "currency": "EUR",
+                        "value": -35000
+                    },
+                    "creationDate": "2019-07-05T21:17:46+02:00",
+                    "description": "PluginDemo - 117",
+                    "transactionStatus": "Debited"
+                },
+                {
+                    "amount": {
+                        "currency": "GBP",
+                        "value": -35000
+                    },
+                    "creationDate": "2019-07-05T21:17:46+02:00",
+                    "description": "PluginDemo - 117",
+                    "transactionStatus": "Debited"
+                },
+                {
+                    "amount": {
+                        "currency": "USD",
+                        "value": -35000
+                    },
+                    "creationDate": "2019-07-05T21:17:46+02:00",
+                    "description": "PluginDemo - 117",
+                    "transactionStatus": "Debited"
+                },
+                {
+                    "amount": {
+                        "currency": "USD",
+                        "value": -35000
+                    },
+                    "creationDate": "2019-07-05T15:19:25+02:00",
+                    "description": "PluginDemo - 116",
+                    "transactionStatus": "Debited"
+                },
+                {
+                    "amount": {
+                        "currency": "GBP",
+                        "value": -35000
+                    },
+                    "creationDate": "2019-07-05T15:19:25+02:00",
+                    "description": "PluginDemo - 116",
+                    "transactionStatus": "Debited"
+                },
+                {
+                    "amount": {
+                        "currency": "EUR",
+                        "value": -35049
+                    },
+                    "creationDate": "2019-07-05T15:19:25+02:00",
+                    "description": "PluginDemo - 116",
+                    "transactionStatus": "Debited"
+                },
+                {
+                    "amount": {
+                        "currency": "GBP",
+                        "value": -35000
+                    },
+                    "creationDate": "2019-07-02T21:19:46+02:00",
+                    "description": "PluginDemo - 115",
+                    "transactionStatus": "Debited"
+                },
+                {
+                    "amount": {
+                        "currency": "USD",
+                        "value": -35000
+                    },
+                    "creationDate": "2019-07-02T21:19:46+02:00",
+                    "description": "PluginDemo - 115",
+                    "transactionStatus": "Debited"
+                },
+                {
+                    "amount": {
+                        "currency": "EUR",
+                        "value": -35295
+                    },
+                    "creationDate": "2019-07-02T21:19:46+02:00",
+                    "description": "PluginDemo - 115",
+                    "transactionStatus": "Debited"
+                },
+                {
+                    "amount": {
+                        "currency": "GBP",
+                        "value": -175000
+                    },
+                    "creationDate": "2019-06-26T21:21:01+02:00",
+                    "description": "PluginDemo - 114",
+                    "transactionStatus": "Debited"
+                },
+                {
+                    "amount": {
+                        "currency": "USD",
+                        "value": -175000
+                    },
+                    "creationDate": "2019-06-26T21:21:01+02:00",
+                    "description": "PluginDemo - 114",
+                    "transactionStatus": "Debited"
+                },
+                {
+                    "amount": {
+                        "currency": "EUR",
+                        "value": -175000
+                    },
+                    "creationDate": "2019-06-26T21:21:00+02:00",
+                    "description": "PluginDemo - 114",
+                    "transactionStatus": "Debited"
+                },
+                {
+                    "amount": {
+                        "currency": "GBP",
+                        "value": -35000
+                    },
+                    "creationDate": "2019-06-26T16:24:36+02:00",
+                    "description": "PluginDemo - 113",
+                    "transactionStatus": "Debited"
+                },
+                {
+                    "amount": {
+                        "currency": "EUR",
+                        "value": -35074
+                    },
+                    "creationDate": "2019-06-26T16:24:35+02:00",
+                    "description": "PluginDemo - 113",
+                    "transactionStatus": "Debited"
+                },
+                {
+                    "amount": {
+                        "currency": "USD",
+                        "value": -35000
+                    },
+                    "creationDate": "2019-06-26T16:24:35+02:00",
+                    "description": "PluginDemo - 113",
+                    "transactionStatus": "Debited"
+                },
+                {
+                    "amount": {
+                        "currency": "EUR",
+                        "value": -52672
+                    },
+                    "creationDate": "2019-06-24T21:19:26+02:00",
+                    "description": "PluginDemo - 112",
+                    "transactionStatus": "Debited"
+                },
+                {
+                    "amount": {
+                        "currency": "GBP",
+                        "value": -52500
+                    },
+                    "creationDate": "2019-06-24T21:19:26+02:00",
+                    "description": "PluginDemo - 112",
+                    "transactionStatus": "Debited"
+                },
+                {
+                    "amount": {
+                        "currency": "USD",
+                        "value": -52500
+                    },
+                    "creationDate": "2019-06-24T21:19:25+02:00",
+                    "description": "PluginDemo - 112",
+                    "transactionStatus": "Debited"
+                },
+                {
+                    "amount": {
+                        "currency": "USD",
+                        "value": -122500
+                    },
+                    "creationDate": "2019-06-21T21:20:45+02:00",
+                    "description": "PluginDemo - 111",
+                    "transactionStatus": "Debited"
+                },
+                {
+                    "amount": {
+                        "currency": "GBP",
+                        "value": -122500
+                    },
+                    "creationDate": "2019-06-21T21:20:45+02:00",
+                    "description": "PluginDemo - 111",
+                    "transactionStatus": "Debited"
+                },
+                {
+                    "amount": {
+                        "currency": "EUR",
+                        "value": -122549
+                    },
+                    "creationDate": "2019-06-21T21:20:44+02:00",
+                    "description": "PluginDemo - 111",
+                    "transactionStatus": "Debited"
+                },
+                {
+                    "amount": {
+                        "currency": "GBP",
+                        "value": -35000
+                    },
+                    "creationDate": "2019-06-20T21:18:10+02:00",
+                    "description": "PluginDemo - 110",
+                    "transactionStatus": "Debited"
+                },
+                {
+                    "amount": {
+                        "currency": "USD",
+                        "value": -35000
+                    },
+                    "creationDate": "2019-06-20T21:18:10+02:00",
+                    "description": "PluginDemo - 110",
+                    "transactionStatus": "Debited"
+                },
+                {
+                    "amount": {
+                        "currency": "EUR",
+                        "value": -35025
+                    },
+                    "creationDate": "2019-06-20T21:18:10+02:00",
+                    "description": "PluginDemo - 110",
+                    "transactionStatus": "Debited"
+                },
+                {
+                    "amount": {
+                        "currency": "EUR",
+                        "value": -17525
+                    },
+                    "creationDate": "2019-06-19T21:19:51+02:00",
+                    "description": "PluginDemo - 109",
+                    "transactionStatus": "Debited"
+                }
+            ]
+        },
+        {
+            "accountCode": "162991091",
+            "hasNextPage": false,
+            "transactions": []
+        },
+        {
+            "accountCode": "128653501",
+            "hasNextPage": false,
+            "transactions": []
+        }
+    ]
+}

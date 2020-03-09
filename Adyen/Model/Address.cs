@@ -15,23 +15,17 @@
 //  *
 //  * Adyen Dotnet API Library
 //  *
-//  * Copyright (c) 2019 Adyen B.V.
+//  * Copyright (c) 2020 Adyen B.V.
 //  * This file is open source and available under the MIT license.
 //  * See the LICENSE file for more info.
 //  */
 #endregion
 
 using System;
-using System.Linq;
-using System.IO;
 using System.Text;
-using System.Text.RegularExpressions;
-using System.Collections;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
 using System.Runtime.Serialization;
 using Newtonsoft.Json;
-using Newtonsoft.Json.Converters;
 using System.ComponentModel.DataAnnotations;
 
 namespace Adyen.Model

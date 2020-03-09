@@ -1,0 +1,23 @@
+{
+    "pspReference": "8815813528286482",
+    "accountHolderStatus": {
+        "status": "Active",
+        "processingState": {
+            "disabled": false,
+            "processedFrom": {
+                "currency": "USD",
+                "value": 0
+            },
+            "processedTo": {
+                "currency": "USD",
+                "value": 9999
+            },
+            "tierNumber": 0
+        },
+        "payoutState": {
+            "allowPayout": false,
+            "disabled": false
+        },
+        "events": []
+    }
+}

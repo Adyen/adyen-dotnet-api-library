@@ -15,7 +15,7 @@
 //  *
 //  * Adyen Dotnet API Library
 //  *
-//  * Copyright (c) 2019 Adyen B.V.
+//  * Copyright (c) 2020 Adyen B.V.
 //  * This file is open source and available under the MIT license.
 //  * See the LICENSE file for more info.
 //  */
@@ -34,7 +34,8 @@ namespace Adyen.Test
         public void TestAuthorisationSuccess()
         {
             var mockPath = GetMockFilePath("Mocks/notification/authorisation-true.json");
-            var jsonRequest = MockFileToString(mockPath); var notificationHandler = new NotificationHandler();
+            var jsonRequest = MockFileToString(mockPath);
+            var notificationHandler = new NotificationHandler();
             var handleNotificationRequest = notificationHandler.HandleNotificationRequest(jsonRequest);
             var notificationRequestItemContainer = handleNotificationRequest.NotificationItemContainers.FirstOrDefault();
             if (notificationRequestItemContainer == null)

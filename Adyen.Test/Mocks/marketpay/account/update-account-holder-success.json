@@ -1,0 +1,69 @@
+{
+    "invalidFields": [],
+    "pspReference": "8515813355311349",
+    "accountHolderCode": "8515843355311359",
+    "accountHolderDetails": {
+        "address": {
+            "country": "US"
+        },
+        "bankAccountDetails": [],
+        "email":  "test@test.com",
+        "individualDetails": {
+            "name": {
+                "firstName": "John",
+                "gender": "MALE",
+                "lastName": "Smith"
+            }
+        },
+        "merchantCategoryCode": null,
+        "payoutMethods": [],
+        "webAddress": null
+    },
+    "accountHolderStatus": {
+        "status": "Active",
+        "processingState": {
+            "disabled": false,
+            "processedFrom": {
+                "currency": "USD",
+                "value": 0
+            },
+            "processedTo": {
+                "currency": "USD",
+                "value": 9999
+            },
+            "tierNumber": 0
+        },
+        "payoutState": {
+            "allowPayout": false,
+            "disabled": false
+        },
+        "events": []
+    },
+    "legalEntity": "Individual",
+    "verification": {
+        "accountHolder": {
+            "checks": [
+                {
+                    "type": "IDENTITY_VERIFICATION",
+                    "status": "AWAITING_DATA",
+                    "requiredFields": [
+                        "AccountHolderDetails.Address.city",
+                        "AccountHolderDetails.Address.houseNumberOrName",
+                        "AccountHolderDetails.Address.postalCode",
+                        "AccountHolderDetails.Address.street",
+                        "AccountHolderDetails.PersonalData.idNumber",
+                        "AccountHolderDetails.PhoneNumber.phoneNumber",
+                        "AccountHolderDetails.PersonalData.personalData"
+                    ]
+                },
+                {
+                    "type": "BANK_ACCOUNT_VERIFICATION",
+                    "status": "AWAITING_DATA",
+                    "requiredFields": [
+                        "AccountHolderDetails.BankAccountDetails.bankAccount"
+                    ]
+                }
+            ]
+        }
+    }
+}
