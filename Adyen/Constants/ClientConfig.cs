@@ -38,6 +38,7 @@ namespace Adyen.Constants
         public static string MarketpayEndPointLive = "https://cal-live.adyen.com/cal/services";
         public static string MarketPayFundApiVersion = "v5";
         public static string MarketPayAccountApiVersion = "v5";
+        public static string HopApiVersion = "v1";
         public static string RecurringApiVersion = "v25";
         public static string ApiVersion = "v51";
         public static string PayoutApiVersion = "v51";
