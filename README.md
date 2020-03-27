@@ -49,7 +49,7 @@ var paymentsResponse = checkout.Payments(paymentsRequest);
 
 ## Documentation
 * https://docs.adyen.com/developers/development-resources/libraries
-* https://docs.adyen.com/developers/checkout/api-integration
+* https://docs.adyen.com/developers/checkout
 
 ## Contributing
 We strongly encourage you to join us in contributing to this repository so everyone can benefit from:
