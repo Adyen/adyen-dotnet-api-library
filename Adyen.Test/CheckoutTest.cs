@@ -260,6 +260,18 @@ namespace Adyen.Test
         }
 
         /// <summary>
+        /// Test success flow for
+        /// POST /paymentMethods
+        /// </summary>
+        [TestMethod]
+        public void PaymentMethodsStoreValueTest()
+        {
+            var paymentMethodsRequest = CreatePaymentMethodRequest("YourMerchantAccount");
+            paymentMethodsRequest.Store = "MerchantStore";
+            Assert.AreEqual(paymentMethodsRequest.Store, "MerchantStore");
+        }
+
+        /// <summary>
         /// Test success flow for async
         /// POST /paymentMethods
         /// </summary>
