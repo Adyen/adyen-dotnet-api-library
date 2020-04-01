@@ -24,7 +24,7 @@ The Library supports all APIs under the following services:
 * Simply download and restore nuget packages  
  https://www.nuget.org/packages/Adyen/
 * or install it from package manager
- PM> Install-Package Adyen -Version 5.2.1
+ PM> Install-Package Adyen -Version 5.3.0
 
 ## Usage
 In order to submit http request to Adyen API you need to initialize the client. The following example makes a checkout payment request:
@@ -49,7 +49,7 @@ var paymentsResponse = checkout.Payments(paymentsRequest);
 
 ## Documentation
 * https://docs.adyen.com/developers/development-resources/libraries
-* https://docs.adyen.com/developers/checkout/api-integration
+* https://docs.adyen.com/developers/checkout
 
 ## Contributing
 We strongly encourage you to join us in contributing to this repository so everyone can benefit from:
