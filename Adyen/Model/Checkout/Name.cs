@@ -24,7 +24,6 @@
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.IO;
 using System.Runtime.Serialization;
 using System.Text;
 using Newtonsoft.Json;
@@ -122,14 +121,14 @@ namespace Adyen.Model.Checkout
         /// </summary>
         /// <value>The name&#39;s infix, if applicable. &gt;A maximum length of twenty (20) characters is imposed.</value>
         [DataMember(Name = "infix", EmitDefaultValue = false)]
-        public string Infix { get; set; }
+        public string Infix { get; }
 
         /// <summary>
         /// The last name.
         /// </summary>
         /// <value>The last name.</value>
         [DataMember(Name = "lastName", EmitDefaultValue = false)]
-        public string LastName { get; set; }
+        public string LastName { get;  }
 
         /// <summary>
         /// Returns the string presentation of the object
