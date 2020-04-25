@@ -215,20 +215,14 @@ namespace Adyen.Model.Checkout
                     (this.EncryptedSecurityCode != null &&
                     this.EncryptedSecurityCode.Equals(input.EncryptedSecurityCode))
                 ) &&
-                (
-                    this.RecurringDetailReference == input.RecurringDetailReference ||
-                    (this.RecurringDetailReference != null &&
-                     this.RecurringDetailReference.Equals(input.RecurringDetailReference))
-                ) &&
+                  
                 (
                     this.StoredPaymentMethodId == input.StoredPaymentMethodId ||
                     (this.StoredPaymentMethodId != null &&
                      this.StoredPaymentMethodId.Equals(input.StoredPaymentMethodId))
                 ) &&
                 (
-                    this.StoreDetails == input.StoreDetails ||
-                    (this.StoreDetails != null &&
-                    this.StoreDetails.Equals(input.StoreDetails))
+                    this.StoreDetails == input.StoreDetails
                 ) &&
                 (
                     this.Issuer == input.Issuer ||

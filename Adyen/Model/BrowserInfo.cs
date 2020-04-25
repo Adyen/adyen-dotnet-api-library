@@ -181,39 +181,7 @@ namespace Adyen.Model
                 );
         }
 
-        /// <summary>
-        /// Gets the hash code
-        /// </summary>
-        /// <returns>Hash code</returns>
-        public override int GetHashCode()
-        {
-            // credit: http://stackoverflow.com/a/263416/677735
-            unchecked // Overflow is fine, just wrap
-            {
-                int hash = 41;
-                // Suitable nullity checks etc, of course :)
-
-                if (this.AcceptHeader != null)
-                    hash = hash * 59 + this.AcceptHeader.GetHashCode();
-                if (this.UserAgent != null)
-                    hash = hash * 59 + this.UserAgent.GetHashCode();
-                if (this.Language != null)
-                    hash = hash * 59 + this.Language.GetHashCode();
-                if (this.ColorDepth != 0)
-                    hash = hash * 59 + this.ColorDepth.GetHashCode();
-                if (this.ScreenHeight != 0)
-                    hash = hash * 59 + this.ScreenHeight.GetHashCode();
-                if (this.ScreenWidth != 0)
-                    hash = hash * 59 + this.ScreenWidth.GetHashCode();
-                if (this.TimeZoneOffset != 0)
-                    hash = hash * 59 + this.TimeZoneOffset.GetHashCode();
-                if (this.JavaEnabled != null)
-                    hash = hash * 59 + this.JavaEnabled.GetHashCode();
-                
-                return hash;
-            }
-        }
-
+      
         /// <summary>
         /// To validate all properties of the instance
         /// </summary>
@@ -246,6 +214,20 @@ namespace Adyen.Model
             }
 
             yield break;
+        }
+
+        public override int GetHashCode()
+        {
+            var hashCode = -1080417761;
+            hashCode = hashCode * -1521134295 + EqualityComparer<string>.Default.GetHashCode(AcceptHeader);
+            hashCode = hashCode * -1521134295 + EqualityComparer<string>.Default.GetHashCode(UserAgent);
+            hashCode = hashCode * -1521134295 + EqualityComparer<string>.Default.GetHashCode(Language);
+            hashCode = hashCode * -1521134295 + ColorDepth.GetHashCode();
+            hashCode = hashCode * -1521134295 + ScreenHeight.GetHashCode();
+            hashCode = hashCode * -1521134295 + ScreenWidth.GetHashCode();
+            hashCode = hashCode * -1521134295 + TimeZoneOffset.GetHashCode();
+            hashCode = hashCode * -1521134295 + JavaEnabled.GetHashCode();
+            return hashCode;
         }
     }
 
