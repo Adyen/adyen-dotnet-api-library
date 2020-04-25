@@ -113,15 +113,7 @@ namespace Adyen.Model.Checkout
             {
                 this.Amount = Amount;
             }
-            // to ensure "Type" is required (not null)
-            if (Type == null)
-            {
-                throw new InvalidDataException("Type is a required property for Split and cannot be null");
-            }
-            else
-            {
-                this.Type = Type;
-            }
+            this.Type = Type;
             this.Account = Account;
             this.Description = Description;
             this.Reference = Reference;

@@ -271,5 +271,34 @@ namespace Adyen.Model.Checkout
         {
             yield break;
         }
+
+        public override int GetHashCode()
+        {
+            var hashCode = -1066325131;
+            hashCode = hashCode * -1521134295 + EqualityComparer<string>.Default.GetHashCode(Type);
+            hashCode = hashCode * -1521134295 + EqualityComparer<string>.Default.GetHashCode(Number);
+            hashCode = hashCode * -1521134295 + EqualityComparer<string>.Default.GetHashCode(ExpiryMonth);
+            hashCode = hashCode * -1521134295 + EqualityComparer<string>.Default.GetHashCode(ExpiryYear);
+            hashCode = hashCode * -1521134295 + EqualityComparer<string>.Default.GetHashCode(HolderName);
+            hashCode = hashCode * -1521134295 + EqualityComparer<string>.Default.GetHashCode(Cvc);
+            hashCode = hashCode * -1521134295 + EqualityComparer<string>.Default.GetHashCode(InstallmentConfigurationKey);
+            hashCode = hashCode * -1521134295 + EqualityComparer<PersonalDetails>.Default.GetHashCode(PersonalDetails);
+            hashCode = hashCode * -1521134295 + EqualityComparer<Address>.Default.GetHashCode(BillingAddress);
+            hashCode = hashCode * -1521134295 + EqualityComparer<Address>.Default.GetHashCode(DeliveryAddress);
+            hashCode = hashCode * -1521134295 + EqualityComparer<string>.Default.GetHashCode(EncryptedCardNumber);
+            hashCode = hashCode * -1521134295 + EqualityComparer<string>.Default.GetHashCode(EncryptedExpiryMonth);
+            hashCode = hashCode * -1521134295 + EqualityComparer<string>.Default.GetHashCode(EncryptedExpiryYear);
+            hashCode = hashCode * -1521134295 + EqualityComparer<string>.Default.GetHashCode(EncryptedSecurityCode);
+            hashCode = hashCode * -1521134295 + EqualityComparer<string>.Default.GetHashCode(RecurringDetailReference);
+            hashCode = hashCode * -1521134295 + EqualityComparer<string>.Default.GetHashCode(StoredPaymentMethodId);
+            hashCode = hashCode * -1521134295 + StoreDetails.GetHashCode();
+            hashCode = hashCode * -1521134295 + EqualityComparer<string>.Default.GetHashCode(Issuer);
+            hashCode = hashCode * -1521134295 + EqualityComparer<string>.Default.GetHashCode(SepaOwnerName);
+            hashCode = hashCode * -1521134295 + EqualityComparer<string>.Default.GetHashCode(SepaIbanNumber);
+            hashCode = hashCode * -1521134295 + EqualityComparer<BankAccount>.Default.GetHashCode(BankAccount);
+            hashCode = hashCode * -1521134295 + EqualityComparer<string>.Default.GetHashCode(ApplePayToken);
+            hashCode = hashCode * -1521134295 + EqualityComparer<string>.Default.GetHashCode(GooglePayToken);
+            return hashCode;
+        }
     }
 }

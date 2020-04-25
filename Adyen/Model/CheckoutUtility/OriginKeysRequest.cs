@@ -89,5 +89,10 @@ namespace Adyen.Model.CheckoutUtility
         {
               yield break;
         }
+
+        public override int GetHashCode()
+        {
+            return 1366151680 + EqualityComparer<List<string>>.Default.GetHashCode(OriginDomains);
+        }
     }
 }
