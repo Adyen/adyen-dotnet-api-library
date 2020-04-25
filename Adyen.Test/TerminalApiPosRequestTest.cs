@@ -76,8 +76,7 @@ namespace Adyen.Test
                 var client = CreateMockTestClientPosLocalApiRequest("");
                 var posPaymentLocalApi = new PosPaymentLocalApi(client);
                 var configEndpoint = posPaymentLocalApi.Client.Config.Endpoint;
-                var saleToPoiResponse = posPaymentLocalApi.TerminalApiLocal(paymentRequest, _encryptionCredentialDetails,
-                    (sender, certificate, chain, errors) => { return true; });
+                var saleToPoiResponse = posPaymentLocalApi.TerminalApiLocal(paymentRequest, _encryptionCredentialDetails);
                 Assert.IsNull(saleToPoiResponse);
             }
             catch (Exception)

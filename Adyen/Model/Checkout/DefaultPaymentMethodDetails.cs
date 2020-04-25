@@ -102,7 +102,6 @@ namespace Adyen.Model.Checkout
             sb.Append("  EncryptedExpiryMonth: ").Append(EncryptedExpiryMonth).Append("\n");
             sb.Append("  EncryptedExpiryYear: ").Append(EncryptedExpiryYear).Append("\n");
             sb.Append("  EncryptedSecurityCode: ").Append(EncryptedSecurityCode).Append("\n");
-            sb.Append("  RecurringDetailReference: ").Append(RecurringDetailReference).Append("\n");
             sb.Append("  StoredPaymentMethodId: ").Append(StoredPaymentMethodId).Append("\n");
             sb.Append("  StoreDetails: ").Append(StoreDetails).Append("\n");
             sb.Append("  Issuer: ").Append(Issuer).Append("\n");
@@ -283,7 +282,6 @@ namespace Adyen.Model.Checkout
             hashCode = hashCode * -1521134295 + EqualityComparer<string>.Default.GetHashCode(EncryptedExpiryMonth);
             hashCode = hashCode * -1521134295 + EqualityComparer<string>.Default.GetHashCode(EncryptedExpiryYear);
             hashCode = hashCode * -1521134295 + EqualityComparer<string>.Default.GetHashCode(EncryptedSecurityCode);
-            hashCode = hashCode * -1521134295 + EqualityComparer<string>.Default.GetHashCode(RecurringDetailReference);
             hashCode = hashCode * -1521134295 + EqualityComparer<string>.Default.GetHashCode(StoredPaymentMethodId);
             hashCode = hashCode * -1521134295 + StoreDetails.GetHashCode();
             hashCode = hashCode * -1521134295 + EqualityComparer<string>.Default.GetHashCode(Issuer);
