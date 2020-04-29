@@ -45,7 +45,12 @@ namespace Adyen.Model.Hop
         [JsonProperty(PropertyName = "pspReference")]
 
         public string PspReference { get; set; }
-        [DataMember(Name = "resultCode", EmitDefaultValue = false)]
+         /// <summary>
+    /// The result code.
+    /// </summary>
+    /// <value>The result code.</value>
+    [DataMember(Name = "resultCode", EmitDefaultValue=false)]
+    [JsonProperty(PropertyName = "resultCode")]
         public string ResultCode { get; set; }
         [DataMember(Name = "submittedAsync", EmitDefaultValue = false)]
         public bool SubmittedAsync { get; set; }
