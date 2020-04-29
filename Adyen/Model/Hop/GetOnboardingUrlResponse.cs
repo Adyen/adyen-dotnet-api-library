@@ -52,7 +52,12 @@ namespace Adyen.Model.Hop
     [DataMember(Name = "resultCode", EmitDefaultValue=false)]
     [JsonProperty(PropertyName = "resultCode")]
         public string ResultCode { get; set; }
-        [DataMember(Name = "submittedAsync", EmitDefaultValue = false)]
+         /// <summary>
+    /// Indicates whether the request is processed synchronously or asynchronously.  Depending on the request's platform settings, the following scenarios may be applied: * **sync:** The processing of the request is immediately attempted; it may result in an error if the providing service is unavailable. * **async:** The request is queued and will be executed when the providing service is available in the order in which the requests are received. * **asyncOnError:** The processing of the request is immediately attempted, but if the providing service is unavailable, the request is scheduled in a queue.
+    /// </summary>
+    /// <value>Indicates whether the request is processed synchronously or asynchronously.  Depending on the request's platform settings, the following scenarios may be applied: * **sync:** The processing of the request is immediately attempted; it may result in an error if the providing service is unavailable. * **async:** The request is queued and will be executed when the providing service is available in the order in which the requests are received. * **asyncOnError:** The processing of the request is immediately attempted, but if the providing service is unavailable, the request is scheduled in a queue.</value>
+    [DataMember(Name="submittedAsync", EmitDefaultValue=false)]
+    [JsonProperty(PropertyName = "submittedAsync")]
         public bool SubmittedAsync { get; set; }
         [DataMember(Name = "redirectUrl", EmitDefaultValue = false)]
         public string RedirectUrl { get; set; }
