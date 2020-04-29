@@ -20,7 +20,9 @@
 //  * See the LICENSE file for more info.
 //  */
 #endregion
-
+using System;
+using System.Text;
+using Newtonsoft.Json;
 using System.Runtime.Serialization;
 
 namespace Adyen.Model.Hop
