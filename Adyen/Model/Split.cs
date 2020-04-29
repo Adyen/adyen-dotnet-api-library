@@ -45,7 +45,11 @@ namespace Adyen.Model
         [JsonConverter(typeof(StringEnumConverter))]
         public enum TypeEnum
         {
-
+            /// <summary>
+            /// Enum BalanceAccount for value: BalanceAccount
+            /// </summary>
+            [EnumMember(Value = "BalanceAccount")]
+            BalanceAccount = 1,
             /// <summary>
             /// Enum Commission for value: Commission
             /// </summary>
@@ -264,4 +268,3 @@ namespace Adyen.Model
         }
     }
 }
-
