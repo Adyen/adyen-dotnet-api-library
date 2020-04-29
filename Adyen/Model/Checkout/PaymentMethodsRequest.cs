@@ -82,7 +82,8 @@ namespace Adyen.Model.Checkout
         /// <param name="shopperLocale">The combination of a language code and a country code to specify the language to be used in the payment..</param>
         /// <param name="shopperReference">The shopper&#x27;s reference to uniquely identify this shopper (e.g. user ID or account ID). &gt; This field is required for recurring payments..</param>
         /// <param name="threeDSAuthenticationOnly">If set to true, you will only perform the [3D Secure 2 authentication](https://docs.adyen.com/checkout/3d-secure/other-3ds-flows/authentication-only), and not the payment authorisation..</param>
-        public PaymentMethodsRequest(Dictionary<string, string> additionalData = default(Dictionary<string, string>), List<string> allowedPaymentMethods = default(List<string>), Amount amount = default(Amount), List<string> blockedPaymentMethods = default(List<string>), ChannelEnum? channel = default(ChannelEnum?), string countryCode = default(string), bool? enableRealTimeUpdate = default(bool?), string merchantAccount = default(string), string shopperLocale = default(string), string shopperReference = default(string), bool? threeDSAuthenticationOnly = default(bool?))
+        /// <param name="store"> The physical store, for which this payment is processed.</param>
+        public PaymentMethodsRequest(Dictionary<string, string> additionalData = default(Dictionary<string, string>), List<string> allowedPaymentMethods = default(List<string>), Amount amount = default(Amount), List<string> blockedPaymentMethods = default(List<string>), ChannelEnum? channel = default(ChannelEnum?), string countryCode = default(string), bool? enableRealTimeUpdate = default(bool?), string merchantAccount = default(string), string shopperLocale = default(string), string shopperReference = default(string), string store = default(string), bool? threeDSAuthenticationOnly = default(bool?))
         {
             // to ensure "merchantAccount" is required (not null)
             if (merchantAccount == null)
@@ -102,6 +103,7 @@ namespace Adyen.Model.Checkout
             this.EnableRealTimeUpdate = enableRealTimeUpdate;
             this.ShopperLocale = shopperLocale;
             this.ShopperReference = shopperReference;
+            this.Store = store;
             this.ThreeDSAuthenticationOnly = threeDSAuthenticationOnly;
         }
 
@@ -169,6 +171,13 @@ namespace Adyen.Model.Checkout
         public string ShopperReference { get; set; }
 
         /// <summary>
+        /// The physical store, for which this payment is processed.
+        /// </summary>
+        /// <value>The physical store, for which this payment is processed.</value>
+        [DataMember(Name = "store", EmitDefaultValue = false)]
+        public string Store { get; set; }
+
+        /// <summary>
         /// If set to true, you will only perform the [3D Secure 2 authentication](https://docs.adyen.com/checkout/3d-secure/other-3ds-flows/authentication-only), and not the payment authorisation.
         /// </summary>
         /// <value>If set to true, you will only perform the [3D Secure 2 authentication](https://docs.adyen.com/checkout/3d-secure/other-3ds-flows/authentication-only), and not the payment authorisation.</value>
@@ -193,6 +202,7 @@ namespace Adyen.Model.Checkout
             sb.Append("  MerchantAccount: ").Append(MerchantAccount).Append("\n");
             sb.Append("  ShopperLocale: ").Append(ShopperLocale).Append("\n");
             sb.Append("  ShopperReference: ").Append(ShopperReference).Append("\n");
+            sb.Append("  Store: ").Append(Store).Append("\n");
             sb.Append("  ThreeDSAuthenticationOnly: ").Append(ThreeDSAuthenticationOnly).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
@@ -282,6 +292,11 @@ namespace Adyen.Model.Checkout
                     this.ShopperReference.Equals(input.ShopperReference))
                 ) &&
                 (
+                    this.Store == input.Store ||
+                    (this.Store != null &&
+                    this.Store.Equals(input.Store))
+                ) &&
+                (
                     this.ThreeDSAuthenticationOnly == input.ThreeDSAuthenticationOnly ||
                     (this.ThreeDSAuthenticationOnly != null &&
                     this.ThreeDSAuthenticationOnly.Equals(input.ThreeDSAuthenticationOnly))
@@ -317,6 +332,8 @@ namespace Adyen.Model.Checkout
                     hashCode = hashCode * 59 + this.ShopperLocale.GetHashCode();
                 if (this.ShopperReference != null)
                     hashCode = hashCode * 59 + this.ShopperReference.GetHashCode();
+                if (this.Store != null)
+                    hashCode = hashCode * 59 + this.Store.GetHashCode();
                 if (this.ThreeDSAuthenticationOnly != null)
                     hashCode = hashCode * 59 + this.ThreeDSAuthenticationOnly.GetHashCode();
                 return hashCode;
