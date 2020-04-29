@@ -37,7 +37,13 @@ namespace Adyen.Model.Hop
     public List<ErrorFieldType> InvalidFields { get; set; }
 
     
+  /// <summary>
+    /// The reference of a request.  Can be used to uniquely identify the request.
+    /// </summary>
+    /// <value>The reference of a request.  Can be used to uniquely identify the request.</value>
         [DataMember(Name = "pspReference", EmitDefaultValue = false)]
+        [JsonProperty(PropertyName = "pspReference")]
+
         public string PspReference { get; set; }
         [DataMember(Name = "resultCode", EmitDefaultValue = false)]
         public string ResultCode { get; set; }
