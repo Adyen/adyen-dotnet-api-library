@@ -23,6 +23,9 @@
 
 using System.Runtime.Serialization;
 using Adyen.Model.MarketPay;
+using System.Collections.Generic;
+using System.Text;
+using Newtonsoft.Json;
 namespace Adyen.Model.Hop
 {
     [DataContract]
