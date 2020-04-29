@@ -52,7 +52,7 @@ namespace Adyen.Model.Checkout
         /// <value>**amazonpay**</value>
         [DataMember(Name = "type", EmitDefaultValue = false)]
         [JsonProperty(PropertyName = "type")]
-        public string Type { get { return "amazonpay"; } }
+        public string Type { get; set; } = "amazonpay"; 
 
 
         /// <summary>

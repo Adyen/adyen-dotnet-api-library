@@ -54,7 +54,7 @@ namespace Adyen.Model.Checkout
         /// <value>**sepadirectdebit**</value>
         [DataMember(Name = "type", EmitDefaultValue = false)]
         [JsonProperty(PropertyName = "type")]
-        public string Type { get { return "sepadirectdebit"; } }
+        public string Type { get; set; } = "sepadirectdebit"; 
 
 
         /// <summary>

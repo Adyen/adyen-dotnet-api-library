@@ -38,7 +38,7 @@ namespace Adyen.Model.Checkout
         /// <value>**giropay**</value>
         [DataMember(Name = "type", EmitDefaultValue = false)]
         [JsonProperty(PropertyName = "type")]
-        public string Type { get { return "giropay"; } }
+        public string Type { get; set; } =  "giropay"; 
 
 
         /// <summary>

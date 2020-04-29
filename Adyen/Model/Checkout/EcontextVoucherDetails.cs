@@ -70,7 +70,7 @@ namespace Adyen.Model.Checkout
         /// <value>**econtextvoucher**</value>
         [DataMember(Name = "type", EmitDefaultValue = false)]
         [JsonProperty(PropertyName = "type")]
-        public string Type { get { return "econtextvoucher"; } }
+        public string Type { get; set; } = "econtextvoucher"; 
 
 
         /// <summary>

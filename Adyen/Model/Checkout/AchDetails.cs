@@ -78,7 +78,7 @@ namespace Adyen.Model.Checkout
         /// <value>**ach**</value>
         [DataMember(Name = "type", EmitDefaultValue = false)]
         [JsonProperty(PropertyName = "type")]
-        public string Type { get { return "ach"; } }
+        public string Type { get; set; } = "ach"; 
 
 
         /// <summary>

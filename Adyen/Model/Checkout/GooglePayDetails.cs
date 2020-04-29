@@ -59,7 +59,7 @@ namespace Adyen.Model.Checkout
         /// <value>**paywithgoogle**</value>
         [DataMember(Name = "type", EmitDefaultValue = false)]
         [JsonProperty(PropertyName = "type")]
-        public string Type { get { return "paywithgoogle"; } }
+        public string Type { get; set; } = "paywithgoogle"; 
 
 
         /// <summary>
