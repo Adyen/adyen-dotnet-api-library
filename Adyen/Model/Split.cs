@@ -66,7 +66,7 @@ namespace Adyen.Model
             /// Enum MarketPlace for value: MarketPlace
             /// </summary>
             [EnumMember(Value = "MarketPlace")]
-            MarketPlace = 3,
+            MarketPlace = 4,
 
             /// <summary>
             /// Enum PaymentFee for value: PaymentFee
