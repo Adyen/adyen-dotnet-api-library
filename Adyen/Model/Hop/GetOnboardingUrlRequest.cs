@@ -44,7 +44,13 @@ namespace Adyen.Model.Hop
     [DataMember(Name="returnUrl", EmitDefaultValue=false)]
     [JsonProperty(PropertyName = "returnUrl")]
         public string ReturnUrl { get; set; }
-        [DataMember(Name = "hopWebserviceUser", EmitDefaultValue = false)]
+          /// <summary>
+    /// The platform name which will show up in the welcome page.
+    /// </summary>
+    /// <value>The platform name which will show up in the welcome page.</value>
+    [DataMember(Name="platformName", EmitDefaultValue=false)]
+    [JsonProperty(PropertyName = "platformName")]
+    public string PlatformName { get; set; }
         public string HopWebserviceUser { get; set; }
     }
 }
