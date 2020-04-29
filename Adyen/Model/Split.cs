@@ -84,7 +84,7 @@ namespace Adyen.Model
             /// Enum Verification for value: Verification
             /// </summary>
             [EnumMember(Value = "Verification")]
-            Verification = 6
+            Verification = 7
         }
 
         /// <summary>
