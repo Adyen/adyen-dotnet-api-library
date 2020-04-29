@@ -28,6 +28,15 @@ namespace Adyen.Model.Hop
     [DataContract]
     public class GetOnboardingUrlResponse
     {
+    /// <summary>
+    /// Contains field validation errors that would prevent requests from being processed.
+    /// </summary>
+    /// <value>Contains field validation errors that would prevent requests from being processed.</value>
+    [DataMember(Name="invalidFields", EmitDefaultValue=false)]
+    [JsonProperty(PropertyName = "invalidFields")]
+    public List<ErrorFieldType> InvalidFields { get; set; }
+
+    
         [DataMember(Name = "pspReference", EmitDefaultValue = false)]
         public string PspReference { get; set; }
         [DataMember(Name = "resultCode", EmitDefaultValue = false)]
