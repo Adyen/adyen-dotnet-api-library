@@ -54,7 +54,7 @@ namespace Adyen.Model
             /// Enum Commission for value: Commission
             /// </summary>
             [EnumMember(Value = "Commission")]
-            Commission = 1,
+            Commission = 2,
 
             /// <summary>
             /// Enum Default for value: Default
