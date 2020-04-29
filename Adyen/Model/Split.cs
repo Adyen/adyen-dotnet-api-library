@@ -72,7 +72,7 @@ namespace Adyen.Model
             /// Enum PaymentFee for value: PaymentFee
             /// </summary>
             [EnumMember(Value = "PaymentFee")]
-            PaymentFee = 4,
+            PaymentFee = 5,
 
             /// <summary>
             /// Enum VAT for value: VAT
