@@ -78,7 +78,7 @@ namespace Adyen.Model
             /// Enum VAT for value: VAT
             /// </summary>
             [EnumMember(Value = "VAT")]
-            VAT = 5,
+            VAT = 6,
 
             /// <summary>
             /// Enum Verification for value: Verification
