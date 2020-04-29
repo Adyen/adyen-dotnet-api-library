@@ -48,6 +48,6 @@ namespace Adyen.Model.Nexo
         PDF417,
 
         /// <remarks/>
-        QRCODE,
+        QRCode,
     }
 }
