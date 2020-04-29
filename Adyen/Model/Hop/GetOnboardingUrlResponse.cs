@@ -22,7 +22,7 @@
 #endregion
 
 using System.Runtime.Serialization;
-
+using Adyen.Model.MarketPay;
 namespace Adyen.Model.Hop
 {
     [DataContract]
