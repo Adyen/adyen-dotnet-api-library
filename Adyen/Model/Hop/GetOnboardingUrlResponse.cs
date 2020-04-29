@@ -61,5 +61,30 @@ namespace Adyen.Model.Hop
         public bool SubmittedAsync { get; set; }
         [DataMember(Name = "redirectUrl", EmitDefaultValue = false)]
         public string RedirectUrl { get; set; }
+      /// <summary>
+    /// Get the string presentation of the object
+    /// </summary>
+    /// <returns>String presentation of the object</returns>
+    public override string ToString()  
+    {
+      var sb = new StringBuilder();
+      sb.Append("class GetOnboardingUrlResponse {\n");
+      sb.Append("  InvalidFields: ").Append(InvalidFields).Append("\n");
+      sb.Append("  PspReference: ").Append(PspReference).Append("\n");
+      sb.Append("  RedirectUrl: ").Append(RedirectUrl).Append("\n");
+      sb.Append("  ResultCode: ").Append(ResultCode).Append("\n");
+      sb.Append("  SubmittedAsync: ").Append(SubmittedAsync).Append("\n");
+      sb.Append("}\n");
+      return sb.ToString();
+    }
+
+    /// <summary>
+    /// Get the JSON string presentation of the object
+    /// </summary>
+    /// <returns>JSON string presentation of the object</returns>
+    public string ToJson() 
+    {
+      return JsonConvert.SerializeObject(this, Formatting.Indented);
+    }
     }
 }
