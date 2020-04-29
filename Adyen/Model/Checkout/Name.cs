@@ -24,7 +24,6 @@
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.IO;
 using System.Runtime.Serialization;
 using System.Text;
 using Newtonsoft.Json;
@@ -36,7 +35,7 @@ namespace Adyen.Model.Checkout
     /// Name
     /// </summary>
     [DataContract]
-    public partial class Name :  IEquatable<Name>, IValidatableObject
+    public partial class Name : IEquatable<Name>, IValidatableObject
     {
         /// <summary>
         /// The gender. &gt;The following values are permitted: &#x60;MALE&#x60;, &#x60;FEMALE&#x60;, &#x60;UNKNOWN&#x60;.
@@ -45,19 +44,19 @@ namespace Adyen.Model.Checkout
         [JsonConverter(typeof(StringEnumConverter))]
         public enum GenderEnum
         {
-            
+
             /// <summary>
             /// Enum MALE for value: MALE
             /// </summary>
             [EnumMember(Value = "MALE")]
             MALE = 1,
-            
+
             /// <summary>
             /// Enum FEMALE for value: FEMALE
             /// </summary>
             [EnumMember(Value = "FEMALE")]
             FEMALE = 2,
-            
+
             /// <summary>
             /// Enum UNKNOWN for value: UNKNOWN
             /// </summary>
@@ -69,7 +68,7 @@ namespace Adyen.Model.Checkout
         /// The gender. &gt;The following values are permitted: &#x60;MALE&#x60;, &#x60;FEMALE&#x60;, &#x60;UNKNOWN&#x60;.
         /// </summary>
         /// <value>The gender. &gt;The following values are permitted: &#x60;MALE&#x60;, &#x60;FEMALE&#x60;, &#x60;UNKNOWN&#x60;.</value>
-        [DataMember(Name="gender", EmitDefaultValue=false)]
+        [DataMember(Name = "gender", EmitDefaultValue = false)]
         public GenderEnum Gender { get; set; }
         /// <summary>
         /// Initializes a new instance of the <see cref="Name" /> class.
@@ -79,63 +78,57 @@ namespace Adyen.Model.Checkout
         /// <summary>
         /// Initializes a new instance of the <see cref="Name" /> class.
         /// </summary>
-        /// <param name="FirstName">The first name. (required).</param>
-        /// <param name="Gender">The gender. &gt;The following values are permitted: &#x60;MALE&#x60;, &#x60;FEMALE&#x60;, &#x60;UNKNOWN&#x60;. (required).</param>
-        /// <param name="Infix">The name&#39;s infix, if applicable. &gt;A maximum length of twenty (20) characters is imposed..</param>
-        /// <param name="LastName">The last name. (required).</param>
-        public Name(string FirstName = default(string), GenderEnum Gender = default(GenderEnum), string Infix = default(string), string LastName = default(string))
+        /// <param name="firstName">The first name. (required).</param>
+        /// <param name="gender">The gender. &gt;The following values are permitted: &#x60;MALE&#x60;, &#x60;FEMALE&#x60;, &#x60;UNKNOWN&#x60;. (required).</param>
+        /// <param name="infix">The name&#39;s infix, if applicable. &gt;A maximum length of twenty (20) characters is imposed..</param>
+        /// <param name="lastName">The last name. (required).</param>
+        public Name(string firstName, GenderEnum gender, string infix, string lastName)
         {
             // to ensure "FirstName" is required (not null)
-            if (FirstName == null)
+            if (firstName == null)
             {
-                throw new InvalidDataException("FirstName is a required property for Name and cannot be null");
+                throw new ArgumentNullException("FirstName is a required property for Name and cannot be null");
             }
             else
             {
-                this.FirstName = FirstName;
+                this.FirstName = firstName;
             }
-            // to ensure "Gender" is required (not null)
-            if (Gender == null)
-            {
-                throw new InvalidDataException("Gender is a required property for Name and cannot be null");
-            }
-            else
-            {
-                this.Gender = Gender;
-            }
+
+            this.Gender = gender;
+
             // to ensure "LastName" is required (not null)
-            if (LastName == null)
+            if (lastName == null)
             {
-                throw new InvalidDataException("LastName is a required property for Name and cannot be null");
+                throw new ArgumentNullException("LastName is a required property for Name and cannot be null");
             }
             else
             {
-                this.LastName = LastName;
+                this.LastName = lastName;
             }
-            this.Infix = Infix;
+            this.Infix = infix;
         }
-        
+
         /// <summary>
         /// The first name.
         /// </summary>
         /// <value>The first name.</value>
-        [DataMember(Name="firstName", EmitDefaultValue=false)]
-        public string FirstName { get; set; }
+        [DataMember(Name = "firstName", EmitDefaultValue = false)]
+        public string FirstName { get; }
 
 
         /// <summary>
         /// The name&#39;s infix, if applicable. &gt;A maximum length of twenty (20) characters is imposed.
         /// </summary>
         /// <value>The name&#39;s infix, if applicable. &gt;A maximum length of twenty (20) characters is imposed.</value>
-        [DataMember(Name="infix", EmitDefaultValue=false)]
-        public string Infix { get; set; }
+        [DataMember(Name = "infix", EmitDefaultValue = false)]
+        public string Infix { get; }
 
         /// <summary>
         /// The last name.
         /// </summary>
         /// <value>The last name.</value>
-        [DataMember(Name="lastName", EmitDefaultValue=false)]
-        public string LastName { get; set; }
+        [DataMember(Name = "lastName", EmitDefaultValue = false)]
+        public string LastName { get;  }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -152,7 +145,7 @@ namespace Adyen.Model.Checkout
             sb.Append("}\n");
             return sb.ToString();
         }
-  
+
         /// <summary>
         /// Returns the JSON string presentation of the object
         /// </summary>
@@ -182,22 +175,22 @@ namespace Adyen.Model.Checkout
             if (input == null)
                 return false;
 
-            return 
+            return
                 (
                     this.FirstName == input.FirstName ||
                     (this.FirstName != null &&
                     this.FirstName.Equals(input.FirstName))
-                ) && 
+                ) &&
                 (
                     this.Gender == input.Gender ||
                     (this.Gender != null &&
                     this.Gender.Equals(input.Gender))
-                ) && 
+                ) &&
                 (
                     this.Infix == input.Infix ||
                     (this.Infix != null &&
                     this.Infix.Equals(input.Infix))
-                ) && 
+                ) &&
                 (
                     this.LastName == input.LastName ||
                     (this.LastName != null &&
@@ -234,15 +227,15 @@ namespace Adyen.Model.Checkout
         IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
         {
             // Gender (string) maxLength
-            if(this.Gender != null && this.Gender.ToString().Length > 1)
+            if (this.Gender != null && this.Gender.ToString().Length > 1)
             {
-                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for Gender, length must be less than 1.", new [] { "Gender" });
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for Gender, length must be less than 1.", new[] { "Gender" });
             }
 
             // Gender (string) minLength
-            if(this.Gender != null && this.Gender.ToString().Length < 1)
+            if (this.Gender != null && this.Gender.ToString().Length < 1)
             {
-                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for Gender, length must be greater than 1.", new [] { "Gender" });
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for Gender, length must be greater than 1.", new[] { "Gender" });
             }
 
             yield break;
