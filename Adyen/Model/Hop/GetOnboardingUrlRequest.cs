@@ -37,7 +37,12 @@ namespace Adyen.Model.Hop
     [DataMember(Name="accountHolderCode", EmitDefaultValue=false)]
     [JsonProperty(PropertyName = "accountHolderCode")]
         public string AccountHolderCode { get; set; }
-        [DataMember(Name = "returnUrl", EmitDefaultValue = false)]
+            /// <summary>
+    /// The URL where the sub-merchant will be redirected back to after they complete the onboarding, or if their session times out. Maximum length of 500 characters. If you don't provide this, the sub-merchant will be redirected back to the default return URL configured in your platform account.
+    /// </summary>
+    /// <value>The URL where the sub-merchant will be redirected back to after they complete the onboarding, or if their session times out. Maximum length of 500 characters. If you don't provide this, the sub-merchant will be redirected back to the default return URL configured in your platform account.</value>
+    [DataMember(Name="returnUrl", EmitDefaultValue=false)]
+    [JsonProperty(PropertyName = "returnUrl")]
         public string ReturnUrl { get; set; }
         [DataMember(Name = "hopWebserviceUser", EmitDefaultValue = false)]
         public string HopWebserviceUser { get; set; }
