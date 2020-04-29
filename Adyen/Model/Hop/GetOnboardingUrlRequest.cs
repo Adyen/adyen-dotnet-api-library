@@ -30,7 +30,12 @@ namespace Adyen.Model.Hop
     [DataContract]
     public class GetOnboardingUrlRequest
     {
-        [DataMember(Name = "accountHolderCode", EmitDefaultValue = false)]
+        /// <summary>
+    /// The account holder code you provided when you created the account holder.
+    /// </summary>
+    /// <value>The account holder code you provided when you created the account holder.</value>
+    [DataMember(Name="accountHolderCode", EmitDefaultValue=false)]
+    [JsonProperty(PropertyName = "accountHolderCode")]
         public string AccountHolderCode { get; set; }
         [DataMember(Name = "returnUrl", EmitDefaultValue = false)]
         public string ReturnUrl { get; set; }
