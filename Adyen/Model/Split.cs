@@ -60,7 +60,7 @@ namespace Adyen.Model
             /// Enum Default for value: Default
             /// </summary>
             [EnumMember(Value = "Default")]
-            Default = 2,
+            Default = 3,
 
             /// <summary>
             /// Enum MarketPlace for value: MarketPlace
