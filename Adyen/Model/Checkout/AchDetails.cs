@@ -30,7 +30,7 @@ namespace Adyen.Model.Checkout
     /// 
     /// </summary>
     [DataContract]
-    public class AchDetails
+    public class AchDetails : IOneOfPaymentRequestPaymentMethod
     {
         /// <summary>
         /// The bank account number (without separators).

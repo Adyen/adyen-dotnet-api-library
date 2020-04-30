@@ -30,7 +30,7 @@ namespace Adyen.Model.Checkout
     /// 
     /// </summary>
     [DataContract]
-    public class DragonpayDetails
+    public class DragonpayDetails : IOneOfPaymentRequestPaymentMethod
     {
         /// <summary>
         /// The Dragonpay issuer value of the shopper's selected bank. Set this to an **id** of a Dragonpay issuer to preselect it.

@@ -30,7 +30,7 @@ namespace Adyen.Model.Checkout
     /// 
     /// </summary>
     [DataContract]
-    public class BilldeskOnlineDetails
+    public class BilldeskOnlineDetails : IOneOfPaymentRequestPaymentMethod
     {
         /// <summary>
         /// The issuer id of the shopper's selected bank.

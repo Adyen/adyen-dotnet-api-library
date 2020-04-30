@@ -30,7 +30,7 @@ namespace Adyen.Model.Checkout
     /// 
     /// </summary>
     [DataContract]
-    public class EcontextVoucherDetails
+    public class EcontextVoucherDetails : IOneOfPaymentRequestPaymentMethod
     {
         /// <summary>
         /// The shopper's first name.

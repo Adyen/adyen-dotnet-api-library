@@ -30,7 +30,7 @@ namespace Adyen.Model.Checkout
     /// 
     /// </summary>
     [DataContract]
-    public class GooglePayDetails
+    public class GooglePayDetails : IOneOfPaymentRequestPaymentMethod
     {
         /// <summary>
         /// Gets or Sets FundingSource

@@ -30,7 +30,7 @@ namespace Adyen.Model.Checkout
     /// 
     /// </summary>
     [DataContract]
-    public class ApplePayDetails
+    public class ApplePayDetails : IOneOfPaymentRequestPaymentMethod
     {
         /// <summary>
         /// Gets or Sets ApplePayToken

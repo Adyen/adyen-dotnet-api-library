@@ -30,7 +30,7 @@ namespace Adyen.Model.Checkout
     /// 
     /// </summary>
     [DataContract]
-    public class SepaDirectDebitDetails
+    public class SepaDirectDebitDetails : IOneOfPaymentRequestPaymentMethod
     {
         /// <summary>
         /// The International Bank Account Number (IBAN).

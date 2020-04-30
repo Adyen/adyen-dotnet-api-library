@@ -30,7 +30,7 @@ namespace Adyen.Model.Checkout
     /// 
     /// </summary>
     [DataContract]
-    public class IdealDetails
+    public class IdealDetails : IOneOfPaymentRequestPaymentMethod
     {
         /// <summary>
         /// The iDEAL issuer value of the shopper's selected bank. Set this to an **id** of an iDEAL issuer to preselect it.

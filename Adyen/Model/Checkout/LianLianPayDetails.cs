@@ -30,7 +30,7 @@ namespace Adyen.Model.Checkout
     /// 
     /// </summary>
     [DataContract]
-    public class LianLianPayDetails
+    public class LianLianPayDetails : IOneOfPaymentRequestPaymentMethod
     {
         /// <summary>
         /// Gets or Sets TelephoneNumber

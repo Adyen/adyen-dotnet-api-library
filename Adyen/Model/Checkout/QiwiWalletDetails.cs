@@ -30,7 +30,7 @@ namespace Adyen.Model.Checkout
     /// 
     /// </summary>
     [DataContract]
-    public class QiwiWalletDetails
+    public class QiwiWalletDetails : IOneOfPaymentRequestPaymentMethod
     {
         /// <summary>
         /// Gets or Sets TelephoneNumber

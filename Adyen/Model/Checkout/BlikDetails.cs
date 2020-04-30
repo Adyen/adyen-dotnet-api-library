@@ -30,7 +30,7 @@ namespace Adyen.Model.Checkout
     /// 
     /// </summary>
     [DataContract]
-    public class BlikDetails
+    public class BlikDetails : IOneOfPaymentRequestPaymentMethod
     {
         /// <summary>
         /// BLIK code consisting of 6 digits.

@@ -30,7 +30,7 @@ namespace Adyen.Model.Checkout
     /// 
     /// </summary>
     [DataContract]
-    public class AmazonPayDetails
+    public class AmazonPayDetails : IOneOfPaymentRequestPaymentMethod
     {
         /// <summary>
         /// Gets or Sets AmazonPayToken

@@ -30,7 +30,7 @@ namespace Adyen.Model.Checkout
     /// 
     /// </summary>
     [DataContract]
-    public class DokuDetails
+    public class DokuDetails : IOneOfPaymentRequestPaymentMethod
     {
         /// <summary>
         /// The shopper's first name.

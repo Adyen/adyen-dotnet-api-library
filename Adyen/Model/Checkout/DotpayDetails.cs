@@ -30,7 +30,7 @@ namespace Adyen.Model.Checkout
     /// 
     /// </summary>
     [DataContract]
-    public class DotpayDetails
+    public class DotpayDetails : IOneOfPaymentRequestPaymentMethod
     {
         /// <summary>
         /// The Dotpay issuer value of the shopper's selected bank. Set this to an **id** of a Dotpay issuer to preselect it.

@@ -30,7 +30,7 @@ namespace Adyen.Model.Checkout
     /// 
     /// </summary>
     [DataContract]
-    public class GiropayDetails
+    public class GiropayDetails : IOneOfPaymentRequestPaymentMethod
     {
         /// <summary>
         /// **giropay**

@@ -30,7 +30,7 @@ namespace Adyen.Model.Checkout
     /// 
     /// </summary>
     [DataContract]
-    public class VippsDetails
+    public class VippsDetails : IOneOfPaymentRequestPaymentMethod
     {
         /// <summary>
         /// Gets or Sets TelephoneNumber
@@ -45,7 +45,7 @@ namespace Adyen.Model.Checkout
         /// <value>**vipps**</value>
         [DataMember(Name = "type", EmitDefaultValue = false)]
         [JsonProperty(PropertyName = "type")]
-        public string Type { get; set; } = "vipps"; 
+        public string Type { get; set; } = "vipps";
 
 
         /// <summary>
