@@ -247,7 +247,7 @@ namespace Adyen.Model.Checkout
         /// <param name="ThreeDS2RequestData">Request fields for 3D Secure 2.0..</param>
         /// <param name="TotalsGroup">The reference value to aggregate sales totals in reporting. When not specified, the store field is used (if available)..</param>
         /// <param name="TrustedShopper">Set to true if the payment should be routed to a trusted MID..</param>
-        public PaymentRequest(AccountInfo AccountInfo = default(AccountInfo), Amount AdditionalAmount = default(Amount), Dictionary<string, string> AdditionalData = default(Dictionary<string, string>), List<string> AllowedPaymentMethods = default(List<string>), Amount Amount = default(Amount), BankAccount BankAccount = default(BankAccount), Address BillingAddress = default(Address), List<string> BlockedPaymentMethods = default(List<string>), BrowserInfo BrowserInfo = default(BrowserInfo), int? CaptureDelayHours = default(int?), Card Card = default(Card), ChannelEnum? Channel = default(ChannelEnum?), Company Company = default(Company), string CountryCode = default(string), DateTime? DateOfBirth = default(DateTime?), ForexQuote DccQuote = default(ForexQuote), Address DeliveryAddress = default(Address), DateTime? DeliveryDate = default(DateTime?), string DeviceFingerprint = default(string), bool? EnableOneClick = default(bool?), bool? EnablePayOut = default(bool?), bool? EnableRecurring = default(bool?), EntityTypeEnum? EntityType = default(EntityTypeEnum?), int? FraudOffset = default(int?), Installments Installments = default(Installments), List<LineItem> LineItems = default(List<LineItem>), string Mcc = default(string), string MerchantAccount = default(string), string MerchantOrderReference = default(string), MerchantRiskIndicator MerchantRiskIndicator = default(MerchantRiskIndicator), Dictionary<string, string> Metadata = default(Dictionary<string, string>), ThreeDSecureData MpiData = default(ThreeDSecureData), CheckoutOrder order = default(CheckoutOrder), string Nationality = default(string), string OrderReference = default(string), DefaultPaymentMethodDetails PaymentMethod = default(DefaultPaymentMethodDetails), Recurring Recurring = default(Recurring), RecurringProcessingModelEnum? RecurringProcessingModel = default(RecurringProcessingModelEnum?), string RedirectFromIssuerMethod = default(string), string RedirectToIssuerMethod = default(string), string Reference = default(string), string ReturnUrl = default(string), string SelectedBrand = default(string), string SelectedRecurringDetailReference = default(string), string SessionId = default(string), string SessionValidity = default(string), string ShopperEmail = default(string), string ShopperIP = default(string), ShopperInteractionEnum? ShopperInteraction = default(ShopperInteractionEnum?), string ShopperLocale = default(string), Name ShopperName = default(Name), string ShopperReference = default(string), string ShopperStatement = default(string), string SocialSecurityNumber = default(string), List<Split> Splits = default(List<Split>), bool? storePaymentMethod = default(bool?), string Store = default(string), string TelephoneNumber = default(string), ThreeDS2RequestData ThreeDS2RequestData = default(ThreeDS2RequestData), string TotalsGroup = default(string), bool? TrustedShopper = default(bool?))
+        public PaymentRequest(AccountInfo AccountInfo = default(AccountInfo), Amount AdditionalAmount = default(Amount), Dictionary<string, string> AdditionalData = default(Dictionary<string, string>), List<string> AllowedPaymentMethods = default(List<string>), Amount Amount = default(Amount), BankAccount BankAccount = default(BankAccount), Address BillingAddress = default(Address), List<string> BlockedPaymentMethods = default(List<string>), BrowserInfo BrowserInfo = default(BrowserInfo), int? CaptureDelayHours = default(int?), Card Card = default(Card), ChannelEnum? Channel = default(ChannelEnum?), Company Company = default(Company), string CountryCode = default(string), DateTime? DateOfBirth = default(DateTime?), ForexQuote DccQuote = default(ForexQuote), Address DeliveryAddress = default(Address), DateTime? DeliveryDate = default(DateTime?), string DeviceFingerprint = default(string), bool? EnableOneClick = default(bool?), bool? EnablePayOut = default(bool?), bool? EnableRecurring = default(bool?), EntityTypeEnum? EntityType = default(EntityTypeEnum?), int? FraudOffset = default(int?), Installments Installments = default(Installments), List<LineItem> LineItems = default(List<LineItem>), string Mcc = default(string), string MerchantAccount = default(string), string MerchantOrderReference = default(string), MerchantRiskIndicator MerchantRiskIndicator = default(MerchantRiskIndicator), Dictionary<string, string> Metadata = default(Dictionary<string, string>), ThreeDSecureData MpiData = default(ThreeDSecureData), CheckoutOrder order = default(CheckoutOrder), string Nationality = default(string), string OrderReference = default(string), DefaultPaymentMethodDetails PaymentMethod = default(DefaultPaymentMethodDetails), Recurring Recurring = default(Recurring), RecurringProcessingModelEnum? RecurringProcessingModel = default(RecurringProcessingModelEnum?), string RedirectFromIssuerMethod = default(string), string RedirectToIssuerMethod = default(string), string Reference = default(string), string ReturnUrl = default(string), RiskData RiskData = default(RiskData), string SelectedBrand = default(string), string SelectedRecurringDetailReference = default(string), string SessionId = default(string), string SessionValidity = default(string), string ShopperEmail = default(string), string ShopperIP = default(string), ShopperInteractionEnum? ShopperInteraction = default(ShopperInteractionEnum?), string ShopperLocale = default(string), Name ShopperName = default(Name), string ShopperReference = default(string), string ShopperStatement = default(string), string SocialSecurityNumber = default(string), List<Split> Splits = default(List<Split>), bool? storePaymentMethod = default(bool?), string Store = default(string), string TelephoneNumber = default(string), ThreeDS2RequestData ThreeDS2RequestData = default(ThreeDS2RequestData), string TotalsGroup = default(string), bool? TrustedShopper = default(bool?))
         {
             CreateApplicationInfo();
             // to ensure "Amount" is required (not null)
@@ -332,6 +332,7 @@ namespace Adyen.Model.Checkout
             this.RecurringProcessingModel = RecurringProcessingModel;
             this.RedirectFromIssuerMethod = RedirectFromIssuerMethod;
             this.RedirectToIssuerMethod = RedirectToIssuerMethod;
+            this.RiskData = RiskData;
             this.SelectedBrand = SelectedBrand;
             this.SelectedRecurringDetailReference = SelectedRecurringDetailReference;
             this.SessionId = SessionId;
@@ -775,7 +776,14 @@ namespace Adyen.Model.Checkout
         /// <value>Required for the 3DS2.0 Web integration.</value>
         [DataMember(Name = "origin", EmitDefaultValue = false)]
         public string Origin { get; set; }
-        
+
+        /// <summary>
+        /// Gets or Sets RiskData
+        /// </summary>
+        [DataMember(Name = "riskData", EmitDefaultValue = false)]
+        [JsonProperty(PropertyName = "riskData")]
+        public RiskData RiskData { get; set; }
+
 
         public void AddCardData(string cardNumber, string expiryMonth, string expiryYear, string securityCode, string holderName)
         {
@@ -858,6 +866,7 @@ namespace Adyen.Model.Checkout
             sb.Append("  RedirectToIssuerMethod: ").Append(RedirectToIssuerMethod).Append("\n");
             sb.Append("  Reference: ").Append(Reference).Append("\n");
             sb.Append("  ReturnUrl: ").Append(ReturnUrl).Append("\n");
+            sb.Append("  RiskData: ").Append(RiskData).Append("\n");
             sb.Append("  SelectedBrand: ").Append(SelectedBrand).Append("\n");
             sb.Append("  SelectedRecurringDetailReference: ").Append(SelectedRecurringDetailReference).Append("\n");
             sb.Append("  SessionId: ").Append(SessionId).Append("\n");
@@ -1131,6 +1140,12 @@ namespace Adyen.Model.Checkout
                     (this.ReturnUrl != null &&
                     this.ReturnUrl.Equals(input.ReturnUrl))
                 ) &&
+                (
+                    this.RiskData == input.RiskData ||
+                    (this.RiskData != null &&
+                    this.RiskData.Equals(input.RiskData))
+                )
+                &&
                 (
                     this.SelectedBrand == input.SelectedBrand ||
                     (this.SelectedBrand != null &&
