@@ -63,6 +63,5 @@ namespace Adyen.Model.Checkout
         {
             return JsonConvert.SerializeObject(this, Formatting.Indented);
         }
-
     }
 }

@@ -529,7 +529,7 @@ namespace Adyen.Test
             var checkout = new Checkout(client);
             var paymentRequest = CreatePaymentRequestCheckout();
             var paymentResponse = checkout.Payments(paymentRequest);
-            Assert.AreEqual(paymentResponse.Action.PaymentMethodType, "multibanco");
+            Assert.AreEqual(paymentResponse.Action.PaymentMethodType,"multibanco");
             Assert.AreEqual(paymentResponse.Action.ExpiresAt, "2020-01-12T09:37:49");
             Assert.AreEqual(paymentResponse.Action.Reference, "501 422 944");
             Assert.AreEqual(paymentResponse.Action.Entity, "12101");
