@@ -21,33 +21,18 @@
 //  */
 #endregion
 
-namespace Adyen.Model.Nexo
+using System.Collections.Generic;
+using Adyen.Constants;
+
+namespace Adyen.Service.Resource.Hop
 {
-    /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("xsd", "4.6.1055.0")]
-    [System.SerializableAttribute()]
-    public enum BarcodeType
+    public class GetOnboardingUrl : ServiceResource
     {
-
-        /// <remarks/>
-        EAN8,
-
-        /// <remarks/>
-        EAN13,
-
-        /// <remarks/>
-        UPCA,
-
-        /// <remarks/>
-        Code25,
-
-        /// <remarks/>
-        Code128,
-
-        /// <remarks/>
-        PDF417,
-
-        /// <remarks/>
-        QRCode,
+        public GetOnboardingUrl(AbstractService abstractService)
+            : base(abstractService,
+                abstractService.Client.Config.MarketPayEndpoint + "/Hop/" + ClientConfig.HopApiVersion +
+                "/getOnboardingUrl", new List<string> { })
+        {
+        }
     }
 }
