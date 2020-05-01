@@ -111,13 +111,15 @@ namespace Adyen.Test
                 Reference = "google pay test",
                 PaymentMethod = new GooglePayDetails
                 {
-                    GooglePayToken = "==Payload as retrieved from Google Pay response=="
+                    GooglePayToken = "==Payload as retrieved from Google Pay response==",
+                    FundingSource = GooglePayDetails.FundingSourceEnum.Credit
                 },
                 ReturnUrl = "https://your-company.com/checkout?shopperOrder=12xy.."
             };
             var paymentMethodDetails = (GooglePayDetails)paymentRequest.PaymentMethod;
             Assert.AreEqual(paymentMethodDetails.Type, "paywithgoogle");
             Assert.AreEqual(paymentMethodDetails.GooglePayToken, "==Payload as retrieved from Google Pay response==");
+            Assert.AreEqual(paymentMethodDetails.FundingSource, GooglePayDetails.FundingSourceEnum.Credit);
             Assert.AreEqual(paymentRequest.MerchantAccount, "YOUR_MERCHANT_ACCOUNT");
             Assert.AreEqual(paymentRequest.Reference, "google pay test");
             Assert.AreEqual(paymentRequest.ReturnUrl, "https://your-company.com/checkout?shopperOrder=12xy..");

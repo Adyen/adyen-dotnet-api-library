@@ -22,6 +22,7 @@
 using System.Runtime.Serialization;
 using System.Text;
 using Newtonsoft.Json;
+using Newtonsoft.Json.Converters;
 
 namespace Adyen.Model.Checkout
 {
@@ -32,6 +33,24 @@ namespace Adyen.Model.Checkout
     [DataContract]
     public class EcontextVoucherDetails : IOneOfPaymentRequestPaymentMethod
     {
+        /// <summary>
+        /// **econtextvoucher**
+        /// </summary>
+        /// <value>**econtextvoucher**</value>
+        [JsonConverter(typeof(StringEnumConverter))]
+        public enum TypeEnum
+        {
+            /// <summary>
+            /// Enum Seveneleven for value: econtext_seveneleven
+            /// </summary>
+            [EnumMember(Value = "econtext_seveneleven")]
+            Seveneleven = 1,
+            /// <summary>
+            /// Enum Stores for value: econtext_stores
+            /// </summary>
+            [EnumMember(Value = "econtext_stores")]
+            Stores = 2
+        }
         /// <summary>
         /// The shopper's first name.
         /// </summary>
@@ -70,7 +89,7 @@ namespace Adyen.Model.Checkout
         /// <value>**econtextvoucher**</value>
         [DataMember(Name = "type", EmitDefaultValue = false)]
         [JsonProperty(PropertyName = "type")]
-        public string Type { get; set; } = "econtextvoucher"; 
+        public TypeEnum Type{ get; set; } 
 
 
         /// <summary>

@@ -22,6 +22,7 @@
 using System.Runtime.Serialization;
 using System.Text;
 using Newtonsoft.Json;
+using Newtonsoft.Json.Converters;
 
 namespace Adyen.Model.Checkout
 {
@@ -33,11 +34,28 @@ namespace Adyen.Model.Checkout
     public class GooglePayDetails : IOneOfPaymentRequestPaymentMethod
     {
         /// <summary>
+        /// Defines FundingSource
+        /// </summary>
+        [JsonConverter(typeof(StringEnumConverter))]
+        public enum FundingSourceEnum
+        {
+            /// <summary>
+            /// Enum Credit for value: credit
+            /// </summary>
+            [EnumMember(Value = "credit")]
+            Credit = 1,
+            /// <summary>
+            /// Enum Debit for value: debit
+            /// </summary>
+            [EnumMember(Value = "debit")]
+            Debit = 2
+        }
+        /// <summary>
         /// Gets or Sets FundingSource
         /// </summary>
         [DataMember(Name = "fundingSource", EmitDefaultValue = false)]
         [JsonProperty(PropertyName = "fundingSource")]
-        public string FundingSource { get; set; }
+        public FundingSourceEnum FundingSource { get; set; }
 
         /// <summary>
         /// Gets or Sets GooglePayCardNetwork
