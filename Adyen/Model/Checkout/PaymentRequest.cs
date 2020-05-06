@@ -606,7 +606,7 @@ namespace Adyen.Model.Checkout
         /// </summary>
         /// <value>The collection that contains the type of the payment method and its specific information (e.g. &#x60;idealIssuer&#x60;).</value>
         [DataMember(Name = "paymentMethod", EmitDefaultValue = false)]
-        public DefaultPaymentMethodDetails PaymentMethod { get; set; }
+        public IOneOfPaymentRequestPaymentMethod PaymentMethod { get; set; }
 
         /// <summary>
         /// The recurring settings for the payment. Use this property when you want to enable [recurring payments](https://docs.adyen.com/developers/features/recurring-payments).
