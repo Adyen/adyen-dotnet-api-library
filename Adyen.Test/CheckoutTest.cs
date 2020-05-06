@@ -534,5 +534,21 @@ namespace Adyen.Test
             Assert.AreEqual(paymentResponse.Action.Reference, "501 422 944");
             Assert.AreEqual(paymentResponse.Action.Entity, "12101");
         }
+
+        /// <summary>
+        /// Test RiskData - Clientdata flow for
+        /// POST /payments
+        /// </summary>
+        [TestMethod]
+        public void PaymentClientdataaParsingTest()
+        {
+            var paymentRequest = CreatePaymentRequestCheckout();
+            var riskdata = new RiskData
+            {
+                ClientData = "IOfW3k9G2PvXFu2j"
+            };
+            paymentRequest.RiskData = riskdata;
+            Assert.AreEqual(paymentRequest.RiskData.ClientData, "IOfW3k9G2PvXFu2j");
+        }
     }
 }
