@@ -30,7 +30,7 @@ namespace Adyen.Model.Checkout
     /// 
     /// </summary>
     [DataContract]
-    public class PaypalDetails : IOneOfPaymentRequestPaymentMethod
+    public class PayPalDetails : IOneOfPaymentRequestPaymentMethod
     {
         [JsonConverter(typeof(StringEnumConverter))]
         public enum SubtypeEnum
