@@ -26,7 +26,6 @@ using Newtonsoft.Json.Converters;
 
 namespace Adyen.Model.Checkout
 {
-
     /// <summary>
     /// 
     /// </summary>
@@ -36,7 +35,6 @@ namespace Adyen.Model.Checkout
         [JsonConverter(typeof(StringEnumConverter))]
         public enum SubtypeEnum
         {
-
             /// <summary>
             /// Enum SDK for value: SDK
             /// </summary>
@@ -56,7 +54,6 @@ namespace Adyen.Model.Checkout
         /// <value>enum subtype</value>
         [DataMember(Name = "subtype", EmitDefaultValue = false)]
         [JsonProperty(PropertyName = "subtype")]
-
         public SubtypeEnum Subtype;
 
         /// <summary>
@@ -66,7 +63,6 @@ namespace Adyen.Model.Checkout
         [DataMember(Name = "type", EmitDefaultValue = false)]
         [JsonProperty(PropertyName = "type")]
         public string Type { get; set; } = "paypal";
-
 
         /// <summary>
         /// Get the string presentation of the object
