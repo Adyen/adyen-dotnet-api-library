@@ -49,7 +49,7 @@ namespace Adyen.Model.Checkout
         }
 
         /// <summary>
-        /// Paypal subtype
+        /// PayPal subtype
         /// </summary>
         /// <value>enum subtype</value>
         [DataMember(Name = "subtype", EmitDefaultValue = false)]
