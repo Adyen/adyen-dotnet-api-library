@@ -87,7 +87,7 @@ namespace Adyen.Model.Checkout
         public override string ToString()
         {
             var sb = new StringBuilder();
-            sb.Append("class DefaultPaymentMethodDetailsDetails {\n");
+            sb.Append("class DefaultPaymentMethodDetails {\n");
             sb.Append("  Type: ").Append(Type).Append("\n");
             sb.Append("  Number: ").Append(Number).Append("\n");
             sb.Append("  ExpiryMonth: ").Append(ExpiryMonth).Append("\n");
@@ -135,9 +135,9 @@ namespace Adyen.Model.Checkout
         }
 
         /// <summary>
-        /// Returns true if DefaultPaymentMethodDetailsDetails instances are equal
+        /// Returns true if DefaultPaymentMethodDetails instances are equal
         /// </summary>
-        /// <param name="input">Instance of DefaultPaymentMethodDetailsDetails to be compared</param>
+        /// <param name="input">Instance of DefaultPaymentMethodDetails to be compared</param>
         /// <returns>Boolean</returns>
         public bool Equals(DefaultPaymentMethodDetails input)
         {

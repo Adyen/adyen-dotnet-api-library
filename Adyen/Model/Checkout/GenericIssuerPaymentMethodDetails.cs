@@ -30,7 +30,7 @@ namespace Adyen.Model.Checkout
     /// 
     /// </summary>
     [DataContract]
-    public class GenericIssuerPaymentMethodDetailsDetails : IPaymentMethodDetails
+    public class GenericIssuerPaymentMethodDetails : IPaymentMethodDetails
     {
         /// <summary>
         /// The issuer id of the shopper's selected bank.
@@ -64,7 +64,7 @@ namespace Adyen.Model.Checkout
         public override string ToString()
         {
             var sb = new StringBuilder();
-            sb.Append("class GenericIssuerPaymentMethodDetailsDetails {\n");
+            sb.Append("class GenericIssuerPaymentMethodDetails {\n");
             sb.Append("  Issuer: ").Append(Issuer).Append("\n");
             sb.Append("  StoredPaymentMethodId: ").Append(StoredPaymentMethodId).Append("\n");
             sb.Append("  Type: ").Append(Type).Append("\n");

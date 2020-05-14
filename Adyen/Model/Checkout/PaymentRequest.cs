@@ -268,10 +268,10 @@ namespace Adyen.Model.Checkout
             {
                 this.MerchantAccount = MerchantAccount;
             }
-            // to ensure "PaymentMethodDetails" is required (not null)
+            // to ensure "PaymentMethod" is required (not null)
             if (PaymentMethod == null)
             {
-                throw new InvalidDataException("PaymentMethodDetails is a required property for PaymentRequest and cannot be null");
+                throw new InvalidDataException("PaymentMethod is a required property for PaymentRequest and cannot be null");
             }
             else
             {

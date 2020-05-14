@@ -231,7 +231,7 @@ namespace Adyen.Model.Checkout
             sb.Append("  AdditionalData: ").Append(AdditionalData).Append("\n");
             sb.Append("  FraudResult: ").Append(FraudResult).Append("\n");
             sb.Append("  MerchantReference: ").Append(MerchantReference).Append("\n");
-            sb.Append("  PaymentMethodDetails: ").Append(PaymentMethod).Append("\n");
+            sb.Append("  PaymentMethod: ").Append(PaymentMethod).Append("\n");
             sb.Append("  PspReference: ").Append(PspReference).Append("\n");
             sb.Append("  RefusalReason: ").Append(RefusalReason).Append("\n");
             sb.Append("  RefusalReasonCode: ").Append(RefusalReasonCode).Append("\n");

@@ -32,7 +32,7 @@ using Newtonsoft.Json;
 namespace Adyen.Model.Checkout
 {
     /// <summary>
-    /// PaymentMethodDetails
+    /// PaymentMethod
     /// </summary>
     [DataContract]
     public partial class PaymentMethod :  IEquatable<PaymentMethod>, IValidatableObject
