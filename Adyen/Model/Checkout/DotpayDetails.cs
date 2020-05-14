@@ -34,7 +34,7 @@ namespace Adyen.Model.Checkout
     {
 
         //Possible types
-        public const string DotPay = "dotpay";
+        public const string Dotpay = "dotpay";
 
         /// <summary>
         /// The Dotpay issuer value of the shopper's selected bank. Set this to an **id** of a Dotpay issuer to preselect it.
