@@ -32,7 +32,7 @@ using Newtonsoft.Json;
 namespace Adyen.Model.Checkout
 {
     /// <summary>
-    /// PaymentMethod
+    /// PaymentMethodDetails
     /// </summary>
     [DataContract]
     public partial class PaymentMethod :  IEquatable<PaymentMethod>, IValidatableObject
@@ -123,7 +123,7 @@ namespace Adyen.Model.Checkout
         public override string ToString()
         {
             var sb = new StringBuilder();
-            sb.Append("class PaymentMethod {\n");
+            sb.Append("class PaymentMethodDetails {\n");
             sb.Append("  Configuration: ").Append(Configuration).Append("\n");
             sb.Append("  Details: ").Append(Details).Append("\n");
             sb.Append("  Group: ").Append(Group).Append("\n");
@@ -156,9 +156,9 @@ namespace Adyen.Model.Checkout
         }
 
         /// <summary>
-        /// Returns true if PaymentMethod instances are equal
+        /// Returns true if PaymentMethodDetails instances are equal
         /// </summary>
-        /// <param name="input">Instance of PaymentMethod to be compared</param>
+        /// <param name="input">Instance of PaymentMethodDetails to be compared</param>
         /// <returns>Boolean</returns>
         public bool Equals(PaymentMethod input)
         {

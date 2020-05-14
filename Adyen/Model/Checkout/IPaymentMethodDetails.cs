@@ -22,7 +22,7 @@
 #endregion
 namespace Adyen.Model.Checkout
 {
-    public interface IOneOfPaymentRequestPaymentMethod
+    public interface IPaymentMethodDetails
     {
     }
 }

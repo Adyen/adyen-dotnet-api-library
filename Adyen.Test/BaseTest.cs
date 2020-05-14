@@ -159,7 +159,7 @@ namespace Adyen.Test
         public Model.Checkout.PaymentRequest CreateApplePayPaymentRequestCheckout()
         {
             var amount = new Model.Checkout.Amount("USD", 1000);
-            var applePay = new Model.Checkout.DefaultPaymentMethodDetails()
+            var applePay = new Model.Checkout.DefaultPaymentMethodDetailsDetails()
             {
                 Type = "applepay",
                 ApplePayToken = "VNRWtuNlNEWkRCSm1xWndjMDFFbktkQU..."
@@ -170,7 +170,7 @@ namespace Adyen.Test
                 Reference = "Your order number ",
                 ReturnUrl = @"https://your-company.com/...",
                 MerchantAccount = "MerchantAccount",
-                PaymentMethod = applePay
+                PaymentMethodDetails = applePay
             };
             return paymentsRequest;
         }
@@ -182,7 +182,7 @@ namespace Adyen.Test
         public Model.Checkout.PaymentRequest CreateGooglePayPaymentRequestCheckout()
         {
             var amount = new Model.Checkout.Amount("USD", 1000);
-            var googlePay = new Model.Checkout.DefaultPaymentMethodDetails()
+            var googlePay = new Model.Checkout.DefaultPaymentMethodDetailsDetails()
             {
                 Type = "paywithgoogle",
                 GooglePayToken = "==Payload as retrieved from Google Pay response=="
@@ -193,7 +193,7 @@ namespace Adyen.Test
                 Reference = "Your order number ",
                 ReturnUrl = @"https://your-company.com/...",
                 MerchantAccount = "MerchantAccount",
-                PaymentMethod = googlePay
+                PaymentMethodDetails = googlePay
             };
             return paymentsRequest;
         }

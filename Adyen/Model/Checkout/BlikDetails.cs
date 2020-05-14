@@ -30,8 +30,11 @@ namespace Adyen.Model.Checkout
     /// 
     /// </summary>
     [DataContract]
-    public class BlikDetails : IOneOfPaymentRequestPaymentMethod
+    public class BlikDetails : IPaymentMethodDetails
     {
+        //Possible types
+        public const string Blik = "blik";
+
         /// <summary>
         /// BLIK code consisting of 6 digits.
         /// </summary>
@@ -46,10 +49,8 @@ namespace Adyen.Model.Checkout
         /// <value>**blik**</value>
         [DataMember(Name = "type", EmitDefaultValue = false)]
         [JsonProperty(PropertyName = "type")]
-        public string Type { get; set; }
-
-
-
+        public string Type { get; set; } = Blik; 
+        
         /// <summary>
         /// Get the string presentation of the object
         /// </summary>
@@ -72,6 +73,5 @@ namespace Adyen.Model.Checkout
         {
             return JsonConvert.SerializeObject(this, Formatting.Indented);
         }
-
     }
 }

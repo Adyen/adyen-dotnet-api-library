@@ -30,8 +30,11 @@ namespace Adyen.Model.Checkout
     /// 
     /// </summary>
     [DataContract]
-    public class VippsDetails : IOneOfPaymentRequestPaymentMethod
+    public class VippsDetails : IPaymentMethodDetails
     {
+        //Possible types
+        public const string Vipps = "vipps";
+
         /// <summary>
         /// Gets or Sets TelephoneNumber
         /// </summary>

@@ -30,8 +30,11 @@ namespace Adyen.Model.Checkout
     /// 
     /// </summary>
     [DataContract]
-    public class MbwayDetails : IOneOfPaymentRequestPaymentMethod
+    public class MbwayDetails : IPaymentMethodDetails
     {
+        //Possible types
+        public const string Mbway = "mbway";
+
         /// <summary>
         /// Gets or Sets ShopperEmail
         /// </summary>
@@ -51,9 +54,8 @@ namespace Adyen.Model.Checkout
         /// </summary>
         [DataMember(Name = "type", EmitDefaultValue = false)]
         [JsonProperty(PropertyName = "type")]
-        public string Type { get; set; }
-
-
+        public string Type { get; set; } = Mbway;
+        
         /// <summary>
         /// Get the string presentation of the object
         /// </summary>

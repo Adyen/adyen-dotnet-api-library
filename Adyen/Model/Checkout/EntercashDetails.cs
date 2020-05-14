@@ -30,8 +30,11 @@ namespace Adyen.Model.Checkout
     /// 
     /// </summary>
     [DataContract]
-    public class EntercashDetails : IOneOfPaymentRequestPaymentMethod
+    public class EntercashDetails : IPaymentMethodDetails
     {
+        //Possible types
+        public const string Entercash = "entercash";
+
         /// <summary>
         /// The issuer id of the shopper's selected bank.
         /// </summary>
@@ -46,7 +49,7 @@ namespace Adyen.Model.Checkout
         /// <value>**entercash**</value>
         [DataMember(Name = "type", EmitDefaultValue = false)]
         [JsonProperty(PropertyName = "type")]
-        public string Type { get; set; } = "entercash"; 
+        public string Type { get; set; } = Entercash; 
 
 
         /// <summary>

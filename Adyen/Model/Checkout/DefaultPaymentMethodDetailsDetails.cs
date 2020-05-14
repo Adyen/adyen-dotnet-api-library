@@ -31,10 +31,10 @@ using Newtonsoft.Json;
 namespace Adyen.Model.Checkout
 {
     /// <summary>
-    /// DefaultPaymentMethodDetails
+    /// DefaultPaymentMethodDetailsDetails
     /// </summary>
     [DataContract]
-    public class DefaultPaymentMethodDetails : IValidatableObject, IOneOfPaymentRequestPaymentMethod
+    public class DefaultPaymentMethodDetailsDetails : IValidatableObject, IPaymentMethodDetails
     {
         [DataMember(Name = "type", EmitDefaultValue = false)]
         public string Type { get; set; }
@@ -87,7 +87,7 @@ namespace Adyen.Model.Checkout
         public override string ToString()
         {
             var sb = new StringBuilder();
-            sb.Append("class DefaultPaymentMethodDetails {\n");
+            sb.Append("class DefaultPaymentMethodDetailsDetails {\n");
             sb.Append("  Type: ").Append(Type).Append("\n");
             sb.Append("  Number: ").Append(Number).Append("\n");
             sb.Append("  ExpiryMonth: ").Append(ExpiryMonth).Append("\n");
@@ -131,15 +131,15 @@ namespace Adyen.Model.Checkout
         /// <returns>Boolean</returns>
         public override bool Equals(object input)
         {
-            return this.Equals(input as DefaultPaymentMethodDetails);
+            return this.Equals(input as DefaultPaymentMethodDetailsDetails);
         }
 
         /// <summary>
-        /// Returns true if DefaultPaymentMethodDetails instances are equal
+        /// Returns true if DefaultPaymentMethodDetailsDetails instances are equal
         /// </summary>
-        /// <param name="input">Instance of DefaultPaymentMethodDetails to be compared</param>
+        /// <param name="input">Instance of DefaultPaymentMethodDetailsDetails to be compared</param>
         /// <returns>Boolean</returns>
-        public bool Equals(DefaultPaymentMethodDetails input)
+        public bool Equals(DefaultPaymentMethodDetailsDetails input)
         {
             if (input == null)
                 return false;

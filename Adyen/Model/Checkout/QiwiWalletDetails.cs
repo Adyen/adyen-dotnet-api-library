@@ -30,8 +30,11 @@ namespace Adyen.Model.Checkout
     /// 
     /// </summary>
     [DataContract]
-    public class QiwiWalletDetails : IOneOfPaymentRequestPaymentMethod
+    public class QiwiWalletDetails : IPaymentMethodDetails
     {
+        //Possible types
+        public const string QiwiWallet = "qiwiwallet";
+
         /// <summary>
         /// Gets or Sets TelephoneNumber
         /// </summary>
@@ -45,7 +48,7 @@ namespace Adyen.Model.Checkout
         /// <value>**qiwiwallet**</value>
         [DataMember(Name = "type", EmitDefaultValue = false)]
         [JsonProperty(PropertyName = "type")]
-        public string Type { get; set; } = "qiwiwallet"; 
+        public string Type { get; set; } = QiwiWallet; 
 
 
         /// <summary>

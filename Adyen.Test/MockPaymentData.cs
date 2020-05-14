@@ -126,7 +126,7 @@ namespace Adyen.Test
             {
                 MerchantAccount = "MerchantAccount",
                 Reference = "payment - " + DateTime.Now.ToString("yyyyMMdd"),
-                PaymentMethod = new DefaultPaymentMethodDetails
+                PaymentMethodDetails = new DefaultPaymentMethodDetailsDetails
                 {
                     Type = "applepay",
                     ApplePayToken = "ApplePayToken"

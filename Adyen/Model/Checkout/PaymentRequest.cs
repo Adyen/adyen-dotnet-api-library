@@ -247,7 +247,7 @@ namespace Adyen.Model.Checkout
         /// <param name="ThreeDS2RequestData">Request fields for 3D Secure 2.0..</param>
         /// <param name="TotalsGroup">The reference value to aggregate sales totals in reporting. When not specified, the store field is used (if available)..</param>
         /// <param name="TrustedShopper">Set to true if the payment should be routed to a trusted MID..</param>
-        public PaymentRequest(AccountInfo AccountInfo = default(AccountInfo), Amount AdditionalAmount = default(Amount), Dictionary<string, string> AdditionalData = default(Dictionary<string, string>), List<string> AllowedPaymentMethods = default(List<string>), Amount Amount = default(Amount), BankAccount BankAccount = default(BankAccount), Address BillingAddress = default(Address), List<string> BlockedPaymentMethods = default(List<string>), BrowserInfo BrowserInfo = default(BrowserInfo), int? CaptureDelayHours = default(int?), Card Card = default(Card), ChannelEnum? Channel = default(ChannelEnum?), Company Company = default(Company), string CountryCode = default(string), DateTime? DateOfBirth = default(DateTime?), ForexQuote DccQuote = default(ForexQuote), Address DeliveryAddress = default(Address), DateTime? DeliveryDate = default(DateTime?), string DeviceFingerprint = default(string), bool? EnableOneClick = default(bool?), bool? EnablePayOut = default(bool?), bool? EnableRecurring = default(bool?), EntityTypeEnum? EntityType = default(EntityTypeEnum?), int? FraudOffset = default(int?), Installments Installments = default(Installments), List<LineItem> LineItems = default(List<LineItem>), string Mcc = default(string), string MerchantAccount = default(string), string MerchantOrderReference = default(string), MerchantRiskIndicator MerchantRiskIndicator = default(MerchantRiskIndicator), Dictionary<string, string> Metadata = default(Dictionary<string, string>), ThreeDSecureData MpiData = default(ThreeDSecureData), CheckoutOrder order = default(CheckoutOrder), string Nationality = default(string), string OrderReference = default(string), DefaultPaymentMethodDetails PaymentMethod = default(DefaultPaymentMethodDetails), Recurring Recurring = default(Recurring), RecurringProcessingModelEnum? RecurringProcessingModel = default(RecurringProcessingModelEnum?), string RedirectFromIssuerMethod = default(string), string RedirectToIssuerMethod = default(string), string Reference = default(string), string ReturnUrl = default(string), RiskData RiskData = default(RiskData), string SelectedBrand = default(string), string SelectedRecurringDetailReference = default(string), string SessionId = default(string), string SessionValidity = default(string), string ShopperEmail = default(string), string ShopperIP = default(string), ShopperInteractionEnum? ShopperInteraction = default(ShopperInteractionEnum?), string ShopperLocale = default(string), Name ShopperName = default(Name), string ShopperReference = default(string), string ShopperStatement = default(string), string SocialSecurityNumber = default(string), List<Split> Splits = default(List<Split>), bool? storePaymentMethod = default(bool?), string Store = default(string), string TelephoneNumber = default(string), ThreeDS2RequestData ThreeDS2RequestData = default(ThreeDS2RequestData), string TotalsGroup = default(string), bool? TrustedShopper = default(bool?))
+        public PaymentRequest(AccountInfo AccountInfo = default(AccountInfo), Amount AdditionalAmount = default(Amount), Dictionary<string, string> AdditionalData = default(Dictionary<string, string>), List<string> AllowedPaymentMethods = default(List<string>), Amount Amount = default(Amount), BankAccount BankAccount = default(BankAccount), Address BillingAddress = default(Address), List<string> BlockedPaymentMethods = default(List<string>), BrowserInfo BrowserInfo = default(BrowserInfo), int? CaptureDelayHours = default(int?), Card Card = default(Card), ChannelEnum? Channel = default(ChannelEnum?), Company Company = default(Company), string CountryCode = default(string), DateTime? DateOfBirth = default(DateTime?), ForexQuote DccQuote = default(ForexQuote), Address DeliveryAddress = default(Address), DateTime? DeliveryDate = default(DateTime?), string DeviceFingerprint = default(string), bool? EnableOneClick = default(bool?), bool? EnablePayOut = default(bool?), bool? EnableRecurring = default(bool?), EntityTypeEnum? EntityType = default(EntityTypeEnum?), int? FraudOffset = default(int?), Installments Installments = default(Installments), List<LineItem> LineItems = default(List<LineItem>), string Mcc = default(string), string MerchantAccount = default(string), string MerchantOrderReference = default(string), MerchantRiskIndicator MerchantRiskIndicator = default(MerchantRiskIndicator), Dictionary<string, string> Metadata = default(Dictionary<string, string>), ThreeDSecureData MpiData = default(ThreeDSecureData), CheckoutOrder order = default(CheckoutOrder), string Nationality = default(string), string OrderReference = default(string), DefaultPaymentMethodDetailsDetails PaymentMethod = default(DefaultPaymentMethodDetailsDetails), Recurring Recurring = default(Recurring), RecurringProcessingModelEnum? RecurringProcessingModel = default(RecurringProcessingModelEnum?), string RedirectFromIssuerMethod = default(string), string RedirectToIssuerMethod = default(string), string Reference = default(string), string ReturnUrl = default(string), RiskData RiskData = default(RiskData), string SelectedBrand = default(string), string SelectedRecurringDetailReference = default(string), string SessionId = default(string), string SessionValidity = default(string), string ShopperEmail = default(string), string ShopperIP = default(string), ShopperInteractionEnum? ShopperInteraction = default(ShopperInteractionEnum?), string ShopperLocale = default(string), Name ShopperName = default(Name), string ShopperReference = default(string), string ShopperStatement = default(string), string SocialSecurityNumber = default(string), List<Split> Splits = default(List<Split>), bool? storePaymentMethod = default(bool?), string Store = default(string), string TelephoneNumber = default(string), ThreeDS2RequestData ThreeDS2RequestData = default(ThreeDS2RequestData), string TotalsGroup = default(string), bool? TrustedShopper = default(bool?))
         {
             CreateApplicationInfo();
             // to ensure "Amount" is required (not null)
@@ -268,14 +268,14 @@ namespace Adyen.Model.Checkout
             {
                 this.MerchantAccount = MerchantAccount;
             }
-            // to ensure "PaymentMethod" is required (not null)
+            // to ensure "PaymentMethodDetails" is required (not null)
             if (PaymentMethod == null)
             {
-                throw new InvalidDataException("PaymentMethod is a required property for PaymentRequest and cannot be null");
+                throw new InvalidDataException("PaymentMethodDetails is a required property for PaymentRequest and cannot be null");
             }
             else
             {
-                this.PaymentMethod = PaymentMethod;
+                this.PaymentMethodDetails = PaymentMethod;
             }
             // to ensure "Reference" is required (not null)
             if (Reference == null)
@@ -606,7 +606,7 @@ namespace Adyen.Model.Checkout
         /// </summary>
         /// <value>The collection that contains the type of the payment method and its specific information (e.g. &#x60;idealIssuer&#x60;).</value>
         [DataMember(Name = "paymentMethod", EmitDefaultValue = false)]
-        public IOneOfPaymentRequestPaymentMethod PaymentMethod { get; set; }
+        public IPaymentMethodDetails PaymentMethodDetails { get; set; }
 
         /// <summary>
         /// The recurring settings for the payment. Use this property when you want to enable [recurring payments](https://docs.adyen.com/developers/features/recurring-payments).
@@ -787,7 +787,7 @@ namespace Adyen.Model.Checkout
 
         public void AddCardData(string cardNumber, string expiryMonth, string expiryYear, string securityCode, string holderName)
         {
-            var defaultPaymentMethodDetails = new DefaultPaymentMethodDetails
+            var defaultPaymentMethodDetails = new DefaultPaymentMethodDetailsDetails
             {
                 Type = ApiConstants.TypeScheme,
                 Number = cardNumber,
@@ -805,7 +805,7 @@ namespace Adyen.Model.Checkout
                 defaultPaymentMethodDetails.HolderName = holderName;
             }
 
-            this.PaymentMethod = (defaultPaymentMethodDetails);
+            this.PaymentMethodDetails = (defaultPaymentMethodDetails);
         }
 
         private void CreateApplicationInfo()
@@ -859,7 +859,7 @@ namespace Adyen.Model.Checkout
             sb.Append("  Order: ").Append(Order).Append("\n");
             sb.Append("  OrderReference: ").Append(OrderReference).Append("\n");
             sb.Append("  Origin: ").Append(Origin).Append("\n");
-            sb.Append("  PaymentMethod: ").Append(PaymentMethod).Append("\n");
+            sb.Append("  PaymentMethodDetails: ").Append(PaymentMethodDetails).Append("\n");
             sb.Append("  Recurring: ").Append(Recurring).Append("\n");
             sb.Append("  RecurringProcessingModel: ").Append(RecurringProcessingModel).Append("\n");
             sb.Append("  RedirectFromIssuerMethod: ").Append(RedirectFromIssuerMethod).Append("\n");
@@ -1106,9 +1106,9 @@ namespace Adyen.Model.Checkout
                     this.Origin.Equals(input.Origin))
                 ) &&
                 (
-                    this.PaymentMethod == input.PaymentMethod ||
-                    this.PaymentMethod != null &&
-                    this.PaymentMethod.Equals(input.PaymentMethod)
+                    this.PaymentMethodDetails == input.PaymentMethodDetails ||
+                    this.PaymentMethodDetails != null &&
+                    this.PaymentMethodDetails.Equals(input.PaymentMethodDetails)
                 ) &&
                 (
                     this.Recurring == input.Recurring ||
@@ -1331,8 +1331,8 @@ namespace Adyen.Model.Checkout
                     hashCode = hashCode * 59 + this.OrderReference.GetHashCode();
                 if (this.Origin != null)
                     hashCode = hashCode * 59 + this.Origin.GetHashCode();
-                if (this.PaymentMethod != null)
-                    hashCode = hashCode * 59 + this.PaymentMethod.GetHashCode();
+                if (this.PaymentMethodDetails != null)
+                    hashCode = hashCode * 59 + this.PaymentMethodDetails.GetHashCode();
                 if (this.Recurring != null)
                     hashCode = hashCode * 59 + this.Recurring.GetHashCode();
                 if (this.RecurringProcessingModel != null)

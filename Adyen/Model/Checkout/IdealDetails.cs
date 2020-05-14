@@ -25,13 +25,15 @@ using Newtonsoft.Json;
 
 namespace Adyen.Model.Checkout
 {
-
     /// <summary>
     /// 
     /// </summary>
     [DataContract]
-    public class IdealDetails : IOneOfPaymentRequestPaymentMethod
+    public class IdealDetails : IPaymentMethodDetails
     {
+        //Possible types
+        public const string Ideal = "ideal";
+
         /// <summary>
         /// The iDEAL issuer value of the shopper's selected bank. Set this to an **id** of an iDEAL issuer to preselect it.
         /// </summary>
@@ -46,7 +48,7 @@ namespace Adyen.Model.Checkout
         /// <value>**ideal**</value>
         [DataMember(Name = "type", EmitDefaultValue = false)]
         [JsonProperty(PropertyName = "type")]
-        public string Type { get; set; } = "ideal"; 
+        public string Type { get; set; } = Ideal; 
 
         /// <summary>
         /// Get the string presentation of the object
