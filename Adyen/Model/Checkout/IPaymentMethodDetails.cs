@@ -24,5 +24,6 @@ namespace Adyen.Model.Checkout
 {
     public interface IPaymentMethodDetails
     {
+        string Type { get; set; }
     }
 }

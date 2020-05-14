@@ -159,7 +159,7 @@ namespace Adyen.Test
         public Model.Checkout.PaymentRequest CreateApplePayPaymentRequestCheckout()
         {
             var amount = new Model.Checkout.Amount("USD", 1000);
-            var applePay = new Model.Checkout.DefaultPaymentMethodDetailsDetails()
+            var applePay = new Model.Checkout.DefaultPaymentMethodDetails()
             {
                 Type = "applepay",
                 ApplePayToken = "VNRWtuNlNEWkRCSm1xWndjMDFFbktkQU..."
@@ -182,7 +182,7 @@ namespace Adyen.Test
         public Model.Checkout.PaymentRequest CreateGooglePayPaymentRequestCheckout()
         {
             var amount = new Model.Checkout.Amount("USD", 1000);
-            var googlePay = new Model.Checkout.DefaultPaymentMethodDetailsDetails()
+            var googlePay = new Model.Checkout.DefaultPaymentMethodDetails()
             {
                 Type = "paywithgoogle",
                 GooglePayToken = "==Payload as retrieved from Google Pay response=="

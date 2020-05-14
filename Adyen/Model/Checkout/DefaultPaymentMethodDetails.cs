@@ -31,10 +31,10 @@ using Newtonsoft.Json;
 namespace Adyen.Model.Checkout
 {
     /// <summary>
-    /// DefaultPaymentMethodDetailsDetails
+    /// DefaultPaymentMethodDetails
     /// </summary>
     [DataContract]
-    public class DefaultPaymentMethodDetailsDetails : IValidatableObject, IPaymentMethodDetails
+    public class DefaultPaymentMethodDetails : IValidatableObject, IPaymentMethodDetails
     {
         [DataMember(Name = "type", EmitDefaultValue = false)]
         public string Type { get; set; }
@@ -131,7 +131,7 @@ namespace Adyen.Model.Checkout
         /// <returns>Boolean</returns>
         public override bool Equals(object input)
         {
-            return this.Equals(input as DefaultPaymentMethodDetailsDetails);
+            return this.Equals(input as DefaultPaymentMethodDetails);
         }
 
         /// <summary>
@@ -139,7 +139,7 @@ namespace Adyen.Model.Checkout
         /// </summary>
         /// <param name="input">Instance of DefaultPaymentMethodDetailsDetails to be compared</param>
         /// <returns>Boolean</returns>
-        public bool Equals(DefaultPaymentMethodDetailsDetails input)
+        public bool Equals(DefaultPaymentMethodDetails input)
         {
             if (input == null)
                 return false;
