@@ -33,7 +33,7 @@ namespace Adyen.Model.Checkout
     public class GiropayDetails : IPaymentMethodDetails
     {
         //Possible types
-        public const string GiroPay = "giropay";
+        public const string Giropay = "giropay";
 
         /// <summary>
         /// **giropay**
