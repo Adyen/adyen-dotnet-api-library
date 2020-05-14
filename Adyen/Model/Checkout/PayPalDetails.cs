@@ -32,6 +32,9 @@ namespace Adyen.Model.Checkout
     [DataContract]
     public class PayPalDetails : IOneOfPaymentRequestPaymentMethod
     {
+        //Possible fields
+        public const string PayPal = "paypal";
+        
         [JsonConverter(typeof(StringEnumConverter))]
         public enum SubtypeEnum
         {
@@ -62,7 +65,7 @@ namespace Adyen.Model.Checkout
         /// <value>**paypal**</value>
         [DataMember(Name = "type", EmitDefaultValue = false)]
         [JsonProperty(PropertyName = "type")]
-        public string Type { get; set; } = "paypal";
+        public string Type { get; set; } = PayPal;
 
         /// <summary>
         /// Get the string presentation of the object
