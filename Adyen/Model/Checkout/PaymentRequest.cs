@@ -859,7 +859,7 @@ namespace Adyen.Model.Checkout
             sb.Append("  Order: ").Append(Order).Append("\n");
             sb.Append("  OrderReference: ").Append(OrderReference).Append("\n");
             sb.Append("  Origin: ").Append(Origin).Append("\n");
-            sb.Append("  PaymentMethodDetails: ").Append(PaymentMethod).Append("\n");
+            sb.Append("  PaymentMethod: ").Append(PaymentMethod).Append("\n");
             sb.Append("  Recurring: ").Append(Recurring).Append("\n");
             sb.Append("  RecurringProcessingModel: ").Append(RecurringProcessingModel).Append("\n");
             sb.Append("  RedirectFromIssuerMethod: ").Append(RedirectFromIssuerMethod).Append("\n");
