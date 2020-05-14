@@ -41,7 +41,7 @@ namespace Adyen.Model.Checkout
         /// <value>**giropay**</value>
         [DataMember(Name = "type", EmitDefaultValue = false)]
         [JsonProperty(PropertyName = "type")]
-        public string Type { get; set; } = GiroPay; 
+        public string Type { get; set; } = Giropay; 
 
 
         /// <summary>
