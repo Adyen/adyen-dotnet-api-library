@@ -50,7 +50,7 @@ namespace Adyen.Model.Checkout
         /// <value>**billdesk_online**</value>
         [DataMember(Name = "type", EmitDefaultValue = false)]
         [JsonProperty(PropertyName = "type")]
-        public string Type { get; set; } = BillDeskOnline; 
+        public string Type { get; set; } = BilldeskOnline; 
 
 
 
