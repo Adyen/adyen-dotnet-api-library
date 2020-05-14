@@ -158,7 +158,7 @@ namespace Adyen.Model.Checkout
         /// <summary>
         /// Returns true if PaymentMethod instances are equal
         /// </summary>
-        /// <param name="input">Instance of PaymentMed to be compared</param>
+        /// <param name="input">Instance of PaymentMethod to be compared</param>
         /// <returns>Boolean</returns>
         public bool Equals(PaymentMethod input)
         {
