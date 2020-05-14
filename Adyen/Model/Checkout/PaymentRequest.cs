@@ -275,7 +275,7 @@ namespace Adyen.Model.Checkout
             }
             else
             {
-                this.PaymentMethodDetails = PaymentMethod;
+                this.PaymentMethod = PaymentMethod;
             }
             // to ensure "Reference" is required (not null)
             if (Reference == null)
@@ -606,7 +606,7 @@ namespace Adyen.Model.Checkout
         /// </summary>
         /// <value>The collection that contains the type of the payment method and its specific information (e.g. &#x60;idealIssuer&#x60;).</value>
         [DataMember(Name = "paymentMethod", EmitDefaultValue = false)]
-        public IPaymentMethodDetails PaymentMethodDetails { get; set; }
+        public IPaymentMethodDetails PaymentMethod { get; set; }
 
         /// <summary>
         /// The recurring settings for the payment. Use this property when you want to enable [recurring payments](https://docs.adyen.com/developers/features/recurring-payments).
@@ -805,7 +805,7 @@ namespace Adyen.Model.Checkout
                 defaultPaymentMethodDetails.HolderName = holderName;
             }
 
-            this.PaymentMethodDetails = defaultPaymentMethodDetails;
+            this.PaymentMethod = defaultPaymentMethodDetails;
         }
 
         private void CreateApplicationInfo()
@@ -859,7 +859,7 @@ namespace Adyen.Model.Checkout
             sb.Append("  Order: ").Append(Order).Append("\n");
             sb.Append("  OrderReference: ").Append(OrderReference).Append("\n");
             sb.Append("  Origin: ").Append(Origin).Append("\n");
-            sb.Append("  PaymentMethodDetails: ").Append(PaymentMethodDetails).Append("\n");
+            sb.Append("  PaymentMethodDetails: ").Append(PaymentMethod).Append("\n");
             sb.Append("  Recurring: ").Append(Recurring).Append("\n");
             sb.Append("  RecurringProcessingModel: ").Append(RecurringProcessingModel).Append("\n");
             sb.Append("  RedirectFromIssuerMethod: ").Append(RedirectFromIssuerMethod).Append("\n");
@@ -1106,9 +1106,9 @@ namespace Adyen.Model.Checkout
                     this.Origin.Equals(input.Origin))
                 ) &&
                 (
-                    this.PaymentMethodDetails == input.PaymentMethodDetails ||
-                    this.PaymentMethodDetails != null &&
-                    this.PaymentMethodDetails.Equals(input.PaymentMethodDetails)
+                    this.PaymentMethod == input.PaymentMethod ||
+                    this.PaymentMethod != null &&
+                    this.PaymentMethod.Equals(input.PaymentMethod)
                 ) &&
                 (
                     this.Recurring == input.Recurring ||
@@ -1331,8 +1331,8 @@ namespace Adyen.Model.Checkout
                     hashCode = hashCode * 59 + this.OrderReference.GetHashCode();
                 if (this.Origin != null)
                     hashCode = hashCode * 59 + this.Origin.GetHashCode();
-                if (this.PaymentMethodDetails != null)
-                    hashCode = hashCode * 59 + this.PaymentMethodDetails.GetHashCode();
+                if (this.PaymentMethod != null)
+                    hashCode = hashCode * 59 + this.PaymentMethod.GetHashCode();
                 if (this.Recurring != null)
                     hashCode = hashCode * 59 + this.Recurring.GetHashCode();
                 if (this.RecurringProcessingModel != null)

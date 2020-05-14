@@ -170,7 +170,7 @@ namespace Adyen.Test
                 Reference = "Your order number ",
                 ReturnUrl = @"https://your-company.com/...",
                 MerchantAccount = "MerchantAccount",
-                PaymentMethodDetails = applePay
+                PaymentMethod = applePay
             };
             return paymentsRequest;
         }
@@ -193,7 +193,7 @@ namespace Adyen.Test
                 Reference = "Your order number ",
                 ReturnUrl = @"https://your-company.com/...",
                 MerchantAccount = "MerchantAccount",
-                PaymentMethodDetails = googlePay
+                PaymentMethod = googlePay
             };
             return paymentsRequest;
         }
