@@ -34,7 +34,7 @@ namespace Adyen.Model.Checkout
     /// DefaultPaymentMethodDetails
     /// </summary>
     [DataContract]
-    public class DefaultPaymentMethodDetails : IValidatableObject, IOneOfPaymentRequestPaymentMethod
+    public class DefaultPaymentMethodDetails : IValidatableObject, IPaymentMethodDetails
     {
         [DataMember(Name = "type", EmitDefaultValue = false)]
         public string Type { get; set; }

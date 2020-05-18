@@ -30,8 +30,12 @@ namespace Adyen.Model.Checkout
     /// 
     /// </summary>
     [DataContract]
-    public class DotpayDetails : IOneOfPaymentRequestPaymentMethod
+    public class DotpayDetails : IPaymentMethodDetails
     {
+
+        //Possible types
+        public const string Dotpay = "dotpay";
+
         /// <summary>
         /// The Dotpay issuer value of the shopper's selected bank. Set this to an **id** of a Dotpay issuer to preselect it.
         /// </summary>
@@ -46,7 +50,7 @@ namespace Adyen.Model.Checkout
         /// <value>**dotpay**</value>
         [DataMember(Name = "type", EmitDefaultValue = false)]
         [JsonProperty(PropertyName = "type")]
-        public string Type { get; set; } = "dotpay"; 
+        public string Type { get; set; } = Dotpay; 
 
 
         /// <summary>

@@ -26,68 +26,24 @@ using Newtonsoft.Json.Converters;
 
 namespace Adyen.Model.Checkout
 {
-
     /// <summary>
     /// 
     /// </summary>
     [DataContract]
-    public class DokuDetails : IOneOfPaymentRequestPaymentMethod
+    public class DokuDetails : IPaymentMethodDetails
     {
-
-        /// <summary>
-        /// **doku**
-        /// </summary>
-        /// <value>**doku**</value>
-        [JsonConverter(typeof(StringEnumConverter))]
-        public enum TypeEnum
-        {
-            /// <summary>
-            /// Enum Mandiriva for value: doku_mandiri_va
-            /// </summary>
-            [EnumMember(Value = "doku_mandiri_va")]
-            Mandiriva = 1,
-            /// <summary>
-            /// Enum Cimbva for value: doku_cimb_va
-            /// </summary>
-            [EnumMember(Value = "doku_cimb_va")]
-            Cimbva = 2,
-            /// <summary>
-            /// Enum Danamonva for value: doku_danamon_va
-            /// </summary>
-            [EnumMember(Value = "doku_danamon_va")]
-            Danamonva = 3,
-            /// <summary>
-            /// Enum Bniva for value: doku_bni_va
-            /// </summary>
-            [EnumMember(Value = "doku_bni_va")]
-            Bniva = 4,
-            /// <summary>
-            /// Enum Permataliteatm for value: doku_permata_lite_atm
-            /// </summary>
-            [EnumMember(Value = "doku_permata_lite_atm")]
-            Permataliteatm = 5,
-            /// <summary>
-            /// Enum Briva for value: doku_bri_va
-            /// </summary>
-            [EnumMember(Value = "doku_bri_va")]
-            Briva = 6,
-            /// <summary>
-            /// Enum Bcava for value: doku_bca_va
-            /// </summary>
-            [EnumMember(Value = "doku_bca_va")]
-            Bcava = 7,
-            /// <summary>
-            /// Enum Alfamart for value: doku_alfamart
-            /// </summary>
-            [EnumMember(Value = "doku_alfamart")]
-            Alfamart = 8,
-            /// <summary>
-            /// Enum Indomaret for value: doku_indomaret
-            /// </summary>
-            [EnumMember(Value = "doku_indomaret")]
-            Indomaret = 9
-        }
-
+        public const string Mandiriva = "doku_mandiri_va";
+        public const string Cimbva = "doku_cimb_va";
+        public const string Danamonva = "doku_danamon_va";
+        public const string Bniva = "doku_bni_va";
+        public const string Permataliteatm = "doku_permata_lite_atm";
+        public const string Permatatm = "doku_permata_atm";
+        public const string Briva = "doku_bri_va";
+        public const string Bcava = "doku_bca_va";
+        public const string Alfamart = "doku_alfamart";
+        public const string Indomaret = "doku_indomaret";
+        public const string Sinarmasva = "doku_sinarmas_va";
+        
         /// <summary>
         /// The shopper's first name.
         /// </summary>
@@ -118,7 +74,7 @@ namespace Adyen.Model.Checkout
         /// <value>**doku**</value>
         [DataMember(Name = "type", EmitDefaultValue = false)]
         [JsonProperty(PropertyName = "type")]
-        public TypeEnum Type { get; set; } 
+        public string Type { get; set; } 
 
 
         /// <summary>
