@@ -21,7 +21,7 @@
 //  */
 #endregion
 
-using System;
+using System.Security.Cryptography;
 
 namespace Adyen.Security
 {
@@ -30,7 +30,10 @@ namespace Adyen.Security
         internal byte[] GenerateRandomMod()
         {
             var ivMod = new byte[EncryptionDerivedKey.IVLength];
-            new Random().NextBytes(ivMod);
+            using (var rng = RandomNumberGenerator.Create())
+            {
+                rng.GetNonZeroBytes(ivMod);
+            }
 
             return ivMod;
         }
