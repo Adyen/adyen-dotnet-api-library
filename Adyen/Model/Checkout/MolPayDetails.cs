@@ -33,7 +33,7 @@ namespace Adyen.Model.Checkout
     public class MolPayDetails : IPaymentMethodDetails
     {
         //Possible types
-        public const string EbankingFPXMy = "molpay_ebanking_fpx_MY";
+        public const string EBankingFPXMy = "molpay_ebanking_fpx_MY";
         public const string EBankingTH = "molpay_ebanking_TH";
         public const string EBankingVN = "molpay_ebanking_VN";
         public const string EBankingMY = "molpay_ebanking_MY";

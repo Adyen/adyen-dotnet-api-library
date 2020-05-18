@@ -33,7 +33,7 @@ namespace Adyen.Model.Checkout
     public class GiropayDetails : IPaymentMethodDetails
     {
         //Possible types
-        public const string GiroPay = "giropay";
+        public const string Giropay = "giropay";
 
         /// <summary>
         /// **giropay**
@@ -41,7 +41,7 @@ namespace Adyen.Model.Checkout
         /// <value>**giropay**</value>
         [DataMember(Name = "type", EmitDefaultValue = false)]
         [JsonProperty(PropertyName = "type")]
-        public string Type { get; set; } = GiroPay; 
+        public string Type { get; set; } = Giropay; 
 
 
         /// <summary>
