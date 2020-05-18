@@ -30,7 +30,7 @@ namespace Adyen.Model.Checkout
     /// 
     /// </summary>
     [DataContract]
-    public class PayPalDetails : IOneOfPaymentRequestPaymentMethod
+    public class PayPalDetails : IPaymentMethodDetails
     {
         //Possible fields
         public const string PayPal = "paypal";
