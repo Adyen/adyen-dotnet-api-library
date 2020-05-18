@@ -30,8 +30,16 @@ namespace Adyen.Model.Checkout
     /// 
     /// </summary>
     [DataContract]
-    public class MolPayDetails : IOneOfPaymentRequestPaymentMethod
+    public class MolPayDetails : IPaymentMethodDetails
     {
+        //Possible types
+        public const string EBankingFPXMy = "molpay_ebanking_fpx_MY";
+        public const string EBankingTH = "molpay_ebanking_TH";
+        public const string EBankingVN = "molpay_ebanking_VN";
+        public const string EBankingMY = "molpay_ebanking_MY";
+        public const string EBankingDirectMY = "molpay_ebanking_direct_MY";
+        public const string FPX = "molpay_fpx";
+
         /// <summary>
         /// Gets or Sets Issuer
         /// </summary>
@@ -45,8 +53,7 @@ namespace Adyen.Model.Checkout
         [DataMember(Name = "type", EmitDefaultValue = false)]
         [JsonProperty(PropertyName = "type")]
         public string Type { get; set; }
-
-
+        
         /// <summary>
         /// Get the string presentation of the object
         /// </summary>

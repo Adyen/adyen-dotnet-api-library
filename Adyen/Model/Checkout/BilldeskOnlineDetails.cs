@@ -30,8 +30,12 @@ namespace Adyen.Model.Checkout
     /// 
     /// </summary>
     [DataContract]
-    public class BilldeskOnlineDetails : IOneOfPaymentRequestPaymentMethod
+    public class BilldeskOnlineDetails : IPaymentMethodDetails
     {
+
+        //Possible types
+        public const string BilldeskOnline = "billdesk_online";
+
         /// <summary>
         /// The issuer id of the shopper's selected bank.
         /// </summary>
@@ -46,7 +50,7 @@ namespace Adyen.Model.Checkout
         /// <value>**billdesk_online**</value>
         [DataMember(Name = "type", EmitDefaultValue = false)]
         [JsonProperty(PropertyName = "type")]
-        public string Type { get; set; } = "billdesk_online"; 
+        public string Type { get; set; } = BilldeskOnline; 
 
 
 

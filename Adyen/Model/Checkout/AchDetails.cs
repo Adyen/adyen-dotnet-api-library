@@ -30,8 +30,10 @@ namespace Adyen.Model.Checkout
     /// 
     /// </summary>
     [DataContract]
-    public class AchDetails : IOneOfPaymentRequestPaymentMethod
+    public class AchDetails : IPaymentMethodDetails
     {
+        //Possible types
+        public const string Ach = "ach";
         /// <summary>
         /// The bank account number (without separators).
         /// </summary>
@@ -78,7 +80,7 @@ namespace Adyen.Model.Checkout
         /// <value>**ach**</value>
         [DataMember(Name = "type", EmitDefaultValue = false)]
         [JsonProperty(PropertyName = "type")]
-        public string Type { get; set; } = "ach"; 
+        public string Type { get; set; } = Ach; 
 
 
         /// <summary>

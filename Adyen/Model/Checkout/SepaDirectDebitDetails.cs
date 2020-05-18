@@ -30,8 +30,11 @@ namespace Adyen.Model.Checkout
     /// 
     /// </summary>
     [DataContract]
-    public class SepaDirectDebitDetails : IOneOfPaymentRequestPaymentMethod
+    public class SepaDirectDebitDetails : IPaymentMethodDetails
     {
+        //Possible types
+        public const string Sepadirectdebit = "sepadirectdebit";
+
         /// <summary>
         /// The International Bank Account Number (IBAN).
         /// </summary>
@@ -54,7 +57,7 @@ namespace Adyen.Model.Checkout
         /// <value>**sepadirectdebit**</value>
         [DataMember(Name = "type", EmitDefaultValue = false)]
         [JsonProperty(PropertyName = "type")]
-        public string Type { get; set; } = "sepadirectdebit"; 
+        public string Type { get; set; } = Sepadirectdebit; 
 
 
         /// <summary>

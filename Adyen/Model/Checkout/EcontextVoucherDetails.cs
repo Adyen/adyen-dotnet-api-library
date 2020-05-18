@@ -31,26 +31,12 @@ namespace Adyen.Model.Checkout
     /// 
     /// </summary>
     [DataContract]
-    public class EcontextVoucherDetails : IOneOfPaymentRequestPaymentMethod
+    public class EcontextVoucherDetails : IPaymentMethodDetails
     {
-        /// <summary>
-        /// **econtextvoucher**
-        /// </summary>
-        /// <value>**econtextvoucher**</value>
-        [JsonConverter(typeof(StringEnumConverter))]
-        public enum TypeEnum
-        {
-            /// <summary>
-            /// Enum Seveneleven for value: econtext_seveneleven
-            /// </summary>
-            [EnumMember(Value = "econtext_seveneleven")]
-            Seveneleven = 1,
-            /// <summary>
-            /// Enum Stores for value: econtext_stores
-            /// </summary>
-            [EnumMember(Value = "econtext_stores")]
-            Stores = 2
-        }
+        //Possible types
+        public const string Seveneleven = "econtext_seveneleven";
+        public const string Stores = "econtext_stores";
+        
         /// <summary>
         /// The shopper's first name.
         /// </summary>
@@ -89,9 +75,8 @@ namespace Adyen.Model.Checkout
         /// <value>**econtextvoucher**</value>
         [DataMember(Name = "type", EmitDefaultValue = false)]
         [JsonProperty(PropertyName = "type")]
-        public TypeEnum Type{ get; set; } 
-
-
+        public string Type { get; set; } 
+        
         /// <summary>
         /// Get the string presentation of the object
         /// </summary>
