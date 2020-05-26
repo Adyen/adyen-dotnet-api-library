@@ -21,6 +21,8 @@
 //  */
 #endregion
 
+using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 
 namespace Adyen.Util
@@ -54,12 +56,22 @@ namespace Adyen.Util
                 return o.ToString();
             }
         }
-
-
+        
         public static string ToIndentedString(this object o)
         {
             return o == null ? "null"
                              : o.ToString().Replace("\n", "\n\t\t\t");
         }
+
+        /// <summary>
+        /// Converts collections keyvaluepair to string
+        /// </summary>
+        /// <param name="dictionary">Collection convert to string</param>
+        /// <returns>string</returns>
+        public static string ToCollectionsString<TKey, TValue>(this IDictionary<TKey, TValue> dictionary)
+        {
+            return "{" + string.Join(",", dictionary.Select(kv => kv.Key + "=" + kv.Value).ToArray()) + "}";
+        }
+
     }
 }
