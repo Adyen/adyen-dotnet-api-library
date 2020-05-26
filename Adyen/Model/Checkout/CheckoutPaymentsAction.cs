@@ -28,6 +28,7 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Runtime.Serialization;
 using System.Text;
+using Adyen.Util;
 
 namespace Adyen.Model.Checkout
 {
@@ -266,7 +267,7 @@ namespace Adyen.Model.Checkout
         /// </summary>
         /// <value>The Sdk data.</value>
         [DataMember(Name = "sdkData", EmitDefaultValue = false)]
-        public Dictionary<string, string> SdkData { get; set; }
+        public Dictionary<string,string> SdkData { get; set; }
 
         /// <summary>
         /// The shopper email.
@@ -333,7 +334,7 @@ namespace Adyen.Model.Checkout
             sb.Append("  PaymentMethodType: ").Append(PaymentMethodType).Append("\n");
             sb.Append("  QrCodeData: ").Append(QrCodeData).Append("\n");
             sb.Append("  Reference: ").Append(Reference).Append("\n");
-            sb.Append("  SdkData: ").Append(SdkData).Append("\n");
+            sb.Append("  SdkData: ").Append(SdkData.ToCollectionsString()).Append("\n");
             sb.Append("  ShopperEmail: ").Append(ShopperEmail).Append("\n");
             sb.Append("  ShopperName: ").Append(ShopperName).Append("\n");
             sb.Append("  Surcharge: ").Append(Surcharge).Append("\n");

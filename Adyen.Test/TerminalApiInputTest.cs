@@ -24,7 +24,7 @@ namespace Adyen.Test
                 var inputResponse = (InputResponse)saleToPoiResponse.MessagePayload;
                 Assert.AreEqual(inputResponse.InputResult.Input.MenuEntryNumber.Length,2);
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 Assert.Fail();
             }
