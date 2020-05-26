@@ -23,6 +23,7 @@ using System.Collections.Generic;
 using System.Runtime.Serialization;
 using System.Text;
 using Newtonsoft.Json;
+using Adyen.Util;
 
 namespace Adyen.Model.PosTerminalManagement
 {
@@ -58,7 +59,7 @@ namespace Adyen.Model.PosTerminalManagement
         {
             var sb = new StringBuilder();
             sb.Append("class Store {\n");
-            sb.Append("  InStoreTerminals: ").Append(InStoreTerminals).Append("\n");
+            sb.Append("  InStoreTerminals: ").Append(InStoreTerminals.ToListString()).Append("\n");
             sb.Append("  StorePos: ").Append(StorePos).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
