@@ -93,6 +93,7 @@ namespace Adyen
                     Config.CloudApiEndPoint = ClientConfig.CloudApiEndPointTest;
                     Config.CheckoutEndpoint = ClientConfig.CheckoutEndpointTest;
                     Config.MarketPayEndpoint = ClientConfig.MarketpayEndPointTest;
+                    Config.PosTerminalManagementEndpoint = ClientConfig.PosTerminalManagementEndpointTest;
                     break;
                 case Environment.Live:
                     if (string.IsNullOrEmpty(liveEndpointUrlPrefix))

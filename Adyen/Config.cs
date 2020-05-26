@@ -50,6 +50,9 @@ namespace Adyen
         public string CloudApiEndPoint { get; set; }
         [Obsolete("This is deprecated property by Adyen.")]
         public bool SkipCertValidation { get; set; } = false;
+      
+        //POS Terminal Management 
+        public string PosTerminalManagementEndpoint { get; set; }
 
     }
 }
