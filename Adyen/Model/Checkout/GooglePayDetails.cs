@@ -31,8 +31,11 @@ namespace Adyen.Model.Checkout
     /// 
     /// </summary>
     [DataContract]
-    public class GooglePayDetails : IOneOfPaymentRequestPaymentMethod
+    public class GooglePayDetails : IPaymentMethodDetails
     {
+        //Possible types
+        public const string GooglePay = "paywithgoogle";
+
         /// <summary>
         /// Defines FundingSource
         /// </summary>
@@ -77,7 +80,7 @@ namespace Adyen.Model.Checkout
         /// <value>**paywithgoogle**</value>
         [DataMember(Name = "type", EmitDefaultValue = false)]
         [JsonProperty(PropertyName = "type")]
-        public string Type { get; set; } = "paywithgoogle"; 
+        public string Type { get; set; } = GooglePay; 
 
 
         /// <summary>

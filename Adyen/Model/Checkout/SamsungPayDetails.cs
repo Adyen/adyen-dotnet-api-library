@@ -31,8 +31,11 @@ namespace Adyen.Model.Checkout
     /// 
     /// </summary>
     [DataContract]
-    public class SamsungPayDetails : IOneOfPaymentRequestPaymentMethod
+    public class SamsungPayDetails : IPaymentMethodDetails
     {
+        //Possible types
+        public const string SamsungPay = "samsungpay";
+
         /// <summary>
         /// Defines FundingSource
         /// </summary>
@@ -71,7 +74,7 @@ namespace Adyen.Model.Checkout
         /// <value>**samsungpay**</value>
         [DataMember(Name = "type", EmitDefaultValue = false)]
         [JsonProperty(PropertyName = "type")]
-        public string Type { get; set; } = "samsungpay"; 
+        public string Type { get; set; } = SamsungPay; 
 
 
         /// <summary>

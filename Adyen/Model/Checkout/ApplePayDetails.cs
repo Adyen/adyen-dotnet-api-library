@@ -30,8 +30,11 @@ namespace Adyen.Model.Checkout
     /// 
     /// </summary>
     [DataContract]
-    public class ApplePayDetails : IOneOfPaymentRequestPaymentMethod
+    public class ApplePayDetails : IPaymentMethodDetails
     {
+        //Possible types
+        public const string ApplePay = "applepay";
+
         /// <summary>
         /// Gets or Sets ApplePayToken
         /// </summary>
@@ -52,7 +55,7 @@ namespace Adyen.Model.Checkout
         /// <value>**applepay**</value>
         [DataMember(Name = "type", EmitDefaultValue = false)]
         [JsonProperty(PropertyName = "type")]
-        public string Type { get; set; } = "applepay"; 
+        public string Type { get; set; } = ApplePay; 
 
 
 

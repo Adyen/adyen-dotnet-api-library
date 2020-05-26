@@ -30,8 +30,13 @@ namespace Adyen.Model.Checkout
     /// 
     /// </summary>
     [DataContract]
-    public class LianLianPayDetails : IOneOfPaymentRequestPaymentMethod
+    public class LianLianPayDetails : IPaymentMethodDetails
     {
+        //Possible types
+        public const string EbankingEnterprise = "lianlianpay_ebanking_enterprise";
+        public const string EbankingCredit = "lianlianpay_ebanking_credit";
+        public const string EbankingDebit = "lianlianpay_ebanking_debit";
+
         /// <summary>
         /// Gets or Sets TelephoneNumber
         /// </summary>

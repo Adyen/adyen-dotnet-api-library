@@ -31,8 +31,11 @@ namespace Adyen.Model.Checkout
     /// 
     /// </summary>
     [DataContract]
-    public class VisaCheckoutDetails : IOneOfPaymentRequestPaymentMethod
+    public class VisaCheckoutDetails : IPaymentMethodDetails
     {
+        //Possible types
+        public const string VisaCheckout = "visacheckout";
+
         /// <summary>
         /// Defines FundingSource
         /// </summary>
@@ -63,7 +66,7 @@ namespace Adyen.Model.Checkout
         /// <value>**visacheckout**</value>
         [DataMember(Name = "type", EmitDefaultValue = false)]
         [JsonProperty(PropertyName = "type")]
-        public string Type { get; set; } = "visacheckout";
+        public string Type { get; set; } = VisaCheckout;
 
         /// <summary>
         /// Gets or Sets VisaCheckoutCallId

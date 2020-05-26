@@ -30,8 +30,11 @@ namespace Adyen.Model.Checkout
     /// 
     /// </summary>
     [DataContract]
-    public class AmazonPayDetails : IOneOfPaymentRequestPaymentMethod
+    public class AmazonPayDetails : IPaymentMethodDetails
     {
+        //Possible types
+        public const string AmazonPay = "amazonpay";
+
         /// <summary>
         /// Gets or Sets AmazonPayToken
         /// </summary>
@@ -52,7 +55,7 @@ namespace Adyen.Model.Checkout
         /// <value>**amazonpay**</value>
         [DataMember(Name = "type", EmitDefaultValue = false)]
         [JsonProperty(PropertyName = "type")]
-        public string Type { get; set; } = "amazonpay"; 
+        public string Type { get; set; } = AmazonPay; 
 
 
         /// <summary>

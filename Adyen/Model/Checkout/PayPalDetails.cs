@@ -1,4 +1,4 @@
-#region Licence
+﻿#region Licence
 // 
 //                        ######
 //                        ######
@@ -22,35 +22,50 @@
 using System.Runtime.Serialization;
 using System.Text;
 using Newtonsoft.Json;
+using Newtonsoft.Json.Converters;
 
 namespace Adyen.Model.Checkout
 {
-
     /// <summary>
     /// 
     /// </summary>
     [DataContract]
-    public class EntercashDetails : IPaymentMethodDetails
+    public class PayPalDetails : IPaymentMethodDetails
     {
-        //Possible types
-        public const string Entercash = "entercash";
+        //Possible fields
+        public const string PayPal = "paypal";
+        
+        [JsonConverter(typeof(StringEnumConverter))]
+        public enum SubtypeEnum
+        {
+            /// <summary>
+            /// Enum SDK for value: SDK
+            /// </summary>
+            [EnumMember(Value = "sdk")]
+            SDK = 1,
+
+            /// <summary>
+            /// Enum SDK for value: SDK
+            /// </summary>
+            [EnumMember(Value = "redirect")]
+            Redirect = 1,
+        }
 
         /// <summary>
-        /// The issuer id of the shopper's selected bank.
+        /// PayPal subtype
         /// </summary>
-        /// <value>The issuer id of the shopper's selected bank.</value>
-        [DataMember(Name = "issuer", EmitDefaultValue = false)]
-        [JsonProperty(PropertyName = "issuer")]
-        public string Issuer { get; set; }
+        /// <value>enum subtype</value>
+        [DataMember(Name = "subtype", EmitDefaultValue = false)]
+        [JsonProperty(PropertyName = "subtype")]
+        public SubtypeEnum Subtype;
 
         /// <summary>
-        /// **entercash**
+        /// **paypal**
         /// </summary>
-        /// <value>**entercash**</value>
+        /// <value>**paypal**</value>
         [DataMember(Name = "type", EmitDefaultValue = false)]
         [JsonProperty(PropertyName = "type")]
-        public string Type { get; set; } = Entercash; 
-
+        public string Type { get; set; } = PayPal;
 
         /// <summary>
         /// Get the string presentation of the object
@@ -59,21 +74,11 @@ namespace Adyen.Model.Checkout
         public override string ToString()
         {
             var sb = new StringBuilder();
-            sb.Append("class EntercashDetails {\n");
-            sb.Append("  Issuer: ").Append(Issuer).Append("\n");
+            sb.Append("class PayPalDetails {\n");
+            sb.Append("  Subtype: ").Append(Subtype).Append("\n");
             sb.Append("  Type: ").Append(Type).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
-
-        /// <summary>
-        /// Get the JSON string presentation of the object
-        /// </summary>
-        /// <returns>JSON string presentation of the object</returns>
-        public string ToJson()
-        {
-            return JsonConvert.SerializeObject(this, Formatting.Indented);
-        }
-
     }
 }

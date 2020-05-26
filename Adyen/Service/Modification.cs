@@ -21,6 +21,8 @@
 //  */
 #endregion
 
+using System.Threading.Tasks;
+using Adyen.Model;
 using Adyen.Model.Modification;
 using Adyen.Service.Resource.Modification;
 
@@ -35,8 +37,8 @@ namespace Adyen.Service
         private readonly AdjustAuthorisation _adjustAuthorisation;
         private readonly VoidPendingRefund _voidPendingRefund;
 
-        public Modification(Client clinet)
-            : base(clinet)
+        public Modification(Client client)
+            : base(client)
         {
             _capture = new Capture(this);
             _cancelOrRefund = new CancelOrRefund(this);
@@ -45,57 +47,88 @@ namespace Adyen.Service
             _adjustAuthorisation = new AdjustAuthorisation(this);
             _voidPendingRefund = new VoidPendingRefund(this);
         }
-        
-        public ModificationResult Capture(CaptureRequest request)
+
+        public ModificationResult Capture(CaptureRequest request, RequestOptions requestOptions = null)
         {
             var jsonRequest = Util.JsonOperation.SerializeRequest(request);
-            var jsonResult = _capture.Request(jsonRequest);
-
-            return Util.JsonOperation.Deserialize<ModificationResult>(jsonResult);
-        }
-        
-        public ModificationResult CancelOrRefund(CancelOrRefundRequest request)
-        {
-            var jsonRequest = Util.JsonOperation.SerializeRequest(request);
-            var jsonResult = _cancelOrRefund.Request(jsonRequest);
-
-            return Util.JsonOperation.Deserialize<ModificationResult>(jsonResult);
-        }
-        
-        public ModificationResult Refund(RefundRequest request)
-        {
-            var jsonRequest = Util.JsonOperation.SerializeRequest(request);
-            var jsonResult = _refund.Request(jsonRequest);
-
-            return Util.JsonOperation.Deserialize<ModificationResult>(jsonResult);
-        }
-        
-        public ModificationResult Cancel(CancelRequest request)
-        {
-            var jsonRequest = Util.JsonOperation.SerializeRequest(request);
-            var jsonResult = _cancel.Request(jsonRequest);
-
+            var jsonResult = _capture.Request(jsonRequest, requestOptions);
             return Util.JsonOperation.Deserialize<ModificationResult>(jsonResult);
         }
 
-        public ModificationResult AdjustAuthorisation(AdjustAuthorisationRequest request)
+        public async Task<ModificationResult> CaptureAsync(CaptureRequest request, RequestOptions requestOptions = null)
         {
             var jsonRequest = Util.JsonOperation.SerializeRequest(request);
-            var jsonResult = _adjustAuthorisation.Request(jsonRequest);
-
+            var jsonResult = await _capture.RequestAsync(jsonRequest, requestOptions);
             return Util.JsonOperation.Deserialize<ModificationResult>(jsonResult);
         }
 
-        public ModificationResult VoidPendingRefund(VoidPendingRefundRequest request)
+        public ModificationResult CancelOrRefund(CancelOrRefundRequest request, RequestOptions requestOptions = null)
         {
-            return VoidPendingRefund(request, null);
+            var jsonRequest = Util.JsonOperation.SerializeRequest(request);
+            var jsonResult = _cancelOrRefund.Request(jsonRequest, requestOptions);
+            return Util.JsonOperation.Deserialize<ModificationResult>(jsonResult);
         }
 
-        public ModificationResult VoidPendingRefund(VoidPendingRefundRequest request, Model.RequestOptions requestOptions )
+        public async Task<ModificationResult> CancelOrRefundAsync(CancelOrRefundRequest request, RequestOptions requestOptions = null)
+        {
+            var jsonRequest = Util.JsonOperation.SerializeRequest(request);
+            var jsonResult = await _cancelOrRefund.RequestAsync(jsonRequest, requestOptions);
+            return Util.JsonOperation.Deserialize<ModificationResult>(jsonResult);
+        }
+
+        public ModificationResult Refund(RefundRequest request, RequestOptions requestOptions = null)
+        {
+            var jsonRequest = Util.JsonOperation.SerializeRequest(request);
+            var jsonResult = _refund.Request(jsonRequest, requestOptions);
+            return Util.JsonOperation.Deserialize<ModificationResult>(jsonResult);
+        }
+
+        public async Task<ModificationResult> RefundAsync(RefundRequest request, RequestOptions requestOptions = null)
+        {
+            var jsonRequest = Util.JsonOperation.SerializeRequest(request);
+            var jsonResult = await _refund.RequestAsync(jsonRequest, requestOptions);
+            return Util.JsonOperation.Deserialize<ModificationResult>(jsonResult);
+        }
+
+        public ModificationResult Cancel(CancelRequest request, RequestOptions requestOptions = null)
+        {
+            var jsonRequest = Util.JsonOperation.SerializeRequest(request);
+            var jsonResult = _cancel.Request(jsonRequest, requestOptions);
+            return Util.JsonOperation.Deserialize<ModificationResult>(jsonResult);
+        }
+
+        public async Task<ModificationResult> CancelAsync(CancelRequest request, RequestOptions requestOptions = null)
+        {
+            var jsonRequest = Util.JsonOperation.SerializeRequest(request);
+            var jsonResult = await _cancel.RequestAsync(jsonRequest, requestOptions);
+            return Util.JsonOperation.Deserialize<ModificationResult>(jsonResult);
+        }
+
+        public ModificationResult AdjustAuthorisation(AdjustAuthorisationRequest request, RequestOptions requestOptions = null)
         {
             var jsonRequest = Util.JsonOperation.SerializeRequest(request);
             var jsonResult = _adjustAuthorisation.Request(jsonRequest, requestOptions);
+            return Util.JsonOperation.Deserialize<ModificationResult>(jsonResult);
+        }
 
+        public async Task<ModificationResult> AdjustAuthorisationAsync(AdjustAuthorisationRequest request, RequestOptions requestOptions = null)
+        {
+            var jsonRequest = Util.JsonOperation.SerializeRequest(request);
+            var jsonResult = await _adjustAuthorisation.RequestAsync(jsonRequest, requestOptions);
+            return Util.JsonOperation.Deserialize<ModificationResult>(jsonResult);
+        }
+
+        public ModificationResult VoidPendingRefund(VoidPendingRefundRequest request, RequestOptions requestOptions = null)
+        {
+            var jsonRequest = Util.JsonOperation.SerializeRequest(request);
+            var jsonResult = _voidPendingRefund.Request(jsonRequest, requestOptions);
+            return Util.JsonOperation.Deserialize<ModificationResult>(jsonResult);
+        }
+
+        public async Task<ModificationResult> VoidPendingRefundAsync(VoidPendingRefundRequest request, RequestOptions requestOptions = null)
+        {
+            var jsonRequest = Util.JsonOperation.SerializeRequest(request);
+            var jsonResult = await _voidPendingRefund.RequestAsync(jsonRequest, requestOptions);
             return Util.JsonOperation.Deserialize<ModificationResult>(jsonResult);
         }
     }
