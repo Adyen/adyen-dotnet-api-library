@@ -539,6 +539,8 @@ namespace Adyen.Model.Checkout
                     hashCode = hashCode * 59 + this.QrCodeData.GetHashCode();
                 if (this.Reference != null)
                     hashCode = hashCode * 59 + this.Reference.GetHashCode();
+                if (this.SdkData != null)
+                    hashCode = hashCode * 59 + this.SdkData.GetHashCode();
                 if (this.ShopperEmail != null)
                     hashCode = hashCode * 59 + this.ShopperEmail.GetHashCode();
                 if (this.ShopperName != null)
