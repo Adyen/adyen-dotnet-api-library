@@ -28,6 +28,7 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Runtime.Serialization;
 using System.Text;
+using Adyen.Util;
 
 namespace Adyen.Model.Checkout
 {
@@ -123,7 +124,7 @@ namespace Adyen.Model.Checkout
         /// <param name="totalAmount">totalAmount.</param>
         /// <param name="type">Enum that specifies the action that needs to be taken by the client..</param>
         /// <param name="url">Specifies the URL to redirect to..</param>
-        public CheckoutPaymentsAction(string alternativeReference = default(string), Object data = default(Object), string downloadUrl = default(string), string expiresAt = default(string), string entity = default(string), Amount initialAmount = default(Amount), string instructionsUrl = default(string), string issuer = default(string), string maskedTelephoneNumber = default(string), string merchantName = default(string), string merchantReference = default(string), string method = default(string), string paymentData = default(string), string paymentMethodType = default(string), string qrCodeData = default(string), string reference = default(string), string shopperEmail = default(string), string shopperName = default(string), Amount surcharge = default(Amount), string token = default(string), Amount totalAmount = default(Amount), CheckoutActionType? type = default(CheckoutActionType?), string url = default(string))
+        public CheckoutPaymentsAction(string alternativeReference = default(string), Object data = default(Object), string downloadUrl = default(string), string expiresAt = default(string), string entity = default(string), Amount initialAmount = default(Amount), string instructionsUrl = default(string), string issuer = default(string), string maskedTelephoneNumber = default(string), string merchantName = default(string), string merchantReference = default(string), string method = default(string), string paymentData = default(string), string paymentMethodType = default(string), string qrCodeData = default(string), string reference = default(string), Dictionary<string, string> sdkData = default(Dictionary<string, string>), string shopperEmail = default(string), string shopperName = default(string), Amount surcharge = default(Amount), string token = default(string), Amount totalAmount = default(Amount), CheckoutActionType? type = default(CheckoutActionType?), string url = default(string))
         {
             this.AlternativeReference = alternativeReference;
             this.Data = data;
@@ -141,6 +142,7 @@ namespace Adyen.Model.Checkout
             this.PaymentMethodType = paymentMethodType;
             this.QrCodeData = qrCodeData;
             this.Reference = reference;
+            this.SdkData = sdkData;
             this.ShopperEmail = shopperEmail;
             this.ShopperName = shopperName;
             this.Surcharge = surcharge;
@@ -261,6 +263,13 @@ namespace Adyen.Model.Checkout
         public string Reference { get; set; }
 
         /// <summary>
+        /// The Sdk data.
+        /// </summary>
+        /// <value>The Sdk data.</value>
+        [DataMember(Name = "sdkData", EmitDefaultValue = false)]
+        public Dictionary<string,string> SdkData { get; set; }
+
+        /// <summary>
         /// The shopper email.
         /// </summary>
         /// <value>The shopper email.</value>
@@ -273,7 +282,7 @@ namespace Adyen.Model.Checkout
         /// <value>The shopper name.</value>
         [DataMember(Name = "shopperName", EmitDefaultValue = false)]
         public string ShopperName { get; set; }
-
+        
         /// <summary>
         /// Gets or Sets Surcharge
         /// </summary>
@@ -325,6 +334,7 @@ namespace Adyen.Model.Checkout
             sb.Append("  PaymentMethodType: ").Append(PaymentMethodType).Append("\n");
             sb.Append("  QrCodeData: ").Append(QrCodeData).Append("\n");
             sb.Append("  Reference: ").Append(Reference).Append("\n");
+            sb.Append("  SdkData: ").Append(SdkData.ToCollectionsString()).Append("\n");
             sb.Append("  ShopperEmail: ").Append(ShopperEmail).Append("\n");
             sb.Append("  ShopperName: ").Append(ShopperName).Append("\n");
             sb.Append("  Surcharge: ").Append(Surcharge).Append("\n");
@@ -452,6 +462,11 @@ namespace Adyen.Model.Checkout
                     this.ShopperEmail.Equals(input.ShopperEmail))
                 ) &&
                 (
+                    this.SdkData == input.SdkData ||
+                    (this.SdkData != null &&
+                    this.SdkData.Equals(input.SdkData))
+                ) &&
+                (
                     this.ShopperName == input.ShopperName ||
                     (this.ShopperName != null &&
                     this.ShopperName.Equals(input.ShopperName))
@@ -524,6 +539,8 @@ namespace Adyen.Model.Checkout
                     hashCode = hashCode * 59 + this.QrCodeData.GetHashCode();
                 if (this.Reference != null)
                     hashCode = hashCode * 59 + this.Reference.GetHashCode();
+                if (this.SdkData != null)
+                    hashCode = hashCode * 59 + this.SdkData.GetHashCode();
                 if (this.ShopperEmail != null)
                     hashCode = hashCode * 59 + this.ShopperEmail.GetHashCode();
                 if (this.ShopperName != null)
