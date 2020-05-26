@@ -21,6 +21,7 @@
 //  */
 #endregion
 
+using System.Threading.Tasks;
 using Adyen.Model;
 using Adyen.Model.Modification;
 using Adyen.Service.Resource.Modification;
@@ -46,36 +47,60 @@ namespace Adyen.Service
             _adjustAuthorisation = new AdjustAuthorisation(this);
             _voidPendingRefund = new VoidPendingRefund(this);
         }
-        
+
         public ModificationResult Capture(CaptureRequest request, RequestOptions requestOptions = null)
         {
             var jsonRequest = Util.JsonOperation.SerializeRequest(request);
             var jsonResult = _capture.Request(jsonRequest, requestOptions);
-
             return Util.JsonOperation.Deserialize<ModificationResult>(jsonResult);
         }
-        
+
+        public async Task<ModificationResult> CaptureAsync(CaptureRequest request, RequestOptions requestOptions = null)
+        {
+            var jsonRequest = Util.JsonOperation.SerializeRequest(request);
+            var jsonResult = await _capture.RequestAsync(jsonRequest, requestOptions);
+            return Util.JsonOperation.Deserialize<ModificationResult>(jsonResult);
+        }
+
         public ModificationResult CancelOrRefund(CancelOrRefundRequest request, RequestOptions requestOptions = null)
         {
             var jsonRequest = Util.JsonOperation.SerializeRequest(request);
             var jsonResult = _cancelOrRefund.Request(jsonRequest, requestOptions);
-
             return Util.JsonOperation.Deserialize<ModificationResult>(jsonResult);
         }
-        
+
+        public async Task<ModificationResult> CancelOrRefundAsync(CancelOrRefundRequest request, RequestOptions requestOptions = null)
+        {
+            var jsonRequest = Util.JsonOperation.SerializeRequest(request);
+            var jsonResult = await _cancelOrRefund.RequestAsync(jsonRequest, requestOptions);
+            return Util.JsonOperation.Deserialize<ModificationResult>(jsonResult);
+        }
+
         public ModificationResult Refund(RefundRequest request, RequestOptions requestOptions = null)
         {
             var jsonRequest = Util.JsonOperation.SerializeRequest(request);
             var jsonResult = _refund.Request(jsonRequest, requestOptions);
-
             return Util.JsonOperation.Deserialize<ModificationResult>(jsonResult);
         }
-        
+
+        public async Task<ModificationResult> RefundAsync(RefundRequest request, RequestOptions requestOptions = null)
+        {
+            var jsonRequest = Util.JsonOperation.SerializeRequest(request);
+            var jsonResult = await _refund.RequestAsync(jsonRequest, requestOptions);
+            return Util.JsonOperation.Deserialize<ModificationResult>(jsonResult);
+        }
+
         public ModificationResult Cancel(CancelRequest request, RequestOptions requestOptions = null)
         {
             var jsonRequest = Util.JsonOperation.SerializeRequest(request);
             var jsonResult = _cancel.Request(jsonRequest, requestOptions);
+            return Util.JsonOperation.Deserialize<ModificationResult>(jsonResult);
+        }
 
+        public async Task<ModificationResult> CancelAsync(CancelRequest request, RequestOptions requestOptions = null)
+        {
+            var jsonRequest = Util.JsonOperation.SerializeRequest(request);
+            var jsonResult = await _cancel.RequestAsync(jsonRequest, requestOptions);
             return Util.JsonOperation.Deserialize<ModificationResult>(jsonResult);
         }
 
@@ -83,7 +108,13 @@ namespace Adyen.Service
         {
             var jsonRequest = Util.JsonOperation.SerializeRequest(request);
             var jsonResult = _adjustAuthorisation.Request(jsonRequest, requestOptions);
+            return Util.JsonOperation.Deserialize<ModificationResult>(jsonResult);
+        }
 
+        public async Task<ModificationResult> AdjustAuthorisationAsync(AdjustAuthorisationRequest request, RequestOptions requestOptions = null)
+        {
+            var jsonRequest = Util.JsonOperation.SerializeRequest(request);
+            var jsonResult = await _adjustAuthorisation.RequestAsync(jsonRequest, requestOptions);
             return Util.JsonOperation.Deserialize<ModificationResult>(jsonResult);
         }
 
@@ -91,7 +122,13 @@ namespace Adyen.Service
         {
             var jsonRequest = Util.JsonOperation.SerializeRequest(request);
             var jsonResult = _voidPendingRefund.Request(jsonRequest, requestOptions);
+            return Util.JsonOperation.Deserialize<ModificationResult>(jsonResult);
+        }
 
+        public async Task<ModificationResult> VoidPendingRefundAsync(VoidPendingRefundRequest request, RequestOptions requestOptions = null)
+        {
+            var jsonRequest = Util.JsonOperation.SerializeRequest(request);
+            var jsonResult = await _voidPendingRefund.RequestAsync(jsonRequest, requestOptions);
             return Util.JsonOperation.Deserialize<ModificationResult>(jsonResult);
         }
     }
