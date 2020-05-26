@@ -21,13 +21,14 @@
 #endregion
 
 using Adyen.Constants;
+using System.Collections.Generic;
 
 namespace Adyen.Service.Resource.PosTerminalManagement
 {
    public class GetTerminalsUnderAccount : ServiceResource
     {
         public GetTerminalsUnderAccount(AbstractService abstractService)
-            : base(abstractService, abstractService.Client.Config.PosTerminalManagementEndpoint + "/" + ClientConfig.PosTerminalManagementVersion + "/getTerminalsUnderAccount", null)
+            : base(abstractService, abstractService.Client.Config.PosTerminalManagementEndpoint + "/" + ClientConfig.PosTerminalManagementVersion + "/getTerminalsUnderAccount", new List<string> { "companyAccount" })
         {
         }
     }    

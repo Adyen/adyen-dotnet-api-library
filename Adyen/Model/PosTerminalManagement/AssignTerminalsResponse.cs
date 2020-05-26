@@ -23,6 +23,7 @@ using System.Collections.Generic;
 using System.Runtime.Serialization;
 using System.Text;
 using Newtonsoft.Json;
+using Adyen.Util;
 
 namespace Adyen.Model.PosTerminalManagement
 {
@@ -50,7 +51,7 @@ namespace Adyen.Model.PosTerminalManagement
         {
             var sb = new StringBuilder();
             sb.Append("class AssignTerminalsResponse {\n");
-            sb.Append("  Results: ").Append(Results).Append("\n");
+            sb.Append("  Results: ").Append(Results.ToCollectionsString()).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }

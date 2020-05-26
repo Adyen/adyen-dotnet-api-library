@@ -23,13 +23,14 @@
 #endregion
 
 using Adyen.Constants;
+using System.Collections.Generic;
 
 namespace Adyen.Service.Resource.PosTerminalManagement
 {
     public class AssignTerminals : ServiceResource
     {
         public AssignTerminals(AbstractService abstractService)
-            : base(abstractService, abstractService.Client.Config.PosTerminalManagementEndpoint + "/" + ClientConfig.PosTerminalManagementVersion + "/assignTerminals", null)
+            : base(abstractService, abstractService.Client.Config.PosTerminalManagementEndpoint + "/" + ClientConfig.PosTerminalManagementVersion + "/assignTerminals", new List<string> { "companyAccount", "terminals" })
         {
         }
     }

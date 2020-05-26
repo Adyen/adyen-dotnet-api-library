@@ -73,5 +73,14 @@ namespace Adyen.Util
             return "{" + string.Join(",", dictionary.Select(kv => kv.Key + "=" + kv.Value).ToArray()) + "}";
         }
 
+        /// <summary>
+        /// Converts list of strings to string with commas
+        /// </summary>
+        /// <param name="list"></param>
+        /// <returns>string</returns>
+        public static string ToListString(this List<string> list)
+        {
+            return string.Join(" ", list.ToArray());
+        }
     }
 }
