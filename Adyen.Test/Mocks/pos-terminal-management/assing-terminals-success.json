@@ -1,6 +1,6 @@
 {
     "results": {
-        "V400m-123456789": "ActionScheduled", // It was previously boarded, so the config needs to be removed before being able to complete the reassignment
-        "P400Plus-123456789": "Done" // It was previously assigned to the merchant account-level inventory
+        "V400m-123456789": "ActionScheduled", 
+        "P400Plus-123456789": "Done" 
     }
 }

@@ -42,7 +42,7 @@ namespace Adyen.Test
         public void FindTerminalSuccess()
         {
             var client = CreateMockTestClientApiKeyBasedRequest("Mocks/pos-terminal-management/find-terminals-success.json");
-            var  posTerminalManagement =new PosTerminalManagement(client);
+            var posTerminalManagement = new PosTerminalManagement(client);
             var findTerminalRequest = new FindTerminalRequest
             {
                 Terminal = "V400m-123456789"
@@ -58,7 +58,7 @@ namespace Adyen.Test
         /// Test post /assignTerminals
         /// </summary>
         [TestMethod]
-        public void AssignTerminalSuccess()
+        public void AssignTerminalsSuccess()
         {
             var client = CreateMockTestClientApiKeyBasedRequest("Mocks/pos-terminal-management/assing-terminals-success.json");
             var posTerminalManagement = new PosTerminalManagement(client);
@@ -75,7 +75,7 @@ namespace Adyen.Test
         }
 
         /// <summary>
-        /// Test post /getTerminalsUnderAccountsResponse 
+        /// Test post /getTerminalsUnderAccountResponse 
         /// </summary>
         [TestMethod]
         public void GetTerminalsUnderAccountSuccess()

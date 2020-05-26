@@ -106,6 +106,7 @@ namespace Adyen
                     Config.CloudApiEndPoint = ClientConfig.CloudApiEndPointLive;
                     Config.CheckoutEndpoint = ClientConfig.EndpointProtocol + liveEndpointUrlPrefix + ClientConfig.CheckoutEndpointLiveSuffix;
                     Config.MarketPayEndpoint = ClientConfig.MarketpayEndPointLive;
+                    Config.PosTerminalManagementEndpoint = ClientConfig.PosTerminalManagementEndpointLive;
                     break;
             }
         }
