@@ -24,6 +24,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using Newtonsoft.Json;
 
 namespace Adyen.Util
 {
@@ -80,7 +81,26 @@ namespace Adyen.Util
         /// <returns>string</returns>
         public static string ToListString(this List<string> list)
         {
-            return string.Join(" ", list.ToArray());
+            if (list != null && list.Any())
+            {
+                return string.Join(" ", list.ToArray());
+            }
+            return "";
+        }
+
+        /// <summary>
+        /// Converts a list of objects to string. Loops in the list and  invoke the ToString implementation of each object
+        /// </summary>
+        /// <typeparam name="T">Generic type of object</typeparam>
+        /// <param name="itemlist">List of object</param>
+        /// <returns>string</returns>
+        public static string ObjectListTostring<T>(this List<T> itemlist)
+        {
+            if (itemlist != null && itemlist.Any())
+            {
+               return itemlist.Aggregate("\n\t{ ", (current, item) => current + " " + item.ToString() + "\n") + " }";
+            }
+            return "";
         }
     }
 }

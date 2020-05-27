@@ -43,7 +43,7 @@ namespace Adyen.Test
             var recurringDetailsRequest = this.CreateRecurringDetailsRequest();
             var recurringDetailsResult = recurring.ListRecurringDetails(recurringDetailsRequest);
             Assert.AreEqual(1L, (long)recurringDetailsResult.Details.Count);
-            var recurringDetail = recurringDetailsResult.Details.FirstOrDefault().RecurringDetail;
+            var recurringDetail = recurringDetailsResult.Details[0].RecurringDetail;
             Assert.AreEqual("recurringReference", recurringDetail.RecurringDetailReference);
             Assert.AreEqual("cardAlias", recurringDetail.Alias);
             Assert.AreEqual("1111", recurringDetail.Card.Number);

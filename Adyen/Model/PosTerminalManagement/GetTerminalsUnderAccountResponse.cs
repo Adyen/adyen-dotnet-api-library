@@ -20,6 +20,7 @@
 //  See the LICENSE file for more info.
 #endregion
 using System.Collections.Generic;
+using System.Linq;
 using System.Runtime.Serialization;
 using System.Text;
 using Newtonsoft.Json;
@@ -69,7 +70,7 @@ namespace Adyen.Model.PosTerminalManagement
             sb.Append("class GetTerminalsUnderAccountResponse {\n");
             sb.Append("  CompanyAccount: ").Append(CompanyAccount).Append("\n");
             sb.Append("  InventoryTerminals: ").Append(InventoryTerminals.ToListString()).Append("\n");
-            sb.Append("  MerchantAccounts: ").Append(MerchantAccounts).Append("\n");
+            sb.Append("  MerchantAccounts: ").Append(MerchantAccounts.ObjectListTostring<MerchantAccount>()).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -82,5 +83,7 @@ namespace Adyen.Model.PosTerminalManagement
         {
             return JsonConvert.SerializeObject(this, Formatting.Indented);
         }
+
+       
     }
 }
