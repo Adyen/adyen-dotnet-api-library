@@ -70,7 +70,7 @@ namespace Adyen.Model.PosTerminalManagement
             sb.Append("class GetTerminalsUnderAccountResponse {\n");
             sb.Append("  CompanyAccount: ").Append(CompanyAccount).Append("\n");
             sb.Append("  InventoryTerminals: ").Append(InventoryTerminals.ToListString()).Append("\n");
-            sb.Append("  MerchantAccounts: ").Append(MerchantAccounts.ObjectListTostring<MerchantAccount>()).Append("\n");
+            sb.Append("  MerchantAccounts: ").Append(MerchantAccounts.ObjectListToString<MerchantAccount>()).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }

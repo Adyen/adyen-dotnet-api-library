@@ -78,7 +78,7 @@ namespace Adyen.Model.PosTerminalManagement
             sb.Append("  InStoreTerminals: ").Append(InStoreTerminals.ToListString()).Append("\n");
             sb.Append("  InventoryTerminals: ").Append(InventoryTerminals.ToListString()).Append("\n");
             sb.Append("  MerchantAccountPos: ").Append(MerchantAccountPos).Append("\n");
-            sb.Append("  Stores: ").Append(Stores.ObjectListTostring<Store>()).Append("\n");
+            sb.Append("  Stores: ").Append(Stores.ObjectListToString<Store>()).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }

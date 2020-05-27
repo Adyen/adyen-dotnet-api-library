@@ -94,7 +94,7 @@ namespace Adyen.Util
         /// <typeparam name="T">Generic type of object</typeparam>
         /// <param name="itemlist">List of object</param>
         /// <returns>string</returns>
-        public static string ObjectListTostring<T>(this List<T> itemlist)
+        public static string ObjectListToString<T>(this List<T> itemlist)
         {
             if (itemlist != null && itemlist.Any())
             {
