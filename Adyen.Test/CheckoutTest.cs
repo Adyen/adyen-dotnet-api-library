@@ -550,5 +550,19 @@ namespace Adyen.Test
             paymentRequest.RiskData = riskdata;
             Assert.AreEqual(paymentRequest.RiskData.ClientData, "IOfW3k9G2PvXFu2j");
         }
+
+        /// <summary>
+        /// Test success flow for paypal
+        /// Post /payments 
+        /// </summary>
+        [TestMethod]
+        public void PaypalPaymentSuccessTest()
+        {
+            var client = CreateMockTestClientRequest("Mocks/checkout/payments-success-paypal.json");
+            var checkout = new Checkout(client);
+            var paymentRequest = CreatePaymentRequestCheckout();
+            var paymentResponse = checkout.Payments(paymentRequest);
+            Assert.AreEqual("EC-42N19135GM6949000", paymentResponse.Action.SdkData["orderID"]);
+        }
     }
 }
