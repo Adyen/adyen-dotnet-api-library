@@ -4,22 +4,22 @@
     <TargetFrameworks>netstandard2.0</TargetFrameworks>
     <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
     <Copyright>Adyen</Copyright>
-    <Version>5.3.0</Version>
-    <AssemblyVersion>5.3.0</AssemblyVersion>
-    <FileVersion>5.3.0</FileVersion>
+    <Version>5.4.0</Version>
+    <AssemblyVersion>5.4.0</AssemblyVersion>
+    <FileVersion>5.4.0</FileVersion>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <Description>The Adyen API Library for .net core enables you to work with Adyen APIs, Hosted Payment Pages and terminal api with any .net application.</Description>
     <PackageProjectUrl>https://github.com/Adyen/adyen-dotnet-api-library</PackageProjectUrl>
     <RepositoryUrl>https://github.com/Adyen/adyen-dotnet-api-library</RepositoryUrl>
     <RepositoryType>git</RepositoryType>
-    <PackageTags>5.3.0</PackageTags>
+    <PackageTags>5.4.0</PackageTags>
     <PackageLicenseUrl>https://github.com/Adyen/adyen-dotnet-api-library/blob/master/LICENSE</PackageLicenseUrl>
     <Authors>Adyen</Authors>
     <Company>Adyen</Company>
     <Title>adyen-dotnet-api-library</Title>
     <Product>Adyen library</Product>
     <NeutralLanguage>en</NeutralLanguage>
-    <PackageReleaseNotes>Supports terminal api integration</PackageReleaseNotes>
+    <PackageReleaseNotes></PackageReleaseNotes>
     <PackageIconUrl>https://www.adyen.com/dam/jcr:39adc4db-76f7-4b9e-aec6-bfa21db4153c/adyen-logo-green.png</PackageIconUrl>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
   </PropertyGroup>

@@ -1,0 +1,20 @@
+name: .NET Core
+
+on: [push, pull_request]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        dotnet: ['2.0.0','2.2.103']
+    steps:
+    - uses: actions/checkout@v2
+    - name: Setup .NET Core
+      uses: actions/setup-dotnet@v1
+      with:
+        dotnet-version: ${{ matrix.dotnet }}
+    - name: Build with dotnet
+      run: |
+        dotnet build /p:TargetFrameworks=netcoreapp2.0
+        dotnet test Adyen.Test/Adyen.Test.csproj

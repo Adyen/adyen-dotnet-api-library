@@ -1,0 +1,35 @@
+{
+    "companyAccount": "TestCompany",
+    "inventoryTerminals": [
+        "V400m-123456789",
+        "P400Plus-123456789"
+    ],
+    "merchantAccounts": [
+        {
+            "merchantAccount": "TestMerchantPOS_EU",
+            "inventoryTerminals": [
+                "M400-123456789",
+                "VX820-123456789"
+            ],
+            "inStoreTerminals": [
+                "E355-123456789",
+                "V240mPlus-123456789"
+            ],
+            "stores": [
+                {
+                    "store": "TestStore",
+                    "inStoreTerminals": [
+                        "MX925-123456789"
+                    ]
+                }
+            ]
+        },
+        {
+            "merchantAccount": "TestMerchantPOS_US",
+            "inStoreTerminals": [
+                "VX820-123456789",
+                "VX690-123456789"
+            ]
+        }
+    ]
+}

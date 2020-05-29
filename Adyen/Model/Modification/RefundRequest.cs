@@ -21,13 +21,11 @@
 //  */
 #endregion
 
-using System;
+using Adyen.Model.ApplicationInformation;
+using Newtonsoft.Json;
 using System.Collections.Generic;
 using System.Runtime.Serialization;
 using System.Text;
-using Adyen.Constants;
-using Adyen.Model.ApplicationInformation;
-using Newtonsoft.Json;
 
 namespace Adyen.Model.Modification
 {
@@ -42,6 +40,14 @@ namespace Adyen.Model.Modification
              if(ApplicationInfo==null)
                 ApplicationInfo = new ApplicationInfo();
         }
+
+        /// <summary>
+        /// The details of how the refund should be split when distributing a refund from a MarketPay Marketplace and its Accounts.
+        /// </summary>
+        /// <value>The details of how the refund should be split when distributing a refund from a MarketPay Marketplace and its Accounts.</value>
+        [DataMember(Name = "splits", EmitDefaultValue = false)]
+        public List<Split> Splits { get; set; }
+
         /// <summary>
         /// Returns the string presentation of the object
         /// </summary>
