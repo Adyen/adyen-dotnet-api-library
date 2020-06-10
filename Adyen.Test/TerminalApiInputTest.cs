@@ -29,5 +29,31 @@ namespace Adyen.Test
                 Assert.Fail();
             }
         }
+
+
+        [TestMethod]
+        public void RepeatedResponseTest()
+        {
+            try
+            {
+                //encrypt the request using encryption credentials
+                var paymentRequest = MockPosApiRequest.CreatePosPaymentRequest();
+                //create a mock client
+                var client = CreateMockTestClientPosCloudApiRequest("Mocks/terminalapi/repeated-response-message.json");
+                var posPaymentCloudApiApi = new PosPaymentCloudApi(client);
+
+                var saleToPoiResponse = posPaymentCloudApiApi.TerminalApiCloudAsync(paymentRequest);
+                Assert.IsNotNull(saleToPoiResponse);
+                var repeatedMessageResponse = (TransactionStatusResponse)saleToPoiResponse.MessagePayload;
+                Assert.IsNotNull(repeatedMessageResponse);
+            }
+            catch (Exception)
+            {
+                Assert.Fail();
+            }
+        }
+
+      
+
     }
 }
