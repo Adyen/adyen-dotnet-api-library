@@ -41,5 +41,7 @@ namespace Adyen.Constants
         public const string BoletoUrl = "boletobancario.url";
         public const string BoletoExpirationDate = "boletobancario.expirationDate";
         public const string HmacSignature = "hmacSignature";
+        public const string AuthorisedAmountValue = "authorisedAmountValue";
+        public const string RecurringDetailReference = "recurring.recurringDetailReference";
     }
 }
