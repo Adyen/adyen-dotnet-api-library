@@ -502,6 +502,17 @@ namespace Adyen.Test
         }
 
         /// <summary>
+        /// Test CreatePaymentLinkRequest
+        /// POST  /payments/result
+        /// </summary>
+        [TestMethod]
+        public void CreatePaymentLinkSuccess()
+        {
+            var createPaymentLinkRequest = new CreatePaymentLinkRequest { Store = "TheDemoStore" };
+            Assert.AreEqual(createPaymentLinkRequest.Store, "TheDemoStore");
+        }
+        
+        /// <summary>
         /// Test success flow for
         /// POST  /payments/result
         /// </summary>
@@ -517,7 +528,7 @@ namespace Adyen.Test
             Assert.AreEqual(paymentLinksResponse.Reference, "YOUR_ORDER_NUMBER");
             Assert.IsNotNull(paymentLinksResponse.Amount);
         }
-
+        
         /// <summary>
         /// Test success flow for multibanco
         /// Post /payments 
