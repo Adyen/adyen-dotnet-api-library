@@ -151,12 +151,10 @@ namespace Adyen.Model.Checkout
         [JsonProperty(PropertyName = "storePaymentMethod")]
         public bool? StorePaymentMethod { get; set; }
 
-
-
         /// <summary>
-        /// When true and `shopperReference` is provided, the payment details will be stored.
+        /// The physical store, for which this payment is processed.
         /// </summary>
-        /// <value>When true and `shopperReference` is provided, the payment details will be stored.</value>
+        /// <value>Store</value>
         [DataMember(Name = "store", EmitDefaultValue = false)]
         [JsonProperty(PropertyName = "store")]
         public string Store { get; set; }
