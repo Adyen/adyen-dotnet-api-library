@@ -24,7 +24,7 @@ The Library supports all APIs under the following services:
 * Simply download and restore nuget packages  
  https://www.nuget.org/packages/Adyen/
 * or install it from package manager
- PM> Install-Package Adyen -Version 5.4.0
+ PM> Install-Package Adyen -Version 5.5.0
 
 ## Usage
 In order to submit http request to Adyen API you need to initialize the client. The following example makes a checkout payment request:
