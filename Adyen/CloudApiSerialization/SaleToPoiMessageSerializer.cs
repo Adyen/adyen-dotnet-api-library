@@ -107,15 +107,15 @@ namespace Adyen.CloudApiSerialization
          
             if (repeatedMessageResponse.Contains("CardAcquisitionResponse"))
             {
-                return objMessage[repeatedMessageResponse].ToObject<CardAcquisitionResponse>();
+                return objMessage["CardAcquisitionResponse"].ToObject<CardAcquisitionResponse>();
             }
             if (repeatedMessageResponse.Contains("CardReaderAPDUResponse"))
             {
-                return objMessage[repeatedMessageResponse].ToObject<CardReaderAPDUResponse>();
+                return objMessage["CardReaderAPDUResponse"].ToObject<CardReaderAPDUResponse>();
             }
             if (repeatedMessageResponse.Contains("LoyaltyResponse"))
             {
-                return objMessage[repeatedMessageResponse].ToObject<LoyaltyResponse>();
+                return objMessage["LoyaltyResponse"].ToObject<LoyaltyResponse>();
             }
             if (repeatedMessageResponse.Contains("PaymentResponse"))
             {
@@ -123,11 +123,11 @@ namespace Adyen.CloudApiSerialization
             }
             if (repeatedMessageResponse.Contains("ReversalResponse"))
             {
-                return objMessage[repeatedMessageResponse].ToObject<ReversalResponse>();
+                return objMessage["ReversalResponse"].ToObject<ReversalResponse>();
             }
             if (repeatedMessageResponse.Contains("StoredValueResponse"))
             {
-                return objMessage[repeatedMessageResponse].ToObject<StoredValueResponse>();
+                return objMessage["StoredValueResponse"].ToObject<StoredValueResponse>();
             }
             return null;
         }
