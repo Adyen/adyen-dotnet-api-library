@@ -235,7 +235,14 @@ namespace Adyen.Model.Checkout
 
         [DataMember(Name = "serviceError", EmitDefaultValue = false)]
         public ServiceError ServiceError { get; set; }
-       
+
+        /// <summary>
+        /// The payment method that was submited on /payments or /payments/details, not currently documented on the official API documentation
+        /// </summary>
+        /// <value>The payment method that was submited on /payments or /payments/details, not currently documented on the official API documentation</value>
+        [DataMember(Name = "paymentMethod", EmitDefaultValue = false)]
+        public string PaymentMethod { get; set; }
+
         /// <summary>
         /// Returns the string presentation of the object
         /// </summary>
@@ -259,6 +266,7 @@ namespace Adyen.Model.Checkout
             sb.Append("  Action: ").Append(Action).Append("\n");
             sb.Append("  ThreeDS2Result: ").Append(ThreeDS2Result).Append("\n");
             sb.Append("  ServiceError: ").Append(ServiceError).Append("\n");
+            sb.Append("  PaymentMethod: ").Append(PaymentMethod).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -368,6 +376,11 @@ namespace Adyen.Model.Checkout
                     this.ServiceError == input.ServiceError ||
                     (this.ServiceError != null &&
                     this.ServiceError.Equals(input.ServiceError))
+                ) &&
+                (
+                    this.PaymentMethod == input.PaymentMethod ||
+                    (this.PaymentMethod != null &&
+                    this.PaymentMethod.Equals(input.PaymentMethod))
                 );
         }
 

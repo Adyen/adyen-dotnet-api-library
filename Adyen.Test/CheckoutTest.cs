@@ -575,5 +575,23 @@ namespace Adyen.Test
             var paymentResponse = checkout.Payments(paymentRequest);
             Assert.AreEqual("EC-42N19135GM6949000", paymentResponse.Action.SdkData["orderID"]);
         }
+
+
+        /// <summary>
+        /// Test paymentMethod field for /payments/details requests
+        /// Post /payments/details 
+        /// </summary>
+        [TestMethod]
+        public void TrustlyPaymentSuccessMockedTest()
+        {
+            var client = CreateMockTestClientRequest("Mocks/checkout/paymentsdetails-success-trustly.json");
+            var checkout = new Checkout(client);
+            var paymentDetails = CreateDetailsRequest();
+            var paymentResponse = checkout.PaymentDetails(paymentDetails);
+            Assert.AreEqual(paymentResponse.PaymentMethod, "trustly");
+            Assert.AreEqual(paymentResponse.PspReference, "881595517976891A");
+            Assert.AreEqual(paymentResponse.ResultCode, ResultCodeEnum.Received);
+            Assert.AreEqual(paymentResponse.MerchantReference, "81d5a69d-6880-4011-9a5d-8e120491010b");
+        }
     }
 }
