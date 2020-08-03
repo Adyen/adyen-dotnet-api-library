@@ -25,7 +25,19 @@ The Library supports all APIs under the following services:
  https://www.nuget.org/packages/Adyen/
 * or install it from package manager
  PM> Install-Package Adyen -Version 5.5.0
-
+### Vagrant setup
+* Prerequisites
+virtualbox and vagrant
+* Run the following command in the root folder
+```
+vagrant up
+vagrant ssh
+```
+* Run the library tests
+```
+dotnet build
+dotnet test
+```
 ## Usage
 In order to submit http request to Adyen API you need to initialize the client. The following example makes a checkout payment request:
 ```csharp
