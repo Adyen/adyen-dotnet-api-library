@@ -28,13 +28,14 @@ The Library supports all APIs under the following services:
 ### Vagrant setup
 * Prerequisites
 virtualbox and vagrant
-* Run the following command in the root folder
+* Run the following commands in the root folder to setup vagrant
 ```
 vagrant up
 vagrant ssh
 ```
 * Run the library tests
 ```
+cd adyen-dotnet-api-library
 dotnet build
 dotnet test
 ```
