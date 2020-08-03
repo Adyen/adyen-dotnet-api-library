@@ -21,6 +21,8 @@
 //  */
 #endregion
 
+using Adyen.CloudApiSerialization;
+
 namespace Adyen.Model.Nexo
 {
     /// <remarks/>
@@ -28,7 +30,7 @@ namespace Adyen.Model.Nexo
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
-    public partial class PrintResponse
+    public partial class PrintResponse :IMessagePayload
     {
 
         /// <remarks/>
