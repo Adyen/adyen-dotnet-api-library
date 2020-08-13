@@ -104,7 +104,7 @@ namespace Adyen.Test
         }
         
         /// <summary>
-        /// Test post /getTerminalsUnderAccountResponse 
+        /// Test post /getTerminalDetails
         /// </summary>
         [TestMethod]
         public void GetTerminalDetailsSuccess()
