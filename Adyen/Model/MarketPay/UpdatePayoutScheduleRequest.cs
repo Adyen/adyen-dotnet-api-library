@@ -236,8 +236,7 @@ namespace Adyen.Model.MarketPay
                 ) && 
                 (
                     this.Schedule == input.Schedule ||
-                    (this.Schedule != null &&
-                    this.Schedule.Equals(input.Schedule))
+                    this.Schedule.Equals(input.Schedule)
                 );
         }
 
@@ -254,8 +253,7 @@ namespace Adyen.Model.MarketPay
                     hashCode = hashCode * 59 + this.Action.GetHashCode();
                 if (this.Reason != null)
                     hashCode = hashCode * 59 + this.Reason.GetHashCode();
-                if (this.Schedule != null)
-                    hashCode = hashCode * 59 + this.Schedule.GetHashCode();
+                hashCode = hashCode * 59 + this.Schedule.GetHashCode();
                 return hashCode;
             }
         }

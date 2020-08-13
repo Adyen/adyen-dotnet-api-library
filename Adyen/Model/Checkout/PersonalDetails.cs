@@ -46,7 +46,7 @@ namespace Adyen.Model.Checkout
         public string SocialSecurityNumber { get; set; }
         [DataMember(Name = "shopperEmail", EmitDefaultValue = false)]
         public string ShopperEmail { get; set; }
-        
+
         public override string ToString()
         {
             var sb = new StringBuilder();
@@ -90,6 +90,30 @@ namespace Adyen.Model.Checkout
         {
             yield break;
         }
-    }
 
+        public override int GetHashCode()
+        {
+            unchecked // Overflow is fine, just wrap
+            {
+                int hashCode = 41;
+                if (this.FirstName != null)
+                    hashCode = hashCode * 59 + this.FirstName.GetHashCode();
+                if (this.Infix != null)
+                    hashCode = hashCode * 59 + this.Infix.GetHashCode();
+                if (this.LastName != null)
+                    hashCode = hashCode * 59 + this.LastName.GetHashCode();
+                if (this.DateOfBirth != null)
+                    hashCode = hashCode * 59 + this.DateOfBirth.GetHashCode();
+                if (this.TelephoneNumber != null)
+                    hashCode = hashCode * 59 + this.TelephoneNumber.GetHashCode();
+                if (this.SocialSecurityNumber != null)
+                    hashCode = hashCode * 59 + this.SocialSecurityNumber.GetHashCode();
+                if (this.ShopperEmail != null)
+                    hashCode = hashCode * 59 + this.ShopperEmail.GetHashCode();
+
+                return hashCode;
+            }
+        }
+
+    }
 }

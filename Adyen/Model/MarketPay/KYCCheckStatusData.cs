@@ -235,8 +235,7 @@ namespace Adyen.Model.MarketPay
                 ) && 
                 (
                     this.Status == input.Status ||
-                    (this.Status != null &&
-                    this.Status.Equals(input.Status))
+                    this.Status.Equals(input.Status)
                 ) && 
                 (
                     this.Summary == input.Summary ||
@@ -245,8 +244,7 @@ namespace Adyen.Model.MarketPay
                 ) && 
                 (
                     this.Type == input.Type ||
-                    (this.Type != null &&
-                    this.Type.Equals(input.Type))
+                    this.Type.Equals(input.Type)
                 );
         }
 
@@ -261,12 +259,10 @@ namespace Adyen.Model.MarketPay
                 int hashCode = 41;
                 if (this.RequiredFields != null)
                     hashCode = hashCode * 59 + this.RequiredFields.GetHashCode();
-                if (this.Status != null)
-                    hashCode = hashCode * 59 + this.Status.GetHashCode();
+                hashCode = hashCode * 59 + this.Status.GetHashCode();
                 if (this.Summary != null)
                     hashCode = hashCode * 59 + this.Summary.GetHashCode();
-                if (this.Type != null)
-                    hashCode = hashCode * 59 + this.Type.GetHashCode();
+                hashCode = hashCode * 59 + this.Type.GetHashCode();
                 return hashCode;
             }
         }

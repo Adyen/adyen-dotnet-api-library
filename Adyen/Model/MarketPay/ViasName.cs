@@ -180,8 +180,7 @@ namespace Adyen.Model.MarketPay
                 ) && 
                 (
                     this.Gender == input.Gender ||
-                    (this.Gender != null &&
-                    this.Gender.Equals(input.Gender))
+                    this.Gender.Equals(input.Gender)
                 ) && 
                 (
                     this.Infix == input.Infix ||
@@ -206,8 +205,7 @@ namespace Adyen.Model.MarketPay
                 int hashCode = 41;
                 if (this.FirstName != null)
                     hashCode = hashCode * 59 + this.FirstName.GetHashCode();
-                if (this.Gender != null)
-                    hashCode = hashCode * 59 + this.Gender.GetHashCode();
+                hashCode = hashCode * 59 + this.Gender.GetHashCode();
                 if (this.Infix != null)
                     hashCode = hashCode * 59 + this.Infix.GetHashCode();
                 if (this.LastName != null)

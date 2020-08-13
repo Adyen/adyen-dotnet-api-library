@@ -215,8 +215,7 @@ namespace Adyen.Model.MarketPay
                 int hashCode = 41;
                 if (this.NextScheduledPayout != null)
                     hashCode = hashCode * 59 + this.NextScheduledPayout.GetHashCode();
-                if (this.Schedule != null)
-                    hashCode = hashCode * 59 + this.Schedule.GetHashCode();
+                hashCode = hashCode * 59 + this.Schedule.GetHashCode();
                 return hashCode;
             }
         }
