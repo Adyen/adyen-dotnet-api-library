@@ -144,24 +144,8 @@ namespace Adyen.Model.MarketPay
         /// <param name="type">The type of check. &gt;Permitted Values: &#x60;COMPANY_VERIFICATION&#x60;, &#x60;IDENTITY_VERIFICATION&#x60;, &#x60;PASSPORT_VERIFICATION&#x60;, &#x60;BANK_ACCOUNT_VERIFICATION&#x60;, &#x60;NONPROFIT_VERIFICATION&#x60;. (required).</param>
         public KYCCheckStatusData(List<string> requiredFields = default(List<string>), StatusEnum status = default(StatusEnum), KYCCheckSummary summary = default(KYCCheckSummary), TypeEnum type = default(TypeEnum))
         {
-            // to ensure "status" is required (not null)
-            if (status == null)
-            {
-                throw new InvalidDataException("status is a required property for KYCCheckStatusData and cannot be null");
-            }
-            else
-            {
-                this.Status = status;
-            }
-            // to ensure "type" is required (not null)
-            if (type == null)
-            {
-                throw new InvalidDataException("type is a required property for KYCCheckStatusData and cannot be null");
-            }
-            else
-            {
-                this.Type = type;
-            }
+            this.Status = status;
+            this.Type = type;
             this.RequiredFields = requiredFields;
             this.Summary = summary;
         }

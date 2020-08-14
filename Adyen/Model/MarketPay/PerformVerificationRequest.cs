@@ -98,15 +98,6 @@ namespace Adyen.Model.MarketPay
             {
                 this.AccountHolderCode = accountHolderCode;
             }
-            // to ensure "accountStateType" is required (not null)
-            if (accountStateType == null)
-            {
-                throw new InvalidDataException("accountStateType is a required property for PerformVerificationRequest and cannot be null");
-            }
-            else
-            {
-                this.AccountStateType = accountStateType;
-            }
             // to ensure "tier" is required (not null)
             if (tier == null)
             {
@@ -116,8 +107,9 @@ namespace Adyen.Model.MarketPay
             {
                 this.Tier = tier;
             }
+            this.AccountStateType = accountStateType;
         }
-        
+
         /// <summary>
         /// The code of the account holder to verify.
         /// </summary>
@@ -185,8 +177,7 @@ namespace Adyen.Model.MarketPay
                 ) && 
                 (
                     this.AccountStateType == input.AccountStateType ||
-                    (this.AccountStateType != null &&
-                    this.AccountStateType.Equals(input.AccountStateType))
+                    this.AccountStateType.Equals(input.AccountStateType)
                 ) && 
                 (
                     this.Tier == input.Tier ||

@@ -131,15 +131,7 @@ namespace Adyen.Model.MarketPay
             {
                 this.AccountHolderCode = accountHolderCode;
             }
-            // to ensure "documentType" is required (not null)
-            if (documentType == null)
-            {
-                throw new InvalidDataException("documentType is a required property for DocumentDetail and cannot be null");
-            }
-            else
-            {
-                this.DocumentType = documentType;
-            }
+            
             // to ensure "filename" is required (not null)
             if (filename == null)
             {
@@ -149,6 +141,7 @@ namespace Adyen.Model.MarketPay
             {
                 this.Filename = filename;
             }
+            this.DocumentType = documentType;
             this.DocumentType = documentType;
             this.Filename = filename;
             this.BankAccountUUID = bankAccountUUID;
@@ -257,8 +250,7 @@ namespace Adyen.Model.MarketPay
                 ) && 
                 (
                     this.DocumentType == input.DocumentType ||
-                    (this.DocumentType != null &&
-                    this.DocumentType.Equals(input.DocumentType))
+                    this.DocumentType.Equals(input.DocumentType)
                 ) && 
                 (
                     this.Filename == input.Filename ||
@@ -287,8 +279,7 @@ namespace Adyen.Model.MarketPay
                     hashCode = hashCode * 59 + this.BankAccountUUID.GetHashCode();
                 if (this.Description != null)
                     hashCode = hashCode * 59 + this.Description.GetHashCode();
-                if (this.DocumentType != null)
-                    hashCode = hashCode * 59 + this.DocumentType.GetHashCode();
+                hashCode = hashCode * 59 + this.DocumentType.GetHashCode();
                 if (this.Filename != null)
                     hashCode = hashCode * 59 + this.Filename.GetHashCode();
                 if (this.ShareholderCode != null)

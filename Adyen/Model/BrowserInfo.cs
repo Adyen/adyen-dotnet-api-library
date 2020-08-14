@@ -199,16 +199,11 @@ namespace Adyen.Model
                     hash = hash * 59 + this.UserAgent.GetHashCode();
                 if (this.Language != null)
                     hash = hash * 59 + this.Language.GetHashCode();
-                if (this.ColorDepth != null)
-                    hash = hash * 59 + this.ColorDepth.GetHashCode();
-                if (this.ScreenHeight != null)
-                    hash = hash * 59 + this.ScreenHeight.GetHashCode();
-                if (this.ScreenWidth != null)
-                    hash = hash * 59 + this.ScreenWidth.GetHashCode();
-                if (this.TimeZoneOffset != null)
-                    hash = hash * 59 + this.TimeZoneOffset.GetHashCode();
-                if (this.JavaEnabled != null)
-                    hash = hash * 59 + this.JavaEnabled.GetHashCode();
+                hash = hash * 59 + this.ColorDepth.GetHashCode();
+                hash = hash * 59 + this.ScreenHeight.GetHashCode();
+                hash = hash * 59 + this.ScreenWidth.GetHashCode();
+                hash = hash * 59 + this.TimeZoneOffset.GetHashCode();
+                hash = hash * 59 + this.JavaEnabled.GetHashCode();
                 
                 return hash;
             }

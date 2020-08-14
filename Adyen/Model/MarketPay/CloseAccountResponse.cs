@@ -192,8 +192,7 @@ namespace Adyen.Model.MarketPay
                 ) && 
                 (
                     this.Status == input.Status ||
-                    (this.Status != null &&
-                    this.Status.Equals(input.Status))
+                    this.Status.Equals(input.Status)
                 );
         }
 
@@ -212,8 +211,7 @@ namespace Adyen.Model.MarketPay
                     hashCode = hashCode * 59 + this.PspReference.GetHashCode();
                 if (this.ResultCode != null)
                     hashCode = hashCode * 59 + this.ResultCode.GetHashCode();
-                if (this.Status != null)
-                    hashCode = hashCode * 59 + this.Status.GetHashCode();
+                hashCode = hashCode * 59 + this.Status.GetHashCode();
                 return hashCode;
             }
         }

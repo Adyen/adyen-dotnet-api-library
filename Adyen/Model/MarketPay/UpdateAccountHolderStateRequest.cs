@@ -108,15 +108,8 @@ namespace Adyen.Model.MarketPay
             {
                 this.Disable = disable;
             }
-            // to ensure "stateType" is required (not null)
-            if (stateType == null)
-            {
-                throw new InvalidDataException("stateType is a required property for UpdateAccountHolderStateRequest and cannot be null");
-            }
-            else
-            {
-                this.StateType = stateType;
-            }
+            
+            this.StateType = stateType;       
             this.Reason = reason;
         }
         
