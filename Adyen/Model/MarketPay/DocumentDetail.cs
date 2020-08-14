@@ -142,7 +142,6 @@ namespace Adyen.Model.MarketPay
                 this.Filename = filename;
             }
             this.DocumentType = documentType;
-            this.DocumentType = documentType;
             this.Filename = filename;
             this.BankAccountUUID = bankAccountUUID;
             this.Description = description;
