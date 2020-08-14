@@ -102,7 +102,9 @@ namespace Adyen.Model.Checkout
             sb.Append("  EncryptedExpiryMonth: ").Append(EncryptedExpiryMonth).Append("\n");
             sb.Append("  EncryptedExpiryYear: ").Append(EncryptedExpiryYear).Append("\n");
             sb.Append("  EncryptedSecurityCode: ").Append(EncryptedSecurityCode).Append("\n");
+#pragma warning disable 618
             sb.Append("  RecurringDetailReference: ").Append(RecurringDetailReference).Append("\n");
+#pragma warning restore 618
             sb.Append("  StoredPaymentMethodId: ").Append(StoredPaymentMethodId).Append("\n");
             sb.Append("  StoreDetails: ").Append(StoreDetails).Append("\n");
             sb.Append("  Issuer: ").Append(Issuer).Append("\n");
@@ -216,9 +218,12 @@ namespace Adyen.Model.Checkout
                     this.EncryptedSecurityCode.Equals(input.EncryptedSecurityCode))
                 ) &&
                 (
+#pragma warning disable CS0618 // Type or member is obsolete
                     this.RecurringDetailReference == input.RecurringDetailReference ||
                     (this.RecurringDetailReference != null &&
                      this.RecurringDetailReference.Equals(input.RecurringDetailReference))
+#pragma warning restore CS0618 // Type or member is obsolete
+
                 ) &&
                 (
                     this.StoredPaymentMethodId == input.StoredPaymentMethodId ||
@@ -309,8 +314,10 @@ namespace Adyen.Model.Checkout
                     hashCode = hashCode * 59 + this.EncryptedExpiryYear.GetHashCode();
                 if (this.EncryptedSecurityCode != null)
                     hashCode = hashCode * 59 + this.EncryptedSecurityCode.GetHashCode();
+#pragma warning disable 618
                 if (this.RecurringDetailReference != null)
                     hashCode = hashCode * 59 + this.RecurringDetailReference.GetHashCode();
+#pragma warning restore 618
                 if (this.StoredPaymentMethodId != null)
                     hashCode = hashCode * 59 + this.StoredPaymentMethodId.GetHashCode();
                 hashCode = hashCode * 59 + this.StoreDetails.GetHashCode();

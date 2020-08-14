@@ -101,8 +101,8 @@ namespace Adyen.Model.CheckoutUtility
                 int hashCode = 41;
                 if (this.OriginKeys != null)
                     hashCode = hashCode * 59 + this.OriginKeys.GetHashCode();
+                return hashCode;
             }
-            return GetHashCode();
         }
     }
 }
