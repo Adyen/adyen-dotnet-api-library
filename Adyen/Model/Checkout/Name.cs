@@ -183,8 +183,7 @@ namespace Adyen.Model.Checkout
                 ) &&
                 (
                     this.Gender == input.Gender ||
-                    (this.Gender != null &&
-                    this.Gender.Equals(input.Gender))
+                    this.Gender.Equals(input.Gender)
                 ) &&
                 (
                     this.Infix == input.Infix ||
@@ -209,8 +208,7 @@ namespace Adyen.Model.Checkout
                 int hashCode = 41;
                 if (this.FirstName != null)
                     hashCode = hashCode * 59 + this.FirstName.GetHashCode();
-                if (this.Gender != null)
-                    hashCode = hashCode * 59 + this.Gender.GetHashCode();
+                hashCode = hashCode * 59 + this.Gender.GetHashCode();
                 if (this.Infix != null)
                     hashCode = hashCode * 59 + this.Infix.GetHashCode();
                 if (this.LastName != null)
@@ -226,18 +224,6 @@ namespace Adyen.Model.Checkout
         /// <returns>Validation Result</returns>
         IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
         {
-            // Gender (string) maxLength
-            if (this.Gender != null && this.Gender.ToString().Length > 1)
-            {
-                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for Gender, length must be less than 1.", new[] { "Gender" });
-            }
-
-            // Gender (string) minLength
-            if (this.Gender != null && this.Gender.ToString().Length < 1)
-            {
-                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for Gender, length must be greater than 1.", new[] { "Gender" });
-            }
-
             yield break;
         }
     }

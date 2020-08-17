@@ -84,15 +84,6 @@ namespace Adyen.Model.MarketPay
             {
                 this.FirstName = firstName;
             }
-            // to ensure "gender" is required (not null)
-            if (gender == null)
-            {
-                throw new InvalidDataException("gender is a required property for ViasName and cannot be null");
-            }
-            else
-            {
-                this.Gender = gender;
-            }
             // to ensure "lastName" is required (not null)
             if (lastName == null)
             {
@@ -102,6 +93,7 @@ namespace Adyen.Model.MarketPay
             {
                 this.LastName = lastName;
             }
+            this.Gender = gender;
             this.Infix = infix;
         }
         
@@ -180,8 +172,7 @@ namespace Adyen.Model.MarketPay
                 ) && 
                 (
                     this.Gender == input.Gender ||
-                    (this.Gender != null &&
-                    this.Gender.Equals(input.Gender))
+                    this.Gender.Equals(input.Gender)
                 ) && 
                 (
                     this.Infix == input.Infix ||
@@ -206,8 +197,7 @@ namespace Adyen.Model.MarketPay
                 int hashCode = 41;
                 if (this.FirstName != null)
                     hashCode = hashCode * 59 + this.FirstName.GetHashCode();
-                if (this.Gender != null)
-                    hashCode = hashCode * 59 + this.Gender.GetHashCode();
+                hashCode = hashCode * 59 + this.Gender.GetHashCode();
                 if (this.Infix != null)
                     hashCode = hashCode * 59 + this.Infix.GetHashCode();
                 if (this.LastName != null)

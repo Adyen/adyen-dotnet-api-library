@@ -263,8 +263,7 @@ namespace Adyen.Model.MarketPay
                 ) && 
                 (
                     this.LegalEntity == input.LegalEntity ||
-                    (this.LegalEntity != null &&
-                    this.LegalEntity.Equals(input.LegalEntity))
+                    this.LegalEntity.Equals(input.LegalEntity)
                 ) && 
                 (
                     this.PrimaryCurrency == input.PrimaryCurrency ||
@@ -309,8 +308,7 @@ namespace Adyen.Model.MarketPay
                     hashCode = hashCode * 59 + this.Description.GetHashCode();
                 if (this.InvalidFields != null)
                     hashCode = hashCode * 59 + this.InvalidFields.GetHashCode();
-                if (this.LegalEntity != null)
-                    hashCode = hashCode * 59 + this.LegalEntity.GetHashCode();
+                hashCode = hashCode * 59 + this.LegalEntity.GetHashCode();
                 if (this.PrimaryCurrency != null)
                     hashCode = hashCode * 59 + this.PrimaryCurrency.GetHashCode();
                 if (this.PspReference != null)

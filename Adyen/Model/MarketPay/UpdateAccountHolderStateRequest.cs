@@ -108,15 +108,8 @@ namespace Adyen.Model.MarketPay
             {
                 this.Disable = disable;
             }
-            // to ensure "stateType" is required (not null)
-            if (stateType == null)
-            {
-                throw new InvalidDataException("stateType is a required property for UpdateAccountHolderStateRequest and cannot be null");
-            }
-            else
-            {
-                this.StateType = stateType;
-            }
+            
+            this.StateType = stateType;       
             this.Reason = reason;
         }
         
@@ -205,8 +198,7 @@ namespace Adyen.Model.MarketPay
                 ) && 
                 (
                     this.StateType == input.StateType ||
-                    (this.StateType != null &&
-                    this.StateType.Equals(input.StateType))
+                    this.StateType.Equals(input.StateType)
                 );
         }
 
@@ -225,8 +217,7 @@ namespace Adyen.Model.MarketPay
                     hashCode = hashCode * 59 + this.Disable.GetHashCode();
                 if (this.Reason != null)
                     hashCode = hashCode * 59 + this.Reason.GetHashCode();
-                if (this.StateType != null)
-                    hashCode = hashCode * 59 + this.StateType.GetHashCode();
+                hashCode = hashCode * 59 + this.StateType.GetHashCode();
                 return hashCode;
             }
         }

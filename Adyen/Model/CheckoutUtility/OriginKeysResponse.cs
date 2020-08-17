@@ -89,5 +89,20 @@ namespace Adyen.Model.CheckoutUtility
         {
               yield break;
         }
+
+        /// <summary>
+        /// Gets the hash code
+        /// </summary>
+        /// <returns>Hash code</returns>
+        public override int GetHashCode()
+        {
+            unchecked // Overflow is fine, just wrap
+            {
+                int hashCode = 41;
+                if (this.OriginKeys != null)
+                    hashCode = hashCode * 59 + this.OriginKeys.GetHashCode();
+                return hashCode;
+            }
+        }
     }
 }

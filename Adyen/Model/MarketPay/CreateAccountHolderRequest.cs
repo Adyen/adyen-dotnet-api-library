@@ -101,15 +101,7 @@ namespace Adyen.Model.MarketPay
             {
                 this.AccountHolderDetails = accountHolderDetails;
             }
-            // to ensure "legalEntity" is required (not null)
-            if (legalEntity == null)
-            {
-                throw new InvalidDataException("legalEntity is a required property for CreateAccountHolderRequest and cannot be null");
-            }
-            else
-            {
-                this.LegalEntity = legalEntity;
-            }
+            this.LegalEntity = legalEntity;
             this.CreateDefaultAccount = createDefaultAccount;
             this.Description = description;
             this.PrimaryCurrency = primaryCurrency;
@@ -229,8 +221,7 @@ namespace Adyen.Model.MarketPay
                 ) && 
                 (
                     this.LegalEntity == input.LegalEntity ||
-                    (this.LegalEntity != null &&
-                    this.LegalEntity.Equals(input.LegalEntity))
+                    this.LegalEntity.Equals(input.LegalEntity)
                 ) && 
                 (
                     this.PrimaryCurrency == input.PrimaryCurrency ||
@@ -261,8 +252,7 @@ namespace Adyen.Model.MarketPay
                     hashCode = hashCode * 59 + this.CreateDefaultAccount.GetHashCode();
                 if (this.Description != null)
                     hashCode = hashCode * 59 + this.Description.GetHashCode();
-                if (this.LegalEntity != null)
-                    hashCode = hashCode * 59 + this.LegalEntity.GetHashCode();
+                hashCode = hashCode * 59 + this.LegalEntity.GetHashCode();
                 if (this.PrimaryCurrency != null)
                     hashCode = hashCode * 59 + this.PrimaryCurrency.GetHashCode();
                 if (this.ProcessingTier != null)
