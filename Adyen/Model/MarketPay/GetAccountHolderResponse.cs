@@ -116,15 +116,6 @@ namespace Adyen.Model.MarketPay
             {
                 this.AccountHolderStatus = accountHolderStatus;
             }
-            // to ensure "legalEntity" is required (not null)
-            if (legalEntity == null)
-            {
-                throw new InvalidDataException("legalEntity is a required property for GetAccountHolderResponse and cannot be null");
-            }
-            else
-            {
-                this.LegalEntity = legalEntity;
-            }
             // to ensure "pspReference" is required (not null)
             if (pspReference == null)
             {
@@ -143,6 +134,7 @@ namespace Adyen.Model.MarketPay
             {
                 this.Verification = verification;
             }
+            this.LegalEntity = legalEntity;
             this.Accounts = accounts;
             this.Description = description;
             this.InvalidFields = invalidFields;
@@ -314,8 +306,7 @@ namespace Adyen.Model.MarketPay
                 ) && 
                 (
                     this.LegalEntity == input.LegalEntity ||
-                    (this.LegalEntity != null &&
-                    this.LegalEntity.Equals(input.LegalEntity))
+                    this.LegalEntity.Equals(input.LegalEntity)
                 ) && 
                 (
                     this.PrimaryCurrency == input.PrimaryCurrency ||
@@ -365,8 +356,7 @@ namespace Adyen.Model.MarketPay
                     hashCode = hashCode * 59 + this.Description.GetHashCode();
                 if (this.InvalidFields != null)
                     hashCode = hashCode * 59 + this.InvalidFields.GetHashCode();
-                if (this.LegalEntity != null)
-                    hashCode = hashCode * 59 + this.LegalEntity.GetHashCode();
+                hashCode = hashCode * 59 + this.LegalEntity.GetHashCode();
                 if (this.PrimaryCurrency != null)
                     hashCode = hashCode * 59 + this.PrimaryCurrency.GetHashCode();
                 if (this.PspReference != null)

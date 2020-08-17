@@ -69,15 +69,6 @@ namespace Adyen.Model.MarketPay
         /// <param name="reason">The reason why this event has been created. (required).</param>
         public AccountEvent(EventEnum _event = default(EventEnum), DateTime? executionDate = default(DateTime?), string reason = default(string))
         {
-            // to ensure "_event" is required (not null)
-            if (_event == null)
-            {
-                throw new InvalidDataException("_event is a required property for AccountEvent and cannot be null");
-            }
-            else
-            {
-                this.Event = _event;
-            }
             // to ensure "executionDate" is required (not null)
             if (executionDate == null)
             {
@@ -96,6 +87,7 @@ namespace Adyen.Model.MarketPay
             {
                 this.Reason = reason;
             }
+            this.Event = _event;
         }
         
 
@@ -160,8 +152,7 @@ namespace Adyen.Model.MarketPay
             return 
                 (
                     this.Event == input.Event ||
-                    (this.Event != null &&
-                    this.Event.Equals(input.Event))
+                    this.Event.Equals(input.Event)
                 ) && 
                 (
                     this.ExecutionDate == input.ExecutionDate ||
@@ -184,8 +175,7 @@ namespace Adyen.Model.MarketPay
             unchecked // Overflow is fine, just wrap
             {
                 int hashCode = 41;
-                if (this.Event != null)
-                    hashCode = hashCode * 59 + this.Event.GetHashCode();
+                hashCode = hashCode * 59 + this.Event.GetHashCode();
                 if (this.ExecutionDate != null)
                     hashCode = hashCode * 59 + this.ExecutionDate.GetHashCode();
                 if (this.Reason != null)

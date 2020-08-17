@@ -13,7 +13,7 @@
     <RepositoryUrl>https://github.com/Adyen/adyen-dotnet-api-library</RepositoryUrl>
     <RepositoryType>git</RepositoryType>
     <PackageTags>5.5.0</PackageTags>
-    <PackageLicenseUrl>https://github.com/Adyen/adyen-dotnet-api-library/blob/master/LICENSE</PackageLicenseUrl>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
     <Authors>Adyen</Authors>
     <Company>Adyen</Company>
     <Title>adyen-dotnet-api-library</Title>

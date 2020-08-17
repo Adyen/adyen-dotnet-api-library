@@ -117,15 +117,8 @@ namespace Adyen.Model
             {
                 this.Amount = Amount;
             }
-            // to ensure "Type" is required (not null)
-            if (Type == null)
-            {
-                throw new InvalidDataException("Type is a required property for Split and cannot be null");
-            }
-            else
-            {
-                this.Type = Type;
-            }
+            
+            this.Type = Type;
             this.Account = Account;
             this.Description = Description;
             this.Reference = Reference;
@@ -229,8 +222,7 @@ namespace Adyen.Model
                 ) &&
                 (
                     this.Type == input.Type ||
-                    (this.Type != null &&
-                     this.Type.Equals(input.Type))
+                    (this.Type.Equals(input.Type))
                 );
         }
 
@@ -251,8 +243,7 @@ namespace Adyen.Model
                     hashCode = hashCode * 59 + this.Description.GetHashCode();
                 if (this.Reference != null)
                     hashCode = hashCode * 59 + this.Reference.GetHashCode();
-                if (this.Type != null)
-                    hashCode = hashCode * 59 + this.Type.GetHashCode();
+                hashCode = hashCode * 59 + this.Type.GetHashCode();
                 return hashCode;
             }
         }
