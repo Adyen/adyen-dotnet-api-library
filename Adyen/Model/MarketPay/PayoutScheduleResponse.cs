@@ -128,15 +128,7 @@ namespace Adyen.Model.MarketPay
         /// <param name="schedule">The payout schedule of the account. &gt;Permitted values: &#x60;DEFAULT&#x60;, &#x60;HOLD&#x60;, &#x60;DAILY&#x60;, &#x60;WEEKLY&#x60;, &#x60;MONTHLY&#x60;. (required).</param>
         public PayoutScheduleResponse(DateTime? nextScheduledPayout = default(DateTime?), ScheduleEnum schedule = default(ScheduleEnum))
         {
-            // to ensure "schedule" is required (not null)
-            if (schedule == null)
-            {
-                throw new InvalidDataException("schedule is a required property for PayoutScheduleResponse and cannot be null");
-            }
-            else
-            {
-                this.Schedule = schedule;
-            }
+            this.Schedule = schedule;
             this.NextScheduledPayout = nextScheduledPayout;
         }
         
@@ -199,8 +191,7 @@ namespace Adyen.Model.MarketPay
                 ) && 
                 (
                     this.Schedule == input.Schedule ||
-                    (this.Schedule != null &&
-                    this.Schedule.Equals(input.Schedule))
+                    this.Schedule.Equals(input.Schedule)
                 );
         }
 
@@ -215,8 +206,7 @@ namespace Adyen.Model.MarketPay
                 int hashCode = 41;
                 if (this.NextScheduledPayout != null)
                     hashCode = hashCode * 59 + this.NextScheduledPayout.GetHashCode();
-                if (this.Schedule != null)
-                    hashCode = hashCode * 59 + this.Schedule.GetHashCode();
+                hashCode = hashCode * 59 + this.Schedule.GetHashCode();
                 return hashCode;
             }
         }

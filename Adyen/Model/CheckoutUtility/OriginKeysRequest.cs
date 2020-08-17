@@ -38,8 +38,8 @@ namespace Adyen.Model.CheckoutUtility
     public class OriginKeysRequest : IEquatable<OriginKeysRequest>, IValidatableObject
     {
         [DataMember(Name = "originDomains", EmitDefaultValue = false)]
-        public List<string> OriginDomains { get;set;}
-        
+        public List<string> OriginDomains { get; set; }
+
         public bool Equals(OriginKeysRequest input)
         {
             if (input == null)
@@ -49,9 +49,9 @@ namespace Adyen.Model.CheckoutUtility
              this.OriginDomains == input.OriginDomains ||
                     this.OriginDomains != null &&
                     this.OriginDomains.SequenceEqual(input.OriginDomains));
-        } 
+        }
 
-        
+
         /// <summary>
         /// Returns the string presentation of the object
         /// </summary>
@@ -64,7 +64,7 @@ namespace Adyen.Model.CheckoutUtility
             sb.Append("}\n");
             return sb.ToString();
         }
-  
+
         /// <summary>
         /// Returns the JSON string presentation of the object
         /// </summary>
@@ -87,7 +87,19 @@ namespace Adyen.Model.CheckoutUtility
 
         public IEnumerable<ValidationResult> Validate(ValidationContext validationContext)
         {
-              yield break;
+            yield break;
+        }
+
+        public override int GetHashCode()
+        {
+            unchecked // Overflow is fine, just wrap
+            {
+                int hashCode = 41;
+                if (this.OriginDomains != null)
+                    hashCode = hashCode * 59 + this.OriginDomains.GetHashCode();
+                return hashCode;
+            }
+
         }
     }
 }

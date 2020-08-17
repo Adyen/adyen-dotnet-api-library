@@ -113,15 +113,8 @@ namespace Adyen.Model.MarketPay
             {
                 this.PspReference = pspReference;
             }
-            // to ensure "status" is required (not null)
-            if (status == null)
-            {
-                throw new InvalidDataException("status is a required property for CreateAccountResponse and cannot be null");
-            }
-            else
-            {
-                this.Status = status;
-            }
+            
+            this.Status = status;
             this.Description = description;
             this.InvalidFields = invalidFields;
             this.Metadata = metadata;
@@ -279,8 +272,7 @@ namespace Adyen.Model.MarketPay
                 ) && 
                 (
                     this.Status == input.Status ||
-                    (this.Status != null &&
-                    this.Status.Equals(input.Status))
+                    this.Status.Equals(input.Status)
                 );
         }
 
@@ -309,8 +301,7 @@ namespace Adyen.Model.MarketPay
                     hashCode = hashCode * 59 + this.PspReference.GetHashCode();
                 if (this.ResultCode != null)
                     hashCode = hashCode * 59 + this.ResultCode.GetHashCode();
-                if (this.Status != null)
-                    hashCode = hashCode * 59 + this.Status.GetHashCode();
+                hashCode = hashCode * 59 + this.Status.GetHashCode();
                 return hashCode;
             }
         }

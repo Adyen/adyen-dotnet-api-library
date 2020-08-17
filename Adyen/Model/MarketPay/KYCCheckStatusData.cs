@@ -144,24 +144,8 @@ namespace Adyen.Model.MarketPay
         /// <param name="type">The type of check. &gt;Permitted Values: &#x60;COMPANY_VERIFICATION&#x60;, &#x60;IDENTITY_VERIFICATION&#x60;, &#x60;PASSPORT_VERIFICATION&#x60;, &#x60;BANK_ACCOUNT_VERIFICATION&#x60;, &#x60;NONPROFIT_VERIFICATION&#x60;. (required).</param>
         public KYCCheckStatusData(List<string> requiredFields = default(List<string>), StatusEnum status = default(StatusEnum), KYCCheckSummary summary = default(KYCCheckSummary), TypeEnum type = default(TypeEnum))
         {
-            // to ensure "status" is required (not null)
-            if (status == null)
-            {
-                throw new InvalidDataException("status is a required property for KYCCheckStatusData and cannot be null");
-            }
-            else
-            {
-                this.Status = status;
-            }
-            // to ensure "type" is required (not null)
-            if (type == null)
-            {
-                throw new InvalidDataException("type is a required property for KYCCheckStatusData and cannot be null");
-            }
-            else
-            {
-                this.Type = type;
-            }
+            this.Status = status;
+            this.Type = type;
             this.RequiredFields = requiredFields;
             this.Summary = summary;
         }
@@ -235,8 +219,7 @@ namespace Adyen.Model.MarketPay
                 ) && 
                 (
                     this.Status == input.Status ||
-                    (this.Status != null &&
-                    this.Status.Equals(input.Status))
+                    this.Status.Equals(input.Status)
                 ) && 
                 (
                     this.Summary == input.Summary ||
@@ -245,8 +228,7 @@ namespace Adyen.Model.MarketPay
                 ) && 
                 (
                     this.Type == input.Type ||
-                    (this.Type != null &&
-                    this.Type.Equals(input.Type))
+                    this.Type.Equals(input.Type)
                 );
         }
 
@@ -261,12 +243,10 @@ namespace Adyen.Model.MarketPay
                 int hashCode = 41;
                 if (this.RequiredFields != null)
                     hashCode = hashCode * 59 + this.RequiredFields.GetHashCode();
-                if (this.Status != null)
-                    hashCode = hashCode * 59 + this.Status.GetHashCode();
+                hashCode = hashCode * 59 + this.Status.GetHashCode();
                 if (this.Summary != null)
                     hashCode = hashCode * 59 + this.Summary.GetHashCode();
-                if (this.Type != null)
-                    hashCode = hashCode * 59 + this.Type.GetHashCode();
+                hashCode = hashCode * 59 + this.Type.GetHashCode();
                 return hashCode;
             }
         }
