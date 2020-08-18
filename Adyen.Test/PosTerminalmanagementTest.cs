@@ -102,5 +102,34 @@ namespace Adyen.Test
             Assert.AreEqual(getTerminalsUnderAccountResponse.MerchantAccounts[1].InStoreTerminals[0], "VX820-123456789");
             Assert.AreEqual(getTerminalsUnderAccountResponse.MerchantAccounts[1].InStoreTerminals[1], "VX690-123456789");
         }
+        
+        /// <summary>
+        /// Test post /getTerminalDetails
+        /// </summary>
+        [TestMethod]
+        public void GetTerminalDetailsSuccess()
+        {
+            var client =
+                CreateMockTestClientApiKeyBasedRequest(
+                    "Mocks/pos-terminal-management/get-terminals-details-success.json");
+            var posTerminalManagement = new PosTerminalManagement(client);
+            var getTerminalDetailsRequest = new GetTerminalDetailsRequest
+            {
+                Terminal = "P400Plus-275479597",
+            };
+            var getTerminalDetailsResponse =
+                posTerminalManagement.GetTerminalDetails(getTerminalDetailsRequest);
+            Assert.AreEqual(getTerminalDetailsResponse.CompanyAccount, "YOUR_COMPANY_ACCOUNT");
+            Assert.AreEqual(getTerminalDetailsResponse.MerchantAccount, "YOUR_MERCHANT_ACCOUNT");
+            Assert.AreEqual(getTerminalDetailsResponse.MerchantInventory, false);
+            Assert.AreEqual(getTerminalDetailsResponse.Terminal, "P400Plus-275479597");
+            Assert.AreEqual(getTerminalDetailsResponse.DeviceModel, "P400Plus");
+            Assert.AreEqual(getTerminalDetailsResponse.SerialNumber, "275-479-597");
+            Assert.AreEqual(getTerminalDetailsResponse.PermanentTerminalId, "12000000");
+            Assert.AreEqual(getTerminalDetailsResponse.FirmwareVersion, "Verifone_VOS 1.50.7");
+            Assert.AreEqual(getTerminalDetailsResponse.TerminalStatus, "ReAssignToInventoryPending");
+            Assert.AreEqual(getTerminalDetailsResponse.Country, "NETHERLANDS");
+            Assert.AreEqual(getTerminalDetailsResponse.DhcpEnabled, false);
+        }
     }
 }

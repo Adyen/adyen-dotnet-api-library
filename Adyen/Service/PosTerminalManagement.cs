@@ -34,12 +34,14 @@ namespace Adyen.Service
         private readonly AssignTerminals _assignTerminals;
         private readonly FindTerminal _findTerminal;
         private readonly GetTerminalsUnderAccount _getTerminalsUnderAccount;
-        
+        private readonly GetTerminalDetails _getTerminalDetails;
+
         public PosTerminalManagement(Client client) : base(client)
         {
             _assignTerminals = new AssignTerminals(this);
             _findTerminal = new FindTerminal(this);
             _getTerminalsUnderAccount = new GetTerminalsUnderAccount(this);
+            _getTerminalDetails = new GetTerminalDetails(this);
         }
         /// <summary>
         /// post /assingTerminals
@@ -106,6 +108,30 @@ namespace Adyen.Service
             var jsonRequest = Util.JsonOperation.SerializeRequest(getTerminalsUnderAccountRequest);
             var jsonResponse = await _getTerminalsUnderAccount.RequestAsync(jsonRequest);
             return JsonConvert.DeserializeObject<GetTerminalsUnderAccountResponse>(jsonResponse);
+        }
+
+        /// <summary>
+        /// post /getTerminalDetails
+        /// </summary>
+        /// <param name="getTerminalDetailsRequest"></param>
+        /// <returns>task GetTerminalDetailsResponse</returns>
+        public GetTerminalDetailsResponse GetTerminalDetails(GetTerminalDetailsRequest getTerminalDetailsRequest)
+        {
+            var jsonRequest = Util.JsonOperation.SerializeRequest(getTerminalDetailsRequest);
+            var jsonResponse = _getTerminalDetails.Request(jsonRequest);
+            return JsonConvert.DeserializeObject<GetTerminalDetailsResponse>(jsonResponse);
+        }
+
+        /// <summary>
+        /// post /getTerminalDetails
+        /// </summary>
+        /// <param name="getTerminalDetailsRequest"></param>
+        /// <returns>task GetTerminalDetailsResponse</returns>
+        public async Task<GetTerminalDetailsResponse> GetTerminalDetailsAsync(GetTerminalDetailsRequest getTerminalDetailsRequest)
+        {
+            var jsonRequest = Util.JsonOperation.SerializeRequest(getTerminalDetailsRequest);
+            var jsonResponse = await _getTerminalDetails.RequestAsync(jsonRequest);
+            return JsonConvert.DeserializeObject<GetTerminalDetailsResponse>(jsonResponse);
         }
     }
 }
