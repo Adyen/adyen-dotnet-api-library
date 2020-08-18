@@ -113,7 +113,7 @@ namespace Adyen.Service
         /// <summary>
         /// post /getTerminalDetails
         /// </summary>
-        /// <param name="getTerminalDetails"></param>
+        /// <param name="getTerminalDetailsRequest"></param>
         /// <returns>task GetTerminalDetailsResponse</returns>
         public GetTerminalDetailsResponse GetTerminalDetails(GetTerminalDetailsRequest getTerminalDetailsRequest)
         {
@@ -125,7 +125,7 @@ namespace Adyen.Service
         /// <summary>
         /// post /getTerminalDetails
         /// </summary>
-        /// <param name="getTerminalDetails"></param>
+        /// <param name="getTerminalDetailsRequest"></param>
         /// <returns>task GetTerminalDetailsResponse</returns>
         public async Task<GetTerminalDetailsResponse> GetTerminalDetailsAsync(GetTerminalDetailsRequest getTerminalDetailsRequest)
         {
