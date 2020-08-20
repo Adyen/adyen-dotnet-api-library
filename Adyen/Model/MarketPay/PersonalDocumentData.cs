@@ -95,15 +95,8 @@ namespace Adyen.Model.MarketPay
             {
                 this.Number = number;
             }
-            // to ensure "type" is required (not null)
-            if (type == null)
-            {
-                throw new InvalidDataException("type is a required property for PersonalDocumentData and cannot be null");
-            }
-            else
-            {
-                this.Type = type;
-            }
+            
+            this.Type = type;
             this.ExpirationDate = expirationDate;
             this.IssuerCountry = issuerCountry;
             this.IssuerState = issuerState;
@@ -207,8 +200,7 @@ namespace Adyen.Model.MarketPay
                 ) && 
                 (
                     this.Type == input.Type ||
-                    (this.Type != null &&
-                    this.Type.Equals(input.Type))
+                    this.Type.Equals(input.Type)
                 );
         }
 
@@ -229,8 +221,7 @@ namespace Adyen.Model.MarketPay
                     hashCode = hashCode * 59 + this.IssuerState.GetHashCode();
                 if (this.Number != null)
                     hashCode = hashCode * 59 + this.Number.GetHashCode();
-                if (this.Type != null)
-                    hashCode = hashCode * 59 + this.Type.GetHashCode();
+                hashCode = hashCode * 59 + this.Type.GetHashCode();
                 return hashCode;
             }
         }

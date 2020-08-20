@@ -81,7 +81,7 @@ namespace Adyen.Model.Checkout
         public BankAccount BankAccount { get; set; }
         [DataMember(Name = "additionalData.applepay.token", EmitDefaultValue = false)]
         public string ApplePayToken { get; set; }
-        [DataMember(Name = "paywithgoogle.token", EmitDefaultValue = false)]  
+        [DataMember(Name = "paywithgoogle.token", EmitDefaultValue = false)]
         public string GooglePayToken { get; set; }
 
         public override string ToString()
@@ -102,7 +102,9 @@ namespace Adyen.Model.Checkout
             sb.Append("  EncryptedExpiryMonth: ").Append(EncryptedExpiryMonth).Append("\n");
             sb.Append("  EncryptedExpiryYear: ").Append(EncryptedExpiryYear).Append("\n");
             sb.Append("  EncryptedSecurityCode: ").Append(EncryptedSecurityCode).Append("\n");
+#pragma warning disable 618
             sb.Append("  RecurringDetailReference: ").Append(RecurringDetailReference).Append("\n");
+#pragma warning restore 618
             sb.Append("  StoredPaymentMethodId: ").Append(StoredPaymentMethodId).Append("\n");
             sb.Append("  StoreDetails: ").Append(StoreDetails).Append("\n");
             sb.Append("  Issuer: ").Append(Issuer).Append("\n");
@@ -216,9 +218,12 @@ namespace Adyen.Model.Checkout
                     this.EncryptedSecurityCode.Equals(input.EncryptedSecurityCode))
                 ) &&
                 (
+#pragma warning disable CS0618 // Type or member is obsolete
                     this.RecurringDetailReference == input.RecurringDetailReference ||
                     (this.RecurringDetailReference != null &&
                      this.RecurringDetailReference.Equals(input.RecurringDetailReference))
+#pragma warning restore CS0618 // Type or member is obsolete
+
                 ) &&
                 (
                     this.StoredPaymentMethodId == input.StoredPaymentMethodId ||
@@ -227,8 +232,7 @@ namespace Adyen.Model.Checkout
                 ) &&
                 (
                     this.StoreDetails == input.StoreDetails ||
-                    (this.StoreDetails != null &&
-                    this.StoreDetails.Equals(input.StoreDetails))
+                    (this.StoreDetails.Equals(input.StoreDetails))
                 ) &&
                 (
                     this.Issuer == input.Issuer ||
@@ -270,6 +274,70 @@ namespace Adyen.Model.Checkout
         IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
         {
             yield break;
+        }
+
+
+        /// <summary>
+        /// Gets the hash code
+        /// </summary>
+        /// <returns>Hash code</returns>
+        public override int GetHashCode()
+        {
+            unchecked // Overflow is fine, just wrap
+            {
+                int hashCode = 41;
+                if (this.Type != null)
+                    hashCode = hashCode * 59 + this.Type.GetHashCode();
+                if (this.Number != null)
+                    hashCode = hashCode * 59 + this.Number.GetHashCode();
+                if (this.ExpiryMonth != null)
+                    hashCode = hashCode * 59 + this.ExpiryMonth.GetHashCode();
+                if (this.ExpiryYear != null)
+                    hashCode = hashCode * 59 + this.ExpiryYear.GetHashCode();
+                if (this.HolderName != null)
+                    hashCode = hashCode * 59 + this.HolderName.GetHashCode();
+                if (this.Cvc != null)
+                    hashCode = hashCode * 59 + this.Cvc.GetHashCode();
+                if (this.InstallmentConfigurationKey != null)
+                    hashCode = hashCode * 59 + this.InstallmentConfigurationKey.GetHashCode();
+                if (this.PersonalDetails != null)
+                    hashCode = hashCode * 59 + this.PersonalDetails.GetHashCode();
+                if (this.BillingAddress != null)
+                    hashCode = hashCode * 59 + this.BillingAddress.GetHashCode();
+                if (this.DeliveryAddress != null)
+                    hashCode = hashCode * 59 + this.DeliveryAddress.GetHashCode();
+                if (this.EncryptedCardNumber != null)
+                    hashCode = hashCode * 59 + this.EncryptedCardNumber.GetHashCode();
+                if (this.EncryptedExpiryMonth != null)
+                    hashCode = hashCode * 59 + this.EncryptedExpiryMonth.GetHashCode();
+                if (this.EncryptedExpiryYear != null)
+                    hashCode = hashCode * 59 + this.EncryptedExpiryYear.GetHashCode();
+                if (this.EncryptedSecurityCode != null)
+                    hashCode = hashCode * 59 + this.EncryptedSecurityCode.GetHashCode();
+#pragma warning disable 618
+                if (this.RecurringDetailReference != null)
+                    hashCode = hashCode * 59 + this.RecurringDetailReference.GetHashCode();
+#pragma warning restore 618
+                if (this.StoredPaymentMethodId != null)
+                    hashCode = hashCode * 59 + this.StoredPaymentMethodId.GetHashCode();
+                hashCode = hashCode * 59 + this.StoreDetails.GetHashCode();
+                if (this.Issuer != null)
+                    hashCode = hashCode * 59 + this.Issuer.GetHashCode();
+                if (this.SepaOwnerName != null)
+                    hashCode = hashCode * 59 + this.SepaOwnerName.GetHashCode();
+                if (this.SepaIbanNumber != null)
+                    hashCode = hashCode * 59 + this.SepaIbanNumber.GetHashCode();
+                if (this.BankAccount != null)
+                    hashCode = hashCode * 59 + this.BankAccount.GetHashCode();
+                if (this.Issuer != null)
+                    hashCode = hashCode * 59 + this.Issuer.GetHashCode();
+                if (this.ApplePayToken != null)
+                    hashCode = hashCode * 59 + this.ApplePayToken.GetHashCode();
+                if (this.GooglePayToken != null)
+                    hashCode = hashCode * 59 + this.GooglePayToken.GetHashCode();
+                return hashCode;
+            }
+
         }
     }
 }

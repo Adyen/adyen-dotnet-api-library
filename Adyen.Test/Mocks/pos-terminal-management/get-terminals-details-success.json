@@ -1,0 +1,13 @@
+{
+  "companyAccount": "YOUR_COMPANY_ACCOUNT",
+  "merchantAccount": "YOUR_MERCHANT_ACCOUNT",
+  "merchantInventory": false,
+  "terminal": "P400Plus-275479597",
+  "deviceModel": "P400Plus",
+  "serialNumber": "275-479-597",
+  "permanentTerminalId": "12000000",
+  "terminalStatus": "ReAssignToInventoryPending",
+  "firmwareVersion": "Verifone_VOS 1.50.7",
+  "country": "NETHERLANDS",
+  "dhcpEnabled": false
+}

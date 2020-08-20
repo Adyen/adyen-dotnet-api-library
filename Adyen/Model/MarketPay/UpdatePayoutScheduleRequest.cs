@@ -157,15 +157,7 @@ namespace Adyen.Model.MarketPay
         /// <param name="schedule">The payout schedule to which the account is to be updated. Permitted values: &#x60;DEFAULT&#x60;, &#x60;HOLD&#x60;, &#x60;DAILY&#x60;, &#x60;WEEKLY&#x60;, &#x60;MONTHLY&#x60;. &#x60;HOLD&#x60; will prevent scheduled payouts from happening but will still allow manual payouts to occur. (required).</param>
         public UpdatePayoutScheduleRequest(ActionEnum? action = default(ActionEnum?), string reason = default(string), ScheduleEnum schedule = default(ScheduleEnum))
         {
-            // to ensure "schedule" is required (not null)
-            if (schedule == null)
-            {
-                throw new InvalidDataException("schedule is a required property for UpdatePayoutScheduleRequest and cannot be null");
-            }
-            else
-            {
-                this.Schedule = schedule;
-            }
+            this.Schedule = schedule;
             this.Action = action;
             this.Reason = reason;
         }
@@ -236,8 +228,7 @@ namespace Adyen.Model.MarketPay
                 ) && 
                 (
                     this.Schedule == input.Schedule ||
-                    (this.Schedule != null &&
-                    this.Schedule.Equals(input.Schedule))
+                    this.Schedule.Equals(input.Schedule)
                 );
         }
 
@@ -254,8 +245,7 @@ namespace Adyen.Model.MarketPay
                     hashCode = hashCode * 59 + this.Action.GetHashCode();
                 if (this.Reason != null)
                     hashCode = hashCode * 59 + this.Reason.GetHashCode();
-                if (this.Schedule != null)
-                    hashCode = hashCode * 59 + this.Schedule.GetHashCode();
+                hashCode = hashCode * 59 + this.Schedule.GetHashCode();
                 return hashCode;
             }
         }
