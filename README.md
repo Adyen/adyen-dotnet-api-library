@@ -24,7 +24,7 @@ The Library supports all APIs under the following services:
 * Simply download and restore nuget packages  
  https://www.nuget.org/packages/Adyen/
 * or install it from package manager
- PM> Install-Package Adyen -Version 5.5.0
+ PM> Install-Package Adyen -Version 5.6.0
 ### Vagrant setup
 * Prerequisites
 virtualbox and vagrant
