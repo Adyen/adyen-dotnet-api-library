@@ -45,7 +45,7 @@ namespace Adyen.CloudApiSerialization.Converter
                                 NullValueHandling = NullValueHandling.Ignore
                             });
 
-            writer.WriteValue(Convert.ToBase64String(System.Text.Encoding.UTF8.GetBytes((string)json)));
+            writer.WriteValue(Convert.ToBase64String(System.Text.Encoding.UTF8.GetBytes(json)));
         }
     }
 }

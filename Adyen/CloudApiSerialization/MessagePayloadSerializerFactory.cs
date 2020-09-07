@@ -22,7 +22,6 @@
 #endregion
 
 using System;
-using Adyen.Model.Enum;
 using Adyen.Model.Nexo;
 
 namespace Adyen.CloudApiSerialization
