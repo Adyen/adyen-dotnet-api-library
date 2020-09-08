@@ -44,5 +44,9 @@ namespace Adyen.Model.Nexo
         /// <remarks/>
         [System.Xml.Serialization.XmlAttributeAttribute()]
         public string POIReconciliationID;
+        
+         /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute("PaymentReceipt", Form = System.Xml.Schema.XmlSchemaForm.Unqualified)]
+        public PaymentReceipt[] PaymentReceipt;
     }
 }
