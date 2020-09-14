@@ -21,6 +21,8 @@
 //  */
 #endregion
 
+using System.Collections.Generic;
+
 namespace Adyen.Model.Nexo
 {
     /// <remarks/>
@@ -33,7 +35,7 @@ namespace Adyen.Model.Nexo
 
         /// <remarks/>
         [System.Xml.Serialization.XmlElementAttribute(Form = System.Xml.Schema.XmlSchemaForm.Unqualified)]
-        public string TotalDetails;
+        public List<TotalDetailsType> TotalDetails;
 
         /// <remarks/>
         [System.Xml.Serialization.XmlElementAttribute(Form = System.Xml.Schema.XmlSchemaForm.Unqualified)]
