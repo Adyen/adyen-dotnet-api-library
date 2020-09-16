@@ -54,6 +54,8 @@ namespace Adyen.Model.Terminal
         public ApplicationInfo ApplicationInfo { get; set; }
         [JsonProperty(PropertyName = "tenderOption")]
         public string TenderOption { get; set; }
+        [JsonProperty(PropertyName = "authorisationType")]
+        public string AuthorisationType { get; set; }
         [JsonProperty(PropertyName = "additionalData")]
         public Dictionary<string, string> AdditionalData { get; set; }
 
