@@ -35,7 +35,7 @@ namespace Adyen.Model.Checkout
     /// Amount
     /// </summary>
     [DataContract]
-    public partial class Amount :  IEquatable<Amount>, IValidatableObject
+    public partial class Amount : IEquatable<Amount>, IValidatableObject
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="Amount" /> class.
@@ -68,19 +68,19 @@ namespace Adyen.Model.Checkout
                 this.Value = Value;
             }
         }
-        
+
         /// <summary>
         /// The three-character [ISO currency code](https://docs.adyen.com/developers/development-resources/currency-codes).
         /// </summary>
         /// <value>The three-character [ISO currency code](https://docs.adyen.com/developers/development-resources/currency-codes).</value>
-        [DataMember(Name="currency", EmitDefaultValue=false)]
+        [DataMember(Name = "currency", EmitDefaultValue = false)]
         public string Currency { get; set; }
 
         /// <summary>
         /// The payable amount that can be charged for the transaction.  The transaction amount needs to be represented in minor units according to the [following table](https://docs.adyen.com/developers/development-resources/currency-codes).
         /// </summary>
         /// <value>The payable amount that can be charged for the transaction.  The transaction amount needs to be represented in minor units according to the [following table](https://docs.adyen.com/developers/development-resources/currency-codes).</value>
-        [DataMember(Name="value", EmitDefaultValue=false)]
+        [DataMember(Name = "value", EmitDefaultValue = false)]
         public long? Value { get; set; }
 
         /// <summary>
@@ -96,7 +96,7 @@ namespace Adyen.Model.Checkout
             sb.Append("}\n");
             return sb.ToString();
         }
-  
+
         /// <summary>
         /// Returns the JSON string presentation of the object
         /// </summary>
@@ -126,12 +126,12 @@ namespace Adyen.Model.Checkout
             if (input == null)
                 return false;
 
-            return 
+            return
                 (
                     this.Currency == input.Currency ||
                     (this.Currency != null &&
                     this.Currency.Equals(input.Currency))
-                ) && 
+                ) &&
                 (
                     this.Value == input.Value ||
                     (this.Value != null &&
@@ -164,19 +164,16 @@ namespace Adyen.Model.Checkout
         IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
         {
             // Currency (string) maxLength
-            if(this.Currency != null && this.Currency.Length > 3)
+            if (this.Currency != null && this.Currency.Length > 3)
             {
-                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for Currency, length must be less than 3.", new [] { "Currency" });
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for Currency, length must be less than 3.", new[] { "Currency" });
             }
 
             // Currency (string) minLength
-            if(this.Currency != null && this.Currency.Length < 3)
+            if (this.Currency != null && this.Currency.Length < 3)
             {
-                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for Currency, length must be greater than 3.", new [] { "Currency" });
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for Currency, length must be greater than 3.", new[] { "Currency" });
             }
-
-            yield break;
         }
     }
-
 }

@@ -82,7 +82,7 @@ namespace Adyen.CloudApiSerialization.Converter
 
         public override bool CanConvert(Type objectType)
         {
-            return typeof(SaleToPoiMessageSecured).IsAssignableFrom(objectType); ;
+            return typeof(SaleToPoiMessageSecured).IsAssignableFrom(objectType);
         }
     }
 }
