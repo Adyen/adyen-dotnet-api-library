@@ -22,9 +22,7 @@
 #endregion
 
 using System;
-using System.Text;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Runtime.Serialization;
 using Newtonsoft.Json;
 using System.ComponentModel.DataAnnotations;
@@ -36,7 +34,7 @@ namespace Adyen.Model
     /// BrowserInfo
     /// </summary>
     [DataContract]
-    public partial class BrowserInfo :  IEquatable<BrowserInfo>, IValidatableObject
+    public partial class BrowserInfo : IEquatable<BrowserInfo>, IValidatableObject
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="BrowserInfo" /> class.
@@ -48,19 +46,19 @@ namespace Adyen.Model
             this.AcceptHeader = AcceptHeader;
             this.UserAgent = UserAgent;
         }
-        
+
         /// <summary>
         /// The accept header value of the shopper&#39;s browser.
         /// </summary>
         /// <value>The accept header value of the shopper&#39;s browser.</value>
-        [DataMember(Name="acceptHeader", EmitDefaultValue=false)]
+        [DataMember(Name = "acceptHeader", EmitDefaultValue = false)]
         public string AcceptHeader { get; set; }
 
         /// <summary>
         /// The user agent value of the shopper&#39;s browser.
         /// </summary>
         /// <value>The user agent value of the shopper&#39;s browser.</value>
-        [DataMember(Name="userAgent", EmitDefaultValue=false)]
+        [DataMember(Name = "userAgent", EmitDefaultValue = false)]
         public string UserAgent { get; set; }
 
         /// <summary>
@@ -113,7 +111,7 @@ namespace Adyen.Model
         {
             return this.ToClassDefinitionString();
         }
-  
+
         /// <summary>
         /// Returns the JSON string presentation of the object
         /// </summary>
@@ -145,12 +143,12 @@ namespace Adyen.Model
             if (other == null)
                 return false;
 
-            return 
+            return
                 (
                     this.AcceptHeader == other.AcceptHeader ||
                     this.AcceptHeader != null &&
                     this.AcceptHeader.Equals(other.AcceptHeader)
-                ) && 
+                ) &&
                 (
                     this.UserAgent == other.UserAgent ||
                     this.UserAgent != null &&
@@ -204,7 +202,7 @@ namespace Adyen.Model
                 hash = hash * 59 + this.ScreenWidth.GetHashCode();
                 hash = hash * 59 + this.TimeZoneOffset.GetHashCode();
                 hash = hash * 59 + this.JavaEnabled.GetHashCode();
-                
+
                 return hash;
             }
         }
@@ -217,31 +215,28 @@ namespace Adyen.Model
         IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
         {
             // AcceptHeader (string) maxLength
-            if(this.AcceptHeader != null && this.AcceptHeader.Length > 50)
+            if (this.AcceptHeader != null && this.AcceptHeader.Length > 50)
             {
-                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for AcceptHeader, length must be less than 50.", new [] { "AcceptHeader" });
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for AcceptHeader, length must be less than 50.", new[] { "AcceptHeader" });
             }
 
             // AcceptHeader (string) minLength
-            if(this.AcceptHeader != null && this.AcceptHeader.Length < 10)
+            if (this.AcceptHeader != null && this.AcceptHeader.Length < 10)
             {
-                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for AcceptHeader, length must be greater than 10.", new [] { "AcceptHeader" });
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for AcceptHeader, length must be greater than 10.", new[] { "AcceptHeader" });
             }
 
             // UserAgent (string) maxLength
-            if(this.UserAgent != null && this.UserAgent.Length > 50)
+            if (this.UserAgent != null && this.UserAgent.Length > 50)
             {
-                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for UserAgent, length must be less than 50.", new[] {"UserAgent"});
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for UserAgent, length must be less than 50.", new[] { "UserAgent" });
             }
 
             // UserAgent (string) minLength
-            if(this.UserAgent != null && this.UserAgent.Length < 10)
+            if (this.UserAgent != null && this.UserAgent.Length < 10)
             {
-                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for UserAgent, length must be greater than 10.", new[] {"UserAgent"});
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for UserAgent, length must be greater than 10.", new[] { "UserAgent" });
             }
-
-            yield break;
         }
     }
-
 }
