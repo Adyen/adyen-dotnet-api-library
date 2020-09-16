@@ -34,7 +34,7 @@ namespace Adyen.Model
     /// Amount
     /// </summary>
     [DataContract]
-    public partial class Amount :  IEquatable<Amount>, IValidatableObject
+    public partial class Amount : IEquatable<Amount>, IValidatableObject
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="Amount" /> class.
@@ -44,15 +44,15 @@ namespace Adyen.Model
             this.Currency = Currency;
             this.Value = Value;
         }
-       
-        [DataMember(Name="currency", EmitDefaultValue=false)]
+
+        [DataMember(Name = "currency", EmitDefaultValue = false)]
         public string Currency { get; set; }
 
         /// <summary>
         /// The payable amount that can be charged for the transaction.  The transaction amount needs to be represented in minor units according to the [following table](https://docs.adyen.com/developers/currency-codes).
         /// </summary>
         /// <value>The payable amount that can be charged for the transaction.  The transaction amount needs to be represented in minor units according to the [following table](https://docs.adyen.com/developers/currency-codes).</value>
-        [DataMember(Name="value", EmitDefaultValue=false)]
+        [DataMember(Name = "value", EmitDefaultValue = false)]
         public long? Value { get; set; }
 
         /// <summary>
@@ -62,13 +62,13 @@ namespace Adyen.Model
         public override string ToString()
         {
             var sb = new StringBuilder();
-            sb.Append("class Amount {\n");
-            sb.Append("  Currency: ").Append(Currency).Append("\n");
-            sb.Append("  Value: ").Append(Value).Append("\n");
-            sb.Append("}\n");
+            sb.Append("class Amount {\n")
+              .Append("  Currency: ").Append(Currency).Append("\n")
+              .Append("  Value: ").Append(Value).Append("\n")
+              .Append("}\n");
             return sb.ToString();
         }
-  
+
         /// <summary>
         /// Returns the JSON string presentation of the object
         /// </summary>
@@ -98,12 +98,12 @@ namespace Adyen.Model
             if (other == null)
                 return false;
 
-            return 
+            return
                 (
                     this.Currency == other.Currency ||
                     this.Currency != null &&
                     this.Currency.Equals(other.Currency)
-                ) && 
+                ) &&
                 (
                     this.Value == other.Value ||
                     this.Value != null &&
@@ -137,19 +137,16 @@ namespace Adyen.Model
         IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
         {
             // Currency (string) maxLength
-            if(this.Currency != null && this.Currency.Length > 3)
+            if (this.Currency != null && this.Currency.Length > 3)
             {
-                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for Currency, length must be less than 3.", new [] { "Currency" });
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for Currency, length must be less than 3.", new[] { "Currency" });
             }
 
             // Currency (string) minLength
-            if(this.Currency != null && this.Currency.Length < 3)
+            if (this.Currency != null && this.Currency.Length < 3)
             {
-                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for Currency, length must be greater than 3.", new [] { "Currency" });
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for Currency, length must be greater than 3.", new[] { "Currency" });
             }
-
-            yield break;
         }
     }
-
 }

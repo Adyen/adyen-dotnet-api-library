@@ -20,20 +20,17 @@
 //  * See the LICENSE file for more info.
 //  */
 #endregion
-using System;
 using System.Text;
-using System.Collections;
-using System.Collections.Generic;
 using System.Runtime.Serialization;
 using Newtonsoft.Json;
 
 namespace Adyen.Model
 {
 
-  /// <summary>
-  /// 
-  /// </summary>
-  [DataContract]
+    /// <summary>
+    /// 
+    /// </summary>
+    [DataContract]
   public class AuthenticationResultResponse {
     /// <summary>
     /// Gets or Sets ThreeDS1Result
