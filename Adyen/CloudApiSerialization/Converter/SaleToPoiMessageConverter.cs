@@ -23,7 +23,6 @@
 
 using System;
 using Adyen.Model.Nexo;
-using Adyen.Model.Nexo.Message;
 using Newtonsoft.Json;
 
 namespace Adyen.CloudApiSerialization.Converter
@@ -53,7 +52,7 @@ namespace Adyen.CloudApiSerialization.Converter
 
         public override bool CanConvert(Type objectType)
         {
-            return typeof(SaleToPOIMessage).IsAssignableFrom(objectType); ;
+            return typeof(SaleToPOIMessage).IsAssignableFrom(objectType);
         }
     }
 }
