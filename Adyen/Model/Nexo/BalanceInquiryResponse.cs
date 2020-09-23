@@ -44,5 +44,9 @@ namespace Adyen.Model.Nexo
         /// <remarks/>
         [System.Xml.Serialization.XmlElementAttribute(Form = System.Xml.Schema.XmlSchemaForm.Unqualified)]
         public LoyaltyAccountStatus LoyaltyAccountStatus;
+        
+         /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute("PaymentReceipt", Form = System.Xml.Schema.XmlSchemaForm.Unqualified)]
+        public PaymentReceipt[] PaymentReceipt;
     }
 }
