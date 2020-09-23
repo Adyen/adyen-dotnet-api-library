@@ -54,6 +54,6 @@ namespace Adyen.Constants
         public static string BinLookupApiVersion = "v50";
 
         public static string LibName = "adyen-dotnet-api-library";
-        public static string LibVersion = "5.6.0";
+        public static string LibVersion = "5.7.0";
     }
 }
