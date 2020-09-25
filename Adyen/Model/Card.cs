@@ -34,7 +34,7 @@ namespace Adyen.Model
     /// Card
     /// </summary>
     [DataContract]
-    public partial class Card :  IEquatable<Card>, IValidatableObject
+    public partial class Card : IEquatable<Card>, IValidatableObject
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="Card" /> class.
@@ -62,73 +62,73 @@ namespace Adyen.Model
             this.BillingAddress = BillingAddress;
             this.Brand = Brand;
         }
-        
+
         /// <summary>
         /// The card number (4-19 characters). Do not use any separators. When this value is returned in a response, only the last 4 digits of the card number are returned.
         /// </summary>
         /// <value>The card number (4-19 characters). Do not use any separators. When this value is returned in a response, only the last 4 digits of the card number are returned.</value>
-        [DataMember(Name="number", EmitDefaultValue=false)]
+        [DataMember(Name = "number", EmitDefaultValue = false)]
         public string Number { get; set; }
 
         /// <summary>
         /// The [card verification code](https://docs.adyen.com/support/payments-101/payment-glossary#cardsecuritycodecvccvvcid) (1-20 characters). Depending on the card brand, it is known also as: * CVV2/CVC2 – length: 3 digits * CID – length: 4 digits &gt; If you are using [Client-Side Encryption](https://docs.adyen.com/developers/ecommerce-integration), the CVC code is present in the encrypted data. You must never post the card details to the server. &gt; This field must be always present in a [one-click payment request](https://docs.adyen.com/developers/products-and-subscriptions/recurring-payments). &gt; When this value is returned in a response, it is always empty because it is not stored.
         /// </summary>
         /// <value>The [card verification code](https://docs.adyen.com/support/payments-101/payment-glossary#cardsecuritycodecvccvvcid) (1-20 characters). Depending on the card brand, it is known also as: * CVV2/CVC2 – length: 3 digits * CID – length: 4 digits &gt; If you are using [Client-Side Encryption](https://docs.adyen.com/developers/ecommerce-integration), the CVC code is present in the encrypted data. You must never post the card details to the server. &gt; This field must be always present in a [one-click payment request](https://docs.adyen.com/developers/products-and-subscriptions/recurring-payments). &gt; When this value is returned in a response, it is always empty because it is not stored.</value>
-        [DataMember(Name="cvc", EmitDefaultValue=false)]
+        [DataMember(Name = "cvc", EmitDefaultValue = false)]
         public string Cvc { get; set; }
 
         /// <summary>
         /// The name of the cardholder, as printed on the card.
         /// </summary>
         /// <value>The name of the cardholder, as printed on the card.</value>
-        [DataMember(Name="holderName", EmitDefaultValue=false)]
+        [DataMember(Name = "holderName", EmitDefaultValue = false)]
         public string HolderName { get; set; }
 
         /// <summary>
         /// The month component of the start date (for some UK debit cards only).
         /// </summary>
         /// <value>The month component of the start date (for some UK debit cards only).</value>
-        [DataMember(Name="startMonth", EmitDefaultValue=false)]
+        [DataMember(Name = "startMonth", EmitDefaultValue = false)]
         public string StartMonth { get; set; }
 
         /// <summary>
         /// The issue number of the card (for some UK debit cards only).
         /// </summary>
         /// <value>The issue number of the card (for some UK debit cards only).</value>
-        [DataMember(Name="issueNumber", EmitDefaultValue=false)]
+        [DataMember(Name = "issueNumber", EmitDefaultValue = false)]
         public string IssueNumber { get; set; }
 
         /// <summary>
         /// The card expiry month. Format: 2 digits, zero-padded for single digits. For example: * 03 &#x3D; March * 11 &#x3D; November
         /// </summary>
         /// <value>The card expiry month. Format: 2 digits, zero-padded for single digits. For example: * 03 &#x3D; March * 11 &#x3D; November</value>
-        [DataMember(Name="expiryMonth", EmitDefaultValue=false)]
+        [DataMember(Name = "expiryMonth", EmitDefaultValue = false)]
         public string ExpiryMonth { get; set; }
 
         /// <summary>
         /// The year component of the start date (for some UK debit cards only).
         /// </summary>
         /// <value>The year component of the start date (for some UK debit cards only).</value>
-        [DataMember(Name="startYear", EmitDefaultValue=false)]
+        [DataMember(Name = "startYear", EmitDefaultValue = false)]
         public string StartYear { get; set; }
 
         /// <summary>
         /// The card expiry year. Format: 4 digits. For example: 2018
         /// </summary>
         /// <value>The card expiry year. Format: 4 digits. For example: 2018</value>
-        [DataMember(Name="expiryYear", EmitDefaultValue=false)]
+        [DataMember(Name = "expiryYear", EmitDefaultValue = false)]
         public string ExpiryYear { get; set; }
 
         /// <summary>
         /// Gets or Sets BillingAddress
         /// </summary>
-        [DataMember(Name="billingAddress", EmitDefaultValue=false)]
+        [DataMember(Name = "billingAddress", EmitDefaultValue = false)]
         public Address BillingAddress { get; set; }
 
         /// <summary>
         /// Gets or Sets Brand
         /// </summary>
-        [DataMember(Name="brand", EmitDefaultValue=false)]
+        [DataMember(Name = "brand", EmitDefaultValue = false)]
         public string Brand { get; set; }
 
         /// <summary>
@@ -152,7 +152,7 @@ namespace Adyen.Model
             sb.Append("}\n");
             return sb.ToString();
         }
-  
+
         /// <summary>
         /// Returns the JSON string presentation of the object
         /// </summary>
@@ -184,52 +184,52 @@ namespace Adyen.Model
             if (other == null)
                 return false;
 
-            return 
+            return
                 (
                     this.Number == other.Number ||
                     this.Number != null &&
                     this.Number.Equals(other.Number)
-                ) && 
+                ) &&
                 (
                     this.Cvc == other.Cvc ||
                     this.Cvc != null &&
                     this.Cvc.Equals(other.Cvc)
-                ) && 
+                ) &&
                 (
                     this.HolderName == other.HolderName ||
                     this.HolderName != null &&
                     this.HolderName.Equals(other.HolderName)
-                ) && 
+                ) &&
                 (
                     this.StartMonth == other.StartMonth ||
                     this.StartMonth != null &&
                     this.StartMonth.Equals(other.StartMonth)
-                ) && 
+                ) &&
                 (
                     this.IssueNumber == other.IssueNumber ||
                     this.IssueNumber != null &&
                     this.IssueNumber.Equals(other.IssueNumber)
-                ) && 
+                ) &&
                 (
                     this.ExpiryMonth == other.ExpiryMonth ||
                     this.ExpiryMonth != null &&
                     this.ExpiryMonth.Equals(other.ExpiryMonth)
-                ) && 
+                ) &&
                 (
                     this.StartYear == other.StartYear ||
                     this.StartYear != null &&
                     this.StartYear.Equals(other.StartYear)
-                ) && 
+                ) &&
                 (
                     this.ExpiryYear == other.ExpiryYear ||
                     this.ExpiryYear != null &&
                     this.ExpiryYear.Equals(other.ExpiryYear)
-                ) && 
+                ) &&
                 (
                     this.BillingAddress == other.BillingAddress ||
                     this.BillingAddress != null &&
                     this.BillingAddress.Equals(other.BillingAddress)
-                ) && 
+                ) &&
                 (
                     this.Brand == other.Brand ||
                     this.Brand != null &&
@@ -280,103 +280,100 @@ namespace Adyen.Model
         IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
         {
             // Number (string) maxLength
-            if(this.Number != null && this.Number.Length > 19)
+            if (this.Number != null && this.Number.Length > 19)
             {
-                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for Number, length must be less than 19.", new [] { "Number" });
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for Number, length must be less than 19.", new[] { "Number" });
             }
 
             // Number (string) minLength
-            if(this.Number != null && this.Number.Length < 4)
+            if (this.Number != null && this.Number.Length < 4)
             {
-                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for Number, length must be greater than 4.", new [] { "Number" });
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for Number, length must be greater than 4.", new[] { "Number" });
             }
 
             // Cvc (string) maxLength
-            if(this.Cvc != null && this.Cvc.Length > 20)
+            if (this.Cvc != null && this.Cvc.Length > 20)
             {
-                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for Cvc, length must be less than 20.", new [] { "Cvc" });
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for Cvc, length must be less than 20.", new[] { "Cvc" });
             }
 
             // Cvc (string) minLength
-            if(this.Cvc != null && this.Cvc.Length < 1)
+            if (this.Cvc != null && this.Cvc.Length < 1)
             {
-                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for Cvc, length must be greater than 1.", new [] { "Cvc" });
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for Cvc, length must be greater than 1.", new[] { "Cvc" });
             }
 
             // HolderName (string) maxLength
-            if(this.HolderName != null && this.HolderName.Length > 50)
+            if (this.HolderName != null && this.HolderName.Length > 50)
             {
-                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for HolderName, length must be less than 50.", new [] { "HolderName" });
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for HolderName, length must be less than 50.", new[] { "HolderName" });
             }
 
             // HolderName (string) minLength
-            if(this.HolderName != null && this.HolderName.Length < 1)
+            if (this.HolderName != null && this.HolderName.Length < 1)
             {
-                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for HolderName, length must be greater than 1.", new [] { "HolderName" });
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for HolderName, length must be greater than 1.", new[] { "HolderName" });
             }
 
             // StartMonth (string) maxLength
-            if(this.StartMonth != null && this.StartMonth.Length > 2)
+            if (this.StartMonth != null && this.StartMonth.Length > 2)
             {
-                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for StartMonth, length must be less than 2.", new [] { "StartMonth" });
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for StartMonth, length must be less than 2.", new[] { "StartMonth" });
             }
 
             // StartMonth (string) minLength
-            if(this.StartMonth != null && this.StartMonth.Length < 1)
+            if (this.StartMonth != null && this.StartMonth.Length < 1)
             {
-                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for StartMonth, length must be greater than 1.", new [] { "StartMonth" });
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for StartMonth, length must be greater than 1.", new[] { "StartMonth" });
             }
 
             // IssueNumber (string) maxLength
-            if(this.IssueNumber != null && this.IssueNumber.Length > 2)
+            if (this.IssueNumber != null && this.IssueNumber.Length > 2)
             {
-                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for IssueNumber, length must be less than 2.", new [] { "IssueNumber" });
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for IssueNumber, length must be less than 2.", new[] { "IssueNumber" });
             }
 
             // IssueNumber (string) minLength
-            if(this.IssueNumber != null && this.IssueNumber.Length < 1)
+            if (this.IssueNumber != null && this.IssueNumber.Length < 1)
             {
-                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for IssueNumber, length must be greater than 1.", new [] { "IssueNumber" });
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for IssueNumber, length must be greater than 1.", new[] { "IssueNumber" });
             }
 
             // ExpiryMonth (string) maxLength
-            if(this.ExpiryMonth != null && this.ExpiryMonth.Length > 2)
+            if (this.ExpiryMonth != null && this.ExpiryMonth.Length > 2)
             {
-                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for ExpiryMonth, length must be less than 2.", new [] { "ExpiryMonth" });
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for ExpiryMonth, length must be less than 2.", new[] { "ExpiryMonth" });
             }
 
             // ExpiryMonth (string) minLength
-            if(this.ExpiryMonth != null && this.ExpiryMonth.Length < 1)
+            if (this.ExpiryMonth != null && this.ExpiryMonth.Length < 1)
             {
-                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for ExpiryMonth, length must be greater than 1.", new [] { "ExpiryMonth" });
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for ExpiryMonth, length must be greater than 1.", new[] { "ExpiryMonth" });
             }
 
             // StartYear (string) maxLength
-            if(this.StartYear != null && this.StartYear.Length > 4)
+            if (this.StartYear != null && this.StartYear.Length > 4)
             {
-                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for StartYear, length must be less than 4.", new [] { "StartYear" });
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for StartYear, length must be less than 4.", new[] { "StartYear" });
             }
 
             // StartYear (string) minLength
-            if(this.StartYear != null && this.StartYear.Length < 4)
+            if (this.StartYear != null && this.StartYear.Length < 4)
             {
-                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for StartYear, length must be greater than 4.", new [] { "StartYear" });
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for StartYear, length must be greater than 4.", new[] { "StartYear" });
             }
 
             // ExpiryYear (string) maxLength
-            if(this.ExpiryYear != null && this.ExpiryYear.Length > 4)
+            if (this.ExpiryYear != null && this.ExpiryYear.Length > 4)
             {
-                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for ExpiryYear, length must be less than 4.", new [] { "ExpiryYear" });
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for ExpiryYear, length must be less than 4.", new[] { "ExpiryYear" });
             }
 
             // ExpiryYear (string) minLength
-            if(this.ExpiryYear != null && this.ExpiryYear.Length < 4)
+            if (this.ExpiryYear != null && this.ExpiryYear.Length < 4)
             {
-                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for ExpiryYear, length must be greater than 4.", new [] { "ExpiryYear" });
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for ExpiryYear, length must be greater than 4.", new[] { "ExpiryYear" });
             }
-
-            yield break;
         }
     }
-
 }

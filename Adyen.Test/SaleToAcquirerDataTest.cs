@@ -32,7 +32,7 @@ namespace Adyen.Test
     [TestClass]
     public class SaleToAcquirerDataTest
     {
-        private string json = "{\"metadata\":{\"key\":\"value\"},\"shopperEmail\":\"myemail@mail.com\",\"shopperReference\":\"13164308\",\"recurringContract\":\"RECURRING,ONECLICK\",\"shopperStatement\":\"YOUR SHOPPER STATEMENT\",\"recurringDetailName\":\"VALUE\",\"recurringTokenService\":\"VALUE\",\"store\":\"store value\",\"merchantAccount\":\"merchantAccount\",\"currency\":\"EUR\",\"applicationInfo\":{\"adyenLibrary\":{\"name\":\"adyen-dotnet-api-library\",\"version\":\""+ClientConfig.LibVersion+"\"},\"externalPlatform\":{\"integrator\":\"externalPlatformIntegrator\",\"name\":\"externalPlatformName\",\"version\":\"2.0.0\"},\"merchantDevice\":{\"os\":\"merchantDeviceOS\",\"osVersion\":\"10.12.6\",\"reference\":\"4c32759faaa7\"}},\"tenderOption\":\"ReceiptHandler,AllowPartialAuthorisation,AskGratuity\",\"additionalData\":{\"key.key\":\"value\",\"key.keyTwo\":\"value2\"}}";
+        private readonly string _json = "{\"metadata\":{\"key\":\"value\"},\"shopperEmail\":\"myemail@mail.com\",\"shopperReference\":\"13164308\",\"recurringContract\":\"RECURRING,ONECLICK\",\"shopperStatement\":\"YOUR SHOPPER STATEMENT\",\"recurringDetailName\":\"VALUE\",\"recurringTokenService\":\"VALUE\",\"store\":\"store value\",\"merchantAccount\":\"merchantAccount\",\"currency\":\"EUR\",\"applicationInfo\":{\"adyenLibrary\":{\"name\":\"adyen-dotnet-api-library\",\"version\":\""+ClientConfig.LibVersion+ "\"},\"externalPlatform\":{\"integrator\":\"externalPlatformIntegrator\",\"name\":\"externalPlatformName\",\"version\":\"2.0.0\"},\"merchantDevice\":{\"os\":\"merchantDeviceOS\",\"osVersion\":\"10.12.6\",\"reference\":\"4c32759faaa7\"}},\"tenderOption\":\"ReceiptHandler,AllowPartialAuthorisation,AskGratuity\",\"authorisationType\":\"PreAuth\",\"additionalData\":{\"key.key\":\"value\",\"key.keyTwo\":\"value2\"}}";
 
         [TestMethod]
         public void SerializationTest()
@@ -48,7 +48,8 @@ namespace Adyen.Test
                 RecurringTokenService = "VALUE",
                 Store = "store value",
                 MerchantAccount = "merchantAccount",
-                Currency = "EUR"
+                Currency = "EUR",
+                AuthorisationType = "PreAuth"
             };
             var applicationInfo = new ApplicationInfo();
             var externalPlatform = new ExternalPlatform
@@ -74,7 +75,7 @@ namespace Adyen.Test
 
         private string JsonToBase64()
         {
-            return Convert.ToBase64String(System.Text.Encoding.UTF8.GetBytes(json));
+            return Convert.ToBase64String(System.Text.Encoding.UTF8.GetBytes(_json));
         }
     }
 }

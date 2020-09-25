@@ -25,7 +25,6 @@ using System;
 using System.Runtime.Serialization;
 using Adyen.Exceptions;
 using Adyen.Model.Nexo;
-using Adyen.Model.Nexo.Message;
 using Adyen.Security;
 using Newtonsoft.Json.Linq;
 

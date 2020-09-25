@@ -54,6 +54,8 @@ namespace Adyen.Model.Terminal
         public ApplicationInfo ApplicationInfo { get; set; }
         [JsonProperty(PropertyName = "tenderOption")]
         public string TenderOption { get; set; }
+        [JsonProperty(PropertyName = "authorisationType")]
+        public string AuthorisationType { get; set; }
         [JsonProperty(PropertyName = "additionalData")]
         public Dictionary<string, string> AdditionalData { get; set; }
 
@@ -92,6 +94,7 @@ namespace Adyen.Model.Terminal
             sb.Append("  Currency: ").Append(Currency).Append("\n");
             sb.Append("  ApplicationInfo: ").Append(ApplicationInfo).Append("\n");
             sb.Append("  TenderOption: ").Append(TenderOption).Append("\n");
+            sb.Append("  AuthorisationType: ").Append(AuthorisationType).Append("\n");
             sb.Append("  AdditionalData: ").Append(AdditionalData).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
