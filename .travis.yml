@@ -1,9 +1,0 @@
-language: csharp
-dist: xenial
-mono: none
-dotnet: 2.0.0
-install:
-- dotnet restore
-script:
-- dotnet build /p:TargetFrameworks=netcoreapp2.0
-- dotnet test Adyen.Test/Adyen.Test.csproj
