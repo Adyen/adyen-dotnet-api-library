@@ -26,7 +26,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 namespace Adyen.Test
 {
     [TestClass]
-   public class PaymentMethodDetailsTest
+    public class PaymentMethodDetailsTest
     {
         [TestMethod]
         public void TestAchPaymentMethod()
@@ -60,7 +60,7 @@ namespace Adyen.Test
             Assert.AreEqual(paymentRequest.ReturnUrl, "https://your-company.com/checkout?shopperOrder=12xy..");
         }
 
-       
+
         [TestMethod]
         public void TestApplePayPaymentMethod()
         {
@@ -143,6 +143,24 @@ namespace Adyen.Test
             Assert.AreEqual(paymentMethodDetails.Type, "ideal");
             Assert.AreEqual(paymentRequest.MerchantAccount, "YOUR_MERCHANT_ACCOUNT");
             Assert.AreEqual(paymentRequest.Reference, "ideal test");
+            Assert.AreEqual(paymentRequest.ReturnUrl, "https://your-company.com/checkout?shopperOrder=12xy..");
+        }
+
+        [TestMethod]
+        public void TestBacsDirectDebitDetails()
+        {
+            var paymentRequest = new PaymentRequest
+            {
+                MerchantAccount = "YOUR_MERCHANT_ACCOUNT",
+                Amount = new Amount("GBP", 1000),
+                Reference = "bacs direct debit test",
+                PaymentMethod = new BacsDirectDebitDetails(),               
+                ReturnUrl = "https://your-company.com/checkout?shopperOrder=12xy.."
+            };
+            var paymentMethodDetails = (BacsDirectDebitDetails)paymentRequest.PaymentMethod;
+            Assert.AreEqual(paymentMethodDetails.Type, "directdebit_GB");
+            Assert.AreEqual(paymentRequest.MerchantAccount, "YOUR_MERCHANT_ACCOUNT");
+            Assert.AreEqual(paymentRequest.Reference, "bacs direct debit test");
             Assert.AreEqual(paymentRequest.ReturnUrl, "https://your-company.com/checkout?shopperOrder=12xy..");
         }
     }
