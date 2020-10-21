@@ -152,7 +152,7 @@ namespace Adyen.Test
             var paymentRequest = new PaymentRequest
             {
                 MerchantAccount = "YOUR_MERCHANT_ACCOUNT",
-                Amount = new Amount("EUR", 1000),
+                Amount = new Amount("GBP", 1000),
                 Reference = "bacs direct debit test",
                 PaymentMethod = new BacsDirectDebitDetails(),               
                 ReturnUrl = "https://your-company.com/checkout?shopperOrder=12xy.."
