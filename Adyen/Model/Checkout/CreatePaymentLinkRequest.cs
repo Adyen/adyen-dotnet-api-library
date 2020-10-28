@@ -24,6 +24,7 @@ using System.Text;
 using System.Collections.Generic;
 using System.Runtime.Serialization;
 using Newtonsoft.Json;
+using Adyen.Model.Enum;
 
 namespace Adyen.Model.Checkout
 {
@@ -104,6 +105,14 @@ namespace Adyen.Model.Checkout
         public string MerchantAccount { get; set; }
 
         /// <summary>
+        /// Defines the type of a recurring payment.
+        /// </summary>
+        /// <value> Defines the type of a recurring payment.</value>
+        [DataMember(Name = "recurringProcessingModel", EmitDefaultValue = false)]
+        [JsonProperty(PropertyName = "recurringProcessingModel")]
+        public RecurringProcessingModelEnum? RecurringProcessingModel { get; set; }
+
+        /// <summary>
         /// The reference to uniquely identify a payment. This reference is used in all communication with you about the payment status. We recommend using a unique value per payment; however, it is not a requirement. If you need to provide multiple references for a transaction, separate them with hyphens (\"-\"). Maximum length: 80 characters.
         /// </summary>
         /// <value>The reference to uniquely identify a payment. This reference is used in all communication with you about the payment status. We recommend using a unique value per payment; however, it is not a requirement. If you need to provide multiple references for a transaction, separate them with hyphens (\"-\"). Maximum length: 80 characters.</value>
@@ -175,6 +184,7 @@ namespace Adyen.Model.Checkout
             sb.Append("  Description: ").Append(Description).Append("\n");
             sb.Append("  ExpiresAt: ").Append(ExpiresAt).Append("\n");
             sb.Append("  MerchantAccount: ").Append(MerchantAccount).Append("\n");
+            sb.Append("  RecurringProcessingModel: ").Append(RecurringProcessingModel).Append("\n");
             sb.Append("  Reference: ").Append(Reference).Append("\n");
             sb.Append("  ReturnUrl: ").Append(ReturnUrl).Append("\n");
             sb.Append("  ShopperEmail: ").Append(ShopperEmail).Append("\n");
