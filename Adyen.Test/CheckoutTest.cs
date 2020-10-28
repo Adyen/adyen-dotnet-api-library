@@ -511,7 +511,7 @@ namespace Adyen.Test
             var createPaymentLinkRequest = new CreatePaymentLinkRequest { Store = "TheDemoStore" };
             Assert.AreEqual(createPaymentLinkRequest.Store, "TheDemoStore");
         }
-        
+
         /// <summary>
         /// Test success flow for
         /// POST  /payments/result
@@ -528,7 +528,37 @@ namespace Adyen.Test
             Assert.AreEqual(paymentLinksResponse.Reference, "YOUR_ORDER_NUMBER");
             Assert.IsNotNull(paymentLinksResponse.Amount);
         }
-        
+
+        /// <summary>
+        /// Test success flow for creation of a payment link with recurring payment
+        /// POST /paymentLinks
+        /// </summary>
+        [TestMethod]
+        public void CreateRecurringPaymentLinkSuccessTest()
+        {
+            var client = CreateMockTestClientApiKeyBasedRequest("Mocks/checkout/paymentlinks-recurring-payment-success.json");
+            var checkout = new Checkout(client);
+
+            var createPaymentLinkRequest = new CreatePaymentLinkRequest
+            {
+                Reference = "REFERENCE_NUMBER",
+                MerchantAccount = "MerchantAccount",
+                Amount = new Amount("EUR", 100),
+                CountryCode = "GR",
+                ShopperLocale = "GR",
+                ShopperReference = "ShopperReference",
+                StorePaymentMethod = true,
+                RecurringProcessingModel = Model.Enum.RecurringProcessingModelEnum.Subscription
+            };
+
+            var paymentLinksResponse = checkout.PaymentLinks(createPaymentLinkRequest);
+
+            Assert.AreEqual(createPaymentLinkRequest.Reference, paymentLinksResponse.Reference);
+            Assert.AreEqual("https://checkoutshopper-test.adyen.com/checkoutshopper/payByLink.shtml?d=YW1vdW50TWlub3JW...JRA", paymentLinksResponse.Url);
+            Assert.AreEqual(createPaymentLinkRequest.Amount.Currency, paymentLinksResponse.Amount.Currency);
+            Assert.AreEqual(createPaymentLinkRequest.Amount.Value, paymentLinksResponse.Amount.Value);
+        }
+
         /// <summary>
         /// Test success flow for multibanco
         /// Post /payments 
