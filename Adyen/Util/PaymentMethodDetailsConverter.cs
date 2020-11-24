@@ -27,7 +27,7 @@ using Newtonsoft.Json.Linq;
 
 namespace Adyen.Util
 {
-    internal class PaymentMethodsDetailsConverter : JsonConverter
+    internal class PaymentMethodDetailsConverter : JsonConverter
     {
         public override bool CanConvert(Type objectType)
         {
