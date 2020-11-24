@@ -605,5 +605,44 @@ namespace Adyen.Test
             var paymentResponse = checkout.Payments(paymentRequest);
             Assert.AreEqual("EC-42N19135GM6949000", paymentResponse.Action.SdkData["orderID"]);
         }
+
+      
+        [TestMethod]
+        public void ApplePayDetailsDeserializationTest()
+        {
+            var json = "{\"type\": \"applepay\",\"applePayToken\": \"VNRWtuNlNEWkRCSm1xWndjMDFFbktkQU...\"}";
+            var result = Util.JsonOperation.Deserialize<IPaymentMethodDetails>(json);
+            Assert.IsTrue(result is ApplePayDetails);
+            Assert.AreEqual(result.Type, "applepay");
+        }
+
+        [TestMethod]
+        public void BlikDetailsDeserializationTest()
+        {
+            var json = "{\"amount\":{\"value\":1000,\"currency\":\"USD\"},\"merchantAccount\":\"MerchantAccountTest\",\"paymentMethod\":{\"blikCode\":\"blikCode\",\"type\":\"blik\"},\"reference\":\"Your order number\",\"returnUrl\":\"https://your-company.com/...\",\"applicationInfo\":{\"adyenLibrary\":{\"name\":\"adyen-java-api-library\",\"version\":\"10.1.0\"}}}";
+            var paymentRequest = Util.JsonOperation.Deserialize<PaymentRequest>(json);
+            Assert.IsTrue(paymentRequest.PaymentMethod is BlikDetails);
+            Assert.AreEqual(paymentRequest.PaymentMethod.Type, BlikDetails.Blik);
+        }
+
+        [TestMethod]
+        public void DragonpayDetailsDeserializationTest()
+        {
+            var json = "{\"amount\":{\"value\":1000,\"currency\":\"USD\"},\"merchantAccount\":\"MerchantAccountTest\",\"paymentMethod\":{\"issuer\":\"issuer\",\"shopperEmail\":\"test@test.com\",\"type\":\"dragonpay_ebanking\"},\"reference\":\"Your order number\",\"returnUrl\":\"https://your-company.com/...\",\"applicationInfo\":{\"adyenLibrary\":{\"name\":\"adyen-java-api-library\",\"version\":\"10.1.0\"}}}";
+            var paymentRequest = Util.JsonOperation.Deserialize<PaymentRequest>(json);
+            Assert.IsTrue(paymentRequest.PaymentMethod is DragonpayDetails);
+            Assert.AreEqual(paymentRequest.PaymentMethod.Type, DragonpayDetails.EBanking);
+        }
+
+        [TestMethod]
+        public void LianLianPayDetailsDeserializationTest()
+        {
+            var json = "{\"amount\":{\"value\":1000,\"currency\":\"USD\"},\"merchantAccount\":\"MerchantAccountTest\",\"paymentMethod\":{\"telephoneNumber\":\"telephone\",\"type\":\"lianlianpay_ebanking_credit\"},\"reference\":\"Your order number\",\"returnUrl\":\"https://your-company.com/...\",\"applicationInfo\":{\"adyenLibrary\":{\"name\":\"adyen-java-api-library\",\"version\":\"10.1.0\"}}}";
+
+            LianLianPayDetails lianLianPayDetails = new LianLianPayDetails();
+            var paymentRequest = Util.JsonOperation.Deserialize<PaymentRequest>(json);
+            Assert.IsTrue(paymentRequest.PaymentMethod is LianLianPayDetails);
+            Assert.AreEqual(paymentRequest.PaymentMethod.Type, LianLianPayDetails.EbankingCredit);
+        }
     }
 }
