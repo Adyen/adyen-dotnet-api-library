@@ -105,10 +105,10 @@ namespace Adyen.Service
         /// </summary>
         /// <param name="paymentsDetailsRequest"></param>
         /// <returns>PaymentsResponse</returns>
-        public PaymentsResponse PaymentDetails(PaymentsDetailsRequest paymentsDetailsRequest)
+        public PaymentsResponse PaymentDetails(PaymentsDetailsRequest paymentsDetailsRequest, RequestOptions requestOptions = null)
         {
             var jsonRequest = Util.JsonOperation.SerializeRequest(paymentsDetailsRequest);
-            var jsonResponse = _paymentDetails.Request(jsonRequest);
+            var jsonResponse = _paymentDetails.Request(jsonRequest, requestOptions);
             return JsonConvert.DeserializeObject<PaymentsResponse>(jsonResponse);
         }
 
@@ -117,10 +117,10 @@ namespace Adyen.Service
         /// </summary>
         /// <param name="paymentsDetailsRequest"></param>
         /// <returns>PaymentsResponse</returns>
-        public async Task<PaymentsResponse> PaymentDetailsAsync(PaymentsDetailsRequest paymentsDetailsRequest)
+        public async Task<PaymentsResponse> PaymentDetailsAsync(PaymentsDetailsRequest paymentsDetailsRequest, RequestOptions requestOptions = null)
         {
             var jsonRequest = Util.JsonOperation.SerializeRequest(paymentsDetailsRequest);
-            var jsonResponse = await _paymentDetails.RequestAsync(jsonRequest);
+            var jsonResponse = await _paymentDetails.RequestAsync(jsonRequest, requestOptions);
             return JsonConvert.DeserializeObject<PaymentsResponse>(jsonResponse);
         }
 
@@ -180,7 +180,7 @@ namespace Adyen.Service
         public CreatePaymentLinkResponse PaymentLinks(CreatePaymentLinkRequest createPaymentLinkRequest)
         {
             var jsonRequest = Util.JsonOperation.SerializeRequest(createPaymentLinkRequest);
-            var jsonResponse =  _paymentLinksResult.Request(jsonRequest);
+            var jsonResponse = _paymentLinksResult.Request(jsonRequest);
             return JsonConvert.DeserializeObject<CreatePaymentLinkResponse>(jsonResponse);
         }
     }
