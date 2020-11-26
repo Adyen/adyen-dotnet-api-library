@@ -21,15 +21,29 @@
 //  */
 #endregion
 
-using Newtonsoft.Json;
+using System;
+using Adyen.Model.Nexo;
 
-namespace Adyen.CloudApiSerialization.Converter
+namespace Adyen.Serialization
 {
-    internal class JSonConvertDeserializerWrapper<T>
+    internal class MessagePayloadSerializerFactory
     {
-        internal static T DeserializeObject(string objectToDeserialize)
+        internal IMessagePayloadSerializer<IMessagePayload> CreateSerializer(string messageCategory, string messageType)
         {
-            return JsonConvert.DeserializeObject<T>(objectToDeserialize);
+            var messagePayoadFullName = CreateMessagePayloadFullName(messageCategory, messageType);
+            var messagePayloadSerializer = TypeHelper.CreateGenericTypeFromStringFullNamespace(typeof(MessagePayloadSerializer<>), messagePayoadFullName);
+
+            return (IMessagePayloadSerializer<IMessagePayload>)Activator.CreateInstance(messagePayloadSerializer);
+        }
+
+        private string CreateMessagePayloadFullName(string messageCategory, string messageType)
+        {
+            var nameSpaceSeparator = ".";
+
+            var messagePayloadName = messageCategory.ToString() + messageType;
+            var nexoDomainNameSpace = typeof(PaymentRequest).Namespace;
+
+            return string.Concat(nexoDomainNameSpace, nameSpaceSeparator, messagePayloadName);
         }
     }
 }

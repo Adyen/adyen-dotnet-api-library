@@ -22,7 +22,7 @@
 #endregion
 
 using System.Threading.Tasks;
-using Adyen.CloudApiSerialization;
+using Adyen.Serialization;
 using Adyen.Model.Nexo;
 using Adyen.Service.Resource.Payment;
 

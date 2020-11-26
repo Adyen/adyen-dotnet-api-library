@@ -27,7 +27,7 @@ using Adyen.Model.Nexo.Message;
 using Adyen.Security;
 using Newtonsoft.Json;
 
-namespace Adyen.CloudApiSerialization.Converter
+namespace Adyen.Serialization.Converter
 {
     internal class SaleToPoiMessageSecuredConverter : JsonConverter
     {

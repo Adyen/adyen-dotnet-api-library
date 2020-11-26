@@ -26,7 +26,7 @@ using Adyen.Security;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
 
-namespace Adyen.CloudApiSerialization.Converter
+namespace Adyen.Serialization.Converter
 {
     internal class JSonConvertSerializerWrapper
     {

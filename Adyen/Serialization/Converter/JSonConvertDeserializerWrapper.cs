@@ -21,15 +21,15 @@
 //  */
 #endregion
 
-using Adyen.Model.Nexo;
+using Newtonsoft.Json;
 
-namespace Adyen.CloudApiSerialization
+namespace Adyen.Serialization.Converter
 {
-    internal class MessageHeaderSerializer
+    internal class JSonConvertDeserializerWrapper<T>
     {
-        internal MessageHeader Deserialize(string messageHeaderJson)
+        internal static T DeserializeObject(string objectToDeserialize)
         {
-            return Converter.JSonConvertDeserializerWrapper<MessageHeader>.DeserializeObject(messageHeaderJson);
+            return JsonConvert.DeserializeObject<T>(objectToDeserialize);
         }
     }
 }

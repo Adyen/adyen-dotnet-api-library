@@ -21,29 +21,28 @@
 //  */
 #endregion
 
-using System;
-using Adyen.Model.Nexo;
+using Adyen.Exceptions;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Serialization;
 
-namespace Adyen.CloudApiSerialization
+namespace Adyen.Serialization
 {
-    internal class MessagePayloadSerializerFactory
+    internal class JSonConvertDeserializerWrapper<T>
     {
-        internal IMessagePayloadSerializer<IMessagePayload> CreateSerializer(string messageCategory, string messageType)
+        internal static T DeserializeObject(string objectToDeserialize)
         {
-            var messagePayoadFullName = CreateMessagePayloadFullName(messageCategory, messageType);
-            var messagePayloadSerializer = TypeHelper.CreateGenericTypeFromStringFullNamespace(typeof(MessagePayloadSerializer<>), messagePayoadFullName);
+            return JsonConvert.DeserializeObject<T>(objectToDeserialize, new JsonSerializerSettings
+            {
+                MissingMemberHandling = MissingMemberHandling.Error,
+                Error = delegate (object sender, ErrorEventArgs args)
+                {
+                    var exceptionMessage = string.Format(ExceptionMessages.ExceptionDuringDeserialization,
+                        objectToDeserialize,
+                        args.ErrorContext.Error.Message);
 
-            return (IMessagePayloadSerializer<IMessagePayload>)Activator.CreateInstance(messagePayloadSerializer);
-        }
-
-        private string CreateMessagePayloadFullName(string messageCategory, string messageType)
-        {
-            var nameSpaceSeparator = ".";
-
-            var messagePayloadName = messageCategory.ToString() + messageType;
-            var nexoDomainNameSpace = typeof(PaymentRequest).Namespace;
-
-            return string.Concat(nexoDomainNameSpace, nameSpaceSeparator, messagePayloadName);
+                    throw new DeserializationException(exceptionMessage, args.ErrorContext.Error);
+                }
+            });
         }
     }
 }
