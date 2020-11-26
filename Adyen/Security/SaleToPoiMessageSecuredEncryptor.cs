@@ -50,7 +50,7 @@ namespace Adyen.Security
         {
             var encryptionDerivedKey = _encryptionDerivedKeyGenerator.Generate(encryptionCredentialDetails);
             var saleToPoiMessageJson = saleToPoiMessage;
-            var saleToPoiMessageByteArray = Encoding.ASCII.GetBytes(saleToPoiMessageJson);
+            var saleToPoiMessageByteArray = Encoding.UTF8.GetBytes(saleToPoiMessageJson);
             var ivMod = _ivModGenerator.GenerateRandomMod();
             var saleToPoiMessageAesEncrypted = _aesEncryptor.Encrypt(saleToPoiMessageByteArray,
                                                                      encryptionDerivedKey,
