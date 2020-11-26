@@ -126,7 +126,7 @@ namespace Adyen.Util
                     paymentMethodDetails = new PayPalDetails();
                     break;
                 case QiwiWalletDetails.QiwiWallet:
-                    paymentMethodDetails = new ApplePayDetails();
+                    paymentMethodDetails = new QiwiWalletDetails();
                     break;
                 case SamsungPayDetails.SamsungPay:
                     paymentMethodDetails = new SamsungPayDetails();
