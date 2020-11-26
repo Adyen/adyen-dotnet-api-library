@@ -21,7 +21,7 @@
 //  */
 #endregion
 
-using Adyen.Serialization.Converter;
+using Adyen.ApiSerialization.Converter;
 using Adyen.Model.Terminal;
 using Newtonsoft.Json;
 

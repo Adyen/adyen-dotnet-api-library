@@ -21,15 +21,29 @@
 //  */
 #endregion
 
+using System;
 using Adyen.Model.Nexo;
 
-namespace Adyen.Serialization
+namespace Adyen.ApiSerialization
 {
-    internal class MessageHeaderSerializer
+    internal class MessagePayloadSerializerFactory
     {
-        internal MessageHeader Deserialize(string messageHeaderJson)
+        internal IMessagePayloadSerializer<IMessagePayload> CreateSerializer(string messageCategory, string messageType)
         {
-            return Converter.JSonConvertDeserializerWrapper<MessageHeader>.DeserializeObject(messageHeaderJson);
+            var messagePayoadFullName = CreateMessagePayloadFullName(messageCategory, messageType);
+            var messagePayloadSerializer = TypeHelper.CreateGenericTypeFromStringFullNamespace(typeof(MessagePayloadSerializer<>), messagePayoadFullName);
+
+            return (IMessagePayloadSerializer<IMessagePayload>)Activator.CreateInstance(messagePayloadSerializer);
+        }
+
+        private string CreateMessagePayloadFullName(string messageCategory, string messageType)
+        {
+            var nameSpaceSeparator = ".";
+
+            var messagePayloadName = messageCategory.ToString() + messageType;
+            var nexoDomainNameSpace = typeof(PaymentRequest).Namespace;
+
+            return string.Concat(nexoDomainNameSpace, nameSpaceSeparator, messagePayloadName);
         }
     }
 }

@@ -21,14 +21,15 @@
 //  */
 #endregion
 
-namespace Adyen.Serialization
-{
-    internal class MessagePayloadSerializer<T> : IMessagePayloadSerializer<T> where T : IMessagePayload
-    {
-        public IMessagePayload Deserialize(string messagePayloadJson)
-        {
-            return Converter.JSonConvertDeserializerWrapper<T>.DeserializeObject(messagePayloadJson);
-        }
+using Adyen.Model.Nexo;
 
+namespace Adyen.ApiSerialization
+{
+    internal class MessageHeaderSerializer
+    {
+        internal MessageHeader Deserialize(string messageHeaderJson)
+        {
+            return Converter.JSonConvertDeserializerWrapper<MessageHeader>.DeserializeObject(messageHeaderJson);
+        }
     }
 }

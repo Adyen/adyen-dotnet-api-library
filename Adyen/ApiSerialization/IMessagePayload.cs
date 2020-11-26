@@ -21,7 +21,7 @@
 //  */
 #endregion
 
-namespace Adyen.Serialization
+namespace Adyen.ApiSerialization
 {
     public interface IMessagePayload { }
 }
