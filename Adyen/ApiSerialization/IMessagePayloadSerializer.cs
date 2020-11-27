@@ -21,15 +21,10 @@
 //  */
 #endregion
 
-using Newtonsoft.Json;
-
-namespace Adyen.CloudApiSerialization.Converter
+namespace Adyen.ApiSerialization
 {
-    internal class JSonConvertDeserializerWrapper<T>
+    internal interface IMessagePayloadSerializer<out T> where T : IMessagePayload
     {
-        internal static T DeserializeObject(string objectToDeserialize)
-        {
-            return JsonConvert.DeserializeObject<T>(objectToDeserialize);
-        }
+        IMessagePayload Deserialize(string messagePayloadJson);
     }
 }

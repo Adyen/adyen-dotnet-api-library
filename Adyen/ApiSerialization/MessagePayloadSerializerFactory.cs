@@ -24,7 +24,7 @@
 using System;
 using Adyen.Model.Nexo;
 
-namespace Adyen.CloudApiSerialization
+namespace Adyen.ApiSerialization
 {
     internal class MessagePayloadSerializerFactory
     {

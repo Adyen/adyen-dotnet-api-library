@@ -21,28 +21,32 @@
 //  */
 #endregion
 
-using Adyen.Exceptions;
+using Adyen.Model.Nexo;
+using Adyen.Security;
 using Newtonsoft.Json;
-using Newtonsoft.Json.Serialization;
+using Newtonsoft.Json.Converters;
 
-namespace Adyen.CloudApiSerialization
+namespace Adyen.ApiSerialization.Converter
 {
-    internal class JSonConvertDeserializerWrapper<T>
+    internal class JSonConvertSerializerWrapper
     {
-        internal static T DeserializeObject(string objectToDeserialize)
-        {
-            return JsonConvert.DeserializeObject<T>(objectToDeserialize, new JsonSerializerSettings
-            {
-                MissingMemberHandling = MissingMemberHandling.Error,
-                Error = delegate (object sender, ErrorEventArgs args)
-                {
-                    var exceptionMessage = string.Format(ExceptionMessages.ExceptionDuringDeserialization,
-                        objectToDeserialize,
-                        args.ErrorContext.Error.Message);
+        private const string DateTimeFormat = "yyyy-MM-ddTHH\\:mm\\:ss";
 
-                    throw new DeserializationException(exceptionMessage, args.ErrorContext.Error);
-                }
-            });
+        internal static string Serialize(SaleToPOIMessage saleToPoiMessage)
+        {
+            var serialize= JsonConvert.SerializeObject(saleToPoiMessage,
+                new SaleToPoiMessageConverter(),
+                new StringEnumConverter(),
+                new IsoDateTimeConverter() { DateTimeFormat = DateTimeFormat });
+            return serialize;
+        }
+
+        internal static string Serialize(SaleToPoiMessageSecured saleToPoiMessageSecured)
+        {
+            return JsonConvert.SerializeObject(saleToPoiMessageSecured,
+                                               new SaleToPoiMessageSecuredConverter(),
+                                               new StringEnumConverter(),
+                                               new IsoDateTimeConverter() { DateTimeFormat = DateTimeFormat });
         }
     }
 }

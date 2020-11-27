@@ -21,32 +21,15 @@
 //  */
 #endregion
 
-using Adyen.Model.Nexo;
-using Adyen.Security;
 using Newtonsoft.Json;
-using Newtonsoft.Json.Converters;
 
-namespace Adyen.CloudApiSerialization.Converter
+namespace Adyen.ApiSerialization.Converter
 {
-    internal class JSonConvertSerializerWrapper
+    internal class JSonConvertDeserializerWrapper<T>
     {
-        private const string DateTimeFormat = "yyyy-MM-ddTHH\\:mm\\:ss";
-
-        internal static string Serialize(SaleToPOIMessage saleToPoiMessage)
+        internal static T DeserializeObject(string objectToDeserialize)
         {
-            var serialize= JsonConvert.SerializeObject(saleToPoiMessage,
-                new SaleToPoiMessageConverter(),
-                new StringEnumConverter(),
-                new IsoDateTimeConverter() { DateTimeFormat = DateTimeFormat });
-            return serialize;
-        }
-
-        internal static string Serialize(SaleToPoiMessageSecured saleToPoiMessageSecured)
-        {
-            return JsonConvert.SerializeObject(saleToPoiMessageSecured,
-                                               new SaleToPoiMessageSecuredConverter(),
-                                               new StringEnumConverter(),
-                                               new IsoDateTimeConverter() { DateTimeFormat = DateTimeFormat });
+            return JsonConvert.DeserializeObject<T>(objectToDeserialize);
         }
     }
 }

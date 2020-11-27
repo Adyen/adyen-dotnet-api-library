@@ -23,26 +23,56 @@
 
 using System;
 using Adyen.Model.Nexo;
+using Adyen.Model.Nexo.Message;
+using Adyen.Security;
 using Newtonsoft.Json;
 
-namespace Adyen.CloudApiSerialization.Converter
+namespace Adyen.ApiSerialization.Converter
 {
-    internal class SaleToPoiMessageConverter : JsonConverter
+    internal class SaleToPoiMessageSecuredConverter : JsonConverter
     {
+        private const string SaleToPoiRequestSecuredForSerialization = "SaleToPOIRequest";
+        private const string SaleToPoiResponseSecuredForSerialization = "SaleToPOIResponse";
+        private const string NexoBlob = "NexoBlob";
+
         public override void WriteJson(JsonWriter writer, object value, JsonSerializer serializer)
         {
             serializer.NullValueHandling = NullValueHandling.Ignore;
-            serializer.MissingMemberHandling = MissingMemberHandling.Ignore;
+
             writer.WriteStartObject();
-            writer.WritePropertyName(value.GetType().Name);
+            writer.WritePropertyName(GetProperTypeNameForSerialization(value.GetType()));
+
             writer.WriteStartObject();
-            var saleToPoiMessage = value as SaleToPOIMessage;
-            writer.WritePropertyName(saleToPoiMessage.MessageHeader.GetType().Name);
-            serializer.Serialize(writer, saleToPoiMessage.MessageHeader);
-            writer.WritePropertyName(saleToPoiMessage.MessagePayload.GetType().Name);
-            serializer.Serialize(writer, saleToPoiMessage.MessagePayload);
+
+            var saleToPoiMessageSecured = value as SaleToPoiMessageSecured;
+
+            writer.WritePropertyName(saleToPoiMessageSecured.MessageHeader.GetType().Name);
+            serializer.Serialize(writer, saleToPoiMessageSecured.MessageHeader);
+
+            writer.WritePropertyName(NexoBlob);
+            serializer.Serialize(writer, saleToPoiMessageSecured.NexoBlob);
+
+            writer.WritePropertyName(saleToPoiMessageSecured.SecurityTrailer.GetType().Name);
+            serializer.Serialize(writer, saleToPoiMessageSecured.SecurityTrailer);
+
             writer.WriteEndObject();
+
             writer.WriteEndObject();
+        }
+
+        private string GetProperTypeNameForSerialization(Type type)
+        {
+            if (type == typeof(SaleToPOIMessage) || type == typeof(SaleToPoiRequestSecured))
+            {
+                return SaleToPoiRequestSecuredForSerialization;
+            }
+
+            if (type == typeof(SaleToPOIResponse) || type == typeof(SaleToPoiResponseSecured))
+            {
+                return SaleToPoiResponseSecuredForSerialization;
+            }
+
+            return string.Empty;
         }
 
         public override object ReadJson(JsonReader reader, Type objectType, object existingValue, JsonSerializer serializer)
@@ -52,7 +82,7 @@ namespace Adyen.CloudApiSerialization.Converter
 
         public override bool CanConvert(Type objectType)
         {
-            return typeof(SaleToPOIMessage).IsAssignableFrom(objectType);
+            return typeof(SaleToPoiMessageSecured).IsAssignableFrom(objectType);
         }
     }
 }
