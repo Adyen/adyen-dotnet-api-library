@@ -77,7 +77,7 @@ namespace Adyen.Test
         }
 
         /// <summary>
-        /// Returns SaleToPOIRequest with MessagePayload PrintRequest with unescaped characters
+        /// Returns SaleToPOIRequest with MessagePayload PrintRequest with escaped characters
         /// </summary>
         /// <returns>SaleToPOIRequest</returns>
         public static SaleToPOIRequest CreateSaleToPOIPrintRequestEscape()

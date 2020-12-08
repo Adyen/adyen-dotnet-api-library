@@ -78,8 +78,8 @@ namespace Adyen.Test
         { 
             var saleToPoiRequest = MockPosApiRequest.CreateSaleToPOIPrintRequestEscape();
             var messageHeader = MockPosApiRequest.CreateSaleToPOIPrintRequestEscape().MessageHeader;
-            var _saleToPoiMessageSerializer = new SaleToPoiMessageSerializer();
-            var saleToPoiRequestMessageSerialized = _saleToPoiMessageSerializer.Serialize(saleToPoiRequest);
+            var saleToPoiMessageSerializer = new SaleToPoiMessageSerializer();
+            var saleToPoiRequestMessageSerialized = saleToPoiMessageSerializer.Serialize(saleToPoiRequest);
             var saleToPoiMessageSecured = _messageSecuredEncryptor.Encrypt(saleToPoiRequestMessageSerialized, messageHeader, _encryptionCredentialDetails);
             var saleToPoiRequestDecrypt = _messageSecuredEncryptor.Decrypt(saleToPoiMessageSecured, _encryptionCredentialDetails);
             Assert.IsNotNull(saleToPoiRequestDecrypt);
