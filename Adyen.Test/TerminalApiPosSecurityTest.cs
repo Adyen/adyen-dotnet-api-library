@@ -21,6 +21,9 @@
 //  */
 #endregion
 
+using Adyen.ApiSerialization;
+using Adyen.Model.Nexo;
+using Adyen.Model.Nexo.Message;
 using Adyen.Security;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
@@ -69,5 +72,18 @@ namespace Adyen.Test
             Assert.IsNotNull(saleToPoiRequestDecrypt);
             Assert.AreEqual(saleToPoiRequest, saleToPoiRequestDecrypt);
         }
+
+        [TestMethod]
+        public void TestSaleToPoiMessageEscapeStringDecryption()
+        { 
+            var saleToPoiRequest = MockPosApiRequest.CreateSaleToPOIPrintRequestEscape();
+            var messageHeader = MockPosApiRequest.CreateSaleToPOIPrintRequestEscape().MessageHeader;
+            var _saleToPoiMessageSerializer = new SaleToPoiMessageSerializer();
+            var saleToPoiRequestMessageSerialized = _saleToPoiMessageSerializer.Serialize(saleToPoiRequest);
+            var saleToPoiMessageSecured = _messageSecuredEncryptor.Encrypt(saleToPoiRequestMessageSerialized, messageHeader, _encryptionCredentialDetails);
+            var saleToPoiRequestDecrypt = _messageSecuredEncryptor.Decrypt(saleToPoiMessageSecured, _encryptionCredentialDetails);
+            Assert.IsNotNull(saleToPoiRequestDecrypt);
+            Assert.AreEqual(MockPosApiRequest.MockNexoJsonPrintRequest(), saleToPoiRequestDecrypt);
+        } 
     }
 }
