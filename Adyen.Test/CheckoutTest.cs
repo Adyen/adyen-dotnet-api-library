@@ -621,8 +621,8 @@ namespace Adyen.Test
 
             Assert.IsTrue(paymentRequest.PaymentMethod is DefaultPaymentMethodDetails);
             Assert.IsNotNull(defaultPaymentMethod.SubType);
-            Assert.AreEqual("Sdk", defaultPaymentMethod.SubType);
-            Assert.AreEqual("Sdk", paymentResponse.Action.Type.ToString());
+            Assert.AreEqual(Model.Checkout.CheckoutPaymentsAction.CheckoutActionType.Sdk.ToString(), defaultPaymentMethod.SubType);
+            Assert.AreEqual(Model.Checkout.CheckoutPaymentsAction.CheckoutActionType.Sdk.ToString(), paymentResponse.Action.Type.ToString());
             Assert.AreEqual("EC-42N19135GM6949000", paymentResponse.Action.SdkData["orderID"]);
             
         }
