@@ -152,6 +152,23 @@ namespace Adyen.Test
             return paymentsRequest;
         }
 
+        public Model.Checkout.PaymentRequest CreatePayPalSmartPaymentRequestCheckout()
+        {
+            var amount = new Model.Checkout.Amount("USD", 1000);
+            var makePaymentRequest = new Model.Checkout.DefaultPaymentMethodDetails()
+            {
+                SubType = "Sdk"
+            };
+            var paymentsRequest = new Model.Checkout.PaymentRequest
+            {
+                Reference = "Your order number ",
+                ReturnUrl = @"https://your-company.com/...",
+                MerchantAccount = "MerchantAccount",  
+                PaymentMethod = makePaymentRequest
+            };
+            return paymentsRequest;
+        }
+
         /// <summary>
         /// Check out Apple Pay payment request
         /// </summary>

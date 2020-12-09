@@ -83,6 +83,8 @@ namespace Adyen.Model.Checkout
         public string ApplePayToken { get; set; }
         [DataMember(Name = "paywithgoogle.token", EmitDefaultValue = false)]
         public string GooglePayToken { get; set; }
+        [DataMember(Name = "subtype", EmitDefaultValue = false)]
+        public string SubType { get; set; }
 
         public override string ToString()
         {
@@ -113,6 +115,7 @@ namespace Adyen.Model.Checkout
             sb.Append("  BankAccount: ").Append(BankAccount).Append("\n");
             sb.Append("  ApplePayToken: ").Append(BankAccount).Append("\n");
             sb.Append("  GooglePayToken: ").Append(BankAccount).Append("\n");
+            sb.Append("  SubType: ").Append(SubType).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -263,6 +266,11 @@ namespace Adyen.Model.Checkout
                     this.GooglePayToken == input.GooglePayToken ||
                     (this.GooglePayToken != null &&
                     this.GooglePayToken.Equals(input.GooglePayToken))
+                ) &&
+                (
+                    this.SubType == input.SubType ||
+                    (this.SubType != null &&
+                    this.SubType.Equals(input.SubType))
                 );
         }
 

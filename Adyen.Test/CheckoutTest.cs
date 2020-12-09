@@ -606,7 +606,28 @@ namespace Adyen.Test
             Assert.AreEqual("EC-42N19135GM6949000", paymentResponse.Action.SdkData["orderID"]);
         }
 
-      
+        /// <summary>
+        /// Test success flow for paypal smart payment
+        /// Post /payments 
+        /// </summary>
+        [TestMethod]
+        public void PayPalSmartPaymentSuccessTest()
+        {
+            var client = CreateMockTestClientRequest("Mocks/checkout/payments-success-paypal.json");
+            var checkout = new Checkout(client);
+            var paymentRequest = CreatePayPalSmartPaymentRequestCheckout();
+            var paymentResponse = checkout.Payments(paymentRequest);           
+            var defaultPaymentMethod = paymentRequest.PaymentMethod as DefaultPaymentMethodDetails;
+
+            Assert.IsTrue(paymentRequest.PaymentMethod is DefaultPaymentMethodDetails);
+            Assert.IsNotNull(defaultPaymentMethod.SubType);
+            Assert.AreEqual("Sdk", defaultPaymentMethod.SubType);
+            Assert.AreEqual("Sdk", paymentResponse.Action.Type.ToString());
+            Assert.AreEqual("EC-42N19135GM6949000", paymentResponse.Action.SdkData["orderID"]);
+            
+        }
+
+
         [TestMethod]
         public void ApplePayDetailsDeserializationTest()
         {
