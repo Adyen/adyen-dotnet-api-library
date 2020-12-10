@@ -163,5 +163,23 @@ namespace Adyen.Test
             Assert.AreEqual(paymentRequest.Reference, "bacs direct debit test");
             Assert.AreEqual(paymentRequest.ReturnUrl, "https://your-company.com/checkout?shopperOrder=12xy..");
         }
+
+
+        [TestMethod]
+        public void TestPaypalSuccess()
+        {
+            var amount = new Model.Checkout.Amount("USD", 1000);
+            var paymentRequest = new PaymentRequest()
+            {
+                MerchantAccount = "YOUR_MERCHANT_ACCOUNT",
+                Amount = new Amount("GBP", 1000),
+                Reference = "bacs direct debit test",
+                PaymentMethod = new PayPalDetails() { Subtype= PayPalDetails.SubtypeEnum.SDK},          
+                ReturnUrl = "https://your-company.com/checkout?shopperOrder=12xy.."
+            };
+            var paymentMethodDetails = (PayPalDetails)paymentRequest.PaymentMethod;
+            Assert.AreEqual(paymentMethodDetails.Type, "paypal");
+            Assert.AreEqual(paymentMethodDetails.Subtype, PayPalDetails.SubtypeEnum.SDK);
+        }
     }
 }
