@@ -168,12 +168,11 @@ namespace Adyen.Test
         [TestMethod]
         public void TestPaypalSuccess()
         {
-            var amount = new Model.Checkout.Amount("USD", 1000);
             var paymentRequest = new PaymentRequest()
             {
                 MerchantAccount = "YOUR_MERCHANT_ACCOUNT",
-                Amount = new Amount("GBP", 1000),
-                Reference = "bacs direct debit test",
+                Amount = new Amount("USD", 1000),
+                Reference = "paypal test",
                 PaymentMethod = new PayPalDetails() { Subtype= PayPalDetails.SubtypeEnum.SDK},          
                 ReturnUrl = "https://your-company.com/checkout?shopperOrder=12xy.."
             };
