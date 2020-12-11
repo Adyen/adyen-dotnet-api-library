@@ -39,6 +39,7 @@ using Environment = System.Environment;
 using Amount = Adyen.Model.Amount;
 using PaymentResult = Adyen.Model.PaymentResult;
 using Adyen.Model.Checkout;
+using System.Threading.Tasks;
 
 namespace Adyen.Test
 {
@@ -303,6 +304,8 @@ namespace Adyen.Test
             var confMock = MockPaymentData.CreateConfingMock();
 
             clientInterfaceMock.Setup(x => x.Request(It.IsAny<string>(), It.IsAny<string>(), confMock)).Returns(response);
+            clientInterfaceMock.Setup(x => x.Request(It.IsAny<string>(), It.IsAny<string>(), confMock, It.IsAny<bool>(), It.IsAny<RequestOptions>())).Returns(response);
+            clientInterfaceMock.Setup(x => x.RequestAsync(It.IsAny<string>(), It.IsAny<string>(), confMock, It.IsAny<bool>(), It.IsAny<RequestOptions>())).Returns(Task.FromResult(response));
             var clientMock = new Client(It.IsAny<Config>())
             {
                 HttpClient = clientInterfaceMock.Object,

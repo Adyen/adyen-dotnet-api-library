@@ -28,6 +28,7 @@ using Adyen.Model.Recurring;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.Linq;
 using Recurring = Adyen.Model.Recurring.Recurring;
+using System.Threading.Tasks;
 
 namespace Adyen.Test
 {
@@ -42,6 +43,20 @@ namespace Adyen.Test
             var recurring=new Service.Recurring(client);
             var recurringDetailsRequest = this.CreateRecurringDetailsRequest();
             var recurringDetailsResult = recurring.ListRecurringDetails(recurringDetailsRequest);
+            Assert.AreEqual(1L, (long)recurringDetailsResult.Details.Count);
+            var recurringDetail = recurringDetailsResult.Details[0].RecurringDetail;
+            Assert.AreEqual("recurringReference", recurringDetail.RecurringDetailReference);
+            Assert.AreEqual("cardAlias", recurringDetail.Alias);
+            Assert.AreEqual("1111", recurringDetail.Card.Number);
+        }
+
+        [TestMethod]
+        public async Task TestListRecurringDetailsAsync()
+        {
+            var client = base.CreateMockTestClientNullRequiredFieldsRequest("Mocks/recurring/listRecurringDetails-success.json");
+            var recurring = new Service.Recurring(client);
+            var recurringDetailsRequest = this.CreateRecurringDetailsRequest();
+            var recurringDetailsResult = await recurring.ListRecurringDetailsAsync(recurringDetailsRequest);
             Assert.AreEqual(1L, (long)recurringDetailsResult.Details.Count);
             var recurringDetail = recurringDetailsResult.Details[0].RecurringDetail;
             Assert.AreEqual("recurringReference", recurringDetail.RecurringDetailReference);
