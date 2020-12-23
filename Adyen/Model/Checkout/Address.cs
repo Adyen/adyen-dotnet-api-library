@@ -1,24 +1,25 @@
-#region License
-// /*
-//  *                       ######
-//  *                       ######
-//  * ############    ####( ######  #####. ######  ############   ############
-//  * #############  #####( ######  #####. ######  #############  #############
-//  *        ######  #####( ######  #####. ######  #####  ######  #####  ######
-//  * ###### ######  #####( ######  #####. ######  #####  #####   #####  ######
-//  * ###### ######  #####( ######  #####. ######  #####          #####  ######
-//  * #############  #############  #############  #############  #####  ######
-//  *  ############   ############  #############   ############  #####  ######
-//  *                                      ######
-//  *                               #############
-//  *                               ############
-//  *
-//  * Adyen Dotnet API Library
-//  *
-//  * Copyright (c) 2020 Adyen B.V.
-//  * This file is open source and available under the MIT license.
-//  * See the LICENSE file for more info.
-//  */
+#region Licence
+
+// 
+//                        ######
+//                        ######
+//  ############    ####( ######  #####. ######  ############   ############
+//  #############  #####( ######  #####. ######  #############  #############
+//         ######  #####( ######  #####. ######  #####  ######  #####  ######
+//  ###### ######  #####( ######  #####. ######  #####  #####   #####  ######
+//  ###### ######  #####( ######  #####. ######  #####          #####  ######
+//  #############  #############  #############  #############  #####  ######
+//   ############   ############  #############   ############  #####  ######
+//                                       ######
+//                                #############
+//                                ############
+// 
+//  Adyen Dotnet API Library
+// 
+//  Copyright (c) 2020 Adyen B.V.
+//  This file is open source and available under the MIT license.
+//  See the LICENSE file for more info.
+
 #endregion
 
 using System;
@@ -35,80 +36,110 @@ namespace Adyen.Model.Checkout
     /// Address
     /// </summary>
     [DataContract]
-    public partial class Address :  IEquatable<Address>, IValidatableObject
+    public partial class Address : IEquatable<Address>, IValidatableObject
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="Address" /> class.
         /// </summary>
-        [JsonConstructor]
-        protected Address() { }
-        /// <summary>
-        /// Initializes a new instance of the <see cref="Address" /> class.
-        /// </summary>
-        /// <param name="City">The name of the city. &gt;Required if either houseNumberOrName, street, postalCode, or stateOrProvince are provided..</param>
-        /// <param name="Country">The two-character country code of the address &gt;The permitted country codes are defined in ISO-3166-1 alpha-2 (e.g. &#39;NL&#39;). (required).</param>
-        /// <param name="HouseNumberOrName">The number or name of the house..</param>
-        /// <param name="PostalCode">The postal code. &gt;A maximum of five (5) digits for an address in the USA, or a maximum of ten (10) characters for an address in all other countries. &gt;Required if either houseNumberOrName, street, city, or stateOrProvince are provided..</param>
-        /// <param name="StateOrProvince">The abbreviation of the state or province. &gt;Two (2) characters for an address in the USA or Canada, or a maximum of three (3) characters for an address in all other countries. &gt;Required for an address in the USA or Canada if either houseNumberOrName, street, city, or postalCode are provided..</param>
-        /// <param name="Street">The name of the street. &gt;The house number should not be included in this field; it should be separately provided via &#x60;houseNumberOrName&#x60;. &gt;Required if either houseNumberOrName, city, postalCode, or stateOrProvince are provided..</param>
-        public Address(string City = default(string), string Country = default(string), string HouseNumberOrName = default(string), string PostalCode = default(string), string StateOrProvince = default(string), string Street = default(string))
+        /// <param name="city">The name of the city. (required).</param>
+        /// <param name="country">The two-character country code as defined in ISO-3166-1 alpha-2. For example, **US**. &gt; If you don&#x27;t know the country or are not collecting the country from the shopper, provide &#x60;country&#x60; as &#x60;ZZ&#x60;. (required).</param>
+        /// <param name="houseNumberOrName">The number or name of the house. (required).</param>
+        /// <param name="postalCode">A maximum of five digits for an address in the US, or a maximum of ten characters for an address in all other countries. (required).</param>
+        /// <param name="stateOrProvince">State or province codes as defined in ISO 3166-2. For example, **CA** in the US or **ON** in Canada. &gt; Required for the US and Canada..</param>
+        /// <param name="street">The name of the street. &gt; The house number should not be included in this field; it should be separately provided via &#x60;houseNumberOrName&#x60;. (required).</param>
+        public Address(string city = default(string), string country = default(string),
+            string houseNumberOrName = default(string), string postalCode = default(string),
+            string stateOrProvince = default(string), string street = default(string))
         {
-            // to ensure "Country" is required (not null)
-            if (Country == null)
+            // to ensure "city" is required (not null)
+            if (city == null)
             {
-                throw new InvalidDataException("Country is a required property for Address and cannot be null");
+                throw new InvalidDataException("city is a required property for Address and cannot be null");
             }
             else
             {
-                this.Country = Country;
+                this.City = city;
             }
-            this.City = City;
-            this.HouseNumberOrName = HouseNumberOrName;
-            this.PostalCode = PostalCode;
-            this.StateOrProvince = StateOrProvince;
-            this.Street = Street;
+            // to ensure "country" is required (not null)
+            if (country == null)
+            {
+                throw new InvalidDataException("country is a required property for Address and cannot be null");
+            }
+            else
+            {
+                this.Country = country;
+            }
+            // to ensure "houseNumberOrName" is required (not null)
+            if (houseNumberOrName == null)
+            {
+                throw new InvalidDataException(
+                    "houseNumberOrName is a required property for Address and cannot be null");
+            }
+            else
+            {
+                this.HouseNumberOrName = houseNumberOrName;
+            }
+            // to ensure "postalCode" is required (not null)
+            if (postalCode == null)
+            {
+                throw new InvalidDataException("postalCode is a required property for Address and cannot be null");
+            }
+            else
+            {
+                this.PostalCode = postalCode;
+            }
+            // to ensure "street" is required (not null)
+            if (street == null)
+            {
+                throw new InvalidDataException("street is a required property for Address and cannot be null");
+            }
+            else
+            {
+                this.Street = street;
+            }
+            this.StateOrProvince = stateOrProvince;
         }
-        
+
         /// <summary>
-        /// The name of the city. &gt;Required if either houseNumberOrName, street, postalCode, or stateOrProvince are provided.
+        /// The name of the city.
         /// </summary>
-        /// <value>The name of the city. &gt;Required if either houseNumberOrName, street, postalCode, or stateOrProvince are provided.</value>
-        [DataMember(Name="city", EmitDefaultValue=false)]
+        /// <value>The name of the city.</value>
+        [DataMember(Name = "city", EmitDefaultValue = false)]
         public string City { get; set; }
 
         /// <summary>
-        /// The two-character country code of the address &gt;The permitted country codes are defined in ISO-3166-1 alpha-2 (e.g. &#39;NL&#39;).
+        /// The two-character country code as defined in ISO-3166-1 alpha-2. For example, **US**. &gt; If you don&#x27;t know the country or are not collecting the country from the shopper, provide &#x60;country&#x60; as &#x60;ZZ&#x60;.
         /// </summary>
-        /// <value>The two-character country code of the address &gt;The permitted country codes are defined in ISO-3166-1 alpha-2 (e.g. &#39;NL&#39;).</value>
-        [DataMember(Name="country", EmitDefaultValue=false)]
+        /// <value>The two-character country code as defined in ISO-3166-1 alpha-2. For example, **US**. &gt; If you don&#x27;t know the country or are not collecting the country from the shopper, provide &#x60;country&#x60; as &#x60;ZZ&#x60;.</value>
+        [DataMember(Name = "country", EmitDefaultValue = false)]
         public string Country { get; set; }
 
         /// <summary>
         /// The number or name of the house.
         /// </summary>
         /// <value>The number or name of the house.</value>
-        [DataMember(Name="houseNumberOrName", EmitDefaultValue=false)]
+        [DataMember(Name = "houseNumberOrName", EmitDefaultValue = false)]
         public string HouseNumberOrName { get; set; }
 
         /// <summary>
-        /// The postal code. &gt;A maximum of five (5) digits for an address in the USA, or a maximum of ten (10) characters for an address in all other countries. &gt;Required if either houseNumberOrName, street, city, or stateOrProvince are provided.
+        /// A maximum of five digits for an address in the US, or a maximum of ten characters for an address in all other countries.
         /// </summary>
-        /// <value>The postal code. &gt;A maximum of five (5) digits for an address in the USA, or a maximum of ten (10) characters for an address in all other countries. &gt;Required if either houseNumberOrName, street, city, or stateOrProvince are provided.</value>
-        [DataMember(Name="postalCode", EmitDefaultValue=false)]
+        /// <value>A maximum of five digits for an address in the US, or a maximum of ten characters for an address in all other countries.</value>
+        [DataMember(Name = "postalCode", EmitDefaultValue = false)]
         public string PostalCode { get; set; }
 
         /// <summary>
-        /// The abbreviation of the state or province. &gt;Two (2) characters for an address in the USA or Canada, or a maximum of three (3) characters for an address in all other countries. &gt;Required for an address in the USA or Canada if either houseNumberOrName, street, city, or postalCode are provided.
+        /// State or province codes as defined in ISO 3166-2. For example, **CA** in the US or **ON** in Canada. &gt; Required for the US and Canada.
         /// </summary>
-        /// <value>The abbreviation of the state or province. &gt;Two (2) characters for an address in the USA or Canada, or a maximum of three (3) characters for an address in all other countries. &gt;Required for an address in the USA or Canada if either houseNumberOrName, street, city, or postalCode are provided.</value>
-        [DataMember(Name="stateOrProvince", EmitDefaultValue=false)]
+        /// <value>State or province codes as defined in ISO 3166-2. For example, **CA** in the US or **ON** in Canada. &gt; Required for the US and Canada.</value>
+        [DataMember(Name = "stateOrProvince", EmitDefaultValue = false)]
         public string StateOrProvince { get; set; }
 
         /// <summary>
-        /// The name of the street. &gt;The house number should not be included in this field; it should be separately provided via &#x60;houseNumberOrName&#x60;. &gt;Required if either houseNumberOrName, city, postalCode, or stateOrProvince are provided.
+        /// The name of the street. &gt; The house number should not be included in this field; it should be separately provided via &#x60;houseNumberOrName&#x60;.
         /// </summary>
-        /// <value>The name of the street. &gt;The house number should not be included in this field; it should be separately provided via &#x60;houseNumberOrName&#x60;. &gt;Required if either houseNumberOrName, city, postalCode, or stateOrProvince are provided.</value>
-        [DataMember(Name="street", EmitDefaultValue=false)]
+        /// <value>The name of the street. &gt; The house number should not be included in this field; it should be separately provided via &#x60;houseNumberOrName&#x60;.</value>
+        [DataMember(Name = "street", EmitDefaultValue = false)]
         public string Street { get; set; }
 
         /// <summary>
@@ -128,12 +159,12 @@ namespace Adyen.Model.Checkout
             sb.Append("}\n");
             return sb.ToString();
         }
-  
+
         /// <summary>
         /// Returns the JSON string presentation of the object
         /// </summary>
         /// <returns>JSON string presentation of the object</returns>
-        public string ToJson()
+        public virtual string ToJson()
         {
             return JsonConvert.SerializeObject(this, Formatting.Indented);
         }
@@ -158,36 +189,36 @@ namespace Adyen.Model.Checkout
             if (input == null)
                 return false;
 
-            return 
+            return
                 (
                     this.City == input.City ||
-                    (this.City != null &&
-                    this.City.Equals(input.City))
-                ) && 
+                    this.City != null &&
+                    this.City.Equals(input.City)
+                ) &&
                 (
                     this.Country == input.Country ||
-                    (this.Country != null &&
-                    this.Country.Equals(input.Country))
-                ) && 
+                    this.Country != null &&
+                    this.Country.Equals(input.Country)
+                ) &&
                 (
                     this.HouseNumberOrName == input.HouseNumberOrName ||
-                    (this.HouseNumberOrName != null &&
-                    this.HouseNumberOrName.Equals(input.HouseNumberOrName))
-                ) && 
+                    this.HouseNumberOrName != null &&
+                    this.HouseNumberOrName.Equals(input.HouseNumberOrName)
+                ) &&
                 (
                     this.PostalCode == input.PostalCode ||
-                    (this.PostalCode != null &&
-                    this.PostalCode.Equals(input.PostalCode))
-                ) && 
+                    this.PostalCode != null &&
+                    this.PostalCode.Equals(input.PostalCode)
+                ) &&
                 (
                     this.StateOrProvince == input.StateOrProvince ||
-                    (this.StateOrProvince != null &&
-                    this.StateOrProvince.Equals(input.StateOrProvince))
-                ) && 
+                    this.StateOrProvince != null &&
+                    this.StateOrProvince.Equals(input.StateOrProvince)
+                ) &&
                 (
                     this.Street == input.Street ||
-                    (this.Street != null &&
-                    this.Street.Equals(input.Street))
+                    this.Street != null &&
+                    this.Street.Equals(input.Street)
                 );
         }
 
@@ -221,10 +252,10 @@ namespace Adyen.Model.Checkout
         /// </summary>
         /// <param name="validationContext">Validation context</param>
         /// <returns>Validation Result</returns>
-        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(
+            ValidationContext validationContext)
         {
             yield break;
         }
     }
-
 }

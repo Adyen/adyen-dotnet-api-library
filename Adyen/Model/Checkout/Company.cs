@@ -1,24 +1,25 @@
-#region License
-// /*
-//  *                       ######
-//  *                       ######
-//  * ############    ####( ######  #####. ######  ############   ############
-//  * #############  #####( ######  #####. ######  #############  #############
-//  *        ######  #####( ######  #####. ######  #####  ######  #####  ######
-//  * ###### ######  #####( ######  #####. ######  #####  #####   #####  ######
-//  * ###### ######  #####( ######  #####. ######  #####          #####  ######
-//  * #############  #############  #############  #############  #####  ######
-//  *  ############   ############  #############   ############  #####  ######
-//  *                                      ######
-//  *                               #############
-//  *                               ############
-//  *
-//  * Adyen Dotnet API Library
-//  *
-//  * Copyright (c) 2020 Adyen B.V.
-//  * This file is open source and available under the MIT license.
-//  * See the LICENSE file for more info.
-//  */
+#region Licence
+
+// 
+//                        ######
+//                        ######
+//  ############    ####( ######  #####. ######  ############   ############
+//  #############  #####( ######  #####. ######  #############  #############
+//         ######  #####( ######  #####. ######  #####  ######  #####  ######
+//  ###### ######  #####( ######  #####. ######  #####  #####   #####  ######
+//  ###### ######  #####( ######  #####. ######  #####          #####  ######
+//  #############  #############  #############  #############  #####  ######
+//   ############   ############  #############   ############  #####  ######
+//                                       ######
+//                                #############
+//                                ############
+// 
+//  Adyen Dotnet API Library
+// 
+//  Copyright (c) 2020 Adyen B.V.
+//  This file is open source and available under the MIT license.
+//  See the LICENSE file for more info.
+
 #endregion
 
 using System;
@@ -34,67 +35,69 @@ namespace Adyen.Model.Checkout
     /// Company
     /// </summary>
     [DataContract]
-    public partial class Company :  IEquatable<Company>, IValidatableObject
+    public partial class Company : IEquatable<Company>, IValidatableObject
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="Company" /> class.
         /// </summary>
-        /// <param name="Homepage">The company website&#39;s home page..</param>
-        /// <param name="Name">The company name..</param>
-        /// <param name="RegistrationNumber">Registration number of the company..</param>
-        /// <param name="RegistryLocation">Registry location of the company..</param>
-        /// <param name="TaxId">Tax ID of the company..</param>
-        /// <param name="Type">The company type..</param>
-        public Company(string Homepage = default(string), string Name = default(string), string RegistrationNumber = default(string), string RegistryLocation = default(string), string TaxId = default(string), string Type = default(string))
+        /// <param name="homepage">The company website&#x27;s home page..</param>
+        /// <param name="name">The company name..</param>
+        /// <param name="registrationNumber">Registration number of the company..</param>
+        /// <param name="registryLocation">Registry location of the company..</param>
+        /// <param name="taxId">Tax ID of the company..</param>
+        /// <param name="type">The company type..</param>
+        public Company(string homepage = default(string), string name = default(string),
+            string registrationNumber = default(string), string registryLocation = default(string),
+            string taxId = default(string), string type = default(string))
         {
-            this.Homepage = Homepage;
-            this.Name = Name;
-            this.RegistrationNumber = RegistrationNumber;
-            this.RegistryLocation = RegistryLocation;
-            this.TaxId = TaxId;
-            this.Type = Type;
+            this.Homepage = homepage;
+            this.Name = name;
+            this.RegistrationNumber = registrationNumber;
+            this.RegistryLocation = registryLocation;
+            this.TaxId = taxId;
+            this.Type = type;
         }
-        
+
         /// <summary>
-        /// The company website&#39;s home page.
+        /// The company website&#x27;s home page.
         /// </summary>
-        /// <value>The company website&#39;s home page.</value>
-        [DataMember(Name="homepage", EmitDefaultValue=false)]
+        /// <value>The company website&#x27;s home page.</value>
+        [DataMember(Name = "homepage", EmitDefaultValue = false)]
         public string Homepage { get; set; }
 
         /// <summary>
         /// The company name.
         /// </summary>
         /// <value>The company name.</value>
-        [DataMember(Name="name", EmitDefaultValue=false)]
+        [DataMember(Name = "name", EmitDefaultValue = false)]
         public string Name { get; set; }
 
         /// <summary>
         /// Registration number of the company.
         /// </summary>
         /// <value>Registration number of the company.</value>
-        [DataMember(Name="registrationNumber", EmitDefaultValue=false)]
+        [DataMember(Name = "registrationNumber", EmitDefaultValue = false)]
         public string RegistrationNumber { get; set; }
 
         /// <summary>
         /// Registry location of the company.
         /// </summary>
         /// <value>Registry location of the company.</value>
-        [DataMember(Name="registryLocation", EmitDefaultValue=false)]
+        [DataMember(Name = "registryLocation", EmitDefaultValue = false)]
         public string RegistryLocation { get; set; }
 
         /// <summary>
         /// Tax ID of the company.
         /// </summary>
         /// <value>Tax ID of the company.</value>
-        [DataMember(Name="taxId", EmitDefaultValue=false)]
+        [DataMember(Name = "taxId", EmitDefaultValue = false)]
         public string TaxId { get; set; }
 
         /// <summary>
         /// The company type.
         /// </summary>
         /// <value>The company type.</value>
-        [DataMember(Name="type", EmitDefaultValue=false)]
+        [DataMember(Name = "type", EmitDefaultValue = false)]
         public string Type { get; set; }
 
         /// <summary>
@@ -114,12 +117,12 @@ namespace Adyen.Model.Checkout
             sb.Append("}\n");
             return sb.ToString();
         }
-  
+
         /// <summary>
         /// Returns the JSON string presentation of the object
         /// </summary>
         /// <returns>JSON string presentation of the object</returns>
-        public string ToJson()
+        public virtual string ToJson()
         {
             return JsonConvert.SerializeObject(this, Formatting.Indented);
         }
@@ -144,36 +147,36 @@ namespace Adyen.Model.Checkout
             if (input == null)
                 return false;
 
-            return 
+            return
                 (
                     this.Homepage == input.Homepage ||
-                    (this.Homepage != null &&
-                    this.Homepage.Equals(input.Homepage))
-                ) && 
+                    this.Homepage != null &&
+                    this.Homepage.Equals(input.Homepage)
+                ) &&
                 (
                     this.Name == input.Name ||
-                    (this.Name != null &&
-                    this.Name.Equals(input.Name))
-                ) && 
+                    this.Name != null &&
+                    this.Name.Equals(input.Name)
+                ) &&
                 (
                     this.RegistrationNumber == input.RegistrationNumber ||
-                    (this.RegistrationNumber != null &&
-                    this.RegistrationNumber.Equals(input.RegistrationNumber))
-                ) && 
+                    this.RegistrationNumber != null &&
+                    this.RegistrationNumber.Equals(input.RegistrationNumber)
+                ) &&
                 (
                     this.RegistryLocation == input.RegistryLocation ||
-                    (this.RegistryLocation != null &&
-                    this.RegistryLocation.Equals(input.RegistryLocation))
-                ) && 
+                    this.RegistryLocation != null &&
+                    this.RegistryLocation.Equals(input.RegistryLocation)
+                ) &&
                 (
                     this.TaxId == input.TaxId ||
-                    (this.TaxId != null &&
-                    this.TaxId.Equals(input.TaxId))
-                ) && 
+                    this.TaxId != null &&
+                    this.TaxId.Equals(input.TaxId)
+                ) &&
                 (
                     this.Type == input.Type ||
-                    (this.Type != null &&
-                    this.Type.Equals(input.Type))
+                    this.Type != null &&
+                    this.Type.Equals(input.Type)
                 );
         }
 
@@ -207,10 +210,10 @@ namespace Adyen.Model.Checkout
         /// </summary>
         /// <param name="validationContext">Validation context</param>
         /// <returns>Validation Result</returns>
-        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(
+            ValidationContext validationContext)
         {
             yield break;
         }
     }
-
 }

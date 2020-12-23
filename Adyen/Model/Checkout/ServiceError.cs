@@ -1,24 +1,25 @@
-#region License
-// /*
-//  *                       ######
-//  *                       ######
-//  * ############    ####( ######  #####. ######  ############   ############
-//  * #############  #####( ######  #####. ######  #############  #############
-//  *        ######  #####( ######  #####. ######  #####  ######  #####  ######
-//  * ###### ######  #####( ######  #####. ######  #####  #####   #####  ######
-//  * ###### ######  #####( ######  #####. ######  #####          #####  ######
-//  * #############  #############  #############  #############  #####  ######
-//  *  ############   ############  #############   ############  #####  ######
-//  *                                      ######
-//  *                               #############
-//  *                               ############
-//  *
-//  * Adyen Dotnet API Library
-//  *
-//  * Copyright (c) 2020 Adyen B.V.
-//  * This file is open source and available under the MIT license.
-//  * See the LICENSE file for more info.
-//  */
+#region Licence
+
+// 
+//                        ######
+//                        ######
+//  ############    ####( ######  #####. ######  ############   ############
+//  #############  #####( ######  #####. ######  #############  #############
+//         ######  #####( ######  #####. ######  #####  ######  #####  ######
+//  ###### ######  #####( ######  #####. ######  #####  #####   #####  ######
+//  ###### ######  #####( ######  #####. ######  #####          #####  ######
+//  #############  #############  #############  #############  #####  ######
+//   ############   ############  #############   ############  #####  ######
+//                                       ######
+//                                #############
+//                                ############
+// 
+//  Adyen Dotnet API Library
+// 
+//  Copyright (c) 2020 Adyen B.V.
+//  This file is open source and available under the MIT license.
+//  See the LICENSE file for more info.
+
 #endregion
 
 using System;
@@ -34,37 +35,38 @@ namespace Adyen.Model.Checkout
     /// ServiceError
     /// </summary>
     [DataContract]
-    public partial class ServiceError :  IEquatable<ServiceError>, IValidatableObject
+    public partial class ServiceError : IEquatable<ServiceError>, IValidatableObject
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="ServiceError" /> class.
         /// </summary>
-        /// <param name="ErrorCode">ErrorCode.</param>
-        /// <param name="ErrorType">ErrorType.</param>
-        /// <param name="Message">Message.</param>
-        public ServiceError(string ErrorCode = default(string), string ErrorType = default(string), string Message = default(string))
+        /// <param name="errorCode">errorCode.</param>
+        /// <param name="errorType">errorType.</param>
+        /// <param name="message">message.</param>
+        public ServiceError(string errorCode = default(string), string errorType = default(string),
+            string message = default(string))
         {
-            this.ErrorCode = ErrorCode;
-            this.ErrorType = ErrorType;
-            this.Message = Message;
+            this.ErrorCode = errorCode;
+            this.ErrorType = errorType;
+            this.Message = message;
         }
-        
+
         /// <summary>
         /// Gets or Sets ErrorCode
         /// </summary>
-        [DataMember(Name="errorCode", EmitDefaultValue=false)]
+        [DataMember(Name = "errorCode", EmitDefaultValue = false)]
         public string ErrorCode { get; set; }
 
         /// <summary>
         /// Gets or Sets ErrorType
         /// </summary>
-        [DataMember(Name="errorType", EmitDefaultValue=false)]
+        [DataMember(Name = "errorType", EmitDefaultValue = false)]
         public string ErrorType { get; set; }
 
         /// <summary>
         /// Gets or Sets Message
         /// </summary>
-        [DataMember(Name="message", EmitDefaultValue=false)]
+        [DataMember(Name = "message", EmitDefaultValue = false)]
         public string Message { get; set; }
 
         /// <summary>
@@ -81,12 +83,12 @@ namespace Adyen.Model.Checkout
             sb.Append("}\n");
             return sb.ToString();
         }
-  
+
         /// <summary>
         /// Returns the JSON string presentation of the object
         /// </summary>
         /// <returns>JSON string presentation of the object</returns>
-        public string ToJson()
+        public virtual string ToJson()
         {
             return JsonConvert.SerializeObject(this, Formatting.Indented);
         }
@@ -111,21 +113,21 @@ namespace Adyen.Model.Checkout
             if (input == null)
                 return false;
 
-            return 
+            return
                 (
                     this.ErrorCode == input.ErrorCode ||
-                    (this.ErrorCode != null &&
-                    this.ErrorCode.Equals(input.ErrorCode))
-                ) && 
+                    this.ErrorCode != null &&
+                    this.ErrorCode.Equals(input.ErrorCode)
+                ) &&
                 (
                     this.ErrorType == input.ErrorType ||
-                    (this.ErrorType != null &&
-                    this.ErrorType.Equals(input.ErrorType))
-                ) && 
+                    this.ErrorType != null &&
+                    this.ErrorType.Equals(input.ErrorType)
+                ) &&
                 (
                     this.Message == input.Message ||
-                    (this.Message != null &&
-                    this.Message.Equals(input.Message))
+                    this.Message != null &&
+                    this.Message.Equals(input.Message)
                 );
         }
 
@@ -153,10 +155,10 @@ namespace Adyen.Model.Checkout
         /// </summary>
         /// <param name="validationContext">Validation context</param>
         /// <returns>Validation Result</returns>
-        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(
+            ValidationContext validationContext)
         {
             yield break;
         }
     }
-
 }

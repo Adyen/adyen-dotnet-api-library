@@ -1,38 +1,34 @@
-﻿#region License
-// /*
-//  *                       ######
-//  *                       ######
-//  * ############    ####( ######  #####. ######  ############   ############
-//  * #############  #####( ######  #####. ######  #############  #############
-//  *        ######  #####( ######  #####. ######  #####  ######  #####  ######
-//  * ###### ######  #####( ######  #####. ######  #####  #####   #####  ######
-//  * ###### ######  #####( ######  #####. ######  #####          #####  ######
-//  * #############  #############  #############  #############  #####  ######
-//  *  ############   ############  #############   ############  #####  ######
-//  *                                      ######
-//  *                               #############
-//  *                               ############
-//  *
-//  * Adyen Dotnet API Library
-//  *
-//  * Copyright (c) 2020 Adyen B.V.
-//  * This file is open source and available under the MIT license.
-//  * See the LICENSE file for more info.
-//  */
+#region Licence
+
+// 
+//                        ######
+//                        ######
+//  ############    ####( ######  #####. ######  ############   ############
+//  #############  #####( ######  #####. ######  #############  #############
+//         ######  #####( ######  #####. ######  #####  ######  #####  ######
+//  ###### ######  #####( ######  #####. ######  #####  #####   #####  ######
+//  ###### ######  #####( ######  #####. ######  #####          #####  ######
+//  #############  #############  #############  #############  #####  ######
+//   ############   ############  #############   ############  #####  ######
+//                                       ######
+//                                #############
+//                                ############
+// 
+//  Adyen Dotnet API Library
+// 
+//  Copyright (c) 2020 Adyen B.V.
+//  This file is open source and available under the MIT license.
+//  See the LICENSE file for more info.
+
 #endregion
 
 using System;
-using System.Linq;
-using System.IO;
-using System.Text;
-using System.Text.RegularExpressions;
-using System.Collections;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.Runtime.Serialization;
-using Newtonsoft.Json;
-using Newtonsoft.Json.Converters;
 using System.ComponentModel.DataAnnotations;
+using System.IO;
+using System.Runtime.Serialization;
+using System.Text;
+using Newtonsoft.Json;
 
 namespace Adyen.Model.Checkout
 {
@@ -45,8 +41,8 @@ namespace Adyen.Model.Checkout
         /// <summary>
         /// Initializes a new instance of the <see cref="CheckoutOrder" /> class.
         /// </summary>
-        /// <param name="orderData">The encrypted order data (required).</param>
-        /// <param name="pspReference">The pspReference that belongs to the order (required).</param>
+        /// <param name="orderData">The encrypted order data. (required).</param>
+        /// <param name="pspReference">The &#x60;pspReference&#x60; that belongs to the order. (required).</param>
         public CheckoutOrder(string orderData = default(string), string pspReference = default(string))
         {
             // to ensure "orderData" is required (not null)
@@ -61,7 +57,8 @@ namespace Adyen.Model.Checkout
             // to ensure "pspReference" is required (not null)
             if (pspReference == null)
             {
-                throw new InvalidDataException("pspReference is a required property for CheckoutOrder and cannot be null");
+                throw new InvalidDataException(
+                    "pspReference is a required property for CheckoutOrder and cannot be null");
             }
             else
             {
@@ -70,16 +67,16 @@ namespace Adyen.Model.Checkout
         }
 
         /// <summary>
-        /// The encrypted order data
+        /// The encrypted order data.
         /// </summary>
-        /// <value>The encrypted order data</value>
+        /// <value>The encrypted order data.</value>
         [DataMember(Name = "orderData", EmitDefaultValue = false)]
         public string OrderData { get; set; }
 
         /// <summary>
-        /// The pspReference that belongs to the order
+        /// The &#x60;pspReference&#x60; that belongs to the order.
         /// </summary>
-        /// <value>The pspReference that belongs to the order</value>
+        /// <value>The &#x60;pspReference&#x60; that belongs to the order.</value>
         [DataMember(Name = "pspReference", EmitDefaultValue = false)]
         public string PspReference { get; set; }
 
@@ -129,13 +126,13 @@ namespace Adyen.Model.Checkout
             return
                 (
                     this.OrderData == input.OrderData ||
-                    (this.OrderData != null &&
-                    this.OrderData.Equals(input.OrderData))
+                    this.OrderData != null &&
+                    this.OrderData.Equals(input.OrderData)
                 ) &&
                 (
                     this.PspReference == input.PspReference ||
-                    (this.PspReference != null &&
-                    this.PspReference.Equals(input.PspReference))
+                    this.PspReference != null &&
+                    this.PspReference.Equals(input.PspReference)
                 );
         }
 
@@ -161,7 +158,8 @@ namespace Adyen.Model.Checkout
         /// </summary>
         /// <param name="validationContext">Validation context</param>
         /// <returns>Validation Result</returns>
-        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(
+            ValidationContext validationContext)
         {
             yield break;
         }

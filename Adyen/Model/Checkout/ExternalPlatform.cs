@@ -1,24 +1,25 @@
-#region License
-// /*
-//  *                       ######
-//  *                       ######
-//  * ############    ####( ######  #####. ######  ############   ############
-//  * #############  #####( ######  #####. ######  #############  #############
-//  *        ######  #####( ######  #####. ######  #####  ######  #####  ######
-//  * ###### ######  #####( ######  #####. ######  #####  #####   #####  ######
-//  * ###### ######  #####( ######  #####. ######  #####          #####  ######
-//  * #############  #############  #############  #############  #####  ######
-//  *  ############   ############  #############   ############  #####  ######
-//  *                                      ######
-//  *                               #############
-//  *                               ############
-//  *
-//  * Adyen Dotnet API Library
-//  *
-//  * Copyright (c) 2020 Adyen B.V.
-//  * This file is open source and available under the MIT license.
-//  * See the LICENSE file for more info.
-//  */
+#region Licence
+
+// 
+//                        ######
+//                        ######
+//  ############    ####( ######  #####. ######  ############   ############
+//  #############  #####( ######  #####. ######  #############  #############
+//         ######  #####( ######  #####. ######  #####  ######  #####  ######
+//  ###### ######  #####( ######  #####. ######  #####  #####   #####  ######
+//  ###### ######  #####( ######  #####. ######  #####          #####  ######
+//  #############  #############  #############  #############  #####  ######
+//   ############   ############  #############   ############  #####  ######
+//                                       ######
+//                                #############
+//                                ############
+// 
+//  Adyen Dotnet API Library
+// 
+//  Copyright (c) 2020 Adyen B.V.
+//  This file is open source and available under the MIT license.
+//  See the LICENSE file for more info.
+
 #endregion
 
 using System;
@@ -34,40 +35,41 @@ namespace Adyen.Model.Checkout
     /// ExternalPlatform
     /// </summary>
     [DataContract]
-    public partial class ExternalPlatform :  IEquatable<ExternalPlatform>, IValidatableObject
+    public partial class ExternalPlatform : IEquatable<ExternalPlatform>, IValidatableObject
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="ExternalPlatform" /> class.
         /// </summary>
-        /// <param name="Integrator">External platform integrator..</param>
-        /// <param name="Name">Name of the field. For example, Name of External Platform..</param>
-        /// <param name="Version">Version of the field. For example, Version of External Platform..</param>
-        public ExternalPlatform(string Integrator = default(string), string Name = default(string), string Version = default(string))
+        /// <param name="integrator">External platform integrator..</param>
+        /// <param name="name">Name of the field. For example, Name of External Platform..</param>
+        /// <param name="version">Version of the field. For example, Version of External Platform..</param>
+        public ExternalPlatform(string integrator = default(string), string name = default(string),
+            string version = default(string))
         {
-            this.Integrator = Integrator;
-            this.Name = Name;
-            this.Version = Version;
+            this.Integrator = integrator;
+            this.Name = name;
+            this.Version = version;
         }
-        
+
         /// <summary>
         /// External platform integrator.
         /// </summary>
         /// <value>External platform integrator.</value>
-        [DataMember(Name="integrator", EmitDefaultValue=false)]
+        [DataMember(Name = "integrator", EmitDefaultValue = false)]
         public string Integrator { get; set; }
 
         /// <summary>
         /// Name of the field. For example, Name of External Platform.
         /// </summary>
         /// <value>Name of the field. For example, Name of External Platform.</value>
-        [DataMember(Name="name", EmitDefaultValue=false)]
+        [DataMember(Name = "name", EmitDefaultValue = false)]
         public string Name { get; set; }
 
         /// <summary>
         /// Version of the field. For example, Version of External Platform.
         /// </summary>
         /// <value>Version of the field. For example, Version of External Platform.</value>
-        [DataMember(Name="version", EmitDefaultValue=false)]
+        [DataMember(Name = "version", EmitDefaultValue = false)]
         public string Version { get; set; }
 
         /// <summary>
@@ -84,12 +86,12 @@ namespace Adyen.Model.Checkout
             sb.Append("}\n");
             return sb.ToString();
         }
-  
+
         /// <summary>
         /// Returns the JSON string presentation of the object
         /// </summary>
         /// <returns>JSON string presentation of the object</returns>
-        public string ToJson()
+        public virtual string ToJson()
         {
             return JsonConvert.SerializeObject(this, Formatting.Indented);
         }
@@ -114,21 +116,21 @@ namespace Adyen.Model.Checkout
             if (input == null)
                 return false;
 
-            return 
+            return
                 (
                     this.Integrator == input.Integrator ||
-                    (this.Integrator != null &&
-                    this.Integrator.Equals(input.Integrator))
-                ) && 
+                    this.Integrator != null &&
+                    this.Integrator.Equals(input.Integrator)
+                ) &&
                 (
                     this.Name == input.Name ||
-                    (this.Name != null &&
-                    this.Name.Equals(input.Name))
-                ) && 
+                    this.Name != null &&
+                    this.Name.Equals(input.Name)
+                ) &&
                 (
                     this.Version == input.Version ||
-                    (this.Version != null &&
-                    this.Version.Equals(input.Version))
+                    this.Version != null &&
+                    this.Version.Equals(input.Version)
                 );
         }
 
@@ -156,10 +158,10 @@ namespace Adyen.Model.Checkout
         /// </summary>
         /// <param name="validationContext">Validation context</param>
         /// <returns>Validation Result</returns>
-        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(
+            ValidationContext validationContext)
         {
             yield break;
         }
     }
-
 }

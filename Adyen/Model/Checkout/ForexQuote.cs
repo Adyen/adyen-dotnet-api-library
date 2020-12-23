@@ -1,24 +1,25 @@
-#region License
-// /*
-//  *                       ######
-//  *                       ######
-//  * ############    ####( ######  #####. ######  ############   ############
-//  * #############  #####( ######  #####. ######  #############  #############
-//  *        ######  #####( ######  #####. ######  #####  ######  #####  ######
-//  * ###### ######  #####( ######  #####. ######  #####  #####   #####  ######
-//  * ###### ######  #####( ######  #####. ######  #####          #####  ######
-//  * #############  #############  #############  #############  #####  ######
-//  *  ############   ############  #############   ############  #####  ######
-//  *                                      ######
-//  *                               #############
-//  *                               ############
-//  *
-//  * Adyen Dotnet API Library
-//  *
-//  * Copyright (c) 2020 Adyen B.V.
-//  * This file is open source and available under the MIT license.
-//  * See the LICENSE file for more info.
-//  */
+#region Licence
+
+// 
+//                        ######
+//                        ######
+//  ############    ####( ######  #####. ######  ############   ############
+//  #############  #####( ######  #####. ######  #############  #############
+//         ######  #####( ######  #####. ######  #####  ######  #####  ######
+//  ###### ######  #####( ######  #####. ######  #####  #####   #####  ######
+//  ###### ######  #####( ######  #####. ######  #####          #####  ######
+//  #############  #############  #############  #############  #####  ######
+//   ############   ############  #############   ############  #####  ######
+//                                       ######
+//                                #############
+//                                ############
+// 
+//  Adyen Dotnet API Library
+// 
+//  Copyright (c) 2020 Adyen B.V.
+//  This file is open source and available under the MIT license.
+//  See the LICENSE file for more info.
+
 #endregion
 
 using System;
@@ -35,142 +36,137 @@ namespace Adyen.Model.Checkout
     /// ForexQuote
     /// </summary>
     [DataContract]
-    public partial class ForexQuote :  IEquatable<ForexQuote>, IValidatableObject
+    public partial class ForexQuote : IEquatable<ForexQuote>, IValidatableObject
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="ForexQuote" /> class.
         /// </summary>
-        [JsonConstructor]
-        protected ForexQuote() { }
-        /// <summary>
-        /// Initializes a new instance of the <see cref="ForexQuote" /> class.
-        /// </summary>
-        /// <param name="Account">The account name..</param>
-        /// <param name="AccountType">The account type..</param>
-        /// <param name="BaseAmount">The base amount..</param>
-        /// <param name="BasePoints">The base points. (required).</param>
-        /// <param name="Buy">The buy rate..</param>
-        /// <param name="Interbank">The interbank amount..</param>
-        /// <param name="Reference">The reference assigned to the forex quote request..</param>
-        /// <param name="Sell">The sell rate..</param>
-        /// <param name="Signature">The signature to validate the integrity..</param>
-        /// <param name="Source">The source of the forex quote..</param>
-        /// <param name="Type">The type of forex..</param>
-        /// <param name="ValidTill">The date until which the forex quote is valid. (required).</param>
-        public ForexQuote(string Account = default(string), string AccountType = default(string), Amount BaseAmount = default(Amount), int? BasePoints = default(int?), Amount Buy = default(Amount), Amount Interbank = default(Amount), string Reference = default(string), Amount Sell = default(Amount), string Signature = default(string), string Source = default(string), string Type = default(string), DateTime? ValidTill = default(DateTime?))
+        /// <param name="account">The account name..</param>
+        /// <param name="accountType">The account type..</param>
+        /// <param name="baseAmount">baseAmount.</param>
+        /// <param name="basePoints">The base points. (required).</param>
+        /// <param name="buy">buy.</param>
+        /// <param name="interbank">interbank.</param>
+        /// <param name="reference">The reference assigned to the forex quote request..</param>
+        /// <param name="sell">sell.</param>
+        /// <param name="signature">The signature to validate the integrity..</param>
+        /// <param name="source">The source of the forex quote..</param>
+        /// <param name="type">The type of forex..</param>
+        /// <param name="validTill">The date until which the forex quote is valid. (required).</param>
+        public ForexQuote(string account = default(string), string accountType = default(string),
+            Amount baseAmount = default(Amount), int? basePoints = default(int?), Amount buy = default(Amount),
+            Amount interbank = default(Amount), string reference = default(string), Amount sell = default(Amount),
+            string signature = default(string), string source = default(string), string type = default(string),
+            DateTime? validTill = default(DateTime?))
         {
-            // to ensure "BasePoints" is required (not null)
-            if (BasePoints == null)
+            // to ensure "basePoints" is required (not null)
+            if (basePoints == null)
             {
-                throw new InvalidDataException("BasePoints is a required property for ForexQuote and cannot be null");
+                throw new InvalidDataException("basePoints is a required property for ForexQuote and cannot be null");
             }
             else
             {
-                this.BasePoints = BasePoints;
+                this.BasePoints = basePoints;
             }
-            // to ensure "ValidTill" is required (not null)
-            if (ValidTill == null)
+            // to ensure "validTill" is required (not null)
+            if (validTill == null)
             {
-                throw new InvalidDataException("ValidTill is a required property for ForexQuote and cannot be null");
+                throw new InvalidDataException("validTill is a required property for ForexQuote and cannot be null");
             }
             else
             {
-                this.ValidTill = ValidTill;
+                this.ValidTill = validTill;
             }
-            this.Account = Account;
-            this.AccountType = AccountType;
-            this.BaseAmount = BaseAmount;
-            this.Buy = Buy;
-            this.Interbank = Interbank;
-            this.Reference = Reference;
-            this.Sell = Sell;
-            this.Signature = Signature;
-            this.Source = Source;
-            this.Type = Type;
+            this.Account = account;
+            this.AccountType = accountType;
+            this.BaseAmount = baseAmount;
+            this.Buy = buy;
+            this.Interbank = interbank;
+            this.Reference = reference;
+            this.Sell = sell;
+            this.Signature = signature;
+            this.Source = source;
+            this.Type = type;
         }
-        
+
         /// <summary>
         /// The account name.
         /// </summary>
         /// <value>The account name.</value>
-        [DataMember(Name="account", EmitDefaultValue=false)]
+        [DataMember(Name = "account", EmitDefaultValue = false)]
         public string Account { get; set; }
 
         /// <summary>
         /// The account type.
         /// </summary>
         /// <value>The account type.</value>
-        [DataMember(Name="accountType", EmitDefaultValue=false)]
+        [DataMember(Name = "accountType", EmitDefaultValue = false)]
         public string AccountType { get; set; }
 
         /// <summary>
-        /// The base amount.
+        /// Gets or Sets BaseAmount
         /// </summary>
-        /// <value>The base amount.</value>
-        [DataMember(Name="baseAmount", EmitDefaultValue=false)]
+        [DataMember(Name = "baseAmount", EmitDefaultValue = false)]
         public Amount BaseAmount { get; set; }
 
         /// <summary>
         /// The base points.
         /// </summary>
         /// <value>The base points.</value>
-        [DataMember(Name="basePoints", EmitDefaultValue=false)]
+        [DataMember(Name = "basePoints", EmitDefaultValue = false)]
         public int? BasePoints { get; set; }
 
         /// <summary>
-        /// The buy rate.
+        /// Gets or Sets Buy
         /// </summary>
-        /// <value>The buy rate.</value>
-        [DataMember(Name="buy", EmitDefaultValue=false)]
+        [DataMember(Name = "buy", EmitDefaultValue = false)]
         public Amount Buy { get; set; }
 
         /// <summary>
-        /// The interbank amount.
+        /// Gets or Sets Interbank
         /// </summary>
-        /// <value>The interbank amount.</value>
-        [DataMember(Name="interbank", EmitDefaultValue=false)]
+        [DataMember(Name = "interbank", EmitDefaultValue = false)]
         public Amount Interbank { get; set; }
 
         /// <summary>
         /// The reference assigned to the forex quote request.
         /// </summary>
         /// <value>The reference assigned to the forex quote request.</value>
-        [DataMember(Name="reference", EmitDefaultValue=false)]
+        [DataMember(Name = "reference", EmitDefaultValue = false)]
         public string Reference { get; set; }
 
         /// <summary>
-        /// The sell rate.
+        /// Gets or Sets Sell
         /// </summary>
-        /// <value>The sell rate.</value>
-        [DataMember(Name="sell", EmitDefaultValue=false)]
+        [DataMember(Name = "sell", EmitDefaultValue = false)]
         public Amount Sell { get; set; }
 
         /// <summary>
         /// The signature to validate the integrity.
         /// </summary>
         /// <value>The signature to validate the integrity.</value>
-        [DataMember(Name="signature", EmitDefaultValue=false)]
+        [DataMember(Name = "signature", EmitDefaultValue = false)]
         public string Signature { get; set; }
 
         /// <summary>
         /// The source of the forex quote.
         /// </summary>
         /// <value>The source of the forex quote.</value>
-        [DataMember(Name="source", EmitDefaultValue=false)]
+        [DataMember(Name = "source", EmitDefaultValue = false)]
         public string Source { get; set; }
 
         /// <summary>
         /// The type of forex.
         /// </summary>
         /// <value>The type of forex.</value>
-        [DataMember(Name="type", EmitDefaultValue=false)]
+        [DataMember(Name = "type", EmitDefaultValue = false)]
         public string Type { get; set; }
 
         /// <summary>
         /// The date until which the forex quote is valid.
         /// </summary>
         /// <value>The date until which the forex quote is valid.</value>
-        [DataMember(Name="validTill", EmitDefaultValue=false)]
+        [DataMember(Name = "validTill", EmitDefaultValue = false)]
         public DateTime? ValidTill { get; set; }
 
         /// <summary>
@@ -196,12 +192,12 @@ namespace Adyen.Model.Checkout
             sb.Append("}\n");
             return sb.ToString();
         }
-  
+
         /// <summary>
         /// Returns the JSON string presentation of the object
         /// </summary>
         /// <returns>JSON string presentation of the object</returns>
-        public string ToJson()
+        public virtual string ToJson()
         {
             return JsonConvert.SerializeObject(this, Formatting.Indented);
         }
@@ -226,66 +222,66 @@ namespace Adyen.Model.Checkout
             if (input == null)
                 return false;
 
-            return 
+            return
                 (
                     this.Account == input.Account ||
-                    (this.Account != null &&
-                    this.Account.Equals(input.Account))
-                ) && 
+                    this.Account != null &&
+                    this.Account.Equals(input.Account)
+                ) &&
                 (
                     this.AccountType == input.AccountType ||
-                    (this.AccountType != null &&
-                    this.AccountType.Equals(input.AccountType))
-                ) && 
+                    this.AccountType != null &&
+                    this.AccountType.Equals(input.AccountType)
+                ) &&
                 (
                     this.BaseAmount == input.BaseAmount ||
-                    (this.BaseAmount != null &&
-                    this.BaseAmount.Equals(input.BaseAmount))
-                ) && 
+                    this.BaseAmount != null &&
+                    this.BaseAmount.Equals(input.BaseAmount)
+                ) &&
                 (
                     this.BasePoints == input.BasePoints ||
-                    (this.BasePoints != null &&
-                    this.BasePoints.Equals(input.BasePoints))
-                ) && 
+                    this.BasePoints != null &&
+                    this.BasePoints.Equals(input.BasePoints)
+                ) &&
                 (
                     this.Buy == input.Buy ||
-                    (this.Buy != null &&
-                    this.Buy.Equals(input.Buy))
-                ) && 
+                    this.Buy != null &&
+                    this.Buy.Equals(input.Buy)
+                ) &&
                 (
                     this.Interbank == input.Interbank ||
-                    (this.Interbank != null &&
-                    this.Interbank.Equals(input.Interbank))
-                ) && 
+                    this.Interbank != null &&
+                    this.Interbank.Equals(input.Interbank)
+                ) &&
                 (
                     this.Reference == input.Reference ||
-                    (this.Reference != null &&
-                    this.Reference.Equals(input.Reference))
-                ) && 
+                    this.Reference != null &&
+                    this.Reference.Equals(input.Reference)
+                ) &&
                 (
                     this.Sell == input.Sell ||
-                    (this.Sell != null &&
-                    this.Sell.Equals(input.Sell))
-                ) && 
+                    this.Sell != null &&
+                    this.Sell.Equals(input.Sell)
+                ) &&
                 (
                     this.Signature == input.Signature ||
-                    (this.Signature != null &&
-                    this.Signature.Equals(input.Signature))
-                ) && 
+                    this.Signature != null &&
+                    this.Signature.Equals(input.Signature)
+                ) &&
                 (
                     this.Source == input.Source ||
-                    (this.Source != null &&
-                    this.Source.Equals(input.Source))
-                ) && 
+                    this.Source != null &&
+                    this.Source.Equals(input.Source)
+                ) &&
                 (
                     this.Type == input.Type ||
-                    (this.Type != null &&
-                    this.Type.Equals(input.Type))
-                ) && 
+                    this.Type != null &&
+                    this.Type.Equals(input.Type)
+                ) &&
                 (
                     this.ValidTill == input.ValidTill ||
-                    (this.ValidTill != null &&
-                    this.ValidTill.Equals(input.ValidTill))
+                    this.ValidTill != null &&
+                    this.ValidTill.Equals(input.ValidTill)
                 );
         }
 
@@ -331,10 +327,10 @@ namespace Adyen.Model.Checkout
         /// </summary>
         /// <param name="validationContext">Validation context</param>
         /// <returns>Validation Result</returns>
-        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(
+            ValidationContext validationContext)
         {
             yield break;
         }
     }
-
 }

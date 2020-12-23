@@ -1,24 +1,25 @@
-#region License
-// /*
-//  *                       ######
-//  *                       ######
-//  * ############    ####( ######  #####. ######  ############   ############
-//  * #############  #####( ######  #####. ######  #############  #############
-//  *        ######  #####( ######  #####. ######  #####  ######  #####  ######
-//  * ###### ######  #####( ######  #####. ######  #####  #####   #####  ######
-//  * ###### ######  #####( ######  #####. ######  #####          #####  ######
-//  * #############  #############  #############  #############  #####  ######
-//  *  ############   ############  #############   ############  #####  ######
-//  *                                      ######
-//  *                               #############
-//  *                               ############
-//  *
-//  * Adyen Dotnet API Library
-//  *
-//  * Copyright (c) 2020 Adyen B.V.
-//  * This file is open source and available under the MIT license.
-//  * See the LICENSE file for more info.
-//  */
+#region Licence
+
+// 
+//                        ######
+//                        ######
+//  ############    ####( ######  #####. ######  ############   ############
+//  #############  #####( ######  #####. ######  #############  #############
+//         ######  #####( ######  #####. ######  #####  ######  #####  ######
+//  ###### ######  #####( ######  #####. ######  #####  #####   #####  ######
+//  ###### ######  #####( ######  #####. ######  #####          #####  ######
+//  #############  #############  #############  #############  #####  ######
+//   ############   ############  #############   ############  #####  ######
+//                                       ######
+//                                #############
+//                                ############
+// 
+//  Adyen Dotnet API Library
+// 
+//  Copyright (c) 2020 Adyen B.V.
+//  This file is open source and available under the MIT license.
+//  See the LICENSE file for more info.
+
 #endregion
 
 using System;
@@ -34,40 +35,41 @@ namespace Adyen.Model.Checkout
     /// ShopperInteractionDevice
     /// </summary>
     [DataContract]
-    public partial class ShopperInteractionDevice :  IEquatable<ShopperInteractionDevice>, IValidatableObject
+    public partial class ShopperInteractionDevice : IEquatable<ShopperInteractionDevice>, IValidatableObject
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="ShopperInteractionDevice" /> class.
         /// </summary>
-        /// <param name="Locale">Locale on the shopper interaction device..</param>
-        /// <param name="Os">Operating system running on the shopper interaction device..</param>
-        /// <param name="OsVersion">Version of the operating system on the shopper interaction device..</param>
-        public ShopperInteractionDevice(string Locale = default(string), string Os = default(string), string OsVersion = default(string))
+        /// <param name="locale">Locale on the shopper interaction device..</param>
+        /// <param name="os">Operating system running on the shopper interaction device..</param>
+        /// <param name="osVersion">Version of the operating system on the shopper interaction device..</param>
+        public ShopperInteractionDevice(string locale = default(string), string os = default(string),
+            string osVersion = default(string))
         {
-            this.Locale = Locale;
-            this.Os = Os;
-            this.OsVersion = OsVersion;
+            this.Locale = locale;
+            this.Os = os;
+            this.OsVersion = osVersion;
         }
-        
+
         /// <summary>
         /// Locale on the shopper interaction device.
         /// </summary>
         /// <value>Locale on the shopper interaction device.</value>
-        [DataMember(Name="locale", EmitDefaultValue=false)]
+        [DataMember(Name = "locale", EmitDefaultValue = false)]
         public string Locale { get; set; }
 
         /// <summary>
         /// Operating system running on the shopper interaction device.
         /// </summary>
         /// <value>Operating system running on the shopper interaction device.</value>
-        [DataMember(Name="os", EmitDefaultValue=false)]
+        [DataMember(Name = "os", EmitDefaultValue = false)]
         public string Os { get; set; }
 
         /// <summary>
         /// Version of the operating system on the shopper interaction device.
         /// </summary>
         /// <value>Version of the operating system on the shopper interaction device.</value>
-        [DataMember(Name="osVersion", EmitDefaultValue=false)]
+        [DataMember(Name = "osVersion", EmitDefaultValue = false)]
         public string OsVersion { get; set; }
 
         /// <summary>
@@ -84,12 +86,12 @@ namespace Adyen.Model.Checkout
             sb.Append("}\n");
             return sb.ToString();
         }
-  
+
         /// <summary>
         /// Returns the JSON string presentation of the object
         /// </summary>
         /// <returns>JSON string presentation of the object</returns>
-        public string ToJson()
+        public virtual string ToJson()
         {
             return JsonConvert.SerializeObject(this, Formatting.Indented);
         }
@@ -114,21 +116,21 @@ namespace Adyen.Model.Checkout
             if (input == null)
                 return false;
 
-            return 
+            return
                 (
                     this.Locale == input.Locale ||
-                    (this.Locale != null &&
-                    this.Locale.Equals(input.Locale))
-                ) && 
+                    this.Locale != null &&
+                    this.Locale.Equals(input.Locale)
+                ) &&
                 (
                     this.Os == input.Os ||
-                    (this.Os != null &&
-                    this.Os.Equals(input.Os))
-                ) && 
+                    this.Os != null &&
+                    this.Os.Equals(input.Os)
+                ) &&
                 (
                     this.OsVersion == input.OsVersion ||
-                    (this.OsVersion != null &&
-                    this.OsVersion.Equals(input.OsVersion))
+                    this.OsVersion != null &&
+                    this.OsVersion.Equals(input.OsVersion)
                 );
         }
 
@@ -156,10 +158,10 @@ namespace Adyen.Model.Checkout
         /// </summary>
         /// <param name="validationContext">Validation context</param>
         /// <returns>Validation Result</returns>
-        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(
+            ValidationContext validationContext)
         {
             yield break;
         }
     }
-
 }
