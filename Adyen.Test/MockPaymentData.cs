@@ -83,8 +83,8 @@ namespace Adyen.Test
                 AdditionalData = CreateAdditionalData(),
                 ThreeDS2RequestData = new ThreeDS2RequestData
                 {
-                    ThreeDSCompInd = DeviceFingerprintCompletedEnum.Y,
-                    DeviceChannel = DeviceChannelEnum.Browser
+                    ThreeDSCompInd = "Y",
+                    DeviceChannel = "browser"
                 },
                 BrowserInfo = CreateMockBrowserInfo(),
             };

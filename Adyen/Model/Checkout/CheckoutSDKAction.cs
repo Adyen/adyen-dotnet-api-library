@@ -36,8 +36,10 @@ namespace Adyen.Model.Checkout
     /// CheckoutSDKAction
     /// </summary>
     [DataContract]
-    public partial class CheckoutSDKAction : IEquatable<CheckoutSDKAction>, IValidatableObject
+    public partial class CheckoutSDKAction : IEquatable<CheckoutSDKAction>, IValidatableObject, IPaymentResponseAction
     {
+        public string Type { get; set; } = "sdk";
+        
         /// <summary>
         /// Initializes a new instance of the <see cref="CheckoutSDKAction" /> class.
         /// </summary>

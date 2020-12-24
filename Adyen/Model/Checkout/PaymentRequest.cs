@@ -29,6 +29,9 @@ using System.IO;
 using System.Linq;
 using System.Runtime.Serialization;
 using System.Text;
+using Adyen.Constants;
+using Adyen.Model.ApplicationInformation;
+using Adyen.Model.Checkout.Details;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
 
@@ -163,6 +166,14 @@ namespace Adyen.Model.Checkout
         /// <summary>
         /// Initializes a new instance of the <see cref="PaymentRequest" /> class.
         /// </summary>
+        [JsonConstructor]
+        public PaymentRequest()
+        {
+            CreateApplicationInfo();
+        }
+        /// <summary>
+        /// Initializes a new instance of the <see cref="PaymentRequest" /> class.
+        /// </summary>
         /// <param name="accountInfo">accountInfo.</param>
         /// <param name="additionalData">This field contains additional data, which may be required for a particular payment request.  The &#x60;additionalData&#x60; object consists of entries, each of which includes the key and value..</param>
         /// <param name="amount">amount (required).</param>
@@ -238,7 +249,7 @@ namespace Adyen.Model.Checkout
             Dictionary<string, string> metadata = default(Dictionary<string, string>),
             ThreeDSecureData mpiData = default(ThreeDSecureData), CheckoutOrder order = default(CheckoutOrder),
             string orderReference = default(string), string origin = default(string),
-            OneOfPaymentRequestPaymentMethod paymentMethod = default(OneOfPaymentRequestPaymentMethod),
+            DefaultPaymentMethodDetails paymentMethod = default(DefaultPaymentMethodDetails),
             string recurringExpiry = default(string), string recurringFrequency = default(string),
             RecurringProcessingModelEnum? recurringProcessingModel = default(RecurringProcessingModelEnum?),
             string redirectFromIssuerMethod = default(string), string redirectToIssuerMethod = default(string),
@@ -254,6 +265,7 @@ namespace Adyen.Model.Checkout
             ThreeDS2RequestData threeDS2RequestData = default(ThreeDS2RequestData),
             bool? threeDSAuthenticationOnly = false, bool? trustedShopper = default(bool?))
         {
+            CreateApplicationInfo();
             // to ensure "amount" is required (not null)
             if (amount == null)
             {
@@ -559,18 +571,18 @@ namespace Adyen.Model.Checkout
         public string OrderReference { get; set; }
 
         /// <summary>
+        /// The collection that contains the type of the payment method and its specific information (e.g. &#x60;idealIssuer&#x60;).
+        /// </summary>
+        /// <value>The collection that contains the type of the payment method and its specific information (e.g. &#x60;idealIssuer&#x60;).</value>
+        [DataMember(Name = "paymentMethod", EmitDefaultValue = false)]
+        public IPaymentMethodDetails PaymentMethod { get; set; }
+
+        /// <summary>
         /// Required for the 3D Secure 2 &#x60;channel&#x60; **Web** integration.  Set this parameter to the origin URL of the page that you are loading the 3D Secure Component from.
         /// </summary>
         /// <value>Required for the 3D Secure 2 &#x60;channel&#x60; **Web** integration.  Set this parameter to the origin URL of the page that you are loading the 3D Secure Component from.</value>
         [DataMember(Name = "origin", EmitDefaultValue = false)]
         public string Origin { get; set; }
-
-        /// <summary>
-        /// The type and required details of a payment method to use.
-        /// </summary>
-        /// <value>The type and required details of a payment method to use.</value>
-        [DataMember(Name = "paymentMethod", EmitDefaultValue = false)]
-        public OneOfPaymentRequestPaymentMethod PaymentMethod { get; set; }
 
         /// <summary>
         /// Date after which no further authorisations shall be performed. Only for 3D Secure 2.
@@ -724,6 +736,35 @@ namespace Adyen.Model.Checkout
         /// <value>Set to true if the payment should be routed to a trusted MID.</value>
         [DataMember(Name = "trustedShopper", EmitDefaultValue = false)]
         public bool? TrustedShopper { get; set; }
+
+        public void AddCardData(string cardNumber, string expiryMonth, string expiryYear, string securityCode, string holderName)
+        {
+            var defaultPaymentMethodDetails = new DefaultPaymentMethodDetails
+            {
+                Type = ApiConstants.TypeScheme,
+                Number = cardNumber,
+                ExpiryMonth = expiryMonth,
+                ExpiryYear = expiryYear,
+            };
+
+            if (!string.IsNullOrEmpty(securityCode))
+            {
+                defaultPaymentMethodDetails.Cvc = securityCode;
+            }
+
+            if (!string.IsNullOrEmpty(holderName))
+            {
+                defaultPaymentMethodDetails.HolderName = holderName;
+            }
+
+            this.PaymentMethod = defaultPaymentMethodDetails;
+        }
+
+        private void CreateApplicationInfo()
+        {
+            if (ApplicationInfo == null)
+                ApplicationInfo = new ApplicationInfo();
+        }
 
         /// <summary>
         /// Returns the string presentation of the object

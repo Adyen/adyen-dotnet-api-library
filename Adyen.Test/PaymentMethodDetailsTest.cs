@@ -21,6 +21,7 @@
 #endregion
 
 using Adyen.Model.Checkout;
+using Adyen.Model.Checkout.Details;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace Adyen.Test

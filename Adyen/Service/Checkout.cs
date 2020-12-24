@@ -26,6 +26,7 @@ using Adyen.Model;
 using Adyen.Model.Checkout;
 using Adyen.Service.Resource.Checkout;
 using Newtonsoft.Json;
+using PaymentDetails = Adyen.Service.Resource.Checkout.PaymentDetails;
 using PaymentRequest = Adyen.Model.Checkout.PaymentRequest;
 
 namespace Adyen.Service
@@ -56,11 +57,11 @@ namespace Adyen.Service
         /// <param name="paymentRequest"></param>
         /// <param name="requestOptions"></param>
         /// <returns>PaymentsResponse</returns>
-        public PaymentsResponse Payments(PaymentRequest paymentRequest, RequestOptions requestOptions = null)
+        public PaymentResponse Payments(PaymentRequest paymentRequest, RequestOptions requestOptions = null)
         {
             var jsonRequest = Util.JsonOperation.SerializeRequest(paymentRequest);
             var jsonResponse = _payments.Request(jsonRequest, requestOptions);
-            return Util.JsonOperation.Deserialize<PaymentsResponse>(jsonResponse);
+            return Util.JsonOperation.Deserialize<PaymentResponse>(jsonResponse);
         }
 
         /// <summary>
@@ -69,11 +70,11 @@ namespace Adyen.Service
         /// <param name="paymentRequest"></param>
         /// <param name="requestOptions"></param>
         /// <returns>PaymentsResponse</returns>
-        public async Task<PaymentsResponse> PaymentsAsync(PaymentRequest paymentRequest, RequestOptions requestOptions = null)
+        public async Task<PaymentResponse> PaymentsAsync(PaymentRequest paymentRequest, RequestOptions requestOptions = null)
         {
             var jsonRequest = Util.JsonOperation.SerializeRequest(paymentRequest);
             var jsonResponse = await _payments.RequestAsync(jsonRequest, requestOptions);
-            return Util.JsonOperation.Deserialize<PaymentsResponse>(jsonResponse);
+            return Util.JsonOperation.Deserialize<PaymentResponse>(jsonResponse);
         }
 
         /// <summary>
@@ -105,11 +106,11 @@ namespace Adyen.Service
         /// </summary>
         /// <param name="paymentsDetailsRequest"></param>
         /// <returns>PaymentsResponse</returns>
-        public PaymentsResponse PaymentDetails(PaymentsDetailsRequest paymentsDetailsRequest, RequestOptions requestOptions = null)
+        public PaymentResponse PaymentDetails(DetailsRequest paymentsDetailsRequest, RequestOptions requestOptions = null)
         {
             var jsonRequest = Util.JsonOperation.SerializeRequest(paymentsDetailsRequest);
             var jsonResponse = _paymentDetails.Request(jsonRequest, requestOptions);
-            return JsonConvert.DeserializeObject<PaymentsResponse>(jsonResponse);
+            return JsonConvert.DeserializeObject<PaymentResponse>(jsonResponse);
         }
 
         /// <summary>
@@ -117,11 +118,11 @@ namespace Adyen.Service
         /// </summary>
         /// <param name="paymentsDetailsRequest"></param>
         /// <returns>PaymentsResponse</returns>
-        public async Task<PaymentsResponse> PaymentDetailsAsync(PaymentsDetailsRequest paymentsDetailsRequest, RequestOptions requestOptions = null)
+        public async Task<PaymentResponse> PaymentDetailsAsync(DetailsRequest paymentsDetailsRequest, RequestOptions requestOptions = null)
         {
             var jsonRequest = Util.JsonOperation.SerializeRequest(paymentsDetailsRequest);
             var jsonResponse = await _paymentDetails.RequestAsync(jsonRequest, requestOptions);
-            return JsonConvert.DeserializeObject<PaymentsResponse>(jsonResponse);
+            return Util.JsonOperation.Deserialize<PaymentResponse>(jsonResponse);
         }
 
         /// <summary>
@@ -129,11 +130,11 @@ namespace Adyen.Service
         /// </summary>
         /// <param name="paymentSessionRequest"></param>
         /// <returns>PaymentSessionResponse</returns>
-        public PaymentSessionResponse PaymentSession(PaymentSessionRequest paymentSessionRequest)
+        public PaymentSetupResponse PaymentSession(PaymentSetupRequest paymentSessionRequest)
         {
             var jsonRequest = Util.JsonOperation.SerializeRequest(paymentSessionRequest);
             var jsonResponse = _paymentSession.Request(jsonRequest);
-            return JsonConvert.DeserializeObject<PaymentSessionResponse>(jsonResponse);
+            return JsonConvert.DeserializeObject<PaymentSetupResponse>(jsonResponse);
         }
 
         /// <summary>
@@ -141,11 +142,11 @@ namespace Adyen.Service
         /// </summary>
         /// <param name="paymentSessionRequest"></param>
         /// <returns>PaymentSessionResponse</returns>
-        public async Task<PaymentSessionResponse> PaymentSessionAsync(PaymentSessionRequest paymentSessionRequest)
+        public async Task<PaymentSetupResponse> PaymentSessionAsync(PaymentSetupRequest paymentSessionRequest)
         {
             var jsonRequest = Util.JsonOperation.SerializeRequest(paymentSessionRequest);
             var jsonResponse = await _paymentSession.RequestAsync(jsonRequest);
-            return JsonConvert.DeserializeObject<PaymentSessionResponse>(jsonResponse);
+            return JsonConvert.DeserializeObject<PaymentSetupResponse>(jsonResponse);
         }
 
         /// <summary>
@@ -153,11 +154,11 @@ namespace Adyen.Service
         /// </summary>
         /// <param name="paymentResultRequest"></param>
         /// <returns>PaymentResultResponse</returns>
-        public PaymentResultResponse PaymentsResult(PaymentResultRequest paymentResultRequest)
+        public PaymentVerificationResponse PaymentsResult(PaymentVerificationRequest paymentResultRequest)
         {
             var jsonRequest = Util.JsonOperation.SerializeRequest(paymentResultRequest);
             var jsonResponse = _paymentsResult.Request(jsonRequest);
-            return JsonConvert.DeserializeObject<PaymentResultResponse>(jsonResponse);
+            return Util.JsonOperation.Deserialize<PaymentVerificationResponse>(jsonResponse);
         }
 
         /// <summary>
@@ -165,11 +166,11 @@ namespace Adyen.Service
         /// </summary>
         /// <param name="paymentResultRequest"></param>
         /// <returns>PaymentResultResponse</returns>
-        public async Task<PaymentResultResponse> PaymentsResultAsync(PaymentResultRequest paymentResultRequest)
+        public async Task<PaymentVerificationResponse> PaymentsResultAsync(PaymentVerificationRequest paymentResultRequest)
         {
             var jsonRequest = Util.JsonOperation.SerializeRequest(paymentResultRequest);
             var jsonResponse = await _paymentsResult.RequestAsync(jsonRequest);
-            return JsonConvert.DeserializeObject<PaymentResultResponse>(jsonResponse);
+            return JsonConvert.DeserializeObject<PaymentVerificationResponse>(jsonResponse);
         }
 
         /// <summary>
@@ -177,11 +178,11 @@ namespace Adyen.Service
         /// </summary>
         /// <param name="createPaymentLinkRequest"></param>
         /// <returns>CreatePaymentLinkResponse</returns>
-        public CreatePaymentLinkResponse PaymentLinks(CreatePaymentLinkRequest createPaymentLinkRequest)
+        public PaymentLinkResource PaymentLinks(CreatePaymentLinkRequest createPaymentLinkRequest)
         {
             var jsonRequest = Util.JsonOperation.SerializeRequest(createPaymentLinkRequest);
             var jsonResponse = _paymentLinksResult.Request(jsonRequest);
-            return JsonConvert.DeserializeObject<CreatePaymentLinkResponse>(jsonResponse);
+            return JsonConvert.DeserializeObject<PaymentLinkResource>(jsonResponse);
         }
     }
 }

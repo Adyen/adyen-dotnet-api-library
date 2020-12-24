@@ -124,8 +124,8 @@ namespace Adyen.Model.Checkout
         /// <param name="serviceError">serviceError.</param>
         /// <param name="shopperLocale">The shopperLocale value provided in the payment request. (required).</param>
         public PaymentVerificationResponse(
-            AnyOfPaymentVerificationResponseAdditionalData additionalData =
-                default(AnyOfPaymentVerificationResponseAdditionalData), FraudResult fraudResult = default(FraudResult),
+             Dictionary<string, string> additionalData =
+                default(Dictionary<string, string>), FraudResult fraudResult = default(FraudResult),
             string merchantReference = default(string), CheckoutOrderResponse order = default(CheckoutOrderResponse),
             string paymentMethod = default(string), string pspReference = default(string),
             string refusalReason = default(string), string refusalReasonCode = default(string),
@@ -177,7 +177,7 @@ namespace Adyen.Model.Checkout
         /// </summary>
         /// <value>This field contains additional data, which may be required to return in a particular payment response. To choose data fields to be returned, go to **Customer Area** &gt; **Account** &gt; **API URLs** &gt; **Additional data settings**.</value>
         [DataMember(Name = "additionalData", EmitDefaultValue = false)]
-        public AnyOfPaymentVerificationResponseAdditionalData AdditionalData { get; set; }
+        public Dictionary<string, string> AdditionalData { get; set; }
 
         /// <summary>
         /// Gets or Sets FraudResult

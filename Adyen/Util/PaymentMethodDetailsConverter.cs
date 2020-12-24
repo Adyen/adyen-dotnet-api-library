@@ -24,6 +24,7 @@ using Newtonsoft.Json;
 using System;
 using Adyen.Model.Checkout;
 using Newtonsoft.Json.Linq;
+using Adyen.Model.Checkout.Details;
 
 namespace Adyen.Util
 {
