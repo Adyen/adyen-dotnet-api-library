@@ -86,7 +86,7 @@ namespace Adyen.Model.Checkout
         /// <param name="splitCardFundingSources">Boolean value indicating whether the card payment method should be split into separate debit and credit options. (default to false).</param>
         /// <param name="store">The physical store, for which this payment is processed..</param>
         public PaymentMethodsRequest(
-            AnyOfPaymentMethodsRequestAdditionalData additionalData = default(AnyOfPaymentMethodsRequestAdditionalData),
+             Dictionary<string, string> additionalData = default(Dictionary<string, string>),
             List<string> allowedPaymentMethods = default(List<string>), Amount amount = default(Amount),
             List<string> blockedPaymentMethods = default(List<string>), ChannelEnum? channel = default(ChannelEnum?),
             string countryCode = default(string), string merchantAccount = default(string),
@@ -130,7 +130,7 @@ namespace Adyen.Model.Checkout
         /// </summary>
         /// <value>This field contains additional data, which may be required for a particular payment request.  The &#x60;additionalData&#x60; object consists of entries, each of which includes the key and value.</value>
         [DataMember(Name = "additionalData", EmitDefaultValue = false)]
-        public AnyOfPaymentMethodsRequestAdditionalData AdditionalData { get; set; }
+        public Dictionary<string, string> AdditionalData { get; set; }
 
         /// <summary>
         /// List of payments methods to be presented to the shopper. To refer to payment methods, use their &#x60;paymentMethod.type&#x60; from [Payment methods overview](https://docs.adyen.com/payment-methods).  Example: &#x60;\&quot;allowedPaymentMethods\&quot;:[\&quot;ideal\&quot;,\&quot;giropay\&quot;]&#x60;

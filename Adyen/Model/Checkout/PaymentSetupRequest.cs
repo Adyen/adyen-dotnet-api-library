@@ -185,7 +185,7 @@ namespace Adyen.Model.Checkout
         /// <param name="token">The token obtained when initializing the SDK.  &gt; This parameter is required for iOS and Android; not required for Web..</param>
         /// <param name="trustedShopper">Set to true if the payment should be routed to a trusted MID..</param>
         public PaymentSetupRequest(
-            AnyOfPaymentSetupRequestAdditionalData additionalData = default(AnyOfPaymentSetupRequestAdditionalData),
+            Dictionary<string, string> additionalData = default(Dictionary<string, string>), 
             List<string> allowedPaymentMethods = default(List<string>), Amount amount = default(Amount),
             ApplicationInfo applicationInfo = default(ApplicationInfo), Address billingAddress = default(Address),
             List<string> blockedPaymentMethods = default(List<string>), int? captureDelayHours = default(int?),
@@ -324,7 +324,7 @@ namespace Adyen.Model.Checkout
         /// </summary>
         /// <value>This field contains additional data, which may be required for a particular payment request.  The &#x60;additionalData&#x60; object consists of entries, each of which includes the key and value.</value>
         [DataMember(Name = "additionalData", EmitDefaultValue = false)]
-        public AnyOfPaymentSetupRequestAdditionalData AdditionalData { get; set; }
+        public Dictionary<string, string> AdditionalData { get; set; }
 
         /// <summary>
         /// List of payments methods to be presented to the shopper. To refer to payment methods, use their &#x60;paymentMethod.type&#x60;from [Payment methods overview](https://docs.adyen.com/payment-methods).  Example: &#x60;\&quot;allowedPaymentMethods\&quot;:[\&quot;ideal\&quot;,\&quot;giropay\&quot;]&#x60;

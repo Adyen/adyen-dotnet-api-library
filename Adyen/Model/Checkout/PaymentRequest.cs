@@ -232,7 +232,7 @@ namespace Adyen.Model.Checkout
         /// <param name="threeDSAuthenticationOnly">If set to true, you will only perform the [3D Secure 2 authentication](https://docs.adyen.com/checkout/3d-secure/other-3ds-flows/authentication-only), and not the payment authorisation. (default to false).</param>
         /// <param name="trustedShopper">Set to true if the payment should be routed to a trusted MID..</param>
         public PaymentRequest(AccountInfo accountInfo = default(AccountInfo),
-            AnyOfPaymentRequestAdditionalData additionalData = default(AnyOfPaymentRequestAdditionalData),
+             Dictionary<string, string> additionalData = default(Dictionary<string, string>),
             Amount amount = default(Amount), ApplicationInfo applicationInfo = default(ApplicationInfo),
             Address billingAddress = default(Address), BrowserInfo browserInfo = default(BrowserInfo),
             int? captureDelayHours = default(int?), ChannelEnum? channel = default(ChannelEnum?),
@@ -388,7 +388,7 @@ namespace Adyen.Model.Checkout
         /// </summary>
         /// <value>This field contains additional data, which may be required for a particular payment request.  The &#x60;additionalData&#x60; object consists of entries, each of which includes the key and value.</value>
         [DataMember(Name = "additionalData", EmitDefaultValue = false)]
-        public AnyOfPaymentRequestAdditionalData AdditionalData { get; set; }
+        public Dictionary<string, string> AdditionalData { get; set; }
 
         /// <summary>
         /// Gets or Sets Amount

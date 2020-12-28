@@ -154,8 +154,8 @@ namespace Adyen.Model.Checkout
         /// <param name="trustedShopper">Set to true if the payment should be routed to a trusted MID..</param>
         public CheckoutBalanceCheckRequest(AccountInfo accountInfo = default(AccountInfo),
             Amount additionalAmount = default(Amount),
-            AnyOfCheckoutBalanceCheckRequestAdditionalData additionalData =
-                default(AnyOfCheckoutBalanceCheckRequestAdditionalData), Amount amount = default(Amount),
+            Dictionary<string,string> additionalData =
+                default(Dictionary<string, string>), Amount amount = default(Amount),
             ApplicationInfo applicationInfo = default(ApplicationInfo), Address billingAddress = default(Address),
             BrowserInfo browserInfo = default(BrowserInfo), int? captureDelayHours = default(int?),
             DateTime? dateOfBirth = default(DateTime?), ForexQuote dccQuote = default(ForexQuote),
@@ -287,7 +287,7 @@ namespace Adyen.Model.Checkout
         /// </summary>
         /// <value>This field contains additional data, which may be required for a particular payment request.  The &#x60;additionalData&#x60; object consists of entries, each of which includes the key and value.</value>
         [DataMember(Name = "additionalData", EmitDefaultValue = false)]
-        public AnyOfCheckoutBalanceCheckRequestAdditionalData AdditionalData { get; set; }
+        public Dictionary<string, string> AdditionalData { get; set; }
 
         /// <summary>
         /// Gets or Sets Amount
