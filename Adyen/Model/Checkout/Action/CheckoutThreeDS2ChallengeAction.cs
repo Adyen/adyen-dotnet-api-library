@@ -29,24 +29,24 @@ using System.Runtime.Serialization;
 using System.Text;
 using Newtonsoft.Json;
 
-namespace Adyen.Model.Checkout
+namespace Adyen.Model.Checkout.Action
 {
     /// <summary>
-    /// CheckoutThreeDS2FingerPrintAction
+    /// CheckoutThreeDS2ChallengeAction
     /// </summary>
     [DataContract]
-    public partial class CheckoutThreeDS2FingerPrintAction : IEquatable<CheckoutThreeDS2FingerPrintAction>,
+    public partial class CheckoutThreeDS2ChallengeAction : IEquatable<CheckoutThreeDS2ChallengeAction>,
         IValidatableObject, IPaymentResponseAction
     {
-        public string Type { get; set; } = "threeDS2Fingerprint";
+        public string Type { get; set; } = "threeDS2Challenge";
         /// <summary>
-        /// Initializes a new instance of the <see cref="CheckoutThreeDS2FingerPrintAction" /> class.
+        /// Initializes a new instance of the <see cref="CheckoutThreeDS2ChallengeAction" /> class.
         /// </summary>
         /// <param name="paymentData">When non-empty, contains a value that you must submit to the &#x60;/payments/details&#x60; endpoint. In some cases, required for polling..</param>
         /// <param name="paymentMethodType">Specifies the payment method..</param>
-        /// <param name="token">A token to pass to the 3DS2 Component to get the fingerprint..</param>
+        /// <param name="token">A token to pass to the 3DS2 Component to get the challenge..</param>
         /// <param name="url">Specifies the URL to redirect to..</param>
-        public CheckoutThreeDS2FingerPrintAction(string paymentData = default(string),
+        public CheckoutThreeDS2ChallengeAction(string paymentData = default(string),
             string paymentMethodType = default(string), string token = default(string), string url = default(string))
         {
             this.PaymentData = paymentData;
@@ -70,9 +70,9 @@ namespace Adyen.Model.Checkout
         public string PaymentMethodType { get; set; }
 
         /// <summary>
-        /// A token to pass to the 3DS2 Component to get the fingerprint.
+        /// A token to pass to the 3DS2 Component to get the challenge.
         /// </summary>
-        /// <value>A token to pass to the 3DS2 Component to get the fingerprint.</value>
+        /// <value>A token to pass to the 3DS2 Component to get the challenge.</value>
         [DataMember(Name = "token", EmitDefaultValue = false)]
         public string Token { get; set; }
 
@@ -90,7 +90,7 @@ namespace Adyen.Model.Checkout
         public override string ToString()
         {
             var sb = new StringBuilder();
-            sb.Append("class CheckoutThreeDS2FingerPrintAction {\n");
+            sb.Append("class CheckoutThreeDS2ChallengeAction {\n");
             sb.Append("  PaymentData: ").Append(PaymentData).Append("\n");
             sb.Append("  PaymentMethodType: ").Append(PaymentMethodType).Append("\n");
             sb.Append("  Token: ").Append(Token).Append("\n");
@@ -115,15 +115,15 @@ namespace Adyen.Model.Checkout
         /// <returns>Boolean</returns>
         public override bool Equals(object input)
         {
-            return this.Equals(input as CheckoutThreeDS2FingerPrintAction);
+            return this.Equals(input as CheckoutThreeDS2ChallengeAction);
         }
 
         /// <summary>
-        /// Returns true if CheckoutThreeDS2FingerPrintAction instances are equal
+        /// Returns true if CheckoutThreeDS2ChallengeAction instances are equal
         /// </summary>
-        /// <param name="input">Instance of CheckoutThreeDS2FingerPrintAction to be compared</param>
+        /// <param name="input">Instance of CheckoutThreeDS2ChallengeAction to be compared</param>
         /// <returns>Boolean</returns>
-        public bool Equals(CheckoutThreeDS2FingerPrintAction input)
+        public bool Equals(CheckoutThreeDS2ChallengeAction input)
         {
             if (input == null)
                 return false;

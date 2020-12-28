@@ -21,7 +21,7 @@
  */
 #endregion
 
-namespace Adyen.Model.Checkout
+namespace Adyen.Model.Checkout.Action
 {
     public interface IPaymentResponseAction
     {

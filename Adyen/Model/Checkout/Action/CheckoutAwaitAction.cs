@@ -29,29 +29,26 @@ using System.Runtime.Serialization;
 using System.Text;
 using Newtonsoft.Json;
 
-namespace Adyen.Model.Checkout
+namespace Adyen.Model.Checkout.Action
 {
     /// <summary>
-    /// CheckoutThreeDS2ChallengeAction
+    /// CheckoutAwaitAction
     /// </summary>
     [DataContract]
-    public partial class CheckoutThreeDS2ChallengeAction : IEquatable<CheckoutThreeDS2ChallengeAction>,
-        IValidatableObject, IPaymentResponseAction
+    public partial class CheckoutAwaitAction : IEquatable<CheckoutAwaitAction>, IValidatableObject, IPaymentResponseAction
     {
-        public string Type { get; set; } = "threeDS2Challenge";
+        public string Type { get; set; } = "await";
         /// <summary>
-        /// Initializes a new instance of the <see cref="CheckoutThreeDS2ChallengeAction" /> class.
+        /// Initializes a new instance of the <see cref="CheckoutAwaitAction" /> class.
         /// </summary>
         /// <param name="paymentData">When non-empty, contains a value that you must submit to the &#x60;/payments/details&#x60; endpoint. In some cases, required for polling..</param>
         /// <param name="paymentMethodType">Specifies the payment method..</param>
-        /// <param name="token">A token to pass to the 3DS2 Component to get the challenge..</param>
         /// <param name="url">Specifies the URL to redirect to..</param>
-        public CheckoutThreeDS2ChallengeAction(string paymentData = default(string),
-            string paymentMethodType = default(string), string token = default(string), string url = default(string))
+        public CheckoutAwaitAction(string paymentData = default(string), string paymentMethodType = default(string),
+            string url = default(string))
         {
             this.PaymentData = paymentData;
             this.PaymentMethodType = paymentMethodType;
-            this.Token = token;
             this.Url = url;
         }
 
@@ -70,13 +67,6 @@ namespace Adyen.Model.Checkout
         public string PaymentMethodType { get; set; }
 
         /// <summary>
-        /// A token to pass to the 3DS2 Component to get the challenge.
-        /// </summary>
-        /// <value>A token to pass to the 3DS2 Component to get the challenge.</value>
-        [DataMember(Name = "token", EmitDefaultValue = false)]
-        public string Token { get; set; }
-
-        /// <summary>
         /// Specifies the URL to redirect to.
         /// </summary>
         /// <value>Specifies the URL to redirect to.</value>
@@ -90,10 +80,9 @@ namespace Adyen.Model.Checkout
         public override string ToString()
         {
             var sb = new StringBuilder();
-            sb.Append("class CheckoutThreeDS2ChallengeAction {\n");
+            sb.Append("class CheckoutAwaitAction {\n");
             sb.Append("  PaymentData: ").Append(PaymentData).Append("\n");
             sb.Append("  PaymentMethodType: ").Append(PaymentMethodType).Append("\n");
-            sb.Append("  Token: ").Append(Token).Append("\n");
             sb.Append("  Url: ").Append(Url).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
@@ -115,15 +104,15 @@ namespace Adyen.Model.Checkout
         /// <returns>Boolean</returns>
         public override bool Equals(object input)
         {
-            return this.Equals(input as CheckoutThreeDS2ChallengeAction);
+            return this.Equals(input as CheckoutAwaitAction);
         }
 
         /// <summary>
-        /// Returns true if CheckoutThreeDS2ChallengeAction instances are equal
+        /// Returns true if CheckoutAwaitAction instances are equal
         /// </summary>
-        /// <param name="input">Instance of CheckoutThreeDS2ChallengeAction to be compared</param>
+        /// <param name="input">Instance of CheckoutAwaitAction to be compared</param>
         /// <returns>Boolean</returns>
-        public bool Equals(CheckoutThreeDS2ChallengeAction input)
+        public bool Equals(CheckoutAwaitAction input)
         {
             if (input == null)
                 return false;
@@ -138,11 +127,6 @@ namespace Adyen.Model.Checkout
                     this.PaymentMethodType == input.PaymentMethodType ||
                     this.PaymentMethodType != null &&
                     this.PaymentMethodType.Equals(input.PaymentMethodType)
-                ) &&
-                (
-                    this.Token == input.Token ||
-                    this.Token != null &&
-                    this.Token.Equals(input.Token)
                 ) &&
                 (
                     this.Url == input.Url ||
@@ -164,8 +148,6 @@ namespace Adyen.Model.Checkout
                     hashCode = hashCode * 59 + this.PaymentData.GetHashCode();
                 if (this.PaymentMethodType != null)
                     hashCode = hashCode * 59 + this.PaymentMethodType.GetHashCode();
-                if (this.Token != null)
-                    hashCode = hashCode * 59 + this.Token.GetHashCode();
                 if (this.Url != null)
                     hashCode = hashCode * 59 + this.Url.GetHashCode();
                 return hashCode;

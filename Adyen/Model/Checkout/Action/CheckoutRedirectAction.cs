@@ -30,7 +30,7 @@ using System.Runtime.Serialization;
 using System.Text;
 using Newtonsoft.Json;
 
-namespace Adyen.Model.Checkout
+namespace Adyen.Model.Checkout.Action
 {
     /// <summary>
     /// CheckoutRedirectAction

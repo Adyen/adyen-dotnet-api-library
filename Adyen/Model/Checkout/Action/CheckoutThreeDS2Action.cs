@@ -25,36 +25,45 @@
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.Linq;
 using System.Runtime.Serialization;
 using System.Text;
 using Newtonsoft.Json;
 
-namespace Adyen.Model.Checkout
+namespace Adyen.Model.Checkout.Action
 {
     /// <summary>
-    /// CheckoutSDKAction
+    /// CheckoutThreeDS2Action
     /// </summary>
     [DataContract]
-    public partial class CheckoutSDKAction : IEquatable<CheckoutSDKAction>, IValidatableObject, IPaymentResponseAction
+    public partial class CheckoutThreeDS2Action : IEquatable<CheckoutThreeDS2Action>, IValidatableObject
     {
-        public string Type { get; set; } = "sdk";
-        
         /// <summary>
-        /// Initializes a new instance of the <see cref="CheckoutSDKAction" /> class.
+        /// Initializes a new instance of the <see cref="CheckoutThreeDS2Action" /> class.
         /// </summary>
+        /// <param name="authorisationToken">A token needed to authorise a payment..</param>
         /// <param name="paymentData">When non-empty, contains a value that you must submit to the &#x60;/payments/details&#x60; endpoint. In some cases, required for polling..</param>
         /// <param name="paymentMethodType">Specifies the payment method..</param>
-        /// <param name="sdkData">The data to pass to the SDK..</param>
+        /// <param name="subtype">A subtype of the token..</param>
+        /// <param name="token">A token to pass to the 3DS2 Component to get the fingerprint..</param>
         /// <param name="url">Specifies the URL to redirect to..</param>
-        public CheckoutSDKAction(string paymentData = default(string), string paymentMethodType = default(string),
-            Dictionary<string, string> sdkData = default(Dictionary<string, string>), string url = default(string))
+        public CheckoutThreeDS2Action(string authorisationToken = default(string), string paymentData = default(string),
+            string paymentMethodType = default(string), string subtype = default(string),
+            string token = default(string), string url = default(string))
         {
+            this.AuthorisationToken = authorisationToken;
             this.PaymentData = paymentData;
             this.PaymentMethodType = paymentMethodType;
-            this.SdkData = sdkData;
+            this.Subtype = subtype;
+            this.Token = token;
             this.Url = url;
         }
+
+        /// <summary>
+        /// A token needed to authorise a payment.
+        /// </summary>
+        /// <value>A token needed to authorise a payment.</value>
+        [DataMember(Name = "authorisationToken", EmitDefaultValue = false)]
+        public string AuthorisationToken { get; set; }
 
         /// <summary>
         /// When non-empty, contains a value that you must submit to the &#x60;/payments/details&#x60; endpoint. In some cases, required for polling.
@@ -71,11 +80,18 @@ namespace Adyen.Model.Checkout
         public string PaymentMethodType { get; set; }
 
         /// <summary>
-        /// The data to pass to the SDK.
+        /// A subtype of the token.
         /// </summary>
-        /// <value>The data to pass to the SDK.</value>
-        [DataMember(Name = "sdkData", EmitDefaultValue = false)]
-        public Dictionary<string, string> SdkData { get; set; }
+        /// <value>A subtype of the token.</value>
+        [DataMember(Name = "subtype", EmitDefaultValue = false)]
+        public string Subtype { get; set; }
+
+        /// <summary>
+        /// A token to pass to the 3DS2 Component to get the fingerprint.
+        /// </summary>
+        /// <value>A token to pass to the 3DS2 Component to get the fingerprint.</value>
+        [DataMember(Name = "token", EmitDefaultValue = false)]
+        public string Token { get; set; }
 
         /// <summary>
         /// Specifies the URL to redirect to.
@@ -91,10 +107,12 @@ namespace Adyen.Model.Checkout
         public override string ToString()
         {
             var sb = new StringBuilder();
-            sb.Append("class CheckoutSDKAction {\n");
+            sb.Append("class CheckoutThreeDS2Action {\n");
+            sb.Append("  AuthorisationToken: ").Append(AuthorisationToken).Append("\n");
             sb.Append("  PaymentData: ").Append(PaymentData).Append("\n");
             sb.Append("  PaymentMethodType: ").Append(PaymentMethodType).Append("\n");
-            sb.Append("  SdkData: ").Append(SdkData).Append("\n");
+            sb.Append("  Subtype: ").Append(Subtype).Append("\n");
+            sb.Append("  Token: ").Append(Token).Append("\n");
             sb.Append("  Url: ").Append(Url).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
@@ -116,20 +134,25 @@ namespace Adyen.Model.Checkout
         /// <returns>Boolean</returns>
         public override bool Equals(object input)
         {
-            return this.Equals(input as CheckoutSDKAction);
+            return this.Equals(input as CheckoutThreeDS2Action);
         }
 
         /// <summary>
-        /// Returns true if CheckoutSDKAction instances are equal
+        /// Returns true if CheckoutThreeDS2Action instances are equal
         /// </summary>
-        /// <param name="input">Instance of CheckoutSDKAction to be compared</param>
+        /// <param name="input">Instance of CheckoutThreeDS2Action to be compared</param>
         /// <returns>Boolean</returns>
-        public bool Equals(CheckoutSDKAction input)
+        public bool Equals(CheckoutThreeDS2Action input)
         {
             if (input == null)
                 return false;
 
             return
+                (
+                    this.AuthorisationToken == input.AuthorisationToken ||
+                    this.AuthorisationToken != null &&
+                    this.AuthorisationToken.Equals(input.AuthorisationToken)
+                ) &&
                 (
                     this.PaymentData == input.PaymentData ||
                     this.PaymentData != null &&
@@ -141,10 +164,14 @@ namespace Adyen.Model.Checkout
                     this.PaymentMethodType.Equals(input.PaymentMethodType)
                 ) &&
                 (
-                    this.SdkData == input.SdkData ||
-                    this.SdkData != null &&
-                    input.SdkData != null &&
-                    this.SdkData.SequenceEqual(input.SdkData)
+                    this.Subtype == input.Subtype ||
+                    this.Subtype != null &&
+                    this.Subtype.Equals(input.Subtype)
+                ) &&
+                (
+                    this.Token == input.Token ||
+                    this.Token != null &&
+                    this.Token.Equals(input.Token)
                 ) &&
                 (
                     this.Url == input.Url ||
@@ -162,12 +189,16 @@ namespace Adyen.Model.Checkout
             unchecked // Overflow is fine, just wrap
             {
                 int hashCode = 41;
+                if (this.AuthorisationToken != null)
+                    hashCode = hashCode * 59 + this.AuthorisationToken.GetHashCode();
                 if (this.PaymentData != null)
                     hashCode = hashCode * 59 + this.PaymentData.GetHashCode();
                 if (this.PaymentMethodType != null)
                     hashCode = hashCode * 59 + this.PaymentMethodType.GetHashCode();
-                if (this.SdkData != null)
-                    hashCode = hashCode * 59 + this.SdkData.GetHashCode();
+                if (this.Subtype != null)
+                    hashCode = hashCode * 59 + this.Subtype.GetHashCode();
+                if (this.Token != null)
+                    hashCode = hashCode * 59 + this.Token.GetHashCode();
                 if (this.Url != null)
                     hashCode = hashCode * 59 + this.Url.GetHashCode();
                 return hashCode;

@@ -29,36 +29,28 @@ using System.Runtime.Serialization;
 using System.Text;
 using Newtonsoft.Json;
 
-namespace Adyen.Model.Checkout
+namespace Adyen.Model.Checkout.Action
 {
     /// <summary>
-    /// CheckoutOneTimePasscodeAction
+    /// CheckoutQrCodeAction
     /// </summary>
     [DataContract]
-    public partial class CheckoutOneTimePasscodeAction : IEquatable<CheckoutOneTimePasscodeAction>, IValidatableObject, IPaymentResponseAction
+    public partial class CheckoutQrCodeAction : IEquatable<CheckoutQrCodeAction>, IValidatableObject, IPaymentResponseAction
     {
-        public string Type { get; set; } = "oneTimePasscode";
+        public string Type { get; set; } = "qrCode";
         /// <summary>
-        /// Initializes a new instance of the <see cref="CheckoutOneTimePasscodeAction" /> class.
+        /// Initializes a new instance of the <see cref="CheckoutQrCodeAction" /> class.
         /// </summary>
         /// <param name="paymentData">When non-empty, contains a value that you must submit to the &#x60;/payments/details&#x60; endpoint. In some cases, required for polling..</param>
         /// <param name="paymentMethodType">Specifies the payment method..</param>
-        /// <param name="redirect">redirect.</param>
-        /// <param name="resendInterval">The interval in second between OTP resend..</param>
-        /// <param name="resendMaxAttempts">The maximum number of OTP resend attempts..</param>
-        /// <param name="resendUrl">The URL, to which you make POST request to trigger OTP resend..</param>
+        /// <param name="qrCodeData">The contents of the QR code as a UTF8 string..</param>
         /// <param name="url">Specifies the URL to redirect to..</param>
-        public CheckoutOneTimePasscodeAction(string paymentData = default(string),
-            string paymentMethodType = default(string), Redirect redirect = default(Redirect),
-            int? resendInterval = default(int?), int? resendMaxAttempts = default(int?),
-            string resendUrl = default(string), string url = default(string))
+        public CheckoutQrCodeAction(string paymentData = default(string), string paymentMethodType = default(string),
+            string qrCodeData = default(string), string url = default(string))
         {
             this.PaymentData = paymentData;
             this.PaymentMethodType = paymentMethodType;
-            this.Redirect = redirect;
-            this.ResendInterval = resendInterval;
-            this.ResendMaxAttempts = resendMaxAttempts;
-            this.ResendUrl = resendUrl;
+            this.QrCodeData = qrCodeData;
             this.Url = url;
         }
 
@@ -77,31 +69,11 @@ namespace Adyen.Model.Checkout
         public string PaymentMethodType { get; set; }
 
         /// <summary>
-        /// Gets or Sets Redirect
+        /// The contents of the QR code as a UTF8 string.
         /// </summary>
-        [DataMember(Name = "redirect", EmitDefaultValue = false)]
-        public Redirect Redirect { get; set; }
-
-        /// <summary>
-        /// The interval in second between OTP resend.
-        /// </summary>
-        /// <value>The interval in second between OTP resend.</value>
-        [DataMember(Name = "resendInterval", EmitDefaultValue = false)]
-        public int? ResendInterval { get; set; }
-
-        /// <summary>
-        /// The maximum number of OTP resend attempts.
-        /// </summary>
-        /// <value>The maximum number of OTP resend attempts.</value>
-        [DataMember(Name = "resendMaxAttempts", EmitDefaultValue = false)]
-        public int? ResendMaxAttempts { get; set; }
-
-        /// <summary>
-        /// The URL, to which you make POST request to trigger OTP resend.
-        /// </summary>
-        /// <value>The URL, to which you make POST request to trigger OTP resend.</value>
-        [DataMember(Name = "resendUrl", EmitDefaultValue = false)]
-        public string ResendUrl { get; set; }
+        /// <value>The contents of the QR code as a UTF8 string.</value>
+        [DataMember(Name = "qrCodeData", EmitDefaultValue = false)]
+        public string QrCodeData { get; set; }
 
         /// <summary>
         /// Specifies the URL to redirect to.
@@ -117,13 +89,10 @@ namespace Adyen.Model.Checkout
         public override string ToString()
         {
             var sb = new StringBuilder();
-            sb.Append("class CheckoutOneTimePasscodeAction {\n");
+            sb.Append("class CheckoutQrCodeAction {\n");
             sb.Append("  PaymentData: ").Append(PaymentData).Append("\n");
             sb.Append("  PaymentMethodType: ").Append(PaymentMethodType).Append("\n");
-            sb.Append("  Redirect: ").Append(Redirect).Append("\n");
-            sb.Append("  ResendInterval: ").Append(ResendInterval).Append("\n");
-            sb.Append("  ResendMaxAttempts: ").Append(ResendMaxAttempts).Append("\n");
-            sb.Append("  ResendUrl: ").Append(ResendUrl).Append("\n");
+            sb.Append("  QrCodeData: ").Append(QrCodeData).Append("\n");
             sb.Append("  Url: ").Append(Url).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
@@ -145,15 +114,15 @@ namespace Adyen.Model.Checkout
         /// <returns>Boolean</returns>
         public override bool Equals(object input)
         {
-            return this.Equals(input as CheckoutOneTimePasscodeAction);
+            return this.Equals(input as CheckoutQrCodeAction);
         }
 
         /// <summary>
-        /// Returns true if CheckoutOneTimePasscodeAction instances are equal
+        /// Returns true if CheckoutQrCodeAction instances are equal
         /// </summary>
-        /// <param name="input">Instance of CheckoutOneTimePasscodeAction to be compared</param>
+        /// <param name="input">Instance of CheckoutQrCodeAction to be compared</param>
         /// <returns>Boolean</returns>
-        public bool Equals(CheckoutOneTimePasscodeAction input)
+        public bool Equals(CheckoutQrCodeAction input)
         {
             if (input == null)
                 return false;
@@ -170,24 +139,9 @@ namespace Adyen.Model.Checkout
                     this.PaymentMethodType.Equals(input.PaymentMethodType)
                 ) &&
                 (
-                    this.Redirect == input.Redirect ||
-                    this.Redirect != null &&
-                    this.Redirect.Equals(input.Redirect)
-                ) &&
-                (
-                    this.ResendInterval == input.ResendInterval ||
-                    this.ResendInterval != null &&
-                    this.ResendInterval.Equals(input.ResendInterval)
-                ) &&
-                (
-                    this.ResendMaxAttempts == input.ResendMaxAttempts ||
-                    this.ResendMaxAttempts != null &&
-                    this.ResendMaxAttempts.Equals(input.ResendMaxAttempts)
-                ) &&
-                (
-                    this.ResendUrl == input.ResendUrl ||
-                    this.ResendUrl != null &&
-                    this.ResendUrl.Equals(input.ResendUrl)
+                    this.QrCodeData == input.QrCodeData ||
+                    this.QrCodeData != null &&
+                    this.QrCodeData.Equals(input.QrCodeData)
                 ) &&
                 (
                     this.Url == input.Url ||
@@ -209,14 +163,8 @@ namespace Adyen.Model.Checkout
                     hashCode = hashCode * 59 + this.PaymentData.GetHashCode();
                 if (this.PaymentMethodType != null)
                     hashCode = hashCode * 59 + this.PaymentMethodType.GetHashCode();
-                if (this.Redirect != null)
-                    hashCode = hashCode * 59 + this.Redirect.GetHashCode();
-                if (this.ResendInterval != null)
-                    hashCode = hashCode * 59 + this.ResendInterval.GetHashCode();
-                if (this.ResendMaxAttempts != null)
-                    hashCode = hashCode * 59 + this.ResendMaxAttempts.GetHashCode();
-                if (this.ResendUrl != null)
-                    hashCode = hashCode * 59 + this.ResendUrl.GetHashCode();
+                if (this.QrCodeData != null)
+                    hashCode = hashCode * 59 + this.QrCodeData.GetHashCode();
                 if (this.Url != null)
                     hashCode = hashCode * 59 + this.Url.GetHashCode();
                 return hashCode;

@@ -29,28 +29,27 @@ using System.Runtime.Serialization;
 using System.Text;
 using Newtonsoft.Json;
 
-namespace Adyen.Model.Checkout
+namespace Adyen.Model.Checkout.Action
 {
     /// <summary>
-    /// CheckoutQrCodeAction
+    /// CheckoutDonationAction
     /// </summary>
     [DataContract]
-    public partial class CheckoutQrCodeAction : IEquatable<CheckoutQrCodeAction>, IValidatableObject, IPaymentResponseAction
+    public partial class CheckoutDonationAction : IEquatable<CheckoutDonationAction>, IValidatableObject, IPaymentResponseAction
     {
-        public string Type { get; set; } = "qrCode";
+        public string Type { get; set; } = "donation";
+
         /// <summary>
-        /// Initializes a new instance of the <see cref="CheckoutQrCodeAction" /> class.
+        /// Initializes a new instance of the <see cref="CheckoutDonationAction" /> class.
         /// </summary>
         /// <param name="paymentData">When non-empty, contains a value that you must submit to the &#x60;/payments/details&#x60; endpoint. In some cases, required for polling..</param>
         /// <param name="paymentMethodType">Specifies the payment method..</param>
-        /// <param name="qrCodeData">The contents of the QR code as a UTF8 string..</param>
         /// <param name="url">Specifies the URL to redirect to..</param>
-        public CheckoutQrCodeAction(string paymentData = default(string), string paymentMethodType = default(string),
-            string qrCodeData = default(string), string url = default(string))
+        public CheckoutDonationAction(string paymentData = default(string), string paymentMethodType = default(string),
+            string url = default(string))
         {
             this.PaymentData = paymentData;
             this.PaymentMethodType = paymentMethodType;
-            this.QrCodeData = qrCodeData;
             this.Url = url;
         }
 
@@ -69,13 +68,6 @@ namespace Adyen.Model.Checkout
         public string PaymentMethodType { get; set; }
 
         /// <summary>
-        /// The contents of the QR code as a UTF8 string.
-        /// </summary>
-        /// <value>The contents of the QR code as a UTF8 string.</value>
-        [DataMember(Name = "qrCodeData", EmitDefaultValue = false)]
-        public string QrCodeData { get; set; }
-
-        /// <summary>
         /// Specifies the URL to redirect to.
         /// </summary>
         /// <value>Specifies the URL to redirect to.</value>
@@ -89,10 +81,9 @@ namespace Adyen.Model.Checkout
         public override string ToString()
         {
             var sb = new StringBuilder();
-            sb.Append("class CheckoutQrCodeAction {\n");
+            sb.Append("class CheckoutDonationAction {\n");
             sb.Append("  PaymentData: ").Append(PaymentData).Append("\n");
             sb.Append("  PaymentMethodType: ").Append(PaymentMethodType).Append("\n");
-            sb.Append("  QrCodeData: ").Append(QrCodeData).Append("\n");
             sb.Append("  Url: ").Append(Url).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
@@ -114,15 +105,15 @@ namespace Adyen.Model.Checkout
         /// <returns>Boolean</returns>
         public override bool Equals(object input)
         {
-            return this.Equals(input as CheckoutQrCodeAction);
+            return this.Equals(input as CheckoutDonationAction);
         }
 
         /// <summary>
-        /// Returns true if CheckoutQrCodeAction instances are equal
+        /// Returns true if CheckoutDonationAction instances are equal
         /// </summary>
-        /// <param name="input">Instance of CheckoutQrCodeAction to be compared</param>
+        /// <param name="input">Instance of CheckoutDonationAction to be compared</param>
         /// <returns>Boolean</returns>
-        public bool Equals(CheckoutQrCodeAction input)
+        public bool Equals(CheckoutDonationAction input)
         {
             if (input == null)
                 return false;
@@ -137,11 +128,6 @@ namespace Adyen.Model.Checkout
                     this.PaymentMethodType == input.PaymentMethodType ||
                     this.PaymentMethodType != null &&
                     this.PaymentMethodType.Equals(input.PaymentMethodType)
-                ) &&
-                (
-                    this.QrCodeData == input.QrCodeData ||
-                    this.QrCodeData != null &&
-                    this.QrCodeData.Equals(input.QrCodeData)
                 ) &&
                 (
                     this.Url == input.Url ||
@@ -163,8 +149,6 @@ namespace Adyen.Model.Checkout
                     hashCode = hashCode * 59 + this.PaymentData.GetHashCode();
                 if (this.PaymentMethodType != null)
                     hashCode = hashCode * 59 + this.PaymentMethodType.GetHashCode();
-                if (this.QrCodeData != null)
-                    hashCode = hashCode * 59 + this.QrCodeData.GetHashCode();
                 if (this.Url != null)
                     hashCode = hashCode * 59 + this.Url.GetHashCode();
                 return hashCode;

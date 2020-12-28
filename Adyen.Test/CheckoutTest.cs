@@ -21,10 +21,10 @@
  */
 #endregion
 
-using Adyen.HttpClient;
 using Adyen.Model.ApplicationInformation;
 using Adyen.Model.Checkout;
 using Adyen.Model.Checkout.Details;
+using Adyen.Model.Checkout.Action;
 using Adyen.Service;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
