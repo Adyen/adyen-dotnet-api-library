@@ -35,8 +35,9 @@ namespace Adyen.Model.Checkout
     /// CheckoutVoucherAction
     /// </summary>
     [DataContract]
-    public partial class CheckoutVoucherAction : IEquatable<CheckoutVoucherAction>, IValidatableObject
+    public partial class CheckoutVoucherAction : IEquatable<CheckoutVoucherAction>, IValidatableObject, IPaymentResponseAction
     {
+        public string Type { get; set; } = "voucher";
         /// <summary>
         /// Initializes a new instance of the <see cref="CheckoutVoucherAction" /> class.
         /// </summary>

@@ -36,8 +36,9 @@ namespace Adyen.Model.Checkout
     /// CheckoutRedirectAction
     /// </summary>
     [DataContract]
-    public partial class CheckoutRedirectAction : IEquatable<CheckoutRedirectAction>, IValidatableObject
+    public partial class CheckoutRedirectAction : IEquatable<CheckoutRedirectAction>, IValidatableObject, IPaymentResponseAction
     {
+        public string Type { get; set; } = "redirect";
         /// <summary>
         /// Initializes a new instance of the <see cref="CheckoutRedirectAction" /> class.
         /// </summary>

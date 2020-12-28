@@ -605,8 +605,11 @@ namespace Adyen.Test
             var checkout = new Checkout(client);
             var paymentRequest = CreatePaymentRequestCheckout();
             var paymentResponse = checkout.Payments(paymentRequest);
-
-            //Assert.AreEqual("EC-42N19135GM6949000", paymentResponse.Action.SdkData["orderID"]);
+            Assert.IsTrue(paymentResponse.Action is CheckoutSDKAction);
+            var result = (CheckoutSDKAction)paymentResponse.Action;
+            Assert.AreEqual("EC-42N19135GM6949000", result.SdkData["orderID"]);
+            Assert.AreEqual("Ab02b4c0!BQABAgARb1TvUJa4nwS0Z1nOmxoYfD9+z...", result.PaymentData);
+            Assert.AreEqual("paypal", result.PaymentMethodType);
         }
 
 

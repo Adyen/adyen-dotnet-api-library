@@ -47,11 +47,36 @@ namespace Adyen.Util
             var paymentResponseAction = default(IPaymentResponseAction);
             switch (jsonObject["type"].ToString())
             {
+                case "donation":
+                    paymentResponseAction = new CheckoutDonationAction();
+                    break;
+                case "qrCode":
+                    paymentResponseAction = new CheckoutQrCodeAction();
+                    break;
+                case "redirect":
+                    paymentResponseAction = new CheckoutRedirectAction();
+                    break;
                 case "sdk":
                     paymentResponseAction = new CheckoutSDKAction();
                     break;
+                case "threeDS2Challenge":
+                    paymentResponseAction = new CheckoutThreeDS2ChallengeAction();
+                    break;
+                case "threeDS2Fingerprint":
+                    paymentResponseAction = new CheckoutThreeDS2FingerPrintAction();
+                    break;
+                case "await":
+                    paymentResponseAction = new CheckoutAwaitAction();
+                    break;
+                case "voucher":
+                    paymentResponseAction = new CheckoutVoucherAction();
+                    break;
+                case "oneTimePasscode":
+                    paymentResponseAction = new CheckoutOneTimePasscodeAction();
+                    break;
             }
 
+            serializer.Populate(jsonObject.CreateReader(), paymentResponseAction);
             return paymentResponseAction;
         }
     }

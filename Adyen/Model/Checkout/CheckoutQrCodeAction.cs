@@ -35,8 +35,9 @@ namespace Adyen.Model.Checkout
     /// CheckoutQrCodeAction
     /// </summary>
     [DataContract]
-    public partial class CheckoutQrCodeAction : IEquatable<CheckoutQrCodeAction>, IValidatableObject
+    public partial class CheckoutQrCodeAction : IEquatable<CheckoutQrCodeAction>, IValidatableObject, IPaymentResponseAction
     {
+        public string Type { get; set; } = "qrCode";
         /// <summary>
         /// Initializes a new instance of the <see cref="CheckoutQrCodeAction" /> class.
         /// </summary>

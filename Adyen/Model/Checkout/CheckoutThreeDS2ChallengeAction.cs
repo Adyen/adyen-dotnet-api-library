@@ -36,8 +36,9 @@ namespace Adyen.Model.Checkout
     /// </summary>
     [DataContract]
     public partial class CheckoutThreeDS2ChallengeAction : IEquatable<CheckoutThreeDS2ChallengeAction>,
-        IValidatableObject
+        IValidatableObject, IPaymentResponseAction
     {
+        public string Type { get; set; } = "threeDS2Challenge";
         /// <summary>
         /// Initializes a new instance of the <see cref="CheckoutThreeDS2ChallengeAction" /> class.
         /// </summary>

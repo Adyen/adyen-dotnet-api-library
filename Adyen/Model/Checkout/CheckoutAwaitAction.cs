@@ -35,8 +35,9 @@ namespace Adyen.Model.Checkout
     /// CheckoutAwaitAction
     /// </summary>
     [DataContract]
-    public partial class CheckoutAwaitAction : IEquatable<CheckoutAwaitAction>, IValidatableObject
+    public partial class CheckoutAwaitAction : IEquatable<CheckoutAwaitAction>, IValidatableObject, IPaymentResponseAction
     {
+        public string Type { get; set; } = "await";
         /// <summary>
         /// Initializes a new instance of the <see cref="CheckoutAwaitAction" /> class.
         /// </summary>
