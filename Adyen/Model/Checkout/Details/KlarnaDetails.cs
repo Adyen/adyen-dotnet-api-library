@@ -30,7 +30,7 @@ namespace Adyen.Model.Checkout.Details
     /// 
     /// </summary>
     [DataContract]
-    public class KlarnaDetail : IPaymentMethodDetails
+    public class KlarnaDetails : IPaymentMethodDetails
     {
         //Possible types
         public const string Klarna = "klarna";
