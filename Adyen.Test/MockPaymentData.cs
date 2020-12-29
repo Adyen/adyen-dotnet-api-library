@@ -81,11 +81,8 @@ namespace Adyen.Test
                 Amount = new Amount("EUR", 1500),
                 Reference = "payment - " + DateTime.Now.ToString("yyyyMMdd"),
                 AdditionalData = CreateAdditionalData(),
-                ThreeDS2RequestData = new ThreeDS2RequestData
-                {
-                    ThreeDSCompInd = "Y",
-                    DeviceChannel = "browser"
-                },
+                ThreeDS2RequestData = new ThreeDS2RequestData(threeDSCompInd: "Y",
+                    deviceChannel: "browser"),
                 BrowserInfo = CreateMockBrowserInfo(),
             };
             return paymentRequest;

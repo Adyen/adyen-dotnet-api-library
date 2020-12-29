@@ -459,41 +459,26 @@ namespace Adyen.Test
             Assert.AreEqual(paymentRequest.ApplicationInfo.MerchantApplication.Version, "MerchantApplicationVersion");
         }
 
-        //[TestMethod]
-        //public void PaymentsResponseParsingTest()
-        //{
-        //    var paymentRequest = CreatePaymentRequestCheckout();
-        //    var client = CreateMockTestClientApiKeyBasedRequest("Mocks/checkout/paymentResponse-3DS-ChallengeShopper.json");
-        //    var checkout = new Checkout(client);
-        //    var paymentResponse = checkout.Payments(paymentRequest);
-        //    Assert.AreEqual(paymentResponse.ResultCode, ResultCodeEnum.ChallengeShopper);
-        //    Assert.AreEqual(paymentResponse.PaymentData, "Te1CMIy1vKQTYsSHZ+gRbFpQy4d4n2HLD3c2b7xKnRNpWzWPuI=");
-        //    Assert.AreEqual(paymentResponse.Action.PaymentData, "Te1CMIy1vKQTYsSHZ+gRbFpQy4d4n2HLD3c2b7xKnRNpWzWPuI=");
-        //    Assert.AreEqual(paymentResponse.Action.Type, Model.Checkout.CheckoutPaymentsAction.CheckoutActionType.ThreeDS2Challenge);
-        //    Assert.AreEqual(paymentResponse.Action.Token, "S0zYWQ0MGEwMjU2MjEifQ==");
-        //    Assert.AreEqual(paymentResponse.Action.PaymentMethodType, "scheme");
-        //    Assert.AreEqual(paymentResponse.Details[0].Key, "threeds2.challengeResult");
-        //    Assert.AreEqual(paymentResponse.Details[0].Type, "text");
-        //    Assert.AreEqual(paymentResponse.Authentication["threeds2.challengeToken"], "S0zYWQ0MGEwMjU2MjEifQ==");
-        //}
+        [TestMethod]
+        public void PaymentsResponseParsingTest()
+        {
+            var paymentRequest = CreatePaymentRequestCheckout();
+            var client = CreateMockTestClientApiKeyBasedRequest("Mocks/checkout/paymentResponse-3DS-ChallengeShopper.json");
+            var checkout = new Checkout(client);
+            var paymentResponse = checkout.Payments(paymentRequest);
 
-        //[TestMethod]
-        //public void PaymentsResponseThreeDS2ParsingTest()
-        //{
-        //    var paymentRequest = CreatePaymentRequestCheckout();
-        //    var client = CreateMockTestClientApiKeyBasedRequest("Mocks/checkout/paymentsResponse-ThreeDS2Result.json");
-        //    var checkout = new Checkout(client);
-        //    var paymentResponse = checkout.Payments(paymentRequest);
-        //    Assert.AreEqual(paymentResponse.ResultCode, ResultCodeEnum.AuthenticationFinished);
-        //    Assert.AreEqual(paymentResponse.PspReference, "812345678912345A");
-        //    Assert.AreEqual(paymentResponse.MerchantReference, "ABC1234");
-        //    Assert.AreEqual(paymentResponse.ThreeDS2Result.AuthenticationValue, "3q263q263q263q263q263q263q263q263q26");
-        //    Assert.AreEqual(paymentResponse.ThreeDS2Result.ECI, "05");
-        //    Assert.AreEqual(paymentResponse.ThreeDS2Result.TransStatus, "Y");
-        //    Assert.AreEqual(paymentResponse.ThreeDS2Result.ThreeDSServerTransID, "abcd1234-abcd1234-abcd1234-abcd1234-");
-        //    Assert.AreEqual(paymentResponse.ThreeDS2Result.DsTransID, "abcd9a67-abcd9a67-abcd9a67-abcd9a671");
-        //    Assert.AreEqual(paymentResponse.ThreeDS2Result.MessageVersion, "2.1.0");
-        //}
+            Assert.IsTrue(paymentResponse.Action is CheckoutThreeDS2ChallengeAction);
+            var paymentResponseAction = (CheckoutThreeDS2ChallengeAction)paymentResponse.Action;
+            Assert.AreEqual(paymentResponse.ResultCode, ResultCodeEnum.ChallengeShopper);
+            Assert.AreEqual(paymentResponse.PaymentData, "Te1CMIy1vKQTYsSHZ+gRbFpQy4d4n2HLD3c2b7xKnRNpWzWPuI=");
+            Assert.AreEqual(paymentResponseAction.PaymentData, "Te1CMIy1vKQTYsSHZ+gRbFpQy4d4n2HLD3c2b7xKnRNpWzWPuI=");
+            Assert.AreEqual(paymentResponseAction.Type, "threeDS2Challenge");
+            Assert.AreEqual(paymentResponseAction.Token, "S0zYWQ0MGEwMjU2MjEifQ==");
+            Assert.AreEqual(paymentResponseAction.PaymentMethodType, "scheme");
+            Assert.AreEqual(paymentResponse.Details[0].Key, "threeds2.challengeResult");
+            Assert.AreEqual(paymentResponse.Details[0].Type, "text");
+            Assert.AreEqual(paymentResponse.Authentication["threeds2.challengeToken"], "S0zYWQ0MGEwMjU2MjEifQ==");
+        }
 
         [TestMethod]
         public void PaymentsOriginTest()
@@ -510,7 +495,7 @@ namespace Adyen.Test
         [TestMethod]
         public void CreatePaymentLinkSuccess()
         {
-            var createPaymentLinkRequest = new CreatePaymentLinkRequest { Store = "TheDemoStore" };
+            var createPaymentLinkRequest = new CreatePaymentLinkRequest ( store : "TheDemoStore", amount : new Amount(currency:"EUR", 1000), merchantAccount : "MerchantAccount" , reference:"reference");
             Assert.AreEqual(createPaymentLinkRequest.Store, "TheDemoStore");
         }
 
@@ -523,7 +508,7 @@ namespace Adyen.Test
         {
             var client = CreateMockTestClientApiKeyBasedRequest("Mocks/checkout/payment-links-success.json");
             var checkout = new Checkout(client);
-            var createPaymentLinkRequest = CreatePaymentLinkRequestSuccess();
+            var createPaymentLinkRequest = new CreatePaymentLinkRequest(amount: new Amount(currency: "EUR", 100), merchantAccount: "MerchantAccount", reference: "YOUR_ORDER_NUMBER");
             var paymentLinksResponse = checkout.PaymentLinks(createPaymentLinkRequest);
             Assert.AreEqual(paymentLinksResponse.Url, "https://checkoutshopper-test.adyen.com/checkoutshopper/payByLink.shtml?d=YW1vdW50TWlub3JW...JRA");
             Assert.AreEqual(paymentLinksResponse.ExpiresAt, "2019-12-17T10:05:29Z");
@@ -541,11 +526,8 @@ namespace Adyen.Test
             var client = CreateMockTestClientApiKeyBasedRequest("Mocks/checkout/paymentlinks-recurring-payment-success.json");
             var checkout = new Checkout(client);
 
-            var createPaymentLinkRequest = new CreatePaymentLinkRequest
+            var createPaymentLinkRequest = new CreatePaymentLinkRequest(amount: new Amount(currency: "EUR", 100), merchantAccount: "MerchantAccount", reference: "REFERENCE_NUMBER")
             {
-                Reference = "REFERENCE_NUMBER",
-                MerchantAccount = "MerchantAccount",
-                Amount = new Amount("EUR", 100),
                 CountryCode = "GR",
                 ShopperLocale = "GR",
                 ShopperReference = "ShopperReference",

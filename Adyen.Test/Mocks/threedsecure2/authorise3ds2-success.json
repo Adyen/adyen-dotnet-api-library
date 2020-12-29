@@ -14,8 +14,6 @@
   "resultCode": "Authorised",
   "authCode": "62013",
   "merchantReference": "your_merchantReference",
-  "paymentMethod": 
-    {
-      "type": "applepay"
-    }
+  "paymentMethod": "applepay",
+  "shopperLocale": "NL"
 }

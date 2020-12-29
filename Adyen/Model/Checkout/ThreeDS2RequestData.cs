@@ -154,7 +154,7 @@ namespace Adyen.Model.Checkout
             TransactionTypeEnum? transactionType = default(TransactionTypeEnum?),
             string whiteListStatus = default(string))
         {
-            // to ensure "deviceChannel" is required (not null)
+            //to ensure "deviceChannel" is required(not null)
             if (deviceChannel == null)
             {
                 throw new InvalidDataException(

@@ -8,8 +8,10 @@
     "threeds2.threeDS2ResponseData.messageVersion": "2.1.0",
     "threeds2.threeDS2Token": "[token]",
     "threeds2.threeDS2ResponseData.acsTransID": "ba961c4b-33f2-4830-3141-744b8586aeb0",
-    "threeds2.threeDS2ResponseData.acsReferenceNumber": "ADYEN-ACS-SIMULATOR"
+    "threeds2.threeDS2ResponseData.acsReferenceNumber": "ADYEN-ACS-SIMULATOR",
+    "threeds2.threeDS2ResponseData.deviceChannel": "browser"
   },
   "pspReference": "8535493828757679",
   "resultCode": "ChallengeShopper"
+ 
 }
