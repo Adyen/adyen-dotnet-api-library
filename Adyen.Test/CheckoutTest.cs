@@ -508,7 +508,7 @@ namespace Adyen.Test
         {
             var client = CreateMockTestClientApiKeyBasedRequest("Mocks/checkout/payment-links-success.json");
             var checkout = new Checkout(client);
-            var createPaymentLinkRequest = new CreatePaymentLinkRequest(amount: new Amount(currency: "EUR", 100), merchantAccount: "MerchantAccount", reference: "YOUR_ORDER_NUMBER");
+            var createPaymentLinkRequest = new CreatePaymentLinkRequest(amount: new Amount(currency: "EUR", 1000), merchantAccount: "MerchantAccount", reference: "YOUR_ORDER_NUMBER");
             var paymentLinksResponse = checkout.PaymentLinks(createPaymentLinkRequest);
             Assert.AreEqual(paymentLinksResponse.Url, "https://checkoutshopper-test.adyen.com/checkoutshopper/payByLink.shtml?d=YW1vdW50TWlub3JW...JRA");
             Assert.AreEqual(paymentLinksResponse.ExpiresAt, "2019-12-17T10:05:29Z");
@@ -543,22 +543,23 @@ namespace Adyen.Test
             Assert.AreEqual(createPaymentLinkRequest.Amount.Value, paymentLinksResponse.Amount.Value);
         }
 
-        ///// <summary>
-        ///// Test success flow for multibanco
-        ///// Post /payments 
-        ///// </summary>
-        //[TestMethod]
-        //public void MultibancoPaymentSuccessMockedTest()
-        //{
-        //    var client = CreateMockTestClientRequest("Mocks/checkout/paymentsresult-multibanco-success.json");
-        //    var checkout = new Checkout(client);
-        //    var paymentRequest = CreatePaymentRequestCheckout();
-        //    var paymentResponse = checkout.Payments(paymentRequest);
-        //    Assert.AreEqual(paymentResponse.Action.PaymentMethodType, "multibanco");
-        //    Assert.AreEqual(paymentResponse.Action.ExpiresAt, "2020-01-12T09:37:49");
-        //    Assert.AreEqual(paymentResponse.Action.Reference, "501 422 944");
-        //    Assert.AreEqual(paymentResponse.Action.Entity, "12101");
-        //}
+        /// <summary>
+        /// Test success flow for multibanco
+        /// Post /payments 
+        /// </summary>
+        [TestMethod]
+        public void MultibancoPaymentSuccessMockedTest()
+        {
+            var client = CreateMockTestClientRequest("Mocks/checkout/paymentsresult-multibanco-success.json");
+            var checkout = new Checkout(client);
+            var paymentRequest = CreatePaymentRequestCheckout();
+            var paymentResponse = checkout.Payments(paymentRequest);
+            var paymentResponseAction = (CheckoutVoucherAction)paymentResponse.Action;
+            Assert.AreEqual(paymentResponseAction.PaymentMethodType, "multibanco");
+            Assert.AreEqual(paymentResponseAction.ExpiresAt, "01/12/2020 09:37:49");
+            Assert.AreEqual(paymentResponseAction.Reference, "501 422 944");
+            Assert.AreEqual(paymentResponseAction.Entity, "12101");
+        }
 
         /// <summary>
         /// Test RiskData - Clientdata flow for
