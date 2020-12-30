@@ -36,10 +36,10 @@ using Newtonsoft.Json.Converters;
 namespace Adyen.Model.Checkout
 {
     /// <summary>
-    /// PaymentSetupRequest
+    /// PaymentSessionRequest
     /// </summary>
     [DataContract]
-    public partial class PaymentSetupRequest : IEquatable<PaymentSetupRequest>, IValidatableObject
+    public partial class PaymentSessionRequest : IEquatable<PaymentSessionRequest>, IValidatableObject
     {
         /// <summary>
         /// The platform where a payment transaction takes place. This field is optional for filtering out payment methods that are only available on specific platforms. If this value is not set, then we will try to infer it from the &#x60;sdkVersion&#x60; or &#x60;token&#x60;.  Possible values: * iOS * Android * Web
@@ -132,7 +132,7 @@ namespace Adyen.Model.Checkout
         public ShopperInteractionEnum? ShopperInteraction { get; set; }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="PaymentSetupRequest" /> class.
+        /// Initializes a new instance of the <see cref="PaymentSessionRequest" /> class.
         /// </summary>
         /// <param name="additionalData">This field contains additional data, which may be required for a particular payment request.  The &#x60;additionalData&#x60; object consists of entries, each of which includes the key and value..</param>
         /// <param name="allowedPaymentMethods">List of payments methods to be presented to the shopper. To refer to payment methods, use their &#x60;paymentMethod.type&#x60;from [Payment methods overview](https://docs.adyen.com/payment-methods).  Example: &#x60;\&quot;allowedPaymentMethods\&quot;:[\&quot;ideal\&quot;,\&quot;giropay\&quot;]&#x60;.</param>
@@ -184,7 +184,7 @@ namespace Adyen.Model.Checkout
         /// <param name="threeDSAuthenticationOnly">If set to true, you will only perform the [3D Secure 2 authentication](https://docs.adyen.com/checkout/3d-secure/other-3ds-flows/authentication-only), and not the payment authorisation. (default to false).</param>
         /// <param name="token">The token obtained when initializing the SDK.  &gt; This parameter is required for iOS and Android; not required for Web..</param>
         /// <param name="trustedShopper">Set to true if the payment should be routed to a trusted MID..</param>
-        public PaymentSetupRequest(
+        public PaymentSessionRequest(
             Dictionary<string, string> additionalData = default(Dictionary<string, string>), 
             List<string> allowedPaymentMethods = default(List<string>), Amount amount = default(Amount),
             ApplicationInfo applicationInfo = default(ApplicationInfo), Address billingAddress = default(Address),
@@ -218,7 +218,7 @@ namespace Adyen.Model.Checkout
             if (amount == null)
             {
                 throw new InvalidDataException(
-                    "amount is a required property for PaymentSetupRequest and cannot be null");
+                    "amount is a required property for PaymentSessionRequest and cannot be null");
             }
             else
             {
@@ -228,7 +228,7 @@ namespace Adyen.Model.Checkout
             if (countryCode == null)
             {
                 throw new InvalidDataException(
-                    "countryCode is a required property for PaymentSetupRequest and cannot be null");
+                    "countryCode is a required property for PaymentSessionRequest and cannot be null");
             }
             else
             {
@@ -238,7 +238,7 @@ namespace Adyen.Model.Checkout
             if (merchantAccount == null)
             {
                 throw new InvalidDataException(
-                    "merchantAccount is a required property for PaymentSetupRequest and cannot be null");
+                    "merchantAccount is a required property for PaymentSessionRequest and cannot be null");
             }
             else
             {
@@ -248,7 +248,7 @@ namespace Adyen.Model.Checkout
             if (reference == null)
             {
                 throw new InvalidDataException(
-                    "reference is a required property for PaymentSetupRequest and cannot be null");
+                    "reference is a required property for PaymentSessionRequest and cannot be null");
             }
             else
             {
@@ -258,7 +258,7 @@ namespace Adyen.Model.Checkout
             if (returnUrl == null)
             {
                 throw new InvalidDataException(
-                    "returnUrl is a required property for PaymentSetupRequest and cannot be null");
+                    "returnUrl is a required property for PaymentSessionRequest and cannot be null");
             }
             else
             {
@@ -648,7 +648,7 @@ namespace Adyen.Model.Checkout
         public override string ToString()
         {
             var sb = new StringBuilder();
-            sb.Append("class PaymentSetupRequest {\n");
+            sb.Append("class PaymentSessionRequest {\n");
             sb.Append("  AdditionalData: ").Append(AdditionalData).Append("\n");
             sb.Append("  AllowedPaymentMethods: ").Append(AllowedPaymentMethods).Append("\n");
             sb.Append("  Amount: ").Append(Amount).Append("\n");
@@ -719,15 +719,15 @@ namespace Adyen.Model.Checkout
         /// <returns>Boolean</returns>
         public override bool Equals(object input)
         {
-            return this.Equals(input as PaymentSetupRequest);
+            return this.Equals(input as PaymentSessionRequest);
         }
 
         /// <summary>
-        /// Returns true if PaymentSetupRequest instances are equal
+        /// Returns true if PaymentSessionRequest instances are equal
         /// </summary>
-        /// <param name="input">Instance of PaymentSetupRequest to be compared</param>
+        /// <param name="input">Instance of PaymentSessionRequest to be compared</param>
         /// <returns>Boolean</returns>
-        public bool Equals(PaymentSetupRequest input)
+        public bool Equals(PaymentSessionRequest input)
         {
             if (input == null)
                 return false;

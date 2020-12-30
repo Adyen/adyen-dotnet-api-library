@@ -181,11 +181,11 @@ namespace Adyen.Test
             var paymentResultRequest = CreatePaymentResultRequest();
             var client = CreateMockTestClientApiKeyBasedRequest("Mocks/threedsecure2/authorise3ds2-success.json");
             var checkout = new Checkout(client);
-            var paymentVerificationResponse = checkout.PaymentsResult(paymentResultRequest);
-            Assert.IsNotNull(paymentVerificationResponse.AdditionalData);
-            Assert.AreEqual(paymentVerificationResponse.AdditionalData["cvcResult"], "1 Matches");
-            Assert.AreEqual(paymentVerificationResponse.MerchantReference, "your_merchantReference"); 
-            Assert.AreEqual(paymentVerificationResponse.ResultCode, PaymentVerificationResponse.ResultCodeEnum.Authorised);
+            var paymentResultResponse = checkout.PaymentsResult(paymentResultRequest);
+            Assert.IsNotNull(paymentResultResponse.AdditionalData);
+            Assert.AreEqual(paymentResultResponse.AdditionalData["cvcResult"], "1 Matches");
+            Assert.AreEqual(paymentResultResponse.MerchantReference, "your_merchantReference"); 
+            Assert.AreEqual(paymentResultResponse.ResultCode, PaymentResultResponse.ResultCodeEnum.Authorised);
         }
 
         /// <summary>
@@ -389,7 +389,7 @@ namespace Adyen.Test
             var client = CreateMockTestClientApiKeyBasedRequest("Mocks/checkout/paymentsresult-success.json");
             var checkout = new Checkout(client);
             var paymentResultResponse = checkout.PaymentsResult(paymentResultRequest);
-            Assert.AreEqual(paymentResultResponse.ResultCode, PaymentVerificationResponse.ResultCodeEnum.Authorised);
+            Assert.AreEqual(paymentResultResponse.ResultCode, PaymentResultResponse.ResultCodeEnum.Authorised);
         }
 
         /// <summary>
@@ -403,7 +403,7 @@ namespace Adyen.Test
             var client = CreateAsyncMockTestClientApiKeyBasedRequest("Mocks/checkout/paymentsresult-success.json");
             var checkout = new Checkout(client);
             var paymentResultResponse = await checkout.PaymentsResultAsync(paymentResultRequest);
-            Assert.AreEqual(paymentResultResponse.ResultCode, PaymentVerificationResponse.ResultCodeEnum.Authorised);
+            Assert.AreEqual(paymentResultResponse.ResultCode, PaymentResultResponse.ResultCodeEnum.Authorised);
         }
 
         /// <summary>

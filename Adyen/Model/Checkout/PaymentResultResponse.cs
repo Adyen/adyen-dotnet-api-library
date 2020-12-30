@@ -34,10 +34,10 @@ using Newtonsoft.Json.Converters;
 namespace Adyen.Model.Checkout
 {
     /// <summary>
-    /// PaymentVerificationResponse
+    ///  PaymentResultResponse
     /// </summary>
     [DataContract]
-    public partial class PaymentVerificationResponse : IEquatable<PaymentVerificationResponse>, IValidatableObject
+    public partial class PaymentResultResponse : IEquatable<PaymentResultResponse>, IValidatableObject
     {
         /// <summary>
         /// The result of the payment. For more information, see [Result codes](https://docs.adyen.com/checkout/payment-result-codes).  Possible values:  * **AuthenticationFinished** – The payment has been successfully authenticated with 3D Secure 2. Returned for 3D Secure 2 authentication-only transactions. * **AuthenticationNotRequired** – The transaction does not require 3D Secure authentication. Returned for [standalone authentication-only integrations](https://docs.adyen.com/checkout/3d-secure/other-3ds-flows/authentication-only). * **Authorised** – The payment was successfully authorised. This state serves as an indicator to proceed with the delivery of goods and services. This is a final state. * **Cancelled** – Indicates the payment has been cancelled (either by the shopper or the merchant) before processing was completed. This is a final state. * **ChallengeShopper** – The issuer requires further shopper interaction before the payment can be authenticated. Returned for 3D Secure 2 transactions. * **Error** – There was an error when the payment was being processed. The reason is given in the &#x60;refusalReason&#x60; field. This is a final state. * **IdentifyShopper** – The issuer requires the shopper&#x27;s device fingerprint before the payment can be authenticated. Returned for 3D Secure 2 transactions. * **Pending** – Indicates that it is not possible to obtain the final status of the payment. This can happen if the systems providing final status information for the payment are unavailable, or if the shopper needs to take further action to complete the payment. * **PresentToShopper** – Indicates that the response contains additional information that you need to present to a shopper, so that they can use it to complete a payment. * **Received** – Indicates the payment has successfully been received by Adyen, and will be processed. This is the initial state for all payments. * **RedirectShopper** – Indicates the shopper should be redirected to an external web page or app to complete the authorisation. * **Refused** – Indicates the payment was refused. The reason is given in the &#x60;refusalReason&#x60; field. This is a final state.
@@ -110,7 +110,7 @@ namespace Adyen.Model.Checkout
         public ResultCodeEnum? ResultCode { get; set; }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="PaymentVerificationResponse" /> class.
+        /// Initializes a new instance of the <see cref="PaymentResultResponse" /> class.
         /// </summary>
         /// <param name="additionalData">This field contains additional data, which may be required to return in a particular payment response. To choose data fields to be returned, go to **Customer Area** &gt; **Account** &gt; **API URLs** &gt; **Additional data settings**..</param>
         /// <param name="fraudResult">fraudResult.</param>
@@ -123,7 +123,7 @@ namespace Adyen.Model.Checkout
         /// <param name="resultCode">The result of the payment. For more information, see [Result codes](https://docs.adyen.com/checkout/payment-result-codes).  Possible values:  * **AuthenticationFinished** – The payment has been successfully authenticated with 3D Secure 2. Returned for 3D Secure 2 authentication-only transactions. * **AuthenticationNotRequired** – The transaction does not require 3D Secure authentication. Returned for [standalone authentication-only integrations](https://docs.adyen.com/checkout/3d-secure/other-3ds-flows/authentication-only). * **Authorised** – The payment was successfully authorised. This state serves as an indicator to proceed with the delivery of goods and services. This is a final state. * **Cancelled** – Indicates the payment has been cancelled (either by the shopper or the merchant) before processing was completed. This is a final state. * **ChallengeShopper** – The issuer requires further shopper interaction before the payment can be authenticated. Returned for 3D Secure 2 transactions. * **Error** – There was an error when the payment was being processed. The reason is given in the &#x60;refusalReason&#x60; field. This is a final state. * **IdentifyShopper** – The issuer requires the shopper&#x27;s device fingerprint before the payment can be authenticated. Returned for 3D Secure 2 transactions. * **Pending** – Indicates that it is not possible to obtain the final status of the payment. This can happen if the systems providing final status information for the payment are unavailable, or if the shopper needs to take further action to complete the payment. * **PresentToShopper** – Indicates that the response contains additional information that you need to present to a shopper, so that they can use it to complete a payment. * **Received** – Indicates the payment has successfully been received by Adyen, and will be processed. This is the initial state for all payments. * **RedirectShopper** – Indicates the shopper should be redirected to an external web page or app to complete the authorisation. * **Refused** – Indicates the payment was refused. The reason is given in the &#x60;refusalReason&#x60; field. This is a final state..</param>
         /// <param name="serviceError">serviceError.</param>
         /// <param name="shopperLocale">The shopperLocale value provided in the payment request. (required).</param>
-        public PaymentVerificationResponse(
+        public PaymentResultResponse(
              Dictionary<string, string> additionalData =
                 default(Dictionary<string, string>), FraudResult fraudResult = default(FraudResult),
             string merchantReference = default(string), CheckoutOrderResponse order = default(CheckoutOrderResponse),
@@ -136,7 +136,7 @@ namespace Adyen.Model.Checkout
             if (merchantReference == null)
             {
                 throw new InvalidDataException(
-                    "merchantReference is a required property for PaymentVerificationResponse and cannot be null");
+                    "merchantReference is a required property for PaymentResultResponse and cannot be null");
             }
             else
             {
@@ -146,7 +146,7 @@ namespace Adyen.Model.Checkout
             if (paymentMethod == null)
             {
                 throw new InvalidDataException(
-                    "paymentMethod is a required property for PaymentVerificationResponse and cannot be null");
+                    "paymentMethod is a required property for PaymentResultResponse and cannot be null");
             }
             else
             {
@@ -156,7 +156,7 @@ namespace Adyen.Model.Checkout
             if (shopperLocale == null)
             {
                 throw new InvalidDataException(
-                    "shopperLocale is a required property for PaymentVerificationResponse and cannot be null");
+                    "shopperLocale is a required property for PaymentResultResponse and cannot be null");
             }
             else
             {
@@ -247,7 +247,7 @@ namespace Adyen.Model.Checkout
         public override string ToString()
         {
             var sb = new StringBuilder();
-            sb.Append("class PaymentVerificationResponse {\n");
+            sb.Append("class PaymentResultResponse {\n");
             sb.Append("  AdditionalData: ").Append(AdditionalData).Append("\n");
             sb.Append("  FraudResult: ").Append(FraudResult).Append("\n");
             sb.Append("  MerchantReference: ").Append(MerchantReference).Append("\n");
@@ -279,15 +279,15 @@ namespace Adyen.Model.Checkout
         /// <returns>Boolean</returns>
         public override bool Equals(object input)
         {
-            return this.Equals(input as PaymentVerificationResponse);
+            return this.Equals(input as PaymentResultResponse);
         }
 
         /// <summary>
-        /// Returns true if PaymentVerificationResponse instances are equal
+        /// Returns true if PaymentResultResponse instances are equal
         /// </summary>
-        /// <param name="input">Instance of PaymentVerificationResponse to be compared</param>
+        /// <param name="input">Instance of PaymentResultResponse to be compared</param>
         /// <returns>Boolean</returns>
-        public bool Equals(PaymentVerificationResponse input)
+        public bool Equals(PaymentResultResponse input)
         {
             if (input == null)
                 return false;
@@ -390,7 +390,7 @@ namespace Adyen.Model.Checkout
         /// </summary>
         /// <param name="validationContext">Validation context</param>
         /// <returns>Validation Result</returns>
-        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(
+        IEnumerable<ValidationResult> IValidatableObject.Validate(
             ValidationContext validationContext)
         {
             yield break;

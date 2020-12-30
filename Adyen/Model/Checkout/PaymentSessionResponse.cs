@@ -25,7 +25,7 @@
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.IO;
+using System.Linq;
 using System.Runtime.Serialization;
 using System.Text;
 using Newtonsoft.Json;
@@ -33,35 +33,36 @@ using Newtonsoft.Json;
 namespace Adyen.Model.Checkout
 {
     /// <summary>
-    /// PaymentVerificationRequest
+    /// PaymentSessionResponse
     /// </summary>
     [DataContract]
-    public partial class PaymentVerificationRequest : IEquatable<PaymentVerificationRequest>, IValidatableObject
+    public partial class PaymentSessionResponse : IEquatable<PaymentSessionResponse>, IValidatableObject
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="PaymentVerificationRequest" /> class.
+        /// Initializes a new instance of the <see cref="PaymentSessionResponse" /> class.
         /// </summary>
-        /// <param name="payload">Encrypted and signed payment result data. You should receive this value from the Checkout SDK after the shopper completes the payment. (required).</param>
-        public PaymentVerificationRequest(string payload = default(string))
+        /// <param name="paymentSession">The encoded payment session that you need to pass to the SDK..</param>
+        /// <param name="recurringDetails">The detailed list of stored payment details required to generate payment forms. Will be empty if oneClick is set to false in the request..</param>
+        public PaymentSessionResponse(string paymentSession = default(string),
+            List<RecurringDetail> recurringDetails = default(List<RecurringDetail>))
         {
-            // to ensure "payload" is required (not null)
-            if (payload == null)
-            {
-                throw new InvalidDataException(
-                    "payload is a required property for PaymentVerificationRequest and cannot be null");
-            }
-            else
-            {
-                this.Payload = payload;
-            }
+            this.PaymentSession = paymentSession;
+            this.RecurringDetails = recurringDetails;
         }
 
         /// <summary>
-        /// Encrypted and signed payment result data. You should receive this value from the Checkout SDK after the shopper completes the payment.
+        /// The encoded payment session that you need to pass to the SDK.
         /// </summary>
-        /// <value>Encrypted and signed payment result data. You should receive this value from the Checkout SDK after the shopper completes the payment.</value>
-        [DataMember(Name = "payload", EmitDefaultValue = false)]
-        public string Payload { get; set; }
+        /// <value>The encoded payment session that you need to pass to the SDK.</value>
+        [DataMember(Name = "paymentSession", EmitDefaultValue = false)]
+        public string PaymentSession { get; set; }
+
+        /// <summary>
+        /// The detailed list of stored payment details required to generate payment forms. Will be empty if oneClick is set to false in the request.
+        /// </summary>
+        /// <value>The detailed list of stored payment details required to generate payment forms. Will be empty if oneClick is set to false in the request.</value>
+        [DataMember(Name = "recurringDetails", EmitDefaultValue = false)]
+        public List<RecurringDetail> RecurringDetails { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -70,8 +71,9 @@ namespace Adyen.Model.Checkout
         public override string ToString()
         {
             var sb = new StringBuilder();
-            sb.Append("class PaymentVerificationRequest {\n");
-            sb.Append("  Payload: ").Append(Payload).Append("\n");
+            sb.Append("class PaymentSessionResponse {\n");
+            sb.Append("  PaymentSession: ").Append(PaymentSession).Append("\n");
+            sb.Append("  RecurringDetails: ").Append(RecurringDetails).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -92,23 +94,31 @@ namespace Adyen.Model.Checkout
         /// <returns>Boolean</returns>
         public override bool Equals(object input)
         {
-            return this.Equals(input as PaymentVerificationRequest);
+            return this.Equals(input as PaymentSessionResponse);
         }
 
         /// <summary>
-        /// Returns true if PaymentVerificationRequest instances are equal
+        /// Returns true if PaymentSessionResponse instances are equal
         /// </summary>
-        /// <param name="input">Instance of PaymentVerificationRequest to be compared</param>
+        /// <param name="input">Instance of PaymentSessionResponse to be compared</param>
         /// <returns>Boolean</returns>
-        public bool Equals(PaymentVerificationRequest input)
+        public bool Equals(PaymentSessionResponse input)
         {
             if (input == null)
                 return false;
 
             return
-                this.Payload == input.Payload ||
-                this.Payload != null &&
-                this.Payload.Equals(input.Payload);
+                (
+                    this.PaymentSession == input.PaymentSession ||
+                    this.PaymentSession != null &&
+                    this.PaymentSession.Equals(input.PaymentSession)
+                ) &&
+                (
+                    this.RecurringDetails == input.RecurringDetails ||
+                    this.RecurringDetails != null &&
+                    input.RecurringDetails != null &&
+                    this.RecurringDetails.SequenceEqual(input.RecurringDetails)
+                );
         }
 
         /// <summary>
@@ -120,8 +130,10 @@ namespace Adyen.Model.Checkout
             unchecked // Overflow is fine, just wrap
             {
                 int hashCode = 41;
-                if (this.Payload != null)
-                    hashCode = hashCode * 59 + this.Payload.GetHashCode();
+                if (this.PaymentSession != null)
+                    hashCode = hashCode * 59 + this.PaymentSession.GetHashCode();
+                if (this.RecurringDetails != null)
+                    hashCode = hashCode * 59 + this.RecurringDetails.GetHashCode();
                 return hashCode;
             }
         }

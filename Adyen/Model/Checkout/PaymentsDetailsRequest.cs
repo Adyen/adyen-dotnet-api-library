@@ -33,24 +33,24 @@ using Newtonsoft.Json;
 namespace Adyen.Model.Checkout
 {
     /// <summary>
-    /// DetailsRequest
+    /// PaymentsDetailsRequest
     /// </summary>
     [DataContract]
-    public partial class DetailsRequest : IEquatable<DetailsRequest>, IValidatableObject
+    public partial class PaymentsDetailsRequest : IEquatable<PaymentsDetailsRequest>, IValidatableObject
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="DetailsRequest" /> class.
+        /// Initializes a new instance of the <see cref="PaymentsDetailsRequest" /> class.
         /// </summary>
         /// <param name="details">details (required).</param>
         /// <param name="paymentData">The &#x60;paymentData&#x60; value that you received in the response to the &#x60;/payments&#x60; call..</param>
         /// <param name="threeDSAuthenticationOnly">Change the &#x60;authenticationOnly&#x60; indicator originally set in the &#x60;/payments&#x60; request. Only needs to be set if you want to modify the value set previously..</param>
-        public DetailsRequest(PaymentCompletionDetails details = default(PaymentCompletionDetails),
+        public PaymentsDetailsRequest(PaymentCompletionDetails details = default(PaymentCompletionDetails),
             string paymentData = default(string), bool? threeDSAuthenticationOnly = default(bool?))
         {
             // to ensure "details" is required (not null)
             if (details == null)
             {
-                throw new InvalidDataException("details is a required property for DetailsRequest and cannot be null");
+                throw new InvalidDataException("details is a required property for PaymentsDetailsRequest and cannot be null");
             }
             else
             {
@@ -87,7 +87,7 @@ namespace Adyen.Model.Checkout
         public override string ToString()
         {
             var sb = new StringBuilder();
-            sb.Append("class DetailsRequest {\n");
+            sb.Append("class PaymentsDetailsRequest {\n");
             sb.Append("  Details: ").Append(Details).Append("\n");
             sb.Append("  PaymentData: ").Append(PaymentData).Append("\n");
             sb.Append("  ThreeDSAuthenticationOnly: ").Append(ThreeDSAuthenticationOnly).Append("\n");
@@ -111,15 +111,15 @@ namespace Adyen.Model.Checkout
         /// <returns>Boolean</returns>
         public override bool Equals(object input)
         {
-            return this.Equals(input as DetailsRequest);
+            return this.Equals(input as PaymentsDetailsRequest);
         }
 
         /// <summary>
-        /// Returns true if DetailsRequest instances are equal
+        /// Returns true if PaymentsDetailsRequest instances are equal
         /// </summary>
-        /// <param name="input">Instance of DetailsRequest to be compared</param>
+        /// <param name="input">Instance of PaymentsDetailsRequest to be compared</param>
         /// <returns>Boolean</returns>
-        public bool Equals(DetailsRequest input)
+        public bool Equals(PaymentsDetailsRequest input)
         {
             if (input == null)
                 return false;
