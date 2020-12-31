@@ -272,7 +272,7 @@ namespace Adyen.Model.Checkout
             sb.Append("  Action: ").Append(Action).Append("\n");
             sb.Append("  AdditionalData: ").Append(AdditionalData.ToCollectionsString()).Append("\n");
             sb.Append("  Amount: ").Append(Amount).Append("\n");
-            sb.Append("  Authentication: ").Append(Authentication).Append("\n");
+            sb.Append("  Authentication: ").Append(Authentication.ToCollectionsString()).Append("\n");
             sb.Append("  Details: ").Append(Details.ObjectListToString()).Append("\n");
             sb.Append("  DonationToken: ").Append(DonationToken).Append("\n");
             sb.Append("  FraudResult: ").Append(FraudResult).Append("\n");
