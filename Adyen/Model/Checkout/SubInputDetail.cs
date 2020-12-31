@@ -28,6 +28,7 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Runtime.Serialization;
 using System.Text;
+using Adyen.Util;
 using Newtonsoft.Json;
 
 namespace Adyen.Model.Checkout
@@ -109,8 +110,8 @@ namespace Adyen.Model.Checkout
         {
             var sb = new StringBuilder();
             sb.Append("class SubInputDetail {\n");
-            sb.Append("  Configuration: ").Append(Configuration).Append("\n");
-            sb.Append("  Items: ").Append(Items).Append("\n");
+            sb.Append("  Configuration: ").Append(Configuration.ToCollectionsString()).Append("\n");
+            sb.Append("  Items: ").Append(Items.ObjectListToString()).Append("\n");
             sb.Append("  Key: ").Append(Key).Append("\n");
             sb.Append("  Optional: ").Append(Optional).Append("\n");
             sb.Append("  Type: ").Append(Type).Append("\n");

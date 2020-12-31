@@ -30,6 +30,7 @@ using System.Linq;
 using System.Runtime.Serialization;
 using System.Text;
 using Adyen.Model.ApplicationInformation;
+using Adyen.Util;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
 
@@ -359,7 +360,7 @@ namespace Adyen.Model.Checkout
         {
             var sb = new StringBuilder();
             sb.Append("class CreatePaymentLinkRequest {\n");
-            sb.Append("  AllowedPaymentMethods: ").Append(AllowedPaymentMethods).Append("\n");
+            sb.Append("  AllowedPaymentMethods: ").Append(AllowedPaymentMethods.ToListString()).Append("\n");
             sb.Append("  Amount: ").Append(Amount).Append("\n");
             sb.Append("  ApplicationInfo: ").Append(ApplicationInfo).Append("\n");
             sb.Append("  BillingAddress: ").Append(BillingAddress).Append("\n");

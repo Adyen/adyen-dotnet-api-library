@@ -28,6 +28,7 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Runtime.Serialization;
 using System.Text;
+using Adyen.Util;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
 
@@ -138,7 +139,7 @@ namespace Adyen.Model.Checkout
             var sb = new StringBuilder();
             sb.Append("class DeviceRenderOptions {\n");
             sb.Append("  SdkInterface: ").Append(SdkInterface).Append("\n");
-            sb.Append("  SdkUiType: ").Append(SdkUiType).Append("\n");
+            sb.Append("  SdkUiType: ").Append(SdkUiType.ObjectListToString()).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }

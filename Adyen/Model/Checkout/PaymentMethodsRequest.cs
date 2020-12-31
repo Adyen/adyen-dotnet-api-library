@@ -29,6 +29,7 @@ using System.IO;
 using System.Linq;
 using System.Runtime.Serialization;
 using System.Text;
+using Adyen.Util;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
 
@@ -209,10 +210,10 @@ namespace Adyen.Model.Checkout
         {
             var sb = new StringBuilder();
             sb.Append("class PaymentMethodsRequest {\n");
-            sb.Append("  AdditionalData: ").Append(AdditionalData).Append("\n");
-            sb.Append("  AllowedPaymentMethods: ").Append(AllowedPaymentMethods).Append("\n");
+            sb.Append("  AdditionalData: ").Append(AdditionalData.ToCollectionsString()).Append("\n");
+            sb.Append("  AllowedPaymentMethods: ").Append(AllowedPaymentMethods.ToListString()).Append("\n");
             sb.Append("  Amount: ").Append(Amount).Append("\n");
-            sb.Append("  BlockedPaymentMethods: ").Append(BlockedPaymentMethods).Append("\n");
+            sb.Append("  BlockedPaymentMethods: ").Append(BlockedPaymentMethods.ToListString()).Append("\n");
             sb.Append("  Channel: ").Append(Channel).Append("\n");
             sb.Append("  CountryCode: ").Append(CountryCode).Append("\n");
             sb.Append("  MerchantAccount: ").Append(MerchantAccount).Append("\n");

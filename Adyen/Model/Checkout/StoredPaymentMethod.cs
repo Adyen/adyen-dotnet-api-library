@@ -28,6 +28,7 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Runtime.Serialization;
 using System.Text;
+using Adyen.Util;
 using Newtonsoft.Json;
 
 namespace Adyen.Model.Checkout
@@ -154,7 +155,7 @@ namespace Adyen.Model.Checkout
             sb.Append("  LastFour: ").Append(LastFour).Append("\n");
             sb.Append("  Name: ").Append(Name).Append("\n");
             sb.Append("  ShopperEmail: ").Append(ShopperEmail).Append("\n");
-            sb.Append("  SupportedShopperInteractions: ").Append(SupportedShopperInteractions).Append("\n");
+            sb.Append("  SupportedShopperInteractions: ").Append(SupportedShopperInteractions.ToListString()).Append("\n");
             sb.Append("  Type: ").Append(Type).Append("\n");
             sb.Append("}\n");
             return sb.ToString();

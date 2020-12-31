@@ -32,6 +32,7 @@ using System.Text;
 using Adyen.Constants;
 using Adyen.Model.ApplicationInformation;
 using Adyen.Model.Checkout.Details;
+using Adyen.Util;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
 
@@ -775,7 +776,7 @@ namespace Adyen.Model.Checkout
             var sb = new StringBuilder();
             sb.Append("class PaymentRequest {\n");
             sb.Append("  AccountInfo: ").Append(AccountInfo).Append("\n");
-            sb.Append("  AdditionalData: ").Append(AdditionalData).Append("\n");
+            sb.Append("  AdditionalData: ").Append(AdditionalData.ToCollectionsString()).Append("\n");
             sb.Append("  Amount: ").Append(Amount).Append("\n");
             sb.Append("  ApplicationInfo: ").Append(ApplicationInfo).Append("\n");
             sb.Append("  BillingAddress: ").Append(BillingAddress).Append("\n");
@@ -801,7 +802,7 @@ namespace Adyen.Model.Checkout
             sb.Append("  MerchantAccount: ").Append(MerchantAccount).Append("\n");
             sb.Append("  MerchantOrderReference: ").Append(MerchantOrderReference).Append("\n");
             sb.Append("  MerchantRiskIndicator: ").Append(MerchantRiskIndicator).Append("\n");
-            sb.Append("  Metadata: ").Append(Metadata).Append("\n");
+            sb.Append("  Metadata: ").Append(Metadata.ToCollectionsString()).Append("\n");
             sb.Append("  MpiData: ").Append(MpiData).Append("\n");
             sb.Append("  Order: ").Append(Order).Append("\n");
             sb.Append("  OrderReference: ").Append(OrderReference).Append("\n");

@@ -28,6 +28,7 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Runtime.Serialization;
 using System.Text;
+using Adyen.Util;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
 
@@ -101,7 +102,7 @@ namespace Adyen.Model.Checkout
         {
             var sb = new StringBuilder();
             sb.Append("class Redirect {\n");
-            sb.Append("  Data: ").Append(Data).Append("\n");
+            sb.Append("  Data: ").Append(Data.ToCollectionsString()).Append("\n");
             sb.Append("  Method: ").Append(Method).Append("\n");
             sb.Append("  Url: ").Append(Url).Append("\n");
             sb.Append("}\n");

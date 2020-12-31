@@ -28,6 +28,7 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Runtime.Serialization;
 using System.Text;
+using Adyen.Util;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
 
@@ -173,12 +174,12 @@ namespace Adyen.Model.Checkout
             var sb = new StringBuilder();
             sb.Append("class RecurringDetail {\n");
             sb.Append("  Brand: ").Append(Brand).Append("\n");
-            sb.Append("  Brands: ").Append(Brands).Append("\n");
-            sb.Append("  Configuration: ").Append(Configuration).Append("\n");
-            sb.Append("  Details: ").Append(Details).Append("\n");
+            sb.Append("  Brands: ").Append(Brands.ToListString()).Append("\n");
+            sb.Append("  Configuration: ").Append(Configuration.ToCollectionsString()).Append("\n");
+            sb.Append("  Details: ").Append(Details.ObjectListToString()).Append("\n");
             sb.Append("  FundingSource: ").Append(FundingSource).Append("\n");
             sb.Append("  Group: ").Append(Group).Append("\n");
-            sb.Append("  InputDetails: ").Append(InputDetails).Append("\n");
+            sb.Append("  InputDetails: ").Append(InputDetails.ObjectListToString()).Append("\n");
             sb.Append("  Name: ").Append(Name).Append("\n");
             sb.Append("  RecurringDetailReference: ").Append(RecurringDetailReference).Append("\n");
             sb.Append("  StoredDetails: ").Append(StoredDetails).Append("\n");
