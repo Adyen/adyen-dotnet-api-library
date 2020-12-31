@@ -576,7 +576,7 @@ namespace Adyen.Model.Checkout
             sb.Append("  MerchantRiskIndicator: ").Append(MerchantRiskIndicator).Append("\n");
             sb.Append("  Metadata: ").Append(Metadata.ToCollectionsString()).Append("\n");
             sb.Append("  OrderReference: ").Append(OrderReference).Append("\n");
-            sb.Append("  PaymentMethod: ").Append(PaymentMethod).Append("\n");
+            sb.Append("  PaymentMethod: ").Append(PaymentMethod.ToCollectionsString()).Append("\n");
             sb.Append("  Recurring: ").Append(Recurring).Append("\n");
             sb.Append("  RecurringProcessingModel: ").Append(RecurringProcessingModel).Append("\n");
             sb.Append("  Reference: ").Append(Reference).Append("\n");
