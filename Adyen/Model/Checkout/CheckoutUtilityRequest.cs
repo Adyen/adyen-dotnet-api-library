@@ -29,6 +29,7 @@ using System.IO;
 using System.Linq;
 using System.Runtime.Serialization;
 using System.Text;
+using Adyen.Util;
 using Newtonsoft.Json;
 
 namespace Adyen.Model.Checkout
@@ -72,7 +73,7 @@ namespace Adyen.Model.Checkout
         {
             var sb = new StringBuilder();
             sb.Append("class CheckoutUtilityRequest {\n");
-            sb.Append("  OriginDomains: ").Append(OriginDomains).Append("\n");
+            sb.Append("  OriginDomains: ").Append(OriginDomains.ToListString()).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }

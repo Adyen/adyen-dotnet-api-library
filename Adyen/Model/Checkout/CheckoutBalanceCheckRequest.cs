@@ -30,6 +30,7 @@ using System.Linq;
 using System.Runtime.Serialization;
 using System.Text;
 using Adyen.Model.ApplicationInformation;
+using Adyen.Util;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
 
@@ -556,7 +557,7 @@ namespace Adyen.Model.Checkout
             sb.Append("class CheckoutBalanceCheckRequest {\n");
             sb.Append("  AccountInfo: ").Append(AccountInfo).Append("\n");
             sb.Append("  AdditionalAmount: ").Append(AdditionalAmount).Append("\n");
-            sb.Append("  AdditionalData: ").Append(AdditionalData).Append("\n");
+            sb.Append("  AdditionalData: ").Append(AdditionalData.ToCollectionsString()).Append("\n");
             sb.Append("  Amount: ").Append(Amount).Append("\n");
             sb.Append("  ApplicationInfo: ").Append(ApplicationInfo).Append("\n");
             sb.Append("  BillingAddress: ").Append(BillingAddress).Append("\n");
@@ -573,7 +574,7 @@ namespace Adyen.Model.Checkout
             sb.Append("  MerchantAccount: ").Append(MerchantAccount).Append("\n");
             sb.Append("  MerchantOrderReference: ").Append(MerchantOrderReference).Append("\n");
             sb.Append("  MerchantRiskIndicator: ").Append(MerchantRiskIndicator).Append("\n");
-            sb.Append("  Metadata: ").Append(Metadata).Append("\n");
+            sb.Append("  Metadata: ").Append(Metadata.ToCollectionsString()).Append("\n");
             sb.Append("  OrderReference: ").Append(OrderReference).Append("\n");
             sb.Append("  PaymentMethod: ").Append(PaymentMethod).Append("\n");
             sb.Append("  Recurring: ").Append(Recurring).Append("\n");
@@ -590,7 +591,7 @@ namespace Adyen.Model.Checkout
             sb.Append("  ShopperReference: ").Append(ShopperReference).Append("\n");
             sb.Append("  ShopperStatement: ").Append(ShopperStatement).Append("\n");
             sb.Append("  SocialSecurityNumber: ").Append(SocialSecurityNumber).Append("\n");
-            sb.Append("  Splits: ").Append(Splits).Append("\n");
+            sb.Append("  Splits: ").Append(Splits.ObjectListToString()).Append("\n");
             sb.Append("  Store: ").Append(Store).Append("\n");
             sb.Append("  TelephoneNumber: ").Append(TelephoneNumber).Append("\n");
             sb.Append("  ThreeDS2RequestData: ").Append(ThreeDS2RequestData).Append("\n");

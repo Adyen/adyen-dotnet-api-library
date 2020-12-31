@@ -28,6 +28,7 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Runtime.Serialization;
 using System.Text;
+using Adyen.Util;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
 
@@ -91,7 +92,7 @@ namespace Adyen.Model.Checkout
             var sb = new StringBuilder();
             sb.Append("class InstallmentOption {\n");
             sb.Append("  MaxValue: ").Append(MaxValue).Append("\n");
-            sb.Append("  Plans: ").Append(Plans).Append("\n");
+            sb.Append("  Plans: ").Append(Plans.ObjectListToString()).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }

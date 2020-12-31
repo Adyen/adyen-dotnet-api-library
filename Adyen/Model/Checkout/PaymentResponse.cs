@@ -31,6 +31,7 @@ using System.Text;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
 using Adyen.Model.Checkout.Action;
+using Adyen.Util;
 
 namespace Adyen.Model.Checkout
 {
@@ -269,15 +270,15 @@ namespace Adyen.Model.Checkout
             var sb = new StringBuilder();
             sb.Append("class PaymentResponse {\n");
             sb.Append("  Action: ").Append(Action).Append("\n");
-            sb.Append("  AdditionalData: ").Append(AdditionalData).Append("\n");
+            sb.Append("  AdditionalData: ").Append(AdditionalData.ToCollectionsString()).Append("\n");
             sb.Append("  Amount: ").Append(Amount).Append("\n");
             sb.Append("  Authentication: ").Append(Authentication).Append("\n");
-            sb.Append("  Details: ").Append(Details).Append("\n");
+            sb.Append("  Details: ").Append(Details.ObjectListToString()).Append("\n");
             sb.Append("  DonationToken: ").Append(DonationToken).Append("\n");
             sb.Append("  FraudResult: ").Append(FraudResult).Append("\n");
             sb.Append("  MerchantReference: ").Append(MerchantReference).Append("\n");
             sb.Append("  Order: ").Append(Order).Append("\n");
-            sb.Append("  OutputDetails: ").Append(OutputDetails).Append("\n");
+            sb.Append("  OutputDetails: ").Append(OutputDetails.ToCollectionsString()).Append("\n");
             sb.Append("  PaymentData: ").Append(PaymentData).Append("\n");
             sb.Append("  PspReference: ").Append(PspReference).Append("\n");
             sb.Append("  Redirect: ").Append(Redirect).Append("\n");

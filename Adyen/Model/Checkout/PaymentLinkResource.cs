@@ -30,6 +30,7 @@ using System.Linq;
 using System.Runtime.Serialization;
 using System.Text;
 using Adyen.Model.ApplicationInformation;
+using Adyen.Util;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
 
@@ -395,18 +396,18 @@ namespace Adyen.Model.Checkout
         {
             var sb = new StringBuilder();
             sb.Append("class PaymentLinkResource {\n");
-            sb.Append("  AllowedPaymentMethods: ").Append(AllowedPaymentMethods).Append("\n");
+            sb.Append("  AllowedPaymentMethods: ").Append(AllowedPaymentMethods.ToListString()).Append("\n");
             sb.Append("  Amount: ").Append(Amount).Append("\n");
             sb.Append("  ApplicationInfo: ").Append(ApplicationInfo).Append("\n");
             sb.Append("  BillingAddress: ").Append(BillingAddress).Append("\n");
-            sb.Append("  BlockedPaymentMethods: ").Append(BlockedPaymentMethods).Append("\n");
+            sb.Append("  BlockedPaymentMethods: ").Append(BlockedPaymentMethods.ToListString()).Append("\n");
             sb.Append("  CountryCode: ").Append(CountryCode).Append("\n");
             sb.Append("  DeliverAt: ").Append(DeliverAt).Append("\n");
             sb.Append("  DeliveryAddress: ").Append(DeliveryAddress).Append("\n");
             sb.Append("  Description: ").Append(Description).Append("\n");
             sb.Append("  ExpiresAt: ").Append(ExpiresAt).Append("\n");
             sb.Append("  Id: ").Append(Id).Append("\n");
-            sb.Append("  LineItems: ").Append(LineItems).Append("\n");
+            sb.Append("  LineItems: ").Append(LineItems.ObjectListToString()).Append("\n");
             sb.Append("  MerchantAccount: ").Append(MerchantAccount).Append("\n");
             sb.Append("  MerchantOrderReference: ").Append(MerchantOrderReference).Append("\n");
             sb.Append("  RecurringProcessingModel: ").Append(RecurringProcessingModel).Append("\n");
@@ -418,7 +419,7 @@ namespace Adyen.Model.Checkout
             sb.Append("  ShopperLocale: ").Append(ShopperLocale).Append("\n");
             sb.Append("  ShopperName: ").Append(ShopperName).Append("\n");
             sb.Append("  ShopperReference: ").Append(ShopperReference).Append("\n");
-            sb.Append("  Splits: ").Append(Splits).Append("\n");
+            sb.Append("  Splits: ").Append(Splits.ObjectListToString()).Append("\n");
             sb.Append("  Status: ").Append(Status).Append("\n");
             sb.Append("  Store: ").Append(Store).Append("\n");
             sb.Append("  StorePaymentMethod: ").Append(StorePaymentMethod).Append("\n");

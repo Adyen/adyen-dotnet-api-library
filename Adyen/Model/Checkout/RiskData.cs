@@ -28,6 +28,7 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Runtime.Serialization;
 using System.Text;
+using Adyen.Util;
 using Newtonsoft.Json;
 
 namespace Adyen.Model.Checkout
@@ -92,7 +93,7 @@ namespace Adyen.Model.Checkout
             var sb = new StringBuilder();
             sb.Append("class RiskData {\n");
             sb.Append("  ClientData: ").Append(ClientData).Append("\n");
-            sb.Append("  CustomFields: ").Append(CustomFields).Append("\n");
+            sb.Append("  CustomFields: ").Append(CustomFields.ToCollectionsString()).Append("\n");
             sb.Append("  FraudOffset: ").Append(FraudOffset).Append("\n");
             sb.Append("  ProfileReference: ").Append(ProfileReference).Append("\n");
             sb.Append("}\n");

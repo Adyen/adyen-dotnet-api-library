@@ -370,11 +370,11 @@ namespace Adyen.Model.Checkout
             sb.Append("  DeliveryAddress: ").Append(DeliveryAddress).Append("\n");
             sb.Append("  Description: ").Append(Description).Append("\n");
             sb.Append("  ExpiresAt: ").Append(ExpiresAt).Append("\n");
-            sb.Append("  InstallmentOptions: ").Append(InstallmentOptions).Append("\n");
-            sb.Append("  LineItems: ").Append(LineItems).Append("\n");
+            sb.Append("  InstallmentOptions: ").Append(InstallmentOptions.ToCollectionsString()).Append("\n");
+            sb.Append("  LineItems: ").Append(LineItems.ObjectListToString()).Append("\n");
             sb.Append("  MerchantAccount: ").Append(MerchantAccount).Append("\n");
             sb.Append("  MerchantOrderReference: ").Append(MerchantOrderReference).Append("\n");
-            sb.Append("  Metadata: ").Append(Metadata).Append("\n");
+            sb.Append("  Metadata: ").Append(Metadata.ToCollectionsString()).Append("\n");
             sb.Append("  RecurringProcessingModel: ").Append(RecurringProcessingModel).Append("\n");
             sb.Append("  Reference: ").Append(Reference).Append("\n");
             sb.Append("  ReturnUrl: ").Append(ReturnUrl).Append("\n");
@@ -384,7 +384,7 @@ namespace Adyen.Model.Checkout
             sb.Append("  ShopperLocale: ").Append(ShopperLocale).Append("\n");
             sb.Append("  ShopperName: ").Append(ShopperName).Append("\n");
             sb.Append("  ShopperReference: ").Append(ShopperReference).Append("\n");
-            sb.Append("  Splits: ").Append(Splits).Append("\n");
+            sb.Append("  Splits: ").Append(Splits.ObjectListToString()).Append("\n");
             sb.Append("  Store: ").Append(Store).Append("\n");
             sb.Append("  StorePaymentMethod: ").Append(StorePaymentMethod).Append("\n");
             sb.Append("}\n");
