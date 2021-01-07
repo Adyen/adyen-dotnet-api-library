@@ -11,7 +11,7 @@
     "cardIssuingCountry": "NL"
   },
   "fraudResult": {
-    "accountScore": 0,
+    "accountScore": 25,
     "results": [
       {
         "FraudCheckResult": {

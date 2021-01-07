@@ -26,6 +26,7 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Runtime.Serialization;
 using System.Text;
+using Adyen.Model.Checkout.Details;
 using Newtonsoft.Json;
 
 namespace Adyen.Model.Checkout

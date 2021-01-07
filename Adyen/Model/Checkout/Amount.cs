@@ -1,24 +1,25 @@
-#region License
-// /*
-//  *                       ######
-//  *                       ######
-//  * ############    ####( ######  #####. ######  ############   ############
-//  * #############  #####( ######  #####. ######  #############  #############
-//  *        ######  #####( ######  #####. ######  #####  ######  #####  ######
-//  * ###### ######  #####( ######  #####. ######  #####  #####   #####  ######
-//  * ###### ######  #####( ######  #####. ######  #####          #####  ######
-//  * #############  #############  #############  #############  #####  ######
-//  *  ############   ############  #############   ############  #####  ######
-//  *                                      ######
-//  *                               #############
-//  *                               ############
-//  *
-//  * Adyen Dotnet API Library
-//  *
-//  * Copyright (c) 2020 Adyen B.V.
-//  * This file is open source and available under the MIT license.
-//  * See the LICENSE file for more info.
-//  */
+#region Licence
+
+// 
+//                        ######
+//                        ######
+//  ############    ####( ######  #####. ######  ############   ############
+//  #############  #####( ######  #####. ######  #############  #############
+//         ######  #####( ######  #####. ######  #####  ######  #####  ######
+//  ###### ######  #####( ######  #####. ######  #####  #####   #####  ######
+//  ###### ######  #####( ######  #####. ######  #####          #####  ######
+//  #############  #############  #############  #############  #####  ######
+//   ############   ############  #############   ############  #####  ######
+//                                       ######
+//                                #############
+//                                ############
+// 
+//  Adyen Dotnet API Library
+// 
+//  Copyright (c) 2020 Adyen B.V.
+//  This file is open source and available under the MIT license.
+//  See the LICENSE file for more info.
+
 #endregion
 
 using System;
@@ -40,46 +41,41 @@ namespace Adyen.Model.Checkout
         /// <summary>
         /// Initializes a new instance of the <see cref="Amount" /> class.
         /// </summary>
-        [JsonConstructor]
-        protected Amount() { }
-        /// <summary>
-        /// Initializes a new instance of the <see cref="Amount" /> class.
-        /// </summary>
-        /// <param name="Currency">The three-character [ISO currency code](https://docs.adyen.com/developers/development-resources/currency-codes). (required).</param>
-        /// <param name="Value">The payable amount that can be charged for the transaction.  The transaction amount needs to be represented in minor units according to the [following table](https://docs.adyen.com/developers/development-resources/currency-codes). (required).</param>
-        public Amount(string Currency = default(string), long? Value = default(long?))
+        /// <param name="currency">The three-character [ISO currency code](https://docs.adyen.com/development-resources/currency-codes). (required).</param>
+        /// <param name="value">The amount of the transaction, in [minor units](https://docs.adyen.com/development-resources/currency-codes). (required).</param>
+        public Amount(string currency = default(string), long? value = default(long?))
         {
-            // to ensure "Currency" is required (not null)
-            if (Currency == null)
+            // to ensure "currency" is required (not null)
+            if (currency == null)
             {
-                throw new InvalidDataException("Currency is a required property for Amount and cannot be null");
+                throw new InvalidDataException("currency is a required property for Amount and cannot be null");
             }
             else
             {
-                this.Currency = Currency;
+                this.Currency = currency;
             }
-            // to ensure "Value" is required (not null)
-            if (Value == null)
+            // to ensure "value" is required (not null)
+            if (value == null)
             {
-                throw new InvalidDataException("Value is a required property for Amount and cannot be null");
+                throw new InvalidDataException("value is a required property for Amount and cannot be null");
             }
             else
             {
-                this.Value = Value;
+                this.Value = value;
             }
         }
 
         /// <summary>
-        /// The three-character [ISO currency code](https://docs.adyen.com/developers/development-resources/currency-codes).
+        /// The three-character [ISO currency code](https://docs.adyen.com/development-resources/currency-codes).
         /// </summary>
-        /// <value>The three-character [ISO currency code](https://docs.adyen.com/developers/development-resources/currency-codes).</value>
+        /// <value>The three-character [ISO currency code](https://docs.adyen.com/development-resources/currency-codes).</value>
         [DataMember(Name = "currency", EmitDefaultValue = false)]
         public string Currency { get; set; }
 
         /// <summary>
-        /// The payable amount that can be charged for the transaction.  The transaction amount needs to be represented in minor units according to the [following table](https://docs.adyen.com/developers/development-resources/currency-codes).
+        /// The amount of the transaction, in [minor units](https://docs.adyen.com/development-resources/currency-codes).
         /// </summary>
-        /// <value>The payable amount that can be charged for the transaction.  The transaction amount needs to be represented in minor units according to the [following table](https://docs.adyen.com/developers/development-resources/currency-codes).</value>
+        /// <value>The amount of the transaction, in [minor units](https://docs.adyen.com/development-resources/currency-codes).</value>
         [DataMember(Name = "value", EmitDefaultValue = false)]
         public long? Value { get; set; }
 
@@ -101,7 +97,7 @@ namespace Adyen.Model.Checkout
         /// Returns the JSON string presentation of the object
         /// </summary>
         /// <returns>JSON string presentation of the object</returns>
-        public string ToJson()
+        public virtual string ToJson()
         {
             return JsonConvert.SerializeObject(this, Formatting.Indented);
         }
@@ -129,13 +125,13 @@ namespace Adyen.Model.Checkout
             return
                 (
                     this.Currency == input.Currency ||
-                    (this.Currency != null &&
-                    this.Currency.Equals(input.Currency))
+                    this.Currency != null &&
+                    this.Currency.Equals(input.Currency)
                 ) &&
                 (
                     this.Value == input.Value ||
-                    (this.Value != null &&
-                    this.Value.Equals(input.Value))
+                    this.Value != null &&
+                    this.Value.Equals(input.Value)
                 );
         }
 
@@ -161,19 +157,10 @@ namespace Adyen.Model.Checkout
         /// </summary>
         /// <param name="validationContext">Validation context</param>
         /// <returns>Validation Result</returns>
-        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(
+            ValidationContext validationContext)
         {
-            // Currency (string) maxLength
-            if (this.Currency != null && this.Currency.Length > 3)
-            {
-                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for Currency, length must be less than 3.", new[] { "Currency" });
-            }
-
-            // Currency (string) minLength
-            if (this.Currency != null && this.Currency.Length < 3)
-            {
-                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for Currency, length must be greater than 3.", new[] { "Currency" });
-            }
+            yield break;
         }
     }
 }

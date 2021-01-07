@@ -24,6 +24,7 @@ using Newtonsoft.Json;
 using System;
 using Adyen.Model.Checkout;
 using Newtonsoft.Json.Linq;
+using Adyen.Model.Checkout.Details;
 
 namespace Adyen.Util
 {
@@ -53,6 +54,9 @@ namespace Adyen.Util
                 case AmazonPayDetails.AmazonPay:
                     paymentMethodDetails = new AmazonPayDetails();
                     break;
+                case AndroidPayDetails.AndroidPay:
+                    paymentMethodDetails = new AndroidPayDetails();
+                    break;
                 case ApplePayDetails.ApplePay:
                     paymentMethodDetails = new ApplePayDetails();
                     break;
@@ -67,6 +71,9 @@ namespace Adyen.Util
                     break;
                 case BlikDetails.Blik:
                     paymentMethodDetails = new BlikDetails();
+                    break;
+                case CellulantDetails.Cellulant:
+                    paymentMethodDetails = new CellulantDetails();
                     break;
                 case DokuDetails.Alfamart:
                 case DokuDetails.Bcava:
@@ -106,10 +113,22 @@ namespace Adyen.Util
                 case IdealDetails.Ideal:
                     paymentMethodDetails = new IdealDetails();
                     break;
+                case KlarnaDetails.Klarna:
+                case KlarnaDetails.KlarnaAccount:
+                case KlarnaDetails.KlarnaB2B:
+                case KlarnaDetails.KlarnaPayNow:
+                case KlarnaDetails.KlarnaPayments:
+                case KlarnaDetails.KlarnaPaymentsAccount:
+                case KlarnaDetails.KlarnaPaymentsB2B:
+                    paymentMethodDetails = new KlarnaDetails();
+                    break;
                 case LianLianPayDetails.EbankingCredit:
                 case LianLianPayDetails.EbankingDebit:
                 case LianLianPayDetails.EbankingEnterprise:
                     paymentMethodDetails = new LianLianPayDetails();
+                    break;
+                case MasterpassDetails.Masterpass:
+                    paymentMethodDetails = new MasterpassDetails();
                     break;
                 case MbwayDetails.Mbway:
                     paymentMethodDetails = new MbwayDetails();
@@ -122,8 +141,14 @@ namespace Adyen.Util
                 case MolPayDetails.FPX:
                     paymentMethodDetails = new MolPayDetails();
                     break;
+                case MobilePayDetails.Mobilepay:
+                    paymentMethodDetails = new MobilePayDetails();
+                    break;
                 case PayPalDetails.PayPal:
                     paymentMethodDetails = new PayPalDetails();
+                    break;
+                case PayUUpiDetails.PayUinUPI:
+                    paymentMethodDetails = new PayUUpiDetails();
                     break;
                 case QiwiWalletDetails.QiwiWallet:
                     paymentMethodDetails = new QiwiWalletDetails();
@@ -134,11 +159,20 @@ namespace Adyen.Util
                 case SepaDirectDebitDetails.Sepadirectdebit:
                     paymentMethodDetails = new SepaDirectDebitDetails();
                     break;
+                case UpiDetails.Upi:
+                    paymentMethodDetails = new UpiDetails();
+                    break;
                 case VippsDetails.Vipps:
                     paymentMethodDetails = new VippsDetails();
                     break;
                 case VisaCheckoutDetails.VisaCheckout:
                     paymentMethodDetails = new VisaCheckoutDetails();
+                    break;
+                case WeChatPayDetails.Wechatpay:
+                    paymentMethodDetails = new WeChatPayDetails();
+                    break;
+                case WeChatPayMiniProgramDetails.WechatpayMiniProgram:
+                    paymentMethodDetails = new WeChatPayMiniProgramDetails();
                     break;
                 default:
                     paymentMethodDetails = new DefaultPaymentMethodDetails();

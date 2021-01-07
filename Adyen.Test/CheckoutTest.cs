@@ -1,34 +1,35 @@
 ﻿#region License
-// /*
-//  *                       ######
-//  *                       ######
-//  * ############    ####( ######  #####. ######  ############   ############
-//  * #############  #####( ######  #####. ######  #############  #############
-//  *        ######  #####( ######  #####. ######  #####  ######  #####  ######
-//  * ###### ######  #####( ######  #####. ######  #####  #####   #####  ######
-//  * ###### ######  #####( ######  #####. ######  #####          #####  ######
-//  * #############  #############  #############  #############  #####  ######
-//  *  ############   ############  #############   ############  #####  ######
-//  *                                      ######
-//  *                               #############
-//  *                               ############
-//  *
-//  * Adyen Dotnet API Library
-//  *
-//  * Copyright (c) 2020 Adyen B.V.
-//  * This file is open source and available under the MIT license.
-//  * See the LICENSE file for more info.
-//  */
+/*
+ *                       ######
+ *                       ######
+ * ############    ####( ######  #####. ######  ############   ############
+ * #############  #####( ######  #####. ######  #############  #############
+ *        ######  #####( ######  #####. ######  #####  ######  #####  ######
+ * ###### ######  #####( ######  #####. ######  #####  #####   #####  ######
+ * ###### ######  #####( ######  #####. ######  #####          #####  ######
+ * #############  #############  #############  #############  #####  ######
+ *  ############   ############  #############   ############  #####  ######
+ *                                      ######
+ *                               #############
+ *                               ############
+ *
+ * Adyen Dotnet API Library
+ *
+ * Copyright (c) 2020 Adyen B.V.
+ * This file is open source and available under the MIT license.
+ * See the LICENSE file for more info.
+ */
 #endregion
 
-using Adyen.HttpClient;
 using Adyen.Model.ApplicationInformation;
 using Adyen.Model.Checkout;
+using Adyen.Model.Checkout.Details;
+using Adyen.Model.Checkout.Action;
 using Adyen.Service;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 using System.Threading.Tasks;
-using static Adyen.Model.Checkout.PaymentsResponse;
+using static Adyen.Model.Checkout.PaymentResponse;
 
 namespace Adyen.Test
 {
@@ -183,7 +184,8 @@ namespace Adyen.Test
             var paymentResultResponse = checkout.PaymentsResult(paymentResultRequest);
             Assert.IsNotNull(paymentResultResponse.AdditionalData);
             Assert.AreEqual(paymentResultResponse.AdditionalData["cvcResult"], "1 Matches");
-            Assert.AreEqual(paymentResultResponse.ResultCode, Model.Checkout.PaymentResultResponse.ResultCodeEnum.Authorised);
+            Assert.AreEqual(paymentResultResponse.MerchantReference, "your_merchantReference"); 
+            Assert.AreEqual(paymentResultResponse.ResultCode, PaymentResultResponse.ResultCodeEnum.Authorised);
         }
 
         /// <summary>
@@ -208,7 +210,7 @@ namespace Adyen.Test
         public void PaymentDetailsTest()
         {
             var detailsRequest = CreateDetailsRequest();
-            detailsRequest.Details.Add("payload", "Ab02b4c0!BQABAgBQn96RxfJHpp2RXhqQBuhQFWgE...gfGHb4IZSP4IpoCC2==RXhqQBuhQ");
+           detailsRequest.Details = new PaymentCompletionDetails(payload: "Ab02b4c0!BQABAgBQn96RxfJHpp2RXhqQBuhQFWgE...gfGHb4IZSP4IpoCC2==RXhqQBuhQ");
             var client = CreateMockTestClientApiKeyBasedRequest("Mocks/checkout/paymentsdetails-success.json");
             var checkout = new Checkout(client);
             var paymentResponse = checkout.PaymentDetails(detailsRequest);
@@ -223,7 +225,7 @@ namespace Adyen.Test
         public async Task PaymentDetailsAsyncTest()
         {
             var detailsRequest = CreateDetailsRequest();
-            detailsRequest.Details.Add("payload", "Ab02b4c0!BQABAgBQn96RxfJHpp2RXhqQBuhQFWgE...gfGHb4IZSP4IpoCC2==RXhqQBuhQ");
+            detailsRequest.Details = new PaymentCompletionDetails(payload: "Ab02b4c0!BQABAgBQn96RxfJHpp2RXhqQBuhQFWgE...gfGHb4IZSP4IpoCC2==RXhqQBuhQ");
             var client = CreateAsyncMockTestClientApiKeyBasedRequest("Mocks/checkout/paymentsdetails-success.json");
             var checkout = new Checkout(client);
             var paymentResponse = await checkout.PaymentDetailsAsync(detailsRequest);
@@ -238,7 +240,7 @@ namespace Adyen.Test
         public void PaymentDetailsErrorTest()
         {
             var detailsRequest = CreateDetailsRequest();
-            detailsRequest.Details.Add("payload", "Ab02b4c0!BQABAgBQn96RxfJHpp2RXhqQBuhQFWgE...gfGHb4IZSP4IpoCC2==RXhqQBuhQ");
+            detailsRequest.Details = new PaymentCompletionDetails(payload: "Ab02b4c0!BQABAgBQn96RxfJHpp2RXhqQBuhQFWgE...gfGHb4IZSP4IpoCC2==RXhqQBuhQ");
             var client = CreateMockTestClientApiKeyBasedRequest("Mocks/checkout/paymentsdetails-error-invalid-data-422.json");
             var checkout = new Checkout(client);
             var paymentResponse = checkout.PaymentDetails(detailsRequest);
@@ -387,7 +389,7 @@ namespace Adyen.Test
             var client = CreateMockTestClientApiKeyBasedRequest("Mocks/checkout/paymentsresult-success.json");
             var checkout = new Checkout(client);
             var paymentResultResponse = checkout.PaymentsResult(paymentResultRequest);
-            Assert.AreEqual(paymentResultResponse.ResultCode, Model.Checkout.PaymentResultResponse.ResultCodeEnum.Authorised);
+            Assert.AreEqual(paymentResultResponse.ResultCode, PaymentResultResponse.ResultCodeEnum.Authorised);
         }
 
         /// <summary>
@@ -401,7 +403,7 @@ namespace Adyen.Test
             var client = CreateAsyncMockTestClientApiKeyBasedRequest("Mocks/checkout/paymentsresult-success.json");
             var checkout = new Checkout(client);
             var paymentResultResponse = await checkout.PaymentsResultAsync(paymentResultRequest);
-            Assert.AreEqual(paymentResultResponse.ResultCode, Model.Checkout.PaymentResultResponse.ResultCodeEnum.Authorised);
+            Assert.AreEqual(paymentResultResponse.ResultCode, PaymentResultResponse.ResultCodeEnum.Authorised);
         }
 
         /// <summary>
@@ -441,7 +443,7 @@ namespace Adyen.Test
         public void PaymentRequestAppInfoExternalTest()
         {
             var externalPlatform = new Model.ApplicationInformation.ExternalPlatform();
-            var merchantApplication = new CommonField();
+            var merchantApplication = new Model.ApplicationInformation.CommonField();
             externalPlatform.Integrator = "TestExternalPlatformIntegration";
             externalPlatform.Name = "TestExternalPlatformName";
             externalPlatform.Version = "TestExternalPlatformVersion";
@@ -464,33 +466,18 @@ namespace Adyen.Test
             var client = CreateMockTestClientApiKeyBasedRequest("Mocks/checkout/paymentResponse-3DS-ChallengeShopper.json");
             var checkout = new Checkout(client);
             var paymentResponse = checkout.Payments(paymentRequest);
+
+            Assert.IsTrue(paymentResponse.Action is CheckoutThreeDS2ChallengeAction);
+            var paymentResponseAction = (CheckoutThreeDS2ChallengeAction)paymentResponse.Action;
             Assert.AreEqual(paymentResponse.ResultCode, ResultCodeEnum.ChallengeShopper);
             Assert.AreEqual(paymentResponse.PaymentData, "Te1CMIy1vKQTYsSHZ+gRbFpQy4d4n2HLD3c2b7xKnRNpWzWPuI=");
-            Assert.AreEqual(paymentResponse.Action.PaymentData, "Te1CMIy1vKQTYsSHZ+gRbFpQy4d4n2HLD3c2b7xKnRNpWzWPuI=");
-            Assert.AreEqual(paymentResponse.Action.Type, Model.Checkout.CheckoutPaymentsAction.CheckoutActionType.ThreeDS2Challenge);
-            Assert.AreEqual(paymentResponse.Action.Token, "S0zYWQ0MGEwMjU2MjEifQ==");
-            Assert.AreEqual(paymentResponse.Action.PaymentMethodType, "scheme");
+            Assert.AreEqual(paymentResponseAction.PaymentData, "Te1CMIy1vKQTYsSHZ+gRbFpQy4d4n2HLD3c2b7xKnRNpWzWPuI=");
+            Assert.AreEqual(paymentResponseAction.Type, "threeDS2Challenge");
+            Assert.AreEqual(paymentResponseAction.Token, "S0zYWQ0MGEwMjU2MjEifQ==");
+            Assert.AreEqual(paymentResponseAction.PaymentMethodType, "scheme");
             Assert.AreEqual(paymentResponse.Details[0].Key, "threeds2.challengeResult");
             Assert.AreEqual(paymentResponse.Details[0].Type, "text");
             Assert.AreEqual(paymentResponse.Authentication["threeds2.challengeToken"], "S0zYWQ0MGEwMjU2MjEifQ==");
-        }
-
-        [TestMethod]
-        public void PaymentsResponseThreeDS2ParsingTest()
-        {
-            var paymentRequest = CreatePaymentRequestCheckout();
-            var client = CreateMockTestClientApiKeyBasedRequest("Mocks/checkout/paymentsResponse-ThreeDS2Result.json");
-            var checkout = new Checkout(client);
-            var paymentResponse = checkout.Payments(paymentRequest);
-            Assert.AreEqual(paymentResponse.ResultCode, ResultCodeEnum.AuthenticationFinished);
-            Assert.AreEqual(paymentResponse.PspReference, "812345678912345A");
-            Assert.AreEqual(paymentResponse.MerchantReference, "ABC1234");
-            Assert.AreEqual(paymentResponse.ThreeDS2Result.AuthenticationValue, "3q263q263q263q263q263q263q263q263q26");
-            Assert.AreEqual(paymentResponse.ThreeDS2Result.ECI, "05");
-            Assert.AreEqual(paymentResponse.ThreeDS2Result.TransStatus, "Y");
-            Assert.AreEqual(paymentResponse.ThreeDS2Result.ThreeDSServerTransID, "abcd1234-abcd1234-abcd1234-abcd1234-");
-            Assert.AreEqual(paymentResponse.ThreeDS2Result.DsTransID, "abcd9a67-abcd9a67-abcd9a67-abcd9a671");
-            Assert.AreEqual(paymentResponse.ThreeDS2Result.MessageVersion, "2.1.0");
         }
 
         [TestMethod]
@@ -508,7 +495,7 @@ namespace Adyen.Test
         [TestMethod]
         public void CreatePaymentLinkSuccess()
         {
-            var createPaymentLinkRequest = new CreatePaymentLinkRequest { Store = "TheDemoStore" };
+            var createPaymentLinkRequest = new CreatePaymentLinkRequest ( store : "TheDemoStore", amount : new Amount(currency:"EUR", 1000), merchantAccount : "MerchantAccount" , reference:"reference");
             Assert.AreEqual(createPaymentLinkRequest.Store, "TheDemoStore");
         }
 
@@ -521,7 +508,7 @@ namespace Adyen.Test
         {
             var client = CreateMockTestClientApiKeyBasedRequest("Mocks/checkout/payment-links-success.json");
             var checkout = new Checkout(client);
-            var createPaymentLinkRequest = CreatePaymentLinkRequestSuccess();
+            var createPaymentLinkRequest = new CreatePaymentLinkRequest(amount: new Amount(currency: "EUR", 1000), merchantAccount: "MerchantAccount", reference: "YOUR_ORDER_NUMBER");
             var paymentLinksResponse = checkout.PaymentLinks(createPaymentLinkRequest);
             Assert.AreEqual(paymentLinksResponse.Url, "https://checkoutshopper-test.adyen.com/checkoutshopper/payByLink.shtml?d=YW1vdW50TWlub3JW...JRA");
             Assert.AreEqual(paymentLinksResponse.ExpiresAt, "2019-12-17T10:05:29Z");
@@ -539,16 +526,13 @@ namespace Adyen.Test
             var client = CreateMockTestClientApiKeyBasedRequest("Mocks/checkout/paymentlinks-recurring-payment-success.json");
             var checkout = new Checkout(client);
 
-            var createPaymentLinkRequest = new CreatePaymentLinkRequest
+            var createPaymentLinkRequest = new CreatePaymentLinkRequest(amount: new Amount(currency: "EUR", 100), merchantAccount: "MerchantAccount", reference: "REFERENCE_NUMBER")
             {
-                Reference = "REFERENCE_NUMBER",
-                MerchantAccount = "MerchantAccount",
-                Amount = new Amount("EUR", 100),
                 CountryCode = "GR",
                 ShopperLocale = "GR",
                 ShopperReference = "ShopperReference",
                 StorePaymentMethod = true,
-                RecurringProcessingModel = Model.Enum.RecurringProcessingModelEnum.Subscription
+                RecurringProcessingModel = CreatePaymentLinkRequest.RecurringProcessingModelEnum.Subscription
             };
 
             var paymentLinksResponse = checkout.PaymentLinks(createPaymentLinkRequest);
@@ -570,10 +554,11 @@ namespace Adyen.Test
             var checkout = new Checkout(client);
             var paymentRequest = CreatePaymentRequestCheckout();
             var paymentResponse = checkout.Payments(paymentRequest);
-            Assert.AreEqual(paymentResponse.Action.PaymentMethodType,"multibanco");
-            Assert.AreEqual(paymentResponse.Action.ExpiresAt, "2020-01-12T09:37:49");
-            Assert.AreEqual(paymentResponse.Action.Reference, "501 422 944");
-            Assert.AreEqual(paymentResponse.Action.Entity, "12101");
+            var paymentResponseAction = (CheckoutVoucherAction)paymentResponse.Action;
+            Assert.AreEqual(paymentResponseAction.PaymentMethodType, "multibanco");
+            Assert.AreEqual(paymentResponseAction.ExpiresAt, "01/12/2020 09:37:49");
+            Assert.AreEqual(paymentResponseAction.Reference, "501 422 944");
+            Assert.AreEqual(paymentResponseAction.Entity, "12101");
         }
 
         /// <summary>
@@ -581,7 +566,7 @@ namespace Adyen.Test
         /// POST /payments
         /// </summary>
         [TestMethod]
-        public void PaymentClientdataaParsingTest()
+        public void PaymentClientdataParsingTest()
         {
             var paymentRequest = CreatePaymentRequestCheckout();
             var riskdata = new RiskData
@@ -603,10 +588,14 @@ namespace Adyen.Test
             var checkout = new Checkout(client);
             var paymentRequest = CreatePaymentRequestCheckout();
             var paymentResponse = checkout.Payments(paymentRequest);
-            Assert.AreEqual("EC-42N19135GM6949000", paymentResponse.Action.SdkData["orderID"]);
+            Assert.IsTrue(paymentResponse.Action is CheckoutSDKAction);
+            var result = (CheckoutSDKAction)paymentResponse.Action;
+            Assert.AreEqual("EC-42N19135GM6949000", result.SdkData["orderID"]);
+            Assert.AreEqual("Ab02b4c0!BQABAgARb1TvUJa4nwS0Z1nOmxoYfD9+z...", result.PaymentData);
+            Assert.AreEqual("paypal", result.PaymentMethodType);
         }
 
-      
+
         [TestMethod]
         public void ApplePayDetailsDeserializationTest()
         {
