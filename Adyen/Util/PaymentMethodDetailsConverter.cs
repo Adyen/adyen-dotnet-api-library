@@ -141,6 +141,9 @@ namespace Adyen.Util
                 case MolPayDetails.FPX:
                     paymentMethodDetails = new MolPayDetails();
                     break;
+                case MobilePayDetails.Mobilepay:
+                    paymentMethodDetails = new MobilePayDetails();
+                    break;
                 case PayPalDetails.PayPal:
                     paymentMethodDetails = new PayPalDetails();
                     break;
@@ -155,6 +158,9 @@ namespace Adyen.Util
                     break;
                 case SepaDirectDebitDetails.Sepadirectdebit:
                     paymentMethodDetails = new SepaDirectDebitDetails();
+                    break;
+                case UpiDetails.Upi:
+                    paymentMethodDetails = new UpiDetails();
                     break;
                 case VippsDetails.Vipps:
                     paymentMethodDetails = new VippsDetails();
