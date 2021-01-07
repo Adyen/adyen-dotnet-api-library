@@ -46,7 +46,6 @@ namespace Adyen.Constants
         public static string PayoutApiVersion = "v51";
         public static string CheckoutApiVersion = "v66";
         public static string PosTerminalManagementVersion = "v1";
-        public static string CheckoutUtilityApiVersion = "v1";
         public static string UserAgentSuffix = "adyen-dotnet-api-library/";
         public static string EndpointProtocol = "https://";
         public static string NexoProtocolVersion = "3.0";

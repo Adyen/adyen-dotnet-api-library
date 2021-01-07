@@ -22,7 +22,7 @@
 #endregion
 
 using Adyen.Model.Checkout;
-using Adyen.Service.Resource.CheckoutUtility;
+using Adyen.Service.Resource.Checkout;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
