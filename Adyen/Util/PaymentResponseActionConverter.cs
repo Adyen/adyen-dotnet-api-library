@@ -65,6 +65,9 @@ namespace Adyen.Util
                 case "threeDS2Fingerprint":
                     paymentResponseAction = new CheckoutThreeDS2FingerPrintAction();
                     break;
+                case "threeDS2Action":
+                    paymentResponseAction = new CheckoutThreeDS2Action();
+                    break;
                 case "await":
                     paymentResponseAction = new CheckoutAwaitAction();
                     break;
