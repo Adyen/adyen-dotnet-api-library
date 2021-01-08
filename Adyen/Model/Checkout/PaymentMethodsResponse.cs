@@ -1,33 +1,35 @@
-#region License
-// /*
-//  *                       ######
-//  *                       ######
-//  * ############    ####( ######  #####. ######  ############   ############
-//  * #############  #####( ######  #####. ######  #############  #############
-//  *        ######  #####( ######  #####. ######  #####  ######  #####  ######
-//  * ###### ######  #####( ######  #####. ######  #####  #####   #####  ######
-//  * ###### ######  #####( ######  #####. ######  #####          #####  ######
-//  * #############  #############  #############  #############  #####  ######
-//  *  ############   ############  #############   ############  #####  ######
-//  *                                      ######
-//  *                               #############
-//  *                               ############
-//  *
-//  * Adyen Dotnet API Library
-//  *
-//  * Copyright (c) 2020 Adyen B.V.
-//  * This file is open source and available under the MIT license.
-//  * See the LICENSE file for more info.
-//  */
+#region Licence
+
+// 
+//                        ######
+//                        ######
+//  ############    ####( ######  #####. ######  ############   ############
+//  #############  #####( ######  #####. ######  #############  #############
+//         ######  #####( ######  #####. ######  #####  ######  #####  ######
+//  ###### ######  #####( ######  #####. ######  #####  #####   #####  ######
+//  ###### ######  #####( ######  #####. ######  #####          #####  ######
+//  #############  #############  #############  #############  #####  ######
+//   ############   ############  #############   ############  #####  ######
+//                                       ######
+//                                #############
+//                                ############
+// 
+//  Adyen Dotnet API Library
+// 
+//  Copyright (c) 2020 Adyen B.V.
+//  This file is open source and available under the MIT license.
+//  See the LICENSE file for more info.
+
 #endregion
 
 using System;
-using System.Linq;
-using System.Text;
 using System.Collections.Generic;
-using System.Runtime.Serialization;
-using Newtonsoft.Json;
 using System.ComponentModel.DataAnnotations;
+using System.Linq;
+using System.Runtime.Serialization;
+using System.Text;
+using Adyen.Util;
+using Newtonsoft.Json;
 
 namespace Adyen.Model.Checkout
 {
@@ -40,31 +42,14 @@ namespace Adyen.Model.Checkout
         /// <summary>
         /// Initializes a new instance of the <see cref="PaymentMethodsResponse" /> class.
         /// </summary>
-        /// <param name="groups">Groups of payment methods..</param>
-        /// <param name="oneClickPaymentMethods">Detailed list of one-click payment methods..</param>
         /// <param name="paymentMethods">Detailed list of payment methods required to generate payment forms..</param>
         /// <param name="storedPaymentMethods">List of all stored payment methods..</param>
-        public PaymentMethodsResponse(List<PaymentMethodsGroup> groups = default(List<PaymentMethodsGroup>), List<RecurringDetail> oneClickPaymentMethods = default(List<RecurringDetail>), List<PaymentMethod> paymentMethods = default(List<PaymentMethod>), List<StoredPaymentMethod> storedPaymentMethods = default(List<StoredPaymentMethod>))
+        public PaymentMethodsResponse(List<PaymentMethod> paymentMethods = default(List<PaymentMethod>),
+            List<StoredPaymentMethod> storedPaymentMethods = default(List<StoredPaymentMethod>))
         {
-            this.Groups = groups;
-            this.OneClickPaymentMethods = oneClickPaymentMethods;
             this.PaymentMethods = paymentMethods;
             this.StoredPaymentMethods = storedPaymentMethods;
         }
-
-        /// <summary>
-        /// Groups of payment methods.
-        /// </summary>
-        /// <value>Groups of payment methods.</value>
-        [DataMember(Name = "groups", EmitDefaultValue = false)]
-        public List<PaymentMethodsGroup> Groups { get; set; }
-
-        /// <summary>
-        /// Detailed list of one-click payment methods.
-        /// </summary>
-        /// <value>Detailed list of one-click payment methods.</value>
-        [DataMember(Name = "oneClickPaymentMethods", EmitDefaultValue = false)]
-        public List<RecurringDetail> OneClickPaymentMethods { get; set; }
 
         /// <summary>
         /// Detailed list of payment methods required to generate payment forms.
@@ -88,10 +73,8 @@ namespace Adyen.Model.Checkout
         {
             var sb = new StringBuilder();
             sb.Append("class PaymentMethodsResponse {\n");
-            sb.Append("  Groups: ").Append(Groups).Append("\n");
-            sb.Append("  OneClickPaymentMethods: ").Append(OneClickPaymentMethods).Append("\n");
-            sb.Append("  PaymentMethods: ").Append(PaymentMethods).Append("\n");
-            sb.Append("  StoredPaymentMethods: ").Append(StoredPaymentMethods).Append("\n");
+            sb.Append("  PaymentMethods: ").Append(PaymentMethods.ObjectListToString()).Append("\n");
+            sb.Append("  StoredPaymentMethods: ").Append(StoredPaymentMethods.ObjectListToString()).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -127,18 +110,6 @@ namespace Adyen.Model.Checkout
 
             return
                 (
-                    this.Groups == input.Groups ||
-                    this.Groups != null &&
-                    input.Groups != null &&
-                    this.Groups.SequenceEqual(input.Groups)
-                ) &&
-                (
-                    this.OneClickPaymentMethods == input.OneClickPaymentMethods ||
-                    this.OneClickPaymentMethods != null &&
-                    input.OneClickPaymentMethods != null &&
-                    this.OneClickPaymentMethods.SequenceEqual(input.OneClickPaymentMethods)
-                ) &&
-                (
                     this.PaymentMethods == input.PaymentMethods ||
                     this.PaymentMethods != null &&
                     input.PaymentMethods != null &&
@@ -161,10 +132,6 @@ namespace Adyen.Model.Checkout
             unchecked // Overflow is fine, just wrap
             {
                 int hashCode = 41;
-                if (this.Groups != null)
-                    hashCode = hashCode * 59 + this.Groups.GetHashCode();
-                if (this.OneClickPaymentMethods != null)
-                    hashCode = hashCode * 59 + this.OneClickPaymentMethods.GetHashCode();
                 if (this.PaymentMethods != null)
                     hashCode = hashCode * 59 + this.PaymentMethods.GetHashCode();
                 if (this.StoredPaymentMethods != null)
@@ -178,7 +145,8 @@ namespace Adyen.Model.Checkout
         /// </summary>
         /// <param name="validationContext">Validation context</param>
         /// <returns>Validation Result</returns>
-        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(
+            ValidationContext validationContext)
         {
             yield break;
         }

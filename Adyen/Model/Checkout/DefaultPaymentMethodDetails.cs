@@ -26,6 +26,7 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Runtime.Serialization;
 using System.Text;
+using Adyen.Model.Checkout.Details;
 using Newtonsoft.Json;
 
 namespace Adyen.Model.Checkout
@@ -79,7 +80,7 @@ namespace Adyen.Model.Checkout
         public string SepaIbanNumber { get; set; }
         [DataMember(Name = "bankAccount", EmitDefaultValue = false)]
         public BankAccount BankAccount { get; set; }
-        [DataMember(Name = "additionalData.applepay.token", EmitDefaultValue = false)]
+        [DataMember(Name = "applepay.token", EmitDefaultValue = false)]
         public string ApplePayToken { get; set; }
         [DataMember(Name = "paywithgoogle.token", EmitDefaultValue = false)]
         public string GooglePayToken { get; set; }

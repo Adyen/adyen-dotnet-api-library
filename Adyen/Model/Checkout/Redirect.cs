@@ -1,24 +1,25 @@
-#region License
-// /*
-//  *                       ######
-//  *                       ######
-//  * ############    ####( ######  #####. ######  ############   ############
-//  * #############  #####( ######  #####. ######  #############  #############
-//  *        ######  #####( ######  #####. ######  #####  ######  #####  ######
-//  * ###### ######  #####( ######  #####. ######  #####  #####   #####  ######
-//  * ###### ######  #####( ######  #####. ######  #####          #####  ######
-//  * #############  #############  #############  #############  #####  ######
-//  *  ############   ############  #############   ############  #####  ######
-//  *                                      ######
-//  *                               #############
-//  *                               ############
-//  *
-//  * Adyen Dotnet API Library
-//  *
-//  * Copyright (c) 2020 Adyen B.V.
-//  * This file is open source and available under the MIT license.
-//  * See the LICENSE file for more info.
-//  */
+#region Licence
+
+// 
+//                        ######
+//                        ######
+//  ############    ####( ######  #####. ######  ############   ############
+//  #############  #####( ######  #####. ######  #############  #############
+//         ######  #####( ######  #####. ######  #####  ######  #####  ######
+//  ###### ######  #####( ######  #####. ######  #####  #####   #####  ######
+//  ###### ######  #####( ######  #####. ######  #####          #####  ######
+//  #############  #############  #############  #############  #####  ######
+//   ############   ############  #############   ############  #####  ######
+//                                       ######
+//                                #############
+//                                ############
+// 
+//  Adyen Dotnet API Library
+// 
+//  Copyright (c) 2020 Adyen B.V.
+//  This file is open source and available under the MIT license.
+//  See the LICENSE file for more info.
+
 #endregion
 
 using System;
@@ -27,6 +28,7 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Runtime.Serialization;
 using System.Text;
+using Adyen.Util;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
 
@@ -36,7 +38,7 @@ namespace Adyen.Model.Checkout
     /// Redirect
     /// </summary>
     [DataContract]
-    public partial class Redirect :  IEquatable<Redirect>, IValidatableObject
+    public partial class Redirect : IEquatable<Redirect>, IValidatableObject
     {
         /// <summary>
         /// The web method that you must use to access the redirect URL.  Possible values: GET, POST.
@@ -45,44 +47,43 @@ namespace Adyen.Model.Checkout
         [JsonConverter(typeof(StringEnumConverter))]
         public enum MethodEnum
         {
-            
             /// <summary>
             /// Enum GET for value: GET
             /// </summary>
-            [EnumMember(Value = "GET")]
-            GET = 1,
-            
+            [EnumMember(Value = "GET")] GET = 1,
+
             /// <summary>
             /// Enum POST for value: POST
             /// </summary>
-            [EnumMember(Value = "POST")]
-            POST = 2
+            [EnumMember(Value = "POST")] POST = 2
         }
 
         /// <summary>
         /// The web method that you must use to access the redirect URL.  Possible values: GET, POST.
         /// </summary>
         /// <value>The web method that you must use to access the redirect URL.  Possible values: GET, POST.</value>
-        [DataMember(Name="method", EmitDefaultValue=false)]
+        [DataMember(Name = "method", EmitDefaultValue = false)]
         public MethodEnum? Method { get; set; }
+
         /// <summary>
         /// Initializes a new instance of the <see cref="Redirect" /> class.
         /// </summary>
-        /// <param name="Data">When the redirect URL must be accessed via POST, use this data to post to the redirect URL..</param>
-        /// <param name="Method">The web method that you must use to access the redirect URL.  Possible values: GET, POST..</param>
-        /// <param name="Url">The URL, to which you must redirect a shopper to complete a payment..</param>
-        public Redirect(Dictionary<string, string> Data = default(Dictionary<string, string>), MethodEnum? Method = default(MethodEnum?), string Url = default(string))
+        /// <param name="data">When the redirect URL must be accessed via POST, use this data to post to the redirect URL..</param>
+        /// <param name="method">The web method that you must use to access the redirect URL.  Possible values: GET, POST..</param>
+        /// <param name="url">The URL, to which you must redirect a shopper to complete a payment..</param>
+        public Redirect(Dictionary<string, string> data = default(Dictionary<string, string>),
+            MethodEnum? method = default(MethodEnum?), string url = default(string))
         {
-            this.Data = Data;
-            this.Method = Method;
-            this.Url = Url;
+            this.Data = data;
+            this.Method = method;
+            this.Url = url;
         }
-        
+
         /// <summary>
         /// When the redirect URL must be accessed via POST, use this data to post to the redirect URL.
         /// </summary>
         /// <value>When the redirect URL must be accessed via POST, use this data to post to the redirect URL.</value>
-        [DataMember(Name="data", EmitDefaultValue=false)]
+        [DataMember(Name = "data", EmitDefaultValue = false)]
         public Dictionary<string, string> Data { get; set; }
 
 
@@ -90,7 +91,7 @@ namespace Adyen.Model.Checkout
         /// The URL, to which you must redirect a shopper to complete a payment.
         /// </summary>
         /// <value>The URL, to which you must redirect a shopper to complete a payment.</value>
-        [DataMember(Name="url", EmitDefaultValue=false)]
+        [DataMember(Name = "url", EmitDefaultValue = false)]
         public string Url { get; set; }
 
         /// <summary>
@@ -101,18 +102,18 @@ namespace Adyen.Model.Checkout
         {
             var sb = new StringBuilder();
             sb.Append("class Redirect {\n");
-            sb.Append("  Data: ").Append(Data).Append("\n");
+            sb.Append("  Data: ").Append(Data.ToCollectionsString()).Append("\n");
             sb.Append("  Method: ").Append(Method).Append("\n");
             sb.Append("  Url: ").Append(Url).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
-  
+
         /// <summary>
         /// Returns the JSON string presentation of the object
         /// </summary>
         /// <returns>JSON string presentation of the object</returns>
-        public string ToJson()
+        public virtual string ToJson()
         {
             return JsonConvert.SerializeObject(this, Formatting.Indented);
         }
@@ -137,21 +138,22 @@ namespace Adyen.Model.Checkout
             if (input == null)
                 return false;
 
-            return 
+            return
                 (
                     this.Data == input.Data ||
                     this.Data != null &&
+                    input.Data != null &&
                     this.Data.SequenceEqual(input.Data)
-                ) && 
+                ) &&
                 (
                     this.Method == input.Method ||
-                    (this.Method != null &&
-                    this.Method.Equals(input.Method))
-                ) && 
+                    this.Method != null &&
+                    this.Method.Equals(input.Method)
+                ) &&
                 (
                     this.Url == input.Url ||
-                    (this.Url != null &&
-                    this.Url.Equals(input.Url))
+                    this.Url != null &&
+                    this.Url.Equals(input.Url)
                 );
         }
 
@@ -179,10 +181,10 @@ namespace Adyen.Model.Checkout
         /// </summary>
         /// <param name="validationContext">Validation context</param>
         /// <returns>Validation Result</returns>
-        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(
+            ValidationContext validationContext)
         {
             yield break;
         }
     }
-
 }

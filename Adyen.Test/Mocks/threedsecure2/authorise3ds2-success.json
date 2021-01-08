@@ -1,16 +1,19 @@
 ﻿{
-    "additionalData": {
-        "expiryDate": "10/2020",
-        "cvcResult": "1 Matches",
-        "authCode": "62013",
-        "avsResult": "4 AVS not supported for this card type",
-        "cardSummary": "1245",
-        "aliasType": "Default",
-        "alias": "G250484827315790",
-        "paymentMethod": "visa",
-        "paymentMethodVariant": "visa"
-    },
-    "pspReference": "8535493830438417",
-    "resultCode": "Authorised",
-    "authCode": "62013"
+  "additionalData": {
+    "expiryDate": "10/2020",
+    "cvcResult": "1 Matches",
+    "authCode": "62013",
+    "avsResult": "4 AVS not supported for this card type",
+    "cardSummary": "1245",
+    "aliasType": "Default",
+    "alias": "G250484827315790",
+    "paymentMethod": "visa",
+    "paymentMethodVariant": "visa"
+  },
+  "pspReference": "8535493830438417",
+  "resultCode": "Authorised",
+  "authCode": "62013",
+  "merchantReference": "your_merchantReference",
+  "paymentMethod": "applepay",
+  "shopperLocale": "NL"
 }

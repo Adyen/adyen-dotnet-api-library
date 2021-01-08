@@ -71,6 +71,10 @@ namespace Adyen.Util
         /// <returns>string</returns>
         public static string ToCollectionsString<TKey, TValue>(this IDictionary<TKey, TValue> dictionary)
         {
+            if (dictionary == null)
+            {
+                return "";
+            }
             return "{" + string.Join(",", dictionary.Select(kv => kv.Key + "=" + kv.Value).ToArray()) + "}";
         }
 

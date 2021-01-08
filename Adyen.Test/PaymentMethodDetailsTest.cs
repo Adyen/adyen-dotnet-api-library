@@ -21,12 +21,13 @@
 #endregion
 
 using Adyen.Model.Checkout;
+using Adyen.Model.Checkout.Details;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace Adyen.Test
 {
     [TestClass]
-   public class PaymentMethodDetailsTest
+    public class PaymentMethodDetailsTest
     {
         [TestMethod]
         public void TestAchPaymentMethod()
@@ -60,7 +61,7 @@ namespace Adyen.Test
             Assert.AreEqual(paymentRequest.ReturnUrl, "https://your-company.com/checkout?shopperOrder=12xy..");
         }
 
-       
+
         [TestMethod]
         public void TestApplePayPaymentMethod()
         {
@@ -144,6 +145,41 @@ namespace Adyen.Test
             Assert.AreEqual(paymentRequest.MerchantAccount, "YOUR_MERCHANT_ACCOUNT");
             Assert.AreEqual(paymentRequest.Reference, "ideal test");
             Assert.AreEqual(paymentRequest.ReturnUrl, "https://your-company.com/checkout?shopperOrder=12xy..");
+        }
+
+        [TestMethod]
+        public void TestBacsDirectDebitDetails()
+        {
+            var paymentRequest = new PaymentRequest
+            {
+                MerchantAccount = "YOUR_MERCHANT_ACCOUNT",
+                Amount = new Amount("GBP", 1000),
+                Reference = "bacs direct debit test",
+                PaymentMethod = new BacsDirectDebitDetails(),               
+                ReturnUrl = "https://your-company.com/checkout?shopperOrder=12xy.."
+            };
+            var paymentMethodDetails = (BacsDirectDebitDetails)paymentRequest.PaymentMethod;
+            Assert.AreEqual(paymentMethodDetails.Type, "directdebit_GB");
+            Assert.AreEqual(paymentRequest.MerchantAccount, "YOUR_MERCHANT_ACCOUNT");
+            Assert.AreEqual(paymentRequest.Reference, "bacs direct debit test");
+            Assert.AreEqual(paymentRequest.ReturnUrl, "https://your-company.com/checkout?shopperOrder=12xy..");
+        }
+
+
+        [TestMethod]
+        public void TestPaypalSuccess()
+        {
+            var paymentRequest = new PaymentRequest()
+            {
+                MerchantAccount = "YOUR_MERCHANT_ACCOUNT",
+                Amount = new Amount("USD", 1000),
+                Reference = "paypal test",
+                PaymentMethod = new PayPalDetails() { Subtype= PayPalDetails.SubtypeEnum.SDK},          
+                ReturnUrl = "https://your-company.com/checkout?shopperOrder=12xy.."
+            };
+            var paymentMethodDetails = (PayPalDetails)paymentRequest.PaymentMethod;
+            Assert.AreEqual(paymentMethodDetails.Type, "paypal");
+            Assert.AreEqual(paymentMethodDetails.Subtype, PayPalDetails.SubtypeEnum.SDK);
         }
     }
 }

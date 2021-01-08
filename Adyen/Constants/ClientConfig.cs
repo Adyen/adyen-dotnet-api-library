@@ -44,9 +44,8 @@ namespace Adyen.Constants
         public static string RecurringApiVersion = "v25";
         public static string ApiVersion = "v51";
         public static string PayoutApiVersion = "v51";
-        public static string CheckoutApiVersion = "v51";
+        public static string CheckoutApiVersion = "v66";
         public static string PosTerminalManagementVersion = "v1";
-        public static string CheckoutUtilityApiVersion = "v1";
         public static string UserAgentSuffix = "adyen-dotnet-api-library/";
         public static string EndpointProtocol = "https://";
         public static string NexoProtocolVersion = "3.0";
@@ -54,6 +53,6 @@ namespace Adyen.Constants
         public static string BinLookupApiVersion = "v50";
 
         public static string LibName = "adyen-dotnet-api-library";
-        public static string LibVersion = "5.7.0";
+        public static string LibVersion = "6.0.0";
     }
 }

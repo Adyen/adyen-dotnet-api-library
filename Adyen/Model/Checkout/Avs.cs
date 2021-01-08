@@ -1,24 +1,25 @@
-#region License
-// /*
-//  *                       ######
-//  *                       ######
-//  * ############    ####( ######  #####. ######  ############   ############
-//  * #############  #####( ######  #####. ######  #############  #############
-//  *        ######  #####( ######  #####. ######  #####  ######  #####  ######
-//  * ###### ######  #####( ######  #####. ######  #####  #####   #####  ######
-//  * ###### ######  #####( ######  #####. ######  #####          #####  ######
-//  * #############  #############  #############  #############  #####  ######
-//  *  ############   ############  #############   ############  #####  ######
-//  *                                      ######
-//  *                               #############
-//  *                               ############
-//  *
-//  * Adyen Dotnet API Library
-//  *
-//  * Copyright (c) 2020 Adyen B.V.
-//  * This file is open source and available under the MIT license.
-//  * See the LICENSE file for more info.
-//  */
+#region Licence
+
+// 
+//                        ######
+//                        ######
+//  ############    ####( ######  #####. ######  ############   ############
+//  #############  #####( ######  #####. ######  #############  #############
+//         ######  #####( ######  #####. ######  #####  ######  #####  ######
+//  ###### ######  #####( ######  #####. ######  #####  #####   #####  ######
+//  ###### ######  #####( ######  #####. ######  #####          #####  ######
+//  #############  #############  #############  #############  #####  ######
+//   ############   ############  #############   ############  #####  ######
+//                                       ######
+//                                #############
+//                                ############
+// 
+//  Adyen Dotnet API Library
+// 
+//  Copyright (c) 2020 Adyen B.V.
+//  This file is open source and available under the MIT license.
+//  See the LICENSE file for more info.
+
 #endregion
 
 using System;
@@ -35,7 +36,7 @@ namespace Adyen.Model.Checkout
     /// Avs
     /// </summary>
     [DataContract]
-    public partial class Avs :  IEquatable<Avs>, IValidatableObject
+    public partial class Avs : IEquatable<Avs>, IValidatableObject
     {
         /// <summary>
         /// Specifies whether the shopper should enter their billing address during checkout.  Allowed values: * yes — Perform AVS checks for every card payment. * automatic — Perform AVS checks only when required to optimize the conversion rate. * no — Do not perform AVS checks.
@@ -44,48 +45,45 @@ namespace Adyen.Model.Checkout
         [JsonConverter(typeof(StringEnumConverter))]
         public enum EnabledEnum
         {
-            
             /// <summary>
             /// Enum Yes for value: yes
             /// </summary>
-            [EnumMember(Value = "yes")]
-            Yes = 1,
-            
+            [EnumMember(Value = "yes")] Yes = 1,
+
             /// <summary>
             /// Enum No for value: no
             /// </summary>
-            [EnumMember(Value = "no")]
-            No = 2,
-            
+            [EnumMember(Value = "no")] No = 2,
+
             /// <summary>
             /// Enum Automatic for value: automatic
             /// </summary>
-            [EnumMember(Value = "automatic")]
-            Automatic = 3
+            [EnumMember(Value = "automatic")] Automatic = 3
         }
 
         /// <summary>
         /// Specifies whether the shopper should enter their billing address during checkout.  Allowed values: * yes — Perform AVS checks for every card payment. * automatic — Perform AVS checks only when required to optimize the conversion rate. * no — Do not perform AVS checks.
         /// </summary>
         /// <value>Specifies whether the shopper should enter their billing address during checkout.  Allowed values: * yes — Perform AVS checks for every card payment. * automatic — Perform AVS checks only when required to optimize the conversion rate. * no — Do not perform AVS checks.</value>
-        [DataMember(Name="enabled", EmitDefaultValue=false)]
+        [DataMember(Name = "enabled", EmitDefaultValue = false)]
         public EnabledEnum? Enabled { get; set; }
+
         /// <summary>
         /// Initializes a new instance of the <see cref="Avs" /> class.
         /// </summary>
-        /// <param name="AddressEditable">Indicates whether the shopper is allowed to modify the billing address for the current payment request..</param>
-        /// <param name="Enabled">Specifies whether the shopper should enter their billing address during checkout.  Allowed values: * yes — Perform AVS checks for every card payment. * automatic — Perform AVS checks only when required to optimize the conversion rate. * no — Do not perform AVS checks..</param>
-        public Avs(bool? AddressEditable = default(bool?), EnabledEnum? Enabled = default(EnabledEnum?))
+        /// <param name="addressEditable">Indicates whether the shopper is allowed to modify the billing address for the current payment request..</param>
+        /// <param name="enabled">Specifies whether the shopper should enter their billing address during checkout.  Allowed values: * yes — Perform AVS checks for every card payment. * automatic — Perform AVS checks only when required to optimize the conversion rate. * no — Do not perform AVS checks..</param>
+        public Avs(bool? addressEditable = default(bool?), EnabledEnum? enabled = default(EnabledEnum?))
         {
-            this.AddressEditable = AddressEditable;
-            this.Enabled = Enabled;
+            this.AddressEditable = addressEditable;
+            this.Enabled = enabled;
         }
-        
+
         /// <summary>
         /// Indicates whether the shopper is allowed to modify the billing address for the current payment request.
         /// </summary>
         /// <value>Indicates whether the shopper is allowed to modify the billing address for the current payment request.</value>
-        [DataMember(Name="addressEditable", EmitDefaultValue=false)]
+        [DataMember(Name = "addressEditable", EmitDefaultValue = false)]
         public bool? AddressEditable { get; set; }
 
 
@@ -102,12 +100,12 @@ namespace Adyen.Model.Checkout
             sb.Append("}\n");
             return sb.ToString();
         }
-  
+
         /// <summary>
         /// Returns the JSON string presentation of the object
         /// </summary>
         /// <returns>JSON string presentation of the object</returns>
-        public string ToJson()
+        public virtual string ToJson()
         {
             return JsonConvert.SerializeObject(this, Formatting.Indented);
         }
@@ -132,16 +130,16 @@ namespace Adyen.Model.Checkout
             if (input == null)
                 return false;
 
-            return 
+            return
                 (
                     this.AddressEditable == input.AddressEditable ||
-                    (this.AddressEditable != null &&
-                    this.AddressEditable.Equals(input.AddressEditable))
-                ) && 
+                    this.AddressEditable != null &&
+                    this.AddressEditable.Equals(input.AddressEditable)
+                ) &&
                 (
                     this.Enabled == input.Enabled ||
-                    (this.Enabled != null &&
-                    this.Enabled.Equals(input.Enabled))
+                    this.Enabled != null &&
+                    this.Enabled.Equals(input.Enabled)
                 );
         }
 
@@ -167,10 +165,10 @@ namespace Adyen.Model.Checkout
         /// </summary>
         /// <param name="validationContext">Validation context</param>
         /// <returns>Validation Result</returns>
-        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(
+            ValidationContext validationContext)
         {
             yield break;
         }
     }
-
 }

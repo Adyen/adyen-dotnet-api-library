@@ -1,24 +1,25 @@
-#region License
-// /*
-//  *                       ######
-//  *                       ######
-//  * ############    ####( ######  #####. ######  ############   ############
-//  * #############  #####( ######  #####. ######  #############  #############
-//  *        ######  #####( ######  #####. ######  #####  ######  #####  ######
-//  * ###### ######  #####( ######  #####. ######  #####  #####   #####  ######
-//  * ###### ######  #####( ######  #####. ######  #####          #####  ######
-//  * #############  #############  #############  #############  #####  ######
-//  *  ############   ############  #############   ############  #####  ######
-//  *                                      ######
-//  *                               #############
-//  *                               ############
-//  *
-//  * Adyen Dotnet API Library
-//  *
-//  * Copyright (c) 2020 Adyen B.V.
-//  * This file is open source and available under the MIT license.
-//  * See the LICENSE file for more info.
-//  */
+#region Licence
+
+// 
+//                        ######
+//                        ######
+//  ############    ####( ######  #####. ######  ############   ############
+//  #############  #####( ######  #####. ######  #############  #############
+//         ######  #####( ######  #####. ######  #####  ######  #####  ######
+//  ###### ######  #####( ######  #####. ######  #####  #####   #####  ######
+//  ###### ######  #####( ######  #####. ######  #####          #####  ######
+//  #############  #############  #############  #############  #####  ######
+//   ############   ############  #############   ############  #####  ######
+//                                       ######
+//                                #############
+//                                ############
+// 
+//  Adyen Dotnet API Library
+// 
+//  Copyright (c) 2020 Adyen B.V.
+//  This file is open source and available under the MIT license.
+//  See the LICENSE file for more info.
+
 #endregion
 
 using System;
@@ -35,35 +36,31 @@ namespace Adyen.Model.Checkout
     /// PaymentResultRequest
     /// </summary>
     [DataContract]
-    public partial class PaymentResultRequest :  IEquatable<PaymentResultRequest>, IValidatableObject
+    public partial class PaymentResultRequest : IEquatable<PaymentResultRequest>, IValidatableObject
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="PaymentResultRequest" /> class.
         /// </summary>
-        [JsonConstructor]
-        protected PaymentResultRequest() { }
-        /// <summary>
-        /// Initializes a new instance of the <see cref="PaymentResultRequest" /> class.
-        /// </summary>
-        /// <param name="Payload">Encrypted and signed payment result data. You should receive this value from the Checkout SDK after the shopper completes the payment. (required).</param>
-        public PaymentResultRequest(string Payload = default(string))
+        /// <param name="payload">Encrypted and signed payment result data. You should receive this value from the Checkout SDK after the shopper completes the payment. (required).</param>
+        public PaymentResultRequest(string payload = default(string))
         {
-            // to ensure "Payload" is required (not null)
-            if (Payload == null)
+            // to ensure "payload" is required (not null)
+            if (payload == null)
             {
-                throw new InvalidDataException("Payload is a required property for PaymentResultRequest and cannot be null");
+                throw new InvalidDataException(
+                    "payload is a required property for PaymentResultRequest and cannot be null");
             }
             else
             {
-                this.Payload = Payload;
+                this.Payload = payload;
             }
         }
-        
+
         /// <summary>
         /// Encrypted and signed payment result data. You should receive this value from the Checkout SDK after the shopper completes the payment.
         /// </summary>
         /// <value>Encrypted and signed payment result data. You should receive this value from the Checkout SDK after the shopper completes the payment.</value>
-        [DataMember(Name="payload", EmitDefaultValue=false)]
+        [DataMember(Name = "payload", EmitDefaultValue = false)]
         public string Payload { get; set; }
 
         /// <summary>
@@ -78,12 +75,12 @@ namespace Adyen.Model.Checkout
             sb.Append("}\n");
             return sb.ToString();
         }
-  
+
         /// <summary>
         /// Returns the JSON string presentation of the object
         /// </summary>
         /// <returns>JSON string presentation of the object</returns>
-        public string ToJson()
+        public virtual string ToJson()
         {
             return JsonConvert.SerializeObject(this, Formatting.Indented);
         }
@@ -99,7 +96,7 @@ namespace Adyen.Model.Checkout
         }
 
         /// <summary>
-        /// Returns true if PaymentResultRequest instances are equal
+        /// Returns true if PaymentResultRequest  instances are equal
         /// </summary>
         /// <param name="input">Instance of PaymentResultRequest to be compared</param>
         /// <returns>Boolean</returns>
@@ -108,12 +105,10 @@ namespace Adyen.Model.Checkout
             if (input == null)
                 return false;
 
-            return 
-                (
-                    this.Payload == input.Payload ||
-                    (this.Payload != null &&
-                    this.Payload.Equals(input.Payload))
-                );
+            return
+                this.Payload == input.Payload ||
+                this.Payload != null &&
+                this.Payload.Equals(input.Payload);
         }
 
         /// <summary>
@@ -136,10 +131,10 @@ namespace Adyen.Model.Checkout
         /// </summary>
         /// <param name="validationContext">Validation context</param>
         /// <returns>Validation Result</returns>
-        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+        IEnumerable<ValidationResult> IValidatableObject.Validate(
+            ValidationContext validationContext)
         {
             yield break;
         }
     }
-
 }
