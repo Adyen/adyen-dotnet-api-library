@@ -30,6 +30,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 using System.Threading.Tasks;
 using static Adyen.Model.Checkout.PaymentResponse;
+using System.Collections;
 
 namespace Adyen.Test
 {
@@ -595,20 +596,28 @@ namespace Adyen.Test
             Assert.AreEqual("paypal", result.PaymentMethodType);
         }
 
-        /// <summary>
-        /// Test success without type in action
-        /// Post /payments 
-        /// </summary>
-        //[TestMethod]
-        //public void PaymentResponseWithoutTypeInActionTest()
-        //{
-        //    var client = CreateMockTestClientRequest("Mocks/checkout/payment-success-without-type-action.json");
-        //    var checkout = new Checkout(client);
-        //    var paymentRequest = CreatePaymentRequestCheckout();
-        //    var paymentResponse = checkout.Payments(paymentRequest);
-        //    Assert.IsTrue(paymentResponse.Action is CheckoutSDKAction);
-        //}
-
+        // <summary>
+        // Test success without type in action
+        // Post /payments 
+        // </summary>
+        [TestMethod]
+        public void PaymentResponseWithoutTypeInActionTest()
+        {
+            var client = CreateMockTestClientRequest("Mocks/checkout/payment-success-without-type-action.json");
+            var checkout = new Checkout(client);
+            var paymentRequest = CreatePaymentRequestCheckout();
+            var paymentResponse = checkout.Payments(paymentRequest);
+            Assert.IsNotNull(paymentResponse);
+            Assert.AreEqual(paymentResponse.ResultCode, ResultCodeEnum.RedirectShopper);
+            var paymentResponseAction = (PaymentResponseActionGeneric)paymentResponse.Action;
+            Assert.AreEqual(paymentResponseAction.PaymentResponseAction["method"], "GET");
+            Assert.AreEqual(paymentResponseAction.PaymentResponseAction["paymentMethodType"], "ideal");
+            Assert.AreEqual(paymentResponseAction.PaymentResponseAction["paymentData"], "Ab02b4c0!BQABAgA9+4KmHLS75...TKqeDpwlSfzHSPUC0/EwYDiN3UMBRl6Y8AkKAle");
+            Assert.AreEqual(paymentResponseAction.PaymentResponseAction["url"], "https://checkoutshopper-test.adyen.com/checkoutshopper/checkoutPaymentRedirect?redirectData=X...");
+            Assert.AreEqual(paymentResponse.Redirect.Method, Redirect.MethodEnum.GET);
+            Assert.AreEqual(paymentResponse.Redirect.Url, "https://checkoutshopper-test.adyen.com/checkoutshopper/checkoutPaymentRedirect?redirectData=...");
+            Assert.AreEqual(paymentResponse.Details[0], new InputDetail() { Key= "redirectResult", Type = "text" });
+        }
 
         [TestMethod]
         public void ApplePayDetailsDeserializationTest()

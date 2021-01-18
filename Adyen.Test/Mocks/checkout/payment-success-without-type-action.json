@@ -2,7 +2,7 @@
   "resultCode": "RedirectShopper",
   "action": {
     "method": "GET",
-    "paymentData": "...",
+    "paymentData": "Ab02b4c0!BQABAgA9+4KmHLS75...TKqeDpwlSfzHSPUC0/EwYDiN3UMBRl6Y8AkKAle",
     "paymentMethodType": "ideal",
     "url": "https://checkoutshopper-test.adyen.com/checkoutshopper/checkoutPaymentRedirect?redirectData=X..."
   },
@@ -12,7 +12,7 @@
       "type": "text"
     }
   ],
-  "paymentData": "...,
+  "paymentData": "Ab02b4c0!BQABAgA9+4KmHLS75...TKqeDpwlSfzHSPUC0/EwYDiN3UMBRl6Y8AkKAle",
   "redirect": {
     "method": "GET",
     "url": "https://checkoutshopper-test.adyen.com/checkoutshopper/checkoutPaymentRedirect?redirectData=..."

@@ -24,6 +24,7 @@ using Newtonsoft.Json;
 using System;
 using Adyen.Model.Checkout.Action;
 using Newtonsoft.Json.Linq;
+using System.Collections.Generic;
 
 namespace Adyen.Util
 {
@@ -45,38 +46,53 @@ namespace Adyen.Util
         {
             var jsonObject = JObject.Load(reader);
             var paymentResponseAction = default(IPaymentResponseAction);
-            switch (jsonObject["type"].ToString())
+            //In case that type is empty
+            if (jsonObject["type"] == null)
             {
-                case "donation":
-                    paymentResponseAction = new CheckoutDonationAction();
-                    break;
-                case "qrCode":
-                    paymentResponseAction = new CheckoutQrCodeAction();
-                    break;
-                case "redirect":
-                    paymentResponseAction = new CheckoutRedirectAction();
-                    break;
-                case "sdk":
-                    paymentResponseAction = new CheckoutSDKAction();
-                    break;
-                case "threeDS2Challenge":
-                    paymentResponseAction = new CheckoutThreeDS2ChallengeAction();
-                    break;
-                case "threeDS2Fingerprint":
-                    paymentResponseAction = new CheckoutThreeDS2FingerPrintAction();
-                    break;
-                case "threeDS2Action":
-                    paymentResponseAction = new CheckoutThreeDS2Action();
-                    break;
-                case "await":
-                    paymentResponseAction = new CheckoutAwaitAction();
-                    break;
-                case "voucher":
-                    paymentResponseAction = new CheckoutVoucherAction();
-                    break;
-                case "oneTimePasscode":
-                    paymentResponseAction = new CheckoutOneTimePasscodeAction();
-                    break;
+                var paymentResponeActionPairs = new Dictionary<string, object>();
+                serializer.Populate(jsonObject.CreateReader(), paymentResponeActionPairs);
+
+                paymentResponseAction = new PaymentResponseActionGeneric
+                {
+                    PaymentResponseAction = paymentResponeActionPairs
+                };
+                return paymentResponseAction;
+            }
+            else
+            {
+                switch (jsonObject["type"].ToString())
+                {
+                    case "donation":
+                        paymentResponseAction = new CheckoutDonationAction();
+                        break;
+                    case "qrCode":
+                        paymentResponseAction = new CheckoutQrCodeAction();
+                        break;
+                    case "redirect":
+                        paymentResponseAction = new CheckoutRedirectAction();
+                        break;
+                    case "sdk":
+                        paymentResponseAction = new CheckoutSDKAction();
+                        break;
+                    case "threeDS2Challenge":
+                        paymentResponseAction = new CheckoutThreeDS2ChallengeAction();
+                        break;
+                    case "threeDS2Fingerprint":
+                        paymentResponseAction = new CheckoutThreeDS2FingerPrintAction();
+                        break;
+                    case "threeDS2Action":
+                        paymentResponseAction = new CheckoutThreeDS2Action();
+                        break;
+                    case "await":
+                        paymentResponseAction = new CheckoutAwaitAction();
+                        break;
+                    case "voucher":
+                        paymentResponseAction = new CheckoutVoucherAction();
+                        break;
+                    case "oneTimePasscode":
+                        paymentResponseAction = new CheckoutOneTimePasscodeAction();
+                        break;
+                }
             }
 
             serializer.Populate(jsonObject.CreateReader(), paymentResponseAction);
