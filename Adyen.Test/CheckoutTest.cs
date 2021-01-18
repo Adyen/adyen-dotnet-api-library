@@ -595,6 +595,20 @@ namespace Adyen.Test
             Assert.AreEqual("paypal", result.PaymentMethodType);
         }
 
+        /// <summary>
+        /// Test success without type in action
+        /// Post /payments 
+        /// </summary>
+        //[TestMethod]
+        //public void PaymentResponseWithoutTypeInActionTest()
+        //{
+        //    var client = CreateMockTestClientRequest("Mocks/checkout/payment-success-without-type-action.json");
+        //    var checkout = new Checkout(client);
+        //    var paymentRequest = CreatePaymentRequestCheckout();
+        //    var paymentResponse = checkout.Payments(paymentRequest);
+        //    Assert.IsTrue(paymentResponse.Action is CheckoutSDKAction);
+        //}
+
 
         [TestMethod]
         public void ApplePayDetailsDeserializationTest()

@@ -1,0 +1,20 @@
+{
+  "resultCode": "RedirectShopper",
+  "action": {
+    "method": "GET",
+    "paymentData": "...",
+    "paymentMethodType": "ideal",
+    "url": "https://checkoutshopper-test.adyen.com/checkoutshopper/checkoutPaymentRedirect?redirectData=X..."
+  },
+  "details": [
+    {
+      "key": "redirectResult",
+      "type": "text"
+    }
+  ],
+  "paymentData": "...,
+  "redirect": {
+    "method": "GET",
+    "url": "https://checkoutshopper-test.adyen.com/checkoutshopper/checkoutPaymentRedirect?redirectData=..."
+  }
+}
