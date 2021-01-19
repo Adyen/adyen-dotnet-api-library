@@ -479,7 +479,7 @@ namespace Adyen.Test
             Assert.AreEqual(paymentResponse.Details[0].Type, "text");
             Assert.AreEqual(paymentResponse.Authentication["threeds2.challengeToken"], "S0zYWQ0MGEwMjU2MjEifQ==");
         }
-
+        
         [TestMethod]
         public void PaymentsOriginTest()
         {
@@ -632,6 +632,21 @@ namespace Adyen.Test
             var paymentRequest = Util.JsonOperation.Deserialize<PaymentRequest>(json);
             Assert.IsTrue(paymentRequest.PaymentMethod is LianLianPayDetails);
             Assert.AreEqual(paymentRequest.PaymentMethod.Type, LianLianPayDetails.EbankingCredit);
+        }
+
+        /// <summary>
+        /// Test toJson() that includes the type in the action 
+        /// </summary>
+        [TestMethod]
+        public void PaymentsResponseToJsonTest()
+        {
+            var expectedJson = "{\r\n  \"resultCode\": \"ChallengeShopper\",\r\n  \"action\": {\r\n    \"type\": \"threeDS2Challenge\",\r\n    \"paymentData\": \"Te1CMIy1vKQTYsSHZ+gRbFpQy4d4n2HLD3c2b7xKnRNpWzWPuI=\",\r\n    \"paymentMethodType\": \"scheme\",\r\n    \"token\": \"S0zYWQ0MGEwMjU2MjEifQ==\"\r\n  },\r\n  \"authentication\": {\r\n    \"threeds2.challengeToken\": \"S0zYWQ0MGEwMjU2MjEifQ==\"\r\n  },\r\n  \"details\": [\r\n    {\r\n      \"key\": \"threeds2.challengeResult\",\r\n      \"type\": \"text\"\r\n    }\r\n  ],\r\n  \"paymentData\": \"Te1CMIy1vKQTYsSHZ+gRbFpQy4d4n2HLD3c2b7xKnRNpWzWPuI=\"\r\n}";
+            var paymentRequest = CreatePaymentRequestCheckout();
+            var client = CreateMockTestClientApiKeyBasedRequest("Mocks/checkout/paymentResponse-3DS-ChallengeShopper.json");
+            var checkout = new Checkout(client);
+            var paymentResponse = checkout.Payments(paymentRequest);
+            var paymentResponseToJson = paymentResponse.ToJson();
+            Assert.AreEqual(paymentResponseToJson, expectedJson);
         }
     }
 }

@@ -38,7 +38,13 @@ namespace Adyen.Model.Checkout.Action
     public partial class CheckoutThreeDS2FingerPrintAction : IEquatable<CheckoutThreeDS2FingerPrintAction>,
         IValidatableObject, IPaymentResponseAction
     {
+        /// <summary>
+        /// Unique identifier of action
+        /// </summary>
+        /// <value>Unique identifier of action</value>
+        [DataMember(Name = "type", EmitDefaultValue = false)]
         public string Type { get; set; } = "threeDS2Fingerprint";
+
         /// <summary>
         /// Initializes a new instance of the <see cref="CheckoutThreeDS2FingerPrintAction" /> class.
         /// </summary>

@@ -38,7 +38,13 @@ namespace Adyen.Model.Checkout.Action
     public partial class CheckoutThreeDS2ChallengeAction : IEquatable<CheckoutThreeDS2ChallengeAction>,
         IValidatableObject, IPaymentResponseAction
     {
+        /// <summary>
+        /// Unique identifier of action
+        /// </summary>
+        /// <value>Unique identifier of action</value>
+        [DataMember(Name = "type", EmitDefaultValue = false)]
         public string Type { get; set; } = "threeDS2Challenge";
+
         /// <summary>
         /// Initializes a new instance of the <see cref="CheckoutThreeDS2ChallengeAction" /> class.
         /// </summary>
