@@ -31,6 +31,7 @@ using System;
 using System.Threading.Tasks;
 using static Adyen.Model.Checkout.PaymentResponse;
 using Newtonsoft.Json.Linq;
+using Newtonsoft.Json;
 
 namespace Adyen.Test
 {
