@@ -576,6 +576,7 @@ namespace Adyen.Model.Checkout
         /// </summary>
         /// <value>The collection that contains the type of the payment method and its specific information (e.g. &#x60;idealIssuer&#x60;).</value>
         [DataMember(Name = "paymentMethod", EmitDefaultValue = false)]
+        [JsonConverter(typeof(PaymentMethodDetailsConverter))]
         public IPaymentMethodDetails PaymentMethod { get; set; }
 
         /// <summary>
