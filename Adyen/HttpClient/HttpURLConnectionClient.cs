@@ -68,16 +68,7 @@ namespace Adyen.HttpClient
             }
             catch (WebException e)
             {
-                if (e.Response == null)
-                {
-                    throw new HttpClientException((int) HttpStatusCode.RequestTimeout, "HTTP Exception timeout", null, "No response", e);
-                }
-                var response = (HttpWebResponse) e.Response;
-                using (var sr = new StreamReader(response.GetResponseStream()))
-                {
-                    responseText = sr.ReadToEnd();
-                }
-                throw new HttpClientException((int) response.StatusCode, "HTTP Exception", response.Headers, responseText);
+                HandleAdyenWebException(e);
             }
             return responseText;
         }
@@ -93,7 +84,7 @@ namespace Adyen.HttpClient
         /// <returns>Task<string></returns>
         public async Task<string> RequestAsync(string endpoint, string json, Config config, bool isApiKeyRequired, RequestOptions requestOptions = null)
         {
-            string responseText;
+            string responseText = null;
             //Set security protocol. Only TLS1.2
             ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12;
             var httpWebRequest = GetHttpWebRequest(endpoint, config, isApiKeyRequired, requestOptions);
@@ -103,16 +94,37 @@ namespace Adyen.HttpClient
                 streamWriter.Flush();
                 streamWriter.Close();
             }
-            using (var response = (HttpWebResponse)await httpWebRequest.GetResponseAsync())
+            try
             {
-                using (var reader = new StreamReader(response.GetResponseStream(), _encoding))
+                using (var response = (HttpWebResponse)await httpWebRequest.GetResponseAsync())
                 {
-                    responseText = await reader.ReadToEndAsync();
+                    using (var reader = new StreamReader(response.GetResponseStream(), _encoding))
+                    {
+                        responseText = await reader.ReadToEndAsync();
+                    }
                 }
+            }
+            catch (WebException e)
+            {
+                HandleAdyenWebException(e);
             }
             return responseText;
         }
 
+        private static void HandleAdyenWebException(WebException e)
+        {
+            string responseText = null;
+            if (e.Response == null)
+            {
+                throw new HttpClientException((int)HttpStatusCode.RequestTimeout, "HTTP Exception timeout", null, "No response", e);
+            }
+            var response = (HttpWebResponse)e.Response;
+            using (var sr = new StreamReader(response.GetResponseStream()))
+            {
+                responseText = sr.ReadToEnd();
+            }
+            throw new HttpClientException((int)response.StatusCode, "HTTP Exception", response.Headers, responseText);
+        }
 
         [Obsolete("This is deprecated functionality by Adyen. Correct use request method with isApiKeyRequired parameter.")]
         public string Request(string endpoint, string json, Config config)
