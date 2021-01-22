@@ -2,13 +2,12 @@
 using Adyen.Service;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
-using System.Collections.Generic;
 using System.Text;
 
 namespace Adyen.Test
 {
     [TestClass]
-    public class NotificationDecyptionTest : BaseTest
+    public class NotificationDecryptionTest : BaseTest
     {
         private EncryptionCredentialDetails _encryptionCredentialDetails;
 
