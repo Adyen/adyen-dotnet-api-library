@@ -37,6 +37,11 @@ namespace Adyen.Model.Checkout.Action
     [DataContract]
     public partial class CheckoutDonationAction : IEquatable<CheckoutDonationAction>, IValidatableObject, IPaymentResponseAction
     {
+        /// <summary>
+        /// Unique identifier of action
+        /// </summary>
+        /// <value>Unique identifier of action</value>
+        [DataMember(Name = "type", EmitDefaultValue = false)]
         public string Type { get; set; } = "donation";
 
         /// <summary>

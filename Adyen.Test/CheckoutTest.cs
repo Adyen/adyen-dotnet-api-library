@@ -30,6 +30,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 using System.Threading.Tasks;
 using static Adyen.Model.Checkout.PaymentResponse;
+using Newtonsoft.Json.Linq;
 using Newtonsoft.Json;
 
 namespace Adyen.Test
@@ -480,7 +481,7 @@ namespace Adyen.Test
             Assert.AreEqual(paymentResponse.Details[0].Type, "text");
             Assert.AreEqual(paymentResponse.Authentication["threeds2.challengeToken"], "S0zYWQ0MGEwMjU2MjEifQ==");
         }
-
+        
         [TestMethod]
         public void PaymentsOriginTest()
         {
@@ -634,6 +635,21 @@ namespace Adyen.Test
             var paymentRequest = JsonConvert.DeserializeObject<PaymentRequest>(json);
             Assert.IsTrue(paymentRequest.PaymentMethod is LianLianPayDetails);
             Assert.AreEqual(paymentRequest.PaymentMethod.Type, LianLianPayDetails.EbankingCredit);
+        }
+
+        /// <summary>
+        /// Test toJson() that includes the type in the action
+        /// </summary>
+        [TestMethod]
+        public void PaymentsResponseToJsonTest()
+        {
+            var paymentRequest = CreatePaymentRequestCheckout();
+            var client = CreateMockTestClientApiKeyBasedRequest("Mocks/checkout/paymentResponse-3DS-ChallengeShopper.json");
+            var checkout = new Checkout(client);
+            var paymentResponse = checkout.Payments(paymentRequest);
+            var paymentResponseToJson = paymentResponse.ToJson();
+            var jObject = JObject.Parse(paymentResponseToJson);
+            Assert.AreEqual(jObject["action"]["type"], "threeDS2Challenge");
         }
     }
 }

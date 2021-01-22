@@ -37,7 +37,13 @@ namespace Adyen.Model.Checkout.Action
     [DataContract]
     public partial class CheckoutOneTimePasscodeAction : IEquatable<CheckoutOneTimePasscodeAction>, IValidatableObject, IPaymentResponseAction
     {
+        /// <summary>
+        /// Unique identifier of action
+        /// </summary>
+        /// <value>Unique identifier of action</value>
+        [DataMember(Name = "type", EmitDefaultValue = false)]
         public string Type { get; set; } = "oneTimePasscode";
+
         /// <summary>
         /// Initializes a new instance of the <see cref="CheckoutOneTimePasscodeAction" /> class.
         /// </summary>
