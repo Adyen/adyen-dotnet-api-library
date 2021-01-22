@@ -86,6 +86,18 @@ namespace Adyen.Service
         {
             return TerminalApiLocal(saleToPoiRequest: saleToPoiRequest, encryptionCredentialDetails: encryptionCredentialDetails);
         }
+        
+        /// <summary>
+        /// Used to decrypt the notification received
+        /// </summary>
+        /// <param name="notification"></param>
+        /// <param name="encryptionCredentialDetails"></param>
+        /// <returns></returns>
+        public string DecryptNotification(string notification, EncryptionCredentialDetails encryptionCredentialDetails)
+        {
+            var saleToPoiMessageSecured = _saleToPoiMessageSecuredSerializer.Deserialize(notification);
+            var decryptNotification = _messageSecuredEncryptor.Decrypt(saleToPoiMessageSecured, encryptionCredentialDetails);
+            return decryptNotification;
+        }
     }
 }
-
