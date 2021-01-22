@@ -97,9 +97,7 @@ namespace Adyen.Service
         {
             var saleToPoiMessageSecured = _saleToPoiMessageSecuredSerializer.Deserialize(notification);
             var decryptNotification = _messageSecuredEncryptor.Decrypt(saleToPoiMessageSecured, encryptionCredentialDetails);
-            this.Client.LogLine("Notofication: \n" + decryptNotification);
             return decryptNotification;
         }
     }
 }
-
