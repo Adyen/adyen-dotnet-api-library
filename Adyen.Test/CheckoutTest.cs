@@ -250,7 +250,7 @@ namespace Adyen.Test
         }
 
         /// <summary>
-        /// Test success flow for
+        /// Test success deserialization for
         /// POST /payments/details
         /// </summary>
         [TestMethod]
@@ -258,10 +258,14 @@ namespace Adyen.Test
         {
             var detailsRequest = CreateDetailsRequest();
             detailsRequest.Details = new PaymentCompletionDetails(payload: "Ab02b4c0!BQABAgBQn96RxfJHpp2RXhqQBuhQFWgE...gfGHb4IZSP4IpoCC2==RXhqQBuhQ");
-            var client = CreateMockTestClientApiKeyBasedRequest("Mocks/checkout/paymentsdetails-response-success.json");
+            var client = CreateMockTestClientApiKeyBasedRequest("Mocks/checkout/paymentsdetails-action-success.json");
             var checkout = new Checkout(client);
             var paymentResponse = checkout.PaymentDetails(detailsRequest);
-            Assert.AreEqual("8515232733321252", paymentResponse.PspReference);
+            Assert.IsTrue(paymentResponse.Action is CheckoutThreeDS2FingerPrintAction);
+            var paymentActionResponse = (CheckoutThreeDS2FingerPrintAction)paymentResponse.Action;
+            Assert.AreEqual("Ab02b4c0!BQABAgBNSfsOs...", paymentActionResponse.PaymentData);
+            Assert.AreEqual("eyJ0aHJlZURTTWVzc2FnZ...", paymentActionResponse.Token);
+            Assert.AreEqual("threeDS2Fingerprint", paymentActionResponse.Type);
         }
 
         /// <summary>
