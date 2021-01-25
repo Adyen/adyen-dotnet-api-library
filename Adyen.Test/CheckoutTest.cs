@@ -251,6 +251,21 @@ namespace Adyen.Test
 
         /// <summary>
         /// Test success flow for
+        /// POST /payments/details
+        /// </summary>
+        [TestMethod]
+        public void PaymentDetailsResponseDeserializeTest()
+        {
+            var detailsRequest = CreateDetailsRequest();
+            detailsRequest.Details = new PaymentCompletionDetails(payload: "Ab02b4c0!BQABAgBQn96RxfJHpp2RXhqQBuhQFWgE...gfGHb4IZSP4IpoCC2==RXhqQBuhQ");
+            var client = CreateMockTestClientApiKeyBasedRequest("Mocks/checkout/paymentsdetails-response-success.json");
+            var checkout = new Checkout(client);
+            var paymentResponse = checkout.PaymentDetails(detailsRequest);
+            Assert.AreEqual("8515232733321252", paymentResponse.PspReference);
+        }
+
+        /// <summary>
+        /// Test success flow for
         /// POST /paymentMethods
         /// </summary>
         [TestMethod]
