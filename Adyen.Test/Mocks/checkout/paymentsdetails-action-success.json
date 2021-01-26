@@ -1,0 +1,8 @@
+{
+  "action": {
+    "type": "threeDS2Fingerprint",
+    "paymentData": "Ab02b4c0!BQABAgBNSfsOs...",
+    "paymentMethodType": "scheme",
+    "token": "eyJ0aHJlZURTTWVzc2FnZ..."
+  }
+}
