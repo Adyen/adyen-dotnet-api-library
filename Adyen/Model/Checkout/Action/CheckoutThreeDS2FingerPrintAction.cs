@@ -44,7 +44,6 @@ namespace Adyen.Model.Checkout.Action
         /// <value>Unique identifier of action</value>
         [DataMember(Name = "type", EmitDefaultValue = false)]
         public string Type { get; set; } = "threeDS2Fingerprint";
-
         /// <summary>
         /// Initializes a new instance of the <see cref="CheckoutThreeDS2FingerPrintAction" /> class.
         /// </summary>

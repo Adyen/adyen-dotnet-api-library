@@ -186,7 +186,7 @@ namespace Adyen.Test
             var paymentResultResponse = checkout.PaymentsResult(paymentResultRequest);
             Assert.IsNotNull(paymentResultResponse.AdditionalData);
             Assert.AreEqual(paymentResultResponse.AdditionalData["cvcResult"], "1 Matches");
-            Assert.AreEqual(paymentResultResponse.MerchantReference, "your_merchantReference"); 
+            Assert.AreEqual(paymentResultResponse.MerchantReference, "your_merchantReference");
             Assert.AreEqual(paymentResultResponse.ResultCode, PaymentResultResponse.ResultCodeEnum.Authorised);
         }
 
@@ -212,7 +212,7 @@ namespace Adyen.Test
         public void PaymentDetailsTest()
         {
             var detailsRequest = CreateDetailsRequest();
-           detailsRequest.Details = new PaymentCompletionDetails(payload: "Ab02b4c0!BQABAgBQn96RxfJHpp2RXhqQBuhQFWgE...gfGHb4IZSP4IpoCC2==RXhqQBuhQ");
+            detailsRequest.Details = new PaymentCompletionDetails(payload: "Ab02b4c0!BQABAgBQn96RxfJHpp2RXhqQBuhQFWgE...gfGHb4IZSP4IpoCC2==RXhqQBuhQ");
             var client = CreateMockTestClientApiKeyBasedRequest("Mocks/checkout/paymentsdetails-success.json");
             var checkout = new Checkout(client);
             var paymentResponse = checkout.PaymentDetails(detailsRequest);
@@ -500,7 +500,7 @@ namespace Adyen.Test
             Assert.AreEqual(paymentResponse.Details[0].Type, "text");
             Assert.AreEqual(paymentResponse.Authentication["threeds2.challengeToken"], "S0zYWQ0MGEwMjU2MjEifQ==");
         }
-        
+
         [TestMethod]
         public void PaymentsOriginTest()
         {
@@ -516,7 +516,7 @@ namespace Adyen.Test
         [TestMethod]
         public void CreatePaymentLinkSuccess()
         {
-            var createPaymentLinkRequest = new CreatePaymentLinkRequest ( store : "TheDemoStore", amount : new Amount(currency:"EUR", 1000), merchantAccount : "MerchantAccount" , reference:"reference");
+            var createPaymentLinkRequest = new CreatePaymentLinkRequest(store: "TheDemoStore", amount: new Amount(currency: "EUR", 1000), merchantAccount: "MerchantAccount", reference: "reference");
             Assert.AreEqual(createPaymentLinkRequest.Store, "TheDemoStore");
         }
 
@@ -631,7 +631,6 @@ namespace Adyen.Test
         {
             var json = "{\"amount\":{\"value\":1000,\"currency\":\"USD\"},\"merchantAccount\":\"MerchantAccountTest\",\"paymentMethod\":{\"blikCode\":\"blikCode\",\"type\":\"blik\"},\"reference\":\"Your order number\",\"returnUrl\":\"https://your-company.com/...\",\"applicationInfo\":{\"adyenLibrary\":{\"name\":\"adyen-java-api-library\",\"version\":\"10.1.0\"}}}";
             var paymentRequest = JsonConvert.DeserializeObject<PaymentRequest>(json);
-
             Assert.IsTrue(paymentRequest.PaymentMethod is BlikDetails);
             Assert.AreEqual(paymentRequest.PaymentMethod.Type, BlikDetails.Blik);
         }
