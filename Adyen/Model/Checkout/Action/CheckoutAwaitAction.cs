@@ -37,6 +37,7 @@ namespace Adyen.Model.Checkout.Action
     [DataContract]
     public partial class CheckoutAwaitAction : IEquatable<CheckoutAwaitAction>, IValidatableObject, IPaymentResponseAction
     {
+<<<<<<< HEAD
         /// <summary>
         /// Unique identifier of action
         /// </summary>
@@ -44,6 +45,9 @@ namespace Adyen.Model.Checkout.Action
         [DataMember(Name = "type", EmitDefaultValue = false)]
         public string Type { get; set; } = "await";
 
+=======
+        public string Type { get; set; } = "await";
+>>>>>>> 9746f0dbddea1a55b4cff7f0da38c6aade6f8d07
         /// <summary>
         /// Initializes a new instance of the <see cref="CheckoutAwaitAction" /> class.
         /// </summary>

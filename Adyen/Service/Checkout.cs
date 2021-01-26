@@ -110,7 +110,11 @@ namespace Adyen.Service
         {
             var jsonRequest = Util.JsonOperation.SerializeRequest(paymentsDetailsRequest);
             var jsonResponse = _paymentDetails.Request(jsonRequest, requestOptions);
+<<<<<<< HEAD
             return Util.JsonOperation.Deserialize<PaymentResponse>(jsonResponse);
+=======
+            return JsonConvert.DeserializeObject<PaymentResponse>(jsonResponse);
+>>>>>>> 9746f0dbddea1a55b4cff7f0da38c6aade6f8d07
         }
 
         /// <summary>
@@ -158,7 +162,7 @@ namespace Adyen.Service
         {
             var jsonRequest = Util.JsonOperation.SerializeRequest(paymentResultRequest);
             var jsonResponse = _paymentsResult.Request(jsonRequest);
-            return JsonConvert.DeserializeObject<PaymentResultResponse>(jsonResponse);
+            return Util.JsonOperation.Deserialize<PaymentResultResponse>(jsonResponse);
         }
 
         /// <summary>
