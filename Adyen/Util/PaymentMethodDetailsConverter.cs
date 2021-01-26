@@ -37,11 +37,7 @@ namespace Adyen.Util
         public override void WriteJson(JsonWriter writer,
             object value, JsonSerializer serializer)
         {
-<<<<<<< HEAD
             serializer.Serialize(writer, value);
-=======
-            throw new InvalidOperationException("Use default serialization.");
->>>>>>> 9746f0dbddea1a55b4cff7f0da38c6aade6f8d07
         }
 
         public override object ReadJson(JsonReader reader,

@@ -37,18 +37,13 @@ namespace Adyen.Model.Checkout.Action
     [DataContract]
     public partial class CheckoutVoucherAction : IEquatable<CheckoutVoucherAction>, IValidatableObject, IPaymentResponseAction
     {
-        public string Type { get; set; } = "voucher";
         /// <summary>
-<<<<<<< HEAD:Adyen/Model/Checkout/Action/CheckoutVoucherAction.cs
         /// Unique identifier of action
         /// </summary>
         /// <value>Unique identifier of action</value>
         [DataMember(Name = "type", EmitDefaultValue = false)]
         public string Type { get; set; } = "voucher";
-
         /// <summary>
-=======
->>>>>>> 9746f0dbddea1a55b4cff7f0da38c6aade6f8d07:Adyen/Model/Checkout/CheckoutPaymentsAction.cs
         /// Initializes a new instance of the <see cref="CheckoutVoucherAction" /> class.
         /// </summary>
         /// <param name="alternativeReference">The voucher alternative reference code..</param>
