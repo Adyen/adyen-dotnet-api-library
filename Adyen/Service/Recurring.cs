@@ -23,7 +23,7 @@
 
 using Adyen.Model.Recurring;
 using Adyen.Service.Resource.Recurring;
-using System.Threading.Tasks;
+using System;
 
 namespace Adyen.Service
 {
@@ -42,13 +42,6 @@ namespace Adyen.Service
         {
             var jsonRequest = Util.JsonOperation.SerializeRequest(request);
             var jsonResponse = _listRecurringDetails.Request(jsonRequest);
-            return Util.JsonOperation.Deserialize<RecurringDetailsResult>(jsonResponse);
-        }
-
-        public async Task<RecurringDetailsResult> ListRecurringDetailsAsync(RecurringDetailsRequest request)
-        {
-            var jsonRequest = Util.JsonOperation.SerializeRequest(request);
-            var jsonResponse = await _listRecurringDetails.RequestAsync(jsonRequest);
             return Util.JsonOperation.Deserialize<RecurringDetailsResult>(jsonResponse);
         }
 

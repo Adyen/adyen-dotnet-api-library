@@ -2,7 +2,6 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 using System.Collections.Generic;
-using System.IO;
 using System.Text;
 
 namespace Adyen.Test.ModelTests
@@ -16,7 +15,7 @@ namespace Adyen.Test.ModelTests
         [TestMethod]
         public void CreatingNameWithoutFirstNameFails()
         {
-            Assert.ThrowsException<InvalidDataException>(() => new Name(null, Name.GenderEnum.MALE, null, null));
+            Assert.ThrowsException<ArgumentNullException>(() => new Name(null, Name.GenderEnum.MALE, null, null));
         }
 
         /// <summary>
@@ -25,7 +24,7 @@ namespace Adyen.Test.ModelTests
         [TestMethod]
         public void CreatingNameWithoutLastNameFails()
         {
-            Assert.ThrowsException<InvalidDataException>(() => new Name("firstName", Name.GenderEnum.MALE, null, null));
+            Assert.ThrowsException<ArgumentNullException>(() => new Name("firstName", Name.GenderEnum.MALE, null, null));
         }
 
         /// <summary>

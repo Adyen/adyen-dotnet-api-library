@@ -1,25 +1,24 @@
-#region Licence
-
-// 
-//                        ######
-//                        ######
-//  ############    ####( ######  #####. ######  ############   ############
-//  #############  #####( ######  #####. ######  #############  #############
-//         ######  #####( ######  #####. ######  #####  ######  #####  ######
-//  ###### ######  #####( ######  #####. ######  #####  #####   #####  ######
-//  ###### ######  #####( ######  #####. ######  #####          #####  ######
-//  #############  #############  #############  #############  #####  ######
-//   ############   ############  #############   ############  #####  ######
-//                                       ######
-//                                #############
-//                                ############
-// 
-//  Adyen Dotnet API Library
-// 
-//  Copyright (c) 2020 Adyen B.V.
-//  This file is open source and available under the MIT license.
-//  See the LICENSE file for more info.
-
+#region License
+// /*
+//  *                       ######
+//  *                       ######
+//  * ############    ####( ######  #####. ######  ############   ############
+//  * #############  #####( ######  #####. ######  #############  #############
+//  *        ######  #####( ######  #####. ######  #####  ######  #####  ######
+//  * ###### ######  #####( ######  #####. ######  #####  #####   #####  ######
+//  * ###### ######  #####( ######  #####. ######  #####          #####  ######
+//  * #############  #############  #############  #############  #####  ######
+//  *  ############   ############  #############   ############  #####  ######
+//  *                                      ######
+//  *                               #############
+//  *                               ############
+//  *
+//  * Adyen Dotnet API Library
+//  *
+//  * Copyright (c) 2020 Adyen B.V.
+//  * This file is open source and available under the MIT license.
+//  * See the LICENSE file for more info.
+//  */
 #endregion
 
 using System;
@@ -36,7 +35,7 @@ namespace Adyen.Model.Checkout
     /// ShopperInput
     /// </summary>
     [DataContract]
-    public partial class ShopperInput : IEquatable<ShopperInput>, IValidatableObject
+    public partial class ShopperInput :  IEquatable<ShopperInput>, IValidatableObject
     {
         /// <summary>
         /// Specifies visibility of billing address fields.  Permitted values: * editable * hidden * readOnly
@@ -45,29 +44,32 @@ namespace Adyen.Model.Checkout
         [JsonConverter(typeof(StringEnumConverter))]
         public enum BillingAddressEnum
         {
+            
             /// <summary>
             /// Enum Editable for value: editable
             /// </summary>
-            [EnumMember(Value = "editable")] Editable = 1,
-
+            [EnumMember(Value = "editable")]
+            Editable = 1,
+            
             /// <summary>
             /// Enum Hidden for value: hidden
             /// </summary>
-            [EnumMember(Value = "hidden")] Hidden = 2,
-
+            [EnumMember(Value = "hidden")]
+            Hidden = 2,
+            
             /// <summary>
             /// Enum ReadOnly for value: readOnly
             /// </summary>
-            [EnumMember(Value = "readOnly")] ReadOnly = 3
+            [EnumMember(Value = "readOnly")]
+            ReadOnly = 3
         }
 
         /// <summary>
         /// Specifies visibility of billing address fields.  Permitted values: * editable * hidden * readOnly
         /// </summary>
         /// <value>Specifies visibility of billing address fields.  Permitted values: * editable * hidden * readOnly</value>
-        [DataMember(Name = "billingAddress", EmitDefaultValue = false)]
+        [DataMember(Name="billingAddress", EmitDefaultValue=false)]
         public BillingAddressEnum? BillingAddress { get; set; }
-
         /// <summary>
         /// Specifies visibility of delivery address fields.  Permitted values: * editable * hidden * readOnly
         /// </summary>
@@ -75,29 +77,32 @@ namespace Adyen.Model.Checkout
         [JsonConverter(typeof(StringEnumConverter))]
         public enum DeliveryAddressEnum
         {
+            
             /// <summary>
             /// Enum Editable for value: editable
             /// </summary>
-            [EnumMember(Value = "editable")] Editable = 1,
-
+            [EnumMember(Value = "editable")]
+            Editable = 1,
+            
             /// <summary>
             /// Enum Hidden for value: hidden
             /// </summary>
-            [EnumMember(Value = "hidden")] Hidden = 2,
-
+            [EnumMember(Value = "hidden")]
+            Hidden = 2,
+            
             /// <summary>
             /// Enum ReadOnly for value: readOnly
             /// </summary>
-            [EnumMember(Value = "readOnly")] ReadOnly = 3
+            [EnumMember(Value = "readOnly")]
+            ReadOnly = 3
         }
 
         /// <summary>
         /// Specifies visibility of delivery address fields.  Permitted values: * editable * hidden * readOnly
         /// </summary>
         /// <value>Specifies visibility of delivery address fields.  Permitted values: * editable * hidden * readOnly</value>
-        [DataMember(Name = "deliveryAddress", EmitDefaultValue = false)]
+        [DataMember(Name="deliveryAddress", EmitDefaultValue=false)]
         public DeliveryAddressEnum? DeliveryAddress { get; set; }
-
         /// <summary>
         /// Specifies visibility of personal details.  Permitted values: * editable * hidden * readOnly
         /// </summary>
@@ -105,43 +110,46 @@ namespace Adyen.Model.Checkout
         [JsonConverter(typeof(StringEnumConverter))]
         public enum PersonalDetailsEnum
         {
+            
             /// <summary>
             /// Enum Editable for value: editable
             /// </summary>
-            [EnumMember(Value = "editable")] Editable = 1,
-
+            [EnumMember(Value = "editable")]
+            Editable = 1,
+            
             /// <summary>
             /// Enum Hidden for value: hidden
             /// </summary>
-            [EnumMember(Value = "hidden")] Hidden = 2,
-
+            [EnumMember(Value = "hidden")]
+            Hidden = 2,
+            
             /// <summary>
             /// Enum ReadOnly for value: readOnly
             /// </summary>
-            [EnumMember(Value = "readOnly")] ReadOnly = 3
+            [EnumMember(Value = "readOnly")]
+            ReadOnly = 3
         }
 
         /// <summary>
         /// Specifies visibility of personal details.  Permitted values: * editable * hidden * readOnly
         /// </summary>
         /// <value>Specifies visibility of personal details.  Permitted values: * editable * hidden * readOnly</value>
-        [DataMember(Name = "personalDetails", EmitDefaultValue = false)]
+        [DataMember(Name="personalDetails", EmitDefaultValue=false)]
         public PersonalDetailsEnum? PersonalDetails { get; set; }
-
         /// <summary>
         /// Initializes a new instance of the <see cref="ShopperInput" /> class.
         /// </summary>
-        /// <param name="billingAddress">Specifies visibility of billing address fields.  Permitted values: * editable * hidden * readOnly.</param>
-        /// <param name="deliveryAddress">Specifies visibility of delivery address fields.  Permitted values: * editable * hidden * readOnly.</param>
-        /// <param name="personalDetails">Specifies visibility of personal details.  Permitted values: * editable * hidden * readOnly.</param>
-        public ShopperInput(BillingAddressEnum? billingAddress = default(BillingAddressEnum?),
-            DeliveryAddressEnum? deliveryAddress = default(DeliveryAddressEnum?),
-            PersonalDetailsEnum? personalDetails = default(PersonalDetailsEnum?))
+        /// <param name="BillingAddress">Specifies visibility of billing address fields.  Permitted values: * editable * hidden * readOnly.</param>
+        /// <param name="DeliveryAddress">Specifies visibility of delivery address fields.  Permitted values: * editable * hidden * readOnly.</param>
+        /// <param name="PersonalDetails">Specifies visibility of personal details.  Permitted values: * editable * hidden * readOnly.</param>
+        public ShopperInput(BillingAddressEnum? BillingAddress = default(BillingAddressEnum?), DeliveryAddressEnum? DeliveryAddress = default(DeliveryAddressEnum?), PersonalDetailsEnum? PersonalDetails = default(PersonalDetailsEnum?))
         {
-            this.BillingAddress = billingAddress;
-            this.DeliveryAddress = deliveryAddress;
-            this.PersonalDetails = personalDetails;
+            this.BillingAddress = BillingAddress;
+            this.DeliveryAddress = DeliveryAddress;
+            this.PersonalDetails = PersonalDetails;
         }
+        
+
 
 
         /// <summary>
@@ -158,12 +166,12 @@ namespace Adyen.Model.Checkout
             sb.Append("}\n");
             return sb.ToString();
         }
-
+  
         /// <summary>
         /// Returns the JSON string presentation of the object
         /// </summary>
         /// <returns>JSON string presentation of the object</returns>
-        public virtual string ToJson()
+        public string ToJson()
         {
             return JsonConvert.SerializeObject(this, Formatting.Indented);
         }
@@ -188,21 +196,21 @@ namespace Adyen.Model.Checkout
             if (input == null)
                 return false;
 
-            return
+            return 
                 (
                     this.BillingAddress == input.BillingAddress ||
-                    this.BillingAddress != null &&
-                    this.BillingAddress.Equals(input.BillingAddress)
-                ) &&
+                    (this.BillingAddress != null &&
+                    this.BillingAddress.Equals(input.BillingAddress))
+                ) && 
                 (
                     this.DeliveryAddress == input.DeliveryAddress ||
-                    this.DeliveryAddress != null &&
-                    this.DeliveryAddress.Equals(input.DeliveryAddress)
-                ) &&
+                    (this.DeliveryAddress != null &&
+                    this.DeliveryAddress.Equals(input.DeliveryAddress))
+                ) && 
                 (
                     this.PersonalDetails == input.PersonalDetails ||
-                    this.PersonalDetails != null &&
-                    this.PersonalDetails.Equals(input.PersonalDetails)
+                    (this.PersonalDetails != null &&
+                    this.PersonalDetails.Equals(input.PersonalDetails))
                 );
         }
 
@@ -230,10 +238,10 @@ namespace Adyen.Model.Checkout
         /// </summary>
         /// <param name="validationContext">Validation context</param>
         /// <returns>Validation Result</returns>
-        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(
-            ValidationContext validationContext)
+        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
         {
             yield break;
         }
     }
+
 }

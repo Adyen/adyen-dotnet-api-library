@@ -21,7 +21,7 @@
 //  */
 #endregion
 
-using Adyen.ApiSerialization;
+using Adyen.CloudApiSerialization;
 
 namespace Adyen.Model.Nexo
 {

@@ -37,8 +37,6 @@ namespace Adyen.Util
         {
             var jsonSettings = new JsonSerializerSettings();
             jsonSettings.Converters.Add(new ByteArrayConverter());
-            jsonSettings.Converters.Add(new PaymentMethodDetailsConverter());
-            jsonSettings.Converters.Add(new PaymentResponseActionConverter());
             return JsonConvert.DeserializeObject<T>(response, jsonSettings);
         }
         
@@ -50,7 +48,7 @@ namespace Adyen.Util
                 DefaultValueHandling = DefaultValueHandling.Include,
             };
             jsonSettings.Converters.Add(new ByteArrayConverter());
-            return JsonConvert.SerializeObject(request, Formatting.None, jsonSettings);
+            return JsonConvert.SerializeObject(request, Newtonsoft.Json.Formatting.None, jsonSettings);
         }
     }
 }

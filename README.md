@@ -1,5 +1,5 @@
 # Adyen dotnet API Library
-[![nuget](https://img.shields.io/nuget/v/adyen.svg)](https://www.nuget.org/packages/adyen/) [![nuget](https://img.shields.io/nuget/dt/adyen.svg)](https://www.nuget.org/packages/adyen/) ![.NET Core](https://github.com/Adyen/adyen-dotnet-api-library/workflows/.NET%20Core/badge.svg)
+[![Build Status](https://travis-ci.org/Adyen/adyen-dotnet-api-library.svg?branch=develop)](https://travis-ci.org/Adyen/adyen-dotnet-api-library) [![nuget](https://img.shields.io/nuget/v/adyen.svg)](https://www.nuget.org/packages/adyen/) [![nuget](https://img.shields.io/nuget/dt/adyen.svg)](https://www.nuget.org/packages/adyen/) ![.NET Core](https://github.com/Adyen/adyen-dotnet-api-library/workflows/.NET%20Core/badge.svg)
 
 The Adyen API Library for .net framework enables you to work with Adyen APIs, Hosted Payment Pages and Terminal API with any .net application.
 
@@ -24,7 +24,7 @@ The Library supports all APIs under the following services:
 * Simply download and restore nuget packages  
  https://www.nuget.org/packages/Adyen/
 * or install it from package manager
- PM> Install-Package Adyen -Version 6.0.0
+ PM> Install-Package Adyen -Version 5.7.0
 ### Vagrant setup
 * Prerequisites
 virtualbox and vagrant
@@ -44,20 +44,20 @@ In order to submit http request to Adyen API you need to initialize the client. 
 ```csharp
 // Create a paymentsRequest
 var amount = new Model.Checkout.Amount("USD", 1000);
-var paymentRequest = new Model.Checkout.PaymentRequest
+var paymentsRequest = new Model.Checkout.PaymentRequest
 {
       Reference = "Your order number",
       Amount = amount,
       ReturnUrl = @"https://your-company.com/...",
       MerchantAccount = ClientConstants.MerchantAccount,
 };
-paymentRequest.AddCardData("4111111111111111", "10", "2020", "737", "John Smith");
+paymentsRequest.AddCardData("4111111111111111", "10", "2020", "737", "John Smith");
 
 //Create the http client
 var client = new Client("YOUR-XAPI-KEY", Model.Enum.Environment.Test);//or Model.Enum.Environment.Live
 var checkout = new Checkout(client);
 //Make the call to the service. This example code makes a call to /payments
-var paymentResponse = checkout.Payments(paymentRequest);
+var paymentsResponse = checkout.Payments(paymentsRequest);
 ```
 
 ## Documentation

@@ -21,7 +21,7 @@
 //  */
 #endregion
 
-using Adyen.ApiSerialization;
+using Adyen.CloudApiSerialization;
 using Adyen.Model.Nexo;
 using Adyen.Service;
 using Microsoft.VisualStudio.TestTools.UnitTesting;

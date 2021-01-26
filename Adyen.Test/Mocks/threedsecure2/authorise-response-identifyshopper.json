@@ -8,8 +8,7 @@
     "paymentMethod": "visa",
     "threeds2.threeDS2Token": "[token]",
     "paymentMethodVariant": "visa",
-    "threeds2.threeDSMethodURL": "https:\/\/pal-test.adyen.com\/threeds2simulator\/acs\/startMethod.shtml",
-    "deviceChannel": "browser"
+    "threeds2.threeDSMethodURL": "https:\/\/pal-test.adyen.com\/threeds2simulator\/acs\/startMethod.shtml"
   },
   "pspReference": "8535432125638799",
   "resultCode": "IdentifyShopper"

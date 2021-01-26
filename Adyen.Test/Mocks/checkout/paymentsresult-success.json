@@ -1,7 +1,4 @@
 {
   "pspReference": "8535253563623704",
-  "resultCode": "Authorised",
-  "merchantReference": "merchantReference",
-  "paymentMethod":  "applepay",
-  "shopperLocale": "NL"
+  "resultCode": "Authorised"
 }

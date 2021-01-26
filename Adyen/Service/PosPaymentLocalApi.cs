@@ -25,7 +25,7 @@ using System;
 using System.ComponentModel;
 using System.IO;
 using System.Net.Security;
-using Adyen.ApiSerialization;
+using Adyen.CloudApiSerialization;
 using Adyen.Model.Nexo;
 using Adyen.Security;
 using Adyen.Service.Resource.Payment;

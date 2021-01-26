@@ -21,8 +21,8 @@
 //  */
 #endregion
 
-using Adyen.Model.Checkout;
-using Adyen.Service.Resource.Checkout;
+using Adyen.Model.CheckoutUtility;
+using Adyen.Service.Resource.CheckoutUtility;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
@@ -40,11 +40,11 @@ namespace Adyen.Service
             _originKeys = new OriginKeys(this);
         }
 
-        public CheckoutUtilityResponse OriginKeys(CheckoutUtilityRequest checkoutUtilityRequest)
+        public OriginKeysResponse OriginKeys(OriginKeysRequest originKeysRequest)
         {
-            var jsonRequest = Util.JsonOperation.SerializeRequest(checkoutUtilityRequest);
+            var jsonRequest = Util.JsonOperation.SerializeRequest(originKeysRequest);
             var jsonResponse = _originKeys.Request(jsonRequest);
-            return JsonConvert.DeserializeObject<CheckoutUtilityResponse>(jsonResponse);
+            return JsonConvert.DeserializeObject<OriginKeysResponse>(jsonResponse);
         }
     }
 }
