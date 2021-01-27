@@ -75,9 +75,53 @@ namespace Adyen.Test
             };
             return saleToPoiRequest;
         }
-       
+
         /// <summary>
-        /// Dummy Nexo json Cloud api/terminal api request
+        /// Returns SaleToPOIRequest with MessagePayload PrintRequest with escaped characters
+        /// </summary>
+        /// <returns>SaleToPOIRequest</returns>
+        public static SaleToPOIRequest CreateSaleToPOIPrintRequestEscape()
+        {
+            return new SaleToPOIRequest
+            {
+                MessageHeader = new MessageHeader()
+                {
+                    MessageClass = MessageClassType.Device,
+                    MessageCategory = MessageCategoryType.Print,
+                    MessageType = MessageType.Request,
+                    SaleID = "1234567",
+                    POIID = "VX680-12343454",
+                    ServiceID = "1",
+                },
+                MessagePayload = new PrintRequest
+                {
+                    PrintOutput = new PrintOutput
+                    {
+                        DocumentQualifier = DocumentQualifierType.Document,
+                        ResponseMode = ResponseModeType.PrintEnd,
+                        OutputContent = new OutputContent
+                        {
+                            OutputFormat = OutputFormatType.Text,
+                            OutputText = new OutputText[] { new OutputText { Text = @"m\u006DÄ\u00C4" } },
+                        },
+                    },
+                },
+            };
+        }
+
+        /// <summary>
+        /// Dummy Nexo json print request 
+        /// </summary>
+        /// <returns></returns>
+        public static string MockNexoJsonPrintRequest()
+        {
+            return "{\"SaleToPOIRequest\":{\"MessageHeader\":{\"MessageClass\":\"Device\",\"MessageCategory\":\"Print\",\"MessageType\":\"Request\",\"ServiceID\":\"1\",\"SaleID\":\"1234567\",\"POIID\":\"VX680-12343454\",\"ProtocolVersion\":\"3.0\"}," +
+                "\"PrintRequest\":{\"PrintOutput\":{\"OutputContent\":{\"OutputText\":[{\"Color\":\"White\",\"CharacterWidth\":\"SingleWidth\",\"CharacterHeight\":\"SingleHeight\",\"CharacterStyle\":\"Normal\",\"Alignment\":\"Left\"," +
+                "\"EndOfLineFlag\":true,\"Text\":\"m\\\\u006D?\\\\u00C4\"}],\"OutputFormat\":\"Text\"},\"DocumentQualifier\":\"Document\",\"ResponseMode\":\"PrintEnd\"}}}}";
+        }
+
+        /// <summary>
+        /// Dummy Nexo json api/terminal api request
         /// </summary>
         /// <returns></returns>
         public static string MockNexoJsonRequest()
@@ -90,6 +134,5 @@ namespace Adyen.Test
                    "     \"Currency\" : \"EUR\",\r\n               \"RequestedAmount\" : 15.25 \r\n            },\r\n            \"TransactionConditions\" : {}\r\n         },\r\n      " +
                    "   \"PaymentData\" : {\"PaymentType\" : \"Normal\"}\r\n      }\r\n   }\r\n}\r\n";
         }
-
     }
 }

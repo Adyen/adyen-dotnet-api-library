@@ -130,8 +130,6 @@ namespace Adyen.Test
             Assert.IsNotNull(paymentResult.PspReference);
         }
 
-
-
         [TestMethod]
         public void TestAuthoriseErrorCvcDeclinedMocked()
         {

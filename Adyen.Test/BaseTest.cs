@@ -39,6 +39,7 @@ using Environment = System.Environment;
 using Amount = Adyen.Model.Amount;
 using PaymentResult = Adyen.Model.PaymentResult;
 using Adyen.Model.Checkout;
+using System.Threading.Tasks;
 
 namespace Adyen.Test
 {
@@ -211,7 +212,6 @@ namespace Adyen.Test
                 Amount = amount,
                 ReturnUrl = @"https://your-company.com/...",
                 MerchantAccount = "MerchantAccount",
-                AdditionalData = new Dictionary<string, string>() { { "allow3DS2", "true" } },
                 Channel = Model.Checkout.PaymentRequest.ChannelEnum.Web
             };
             paymentsRequest.AddCardData("4111111111111111", "10", "2020", "737", "John Smith");
@@ -222,15 +222,15 @@ namespace Adyen.Test
         ///Checkout Details request
         /// </summary>
         /// <returns>Returns a sample PaymentsDetailsRequest object with test data</returns>
-        protected Model.Checkout.PaymentsDetailsRequest CreateDetailsRequest()
+        protected PaymentsDetailsRequest CreateDetailsRequest()
         {
-            string paymentData = "Ab02b4c0!BQABAgCJN1wRZuGJmq8dMncmypvknj9s7l5Tj...";
-            var details = new Dictionary<string, string>
+            var paymentData = "Ab02b4c0!BQABAgCJN1wRZuGJmq8dMncmypvknj9s7l5Tj...";
+            var details = new PaymentCompletionDetails()
             {
-                { "MD", "sdfsdfsdf..." },
-                { "PaRes", "sdfsdfsdf..." }
+                MD= "sdfsdfsdf...",
+                PaReq = "sdfsdfsdf..."
             };
-            var paymentsDetailsRequest = new Model.Checkout.PaymentsDetailsRequest(Details: details, PaymentData: paymentData);
+            var paymentsDetailsRequest = new PaymentsDetailsRequest(details: details, paymentData: paymentData);
 
             return paymentsDetailsRequest;
         }
@@ -250,19 +250,19 @@ namespace Adyen.Test
         /// <returns></returns>
         protected PaymentSessionRequest CreatePaymentSessionRequest()
         {
-            return new PaymentSessionRequest(MerchantAccount: "MerchantAccount", Reference: "MerchantReference",
-                 Amount: new Model.Checkout.Amount("EUR", 1200), ReturnUrl: @"https://your-company.com/...", CountryCode: "NL",
-                 Channel: PaymentSessionRequest.ChannelEnum.Web, SdkVersion: "1.3.0");
+            return new PaymentSessionRequest(merchantAccount: "MerchantAccount", reference: "MerchantReference",
+                 amount: new Model.Checkout.Amount("EUR", 1200), returnUrl: @"https://your-company.com/...", countryCode: "NL",
+                 channel: PaymentSessionRequest.ChannelEnum.Web, sdkVersion: "1.3.0");
         }
 
         /// <summary>
         /// Checkout paymentResultRequest
         /// </summary>
         /// <returns></returns>
-        protected Model.Checkout.PaymentResultRequest CreatePaymentResultRequest()
+        protected PaymentResultRequest CreatePaymentResultRequest()
         {
-            string payload = @"Ab0oCC2/wy96FiEMLvoI8RfayxEmZHQZcw...riRbNBzP3pQscLYBHN/MfZkgfGHdqy7JfQoQbRUmA==";
-            return new Model.Checkout.PaymentResultRequest(Payload: payload);
+            var payload = @"Ab0oCC2/wy96FiEMLvoI8RfayxEmZHQZcw...riRbNBzP3pQscLYBHN/MfZkgfGHdqy7JfQoQbRUmA==";
+            return new PaymentResultRequest(payload: payload);
         }
 
         #endregion
@@ -303,6 +303,8 @@ namespace Adyen.Test
             var confMock = MockPaymentData.CreateConfingMock();
 
             clientInterfaceMock.Setup(x => x.Request(It.IsAny<string>(), It.IsAny<string>(), confMock)).Returns(response);
+            clientInterfaceMock.Setup(x => x.Request(It.IsAny<string>(), It.IsAny<string>(), confMock, It.IsAny<bool>(), It.IsAny<RequestOptions>())).Returns(response);
+            clientInterfaceMock.Setup(x => x.RequestAsync(It.IsAny<string>(), It.IsAny<string>(), confMock, It.IsAny<bool>(), It.IsAny<RequestOptions>())).Returns(Task.FromResult(response));
             var clientMock = new Client(It.IsAny<Config>())
             {
                 HttpClient = clientInterfaceMock.Object,
@@ -516,28 +518,6 @@ namespace Adyen.Test
             {
                 MerchantAccount = "MerchantAccount",
                 PspReference = "pspReference"
-            };
-        }
-
-
-        /// <summary>
-        /// Create dummy CreatePaymentLinkRequest
-        /// </summary>
-        /// <returns>CreatePaymentLinkRequest</returns>
-        protected CreatePaymentLinkRequest CreatePaymentLinkRequestSuccess()
-        {
-            return new CreatePaymentLinkRequest()
-            {
-                Reference = "YOUR_REFERENCE_NUMBER",
-                Amount = new Model.Checkout.Amount("EUR", 100),
-                CountryCode = "GR",
-                MerchantAccount = "MerchantAccount",
-                ShopperReference = "ShopperReference",
-                ShopperEmail = "info@ShopperEmail.com",
-                ShopperLocale = "GR",
-                ExpiresAt = "2019-12-17T10:59:29",
-                BillingAddress = new Model.Checkout.Address(Country: "GR"),
-                DeliveryAddress = new Model.Checkout.Address(Country: "GR"),
             };
         }
 

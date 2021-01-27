@@ -1,29 +1,31 @@
-#region License
-// /*
-//  *                       ######
-//  *                       ######
-//  * ############    ####( ######  #####. ######  ############   ############
-//  * #############  #####( ######  #####. ######  #############  #############
-//  *        ######  #####( ######  #####. ######  #####  ######  #####  ######
-//  * ###### ######  #####( ######  #####. ######  #####  #####   #####  ######
-//  * ###### ######  #####( ######  #####. ######  #####          #####  ######
-//  * #############  #############  #############  #############  #####  ######
-//  *  ############   ############  #############   ############  #####  ######
-//  *                                      ######
-//  *                               #############
-//  *                               ############
-//  *
-//  * Adyen Dotnet API Library
-//  *
-//  * Copyright (c) 2020 Adyen B.V.
-//  * This file is open source and available under the MIT license.
-//  * See the LICENSE file for more info.
-//  */
+#region Licence
+
+// 
+//                        ######
+//                        ######
+//  ############    ####( ######  #####. ######  ############   ############
+//  #############  #####( ######  #####. ######  #############  #############
+//         ######  #####( ######  #####. ######  #####  ######  #####  ######
+//  ###### ######  #####( ######  #####. ######  #####  #####   #####  ######
+//  ###### ######  #####( ######  #####. ######  #####          #####  ######
+//  #############  #############  #############  #############  #####  ######
+//   ############   ############  #############   ############  #####  ######
+//                                       ######
+//                                #############
+//                                ############
+// 
+//  Adyen Dotnet API Library
+// 
+//  Copyright (c) 2020 Adyen B.V.
+//  This file is open source and available under the MIT license.
+//  See the LICENSE file for more info.
+
 #endregion
 
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.IO;
 using System.Runtime.Serialization;
 using System.Text;
 using Newtonsoft.Json;
@@ -44,24 +46,20 @@ namespace Adyen.Model.Checkout
         [JsonConverter(typeof(StringEnumConverter))]
         public enum GenderEnum
         {
-
             /// <summary>
             /// Enum MALE for value: MALE
             /// </summary>
-            [EnumMember(Value = "MALE")]
-            MALE = 1,
+            [EnumMember(Value = "MALE")] MALE = 1,
 
             /// <summary>
             /// Enum FEMALE for value: FEMALE
             /// </summary>
-            [EnumMember(Value = "FEMALE")]
-            FEMALE = 2,
+            [EnumMember(Value = "FEMALE")] FEMALE = 2,
 
             /// <summary>
             /// Enum UNKNOWN for value: UNKNOWN
             /// </summary>
-            [EnumMember(Value = "UNKNOWN")]
-            UNKNOWN = 3
+            [EnumMember(Value = "UNKNOWN")] UNKNOWN = 3
         }
 
         /// <summary>
@@ -70,36 +68,39 @@ namespace Adyen.Model.Checkout
         /// <value>The gender. &gt;The following values are permitted: &#x60;MALE&#x60;, &#x60;FEMALE&#x60;, &#x60;UNKNOWN&#x60;.</value>
         [DataMember(Name = "gender", EmitDefaultValue = false)]
         public GenderEnum Gender { get; set; }
-        /// <summary>
-        /// Initializes a new instance of the <see cref="Name" /> class.
-        /// </summary>
-        [JsonConstructor]
-        protected Name() { }
+
         /// <summary>
         /// Initializes a new instance of the <see cref="Name" /> class.
         /// </summary>
         /// <param name="firstName">The first name. (required).</param>
         /// <param name="gender">The gender. &gt;The following values are permitted: &#x60;MALE&#x60;, &#x60;FEMALE&#x60;, &#x60;UNKNOWN&#x60;. (required).</param>
-        /// <param name="infix">The name&#39;s infix, if applicable. &gt;A maximum length of twenty (20) characters is imposed..</param>
+        /// <param name="infix">The name&#x27;s infix, if applicable. &gt;A maximum length of twenty (20) characters is imposed..</param>
         /// <param name="lastName">The last name. (required).</param>
-        public Name(string firstName, GenderEnum gender, string infix, string lastName)
+        public Name(string firstName = default(string), GenderEnum gender = default(GenderEnum),
+            string infix = default(string), string lastName = default(string))
         {
-            // to ensure "FirstName" is required (not null)
+            // to ensure "firstName" is required (not null)
             if (firstName == null)
             {
-                throw new ArgumentNullException("FirstName is a required property for Name and cannot be null");
+                throw new InvalidDataException("firstName is a required property for Name and cannot be null");
             }
             else
             {
                 this.FirstName = firstName;
             }
-
-            this.Gender = gender;
-
-            // to ensure "LastName" is required (not null)
+            // to ensure "gender" is required (not null)
+            if (gender == null)
+            {
+                throw new InvalidDataException("gender is a required property for Name and cannot be null");
+            }
+            else
+            {
+                this.Gender = gender;
+            }
+            // to ensure "lastName" is required (not null)
             if (lastName == null)
             {
-                throw new ArgumentNullException("LastName is a required property for Name and cannot be null");
+                throw new InvalidDataException("lastName is a required property for Name and cannot be null");
             }
             else
             {
@@ -113,22 +114,22 @@ namespace Adyen.Model.Checkout
         /// </summary>
         /// <value>The first name.</value>
         [DataMember(Name = "firstName", EmitDefaultValue = false)]
-        public string FirstName { get; }
+        public string FirstName { get; set; }
 
 
         /// <summary>
-        /// The name&#39;s infix, if applicable. &gt;A maximum length of twenty (20) characters is imposed.
+        /// The name&#x27;s infix, if applicable. &gt;A maximum length of twenty (20) characters is imposed.
         /// </summary>
-        /// <value>The name&#39;s infix, if applicable. &gt;A maximum length of twenty (20) characters is imposed.</value>
+        /// <value>The name&#x27;s infix, if applicable. &gt;A maximum length of twenty (20) characters is imposed.</value>
         [DataMember(Name = "infix", EmitDefaultValue = false)]
-        public string Infix { get; }
+        public string Infix { get; set; }
 
         /// <summary>
         /// The last name.
         /// </summary>
         /// <value>The last name.</value>
         [DataMember(Name = "lastName", EmitDefaultValue = false)]
-        public string LastName { get;  }
+        public string LastName { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -150,7 +151,7 @@ namespace Adyen.Model.Checkout
         /// Returns the JSON string presentation of the object
         /// </summary>
         /// <returns>JSON string presentation of the object</returns>
-        public string ToJson()
+        public virtual string ToJson()
         {
             return JsonConvert.SerializeObject(this, Formatting.Indented);
         }
@@ -178,22 +179,23 @@ namespace Adyen.Model.Checkout
             return
                 (
                     this.FirstName == input.FirstName ||
-                    (this.FirstName != null &&
-                    this.FirstName.Equals(input.FirstName))
+                    this.FirstName != null &&
+                    this.FirstName.Equals(input.FirstName)
                 ) &&
                 (
                     this.Gender == input.Gender ||
+                    this.Gender != null &&
                     this.Gender.Equals(input.Gender)
                 ) &&
                 (
                     this.Infix == input.Infix ||
-                    (this.Infix != null &&
-                    this.Infix.Equals(input.Infix))
+                    this.Infix != null &&
+                    this.Infix.Equals(input.Infix)
                 ) &&
                 (
                     this.LastName == input.LastName ||
-                    (this.LastName != null &&
-                    this.LastName.Equals(input.LastName))
+                    this.LastName != null &&
+                    this.LastName.Equals(input.LastName)
                 );
         }
 
@@ -208,7 +210,8 @@ namespace Adyen.Model.Checkout
                 int hashCode = 41;
                 if (this.FirstName != null)
                     hashCode = hashCode * 59 + this.FirstName.GetHashCode();
-                hashCode = hashCode * 59 + this.Gender.GetHashCode();
+                if (this.Gender != null)
+                    hashCode = hashCode * 59 + this.Gender.GetHashCode();
                 if (this.Infix != null)
                     hashCode = hashCode * 59 + this.Infix.GetHashCode();
                 if (this.LastName != null)
@@ -222,10 +225,10 @@ namespace Adyen.Model.Checkout
         /// </summary>
         /// <param name="validationContext">Validation context</param>
         /// <returns>Validation Result</returns>
-        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(
+            ValidationContext validationContext)
         {
             yield break;
         }
     }
-
 }

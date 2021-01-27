@@ -1,24 +1,25 @@
-#region License
-// /*
-//  *                       ######
-//  *                       ######
-//  * ############    ####( ######  #####. ######  ############   ############
-//  * #############  #####( ######  #####. ######  #############  #############
-//  *        ######  #####( ######  #####. ######  #####  ######  #####  ######
-//  * ###### ######  #####( ######  #####. ######  #####  #####   #####  ######
-//  * ###### ######  #####( ######  #####. ######  #####          #####  ######
-//  * #############  #############  #############  #############  #####  ######
-//  *  ############   ############  #############   ############  #####  ######
-//  *                                      ######
-//  *                               #############
-//  *                               ############
-//  *
-//  * Adyen Dotnet API Library
-//  *
-//  * Copyright (c) 2020 Adyen B.V.
-//  * This file is open source and available under the MIT license.
-//  * See the LICENSE file for more info.
-//  */
+#region Licence
+
+// 
+//                        ######
+//                        ######
+//  ############    ####( ######  #####. ######  ############   ############
+//  #############  #####( ######  #####. ######  #############  #############
+//         ######  #####( ######  #####. ######  #####  ######  #####  ######
+//  ###### ######  #####( ######  #####. ######  #####  #####   #####  ######
+//  ###### ######  #####( ######  #####. ######  #####          #####  ######
+//  #############  #############  #############  #############  #####  ######
+//   ############   ############  #############   ############  #####  ######
+//                                       ######
+//                                #############
+//                                ############
+// 
+//  Adyen Dotnet API Library
+// 
+//  Copyright (c) 2020 Adyen B.V.
+//  This file is open source and available under the MIT license.
+//  See the LICENSE file for more info.
+
 #endregion
 
 using System;
@@ -34,40 +35,39 @@ namespace Adyen.Model.Checkout
     /// StoredDetails
     /// </summary>
     [DataContract]
-    public partial class StoredDetails :  IEquatable<StoredDetails>, IValidatableObject
+    public partial class StoredDetails : IEquatable<StoredDetails>, IValidatableObject
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="StoredDetails" /> class.
         /// </summary>
-        /// <param name="Bank">The stored bank account..</param>
-        /// <param name="Card">The stored card information..</param>
-        /// <param name="EmailAddress">The email associated with stored payment details..</param>
-        public StoredDetails(BankAccount Bank = default(BankAccount), Card Card = default(Card), string EmailAddress = default(string))
+        /// <param name="bank">bank.</param>
+        /// <param name="card">card.</param>
+        /// <param name="emailAddress">The email associated with stored payment details..</param>
+        public StoredDetails(BankAccount bank = default(BankAccount), Card card = default(Card),
+            string emailAddress = default(string))
         {
-            this.Bank = Bank;
-            this.Card = Card;
-            this.EmailAddress = EmailAddress;
+            this.Bank = bank;
+            this.Card = card;
+            this.EmailAddress = emailAddress;
         }
-        
+
         /// <summary>
-        /// The stored bank account.
+        /// Gets or Sets Bank
         /// </summary>
-        /// <value>The stored bank account.</value>
-        [DataMember(Name="bank", EmitDefaultValue=false)]
+        [DataMember(Name = "bank", EmitDefaultValue = false)]
         public BankAccount Bank { get; set; }
 
         /// <summary>
-        /// The stored card information.
+        /// Gets or Sets Card
         /// </summary>
-        /// <value>The stored card information.</value>
-        [DataMember(Name="card", EmitDefaultValue=false)]
+        [DataMember(Name = "card", EmitDefaultValue = false)]
         public Card Card { get; set; }
 
         /// <summary>
         /// The email associated with stored payment details.
         /// </summary>
         /// <value>The email associated with stored payment details.</value>
-        [DataMember(Name="emailAddress", EmitDefaultValue=false)]
+        [DataMember(Name = "emailAddress", EmitDefaultValue = false)]
         public string EmailAddress { get; set; }
 
         /// <summary>
@@ -84,12 +84,12 @@ namespace Adyen.Model.Checkout
             sb.Append("}\n");
             return sb.ToString();
         }
-  
+
         /// <summary>
         /// Returns the JSON string presentation of the object
         /// </summary>
         /// <returns>JSON string presentation of the object</returns>
-        public string ToJson()
+        public virtual string ToJson()
         {
             return JsonConvert.SerializeObject(this, Formatting.Indented);
         }
@@ -114,21 +114,21 @@ namespace Adyen.Model.Checkout
             if (input == null)
                 return false;
 
-            return 
+            return
                 (
                     this.Bank == input.Bank ||
-                    (this.Bank != null &&
-                    this.Bank.Equals(input.Bank))
-                ) && 
+                    this.Bank != null &&
+                    this.Bank.Equals(input.Bank)
+                ) &&
                 (
                     this.Card == input.Card ||
-                    (this.Card != null &&
-                    this.Card.Equals(input.Card))
-                ) && 
+                    this.Card != null &&
+                    this.Card.Equals(input.Card)
+                ) &&
                 (
                     this.EmailAddress == input.EmailAddress ||
-                    (this.EmailAddress != null &&
-                    this.EmailAddress.Equals(input.EmailAddress))
+                    this.EmailAddress != null &&
+                    this.EmailAddress.Equals(input.EmailAddress)
                 );
         }
 
@@ -156,10 +156,10 @@ namespace Adyen.Model.Checkout
         /// </summary>
         /// <param name="validationContext">Validation context</param>
         /// <returns>Validation Result</returns>
-        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(
+            ValidationContext validationContext)
         {
             yield break;
         }
     }
-
 }

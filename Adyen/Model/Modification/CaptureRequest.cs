@@ -21,13 +21,11 @@
 //  */
 #endregion
 
-using System;
 using System.Collections.Generic;
 using System.Runtime.Serialization;
 using System.Text;
-using Adyen.Constants;
-using Adyen.Constants.HPPConstants;
 using Adyen.Model.ApplicationInformation;
+using Adyen.Util;
 using Newtonsoft.Json;
 
 namespace Adyen.Model.Modification
@@ -43,6 +41,8 @@ namespace Adyen.Model.Modification
         [DataMember(Name = "modificationAmount", EmitDefaultValue = false)]
         public Amount ModificationAmount { get; set; }
 
+        [DataMember(Name = "splits", EmitDefaultValue = false)]
+        public List<Split> Splits { get; set; }
         /// <summary>
         /// Returns the string presentation of the object
         /// </summary>
@@ -55,6 +55,8 @@ namespace Adyen.Model.Modification
             sb.Append("  modificationAmount.Currency: ").Append(ModificationAmount.Currency).Append("\n");
             sb.Append("  modificationAmount.Value: ").Append(ModificationAmount.Value).Append("\n");
             sb.Append("  originalReference: ").Append(OriginalReference).Append("\n");
+            sb.Append("  splits: ").Append(Splits.ObjectListToString()).Append("\n");
+
             sb.Append("}");
             return sb.ToString();
         }

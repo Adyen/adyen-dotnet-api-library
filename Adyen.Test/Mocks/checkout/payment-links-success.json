@@ -5,5 +5,6 @@
   },
   "expiresAt": "2019-12-17T10:05:29Z",
   "reference": "YOUR_ORDER_NUMBER",
-  "url": "https://checkoutshopper-test.adyen.com/checkoutshopper/payByLink.shtml?d=YW1vdW50TWlub3JW...JRA"
+  "url": "https://checkoutshopper-test.adyen.com/checkoutshopper/payByLink.shtml?d=YW1vdW50TWlub3JW...JRA",
+  "merchantAccount": "YOUR_MERCHANT_ACCOUNT"
 }

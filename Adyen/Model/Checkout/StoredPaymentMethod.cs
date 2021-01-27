@@ -1,35 +1,37 @@
-﻿#region License
-// /*
-//  *                       ######
-//  *                       ######
-//  * ############    ####( ######  #####. ######  ############   ############
-//  * #############  #####( ######  #####. ######  #############  #############
-//  *        ######  #####( ######  #####. ######  #####  ######  #####  ######
-//  * ###### ######  #####( ######  #####. ######  #####  #####   #####  ######
-//  * ###### ######  #####( ######  #####. ######  #####          #####  ######
-//  * #############  #############  #############  #############  #####  ######
-//  *  ############   ############  #############   ############  #####  ######
-//  *                                      ######
-//  *                               #############
-//  *                               ############
-//  *
-//  * Adyen Dotnet API Library
-//  *
-//  * Copyright (c) 2020 Adyen B.V.
-//  * This file is open source and available under the MIT license.
-//  * See the LICENSE file for more info.
-//  */
+#region Licence
+
+// 
+//                        ######
+//                        ######
+//  ############    ####( ######  #####. ######  ############   ############
+//  #############  #####( ######  #####. ######  #############  #############
+//         ######  #####( ######  #####. ######  #####  ######  #####  ######
+//  ###### ######  #####( ######  #####. ######  #####  #####   #####  ######
+//  ###### ######  #####( ######  #####. ######  #####          #####  ######
+//  #############  #############  #############  #############  #####  ######
+//   ############   ############  #############   ############  #####  ######
+//                                       ######
+//                                #############
+//                                ############
+// 
+//  Adyen Dotnet API Library
+// 
+//  Copyright (c) 2020 Adyen B.V.
+//  This file is open source and available under the MIT license.
+//  See the LICENSE file for more info.
+
 #endregion
 
 using System;
-using System.Linq;
-using System.Text;
 using System.Collections.Generic;
-using System.Runtime.Serialization;
-using Newtonsoft.Json;
 using System.ComponentModel.DataAnnotations;
+using System.Linq;
+using System.Runtime.Serialization;
+using System.Text;
+using Adyen.Util;
+using Newtonsoft.Json;
 
-namespace Adyen.Model.Checkout 
+namespace Adyen.Model.Checkout
 {
     /// <summary>
     /// StoredPaymentMethod
@@ -50,7 +52,10 @@ namespace Adyen.Model.Checkout
         /// <param name="shopperEmail">The shopper’s email address..</param>
         /// <param name="supportedShopperInteractions">The supported shopper interactions for this stored payment method..</param>
         /// <param name="type">The type of payment method..</param>
-        public StoredPaymentMethod(string brand = default(string), string expiryMonth = default(string), string expiryYear = default(string), string holderName = default(string), string id = default(string), string lastFour = default(string), string name = default(string), string shopperEmail = default(string), List<string> supportedShopperInteractions = default(List<string>), string type = default(string))
+        public StoredPaymentMethod(string brand = default(string), string expiryMonth = default(string),
+            string expiryYear = default(string), string holderName = default(string), string id = default(string),
+            string lastFour = default(string), string name = default(string), string shopperEmail = default(string),
+            List<string> supportedShopperInteractions = default(List<string>), string type = default(string))
         {
             this.Brand = brand;
             this.ExpiryMonth = expiryMonth;
@@ -150,7 +155,7 @@ namespace Adyen.Model.Checkout
             sb.Append("  LastFour: ").Append(LastFour).Append("\n");
             sb.Append("  Name: ").Append(Name).Append("\n");
             sb.Append("  ShopperEmail: ").Append(ShopperEmail).Append("\n");
-            sb.Append("  SupportedShopperInteractions: ").Append(SupportedShopperInteractions).Append("\n");
+            sb.Append("  SupportedShopperInteractions: ").Append(SupportedShopperInteractions.ToListString()).Append("\n");
             sb.Append("  Type: ").Append(Type).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
@@ -188,43 +193,43 @@ namespace Adyen.Model.Checkout
             return
                 (
                     this.Brand == input.Brand ||
-                    (this.Brand != null &&
-                    this.Brand.Equals(input.Brand))
+                    this.Brand != null &&
+                    this.Brand.Equals(input.Brand)
                 ) &&
                 (
                     this.ExpiryMonth == input.ExpiryMonth ||
-                    (this.ExpiryMonth != null &&
-                    this.ExpiryMonth.Equals(input.ExpiryMonth))
+                    this.ExpiryMonth != null &&
+                    this.ExpiryMonth.Equals(input.ExpiryMonth)
                 ) &&
                 (
                     this.ExpiryYear == input.ExpiryYear ||
-                    (this.ExpiryYear != null &&
-                    this.ExpiryYear.Equals(input.ExpiryYear))
+                    this.ExpiryYear != null &&
+                    this.ExpiryYear.Equals(input.ExpiryYear)
                 ) &&
                 (
                     this.HolderName == input.HolderName ||
-                    (this.HolderName != null &&
-                    this.HolderName.Equals(input.HolderName))
+                    this.HolderName != null &&
+                    this.HolderName.Equals(input.HolderName)
                 ) &&
                 (
                     this.Id == input.Id ||
-                    (this.Id != null &&
-                    this.Id.Equals(input.Id))
+                    this.Id != null &&
+                    this.Id.Equals(input.Id)
                 ) &&
                 (
                     this.LastFour == input.LastFour ||
-                    (this.LastFour != null &&
-                    this.LastFour.Equals(input.LastFour))
+                    this.LastFour != null &&
+                    this.LastFour.Equals(input.LastFour)
                 ) &&
                 (
                     this.Name == input.Name ||
-                    (this.Name != null &&
-                    this.Name.Equals(input.Name))
+                    this.Name != null &&
+                    this.Name.Equals(input.Name)
                 ) &&
                 (
                     this.ShopperEmail == input.ShopperEmail ||
-                    (this.ShopperEmail != null &&
-                    this.ShopperEmail.Equals(input.ShopperEmail))
+                    this.ShopperEmail != null &&
+                    this.ShopperEmail.Equals(input.ShopperEmail)
                 ) &&
                 (
                     this.SupportedShopperInteractions == input.SupportedShopperInteractions ||
@@ -234,8 +239,8 @@ namespace Adyen.Model.Checkout
                 ) &&
                 (
                     this.Type == input.Type ||
-                    (this.Type != null &&
-                    this.Type.Equals(input.Type))
+                    this.Type != null &&
+                    this.Type.Equals(input.Type)
                 );
         }
 
@@ -277,7 +282,8 @@ namespace Adyen.Model.Checkout
         /// </summary>
         /// <param name="validationContext">Validation context</param>
         /// <returns>Validation Result</returns>
-        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(
+            ValidationContext validationContext)
         {
             yield break;
         }

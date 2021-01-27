@@ -1,24 +1,25 @@
-#region License
-// /*
-//  *                       ######
-//  *                       ######
-//  * ############    ####( ######  #####. ######  ############   ############
-//  * #############  #####( ######  #####. ######  #############  #############
-//  *        ######  #####( ######  #####. ######  #####  ######  #####  ######
-//  * ###### ######  #####( ######  #####. ######  #####  #####   #####  ######
-//  * ###### ######  #####( ######  #####. ######  #####          #####  ######
-//  * #############  #############  #############  #############  #####  ######
-//  *  ############   ############  #############   ############  #####  ######
-//  *                                      ######
-//  *                               #############
-//  *                               ############
-//  *
-//  * Adyen Dotnet API Library
-//  *
-//  * Copyright (c) 2020 Adyen B.V.
-//  * This file is open source and available under the MIT license.
-//  * See the LICENSE file for more info.
-//  */
+#region Licence
+
+// 
+//                        ######
+//                        ######
+//  ############    ####( ######  #####. ######  ############   ############
+//  #############  #####( ######  #####. ######  #############  #############
+//         ######  #####( ######  #####. ######  #####  ######  #####  ######
+//  ###### ######  #####( ######  #####. ######  #####  #####   #####  ######
+//  ###### ######  #####( ######  #####. ######  #####          #####  ######
+//  #############  #############  #############  #############  #####  ######
+//   ############   ############  #############   ############  #####  ######
+//                                       ######
+//                                #############
+//                                ############
+// 
+//  Adyen Dotnet API Library
+// 
+//  Copyright (c) 2020 Adyen B.V.
+//  This file is open source and available under the MIT license.
+//  See the LICENSE file for more info.
+
 #endregion
 
 using System;
@@ -35,134 +36,129 @@ namespace Adyen.Model.Checkout
     /// MerchantRiskIndicator
     /// </summary>
     [DataContract]
-    public partial class MerchantRiskIndicator :  IEquatable<MerchantRiskIndicator>, IValidatableObject
+    public partial class MerchantRiskIndicator : IEquatable<MerchantRiskIndicator>, IValidatableObject
     {
         /// <summary>
-        /// Indicator regarding the delivery address.
+        /// Indicator regarding the delivery address. Allowed values: * &#x60;shipToBillingAddress&#x60; * &#x60;shipToVerifiedAddress&#x60; * &#x60;shipToNewAddress&#x60; * &#x60;shipToStore&#x60; * &#x60;digitalGoods&#x60; * &#x60;goodsNotShipped&#x60; * &#x60;other&#x60;
         /// </summary>
-        /// <value>Indicator regarding the delivery address.</value>
+        /// <value>Indicator regarding the delivery address. Allowed values: * &#x60;shipToBillingAddress&#x60; * &#x60;shipToVerifiedAddress&#x60; * &#x60;shipToNewAddress&#x60; * &#x60;shipToStore&#x60; * &#x60;digitalGoods&#x60; * &#x60;goodsNotShipped&#x60; * &#x60;other&#x60;</value>
         [JsonConverter(typeof(StringEnumConverter))]
         public enum DeliveryAddressIndicatorEnum
         {
-            
             /// <summary>
             /// Enum ShipToBillingAddress for value: shipToBillingAddress
             /// </summary>
-            [EnumMember(Value = "shipToBillingAddress")]
-            ShipToBillingAddress = 1,
-            
+            [EnumMember(Value = "shipToBillingAddress")] ShipToBillingAddress = 1,
+
             /// <summary>
             /// Enum ShipToVerifiedAddress for value: shipToVerifiedAddress
             /// </summary>
-            [EnumMember(Value = "shipToVerifiedAddress")]
-            ShipToVerifiedAddress = 2,
-            
+            [EnumMember(Value = "shipToVerifiedAddress")] ShipToVerifiedAddress = 2,
+
             /// <summary>
             /// Enum ShipToNewAddress for value: shipToNewAddress
             /// </summary>
-            [EnumMember(Value = "shipToNewAddress")]
-            ShipToNewAddress = 3,
-            
+            [EnumMember(Value = "shipToNewAddress")] ShipToNewAddress = 3,
+
             /// <summary>
             /// Enum ShipToStore for value: shipToStore
             /// </summary>
-            [EnumMember(Value = "shipToStore")]
-            ShipToStore = 4,
-            
+            [EnumMember(Value = "shipToStore")] ShipToStore = 4,
+
             /// <summary>
             /// Enum DigitalGoods for value: digitalGoods
             /// </summary>
-            [EnumMember(Value = "digitalGoods")]
-            DigitalGoods = 5,
-            
+            [EnumMember(Value = "digitalGoods")] DigitalGoods = 5,
+
             /// <summary>
             /// Enum GoodsNotShipped for value: goodsNotShipped
             /// </summary>
-            [EnumMember(Value = "goodsNotShipped")]
-            GoodsNotShipped = 6,
-            
+            [EnumMember(Value = "goodsNotShipped")] GoodsNotShipped = 6,
+
             /// <summary>
             /// Enum Other for value: other
             /// </summary>
-            [EnumMember(Value = "other")]
-            Other = 7
+            [EnumMember(Value = "other")] Other = 7
         }
 
         /// <summary>
-        /// Indicator regarding the delivery address.
+        /// Indicator regarding the delivery address. Allowed values: * &#x60;shipToBillingAddress&#x60; * &#x60;shipToVerifiedAddress&#x60; * &#x60;shipToNewAddress&#x60; * &#x60;shipToStore&#x60; * &#x60;digitalGoods&#x60; * &#x60;goodsNotShipped&#x60; * &#x60;other&#x60;
         /// </summary>
-        /// <value>Indicator regarding the delivery address.</value>
-        [DataMember(Name="deliveryAddressIndicator", EmitDefaultValue=false)]
+        /// <value>Indicator regarding the delivery address. Allowed values: * &#x60;shipToBillingAddress&#x60; * &#x60;shipToVerifiedAddress&#x60; * &#x60;shipToNewAddress&#x60; * &#x60;shipToStore&#x60; * &#x60;digitalGoods&#x60; * &#x60;goodsNotShipped&#x60; * &#x60;other&#x60;</value>
+        [DataMember(Name = "deliveryAddressIndicator", EmitDefaultValue = false)]
         public DeliveryAddressIndicatorEnum? DeliveryAddressIndicator { get; set; }
+
         /// <summary>
-        /// The estimated delivery time for the shopper to receive the goods.
+        /// The estimated delivery time for the shopper to receive the goods. Allowed values: * &#x60;electronicDelivery&#x60; * &#x60;sameDayShipping&#x60; * &#x60;overnightShipping&#x60; * &#x60;twoOrMoreDaysShipping&#x60;
         /// </summary>
-        /// <value>The estimated delivery time for the shopper to receive the goods.</value>
+        /// <value>The estimated delivery time for the shopper to receive the goods. Allowed values: * &#x60;electronicDelivery&#x60; * &#x60;sameDayShipping&#x60; * &#x60;overnightShipping&#x60; * &#x60;twoOrMoreDaysShipping&#x60;</value>
         [JsonConverter(typeof(StringEnumConverter))]
         public enum DeliveryTimeframeEnum
         {
-            
             /// <summary>
             /// Enum ElectronicDelivery for value: electronicDelivery
             /// </summary>
-            [EnumMember(Value = "electronicDelivery")]
-            ElectronicDelivery = 1,
-            
+            [EnumMember(Value = "electronicDelivery")] ElectronicDelivery = 1,
+
             /// <summary>
             /// Enum SameDayShipping for value: sameDayShipping
             /// </summary>
-            [EnumMember(Value = "sameDayShipping")]
-            SameDayShipping = 2,
-            
+            [EnumMember(Value = "sameDayShipping")] SameDayShipping = 2,
+
             /// <summary>
             /// Enum OvernightShipping for value: overnightShipping
             /// </summary>
-            [EnumMember(Value = "overnightShipping")]
-            OvernightShipping = 3,
-            
+            [EnumMember(Value = "overnightShipping")] OvernightShipping = 3,
+
             /// <summary>
             /// Enum TwoOrMoreDaysShipping for value: twoOrMoreDaysShipping
             /// </summary>
-            [EnumMember(Value = "twoOrMoreDaysShipping")]
-            TwoOrMoreDaysShipping = 4
+            [EnumMember(Value = "twoOrMoreDaysShipping")] TwoOrMoreDaysShipping = 4
         }
 
         /// <summary>
-        /// The estimated delivery time for the shopper to receive the goods.
+        /// The estimated delivery time for the shopper to receive the goods. Allowed values: * &#x60;electronicDelivery&#x60; * &#x60;sameDayShipping&#x60; * &#x60;overnightShipping&#x60; * &#x60;twoOrMoreDaysShipping&#x60;
         /// </summary>
-        /// <value>The estimated delivery time for the shopper to receive the goods.</value>
-        [DataMember(Name="deliveryTimeframe", EmitDefaultValue=false)]
+        /// <value>The estimated delivery time for the shopper to receive the goods. Allowed values: * &#x60;electronicDelivery&#x60; * &#x60;sameDayShipping&#x60; * &#x60;overnightShipping&#x60; * &#x60;twoOrMoreDaysShipping&#x60;</value>
+        [DataMember(Name = "deliveryTimeframe", EmitDefaultValue = false)]
         public DeliveryTimeframeEnum? DeliveryTimeframe { get; set; }
+
         /// <summary>
         /// Initializes a new instance of the <see cref="MerchantRiskIndicator" /> class.
         /// </summary>
-        /// <param name="AddressMatch">Whether the chosen delivery address is identical to the billing address..</param>
-        /// <param name="DeliveryAddressIndicator">Indicator regarding the delivery address..</param>
-        /// <param name="DeliveryEmail">The delivery email address (for digital goods)..</param>
-        /// <param name="DeliveryTimeframe">The estimated delivery time for the shopper to receive the goods..</param>
-        /// <param name="GiftCardAmount">The amount of prepaid or gift cards used for this purchase..</param>
-        /// <param name="GiftCardCount">Number of individual prepaid or gift cards used for this purchase..</param>
-        /// <param name="PreOrderDate">For pre-order purchases, the expected date this product will be available to the shopper..</param>
-        /// <param name="PreOrderPurchase">Whether this transaction is for pre-ordering a product..</param>
-        /// <param name="ReorderItems">Whether the shopper has already purchased the same items in the past..</param>
-        public MerchantRiskIndicator(bool? AddressMatch = default(bool?), DeliveryAddressIndicatorEnum? DeliveryAddressIndicator = default(DeliveryAddressIndicatorEnum?), string DeliveryEmail = default(string), DeliveryTimeframeEnum? DeliveryTimeframe = default(DeliveryTimeframeEnum?), Amount GiftCardAmount = default(Amount), int? GiftCardCount = default(int?), DateTime? PreOrderDate = default(DateTime?), bool? PreOrderPurchase = default(bool?), bool? ReorderItems = default(bool?))
+        /// <param name="addressMatch">Whether the chosen delivery address is identical to the billing address..</param>
+        /// <param name="deliveryAddressIndicator">Indicator regarding the delivery address. Allowed values: * &#x60;shipToBillingAddress&#x60; * &#x60;shipToVerifiedAddress&#x60; * &#x60;shipToNewAddress&#x60; * &#x60;shipToStore&#x60; * &#x60;digitalGoods&#x60; * &#x60;goodsNotShipped&#x60; * &#x60;other&#x60;.</param>
+        /// <param name="deliveryEmail">The delivery email address (for digital goods)..</param>
+        /// <param name="deliveryTimeframe">The estimated delivery time for the shopper to receive the goods. Allowed values: * &#x60;electronicDelivery&#x60; * &#x60;sameDayShipping&#x60; * &#x60;overnightShipping&#x60; * &#x60;twoOrMoreDaysShipping&#x60;.</param>
+        /// <param name="giftCardAmount">giftCardAmount.</param>
+        /// <param name="giftCardCount">For prepaid or gift card purchase, total count of individual prepaid or gift cards/codes purchased..</param>
+        /// <param name="preOrderDate">For pre-order purchases, the expected date this product will be available to the shopper..</param>
+        /// <param name="preOrderPurchase">Indicator for whether this transaction is for pre-ordering a product..</param>
+        /// <param name="reorderItems">Indicator for whether the shopper has already purchased the same items in the past..</param>
+        public MerchantRiskIndicator(bool? addressMatch = default(bool?),
+            DeliveryAddressIndicatorEnum? deliveryAddressIndicator = default(DeliveryAddressIndicatorEnum?),
+            string deliveryEmail = default(string),
+            DeliveryTimeframeEnum? deliveryTimeframe = default(DeliveryTimeframeEnum?),
+            Amount giftCardAmount = default(Amount), int? giftCardCount = default(int?),
+            DateTime? preOrderDate = default(DateTime?), bool? preOrderPurchase = default(bool?),
+            bool? reorderItems = default(bool?))
         {
-            this.AddressMatch = AddressMatch;
-            this.DeliveryAddressIndicator = DeliveryAddressIndicator;
-            this.DeliveryEmail = DeliveryEmail;
-            this.DeliveryTimeframe = DeliveryTimeframe;
-            this.GiftCardAmount = GiftCardAmount;
-            this.GiftCardCount = GiftCardCount;
-            this.PreOrderDate = PreOrderDate;
-            this.PreOrderPurchase = PreOrderPurchase;
-            this.ReorderItems = ReorderItems;
+            this.AddressMatch = addressMatch;
+            this.DeliveryAddressIndicator = deliveryAddressIndicator;
+            this.DeliveryEmail = deliveryEmail;
+            this.DeliveryTimeframe = deliveryTimeframe;
+            this.GiftCardAmount = giftCardAmount;
+            this.GiftCardCount = giftCardCount;
+            this.PreOrderDate = preOrderDate;
+            this.PreOrderPurchase = preOrderPurchase;
+            this.ReorderItems = reorderItems;
         }
-        
+
         /// <summary>
         /// Whether the chosen delivery address is identical to the billing address.
         /// </summary>
         /// <value>Whether the chosen delivery address is identical to the billing address.</value>
-        [DataMember(Name="addressMatch", EmitDefaultValue=false)]
+        [DataMember(Name = "addressMatch", EmitDefaultValue = false)]
         public bool? AddressMatch { get; set; }
 
 
@@ -170,43 +166,42 @@ namespace Adyen.Model.Checkout
         /// The delivery email address (for digital goods).
         /// </summary>
         /// <value>The delivery email address (for digital goods).</value>
-        [DataMember(Name="deliveryEmail", EmitDefaultValue=false)]
+        [DataMember(Name = "deliveryEmail", EmitDefaultValue = false)]
         public string DeliveryEmail { get; set; }
 
 
         /// <summary>
-        /// The amount of prepaid or gift cards used for this purchase.
+        /// Gets or Sets GiftCardAmount
         /// </summary>
-        /// <value>The amount of prepaid or gift cards used for this purchase.</value>
-        [DataMember(Name="giftCardAmount", EmitDefaultValue=false)]
+        [DataMember(Name = "giftCardAmount", EmitDefaultValue = false)]
         public Amount GiftCardAmount { get; set; }
 
         /// <summary>
-        /// Number of individual prepaid or gift cards used for this purchase.
+        /// For prepaid or gift card purchase, total count of individual prepaid or gift cards/codes purchased.
         /// </summary>
-        /// <value>Number of individual prepaid or gift cards used for this purchase.</value>
-        [DataMember(Name="giftCardCount", EmitDefaultValue=false)]
+        /// <value>For prepaid or gift card purchase, total count of individual prepaid or gift cards/codes purchased.</value>
+        [DataMember(Name = "giftCardCount", EmitDefaultValue = false)]
         public int? GiftCardCount { get; set; }
 
         /// <summary>
         /// For pre-order purchases, the expected date this product will be available to the shopper.
         /// </summary>
         /// <value>For pre-order purchases, the expected date this product will be available to the shopper.</value>
-        [DataMember(Name="preOrderDate", EmitDefaultValue=false)]
+        [DataMember(Name = "preOrderDate", EmitDefaultValue = false)]
         public DateTime? PreOrderDate { get; set; }
 
         /// <summary>
-        /// Whether this transaction is for pre-ordering a product.
+        /// Indicator for whether this transaction is for pre-ordering a product.
         /// </summary>
-        /// <value>Whether this transaction is for pre-ordering a product.</value>
-        [DataMember(Name="preOrderPurchase", EmitDefaultValue=false)]
+        /// <value>Indicator for whether this transaction is for pre-ordering a product.</value>
+        [DataMember(Name = "preOrderPurchase", EmitDefaultValue = false)]
         public bool? PreOrderPurchase { get; set; }
 
         /// <summary>
-        /// Whether the shopper has already purchased the same items in the past.
+        /// Indicator for whether the shopper has already purchased the same items in the past.
         /// </summary>
-        /// <value>Whether the shopper has already purchased the same items in the past.</value>
-        [DataMember(Name="reorderItems", EmitDefaultValue=false)]
+        /// <value>Indicator for whether the shopper has already purchased the same items in the past.</value>
+        [DataMember(Name = "reorderItems", EmitDefaultValue = false)]
         public bool? ReorderItems { get; set; }
 
         /// <summary>
@@ -229,12 +224,12 @@ namespace Adyen.Model.Checkout
             sb.Append("}\n");
             return sb.ToString();
         }
-  
+
         /// <summary>
         /// Returns the JSON string presentation of the object
         /// </summary>
         /// <returns>JSON string presentation of the object</returns>
-        public string ToJson()
+        public virtual string ToJson()
         {
             return JsonConvert.SerializeObject(this, Formatting.Indented);
         }
@@ -259,51 +254,51 @@ namespace Adyen.Model.Checkout
             if (input == null)
                 return false;
 
-            return 
+            return
                 (
                     this.AddressMatch == input.AddressMatch ||
-                    (this.AddressMatch != null &&
-                    this.AddressMatch.Equals(input.AddressMatch))
-                ) && 
+                    this.AddressMatch != null &&
+                    this.AddressMatch.Equals(input.AddressMatch)
+                ) &&
                 (
                     this.DeliveryAddressIndicator == input.DeliveryAddressIndicator ||
-                    (this.DeliveryAddressIndicator != null &&
-                    this.DeliveryAddressIndicator.Equals(input.DeliveryAddressIndicator))
-                ) && 
+                    this.DeliveryAddressIndicator != null &&
+                    this.DeliveryAddressIndicator.Equals(input.DeliveryAddressIndicator)
+                ) &&
                 (
                     this.DeliveryEmail == input.DeliveryEmail ||
-                    (this.DeliveryEmail != null &&
-                    this.DeliveryEmail.Equals(input.DeliveryEmail))
-                ) && 
+                    this.DeliveryEmail != null &&
+                    this.DeliveryEmail.Equals(input.DeliveryEmail)
+                ) &&
                 (
                     this.DeliveryTimeframe == input.DeliveryTimeframe ||
-                    (this.DeliveryTimeframe != null &&
-                    this.DeliveryTimeframe.Equals(input.DeliveryTimeframe))
-                ) && 
+                    this.DeliveryTimeframe != null &&
+                    this.DeliveryTimeframe.Equals(input.DeliveryTimeframe)
+                ) &&
                 (
                     this.GiftCardAmount == input.GiftCardAmount ||
-                    (this.GiftCardAmount != null &&
-                    this.GiftCardAmount.Equals(input.GiftCardAmount))
-                ) && 
+                    this.GiftCardAmount != null &&
+                    this.GiftCardAmount.Equals(input.GiftCardAmount)
+                ) &&
                 (
                     this.GiftCardCount == input.GiftCardCount ||
-                    (this.GiftCardCount != null &&
-                    this.GiftCardCount.Equals(input.GiftCardCount))
-                ) && 
+                    this.GiftCardCount != null &&
+                    this.GiftCardCount.Equals(input.GiftCardCount)
+                ) &&
                 (
                     this.PreOrderDate == input.PreOrderDate ||
-                    (this.PreOrderDate != null &&
-                    this.PreOrderDate.Equals(input.PreOrderDate))
-                ) && 
+                    this.PreOrderDate != null &&
+                    this.PreOrderDate.Equals(input.PreOrderDate)
+                ) &&
                 (
                     this.PreOrderPurchase == input.PreOrderPurchase ||
-                    (this.PreOrderPurchase != null &&
-                    this.PreOrderPurchase.Equals(input.PreOrderPurchase))
-                ) && 
+                    this.PreOrderPurchase != null &&
+                    this.PreOrderPurchase.Equals(input.PreOrderPurchase)
+                ) &&
                 (
                     this.ReorderItems == input.ReorderItems ||
-                    (this.ReorderItems != null &&
-                    this.ReorderItems.Equals(input.ReorderItems))
+                    this.ReorderItems != null &&
+                    this.ReorderItems.Equals(input.ReorderItems)
                 );
         }
 
@@ -343,10 +338,10 @@ namespace Adyen.Model.Checkout
         /// </summary>
         /// <param name="validationContext">Validation context</param>
         /// <returns>Validation Result</returns>
-        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(
+            ValidationContext validationContext)
         {
             yield break;
         }
     }
-
 }

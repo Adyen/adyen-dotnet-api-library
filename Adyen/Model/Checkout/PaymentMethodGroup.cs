@@ -1,24 +1,25 @@
-#region License
-// /*
-//  *                       ######
-//  *                       ######
-//  * ############    ####( ######  #####. ######  ############   ############
-//  * #############  #####( ######  #####. ######  #############  #############
-//  *        ######  #####( ######  #####. ######  #####  ######  #####  ######
-//  * ###### ######  #####( ######  #####. ######  #####  #####   #####  ######
-//  * ###### ######  #####( ######  #####. ######  #####          #####  ######
-//  * #############  #############  #############  #############  #####  ######
-//  *  ############   ############  #############   ############  #####  ######
-//  *                                      ######
-//  *                               #############
-//  *                               ############
-//  *
-//  * Adyen Dotnet API Library
-//  *
-//  * Copyright (c) 2020 Adyen B.V.
-//  * This file is open source and available under the MIT license.
-//  * See the LICENSE file for more info.
-//  */
+#region Licence
+
+// 
+//                        ######
+//                        ######
+//  ############    ####( ######  #####. ######  ############   ############
+//  #############  #####( ######  #####. ######  #############  #############
+//         ######  #####( ######  #####. ######  #####  ######  #####  ######
+//  ###### ######  #####( ######  #####. ######  #####  #####   #####  ######
+//  ###### ######  #####( ######  #####. ######  #####          #####  ######
+//  #############  #############  #############  #############  #####  ######
+//   ############   ############  #############   ############  #####  ######
+//                                       ######
+//                                #############
+//                                ############
+// 
+//  Adyen Dotnet API Library
+// 
+//  Copyright (c) 2020 Adyen B.V.
+//  This file is open source and available under the MIT license.
+//  See the LICENSE file for more info.
+
 #endregion
 
 using System;
@@ -34,40 +35,41 @@ namespace Adyen.Model.Checkout
     /// PaymentMethodGroup
     /// </summary>
     [DataContract]
-    public partial class PaymentMethodGroup :  IEquatable<PaymentMethodGroup>, IValidatableObject
+    public partial class PaymentMethodGroup : IEquatable<PaymentMethodGroup>, IValidatableObject
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="PaymentMethodGroup" /> class.
         /// </summary>
-        /// <param name="Name">The name of the group..</param>
-        /// <param name="PaymentMethodData">Echo data to be used if the payment method is displayed as part of this group..</param>
-        /// <param name="Type">The unique code of the group..</param>
-        public PaymentMethodGroup(string Name = default(string), string PaymentMethodData = default(string), string Type = default(string))
+        /// <param name="name">The name of the group..</param>
+        /// <param name="paymentMethodData">Echo data to be used if the payment method is displayed as part of this group..</param>
+        /// <param name="type">The unique code of the group..</param>
+        public PaymentMethodGroup(string name = default(string), string paymentMethodData = default(string),
+            string type = default(string))
         {
-            this.Name = Name;
-            this.PaymentMethodData = PaymentMethodData;
-            this.Type = Type;
+            this.Name = name;
+            this.PaymentMethodData = paymentMethodData;
+            this.Type = type;
         }
-        
+
         /// <summary>
         /// The name of the group.
         /// </summary>
         /// <value>The name of the group.</value>
-        [DataMember(Name="name", EmitDefaultValue=false)]
+        [DataMember(Name = "name", EmitDefaultValue = false)]
         public string Name { get; set; }
 
         /// <summary>
         /// Echo data to be used if the payment method is displayed as part of this group.
         /// </summary>
         /// <value>Echo data to be used if the payment method is displayed as part of this group.</value>
-        [DataMember(Name="paymentMethodData", EmitDefaultValue=false)]
+        [DataMember(Name = "paymentMethodData", EmitDefaultValue = false)]
         public string PaymentMethodData { get; set; }
 
         /// <summary>
         /// The unique code of the group.
         /// </summary>
         /// <value>The unique code of the group.</value>
-        [DataMember(Name="type", EmitDefaultValue=false)]
+        [DataMember(Name = "type", EmitDefaultValue = false)]
         public string Type { get; set; }
 
         /// <summary>
@@ -84,12 +86,12 @@ namespace Adyen.Model.Checkout
             sb.Append("}\n");
             return sb.ToString();
         }
-  
+
         /// <summary>
         /// Returns the JSON string presentation of the object
         /// </summary>
         /// <returns>JSON string presentation of the object</returns>
-        public string ToJson()
+        public virtual string ToJson()
         {
             return JsonConvert.SerializeObject(this, Formatting.Indented);
         }
@@ -114,21 +116,21 @@ namespace Adyen.Model.Checkout
             if (input == null)
                 return false;
 
-            return 
+            return
                 (
                     this.Name == input.Name ||
-                    (this.Name != null &&
-                    this.Name.Equals(input.Name))
-                ) && 
+                    this.Name != null &&
+                    this.Name.Equals(input.Name)
+                ) &&
                 (
                     this.PaymentMethodData == input.PaymentMethodData ||
-                    (this.PaymentMethodData != null &&
-                    this.PaymentMethodData.Equals(input.PaymentMethodData))
-                ) && 
+                    this.PaymentMethodData != null &&
+                    this.PaymentMethodData.Equals(input.PaymentMethodData)
+                ) &&
                 (
                     this.Type == input.Type ||
-                    (this.Type != null &&
-                    this.Type.Equals(input.Type))
+                    this.Type != null &&
+                    this.Type.Equals(input.Type)
                 );
         }
 
@@ -156,10 +158,10 @@ namespace Adyen.Model.Checkout
         /// </summary>
         /// <param name="validationContext">Validation context</param>
         /// <returns>Validation Result</returns>
-        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(
+            ValidationContext validationContext)
         {
             yield break;
         }
     }
-
 }
