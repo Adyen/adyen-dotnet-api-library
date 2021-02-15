@@ -38,6 +38,7 @@ namespace Adyen
         public string MarketPayEndpoint { get; set; }
         public string ApplicationName { get; set; }
         public IWebProxy Proxy { get; set; }
+        // Please note that http request timeout is milliseconds.
         public int HttpRequestTimeout { get; set; }
         //HPP specific
         public string HppEndpoint { get; set; }
