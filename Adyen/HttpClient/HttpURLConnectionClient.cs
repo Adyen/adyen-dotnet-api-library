@@ -68,7 +68,7 @@ namespace Adyen.HttpClient
             }
             catch (WebException e)
             {
-                ExceptionHandler(e);
+                HandleWebException(e);
             }
             return responseText;
         }
@@ -106,7 +106,7 @@ namespace Adyen.HttpClient
             }
             catch (WebException e)
             {
-                ExceptionHandler(e);
+                HandleWebException(e);
             }
             return responseText;
         }
@@ -115,7 +115,7 @@ namespace Adyen.HttpClient
         /// Handles the common http exceptions 
         /// </summary>
         /// <param name="e">WebException e</param>
-        private static void ExceptionHandler(WebException e)
+        private static void HandleWebException(WebException e)
         {
             string responseText = null;
             //Add check on actual timeout before returning timeout
