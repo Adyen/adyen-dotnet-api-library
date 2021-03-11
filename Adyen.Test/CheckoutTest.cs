@@ -530,38 +530,11 @@ namespace Adyen.Test
             var client = CreateMockTestClientApiKeyBasedRequest("Mocks/checkout/payment-links-success.json");
             var checkout = new Checkout(client);
             var createPaymentLinkRequest = new CreatePaymentLinkRequest(amount: new Amount(currency: "EUR", 1000), merchantAccount: "MerchantAccount", reference: "YOUR_ORDER_NUMBER");
-            var paymentLinksResponse = checkout.PaymentLinks(createPaymentLinkRequest);
+            var paymentLinksResponse = checkout.CreatePaymentLink(createPaymentLinkRequest);
             Assert.AreEqual(paymentLinksResponse.Url, "https://checkoutshopper-test.adyen.com/checkoutshopper/payByLink.shtml?d=YW1vdW50TWlub3JW...JRA");
             Assert.AreEqual(paymentLinksResponse.ExpiresAt, "2019-12-17T10:05:29Z");
             Assert.AreEqual(paymentLinksResponse.Reference, "YOUR_ORDER_NUMBER");
             Assert.IsNotNull(paymentLinksResponse.Amount);
-        }
-
-        /// <summary>
-        /// Test success flow for creation of a payment link with recurring payment
-        /// POST /paymentLinks
-        /// </summary>
-        [TestMethod]
-        public void CreateRecurringPaymentLinkSuccessTest()
-        {
-            var client = CreateMockTestClientApiKeyBasedRequest("Mocks/checkout/paymentlinks-recurring-payment-success.json");
-            var checkout = new Checkout(client);
-
-            var createPaymentLinkRequest = new CreatePaymentLinkRequest(amount: new Amount(currency: "EUR", 100), merchantAccount: "MerchantAccount", reference: "REFERENCE_NUMBER")
-            {
-                CountryCode = "GR",
-                ShopperLocale = "GR",
-                ShopperReference = "ShopperReference",
-                StorePaymentMethod = true,
-                RecurringProcessingModel = CreatePaymentLinkRequest.RecurringProcessingModelEnum.Subscription
-            };
-
-            var paymentLinksResponse = checkout.PaymentLinks(createPaymentLinkRequest);
-
-            Assert.AreEqual(createPaymentLinkRequest.Reference, paymentLinksResponse.Reference);
-            Assert.AreEqual("https://checkoutshopper-test.adyen.com/checkoutshopper/payByLink.shtml?d=YW1vdW50TWlub3JW...JRA", paymentLinksResponse.Url);
-            Assert.AreEqual(createPaymentLinkRequest.Amount.Currency, paymentLinksResponse.Amount.Currency);
-            Assert.AreEqual(createPaymentLinkRequest.Amount.Value, paymentLinksResponse.Amount.Value);
         }
 
         /// <summary>

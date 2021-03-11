@@ -22,16 +22,13 @@
 #endregion
 
 using Adyen.Constants;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace Adyen.Service.Resource.Checkout
 {
-    public class PaymentLinks : ServiceResource
+    public class PaymentLinks : ServiceRestResource
     {
         public PaymentLinks(AbstractService abstractService)
-            : base(abstractService, abstractService.Client.Config.CheckoutEndpoint + "/" + ClientConfig.CheckoutApiVersion + "/paymentLinks", new List<string> { "paymentData", "details" })
+            : base(abstractService, abstractService.Client.Config.CheckoutEndpoint + "/" + ClientConfig.CheckoutApiVersion + "/paymentLinks")
         {
         }
     }

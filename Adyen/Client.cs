@@ -34,6 +34,7 @@ namespace Adyen
     {
         public Config Config { get; set; }
         private IClient _client;
+        private IRestClient _restClient;
 
         public string ApplicationName { get; set; }
 
@@ -124,6 +125,22 @@ namespace Adyen
             set
             {
                 _client = value;
+            }
+        }
+
+        public IRestClient HttpRestClient
+        {
+            get
+            {
+                if (_restClient == null)
+                {
+                    _restClient = new HttpRestClient();
+                }
+                return _restClient;
+            }
+            set
+            {
+                _restClient = value;
             }
         }
 
