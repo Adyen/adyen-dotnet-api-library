@@ -28,46 +28,47 @@ namespace Adyen.Service
     public class ServiceRestResource
     {
         private readonly AbstractService _abstractService;
-        protected string Endpoint;
+        protected string endpoint;
         private IRestClient _clientInterface;
         public ServiceRestResource(AbstractService abstractService, string endpoint)
         {
             _abstractService = abstractService;
-            Endpoint = endpoint;
+            this.endpoint = endpoint;
             _clientInterface = _abstractService.Client.HttpRestClient;
         }
         public async Task<string> GetAsync(string json)
         {
-            return await _clientInterface.GetAsync(Endpoint,json, _abstractService.Client.Config);
+            return await _clientInterface.GetAsync(endpoint,json, _abstractService.Client.Config);
         }
         public async Task<string> PostAsync(string json)
         {
-            return await _clientInterface.PostAsync(Endpoint, json, _abstractService.Client.Config);
+            return await _clientInterface.PostAsync(endpoint, json, _abstractService.Client.Config);
         }
         public async Task<string> PatchAsync(string json)
         {
-            return await _clientInterface.PatchAsync(Endpoint, json, _abstractService.Client.Config);
+            return await _clientInterface.PatchAsync(endpoint, json, _abstractService.Client.Config);
         }
         public async Task<string> DeleteAsync(string json)
         {
-            return await _clientInterface.DeleteAsync(Endpoint, json, _abstractService.Client.Config);
+            return await _clientInterface.DeleteAsync(endpoint, json, _abstractService.Client.Config);
         }
 
-        public string Get(string json)
+        public string Get(string json, string addition)
         {
-            return _clientInterface.Get(Endpoint, json, _abstractService.Client.Config);
+
+            return _clientInterface.Get(endpoint, json, _abstractService.Client.Config);
         }
         public string Post(string json)
         {
-            return _clientInterface.Post(Endpoint, json, _abstractService.Client.Config);
+            return _clientInterface.Post(endpoint, json, _abstractService.Client.Config);
         }
         public string Patch(string json)
         {
-            return _clientInterface.Patch(Endpoint, json, _abstractService.Client.Config);
+            return _clientInterface.Patch(endpoint, json, _abstractService.Client.Config);
         }
         public string Delete(string json)
         {
-            return _clientInterface.Delete(Endpoint, json, _abstractService.Client.Config);
+            return _clientInterface.Delete(endpoint, json, _abstractService.Client.Config);
         }
     }
 }
