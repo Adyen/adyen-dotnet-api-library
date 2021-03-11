@@ -179,7 +179,7 @@ namespace Adyen.Service
         /// <returns>PaymentLinkResource</returns>
         public PaymentLinkResource RetrievePaymentLink(string linkid)
         {
-            var jsonResponse = _paymentLinksResult.Get(null, linkid);
+            var jsonResponse = _paymentLinksResult.Get(json:null, additionUri:linkid);
             return JsonConvert.DeserializeObject<PaymentLinkResource>(jsonResponse);
         }
 
@@ -187,10 +187,9 @@ namespace Adyen.Service
         /// Get async/paymentLink
         /// </summary>
         /// <returns>Task<PaymentLinkResource></returns>
-        public async Task<PaymentLinkResource> RetrievePaymentLinkAsync(CreatePaymentLinkRequest createPaymentLinkRequest)
+        public async Task<PaymentLinkResource> RetrievePaymentLinkAsync(string linkid)
         {
-            var jsonRequest = Util.JsonOperation.SerializeRequest(createPaymentLinkRequest);
-            var jsonResponse = await _paymentLinksResult.GetAsync(jsonRequest);
+            var jsonResponse = await _paymentLinksResult.GetAsync(json: null, additionUri: linkid);
             return JsonConvert.DeserializeObject<PaymentLinkResource>(jsonResponse);
         }
 
@@ -220,9 +219,9 @@ namespace Adyen.Service
         /// Post /paymentLink
         /// </summary>
         /// <returns>PaymentLinkResource</returns>
-        public PaymentLinkResource UpdatePaymentLink(CreatePaymentLinkRequest createPaymentLinkRequest)
+        public PaymentLinkResource UpdatePaymentLink(UpdatePaymentLinkRequest updatePaymentLinkRequest)
         {
-            var jsonRequest = Util.JsonOperation.SerializeRequest(createPaymentLinkRequest);
+            var jsonRequest = Util.JsonOperation.SerializeRequest(updatePaymentLinkRequest);
             var jsonResponse = _paymentLinksResult.Patch(jsonRequest);
             return JsonConvert.DeserializeObject<PaymentLinkResource>(jsonResponse);
         }
@@ -231,9 +230,9 @@ namespace Adyen.Service
         /// Post async/paymentLink
         /// </summary>
         /// <returns>Task<PaymentLinkResource></returns>
-        public async Task<PaymentLinkResource> UpdatePaymentLinkAsync(CreatePaymentLinkRequest createPaymentLinkRequest)
+        public async Task<PaymentLinkResource> UpdatePaymentLinkAsync(UpdatePaymentLinkRequest updatePaymentLinkRequest)
         {
-            var jsonRequest = Util.JsonOperation.SerializeRequest(createPaymentLinkRequest);
+            var jsonRequest = Util.JsonOperation.SerializeRequest(updatePaymentLinkRequest);
             var jsonResponse = await _paymentLinksResult.PatchAsync(jsonRequest);
             return JsonConvert.DeserializeObject<PaymentLinkResource>(jsonResponse);
         }

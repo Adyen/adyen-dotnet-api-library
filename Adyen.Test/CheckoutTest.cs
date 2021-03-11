@@ -521,23 +521,6 @@ namespace Adyen.Test
         }
 
         /// <summary>
-        /// Test success flow for
-        /// POST  /payments/result
-        /// </summary>
-        [TestMethod]
-        public void PaymentLinksSuccess()
-        {
-            var client = CreateMockTestClientApiKeyBasedRequest("Mocks/checkout/payment-links-success.json");
-            var checkout = new Checkout(client);
-            var createPaymentLinkRequest = new CreatePaymentLinkRequest(amount: new Amount(currency: "EUR", 1000), merchantAccount: "MerchantAccount", reference: "YOUR_ORDER_NUMBER");
-            var paymentLinksResponse = checkout.CreatePaymentLink(createPaymentLinkRequest);
-            Assert.AreEqual(paymentLinksResponse.Url, "https://checkoutshopper-test.adyen.com/checkoutshopper/payByLink.shtml?d=YW1vdW50TWlub3JW...JRA");
-            Assert.AreEqual(paymentLinksResponse.ExpiresAt, "2019-12-17T10:05:29Z");
-            Assert.AreEqual(paymentLinksResponse.Reference, "YOUR_ORDER_NUMBER");
-            Assert.IsNotNull(paymentLinksResponse.Amount);
-        }
-
-        /// <summary>
         /// Test success flow for multibanco
         /// Post /payments 
         /// </summary>
@@ -641,6 +624,23 @@ namespace Adyen.Test
             var paymentResponseToJson = paymentResponse.ToJson();
             var jObject = JObject.Parse(paymentResponseToJson);
             Assert.AreEqual(jObject["action"]["type"], "threeDS2Challenge");
+        }
+
+
+
+        /// <summary>
+        /// Test success flow for
+        /// Get  /paymentsLink/{linkid} 
+        /// FInalize
+        /// </summary>
+        [TestMethod]
+        public void PaymentLinksGetUri()
+        {
+            var config = new Config();
+            var client = new Client(config);
+            client.SetEnvironment(Model.Enum.Environment.Test, "companyUrl");
+            var checkout = new Checkout(client);
+           // var paymentLinksResponse = checkout.RetrievePaymentLink("1");
         }
     }
 }

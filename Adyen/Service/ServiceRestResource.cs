@@ -21,6 +21,8 @@
  */
 #endregion
 using Adyen.HttpClient.Interfaces;
+using System.Collections.Generic;
+using System.Net;
 using System.Threading.Tasks;
 
 namespace Adyen.Service
@@ -28,54 +30,60 @@ namespace Adyen.Service
     public class ServiceRestResource
     {
         private readonly AbstractService _abstractService;
-        protected string endpoint;
+        protected string baseEndpoint;
         private IRestClient _clientInterface;
         public ServiceRestResource(AbstractService abstractService, string endpoint)
         {
             _abstractService = abstractService;
-            this.endpoint = endpoint;
+            this.baseEndpoint = endpoint;
             _clientInterface = _abstractService.Client.HttpRestClient;
         }
-        public async Task<string> GetAsync(string json)
+        public async Task<string> GetAsync(string json, string additionUri = null, Dictionary<string, string> options = null)
         {
-            return await _clientInterface.GetAsync(endpoint,json, _abstractService.Client.Config);
+            var uri = CreateUrl(baseEndpoint, additionUri);
+            return await _clientInterface.GetAsync(uri, json, _abstractService.Client.Config);
         }
-        public async Task<string> PostAsync(string json)
+        public async Task<string> PostAsync(string json, string additionUri = null, Dictionary<string, string> options = null)
         {
-            return await _clientInterface.PostAsync(endpoint, json, _abstractService.Client.Config);
+            var uri = CreateUrl(baseEndpoint, additionUri);
+            return await _clientInterface.PostAsync(uri, json, _abstractService.Client.Config);
         }
-        public async Task<string> PatchAsync(string json)
+        public async Task<string> PatchAsync(string json, string additionUri = null, Dictionary<string, string> options = null)
         {
-            return await _clientInterface.PatchAsync(endpoint, json, _abstractService.Client.Config);
+            var uri = CreateUrl(baseEndpoint, additionUri);
+            return await _clientInterface.PatchAsync(uri, json, _abstractService.Client.Config);
         }
-        public async Task<string> DeleteAsync(string json)
+        public async Task<string> DeleteAsync(string json, string additionUri = null, Dictionary<string, string> options = null)
         {
-            return await _clientInterface.DeleteAsync(endpoint, json, _abstractService.Client.Config);
-        }
-
-        public string Get(string json, string addition = null)
-        {
-            var endpointWithAddition = CreateUrl(endpoint, addition);
-            return _clientInterface.Get(endpoint, json, _abstractService.Client.Config);
+            var uri = CreateUrl(baseEndpoint, additionUri);
+            return await _clientInterface.DeleteAsync(uri, json, _abstractService.Client.Config);
         }
 
-        public string Post(string json)
+        public string Get(string json, string additionUri = null, Dictionary<string,string> options=null)
         {
-            return _clientInterface.Post(endpoint, json, _abstractService.Client.Config);
-        }
-        public string Patch(string json)
-        {
-            return _clientInterface.Patch(endpoint, json, _abstractService.Client.Config);
-        }
-        public string Delete(string json)
-        {
-            return _clientInterface.Delete(endpoint, json, _abstractService.Client.Config);
+            var uri = CreateUrl(baseEndpoint, additionUri);
+            return _clientInterface.Get(uri, json, _abstractService.Client.Config);
         }
 
-
-        private object CreateUrl(string endpoint, string addition)
+        public string Post(string json, string additionUri = null, Dictionary<string, string> options = null)
         {
-            return endpoint + "/" + addition;
+            var uri = CreateUrl(baseEndpoint, additionUri);
+            return _clientInterface.Post(uri, json, _abstractService.Client.Config);
+        }
+        public string Patch(string json, string additionUri = null, Dictionary<string, string> options = null)
+        {
+            var uri = CreateUrl(baseEndpoint, additionUri);
+            return _clientInterface.Patch(uri, json, _abstractService.Client.Config);
+        }
+        public string Delete(string json, string additionUri = null, Dictionary<string,string> options=null)
+        {
+            var uri = CreateUrl(baseEndpoint, additionUri);
+            return _clientInterface.Delete(uri, json, _abstractService.Client.Config);
+        }
+
+        private string CreateUrl(string endpoint, string addition)
+        {
+              return $"{endpoint}/{WebUtility.UrlEncode(addition)}";
         }
     }
 }
