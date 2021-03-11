@@ -7,7 +7,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        dotnet: ['2.1.811','2.2.103']
+        dotnet: ['2.1.811']
     steps:
     - uses: actions/checkout@v2
     - name: Setup .NET Core
@@ -16,6 +16,5 @@ jobs:
         dotnet-version: ${{ matrix.dotnet }}
     - name: Build with dotnet
       run: 
-        sudo apt-get install libssl1.0.2
         dotnet build /p:TargetFrameworks=netcoreapp2.0
         dotnet test Adyen.Test/Adyen.Test.csproj
