@@ -53,11 +53,12 @@ namespace Adyen.Service
             return await _clientInterface.DeleteAsync(endpoint, json, _abstractService.Client.Config);
         }
 
-        public string Get(string json, string addition)
+        public string Get(string json, string addition = null)
         {
-
+            var endpointWithAddition = CreateUrl(endpoint, addition);
             return _clientInterface.Get(endpoint, json, _abstractService.Client.Config);
         }
+
         public string Post(string json)
         {
             return _clientInterface.Post(endpoint, json, _abstractService.Client.Config);
@@ -69,6 +70,12 @@ namespace Adyen.Service
         public string Delete(string json)
         {
             return _clientInterface.Delete(endpoint, json, _abstractService.Client.Config);
+        }
+
+
+        private object CreateUrl(string endpoint, string addition)
+        {
+            return endpoint + "/" + addition;
         }
     }
 }

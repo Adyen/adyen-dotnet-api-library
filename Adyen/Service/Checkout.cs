@@ -177,10 +177,9 @@ namespace Adyen.Service
         /// Get /paymentLink
         /// </summary>
         /// <returns>PaymentLinkResource</returns>
-        public PaymentLinkResource RetrievePaymentLink(CreatePaymentLinkRequest createPaymentLinkRequest)
+        public PaymentLinkResource RetrievePaymentLink(string linkid)
         {
-            var jsonRequest = Util.JsonOperation.SerializeRequest(createPaymentLinkRequest);
-            var jsonResponse = _paymentLinksResult.Get(jsonRequest);
+            var jsonResponse = _paymentLinksResult.Get(null, linkid);
             return JsonConvert.DeserializeObject<PaymentLinkResource>(jsonResponse);
         }
 
