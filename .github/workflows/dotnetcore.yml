@@ -15,6 +15,7 @@ jobs:
       with:
         dotnet-version: ${{ matrix.dotnet }}
     - name: Build with dotnet
-      run: |
+      run: 
+        sudo apt-get install libssl1.0.2
         dotnet build /p:TargetFrameworks=netcoreapp2.0
         dotnet test Adyen.Test/Adyen.Test.csproj
