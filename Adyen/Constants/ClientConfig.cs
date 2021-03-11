@@ -38,6 +38,8 @@ namespace Adyen.Constants
         public static string MarketpayEndPointLive = "https://cal-live.adyen.com/cal/services";
         public static string PosTerminalManagementEndpointTest = "https://postfmapi-test.adyen.com/postfmapi/terminal";
         public static string PosTerminalManagementEndpointLive = "https://postfmapi-live.adyen.com/postfmapi/terminal";
+        public static string ConfigurationApiEndpointTest = "https://configuration-test.adyen.com";
+        public static string ConfigurationApiVersion = "v1";
         public static string MarketPayFundApiVersion = "v5";
         public static string MarketPayAccountApiVersion = "v5";
         public static string HopApiVersion = "v1";

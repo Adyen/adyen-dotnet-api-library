@@ -95,6 +95,7 @@ namespace Adyen
                     Config.CheckoutEndpoint = ClientConfig.CheckoutEndpointTest;
                     Config.MarketPayEndpoint = ClientConfig.MarketpayEndPointTest;
                     Config.PosTerminalManagementEndpoint = ClientConfig.PosTerminalManagementEndpointTest;
+                    Config.ConfigurationApi = ClientConfig.ConfigurationApiEndpointTest;
                     break;
                 case Environment.Live:
                     if (string.IsNullOrEmpty(liveEndpointUrlPrefix))

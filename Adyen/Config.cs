@@ -42,9 +42,10 @@ namespace Adyen
         public int HttpRequestTimeout { get; set; }
         //HPP specific
         public string HppEndpoint { get; set; }
-        public string SkinCode{ get; set; }
+        public string SkinCode { get; set; }
         public string HmacKey { get; set; }
-        public string CheckoutEndpoint { get;set; }
+        public string CheckoutEndpoint { get; set; }
+        public string ConfigurationApi {get;set;}
 
         //Terminal cloud api
         public string XApiKey { get; set; }

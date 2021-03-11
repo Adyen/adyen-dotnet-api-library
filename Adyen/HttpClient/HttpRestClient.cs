@@ -29,12 +29,14 @@ namespace Adyen.HttpClient
     /// <summary>
     /// Defines methods required to make RESTful calls.
     /// </summary>
+    //TODO: Complete the methods 
     public class HttpRestClient : IRestClient
     {
         public Config Config { get; internal set; }
+        // This returns the endpoint only for the testing
         public string Get(string endpoint, string json, Config config)
         {
-            throw new NotImplementedException();
+            return endpoint;
         }
 
         public Task<string> GetAsync(string endpoint, string json, Config config)

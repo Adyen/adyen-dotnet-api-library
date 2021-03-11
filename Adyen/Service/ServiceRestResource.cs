@@ -81,9 +81,10 @@ namespace Adyen.Service
             return _clientInterface.Delete(uri, json, _abstractService.Client.Config);
         }
 
+        //Apend the base url with the additionUri
         private string CreateUrl(string endpoint, string addition)
         {
-              return $"{endpoint}/{WebUtility.UrlEncode(addition)}";
+              return $"{endpoint}/{addition}";
         }
     }
 }
