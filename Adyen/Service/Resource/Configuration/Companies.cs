@@ -28,7 +28,7 @@ namespace Adyen.Service.Resource.Configuration
     {
         public Companies(AbstractService abstractService)
             : base(abstractService,
-                abstractService.Client.Config.ConfigurationApi + ClientConfig.ConfigurationApiVersion +
+                abstractService.Client.Config.ConfigurationApi + "/" + ClientConfig.ConfigurationApiVersion +
                 "/companies")
         {
         }

@@ -39,7 +39,7 @@ namespace Adyen.Test
             client.SetEnvironment(Model.Enum.Environment.Test, "companyUrl");
             var configuration = new Configuration(client);
             var endpoint = configuration.RetrieveApiCredential(5,5);
-            Assert.AreEqual(endpoint, @"https://configuration-test.adyen.comv1/companies/5/apiCredentials/5");
+            Assert.AreEqual(endpoint, @"https://configuration-test.adyen.com/v1/companies/5/apiCredentials/5");
         }
     }
 }
