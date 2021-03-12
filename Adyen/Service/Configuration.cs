@@ -45,7 +45,7 @@ namespace Adyen.Service
         //TODO this is only returns the url for testing 
         public string RetrieveApiCredential(int companyId, int apiCredentialId)
         {
-            var uri = string.Format("/companies/{0}/apiCredentials/{1}", companyId, apiCredentialId);
+            var uri = string.Format("{0}/apiCredentials/{1}", companyId, apiCredentialId);
             var jsonResponse = _companies.Get(json: null, additionUri: uri);
             return jsonResponse;
             //return JsonConvert.DeserializeObject<CompaniesApiCredentialResponse>(jsonResponse);
@@ -57,7 +57,7 @@ namespace Adyen.Service
         /// <returns>Task<CompaniesApiCredentialResponse></returns>
         public async Task<CompaniesApiCredentialResponse> RetrieveApiCredentialAsync(int companyId, int apiCredentialId)
         {
-            var uri = string.Format("/companies/{0}/apiCredentials/{1}", companyId, apiCredentialId);
+            var uri = string.Format("{0}/apiCredentials/{1}", companyId, apiCredentialId);
             var jsonResponse = await _companies.GetAsync(json: null, additionUri: uri);
             return JsonConvert.DeserializeObject<CompaniesApiCredentialResponse>(jsonResponse);
         }
@@ -68,7 +68,7 @@ namespace Adyen.Service
         /// <returns>CompaniesApiCredentialResponse</returns>
         public CompaniesApiCredentialResponse UpdateApiCredential(CompaniesApiCredentialRequest companiesApiCredentialRequest, int companyId, int apiCredentialId)
         {
-            var uri = string.Format("/companies/{0}/apiCredentials/{1}", companyId, apiCredentialId);
+            var uri = string.Format("{0}/apiCredentials/{1}", companyId, apiCredentialId);
             var jsonRequest = Util.JsonOperation.SerializeRequest(companiesApiCredentialRequest);
             var jsonResponse = _companies.Patch(json: jsonRequest, additionUri: uri);
             return JsonConvert.DeserializeObject<CompaniesApiCredentialResponse>(jsonResponse);
@@ -80,7 +80,7 @@ namespace Adyen.Service
         /// <returns>Task<CompaniesApiCredentialResponse></returns>
         public async Task<CompaniesApiCredentialResponse> UpdateApiCredentialAsync(CompaniesApiCredentialRequest companiesApiCredentialRequest, int companyId, int apiCredentialId)
         {
-            var uri = string.Format("/companies/{0}/apiCredentials/{1}", companyId, apiCredentialId);
+            var uri = string.Format("{0}/apiCredentials/{1}", companyId, apiCredentialId);
             var jsonRequest = Util.JsonOperation.SerializeRequest(companiesApiCredentialRequest);
             var jsonResponse = await _companies.PatchAsync(json: jsonRequest, additionUri: uri);
             return JsonConvert.DeserializeObject<CompaniesApiCredentialResponse>(jsonResponse);
