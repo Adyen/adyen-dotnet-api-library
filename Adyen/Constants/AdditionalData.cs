@@ -45,5 +45,6 @@ namespace Adyen.Constants
         public const string AuthorisedAmountValue = "authorisedAmountValue";
         public const string RecurringShopperReference = "recurring.shopperReference";
         public const string RecurringDetailReference = "recurring.recurringDetailReference";
+        public const string AllowThreeDS2 = "allow3DS2";
     }
 }
