@@ -106,11 +106,11 @@ namespace Adyen.Service
         /// </summary>
         /// <param name="paymentsDetailsRequest"></param>
         /// <returns>PaymentsResponse</returns>
-        public PaymentResponse PaymentDetails(PaymentsDetailsRequest paymentsDetailsRequest, RequestOptions requestOptions = null)
+        public PaymentDetailsResponse PaymentDetails(PaymentsDetailsRequest paymentsDetailsRequest, RequestOptions requestOptions = null)
         {
             var jsonRequest = Util.JsonOperation.SerializeRequest(paymentsDetailsRequest);
             var jsonResponse = _paymentDetails.Request(jsonRequest, requestOptions);
-            return Util.JsonOperation.Deserialize<PaymentResponse>(jsonResponse);
+            return Util.JsonOperation.Deserialize<PaymentDetailsResponse>(jsonResponse);
         }
 
         /// <summary>

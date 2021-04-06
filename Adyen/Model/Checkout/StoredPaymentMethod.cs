@@ -138,6 +138,20 @@ namespace Adyen.Model.Checkout
         /// <value>The type of payment method.</value>
         [DataMember(Name = "type", EmitDefaultValue = false)]
         public string Type { get; set; }
+        
+        /// <summary>
+        /// The type of payment method.
+        /// </summary>
+        /// <value>The type of payment method.</value>
+        [DataMember(Name = "iban", EmitDefaultValue = false)]
+        public string Iban { get; set; }
+
+        /// <summary>
+        /// The type of payment method.
+        /// </summary>
+        /// <value>The type of payment method.</value>
+        [DataMember(Name = "ownerName", EmitDefaultValue = false)]
+        public string OwnerName { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -157,6 +171,8 @@ namespace Adyen.Model.Checkout
             sb.Append("  ShopperEmail: ").Append(ShopperEmail).Append("\n");
             sb.Append("  SupportedShopperInteractions: ").Append(SupportedShopperInteractions.ToListString()).Append("\n");
             sb.Append("  Type: ").Append(Type).Append("\n");
+            sb.Append("  iban: ").Append(Iban).Append("\n");
+            sb.Append("  ownerName: ").Append(OwnerName).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -241,6 +257,16 @@ namespace Adyen.Model.Checkout
                     this.Type == input.Type ||
                     this.Type != null &&
                     this.Type.Equals(input.Type)
+                ) &&
+                (
+                    this.Iban == input.Iban ||
+                    this.Iban != null &&
+                    this.Iban.Equals(input.Iban)
+                ) &&
+                (
+                    this.OwnerName == input.OwnerName ||
+                    this.OwnerName != null &&
+                    this.OwnerName.Equals(input.OwnerName)
                 );
         }
 
@@ -273,6 +299,10 @@ namespace Adyen.Model.Checkout
                     hashCode = hashCode * 59 + this.SupportedShopperInteractions.GetHashCode();
                 if (this.Type != null)
                     hashCode = hashCode * 59 + this.Type.GetHashCode();
+                if (this.Iban != null)
+                    hashCode = hashCode * 59 + this.Iban.GetHashCode();
+                if (this.OwnerName != null)
+                    hashCode = hashCode * 59 + this.OwnerName.GetHashCode();
                 return hashCode;
             }
         }

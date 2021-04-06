@@ -22,12 +22,10 @@
 #endregion
 
 using System;
-using System.Collections.Generic;
-using System.Text;
 
-namespace Adyen
+namespace Adyen.ApiSerialization
 {
-    internal class TypeHelper
+    internal static class TypeHelper
     {
         internal static Type CreateGenericTypeFromStringFullNamespace(Type genericType, string tFullNamespace)
         {
