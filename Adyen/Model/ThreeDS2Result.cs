@@ -78,7 +78,43 @@ namespace Adyen.Model
         /// </summary>
         [DataMember(Name = "messageVersion", EmitDefaultValue = false)]
         public string MessageVersion { get; set; }
-        
+
+        /// <summary>
+        /// The algorithm used by the ACS to calculate the authentication value, only for CartesBancaires integrations.
+        /// </summary>
+        [DataMember(Name = "cavvAlgorithm", EmitDefaultValue = false)]
+        public string CavvAlgorithm { get; set; }
+
+        /// <summary>
+        /// The whiteListStatus value as defined in the 3D Secure 2 specification.
+        /// </summary>
+        [DataMember(Name = "whiteListStatus", EmitDefaultValue = false)]
+        public string WhiteListStatus { get; set; }
+
+        /// <summary>
+        /// Indicator informing the ACS and the DS that the authentication has been canceled
+        /// </summary>
+        [DataMember(Name = "challengeCancel", EmitDefaultValue = false)]
+        public string ChallengeCancel { get; set; }
+
+        /// <summary>
+        /// Get challengeIndicator
+        /// </summary>
+        [DataMember(Name = "challengeIndicator", EmitDefaultValue = false)]
+        public string ChallengeIndicator { get; set; }
+
+        /// <summary>
+        ///  Get exemptionIndicator
+        /// </summary>
+        [DataMember(Name = "exemptionIndicator", EmitDefaultValue = false)]
+        public string ExemptionIndicator { get; set; }
+
+        /// <summary>
+        /// Get riskScore
+        /// </summary>
+        [DataMember(Name = "riskScore", EmitDefaultValue = false)]
+        public string RiskScore { get; set; }
+
         /// <summary>
         /// Returns the string presentation of the object
         /// </summary>
@@ -95,6 +131,12 @@ namespace Adyen.Model
             sb.Append("  DsTransID: ").Append(DsTransID).Append("\n");
             sb.Append("  TransStatusReason: ").Append(TransStatusReason).Append("\n");
             sb.Append("  MessageVersion: ").Append(MessageVersion).Append("\n");
+            sb.Append("  CavvAlgorithm: ").Append(CavvAlgorithm).Append("\n");
+            sb.Append("  WhiteListStatus: ").Append(WhiteListStatus).Append("\n");
+            sb.Append("  ChallengeCancel: ").Append(ChallengeCancel).Append("\n");
+            sb.Append("  ChallengeIndicator: ").Append(ChallengeIndicator).Append("\n");
+            sb.Append("  ExemptionIndicator: ").Append(ExemptionIndicator).Append("\n");
+            sb.Append("  RiskScore: ").Append(RiskScore).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -170,9 +212,38 @@ namespace Adyen.Model
                     this.MessageVersion == other.MessageVersion ||
                     this.MessageVersion != null &&
                     this.MessageVersion.Equals(other.MessageVersion)
+                ) &&
+                (
+                    this.CavvAlgorithm == other.CavvAlgorithm ||
+                    this.CavvAlgorithm != null &&
+                    this.CavvAlgorithm.Equals(other.CavvAlgorithm)
+                ) &&
+                (
+                    this.WhiteListStatus == other.WhiteListStatus ||
+                    this.WhiteListStatus != null &&
+                    this.WhiteListStatus.Equals(other.WhiteListStatus)
+                ) &&
+                (
+                    this.ChallengeCancel == other.ChallengeCancel ||
+                    this.ChallengeCancel != null &&
+                    this.ChallengeCancel.Equals(other.ChallengeCancel)
+                ) &&
+                (
+                    this.ChallengeIndicator == other.ChallengeIndicator ||
+                    this.ChallengeIndicator != null &&
+                    this.ChallengeIndicator.Equals(other.ChallengeIndicator)
+                )&&
+                (
+                    this.ExemptionIndicator == other.ExemptionIndicator ||
+                    this.ExemptionIndicator != null &&
+                    this.ExemptionIndicator.Equals(other.ExemptionIndicator)
+                ) &&
+                (
+                    this.RiskScore == other.RiskScore ||
+                    this.RiskScore != null &&
+                    this.RiskScore.Equals(other.RiskScore)
                 );
         }
-
         /// <summary>
         /// Gets the hash code
         /// </summary>
@@ -200,6 +271,18 @@ namespace Adyen.Model
                     hash = hash * 59 + this.TransStatusReason.GetHashCode();
                 if (this.MessageVersion != null)
                     hash = hash * 59 + this.MessageVersion.GetHashCode();
+                if (this.CavvAlgorithm != null)
+                    hash = hash * 59 + this.CavvAlgorithm.GetHashCode();
+                if (this.WhiteListStatus != null)
+                    hash = hash * 59 + this.WhiteListStatus.GetHashCode();
+                if (this.ChallengeCancel != null)
+                    hash = hash * 59 + this.ChallengeCancel.GetHashCode();
+                if (this.ChallengeIndicator != null)
+                    hash = hash * 59 + this.ChallengeIndicator.GetHashCode();
+                if (this.ExemptionIndicator != null)
+                    hash = hash * 59 + this.ExemptionIndicator.GetHashCode();
+                if (this.RiskScore != null)
+                    hash = hash * 59 + this.RiskScore.GetHashCode();
                 return hash;
             }
            

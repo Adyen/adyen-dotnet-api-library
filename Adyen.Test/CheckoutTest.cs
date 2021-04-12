@@ -261,11 +261,8 @@ namespace Adyen.Test
             var client = CreateMockTestClientApiKeyBasedRequest("Mocks/checkout/paymentsdetails-action-success.json");
             var checkout = new Checkout(client);
             var paymentResponse = checkout.PaymentDetails(detailsRequest);
-            Assert.IsTrue(paymentResponse.Action is CheckoutThreeDS2FingerPrintAction);
-            var paymentActionResponse = (CheckoutThreeDS2FingerPrintAction)paymentResponse.Action;
-            Assert.AreEqual("Ab02b4c0!BQABAgBNSfsOs...", paymentActionResponse.PaymentData);
-            Assert.AreEqual("eyJ0aHJlZURTTWVzc2FnZ...", paymentActionResponse.Token);
-            Assert.AreEqual("threeDS2Fingerprint", paymentActionResponse.Type);
+            Assert.AreEqual(paymentResponse.PspReference, "8515232733321252");
+            Assert.AreEqual(paymentResponse.ResultCode, PaymentDetailsResponse.ResultCodeEnum.Authorised);
         }
 
         /// <summary>
@@ -669,5 +666,20 @@ namespace Adyen.Test
             var jObject = JObject.Parse(paymentResponseToJson);
             Assert.AreEqual(jObject["action"]["type"], "threeDS2Challenge");
         }
+
+        [TestMethod]
+        public void StoredPaymentMethodsTest()
+        {
+            var client = CreateMockTestClientApiKeyBasedRequest("Mocks/checkout/paymentmethods-storedpaymentmethods.json");
+            var checkout = new Checkout(client);
+            var paymentMethodsRequest = new PaymentMethodsRequest(merchantAccount:"TestMerchant");
+            var paymentMethodsResponse = checkout.PaymentMethods(paymentMethodsRequest);
+            Assert.AreEqual(4, paymentMethodsResponse.StoredPaymentMethods.Count);
+            Assert.AreEqual("NL32ABNA0515071439", paymentMethodsResponse.StoredPaymentMethods[0].Iban);
+            Assert.AreEqual("Adyen", paymentMethodsResponse.StoredPaymentMethods[0].OwnerName);
+            Assert.AreEqual("sepadirectdebit", paymentMethodsResponse.StoredPaymentMethods[0].Type);
+        }
+
+
     }
 }

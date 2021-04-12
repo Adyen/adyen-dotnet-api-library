@@ -58,5 +58,12 @@ namespace Adyen.Service
             var jsonResponse = _disable.Request(jsonRequest);
             return Util.JsonOperation.Deserialize<DisableResult>(jsonResponse);
         }
+
+        public async Task<DisableResult> DisableAsync(DisableRequest disableRequest)
+        {
+            var jsonRequest = Util.JsonOperation.SerializeRequest(disableRequest);
+            var jsonResponse = await _disable.RequestAsync(jsonRequest);
+            return Util.JsonOperation.Deserialize<DisableResult>(jsonResponse);
+        }
     }
 }
