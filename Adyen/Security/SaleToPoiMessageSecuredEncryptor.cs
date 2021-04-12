@@ -42,7 +42,7 @@ namespace Adyen.Security
             _aesEncryptor = new AesEncryptor();
             _hmacSha256Wrapper = new HmacSha256Wrapper();
             _ivModGenerator = new IvModGenerator();
-           
+
         }
 
         public SaleToPoiMessageSecured Encrypt(string saleToPoiMessage, MessageHeader messageHeader,
@@ -50,7 +50,7 @@ namespace Adyen.Security
         {
             var encryptionDerivedKey = _encryptionDerivedKeyGenerator.Generate(encryptionCredentialDetails);
             var saleToPoiMessageJson = saleToPoiMessage;
-            var saleToPoiMessageByteArray = Encoding.ASCII.GetBytes(saleToPoiMessageJson);
+            var saleToPoiMessageByteArray = Encoding.UTF8.GetBytes(saleToPoiMessageJson);
             var ivMod = _ivModGenerator.GenerateRandomMod();
             var saleToPoiMessageAesEncrypted = _aesEncryptor.Encrypt(saleToPoiMessageByteArray,
                                                                      encryptionDerivedKey,
@@ -72,7 +72,7 @@ namespace Adyen.Security
                     AdyenCryptoVersion = encryptionCredentialDetails.AdyenCryptoVersion
                 }
             };
-            
+
             return saleToPoiMessageSecured;
         }
 
