@@ -110,14 +110,14 @@ namespace Adyen.Test
         }
 
         /// <summary>
-        /// Dummy Nexo json print request 
+        /// Dummy Nexo json print request
         /// </summary>
         /// <returns></returns>
         public static string MockNexoJsonPrintRequest()
         {
             return "{\"SaleToPOIRequest\":{\"MessageHeader\":{\"MessageClass\":\"Device\",\"MessageCategory\":\"Print\",\"MessageType\":\"Request\",\"ServiceID\":\"1\",\"SaleID\":\"1234567\",\"POIID\":\"VX680-12343454\",\"ProtocolVersion\":\"3.0\"}," +
                 "\"PrintRequest\":{\"PrintOutput\":{\"OutputContent\":{\"OutputText\":[{\"Color\":\"White\",\"CharacterWidth\":\"SingleWidth\",\"CharacterHeight\":\"SingleHeight\",\"CharacterStyle\":\"Normal\",\"Alignment\":\"Left\"," +
-                "\"EndOfLineFlag\":true,\"Text\":\"m\\\\u006D?\\\\u00C4\"}],\"OutputFormat\":\"Text\"},\"DocumentQualifier\":\"Document\",\"ResponseMode\":\"PrintEnd\"}}}}";
+                "\"EndOfLineFlag\":true,\"Text\":\"m\\\\u006DÄ\\\\u00C4\"}],\"OutputFormat\":\"Text\"},\"DocumentQualifier\":\"Document\",\"ResponseMode\":\"PrintEnd\"}}}}";
         }
 
         /// <summary>
