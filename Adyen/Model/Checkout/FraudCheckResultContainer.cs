@@ -73,13 +73,13 @@ namespace Adyen.Model.Checkout
         /// <returns>Boolean</returns>
         public override bool Equals(object input)
         {
-            return this.Equals(input as Redirect);
+            return this.Equals(input as FraudCheckResultContainer);
         }
 
         /// <summary>
-        /// Returns true if Redirect instances are equal
+        /// Returns true if FraudCheckResultContainer instances are equal
         /// </summary>
-        /// <param name="input">Instance of Redirect to be compared</param>
+        /// <param name="input">Instance of FraudCheckResultContainer to be compared</param>
         /// <returns>Boolean</returns>
         public bool Equals(FraudCheckResultContainer input)
         {
