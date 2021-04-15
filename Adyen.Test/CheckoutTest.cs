@@ -612,8 +612,7 @@ namespace Adyen.Test
             Assert.AreEqual("Ab02b4c0!BQABAgARb1TvUJa4nwS0Z1nOmxoYfD9+z...", result.PaymentData);
             Assert.AreEqual("paypal", result.PaymentMethodType);
         }
-
-
+        
         [TestMethod]
         public void ApplePayDetailsDeserializationTest()
         {
@@ -680,6 +679,27 @@ namespace Adyen.Test
             Assert.AreEqual("sepadirectdebit", paymentMethodsResponse.StoredPaymentMethods[0].Type);
         }
 
-
+        /// <summary>
+        /// Test if the fraud result are properly deseriazed
+        /// POST /payments
+        /// </summary>
+        [TestMethod]
+        public void FraudResultParsingTest()
+        {
+            var paymentRequest = CreatePaymentRequestCheckout();
+            var client = CreateMockTestClientApiKeyBasedRequest("Mocks/checkout/payments-success.json");
+            var checkout = new Checkout(client);
+            var paymentResponse = checkout.Payments(paymentRequest);
+            Assert.AreEqual(25, paymentResponse.FraudResult.AccountScore);
+            var fraudResults = paymentResponse.FraudResult.Results;
+            Assert.IsNotNull(fraudResults);
+            Assert.AreEqual(11, fraudResults.Count);
+            Assert.AreEqual("CardChunkUsage", fraudResults[0].FraudCheckResult.Name);
+            Assert.AreEqual(0, fraudResults[0].FraudCheckResult.AccountScore);
+            Assert.AreEqual(2, fraudResults[0].FraudCheckResult.CheckId);
+            Assert.AreEqual("PaymentDetailUsage", fraudResults[1].FraudCheckResult.Name);
+            Assert.AreEqual(0, fraudResults[1].FraudCheckResult.AccountScore);
+            Assert.AreEqual(3, fraudResults[1].FraudCheckResult.CheckId);
+        }
     }
 }
