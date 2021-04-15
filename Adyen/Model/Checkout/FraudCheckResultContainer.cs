@@ -31,7 +31,7 @@ using Newtonsoft.Json;
 namespace Adyen.Model.Checkout
 {
     /// <summary>
-    /// Result
+    /// FraudCheckResultContainer
     /// This class is not part of the Adyen open api specs. The reason that is manualy added is to create 
     /// the middle layer that is needed to deserialize the FraudCheckResult. The paymentResponse contains
     /// a list of FraudCheckResult but it has the root element which cause the deserialization to fail. With this class
