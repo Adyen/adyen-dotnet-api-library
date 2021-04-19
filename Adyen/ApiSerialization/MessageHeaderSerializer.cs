@@ -29,7 +29,7 @@ namespace Adyen.ApiSerialization
     {
         internal MessageHeader Deserialize(string messageHeaderJson)
         {
-            return Converter.JSonConvertDeserializerWrapper<MessageHeader>.DeserializeObject(messageHeaderJson);
+            return Converter.JsonConvertDeserializerWrapper<MessageHeader>.DeserializeObject(messageHeaderJson);
         }
     }
 }

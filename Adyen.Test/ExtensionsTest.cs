@@ -23,6 +23,7 @@
 using Adyen.Model.Checkout;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.Collections.Generic;
+using Adyen.Util;
 
 namespace Adyen.Test
 {
@@ -44,10 +45,19 @@ namespace Adyen.Test
         [TestMethod]
         public void TestFraudCheckResultObjectListToString()
         {
-            var fraudCheckResults = new List<FraudCheckResult> { new FraudCheckResult(AccountScore: 1, Name: "test1", CheckId: 1), new FraudCheckResult(AccountScore: 2, Name: "test2", CheckId: 1) };
-            var fraudResult = new FraudResult(Results: fraudCheckResults, AccountScore: 1);
-            var expected = "class FraudResult {\n  AccountScore: 1\n  Results: \n\t{  class FraudCheckResult {\n  AccountScore: 1\n  CheckId: 1\n  Name: test1\n}\n\n class FraudCheckResult {\n  AccountScore: 2\n  CheckId: 1\n  Name: test2\n}\n\n }\n}\n";
-            Assert.AreEqual(expected, fraudResult.ToString());
+            //List <FraudREsults> = FraudResults.Result
+            var fraudCheckResult1 = new FraudCheckResultContainer
+            {
+                FraudCheckResult = new FraudCheckResult(AccountScore: 1, Name: "test1", CheckId: 1)
+            };
+            var fraudCheckResult2 = new FraudCheckResultContainer
+            {
+                FraudCheckResult = new FraudCheckResult(AccountScore: 2, Name: "test2", CheckId: 2)
+            };
+            var fraudCheckResultContainers = new List<FraudCheckResultContainer>() { fraudCheckResult1, fraudCheckResult2 };
+            var fraudResult = new FraudResult(AccountScore:25, Results: fraudCheckResultContainers);
+            var expectedString = "class FraudResult {\n  AccountScore: 25\n  Results: \n\t{  class FraudResults {\n  FraudCheckResult: class FraudCheckResult {\n  AccountScore: 1\n  CheckId: 1\n  Name: test1\n}\n\n}\n\n class FraudResults {\n  FraudCheckResult: class FraudCheckResult {\n  AccountScore: 2\n  CheckId: 2\n  Name: test2\n}\n\n}\n\n }\n}\n";
+            Assert.AreEqual(expectedString, fraudResult.ToString());
         }
 
         [TestMethod]

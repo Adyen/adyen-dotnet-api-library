@@ -76,12 +76,12 @@ namespace Adyen.ApiSerialization
 
         public string Serialize(SaleToPOIMessage saleToPoiMessage)
         {
-            return Converter.JSonConvertSerializerWrapper.Serialize(saleToPoiMessage);
+            return Converter.JsonConvertSerializerWrapper.Serialize(saleToPoiMessage);
         }
 
         public string Serialize(SaleToPoiMessageSecured saleToPoiMessage)
         {
-            return Converter.JSonConvertSerializerWrapper.Serialize(saleToPoiMessage);
+            return Converter.JsonConvertSerializerWrapper.Serialize(saleToPoiMessage);
         }
 
         private string GetMessagePayloadJSon(JToken saleToPoiMessageWithoutRootJToken, string messageCategory, string messageType)

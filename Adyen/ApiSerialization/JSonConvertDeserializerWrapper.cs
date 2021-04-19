@@ -27,7 +27,7 @@ using Newtonsoft.Json.Serialization;
 
 namespace Adyen.ApiSerialization
 {
-    internal class JSonConvertDeserializerWrapper<T>
+    internal class JsonConvertDeserializerWrapper<T>
     {
         internal static T DeserializeObject(string objectToDeserialize)
         {
