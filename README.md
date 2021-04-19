@@ -27,22 +27,14 @@ For more information, refer to our [documentation](https://docs.adyen.com/) or t
 
 - [Adyen test account](https://docs.adyen.com/get-started-with-adyen)
 - [API key](https://docs.adyen.com/development-resources/api-credentials#generate-api-key). For testing, your API credential needs to have the [API PCI Payments role](https://docs.adyen.com/development-resources/api-credentials#roles).
-- Adyen API Library supports .net standard 2.0
-- In order for Adyen API Library to support local terminal api certificate validation the application should be set to .net core 2.1 and above or .net framework 4.6.1 and above
+- Adyen dotnet API Library supports .net standard 2.0
+- In order for Adyen dotnet API Library to support local terminal api certificate validation the application should be set to .net core 2.1 and above or .net framework 4.6.1 and above
 
 ## Installation
 Simply download and restore nuget packages https://www.nuget.org/packages/Adyen/
-or install it from package manager PM> 
+or install it from package manager 
 ~~~~ bash
 PM> Install-Package Adyen -Version x.x.x
-~~~~
-### Vagrant setup
-* Prerequisites
-virtualbox and vagrant
-* Run the following commands in the root folder to setup vagrant
-~~~~ bash
-vagrant up
-vagrant ssh
 ~~~~
 
 ## Using the library
@@ -74,7 +66,7 @@ var paymentResponse = checkout.Payments(paymentRequest);
 For a closer look at how our dotnet library works, clone our [ASP .net example integration](https://github.com/adyen-examples/adyen-dotnet-online-payments). This includes commented code, highlighting key features and concepts, and examples of API calls that can be made using the library.
 
 ### Running the tests
-Navigate to adyen-dotnet-api-library
+Navigate to adyen-dotnet-api-library folder and run the following commands.
 ~~~~ bash
 dotnet build
 dotnet test
