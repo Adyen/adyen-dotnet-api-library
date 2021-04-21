@@ -117,12 +117,12 @@ namespace Adyen.Service
         ///  POST payments/details API call async
         /// </summary>
         /// <param name="paymentsDetailsRequest"></param>
-        /// <returns>PaymentsResponse</returns>
-        public async Task<PaymentResponse> PaymentDetailsAsync(PaymentsDetailsRequest paymentsDetailsRequest, RequestOptions requestOptions = null)
+        /// <returns>PaymentDetailsResponse</returns>
+        public async Task<PaymentDetailsResponse> PaymentDetailsAsync(PaymentsDetailsRequest paymentsDetailsRequest, RequestOptions requestOptions = null)
         {
             var jsonRequest = Util.JsonOperation.SerializeRequest(paymentsDetailsRequest);
             var jsonResponse = await _paymentDetails.RequestAsync(jsonRequest, requestOptions);
-            return Util.JsonOperation.Deserialize<PaymentResponse>(jsonResponse);
+            return Util.JsonOperation.Deserialize<PaymentDetailsResponse>(jsonResponse);
         }
 
         /// <summary>
