@@ -189,7 +189,7 @@ namespace Adyen.Service
         /// POST /paymentsLinks API call async
         /// </summary>
         /// <param name="createPaymentLinkRequest"></param>
-        /// <returns>CreatePaymentLinkResponse</returns>
+        /// <returns>PaymentLinkResource</returns>
         public async Task<PaymentLinkResource> PaymentLinksAsync(CreatePaymentLinkRequest createPaymentLinkRequest)
         {
             var jsonRequest = Util.JsonOperation.SerializeRequest(createPaymentLinkRequest);
