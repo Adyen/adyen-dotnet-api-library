@@ -155,11 +155,19 @@ namespace Adyen.Test
                 MerchantAccount = "YOUR_MERCHANT_ACCOUNT",
                 Amount = new Amount("GBP", 1000),
                 Reference = "bacs direct debit test",
-                PaymentMethod = new BacsDirectDebitDetails(),               
+                PaymentMethod = new BacsDirectDebitDetails
+                {
+                    BankAccountNumber = "NL0123456789",
+                    BankLocationId = "121000358",
+                    HolderName = "John Smith"
+                },
                 ReturnUrl = "https://your-company.com/checkout?shopperOrder=12xy.."
             };
             var paymentMethodDetails = (BacsDirectDebitDetails)paymentRequest.PaymentMethod;
             Assert.AreEqual(paymentMethodDetails.Type, "directdebit_GB");
+            Assert.AreEqual(paymentMethodDetails.BankAccountNumber, "NL0123456789");
+            Assert.AreEqual(paymentMethodDetails.BankLocationId, "121000358");
+            Assert.AreEqual(paymentMethodDetails.HolderName, "John Smith");
             Assert.AreEqual(paymentRequest.MerchantAccount, "YOUR_MERCHANT_ACCOUNT");
             Assert.AreEqual(paymentRequest.Reference, "bacs direct debit test");
             Assert.AreEqual(paymentRequest.ReturnUrl, "https://your-company.com/checkout?shopperOrder=12xy..");

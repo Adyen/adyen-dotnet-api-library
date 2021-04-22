@@ -34,7 +34,7 @@ namespace Adyen.ApiSerialization
     {
         internal string Serialize(SaleToPoiMessageSecured saleToPoiMessageSecured)
         {
-            return Converter.JSonConvertSerializerWrapper.Serialize(saleToPoiMessageSecured);
+            return Converter.JsonConvertSerializerWrapper.Serialize(saleToPoiMessageSecured);
         }
 
         internal SaleToPoiMessageSecured Deserialize(string saleToPoiMessageSecuredJSon)

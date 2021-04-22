@@ -1,24 +1,24 @@
 ﻿#region License
-// /*
-//  *                       ######
-//  *                       ######
-//  * ############    ####( ######  #####. ######  ############   ############
-//  * #############  #####( ######  #####. ######  #############  #############
-//  *        ######  #####( ######  #####. ######  #####  ######  #####  ######
-//  * ###### ######  #####( ######  #####. ######  #####  #####   #####  ######
-//  * ###### ######  #####( ######  #####. ######  #####          #####  ######
-//  * #############  #############  #############  #############  #####  ######
-//  *  ############   ############  #############   ############  #####  ######
-//  *                                      ######
-//  *                               #############
-//  *                               ############
-//  *
-//  * Adyen Dotnet API Library
-//  *
-//  * Copyright (c) 2020 Adyen B.V.
-//  * This file is open source and available under the MIT license.
-//  * See the LICENSE file for more info.
-//  */
+/*
+ *                       ######
+ *                       ######
+ * ############    ####( ######  #####. ######  ############   ############
+ * #############  #####( ######  #####. ######  #############  #############
+ *        ######  #####( ######  #####. ######  #####  ######  #####  ######
+ * ###### ######  #####( ######  #####. ######  #####  #####   #####  ######
+ * ###### ######  #####( ######  #####. ######  #####          #####  ######
+ * #############  #############  #############  #############  #####  ######
+ *  ############   ############  #############   ############  #####  ######
+ *                                      ######
+ *                               #############
+ *                               ############
+ *
+ * Adyen Dotnet API Library
+ *
+ * Copyright (c) 2020 Adyen B.V.
+ * This file is open source and available under the MIT license.
+ * See the LICENSE file for more info.
+ */
 #endregion
 using System;
 using System.Text;
@@ -59,6 +59,14 @@ namespace Adyen.Model.Hop
         [DataMember(Name = "shopperLocale", EmitDefaultValue = false)]
         [JsonProperty(PropertyName = "shopperLocale")]
         public string ShopperLocale { get; set; }
+
+        /// <summary>
+        ///Indicates if editing checks is allowed even if all the checks have passed.
+        /// </summary>
+        [DataMember(Name = "editMode", EmitDefaultValue = false)]
+        [JsonProperty(PropertyName = "editMode")]
+        public bool EditMode { get; set; }
+
         /// <summary>
         /// Get the string presentation of the object
         /// </summary>
@@ -71,6 +79,7 @@ namespace Adyen.Model.Hop
             sb.Append("  PlatformName: ").Append(PlatformName).Append("\n");
             sb.Append("  ReturnUrl: ").Append(ReturnUrl).Append("\n");
             sb.Append("  ShopperLocale: ").Append(ShopperLocale).Append("\n");
+            sb.Append("  EditMode: ").Append(EditMode).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }

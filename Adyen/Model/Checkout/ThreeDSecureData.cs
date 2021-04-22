@@ -201,6 +201,24 @@ namespace Adyen.Model.Checkout
         public byte[] Xid { get; set; }
 
         /// <summary>
+        /// Get challengeCancel
+        /// </summary>
+        [DataMember(Name = "challengeCancel", EmitDefaultValue = false)]
+        public string ChallengeCancel { get; set; }
+
+        /// <summary>
+        /// Get riskScore
+        /// </summary>
+        [DataMember(Name = "riskScore", EmitDefaultValue = false)]
+        public string RiskScore { get; set; }
+
+        /// <summary>
+        /// transStatusReason
+        /// </summary>
+        [DataMember(Name = "transStatusReason", EmitDefaultValue = false)]
+        public string TransStatusReason { get; set; }
+
+        /// <summary>
         /// Returns the string presentation of the object
         /// </summary>
         /// <returns>String presentation of the object</returns>
@@ -216,6 +234,9 @@ namespace Adyen.Model.Checkout
             sb.Append("  Eci: ").Append(Eci).Append("\n");
             sb.Append("  ThreeDSVersion: ").Append(ThreeDSVersion).Append("\n");
             sb.Append("  Xid: ").Append(Xid).Append("\n");
+            sb.Append("  ChallengeCancel: ").Append(ChallengeCancel).Append("\n");
+            sb.Append("  RiskScore: ").Append(RiskScore).Append("\n");
+            sb.Append("  TransStatusReason: ").Append(TransStatusReason).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -289,6 +310,21 @@ namespace Adyen.Model.Checkout
                     this.Xid == input.Xid ||
                     this.Xid != null &&
                     this.Xid.Equals(input.Xid)
+                ) &&
+                (
+                    this.ChallengeCancel == input.ChallengeCancel ||
+                    this.ChallengeCancel != null &&
+                    this.ChallengeCancel.Equals(input.ChallengeCancel)
+                ) &&
+                (
+                    this.RiskScore == input.RiskScore ||
+                    this.RiskScore != null &&
+                    this.RiskScore.Equals(input.RiskScore)
+                ) &&
+                (
+                    this.TransStatusReason == input.TransStatusReason ||
+                    this.TransStatusReason != null &&
+                    this.TransStatusReason.Equals(input.TransStatusReason)
                 );
         }
 
@@ -317,6 +353,12 @@ namespace Adyen.Model.Checkout
                     hashCode = hashCode * 59 + this.ThreeDSVersion.GetHashCode();
                 if (this.Xid != null)
                     hashCode = hashCode * 59 + this.Xid.GetHashCode();
+                if (this.ChallengeCancel != null)
+                    hashCode = hashCode * 59 + this.ChallengeCancel.GetHashCode();
+                if (this.RiskScore != null)
+                    hashCode = hashCode * 59 + this.RiskScore.GetHashCode();
+                if (this.TransStatusReason != null)
+                    hashCode = hashCode * 59 + this.TransStatusReason.GetHashCode();
                 return hashCode;
             }
         }

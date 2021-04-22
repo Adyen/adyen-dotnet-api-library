@@ -27,7 +27,7 @@ namespace Adyen.ApiSerialization
     {
         public IMessagePayload Deserialize(string messagePayloadJson)
         {
-            return Converter.JSonConvertDeserializerWrapper<T>.DeserializeObject(messagePayloadJson);
+            return Converter.JsonConvertDeserializerWrapper<T>.DeserializeObject(messagePayloadJson);
         }
 
     }

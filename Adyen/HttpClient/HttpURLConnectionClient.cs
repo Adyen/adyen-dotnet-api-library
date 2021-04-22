@@ -68,16 +68,7 @@ namespace Adyen.HttpClient
             }
             catch (WebException e)
             {
-                if (e.Response == null)
-                {
-                    throw new HttpClientException((int) HttpStatusCode.RequestTimeout, "HTTP Exception timeout", null, "No response", e);
-                }
-                var response = (HttpWebResponse) e.Response;
-                using (var sr = new StreamReader(response.GetResponseStream()))
-                {
-                    responseText = sr.ReadToEnd();
-                }
-                throw new HttpClientException((int) response.StatusCode, "HTTP Exception", response.Headers, responseText);
+                HandleWebException(e);
             }
             return responseText;
         }
@@ -93,7 +84,7 @@ namespace Adyen.HttpClient
         /// <returns>Task<string></returns>
         public async Task<string> RequestAsync(string endpoint, string json, Config config, bool isApiKeyRequired, RequestOptions requestOptions = null)
         {
-            string responseText;
+            string responseText = null;
             //Set security protocol. Only TLS1.2
             ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12;
             var httpWebRequest = GetHttpWebRequest(endpoint, config, isApiKeyRequired, requestOptions);
@@ -103,16 +94,51 @@ namespace Adyen.HttpClient
                 streamWriter.Flush();
                 streamWriter.Close();
             }
-            using (var response = (HttpWebResponse)await httpWebRequest.GetResponseAsync())
+            try
             {
-                using (var reader = new StreamReader(response.GetResponseStream(), _encoding))
+                using (var response = (HttpWebResponse)await httpWebRequest.GetResponseAsync())
                 {
-                    responseText = await reader.ReadToEndAsync();
+                    using (var reader = new StreamReader(response.GetResponseStream(), _encoding))
+                    {
+                        responseText = await reader.ReadToEndAsync();
+                    }
                 }
+            }
+            catch (WebException e)
+            {
+                HandleWebException(e);
             }
             return responseText;
         }
 
+        /// <summary>
+        /// Handles the common http exceptions 
+        /// </summary>
+        /// <param name="e">WebException e</param>
+        private static void HandleWebException(WebException e)
+        {
+            string responseText = null;
+            //Add check on actual timeout before returning timeout
+            if (e.Response == null && e.Status == WebExceptionStatus.Timeout)
+            {
+                throw new HttpClientException((int)HttpStatusCode.RequestTimeout, "HTTP Exception timeout", null, "No response", e);
+            }
+            //May occur for incorrect certificate: in such case the certificate validation failure is mapped to an UnknownError by Microsoft
+            if (e.Response == null && e.Status == WebExceptionStatus.UnknownError)
+            {
+                throw new HttpClientException((int)HttpStatusCode.Ambiguous, "Potential certificate mismatch", null, e.Message, e);
+            }
+            if (e.Response == null)
+            {
+                throw new HttpClientException((int)e.Status, "Web Exception", null, "No response", e);
+            }
+            var response = (HttpWebResponse)e.Response;
+            using (var sr = new StreamReader(response.GetResponseStream()))
+            {
+                responseText = sr.ReadToEnd();
+            }
+            throw new HttpClientException((int)response.StatusCode, "HTTP Exception", response.Headers, responseText, e);
+        }
 
         [Obsolete("This is deprecated functionality by Adyen. Correct use request method with isApiKeyRequired parameter.")]
         public string Request(string endpoint, string json, Config config)

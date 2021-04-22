@@ -21,20 +21,15 @@
 //  */
 #endregion
 
-using System;
-using System.Collections.Generic;
-using System.Text;
+using Newtonsoft.Json;
 
-namespace Adyen
+namespace Adyen.ApiSerialization.Converter
 {
-    internal class TypeHelper
+    internal class JsonConvertDeserializerWrapper<T>
     {
-        internal static Type CreateGenericTypeFromStringFullNamespace(Type genericType, string tFullNamespace)
+        internal static T DeserializeObject(string objectToDeserialize)
         {
-            Type[] typeArgs = { Type.GetType(tFullNamespace) };
-            Type repositoryType = genericType.MakeGenericType(typeArgs);
-
-            return repositoryType;
+            return JsonConvert.DeserializeObject<T>(objectToDeserialize);
         }
     }
 }

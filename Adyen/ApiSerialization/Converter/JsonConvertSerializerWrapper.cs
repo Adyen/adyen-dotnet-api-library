@@ -28,7 +28,7 @@ using Newtonsoft.Json.Converters;
 
 namespace Adyen.ApiSerialization.Converter
 {
-    internal class JSonConvertSerializerWrapper
+    internal class JsonConvertSerializerWrapper
     {
         private const string DateTimeFormat = "yyyy-MM-ddTHH\\:mm\\:ss";
 

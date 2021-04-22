@@ -43,6 +43,30 @@ namespace Adyen.Model.Checkout.Details
         [JsonProperty(PropertyName = "type")]
         public string Type { get; set; } = Directdebit_GB;
 
+        /// <summary>
+        /// **bankLocationId**
+        /// </summary>
+        /// <value>**bankLocationId**</value>
+        [DataMember(Name = "bankLocationId", EmitDefaultValue = false)]
+        [JsonProperty(PropertyName = "bankLocationId")]
+        public string BankLocationId { get; set; }
+
+        /// <summary>
+        /// **bankAccountNumber**
+        /// </summary>
+        /// <value>**bankAccountNumber**</value>
+        [DataMember(Name = "bankAccountNumber", EmitDefaultValue = false)]
+        [JsonProperty(PropertyName = "bankAccountNumber")]
+        public string BankAccountNumber { get; set; }
+
+        /// <summary>
+        /// **holderName**
+        /// </summary>
+        /// <value>**holderName**</value>
+        [DataMember(Name = "holderName", EmitDefaultValue = false)]
+        [JsonProperty(PropertyName = "holderName")]
+        public string HolderName { get; set; }
+
 
         /// <summary>
         /// Get the string presentation of the object
@@ -53,6 +77,9 @@ namespace Adyen.Model.Checkout.Details
             var sb = new StringBuilder();
             sb.Append("class BacsDirectDebitDetails {\n");
             sb.Append("  Type: ").Append(Type).Append("\n");
+            sb.Append("  HolderName: ").Append(HolderName).Append("\n");
+            sb.Append("  BankAccountNumber: ").Append(BankAccountNumber).Append("\n");
+            sb.Append("  BankLocationId: ").Append(BankLocationId).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }

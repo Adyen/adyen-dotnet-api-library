@@ -75,7 +75,16 @@ namespace Adyen.Test
             Assert.AreEqual("[detail-successfully-disabled]", disableResult.Response);
         }
 
-
+        [TestMethod]
+        public async Task TestDisableAsync()
+        {
+            var client = base.CreateMockTestClientNullRequiredFieldsRequest("Mocks/recurring/disable-success.json");
+            var recurring = new Service.Recurring(client);
+            var disableRequest = this.CreateDisableRequest();
+            var disableResult = await recurring.DisableAsync(disableRequest);
+            Assert.AreEqual(1L, (long)disableResult.Details.Count);
+            Assert.AreEqual("[detail-successfully-disabled]", disableResult.Response);
+        }
 
         [TestMethod]
         public void TestDisable803()
