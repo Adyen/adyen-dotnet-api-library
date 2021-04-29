@@ -453,6 +453,7 @@ namespace Adyen.Test
             };
             return clientMock;
         }
+                
 
         protected string MockFileToString(string fileName)
         {
@@ -476,6 +477,18 @@ namespace Adyen.Test
 
             return text;
         }
+
+        /// <summary>
+        /// Helper for file reading
+        /// </summary>
+        /// <param name="fileName"></param>
+        /// <returns></returns>
+        public string GetFileContents(string fileName)
+        {
+            string mockPath = GetMockFilePath("Mocks/marketpay/notification/account-closed-test.json");
+            return MockFileToString(mockPath);
+        }
+
 
         /// <summary>
         /// Create dummy Nexo message header

@@ -22,7 +22,7 @@
     <PackageReleaseNotes></PackageReleaseNotes>
     <PackageIconUrl>https://www.adyen.com/dam/jcr:39adc4db-76f7-4b9e-aec6-bfa21db4153c/adyen-logo-green.png</PackageIconUrl>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
-    <SignAssembly>true</SignAssembly>
+    <SignAssembly>false</SignAssembly>
     <AssemblyOriginatorKeyFile>adyen-dotnet-api-library-key.snk</AssemblyOriginatorKeyFile>
   </PropertyGroup>
   <ItemGroup>

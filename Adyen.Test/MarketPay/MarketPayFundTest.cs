@@ -26,7 +26,7 @@ using Adyen.Model.MarketPay;
 using Adyen.Service;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-namespace Adyen.Test
+namespace Adyen.Test.MarketPay
 {
     [TestClass]
     public class MarketPayFundTest : BaseTest
