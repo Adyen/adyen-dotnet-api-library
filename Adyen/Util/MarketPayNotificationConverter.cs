@@ -114,7 +114,5 @@ namespace Adyen.Util
             serializer.Populate(jsonObject.CreateReader(), notification);
             return notification;
         }
-
-
     }
 } 

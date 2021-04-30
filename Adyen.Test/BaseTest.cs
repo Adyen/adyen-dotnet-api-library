@@ -485,7 +485,7 @@ namespace Adyen.Test
         /// <returns></returns>
         public string GetFileContents(string fileName)
         {
-            string mockPath = GetMockFilePath("Mocks/marketpay/notification/account-closed-test.json");
+            string mockPath = GetMockFilePath(fileName);
             return MockFileToString(mockPath);
         }
 

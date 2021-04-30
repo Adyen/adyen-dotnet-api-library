@@ -22,6 +22,7 @@
 
 #endregion
 
+using System;
 using System.Runtime.Serialization;
 using System.Text;
 using Newtonsoft.Json;
@@ -47,7 +48,7 @@ namespace Adyen.Model.MarketPay.Notification
         /// </summary>
         [DataMember(Name = "balanceDate", EmitDefaultValue = false)]
         [JsonProperty(PropertyName = "balanceDate")]
-        public LocalDate BalanceDate { get; set; }
+        public DateTime BalanceDate { get; set; }
 
         /// <summary>
         /// Gets or Sets CurrentFunds

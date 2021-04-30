@@ -22,6 +22,7 @@
 
 #endregion
 
+using System;
 using System.Collections.Generic;
 using System.Runtime.Serialization;
 using System.Text;
@@ -55,7 +56,7 @@ namespace Adyen.Model.MarketPay.Notification
         /// </summary>
         [DataMember(Name = "debitInitiationDate", EmitDefaultValue = false)]
         [JsonProperty(PropertyName = "debitInitiationDate")]
-        public LocalDate DebitInitiationDate { get; set; }
+        public DateTime DebitInitiationDate { get; set; }
 
         /// <summary>
         /// Invalid fields list.

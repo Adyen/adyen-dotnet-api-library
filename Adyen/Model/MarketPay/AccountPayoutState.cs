@@ -57,16 +57,8 @@ namespace Adyen.Model.MarketPay
             {
                 this.AllowPayout = allowPayout;
             }
-            // to ensure "disabled" is required (not null)
-            if (disabled == null)
-            {
-                throw new InvalidDataException("disabled is a required property for AccountPayoutState and cannot be null");
-            }
-            else
-            {
-                this.Disabled = disabled;
-            }
-           
+
+            this.Disabled = disabled;
             this.NotAllowedReason = notAllowedReason;
             this.TierNumber = tierNumber;
             this.PayoutLimit = payoutLimit;

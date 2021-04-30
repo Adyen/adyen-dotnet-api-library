@@ -72,7 +72,7 @@ namespace Adyen.Model.MarketPay.Notification
         /// <value>A list of the refunds that have been scheduled and their results.</value>
         [DataMember(Name = "refundResults", EmitDefaultValue = false)]
         [JsonProperty(PropertyName = "refundResults")]
-        public List<RefundResult> RefundResults { get; set; }
+        public List<RefundResultContainer> RefundResults { get; set; }
 
 
         /// <summary>

@@ -49,7 +49,7 @@ namespace Adyen.Model.MarketPay.Notification
         /// <value>The event name that will be trigger if no action is taken.</value>
         [DataMember(Name = "event", EmitDefaultValue = false)]
         [JsonProperty(PropertyName = "event")]
-        public string _Event { get; set; }
+        public string Event { get; set; }
 
         /// <summary>
         /// The execution date scheduled for the event.
@@ -77,7 +77,7 @@ namespace Adyen.Model.MarketPay.Notification
             var sb = new StringBuilder();
             sb.Append("class AccountHolderUpcomingDeadlineNotificationContent {\n");
             sb.Append("  AccountHolderCode: ").Append(AccountHolderCode).Append("\n");
-            sb.Append("  _Event: ").Append(_Event).Append("\n");
+            sb.Append("  Event: ").Append(Event).Append("\n");
             sb.Append("  ExecutionDate: ").Append(ExecutionDate).Append("\n");
             sb.Append("  Reason: ").Append(Reason).Append("\n");
             sb.Append("}\n");

@@ -41,7 +41,7 @@ namespace Adyen.Model.MarketPay.Notification
         /// <value>Missing or invalid fields that caused the payment error.</value>
         [DataMember(Name = "errorFields", EmitDefaultValue = false)]
         [JsonProperty(PropertyName = "errorFields")]
-        public List<ErrorFieldType> ErrorFields { get; set; }
+        public List<ErrorFieldTypeContainer> ErrorFields { get; set; }
 
         /// <summary>
         /// Gets or Sets ErrorMessage
