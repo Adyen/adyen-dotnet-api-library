@@ -25,6 +25,7 @@
 using System.Collections.Generic;
 using System.Runtime.Serialization;
 using System.Text;
+using Adyen.Util;
 using Newtonsoft.Json;
 
 namespace Adyen.Model.MarketPay.Notification
@@ -52,7 +53,7 @@ namespace Adyen.Model.MarketPay.Notification
         {
             var sb = new StringBuilder();
             sb.Append("class CompensateNegativeBalanceNotificationContent {\n");
-            sb.Append("  Records: ").Append(Records).Append("\n");
+            sb.Append("  Records: ").Append(Records.ObjectListToString()).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }

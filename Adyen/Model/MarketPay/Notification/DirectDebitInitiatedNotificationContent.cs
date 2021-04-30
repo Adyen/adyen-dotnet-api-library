@@ -26,6 +26,7 @@ using System;
 using System.Collections.Generic;
 using System.Runtime.Serialization;
 using System.Text;
+using Adyen.Util;
 using Newtonsoft.Json;
 
 namespace Adyen.Model.MarketPay.Notification
@@ -101,9 +102,9 @@ namespace Adyen.Model.MarketPay.Notification
             sb.Append("  AccountCode: ").Append(AccountCode).Append("\n");
             sb.Append("  Amount: ").Append(Amount).Append("\n");
             sb.Append("  DebitInitiationDate: ").Append(DebitInitiationDate).Append("\n");
-            sb.Append("  InvalidFields: ").Append(InvalidFields).Append("\n");
+            sb.Append("  InvalidFields: ").Append(InvalidFields.ObjectListToString()).Append("\n");
             sb.Append("  MerchantAccountCode: ").Append(MerchantAccountCode).Append("\n");
-            sb.Append("  Splits: ").Append(Splits).Append("\n");
+            sb.Append("  Splits: ").Append(Splits.ObjectListToString()).Append("\n");
             sb.Append("  Status: ").Append(Status).Append("\n");
             sb.Append("}\n");
             return sb.ToString();

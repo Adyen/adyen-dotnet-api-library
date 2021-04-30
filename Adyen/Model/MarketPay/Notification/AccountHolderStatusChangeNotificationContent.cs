@@ -25,6 +25,7 @@
 using System.Collections.Generic;
 using System.Runtime.Serialization;
 using System.Text;
+using Adyen.Util;
 using Newtonsoft.Json;
 
 namespace Adyen.Model.MarketPay.Notification
@@ -83,7 +84,7 @@ namespace Adyen.Model.MarketPay.Notification
             var sb = new StringBuilder();
             sb.Append("class AccountHolderStatusChangeNotificationContent {\n");
             sb.Append("  AccountHolderCode: ").Append(AccountHolderCode).Append("\n");
-            sb.Append("  InvalidFields: ").Append(InvalidFields).Append("\n");
+            sb.Append("  InvalidFields: ").Append(InvalidFields.ObjectListToString()).Append("\n");
             sb.Append("  NewStatus: ").Append(NewStatus).Append("\n");
             sb.Append("  OldStatus: ").Append(OldStatus).Append("\n");
             sb.Append("  Reason: ").Append(Reason).Append("\n");

@@ -25,6 +25,7 @@
 using System.Collections.Generic;
 using System.Runtime.Serialization;
 using System.Text;
+using Adyen.Util;
 using Newtonsoft.Json;
 
 namespace Adyen.Model.MarketPay.Notification
@@ -91,7 +92,7 @@ namespace Adyen.Model.MarketPay.Notification
         {
             var sb = new StringBuilder();
             sb.Append("class PaymentFailureNotificationContent {\n");
-            sb.Append("  ErrorFields: ").Append(ErrorFields).Append("\n");
+            sb.Append("  ErrorFields: ").Append(ErrorFields.ObjectListToString()).Append("\n");
             sb.Append("  ErrorMessage: ").Append(ErrorMessage).Append("\n");
             sb.Append("  ModificationMerchantReference: ").Append(ModificationMerchantReference).Append("\n");
             sb.Append("  ModificationPspReference: ").Append(ModificationPspReference).Append("\n");

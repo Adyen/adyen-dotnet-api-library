@@ -25,6 +25,7 @@
 using System.Collections.Generic;
 using System.Runtime.Serialization;
 using System.Text;
+using Adyen.Util;
 using Newtonsoft.Json;
 
 namespace Adyen.Model.MarketPay.Notification
@@ -85,9 +86,9 @@ namespace Adyen.Model.MarketPay.Notification
             sb.Append("class ScheduledRefundsNotificationContent {\n");
             sb.Append("  AccountCode: ").Append(AccountCode).Append("\n");
             sb.Append("  AccountHolderCode: ").Append(AccountHolderCode).Append("\n");
-            sb.Append("  InvalidFields: ").Append(InvalidFields).Append("\n");
+            sb.Append("  InvalidFields: ").Append(InvalidFields.ObjectListToString()).Append("\n");
             sb.Append("  LastPayout: ").Append(LastPayout).Append("\n");
-            sb.Append("  RefundResults: ").Append(RefundResults).Append("\n");
+            sb.Append("  RefundResults: ").Append(RefundResults.ObjectListToString()).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }

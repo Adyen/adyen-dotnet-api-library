@@ -26,6 +26,7 @@ using System.Collections.Generic;
 using System.Runtime.Serialization;
 using System.Text;
 using Newtonsoft.Json;
+using Adyen.Util;
 
 namespace Adyen.Model.MarketPay.Notification
 {
@@ -171,11 +172,11 @@ namespace Adyen.Model.MarketPay.Notification
             sb.Append("class AccountHolderPayoutNotificationContent {\n");
             sb.Append("  AccountCode: ").Append(AccountCode).Append("\n");
             sb.Append("  AccountHolderCode: ").Append(AccountHolderCode).Append("\n");
-            sb.Append("  Amounts: ").Append(Amounts).Append("\n");
+            sb.Append("  Amounts: ").Append(Amounts.ObjectListToString()).Append("\n");
             sb.Append("  BankAccountDetail: ").Append(BankAccountDetail).Append("\n");
             sb.Append("  Description: ").Append(Description).Append("\n");
             sb.Append("  EstimatedArrivalDate: ").Append(EstimatedArrivalDate).Append("\n");
-            sb.Append("  InvalidFields: ").Append(InvalidFields).Append("\n");
+            sb.Append("  InvalidFields: ").Append(InvalidFields.ObjectListToString()).Append("\n");
             sb.Append("  MerchantReference: ").Append(MerchantReference).Append("\n");
             sb.Append("  OriginalPspReference: ").Append(OriginalPspReference).Append("\n");
             sb.Append("  PayoutAccountCountry: ").Append(PayoutAccountCountry).Append("\n");

@@ -25,6 +25,7 @@
 using System.Collections.Generic;
 using System.Runtime.Serialization;
 using System.Text;
+using Adyen.Util;
 using Newtonsoft.Json;
 
 namespace Adyen.Model.MarketPay.Notification
@@ -83,7 +84,7 @@ namespace Adyen.Model.MarketPay.Notification
             var sb = new StringBuilder();
             sb.Append("class RefundFundsTransferNotificationContent {\n");
             sb.Append("  Amount: ").Append(Amount).Append("\n");
-            sb.Append("  InvalidFields: ").Append(InvalidFields).Append("\n");
+            sb.Append("  InvalidFields: ").Append(InvalidFields.ObjectListToString()).Append("\n");
             sb.Append("  MerchantReference: ").Append(MerchantReference).Append("\n");
             sb.Append("  OriginalReference: ").Append(OriginalReference).Append("\n");
             sb.Append("  Status: ").Append(Status).Append("\n");
