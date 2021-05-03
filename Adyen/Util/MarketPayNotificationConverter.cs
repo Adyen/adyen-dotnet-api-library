@@ -103,9 +103,6 @@ namespace Adyen.Util
                 case "DIRECT_DEBIT_INITIATED":
                     notification = new DirectDebitInitiatedNotification();
                     break;
-                case "PAYOUT_CONFIRMED":
-                    notification = new AccountHolderPayoutNotification();
-                    break;
                 case "REFUND_FUNDS_TRANSFER":
                     notification = new RefundFundsTransferNotification();
                     break;

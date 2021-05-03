@@ -33,7 +33,7 @@ namespace Adyen.Model.MarketPay.Notification
     /// 
     /// </summary>
     [DataContract]
-    public class AccountFundsBelowThresholdNotificationContent : IGenericNotification
+    public class AccountFundsBelowThresholdNotificationContent 
     {
         /// <summary>
         /// The code of the account with funds under threshold

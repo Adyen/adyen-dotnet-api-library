@@ -24,9 +24,6 @@ using Adyen.Model.MarketPay;
 using Adyen.Model.MarketPay.Notification;
 using Adyen.Notification;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace Adyen.Test.MarketPayTest
 {
@@ -45,42 +42,36 @@ namespace Adyen.Test.MarketPayTest
             Assert.AreEqual(accountCloseNotification.Content.ResultCode, "Success");
         }
 
+        [TestMethod]
+        public void MarketPayAccountCreatedNotificationTest()
+        {
+            string json = GetFileContents("Mocks/marketpay/notification/account-created-success.json");
+            NotificationHandler notificationHandler = new NotificationHandler();
+            IGenericNotification notificationMessage = notificationHandler.HandleMarketpayNotificationJson(json);
+            AccountCreateNotification accountCreateNotificationMessage = (AccountCreateNotification)notificationMessage;
+            Assert.AreEqual("ACCOUNT_CREATED", accountCreateNotificationMessage.EventType);
+            Assert.AreEqual("000", accountCreateNotificationMessage.Error.ErrorCode);
+            Assert.AreEqual("test error message", accountCreateNotificationMessage.Error.Message);
+            Assert.IsNotNull(accountCreateNotificationMessage.Content);
 
+            CreateAccountResponse content = accountCreateNotificationMessage.Content;
+            Assert.AreEqual("TestAccountHolder", content.AccountHolderCode);
+            Assert.AreEqual("AC0000000001", content.AccountCode);
+            Assert.AreEqual("account description", content.Description);
+            Assert.AreEqual("MetaValue", content.Metadata["MetaKey"]);
+            Assert.AreEqual(CreateAccountResponse.StatusEnum.Active, content.Status);
 
-        //    [TestMethod]
-        //    public void testMarketPayAccountCreatedNotification()
-        //{
-        //    string json = GetFileContents("Mocks/marketpay/notification/account-created-success.json");
-        //    NotificationHandler notificationHandler = new NotificationHandler();
+            PayoutScheduleResponse payoutSchedule = content.PayoutSchedule;
+            Assert.AreEqual(PayoutScheduleResponse.ScheduleEnum.DAILY, payoutSchedule.Schedule);
+            Assert.AreEqual(1, content.InvalidFields.Count);
 
-        //    IGenericNotification notificationMessage = notificationHandler.HandleMarketpayNotificationJson(json);
-
-        //    Assert.AreEqual(IGenericNotification.EventTypeEnum.ACCOUNT_CREATED, notification.EventType);
-        //    AccountCreateNotification accountCreateNotificationMessage = (AccountCreateNotification)notificationMessage;
-
-        //    Assert.AreEqual("000", accountCreateNotificationMessage.getError().getErrorCode());
-        //    Assert.AreEqual("test error message", accountCreateNotificationMessage.getError().getMessage());
-        //    Assert.IsNotNull(accountCreateNotificationMessage.Content);
-
-        //    final CreateAccountResponse content = accountCreateNotificationMessage.Content;
-        //    Assert.AreEqual("TestAccountHolder", content.getAccountHolderCode());
-        //    Assert.AreEqual("AC0000000001", content.getAccountCode());
-        //    Assert.AreEqual("account description", content.getDescription());
-        //    Assert.AreEqual("MetaValue", content.getMetadata().get("MetaKey"));
-        //    Assert.AreEqual(ACTIVE, content.getStatus());
-
-        //    final PayoutScheduleResponse payoutSchedule = content.getPayoutSchedule();
-        //    Assert.AreEqual(DAILY, payoutSchedule.getSchedule());
-        //    Assert.AreEqual(parse("1970-01-02T01:00:00+01:00").toInstant(), payoutSchedule.getNextScheduledPayout().toInstant());
-
-        //    Assert.AreEqual(1, content.getInvalidFields().size());
-        //    final ErrorFieldType errorFieldType = content.getInvalidFields().get(0);
-        //    Assert.AreEqual(1, (long)errorFieldType.getErrorCode());
-        //    Assert.AreEqual("Field is missing", errorFieldType.getErrorDescription());
-        //    Assert.AreEqual("AccountHolderDetails.BusinessDetails.Shareholders.unknown", errorFieldType.getFieldType().getField());
-        //    Assert.AreEqual(FieldType.FieldNameEnum.UNKNOWN, errorFieldType.getFieldType().getFieldName());
-        //    Assert.AreEqual("SH00001", errorFieldType.getFieldType().getShareholderCode());
-        //}
+            ErrorFieldType errorFieldType = content.InvalidFields[0];
+            Assert.AreEqual(1, (long)errorFieldType.ErrorCode);
+            Assert.AreEqual("Field is missing", errorFieldType.ErrorDescription);
+            Assert.AreEqual("AccountHolderDetails.BusinessDetails.Shareholders.unknown", errorFieldType.FieldType.Field);
+            Assert.AreEqual(FieldType.FieldNameEnum.Unknown, errorFieldType.FieldType.FieldName);
+            Assert.AreEqual("SH00001", errorFieldType.FieldType.ShareholderCode);
+        }
 
         [TestMethod]
         public void MarketPayAccountHolderCreatedNotificationTest()
@@ -306,21 +297,7 @@ namespace Adyen.Test.MarketPayTest
             Assert.AreEqual("100000000", notification.Content.AccountCode);
             Assert.AreEqual("TestMarketPlaceMerchant", notification.Content.MerchantAccountCode);
         }
-
-        [TestMethod]
-        public void MarketPayPayoutConfirmedTest()
-        {
-            string json = GetFileContents("Mocks/marketpay/notification/payout-confirmed-test.json");
-            NotificationHandler notificationHandler = new NotificationHandler();
-            IGenericNotification notificationMessage = notificationHandler.HandleMarketpayNotificationJson(json);
-            AccountHolderPayoutNotification notification = (AccountHolderPayoutNotification)notificationMessage;
-            Assert.AreEqual("PAYOUT_CONFIRMED", notification.EventType);
-            Assert.IsNotNull(notification.Content);
-            Assert.AreEqual("100000000", notification.Content.AccountCode);
-            Assert.AreEqual("TestMarketPlaceMerchant", notification.Content.MerchantReference);
-            Assert.IsTrue(notification.Content.Amounts.Count > 0);
-        }
-
+        
         [TestMethod]
         public void MarketPayRefundFundsTransferTest()
         {
