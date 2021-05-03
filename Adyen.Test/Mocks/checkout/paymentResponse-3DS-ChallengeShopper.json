@@ -4,7 +4,7 @@
     "paymentData": "Te1CMIy1vKQTYsSHZ+gRbFpQy4d4n2HLD3c2b7xKnRNpWzWPuI=",
     "paymentMethodType": "scheme",
     "token": "S0zYWQ0MGEwMjU2MjEifQ==",
-    "type": "threeDS2Challenge"
+    "type": "threeDS2"
   },
   "authentication": { "threeds2.challengeToken": "S0zYWQ0MGEwMjU2MjEifQ==" },
   "details": [

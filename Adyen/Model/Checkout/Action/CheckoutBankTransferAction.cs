@@ -29,13 +29,13 @@ using System.Runtime.Serialization;
 using System.Text;
 using Newtonsoft.Json;
 
-namespace Adyen.Model.Checkout
+namespace Adyen.Model.Checkout.Action
 {
     /// <summary>
     /// CheckoutBankTransferAction
     /// </summary>
     [DataContract]
-    public partial class CheckoutBankTransferAction : IEquatable<CheckoutBankTransferAction>, IValidatableObject
+    public partial class CheckoutBankTransferAction : IEquatable<CheckoutBankTransferAction>, IValidatableObject, IPaymentResponseAction
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="CheckoutBankTransferAction" /> class.
