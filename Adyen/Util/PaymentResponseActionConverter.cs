@@ -47,8 +47,11 @@ namespace Adyen.Util
             var paymentResponseAction = default(IPaymentResponseAction);
             switch (jsonObject["type"].ToString())
             {
-                case "donation":
+                case "donate":
                     paymentResponseAction = new CheckoutDonationAction();
+                    break;
+                case "bankTransfer":
+                    paymentResponseAction = new CheckoutBankTransferAction();
                     break;
                 case "qrCode":
                     paymentResponseAction = new CheckoutQrCodeAction();
@@ -57,15 +60,10 @@ namespace Adyen.Util
                     paymentResponseAction = new CheckoutRedirectAction();
                     break;
                 case "sdk":
+                case "wechatpaySDK":
                     paymentResponseAction = new CheckoutSDKAction();
                     break;
-                case "threeDS2Challenge":
-                    paymentResponseAction = new CheckoutThreeDS2ChallengeAction();
-                    break;
-                case "threeDS2Fingerprint":
-                    paymentResponseAction = new CheckoutThreeDS2FingerPrintAction();
-                    break;
-                case "threeDS2Action":
+                case "threeDS2":
                     paymentResponseAction = new CheckoutThreeDS2Action();
                     break;
                 case "await":

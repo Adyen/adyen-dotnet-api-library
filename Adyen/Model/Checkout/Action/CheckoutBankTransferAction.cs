@@ -29,13 +29,13 @@ using System.Runtime.Serialization;
 using System.Text;
 using Newtonsoft.Json;
 
-namespace Adyen.Model.Checkout
+namespace Adyen.Model.Checkout.Action
 {
     /// <summary>
     /// CheckoutBankTransferAction
     /// </summary>
     [DataContract]
-    public partial class CheckoutBankTransferAction : IEquatable<CheckoutBankTransferAction>, IValidatableObject
+    public partial class CheckoutBankTransferAction : IEquatable<CheckoutBankTransferAction>, IValidatableObject, IPaymentResponseAction
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="CheckoutBankTransferAction" /> class.
@@ -44,7 +44,6 @@ namespace Adyen.Model.Checkout
         /// <param name="bic">The BIC of the IBAN..</param>
         /// <param name="downloadUrl">The url to download payment details with..</param>
         /// <param name="iban">The IBAN of the bank transfer..</param>
-        /// <param name="paymentData">When non-empty, contains a value that you must submit to the &#x60;/payments/details&#x60; endpoint. In some cases, required for polling..</param>
         /// <param name="paymentMethodType">Specifies the payment method..</param>
         /// <param name="reference">The transfer reference..</param>
         /// <param name="shopperEmail">The e-mail of the shopper, included if an e-mail was sent to the shopper..</param>
@@ -52,7 +51,7 @@ namespace Adyen.Model.Checkout
         /// <param name="type">The type of bank transfer..</param>
         /// <param name="url">Specifies the URL to redirect to..</param>
         public CheckoutBankTransferAction(string beneficiary = default(string), string bic = default(string),
-            string downloadUrl = default(string), string iban = default(string), string paymentData = default(string),
+            string downloadUrl = default(string), string iban = default(string),
             string paymentMethodType = default(string), string reference = default(string),
             string shopperEmail = default(string), Amount totalAmount = default(Amount), string type = default(string),
             string url = default(string))
@@ -61,7 +60,6 @@ namespace Adyen.Model.Checkout
             this.Bic = bic;
             this.DownloadUrl = downloadUrl;
             this.Iban = iban;
-            this.PaymentData = paymentData;
             this.PaymentMethodType = paymentMethodType;
             this.Reference = reference;
             this.ShopperEmail = shopperEmail;
@@ -97,14 +95,7 @@ namespace Adyen.Model.Checkout
         /// <value>The IBAN of the bank transfer.</value>
         [DataMember(Name = "iban", EmitDefaultValue = false)]
         public string Iban { get; set; }
-
-        /// <summary>
-        /// When non-empty, contains a value that you must submit to the &#x60;/payments/details&#x60; endpoint. In some cases, required for polling.
-        /// </summary>
-        /// <value>When non-empty, contains a value that you must submit to the &#x60;/payments/details&#x60; endpoint. In some cases, required for polling.</value>
-        [DataMember(Name = "paymentData", EmitDefaultValue = false)]
-        public string PaymentData { get; set; }
-
+        
         /// <summary>
         /// Specifies the payment method.
         /// </summary>
@@ -158,7 +149,6 @@ namespace Adyen.Model.Checkout
             sb.Append("  Bic: ").Append(Bic).Append("\n");
             sb.Append("  DownloadUrl: ").Append(DownloadUrl).Append("\n");
             sb.Append("  Iban: ").Append(Iban).Append("\n");
-            sb.Append("  PaymentData: ").Append(PaymentData).Append("\n");
             sb.Append("  PaymentMethodType: ").Append(PaymentMethodType).Append("\n");
             sb.Append("  Reference: ").Append(Reference).Append("\n");
             sb.Append("  ShopperEmail: ").Append(ShopperEmail).Append("\n");
@@ -218,12 +208,7 @@ namespace Adyen.Model.Checkout
                     this.Iban == input.Iban ||
                     this.Iban != null &&
                     this.Iban.Equals(input.Iban)
-                ) &&
-                (
-                    this.PaymentData == input.PaymentData ||
-                    this.PaymentData != null &&
-                    this.PaymentData.Equals(input.PaymentData)
-                ) &&
+                )&&
                 (
                     this.PaymentMethodType == input.PaymentMethodType ||
                     this.PaymentMethodType != null &&
@@ -273,8 +258,6 @@ namespace Adyen.Model.Checkout
                     hashCode = hashCode * 59 + this.DownloadUrl.GetHashCode();
                 if (this.Iban != null)
                     hashCode = hashCode * 59 + this.Iban.GetHashCode();
-                if (this.PaymentData != null)
-                    hashCode = hashCode * 59 + this.PaymentData.GetHashCode();
                 if (this.PaymentMethodType != null)
                     hashCode = hashCode * 59 + this.PaymentMethodType.GetHashCode();
                 if (this.Reference != null)
