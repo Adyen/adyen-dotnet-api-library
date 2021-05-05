@@ -37,14 +37,14 @@ namespace Adyen.Model.MarketPay
     /// KYCCheckStatusData
     /// </summary>
     [DataContract]
-        public partial class KYCCheckStatusData :  IEquatable<KYCCheckStatusData>, IValidatableObject
+    public partial class KYCCheckStatusData : IEquatable<KYCCheckStatusData>, IValidatableObject
     {
         /// <summary>
         /// The status of the check. &gt;Permitted Values: &#x60;DATA_PROVIDED&#x60;, &#x60;PASSED&#x60;, &#x60;PENDING&#x60;, &#x60;AWAITING_DATA&#x60;, &#x60;RETRY_LIMIT_REACHED&#x60;, &#x60;INVALID_DATA&#x60;, &#x60;FAILED&#x60;.
         /// </summary>
         /// <value>The status of the check. &gt;Permitted Values: &#x60;DATA_PROVIDED&#x60;, &#x60;PASSED&#x60;, &#x60;PENDING&#x60;, &#x60;AWAITING_DATA&#x60;, &#x60;RETRY_LIMIT_REACHED&#x60;, &#x60;INVALID_DATA&#x60;, &#x60;FAILED&#x60;.</value>
         [JsonConverter(typeof(StringEnumConverter))]
-                public enum StatusEnum
+        public enum StatusEnum
         {
             /// <summary>
             /// Enum AWAITINGDATA for value: AWAITING_DATA
@@ -90,19 +90,20 @@ namespace Adyen.Model.MarketPay
             /// Enum UNCHECKED for value: UNCHECKED
             /// </summary>
             [EnumMember(Value = "UNCHECKED")]
-            UNCHECKED = 9        }
+            UNCHECKED = 9
+        }
         /// <summary>
         /// The status of the check. &gt;Permitted Values: &#x60;DATA_PROVIDED&#x60;, &#x60;PASSED&#x60;, &#x60;PENDING&#x60;, &#x60;AWAITING_DATA&#x60;, &#x60;RETRY_LIMIT_REACHED&#x60;, &#x60;INVALID_DATA&#x60;, &#x60;FAILED&#x60;.
         /// </summary>
         /// <value>The status of the check. &gt;Permitted Values: &#x60;DATA_PROVIDED&#x60;, &#x60;PASSED&#x60;, &#x60;PENDING&#x60;, &#x60;AWAITING_DATA&#x60;, &#x60;RETRY_LIMIT_REACHED&#x60;, &#x60;INVALID_DATA&#x60;, &#x60;FAILED&#x60;.</value>
-        [DataMember(Name="status", EmitDefaultValue=false)]
+        [DataMember(Name = "status", EmitDefaultValue = false)]
         public StatusEnum Status { get; set; }
         /// <summary>
         /// The type of check. &gt;Permitted Values: &#x60;COMPANY_VERIFICATION&#x60;, &#x60;IDENTITY_VERIFICATION&#x60;, &#x60;PASSPORT_VERIFICATION&#x60;, &#x60;BANK_ACCOUNT_VERIFICATION&#x60;, &#x60;NONPROFIT_VERIFICATION&#x60;.
         /// </summary>
         /// <value>The type of check. &gt;Permitted Values: &#x60;COMPANY_VERIFICATION&#x60;, &#x60;IDENTITY_VERIFICATION&#x60;, &#x60;PASSPORT_VERIFICATION&#x60;, &#x60;BANK_ACCOUNT_VERIFICATION&#x60;, &#x60;NONPROFIT_VERIFICATION&#x60;.</value>
         [JsonConverter(typeof(StringEnumConverter))]
-                public enum TypeEnum
+        public enum TypeEnum
         {
             /// <summary>
             /// Enum BANKACCOUNTVERIFICATION for value: BANK_ACCOUNT_VERIFICATION
@@ -128,12 +129,13 @@ namespace Adyen.Model.MarketPay
             /// Enum PASSPORTVERIFICATION for value: PASSPORT_VERIFICATION
             /// </summary>
             [EnumMember(Value = "PASSPORT_VERIFICATION")]
-            PASSPORTVERIFICATION = 5        }
+            PASSPORTVERIFICATION = 5
+        }
         /// <summary>
         /// The type of check. &gt;Permitted Values: &#x60;COMPANY_VERIFICATION&#x60;, &#x60;IDENTITY_VERIFICATION&#x60;, &#x60;PASSPORT_VERIFICATION&#x60;, &#x60;BANK_ACCOUNT_VERIFICATION&#x60;, &#x60;NONPROFIT_VERIFICATION&#x60;.
         /// </summary>
         /// <value>The type of check. &gt;Permitted Values: &#x60;COMPANY_VERIFICATION&#x60;, &#x60;IDENTITY_VERIFICATION&#x60;, &#x60;PASSPORT_VERIFICATION&#x60;, &#x60;BANK_ACCOUNT_VERIFICATION&#x60;, &#x60;NONPROFIT_VERIFICATION&#x60;.</value>
-        [DataMember(Name="type", EmitDefaultValue=false)]
+        [DataMember(Name = "type", EmitDefaultValue = false)]
         public TypeEnum Type { get; set; }
         /// <summary>
         /// Initializes a new instance of the <see cref="KYCCheckStatusData" /> class.
@@ -149,19 +151,19 @@ namespace Adyen.Model.MarketPay
             this.RequiredFields = requiredFields;
             this.Summary = summary;
         }
-        
+
         /// <summary>
         /// A list of the fields required for execution of the check.
         /// </summary>
         /// <value>A list of the fields required for execution of the check.</value>
-        [DataMember(Name="requiredFields", EmitDefaultValue=false)]
+        [DataMember(Name = "requiredFields", EmitDefaultValue = false)]
         public List<string> RequiredFields { get; set; }
 
 
         /// <summary>
         /// Gets or Sets Summary
         /// </summary>
-        [DataMember(Name="summary", EmitDefaultValue=false)]
+        [DataMember(Name = "summary", EmitDefaultValue = false)]
         public KYCCheckSummary Summary { get; set; }
 
 
@@ -180,7 +182,7 @@ namespace Adyen.Model.MarketPay
             sb.Append("}\n");
             return sb.ToString();
         }
-  
+
         /// <summary>
         /// Returns the JSON string presentation of the object
         /// </summary>
@@ -210,22 +212,22 @@ namespace Adyen.Model.MarketPay
             if (input == null)
                 return false;
 
-            return 
+            return
                 (
                     this.RequiredFields == input.RequiredFields ||
                     this.RequiredFields != null &&
                     input.RequiredFields != null &&
                     this.RequiredFields.SequenceEqual(input.RequiredFields)
-                ) && 
+                ) &&
                 (
                     this.Status == input.Status ||
                     this.Status.Equals(input.Status)
-                ) && 
+                ) &&
                 (
                     this.Summary == input.Summary ||
                     (this.Summary != null &&
                     this.Summary.Equals(input.Summary))
-                ) && 
+                ) &&
                 (
                     this.Type == input.Type ||
                     this.Type.Equals(input.Type)

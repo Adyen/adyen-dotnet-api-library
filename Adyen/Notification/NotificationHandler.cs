@@ -21,6 +21,7 @@
 //  */
 #endregion
 
+using Adyen.Model.MarketPay.Notification;
 using Adyen.Model.Notification;
 using Adyen.Util;
 
@@ -31,6 +32,11 @@ namespace Adyen.Notification
         public NotificationRequest HandleNotificationRequest(string jsonRequest)
         {
             return JsonOperation.Deserialize<NotificationRequest>(jsonRequest);
+        }
+
+        public IGenericNotification HandleMarketpayNotificationJson(string jsonRequest)
+        {
+            return Util.JsonOperation.Deserialize<IGenericNotification>(jsonRequest);
         }
     }
 }
