@@ -1,47 +1,48 @@
 # Adyen dotnet API Library
 [![nuget](https://img.shields.io/nuget/v/adyen.svg)](https://www.nuget.org/packages/adyen/) [![nuget](https://img.shields.io/nuget/dt/adyen.svg)](https://www.nuget.org/packages/adyen/) ![.NET Core](https://github.com/Adyen/adyen-dotnet-api-library/workflows/.NET%20Core/badge.svg)
 
-The Adyen API Library for .net framework enables you to work with Adyen APIs, Hosted Payment Pages and Terminal API with any .net application.
+This is the officially supported dotnet library for using Adyen's APIs.
 
-The Library supports all APIs under the following services:
-* [x] bin lookup
-* [x] checkout
-* [x] checkout utility
-* [x] payments
-* [x] payout
-* [x] modifications
-* [x] recurring
-* [x] notifications
-* [x] marketpay account
-* [x] marketpay fund
-* [x] Terminal API (Local and Cloud based)
+## Integration
+The library supports all APIs under the following services:
 
-## Requirements
-* Adyen API Library supports .net standard 2.0
-* In order for Adyen API Library to support local terminal api certificate validation the application should be set to .net core 2.1 and above or .net framework 4.6.1 and above
+* [Checkout API](https://docs.adyen.com/api-explorer/#/CheckoutService/v67/overview): Our latest integration for accepting online payments. Current supported version: **v67**
+* [Payments API](https://docs.adyen.com/api-explorer/#/Payment/v51/overview): Our classic integration for online payments. Current supported version: **v51**
+* [Recurring API](https://docs.adyen.com/api-explorer/#/Recurring/v25/overview): Endpoints for managing saved payment details. Current supported version: **v49**
+* [Payouts API](https://docs.adyen.com/api-explorer/#/Payout/v51/overview): Endpoints for sending funds to your customers. Current supported version: **v51**
+* [Adyen BinLookup API](https://docs.adyen.com/api-explorer/#/BinLookup/v50/overview): Endpoints for retrieving information, such as cost estimates, and 3D Secure supported version based on a given BIN. Current supported version: **v50**
+* [Utility API](https://docs.adyen.com/api-explorer/#/CheckoutService/v67/post/originKeys): This operation takes the origin domains and returns a JSON object containing the corresponding origin keys for the domains. Current supported version: **v67**
+* [Platforms APIs](https://docs.adyen.com/platforms/api): Set of APIs when using Adyen for Platforms. 
+  * [Hosted Onboarding API](https://docs.adyen.com/api-explorer/#/Hop/v1/overview) Current supported version: **v1**
+  * [Account API](https://docs.adyen.com/api-explorer/#/Account/v5/overview) Current supported version: **v5**
+  * [Fund API](https://docs.adyen.com/api-explorer/#/Fund/v5/overview) Current supported version: **v5** 
+* [Cloud-based Terminal API](https://docs.adyen.com/point-of-sale/choose-your-architecture/cloud): Our point-of-sale integration.
+* [Local-based Terminal API](https://docs.adyen.com/point-of-sale/choose-your-architecture/local): Our point-of-sale integration.
+* [POS Terminal Management API](https://docs.adyen.com/api-explorer/#/postfmapi/v1/overview): Endpoints for managing your point-of-sale payment terminals **v1** 
+
+For more information, refer to our [documentation](https://docs.adyen.com/) or the [API Explorer](https://docs.adyen.com/api-explorer/).
+
+
+## Prerequisites
+
+- [Adyen test account](https://docs.adyen.com/get-started-with-adyen)
+- [API key](https://docs.adyen.com/development-resources/api-credentials#generate-api-key). For testing, your API credential needs to have the [API PCI Payments role](https://docs.adyen.com/development-resources/api-credentials#roles).
+- Adyen dotnet API Library supports .net standard 2.0
+- In order for Adyen dotnet API Library to support local terminal api certificate validation the application should be set to .net core 2.1 and above or .net framework 4.6.1 and above
 
 ## Installation
-* Simply download and restore nuget packages  
- https://www.nuget.org/packages/Adyen/
-* or install it from package manager
- PM> Install-Package Adyen -Version 6.1.0
-### Vagrant setup
-* Prerequisites
-virtualbox and vagrant
-* Run the following commands in the root folder to setup vagrant
-```
-vagrant up
-vagrant ssh
-```
-* Run the library tests
-```
-cd adyen-dotnet-api-library
-dotnet build
-dotnet test
-```
-## Usage
+Simply download and restore nuget packages https://www.nuget.org/packages/Adyen/
+or install it from package manager 
+~~~~ bash
+PM> Install-Package Adyen -Version x.x.x
+~~~~
+
+## Using the library
+
+### General use with API key
+
 In order to submit http request to Adyen API you need to initialize the client. The following example makes a checkout payment request:
-```csharp
+~~~~ csharp
 // Create a paymentsRequest
 var amount = new Model.Checkout.Amount("USD", 1000);
 var paymentRequest = new Model.Checkout.PaymentRequest
@@ -58,22 +59,33 @@ var client = new Client("YOUR-XAPI-KEY", Model.Enum.Environment.Test);//or Model
 var checkout = new Checkout(client);
 //Make the call to the service. This example code makes a call to /payments
 var paymentResponse = checkout.Payments(paymentRequest);
-```
+~~~~
 
-## Documentation
-* https://docs.adyen.com/developers/development-resources/libraries
-* https://docs.adyen.com/developers/checkout
+### Example integration
+
+For a closer look at how our dotnet library works, clone our [ASP .net example integration](https://github.com/adyen-examples/adyen-dotnet-online-payments). This includes commented code, highlighting key features and concepts, and examples of API calls that can be made using the library.
+
+### Running the tests
+Navigate to adyen-dotnet-api-library folder and run the following commands.
+~~~~ bash
+dotnet build
+dotnet test
+~~~~
 
 ## Contributing
-We strongly encourage you to join us in contributing to this repository so everyone can benefit from:
-* New features and functionality
-* Resolved bug fixes and issues
-* Any general improvements
 
-Read our [**contribution guidelines**](CONTRIBUTING.md) to find out how.
+We encourage you to contribute to this repository, so everyone can benefit from new features, bug fixes, and any other improvements.
+Have a look at our [contributing guidelines](https://github.com/Adyen/adyen-dotnet-api-library/blob/develop/CONTRIBUTING.md) to find out how to raise a pull request.
 
 ## Support
-If you have a feature request, or spotted a bug or a technical problem, create a GitHub issue. For other questions, contact our [support team](https://support.adyen.com/hc/en-us/requests/new?ticket_form_id=360000705420).
+If you have a feature request, or spotted a bug or a technical problem, [create an issue here](https://github.com/Adyen/adyen-dotnet-api-library/issues/new/choose).
+
+For other questions, [contact our Support Team](https://www.adyen.help/hc/en-us/requests/new?ticket_form_id=360000705420).
 
 ## Licence
-MIT license. For more information, see the LICENSE file.
+This repository is available under the [MIT license](https://github.com/Adyen/adyen-dotnet-api-library/blob/master/LICENSE).
+
+## See also
+* [Example integration](https://github.com/adyen-examples/adyen-dotnet-online-payments)
+* [Adyen docs](https://docs.adyen.com/)
+* [API Explorer](https://docs.adyen.com/api-explorer/)

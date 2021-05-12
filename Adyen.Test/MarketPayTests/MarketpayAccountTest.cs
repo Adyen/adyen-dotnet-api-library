@@ -25,7 +25,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.Collections.Generic;
 using Account = Adyen.Service.Account;
 
-namespace Adyen.Test
+namespace Adyen.Test.MarketPayTest
 {
     [TestClass]
     public class MarketpayAccountTest : BaseTest

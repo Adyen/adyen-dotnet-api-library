@@ -477,27 +477,7 @@ namespace Adyen.Test
             Assert.AreEqual(paymentRequest.ApplicationInfo.MerchantApplication.Version, "MerchantApplicationVersion");
         }
 
-        [TestMethod]
-        public void PaymentsResponseParsingTest()
-        {
-            var paymentRequest = CreatePaymentRequestCheckout();
-            var client = CreateMockTestClientApiKeyBasedRequest("Mocks/checkout/paymentResponse-3DS-ChallengeShopper.json");
-            var checkout = new Checkout(client);
-            var paymentResponse = checkout.Payments(paymentRequest);
-
-            Assert.IsTrue(paymentResponse.Action is CheckoutThreeDS2ChallengeAction);
-            var paymentResponseAction = (CheckoutThreeDS2ChallengeAction)paymentResponse.Action;
-            Assert.AreEqual(paymentResponse.ResultCode, ResultCodeEnum.ChallengeShopper);
-            Assert.AreEqual(paymentResponse.PaymentData, "Te1CMIy1vKQTYsSHZ+gRbFpQy4d4n2HLD3c2b7xKnRNpWzWPuI=");
-            Assert.AreEqual(paymentResponseAction.PaymentData, "Te1CMIy1vKQTYsSHZ+gRbFpQy4d4n2HLD3c2b7xKnRNpWzWPuI=");
-            Assert.AreEqual(paymentResponseAction.Type, "threeDS2Challenge");
-            Assert.AreEqual(paymentResponseAction.Token, "S0zYWQ0MGEwMjU2MjEifQ==");
-            Assert.AreEqual(paymentResponseAction.PaymentMethodType, "scheme");
-            Assert.AreEqual(paymentResponse.Details[0].Key, "threeds2.challengeResult");
-            Assert.AreEqual(paymentResponse.Details[0].Type, "text");
-            Assert.AreEqual(paymentResponse.Authentication["threeds2.challengeToken"], "S0zYWQ0MGEwMjU2MjEifQ==");
-        }
-
+     
         [TestMethod]
         public void PaymentsOriginTest()
         {
@@ -612,7 +592,7 @@ namespace Adyen.Test
             Assert.AreEqual("Ab02b4c0!BQABAgARb1TvUJa4nwS0Z1nOmxoYfD9+z...", result.PaymentData);
             Assert.AreEqual("paypal", result.PaymentMethodType);
         }
-        
+
         [TestMethod]
         public void ApplePayDetailsDeserializationTest()
         {
@@ -663,7 +643,7 @@ namespace Adyen.Test
             var paymentResponse = checkout.Payments(paymentRequest);
             var paymentResponseToJson = paymentResponse.ToJson();
             var jObject = JObject.Parse(paymentResponseToJson);
-            Assert.AreEqual(jObject["action"]["type"], "threeDS2Challenge");
+            Assert.AreEqual(jObject["action"]["type"], "threeDS2");
         }
 
         [TestMethod]
@@ -671,7 +651,7 @@ namespace Adyen.Test
         {
             var client = CreateMockTestClientApiKeyBasedRequest("Mocks/checkout/paymentmethods-storedpaymentmethods.json");
             var checkout = new Checkout(client);
-            var paymentMethodsRequest = new PaymentMethodsRequest(merchantAccount:"TestMerchant");
+            var paymentMethodsRequest = new PaymentMethodsRequest(merchantAccount: "TestMerchant");
             var paymentMethodsResponse = checkout.PaymentMethods(paymentMethodsRequest);
             Assert.AreEqual(4, paymentMethodsResponse.StoredPaymentMethods.Count);
             Assert.AreEqual("NL32ABNA0515071439", paymentMethodsResponse.StoredPaymentMethods[0].Iban);
@@ -700,6 +680,21 @@ namespace Adyen.Test
             Assert.AreEqual("PaymentDetailUsage", fraudResults[1].FraudCheckResult.Name);
             Assert.AreEqual(0, fraudResults[1].FraudCheckResult.AccountScore);
             Assert.AreEqual(3, fraudResults[1].FraudCheckResult.CheckId);
+        }
+        /// <summary>
+        /// Test if the fraud result are properly deseriazed
+        /// POST /payments
+        /// </summary>
+        [TestMethod]
+        public void ThreeDS2Test()
+        {
+            var paymentRequest = CreatePaymentRequestCheckout();
+            var client = CreateMockTestClientApiKeyBasedRequest("Mocks/checkout/paymentResponse-3DS2-Action.json");
+            var checkout = new Checkout(client);
+            var paymentResponse = checkout.Payments(paymentRequest);
+            var paymentResponseThreeDs2Action = (CheckoutThreeDS2Action)paymentResponse.Action;
+            Assert.AreEqual(ResultCodeEnum.IdentifyShopper, paymentResponse.ResultCode);
+            Assert.AreEqual("threeDS2", paymentResponseThreeDs2Action.Type);
         }
     }
 }
