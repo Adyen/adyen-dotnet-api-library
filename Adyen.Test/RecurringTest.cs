@@ -22,25 +22,23 @@
 #endregion
 
 using System;
-using Adyen.HttpClient;
 using Adyen.Model.Enum;
 using Adyen.Model.Recurring;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using System.Linq;
 using Recurring = Adyen.Model.Recurring.Recurring;
 using System.Threading.Tasks;
 
 namespace Adyen.Test
 {
     [TestClass]
-    public class RecurringTest:BaseTest
+    public class RecurringTest : BaseTest
     {
 
         [TestMethod]
         public void TestListRecurringDetails()
         {
             var client = base.CreateMockTestClientNullRequiredFieldsRequest("Mocks/recurring/listRecurringDetails-success.json");
-            var recurring=new Service.Recurring(client);
+            var recurring = new Service.Recurring(client);
             var recurringDetailsRequest = this.CreateRecurringDetailsRequest();
             var recurringDetailsResult = recurring.ListRecurringDetails(recurringDetailsRequest);
             Assert.AreEqual(1L, (long)recurringDetailsResult.Details.Count);
@@ -91,7 +89,7 @@ namespace Adyen.Test
         {
             try
             {
-                var client = base.CreateMockTestClientForErrors(422,"Mocks/recurring/disable-error-803.json");
+                var client = base.CreateMockTestClientForErrors(422, "Mocks/recurring/disable-error-803.json");
                 var recurring = new Service.Recurring(client);
                 var disableRequest = this.CreateDisableRequest();
 
@@ -101,9 +99,25 @@ namespace Adyen.Test
             catch (Exception exception)
             {
                 Assert.AreNotEqual(200, exception);
-             
+
             }
-           
+
+        }
+
+        [TestMethod]
+        public void NotifyShopperTest()
+        {
+            Client client = base.CreateMockTestClientNullRequiredFieldsRequest("Mocks/recurring/notifyShopper-success.json");
+            var recurring = new Service.Recurring(client);
+            NotifyShopperRequest request = CreateNotifyShopperRequest();
+            NotifyShopperResult result = recurring.NotifyShopper(request);
+            Assert.IsNotNull(result);
+            Assert.AreEqual("Example displayed reference", result.DisplayedReference);
+            Assert.AreEqual("8516167336214570", result.PspReference);
+            Assert.AreEqual("Request processed successfully", result.Message);
+            Assert.AreEqual("Example reference", result.Reference);
+            Assert.AreEqual("Success", result.ResultCode);
+            Assert.AreEqual("IA0F7500002462", result.ShopperNotificationReference);
         }
 
         private RecurringDetailsRequest CreateRecurringDetailsRequest()
@@ -127,5 +141,17 @@ namespace Adyen.Test
             return request;
         }
 
+        private NotifyShopperRequest CreateNotifyShopperRequest()
+        {
+            return new NotifyShopperRequest
+            {
+                MerchantAccount = "TestMerchant",
+                RecurringDetailReference = "8316158654144897",
+                Reference = "Example reference",
+                ShopperReference = "1234567",
+                BillingDate = "2021-03-31",
+                DisplayedReference = "Example displayed reference"
+            };
+        }
     }
 }
