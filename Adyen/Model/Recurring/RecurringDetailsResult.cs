@@ -21,6 +21,7 @@
 //  */
 #endregion
 
+using Adyen.Util;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
@@ -39,17 +40,16 @@ namespace Adyen.Model.Recurring
         /// <summary>
         /// Initializes a new instance of the <see cref="RecurringDetailsResult" /> class.
         /// </summary>
-        /// <param name="LastKnownShopperEmail">the most recent email for this shopper (if available).</param>
-        /// <param name="Details">a list of one or more recurring payment details.</param>
-        /// <param name="CreationDate">the creation date when the shopper record was created.</param>
-        /// <param name="InvalidOneclickContracts">InvalidOneclickContracts.</param>
-        /// <param name="ShopperReference">the reference you use to uniquely identify the shopper (e.g. user ID or account ID).</param>
-        public RecurringDetailsResult(string LastKnownShopperEmail = default(string), DateTime? CreationDate = default(DateTime?), bool? InvalidOneclickContracts = default(bool?), string ShopperReference = default(string))
+        /// <param name="creationDate">The date when the recurring details were created..</param>
+        /// <param name="details">Payment details stored for recurring payments..</param>
+        /// <param name="lastKnownShopperEmail">The most recent email for this shopper (if available)..</param>
+        /// <param name="shopperReference">The reference you use to uniquely identify the shopper (e.g. user ID or account ID)..</param>
+        public RecurringDetailsResult(DateTime? creationDate = default(DateTime?), List<RecurringDetailContainer> details = default(List<RecurringDetailContainer>), string lastKnownShopperEmail = default(string), string shopperReference = default(string))
         {
-            this.LastKnownShopperEmail = LastKnownShopperEmail;
-            this.CreationDate = CreationDate;
-            this.InvalidOneclickContracts = InvalidOneclickContracts;
-            this.ShopperReference = ShopperReference;
+            this.CreationDate = creationDate;
+            this.Details = details;
+            this.LastKnownShopperEmail = lastKnownShopperEmail;
+            this.ShopperReference = shopperReference;
         }
 
         /// <summary>
@@ -68,11 +68,6 @@ namespace Adyen.Model.Recurring
         [DataMember(Name = "creationDate", EmitDefaultValue = false)]
         public DateTime? CreationDate { get; set; }
 
-        /// <summary>
-        /// Gets or Sets InvalidOneclickContracts
-        /// </summary>
-        [DataMember(Name = "invalidOneclickContracts", EmitDefaultValue = false)]
-        public bool? InvalidOneclickContracts { get; set; }
 
         /// <summary>
         /// the reference you use to uniquely identify the shopper (e.g. user ID or account ID)
@@ -87,7 +82,7 @@ namespace Adyen.Model.Recurring
         /// </summary>
         /// <value>details of the result</value>
         [DataMember(Name = "details", EmitDefaultValue = false)]
-        public List<RecurringDetailContainer> Details=new List<RecurringDetailContainer>();
+        public List<RecurringDetailContainer> Details = new List<RecurringDetailContainer>();
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -99,7 +94,7 @@ namespace Adyen.Model.Recurring
             sb.Append("class RecurringDetailsResult {\n");
             sb.Append("  LastKnownShopperEmail: ").Append(LastKnownShopperEmail).Append("\n");
             sb.Append("  CreationDate: ").Append(CreationDate).Append("\n");
-            sb.Append("  InvalidOneclickContracts: ").Append(InvalidOneclickContracts).Append("\n");
+            sb.Append("  Details: ").Append(Details.ObjectListToString()).Append("\n");
             sb.Append("  ShopperReference: ").Append(ShopperReference).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
@@ -148,9 +143,10 @@ namespace Adyen.Model.Recurring
                     this.CreationDate.Equals(other.CreationDate)
                 ) &&
                 (
-                    this.InvalidOneclickContracts == other.InvalidOneclickContracts ||
-                    this.InvalidOneclickContracts != null &&
-                    this.InvalidOneclickContracts.Equals(other.InvalidOneclickContracts)
+                    this.Details == other.Details ||
+                    this.Details != null &&
+                    other.Details != null &&
+                    this.Details.Equals(other.Details)
                 ) &&
                 (
                     this.ShopperReference == other.ShopperReference ||
@@ -174,8 +170,8 @@ namespace Adyen.Model.Recurring
                     hash = hash * 59 + this.LastKnownShopperEmail.GetHashCode();
                 if (this.CreationDate != null)
                     hash = hash * 59 + this.CreationDate.GetHashCode();
-                if (this.InvalidOneclickContracts != null)
-                    hash = hash * 59 + this.InvalidOneclickContracts.GetHashCode();
+                if (this.Details != null)
+                    hash = hash * 59 + this.Details.GetHashCode();
                 if (this.ShopperReference != null)
                     hash = hash * 59 + this.ShopperReference.GetHashCode();
                 return hash;

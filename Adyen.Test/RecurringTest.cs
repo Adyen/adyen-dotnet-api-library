@@ -69,7 +69,6 @@ namespace Adyen.Test
             var recurring = new Service.Recurring(client);
             var disableRequest = this.CreateDisableRequest();
             var disableResult = recurring.Disable(disableRequest);
-            Assert.AreEqual(1L, (long)disableResult.Details.Count);
             Assert.AreEqual("[detail-successfully-disabled]", disableResult.Response);
         }
 
@@ -80,7 +79,6 @@ namespace Adyen.Test
             var recurring = new Service.Recurring(client);
             var disableRequest = this.CreateDisableRequest();
             var disableResult = await recurring.DisableAsync(disableRequest);
-            Assert.AreEqual(1L, (long)disableResult.Details.Count);
             Assert.AreEqual("[detail-successfully-disabled]", disableResult.Response);
         }
 
@@ -125,8 +123,7 @@ namespace Adyen.Test
             var request = new RecurringDetailsRequest
             {
                 ShopperReference = "test-123",
-                MerchantAccount = "DotNetAlexandros",
-                Recurring = new Recurring { Contract = Contract.Oneclick }
+                MerchantAccount = "DotNetAlexandros"
             };
             return request;
         }
