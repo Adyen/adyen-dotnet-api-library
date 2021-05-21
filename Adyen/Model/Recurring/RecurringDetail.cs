@@ -40,7 +40,6 @@ namespace Adyen.Model.Recurring
         /// <summary>
         /// Initializes a new instance of the <see cref="RecurringDetail" /> class.
         /// </summary>
-        /// <param name="TokenDetails">TokenDetails.</param>
         /// <param name="SocialSecurityNumber">SocialSecurityNumber.</param>
         /// <param name="FirstPspReference">FirstPspReference.</param>
         /// <param name="CreationDate">CreationDate.</param>
@@ -58,9 +57,8 @@ namespace Adyen.Model.Recurring
         /// <param name="BillingAddress">BillingAddress.</param>
         /// <param name="AdditionalData">AdditionalData.</param>
         /// <param name="Card">Card.</param>
-        public RecurringDetail(TokenDetails TokenDetails = default(TokenDetails), string SocialSecurityNumber = default(string), string FirstPspReference = default(string), DateTime? CreationDate = default(DateTime?), string Acquirer = default(string), BankAccount Bank = default(BankAccount), Name ShopperName = default(Name), string AcquirerAccount = default(string), string AliasType = default(string), string Name = default(string), string Variant = default(string), string RecurringDetailReference = default(string), string Alias = default(string), List<string> ContractTypes = default(List<string>), string PaymentMethodVariant = default(string), Address BillingAddress = default(Address), Dictionary<string, string> AdditionalData = default(Dictionary<string, string>), Card Card = default(Card))
+        public RecurringDetail(string SocialSecurityNumber = default(string), string FirstPspReference = default(string), DateTime? CreationDate = default(DateTime?), string Acquirer = default(string), BankAccount Bank = default(BankAccount), Name ShopperName = default(Name), string AcquirerAccount = default(string), string AliasType = default(string), string Name = default(string), string Variant = default(string), string RecurringDetailReference = default(string), string Alias = default(string), List<string> ContractTypes = default(List<string>), string PaymentMethodVariant = default(string), Address BillingAddress = default(Address), Dictionary<string, string> AdditionalData = default(Dictionary<string, string>), Card Card = default(Card))
         {
-            this.TokenDetails = TokenDetails;
             this.SocialSecurityNumber = SocialSecurityNumber;
             this.FirstPspReference = FirstPspReference;
             this.CreationDate = CreationDate;
@@ -81,12 +79,6 @@ namespace Adyen.Model.Recurring
             this.Card = Card;
         }
         
-        /// <summary>
-        /// Gets or Sets TokenDetails
-        /// </summary>
-        [DataMember(Name="tokenDetails", EmitDefaultValue=false)]
-        public TokenDetails TokenDetails { get; set; }
-
         /// <summary>
         /// Gets or Sets SocialSecurityNumber
         /// </summary>
@@ -201,7 +193,6 @@ namespace Adyen.Model.Recurring
         {
             var sb = new StringBuilder();
             sb.Append("class RecurringDetail {\n");
-            sb.Append("  TokenDetails: ").Append(TokenDetails).Append("\n");
             sb.Append("  SocialSecurityNumber: ").Append(SocialSecurityNumber).Append("\n");
             sb.Append("  FirstPspReference: ").Append(FirstPspReference).Append("\n");
             sb.Append("  CreationDate: ").Append(CreationDate).Append("\n");
@@ -256,11 +247,6 @@ namespace Adyen.Model.Recurring
                 return false;
 
             return 
-                (
-                    this.TokenDetails == other.TokenDetails ||
-                    this.TokenDetails != null &&
-                    this.TokenDetails.Equals(other.TokenDetails)
-                ) && 
                 (
                     this.SocialSecurityNumber == other.SocialSecurityNumber ||
                     this.SocialSecurityNumber != null &&
@@ -360,8 +346,6 @@ namespace Adyen.Model.Recurring
             {
                 int hash = 41;
                 // Suitable nullity checks etc, of course :)
-                if (this.TokenDetails != null)
-                    hash = hash * 59 + this.TokenDetails.GetHashCode();
                 if (this.SocialSecurityNumber != null)
                     hash = hash * 59 + this.SocialSecurityNumber.GetHashCode();
                 if (this.FirstPspReference != null)

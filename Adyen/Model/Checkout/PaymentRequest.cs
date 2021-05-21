@@ -1,5 +1,4 @@
 #region Licence
-
 // 
 //                        ######
 //                        ######
@@ -16,10 +15,9 @@
 // 
 //  Adyen Dotnet API Library
 // 
-//  Copyright (c) 2020 Adyen B.V.
+//  Copyright (c) 2021 Adyen B.V.
 //  This file is open source and available under the MIT license.
 //  See the LICENSE file for more info.
-
 #endregion
 
 using System;
@@ -244,7 +242,7 @@ namespace Adyen.Model.Checkout
             bool? enableOneClick = default(bool?), bool? enablePayOut = default(bool?),
             bool? enableRecurring = default(bool?), EntityTypeEnum? entityType = default(EntityTypeEnum?),
             int? fraudOffset = default(int?), Installments installments = default(Installments),
-            List<LineItem> lineItems = default(List<LineItem>), string mcc = default(string),
+            List<LineItem> lineItems = default(List<LineItem>), Mandate mandate = default(Mandate), string mcc = default(string),
             string merchantAccount = default(string), string merchantOrderReference = default(string),
             MerchantRiskIndicator merchantRiskIndicator = default(MerchantRiskIndicator),
             Dictionary<string, string> metadata = default(Dictionary<string, string>),
@@ -338,6 +336,7 @@ namespace Adyen.Model.Checkout
             this.FraudOffset = fraudOffset;
             this.Installments = installments;
             this.LineItems = lineItems;
+            this.Mandate = mandate;
             this.Mcc = mcc;
             this.MerchantOrderReference = merchantOrderReference;
             this.MerchantRiskIndicator = merchantRiskIndicator;
@@ -739,6 +738,13 @@ namespace Adyen.Model.Checkout
         [DataMember(Name = "trustedShopper", EmitDefaultValue = false)]
         public bool? TrustedShopper { get; set; }
 
+        /// <summary>
+        ///  Gets or Sets Mandate
+        /// </summary>
+        [DataMember(Name = "mandate", EmitDefaultValue = false)]
+        public Mandate Mandate { get; set; }
+
+
         public void AddCardData(string cardNumber, string expiryMonth, string expiryYear, string securityCode, string holderName)
         {
             var defaultPaymentMethodDetails = new DefaultPaymentMethodDetails
@@ -799,6 +805,7 @@ namespace Adyen.Model.Checkout
             sb.Append("  FraudOffset: ").Append(FraudOffset).Append("\n");
             sb.Append("  Installments: ").Append(Installments).Append("\n");
             sb.Append("  LineItems: ").Append(LineItems).Append("\n");
+            sb.Append("  Mandate: ").Append(Mandate).Append("\n");
             sb.Append("  Mcc: ").Append(Mcc).Append("\n");
             sb.Append("  MerchantAccount: ").Append(MerchantAccount).Append("\n");
             sb.Append("  MerchantOrderReference: ").Append(MerchantOrderReference).Append("\n");
@@ -982,6 +989,11 @@ namespace Adyen.Model.Checkout
                     this.LineItems != null &&
                     input.LineItems != null &&
                     this.LineItems.SequenceEqual(input.LineItems)
+                ) && 
+                (
+                    this.Mandate == input.Mandate ||
+                    this.Mandate != null &&
+                    this.Mandate.Equals(input.Mandate)
                 ) &&
                 (
                     this.Mcc == input.Mcc ||
@@ -1212,6 +1224,8 @@ namespace Adyen.Model.Checkout
                     hashCode = hashCode * 59 + this.Installments.GetHashCode();
                 if (this.LineItems != null)
                     hashCode = hashCode * 59 + this.LineItems.GetHashCode();
+                if (this.Mandate != null)
+                    hashCode = hashCode * 59 + this.Mandate.GetHashCode();
                 if (this.Mcc != null)
                     hashCode = hashCode * 59 + this.Mcc.GetHashCode();
                 if (this.MerchantAccount != null)
