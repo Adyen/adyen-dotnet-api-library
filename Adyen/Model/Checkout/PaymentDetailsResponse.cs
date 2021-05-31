@@ -239,6 +239,7 @@ namespace Adyen.Model.Checkout
             sb.Append("  Amount: ").Append(Amount).Append("\n");
             sb.Append("  DonationToken: ").Append(DonationToken).Append("\n");
             sb.Append("  FraudResult: ").Append(FraudResult).Append("\n");
+            sb.Append("  MerchantReference: ").Append(MerchantReference).Append("\n");
             sb.Append("  Order: ").Append(Order).Append("\n");
             sb.Append("  PaymentMethod: ").Append(PaymentMethod).Append("\n");
             sb.Append("  PspReference: ").Append(PspReference).Append("\n");
@@ -301,6 +302,11 @@ namespace Adyen.Model.Checkout
                     this.FraudResult == input.FraudResult ||
                     (this.FraudResult != null &&
                     this.FraudResult.Equals(input.FraudResult))
+                ) &&                
+                (
+                    this.MerchantReference == input.MerchantReference ||
+                    (this.MerchantReference != null &&
+                    this.MerchantReference.Equals(input.MerchantReference))
                 ) &&
                 (
                     this.Order == input.Order ||
@@ -359,6 +365,8 @@ namespace Adyen.Model.Checkout
                     hashCode = hashCode * 59 + this.Amount.GetHashCode();
                 if (this.DonationToken != null)
                     hashCode = hashCode * 59 + this.DonationToken.GetHashCode();
+                if (this.MerchantReference != null)
+                    hashCode = hashCode * 59 + this.MerchantReference.GetHashCode();
                 if (this.FraudResult != null)
                     hashCode = hashCode * 59 + this.FraudResult.GetHashCode();
                 if (this.Order != null)
