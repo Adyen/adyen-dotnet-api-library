@@ -179,6 +179,13 @@ namespace Adyen.Model.Checkout
         public CheckoutOrderResponse Order { get; set; }
 
         /// <summary>
+        /// A unique value that you provided in the initial &#x60;/payments&#x60; request.
+        /// </summary>
+        /// <value>A unique value that you provided in the initial &#x60;/payments&#x60; request.</value>
+        [DataMember(Name = "merchantReference", EmitDefaultValue = false)]
+        public string MerchantReference { get; set; }
+
+        /// <summary>
         /// The payment method used in the transaction.
         /// </summary>
         /// <value>The payment method used in the transaction.</value>
