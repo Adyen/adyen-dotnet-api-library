@@ -42,7 +42,7 @@ namespace Adyen.Model.Checkout.Details
             /// Enum SDK for value: SDK
             /// </summary>
             [EnumMember(Value = "sdk")]
-            SDK = 1,
+            SDK = 0,
 
             /// <summary>
             /// Enum SDK for value: SDK
