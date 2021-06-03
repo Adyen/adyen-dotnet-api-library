@@ -129,36 +129,6 @@ namespace Adyen.Test
         }
 
         /// <summary>
-        /// Test success flow for Apple Pay
-        /// POST /payments
-        /// </summary>
-        [TestMethod]
-        public void PaymentsApplePayTest()
-        {
-            var paymentRequest = CreateApplePayPaymentRequestCheckout();
-            var client = CreateMockTestClientApiKeyBasedRequest("Mocks/checkout/payments-applepay-success.json");
-            var checkout = new Checkout(client);
-            var paymentResponse = checkout.Payments(paymentRequest);
-            Assert.AreEqual("9035798957043214", paymentResponse.PspReference);
-            Assert.AreEqual(ResultCodeEnum.Authorised, paymentResponse.ResultCode);
-        }
-
-        /// <summary>
-        /// Test success flow for Google Pay
-        /// POST /payments
-        /// </summary>
-        [TestMethod]
-        public void PaymentsGooglePayTest()
-        {
-            var paymentRequest = CreateGooglePayPaymentRequestCheckout();
-            var client = CreateMockTestClientApiKeyBasedRequest("Mocks/checkout/payments-googlepay-success.json");
-            var checkout = new Checkout(client);
-            var paymentResponse = checkout.Payments(paymentRequest);
-            Assert.AreEqual("9035798960987345", paymentResponse.PspReference);
-            Assert.AreEqual(ResultCodeEnum.Authorised, paymentResponse.ResultCode);
-        }
-
-        /// <summary>
         /// Test success flow for 3DS2
         /// POST /payments
         /// </summary>
