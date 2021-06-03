@@ -63,7 +63,7 @@ namespace Adyen.Model.Checkout
             string payerID = default(string), string payload = default(string), string paymentID = default(string),
             string paymentStatus = default(string), string redirectResult = default(string),
             string threeDSResult = default(string), string threeds2ChallengeResult = default(string),
-            string threeds2Fingerprint = default(string), string returnUrlQueryString = default(string))
+            string threeds2Fingerprint = default(string))
         {
             this.MD = mD;
             this.PaReq = paReq;
@@ -81,7 +81,6 @@ namespace Adyen.Model.Checkout
             this.ThreeDSResult = threeDSResult;
             this.Threeds2ChallengeResult = threeds2ChallengeResult;
             this.Threeds2Fingerprint = threeds2Fingerprint;
-            this.ReturnUrlQueryString = returnUrlQueryString;
         }
 
         /// <summary>
@@ -197,14 +196,6 @@ namespace Adyen.Model.Checkout
         public string Threeds2Fingerprint { get; set; }
 
         /// <summary>
-        /// Return url query string supplied by the redirect component.
-        /// Used by Swish redirects.
-        /// </summary>
-        /// <value>Return url query string supplied by the redirect component.</value>
-        [DataMember(Name = "returnUrlQueryString", EmitDefaultValue = false)]
-        public string ReturnUrlQueryString { get; set; }
-
-        /// <summary>
         /// Returns the string presentation of the object
         /// </summary>
         /// <returns>String presentation of the object</returns>
@@ -228,7 +219,6 @@ namespace Adyen.Model.Checkout
             sb.Append("  ThreeDSResult: ").Append(ThreeDSResult).Append("\n");
             sb.Append("  Threeds2ChallengeResult: ").Append(Threeds2ChallengeResult).Append("\n");
             sb.Append("  Threeds2Fingerprint: ").Append(Threeds2Fingerprint).Append("\n");
-            sb.Append("  ReturnUrlQueryString: ").Append(Threeds2Fingerprint).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -342,11 +332,6 @@ namespace Adyen.Model.Checkout
                     this.Threeds2Fingerprint == input.Threeds2Fingerprint ||
                     this.Threeds2Fingerprint != null &&
                     this.Threeds2Fingerprint.Equals(input.Threeds2Fingerprint)
-                ) &&
-                (
-                    this.ReturnUrlQueryString == input.ReturnUrlQueryString ||
-                    this.ReturnUrlQueryString != null &&
-                    this.ReturnUrlQueryString.Equals(input.ReturnUrlQueryString)
                 );
         }
 
@@ -391,8 +376,6 @@ namespace Adyen.Model.Checkout
                     hashCode = hashCode * 59 + this.Threeds2ChallengeResult.GetHashCode();
                 if (this.Threeds2Fingerprint != null)
                     hashCode = hashCode * 59 + this.Threeds2Fingerprint.GetHashCode();
-                if (this.ReturnUrlQueryString != null)
-                    hashCode = hashCode * 59 + this.ReturnUrlQueryString.GetHashCode();
                 return hashCode;
             }
         }
