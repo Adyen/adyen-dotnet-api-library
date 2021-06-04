@@ -117,21 +117,6 @@ namespace Adyen.Test
             return paymentRequest;
         }
 
-        public static Adyen.Model.Checkout.PaymentRequest CreateApplePayPaymentRequest()
-        {
-            var paymentRequest = new Adyen.Model.Checkout.PaymentRequest
-            {
-                MerchantAccount = "MerchantAccount",
-                Reference = "payment - " + DateTime.Now.ToString("yyyyMMdd"),
-                PaymentMethod = new DefaultPaymentMethodDetails
-                {
-                    Type = "applepay",
-                    ApplePayToken = "ApplePayToken"
-                }
-            };
-            
-            return paymentRequest;
-        }
 
         public static BrowserInfo CreateMockBrowserInfo()
         {
