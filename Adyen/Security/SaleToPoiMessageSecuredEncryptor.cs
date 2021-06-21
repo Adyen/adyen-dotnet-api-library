@@ -92,7 +92,7 @@ namespace Adyen.Security
         }
 
         /// <summary>
-        /// Hmac validation during 
+        /// Validate the hmac from a received message
         /// </summary>
         /// <param name="receivedHmac"></param>
         /// <param name="decryptedSaleToPoiMessageByteArray"></param>
@@ -113,7 +113,6 @@ namespace Adyen.Security
                 if (receivedHmac[i] != hmac[i])
                 {
                     valid = false;
-                    break;
                 }
             }
 
