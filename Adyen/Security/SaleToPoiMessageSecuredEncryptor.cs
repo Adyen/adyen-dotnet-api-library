@@ -102,21 +102,23 @@ namespace Adyen.Security
             var hmacSha256Wrapper = new HmacSha256Wrapper();
             byte[] hmac = hmacSha256Wrapper.HMac(decryptedSaleToPoiMessageByteArray, encryptionDerivedKey.HmacKey);
 
-
-            bool valid = true;
-            if (receivedHmac.Length != hmac.Length)
+            bool isValid = true;
+            if (receivedHmac.Length == hmac.Length) 
             {
-                valid = false;
-            }
-            for (int i = 0; i < hmac.Length; i++)
-            {
-                if (receivedHmac[i] != hmac[i])
+                for (int i = 0; i < hmac.Length; i++)
                 {
-                    valid = false;
+                    if (receivedHmac[i] != hmac[i])
+                    {
+                        isValid = false;
+                    }
                 }
             }
+            else
+            {
+                isValid = false;
+            }
 
-            if (!valid)
+            if (!isValid)
             {
                 throw new NexoCryptoException("Hmac validation failed");
             }
