@@ -25,6 +25,8 @@ using Adyen.Model.Nexo.Message;
 using System;
 using System.Text;
 using Adyen.Model.Nexo;
+using System.Security.Cryptography;
+using Adyen.Security.Exceptions;
 
 namespace Adyen.Security
 {
@@ -84,7 +86,41 @@ namespace Adyen.Security
             var decryptedSaleToPoiMessageByteArray = _aesEncryptor.Decrypt(encryptedSaleToPoiMessageByteArray,
                                                                            encryptionDerivedKey,
                                                                            saleToPoiMessageSecured.SecurityTrailer.Nonce);
+            var receivedHmac = saleToPoiMessageSecured.SecurityTrailer.Hmac;
+            ValidateHmac(receivedHmac, decryptedSaleToPoiMessageByteArray, encryptionDerivedKey);
             return System.Text.Encoding.UTF8.GetString(decryptedSaleToPoiMessageByteArray);
         }
+
+        /// <summary>
+        /// Hmac validation during 
+        /// </summary>
+        /// <param name="receivedHmac"></param>
+        /// <param name="decryptedSaleToPoiMessageByteArray"></param>
+        /// <param name="encryptionDerivedKey"></param>
+        private void ValidateHmac(byte[] receivedHmac, byte[] decryptedSaleToPoiMessageByteArray, EncryptionDerivedKey encryptionDerivedKey)
+        {
+            var hmacSha256Wrapper = new HmacSha256Wrapper();
+            byte[] hmac = hmacSha256Wrapper.HMac(decryptedSaleToPoiMessageByteArray, encryptionDerivedKey.HmacKey);
+
+
+            bool valid = true;
+            if (receivedHmac.Length != hmac.Length)
+            {
+                valid = false;
+            }
+            for (int i = 0; i < hmac.Length && valid; i++)
+            {
+                if (receivedHmac[i] != hmac[i])
+                {
+                    valid = false;
+                    break;
+                }
+            }
+
+            if (!valid)
+            {
+                throw new NexoCryptoException("Hmac validation failed");
+            }
+        }    
     }
 }
