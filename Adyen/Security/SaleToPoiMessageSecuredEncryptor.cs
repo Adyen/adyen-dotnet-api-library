@@ -108,7 +108,7 @@ namespace Adyen.Security
             {
                 valid = false;
             }
-            for (int i = 0; i < hmac.Length && valid; i++)
+            for (int i = 0; i < hmac.Length; i++)
             {
                 if (receivedHmac[i] != hmac[i])
                 {
@@ -120,6 +120,6 @@ namespace Adyen.Security
             {
                 throw new NexoCryptoException("Hmac validation failed");
             }
-        }    
+        }
     }
 }
