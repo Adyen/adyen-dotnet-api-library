@@ -31,7 +31,7 @@ namespace Adyen.Model.Terminal
     public class SaleToAcquirerData
     {
         [JsonProperty(PropertyName = "metadata")]
-        public Dictionary<string, string> Metadata { get; set; }
+        public SortedDictionary<string, string> Metadata { get; set; }
         [JsonProperty(PropertyName = "shopperEmail")]
         public string ShopperEmail { get; set; }
         [JsonProperty(PropertyName = "shopperReference")]

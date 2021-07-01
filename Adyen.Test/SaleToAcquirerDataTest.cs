@@ -39,7 +39,7 @@ namespace Adyen.Test
         {
             SaleToAcquirerData saleToAcquirerData = new SaleToAcquirerData
             {
-                Metadata = new Dictionary<string, string> { { "key", "value" } },
+                Metadata = new SortedDictionary<string, string> { { "key", "value" } },
                 ShopperEmail = "myemail@mail.com",
                 ShopperReference = "13164308",
                 RecurringContract = "RECURRING,ONECLICK",
