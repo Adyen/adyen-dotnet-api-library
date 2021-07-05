@@ -34,11 +34,11 @@ namespace Adyen.Test
         {
             foreach (var terminalCNValidationParameter in GetTerminalCNValidationParameters())
             {
-               bool result = Security.TerminalCommonNameValidator.ValidateCertificate(terminalCNValidationParameter.CommonName, terminalCNValidationParameter.Environment);
-               Assert.AreEqual(result, terminalCNValidationParameter.TestSuccess);
+                bool result = Security.TerminalCommonNameValidator.ValidateCertificate(terminalCNValidationParameter.CommonName, terminalCNValidationParameter.Environment);
+                Assert.AreEqual(result, terminalCNValidationParameter.TestSuccess);
             }
         }
-        
+
         private List<TerminalCNValidationParameters> GetTerminalCNValidationParameters()
         {
             return new List<TerminalCNValidationParameters>
@@ -48,6 +48,8 @@ namespace Adyen.Test
                         new TerminalCNValidationParameters  ( "EMAILADDRESS=mock@adyen.com, CN=legacy-terminal-certificate.live.terminal.adyen.com, OU=Mock, O=Mock, L=Mock, ST=MO, C=MO", Adyen.Model.Enum.Environment.Live, true ),
                         new TerminalCNValidationParameters  ( "EMAILADDRESS=mock@adyen.com, CN=P400-123456789.test.terminal.adyen.com, OU=Mock, O=Mock, L=Mock, ST=MO, C=MO", Adyen.Model.Enum.Environment.Test, true ),
                         new TerminalCNValidationParameters  ( "EMAILADDRESS=mock@adyen.com, CN=P400-123456789.live.terminal.adyen.com, OU=Mock, O=Mock, L=Mock, ST=MO, C=MO", Adyen.Model.Enum.Environment.Live, true ),
+                        new TerminalCNValidationParameters  ( "EMAILADDRESS=mock@adyen.com, CN=S1E-000150123456789.test.terminal.adyen.com, OU=Mock, O=Mock, L=Mock, ST=MO, C=MO", Adyen.Model.Enum.Environment.Test, true ),
+                        new TerminalCNValidationParameters  ( "EMAILADDRESS=mock@adyen.com, CN=S1E-000150123456789.live.terminal.adyen.com, OU=Mock, O=Mock, L=Mock, ST=MO, C=MO", Adyen.Model.Enum.Environment.Live, true ),
                        // Wrong environment
                         new TerminalCNValidationParameters  ( "EMAILADDRESS=mock@adyen.com, CN=legacy-terminal-certificate.test.terminal.adyen.com, OU=Mock, O=Mock, L=Mock, ST=MO, C=MO", Adyen.Model.Enum.Environment.Live, false ),
                         new TerminalCNValidationParameters  ( "EMAILADDRESS=mock@adyen.com, CN=P400-123456789.test.terminal.adyen.com, OU=Mock, O=Mock, L=Mock, ST=MO, C=MO", Adyen.Model.Enum.Environment.Live, false ),
