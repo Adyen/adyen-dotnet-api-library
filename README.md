@@ -8,7 +8,7 @@ The library supports all APIs under the following services:
 
 * [Checkout API](https://docs.adyen.com/api-explorer/#/CheckoutService/v67/overview): Our latest integration for accepting online payments. Current supported version: **v67**
 * [Payments API](https://docs.adyen.com/api-explorer/#/Payment/v51/overview): Our classic integration for online payments. Current supported version: **v51**
-* [Recurring API](https://docs.adyen.com/api-explorer/#/Recurring/v25/overview): Endpoints for managing saved payment details. Current supported version: **v49**
+* [Recurring API](https://docs.adyen.com/api-explorer/#/Recurring/v49/overview): Endpoints for managing saved payment details. Current supported version: **v49**
 * [Payouts API](https://docs.adyen.com/api-explorer/#/Payout/v51/overview): Endpoints for sending funds to your customers. Current supported version: **v51**
 * [Adyen BinLookup API](https://docs.adyen.com/api-explorer/#/BinLookup/v50/overview): Endpoints for retrieving information, such as cost estimates, and 3D Secure supported version based on a given BIN. Current supported version: **v50**
 * [Utility API](https://docs.adyen.com/api-explorer/#/CheckoutService/v67/post/originKeys): This operation takes the origin domains and returns a JSON object containing the corresponding origin keys for the domains. Current supported version: **v67**
