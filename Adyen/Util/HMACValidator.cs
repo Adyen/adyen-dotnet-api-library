@@ -130,6 +130,7 @@ namespace Adyen.Util
             return string.Equals(expectedSign, merchantSign);
         }
 
+
         private string EscapeVal(string val)
         {
             if (val == null)

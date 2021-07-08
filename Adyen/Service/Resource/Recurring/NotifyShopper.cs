@@ -20,31 +20,27 @@
  * See the LICENSE file for more info.
  */
 #endregion
-
 using System.Collections.Generic;
-using System.Runtime.Serialization;
-using System.Text;
 
-namespace Adyen.Model.Recurring
+namespace Adyen.Service.Resource.Recurring
 {
-    [DataContract]
-    public class DisableResult
+    public class NotifyShopper : Resource
     {
-        [DataMember(Name = "response", EmitDefaultValue = false)]
-        public string Response { get; set; }
-
-     
         /// <summary>
-        /// Returns the string presentation of the object
+        /// To send a pre-debit notification to your shopper, make a POST call to notifyShopper
         /// </summary>
-        /// <returns>String presentation of the object</returns>
-        public override string ToString()
+        /// <param name="abstractService"></param>
+        public NotifyShopper(AbstractService abstractService)
+            : base(abstractService, abstractService.Client.Config.Endpoint + "/pal/servlet/Recurring/" + abstractService.Client.RecurringApiVersion + "/notifyShopper",
+                new List<string>
+                {
+                    "merchantAccount",
+                    "shopperReference",
+                    "amount",
+                    "reference"
+                })
         {
-            var sb = new StringBuilder();
-            sb.Append("class DisableRequest {\n");
-            sb.Append("  response: ").Append(Response).Append("\n");
-            sb.Append("}\n");
-            return sb.ToString();
+
         }
     }
 }

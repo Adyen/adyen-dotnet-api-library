@@ -41,7 +41,7 @@ namespace Adyen.Constants
         public static string MarketPayFundApiVersion = "v5";
         public static string MarketPayAccountApiVersion = "v5";
         public static string HopApiVersion = "v1";
-        public static string RecurringApiVersion = "v25";
+        public static string RecurringApiVersion = "v49";
         public static string ApiVersion = "v51";
         public static string PayoutApiVersion = "v51";
         public static string CheckoutApiVersion = "v67";
@@ -53,6 +53,6 @@ namespace Adyen.Constants
         public static string BinLookupApiVersion = "v50";
 
         public static string LibName = "adyen-dotnet-api-library";
-        public static string LibVersion = "7.1.0";
+        public static string LibVersion = "7.2.0";
     }
 }

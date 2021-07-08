@@ -25,6 +25,8 @@ using Adyen.Model.Nexo.Message;
 using System;
 using System.Text;
 using Adyen.Model.Nexo;
+using System.Security.Cryptography;
+using Adyen.Security.Exceptions;
 
 namespace Adyen.Security
 {
@@ -84,7 +86,42 @@ namespace Adyen.Security
             var decryptedSaleToPoiMessageByteArray = _aesEncryptor.Decrypt(encryptedSaleToPoiMessageByteArray,
                                                                            encryptionDerivedKey,
                                                                            saleToPoiMessageSecured.SecurityTrailer.Nonce);
+            var receivedHmac = saleToPoiMessageSecured.SecurityTrailer.Hmac;
+            ValidateHmac(receivedHmac, decryptedSaleToPoiMessageByteArray, encryptionDerivedKey);
             return System.Text.Encoding.UTF8.GetString(decryptedSaleToPoiMessageByteArray);
+        }
+
+        /// <summary>
+        /// Validate the hmac from a received message
+        /// </summary>
+        /// <param name="receivedHmac"></param>
+        /// <param name="decryptedSaleToPoiMessageByteArray"></param>
+        /// <param name="encryptionDerivedKey"></param>
+        private void ValidateHmac(byte[] receivedHmac, byte[] decryptedSaleToPoiMessageByteArray, EncryptionDerivedKey encryptionDerivedKey)
+        {
+            var hmacSha256Wrapper = new HmacSha256Wrapper();
+            byte[] hmac = hmacSha256Wrapper.HMac(decryptedSaleToPoiMessageByteArray, encryptionDerivedKey.HmacKey);
+
+            bool isValid = true;
+            if (receivedHmac.Length == hmac.Length) 
+            {
+                for (int i = 0; i < hmac.Length; i++)
+                {
+                    if (receivedHmac[i] != hmac[i])
+                    {
+                        isValid = false;
+                    }
+                }
+            }
+            else
+            {
+                isValid = false;
+            }
+
+            if (!isValid)
+            {
+                throw new NexoCryptoException("Hmac validation failed");
+            }
         }
     }
 }

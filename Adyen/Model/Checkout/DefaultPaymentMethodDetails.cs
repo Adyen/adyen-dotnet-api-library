@@ -80,10 +80,7 @@ namespace Adyen.Model.Checkout
         public string SepaIbanNumber { get; set; }
         [DataMember(Name = "bankAccount", EmitDefaultValue = false)]
         public BankAccount BankAccount { get; set; }
-        [DataMember(Name = "applepay.token", EmitDefaultValue = false)]
-        public string ApplePayToken { get; set; }
-        [DataMember(Name = "paywithgoogle.token", EmitDefaultValue = false)]
-        public string GooglePayToken { get; set; }
+ 
 
         public override string ToString()
         {
@@ -112,8 +109,6 @@ namespace Adyen.Model.Checkout
             sb.Append("  SepaOwnerName: ").Append(SepaOwnerName).Append("\n");
             sb.Append("  SepaIbanNumber: ").Append(SepaIbanNumber).Append("\n");
             sb.Append("  BankAccount: ").Append(BankAccount).Append("\n");
-            sb.Append("  ApplePayToken: ").Append(BankAccount).Append("\n");
-            sb.Append("  GooglePayToken: ").Append(BankAccount).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -254,16 +249,6 @@ namespace Adyen.Model.Checkout
                     this.BankAccount == input.BankAccount ||
                     (this.BankAccount != null &&
                     this.BankAccount.Equals(input.BankAccount))
-                ) &&
-                (
-                    this.ApplePayToken == input.ApplePayToken ||
-                    (this.ApplePayToken != null &&
-                    this.ApplePayToken.Equals(input.ApplePayToken))
-                ) &&
-                (
-                    this.GooglePayToken == input.GooglePayToken ||
-                    (this.GooglePayToken != null &&
-                    this.GooglePayToken.Equals(input.GooglePayToken))
                 );
         }
 
@@ -332,10 +317,6 @@ namespace Adyen.Model.Checkout
                     hashCode = hashCode * 59 + this.BankAccount.GetHashCode();
                 if (this.Issuer != null)
                     hashCode = hashCode * 59 + this.Issuer.GetHashCode();
-                if (this.ApplePayToken != null)
-                    hashCode = hashCode * 59 + this.ApplePayToken.GetHashCode();
-                if (this.GooglePayToken != null)
-                    hashCode = hashCode * 59 + this.GooglePayToken.GetHashCode();
                 return hashCode;
             }
 

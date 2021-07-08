@@ -122,6 +122,7 @@ namespace Adyen.Model.Checkout
         /// <param name="amount">amount.</param>
         /// <param name="donationToken">Donation Token containing payment details for Adyen Giving..</param>
         /// <param name="fraudResult">fraudResult.</param>
+        /// <param name="merchantReference">Unique merchant reference for the payment.</param>
         /// <param name="order">order.</param>
         /// <param name="paymentMethod">The payment method used in the transaction..</param>
         /// <param name="pspReference">Adyen&#x27;s 16-character string reference associated with the transaction/request. This value is globally unique; quote it when communicating with us about this request..</param>
@@ -130,12 +131,13 @@ namespace Adyen.Model.Checkout
         /// <param name="resultCode">The result of the payment. For more information, see [Result codes](https://docs.adyen.com/online-payments/payment-result-codes).  Possible values:  * **AuthenticationFinished** – The payment has been successfully authenticated with 3D Secure 2. Returned for 3D Secure 2 authentication-only transactions. * **AuthenticationNotRequired** – The transaction does not require 3D Secure authentication. Returned for [standalone authentication-only integrations](https://docs.adyen.com/online-payments/3d-secure/other-3ds-flows/authentication-only). * **Authorised** – The payment was successfully authorised. This state serves as an indicator to proceed with the delivery of goods and services. This is a final state. * **Cancelled** – Indicates the payment has been cancelled (either by the shopper or the merchant) before processing was completed. This is a final state. * **ChallengeShopper** – The issuer requires further shopper interaction before the payment can be authenticated. Returned for 3D Secure 2 transactions. * **Error** – There was an error when the payment was being processed. The reason is given in the &#x60;refusalReason&#x60; field. This is a final state. * **IdentifyShopper** – The issuer requires the shopper&#x27;s device fingerprint before the payment can be authenticated. Returned for 3D Secure 2 transactions. * **Pending** – Indicates that it is not possible to obtain the final status of the payment. This can happen if the systems providing final status information for the payment are unavailable, or if the shopper needs to take further action to complete the payment. * **PresentToShopper** – Indicates that the response contains additional information that you need to present to a shopper, so that they can use it to complete a payment. * **Received** – Indicates the payment has successfully been received by Adyen, and will be processed. This is the initial state for all payments. * **RedirectShopper** – Indicates the shopper should be redirected to an external web page or app to complete the authorisation. * **Refused** – Indicates the payment was refused. The reason is given in the &#x60;refusalReason&#x60; field. This is a final state..</param>
         /// <param name="shopperLocale">The shopperLocale..</param>
         /// <param name="threeDS2Result">threeDS2Result.</param>
-        public PaymentDetailsResponse(Dictionary<string, string> additionalData = default(Dictionary<string, string>), Amount amount = default(Amount), string donationToken = default(string), FraudResult fraudResult = default(FraudResult), CheckoutOrderResponse order = default(CheckoutOrderResponse), string paymentMethod = default(string), string pspReference = default(string), string refusalReason = default(string), string refusalReasonCode = default(string), ResultCodeEnum? resultCode = default(ResultCodeEnum?), string shopperLocale = default(string), ThreeDS2Result threeDS2Result = default(ThreeDS2Result))
+        public PaymentDetailsResponse(Dictionary<string, string> additionalData = default(Dictionary<string, string>), Amount amount = default(Amount), string donationToken = default(string), FraudResult fraudResult = default(FraudResult), string merchantReference = default(string), CheckoutOrderResponse order = default(CheckoutOrderResponse), string paymentMethod = default(string), string pspReference = default(string), string refusalReason = default(string), string refusalReasonCode = default(string), ResultCodeEnum? resultCode = default(ResultCodeEnum?), string shopperLocale = default(string), ThreeDS2Result threeDS2Result = default(ThreeDS2Result))
         {
             this.AdditionalData = additionalData;
             this.Amount = amount;
             this.DonationToken = donationToken;
             this.FraudResult = fraudResult;
+            this.MerchantReference = merchantReference;
             this.Order = order;
             this.PaymentMethod = paymentMethod;
             this.PspReference = pspReference;
@@ -177,6 +179,13 @@ namespace Adyen.Model.Checkout
         /// </summary>
         [DataMember(Name = "order", EmitDefaultValue = false)]
         public CheckoutOrderResponse Order { get; set; }
+
+        /// <summary>
+        /// A unique value that you provided in the initial &#x60;/payments&#x60; request.
+        /// </summary>
+        /// <value>A unique value that you provided in the initial &#x60;/payments&#x60; request.</value>
+        [DataMember(Name = "merchantReference", EmitDefaultValue = false)]
+        public string MerchantReference { get; set; }
 
         /// <summary>
         /// The payment method used in the transaction.
@@ -232,6 +241,7 @@ namespace Adyen.Model.Checkout
             sb.Append("  Amount: ").Append(Amount).Append("\n");
             sb.Append("  DonationToken: ").Append(DonationToken).Append("\n");
             sb.Append("  FraudResult: ").Append(FraudResult).Append("\n");
+            sb.Append("  MerchantReference: ").Append(MerchantReference).Append("\n");
             sb.Append("  Order: ").Append(Order).Append("\n");
             sb.Append("  PaymentMethod: ").Append(PaymentMethod).Append("\n");
             sb.Append("  PspReference: ").Append(PspReference).Append("\n");
@@ -294,6 +304,11 @@ namespace Adyen.Model.Checkout
                     this.FraudResult == input.FraudResult ||
                     (this.FraudResult != null &&
                     this.FraudResult.Equals(input.FraudResult))
+                ) &&                
+                (
+                    this.MerchantReference == input.MerchantReference ||
+                    (this.MerchantReference != null &&
+                    this.MerchantReference.Equals(input.MerchantReference))
                 ) &&
                 (
                     this.Order == input.Order ||
@@ -352,6 +367,8 @@ namespace Adyen.Model.Checkout
                     hashCode = hashCode * 59 + this.Amount.GetHashCode();
                 if (this.DonationToken != null)
                     hashCode = hashCode * 59 + this.DonationToken.GetHashCode();
+                if (this.MerchantReference != null)
+                    hashCode = hashCode * 59 + this.MerchantReference.GetHashCode();
                 if (this.FraudResult != null)
                     hashCode = hashCode * 59 + this.FraudResult.GetHashCode();
                 if (this.Order != null)
