@@ -49,8 +49,8 @@ namespace Adyen.Constants
         public const string PaymentLinkId = "paymentLinkId";
         public const string MerchantOrderReference = "merchantOrderReference";
         // Custom constants for metadata
-        public const string OrderReference = "metadata.orderReference";
-        public const string OrderId = "metadata.orderId";
+  
+
         public const string OrderNumber = "metadata.orderNumber";
     }
 }
