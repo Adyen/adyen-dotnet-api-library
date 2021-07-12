@@ -42,14 +42,12 @@ namespace Adyen.Service.Resource
         public string Request(string json)
         {
             var clientInterface = this._abstractService.Client.HttpClient;
-            var config = this._abstractService.Client.Config;
             return clientInterface.Request(this.Endpoint, json, false, null);
         }
 
         public async Task<string> RequestAsync(string json)
         {
             var clientInterface = this._abstractService.Client.HttpClient;
-            var config = this._abstractService.Client.Config;
             return await clientInterface.RequestAsync(this.Endpoint, json, false, null);
         }
     }
