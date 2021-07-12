@@ -1,4 +1,5 @@
 ﻿#region License
+
 // /*
 //  *                       ######
 //  *                       ######
@@ -19,6 +20,7 @@
 //  * This file is open source and available under the MIT license.
 //  * See the LICENSE file for more info.
 //  */
+
 #endregion
 
 using Adyen.Constants;
@@ -57,8 +59,7 @@ namespace Adyen.HttpClient
 
         public async Task<string> RequestAsync(string endpoint, string json, bool isApiKeyRequired, RequestOptions requestOptions = null)
         {
-            var request = GetHttpRequestMessage(endpoint, isApiKeyRequired, json, requestOptions);
-
+            using (var request = GetHttpRequestMessage(endpoint, isApiKeyRequired, json, requestOptions))
             using (var httpResponseMessage = await _httpClient.SendAsync(request))
             {
                 var responseText = await httpResponseMessage.Content.ReadAsStringAsync();
@@ -71,14 +72,13 @@ namespace Adyen.HttpClient
         {
             var dictToString = QueryString(postParameters);
 
-            var request = new HttpRequestMessage(HttpMethod.Post, endpoint)
+            var content = new StringContent(dictToString, _encoding, "application/x-www-form-urlencoded");
+            using (var request = new HttpRequestMessage(HttpMethod.Post, endpoint) {Content = content})
+            using (var response = _httpClient.SendAsync(request).GetAwaiter().GetResult())
             {
-                Content = new StringContent(dictToString, _encoding, "application/x-www-form-urlencoded")
-            };
-
-            var response = _httpClient.SendAsync(request).GetAwaiter().GetResult();
-            response.EnsureSuccessStatusCode();
-            return response.Content.ReadAsStringAsync().GetAwaiter().GetResult();
+                response.EnsureSuccessStatusCode();
+                return response.Content.ReadAsStringAsync().GetAwaiter().GetResult();
+            }
         }
 
         public HttpRequestMessage GetHttpRequestMessage(string endpoint, bool isApiKeyRequired, string json, RequestOptions requestOptions)
@@ -95,6 +95,7 @@ namespace Adyen.HttpClient
             {
                 httpWebRequest.Headers.Add("Idempotency-Key", requestOptions.IdempotencyKey);
             }
+
             //Use one of two authentication method.
             if (isApiKeyRequired || _config.HasApiKey)
             {
@@ -127,6 +128,7 @@ namespace Adyen.HttpClient
                 //remove trailing &amp
                 stringBuilder.Remove(stringBuilder.Length - 2, 1);
             }
+
             return stringBuilder.ToString();
         }
 
