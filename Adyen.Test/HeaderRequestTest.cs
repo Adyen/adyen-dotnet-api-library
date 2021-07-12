@@ -39,7 +39,7 @@ namespace Adyen.Test
         [TestMethod]
         public void BasicAuthenticationHeadersTest()
         {
-            var client = new HttpUrlConnectionClient(MockPaymentData.CreateConfingMock());
+            var client = new HttpWebRequestWrapper(MockPaymentData.CreateConfingMock());
             var httpWebRequest = client.GetHttpWebRequest(_endpoint, false);
 
             Assert.IsNotNull(httpWebRequest.UserAgent);
@@ -58,7 +58,7 @@ namespace Adyen.Test
         [TestMethod]
         public void ApiKeyBasedHeadersTest()
         {
-            var client = new HttpUrlConnectionClient(MockPaymentData.CreateConfingApiKeyBasedMock());
+            var client = new HttpWebRequestWrapper(MockPaymentData.CreateConfingApiKeyBasedMock());
             var httpWebRequest = client.GetHttpWebRequest(_endpoint, true);
 
             Assert.IsNotNull(httpWebRequest.UserAgent);
@@ -77,7 +77,7 @@ namespace Adyen.Test
         [TestMethod]
         public void IdempotencyKeyNotPresentInHeaderIfExcluded()
         {
-            var client = new HttpUrlConnectionClient(MockPaymentData.CreateConfingApiKeyBasedMock());
+            var client = new HttpWebRequestWrapper(MockPaymentData.CreateConfingApiKeyBasedMock());
             var httpWebRequest = client.GetHttpWebRequest(_endpoint, true);
 
             Assert.IsNull(httpWebRequest.Headers["Idempotency-Key"]);
@@ -86,7 +86,7 @@ namespace Adyen.Test
         [TestMethod]
         public void IdempotencyKeyNotPresentInHeaderIfNull()
         {
-            var client = new HttpUrlConnectionClient(MockPaymentData.CreateConfingApiKeyBasedMock());
+            var client = new HttpWebRequestWrapper(MockPaymentData.CreateConfingApiKeyBasedMock());
             var httpWebRequest = client.GetHttpWebRequest(_endpoint, true, null);
 
             Assert.IsNull(httpWebRequest.Headers["Idempotency-Key"]);
@@ -95,7 +95,7 @@ namespace Adyen.Test
         [TestMethod]
         public void IdempotencyKeyNotPresentInHeaderIfEmptyString()
         {
-            var client = new HttpUrlConnectionClient(MockPaymentData.CreateConfingApiKeyBasedMock());
+            var client = new HttpWebRequestWrapper(MockPaymentData.CreateConfingApiKeyBasedMock());
             var requestOptions = new RequestOptions
             {
                 IdempotencyKey = string.Empty
@@ -109,7 +109,7 @@ namespace Adyen.Test
         [TestMethod]
         public void IdempotencyKeyNotPresentInHeaderIfWhitespaceString()
         {
-            var client = new HttpUrlConnectionClient(MockPaymentData.CreateConfingApiKeyBasedMock());
+            var client = new HttpWebRequestWrapper(MockPaymentData.CreateConfingApiKeyBasedMock());
             var requestOptions = new RequestOptions
             {
                 IdempotencyKey = " "
@@ -123,7 +123,7 @@ namespace Adyen.Test
         [TestMethod]
         public void IdempotencyKeyPresentInHeaderIfSpecified()
         {
-            var client = new HttpUrlConnectionClient(MockPaymentData.CreateConfingApiKeyBasedMock());
+            var client = new HttpWebRequestWrapper(MockPaymentData.CreateConfingApiKeyBasedMock());
             var requestOptions = new RequestOptions
             {
                 IdempotencyKey = "idempotencyKey"

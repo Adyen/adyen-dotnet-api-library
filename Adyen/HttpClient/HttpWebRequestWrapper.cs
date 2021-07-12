@@ -34,12 +34,12 @@ using Adyen.Model;
 
 namespace Adyen.HttpClient
 {
-    public class HttpUrlConnectionClient : IClient
+    public class HttpWebRequestWrapper : IClient
     {
         private readonly Config _config;
         private readonly Encoding _encoding = Encoding.UTF8;
 
-        public HttpUrlConnectionClient(Config config)
+        public HttpWebRequestWrapper(Config config)
         {
             _config = config;
         }

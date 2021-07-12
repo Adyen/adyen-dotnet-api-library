@@ -130,7 +130,7 @@ namespace Adyen
             _lazyClient = new Lazy<IClient>(() =>
                 _httpClient != null
                 ? new HttpClientWrapper(Config, _httpClient)
-                : (IClient)new HttpUrlConnectionClient(Config),
+                : (IClient)new HttpWebRequestWrapper(Config),
                 LazyThreadSafetyMode.ExecutionAndPublication
             );
         }
