@@ -51,7 +51,7 @@ namespace Adyen
             };
             this.SetEnvironment(environment);
         }
-        
+
         public Client(string xapikey, Environment environment)
         {
             Config = new Config
@@ -69,7 +69,7 @@ namespace Adyen
                 Environment = environment,
                 XApiKey = xapikey
             };
-            this.SetEnvironment(environment,liveEndpointUrlPrefix);
+            this.SetEnvironment(environment, liveEndpointUrlPrefix);
         }
 
         public Client(Config config)
@@ -90,6 +90,7 @@ namespace Adyen
                 case Environment.Test:
                     Config.Endpoint = ClientConfig.EndpointTest;
                     Config.HppEndpoint = ClientConfig.HppTest;
+                    Config.CloudApiEndPoint = ClientConfig.CloudApiEndPointTestSync;
                     Config.CheckoutEndpoint = ClientConfig.CheckoutEndpointTest;
                     Config.MarketPayEndpoint = ClientConfig.MarketpayEndPointTest;
                     Config.PosTerminalManagementEndpoint = ClientConfig.PosTerminalManagementEndpointTest;
@@ -102,6 +103,7 @@ namespace Adyen
 
                     Config.Endpoint = ClientConfig.EndpointProtocol + liveEndpointUrlPrefix + ClientConfig.EndpointLiveSuffix;
                     Config.HppEndpoint = ClientConfig.HppLive;
+                    Config.CloudApiEndPoint = ClientConfig.CloudApiEndPointEULiveSync;
                     Config.CheckoutEndpoint = ClientConfig.EndpointProtocol + liveEndpointUrlPrefix + ClientConfig.CheckoutEndpointLiveSuffix;
                     Config.MarketPayEndpoint = ClientConfig.MarketpayEndPointLive;
                     Config.PosTerminalManagementEndpoint = ClientConfig.PosTerminalManagementEndpointLive;
