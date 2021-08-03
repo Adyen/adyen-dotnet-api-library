@@ -320,7 +320,7 @@ namespace Adyen.Test
         /// <returns>IClient implementation</returns>
         protected Client CreateMockTestClientPosCloudApiRequest(string fileName)
         {
-            var config = new Config { Endpoint = ClientConfig.CloudApiEndPointTestSync };
+            var config = new Config { CloudApiEndPoint = ClientConfig.CloudApiEndPointTestSync };
             var mockPath = GetMockFilePath(fileName);
             var response = MockFileToString(mockPath);
             //Create a mock interface
