@@ -32,8 +32,17 @@ namespace Adyen.Constants
         public static string HppLive = "https://live.adyen.com/hpp";
         public static string CheckoutEndpointTest = "https://checkout-test.adyen.com";
         public static string CheckoutEndpointLiveSuffix = "-checkout-live.adyenpayments.com/checkout";
-        public static string CloudApiEndPointTest = "https://terminal-api-test.adyen.com";
-        public static string CloudApiEndPointLive = "https://terminal-api-live.adyen.com";
+        //Test cloud api endpoints
+        public static string CloudApiEndPointTestSync = "https://terminal-api-test.adyen.com/sync";
+        public static string CloudApiEndPointTestAsync = "https://terminal-api-test.adyen.com/async";
+        //Live cloud api endpoints
+        public static string CloudApiEndPointEULiveSync = "https://terminal-api-live.adyen.com/sync";
+        public static string CloudApiEndPointEULiveAsync = "https://terminal-api-live.adyen.com/async";
+        public static string CloudApiEndPointAULiveSync = "https://terminal-api-live-au.adyen.com/sync";
+        public static string CloudApiEndPointAULiveAsync = "https://terminal-api-live-au.adyen.com/async";
+        public static string CloudApiEndPointUSLiveSync = "https://terminal-api-live-us.adyen.com/sync";
+        public static string CloudApiEndPointUSLiveAsync = "https://terminal-api-live-us.adyen.com/async";
+
         public static string MarketpayEndPointTest = "https://cal-test.adyen.com/cal/services";
         public static string MarketpayEndPointLive = "https://cal-live.adyen.com/cal/services";
         public static string PosTerminalManagementEndpointTest = "https://postfmapi-test.adyen.com/postfmapi/terminal";
