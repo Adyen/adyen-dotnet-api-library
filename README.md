@@ -12,13 +12,13 @@ The library supports all APIs under the following services:
 * [Payouts API](https://docs.adyen.com/api-explorer/#/Payout/v51/overview): Endpoints for sending funds to your customers. Current supported version: **v51**
 * [Adyen BinLookup API](https://docs.adyen.com/api-explorer/#/BinLookup/v50/overview): Endpoints for retrieving information, such as cost estimates, and 3D Secure supported version based on a given BIN. Current supported version: **v50**
 * [Utility API](https://docs.adyen.com/api-explorer/#/CheckoutService/v67/post/originKeys): This operation takes the origin domains and returns a JSON object containing the corresponding origin keys for the domains. Current supported version: **v67**
-* [Platforms APIs](https://docs.adyen.com/platforms/api): Set of APIs when using Adyen for Platforms. 
+* [Platforms APIs](https://docs.adyen.com/platforms/api): Set of APIs when using Adyen for Platforms.
   * [Hosted Onboarding API](https://docs.adyen.com/api-explorer/#/Hop/v1/overview) Current supported version: **v1**
   * [Account API](https://docs.adyen.com/api-explorer/#/Account/v5/overview) Current supported version: **v5**
-  * [Fund API](https://docs.adyen.com/api-explorer/#/Fund/v5/overview) Current supported version: **v5** 
+  * [Fund API](https://docs.adyen.com/api-explorer/#/Fund/v5/overview) Current supported version: **v5**
 * [Cloud-based Terminal API](https://docs.adyen.com/point-of-sale/choose-your-architecture/cloud): Our point-of-sale integration.
 * [Local-based Terminal API](https://docs.adyen.com/point-of-sale/choose-your-architecture/local): Our point-of-sale integration.
-* [POS Terminal Management API](https://docs.adyen.com/api-explorer/#/postfmapi/v1/overview): Endpoints for managing your point-of-sale payment terminals **v1** 
+* [POS Terminal Management API](https://docs.adyen.com/api-explorer/#/postfmapi/v1/overview): Endpoints for managing your point-of-sale payment terminals **v1**
 
 For more information, refer to our [documentation](https://docs.adyen.com/) or the [API Explorer](https://docs.adyen.com/api-explorer/).
 
@@ -32,7 +32,7 @@ For more information, refer to our [documentation](https://docs.adyen.com/) or t
 
 ## Installation
 Simply download and restore nuget packages https://www.nuget.org/packages/Adyen/
-or install it from package manager 
+or install it from package manager
 ~~~~ bash
 PM> Install-Package Adyen -Version x.x.x
 ~~~~
@@ -70,6 +70,19 @@ Navigate to adyen-dotnet-api-library folder and run the following commands.
 ~~~~ bash
 dotnet build
 dotnet test
+~~~~
+
+### Using the Cloud API for post
+In order to submit POS request with Cloud API you need to initialize the client with the Endpoints that it is closer to your region. The Endpoints are available as contacts in [ClientConfig](https://github.com/Adyen/adyen-dotnet-api-library/blob/develop/Adyen/Constants/ClientConfig.cs#L35)
+For more information please read our [documentation](https://docs.adyen.com/point-of-sale/terminal-api-fundamentals#cloud)
+~~~~ csharp
+//Example for EU based Endpoint Syncronous
+var config = new Config
+  {
+    XApiKey = "Your merchant XAPI key",
+    CloudApiEndPoint = ClientConfig.CloudApiEndPointEULive
+  };
+var client = new Client(config);
 ~~~~
 
 ## Contributing
