@@ -80,7 +80,7 @@ For more information please read our [documentation](https://docs.adyen.com/poin
 var config = new Config
   {
     XApiKey = "Your merchant XAPI key",
-    CloudApiEndPoint = ClientConfig.CloudApiEndPointEULiveSync
+    CloudApiEndPoint = ClientConfig.CloudApiEndPointEULive
   };
 var client = new Client(config);
 ~~~~
