@@ -90,7 +90,7 @@ namespace Adyen
                 case Environment.Test:
                     Config.Endpoint = ClientConfig.EndpointTest;
                     Config.HppEndpoint = ClientConfig.HppTest;
-                    Config.CloudApiEndPoint = ClientConfig.CloudApiEndPointTestSync;
+                    Config.CloudApiEndPoint = ClientConfig.CloudApiEndPointTest;
                     Config.CheckoutEndpoint = ClientConfig.CheckoutEndpointTest;
                     Config.MarketPayEndpoint = ClientConfig.MarketpayEndPointTest;
                     Config.PosTerminalManagementEndpoint = ClientConfig.PosTerminalManagementEndpointTest;
@@ -103,7 +103,7 @@ namespace Adyen
 
                     Config.Endpoint = ClientConfig.EndpointProtocol + liveEndpointUrlPrefix + ClientConfig.EndpointLiveSuffix;
                     Config.HppEndpoint = ClientConfig.HppLive;
-                    Config.CloudApiEndPoint = ClientConfig.CloudApiEndPointEULiveSync;
+                    Config.CloudApiEndPoint = ClientConfig.CloudApiEndPointEULive;
                     Config.CheckoutEndpoint = ClientConfig.EndpointProtocol + liveEndpointUrlPrefix + ClientConfig.CheckoutEndpointLiveSuffix;
                     Config.MarketPayEndpoint = ClientConfig.MarketpayEndPointLive;
                     Config.PosTerminalManagementEndpoint = ClientConfig.PosTerminalManagementEndpointLive;
