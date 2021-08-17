@@ -75,7 +75,7 @@ namespace Adyen
                 XApiKey = xapikey
             };
             _httpClient = httpClient;
-            this.SetEnvironment(environment,liveEndpointUrlPrefix);
+            this.SetEnvironment(environment, liveEndpointUrlPrefix);
         }
 
         public Client(Config config, System.Net.Http.HttpClient httpClient = null)
@@ -110,7 +110,7 @@ namespace Adyen
 
                     Config.Endpoint = ClientConfig.EndpointProtocol + liveEndpointUrlPrefix + ClientConfig.EndpointLiveSuffix;
                     Config.HppEndpoint = ClientConfig.HppLive;
-                    Config.CloudApiEndPoint = ClientConfig.CloudApiEndPointLive;
+                    Config.CloudApiEndPoint = ClientConfig.CloudApiEndPointEULive;
                     Config.CheckoutEndpoint = ClientConfig.EndpointProtocol + liveEndpointUrlPrefix + ClientConfig.CheckoutEndpointLiveSuffix;
                     Config.MarketPayEndpoint = ClientConfig.MarketpayEndPointLive;
                     Config.PosTerminalManagementEndpoint = ClientConfig.PosTerminalManagementEndpointLive;

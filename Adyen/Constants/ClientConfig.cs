@@ -32,8 +32,13 @@ namespace Adyen.Constants
         public static string HppLive = "https://live.adyen.com/hpp";
         public static string CheckoutEndpointTest = "https://checkout-test.adyen.com";
         public static string CheckoutEndpointLiveSuffix = "-checkout-live.adyenpayments.com/checkout";
+        //Test cloud api endpoints
         public static string CloudApiEndPointTest = "https://terminal-api-test.adyen.com";
-        public static string CloudApiEndPointLive = "https://terminal-api-live.adyen.com";
+        //Live cloud api endpoints
+        public static string CloudApiEndPointEULive = "https://terminal-api-live.adyen.com";
+        public static string CloudApiEndPointAULive = "https://terminal-api-live-au.adyen.com";
+        public static string CloudApiEndPointUSLive = "https://terminal-api-live-us.adyen.com";
+
         public static string MarketpayEndPointTest = "https://cal-test.adyen.com/cal/services";
         public static string MarketpayEndPointLive = "https://cal-live.adyen.com/cal/services";
         public static string PosTerminalManagementEndpointTest = "https://postfmapi-test.adyen.com/postfmapi/terminal";
