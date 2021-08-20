@@ -32,10 +32,6 @@ namespace Adyen.Test
     {
         private const string _endpoint = "https://endpoint:8080";
 
-        public HeaderRequestTest()
-        {
-
-        }
         [TestMethod]
         public void BasicAuthenticationHeadersTest()
         {
