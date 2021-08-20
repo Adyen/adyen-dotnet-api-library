@@ -209,6 +209,7 @@ namespace Adyen.HttpClient
 
         public void Dispose()
         {
+            //note: this method is empty just for backward compatibility, because newer HttpClientWrapper implementation of IClient implements IDisposable
         }
     }
 }
