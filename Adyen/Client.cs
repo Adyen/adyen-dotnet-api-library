@@ -82,6 +82,8 @@ namespace Adyen
         {
             Config = config;
             _httpClient = httpClient;
+
+            ReloadClient();
         }
 
         public void SetEnvironment(Environment environment)
