@@ -54,55 +54,59 @@ namespace Adyen.Model.Checkout
             [EnumMember(Value = "AuthenticationFinished")]
             AuthenticationFinished = 1,
             /// <summary>
+            /// Enum Refused for value: AuthenticationNotRequired
+            /// </summary>
+            [EnumMember(Value = "AuthenticationNotRequired")] AuthenticationNotRequired = 2
+            /// <summary>
             /// Enum Authorised for value: Authorised
             /// </summary>
             [EnumMember(Value = "Authorised")]
-            Authorised = 2,
+            Authorised = 3,
             /// <summary>
             /// Enum Cancelled for value: Cancelled
             /// </summary>
             [EnumMember(Value = "Cancelled")]
-            Cancelled = 3,
+            Cancelled = 4,
             /// <summary>
             /// Enum ChallengeShopper for value: ChallengeShopper
             /// </summary>
             [EnumMember(Value = "ChallengeShopper")]
-            ChallengeShopper = 4,
+            ChallengeShopper = 5,
             /// <summary>
             /// Enum Error for value: Error
             /// </summary>
             [EnumMember(Value = "Error")]
-            Error = 5,
+            Error = 6,
             /// <summary>
             /// Enum IdentifyShopper for value: IdentifyShopper
             /// </summary>
             [EnumMember(Value = "IdentifyShopper")]
-            IdentifyShopper = 6,
+            IdentifyShopper = 7,
             /// <summary>
             /// Enum Pending for value: Pending
             /// </summary>
             [EnumMember(Value = "Pending")]
-            Pending = 7,
+            Pending = 8,
             /// <summary>
             /// Enum PresentToShopper for value: PresentToShopper
             /// </summary>
             [EnumMember(Value = "PresentToShopper")]
-            PresentToShopper = 8,
+            PresentToShopper = 9,
             /// <summary>
             /// Enum Received for value: Received
             /// </summary>
             [EnumMember(Value = "Received")]
-            Received = 9,
+            Received = 10,
             /// <summary>
             /// Enum RedirectShopper for value: RedirectShopper
             /// </summary>
             [EnumMember(Value = "RedirectShopper")]
-            RedirectShopper = 10,
+            RedirectShopper = 11,
             /// <summary>
             /// Enum Refused for value: Refused
             /// </summary>
             [EnumMember(Value = "Refused")]
-            Refused = 11,
+            Refused = 1,
             /// <summary>
             /// Enum Success for value: Success
             /// </summary>
