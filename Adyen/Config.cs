@@ -56,7 +56,11 @@ namespace Adyen
         public string PosTerminalManagementEndpoint { get; set; }
 
 
-        public bool HasPassword => !string.IsNullOrEmpty(Password);
+       public bool HasPassword
+        {
+            get { return !string.IsNullOrEmpty(Password); }
+        }
+
         public bool HasApiKey => !string.IsNullOrEmpty(XApiKey);
     }
 }
