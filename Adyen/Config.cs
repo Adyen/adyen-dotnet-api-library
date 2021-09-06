@@ -61,6 +61,10 @@ namespace Adyen
             get { return !string.IsNullOrEmpty(Password); }
         }
 
-        public bool HasApiKey => !string.IsNullOrEmpty(XApiKey);
+        public bool HasApiKey
+        {
+            get { return !string.IsNullOrEmpty(XApiKey); }
+        }
+
     }
 }
