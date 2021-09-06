@@ -54,59 +54,59 @@ namespace Adyen.Model.Checkout
             [EnumMember(Value = "AuthenticationFinished")] AuthenticationFinished = 1,
 
             /// <summary>
-            /// Enum Refused for value: AuthenticationNotRequired
-            /// </summary>
-            [EnumMember(Value = "AuthenticationNotRequired")] AuthenticationNotRequired = 2,
-
-            /// <summary>
             /// Enum Authorised for value: Authorised
             /// </summary>
-            [EnumMember(Value = "Authorised")] Authorised = 3,
+            [EnumMember(Value = "Authorised")] Authorised = 2,
 
             /// <summary>
             /// Enum Cancelled for value: Cancelled
             /// </summary>
-            [EnumMember(Value = "Cancelled")] Cancelled = 4,
+            [EnumMember(Value = "Cancelled")] Cancelled = 3,
 
             /// <summary>
             /// Enum ChallengeShopper for value: ChallengeShopper
             /// </summary>
-            [EnumMember(Value = "ChallengeShopper")] ChallengeShopper = 5,
+            [EnumMember(Value = "ChallengeShopper")] ChallengeShopper = 4,
 
             /// <summary>
             /// Enum Error for value: Error
             /// </summary>
-            [EnumMember(Value = "Error")] Error = 6,
+            [EnumMember(Value = "Error")] Error = 5,
 
             /// <summary>
             /// Enum IdentifyShopper for value: IdentifyShopper
             /// </summary>
-            [EnumMember(Value = "IdentifyShopper")] IdentifyShopper = 7,
+            [EnumMember(Value = "IdentifyShopper")] IdentifyShopper = 6,
 
             /// <summary>
             /// Enum Pending for value: Pending
             /// </summary>
-            [EnumMember(Value = "Pending")] Pending = 8,
+            [EnumMember(Value = "Pending")] Pending = 7,
 
             /// <summary>
             /// Enum PresentToShopper for value: PresentToShopper
             /// </summary>
-            [EnumMember(Value = "PresentToShopper")] PresentToShopper = 9,
+            [EnumMember(Value = "PresentToShopper")] PresentToShopper = 8,
 
             /// <summary>
             /// Enum Received for value: Received
             /// </summary>
-            [EnumMember(Value = "Received")] Received = 10,
+            [EnumMember(Value = "Received")] Received = 9,
 
             /// <summary>
             /// Enum RedirectShopper for value: RedirectShopper
             /// </summary>
-            [EnumMember(Value = "RedirectShopper")] RedirectShopper = 11,
+            [EnumMember(Value = "RedirectShopper")] RedirectShopper = 10,
 
             /// <summary>
             /// Enum Refused for value: Refused
             /// </summary>
-            [EnumMember(Value = "Refused")] Refused = 12
+            [EnumMember(Value = "Refused")] Refused = 11,
+
+            /// <summary>
+            /// Enum Refused for value: AuthenticationNotRequired
+            /// </summary>
+            [EnumMember(Value = "AuthenticationNotRequired")] AuthenticationNotRequired = 12,
         }
 
         /// <summary>
