@@ -207,47 +207,11 @@ namespace Adyen.Model.Checkout
         /// <param name="threeDSAuthenticationOnly">If set to true, you will only perform the [3D Secure 2 authentication](https://docs.adyen.com/online-payments/3d-secure/other-3ds-flows/authentication-only), and not the payment authorisation. (default to false).</param>
         /// <param name="trustedShopper">Set to true if the payment should be routed to a trusted MID..</param>
         public CreateCheckoutSessionRequest(AccountInfo accountInfo = default(AccountInfo), Amount additionalAmount = default(Amount), Dictionary<string, string> additionalData = default(Dictionary<string, string>), List<string> allowedPaymentMethods = default(List<string>), Amount amount = default(Amount), ApplicationInfo applicationInfo = default(ApplicationInfo), Address billingAddress = default(Address), List<string> blockedPaymentMethods = default(List<string>), int captureDelayHours = default(int), ChannelEnum? channel = default(ChannelEnum?), Company company = default(Company), string countryCode = default(string), DateTime dateOfBirth = default(DateTime), Address deliveryAddress = default(Address), bool enableOneClick = default(bool), bool enablePayOut = default(bool), bool enableRecurring = default(bool), DateTime expiresAt = default(DateTime), List<LineItem> lineItems = default(List<LineItem>), Mandate mandate = default(Mandate), string mcc = default(string), string merchantAccount = default(string), string merchantOrderReference = default(string), Dictionary<string, string> metadata = default(Dictionary<string, string>), ThreeDSecureData mpiData = default(ThreeDSecureData), string recurringExpiry = default(string), string recurringFrequency = default(string), RecurringProcessingModelEnum? recurringProcessingModel = default(RecurringProcessingModelEnum?), string redirectFromIssuerMethod = default(string), string redirectToIssuerMethod = default(string), string reference = default(string), string returnUrl = default(string), RiskData riskData = default(RiskData), string shopperEmail = default(string), string shopperIP = default(string), ShopperInteractionEnum? shopperInteraction = default(ShopperInteractionEnum?), string shopperLocale = default(string), Name shopperName = default(Name), string shopperReference = default(string), string shopperStatement = default(string), string socialSecurityNumber = default(string), bool splitCardFundingSources = false, List<Split> splits = default(List<Split>), bool storePaymentMethod = default(bool), string telephoneNumber = default(string), bool threeDSAuthenticationOnly = false, bool trustedShopper = default(bool))
-        {
-            // to ensure "amount" is required (not null)
-            if (amount == null)
-            {
-                throw new InvalidDataException("amount is a required property for CreateCheckoutSessionRequest and cannot be null");
-            }
-            else
-            {
-                this.amount = amount;
-            }
-
-            // to ensure "merchantAccount" is required (not null)
-            if (merchantAccount == null)
-            {
-                throw new InvalidDataException("merchantAccount is a required property for CreateCheckoutSessionRequest and cannot be null");
-            }
-            else
-            {
-                this.merchantAccount = merchantAccount;
-            }
-
-            // to ensure "reference" is required (not null)
-            if (reference == null)
-            {
-                throw new InvalidDataException("reference is a required property for CreateCheckoutSessionRequest and cannot be null");
-            }
-            else
-            {
-                this.reference = reference;
-            }
-
-            // to ensure "returnUrl" is required (not null)
-            if (returnUrl == null)
-            {
-                throw new InvalidDataException("returnUrl is a required property for CreateCheckoutSessionRequest and cannot be null");
-            }
-            else
-            {
-                this.returnUrl = returnUrl;
-            }
-
+        {   
+            this.amount = amount;
+            this.merchantAccount = merchantAccount;
+            this.reference = reference;
+            this.returnUrl = returnUrl;
             this.accountInfo = accountInfo;
             this.additionalAmount = additionalAmount;
             this.additionalData = additionalData;
