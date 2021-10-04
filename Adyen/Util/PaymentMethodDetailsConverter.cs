@@ -28,7 +28,7 @@ using Adyen.Model.Checkout.Details;
 
 namespace Adyen.Util
 {
-    internal class PaymentMethodDetailsConverter : JsonConverter
+    public class PaymentMethodDetailsConverter : JsonConverter
     {
         public override bool CanConvert(Type objectType)
         {

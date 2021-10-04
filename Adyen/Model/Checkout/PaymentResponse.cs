@@ -101,7 +101,12 @@ namespace Adyen.Model.Checkout
             /// <summary>
             /// Enum Refused for value: Refused
             /// </summary>
-            [EnumMember(Value = "Refused")] Refused = 11
+            [EnumMember(Value = "Refused")] Refused = 11,
+
+            /// <summary>
+            /// Enum Refused for value: AuthenticationNotRequired
+            /// </summary>
+            [EnumMember(Value = "AuthenticationNotRequired")] AuthenticationNotRequired = 12,
         }
 
         /// <summary>

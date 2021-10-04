@@ -88,15 +88,7 @@ namespace Adyen.Model.MarketPay
         /// <param name="verification">verification (required).</param>
         public CreateAccountHolderResponse(string accountCode = default(string), string accountHolderCode = default(string), AccountHolderDetails accountHolderDetails = default(AccountHolderDetails), AccountHolderStatus accountHolderStatus = default(AccountHolderStatus), string description = default(string), List<ErrorFieldType> invalidFields = default(List<ErrorFieldType>), LegalEntityEnum legalEntity = default(LegalEntityEnum), string primaryCurrency = default(string), string pspReference = default(string), string resultCode = default(string), KYCVerificationResult verification = default(KYCVerificationResult))
         { 
-            // to ensure "pspReference" is required (not null)
-            if (pspReference == null)
-            {
-                throw new InvalidDataException("pspReference is a required property for CreateAccountHolderResponse and cannot be null");
-            }
-            else
-            {
-                this.PspReference = pspReference;
-            }
+            this.PspReference = pspReference;
             this.AccountHolderStatus = accountHolderStatus;
             this.LegalEntity = legalEntity;
             this.Verification = verification;
