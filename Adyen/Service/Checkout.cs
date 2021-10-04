@@ -39,6 +39,7 @@ namespace Adyen.Service
         private PaymentSession _paymentSession;
         private PaymentsResult _paymentsResult;
         private PaymentLinks _paymentLinksResult;
+        private Sessions _sessions;
 
         public Checkout(Client client) : base(client)
         {
@@ -49,6 +50,7 @@ namespace Adyen.Service
             _paymentSession = new PaymentSession(this);
             _paymentsResult = new PaymentsResult(this);
             _paymentLinksResult = new PaymentLinks(this);
+            _sessions = new Sessions(this);
         }
 
         /// <summary>
@@ -195,6 +197,30 @@ namespace Adyen.Service
             var jsonRequest = Util.JsonOperation.SerializeRequest(createPaymentLinkRequest);
             var jsonResponse = await _paymentLinksResult.RequestAsync(jsonRequest);
             return JsonConvert.DeserializeObject<PaymentLinkResource>(jsonResponse);
+        }
+
+        /// <summary>
+        /// POST /sessions API call 
+        /// </summary>
+        /// <param name="createCheckoutSessionRequest"></param>
+        /// <returns>CreateCheckoutSessionResponse</returns>
+        public CreateCheckoutSessionResponse Sessions(CreateCheckoutSessionRequest createCheckoutSessionRequest)
+        {
+            var jsonRequest = Util.JsonOperation.SerializeRequest(createCheckoutSessionRequest);
+            var jsonResponse =_sessions.Request(jsonRequest);
+            return JsonConvert.DeserializeObject<CreateCheckoutSessionResponse>(jsonResponse);
+        }
+
+        /// <summary>
+        /// POST /sessions API call async
+        /// </summary>
+        /// <param name="createPaymentLinkRequest"></param>
+        /// <returns>CreateCheckoutSessionResponse</returns>
+        public async Task<CreateCheckoutSessionResponse> SessionsAsync(CreateCheckoutSessionRequest createCheckoutSessionRequest)
+        {
+            var jsonRequest = Util.JsonOperation.SerializeRequest(createCheckoutSessionRequest);
+            var jsonResponse = await _sessions.RequestAsync(jsonRequest);
+            return JsonConvert.DeserializeObject<CreateCheckoutSessionResponse>(jsonResponse);
         }
     }
 }
