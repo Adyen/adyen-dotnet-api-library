@@ -651,6 +651,7 @@ namespace Adyen.Test
             Assert.AreEqual(0, fraudResults[1].FraudCheckResult.AccountScore);
             Assert.AreEqual(3, fraudResults[1].FraudCheckResult.CheckId);
         }
+
         /// <summary>
         /// Test if the fraud result are properly deseriazed
         /// POST /payments
@@ -665,6 +666,30 @@ namespace Adyen.Test
             var paymentResponseThreeDs2Action = (CheckoutThreeDS2Action)paymentResponse.Action;
             Assert.AreEqual(ResultCodeEnum.IdentifyShopper, paymentResponse.ResultCode);
             Assert.AreEqual("threeDS2", paymentResponseThreeDs2Action.Type);
+        }
+
+        /// <summary>
+        /// Test success sessions
+        /// POST /sessions
+        /// </summary>
+        [TestMethod]
+        public void CheckoutSessionSuccessTest()
+        {
+            var checkoutSessionRequest = new CreateCheckoutSessionRequest
+            {
+                merchantAccount = "TestMerchant",
+                reference = "TestReference",
+                returnUrl = "http://test-url.com",
+                amount = new Amount("EUR", 10000L)
+            };
+            var client = CreateMockTestClientApiKeyBasedRequest("Mocks/checkout/sessions-success.json");
+            var checkout = new Checkout(client);
+            var checkoutSessionResponse = checkout.Sessions(checkoutSessionRequest);
+            Assert.AreEqual("TestMerchant", checkoutSessionResponse.merchantAccount);
+            Assert.AreEqual("TestReference", checkoutSessionResponse.reference);
+            Assert.AreEqual("http://test-url.com", checkoutSessionResponse.returnUrl);
+            Assert.AreEqual("EUR", checkoutSessionResponse.amount.Currency);
+            Assert.AreEqual("1000", checkoutSessionResponse.amount.Value.ToString());
         }
     }
 }
