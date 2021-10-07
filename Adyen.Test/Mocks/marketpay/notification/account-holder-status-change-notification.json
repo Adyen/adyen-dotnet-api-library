@@ -1,0 +1,41 @@
+{
+	"eventDate": "2021-09-23T15:25:55+02:00",
+	"eventType": "ACCOUNT_HOLDER_STATUS_CHANGE",
+	"executingUserKey": "Status Update",
+	"live": "false",
+	"pspReference": "123456789",
+	"content": {
+		"accountHolderCode": "1234",
+		"oldStatus": {
+			"status": "Active",
+			"processingState": {},
+			"payoutState": {
+				"allowPayout": "false"
+			},
+			"events": []
+		},
+		"newStatus": {
+			"status": "Active",
+			"processingState": {
+				"disabled": "false",
+				"processedFrom": {
+					"currency": "EUR",
+					"value": 1
+				},
+				"tierNumber": 1
+			},
+			"payoutState": {
+				"allowPayout": "false",
+				"disabled": "false"
+			},
+			"events": [{
+				"AccountEvent": {
+					"event": "InactivateAccount",
+					"executionDate": "2021-10-23T15:25:55+02:00",
+					"reason": "Processed more than EUR 0.01 or equivalent, deadline triggered"
+				}
+			}]
+		},
+		"reason": "Account holder has been updated"
+	}
+}

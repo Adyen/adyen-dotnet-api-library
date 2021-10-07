@@ -312,6 +312,21 @@ namespace Adyen.Test.MarketPayTest
             Assert.IsTrue(notification.Content.InvalidFields.Count > 0);
         }
 
-
+        [TestMethod]
+        public void TestAccountHolderStatusChangeNotification()
+        {
+            var mockPath = GetMockFilePath("Mocks/marketpay/notification/account-holder-status-change-notification.json");
+            var jsonRequest = MockFileToString(mockPath);
+            NotificationHandler notificationHandler = new NotificationHandler();
+            IGenericNotification notificationMessage = notificationHandler.HandleMarketpayNotificationJson(jsonRequest);
+            AccountHolderStatusChangeNotification notification = (AccountHolderStatusChangeNotification)notificationMessage;
+            Assert.AreEqual("ACCOUNT_HOLDER_STATUS_CHANGE", notification.EventType);
+            Assert.IsNotNull(notification.Content);
+            Assert.AreEqual("1234", notification.Content.AccountHolderCode);
+            Assert.IsTrue( notification.Content.NewStatus.Events.Count > 0);
+            Assert.IsNotNull(notification.Content.NewStatus.Events[0].accountEvent.Event);
+            Assert.IsNotNull(notification.Content.NewStatus.Events[0].accountEvent.Reason);
+            Assert.IsNotNull(notification.Content.NewStatus.Events[0].accountEvent.ExecutionDate);
+        }
     }
 }
