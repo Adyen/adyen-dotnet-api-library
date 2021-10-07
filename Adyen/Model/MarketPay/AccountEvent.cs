@@ -69,8 +69,24 @@ namespace Adyen.Model.MarketPay
         /// <param name="reason">The reason why this event has been created. (required).</param>
         public AccountEvent(EventEnum _event = default(EventEnum), DateTime? executionDate = default(DateTime?), string reason = default(string))
         {
-            this.ExecutionDate = executionDate;
-            this.Reason = reason;
+            // to ensure "executionDate" is required (not null)
+            if (executionDate == null)
+            {
+                throw new InvalidDataException("executionDate is a required property for AccountEvent and cannot be null");
+            }
+            else
+            {
+                this.ExecutionDate = executionDate;
+            }
+            // to ensure "reason" is required (not null)
+            if (reason == null)
+            {
+                throw new InvalidDataException("reason is a required property for AccountEvent and cannot be null");
+            }
+            else
+            {
+                this.Reason = reason;
+            }
             this.Event = _event;
         }
         
