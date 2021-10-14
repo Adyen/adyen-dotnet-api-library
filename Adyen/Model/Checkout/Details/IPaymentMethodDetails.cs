@@ -20,10 +20,13 @@
  * See the LICENSE file for more info.
  */
 #endregion
+using Newtonsoft.Json;
+
 namespace Adyen.Model.Checkout.Details
 {
     public interface IPaymentMethodDetails
     {
+        [JsonProperty(PropertyName = "type")]
         string Type { get; set; }
     }
 }
