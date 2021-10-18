@@ -21,10 +21,13 @@
  */
 #endregion
 
+using Newtonsoft.Json;
+
 namespace Adyen.Model.Checkout.Action
 {
     public interface IPaymentResponseAction
     {
+        [JsonProperty(PropertyName = "type")]
         string Type { get; set; }
     }
 }
