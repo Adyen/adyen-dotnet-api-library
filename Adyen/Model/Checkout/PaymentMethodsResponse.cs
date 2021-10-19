@@ -16,20 +16,19 @@
 // 
 //  Adyen Dotnet API Library
 // 
-//  Copyright (c) 2020 Adyen B.V.
+//  Copyright (c) 2021 Adyen B.V.
 //  This file is open source and available under the MIT license.
 //  See the LICENSE file for more info.
 
 #endregion
 
 using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
 using System.Linq;
-using System.Runtime.Serialization;
 using System.Text;
+using System.Collections.Generic;
+using System.Runtime.Serialization;
+using System.ComponentModel.DataAnnotations;
 using Adyen.Util;
-using Newtonsoft.Json;
 
 namespace Adyen.Model.Checkout
 {
@@ -44,8 +43,7 @@ namespace Adyen.Model.Checkout
         /// </summary>
         /// <param name="paymentMethods">Detailed list of payment methods required to generate payment forms..</param>
         /// <param name="storedPaymentMethods">List of all stored payment methods..</param>
-        public PaymentMethodsResponse(List<PaymentMethod> paymentMethods = default(List<PaymentMethod>),
-            List<StoredPaymentMethod> storedPaymentMethods = default(List<StoredPaymentMethod>))
+        public PaymentMethodsResponse(List<PaymentMethod> paymentMethods = default(List<PaymentMethod>), List<StoredPaymentMethod> storedPaymentMethods = default(List<StoredPaymentMethod>))
         {
             this.PaymentMethods = paymentMethods;
             this.StoredPaymentMethods = storedPaymentMethods;
@@ -73,8 +71,8 @@ namespace Adyen.Model.Checkout
         {
             var sb = new StringBuilder();
             sb.Append("class PaymentMethodsResponse {\n");
-            sb.Append("  PaymentMethods: ").Append(PaymentMethods.ObjectListToString()).Append("\n");
-            sb.Append("  StoredPaymentMethods: ").Append(StoredPaymentMethods.ObjectListToString()).Append("\n");
+            sb.Append("  paymentMethods: ").Append(PaymentMethods.ObjectListToString()).Append("\n");
+            sb.Append("  storedPaymentMethods: ").Append(StoredPaymentMethods.ObjectListToString()).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -85,7 +83,7 @@ namespace Adyen.Model.Checkout
         /// <returns>JSON string presentation of the object</returns>
         public virtual string ToJson()
         {
-            return JsonConvert.SerializeObject(this, Formatting.Indented);
+            return Newtonsoft.Json.JsonConvert.SerializeObject(this, Newtonsoft.Json.Formatting.Indented);
         }
 
         /// <summary>
@@ -145,10 +143,10 @@ namespace Adyen.Model.Checkout
         /// </summary>
         /// <param name="validationContext">Validation context</param>
         /// <returns>Validation Result</returns>
-        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(
-            ValidationContext validationContext)
+        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
         {
             yield break;
         }
     }
+
 }
