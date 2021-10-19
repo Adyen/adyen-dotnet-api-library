@@ -246,7 +246,26 @@ namespace Adyen.Test
             var client = CreateMockTestClientApiKeyBasedRequest("Mocks/checkout/paymentmethods-success.json");
             var checkout = new Checkout(client);
             var paymentMethodsResponse = checkout.PaymentMethods(paymentMethodsRequest);
-            Assert.AreEqual(paymentMethodsResponse.PaymentMethods.Count, 65);
+            Assert.AreEqual(paymentMethodsResponse.PaymentMethods.Count, 32);
+        }
+
+        /// <summary>
+        /// Test success flow for
+        /// POST /paymentMethods
+        /// </summary>
+        [TestMethod]
+        public void PaymentMethodsIssuersTest()
+        {
+            var paymentMethodsRequest = CreatePaymentMethodRequest("YourMerchantAccount");
+            var client = CreateMockTestClientApiKeyBasedRequest("Mocks/checkout/paymentmethods-success.json");
+            var checkout = new Checkout(client);
+            var paymentMethodsResponse = checkout.PaymentMethods(paymentMethodsRequest);
+            Assert.IsNotNull(paymentMethodsResponse.PaymentMethods[12].Issuers);
+            Assert.AreEqual(paymentMethodsResponse.PaymentMethods[12].Issuers[0].id, "66");
+            Assert.AreEqual(paymentMethodsResponse.PaymentMethods[12].Issuers[0].name, "Bank Nowy BFG S.A.");
+
+
+
         }
 
         /// <summary>
@@ -272,7 +291,7 @@ namespace Adyen.Test
             var client = CreateAsyncMockTestClientApiKeyBasedRequest("Mocks/checkout/paymentmethods-success.json");
             var checkout = new Checkout(client);
             var paymentMethodsResponse = await checkout.PaymentMethodsAsync(paymentMethodsRequest);
-            Assert.AreEqual(paymentMethodsResponse.PaymentMethods.Count, 65);
+            Assert.AreEqual(paymentMethodsResponse.PaymentMethods.Count, 32);
         }
 
         /// <summary>
