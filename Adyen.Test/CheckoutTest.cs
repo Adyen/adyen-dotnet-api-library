@@ -38,6 +38,8 @@ namespace Adyen.Test
     [TestClass]
     public class CheckoutTest : BaseTest
     {
+        public object CheckoutOrdersResponse { get; private set; }
+
         /// <summary>
         /// Tests successful checkout client Test URL generation.
         /// </summary>
@@ -466,7 +468,7 @@ namespace Adyen.Test
             Assert.AreEqual(paymentRequest.ApplicationInfo.MerchantApplication.Version, "MerchantApplicationVersion");
         }
 
-     
+
         [TestMethod]
         public void PaymentsOriginTest()
         {
@@ -709,6 +711,26 @@ namespace Adyen.Test
             Assert.AreEqual("http://test-url.com", checkoutSessionResponse.returnUrl);
             Assert.AreEqual("EUR", checkoutSessionResponse.amount.Currency);
             Assert.AreEqual("1000", checkoutSessionResponse.amount.Value.ToString());
+        }
+        /// <summary>
+        /// Test success orders
+        /// POST /orders
+        /// </summary>
+        [TestMethod]
+        public void CheckoutOrderSuccessTest()
+        {
+            var checkoutCreateOrderRequest = new CheckoutCreateOrderRequest
+                (amount: new Amount("EUR", 10000L), 
+                merchantAccount: "TestMerchant", 
+                reference: "TestReference");
+            var client = CreateMockTestClientApiKeyBasedRequest("Mocks/checkout/orders-success.json");
+            var checkout = new Checkout(client);
+            var checkoutOrdersResponse = checkout.Orders(checkoutCreateOrderRequest);
+            Assert.AreEqual(CheckoutCreateOrderResponse.ResultCodeEnum.Success, checkoutOrdersResponse.ResultCode);
+            Assert.AreEqual("8515930288670953", checkoutOrdersResponse.PspReference);
+            Assert.AreEqual("Ab02b4c0!BQABAgBqxSuFhuXUF7IvIRvSw5bDPHN...", checkoutOrdersResponse.OrderData);
+            Assert.AreEqual("EUR", checkoutOrdersResponse.RemainingAmount.Currency);
+            Assert.AreEqual("2500", checkoutOrdersResponse.RemainingAmount.Value.ToString());
         }
     }
 }

@@ -40,6 +40,7 @@ namespace Adyen.Service
         private PaymentsResult _paymentsResult;
         private PaymentLinks _paymentLinksResult;
         private Sessions _sessions;
+        private Orders _orders;
 
         public Checkout(Client client) : base(client)
         {
@@ -51,6 +52,7 @@ namespace Adyen.Service
             _paymentsResult = new PaymentsResult(this);
             _paymentLinksResult = new PaymentLinks(this);
             _sessions = new Sessions(this);
+            _orders = new Orders(this);
         }
 
         /// <summary>
@@ -221,6 +223,31 @@ namespace Adyen.Service
             var jsonRequest = Util.JsonOperation.SerializeRequest(createCheckoutSessionRequest);
             var jsonResponse = await _sessions.RequestAsync(jsonRequest);
             return JsonConvert.DeserializeObject<CreateCheckoutSessionResponse>(jsonResponse);
+        }
+
+        /// <summary>
+        /// POST /orders API call sync
+        /// </summary>
+        /// <param name="CheckoutCreateOrderRequest"></param>
+        /// <returns>CheckoutCreateOrderResponse</returns>
+        public CheckoutCreateOrderResponse Orders(CheckoutCreateOrderRequest checkoutCreateOrderRequest)
+        {
+            var jsonRequest = Util.JsonOperation.SerializeRequest(checkoutCreateOrderRequest);
+            var jsonResponse = _sessions.Request(jsonRequest);
+            return JsonConvert.DeserializeObject<CheckoutCreateOrderResponse>(jsonResponse);
+
+        }
+
+        /// <summary>
+        /// POST /orders API call async
+        /// </summary>
+        /// <param name="CheckoutCreateOrderRequest"></param>
+        /// <returns>CheckoutCreateOrderResponse</returns>
+        public async Task<CheckoutCreateOrderResponse> OrdersAsync(CheckoutCreateOrderRequest checkoutCreateOrderRequest)
+        {
+            var jsonRequest = Util.JsonOperation.SerializeRequest(checkoutCreateOrderRequest);
+            var jsonResponse = await _orders.RequestAsync(jsonRequest);
+            return JsonConvert.DeserializeObject<CheckoutCreateOrderResponse>(jsonResponse);
         }
     }
 }
