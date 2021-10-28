@@ -721,7 +721,7 @@ namespace Adyen.Test
         [TestMethod]
         public void CheckoutPaymentMethodsBalanceSuccessTest()
         {
-            var checkoutCreateOrderRequest = new CheckoutBalanceCheckRequest
+            var checkoutBalanceCheckRequest = new CheckoutBalanceCheckRequest
                 (amount: new Amount("EUR", 10000L),
                 merchantAccount: "TestMerchant",
                 reference: "TestReference",
