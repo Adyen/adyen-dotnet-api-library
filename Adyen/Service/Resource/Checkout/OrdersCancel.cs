@@ -26,10 +26,10 @@ using System.Collections.Generic;
 
 namespace Adyen.Service.Resource.Checkout
 {
-    public class Orders : ServiceResource
+    public class OrdersCancel : ServiceResource
     {
-        public Orders(AbstractService abstractService)
-           : base(abstractService, abstractService.Client.Config.CheckoutEndpoint + "/" + ClientConfig.CheckoutApiVersion + "/orders", new List<string> { "merchantAccount", "amount" })
+        public OrdersCancel(AbstractService abstractService)
+           : base(abstractService, abstractService.Client.Config.CheckoutEndpoint + "/" + ClientConfig.CheckoutApiVersion + "/orders/cancel", new List<string> { "order", "merchantAccount" })
         {
         }
     }
