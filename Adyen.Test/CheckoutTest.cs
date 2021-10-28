@@ -732,7 +732,7 @@ namespace Adyen.Test
                 });
             var client = CreateMockTestClientApiKeyBasedRequest("Mocks/checkout/paymentmethods-balance-success.json");
             var checkout = new Checkout(client);
-            var checkoutBalanceCheckResponse = checkout.PaymentMethodsBalance(checkoutCreateOrderRequest);
+            var checkoutBalanceCheckResponse = checkout.PaymentMethodsBalance(checkoutBalanceCheckRequest);
             Assert.AreEqual(CheckoutBalanceCheckResponse.ResultCodeEnum.Success, checkoutBalanceCheckResponse.ResultCode);
             Assert.AreEqual("EUR", checkoutBalanceCheckResponse.Balance.Currency);
             Assert.AreEqual("2500", checkoutBalanceCheckResponse.Balance.Value.ToString());
