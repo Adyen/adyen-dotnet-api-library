@@ -32,12 +32,15 @@ using System.Threading.Tasks;
 using static Adyen.Model.Checkout.PaymentResponse;
 using Newtonsoft.Json.Linq;
 using Newtonsoft.Json;
+using System.Collections.Generic;
 
 namespace Adyen.Test
 {
     [TestClass]
     public class CheckoutTest : BaseTest
     {
+        public object CheckoutOrdersResponse { get; private set; }
+
         /// <summary>
         /// Tests successful checkout client Test URL generation.
         /// </summary>
@@ -466,7 +469,7 @@ namespace Adyen.Test
             Assert.AreEqual(paymentRequest.ApplicationInfo.MerchantApplication.Version, "MerchantApplicationVersion");
         }
 
-     
+
         [TestMethod]
         public void PaymentsOriginTest()
         {
@@ -709,6 +712,69 @@ namespace Adyen.Test
             Assert.AreEqual("http://test-url.com", checkoutSessionResponse.returnUrl);
             Assert.AreEqual("EUR", checkoutSessionResponse.amount.Currency);
             Assert.AreEqual("1000", checkoutSessionResponse.amount.Value.ToString());
+        }
+
+        /// <summary>
+        /// Test success orders
+        /// POST /paymentMethods/balance
+        /// </summary>
+        [TestMethod]
+        public void CheckoutPaymentMethodsBalanceSuccessTest()
+        {
+            var checkoutBalanceCheckRequest = new CheckoutBalanceCheckRequest
+                (amount: new Amount("EUR", 10000L),
+                merchantAccount: "TestMerchant",
+                reference: "TestReference",
+                paymentMethod: new Dictionary<string, string> {
+                    { "type", "givex"},
+                    { "number", "4126491073027401"},
+                    { "cvc", "737"}
+                });
+            var client = CreateMockTestClientApiKeyBasedRequest("Mocks/checkout/paymentmethods-balance-success.json");
+            var checkout = new Checkout(client);
+            var checkoutBalanceCheckResponse = checkout.PaymentMethodsBalance(checkoutBalanceCheckRequest);
+            Assert.AreEqual(CheckoutBalanceCheckResponse.ResultCodeEnum.Success, checkoutBalanceCheckResponse.ResultCode);
+            Assert.AreEqual("EUR", checkoutBalanceCheckResponse.Balance.Currency);
+            Assert.AreEqual("2500", checkoutBalanceCheckResponse.Balance.Value.ToString());
+
+        }
+
+        /// <summary>
+        /// Test success orders
+        /// POST /orders
+        /// </summary>
+        [TestMethod]
+        public void CheckoutOrderSuccessTest()
+        {
+            var checkoutCreateOrderRequest = new CheckoutCreateOrderRequest
+                (amount: new Amount("EUR", 10000L), 
+                merchantAccount: "TestMerchant", 
+                reference: "TestReference");
+            var client = CreateMockTestClientApiKeyBasedRequest("Mocks/checkout/orders-success.json");
+            var checkout = new Checkout(client);
+            var checkoutOrdersResponse = checkout.Orders(checkoutCreateOrderRequest);
+            Assert.AreEqual(CheckoutCreateOrderResponse.ResultCodeEnum.Success, checkoutOrdersResponse.ResultCode);
+            Assert.AreEqual("8515930288670953", checkoutOrdersResponse.PspReference);
+            Assert.AreEqual("Ab02b4c0!BQABAgBqxSuFhuXUF7IvIRvSw5bDPHN...", checkoutOrdersResponse.OrderData);
+            Assert.AreEqual("EUR", checkoutOrdersResponse.RemainingAmount.Currency);
+            Assert.AreEqual("2500", checkoutOrdersResponse.RemainingAmount.Value.ToString());
+        }
+
+        /// <summary>
+        /// Test success orders cancel
+        /// POST /orders/cancel
+        /// </summary>
+        [TestMethod]
+        public void CheckoutOrdersCancelSuccessTest()
+        {
+            var checkoutCancelOrderRequest = new CheckoutCancelOrderRequest
+                (merchantAccount: "TestMerchant", 
+                order: new CheckoutOrder(orderData: "823fh892f8f18f4...148f13f9f3f", pspReference: "8815517812932012"));
+            var client = CreateMockTestClientApiKeyBasedRequest("Mocks/checkout/orders-cancel-success.json");
+            var checkout = new Checkout(client);
+            var checkoutOrdersCancelResponse = checkout.OrdersCancel(checkoutCancelOrderRequest);
+            Assert.AreEqual("Received", checkoutOrdersCancelResponse.ResultCode);
+            Assert.AreEqual("8515931182066678", checkoutOrdersCancelResponse.PspReference);
         }
     }
 }

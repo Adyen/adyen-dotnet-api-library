@@ -48,59 +48,19 @@ namespace Adyen.Model.Checkout
         public enum ResultCodeEnum
         {
             /// <summary>
-            /// Enum AuthenticationFinished for value: AuthenticationFinished
+            /// Enum Success for value: Success
             /// </summary>
-            [EnumMember(Value = "AuthenticationFinished")] AuthenticationFinished = 1,
+            [EnumMember(Value = "Success")] Success = 1,
 
             /// <summary>
-            /// Enum Authorised for value: Authorised
+            /// Enum NotEnoughBalance for value: NotEnoughBalance
             /// </summary>
-            [EnumMember(Value = "Authorised")] Authorised = 2,
+            [EnumMember(Value = "NotEnoughBalance")] NotEnoughBalance = 2,
 
             /// <summary>
-            /// Enum Cancelled for value: Cancelled
+            /// Enum Failed for value: Failed
             /// </summary>
-            [EnumMember(Value = "Cancelled")] Cancelled = 3,
-
-            /// <summary>
-            /// Enum ChallengeShopper for value: ChallengeShopper
-            /// </summary>
-            [EnumMember(Value = "ChallengeShopper")] ChallengeShopper = 4,
-
-            /// <summary>
-            /// Enum Error for value: Error
-            /// </summary>
-            [EnumMember(Value = "Error")] Error = 5,
-
-            /// <summary>
-            /// Enum IdentifyShopper for value: IdentifyShopper
-            /// </summary>
-            [EnumMember(Value = "IdentifyShopper")] IdentifyShopper = 6,
-
-            /// <summary>
-            /// Enum Pending for value: Pending
-            /// </summary>
-            [EnumMember(Value = "Pending")] Pending = 7,
-
-            /// <summary>
-            /// Enum PresentToShopper for value: PresentToShopper
-            /// </summary>
-            [EnumMember(Value = "PresentToShopper")] PresentToShopper = 8,
-
-            /// <summary>
-            /// Enum Received for value: Received
-            /// </summary>
-            [EnumMember(Value = "Received")] Received = 9,
-
-            /// <summary>
-            /// Enum RedirectShopper for value: RedirectShopper
-            /// </summary>
-            [EnumMember(Value = "RedirectShopper")] RedirectShopper = 10,
-
-            /// <summary>
-            /// Enum Refused for value: Refused
-            /// </summary>
-            [EnumMember(Value = "Refused")] Refused = 11
+            [EnumMember(Value = "Failed")] Failed = 3,
         }
 
         /// <summary>

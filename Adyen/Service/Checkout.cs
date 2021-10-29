@@ -40,6 +40,9 @@ namespace Adyen.Service
         private PaymentsResult _paymentsResult;
         private PaymentLinks _paymentLinksResult;
         private Sessions _sessions;
+        private Orders _orders;
+        private OrdersCancel _ordersCancel;
+        private PaymentMethodsBalance _paymentMethodsBalance;
 
         public Checkout(Client client) : base(client)
         {
@@ -51,6 +54,9 @@ namespace Adyen.Service
             _paymentsResult = new PaymentsResult(this);
             _paymentLinksResult = new PaymentLinks(this);
             _sessions = new Sessions(this);
+            _orders = new Orders(this);
+            _ordersCancel = new OrdersCancel(this);
+            _paymentMethodsBalance = new PaymentMethodsBalance(this);
         }
 
         /// <summary>
@@ -221,6 +227,78 @@ namespace Adyen.Service
             var jsonRequest = Util.JsonOperation.SerializeRequest(createCheckoutSessionRequest);
             var jsonResponse = await _sessions.RequestAsync(jsonRequest);
             return JsonConvert.DeserializeObject<CreateCheckoutSessionResponse>(jsonResponse);
+        }
+
+        /// <summary>
+        /// POST /paymentMethods/balance API call sync
+        /// </summary>
+        /// <param name="CheckoutBalanceCheckRequest"></param>
+        /// <returns>CheckoutBalanceCheckResponse</returns>
+        public CheckoutBalanceCheckResponse PaymentMethodsBalance(CheckoutBalanceCheckRequest checkoutBalanceCheckRequest)
+        {
+            var jsonRequest = Util.JsonOperation.SerializeRequest(checkoutBalanceCheckRequest);
+            var jsonResponse = _paymentMethodsBalance.Request(jsonRequest);
+            return JsonConvert.DeserializeObject<CheckoutBalanceCheckResponse>(jsonResponse);
+        }
+
+        /// <summary>
+        /// POST /paymentMethods/balance API call async
+        /// </summary>
+        /// <param name="CheckoutBalanceCheckRequest"></param>
+        /// <returns>CheckoutBalanceCheckResponse</returns>
+        public async Task<CheckoutBalanceCheckResponse> PaymentMethodsBalanceAsync(CheckoutBalanceCheckRequest checkoutBalanceCheckRequest)
+        {
+            var jsonRequest = Util.JsonOperation.SerializeRequest(checkoutBalanceCheckRequest);
+            var jsonResponse = await _paymentMethodsBalance.RequestAsync(jsonRequest);
+            return JsonConvert.DeserializeObject<CheckoutBalanceCheckResponse>(jsonResponse);
+        }
+
+        /// <summary>
+        /// POST /orders API call sync
+        /// </summary>
+        /// <param name="CheckoutCreateOrderRequest"></param>
+        /// <returns>CheckoutCreateOrderResponse</returns>
+        public CheckoutCreateOrderResponse Orders(CheckoutCreateOrderRequest checkoutCreateOrderRequest)
+        {
+            var jsonRequest = Util.JsonOperation.SerializeRequest(checkoutCreateOrderRequest);
+            var jsonResponse = _orders.Request(jsonRequest);
+            return JsonConvert.DeserializeObject<CheckoutCreateOrderResponse>(jsonResponse);
+        }
+
+        /// <summary>
+        /// POST /orders API call async
+        /// </summary>
+        /// <param name="CheckoutCreateOrderRequest"></param>
+        /// <returns>CheckoutCreateOrderResponse</returns>
+        public async Task<CheckoutCreateOrderResponse> OrdersAsync(CheckoutCreateOrderRequest checkoutCreateOrderRequest)
+        {
+            var jsonRequest = Util.JsonOperation.SerializeRequest(checkoutCreateOrderRequest);
+            var jsonResponse = await _orders.RequestAsync(jsonRequest);
+            return JsonConvert.DeserializeObject<CheckoutCreateOrderResponse>(jsonResponse);
+        }
+
+        /// <summary>
+        /// POST /ordersCancel API call sync
+        /// </summary>
+        /// <param name="CheckoutCancelOrderRequest"></param>
+        /// <returns>CheckoutCancelOrderResponse</returns>
+        public CheckoutCancelOrderResponse OrdersCancel(CheckoutCancelOrderRequest checkoutCancelOrderRequest)
+        {
+            var jsonRequest = Util.JsonOperation.SerializeRequest(checkoutCancelOrderRequest);
+            var jsonResponse = _ordersCancel.Request(jsonRequest);
+            return JsonConvert.DeserializeObject<CheckoutCancelOrderResponse>(jsonResponse);
+        }
+
+        /// <summary>
+        /// POST /ordersCancel API call async
+        /// </summary>
+        /// <param name="CheckoutCancelOrderRequest"></param>
+        /// <returns>CheckoutCancelOrderResponse</returns>
+        public async Task<CheckoutCancelOrderResponse> OrdersCancelAsync(CheckoutCancelOrderRequest checkoutCancelOrderRequest)
+        {
+            var jsonRequest = Util.JsonOperation.SerializeRequest(checkoutCancelOrderRequest);
+            var jsonResponse = await _ordersCancel.RequestAsync(jsonRequest);
+            return JsonConvert.DeserializeObject<CheckoutCancelOrderResponse>(jsonResponse);
         }
     }
 }
