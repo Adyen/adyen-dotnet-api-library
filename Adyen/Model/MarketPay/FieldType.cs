@@ -1006,7 +1006,7 @@ namespace Adyen.Model.MarketPay
             sb.Append("class FieldType {\n");
             sb.Append("  field: ").Append(Field).Append("\n");
             sb.Append("  fieldName: ").Append(FieldName).Append("\n");
-            sb.Append("  shareholderCode: ").Append(ShareholderCode).Append("\n");
+            sb.Append("  ShareholderCode: ").Append(ShareholderCode).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
