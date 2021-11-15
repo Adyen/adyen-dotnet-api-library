@@ -168,7 +168,7 @@ namespace Adyen.Model.Checkout
         [JsonConstructor]
         public PaymentRequest()
         {
-            CreateApplicationInfo();
+          
         }
         /// <summary>
         /// Initializes a new instance of the <see cref="PaymentRequest" /> class.
@@ -264,7 +264,6 @@ namespace Adyen.Model.Checkout
             ThreeDS2RequestData threeDS2RequestData = default(ThreeDS2RequestData),
             bool? threeDSAuthenticationOnly = false, bool? trustedShopper = default(bool?))
         {
-            CreateApplicationInfo();
             // to ensure "amount" is required (not null)
             if (amount == null)
             {
@@ -766,12 +765,6 @@ namespace Adyen.Model.Checkout
             }
 
             this.PaymentMethod = defaultPaymentMethodDetails;
-        }
-
-        private void CreateApplicationInfo()
-        {
-            if (ApplicationInfo == null)
-                ApplicationInfo = new ApplicationInfo();
         }
 
         /// <summary>

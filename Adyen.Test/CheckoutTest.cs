@@ -439,16 +439,7 @@ namespace Adyen.Test
             Assert.AreEqual(applicationInfo.AdyenLibrary.Version, Constants.ClientConfig.LibVersion);
 
         }
-        [TestMethod]
-        public void PaymentRequestApplicationInfoTest()
-        {
-            var paymentRequest = CreatePaymentRequestCheckout();
-            var name = paymentRequest.ApplicationInfo.AdyenLibrary.Name;
-            var version = paymentRequest.ApplicationInfo.AdyenLibrary.Version;
-            Assert.AreEqual(version, Constants.ClientConfig.LibVersion);
-            Assert.AreEqual(name, Constants.ClientConfig.LibName);
-        }
-
+     
         [TestMethod]
         public void PaymentRequestAppInfoExternalTest()
         {
@@ -459,14 +450,14 @@ namespace Adyen.Test
             externalPlatform.Version = "TestExternalPlatformVersion";
             merchantApplication.Name = "MerchantApplicationName";
             merchantApplication.Version = "MerchantApplicationVersion";
-            var paymentRequest = CreatePaymentRequestCheckout();
-            paymentRequest.ApplicationInfo.ExternalPlatform = externalPlatform;
-            paymentRequest.ApplicationInfo.MerchantApplication = merchantApplication;
-            Assert.AreEqual(paymentRequest.ApplicationInfo.ExternalPlatform.Integrator, "TestExternalPlatformIntegration");
-            Assert.AreEqual(paymentRequest.ApplicationInfo.ExternalPlatform.Name, "TestExternalPlatformName");
-            Assert.AreEqual(paymentRequest.ApplicationInfo.ExternalPlatform.Version, "TestExternalPlatformVersion");
-            Assert.AreEqual(paymentRequest.ApplicationInfo.MerchantApplication.Name, "MerchantApplicationName");
-            Assert.AreEqual(paymentRequest.ApplicationInfo.MerchantApplication.Version, "MerchantApplicationVersion");
+            var applicationInfo = new ApplicationInfo();
+            applicationInfo.ExternalPlatform = externalPlatform;
+            applicationInfo.MerchantApplication = merchantApplication;
+            Assert.AreEqual(applicationInfo.ExternalPlatform.Integrator, "TestExternalPlatformIntegration");
+            Assert.AreEqual(applicationInfo.ExternalPlatform.Name, "TestExternalPlatformName");
+            Assert.AreEqual(applicationInfo.ExternalPlatform.Version, "TestExternalPlatformVersion");
+            Assert.AreEqual(applicationInfo.MerchantApplication.Name, "MerchantApplicationName");
+            Assert.AreEqual(applicationInfo.MerchantApplication.Version, "MerchantApplicationVersion");
         }
 
 

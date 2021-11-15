@@ -23,6 +23,7 @@
 
 using System.Threading.Tasks;
 using Adyen.Model;
+using Adyen.Model.ApplicationInformation;
 using Adyen.Model.Checkout;
 using Adyen.Service.Resource.Checkout;
 using Newtonsoft.Json;
@@ -43,7 +44,7 @@ namespace Adyen.Service
         private Orders _orders;
         private OrdersCancel _ordersCancel;
         private PaymentMethodsBalance _paymentMethodsBalance;
-
+       
         public Checkout(Client client) : base(client)
         {
             IsApiKeyRequired = true;
@@ -67,6 +68,12 @@ namespace Adyen.Service
         /// <returns>PaymentsResponse</returns>
         public PaymentResponse Payments(PaymentRequest paymentRequest, RequestOptions requestOptions = null)
         {
+            //if it is set by the merchant do not override
+            if (paymentRequest.ApplicationInfo == null)
+            {
+                paymentRequest.ApplicationInfo = new ApplicationInfo();
+
+            }
             var jsonRequest = Util.JsonOperation.SerializeRequest(paymentRequest);
             var jsonResponse = _payments.Request(jsonRequest, requestOptions);
             return Util.JsonOperation.Deserialize<PaymentResponse>(jsonResponse);
@@ -80,6 +87,12 @@ namespace Adyen.Service
         /// <returns>PaymentsResponse</returns>
         public async Task<PaymentResponse> PaymentsAsync(PaymentRequest paymentRequest, RequestOptions requestOptions = null)
         {
+            //if it is set by the merchant do not override
+            if (paymentRequest.ApplicationInfo == null)
+            {
+                paymentRequest.ApplicationInfo = new ApplicationInfo();
+
+            }
             var jsonRequest = Util.JsonOperation.SerializeRequest(paymentRequest);
             var jsonResponse = await _payments.RequestAsync(jsonRequest, requestOptions);
             return Util.JsonOperation.Deserialize<PaymentResponse>(jsonResponse);
@@ -140,6 +153,12 @@ namespace Adyen.Service
         /// <returns>PaymentSessionResponse</returns>
         public PaymentSessionResponse PaymentSession(PaymentSessionRequest paymentSessionRequest)
         {
+            //if it is set by the merchant do not override
+            if (paymentSessionRequest.ApplicationInfo == null)
+            {
+                paymentSessionRequest.ApplicationInfo = new ApplicationInfo();
+
+            }
             var jsonRequest = Util.JsonOperation.SerializeRequest(paymentSessionRequest);
             var jsonResponse = _paymentSession.Request(jsonRequest);
             return JsonConvert.DeserializeObject<PaymentSessionResponse>(jsonResponse);
@@ -152,6 +171,12 @@ namespace Adyen.Service
         /// <returns>PaymentSessionResponse</returns>
         public async Task<PaymentSessionResponse> PaymentSessionAsync(PaymentSessionRequest paymentSessionRequest)
         {
+            //if it is set by the merchant do not override
+            if (paymentSessionRequest.ApplicationInfo == null)
+            {
+                paymentSessionRequest.ApplicationInfo = new ApplicationInfo();
+
+            }
             var jsonRequest = Util.JsonOperation.SerializeRequest(paymentSessionRequest);
             var jsonResponse = await _paymentSession.RequestAsync(jsonRequest);
             return JsonConvert.DeserializeObject<PaymentSessionResponse>(jsonResponse);
