@@ -101,9 +101,6 @@ namespace Adyen.Model
         [DataMember(Name = "applicationInfo", EmitDefaultValue = false)]
         public ApplicationInformation.ApplicationInfo ApplicationInfo { get;set; }
 
-        [DataMember(Name = "enableRealTimeUpdate", EmitDefaultValue = false)]
-        public bool EnableRealTimeUpdate { get; set; }
-
         [DataMember(Name = "threeDSAuthenticationOnly", EmitDefaultValue = false)]
         public bool ThreeDSAuthenticationOnly { get; set; }
     }
