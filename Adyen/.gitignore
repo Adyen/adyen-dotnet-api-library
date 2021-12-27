@@ -4,3 +4,4 @@ Properties/
 Adyen.nuspec
 nuget.exe
 *.user
+.idea

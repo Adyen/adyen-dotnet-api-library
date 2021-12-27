@@ -33,16 +33,16 @@ namespace Adyen.Service
 {
     public class Checkout : AbstractService
     {
-        private Payments _payments;
-        private PaymentMethods _paymentMethods;
-        private PaymentDetails _paymentDetails;
-        private PaymentSession _paymentSession;
-        private PaymentsResult _paymentsResult;
-        private PaymentLinks _paymentLinksResult;
-        private Sessions _sessions;
-        private Orders _orders;
-        private OrdersCancel _ordersCancel;
-        private PaymentMethodsBalance _paymentMethodsBalance;
+        private readonly Payments _payments;
+        private readonly PaymentMethods _paymentMethods;
+        private readonly PaymentDetails _paymentDetails;
+        private readonly PaymentSession _paymentSession;
+        private readonly PaymentsResult _paymentsResult;
+        private readonly PaymentLinks _paymentLinksResult;
+        private readonly Sessions _sessions;
+        private readonly Orders _orders;
+        private readonly OrdersCancel _ordersCancel;
+        private readonly PaymentMethodsBalance _paymentMethodsBalance;
 
         public Checkout(Client client) : base(client)
         {
@@ -299,6 +299,146 @@ namespace Adyen.Service
             var jsonRequest = Util.JsonOperation.SerializeRequest(checkoutCancelOrderRequest);
             var jsonResponse = await _ordersCancel.RequestAsync(jsonRequest);
             return JsonConvert.DeserializeObject<CheckoutCancelOrderResponse>(jsonResponse);
+        }
+
+        /// <summary>
+        /// POST /{paymentPspReference}/cancel API call sync
+        /// </summary>
+        /// <param name="paymentPspReference"></param>
+        /// <param name="createPaymentCancelRequest"></param>
+        /// <returns>PaymentCancelResource</returns>
+        public PaymentCancelResource PaymentsCancels(string paymentPspReference, CreatePaymentCancelRequest createPaymentCancelRequest)
+        {
+            var paymentsCancels = new PaymentsCancels(this, paymentPspReference);
+            var jsonRequest = Util.JsonOperation.SerializeRequest(createPaymentCancelRequest);
+            var jsonResponse = paymentsCancels.Request(jsonRequest);
+            return JsonConvert.DeserializeObject<PaymentCancelResource>(jsonResponse);
+        }
+
+        /// <summary>
+        /// POST /{paymentPspReference}/cancel API call async
+        /// </summary>
+        /// <param name="paymentPspReference"></param>
+        /// <param name="createPaymentCancelRequest"></param>
+        /// <returns>PaymentCancelResource</returns>
+        public async Task<PaymentCancelResource> PaymentsCancelsAsync(string paymentPspReference, CreatePaymentCancelRequest createPaymentCancelRequest)
+        {
+            var paymentsCancels = new PaymentsCancels(this, paymentPspReference);
+            var jsonRequest = Util.JsonOperation.SerializeRequest(createPaymentCancelRequest);
+            var jsonResponse = await paymentsCancels.RequestAsync(jsonRequest);
+            return JsonConvert.DeserializeObject<PaymentCancelResource>(jsonResponse);
+        }
+
+        /// <summary>
+        /// POST /{paymentPspReference}/cancel API call sync
+        /// </summary>
+        /// <param name="paymentPspReference"></param>
+        /// <param name="createPaymentCaptureRequest"></param>
+        /// <returns>PaymentCancelResource</returns>
+        public PaymentCaptureResource PaymentsCaptures(string paymentPspReference, CreatePaymentCaptureRequest createPaymentCaptureRequest)
+        {
+            var paymentsCapture = new PaymentsCapture(this, paymentPspReference);
+            var jsonRequest = Util.JsonOperation.SerializeRequest(createPaymentCaptureRequest);
+            var jsonResponse = paymentsCapture.Request(jsonRequest);
+            return JsonConvert.DeserializeObject<PaymentCaptureResource>(jsonResponse);
+        }
+
+        /// <summary>
+        /// POST /{paymentPspReference}/capture API call async
+        /// </summary>
+        /// <param name="paymentPspReference"></param>
+        /// <param name="createPaymentCaptureRequest"></param>
+        /// <returns>PaymentCaptureResource</returns>
+        public async Task<PaymentCaptureResource> PaymentsCapturesAsync(string paymentPspReference, CreatePaymentCaptureRequest createPaymentCaptureRequest)
+        {
+            var paymentsCapture = new PaymentsCapture(this, paymentPspReference);
+            var jsonRequest = Util.JsonOperation.SerializeRequest(createPaymentCaptureRequest);
+            var jsonResponse = await paymentsCapture.RequestAsync(jsonRequest);
+            return JsonConvert.DeserializeObject<PaymentCaptureResource>(jsonResponse);
+        }
+        
+        /// <summary>
+        /// POST /{paymentPspReference}/refund API call sync
+        /// </summary>
+        /// <param name="paymentPspReference"></param>
+        /// <param name="createPaymentRefundRequest"></param>
+        /// <returns>PaymentRefundResource</returns>
+        public PaymentRefundResource PaymentsRefunds(string paymentPspReference, CreatePaymentRefundRequest createPaymentRefundRequest)
+        {
+            var paymentsRefunds = new PaymentsRefunds(this, paymentPspReference);
+            var jsonRequest = Util.JsonOperation.SerializeRequest(createPaymentRefundRequest);
+            var jsonResponse = paymentsRefunds.Request(jsonRequest);
+            return JsonConvert.DeserializeObject<PaymentRefundResource>(jsonResponse);
+        }
+
+        /// <summary>
+        /// POST /{paymentPspReference}/refund API call async
+        /// </summary>
+        /// <param name="paymentPspReference"></param>
+        /// <param name="createPaymentRefundRequest"></param>
+        /// <returns>PaymentRefundResource</returns>
+        public async Task<PaymentRefundResource> PaymentsRefundsAsync(string paymentPspReference, CreatePaymentRefundRequest createPaymentRefundRequest)
+        {
+            var paymentsRefunds = new PaymentsRefunds(this, paymentPspReference);
+            var jsonRequest = Util.JsonOperation.SerializeRequest(createPaymentRefundRequest);
+            var jsonResponse = await paymentsRefunds.RequestAsync(jsonRequest);
+            return JsonConvert.DeserializeObject<PaymentRefundResource>(jsonResponse);
+        }
+        
+        /// <summary>
+        /// POST /{paymentPspReference}/reversal API call sync
+        /// </summary>
+        /// <param name="paymentPspReference"></param>
+        /// <param name="createPaymentReversalRequest"></param>
+        /// <returns>PaymentReversalResource</returns>
+        public PaymentReversalResource PaymentsReversals(string paymentPspReference, CreatePaymentReversalRequest createPaymentReversalRequest)
+        {
+            var paymentReversal = new PaymentsReversals(this, paymentPspReference);
+            var jsonRequest = Util.JsonOperation.SerializeRequest(createPaymentReversalRequest);
+            var jsonResponse = paymentReversal.Request(jsonRequest);
+            return JsonConvert.DeserializeObject<PaymentReversalResource>(jsonResponse);
+        }
+
+        /// <summary>
+        /// POST /{paymentPspReference}/reversal API call async
+        /// </summary>
+        /// <param name="paymentPspReference"></param>
+        /// <param name="createPaymentReversalRequest"></param>
+        /// <returns>PaymentReversalResource</returns>
+        public async Task<PaymentReversalResource> PaymentsReversalsAsync(string paymentPspReference, CreatePaymentReversalRequest createPaymentReversalRequest)
+        {
+            var paymentReversal = new PaymentsReversals(this, paymentPspReference);
+            var jsonRequest = Util.JsonOperation.SerializeRequest(createPaymentReversalRequest);
+            var jsonResponse = await paymentReversal.RequestAsync(jsonRequest);
+            return JsonConvert.DeserializeObject<PaymentReversalResource>(jsonResponse);
+        }
+        
+        /// <summary>
+        /// POST /{paymentPspReference}/amountUpdates API call sync
+        /// </summary>
+        /// <param name="paymentPspReference"></param>
+        /// <param name="createPaymentAmountUpdateRequest"></param>
+        /// <returns>PaymentAmountUpdateResource</returns>
+       public PaymentAmountUpdateResource PaymentsAmountUpdates(string paymentPspReference, CreatePaymentAmountUpdateRequest createPaymentAmountUpdateRequest)
+        {
+            var paymentsAmountUpdates = new PaymentsAmountUpdates(this, paymentPspReference); 
+            var jsonRequest = Util.JsonOperation.SerializeRequest(createPaymentAmountUpdateRequest);
+            var jsonResponse = paymentsAmountUpdates.Request(jsonRequest);
+            return JsonConvert.DeserializeObject<PaymentAmountUpdateResource>(jsonResponse);
+        }
+
+        /// <summary>
+        /// POST /{paymentPspReference}/amountUpdates API call async
+        /// </summary>
+        /// <param name="paymentPspReference"></param>
+        /// <param name="createPaymentAmountUpdateRequest"></param>
+        /// <returns>PaymentAmountUpdateResource</returns>
+        public async Task<PaymentAmountUpdateResource> PaymentsAmountUpdatesAsync(string paymentPspReference, CreatePaymentAmountUpdateRequest createPaymentAmountUpdateRequest)
+        {
+            var paymentsAmountUpdates = new PaymentsAmountUpdates(this, paymentPspReference);      
+            var jsonRequest = Util.JsonOperation.SerializeRequest(createPaymentAmountUpdateRequest);
+            var jsonResponse = await paymentsAmountUpdates.RequestAsync(jsonRequest);
+            return JsonConvert.DeserializeObject<PaymentAmountUpdateResource>(jsonResponse);
         }
     }
 }
