@@ -789,8 +789,6 @@ namespace Adyen.Test
             Assert.AreEqual("2500", checkoutOrdersResponse.RemainingAmount.Value.ToString());
         }
         
-        #region  Modification endpoints tests
-
         /// <summary>
         /// Test success orders cancel
         /// POST /orders/cancel
@@ -807,7 +805,8 @@ namespace Adyen.Test
             Assert.AreEqual("Received", checkoutOrdersCancelResponse.ResultCode);
             Assert.AreEqual("8515931182066678", checkoutOrdersCancelResponse.PspReference);
         }
-
+        
+        #region  Modification endpoints tests
         /// <summary>
         /// Test success capture
         /// POST /payments/{paymentPspReference}/captures
