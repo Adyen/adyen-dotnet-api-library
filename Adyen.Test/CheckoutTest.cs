@@ -903,7 +903,7 @@ namespace Adyen.Test
                 merchantAccount: "test_merchant_account");
             var paymentAmountUpdateResource =
                 checkout.PaymentsAmountUpdates("12321A", createPaymentAmountUpdateRequest);
-            Assert.AreEqual(PaymentReversalResource.StatusEnum.Received, paymentAmountUpdateResource.Status);
+            Assert.AreEqual(PaymentAmountUpdateResource.StatusEnum.Received, paymentAmountUpdateResource.Status);
             Assert.AreEqual("my_reference", paymentAmountUpdateResource.Reference);
         }
 
