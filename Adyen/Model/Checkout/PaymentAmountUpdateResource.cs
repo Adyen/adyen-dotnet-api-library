@@ -27,6 +27,7 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Runtime.Serialization;
 using System.Text;
+using Adyen.Util;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
 
@@ -166,7 +167,7 @@ namespace Adyen.Model.Checkout
             sb.Append("  PspReference: ").Append(PspReference).Append("\n");
             sb.Append("  Reason: ").Append(Reason).Append("\n");
             sb.Append("  Reference: ").Append(Reference).Append("\n");
-            sb.Append("  Splits: ").Append(Splits).Append("\n");
+            sb.Append("  Splits: ").Append(Splits.ObjectListToString()).Append("\n");
             sb.Append("  Status: ").Append(Status).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
