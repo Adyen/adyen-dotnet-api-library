@@ -43,6 +43,7 @@ namespace Adyen.Service
         private readonly Orders _orders;
         private readonly OrdersCancel _ordersCancel;
         private readonly PaymentMethodsBalance _paymentMethodsBalance;
+        private readonly Cancels _cancels;
 
         public Checkout(Client client) : base(client)
         {
@@ -57,6 +58,7 @@ namespace Adyen.Service
             _orders = new Orders(this);
             _ordersCancel = new OrdersCancel(this);
             _paymentMethodsBalance = new PaymentMethodsBalance(this);
+            _cancels = new Cancels(this);
         }
 
         /// <summary>
@@ -439,6 +441,30 @@ namespace Adyen.Service
             var jsonRequest = Util.JsonOperation.SerializeRequest(createPaymentAmountUpdateRequest);
             var jsonResponse = await paymentsAmountUpdates.RequestAsync(jsonRequest);
             return JsonConvert.DeserializeObject<PaymentAmountUpdateResource>(jsonResponse);
+        }
+        
+        /// <summary>
+        /// POST /cancels API call sync
+        /// </summary>
+        /// <param name="createStandalonePaymentCancelRequest"></param>
+        /// <returns>StandalonePaymentCancelResource</returns>
+        public StandalonePaymentCancelResource Cancels(CreateStandalonePaymentCancelRequest createStandalonePaymentCancelRequest)
+        {
+            var jsonRequest = Util.JsonOperation.SerializeRequest(createStandalonePaymentCancelRequest);
+            var jsonResponse = _cancels.Request(jsonRequest);
+            return JsonConvert.DeserializeObject<StandalonePaymentCancelResource>(jsonResponse);
+        }
+
+        /// <summary>
+        /// POST /cancels API call async
+        /// </summary>
+        /// <param name="createStandalonePaymentCancelRequest"></param>
+        /// <returns>StandalonePaymentCancelResource</returns>
+        public async Task<StandalonePaymentCancelResource> CancelsAsync( CreateStandalonePaymentCancelRequest createStandalonePaymentCancelRequest)
+        {
+            var jsonRequest = Util.JsonOperation.SerializeRequest(createStandalonePaymentCancelRequest);
+            var jsonResponse = await _cancels.RequestAsync(jsonRequest);
+            return JsonConvert.DeserializeObject<StandalonePaymentCancelResource>(jsonResponse);
         }
     }
 }

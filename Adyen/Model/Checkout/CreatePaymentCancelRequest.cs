@@ -46,17 +46,7 @@ namespace Adyen.Model.Checkout
         /// <param name="reference">Your reference for the cancel request. Maximum length: 80 characters..</param>
         public CreatePaymentCancelRequest(string merchantAccount = default(string), string reference = default(string))
         {
-            // to ensure "merchantAccount" is required (not null)
-            if (merchantAccount == null)
-            {
-                throw new InvalidDataException(
-                    "merchantAccount is a required property for CreatePaymentCancelRequest and cannot be null");
-            }
-            else
-            {
-                this.MerchantAccount = merchantAccount;
-            }
-
+            this.MerchantAccount = merchantAccount;
             this.Reference = reference;
         }
 
