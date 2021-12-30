@@ -39,9 +39,9 @@ namespace Adyen.Model.MarketPay
         public partial class DocumentDetail :  IEquatable<DocumentDetail>, IValidatableObject
     {
         /// <summary>
-        /// The type of a document. Permitted values: * &#x60;BANK_STATEMENT&#x60; denotes an image containing a bank statement or other document proving ownership of a specific bank account. * &#x60;PASSPORT&#x60; denotes an image containing the identity page(s) of a passport. * &#x60;ID_CARD_FRONT&#x60; denotes an image containing only the front of the ID card. In order for a document to be usable, both the &#x60;ID_CARD_FRONT&#x60; and &#x60;ID_CARD_BACK&#x60; must be submitted. * &#x60;ID_CARD_BACK&#x60; denotes an image containing only the back of the ID card. In order for a document to be usable, both the &#x60;ID_CARD_FRONT&#x60; and &#x60;ID_CARD_BACK&#x60; must be submitted. * &#x60;DRIVING_LICENCE_FRONT&#x60; denotes an image containing only the front of the driving licence. In order for a document to be usable, both the &#x60;DRIVING_LICENCE_FRONT&#x60; and &#x60;DRIVING_LICENCE_BACK&#x60; must be submitted. * &#x60;DRIVING_LICENCE_BACK&#x60; denotes an image containing only the back of the driving licence. In order for a document to be usable, both the &#x60;DRIVING_LICENCE_FRONT&#x60; and &#x60;DRIVING_LICENCE_FRONT&#x60; must be submitted.  &gt;Please refer to [Verification checks](https://docs.adyen.com/marketpay/onboarding-and-verification/verification-checks) for details on when each document type should be submitted.
+        /// The type of the document. Refer to [Verification checks](https://docs.adyen.com/platforms/verification-checks) for details on when each document type should be submitted and for the accepted file formats.  Permitted values: * **BANK_STATEMENT**: A file containing a bank statement or other document proving ownership of a specific bank account. * **COMPANY_REGISTRATION_SCREENING** (Supported from v5 and later): A file containing a company registration document. * **CONSTITUTIONAL_DOCUMENT**: A file containing information about the account holder&#x27;s legal arrangement. * **PASSPORT**: A file containing the identity page(s) of a passport. * **ID_CARD_FRONT**: A file containing only the front of the ID card. In order for a document to be usable, both the **ID_CARD_FRONT** and **ID_CARD_BACK** must be submitted. * **ID_CARD_BACK**: A file containing only the back of the ID card. In order for a document to be usable, both the **ID_CARD_FRONT** and **ID_CARD_BACK** must be submitted. * **DRIVING_LICENCE_FRONT**: A file containing only the front of the driving licence. In order for a document to be usable, both the **DRIVING_LICENCE_FRONT** and **DRIVING_LICENCE_BACK** must be submitted. * **DRIVING_LICENCE_BACK**: A file containing only the back of the driving licence. In order for a document to be usable, both the **DRIVING_LICENCE_FRONT** and **DRIVING_LICENCE_FRONT** must be submitted. 
         /// </summary>
-        /// <value>The type of a document. Permitted values: * &#x60;BANK_STATEMENT&#x60; denotes an image containing a bank statement or other document proving ownership of a specific bank account. * &#x60;PASSPORT&#x60; denotes an image containing the identity page(s) of a passport. * &#x60;ID_CARD_FRONT&#x60; denotes an image containing only the front of the ID card. In order for a document to be usable, both the &#x60;ID_CARD_FRONT&#x60; and &#x60;ID_CARD_BACK&#x60; must be submitted. * &#x60;ID_CARD_BACK&#x60; denotes an image containing only the back of the ID card. In order for a document to be usable, both the &#x60;ID_CARD_FRONT&#x60; and &#x60;ID_CARD_BACK&#x60; must be submitted. * &#x60;DRIVING_LICENCE_FRONT&#x60; denotes an image containing only the front of the driving licence. In order for a document to be usable, both the &#x60;DRIVING_LICENCE_FRONT&#x60; and &#x60;DRIVING_LICENCE_BACK&#x60; must be submitted. * &#x60;DRIVING_LICENCE_BACK&#x60; denotes an image containing only the back of the driving licence. In order for a document to be usable, both the &#x60;DRIVING_LICENCE_FRONT&#x60; and &#x60;DRIVING_LICENCE_FRONT&#x60; must be submitted.  &gt;Please refer to [Verification checks](https://docs.adyen.com/marketpay/onboarding-and-verification/verification-checks) for details on when each document type should be submitted.</value>
+        /// <value>The type of the document. Refer to [Verification checks](https://docs.adyen.com/platforms/verification-checks) for details on when each document type should be submitted and for the accepted file formats.  Permitted values: * **BANK_STATEMENT**: A file containing a bank statement or other document proving ownership of a specific bank account. * **COMPANY_REGISTRATION_SCREENING** (Supported from v5 and later): A file containing a company registration document. * **CONSTITUTIONAL_DOCUMENT**: A file containing information about the account holder&#x27;s legal arrangement. * **PASSPORT**: A file containing the identity page(s) of a passport. * **ID_CARD_FRONT**: A file containing only the front of the ID card. In order for a document to be usable, both the **ID_CARD_FRONT** and **ID_CARD_BACK** must be submitted. * **ID_CARD_BACK**: A file containing only the back of the ID card. In order for a document to be usable, both the **ID_CARD_FRONT** and **ID_CARD_BACK** must be submitted. * **DRIVING_LICENCE_FRONT**: A file containing only the front of the driving licence. In order for a document to be usable, both the **DRIVING_LICENCE_FRONT** and **DRIVING_LICENCE_BACK** must be submitted. * **DRIVING_LICENCE_BACK**: A file containing only the back of the driving licence. In order for a document to be usable, both the **DRIVING_LICENCE_FRONT** and **DRIVING_LICENCE_FRONT** must be submitted. </value>
         [JsonConverter(typeof(StringEnumConverter))]
                 public enum DocumentTypeEnum
         {
@@ -61,66 +61,74 @@ namespace Adyen.Model.MarketPay
             [EnumMember(Value = "COMPANY_REGISTRATION_SCREENING")]
             COMPANYREGISTRATIONSCREENING = 3,
             /// <summary>
+            /// Enum CONSTITUTIONALDOCUMENT for value: CONSTITUTIONAL_DOCUMENT
+            /// </summary>
+            [EnumMember(Value = "CONSTITUTIONAL_DOCUMENT")]
+            CONSTITUTIONALDOCUMENT = 4,
+            /// <summary>
             /// Enum DRIVINGLICENCE for value: DRIVING_LICENCE
             /// </summary>
             [EnumMember(Value = "DRIVING_LICENCE")]
-            DRIVINGLICENCE = 4,
+            DRIVINGLICENCE = 5,
             /// <summary>
             /// Enum DRIVINGLICENCEBACK for value: DRIVING_LICENCE_BACK
             /// </summary>
             [EnumMember(Value = "DRIVING_LICENCE_BACK")]
-            DRIVINGLICENCEBACK = 5,
+            DRIVINGLICENCEBACK = 6,
             /// <summary>
             /// Enum DRIVINGLICENCEFRONT for value: DRIVING_LICENCE_FRONT
             /// </summary>
             [EnumMember(Value = "DRIVING_LICENCE_FRONT")]
-            DRIVINGLICENCEFRONT = 6,
+            DRIVINGLICENCEFRONT = 7,
             /// <summary>
             /// Enum IDCARD for value: ID_CARD
             /// </summary>
             [EnumMember(Value = "ID_CARD")]
-            IDCARD = 7,
+            IDCARD = 8,
             /// <summary>
             /// Enum IDCARDBACK for value: ID_CARD_BACK
             /// </summary>
             [EnumMember(Value = "ID_CARD_BACK")]
-            IDCARDBACK = 8,
+            IDCARDBACK = 9,
             /// <summary>
             /// Enum IDCARDFRONT for value: ID_CARD_FRONT
             /// </summary>
             [EnumMember(Value = "ID_CARD_FRONT")]
-            IDCARDFRONT = 9,
+            IDCARDFRONT = 10,
             /// <summary>
             /// Enum PASSPORT for value: PASSPORT
             /// </summary>
             [EnumMember(Value = "PASSPORT")]
-            PASSPORT = 10,
+            PASSPORT = 11,
             /// <summary>
             /// Enum SSN for value: SSN
             /// </summary>
             [EnumMember(Value = "SSN")]
-            SSN = 11,
+            SSN = 12,
             /// <summary>
             /// Enum SUPPORTINGDOCUMENTS for value: SUPPORTING_DOCUMENTS
             /// </summary>
             [EnumMember(Value = "SUPPORTING_DOCUMENTS")]
-            SUPPORTINGDOCUMENTS = 12        }
+            SUPPORTINGDOCUMENTS = 13        }
         /// <summary>
-        /// The type of a document. Permitted values: * &#x60;BANK_STATEMENT&#x60; denotes an image containing a bank statement or other document proving ownership of a specific bank account. * &#x60;PASSPORT&#x60; denotes an image containing the identity page(s) of a passport. * &#x60;ID_CARD_FRONT&#x60; denotes an image containing only the front of the ID card. In order for a document to be usable, both the &#x60;ID_CARD_FRONT&#x60; and &#x60;ID_CARD_BACK&#x60; must be submitted. * &#x60;ID_CARD_BACK&#x60; denotes an image containing only the back of the ID card. In order for a document to be usable, both the &#x60;ID_CARD_FRONT&#x60; and &#x60;ID_CARD_BACK&#x60; must be submitted. * &#x60;DRIVING_LICENCE_FRONT&#x60; denotes an image containing only the front of the driving licence. In order for a document to be usable, both the &#x60;DRIVING_LICENCE_FRONT&#x60; and &#x60;DRIVING_LICENCE_BACK&#x60; must be submitted. * &#x60;DRIVING_LICENCE_BACK&#x60; denotes an image containing only the back of the driving licence. In order for a document to be usable, both the &#x60;DRIVING_LICENCE_FRONT&#x60; and &#x60;DRIVING_LICENCE_FRONT&#x60; must be submitted.  &gt;Please refer to [Verification checks](https://docs.adyen.com/marketpay/onboarding-and-verification/verification-checks) for details on when each document type should be submitted.
+        /// The type of the document. Refer to [Verification checks](https://docs.adyen.com/platforms/verification-checks) for details on when each document type should be submitted and for the accepted file formats.  Permitted values: * **BANK_STATEMENT**: A file containing a bank statement or other document proving ownership of a specific bank account. * **COMPANY_REGISTRATION_SCREENING** (Supported from v5 and later): A file containing a company registration document. * **CONSTITUTIONAL_DOCUMENT**: A file containing information about the account holder&#x27;s legal arrangement. * **PASSPORT**: A file containing the identity page(s) of a passport. * **ID_CARD_FRONT**: A file containing only the front of the ID card. In order for a document to be usable, both the **ID_CARD_FRONT** and **ID_CARD_BACK** must be submitted. * **ID_CARD_BACK**: A file containing only the back of the ID card. In order for a document to be usable, both the **ID_CARD_FRONT** and **ID_CARD_BACK** must be submitted. * **DRIVING_LICENCE_FRONT**: A file containing only the front of the driving licence. In order for a document to be usable, both the **DRIVING_LICENCE_FRONT** and **DRIVING_LICENCE_BACK** must be submitted. * **DRIVING_LICENCE_BACK**: A file containing only the back of the driving licence. In order for a document to be usable, both the **DRIVING_LICENCE_FRONT** and **DRIVING_LICENCE_FRONT** must be submitted. 
         /// </summary>
-        /// <value>The type of a document. Permitted values: * &#x60;BANK_STATEMENT&#x60; denotes an image containing a bank statement or other document proving ownership of a specific bank account. * &#x60;PASSPORT&#x60; denotes an image containing the identity page(s) of a passport. * &#x60;ID_CARD_FRONT&#x60; denotes an image containing only the front of the ID card. In order for a document to be usable, both the &#x60;ID_CARD_FRONT&#x60; and &#x60;ID_CARD_BACK&#x60; must be submitted. * &#x60;ID_CARD_BACK&#x60; denotes an image containing only the back of the ID card. In order for a document to be usable, both the &#x60;ID_CARD_FRONT&#x60; and &#x60;ID_CARD_BACK&#x60; must be submitted. * &#x60;DRIVING_LICENCE_FRONT&#x60; denotes an image containing only the front of the driving licence. In order for a document to be usable, both the &#x60;DRIVING_LICENCE_FRONT&#x60; and &#x60;DRIVING_LICENCE_BACK&#x60; must be submitted. * &#x60;DRIVING_LICENCE_BACK&#x60; denotes an image containing only the back of the driving licence. In order for a document to be usable, both the &#x60;DRIVING_LICENCE_FRONT&#x60; and &#x60;DRIVING_LICENCE_FRONT&#x60; must be submitted.  &gt;Please refer to [Verification checks](https://docs.adyen.com/marketpay/onboarding-and-verification/verification-checks) for details on when each document type should be submitted.</value>
+        /// <value>The type of the document. Refer to [Verification checks](https://docs.adyen.com/platforms/verification-checks) for details on when each document type should be submitted and for the accepted file formats.  Permitted values: * **BANK_STATEMENT**: A file containing a bank statement or other document proving ownership of a specific bank account. * **COMPANY_REGISTRATION_SCREENING** (Supported from v5 and later): A file containing a company registration document. * **CONSTITUTIONAL_DOCUMENT**: A file containing information about the account holder&#x27;s legal arrangement. * **PASSPORT**: A file containing the identity page(s) of a passport. * **ID_CARD_FRONT**: A file containing only the front of the ID card. In order for a document to be usable, both the **ID_CARD_FRONT** and **ID_CARD_BACK** must be submitted. * **ID_CARD_BACK**: A file containing only the back of the ID card. In order for a document to be usable, both the **ID_CARD_FRONT** and **ID_CARD_BACK** must be submitted. * **DRIVING_LICENCE_FRONT**: A file containing only the front of the driving licence. In order for a document to be usable, both the **DRIVING_LICENCE_FRONT** and **DRIVING_LICENCE_BACK** must be submitted. * **DRIVING_LICENCE_BACK**: A file containing only the back of the driving licence. In order for a document to be usable, both the **DRIVING_LICENCE_FRONT** and **DRIVING_LICENCE_FRONT** must be submitted. </value>
         [DataMember(Name="documentType", EmitDefaultValue=false)]
         public DocumentTypeEnum DocumentType { get; set; }
         /// <summary>
         /// Initializes a new instance of the <see cref="DocumentDetail" /> class.
         /// </summary>
         /// <param name="accountHolderCode">The code of account holder, to which the document applies. (required).</param>
-        /// <param name="bankAccountUUID">The unique ID of the Bank Account to which the document applies. &gt;Required if the documentType is &#x60;BANK_STATEMENT&#x60; (i.e., a document is being submitted in order to verify a bank account).  &gt;Refer to the [Onboarding and verification](https://docs.adyen.com/marketpay/onboarding-and-verification) section for details on when a document should be submitted in order to verify a bank account..</param>
+        /// <param name="bankAccountUUID">The Adyen-generated [&#x60;bankAccountUUID&#x60;](https://docs.adyen.com/api-explorer/#/Account/latest/post/createAccountHolder__resParam_accountHolderDetails-bankAccountDetails-bankAccountUUID) to which the document must be linked. Refer to [Bank account check](https://docs.adyen.com/platforms/verification-checks/bank-account-check#uploading-a-bank-statement) for details on when a document should be submitted. &gt;Required if the &#x60;documentType&#x60; is **BANK_STATEMENT**, where a document is being submitted in order to verify a bank account. .</param>
         /// <param name="description">Description of the document..</param>
-        /// <param name="documentType">The type of a document. Permitted values: * &#x60;BANK_STATEMENT&#x60; denotes an image containing a bank statement or other document proving ownership of a specific bank account. * &#x60;PASSPORT&#x60; denotes an image containing the identity page(s) of a passport. * &#x60;ID_CARD_FRONT&#x60; denotes an image containing only the front of the ID card. In order for a document to be usable, both the &#x60;ID_CARD_FRONT&#x60; and &#x60;ID_CARD_BACK&#x60; must be submitted. * &#x60;ID_CARD_BACK&#x60; denotes an image containing only the back of the ID card. In order for a document to be usable, both the &#x60;ID_CARD_FRONT&#x60; and &#x60;ID_CARD_BACK&#x60; must be submitted. * &#x60;DRIVING_LICENCE_FRONT&#x60; denotes an image containing only the front of the driving licence. In order for a document to be usable, both the &#x60;DRIVING_LICENCE_FRONT&#x60; and &#x60;DRIVING_LICENCE_BACK&#x60; must be submitted. * &#x60;DRIVING_LICENCE_BACK&#x60; denotes an image containing only the back of the driving licence. In order for a document to be usable, both the &#x60;DRIVING_LICENCE_FRONT&#x60; and &#x60;DRIVING_LICENCE_FRONT&#x60; must be submitted.  &gt;Please refer to [Verification checks](https://docs.adyen.com/marketpay/onboarding-and-verification/verification-checks) for details on when each document type should be submitted. (required).</param>
+        /// <param name="documentType">The type of the document. Refer to [Verification checks](https://docs.adyen.com/platforms/verification-checks) for details on when each document type should be submitted and for the accepted file formats.  Permitted values: * **BANK_STATEMENT**: A file containing a bank statement or other document proving ownership of a specific bank account. * **COMPANY_REGISTRATION_SCREENING** (Supported from v5 and later): A file containing a company registration document. * **CONSTITUTIONAL_DOCUMENT**: A file containing information about the account holder&#x27;s legal arrangement. * **PASSPORT**: A file containing the identity page(s) of a passport. * **ID_CARD_FRONT**: A file containing only the front of the ID card. In order for a document to be usable, both the **ID_CARD_FRONT** and **ID_CARD_BACK** must be submitted. * **ID_CARD_BACK**: A file containing only the back of the ID card. In order for a document to be usable, both the **ID_CARD_FRONT** and **ID_CARD_BACK** must be submitted. * **DRIVING_LICENCE_FRONT**: A file containing only the front of the driving licence. In order for a document to be usable, both the **DRIVING_LICENCE_FRONT** and **DRIVING_LICENCE_BACK** must be submitted. * **DRIVING_LICENCE_BACK**: A file containing only the back of the driving licence. In order for a document to be usable, both the **DRIVING_LICENCE_FRONT** and **DRIVING_LICENCE_FRONT** must be submitted.  (required).</param>
         /// <param name="filename">Filename of the document. (required).</param>
-        /// <param name="shareholderCode">The code of the shareholder, to which the document applies. &gt;Required if the account holder referred to by the &#x60;accountHolderCode&#x60; has a &#x60;legalEntity&#x60; of type &#x60;Business&#x60; and the &#x60;documentType&#x60; is either &#x60;PASSPORT&#x60;, &#x60;ID_CARD_FRONT&#x60;, &#x60;ID_CARD_BACK&#x60;, &#x60;DRIVING_LICENCE_FRONT&#x60;, &#x60;DRIVING_LICENCE_BACK&#x60; (i.e. a document is being submitted in order to verify a shareholder).  &gt;Refer to the [Onboarding and verification](https://docs.adyen.com/marketpay/onboarding-and-verification) section for details on when a document should be submitted in order to verify a shareholder..</param>
-        public DocumentDetail(string accountHolderCode = default(string), string bankAccountUUID = default(string), string description = default(string), DocumentTypeEnum documentType = default(DocumentTypeEnum), string filename = default(string), string shareholderCode = default(string))
+        /// <param name="legalArrangementCode">The Adyen-generated [&#x60;legalArrangementCode&#x60;](https://docs.adyen.com/api-explorer/#/Account/latest/post/createAccountHolder__resParam_accountHolderDetails-legalArrangements-legalArrangementCode) to which the document must be linked..</param>
+        /// <param name="legalArrangementEntityCode">The Adyen-generated [&#x60;legalArrangementEntityCode&#x60;](https://docs.adyen.com/api-explorer/#/Account/v6/post/createAccountHolder__resParam_accountHolderDetails-legalArrangements-legalArrangementEntities-legalArrangementEntityCode)  to which the document must be linked..</param>
+        /// <param name="shareholderCode">The Adyen-generated [&#x60;shareholderCode&#x60;](https://docs.adyen.com/api-explorer/#/Account/latest/post/createAccountHolder__resParam_accountHolderDetails-businessDetails-shareholders-shareholderCode) to which the document must be linked. Refer to [Verification checks](https://docs.adyen.com/platforms/verification-checks) for details on when a document should be submitted. &gt;Required if the account holder has a &#x60;legalEntity&#x60; of type **Business** and the &#x60;documentType&#x60; is either **PASSPORT**, **ID_CARD_FRONT**, **ID_CARD_BACK**, **DRIVING_LICENCE_FRONT**, or **DRIVING_LICENCE_BACK**. .</param>
+        /// <param name="signatoryCode">The Adyen-generated [&#x60;signatoryCode&#x60;](https://docs.adyen.com/api-explorer/#/Account/v6/post/createAccountHolder__resParam_accountHolderDetails-businessDetails-signatories-signatoryCode) to which the document must be linked..</param>
+        public DocumentDetail(string accountHolderCode = default(string), string bankAccountUUID = default(string), string description = default(string), DocumentTypeEnum documentType = default(DocumentTypeEnum), string filename = default(string), string legalArrangementCode = default(string), string legalArrangementEntityCode = default(string), string shareholderCode = default(string), string signatoryCode = default(string))
         {
             // to ensure "accountHolderCode" is required (not null)
             if (accountHolderCode == null)
@@ -131,7 +139,15 @@ namespace Adyen.Model.MarketPay
             {
                 this.AccountHolderCode = accountHolderCode;
             }
-            
+            // to ensure "documentType" is required (not null)
+            if (documentType == null)
+            {
+                throw new InvalidDataException("documentType is a required property for DocumentDetail and cannot be null");
+            }
+            else
+            {
+                this.DocumentType = documentType;
+            }
             // to ensure "filename" is required (not null)
             if (filename == null)
             {
@@ -141,11 +157,12 @@ namespace Adyen.Model.MarketPay
             {
                 this.Filename = filename;
             }
-            this.DocumentType = documentType;
-            this.Filename = filename;
             this.BankAccountUUID = bankAccountUUID;
             this.Description = description;
+            this.LegalArrangementCode = legalArrangementCode;
+            this.LegalArrangementEntityCode = legalArrangementEntityCode;
             this.ShareholderCode = shareholderCode;
+            this.SignatoryCode = signatoryCode;
         }
         
         /// <summary>
@@ -156,9 +173,9 @@ namespace Adyen.Model.MarketPay
         public string AccountHolderCode { get; set; }
 
         /// <summary>
-        /// The unique ID of the Bank Account to which the document applies. &gt;Required if the documentType is &#x60;BANK_STATEMENT&#x60; (i.e., a document is being submitted in order to verify a bank account).  &gt;Refer to the [Onboarding and verification](https://docs.adyen.com/marketpay/onboarding-and-verification) section for details on when a document should be submitted in order to verify a bank account.
+        /// The Adyen-generated [&#x60;bankAccountUUID&#x60;](https://docs.adyen.com/api-explorer/#/Account/latest/post/createAccountHolder__resParam_accountHolderDetails-bankAccountDetails-bankAccountUUID) to which the document must be linked. Refer to [Bank account check](https://docs.adyen.com/platforms/verification-checks/bank-account-check#uploading-a-bank-statement) for details on when a document should be submitted. &gt;Required if the &#x60;documentType&#x60; is **BANK_STATEMENT**, where a document is being submitted in order to verify a bank account. 
         /// </summary>
-        /// <value>The unique ID of the Bank Account to which the document applies. &gt;Required if the documentType is &#x60;BANK_STATEMENT&#x60; (i.e., a document is being submitted in order to verify a bank account).  &gt;Refer to the [Onboarding and verification](https://docs.adyen.com/marketpay/onboarding-and-verification) section for details on when a document should be submitted in order to verify a bank account.</value>
+        /// <value>The Adyen-generated [&#x60;bankAccountUUID&#x60;](https://docs.adyen.com/api-explorer/#/Account/latest/post/createAccountHolder__resParam_accountHolderDetails-bankAccountDetails-bankAccountUUID) to which the document must be linked. Refer to [Bank account check](https://docs.adyen.com/platforms/verification-checks/bank-account-check#uploading-a-bank-statement) for details on when a document should be submitted. &gt;Required if the &#x60;documentType&#x60; is **BANK_STATEMENT**, where a document is being submitted in order to verify a bank account. </value>
         [DataMember(Name="bankAccountUUID", EmitDefaultValue=false)]
         public string BankAccountUUID { get; set; }
 
@@ -178,11 +195,32 @@ namespace Adyen.Model.MarketPay
         public string Filename { get; set; }
 
         /// <summary>
-        /// The code of the shareholder, to which the document applies. &gt;Required if the account holder referred to by the &#x60;accountHolderCode&#x60; has a &#x60;legalEntity&#x60; of type &#x60;Business&#x60; and the &#x60;documentType&#x60; is either &#x60;PASSPORT&#x60;, &#x60;ID_CARD_FRONT&#x60;, &#x60;ID_CARD_BACK&#x60;, &#x60;DRIVING_LICENCE_FRONT&#x60;, &#x60;DRIVING_LICENCE_BACK&#x60; (i.e. a document is being submitted in order to verify a shareholder).  &gt;Refer to the [Onboarding and verification](https://docs.adyen.com/marketpay/onboarding-and-verification) section for details on when a document should be submitted in order to verify a shareholder.
+        /// The Adyen-generated [&#x60;legalArrangementCode&#x60;](https://docs.adyen.com/api-explorer/#/Account/latest/post/createAccountHolder__resParam_accountHolderDetails-legalArrangements-legalArrangementCode) to which the document must be linked.
         /// </summary>
-        /// <value>The code of the shareholder, to which the document applies. &gt;Required if the account holder referred to by the &#x60;accountHolderCode&#x60; has a &#x60;legalEntity&#x60; of type &#x60;Business&#x60; and the &#x60;documentType&#x60; is either &#x60;PASSPORT&#x60;, &#x60;ID_CARD_FRONT&#x60;, &#x60;ID_CARD_BACK&#x60;, &#x60;DRIVING_LICENCE_FRONT&#x60;, &#x60;DRIVING_LICENCE_BACK&#x60; (i.e. a document is being submitted in order to verify a shareholder).  &gt;Refer to the [Onboarding and verification](https://docs.adyen.com/marketpay/onboarding-and-verification) section for details on when a document should be submitted in order to verify a shareholder.</value>
+        /// <value>The Adyen-generated [&#x60;legalArrangementCode&#x60;](https://docs.adyen.com/api-explorer/#/Account/latest/post/createAccountHolder__resParam_accountHolderDetails-legalArrangements-legalArrangementCode) to which the document must be linked.</value>
+        [DataMember(Name="legalArrangementCode", EmitDefaultValue=false)]
+        public string LegalArrangementCode { get; set; }
+
+        /// <summary>
+        /// The Adyen-generated [&#x60;legalArrangementEntityCode&#x60;](https://docs.adyen.com/api-explorer/#/Account/v6/post/createAccountHolder__resParam_accountHolderDetails-legalArrangements-legalArrangementEntities-legalArrangementEntityCode)  to which the document must be linked.
+        /// </summary>
+        /// <value>The Adyen-generated [&#x60;legalArrangementEntityCode&#x60;](https://docs.adyen.com/api-explorer/#/Account/v6/post/createAccountHolder__resParam_accountHolderDetails-legalArrangements-legalArrangementEntities-legalArrangementEntityCode)  to which the document must be linked.</value>
+        [DataMember(Name="legalArrangementEntityCode", EmitDefaultValue=false)]
+        public string LegalArrangementEntityCode { get; set; }
+
+        /// <summary>
+        /// The Adyen-generated [&#x60;shareholderCode&#x60;](https://docs.adyen.com/api-explorer/#/Account/latest/post/createAccountHolder__resParam_accountHolderDetails-businessDetails-shareholders-shareholderCode) to which the document must be linked. Refer to [Verification checks](https://docs.adyen.com/platforms/verification-checks) for details on when a document should be submitted. &gt;Required if the account holder has a &#x60;legalEntity&#x60; of type **Business** and the &#x60;documentType&#x60; is either **PASSPORT**, **ID_CARD_FRONT**, **ID_CARD_BACK**, **DRIVING_LICENCE_FRONT**, or **DRIVING_LICENCE_BACK**. 
+        /// </summary>
+        /// <value>The Adyen-generated [&#x60;shareholderCode&#x60;](https://docs.adyen.com/api-explorer/#/Account/latest/post/createAccountHolder__resParam_accountHolderDetails-businessDetails-shareholders-shareholderCode) to which the document must be linked. Refer to [Verification checks](https://docs.adyen.com/platforms/verification-checks) for details on when a document should be submitted. &gt;Required if the account holder has a &#x60;legalEntity&#x60; of type **Business** and the &#x60;documentType&#x60; is either **PASSPORT**, **ID_CARD_FRONT**, **ID_CARD_BACK**, **DRIVING_LICENCE_FRONT**, or **DRIVING_LICENCE_BACK**. </value>
         [DataMember(Name="shareholderCode", EmitDefaultValue=false)]
         public string ShareholderCode { get; set; }
+
+        /// <summary>
+        /// The Adyen-generated [&#x60;signatoryCode&#x60;](https://docs.adyen.com/api-explorer/#/Account/v6/post/createAccountHolder__resParam_accountHolderDetails-businessDetails-signatories-signatoryCode) to which the document must be linked.
+        /// </summary>
+        /// <value>The Adyen-generated [&#x60;signatoryCode&#x60;](https://docs.adyen.com/api-explorer/#/Account/v6/post/createAccountHolder__resParam_accountHolderDetails-businessDetails-signatories-signatoryCode) to which the document must be linked.</value>
+        [DataMember(Name="signatoryCode", EmitDefaultValue=false)]
+        public string SignatoryCode { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -197,7 +235,10 @@ namespace Adyen.Model.MarketPay
             sb.Append("  Description: ").Append(Description).Append("\n");
             sb.Append("  DocumentType: ").Append(DocumentType).Append("\n");
             sb.Append("  Filename: ").Append(Filename).Append("\n");
+            sb.Append("  LegalArrangementCode: ").Append(LegalArrangementCode).Append("\n");
+            sb.Append("  LegalArrangementEntityCode: ").Append(LegalArrangementEntityCode).Append("\n");
             sb.Append("  ShareholderCode: ").Append(ShareholderCode).Append("\n");
+            sb.Append("  SignatoryCode: ").Append(SignatoryCode).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -249,7 +290,8 @@ namespace Adyen.Model.MarketPay
                 ) && 
                 (
                     this.DocumentType == input.DocumentType ||
-                    this.DocumentType.Equals(input.DocumentType)
+                    (this.DocumentType != null &&
+                    this.DocumentType.Equals(input.DocumentType))
                 ) && 
                 (
                     this.Filename == input.Filename ||
@@ -257,9 +299,24 @@ namespace Adyen.Model.MarketPay
                     this.Filename.Equals(input.Filename))
                 ) && 
                 (
+                    this.LegalArrangementCode == input.LegalArrangementCode ||
+                    (this.LegalArrangementCode != null &&
+                    this.LegalArrangementCode.Equals(input.LegalArrangementCode))
+                ) && 
+                (
+                    this.LegalArrangementEntityCode == input.LegalArrangementEntityCode ||
+                    (this.LegalArrangementEntityCode != null &&
+                    this.LegalArrangementEntityCode.Equals(input.LegalArrangementEntityCode))
+                ) && 
+                (
                     this.ShareholderCode == input.ShareholderCode ||
                     (this.ShareholderCode != null &&
                     this.ShareholderCode.Equals(input.ShareholderCode))
+                ) && 
+                (
+                    this.SignatoryCode == input.SignatoryCode ||
+                    (this.SignatoryCode != null &&
+                    this.SignatoryCode.Equals(input.SignatoryCode))
                 );
         }
 
@@ -278,11 +335,18 @@ namespace Adyen.Model.MarketPay
                     hashCode = hashCode * 59 + this.BankAccountUUID.GetHashCode();
                 if (this.Description != null)
                     hashCode = hashCode * 59 + this.Description.GetHashCode();
-                hashCode = hashCode * 59 + this.DocumentType.GetHashCode();
+                if (this.DocumentType != null)
+                    hashCode = hashCode * 59 + this.DocumentType.GetHashCode();
                 if (this.Filename != null)
                     hashCode = hashCode * 59 + this.Filename.GetHashCode();
+                if (this.LegalArrangementCode != null)
+                    hashCode = hashCode * 59 + this.LegalArrangementCode.GetHashCode();
+                if (this.LegalArrangementEntityCode != null)
+                    hashCode = hashCode * 59 + this.LegalArrangementEntityCode.GetHashCode();
                 if (this.ShareholderCode != null)
                     hashCode = hashCode * 59 + this.ShareholderCode.GetHashCode();
+                if (this.SignatoryCode != null)
+                    hashCode = hashCode * 59 + this.SignatoryCode.GetHashCode();
                 return hashCode;
             }
         }
