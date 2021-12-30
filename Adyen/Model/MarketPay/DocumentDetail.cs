@@ -1,4 +1,5 @@
 #region License
+
 // /*
 //  *                       ######
 //  *                       ######
@@ -19,6 +20,7 @@
 //  * This file is open source and available under the MIT license.
 //  * See the LICENSE file for more info.
 //  */
+
 #endregion
 
 using System;
@@ -36,86 +38,88 @@ namespace Adyen.Model.MarketPay
     /// DocumentDetail
     /// </summary>
     [DataContract]
-        public partial class DocumentDetail :  IEquatable<DocumentDetail>, IValidatableObject
+    public partial class DocumentDetail : IEquatable<DocumentDetail>, IValidatableObject
     {
         /// <summary>
         /// The type of the document. Refer to [Verification checks](https://docs.adyen.com/platforms/verification-checks) for details on when each document type should be submitted and for the accepted file formats.  Permitted values: * **BANK_STATEMENT**: A file containing a bank statement or other document proving ownership of a specific bank account. * **COMPANY_REGISTRATION_SCREENING** (Supported from v5 and later): A file containing a company registration document. * **CONSTITUTIONAL_DOCUMENT**: A file containing information about the account holder&#x27;s legal arrangement. * **PASSPORT**: A file containing the identity page(s) of a passport. * **ID_CARD_FRONT**: A file containing only the front of the ID card. In order for a document to be usable, both the **ID_CARD_FRONT** and **ID_CARD_BACK** must be submitted. * **ID_CARD_BACK**: A file containing only the back of the ID card. In order for a document to be usable, both the **ID_CARD_FRONT** and **ID_CARD_BACK** must be submitted. * **DRIVING_LICENCE_FRONT**: A file containing only the front of the driving licence. In order for a document to be usable, both the **DRIVING_LICENCE_FRONT** and **DRIVING_LICENCE_BACK** must be submitted. * **DRIVING_LICENCE_BACK**: A file containing only the back of the driving licence. In order for a document to be usable, both the **DRIVING_LICENCE_FRONT** and **DRIVING_LICENCE_FRONT** must be submitted. 
         /// </summary>
         /// <value>The type of the document. Refer to [Verification checks](https://docs.adyen.com/platforms/verification-checks) for details on when each document type should be submitted and for the accepted file formats.  Permitted values: * **BANK_STATEMENT**: A file containing a bank statement or other document proving ownership of a specific bank account. * **COMPANY_REGISTRATION_SCREENING** (Supported from v5 and later): A file containing a company registration document. * **CONSTITUTIONAL_DOCUMENT**: A file containing information about the account holder&#x27;s legal arrangement. * **PASSPORT**: A file containing the identity page(s) of a passport. * **ID_CARD_FRONT**: A file containing only the front of the ID card. In order for a document to be usable, both the **ID_CARD_FRONT** and **ID_CARD_BACK** must be submitted. * **ID_CARD_BACK**: A file containing only the back of the ID card. In order for a document to be usable, both the **ID_CARD_FRONT** and **ID_CARD_BACK** must be submitted. * **DRIVING_LICENCE_FRONT**: A file containing only the front of the driving licence. In order for a document to be usable, both the **DRIVING_LICENCE_FRONT** and **DRIVING_LICENCE_BACK** must be submitted. * **DRIVING_LICENCE_BACK**: A file containing only the back of the driving licence. In order for a document to be usable, both the **DRIVING_LICENCE_FRONT** and **DRIVING_LICENCE_FRONT** must be submitted. </value>
         [JsonConverter(typeof(StringEnumConverter))]
-                public enum DocumentTypeEnum
+        public enum DocumentTypeEnum
         {
             /// <summary>
             /// Enum BANKSTATEMENT for value: BANK_STATEMENT
             /// </summary>
-            [EnumMember(Value = "BANK_STATEMENT")]
-            BANKSTATEMENT = 1,
+            [EnumMember(Value = "BANK_STATEMENT")] BANKSTATEMENT = 1,
+
             /// <summary>
             /// Enum BSN for value: BSN
             /// </summary>
-            [EnumMember(Value = "BSN")]
-            BSN = 2,
+            [EnumMember(Value = "BSN")] BSN = 2,
+
             /// <summary>
             /// Enum COMPANYREGISTRATIONSCREENING for value: COMPANY_REGISTRATION_SCREENING
             /// </summary>
             [EnumMember(Value = "COMPANY_REGISTRATION_SCREENING")]
             COMPANYREGISTRATIONSCREENING = 3,
-            /// <summary>
-            /// Enum CONSTITUTIONALDOCUMENT for value: CONSTITUTIONAL_DOCUMENT
-            /// </summary>
-            [EnumMember(Value = "CONSTITUTIONAL_DOCUMENT")]
-            CONSTITUTIONALDOCUMENT = 4,
+
             /// <summary>
             /// Enum DRIVINGLICENCE for value: DRIVING_LICENCE
             /// </summary>
             [EnumMember(Value = "DRIVING_LICENCE")]
-            DRIVINGLICENCE = 5,
+            DRIVINGLICENCE = 4,
+
             /// <summary>
             /// Enum DRIVINGLICENCEBACK for value: DRIVING_LICENCE_BACK
             /// </summary>
             [EnumMember(Value = "DRIVING_LICENCE_BACK")]
-            DRIVINGLICENCEBACK = 6,
+            DRIVINGLICENCEBACK = 5,
+
             /// <summary>
             /// Enum DRIVINGLICENCEFRONT for value: DRIVING_LICENCE_FRONT
             /// </summary>
             [EnumMember(Value = "DRIVING_LICENCE_FRONT")]
-            DRIVINGLICENCEFRONT = 7,
+            DRIVINGLICENCEFRONT = 6,
+
             /// <summary>
             /// Enum IDCARD for value: ID_CARD
             /// </summary>
-            [EnumMember(Value = "ID_CARD")]
-            IDCARD = 8,
+            [EnumMember(Value = "ID_CARD")] IDCARD = 7,
+
             /// <summary>
             /// Enum IDCARDBACK for value: ID_CARD_BACK
             /// </summary>
-            [EnumMember(Value = "ID_CARD_BACK")]
-            IDCARDBACK = 9,
+            [EnumMember(Value = "ID_CARD_BACK")] IDCARDBACK = 8,
+
             /// <summary>
             /// Enum IDCARDFRONT for value: ID_CARD_FRONT
             /// </summary>
-            [EnumMember(Value = "ID_CARD_FRONT")]
-            IDCARDFRONT = 10,
+            [EnumMember(Value = "ID_CARD_FRONT")] IDCARDFRONT = 9,
+
             /// <summary>
             /// Enum PASSPORT for value: PASSPORT
             /// </summary>
-            [EnumMember(Value = "PASSPORT")]
-            PASSPORT = 11,
+            [EnumMember(Value = "PASSPORT")] PASSPORT = 10,
+
             /// <summary>
             /// Enum SSN for value: SSN
             /// </summary>
-            [EnumMember(Value = "SSN")]
-            SSN = 12,
+            [EnumMember(Value = "SSN")] SSN = 11,
+
             /// <summary>
             /// Enum SUPPORTINGDOCUMENTS for value: SUPPORTING_DOCUMENTS
             /// </summary>
             [EnumMember(Value = "SUPPORTING_DOCUMENTS")]
-            SUPPORTINGDOCUMENTS = 13        }
+            SUPPORTINGDOCUMENTS = 12
+        }
+
         /// <summary>
         /// The type of the document. Refer to [Verification checks](https://docs.adyen.com/platforms/verification-checks) for details on when each document type should be submitted and for the accepted file formats.  Permitted values: * **BANK_STATEMENT**: A file containing a bank statement or other document proving ownership of a specific bank account. * **COMPANY_REGISTRATION_SCREENING** (Supported from v5 and later): A file containing a company registration document. * **CONSTITUTIONAL_DOCUMENT**: A file containing information about the account holder&#x27;s legal arrangement. * **PASSPORT**: A file containing the identity page(s) of a passport. * **ID_CARD_FRONT**: A file containing only the front of the ID card. In order for a document to be usable, both the **ID_CARD_FRONT** and **ID_CARD_BACK** must be submitted. * **ID_CARD_BACK**: A file containing only the back of the ID card. In order for a document to be usable, both the **ID_CARD_FRONT** and **ID_CARD_BACK** must be submitted. * **DRIVING_LICENCE_FRONT**: A file containing only the front of the driving licence. In order for a document to be usable, both the **DRIVING_LICENCE_FRONT** and **DRIVING_LICENCE_BACK** must be submitted. * **DRIVING_LICENCE_BACK**: A file containing only the back of the driving licence. In order for a document to be usable, both the **DRIVING_LICENCE_FRONT** and **DRIVING_LICENCE_FRONT** must be submitted. 
         /// </summary>
         /// <value>The type of the document. Refer to [Verification checks](https://docs.adyen.com/platforms/verification-checks) for details on when each document type should be submitted and for the accepted file formats.  Permitted values: * **BANK_STATEMENT**: A file containing a bank statement or other document proving ownership of a specific bank account. * **COMPANY_REGISTRATION_SCREENING** (Supported from v5 and later): A file containing a company registration document. * **CONSTITUTIONAL_DOCUMENT**: A file containing information about the account holder&#x27;s legal arrangement. * **PASSPORT**: A file containing the identity page(s) of a passport. * **ID_CARD_FRONT**: A file containing only the front of the ID card. In order for a document to be usable, both the **ID_CARD_FRONT** and **ID_CARD_BACK** must be submitted. * **ID_CARD_BACK**: A file containing only the back of the ID card. In order for a document to be usable, both the **ID_CARD_FRONT** and **ID_CARD_BACK** must be submitted. * **DRIVING_LICENCE_FRONT**: A file containing only the front of the driving licence. In order for a document to be usable, both the **DRIVING_LICENCE_FRONT** and **DRIVING_LICENCE_BACK** must be submitted. * **DRIVING_LICENCE_BACK**: A file containing only the back of the driving licence. In order for a document to be usable, both the **DRIVING_LICENCE_FRONT** and **DRIVING_LICENCE_FRONT** must be submitted. </value>
-        [DataMember(Name="documentType", EmitDefaultValue=false)]
+        [DataMember(Name = "documentType", EmitDefaultValue = false)]
         public DocumentTypeEnum DocumentType { get; set; }
+
         /// <summary>
         /// Initializes a new instance of the <see cref="DocumentDetail" /> class.
         /// </summary>
@@ -124,30 +128,35 @@ namespace Adyen.Model.MarketPay
         /// <param name="description">Description of the document..</param>
         /// <param name="documentType">The type of the document. Refer to [Verification checks](https://docs.adyen.com/platforms/verification-checks) for details on when each document type should be submitted and for the accepted file formats.  Permitted values: * **BANK_STATEMENT**: A file containing a bank statement or other document proving ownership of a specific bank account. * **COMPANY_REGISTRATION_SCREENING** (Supported from v5 and later): A file containing a company registration document. * **CONSTITUTIONAL_DOCUMENT**: A file containing information about the account holder&#x27;s legal arrangement. * **PASSPORT**: A file containing the identity page(s) of a passport. * **ID_CARD_FRONT**: A file containing only the front of the ID card. In order for a document to be usable, both the **ID_CARD_FRONT** and **ID_CARD_BACK** must be submitted. * **ID_CARD_BACK**: A file containing only the back of the ID card. In order for a document to be usable, both the **ID_CARD_FRONT** and **ID_CARD_BACK** must be submitted. * **DRIVING_LICENCE_FRONT**: A file containing only the front of the driving licence. In order for a document to be usable, both the **DRIVING_LICENCE_FRONT** and **DRIVING_LICENCE_BACK** must be submitted. * **DRIVING_LICENCE_BACK**: A file containing only the back of the driving licence. In order for a document to be usable, both the **DRIVING_LICENCE_FRONT** and **DRIVING_LICENCE_FRONT** must be submitted.  (required).</param>
         /// <param name="filename">Filename of the document. (required).</param>
-        /// <param name="legalArrangementCode">The Adyen-generated [&#x60;legalArrangementCode&#x60;](https://docs.adyen.com/api-explorer/#/Account/latest/post/createAccountHolder__resParam_accountHolderDetails-legalArrangements-legalArrangementCode) to which the document must be linked..</param>
-        /// <param name="legalArrangementEntityCode">The Adyen-generated [&#x60;legalArrangementEntityCode&#x60;](https://docs.adyen.com/api-explorer/#/Account/v6/post/createAccountHolder__resParam_accountHolderDetails-legalArrangements-legalArrangementEntities-legalArrangementEntityCode)  to which the document must be linked..</param>
         /// <param name="shareholderCode">The Adyen-generated [&#x60;shareholderCode&#x60;](https://docs.adyen.com/api-explorer/#/Account/latest/post/createAccountHolder__resParam_accountHolderDetails-businessDetails-shareholders-shareholderCode) to which the document must be linked. Refer to [Verification checks](https://docs.adyen.com/platforms/verification-checks) for details on when a document should be submitted. &gt;Required if the account holder has a &#x60;legalEntity&#x60; of type **Business** and the &#x60;documentType&#x60; is either **PASSPORT**, **ID_CARD_FRONT**, **ID_CARD_BACK**, **DRIVING_LICENCE_FRONT**, or **DRIVING_LICENCE_BACK**. .</param>
         /// <param name="signatoryCode">The Adyen-generated [&#x60;signatoryCode&#x60;](https://docs.adyen.com/api-explorer/#/Account/v6/post/createAccountHolder__resParam_accountHolderDetails-businessDetails-signatories-signatoryCode) to which the document must be linked..</param>
-        public DocumentDetail(string accountHolderCode = default(string), string bankAccountUUID = default(string), string description = default(string), DocumentTypeEnum documentType = default(DocumentTypeEnum), string filename = default(string), string legalArrangementCode = default(string), string legalArrangementEntityCode = default(string), string shareholderCode = default(string), string signatoryCode = default(string))
+        public DocumentDetail(string accountHolderCode = default(string), string bankAccountUUID = default(string),
+            string description = default(string), DocumentTypeEnum documentType = default(DocumentTypeEnum),
+            string filename = default(string), string shareholderCode = default(string),
+            string signatoryCode = default(string))
         {
             // to ensure "accountHolderCode" is required (not null)
             if (accountHolderCode == null)
             {
-                throw new InvalidDataException("accountHolderCode is a required property for DocumentDetail and cannot be null");
+                throw new InvalidDataException(
+                    "accountHolderCode is a required property for DocumentDetail and cannot be null");
             }
             else
             {
                 this.AccountHolderCode = accountHolderCode;
             }
+
             // to ensure "documentType" is required (not null)
             if (documentType == null)
             {
-                throw new InvalidDataException("documentType is a required property for DocumentDetail and cannot be null");
+                throw new InvalidDataException(
+                    "documentType is a required property for DocumentDetail and cannot be null");
             }
             else
             {
                 this.DocumentType = documentType;
             }
+
             // to ensure "filename" is required (not null)
             if (filename == null)
             {
@@ -157,33 +166,32 @@ namespace Adyen.Model.MarketPay
             {
                 this.Filename = filename;
             }
+
             this.BankAccountUUID = bankAccountUUID;
             this.Description = description;
-            this.LegalArrangementCode = legalArrangementCode;
-            this.LegalArrangementEntityCode = legalArrangementEntityCode;
             this.ShareholderCode = shareholderCode;
             this.SignatoryCode = signatoryCode;
         }
-        
+
         /// <summary>
         /// The code of account holder, to which the document applies.
         /// </summary>
         /// <value>The code of account holder, to which the document applies.</value>
-        [DataMember(Name="accountHolderCode", EmitDefaultValue=false)]
+        [DataMember(Name = "accountHolderCode", EmitDefaultValue = false)]
         public string AccountHolderCode { get; set; }
 
         /// <summary>
         /// The Adyen-generated [&#x60;bankAccountUUID&#x60;](https://docs.adyen.com/api-explorer/#/Account/latest/post/createAccountHolder__resParam_accountHolderDetails-bankAccountDetails-bankAccountUUID) to which the document must be linked. Refer to [Bank account check](https://docs.adyen.com/platforms/verification-checks/bank-account-check#uploading-a-bank-statement) for details on when a document should be submitted. &gt;Required if the &#x60;documentType&#x60; is **BANK_STATEMENT**, where a document is being submitted in order to verify a bank account. 
         /// </summary>
         /// <value>The Adyen-generated [&#x60;bankAccountUUID&#x60;](https://docs.adyen.com/api-explorer/#/Account/latest/post/createAccountHolder__resParam_accountHolderDetails-bankAccountDetails-bankAccountUUID) to which the document must be linked. Refer to [Bank account check](https://docs.adyen.com/platforms/verification-checks/bank-account-check#uploading-a-bank-statement) for details on when a document should be submitted. &gt;Required if the &#x60;documentType&#x60; is **BANK_STATEMENT**, where a document is being submitted in order to verify a bank account. </value>
-        [DataMember(Name="bankAccountUUID", EmitDefaultValue=false)]
+        [DataMember(Name = "bankAccountUUID", EmitDefaultValue = false)]
         public string BankAccountUUID { get; set; }
 
         /// <summary>
         /// Description of the document.
         /// </summary>
         /// <value>Description of the document.</value>
-        [DataMember(Name="description", EmitDefaultValue=false)]
+        [DataMember(Name = "description", EmitDefaultValue = false)]
         public string Description { get; set; }
 
 
@@ -191,35 +199,21 @@ namespace Adyen.Model.MarketPay
         /// Filename of the document.
         /// </summary>
         /// <value>Filename of the document.</value>
-        [DataMember(Name="filename", EmitDefaultValue=false)]
+        [DataMember(Name = "filename", EmitDefaultValue = false)]
         public string Filename { get; set; }
-
-        /// <summary>
-        /// The Adyen-generated [&#x60;legalArrangementCode&#x60;](https://docs.adyen.com/api-explorer/#/Account/latest/post/createAccountHolder__resParam_accountHolderDetails-legalArrangements-legalArrangementCode) to which the document must be linked.
-        /// </summary>
-        /// <value>The Adyen-generated [&#x60;legalArrangementCode&#x60;](https://docs.adyen.com/api-explorer/#/Account/latest/post/createAccountHolder__resParam_accountHolderDetails-legalArrangements-legalArrangementCode) to which the document must be linked.</value>
-        [DataMember(Name="legalArrangementCode", EmitDefaultValue=false)]
-        public string LegalArrangementCode { get; set; }
-
-        /// <summary>
-        /// The Adyen-generated [&#x60;legalArrangementEntityCode&#x60;](https://docs.adyen.com/api-explorer/#/Account/v6/post/createAccountHolder__resParam_accountHolderDetails-legalArrangements-legalArrangementEntities-legalArrangementEntityCode)  to which the document must be linked.
-        /// </summary>
-        /// <value>The Adyen-generated [&#x60;legalArrangementEntityCode&#x60;](https://docs.adyen.com/api-explorer/#/Account/v6/post/createAccountHolder__resParam_accountHolderDetails-legalArrangements-legalArrangementEntities-legalArrangementEntityCode)  to which the document must be linked.</value>
-        [DataMember(Name="legalArrangementEntityCode", EmitDefaultValue=false)]
-        public string LegalArrangementEntityCode { get; set; }
 
         /// <summary>
         /// The Adyen-generated [&#x60;shareholderCode&#x60;](https://docs.adyen.com/api-explorer/#/Account/latest/post/createAccountHolder__resParam_accountHolderDetails-businessDetails-shareholders-shareholderCode) to which the document must be linked. Refer to [Verification checks](https://docs.adyen.com/platforms/verification-checks) for details on when a document should be submitted. &gt;Required if the account holder has a &#x60;legalEntity&#x60; of type **Business** and the &#x60;documentType&#x60; is either **PASSPORT**, **ID_CARD_FRONT**, **ID_CARD_BACK**, **DRIVING_LICENCE_FRONT**, or **DRIVING_LICENCE_BACK**. 
         /// </summary>
         /// <value>The Adyen-generated [&#x60;shareholderCode&#x60;](https://docs.adyen.com/api-explorer/#/Account/latest/post/createAccountHolder__resParam_accountHolderDetails-businessDetails-shareholders-shareholderCode) to which the document must be linked. Refer to [Verification checks](https://docs.adyen.com/platforms/verification-checks) for details on when a document should be submitted. &gt;Required if the account holder has a &#x60;legalEntity&#x60; of type **Business** and the &#x60;documentType&#x60; is either **PASSPORT**, **ID_CARD_FRONT**, **ID_CARD_BACK**, **DRIVING_LICENCE_FRONT**, or **DRIVING_LICENCE_BACK**. </value>
-        [DataMember(Name="shareholderCode", EmitDefaultValue=false)]
+        [DataMember(Name = "shareholderCode", EmitDefaultValue = false)]
         public string ShareholderCode { get; set; }
 
         /// <summary>
         /// The Adyen-generated [&#x60;signatoryCode&#x60;](https://docs.adyen.com/api-explorer/#/Account/v6/post/createAccountHolder__resParam_accountHolderDetails-businessDetails-signatories-signatoryCode) to which the document must be linked.
         /// </summary>
         /// <value>The Adyen-generated [&#x60;signatoryCode&#x60;](https://docs.adyen.com/api-explorer/#/Account/v6/post/createAccountHolder__resParam_accountHolderDetails-businessDetails-signatories-signatoryCode) to which the document must be linked.</value>
-        [DataMember(Name="signatoryCode", EmitDefaultValue=false)]
+        [DataMember(Name = "signatoryCode", EmitDefaultValue = false)]
         public string SignatoryCode { get; set; }
 
         /// <summary>
@@ -235,14 +229,12 @@ namespace Adyen.Model.MarketPay
             sb.Append("  Description: ").Append(Description).Append("\n");
             sb.Append("  DocumentType: ").Append(DocumentType).Append("\n");
             sb.Append("  Filename: ").Append(Filename).Append("\n");
-            sb.Append("  LegalArrangementCode: ").Append(LegalArrangementCode).Append("\n");
-            sb.Append("  LegalArrangementEntityCode: ").Append(LegalArrangementEntityCode).Append("\n");
             sb.Append("  ShareholderCode: ").Append(ShareholderCode).Append("\n");
             sb.Append("  SignatoryCode: ").Append(SignatoryCode).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
-  
+
         /// <summary>
         /// Returns the JSON string presentation of the object
         /// </summary>
@@ -272,51 +264,41 @@ namespace Adyen.Model.MarketPay
             if (input == null)
                 return false;
 
-            return 
+            return
                 (
                     this.AccountHolderCode == input.AccountHolderCode ||
                     (this.AccountHolderCode != null &&
-                    this.AccountHolderCode.Equals(input.AccountHolderCode))
-                ) && 
+                     this.AccountHolderCode.Equals(input.AccountHolderCode))
+                ) &&
                 (
                     this.BankAccountUUID == input.BankAccountUUID ||
                     (this.BankAccountUUID != null &&
-                    this.BankAccountUUID.Equals(input.BankAccountUUID))
-                ) && 
+                     this.BankAccountUUID.Equals(input.BankAccountUUID))
+                ) &&
                 (
                     this.Description == input.Description ||
                     (this.Description != null &&
-                    this.Description.Equals(input.Description))
-                ) && 
+                     this.Description.Equals(input.Description))
+                ) &&
                 (
                     this.DocumentType == input.DocumentType ||
                     (this.DocumentType != null &&
-                    this.DocumentType.Equals(input.DocumentType))
-                ) && 
+                     this.DocumentType.Equals(input.DocumentType))
+                ) &&
                 (
                     this.Filename == input.Filename ||
                     (this.Filename != null &&
-                    this.Filename.Equals(input.Filename))
-                ) && 
-                (
-                    this.LegalArrangementCode == input.LegalArrangementCode ||
-                    (this.LegalArrangementCode != null &&
-                    this.LegalArrangementCode.Equals(input.LegalArrangementCode))
-                ) && 
-                (
-                    this.LegalArrangementEntityCode == input.LegalArrangementEntityCode ||
-                    (this.LegalArrangementEntityCode != null &&
-                    this.LegalArrangementEntityCode.Equals(input.LegalArrangementEntityCode))
-                ) && 
+                     this.Filename.Equals(input.Filename))
+                ) &&
                 (
                     this.ShareholderCode == input.ShareholderCode ||
                     (this.ShareholderCode != null &&
-                    this.ShareholderCode.Equals(input.ShareholderCode))
-                ) && 
+                     this.ShareholderCode.Equals(input.ShareholderCode))
+                ) &&
                 (
                     this.SignatoryCode == input.SignatoryCode ||
                     (this.SignatoryCode != null &&
-                    this.SignatoryCode.Equals(input.SignatoryCode))
+                     this.SignatoryCode.Equals(input.SignatoryCode))
                 );
         }
 
@@ -339,10 +321,6 @@ namespace Adyen.Model.MarketPay
                     hashCode = hashCode * 59 + this.DocumentType.GetHashCode();
                 if (this.Filename != null)
                     hashCode = hashCode * 59 + this.Filename.GetHashCode();
-                if (this.LegalArrangementCode != null)
-                    hashCode = hashCode * 59 + this.LegalArrangementCode.GetHashCode();
-                if (this.LegalArrangementEntityCode != null)
-                    hashCode = hashCode * 59 + this.LegalArrangementEntityCode.GetHashCode();
                 if (this.ShareholderCode != null)
                     hashCode = hashCode * 59 + this.ShareholderCode.GetHashCode();
                 if (this.SignatoryCode != null)
@@ -356,7 +334,8 @@ namespace Adyen.Model.MarketPay
         /// </summary>
         /// <param name="validationContext">Validation context</param>
         /// <returns>Validation Result</returns>
-        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(
+            ValidationContext validationContext)
         {
             yield break;
         }
