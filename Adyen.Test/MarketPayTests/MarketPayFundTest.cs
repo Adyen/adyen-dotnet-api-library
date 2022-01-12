@@ -89,7 +89,7 @@ namespace Adyen.Test.MarketPayTest
             Assert.AreEqual(50, transactions.Count);
             Assert.AreEqual(new Amount("USD",-35000), transactions[0].Amount);
             Assert.AreEqual("PluginDemo - 126", transactions[0].Description);
-            Assert.AreEqual(Transaction.TransactionStatusEnum.Debited, transactions[0].TransactionStatus);
+            Assert.AreEqual(Transaction.TransactionStatusEnum.Fee, transactions[0].TransactionStatus);
             Assert.AreEqual(new Amount("USD", -17500), transactions[1].Amount);
             Assert.AreEqual("PluginDemo - 125", transactions[1].Description);
             Assert.AreEqual(Transaction.TransactionStatusEnum.Debited, transactions[1].TransactionStatus);

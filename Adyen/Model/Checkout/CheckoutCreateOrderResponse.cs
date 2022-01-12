@@ -100,7 +100,12 @@ namespace Adyen.Model.Checkout
             /// <summary>
             /// Enum Refused for value: Refused
             /// </summary>
-            [EnumMember(Value = "Refused")] Refused = 11
+            [EnumMember(Value = "Refused")] Refused = 11,
+
+            /// <summary>
+            /// Enum Success for value: Success
+            /// </summary>
+            [EnumMember(Value = "Success")] Success = 12,
         }
 
         /// <summary>
@@ -114,6 +119,7 @@ namespace Adyen.Model.Checkout
         /// Initializes a new instance of the <see cref="CheckoutCreateOrderResponse" /> class.
         /// </summary>
         /// <param name="additionalData">This field contains additional data, which may be required to return in a particular payment response. To choose data fields to be returned, go to **Customer Area** &gt; **Account** &gt; **API URLs** &gt; **Additional data settings**..</param>
+        /// <param name="amount">The initial amount of the order.
         /// <param name="expiresAt">The date that the order will expire. (required).</param>
         /// <param name="fraudResult">fraudResult.</param>
         /// <param name="orderData">The encrypted data that will be used by merchant for adding payments to the order. (required).</param>
@@ -122,6 +128,7 @@ namespace Adyen.Model.Checkout
         /// <param name="remainingAmount">remainingAmount (required).</param>
         /// <param name="resultCode">The result of the payment. For more information, see [Result codes](https://docs.adyen.com/checkout/payment-result-codes).  Possible values:  * **AuthenticationFinished** – The payment has been successfully authenticated with 3D Secure 2. Returned for 3D Secure 2 authentication-only transactions. * **AuthenticationNotRequired** – The transaction does not require 3D Secure authentication. Returned for [standalone authentication-only integrations](https://docs.adyen.com/checkout/3d-secure/other-3ds-flows/authentication-only). * **Authorised** – The payment was successfully authorised. This state serves as an indicator to proceed with the delivery of goods and services. This is a final state. * **Cancelled** – Indicates the payment has been cancelled (either by the shopper or the merchant) before processing was completed. This is a final state. * **ChallengeShopper** – The issuer requires further shopper interaction before the payment can be authenticated. Returned for 3D Secure 2 transactions. * **Error** – There was an error when the payment was being processed. The reason is given in the &#x60;refusalReason&#x60; field. This is a final state. * **IdentifyShopper** – The issuer requires the shopper&#x27;s device fingerprint before the payment can be authenticated. Returned for 3D Secure 2 transactions. * **Pending** – Indicates that it is not possible to obtain the final status of the payment. This can happen if the systems providing final status information for the payment are unavailable, or if the shopper needs to take further action to complete the payment. * **PresentToShopper** – Indicates that the response contains additional information that you need to present to a shopper, so that they can use it to complete a payment. * **Received** – Indicates the payment has successfully been received by Adyen, and will be processed. This is the initial state for all payments. * **RedirectShopper** – Indicates the shopper should be redirected to an external web page or app to complete the authorisation. * **Refused** – Indicates the payment was refused. The reason is given in the &#x60;refusalReason&#x60; field. This is a final state..</param>
         public CheckoutCreateOrderResponse(
+            Amount amount = default(Amount),
              Dictionary<string, string> additionalData =
                 default(Dictionary<string, string>), string expiresAt = default(string),
             FraudResult fraudResult = default(FraudResult), string orderData = default(string),
@@ -158,6 +165,7 @@ namespace Adyen.Model.Checkout
             {
                 this.RemainingAmount = remainingAmount;
             }
+            this.Amount = amount;
             this.AdditionalData = additionalData;
             this.FraudResult = fraudResult;
             this.PspReference = pspReference;
@@ -212,6 +220,12 @@ namespace Adyen.Model.Checkout
         [DataMember(Name = "remainingAmount", EmitDefaultValue = false)]
         public Amount RemainingAmount { get; set; }
 
+        /// <summary>
+        /// Gets or Sets amount
+        /// </summary>
+        [DataMember(Name = "amount", EmitDefaultValue = false)]
+        public Amount Amount { get; set; }
+
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -222,6 +236,7 @@ namespace Adyen.Model.Checkout
             var sb = new StringBuilder();
             sb.Append("class CheckoutCreateOrderResponse {\n");
             sb.Append("  AdditionalData: ").Append(AdditionalData.ToCollectionsString()).Append("\n");
+            sb.Append("  Amount: ").Append(Amount).Append("\n");
             sb.Append("  ExpiresAt: ").Append(ExpiresAt).Append("\n");
             sb.Append("  FraudResult: ").Append(FraudResult).Append("\n");
             sb.Append("  OrderData: ").Append(OrderData).Append("\n");
@@ -267,6 +282,11 @@ namespace Adyen.Model.Checkout
                     this.AdditionalData == input.AdditionalData ||
                     this.AdditionalData != null &&
                     this.AdditionalData.Equals(input.AdditionalData)
+                ) &&
+                 (
+                    this.Amount == input.Amount ||
+                    this.Amount != null &&
+                    this.Amount.Equals(input.Amount)
                 ) &&
                 (
                     this.ExpiresAt == input.ExpiresAt ||
@@ -316,6 +336,8 @@ namespace Adyen.Model.Checkout
                 int hashCode = 41;
                 if (this.AdditionalData != null)
                     hashCode = hashCode * 59 + this.AdditionalData.GetHashCode();
+                if (this.Amount != null)
+                    hashCode = hashCode * 59 + this.Amount.GetHashCode();
                 if (this.ExpiresAt != null)
                     hashCode = hashCode * 59 + this.ExpiresAt.GetHashCode();
                 if (this.FraudResult != null)

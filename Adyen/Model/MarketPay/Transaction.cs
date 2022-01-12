@@ -33,152 +33,276 @@ namespace Adyen.Model.MarketPay
     /// <summary>
     /// Transaction
     /// </summary>
-    [DataContract]
-    public class Transaction : IEquatable<Transaction>, IValidatableObject
+    [DataContract(Name = "Transaction")]
+    public partial class Transaction : IEquatable<Transaction>, IValidatableObject
     {
         /// <summary>
-        /// The status of the transaction. &gt;Permitted values: &#x60;PendingCredit&#x60;, &#x60;CreditFailed&#x60;, &#x60;Credited&#x60;, &#x60;Converted&#x60;, &#x60;PendingDebit&#x60;, &#x60;DebitFailed&#x60;, &#x60;Debited&#x60;, &#x60;DebitReversedReceived&#x60;, &#x60;DebitedReversed&#x60;, &#x60;ChargebackReceived&#x60;, &#x60;Chargeback&#x60;, &#x60;ChargebackReversedReceived&#x60;, &#x60;ChargebackReversed&#x60;, &#x60;Payout&#x60;, &#x60;PayoutReversed&#x60;, &#x60;FundTransfer&#x60;, &#x60;PendingFundTransfer&#x60;, &#x60;ManualCorrected&#x60;.
+        /// The status of the transaction. &gt;Permitted values: &#x60;PendingCredit&#x60;, &#x60;CreditFailed&#x60;, &#x60;CreditClosed&#x60;, &#x60;CreditSuspended&#x60;, &#x60;Credited&#x60;, &#x60;Converted&#x60;, &#x60;PendingDebit&#x60;, &#x60;DebitFailed&#x60;, &#x60;Debited&#x60;, &#x60;DebitReversedReceived&#x60;, &#x60;DebitedReversed&#x60;, &#x60;ChargebackReceived&#x60;, &#x60;Chargeback&#x60;, &#x60;ChargebackReversedReceived&#x60;, &#x60;ChargebackReversed&#x60;, &#x60;Payout&#x60;, &#x60;PayoutReversed&#x60;, &#x60;FundTransfer&#x60;, &#x60;PendingFundTransfer&#x60;, &#x60;ManualCorrected&#x60;.
         /// </summary>
-        /// <value>The status of the transaction. &gt;Permitted values: &#x60;PendingCredit&#x60;, &#x60;CreditFailed&#x60;, &#x60;Credited&#x60;, &#x60;Converted&#x60;, &#x60;PendingDebit&#x60;, &#x60;DebitFailed&#x60;, &#x60;Debited&#x60;, &#x60;DebitReversedReceived&#x60;, &#x60;DebitedReversed&#x60;, &#x60;ChargebackReceived&#x60;, &#x60;Chargeback&#x60;, &#x60;ChargebackReversedReceived&#x60;, &#x60;ChargebackReversed&#x60;, &#x60;Payout&#x60;, &#x60;PayoutReversed&#x60;, &#x60;FundTransfer&#x60;, &#x60;PendingFundTransfer&#x60;, &#x60;ManualCorrected&#x60;.</value>
+        /// <value>The status of the transaction. &gt;Permitted values: &#x60;PendingCredit&#x60;, &#x60;CreditFailed&#x60;, &#x60;CreditClosed&#x60;, &#x60;CreditSuspended&#x60;, &#x60;Credited&#x60;, &#x60;Converted&#x60;, &#x60;PendingDebit&#x60;, &#x60;DebitFailed&#x60;, &#x60;Debited&#x60;, &#x60;DebitReversedReceived&#x60;, &#x60;DebitedReversed&#x60;, &#x60;ChargebackReceived&#x60;, &#x60;Chargeback&#x60;, &#x60;ChargebackReversedReceived&#x60;, &#x60;ChargebackReversed&#x60;, &#x60;Payout&#x60;, &#x60;PayoutReversed&#x60;, &#x60;FundTransfer&#x60;, &#x60;PendingFundTransfer&#x60;, &#x60;ManualCorrected&#x60;.</value>
         [JsonConverter(typeof(StringEnumConverter))]
         public enum TransactionStatusEnum
         {
             /// <summary>
+            /// Enum BalanceNotPaidOutTransfer for value: BalanceNotPaidOutTransfer
+            /// </summary>
+            [EnumMember(Value = "BalanceNotPaidOutTransfer")]
+            BalanceNotPaidOutTransfer = 1,
+
+            /// <summary>
             /// Enum Chargeback for value: Chargeback
             /// </summary>
             [EnumMember(Value = "Chargeback")]
-            Chargeback = 1,
+            Chargeback = 2,
+
             /// <summary>
             /// Enum ChargebackCorrection for value: ChargebackCorrection
             /// </summary>
             [EnumMember(Value = "ChargebackCorrection")]
-            ChargebackCorrection = 2,
+            ChargebackCorrection = 3,
+
             /// <summary>
             /// Enum ChargebackCorrectionReceived for value: ChargebackCorrectionReceived
             /// </summary>
             [EnumMember(Value = "ChargebackCorrectionReceived")]
-            ChargebackCorrectionReceived = 3,
+            ChargebackCorrectionReceived = 4,
+
             /// <summary>
             /// Enum ChargebackReceived for value: ChargebackReceived
             /// </summary>
             [EnumMember(Value = "ChargebackReceived")]
-            ChargebackReceived = 4,
+            ChargebackReceived = 5,
+
             /// <summary>
             /// Enum ChargebackReversed for value: ChargebackReversed
             /// </summary>
             [EnumMember(Value = "ChargebackReversed")]
-            ChargebackReversed = 5,
+            ChargebackReversed = 6,
+
+            /// <summary>
+            /// Enum ChargebackReversedCorrection for value: ChargebackReversedCorrection
+            /// </summary>
+            [EnumMember(Value = "ChargebackReversedCorrection")]
+            ChargebackReversedCorrection = 7,
+
+            /// <summary>
+            /// Enum ChargebackReversedCorrectionReceived for value: ChargebackReversedCorrectionReceived
+            /// </summary>
+            [EnumMember(Value = "ChargebackReversedCorrectionReceived")]
+            ChargebackReversedCorrectionReceived = 8,
+
             /// <summary>
             /// Enum ChargebackReversedReceived for value: ChargebackReversedReceived
             /// </summary>
             [EnumMember(Value = "ChargebackReversedReceived")]
-            ChargebackReversedReceived = 6,
+            ChargebackReversedReceived = 9,
+
             /// <summary>
             /// Enum Converted for value: Converted
             /// </summary>
             [EnumMember(Value = "Converted")]
-            Converted = 7,
+            Converted = 10,
+
+            /// <summary>
+            /// Enum CreditClosed for value: CreditClosed
+            /// </summary>
+            [EnumMember(Value = "CreditClosed")]
+            CreditClosed = 11,
+
             /// <summary>
             /// Enum CreditFailed for value: CreditFailed
             /// </summary>
             [EnumMember(Value = "CreditFailed")]
-            CreditFailed = 8,
+            CreditFailed = 12,
+
             /// <summary>
             /// Enum CreditReversed for value: CreditReversed
             /// </summary>
             [EnumMember(Value = "CreditReversed")]
-            CreditReversed = 9,
+            CreditReversed = 13,
+
             /// <summary>
             /// Enum CreditReversedReceived for value: CreditReversedReceived
             /// </summary>
             [EnumMember(Value = "CreditReversedReceived")]
-            CreditReversedReceived = 10,
+            CreditReversedReceived = 14,
+
+            /// <summary>
+            /// Enum CreditSuspended for value: CreditSuspended
+            /// </summary>
+            [EnumMember(Value = "CreditSuspended")]
+            CreditSuspended = 15,
+
             /// <summary>
             /// Enum Credited for value: Credited
             /// </summary>
             [EnumMember(Value = "Credited")]
-            Credited = 11,
+            Credited = 16,
+
             /// <summary>
             /// Enum DebitFailed for value: DebitFailed
             /// </summary>
             [EnumMember(Value = "DebitFailed")]
-            DebitFailed = 12,
+            DebitFailed = 17,
+
             /// <summary>
             /// Enum DebitReversedReceived for value: DebitReversedReceived
             /// </summary>
             [EnumMember(Value = "DebitReversedReceived")]
-            DebitReversedReceived = 13,
+            DebitReversedReceived = 18,
+
             /// <summary>
             /// Enum Debited for value: Debited
             /// </summary>
             [EnumMember(Value = "Debited")]
-            Debited = 14,
+            Debited = 19,
+
             /// <summary>
             /// Enum DebitedReversed for value: DebitedReversed
             /// </summary>
             [EnumMember(Value = "DebitedReversed")]
-            DebitedReversed = 15,
+            DebitedReversed = 20,
+
+            /// <summary>
+            /// Enum DepositCorrectionCredited for value: DepositCorrectionCredited
+            /// </summary>
+            [EnumMember(Value = "DepositCorrectionCredited")]
+            DepositCorrectionCredited = 21,
+
+            /// <summary>
+            /// Enum DepositCorrectionDebited for value: DepositCorrectionDebited
+            /// </summary>
+            [EnumMember(Value = "DepositCorrectionDebited")]
+            DepositCorrectionDebited = 22,
+
+            /// <summary>
+            /// Enum Fee for value: Fee
+            /// </summary>
+            [EnumMember(Value = "Fee")]
+            Fee = 23,
+
             /// <summary>
             /// Enum FundTransfer for value: FundTransfer
             /// </summary>
             [EnumMember(Value = "FundTransfer")]
-            FundTransfer = 16,
+            FundTransfer = 24,
+
             /// <summary>
             /// Enum FundTransferReversed for value: FundTransferReversed
             /// </summary>
             [EnumMember(Value = "FundTransferReversed")]
-            FundTransferReversed = 17,
+            FundTransferReversed = 25,
+
+            /// <summary>
+            /// Enum InvoiceDeductionCredited for value: InvoiceDeductionCredited
+            /// </summary>
+            [EnumMember(Value = "InvoiceDeductionCredited")]
+            InvoiceDeductionCredited = 26,
+
+            /// <summary>
+            /// Enum InvoiceDeductionDebited for value: InvoiceDeductionDebited
+            /// </summary>
+            [EnumMember(Value = "InvoiceDeductionDebited")]
+            InvoiceDeductionDebited = 27,
+
             /// <summary>
             /// Enum ManualCorrected for value: ManualCorrected
             /// </summary>
             [EnumMember(Value = "ManualCorrected")]
-            ManualCorrected = 18,
+            ManualCorrected = 28,
+
+            /// <summary>
+            /// Enum ManualCorrectionCredited for value: ManualCorrectionCredited
+            /// </summary>
+            [EnumMember(Value = "ManualCorrectionCredited")]
+            ManualCorrectionCredited = 29,
+
+            /// <summary>
+            /// Enum ManualCorrectionDebited for value: ManualCorrectionDebited
+            /// </summary>
+            [EnumMember(Value = "ManualCorrectionDebited")]
+            ManualCorrectionDebited = 30,
+
+            /// <summary>
+            /// Enum MerchantPayin for value: MerchantPayin
+            /// </summary>
+            [EnumMember(Value = "MerchantPayin")]
+            MerchantPayin = 31,
+
+            /// <summary>
+            /// Enum MerchantPayinReversed for value: MerchantPayinReversed
+            /// </summary>
+            [EnumMember(Value = "MerchantPayinReversed")]
+            MerchantPayinReversed = 32,
+
             /// <summary>
             /// Enum Payout for value: Payout
             /// </summary>
             [EnumMember(Value = "Payout")]
-            Payout = 19,
+            Payout = 33,
+
             /// <summary>
             /// Enum PayoutReversed for value: PayoutReversed
             /// </summary>
             [EnumMember(Value = "PayoutReversed")]
-            PayoutReversed = 20,
+            PayoutReversed = 34,
+
             /// <summary>
             /// Enum PendingCredit for value: PendingCredit
             /// </summary>
             [EnumMember(Value = "PendingCredit")]
-            PendingCredit = 21,
+            PendingCredit = 35,
+
             /// <summary>
             /// Enum PendingDebit for value: PendingDebit
             /// </summary>
             [EnumMember(Value = "PendingDebit")]
-            PendingDebit = 22,
+            PendingDebit = 36,
+
             /// <summary>
             /// Enum PendingFundTransfer for value: PendingFundTransfer
             /// </summary>
             [EnumMember(Value = "PendingFundTransfer")]
-            PendingFundTransfer = 23,
+            PendingFundTransfer = 37,
+
             /// <summary>
             /// Enum SecondChargeback for value: SecondChargeback
             /// </summary>
             [EnumMember(Value = "SecondChargeback")]
-            SecondChargeback = 24,
+            SecondChargeback = 38,
+
+            /// <summary>
+            /// Enum SecondChargebackCorrection for value: SecondChargebackCorrection
+            /// </summary>
+            [EnumMember(Value = "SecondChargebackCorrection")]
+            SecondChargebackCorrection = 39,
+
+            /// <summary>
+            /// Enum SecondChargebackCorrectionReceived for value: SecondChargebackCorrectionReceived
+            /// </summary>
+            [EnumMember(Value = "SecondChargebackCorrectionReceived")]
+            SecondChargebackCorrectionReceived = 40,
+
             /// <summary>
             /// Enum SecondChargebackReceived for value: SecondChargebackReceived
             /// </summary>
             [EnumMember(Value = "SecondChargebackReceived")]
-            SecondChargebackReceived = 25
+            SecondChargebackReceived = 41
+
         }
+
+
         /// <summary>
-        /// The status of the transaction. &gt;Permitted values: &#x60;PendingCredit&#x60;, &#x60;CreditFailed&#x60;, &#x60;Credited&#x60;, &#x60;Converted&#x60;, &#x60;PendingDebit&#x60;, &#x60;DebitFailed&#x60;, &#x60;Debited&#x60;, &#x60;DebitReversedReceived&#x60;, &#x60;DebitedReversed&#x60;, &#x60;ChargebackReceived&#x60;, &#x60;Chargeback&#x60;, &#x60;ChargebackReversedReceived&#x60;, &#x60;ChargebackReversed&#x60;, &#x60;Payout&#x60;, &#x60;PayoutReversed&#x60;, &#x60;FundTransfer&#x60;, &#x60;PendingFundTransfer&#x60;, &#x60;ManualCorrected&#x60;.
+        /// The status of the transaction. &gt;Permitted values: &#x60;PendingCredit&#x60;, &#x60;CreditFailed&#x60;, &#x60;CreditClosed&#x60;, &#x60;CreditSuspended&#x60;, &#x60;Credited&#x60;, &#x60;Converted&#x60;, &#x60;PendingDebit&#x60;, &#x60;DebitFailed&#x60;, &#x60;Debited&#x60;, &#x60;DebitReversedReceived&#x60;, &#x60;DebitedReversed&#x60;, &#x60;ChargebackReceived&#x60;, &#x60;Chargeback&#x60;, &#x60;ChargebackReversedReceived&#x60;, &#x60;ChargebackReversed&#x60;, &#x60;Payout&#x60;, &#x60;PayoutReversed&#x60;, &#x60;FundTransfer&#x60;, &#x60;PendingFundTransfer&#x60;, &#x60;ManualCorrected&#x60;.
         /// </summary>
-        /// <value>The status of the transaction. &gt;Permitted values: &#x60;PendingCredit&#x60;, &#x60;CreditFailed&#x60;, &#x60;Credited&#x60;, &#x60;Converted&#x60;, &#x60;PendingDebit&#x60;, &#x60;DebitFailed&#x60;, &#x60;Debited&#x60;, &#x60;DebitReversedReceived&#x60;, &#x60;DebitedReversed&#x60;, &#x60;ChargebackReceived&#x60;, &#x60;Chargeback&#x60;, &#x60;ChargebackReversedReceived&#x60;, &#x60;ChargebackReversed&#x60;, &#x60;Payout&#x60;, &#x60;PayoutReversed&#x60;, &#x60;FundTransfer&#x60;, &#x60;PendingFundTransfer&#x60;, &#x60;ManualCorrected&#x60;.</value>
+        /// <value>The status of the transaction. &gt;Permitted values: &#x60;PendingCredit&#x60;, &#x60;CreditFailed&#x60;, &#x60;CreditClosed&#x60;, &#x60;CreditSuspended&#x60;, &#x60;Credited&#x60;, &#x60;Converted&#x60;, &#x60;PendingDebit&#x60;, &#x60;DebitFailed&#x60;, &#x60;Debited&#x60;, &#x60;DebitReversedReceived&#x60;, &#x60;DebitedReversed&#x60;, &#x60;ChargebackReceived&#x60;, &#x60;Chargeback&#x60;, &#x60;ChargebackReversedReceived&#x60;, &#x60;ChargebackReversed&#x60;, &#x60;Payout&#x60;, &#x60;PayoutReversed&#x60;, &#x60;FundTransfer&#x60;, &#x60;PendingFundTransfer&#x60;, &#x60;ManualCorrected&#x60;.</value>
         [DataMember(Name = "transactionStatus", EmitDefaultValue = false)]
         public TransactionStatusEnum? TransactionStatus { get; set; }
         /// <summary>
         /// Initializes a new instance of the <see cref="Transaction" /> class.
         /// </summary>
         /// <param name="amount">amount.</param>
+        /// <param name="balanceAccountId">The balance platform account ID of the balance platform to which payout was made.</param>
         /// <param name="bankAccountDetail">bankAccountDetail.</param>
         /// <param name="captureMerchantReference">The merchant reference of a related capture..</param>
         /// <param name="capturePspReference">The psp reference of a related capture..</param>
@@ -192,11 +316,12 @@ namespace Adyen.Model.MarketPay
         /// <param name="payoutPspReference">The psp reference of the related payout..</param>
         /// <param name="pspReference">The psp reference of a transaction..</param>
         /// <param name="sourceAccountCode">The code of the account from which funds were debited during an incoming fund transfer..</param>
-        /// <param name="transactionStatus">The status of the transaction. &gt;Permitted values: &#x60;PendingCredit&#x60;, &#x60;CreditFailed&#x60;, &#x60;Credited&#x60;, &#x60;Converted&#x60;, &#x60;PendingDebit&#x60;, &#x60;DebitFailed&#x60;, &#x60;Debited&#x60;, &#x60;DebitReversedReceived&#x60;, &#x60;DebitedReversed&#x60;, &#x60;ChargebackReceived&#x60;, &#x60;Chargeback&#x60;, &#x60;ChargebackReversedReceived&#x60;, &#x60;ChargebackReversed&#x60;, &#x60;Payout&#x60;, &#x60;PayoutReversed&#x60;, &#x60;FundTransfer&#x60;, &#x60;PendingFundTransfer&#x60;, &#x60;ManualCorrected&#x60;..</param>
+        /// <param name="transactionStatus">The status of the transaction. &gt;Permitted values: &#x60;PendingCredit&#x60;, &#x60;CreditFailed&#x60;, &#x60;CreditClosed&#x60;, &#x60;CreditSuspended&#x60;, &#x60;Credited&#x60;, &#x60;Converted&#x60;, &#x60;PendingDebit&#x60;, &#x60;DebitFailed&#x60;, &#x60;Debited&#x60;, &#x60;DebitReversedReceived&#x60;, &#x60;DebitedReversed&#x60;, &#x60;ChargebackReceived&#x60;, &#x60;Chargeback&#x60;, &#x60;ChargebackReversedReceived&#x60;, &#x60;ChargebackReversed&#x60;, &#x60;Payout&#x60;, &#x60;PayoutReversed&#x60;, &#x60;FundTransfer&#x60;, &#x60;PendingFundTransfer&#x60;, &#x60;ManualCorrected&#x60;..</param>
         /// <param name="transferCode">The transfer code of the transaction..</param>
-        public Transaction(Amount amount = default(Amount), BankAccountDetail bankAccountDetail = default(BankAccountDetail), string captureMerchantReference = default(string), string capturePspReference = default(string), DateTime? creationDate = default(DateTime?), string description = default(string), string destinationAccountCode = default(string), string disputePspReference = default(string), string disputeReasonCode = default(string), string merchantReference = default(string), string paymentPspReference = default(string), string payoutPspReference = default(string), string pspReference = default(string), string sourceAccountCode = default(string), TransactionStatusEnum? transactionStatus = default(TransactionStatusEnum?), string transferCode = default(string))
+        public Transaction(Amount amount = default(Amount), string balanceAccountId = default(string), BankAccountDetail bankAccountDetail = default(BankAccountDetail), string captureMerchantReference = default(string), string capturePspReference = default(string), DateTime creationDate = default(DateTime), string description = default(string), string destinationAccountCode = default(string), string disputePspReference = default(string), string disputeReasonCode = default(string), string merchantReference = default(string), string paymentPspReference = default(string), string payoutPspReference = default(string), string pspReference = default(string), string sourceAccountCode = default(string), TransactionStatusEnum? transactionStatus = default(TransactionStatusEnum?), string transferCode = default(string))
         {
             this.Amount = amount;
+            this.BalanceAccountId = balanceAccountId;
             this.BankAccountDetail = bankAccountDetail;
             this.CaptureMerchantReference = captureMerchantReference;
             this.CapturePspReference = capturePspReference;
@@ -219,6 +344,13 @@ namespace Adyen.Model.MarketPay
         /// </summary>
         [DataMember(Name = "amount", EmitDefaultValue = false)]
         public Amount Amount { get; set; }
+
+        /// <summary>
+        /// The balance platform account ID of the balance platform to which payout was made
+        /// </summary>
+        /// <value>The balance platform account ID of the balance platform to which payout was made</value>
+        [DataMember(Name = "balanceAccountId", EmitDefaultValue = false)]
+        public string BalanceAccountId { get; set; }
 
         /// <summary>
         /// Gets or Sets BankAccountDetail
@@ -245,7 +377,7 @@ namespace Adyen.Model.MarketPay
         /// </summary>
         /// <value>The date on which the transaction was performed.</value>
         [DataMember(Name = "creationDate", EmitDefaultValue = false)]
-        public DateTime? CreationDate { get; set; }
+        public DateTime CreationDate { get; set; }
 
         /// <summary>
         /// A description of the transaction.
@@ -310,7 +442,6 @@ namespace Adyen.Model.MarketPay
         [DataMember(Name = "sourceAccountCode", EmitDefaultValue = false)]
         public string SourceAccountCode { get; set; }
 
-
         /// <summary>
         /// The transfer code of the transaction.
         /// </summary>
@@ -327,6 +458,7 @@ namespace Adyen.Model.MarketPay
             var sb = new StringBuilder();
             sb.Append("class Transaction {\n");
             sb.Append("  Amount: ").Append(Amount).Append("\n");
+            sb.Append("  BalanceAccountId: ").Append(BalanceAccountId).Append("\n");
             sb.Append("  BankAccountDetail: ").Append(BankAccountDetail).Append("\n");
             sb.Append("  CaptureMerchantReference: ").Append(CaptureMerchantReference).Append("\n");
             sb.Append("  CapturePspReference: ").Append(CapturePspReference).Append("\n");
@@ -352,7 +484,7 @@ namespace Adyen.Model.MarketPay
         /// <returns>JSON string presentation of the object</returns>
         public virtual string ToJson()
         {
-            return JsonConvert.SerializeObject(this, Formatting.Indented);
+            return Newtonsoft.Json.JsonConvert.SerializeObject(this, Newtonsoft.Json.Formatting.Indented);
         }
 
         /// <summary>
@@ -380,6 +512,11 @@ namespace Adyen.Model.MarketPay
                     this.Amount == input.Amount ||
                     (this.Amount != null &&
                     this.Amount.Equals(input.Amount))
+                ) &&
+                (
+                    this.BalanceAccountId == input.BalanceAccountId ||
+                    (this.BalanceAccountId != null &&
+                    this.BalanceAccountId.Equals(input.BalanceAccountId))
                 ) &&
                 (
                     this.BankAccountDetail == input.BankAccountDetail ||
@@ -448,8 +585,7 @@ namespace Adyen.Model.MarketPay
                 ) &&
                 (
                     this.TransactionStatus == input.TransactionStatus ||
-                    (this.TransactionStatus != null &&
-                    this.TransactionStatus.Equals(input.TransactionStatus))
+                    this.TransactionStatus.Equals(input.TransactionStatus)
                 ) &&
                 (
                     this.TransferCode == input.TransferCode ||
@@ -469,6 +605,8 @@ namespace Adyen.Model.MarketPay
                 int hashCode = 41;
                 if (this.Amount != null)
                     hashCode = hashCode * 59 + this.Amount.GetHashCode();
+                if (this.BalanceAccountId != null)
+                    hashCode = hashCode * 59 + this.BalanceAccountId.GetHashCode();
                 if (this.BankAccountDetail != null)
                     hashCode = hashCode * 59 + this.BankAccountDetail.GetHashCode();
                 if (this.CaptureMerchantReference != null)
@@ -495,8 +633,7 @@ namespace Adyen.Model.MarketPay
                     hashCode = hashCode * 59 + this.PspReference.GetHashCode();
                 if (this.SourceAccountCode != null)
                     hashCode = hashCode * 59 + this.SourceAccountCode.GetHashCode();
-                if (this.TransactionStatus != null)
-                    hashCode = hashCode * 59 + this.TransactionStatus.GetHashCode();
+                hashCode = hashCode * 59 + this.TransactionStatus.GetHashCode();
                 if (this.TransferCode != null)
                     hashCode = hashCode * 59 + this.TransferCode.GetHashCode();
                 return hashCode;
@@ -508,9 +645,10 @@ namespace Adyen.Model.MarketPay
         /// </summary>
         /// <param name="validationContext">Validation context</param>
         /// <returns>Validation Result</returns>
-        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+        public IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> Validate(ValidationContext validationContext)
         {
             yield break;
         }
     }
+
 }
