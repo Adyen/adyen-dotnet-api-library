@@ -135,13 +135,14 @@ namespace Adyen.Model.Checkout
         /// <param name="preOrderDate">For pre-order purchases, the expected date this product will be available to the shopper..</param>
         /// <param name="preOrderPurchase">Indicator for whether this transaction is for pre-ordering a product..</param>
         /// <param name="reorderItems">Indicator for whether the shopper has already purchased the same items in the past..</param>
+        /// <param name="shipIndicator">Indicates shipping method chosen for the transaction.</param>
         public MerchantRiskIndicator(bool? addressMatch = default(bool?),
             DeliveryAddressIndicatorEnum? deliveryAddressIndicator = default(DeliveryAddressIndicatorEnum?),
             string deliveryEmail = default(string),
             DeliveryTimeframeEnum? deliveryTimeframe = default(DeliveryTimeframeEnum?),
             Amount giftCardAmount = default(Amount), int? giftCardCount = default(int?),
             DateTime? preOrderDate = default(DateTime?), bool? preOrderPurchase = default(bool?),
-            bool? reorderItems = default(bool?))
+            bool? reorderItems = default(bool?), string shipIndicator = default(string))
         {
             this.AddressMatch = addressMatch;
             this.DeliveryAddressIndicator = deliveryAddressIndicator;
@@ -152,6 +153,7 @@ namespace Adyen.Model.Checkout
             this.PreOrderDate = preOrderDate;
             this.PreOrderPurchase = preOrderPurchase;
             this.ReorderItems = reorderItems;
+            this.ShipIndicator = shipIndicator;
         }
 
         /// <summary>
@@ -205,6 +207,13 @@ namespace Adyen.Model.Checkout
         public bool? ReorderItems { get; set; }
 
         /// <summary>
+        /// Indicates shipping method chosen for the transaction.
+        /// </summary>
+        /// <value>Indicates shipping method chosen for the transaction.</value>
+        [DataMember(Name = "shipIndicator", EmitDefaultValue = false)]
+        public string ShipIndicator { get; set; }
+
+        /// <summary>
         /// Returns the string presentation of the object
         /// </summary>
         /// <returns>String presentation of the object</returns>
@@ -221,6 +230,7 @@ namespace Adyen.Model.Checkout
             sb.Append("  PreOrderDate: ").Append(PreOrderDate).Append("\n");
             sb.Append("  PreOrderPurchase: ").Append(PreOrderPurchase).Append("\n");
             sb.Append("  ReorderItems: ").Append(ReorderItems).Append("\n");
+            sb.Append("  ShipIndicator: ").Append(ShipIndicator).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -299,6 +309,11 @@ namespace Adyen.Model.Checkout
                     this.ReorderItems == input.ReorderItems ||
                     this.ReorderItems != null &&
                     this.ReorderItems.Equals(input.ReorderItems)
+                ) &&
+                (
+                    this.ShipIndicator == input.ShipIndicator ||
+                    this.ShipIndicator != null &&
+                    this.ShipIndicator.Equals(input.ShipIndicator)
                 );
         }
 
@@ -329,6 +344,8 @@ namespace Adyen.Model.Checkout
                     hashCode = hashCode * 59 + this.PreOrderPurchase.GetHashCode();
                 if (this.ReorderItems != null)
                     hashCode = hashCode * 59 + this.ReorderItems.GetHashCode();
+                if (this.ShipIndicator != null)
+                    hashCode = hashCode * 59 + this.ShipIndicator.GetHashCode();
                 return hashCode;
             }
         }
