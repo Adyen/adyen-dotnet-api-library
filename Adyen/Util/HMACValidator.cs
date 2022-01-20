@@ -24,6 +24,7 @@
 using Adyen.Model.Notification;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Security.Cryptography;
 using System.Text;
@@ -125,8 +126,17 @@ namespace Adyen.Util
 
         public bool IsValidHmac(NotificationRequestItem notificationRequestItem, string key)
         {
-            string expectedSign = CalculateHmac(notificationRequestItem, key);
-            string merchantSign = notificationRequestItem.AdditionalData[Constants.AdditionalData.HmacSignature];
+            if (notificationRequestItem.AdditionalData == null)
+            {
+                return false;
+            }
+
+            if (!notificationRequestItem.AdditionalData.ContainsKey(Constants.AdditionalData.HmacSignature))
+            {
+                return false;
+            }
+            var expectedSign = CalculateHmac(notificationRequestItem, key);
+            var merchantSign = notificationRequestItem.AdditionalData[Constants.AdditionalData.HmacSignature];
             return string.Equals(expectedSign, merchantSign);
         }
 

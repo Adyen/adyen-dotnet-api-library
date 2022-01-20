@@ -73,7 +73,7 @@ namespace Adyen.Test
         [TestMethod]
         public void TestNotificationRequestItemHmac()
         {
-            string key = "DFB1EB5485895CFA84146406857104ABB4CBCABDC8AAF103A624C8F6A3EAAB00";
+            var key = "DFB1EB5485895CFA84146406857104ABB4CBCABDC8AAF103A624C8F6A3EAAB00";
             var expectedSign = "ipnxGCaUZ4l8TUW75a71/ghd2Fe5ffvX0pV4TLTntIc=";
             var additionalData = new Dictionary<string, string>
             {
@@ -95,7 +95,6 @@ namespace Adyen.Test
             Assert.AreEqual("pspReference:originalReference:merchantAccount:reference:1000:EUR:EVENT:true", data);
             var encrypted = hmacValidator.CalculateHmac(notificationRequestItem, key);
             Assert.AreEqual(expectedSign, encrypted);
-            notificationRequestItem.AdditionalData[Constants.AdditionalData.HmacSignature] = expectedSign;
             Assert.IsTrue(hmacValidator.IsValidHmac(notificationRequestItem, key));
             notificationRequestItem.AdditionalData[Constants.AdditionalData.HmacSignature] = "notValidSign";
             Assert.IsFalse(hmacValidator.IsValidHmac(notificationRequestItem, key));
@@ -120,6 +119,28 @@ namespace Adyen.Test
             var paymentRequest = MockPaymentData.CreateFullPaymentRequestWithShopperInteraction(Model.Enum.ShopperInteraction.Moto);
             var serializedPaymentRequest = JsonOperation.SerializeRequest(paymentRequest);
             StringAssert.Contains(serializedPaymentRequest, nameof(Model.Enum.ShopperInteraction.Moto));
+        }
+
+        [TestMethod]
+        public void TestNullHmacValidator()
+        {
+            var hmacValidator = new HmacValidator();
+            var notificationRequestItem = new NotificationRequestItem
+            {
+                PspReference = "pspReference",
+                OriginalReference = "originalReference",
+                MerchantAccountCode = "merchantAccount",
+                MerchantReference = "reference",
+                Amount = new Model.Amount("EUR", 1000),
+                EventCode = "EVENT",
+                Success = true,
+                AdditionalData = null
+            };
+            var isValidHmacAdditionalDataNull = hmacValidator.IsValidHmac(notificationRequestItem, "key");
+            Assert.IsFalse(isValidHmacAdditionalDataNull);
+            notificationRequestItem.AdditionalData = new Dictionary<string, string>();
+            var isValidHmacAdditionalDataEmpty = hmacValidator.IsValidHmac(notificationRequestItem, "key");
+            Assert.IsFalse(isValidHmacAdditionalDataEmpty);
         }
     }
 }
