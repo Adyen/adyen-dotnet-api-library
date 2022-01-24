@@ -7,5 +7,6 @@
   "reference": "TestReference",
   "returnUrl": "http://test-url.com",
   "expiresAt": "2021-09-30T06:45:06Z",
-  "merchantAccount": "TestMerchant"
+  "merchantAccount": "TestMerchant",
+  "store": "My Store"
 }
