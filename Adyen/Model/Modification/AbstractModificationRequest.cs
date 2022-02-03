@@ -44,7 +44,7 @@ namespace Adyen.Model.Modification
         public string MerchantAccount { get; set; }
 
         [DataMember(Name = "additionalData", EmitDefaultValue = false)]
-        public string AdditionalData { get; set; }
+        public Dictionary<string, string> AdditionalData { get; set; }
 
         [DataMember(Name = "applicationInfo", EmitDefaultValue = false)]
 
