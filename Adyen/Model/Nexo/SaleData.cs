@@ -53,9 +53,7 @@ namespace Adyen.Model.Nexo
 
         /// <remarks/>
         [System.Xml.Serialization.XmlElementAttribute(Form = System.Xml.Schema.XmlSchemaForm.Unqualified)]
-        [JsonConverter(typeof(JsonBase64Converter))]
-
-        public SaleToAcquirerData SaleToAcquirerData;
+        public string SaleToAcquirerData;
 
         /// <remarks/>
         [System.Xml.Serialization.XmlElementAttribute(Form = System.Xml.Schema.XmlSchemaForm.Unqualified)]
@@ -92,13 +90,5 @@ namespace Adyen.Model.Nexo
         /// <remarks/>
         [System.Xml.Serialization.XmlAttributeAttribute()]
         public CustomerOrderReqType[] CustomerOrderReq;
-
-        public SaleData()
-        {
-            if (SaleToAcquirerData == null)
-            {
-                SaleToAcquirerData = new SaleToAcquirerData();
-            }
-        }
     }
 }
