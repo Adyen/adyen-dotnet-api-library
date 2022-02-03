@@ -41,6 +41,7 @@ namespace Adyen.Test
             var captureRequest = base.CreateCaptureTestRequest(paymentResultPspReference);
             var captureResult = modification.Capture(captureRequest);
             Assert.AreEqual(captureResult.Response, Adyen.Model.Enum.ResponseEnum.CaptureReceived);
+            Assert.AreEqual(captureRequest.AdditionalData["authorisationType"],"PreAuth");
         }
         
         [TestMethod]
