@@ -81,7 +81,8 @@ namespace Adyen.Test
                 MerchantAccount = "MerchantAccount",
                 ModificationAmount = new Amount("EUR", 150),
                 Reference = "capture - " + DateTime.Now.ToString("yyyyMMdd"),
-                OriginalReference = pspReference
+                OriginalReference = pspReference,
+                AdditionalData = new Dictionary<string, string> {{"authorisationType", "PreAuth"}}
             };
             return captureRequest;
         }
