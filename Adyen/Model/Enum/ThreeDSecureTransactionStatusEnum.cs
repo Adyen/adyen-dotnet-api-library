@@ -5,7 +5,7 @@ using System.Runtime.Serialization;
 namespace Adyen.Model.Enum
 {
     /// <summary>
-    /// tranStatus codes as defined in the EMVCo specification for 2.1.0 (page 197) and 2.2.0 (page 216)
+    /// transStatus codes as defined in the EMVCo specification for 2.1.0 (page 197) and 2.2.0 (page 216)
     /// https://www.emvco.com/emv-technologies/3d-secure/
     /// </summary>
     [JsonConverter(typeof(StringEnumConverter))]
