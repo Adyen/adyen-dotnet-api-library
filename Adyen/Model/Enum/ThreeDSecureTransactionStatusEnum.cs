@@ -57,6 +57,11 @@ namespace Adyen.Model.Enum
         /// Authentication Verification Successful.
         /// 2.1.0, 2.2.0
         /// </summary>
-        [EnumMember(Value = "Y")] Y = 8
+        [EnumMember(Value = "Y")] Y = 8,
+
+        /// <summary>
+        /// Adyen internal only! Error
+        /// </summary>
+        [EnumMember(Value = "E")] E
     }
 }
