@@ -58,7 +58,13 @@ namespace Adyen.Model
         /// <param name="CavvAlgorithm">The CAVV algorithm used..</param>
         /// <param name="DirectoryResponse">The enrollment response from the 3D directory server..</param>
         /// <param name="Eci">The electronic commerce indicator..</param>
-        public AuthoriseMpiData(byte[] Cavv = default(byte[]), ThreeDSecureTransactionStatusEnum? AuthenticationResponse = default(ThreeDSecureTransactionStatusEnum?), byte[] Xid = default(byte[]), string CavvAlgorithm = default(string), ThreeDSecureTransactionStatusEnum? DirectoryResponse = default(ThreeDSecureTransactionStatusEnum?), string Eci = default(string))
+        public AuthoriseMpiData(
+            byte[] Cavv = default(byte[]), 
+            ThreeDSecureTransactionStatusEnum? AuthenticationResponse = default(ThreeDSecureTransactionStatusEnum?), 
+            byte[] Xid = default(byte[]), 
+            string CavvAlgorithm = default(string), 
+            ThreeDSecureTransactionStatusEnum? DirectoryResponse = default(ThreeDSecureTransactionStatusEnum?), 
+            string Eci = default(string))
         {
             this.Cavv = Cavv;
             this.AuthenticationResponse = AuthenticationResponse;
