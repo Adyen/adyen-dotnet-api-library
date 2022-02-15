@@ -42,13 +42,13 @@ namespace Adyen.Model
         /// </summary>
         /// <value>The authentication response if the shopper was redirected.</value>
         [DataMember(Name="authenticationResponse", EmitDefaultValue=false)]
-        public AuthenticationResponseEnum? AuthenticationResponse { get; set; }
+        public ThreeDSecureTransactionStatusEnum? AuthenticationResponse { get; set; }
         /// <summary>
         /// The enrollment response from the 3D directory server.
         /// </summary>
         /// <value>The enrollment response from the 3D directory server.</value>
         [DataMember(Name="directoryResponse", EmitDefaultValue=false)]
-        public DirectoryResponseEnum? DirectoryResponse { get; set; }
+        public ThreeDSecureTransactionStatusEnum? DirectoryResponse { get; set; }
         /// <summary>
         /// Initializes a new instance of the <see cref="AuthoriseMpiData" /> class.
         /// </summary>
@@ -58,7 +58,7 @@ namespace Adyen.Model
         /// <param name="CavvAlgorithm">The CAVV algorithm used..</param>
         /// <param name="DirectoryResponse">The enrollment response from the 3D directory server..</param>
         /// <param name="Eci">The electronic commerce indicator..</param>
-        public AuthoriseMpiData(byte[] Cavv = default(byte[]), AuthenticationResponseEnum? AuthenticationResponse = default(AuthenticationResponseEnum?), byte[] Xid = default(byte[]), string CavvAlgorithm = default(string), DirectoryResponseEnum? DirectoryResponse = default(DirectoryResponseEnum?), string Eci = default(string))
+        public AuthoriseMpiData(byte[] Cavv = default(byte[]), ThreeDSecureTransactionStatusEnum? AuthenticationResponse = default(ThreeDSecureTransactionStatusEnum?), byte[] Xid = default(byte[]), string CavvAlgorithm = default(string), ThreeDSecureTransactionStatusEnum? DirectoryResponse = default(ThreeDSecureTransactionStatusEnum?), string Eci = default(string))
         {
             this.Cavv = Cavv;
             this.AuthenticationResponse = AuthenticationResponse;
