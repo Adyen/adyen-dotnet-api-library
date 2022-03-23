@@ -1,4 +1,5 @@
 #region License
+
 // /*
 //  *                       ######
 //  *                       ######
@@ -19,6 +20,7 @@
 //  * This file is open source and available under the MIT license.
 //  * See the LICENSE file for more info.
 //  */
+
 #endregion
 
 using Adyen.Model.Enum;
@@ -29,6 +31,8 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Runtime.Serialization;
 using System.Text;
+using Adyen.Util;
+using Newtonsoft.Json.Converters;
 
 namespace Adyen.Model.Modification
 {
@@ -36,14 +40,84 @@ namespace Adyen.Model.Modification
     /// ModificationResult
     /// </summary>
     [DataContract]
-    public class ModificationResult :  IEquatable<ModificationResult>, IValidatableObject
+    public partial class ModificationResult : IEquatable<ModificationResult>, IValidatableObject
     {
         /// <summary>
         /// Indicates if the modification request has been received for processing.
         /// </summary>
         /// <value>Indicates if the modification request has been received for processing.</value>
+        [JsonConverter(typeof(StringEnumConverter))]
+        public enum ResponseEnum
+        {
+            /// <summary>
+            /// Enum CaptureReceived for value: [capture-received]
+            /// </summary>
+            [EnumMember(Value = "[capture-received]")]
+            CaptureReceived = 1,
+
+            /// <summary>
+            /// Enum CancelReceived for value: [cancel-received]
+            /// </summary>
+            [EnumMember(Value = "[cancel-received]")]
+            CancelReceived = 2,
+
+            /// <summary>
+            /// Enum RefundReceived for value: [refund-received]
+            /// </summary>
+            [EnumMember(Value = "[refund-received]")]
+            RefundReceived = 3,
+
+            /// <summary>
+            /// Enum CancelOrRefundReceived for value: [cancelOrRefund-received]
+            /// </summary>
+            [EnumMember(Value = "[cancelOrRefund-received]")]
+            CancelOrRefundReceived = 4,
+
+            /// <summary>
+            /// Enum AdjustAuthorisationReceived for value: [adjustAuthorisation-received]
+            /// </summary>
+            [EnumMember(Value = "[adjustAuthorisation-received]")]
+            AdjustAuthorisationReceived = 5,
+
+            /// <summary>
+            /// Enum DonationReceived for value: [donation-received]
+            /// </summary>
+            [EnumMember(Value = "[donation-received]")]
+            DonationReceived = 6,
+
+            /// <summary>
+            /// Enum TechnicalCancelReceived for value: [technical-cancel-received]
+            /// </summary>
+            [EnumMember(Value = "[technical-cancel-received]")]
+            TechnicalCancelReceived = 7,
+
+            /// <summary>
+            /// Enum VoidPendingRefundReceived for value: [voidPendingRefund-received]
+            /// </summary>
+            [EnumMember(Value = "[voidPendingRefund-received]")]
+            VoidPendingRefundReceived = 8
+        }
+
+        /// <summary>
+        /// Indicates if the modification request has been received for processing.
+        /// </summary>
+        /// <value>Indicates if the modification request has been received for processing.</value>
         [DataMember(Name = "response", EmitDefaultValue = false)]
-        public ResponseEnum? Response { get; set; }
+        public ResponseEnum Response { get; set; }
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="ModificationResult" /> class.
+        /// </summary>
+        /// <param name="additionalData">This field contains additional data, which may be returned in a particular modification response..</param>
+        /// <param name="pspReference">Adyen&#x27;s 16-character string reference associated with the transaction/request. This value is globally unique; quote it when communicating with us about this request. (required).</param>
+        /// <param name="response">Indicates if the modification request has been received for processing. (required).</param>
+        public ModificationResult(Dictionary<string, string> additionalData = default(Dictionary<string, string>),
+            string pspReference = default(string), ResponseEnum response = default(ResponseEnum))
+        {
+            this.PspReference = pspReference;
+            this.Response = response;
+            this.AdditionalData = additionalData;
+        }
 
         /// <summary>
         /// This field contains additional data, which may be returned in a particular modification response.
@@ -53,54 +127,13 @@ namespace Adyen.Model.Modification
         public Dictionary<string, string> AdditionalData { get; set; }
 
         /// <summary>
-        /// Adyen&#39;s 16-digit unique reference associated with the transaction/the request. This value is globally unique; quote it when communicating with us about this request.
+        /// Adyen&#x27;s 16-character string reference associated with the transaction/request. This value is globally unique; quote it when communicating with us about this request.
         /// </summary>
-        /// <value>Adyen&#39;s 16-digit unique reference associated with the transaction/the request. This value is globally unique; quote it when communicating with us about this request.</value>
+        /// <value>Adyen&#x27;s 16-character string reference associated with the transaction/request. This value is globally unique; quote it when communicating with us about this request.</value>
         [DataMember(Name = "pspReference", EmitDefaultValue = false)]
         public string PspReference { get; set; }
 
 
-        /// <summary>
-        /// Adyen&#39;s 16-digit unique reference associated with the transaction/the request. This value is globally unique; quote it when communicating with us about this request.
-        /// </summary>
-        /// <value>Adyen&#39;s 16-digit unique reference associated with the transaction/the request. This value is globally unique; quote it when communicating with us about this request.</value>
-        [DataMember(Name = "status", EmitDefaultValue = false)]
-        public string Status { get; set; }
-
-        /// <summary>
-        /// Adyen&#39;s 16-digit unique reference associated with the transaction/the request. This value is globally unique; quote it when communicating with us about this request.
-        /// </summary>
-        /// <value>Adyen&#39;s 16-digit unique reference associated with the transaction/the request. This value is globally unique; quote it when communicating with us about this request.</value>
-        [DataMember(Name = "errorCode", EmitDefaultValue = false)]
-        public string ErrorCode { get; set; }
-
-        /// <summary>
-        /// Adyen&#39;s 16-digit unique reference associated with the transaction/the request. This value is globally unique; quote it when communicating with us about this request.
-        /// </summary>
-        /// <value>Adyen&#39;s 16-digit unique reference associated with the transaction/the request. This value is globally unique; quote it when communicating with us about this request.</value>
-        [DataMember(Name = "errorType", EmitDefaultValue = false)]
-        public string ErrorType { get; set; }
-
-        /// <summary>
-        /// Adyen&#39;s 16-digit unique reference associated with the transaction/the request. This value is globally unique; quote it when communicating with us about this request.
-        /// </summary>
-        /// <value>Adyen&#39;s 16-digit unique reference associated with the transaction/the request. This value is globally unique; quote it when communicating with us about this request.</value>
-        [DataMember(Name = "message", EmitDefaultValue = false)]
-        public string Message { get; set; }
-
-        /// <summary>
-        /// Initializes a new instance of the <see cref="ModificationResult" /> class.
-        /// </summary>
-        /// <param name="Response">Indicates if the modification request has been received for processing..</param>
-        /// <param name="AdditionalData">This field contains additional data, which may be returned in a particular modification response..</param>
-        /// <param name="PspReference">Adyen&#39;s 16-digit unique reference associated with the transaction/the request. This value is globally unique; quote it when communicating with us about this request..</param>
-        public ModificationResult(ResponseEnum? Response = default(ResponseEnum?), Dictionary<string, string> AdditionalData = default(Dictionary<string, string>), string PspReference = default(string))
-        {
-            this.Response = Response;
-            this.AdditionalData = AdditionalData;
-            this.PspReference = PspReference;
-        }
-        
         /// <summary>
         /// Returns the string presentation of the object
         /// </summary>
@@ -109,18 +142,18 @@ namespace Adyen.Model.Modification
         {
             var sb = new StringBuilder();
             sb.Append("class ModificationResult {\n");
-            sb.Append("  Response: ").Append(Response).Append("\n");
-            sb.Append("  AdditionalData: ").Append(AdditionalData).Append("\n");
+            sb.Append("  AdditionalData: ").Append(AdditionalData.ToCollectionsString()).Append("\n");
             sb.Append("  PspReference: ").Append(PspReference).Append("\n");
+            sb.Append("  Response: ").Append(Response).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
-  
+
         /// <summary>
         /// Returns the JSON string presentation of the object
         /// </summary>
         /// <returns>JSON string presentation of the object</returns>
-        public string ToJson()
+        public virtual string ToJson()
         {
             return JsonConvert.SerializeObject(this, Formatting.Indented);
         }
@@ -128,38 +161,39 @@ namespace Adyen.Model.Modification
         /// <summary>
         /// Returns true if objects are equal
         /// </summary>
-        /// <param name="obj">Object to be compared</param>
+        /// <param name="input">Object to be compared</param>
         /// <returns>Boolean</returns>
-        public override bool Equals(object obj)
+        public override bool Equals(object input)
         {
-            return this.Equals(obj as ModificationResult);
+            return this.Equals(input as ModificationResult);
         }
 
         /// <summary>
         /// Returns true if ModificationResult instances are equal
         /// </summary>
-        /// <param name="other">Instance of ModificationResult to be compared</param>
+        /// <param name="input">Instance of ModificationResult to be compared</param>
         /// <returns>Boolean</returns>
-        public bool Equals(ModificationResult other)
+        public bool Equals(ModificationResult input)
         {
-            if (other == null)
+            if (input == null)
                 return false;
 
-            return 
+            return
                 (
-                    this.Response == other.Response ||
-                    this.Response != null &&
-                    this.Response.Equals(other.Response)
-                ) && 
-                (
-                    this.AdditionalData == other.AdditionalData ||
+                    this.AdditionalData == input.AdditionalData ||
                     this.AdditionalData != null &&
-                    this.AdditionalData.SequenceEqual(other.AdditionalData)
-                ) && 
+                    input.AdditionalData != null &&
+                    this.AdditionalData.SequenceEqual(input.AdditionalData)
+                ) &&
                 (
-                    this.PspReference == other.PspReference ||
-                    this.PspReference != null &&
-                    this.PspReference.Equals(other.PspReference)
+                    this.PspReference == input.PspReference ||
+                    (this.PspReference != null &&
+                     this.PspReference.Equals(input.PspReference))
+                ) &&
+                (
+                    this.Response == input.Response ||
+                    (this.Response != null &&
+                     this.Response.Equals(input.Response))
                 );
         }
 
@@ -171,15 +205,14 @@ namespace Adyen.Model.Modification
         {
             unchecked // Overflow is fine, just wrap
             {
-                int hash = 41;
-                // Suitable nullity checks etc, of course :)
-                if (this.Response != null)
-                    hash = hash * 59 + this.Response.GetHashCode();
+                int hashCode = 41;
                 if (this.AdditionalData != null)
-                    hash = hash * 59 + this.AdditionalData.GetHashCode();
+                    hashCode = hashCode * 59 + this.AdditionalData.GetHashCode();
                 if (this.PspReference != null)
-                    hash = hash * 59 + this.PspReference.GetHashCode();
-                return hash;
+                    hashCode = hashCode * 59 + this.PspReference.GetHashCode();
+                if (this.Response != null)
+                    hashCode = hashCode * 59 + this.Response.GetHashCode();
+                return hashCode;
             }
         }
 
@@ -188,10 +221,10 @@ namespace Adyen.Model.Modification
         /// </summary>
         /// <param name="validationContext">Validation context</param>
         /// <returns>Validation Result</returns>
-        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(
+            ValidationContext validationContext)
         {
             yield break;
         }
     }
-
 }
