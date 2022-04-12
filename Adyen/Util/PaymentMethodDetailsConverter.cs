@@ -174,6 +174,9 @@ namespace Adyen.Util
                 case WeChatPayMiniProgramDetails.WechatpayMiniProgram:
                     paymentMethodDetails = new WeChatPayMiniProgramDetails();
                     break;
+                case GiftCardDetails.GiftCard:
+                    paymentMethodDetails = new GiftCardDetails();
+                    break;
                 default:
                     paymentMethodDetails = new DefaultPaymentMethodDetails();
                     break;
