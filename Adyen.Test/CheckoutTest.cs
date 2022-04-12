@@ -727,19 +727,22 @@ namespace Adyen.Test
         {
             var checkoutSessionRequest = new CreateCheckoutSessionRequest
             {
-                merchantAccount = "TestMerchant",
-                reference = "TestReference",
-                returnUrl = "http://test-url.com",
-                amount = new Amount("EUR", 10000L)
+                MerchantAccount = "TestMerchant",
+                Reference = "TestReference",
+                ReturnUrl = "http://test-url.com",
+                Amount = new Amount("EUR", 10000L),
+                Store = "My Store"
             };
             var client = CreateMockTestClientApiKeyBasedRequest("Mocks/checkout/sessions-success.json");
             var checkout = new Checkout(client);
             var checkoutSessionResponse = checkout.Sessions(checkoutSessionRequest);
-            Assert.AreEqual("TestMerchant", checkoutSessionResponse.merchantAccount);
-            Assert.AreEqual("TestReference", checkoutSessionResponse.reference);
-            Assert.AreEqual("http://test-url.com", checkoutSessionResponse.returnUrl);
-            Assert.AreEqual("EUR", checkoutSessionResponse.amount.Currency);
-            Assert.AreEqual("1000", checkoutSessionResponse.amount.Value.ToString());
+            Assert.AreEqual("TestMerchant", checkoutSessionResponse.MerchantAccount);
+            Assert.AreEqual("TestReference", checkoutSessionResponse.Reference);
+            Assert.AreEqual("http://test-url.com", checkoutSessionResponse.ReturnUrl);
+            Assert.AreEqual("EUR", checkoutSessionResponse.Amount.Currency);
+            Assert.AreEqual("1000", checkoutSessionResponse.Amount.Value.ToString());
+            Assert.AreEqual("My Store", checkoutSessionResponse.Store);
+
         }
 
         /// <summary>

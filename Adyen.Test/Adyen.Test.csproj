@@ -5,9 +5,9 @@
 
     <IsPackable>false</IsPackable>
 
-    <AssemblyVersion>8.1.0</AssemblyVersion>
+    <AssemblyVersion>8.2.0</AssemblyVersion>
 
-    <FileVersion>8.1.0</FileVersion>
+    <FileVersion>8.2.0</FileVersion>
 
     <Version>8.1.0</Version>
 
@@ -33,12 +33,12 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="16.11.0" />
+    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.1.0" />
 
-    <PackageReference Include="Moq" Version="4.16.1" />
-    <PackageReference Include="MSTest.TestAdapter" Version="2.2.8" />
+    <PackageReference Include="Moq" Version="4.17.2" />
+    <PackageReference Include="MSTest.TestAdapter" Version="2.2.9" />
 
-    <PackageReference Include="MSTest.TestFramework" Version="2.2.8" />
+    <PackageReference Include="MSTest.TestFramework" Version="2.2.9" />
   </ItemGroup>
 
   <ItemGroup>
