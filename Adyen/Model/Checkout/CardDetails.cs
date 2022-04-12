@@ -31,7 +31,7 @@ using Newtonsoft.Json.Converters;
 
 namespace Adyen.Model.Checkout
 {
-     /// <summary>
+    /// <summary>
     /// CardDetails
     /// </summary>
     [DataContract]
