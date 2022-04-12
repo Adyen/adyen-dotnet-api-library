@@ -1,0 +1,13 @@
+﻿<wpf:ResourceDictionary xml:space="preserve" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:s="clr-namespace:System;assembly=mscorlib" xmlns:ss="urn:shemas-jetbrains-com:settings-storage-xaml" xmlns:wpf="http://schemas.microsoft.com/winfx/2006/xaml/presentation">
+	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=2b57c5b1_002D591e_002D4333_002Db0c0_002D5a8a84d2e137/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" IsActive="True" Name="SaleToPoiRequestSaleDataTest" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;
+  &lt;Project Location="/Users/alexandros/Documents/gitrepositories/adyen-dotnet-api-library/Adyen.Test" Presentation="&amp;lt;Adyen.Test&amp;gt;" /&gt;
+&lt;/SessionState&gt;</s:String>
+	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=6a9dfb01_002D29e1_002D4d10_002Db918_002De6a90442ba0d/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" Name="SaleToPoiRequestSaleDataTest #2" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;
+  &lt;Project Location="/Users/alexandros/Documents/gitrepositories/adyen-dotnet-api-library/Adyen.Test" Presentation="&amp;lt;Adyen.Test&amp;gt;" /&gt;
+&lt;/SessionState&gt;</s:String>
+	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=c302061d_002Dc9e9_002D46a0_002D90be_002Dc0b54108d65a/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" Name="SaleToAcquirerDataTest" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;
+  &lt;Solution /&gt;
+&lt;/SessionState&gt;</s:String>
+	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=f12e2c88_002D4e30_002D441a_002D9c83_002D9922bdfd1880/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" Name="TestNullHmacValidator" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;
+  &lt;Project Location="/Users/alexandros/Documents/gitrepositories/adyen-dotnet-api-library/Adyen.Test" Presentation="&amp;lt;Adyen.Test&amp;gt;" /&gt;
+&lt;/SessionState&gt;</s:String></wpf:ResourceDictionary>
