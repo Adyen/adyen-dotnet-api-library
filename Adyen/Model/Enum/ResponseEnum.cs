@@ -1,4 +1,5 @@
 ﻿#region License
+
 // /*
 //  *                       ######
 //  *                       ######
@@ -19,6 +20,7 @@
 //  * This file is open source and available under the MIT license.
 //  * See the LICENSE file for more info.
 //  */
+
 #endregion
 
 using System.Runtime.Serialization;
@@ -35,38 +37,51 @@ namespace Adyen.Model.Enum
     public enum ResponseEnum
     {
         /// <summary>
-        /// Enum CaptureReceived for "[capture-received]"
+        /// Enum CaptureReceived for value: [capture-received]
         /// </summary>
         [EnumMember(Value = "[capture-received]")]
-        CaptureReceived,
+        CaptureReceived = 1,
 
         /// <summary>
-        /// Enum CancelReceived for "[cancel-received]"
+        /// Enum CancelReceived for value: [cancel-received]
         /// </summary>
         [EnumMember(Value = "[cancel-received]")]
-        CancelReceived,
+        CancelReceived = 2,
 
         /// <summary>
-        /// Enum RefundReceived for "[refund-received]"
+        /// Enum RefundReceived for value: [refund-received]
         /// </summary>
         [EnumMember(Value = "[refund-received]")]
-        RefundReceived,
+        RefundReceived = 3,
 
         /// <summary>
-        /// Enum CancelOrRefundReceived for "[cancelOrRefund-received]"
+        /// Enum CancelOrRefundReceived for value: [cancelOrRefund-received]
         /// </summary>
         [EnumMember(Value = "[cancelOrRefund-received]")]
-        CancelOrRefundReceived,
+        CancelOrRefundReceived = 4,
 
         /// <summary>
-        /// Enum CancelOrRefundReceived for "[cancelOrRefund-received]"
+        /// Enum AdjustAuthorisationReceived for value: [adjustAuthorisation-received]
         /// </summary>
         [EnumMember(Value = "[adjustAuthorisation-received]")]
-        AdjustAuthorisationReceived,
+        AdjustAuthorisationReceived = 5,
+
         /// <summary>
-        /// Enum VoidPendingRefundReceived for "[voidPendingRefund-received]"
+        /// Enum DonationReceived for value: [donation-received]
+        /// </summary>
+        [EnumMember(Value = "[donation-received]")]
+        DonationReceived = 6,
+
+        /// <summary>
+        /// Enum TechnicalCancelReceived for value: [technical-cancel-received]
+        /// </summary>
+        [EnumMember(Value = "[technical-cancel-received]")]
+        TechnicalCancelReceived = 7,
+
+        /// <summary>
+        /// Enum VoidPendingRefundReceived for value: [voidPendingRefund-received]
         /// </summary>
         [EnumMember(Value = "[voidPendingRefund-received]")]
-        VoidPendingRefundReceived
+        VoidPendingRefundReceived = 8
     }
 }
