@@ -101,7 +101,7 @@ namespace Adyen.Model.Checkout
         /// <param name="shopperReference">A unique identifier for the shopper (for example, user ID or account ID)..</param>
         /// <param name="splits">Information on how the payment should be split between accounts when using [Adyen for Platforms](https://docs.adyen.com/platforms/processing-payments#providing-split-information)..</param>
         /// <param name="store">The physical store, for which this payment is processed..</param>
-        /// <param name="storePaymentMethod">When this is set to **true** and the &#x60;shopperReference&#x60; is provided, the payment details will be stored..</param>
+        /// <param name="storePaymentMethodMode">When this is set to **true** and the &#x60;shopperReference&#x60; is provided, the payment details will be stored..</param>
         public CreatePaymentLinkRequest(List<string> allowedPaymentMethods = default(List<string>),
             Amount amount = default(Amount), ApplicationInfo applicationInfo = default(ApplicationInfo),
             Address billingAddress = default(Address), List<string> blockedPaymentMethods = default(List<string>),
@@ -117,7 +117,7 @@ namespace Adyen.Model.Checkout
             RiskData riskData = default(RiskData), string shopperEmail = default(string),
             string shopperLocale = default(string), Name shopperName = default(Name),
             string shopperReference = default(string), List<Split> splits = default(List<Split>),
-            string store = default(string), bool? storePaymentMethod = default(bool?))
+            string store = default(string), StorePaymentMethodModeEnum? storePaymentMethodMode = default(StorePaymentMethodModeEnum?))
         {
             // to ensure "amount" is required (not null)
             if (amount == null)
@@ -172,7 +172,7 @@ namespace Adyen.Model.Checkout
             this.ShopperReference = shopperReference;
             this.Splits = splits;
             this.Store = store;
-            this.StorePaymentMethod = storePaymentMethod;
+            this.StorePaymentMethodMode = storePaymentMethodMode;
         }
 
         /// <summary>
@@ -344,13 +344,34 @@ namespace Adyen.Model.Checkout
         /// <value>The physical store, for which this payment is processed.</value>
         [DataMember(Name = "store", EmitDefaultValue = false)]
         public string Store { get; set; }
-
         /// <summary>
-        /// When this is set to **true** and the &#x60;shopperReference&#x60; is provided, the payment details will be stored.
+        /// Indicates if the details of the payment method will be stored for the shopper. Possible values:* **disabled** – No details will be stored.* **askForConsent** – If the &#x60;shopperReference&#x60; is provided the shopper can decide whether or not the details will be stored.* **enabled** – If the &#x60;shopperReference&#x60; is provided the details will be stored without asking consent to the shopper.
         /// </summary>
-        /// <value>When this is set to **true** and the &#x60;shopperReference&#x60; is provided, the payment details will be stored.</value>
-        [DataMember(Name = "storePaymentMethod", EmitDefaultValue = false)]
-        public bool? StorePaymentMethod { get; set; }
+        /// <value>Indicates if the details of the payment method will be stored for the shopper. Possible values:* **disabled** – No details will be stored.* **askForConsent** – If the &#x60;shopperReference&#x60; is provided the shopper can decide whether or not the details will be stored.* **enabled** – If the &#x60;shopperReference&#x60; is provided the details will be stored without asking consent to the shopper.</value>
+        [JsonConverter(typeof(StringEnumConverter))]
+        public enum StorePaymentMethodModeEnum
+        {
+            /// <summary>
+            /// Enum AskForConsent for value: askForConsent
+            /// </summary>
+            [EnumMember(Value = "askForConsent")] AskForConsent = 1,
+
+            /// <summary>
+            /// Enum Disabled for value: disabled
+            /// </summary>
+            [EnumMember(Value = "disabled")] Disabled = 2,
+
+            /// <summary>
+            /// Enum Enabled for value: enabled
+            /// </summary>
+            [EnumMember(Value = "enabled")] Enabled = 3
+        }
+        /// <summary>
+        /// Indicates if the details of the payment method will be stored for the shopper. Possible values:* **disabled** – No details will be stored.* **askForConsent** – If the &#x60;shopperReference&#x60; is provided the shopper can decide whether or not the details will be stored.* **enabled** – If the &#x60;shopperReference&#x60; is provided the details will be stored without asking consent to the shopper.
+        /// </summary>
+        /// <value>Indicates if the details of the payment method will be stored for the shopper. Possible values:* **disabled** – No details will be stored.* **askForConsent** – If the &#x60;shopperReference&#x60; is provided the shopper can decide whether or not the details will be stored.* **enabled** – If the &#x60;shopperReference&#x60; is provided the details will be stored without asking consent to the shopper.</value>
+        [DataMember(Name="storePaymentMethodMode", EmitDefaultValue=false)]
+        public StorePaymentMethodModeEnum? StorePaymentMethodMode { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -386,7 +407,7 @@ namespace Adyen.Model.Checkout
             sb.Append("  ShopperReference: ").Append(ShopperReference).Append("\n");
             sb.Append("  Splits: ").Append(Splits.ObjectListToString()).Append("\n");
             sb.Append("  Store: ").Append(Store).Append("\n");
-            sb.Append("  StorePaymentMethod: ").Append(StorePaymentMethod).Append("\n");
+            sb.Append("  StorePaymentMethodMode: ").Append(StorePaymentMethodMode).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -558,9 +579,9 @@ namespace Adyen.Model.Checkout
                     this.Store.Equals(input.Store)
                 ) &&
                 (
-                    this.StorePaymentMethod == input.StorePaymentMethod ||
-                    this.StorePaymentMethod != null &&
-                    this.StorePaymentMethod.Equals(input.StorePaymentMethod)
+                    this.StorePaymentMethodMode == input.StorePaymentMethodMode ||
+                    this.StorePaymentMethodMode != null &&
+                    this.StorePaymentMethodMode.Equals(input.StorePaymentMethodMode)
                 );
         }
 
@@ -625,8 +646,8 @@ namespace Adyen.Model.Checkout
                     hashCode = hashCode * 59 + this.Splits.GetHashCode();
                 if (this.Store != null)
                     hashCode = hashCode * 59 + this.Store.GetHashCode();
-                if (this.StorePaymentMethod != null)
-                    hashCode = hashCode * 59 + this.StorePaymentMethod.GetHashCode();
+                if (this.StorePaymentMethodMode != null)
+                    hashCode = hashCode * 59 + this.StorePaymentMethodMode.GetHashCode();
                 return hashCode;
             }
         }
