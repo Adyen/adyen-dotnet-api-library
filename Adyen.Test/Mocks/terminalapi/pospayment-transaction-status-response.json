@@ -18,7 +18,7 @@
             "ServiceID" : "05140342",
             "MessageCategory" : "Payment"
          },
-        
+
          "RepeatedMessageResponse" : {
             "RepeatedResponseMessageBody" : {
                "PaymentResponse" : {
@@ -75,15 +75,6 @@
                      "POIReconciliationID" : "1000"
                   }
                }
-            },
-            "MessageHeader" : {
-               "POIID" : "P400Plus-12345678",
-               "ProtocolVersion" : "3.0",
-               "MessageClass" : "Service",
-               "MessageCategory" : "Payment",
-                "ServiceID" : "35543420",
-               "MessageType" : "Response",
-               "SaleID" : "TOSIM_1_1_6"
             }
          }
       }
