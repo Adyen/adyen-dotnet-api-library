@@ -50,5 +50,9 @@ namespace Adyen.Model.Nexo
         /// <remarks/>
         [System.Xml.Serialization.XmlTextAttribute()]
         public string Value;
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlTextAttribute()]
+        public string LoyaltyID;
     }
 }

@@ -53,6 +53,27 @@ namespace Adyen.Test
             }
         }
 
+        [TestMethod]
+        public void TestTerminalApiCardAcquisitionResponse()
+        {
+            try
+            {
+                var paymentRequest = MockPosApiRequest.CreatePosPaymentRequest();
+                var client =
+                    CreateMockTestClientPosLocalApiRequest("Mocks/terminalapi/cardAcquisitionResponse-success.json");
+                var posPaymentCloudApiApi = new PosPaymentCloudApi(client);
+                var saleToPoiResponse = posPaymentCloudApiApi.TerminalApiCloudAsync(paymentRequest);
+                var payloadResponse = (CardAcquisitionResponse) saleToPoiResponse.MessagePayload;
+                Assert.IsNotNull(payloadResponse.LoyaltyAccount);
+                Assert.AreEqual(payloadResponse.LoyaltyAccount[0].LoyaltyAccountID.LoyaltyID, "aaaa:aa:11111:a");
+                Assert.AreEqual(payloadResponse.LoyaltyAccount[0].LoyaltyAccountID.EntryMode[0], EntryModeType.Tapped);
+                Assert.AreEqual(payloadResponse.LoyaltyAccount[0].LoyaltyAccountID.IdentificationType, IdentificationType.AccountNumber);
+            }
+            catch (Exception)
+            {
+                Assert.Fail();
+            }
+        }
       
 
     }

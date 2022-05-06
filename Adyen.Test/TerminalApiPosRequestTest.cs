@@ -25,6 +25,7 @@ using Adyen.Security;
 using Adyen.Service;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
+using Adyen.Model.Nexo;
 
 namespace Adyen.Test
 {
@@ -66,7 +67,7 @@ namespace Adyen.Test
         }
 
         [TestMethod]
-        public void TestTerminalApiRequestEmptyResponse()
+        public void TestTerminalApiCardAcquisitionResponse()
         {
             try
             {
