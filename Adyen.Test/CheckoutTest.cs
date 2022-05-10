@@ -542,7 +542,7 @@ namespace Adyen.Test
                 CountryCode = "GR",
                 ShopperLocale = "GR",
                 ShopperReference = "ShopperReference",
-                StorePaymentMethod = true,
+                StorePaymentMethodMode = CreatePaymentLinkRequest.StorePaymentMethodModeEnum.Enabled,
                 RecurringProcessingModel = CreatePaymentLinkRequest.RecurringProcessingModelEnum.Subscription
             };
 
