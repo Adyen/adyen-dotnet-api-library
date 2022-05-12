@@ -81,7 +81,27 @@ namespace Adyen.Test
         {
             var config = new Config();
             var client = new Client(config);
-            client.SetEnvironment(Model.Enum.Environment.Live);
+            client.SetEnvironment(Model.Enum.Environment.Live,null);
+        }
+        
+        /// <summary>
+        /// Tests unsuccessful checkout client Live URL generation.
+        /// </summary>
+        [TestMethod]
+        [ExpectedException(typeof(InvalidOperationException), "Missing liveEndpointUrlPrefix for endpoint generation")]
+        public void CheckoutEndpointLiveWithBasicAuthErrorTest()
+        {
+            var client = new Client("ws_*******", "******", Adyen.Model.Enum.Environment.Live);
+        }
+        
+        /// <summary>
+        /// Tests successful checkout client Live URL generation.
+        /// </summary>
+        [TestMethod]
+        public void CheckoutEndpointLiveWithBasicAuthTest()
+        {
+            var client = new Client("ws_*******", "******", Adyen.Model.Enum.Environment.Live, "live-url");
+            Assert.AreEqual(client.Config.Endpoint, "https://live-url-pal-live.adyenpayments.com");
         }
 
         /// <summary>
