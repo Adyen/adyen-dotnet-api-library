@@ -367,7 +367,7 @@ namespace Adyen.Test
         public void PaymentSessionSuccessTest()
         {
             var paymentSessionRequest = CreatePaymentSessionRequest();
-            var client = CreateMockTestClientApiKeyBasedRequest("Mocks/checkout/paymentsession-sucess.json");
+            var client = CreateMockTestClientApiKeyBasedRequest("Mocks/checkout/paymentsession-success.json");
             var checkout = new Checkout(client);
             var paymentSessionResponse = checkout.PaymentSession(paymentSessionRequest);
             Assert.IsNotNull(paymentSessionResponse.PaymentSession);
@@ -381,7 +381,7 @@ namespace Adyen.Test
         public async Task PaymentSessionAsyncSuccessTest()
         {
             var paymentSessionRequest = CreatePaymentSessionRequest();
-            var client = CreateAsyncMockTestClientApiKeyBasedRequest("Mocks/checkout/paymentsession-sucess.json");
+            var client = CreateAsyncMockTestClientApiKeyBasedRequest("Mocks/checkout/paymentsession-success.json");
             var checkout = new Checkout(client);
             var paymentSessionResponse = await checkout.PaymentSessionAsync(paymentSessionRequest);
             Assert.IsNotNull(paymentSessionResponse.PaymentSession);
