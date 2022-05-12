@@ -101,7 +101,7 @@ namespace Adyen.Test
         public void CheckoutEndpointLiveWithBasicAuthTest()
         {
             var client = new Client("ws_*******", "******", Adyen.Model.Enum.Environment.Live, "live-url");
-            Assert.AreEqual(client.Config.Endpoint, "https://live-url-pal-live.adyenpayments.com");
+            Assert.AreEqual(client.Config.CheckoutEndpoint, "https://live-url-checkout-live.adyenpayments.com/checkout");
         }
 
         /// <summary>
