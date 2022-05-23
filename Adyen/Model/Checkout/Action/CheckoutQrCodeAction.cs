@@ -37,27 +37,14 @@ namespace Adyen.Model.Checkout.Action
     /// CheckoutQrCodeAction
     /// </summary>
     [DataContract]
-    public partial class CheckoutQrCodeAction : IEquatable<CheckoutQrCodeAction>, IValidatableObject
+    public partial class CheckoutQrCodeAction : IEquatable<CheckoutQrCodeAction>, IValidatableObject , IPaymentResponseAction
     {
         /// <summary>
         /// **qrCode**
         /// </summary>
         /// <value>**qrCode**</value>
-        [JsonConverter(typeof(StringEnumConverter))]
-        public enum TypeEnum
-        {
-            /// <summary>
-            /// Enum QrCode for value: qrCode
-            /// </summary>
-            [EnumMember(Value = "qrCode")] QrCode = 1
-        }
-
-        /// <summary>
-        /// **qrCode**
-        /// </summary>
-        /// <value>**qrCode**</value>
         [DataMember(Name = "type", EmitDefaultValue = false)]
-        public TypeEnum Type { get; set; }
+        public String Type { get; set; } = "qrCode";
 
         /// <summary>
         /// Initializes a new instance of the <see cref="CheckoutQrCodeAction" /> class.
@@ -70,19 +57,8 @@ namespace Adyen.Model.Checkout.Action
         /// <param name="url">Specifies the URL to redirect to..</param>
         public CheckoutQrCodeAction(string expiresAt = default(string), string paymentData = default(string),
             string paymentMethodType = default(string), string qrCodeData = default(string),
-            TypeEnum type = default(TypeEnum), string url = default(string))
+           string url = default(string))
         {
-            // to ensure "type" is required (not null)
-            if (type == null)
-            {
-                throw new InvalidDataException(
-                    "type is a required property for CheckoutQrCodeAction and cannot be null");
-            }
-            else
-            {
-                this.Type = type;
-            }
-
             this.ExpiresAt = expiresAt;
             this.PaymentData = paymentData;
             this.PaymentMethodType = paymentMethodType;

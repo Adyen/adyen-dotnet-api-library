@@ -51,7 +51,8 @@ namespace Adyen.Model.Checkout
             /// <summary>
             /// Enum AuthenticationFinished for value: AuthenticationFinished
             /// </summary>
-            [EnumMember(Value = "AuthenticationFinished")] AuthenticationFinished = 1,
+            [EnumMember(Value = "AuthenticationFinished")]
+            AuthenticationFinished = 1,
 
             /// <summary>
             /// Enum Authorised for value: Authorised
@@ -66,7 +67,8 @@ namespace Adyen.Model.Checkout
             /// <summary>
             /// Enum ChallengeShopper for value: ChallengeShopper
             /// </summary>
-            [EnumMember(Value = "ChallengeShopper")] ChallengeShopper = 4,
+            [EnumMember(Value = "ChallengeShopper")]
+            ChallengeShopper = 4,
 
             /// <summary>
             /// Enum Error for value: Error
@@ -76,7 +78,8 @@ namespace Adyen.Model.Checkout
             /// <summary>
             /// Enum IdentifyShopper for value: IdentifyShopper
             /// </summary>
-            [EnumMember(Value = "IdentifyShopper")] IdentifyShopper = 6,
+            [EnumMember(Value = "IdentifyShopper")]
+            IdentifyShopper = 6,
 
             /// <summary>
             /// Enum Pending for value: Pending
@@ -86,7 +89,8 @@ namespace Adyen.Model.Checkout
             /// <summary>
             /// Enum PresentToShopper for value: PresentToShopper
             /// </summary>
-            [EnumMember(Value = "PresentToShopper")] PresentToShopper = 8,
+            [EnumMember(Value = "PresentToShopper")]
+            PresentToShopper = 8,
 
             /// <summary>
             /// Enum Received for value: Received
@@ -96,7 +100,8 @@ namespace Adyen.Model.Checkout
             /// <summary>
             /// Enum RedirectShopper for value: RedirectShopper
             /// </summary>
-            [EnumMember(Value = "RedirectShopper")] RedirectShopper = 10,
+            [EnumMember(Value = "RedirectShopper")]
+            RedirectShopper = 10,
 
             /// <summary>
             /// Enum Refused for value: Refused
@@ -106,7 +111,8 @@ namespace Adyen.Model.Checkout
             /// <summary>
             /// Enum Refused for value: AuthenticationNotRequired
             /// </summary>
-            [EnumMember(Value = "AuthenticationNotRequired")] AuthenticationNotRequired = 12,
+            [EnumMember(Value = "AuthenticationNotRequired")]
+            AuthenticationNotRequired = 12,
 
             /// <summary>
             /// Enum Success for value: Success
@@ -140,6 +146,9 @@ namespace Adyen.Model.Checkout
         /// <param name="refusalReason">If the payment&#x27;s authorisation is refused or an error occurs during authorisation, this field holds Adyen&#x27;s mapped reason for the refusal or a description of the error. When a transaction fails, the authorisation response includes &#x60;resultCode&#x60; and &#x60;refusalReason&#x60; values.  For more information, see [Refusal reasons](https://docs.adyen.com/development-resources/refusal-reasons)..</param>
         /// <param name="refusalReasonCode">Code that specifies the refusal reason. For more information, see [Authorisation refusal reasons](https://docs.adyen.com/development-resources/refusal-reasons)..</param>
         /// <param name="resultCode">The result of the payment. For more information, see [Result codes](https://docs.adyen.com/checkout/payment-result-codes).  Possible values:  * **AuthenticationFinished** – The payment has been successfully authenticated with 3D Secure 2. Returned for 3D Secure 2 authentication-only transactions. * **AuthenticationNotRequired** – The transaction does not require 3D Secure authentication. Returned for [standalone authentication-only integrations](https://docs.adyen.com/checkout/3d-secure/other-3ds-flows/authentication-only). * **Authorised** – The payment was successfully authorised. This state serves as an indicator to proceed with the delivery of goods and services. This is a final state. * **Cancelled** – Indicates the payment has been cancelled (either by the shopper or the merchant) before processing was completed. This is a final state. * **ChallengeShopper** – The issuer requires further shopper interaction before the payment can be authenticated. Returned for 3D Secure 2 transactions. * **Error** – There was an error when the payment was being processed. The reason is given in the &#x60;refusalReason&#x60; field. This is a final state. * **IdentifyShopper** – The issuer requires the shopper&#x27;s device fingerprint before the payment can be authenticated. Returned for 3D Secure 2 transactions. * **Pending** – Indicates that it is not possible to obtain the final status of the payment. This can happen if the systems providing final status information for the payment are unavailable, or if the shopper needs to take further action to complete the payment. * **PresentToShopper** – Indicates that the response contains additional information that you need to present to a shopper, so that they can use it to complete a payment. * **Received** – Indicates the payment has successfully been received by Adyen, and will be processed. This is the initial state for all payments. * **RedirectShopper** – Indicates the shopper should be redirected to an external web page or app to complete the authorisation. * **Refused** – Indicates the payment was refused. The reason is given in the &#x60;refusalReason&#x60; field. This is a final state..</param>
+        /// <param name="threeDS2ResponseData">threeDS2ResponseData.</param>
+        /// <param name="threeDS2Result">threeDS2Result.</param>
+        /// <param name="threeDSPaymentData">When non-empty, contains a value that you must submit to the &#x60;/payments/details&#x60; endpoint as &#x60;paymentData&#x60;..</param>
         public PaymentResponse(IPaymentResponseAction action = default(IPaymentResponseAction),
             Dictionary<string, string> additionalData = default(Dictionary<string, string>),
             Amount amount = default(Amount),
@@ -150,7 +159,9 @@ namespace Adyen.Model.Checkout
             Dictionary<string, string> outputDetails = default(Dictionary<string, string>),
             string paymentData = default(string), string pspReference = default(string),
             Redirect redirect = default(Redirect), string refusalReason = default(string),
-            string refusalReasonCode = default(string), ResultCodeEnum? resultCode = default(ResultCodeEnum?))
+            string refusalReasonCode = default(string), ResultCodeEnum? resultCode = default(ResultCodeEnum?),
+            ThreeDS2ResponseData threeDS2ResponseData = default(ThreeDS2ResponseData),
+            ThreeDS2Result threeDS2Result = default(ThreeDS2Result), string threeDSPaymentData = default(string))
         {
             this.Action = action;
             this.AdditionalData = additionalData;
@@ -168,6 +179,9 @@ namespace Adyen.Model.Checkout
             this.RefusalReason = refusalReason;
             this.RefusalReasonCode = refusalReasonCode;
             this.ResultCode = resultCode;
+            this.ThreeDS2ResponseData = threeDS2ResponseData;
+            this.ThreeDS2Result = threeDS2Result;
+            this.ThreeDSPaymentData = threeDSPaymentData;
         }
 
         /// <summary>
@@ -270,6 +284,25 @@ namespace Adyen.Model.Checkout
         [DataMember(Name = "refusalReasonCode", EmitDefaultValue = false)]
         public string RefusalReasonCode { get; set; }
 
+        /// <summary>
+        /// Gets or Sets ThreeDS2ResponseData
+        /// </summary>
+        [DataMember(Name = "threeDS2ResponseData", EmitDefaultValue = false)]
+        public ThreeDS2ResponseData ThreeDS2ResponseData { get; set; }
+
+        /// <summary>
+        /// Gets or Sets ThreeDS2Result
+        /// </summary>
+        [DataMember(Name = "threeDS2Result", EmitDefaultValue = false)]
+        public ThreeDS2Result ThreeDS2Result { get; set; }
+
+        /// <summary>
+        /// When non-empty, contains a value that you must submit to the &#x60;/payments/details&#x60; endpoint as &#x60;paymentData&#x60;.
+        /// </summary>
+        /// <value>When non-empty, contains a value that you must submit to the &#x60;/payments/details&#x60; endpoint as &#x60;paymentData&#x60;.</value>
+        [DataMember(Name = "threeDSPaymentData", EmitDefaultValue = false)]
+        public string ThreeDSPaymentData { get; set; }
+
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -295,6 +328,9 @@ namespace Adyen.Model.Checkout
             sb.Append("  RefusalReason: ").Append(RefusalReason).Append("\n");
             sb.Append("  RefusalReasonCode: ").Append(RefusalReasonCode).Append("\n");
             sb.Append("  ResultCode: ").Append(ResultCode).Append("\n");
+            sb.Append("  ThreeDS2ResponseData: ").Append(ThreeDS2ResponseData).Append("\n");
+            sb.Append("  ThreeDS2Result: ").Append(ThreeDS2Result).Append("\n");
+            sb.Append("  ThreeDSPaymentData: ").Append(ThreeDSPaymentData).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -411,6 +447,21 @@ namespace Adyen.Model.Checkout
                     this.ResultCode == input.ResultCode ||
                     this.ResultCode != null &&
                     this.ResultCode.Equals(input.ResultCode)
+                ) &&
+                (
+                    this.ThreeDS2ResponseData == input.ThreeDS2ResponseData ||
+                    (this.ThreeDS2ResponseData != null &&
+                     this.ThreeDS2ResponseData.Equals(input.ThreeDS2ResponseData))
+                ) &&
+                (
+                    this.ThreeDS2Result == input.ThreeDS2Result ||
+                    (this.ThreeDS2Result != null &&
+                     this.ThreeDS2Result.Equals(input.ThreeDS2Result))
+                ) &&
+                (
+                    this.ThreeDSPaymentData == input.ThreeDSPaymentData ||
+                    (this.ThreeDSPaymentData != null &&
+                     this.ThreeDSPaymentData.Equals(input.ThreeDSPaymentData))
                 );
         }
 
@@ -455,6 +506,12 @@ namespace Adyen.Model.Checkout
                     hashCode = hashCode * 59 + this.RefusalReasonCode.GetHashCode();
                 if (this.ResultCode != null)
                     hashCode = hashCode * 59 + this.ResultCode.GetHashCode();
+                if (this.ThreeDS2ResponseData != null)
+                    hashCode = hashCode * 59 + this.ThreeDS2ResponseData.GetHashCode();
+                if (this.ThreeDS2Result != null)
+                    hashCode = hashCode * 59 + this.ThreeDS2Result.GetHashCode();
+                if (this.ThreeDSPaymentData != null)
+                    hashCode = hashCode * 59 + this.ThreeDSPaymentData.GetHashCode();
                 return hashCode;
             }
         }

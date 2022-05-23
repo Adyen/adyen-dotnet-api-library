@@ -1,4 +1,5 @@
 ﻿#region Licence
+
 // 
 //                        ######
 //                        ######
@@ -18,6 +19,7 @@
 //  Copyright (c) 2021 Adyen B.V.
 //  This file is open source and available under the MIT license.
 //  See the LICENSE file for more info.
+
 #endregion
 
 
@@ -51,21 +53,17 @@ namespace Adyen.Model.Checkout
             /// <summary>
             /// Enum IOS for value: iOS
             /// </summary>
-            [EnumMember(Value = "iOS")]
-            Ios = 1,
+            [EnumMember(Value = "iOS")] Ios = 1,
 
             /// <summary>
             /// Enum Android for value: Android
             /// </summary>
-            [EnumMember(Value = "Android")]
-            Android = 2,
+            [EnumMember(Value = "Android")] Android = 2,
 
             /// <summary>
             /// Enum Web for value: Web
             /// </summary>
-            [EnumMember(Value = "Web")]
-            Web = 3
-
+            [EnumMember(Value = "Web")] Web = 3
         }
 
         /// <summary>
@@ -74,6 +72,7 @@ namespace Adyen.Model.Checkout
         /// <value>The platform where a payment transaction takes place. This field is optional for filtering out payment methods that are only available on specific platforms. If this value is not set, then we will try to infer it from the &#x60;sdkVersion&#x60; or &#x60;token&#x60;.  Possible values: * iOS * Android * Web</value>
         [DataMember(Name = "channel", EmitDefaultValue = false)]
         public ChannelEnum? Channel { get; set; }
+
         /// <summary>
         /// Defines a recurring payment type. Allowed values: * &#x60;Subscription&#x60; – A transaction for a fixed or variable amount, which follows a fixed schedule. * &#x60;CardOnFile&#x60; – With a card-on-file (CoF) transaction, card details are stored to enable one-click or omnichannel journeys, or simply to streamline the checkout process. Any subscription not following a fixed schedule is also considered a card-on-file transaction. * &#x60;UnscheduledCardOnFile&#x60; – An unscheduled card-on-file (UCoF) transaction is a transaction that occurs on a non-fixed schedule and/or have variable amounts. For example, automatic top-ups when a cardholder&#39;s balance drops below a certain amount. 
         /// </summary>
@@ -84,21 +83,18 @@ namespace Adyen.Model.Checkout
             /// <summary>
             /// Enum CardOnFile for value: CardOnFile
             /// </summary>
-            [EnumMember(Value = "CardOnFile")]
-            CardOnFile = 1,
+            [EnumMember(Value = "CardOnFile")] CardOnFile = 1,
 
             /// <summary>
             /// Enum Subscription for value: Subscription
             /// </summary>
-            [EnumMember(Value = "Subscription")]
-            Subscription = 2,
+            [EnumMember(Value = "Subscription")] Subscription = 2,
 
             /// <summary>
             /// Enum UnscheduledCardOnFile for value: UnscheduledCardOnFile
             /// </summary>
             [EnumMember(Value = "UnscheduledCardOnFile")]
             UnscheduledCardOnFile = 3
-
         }
 
         /// <summary>
@@ -107,6 +103,7 @@ namespace Adyen.Model.Checkout
         /// <value>Defines a recurring payment type. Allowed values: * &#x60;Subscription&#x60; – A transaction for a fixed or variable amount, which follows a fixed schedule. * &#x60;CardOnFile&#x60; – With a card-on-file (CoF) transaction, card details are stored to enable one-click or omnichannel journeys, or simply to streamline the checkout process. Any subscription not following a fixed schedule is also considered a card-on-file transaction. * &#x60;UnscheduledCardOnFile&#x60; – An unscheduled card-on-file (UCoF) transaction is a transaction that occurs on a non-fixed schedule and/or have variable amounts. For example, automatic top-ups when a cardholder&#39;s balance drops below a certain amount. </value>
         [DataMember(Name = "recurringProcessingModel", EmitDefaultValue = false)]
         public RecurringProcessingModelEnum? RecurringProcessingModel { get; set; }
+
         /// <summary>
         /// Specifies the sales channel, through which the shopper gives their card details, and whether the shopper is a returning customer. For the web service API, Adyen assumes Ecommerce shopper interaction by default.  This field has the following possible values: * &#x60;Ecommerce&#x60; - Online transactions where the cardholder is present (online). For better authorisation rates, we recommend sending the card security code (CSC) along with the request. * &#x60;ContAuth&#x60; - Card on file and/or subscription transactions, where the cardholder is known to the merchant (returning customer). If the shopper is present (online), you can supply also the CSC to improve authorisation (one-click payment). * &#x60;Moto&#x60; - Mail-order and telephone-order transactions where the shopper is in contact with the merchant via email or telephone. * &#x60;POS&#x60; - Point-of-sale transactions where the shopper is physically present to make a payment using a secure payment terminal.
         /// </summary>
@@ -117,27 +114,22 @@ namespace Adyen.Model.Checkout
             /// <summary>
             /// Enum Ecommerce for value: Ecommerce
             /// </summary>
-            [EnumMember(Value = "Ecommerce")]
-            Ecommerce = 1,
+            [EnumMember(Value = "Ecommerce")] Ecommerce = 1,
 
             /// <summary>
             /// Enum ContAuth for value: ContAuth
             /// </summary>
-            [EnumMember(Value = "ContAuth")]
-            ContAuth = 2,
+            [EnumMember(Value = "ContAuth")] ContAuth = 2,
 
             /// <summary>
             /// Enum Moto for value: Moto
             /// </summary>
-            [EnumMember(Value = "Moto")]
-            Moto = 3,
+            [EnumMember(Value = "Moto")] Moto = 3,
 
             /// <summary>
             /// Enum POS for value: POS
             /// </summary>
-            [EnumMember(Value = "POS")]
-            Pos = 4
-
+            [EnumMember(Value = "POS")] Pos = 4
         }
 
         /// <summary>
@@ -146,11 +138,15 @@ namespace Adyen.Model.Checkout
         /// <value>Specifies the sales channel, through which the shopper gives their card details, and whether the shopper is a returning customer. For the web service API, Adyen assumes Ecommerce shopper interaction by default.  This field has the following possible values: * &#x60;Ecommerce&#x60; - Online transactions where the cardholder is present (online). For better authorisation rates, we recommend sending the card security code (CSC) along with the request. * &#x60;ContAuth&#x60; - Card on file and/or subscription transactions, where the cardholder is known to the merchant (returning customer). If the shopper is present (online), you can supply also the CSC to improve authorisation (one-click payment). * &#x60;Moto&#x60; - Mail-order and telephone-order transactions where the shopper is in contact with the merchant via email or telephone. * &#x60;POS&#x60; - Point-of-sale transactions where the shopper is physically present to make a payment using a secure payment terminal.</value>
         [DataMember(Name = "shopperInteraction", EmitDefaultValue = false)]
         public ShopperInteractionEnum? ShopperInteraction { get; set; }
+
         /// <summary>
         /// Initializes a new instance of the <see cref="CreateCheckoutSessionResponse" /> class.
         /// </summary>
         [JsonConstructorAttribute]
-        protected CreateCheckoutSessionResponse() { }
+        protected CreateCheckoutSessionResponse()
+        {
+        }
+
         /// <summary>
         /// Initializes a new instance of the <see cref="CreateCheckoutSessionResponse" /> class.
         /// </summary>
@@ -160,6 +156,7 @@ namespace Adyen.Model.Checkout
         /// <param name="allowedPaymentMethods">List of payment methods to be presented to the shopper. To refer to payment methods, use their &#x60;paymentMethod.type&#x60;from [Payment methods overview](https://docs.adyen.com/payment-methods).  Example: &#x60;\&quot;allowedPaymentMethods\&quot;:[\&quot;ideal\&quot;,\&quot;giropay\&quot;]&#x60;.</param>
         /// <param name="amount">amount (required).</param>
         /// <param name="applicationInfo">applicationInfo.</param>
+        /// <param name="authenticationData">authenticationData.</param>
         /// <param name="billingAddress">billingAddress.</param>
         /// <param name="blockedPaymentMethods">List of payment methods to be hidden from the shopper. To refer to payment methods, use their &#x60;paymentMethod.type&#x60;from [Payment methods overview](https://docs.adyen.com/payment-methods).  Example: &#x60;\&quot;blockedPaymentMethods\&quot;:[\&quot;ideal\&quot;,\&quot;giropay\&quot;]&#x60;.</param>
         /// <param name="captureDelayHours">The delay between the authorisation and scheduled auto-capture, specified in hours..</param>
@@ -203,12 +200,42 @@ namespace Adyen.Model.Checkout
         /// <param name="telephoneNumber">The shopper&#39;s telephone number..</param>
         /// <param name="threeDsAuthenticationOnly">If set to true, you will only perform the [3D Secure 2 authentication](https://docs.adyen.com/online-payments/3d-secure/other-3ds-flows/authentication-only), and not the payment authorisation. (default to false).</param>
         /// <param name="trustedShopper">Set to true if the payment should be routed to a trusted MID..</param>
-        public CreateCheckoutSessionResponse(AccountInfo accountInfo = default(AccountInfo), Amount additionalAmount = default(Amount), Dictionary<string, string> additionalData = default(Dictionary<string, string>), List<string> allowedPaymentMethods = default(List<string>), Amount amount = default(Amount), ApplicationInfo applicationInfo = default(ApplicationInfo), Address billingAddress = default(Address), List<string> blockedPaymentMethods = default(List<string>), int captureDelayHours = default(int), ChannelEnum? channel = default(ChannelEnum?), Company company = default(Company), string countryCode = default(string), DateTime dateOfBirth = default(DateTime), Address deliveryAddress = default(Address), bool enableOneClick = default(bool), bool enablePayOut = default(bool), bool enableRecurring = default(bool), DateTime expiresAt = default(DateTime), List<LineItem> lineItems = default(List<LineItem>), Mandate mandate = default(Mandate), string mcc = default(string), string merchantAccount = default(string), string merchantOrderReference = default(string), Dictionary<string, string> metadata = default(Dictionary<string, string>), ThreeDSecureData mpiData = default(ThreeDSecureData), string recurringExpiry = default(string), string recurringFrequency = default(string), RecurringProcessingModelEnum? recurringProcessingModel = default(RecurringProcessingModelEnum?), string redirectFromIssuerMethod = default(string), string redirectToIssuerMethod = default(string), string reference = default(string), string returnUrl = default(string), RiskData riskData = default(RiskData), string sessionData = default(string), string shopperEmail = default(string), string shopperIp = default(string), ShopperInteractionEnum? shopperInteraction = default(ShopperInteractionEnum?), string shopperLocale = default(string), Name shopperName = default(Name), string shopperReference = default(string), string shopperStatement = default(string), string socialSecurityNumber = default(string), bool splitCardFundingSources = false, List<Split> splits = default(List<Split>), string store = default(string), bool storePaymentMethod = default(bool), string telephoneNumber = default(string), bool threeDsAuthenticationOnly = false, bool trustedShopper = default(bool))
+        public CreateCheckoutSessionResponse(AccountInfo accountInfo = default(AccountInfo),
+            Amount additionalAmount = default(Amount),
+            Dictionary<string, string> additionalData = default(Dictionary<string, string>),
+            List<string> allowedPaymentMethods = default(List<string>), Amount amount = default(Amount),
+            ApplicationInfo applicationInfo = default(ApplicationInfo),
+            AuthenticationData authenticationData = default(AuthenticationData),
+            Address billingAddress = default(Address), List<string> blockedPaymentMethods = default(List<string>),
+            int captureDelayHours = default(int), ChannelEnum? channel = default(ChannelEnum?),
+            Company company = default(Company), string countryCode = default(string),
+            DateTime dateOfBirth = default(DateTime), Address deliveryAddress = default(Address),
+            bool enableOneClick = default(bool), bool enablePayOut = default(bool),
+            bool enableRecurring = default(bool), DateTime expiresAt = default(DateTime),
+            List<LineItem> lineItems = default(List<LineItem>), Mandate mandate = default(Mandate),
+            string mcc = default(string), string merchantAccount = default(string),
+            string merchantOrderReference = default(string),
+            Dictionary<string, string> metadata = default(Dictionary<string, string>),
+            ThreeDSecureData mpiData = default(ThreeDSecureData), string recurringExpiry = default(string),
+            string recurringFrequency = default(string),
+            RecurringProcessingModelEnum? recurringProcessingModel = default(RecurringProcessingModelEnum?),
+            string redirectFromIssuerMethod = default(string), string redirectToIssuerMethod = default(string),
+            string reference = default(string), string returnUrl = default(string),
+            RiskData riskData = default(RiskData), string sessionData = default(string),
+            string shopperEmail = default(string), string shopperIp = default(string),
+            ShopperInteractionEnum? shopperInteraction = default(ShopperInteractionEnum?),
+            string shopperLocale = default(string), Name shopperName = default(Name),
+            string shopperReference = default(string), string shopperStatement = default(string),
+            string socialSecurityNumber = default(string), bool splitCardFundingSources = false,
+            List<Split> splits = default(List<Split>), string store = default(string),
+            bool storePaymentMethod = default(bool), string telephoneNumber = default(string),
+            bool threeDsAuthenticationOnly = false, bool trustedShopper = default(bool))
         {
             // to ensure "amount" is required (not null)
             if (amount == null)
             {
-                throw new InvalidDataException("amount is a required property for CreateCheckoutSessionResponse and cannot be null");
+                throw new InvalidDataException(
+                    "amount is a required property for CreateCheckoutSessionResponse and cannot be null");
             }
             else
             {
@@ -218,7 +245,8 @@ namespace Adyen.Model.Checkout
             // to ensure "expiresAt" is required (not null)
             if (expiresAt == null)
             {
-                throw new InvalidDataException("expiresAt is a required property for CreateCheckoutSessionResponse and cannot be null");
+                throw new InvalidDataException(
+                    "expiresAt is a required property for CreateCheckoutSessionResponse and cannot be null");
             }
             else
             {
@@ -228,7 +256,8 @@ namespace Adyen.Model.Checkout
             // to ensure "merchantAccount" is required (not null)
             if (merchantAccount == null)
             {
-                throw new InvalidDataException("merchantAccount is a required property for CreateCheckoutSessionResponse and cannot be null");
+                throw new InvalidDataException(
+                    "merchantAccount is a required property for CreateCheckoutSessionResponse and cannot be null");
             }
             else
             {
@@ -238,7 +267,8 @@ namespace Adyen.Model.Checkout
             // to ensure "reference" is required (not null)
             if (reference == null)
             {
-                throw new InvalidDataException("reference is a required property for CreateCheckoutSessionResponse and cannot be null");
+                throw new InvalidDataException(
+                    "reference is a required property for CreateCheckoutSessionResponse and cannot be null");
             }
             else
             {
@@ -248,7 +278,8 @@ namespace Adyen.Model.Checkout
             // to ensure "returnUrl" is required (not null)
             if (returnUrl == null)
             {
-                throw new InvalidDataException("returnUrl is a required property for CreateCheckoutSessionResponse and cannot be null");
+                throw new InvalidDataException(
+                    "returnUrl is a required property for CreateCheckoutSessionResponse and cannot be null");
             }
             else
             {
@@ -260,6 +291,7 @@ namespace Adyen.Model.Checkout
             this.AdditionalData = additionalData;
             this.AllowedPaymentMethods = allowedPaymentMethods;
             this.ApplicationInfo = applicationInfo;
+            this.AuthenticationData = authenticationData;
             this.BillingAddress = billingAddress;
             this.BlockedPaymentMethods = blockedPaymentMethods;
             this.CaptureDelayHours = captureDelayHours;
@@ -301,6 +333,7 @@ namespace Adyen.Model.Checkout
             {
                 this.SplitCardFundingSources = splitCardFundingSources;
             }
+
             this.Splits = splits;
             this.Store = store;
             this.StorePaymentMethod = storePaymentMethod;
@@ -314,6 +347,7 @@ namespace Adyen.Model.Checkout
             {
                 this.ThreeDsAuthenticationOnly = threeDsAuthenticationOnly;
             }
+
             this.TrustedShopper = trustedShopper;
         }
 
@@ -354,6 +388,12 @@ namespace Adyen.Model.Checkout
         /// </summary>
         [DataMember(Name = "applicationInfo", EmitDefaultValue = false)]
         public ApplicationInfo ApplicationInfo { get; set; }
+
+        /// <summary>
+        /// Gets or Sets AuthenticationData
+        /// </summary>
+        [DataMember(Name = "authenticationData", EmitDefaultValue = false)]
+        public AuthenticationData AuthenticationData { get; set; }
 
         /// <summary>
         /// Gets or Sets billingAddress
@@ -606,9 +646,9 @@ namespace Adyen.Model.Checkout
         /// The ecommerce or point-of-sale store that is processing the payment.
         /// </summary>
         /// <value>The ecommerce or point-of-sale store that is processing the payment.</value>
-        [DataMember(Name="store", EmitDefaultValue=false)]
+        [DataMember(Name = "store", EmitDefaultValue = false)]
         public string Store { get; set; }
-        
+
         /// <summary>
         /// When this is set to **true** and the &#x60;shopperReference&#x60; is provided, the payment details will be stored.
         /// </summary>
@@ -732,12 +772,12 @@ namespace Adyen.Model.Checkout
                 (
                     this.AccountInfo == input.AccountInfo ||
                     (this.AccountInfo != null &&
-                    this.AccountInfo.Equals(input.AccountInfo))
+                     this.AccountInfo.Equals(input.AccountInfo))
                 ) &&
                 (
                     this.AdditionalAmount == input.AdditionalAmount ||
                     (this.AdditionalAmount != null &&
-                    this.AdditionalAmount.Equals(input.AdditionalAmount))
+                     this.AdditionalAmount.Equals(input.AdditionalAmount))
                 ) &&
                 (
                     this.AdditionalData == input.AdditionalData ||
@@ -754,17 +794,22 @@ namespace Adyen.Model.Checkout
                 (
                     this.Amount == input.Amount ||
                     (this.Amount != null &&
-                    this.Amount.Equals(input.Amount))
+                     this.Amount.Equals(input.Amount))
                 ) &&
                 (
                     this.ApplicationInfo == input.ApplicationInfo ||
                     (this.ApplicationInfo != null &&
-                    this.ApplicationInfo.Equals(input.ApplicationInfo))
+                     this.ApplicationInfo.Equals(input.ApplicationInfo))
+                ) &&
+                (
+                    this.AuthenticationData == input.AuthenticationData ||
+                    (this.AuthenticationData != null &&
+                     this.AuthenticationData.Equals(input.AuthenticationData))
                 ) &&
                 (
                     this.BillingAddress == input.BillingAddress ||
                     (this.BillingAddress != null &&
-                    this.BillingAddress.Equals(input.BillingAddress))
+                     this.BillingAddress.Equals(input.BillingAddress))
                 ) &&
                 (
                     this.BlockedPaymentMethods == input.BlockedPaymentMethods ||
@@ -775,57 +820,57 @@ namespace Adyen.Model.Checkout
                 (
                     this.CaptureDelayHours == input.CaptureDelayHours ||
                     (this.CaptureDelayHours != null &&
-                    this.CaptureDelayHours.Equals(input.CaptureDelayHours))
+                     this.CaptureDelayHours.Equals(input.CaptureDelayHours))
                 ) &&
                 (
                     this.Channel == input.Channel ||
                     (this.Channel != null &&
-                    this.Channel.Equals(input.Channel))
+                     this.Channel.Equals(input.Channel))
                 ) &&
                 (
                     this.Company == input.Company ||
                     (this.Company != null &&
-                    this.Company.Equals(input.Company))
+                     this.Company.Equals(input.Company))
                 ) &&
                 (
                     this.CountryCode == input.CountryCode ||
                     (this.CountryCode != null &&
-                    this.CountryCode.Equals(input.CountryCode))
+                     this.CountryCode.Equals(input.CountryCode))
                 ) &&
                 (
                     this.DateOfBirth == input.DateOfBirth ||
                     (this.DateOfBirth != null &&
-                    this.DateOfBirth.Equals(input.DateOfBirth))
+                     this.DateOfBirth.Equals(input.DateOfBirth))
                 ) &&
                 (
                     this.DeliveryAddress == input.DeliveryAddress ||
                     (this.DeliveryAddress != null &&
-                    this.DeliveryAddress.Equals(input.DeliveryAddress))
+                     this.DeliveryAddress.Equals(input.DeliveryAddress))
                 ) &&
                 (
                     this.EnableOneClick == input.EnableOneClick ||
                     (this.EnableOneClick != null &&
-                    this.EnableOneClick.Equals(input.EnableOneClick))
+                     this.EnableOneClick.Equals(input.EnableOneClick))
                 ) &&
                 (
                     this.EnablePayOut == input.EnablePayOut ||
                     (this.EnablePayOut != null &&
-                    this.EnablePayOut.Equals(input.EnablePayOut))
+                     this.EnablePayOut.Equals(input.EnablePayOut))
                 ) &&
                 (
                     this.EnableRecurring == input.EnableRecurring ||
                     (this.EnableRecurring != null &&
-                    this.EnableRecurring.Equals(input.EnableRecurring))
+                     this.EnableRecurring.Equals(input.EnableRecurring))
                 ) &&
                 (
                     this.ExpiresAt == input.ExpiresAt ||
                     (this.ExpiresAt != null &&
-                    this.ExpiresAt.Equals(input.ExpiresAt))
+                     this.ExpiresAt.Equals(input.ExpiresAt))
                 ) &&
                 (
                     this.Id == input.Id ||
                     (this.Id != null &&
-                    this.Id.Equals(input.Id))
+                     this.Id.Equals(input.Id))
                 ) &&
                 (
                     this.LineItems == input.LineItems ||
@@ -836,22 +881,22 @@ namespace Adyen.Model.Checkout
                 (
                     this.Mandate == input.Mandate ||
                     (this.Mandate != null &&
-                    this.Mandate.Equals(input.Mandate))
+                     this.Mandate.Equals(input.Mandate))
                 ) &&
                 (
                     this.Mcc == input.Mcc ||
                     (this.Mcc != null &&
-                    this.Mcc.Equals(input.Mcc))
+                     this.Mcc.Equals(input.Mcc))
                 ) &&
                 (
                     this.MerchantAccount == input.MerchantAccount ||
                     (this.MerchantAccount != null &&
-                    this.MerchantAccount.Equals(input.MerchantAccount))
+                     this.MerchantAccount.Equals(input.MerchantAccount))
                 ) &&
                 (
                     this.MerchantOrderReference == input.MerchantOrderReference ||
                     (this.MerchantOrderReference != null &&
-                    this.MerchantOrderReference.Equals(input.MerchantOrderReference))
+                     this.MerchantOrderReference.Equals(input.MerchantOrderReference))
                 ) &&
                 (
                     this.Metadata == input.Metadata ||
@@ -862,128 +907,128 @@ namespace Adyen.Model.Checkout
                 (
                     this.MpiData == input.MpiData ||
                     (this.MpiData != null &&
-                    this.MpiData.Equals(input.MpiData))
+                     this.MpiData.Equals(input.MpiData))
                 ) &&
                 (
                     this.RecurringExpiry == input.RecurringExpiry ||
                     (this.RecurringExpiry != null &&
-                    this.RecurringExpiry.Equals(input.RecurringExpiry))
+                     this.RecurringExpiry.Equals(input.RecurringExpiry))
                 ) &&
                 (
                     this.RecurringFrequency == input.RecurringFrequency ||
                     (this.RecurringFrequency != null &&
-                    this.RecurringFrequency.Equals(input.RecurringFrequency))
+                     this.RecurringFrequency.Equals(input.RecurringFrequency))
                 ) &&
                 (
                     this.RecurringProcessingModel == input.RecurringProcessingModel ||
                     (this.RecurringProcessingModel != null &&
-                    this.RecurringProcessingModel.Equals(input.RecurringProcessingModel))
+                     this.RecurringProcessingModel.Equals(input.RecurringProcessingModel))
                 ) &&
                 (
                     this.RedirectFromIssuerMethod == input.RedirectFromIssuerMethod ||
                     (this.RedirectFromIssuerMethod != null &&
-                    this.RedirectFromIssuerMethod.Equals(input.RedirectFromIssuerMethod))
+                     this.RedirectFromIssuerMethod.Equals(input.RedirectFromIssuerMethod))
                 ) &&
                 (
                     this.RedirectToIssuerMethod == input.RedirectToIssuerMethod ||
                     (this.RedirectToIssuerMethod != null &&
-                    this.RedirectToIssuerMethod.Equals(input.RedirectToIssuerMethod))
+                     this.RedirectToIssuerMethod.Equals(input.RedirectToIssuerMethod))
                 ) &&
                 (
                     this.Reference == input.Reference ||
                     (this.Reference != null &&
-                    this.Reference.Equals(input.Reference))
+                     this.Reference.Equals(input.Reference))
                 ) &&
                 (
                     this.ReturnUrl == input.ReturnUrl ||
                     (this.ReturnUrl != null &&
-                    this.ReturnUrl.Equals(input.ReturnUrl))
+                     this.ReturnUrl.Equals(input.ReturnUrl))
                 ) &&
                 (
                     this.RiskData == input.RiskData ||
                     (this.RiskData != null &&
-                    this.RiskData.Equals(input.RiskData))
+                     this.RiskData.Equals(input.RiskData))
                 ) &&
                 (
                     this.SessionData == input.SessionData ||
                     (this.SessionData != null &&
-                    this.SessionData.Equals(input.SessionData))
+                     this.SessionData.Equals(input.SessionData))
                 ) &&
                 (
                     this.ShopperEmail == input.ShopperEmail ||
                     (this.ShopperEmail != null &&
-                    this.ShopperEmail.Equals(input.ShopperEmail))
+                     this.ShopperEmail.Equals(input.ShopperEmail))
                 ) &&
                 (
                     this.ShopperIp == input.ShopperIp ||
                     (this.ShopperIp != null &&
-                    this.ShopperIp.Equals(input.ShopperIp))
+                     this.ShopperIp.Equals(input.ShopperIp))
                 ) &&
                 (
                     this.ShopperInteraction == input.ShopperInteraction ||
                     (this.ShopperInteraction != null &&
-                    this.ShopperInteraction.Equals(input.ShopperInteraction))
+                     this.ShopperInteraction.Equals(input.ShopperInteraction))
                 ) &&
                 (
                     this.ShopperLocale == input.ShopperLocale ||
                     (this.ShopperLocale != null &&
-                    this.ShopperLocale.Equals(input.ShopperLocale))
+                     this.ShopperLocale.Equals(input.ShopperLocale))
                 ) &&
                 (
                     this.ShopperName == input.ShopperName ||
                     (this.ShopperName != null &&
-                    this.ShopperName.Equals(input.ShopperName))
+                     this.ShopperName.Equals(input.ShopperName))
                 ) &&
                 (
                     this.ShopperReference == input.ShopperReference ||
                     (this.ShopperReference != null &&
-                    this.ShopperReference.Equals(input.ShopperReference))
+                     this.ShopperReference.Equals(input.ShopperReference))
                 ) &&
                 (
                     this.ShopperStatement == input.ShopperStatement ||
                     (this.ShopperStatement != null &&
-                    this.ShopperStatement.Equals(input.ShopperStatement))
+                     this.ShopperStatement.Equals(input.ShopperStatement))
                 ) &&
                 (
                     this.SocialSecurityNumber == input.SocialSecurityNumber ||
                     (this.SocialSecurityNumber != null &&
-                    this.SocialSecurityNumber.Equals(input.SocialSecurityNumber))
+                     this.SocialSecurityNumber.Equals(input.SocialSecurityNumber))
                 ) &&
                 (
                     this.SplitCardFundingSources == input.SplitCardFundingSources ||
                     (this.SplitCardFundingSources != null &&
-                    this.SplitCardFundingSources.Equals(input.SplitCardFundingSources))
+                     this.SplitCardFundingSources.Equals(input.SplitCardFundingSources))
                 ) &&
                 (
                     this.Splits == input.Splits ||
                     this.Splits != null &&
                     input.Splits != null &&
                     this.Splits.SequenceEqual(input.Splits)
-                ) && 
+                ) &&
                 (
                     this.Store == input.Store ||
                     (this.Store != null &&
                      this.Store.Equals(input.Store))
-                ) && 
+                ) &&
                 (
                     this.StorePaymentMethod == input.StorePaymentMethod ||
                     (this.StorePaymentMethod != null &&
-                    this.StorePaymentMethod.Equals(input.StorePaymentMethod))
+                     this.StorePaymentMethod.Equals(input.StorePaymentMethod))
                 ) &&
                 (
                     this.TelephoneNumber == input.TelephoneNumber ||
                     (this.TelephoneNumber != null &&
-                    this.TelephoneNumber.Equals(input.TelephoneNumber))
+                     this.TelephoneNumber.Equals(input.TelephoneNumber))
                 ) &&
                 (
                     this.ThreeDsAuthenticationOnly == input.ThreeDsAuthenticationOnly ||
                     (this.ThreeDsAuthenticationOnly != null &&
-                    this.ThreeDsAuthenticationOnly.Equals(input.ThreeDsAuthenticationOnly))
+                     this.ThreeDsAuthenticationOnly.Equals(input.ThreeDsAuthenticationOnly))
                 ) &&
                 (
                     this.TrustedShopper == input.TrustedShopper ||
                     (this.TrustedShopper != null &&
-                    this.TrustedShopper.Equals(input.TrustedShopper))
+                     this.TrustedShopper.Equals(input.TrustedShopper))
                 );
         }
 
@@ -1008,6 +1053,8 @@ namespace Adyen.Model.Checkout
                     hashCode = hashCode * 59 + this.Amount.GetHashCode();
                 if (this.ApplicationInfo != null)
                     hashCode = hashCode * 59 + this.ApplicationInfo.GetHashCode();
+                if (this.AuthenticationData != null)
+                    hashCode = hashCode * 59 + this.AuthenticationData.GetHashCode();
                 if (this.BillingAddress != null)
                     hashCode = hashCode * 59 + this.BillingAddress.GetHashCode();
                 if (this.BlockedPaymentMethods != null)
@@ -1105,10 +1152,10 @@ namespace Adyen.Model.Checkout
         /// </summary>
         /// <param name="validationContext">Validation context</param>
         /// <returns>Validation Result</returns>
-        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(
+            ValidationContext validationContext)
         {
             yield break;
         }
     }
-
 }

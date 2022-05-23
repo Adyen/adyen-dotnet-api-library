@@ -7,11 +7,7 @@
     &lt;TestId&gt;MSTest::100ADBA3-8ABA-47EB-9D5D-9EFD3D213AE8::.NETCoreApp,Version=v2.0::Adyen.Test.TerminalApiPosRequestTest.TestTerminalApiRequestEmptyResponse&lt;/TestId&gt;
   &lt;/TestAncestor&gt;
 &lt;/SessionState&gt;</s:String>
-	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=d33c326b_002D4bb1_002D4d66_002Da5e1_002Dc2edc561b537/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" IsActive="True" Name="CheckoutEndpointLiveWithBasicAuthTest" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;
-  &lt;TestAncestor&gt;
-    &lt;TestId&gt;MSTest::100ADBA3-8ABA-47EB-9D5D-9EFD3D213AE8::.NETCoreApp,Version=v2.0::Adyen.Test.CheckoutTest.CheckoutEndpointLiveWithBasicAuthTest&lt;/TestId&gt;
-  &lt;/TestAncestor&gt;
-&lt;/SessionState&gt;</s:String>
+	
 	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=f12e2c88_002D4e30_002D441a_002D9c83_002D9922bdfd1880/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" Name="TestNullHmacValidator" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;
   &lt;Project Location="/Users/alexandros/Documents/gitrepositories/adyen-dotnet-api-library/Adyen.Test" Presentation="&amp;lt;Adyen.Test&amp;gt;" /&gt;
 &lt;/SessionState&gt;</s:String>
@@ -21,6 +17,6 @@
 	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=6a9dfb01_002D29e1_002D4d10_002Db918_002De6a90442ba0d/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" Name="SaleToPoiRequestSaleDataTest #2" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;
   &lt;Project Location="/Users/alexandros/Documents/gitrepositories/adyen-dotnet-api-library/Adyen.Test" Presentation="&amp;lt;Adyen.Test&amp;gt;" /&gt;
 &lt;/SessionState&gt;</s:String>
-	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=f5d3805c_002D40af_002D4ee3_002Dabe8_002Df4dfb1b0537e/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" Name="TestTerminalApiRequestEmptyResponse #2" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;
+	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=f5d3805c_002D40af_002D4ee3_002Dabe8_002Df4dfb1b0537e/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" IsActive="True" Name="TestTerminalApiRequestEmptyResponse #2" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;
   &lt;Project Location="/Users/alexandros/Documents/gitrepositories/adyen-dotnet-api-library/Adyen.Test" Presentation="&amp;lt;Adyen.Test&amp;gt;" /&gt;
 &lt;/SessionState&gt;</s:String></wpf:ResourceDictionary>

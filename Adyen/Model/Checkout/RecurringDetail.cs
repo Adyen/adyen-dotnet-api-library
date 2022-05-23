@@ -70,6 +70,7 @@ namespace Adyen.Model.Checkout
         /// <param name="fundingSource">The funding source of the payment method..</param>
         /// <param name="group">group.</param>
         /// <param name="inputDetails">All input details to be provided to complete the payment with this payment method..</param>
+        /// <param name="issuers">A list of issuers for this payment method..</param>
         /// <param name="name">The displayable name of this payment method..</param>
         /// <param name="recurringDetailReference">The reference that uniquely identifies the recurring detail..</param>
         /// <param name="storedDetails">storedDetails.</param>
@@ -80,6 +81,7 @@ namespace Adyen.Model.Checkout
             FundingSourceEnum? fundingSource = default(FundingSourceEnum?),
             PaymentMethodGroup group = default(PaymentMethodGroup),
             List<InputDetail> inputDetails = default(List<InputDetail>), string name = default(string),
+            List<PaymentMethodIssuer> issuers = default(List<PaymentMethodIssuer>),
             string recurringDetailReference = default(string), StoredDetails storedDetails = default(StoredDetails),
             string type = default(string))
         {
@@ -90,6 +92,7 @@ namespace Adyen.Model.Checkout
             this.FundingSource = fundingSource;
             this.Group = group;
             this.InputDetails = inputDetails;
+            this.Issuers = issuers;
             this.Name = name;
             this.RecurringDetailReference = recurringDetailReference;
             this.StoredDetails = storedDetails;
@@ -123,8 +126,7 @@ namespace Adyen.Model.Checkout
         /// <value>All input details to be provided to complete the payment with this payment method.</value>
         [DataMember(Name = "details", EmitDefaultValue = false)]
         public List<InputDetail> Details { get; set; }
-
-
+        
         /// <summary>
         /// Gets or Sets Group
         /// </summary>
@@ -137,6 +139,13 @@ namespace Adyen.Model.Checkout
         /// <value>All input details to be provided to complete the payment with this payment method.</value>
         [DataMember(Name = "inputDetails", EmitDefaultValue = false)]
         public List<InputDetail> InputDetails { get; set; }
+        
+        /// <summary>
+        /// A list of issuers for this payment method.
+        /// </summary>
+        /// <value>A list of issuers for this payment method.</value>
+        [DataMember(Name="issuers", EmitDefaultValue=false)]
+        public List<PaymentMethodIssuer> Issuers { get; set; }
 
         /// <summary>
         /// The displayable name of this payment method.
@@ -174,12 +183,12 @@ namespace Adyen.Model.Checkout
             var sb = new StringBuilder();
             sb.Append("class RecurringDetail {\n");
             sb.Append("  Brand: ").Append(Brand).Append("\n");
-            sb.Append("  Brands: ").Append(Brands.ToListString()).Append("\n");
-            sb.Append("  Configuration: ").Append(Configuration.ToCollectionsString()).Append("\n");
-            sb.Append("  Details: ").Append(Details.ObjectListToString()).Append("\n");
+            sb.Append("  Brands: ").Append(Brands).Append("\n");
+            sb.Append("  Configuration: ").Append(Configuration).Append("\n");
             sb.Append("  FundingSource: ").Append(FundingSource).Append("\n");
             sb.Append("  Group: ").Append(Group).Append("\n");
             sb.Append("  InputDetails: ").Append(InputDetails.ObjectListToString()).Append("\n");
+            sb.Append("  Issuers: ").Append(Issuers.ObjectListToString()).Append("\n");
             sb.Append("  Name: ").Append(Name).Append("\n");
             sb.Append("  RecurringDetailReference: ").Append(RecurringDetailReference).Append("\n");
             sb.Append("  StoredDetails: ").Append(StoredDetails).Append("\n");
@@ -256,6 +265,11 @@ namespace Adyen.Model.Checkout
                     this.InputDetails != null &&
                     input.InputDetails != null &&
                     this.InputDetails.SequenceEqual(input.InputDetails)
+                )&&(
+                    this.Issuers == input.Issuers ||
+                    this.Issuers != null &&
+                    input.Issuers != null &&
+                    this.Issuers.SequenceEqual(input.Issuers)
                 ) &&
                 (
                     this.Name == input.Name ||
@@ -302,6 +316,8 @@ namespace Adyen.Model.Checkout
                     hashCode = hashCode * 59 + this.Group.GetHashCode();
                 if (this.InputDetails != null)
                     hashCode = hashCode * 59 + this.InputDetails.GetHashCode();
+                if (this.Issuers != null)
+                    hashCode = hashCode * 59 + this.Issuers.GetHashCode();
                 if (this.Name != null)
                     hashCode = hashCode * 59 + this.Name.GetHashCode();
                 if (this.RecurringDetailReference != null)

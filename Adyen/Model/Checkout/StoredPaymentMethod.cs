@@ -46,24 +46,32 @@ namespace Adyen.Model.Checkout
         /// <param name="expiryMonth">The month the card expires..</param>
         /// <param name="expiryYear">The year the card expires..</param>
         /// <param name="holderName">The unique payment method code..</param>
+        /// <param name="iban">The IBAN of the bank account..</param>
         /// <param name="id">A unique identifier of this stored payment method..</param>
         /// <param name="lastFour">The last four digits of the PAN..</param>
         /// <param name="name">The display name of the stored payment method..</param>
+        /// <param name="networkTxReference">Returned in the response if you are not tokenizing with Adyen and are using the Merchant-initiated transactions (MIT) framework from Mastercard or Visa.  This contains either the Mastercard Trace ID or the Visa Transaction ID..</param>
+        /// <param name="ownerName">The name of the bank account holder..</param>
         /// <param name="shopperEmail">The shopper’s email address..</param>
         /// <param name="supportedShopperInteractions">The supported shopper interactions for this stored payment method..</param>
         /// <param name="type">The type of payment method..</param>
         public StoredPaymentMethod(string brand = default(string), string expiryMonth = default(string),
-            string expiryYear = default(string), string holderName = default(string), string id = default(string),
-            string lastFour = default(string), string name = default(string), string shopperEmail = default(string),
-            List<string> supportedShopperInteractions = default(List<string>), string type = default(string))
+            string expiryYear = default(string), string holderName = default(string), string iban = default(string),
+            string id = default(string), string lastFour = default(string), string name = default(string),
+            string networkTxReference = default(string), string ownerName = default(string),
+            string shopperEmail = default(string), List<string> supportedShopperInteractions = default(List<string>),
+            string type = default(string))
         {
             this.Brand = brand;
             this.ExpiryMonth = expiryMonth;
             this.ExpiryYear = expiryYear;
             this.HolderName = holderName;
+            this.Iban = iban;
             this.Id = id;
             this.LastFour = lastFour;
             this.Name = name;
+            this.NetworkTxReference = networkTxReference;
+            this.OwnerName = ownerName;
             this.ShopperEmail = shopperEmail;
             this.SupportedShopperInteractions = supportedShopperInteractions;
             this.Type = type;
@@ -138,13 +146,20 @@ namespace Adyen.Model.Checkout
         /// <value>The type of payment method.</value>
         [DataMember(Name = "type", EmitDefaultValue = false)]
         public string Type { get; set; }
-        
+
         /// <summary>
         /// The type of payment method.
         /// </summary>
         /// <value>The type of payment method.</value>
         [DataMember(Name = "iban", EmitDefaultValue = false)]
         public string Iban { get; set; }
+
+        /// <summary>
+        /// Returned in the response if you are not tokenizing with Adyen and are using the Merchant-initiated transactions (MIT) framework from Mastercard or Visa.  This contains either the Mastercard Trace ID or the Visa Transaction ID.
+        /// </summary>
+        /// <value>Returned in the response if you are not tokenizing with Adyen and are using the Merchant-initiated transactions (MIT) framework from Mastercard or Visa.  This contains either the Mastercard Trace ID or the Visa Transaction ID.</value>
+        [DataMember(Name = "networkTxReference", EmitDefaultValue = false)]
+        public string NetworkTxReference { get; set; }
 
         /// <summary>
         /// The type of payment method.
@@ -168,8 +183,10 @@ namespace Adyen.Model.Checkout
             sb.Append("  Id: ").Append(Id).Append("\n");
             sb.Append("  LastFour: ").Append(LastFour).Append("\n");
             sb.Append("  Name: ").Append(Name).Append("\n");
+            sb.Append("  NetworkTxReference: ").Append(NetworkTxReference).Append("\n");
             sb.Append("  ShopperEmail: ").Append(ShopperEmail).Append("\n");
-            sb.Append("  SupportedShopperInteractions: ").Append(SupportedShopperInteractions.ToListString()).Append("\n");
+            sb.Append("  SupportedShopperInteractions: ").Append(SupportedShopperInteractions.ToListString())
+                .Append("\n");
             sb.Append("  Type: ").Append(Type).Append("\n");
             sb.Append("  iban: ").Append(Iban).Append("\n");
             sb.Append("  ownerName: ").Append(OwnerName).Append("\n");
@@ -243,6 +260,11 @@ namespace Adyen.Model.Checkout
                     this.Name.Equals(input.Name)
                 ) &&
                 (
+                    this.NetworkTxReference == input.NetworkTxReference ||
+                    (this.NetworkTxReference != null &&
+                     this.NetworkTxReference.Equals(input.NetworkTxReference))
+                ) &&
+                (
                     this.ShopperEmail == input.ShopperEmail ||
                     this.ShopperEmail != null &&
                     this.ShopperEmail.Equals(input.ShopperEmail)
@@ -301,6 +323,8 @@ namespace Adyen.Model.Checkout
                     hashCode = hashCode * 59 + this.Type.GetHashCode();
                 if (this.Iban != null)
                     hashCode = hashCode * 59 + this.Iban.GetHashCode();
+                if (this.NetworkTxReference != null)
+                    hashCode = hashCode * 59 + this.NetworkTxReference.GetHashCode();
                 if (this.OwnerName != null)
                     hashCode = hashCode * 59 + this.OwnerName.GetHashCode();
                 return hashCode;

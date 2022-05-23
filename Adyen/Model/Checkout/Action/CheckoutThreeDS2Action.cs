@@ -25,9 +25,11 @@
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.IO;
 using System.Runtime.Serialization;
 using System.Text;
 using Newtonsoft.Json;
+using Newtonsoft.Json.Converters;
 
 namespace Adyen.Model.Checkout.Action
 {
@@ -38,19 +40,21 @@ namespace Adyen.Model.Checkout.Action
     public partial class CheckoutThreeDS2Action : IEquatable<CheckoutThreeDS2Action>, IValidatableObject, IPaymentResponseAction
     {
         /// <summary>
-        /// Unique identifier of action
+        /// **threeDS2**
         /// </summary>
-        /// <value>Unique identifier of action</value>
+        /// <value>**threeDS2**</value>
         [DataMember(Name = "type", EmitDefaultValue = false)]
-        public string Type { get; set; } = "threeDS2Action";
+        public String Type { get; set; } = "threeDS2";
+
         /// <summary>
         /// Initializes a new instance of the <see cref="CheckoutThreeDS2Action" /> class.
         /// </summary>
         /// <param name="authorisationToken">A token needed to authorise a payment..</param>
-        /// <param name="paymentData">When non-empty, contains a value that you must submit to the &#x60;/payments/details&#x60; endpoint. In some cases, required for polling..</param>
+        /// <param name="paymentData">A value that must be submitted to the &#x60;/payments/details&#x60; endpoint to verify this payment..</param>
         /// <param name="paymentMethodType">Specifies the payment method..</param>
         /// <param name="subtype">A subtype of the token..</param>
         /// <param name="token">A token to pass to the 3DS2 Component to get the fingerprint..</param>
+        /// <param name="type">**threeDS2** (required).</param>
         /// <param name="url">Specifies the URL to redirect to..</param>
         public CheckoutThreeDS2Action(string authorisationToken = default(string), string paymentData = default(string),
             string paymentMethodType = default(string), string subtype = default(string),
@@ -72,9 +76,9 @@ namespace Adyen.Model.Checkout.Action
         public string AuthorisationToken { get; set; }
 
         /// <summary>
-        /// When non-empty, contains a value that you must submit to the &#x60;/payments/details&#x60; endpoint. In some cases, required for polling.
+        /// A value that must be submitted to the &#x60;/payments/details&#x60; endpoint to verify this payment.
         /// </summary>
-        /// <value>When non-empty, contains a value that you must submit to the &#x60;/payments/details&#x60; endpoint. In some cases, required for polling.</value>
+        /// <value>A value that must be submitted to the &#x60;/payments/details&#x60; endpoint to verify this payment.</value>
         [DataMember(Name = "paymentData", EmitDefaultValue = false)]
         public string PaymentData { get; set; }
 
@@ -99,6 +103,7 @@ namespace Adyen.Model.Checkout.Action
         [DataMember(Name = "token", EmitDefaultValue = false)]
         public string Token { get; set; }
 
+
         /// <summary>
         /// Specifies the URL to redirect to.
         /// </summary>
@@ -119,6 +124,7 @@ namespace Adyen.Model.Checkout.Action
             sb.Append("  PaymentMethodType: ").Append(PaymentMethodType).Append("\n");
             sb.Append("  Subtype: ").Append(Subtype).Append("\n");
             sb.Append("  Token: ").Append(Token).Append("\n");
+            sb.Append("  Type: ").Append(Type).Append("\n");
             sb.Append("  Url: ").Append(Url).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
@@ -156,33 +162,38 @@ namespace Adyen.Model.Checkout.Action
             return
                 (
                     this.AuthorisationToken == input.AuthorisationToken ||
-                    this.AuthorisationToken != null &&
-                    this.AuthorisationToken.Equals(input.AuthorisationToken)
+                    (this.AuthorisationToken != null &&
+                     this.AuthorisationToken.Equals(input.AuthorisationToken))
                 ) &&
                 (
                     this.PaymentData == input.PaymentData ||
-                    this.PaymentData != null &&
-                    this.PaymentData.Equals(input.PaymentData)
+                    (this.PaymentData != null &&
+                     this.PaymentData.Equals(input.PaymentData))
                 ) &&
                 (
                     this.PaymentMethodType == input.PaymentMethodType ||
-                    this.PaymentMethodType != null &&
-                    this.PaymentMethodType.Equals(input.PaymentMethodType)
+                    (this.PaymentMethodType != null &&
+                     this.PaymentMethodType.Equals(input.PaymentMethodType))
                 ) &&
                 (
                     this.Subtype == input.Subtype ||
-                    this.Subtype != null &&
-                    this.Subtype.Equals(input.Subtype)
+                    (this.Subtype != null &&
+                     this.Subtype.Equals(input.Subtype))
                 ) &&
                 (
                     this.Token == input.Token ||
-                    this.Token != null &&
-                    this.Token.Equals(input.Token)
+                    (this.Token != null &&
+                     this.Token.Equals(input.Token))
+                ) &&
+                (
+                    this.Type == input.Type ||
+                    (this.Type != null &&
+                     this.Type.Equals(input.Type))
                 ) &&
                 (
                     this.Url == input.Url ||
-                    this.Url != null &&
-                    this.Url.Equals(input.Url)
+                    (this.Url != null &&
+                     this.Url.Equals(input.Url))
                 );
         }
 
@@ -205,6 +216,8 @@ namespace Adyen.Model.Checkout.Action
                     hashCode = hashCode * 59 + this.Subtype.GetHashCode();
                 if (this.Token != null)
                     hashCode = hashCode * 59 + this.Token.GetHashCode();
+                if (this.Type != null)
+                    hashCode = hashCode * 59 + this.Type.GetHashCode();
                 if (this.Url != null)
                     hashCode = hashCode * 59 + this.Url.GetHashCode();
                 return hashCode;

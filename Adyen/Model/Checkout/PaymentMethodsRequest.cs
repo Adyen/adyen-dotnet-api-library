@@ -87,7 +87,7 @@ namespace Adyen.Model.Checkout
         /// <param name="splitCardFundingSources">Boolean value indicating whether the card payment method should be split into separate debit and credit options. (default to false).</param>
         /// <param name="store">The physical store, for which this payment is processed..</param>
         public PaymentMethodsRequest(
-             Dictionary<string, string> additionalData = default(Dictionary<string, string>),
+            Dictionary<string, string> additionalData = default(Dictionary<string, string>),
             List<string> allowedPaymentMethods = default(List<string>), Amount amount = default(Amount),
             List<string> blockedPaymentMethods = default(List<string>), ChannelEnum? channel = default(ChannelEnum?),
             string countryCode = default(string), string merchantAccount = default(string),
@@ -105,6 +105,7 @@ namespace Adyen.Model.Checkout
             {
                 this.MerchantAccount = merchantAccount;
             }
+
             this.AdditionalData = additionalData;
             this.AllowedPaymentMethods = allowedPaymentMethods;
             this.Amount = amount;
@@ -123,6 +124,7 @@ namespace Adyen.Model.Checkout
             {
                 this.SplitCardFundingSources = splitCardFundingSources;
             }
+
             this.Store = store;
         }
 

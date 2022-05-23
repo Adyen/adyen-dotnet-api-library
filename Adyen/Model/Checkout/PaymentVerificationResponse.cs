@@ -1,45 +1,45 @@
-﻿#region Licence
-
+// #region License
 // 
-//                        ######
-//                        ######
-//  ############    ####( ######  #####. ######  ############   ############
-//  #############  #####( ######  #####. ######  #############  #############
-//         ######  #####( ######  #####. ######  #####  ######  #####  ######
-//  ###### ######  #####( ######  #####. ######  #####  #####   #####  ######
-//  ###### ######  #####( ######  #####. ######  #####          #####  ######
-//  #############  #############  #############  #############  #####  ######
-//   ############   ############  #############   ############  #####  ######
-//                                       ######
-//                                #############
-//                                ############
+//                         ######
+//                         ######
+//   ############    ####( ######  #####. ######  ############   ############
+//   #############  #####( ######  #####. ######  #############  #############
+//          ######  #####( ######  #####. ######  #####  ######  #####  ######
+//   ###### ######  #####( ######  #####. ######  #####  #####   #####  ######
+//   ###### ######  #####( ######  #####. ######  #####          #####  ######
+//   #############  #############  #############  #############  #####  ######
+//    ############   ############  #############   ############  #####  ######
+//                                        ######
+//                                 #############
+//                                 ############
 // 
-//  Adyen Dotnet API Library
+//   Adyen Dotnet API Library
 // 
-//  Copyright (c) 2021 Adyen B.V.
-//  This file is open source and available under the MIT license.
-//  See the LICENSE file for more info.
-
-#endregion
+//   Copyright (c) 2021 Adyen B.V.
+//   This file is open source and available under the MIT license.
+//   See the LICENSE file for more info.
+// 
+// #endregion
 
 using System;
-using System.Linq;
-using System.Text;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.IO;
+using System.Linq;
 using System.Runtime.Serialization;
+using System.Text;
+using Adyen.Model.ApplicationInformation;
+using Adyen.Util;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
-using System.ComponentModel.DataAnnotations;
-using Adyen.Util;
 
 namespace Adyen.Model.Checkout
 {
-
-    /// <summary>
-    /// PaymentDetailsResponse
+      /// <summary>
+    /// PaymentVerificationResponse
     /// </summary>
     [DataContract]
-        public partial class PaymentDetailsResponse :  IEquatable<PaymentDetailsResponse>, IValidatableObject
+        public partial class PaymentVerificationResponse :  IEquatable<PaymentVerificationResponse>, IValidatableObject
     {
         /// <summary>
         /// The result of the payment. For more information, see [Result codes](https://docs.adyen.com/online-payments/payment-result-codes).  Possible values:  * **AuthenticationFinished** – The payment has been successfully authenticated with 3D Secure 2. Returned for 3D Secure 2 authentication-only transactions. * **AuthenticationNotRequired** – The transaction does not require 3D Secure authentication. Returned for [standalone authentication-only integrations](https://docs.adyen.com/online-payments/3d-secure/other-3ds-flows/authentication-only). * **Authorised** – The payment was successfully authorised. This state serves as an indicator to proceed with the delivery of goods and services. This is a final state. * **Cancelled** – Indicates the payment has been cancelled (either by the shopper or the merchant) before processing was completed. This is a final state. * **ChallengeShopper** – The issuer requires further shopper interaction before the payment can be authenticated. Returned for 3D Secure 2 transactions. * **Error** – There was an error when the payment was being processed. The reason is given in the &#x60;refusalReason&#x60; field. This is a final state. * **IdentifyShopper** – The issuer requires the shopper&#x27;s device fingerprint before the payment can be authenticated. Returned for 3D Secure 2 transactions. * **Pending** – Indicates that it is not possible to obtain the final status of the payment. This can happen if the systems providing final status information for the payment are unavailable, or if the shopper needs to take further action to complete the payment. * **PresentToShopper** – Indicates that the response contains additional information that you need to present to a shopper, so that they can use it to complete a payment. * **Received** – Indicates the payment has successfully been received by Adyen, and will be processed. This is the initial state for all payments. * **RedirectShopper** – Indicates the shopper should be redirected to an external web page or app to complete the authorisation. * **Refused** – Indicates the payment was refused. The reason is given in the &#x60;refusalReason&#x60; field. This is a final state.
@@ -115,40 +115,46 @@ namespace Adyen.Model.Checkout
         [DataMember(Name="resultCode", EmitDefaultValue=false)]
         public ResultCodeEnum? ResultCode { get; set; }
         /// <summary>
-        /// Initializes a new instance of the <see cref="PaymentDetailsResponse" /> class.
+        /// Initializes a new instance of the <see cref="PaymentVerificationResponse" /> class.
         /// </summary>
         /// <param name="additionalData">Contains additional information about the payment. Some data fields are included only if you select them first: Go to **Customer Area** &gt; **Account** &gt; **API URLs** &gt; **Additional data settings**..</param>
-        /// <param name="amount">amount.</param>
-        /// <param name="donationToken">Donation Token containing payment details for Adyen Giving..</param>
         /// <param name="fraudResult">fraudResult.</param>
-        /// <param name="merchantReference">The reference used during the /payments request..</param>
+        /// <param name="merchantReference">A unique value that you provided in the initial &#x60;/paymentSession&#x60; request as a &#x60;reference&#x60; field. (required).</param>
         /// <param name="order">order.</param>
-        /// <param name="paymentMethod">paymentMethod.</param>
-        /// <param name="pspReference">Adyen&#x27;s 16-character string reference associated with the transaction/request. This value is globally unique; quote it when communicating with us about this request..</param>
+        /// <param name="pspReference">Adyen&#x27;s 16-character reference associated with the transaction/request. This value is globally unique; quote it when communicating with us about this request..</param>
         /// <param name="refusalReason">If the payment&#x27;s authorisation is refused or an error occurs during authorisation, this field holds Adyen&#x27;s mapped reason for the refusal or a description of the error. When a transaction fails, the authorisation response includes &#x60;resultCode&#x60; and &#x60;refusalReason&#x60; values.  For more information, see [Refusal reasons](https://docs.adyen.com/development-resources/refusal-reasons)..</param>
         /// <param name="refusalReasonCode">Code that specifies the refusal reason. For more information, see [Authorisation refusal reasons](https://docs.adyen.com/development-resources/refusal-reasons)..</param>
         /// <param name="resultCode">The result of the payment. For more information, see [Result codes](https://docs.adyen.com/online-payments/payment-result-codes).  Possible values:  * **AuthenticationFinished** – The payment has been successfully authenticated with 3D Secure 2. Returned for 3D Secure 2 authentication-only transactions. * **AuthenticationNotRequired** – The transaction does not require 3D Secure authentication. Returned for [standalone authentication-only integrations](https://docs.adyen.com/online-payments/3d-secure/other-3ds-flows/authentication-only). * **Authorised** – The payment was successfully authorised. This state serves as an indicator to proceed with the delivery of goods and services. This is a final state. * **Cancelled** – Indicates the payment has been cancelled (either by the shopper or the merchant) before processing was completed. This is a final state. * **ChallengeShopper** – The issuer requires further shopper interaction before the payment can be authenticated. Returned for 3D Secure 2 transactions. * **Error** – There was an error when the payment was being processed. The reason is given in the &#x60;refusalReason&#x60; field. This is a final state. * **IdentifyShopper** – The issuer requires the shopper&#x27;s device fingerprint before the payment can be authenticated. Returned for 3D Secure 2 transactions. * **Pending** – Indicates that it is not possible to obtain the final status of the payment. This can happen if the systems providing final status information for the payment are unavailable, or if the shopper needs to take further action to complete the payment. * **PresentToShopper** – Indicates that the response contains additional information that you need to present to a shopper, so that they can use it to complete a payment. * **Received** – Indicates the payment has successfully been received by Adyen, and will be processed. This is the initial state for all payments. * **RedirectShopper** – Indicates the shopper should be redirected to an external web page or app to complete the authorisation. * **Refused** – Indicates the payment was refused. The reason is given in the &#x60;refusalReason&#x60; field. This is a final state..</param>
-        /// <param name="shopperLocale">The shopperLocale..</param>
-        /// <param name="threeDS2ResponseData">threeDS2ResponseData.</param>
-        /// <param name="threeDS2Result">threeDS2Result.</param>
-        /// <param name="threeDSPaymentData">When non-empty, contains a value that you must submit to the &#x60;/payments/details&#x60; endpoint as &#x60;paymentData&#x60;..</param>
-        public PaymentDetailsResponse(Dictionary<string, string> additionalData = default(Dictionary<string, string>), Amount amount = default(Amount), string donationToken = default(string), FraudResult fraudResult = default(FraudResult), string merchantReference = default(string), CheckoutOrderResponse order = default(CheckoutOrderResponse), ResponsePaymentMethod paymentMethod = default(ResponsePaymentMethod), string pspReference = default(string), string refusalReason = default(string), string refusalReasonCode = default(string), ResultCodeEnum? resultCode = default(ResultCodeEnum?), string shopperLocale = default(string), ThreeDS2ResponseData threeDS2ResponseData = default(ThreeDS2ResponseData), ThreeDS2Result threeDS2Result = default(ThreeDS2Result), string threeDSPaymentData = default(string))
+        /// <param name="serviceError">serviceError.</param>
+        /// <param name="shopperLocale">The shopperLocale value provided in the payment request. (required).</param>
+        public PaymentVerificationResponse(Dictionary<string, string> additionalData = default(Dictionary<string, string>), FraudResult fraudResult = default(FraudResult), string merchantReference = default(string), CheckoutOrderResponse order = default(CheckoutOrderResponse), string pspReference = default(string), string refusalReason = default(string), string refusalReasonCode = default(string), ResultCodeEnum? resultCode = default(ResultCodeEnum?), ServiceError2 serviceError = default(ServiceError2), string shopperLocale = default(string))
         {
+            // to ensure "merchantReference" is required (not null)
+            if (merchantReference == null)
+            {
+                throw new InvalidDataException("merchantReference is a required property for PaymentVerificationResponse and cannot be null");
+            }
+            else
+            {
+                this.MerchantReference = merchantReference;
+            }
+            // to ensure "shopperLocale" is required (not null)
+            if (shopperLocale == null)
+            {
+                throw new InvalidDataException("shopperLocale is a required property for PaymentVerificationResponse and cannot be null");
+            }
+            else
+            {
+                this.ShopperLocale = shopperLocale;
+            }
             this.AdditionalData = additionalData;
-            this.Amount = amount;
-            this.DonationToken = donationToken;
             this.FraudResult = fraudResult;
-            this.MerchantReference = merchantReference;
             this.Order = order;
-            this.PaymentMethod = paymentMethod;
             this.PspReference = pspReference;
             this.RefusalReason = refusalReason;
             this.RefusalReasonCode = refusalReasonCode;
             this.ResultCode = resultCode;
-            this.ShopperLocale = shopperLocale;
-            this.ThreeDS2ResponseData = threeDS2ResponseData;
-            this.ThreeDS2Result = threeDS2Result;
-            this.ThreeDSPaymentData = threeDSPaymentData;
+            this.ServiceError = serviceError;
         }
         
         /// <summary>
@@ -159,28 +165,15 @@ namespace Adyen.Model.Checkout
         public Dictionary<string, string> AdditionalData { get; set; }
 
         /// <summary>
-        /// Gets or Sets Amount
-        /// </summary>
-        [DataMember(Name="amount", EmitDefaultValue=false)]
-        public Amount Amount { get; set; }
-
-        /// <summary>
-        /// Donation Token containing payment details for Adyen Giving.
-        /// </summary>
-        /// <value>Donation Token containing payment details for Adyen Giving.</value>
-        [DataMember(Name="donationToken", EmitDefaultValue=false)]
-        public string DonationToken { get; set; }
-
-        /// <summary>
         /// Gets or Sets FraudResult
         /// </summary>
         [DataMember(Name="fraudResult", EmitDefaultValue=false)]
         public FraudResult FraudResult { get; set; }
 
         /// <summary>
-        /// The reference used during the /payments request.
+        /// A unique value that you provided in the initial &#x60;/paymentSession&#x60; request as a &#x60;reference&#x60; field.
         /// </summary>
-        /// <value>The reference used during the /payments request.</value>
+        /// <value>A unique value that you provided in the initial &#x60;/paymentSession&#x60; request as a &#x60;reference&#x60; field.</value>
         [DataMember(Name="merchantReference", EmitDefaultValue=false)]
         public string MerchantReference { get; set; }
 
@@ -191,15 +184,9 @@ namespace Adyen.Model.Checkout
         public CheckoutOrderResponse Order { get; set; }
 
         /// <summary>
-        /// Gets or Sets PaymentMethod
+        /// Adyen&#x27;s 16-character reference associated with the transaction/request. This value is globally unique; quote it when communicating with us about this request.
         /// </summary>
-        [DataMember(Name="paymentMethod", EmitDefaultValue=false)]
-        public ResponsePaymentMethod PaymentMethod { get; set; }
-
-        /// <summary>
-        /// Adyen&#x27;s 16-character string reference associated with the transaction/request. This value is globally unique; quote it when communicating with us about this request.
-        /// </summary>
-        /// <value>Adyen&#x27;s 16-character string reference associated with the transaction/request. This value is globally unique; quote it when communicating with us about this request.</value>
+        /// <value>Adyen&#x27;s 16-character reference associated with the transaction/request. This value is globally unique; quote it when communicating with us about this request.</value>
         [DataMember(Name="pspReference", EmitDefaultValue=false)]
         public string PspReference { get; set; }
 
@@ -219,30 +206,17 @@ namespace Adyen.Model.Checkout
 
 
         /// <summary>
-        /// The shopperLocale.
+        /// Gets or Sets ServiceError
         /// </summary>
-        /// <value>The shopperLocale.</value>
+        [DataMember(Name="serviceError", EmitDefaultValue=false)]
+        public ServiceError2 ServiceError { get; set; }
+
+        /// <summary>
+        /// The shopperLocale value provided in the payment request.
+        /// </summary>
+        /// <value>The shopperLocale value provided in the payment request.</value>
         [DataMember(Name="shopperLocale", EmitDefaultValue=false)]
         public string ShopperLocale { get; set; }
-
-        /// <summary>
-        /// Gets or Sets ThreeDS2ResponseData
-        /// </summary>
-        [DataMember(Name="threeDS2ResponseData", EmitDefaultValue=false)]
-        public ThreeDS2ResponseData ThreeDS2ResponseData { get; set; }
-
-        /// <summary>
-        /// Gets or Sets ThreeDS2Result
-        /// </summary>
-        [DataMember(Name="threeDS2Result", EmitDefaultValue=false)]
-        public ThreeDS2Result ThreeDS2Result { get; set; }
-
-        /// <summary>
-        /// When non-empty, contains a value that you must submit to the &#x60;/payments/details&#x60; endpoint as &#x60;paymentData&#x60;.
-        /// </summary>
-        /// <value>When non-empty, contains a value that you must submit to the &#x60;/payments/details&#x60; endpoint as &#x60;paymentData&#x60;.</value>
-        [DataMember(Name="threeDSPaymentData", EmitDefaultValue=false)]
-        public string ThreeDSPaymentData { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -251,22 +225,17 @@ namespace Adyen.Model.Checkout
         public override string ToString()
         {
             var sb = new StringBuilder();
-            sb.Append("class PaymentDetailsResponse {\n");
-            sb.Append("  AdditionalData: ").Append(AdditionalData).Append("\n");
-            sb.Append("  Amount: ").Append(Amount).Append("\n");
-            sb.Append("  DonationToken: ").Append(DonationToken).Append("\n");
+            sb.Append("class PaymentVerificationResponse {\n");
+            sb.Append("  AdditionalData: ").Append(AdditionalData.ToCollectionsString()).Append("\n");
             sb.Append("  FraudResult: ").Append(FraudResult).Append("\n");
             sb.Append("  MerchantReference: ").Append(MerchantReference).Append("\n");
             sb.Append("  Order: ").Append(Order).Append("\n");
-            sb.Append("  PaymentMethod: ").Append(PaymentMethod).Append("\n");
             sb.Append("  PspReference: ").Append(PspReference).Append("\n");
             sb.Append("  RefusalReason: ").Append(RefusalReason).Append("\n");
             sb.Append("  RefusalReasonCode: ").Append(RefusalReasonCode).Append("\n");
             sb.Append("  ResultCode: ").Append(ResultCode).Append("\n");
+            sb.Append("  ServiceError: ").Append(ServiceError).Append("\n");
             sb.Append("  ShopperLocale: ").Append(ShopperLocale).Append("\n");
-            sb.Append("  ThreeDS2ResponseData: ").Append(ThreeDS2ResponseData).Append("\n");
-            sb.Append("  ThreeDS2Result: ").Append(ThreeDS2Result).Append("\n");
-            sb.Append("  ThreeDSPaymentData: ").Append(ThreeDSPaymentData).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -287,15 +256,15 @@ namespace Adyen.Model.Checkout
         /// <returns>Boolean</returns>
         public override bool Equals(object input)
         {
-            return this.Equals(input as PaymentDetailsResponse);
+            return this.Equals(input as PaymentVerificationResponse);
         }
 
         /// <summary>
-        /// Returns true if PaymentDetailsResponse instances are equal
+        /// Returns true if PaymentVerificationResponse instances are equal
         /// </summary>
-        /// <param name="input">Instance of PaymentDetailsResponse to be compared</param>
+        /// <param name="input">Instance of PaymentVerificationResponse to be compared</param>
         /// <returns>Boolean</returns>
-        public bool Equals(PaymentDetailsResponse input)
+        public bool Equals(PaymentVerificationResponse input)
         {
             if (input == null)
                 return false;
@@ -306,16 +275,6 @@ namespace Adyen.Model.Checkout
                     this.AdditionalData != null &&
                     input.AdditionalData != null &&
                     this.AdditionalData.SequenceEqual(input.AdditionalData)
-                ) && 
-                (
-                    this.Amount == input.Amount ||
-                    (this.Amount != null &&
-                    this.Amount.Equals(input.Amount))
-                ) && 
-                (
-                    this.DonationToken == input.DonationToken ||
-                    (this.DonationToken != null &&
-                    this.DonationToken.Equals(input.DonationToken))
                 ) && 
                 (
                     this.FraudResult == input.FraudResult ||
@@ -331,11 +290,6 @@ namespace Adyen.Model.Checkout
                     this.Order == input.Order ||
                     (this.Order != null &&
                     this.Order.Equals(input.Order))
-                ) && 
-                (
-                    this.PaymentMethod == input.PaymentMethod ||
-                    (this.PaymentMethod != null &&
-                    this.PaymentMethod.Equals(input.PaymentMethod))
                 ) && 
                 (
                     this.PspReference == input.PspReference ||
@@ -358,24 +312,14 @@ namespace Adyen.Model.Checkout
                     this.ResultCode.Equals(input.ResultCode))
                 ) && 
                 (
+                    this.ServiceError == input.ServiceError ||
+                    (this.ServiceError != null &&
+                    this.ServiceError.Equals(input.ServiceError))
+                ) && 
+                (
                     this.ShopperLocale == input.ShopperLocale ||
                     (this.ShopperLocale != null &&
                     this.ShopperLocale.Equals(input.ShopperLocale))
-                ) && 
-                (
-                    this.ThreeDS2ResponseData == input.ThreeDS2ResponseData ||
-                    (this.ThreeDS2ResponseData != null &&
-                    this.ThreeDS2ResponseData.Equals(input.ThreeDS2ResponseData))
-                ) && 
-                (
-                    this.ThreeDS2Result == input.ThreeDS2Result ||
-                    (this.ThreeDS2Result != null &&
-                    this.ThreeDS2Result.Equals(input.ThreeDS2Result))
-                ) && 
-                (
-                    this.ThreeDSPaymentData == input.ThreeDSPaymentData ||
-                    (this.ThreeDSPaymentData != null &&
-                    this.ThreeDSPaymentData.Equals(input.ThreeDSPaymentData))
                 );
         }
 
@@ -390,18 +334,12 @@ namespace Adyen.Model.Checkout
                 int hashCode = 41;
                 if (this.AdditionalData != null)
                     hashCode = hashCode * 59 + this.AdditionalData.GetHashCode();
-                if (this.Amount != null)
-                    hashCode = hashCode * 59 + this.Amount.GetHashCode();
-                if (this.DonationToken != null)
-                    hashCode = hashCode * 59 + this.DonationToken.GetHashCode();
                 if (this.FraudResult != null)
                     hashCode = hashCode * 59 + this.FraudResult.GetHashCode();
                 if (this.MerchantReference != null)
                     hashCode = hashCode * 59 + this.MerchantReference.GetHashCode();
                 if (this.Order != null)
                     hashCode = hashCode * 59 + this.Order.GetHashCode();
-                if (this.PaymentMethod != null)
-                    hashCode = hashCode * 59 + this.PaymentMethod.GetHashCode();
                 if (this.PspReference != null)
                     hashCode = hashCode * 59 + this.PspReference.GetHashCode();
                 if (this.RefusalReason != null)
@@ -410,14 +348,10 @@ namespace Adyen.Model.Checkout
                     hashCode = hashCode * 59 + this.RefusalReasonCode.GetHashCode();
                 if (this.ResultCode != null)
                     hashCode = hashCode * 59 + this.ResultCode.GetHashCode();
+                if (this.ServiceError != null)
+                    hashCode = hashCode * 59 + this.ServiceError.GetHashCode();
                 if (this.ShopperLocale != null)
                     hashCode = hashCode * 59 + this.ShopperLocale.GetHashCode();
-                if (this.ThreeDS2ResponseData != null)
-                    hashCode = hashCode * 59 + this.ThreeDS2ResponseData.GetHashCode();
-                if (this.ThreeDS2Result != null)
-                    hashCode = hashCode * 59 + this.ThreeDS2Result.GetHashCode();
-                if (this.ThreeDSPaymentData != null)
-                    hashCode = hashCode * 59 + this.ThreeDSPaymentData.GetHashCode();
                 return hashCode;
             }
         }

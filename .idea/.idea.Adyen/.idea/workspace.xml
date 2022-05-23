@@ -5,8 +5,27 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="2cf69faf-3719-49a5-b59b-27ac02db11e0" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/Adyen/Model/Checkout/CardDetails.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Adyen/Model/Checkout/CardDetails.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Adyen/Model/Checkout/CheckoutCreateOrderResponse.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Adyen/Model/Checkout/CheckoutCreateOrderResponse.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.Adyen/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Adyen/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Adyen.Test/ModelTests/NameTests.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Adyen.Test/ModelTests/NameTests.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Adyen.sln.DotSettings.user" beforeDir="false" afterPath="$PROJECT_DIR$/Adyen.sln.DotSettings.user" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Adyen/Model/Checkout/Action/CheckoutQrCodeAction.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Adyen/Model/Checkout/Action/CheckoutQrCodeAction.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Adyen/Model/Checkout/Action/CheckoutRedirectAction.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Adyen/Model/Checkout/Action/CheckoutRedirectAction.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Adyen/Model/Checkout/Action/CheckoutThreeDS2Action.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Adyen/Model/Checkout/Action/CheckoutThreeDS2Action.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Adyen/Model/Checkout/CreateCheckoutSessionRequest.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Adyen/Model/Checkout/CreateCheckoutSessionRequest.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Adyen/Model/Checkout/CreateCheckoutSessionResponse.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Adyen/Model/Checkout/CreateCheckoutSessionResponse.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Adyen/Model/Checkout/CreatePaymentLinkRequest.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Adyen/Model/Checkout/CreatePaymentLinkRequest.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Adyen/Model/Checkout/InstallmentOption.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Adyen/Model/Checkout/InstallmentOption.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Adyen/Model/Checkout/LineItem.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Adyen/Model/Checkout/LineItem.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Adyen/Model/Checkout/MerchantRiskIndicator.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Adyen/Model/Checkout/MerchantRiskIndicator.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Adyen/Model/Checkout/Name.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Adyen/Model/Checkout/Name.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Adyen/Model/Checkout/PaymentDetailsResponse.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Adyen/Model/Checkout/PaymentDetailsResponse.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Adyen/Model/Checkout/PaymentMethodsRequest.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Adyen/Model/Checkout/PaymentMethodsRequest.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Adyen/Model/Checkout/PaymentRequest.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Adyen/Model/Checkout/PaymentRequest.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Adyen/Model/Checkout/PaymentResponse.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Adyen/Model/Checkout/PaymentResponse.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Adyen/Model/Checkout/PaymentReversalResource.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Adyen/Model/Checkout/PaymentReversalResource.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Adyen/Model/Checkout/RecurringDetail.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Adyen/Model/Checkout/RecurringDetail.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Adyen/Model/Checkout/ServiceError.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Adyen/Model/Checkout/ServiceError.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Adyen/Model/Checkout/StoredPaymentMethod.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Adyen/Model/Checkout/StoredPaymentMethod.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -82,6 +101,7 @@
   <component name="Push.Settings">
     <option name="SHOW_DETAILS_PANEL" value="false" />
   </component>
+  <component name="RunManager" selected="2b57c5b1-591e-4333-b0c0-5a8a84d2e137" />
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
@@ -133,7 +153,7 @@
       <workItem from="1652166704098" duration="442000" />
       <workItem from="1652267053526" duration="135000" />
       <workItem from="1652357748101" duration="2646000" />
-      <workItem from="1653309477465" duration="4447000" />
+      <workItem from="1653309477465" duration="12277000" />
     </task>
     <task id="LOCAL-00001" summary="Add services for checkout modifications">
       <created>1640623402069</created>
