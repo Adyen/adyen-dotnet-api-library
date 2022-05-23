@@ -1,26 +1,25 @@
-#region Licence
-
+// #region License
 // 
-//                        ######
-//                        ######
-//  ############    ####( ######  #####. ######  ############   ############
-//  #############  #####( ######  #####. ######  #############  #############
-//         ######  #####( ######  #####. ######  #####  ######  #####  ######
-//  ###### ######  #####( ######  #####. ######  #####  #####   #####  ######
-//  ###### ######  #####( ######  #####. ######  #####          #####  ######
-//  #############  #############  #############  #############  #####  ######
-//   ############   ############  #############   ############  #####  ######
-//                                       ######
-//                                #############
-//                                ############
+//                         ######
+//                         ######
+//   ############    ####( ######  #####. ######  ############   ############
+//   #############  #####( ######  #####. ######  #############  #############
+//          ######  #####( ######  #####. ######  #####  ######  #####  ######
+//   ###### ######  #####( ######  #####. ######  #####  #####   #####  ######
+//   ###### ######  #####( ######  #####. ######  #####          #####  ######
+//   #############  #############  #############  #############  #####  ######
+//    ############   ############  #############   ############  #####  ######
+//                                        ######
+//                                 #############
+//                                 ############
 // 
-//  Adyen Dotnet API Library
+//   Adyen Dotnet API Library
 // 
-//  Copyright (c) 2020 Adyen B.V.
-//  This file is open source and available under the MIT license.
-//  See the LICENSE file for more info.
-
-#endregion
+//   Copyright (c) 2021 Adyen B.V.
+//   This file is open source and available under the MIT license.
+//   See the LICENSE file for more info.
+// 
+// #endregion
 
 using System;
 using System.Collections.Generic;
@@ -31,99 +30,75 @@ using System.Text;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
 
-namespace Adyen.Model.Checkout.Action
+namespace Adyen.Model.Checkout
 {
-    /// <summary>
-    /// CheckoutQrCodeAction
+     /// <summary>
+    /// CheckoutDonationAction
     /// </summary>
     [DataContract]
-    public partial class CheckoutQrCodeAction : IEquatable<CheckoutQrCodeAction>, IValidatableObject
+        public partial class CheckoutDonationAction :  IEquatable<CheckoutDonationAction>, IValidatableObject
     {
         /// <summary>
-        /// **qrCode**
+        /// The type of the action.
         /// </summary>
-        /// <value>**qrCode**</value>
+        /// <value>The type of the action.</value>
         [JsonConverter(typeof(StringEnumConverter))]
-        public enum TypeEnum
+                public enum TypeEnum
         {
             /// <summary>
-            /// Enum QrCode for value: qrCode
+            /// Enum Donate for value: donate
             /// </summary>
-            [EnumMember(Value = "qrCode")] QrCode = 1
-        }
-
+            [EnumMember(Value = "donate")]
+            Donate = 1        }
         /// <summary>
-        /// **qrCode**
+        /// The type of the action.
         /// </summary>
-        /// <value>**qrCode**</value>
-        [DataMember(Name = "type", EmitDefaultValue = false)]
+        /// <value>The type of the action.</value>
+        [DataMember(Name="type", EmitDefaultValue=false)]
         public TypeEnum Type { get; set; }
-
         /// <summary>
-        /// Initializes a new instance of the <see cref="CheckoutQrCodeAction" /> class.
+        /// Initializes a new instance of the <see cref="CheckoutDonationAction" /> class.
         /// </summary>
-        /// <param name="expiresAt">Expiry time of the QR code..</param>
         /// <param name="paymentData">A value that must be submitted to the &#x60;/payments/details&#x60; endpoint to verify this payment..</param>
         /// <param name="paymentMethodType">Specifies the payment method..</param>
-        /// <param name="qrCodeData">The contents of the QR code as a UTF8 string..</param>
-        /// <param name="type">**qrCode** (required).</param>
+        /// <param name="type">The type of the action. (required).</param>
         /// <param name="url">Specifies the URL to redirect to..</param>
-        public CheckoutQrCodeAction(string expiresAt = default(string), string paymentData = default(string),
-            string paymentMethodType = default(string), string qrCodeData = default(string),
-            TypeEnum type = default(TypeEnum), string url = default(string))
+        public CheckoutDonationAction(string paymentData = default(string), string paymentMethodType = default(string), TypeEnum type = default(TypeEnum), string url = default(string))
         {
             // to ensure "type" is required (not null)
             if (type == null)
             {
-                throw new InvalidDataException(
-                    "type is a required property for CheckoutQrCodeAction and cannot be null");
+                throw new InvalidDataException("type is a required property for CheckoutDonationAction and cannot be null");
             }
             else
             {
                 this.Type = type;
             }
-
-            this.ExpiresAt = expiresAt;
             this.PaymentData = paymentData;
             this.PaymentMethodType = paymentMethodType;
-            this.QrCodeData = qrCodeData;
             this.Url = url;
         }
-
-        /// <summary>
-        /// Expiry time of the QR code.
-        /// </summary>
-        /// <value>Expiry time of the QR code.</value>
-        [DataMember(Name = "expiresAt", EmitDefaultValue = false)]
-        public string ExpiresAt { get; set; }
-
+        
         /// <summary>
         /// A value that must be submitted to the &#x60;/payments/details&#x60; endpoint to verify this payment.
         /// </summary>
         /// <value>A value that must be submitted to the &#x60;/payments/details&#x60; endpoint to verify this payment.</value>
-        [DataMember(Name = "paymentData", EmitDefaultValue = false)]
+        [DataMember(Name="paymentData", EmitDefaultValue=false)]
         public string PaymentData { get; set; }
 
         /// <summary>
         /// Specifies the payment method.
         /// </summary>
         /// <value>Specifies the payment method.</value>
-        [DataMember(Name = "paymentMethodType", EmitDefaultValue = false)]
+        [DataMember(Name="paymentMethodType", EmitDefaultValue=false)]
         public string PaymentMethodType { get; set; }
-
-        /// <summary>
-        /// The contents of the QR code as a UTF8 string.
-        /// </summary>
-        /// <value>The contents of the QR code as a UTF8 string.</value>
-        [DataMember(Name = "qrCodeData", EmitDefaultValue = false)]
-        public string QrCodeData { get; set; }
 
 
         /// <summary>
         /// Specifies the URL to redirect to.
         /// </summary>
         /// <value>Specifies the URL to redirect to.</value>
-        [DataMember(Name = "url", EmitDefaultValue = false)]
+        [DataMember(Name="url", EmitDefaultValue=false)]
         public string Url { get; set; }
 
         /// <summary>
@@ -133,17 +108,15 @@ namespace Adyen.Model.Checkout.Action
         public override string ToString()
         {
             var sb = new StringBuilder();
-            sb.Append("class CheckoutQrCodeAction {\n");
-            sb.Append("  ExpiresAt: ").Append(ExpiresAt).Append("\n");
+            sb.Append("class CheckoutDonationAction {\n");
             sb.Append("  PaymentData: ").Append(PaymentData).Append("\n");
             sb.Append("  PaymentMethodType: ").Append(PaymentMethodType).Append("\n");
-            sb.Append("  QrCodeData: ").Append(QrCodeData).Append("\n");
             sb.Append("  Type: ").Append(Type).Append("\n");
             sb.Append("  Url: ").Append(Url).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
-
+  
         /// <summary>
         /// Returns the JSON string presentation of the object
         /// </summary>
@@ -160,49 +133,39 @@ namespace Adyen.Model.Checkout.Action
         /// <returns>Boolean</returns>
         public override bool Equals(object input)
         {
-            return this.Equals(input as CheckoutQrCodeAction);
+            return this.Equals(input as CheckoutDonationAction);
         }
 
         /// <summary>
-        /// Returns true if CheckoutQrCodeAction instances are equal
+        /// Returns true if CheckoutDonationAction instances are equal
         /// </summary>
-        /// <param name="input">Instance of CheckoutQrCodeAction to be compared</param>
+        /// <param name="input">Instance of CheckoutDonationAction to be compared</param>
         /// <returns>Boolean</returns>
-        public bool Equals(CheckoutQrCodeAction input)
+        public bool Equals(CheckoutDonationAction input)
         {
             if (input == null)
                 return false;
 
-            return
-                (
-                    this.ExpiresAt == input.ExpiresAt ||
-                    (this.ExpiresAt != null &&
-                     this.ExpiresAt.Equals(input.ExpiresAt))
-                ) &&
+            return 
                 (
                     this.PaymentData == input.PaymentData ||
                     (this.PaymentData != null &&
-                     this.PaymentData.Equals(input.PaymentData))
-                ) &&
+                    this.PaymentData.Equals(input.PaymentData))
+                ) && 
                 (
                     this.PaymentMethodType == input.PaymentMethodType ||
                     (this.PaymentMethodType != null &&
-                     this.PaymentMethodType.Equals(input.PaymentMethodType))
-                ) &&
-                (
-                    this.QrCodeData == input.QrCodeData ||
-                    (this.QrCodeData != null &&
-                     this.QrCodeData.Equals(input.QrCodeData))
-                ) &&
+                    this.PaymentMethodType.Equals(input.PaymentMethodType))
+                ) && 
                 (
                     this.Type == input.Type ||
                     (this.Type != null &&
-                     this.Type.Equals(input.Type))
-                ) &&
+                    this.Type.Equals(input.Type))
+                ) && 
                 (
                     this.Url == input.Url ||
                     (this.Url != null &&
-                     this.Url.Equals(input.Url))
+                    this.Url.Equals(input.Url))
                 );
         }
 
@@ -215,14 +178,10 @@ namespace Adyen.Model.Checkout.Action
             unchecked // Overflow is fine, just wrap
             {
                 int hashCode = 41;
-                if (this.ExpiresAt != null)
-                    hashCode = hashCode * 59 + this.ExpiresAt.GetHashCode();
                 if (this.PaymentData != null)
                     hashCode = hashCode * 59 + this.PaymentData.GetHashCode();
                 if (this.PaymentMethodType != null)
                     hashCode = hashCode * 59 + this.PaymentMethodType.GetHashCode();
-                if (this.QrCodeData != null)
-                    hashCode = hashCode * 59 + this.QrCodeData.GetHashCode();
                 if (this.Type != null)
                     hashCode = hashCode * 59 + this.Type.GetHashCode();
                 if (this.Url != null)
@@ -236,8 +195,7 @@ namespace Adyen.Model.Checkout.Action
         /// </summary>
         /// <param name="validationContext">Validation context</param>
         /// <returns>Validation Result</returns>
-        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(
-            ValidationContext validationContext)
+        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
         {
             yield break;
         }
