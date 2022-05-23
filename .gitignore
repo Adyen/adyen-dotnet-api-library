@@ -2,3 +2,4 @@
 TestResults/
 .vagrant/
 .idea/
+*.user
