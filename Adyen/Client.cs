@@ -41,7 +41,8 @@ namespace Adyen
 
         public event CallbackLogHandler LogCallback;
 
-        public Client(string username, string password, Environment environment)
+        //If the liveEndpointUrlPrefix is null then it is used only for test environment
+        public Client(string username, string password, Environment environment, string liveEndpointUrlPrefix = null)
         {
             Config = new Config
             {
@@ -49,37 +50,23 @@ namespace Adyen
                 Password = password,
                 Environment = environment
             };
-            this.SetEnvironment(environment);
+            SetEnvironment(environment, liveEndpointUrlPrefix);
         }
-
-        public Client(string xapikey, Environment environment)
+        
+        //If the liveEndpointUrlPrefix is null then it is used only for test environment
+        public Client(string xapikey, Environment environment, string liveEndpointUrlPrefix = null)
         {
             Config = new Config
             {
                 Environment = environment,
                 XApiKey = xapikey
             };
-            this.SetEnvironment(environment);
-        }
-
-        public Client(string xapikey, Environment environment, string liveEndpointUrlPrefix)
-        {
-            Config = new Config
-            {
-                Environment = environment,
-                XApiKey = xapikey
-            };
-            this.SetEnvironment(environment, liveEndpointUrlPrefix);
+            SetEnvironment(environment, liveEndpointUrlPrefix);
         }
 
         public Client(Config config)
         {
             Config = config;
-        }
-
-        public void SetEnvironment(Environment environment)
-        {
-            SetEnvironment(environment, null);
         }
 
         public void SetEnvironment(Environment environment, string liveEndpointUrlPrefix)
