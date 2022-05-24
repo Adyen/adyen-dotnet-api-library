@@ -102,7 +102,7 @@ namespace Adyen.Model.Checkout.Action
         {
             var sb = new StringBuilder();
             sb.Append("class CheckoutRedirectAction {\n");
-            sb.Append("  Data: ").Append(Data).Append("\n");
+            sb.Append("  Data: ").Append(Data.ToCollectionsString()).Append("\n");
             sb.Append("  Method: ").Append(Method).Append("\n");
             sb.Append("  PaymentMethodType: ").Append(PaymentMethodType).Append("\n");
             sb.Append("  Type: ").Append(Type).Append("\n");

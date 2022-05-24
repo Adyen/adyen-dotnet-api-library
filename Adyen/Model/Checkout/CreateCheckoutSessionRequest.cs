@@ -25,12 +25,8 @@
 
 using System;
 using System.Linq;
-using System.IO;
 using System.Text;
-using System.Text.RegularExpressions;
-using System.Collections;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
 using Adyen.Model.ApplicationInformation;
 using System.Runtime.Serialization;
 using Newtonsoft.Json;
@@ -952,9 +948,9 @@ namespace Adyen.Model.Checkout
                     hashCode = hashCode * 59 + this.AllowedPaymentMethods.GetHashCode();
                 if (this.Amount != null)
                     hashCode = hashCode * 59 + this.Amount.GetHashCode();
+                if (this.AuthenticationData != null)
+                    hashCode = hashCode * 59 + this.AuthenticationData.GetHashCode();
                 if (this.ApplicationInfo != null)
-                    if (this.AuthenticationData != null)
-                        hashCode = hashCode * 59 + this.AuthenticationData.GetHashCode();
                     hashCode = hashCode * 59 + this.ApplicationInfo.GetHashCode();
                 if (this.BillingAddress != null)
                     hashCode = hashCode * 59 + this.BillingAddress.GetHashCode();

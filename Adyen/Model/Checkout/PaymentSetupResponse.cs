@@ -27,6 +27,7 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Runtime.Serialization;
 using System.Text;
+using Adyen.Util;
 using Newtonsoft.Json;
 
 namespace Adyen.Model.Checkout
@@ -71,7 +72,7 @@ namespace Adyen.Model.Checkout
             var sb = new StringBuilder();
             sb.Append("class PaymentSetupResponse {\n");
             sb.Append("  PaymentSession: ").Append(PaymentSession).Append("\n");
-            sb.Append("  RecurringDetails: ").Append(RecurringDetails).Append("\n");
+            sb.Append("  RecurringDetails: ").Append(RecurringDetails.ObjectListToString()).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }

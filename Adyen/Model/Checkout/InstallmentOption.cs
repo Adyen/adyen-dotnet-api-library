@@ -111,9 +111,9 @@ namespace Adyen.Model.Checkout
             var sb = new StringBuilder();
             sb.Append("class InstallmentOption {\n");
             sb.Append("  MaxValue: ").Append(MaxValue).Append("\n");
-            sb.Append("  Plans: ").Append(Plans).Append("\n");
+            sb.Append("  Plans: ").Append(Plans.ObjectListToString()).Append("\n");
             sb.Append("  PreselectedValue: ").Append(PreselectedValue).Append("\n");
-            sb.Append("  Values: ").Append(Values).Append("\n");
+            sb.Append("  Values: ").Append(Values.ObjectListToString()).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }

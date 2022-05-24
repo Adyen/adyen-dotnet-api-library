@@ -499,10 +499,10 @@ namespace Adyen.Model.Checkout
             sb.Append("  Mcc: ").Append(Mcc).Append("\n");
             sb.Append("  MerchantAccount: ").Append(MerchantAccount).Append("\n");
             sb.Append("  MerchantOrderReference: ").Append(MerchantOrderReference).Append("\n");
-            sb.Append("  Metadata: ").Append(Metadata).Append("\n");
+            sb.Append("  Metadata: ").Append(Metadata.ToCollectionsString()).Append("\n");
             sb.Append("  RecurringProcessingModel: ").Append(RecurringProcessingModel).Append("\n");
             sb.Append("  Reference: ").Append(Reference).Append("\n");
-            sb.Append("  RequiredShopperFields: ").Append(RequiredShopperFields).Append("\n");
+            sb.Append("  RequiredShopperFields: ").Append(RequiredShopperFields.ObjectListToString()).Append("\n");
             sb.Append("  ReturnUrl: ").Append(ReturnUrl).Append("\n");
             sb.Append("  Reusable: ").Append(Reusable).Append("\n");
             sb.Append("  RiskData: ").Append(RiskData).Append("\n");

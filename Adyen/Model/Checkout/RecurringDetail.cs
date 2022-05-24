@@ -184,7 +184,7 @@ namespace Adyen.Model.Checkout
             sb.Append("class RecurringDetail {\n");
             sb.Append("  Brand: ").Append(Brand).Append("\n");
             sb.Append("  Brands: ").Append(Brands).Append("\n");
-            sb.Append("  Configuration: ").Append(Configuration).Append("\n");
+            sb.Append("  Configuration: ").Append(Configuration.ToCollectionsString()).Append("\n");
             sb.Append("  FundingSource: ").Append(FundingSource).Append("\n");
             sb.Append("  Group: ").Append(Group).Append("\n");
             sb.Append("  InputDetails: ").Append(InputDetails.ObjectListToString()).Append("\n");

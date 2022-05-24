@@ -28,6 +28,7 @@ using System.IO;
 using System.Linq;
 using System.Runtime.Serialization;
 using System.Text;
+using Adyen.Util;
 using Newtonsoft.Json;
 
 namespace Adyen.Model.MarketPay
@@ -141,8 +142,7 @@ namespace Adyen.Model.MarketPay
             sb.Append("  AccountCode: ").Append(AccountCode).Append("\n");
             sb.Append("  Description: ").Append(Description).Append("\n");
             sb.Append("  InvalidFields: ").Append(InvalidFields).Append("\n");
-            sb.Append("  Metadata: ").Append(Metadata).Append("\n");
-            sb.Append("  PayoutSchedule: ").Append(PayoutSchedule).Append("\n");
+            sb.Append("  Metadata: ").Append(Metadata.ToCollectionsString()).Append("\n");            sb.Append("  PayoutSchedule: ").Append(PayoutSchedule).Append("\n");
             sb.Append("  PspReference: ").Append(PspReference).Append("\n");
             sb.Append("  ResultCode: ").Append(ResultCode).Append("\n");
             sb.Append("}\n");
