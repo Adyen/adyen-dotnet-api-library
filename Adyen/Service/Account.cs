@@ -81,7 +81,7 @@ namespace Adyen.Service
         }
 
         /// <summary>
-        /// Post /closeAccount API call
+        /// Post /closeAccount API call async
         /// </summary>
         /// <param name="closeAccountRequest"></param>
         /// <returns>CloseAccountResponse</returns>
@@ -105,7 +105,7 @@ namespace Adyen.Service
         }
 
         /// <summary>
-        /// Post /closeAccountHolder API call
+        /// Post /closeAccountHolder API call async
         /// </summary>
         /// <param name="closeAccountHolderRequest"></param>
         /// <returns>CloseAccountResponse</returns>
@@ -129,7 +129,7 @@ namespace Adyen.Service
         }
 
         /// <summary>
-        /// Post /createAccount API call
+        /// Post /createAccount API call async
         /// </summary>
         /// <param name="createAccountRequest"></param>
         /// <returns>CloseAccountResponse</returns>
@@ -153,7 +153,7 @@ namespace Adyen.Service
         }
 
         /// <summary>
-        /// Post /createAccountHolder API call
+        /// Post /createAccountHolder API call async
         /// </summary>
         /// <param name="createAccountHolderRequest"></param>
         /// <returns>CloseAccountHolderResponse</returns>
@@ -177,7 +177,7 @@ namespace Adyen.Service
         }
 
         /// <summary>
-        /// Post /deleteBankAccount API call
+        /// Post /deleteBankAccount API call async
         /// </summary>
         /// <param name="deleteBankAccountRequest"></param>
         /// <returns>GenericResponse</returns>
@@ -201,7 +201,7 @@ namespace Adyen.Service
         }
 
         /// <summary>
-        /// Post /deleteShareHolder API call
+        /// Post /deleteShareHolder API call async
         /// </summary>
         /// <param name="deleteShareholderRequest"></param>
         /// <returns>GenericResponse</returns>
@@ -225,7 +225,7 @@ namespace Adyen.Service
         }
 
         /// <summary>
-        /// Post /getAccountHolder API call
+        /// Post /getAccountHolder API call async
         /// </summary>
         /// <param name="getAccountHolderRequest"></param>
         /// <returns>GetAccountHolderResponse</returns>
@@ -249,7 +249,7 @@ namespace Adyen.Service
         }
 
         /// <summary>
-        /// Post /getUploadedDocuments API call
+        /// Post /getUploadedDocuments API call async
         /// </summary>
         /// <param name="getUploadedDocumentsRequest"></param>
         /// <returns>GetUploadedDocumentsResponse</returns>
@@ -273,7 +273,7 @@ namespace Adyen.Service
         }
 
         /// <summary>
-        /// Post /suspendAccountHolder API call
+        /// Post /suspendAccountHolder API call async
         /// </summary>
         /// <param name="suspendAccountHolderRequest"></param>
         /// <returns>SuspendAccountHolderResponse</returns>
@@ -297,7 +297,7 @@ namespace Adyen.Service
         }
 
         /// <summary>
-        /// Post /unSuspendAccountHolder API call
+        /// Post /unSuspendAccountHolder API call async
         /// </summary>
         /// <param name="unSuspendAccountHolderRequest"></param>
         /// <returns>UnSuspendAccountHolderResponse</returns>
@@ -321,7 +321,7 @@ namespace Adyen.Service
         }
 
         /// <summary>
-        /// Post /updateAccount API call
+        /// Post /updateAccount API call async
         /// </summary>
         /// <param name="updateAccountRequest"></param>
         /// <returns>UpdateAccountResponse</returns>
@@ -345,7 +345,7 @@ namespace Adyen.Service
         }
 
         /// <summary>
-        /// Post /updateAccountHolder API call
+        /// Post /updateAccountHolder API call async
         /// </summary>
         /// <param name="updateAccountHolderRequest"></param>
         /// <returns>UpdateAccountHolderResponse</returns>
@@ -369,7 +369,7 @@ namespace Adyen.Service
         }
 
         /// <summary>
-        /// Post /updateAccountHolderState API call
+        /// Post /updateAccountHolderState API call async
         /// </summary>
         /// <param name="updateAccountHolderStateRequest"></param>
         /// <returns>GetAccountHolderStatusResponse</returns>
@@ -393,7 +393,7 @@ namespace Adyen.Service
         }
 
         /// <summary>
-        /// Post /uploadDocument API call
+        /// Post /uploadDocument API call async
         /// </summary>
         /// <param name="uploadDocumentRequest"></param>
         /// <returns> UploadDocumentResponse </returns>
@@ -417,7 +417,7 @@ namespace Adyen.Service
         }
 
         /// <summary>
-        /// Post /checkAccountholder API call
+        /// Post /checkAccountholder API call async
         /// </summary>
         /// <param name="performVerificationRequest"></param>
         /// <returns>GenericResponse</returns>
@@ -439,9 +439,9 @@ namespace Adyen.Service
             var jsonResponse = _deletePayoutMethods.Request(jsonRequest);
             return JsonConvert.DeserializeObject<GenericResponse>(jsonResponse);
         }
- 
-    /// <summary>
-        /// Post /deletePayoutMethods API call
+
+        /// <summary>
+        /// Post /deletePayoutMethods API call async
         /// </summary>
         /// <param name="deletePayoutMethodRequest"></param>
         /// <returns>GenericResponse</returns>
