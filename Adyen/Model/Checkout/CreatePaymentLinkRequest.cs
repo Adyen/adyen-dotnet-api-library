@@ -486,7 +486,7 @@ namespace Adyen.Model.Checkout
             sb.Append("  Amount: ").Append(Amount).Append("\n");
             sb.Append("  ApplicationInfo: ").Append(ApplicationInfo).Append("\n");
             sb.Append("  BillingAddress: ").Append(BillingAddress).Append("\n");
-            sb.Append("  BlockedPaymentMethods: ").Append(BlockedPaymentMethods).Append("\n");
+            sb.Append("  BlockedPaymentMethods: ").Append(BlockedPaymentMethods.ToListString()).Append("\n");
             sb.Append("  CaptureDelayHours: ").Append(CaptureDelayHours).Append("\n");
             sb.Append("  CountryCode: ").Append(CountryCode).Append("\n");
             sb.Append("  DateOfBirth: ").Append(DateOfBirth).Append("\n");
