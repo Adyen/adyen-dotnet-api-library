@@ -32,6 +32,7 @@ namespace Adyen.Service
 {
     public class HostedPaymentPages : AbstractService
     {
+        [Obsolete("As of the first of July, HPP is an deprecated property by Adyen. Transactions will be rejected subsequently the first of October.")]
         public HostedPaymentPages(Client client)
             : base(client)
         {
@@ -76,7 +77,7 @@ namespace Adyen.Service
                 postParameters.Add(Fields.SkinCode, config.SkinCode);
             }
 
-           
+
 
             var hmacValidator = new HmacValidator();
 
