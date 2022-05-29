@@ -148,7 +148,9 @@ namespace Adyen.Test
             var checkout = new Checkout(client);
             var paymentResponse = checkout.Payments(payment3DS2Request);
             Assert.AreEqual(paymentResponse.ResultCode, ResultCodeEnum.IdentifyShopper);
-            Assert.IsFalse(string.IsNullOrEmpty(paymentResponse.PaymentData));
+            Assert.AreEqual(paymentResponse.Action.GetType().Name , "CheckoutThreeDS2Action");
+            var checkoutThreeDs2Action = (CheckoutThreeDS2Action) paymentResponse.Action;
+            Assert.IsNotNull(checkoutThreeDs2Action.PaymentData );
         }
 
         /// <summary>
