@@ -1,4 +1,5 @@
 ﻿#region License
+
 // /*
 //  *                       ######
 //  *                       ######
@@ -19,7 +20,9 @@
 //  * This file is open source and available under the MIT license.
 //  * See the LICENSE file for more info.
 //  */
+
 #endregion
+
 using Newtonsoft.Json;
 using System;
 using Adyen.Model.Checkout;
@@ -34,6 +37,7 @@ namespace Adyen.Util
         {
             return objectType == typeof(IPaymentMethodDetails);
         }
+
         public override void WriteJson(JsonWriter writer,
             object value, JsonSerializer serializer)
         {
@@ -50,6 +54,11 @@ namespace Adyen.Util
             {
                 case AchDetails.Ach:
                     paymentMethodDetails = new AchDetails();
+                    break;
+                case AfterpayDetails.AfterpayDefault:
+                case AfterpayDetails.AfterpayTouch:
+                case AfterpayDetails.Afterpayb2b:
+                    paymentMethodDetails = new AfterpayDetails();
                     break;
                 case AmazonPayDetails.AmazonPay:
                     paymentMethodDetails = new AmazonPayDetails();
@@ -174,10 +183,15 @@ namespace Adyen.Util
                 case WeChatPayMiniProgramDetails.WechatpayMiniProgram:
                     paymentMethodDetails = new WeChatPayMiniProgramDetails();
                     break;
+                case ZipDetails.Zip:
+                case ZipDetails.Zip_Pos:
+                    paymentMethodDetails = new ZipDetails();
+                    break;
                 default:
                     paymentMethodDetails = new DefaultPaymentMethodDetails();
                     break;
             }
+
             serializer.Populate(jsonObject.CreateReader(), paymentMethodDetails);
             return paymentMethodDetails;
         }
