@@ -41,31 +41,36 @@ namespace Adyen.Model.Checkout
         /// <summary>
         /// Initializes a new instance of the <see cref="CheckoutOrderResponse" /> class.
         /// </summary>
+        /// <param name="amount">amount.</param>
         /// <param name="expiresAt">The expiry date for the order..</param>
         /// <param name="orderData">The encrypted order data..</param>
         /// <param name="pspReference">The &#x60;pspReference&#x60; that belongs to the order. (required).</param>
         /// <param name="reference">The merchant reference for the order..</param>
         /// <param name="remainingAmount">remainingAmount.</param>
-        public CheckoutOrderResponse(string expiresAt = default(string), string orderData = default(string),
-            string pspReference = default(string), string reference = default(string),
-            Amount remainingAmount = default(Amount))
+        public CheckoutOrderResponse(Amount amount = default(Amount), string expiresAt = default(string), string orderData = default(string), string pspReference = default(string), string reference = default(string), Amount remainingAmount = default(Amount))
         {
             // to ensure "pspReference" is required (not null)
             if (pspReference == null)
             {
-                throw new InvalidDataException(
-                    "pspReference is a required property for CheckoutOrderResponse and cannot be null");
+                throw new InvalidDataException("pspReference is a required property for CheckoutOrderResponse and cannot be null");
             }
             else
             {
                 this.PspReference = pspReference;
             }
+            this.Amount = amount;
             this.ExpiresAt = expiresAt;
             this.OrderData = orderData;
             this.Reference = reference;
             this.RemainingAmount = remainingAmount;
         }
 
+        /// <summary>
+        /// Gets or Sets Amount
+        /// </summary>
+        [DataMember(Name="amount", EmitDefaultValue=false)]
+        public Amount Amount { get; set; }
+        
         /// <summary>
         /// The expiry date for the order.
         /// </summary>
@@ -108,6 +113,7 @@ namespace Adyen.Model.Checkout
         {
             var sb = new StringBuilder();
             sb.Append("class CheckoutOrderResponse {\n");
+            sb.Append("  Amount: ").Append(Amount).Append("\n");
             sb.Append("  ExpiresAt: ").Append(ExpiresAt).Append("\n");
             sb.Append("  OrderData: ").Append(OrderData).Append("\n");
             sb.Append("  PspReference: ").Append(PspReference).Append("\n");
@@ -146,32 +152,36 @@ namespace Adyen.Model.Checkout
             if (input == null)
                 return false;
 
-            return
-                (
-                    this.ExpiresAt == input.ExpiresAt ||
-                    this.ExpiresAt != null &&
-                    this.ExpiresAt.Equals(input.ExpiresAt)
-                ) &&
-                (
-                    this.OrderData == input.OrderData ||
-                    this.OrderData != null &&
-                    this.OrderData.Equals(input.OrderData)
-                ) &&
-                (
-                    this.PspReference == input.PspReference ||
-                    this.PspReference != null &&
-                    this.PspReference.Equals(input.PspReference)
-                ) &&
-                (
-                    this.Reference == input.Reference ||
-                    this.Reference != null &&
-                    this.Reference.Equals(input.Reference)
-                ) &&
-                (
-                    this.RemainingAmount == input.RemainingAmount ||
-                    this.RemainingAmount != null &&
-                    this.RemainingAmount.Equals(input.RemainingAmount)
-                );
+            return(
+                      this.Amount == input.Amount ||
+                      (this.Amount != null &&
+                       this.Amount.Equals(input.Amount))
+                  ) && 
+                  (
+                      this.ExpiresAt == input.ExpiresAt ||
+                      this.ExpiresAt != null &&
+                      this.ExpiresAt.Equals(input.ExpiresAt)
+                  ) &&
+                  (
+                      this.OrderData == input.OrderData ||
+                      this.OrderData != null &&
+                      this.OrderData.Equals(input.OrderData)
+                  ) &&
+                  (
+                      this.PspReference == input.PspReference ||
+                      this.PspReference != null &&
+                      this.PspReference.Equals(input.PspReference)
+                  ) &&
+                  (
+                      this.Reference == input.Reference ||
+                      this.Reference != null &&
+                      this.Reference.Equals(input.Reference)
+                  ) &&
+                  (
+                      this.RemainingAmount == input.RemainingAmount ||
+                      this.RemainingAmount != null &&
+                      this.RemainingAmount.Equals(input.RemainingAmount)
+                  );
         }
 
         /// <summary>
@@ -183,6 +193,8 @@ namespace Adyen.Model.Checkout
             unchecked // Overflow is fine, just wrap
             {
                 int hashCode = 41;
+                if (this.Amount != null)
+                    hashCode = hashCode * 59 + this.Amount.GetHashCode();
                 if (this.ExpiresAt != null)
                     hashCode = hashCode * 59 + this.ExpiresAt.GetHashCode();
                 if (this.OrderData != null)

@@ -98,14 +98,12 @@ namespace Adyen.Model.Checkout
             // to ensure "merchantAccount" is required (not null)
             if (merchantAccount == null)
             {
-                throw new InvalidDataException(
-                    "merchantAccount is a required property for PaymentMethodsRequest and cannot be null");
+                throw new InvalidDataException("merchantAccount is a required property for PaymentMethodsRequest and cannot be null");
             }
             else
             {
                 this.MerchantAccount = merchantAccount;
             }
-
             this.AdditionalData = additionalData;
             this.AllowedPaymentMethods = allowedPaymentMethods;
             this.Amount = amount;
@@ -124,7 +122,6 @@ namespace Adyen.Model.Checkout
             {
                 this.SplitCardFundingSources = splitCardFundingSources;
             }
-
             this.Store = store;
         }
 

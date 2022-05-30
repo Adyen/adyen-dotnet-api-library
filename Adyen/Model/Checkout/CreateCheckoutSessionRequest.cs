@@ -204,7 +204,7 @@ namespace Adyen.Model.Checkout
         /// <param name="telephoneNumber">The shopper&#39;s telephone number..</param>
         /// <param name="threeDsAuthenticationOnly">If set to true, you will only perform the [3D Secure 2 authentication](https://docs.adyen.com/online-payments/3d-secure/other-3ds-flows/authentication-only), and not the payment authorisation. (default to false).</param>
         /// <param name="trustedShopper">Set to true if the payment should be routed to a trusted MID..</param>
-        public CreateCheckoutSessionRequest(AccountInfo accountInfo = default(AccountInfo), Amount additionalAmount = default(Amount), Dictionary<string, string> additionalData = default(Dictionary<string, string>), List<string> allowedPaymentMethods = default(List<string>), Amount amount = default(Amount), ApplicationInfo applicationInfo = default(ApplicationInfo), AuthenticationData authenticationData = default(AuthenticationData),Address billingAddress = default(Address), List<string> blockedPaymentMethods = default(List<string>), int captureDelayHours = default(int), ChannelEnum? channel = default(ChannelEnum?), Company company = default(Company), string countryCode = default(string), DateTime dateOfBirth = default(DateTime), Address deliveryAddress = default(Address), bool enableOneClick = default(bool), bool enablePayOut = default(bool), bool enableRecurring = default(bool), DateTime expiresAt = default(DateTime), List<LineItem> lineItems = default(List<LineItem>), Mandate mandate = default(Mandate), string mcc = default(string), string merchantAccount = default(string), string merchantOrderReference = default(string), Dictionary<string, string> metadata = default(Dictionary<string, string>), ThreeDSecureData mpiData = default(ThreeDSecureData), string recurringExpiry = default(string), string recurringFrequency = default(string), RecurringProcessingModelEnum? recurringProcessingModel = default(RecurringProcessingModelEnum?), string redirectFromIssuerMethod = default(string), string redirectToIssuerMethod = default(string), string reference = default(string), string returnUrl = default(string), RiskData riskData = default(RiskData), string shopperEmail = default(string), string shopperIp = default(string), ShopperInteractionEnum? shopperInteraction = default(ShopperInteractionEnum?), string shopperLocale = default(string), Name shopperName = default(Name), string shopperReference = default(string), string shopperStatement = default(string), string socialSecurityNumber = default(string), bool splitCardFundingSources = false, List<Split> splits = default(List<Split>), string store = default(string), bool storePaymentMethod = default(bool), string telephoneNumber = default(string), bool threeDsAuthenticationOnly = false, bool trustedShopper = default(bool))
+        public CreateCheckoutSessionRequest(AccountInfo accountInfo = default(AccountInfo), Amount additionalAmount = default(Amount), Dictionary<string, string> additionalData = default(Dictionary<string, string>), List<string> allowedPaymentMethods = default(List<string>), Amount amount = default(Amount), ApplicationInfo applicationInfo = default(ApplicationInfo), AuthenticationData authenticationData = default(AuthenticationData),Address billingAddress = default(Address), List<string> blockedPaymentMethods = default(List<string>), int captureDelayHours = default(int), ChannelEnum? channel = default(ChannelEnum?), Company company = default(Company), string countryCode = default(string), DateTime dateOfBirth = default(DateTime), DateTime? deliverAt = default(DateTime?), Address deliveryAddress = default(Address), bool enableOneClick = default(bool), bool enablePayOut = default(bool), bool enableRecurring = default(bool), DateTime expiresAt = default(DateTime), List<LineItem> lineItems = default(List<LineItem>), Mandate mandate = default(Mandate), string mcc = default(string), string merchantAccount = default(string), string merchantOrderReference = default(string), Dictionary<string, string> metadata = default(Dictionary<string, string>), ThreeDSecureData mpiData = default(ThreeDSecureData), string recurringExpiry = default(string), string recurringFrequency = default(string), RecurringProcessingModelEnum? recurringProcessingModel = default(RecurringProcessingModelEnum?), string redirectFromIssuerMethod = default(string), string redirectToIssuerMethod = default(string), string reference = default(string), string returnUrl = default(string), RiskData riskData = default(RiskData), string shopperEmail = default(string), string shopperIp = default(string), ShopperInteractionEnum? shopperInteraction = default(ShopperInteractionEnum?), string shopperLocale = default(string), Name shopperName = default(Name), string shopperReference = default(string), string shopperStatement = default(string), string socialSecurityNumber = default(string), bool splitCardFundingSources = false, List<Split> splits = default(List<Split>), string store = default(string), bool storePaymentMethod = default(bool), string telephoneNumber = default(string), bool threeDsAuthenticationOnly = false, bool trustedShopper = default(bool))
         {   
             this.Amount = amount;
             this.MerchantAccount = merchantAccount;
@@ -223,6 +223,7 @@ namespace Adyen.Model.Checkout
             this.Company = company;
             this.CountryCode = countryCode;
             this.DateOfBirth = dateOfBirth;
+            this.DeliverAt = deliverAt;
             this.DeliveryAddress = deliveryAddress;
             this.EnableOneClick = enableOneClick;
             this.EnablePayOut = enablePayOut;
@@ -357,6 +358,13 @@ namespace Adyen.Model.Checkout
         [DataMember(Name = "dateOfBirth", EmitDefaultValue = false)]
         public DateTime DateOfBirth { get; set; }
 
+        /// <summary>
+        /// The date and time when the purchased goods should be delivered.  [ISO 8601](https://www.w3.org/TR/NOTE-datetime) format: YYYY-MM-DDThh:mm:ss+TZD, for example, **2020-12-18T10:15:30+01:00**.
+        /// </summary>
+        /// <value>The date and time when the purchased goods should be delivered.  [ISO 8601](https://www.w3.org/TR/NOTE-datetime) format: YYYY-MM-DDThh:mm:ss+TZD, for example, **2020-12-18T10:15:30+01:00**.</value>
+        [DataMember(Name="deliverAt", EmitDefaultValue=false)]
+        public DateTime? DeliverAt { get; set; }
+        
         /// <summary>
         /// Gets or Sets deliveryAddress
         /// </summary>
@@ -607,6 +615,7 @@ namespace Adyen.Model.Checkout
             sb.Append("  Company: ").Append(Company).Append("\n");
             sb.Append("  CountryCode: ").Append(CountryCode).Append("\n");
             sb.Append("  DateOfBirth: ").Append(DateOfBirth).Append("\n");
+            sb.Append("  DeliverAt: ").Append(DeliverAt).Append("\n");
             sb.Append("  DeliveryAddress: ").Append(DeliveryAddress).Append("\n");
             sb.Append("  EnableOneClick: ").Append(EnableOneClick).Append("\n");
             sb.Append("  EnablePayOut: ").Append(EnablePayOut).Append("\n");
@@ -748,7 +757,12 @@ namespace Adyen.Model.Checkout
                     this.DateOfBirth == input.DateOfBirth ||
                     (this.DateOfBirth != null &&
                     this.DateOfBirth.Equals(input.DateOfBirth))
-                ) &&
+                ) && 
+                (
+                    this.DeliverAt == input.DeliverAt ||
+                    (this.DeliverAt != null &&
+                     this.DeliverAt.Equals(input.DeliverAt))
+                )&&
                 (
                     this.DeliveryAddress == input.DeliveryAddress ||
                     (this.DeliveryAddress != null &&
@@ -966,6 +980,8 @@ namespace Adyen.Model.Checkout
                     hashCode = hashCode * 59 + this.CountryCode.GetHashCode();
                 if (this.DateOfBirth != null)
                     hashCode = hashCode * 59 + this.DateOfBirth.GetHashCode();
+                if (this.DeliverAt != null)
+                    hashCode = hashCode * 59 + this.DeliverAt.GetHashCode();
                 if (this.DeliveryAddress != null)
                     hashCode = hashCode * 59 + this.DeliveryAddress.GetHashCode();
                 if (this.EnableOneClick != null)

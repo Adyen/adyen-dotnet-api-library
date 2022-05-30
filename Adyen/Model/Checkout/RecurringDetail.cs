@@ -66,8 +66,7 @@ namespace Adyen.Model.Checkout
         /// <param name="brand">Brand for the selected gift card. For example: plastix, hmclub..</param>
         /// <param name="brands">List of possible brands. For example: visa, mc..</param>
         /// <param name="configuration">The configuration of the payment method..</param>
-        /// <param name="details">All input details to be provided to complete the payment with this payment method..</param>
-        /// <param name="fundingSource">The funding source of the payment method..</param>
+         /// <param name="fundingSource">The funding source of the payment method..</param>
         /// <param name="group">group.</param>
         /// <param name="inputDetails">All input details to be provided to complete the payment with this payment method..</param>
         /// <param name="issuers">A list of issuers for this payment method..</param>
@@ -77,7 +76,6 @@ namespace Adyen.Model.Checkout
         /// <param name="type">The unique payment method code..</param>
         public RecurringDetail(string brand = default(string), List<string> brands = default(List<string>),
             Dictionary<string, string> configuration = default(Dictionary<string, string>),
-            List<InputDetail> details = default(List<InputDetail>),
             FundingSourceEnum? fundingSource = default(FundingSourceEnum?),
             PaymentMethodGroup group = default(PaymentMethodGroup),
             List<InputDetail> inputDetails = default(List<InputDetail>), string name = default(string),
@@ -88,7 +86,6 @@ namespace Adyen.Model.Checkout
             this.Brand = brand;
             this.Brands = brands;
             this.Configuration = configuration;
-            this.Details = details;
             this.FundingSource = fundingSource;
             this.Group = group;
             this.InputDetails = inputDetails;
@@ -120,13 +117,6 @@ namespace Adyen.Model.Checkout
         [DataMember(Name = "configuration", EmitDefaultValue = false)]
         public Dictionary<string, string> Configuration { get; set; }
 
-        /// <summary>
-        /// All input details to be provided to complete the payment with this payment method.
-        /// </summary>
-        /// <value>All input details to be provided to complete the payment with this payment method.</value>
-        [DataMember(Name = "details", EmitDefaultValue = false)]
-        public List<InputDetail> Details { get; set; }
-        
         /// <summary>
         /// Gets or Sets Group
         /// </summary>
@@ -245,12 +235,6 @@ namespace Adyen.Model.Checkout
                     this.Configuration.SequenceEqual(input.Configuration)
                 ) &&
                 (
-                    this.Details == input.Details ||
-                    this.Details != null &&
-                    input.Details != null &&
-                    this.Details.SequenceEqual(input.Details)
-                ) &&
-                (
                     this.FundingSource == input.FundingSource ||
                     this.FundingSource != null &&
                     this.FundingSource.Equals(input.FundingSource)
@@ -308,8 +292,6 @@ namespace Adyen.Model.Checkout
                     hashCode = hashCode * 59 + this.Brands.GetHashCode();
                 if (this.Configuration != null)
                     hashCode = hashCode * 59 + this.Configuration.GetHashCode();
-                if (this.Details != null)
-                    hashCode = hashCode * 59 + this.Details.GetHashCode();
                 if (this.FundingSource != null)
                     hashCode = hashCode * 59 + this.FundingSource.GetHashCode();
                 if (this.Group != null)
