@@ -31,13 +31,13 @@ using System.Text;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
 
-namespace Adyen.Model.Checkout
+namespace Adyen.Model.Checkout.Details
 {
     /// <summary>
     /// CardDetails
     /// </summary>
     [DataContract]
-    public partial class CardDetails : IEquatable<CardDetails>, IValidatableObject
+    public partial class CardDetails : IEquatable<CardDetails>, IValidatableObject, IPaymentMethodDetails
     {
         /// <summary>
         /// The funding source that should be used when multiple sources are available. For Brazilian combo cards, by default the funding source is credit. To use debit, set this value to **debit**.
@@ -59,73 +59,24 @@ namespace Adyen.Model.Checkout
         [DataMember(Name = "fundingSource", EmitDefaultValue = false)]
         public FundingSourceEnum? FundingSource { get; set; }
 
-        /// <summary>
-        /// Default payment method details. Common for scheme payment methods, and for simple payment method details.
-        /// </summary>
-        /// <value>Default payment method details. Common for scheme payment methods, and for simple payment method details.</value>
-        [JsonConverter(typeof(StringEnumConverter))]
-        public enum TypeEnum
-        {
-            /// <summary>
-            /// Enum Scheme for value: scheme
-            /// </summary>
-            [EnumMember(Value = "scheme")] Scheme = 1,
-
-            /// <summary>
-            /// Enum NetworkToken for value: networkToken
-            /// </summary>
-            [EnumMember(Value = "networkToken")] NetworkToken = 2,
-
-            /// <summary>
-            /// Enum Giftcard for value: giftcard
-            /// </summary>
-            [EnumMember(Value = "giftcard")] Giftcard = 3,
-
-            /// <summary>
-            /// Enum Alliancedata for value: alliancedata
-            /// </summary>
-            [EnumMember(Value = "alliancedata")] Alliancedata = 4,
-
-            /// <summary>
-            /// Enum Card for value: card
-            /// </summary>
-            [EnumMember(Value = "card")] Card = 5,
-
-            /// <summary>
-            /// Enum Qiwiwallet for value: qiwiwallet
-            /// </summary>
-            [EnumMember(Value = "qiwiwallet")] Qiwiwallet = 6,
-
-            /// <summary>
-            /// Enum Lianlianpayebankingenterprise for value: lianlianpay_ebanking_enterprise
-            /// </summary>
-            [EnumMember(Value = "lianlianpay_ebanking_enterprise")]
-            Lianlianpayebankingenterprise = 7,
-
-            /// <summary>
-            /// Enum Lianlianpayebankingcredit for value: lianlianpay_ebanking_credit
-            /// </summary>
-            [EnumMember(Value = "lianlianpay_ebanking_credit")]
-            Lianlianpayebankingcredit = 8,
-
-            /// <summary>
-            /// Enum Lianlianpayebankingdebit for value: lianlianpay_ebanking_debit
-            /// </summary>
-            [EnumMember(Value = "lianlianpay_ebanking_debit")]
-            Lianlianpayebankingdebit = 9,
-
-            /// <summary>
-            /// Enum Entercash for value: entercash
-            /// </summary>
-            [EnumMember(Value = "entercash")] Entercash = 10
-        }
+        //Possible types
+        public const string Scheme = "scheme";
+        public const string NetworkToken = "networkToken";
+        public const string Giftcard = "giftcard";
+        public const string Alliancedata = "alliancedata";
+        public const string Card = "card";
+        public const string Qiwiwallet = "qiwiwallet";
+        public const string Lianlianpayebankingenterprise = "lianlianpay_ebanking_enterprise";
+        public const string Lianlianpayebankingcredit = "lianlianpay_ebanking_credit";
+        public const string Lianlianpayebankingdebit = "lianlianpay_ebanking_debit";
+        public const string Entercash = "entercash";
 
         /// <summary>
         /// Default payment method details. Common for scheme payment methods, and for simple payment method details.
         /// </summary>
         /// <value>Default payment method details. Common for scheme payment methods, and for simple payment method details.</value>
         [DataMember(Name = "type", EmitDefaultValue = false)]
-        public TypeEnum? Type { get; set; }
+        public string Type { get; set; }
 
         /// <summary>
         /// Initializes a new instance of the <see cref="CardDetails" /> class.
@@ -156,41 +107,11 @@ namespace Adyen.Model.Checkout
             string holderName = default(string), string networkPaymentReference = default(string),
             string number = default(string), string recurringDetailReference = default(string),
             string shopperNotificationReference = default(string), string storedPaymentMethodId = default(string),
-            string threeDS2SdkVersion = default(string), TypeEnum? type = TypeEnum.Scheme)
+            string threeDS2SdkVersion = default(string), string type = default(string))
         {
-            // to ensure "encryptedCardNumber" is required (not null)
-            if (encryptedCardNumber == null)
-            {
-                throw new InvalidDataException(
-                    "encryptedCardNumber is a required property for CardDetails and cannot be null");
-            }
-            else
-            {
-                this.EncryptedCardNumber = encryptedCardNumber;
-            }
-
-            // to ensure "encryptedExpiryMonth" is required (not null)
-            if (encryptedExpiryMonth == null)
-            {
-                throw new InvalidDataException(
-                    "encryptedExpiryMonth is a required property for CardDetails and cannot be null");
-            }
-            else
-            {
-                this.EncryptedExpiryMonth = encryptedExpiryMonth;
-            }
-
-            // to ensure "encryptedExpiryYear" is required (not null)
-            if (encryptedExpiryYear == null)
-            {
-                throw new InvalidDataException(
-                    "encryptedExpiryYear is a required property for CardDetails and cannot be null");
-            }
-            else
-            {
-                this.EncryptedExpiryYear = encryptedExpiryYear;
-            }
-
+            this.EncryptedCardNumber = encryptedCardNumber;
+            this.EncryptedExpiryMonth = encryptedExpiryMonth;
+            this.EncryptedExpiryYear = encryptedExpiryYear;
             this.Brand = brand;
             this.CupsecureplusSmscode = cupsecureplusSmscode;
             this.Cvc = cvc;
@@ -205,15 +126,7 @@ namespace Adyen.Model.Checkout
             this.ShopperNotificationReference = shopperNotificationReference;
             this.StoredPaymentMethodId = storedPaymentMethodId;
             this.ThreeDS2SdkVersion = threeDS2SdkVersion;
-            // use default value if no "type" provided
-            if (type == null)
-            {
-                this.Type = TypeEnum.Scheme;
-            }
-            else
-            {
-                this.Type = type;
-            }
+            this.Type = type;
         }
 
         /// <summary>

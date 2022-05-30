@@ -645,10 +645,10 @@ namespace Adyen.Test
             var json =
                 "{\"amount\":{\"value\":1000,\"currency\":\"USD\"},\"merchantAccount\":\"MerchantAccountTest\",\"paymentMethod\":{\"telephoneNumber\":\"telephone\",\"type\":\"lianlianpay_ebanking_credit\"},\"reference\":\"Your order number\",\"returnUrl\":\"https://your-company.com/...\",\"applicationInfo\":{\"adyenLibrary\":{\"name\":\"adyen-java-api-library\",\"version\":\"10.1.0\"}}}";
 
-            LianLianPayDetails lianLianPayDetails = new LianLianPayDetails();
+            CardDetails cardDetails = new CardDetails();
             var paymentRequest = JsonConvert.DeserializeObject<PaymentRequest>(json);
-            Assert.IsTrue(paymentRequest.PaymentMethod is LianLianPayDetails);
-            Assert.AreEqual(paymentRequest.PaymentMethod.Type, LianLianPayDetails.EbankingCredit);
+            Assert.IsTrue(paymentRequest.PaymentMethod is CardDetails);
+            Assert.AreEqual(paymentRequest.PaymentMethod.Type, CardDetails.Lianlianpayebankingcredit);
         }
 
         /// <summary>

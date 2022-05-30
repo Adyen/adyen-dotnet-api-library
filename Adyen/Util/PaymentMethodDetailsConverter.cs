@@ -81,6 +81,18 @@ namespace Adyen.Util
                 case BlikDetails.Blik:
                     paymentMethodDetails = new BlikDetails();
                     break;
+                case CardDetails.Scheme:
+                case CardDetails.NetworkToken:
+                case CardDetails.Giftcard:
+                case CardDetails.Alliancedata:
+                case CardDetails.Card:
+                case CardDetails.Qiwiwallet:
+                case CardDetails.Lianlianpayebankingenterprise:
+                case CardDetails.Lianlianpayebankingcredit:
+                case CardDetails.Lianlianpayebankingdebit:
+                case CardDetails.Entercash:
+                    paymentMethodDetails = new CardDetails();
+                    break;
                 case CellulantDetails.Cellulant:
                     paymentMethodDetails = new CellulantDetails();
                     break;
@@ -110,9 +122,6 @@ namespace Adyen.Util
                 case EcontextVoucherDetails.Seveneleven:
                     paymentMethodDetails = new EcontextVoucherDetails();
                     break;
-                case EntercashDetails.Entercash:
-                    paymentMethodDetails = new EntercashDetails();
-                    break;
                 case GiropayDetails.Giropay:
                     paymentMethodDetails = new GiropayDetails();
                     break;
@@ -130,11 +139,6 @@ namespace Adyen.Util
                 case KlarnaDetails.KlarnaPaymentsAccount:
                 case KlarnaDetails.KlarnaPaymentsB2B:
                     paymentMethodDetails = new KlarnaDetails();
-                    break;
-                case LianLianPayDetails.EbankingCredit:
-                case LianLianPayDetails.EbankingDebit:
-                case LianLianPayDetails.EbankingEnterprise:
-                    paymentMethodDetails = new LianLianPayDetails();
                     break;
                 case MasterpassDetails.Masterpass:
                     paymentMethodDetails = new MasterpassDetails();
@@ -158,9 +162,6 @@ namespace Adyen.Util
                     break;
                 case PayUUpiDetails.PayUinUPI:
                     paymentMethodDetails = new PayUUpiDetails();
-                    break;
-                case QiwiWalletDetails.QiwiWallet:
-                    paymentMethodDetails = new QiwiWalletDetails();
                     break;
                 case SamsungPayDetails.SamsungPay:
                     paymentMethodDetails = new SamsungPayDetails();
