@@ -27,7 +27,16 @@ namespace Adyen.Model.Checkout.Action
 {
     public interface IPaymentResponseAction
     {
+        [JsonProperty(PropertyName = "paymentMethodType")]
+        string PaymentMethodType { get; set; }
+
+        [JsonProperty(PropertyName = "url")]
+        string Url { get; set; }
+
         [JsonProperty(PropertyName = "type")]
         string Type { get; set; }
+
+        [JsonProperty(PropertyName = "method")]
+        string Method { get; set; }
     }
 }
