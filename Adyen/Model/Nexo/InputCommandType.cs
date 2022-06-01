@@ -45,7 +45,7 @@ namespace Adyen.Model.Nexo
         DigitString,
 
         /// <remarks/>
-        decimalString,
+        DecimalString,
 
         /// <remarks/>
         GetFunctionKey,
