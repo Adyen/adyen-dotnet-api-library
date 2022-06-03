@@ -69,10 +69,15 @@ namespace Adyen.Model.Checkout
         /// </summary>
         /// <param name="maxValue">The maximum number of installments offered for this payment method..</param>
         /// <param name="plans">Defines the type of installment plan. If not set, defaults to **regular**.  Possible values: * **regular** * **revolving**.</param>
-        public InstallmentOption(int? maxValue = default(int?), List<PlansEnum> plans = default(List<PlansEnum>))
+        /// <param name="preselectedValue">Preselected number of installments offered for this payment method..</param>
+        /// <param name="values">An array of the number of installments that the shopper can choose from. For example, **[2,3,5]**. This cannot be specified simultaneously with &#x60;maxValue&#x60;..</param>
+        public InstallmentOption(int? maxValue = default(int?), List<PlansEnum> plans = default(List<PlansEnum>),
+            int? preselectedValue = default(int?), List<int?> values = default(List<int?>))
         {
             this.MaxValue = maxValue;
             this.Plans = plans;
+            this.PreselectedValue = preselectedValue;
+            this.Values = values;
         }
 
         /// <summary>
@@ -84,6 +89,20 @@ namespace Adyen.Model.Checkout
 
 
         /// <summary>
+        /// Preselected number of installments offered for this payment method.
+        /// </summary>
+        /// <value>Preselected number of installments offered for this payment method.</value>
+        [DataMember(Name = "preselectedValue", EmitDefaultValue = false)]
+        public int? PreselectedValue { get; set; }
+
+        /// <summary>
+        /// An array of the number of installments that the shopper can choose from. For example, **[2,3,5]**. This cannot be specified simultaneously with &#x60;maxValue&#x60;.
+        /// </summary>
+        /// <value>An array of the number of installments that the shopper can choose from. For example, **[2,3,5]**. This cannot be specified simultaneously with &#x60;maxValue&#x60;.</value>
+        [DataMember(Name = "values", EmitDefaultValue = false)]
+        public List<int?> Values { get; set; }
+
+        /// <summary>
         /// Returns the string presentation of the object
         /// </summary>
         /// <returns>String presentation of the object</returns>
@@ -93,6 +112,8 @@ namespace Adyen.Model.Checkout
             sb.Append("class InstallmentOption {\n");
             sb.Append("  MaxValue: ").Append(MaxValue).Append("\n");
             sb.Append("  Plans: ").Append(Plans.ObjectListToString()).Append("\n");
+            sb.Append("  PreselectedValue: ").Append(PreselectedValue).Append("\n");
+            sb.Append("  Values: ").Append(Values.ObjectListToString()).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -129,14 +150,25 @@ namespace Adyen.Model.Checkout
             return
                 (
                     this.MaxValue == input.MaxValue ||
-                    this.MaxValue != null &&
-                    this.MaxValue.Equals(input.MaxValue)
+                    (this.MaxValue != null &&
+                     this.MaxValue.Equals(input.MaxValue))
                 ) &&
                 (
                     this.Plans == input.Plans ||
                     this.Plans != null &&
                     input.Plans != null &&
                     this.Plans.SequenceEqual(input.Plans)
+                ) &&
+                (
+                    this.PreselectedValue == input.PreselectedValue ||
+                    (this.PreselectedValue != null &&
+                     this.PreselectedValue.Equals(input.PreselectedValue))
+                ) &&
+                (
+                    this.Values == input.Values ||
+                    this.Values != null &&
+                    input.Values != null &&
+                    this.Values.SequenceEqual(input.Values)
                 );
         }
 
@@ -153,6 +185,10 @@ namespace Adyen.Model.Checkout
                     hashCode = hashCode * 59 + this.MaxValue.GetHashCode();
                 if (this.Plans != null)
                     hashCode = hashCode * 59 + this.Plans.GetHashCode();
+                if (this.PreselectedValue != null)
+                    hashCode = hashCode * 59 + this.PreselectedValue.GetHashCode();
+                if (this.Values != null)
+                    hashCode = hashCode * 59 + this.Values.GetHashCode();
                 return hashCode;
             }
         }

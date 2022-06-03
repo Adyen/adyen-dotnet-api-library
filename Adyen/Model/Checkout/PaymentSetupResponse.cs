@@ -1,26 +1,25 @@
-#region Licence
-
+// #region License
 // 
-//                        ######
-//                        ######
-//  ############    ####( ######  #####. ######  ############   ############
-//  #############  #####( ######  #####. ######  #############  #############
-//         ######  #####( ######  #####. ######  #####  ######  #####  ######
-//  ###### ######  #####( ######  #####. ######  #####  #####   #####  ######
-//  ###### ######  #####( ######  #####. ######  #####          #####  ######
-//  #############  #############  #############  #############  #####  ######
-//   ############   ############  #############   ############  #####  ######
-//                                       ######
-//                                #############
-//                                ############
+//                         ######
+//                         ######
+//   ############    ####( ######  #####. ######  ############   ############
+//   #############  #####( ######  #####. ######  #############  #############
+//          ######  #####( ######  #####. ######  #####  ######  #####  ######
+//   ###### ######  #####( ######  #####. ######  #####  #####   #####  ######
+//   ###### ######  #####( ######  #####. ######  #####          #####  ######
+//   #############  #############  #############  #############  #####  ######
+//    ############   ############  #############   ############  #####  ######
+//                                        ######
+//                                 #############
+//                                 ############
 // 
-//  Adyen Dotnet API Library
+//   Adyen Dotnet API Library
 // 
-//  Copyright (c) 2020 Adyen B.V.
-//  This file is open source and available under the MIT license.
-//  See the LICENSE file for more info.
-
-#endregion
+//   Copyright (c) 2022 Adyen N.V.
+//   This file is open source and available under the MIT license.
+//   See the LICENSE file for more info.
+// 
+// #endregion
 
 using System;
 using System.Collections.Generic;
@@ -33,36 +32,35 @@ using Newtonsoft.Json;
 
 namespace Adyen.Model.Checkout
 {
-    /// <summary>
-    /// PaymentSessionResponse
+    // <summary>
+    /// PaymentSetupResponse
     /// </summary>
     [DataContract]
-    public partial class PaymentSessionResponse : IEquatable<PaymentSessionResponse>, IValidatableObject
+        public partial class PaymentSetupResponse :  IEquatable<PaymentSetupResponse>, IValidatableObject
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="PaymentSessionResponse" /> class.
+        /// Initializes a new instance of the <see cref="PaymentSetupResponse" /> class.
         /// </summary>
         /// <param name="paymentSession">The encoded payment session that you need to pass to the SDK..</param>
         /// <param name="recurringDetails">The detailed list of stored payment details required to generate payment forms. Will be empty if oneClick is set to false in the request..</param>
-        public PaymentSessionResponse(string paymentSession = default(string),
-            List<RecurringDetail> recurringDetails = default(List<RecurringDetail>))
+        public PaymentSetupResponse(string paymentSession = default(string), List<RecurringDetail> recurringDetails = default(List<RecurringDetail>))
         {
             this.PaymentSession = paymentSession;
             this.RecurringDetails = recurringDetails;
         }
-
+        
         /// <summary>
         /// The encoded payment session that you need to pass to the SDK.
         /// </summary>
         /// <value>The encoded payment session that you need to pass to the SDK.</value>
-        [DataMember(Name = "paymentSession", EmitDefaultValue = false)]
+        [DataMember(Name="paymentSession", EmitDefaultValue=false)]
         public string PaymentSession { get; set; }
 
         /// <summary>
         /// The detailed list of stored payment details required to generate payment forms. Will be empty if oneClick is set to false in the request.
         /// </summary>
         /// <value>The detailed list of stored payment details required to generate payment forms. Will be empty if oneClick is set to false in the request.</value>
-        [DataMember(Name = "recurringDetails", EmitDefaultValue = false)]
+        [DataMember(Name="recurringDetails", EmitDefaultValue=false)]
         public List<RecurringDetail> RecurringDetails { get; set; }
 
         /// <summary>
@@ -72,13 +70,13 @@ namespace Adyen.Model.Checkout
         public override string ToString()
         {
             var sb = new StringBuilder();
-            sb.Append("class PaymentSessionResponse {\n");
+            sb.Append("class PaymentSetupResponse {\n");
             sb.Append("  PaymentSession: ").Append(PaymentSession).Append("\n");
             sb.Append("  RecurringDetails: ").Append(RecurringDetails.ObjectListToString()).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
-
+  
         /// <summary>
         /// Returns the JSON string presentation of the object
         /// </summary>
@@ -95,25 +93,25 @@ namespace Adyen.Model.Checkout
         /// <returns>Boolean</returns>
         public override bool Equals(object input)
         {
-            return this.Equals(input as PaymentSessionResponse);
+            return this.Equals(input as PaymentSetupResponse);
         }
 
         /// <summary>
-        /// Returns true if PaymentSessionResponse instances are equal
+        /// Returns true if PaymentSetupResponse instances are equal
         /// </summary>
-        /// <param name="input">Instance of PaymentSessionResponse to be compared</param>
+        /// <param name="input">Instance of PaymentSetupResponse to be compared</param>
         /// <returns>Boolean</returns>
-        public bool Equals(PaymentSessionResponse input)
+        public bool Equals(PaymentSetupResponse input)
         {
             if (input == null)
                 return false;
 
-            return
+            return 
                 (
                     this.PaymentSession == input.PaymentSession ||
-                    this.PaymentSession != null &&
-                    this.PaymentSession.Equals(input.PaymentSession)
-                ) &&
+                    (this.PaymentSession != null &&
+                    this.PaymentSession.Equals(input.PaymentSession))
+                ) && 
                 (
                     this.RecurringDetails == input.RecurringDetails ||
                     this.RecurringDetails != null &&
@@ -144,8 +142,7 @@ namespace Adyen.Model.Checkout
         /// </summary>
         /// <param name="validationContext">Validation context</param>
         /// <returns>Validation Result</returns>
-        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(
-            ValidationContext validationContext)
+        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
         {
             yield break;
         }
