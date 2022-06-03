@@ -92,7 +92,12 @@ namespace Adyen.Model.Checkout
             /// <summary>
             /// Enum Expired for value: expired
             /// </summary>
-            [EnumMember(Value = "expired")] Expired = 3
+            [EnumMember(Value = "expired")] Expired = 3,
+
+            /// <summary>
+            /// Enum PaymentPending for value: paymentPending
+            /// </summary>
+            [EnumMember(Value = "paymentPending")] PaymentPending = 4
         }
 
         /// <summary>
