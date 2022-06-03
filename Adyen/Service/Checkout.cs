@@ -187,24 +187,24 @@ namespace Adyen.Service
         /// POST /paymentsLinks API call 
         /// </summary>
         /// <param name="createPaymentLinkRequest"></param>
-        /// <returns>CreatePaymentLinkResponse</returns>
-        public PaymentLinkResource PaymentLinks(CreatePaymentLinkRequest createPaymentLinkRequest)
+        /// <returns>PaymentLinkResponse</returns>
+        public PaymentLinkResponse PaymentLinks(CreatePaymentLinkRequest createPaymentLinkRequest)
         {
             var jsonRequest = Util.JsonOperation.SerializeRequest(createPaymentLinkRequest);
             var jsonResponse = _paymentLinksResult.Request(jsonRequest);
-            return JsonConvert.DeserializeObject<PaymentLinkResource>(jsonResponse);
+            return JsonConvert.DeserializeObject<PaymentLinkResponse>(jsonResponse);
         }
 
         /// <summary>
         /// POST /paymentsLinks API call async
         /// </summary>
         /// <param name="createPaymentLinkRequest"></param>
-        /// <returns>PaymentLinkResource</returns>
-        public async Task<PaymentLinkResource> PaymentLinksAsync(CreatePaymentLinkRequest createPaymentLinkRequest)
+        /// <returns>PaymentLinkResponse</returns>
+        public async Task<PaymentLinkResponse> PaymentLinksAsync(CreatePaymentLinkRequest createPaymentLinkRequest)
         {
             var jsonRequest = Util.JsonOperation.SerializeRequest(createPaymentLinkRequest);
             var jsonResponse = await _paymentLinksResult.RequestAsync(jsonRequest);
-            return JsonConvert.DeserializeObject<PaymentLinkResource>(jsonResponse);
+            return JsonConvert.DeserializeObject<PaymentLinkResponse>(jsonResponse);
         }
 
         /// <summary>
