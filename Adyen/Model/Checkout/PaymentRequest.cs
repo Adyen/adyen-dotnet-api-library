@@ -177,10 +177,12 @@ namespace Adyen.Model.Checkout
         /// <param name="additionalData">This field contains additional data, which may be required for a particular payment request.  The &#x60;additionalData&#x60; object consists of entries, each of which includes the key and value..</param>
         /// <param name="amount">amount (required).</param>
         /// <param name="applicationInfo">applicationInfo.</param>
+        /// <param name="authenticationData">authenticationData.</param>
         /// <param name="billingAddress">billingAddress.</param>
         /// <param name="browserInfo">browserInfo.</param>
         /// <param name="captureDelayHours">The delay between the authorisation and scheduled auto-capture, specified in hours..</param>
         /// <param name="channel">The platform where a payment transaction takes place. This field is optional for filtering out payment methods that are only available on specific platforms. If this value is not set, then we will try to infer it from the &#x60;sdkVersion&#x60; or &#x60;token&#x60;.  Possible values: * iOS * Android * Web.</param>
+        /// <param name="checkoutAttemptId">Checkout attempt ID that corresponds to the Id generated for tracking user payment journey..</param>
         /// <param name="company">company.</param>
         /// <param name="conversionId">Conversion ID that corresponds to the Id generated for tracking user payment journey..</param>
         /// <param name="countryCode">The shopper country.  Format: [ISO 3166-1 alpha-2](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2) Example: NL or DE.</param>
@@ -194,6 +196,7 @@ namespace Adyen.Model.Checkout
         /// <param name="enableRecurring">When true and &#x60;shopperReference&#x60; is provided, the payment details will be tokenized for recurring payments..</param>
         /// <param name="entityType">The type of the entity the payment is processed for..</param>
         /// <param name="fraudOffset">An integer value that is added to the normal fraud score. The value can be either positive or negative..</param>
+        /// <param name="fundDestination">fundDestination.</param>
         /// <param name="installments">installments.</param>
         /// <param name="lineItems">Price and product information about the purchased items, to be included on the invoice sent to the shopper. &gt; This field is required for 3x 4x Oney, Affirm, AfterPay, Klarna, RatePay, and Zip..</param>
         /// <param name="mcc">The [merchant category code](https://en.wikipedia.org/wiki/Merchant_category_code) (MCC) is a four-digit number, which relates to a particular market segment. This code reflects the predominant activity that is conducted by the merchant..</param>
@@ -233,11 +236,14 @@ namespace Adyen.Model.Checkout
         public PaymentRequest(AccountInfo accountInfo = default(AccountInfo),
              Dictionary<string, string> additionalData = default(Dictionary<string, string>),
             Amount amount = default(Amount), ApplicationInfo applicationInfo = default(ApplicationInfo),
-            Address billingAddress = default(Address), BrowserInfo browserInfo = default(BrowserInfo),
+            Address billingAddress = default(Address), AuthenticationData authenticationData = default(AuthenticationData),
+             BrowserInfo browserInfo = default(BrowserInfo),
             int? captureDelayHours = default(int?), ChannelEnum? channel = default(ChannelEnum?),
+            string checkoutAttemptId = default(string),
             Company company = default(Company), string conversionId = default(string),
             string countryCode = default(string), DateTime? dateOfBirth = default(DateTime?),
-            ForexQuote dccQuote = default(ForexQuote), Address deliveryAddress = default(Address),
+            ForexQuote dccQuote = default(ForexQuote), FundDestination fundDestination = default(FundDestination),
+             Address deliveryAddress = default(Address),
             DateTime? deliveryDate = default(DateTime?), string deviceFingerprint = default(string),
             bool? enableOneClick = default(bool?), bool? enablePayOut = default(bool?),
             bool? enableRecurring = default(bool?), EntityTypeEnum? entityType = default(EntityTypeEnum?),
@@ -265,7 +271,7 @@ namespace Adyen.Model.Checkout
             bool? threeDSAuthenticationOnly = false, bool? trustedShopper = default(bool?))
         {
             CreateApplicationInfo();
-            // to ensure "amount" is required (not null)
+           // to ensure "amount" is required (not null)
             if (amount == null)
             {
                 throw new InvalidDataException("amount is a required property for PaymentRequest and cannot be null");
@@ -277,8 +283,7 @@ namespace Adyen.Model.Checkout
             // to ensure "merchantAccount" is required (not null)
             if (merchantAccount == null)
             {
-                throw new InvalidDataException(
-                    "merchantAccount is a required property for PaymentRequest and cannot be null");
+                throw new InvalidDataException("merchantAccount is a required property for PaymentRequest and cannot be null");
             }
             else
             {
@@ -287,8 +292,7 @@ namespace Adyen.Model.Checkout
             // to ensure "paymentMethod" is required (not null)
             if (paymentMethod == null)
             {
-                throw new InvalidDataException(
-                    "paymentMethod is a required property for PaymentRequest and cannot be null");
+                throw new InvalidDataException("paymentMethod is a required property for PaymentRequest and cannot be null");
             }
             else
             {
@@ -297,8 +301,7 @@ namespace Adyen.Model.Checkout
             // to ensure "reference" is required (not null)
             if (reference == null)
             {
-                throw new InvalidDataException(
-                    "reference is a required property for PaymentRequest and cannot be null");
+                throw new InvalidDataException("reference is a required property for PaymentRequest and cannot be null");
             }
             else
             {
@@ -307,8 +310,7 @@ namespace Adyen.Model.Checkout
             // to ensure "returnUrl" is required (not null)
             if (returnUrl == null)
             {
-                throw new InvalidDataException(
-                    "returnUrl is a required property for PaymentRequest and cannot be null");
+                throw new InvalidDataException("returnUrl is a required property for PaymentRequest and cannot be null");
             }
             else
             {
@@ -317,10 +319,12 @@ namespace Adyen.Model.Checkout
             this.AccountInfo = accountInfo;
             this.AdditionalData = additionalData;
             this.ApplicationInfo = applicationInfo;
+            this.AuthenticationData = authenticationData;
             this.BillingAddress = billingAddress;
             this.BrowserInfo = browserInfo;
             this.CaptureDelayHours = captureDelayHours;
             this.Channel = channel;
+            this.CheckoutAttemptId = checkoutAttemptId;
             this.Company = company;
             this.ConversionId = conversionId;
             this.CountryCode = countryCode;
@@ -334,6 +338,7 @@ namespace Adyen.Model.Checkout
             this.EnableRecurring = enableRecurring;
             this.EntityType = entityType;
             this.FraudOffset = fraudOffset;
+            this.FundDestination = fundDestination;
             this.Installments = installments;
             this.LineItems = lineItems;
             this.Mandate = mandate;
@@ -409,6 +414,12 @@ namespace Adyen.Model.Checkout
         public Address BillingAddress { get; set; }
 
         /// <summary>
+        /// Gets or Sets AuthenticationData
+        /// </summary>
+        [DataMember(Name="authenticationData", EmitDefaultValue=false)]
+        public AuthenticationData AuthenticationData { get; set; }
+        
+        /// <summary>
         /// Gets or Sets BrowserInfo
         /// </summary>
         [DataMember(Name = "browserInfo", EmitDefaultValue = false)]
@@ -421,6 +432,12 @@ namespace Adyen.Model.Checkout
         [DataMember(Name = "captureDelayHours", EmitDefaultValue = false)]
         public int? CaptureDelayHours { get; set; }
 
+        /// <summary>
+        /// Checkout attempt ID that corresponds to the Id generated for tracking user payment journey.
+        /// </summary>
+        /// <value>Checkout attempt ID that corresponds to the Id generated for tracking user payment journey.</value>
+        [DataMember(Name="checkoutAttemptId", EmitDefaultValue=false)]
+        public string CheckoutAttemptId { get; set; }
 
         /// <summary>
         /// Gets or Sets Company
@@ -455,6 +472,12 @@ namespace Adyen.Model.Checkout
         [DataMember(Name = "dccQuote", EmitDefaultValue = false)]
         public ForexQuote DccQuote { get; set; }
 
+        /// <summary>
+        /// Gets or Sets FundDestination
+        /// </summary>
+        [DataMember(Name="fundDestination", EmitDefaultValue=false)]
+        public FundDestination FundDestination { get; set; }
+        
         /// <summary>
         /// Gets or Sets DeliveryAddress
         /// </summary>
@@ -786,10 +809,12 @@ namespace Adyen.Model.Checkout
             sb.Append("  AdditionalData: ").Append(AdditionalData.ToCollectionsString()).Append("\n");
             sb.Append("  Amount: ").Append(Amount).Append("\n");
             sb.Append("  ApplicationInfo: ").Append(ApplicationInfo).Append("\n");
+            sb.Append("  AuthenticationData: ").Append(AuthenticationData).Append("\n");
             sb.Append("  BillingAddress: ").Append(BillingAddress).Append("\n");
             sb.Append("  BrowserInfo: ").Append(BrowserInfo).Append("\n");
             sb.Append("  CaptureDelayHours: ").Append(CaptureDelayHours).Append("\n");
             sb.Append("  Channel: ").Append(Channel).Append("\n");
+            sb.Append("  CheckoutAttemptId: ").Append(CheckoutAttemptId).Append("\n");
             sb.Append("  Company: ").Append(Company).Append("\n");
             sb.Append("  ConversionId: ").Append(ConversionId).Append("\n");
             sb.Append("  CountryCode: ").Append(CountryCode).Append("\n");
@@ -803,6 +828,7 @@ namespace Adyen.Model.Checkout
             sb.Append("  EnableRecurring: ").Append(EnableRecurring).Append("\n");
             sb.Append("  EntityType: ").Append(EntityType).Append("\n");
             sb.Append("  FraudOffset: ").Append(FraudOffset).Append("\n");
+            sb.Append("  FundDestination: ").Append(FundDestination).Append("\n");
             sb.Append("  Installments: ").Append(Installments).Append("\n");
             sb.Append("  LineItems: ").Append(LineItems).Append("\n");
             sb.Append("  Mandate: ").Append(Mandate).Append("\n");
@@ -893,7 +919,12 @@ namespace Adyen.Model.Checkout
                     this.ApplicationInfo == input.ApplicationInfo ||
                     this.ApplicationInfo != null &&
                     this.ApplicationInfo.Equals(input.ApplicationInfo)
-                ) &&
+                ) 
+                &&(
+                    this.AuthenticationData == input.AuthenticationData ||
+                    (this.AuthenticationData != null &&
+                     this.AuthenticationData.Equals(input.AuthenticationData))
+                )&&
                 (
                     this.BillingAddress == input.BillingAddress ||
                     this.BillingAddress != null &&
@@ -913,6 +944,11 @@ namespace Adyen.Model.Checkout
                     this.Channel == input.Channel ||
                     this.Channel != null &&
                     this.Channel.Equals(input.Channel)
+                ) &&
+                (
+                    this.CheckoutAttemptId == input.CheckoutAttemptId ||
+                    (this.CheckoutAttemptId != null &&
+                     this.CheckoutAttemptId.Equals(input.CheckoutAttemptId))
                 ) &&
                 (
                     this.Company == input.Company ||
@@ -978,11 +1014,11 @@ namespace Adyen.Model.Checkout
                     this.FraudOffset == input.FraudOffset ||
                     this.FraudOffset != null &&
                     this.FraudOffset.Equals(input.FraudOffset)
-                ) &&
+                ) && 
                 (
-                    this.Installments == input.Installments ||
-                    this.Installments != null &&
-                    this.Installments.Equals(input.Installments)
+                    this.FundDestination == input.FundDestination ||
+                    (this.FundDestination != null &&
+                     this.FundDestination.Equals(input.FundDestination))
                 ) &&
                 (
                     this.LineItems == input.LineItems ||
@@ -1186,6 +1222,8 @@ namespace Adyen.Model.Checkout
                     hashCode = hashCode * 59 + this.Amount.GetHashCode();
                 if (this.ApplicationInfo != null)
                     hashCode = hashCode * 59 + this.ApplicationInfo.GetHashCode();
+                if (this.AuthenticationData != null)
+                    hashCode = hashCode * 59 + this.AuthenticationData.GetHashCode();
                 if (this.BillingAddress != null)
                     hashCode = hashCode * 59 + this.BillingAddress.GetHashCode();
                 if (this.BrowserInfo != null)
@@ -1194,6 +1232,8 @@ namespace Adyen.Model.Checkout
                     hashCode = hashCode * 59 + this.CaptureDelayHours.GetHashCode();
                 if (this.Channel != null)
                     hashCode = hashCode * 59 + this.Channel.GetHashCode();
+                if (this.CheckoutAttemptId != null)
+                    hashCode = hashCode * 59 + this.CheckoutAttemptId.GetHashCode();
                 if (this.Company != null)
                     hashCode = hashCode * 59 + this.Company.GetHashCode();
                 if (this.ConversionId != null)
@@ -1220,6 +1260,8 @@ namespace Adyen.Model.Checkout
                     hashCode = hashCode * 59 + this.EntityType.GetHashCode();
                 if (this.FraudOffset != null)
                     hashCode = hashCode * 59 + this.FraudOffset.GetHashCode();
+                if (this.FundDestination != null)
+                    hashCode = hashCode * 59 + this.FundDestination.GetHashCode();
                 if (this.Installments != null)
                     hashCode = hashCode * 59 + this.Installments.GetHashCode();
                 if (this.LineItems != null)

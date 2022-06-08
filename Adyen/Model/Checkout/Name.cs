@@ -37,47 +37,14 @@ namespace Adyen.Model.Checkout
     /// Name
     /// </summary>
     [DataContract]
-    public partial class Name : IEquatable<Name>, IValidatableObject
+        public partial class Name :  IEquatable<Name>, IValidatableObject
     {
-        /// <summary>
-        /// The gender. &gt;The following values are permitted: &#x60;MALE&#x60;, &#x60;FEMALE&#x60;, &#x60;UNKNOWN&#x60;.
-        /// </summary>
-        /// <value>The gender. &gt;The following values are permitted: &#x60;MALE&#x60;, &#x60;FEMALE&#x60;, &#x60;UNKNOWN&#x60;.</value>
-        [JsonConverter(typeof(StringEnumConverter))]
-        public enum GenderEnum
-        {
-            /// <summary>
-            /// Enum MALE for value: MALE
-            /// </summary>
-            [EnumMember(Value = "MALE")] MALE = 1,
-
-            /// <summary>
-            /// Enum FEMALE for value: FEMALE
-            /// </summary>
-            [EnumMember(Value = "FEMALE")] FEMALE = 2,
-
-            /// <summary>
-            /// Enum UNKNOWN for value: UNKNOWN
-            /// </summary>
-            [EnumMember(Value = "UNKNOWN")] UNKNOWN = 3
-        }
-
-        /// <summary>
-        /// The gender. &gt;The following values are permitted: &#x60;MALE&#x60;, &#x60;FEMALE&#x60;, &#x60;UNKNOWN&#x60;.
-        /// </summary>
-        /// <value>The gender. &gt;The following values are permitted: &#x60;MALE&#x60;, &#x60;FEMALE&#x60;, &#x60;UNKNOWN&#x60;.</value>
-        [DataMember(Name = "gender", EmitDefaultValue = false)]
-        public GenderEnum Gender { get; set; }
-
         /// <summary>
         /// Initializes a new instance of the <see cref="Name" /> class.
         /// </summary>
         /// <param name="firstName">The first name. (required).</param>
-        /// <param name="gender">The gender. &gt;The following values are permitted: &#x60;MALE&#x60;, &#x60;FEMALE&#x60;, &#x60;UNKNOWN&#x60;. (required).</param>
-        /// <param name="infix">The name&#x27;s infix, if applicable. &gt;A maximum length of twenty (20) characters is imposed..</param>
         /// <param name="lastName">The last name. (required).</param>
-        public Name(string firstName = default(string), GenderEnum gender = default(GenderEnum),
-            string infix = default(string), string lastName = default(string))
+        public Name(string firstName = default(string), string lastName = default(string))
         {
             // to ensure "firstName" is required (not null)
             if (firstName == null)
@@ -88,15 +55,6 @@ namespace Adyen.Model.Checkout
             {
                 this.FirstName = firstName;
             }
-            // to ensure "gender" is required (not null)
-            if (gender == null)
-            {
-                throw new InvalidDataException("gender is a required property for Name and cannot be null");
-            }
-            else
-            {
-                this.Gender = gender;
-            }
             // to ensure "lastName" is required (not null)
             if (lastName == null)
             {
@@ -106,29 +64,20 @@ namespace Adyen.Model.Checkout
             {
                 this.LastName = lastName;
             }
-            this.Infix = infix;
         }
-
+        
         /// <summary>
         /// The first name.
         /// </summary>
         /// <value>The first name.</value>
-        [DataMember(Name = "firstName", EmitDefaultValue = false)]
+        [DataMember(Name="firstName", EmitDefaultValue=false)]
         public string FirstName { get; set; }
-
-
-        /// <summary>
-        /// The name&#x27;s infix, if applicable. &gt;A maximum length of twenty (20) characters is imposed.
-        /// </summary>
-        /// <value>The name&#x27;s infix, if applicable. &gt;A maximum length of twenty (20) characters is imposed.</value>
-        [DataMember(Name = "infix", EmitDefaultValue = false)]
-        public string Infix { get; set; }
 
         /// <summary>
         /// The last name.
         /// </summary>
         /// <value>The last name.</value>
-        [DataMember(Name = "lastName", EmitDefaultValue = false)]
+        [DataMember(Name="lastName", EmitDefaultValue=false)]
         public string LastName { get; set; }
 
         /// <summary>
@@ -140,13 +89,11 @@ namespace Adyen.Model.Checkout
             var sb = new StringBuilder();
             sb.Append("class Name {\n");
             sb.Append("  FirstName: ").Append(FirstName).Append("\n");
-            sb.Append("  Gender: ").Append(Gender).Append("\n");
-            sb.Append("  Infix: ").Append(Infix).Append("\n");
             sb.Append("  LastName: ").Append(LastName).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
-
+  
         /// <summary>
         /// Returns the JSON string presentation of the object
         /// </summary>
@@ -176,26 +123,16 @@ namespace Adyen.Model.Checkout
             if (input == null)
                 return false;
 
-            return
+            return 
                 (
                     this.FirstName == input.FirstName ||
-                    this.FirstName != null &&
-                    this.FirstName.Equals(input.FirstName)
-                ) &&
-                (
-                    this.Gender == input.Gender ||
-                    this.Gender != null &&
-                    this.Gender.Equals(input.Gender)
-                ) &&
-                (
-                    this.Infix == input.Infix ||
-                    this.Infix != null &&
-                    this.Infix.Equals(input.Infix)
-                ) &&
+                    (this.FirstName != null &&
+                    this.FirstName.Equals(input.FirstName))
+                ) && 
                 (
                     this.LastName == input.LastName ||
-                    this.LastName != null &&
-                    this.LastName.Equals(input.LastName)
+                    (this.LastName != null &&
+                    this.LastName.Equals(input.LastName))
                 );
         }
 
@@ -210,10 +147,6 @@ namespace Adyen.Model.Checkout
                 int hashCode = 41;
                 if (this.FirstName != null)
                     hashCode = hashCode * 59 + this.FirstName.GetHashCode();
-                if (this.Gender != null)
-                    hashCode = hashCode * 59 + this.Gender.GetHashCode();
-                if (this.Infix != null)
-                    hashCode = hashCode * 59 + this.Infix.GetHashCode();
                 if (this.LastName != null)
                     hashCode = hashCode * 59 + this.LastName.GetHashCode();
                 return hashCode;
@@ -225,8 +158,7 @@ namespace Adyen.Model.Checkout
         /// </summary>
         /// <param name="validationContext">Validation context</param>
         /// <returns>Validation Result</returns>
-        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(
-            ValidationContext validationContext)
+        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
         {
             yield break;
         }

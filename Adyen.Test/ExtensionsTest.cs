@@ -63,20 +63,9 @@ namespace Adyen.Test
         [TestMethod]
         public void TestToCollectionsStringEmpty()
         {
-            var paymentResultResponse = new PaymentResultResponse(merchantReference:"ref",shopperLocale:"NL", paymentMethod:"applepay");
-            var expected = "class PaymentResultResponse {\n  AdditionalData: \n  FraudResult: \n  MerchantReference: ref\n  Order: \n  PaymentMethod: applepay\n  PspReference: \n  RefusalReason: \n  RefusalReasonCode: \n  ResultCode: \n  ServiceError: \n  ShopperLocale: NL\n}\n";
-            Assert.AreEqual(expected, paymentResultResponse.ToString());
-        }
-
-        [TestMethod]
-        public void TestToCollectionsString()
-        {
-            var paymentResultResponse = new PaymentResultResponse(merchantReference: "ref", shopperLocale: "NL", paymentMethod: "applepay")
-            {
-                AdditionalData = new Dictionary<string, string> { { "test1", "test1" }, { "test2", "test2" } }
-            };
-            var expected = "class PaymentResultResponse {\n  AdditionalData: {test1=test1,test2=test2}\n  FraudResult: \n  MerchantReference: ref\n  Order: \n  PaymentMethod: applepay\n  PspReference: \n  RefusalReason: \n  RefusalReasonCode: \n  ResultCode: \n  ServiceError: \n  ShopperLocale: NL\n}\n";
-            Assert.AreEqual(expected, paymentResultResponse.ToString());
+            var paymentVerificationResponse = new PaymentVerificationResponse(merchantReference:"ref",shopperLocale:"NL", additionalData:new Dictionary<string, string>(){{"scaExemptionRequested","lowValue"}});
+            var expected = "class PaymentVerificationResponse {\n  AdditionalData: {scaExemptionRequested=lowValue}\n  FraudResult: \n  MerchantReference: ref\n  Order: \n  PspReference: \n  RefusalReason: \n  RefusalReasonCode: \n  ResultCode: \n  ServiceError: \n  ShopperLocale: NL\n}\n";
+            Assert.AreEqual(expected, paymentVerificationResponse.ToString());
         }
     }
 }

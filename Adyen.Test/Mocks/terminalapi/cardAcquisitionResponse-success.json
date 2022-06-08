@@ -1,0 +1,45 @@
+{
+    "SaleToPOIResponse": {
+      "MessageHeader": {
+          "MessageCategory": "CardAcquisition",
+          "MessageClass": "Service",
+          "MessageType": "Response",
+          "POIID": "P400Plus-1234567890",
+          "ProtocolVersion": "3.0",
+          "SaleID": "thetester",
+          "ServiceID": "14111111"
+      },
+        "CardAcquisitionResponse": {
+            "LoyaltyAccount": [{
+                    "LoyaltyAccountID": {
+                        "EntryMode": ["Tapped"],
+                        "IdentificationType": "AccountNumber",
+                        "LoyaltyID": "aaaa:aa:11111:a"
+                    },
+                    "LoyaltyBrand": "pass.aa.aaaa.aaaa"
+                }
+            ],
+            "POIData": {
+                "POIReconciliationID": "1000",
+                "POITransactionID": {
+                    "TimeStamp": "2022-04-15T21:44:18.000Z",
+                    "TransactionID": "GZGY0000000000"
+                }
+            },
+            "PaymentInstrumentData": {
+                "CardData": {},
+                "PaymentInstrumentType": "Card"
+            },
+            "Response": {
+                "AdditionalResponse": "...",
+                "Result": "Success"
+            },
+            "SaleData": {
+                "SaleTransactionID": {
+                    "TimeStamp": "2022-04-14T23:54:04.000Z",
+                    "TransactionID": "5150"
+                }
+            }
+        }
+    }
+}

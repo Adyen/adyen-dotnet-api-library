@@ -1,4 +1,5 @@
 ﻿#region License
+
 // /*
 //  *                       ######
 //  *                       ######
@@ -19,7 +20,9 @@
 //  * This file is open source and available under the MIT license.
 //  * See the LICENSE file for more info.
 //  */
+
 #endregion
+
 using Newtonsoft.Json;
 using System;
 using Adyen.Model.Checkout;
@@ -34,6 +37,7 @@ namespace Adyen.Util
         {
             return objectType == typeof(IPaymentMethodDetails);
         }
+
         public override void WriteJson(JsonWriter writer,
             object value, JsonSerializer serializer)
         {
@@ -50,6 +54,11 @@ namespace Adyen.Util
             {
                 case AchDetails.Ach:
                     paymentMethodDetails = new AchDetails();
+                    break;
+                case AfterpayDetails.AfterpayDefault:
+                case AfterpayDetails.AfterpayTouch:
+                case AfterpayDetails.Afterpayb2b:
+                    paymentMethodDetails = new AfterpayDetails();
                     break;
                 case AmazonPayDetails.AmazonPay:
                     paymentMethodDetails = new AmazonPayDetails();
@@ -71,6 +80,18 @@ namespace Adyen.Util
                     break;
                 case BlikDetails.Blik:
                     paymentMethodDetails = new BlikDetails();
+                    break;
+                case CardDetails.Scheme:
+                case CardDetails.NetworkToken:
+                case CardDetails.Giftcard:
+                case CardDetails.Alliancedata:
+                case CardDetails.Card:
+                case CardDetails.Qiwiwallet:
+                case CardDetails.Lianlianpayebankingenterprise:
+                case CardDetails.Lianlianpayebankingcredit:
+                case CardDetails.Lianlianpayebankingdebit:
+                case CardDetails.Entercash:
+                    paymentMethodDetails = new CardDetails();
                     break;
                 case CellulantDetails.Cellulant:
                     paymentMethodDetails = new CellulantDetails();
@@ -101,9 +122,6 @@ namespace Adyen.Util
                 case EcontextVoucherDetails.Seveneleven:
                     paymentMethodDetails = new EcontextVoucherDetails();
                     break;
-                case EntercashDetails.Entercash:
-                    paymentMethodDetails = new EntercashDetails();
-                    break;
                 case GiropayDetails.Giropay:
                     paymentMethodDetails = new GiropayDetails();
                     break;
@@ -121,11 +139,6 @@ namespace Adyen.Util
                 case KlarnaDetails.KlarnaPaymentsAccount:
                 case KlarnaDetails.KlarnaPaymentsB2B:
                     paymentMethodDetails = new KlarnaDetails();
-                    break;
-                case LianLianPayDetails.EbankingCredit:
-                case LianLianPayDetails.EbankingDebit:
-                case LianLianPayDetails.EbankingEnterprise:
-                    paymentMethodDetails = new LianLianPayDetails();
                     break;
                 case MasterpassDetails.Masterpass:
                     paymentMethodDetails = new MasterpassDetails();
@@ -150,9 +163,6 @@ namespace Adyen.Util
                 case PayUUpiDetails.PayUinUPI:
                     paymentMethodDetails = new PayUUpiDetails();
                     break;
-                case QiwiWalletDetails.QiwiWallet:
-                    paymentMethodDetails = new QiwiWalletDetails();
-                    break;
                 case SamsungPayDetails.SamsungPay:
                     paymentMethodDetails = new SamsungPayDetails();
                     break;
@@ -174,10 +184,15 @@ namespace Adyen.Util
                 case WeChatPayMiniProgramDetails.WechatpayMiniProgram:
                     paymentMethodDetails = new WeChatPayMiniProgramDetails();
                     break;
+                case ZipDetails.Zip:
+                case ZipDetails.Zip_Pos:
+                    paymentMethodDetails = new ZipDetails();
+                    break;
                 default:
                     paymentMethodDetails = new DefaultPaymentMethodDetails();
                     break;
             }
+
             serializer.Populate(jsonObject.CreateReader(), paymentMethodDetails);
             return paymentMethodDetails;
         }

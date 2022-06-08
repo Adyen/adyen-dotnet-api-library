@@ -81,7 +81,27 @@ namespace Adyen.Test
         {
             var config = new Config();
             var client = new Client(config);
-            client.SetEnvironment(Model.Enum.Environment.Live);
+            client.SetEnvironment(Model.Enum.Environment.Live,null);
+        }
+        
+        /// <summary>
+        /// Tests unsuccessful checkout client Live URL generation.
+        /// </summary>
+        [TestMethod]
+        [ExpectedException(typeof(InvalidOperationException), "Missing liveEndpointUrlPrefix for endpoint generation")]
+        public void CheckoutEndpointLiveWithBasicAuthErrorTest()
+        {
+            var client = new Client("ws_*******", "******", Adyen.Model.Enum.Environment.Live);
+        }
+        
+        /// <summary>
+        /// Tests successful checkout client Live URL generation.
+        /// </summary>
+        [TestMethod]
+        public void CheckoutEndpointLiveWithBasicAuthTest()
+        {
+            var client = new Client("ws_*******", "******", Adyen.Model.Enum.Environment.Live, "live-url");
+            Assert.AreEqual(client.Config.CheckoutEndpoint, "https://live-url-checkout-live.adyenpayments.com/checkout");
         }
 
         /// <summary>
@@ -148,7 +168,9 @@ namespace Adyen.Test
             var checkout = new Checkout(client);
             var paymentResponse = checkout.Payments(payment3DS2Request);
             Assert.AreEqual(paymentResponse.ResultCode, ResultCodeEnum.IdentifyShopper);
-            Assert.IsFalse(string.IsNullOrEmpty(paymentResponse.PaymentData));
+            Assert.AreEqual(paymentResponse.Action.GetType().Name , "CheckoutThreeDS2Action");
+            var checkoutThreeDs2Action = (CheckoutThreeDS2Action) paymentResponse.Action;
+            Assert.IsNotNull(checkoutThreeDs2Action.PaymentData );
         }
 
         /// <summary>
@@ -158,14 +180,14 @@ namespace Adyen.Test
         [TestMethod]
         public void PaymentsAuthorise3ds2ResultSuccessTest()
         {
-            var paymentResultRequest = CreatePaymentResultRequest();
+            var paymentResultRequest = CreatePaymentVerificationRequest();
             var client = CreateMockTestClientApiKeyBasedRequest("Mocks/threedsecure2/authorise3ds2-success.json");
             var checkout = new Checkout(client);
             var paymentResultResponse = checkout.PaymentsResult(paymentResultRequest);
             Assert.IsNotNull(paymentResultResponse.AdditionalData);
             Assert.AreEqual(paymentResultResponse.AdditionalData["cvcResult"], "1 Matches");
             Assert.AreEqual(paymentResultResponse.MerchantReference, "your_merchantReference");
-            Assert.AreEqual(paymentResultResponse.ResultCode, PaymentResultResponse.ResultCodeEnum.Authorised);
+            Assert.AreEqual(paymentResultResponse.ResultCode, PaymentVerificationResponse.ResultCodeEnum.Authorised);
         }
 
         /// <summary>
@@ -366,8 +388,8 @@ namespace Adyen.Test
         [TestMethod]
         public void PaymentSessionSuccessTest()
         {
-            var paymentSessionRequest = CreatePaymentSessionRequest();
-            var client = CreateMockTestClientApiKeyBasedRequest("Mocks/checkout/paymentsession-sucess.json");
+            var paymentSessionRequest = CreatePaymentSetupRequest();
+            var client = CreateMockTestClientApiKeyBasedRequest("Mocks/checkout/paymentsession-success.json");
             var checkout = new Checkout(client);
             var paymentSessionResponse = checkout.PaymentSession(paymentSessionRequest);
             Assert.IsNotNull(paymentSessionResponse.PaymentSession);
@@ -380,11 +402,11 @@ namespace Adyen.Test
         [TestMethod]
         public async Task PaymentSessionAsyncSuccessTest()
         {
-            var paymentSessionRequest = CreatePaymentSessionRequest();
-            var client = CreateAsyncMockTestClientApiKeyBasedRequest("Mocks/checkout/paymentsession-sucess.json");
+            var paymentSetupRequest = CreatePaymentSetupRequest();
+            var client = CreateAsyncMockTestClientApiKeyBasedRequest("Mocks/checkout/paymentsession-success.json");
             var checkout = new Checkout(client);
-            var paymentSessionResponse = await checkout.PaymentSessionAsync(paymentSessionRequest);
-            Assert.IsNotNull(paymentSessionResponse.PaymentSession);
+            var paymentSetupResponse = await checkout.PaymentSessionAsync(paymentSetupRequest);
+            Assert.IsNotNull(paymentSetupResponse.PaymentSession);
         }
 
         /// <summary>
@@ -394,12 +416,12 @@ namespace Adyen.Test
         [TestMethod]
         public void PaymentSessionErrorTest()
         {
-            var paymentSessionRequest = CreatePaymentSessionRequest();
+            var paymentSetupRequest = CreatePaymentSetupRequest();
             var client =
                 CreateMockTestClientApiKeyBasedRequest("Mocks/checkout/paymentsession-error-invalid-data-422.json");
             var checkout = new Checkout(client);
-            var paymentSessionResponse = checkout.PaymentSession(paymentSessionRequest);
-            Assert.IsNull(paymentSessionResponse.PaymentSession);
+            var paymentSetupResponse = checkout.PaymentSession(paymentSetupRequest);
+            Assert.IsNull(paymentSetupResponse.PaymentSession);
         }
 
         /// <summary>
@@ -409,11 +431,11 @@ namespace Adyen.Test
         [TestMethod]
         public void PaymentsResultSuccessTest()
         {
-            var paymentResultRequest = CreatePaymentResultRequest();
+            var paymentResultRequest = CreatePaymentVerificationRequest();
             var client = CreateMockTestClientApiKeyBasedRequest("Mocks/checkout/paymentsresult-success.json");
             var checkout = new Checkout(client);
             var paymentResultResponse = checkout.PaymentsResult(paymentResultRequest);
-            Assert.AreEqual(paymentResultResponse.ResultCode, PaymentResultResponse.ResultCodeEnum.Authorised);
+            Assert.AreEqual(paymentResultResponse.ResultCode, PaymentVerificationResponse.ResultCodeEnum.Authorised);
         }
 
         /// <summary>
@@ -423,11 +445,11 @@ namespace Adyen.Test
         [TestMethod]
         public async Task PaymentsResultAsyncSuccessTest()
         {
-            var paymentResultRequest = CreatePaymentResultRequest();
+            var paymentVerificationRequest = CreatePaymentVerificationRequest();
             var client = CreateAsyncMockTestClientApiKeyBasedRequest("Mocks/checkout/paymentsresult-success.json");
             var checkout = new Checkout(client);
-            var paymentResultResponse = await checkout.PaymentsResultAsync(paymentResultRequest);
-            Assert.AreEqual(paymentResultResponse.ResultCode, PaymentResultResponse.ResultCodeEnum.Authorised);
+            var paymentVerificationResponse = await checkout.PaymentsResultAsync(paymentVerificationRequest);
+            Assert.AreEqual(paymentVerificationResponse.ResultCode, PaymentVerificationResponse.ResultCodeEnum.Authorised);
         }
 
         /// <summary>
@@ -437,7 +459,7 @@ namespace Adyen.Test
         [TestMethod]
         public void PaymentsResultErrorTest()
         {
-            var paymentResultRequest = CreatePaymentResultRequest();
+            var paymentResultRequest = CreatePaymentVerificationRequest();
             var client =
                 CreateMockTestClientApiKeyBasedRequest(
                     "Mocks/checkout/paymentsresult-error-invalid-data-payload-422.json");
@@ -542,7 +564,7 @@ namespace Adyen.Test
                 CountryCode = "GR",
                 ShopperLocale = "GR",
                 ShopperReference = "ShopperReference",
-                StorePaymentMethod = true,
+                StorePaymentMethodMode = CreatePaymentLinkRequest.StorePaymentMethodModeEnum.Enabled,
                 RecurringProcessingModel = CreatePaymentLinkRequest.RecurringProcessingModelEnum.Subscription
             };
 
@@ -643,10 +665,10 @@ namespace Adyen.Test
             var json =
                 "{\"amount\":{\"value\":1000,\"currency\":\"USD\"},\"merchantAccount\":\"MerchantAccountTest\",\"paymentMethod\":{\"telephoneNumber\":\"telephone\",\"type\":\"lianlianpay_ebanking_credit\"},\"reference\":\"Your order number\",\"returnUrl\":\"https://your-company.com/...\",\"applicationInfo\":{\"adyenLibrary\":{\"name\":\"adyen-java-api-library\",\"version\":\"10.1.0\"}}}";
 
-            LianLianPayDetails lianLianPayDetails = new LianLianPayDetails();
+            CardDetails cardDetails = new CardDetails();
             var paymentRequest = JsonConvert.DeserializeObject<PaymentRequest>(json);
-            Assert.IsTrue(paymentRequest.PaymentMethod is LianLianPayDetails);
-            Assert.AreEqual(paymentRequest.PaymentMethod.Type, LianLianPayDetails.EbankingCredit);
+            Assert.IsTrue(paymentRequest.PaymentMethod is CardDetails);
+            Assert.AreEqual(paymentRequest.PaymentMethod.Type, CardDetails.Lianlianpayebankingcredit);
         }
 
         /// <summary>

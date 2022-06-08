@@ -25,11 +25,13 @@
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.IO;
 using System.Linq;
 using System.Runtime.Serialization;
 using System.Text;
 using Adyen.Util;
 using Newtonsoft.Json;
+using Newtonsoft.Json.Converters;
 
 namespace Adyen.Model.Checkout.Action
 {
@@ -40,26 +42,25 @@ namespace Adyen.Model.Checkout.Action
     public partial class CheckoutRedirectAction : IEquatable<CheckoutRedirectAction>, IValidatableObject, IPaymentResponseAction
     {
         /// <summary>
-        /// Unique identifier of action
+        /// **redirect**
         /// </summary>
-        /// <value>Unique identifier of action</value>
+        /// <value>**redirect**</value>
         [DataMember(Name = "type", EmitDefaultValue = false)]
-        public string Type { get; set; } = "redirect";
+        public String Type { get; set; } = "redirect";
+
         /// <summary>
         /// Initializes a new instance of the <see cref="CheckoutRedirectAction" /> class.
         /// </summary>
         /// <param name="data">When the redirect URL must be accessed via POST, use this data to post to the redirect URL..</param>
         /// <param name="method">Specifies the HTTP method, for example GET or POST..</param>
-        /// <param name="paymentData">When non-empty, contains a value that you must submit to the &#x60;/payments/details&#x60; endpoint. In some cases, required for polling..</param>
         /// <param name="paymentMethodType">Specifies the payment method..</param>
+        /// <param name="type">**redirect** (required).</param>
         /// <param name="url">Specifies the URL to redirect to..</param>
         public CheckoutRedirectAction(Dictionary<string, string> data = default(Dictionary<string, string>),
-            string method = default(string), string paymentData = default(string),
-            string paymentMethodType = default(string), string url = default(string))
+            string method = default(string), string paymentMethodType = default(string), string url = default(string))
         {
             this.Data = data;
             this.Method = method;
-            this.PaymentData = paymentData;
             this.PaymentMethodType = paymentMethodType;
             this.Url = url;
         }
@@ -79,18 +80,12 @@ namespace Adyen.Model.Checkout.Action
         public string Method { get; set; }
 
         /// <summary>
-        /// When non-empty, contains a value that you must submit to the &#x60;/payments/details&#x60; endpoint. In some cases, required for polling.
-        /// </summary>
-        /// <value>When non-empty, contains a value that you must submit to the &#x60;/payments/details&#x60; endpoint. In some cases, required for polling.</value>
-        [DataMember(Name = "paymentData", EmitDefaultValue = false)]
-        public string PaymentData { get; set; }
-
-        /// <summary>
         /// Specifies the payment method.
         /// </summary>
         /// <value>Specifies the payment method.</value>
         [DataMember(Name = "paymentMethodType", EmitDefaultValue = false)]
         public string PaymentMethodType { get; set; }
+
 
         /// <summary>
         /// Specifies the URL to redirect to.
@@ -109,8 +104,8 @@ namespace Adyen.Model.Checkout.Action
             sb.Append("class CheckoutRedirectAction {\n");
             sb.Append("  Data: ").Append(Data.ToCollectionsString()).Append("\n");
             sb.Append("  Method: ").Append(Method).Append("\n");
-            sb.Append("  PaymentData: ").Append(PaymentData).Append("\n");
             sb.Append("  PaymentMethodType: ").Append(PaymentMethodType).Append("\n");
+            sb.Append("  Type: ").Append(Type).Append("\n");
             sb.Append("  Url: ").Append(Url).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
@@ -154,23 +149,23 @@ namespace Adyen.Model.Checkout.Action
                 ) &&
                 (
                     this.Method == input.Method ||
-                    this.Method != null &&
-                    this.Method.Equals(input.Method)
-                ) &&
-                (
-                    this.PaymentData == input.PaymentData ||
-                    this.PaymentData != null &&
-                    this.PaymentData.Equals(input.PaymentData)
+                    (this.Method != null &&
+                     this.Method.Equals(input.Method))
                 ) &&
                 (
                     this.PaymentMethodType == input.PaymentMethodType ||
-                    this.PaymentMethodType != null &&
-                    this.PaymentMethodType.Equals(input.PaymentMethodType)
+                    (this.PaymentMethodType != null &&
+                     this.PaymentMethodType.Equals(input.PaymentMethodType))
+                ) &&
+                (
+                    this.Type == input.Type ||
+                    (this.Type != null &&
+                     this.Type.Equals(input.Type))
                 ) &&
                 (
                     this.Url == input.Url ||
-                    this.Url != null &&
-                    this.Url.Equals(input.Url)
+                    (this.Url != null &&
+                     this.Url.Equals(input.Url))
                 );
         }
 
@@ -187,10 +182,10 @@ namespace Adyen.Model.Checkout.Action
                     hashCode = hashCode * 59 + this.Data.GetHashCode();
                 if (this.Method != null)
                     hashCode = hashCode * 59 + this.Method.GetHashCode();
-                if (this.PaymentData != null)
-                    hashCode = hashCode * 59 + this.PaymentData.GetHashCode();
                 if (this.PaymentMethodType != null)
                     hashCode = hashCode * 59 + this.PaymentMethodType.GetHashCode();
+                if (this.Type != null)
+                    hashCode = hashCode * 59 + this.Type.GetHashCode();
                 if (this.Url != null)
                     hashCode = hashCode * 59 + this.Url.GetHashCode();
                 return hashCode;

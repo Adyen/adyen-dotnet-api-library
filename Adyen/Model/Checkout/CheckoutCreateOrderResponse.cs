@@ -50,7 +50,8 @@ namespace Adyen.Model.Checkout
             /// <summary>
             /// Enum AuthenticationFinished for value: AuthenticationFinished
             /// </summary>
-            [EnumMember(Value = "AuthenticationFinished")] AuthenticationFinished = 1,
+            [EnumMember(Value = "AuthenticationFinished")]
+            AuthenticationFinished = 1,
 
             /// <summary>
             /// Enum Authorised for value: Authorised
@@ -65,7 +66,8 @@ namespace Adyen.Model.Checkout
             /// <summary>
             /// Enum ChallengeShopper for value: ChallengeShopper
             /// </summary>
-            [EnumMember(Value = "ChallengeShopper")] ChallengeShopper = 4,
+            [EnumMember(Value = "ChallengeShopper")]
+            ChallengeShopper = 4,
 
             /// <summary>
             /// Enum Error for value: Error
@@ -75,7 +77,8 @@ namespace Adyen.Model.Checkout
             /// <summary>
             /// Enum IdentifyShopper for value: IdentifyShopper
             /// </summary>
-            [EnumMember(Value = "IdentifyShopper")] IdentifyShopper = 6,
+            [EnumMember(Value = "IdentifyShopper")]
+            IdentifyShopper = 6,
 
             /// <summary>
             /// Enum Pending for value: Pending
@@ -85,7 +88,8 @@ namespace Adyen.Model.Checkout
             /// <summary>
             /// Enum PresentToShopper for value: PresentToShopper
             /// </summary>
-            [EnumMember(Value = "PresentToShopper")] PresentToShopper = 8,
+            [EnumMember(Value = "PresentToShopper")]
+            PresentToShopper = 8,
 
             /// <summary>
             /// Enum Received for value: Received
@@ -95,7 +99,8 @@ namespace Adyen.Model.Checkout
             /// <summary>
             /// Enum RedirectShopper for value: RedirectShopper
             /// </summary>
-            [EnumMember(Value = "RedirectShopper")] RedirectShopper = 10,
+            [EnumMember(Value = "RedirectShopper")]
+            RedirectShopper = 10,
 
             /// <summary>
             /// Enum Refused for value: Refused
@@ -125,14 +130,16 @@ namespace Adyen.Model.Checkout
         /// <param name="orderData">The encrypted data that will be used by merchant for adding payments to the order. (required).</param>
         /// <param name="pspReference">Adyen&#x27;s 16-character string reference associated with the transaction/request. This value is globally unique; quote it when communicating with us about this request.  &gt; &#x60;pspReference&#x60; is returned only for non-redirect payment methods..</param>
         /// <param name="refusalReason">If the payment&#x27;s authorisation is refused or an error occurs during authorisation, this field holds Adyen&#x27;s mapped reason for the refusal or a description of the error. When a transaction fails, the authorisation response includes &#x60;resultCode&#x60; and &#x60;refusalReason&#x60; values.  For more information, see [Refusal reasons](https://docs.adyen.com/development-resources/refusal-reasons)..</param>
+        /// <param name="reference">The reference provided by merchant for creating the order..</param>
         /// <param name="remainingAmount">remainingAmount (required).</param>
         /// <param name="resultCode">The result of the payment. For more information, see [Result codes](https://docs.adyen.com/checkout/payment-result-codes).  Possible values:  * **AuthenticationFinished** – The payment has been successfully authenticated with 3D Secure 2. Returned for 3D Secure 2 authentication-only transactions. * **AuthenticationNotRequired** – The transaction does not require 3D Secure authentication. Returned for [standalone authentication-only integrations](https://docs.adyen.com/checkout/3d-secure/other-3ds-flows/authentication-only). * **Authorised** – The payment was successfully authorised. This state serves as an indicator to proceed with the delivery of goods and services. This is a final state. * **Cancelled** – Indicates the payment has been cancelled (either by the shopper or the merchant) before processing was completed. This is a final state. * **ChallengeShopper** – The issuer requires further shopper interaction before the payment can be authenticated. Returned for 3D Secure 2 transactions. * **Error** – There was an error when the payment was being processed. The reason is given in the &#x60;refusalReason&#x60; field. This is a final state. * **IdentifyShopper** – The issuer requires the shopper&#x27;s device fingerprint before the payment can be authenticated. Returned for 3D Secure 2 transactions. * **Pending** – Indicates that it is not possible to obtain the final status of the payment. This can happen if the systems providing final status information for the payment are unavailable, or if the shopper needs to take further action to complete the payment. * **PresentToShopper** – Indicates that the response contains additional information that you need to present to a shopper, so that they can use it to complete a payment. * **Received** – Indicates the payment has successfully been received by Adyen, and will be processed. This is the initial state for all payments. * **RedirectShopper** – Indicates the shopper should be redirected to an external web page or app to complete the authorisation. * **Refused** – Indicates the payment was refused. The reason is given in the &#x60;refusalReason&#x60; field. This is a final state..</param>
         public CheckoutCreateOrderResponse(
             Amount amount = default(Amount),
-             Dictionary<string, string> additionalData =
+            Dictionary<string, string> additionalData =
                 default(Dictionary<string, string>), string expiresAt = default(string),
             FraudResult fraudResult = default(FraudResult), string orderData = default(string),
             string pspReference = default(string), string refusalReason = default(string),
+            string reference = default(string),
             Amount remainingAmount = default(Amount), ResultCodeEnum? resultCode = default(ResultCodeEnum?))
         {
             // to ensure "expiresAt" is required (not null)
@@ -145,6 +152,7 @@ namespace Adyen.Model.Checkout
             {
                 this.ExpiresAt = expiresAt;
             }
+
             // to ensure "orderData" is required (not null)
             if (orderData == null)
             {
@@ -155,6 +163,7 @@ namespace Adyen.Model.Checkout
             {
                 this.OrderData = orderData;
             }
+
             // to ensure "remainingAmount" is required (not null)
             if (remainingAmount == null)
             {
@@ -165,12 +174,14 @@ namespace Adyen.Model.Checkout
             {
                 this.RemainingAmount = remainingAmount;
             }
+
             this.Amount = amount;
             this.AdditionalData = additionalData;
             this.FraudResult = fraudResult;
             this.PspReference = pspReference;
             this.RefusalReason = refusalReason;
             this.ResultCode = resultCode;
+            this.Reference = reference;
         }
 
         /// <summary>
@@ -208,6 +219,13 @@ namespace Adyen.Model.Checkout
         public string PspReference { get; set; }
 
         /// <summary>
+        /// The reference provided by merchant for creating the order.
+        /// </summary>
+        /// <value>The reference provided by merchant for creating the order.</value>
+        [DataMember(Name = "reference", EmitDefaultValue = false)]
+        public string Reference { get; set; }
+
+        /// <summary>
         /// If the payment&#x27;s authorisation is refused or an error occurs during authorisation, this field holds Adyen&#x27;s mapped reason for the refusal or a description of the error. When a transaction fails, the authorisation response includes &#x60;resultCode&#x60; and &#x60;refusalReason&#x60; values.  For more information, see [Refusal reasons](https://docs.adyen.com/development-resources/refusal-reasons).
         /// </summary>
         /// <value>If the payment&#x27;s authorisation is refused or an error occurs during authorisation, this field holds Adyen&#x27;s mapped reason for the refusal or a description of the error. When a transaction fails, the authorisation response includes &#x60;resultCode&#x60; and &#x60;refusalReason&#x60; values.  For more information, see [Refusal reasons](https://docs.adyen.com/development-resources/refusal-reasons).</value>
@@ -241,6 +259,7 @@ namespace Adyen.Model.Checkout
             sb.Append("  FraudResult: ").Append(FraudResult).Append("\n");
             sb.Append("  OrderData: ").Append(OrderData).Append("\n");
             sb.Append("  PspReference: ").Append(PspReference).Append("\n");
+            sb.Append("  Reference: ").Append(Reference).Append("\n");
             sb.Append("  RefusalReason: ").Append(RefusalReason).Append("\n");
             sb.Append("  RemainingAmount: ").Append(RemainingAmount).Append("\n");
             sb.Append("  ResultCode: ").Append(ResultCode).Append("\n");
@@ -283,7 +302,7 @@ namespace Adyen.Model.Checkout
                     this.AdditionalData != null &&
                     this.AdditionalData.Equals(input.AdditionalData)
                 ) &&
-                 (
+                (
                     this.Amount == input.Amount ||
                     this.Amount != null &&
                     this.Amount.Equals(input.Amount)
@@ -307,6 +326,11 @@ namespace Adyen.Model.Checkout
                     this.PspReference == input.PspReference ||
                     this.PspReference != null &&
                     this.PspReference.Equals(input.PspReference)
+                ) &&
+                (
+                    this.Reference == input.Reference ||
+                    (this.Reference != null &&
+                     this.Reference.Equals(input.Reference))
                 ) &&
                 (
                     this.RefusalReason == input.RefusalReason ||
@@ -348,6 +372,8 @@ namespace Adyen.Model.Checkout
                     hashCode = hashCode * 59 + this.PspReference.GetHashCode();
                 if (this.RefusalReason != null)
                     hashCode = hashCode * 59 + this.RefusalReason.GetHashCode();
+                if (this.Reference != null)
+                    hashCode = hashCode * 59 + this.Reference.GetHashCode();
                 if (this.RemainingAmount != null)
                     hashCode = hashCode * 59 + this.RemainingAmount.GetHashCode();
                 if (this.ResultCode != null)
