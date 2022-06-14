@@ -29,6 +29,7 @@ using System.Linq;
 using System.Runtime.Serialization;
 using System.Text;
 using Newtonsoft.Json;
+using Adyen.Util;
 
 namespace Adyen.Model.MarketPay
 {
@@ -216,12 +217,12 @@ namespace Adyen.Model.MarketPay
             sb.Append("  FullPhoneNumber: ").Append(FullPhoneNumber).Append("\n");
             sb.Append("  IndividualDetails: ").Append(IndividualDetails).Append("\n");
             sb.Append("  LastReviewDate: ").Append(LastReviewDate).Append("\n");
-            sb.Append("  LegalArrangements: ").Append(LegalArrangements).Append("\n");
+            sb.Append("  LegalArrangements: ").Append(LegalArrangements.ObjectListToString).Append("\n");
             sb.Append("  MerchantCategoryCode: ").Append(MerchantCategoryCode).Append("\n");
             sb.Append("  Metadata: ").Append(Metadata).Append("\n");
             sb.Append("  PayoutMethods: ").Append(PayoutMethods).Append("\n");
             sb.Append("  PrincipalBusinessAddress: ").Append(PrincipalBusinessAddress).Append("\n");
-            sb.Append("  StoreDetails: ").Append(StoreDetails).Append("\n");
+            sb.Append("  StoreDetails: ").Append(StoreDetails.ObjectListToString).Append("\n");
             sb.Append("  WebAddress: ").Append(WebAddress).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
