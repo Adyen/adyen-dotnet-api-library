@@ -37,10 +37,10 @@ using Newtonsoft.Json.Converters;
 namespace Adyen.Model.Checkout
 {
     /// <summary>
-    /// CreatePaymentLinkRequest
+    /// PaymentLinkResponse
     /// </summary>
     [DataContract]
-    public partial class CreatePaymentLinkRequest : IEquatable<CreatePaymentLinkRequest>, IValidatableObject
+    public partial class PaymentLinkResponse : IEquatable<PaymentLinkResponse>, IValidatableObject
     {
         /// <summary>
         /// Defines a recurring payment type. Possible values: * **Subscription** – A transaction for a fixed or variable amount, which follows a fixed schedule. * **CardOnFile** – With a card-on-file (CoF) transaction, card details are stored to enable one-click or omnichannel journeys, or simply to streamline the checkout process. Any subscription not following a fixed schedule is also considered a card-on-file transaction. * **UnscheduledCardOnFile** – An unscheduled card-on-file (UCoF) transaction is a transaction that occurs on a non-fixed schedule and/or has variable amounts. For example, automatic top-ups when a cardholder&#x27;s balance drops below a certain amount. 
@@ -115,6 +115,46 @@ namespace Adyen.Model.Checkout
         public List<RequiredShopperFieldsEnum> RequiredShopperFields { get; set; }
 
         /// <summary>
+        /// Status of the payment link. Possible values: * **active**: The link can be used to make payments. * **expired**: The expiry date for the payment link has passed. Shoppers can no longer use the link to make payments. * **completed**: The shopper completed the payment. * **paymentPending**: The shopper is in the process of making the payment. Applies to payment methods with an asynchronous flow.
+        /// </summary>
+        /// <value>Status of the payment link. Possible values: * **active**: The link can be used to make payments. * **expired**: The expiry date for the payment link has passed. Shoppers can no longer use the link to make payments. * **completed**: The shopper completed the payment. * **paymentPending**: The shopper is in the process of making the payment. Applies to payment methods with an asynchronous flow.</value>
+        [JsonConverter(typeof(StringEnumConverter))]
+        public enum StatusEnum
+        {
+            /// <summary>
+            /// Enum Active for value: active
+            /// </summary>
+            [EnumMember(Value = "active")] Active = 1,
+
+            /// <summary>
+            /// Enum Completed for value: completed
+            /// </summary>
+            [EnumMember(Value = "completed")] Completed = 2,
+
+            /// <summary>
+            /// Enum Expired for value: expired
+            /// </summary>
+            [EnumMember(Value = "expired")] Expired = 3,
+
+            /// <summary>
+            /// Enum Paid for value: paid
+            /// </summary>
+            [EnumMember(Value = "paid")] Paid = 4,
+
+            /// <summary>
+            /// Enum PaymentPending for value: paymentPending
+            /// </summary>
+            [EnumMember(Value = "paymentPending")] PaymentPending = 5
+        }
+
+        /// <summary>
+        /// Status of the payment link. Possible values: * **active**: The link can be used to make payments. * **expired**: The expiry date for the payment link has passed. Shoppers can no longer use the link to make payments. * **completed**: The shopper completed the payment. * **paymentPending**: The shopper is in the process of making the payment. Applies to payment methods with an asynchronous flow.
+        /// </summary>
+        /// <value>Status of the payment link. Possible values: * **active**: The link can be used to make payments. * **expired**: The expiry date for the payment link has passed. Shoppers can no longer use the link to make payments. * **completed**: The shopper completed the payment. * **paymentPending**: The shopper is in the process of making the payment. Applies to payment methods with an asynchronous flow.</value>
+        [DataMember(Name = "status", EmitDefaultValue = false)]
+        public StatusEnum Status { get; set; }
+
+        /// <summary>
         /// Indicates if the details of the payment method will be stored for the shopper. Possible values: * **disabled** – No details will be stored (default). * **askForConsent** – If the &#x60;shopperReference&#x60; is provided, the UI lets the shopper choose if they want their payment details to be stored. * **enabled** – If the &#x60;shopperReference&#x60; is provided, the details will be stored without asking the shopper for consent.
         /// </summary>
         /// <value>Indicates if the details of the payment method will be stored for the shopper. Possible values: * **disabled** – No details will be stored (default). * **askForConsent** – If the &#x60;shopperReference&#x60; is provided, the UI lets the shopper choose if they want their payment details to be stored. * **enabled** – If the &#x60;shopperReference&#x60; is provided, the details will be stored without asking the shopper for consent.</value>
@@ -145,7 +185,7 @@ namespace Adyen.Model.Checkout
         public StorePaymentMethodModeEnum? StorePaymentMethodMode { get; set; }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="CreatePaymentLinkRequest" /> class.
+        /// Initializes a new instance of the <see cref="PaymentLinkResponse" /> class.
         /// </summary>
         /// <param name="allowedPaymentMethods">List of payment methods to be presented to the shopper. To refer to payment methods, use their &#x60;paymentMethod.type&#x60; from [Payment methods overview](https://docs.adyen.com/payment-methods).  Example: &#x60;\&quot;allowedPaymentMethods\&quot;:[\&quot;ideal\&quot;,\&quot;giropay\&quot;]&#x60;.</param>
         /// <param name="amount">amount (required).</param>
@@ -179,11 +219,12 @@ namespace Adyen.Model.Checkout
         /// <param name="socialSecurityNumber">The shopper&#x27;s social security number..</param>
         /// <param name="splitCardFundingSources">Boolean value indicating whether the card payment method should be split into separate debit and credit options. (default to false).</param>
         /// <param name="splits">An array of objects specifying how the payment should be split between accounts when using Adyen for Platforms. For details, refer to [Providing split information](https://docs.adyen.com/platforms/processing-payments#providing-split-information)..</param>
+        /// <param name="status">Status of the payment link. Possible values: * **active**: The link can be used to make payments. * **expired**: The expiry date for the payment link has passed. Shoppers can no longer use the link to make payments. * **completed**: The shopper completed the payment. * **paymentPending**: The shopper is in the process of making the payment. Applies to payment methods with an asynchronous flow. (required).</param>
         /// <param name="store">The physical store, for which this payment is processed..</param>
         /// <param name="storePaymentMethodMode">Indicates if the details of the payment method will be stored for the shopper. Possible values: * **disabled** – No details will be stored (default). * **askForConsent** – If the &#x60;shopperReference&#x60; is provided, the UI lets the shopper choose if they want their payment details to be stored. * **enabled** – If the &#x60;shopperReference&#x60; is provided, the details will be stored without asking the shopper for consent..</param>
         /// <param name="telephoneNumber">The shopper&#x27;s telephone number..</param>
         /// <param name="themeId">A [theme](https://docs.adyen.com/unified-commerce/pay-by-link/api#themes) to customize the appearance of the payment page. If not specified, the payment page is rendered according to the theme set as default in your Customer Area..</param>
-        public CreatePaymentLinkRequest(List<string> allowedPaymentMethods = default(List<string>),
+        public PaymentLinkResponse(List<string> allowedPaymentMethods = default(List<string>),
             Amount amount = default(Amount), ApplicationInfo applicationInfo = default(ApplicationInfo),
             Address billingAddress = default(Address), List<string> blockedPaymentMethods = default(List<string>),
             int? captureDelayHours = default(int?), string countryCode = default(string),
@@ -202,7 +243,7 @@ namespace Adyen.Model.Checkout
             Name shopperName = default(Name), string shopperReference = default(string),
             string shopperStatement = default(string), string socialSecurityNumber = default(string),
             bool? splitCardFundingSources = false, List<Split> splits = default(List<Split>),
-            string store = default(string),
+            StatusEnum status = default(StatusEnum), string store = default(string),
             StorePaymentMethodModeEnum? storePaymentMethodMode = default(StorePaymentMethodModeEnum?),
             string telephoneNumber = default(string), string themeId = default(string))
         {
@@ -210,7 +251,7 @@ namespace Adyen.Model.Checkout
             if (amount == null)
             {
                 throw new InvalidDataException(
-                    "amount is a required property for CreatePaymentLinkRequest and cannot be null");
+                    "amount is a required property for PaymentLinkResponse and cannot be null");
             }
             else
             {
@@ -221,7 +262,7 @@ namespace Adyen.Model.Checkout
             if (merchantAccount == null)
             {
                 throw new InvalidDataException(
-                    "merchantAccount is a required property for CreatePaymentLinkRequest and cannot be null");
+                    "merchantAccount is a required property for PaymentLinkResponse and cannot be null");
             }
             else
             {
@@ -232,11 +273,22 @@ namespace Adyen.Model.Checkout
             if (reference == null)
             {
                 throw new InvalidDataException(
-                    "reference is a required property for CreatePaymentLinkRequest and cannot be null");
+                    "reference is a required property for PaymentLinkResponse and cannot be null");
             }
             else
             {
                 this.Reference = reference;
+            }
+
+            // to ensure "status" is required (not null)
+            if (status == null)
+            {
+                throw new InvalidDataException(
+                    "status is a required property for PaymentLinkResponse and cannot be null");
+            }
+            else
+            {
+                this.Status = status;
             }
 
             this.AllowedPaymentMethods = allowedPaymentMethods;
@@ -364,6 +416,13 @@ namespace Adyen.Model.Checkout
         public string ExpiresAt { get; set; }
 
         /// <summary>
+        /// A unique identifier of the payment link.
+        /// </summary>
+        /// <value>A unique identifier of the payment link.</value>
+        [DataMember(Name = "id", EmitDefaultValue = false)]
+        public string Id { get; private set; }
+
+        /// <summary>
         /// A set of key-value pairs that specifies the installment options available per payment method. The key must be a payment method name in lowercase. For example, **card** to specify installment options for all cards, or **visa** or **mc**. The value must be an object containing the installment options.
         /// </summary>
         /// <value>A set of key-value pairs that specifies the installment options available per payment method. The key must be a payment method name in lowercase. For example, **card** to specify installment options for all cards, or **visa** or **mc**. The value must be an object containing the installment options.</value>
@@ -489,6 +548,7 @@ namespace Adyen.Model.Checkout
         [DataMember(Name = "splits", EmitDefaultValue = false)]
         public List<Split> Splits { get; set; }
 
+
         /// <summary>
         /// The physical store, for which this payment is processed.
         /// </summary>
@@ -512,18 +572,25 @@ namespace Adyen.Model.Checkout
         public string ThemeId { get; set; }
 
         /// <summary>
+        /// The URL at which the shopper can complete the payment.
+        /// </summary>
+        /// <value>The URL at which the shopper can complete the payment.</value>
+        [DataMember(Name = "url", EmitDefaultValue = false)]
+        public string Url { get; private set; }
+
+        /// <summary>
         /// Returns the string presentation of the object
         /// </summary>
         /// <returns>String presentation of the object</returns>
         public override string ToString()
         {
             var sb = new StringBuilder();
-            sb.Append("class CreatePaymentLinkRequest {\n");
-            sb.Append("  AllowedPaymentMethods: ").Append(AllowedPaymentMethods.ToListString()).Append("\n");
+            sb.Append("class PaymentLinkResponse {\n");
+            sb.Append("  AllowedPaymentMethods: ").Append(AllowedPaymentMethods).Append("\n");
             sb.Append("  Amount: ").Append(Amount).Append("\n");
             sb.Append("  ApplicationInfo: ").Append(ApplicationInfo).Append("\n");
             sb.Append("  BillingAddress: ").Append(BillingAddress).Append("\n");
-            sb.Append("  BlockedPaymentMethods: ").Append(BlockedPaymentMethods.ToListString()).Append("\n");
+            sb.Append("  BlockedPaymentMethods: ").Append(BlockedPaymentMethods).Append("\n");
             sb.Append("  CaptureDelayHours: ").Append(CaptureDelayHours).Append("\n");
             sb.Append("  CountryCode: ").Append(CountryCode).Append("\n");
             sb.Append("  DateOfBirth: ").Append(DateOfBirth).Append("\n");
@@ -531,15 +598,16 @@ namespace Adyen.Model.Checkout
             sb.Append("  DeliveryAddress: ").Append(DeliveryAddress).Append("\n");
             sb.Append("  Description: ").Append(Description).Append("\n");
             sb.Append("  ExpiresAt: ").Append(ExpiresAt).Append("\n");
-            sb.Append("  InstallmentOptions: ").Append(InstallmentOptions.ToCollectionsString()).Append("\n");
-            sb.Append("  LineItems: ").Append(LineItems.ObjectListToString()).Append("\n");
+            sb.Append("  Id: ").Append(Id).Append("\n");
+            sb.Append("  InstallmentOptions: ").Append(InstallmentOptions).Append("\n");
+            sb.Append("  LineItems: ").Append(LineItems).Append("\n");
             sb.Append("  Mcc: ").Append(Mcc).Append("\n");
             sb.Append("  MerchantAccount: ").Append(MerchantAccount).Append("\n");
             sb.Append("  MerchantOrderReference: ").Append(MerchantOrderReference).Append("\n");
-            sb.Append("  Metadata: ").Append(Metadata.ToCollectionsString()).Append("\n");
+            sb.Append("  Metadata: ").Append(Metadata).Append("\n");
             sb.Append("  RecurringProcessingModel: ").Append(RecurringProcessingModel).Append("\n");
             sb.Append("  Reference: ").Append(Reference).Append("\n");
-            sb.Append("  RequiredShopperFields: ").Append(RequiredShopperFields.ObjectListToString()).Append("\n");
+            sb.Append("  RequiredShopperFields: ").Append(RequiredShopperFields).Append("\n");
             sb.Append("  ReturnUrl: ").Append(ReturnUrl).Append("\n");
             sb.Append("  Reusable: ").Append(Reusable).Append("\n");
             sb.Append("  RiskData: ").Append(RiskData).Append("\n");
@@ -550,11 +618,13 @@ namespace Adyen.Model.Checkout
             sb.Append("  ShopperStatement: ").Append(ShopperStatement).Append("\n");
             sb.Append("  SocialSecurityNumber: ").Append(SocialSecurityNumber).Append("\n");
             sb.Append("  SplitCardFundingSources: ").Append(SplitCardFundingSources).Append("\n");
-            sb.Append("  Splits: ").Append(Splits.ObjectListToString()).Append("\n");
+            sb.Append("  Splits: ").Append(Splits).Append("\n");
+            sb.Append("  Status: ").Append(Status).Append("\n");
             sb.Append("  Store: ").Append(Store).Append("\n");
             sb.Append("  StorePaymentMethodMode: ").Append(StorePaymentMethodMode).Append("\n");
             sb.Append("  TelephoneNumber: ").Append(TelephoneNumber).Append("\n");
             sb.Append("  ThemeId: ").Append(ThemeId).Append("\n");
+            sb.Append("  Url: ").Append(Url).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -575,15 +645,15 @@ namespace Adyen.Model.Checkout
         /// <returns>Boolean</returns>
         public override bool Equals(object input)
         {
-            return this.Equals(input as CreatePaymentLinkRequest);
+            return this.Equals(input as PaymentLinkResponse);
         }
 
         /// <summary>
-        /// Returns true if CreatePaymentLinkRequest instances are equal
+        /// Returns true if PaymentLinkResponse instances are equal
         /// </summary>
-        /// <param name="input">Instance of CreatePaymentLinkRequest to be compared</param>
+        /// <param name="input">Instance of PaymentLinkResponse to be compared</param>
         /// <returns>Boolean</returns>
-        public bool Equals(CreatePaymentLinkRequest input)
+        public bool Equals(PaymentLinkResponse input)
         {
             if (input == null)
                 return false;
@@ -650,6 +720,11 @@ namespace Adyen.Model.Checkout
                     this.ExpiresAt == input.ExpiresAt ||
                     (this.ExpiresAt != null &&
                      this.ExpiresAt.Equals(input.ExpiresAt))
+                ) &&
+                (
+                    this.Id == input.Id ||
+                    (this.Id != null &&
+                     this.Id.Equals(input.Id))
                 ) &&
                 (
                     this.InstallmentOptions == input.InstallmentOptions ||
@@ -757,6 +832,11 @@ namespace Adyen.Model.Checkout
                     this.Splits.SequenceEqual(input.Splits)
                 ) &&
                 (
+                    this.Status == input.Status ||
+                    (this.Status != null &&
+                     this.Status.Equals(input.Status))
+                ) &&
+                (
                     this.Store == input.Store ||
                     (this.Store != null &&
                      this.Store.Equals(input.Store))
@@ -775,6 +855,11 @@ namespace Adyen.Model.Checkout
                     this.ThemeId == input.ThemeId ||
                     (this.ThemeId != null &&
                      this.ThemeId.Equals(input.ThemeId))
+                ) &&
+                (
+                    this.Url == input.Url ||
+                    (this.Url != null &&
+                     this.Url.Equals(input.Url))
                 );
         }
 
@@ -811,6 +896,8 @@ namespace Adyen.Model.Checkout
                     hashCode = hashCode * 59 + this.Description.GetHashCode();
                 if (this.ExpiresAt != null)
                     hashCode = hashCode * 59 + this.ExpiresAt.GetHashCode();
+                if (this.Id != null)
+                    hashCode = hashCode * 59 + this.Id.GetHashCode();
                 if (this.InstallmentOptions != null)
                     hashCode = hashCode * 59 + this.InstallmentOptions.GetHashCode();
                 if (this.LineItems != null)
@@ -851,6 +938,8 @@ namespace Adyen.Model.Checkout
                     hashCode = hashCode * 59 + this.SplitCardFundingSources.GetHashCode();
                 if (this.Splits != null)
                     hashCode = hashCode * 59 + this.Splits.GetHashCode();
+                if (this.Status != null)
+                    hashCode = hashCode * 59 + this.Status.GetHashCode();
                 if (this.Store != null)
                     hashCode = hashCode * 59 + this.Store.GetHashCode();
                 if (this.StorePaymentMethodMode != null)
@@ -859,6 +948,8 @@ namespace Adyen.Model.Checkout
                     hashCode = hashCode * 59 + this.TelephoneNumber.GetHashCode();
                 if (this.ThemeId != null)
                     hashCode = hashCode * 59 + this.ThemeId.GetHashCode();
+                if (this.Url != null)
+                    hashCode = hashCode * 59 + this.Url.GetHashCode();
                 return hashCode;
             }
         }

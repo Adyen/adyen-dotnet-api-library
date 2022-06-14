@@ -25,9 +25,11 @@
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.IO;
 using System.Runtime.Serialization;
 using System.Text;
 using Newtonsoft.Json;
+using Newtonsoft.Json.Converters;
 
 namespace Adyen.Model.Checkout.Action
 {
@@ -35,24 +37,29 @@ namespace Adyen.Model.Checkout.Action
     /// CheckoutQrCodeAction
     /// </summary>
     [DataContract]
-    public partial class CheckoutQrCodeAction : IEquatable<CheckoutQrCodeAction>, IValidatableObject, IPaymentResponseAction
+    public partial class CheckoutQrCodeAction : IEquatable<CheckoutQrCodeAction>, IValidatableObject , IPaymentResponseAction
     {
         /// <summary>
-        /// Unique identifier of action
+        /// **qrCode**
         /// </summary>
-        /// <value>Unique identifier of action</value>
+        /// <value>**qrCode**</value>
         [DataMember(Name = "type", EmitDefaultValue = false)]
-        public string Type { get; set; } = "qrCode";
+        public String Type { get; set; } = "qrCode";
+
         /// <summary>
         /// Initializes a new instance of the <see cref="CheckoutQrCodeAction" /> class.
         /// </summary>
-        /// <param name="paymentData">When non-empty, contains a value that you must submit to the &#x60;/payments/details&#x60; endpoint. In some cases, required for polling..</param>
+        /// <param name="expiresAt">Expiry time of the QR code..</param>
+        /// <param name="paymentData">A value that must be submitted to the &#x60;/payments/details&#x60; endpoint to verify this payment..</param>
         /// <param name="paymentMethodType">Specifies the payment method..</param>
         /// <param name="qrCodeData">The contents of the QR code as a UTF8 string..</param>
+        /// <param name="type">**qrCode** (required).</param>
         /// <param name="url">Specifies the URL to redirect to..</param>
-        public CheckoutQrCodeAction(string paymentData = default(string), string paymentMethodType = default(string),
-            string qrCodeData = default(string), string url = default(string))
+        public CheckoutQrCodeAction(string expiresAt = default(string), string paymentData = default(string),
+            string paymentMethodType = default(string), string qrCodeData = default(string),
+           string url = default(string))
         {
+            this.ExpiresAt = expiresAt;
             this.PaymentData = paymentData;
             this.PaymentMethodType = paymentMethodType;
             this.QrCodeData = qrCodeData;
@@ -60,9 +67,16 @@ namespace Adyen.Model.Checkout.Action
         }
 
         /// <summary>
-        /// When non-empty, contains a value that you must submit to the &#x60;/payments/details&#x60; endpoint. In some cases, required for polling.
+        /// Expiry time of the QR code.
         /// </summary>
-        /// <value>When non-empty, contains a value that you must submit to the &#x60;/payments/details&#x60; endpoint. In some cases, required for polling.</value>
+        /// <value>Expiry time of the QR code.</value>
+        [DataMember(Name = "expiresAt", EmitDefaultValue = false)]
+        public string ExpiresAt { get; set; }
+
+        /// <summary>
+        /// A value that must be submitted to the &#x60;/payments/details&#x60; endpoint to verify this payment.
+        /// </summary>
+        /// <value>A value that must be submitted to the &#x60;/payments/details&#x60; endpoint to verify this payment.</value>
         [DataMember(Name = "paymentData", EmitDefaultValue = false)]
         public string PaymentData { get; set; }
 
@@ -80,6 +94,7 @@ namespace Adyen.Model.Checkout.Action
         [DataMember(Name = "qrCodeData", EmitDefaultValue = false)]
         public string QrCodeData { get; set; }
 
+
         /// <summary>
         /// Specifies the URL to redirect to.
         /// </summary>
@@ -95,9 +110,11 @@ namespace Adyen.Model.Checkout.Action
         {
             var sb = new StringBuilder();
             sb.Append("class CheckoutQrCodeAction {\n");
+            sb.Append("  ExpiresAt: ").Append(ExpiresAt).Append("\n");
             sb.Append("  PaymentData: ").Append(PaymentData).Append("\n");
             sb.Append("  PaymentMethodType: ").Append(PaymentMethodType).Append("\n");
             sb.Append("  QrCodeData: ").Append(QrCodeData).Append("\n");
+            sb.Append("  Type: ").Append(Type).Append("\n");
             sb.Append("  Url: ").Append(Url).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
@@ -134,24 +151,34 @@ namespace Adyen.Model.Checkout.Action
 
             return
                 (
+                    this.ExpiresAt == input.ExpiresAt ||
+                    (this.ExpiresAt != null &&
+                     this.ExpiresAt.Equals(input.ExpiresAt))
+                ) &&
+                (
                     this.PaymentData == input.PaymentData ||
-                    this.PaymentData != null &&
-                    this.PaymentData.Equals(input.PaymentData)
+                    (this.PaymentData != null &&
+                     this.PaymentData.Equals(input.PaymentData))
                 ) &&
                 (
                     this.PaymentMethodType == input.PaymentMethodType ||
-                    this.PaymentMethodType != null &&
-                    this.PaymentMethodType.Equals(input.PaymentMethodType)
+                    (this.PaymentMethodType != null &&
+                     this.PaymentMethodType.Equals(input.PaymentMethodType))
                 ) &&
                 (
                     this.QrCodeData == input.QrCodeData ||
-                    this.QrCodeData != null &&
-                    this.QrCodeData.Equals(input.QrCodeData)
+                    (this.QrCodeData != null &&
+                     this.QrCodeData.Equals(input.QrCodeData))
+                ) &&
+                (
+                    this.Type == input.Type ||
+                    (this.Type != null &&
+                     this.Type.Equals(input.Type))
                 ) &&
                 (
                     this.Url == input.Url ||
-                    this.Url != null &&
-                    this.Url.Equals(input.Url)
+                    (this.Url != null &&
+                     this.Url.Equals(input.Url))
                 );
         }
 
@@ -164,12 +191,16 @@ namespace Adyen.Model.Checkout.Action
             unchecked // Overflow is fine, just wrap
             {
                 int hashCode = 41;
+                if (this.ExpiresAt != null)
+                    hashCode = hashCode * 59 + this.ExpiresAt.GetHashCode();
                 if (this.PaymentData != null)
                     hashCode = hashCode * 59 + this.PaymentData.GetHashCode();
                 if (this.PaymentMethodType != null)
                     hashCode = hashCode * 59 + this.PaymentMethodType.GetHashCode();
                 if (this.QrCodeData != null)
                     hashCode = hashCode * 59 + this.QrCodeData.GetHashCode();
+                if (this.Type != null)
+                    hashCode = hashCode * 59 + this.Type.GetHashCode();
                 if (this.Url != null)
                     hashCode = hashCode * 59 + this.Url.GetHashCode();
                 return hashCode;

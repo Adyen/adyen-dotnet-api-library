@@ -1,13 +1,11 @@
 {
   "resultCode": "IdentifyShopper",
-  "authentication": {
-    "threeds2.fingerprintToken": "eyJ0aHJlZURTTWV0aG9kTm90aWZpY2F0aW9uVV....MxYzU3YSJ9"
-  },
-  "details": [
-    {
-      "key": "threeds2.fingerprint",
-      "type": "text"
-    }
-  ],
-  "paymentData": "Ab02b4c0!BQAFDem3IFE3v/BDZKHuCSU1gtewaGu+...eyJ0aHJV0aG9kTm90aWZpY2F0aW9uVV"
+  "action": {
+    "paymentData": "Ab02b4c0!BQABAgCft+b7JYM9vj7s7aN+4uTZUPQla28bPGFb61rEEb7vjkvnjhAsxLc3Z/aWz+xfrOqjH+9qE6uRcrYbo1pOLhi/FudOw5VRD7IJw2Ta2OW6hD/f0dXxn1lRCCFnmZ62Bh/mDmDO4xitcPz/fFF1BMrw7JPbq6ou5Q53NPtODTXF/ekR75EJJWWKTv3+YPhQQSbwiZaMSlGpvLUNXFd4N3DwsPTWeSYFPvzGDqdwLg/zQ4evmk3aPGuZAnYAwQDvEecGZwWHY7yQVVaaugRKctcg6Oeg5+PDXBJFvQbDNLt/zQvfWX0LE0Y4a2cWmvQC2iyWFd6NhD5L9q4ATMHrzkOW6RX6tL3LLj0fQZHfycFqSxv8Xck0ZVfA43t0nMLsrCxtrV6+YZ9v7/ugSD9cl8R5mXc8uqHeh2/gs3Lr8I4I5ghv8bDKOe2INRYjoK28JayEHFnAklRAmch0orO4Eoy+rEszUHtdCQBkhzMVzZ5WCN3v1pigW0QndJvMVpIQbi4jS3EI0JMRTLn+N43qc6GV5XBLATv55brKhomjEXIp6dw8OekgYn1tuCWvsP5xAPk+gdrW+NnhZOnylApHj4eCC6MEd8lzBsqepaeVBh6g+7MvMcaMTESltRts0/5JS+fznR+3EUvCiwMmxBv2CZlJ3AWOCk1x0H69URfpMETfgCl4UhDPV3BHkuHbiIOiEugNPEfcOa8ltgeJ+xoJWwLD5GnFbkP/gKEIM0mSyZ8ONCqH3it3oL/An4mj2xA3oKESF6Xj9LeMjSYr3O9MYUHgG34EmwkML6owVqMVeGHlrXX7X/rcdB4Bk08H87y+CnYWP/HqWt7thMQGdUg4+eQdhq2KHom1V4KAAalj6IUj77IOQOigglccfS2JUzCfPg==",
+    "paymentMethodType": "scheme",
+    "authorisationToken": "FadZt...uj71dICJdsasouPQm3rpLYA/tT16looMfYRqeMVdsjHKUqy0ChUmkDw/Luzp1Oze4/bCI=",
+    "subtype": "fingerprint",
+    "token": "dmVyVHJhbnNJRCI6Im...JkNjI5NmU3LTllM2ItNGIxNi04Y2I1LTlkOTNkM2U2NjhhYSJ9",
+    "type": "threeDS2"
+  }
 }

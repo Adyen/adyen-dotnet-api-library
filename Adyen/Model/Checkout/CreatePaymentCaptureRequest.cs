@@ -26,6 +26,7 @@
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.IO;
 using System.Linq;
 using System.Runtime.Serialization;
 using System.Text;
@@ -38,49 +39,73 @@ namespace Adyen.Model.Checkout
     /// CreatePaymentCaptureRequest
     /// </summary>
     [DataContract]
-    public partial class CreatePaymentCaptureRequest : IEquatable<CreatePaymentCaptureRequest>, IValidatableObject
+        public partial class CreatePaymentCaptureRequest :  IEquatable<CreatePaymentCaptureRequest>, IValidatableObject
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="CreatePaymentCaptureRequest" /> class.
         /// </summary>
         /// <param name="amount">amount (required).</param>
+        /// <param name="lineItems">Price and product information of the captured items, required for [partial captures](https://docs.adyen.com/online-payments/capture#partial-capture). &gt; This field is required for partial captures with 3x 4x Oney, Affirm, Afterpay, Clearpay, Klarna, Ratepay, Zip and Atome..</param>
         /// <param name="merchantAccount">The merchant account that is used to process the payment. (required).</param>
         /// <param name="reference">Your reference for the capture request. Maximum length: 80 characters..</param>
         /// <param name="splits">An array of objects specifying how the amount should be split between accounts when using Adyen for Platforms. For details, refer to [Providing split information](https://docs.adyen.com/platforms/processing-payments#providing-split-information)..</param>
-        public CreatePaymentCaptureRequest(Amount amount = default(Amount), string merchantAccount = default(string),
-            string reference = default(string), List<Split> splits = default(List<Split>))
+        public CreatePaymentCaptureRequest(Amount amount = default(Amount), List<LineItem> lineItems = default(List<LineItem>), string merchantAccount = default(string), string reference = default(string), List<Split> splits = default(List<Split>))
         {
-            this.Amount = amount;
-            this.MerchantAccount = merchantAccount;
+            // to ensure "amount" is required (not null)
+            if (amount == null)
+            {
+                throw new InvalidDataException("amount is a required property for CreatePaymentCaptureRequest and cannot be null");
+            }
+            else
+            {
+                this.Amount = amount;
+            }
+            // to ensure "merchantAccount" is required (not null)
+            if (merchantAccount == null)
+            {
+                throw new InvalidDataException("merchantAccount is a required property for CreatePaymentCaptureRequest and cannot be null");
+            }
+            else
+            {
+                this.MerchantAccount = merchantAccount;
+            }
+            this.LineItems = lineItems;
             this.Reference = reference;
             this.Splits = splits;
         }
-
+        
         /// <summary>
         /// Gets or Sets Amount
         /// </summary>
-        [DataMember(Name = "amount", EmitDefaultValue = false)]
+        [DataMember(Name="amount", EmitDefaultValue=false)]
         public Amount Amount { get; set; }
+
+        /// <summary>
+        /// Price and product information of the captured items, required for [partial captures](https://docs.adyen.com/online-payments/capture#partial-capture). &gt; This field is required for partial captures with 3x 4x Oney, Affirm, Afterpay, Clearpay, Klarna, Ratepay, Zip and Atome.
+        /// </summary>
+        /// <value>Price and product information of the captured items, required for [partial captures](https://docs.adyen.com/online-payments/capture#partial-capture). &gt; This field is required for partial captures with 3x 4x Oney, Affirm, Afterpay, Clearpay, Klarna, Ratepay, Zip and Atome.</value>
+        [DataMember(Name="lineItems", EmitDefaultValue=false)]
+        public List<LineItem> LineItems { get; set; }
 
         /// <summary>
         /// The merchant account that is used to process the payment.
         /// </summary>
         /// <value>The merchant account that is used to process the payment.</value>
-        [DataMember(Name = "merchantAccount", EmitDefaultValue = false)]
+        [DataMember(Name="merchantAccount", EmitDefaultValue=false)]
         public string MerchantAccount { get; set; }
 
         /// <summary>
         /// Your reference for the capture request. Maximum length: 80 characters.
         /// </summary>
         /// <value>Your reference for the capture request. Maximum length: 80 characters.</value>
-        [DataMember(Name = "reference", EmitDefaultValue = false)]
+        [DataMember(Name="reference", EmitDefaultValue=false)]
         public string Reference { get; set; }
 
         /// <summary>
         /// An array of objects specifying how the amount should be split between accounts when using Adyen for Platforms. For details, refer to [Providing split information](https://docs.adyen.com/platforms/processing-payments#providing-split-information).
         /// </summary>
         /// <value>An array of objects specifying how the amount should be split between accounts when using Adyen for Platforms. For details, refer to [Providing split information](https://docs.adyen.com/platforms/processing-payments#providing-split-information).</value>
-        [DataMember(Name = "splits", EmitDefaultValue = false)]
+        [DataMember(Name="splits", EmitDefaultValue=false)]
         public List<Split> Splits { get; set; }
 
         /// <summary>
@@ -92,13 +117,14 @@ namespace Adyen.Model.Checkout
             var sb = new StringBuilder();
             sb.Append("class CreatePaymentCaptureRequest {\n");
             sb.Append("  Amount: ").Append(Amount).Append("\n");
+            sb.Append("  LineItems: ").Append(LineItems.ObjectListToString()).Append("\n");
             sb.Append("  MerchantAccount: ").Append(MerchantAccount).Append("\n");
             sb.Append("  Reference: ").Append(Reference).Append("\n");
             sb.Append("  Splits: ").Append(Splits.ObjectListToString()).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
-
+  
         /// <summary>
         /// Returns the JSON string presentation of the object
         /// </summary>
@@ -128,22 +154,28 @@ namespace Adyen.Model.Checkout
             if (input == null)
                 return false;
 
-            return
+            return 
                 (
                     this.Amount == input.Amount ||
                     (this.Amount != null &&
-                     this.Amount.Equals(input.Amount))
-                ) &&
+                    this.Amount.Equals(input.Amount))
+                ) && 
+                (
+                    this.LineItems == input.LineItems ||
+                    this.LineItems != null &&
+                    input.LineItems != null &&
+                    this.LineItems.SequenceEqual(input.LineItems)
+                ) && 
                 (
                     this.MerchantAccount == input.MerchantAccount ||
                     (this.MerchantAccount != null &&
-                     this.MerchantAccount.Equals(input.MerchantAccount))
-                ) &&
+                    this.MerchantAccount.Equals(input.MerchantAccount))
+                ) && 
                 (
                     this.Reference == input.Reference ||
                     (this.Reference != null &&
-                     this.Reference.Equals(input.Reference))
-                ) &&
+                    this.Reference.Equals(input.Reference))
+                ) && 
                 (
                     this.Splits == input.Splits ||
                     this.Splits != null &&
@@ -163,6 +195,8 @@ namespace Adyen.Model.Checkout
                 int hashCode = 41;
                 if (this.Amount != null)
                     hashCode = hashCode * 59 + this.Amount.GetHashCode();
+                if (this.LineItems != null)
+                    hashCode = hashCode * 59 + this.LineItems.GetHashCode();
                 if (this.MerchantAccount != null)
                     hashCode = hashCode * 59 + this.MerchantAccount.GetHashCode();
                 if (this.Reference != null)
@@ -178,8 +212,7 @@ namespace Adyen.Model.Checkout
         /// </summary>
         /// <param name="validationContext">Validation context</param>
         /// <returns>Validation Result</returns>
-        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(
-            ValidationContext validationContext)
+        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
         {
             yield break;
         }
