@@ -17,6 +17,6 @@ jobs:
         dotnet-version: ${{ matrix.dotnet }}
     - name: Build with dotnet
       run: |
-        dotnet build /p:TargetFrameworks=netcoreapp2.1
+        dotnet build /p:TargetFrameworks=netcoreapp2.0
         dotnet test Adyen.Test/Adyen.Test.csproj
         dotnet test Adyen.IntegrationTest/Adyen.IntegrationTest.csproj
