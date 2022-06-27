@@ -1,4 +1,4 @@
-﻿
+
 using Adyen.Model.Checkout;
 using Adyen.Model.Checkout.Action;
 using Adyen.Service;
