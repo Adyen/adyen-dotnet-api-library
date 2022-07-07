@@ -22,7 +22,6 @@
 #endregion
 
 using System;
-using System.ComponentModel;
 using System.Net;
 using Environment = Adyen.Model.Enum.Environment;
 
@@ -55,5 +54,6 @@ namespace Adyen
       
         //POS Terminal Management 
         public string PosTerminalManagementEndpoint { get; set; }
+        
     }
 }
