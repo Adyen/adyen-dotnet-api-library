@@ -27,17 +27,20 @@ namespace Adyen.Util
 {
     public class Certificate
     {
-        public static void AddCertificateFromPath(string certificatePath, StoreName storeName = StoreName.Root,
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="certificatePath"></param>
+        /// <param name="storeName"></param>
+        /// <param name="storeLocation"></param>
+        public static void AddCertificateFromPath(string certificatePath, StoreName storeName = StoreName.My,
             StoreLocation storeLocation = StoreLocation.CurrentUser)
         {
             using (var store = new X509Store(storeName, storeLocation))
             {
                 var x509Certificate2 = new X509Certificate2(certificatePath);
-                if (!store.Certificates.Contains(x509Certificate2))
-                {
-                    store.Open(OpenFlags.ReadWrite);
-                    store.Add(x509Certificate2);
-                }
+                store.Open(OpenFlags.ReadWrite);
+                store.Add(x509Certificate2);
             }
         }
     }
