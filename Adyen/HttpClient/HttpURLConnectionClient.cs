@@ -198,16 +198,6 @@ namespace Adyen.HttpClient
                 httpWebRequest.Proxy = config.Proxy;
             }
 
-            if (!string.IsNullOrEmpty(config.CertificatePath))
-            {
-                using (X509Store store = new X509Store(StoreName.Root, StoreLocation.CurrentUser))
-                {
-                    var x509Certificate2 = new X509Certificate2(config.CertificatePath);
-                    store.Open(OpenFlags.ReadWrite);
-                    store.Add(x509Certificate2);
-                }
-            }
-
             httpWebRequest.ServerCertificateValidationCallback = ServerCertificateValidationCallback;
             return httpWebRequest;
         }

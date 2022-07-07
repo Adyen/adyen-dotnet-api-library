@@ -55,12 +55,5 @@ namespace Adyen
       
         //POS Terminal Management 
         public string PosTerminalManagementEndpoint { get; set; }
-        
-        //Terminal local communication
-        [Description("If you provide the path for the certificate it is used for the https call. " +
-                     "If not provided then it checks the CA store. For unix based system the certificate" +
-                     " should be provided using the path")]
-        public string CertificatePath { get; set; }
-
     }
 }
