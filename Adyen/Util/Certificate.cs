@@ -25,15 +25,15 @@ using System.Security.Cryptography.X509Certificates;
 
 namespace Adyen.Util
 {
-    public class Certificate
+    public static class Certificate
     {
         /// <summary>
-        /// 
+        /// This method creates a CA store and adding the certificate provided by the path. 
         /// </summary>
-        /// <param name="certificatePath"></param>
-        /// <param name="storeName"></param>
-        /// <param name="storeLocation"></param>
-        public static void AddCertificateFromPath(string certificatePath, StoreName storeName = StoreName.My,
+        /// <param name="certificatePath">Path for the certificate .crt, .cer</param>
+        /// <param name="storeName">Specifies the name of the X.509 certificate store to open. Default is root</param>
+        /// <param name="storeLocation">Specifies the location of the X.509 certificate store. Default is current user</param>
+        public static void AddCertificateFromPath(string certificatePath, StoreName storeName = StoreName.Root,
             StoreLocation storeLocation = StoreLocation.CurrentUser)
         {
             using (var store = new X509Store(storeName, storeLocation))
