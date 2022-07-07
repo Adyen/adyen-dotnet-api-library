@@ -197,7 +197,6 @@ namespace Adyen.HttpClient
             {
                 httpWebRequest.Proxy = config.Proxy;
             }
-
             httpWebRequest.ServerCertificateValidationCallback = ServerCertificateValidationCallback;
             return httpWebRequest;
         }

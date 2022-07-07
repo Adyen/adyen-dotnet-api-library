@@ -54,5 +54,6 @@ namespace Adyen
       
         //POS Terminal Management 
         public string PosTerminalManagementEndpoint { get; set; }
+        
     }
 }
