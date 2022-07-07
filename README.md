@@ -84,6 +84,9 @@ var config = new Config
   };
 var client = new Client(config);
 ~~~~
+### Using the Local communication for point of sale
+
+The `Certificate` class in `Adyen.Util` provides a way to pass the certificate using the path rather than to install it on you local machine CA store. This works for unix based systems and Windows. For Windows you could simple install the certificate without having to create a new CA store for Adyen's certificate. For more information please check the [docs](https://docs.adyen.com/point-of-sale/choose-your-architecture/local#protect-communications)
 
 ## Contributing
 
