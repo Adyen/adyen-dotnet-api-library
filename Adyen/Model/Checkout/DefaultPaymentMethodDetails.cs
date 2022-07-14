@@ -80,6 +80,8 @@ namespace Adyen.Model.Checkout
         public string SepaIbanNumber { get; set; }
         [DataMember(Name = "bankAccount", EmitDefaultValue = false)]
         public BankAccount BankAccount { get; set; }
+        [DataMember(Name = "brand", EmitDefaultValue = false)]
+        public string Brand { get; set; }
  
 
         public override string ToString()
@@ -109,6 +111,7 @@ namespace Adyen.Model.Checkout
             sb.Append("  SepaOwnerName: ").Append(SepaOwnerName).Append("\n");
             sb.Append("  SepaIbanNumber: ").Append(SepaIbanNumber).Append("\n");
             sb.Append("  BankAccount: ").Append(BankAccount).Append("\n");
+            sb.Append("  Brand: ").Append(Brand).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -249,6 +252,11 @@ namespace Adyen.Model.Checkout
                     this.BankAccount == input.BankAccount ||
                     (this.BankAccount != null &&
                     this.BankAccount.Equals(input.BankAccount))
+                ) &&
+                (
+                    this.Brand == input.Brand ||
+                    (this.Brand != null &&
+                    this.Brand.Equals(input.Brand))
                 );
         }
 
@@ -315,6 +323,8 @@ namespace Adyen.Model.Checkout
                     hashCode = hashCode * 59 + this.SepaIbanNumber.GetHashCode();
                 if (this.BankAccount != null)
                     hashCode = hashCode * 59 + this.BankAccount.GetHashCode();
+                if (this.Brand != null)
+                    hashCode = hashCode * 59 + this.Brand.GetHashCode();
                 if (this.Issuer != null)
                     hashCode = hashCode * 59 + this.Issuer.GetHashCode();
                 return hashCode;
