@@ -74,7 +74,7 @@ namespace Adyen.HttpClient
         }
 
         /// <summary>
-        /// HttpWebRequest asynchronous. 
+        /// HttpWebRequest asynchronous.
         /// </summary>
         /// <param name="endpoint"></param>
         /// <param name="json"></param>
@@ -85,8 +85,6 @@ namespace Adyen.HttpClient
         public async Task<string> RequestAsync(string endpoint, string json, Config config, bool isApiKeyRequired, RequestOptions requestOptions = null)
         {
             string responseText = null;
-            //Set security protocol. Only TLS1.2
-            ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12;
             var httpWebRequest = GetHttpWebRequest(endpoint, config, isApiKeyRequired, requestOptions);
             using (var streamWriter = new StreamWriter(httpWebRequest.GetRequestStream()))
             {
@@ -112,7 +110,7 @@ namespace Adyen.HttpClient
         }
 
         /// <summary>
-        /// Handles the common http exceptions 
+        /// Handles the common http exceptions
         /// </summary>
         /// <param name="e">WebException e</param>
         private static void HandleWebException(WebException e)
@@ -169,6 +167,8 @@ namespace Adyen.HttpClient
 
         public HttpWebRequest GetHttpWebRequest(string endpoint, Config config, bool isApiKeyRequired, RequestOptions requestOptions = null)
         {
+            //Set security protocol. Only TLS1.2
+            ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12;
             //Add default headers
             var httpWebRequest = (HttpWebRequest)WebRequest.Create(endpoint);
             httpWebRequest.Method = "POST";
