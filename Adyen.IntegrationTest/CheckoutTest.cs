@@ -4,6 +4,7 @@ using Adyen.Model.Checkout.Action;
 using Adyen.Service;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
+using Adyen.Constants;
 
 namespace Adyen.IntegrationTest
 {
@@ -129,6 +130,31 @@ namespace Adyen.IntegrationTest
             Assert.IsNotNull(createPaymentLinkResponse.Amount);
             Assert.IsNotNull(createPaymentLinkResponse.Reference);
             Assert.IsNotNull(createPaymentLinkResponse.ExpiresAt);
+        }
+
+        [TestMethod]
+        public void PaymentLinkUpdateSuccessTest()
+        {
+            var amount = new Amount("EUR", 1000);
+            var address = new Address(country: "NL", city: "Amsterdam", houseNumberOrName: "11", postalCode: "1234AB",
+                street: "ams");
+            var createPaymentLinkRequest = new CreatePaymentLinkRequest(amount: amount,
+                merchantAccount: ClientConstants.MerchantAccount, reference: "Reference")
+            {
+                CountryCode = "NL",
+                ShopperReference = "Unique_shopper_reference",
+                ShopperEmail = "test@shopperEmail.com",
+                BillingAddress = address,
+                DeliveryAddress = address,
+                ExpiresAt = DateTime.Now.AddHours(4).ToString("yyyy-MM-ddTHH:mm:ss")
+            };
+            var createPaymentLinkResponse = _checkout.PaymentLinks(createPaymentLinkRequest);
+            var linkId = createPaymentLinkResponse.Id;
+            Assert.IsNotNull(linkId);
+
+            var updatePaymentLinkRequest = new UpdatePaymentLinkRequest(UpdatePaymentLinkRequest.StatusEnum.Expired);
+            var updatePaymentLinkResponse = _checkout.PaymentLinkUpdate(linkId, updatePaymentLinkRequest);
+            Assert.AreEqual(updatePaymentLinkRequest.Status, UpdatePaymentLinkRequest.StatusEnum.Expired);
         }
 
         /// <summary>

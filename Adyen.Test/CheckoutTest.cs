@@ -547,6 +547,18 @@ namespace Adyen.Test
             Assert.IsNotNull(paymentLinksResponse.Amount);
         }
 
+        [TestMethod]
+        public void PaymentLinkUpdateSuccess()
+        {
+            var client = CreateMockTestClientApiKeyBasedRequest("Mocks/checkout/payment-link-update-success.json");
+            var checkout = new Checkout(client);
+            var updatePaymentLinkRequest =
+                new UpdatePaymentLinkRequest(status: UpdatePaymentLinkRequest.StatusEnum.Expired);
+            var updatePaymentLinkResponse = checkout.PaymentLinkUpdate(linkId: "LinkId", updatePaymentLinkRequest);
+            Assert.AreEqual(updatePaymentLinkResponse.Status, PaymentLinkResponse.StatusEnum.Expired);
+            Assert.AreEqual(updatePaymentLinkResponse.ExpiresAt, "2022-07-29T17:10:05Z");
+        }
+
         /// <summary>
         /// Test success flow for creation of a payment link with recurring payment
         /// POST /paymentLinks

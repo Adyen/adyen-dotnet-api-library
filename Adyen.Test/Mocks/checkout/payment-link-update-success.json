@@ -1,0 +1,11 @@
+{
+	"amount": {
+		"currency": "EUR",
+		"value": 4200
+	},
+	"countryCode": "NL",
+	"expiresAt": "2022-07-29T17:10:05Z",
+	"merchantAccount": "YOUR_MERCHANT_ACCOUNT",
+	"reference": "YOUR_ORDER_NUMBER",
+	"status": "expired"
+}

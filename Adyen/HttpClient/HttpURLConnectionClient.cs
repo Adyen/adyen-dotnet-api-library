@@ -171,7 +171,14 @@ namespace Adyen.HttpClient
             ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12;
             //Add default headers
             var httpWebRequest = (HttpWebRequest)WebRequest.Create(endpoint);
-            httpWebRequest.Method = "POST";
+            if (!string.IsNullOrEmpty(requestOptions?.HttpVerb))
+            {
+                httpWebRequest.Method = requestOptions.HttpVerb;
+            }
+            else
+            {
+                httpWebRequest.Method = "POST";
+            }
             httpWebRequest.ContentType = "application/json";
             httpWebRequest.Headers.Add("Accept-Charset", "UTF-8");
             httpWebRequest.Headers.Add("Cache-Control", "no-cache");

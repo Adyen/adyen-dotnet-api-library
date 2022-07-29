@@ -196,6 +196,24 @@ namespace Adyen.Service
         }
 
         /// <summary>
+        /// PATCH /paymentLinks/{linkId} API call
+        /// </summary>
+        /// <param name="linkId"></param>
+        /// <param name="updatePaymentLinkRequest"></param>
+        /// <returns>PaymentLinkResponse</returns>
+        public PaymentLinkResponse PaymentLinkUpdate(string linkId, UpdatePaymentLinkRequest updatePaymentLinkRequest)
+        {
+            var paymentLinkUpdates = new PaymentLinkUpdates(this, linkId);
+            var jsonRequest = Util.JsonOperation.SerializeRequest(updatePaymentLinkRequest);
+            var requestOptions = new RequestOptions
+            {
+                HttpVerb = "PATCH"
+            };
+            var jsonResponse = paymentLinkUpdates.Request(jsonRequest, requestOptions);
+            return JsonConvert.DeserializeObject<PaymentLinkResponse>(jsonResponse);
+        }
+
+        /// <summary>
         /// POST /paymentsLinks API call async
         /// </summary>
         /// <param name="createPaymentLinkRequest"></param>
