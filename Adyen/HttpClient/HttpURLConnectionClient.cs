@@ -25,6 +25,7 @@ using Adyen.Constants;
 using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using System.Net;
 using System.Net.Security;
 using System.Text;
@@ -50,12 +51,19 @@ namespace Adyen.HttpClient
             {
                 httpWebRequest.Timeout = config.HttpRequestTimeout;
             }
-            using (var streamWriter = new StreamWriter(httpWebRequest.GetRequestStream()))
+
+            string[] httpVerbsWithPayload = new[] { "POST", "PUT", "PATCH" };
+            if (string.IsNullOrEmpty(requestOptions?.HttpVerb) ||
+                httpVerbsWithPayload.Contains(requestOptions.HttpVerb))
             {
-                streamWriter.Write(json);
-                streamWriter.Flush();
-                streamWriter.Close();
+                using (var streamWriter = new StreamWriter(httpWebRequest.GetRequestStream()))
+                {
+                    streamWriter.Write(json);
+                    streamWriter.Flush();
+                    streamWriter.Close();
+                }
             }
+
             try
             {
                 using (var response = (HttpWebResponse) httpWebRequest.GetResponse())

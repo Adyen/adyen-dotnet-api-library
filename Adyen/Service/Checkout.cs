@@ -214,6 +214,22 @@ namespace Adyen.Service
         }
 
         /// <summary>
+        /// GET /paymentLinks/{linkId} API call
+        /// </summary>
+        /// <param name="linkId"></param>
+        /// <returns>PaymentLinkResponse</returns>
+        public PaymentLinkResponse PaymentLinkStatus(string linkId)
+        {
+            var paymentLinkUpdates = new PaymentLinkUpdates(this, linkId);
+            var requestOptions = new RequestOptions
+            {
+                HttpVerb = "GET"
+            };
+            var jsonResponse = paymentLinkUpdates.Request(null, requestOptions);
+            return JsonConvert.DeserializeObject<PaymentLinkResponse>(jsonResponse);
+        }
+
+        /// <summary>
         /// POST /paymentsLinks API call async
         /// </summary>
         /// <param name="createPaymentLinkRequest"></param>
@@ -230,7 +246,7 @@ namespace Adyen.Service
         /// </summary>
         /// <param name="linkId"></param>
         /// <param name="updatePaymentLinkRequest"></param>
-        /// <returns></returns>
+        /// <returns>PaymentLinkResponse</returns>
         public async Task<PaymentLinkResponse> PaymentLinkUpdateAsync(string linkId,
             UpdatePaymentLinkRequest updatePaymentLinkRequest)
         {
@@ -241,6 +257,22 @@ namespace Adyen.Service
                 HttpVerb = "PATCH"
             };
             var jsonResponse = await paymentLinkUpdates.RequestAsync(jsonRequest, requestOptions);
+            return JsonConvert.DeserializeObject<PaymentLinkResponse>(jsonResponse);
+        }
+
+        /// <summary>
+        /// GET /paymentLinks/{linkId} API call async
+        /// </summary>
+        /// <param name="linkId"></param>
+        /// <returns>PaymentLinkResponse</returns>
+        public async Task<PaymentLinkResponse> PaymentLinkStatusAsync(string linkId)
+        {
+            var paymentLinkUpdates = new PaymentLinkUpdates(this, linkId);
+            var requestOptions = new RequestOptions
+            {
+                HttpVerb = "GET"
+            };
+            var jsonResponse = await paymentLinkUpdates.RequestAsync(null, requestOptions);
             return JsonConvert.DeserializeObject<PaymentLinkResponse>(jsonResponse);
         }
 
