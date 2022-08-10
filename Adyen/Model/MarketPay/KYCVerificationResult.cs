@@ -28,6 +28,7 @@ using System.IO;
 using System.Linq;
 using System.Runtime.Serialization;
 using System.Text;
+using Adyen.Util;
 using Newtonsoft.Json;
 
 namespace Adyen.Model.MarketPay
@@ -116,12 +117,12 @@ namespace Adyen.Model.MarketPay
             var sb = new StringBuilder();
             sb.Append("class KYCVerificationResult {\n");
             sb.Append("  AccountHolder: ").Append(AccountHolder).Append("\n");
-            sb.Append("  LegalArrangements: ").Append(LegalArrangements).Append("\n");
-            sb.Append("  LegalArrangementsEntities: ").Append(LegalArrangementsEntities).Append("\n");
-            sb.Append("  PayoutMethods: ").Append(PayoutMethods).Append("\n");
-            sb.Append("  Shareholders: ").Append(Shareholders).Append("\n");
-            sb.Append("  Signatories: ").Append(Signatories).Append("\n");
-            sb.Append("  UltimateParentCompany: ").Append(UltimateParentCompany).Append("\n");
+            sb.Append("  LegalArrangements: ").Append(LegalArrangements.ObjectListToString()).Append("\n");
+            sb.Append("  LegalArrangementsEntities: ").Append(LegalArrangementsEntities.ObjectListToString()).Append("\n");
+            sb.Append("  PayoutMethods: ").Append(PayoutMethods.ObjectListToString()).Append("\n");
+            sb.Append("  Shareholders: ").Append(Shareholders.ObjectListToString()).Append("\n");
+            sb.Append("  Signatories: ").Append(Signatories.ObjectListToString()).Append("\n");
+            sb.Append("  UltimateParentCompany: ").Append(UltimateParentCompany.ObjectListToString()).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }

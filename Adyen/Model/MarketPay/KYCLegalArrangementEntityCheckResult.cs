@@ -28,6 +28,7 @@ using System.IO;
 using System.Linq;
 using System.Runtime.Serialization;
 using System.Text;
+using Adyen.Util;
 using Newtonsoft.Json;
 
 namespace Adyen.Model.MarketPay
@@ -80,7 +81,7 @@ namespace Adyen.Model.MarketPay
         {
             var sb = new StringBuilder();
             sb.Append("class KYCLegalArrangementEntityCheckResult {\n");
-            sb.Append("  Checks: ").Append(Checks).Append("\n");
+            sb.Append("  Checks: ").Append(Checks.ObjectListToString()).Append("\n");
             sb.Append("  LegalArrangementCode: ").Append(LegalArrangementCode).Append("\n");
             sb.Append("  LegalArrangementEntityCode: ").Append(LegalArrangementEntityCode).Append("\n");
             sb.Append("}\n");
