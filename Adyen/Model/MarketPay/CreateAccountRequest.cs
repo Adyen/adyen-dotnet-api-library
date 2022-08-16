@@ -125,11 +125,12 @@ namespace Adyen.Model.MarketPay
         /// Initializes a new instance of the <see cref="CreateAccountRequest" /> class.
         /// </summary>
         /// <param name="accountHolderCode">The code of Account Holder under which to create the account. (required).</param>
+        /// <param name="bankAccountUUID">The bankAccountUUID of the bank account held by the account holder to couple the account with. Scheduled payouts in currencies matching the currency of this bank account will be sent to this bank account. Payouts in different currencies will be sent to a matching bank account of the account holder..</param>
         /// <param name="description">A description of the account..</param>
         /// <param name="metadata">A set of key and value pairs for general use by the merchant. The keys do not have specific names and may be used for storing miscellaneous data as desired. &gt; Note that during an update of metadata, the omission of existing key-value pairs will result in the deletion of those key-value pairs..</param>
         /// <param name="payoutSchedule">The payout schedule of the prospective account. &gt;Permitted values: &#x60;DEFAULT&#x60;, &#x60;HOLD&#x60;, &#x60;DAILY&#x60;, &#x60;WEEKLY&#x60;, &#x60;MONTHLY&#x60;..</param>
         /// <param name="payoutScheduleReason">The reason for the payout schedule choice. &gt;Required if the payoutSchedule is &#x60;HOLD&#x60;..</param>
-        public CreateAccountRequest(string accountHolderCode = default(string), string description = default(string), Object metadata = default(Object), PayoutScheduleEnum? payoutSchedule = default(PayoutScheduleEnum?), string payoutScheduleReason = default(string))
+        public CreateAccountRequest(string accountHolderCode = default(string),string bankAccountUUID = default(string), string description = default(string), Object metadata = default(Object), PayoutScheduleEnum? payoutSchedule = default(PayoutScheduleEnum?), string payoutScheduleReason = default(string))
         {
             // to ensure "accountHolderCode" is required (not null)
             if (accountHolderCode == null)
@@ -140,6 +141,7 @@ namespace Adyen.Model.MarketPay
             {
                 this.AccountHolderCode = accountHolderCode;
             }
+            this.BankAccountUUID = bankAccountUUID;
             this.Description = description;
             this.Metadata = metadata;
             this.PayoutSchedule = payoutSchedule;
@@ -152,6 +154,13 @@ namespace Adyen.Model.MarketPay
         /// <value>The code of Account Holder under which to create the account.</value>
         [DataMember(Name="accountHolderCode", EmitDefaultValue=false)]
         public string AccountHolderCode { get; set; }
+        
+        /// <summary>
+        /// The bankAccountUUID of the bank account held by the account holder to couple the account with. Scheduled payouts in currencies matching the currency of this bank account will be sent to this bank account. Payouts in different currencies will be sent to a matching bank account of the account holder.
+        /// </summary>
+        /// <value>The bankAccountUUID of the bank account held by the account holder to couple the account with. Scheduled payouts in currencies matching the currency of this bank account will be sent to this bank account. Payouts in different currencies will be sent to a matching bank account of the account holder.</value>
+        [DataMember(Name="bankAccountUUID", EmitDefaultValue=false)]
+        public string BankAccountUUID { get; set; }
 
         /// <summary>
         /// A description of the account.
@@ -184,6 +193,7 @@ namespace Adyen.Model.MarketPay
             var sb = new StringBuilder();
             sb.Append("class CreateAccountRequest {\n");
             sb.Append("  AccountHolderCode: ").Append(AccountHolderCode).Append("\n");
+            sb.Append("  BankAccountUUID: ").Append(BankAccountUUID).Append("\n");
             sb.Append("  Description: ").Append(Description).Append("\n");
             sb.Append("  Metadata: ").Append(Metadata).Append("\n");
             sb.Append("  PayoutSchedule: ").Append(PayoutSchedule).Append("\n");
@@ -226,6 +236,11 @@ namespace Adyen.Model.MarketPay
                     this.AccountHolderCode == input.AccountHolderCode ||
                     (this.AccountHolderCode != null &&
                     this.AccountHolderCode.Equals(input.AccountHolderCode))
+                )&& 
+                (
+                    this.BankAccountUUID == input.BankAccountUUID ||
+                    (this.BankAccountUUID != null &&
+                     this.BankAccountUUID.Equals(input.BankAccountUUID))
                 ) && 
                 (
                     this.Description == input.Description ||
