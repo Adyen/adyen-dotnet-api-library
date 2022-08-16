@@ -275,6 +275,8 @@ namespace Adyen.Model.MarketPay
                 int hashCode = 41;
                 if (this.AccountHolderCode != null)
                     hashCode = hashCode * 59 + this.AccountHolderCode.GetHashCode();
+                if (this.BankAccountUUID != null)
+                    hashCode = hashCode * 59 + this.BankAccountUUID.GetHashCode();
                 if (this.Description != null)
                     hashCode = hashCode * 59 + this.Description.GetHashCode();
                 if (this.Metadata != null)
