@@ -28,6 +28,7 @@ using System.IO;
 using System.Linq;
 using System.Runtime.Serialization;
 using System.Text;
+using Adyen.Util;
 using Newtonsoft.Json;
 
 namespace Adyen.Model.MarketPay
@@ -41,16 +42,24 @@ namespace Adyen.Model.MarketPay
         /// <summary>
         /// Initializes a new instance of the <see cref="KYCVerificationResult" /> class.
         /// </summary>
-        /// <param name="accountHolder">accountHolder (required).</param>
-        /// <param name="bankAccounts">The result(s) of the checks on the bank account(s). (required).</param>
-        /// <param name="shareholders">The result(s) of the checks on the shareholder(s). (required).</param>
-        public KYCVerificationResult(KYCCheckResult accountHolder = default(KYCCheckResult), List<KYCBankAccountCheckResult> bankAccounts = default(List<KYCBankAccountCheckResult>), List<KYCShareholderCheckResult> shareholders = default(List<KYCShareholderCheckResult>))
+        /// <param name="accountHolder">accountHolder.</param>
+        /// <param name="legalArrangements">The results of the checks on the legal arrangements..</param>
+        /// <param name="legalArrangementsEntities">The results of the checks on the legal arrangement entities..</param>
+        /// <param name="payoutMethods">The results of the checks on the payout methods..</param>
+        /// <param name="shareholders">The results of the checks on the shareholders..</param>
+        /// <param name="signatories">The results of the checks on the signatories..</param>
+        /// <param name="ultimateParentCompany">The result of the check on the Ultimate Parent Company..</param>
+        public KYCVerificationResult(KYCCheckResult accountHolder = default(KYCCheckResult), List<KYCLegalArrangementCheckResult> legalArrangements = default(List<KYCLegalArrangementCheckResult>), List<KYCLegalArrangementEntityCheckResult> legalArrangementsEntities = default(List<KYCLegalArrangementEntityCheckResult>), List<KYCPayoutMethodCheckResult> payoutMethods = default(List<KYCPayoutMethodCheckResult>), List<KYCShareholderCheckResult> shareholders = default(List<KYCShareholderCheckResult>), List<KYCSignatoryCheckResult> signatories = default(List<KYCSignatoryCheckResult>), List<KYCUltimateParentCompanyCheckResult> ultimateParentCompany = default(List<KYCUltimateParentCompanyCheckResult>))
         {
             this.AccountHolder = accountHolder;
+            this.LegalArrangements = legalArrangements;
+            this.LegalArrangementsEntities = legalArrangementsEntities;
+            this.PayoutMethods = payoutMethods;
             this.Shareholders = shareholders;
-            this.BankAccounts = bankAccounts;
+            this.Signatories = signatories;
+            this.UltimateParentCompany = ultimateParentCompany;
         }
-
+        
         /// <summary>
         /// Gets or Sets AccountHolder
         /// </summary>
@@ -58,18 +67,46 @@ namespace Adyen.Model.MarketPay
         public KYCCheckResult AccountHolder { get; set; }
 
         /// <summary>
-        /// The result(s) of the checks on the bank account(s).
+        /// The results of the checks on the legal arrangements.
         /// </summary>
-        /// <value>The result(s) of the checks on the bank account(s).</value>
-        [DataMember(Name="bankAccounts", EmitDefaultValue=false)]
-        public List<KYCBankAccountCheckResult> BankAccounts { get; set; }
+        /// <value>The results of the checks on the legal arrangements.</value>
+        [DataMember(Name="legalArrangements", EmitDefaultValue=false)]
+        public List<KYCLegalArrangementCheckResult> LegalArrangements { get; set; }
 
         /// <summary>
-        /// The result(s) of the checks on the shareholder(s).
+        /// The results of the checks on the legal arrangement entities.
         /// </summary>
-        /// <value>The result(s) of the checks on the shareholder(s).</value>
+        /// <value>The results of the checks on the legal arrangement entities.</value>
+        [DataMember(Name="legalArrangementsEntities", EmitDefaultValue=false)]
+        public List<KYCLegalArrangementEntityCheckResult> LegalArrangementsEntities { get; set; }
+
+        /// <summary>
+        /// The results of the checks on the payout methods.
+        /// </summary>
+        /// <value>The results of the checks on the payout methods.</value>
+        [DataMember(Name="payoutMethods", EmitDefaultValue=false)]
+        public List<KYCPayoutMethodCheckResult> PayoutMethods { get; set; }
+
+        /// <summary>
+        /// The results of the checks on the shareholders.
+        /// </summary>
+        /// <value>The results of the checks on the shareholders.</value>
         [DataMember(Name="shareholders", EmitDefaultValue=false)]
         public List<KYCShareholderCheckResult> Shareholders { get; set; }
+
+        /// <summary>
+        /// The results of the checks on the signatories.
+        /// </summary>
+        /// <value>The results of the checks on the signatories.</value>
+        [DataMember(Name="signatories", EmitDefaultValue=false)]
+        public List<KYCSignatoryCheckResult> Signatories { get; set; }
+
+        /// <summary>
+        /// The result of the check on the Ultimate Parent Company.
+        /// </summary>
+        /// <value>The result of the check on the Ultimate Parent Company.</value>
+        [DataMember(Name="ultimateParentCompany", EmitDefaultValue=false)]
+        public List<KYCUltimateParentCompanyCheckResult> UltimateParentCompany { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -80,8 +117,12 @@ namespace Adyen.Model.MarketPay
             var sb = new StringBuilder();
             sb.Append("class KYCVerificationResult {\n");
             sb.Append("  AccountHolder: ").Append(AccountHolder).Append("\n");
-            sb.Append("  BankAccounts: ").Append(BankAccounts).Append("\n");
-            sb.Append("  Shareholders: ").Append(Shareholders).Append("\n");
+            sb.Append("  LegalArrangements: ").Append(LegalArrangements.ObjectListToString()).Append("\n");
+            sb.Append("  LegalArrangementsEntities: ").Append(LegalArrangementsEntities.ObjectListToString()).Append("\n");
+            sb.Append("  PayoutMethods: ").Append(PayoutMethods.ObjectListToString()).Append("\n");
+            sb.Append("  Shareholders: ").Append(Shareholders.ObjectListToString()).Append("\n");
+            sb.Append("  Signatories: ").Append(Signatories.ObjectListToString()).Append("\n");
+            sb.Append("  UltimateParentCompany: ").Append(UltimateParentCompany.ObjectListToString()).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -122,16 +163,40 @@ namespace Adyen.Model.MarketPay
                     this.AccountHolder.Equals(input.AccountHolder))
                 ) && 
                 (
-                    this.BankAccounts == input.BankAccounts ||
-                    this.BankAccounts != null &&
-                    input.BankAccounts != null &&
-                    this.BankAccounts.SequenceEqual(input.BankAccounts)
+                    this.LegalArrangements == input.LegalArrangements ||
+                    this.LegalArrangements != null &&
+                    input.LegalArrangements != null &&
+                    this.LegalArrangements.SequenceEqual(input.LegalArrangements)
+                ) && 
+                (
+                    this.LegalArrangementsEntities == input.LegalArrangementsEntities ||
+                    this.LegalArrangementsEntities != null &&
+                    input.LegalArrangementsEntities != null &&
+                    this.LegalArrangementsEntities.SequenceEqual(input.LegalArrangementsEntities)
+                ) && 
+                (
+                    this.PayoutMethods == input.PayoutMethods ||
+                    this.PayoutMethods != null &&
+                    input.PayoutMethods != null &&
+                    this.PayoutMethods.SequenceEqual(input.PayoutMethods)
                 ) && 
                 (
                     this.Shareholders == input.Shareholders ||
                     this.Shareholders != null &&
                     input.Shareholders != null &&
                     this.Shareholders.SequenceEqual(input.Shareholders)
+                ) && 
+                (
+                    this.Signatories == input.Signatories ||
+                    this.Signatories != null &&
+                    input.Signatories != null &&
+                    this.Signatories.SequenceEqual(input.Signatories)
+                ) && 
+                (
+                    this.UltimateParentCompany == input.UltimateParentCompany ||
+                    this.UltimateParentCompany != null &&
+                    input.UltimateParentCompany != null &&
+                    this.UltimateParentCompany.SequenceEqual(input.UltimateParentCompany)
                 );
         }
 
@@ -146,10 +211,18 @@ namespace Adyen.Model.MarketPay
                 int hashCode = 41;
                 if (this.AccountHolder != null)
                     hashCode = hashCode * 59 + this.AccountHolder.GetHashCode();
-                if (this.BankAccounts != null)
-                    hashCode = hashCode * 59 + this.BankAccounts.GetHashCode();
+                if (this.LegalArrangements != null)
+                    hashCode = hashCode * 59 + this.LegalArrangements.GetHashCode();
+                if (this.LegalArrangementsEntities != null)
+                    hashCode = hashCode * 59 + this.LegalArrangementsEntities.GetHashCode();
+                if (this.PayoutMethods != null)
+                    hashCode = hashCode * 59 + this.PayoutMethods.GetHashCode();
                 if (this.Shareholders != null)
                     hashCode = hashCode * 59 + this.Shareholders.GetHashCode();
+                if (this.Signatories != null)
+                    hashCode = hashCode * 59 + this.Signatories.GetHashCode();
+                if (this.UltimateParentCompany != null)
+                    hashCode = hashCode * 59 + this.UltimateParentCompany.GetHashCode();
                 return hashCode;
             }
         }
