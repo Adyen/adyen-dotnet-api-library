@@ -189,5 +189,26 @@ namespace Adyen.Test
             Assert.AreEqual(paymentMethodDetails.Type, "paypal");
             Assert.AreEqual(paymentMethodDetails.Subtype, PayPalDetails.SubtypeEnum.SDK);
         }
+        
+        [TestMethod]
+        public void TestZipSuccess()
+        {
+            var paymentRequest = new PaymentRequest()
+            {
+                MerchantAccount = "YOUR_MERCHANT_ACCOUNT",
+                Amount = new Amount("USD", 1000),
+                Reference = "zip test",
+                PaymentMethod = new ZipDetails()
+                {
+                    Type = ZipDetails.Zip
+                },          
+                ReturnUrl = "https://your-company.com/checkout?shopperOrder=12xy..",
+            };
+            var paymentMethodDetails = (ZipDetails)paymentRequest.PaymentMethod;
+            Assert.AreEqual(paymentMethodDetails.Type, "zip");
+            Assert.AreEqual(paymentRequest.MerchantAccount, "YOUR_MERCHANT_ACCOUNT");
+            Assert.AreEqual(paymentRequest.Reference, "zip test");
+            Assert.AreEqual(paymentRequest.ReturnUrl, "https://your-company.com/checkout?shopperOrder=12xy..");
+        }
     }
 }

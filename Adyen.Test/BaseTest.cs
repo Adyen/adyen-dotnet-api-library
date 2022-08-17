@@ -204,21 +204,21 @@ namespace Adyen.Test
         /// Checkout paymentsessionRequest
         /// </summary>
         /// <returns></returns>
-        protected PaymentSessionRequest CreatePaymentSessionRequest()
+        protected PaymentSetupRequest CreatePaymentSetupRequest()
         {
-            return new PaymentSessionRequest(merchantAccount: "MerchantAccount", reference: "MerchantReference",
+            return new PaymentSetupRequest(merchantAccount: "MerchantAccount", reference: "MerchantReference",
                  amount: new Model.Checkout.Amount("EUR", 1200), returnUrl: @"https://your-company.com/...", countryCode: "NL",
-                 channel: PaymentSessionRequest.ChannelEnum.Web, sdkVersion: "1.3.0");
+                 channel: PaymentSetupRequest.ChannelEnum.Web, sdkVersion: "1.3.0");
         }
 
         /// <summary>
         /// Checkout paymentResultRequest
         /// </summary>
         /// <returns></returns>
-        protected PaymentResultRequest CreatePaymentResultRequest()
+        protected PaymentVerificationRequest CreatePaymentVerificationRequest()
         {
             var payload = @"Ab0oCC2/wy96FiEMLvoI8RfayxEmZHQZcw...riRbNBzP3pQscLYBHN/MfZkgfGHdqy7JfQoQbRUmA==";
-            return new PaymentResultRequest(payload: payload);
+            return new PaymentVerificationRequest(payload: payload);
         }
 
         #endregion

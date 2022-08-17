@@ -16,26 +16,27 @@ namespace Adyen.Test.ModelTests
         [TestMethod]
         public void CreatingNameWithoutFirstNameFails()
         {
-            Assert.ThrowsException<InvalidDataException>(() => new Name(null, Name.GenderEnum.MALE, null, null));
+            Assert.ThrowsException<InvalidDataException>(() => new Name(null, null));
         }
-
+        
         /// <summary>
         /// Since last name is mandatory, it should not be possible to create a Name instance without it
         /// </summary>
         [TestMethod]
         public void CreatingNameWithoutLastNameFails()
         {
-            Assert.ThrowsException<InvalidDataException>(() => new Name("firstName", Name.GenderEnum.MALE, null, null));
+            Assert.ThrowsException<InvalidDataException>(() => new Name("firstName", null));
         }
-
+        
         /// <summary>
         /// Since last name is mandatory, it should not be possible to create a Name instance without it
         /// </summary>
         [TestMethod]
         public void CreatingNameWithoutInfixSucceeds()
         {
-            var name = new Name("firstName", Name.GenderEnum.MALE, null, "lastName");
-            Assert.IsNull(name.Infix);
+            var name = new Name("firstName",  "lastName");
+            Assert.AreEqual(name.FirstName, "firstName");
+            Assert.AreEqual(name.LastName, "lastName");
         }
     }
 }
