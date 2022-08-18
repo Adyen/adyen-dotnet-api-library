@@ -21,7 +21,9 @@
 //  */
 #endregion
 
-namespace Adyen.Model.Nexo
+using Adyen.ApiSerialization;
+
+namespace Adyen.Model.Nexo : IMessagePayload
 {
     /// <remarks/>
     [System.CodeDom.Compiler.GeneratedCodeAttribute("xsd", "4.6.1055.0")]
