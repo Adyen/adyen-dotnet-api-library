@@ -21,6 +21,8 @@
 //  */
 #endregion
 
+using Adyen.ApiSerialization;
+
 namespace Adyen.Model.Nexo
 {
     /// <remarks/>
@@ -28,7 +30,7 @@ namespace Adyen.Model.Nexo
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
-    public partial class AdminResponse
+    public partial class AdminResponse : IMessagePayload
     {
 
         /// <remarks/>
