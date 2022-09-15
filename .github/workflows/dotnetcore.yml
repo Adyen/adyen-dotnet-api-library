@@ -26,8 +26,18 @@ jobs:
       
       - name: Build Debug
         run: dotnet build -c Debug    
+        
+      - name: Run test suite netcoreapp2.1
+        run: dotnet test --no-build -c Debug -f netcoreapp2.1 Adyen.Test/Adyen.Test.csproj 
+        
+      - name: Run test suite netcoreapp3.1
+        run: dotnet test --no-build -c Debug -f netcoreapp3.1 Adyen.Test/Adyen.Test.csproj 
+        
+      - name: Run test suite net5.0
+        run: dotnet test --no-build -c Debug -f net5.0 Adyen.Test/Adyen.Test.csproj         
       
-      - name: Run test suite (Debug)
-        run: dotnet test --no-build Adyen.Test/Adyen.Test.csproj -c Debug
+      - name: Run test suite net6.0
+        run: dotnet test --no-build -c Debug -f net6.0 Adyen.Test/Adyen.Test.csproj  
+        
         
         
