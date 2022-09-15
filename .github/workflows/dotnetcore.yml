@@ -4,18 +4,28 @@ on: [push, pull_request]
 
 jobs:
   build:
-    runs-on: ${{ matrix.os }}
-    strategy:
-      matrix:
-        os: [ubuntu-latest, windows-latest]
-        dotnet: ['2.1.x','3.1.x','5.0.x', 6.0.x]
+    name: Build and test
+
+    runs-on: ubuntu-latest
+
     steps:
-    - uses: actions/checkout@v3
-    - name: Setup .NET Core
-      uses: actions/setup-dotnet@v2
-      with:
-        dotnet-version: ${{ matrix.dotnet }}
-    - name: Build with dotnet
-      run: |
-        dotnet build /p:TargetFrameworks=netcoreapp2.0
-        dotnet test Adyen.Test/Adyen.Test.csproj
+      - uses: actions/checkout@v3
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v2
+        with:
+          dotnet-version: |
+            2.1.x
+            3.1.x
+            5.0.x
+            6.0.x
+      - name: Install tools
+        run: |
+          dotnet restore
+      
+      - name: Build Debug
+        run: dotnet build -c Debug    
+      
+      - name: Run test suite (Debug)
+        run: dotnet test --no-build Adyen.Test/Adyen.Test.csproj -c Debug
+        
+        
