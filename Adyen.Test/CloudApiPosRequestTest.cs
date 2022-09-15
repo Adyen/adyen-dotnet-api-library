@@ -76,33 +76,33 @@ namespace Adyen.Test
             }
         }
 
-        // [TestMethod]
-        // public void TestCloudApiTransactionStatusResponseSuccess()
-        // {
-        //     var client =
-        //         CreateMockTestClientPosCloudApiRequest("Mocks/terminalapi/pospayment-transaction-status-response.json");
-        //     var payment = new PosPaymentCloudApi(client);
-        //     var saleToPoiResponse = payment.TerminalApiCloudSync(_paymentRequest);
-        //
-        //     try
-        //     {
-        //         var transactionStatusResponse = (TransactionStatusResponse)saleToPoiResponse.MessagePayload;
-        //         PaymentResponse messagePayloadResponse = transactionStatusResponse.RepeatedMessageResponse
-        //             .RepeatedResponseMessageBody.MessagePayload;
-        //         Assert.IsNotNull(saleToPoiResponse);
-        //         Assert.AreEqual(saleToPoiResponse.MessageHeader.ServiceID, "35543420");
-        //         Assert.AreEqual(saleToPoiResponse.MessageHeader.SaleID, "TOSIM_1_1_6");
-        //         Assert.AreEqual(saleToPoiResponse.MessageHeader.POIID, "P400Plus-12345678");
-        //         Assert.AreEqual(transactionStatusResponse.Response.Result, ResultType.Success);
-        //         Assert.AreEqual(messagePayloadResponse.PaymentResult.PaymentInstrumentData.CardData.EntryMode[0],
-        //             EntryModeType.ICC);
-        //         Assert.AreEqual(messagePayloadResponse.POIData.POIReconciliationID, "1000");
-        //     }
-        //     catch (Exception)
-        //     {
-        //         Assert.Fail();
-        //     }
-        // }
+        [TestMethod]
+        public void TestCloudApiTransactionStatusResponseSuccess()
+        {
+            var client =
+                CreateMockTestClientPosCloudApiRequest("Mocks/terminalapi/pospayment-transaction-status-response.json");
+            var payment = new PosPaymentCloudApi(client);
+            var saleToPoiResponse = payment.TerminalApiCloudSync(_paymentRequest);
+        
+            try
+            {
+                var transactionStatusResponse = (TransactionStatusResponse)saleToPoiResponse.MessagePayload;
+                var messagePayload = (PaymentResponse) transactionStatusResponse
+                    .RepeatedMessageResponse.RepeatedResponseMessageBody.MessagePayload;
+                 Assert.IsNotNull(saleToPoiResponse);
+                 Assert.AreEqual(saleToPoiResponse.MessageHeader.ServiceID, "35543420");
+                 Assert.AreEqual(saleToPoiResponse.MessageHeader.SaleID, "TOSIM_1_1_6");
+                 Assert.AreEqual(saleToPoiResponse.MessageHeader.POIID, "P400Plus-12345678");
+                 Assert.AreEqual(transactionStatusResponse.Response.Result, ResultType.Success);
+                Assert.AreEqual(messagePayload.PaymentResult.PaymentInstrumentData.CardData.EntryMode[0],
+                    EntryModeType.ICC);
+                Assert.AreEqual(messagePayload.POIData.POIReconciliationID, "1000");
+            }
+            catch (Exception)
+            {
+                Assert.Fail();
+            }
+        }
 
         [TestMethod]
         public void TestCloudApiSyncRequestEmptyResponse()
