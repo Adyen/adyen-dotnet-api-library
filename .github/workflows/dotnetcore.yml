@@ -8,7 +8,7 @@ jobs:
     strategy:
       matrix:
         os: [ubuntu-latest, windows-latest]
-        dotnet: ['2.1.811','2.2.110']
+        dotnet: ['2.1.x','3.1.x','5.0.x', 6.0.x]
     steps:
     - uses: actions/checkout@v3
     - name: Setup .NET Core
@@ -19,9 +19,3 @@ jobs:
       run: |
         dotnet build /p:TargetFrameworks=netcoreapp2.0
         dotnet test Adyen.Test/Adyen.Test.csproj
-        dotnet test Adyen.IntegrationTest/Adyen.IntegrationTest.csproj --filter FullyQualifiedName!=Adyen.IntegrationTest/MarketPayAccountTest.cs
-      env:
-        INTEGRATION_MERCHANT_ACCOUNT: ${{ secrets.INTEGRATION_MERCHANT_ACCOUNT }}
-        INTEGRATION_X_API_KEY: ${{ secrets.INTEGRATION_X_API_KEY }}
-        INTEGRATION_CA_USERNAME: ${{ secrets.INTEGRATION_CA_USERNAME }}
-        INTEGRATION_CA_PASSWORD: ${{ secrets.INTEGRATION_CA_PASSWORD }}
