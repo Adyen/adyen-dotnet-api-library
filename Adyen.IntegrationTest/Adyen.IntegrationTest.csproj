@@ -16,4 +16,9 @@
       <ProjectReference Include="..\Adyen\Adyen.csproj" />
     </ItemGroup>
 
+    <ItemGroup>
+      <Compile Remove="MarketpayAccountTest.cs" />
+      <Compile Remove="MarketPayFundTest.cs" />
+    </ItemGroup>
+
 </Project>
