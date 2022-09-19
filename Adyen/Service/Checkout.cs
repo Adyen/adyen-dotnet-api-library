@@ -44,6 +44,7 @@ namespace Adyen.Service
         private readonly OrdersCancel _ordersCancel;
         private readonly PaymentMethodsBalance _paymentMethodsBalance;
         private readonly Cancels _cancels;
+        private readonly Donations _donations;
 
         public Checkout(Client client) : base(client)
         {
@@ -59,6 +60,7 @@ namespace Adyen.Service
             _ordersCancel = new OrdersCancel(this);
             _paymentMethodsBalance = new PaymentMethodsBalance(this);
             _cancels = new Cancels(this);
+            _donations = new Donations(this);
         }
 
         /// <summary>
@@ -465,6 +467,30 @@ namespace Adyen.Service
             var jsonRequest = Util.JsonOperation.SerializeRequest(createStandalonePaymentCancelRequest);
             var jsonResponse = await _cancels.RequestAsync(jsonRequest);
             return JsonConvert.DeserializeObject<StandalonePaymentCancelResource>(jsonResponse);
+        }
+
+        /// <summary>
+        /// POST /donations API call sync
+        /// </summary>
+        /// <param name="paymentDonationRequest"></param>
+        /// <returns>StandalonePaymentCancelResource</returns>
+        public DonationResponse Donations(PaymentDonationRequest paymentDonationRequest)
+        {
+            var jsonRequest = Util.JsonOperation.SerializeRequest(paymentDonationRequest);
+            var jsonResponse = _donations.Request(jsonRequest);
+            return JsonConvert.DeserializeObject<DonationResponse>(jsonResponse);
+        }
+
+        /// <summary>
+        /// POST /donations API call async
+        /// </summary>
+        /// <param name="paymentDonationRequest"></param>
+        /// <returns>StandalonePaymentCancelResource</returns>
+        public async Task<DonationResponse> DonationsAsync( PaymentDonationRequest paymentDonationRequest)
+        {
+            var jsonRequest = Util.JsonOperation.SerializeRequest(paymentDonationRequest);
+            var jsonResponse = await _donations.RequestAsync(jsonRequest);
+            return JsonConvert.DeserializeObject<DonationResponse>(jsonResponse);
         }
     }
 }

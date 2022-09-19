@@ -15,26 +15,24 @@
 //  *
 //  * Adyen Dotnet API Library
 //  *
-//  * Copyright (c) 2020 Adyen B.V.
+//  * Copyright (c) 2022 Adyen N.V.
 //  * This file is open source and available under the MIT license.
 //  * See the LICENSE file for more info.
 //  */
 #endregion
 
-using Adyen.ApiSerialization;
+using System;
+using System.Collections.Generic;
+using System.Text;
+using Adyen.Constants;
 
-namespace Adyen.Model.Nexo
+namespace Adyen.Service.Resource.Checkout
 {
-    /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("xsd", "4.6.1055.0")]
-    [System.SerializableAttribute()]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.ComponentModel.DesignerCategoryAttribute("code")]
-    public partial class AdminResponse : IMessagePayload
+    public class Donations : ServiceResource
     {
-
-        /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Form = System.Xml.Schema.XmlSchemaForm.Unqualified)]
-        public Response Response;
+        public Donations(AbstractService abstractService)
+            : base(abstractService, abstractService.Client.Config.CheckoutEndpoint + "/" + ClientConfig.CheckoutApiVersion + "/donations", new List<string> { "merchantAccount", "reference", "amount", "returnUrl", "paymentMethod" })
+        {
+        }
     }
 }

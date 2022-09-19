@@ -1,0 +1,24 @@
+{
+  "status": "completed",
+  "amount": {
+    "currency": "USD",
+    "value": 5
+  },
+  "donationAccount": "MyCharity_Giving_TEST",
+  "id": "G4HFZBFK4QHG5S81",
+  "merchantAccount": "Merchant_Account",
+  "payment": {
+    "resultCode": "Authorised",
+    "amount": {
+      "currency": "USD",
+      "value": 5
+    },
+    "merchantReference": "10720de4-7c5d-4a17-9161-fa4abdcaa5c4",
+    "paymentMethod": {
+      "brand": "visa",
+      "type": "scheme"
+    },
+    "pspReference": "CKMF2TG7GGNG5S81"
+  },
+  "reference": "10720de4-7c5d-4a17-9161-fa4abdcaa5c4"
+}

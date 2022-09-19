@@ -931,6 +931,29 @@ namespace Adyen.Test
             Assert.AreEqual("my_reference", paymentAmountUpdateResource.Reference);
         }
 
+        /// <summary>
+        /// Test success donations
+        /// POST /donations
+        /// </summary>
+        [TestMethod]
+        public void DonationsTest()
+        {
+            var client = CreateMockTestClientApiKeyBasedRequest("Mocks/checkout/donations-success.json");
+            var checkout = new Checkout(client);
+            var paymentDonationRequest =
+                new PaymentDonationRequest(
+                    merchantAccount: "test_merchant_account",
+                    amount: new Amount("USD", 5),
+                    donationAccount: "Charity_TEST",
+                    paymentMethod: new DefaultPaymentMethodDetails(),
+                    reference: "179761FE-1913-4226-9F43-E475DE634BBA",
+                    returnUrl: "https://your-company.com/...");
+            var donationResponse = checkout.Donations(paymentDonationRequest);
+            Assert.AreEqual(DonationResponse.StatusEnum.Completed,
+                donationResponse.Status);
+            Assert.AreEqual("10720de4-7c5d-4a17-9161-fa4abdcaa5c4", donationResponse.Reference);
+        }
+
         #endregion
     }
 }
