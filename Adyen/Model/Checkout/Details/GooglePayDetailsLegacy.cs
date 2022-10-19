@@ -31,7 +31,7 @@ namespace Adyen.Model.Checkout.Details
     /// 
     /// </summary>
     [DataContract]
-    public class GooglePayDetails : IPaymentMethodDetails
+    public class GooglePayDetailsLegacy : IPaymentMethodDetails
     {
         //Possible types
         public const string GooglePay = "paywithgoogle";
@@ -90,7 +90,7 @@ namespace Adyen.Model.Checkout.Details
         public override string ToString()
         {
             var sb = new StringBuilder();
-            sb.Append("class GooglePayDetails {\n");
+            sb.Append("class GooglePayDetailsLegacy {\n");
             sb.Append("  FundingSource: ").Append(FundingSource).Append("\n");
             sb.Append("  GooglePayCardNetwork: ").Append(GooglePayCardNetwork).Append("\n");
             sb.Append("  GooglePayToken: ").Append(GooglePayToken).Append("\n");
