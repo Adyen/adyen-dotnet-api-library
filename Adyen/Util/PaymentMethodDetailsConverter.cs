@@ -125,6 +125,9 @@ namespace Adyen.Util
                 case GiropayDetails.Giropay:
                     paymentMethodDetails = new GiropayDetails();
                     break;
+                case GooglePayDetailsLegacy.GooglePay:
+                    paymentMethodDetails = new GooglePayDetailsLegacy();
+                    break;
                 case GooglePayDetails.GooglePay:
                     paymentMethodDetails = new GooglePayDetails();
                     break;

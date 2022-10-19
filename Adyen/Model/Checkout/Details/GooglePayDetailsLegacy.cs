@@ -34,7 +34,7 @@ namespace Adyen.Model.Checkout.Details
     public class GooglePayDetails : IPaymentMethodDetails
     {
         //Possible types
-        public const string GooglePay = "googlepay";
+        public const string GooglePay = "paywithgoogle";
 
         /// <summary>
         /// Defines FundingSource
@@ -75,9 +75,9 @@ namespace Adyen.Model.Checkout.Details
         public string GooglePayToken { get; set; }
 
         /// <summary>
-        /// **googlepay**
+        /// **paywithgoogle**
         /// </summary>
-        /// <value>**googlepay**</value>
+        /// <value>**paywithgoogle**</value>
         [DataMember(Name = "type", EmitDefaultValue = false)]
         [JsonProperty(PropertyName = "type")]
         public string Type { get; set; } = GooglePay; 

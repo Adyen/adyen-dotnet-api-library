@@ -103,6 +103,30 @@ namespace Adyen.Test
         }
 
         [TestMethod]
+        public void TestLegacyGooglePayPaymentMethod()
+        {
+            var paymentRequest = new PaymentRequest
+            {
+                MerchantAccount = "YOUR_MERCHANT_ACCOUNT",
+                Amount = new Amount("EUR", 1000),
+                Reference = "google pay test",
+                PaymentMethod = new GooglePayDetailsLegacy
+                {
+                    GooglePayToken = "==Payload as retrieved from Google Pay response==",
+                    FundingSource = GooglePayDetailsLegacy.FundingSourceEnum.Credit
+                },
+                ReturnUrl = "https://your-company.com/checkout?shopperOrder=12xy.."
+            };
+            var paymentMethodDetails = (GooglePayDetailsLegacy)paymentRequest.PaymentMethod;
+            Assert.AreEqual(paymentMethodDetails.Type, "paywithgoogle");
+            Assert.AreEqual(paymentMethodDetails.GooglePayToken, "==Payload as retrieved from Google Pay response==");
+            Assert.AreEqual(paymentMethodDetails.FundingSource, GooglePayDetailsLegacy.FundingSourceEnum.Credit);
+            Assert.AreEqual(paymentRequest.MerchantAccount, "YOUR_MERCHANT_ACCOUNT");
+            Assert.AreEqual(paymentRequest.Reference, "google pay test");
+            Assert.AreEqual(paymentRequest.ReturnUrl, "https://your-company.com/checkout?shopperOrder=12xy..");
+        }
+
+        [TestMethod]
         public void TestGooglePayPaymentMethod()
         {
             var paymentRequest = new PaymentRequest
@@ -118,7 +142,7 @@ namespace Adyen.Test
                 ReturnUrl = "https://your-company.com/checkout?shopperOrder=12xy.."
             };
             var paymentMethodDetails = (GooglePayDetails)paymentRequest.PaymentMethod;
-            Assert.AreEqual(paymentMethodDetails.Type, "paywithgoogle");
+            Assert.AreEqual(paymentMethodDetails.Type, "googlepay");
             Assert.AreEqual(paymentMethodDetails.GooglePayToken, "==Payload as retrieved from Google Pay response==");
             Assert.AreEqual(paymentMethodDetails.FundingSource, GooglePayDetails.FundingSourceEnum.Credit);
             Assert.AreEqual(paymentRequest.MerchantAccount, "YOUR_MERCHANT_ACCOUNT");
