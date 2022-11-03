@@ -65,6 +65,27 @@ namespace Adyen.Test
                 Assert.Fail();
             }
         }
+        
+        [TestMethod]
+        public void TestTerminalApiAsyncRequest()
+        {
+            try
+            {
+                //encrypt the request using encryption credentials
+                var paymentRequest = MockPosApiRequest.CreatePosPaymentRequest();
+                //create a mock client
+                var client = CreateMockTestClientPosLocalApiRequest("Mocks/terminalapi/pospayment-encrypted-success.json");
+                var posPaymentLocalApi = new PosPaymentLocalApi(client);
+                var configEndpoint = posPaymentLocalApi.Client.Config.Endpoint;
+                var saleToPoiResponse = posPaymentLocalApi.TerminalApiLocalAsync(paymentRequest, _encryptionCredentialDetails);
+                Assert.AreEqual(configEndpoint, @"https://_terminal_:8443/nexo/");
+                Assert.IsNotNull(saleToPoiResponse);
+            }
+            catch (Exception)
+            {
+                Assert.Fail();
+            }
+        }
 
         [TestMethod]
         public void TestTerminalApiCardAcquisitionResponse()
