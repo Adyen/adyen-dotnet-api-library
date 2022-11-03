@@ -86,6 +86,10 @@ namespace Adyen.HttpClient
         {
             string responseText = null;
             var httpWebRequest = GetHttpWebRequest(endpoint, config, isApiKeyRequired, requestOptions);
+            if (config.HttpRequestTimeout > 0)
+            {
+                httpWebRequest.Timeout = config.HttpRequestTimeout;
+            }
             using (var streamWriter = new StreamWriter(httpWebRequest.GetRequestStream()))
             {
                 streamWriter.Write(json);
