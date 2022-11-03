@@ -62,9 +62,7 @@ namespace Adyen.Service
             this.Client.LogLine("Request: \n" + saleToPoiRequestMessageSerialized);
             var saleToPoiRequestMessageSecured = _messageSecuredEncryptor.Encrypt(saleToPoiRequestMessageSerialized, saleToPoiRequest.MessageHeader, encryptionCredentialDetails);
             var serializeSaleToPoiRequestMessageSecured = _saleToPoiMessageSerializer.Serialize(saleToPoiRequestMessageSecured);
-            this.Client.LogLine("Encrypted Request: \n" + serializeSaleToPoiRequestMessageSecured);
             var response = _terminalApiLocal.Request(serializeSaleToPoiRequestMessageSecured);
-            this.Client.LogLine("Response: \n" + response);
             if (string.IsNullOrEmpty(response))
             {
                 return null;
@@ -87,9 +85,7 @@ namespace Adyen.Service
             this.Client.LogLine("Request: \n" + saleToPoiRequestMessageSerialized);
             var saleToPoiRequestMessageSecured = _messageSecuredEncryptor.Encrypt(saleToPoiRequestMessageSerialized, saleToPoiRequest.MessageHeader, encryptionCredentialDetails);
             var serializeSaleToPoiRequestMessageSecured = _saleToPoiMessageSerializer.Serialize(saleToPoiRequestMessageSecured);
-            this.Client.LogLine("Encrypted Request: \n" + serializeSaleToPoiRequestMessageSecured);
             var response = await _terminalApiLocal.RequestAsync(serializeSaleToPoiRequestMessageSecured);
-            this.Client.LogLine("Response: \n" + response);
             if (string.IsNullOrEmpty(response))
             {
                 return null;
