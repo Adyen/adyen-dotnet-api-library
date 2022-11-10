@@ -160,6 +160,7 @@ namespace Adyen.HttpClient
             {
                 httpWebRequest.Proxy = config.Proxy;
             }
+            ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12;
             using (var stream = httpWebRequest.GetRequestStream())
             {
                 stream.Write(postBytes, 0, postBytes.Length);
@@ -170,6 +171,8 @@ namespace Adyen.HttpClient
 
         public HttpWebRequest GetHttpWebRequest(string endpoint, Config config, bool isApiKeyRequired, RequestOptions requestOptions = null)
         {
+            //Set security protocol. Only TLS1.2
+            ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12;
             //Add default headers
             var httpWebRequest = (HttpWebRequest)WebRequest.Create(endpoint);
             httpWebRequest.Method = "POST";
