@@ -26,7 +26,7 @@ namespace Adyen.IntegrationTest
         {
             PayoutRequest payoutRequest = CreatePayoutRequest("DotNetAlexandros");
             PayoutResponse result = _payout.PayoutSubmit(payoutRequest);
-            Assert.AreEqual(result.ResultCode, "Received");
+            Assert.AreEqual(result.ResultCode, "Authorised");
         }
 
 
