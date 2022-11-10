@@ -25,11 +25,8 @@
 
   <ItemGroup>
     <Compile Remove="MochFiles\**" />
-    <Compile Remove="Mocks\**" />
     <EmbeddedResource Remove="MochFiles\**" />
-    <EmbeddedResource Remove="Mocks\**" />
     <None Remove="MochFiles\**" />
-    <None Remove="Mocks\**" />
   </ItemGroup>
 
   <ItemGroup>
@@ -44,6 +41,10 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Adyen\Adyen.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="Mocks\checkout\card-details-success.json" />
   </ItemGroup>
 
   <Target Name="PostBuild" AfterTargets="PostBuildEvent" Condition="'$(OS)' == 'Windows'">
