@@ -45,6 +45,7 @@ namespace Adyen.Service
         private readonly PaymentMethodsBalance _paymentMethodsBalance;
         private readonly Cancels _cancels;
         private readonly Donations _donations;
+        private readonly CardDetails _cardDetails;
 
         public Checkout(Client client) : base(client)
         {
@@ -61,6 +62,7 @@ namespace Adyen.Service
             _paymentMethodsBalance = new PaymentMethodsBalance(this);
             _cancels = new Cancels(this);
             _donations = new Donations(this);
+            _cardDetails = new CardDetails(this);
         }
 
         /// <summary>
@@ -491,6 +493,32 @@ namespace Adyen.Service
             var jsonRequest = Util.JsonOperation.SerializeRequest(paymentDonationRequest);
             var jsonResponse = await _donations.RequestAsync(jsonRequest);
             return JsonConvert.DeserializeObject<DonationResponse>(jsonResponse);
+        }
+        
+        /// <summary>
+        /// POST /cardDetails API call sync
+        /// </summary>
+        /// <param name="cardDetailsRequest"></param>
+        /// <returns>CardDetailsResponse</returns>
+
+        public CardDetailsResponse CardDetails(CardDetailsRequest cardDetailsRequest)
+        {
+            var jsonRequest = Util.JsonOperation.SerializeRequest(cardDetailsRequest);
+            var jsonResponse = _cardDetails.Request(jsonRequest);
+            return JsonConvert.DeserializeObject<CardDetailsResponse>(jsonResponse);
+        }
+        
+        /// <summary>
+        /// POST /cardDetails API call async
+        /// </summary>
+        /// <param name="cardDetailsRequest"></param>
+        /// <returns>CardDetailsResponse</returns>
+
+        public async Task<CardDetailsResponse> CardDetailsAsync(CardDetailsRequest cardDetailsRequest)
+        {
+            var jsonRequest = Util.JsonOperation.SerializeRequest(cardDetailsRequest);
+            var jsonResponse = await _cardDetails.RequestAsync(jsonRequest);
+            return JsonConvert.DeserializeObject<CardDetailsResponse>(jsonResponse);
         }
     }
 }
