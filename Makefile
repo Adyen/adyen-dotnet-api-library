@@ -1,5 +1,5 @@
 generator:=csharp-netcore
-openapi-generator-cli:=docker run --user $(shell id -u):$(shell id -g) --rm -v /home/vagrant/adyen-dotnet-api-library:/local -w /local openapitools/openapi-generator-cli:v6.2.1
+openapi-generator-cli:=docker run --user $(shell id -u):$(shell id -g) --rm -v ${PWD}:/local -w /local openapitools/openapi-generator-cli:v6.2.1
 services:=checkout
 
 
