@@ -197,16 +197,6 @@ namespace Adyen.Test
             Assert.IsNotNull(authenticationResultResponse.ThreeDS2Result);
         }
         
-        [TestMethod]
-        public void TestRetrieve3ds2ResultSuccess()
-        {
-            var client = CreateMockTestClientRequest("Mocks/authentication-result-success-3ds2.json");
-            var payment = new Payment(client);
-            var authenticationResultRequest = new AuthenticationResultRequest();
-            var ThreeDSTwoResult = payment.Retrieve3DS2Result(authenticationResultRequest);
-            Assert.IsNotNull(ThreeDSTwoResult);
-        }
-        
         private string GetAdditionalData(Dictionary<string, string> additionalData, string assertKey)
         {
             string result = "";
