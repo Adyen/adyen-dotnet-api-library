@@ -1,6 +1,6 @@
-generator:=csharp-netcore
+generator:=csharp
 openapi-generator-cli:=docker run --user $(shell id -u):$(shell id -g) --rm -v ${PWD}:/local -w /local openapitools/openapi-generator-cli:v6.2.1
-services:=checkout
+services:=Transfer
 
 
 # ${PWD}
@@ -9,7 +9,7 @@ services:=checkout
 models: $(services)
 
 binlookup: spec=BinLookupService-v52
-checkout: spec=CheckoutService-v69
+Checkout: spec=CheckoutService-v69
 storedValue: spec=StoredValueService-v46
 terminalManagement: spec=TfmAPIService-v1
 payments: spec=PaymentService-v68
@@ -22,20 +22,26 @@ platformsAccount: spec=AccountService-v6
 platformsFund: spec=FundService-v6
 platformsNotificationConfiguration: spec=NotificationConfigurationService-v6
 platformsHostedOnboardingPage: spec=HopService-v6
-transfer: spec=TransferService-v3
+Transfer: spec=TransferService-v3
 
 $(services): build/spec 
-	rm -rf build/Model/$@ build/model
+	rm -rf Adyen/Model/$@ build/model
 	$(openapi-generator-cli) generate \
 		-i build/spec/json/$(spec).json \
 		-g $(generator) \
+		-t templates/csharp \
 		-o build \
-		--global-property models,supportingFiles
-	mv build/src/Org.OpenAPITools/Model/* Adyen/Model/$@
+		--model-package $(services) \
+		--reserved-words-mappings Version=Version \
+		--global-property modelDocs=false \
+        --global-property modelTests=false \
+		--global-property models,supportingFiles \
+		--additional-properties packageName=Adyen.Model
+	mkdir Adyen/Model/$@
+	mv build/src/Adyen.Model/$@/* Adyen/Model/$@
+    rm -r build
 	
 #adjust this build/src to another file when creating templates
-
-# -t templates/csharp \ 
 
 # Checkout spec (and patch version)
 build/spec:
@@ -43,8 +49,8 @@ build/spec:
 	perl -i -pe 's/"openapi" : "3.[0-9].[0-9]"/"openapi" : "3.0.0"/' build/spec/json/*.json
 
 # Extract templates (copy them for modifications)
-#templates:
-#	$(openapi-generator-cli) author template -g $(generator) -o build/templates/csharp
+templates:
+	$(openapi-generator-cli) author template -g $(generator) -o build/templates/csharp
 
 # Discard generated artifacts and changed models
 clean:
