@@ -953,27 +953,6 @@ namespace Adyen.Test
                 donationResponse.Status);
             Assert.AreEqual("10720de4-7c5d-4a17-9161-fa4abdcaa5c4", donationResponse.Reference);
         }
-        
-        /// <summary>
-        /// Test success donations
-        /// POST /donations
-        /// </summary>
-        [TestMethod]
-        public void CardDetailsTest()
-        {
-            var client = CreateMockTestClientApiKeyBasedRequest("Mocks/checkout/card-details-success.json");
-            var checkout = new Checkout(client);
-            var cardDetailRequest =
-                new CardDetailsRequest
-                {
-                    MerchantAccount = "TestMerchant",
-                    CardNumber = "1234567890",
-                    CountryCode = "NL"
-                };
-            var cardDetailResponse = checkout.CardDetails(cardDetailRequest);
-            Assert.AreEqual("visa",cardDetailResponse.Brands[0].Type);
-            Assert.AreEqual("cartebancaire", cardDetailResponse.Brands[1].Type);
-        }
 
         #endregion
     }
