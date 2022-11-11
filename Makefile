@@ -1,6 +1,6 @@
 generator:=csharp
 openapi-generator-cli:=docker run --user $(shell id -u):$(shell id -g) --rm -v ${PWD}:/local -w /local openapitools/openapi-generator-cli:v6.2.1
-services:=BalancePlatform
+services:=balancePlatform
 
 
 # ${PWD}
@@ -17,12 +17,12 @@ recurring: spec=RecurringService-v68
 payouts: spec=PayoutService-v68
 management: spec=ManagementService-v1
 legalEntityManagement: spec=LegalEntityService-v2
-BalancePlatform: spec=BalancePlatformService-v2
+balancePlatform: spec=BalancePlatformService-v2
 platformsAccount: spec=AccountService-v6
 platformsFund: spec=FundService-v6
 platformsNotificationConfiguration: spec=NotificationConfigurationService-v6
 platformsHostedOnboardingPage: spec=HopService-v6
-Transfer: spec=TransferService-v3
+transfer: spec=TransferService-v3
 
 $(services): build/spec 
 	rm -rf Adyen/Model/$@ build/model
