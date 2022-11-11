@@ -1,6 +1,6 @@
 generator:=csharp
 openapi-generator-cli:=docker run --user $(shell id -u):$(shell id -g) --rm -v ${PWD}:/local -w /local openapitools/openapi-generator-cli:v6.2.1
-services:=balancePlatform
+services:=checkout transfer
 
 
 # ${PWD}
@@ -9,7 +9,7 @@ services:=balancePlatform
 models: $(services)
 
 binlookup: spec=BinLookupService-v52
-Checkout: spec=CheckoutService-v69
+checkout: spec=CheckoutService-v69
 storedValue: spec=StoredValueService-v46
 terminalManagement: spec=TfmAPIService-v1
 payments: spec=PaymentService-v68
@@ -31,7 +31,7 @@ $(services): build/spec
 		-g $(generator) \
 		-t templates/csharp \
 		-o build \
-		--model-package $(services) \
+		--model-package $@ \
 		--reserved-words-mappings Version=Version \
 		--global-property modelDocs=false \
         --global-property modelTests=false \
@@ -39,8 +39,6 @@ $(services): build/spec
 		--additional-properties packageName=Adyen.Model
 	mkdir Adyen/Model/$@
 	mv build/src/Adyen.Model/$@/* Adyen/Model/$@
-    rm -r build
-	
 #adjust this build/src to another file when creating templates
 
 # Checkout spec (and patch version)
