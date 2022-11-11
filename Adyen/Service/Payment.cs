@@ -112,7 +112,7 @@ namespace Adyen.Service
         public ThreeDS2Result Retrieve3DS2Result(AuthenticationResultRequest authenticationResultRequest)
         {
             var jsonRequest = JsonConvert.SerializeObject(authenticationResultRequest);
-            var jsonResponse = _retrieve3DS2Result.Request(jsonRequest);
+            var jsonResponse = _getAuthenticationResult.Request(jsonRequest);
             return JsonConvert.DeserializeObject<ThreeDS2Result>(jsonResponse);
         }
     }
