@@ -1,6 +1,6 @@
 generator:=csharp
 openapi-generator-cli:=docker run --user $(shell id -u):$(shell id -g) --rm -v ${PWD}:/local -w /local openapitools/openapi-generator-cli:v6.2.1
-services:=checkout transfer
+services:=checkout
 
 
 # ${PWD}
