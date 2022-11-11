@@ -67,10 +67,9 @@ namespace Adyen.IntegrationTest
                 Card = new Card
                 {
                     Number = "4111111111111111",
-                    ExpiryMonth = "03",
-                    ExpiryYear = "2030",
-                    HolderName = "John Smith",
-                    Cvc = "737"
+                    ExpiryMonth = "10",
+                    ExpiryYear = "2020",
+                    HolderName = "John Smith"
                 },
                 MerchantAccount = merchantAccount,
                 Reference = "Your order number from e2e",
