@@ -15,12 +15,13 @@
 //  *
 //  * Adyen Dotnet API Library
 //  *
-//  * Copyright (c) 2020 Adyen B.V.
+//  * Copyright (c) 2022 Adyen N.V.
 //  * This file is open source and available under the MIT license.
 //  * See the LICENSE file for more info.
 //  */
 #endregion
 
+using System;
 using Adyen.Constants;
 using Adyen.Model;
 using Adyen.Model.Enum;
@@ -195,6 +196,18 @@ namespace Adyen.Test
             Assert.IsNotNull(authenticationResultResponse);
             Assert.IsNull(authenticationResultResponse.ThreeDS1Result);
             Assert.IsNotNull(authenticationResultResponse.ThreeDS2Result);
+        }
+        
+        [TestMethod]
+        public void TestRetrieve3ds2ResultSuccess()
+        {
+            var client = CreateMockTestClientRequest("Mocks/ThreeDS2Result.json");
+            var payment = new Payment(client);
+            var authenticationResultRequest = new AuthenticationResultRequest();
+            var ThreeDSTwoResult = payment.Retrieve3DS2Result(authenticationResultRequest);
+            Assert.AreEqual("f04ec32b-f46b-46ef-9ccd-44be42fb0d7e", ThreeDSTwoResult.ThreeDSServerTransID);
+            Assert.AreEqual("80a16fa0-4eea-43c9-8de5-b0470d09d14d", ThreeDSTwoResult.DsTransID);
+            Assert.IsNotNull(ThreeDSTwoResult);
         }
         
         private string GetAdditionalData(Dictionary<string, string> additionalData, string assertKey)
