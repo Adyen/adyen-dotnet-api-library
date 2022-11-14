@@ -21,6 +21,7 @@
 //  */
 #endregion
 
+using System;
 using Adyen.Constants;
 using Adyen.Model;
 using Adyen.Model.Enum;
@@ -200,10 +201,12 @@ namespace Adyen.Test
         [TestMethod]
         public void TestRetrieve3ds2ResultSuccess()
         {
-            var client = CreateMockTestClientRequest("Mocks/authentication-result-success-3ds2.json");
+            var client = CreateMockTestClientRequest("Mocks/ThreeDS2Result.json");
             var payment = new Payment(client);
             var authenticationResultRequest = new AuthenticationResultRequest();
             var ThreeDSTwoResult = payment.Retrieve3DS2Result(authenticationResultRequest);
+            Assert.AreEqual("f04ec32b-f46b-46ef-9ccd-44be42fb0d7e", ThreeDSTwoResult.ThreeDSServerTransID);
+            Assert.AreEqual("80a16fa0-4eea-43c9-8de5-b0470d09d14d", ThreeDSTwoResult.DsTransID);
             Assert.IsNotNull(ThreeDSTwoResult);
         }
         
