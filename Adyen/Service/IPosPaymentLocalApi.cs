@@ -36,6 +36,14 @@ namespace Adyen.Service
         /// <param name="encryptionCredentialDetails"></param>
         /// <returns></returns>
         SaleToPOIResponse TerminalApiLocal(SaleToPOIMessage saleToPoiRequest, EncryptionCredentialDetails encryptionCredentialDetails);
+        
+        /// <summary>
+        /// Terminal Api async https call
+        /// </summary>
+        /// <param name="saleToPoiRequest"></param>
+        /// <param name="encryptionCredentialDetails"></param>
+        /// <returns></returns>
+        SaleToPOIResponse TerminalApiLocalAsync(SaleToPOIMessage saleToPoiRequest, EncryptionCredentialDetails encryptionCredentialDetails);
 
         /// <summary>
         /// Terminal Api https call

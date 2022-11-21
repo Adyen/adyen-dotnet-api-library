@@ -16,7 +16,7 @@
  *
  * Adyen Dotnet API Library
  *
- * Copyright (c) 2020 Adyen B.V.
+ * Copyright (c) 2022 Adyen N.V.
  * This file is open source and available under the MIT license.
  * See the LICENSE file for more info.
  */
@@ -952,6 +952,27 @@ namespace Adyen.Test
             Assert.AreEqual(DonationResponse.StatusEnum.Completed,
                 donationResponse.Status);
             Assert.AreEqual("10720de4-7c5d-4a17-9161-fa4abdcaa5c4", donationResponse.Reference);
+        }
+        
+        /// <summary>
+        /// Test success donations
+        /// POST /donations
+        /// </summary>
+        [TestMethod]
+        public void CardDetailsTest()
+        {
+            var client = CreateMockTestClientApiKeyBasedRequest("Mocks/checkout/card-details-success.json");
+            var checkout = new Checkout(client);
+            var cardDetailRequest =
+                new CardDetailsRequest
+                {
+                    MerchantAccount = "TestMerchant",
+                    CardNumber = "1234567890",
+                    CountryCode = "NL"
+                };
+            var cardDetailResponse = checkout.CardDetails(cardDetailRequest);
+            Assert.AreEqual("visa",cardDetailResponse.Brands[0].Type);
+            Assert.AreEqual("cartebancaire", cardDetailResponse.Brands[1].Type);
         }
 
         #endregion
