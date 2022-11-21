@@ -1,6 +1,6 @@
 generator:=csharp
 openapi-generator-cli:=docker run --user $(shell id -u):$(shell id -g) --rm -v ${PWD}:/local -w /local openapitools/openapi-generator-cli:v6.2.1
-services:=checkout
+services:= 
 
 
 # ${PWD}
@@ -8,21 +8,21 @@ services:=checkout
 # Generate models (for each service)
 models: $(services)
 
-binlookup: spec=BinLookupService-v52
-checkout: spec=CheckoutService-v69
-storedValue: spec=StoredValueService-v46
-terminalManagement: spec=TfmAPIService-v1
-payments: spec=PaymentService-v68
-recurring: spec=RecurringService-v68
-payouts: spec=PayoutService-v68
-management: spec=ManagementService-v1
-legalEntityManagement: spec=LegalEntityService-v2
-balancePlatform: spec=BalancePlatformService-v2
-platformsAccount: spec=AccountService-v6
-platformsFund: spec=FundService-v6
-platformsNotificationConfiguration: spec=NotificationConfigurationService-v6
-platformsHostedOnboardingPage: spec=HopService-v6
-transfer: spec=TransferService-v3
+Binlookup: spec=BinLookupService-v52
+Checkout: spec=CheckoutService-v69
+StoredValue: spec=StoredValueService-v46
+TerminalManagement: spec=TfmAPIService-v1
+Payments: spec=PaymentService-v68
+Recurring: spec=RecurringService-v68
+Payouts: spec=PayoutService-v68
+Management: spec=ManagementService-v1
+LegalEntityManagement: spec=LegalEntityService-v2
+BalancePlatform: spec=BalancePlatformService-v2
+PlatformsAccount: spec=AccountService-v6
+PlatformsFund: spec=FundService-v6
+PlatformsNotificationConfiguration: spec=NotificationConfigurationService-v6
+PlatformsHostedOnboardingPage: spec=HopService-v6
+Transfer: spec=TransferService-v3
 
 $(services): build/spec 
 	rm -rf Adyen/Model/$@ build/model
