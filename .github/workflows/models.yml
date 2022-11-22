@@ -1,6 +1,6 @@
 name: .NET Library Models
 
-on: [workflow_dispatch ]
+on: [ workflow_dispatch ]
 
 jobs:
   generate:

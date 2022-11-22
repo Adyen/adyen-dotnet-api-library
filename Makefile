@@ -1,5 +1,4 @@
 openapi-generator-version:=6.2.1
-#6.0.1
 openapi-generator-url:=https://repo1.maven.org/maven2/org/openapitools/openapi-generator-cli/$(openapi-generator-version)/openapi-generator-cli-$(openapi-generator-version).jar
 openapi-generator-jar:=target/openapi-generator-cli.jar
 openapi-generator-cli:=java -jar $(openapi-generator-jar)
@@ -10,8 +9,6 @@ services:=
 models:=Adyen/Model
 output:=target/out
 
-# ${PWD}
- 
 # Generate models (for each service)
 models: $(services)
 
