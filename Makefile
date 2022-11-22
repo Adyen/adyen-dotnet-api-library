@@ -54,7 +54,8 @@ target/spec:
 	perl -i -pe 's/"openapi" : "3.[0-9].[0-9]"/"openapi" : "3.0.0"/' target/spec/json/*.json
 
 # Extract templates (copy them for modifications)
-templates: $(openapi-generator-jar) $(openapi-generator-cli) author template -g $(generator) -o target/templates
+templates: $(openapi-generator-jar)
+	$(openapi-generator-cli) author template -g $(generator) -o target/templates
 
 # Download the generator
 $(openapi-generator-jar):
