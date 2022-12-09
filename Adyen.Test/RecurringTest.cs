@@ -96,7 +96,7 @@ namespace Adyen.Test
             }
             catch (Exception exception)
             {
-                Assert.AreNotEqual(200, exception);
+                Assert.AreNotEqual<int>(200, exception.GetHashCode());
 
             }
 

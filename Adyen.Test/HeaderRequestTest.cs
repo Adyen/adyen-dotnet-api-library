@@ -30,21 +30,17 @@ namespace Adyen.Test
     [TestClass]
     public class HeaderRequestTest
     {
-
-        private readonly HttpUrlConnectionClient _httpUrlConnectionClient;
-        private readonly string _endpoint = "https://endpoint:8080";
-
-        public HeaderRequestTest()
-        {
-            _httpUrlConnectionClient = new HttpUrlConnectionClient();
-        }
+        
+        private readonly string _endpoint = "https://endpoint:8080/";
+        
         [TestMethod]
         public void BasicAuthenticationHeadersTest()
         {
-            var httpWebRequest = _httpUrlConnectionClient.GetHttpWebRequest(_endpoint, MockPaymentData.CreateConfingMock(), false);
+            var client = new HttpWebRequestWrapper(MockPaymentData.CreateConfingMock());
+            var httpWebRequest = client.GetHttpWebRequest(_endpoint, false);
 
             Assert.IsNotNull(httpWebRequest.UserAgent);
-            Assert.AreEqual(httpWebRequest.Address, _endpoint);
+            Assert.AreEqual<string>(httpWebRequest.Address.ToString(), _endpoint);
             Assert.AreEqual(httpWebRequest.Headers["Accept-Charset"], "UTF-8");
             Assert.AreEqual(httpWebRequest.Headers["Cache-Control"], "no-cache");
             Assert.AreEqual(httpWebRequest.ContentType, "application/json");
@@ -59,10 +55,11 @@ namespace Adyen.Test
         [TestMethod]
         public void ApiKeyBasedHeadersTest()
         {
-            var httpWebRequest = _httpUrlConnectionClient.GetHttpWebRequest(_endpoint, MockPaymentData.CreateConfingApiKeyBasedMock(), true);
+            var client = new HttpWebRequestWrapper(MockPaymentData.CreateConfingApiKeyBasedMock());
+            var httpWebRequest = client.GetHttpWebRequest(_endpoint, false);
 
             Assert.IsNotNull(httpWebRequest.UserAgent);
-            Assert.AreEqual(httpWebRequest.Address, _endpoint);
+            Assert.AreEqual<string>(httpWebRequest.Address.ToString(), _endpoint);
             Assert.AreEqual(httpWebRequest.Headers["Accept-Charset"], "UTF-8");
             Assert.AreEqual(httpWebRequest.Headers["Cache-Control"], "no-cache");
             Assert.AreEqual(httpWebRequest.ContentType, "application/json");
@@ -77,7 +74,8 @@ namespace Adyen.Test
         [TestMethod]
         public void IdempotencyKeyNotPresentInHeaderIfExcluded()
         {
-            var httpWebRequest = _httpUrlConnectionClient.GetHttpWebRequest(_endpoint, MockPaymentData.CreateConfingApiKeyBasedMock(), true);
+            var client = new HttpWebRequestWrapper(MockPaymentData.CreateConfingMock());
+            var httpWebRequest = client.GetHttpWebRequest(_endpoint, false);
 
             Assert.IsNull(httpWebRequest.Headers["Idempotency-Key"]);
         }
@@ -85,7 +83,8 @@ namespace Adyen.Test
         [TestMethod]
         public void IdempotencyKeyNotPresentInHeaderIfNull()
         {
-            var httpWebRequest = _httpUrlConnectionClient.GetHttpWebRequest(_endpoint, MockPaymentData.CreateConfingApiKeyBasedMock(), true, null);
+            var client = new HttpWebRequestWrapper(MockPaymentData.CreateConfingMock());
+            var httpWebRequest = client.GetHttpWebRequest(_endpoint, false);
 
             Assert.IsNull(httpWebRequest.Headers["Idempotency-Key"]);
         }
@@ -98,7 +97,8 @@ namespace Adyen.Test
                 IdempotencyKey = string.Empty
             };
 
-            var httpWebRequest = _httpUrlConnectionClient.GetHttpWebRequest(_endpoint, MockPaymentData.CreateConfingApiKeyBasedMock(), true, requestOptions);
+            var client = new HttpWebRequestWrapper(MockPaymentData.CreateConfingMock());
+            var httpWebRequest = client.GetHttpWebRequest(_endpoint, false);
 
             Assert.IsNull(httpWebRequest.Headers["Idempotency-Key"]);
         }
@@ -111,8 +111,9 @@ namespace Adyen.Test
                 IdempotencyKey = " "
             };
 
-            var httpWebRequest = _httpUrlConnectionClient.GetHttpWebRequest(_endpoint, MockPaymentData.CreateConfingApiKeyBasedMock(), true, requestOptions);
-
+            var client = new HttpWebRequestWrapper(MockPaymentData.CreateConfingMock());
+            var httpWebRequest = client.GetHttpWebRequest(_endpoint, false);
+            
             Assert.IsNull(httpWebRequest.Headers["Idempotency-Key"]);
         }
 
@@ -124,8 +125,9 @@ namespace Adyen.Test
                 IdempotencyKey = "idempotencyKey"
             };
 
-            var httpWebRequest = _httpUrlConnectionClient.GetHttpWebRequest(_endpoint, MockPaymentData.CreateConfingApiKeyBasedMock(), true, requestOptions);
-
+            var client = new HttpWebRequestWrapper(MockPaymentData.CreateConfingMock());
+            var httpWebRequest = client.GetHttpWebRequest(_endpoint, false, requestOptions);
+            
             Assert.IsNotNull(httpWebRequest.Headers["Idempotency-Key"]);
             Assert.AreEqual(requestOptions.IdempotencyKey, httpWebRequest.Headers["Idempotency-Key"]);
         }

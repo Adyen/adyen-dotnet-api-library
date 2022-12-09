@@ -37,6 +37,7 @@ using Newtonsoft.Json;
 using System.Collections.Generic;
 using Adyen.Model;
 using Amount = Adyen.Model.Checkout.Amount;
+using Environment = Adyen.Model.Enum.Environment;
 using PaymentRequest = Adyen.Model.Checkout.PaymentRequest;
 
 namespace Adyen.Test
@@ -95,12 +96,22 @@ namespace Adyen.Test
         }
         
         /// <summary>
-        /// Tests successful checkout client Live URL generation.
+        /// Tests successful checkout client Live URL generation with basic auth.
         /// </summary>
         [TestMethod]
         public void CheckoutEndpointLiveWithBasicAuthTest()
         {
-            var client = new Client("ws_*******", "******", Adyen.Model.Enum.Environment.Live, "live-url");
+            var client = new Client("ws_*******", "******", "live-url", Environment.Live);
+            Assert.AreEqual(client.Config.CheckoutEndpoint, "https://live-url-checkout-live.adyenpayments.com/checkout");
+        }
+        
+        /// <summary>
+        /// Tests successful checkout client Live URL generation with API key.
+        /// </summary>
+        [TestMethod]
+        public void CheckoutEndpointLiveWithAPIKeyTest()
+        {
+            var client = new Client("xapikey", Environment.Live, "live-url");
             Assert.AreEqual(client.Config.CheckoutEndpoint, "https://live-url-checkout-live.adyenpayments.com/checkout");
         }
 

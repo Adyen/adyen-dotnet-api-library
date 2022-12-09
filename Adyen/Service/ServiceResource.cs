@@ -43,15 +43,13 @@ namespace Adyen.Service
         public string Request(string json, RequestOptions requestOptions = null)
         {
             var clientInterface = _abstractService.Client.HttpClient;
-            var config = _abstractService.Client.Config;
-            return clientInterface.Request(Endpoint, json, config, _abstractService.IsApiKeyRequired, requestOptions);
+            return clientInterface.Request(Endpoint, json, _abstractService.IsApiKeyRequired, requestOptions);
         }
 
         public Task<string> RequestAsync(string json, RequestOptions requestOptions = null)
         {
             var clientInterface = _abstractService.Client.HttpClient;
-            var config = _abstractService.Client.Config;
-            return clientInterface.RequestAsync(Endpoint, json, config,false, requestOptions);
+            return clientInterface.RequestAsync(Endpoint, json, false, requestOptions);
         }
     }
 }

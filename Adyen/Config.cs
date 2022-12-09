@@ -54,6 +54,9 @@ namespace Adyen
       
         //POS Terminal Management 
         public string PosTerminalManagementEndpoint { get; set; }
+        
+        public bool HasPassword => !string.IsNullOrEmpty(Password);
 
+        public bool HasApiKey => !string.IsNullOrEmpty(XApiKey);
     }
 }
