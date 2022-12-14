@@ -89,9 +89,9 @@ namespace Adyen.IntegrationTest
             {
                 var authenticationResultResponse = payment.GetAuthenticationResult(authenticationResultRequest);
             }
-            catch (HttpClient.HttpClientException ex)
+            catch (System.Net.Http.HttpRequestException ex)
             {
-                Assert.AreEqual(ex.Code, 422);
+                Assert.AreEqual(ex.Message, "Response status code does not indicate success: 403 ().");
             }
         }
 
