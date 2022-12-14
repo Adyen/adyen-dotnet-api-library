@@ -70,10 +70,10 @@ namespace Adyen.IntegrationTest
         {
             var paymentResponse = _checkout.Payments(CreatePaymentRequestCheckout());
             Assert.IsNotNull(paymentResponse.AdditionalData);
-            Assert.AreEqual("411111", paymentResponse.AdditionalData["cardBin"]);
+            Assert.AreEqual("1111", paymentResponse.AdditionalData["cardSummary"]);
             Assert.IsNotNull(paymentResponse.AdditionalData["avsResult"]);
             Assert.AreEqual("1 Matches", paymentResponse.AdditionalData["cvcResult"]);
-            Assert.AreEqual("visa", paymentResponse.AdditionalData["paymentMethodVariant"]);
+            Assert.AreEqual("visa", paymentResponse.AdditionalData["paymentMethod"]);
         }
 
         [TestMethod]

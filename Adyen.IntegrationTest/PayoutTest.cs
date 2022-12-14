@@ -24,7 +24,7 @@ namespace Adyen.IntegrationTest
         [TestMethod]
         public void PayoutSuccessTest()
         {
-            PayoutRequest payoutRequest = CreatePayoutRequest("DotNetAlexandros");
+            PayoutRequest payoutRequest = CreatePayoutRequest("TestMerchantAccount");
             PayoutResponse result = _payout.PayoutSubmit(payoutRequest);
             Assert.AreEqual(result.ResultCode, "Authorised");
         }

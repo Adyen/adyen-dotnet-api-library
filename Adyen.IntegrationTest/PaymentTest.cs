@@ -1,3 +1,4 @@
+using System;
 using Adyen.Model;
 using Adyen.Model.Enum;
 using Adyen.Service;
@@ -14,9 +15,8 @@ namespace Adyen.IntegrationTest
         public void BasicAuthenticationAuthoriseSuccessTest()
         {
             var paymentResult = CreatePaymentResult();
-
             Assert.AreEqual(paymentResult.ResultCode, ResultCodeEnum.Authorised);
-            Assert.AreEqual("411111", GetAdditionalData(paymentResult.AdditionalData, "cardBin"));
+            Assert.AreEqual("1111", GetAdditionalData(paymentResult.AdditionalData, "cardSummary"));
             Assert.IsNotNull(GetAdditionalData(paymentResult.AdditionalData, "avsResult"));
             Assert.AreEqual("1 Matches", GetAdditionalData(paymentResult.AdditionalData, "cvcResult"));
             Assert.AreEqual("H167852639363479", GetAdditionalData(paymentResult.AdditionalData, "alias"));
@@ -30,7 +30,7 @@ namespace Adyen.IntegrationTest
             var paymentResult = await CreatePaymentResultAsync();
 
             Assert.AreEqual(paymentResult.ResultCode, ResultCodeEnum.Authorised);
-            Assert.AreEqual("411111", GetAdditionalData(paymentResult.AdditionalData, "cardBin"));
+            Assert.AreEqual("1111", GetAdditionalData(paymentResult.AdditionalData, "cardSummary"));
             Assert.IsNotNull(GetAdditionalData(paymentResult.AdditionalData, "avsResult"));
             Assert.AreEqual("1 Matches", GetAdditionalData(paymentResult.AdditionalData, "cvcResult"));
             Assert.AreEqual("H167852639363479", GetAdditionalData(paymentResult.AdditionalData, "alias"));
@@ -44,7 +44,7 @@ namespace Adyen.IntegrationTest
             var paymentResult = CreatePaymentResultWithApiKeyAuthentication();
 
             Assert.AreEqual(paymentResult.ResultCode, ResultCodeEnum.Authorised);
-            Assert.AreEqual("411111", GetAdditionalData(paymentResult.AdditionalData, "cardBin"));
+            Assert.AreEqual("1111", GetAdditionalData(paymentResult.AdditionalData, "cardSummary"));
             Assert.IsNotNull(GetAdditionalData(paymentResult.AdditionalData, "avsResult"));
             Assert.AreEqual("1 Matches", GetAdditionalData(paymentResult.AdditionalData, "cvcResult"));
             Assert.AreEqual("H167852639363479", GetAdditionalData(paymentResult.AdditionalData, "alias"));
