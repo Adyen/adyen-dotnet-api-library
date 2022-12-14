@@ -21,6 +21,8 @@
  */
 #endregion
 
+using System.Net;
+using System.Net.Http;
 using System.Threading.Tasks;
 using Adyen.Model;
 using Adyen.Model.Checkout;
@@ -55,7 +57,7 @@ namespace Adyen.Service
             _paymentDetails = new PaymentDetails(this);
             _paymentSession = new PaymentSession(this);
             _paymentsResult = new PaymentsResult(this);
-            _paymentLinksResult = new PaymentLinks(this);
+            _paymentLinksResult = new PaymentLinks(this, null);
             _sessions = new Sessions(this);
             _orders = new Orders(this);
             _ordersCancel = new OrdersCancel(this);
@@ -196,6 +198,24 @@ namespace Adyen.Service
         {
             var jsonRequest = Util.JsonOperation.SerializeRequest(createPaymentLinkRequest);
             var jsonResponse = _paymentLinksResult.Request(jsonRequest);
+            return JsonConvert.DeserializeObject<PaymentLinkResponse>(jsonResponse);
+        }
+
+        public PaymentLinkResponse getPaymentLinks(string linkId)
+        {
+            linkId = "/" + linkId;
+            var paymentLinks = new PaymentLinks(this, linkId);
+            var jsonResponse = paymentLinks.Request(null, null, HttpMethod.Get);
+            return JsonConvert.DeserializeObject<PaymentLinkResponse>(jsonResponse);
+        }
+        
+        public PaymentLinkResponse patchPaymentLinks(UpdatePaymentLinkRequest updatePaymentLinkRequest, string linkId)
+        {
+            linkId = "/" + linkId;
+            var paymentLinks = new PaymentLinks(this, linkId);
+            var jsonRequest = Util.JsonOperation.SerializeRequest(updatePaymentLinkRequest);
+            var patch = new HttpMethod("PATCH");
+            var jsonResponse = paymentLinks.Request(jsonRequest, null, patch);
             return JsonConvert.DeserializeObject<PaymentLinkResponse>(jsonResponse);
         }
 

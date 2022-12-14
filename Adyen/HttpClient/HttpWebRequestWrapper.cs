@@ -26,6 +26,7 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Net;
+using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
 using System.Web;
@@ -44,7 +45,7 @@ namespace Adyen.HttpClient
             _config = config;
         }
 
-        public string Request(string endpoint, string json, bool isApiKeyRequired, RequestOptions requestOptions = null )
+        public string Request(string endpoint, string json, bool isApiKeyRequired, RequestOptions requestOptions = null, HttpMethod httpMethod = null)
         {
             string responseText = null;
             var httpWebRequest = GetHttpWebRequest(endpoint, isApiKeyRequired, requestOptions );
@@ -83,7 +84,7 @@ namespace Adyen.HttpClient
         /// <param name="isApiKeyRequired"></param>
         /// <param name="requestOptions">Optional parameter used to specify the options for the request</param>
         /// <returns>Task<string></returns>
-        public async Task<string> RequestAsync(string endpoint, string json, bool isApiKeyRequired, RequestOptions requestOptions = null)
+        public async Task<string> RequestAsync(string endpoint, string json, bool isApiKeyRequired, RequestOptions requestOptions = null, HttpMethod httpMethod = null)
         {
             string responseText = null;
             //Set security protocol. Only TLS1.2

@@ -47,19 +47,18 @@ namespace Adyen.HttpClient
         {
             //We should remove this as recommend by an gh issue?
             ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12;
-
             _config = config;
             _httpClient = httpClient;
         }
 
-        public string Request(string endpoint, string json, bool isApiKeyRequired, RequestOptions requestOptions = null)
+        public string Request(string endpoint, string requestBody, bool isApiKeyRequired, RequestOptions requestOptions = null, HttpMethod httpMethod = null)
         {
-            return RequestAsync(endpoint, json, isApiKeyRequired, requestOptions).GetAwaiter().GetResult();
+            return RequestAsync(endpoint, requestBody, isApiKeyRequired, requestOptions,  httpMethod).GetAwaiter().GetResult();
         }
 
-        public async Task<string> RequestAsync(string endpoint, string json, bool isApiKeyRequired, RequestOptions requestOptions = null)
+        public async Task<string> RequestAsync(string endpoint, string requestBody, bool isApiKeyRequired, RequestOptions requestOptions = null, HttpMethod httpMethod = null)
         {
-            using (var request = GetHttpRequestMessage(endpoint, isApiKeyRequired, json, requestOptions))
+            using (var request = GetHttpRequestMessage(endpoint, isApiKeyRequired, requestBody, requestOptions, httpMethod))
             using (var httpResponseMessage = await _httpClient.SendAsync(request))
             {
                 var responseText = await httpResponseMessage.Content.ReadAsStringAsync();
@@ -81,12 +80,20 @@ namespace Adyen.HttpClient
             }
         }
 
-        public HttpRequestMessage GetHttpRequestMessage(string endpoint, bool isApiKeyRequired, string json, RequestOptions requestOptions)
-        {
-            var httpWebRequest = new HttpRequestMessage(HttpMethod.Post, endpoint)
+        public HttpRequestMessage GetHttpRequestMessage(string endpoint, bool isApiKeyRequired, string requestBody, RequestOptions requestOptions, HttpMethod httpMethod)
+        {   
+            if (httpMethod == null) {httpMethod = HttpMethod.Post;}
+            
+            var httpWebRequest = new HttpRequestMessage(httpMethod, endpoint);
+            
+            // custom patch method
+            var patchMethod = new HttpMethod("PATCH");
+            
+            if (httpMethod == HttpMethod.Post || httpMethod == patchMethod)
             {
-                Content = new StringContent(json, _encoding, "application/json")
-            };
+                httpWebRequest.Content = new StringContent(requestBody, _encoding, "application/json");
+            }
+
             httpWebRequest.Headers.Add("ContentType", "application/json");
             httpWebRequest.Headers.Add("Accept-Charset", "UTF-8");
             httpWebRequest.Headers.Add("Cache-Control", "no-cache");

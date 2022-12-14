@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using Adyen.Constants;
+using Adyen.HttpClient;
 using Adyen.Model;
 using Adyen.Model.ApplicationInformation;
 using Adyen.Model.BinLookup;
@@ -13,6 +14,7 @@ using PaymentRequest = Adyen.Model.PaymentRequest;
 using PaymentResult = Adyen.Model.PaymentResult;
 using ContractEnum = Adyen.Model.Recurring.Recurring.ContractEnum;
 using Adyen.Model.Enum;
+using Environment = Adyen.Model.Enum.Environment;
 
 namespace Adyen.IntegrationTest
 {
@@ -152,7 +154,9 @@ namespace Adyen.IntegrationTest
         protected Client CreateApiKeyTestClient()
         {
             var apikey = ClientConstants.Xapikey;
-            return new Client(apikey, Model.Enum.Environment.Test);
+            var httpClient = new System.Net.Http.HttpClient();
+            var client = new Client(apikey, Environment.Test, httpClient);
+            return client;
         }
         
         private PaymentRequest CreateFullPaymentRequest()
