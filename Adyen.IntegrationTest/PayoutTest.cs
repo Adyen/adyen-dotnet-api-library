@@ -38,9 +38,9 @@ namespace Adyen.IntegrationTest
             {
                 PayoutResponse result = _payout.PayoutSubmit(payoutRequest);
             }
-            catch (HttpClient.HttpClientException e)
+            catch (System.Net.Http.HttpRequestException e)
             {
-                Assert.AreEqual(403, e.Code);
+                Assert.AreEqual("Response status code does not indicate success: 403 ().", e.Message);
             }
         }
 
@@ -53,9 +53,9 @@ namespace Adyen.IntegrationTest
             {
                 PayoutResponse result = _payout.PayoutSubmit(payoutRequest);
             }
-            catch (HttpClient.HttpClientException e)
+            catch (System.Net.Http.HttpRequestException e)
             {
-                Assert.AreEqual(403, e.Code);
+                Assert.AreEqual("Response status code does not indicate success: 403 ().", e.Message);
             }
         }
 
