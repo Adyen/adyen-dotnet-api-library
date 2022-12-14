@@ -91,7 +91,7 @@ namespace Adyen.IntegrationTest
             }
             catch (System.Net.Http.HttpRequestException ex)
             {
-                Assert.AreEqual(ex.Message, "Response status code does not indicate success: 403 ().");
+                Assert.AreEqual(ex.Message, "Response status code does not indicate success: 422 ().");
             }
         }
 
