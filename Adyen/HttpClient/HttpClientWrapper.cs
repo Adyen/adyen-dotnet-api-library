@@ -57,8 +57,7 @@ namespace Adyen.HttpClient
         }
 
         public async Task<string> RequestAsync(string endpoint, string requestBody, bool isApiKeyRequired, RequestOptions requestOptions = null, HttpMethod httpMethod = null)
-        {   
-            // do we need the using() here in the first line?
+        {
             using (var request = GetHttpRequestMessage(endpoint, isApiKeyRequired, requestBody, requestOptions, httpMethod))
             using (var httpResponseMessage = await _httpClient.SendAsync(request))
             {
@@ -81,7 +80,7 @@ namespace Adyen.HttpClient
             }
         }
 
-        private HttpRequestMessage GetHttpRequestMessage(string endpoint, bool isApiKeyRequired, string requestBody, RequestOptions requestOptions, HttpMethod httpMethod)
+        private HttpRequestMessage GetHttpRequestMessage(string endpoint, bool isApiKeyRequired, string requestBody, RequestOptions requestOptions, HttpMethod httpMethod = null)
         {   
             if (httpMethod == null) {httpMethod = HttpMethod.Post;}
             

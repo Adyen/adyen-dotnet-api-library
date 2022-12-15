@@ -50,7 +50,7 @@ namespace Adyen.Service
         public Task<string> RequestAsync(string json, RequestOptions requestOptions = null, HttpMethod httpMethod = null)
         {
             var clientInterface = _abstractService.Client.HttpClient;
-            return clientInterface.RequestAsync(Endpoint, json, false, requestOptions);
+            return clientInterface.RequestAsync(Endpoint, json, false, requestOptions, httpMethod);
         }
     }
 }

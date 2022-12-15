@@ -289,6 +289,28 @@ namespace Adyen.Test
             };
             return clientMock;
         }
+        
+        /// <summary>
+        /// Creates mock test client
+        /// </summary>
+        /// <param name="fileName">The file that is returned</param>
+        /// <returns>IClient implementation</returns>
+        protected Client CreateMockTestClientApiKeyBasedRequestAsync(string fileName)
+        {
+            var mockPath = GetMockFilePath(fileName);
+            var response = MockFileToString(mockPath);
+            //Create a mock interface
+            var clientInterfaceMock = new Mock<IClient>();
+            var confMock = MockPaymentData.CreateConfingApiKeyBasedMock();
+            clientInterfaceMock.Setup(x => x.RequestAsync(It.IsAny<string>(),
+                It.IsAny<string>(),  It.IsAny<bool>(), It.IsAny<RequestOptions>(), null)).ReturnsAsync(response);
+            var clientMock = new Client(It.IsAny<Config>())
+            {
+                HttpClient = clientInterfaceMock.Object,
+                Config = confMock
+            };
+            return clientMock;
+        }
 		
 		/// <summary>
         /// Creates async mock test client

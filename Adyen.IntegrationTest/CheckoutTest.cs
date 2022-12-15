@@ -5,6 +5,7 @@ using Adyen.Service;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 using System.Net;
+using System.Threading.Tasks;
 
 namespace Adyen.IntegrationTest
 {
@@ -125,19 +126,19 @@ namespace Adyen.IntegrationTest
                 ExpiresAt = DateTime.Now.AddHours(4).ToString("yyyy-MM-ddTHH:mm:ss")
             };
             var createPaymentLinkResponse = _checkout.PaymentLinks(createPaymentLinkRequest);
-            PaymentLinksGetSuccessTest(createPaymentLinkResponse.Id);
-            PaymentLinksPatchSuccessTest(createPaymentLinkResponse.Id);
+            Console.WriteLine(createPaymentLinkResponse.Id);
             Assert.IsNotNull(createPaymentLinkResponse);
             Assert.IsNotNull(createPaymentLinkResponse.Url);
             Assert.IsNotNull(createPaymentLinkResponse.Amount);
             Assert.IsNotNull(createPaymentLinkResponse.Reference);
             Assert.IsNotNull(createPaymentLinkResponse.ExpiresAt);
+            PaymentLinksGetSuccessTest(createPaymentLinkResponse.Id);
+            PaymentLinksPatchSuccessTest(createPaymentLinkResponse.Id);
         }
         
         private void PaymentLinksGetSuccessTest(string Id)
-        {   
-            Console.WriteLine();
-            var createPaymentLinkResponse = _checkout.getPaymentLinks(Id);
+        {
+            var createPaymentLinkResponse =  _checkout.getPaymentLinks(Id);
             Assert.IsNotNull(createPaymentLinkResponse);
             Assert.IsNotNull(createPaymentLinkResponse.Url);
             Assert.IsNotNull(createPaymentLinkResponse.Amount);
