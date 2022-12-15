@@ -45,7 +45,7 @@ namespace Adyen.HttpClient
 
         public HttpClientWrapper(Config config, System.Net.Http.HttpClient httpClient)
         {
-            //We should remove this as recommend by an gh issue?
+            // How do we want to implement this?
             ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12;
             _config = config;
             _httpClient = httpClient;
@@ -57,7 +57,8 @@ namespace Adyen.HttpClient
         }
 
         public async Task<string> RequestAsync(string endpoint, string requestBody, bool isApiKeyRequired, RequestOptions requestOptions = null, HttpMethod httpMethod = null)
-        {
+        {   
+            // do we need the using() here in the first line?
             using (var request = GetHttpRequestMessage(endpoint, isApiKeyRequired, requestBody, requestOptions, httpMethod))
             using (var httpResponseMessage = await _httpClient.SendAsync(request))
             {
@@ -80,13 +81,13 @@ namespace Adyen.HttpClient
             }
         }
 
-        public HttpRequestMessage GetHttpRequestMessage(string endpoint, bool isApiKeyRequired, string requestBody, RequestOptions requestOptions, HttpMethod httpMethod)
+        private HttpRequestMessage GetHttpRequestMessage(string endpoint, bool isApiKeyRequired, string requestBody, RequestOptions requestOptions, HttpMethod httpMethod)
         {   
             if (httpMethod == null) {httpMethod = HttpMethod.Post;}
             
             var httpWebRequest = new HttpRequestMessage(httpMethod, endpoint);
             
-            // custom patch method
+            // custom patch method for dotnet <2.1
             var patchMethod = new HttpMethod("PATCH");
             
             if (httpMethod == HttpMethod.Post || httpMethod == patchMethod)
@@ -119,7 +120,7 @@ namespace Adyen.HttpClient
             return httpWebRequest;
         }
 
-        public static string QueryString(IDictionary<string, string> dict)
+        private static string QueryString(IDictionary<string, string> dict)
         {
             var stringBuilder = new StringBuilder();
             foreach (var item in dict)

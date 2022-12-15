@@ -200,7 +200,24 @@ namespace Adyen.Service
             var jsonResponse = _paymentLinksResult.Request(jsonRequest);
             return JsonConvert.DeserializeObject<PaymentLinkResponse>(jsonResponse);
         }
-
+        
+        /// <summary>
+        /// POST /paymentsLinks API call async
+        /// </summary>
+        /// <param name="createPaymentLinkRequest"></param>
+        /// <returns>PaymentLinkResponse</returns>
+        public async Task<PaymentLinkResponse> PaymentLinksAsync(CreatePaymentLinkRequest createPaymentLinkRequest)
+        {
+            var jsonRequest = Util.JsonOperation.SerializeRequest(createPaymentLinkRequest);
+            var jsonResponse = await _paymentLinksResult.RequestAsync(jsonRequest);
+            return JsonConvert.DeserializeObject<PaymentLinkResponse>(jsonResponse);
+        }
+        
+        /// <summary>
+        /// GET /paymentsLinks API call 
+        /// </summary>
+        /// <param name="linkId"></param>
+        /// <returns>PaymentLinkResponse</returns>
         public PaymentLinkResponse getPaymentLinks(string linkId)
         {
             linkId = "/" + linkId;
@@ -208,6 +225,25 @@ namespace Adyen.Service
             var jsonResponse = paymentLinks.Request(null, null, HttpMethod.Get);
             return JsonConvert.DeserializeObject<PaymentLinkResponse>(jsonResponse);
         }
+        
+        /// <summary>
+        /// GET /paymentsLinks API call async
+        /// </summary>
+        /// <param name="linkId"></param>
+        /// <returns>PaymentLinkResponse</returns>
+        public async Task<PaymentLinkResponse> getPaymentLinksAsync(string linkId)
+        {
+            linkId = "/" + linkId;
+            var paymentLinks = new PaymentLinks(this, linkId);
+            var jsonResponse = await paymentLinks.RequestAsync(null, null, HttpMethod.Get);
+            return JsonConvert.DeserializeObject<PaymentLinkResponse>(jsonResponse);
+        }
+        /// <summary>
+        /// PATCH /paymentsLinks API call 
+        /// </summary>
+        /// <param name="updatePaymentLinkRequest"></param>
+        /// <param name="linkId"></param>
+        /// <returns>PaymentLinkResponse</returns>
         
         public PaymentLinkResponse patchPaymentLinks(UpdatePaymentLinkRequest updatePaymentLinkRequest, string linkId)
         {
@@ -218,16 +254,20 @@ namespace Adyen.Service
             var jsonResponse = paymentLinks.Request(jsonRequest, null, patch);
             return JsonConvert.DeserializeObject<PaymentLinkResponse>(jsonResponse);
         }
-
         /// <summary>
-        /// POST /paymentsLinks API call async
+        /// PATCH /paymentsLinks API call async 
         /// </summary>
-        /// <param name="createPaymentLinkRequest"></param>
+        /// <param name="updatePaymentLinkRequest"></param>
+        /// <param name="linkId"></param>
         /// <returns>PaymentLinkResponse</returns>
-        public async Task<PaymentLinkResponse> PaymentLinksAsync(CreatePaymentLinkRequest createPaymentLinkRequest)
+        
+        public async Task<PaymentLinkResponse> patchPaymentLinksAsync(UpdatePaymentLinkRequest updatePaymentLinkRequest, string linkId)
         {
-            var jsonRequest = Util.JsonOperation.SerializeRequest(createPaymentLinkRequest);
-            var jsonResponse = await _paymentLinksResult.RequestAsync(jsonRequest);
+            linkId = "/" + linkId;
+            var paymentLinks = new PaymentLinks(this, linkId);
+            var jsonRequest = Util.JsonOperation.SerializeRequest(updatePaymentLinkRequest);
+            var patch = new HttpMethod("PATCH");
+            var jsonResponse = await paymentLinks.RequestAsync(jsonRequest, null, patch);
             return JsonConvert.DeserializeObject<PaymentLinkResponse>(jsonResponse);
         }
 
