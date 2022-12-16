@@ -31,13 +31,13 @@ namespace Adyen.Service.LegalEntityManagement
 {
     public class LegalEntities : AbstractService
     {
-        private HttpMethod patchMethod = new HttpMethod("PATCH");
+        private readonly HttpMethod _patchMethod = new HttpMethod("PATCH");
 
         public LegalEntities(Client client) : base(client)
         {
         }
 
-        public async Task<LegalEntity> createAsync(LegalEntityInfo request)
+        public async Task<LegalEntity> CreateAsync(LegalEntityInfo request)
         {
             var jsonRequest = request.ToJson();
             var resource = new LegalEntityManagementResource(this, "/legalEntities");
@@ -45,22 +45,22 @@ namespace Adyen.Service.LegalEntityManagement
             return JsonConvert.DeserializeObject<LegalEntity>(jsonResult);
         }
         
-        public async Task<LegalEntity> retrieveAsync(string legalEntityId)
+        public async Task<LegalEntity> RetrieveAsync(string legalEntityId)
         {
             var resource = new LegalEntityManagementResource(this, "/legalEntities/" + legalEntityId);
             var jsonResult = await resource.RequestAsync(null, null, HttpMethod.Get);
             return JsonConvert.DeserializeObject<LegalEntity>(jsonResult);
         }
         
-        public async Task<LegalEntity> updateAsync(string legalEntityId, LegalEntityInfo request)
+        public async Task<LegalEntity> UpdateAsync(string legalEntityId, LegalEntityInfo request)
         {
             var jsonRequest = request.ToJson();
             var resource = new LegalEntityManagementResource(this, "/legalEntities/" + legalEntityId);
-            var jsonResult = await resource.RequestAsync(jsonRequest, null, patchMethod);
+            var jsonResult = await resource.RequestAsync(jsonRequest, null, _patchMethod);
             return JsonConvert.DeserializeObject<LegalEntity>(jsonResult);
         }
         
-        public async Task<BusinessLines> listBusinessLinesAsync(string legalEntityId)
+        public async Task<BusinessLines> ListBusinessLinesAsync(string legalEntityId)
         {
             var resource = new LegalEntityManagementResource(this, "/legalEntities/" + legalEntityId);
             var jsonResult = await resource.RequestAsync(null, null, HttpMethod.Get);
@@ -68,24 +68,24 @@ namespace Adyen.Service.LegalEntityManagement
         }
         
         // Asynchronous methods:
-        public LegalEntity create(LegalEntityInfo request)
+        public LegalEntity Create(LegalEntityInfo request)
         {
-            return createAsync(request).GetAwaiter().GetResult();
+            return CreateAsync(request).GetAwaiter().GetResult();
         }
 
-        public LegalEntity retrieve(string legalEntityId)
+        public LegalEntity Retrieve(string legalEntityId)
         {
-            return retrieveAsync(legalEntityId).GetAwaiter().GetResult();
+            return RetrieveAsync(legalEntityId).GetAwaiter().GetResult();
         }
 
-        public LegalEntity update(string legalEntityId, LegalEntityInfo request)
+        public LegalEntity Update(string legalEntityId, LegalEntityInfo request)
         {
-            return updateAsync(legalEntityId, request).GetAwaiter().GetResult();
+            return UpdateAsync(legalEntityId, request).GetAwaiter().GetResult();
         }
 
-        public BusinessLines listBusinessLines(string legalEntityId)
+        public BusinessLines ListBusinessLines(string legalEntityId)
         {
-            return listBusinessLinesAsync(legalEntityId).GetAwaiter().GetResult();
+            return ListBusinessLinesAsync(legalEntityId).GetAwaiter().GetResult();
         }
         
     }

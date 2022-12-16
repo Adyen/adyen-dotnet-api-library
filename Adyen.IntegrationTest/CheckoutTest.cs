@@ -136,9 +136,9 @@ namespace Adyen.IntegrationTest
             PaymentLinksPatchSuccessTest(createPaymentLinkResponse.Id);
         }
         
-        private void PaymentLinksGetSuccessTest(string Id)
+        private async void PaymentLinksGetSuccessTest(string Id)
         {
-            var createPaymentLinkResponse =  _checkout.getPaymentLinks(Id);
+            var createPaymentLinkResponse =  await _checkout.getPaymentLinksAsync(Id);
             Assert.IsNotNull(createPaymentLinkResponse);
             Assert.IsNotNull(createPaymentLinkResponse.Url);
             Assert.IsNotNull(createPaymentLinkResponse.Amount);

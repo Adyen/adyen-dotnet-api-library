@@ -31,13 +31,13 @@ namespace Adyen.Service.LegalEntityManagement
 {
     public class HostedOnboarding : AbstractService
     {
-        private HttpMethod patchMethod = new HttpMethod("PATCH");
+        private HttpMethod _patchMethod = new HttpMethod("PATCH");
 
         public HostedOnboarding(Client client) : base(client)
         {
         }
 
-        public async Task<OnboardingLink> createAsync(string legalEntityId, OnboardingLinkInfo request)
+        public async Task<OnboardingLink> CreateAsync(string legalEntityId, OnboardingLinkInfo request)
         {
             var jsonRequest = request.ToJson();
             var resource = new LegalEntityManagementResource(this, "/legalEntities/" + legalEntityId);
@@ -45,14 +45,14 @@ namespace Adyen.Service.LegalEntityManagement
             return JsonConvert.DeserializeObject<OnboardingLink>(jsonResult);
         }
         
-        public async Task<OnboardingThemes> listThemesAsync()
+        public async Task<OnboardingThemes> ListThemesAsync()
         {
             var resource = new LegalEntityManagementResource(this, "/themes");
             var jsonResult = await resource.RequestAsync(null, null, HttpMethod.Get);
             return JsonConvert.DeserializeObject<OnboardingThemes>(jsonResult);
         }
         
-        public async Task<OnboardingTheme> retrieveThemesAsync(string themeId)
+        public async Task<OnboardingTheme> RetrieveThemesAsync(string themeId)
         {
             var resource = new LegalEntityManagementResource(this, "/themes/" + themeId);
             var jsonResult = await resource.RequestAsync(null, null, HttpMethod.Get);
@@ -61,19 +61,19 @@ namespace Adyen.Service.LegalEntityManagement
         
         // Asynchronous methods:
 
-        public OnboardingLink create(string legalEntityId, OnboardingLinkInfo request)
+        public OnboardingLink Create(string legalEntityId, OnboardingLinkInfo request)
         {
-            return createAsync(legalEntityId, request).GetAwaiter().GetResult();
+            return CreateAsync(legalEntityId, request).GetAwaiter().GetResult();
         }
 
-        public OnboardingThemes listThemes()
+        public OnboardingThemes ListThemes()
         {
-            return listThemesAsync().GetAwaiter().GetResult();
+            return ListThemesAsync().GetAwaiter().GetResult();
         }
 
-        public OnboardingTheme retrieveTheme(string themeId)
+        public OnboardingTheme RetrieveTheme(string themeId)
         {
-            return retrieveThemesAsync(themeId).GetAwaiter().GetResult();
+            return RetrieveThemesAsync(themeId).GetAwaiter().GetResult();
         }
     }
 }

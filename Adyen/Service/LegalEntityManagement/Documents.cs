@@ -31,11 +31,11 @@ namespace Adyen.Service.LegalEntityManagement
 {
     public class Documents : AbstractService
     {
-        private HttpMethod patchMethod = new HttpMethod("PATCH");
+        private readonly HttpMethod _patchMethod = new HttpMethod("PATCH");
         
         public Documents(Client client) : base(client) {}
 
-        public async Task<Document> createAsync(Document request)
+        public async Task<Document> CreateAsync(Document request)
         {
             var jsonRequest = request.ToJson();
             var resource = new LegalEntityManagementResource(this, "/documents");
@@ -43,22 +43,22 @@ namespace Adyen.Service.LegalEntityManagement
             return JsonConvert.DeserializeObject<Document>(jsonResult);
         }
 
-        public async Task<Document> retrieveAsync(string documentId)
+        public async Task<Document> RetrieveAsync(string documentId)
         {
             var resource = new LegalEntityManagementResource(this, "/documents/" + documentId);
             var jsonResult = await resource.RequestAsync(null, null, HttpMethod.Get);
             return JsonConvert.DeserializeObject<Document>(jsonResult);
         }
         
-        public async Task<Document> updateAsync(string documentId, Document request)
+        public async Task<Document> UpdateAsync(string documentId, Document request)
         {
             var jsonRequest = request.ToJson();
             var resource = new LegalEntityManagementResource(this, "/documents/" + documentId);
-            var jsonResult = await resource.RequestAsync(jsonRequest, null, patchMethod);
+            var jsonResult = await resource.RequestAsync(jsonRequest, null, _patchMethod);
             return JsonConvert.DeserializeObject<Document>(jsonResult);
         }
         
-        public async void deleteAsync(string documentId)
+        public async void DeleteAsync(string documentId)
         {
             var resource = new LegalEntityManagementResource(this, "/documents/" + documentId);
             await resource.RequestAsync(null, null, HttpMethod.Delete);
@@ -66,24 +66,24 @@ namespace Adyen.Service.LegalEntityManagement
         
         // Synchronous methods:
         
-        public Document create(Document request)
+        public Document Create(Document request)
         {
-            return createAsync(request).GetAwaiter().GetResult();
+            return CreateAsync(request).GetAwaiter().GetResult();
         }
         
-        public Document retrieve(string documentId)
+        public Document Retrieve(string documentId)
         {
-            return retrieveAsync(documentId).GetAwaiter().GetResult();
+            return RetrieveAsync(documentId).GetAwaiter().GetResult();
         }
         
-        public Document update(string documentId, Document request)
+        public Document Update(string documentId, Document request)
         {
-            return updateAsync(documentId, request).GetAwaiter().GetResult();
+            return UpdateAsync(documentId, request).GetAwaiter().GetResult();
         }
         
-        public void delete(string documentId)
+        public void Delete(string documentId)
         {
-            deleteAsync(documentId);
+            DeleteAsync(documentId);
         }
         
         

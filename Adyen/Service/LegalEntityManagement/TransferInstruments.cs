@@ -23,58 +23,70 @@
 
 using System.Net.Http;
 using System.Threading.Tasks;
+using Adyen.Model.Checkout;
 using Adyen.Model.LegalEntityManagement;
 using Adyen.Service.Resource;
 using Newtonsoft.Json;
 
 namespace Adyen.Service.LegalEntityManagement
 {
-    public class BusinessLineService : AbstractService
+    public class TransferInstruments : AbstractService
     {
         private readonly HttpMethod _patchMethod = new HttpMethod("PATCH");
 
-        public BusinessLineService(Client client) : base(client)
+        public TransferInstruments(Client client) : base(client)
         {
         }
 
-        public async Task<BusinessLine> CreateAsync(BusinessLineInfo request)
+        public async Task<TransferInstrument> CreateAsync(TransferInstrumentInfo request)
         {
             var jsonRequest = request.ToJson();
-            var resource = new LegalEntityManagementResource(this, "/businessLines");
+            var resource = new LegalEntityManagementResource(this, "/transferInstruments");
             var jsonResult = await resource.RequestAsync(jsonRequest);
-            return JsonConvert.DeserializeObject<BusinessLine>(jsonResult);
+            return JsonConvert.DeserializeObject<TransferInstrument>(jsonResult);
         }
         
-        public async Task<BusinessLine> RetrieveAsync(string businessLineId)
+        public async Task<TransferInstrument> RetrieveAsync(string transferInstrumentId)
         {
-            var resource = new LegalEntityManagementResource(this, "/businessLines/" + businessLineId);
+            var resource = new LegalEntityManagementResource(this, "/transferInstruments/" + transferInstrumentId);
             var jsonResult = await resource.RequestAsync(null, null, HttpMethod.Get);
-            return JsonConvert.DeserializeObject<BusinessLine>(jsonResult);
+            return JsonConvert.DeserializeObject<TransferInstrument>(jsonResult);
         }
         
-        public async Task<BusinessLine> UpdateAsync(string businessLineId, BusinessLineInfo request)
+        public async Task<TransferInstrument> UpdateAsync(string transferInstrumentId, TransferInstrumentInfo request)
         {
             var jsonRequest = request.ToJson();
-            var resource = new LegalEntityManagementResource(this, "/businessLines/" + businessLineId);
+            var resource = new LegalEntityManagementResource(this, "/transferInstruments/" + transferInstrumentId);
             var jsonResult = await resource.RequestAsync(jsonRequest, null, _patchMethod);
-            return JsonConvert.DeserializeObject<BusinessLine>(jsonResult);
+            return JsonConvert.DeserializeObject<TransferInstrument>(jsonResult);
+        }
+
+        public async void DeleteAsync(string transferInstrumentId)
+        {
+            var resource = new LegalEntityManagementResource(this, "/transferInstruments/" + transferInstrumentId);
+            await resource.RequestAsync(null, null, HttpMethod.Delete);
         }
         
         // Synchronous methods:
 
-        public BusinessLine Create(BusinessLineInfo request)
+        public TransferInstrument Create(TransferInstrumentInfo request)
         {
             return CreateAsync(request).GetAwaiter().GetResult();
         }
-        
-        public BusinessLine Retrieve(string businessLineId)
+
+        public TransferInstrument Retrieve(string transferInstrumentId)
         {
-            return RetrieveAsync(businessLineId).GetAwaiter().GetResult();
+            return RetrieveAsync(transferInstrumentId).GetAwaiter().GetResult();
         }
-        
-        public BusinessLine Update(string businessLineId, BusinessLineInfo request)
+
+        public TransferInstrument Update(string transferInstrumentId, TransferInstrumentInfo request)
         {
-            return UpdateAsync(businessLineId, request).GetAwaiter().GetResult();
+            return UpdateAsync(transferInstrumentId, request).GetAwaiter().GetResult();
+        }
+
+        public void Delete(string transferInstrumentId)
+        {
+            DeleteAsync(transferInstrumentId);
         }
     }
 }
