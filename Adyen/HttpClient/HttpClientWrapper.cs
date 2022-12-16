@@ -53,8 +53,8 @@ namespace Adyen.HttpClient
 
         public string Request(string endpoint, string requestBody, bool isApiKeyRequired, RequestOptions requestOptions = null, HttpMethod httpMethod = null)
         {
-            var task = Task.Run(async () => await RequestAsync(endpoint, requestBody, isApiKeyRequired, requestOptions,  httpMethod));
-            return task.Result;
+            return RequestAsync(endpoint, requestBody, isApiKeyRequired, requestOptions, httpMethod).GetAwaiter()
+                .GetResult();
         }
 
         public async Task<string> RequestAsync(string endpoint, string requestBody, bool isApiKeyRequired, RequestOptions requestOptions = null, HttpMethod httpMethod = null)
