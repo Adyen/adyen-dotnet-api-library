@@ -88,7 +88,7 @@ namespace Adyen.HttpClient
         {
             string responseText = null;
             //Set security protocol. Only TLS1.2
-            ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12;
+           
             var httpWebRequest = GetHttpWebRequest(endpoint, isApiKeyRequired, requestOptions);
             using (var streamWriter = new StreamWriter(httpWebRequest.GetRequestStream()))
             {
