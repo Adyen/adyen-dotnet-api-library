@@ -203,7 +203,7 @@ namespace Adyen.IntegrationTest
 
             var checkoutSessionRequest = new CreateCheckoutSessionRequest
             {
-                MerchantAccount = "TestMerchantAccount",
+                MerchantAccount = ClientConstants.MerchantAccount,
                 Reference = "TestReference",
                 ReturnUrl = "http://test-url.com",
                 Amount = new Amount("EUR", 10000L)
@@ -215,9 +215,8 @@ namespace Adyen.IntegrationTest
             Assert.AreEqual("EUR", createCheckoutSessionResponse.Amount.Currency);
             Assert.AreEqual("10000", createCheckoutSessionResponse.Amount.Value.ToString());
             Assert.IsNotNull(createCheckoutSessionResponse.SessionData);
-            }
-
-
+        }
+        
         /// <summary>
         /// Test success capture
         /// POST /payments/{paymentPspReference}/captures
