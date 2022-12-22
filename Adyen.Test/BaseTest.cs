@@ -236,7 +236,11 @@ namespace Adyen.Test
             var confMock = MockPaymentData.CreateConfingMock();
 
             clientInterfaceMock.Setup(x => x.Request(It.IsAny<string>(), It.IsAny<string>(), It.IsAny<bool>(), It.IsAny<RequestOptions>(), null)).Returns(response);
-            var clientMock = new Client(It.IsAny<Config>())
+            var config = new Config()
+            {
+                Environment = It.IsAny<Model.Enum.Environment>()
+            };
+            var clientMock = new Client(config)
             {
                 HttpClient = clientInterfaceMock.Object,
                 Config = confMock
@@ -260,7 +264,11 @@ namespace Adyen.Test
             clientInterfaceMock.Setup(x => x.Request(It.IsAny<string>(), It.IsAny<string>(), It.IsAny<bool>(), It.IsAny<RequestOptions>(), null)).Returns(response);
             clientInterfaceMock.Setup(x => x.Request(It.IsAny<string>(), It.IsAny<string>(), It.IsAny<bool>(), It.IsAny<RequestOptions>(), null)).Returns(response);
             clientInterfaceMock.Setup(x => x.RequestAsync(It.IsAny<string>(), It.IsAny<string>(),It.IsAny<bool>(), It.IsAny<RequestOptions>(), null)).Returns(Task.FromResult(response));
-            var clientMock = new Client(It.IsAny<Config>())
+            var config = new Config()
+            {
+                Environment = It.IsAny<Model.Enum.Environment>()
+            };
+            var clientMock = new Client(config)
             {
                 HttpClient = clientInterfaceMock.Object,
                 Config = confMock
@@ -282,7 +290,11 @@ namespace Adyen.Test
             var confMock = MockPaymentData.CreateConfingApiKeyBasedMock();
             clientInterfaceMock.Setup(x => x.Request(It.IsAny<string>(),
                 It.IsAny<string>(),  It.IsAny<bool>(), It.IsAny<RequestOptions>(), null)).Returns(response);
-            var clientMock = new Client(It.IsAny<Config>())
+            var config = new Config()
+            {
+                Environment = It.IsAny<Model.Enum.Environment>()
+            };
+            var clientMock = new Client(config)
             {
                 HttpClient = clientInterfaceMock.Object,
                 Config = confMock
@@ -305,7 +317,11 @@ namespace Adyen.Test
             clientInterfaceMock.Setup(x => x.RequestAsync(It.IsAny<string>(),
                     It.IsAny<string>(),  It.IsAny<bool>(), It.IsAny<RequestOptions>(), null))
                 .ReturnsAsync(response);
-            var clientMock = new Client(It.IsAny<Config>())
+            var config = new Config()
+            {
+                Environment = It.IsAny<Model.Enum.Environment>()
+            };
+            var clientMock = new Client(config)
             {
                 HttpClient = clientInterfaceMock.Object,
                 Config = confMock
@@ -327,7 +343,11 @@ namespace Adyen.Test
             var clientInterfaceMock = new Mock<IClient>();
             clientInterfaceMock.Setup(x => x.Request(It.IsAny<string>(),
                 It.IsAny<string>(), It.IsAny<bool>(), It.IsAny<RequestOptions>(), null)).Returns(response);
-            var clientMock = new Client(It.IsAny<Config>())
+            var anyConfig = new Config()
+            {
+                Environment = It.IsAny<Model.Enum.Environment>()
+            };
+            var clientMock = new Client(anyConfig)
             {
                 HttpClient = clientInterfaceMock.Object,
                 Config = config
@@ -352,7 +372,11 @@ namespace Adyen.Test
                 It.IsAny<RequestOptions>(), null
                ))
                 .Returns(response);
-            var clientMock = new Client(It.IsAny<Config>())
+            var anyConfig = new Config()
+            {
+                Environment = It.IsAny<Model.Enum.Environment>()
+            };
+            var clientMock = new Client(anyConfig)
             {
                 HttpClient = clientInterfaceMock.Object,
                 Config = config
@@ -374,7 +398,11 @@ namespace Adyen.Test
 
             clientInterfaceMock.Setup(x => x.Post(It.IsAny<string>(),
                 It.IsAny<Dictionary<string, string>>())).Returns(response);
-            var clientMock = new Client(It.IsAny<Config>())
+            var config = new Config()
+            {
+                Environment = It.IsAny<Model.Enum.Environment>()
+            };
+            var clientMock = new Client(config)
             {
                 HttpClient = clientInterfaceMock.Object,
                 Config = confMock
@@ -400,8 +428,11 @@ namespace Adyen.Test
 
             clientInterfaceMock.Setup(x => x.Request(It.IsAny<string>(),
                 It.IsAny<string>(), It.IsAny<bool>(), It.IsAny<RequestOptions>(), null)).Throws(httpClientException);
-
-            var clientMock = new Client(It.IsAny<Config>())
+            var config = new Config()
+            {
+                Environment = It.IsAny<Model.Enum.Environment>()
+            };
+            var clientMock = new Client(config)
             {
                 HttpClient = clientInterfaceMock.Object,
                 Config = confMock

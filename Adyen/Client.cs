@@ -34,7 +34,7 @@ namespace Adyen
     public class Client
     {
         private readonly System.Net.Http.HttpClient _httpClient;
-        private Lazy<IClient> _lazyClient;
+        private IClient _client;
 
         public Config Config { get; set; }
 
@@ -90,12 +90,18 @@ namespace Adyen
             this.SetEnvironment(environment, liveEndpointUrlPrefix);
         }
 
+        public Client(Config config, string liveEndpointUrlPrefix, System.Net.Http.HttpClient httpClient = null)
+        {
+            Config = config;
+            _httpClient = httpClient;
+            this.SetEnvironment(config.Environment, liveEndpointUrlPrefix);
+        }
+        
         public Client(Config config, System.Net.Http.HttpClient httpClient = null)
         {
             Config = config;
             _httpClient = httpClient;
-
-            ReloadClient();
+            this.SetEnvironment(config.Environment);
         }
 
         public void SetEnvironment(Environment environment)
@@ -136,26 +142,16 @@ namespace Adyen
 
         private void ReloadClient()
         {
-            if (_lazyClient != null && _lazyClient.IsValueCreated)
-            {
-                _lazyClient.Value.Dispose();
-            }
-
-            _lazyClient = new Lazy<IClient>(() =>
-                _httpClient != null
+            _client?.Dispose();
+            _client = _httpClient != null
                 ? new HttpClientWrapper(Config, _httpClient)
-                : (IClient)new HttpWebRequestWrapper(Config),
-                LazyThreadSafetyMode.ExecutionAndPublication
-            );
+                : (IClient)new HttpWebRequestWrapper(Config);
         }
 
         public IClient HttpClient
         {
-            get => _lazyClient.Value;
-            set
-            {
-                _lazyClient = new Lazy<IClient>(() => value, LazyThreadSafetyMode.ExecutionAndPublication);
-            }
+            get => _client;
+            set => _client = value;
         }
 
         public string ApiVersion => ClientConfig.ApiVersion;

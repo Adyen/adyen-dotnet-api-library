@@ -47,6 +47,10 @@ namespace Adyen.HttpClient
 
         public string Request(string endpoint, string json, bool isApiKeyRequired, RequestOptions requestOptions = null, HttpMethod httpMethod = null)
         {
+            if (httpMethod != null && HttpMethod.Post != httpMethod)
+            {
+                throw (new HttpClientException((int)HttpStatusCode.BadRequest, "Please use HttpClient, check README for more info."));
+            }
             string responseText = null;
             var httpWebRequest = GetHttpWebRequest(endpoint, isApiKeyRequired, requestOptions );
             if (_config.HttpRequestTimeout > 0)

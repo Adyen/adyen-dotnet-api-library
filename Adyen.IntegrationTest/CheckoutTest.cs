@@ -5,6 +5,10 @@ using Adyen.Service;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 using System.Net;
+using System.Net.Http;
+using Adyen.HttpClient;
+using CreateCheckoutSessionRequest = Adyen.Model.Checkout.CreateCheckoutSessionRequest;
+using Environment = Adyen.Model.Enum.Environment;
 
 namespace Adyen.IntegrationTest
 {
@@ -130,12 +134,13 @@ namespace Adyen.IntegrationTest
             Assert.IsNotNull(createPaymentLinkResponse);
             Assert.IsNotNull(createPaymentLinkResponse.Url);
             Assert.IsNotNull(createPaymentLinkResponse.Amount);
-            Assert.IsNotNull(createPaymentLinkResponse.Reference);
+            Assert.IsNotNull(createPaymentLinkResponse.Reference); 
             Assert.IsNotNull(createPaymentLinkResponse.ExpiresAt);
-        }
+            }
         
         private void PaymentLinksGetSuccessTest(string Id)
-        {
+        {   
+            
             var createPaymentLinkResponse = _checkout.getPaymentLinks(Id);
             Assert.IsNotNull(createPaymentLinkResponse);
             Assert.IsNotNull(createPaymentLinkResponse.Url);
@@ -179,6 +184,39 @@ namespace Adyen.IntegrationTest
             Assert.AreEqual("EUR", createCheckoutSessionResponse.Amount.Currency);
             Assert.AreEqual("10000", createCheckoutSessionResponse.Amount.Value.ToString());
             Assert.IsNotNull(createCheckoutSessionResponse.SessionData);
+        }
+
+        /// <summary>
+        /// Test success sessions
+        /// POST /sessions
+        /// </summary>
+        [TestMethod]
+        public void CheckoutSessionSuccessWithClientTest()
+        {
+            var config = new Config
+            {
+                Environment = Environment.Test,
+                XApiKey = ClientConstants.Xapikey
+            };
+            var client = new Client(config);
+            var service = new Checkout(client);
+
+            var checkoutSessionRequest = new CreateCheckoutSessionRequest
+            {
+                MerchantAccount = "TestMerchantAccount",
+                Reference = "TestReference",
+                ReturnUrl = "http://test-url.com",
+                Amount = new Amount("ah", 10000L)
+            };
+            try
+            {
+                var createCheckoutSessionResponse = service.Sessions(checkoutSessionRequest);
+                Console.WriteLine(createCheckoutSessionResponse.ToJson());
+            }
+            catch (HttpRequestException e)
+            {
+                Console.WriteLine(e.Data);
+            }
         }
 
 
