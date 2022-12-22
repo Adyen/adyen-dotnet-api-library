@@ -206,18 +206,16 @@ namespace Adyen.IntegrationTest
                 MerchantAccount = "TestMerchantAccount",
                 Reference = "TestReference",
                 ReturnUrl = "http://test-url.com",
-                Amount = new Amount("ah", 10000L)
+                Amount = new Amount("EUR", 10000L)
             };
-            try
-            {
-                var createCheckoutSessionResponse = service.Sessions(checkoutSessionRequest);
-                Console.WriteLine(createCheckoutSessionResponse.ToJson());
+            var createCheckoutSessionResponse = service.Sessions(checkoutSessionRequest);
+            Assert.AreEqual(MerchantAccount, createCheckoutSessionResponse.MerchantAccount);
+            Assert.AreEqual("TestReference", createCheckoutSessionResponse.Reference);
+            Assert.AreEqual("http://test-url.com", createCheckoutSessionResponse.ReturnUrl);
+            Assert.AreEqual("EUR", createCheckoutSessionResponse.Amount.Currency);
+            Assert.AreEqual("10000", createCheckoutSessionResponse.Amount.Value.ToString());
+            Assert.IsNotNull(createCheckoutSessionResponse.SessionData);
             }
-            catch (HttpRequestException e)
-            {
-                Console.WriteLine(e.Data);
-            }
-        }
 
 
         /// <summary>
