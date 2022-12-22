@@ -135,8 +135,7 @@ namespace Adyen.IntegrationTest
         }
         
         private void PaymentLinksGetSuccessTest(string Id)
-        {   
-            Console.WriteLine();
+        {
             var createPaymentLinkResponse = _checkout.getPaymentLinks(Id);
             Assert.IsNotNull(createPaymentLinkResponse);
             Assert.IsNotNull(createPaymentLinkResponse.Url);
@@ -155,7 +154,6 @@ namespace Adyen.IntegrationTest
             Assert.IsNotNull(createPaymentLinkResponse.Amount);
             Assert.IsNotNull(createPaymentLinkResponse.Reference);
             Assert.IsNotNull(createPaymentLinkResponse.ExpiresAt);
-            Console.WriteLine(createPaymentLinkResponse);
         }
         
 
