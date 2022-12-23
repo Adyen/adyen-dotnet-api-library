@@ -155,8 +155,7 @@ namespace Adyen.IntegrationTest
         {
             var apikey = ClientConstants.Xapikey;
             var httpClient = new System.Net.Http.HttpClient();
-            var client = new Client(apikey, Environment.Test, httpClient);
-            return client;
+           return new Client(apikey, Environment.Test, httpClient);        
         }
         
         private PaymentRequest CreateFullPaymentRequest()
