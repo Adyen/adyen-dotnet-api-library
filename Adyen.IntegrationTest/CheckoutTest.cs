@@ -5,7 +5,10 @@ using Adyen.Service;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 using System.Net;
-using System.Threading.Tasks;
+using System.Net.Http;
+using Adyen.HttpClient;
+using CreateCheckoutSessionRequest = Adyen.Model.Checkout.CreateCheckoutSessionRequest;
+using Environment = Adyen.Model.Enum.Environment;
 
 namespace Adyen.IntegrationTest
 {
@@ -126,19 +129,19 @@ namespace Adyen.IntegrationTest
                 ExpiresAt = DateTime.Now.AddHours(4).ToString("yyyy-MM-ddTHH:mm:ss")
             };
             var createPaymentLinkResponse = _checkout.PaymentLinks(createPaymentLinkRequest);
-            Console.WriteLine(createPaymentLinkResponse.Id);
+            PaymentLinksGetSuccessTest(createPaymentLinkResponse.Id);
+            PaymentLinksPatchSuccessTest(createPaymentLinkResponse.Id);
             Assert.IsNotNull(createPaymentLinkResponse);
             Assert.IsNotNull(createPaymentLinkResponse.Url);
             Assert.IsNotNull(createPaymentLinkResponse.Amount);
-            Assert.IsNotNull(createPaymentLinkResponse.Reference);
+            Assert.IsNotNull(createPaymentLinkResponse.Reference); 
             Assert.IsNotNull(createPaymentLinkResponse.ExpiresAt);
-            PaymentLinksGetSuccessTest(createPaymentLinkResponse.Id);
-            PaymentLinksPatchSuccessTest(createPaymentLinkResponse.Id);
-        }
+            }
         
-        private async void PaymentLinksGetSuccessTest(string Id)
-        {
-            var createPaymentLinkResponse =  await _checkout.getPaymentLinksAsync(Id);
+        private void PaymentLinksGetSuccessTest(string Id)
+        {   
+            
+            var createPaymentLinkResponse = _checkout.getPaymentLinks(Id);
             Assert.IsNotNull(createPaymentLinkResponse);
             Assert.IsNotNull(createPaymentLinkResponse.Url);
             Assert.IsNotNull(createPaymentLinkResponse.Amount);
@@ -156,7 +159,6 @@ namespace Adyen.IntegrationTest
             Assert.IsNotNull(createPaymentLinkResponse.Amount);
             Assert.IsNotNull(createPaymentLinkResponse.Reference);
             Assert.IsNotNull(createPaymentLinkResponse.ExpiresAt);
-            Console.WriteLine(createPaymentLinkResponse);
         }
         
 
@@ -184,7 +186,37 @@ namespace Adyen.IntegrationTest
             Assert.IsNotNull(createCheckoutSessionResponse.SessionData);
         }
 
+        /// <summary>
+        /// Test success sessions
+        /// POST /sessions
+        /// </summary>
+        [TestMethod]
+        public void CheckoutSessionSuccessWithClientTest()
+        {
+            var config = new Config
+            {
+                Environment = Environment.Test,
+                XApiKey = ClientConstants.Xapikey
+            };
+            var client = new Client(config, new System.Net.Http.HttpClient());
+            var service = new Checkout(client);
 
+            var checkoutSessionRequest = new CreateCheckoutSessionRequest
+            {
+                MerchantAccount = ClientConstants.MerchantAccount,
+                Reference = "TestReference",
+                ReturnUrl = "http://test-url.com",
+                Amount = new Amount("EUR", 10000L)
+            };
+            var createCheckoutSessionResponse = service.Sessions(checkoutSessionRequest);
+            Assert.AreEqual(MerchantAccount, createCheckoutSessionResponse.MerchantAccount);
+            Assert.AreEqual("TestReference", createCheckoutSessionResponse.Reference);
+            Assert.AreEqual("http://test-url.com", createCheckoutSessionResponse.ReturnUrl);
+            Assert.AreEqual("EUR", createCheckoutSessionResponse.Amount.Currency);
+            Assert.AreEqual("10000", createCheckoutSessionResponse.Amount.Value.ToString());
+            Assert.IsNotNull(createCheckoutSessionResponse.SessionData);
+        }
+        
         /// <summary>
         /// Test success capture
         /// POST /payments/{paymentPspReference}/captures

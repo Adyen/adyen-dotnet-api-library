@@ -15,7 +15,7 @@
 //  *
 //  * Adyen Dotnet API Library
 //  *
-//  * Copyright (c) 2020 Adyen B.V.
+//  * Copyright (c) 2022 Adyen N.V.
 //  * This file is open source and available under the MIT license.
 //  * See the LICENSE file for more info.
 //  */
@@ -47,6 +47,10 @@ namespace Adyen.HttpClient
 
         public string Request(string endpoint, string json, bool isApiKeyRequired, RequestOptions requestOptions = null, HttpMethod httpMethod = null)
         {
+            if (httpMethod != null && HttpMethod.Post != httpMethod)
+            {
+                throw (new HttpClientException((int)HttpStatusCode.BadRequest, "Please use HttpClient, check README for more info."));
+            }
             string responseText = null;
             var httpWebRequest = GetHttpWebRequest(endpoint, isApiKeyRequired, requestOptions );
             if (_config.HttpRequestTimeout > 0)
@@ -87,8 +91,7 @@ namespace Adyen.HttpClient
         public async Task<string> RequestAsync(string endpoint, string json, bool isApiKeyRequired, RequestOptions requestOptions = null, HttpMethod httpMethod = null)
         {
             string responseText = null;
-            //Set security protocol. Only TLS1.2
-            ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12;
+
             var httpWebRequest = GetHttpWebRequest(endpoint, isApiKeyRequired, requestOptions);
             using (var streamWriter = new StreamWriter(httpWebRequest.GetRequestStream()))
             {
@@ -154,7 +157,6 @@ namespace Adyen.HttpClient
             {
                 httpWebRequest.Proxy = _config.Proxy;
             }
-            ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12;
             using (var stream = httpWebRequest.GetRequestStream())
             {
                 stream.Write(postBytes, 0, postBytes.Length);

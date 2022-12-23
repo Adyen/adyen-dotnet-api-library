@@ -40,6 +40,11 @@ namespace Adyen.HttpClient
             this.WebHeaderCollection = webHeaderCollection;
             this.ResponseBody = responseBody;
         }
+        
+        public HttpClientException(int code, string message) : base(message)
+        {
+            this.Code = code;
+        }
         public HttpClientException(int code, string message, WebHeaderCollection webHeaderCollection, string responseBody, Exception exception) : base(message)
         {
             this.Code = code;

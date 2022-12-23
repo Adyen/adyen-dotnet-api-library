@@ -16,7 +16,7 @@
 //  *
 //  * Adyen Dotnet API Library
 //  *
-//  * Copyright (c) 2021 Adyen B.V.
+//  * Copyright (c) 2022 Adyen N.V.
 //  * This file is open source and available under the MIT license.
 //  * See the LICENSE file for more info.
 //  */
@@ -45,20 +45,19 @@ namespace Adyen.HttpClient
 
         public HttpClientWrapper(Config config, System.Net.Http.HttpClient httpClient)
         {
-            // How do we want to implement this?
-            ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12;
+            
             _config = config;
             _httpClient = httpClient;
         }
 
         public string Request(string endpoint, string requestBody, bool isApiKeyRequired, RequestOptions requestOptions = null, HttpMethod httpMethod = null)
         {
-            return RequestAsync(endpoint, requestBody, isApiKeyRequired, requestOptions, httpMethod).GetAwaiter()
-                .GetResult();
+            return RequestAsync(endpoint, requestBody, isApiKeyRequired, requestOptions,  httpMethod).ConfigureAwait(false).GetAwaiter().GetResult();
         }
 
         public async Task<string> RequestAsync(string endpoint, string requestBody, bool isApiKeyRequired, RequestOptions requestOptions = null, HttpMethod httpMethod = null)
-        {
+        {   
+            // do we need the using() here in the first line?
             using (var request = GetHttpRequestMessage(endpoint, isApiKeyRequired, requestBody, requestOptions, httpMethod))
             using (var httpResponseMessage = await _httpClient.SendAsync(request))
             {
@@ -81,7 +80,7 @@ namespace Adyen.HttpClient
             }
         }
 
-        private HttpRequestMessage GetHttpRequestMessage(string endpoint, bool isApiKeyRequired, string requestBody, RequestOptions requestOptions, HttpMethod httpMethod = null)
+        private HttpRequestMessage GetHttpRequestMessage(string endpoint, bool isApiKeyRequired, string requestBody, RequestOptions requestOptions, HttpMethod httpMethod)
         {   
             if (httpMethod == null) {httpMethod = HttpMethod.Post;}
             
