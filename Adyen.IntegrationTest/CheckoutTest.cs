@@ -7,6 +7,7 @@ using System;
 using System.Net;
 using System.Net.Http;
 using Adyen.HttpClient;
+using Microsoft.Extensions.DependencyInjection;
 using CreateCheckoutSessionRequest = Adyen.Model.Checkout.CreateCheckoutSessionRequest;
 using Environment = Adyen.Model.Enum.Environment;
 
@@ -198,7 +199,7 @@ namespace Adyen.IntegrationTest
                 Environment = Environment.Test,
                 XApiKey = ClientConstants.Xapikey
             };
-            var client = new Client(config, new System.Net.Http.HttpClient());
+            var client = new Client(config, default);
             var service = new Checkout(client);
 
             var checkoutSessionRequest = new CreateCheckoutSessionRequest
