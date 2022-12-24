@@ -37,7 +37,7 @@ using Adyen.HttpClient.Interfaces;
 using Adyen.Model;
 using Environment = System.Environment;
 using Amount = Adyen.Model.Amount;
-using PaymentResult = Adyen.Model.PaymentResult;
+using PaymentResult = Adyen.Model.Payments.PaymentResult;
 using Adyen.Model.Checkout;
 using System.Threading.Tasks;
 
@@ -58,7 +58,7 @@ namespace Adyen.Test
             var payment = new Payment(client);
             var paymentRequest = MockPaymentData.CreateFullPaymentRequest();
             var paymentResult = payment.Authorise(paymentRequest);
-            return GetAdditionaData(paymentResult);
+            return paymentResult;
         }
 
         protected PaymentResult CreatePaymentApiKeyBasedResultFromFile(string fileName)
@@ -68,7 +68,7 @@ namespace Adyen.Test
             var paymentRequest = MockPaymentData.CreateFullPaymentRequest();
 
             var paymentResult = payment.Authorise(paymentRequest);
-            return GetAdditionaData(paymentResult);
+            return paymentResult;
         }
         #endregion
 
@@ -547,7 +547,7 @@ namespace Adyen.Test
             };
         }
 
-        private PaymentResult GetAdditionaData(PaymentResult paymentResult)
+        /*private PaymentResult GetAdditionaData(PaymentResult paymentResult)
         {
             var paymentResultAdditionalData = paymentResult.AdditionalData;
 
@@ -573,7 +573,7 @@ namespace Adyen.Test
                 }
             }
             return paymentResult;
-        }
+        }*/
 
         protected static string GetMockFilePath(string fileName)
         {

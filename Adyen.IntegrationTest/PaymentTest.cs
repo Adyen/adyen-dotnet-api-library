@@ -1,6 +1,5 @@
 using System;
-using Adyen.Model;
-using Adyen.Model.Enum;
+using Adyen.Model.Payments;
 using Adyen.Service;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.Collections.Generic;
@@ -15,7 +14,7 @@ namespace Adyen.IntegrationTest
         public void BasicAuthenticationAuthoriseSuccessTest()
         {
             var paymentResult = CreatePaymentResult();
-            Assert.AreEqual(paymentResult.ResultCode, ResultCodeEnum.Authorised);
+            Assert.AreEqual(paymentResult.ResultCode, PaymentResult.ResultCodeEnum.Authorised);
             Assert.AreEqual("1111", GetAdditionalData(paymentResult.AdditionalData, "cardSummary"));
             Assert.IsNotNull(GetAdditionalData(paymentResult.AdditionalData, "avsResult"));
             Assert.AreEqual("1 Matches", GetAdditionalData(paymentResult.AdditionalData, "cvcResult"));
@@ -29,7 +28,7 @@ namespace Adyen.IntegrationTest
         {
             var paymentResult = await CreatePaymentResultAsync();
 
-            Assert.AreEqual(paymentResult.ResultCode, ResultCodeEnum.Authorised);
+            Assert.AreEqual(paymentResult.ResultCode, PaymentResult.ResultCodeEnum.Authorised);
             Assert.AreEqual("1111", GetAdditionalData(paymentResult.AdditionalData, "cardSummary"));
             Assert.IsNotNull(GetAdditionalData(paymentResult.AdditionalData, "avsResult"));
             Assert.AreEqual("1 Matches", GetAdditionalData(paymentResult.AdditionalData, "cvcResult"));
@@ -43,7 +42,7 @@ namespace Adyen.IntegrationTest
         {
             var paymentResult = CreatePaymentResultWithApiKeyAuthentication();
 
-            Assert.AreEqual(paymentResult.ResultCode, ResultCodeEnum.Authorised);
+            Assert.AreEqual(paymentResult.ResultCode, PaymentResult.ResultCodeEnum.Authorised);
             Assert.AreEqual("1111", GetAdditionalData(paymentResult.AdditionalData, "cardSummary"));
             Assert.IsNotNull(GetAdditionalData(paymentResult.AdditionalData, "avsResult"));
             Assert.AreEqual("1 Matches", GetAdditionalData(paymentResult.AdditionalData, "cvcResult"));

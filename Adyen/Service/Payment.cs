@@ -21,10 +21,11 @@
 //  */
 #endregion
 
-using Adyen.Model;
+using Adyen.Model.Payments;
 using Adyen.Service.Resource.Payment;
 using Newtonsoft.Json;
 using System.Threading.Tasks;
+using RequestOptions = Adyen.Model.RequestOptions;
 
 namespace Adyen.Service
 {
@@ -53,7 +54,7 @@ namespace Adyen.Service
             return JsonConvert.DeserializeObject<PaymentResult>(jsonResponse);
         }
 
-        public PaymentResult Authorise(PaymentRequestThreeDS2 paymentRequest, RequestOptions requestOptions = null)
+        public PaymentResult Authorise(PaymentRequest3ds2 paymentRequest, RequestOptions requestOptions = null)
         {
             var jsonRequest = Util.JsonOperation.SerializeRequest(paymentRequest);
             var jsonResponse = _authorise.Request(jsonRequest, requestOptions);
@@ -67,35 +68,35 @@ namespace Adyen.Service
             return JsonConvert.DeserializeObject<PaymentResult>(jsonResponse);
         }
 
-        public async Task<PaymentResult> AuthoriseAsync(PaymentRequestThreeDS2 paymentRequest, RequestOptions requestOptions = null)
+        public async Task<PaymentResult> AuthoriseAsync(PaymentRequest3ds2 paymentRequest, RequestOptions requestOptions = null)
         {
             var jsonRequest = Util.JsonOperation.SerializeRequest(paymentRequest);
             var jsonResponse = await _authorise.RequestAsync(jsonRequest, requestOptions);
             return JsonConvert.DeserializeObject<PaymentResult>(jsonResponse);
         }
 
-        public PaymentResult Authorise3D(PaymentRequest3D paymentRequest3D, RequestOptions requestOptions = null)
+        public PaymentResult Authorise3D(PaymentRequest3d paymentRequest, RequestOptions requestOptions = null)
         {
-            var jsonRequest = JsonConvert.SerializeObject(paymentRequest3D);
+            var jsonRequest = JsonConvert.SerializeObject(paymentRequest);
             var jsonResponse = _authorise3D.Request(jsonRequest, requestOptions);
             return JsonConvert.DeserializeObject<PaymentResult>(jsonResponse);
         }
 
-        public async Task<PaymentResult> Authorise3DAsync(PaymentRequest3D paymentRequest3D, RequestOptions requestOptions = null)
+        public async Task<PaymentResult> Authorise3DAsync(PaymentRequest3d paymentRequest, RequestOptions requestOptions = null)
         {
-            var jsonRequest = JsonConvert.SerializeObject(paymentRequest3D);
+            var jsonRequest = JsonConvert.SerializeObject(paymentRequest);
             var jsonResponse = await _authorise3D.RequestAsync(jsonRequest, requestOptions);
             return JsonConvert.DeserializeObject<PaymentResult>(jsonResponse);
         }
 
-        public PaymentResult Authorise3DS2(PaymentRequestThreeDS2 paymentRequest, RequestOptions requestOptions = null)
+        public PaymentResult Authorise3DS2(PaymentRequest3ds2 paymentRequest, RequestOptions requestOptions = null)
         {
             var jsonRequest = JsonConvert.SerializeObject(paymentRequest);
             var jsonResponse =  _authorise3DS2.Request(jsonRequest, requestOptions);
             return JsonConvert.DeserializeObject<PaymentResult>(jsonResponse);
         }
 
-        public async Task<PaymentResult> Authorise3DS2Async(PaymentRequestThreeDS2 paymentRequest, RequestOptions requestOptions = null)
+        public async Task<PaymentResult> Authorise3DS2Async(PaymentRequest3ds2 paymentRequest, RequestOptions requestOptions = null)
         {
             var jsonRequest = JsonConvert.SerializeObject(paymentRequest);
             var jsonResponse = await _authorise3DS2.RequestAsync(jsonRequest, requestOptions);
