@@ -22,6 +22,7 @@
 #endregion
 
 using System;
+using System.Net.Http;
 using System.Threading;
 using Adyen.Constants;
 using Adyen.HttpClient.Interfaces;
@@ -33,7 +34,7 @@ namespace Adyen
 {
     public class Client
     {
-        private readonly System.Net.Http.HttpClient _httpClient;
+        private readonly IHttpClientFactory _factory;
         private IClient _client;
 
         public Config Config { get; set; }
@@ -44,7 +45,7 @@ namespace Adyen
 
         public event CallbackLogHandler LogCallback;
 
-        public Client(string username, string password, Environment environment, System.Net.Http.HttpClient httpClient = null)
+        public Client(string username, string password, Environment environment, IHttpClientFactory factory = null)
         {
             Config = new Config
             {
@@ -52,11 +53,11 @@ namespace Adyen
                 Password = password,
                 Environment = environment
             };
-            _httpClient = httpClient;
+            _factory = factory;
             this.SetEnvironment(environment);
         }
         
-        public Client(string username, string password, string liveEndpointUrlPrefix, Environment environment, System.Net.Http.HttpClient httpClient = null)
+        public Client(string username, string password, string liveEndpointUrlPrefix, Environment environment, IHttpClientFactory factory = null)
         {
             Config = new Config
             {
@@ -64,43 +65,43 @@ namespace Adyen
                 Password = password,
                 Environment = environment
             };
-            _httpClient = httpClient;
+            _factory = factory;
             this.SetEnvironment(environment, liveEndpointUrlPrefix);
         }
 
-        public Client(string xapikey, Environment environment, System.Net.Http.HttpClient httpClient = null)
+        public Client(string xapikey, Environment environment, IHttpClientFactory factory = null)
         {
             Config = new Config
             {
                 Environment = environment,
                 XApiKey = xapikey
             };
-            _httpClient = httpClient;
+            _factory = factory;
             this.SetEnvironment(environment);
         }
 
-        public Client(string xapikey, Environment environment, string liveEndpointUrlPrefix, System.Net.Http.HttpClient httpClient = null)
+        public Client(string xapikey, Environment environment, string liveEndpointUrlPrefix, IHttpClientFactory factory = null)
         {
             Config = new Config
             {
                 Environment = environment,
                 XApiKey = xapikey
             };
-            _httpClient = httpClient;
+            _factory = factory;
             this.SetEnvironment(environment, liveEndpointUrlPrefix);
         }
 
-        public Client(Config config, string liveEndpointUrlPrefix, System.Net.Http.HttpClient httpClient = null)
+        public Client(Config config, string liveEndpointUrlPrefix, IHttpClientFactory factory = null)
         {
             Config = config;
-            _httpClient = httpClient;
+            _factory = factory;
             this.SetEnvironment(config.Environment, liveEndpointUrlPrefix);
         }
         
-        public Client(Config config, System.Net.Http.HttpClient httpClient = null)
+        public Client(Config config, IHttpClientFactory factory = null)
         {
             Config = config;
-            _httpClient = httpClient;
+            _factory = factory;
             this.SetEnvironment(config.Environment);
         }
 
@@ -139,14 +140,13 @@ namespace Adyen
                     break;
             }
 
-            ReloadClient();
+            InitClient();
         }
 
-        private void ReloadClient()
+        private void InitClient()
         {
-            _client?.Dispose();
-            _client = _httpClient != null
-                ? new HttpClientWrapper(Config, _httpClient)
+            _client = _factory != null
+                ? new HttpClientWrapper(Config, _factory.CreateClient())
                 : (IClient)new HttpWebRequestWrapper(Config);
         }
 
