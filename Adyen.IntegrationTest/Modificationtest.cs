@@ -1,3 +1,6 @@
+using System.Net.Http;
+using Adyen.Model.Enum;
+using Adyen.Model.Payments;
 using Adyen.Service;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
@@ -65,7 +68,47 @@ namespace Adyen.IntegrationTest
             var adjustAuthorisationtestRequest = base.CreateAdjustAuthorisationtestRequest(pspReference: paymentResultPspReference);
             var adjustAuthorisationtestResult = modification.AdjustAuthorisation(adjustAuthorisationtestRequest);
             Assert.AreEqual(adjustAuthorisationtestResult.Response, Adyen.Model.Enum.ResponseEnum.AdjustAuthorisationReceived);
-         
+        }
+        
+        [TestMethod]
+        public void TestTechnicalCancelReceived()
+        {
+            var pspRef = GetTestPspReference();
+            var client = base.CreateApiKeyTestClient();
+            var modification = new Modification(client);
+            var technicalCancelRequest = new TechnicalCancelRequest()
+            {
+                MerchantAccount = ClientConstants.MerchantAccount,
+                OriginalMerchantReference = pspRef,
+                Reference = "reference123"
+            };
+            var techCancelResponse = modification.TechnicalCancel(technicalCancelRequest);
+            Assert.AreEqual(techCancelResponse.Response, ResponseEnum.TechnicalCancelReceived);
+        }
+        
+        [TestMethod]
+        public void TestDonationReceived()
+        {
+            var pspRef = GetTestPspReference();
+            var client = base.CreateApiKeyTestClient();
+            var modification = new Modification(client);
+            var donationRequest = new DonationRequest()
+            {
+                MerchantAccount = ClientConstants.MerchantAccount,
+                OriginalReference = pspRef,
+                Reference = "reference123",
+                ModificationAmount = new Amount("EUR",1),
+                DonationAccount = "MyCharity_Giving_TEST"
+
+            };
+            try
+            {
+                modification.DonateAsync(donationRequest).GetAwaiter().GetResult();
+            }
+            catch (HttpRequestException e)
+            {
+                Assert.AreEqual(e.Message, "Response status code does not indicate success: 403 ().");
+            }
         }
     }
 }

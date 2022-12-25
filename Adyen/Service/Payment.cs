@@ -49,72 +49,82 @@ namespace Adyen.Service
 
         public PaymentResult Authorise(PaymentRequest paymentRequest, RequestOptions requestOptions = null)
         {
-            var jsonRequest = Util.JsonOperation.SerializeRequest(paymentRequest);
+            var jsonRequest = paymentRequest.ToJson();
             var jsonResponse = _authorise.Request(jsonRequest, requestOptions);
             return JsonConvert.DeserializeObject<PaymentResult>(jsonResponse);
         }
 
         public PaymentResult Authorise(PaymentRequest3ds2 paymentRequest, RequestOptions requestOptions = null)
         {
-            var jsonRequest = Util.JsonOperation.SerializeRequest(paymentRequest);
+            var jsonRequest = paymentRequest.ToJson();
             var jsonResponse = _authorise.Request(jsonRequest, requestOptions);
             return JsonConvert.DeserializeObject<PaymentResult>(jsonResponse);
         }
 
         public async Task<PaymentResult> AuthoriseAsync(PaymentRequest paymentRequest, RequestOptions requestOptions = null)
         {
-            var jsonRequest = Util.JsonOperation.SerializeRequest(paymentRequest);
+            var jsonRequest = paymentRequest.ToJson();
             var jsonResponse = await _authorise.RequestAsync(jsonRequest, requestOptions);
             return JsonConvert.DeserializeObject<PaymentResult>(jsonResponse);
         }
 
         public async Task<PaymentResult> AuthoriseAsync(PaymentRequest3ds2 paymentRequest, RequestOptions requestOptions = null)
         {
-            var jsonRequest = Util.JsonOperation.SerializeRequest(paymentRequest);
+            var jsonRequest = paymentRequest.ToJson();
             var jsonResponse = await _authorise.RequestAsync(jsonRequest, requestOptions);
             return JsonConvert.DeserializeObject<PaymentResult>(jsonResponse);
         }
 
         public PaymentResult Authorise3D(PaymentRequest3d paymentRequest, RequestOptions requestOptions = null)
         {
-            var jsonRequest = JsonConvert.SerializeObject(paymentRequest);
+            var jsonRequest = paymentRequest.ToJson();
             var jsonResponse = _authorise3D.Request(jsonRequest, requestOptions);
             return JsonConvert.DeserializeObject<PaymentResult>(jsonResponse);
         }
 
         public async Task<PaymentResult> Authorise3DAsync(PaymentRequest3d paymentRequest, RequestOptions requestOptions = null)
         {
-            var jsonRequest = JsonConvert.SerializeObject(paymentRequest);
+            var jsonRequest = paymentRequest.ToJson();
             var jsonResponse = await _authorise3D.RequestAsync(jsonRequest, requestOptions);
             return JsonConvert.DeserializeObject<PaymentResult>(jsonResponse);
         }
 
         public PaymentResult Authorise3DS2(PaymentRequest3ds2 paymentRequest, RequestOptions requestOptions = null)
         {
-            var jsonRequest = JsonConvert.SerializeObject(paymentRequest);
+            var jsonRequest = paymentRequest.ToJson();
             var jsonResponse =  _authorise3DS2.Request(jsonRequest, requestOptions);
             return JsonConvert.DeserializeObject<PaymentResult>(jsonResponse);
         }
 
         public async Task<PaymentResult> Authorise3DS2Async(PaymentRequest3ds2 paymentRequest, RequestOptions requestOptions = null)
         {
-            var jsonRequest = JsonConvert.SerializeObject(paymentRequest);
+            var jsonRequest = paymentRequest.ToJson();
             var jsonResponse = await _authorise3DS2.RequestAsync(jsonRequest, requestOptions);
             return JsonConvert.DeserializeObject<PaymentResult>(jsonResponse);
         }
 
-        public AuthenticationResultResponse GetAuthenticationResult(AuthenticationResultRequest authenticationResultRequest)
+        public async Task<AuthenticationResultResponse> GetAuthenticationResultAsync(AuthenticationResultRequest authenticationResultRequest, RequestOptions requestOptions = null)
         {
-            var jsonRequest = JsonConvert.SerializeObject(authenticationResultRequest);
-            var jsonResponse = _getAuthenticationResult.Request(jsonRequest);
+            var jsonRequest = authenticationResultRequest.ToJson();
+            var jsonResponse = await _getAuthenticationResult.RequestAsync(jsonRequest, requestOptions);
             return JsonConvert.DeserializeObject<AuthenticationResultResponse>(jsonResponse);
         }
 
-        public ThreeDS2Result Retrieve3DS2Result(AuthenticationResultRequest authenticationResultRequest)
+        public AuthenticationResultResponse GetAuthenticationResult(AuthenticationResultRequest authenticationResultRequest, RequestOptions requestOptions = null)
         {
-            var jsonRequest = JsonConvert.SerializeObject(authenticationResultRequest);
-            var jsonResponse = _retrieve3DS2Result.Request(jsonRequest);
+            return GetAuthenticationResultAsync(authenticationResultRequest, requestOptions).GetAwaiter().GetResult();
+        }
+
+        public async Task<ThreeDS2Result> Retrieve3DS2ResultAsync(AuthenticationResultRequest authenticationResultRequest, RequestOptions requestOptions = null)
+        {
+            var jsonRequest = authenticationResultRequest.ToJson();
+            var jsonResponse = await _retrieve3DS2Result.RequestAsync(jsonRequest, requestOptions);
             return JsonConvert.DeserializeObject<ThreeDS2Result>(jsonResponse);
+        }
+
+        public ThreeDS2Result Retrieve3DS2Result(AuthenticationResultRequest authenticationResultRequest, RequestOptions requestOptions = null)
+        {
+            return Retrieve3DS2ResultAsync(authenticationResultRequest, requestOptions).GetAwaiter().GetResult();
         }
     }
 }
