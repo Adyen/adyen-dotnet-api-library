@@ -22,29 +22,29 @@
 #endregion
 
 using Adyen.Model.Payments;
-using Adyen.Service.Resource.Payment;
 using Newtonsoft.Json;
 using System.Threading.Tasks;
+using Adyen.Service.Resource;
 using RequestOptions = Adyen.Model.RequestOptions;
 
 namespace Adyen.Service
 {
     public class Payment : AbstractService
     {
-        private readonly Authorise _authorise;
-        private readonly Authorise3D _authorise3D;
-        private readonly Authorise3DS2 _authorise3DS2;
-        private readonly GetAuthenticationResult _getAuthenticationResult;
-        private readonly Retrieve3DS2Result _retrieve3DS2Result;
+        private readonly PaymentResource _authorise;
+        private readonly PaymentResource _authorise3D;
+        private readonly PaymentResource _authorise3DS2;
+        private readonly PaymentResource _getAuthenticationResult;
+        private readonly PaymentResource _retrieve3DS2Result;
         
         public Payment(Client client)
             : base(client)
         {
-            _authorise = new Authorise(this);
-            _authorise3D = new Authorise3D(this);
-            _authorise3DS2 = new Authorise3DS2(this);
-            _getAuthenticationResult = new GetAuthenticationResult(this);
-            _retrieve3DS2Result = new Retrieve3DS2Result(this);
+            _authorise = new PaymentResource(this, "/authorise");
+            _authorise3D = new PaymentResource(this, "/authorise3d");
+            _authorise3DS2 = new PaymentResource(this, "/authorise3ds2");
+            _getAuthenticationResult = new PaymentResource(this, "/getAuthenticationResult");
+            _retrieve3DS2Result = new PaymentResource(this, "/retrieve3ds2Result");
         }
 
         public PaymentResult Authorise(PaymentRequest paymentRequest, RequestOptions requestOptions = null)

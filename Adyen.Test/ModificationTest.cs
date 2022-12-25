@@ -167,6 +167,5 @@ namespace Adyen.Test
             var modificationResult = modification.VoidPendingRefund(voidPendingRefundRequest);
             Assert.AreEqual(modificationResult.Response, Model.Enum.ResponseEnum.VoidPendingRefundReceived);
         }
-
     }
 }

@@ -1,4 +1,4 @@
-﻿#region License
+#region License
 // /*
 //  *                       ######
 //  *                       ######
@@ -22,18 +22,14 @@
 #endregion
 
 using System.Collections.Generic;
+using Adyen.Constants;
 
-namespace Adyen.Service.Resource.Payment
+namespace Adyen.Service.Resource
 {
-    public class GetAuthenticationResult : ServiceResource
+    public class PaymentResource : ServiceResource
     {
-        public GetAuthenticationResult(AbstractService abstractService)
-            : base(abstractService, abstractService.Client.Config.Endpoint + "/pal/servlet/Payment/" + abstractService.Client.ApiVersion + "/getAuthenticationResult",
-                new List<string>
-                {
-                    "merchantAccount",
-                    "pspReference"
-                })
+        public PaymentResource(AbstractService abstractService, string endpoint)
+            : base(abstractService, abstractService.Client.Config.Endpoint + "/pal/servlet/Payment/" + abstractService.Client.ApiVersion + endpoint,null)
         {
         }
     }

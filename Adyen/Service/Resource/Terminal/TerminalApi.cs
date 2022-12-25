@@ -21,7 +21,7 @@
 //  */
 #endregion
 
-namespace Adyen.Service.Resource.Payment
+namespace Adyen.Service.Resource.Terminal
 {
     public class TerminalApi : ServiceResource
     {

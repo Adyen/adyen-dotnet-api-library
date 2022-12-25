@@ -1,4 +1,4 @@
-#region License
+﻿#region License
 // /*
 //  *                       ######
 //  *                       ######
@@ -21,19 +21,16 @@
 //  */
 #endregion
 
+using System;
 using System.Collections.Generic;
+using System.Text;
 
-namespace Adyen.Service.Resource.Payment
+namespace Adyen.Service.Resource.Terminal
 {
-    public class Retrieve3DS2Result : ServiceResource
+    public class TerminalApiLocal: ServiceResource
     {
-        public Retrieve3DS2Result(AbstractService abstractService)
-            : base(abstractService, abstractService.Client.Config.Endpoint + "/pal/servlet/Payment/" + abstractService.Client.ApiVersion + "/retrieve3ds2Result",
-                new List<string>
-                {
-                    "merchantAccount",
-                    "pspReference"
-                })
+        public TerminalApiLocal(AbstractService abstractService) 
+            : base(abstractService, abstractService.Client.Config.Endpoint, null)
         {
         }
     }

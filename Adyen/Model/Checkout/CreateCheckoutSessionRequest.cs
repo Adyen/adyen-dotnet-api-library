@@ -1,4 +1,4 @@
-#region Licence
+﻿#region Licence
 
 // 
 //                        ######
@@ -32,7 +32,6 @@ using System.Runtime.Serialization;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
 using System.ComponentModel.DataAnnotations;
-using Adyen.Service.Resource.Modification;
 using Adyen.Util;
 
 namespace Adyen.Model.Checkout

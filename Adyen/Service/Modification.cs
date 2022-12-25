@@ -25,7 +25,6 @@ using System.Threading.Tasks;
 using Adyen.Model;
 using Adyen.Model.Payments;
 using Adyen.Service.Resource;
-using Adyen.Service.Resource.Modification;
 using Newtonsoft.Json;
 using AdjustAuthorisationRequest = Adyen.Model.Modification.AdjustAuthorisationRequest;
 using CancelOrRefundRequest = Adyen.Model.Modification.CancelOrRefundRequest;
@@ -39,22 +38,26 @@ namespace Adyen.Service
 {
     public class Modification : AbstractService
     {
-        private readonly Capture _capture;
-        private readonly CancelOrRefund _cancelOrRefund;
-        private readonly Refund _refund;
-        private readonly Cancel _cancel;
-        private readonly AdjustAuthorisation _adjustAuthorisation;
-        private readonly VoidPendingRefund _voidPendingRefund;
+        private readonly PaymentResource _capture;
+        private readonly PaymentResource _cancelOrRefund;
+        private readonly PaymentResource _refund;
+        private readonly PaymentResource _cancel;
+        private readonly PaymentResource _adjustAuthorisation;
+        private readonly PaymentResource _voidPendingRefund;
+        private readonly PaymentResource _technicalCancel;
+        private readonly PaymentResource _donate;
 
         public Modification(Client client)
             : base(client)
         {
-            _capture = new Capture(this);
-            _cancelOrRefund = new CancelOrRefund(this);
-            _refund = new Refund(this);
-            _cancel = new Cancel(this);
-            _adjustAuthorisation = new AdjustAuthorisation(this);
-            _voidPendingRefund = new VoidPendingRefund(this);
+            _capture = new PaymentResource(this, "/capture");
+            _cancelOrRefund = new PaymentResource(this, "/cancelOrRefund");
+            _refund = new PaymentResource(this, "/refund");
+            _cancel = new PaymentResource(this, "/cancel");
+            _adjustAuthorisation = new PaymentResource(this, "/adjustAuthorisation");
+            _voidPendingRefund = new PaymentResource(this, "/voidPendingRefund");
+            _technicalCancel = new PaymentResource(this, "/technicalCancel");
+            _donate = new PaymentResource(this, "/donate");
         }
 
         public ModificationResult Capture(CaptureRequest request, RequestOptions requestOptions = null)
@@ -144,8 +147,7 @@ namespace Adyen.Service
         public async Task<ModificationResult> TechnicalCancelAsync(TechnicalCancelRequest request, RequestOptions requestOptions = null)
         {
             var jsonRequest = request.ToJson();
-            var resource = new ModificationResource(this, "/technicalCancel");
-            var jsonResult = await resource.RequestAsync(jsonRequest, requestOptions);
+            var jsonResult = await _technicalCancel.RequestAsync(jsonRequest, requestOptions);
             return JsonConvert.DeserializeObject<ModificationResult>(jsonResult);
         }
 
@@ -157,8 +159,7 @@ namespace Adyen.Service
         public async Task<ModificationResult> DonateAsync(DonationRequest request, RequestOptions requestOptions = null)
         {
             var jsonRequest = request.ToJson();
-            var resource = new ModificationResource(this, "/donate");
-            var jsonResult = await resource.RequestAsync(jsonRequest, requestOptions);
+            var jsonResult = await _donate.RequestAsync(jsonRequest, requestOptions);
             return JsonConvert.DeserializeObject<ModificationResult>(jsonResult);
         }
 
