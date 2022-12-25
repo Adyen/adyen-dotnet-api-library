@@ -177,7 +177,7 @@ namespace Adyen.Test
         [TestMethod]
         public void TestAuthenticationResult3ds1Success()
         {
-            var client = CreateMockTestClientRequest("Mocks/authentication-result-success-3ds1.json");
+            var client = CreateMockTestClientApiKeyBasedRequestAsync("Mocks/authentication-result-success-3ds1.json");
             var payment = new Payment(client);
             var authenticationResultRequest = new AuthenticationResultRequest();
             var authenticationResultResponse = payment.GetAuthenticationResult(authenticationResultRequest);
@@ -189,7 +189,7 @@ namespace Adyen.Test
         [TestMethod]
         public void TestAuthenticationResult3ds2Success()
         {
-            var client = CreateMockTestClientRequest("Mocks/authentication-result-success-3ds2.json");
+            var client = CreateMockTestClientApiKeyBasedRequestAsync("Mocks/authentication-result-success-3ds2.json");
             var payment = new Payment(client);
             var authenticationResultRequest = new AuthenticationResultRequest();
             var authenticationResultResponse = payment.GetAuthenticationResult(authenticationResultRequest);
@@ -201,7 +201,7 @@ namespace Adyen.Test
         [TestMethod]
         public void TestRetrieve3ds2ResultSuccess()
         {
-            var client = CreateMockTestClientRequest("Mocks/ThreeDS2Result.json");
+            var client = CreateMockTestClientApiKeyBasedRequestAsync("Mocks/ThreeDS2Result.json");
             var payment = new Payment(client);
             var authenticationResultRequest = new AuthenticationResultRequest();
             var ThreeDSTwoResult = payment.Retrieve3DS2Result(authenticationResultRequest);
