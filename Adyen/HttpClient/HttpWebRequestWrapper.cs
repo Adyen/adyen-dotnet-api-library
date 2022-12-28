@@ -79,15 +79,7 @@ namespace Adyen.HttpClient
             }
             return responseText;
         }
-
-        /// <summary>
-        /// HttpWebRequest asynchronous.
-        /// </summary>
-        /// <param name="endpoint"></param>
-        /// <param name="json"></param>
-        /// <param name="isApiKeyRequired"></param>
-        /// <param name="requestOptions">Optional parameter used to specify the options for the request</param>
-        /// <returns>Task<string></returns>
+        
         public async Task<string> RequestAsync(string endpoint, string json, bool isApiKeyRequired, RequestOptions requestOptions = null, HttpMethod httpMethod = null)
         {
             string responseText = null;
@@ -167,7 +159,7 @@ namespace Adyen.HttpClient
 
         public HttpWebRequest GetHttpWebRequest(string endpoint, bool isApiKeyRequired, RequestOptions requestOptions = null)
         {
-            //Add default headers
+            // Add default headers
             var httpWebRequest = (HttpWebRequest)WebRequest.Create(endpoint);
             httpWebRequest.Method = "POST";
             httpWebRequest.ContentType = "application/json";
@@ -178,7 +170,7 @@ namespace Adyen.HttpClient
             {
                 httpWebRequest.Headers.Add("Idempotency-Key", requestOptions?.IdempotencyKey);
             }
-            //Use one of two authentication method.
+            // Use one of two authentication method.
             if (isApiKeyRequired || !string.IsNullOrEmpty(_config.XApiKey))
             {
                 httpWebRequest.Headers.Add("x-api-key", _config.XApiKey);
@@ -212,7 +204,7 @@ namespace Adyen.HttpClient
 
         public void Dispose()
         {
-            //note: this method is empty just for backward compatibility, because newer HttpClientWrapper implementation of IClient implements IDisposable
+            // Note: this method is empty just for backward compatibility, because newer HttpClientWrapper implementation of IClient implements IDisposable
         }
     }
 }

@@ -218,7 +218,7 @@ namespace Adyen.Service
         /// </summary>
         /// <param name="linkId"></param>
         /// <returns>PaymentLinkResponse</returns>
-        public PaymentLinkResponse getPaymentLinks(string linkId)
+        public PaymentLinkResponse GetPaymentLinks(string linkId)
         {
             linkId = "/" + linkId;
             var paymentLinks = new PaymentLinks(this, linkId);
@@ -231,7 +231,7 @@ namespace Adyen.Service
         /// </summary>
         /// <param name="linkId"></param>
         /// <returns>PaymentLinkResponse</returns>
-        public async Task<PaymentLinkResponse> getPaymentLinksAsync(string linkId)
+        public async Task<PaymentLinkResponse> GetPaymentLinksAsync(string linkId)
         {
             linkId = "/" + linkId;
             var paymentLinks = new PaymentLinks(this, linkId);
@@ -245,7 +245,7 @@ namespace Adyen.Service
         /// <param name="linkId"></param>
         /// <returns>PaymentLinkResponse</returns>
         
-        public PaymentLinkResponse patchPaymentLinks(UpdatePaymentLinkRequest updatePaymentLinkRequest, string linkId)
+        public PaymentLinkResponse PatchPaymentLinks(UpdatePaymentLinkRequest updatePaymentLinkRequest, string linkId)
         {
             linkId = "/" + linkId;
             var paymentLinks = new PaymentLinks(this, linkId);
@@ -261,7 +261,7 @@ namespace Adyen.Service
         /// <param name="linkId"></param>
         /// <returns>PaymentLinkResponse</returns>
         
-        public async Task<PaymentLinkResponse> patchPaymentLinksAsync(UpdatePaymentLinkRequest updatePaymentLinkRequest, string linkId)
+        public async Task<PaymentLinkResponse> PatchPaymentLinksAsync(UpdatePaymentLinkRequest updatePaymentLinkRequest, string linkId)
         {
             linkId = "/" + linkId;
             var paymentLinks = new PaymentLinks(this, linkId);

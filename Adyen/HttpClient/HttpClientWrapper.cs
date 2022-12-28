@@ -26,7 +26,6 @@
 using Adyen.Constants;
 using System;
 using System.Collections.Generic;
-using System.Net;
 using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
@@ -56,8 +55,7 @@ namespace Adyen.HttpClient
         }
 
         public async Task<string> RequestAsync(string endpoint, string requestBody, bool isApiKeyRequired, RequestOptions requestOptions = null, HttpMethod httpMethod = null)
-        {   
-            // do we need the using() here in the first line?
+        {
             using (var request = GetHttpRequestMessage(endpoint, isApiKeyRequired, requestBody, requestOptions, httpMethod))
             using (var httpResponseMessage = await _httpClient.SendAsync(request))
             {
@@ -86,7 +84,7 @@ namespace Adyen.HttpClient
             
             var httpWebRequest = new HttpRequestMessage(httpMethod, endpoint);
             
-            // custom patch method for dotnet <2.1
+            // Custom patch method for dotnet <2.1
             var patchMethod = new HttpMethod("PATCH");
             
             if (httpMethod == HttpMethod.Post || httpMethod == patchMethod)
@@ -132,7 +130,7 @@ namespace Adyen.HttpClient
 
             if (stringBuilder.Length > 0)
             {
-                //remove trailing &amp
+                // Remove trailing &amp
                 stringBuilder.Remove(stringBuilder.Length - 2, 1);
             }
 
