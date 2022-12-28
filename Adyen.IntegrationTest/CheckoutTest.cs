@@ -4,10 +4,6 @@ using Adyen.Model.Checkout.Action;
 using Adyen.Service;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
-using System.Net;
-using System.Net.Http;
-using Adyen.HttpClient;
-using Microsoft.Extensions.DependencyInjection;
 using CreateCheckoutSessionRequest = Adyen.Model.Checkout.CreateCheckoutSessionRequest;
 using Environment = Adyen.Model.Enum.Environment;
 
@@ -142,7 +138,7 @@ namespace Adyen.IntegrationTest
         private void PaymentLinksGetSuccessTest(string Id)
         {   
             
-            var createPaymentLinkResponse = _checkout.getPaymentLinks(Id);
+            var createPaymentLinkResponse = _checkout.GetPaymentLinks(Id);
             Assert.IsNotNull(createPaymentLinkResponse);
             Assert.IsNotNull(createPaymentLinkResponse.Url);
             Assert.IsNotNull(createPaymentLinkResponse.Amount);
@@ -154,7 +150,7 @@ namespace Adyen.IntegrationTest
         {
             var updatePaymentLinksRequest = new UpdatePaymentLinkRequest(status: UpdatePaymentLinkRequest.StatusEnum.Expired);
             
-            var createPaymentLinkResponse = _checkout.patchPaymentLinks(updatePaymentLinksRequest, Id);
+            var createPaymentLinkResponse = _checkout.PatchPaymentLinks(updatePaymentLinksRequest, Id);
             Assert.IsNotNull(createPaymentLinkResponse);
             Assert.IsNotNull(createPaymentLinkResponse.Url);
             Assert.IsNotNull(createPaymentLinkResponse.Amount);
