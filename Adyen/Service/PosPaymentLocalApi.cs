@@ -95,31 +95,6 @@ namespace Adyen.Service
             this.Client.LogLine("Response: \n" + decryptResponse);
             return _saleToPoiMessageSerializer.Deserialize(decryptResponse);
         }
-        
-        /// <summary>
-        /// Terminal Api https call asynchronous
-        /// </summary>
-        /// <param name="saleToPoiRequest"></param>
-        /// <param name="encryptionCredentialDetails"></param>
-        /// <returns></returns>
-        public async Task<SaleToPOIResponse> TerminalApiLocalAsync(SaleToPOIMessage saleToPoiRequest, EncryptionCredentialDetails encryptionCredentialDetails)
-        {
-            var saleToPoiRequestMessageSerialized = _saleToPoiMessageSerializer.Serialize(saleToPoiRequest);
-            this.Client.LogLine("Request: \n" + saleToPoiRequestMessageSerialized);
-            var saleToPoiRequestMessageSecured = _messageSecuredEncryptor.Encrypt(saleToPoiRequestMessageSerialized, saleToPoiRequest.MessageHeader, encryptionCredentialDetails);
-            var serializeSaleToPoiRequestMessageSecured = _saleToPoiMessageSerializer.Serialize(saleToPoiRequestMessageSecured);
-            this.Client.LogLine("Encrypted Request: \n" + serializeSaleToPoiRequestMessageSecured);
-            var response = await _terminalApiLocal.RequestAsync(serializeSaleToPoiRequestMessageSecured);
-            this.Client.LogLine("Response: \n" + response);
-            if (string.IsNullOrEmpty(response))
-            {
-                return null;
-            }
-            var saleToPoiResponseSecured = _saleToPoiMessageSecuredSerializer.Deserialize(response);
-            var decryptResponse = _messageSecuredEncryptor.Decrypt(saleToPoiResponseSecured, encryptionCredentialDetails);
-            this.Client.LogLine("Response: \n" + decryptResponse);
-            return _saleToPoiMessageSerializer.Deserialize(decryptResponse);
-        }
 
         /// <summary>
         /// Terminal Api https call
