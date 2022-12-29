@@ -26,12 +26,14 @@
 using Adyen.Constants;
 using System;
 using System.Collections.Generic;
+using System.Net;
 using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
 using System.Web;
 using Adyen.HttpClient.Interfaces;
 using Adyen.Model;
+using Adyen.Model.Enum;
 
 namespace Adyen.HttpClient
 {
@@ -59,8 +61,11 @@ namespace Adyen.HttpClient
             using (var httpResponseMessage = await _httpClient.SendAsync(request))
             {
                 var responseText = await httpResponseMessage.Content.ReadAsStringAsync();
-                httpResponseMessage.EnsureSuccessStatusCode();
-                return responseText;
+                if(httpResponseMessage.IsSuccessStatusCode)
+                {
+                    return responseText;
+                } 
+                throw (new HttpClientException((int)httpResponseMessage.StatusCode, (int)httpResponseMessage.StatusCode + ": " + httpResponseMessage.StatusCode + ", ResponseBody: " + responseText, responseText));
             }
         }
 

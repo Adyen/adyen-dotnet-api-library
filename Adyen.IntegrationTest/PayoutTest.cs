@@ -5,6 +5,7 @@ using Adyen.Service;
 using Adyen.Model.Payout;
 using Adyen.Model;
 using System;
+using Adyen.HttpClient;
 
 namespace Adyen.IntegrationTest
 {
@@ -38,9 +39,9 @@ namespace Adyen.IntegrationTest
             {
                 PayoutResponse result = _payout.PayoutSubmit(payoutRequest);
             }
-            catch (System.Net.Http.HttpRequestException e)
+            catch (HttpClientException e)
             {
-                Assert.AreEqual("Response status code does not indicate success: 403 ().", e.Message);
+                Assert.AreEqual("403: Forbidden, ResponseBody: {\"status\":403,\"errorCode\":\"901\",\"message\":\"Invalid Merchant Account\",\"errorType\":\"security\"}", e.Message);
             }
         }
 
@@ -53,9 +54,9 @@ namespace Adyen.IntegrationTest
             {
                 PayoutResponse result = _payout.PayoutSubmit(payoutRequest);
             }
-            catch (System.Net.Http.HttpRequestException e)
+            catch (HttpClientException e)
             {
-                Assert.AreEqual("Response status code does not indicate success: 403 ().", e.Message);
+                Assert.AreEqual(403, e.Code);
             }
         }
 

@@ -488,6 +488,13 @@ namespace Adyen.Test
         }
 
         [TestMethod]
+        public void ClientEndpointsSetTest()
+        {
+            var client = new Client(new Config());
+            Assert.IsNotNull(client.Config.Endpoint);
+        }
+
+        [TestMethod]
         public void PaymentRequestApplicationInfoTest()
         {
             var paymentRequest = CreatePaymentRequestCheckout();

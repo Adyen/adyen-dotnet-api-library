@@ -90,14 +90,8 @@ namespace Adyen
             _client = namedClient != null ? new HttpClientWrapper(Config, factory.CreateClient(namedClient)) : new HttpClientWrapper(Config, factory.CreateClient());
         }
 
-        public void SetEnvironment(Environment environment)
-        {
-            SetEnvironment(environment, null);
-        }
-
         public void SetEnvironment(Environment environment, string liveEndpointUrlPrefix)
         {
-            Config.Environment = environment;
             switch (environment)
             {
                 case Environment.Test:

@@ -4,6 +4,7 @@ using Adyen.Model.Checkout.Action;
 using Adyen.Service;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
+using Adyen.HttpClient;
 using CreateCheckoutSessionRequest = Adyen.Model.Checkout.CreateCheckoutSessionRequest;
 using Environment = Adyen.Model.Enum.Environment;
 
@@ -31,9 +32,9 @@ namespace Adyen.IntegrationTest
             {
                 var paymentResponse = _checkout.Payments(CreatePaymentRequestCheckout());
             }
-            catch (System.Net.Http.HttpRequestException ex)
+            catch (HttpClientException ex)
             {
-                Assert.AreEqual("Response status code does not indicate success: 401 ().", ex.Message);
+                Assert.AreEqual(401, ex.Code);
             }
         }
 
@@ -45,9 +46,9 @@ namespace Adyen.IntegrationTest
             {
                 var paymentResponse = _checkout.Payments(CreatePaymentRequestCheckout());
             }
-            catch (System.Net.Http.HttpRequestException ex)
+            catch (HttpClientException ex)
             {
-                 Assert.AreEqual("Response status code does not indicate success: 401 ().", ex.Message);
+                 Assert.AreEqual(401, ex.Code);
             }
         }
 
@@ -60,9 +61,9 @@ namespace Adyen.IntegrationTest
             {
                 var paymentResponse = _checkout.Payments(CreatePaymentRequestCheckout());
             }
-            catch (System.Net.Http.HttpRequestException ex)
+            catch (HttpClientException ex)
             {
-                Assert.AreEqual("Response status code does not indicate success: 401 ().", ex.Message);
+                Assert.AreEqual(401, ex.Code);
             }
         }
 
