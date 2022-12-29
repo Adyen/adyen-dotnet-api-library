@@ -32,7 +32,7 @@ namespace Adyen.Test
     {
 
         private readonly HttpUrlConnectionClient _httpUrlConnectionClient;
-        private readonly string _endpoint = "https://endpoint:8080";
+        private readonly string _endpoint = "https://endpoint:8080/";
 
         public HeaderRequestTest()
         {
@@ -44,7 +44,7 @@ namespace Adyen.Test
             var httpWebRequest = _httpUrlConnectionClient.GetHttpWebRequest(_endpoint, MockPaymentData.CreateConfingMock(), false);
 
             Assert.IsNotNull(httpWebRequest.UserAgent);
-            Assert.AreEqual(httpWebRequest.Address, _endpoint);
+            Assert.AreEqual(httpWebRequest.Address.ToString(), _endpoint);
             Assert.AreEqual(httpWebRequest.Headers["Accept-Charset"], "UTF-8");
             Assert.AreEqual(httpWebRequest.Headers["Cache-Control"], "no-cache");
             Assert.AreEqual(httpWebRequest.ContentType, "application/json");
@@ -62,7 +62,7 @@ namespace Adyen.Test
             var httpWebRequest = _httpUrlConnectionClient.GetHttpWebRequest(_endpoint, MockPaymentData.CreateConfingApiKeyBasedMock(), true);
 
             Assert.IsNotNull(httpWebRequest.UserAgent);
-            Assert.AreEqual(httpWebRequest.Address, _endpoint);
+            Assert.AreEqual(httpWebRequest.Address.ToString(), _endpoint);
             Assert.AreEqual(httpWebRequest.Headers["Accept-Charset"], "UTF-8");
             Assert.AreEqual(httpWebRequest.Headers["Cache-Control"], "no-cache");
             Assert.AreEqual(httpWebRequest.ContentType, "application/json");
