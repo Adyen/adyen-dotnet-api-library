@@ -44,7 +44,6 @@ namespace Adyen.HttpClient
 
         public HttpClientWrapper(Config config, System.Net.Http.HttpClient httpClient)
         {
-            
             _config = config;
             _httpClient = httpClient;
         }
@@ -78,7 +77,7 @@ namespace Adyen.HttpClient
             }
         }
 
-        private HttpRequestMessage GetHttpRequestMessage(string endpoint, bool isApiKeyRequired, string requestBody, RequestOptions requestOptions, HttpMethod httpMethod)
+        public HttpRequestMessage GetHttpRequestMessage(string endpoint, bool isApiKeyRequired, string requestBody, RequestOptions requestOptions, HttpMethod httpMethod)
         {   
             if (httpMethod == null) {httpMethod = HttpMethod.Post;}
             

@@ -82,7 +82,7 @@ namespace Adyen.Test
             Assert.AreEqual("[detail-successfully-disabled]", disableResult.Response);
         }
 
-        [TestMethod]
+        /*[TestMethod]
         public void TestDisable803()
         {
             try
@@ -100,7 +100,7 @@ namespace Adyen.Test
 
             }
 
-        }
+        }*/
 
         [TestMethod]
         public void NotifyShopperTest()

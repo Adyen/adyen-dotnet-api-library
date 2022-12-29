@@ -101,7 +101,7 @@ namespace Adyen.Test
         [TestMethod]
         public void CheckoutEndpointLiveWithBasicAuthTest()
         {
-            var client = new Client("ws_*******", "******", "live-url", Environment.Live);
+            var client = new Client("ws_*******", "******", Environment.Live, "live-url");
             Assert.AreEqual(client.Config.CheckoutEndpoint, "https://live-url-checkout-live.adyenpayments.com/checkout");
         }
         

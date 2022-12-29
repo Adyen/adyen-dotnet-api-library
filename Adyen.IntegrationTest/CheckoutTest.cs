@@ -195,7 +195,7 @@ namespace Adyen.IntegrationTest
                 Environment = Environment.Test,
                 XApiKey = ClientConstants.Xapikey
             };
-            var client = new Client(config, default);
+            var client = new Client(config);
             var service = new Checkout(client);
 
             var checkoutSessionRequest = new CreateCheckoutSessionRequest

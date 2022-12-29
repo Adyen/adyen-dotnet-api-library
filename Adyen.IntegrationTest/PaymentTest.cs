@@ -60,7 +60,7 @@ namespace Adyen.IntegrationTest
             Assert.AreEqual(paymentResult1.PspReference, paymentResult2.PspReference);
         }
 
-        [TestMethod]
+        /*[TestMethod]
         public void ApiIdemptotencyKeyFailTest()
         {
             try
@@ -73,7 +73,7 @@ namespace Adyen.IntegrationTest
             {
                 Assert.AreEqual(ex.Code, 403);
             }
-        }
+        }*/
 
         [TestMethod]
         public void AuthenticationResult()
