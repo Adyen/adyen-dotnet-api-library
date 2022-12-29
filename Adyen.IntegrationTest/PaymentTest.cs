@@ -5,6 +5,7 @@ using Adyen.Service;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using Adyen.HttpClient;
 
 namespace Adyen.IntegrationTest
 {
@@ -60,7 +61,7 @@ namespace Adyen.IntegrationTest
             Assert.AreEqual(paymentResult1.PspReference, paymentResult2.PspReference);
         }
 
-        /*[TestMethod]
+        [TestMethod]
         public void ApiIdemptotencyKeyFailTest()
         {
             try
@@ -69,12 +70,12 @@ namespace Adyen.IntegrationTest
                 var paymentResult1 = CreatePaymentResultWithIdempotency("AUTH_IDEMPOTENCY_KEY_AUTHOR");
                 var paymentResult2 = CreatePaymentResultWithIdempotency("AUTH_IDEMPOTENCY_KEY_AUTHOR");
             }
-            catch (HttpClient.HttpClientException ex)
+            catch (HttpClientException ex)
             {
                 Assert.AreEqual(ex.Code, 403);
             }
-        }*/
-
+        }
+        
         [TestMethod]
         public void AuthenticationResult()
         {
@@ -87,11 +88,11 @@ namespace Adyen.IntegrationTest
             var payment = new Payment(client);
             try
             {
-                var authenticationResultResponse = payment.GetAuthenticationResult(authenticationResultRequest);
+                payment.GetAuthenticationResult(authenticationResultRequest);
             }
-            catch (System.Net.Http.HttpRequestException ex)
+            catch (HttpClientException ex)
             {
-                Assert.AreEqual(ex.Message, "Response status code does not indicate success: 422 ().");
+                Assert.AreEqual(422, ex.Code);
             }
         }
 

@@ -26,14 +26,12 @@
 using Adyen.Constants;
 using System;
 using System.Collections.Generic;
-using System.Net;
 using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
 using System.Web;
 using Adyen.HttpClient.Interfaces;
 using Adyen.Model;
-using Adyen.Model.Enum;
 
 namespace Adyen.HttpClient
 {

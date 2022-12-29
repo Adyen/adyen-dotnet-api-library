@@ -1,10 +1,7 @@
-using Adyen.Service.Resource.Payout;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using System.Collections.Generic;
 using Adyen.Service;
 using Adyen.Model.Payout;
 using Adyen.Model;
-using System;
 using Adyen.HttpClient;
 
 namespace Adyen.IntegrationTest
