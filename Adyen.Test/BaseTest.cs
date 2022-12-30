@@ -235,7 +235,7 @@ namespace Adyen.Test
             var clientInterfaceMock = new Mock<IClient>();
             var confMock = MockPaymentData.CreateConfingMock();
 
-            clientInterfaceMock.Setup(x => x.Request(It.IsAny<string>(), It.IsAny<string>(), It.IsAny<bool>(), It.IsAny<RequestOptions>(), null)).Returns(response);
+            clientInterfaceMock.Setup(x => x.Request(It.IsAny<string>(), It.IsAny<string>(), It.IsAny<RequestOptions>(), null)).Returns(response);
             var config = new Config()
             {
                 Environment = It.IsAny<Model.Enum.Environment>()
@@ -261,9 +261,9 @@ namespace Adyen.Test
             var clientInterfaceMock = new Mock<IClient>();
             var confMock = MockPaymentData.CreateConfingMock();
 
-            clientInterfaceMock.Setup(x => x.Request(It.IsAny<string>(), It.IsAny<string>(), It.IsAny<bool>(), It.IsAny<RequestOptions>(), null)).Returns(response);
-            clientInterfaceMock.Setup(x => x.Request(It.IsAny<string>(), It.IsAny<string>(), It.IsAny<bool>(), It.IsAny<RequestOptions>(), null)).Returns(response);
-            clientInterfaceMock.Setup(x => x.RequestAsync(It.IsAny<string>(), It.IsAny<string>(),It.IsAny<bool>(), It.IsAny<RequestOptions>(), null)).Returns(Task.FromResult(response));
+            clientInterfaceMock.Setup(x => x.Request(It.IsAny<string>(), It.IsAny<string>(), It.IsAny<RequestOptions>(), null)).Returns(response);
+            clientInterfaceMock.Setup(x => x.Request(It.IsAny<string>(), It.IsAny<string>(), It.IsAny<RequestOptions>(), null)).Returns(response);
+            clientInterfaceMock.Setup(x => x.RequestAsync(It.IsAny<string>(), It.IsAny<string>(), It.IsAny<RequestOptions>(), null)).Returns(Task.FromResult(response));
             var config = new Config()
             {
                 Environment = It.IsAny<Model.Enum.Environment>()
@@ -289,7 +289,7 @@ namespace Adyen.Test
             var clientInterfaceMock = new Mock<IClient>();
             var confMock = MockPaymentData.CreateConfingApiKeyBasedMock();
             clientInterfaceMock.Setup(x => x.Request(It.IsAny<string>(),
-                It.IsAny<string>(),  It.IsAny<bool>(), It.IsAny<RequestOptions>(), null)).Returns(response);
+                It.IsAny<string>(), It.IsAny<RequestOptions>(), null)).Returns(response);
             var config = new Config()
             {
                 Environment = It.IsAny<Model.Enum.Environment>()
@@ -315,7 +315,7 @@ namespace Adyen.Test
             var clientInterfaceMock = new Mock<IClient>();
             var confMock = MockPaymentData.CreateConfingApiKeyBasedMock();
             clientInterfaceMock.Setup(x => x.RequestAsync(It.IsAny<string>(),
-                    It.IsAny<string>(),  It.IsAny<bool>(), It.IsAny<RequestOptions>(), null))
+                    It.IsAny<string>(), It.IsAny<RequestOptions>(), null))
                 .ReturnsAsync(response);
             var config = new Config()
             {
@@ -342,7 +342,7 @@ namespace Adyen.Test
             //Create a mock interface
             var clientInterfaceMock = new Mock<IClient>();
             clientInterfaceMock.Setup(x => x.Request(It.IsAny<string>(),
-                It.IsAny<string>(), It.IsAny<bool>(), It.IsAny<RequestOptions>(), null)).Returns(response);
+                It.IsAny<string>(), It.IsAny<RequestOptions>(), null)).Returns(response);
             var anyConfig = new Config()
             {
                 Environment = It.IsAny<Model.Enum.Environment>()
@@ -368,7 +368,7 @@ namespace Adyen.Test
             //Create a mock interface
             var clientInterfaceMock = new Mock<IClient>();
             clientInterfaceMock.Setup(x => x.Request(It.IsAny<string>(),
-                It.IsAny<string>(),It.IsAny<bool>(),
+                It.IsAny<string>(),
                 It.IsAny<RequestOptions>(), null
                ))
                 .Returns(response);

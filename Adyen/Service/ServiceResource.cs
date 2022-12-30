@@ -21,13 +21,13 @@ namespace Adyen.Service
         public string Request(string json, RequestOptions requestOptions = null, HttpMethod httpMethod = null)
         {
             var clientInterface = _abstractService.Client.HttpClient;
-            return clientInterface.Request(Endpoint, json, _abstractService.IsApiKeyRequired, requestOptions, httpMethod);
+            return clientInterface.Request(Endpoint, json, requestOptions, httpMethod);
         }
 
         public Task<string> RequestAsync(string json, RequestOptions requestOptions = null, HttpMethod httpMethod = null)
         {
             var clientInterface = _abstractService.Client.HttpClient;
-            return clientInterface.RequestAsync(Endpoint, json, false, requestOptions, httpMethod);
+            return clientInterface.RequestAsync(Endpoint, json, requestOptions, httpMethod);
         }
     }
 }

@@ -48,14 +48,14 @@ namespace Adyen.HttpClient
             _httpClient = httpClient;
         }
 
-        public string Request(string endpoint, string requestBody, bool isApiKeyRequired, RequestOptions requestOptions = null, HttpMethod httpMethod = null)
+        public string Request(string endpoint, string requestBody, RequestOptions requestOptions = null, HttpMethod httpMethod = null)
         {
-            return RequestAsync(endpoint, requestBody, isApiKeyRequired, requestOptions,  httpMethod).ConfigureAwait(false).GetAwaiter().GetResult();
+            return RequestAsync(endpoint, requestBody, requestOptions,  httpMethod).ConfigureAwait(false).GetAwaiter().GetResult();
         }
 
-        public async Task<string> RequestAsync(string endpoint, string requestBody, bool isApiKeyRequired, RequestOptions requestOptions = null, HttpMethod httpMethod = null)
+        public async Task<string> RequestAsync(string endpoint, string requestBody, RequestOptions requestOptions = null, HttpMethod httpMethod = null)
         {
-            using (var request = GetHttpRequestMessage(endpoint, isApiKeyRequired, requestBody, requestOptions, httpMethod))
+            using (var request = GetHttpRequestMessage(endpoint, requestBody, requestOptions, httpMethod))
             using (var httpResponseMessage = await _httpClient.SendAsync(request))
             {
                 var responseText = await httpResponseMessage.Content.ReadAsStringAsync();
@@ -80,7 +80,7 @@ namespace Adyen.HttpClient
             }
         }
 
-        public HttpRequestMessage GetHttpRequestMessage(string endpoint, bool isApiKeyRequired, string requestBody, RequestOptions requestOptions, HttpMethod httpMethod)
+        public HttpRequestMessage GetHttpRequestMessage(string endpoint, string requestBody, RequestOptions requestOptions, HttpMethod httpMethod)
         {   
             if (httpMethod == null) {httpMethod = HttpMethod.Post;}
             
@@ -104,7 +104,7 @@ namespace Adyen.HttpClient
             }
 
             //Use one of two authentication method.
-            if (isApiKeyRequired || _config.HasApiKey)
+            if (_config.HasApiKey)
             {
                 httpWebRequest.Headers.Add("x-api-key", _config.XApiKey);
             }

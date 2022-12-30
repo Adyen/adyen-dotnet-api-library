@@ -50,7 +50,6 @@ namespace Adyen.Service
 
         public Checkout(Client client) : base(client)
         {
-            IsApiKeyRequired = true;
             _payments = new Payments(this);
             _paymentMethods = new PaymentMethods(this);
             _paymentDetails = new PaymentDetails(this);

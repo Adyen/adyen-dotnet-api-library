@@ -40,7 +40,7 @@ namespace Adyen.Test
         public void BasicAuthenticationHeadersTest()
         {
             var client = new HttpClientWrapper(MockPaymentData.CreateConfingMock(), new System.Net.Http.HttpClient());
-            var httpRequestMessage = client.GetHttpRequestMessage(_endpoint, false, "requestBody", null, HttpMethod.Post);
+            var httpRequestMessage = client.GetHttpRequestMessage(_endpoint, "requestBody", null, HttpMethod.Post);
             
             Assert.IsNotNull(httpRequestMessage.Headers.UserAgent);
             Assert.AreEqual<string>(httpRequestMessage.RequestUri?.ToString(), _endpoint);
@@ -54,7 +54,7 @@ namespace Adyen.Test
         public void ApiKeyBasedHeadersTest()
         {
             var client = new HttpClientWrapper(MockPaymentData.CreateConfingApiKeyBasedMock(), new System.Net.Http.HttpClient());
-            var httpRequestMessage = client.GetHttpRequestMessage(_endpoint, false, "requestbody", null, HttpMethod.Get);
+            var httpRequestMessage = client.GetHttpRequestMessage(_endpoint, "requestbody", null, HttpMethod.Get);
             
             Assert.IsNotNull(httpRequestMessage.Headers.UserAgent);
             Assert.AreEqual<string>(httpRequestMessage.RequestUri?.ToString(), _endpoint);
@@ -71,7 +71,7 @@ namespace Adyen.Test
         public void IdempotencyKeyTest()
         {
             var client = new HttpClientWrapper(MockPaymentData.CreateConfingMock(), new System.Net.Http.HttpClient());
-            var httpWebRequest = client.GetHttpRequestMessage(_endpoint, false, "requestbody",new RequestOptions()
+            var httpWebRequest = client.GetHttpRequestMessage(_endpoint, "requestbody",new RequestOptions()
             {
                 IdempotencyKey = "123456789"
             }, null);
@@ -89,7 +89,7 @@ namespace Adyen.Test
             };
 
             var client = new HttpClientWrapper(MockPaymentData.CreateConfingMock(), new System.Net.Http.HttpClient());
-            var httpWebRequest = client.GetHttpRequestMessage(_endpoint, false, "requestbody", requestOptions, null);
+            var httpWebRequest = client.GetHttpRequestMessage(_endpoint, "requestbody", requestOptions, null);
             
             httpWebRequest.Headers.GetValues("Idempotency-Key");
         }
@@ -104,7 +104,7 @@ namespace Adyen.Test
             };
 
             var client = new HttpClientWrapper(MockPaymentData.CreateConfingMock(), new System.Net.Http.HttpClient());
-            var httpWebRequest = client.GetHttpRequestMessage(_endpoint, false, "request", requestOptions, null);
+            var httpWebRequest = client.GetHttpRequestMessage(_endpoint, "request", requestOptions, null);
             
             httpWebRequest.Headers.GetValues("Idempotency-Key");
         }
@@ -118,7 +118,7 @@ namespace Adyen.Test
             };
 
             var client = new HttpClientWrapper(MockPaymentData.CreateConfingMock(), new System.Net.Http.HttpClient());
-            var httpWebRequest = client.GetHttpRequestMessage(_endpoint, false,"requestBody", requestOptions, null);
+            var httpWebRequest = client.GetHttpRequestMessage(_endpoint,"requestBody", requestOptions, null);
             
             Assert.IsNotNull(httpWebRequest.Headers.GetValues("Idempotency-Key"));
             Assert.AreEqual(requestOptions.IdempotencyKey, httpWebRequest.Headers.GetValues("Idempotency-Key").FirstOrDefault());
