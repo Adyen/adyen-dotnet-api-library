@@ -43,7 +43,7 @@ namespace Adyen
 
         public event CallbackLogHandler LogCallback;
 
-        [Obsolete("Providing username and password here will be made obsolete, please use Config instead.")]
+        [Obsolete("Providing username and password are obsolete, please use Config instead.")]
         public Client(string username, string password, Environment environment, string liveEndpointUrlPrefix = null)
         {
             Config = new Config
@@ -56,7 +56,7 @@ namespace Adyen
             _client = new HttpClientWrapper(Config, new System.Net.Http.HttpClient());
         }
         
-        [Obsolete("Providing xapikey here will be made obsolete, please use Config instead.")]
+        [Obsolete("Providing x-api-key is obsolete, please use Config instead.")]
         public Client(string xapikey, Environment environment, string liveEndpointUrlPrefix = null)
         {
             Config = new Config
@@ -83,11 +83,11 @@ namespace Adyen
             _client = new HttpClientWrapper(Config, httpClient);
         }
 
-        public Client(Config config, IHttpClientFactory factory, string namedClient = null)
+        public Client(Config config, IHttpClientFactory factory, string clientName = null)
         {
             Config = config;
             SetEnvironment(config.Environment, Config.LiveEndpointUrlPrefix);
-            _client = namedClient != null ? new HttpClientWrapper(Config, factory.CreateClient(namedClient)) : new HttpClientWrapper(Config, factory.CreateClient());
+            _client = clientName != null ? new HttpClientWrapper(Config, factory.CreateClient(clientName)) : new HttpClientWrapper(Config, factory.CreateClient());
         }
 
         public void SetEnvironment(Environment environment, string liveEndpointUrlPrefix)

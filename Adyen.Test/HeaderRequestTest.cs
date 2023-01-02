@@ -38,7 +38,7 @@ namespace Adyen.Test
         [TestMethod]
         public void BasicAuthenticationHeadersTest()
         {
-            var client = new HttpClientWrapper(MockPaymentData.CreateConfingMock(), new System.Net.Http.HttpClient());
+            var client = new HttpClientWrapper(MockPaymentData.CreateConfigMock(), new System.Net.Http.HttpClient());
             var httpRequestMessage = client.GetHttpRequestMessage(_endpoint, false, "requestBody", null, HttpMethod.Post);
             
             Assert.IsNotNull(httpRequestMessage.Headers.UserAgent);
@@ -53,7 +53,7 @@ namespace Adyen.Test
         [TestMethod]
         public void ApiKeyBasedHeadersTest()
         {
-            var client = new HttpClientWrapper(MockPaymentData.CreateConfingApiKeyBasedMock(), new System.Net.Http.HttpClient());
+            var client = new HttpClientWrapper(MockPaymentData.CreateConfigApiKeyBasedMock(), new System.Net.Http.HttpClient());
             var httpRequestMessage = client.GetHttpRequestMessage(_endpoint, false, "requestbody", null, HttpMethod.Get);
             
             Assert.IsNotNull(httpRequestMessage.Headers.UserAgent);
@@ -73,16 +73,12 @@ namespace Adyen.Test
             {
                 Username = "Username",
                 Password = "Password",
-                ApplicationName = "Appname",
                 MerchantAccount = "TestMerchant",
-                Endpoint = "endpoint",
-                HmacKey = "DFB1EB5485895CFA84146406857104ABB4CBCABDC8AAF103A624C8F6A3EAAB00",
                 XApiKey = "AQEyhmfxK....LAG84XwzP5pSpVd"
             };
             
             var client = new HttpClientWrapper(config, new System.Net.Http.HttpClient());
             var httpRequestMessage = client.GetHttpRequestMessage(_endpoint, false, "requestbody", null, HttpMethod.Get);
-
             Assert.IsNull(httpRequestMessage.Headers.Authorization);
             Assert.AreEqual(httpRequestMessage.Headers.GetValues("x-api-key").FirstOrDefault(), "AQEyhmfxK....LAG84XwzP5pSpVd");
         }
@@ -90,7 +86,7 @@ namespace Adyen.Test
         [TestMethod]
         public void IdempotencyKeyTest()
         {
-            var client = new HttpClientWrapper(MockPaymentData.CreateConfingMock(), new System.Net.Http.HttpClient());
+            var client = new HttpClientWrapper(MockPaymentData.CreateConfigMock(), new System.Net.Http.HttpClient());
             var httpWebRequest = client.GetHttpRequestMessage(_endpoint, false, "requestbody",new RequestOptions()
             {
                 IdempotencyKey = "123456789"
@@ -107,7 +103,7 @@ namespace Adyen.Test
                 IdempotencyKey = string.Empty
             };
 
-            var client = new HttpClientWrapper(MockPaymentData.CreateConfingMock(), new System.Net.Http.HttpClient());
+            var client = new HttpClientWrapper(MockPaymentData.CreateConfigMock(), new System.Net.Http.HttpClient());
             var httpWebRequest = client.GetHttpRequestMessage(_endpoint, false, "requestbody", requestOptions, null);
             Assert.IsFalse(httpWebRequest.Headers.TryGetValues("Idempotency-Key", out var _));
         }
@@ -120,7 +116,7 @@ namespace Adyen.Test
                 IdempotencyKey = " "
             };
 
-            var client = new HttpClientWrapper(MockPaymentData.CreateConfingMock(), new System.Net.Http.HttpClient());
+            var client = new HttpClientWrapper(MockPaymentData.CreateConfigMock(), new System.Net.Http.HttpClient());
             var httpWebRequest = client.GetHttpRequestMessage(_endpoint, false, "request", requestOptions, null);
             
             Assert.IsFalse(httpWebRequest.Headers.TryGetValues("Idempotency-Key", out var _));
@@ -134,7 +130,7 @@ namespace Adyen.Test
                 IdempotencyKey = "idempotencyKey"
             };
 
-            var client = new HttpClientWrapper(MockPaymentData.CreateConfingMock(), new System.Net.Http.HttpClient());
+            var client = new HttpClientWrapper(MockPaymentData.CreateConfigMock(), new System.Net.Http.HttpClient());
             var httpWebRequest = client.GetHttpRequestMessage(_endpoint, false,"requestBody", requestOptions, null);
             
             Assert.IsNotNull(httpWebRequest.Headers.GetValues("Idempotency-Key"));
