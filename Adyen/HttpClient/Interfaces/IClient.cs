@@ -32,9 +32,9 @@ namespace Adyen.HttpClient.Interfaces
     public interface IClient : IDisposable
     {
         /// <summary>
-        /// Request Method synchronous.
+        /// Sends a synchronous request to the specified endpoint.
         /// </summary>
-        /// <param name="endpoint">Url of the endpoint.</param>
+        /// <param name="endpoint">URL of the endpoint.</param>
         /// <param name="json">Json request parameters for Post/Patch.</param>
         /// <param name="isApiKeyRequired"></param>
         /// <param name="requestOptions">Optional parameter used to specify the options for the request.</param>
@@ -43,9 +43,9 @@ namespace Adyen.HttpClient.Interfaces
         string Request(string endpoint, string json, bool isApiKeyRequired, RequestOptions requestOptions = null, HttpMethod httpMethod = null);
         
         /// <summary>
-        /// Request Method asynchronous.
+        /// Sends an asynchronous request to the specified endpoint.
         /// </summary>
-        /// <param name="endpoint">Url of the endpoint.</param>
+        /// <param name="endpoint">URL of the endpoint.</param>
         /// <param name="json">Json request parameters for Post/Patch.</param>
         /// <param name="isApiKeyRequired"></param>
         /// <param name="requestOptions">Optional parameter used to specify the options for the request.</param>

@@ -36,7 +36,6 @@ namespace Adyen.Test
         private readonly string _endpoint = "https://endpoint:8080/";
         
         [TestMethod]
-        [ExpectedException(typeof(InvalidOperationException), "The given header was not found.")]
         public void BasicAuthenticationHeadersTest()
         {
             var client = new HttpClientWrapper(MockPaymentData.CreateConfingMock(), new System.Net.Http.HttpClient());
@@ -48,7 +47,7 @@ namespace Adyen.Test
             Assert.AreEqual(httpRequestMessage.Headers.CacheControl?.ToString(), "no-cache");
             Assert.AreEqual(httpRequestMessage.Content.Headers.GetValues("Content-Type").FirstOrDefault(), "application/json; charset=utf-8");
             Assert.IsNotNull(httpRequestMessage.Headers.Authorization);
-            httpRequestMessage.Headers.GetValues("x-api-key");
+            Assert.IsFalse(httpRequestMessage.Headers.TryGetValues("x-api-key", out var _));
         }
 
         [TestMethod]
@@ -58,16 +57,36 @@ namespace Adyen.Test
             var httpRequestMessage = client.GetHttpRequestMessage(_endpoint, false, "requestbody", null, HttpMethod.Get);
             
             Assert.IsNotNull(httpRequestMessage.Headers.UserAgent);
-            Assert.AreEqual<string>(httpRequestMessage.RequestUri?.ToString(), _endpoint);
+            Assert.AreEqual(httpRequestMessage.RequestUri?.ToString(), _endpoint);
             Assert.AreEqual(httpRequestMessage.Headers.AcceptCharset.ToString(), "UTF-8");
-            Assert.AreEqual(httpRequestMessage.Headers.CacheControl.ToString(), "no-cache");
+            Assert.AreEqual(httpRequestMessage.Headers.CacheControl?.ToString(), "no-cache");
             Assert.IsNull(httpRequestMessage.Content);
 
             Assert.IsNull(httpRequestMessage.Headers.Authorization);
-
             Assert.AreEqual(httpRequestMessage.Headers.GetValues("x-api-key").FirstOrDefault(), "AQEyhmfxK....LAG84XwzP5pSpVd");
         }
+        
+        [TestMethod]
+        public void ApiKeyAndBasicAuthBasedHeaderTest()
+        {
+            var config = new Config
+            {
+                Username = "Username",
+                Password = "Password",
+                ApplicationName = "Appname",
+                MerchantAccount = "TestMerchant",
+                Endpoint = "endpoint",
+                HmacKey = "DFB1EB5485895CFA84146406857104ABB4CBCABDC8AAF103A624C8F6A3EAAB00",
+                XApiKey = "AQEyhmfxK....LAG84XwzP5pSpVd"
+            };
+            
+            var client = new HttpClientWrapper(config, new System.Net.Http.HttpClient());
+            var httpRequestMessage = client.GetHttpRequestMessage(_endpoint, false, "requestbody", null, HttpMethod.Get);
 
+            Assert.IsNull(httpRequestMessage.Headers.Authorization);
+            Assert.AreEqual(httpRequestMessage.Headers.GetValues("x-api-key").FirstOrDefault(), "AQEyhmfxK....LAG84XwzP5pSpVd");
+        }
+        
         [TestMethod]
         public void IdempotencyKeyTest()
         {
@@ -81,7 +100,6 @@ namespace Adyen.Test
         }
 
         [TestMethod]
-        [ExpectedException(typeof(InvalidOperationException), "Cannot find Idem-Key in header, throws invalidOperation")]
         public void IdempotencyKeyNotPresentInHeaderIfEmptyString()
         {
             var requestOptions = new RequestOptions
@@ -91,12 +109,10 @@ namespace Adyen.Test
 
             var client = new HttpClientWrapper(MockPaymentData.CreateConfingMock(), new System.Net.Http.HttpClient());
             var httpWebRequest = client.GetHttpRequestMessage(_endpoint, false, "requestbody", requestOptions, null);
-            
-            httpWebRequest.Headers.GetValues("Idempotency-Key");
+            Assert.IsFalse(httpWebRequest.Headers.TryGetValues("Idempotency-Key", out var _));
         }
 
         [TestMethod]
-        [ExpectedException(typeof(InvalidOperationException), "Cannot find Idem-Key in header, throws invalidOperation")]
         public void IdempotencyKeyNotPresentInHeaderIfWhitespaceString()
         {
             var requestOptions = new RequestOptions
@@ -107,7 +123,7 @@ namespace Adyen.Test
             var client = new HttpClientWrapper(MockPaymentData.CreateConfingMock(), new System.Net.Http.HttpClient());
             var httpWebRequest = client.GetHttpRequestMessage(_endpoint, false, "request", requestOptions, null);
             
-            httpWebRequest.Headers.GetValues("Idempotency-Key");
+            Assert.IsFalse(httpWebRequest.Headers.TryGetValues("Idempotency-Key", out var _));
         }
 
         [TestMethod]

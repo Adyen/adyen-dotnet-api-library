@@ -62,7 +62,7 @@ namespace Adyen.HttpClient
                 if(httpResponseMessage.IsSuccessStatusCode)
                 {
                     return responseText;
-                } 
+                }
                 throw (new HttpClientException((int)httpResponseMessage.StatusCode, (int)httpResponseMessage.StatusCode + ": " + httpResponseMessage.StatusCode + ", ResponseBody: " + responseText, responseText));
             }
         }
