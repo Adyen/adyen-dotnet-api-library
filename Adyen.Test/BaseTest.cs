@@ -410,7 +410,7 @@ namespace Adyen.Test
             return clientMock;
         }
 
-        /*/// <summary>
+        /// <summary>
         /// Creates mock test client errors
         /// </summary>
         /// <param name="status"></param>
@@ -438,7 +438,7 @@ namespace Adyen.Test
                 Config = confMock
             };
             return clientMock;
-        }*/
+        }
                 
 
         protected string MockFileToString(string fileName)
