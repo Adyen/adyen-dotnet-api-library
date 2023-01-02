@@ -43,7 +43,7 @@ namespace Adyen
 
         public event CallbackLogHandler LogCallback;
 
-        [Obsolete("Providing username and password here will be made obsolete in next major release, please use the Config instead.")]
+        [Obsolete("Providing username and password here will be made obsolete, please use Config instead.")]
         public Client(string username, string password, Environment environment, string liveEndpointUrlPrefix = null)
         {
             Config = new Config
@@ -56,7 +56,7 @@ namespace Adyen
             _client = new HttpClientWrapper(Config, new System.Net.Http.HttpClient());
         }
         
-        [Obsolete("Providing xapikey here will be made obsolete in the next major release, please use the Config instead.")]
+        [Obsolete("Providing xapikey here will be made obsolete, please use Config instead.")]
         public Client(string xapikey, Environment environment, string liveEndpointUrlPrefix = null)
         {
             Config = new Config
