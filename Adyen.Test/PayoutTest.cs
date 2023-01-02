@@ -108,12 +108,12 @@ namespace Adyen.Test
             Assert.AreEqual("12345", result.AuthCode);
         }
         
-        /*[TestMethod]
+        [TestMethod]
         public void PayoutErrorMerchantTest()
         {
-            Client client = CreateMockTestClientForErrors(403, "Mocks/payout/payout-error-403.json");
-            Payout payout = new Payout(client);
-            PayoutRequest request = new PayoutRequest();
+            var client = CreateMockTestClientForErrors(403, "Mocks/payout/payout-error-403.json");
+            var payout = new Payout(client);
+            var request = new PayoutRequest();
             try
             {
                 Console.WriteLine(payout.PayoutSubmit(request));
@@ -124,14 +124,14 @@ namespace Adyen.Test
                 Assert.IsNotNull(e.ResponseBody);
                 Assert.AreEqual(403, e.Code);
             }
-        }*/
+        }
 
-        /*[TestMethod]
+        [TestMethod]
         public void PayoutErrorReferenceTest()
         {
-            Client client = CreateMockTestClientForErrors(422, "Mocks/payout/payout-error-422.json");
-            Payout payout = new Payout(client);
-            PayoutRequest request = new PayoutRequest();
+            var client = CreateMockTestClientForErrors(422, "Mocks/payout/payout-error-422.json");
+            var payout = new Payout(client);
+            var request = new PayoutRequest();
             try
             {
                 payout.PayoutSubmit(request);
@@ -141,7 +141,7 @@ namespace Adyen.Test
                 Assert.IsNotNull(e.ResponseBody);
                 Assert.AreEqual(422, e.Code);
             }
-        }*/
+        }
     }
 }
 

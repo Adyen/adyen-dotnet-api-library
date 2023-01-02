@@ -37,17 +37,18 @@ namespace Adyen.Test
         private readonly string _endpoint = "https://endpoint:8080/";
         
         [TestMethod]
+        [ExpectedException(typeof(InvalidOperationException), "The given header was not found.")]
         public void BasicAuthenticationHeadersTest()
         {
             var client = new HttpClientWrapper(MockPaymentData.CreateConfingMock(), new System.Net.Http.HttpClient());
             var httpRequestMessage = client.GetHttpRequestMessage(_endpoint, "requestBody", null, HttpMethod.Post);
-            
             Assert.IsNotNull(httpRequestMessage.Headers.UserAgent);
             Assert.AreEqual<string>(httpRequestMessage.RequestUri?.ToString(), _endpoint);
             Assert.AreEqual(httpRequestMessage.Headers.AcceptCharset.ToString(), "UTF-8");
             Assert.AreEqual(httpRequestMessage.Headers.CacheControl?.ToString(), "no-cache");
-            Assert.IsNotNull(httpRequestMessage.Content);
+            Assert.AreEqual(httpRequestMessage.Content.Headers.GetValues("Content-Type").FirstOrDefault(), "application/json; charset=utf-8");
             Assert.IsNotNull(httpRequestMessage.Headers.Authorization);
+            httpRequestMessage.Headers.GetValues("x-api-key");
         }
 
         [TestMethod]

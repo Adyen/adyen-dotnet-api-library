@@ -27,6 +27,7 @@ using Adyen.Model.Recurring;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Recurring = Adyen.Model.Recurring.Recurring;
 using System.Threading.Tasks;
+using Adyen.HttpClient;
 
 namespace Adyen.Test
 {
@@ -82,7 +83,7 @@ namespace Adyen.Test
             Assert.AreEqual("[detail-successfully-disabled]", disableResult.Response);
         }
 
-        /*[TestMethod]
+        [TestMethod]
         public void TestDisable803()
         {
             try
@@ -94,13 +95,13 @@ namespace Adyen.Test
                 var disableResult = recurring.Disable(disableRequest);
                 Assert.Fail("Exception expected!");
             }
-            catch (Exception exception)
+            catch (HttpClientException exception)
             {
-                Assert.AreNotEqual<int>(200, exception.GetHashCode());
+                Assert.AreEqual(422, exception.Code);
 
             }
 
-        }*/
+        }
 
         [TestMethod]
         public void NotifyShopperTest()

@@ -410,7 +410,7 @@ namespace Adyen.Test
             return clientMock;
         }
 
-        /*/// <summary>
+        /// <summary>
         /// Creates mock test client errors
         /// </summary>
         /// <param name="status"></param>
@@ -427,7 +427,7 @@ namespace Adyen.Test
                 new HttpClientException(status, "An error occured", new WebHeaderCollection(), response);
 
             clientInterfaceMock.Setup(x => x.Request(It.IsAny<string>(),
-                It.IsAny<string>(), It.IsAny<bool>(), It.IsAny<RequestOptions>(), null)).Throws(httpClientException);
+                It.IsAny<string>(), It.IsAny<RequestOptions>(), null)).Throws(httpClientException);
             var config = new Config()
             {
                 Environment = It.IsAny<Model.Enum.Environment>()
@@ -438,7 +438,7 @@ namespace Adyen.Test
                 Config = confMock
             };
             return clientMock;
-        }*/
+        }
                 
 
         protected string MockFileToString(string fileName)

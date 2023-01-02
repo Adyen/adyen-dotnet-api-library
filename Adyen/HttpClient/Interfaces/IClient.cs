@@ -34,20 +34,20 @@ namespace Adyen.HttpClient.Interfaces
         /// <summary>
         /// Request Method synchronous.
         /// </summary>
-        /// <param name="endpoint"></param>
-        /// <param name="json"></param>
-        /// <param name="requestOptions">Optional parameter used to specify the options for the request</param>
-        /// <param name="httpMethod">Request Method</param>
+        /// <param name="endpoint">Url of the endpoint.</param>
+        /// <param name="json">Json request parameters for Post/Patch.</param>
+        /// <param name="requestOptions">Optional parameter used to specify the options for the request.</param>
+        /// <param name="httpMethod">Request Method.</param>
         /// <returns>string</returns>
         string Request(string endpoint, string json, RequestOptions requestOptions = null, HttpMethod httpMethod = null);
         
         /// <summary>
         /// Request Method asynchronous.
         /// </summary>
-        /// <param name="endpoint"></param>
-        /// <param name="json"></param>
+        /// <param name="endpoint">Url of the endpoint.</param>
+        /// <param name="json">Json request parameters for Post/Patch.</param>
         /// <param name="requestOptions">Optional parameter used to specify the options for the request</param>
-        /// <param name="httpMethod">Request Method</param>
+        /// <param name="httpMethod">Request Method.</param>
         /// <returns>string</returns>
         Task<string> RequestAsync(string endpoint, string json, RequestOptions requestOptions = null, HttpMethod httpMethod = null);
         string Post(string endpoint, Dictionary<string, string> postParameters);
