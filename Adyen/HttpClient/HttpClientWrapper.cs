@@ -16,7 +16,7 @@
 //  *
 //  * Adyen Dotnet API Library
 //  *
-//  * Copyright (c) 2021 Adyen B.V.
+//  * Copyright (c) 2022 Adyen N.V.
 //  * This file is open source and available under the MIT license.
 //  * See the LICENSE file for more info.
 //  */
@@ -26,7 +26,6 @@
 using Adyen.Constants;
 using System;
 using System.Collections.Generic;
-using System.Net;
 using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
@@ -45,16 +44,13 @@ namespace Adyen.HttpClient
 
         public HttpClientWrapper(Config config, System.Net.Http.HttpClient httpClient)
         {
-            // How do we want to implement this?
-            ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12;
             _config = config;
             _httpClient = httpClient;
         }
 
         public string Request(string endpoint, string requestBody, bool isApiKeyRequired, RequestOptions requestOptions = null, HttpMethod httpMethod = null)
         {
-            return RequestAsync(endpoint, requestBody, isApiKeyRequired, requestOptions, httpMethod).GetAwaiter()
-                .GetResult();
+            return RequestAsync(endpoint, requestBody, isApiKeyRequired, requestOptions,  httpMethod).ConfigureAwait(false).GetAwaiter().GetResult();
         }
 
         public async Task<string> RequestAsync(string endpoint, string requestBody, bool isApiKeyRequired, RequestOptions requestOptions = null, HttpMethod httpMethod = null)
@@ -63,8 +59,11 @@ namespace Adyen.HttpClient
             using (var httpResponseMessage = await _httpClient.SendAsync(request))
             {
                 var responseText = await httpResponseMessage.Content.ReadAsStringAsync();
-                httpResponseMessage.EnsureSuccessStatusCode();
-                return responseText;
+                if(httpResponseMessage.IsSuccessStatusCode)
+                {
+                    return responseText;
+                }
+                throw (new HttpClientException((int)httpResponseMessage.StatusCode, (int)httpResponseMessage.StatusCode + ": " + httpResponseMessage.StatusCode + ", ResponseBody: " + responseText, responseText));
             }
         }
 
@@ -81,13 +80,13 @@ namespace Adyen.HttpClient
             }
         }
 
-        private HttpRequestMessage GetHttpRequestMessage(string endpoint, bool isApiKeyRequired, string requestBody, RequestOptions requestOptions, HttpMethod httpMethod = null)
+        public HttpRequestMessage GetHttpRequestMessage(string endpoint, bool isApiKeyRequired, string requestBody, RequestOptions requestOptions, HttpMethod httpMethod)
         {   
             if (httpMethod == null) {httpMethod = HttpMethod.Post;}
             
             var httpWebRequest = new HttpRequestMessage(httpMethod, endpoint);
             
-            // custom patch method for dotnet <2.1
+            // Custom patch method for dotnet <2.1
             var patchMethod = new HttpMethod("PATCH");
             
             if (httpMethod == HttpMethod.Post || httpMethod == patchMethod)
@@ -133,7 +132,7 @@ namespace Adyen.HttpClient
 
             if (stringBuilder.Length > 0)
             {
-                //remove trailing &amp
+                // Remove trailing &amp
                 stringBuilder.Remove(stringBuilder.Length - 2, 1);
             }
 
