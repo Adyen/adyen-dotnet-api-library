@@ -97,7 +97,7 @@ namespace Adyen.Test
             }
             catch (HttpClientException exception)
             {
-                Assert.AreNotEqual(200, exception.Code);
+                Assert.AreEqual(422, exception.Code);
 
             }
 

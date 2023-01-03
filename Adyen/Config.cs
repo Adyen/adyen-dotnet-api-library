@@ -15,7 +15,7 @@
 //  *
 //  * Adyen Dotnet API Library
 //  *
-//  * Copyright (c) 2020 Adyen B.V.
+//  * Copyright (c) 2022 Adyen N.V.
 //  * This file is open source and available under the MIT license.
 //  * See the LICENSE file for more info.
 //  */
@@ -34,6 +34,7 @@ namespace Adyen
         public string Password { get; set; }
         public string MerchantAccount { get; set; }
         public Environment Environment { get; set; }
+        public string LiveEndpointUrlPrefix { get; set; }
         public string Endpoint { get; set; }
         public string MarketPayEndpoint { get; set; }
         public string ApplicationName { get; set; }
@@ -54,6 +55,9 @@ namespace Adyen
       
         //POS Terminal Management 
         public string PosTerminalManagementEndpoint { get; set; }
+        
+        public bool HasPassword => !string.IsNullOrEmpty(Password);
 
+        public bool HasApiKey => !string.IsNullOrEmpty(XApiKey);
     }
 }
