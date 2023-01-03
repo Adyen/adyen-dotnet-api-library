@@ -367,11 +367,8 @@ namespace Adyen.Test
             var response = MockFileToString(mockPath);
             //Create a mock interface
             var clientInterfaceMock = new Mock<IClient>();
-            clientInterfaceMock.Setup(x => x.Request(It.IsAny<string>(),
-                It.IsAny<string>(),
-                It.IsAny<RequestOptions>(), null
-               ))
-                .Returns(response);
+            clientInterfaceMock.Setup(x => x.Request(It.IsAny<string>(), It.IsAny<string>(),
+                    It.IsAny<RequestOptions>(), null)).Returns(response);
             var anyConfig = new Config()
             {
                 Environment = It.IsAny<Model.Enum.Environment>()
