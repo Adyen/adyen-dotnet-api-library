@@ -501,8 +501,7 @@ namespace Adyen.Test
             string mockPath = GetMockFilePath(fileName);
             return MockFileToString(mockPath);
         }
-
-
+        
         /// <summary>
         /// Create dummy Nexo message header
         /// </summary>
