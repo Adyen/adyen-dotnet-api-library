@@ -1,4 +1,5 @@
 using System.Net.Http;
+using Adyen.HttpClient;
 using Adyen.Model.Enum;
 using Adyen.Model.Payments;
 using Adyen.Service;
@@ -105,9 +106,9 @@ namespace Adyen.IntegrationTest
             {
                 modification.DonateAsync(donationRequest).GetAwaiter().GetResult();
             }
-            catch (HttpRequestException e)
+            catch (HttpClientException e)
             {
-                Assert.AreEqual(e.Message, "Response status code does not indicate success: 403 ().");
+                Assert.AreEqual(403, e.Code);
             }
         }
     }

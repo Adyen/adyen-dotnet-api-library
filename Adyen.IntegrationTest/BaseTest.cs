@@ -160,10 +160,12 @@ namespace Adyen.IntegrationTest
         
         protected Client CreateApiKeyTestClient()
         {
-            var apikey = ClientConstants.Xapikey;
-            // create basic factory
-            var factory = new ServiceCollection().AddHttpClient().BuildServiceProvider().GetRequiredService<IHttpClientFactory>();
-            return new Client(apikey, Environment.Test, factory);        
+            var config = new Config()
+            {
+                XApiKey = ClientConstants.Xapikey,
+                Environment = Environment.Test
+            };
+            return new Client(config);        
         }
         
         private PaymentRequest CreateFullPaymentRequest()
