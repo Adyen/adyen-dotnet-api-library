@@ -234,7 +234,7 @@ namespace Adyen.Test
             var response = MockFileToString(mockPath);
             //Create a mock interface
             var clientInterfaceMock = new Mock<IClient>();
-            var confMock = MockPaymentData.CreateConfingMock();
+            var confMock = MockPaymentData.CreateConfigMock();
 
             clientInterfaceMock.Setup(x => x.Request(It.IsAny<string>(), It.IsAny<string>(), It.IsAny<bool>(), It.IsAny<RequestOptions>(), null)).Returns(response);
             var config = new Config()
@@ -260,7 +260,7 @@ namespace Adyen.Test
             var response = MockFileToString(mockPath);
             //Create a mock interface
             var clientInterfaceMock = new Mock<IClient>();
-            var confMock = MockPaymentData.CreateConfingMock();
+            var confMock = MockPaymentData.CreateConfigMock();
 
             clientInterfaceMock.Setup(x => x.Request(It.IsAny<string>(), It.IsAny<string>(), It.IsAny<bool>(), It.IsAny<RequestOptions>(), null)).Returns(response);
             clientInterfaceMock.Setup(x => x.Request(It.IsAny<string>(), It.IsAny<string>(), It.IsAny<bool>(), It.IsAny<RequestOptions>(), null)).Returns(response);
@@ -288,7 +288,7 @@ namespace Adyen.Test
             var response = MockFileToString(mockPath);
             //Create a mock interface
             var clientInterfaceMock = new Mock<IClient>();
-            var confMock = MockPaymentData.CreateConfingApiKeyBasedMock();
+            var confMock = MockPaymentData.CreateConfigApiKeyBasedMock();
             clientInterfaceMock.Setup(x => x.Request(It.IsAny<string>(),
                 It.IsAny<string>(),  It.IsAny<bool>(), It.IsAny<RequestOptions>(), null)).Returns(response);
             var config = new Config()
@@ -314,7 +314,7 @@ namespace Adyen.Test
             var response = MockFileToString(mockPath);
             //Create a mock interface
             var clientInterfaceMock = new Mock<IClient>();
-            var confMock = MockPaymentData.CreateConfingApiKeyBasedMock();
+            var confMock = MockPaymentData.CreateConfigApiKeyBasedMock();
             clientInterfaceMock.Setup(x => x.RequestAsync(It.IsAny<string>(),
                 It.IsAny<string>(),  It.IsAny<bool>(), It.IsAny<RequestOptions>(), It.IsAny<HttpMethod>())).ReturnsAsync(response);
             var config = new Config()
@@ -340,7 +340,7 @@ namespace Adyen.Test
             var response = MockFileToString(mockPath);
             //Create a mock interface
             var clientInterfaceMock = new Mock<IClient>();
-            var confMock = MockPaymentData.CreateConfingApiKeyBasedMock();
+            var confMock = MockPaymentData.CreateConfigApiKeyBasedMock();
             clientInterfaceMock.Setup(x => x.RequestAsync(It.IsAny<string>(),
                     It.IsAny<string>(),  It.IsAny<bool>(), It.IsAny<RequestOptions>(), null))
                 .ReturnsAsync(response);
@@ -421,7 +421,7 @@ namespace Adyen.Test
             var response = MockFileToString(mockPath);
             //Create a mock interface
             var clientInterfaceMock = new Mock<IClient>();
-            var confMock = MockPaymentData.CreateConfingMock();
+            var confMock = MockPaymentData.CreateConfigMock();
 
             clientInterfaceMock.Setup(x => x.Post(It.IsAny<string>(),
                 It.IsAny<Dictionary<string, string>>())).Returns(response);
@@ -449,7 +449,7 @@ namespace Adyen.Test
             var response = MockFileToString(mockPath);
             //Create a mock interface
             var clientInterfaceMock = new Mock<IClient>();
-            var confMock = MockPaymentData.CreateConfingMock();
+            var confMock = MockPaymentData.CreateConfigMock();
             var httpClientException =
                 new HttpClientException(status, "An error occured", new WebHeaderCollection(), response);
 

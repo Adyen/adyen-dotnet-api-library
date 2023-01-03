@@ -33,7 +33,7 @@ namespace Adyen.Test
     {
         #region Mock payment data 
 
-        public static Config CreateConfingMock()
+        public static Config CreateConfigMock()
         {
             return new Config
             {
@@ -46,7 +46,7 @@ namespace Adyen.Test
             };
         }
 
-        public static Config CreateConfingApiKeyBasedMock()
+        public static Config CreateConfigApiKeyBasedMock()
         {
             return new Config
             {

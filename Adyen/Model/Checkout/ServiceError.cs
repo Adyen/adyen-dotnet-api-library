@@ -28,18 +28,8 @@ using System.ComponentModel.DataAnnotations;
 using System.Runtime.Serialization;
 using System.Text;
 using Newtonsoft.Json;
-
-using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.IO;
 using System.Linq;
-using System.Runtime.Serialization;
-using System.Text;
-using Adyen.Model.ApplicationInformation;
 using Adyen.Util;
-using Newtonsoft.Json;
-using Newtonsoft.Json.Converters;
 
 namespace Adyen.Model.Checkout
 {

@@ -21,11 +21,14 @@
 //  */
 #endregion
 
+using System;
 using Adyen.Model.Notification;
 using Adyen.Util;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.Collections.Generic;
-using Adyen.Model.Payments;
+using System.Text;
+using Adyen.Model.MarketPay;
+using Account = Adyen.Service.Account;
 
 namespace Adyen.Test
 {
@@ -66,9 +69,9 @@ namespace Adyen.Test
         [TestMethod]
         public void TestSerializationShopperInteractionDefault()
         {
-            var paymentRequest = MockPaymentData.CreateFullPaymentRequestWithShopperInteraction(default);
+            var paymentRequest = MockPaymentData.CreateFullPaymentRequestWithShopperInteraction(default(Model.Enum.ShopperInteraction));
             var serializedPaymentRequest = JsonOperation.SerializeRequest(paymentRequest);
-            Assert.IsTrue(serializedPaymentRequest.Contains("\"shopperInteraction\":0"));
+            Assert.IsFalse(serializedPaymentRequest.Contains("shopperInteraction"));
         }
         
         [TestMethod]
@@ -117,7 +120,7 @@ namespace Adyen.Test
         [TestMethod]
         public void TestSerializationShopperInteractionMoto()
         {
-            var paymentRequest = MockPaymentData.CreateFullPaymentRequestWithShopperInteraction(PaymentRequest.ShopperInteractionEnum.Moto);
+            var paymentRequest = MockPaymentData.CreateFullPaymentRequestWithShopperInteraction(Model.Enum.ShopperInteraction.Moto);
             var serializedPaymentRequest = JsonOperation.SerializeRequest(paymentRequest);
             StringAssert.Contains(serializedPaymentRequest, nameof(Model.Enum.ShopperInteraction.Moto));
         }
@@ -142,6 +145,20 @@ namespace Adyen.Test
             notificationRequestItem.AdditionalData = new Dictionary<string, string>();
             var isValidHmacAdditionalDataEmpty = hmacValidator.IsValidHmac(notificationRequestItem, "key");
             Assert.IsFalse(isValidHmacAdditionalDataEmpty);
+        }
+        
+        [TestMethod]
+        public void TestByteArrayConverter()
+        {
+            // Encoding UTF8 characters to assess if they get serialised as UTF8 Characters
+            var content = Encoding.UTF8.GetBytes("√√√123456789");
+            var detail = new DocumentDetail(accountHolderCode: "123456789", filename: "filename");
+            var request =
+                new UploadDocumentRequest(documentContent: content, documentDetail: detail);
+            
+            var jsonstring = JsonOperation.SerializeRequest(request);
+            Assert.AreEqual(jsonstring,
+                "{\"documentContent\":\"√√√123456789\",\"documentDetail\":{\"accountHolderCode\":\"123456789\",\"filename\":\"filename\"}}");
         }
     }
 }

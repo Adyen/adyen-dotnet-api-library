@@ -20,6 +20,8 @@
 //  * See the LICENSE file for more info.
 //  */
 #endregion
+
+using System;
 using Adyen.Model.Payout;
 using Adyen.Service;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
@@ -105,7 +107,7 @@ namespace Adyen.Test
             Assert.AreEqual("8814689190961342", result.PspReference);
             Assert.AreEqual("12345", result.AuthCode);
         }
-
+        
         [TestMethod]
         public void PayoutErrorMerchantTest()
         {

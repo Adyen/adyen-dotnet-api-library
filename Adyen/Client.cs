@@ -23,7 +23,6 @@
 
 using System;
 using System.Net.Http;
-using System.Threading;
 using Adyen.Constants;
 using Adyen.HttpClient.Interfaces;
 using Adyen.HttpClient;
@@ -34,7 +33,6 @@ namespace Adyen
 {
     public class Client
     {
-        private readonly IHttpClientFactory _factory;
         private IClient _client;
 
         public Config Config { get; set; }
@@ -45,7 +43,8 @@ namespace Adyen
 
         public event CallbackLogHandler LogCallback;
 
-        public Client(string username, string password, Environment environment, IHttpClientFactory factory = null)
+        [Obsolete("Providing username and password are obsolete, please use Config instead.")]
+        public Client(string username, string password, Environment environment, string liveEndpointUrlPrefix = null)
         {
             Config = new Config
             {
@@ -53,66 +52,46 @@ namespace Adyen
                 Password = password,
                 Environment = environment
             };
-            _factory = factory;
-            this.SetEnvironment(environment);
+            SetEnvironment(environment, liveEndpointUrlPrefix);
+            _client = new HttpClientWrapper(Config, new System.Net.Http.HttpClient());
         }
         
-        public Client(string username, string password, string liveEndpointUrlPrefix, Environment environment, IHttpClientFactory factory = null)
+        [Obsolete("Providing x-api-key is obsolete, please use Config instead.")]
+        public Client(string xapikey, Environment environment, string liveEndpointUrlPrefix = null)
         {
             Config = new Config
             {
-                Username = username,
-                Password = password,
-                Environment = environment
-            };
-            _factory = factory;
-            this.SetEnvironment(environment, liveEndpointUrlPrefix);
-        }
-
-        public Client(string xapikey, Environment environment, IHttpClientFactory factory = null)
-        {
-            Config = new Config
-            {
+                XApiKey = xapikey,
                 Environment = environment,
-                XApiKey = xapikey
+                LiveEndpointUrlPrefix = liveEndpointUrlPrefix
             };
-            _factory = factory;
-            this.SetEnvironment(environment);
+            SetEnvironment(environment, Config.LiveEndpointUrlPrefix);
+            _client = new HttpClientWrapper(Config, new System.Net.Http.HttpClient());
         }
 
-        public Client(string xapikey, Environment environment, string liveEndpointUrlPrefix, IHttpClientFactory factory = null)
-        {
-            Config = new Config
-            {
-                Environment = environment,
-                XApiKey = xapikey
-            };
-            _factory = factory;
-            this.SetEnvironment(environment, liveEndpointUrlPrefix);
-        }
-
-        public Client(Config config, string liveEndpointUrlPrefix, IHttpClientFactory factory = null)
+        public Client(Config config)
         {
             Config = config;
-            _factory = factory;
-            this.SetEnvironment(config.Environment, liveEndpointUrlPrefix);
-        }
-        
-        public Client(Config config, IHttpClientFactory factory = null)
-        {
-            Config = config;
-            _factory = factory;
-            this.SetEnvironment(config.Environment);
+            SetEnvironment(Config.Environment, Config.LiveEndpointUrlPrefix);
+            _client = new HttpClientWrapper(Config, new System.Net.Http.HttpClient());
         }
 
-        public void SetEnvironment(Environment environment)
+        public Client(Config config, System.Net.Http.HttpClient httpClient)
         {
-            SetEnvironment(environment, null);
+            Config = config;
+            SetEnvironment(Config.Environment, Config.LiveEndpointUrlPrefix);
+            _client = new HttpClientWrapper(Config, httpClient);
+        }
+
+        public Client(Config config, IHttpClientFactory factory, string clientName = null)
+        {
+            Config = config;
+            SetEnvironment(config.Environment, Config.LiveEndpointUrlPrefix);
+            _client = clientName != null ? new HttpClientWrapper(Config, factory.CreateClient(clientName)) : new HttpClientWrapper(Config, factory.CreateClient());
         }
 
         public void SetEnvironment(Environment environment, string liveEndpointUrlPrefix)
         {
-            Config.Environment = environment;
             switch (environment)
             {
                 case Environment.Test:
@@ -139,15 +118,6 @@ namespace Adyen
                     Config.LegalEntityManagementEndpoint = ClientConfig.LegalEntityManagementEndpointLive;
                     break;
             }
-
-            InitClient();
-        }
-
-        private void InitClient()
-        {
-            _client = _factory != null
-                ? new HttpClientWrapper(Config, _factory.CreateClient())
-                : (IClient)new HttpWebRequestWrapper(Config);
         }
 
         public IClient HttpClient
