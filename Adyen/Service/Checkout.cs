@@ -21,6 +21,7 @@
  */
 #endregion
 
+using System.Net.Http;
 using System.Threading.Tasks;
 using Adyen.Model;
 using Adyen.Model.Checkout;
@@ -55,7 +56,7 @@ namespace Adyen.Service
             _paymentDetails = new PaymentDetails(this);
             _paymentSession = new PaymentSession(this);
             _paymentsResult = new PaymentsResult(this);
-            _paymentLinksResult = new PaymentLinks(this);
+            _paymentLinksResult = new PaymentLinks(this, null);
             _sessions = new Sessions(this);
             _orders = new Orders(this);
             _ordersCancel = new OrdersCancel(this);
@@ -119,6 +120,7 @@ namespace Adyen.Service
         ///  POST payments/details API call
         /// </summary>
         /// <param name="paymentsDetailsRequest"></param>
+        /// <param name="requestOptions"></param>
         /// <returns>PaymentsResponse</returns>
         public PaymentDetailsResponse PaymentDetails(PaymentsDetailsRequest paymentsDetailsRequest, RequestOptions requestOptions = null)
         {
@@ -131,6 +133,7 @@ namespace Adyen.Service
         ///  POST payments/details API call async
         /// </summary>
         /// <param name="paymentsDetailsRequest"></param>
+        /// <param name="requestOptions"></param>
         /// <returns>PaymentDetailsResponse</returns>
         public async Task<PaymentDetailsResponse> PaymentDetailsAsync(PaymentsDetailsRequest paymentsDetailsRequest, RequestOptions requestOptions = null)
         {
@@ -198,7 +201,7 @@ namespace Adyen.Service
             var jsonResponse = _paymentLinksResult.Request(jsonRequest);
             return JsonConvert.DeserializeObject<PaymentLinkResponse>(jsonResponse);
         }
-
+        
         /// <summary>
         /// POST /paymentsLinks API call async
         /// </summary>
@@ -208,6 +211,64 @@ namespace Adyen.Service
         {
             var jsonRequest = Util.JsonOperation.SerializeRequest(createPaymentLinkRequest);
             var jsonResponse = await _paymentLinksResult.RequestAsync(jsonRequest);
+            return JsonConvert.DeserializeObject<PaymentLinkResponse>(jsonResponse);
+        }
+        
+        /// <summary>
+        /// GET /paymentsLinks API call 
+        /// </summary>
+        /// <param name="linkId"></param>
+        /// <returns>PaymentLinkResponse</returns>
+        public PaymentLinkResponse GetPaymentLinks(string linkId)
+        {
+            linkId = "/" + linkId;
+            var paymentLinks = new PaymentLinks(this, linkId);
+            var jsonResponse = paymentLinks.Request(null, null, HttpMethod.Get);
+            return JsonConvert.DeserializeObject<PaymentLinkResponse>(jsonResponse);
+        }
+        
+        /// <summary>
+        /// GET /paymentsLinks API call async
+        /// </summary>
+        /// <param name="linkId"></param>
+        /// <returns>PaymentLinkResponse</returns>
+        public async Task<PaymentLinkResponse> GetPaymentLinksAsync(string linkId)
+        {
+            linkId = "/" + linkId;
+            var paymentLinks = new PaymentLinks(this, linkId);
+            var jsonResponse = await paymentLinks.RequestAsync(null, null, HttpMethod.Get);
+            return JsonConvert.DeserializeObject<PaymentLinkResponse>(jsonResponse);
+        }
+        
+        /// <summary>
+        /// PATCH /paymentsLinks API call 
+        /// </summary>
+        /// <param name="updatePaymentLinkRequest"></param>
+        /// <param name="linkId"></param>
+        /// <returns>PaymentLinkResponse</returns>
+        public PaymentLinkResponse PatchPaymentLinks(UpdatePaymentLinkRequest updatePaymentLinkRequest, string linkId)
+        {
+            linkId = "/" + linkId;
+            var paymentLinks = new PaymentLinks(this, linkId);
+            var jsonRequest = Util.JsonOperation.SerializeRequest(updatePaymentLinkRequest);
+            var patch = new HttpMethod("PATCH");
+            var jsonResponse = paymentLinks.Request(jsonRequest, null, patch);
+            return JsonConvert.DeserializeObject<PaymentLinkResponse>(jsonResponse);
+        }
+        
+        /// <summary>
+        /// PATCH /paymentsLinks API call async 
+        /// </summary>
+        /// <param name="updatePaymentLinkRequest"></param>
+        /// <param name="linkId"></param>
+        /// <returns>PaymentLinkResponse</returns>
+        public async Task<PaymentLinkResponse> PatchPaymentLinksAsync(UpdatePaymentLinkRequest updatePaymentLinkRequest, string linkId)
+        {
+            linkId = "/" + linkId;
+            var paymentLinks = new PaymentLinks(this, linkId);
+            var jsonRequest = Util.JsonOperation.SerializeRequest(updatePaymentLinkRequest);
+            var patch = new HttpMethod("PATCH");
+            var jsonResponse = await paymentLinks.RequestAsync(jsonRequest, null, patch);
             return JsonConvert.DeserializeObject<PaymentLinkResponse>(jsonResponse);
         }
 
@@ -226,7 +287,7 @@ namespace Adyen.Service
         /// <summary>
         /// POST /sessions API call async
         /// </summary>
-        /// <param name="createPaymentLinkRequest"></param>
+        /// <param name="createCheckoutSessionRequest"></param>
         /// <returns>CreateCheckoutSessionResponse</returns>
         public async Task<CreateCheckoutSessionResponse> SessionsAsync(CreateCheckoutSessionRequest createCheckoutSessionRequest)
         {
@@ -238,7 +299,7 @@ namespace Adyen.Service
         /// <summary>
         /// POST /paymentMethods/balance API call sync
         /// </summary>
-        /// <param name="CheckoutBalanceCheckRequest"></param>
+        /// <param name="checkoutBalanceCheckRequest"></param>
         /// <returns>CheckoutBalanceCheckResponse</returns>
         public CheckoutBalanceCheckResponse PaymentMethodsBalance(CheckoutBalanceCheckRequest checkoutBalanceCheckRequest)
         {
@@ -250,7 +311,7 @@ namespace Adyen.Service
         /// <summary>
         /// POST /paymentMethods/balance API call async
         /// </summary>
-        /// <param name="CheckoutBalanceCheckRequest"></param>
+        /// <param name="checkoutBalanceCheckRequest"></param>
         /// <returns>CheckoutBalanceCheckResponse</returns>
         public async Task<CheckoutBalanceCheckResponse> PaymentMethodsBalanceAsync(CheckoutBalanceCheckRequest checkoutBalanceCheckRequest)
         {
@@ -262,7 +323,7 @@ namespace Adyen.Service
         /// <summary>
         /// POST /orders API call sync
         /// </summary>
-        /// <param name="CheckoutCreateOrderRequest"></param>
+        /// <param name="checkoutCreateOrderRequest"></param>
         /// <returns>CheckoutCreateOrderResponse</returns>
         public CheckoutCreateOrderResponse Orders(CheckoutCreateOrderRequest checkoutCreateOrderRequest)
         {
@@ -274,7 +335,7 @@ namespace Adyen.Service
         /// <summary>
         /// POST /orders API call async
         /// </summary>
-        /// <param name="CheckoutCreateOrderRequest"></param>
+        /// <param name="checkoutCreateOrderRequest"></param>
         /// <returns>CheckoutCreateOrderResponse</returns>
         public async Task<CheckoutCreateOrderResponse> OrdersAsync(CheckoutCreateOrderRequest checkoutCreateOrderRequest)
         {
@@ -286,7 +347,7 @@ namespace Adyen.Service
         /// <summary>
         /// POST /ordersCancel API call sync
         /// </summary>
-        /// <param name="CheckoutCancelOrderRequest"></param>
+        /// <param name="checkoutCancelOrderRequest"></param>
         /// <returns>CheckoutCancelOrderResponse</returns>
         public CheckoutCancelOrderResponse OrdersCancel(CheckoutCancelOrderRequest checkoutCancelOrderRequest)
         {
@@ -298,7 +359,7 @@ namespace Adyen.Service
         /// <summary>
         /// POST /ordersCancel API call async
         /// </summary>
-        /// <param name="CheckoutCancelOrderRequest"></param>
+        /// <param name="checkoutCancelOrderRequest"></param>
         /// <returns>CheckoutCancelOrderResponse</returns>
         public async Task<CheckoutCancelOrderResponse> OrdersCancelAsync(CheckoutCancelOrderRequest checkoutCancelOrderRequest)
         {

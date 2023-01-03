@@ -13,6 +13,7 @@ using PaymentRequest = Adyen.Model.PaymentRequest;
 using PaymentResult = Adyen.Model.PaymentResult;
 using ContractEnum = Adyen.Model.Recurring.Recurring.ContractEnum;
 using Adyen.Model.Enum;
+using Environment = Adyen.Model.Enum.Environment;
 
 namespace Adyen.IntegrationTest
 {
@@ -151,10 +152,14 @@ namespace Adyen.IntegrationTest
         
         protected Client CreateApiKeyTestClient()
         {
-            var apikey = ClientConstants.Xapikey;
-            return new Client(apikey, Model.Enum.Environment.Test);
-        }
-        
+            var config = new Config()
+            {
+                XApiKey = ClientConstants.Xapikey,
+                Environment =  Environment.Test
+            };
+            return new Client(config);        
+        } 
+
         private PaymentRequest CreateFullPaymentRequest()
         {
             PaymentRequest paymentRequest = new PaymentRequest
