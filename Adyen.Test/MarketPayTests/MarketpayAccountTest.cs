@@ -416,7 +416,7 @@ namespace Adyen.Test.MarketPayTest
             var client = CreateMockTestClientNullRequiredFieldsRequest("Mocks/marketpay/account/suspend-account-holder-success.json");
             var account = new Account(client);
             var suspendAccountHolderRequest = new SuspendAccountHolderRequest(accountHolderCode: "123456");
-            var suspendAccountHolderResponse = account.SuspendAccountHolder(suspendAccountHolderRequest);
+            var suspendAccountHolderResponse = await account.SuspendAccountHolderAsync(suspendAccountHolderRequest);
             Assert.AreEqual(suspendAccountHolderResponse.PspReference, "8515813523937793");
             Assert.AreEqual(suspendAccountHolderResponse.AccountHolderStatus.Status, AccountHolderStatus.StatusEnum.Suspended);
             Assert.AreEqual(suspendAccountHolderResponse.AccountHolderStatus.PayoutState.AllowPayout, false);
