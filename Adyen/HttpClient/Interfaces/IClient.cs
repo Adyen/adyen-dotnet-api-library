@@ -32,23 +32,23 @@ namespace Adyen.HttpClient.Interfaces
     public interface IClient : IDisposable
     {
         /// <summary>
-        /// Request Method synchronous.
+        /// Sends a synchronous request to the specified <paramref name="endpoint"/>.
         /// </summary>
-        /// <param name="endpoint">Url of the endpoint.</param>
+        /// <param name="endpoint">URL of the endpoint.</param>
         /// <param name="json">Json request parameters for Post/Patch.</param>
         /// <param name="requestOptions">Optional parameter used to specify the options for the request.</param>
         /// <param name="httpMethod">Request Method.</param>
-        /// <returns>string</returns>
+        /// <returns>A string response in json format.</returns>
         string Request(string endpoint, string json, RequestOptions requestOptions = null, HttpMethod httpMethod = null);
         
         /// <summary>
-        /// Request Method asynchronous.
+        /// Sends an asynchronous request to the specified <paramref name="endpoint"/>.
         /// </summary>
-        /// <param name="endpoint">Url of the endpoint.</param>
+        /// <param name="endpoint">URL of the endpoint.</param>
         /// <param name="json">Json request parameters for Post/Patch.</param>
-        /// <param name="requestOptions">Optional parameter used to specify the options for the request</param>
+        /// <param name="requestOptions">Optional parameter used to specify the options for the request.</param>
         /// <param name="httpMethod">Request Method.</param>
-        /// <returns>string</returns>
+        /// <returns>A <see cref="Task"/> with string response in json format.</returns>
         Task<string> RequestAsync(string endpoint, string json, RequestOptions requestOptions = null, HttpMethod httpMethod = null);
         string Post(string endpoint, Dictionary<string, string> postParameters);
     }

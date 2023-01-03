@@ -116,11 +116,10 @@ namespace Adyen.Test
             var request = new PayoutRequest();
             try
             {
-                Console.WriteLine(payout.PayoutSubmit(request));
+                payout.PayoutSubmit(request);
             }
             catch (HttpClient.HttpClientException e)
             {
-                Console.WriteLine(e.ResponseBody);
                 Assert.IsNotNull(e.ResponseBody);
                 Assert.AreEqual(403, e.Code);
             }
