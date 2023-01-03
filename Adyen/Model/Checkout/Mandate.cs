@@ -187,7 +187,7 @@ namespace Adyen.Model.Checkout
             }
 
             // to ensure "frequency" is required (not null)
-            if (frequency == null)
+            if (frequency == default(FrequencyEnum))
             {
                 throw new InvalidDataException("frequency is a required property for Mandate and cannot be null");
             }

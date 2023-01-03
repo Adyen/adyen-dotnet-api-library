@@ -20,10 +20,10 @@
 //  * See the LICENSE file for more info.
 //  */
 #endregion
-using System.Threading.Tasks;
 using Adyen.Model.MarketPay;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 using Account = Adyen.Service.Account;
 
 namespace Adyen.Test.MarketPayTest
@@ -381,7 +381,7 @@ namespace Adyen.Test.MarketPayTest
             var client = CreateMockTestClientNullRequiredFieldsRequest("Mocks/marketpay/account/get-uploaded-documents-success.json");
             var account = new Account(client);
             var getUploadedDocumentsRequest = new GetUploadedDocumentsRequest(accountHolderCode: "123456");
-            var getUploadedDocumentsResponse = account.GetUploadedDocuments(getUploadedDocumentsRequest);
+            var getUploadedDocumentsResponse = await account.GetUploadedDocumentsAsync(getUploadedDocumentsRequest);
             Assert.AreEqual(getUploadedDocumentsResponse.PspReference, "9914694369860322");
             Assert.AreEqual(getUploadedDocumentsResponse.DocumentDetails[0].AccountHolderCode, "TestAccountHolder8031");
             Assert.AreEqual(getUploadedDocumentsResponse.DocumentDetails[0].BankAccountUUID, "EXAMPLE_UUID");
@@ -448,7 +448,7 @@ namespace Adyen.Test.MarketPayTest
             var client = CreateMockTestClientNullRequiredFieldsRequest("Mocks/marketpay/account/un-suspend-account-holder-success.json");
             var account = new Account(client);
             var unSuspendAccountHolderRequest = new UnSuspendAccountHolderRequest(accountHolderCode: "123456");
-            var unSuspendAccountHolderResponse = account.UnSuspendAccountHolder(unSuspendAccountHolderRequest);
+            var unSuspendAccountHolderResponse = await account.UnSuspendAccountHolderAsync(unSuspendAccountHolderRequest);
             Assert.AreEqual(unSuspendAccountHolderResponse.PspReference, "8815813528286482");
             Assert.AreEqual(unSuspendAccountHolderResponse.AccountHolderStatus.Status, AccountHolderStatus.StatusEnum.Active);
             Assert.AreEqual(unSuspendAccountHolderResponse.AccountHolderStatus.PayoutState.AllowPayout, false);

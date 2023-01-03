@@ -84,7 +84,7 @@ namespace Adyen.Model.Checkout
                 this.Issuer = issuer;
             }
             // to ensure "type" is required (not null)
-            if (type == null)
+            if (type == default(TypeEnum))
             {
                 throw new InvalidDataException("type is a required property for GenericIssuerPaymentMethodDetails and cannot be null");
             }

@@ -23,17 +23,16 @@
 #endregion
 
 
-using System;
-using System.Linq;
-using System.Text;
-using System.Collections.Generic;
 using Adyen.Model.ApplicationInformation;
-using System.Runtime.Serialization;
+using Adyen.Util;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
+using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using Adyen.Service.Resource.Modification;
-using Adyen.Util;
+using System.Linq;
+using System.Runtime.Serialization;
+using System.Text;
 
 namespace Adyen.Model.Checkout
 {
@@ -250,28 +249,12 @@ namespace Adyen.Model.Checkout
             this.ShopperReference = shopperReference;
             this.ShopperStatement = shopperStatement;
             this.SocialSecurityNumber = socialSecurityNumber;
-            // use default value if no "splitCardFundingSources" provided
-            if (splitCardFundingSources == null)
-            {
-                this.SplitCardFundingSources = false;
-            }
-            else
-            {
-                this.SplitCardFundingSources = splitCardFundingSources;
-            }
+            this.SplitCardFundingSources = splitCardFundingSources;
             this.Splits = splits;
             this.Store = store;
             this.StorePaymentMethod = storePaymentMethod;
             this.TelephoneNumber = telephoneNumber;
-            // use default value if no "threeDSAuthenticationOnly" provided
-            if (threeDsAuthenticationOnly == null)
-            {
-                this.ThreeDsAuthenticationOnly = false;
-            }
-            else
-            {
-                this.ThreeDsAuthenticationOnly = threeDsAuthenticationOnly;
-            }
+            this.ThreeDsAuthenticationOnly = threeDsAuthenticationOnly;
             this.TrustedShopper = trustedShopper;
         }
 
