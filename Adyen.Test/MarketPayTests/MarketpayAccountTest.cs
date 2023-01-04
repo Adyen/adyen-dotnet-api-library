@@ -381,7 +381,7 @@ namespace Adyen.Test.MarketPayTest
             var client = CreateMockTestClientNullRequiredFieldsRequest("Mocks/marketpay/account/get-uploaded-documents-success.json");
             var account = new Account(client);
             var getUploadedDocumentsRequest = new GetUploadedDocumentsRequest(accountHolderCode: "123456");
-            var getUploadedDocumentsResponse = await account.GetUploadedDocumentsAsync(getUploadedDocumentsRequest);
+            var getUploadedDocumentsResponse = account.GetUploadedDocumentsAsync(getUploadedDocumentsRequest).Result;
             Assert.AreEqual(getUploadedDocumentsResponse.PspReference, "9914694369860322");
             Assert.AreEqual(getUploadedDocumentsResponse.DocumentDetails[0].AccountHolderCode, "TestAccountHolder8031");
             Assert.AreEqual(getUploadedDocumentsResponse.DocumentDetails[0].BankAccountUUID, "EXAMPLE_UUID");
@@ -416,7 +416,7 @@ namespace Adyen.Test.MarketPayTest
             var client = CreateMockTestClientNullRequiredFieldsRequest("Mocks/marketpay/account/suspend-account-holder-success.json");
             var account = new Account(client);
             var suspendAccountHolderRequest = new SuspendAccountHolderRequest(accountHolderCode: "123456");
-            var suspendAccountHolderResponse = await account.SuspendAccountHolderAsync(suspendAccountHolderRequest);
+            var suspendAccountHolderResponse = account.SuspendAccountHolderAsync(suspendAccountHolderRequest).Result;
             Assert.AreEqual(suspendAccountHolderResponse.PspReference, "8515813523937793");
             Assert.AreEqual(suspendAccountHolderResponse.AccountHolderStatus.Status, AccountHolderStatus.StatusEnum.Suspended);
             Assert.AreEqual(suspendAccountHolderResponse.AccountHolderStatus.PayoutState.AllowPayout, false);
@@ -448,7 +448,7 @@ namespace Adyen.Test.MarketPayTest
             var client = CreateMockTestClientNullRequiredFieldsRequest("Mocks/marketpay/account/un-suspend-account-holder-success.json");
             var account = new Account(client);
             var unSuspendAccountHolderRequest = new UnSuspendAccountHolderRequest(accountHolderCode: "123456");
-            var unSuspendAccountHolderResponse = await account.UnSuspendAccountHolderAsync(unSuspendAccountHolderRequest);
+            var unSuspendAccountHolderResponse = account.UnSuspendAccountHolderAsync(unSuspendAccountHolderRequest).Result;
             Assert.AreEqual(unSuspendAccountHolderResponse.PspReference, "8815813528286482");
             Assert.AreEqual(unSuspendAccountHolderResponse.AccountHolderStatus.Status, AccountHolderStatus.StatusEnum.Active);
             Assert.AreEqual(unSuspendAccountHolderResponse.AccountHolderStatus.PayoutState.AllowPayout, false);
