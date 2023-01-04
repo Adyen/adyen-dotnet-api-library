@@ -46,7 +46,7 @@ namespace Adyen
         public string SkinCode{ get; set; }
         public string HmacKey { get; set; }
         public string CheckoutEndpoint { get;set; }
-
+        public string LegalEntityManagementEndpoint { get;set; }
         //Terminal cloud api
         public string XApiKey { get; set; }
         public string CloudApiEndPoint { get; set; }

@@ -31,6 +31,7 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Net;
+using System.Net.Http;
 using System.Text;
 using Adyen.HttpClient.Interfaces;
 using Adyen.Model;
@@ -301,6 +302,32 @@ namespace Adyen.Test
             };
             return clientMock;
         }
+        
+        /// <summary>
+        /// Creates mock test client
+        /// </summary>
+        /// <param name="fileName">The file that is returned</param>
+        /// <returns>IClient implementation</returns>
+        protected Client CreateMockTestClientApiKeyBasedRequestAsync(string fileName)
+        {
+            var mockPath = GetMockFilePath(fileName);
+            var response = MockFileToString(mockPath);
+            //Create a mock interface
+            var clientInterfaceMock = new Mock<IClient>();
+            var confMock = MockPaymentData.CreateConfigApiKeyBasedMock();
+            clientInterfaceMock.Setup(x => x.RequestAsync(It.IsAny<string>(),
+                It.IsAny<string>(), It.IsAny<RequestOptions>(), It.IsAny<HttpMethod>())).ReturnsAsync(response);
+            var config = new Config()
+            {
+                Environment = It.IsAny<Model.Enum.Environment>()
+            };
+            var clientMock = new Client(config)
+            {
+                HttpClient = clientInterfaceMock.Object,
+                Config = confMock
+            };
+            return clientMock;
+        }
 		
 		/// <summary>
         /// Creates async mock test client
@@ -471,8 +498,7 @@ namespace Adyen.Test
             string mockPath = GetMockFilePath(fileName);
             return MockFileToString(mockPath);
         }
-
-
+        
         /// <summary>
         /// Create dummy Nexo message header
         /// </summary>
