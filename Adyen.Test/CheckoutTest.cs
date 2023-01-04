@@ -223,9 +223,7 @@ namespace Adyen.Test
         public void PaymentDetailsTest()
         {
             var detailsRequest = CreateDetailsRequest();
-            detailsRequest.Details =
-                new PaymentCompletionDetails(
-                    payload: "Ab02b4c0!BQABAgBQn96RxfJHpp2RXhqQBuhQFWgE...gfGHb4IZSP4IpoCC2==RXhqQBuhQ");
+            detailsRequest.Details = new PaymentCompletionDetails(payload: "Ab02b4c0!BQABAgBQn96RxfJHpp2RXhqQBuhQFWgE...gfGHb4IZSP4IpoCC2==RXhqQBuhQ");
             var client = CreateMockTestClientApiKeyBasedRequest("Mocks/checkout/paymentsdetails-success.json");
             var checkout = new Checkout(client);
             var paymentResponse = checkout.PaymentDetails(detailsRequest);
@@ -349,8 +347,7 @@ namespace Adyen.Test
         public void PaymentMethodsErrorTest()
         {
             var paymentMethodsRequest = CreatePaymentMethodRequest("YourMerchantAccount");
-            var client =
-                CreateMockTestClientApiKeyBasedRequest("Mocks/checkout/paymentmethods-error-forbidden-403.json");
+            var client = CreateMockTestClientApiKeyBasedRequest("Mocks/checkout/paymentmethods-error-forbidden-403.json");
             var checkout = new Checkout(client);
             var paymentMethodsResponse = checkout.PaymentMethods(paymentMethodsRequest);
             Assert.IsNull(paymentMethodsResponse.PaymentMethods);
@@ -384,8 +381,7 @@ namespace Adyen.Test
         public void PaymentMethodsWithoutBrandsTest()
         {
             var paymentMethodsRequest = CreatePaymentMethodRequest("YourMerchantAccount");
-            var client =
-                CreateMockTestClientApiKeyBasedRequest("Mocks/checkout/paymentmethods-without-brands-success.json");
+            var client = CreateMockTestClientApiKeyBasedRequest("Mocks/checkout/paymentmethods-without-brands-success.json");
             var checkout = new Checkout(client);
             var paymentMethodsResponse = checkout.PaymentMethods(paymentMethodsRequest);
             Assert.AreEqual(paymentMethodsResponse.PaymentMethods.Count, 50);
@@ -929,8 +925,7 @@ namespace Adyen.Test
             Assert.AreEqual(PaymentReversalResource.StatusEnum.Received, paymentReversalResource.Status);
             Assert.AreEqual("my_reference", paymentReversalResource.Reference);
         }
-
-
+        
         /// <summary>
         /// Test success payments cancels
         /// POST /payments/{paymentPspReference}/amountUpdates

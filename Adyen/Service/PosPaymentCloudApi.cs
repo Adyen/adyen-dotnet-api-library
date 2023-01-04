@@ -37,7 +37,6 @@ namespace Adyen.Service
         public PosPaymentCloudApi(Client client)
             : base(client)
         {
-            IsApiKeyRequired = true;
             _saleToPoiMessageSerializer = new SaleToPoiMessageSerializer();
             _terminalApiAsync = new TerminalApi(this, true);
             _terminalApiSync = new TerminalApi(this, false);
