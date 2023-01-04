@@ -36,7 +36,6 @@ namespace Adyen.Service
         public CheckoutUtility(Client client)
             : base(client)
         {
-            IsApiKeyRequired = true;
             _originKeys = new OriginKeys(this);
         }
 
