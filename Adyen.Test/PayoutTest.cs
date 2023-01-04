@@ -111,9 +111,9 @@ namespace Adyen.Test
         [TestMethod]
         public void PayoutErrorMerchantTest()
         {
-            Client client = CreateMockTestClientForErrors(403, "Mocks/payout/payout-error-403.json");
-            Payout payout = new Payout(client);
-            PayoutRequest request = new PayoutRequest();
+            var client = CreateMockTestClientForErrors(403, "Mocks/payout/payout-error-403.json");
+            var payout = new Payout(client);
+            var request = new PayoutRequest();
             try
             {
                 payout.PayoutSubmit(request);
@@ -128,9 +128,9 @@ namespace Adyen.Test
         [TestMethod]
         public void PayoutErrorReferenceTest()
         {
-            Client client = CreateMockTestClientForErrors(422, "Mocks/payout/payout-error-422.json");
-            Payout payout = new Payout(client);
-            PayoutRequest request = new PayoutRequest();
+            var client = CreateMockTestClientForErrors(422, "Mocks/payout/payout-error-422.json");
+            var payout = new Payout(client);
+            var request = new PayoutRequest();
             try
             {
                 payout.PayoutSubmit(request);
