@@ -55,7 +55,7 @@ namespace Adyen.Constants
         public static string EndpointProtocol = "https://";
         public static string NexoProtocolVersion = "3.0";
         public static string BinLookupPalSuffix = "/pal/servlet/BinLookup/";
-        public static string BinLookupApiVersion = "v50";
+        public static string BinLookupApiVersion = "v52";
 
         public static string LibName = "adyen-dotnet-api-library";
         public static string LibVersion = "9.1.0";
