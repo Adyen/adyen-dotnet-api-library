@@ -1,0 +1,16 @@
+{
+  "stores": [
+    {
+      "store": "YOUR_STORE",
+      "description": "YOUR_STORE",
+      "address": {
+        "city": "The City",
+        "countryCode": "NL",
+        "postalCode": "1234",
+        "streetAddress": "The Street"
+      },
+      "status": "Active",
+      "merchantAccountCode": "YOUR_MERCHANT_ACCOUNT"
+    }
+  ]
+}
