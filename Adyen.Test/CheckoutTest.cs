@@ -987,6 +987,26 @@ namespace Adyen.Test
             Assert.AreEqual("visa",cardDetailResponse.Brands[0].Type);
             Assert.AreEqual("cartebancaire", cardDetailResponse.Brands[1].Type);
         }
+        
+        /// <summary>
+        /// Test success donations
+        /// POST /donations
+        /// </summary>
+        [TestMethod]
+        public void ApplePaySessionsTest()
+        {
+            var client = CreateAsyncMockTestClientApiKeyBasedRequest("Mocks/checkout/apple-pay-sessions-success.json");
+            var checkout = new Checkout(client);
+            var applePaySessionRequest = new CreateApplePaySessionRequest
+            {
+                DisplayName = "YOUR_MERCHANT_NAME",
+                DomainName = "domainName",
+                MerchantIdentifier = "234tvsadh34fsghlker3..w35sgfs"
+                    
+            };
+            var applePayResponse = checkout.ApplePaySessions(applePaySessionRequest);
+            Assert.AreEqual("eyJ2Z...340278gdflkaswer",applePayResponse.Data);
+        }
 
         #endregion
     }

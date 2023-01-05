@@ -48,6 +48,7 @@ namespace Adyen.Service
         private readonly Cancels _cancels;
         private readonly Donations _donations;
         private readonly CardDetails _cardDetails;
+        private readonly CheckoutResource _applePaySessions;
         public Checkout(Client client) : base(client)
         {
             _payments = new Payments(this);
@@ -63,6 +64,7 @@ namespace Adyen.Service
             _cancels = new Cancels(this);
             _donations = new Donations(this);
             _cardDetails = new CardDetails(this);
+            _applePaySessions = new CheckoutResource(this, "/applePay/sessions");
         }
 
         /// <summary>
@@ -560,7 +562,6 @@ namespace Adyen.Service
         /// </summary>
         /// <param name="cardDetailsRequest"></param>
         /// <returns>CardDetailsResponse</returns>
-
         public CardDetailsResponse CardDetails(CardDetailsRequest cardDetailsRequest)
         {
             var jsonRequest = cardDetailsRequest.ToJson();
@@ -573,12 +574,34 @@ namespace Adyen.Service
         /// </summary>
         /// <param name="cardDetailsRequest"></param>
         /// <returns>CardDetailsResponse</returns>
-
         public async Task<CardDetailsResponse> CardDetailsAsync(CardDetailsRequest cardDetailsRequest)
         {
             var jsonRequest = cardDetailsRequest.ToJson();
             var jsonResponse = await _cardDetails.RequestAsync(jsonRequest);
             return JsonConvert.DeserializeObject<CardDetailsResponse>(jsonResponse);
         }
+
+        /// <summary>
+        /// POST /cardDetails API call async
+        /// </summary>
+        /// <param name="createApplePaySessionRequest"></param>
+        /// <returns>CardDetailsResponse</returns>
+        public async Task<ApplePaySessionResponse> ApplePaySessionsAsync(CreateApplePaySessionRequest createApplePaySessionRequest)
+        {
+            var jsonRequest = createApplePaySessionRequest.ToJson();
+            var jsonResult = await _applePaySessions.RequestAsync(jsonRequest);
+            return JsonConvert.DeserializeObject<ApplePaySessionResponse>(jsonResult);
+        }
+        
+        /// <summary>
+        /// POST /cardDetails API call sync
+        /// </summary>
+        /// <param name="createApplePaySessionRequest"></param>
+        /// <returns>CardDetailsResponse</returns>
+        public ApplePaySessionResponse ApplePaySessions(CreateApplePaySessionRequest createApplePaySessionRequest)
+        {
+            return ApplePaySessionsAsync(createApplePaySessionRequest).GetAwaiter().GetResult();
+        }
+        
     }
 }
