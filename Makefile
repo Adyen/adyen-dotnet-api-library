@@ -20,6 +20,7 @@ Payments: spec=PaymentService-v68
 Recurring: spec=RecurringService-v68
 Payouts: spec=PayoutService-v68
 Management: spec=ManagementService-v1
+Management: service=management
 LegalEntityManagement: spec=LegalEntityService-v2
 BalancePlatform: spec=BalancePlatformService-v2
 PlatformsAccount: spec=AccountService-v6
@@ -43,8 +44,20 @@ $(services): target/spec $(openapi-generator-jar)
 		--additional-properties packageName=Adyen.Model
 	mkdir Adyen/Model/$@
 	mv target/out/src/Adyen.Model/$@/* Adyen/Model/$@
-#adjust this build/src to another file when creating templates
 
+# Service
+Management: target/spec $(openapi-generator-jar)  
+	$(openapi-generator-cli) generate \
+		-i target/spec/json/$(spec).json \
+		-g $(generator) \
+		-t templates/csharp \
+		-o $(output) \
+		--additional-properties packageName=Adyen.Service \
+		--api-package $@ \
+		--model-package Model.$@ \
+		--reserved-words-mappings Version=Version \
+		--global-property apis \
+	
 # Checkout spec (and patch version)
 target/spec:
 	git clone https://github.com/Adyen/adyen-openapi.git target/spec
@@ -61,8 +74,8 @@ $(openapi-generator-jar):
 # Discard generated artifacts and changed models
 clean:
 	rm -rf $(output)
-	git checkout $(models)
-	git clean -f -d $(models)
+	git checkout $(models) Adyen/Service/Management
+	git clean -f -d $(models) Adyen/Service/Management
 
 
 .PHONY: templates models $(services)
