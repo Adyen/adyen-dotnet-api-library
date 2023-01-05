@@ -6,7 +6,6 @@ openapi-generator-cli:=java -jar $(openapi-generator-jar)
 
 generator:=csharp
 services:=LegalEntityManagement PosTerminalManagement
->>>>>>> develop
 models:=Adyen/Model
 output:=target/out
 
@@ -38,7 +37,6 @@ $(services): target/spec $(openapi-generator-jar)
 		-o $(output) \
 		--model-package $@ \
 		--reserved-words-mappings Version=Version \
-		--global-property modelDocs=false \
 		--global-property modelDocs=false \
         --global-property modelTests=false \
 		--global-property models,supportingFiles \
