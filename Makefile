@@ -4,8 +4,8 @@ openapi-generator-jar:=target/openapi-generator-cli.jar
 openapi-generator-cli:=java -jar $(openapi-generator-jar)
 
 
-generator:=csharp
-services:=
+generator:=csharp-netcore
+services:=Checkout
 models:=Adyen/Model
 output:=target/out
 

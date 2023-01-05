@@ -34,8 +34,8 @@ namespace Adyen.IntegrationTest
             Assert.AreEqual("1111", GetAdditionalData(paymentResult.AdditionalData, "cardSummary"));
             Assert.IsNotNull(GetAdditionalData(paymentResult.AdditionalData, "avsResult"));
             Assert.AreEqual("1 Matches", GetAdditionalData(paymentResult.AdditionalData, "cvcResult"));
-            Assert.AreEqual("H167852639363479", GetAdditionalData(paymentResult.AdditionalData, "alias"));
-            Assert.AreEqual("visa", GetAdditionalData(paymentResult.AdditionalData, "paymentMethodVariant"));
+            Assert.AreEqual("1500", GetAdditionalData(paymentResult.AdditionalData, "authorisedAmountValue"));
+            Assert.AreEqual("visa", GetAdditionalData(paymentResult.AdditionalData, "paymentMethod"));
             Assert.AreEqual("Default", GetAdditionalData(paymentResult.AdditionalData, "aliasType"));
         }
 

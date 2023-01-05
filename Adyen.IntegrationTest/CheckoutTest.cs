@@ -1,6 +1,5 @@
 
 using Adyen.Model.Checkout;
-using Adyen.Model.Checkout.Action;
 using Adyen.Service;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
@@ -71,6 +70,7 @@ namespace Adyen.IntegrationTest
         public void PaymentsTest()
         {
             var paymentResponse = _checkout.Payments(CreatePaymentRequestCheckout());
+            Console.WriteLine(paymentResponse.ToJson());
             Assert.IsNotNull(paymentResponse.AdditionalData);
             Assert.AreEqual("1111", paymentResponse.AdditionalData["cardSummary"]);
             Assert.IsNotNull(paymentResponse.AdditionalData["avsResult"]);
@@ -97,7 +97,7 @@ namespace Adyen.IntegrationTest
         public void PaymentWithIdealTest()
         {
             var paymentResponse = _checkout.Payments(CreatePaymentRequestIDealCheckout());
-            var paymentResponseResult = (CheckoutRedirectAction)paymentResponse.Action;
+            var paymentResponseResult = paymentResponse.Action.GetCheckoutRedirectAction();
             Assert.AreEqual(paymentResponse.ResultCode, PaymentResponse.ResultCodeEnum.RedirectShopper);
             Assert.AreEqual(paymentResponseResult.PaymentMethodType, "ideal");
             Assert.IsNotNull(paymentResponseResult.Url);
@@ -173,7 +173,6 @@ namespace Adyen.IntegrationTest
                 ReturnUrl = "http://test-url.com",
                 Amount = new Amount("EUR", 10000L)
             };
-
             var createCheckoutSessionResponse = _checkout.Sessions(checkoutSessionRequest);
             Assert.AreEqual(MerchantAccount, createCheckoutSessionResponse.MerchantAccount);
             Assert.AreEqual("TestReference", createCheckoutSessionResponse.Reference);

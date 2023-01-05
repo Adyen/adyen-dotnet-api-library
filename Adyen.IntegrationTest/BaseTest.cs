@@ -171,7 +171,7 @@ namespace Adyen.IntegrationTest
                 AdditionalData = CreateAdditionalData(),
 
             };
-            paymentRequest.ApplicationInfo.ExternalPlatform = new ExternalPlatform("test merchant", "merchant name", "2.8");
+            paymentRequest.ApplicationInfo.ExternalPlatform = new Adyen.Model.ApplicationInformation.ExternalPlatform("test merchant", "merchant name", "2.8");
             return paymentRequest;
         }
 
@@ -183,7 +183,7 @@ namespace Adyen.IntegrationTest
                 Md = "testtokenMd",
                 PaResponse = "unique pa"
             };
-            paymentRequest.ApplicationInfo.ExternalPlatform = new ExternalPlatform("test merchant", "merchant name", "2.8");
+            paymentRequest.ApplicationInfo.ExternalPlatform = new Adyen.Model.ApplicationInformation.ExternalPlatform("test merchant", "merchant name", "2.8");
             return paymentRequest;
         }
 
@@ -200,7 +200,7 @@ namespace Adyen.IntegrationTest
                 Recurring = new Model.Recurring.Recurring { Contract = contract },
 
             };
-            paymentRequest.ApplicationInfo.ExternalPlatform = new ExternalPlatform("test merchant", "merchant name", "2.8");
+            paymentRequest.ApplicationInfo.ExternalPlatform = new Adyen.Model.ApplicationInformation.ExternalPlatform("test merchant", "merchant name", "2.8");
             return paymentRequest;
         }
 
@@ -219,7 +219,15 @@ namespace Adyen.IntegrationTest
                 ReturnUrl = @"https://your-company.com/...",
                 MerchantAccount = ClientConstants.MerchantAccount,
             };
-            paymentsRequest.AddCardData("4111111111111111", "10", "2020", "737", "John Smith");
+            var cardDetails = new Model.Checkout.CardDetails()
+            {
+                Number = "4111111111111111",
+                ExpiryMonth = "10",
+                ExpiryYear = "2020",
+                HolderName = "John Smith",
+                Cvc = "737"
+            };
+            paymentsRequest.PaymentMethod = new PaymentDonationRequestPaymentMethod(cardDetails);
             return paymentsRequest;
         }
 
@@ -235,11 +243,7 @@ namespace Adyen.IntegrationTest
             {
                 Reference = "Your order number from e2e",
                 Amount = amount,
-                PaymentMethod= new Model.Checkout.DefaultPaymentMethodDetails()
-                {
-                    Type = "ideal",
-                    Issuer="1121"
-                },
+                PaymentMethod= new Model.Checkout.PaymentDonationRequestPaymentMethod(new IdealDetails(type: IdealDetails.TypeEnum.Ideal, issuer: "1121")),
                 ReturnUrl = @"https://your-company.com/...",
                 MerchantAccount = ClientConstants.MerchantAccount,
             };
@@ -260,7 +264,7 @@ namespace Adyen.IntegrationTest
         ///Checkout Details request
         /// </summary>
         /// <returns>Returns a sample PaymentsDetailsRequest object with test data</returns>
-        public Model.Checkout.PaymentsDetailsRequest CreateDetailsRequest()
+        public Model.Checkout.DetailsRequest CreateDetailsRequest()
         {
             string paymentData = "Ab02b4c0!BQABAgCJN1wRZuGJmq8dMncmypvknj9s7l5Tj...";
             var details = new PaymentCompletionDetails()
@@ -268,7 +272,7 @@ namespace Adyen.IntegrationTest
                MD="FDSAFASFHHRE1234...",
                PaRes = ""
             };
-            var paymentsDetailsRequest = new Model.Checkout.PaymentsDetailsRequest(details: details, paymentData: paymentData);
+            var paymentsDetailsRequest = new Model.Checkout.DetailsRequest(details: details, paymentData: paymentData);
 
             return paymentsDetailsRequest;
         }
