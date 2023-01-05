@@ -23,20 +23,21 @@
 
 #endregion
 
+using Adyen.Model;
 using Adyen.Model.ApplicationInformation;
 using Adyen.Model.Checkout;
-using Adyen.Model.Checkout.Details;
 using Adyen.Model.Checkout.Action;
+using Adyen.Model.Checkout.Details;
 using Adyen.Service;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using static Adyen.Model.Checkout.PaymentResponse;
-using Newtonsoft.Json.Linq;
-using Newtonsoft.Json;
-using System.Collections.Generic;
-using Adyen.Model;
 using Amount = Adyen.Model.Checkout.Amount;
+using Environment = Adyen.Model.Enum.Environment;
 using PaymentRequest = Adyen.Model.Checkout.PaymentRequest;
 
 namespace Adyen.Test
@@ -54,7 +55,7 @@ namespace Adyen.Test
         {
             var config = new Config();
             var client = new Client(config);
-            client.SetEnvironment(Model.Enum.Environment.Test, "companyUrl");
+            client.SetEnvironment(Environment.Test, "companyUrl");
             Assert.AreEqual(config.CheckoutEndpoint, @"https://checkout-test.adyen.com");
             Assert.AreEqual(config.Endpoint, @"https://pal-test.adyen.com");
         }
@@ -67,7 +68,7 @@ namespace Adyen.Test
         {
             var config = new Config();
             var client = new Client(config);
-            client.SetEnvironment(Model.Enum.Environment.Live, "companyUrl");
+            client.SetEnvironment(Environment.Live, "companyUrl");
             Assert.AreEqual(config.CheckoutEndpoint, @"https://companyUrl-checkout-live.adyenpayments.com/checkout");
             Assert.AreEqual(config.Endpoint, @"https://companyUrl-pal-live.adyenpayments.com");
         }
@@ -76,31 +77,39 @@ namespace Adyen.Test
         /// Tests unsuccessful checkout client Live URL generation.
         /// </summary>
         [TestMethod]
-        [ExpectedException(typeof(InvalidOperationException), "Missing liveEndpointUrlPrefix for endpoint generation")]
         public void CheckoutEndpointLiveErrorTest()
         {
             var config = new Config();
             var client = new Client(config);
-            client.SetEnvironment(Model.Enum.Environment.Live,null);
+            Assert.ThrowsException<InvalidOperationException>(() => client.SetEnvironment(Environment.Live, null));
         }
         
         /// <summary>
         /// Tests unsuccessful checkout client Live URL generation.
         /// </summary>
         [TestMethod]
-        [ExpectedException(typeof(InvalidOperationException), "Missing liveEndpointUrlPrefix for endpoint generation")]
         public void CheckoutEndpointLiveWithBasicAuthErrorTest()
         {
-            var client = new Client("ws_*******", "******", Adyen.Model.Enum.Environment.Live);
+            Assert.ThrowsException<InvalidOperationException>(() => new Client("ws_*******", "******", Environment.Live));
         }
         
         /// <summary>
-        /// Tests successful checkout client Live URL generation.
+        /// Tests successful checkout client Live URL generation with basic auth.
         /// </summary>
         [TestMethod]
         public void CheckoutEndpointLiveWithBasicAuthTest()
         {
-            var client = new Client("ws_*******", "******", Adyen.Model.Enum.Environment.Live, "live-url");
+            var client = new Client("ws_*******", "******", Environment.Live, "live-url");
+            Assert.AreEqual(client.Config.CheckoutEndpoint, "https://live-url-checkout-live.adyenpayments.com/checkout");
+        }
+        
+        /// <summary>
+        /// Tests successful checkout client Live URL generation with API key.
+        /// </summary>
+        [TestMethod]
+        public void CheckoutEndpointLiveWithAPIKeyTest()
+        {
+            var client = new Client("xapikey", Environment.Live, "live-url");
             Assert.AreEqual(client.Config.CheckoutEndpoint, "https://live-url-checkout-live.adyenpayments.com/checkout");
         }
 
@@ -212,9 +221,7 @@ namespace Adyen.Test
         public void PaymentDetailsTest()
         {
             var detailsRequest = CreateDetailsRequest();
-            detailsRequest.Details =
-                new PaymentCompletionDetails(
-                    payload: "Ab02b4c0!BQABAgBQn96RxfJHpp2RXhqQBuhQFWgE...gfGHb4IZSP4IpoCC2==RXhqQBuhQ");
+            detailsRequest.Details = new PaymentCompletionDetails(payload: "Ab02b4c0!BQABAgBQn96RxfJHpp2RXhqQBuhQFWgE...gfGHb4IZSP4IpoCC2==RXhqQBuhQ");
             var client = CreateMockTestClientApiKeyBasedRequest("Mocks/checkout/paymentsdetails-success.json");
             var checkout = new Checkout(client);
             var paymentResponse = checkout.PaymentDetails(detailsRequest);
@@ -338,8 +345,7 @@ namespace Adyen.Test
         public void PaymentMethodsErrorTest()
         {
             var paymentMethodsRequest = CreatePaymentMethodRequest("YourMerchantAccount");
-            var client =
-                CreateMockTestClientApiKeyBasedRequest("Mocks/checkout/paymentmethods-error-forbidden-403.json");
+            var client = CreateMockTestClientApiKeyBasedRequest("Mocks/checkout/paymentmethods-error-forbidden-403.json");
             var checkout = new Checkout(client);
             var paymentMethodsResponse = checkout.PaymentMethods(paymentMethodsRequest);
             Assert.IsNull(paymentMethodsResponse.PaymentMethods);
@@ -373,8 +379,7 @@ namespace Adyen.Test
         public void PaymentMethodsWithoutBrandsTest()
         {
             var paymentMethodsRequest = CreatePaymentMethodRequest("YourMerchantAccount");
-            var client =
-                CreateMockTestClientApiKeyBasedRequest("Mocks/checkout/paymentmethods-without-brands-success.json");
+            var client = CreateMockTestClientApiKeyBasedRequest("Mocks/checkout/paymentmethods-without-brands-success.json");
             var checkout = new Checkout(client);
             var paymentMethodsResponse = checkout.PaymentMethods(paymentMethodsRequest);
             Assert.AreEqual(paymentMethodsResponse.PaymentMethods.Count, 50);
@@ -474,6 +479,13 @@ namespace Adyen.Test
             ApplicationInfo applicationInfo = new ApplicationInfo();
             Assert.AreEqual(applicationInfo.AdyenLibrary.Name, Constants.ClientConfig.LibName);
             Assert.AreEqual(applicationInfo.AdyenLibrary.Version, Constants.ClientConfig.LibVersion);
+        }
+
+        [TestMethod]
+        public void ClientEndpointsSetTest()
+        {
+            var client = new Client(new Config());
+            Assert.IsNotNull(client.Config.Endpoint);
         }
 
         [TestMethod]
@@ -911,8 +923,7 @@ namespace Adyen.Test
             Assert.AreEqual(PaymentReversalResource.StatusEnum.Received, paymentReversalResource.Status);
             Assert.AreEqual("my_reference", paymentReversalResource.Reference);
         }
-
-
+        
         /// <summary>
         /// Test success payments cancels
         /// POST /payments/{paymentPspReference}/amountUpdates

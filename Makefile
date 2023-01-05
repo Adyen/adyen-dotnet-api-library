@@ -5,7 +5,8 @@ openapi-generator-cli:=java -jar $(openapi-generator-jar)
 
 
 generator:=csharp
-services:=PosTerminalManagement
+services:=LegalEntityManagement PosTerminalManagement
+>>>>>>> develop
 models:=Adyen/Model
 output:=target/out
 
