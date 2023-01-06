@@ -5,7 +5,7 @@ openapi-generator-cli:=java -jar $(openapi-generator-jar)
 
 
 generator:=csharp
-services:=BinLookup LegalEntityManagement Payments
+services:=BinLookup LegalEntityManagement Payments PosTerminalManagement
 models:=Adyen/Model
 output:=target/out
 
@@ -15,7 +15,7 @@ models: $(services)
 BinLookup: spec=BinLookupService-v52
 Checkout: spec=CheckoutService-v69
 StoredValue: spec=StoredValueService-v46
-TerminalManagement: spec=TfmAPIService-v1
+PosTerminalManagement: spec=TfmAPIService-v1
 Payments: spec=PaymentService-v68
 Recurring: spec=RecurringService-v68
 Payouts: spec=PayoutService-v68

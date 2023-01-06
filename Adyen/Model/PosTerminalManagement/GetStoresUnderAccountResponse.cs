@@ -26,31 +26,26 @@ using System.ComponentModel.DataAnnotations;
 namespace Adyen.Model.PosTerminalManagement
 {
     /// <summary>
-    /// GetTerminalDetailsRequest
+    /// GetStoresUnderAccountResponse
     /// </summary>
     [DataContract]
-    public partial class GetTerminalDetailsRequest :  IEquatable<GetTerminalDetailsRequest>, IValidatableObject
+    public partial class GetStoresUnderAccountResponse :  IEquatable<GetStoresUnderAccountResponse>, IValidatableObject
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="GetTerminalDetailsRequest" /> class.
+        /// Initializes a new instance of the <see cref="GetStoresUnderAccountResponse" /> class.
         /// </summary>
-        [JsonConstructorAttribute]
-        protected GetTerminalDetailsRequest() { }
-        /// <summary>
-        /// Initializes a new instance of the <see cref="GetTerminalDetailsRequest" /> class.
-        /// </summary>
-        /// <param name="terminal">The unique terminal ID in the format &#x60;[Device model]-[Serial number]&#x60;.   For example, **V400m-324689776**. (required).</param>
-        public GetTerminalDetailsRequest(string terminal = default(string))
+        /// <param name="stores">Array that returns a list of all stores for the specified merchant account, or for all merchant accounts under the company account..</param>
+        public GetStoresUnderAccountResponse(List<Store> stores = default(List<Store>))
         {
-            this.Terminal = terminal;
+            this.Stores = stores;
         }
 
         /// <summary>
-        /// The unique terminal ID in the format &#x60;[Device model]-[Serial number]&#x60;.   For example, **V400m-324689776**.
+        /// Array that returns a list of all stores for the specified merchant account, or for all merchant accounts under the company account.
         /// </summary>
-        /// <value>The unique terminal ID in the format &#x60;[Device model]-[Serial number]&#x60;.   For example, **V400m-324689776**.</value>
-        [DataMember(Name="terminal", EmitDefaultValue=true)]
-        public string Terminal { get; set; }
+        /// <value>Array that returns a list of all stores for the specified merchant account, or for all merchant accounts under the company account.</value>
+        [DataMember(Name="stores", EmitDefaultValue=false)]
+        public List<Store> Stores { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -59,8 +54,8 @@ namespace Adyen.Model.PosTerminalManagement
         public override string ToString()
         {
             var sb = new StringBuilder();
-            sb.Append("class GetTerminalDetailsRequest {\n");
-            sb.Append("  Terminal: ").Append(Terminal).Append("\n");
+            sb.Append("class GetStoresUnderAccountResponse {\n");
+            sb.Append("  Stores: ").Append(Stores).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -81,24 +76,25 @@ namespace Adyen.Model.PosTerminalManagement
         /// <returns>Boolean</returns>
         public override bool Equals(object input)
         {
-            return this.Equals(input as GetTerminalDetailsRequest);
+            return this.Equals(input as GetStoresUnderAccountResponse);
         }
 
         /// <summary>
-        /// Returns true if GetTerminalDetailsRequest instances are equal
+        /// Returns true if GetStoresUnderAccountResponse instances are equal
         /// </summary>
-        /// <param name="input">Instance of GetTerminalDetailsRequest to be compared</param>
+        /// <param name="input">Instance of GetStoresUnderAccountResponse to be compared</param>
         /// <returns>Boolean</returns>
-        public bool Equals(GetTerminalDetailsRequest input)
+        public bool Equals(GetStoresUnderAccountResponse input)
         {
             if (input == null)
                 return false;
 
             return 
                 (
-                    this.Terminal == input.Terminal ||
-                    (this.Terminal != null &&
-                    this.Terminal.Equals(input.Terminal))
+                    this.Stores == input.Stores ||
+                    this.Stores != null &&
+                    input.Stores != null &&
+                    this.Stores.SequenceEqual(input.Stores)
                 );
         }
 
@@ -111,8 +107,8 @@ namespace Adyen.Model.PosTerminalManagement
             unchecked // Overflow is fine, just wrap
             {
                 int hashCode = 41;
-                if (this.Terminal != null)
-                    hashCode = hashCode * 59 + this.Terminal.GetHashCode();
+                if (this.Stores != null)
+                    hashCode = hashCode * 59 + this.Stores.GetHashCode();
                 return hashCode;
             }
         }
