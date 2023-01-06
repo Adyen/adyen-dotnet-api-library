@@ -168,7 +168,7 @@ namespace Adyen.IntegrationTest
                 Card = CreateTestCard(),
                 Reference = "payment - " + DateTime.Now.ToString("yyyyMMdd"),
                 AdditionalData = CreateAdditionalData(),
-                ApplicationInfo = new ApplicationInfo()
+                ApplicationInfo = new Model.Payments.ApplicationInfo()
                 {
                     ExternalPlatform = new Model.Payments.ExternalPlatform()
                     {
@@ -179,7 +179,7 @@ namespace Adyen.IntegrationTest
                 }
 
             };
-            paymentRequest.ApplicationInfo.ExternalPlatform = new Adyen.Model.ApplicationInformation.ExternalPlatform("test merchant", "merchant name", "2.8");
+            paymentRequest.ApplicationInfo.ExternalPlatform = new Model.Payments.ExternalPlatform("test merchant", "merchant name", "2.8");
             return paymentRequest;
         }
 
@@ -206,7 +206,7 @@ namespace Adyen.IntegrationTest
                 ShopperReference = "test-1234",
                 AdditionalData = CreateAdditionalData(),
                 Recurring = new Model.Payments.Recurring { Contract = contract },
-                ApplicationInfo = new ApplicationInfo()
+                ApplicationInfo = new Model.Payments.ApplicationInfo()
                 {
                     ExternalPlatform = new Model.Payments.ExternalPlatform()
                     {
@@ -217,7 +217,7 @@ namespace Adyen.IntegrationTest
                 }
             };
 
-            paymentRequest.ApplicationInfo.ExternalPlatform = new Adyen.Model.ApplicationInformation.ExternalPlatform("test merchant", "merchant name", "2.8");
+            paymentRequest.ApplicationInfo.ExternalPlatform = new Adyen.Model.Payments.ExternalPlatform("test merchant", "merchant name", "2.8");
             return paymentRequest;
         }
 

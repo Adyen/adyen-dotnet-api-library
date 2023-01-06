@@ -41,6 +41,7 @@ using PaymentResult = Adyen.Model.Payments.PaymentResult;
 using Adyen.Model.Checkout;
 using System.Threading.Tasks;
 using CardDetails = Adyen.Service.Resource.Checkout.CardDetails;
+using CommonField = Adyen.Model.Checkout.CommonField;
 
 namespace Adyen.Test
 {
@@ -159,7 +160,7 @@ namespace Adyen.Test
                 HolderName = "John Smith"
             };
             paymentsRequest.PaymentMethod = new PaymentDonationRequestPaymentMethod(cardDetails);
-            paymentsRequest.ApplicationInfo = new ApplicationInfo(adyenLibrary: new CommonField());
+            paymentsRequest.ApplicationInfo = new Model.Checkout.ApplicationInfo(adyenLibrary: new CommonField());
             return paymentsRequest;
         }
         
