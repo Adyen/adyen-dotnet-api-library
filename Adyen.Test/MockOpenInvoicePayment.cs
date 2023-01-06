@@ -21,9 +21,7 @@
 //  */
 #endregion
 
-using Adyen.Model;
-using Adyen.Model.AdditionalData;
-using Adyen.Model.Enum;
+using Adyen.Model.Payments;
 using System;
 using System.Collections.Generic;
 
@@ -48,8 +46,7 @@ namespace Adyen.Test
             Name shopperName = new Name
             {
                 FirstName = "Testperson-nl",
-                LastName = "Approved",
-                Gender = GenderEnum.MALE
+                LastName = "Approved"
             };
             paymentRequest.ShopperName = shopperName;
 
@@ -73,39 +70,37 @@ namespace Adyen.Test
             long itemVatAmount = long.Parse("1000");
             long itemVatPercentage = long.Parse("1000");
 
-            List<InvoiceLine> invoiceLines = new List<InvoiceLine>();
+            List<AdditionalDataOpenInvoice> invoiceLines = new List<AdditionalDataOpenInvoice>();
 
             // invoiceLine1
-            InvoiceLine invoiceLine = new InvoiceLine
+            AdditionalDataOpenInvoice invoiceLine = new AdditionalDataOpenInvoice()
             {
-                CurrencyCode = ("EUR"),
-                Description = ("Test product"),
-                VatAmount = (itemVatAmount),
-                ItemAmount = (itemAmount),
-                ItemVatPercentage = (itemVatPercentage),
-                VatCategory = (VatCategory.None),
-                NumberOfItems = (1),
-                ItemId = ("1234")
+                OpeninvoicedataLineItemNrCurrencyCode = ("EUR"),
+                OpeninvoicedataLineItemNrDescription = ("Test product"),
+                OpeninvoicedataLineItemNrItemVatAmount = ("1000"),
+                OpeninvoicedataLineItemNrItemAmount = (itemAmount).ToString(),
+                OpeninvoicedataLineItemNrItemVatPercentage = (itemVatPercentage).ToString(),
+                OpeninvoicedataLineItemNrNumberOfItems = (1).ToString(),
+                OpeninvoicedataLineItemNrItemId = ("1234")
             };
 
             // invoiceLine2
             // invoiceLine1
-            InvoiceLine invoiceLine2 = new InvoiceLine
+            AdditionalDataOpenInvoice invoiceLine2 = new AdditionalDataOpenInvoice()
             {
-                CurrencyCode = ("EUR"),
-                Description = ("Test product2"),
-                VatAmount = (itemVatAmount),
-                ItemAmount = (itemAmount),
-                ItemVatPercentage = (itemVatPercentage),
-                VatCategory = (VatCategory.None),
-                NumberOfItems = (1),
-                ItemId = ("456")
+                OpeninvoicedataLineItemNrCurrencyCode = ("EUR"),
+                OpeninvoicedataLineItemNrDescription = ("Test product2"),
+                OpeninvoicedataLineItemNrItemVatAmount = (itemVatAmount).ToString(),
+                OpeninvoicedataLineItemNrItemAmount = (itemAmount).ToString(),
+                OpeninvoicedataLineItemNrItemVatPercentage = (itemVatPercentage).ToString(),
+                OpeninvoicedataLineItemNrNumberOfItems = (1).ToString(),
+                OpeninvoicedataLineItemNrItemId = ("456")
             };
             
             invoiceLines.Add(invoiceLine);
             invoiceLines.Add(invoiceLine2);
-
-            paymentRequest.InvoiceLines(invoiceLines);
+            
+            /*paymentRequest.AdditionalData(invoiceLines);*/
 
             return paymentRequest;
         }
