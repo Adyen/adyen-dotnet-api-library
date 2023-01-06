@@ -47,7 +47,7 @@ namespace Adyen.Constants
         public static string MarketPayAccountApiVersion = "v5";
         public static string HopApiVersion = "v1";
         public static string RecurringApiVersion = "v49";
-        public static string ApiVersion = "v51";
+        public static string ApiVersion = "v68";
         public static string PayoutApiVersion = "v51";
         public static string CheckoutApiVersion = "v69";
         public static string PosTerminalManagementVersion = "v1";
@@ -55,7 +55,7 @@ namespace Adyen.Constants
         public static string EndpointProtocol = "https://";
         public static string NexoProtocolVersion = "3.0";
         public static string BinLookupPalSuffix = "/pal/servlet/BinLookup/";
-        public static string BinLookupApiVersion = "v50";
+        public static string BinLookupApiVersion = "v52";
         public static string LegalEntityManagementEndpointTest = "https://kyc-test.adyen.com/lem/";
         public static string LegalEntityManagementEndpointLive = "https://kyc-live.adyen.com/lem/";
         public static string LegalEntityManagementVersion = "v2";
