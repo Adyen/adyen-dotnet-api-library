@@ -26,49 +26,40 @@ using System.ComponentModel.DataAnnotations;
 namespace Adyen.Model.PosTerminalManagement
 {
     /// <summary>
-    /// GetTerminalsUnderAccountRequest
+    /// GetStoresUnderAccountRequest
     /// </summary>
     [DataContract]
-    public partial class GetTerminalsUnderAccountRequest :  IEquatable<GetTerminalsUnderAccountRequest>, IValidatableObject
+    public partial class GetStoresUnderAccountRequest :  IEquatable<GetStoresUnderAccountRequest>, IValidatableObject
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="GetTerminalsUnderAccountRequest" /> class.
+        /// Initializes a new instance of the <see cref="GetStoresUnderAccountRequest" /> class.
         /// </summary>
         [JsonConstructorAttribute]
-        protected GetTerminalsUnderAccountRequest() { }
+        protected GetStoresUnderAccountRequest() { }
         /// <summary>
-        /// Initializes a new instance of the <see cref="GetTerminalsUnderAccountRequest" /> class.
+        /// Initializes a new instance of the <see cref="GetStoresUnderAccountRequest" /> class.
         /// </summary>
-        /// <param name="companyAccount">Your company account. If you only specify this parameter, the response includes all terminals at all account levels. (required).</param>
-        /// <param name="merchantAccount">The merchant account. This is required if you are retrieving the terminals assigned to a store.If you don&#39;t specify a &#x60;store&#x60; the response includes the terminals assigned to the specified merchant account and the terminals assigned to the stores under this merchant account..</param>
-        /// <param name="store">The store code of the store. With this parameter, the response only includes the terminals assigned to the specified store..</param>
-        public GetTerminalsUnderAccountRequest(string companyAccount = default(string), string merchantAccount = default(string), string store = default(string))
+        /// <param name="companyAccount">The company account. If you only specify this parameter, the response includes the stores of all merchant accounts that are associated with the company account. (required).</param>
+        /// <param name="merchantAccount">The merchant account. With this parameter, the response only includes the stores of the specified merchant account..</param>
+        public GetStoresUnderAccountRequest(string companyAccount = default(string), string merchantAccount = default(string))
         {
             this.CompanyAccount = companyAccount;
             this.MerchantAccount = merchantAccount;
-            this.Store = store;
         }
 
         /// <summary>
-        /// Your company account. If you only specify this parameter, the response includes all terminals at all account levels.
+        /// The company account. If you only specify this parameter, the response includes the stores of all merchant accounts that are associated with the company account.
         /// </summary>
-        /// <value>Your company account. If you only specify this parameter, the response includes all terminals at all account levels.</value>
+        /// <value>The company account. If you only specify this parameter, the response includes the stores of all merchant accounts that are associated with the company account.</value>
         [DataMember(Name="companyAccount", EmitDefaultValue=true)]
         public string CompanyAccount { get; set; }
 
         /// <summary>
-        /// The merchant account. This is required if you are retrieving the terminals assigned to a store.If you don&#39;t specify a &#x60;store&#x60; the response includes the terminals assigned to the specified merchant account and the terminals assigned to the stores under this merchant account.
+        /// The merchant account. With this parameter, the response only includes the stores of the specified merchant account.
         /// </summary>
-        /// <value>The merchant account. This is required if you are retrieving the terminals assigned to a store.If you don&#39;t specify a &#x60;store&#x60; the response includes the terminals assigned to the specified merchant account and the terminals assigned to the stores under this merchant account.</value>
+        /// <value>The merchant account. With this parameter, the response only includes the stores of the specified merchant account.</value>
         [DataMember(Name="merchantAccount", EmitDefaultValue=false)]
         public string MerchantAccount { get; set; }
-
-        /// <summary>
-        /// The store code of the store. With this parameter, the response only includes the terminals assigned to the specified store.
-        /// </summary>
-        /// <value>The store code of the store. With this parameter, the response only includes the terminals assigned to the specified store.</value>
-        [DataMember(Name="store", EmitDefaultValue=false)]
-        public string Store { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -77,10 +68,9 @@ namespace Adyen.Model.PosTerminalManagement
         public override string ToString()
         {
             var sb = new StringBuilder();
-            sb.Append("class GetTerminalsUnderAccountRequest {\n");
+            sb.Append("class GetStoresUnderAccountRequest {\n");
             sb.Append("  CompanyAccount: ").Append(CompanyAccount).Append("\n");
             sb.Append("  MerchantAccount: ").Append(MerchantAccount).Append("\n");
-            sb.Append("  Store: ").Append(Store).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -101,15 +91,15 @@ namespace Adyen.Model.PosTerminalManagement
         /// <returns>Boolean</returns>
         public override bool Equals(object input)
         {
-            return this.Equals(input as GetTerminalsUnderAccountRequest);
+            return this.Equals(input as GetStoresUnderAccountRequest);
         }
 
         /// <summary>
-        /// Returns true if GetTerminalsUnderAccountRequest instances are equal
+        /// Returns true if GetStoresUnderAccountRequest instances are equal
         /// </summary>
-        /// <param name="input">Instance of GetTerminalsUnderAccountRequest to be compared</param>
+        /// <param name="input">Instance of GetStoresUnderAccountRequest to be compared</param>
         /// <returns>Boolean</returns>
-        public bool Equals(GetTerminalsUnderAccountRequest input)
+        public bool Equals(GetStoresUnderAccountRequest input)
         {
             if (input == null)
                 return false;
@@ -124,11 +114,6 @@ namespace Adyen.Model.PosTerminalManagement
                     this.MerchantAccount == input.MerchantAccount ||
                     (this.MerchantAccount != null &&
                     this.MerchantAccount.Equals(input.MerchantAccount))
-                ) && 
-                (
-                    this.Store == input.Store ||
-                    (this.Store != null &&
-                    this.Store.Equals(input.Store))
                 );
         }
 
@@ -145,8 +130,6 @@ namespace Adyen.Model.PosTerminalManagement
                     hashCode = hashCode * 59 + this.CompanyAccount.GetHashCode();
                 if (this.MerchantAccount != null)
                     hashCode = hashCode * 59 + this.MerchantAccount.GetHashCode();
-                if (this.Store != null)
-                    hashCode = hashCode * 59 + this.Store.GetHashCode();
                 return hashCode;
             }
         }
