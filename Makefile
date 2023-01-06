@@ -5,7 +5,7 @@ openapi-generator-cli:=java -jar $(openapi-generator-jar)
 
 
 generator:=csharp
-services:=BinLookup LegalEntityManagement
+services:=BinLookup LegalEntityManagement Payments
 models:=Adyen/Model
 output:=target/out
 

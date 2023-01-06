@@ -29,7 +29,7 @@ using System.Threading.Tasks;
 using Adyen.ApiSerialization;
 using Adyen.Model.Nexo;
 using Adyen.Security;
-using Adyen.Service.Resource.Payment;
+using Adyen.Service.Resource.Terminal;
 
 namespace Adyen.Service
 {

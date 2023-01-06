@@ -134,7 +134,7 @@ namespace Adyen.IntegrationTest
             Assert.IsNotNull(createPaymentLinkResponse.Amount);
             Assert.IsNotNull(createPaymentLinkResponse.Reference); 
             Assert.IsNotNull(createPaymentLinkResponse.ExpiresAt);
-        }
+            }
         
         private void PaymentLinksGetSuccessTest(string Id)
         {   
@@ -159,6 +159,7 @@ namespace Adyen.IntegrationTest
             Assert.IsNotNull(createPaymentLinkResponse.ExpiresAt);
         }
         
+
         /// <summary>
         /// Test success sessions
         /// POST /sessions
