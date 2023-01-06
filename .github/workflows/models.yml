@@ -12,7 +12,7 @@ jobs:
       - name: Set PR variables
         id: vars
         run: |
-          cd build/spec
+          cd target/spec
           echo ::set-output name=pr_title::"Update models"
           echo ::set-output name=pr_body::"OpenAPI spec or templates produced new models on $(date +%d-%m-%Y) \
             by [commit](https://github.com/Adyen/adyen-openapi/commit/$(git rev-parse HEAD))."
