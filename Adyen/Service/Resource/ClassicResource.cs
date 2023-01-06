@@ -26,9 +26,9 @@ using Adyen.Constants;
 
 namespace Adyen.Service.Resource
 {
-    public class PaymentResource : ServiceResource
+    public class ClassicResource : ServiceResource
     {
-        public PaymentResource(AbstractService abstractService, string endpoint)
+        public ClassicResource(AbstractService abstractService, string endpoint)
             : base(abstractService, abstractService.Client.Config.Endpoint + "/pal/servlet/Payment/" + abstractService.Client.ApiVersion + endpoint,null)
         {
         }

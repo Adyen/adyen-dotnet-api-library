@@ -23,7 +23,7 @@
 
 using Adyen.Constants;
 using Adyen.HttpClient;
-using Adyen.Model.Modification;
+using Adyen.Model.Payments;
 using Adyen.Model.Nexo;
 using Adyen.Service;
 using Moq;
@@ -79,7 +79,7 @@ namespace Adyen.Test
             var captureRequest = new CaptureRequest
             {
                 MerchantAccount = "MerchantAccount",
-                ModificationAmount = new Amount("EUR", 150),
+                ModificationAmount = new Model.Payments.Amount("EUR", 150),
                 Reference = "capture - " + DateTime.Now.ToString("yyyyMMdd"),
                 OriginalReference = pspReference,
                 AdditionalData = new Dictionary<string, string> {{"authorisationType", "PreAuth"}}
@@ -104,7 +104,7 @@ namespace Adyen.Test
             var refundRequest = new RefundRequest()
             {
                 MerchantAccount = "MerchantAccount",
-                ModificationAmount = new Amount("EUR", 150),
+                ModificationAmount = new Model.Payments.Amount("EUR", 150),
                 Reference = "refund - " + DateTime.Now.ToString("yyyyMMdd"),
                 OriginalReference = pspReference
             };
@@ -127,7 +127,7 @@ namespace Adyen.Test
             var adjustAuthorisationRequest = new AdjustAuthorisationRequest()
             {
                 MerchantAccount = "MerchantAccount",
-                ModificationAmount = new Amount("EUR", 150),
+                ModificationAmount = new Model.Payments.Amount("EUR", 150),
                 Reference = "adjustAuthorisationRequest - " + DateTime.Now.ToString("yyyyMMdd"),
                 OriginalReference = pspReference,
             };
@@ -538,9 +538,9 @@ namespace Adyen.Test
         /// Create dummy AuthenticationResultRequest
         /// </summary>
         /// <returns>AuthenticationResultRequest</returns>
-        protected AuthenticationResultRequest CreateAuthenticationResultRequest()
+        protected Model.Payments.AuthenticationResultRequest CreateAuthenticationResultRequest()
         {
-            return new AuthenticationResultRequest
+            return new Model.Payments.AuthenticationResultRequest
             {
                 MerchantAccount = "MerchantAccount",
                 PspReference = "pspReference"

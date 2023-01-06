@@ -1,9 +1,7 @@
 using System;
 using System.Collections.Generic;
-using System.Net.Http;
+
 using System.Threading.Tasks;
-using Adyen.Constants;
-using Adyen.HttpClient;
 using Adyen.Model;
 using Adyen.Model.BinLookup;
 using Adyen.Model.Checkout;
@@ -12,16 +10,9 @@ using Adyen.Service;
 using Amount = Adyen.Model.Amount;
 using PaymentRequest = Adyen.Model.Payments.PaymentRequest;
 using PaymentResult = Adyen.Model.Payments.PaymentResult;
-using ContractEnum = Adyen.Model.Recurring.Recurring.ContractEnum;
-using Microsoft.Extensions.DependencyInjection;
-using AdjustAuthorisationRequest = Adyen.Model.Modification.AdjustAuthorisationRequest;
-using CancelOrRefundRequest = Adyen.Model.Modification.CancelOrRefundRequest;
-using CancelRequest = Adyen.Model.Modification.CancelRequest;
-using CaptureRequest = Adyen.Model.Modification.CaptureRequest;
 using Environment = Adyen.Model.Enum.Environment;
 using ExternalPlatform = Adyen.Model.ApplicationInformation.ExternalPlatform;
 using Recurring = Adyen.Model.Payments.Recurring;
-using RefundRequest = Adyen.Model.Modification.RefundRequest;
 
 namespace Adyen.IntegrationTest
 {
@@ -104,7 +95,7 @@ namespace Adyen.IntegrationTest
             var captureRequest = new CaptureRequest
             {
                 MerchantAccount = ClientConstants.MerchantAccount,
-                ModificationAmount = new Amount("EUR", 150),
+                ModificationAmount = new Adyen.Model.Payments.Amount("EUR", 150),
                 Reference = "capture - " + DateTime.Now.ToString("yyyyMMdd"),
                 OriginalReference = pspReference
             };
@@ -127,7 +118,7 @@ namespace Adyen.IntegrationTest
             var refundRequest = new RefundRequest()
             {
                 MerchantAccount = ClientConstants.MerchantAccount,
-                ModificationAmount = new Amount("EUR", 150),
+                ModificationAmount = new Adyen.Model.Payments.Amount("EUR", 150),
                 Reference = "refund - " + DateTime.Now.ToString("yyyyMMdd"),
                 OriginalReference = pspReference
             };
@@ -149,7 +140,7 @@ namespace Adyen.IntegrationTest
             var adjustAuthorisationRequest = new AdjustAuthorisationRequest()
             {
                 MerchantAccount = ClientConstants.MerchantAccount,
-                ModificationAmount = new Amount("EUR", 150),
+                ModificationAmount = new Adyen.Model.Payments.Amount("EUR", 150),
                 Reference = "adjust authorisation - " + DateTime.Now.ToString("yyyyMMdd"),
                 OriginalReference = pspReference
             };
