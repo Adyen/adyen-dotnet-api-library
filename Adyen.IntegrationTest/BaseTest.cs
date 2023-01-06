@@ -355,7 +355,7 @@ namespace Adyen.IntegrationTest
             };
             costEstimateRequest.Amount.Currency = "EUR";
             costEstimateRequest.Amount.Value = 1L;
-            costEstimateRequest.ShopperInteraction = ShopperInteraction.Ecommerce;
+            costEstimateRequest.ShopperInteraction = CostEstimateRequest.ShopperInteractionEnum.Ecommerce;
             costEstimateRequest.ShopperReference = "ShopperReference";
             return costEstimateRequest;
         }*/

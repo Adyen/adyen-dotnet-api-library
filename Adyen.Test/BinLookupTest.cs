@@ -81,7 +81,7 @@ namespace Adyen.Test
                 EnrolledIn3DSecure = true
             };
             costEstimateRequest.MerchantDetails = (merchantDetails);
-            costEstimateRequest.ShopperInteraction = ShopperInteraction.Ecommerce;
+            costEstimateRequest.ShopperInteraction = CostEstimateRequest.ShopperInteractionEnum.Ecommerce;
             var costEstimateResponse = binLookup.CostEstimate(costEstimateRequest);
             Assert.AreEqual("1111", costEstimateResponse.CardBin.Summary);
             Assert.AreEqual("Unsupported", costEstimateResponse.ResultCode);
@@ -91,9 +91,9 @@ namespace Adyen.Test
         [TestMethod]
         public void GetCostEstimateSuccessGenerateShopperInteractionFromEnum()
         {
-            var ecommerce = Util.JsonOperation.SerializeRequest(ShopperInteraction.Ecommerce);
-            var contAuth = Util.JsonOperation.SerializeRequest(ShopperInteraction.ContAuth);
-            var moto = Util.JsonOperation.SerializeRequest(ShopperInteraction.Moto);
+            var ecommerce = Util.JsonOperation.SerializeRequest(CostEstimateRequest.ShopperInteractionEnum.Ecommerce);
+            var contAuth = Util.JsonOperation.SerializeRequest(CostEstimateRequest.ShopperInteractionEnum.ContAuth);
+            var moto = Util.JsonOperation.SerializeRequest(CostEstimateRequest.ShopperInteractionEnum.Moto);
             Assert.AreEqual("\"Ecommerce\"", ecommerce);
             Assert.AreEqual("\"ContAuth\"", contAuth);
             Assert.AreEqual("\"Moto\"", moto);
