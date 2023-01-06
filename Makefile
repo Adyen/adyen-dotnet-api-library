@@ -5,14 +5,14 @@ openapi-generator-cli:=java -jar $(openapi-generator-jar)
 
 
 generator:=csharp
-services:=LegalEntityManagement Payments
+services:=BinLookup LegalEntityManagement Payments
 models:=Adyen/Model
 output:=target/out
 
 # Generate models (for each service)
 models: $(services)
 
-Binlookup: spec=BinLookupService-v52
+BinLookup: spec=BinLookupService-v52
 Checkout: spec=CheckoutService-v69
 StoredValue: spec=StoredValueService-v46
 TerminalManagement: spec=TfmAPIService-v1
