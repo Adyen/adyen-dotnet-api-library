@@ -246,7 +246,15 @@ namespace Adyen.Model.Checkout
             this.ShopperReference = shopperReference;
             this.ShopperStatement = shopperStatement;
             this.SocialSecurityNumber = socialSecurityNumber;
-            this.SplitCardFundingSources = splitCardFundingSources;
+            // use default value if no "splitCardFundingSources" provided
+            if (splitCardFundingSources == null)
+            {
+                this.SplitCardFundingSources = false;
+            }
+            else
+            {
+                this.SplitCardFundingSources = splitCardFundingSources;
+            }
             this.Splits = splits;
             this.Store = store;
             this.StorePaymentMethod = storePaymentMethod;

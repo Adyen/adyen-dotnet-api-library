@@ -24,7 +24,7 @@
 using System.Threading.Tasks;
 using Adyen.ApiSerialization;
 using Adyen.Model.Nexo;
-using Adyen.Service.Resource.Payment;
+using Adyen.Service.Resource.Terminal;
 
 namespace Adyen.Service
 {

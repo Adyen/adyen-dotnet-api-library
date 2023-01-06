@@ -23,7 +23,7 @@
 
 using Adyen.Constants;
 using Adyen.HttpClient;
-using Adyen.Model.Modification;
+using Adyen.Model.Payments;
 using Adyen.Model.Nexo;
 using Adyen.Service;
 using Moq;
@@ -37,7 +37,7 @@ using Adyen.HttpClient.Interfaces;
 using Adyen.Model;
 using Environment = System.Environment;
 using Amount = Adyen.Model.Amount;
-using PaymentResult = Adyen.Model.PaymentResult;
+using PaymentResult = Adyen.Model.Payments.PaymentResult;
 using Adyen.Model.Checkout;
 using System.Threading.Tasks;
 using CardDetails = Adyen.Service.Resource.Checkout.CardDetails;
@@ -59,7 +59,7 @@ namespace Adyen.Test
             var payment = new Payment(client);
             var paymentRequest = MockPaymentData.CreateFullPaymentRequest();
             var paymentResult = payment.Authorise(paymentRequest);
-            return GetAdditionaData(paymentResult);
+            return paymentResult;
         }
 
         protected PaymentResult CreatePaymentApiKeyBasedResultFromFile(string fileName)
@@ -69,7 +69,7 @@ namespace Adyen.Test
             var paymentRequest = MockPaymentData.CreateFullPaymentRequest();
 
             var paymentResult = payment.Authorise(paymentRequest);
-            return GetAdditionaData(paymentResult);
+            return paymentResult;
         }
         #endregion
 
@@ -80,7 +80,7 @@ namespace Adyen.Test
             var captureRequest = new CaptureRequest
             {
                 MerchantAccount = "MerchantAccount",
-                ModificationAmount = new Amount("EUR", 150),
+                ModificationAmount = new Model.Payments.Amount("EUR", 150),
                 Reference = "capture - " + DateTime.Now.ToString("yyyyMMdd"),
                 OriginalReference = pspReference,
                 AdditionalData = new Dictionary<string, string> {{"authorisationType", "PreAuth"}}
@@ -105,7 +105,7 @@ namespace Adyen.Test
             var refundRequest = new RefundRequest()
             {
                 MerchantAccount = "MerchantAccount",
-                ModificationAmount = new Amount("EUR", 150),
+                ModificationAmount = new Model.Payments.Amount("EUR", 150),
                 Reference = "refund - " + DateTime.Now.ToString("yyyyMMdd"),
                 OriginalReference = pspReference
             };
@@ -128,7 +128,7 @@ namespace Adyen.Test
             var adjustAuthorisationRequest = new AdjustAuthorisationRequest()
             {
                 MerchantAccount = "MerchantAccount",
-                ModificationAmount = new Amount("EUR", 150),
+                ModificationAmount = new Model.Payments.Amount("EUR", 150),
                 Reference = "adjustAuthorisationRequest - " + DateTime.Now.ToString("yyyyMMdd"),
                 OriginalReference = pspReference,
             };
@@ -410,8 +410,11 @@ namespace Adyen.Test
             var response = MockFileToString(mockPath);
             //Create a mock interface
             var clientInterfaceMock = new Mock<IClient>();
-            clientInterfaceMock.Setup(x => x.Request(It.IsAny<string>(), It.IsAny<string>(),
-                    It.IsAny<RequestOptions>(), null)).Returns(response);
+            clientInterfaceMock.Setup(x => x.Request(It.IsAny<string>(),
+                It.IsAny<string>(),
+                It.IsAny<RequestOptions>(), null
+               ))
+                .Returns(response);
             var anyConfig = new Config()
             {
                 Environment = It.IsAny<Model.Enum.Environment>()
@@ -514,7 +517,8 @@ namespace Adyen.Test
             string mockPath = GetMockFilePath(fileName);
             return MockFileToString(mockPath);
         }
-        
+
+
         /// <summary>
         /// Create dummy Nexo message header
         /// </summary>
@@ -550,41 +554,13 @@ namespace Adyen.Test
         /// Create dummy AuthenticationResultRequest
         /// </summary>
         /// <returns>AuthenticationResultRequest</returns>
-        protected AuthenticationResultRequest CreateAuthenticationResultRequest()
+        protected Model.Payments.AuthenticationResultRequest CreateAuthenticationResultRequest()
         {
-            return new AuthenticationResultRequest
+            return new Model.Payments.AuthenticationResultRequest
             {
                 MerchantAccount = "MerchantAccount",
                 PspReference = "pspReference"
             };
-        }
-
-        private PaymentResult GetAdditionaData(PaymentResult paymentResult)
-        {
-            var paymentResultAdditionalData = paymentResult.AdditionalData;
-
-            foreach (var additionalData in paymentResultAdditionalData)
-            {
-                switch (additionalData.Key)
-                {
-                    case AdditionalData.AvsResult:
-                        paymentResult.AvsResult = additionalData.Value;
-                        break;
-                    case AdditionalData.PaymentMethod:
-                        paymentResult.PaymentMethod = additionalData.Value;
-                        break;
-                    case AdditionalData.BoletoData:
-                        paymentResult.BoletoData = additionalData.Value;
-                        break;
-                    case AdditionalData.CardBin:
-                        paymentResult.CardBin = additionalData.Value;
-                        break;
-                    case AdditionalData.CardHolderName:
-                        paymentResult.CardHolderName = additionalData.Value;
-                        break;
-                }
-            }
-            return paymentResult;
         }
 
         protected static string GetMockFilePath(string fileName)

@@ -28,6 +28,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.Collections.Generic;
 using System.Text;
 using Adyen.Model.MarketPay;
+using Adyen.Model.Payments;
 using Account = Adyen.Service.Account;
 
 namespace Adyen.Test
@@ -67,11 +68,11 @@ namespace Adyen.Test
         }
 
         [TestMethod]
-        public void TestSerializationShopperInteractionDefault()
+        public void TestSerializationShopperInteractionDefaultIsZero()
         {
-            var paymentRequest = MockPaymentData.CreateFullPaymentRequestWithShopperInteraction(default(Model.Enum.ShopperInteraction));
-            var serializedPaymentRequest = JsonOperation.SerializeRequest(paymentRequest);
-            Assert.IsFalse(serializedPaymentRequest.Contains("shopperInteraction"));
+            var paymentRequest = MockPaymentData.CreateFullPaymentRequestWithShopperInteraction(default);
+            var serializedPaymentRequest = paymentRequest.ToJson();
+            Assert.IsTrue(serializedPaymentRequest.Contains("\"shopperInteraction\": 0,"));
         }
         
         [TestMethod]
@@ -120,9 +121,9 @@ namespace Adyen.Test
         [TestMethod]
         public void TestSerializationShopperInteractionMoto()
         {
-            var paymentRequest = MockPaymentData.CreateFullPaymentRequestWithShopperInteraction(Model.Enum.ShopperInteraction.Moto);
+            var paymentRequest = MockPaymentData.CreateFullPaymentRequestWithShopperInteraction(PaymentRequest.ShopperInteractionEnum.Moto);
             var serializedPaymentRequest = JsonOperation.SerializeRequest(paymentRequest);
-            StringAssert.Contains(serializedPaymentRequest, nameof(Model.Enum.ShopperInteraction.Moto));
+            StringAssert.Contains(serializedPaymentRequest, nameof(PaymentRequest.ShopperInteractionEnum.Moto));
         }
 
         [TestMethod]
