@@ -40,6 +40,8 @@ using Amount = Adyen.Model.Amount;
 using PaymentResult = Adyen.Model.Payments.PaymentResult;
 using Adyen.Model.Checkout;
 using System.Threading.Tasks;
+using CardDetails = Adyen.Service.Resource.Checkout.CardDetails;
+using CommonField = Adyen.Model.Checkout.CommonField;
 
 namespace Adyen.Test
 {
@@ -150,7 +152,15 @@ namespace Adyen.Test
                 ReturnUrl = @"https://your-company.com/...",
                 MerchantAccount = "MerchantAccount",
             };
-            paymentsRequest.AddCardData("4111111111111111", "10", "2020", "737", "John Smith");
+            var cardDetails = new Model.Checkout.CardDetails()
+            {
+                Number = "4111111111111111",
+                ExpiryMonth = "10",
+                ExpiryYear = "2020",
+                HolderName = "John Smith"
+            };
+            paymentsRequest.PaymentMethod = new PaymentDonationRequestPaymentMethod(cardDetails);
+            paymentsRequest.ApplicationInfo = new Model.Checkout.ApplicationInfo(adyenLibrary: new CommonField());
             return paymentsRequest;
         }
         
@@ -170,7 +180,14 @@ namespace Adyen.Test
                 MerchantAccount = "MerchantAccount",
                 Channel = Model.Checkout.PaymentRequest.ChannelEnum.Web
             };
-            paymentsRequest.AddCardData("4111111111111111", "10", "2020", "737", "John Smith");
+            var cardDetails = new Model.Checkout.CardDetails()
+            {
+                Number = "4111111111111111",
+                ExpiryMonth = "10",
+                ExpiryYear = "2020",
+                HolderName = "John Smith"
+            };
+            paymentsRequest.PaymentMethod = new PaymentDonationRequestPaymentMethod(cardDetails);
             return paymentsRequest;
         }
 
@@ -178,7 +195,7 @@ namespace Adyen.Test
         ///Checkout Details request
         /// </summary>
         /// <returns>Returns a sample PaymentsDetailsRequest object with test data</returns>
-        protected PaymentsDetailsRequest CreateDetailsRequest()
+        protected DetailsRequest CreateDetailsRequest()
         {
             var paymentData = "Ab02b4c0!BQABAgCJN1wRZuGJmq8dMncmypvknj9s7l5Tj...";
             var details = new PaymentCompletionDetails()
@@ -186,7 +203,7 @@ namespace Adyen.Test
                 MD= "sdfsdfsdf...",
                 PaReq = "sdfsdfsdf..."
             };
-            var paymentsDetailsRequest = new PaymentsDetailsRequest(details: details, paymentData: paymentData);
+            var paymentsDetailsRequest = new DetailsRequest(details: details, paymentData: paymentData);
 
             return paymentsDetailsRequest;
         }

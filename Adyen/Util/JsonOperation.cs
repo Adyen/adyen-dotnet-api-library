@@ -37,8 +37,6 @@ namespace Adyen.Util
         {
             var jsonSettings = new JsonSerializerSettings();
             jsonSettings.Converters.Add(new ByteArrayConverter());
-            jsonSettings.Converters.Add(new PaymentMethodDetailsConverter());
-            jsonSettings.Converters.Add(new PaymentResponseActionConverter());
             jsonSettings.Converters.Add(new MarketPayNotificationConverter());
 
             return JsonConvert.DeserializeObject<T>(response, jsonSettings);
