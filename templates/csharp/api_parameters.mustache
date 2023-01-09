@@ -1,0 +1,2 @@
+{{! Path and body are required, followed by optional query string }}
+{{#pathParams}}{{{dataType}}} {{paramName}}{{^-last}}, {{/-last}}{{/pathParams}}{{#bodyParams}}{{#-first}}{{#pathParams.0}}, {{/pathParams.0}}{{/-first}}{{{dataType}}} {{paramName}}{{^-last}}, {{/-last}}{{/bodyParams}}{{#queryParams}}{{#-first}}{{#bodyParams.0}}, {{/bodyParams.0}}{{^bodyParams.0}}{{#pathParams.0}}, {{/pathParams.0}}{{/bodyParams.0}}{{/-first}}{{{dataType}}} {{paramName}}{{^required}} = default({{{dataType}}}){{/required}}{{^-last}}, {{/-last}}{{/queryParams}}

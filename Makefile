@@ -57,7 +57,10 @@ Management: target/spec $(openapi-generator-jar)
 		--model-package Model.$@ \
 		--reserved-words-mappings Version=Version \
 		--global-property apis \
-	
+		--additional-properties=serviceName=$@
+	rm -rf Adyen/Service/$@
+	mv target/out/src/Adyen.Service/$@ Adyen/Service
+
 # Checkout spec (and patch version)
 target/spec:
 	git clone https://github.com/Adyen/adyen-openapi.git target/spec
