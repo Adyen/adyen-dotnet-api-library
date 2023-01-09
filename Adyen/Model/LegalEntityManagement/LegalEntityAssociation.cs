@@ -32,36 +32,42 @@ namespace Adyen.Model.LegalEntityManagement
     public partial class LegalEntityAssociation :  IEquatable<LegalEntityAssociation>, IValidatableObject
     {
         /// <summary>
-        /// Defines the relationship of the legal entity to the current legal entity.   For example, **uboThroughOwnership**, **uboThroughControl**, or **signatory**. 
+        /// Defines the relationship of the legal entity to the current legal entity.   For example, **uboThroughOwnership**, **uboThroughControl**, **signatory**, or **soleProprietorship**. 
         /// </summary>
-        /// <value>Defines the relationship of the legal entity to the current legal entity.   For example, **uboThroughOwnership**, **uboThroughControl**, or **signatory**. </value>
+        /// <value>Defines the relationship of the legal entity to the current legal entity.   For example, **uboThroughOwnership**, **uboThroughControl**, **signatory**, or **soleProprietorship**. </value>
         [JsonConverter(typeof(StringEnumConverter))]
         public enum TypeEnum
         {
             /// <summary>
+            /// Enum PciSignatory for value: pciSignatory
+            /// </summary>
+            [EnumMember(Value = "pciSignatory")]
+            PciSignatory = 1,
+
+            /// <summary>
             /// Enum Signatory for value: signatory
             /// </summary>
             [EnumMember(Value = "signatory")]
-            Signatory = 1,
+            Signatory = 2,
 
             /// <summary>
             /// Enum UboThroughControl for value: uboThroughControl
             /// </summary>
             [EnumMember(Value = "uboThroughControl")]
-            UboThroughControl = 2,
+            UboThroughControl = 3,
 
             /// <summary>
             /// Enum UboThroughOwnership for value: uboThroughOwnership
             /// </summary>
             [EnumMember(Value = "uboThroughOwnership")]
-            UboThroughOwnership = 3
+            UboThroughOwnership = 4
 
         }
 
         /// <summary>
-        /// Defines the relationship of the legal entity to the current legal entity.   For example, **uboThroughOwnership**, **uboThroughControl**, or **signatory**. 
+        /// Defines the relationship of the legal entity to the current legal entity.   For example, **uboThroughOwnership**, **uboThroughControl**, **signatory**, or **soleProprietorship**. 
         /// </summary>
-        /// <value>Defines the relationship of the legal entity to the current legal entity.   For example, **uboThroughOwnership**, **uboThroughControl**, or **signatory**. </value>
+        /// <value>Defines the relationship of the legal entity to the current legal entity.   For example, **uboThroughOwnership**, **uboThroughControl**, **signatory**, or **soleProprietorship**. </value>
         [DataMember(Name="type", EmitDefaultValue=true)]
         public TypeEnum Type { get; set; }
         /// <summary>
@@ -74,7 +80,7 @@ namespace Adyen.Model.LegalEntityManagement
         /// </summary>
         /// <param name="jobTitle">The individual&#39;s job title if the &#x60;type&#x60; is **uboThroughControl** or **signatory**..</param>
         /// <param name="legalEntityId">The unique identifier of the associated [legal entity](https://docs.adyen.com/api-explorer/#/legalentity/latest/post/legalEntities__resParam_id). (required).</param>
-        /// <param name="type">Defines the relationship of the legal entity to the current legal entity.   For example, **uboThroughOwnership**, **uboThroughControl**, or **signatory**.  (required).</param>
+        /// <param name="type">Defines the relationship of the legal entity to the current legal entity.   For example, **uboThroughOwnership**, **uboThroughControl**, **signatory**, or **soleProprietorship**.  (required).</param>
         public LegalEntityAssociation(string jobTitle = default(string), string legalEntityId = default(string), TypeEnum type = default(TypeEnum))
         {
             this.JobTitle = jobTitle;
