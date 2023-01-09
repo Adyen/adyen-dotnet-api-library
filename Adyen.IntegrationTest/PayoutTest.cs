@@ -1,3 +1,4 @@
+using System;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Adyen.Service;
 using Adyen.Model.Payout;
@@ -40,9 +41,10 @@ namespace Adyen.IntegrationTest
         public void PayoutErrorMissingReferenceTest()
         {
             var payoutRequest = CreatePayoutRequest("DotNetAlexandros");
-            payoutRequest.ShopperReference = "";
+            payoutRequest.Reference = "";
             var ex = Assert.ThrowsException<HttpClientException>(() => _payout.PayoutSubmit(payoutRequest));
-            Assert.AreEqual(ex.Code, 403);
+            Assert.AreEqual("{\"status\":422,\"errorCode\":\"130\",\"message\":\"Required field 'reference' is not provided.\",\"errorType\":\"validation\"}",ex.ResponseBody);
+            Assert.AreEqual(422, ex.Code);
         }
 
         private PayoutRequest CreatePayoutRequest(string merchantAccount)
