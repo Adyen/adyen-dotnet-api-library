@@ -24,6 +24,7 @@ jobs:
           author: ${{ secrets.ADYEN_AUTOMATION_BOT_EMAIL }}
           base: develop
           branch: automation/models
+          title: ${{ steps.vars.outputs.pr_title }}
           body: ${{ steps.vars.outputs.pr_body }}
           add-paths: |
             Adyen/Model
