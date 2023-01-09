@@ -5,6 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.Runtime.Serialization;
 using System.Text;
+using ApplicationInfo = Adyen.Model.ApplicationInformation.ApplicationInfo;
 
 namespace Adyen.Model.Payout
 {
