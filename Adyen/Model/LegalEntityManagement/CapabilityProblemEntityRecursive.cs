@@ -26,35 +26,59 @@ using System.ComponentModel.DataAnnotations;
 namespace Adyen.Model.LegalEntityManagement
 {
     /// <summary>
-    /// WebData
+    /// CapabilityProblemEntityRecursive
     /// </summary>
     [DataContract]
-    public partial class WebData :  IEquatable<WebData>, IValidatableObject
+    public partial class CapabilityProblemEntityRecursive :  IEquatable<CapabilityProblemEntityRecursive>, IValidatableObject
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="WebData" /> class.
+        /// Defines Type
         /// </summary>
-        /// <param name="webAddress">The URL of the website..</param>
-        /// <param name="webAddressId">The unique identifier of the web address..</param>
-        public WebData(string webAddress = default(string), string webAddressId = default(string))
+        [JsonConverter(typeof(StringEnumConverter))]
+        public enum TypeEnum
         {
-            this.WebAddress = webAddress;
-            this.WebAddressId = webAddressId;
+            /// <summary>
+            /// Enum BankAccount for value: BankAccount
+            /// </summary>
+            [EnumMember(Value = "BankAccount")]
+            BankAccount = 1,
+
+            /// <summary>
+            /// Enum Document for value: Document
+            /// </summary>
+            [EnumMember(Value = "Document")]
+            Document = 2,
+
+            /// <summary>
+            /// Enum LegalEntity for value: LegalEntity
+            /// </summary>
+            [EnumMember(Value = "LegalEntity")]
+            LegalEntity = 3
+
         }
 
         /// <summary>
-        /// The URL of the website.
+        /// Gets or Sets Type
         /// </summary>
-        /// <value>The URL of the website.</value>
-        [DataMember(Name="webAddress", EmitDefaultValue=false)]
-        public string WebAddress { get; set; }
+        [DataMember(Name="type", EmitDefaultValue=false)]
+        public TypeEnum? Type { get; set; }
+        /// <summary>
+        /// Initializes a new instance of the <see cref="CapabilityProblemEntityRecursive" /> class.
+        /// </summary>
+        /// <param name="id">id.</param>
+        /// <param name="type">type.</param>
+        public CapabilityProblemEntityRecursive(string id = default(string), TypeEnum? type = default(TypeEnum?))
+        {
+            this.Id = id;
+            this.Type = type;
+        }
 
         /// <summary>
-        /// The unique identifier of the web address.
+        /// Gets or Sets Id
         /// </summary>
-        /// <value>The unique identifier of the web address.</value>
-        [DataMember(Name="webAddressId", EmitDefaultValue=false)]
-        public string WebAddressId { get; set; }
+        [DataMember(Name="id", EmitDefaultValue=false)]
+        public string Id { get; set; }
+
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -63,9 +87,9 @@ namespace Adyen.Model.LegalEntityManagement
         public override string ToString()
         {
             var sb = new StringBuilder();
-            sb.Append("class WebData {\n");
-            sb.Append("  WebAddress: ").Append(WebAddress).Append("\n");
-            sb.Append("  WebAddressId: ").Append(WebAddressId).Append("\n");
+            sb.Append("class CapabilityProblemEntityRecursive {\n");
+            sb.Append("  Id: ").Append(Id).Append("\n");
+            sb.Append("  Type: ").Append(Type).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -86,29 +110,29 @@ namespace Adyen.Model.LegalEntityManagement
         /// <returns>Boolean</returns>
         public override bool Equals(object input)
         {
-            return this.Equals(input as WebData);
+            return this.Equals(input as CapabilityProblemEntityRecursive);
         }
 
         /// <summary>
-        /// Returns true if WebData instances are equal
+        /// Returns true if CapabilityProblemEntityRecursive instances are equal
         /// </summary>
-        /// <param name="input">Instance of WebData to be compared</param>
+        /// <param name="input">Instance of CapabilityProblemEntityRecursive to be compared</param>
         /// <returns>Boolean</returns>
-        public bool Equals(WebData input)
+        public bool Equals(CapabilityProblemEntityRecursive input)
         {
             if (input == null)
                 return false;
 
             return 
                 (
-                    this.WebAddress == input.WebAddress ||
-                    (this.WebAddress != null &&
-                    this.WebAddress.Equals(input.WebAddress))
+                    this.Id == input.Id ||
+                    (this.Id != null &&
+                    this.Id.Equals(input.Id))
                 ) && 
                 (
-                    this.WebAddressId == input.WebAddressId ||
-                    (this.WebAddressId != null &&
-                    this.WebAddressId.Equals(input.WebAddressId))
+                    this.Type == input.Type ||
+                    (this.Type != null &&
+                    this.Type.Equals(input.Type))
                 );
         }
 
@@ -121,10 +145,10 @@ namespace Adyen.Model.LegalEntityManagement
             unchecked // Overflow is fine, just wrap
             {
                 int hashCode = 41;
-                if (this.WebAddress != null)
-                    hashCode = hashCode * 59 + this.WebAddress.GetHashCode();
-                if (this.WebAddressId != null)
-                    hashCode = hashCode * 59 + this.WebAddressId.GetHashCode();
+                if (this.Id != null)
+                    hashCode = hashCode * 59 + this.Id.GetHashCode();
+                if (this.Type != null)
+                    hashCode = hashCode * 59 + this.Type.GetHashCode();
                 return hashCode;
             }
         }
