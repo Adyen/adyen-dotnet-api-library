@@ -1,5 +1,4 @@
-
-![dotnet](https://user-images.githubusercontent.com/62436079/207373079-9cf9377f-f530-4b02-a515-9b64ef7b06e7.png)
+![dotnetbanner](https://user-images.githubusercontent.com/16090523/211397465-27a54925-ef60-4587-8375-0c89a8d441a7.png)
 # Adyen .net API Library
 [![nuget](https://img.shields.io/nuget/v/adyen.svg)](https://www.nuget.org/packages/adyen/) [![nuget](https://img.shields.io/nuget/dt/adyen.svg)](https://www.nuget.org/packages/adyen/) ![.NET Core](https://github.com/Adyen/adyen-dotnet-api-library/workflows/.NET%20Core/badge.svg)
 
