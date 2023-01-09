@@ -60,17 +60,14 @@ var config = new Config
 //Make the call to the service. This example code makes a call to /payments
 var paymentResponse = checkout.Payments(paymentRequest);
 ```
-### Example integration
 
-For a closer look at how our dotnet library works, clone our [ASP .net example integration](https://github.com/adyen-examples/adyen-dotnet-online-payments). This includes commented code, highlighting key features and concepts, and examples of API calls that can be made using the library.
-
-### Running the tests
+## Running the tests
 Navigate to adyen-dotnet-api-library folder and run the following commands.
 ```
 dotnet build
 dotnet test
 ```
-### Using the Cloud API for post
+## Using the Cloud API 
 In order to submit POS request with Cloud API you need to initialize the client with the Endpoints that it is closer to your region. The Endpoints are available as contacts in [ClientConfig](https://github.com/Adyen/adyen-dotnet-api-library/blob/develop/Adyen/Constants/ClientConfig.cs#L35)
 For more information please read our [documentation](https://docs.adyen.com/point-of-sale/terminal-api-fundamentals#cloud)
 ```c#
@@ -82,6 +79,8 @@ var config = new Config
   };
 var client = new Client(config);
 ```
+## Example integration ecommerce
+For a closer look at how our dotnet library works, clone our [ASP .net example integration](https://github.com/adyen-examples/adyen-dotnet-online-payments). This includes commented code, highlighting key features and concepts, and examples of API calls that can be made using the library.
 
 ## Example cloud API integration
 ```c#
@@ -95,26 +94,14 @@ namespace Adyen.Terminal
 {
    public static class Program
    {
-       private static string XApiKey = "Your api key";
- 
+        private static string XApiKey = "YOUR-API-KEY";
         private static void Main(string[] args)
         {
-            Console.WriteLine("Start");
             var client = new Client(XApiKey, Environment.Test);
             PosPaymentCloudApi posPaymentCloudApi = new PosPaymentCloudApi(client);
-            try
-            {
-                SaleToPOIResponse response = posPaymentCloudApi.TerminalApiCloudSync(PaymentRequest());
-                PaymentResponse paymentResponse = (PaymentResponse) response.MessagePayload;
-                Console.WriteLine(paymentResponse.Response.Result);
-            }
-            catch (Exception e)
-            {
-                Console.WriteLine(e);
-                throw;
-            }
- 
-            Console.WriteLine("end");
+            SaleToPOIResponse response = posPaymentCloudApi.TerminalApiCloudSync(PaymentRequest());
+            PaymentResponse paymentResponse = (PaymentResponse) response.MessagePayload;
+            Console.WriteLine(paymentResponse.Response.Result);
         }
  
         private static SaleToPOIRequest PaymentRequest()
@@ -123,7 +110,6 @@ namespace Adyen.Terminal
             var saleID = "SALE_ID";
             var POIID = "SERIAL_NUMBER";
             var transactionID = "123459";
- 
             var saleToPOIRequest = new SaleToPOIRequest()
             {
                 MessageHeader = new MessageHeader()
@@ -157,7 +143,6 @@ namespace Adyen.Terminal
             };
             return saleToPOIRequest;
         }
-        // ServiceId should be unique
     }
 }
 ```
@@ -175,6 +160,5 @@ For other questions, [contact our Support Team](https://www.adyen.help/hc/en-us/
 This repository is available under the [MIT license](https://github.com/Adyen/adyen-dotnet-api-library/blob/main/LICENSE).
 
 ## See also
-* [Example integration](https://github.com/adyen-examples/adyen-dotnet-online-payments)
 * [Adyen docs](https://docs.adyen.com/)
 * [API Explorer](https://docs.adyen.com/api-explorer/)
