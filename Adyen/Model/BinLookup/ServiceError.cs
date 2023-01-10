@@ -99,7 +99,7 @@ namespace Adyen.Model.BinLookup
         /// <returns>String presentation of the object</returns>
         public override string ToString()
         {
-            var sb = new StringBuilder();
+            StringBuilder sb = new StringBuilder();
             sb.Append("class ServiceError {\n");
             sb.Append("  AdditionalData: ").Append(AdditionalData).Append("\n");
             sb.Append("  ErrorCode: ").Append(ErrorCode).Append("\n");

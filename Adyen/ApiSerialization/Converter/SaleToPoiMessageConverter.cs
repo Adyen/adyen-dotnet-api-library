@@ -36,7 +36,7 @@ namespace Adyen.ApiSerialization.Converter
             writer.WriteStartObject();
             writer.WritePropertyName(value.GetType().Name);
             writer.WriteStartObject();
-            var saleToPoiMessage = value as SaleToPOIMessage;
+            SaleToPOIMessage saleToPoiMessage = value as SaleToPOIMessage;
             writer.WritePropertyName(saleToPoiMessage.MessageHeader.GetType().Name);
             serializer.Serialize(writer, saleToPoiMessage.MessageHeader);
             writer.WritePropertyName(saleToPoiMessage.MessagePayload.GetType().Name);

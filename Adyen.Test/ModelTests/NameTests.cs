@@ -33,7 +33,7 @@ namespace Adyen.Test.ModelTests
         [TestMethod]
         public void CreatingNameWithoutInfixSucceeds()
         {
-            var name = new Name("firstName",  "lastName");
+            Name name = new Name("firstName",  "lastName");
             Assert.AreEqual(name.FirstName, "firstName");
             Assert.AreEqual(name.LastName, "lastName");
         }

@@ -66,7 +66,7 @@ namespace Adyen.Model.Recurring
         /// <returns>String presentation of the object</returns>
         public override string ToString()
         {
-            var sb = new StringBuilder();
+            StringBuilder sb = new StringBuilder();
             sb.Append("class TokenDetails {\n");
             sb.Append("  TokenData: ").Append(TokenData.ToCollectionsString()).Append("\n");
             sb.Append("  TokenDataType: ").Append(TokenDataType).Append("\n");

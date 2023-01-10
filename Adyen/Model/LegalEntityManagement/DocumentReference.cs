@@ -71,7 +71,7 @@ namespace Adyen.Model.LegalEntityManagement
         /// <returns>String presentation of the object</returns>
         public override string ToString()
         {
-            var sb = new StringBuilder();
+            StringBuilder sb = new StringBuilder();
             sb.Append("class DocumentReference {\n");
             sb.Append("  Active: ").Append(Active).Append("\n");
             sb.Append("  FileName: ").Append(FileName).Append("\n");

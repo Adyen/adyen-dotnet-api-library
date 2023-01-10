@@ -76,7 +76,7 @@ namespace Adyen.Model.ApplicationInformation
         /// <returns>String presentation of the object</returns>
         public override string ToString()
         {
-            var sb = new StringBuilder();
+            StringBuilder sb = new StringBuilder();
             sb.Append("class ExternalPlatform {\n");
             sb.Append("  Integrator: ").Append(Integrator).Append("\n");
             sb.Append("  Name: ").Append(Name).Append("\n");

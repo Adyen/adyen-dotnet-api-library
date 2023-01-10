@@ -57,7 +57,7 @@ namespace Adyen.Test
 
         public static PaymentRequest CreateFullPaymentRequest()
         {
-            var paymentRequest = new PaymentRequest()
+            PaymentRequest paymentRequest = new PaymentRequest()
             {
                 ApplicationInfo = new ApplicationInfo()
                 {
@@ -74,7 +74,7 @@ namespace Adyen.Test
 
         public static PaymentRequest3ds2 CreateFullPaymentRequest3DS2()
         {
-            var paymentRequest = new PaymentRequest3ds2()
+            PaymentRequest3ds2 paymentRequest = new PaymentRequest3ds2()
             {
                 MerchantAccount = "MerchantAccount",
                 Amount = new Amount("EUR", 1500),
@@ -89,7 +89,7 @@ namespace Adyen.Test
 
         public static PaymentRequest CreateFullPaymentRequestWithShopperInteraction(PaymentRequest.ShopperInteractionEnum shopperInteraction)
         {
-            var paymentRequest = CreateFullPaymentRequest();
+            PaymentRequest paymentRequest = CreateFullPaymentRequest();
             paymentRequest.ShopperInteraction = shopperInteraction;
             return paymentRequest;
         }
@@ -107,7 +107,7 @@ namespace Adyen.Test
 
         public static PaymentRequest3d CreateFullPaymentRequest3D()
         {
-            var paymentRequest = new PaymentRequest3d()
+            PaymentRequest3d paymentRequest = new PaymentRequest3d()
             {
                 ApplicationInfo = new ApplicationInfo()
                 {

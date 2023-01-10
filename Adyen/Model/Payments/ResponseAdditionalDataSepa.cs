@@ -71,7 +71,7 @@ namespace Adyen.Model.Payments
         /// <returns>String presentation of the object</returns>
         public override string ToString()
         {
-            var sb = new StringBuilder();
+            StringBuilder sb = new StringBuilder();
             sb.Append("class ResponseAdditionalDataSepa {\n");
             sb.Append("  SepadirectdebitDateOfSignature: ").Append(SepadirectdebitDateOfSignature).Append("\n");
             sb.Append("  SepadirectdebitMandateId: ").Append(SepadirectdebitMandateId).Append("\n");

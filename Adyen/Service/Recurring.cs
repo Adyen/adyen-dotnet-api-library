@@ -42,29 +42,29 @@ namespace Adyen.Service
 
         public RecurringDetailsResult ListRecurringDetails(RecurringDetailsRequest request)
         {
-            var jsonRequest = Util.JsonOperation.SerializeRequest(request);
-            var jsonResponse = _listRecurringDetails.Request(jsonRequest);
+            string jsonRequest = Util.JsonOperation.SerializeRequest(request);
+            string jsonResponse = _listRecurringDetails.Request(jsonRequest);
             return Util.JsonOperation.Deserialize<RecurringDetailsResult>(jsonResponse);
         }
 
         public async Task<RecurringDetailsResult> ListRecurringDetailsAsync(RecurringDetailsRequest request)
         {
-            var jsonRequest = Util.JsonOperation.SerializeRequest(request);
-            var jsonResponse = await _listRecurringDetails.RequestAsync(jsonRequest);
+            string jsonRequest = Util.JsonOperation.SerializeRequest(request);
+            string jsonResponse = await _listRecurringDetails.RequestAsync(jsonRequest);
             return Util.JsonOperation.Deserialize<RecurringDetailsResult>(jsonResponse);
         }
 
         public DisableResult Disable(DisableRequest disableRequest)
         {
-            var jsonRequest = Util.JsonOperation.SerializeRequest(disableRequest);
-            var jsonResponse = _disable.Request(jsonRequest);
+            string jsonRequest = Util.JsonOperation.SerializeRequest(disableRequest);
+            string jsonResponse = _disable.Request(jsonRequest);
             return Util.JsonOperation.Deserialize<DisableResult>(jsonResponse);
         }
 
         public async Task<DisableResult> DisableAsync(DisableRequest disableRequest)
         {
-            var jsonRequest = Util.JsonOperation.SerializeRequest(disableRequest);
-            var jsonResponse = await _disable.RequestAsync(jsonRequest);
+            string jsonRequest = Util.JsonOperation.SerializeRequest(disableRequest);
+            string jsonResponse = await _disable.RequestAsync(jsonRequest);
             return Util.JsonOperation.Deserialize<DisableResult>(jsonResponse);
         }
 
@@ -75,8 +75,8 @@ namespace Adyen.Service
         /// <returns>NotifyShopperResult</returns>
         public NotifyShopperResult NotifyShopper(NotifyShopperRequest notifyShopperRequest)
         {
-            var jsonRequest = Util.JsonOperation.SerializeRequest(notifyShopperRequest);
-            var jsonResponse = _notifyShopper.Request(jsonRequest);
+            string jsonRequest = Util.JsonOperation.SerializeRequest(notifyShopperRequest);
+            string jsonResponse = _notifyShopper.Request(jsonRequest);
             return Util.JsonOperation.Deserialize<NotifyShopperResult>(jsonResponse);
         }
 
@@ -87,8 +87,8 @@ namespace Adyen.Service
         /// <returns>Task<NotifyShopperResult></returns>
         public async Task<NotifyShopperResult> NotifyShopperAsync(NotifyShopperRequest notifyShopperRequest)
         {
-            var jsonRequest = Util.JsonOperation.SerializeRequest(notifyShopperRequest);
-            var jsonResponse = await _notifyShopper.RequestAsync(jsonRequest);
+            string jsonRequest = Util.JsonOperation.SerializeRequest(notifyShopperRequest);
+            string jsonResponse = await _notifyShopper.RequestAsync(jsonRequest);
             return Util.JsonOperation.Deserialize<NotifyShopperResult>(jsonResponse);
         }
     }

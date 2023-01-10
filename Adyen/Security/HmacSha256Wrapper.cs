@@ -29,7 +29,7 @@ namespace Adyen.Security
     {
         internal byte[] HMac(byte[] bytesToHMac, byte[] hmacKey)
         {
-            var hmacSha256 = new HMACSHA256(hmacKey);
+            HMACSHA256 hmacSha256 = new HMACSHA256(hmacKey);
 
             return hmacSha256.ComputeHash(bytesToHMac);
         }

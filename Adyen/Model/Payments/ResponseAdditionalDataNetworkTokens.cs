@@ -71,7 +71,7 @@ namespace Adyen.Model.Payments
         /// <returns>String presentation of the object</returns>
         public override string ToString()
         {
-            var sb = new StringBuilder();
+            StringBuilder sb = new StringBuilder();
             sb.Append("class ResponseAdditionalDataNetworkTokens {\n");
             sb.Append("  NetworkTokenAvailable: ").Append(NetworkTokenAvailable).Append("\n");
             sb.Append("  NetworkTokenBin: ").Append(NetworkTokenBin).Append("\n");

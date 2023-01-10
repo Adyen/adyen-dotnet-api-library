@@ -116,7 +116,7 @@ namespace Adyen.Model.Payments
         /// <returns>String presentation of the object</returns>
         public override string ToString()
         {
-            var sb = new StringBuilder();
+            StringBuilder sb = new StringBuilder();
             sb.Append("class ThreeDSRequestorAuthenticationInfo {\n");
             sb.Append("  ThreeDSReqAuthData: ").Append(ThreeDSReqAuthData).Append("\n");
             sb.Append("  ThreeDSReqAuthMethod: ").Append(ThreeDSReqAuthMethod).Append("\n");

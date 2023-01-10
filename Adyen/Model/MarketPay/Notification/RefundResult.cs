@@ -64,7 +64,7 @@ namespace Adyen.Model.MarketPay.Notification
         /// <returns>String presentation of the object</returns>
         public override string ToString()
         {
-            var sb = new StringBuilder();
+            StringBuilder sb = new StringBuilder();
             sb.Append("class RefundResult {\n");
             sb.Append("  OriginalTransaction: ").Append(OriginalTransaction).Append("\n");
             sb.Append("  PspReference: ").Append(PspReference).Append("\n");

@@ -173,7 +173,7 @@ namespace Adyen.Model.MarketPay
         /// <returns>String presentation of the object</returns>
         public override string ToString()
         {
-            var sb = new StringBuilder();
+            StringBuilder sb = new StringBuilder();
             sb.Append("class KYCCheckStatusData {\n");
             sb.Append("  RequiredFields: ").Append(RequiredFields).Append("\n");
             sb.Append("  Status: ").Append(Status).Append("\n");

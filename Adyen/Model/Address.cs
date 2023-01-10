@@ -103,7 +103,7 @@ namespace Adyen.Model
         /// <returns>String presentation of the object</returns>
         public override string ToString()
         {
-            var sb = new StringBuilder();
+            StringBuilder sb = new StringBuilder();
             sb.Append("class Address {\n");
             sb.Append("  Country: ").Append(Country).Append("\n");
             sb.Append("  StateOrProvince: ").Append(StateOrProvince).Append("\n");

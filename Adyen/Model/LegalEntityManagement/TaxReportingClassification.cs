@@ -197,7 +197,7 @@ namespace Adyen.Model.LegalEntityManagement
         /// <returns>String presentation of the object</returns>
         public override string ToString()
         {
-            var sb = new StringBuilder();
+            StringBuilder sb = new StringBuilder();
             sb.Append("class TaxReportingClassification {\n");
             sb.Append("  BusinessType: ").Append(BusinessType).Append("\n");
             sb.Append("  FinancialInstitutionNumber: ").Append(FinancialInstitutionNumber).Append("\n");

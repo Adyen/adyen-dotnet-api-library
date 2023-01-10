@@ -58,7 +58,7 @@ namespace Adyen.Model.PosTerminalManagement
         /// <returns>String presentation of the object</returns>
         public override string ToString()
         {
-            var sb = new StringBuilder();
+            StringBuilder sb = new StringBuilder();
             sb.Append("class GetTerminalDetailsRequest {\n");
             sb.Append("  Terminal: ").Append(Terminal).Append("\n");
             sb.Append("}\n");

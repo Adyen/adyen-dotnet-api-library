@@ -27,6 +27,7 @@ using Adyen.Model.Hpp;
 using Adyen.Service;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
+using System.Collections.Generic;
 using System.Linq;
 
 namespace Adyen.Test
@@ -37,10 +38,10 @@ namespace Adyen.Test
         [TestMethod]
         public void TestGetPostParameters()
         {
-            var client = base.CreateMockTestClientRequest("");
-            var hostedPaymentPages = new HostedPaymentPages(client);
-            var directoryLookupRequest = CreateDirectoryLookupRequest();
-            var postParameters = hostedPaymentPages.GetPostParametersFromDlRequest(directoryLookupRequest);
+            Client client = base.CreateMockTestClientRequest("");
+            HostedPaymentPages hostedPaymentPages = new HostedPaymentPages(client);
+            DirectoryLookupRequest directoryLookupRequest = CreateDirectoryLookupRequest();
+            Dictionary<string, string> postParameters = hostedPaymentPages.GetPostParametersFromDlRequest(directoryLookupRequest);
 
             Assert.AreEqual("EUR", postParameters[Fields.CurrencyCode]);
             Assert.AreEqual(44, postParameters[Fields.MerchantSig].Length);
@@ -50,26 +51,26 @@ namespace Adyen.Test
         [TestMethod]
         public void TestGetPaymentMethods()
         {
-            var client = base.CreateMockTestClientPost("Mocks/hpp/directoryLookup-success.json");
-            var hostedPaymentPages = new HostedPaymentPages(client);
-            var directoryLookupRequest = CreateDirectoryLookupRequest();
-            var paymentMethods = hostedPaymentPages.GetPaymentMethods(directoryLookupRequest);
+            Client client = base.CreateMockTestClientPost("Mocks/hpp/directoryLookup-success.json");
+            HostedPaymentPages hostedPaymentPages = new HostedPaymentPages(client);
+            DirectoryLookupRequest directoryLookupRequest = CreateDirectoryLookupRequest();
+            List<PaymentMethod> paymentMethods = hostedPaymentPages.GetPaymentMethods(directoryLookupRequest);
 
             Assert.AreEqual(8, paymentMethods.Count);
             //Get payment method by name
-            var ideal = paymentMethods.FirstOrDefault(x => x.Name == "iDEAL");
+            PaymentMethod ideal = paymentMethods.FirstOrDefault(x => x.Name == "iDEAL");
             //  Assert.IsFalse(ideal.IsCard());
 
             Assert.AreEqual(BrandCodes.Ideal, ideal.BrandCode);
             Assert.AreEqual("iDEAL", ideal.Name);
             Assert.AreEqual(3, ideal.Issuers.Count);
-            var issuerIdeal = ideal.Issuers.FirstOrDefault();
+            Issuer issuerIdeal = ideal.Issuers.FirstOrDefault();
 
             Assert.AreEqual("1121", issuerIdeal.IssuerId);
             Assert.AreEqual("Test Issuer", issuerIdeal.Name);
 
             //Get payment method by name
-            var visa = paymentMethods.FirstOrDefault(x => x.Name == "VISA");
+            PaymentMethod visa = paymentMethods.FirstOrDefault(x => x.Name == "VISA");
             Assert.AreEqual(BrandCodes.Visa, visa.BrandCode);
         }
 
@@ -78,9 +79,9 @@ namespace Adyen.Test
         {
             try
             {
-                var client = base.CreateMockTestClientPost("Mocks/hpp/directoryLookup-error.htm");
-                var hostedPaymentPages = new HostedPaymentPages(client);
-                var directoryLookupRequest = CreateDirectoryLookupRequest();
+                Client client = base.CreateMockTestClientPost("Mocks/hpp/directoryLookup-error.htm");
+                HostedPaymentPages hostedPaymentPages = new HostedPaymentPages(client);
+                DirectoryLookupRequest directoryLookupRequest = CreateDirectoryLookupRequest();
                 Assert.Fail("Expected exception");
             }
             catch (Exception)

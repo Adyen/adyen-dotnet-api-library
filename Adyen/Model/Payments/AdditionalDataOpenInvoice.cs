@@ -206,7 +206,7 @@ namespace Adyen.Model.Payments
         /// <returns>String presentation of the object</returns>
         public override string ToString()
         {
-            var sb = new StringBuilder();
+            StringBuilder sb = new StringBuilder();
             sb.Append("class AdditionalDataOpenInvoice {\n");
             sb.Append("  OpeninvoicedataMerchantData: ").Append(OpeninvoicedataMerchantData).Append("\n");
             sb.Append("  OpeninvoicedataNumberOfLines: ").Append(OpeninvoicedataNumberOfLines).Append("\n");

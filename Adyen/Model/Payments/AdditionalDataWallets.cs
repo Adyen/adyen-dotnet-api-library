@@ -98,7 +98,7 @@ namespace Adyen.Model.Payments
         /// <returns>String presentation of the object</returns>
         public override string ToString()
         {
-            var sb = new StringBuilder();
+            StringBuilder sb = new StringBuilder();
             sb.Append("class AdditionalDataWallets {\n");
             sb.Append("  AndroidpayToken: ").Append(AndroidpayToken).Append("\n");
             sb.Append("  MasterpassTransactionId: ").Append(MasterpassTransactionId).Append("\n");

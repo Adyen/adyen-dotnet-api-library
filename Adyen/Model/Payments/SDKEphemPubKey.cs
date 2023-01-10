@@ -80,7 +80,7 @@ namespace Adyen.Model.Payments
         /// <returns>String presentation of the object</returns>
         public override string ToString()
         {
-            var sb = new StringBuilder();
+            StringBuilder sb = new StringBuilder();
             sb.Append("class SDKEphemPubKey {\n");
             sb.Append("  Crv: ").Append(Crv).Append("\n");
             sb.Append("  Kty: ").Append(Kty).Append("\n");

@@ -623,7 +623,7 @@ namespace Adyen.Model.Payments
         /// <returns>String presentation of the object</returns>
         public override string ToString()
         {
-            var sb = new StringBuilder();
+            StringBuilder sb = new StringBuilder();
             sb.Append("class ResponseAdditionalDataCommon {\n");
             sb.Append("  AcquirerAccountCode: ").Append(AcquirerAccountCode).Append("\n");
             sb.Append("  AcquirerCode: ").Append(AcquirerCode).Append("\n");

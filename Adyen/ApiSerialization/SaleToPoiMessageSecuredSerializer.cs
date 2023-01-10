@@ -43,24 +43,24 @@ namespace Adyen.ApiSerialization
             {
                 return null;
             }
-            var saleToPoiMessageSecuredJObject = JObject.Parse(saleToPoiMessageSecuredJSon);
+            JObject saleToPoiMessageSecuredJObject = JObject.Parse(saleToPoiMessageSecuredJSon);
 
             CheckForTerminalError(saleToPoiMessageSecuredJObject);
 
-            var saleToPoiMessageSecuredJObjectRoot = saleToPoiMessageSecuredJObject.First;
-            var saleToPoiMessageSecuredJObjectWithoutRoot = saleToPoiMessageSecuredJObjectRoot?.First;
+            JToken saleToPoiMessageSecuredJObjectRoot = saleToPoiMessageSecuredJObject.First;
+            JToken saleToPoiMessageSecuredJObjectWithoutRoot = saleToPoiMessageSecuredJObjectRoot?.First;
             if (saleToPoiMessageSecuredJObjectWithoutRoot != null)
             {
                 return ParseSaleToPoiMessageSecured(saleToPoiMessageSecuredJObjectWithoutRoot);
             }
 
-            var exceptionMessage = string.Format(ExceptionMessages.ExceptionDuringDeserialization, saleToPoiMessageSecuredJSon, ExceptionMessages.SaleToPoiMessageRootMissing);
+            string exceptionMessage = string.Format(ExceptionMessages.ExceptionDuringDeserialization, saleToPoiMessageSecuredJSon, ExceptionMessages.SaleToPoiMessageRootMissing);
             throw new SerializationException(exceptionMessage);
         }
 
         private void CheckForTerminalError(JObject terminalResponseJObject)
         {
-            var possibleTerminalError = terminalResponseJObject.SelectToken("errors");
+            JToken possibleTerminalError = terminalResponseJObject.SelectToken("errors");
             if (possibleTerminalError != null)
             {
                 throw new Exception(string.Format(ExceptionMessages.TerminalErrorResponse, possibleTerminalError));
@@ -69,7 +69,7 @@ namespace Adyen.ApiSerialization
 
         private SaleToPoiMessageSecured ParseSaleToPoiMessageSecured(JToken saleToPoiMessageSecuredJToken)
         {
-            var saleToPoiMessageSecured = new SaleToPoiMessageSecured()
+            SaleToPoiMessageSecured saleToPoiMessageSecured = new SaleToPoiMessageSecured()
             {
                 MessageHeader = saleToPoiMessageSecuredJToken.SelectToken("MessageHeader").ToObject<MessageHeader>(),
                 NexoBlob = saleToPoiMessageSecuredJToken.SelectToken("NexoBlob").ToObject<string>(),

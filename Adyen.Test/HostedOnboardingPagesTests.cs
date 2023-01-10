@@ -15,12 +15,12 @@ namespace Adyen.Test
         [TestMethod]
         public void TestGetOnboardingUrlSuccess()
         {
-            var client =
+            Client client =
                 CreateMockTestClientApiKeyBasedRequest(
                     "Mocks/hop/get-onboarding-url-success.json");
-            var hop = new HostedOnboardingPages(client);
-            var getOnboardingUrlRequest = new GetOnboardingUrlRequest();
-            var redirectResponse = hop.GetOnboardingUrl(getOnboardingUrlRequest, new RequestOptions());
+            HostedOnboardingPages hop = new HostedOnboardingPages(client);
+            GetOnboardingUrlRequest getOnboardingUrlRequest = new GetOnboardingUrlRequest();
+            GetOnboardingUrlResponse redirectResponse = hop.GetOnboardingUrl(getOnboardingUrlRequest, new RequestOptions());
 
             Assert.AreEqual("https://test.adyen.com/hop", redirectResponse.RedirectUrl);
             Assert.AreEqual("1234567890123456", redirectResponse.PspReference);
@@ -34,12 +34,12 @@ namespace Adyen.Test
         [TestMethod]
         public async Task TestGetOnboardingUrlSuccessAsync()
         {
-            var client =
+            Client client =
                 CreateAsyncMockTestClientApiKeyBasedRequest(
                     "Mocks/hop/get-onboarding-url-success-async.json");
-            var hop = new HostedOnboardingPages(client);
-            var getOnboardingUrlRequest = new GetOnboardingUrlRequest();
-            var redirectResponse = await hop.GetOnboardingUrlAsync(getOnboardingUrlRequest, new RequestOptions());
+            HostedOnboardingPages hop = new HostedOnboardingPages(client);
+            GetOnboardingUrlRequest getOnboardingUrlRequest = new GetOnboardingUrlRequest();
+            GetOnboardingUrlResponse redirectResponse = await hop.GetOnboardingUrlAsync(getOnboardingUrlRequest, new RequestOptions());
 
             Assert.AreEqual("https://test.adyen.com/hop", redirectResponse.RedirectUrl);
             Assert.AreEqual("1234567890123456", redirectResponse.PspReference);

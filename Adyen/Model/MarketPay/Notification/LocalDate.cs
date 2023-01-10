@@ -55,7 +55,7 @@ namespace Adyen.Model.MarketPay.Notification
         /// <returns>String presentation of the object</returns>
         public override string ToString()
         {
-            var sb = new StringBuilder();
+            StringBuilder sb = new StringBuilder();
             sb.Append("class LocalDate {\n");
             sb.Append("  Month: ").Append(Month).Append("\n");
             sb.Append("  Year: ").Append(Year).Append("\n");

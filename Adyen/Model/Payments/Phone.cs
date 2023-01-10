@@ -62,7 +62,7 @@ namespace Adyen.Model.Payments
         /// <returns>String presentation of the object</returns>
         public override string ToString()
         {
-            var sb = new StringBuilder();
+            StringBuilder sb = new StringBuilder();
             sb.Append("class Phone {\n");
             sb.Append("  Cc: ").Append(Cc).Append("\n");
             sb.Append("  Subscriber: ").Append(Subscriber).Append("\n");

@@ -39,31 +39,31 @@ namespace Adyen.Service.LegalEntityManagement
 
         public async Task<LegalEntity> CreateAsync(LegalEntityInfo request)
         {
-            var jsonRequest = request.ToJson();
-            var resource = new LegalEntityManagementResource(this, "/legalEntities");
-            var jsonResult = await resource.RequestAsync(jsonRequest);
+            string jsonRequest = request.ToJson();
+            LegalEntityManagementResource resource = new LegalEntityManagementResource(this, "/legalEntities");
+            string jsonResult = await resource.RequestAsync(jsonRequest);
             return JsonConvert.DeserializeObject<LegalEntity>(jsonResult);
         }
         
         public async Task<LegalEntity> RetrieveAsync(string legalEntityId)
         {
-            var resource = new LegalEntityManagementResource(this, "/legalEntities/" + legalEntityId);
-            var jsonResult = await resource.RequestAsync(null, null, HttpMethod.Get);
+            LegalEntityManagementResource resource = new LegalEntityManagementResource(this, "/legalEntities/" + legalEntityId);
+            string jsonResult = await resource.RequestAsync(null, null, HttpMethod.Get);
             return JsonConvert.DeserializeObject<LegalEntity>(jsonResult);
         }
         
         public async Task<LegalEntity> UpdateAsync(string legalEntityId, LegalEntityInfo request)
         {
-            var jsonRequest = request.ToJson();
-            var resource = new LegalEntityManagementResource(this, "/legalEntities/" + legalEntityId);
-            var jsonResult = await resource.RequestAsync(jsonRequest, null, _patchMethod);
+            string jsonRequest = request.ToJson();
+            LegalEntityManagementResource resource = new LegalEntityManagementResource(this, "/legalEntities/" + legalEntityId);
+            string jsonResult = await resource.RequestAsync(jsonRequest, null, _patchMethod);
             return JsonConvert.DeserializeObject<LegalEntity>(jsonResult);
         }
         
         public async Task<BusinessLines> ListBusinessLinesAsync(string legalEntityId)
         {
-            var resource = new LegalEntityManagementResource(this, "/legalEntities/" + legalEntityId);
-            var jsonResult = await resource.RequestAsync(null, null, HttpMethod.Get);
+            LegalEntityManagementResource resource = new LegalEntityManagementResource(this, "/legalEntities/" + legalEntityId);
+            string jsonResult = await resource.RequestAsync(null, null, HttpMethod.Get);
             return JsonConvert.DeserializeObject<BusinessLines>(jsonResult);
         }
         

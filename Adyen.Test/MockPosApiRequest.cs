@@ -36,7 +36,7 @@ namespace Adyen.Test
         /// <returns></returns>
         public static SaleToPOIRequest CreatePosPaymentRequest()
         {
-            var saleToPoiRequest = new SaleToPOIRequest()
+            SaleToPOIRequest saleToPoiRequest = new SaleToPOIRequest()
             {
                 MessageHeader = new MessageHeader
                 {

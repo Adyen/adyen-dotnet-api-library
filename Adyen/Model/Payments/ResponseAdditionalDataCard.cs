@@ -116,7 +116,7 @@ namespace Adyen.Model.Payments
         /// <returns>String presentation of the object</returns>
         public override string ToString()
         {
-            var sb = new StringBuilder();
+            StringBuilder sb = new StringBuilder();
             sb.Append("class ResponseAdditionalDataCard {\n");
             sb.Append("  CardBin: ").Append(CardBin).Append("\n");
             sb.Append("  CardHolderName: ").Append(CardHolderName).Append("\n");

@@ -51,15 +51,15 @@ namespace Adyen.Test
                 Currency = "EUR",
                 AuthorisationType = "PreAuth"
             };
-            var applicationInfo = new ApplicationInfo();
-            var externalPlatform = new ExternalPlatform
+            ApplicationInfo applicationInfo = new ApplicationInfo();
+            ExternalPlatform externalPlatform = new ExternalPlatform
             {
                 Integrator = "externalPlatformIntegrator",
                 Name = "externalPlatformName",
                 Version = "2.0.0"
             };
             applicationInfo.ExternalPlatform = externalPlatform;
-            var merchantDevice = new MerchantDevice
+            MerchantDevice merchantDevice = new MerchantDevice
             {
                 Os = "merchantDeviceOS",
                 OsVersion = "10.12.6",
@@ -68,7 +68,7 @@ namespace Adyen.Test
             applicationInfo.MerchantDevice = merchantDevice;
             saleToAcquirerData.ApplicationInfo = applicationInfo;
             saleToAcquirerData.TenderOption = "ReceiptHandler,AllowPartialAuthorisation,AskGratuity";
-            var additionalData = new Dictionary<string, string> { { "key.key", "value" }, { "key.keyTwo", "value2" } };
+            Dictionary<string, string> additionalData = new Dictionary<string, string> { { "key.key", "value" }, { "key.keyTwo", "value2" } };
             saleToAcquirerData.AdditionalData = additionalData;
             Assert.AreEqual(saleToAcquirerData.ToBase64(), JsonToBase64());
         }

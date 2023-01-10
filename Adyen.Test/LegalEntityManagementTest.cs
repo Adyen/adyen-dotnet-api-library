@@ -43,13 +43,13 @@ namespace Adyen.Test
         [TestMethod]
         public void CreateDocument()
         {
-            var client = CreateMockTestClientApiKeyBasedRequestAsync("Mocks/legalentitymanagement/Document.json");
-            var service = new Documents(client);
-            var document = new Document()
+            Client client = CreateMockTestClientApiKeyBasedRequestAsync("Mocks/legalentitymanagement/Document.json");
+            Documents service = new Documents(client);
+            Document document = new Document()
             {
                 Attachment = new Attachment()
             };
-            var response = service.Create(document);
+            Document response = service.Create(document);
             Assert.AreEqual(Encoding.ASCII.GetString(response.Attachments[0].Content), "This is a string");
             Assert.AreEqual(response.Id, "SE322KT223222D5FJ7TJN2986");
         }
@@ -60,13 +60,13 @@ namespace Adyen.Test
         [TestMethod]
         public void UpdateDocument()
         {
-            var client = CreateMockTestClientApiKeyBasedRequestAsync("Mocks/legalentitymanagement/Document.json");
-            var service = new Documents(client);
-            var document = new Document()
+            Client client = CreateMockTestClientApiKeyBasedRequestAsync("Mocks/legalentitymanagement/Document.json");
+            Documents service = new Documents(client);
+            Document document = new Document()
             {
                 Attachment = new Attachment()
             };
-            var response = service.Update("SE322KT223222D5FJ7TJN2986",document);
+            Document response = service.Update("SE322KT223222D5FJ7TJN2986",document);
             Assert.AreEqual(Encoding.ASCII.GetString(response.Attachments[0].Content), "This is a string");
             Assert.AreEqual(response.Id, "SE322KT223222D5FJ7TJN2986");
 
@@ -78,8 +78,8 @@ namespace Adyen.Test
         [TestMethod]
         public void DeleteDocumentTest()
         {
-            var client = CreateMockTestClientApiKeyBasedRequestAsync("Mocks/legalentitymanagement/Document.json");
-            var service = new Documents(client);
+            Client client = CreateMockTestClientApiKeyBasedRequestAsync("Mocks/legalentitymanagement/Document.json");
+            Documents service = new Documents(client);
             service.Delete("SE322KT223222D5FJ7TJN2986");
 
         }
@@ -91,14 +91,14 @@ namespace Adyen.Test
         [TestMethod]
         public void CreateTransferInstrumentsTest()
         {
-            var client = CreateMockTestClientApiKeyBasedRequestAsync("Mocks/legalentitymanagement/TransferInstrument.json");
-            var service = new TransferInstruments(client);
-            var transferInstrumentInfo = new TransferInstrumentInfo()
+            Client client = CreateMockTestClientApiKeyBasedRequestAsync("Mocks/legalentitymanagement/TransferInstrument.json");
+            TransferInstruments service = new TransferInstruments(client);
+            TransferInstrumentInfo transferInstrumentInfo = new TransferInstrumentInfo()
             {
                 LegalEntityId = "",
                 Type = TransferInstrumentInfo.TypeEnum.BankAccount
             };
-            var response = service.Create(transferInstrumentInfo);
+            TransferInstrument response = service.Create(transferInstrumentInfo);
             Assert.AreEqual(response.LegalEntityId, "LE322KH223222D5GG4C9J83RN");
             Assert.AreEqual(response.Id, "SE576BH223222F5GJVKHH6BDT");
         }
@@ -108,15 +108,15 @@ namespace Adyen.Test
         [TestMethod]
         public void UpdateTransferInstrumentsTest()
         {
-            var client = CreateMockTestClientApiKeyBasedRequestAsync("Mocks/legalentitymanagement/TransferInstrument.json");
-            var service = new TransferInstruments(client);
-            var transferInstrumentInfo = new TransferInstrumentInfo()
+            Client client = CreateMockTestClientApiKeyBasedRequestAsync("Mocks/legalentitymanagement/TransferInstrument.json");
+            TransferInstruments service = new TransferInstruments(client);
+            TransferInstrumentInfo transferInstrumentInfo = new TransferInstrumentInfo()
             {
                 LegalEntityId = "",
                 Type = TransferInstrumentInfo.TypeEnum.BankAccount
             };
-            var task = service.UpdateAsync("SE576BH223222F5GJVKHH6BDT", transferInstrumentInfo);
-            var response = task.Result;
+            Task<TransferInstrument> task = service.UpdateAsync("SE576BH223222F5GJVKHH6BDT", transferInstrumentInfo);
+            TransferInstrument response = task.Result;
             Assert.AreEqual(response.LegalEntityId, "LE322KH223222D5GG4C9J83RN");
             Assert.AreEqual(response.Id, "SE576BH223222F5GJVKHH6BDT");
         }
@@ -129,10 +129,10 @@ namespace Adyen.Test
         [TestMethod]
         public void ListThemesTest()
         {
-            var client = CreateMockTestClientApiKeyBasedRequestAsync("Mocks/legalentitymanagement/OnboardingThemes.json");
-            var service = new HostedOnboarding(client);
-            var task = service.ListThemesAsync();
-            var response = task.Result;
+            Client client = CreateMockTestClientApiKeyBasedRequestAsync("Mocks/legalentitymanagement/OnboardingThemes.json");
+            HostedOnboarding service = new HostedOnboarding(client);
+            Task<OnboardingThemes> task = service.ListThemesAsync();
+            OnboardingThemes response = task.Result;
             Assert.AreEqual(response.Themes[0].Id, "SE322KT223222D5FJ7TJN2986");
             Assert.AreEqual(response.Themes[0].CreatedAt, DateTime.Parse("2022-10-31T01:30:00+01:00"));
         }
@@ -145,16 +145,16 @@ namespace Adyen.Test
         [TestMethod]
         public void UpdateLegalEntitiesTest()
         {
-            var client = CreateMockTestClientApiKeyBasedRequestAsync("Mocks/legalentitymanagement/LegalEntity.json");
-            var service = new LegalEntities(client);
-            var legalEntityInfo = new LegalEntityInfo()
+            Client client = CreateMockTestClientApiKeyBasedRequestAsync("Mocks/legalentitymanagement/LegalEntity.json");
+            LegalEntities service = new LegalEntities(client);
+            LegalEntityInfo legalEntityInfo = new LegalEntityInfo()
             {
                 Organization = new Organization(),
                 Type = LegalEntityInfo.TypeEnum.Individual,
                 EntityAssociations = new List<LegalEntityAssociation>(),
                 SoleProprietorship = new SoleProprietorship()
             };
-            var response = service.Update("LE322JV223222D5GG42KN6869", legalEntityInfo);
+            LegalEntity response = service.Update("LE322JV223222D5GG42KN6869", legalEntityInfo);
             Assert.AreEqual(response.Id, "LE322JV223222D5GG42KN6869");
             Assert.AreEqual(response.Type, LegalEntity.TypeEnum.Individual);
         }
@@ -167,14 +167,14 @@ namespace Adyen.Test
         [TestMethod]
         public void UpdateBusinessLinesTest()
         {
-            var client = CreateMockTestClientApiKeyBasedRequestAsync("Mocks/legalentitymanagement/BusinessLine.json");
-            var service = new BusinessLineService(client);
-            var businessLine = new BusinessLineInfo()
+            Client client = CreateMockTestClientApiKeyBasedRequestAsync("Mocks/legalentitymanagement/BusinessLine.json");
+            BusinessLineService service = new BusinessLineService(client);
+            BusinessLineInfo businessLine = new BusinessLineInfo()
             {
                 IndustryCode = "124rrdfer",
                 SourceOfFunds = new SourceOfFunds()
             };
-            var response = service.Update("SE322KT223222D5FJ7TJN2986", businessLine);
+            BusinessLine response = service.Update("SE322KT223222D5FJ7TJN2986", businessLine);
             Assert.AreEqual(response.Id, "SE322KT223222D5FJ7TJN2986");
             Assert.AreEqual(response.IndustryCode, "55");
         }

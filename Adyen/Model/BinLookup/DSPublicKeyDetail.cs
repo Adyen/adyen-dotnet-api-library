@@ -81,7 +81,7 @@ namespace Adyen.Model.BinLookup
         /// <returns>String presentation of the object</returns>
         public override string ToString()
         {
-            var sb = new StringBuilder();
+            StringBuilder sb = new StringBuilder();
             sb.Append("class DSPublicKeyDetail {\n");
             sb.Append("  Brand: ").Append(Brand).Append("\n");
             sb.Append("  DirectoryServerId: ").Append(DirectoryServerId).Append("\n");

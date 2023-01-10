@@ -89,7 +89,7 @@ namespace Adyen.Model.LegalEntityManagement
         /// <returns>String presentation of the object</returns>
         public override string ToString()
         {
-            var sb = new StringBuilder();
+            StringBuilder sb = new StringBuilder();
             sb.Append("class ServiceError {\n");
             sb.Append("  ErrorCode: ").Append(ErrorCode).Append("\n");
             sb.Append("  ErrorType: ").Append(ErrorType).Append("\n");

@@ -94,7 +94,7 @@ namespace Adyen.Model.PosTerminalManagement
         /// <returns>String presentation of the object</returns>
         public override string ToString()
         {
-            var sb = new StringBuilder();
+            StringBuilder sb = new StringBuilder();
             sb.Append("class AssignTerminalsRequest {\n");
             sb.Append("  CompanyAccount: ").Append(CompanyAccount).Append("\n");
             sb.Append("  MerchantAccount: ").Append(MerchantAccount).Append("\n");

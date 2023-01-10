@@ -135,7 +135,7 @@ namespace Adyen.Model.BinLookup
         /// <returns>String presentation of the object</returns>
         public override string ToString()
         {
-            var sb = new StringBuilder();
+            StringBuilder sb = new StringBuilder();
             sb.Append("class CardBin {\n");
             sb.Append("  Bin: ").Append(Bin).Append("\n");
             sb.Append("  Commercial: ").Append(Commercial).Append("\n");

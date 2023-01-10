@@ -35,7 +35,7 @@ namespace Adyen.Util
         /// <returns></returns>
         public static T Deserialize<T>(string response)
         {
-            var jsonSettings = new JsonSerializerSettings();
+            JsonSerializerSettings jsonSettings = new JsonSerializerSettings();
             jsonSettings.Converters.Add(new ByteArrayConverter());
             jsonSettings.Converters.Add(new MarketPayNotificationConverter());
 
@@ -44,7 +44,7 @@ namespace Adyen.Util
         
         public static string SerializeRequest(object request)
         {
-            var jsonSettings = new JsonSerializerSettings
+            JsonSerializerSettings jsonSettings = new JsonSerializerSettings
             {
                 NullValueHandling = NullValueHandling.Ignore,
                 DefaultValueHandling = DefaultValueHandling.Include,

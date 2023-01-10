@@ -56,7 +56,7 @@ namespace Adyen.Model.MarketPay.Notification
         /// <returns>String presentation of the object</returns>
         public override string ToString()
         {
-            var sb = new StringBuilder();
+            StringBuilder sb = new StringBuilder();
             sb.Append("class OperationStatus {\n");
             sb.Append("  Message: ").Append(Message).Append("\n");
             sb.Append("  StatusCode: ").Append(StatusCode).Append("\n");

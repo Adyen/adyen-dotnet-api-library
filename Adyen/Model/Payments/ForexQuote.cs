@@ -153,7 +153,7 @@ namespace Adyen.Model.Payments
         /// <returns>String presentation of the object</returns>
         public override string ToString()
         {
-            var sb = new StringBuilder();
+            StringBuilder sb = new StringBuilder();
             sb.Append("class ForexQuote {\n");
             sb.Append("  Account: ").Append(Account).Append("\n");
             sb.Append("  AccountType: ").Append(AccountType).Append("\n");

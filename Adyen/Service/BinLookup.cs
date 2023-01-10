@@ -41,15 +41,15 @@ namespace Adyen.Service
 
         public ThreeDSAvailabilityResponse ThreeDsAvailability(ThreeDSAvailabilityRequest threeDsAvailabilityRequest)
         {
-            var jsonRequest = Util.JsonOperation.SerializeRequest(threeDsAvailabilityRequest);
-            var jsonResponse = get3dsAvailability.Request(jsonRequest);
+            string jsonRequest = Util.JsonOperation.SerializeRequest(threeDsAvailabilityRequest);
+            string jsonResponse = get3dsAvailability.Request(jsonRequest);
             return JsonConvert.DeserializeObject<ThreeDSAvailabilityResponse>(jsonResponse);
         }
 
         public CostEstimateResponse CostEstimate(CostEstimateRequest costEstimateRequest)
         {
-            var jsonRequest = Util.JsonOperation.SerializeRequest(costEstimateRequest);
-            var jsonResponse = getCostEstimate.Request(jsonRequest);
+            string jsonRequest = Util.JsonOperation.SerializeRequest(costEstimateRequest);
+            string jsonResponse = getCostEstimate.Request(jsonRequest);
             return JsonConvert.DeserializeObject<CostEstimateResponse>(jsonResponse);
         }
     }

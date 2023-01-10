@@ -93,7 +93,7 @@ namespace Adyen.Model.MarketPay
         /// <returns>String presentation of the object</returns>
         public override string ToString()
         {
-            var sb = new StringBuilder();
+            StringBuilder sb = new StringBuilder();
             sb.Append("class AccountProcessingState {\n");
             sb.Append("  DisableReason: ").Append(DisableReason).Append("\n");
             sb.Append("  Disabled: ").Append(Disabled).Append("\n");

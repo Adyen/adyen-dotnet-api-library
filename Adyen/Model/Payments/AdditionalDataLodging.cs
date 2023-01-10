@@ -197,7 +197,7 @@ namespace Adyen.Model.Payments
         /// <returns>String presentation of the object</returns>
         public override string ToString()
         {
-            var sb = new StringBuilder();
+            StringBuilder sb = new StringBuilder();
             sb.Append("class AdditionalDataLodging {\n");
             sb.Append("  LodgingCheckInDate: ").Append(LodgingCheckInDate).Append("\n");
             sb.Append("  LodgingCheckOutDate: ").Append(LodgingCheckOutDate).Append("\n");

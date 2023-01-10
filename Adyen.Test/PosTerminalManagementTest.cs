@@ -41,13 +41,13 @@ namespace Adyen.Test
         [TestMethod]
         public void FindTerminalSuccess()
         {
-            var client = CreateMockTestClientApiKeyBasedRequest("Mocks/pos-terminal-management/find-terminals-success.json");
-            var posTerminalManagement = new PosTerminalManagement(client);
-            var findTerminalRequest = new FindTerminalRequest
+            Client client = CreateMockTestClientApiKeyBasedRequest("Mocks/pos-terminal-management/find-terminals-success.json");
+            PosTerminalManagement posTerminalManagement = new PosTerminalManagement(client);
+            FindTerminalRequest findTerminalRequest = new FindTerminalRequest
             {
                 Terminal = "V400m-123456789"
             };
-            var findTerminalResponse = posTerminalManagement.FindTerminal(findTerminalRequest);
+            FindTerminalResponse findTerminalResponse = posTerminalManagement.FindTerminal(findTerminalRequest);
             Assert.AreEqual(findTerminalResponse.Terminal, "V400m-123456789");
             Assert.AreEqual(findTerminalResponse.CompanyAccount, "TestCompany");
             Assert.AreEqual(findTerminalResponse.MerchantAccount, "TestMerchant");
@@ -60,16 +60,16 @@ namespace Adyen.Test
         [TestMethod]
         public void AssignTerminalsSuccess()
         {
-            var client = CreateMockTestClientApiKeyBasedRequest("Mocks/pos-terminal-management/assing-terminals-success.json");
-            var posTerminalManagement = new PosTerminalManagement(client);
-            var assignTerminalsRequest = new AssignTerminalsRequest
+            Client client = CreateMockTestClientApiKeyBasedRequest("Mocks/pos-terminal-management/assing-terminals-success.json");
+            PosTerminalManagement posTerminalManagement = new PosTerminalManagement(client);
+            AssignTerminalsRequest assignTerminalsRequest = new AssignTerminalsRequest
             {
                 MerchantAccount = "TestMerchant",
                 CompanyAccount = "TestMerchantAccount",
                 MerchantInventory = true,
                 Terminals = new List<string> { "P400Plus-123456789" }
             };
-            var assignTerminalsResponse = posTerminalManagement.AssignTerminals(assignTerminalsRequest);
+            AssignTerminalsResponse assignTerminalsResponse = posTerminalManagement.AssignTerminals(assignTerminalsRequest);
             Assert.AreEqual(assignTerminalsResponse.Results["V400m-123456789"], "ActionScheduled");
             Assert.AreEqual(assignTerminalsResponse.Results["P400Plus-123456789"], "Done");
         }
@@ -80,13 +80,13 @@ namespace Adyen.Test
         [TestMethod]
         public void GetTerminalsUnderAccountSuccess()
         {
-            var client = CreateMockTestClientApiKeyBasedRequest("Mocks/pos-terminal-management/get-terminals-under-account-success.json");
-            var posTerminalManagement = new PosTerminalManagement(client);
-            var getTerminalsUnderAccountRequest = new GetTerminalsUnderAccountRequest
+            Client client = CreateMockTestClientApiKeyBasedRequest("Mocks/pos-terminal-management/get-terminals-under-account-success.json");
+            PosTerminalManagement posTerminalManagement = new PosTerminalManagement(client);
+            GetTerminalsUnderAccountRequest getTerminalsUnderAccountRequest = new GetTerminalsUnderAccountRequest
             {
                 CompanyAccount = "TestCompany",
             };
-            var getTerminalsUnderAccountResponse = posTerminalManagement.GetTerminalsUnderAccount(getTerminalsUnderAccountRequest);
+            GetTerminalsUnderAccountResponse getTerminalsUnderAccountResponse = posTerminalManagement.GetTerminalsUnderAccount(getTerminalsUnderAccountRequest);
             Assert.AreEqual(getTerminalsUnderAccountResponse.CompanyAccount, "TestCompany");
             Assert.AreEqual(getTerminalsUnderAccountResponse.MerchantAccounts[0]._MerchantAccount, "TestMerchantPOS_EU");
             Assert.AreEqual(getTerminalsUnderAccountResponse.MerchantAccounts[1]._MerchantAccount, "TestMerchantPOS_US");
@@ -109,15 +109,15 @@ namespace Adyen.Test
         [TestMethod]
         public void GetTerminalDetailsSuccess()
         {
-            var client =
+            Client client =
                 CreateMockTestClientApiKeyBasedRequest(
                     "Mocks/pos-terminal-management/get-terminals-details-success.json");
-            var posTerminalManagement = new PosTerminalManagement(client);
-            var getTerminalDetailsRequest = new GetTerminalDetailsRequest
+            PosTerminalManagement posTerminalManagement = new PosTerminalManagement(client);
+            GetTerminalDetailsRequest getTerminalDetailsRequest = new GetTerminalDetailsRequest
             {
                 Terminal = "P400Plus-275479597",
             };
-            var getTerminalDetailsResponse =
+            GetTerminalDetailsResponse getTerminalDetailsResponse =
                 posTerminalManagement.GetTerminalDetails(getTerminalDetailsRequest);
             Assert.AreEqual(getTerminalDetailsResponse.CompanyAccount, "YOUR_COMPANY_ACCOUNT");
             Assert.AreEqual(getTerminalDetailsResponse.MerchantAccount, "YOUR_MERCHANT_ACCOUNT");
@@ -138,15 +138,15 @@ namespace Adyen.Test
         [TestMethod]
         public void GetStoresUnderAccountSuccess()
         {
-            var client = CreateMockTestClientApiKeyBasedRequest(
+            Client client = CreateMockTestClientApiKeyBasedRequest(
                     "Mocks/pos-terminal-management/get-stores-under-account-success.json");
-            var posTerminalManagement = new PosTerminalManagement(client);
-            var getStoresUnderAccountSuccessRequest = new GetStoresUnderAccountRequest
+            PosTerminalManagement posTerminalManagement = new PosTerminalManagement(client);
+            GetStoresUnderAccountRequest getStoresUnderAccountSuccessRequest = new GetStoresUnderAccountRequest
             {
                 CompanyAccount = "MockCompanyAccount",
                 MerchantAccount = "TestMerchantAccount",
             };
-            var getStoresUnderAccountSuccessResponse =
+            GetStoresUnderAccountResponse getStoresUnderAccountSuccessResponse =
                 posTerminalManagement.GetStoresUnderAccount(getStoresUnderAccountSuccessRequest);
             Assert.AreEqual(getStoresUnderAccountSuccessResponse.Stores[0].MerchantAccountCode, "YOUR_MERCHANT_ACCOUNT");
             Assert.AreEqual(getStoresUnderAccountSuccessResponse.Stores[0]._Store, "YOUR_STORE");

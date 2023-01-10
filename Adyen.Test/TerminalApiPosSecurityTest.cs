@@ -51,10 +51,10 @@ namespace Adyen.Test
         public void TestTerminalAPiPosEncryption()
         {
             //dummy header
-            var messageHeader = MockNexoMessageHeaderRequest();
+            MessageHeader messageHeader = MockNexoMessageHeaderRequest();
             //dummy json message
-            var saleToPoiRequest = MockPosApiRequest.MockNexoJsonRequest();
-            var saleToPoiMessageSecured = _messageSecuredEncryptor.Encrypt(saleToPoiRequest, messageHeader, _encryptionCredentialDetails);
+            string saleToPoiRequest = MockPosApiRequest.MockNexoJsonRequest();
+            SaleToPoiMessageSecured saleToPoiMessageSecured = _messageSecuredEncryptor.Encrypt(saleToPoiRequest, messageHeader, _encryptionCredentialDetails);
 
             Assert.IsNotNull(saleToPoiMessageSecured);
         }
@@ -63,11 +63,11 @@ namespace Adyen.Test
         public void TestTerminalApiPosDecryption()
         {
             //dummy header
-            var messageHeader = MockNexoMessageHeaderRequest();
+            MessageHeader messageHeader = MockNexoMessageHeaderRequest();
             //dummy json message
-            var saleToPoiRequest = MockPosApiRequest.MockNexoJsonRequest();
-            var saleToPoiMessageSecured = _messageSecuredEncryptor.Encrypt(saleToPoiRequest, messageHeader, _encryptionCredentialDetails);
-            var saleToPoiRequestDecrypt = _messageSecuredEncryptor.Decrypt(saleToPoiMessageSecured, _encryptionCredentialDetails);
+            string saleToPoiRequest = MockPosApiRequest.MockNexoJsonRequest();
+            SaleToPoiMessageSecured saleToPoiMessageSecured = _messageSecuredEncryptor.Encrypt(saleToPoiRequest, messageHeader, _encryptionCredentialDetails);
+            string saleToPoiRequestDecrypt = _messageSecuredEncryptor.Decrypt(saleToPoiMessageSecured, _encryptionCredentialDetails);
 
             Assert.IsNotNull(saleToPoiRequestDecrypt);
             Assert.AreEqual(saleToPoiRequest, saleToPoiRequestDecrypt);
@@ -76,12 +76,12 @@ namespace Adyen.Test
         [TestMethod]
         public void TestSaleToPoiMessageEscapeStringDecryption()
         { 
-            var saleToPoiRequest = MockPosApiRequest.CreateSaleToPOIPrintRequestEscape();
-            var messageHeader = MockPosApiRequest.CreateSaleToPOIPrintRequestEscape().MessageHeader;
-            var saleToPoiMessageSerializer = new SaleToPoiMessageSerializer();
-            var saleToPoiRequestMessageSerialized = saleToPoiMessageSerializer.Serialize(saleToPoiRequest);
-            var saleToPoiMessageSecured = _messageSecuredEncryptor.Encrypt(saleToPoiRequestMessageSerialized, messageHeader, _encryptionCredentialDetails);
-            var saleToPoiRequestDecrypt = _messageSecuredEncryptor.Decrypt(saleToPoiMessageSecured, _encryptionCredentialDetails);
+            SaleToPOIRequest saleToPoiRequest = MockPosApiRequest.CreateSaleToPOIPrintRequestEscape();
+            MessageHeader messageHeader = MockPosApiRequest.CreateSaleToPOIPrintRequestEscape().MessageHeader;
+            SaleToPoiMessageSerializer saleToPoiMessageSerializer = new SaleToPoiMessageSerializer();
+            string saleToPoiRequestMessageSerialized = saleToPoiMessageSerializer.Serialize(saleToPoiRequest);
+            SaleToPoiMessageSecured saleToPoiMessageSecured = _messageSecuredEncryptor.Encrypt(saleToPoiRequestMessageSerialized, messageHeader, _encryptionCredentialDetails);
+            string saleToPoiRequestDecrypt = _messageSecuredEncryptor.Decrypt(saleToPoiMessageSecured, _encryptionCredentialDetails);
             Assert.IsNotNull(saleToPoiRequestDecrypt);
             Assert.AreEqual(MockPosApiRequest.MockNexoJsonPrintRequest(), saleToPoiRequestDecrypt);
         } 

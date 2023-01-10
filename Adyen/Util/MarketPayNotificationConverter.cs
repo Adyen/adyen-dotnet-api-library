@@ -45,8 +45,8 @@ namespace Adyen.Util
            Type objectType, object existingValue,
            JsonSerializer serializer)
         {
-            var jsonObject = JObject.Load(reader);
-            var notification = default(IGenericNotification);
+            JObject jsonObject = JObject.Load(reader);
+            IGenericNotification notification = default(IGenericNotification);
             switch (jsonObject["eventType"].ToString())
             {
                 case "ACCOUNT_CREATED":

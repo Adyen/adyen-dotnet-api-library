@@ -126,7 +126,7 @@ namespace Adyen.Model.MarketPay
         /// <returns>String presentation of the object</returns>
         public override string ToString()
         {
-            var sb = new StringBuilder();
+            StringBuilder sb = new StringBuilder();
             sb.Append("class PayoutMethod {\n");
             sb.Append("  MerchantAccount: ").Append(MerchantAccount).Append("\n");
             sb.Append("  PayoutMethodCode: ").Append(PayoutMethodCode).Append("\n");

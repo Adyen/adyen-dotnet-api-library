@@ -58,17 +58,17 @@ namespace Adyen.Service
         /// <returns></returns>
         public SaleToPOIResponse TerminalApiLocal(SaleToPOIMessage saleToPoiRequest, EncryptionCredentialDetails encryptionCredentialDetails)
         {
-            var saleToPoiRequestMessageSerialized = _saleToPoiMessageSerializer.Serialize(saleToPoiRequest);
+            string saleToPoiRequestMessageSerialized = _saleToPoiMessageSerializer.Serialize(saleToPoiRequest);
             this.Client.LogLine("Request: \n" + saleToPoiRequestMessageSerialized);
-            var saleToPoiRequestMessageSecured = _messageSecuredEncryptor.Encrypt(saleToPoiRequestMessageSerialized, saleToPoiRequest.MessageHeader, encryptionCredentialDetails);
-            var serializeSaleToPoiRequestMessageSecured = _saleToPoiMessageSerializer.Serialize(saleToPoiRequestMessageSecured);
-            var response = _terminalApiLocal.Request(serializeSaleToPoiRequestMessageSecured);
+            SaleToPoiMessageSecured saleToPoiRequestMessageSecured = _messageSecuredEncryptor.Encrypt(saleToPoiRequestMessageSerialized, saleToPoiRequest.MessageHeader, encryptionCredentialDetails);
+            string serializeSaleToPoiRequestMessageSecured = _saleToPoiMessageSerializer.Serialize(saleToPoiRequestMessageSecured);
+            string response = _terminalApiLocal.Request(serializeSaleToPoiRequestMessageSecured);
             if (string.IsNullOrEmpty(response))
             {
                 return null;
             }
-            var saleToPoiResponseSecured = _saleToPoiMessageSecuredSerializer.Deserialize(response);
-            var decryptResponse = _messageSecuredEncryptor.Decrypt(saleToPoiResponseSecured, encryptionCredentialDetails);
+            SaleToPoiMessageSecured saleToPoiResponseSecured = _saleToPoiMessageSecuredSerializer.Deserialize(response);
+            string decryptResponse = _messageSecuredEncryptor.Decrypt(saleToPoiResponseSecured, encryptionCredentialDetails);
             this.Client.LogLine("Response: \n" + decryptResponse);
             return _saleToPoiMessageSerializer.Deserialize(decryptResponse);
         }
@@ -81,17 +81,17 @@ namespace Adyen.Service
         /// <returns></returns>
         public async Task<SaleToPOIResponse> TerminalApiLocalAsync(SaleToPOIMessage saleToPoiRequest, EncryptionCredentialDetails encryptionCredentialDetails)
         {
-            var saleToPoiRequestMessageSerialized = _saleToPoiMessageSerializer.Serialize(saleToPoiRequest);
+            string saleToPoiRequestMessageSerialized = _saleToPoiMessageSerializer.Serialize(saleToPoiRequest);
             this.Client.LogLine("Request: \n" + saleToPoiRequestMessageSerialized);
-            var saleToPoiRequestMessageSecured = _messageSecuredEncryptor.Encrypt(saleToPoiRequestMessageSerialized, saleToPoiRequest.MessageHeader, encryptionCredentialDetails);
-            var serializeSaleToPoiRequestMessageSecured = _saleToPoiMessageSerializer.Serialize(saleToPoiRequestMessageSecured);
-            var response = await _terminalApiLocal.RequestAsync(serializeSaleToPoiRequestMessageSecured);
+            SaleToPoiMessageSecured saleToPoiRequestMessageSecured = _messageSecuredEncryptor.Encrypt(saleToPoiRequestMessageSerialized, saleToPoiRequest.MessageHeader, encryptionCredentialDetails);
+            string serializeSaleToPoiRequestMessageSecured = _saleToPoiMessageSerializer.Serialize(saleToPoiRequestMessageSecured);
+            string response = await _terminalApiLocal.RequestAsync(serializeSaleToPoiRequestMessageSecured);
             if (string.IsNullOrEmpty(response))
             {
                 return null;
             }
-            var saleToPoiResponseSecured = _saleToPoiMessageSecuredSerializer.Deserialize(response);
-            var decryptResponse = _messageSecuredEncryptor.Decrypt(saleToPoiResponseSecured, encryptionCredentialDetails);
+            SaleToPoiMessageSecured saleToPoiResponseSecured = _saleToPoiMessageSecuredSerializer.Deserialize(response);
+            string decryptResponse = _messageSecuredEncryptor.Decrypt(saleToPoiResponseSecured, encryptionCredentialDetails);
             this.Client.LogLine("Response: \n" + decryptResponse);
             return _saleToPoiMessageSerializer.Deserialize(decryptResponse);
         }
@@ -117,8 +117,8 @@ namespace Adyen.Service
         /// <returns></returns>
         public string DecryptNotification(string notification, EncryptionCredentialDetails encryptionCredentialDetails)
         {
-            var saleToPoiMessageSecured = _saleToPoiMessageSecuredSerializer.Deserialize(notification);
-            var decryptNotification = _messageSecuredEncryptor.Decrypt(saleToPoiMessageSecured, encryptionCredentialDetails);
+            SaleToPoiMessageSecured saleToPoiMessageSecured = _saleToPoiMessageSecuredSerializer.Deserialize(notification);
+            string decryptNotification = _messageSecuredEncryptor.Decrypt(saleToPoiMessageSecured, encryptionCredentialDetails);
             return decryptNotification;
         }
     }

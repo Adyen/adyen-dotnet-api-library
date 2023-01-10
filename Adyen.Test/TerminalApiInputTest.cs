@@ -2,6 +2,7 @@
 using Adyen.Service;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
+using Adyen.Model.Nexo.Message;
 
 namespace Adyen.Test
 {
@@ -14,14 +15,14 @@ namespace Adyen.Test
             try
             {
                 //encrypt the request using encryption credentials
-                var paymentRequest = MockPosApiRequest.CreatePosPaymentRequest();
+                SaleToPOIRequest paymentRequest = MockPosApiRequest.CreatePosPaymentRequest();
                 //create a mock client
-                var client = CreateMockTestClientPosLocalApiRequest("Mocks/terminalapi/input-request-response.json");
-                var posPaymentLocalApi = new PosPaymentCloudApi(client);
-                var configEndpoint = posPaymentLocalApi.Client.Config.Endpoint;
-                var saleToPoiResponse = posPaymentLocalApi.TerminalApiCloudSync(paymentRequest);
+                Client client = CreateMockTestClientPosLocalApiRequest("Mocks/terminalapi/input-request-response.json");
+                PosPaymentCloudApi posPaymentLocalApi = new PosPaymentCloudApi(client);
+                string configEndpoint = posPaymentLocalApi.Client.Config.Endpoint;
+                SaleToPOIResponse saleToPoiResponse = posPaymentLocalApi.TerminalApiCloudSync(paymentRequest);
                 Assert.IsNotNull(saleToPoiResponse);
-                var inputResponse = (InputResponse)saleToPoiResponse.MessagePayload;
+                InputResponse inputResponse = (InputResponse)saleToPoiResponse.MessagePayload;
                 Assert.AreEqual(inputResponse.InputResult.Input.MenuEntryNumber.Length,2);
             }
             catch (Exception)
@@ -37,14 +38,14 @@ namespace Adyen.Test
             try
             {
                 //encrypt the request using encryption credentials
-                var paymentRequest = MockPosApiRequest.CreatePosPaymentRequest();
+                SaleToPOIRequest paymentRequest = MockPosApiRequest.CreatePosPaymentRequest();
                 //create a mock client
-                var client = CreateMockTestClientPosCloudApiRequest("Mocks/terminalapi/repeated-response-message.json");
-                var posPaymentCloudApiApi = new PosPaymentCloudApi(client);
+                Client client = CreateMockTestClientPosCloudApiRequest("Mocks/terminalapi/repeated-response-message.json");
+                PosPaymentCloudApi posPaymentCloudApiApi = new PosPaymentCloudApi(client);
 
-                var saleToPoiResponse = posPaymentCloudApiApi.TerminalApiCloudAsync(paymentRequest);
+                SaleToPOIResponse saleToPoiResponse = posPaymentCloudApiApi.TerminalApiCloudAsync(paymentRequest);
                 Assert.IsNotNull(saleToPoiResponse);
-                var repeatedMessageResponse = (TransactionStatusResponse)saleToPoiResponse.MessagePayload;
+                TransactionStatusResponse repeatedMessageResponse = (TransactionStatusResponse)saleToPoiResponse.MessagePayload;
                 Assert.IsNotNull(repeatedMessageResponse);
             }
             catch (Exception)
@@ -58,12 +59,12 @@ namespace Adyen.Test
         {
             try
             {
-                var paymentRequest = MockPosApiRequest.CreatePosPaymentRequest();
-                var client =
+                SaleToPOIRequest paymentRequest = MockPosApiRequest.CreatePosPaymentRequest();
+                Client client =
                     CreateMockTestClientPosLocalApiRequest("Mocks/terminalapi/cardAcquisitionResponse-success.json");
-                var posPaymentCloudApiApi = new PosPaymentCloudApi(client);
-                var saleToPoiResponse = posPaymentCloudApiApi.TerminalApiCloudAsync(paymentRequest);
-                var payloadResponse = (CardAcquisitionResponse) saleToPoiResponse.MessagePayload;
+                PosPaymentCloudApi posPaymentCloudApiApi = new PosPaymentCloudApi(client);
+                SaleToPOIResponse saleToPoiResponse = posPaymentCloudApiApi.TerminalApiCloudAsync(paymentRequest);
+                CardAcquisitionResponse payloadResponse = (CardAcquisitionResponse) saleToPoiResponse.MessagePayload;
                 Assert.IsNotNull(payloadResponse.LoyaltyAccount);
                 Assert.AreEqual(payloadResponse.LoyaltyAccount[0].LoyaltyAccountID.LoyaltyID, "aaaa:aa:11111:a");
                 Assert.AreEqual(payloadResponse.LoyaltyAccount[0].LoyaltyAccountID.EntryMode[0], EntryModeType.Tapped);

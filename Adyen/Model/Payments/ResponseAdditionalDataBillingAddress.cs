@@ -98,7 +98,7 @@ namespace Adyen.Model.Payments
         /// <returns>String presentation of the object</returns>
         public override string ToString()
         {
-            var sb = new StringBuilder();
+            StringBuilder sb = new StringBuilder();
             sb.Append("class ResponseAdditionalDataBillingAddress {\n");
             sb.Append("  BillingAddressCity: ").Append(BillingAddressCity).Append("\n");
             sb.Append("  BillingAddressCountry: ").Append(BillingAddressCountry).Append("\n");

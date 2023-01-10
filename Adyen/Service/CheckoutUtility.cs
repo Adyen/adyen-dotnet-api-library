@@ -41,8 +41,8 @@ namespace Adyen.Service
 
         public CheckoutUtilityResponse OriginKeys(CheckoutUtilityRequest checkoutUtilityRequest)
         {
-            var jsonRequest = Util.JsonOperation.SerializeRequest(checkoutUtilityRequest);
-            var jsonResponse = _originKeys.Request(jsonRequest);
+            string jsonRequest = Util.JsonOperation.SerializeRequest(checkoutUtilityRequest);
+            string jsonResponse = _originKeys.Request(jsonRequest);
             return JsonConvert.DeserializeObject<CheckoutUtilityResponse>(jsonResponse);
         }
     }

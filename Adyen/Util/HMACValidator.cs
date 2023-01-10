@@ -27,6 +27,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Security.Cryptography;
 using System.Text;
+using Adyen.Model;
 
 namespace Adyen.Util
 {
@@ -57,7 +58,7 @@ namespace Adyen.Util
 
         public string CalculateHmac(NotificationRequestItem notificationRequestItem, string key)
         {
-            var notificationRequestItemData = GetDataToSign(notificationRequestItem);
+            string notificationRequestItemData = GetDataToSign(notificationRequestItem);
             return CalculateHmac(notificationRequestItemData, key);
         }
 
@@ -80,7 +81,7 @@ namespace Adyen.Util
 
         public string BuildSigningString(IDictionary<string, string> dict)
         {
-            var signDict = dict.OrderBy(d => d.Key).ToDictionary(pair => pair.Key, pair => pair.Value);
+            Dictionary<string, string> signDict = dict.OrderBy(d => d.Key).ToDictionary(pair => pair.Key, pair => pair.Value);
 
             string keystring = string.Join(":", signDict.Keys);
             string valuestring = string.Join(":", signDict.Values.Select(EscapeVal));
@@ -91,14 +92,14 @@ namespace Adyen.Util
 
         public string GetDataToSign(Dictionary<String, String> postParameters)
         {
-            var parts = new List<string>();
+            List<string> parts = new List<string>();
 
-            foreach (var postParameter in postParameters)
+            foreach (KeyValuePair<string, string> postParameter in postParameters)
             {
                 parts.Add(EscapeVal(postParameter.Key));
             }
 
-            foreach (var postParameter in postParameters)
+            foreach (KeyValuePair<string, string> postParameter in postParameters)
             {
                 parts.Add(EscapeVal(postParameter.Value));
             }
@@ -108,8 +109,8 @@ namespace Adyen.Util
         
         public string GetDataToSign(NotificationRequestItem notificationRequestItem)
         {
-            var amount = notificationRequestItem.Amount;
-            var signedDataList = new List<string>
+            Amount amount = notificationRequestItem.Amount;
+            List<string> signedDataList = new List<string>
             {
                 notificationRequestItem.PspReference,
                 notificationRequestItem.OriginalReference,
@@ -134,8 +135,8 @@ namespace Adyen.Util
             {
                 return false;
             }
-            var expectedSign = CalculateHmac(notificationRequestItem, key);
-            var merchantSign = notificationRequestItem.AdditionalData[Constants.AdditionalData.HmacSignature];
+            string expectedSign = CalculateHmac(notificationRequestItem, key);
+            string merchantSign = notificationRequestItem.AdditionalData[Constants.AdditionalData.HmacSignature];
             return string.Equals(expectedSign, merchantSign);
         }
 

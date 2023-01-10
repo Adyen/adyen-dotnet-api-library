@@ -54,7 +54,7 @@ namespace Adyen.Model.BinLookup
         /// <returns>String presentation of the object</returns>
         public override string ToString()
         {
-            var sb = new StringBuilder();
+            StringBuilder sb = new StringBuilder();
             sb.Append("class BinDetail {\n");
             sb.Append("  IssuerCountry: ").Append(IssuerCountry).Append("\n");
             sb.Append("}\n");

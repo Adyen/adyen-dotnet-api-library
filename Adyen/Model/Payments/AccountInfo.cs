@@ -428,7 +428,7 @@ namespace Adyen.Model.Payments
         /// <returns>String presentation of the object</returns>
         public override string ToString()
         {
-            var sb = new StringBuilder();
+            StringBuilder sb = new StringBuilder();
             sb.Append("class AccountInfo {\n");
             sb.Append("  AccountAgeIndicator: ").Append(AccountAgeIndicator).Append("\n");
             sb.Append("  AccountChangeDate: ").Append(AccountChangeDate).Append("\n");

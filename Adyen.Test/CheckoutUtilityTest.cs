@@ -38,10 +38,10 @@ namespace Adyen.Test
         [TestMethod]
         public void OriginKeysSuccessTest()
         {
-            var checkoutUtilityRequest = new CheckoutUtilityRequest(originDomains: new List<string> { "www.test.com", "https://www.your-domain2.com" });
-            var client = CreateMockTestClientApiKeyBasedRequest("Mocks/checkoututility/originkeys-success.json");
-            var _checkout = new CheckoutUtility(client);
-            var originKeysResponse = _checkout.OriginKeys(checkoutUtilityRequest);
+            CheckoutUtilityRequest checkoutUtilityRequest = new CheckoutUtilityRequest(originDomains: new List<string> { "www.test.com", "https://www.your-domain2.com" });
+            Client client = CreateMockTestClientApiKeyBasedRequest("Mocks/checkoututility/originkeys-success.json");
+            CheckoutUtility _checkout = new CheckoutUtility(client);
+            CheckoutUtilityResponse originKeysResponse = _checkout.OriginKeys(checkoutUtilityRequest);
             Assert.AreEqual("pub.v2.7814286629520534.aHR0cHM6Ly93d3cueW91ci1kb21haW4xLmNvbQ.UEwIBmW9-c_uXo5wSEr2w8Hz8hVIpujXPHjpcEse3xI", originKeysResponse.OriginKeys["https://www.your-domain1.com"]);
         }
     }

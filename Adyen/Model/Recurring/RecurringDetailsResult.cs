@@ -90,7 +90,7 @@ namespace Adyen.Model.Recurring
         /// <returns>String presentation of the object</returns>
         public override string ToString()
         {
-            var sb = new StringBuilder();
+            StringBuilder sb = new StringBuilder();
             sb.Append("class RecurringDetailsResult {\n");
             sb.Append("  LastKnownShopperEmail: ").Append(LastKnownShopperEmail).Append("\n");
             sb.Append("  CreationDate: ").Append(CreationDate).Append("\n");

@@ -1076,7 +1076,7 @@ namespace Adyen.Model.Checkout
         /// <returns>String presentation of the object</returns>
         public override string ToString()
         {
-            var sb = new StringBuilder();
+            StringBuilder sb = new StringBuilder();
             sb.Append("class PaymentDonationRequestPaymentMethod {\n");
             sb.Append("  ActualInstance: ").Append(this.ActualInstance).Append("\n");
             sb.Append("}\n");

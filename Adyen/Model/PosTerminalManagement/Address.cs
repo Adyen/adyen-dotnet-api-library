@@ -92,7 +92,7 @@ namespace Adyen.Model.PosTerminalManagement
         /// <returns>String presentation of the object</returns>
         public override string ToString()
         {
-            var sb = new StringBuilder();
+            StringBuilder sb = new StringBuilder();
             sb.Append("class Address {\n");
             sb.Append("  City: ").Append(City).Append("\n");
             sb.Append("  CountryCode: ").Append(CountryCode).Append("\n");

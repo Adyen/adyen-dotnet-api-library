@@ -52,8 +52,8 @@ namespace Adyen.Service
         /// <returns>AssignTerminalsResponse</returns>
         public AssignTerminalsResponse AssignTerminals(AssignTerminalsRequest assignTerminalsRequest)
         {
-            var jsonRequest = assignTerminalsRequest.ToJson();
-            var jsonResponse = _assignTerminals.Request(jsonRequest);
+            string jsonRequest = assignTerminalsRequest.ToJson();
+            string jsonResponse = _assignTerminals.Request(jsonRequest);
             return JsonConvert.DeserializeObject<AssignTerminalsResponse>(jsonResponse);
         }
         /// <summary>
@@ -63,8 +63,8 @@ namespace Adyen.Service
         /// <returns>task AssignTerminalsResponse</returns>
         public async Task<AssignTerminalsResponse> AssignTerminalsAsync(AssignTerminalsRequest assignTerminalsRequest)
         {
-            var jsonRequest = assignTerminalsRequest.ToJson();
-            var jsonResponse = await _assignTerminals.RequestAsync(jsonRequest);
+            string jsonRequest = assignTerminalsRequest.ToJson();
+            string jsonResponse = await _assignTerminals.RequestAsync(jsonRequest);
             return JsonConvert.DeserializeObject<AssignTerminalsResponse>(jsonResponse);
         }
         /// <summary>
@@ -74,8 +74,8 @@ namespace Adyen.Service
         /// <returns>FindTerminalResponse</returns>
         public FindTerminalResponse FindTerminal(FindTerminalRequest findTerminalRequest)
         {
-            var jsonRequest = findTerminalRequest.ToJson();
-            var jsonResponse = _findTerminal.Request(jsonRequest);
+            string jsonRequest = findTerminalRequest.ToJson();
+            string jsonResponse = _findTerminal.Request(jsonRequest);
             return JsonConvert.DeserializeObject<FindTerminalResponse>(jsonResponse);
         }
         /// <summary>
@@ -85,8 +85,8 @@ namespace Adyen.Service
         /// <returns>task FindTerminalResponse</returns>
         public async Task<FindTerminalResponse> FindTerminalAsync(FindTerminalRequest findTerminalRequest)
         {
-            var jsonRequest = findTerminalRequest.ToJson();
-            var jsonResponse = await _findTerminal.RequestAsync(jsonRequest);
+            string jsonRequest = findTerminalRequest.ToJson();
+            string jsonResponse = await _findTerminal.RequestAsync(jsonRequest);
             return JsonConvert.DeserializeObject<FindTerminalResponse>(jsonResponse);
         }
         /// <summary>
@@ -96,8 +96,8 @@ namespace Adyen.Service
         /// <returns>GetTerminalsUnderAccountResponse</returns>
         public GetTerminalsUnderAccountResponse GetTerminalsUnderAccount(GetTerminalsUnderAccountRequest getTerminalsUnderAccountRequest)
         {
-            var jsonRequest = getTerminalsUnderAccountRequest.ToJson();
-            var jsonResponse = _getTerminalsUnderAccount.Request(jsonRequest);
+            string jsonRequest = getTerminalsUnderAccountRequest.ToJson();
+            string jsonResponse = _getTerminalsUnderAccount.Request(jsonRequest);
             return JsonConvert.DeserializeObject<GetTerminalsUnderAccountResponse>(jsonResponse);
         }
         /// <summary>
@@ -107,8 +107,8 @@ namespace Adyen.Service
         /// <returns>task GetTerminalsUnderAccountResponse</returns>
         public async Task<GetTerminalsUnderAccountResponse> GetTerminalsUnderAccountAsync(GetTerminalsUnderAccountRequest getTerminalsUnderAccountRequest)
         {
-            var jsonRequest = getTerminalsUnderAccountRequest.ToJson();
-            var jsonResponse = await _getTerminalsUnderAccount.RequestAsync(jsonRequest);
+            string jsonRequest = getTerminalsUnderAccountRequest.ToJson();
+            string jsonResponse = await _getTerminalsUnderAccount.RequestAsync(jsonRequest);
             return JsonConvert.DeserializeObject<GetTerminalsUnderAccountResponse>(jsonResponse);
         }
 
@@ -119,8 +119,8 @@ namespace Adyen.Service
         /// <returns>GetTerminalDetailsResponse</returns>
         public GetTerminalDetailsResponse GetTerminalDetails(GetTerminalDetailsRequest getTerminalDetailsRequest)
         {
-            var jsonRequest = getTerminalDetailsRequest.ToJson();
-            var jsonResponse = _getTerminalDetails.Request(jsonRequest);
+            string jsonRequest = getTerminalDetailsRequest.ToJson();
+            string jsonResponse = _getTerminalDetails.Request(jsonRequest);
             return JsonConvert.DeserializeObject<GetTerminalDetailsResponse>(jsonResponse);
         }
 
@@ -131,8 +131,8 @@ namespace Adyen.Service
         /// <returns>task GetTerminalDetailsResponse</returns>
         public async Task<GetTerminalDetailsResponse> GetTerminalDetailsAsync(GetTerminalDetailsRequest getTerminalDetailsRequest)
         {
-            var jsonRequest = getTerminalDetailsRequest.ToJson();
-            var jsonResponse = await _getTerminalDetails.RequestAsync(jsonRequest);
+            string jsonRequest = getTerminalDetailsRequest.ToJson();
+            string jsonResponse = await _getTerminalDetails.RequestAsync(jsonRequest);
             return JsonConvert.DeserializeObject<GetTerminalDetailsResponse>(jsonResponse);
         }
         
@@ -143,8 +143,8 @@ namespace Adyen.Service
         /// <returns>GetStoresUnderAccountResponse</returns>
         public GetStoresUnderAccountResponse GetStoresUnderAccount(GetStoresUnderAccountRequest getStoresUnderAccountRequest)
         {
-            var jsonRequest = getStoresUnderAccountRequest.ToJson();
-            var jsonResponse =  _getStoresUnderAccount.Request(jsonRequest);
+            string jsonRequest = getStoresUnderAccountRequest.ToJson();
+            string jsonResponse =  _getStoresUnderAccount.Request(jsonRequest);
             return JsonConvert.DeserializeObject<GetStoresUnderAccountResponse>(jsonResponse);
         }
         
@@ -155,8 +155,8 @@ namespace Adyen.Service
         /// <returns>task GetStoresUnderAccountResponse</returns>
         public async Task<GetStoresUnderAccountResponse> GetStoresUnderAccountAsync(GetStoresUnderAccountRequest getStoresUnderAccountRequest)
         {
-            var jsonRequest = getStoresUnderAccountRequest.ToJson();
-            var jsonResponse = await _getStoresUnderAccount.RequestAsync(jsonRequest);
+            string jsonRequest = getStoresUnderAccountRequest.ToJson();
+            string jsonResponse = await _getStoresUnderAccount.RequestAsync(jsonRequest);
             return JsonConvert.DeserializeObject<GetStoresUnderAccountResponse>(jsonResponse);
         }
     }

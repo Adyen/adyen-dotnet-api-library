@@ -29,8 +29,8 @@ namespace Adyen.Security
     {
         internal byte[] GenerateRandomMod()
         {
-            var ivMod = new byte[EncryptionDerivedKey.IVLength];
-            using (var rng = RandomNumberGenerator.Create())
+            byte[] ivMod = new byte[EncryptionDerivedKey.IVLength];
+            using (RandomNumberGenerator rng = RandomNumberGenerator.Create())
             {
                 rng.GetNonZeroBytes(ivMod);
             }

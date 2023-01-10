@@ -354,7 +354,7 @@ namespace Adyen.Model.PosTerminalManagement
         /// <returns>String presentation of the object</returns>
         public override string ToString()
         {
-            var sb = new StringBuilder();
+            StringBuilder sb = new StringBuilder();
             sb.Append("class GetTerminalDetailsResponse {\n");
             sb.Append("  BluetoothIp: ").Append(BluetoothIp).Append("\n");
             sb.Append("  BluetoothMac: ").Append(BluetoothMac).Append("\n");

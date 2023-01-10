@@ -38,12 +38,12 @@ namespace Adyen.Test
         [TestMethod]
         public void TestListRecurringDetails()
         {
-            var client = base.CreateMockTestClientNullRequiredFieldsRequest("Mocks/recurring/listRecurringDetails-success.json");
-            var recurring = new Service.Recurring(client);
-            var recurringDetailsRequest = this.CreateRecurringDetailsRequest();
-            var recurringDetailsResult = recurring.ListRecurringDetails(recurringDetailsRequest);
+            Client client = base.CreateMockTestClientNullRequiredFieldsRequest("Mocks/recurring/listRecurringDetails-success.json");
+            Service.Recurring recurring = new Service.Recurring(client);
+            RecurringDetailsRequest recurringDetailsRequest = this.CreateRecurringDetailsRequest();
+            RecurringDetailsResult recurringDetailsResult = recurring.ListRecurringDetails(recurringDetailsRequest);
             Assert.AreEqual(1L, (long)recurringDetailsResult.Details.Count);
-            var recurringDetail = recurringDetailsResult.Details[0].RecurringDetail;
+            RecurringDetail recurringDetail = recurringDetailsResult.Details[0].RecurringDetail;
             Assert.AreEqual("recurringReference", recurringDetail.RecurringDetailReference);
             Assert.AreEqual("cardAlias", recurringDetail.Alias);
             Assert.AreEqual("1111", recurringDetail.Card.Number);
@@ -52,12 +52,12 @@ namespace Adyen.Test
         [TestMethod]
         public async Task TestListRecurringDetailsAsync()
         {
-            var client = base.CreateMockTestClientNullRequiredFieldsRequest("Mocks/recurring/listRecurringDetails-success.json");
-            var recurring = new Service.Recurring(client);
-            var recurringDetailsRequest = this.CreateRecurringDetailsRequest();
-            var recurringDetailsResult = await recurring.ListRecurringDetailsAsync(recurringDetailsRequest);
+            Client client = base.CreateMockTestClientNullRequiredFieldsRequest("Mocks/recurring/listRecurringDetails-success.json");
+            Service.Recurring recurring = new Service.Recurring(client);
+            RecurringDetailsRequest recurringDetailsRequest = this.CreateRecurringDetailsRequest();
+            RecurringDetailsResult recurringDetailsResult = await recurring.ListRecurringDetailsAsync(recurringDetailsRequest);
             Assert.AreEqual(1L, (long)recurringDetailsResult.Details.Count);
-            var recurringDetail = recurringDetailsResult.Details[0].RecurringDetail;
+            RecurringDetail recurringDetail = recurringDetailsResult.Details[0].RecurringDetail;
             Assert.AreEqual("recurringReference", recurringDetail.RecurringDetailReference);
             Assert.AreEqual("cardAlias", recurringDetail.Alias);
             Assert.AreEqual("1111", recurringDetail.Card.Number);
@@ -66,20 +66,20 @@ namespace Adyen.Test
         [TestMethod]
         public void TestDisable()
         {
-            var client = base.CreateMockTestClientNullRequiredFieldsRequest("Mocks/recurring/disable-success.json");
-            var recurring = new Service.Recurring(client);
-            var disableRequest = this.CreateDisableRequest();
-            var disableResult = recurring.Disable(disableRequest);
+            Client client = base.CreateMockTestClientNullRequiredFieldsRequest("Mocks/recurring/disable-success.json");
+            Service.Recurring recurring = new Service.Recurring(client);
+            DisableRequest disableRequest = this.CreateDisableRequest();
+            DisableResult disableResult = recurring.Disable(disableRequest);
             Assert.AreEqual("[detail-successfully-disabled]", disableResult.Response);
         }
 
         [TestMethod]
         public async Task TestDisableAsync()
         {
-            var client = base.CreateMockTestClientNullRequiredFieldsRequest("Mocks/recurring/disable-success.json");
-            var recurring = new Service.Recurring(client);
-            var disableRequest = this.CreateDisableRequest();
-            var disableResult = await recurring.DisableAsync(disableRequest);
+            Client client = base.CreateMockTestClientNullRequiredFieldsRequest("Mocks/recurring/disable-success.json");
+            Service.Recurring recurring = new Service.Recurring(client);
+            DisableRequest disableRequest = this.CreateDisableRequest();
+            DisableResult disableResult = await recurring.DisableAsync(disableRequest);
             Assert.AreEqual("[detail-successfully-disabled]", disableResult.Response);
         }
 
@@ -88,11 +88,11 @@ namespace Adyen.Test
         {
             try
             {
-                var client = base.CreateMockTestClientForErrors(422, "Mocks/recurring/disable-error-803.json");
-                var recurring = new Service.Recurring(client);
-                var disableRequest = this.CreateDisableRequest();
+                Client client = base.CreateMockTestClientForErrors(422, "Mocks/recurring/disable-error-803.json");
+                Service.Recurring recurring = new Service.Recurring(client);
+                DisableRequest disableRequest = this.CreateDisableRequest();
 
-                var disableResult = recurring.Disable(disableRequest);
+                DisableResult disableResult = recurring.Disable(disableRequest);
                 Assert.Fail("Exception expected!");
             }
             catch (HttpClientException exception)
@@ -107,7 +107,7 @@ namespace Adyen.Test
         public void NotifyShopperTest()
         {
             Client client = base.CreateMockTestClientNullRequiredFieldsRequest("Mocks/recurring/notifyShopper-success.json");
-            var recurring = new Service.Recurring(client);
+            Service.Recurring recurring = new Service.Recurring(client);
             NotifyShopperRequest request = CreateNotifyShopperRequest();
             NotifyShopperResult result = recurring.NotifyShopper(request);
             Assert.IsNotNull(result);
@@ -121,7 +121,7 @@ namespace Adyen.Test
 
         private RecurringDetailsRequest CreateRecurringDetailsRequest()
         {
-            var request = new RecurringDetailsRequest
+            RecurringDetailsRequest request = new RecurringDetailsRequest
             {
                 ShopperReference = "test-123",
                 MerchantAccount = "DotNetAlexandros"
@@ -131,7 +131,7 @@ namespace Adyen.Test
 
         private DisableRequest CreateDisableRequest()
         {
-            var request = new DisableRequest
+            DisableRequest request = new DisableRequest
             {
                 ShopperReference = "test-123",
                 MerchantAccount = "DotNetAlexandros"

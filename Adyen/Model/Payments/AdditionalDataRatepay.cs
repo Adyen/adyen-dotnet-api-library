@@ -116,7 +116,7 @@ namespace Adyen.Model.Payments
         /// <returns>String presentation of the object</returns>
         public override string ToString()
         {
-            var sb = new StringBuilder();
+            StringBuilder sb = new StringBuilder();
             sb.Append("class AdditionalDataRatepay {\n");
             sb.Append("  RatepayInstallmentAmount: ").Append(RatepayInstallmentAmount).Append("\n");
             sb.Append("  RatepayInterestRate: ").Append(RatepayInterestRate).Append("\n");

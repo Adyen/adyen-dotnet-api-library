@@ -82,7 +82,7 @@ namespace Adyen.Model.MarketPay.Notification
         /// <returns>String presentation of the object</returns>
         public override string ToString()
         {
-            var sb = new StringBuilder();
+            StringBuilder sb = new StringBuilder();
             sb.Append("class ReportAvailableNotificationContent {\n");
             sb.Append("  AccountCode: ").Append(AccountCode).Append("\n");
             sb.Append("  AccountType: ").Append(AccountType).Append("\n");

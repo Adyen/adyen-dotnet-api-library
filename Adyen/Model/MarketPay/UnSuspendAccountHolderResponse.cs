@@ -94,7 +94,7 @@ namespace Adyen.Model.MarketPay
         /// <returns>String presentation of the object</returns>
         public override string ToString()
         {
-            var sb = new StringBuilder();
+            StringBuilder sb = new StringBuilder();
             sb.Append("class UnSuspendAccountHolderResponse {\n");
             sb.Append("  AccountHolderStatus: ").Append(AccountHolderStatus).Append("\n");
             sb.Append("  InvalidFields: ").Append(InvalidFields).Append("\n");

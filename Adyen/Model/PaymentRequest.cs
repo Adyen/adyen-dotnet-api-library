@@ -60,7 +60,7 @@ namespace Adyen.Model
         public PaymentRequest InvoiceLines(List<InvoiceLine> invoiceLines)
         {
             int count = 1;
-            foreach (var invoiceLine in invoiceLines)
+            foreach (InvoiceLine invoiceLine in invoiceLines)
             {
 
                 StringBuilder sb = new StringBuilder();

@@ -39,24 +39,24 @@ namespace Adyen.Service.LegalEntityManagement
 
         public async Task<BusinessLine> CreateAsync(BusinessLineInfo request)
         {
-            var jsonRequest = request.ToJson();
-            var resource = new LegalEntityManagementResource(this, "/businessLines");
-            var jsonResult = await resource.RequestAsync(jsonRequest);
+            string jsonRequest = request.ToJson();
+            LegalEntityManagementResource resource = new LegalEntityManagementResource(this, "/businessLines");
+            string jsonResult = await resource.RequestAsync(jsonRequest);
             return JsonConvert.DeserializeObject<BusinessLine>(jsonResult);
         }
         
         public async Task<BusinessLine> RetrieveAsync(string businessLineId)
         {
-            var resource = new LegalEntityManagementResource(this, "/businessLines/" + businessLineId);
-            var jsonResult = await resource.RequestAsync(null, null, HttpMethod.Get);
+            LegalEntityManagementResource resource = new LegalEntityManagementResource(this, "/businessLines/" + businessLineId);
+            string jsonResult = await resource.RequestAsync(null, null, HttpMethod.Get);
             return JsonConvert.DeserializeObject<BusinessLine>(jsonResult);
         }
         
         public async Task<BusinessLine> UpdateAsync(string businessLineId, BusinessLineInfo request)
         {
-            var jsonRequest = request.ToJson();
-            var resource = new LegalEntityManagementResource(this, "/businessLines/" + businessLineId);
-            var jsonResult = await resource.RequestAsync(jsonRequest, null, _patchMethod);
+            string jsonRequest = request.ToJson();
+            LegalEntityManagementResource resource = new LegalEntityManagementResource(this, "/businessLines/" + businessLineId);
+            string jsonResult = await resource.RequestAsync(jsonRequest, null, _patchMethod);
             return JsonConvert.DeserializeObject<BusinessLine>(jsonResult);
         }
         

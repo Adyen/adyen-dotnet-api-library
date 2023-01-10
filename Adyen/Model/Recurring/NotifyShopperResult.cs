@@ -95,7 +95,7 @@ namespace Adyen.Model.Recurring
         /// <returns>String presentation of the object</returns>
         public override string ToString()
         {
-            var sb = new StringBuilder();
+            StringBuilder sb = new StringBuilder();
             sb.Append("class NotifyShopperResult {\n");
             sb.Append("  DisplayedReference: ").Append(DisplayedReference).Append("\n");
             sb.Append("  Message: ").Append(Message).Append("\n");

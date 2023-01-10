@@ -27,6 +27,7 @@ using Adyen.Model.Hpp;
 using Adyen.Util;
 using System;
 using System.Collections.Generic;
+using Adyen.HttpClient.Interfaces;
 
 namespace Adyen.Service
 {
@@ -40,17 +41,17 @@ namespace Adyen.Service
 
         public string DirectoryLookup(Dictionary<string, string> postParameters)
         {
-            var config = this.Client.Config;
-            var clientInterface = this.Client.HttpClient;
-            var endpoint = config.HppEndpoint + "/directory.shtml";
+            Config config = this.Client.Config;
+            IClient clientInterface = this.Client.HttpClient;
+            string endpoint = config.HppEndpoint + "/directory.shtml";
             return clientInterface.Post(endpoint, postParameters);
         }
 
         public Dictionary<string, string> GetPostParametersFromDlRequest(DirectoryLookupRequest request)
         {
-            var config = this.Client.Config;
+            Config config = this.Client.Config;
 
-            var postParameters = new Dictionary<string, string>
+            Dictionary<string, string> postParameters = new Dictionary<string, string>
             {
                 {Fields.CurrencyCode, request.CurrencyCode },
                 {Fields.MerchantReference, request.MerchantReference},
@@ -79,9 +80,9 @@ namespace Adyen.Service
 
 
 
-            var hmacValidator = new HmacValidator();
+            HmacValidator hmacValidator = new HmacValidator();
 
-            var dataToSign = hmacValidator.BuildSigningString(postParameters);
+            string dataToSign = hmacValidator.BuildSigningString(postParameters);
 
             string hmacKey;
             if (!string.IsNullOrEmpty(request.HmacKey))
@@ -93,7 +94,7 @@ namespace Adyen.Service
                 hmacKey = config.HmacKey;
             }
 
-            var merchantSig = hmacValidator.CalculateHmac(dataToSign, hmacKey);
+            string merchantSig = hmacValidator.CalculateHmac(dataToSign, hmacKey);
             postParameters.Add(Fields.MerchantSig, merchantSig);
 
             return postParameters;
@@ -103,9 +104,9 @@ namespace Adyen.Service
         {
             try
             {
-                var postParameters = GetPostParametersFromDlRequest(request);
-                var jsonResult = DirectoryLookup(postParameters);
-                var directoryLookupResult = Util.JsonOperation.Deserialize<DirectoryLookupResult>(jsonResult);
+                Dictionary<string, string> postParameters = GetPostParametersFromDlRequest(request);
+                string jsonResult = DirectoryLookup(postParameters);
+                DirectoryLookupResult directoryLookupResult = Util.JsonOperation.Deserialize<DirectoryLookupResult>(jsonResult);
 
                 return directoryLookupResult.PaymentMethods;
             }

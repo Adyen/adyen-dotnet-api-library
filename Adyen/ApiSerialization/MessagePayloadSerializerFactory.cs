@@ -30,18 +30,18 @@ namespace Adyen.ApiSerialization
     {
         internal IMessagePayloadSerializer<IMessagePayload> CreateSerializer(string messageCategory, string messageType)
         {
-            var messagePayoadFullName = CreateMessagePayloadFullName(messageCategory, messageType);
-            var messagePayloadSerializer = TypeHelper.CreateGenericTypeFromStringFullNamespace(typeof(MessagePayloadSerializer<>), messagePayoadFullName);
+            string messagePayoadFullName = CreateMessagePayloadFullName(messageCategory, messageType);
+            Type messagePayloadSerializer = TypeHelper.CreateGenericTypeFromStringFullNamespace(typeof(MessagePayloadSerializer<>), messagePayoadFullName);
 
             return (IMessagePayloadSerializer<IMessagePayload>)Activator.CreateInstance(messagePayloadSerializer);
         }
 
         private string CreateMessagePayloadFullName(string messageCategory, string messageType)
         {
-            var nameSpaceSeparator = ".";
+            string nameSpaceSeparator = ".";
 
-            var messagePayloadName = messageCategory.ToString() + messageType;
-            var nexoDomainNameSpace = typeof(PaymentRequest).Namespace;
+            string messagePayloadName = messageCategory.ToString() + messageType;
+            string nexoDomainNameSpace = typeof(PaymentRequest).Namespace;
 
             return string.Concat(nexoDomainNameSpace, nameSpaceSeparator, messagePayloadName);
         }

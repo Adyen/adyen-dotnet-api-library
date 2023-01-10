@@ -73,7 +73,7 @@ namespace Adyen.Model.Hop
         /// <returns>String presentation of the object</returns>
         public override string ToString()
         {
-            var sb = new StringBuilder();
+            StringBuilder sb = new StringBuilder();
             sb.Append("class GetOnboardingUrlRequest {\n");
             sb.Append("  AccountHolderCode: ").Append(AccountHolderCode).Append("\n");
             sb.Append("  PlatformName: ").Append(PlatformName).Append("\n");

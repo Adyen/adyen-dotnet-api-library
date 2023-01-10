@@ -179,7 +179,7 @@ namespace Adyen.Model.Payments
         /// <returns>String presentation of the object</returns>
         public override string ToString()
         {
-            var sb = new StringBuilder();
+            StringBuilder sb = new StringBuilder();
             sb.Append("class AdditionalDataRiskStandalone {\n");
             sb.Append("  PayPalCountryCode: ").Append(PayPalCountryCode).Append("\n");
             sb.Append("  PayPalEmailId: ").Append(PayPalEmailId).Append("\n");

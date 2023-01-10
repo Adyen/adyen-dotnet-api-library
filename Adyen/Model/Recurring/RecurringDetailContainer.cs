@@ -42,7 +42,7 @@ namespace Adyen.Model.Recurring
         /// <returns>String presentation of the object</returns>
         public override string ToString()
         {
-            var sb = new StringBuilder();
+            StringBuilder sb = new StringBuilder();
             sb.Append("class RecurringDetailContainer {\n");
             sb.Append("  RecurringDetail: ").Append(RecurringDetail).Append("\n");
             sb.Append("}\n");

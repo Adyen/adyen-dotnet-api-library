@@ -287,7 +287,7 @@ namespace Adyen.Model.Payments
         /// <returns>String presentation of the object</returns>
         public override string ToString()
         {
-            var sb = new StringBuilder();
+            StringBuilder sb = new StringBuilder();
             sb.Append("class ThreeDS2Result {\n");
             sb.Append("  AuthenticationValue: ").Append(AuthenticationValue).Append("\n");
             sb.Append("  CavvAlgorithm: ").Append(CavvAlgorithm).Append("\n");

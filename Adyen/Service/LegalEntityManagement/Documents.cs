@@ -37,30 +37,30 @@ namespace Adyen.Service.LegalEntityManagement
 
         public async Task<Document> CreateAsync(Document request)
         {
-            var jsonRequest = request.ToJson();
-            var resource = new LegalEntityManagementResource(this, "/documents");
-            var jsonResult = await resource.RequestAsync(jsonRequest);
+            string jsonRequest = request.ToJson();
+            LegalEntityManagementResource resource = new LegalEntityManagementResource(this, "/documents");
+            string jsonResult = await resource.RequestAsync(jsonRequest);
             return JsonConvert.DeserializeObject<Document>(jsonResult);
         }
 
         public async Task<Document> RetrieveAsync(string documentId)
         {
-            var resource = new LegalEntityManagementResource(this, "/documents/" + documentId);
-            var jsonResult = await resource.RequestAsync(null, null, HttpMethod.Get);
+            LegalEntityManagementResource resource = new LegalEntityManagementResource(this, "/documents/" + documentId);
+            string jsonResult = await resource.RequestAsync(null, null, HttpMethod.Get);
             return JsonConvert.DeserializeObject<Document>(jsonResult);
         }
         
         public async Task<Document> UpdateAsync(string documentId, Document request)
         {
-            var jsonRequest = request.ToJson();
-            var resource = new LegalEntityManagementResource(this, "/documents/" + documentId);
-            var jsonResult = await resource.RequestAsync(jsonRequest, null, _patchMethod);
+            string jsonRequest = request.ToJson();
+            LegalEntityManagementResource resource = new LegalEntityManagementResource(this, "/documents/" + documentId);
+            string jsonResult = await resource.RequestAsync(jsonRequest, null, _patchMethod);
             return JsonConvert.DeserializeObject<Document>(jsonResult);
         }
         
         public async void DeleteAsync(string documentId)
         {
-            var resource = new LegalEntityManagementResource(this, "/documents/" + documentId);
+            LegalEntityManagementResource resource = new LegalEntityManagementResource(this, "/documents/" + documentId);
             await resource.RequestAsync(null, null, HttpMethod.Delete);
         }
         

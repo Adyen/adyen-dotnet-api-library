@@ -71,7 +71,7 @@ namespace Adyen.Model.LegalEntityManagement
         /// <returns>String presentation of the object</returns>
         public override string ToString()
         {
-            var sb = new StringBuilder();
+            StringBuilder sb = new StringBuilder();
             sb.Append("class TaxInformation {\n");
             sb.Append("  Country: ").Append(Country).Append("\n");
             sb.Append("  Number: ").Append(Number).Append("\n");

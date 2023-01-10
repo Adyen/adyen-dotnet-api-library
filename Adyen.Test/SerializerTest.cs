@@ -35,27 +35,27 @@ namespace Adyen.Test
         [TestMethod]
         public void SerializeByteArrayTest()
         {
-            var plainTextBytes = Encoding.ASCII.GetBytes("Bytes-To-Be-Encoded");
+            byte[] plainTextBytes = Encoding.ASCII.GetBytes("Bytes-To-Be-Encoded");
             string base64String = System.Convert.ToBase64String(plainTextBytes);
-            var base64Bytes = Encoding.ASCII.GetBytes(base64String);
-            var threeDSecure = new ThreeDSecureData
+            byte[] base64Bytes = Encoding.ASCII.GetBytes(base64String);
+            ThreeDSecureData threeDSecure = new ThreeDSecureData
             {
                 Cavv = base64Bytes,
                 Xid = base64Bytes
             };
-            var jsonRequest = Util.JsonOperation.SerializeRequest(threeDSecure);
-            var json = "{\"cavv\":\"Qnl0ZXMtVG8tQmUtRW5jb2RlZA==\",\"xid\":\"Qnl0ZXMtVG8tQmUtRW5jb2RlZA==\"}";
+            string jsonRequest = Util.JsonOperation.SerializeRequest(threeDSecure);
+            string json = "{\"cavv\":\"Qnl0ZXMtVG8tQmUtRW5jb2RlZA==\",\"xid\":\"Qnl0ZXMtVG8tQmUtRW5jb2RlZA==\"}";
             Assert.AreEqual(json, jsonRequest);
         }
 
         [TestMethod]
         public void DeserializeByteArrayTest()
         {
-            var json = "{\"cavv\":\"Qnl0ZXMtVG8tQmUtRW5jb2RlZA==\",\"xid\":\"Qnl0ZXMtVG8tQmUtRW5jb2RlZA==\"}";
-            var jsonRequest = Util.JsonOperation.Deserialize<ThreeDSecureData>(json);
-            var xid = Encoding.ASCII.GetString(jsonRequest.Xid);
-            var cavv = Encoding.ASCII.GetString(jsonRequest.Cavv);
-            var jsonElementBase64 = "Qnl0ZXMtVG8tQmUtRW5jb2RlZA==";
+            string json = "{\"cavv\":\"Qnl0ZXMtVG8tQmUtRW5jb2RlZA==\",\"xid\":\"Qnl0ZXMtVG8tQmUtRW5jb2RlZA==\"}";
+            ThreeDSecureData jsonRequest = Util.JsonOperation.Deserialize<ThreeDSecureData>(json);
+            string xid = Encoding.ASCII.GetString(jsonRequest.Xid);
+            string cavv = Encoding.ASCII.GetString(jsonRequest.Cavv);
+            string jsonElementBase64 = "Qnl0ZXMtVG8tQmUtRW5jb2RlZA==";
             Assert.AreEqual(jsonElementBase64, xid);
             Assert.AreEqual(jsonElementBase64, cavv);
         }
@@ -63,11 +63,11 @@ namespace Adyen.Test
         [TestMethod]
         public void EnumSerializerTest()
         {
-            var saleToPoiMessageSerializer = new SaleToPoiMessageSerializer();
-            var saleToMessageOnLine = saleToPoiMessageSerializer.Deserialize(GetSaleToPoiMessage("OnlinePin"));
-            var saleToMessageOnline = saleToPoiMessageSerializer.Deserialize(GetSaleToPoiMessage("OnLinePin"));
-            var paymentResponseOnLine = (PaymentResponse)saleToMessageOnLine.MessagePayload;
-            var paymentResponseOnline = (PaymentResponse)saleToMessageOnline.MessagePayload;
+            SaleToPoiMessageSerializer saleToPoiMessageSerializer = new SaleToPoiMessageSerializer();
+            SaleToPOIResponse saleToMessageOnLine = saleToPoiMessageSerializer.Deserialize(GetSaleToPoiMessage("OnlinePin"));
+            SaleToPOIResponse saleToMessageOnline = saleToPoiMessageSerializer.Deserialize(GetSaleToPoiMessage("OnLinePin"));
+            PaymentResponse paymentResponseOnLine = (PaymentResponse)saleToMessageOnLine.MessagePayload;
+            PaymentResponse paymentResponseOnline = (PaymentResponse)saleToMessageOnline.MessagePayload;
             Assert.AreEqual(paymentResponseOnline.PaymentResult.AuthenticationMethod[0], AuthenticationMethodType.OnLinePIN);
             Assert.AreEqual(paymentResponseOnLine.PaymentResult.AuthenticationMethod[0], AuthenticationMethodType.OnLinePIN);
         }

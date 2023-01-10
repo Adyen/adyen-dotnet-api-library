@@ -58,8 +58,8 @@ namespace Adyen.Service
         public AccountHolderBalanceResponse AccountHolderBalance(
             AccountHolderBalanceRequest accountHolderBalanceRequest)
         {
-            var jsonRequest = Util.JsonOperation.SerializeRequest(accountHolderBalanceRequest);
-            var jsonResponse = _accountHolderBalance.Request(jsonRequest);
+            string jsonRequest = Util.JsonOperation.SerializeRequest(accountHolderBalanceRequest);
+            string jsonResponse = _accountHolderBalance.Request(jsonRequest);
             return JsonConvert.DeserializeObject<AccountHolderBalanceResponse>(jsonResponse);
         }
 

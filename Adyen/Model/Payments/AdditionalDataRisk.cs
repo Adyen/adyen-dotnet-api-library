@@ -233,7 +233,7 @@ namespace Adyen.Model.Payments
         /// <returns>String presentation of the object</returns>
         public override string ToString()
         {
-            var sb = new StringBuilder();
+            StringBuilder sb = new StringBuilder();
             sb.Append("class AdditionalDataRisk {\n");
             sb.Append("  RiskdataCustomFieldName: ").Append(RiskdataCustomFieldName).Append("\n");
             sb.Append("  RiskdataBasketItemItemNrAmountPerItem: ").Append(RiskdataBasketItemItemNrAmountPerItem).Append("\n");

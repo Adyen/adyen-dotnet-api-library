@@ -48,8 +48,8 @@ namespace Adyen.Service
         public GetOnboardingUrlResponse GetOnboardingUrl(GetOnboardingUrlRequest request,
             RequestOptions requestOptions = null)
         {
-            var jsonRequest = Util.JsonOperation.SerializeRequest(request);
-            var jsonResponse = _getOnboardingUrl.Request(jsonRequest, requestOptions);
+            string jsonRequest = Util.JsonOperation.SerializeRequest(request);
+            string jsonResponse = _getOnboardingUrl.Request(jsonRequest, requestOptions);
             return Util.JsonOperation.Deserialize<GetOnboardingUrlResponse>(jsonResponse);
         }
 
@@ -62,8 +62,8 @@ namespace Adyen.Service
         public async Task<GetOnboardingUrlResponse> GetOnboardingUrlAsync(GetOnboardingUrlRequest request,
             RequestOptions requestOptions = null)
         {
-            var jsonRequest = Util.JsonOperation.SerializeRequest(request);
-            var jsonResponse = await _getOnboardingUrl.RequestAsync(jsonRequest, requestOptions);
+            string jsonRequest = Util.JsonOperation.SerializeRequest(request);
+            string jsonResponse = await _getOnboardingUrl.RequestAsync(jsonRequest, requestOptions);
             return Util.JsonOperation.Deserialize<GetOnboardingUrlResponse>(jsonResponse);
         }
     }

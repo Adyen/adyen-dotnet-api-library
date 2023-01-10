@@ -191,7 +191,7 @@ namespace Adyen.Model.Payments
         /// <returns>String presentation of the object</returns>
         public override string ToString()
         {
-            var sb = new StringBuilder();
+            StringBuilder sb = new StringBuilder();
             sb.Append("class AdditionalDataCommon {\n");
             sb.Append("  RequestedTestErrorResponseCode: ").Append(RequestedTestErrorResponseCode).Append("\n");
             sb.Append("  AuthorisationType: ").Append(AuthorisationType).Append("\n");

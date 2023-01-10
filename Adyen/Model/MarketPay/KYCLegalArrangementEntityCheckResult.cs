@@ -79,7 +79,7 @@ namespace Adyen.Model.MarketPay
         /// <returns>String presentation of the object</returns>
         public override string ToString()
         {
-            var sb = new StringBuilder();
+            StringBuilder sb = new StringBuilder();
             sb.Append("class KYCLegalArrangementEntityCheckResult {\n");
             sb.Append("  Checks: ").Append(Checks.ObjectListToString()).Append("\n");
             sb.Append("  LegalArrangementCode: ").Append(LegalArrangementCode).Append("\n");

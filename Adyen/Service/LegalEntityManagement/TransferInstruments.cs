@@ -40,30 +40,30 @@ namespace Adyen.Service.LegalEntityManagement
 
         public async Task<TransferInstrument> CreateAsync(TransferInstrumentInfo request)
         {
-            var jsonRequest = request.ToJson();
-            var resource = new LegalEntityManagementResource(this, "/transferInstruments");
-            var jsonResult = await resource.RequestAsync(jsonRequest);
+            string jsonRequest = request.ToJson();
+            LegalEntityManagementResource resource = new LegalEntityManagementResource(this, "/transferInstruments");
+            string jsonResult = await resource.RequestAsync(jsonRequest);
             return JsonConvert.DeserializeObject<TransferInstrument>(jsonResult);
         }
         
         public async Task<TransferInstrument> RetrieveAsync(string transferInstrumentId)
         {
-            var resource = new LegalEntityManagementResource(this, "/transferInstruments/" + transferInstrumentId);
-            var jsonResult = await resource.RequestAsync(null, null, HttpMethod.Get);
+            LegalEntityManagementResource resource = new LegalEntityManagementResource(this, "/transferInstruments/" + transferInstrumentId);
+            string jsonResult = await resource.RequestAsync(null, null, HttpMethod.Get);
             return JsonConvert.DeserializeObject<TransferInstrument>(jsonResult);
         }
         
         public async Task<TransferInstrument> UpdateAsync(string transferInstrumentId, TransferInstrumentInfo request)
         {
-            var jsonRequest = request.ToJson();
-            var resource = new LegalEntityManagementResource(this, "/transferInstruments/" + transferInstrumentId);
-            var jsonResult = await resource.RequestAsync(jsonRequest, null, _patchMethod);
+            string jsonRequest = request.ToJson();
+            LegalEntityManagementResource resource = new LegalEntityManagementResource(this, "/transferInstruments/" + transferInstrumentId);
+            string jsonResult = await resource.RequestAsync(jsonRequest, null, _patchMethod);
             return JsonConvert.DeserializeObject<TransferInstrument>(jsonResult);
         }
 
         public async void DeleteAsync(string transferInstrumentId)
         {
-            var resource = new LegalEntityManagementResource(this, "/transferInstruments/" + transferInstrumentId);
+            LegalEntityManagementResource resource = new LegalEntityManagementResource(this, "/transferInstruments/" + transferInstrumentId);
             await resource.RequestAsync(null, null, HttpMethod.Delete);
         }
         

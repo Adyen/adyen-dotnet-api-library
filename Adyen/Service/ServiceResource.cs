@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Net.Http;
 using System.Net.Security;
 using System.Threading.Tasks;
+using Adyen.HttpClient.Interfaces;
 using Adyen.Model;
 
 namespace Adyen.Service
@@ -20,13 +21,13 @@ namespace Adyen.Service
 
         public string Request(string json, RequestOptions requestOptions = null, HttpMethod httpMethod = null)
         {
-            var clientInterface = _abstractService.Client.HttpClient;
+            IClient clientInterface = _abstractService.Client.HttpClient;
             return clientInterface.Request(Endpoint, json, requestOptions, httpMethod);
         }
 
         public Task<string> RequestAsync(string json, RequestOptions requestOptions = null, HttpMethod httpMethod = null)
         {
-            var clientInterface = _abstractService.Client.HttpClient;
+            IClient clientInterface = _abstractService.Client.HttpClient;
             return clientInterface.RequestAsync(Endpoint, json, requestOptions, httpMethod);
         }
     }

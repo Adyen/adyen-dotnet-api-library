@@ -76,7 +76,7 @@ namespace Adyen.Model.LegalEntityManagement
         /// <returns>String presentation of the object</returns>
         public override string ToString()
         {
-            var sb = new StringBuilder();
+            StringBuilder sb = new StringBuilder();
             sb.Append("class OnboardingThemes {\n");
             sb.Append("  Next: ").Append(Next).Append("\n");
             sb.Append("  Previous: ").Append(Previous).Append("\n");

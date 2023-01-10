@@ -130,7 +130,7 @@ namespace Adyen.Model.Payments
         /// <returns>String presentation of the object</returns>
         public override string ToString()
         {
-            var sb = new StringBuilder();
+            StringBuilder sb = new StringBuilder();
             sb.Append("class BrowserInfo {\n");
             sb.Append("  AcceptHeader: ").Append(AcceptHeader).Append("\n");
             sb.Append("  ColorDepth: ").Append(ColorDepth).Append("\n");

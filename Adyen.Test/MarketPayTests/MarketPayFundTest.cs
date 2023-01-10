@@ -37,10 +37,10 @@ namespace Adyen.Test.MarketPayTest
         [TestMethod]
         public void TestAccountHolderBalanceSuccess()
         {
-            var client = CreateMockTestClientNullRequiredFieldsRequest("Mocks/marketpay/fund/account-holder-balance-success.json");
-            var fund = new Fund(client);
-            var accountHolderBalanceRequest = new AccountHolderBalanceRequest("TestAccountHolder877209");
-            var accountHolderBalanceResponse = fund.AccountHolderBalance(accountHolderBalanceRequest);
+            Client client = CreateMockTestClientNullRequiredFieldsRequest("Mocks/marketpay/fund/account-holder-balance-success.json");
+            Fund fund = new Fund(client);
+            AccountHolderBalanceRequest accountHolderBalanceRequest = new AccountHolderBalanceRequest("TestAccountHolder877209");
+            AccountHolderBalanceResponse accountHolderBalanceResponse = fund.AccountHolderBalance(accountHolderBalanceRequest);
             Assert.AreEqual("8515803871979158", accountHolderBalanceResponse.PspReference);
             Assert.AreEqual("112548519", accountHolderBalanceResponse.BalancePerAccount[0].AccountCode);
             Assert.AreEqual("128653506", accountHolderBalanceResponse.BalancePerAccount[1].AccountCode);
@@ -68,9 +68,9 @@ namespace Adyen.Test.MarketPayTest
         [TestMethod]
         public void TestAccountHolderTransactionListSuccess()
         {
-            var client = CreateMockTestClientNullRequiredFieldsRequest("Mocks/marketpay/fund/account-holder-transaction-list-success.json");
-            var fund = new Fund(client);
-            var accountHolderTransactionListRequest =
+            Client client = CreateMockTestClientNullRequiredFieldsRequest("Mocks/marketpay/fund/account-holder-transaction-list-success.json");
+            Fund fund = new Fund(client);
+            AccountHolderTransactionListRequest accountHolderTransactionListRequest =
                 new AccountHolderTransactionListRequest(accountHolderCode: "TestAccountHolder423978")
                 {
                     TransactionStatuses = new List<AccountHolderTransactionListRequest.TransactionStatusesEnum>
@@ -78,14 +78,14 @@ namespace Adyen.Test.MarketPayTest
                         AccountHolderTransactionListRequest.TransactionStatusesEnum.PendingCredit,
                     }
                 };
-            var transactionListForAccount = new TransactionListForAccount("2e64b396-1200-4474-b848-0cb06b52b3c7", 2);
+            TransactionListForAccount transactionListForAccount = new TransactionListForAccount("2e64b396-1200-4474-b848-0cb06b52b3c7", 2);
             accountHolderTransactionListRequest.TransactionListsPerAccount = new List<TransactionListForAccount> { transactionListForAccount };
-            var accountHolderTransactionListResponse = fund.AccountHolderTransactionList(accountHolderTransactionListRequest);
+            AccountHolderTransactionListResponse accountHolderTransactionListResponse = fund.AccountHolderTransactionList(accountHolderTransactionListRequest);
             Assert.AreEqual("881580394403000", accountHolderTransactionListResponse.PspReference);
             Assert.AreEqual("Success", accountHolderTransactionListResponse.ResultCode);
             Assert.AreEqual(3, accountHolderTransactionListResponse.AccountTransactionLists.Count);
             Assert.AreEqual("112548561", accountHolderTransactionListResponse.AccountTransactionLists[0].AccountCode);
-            var transactions = accountHolderTransactionListResponse.AccountTransactionLists[0].Transactions;
+            List<Transaction> transactions = accountHolderTransactionListResponse.AccountTransactionLists[0].Transactions;
             Assert.AreEqual(50, transactions.Count);
             Assert.AreEqual(new Amount("USD",-35000), transactions[0].Amount);
             Assert.AreEqual("PluginDemo - 126", transactions[0].Description);
@@ -105,11 +105,11 @@ namespace Adyen.Test.MarketPayTest
         [TestMethod]
         public void TestTransferFundsSuccess()
         {
-            var amount = new Amount("EUR", 1000);
-            var client = CreateMockTestClientNullRequiredFieldsRequest("Mocks/marketpay/fund/transfer-funds-success.json");
-            var fund = new Fund(client);
-            var transferFundsRequest = new TransferFundsRequest(amount: amount, destinationAccountCode: "190324759", merchantReference: "merchantReference", sourceAccountCode: "00000", transferCode: "1235");
-            var transferFundsResponse = fund.TransferFunds(transferFundsRequest);
+            Amount amount = new Amount("EUR", 1000);
+            Client client = CreateMockTestClientNullRequiredFieldsRequest("Mocks/marketpay/fund/transfer-funds-success.json");
+            Fund fund = new Fund(client);
+            TransferFundsRequest transferFundsRequest = new TransferFundsRequest(amount: amount, destinationAccountCode: "190324759", merchantReference: "merchantReference", sourceAccountCode: "00000", transferCode: "1235");
+            TransferFundsResponse transferFundsResponse = fund.TransferFunds(transferFundsRequest);
             Assert.AreEqual("9915090893984580", transferFundsResponse.PspReference);
             Assert.AreEqual("MerchantReference", transferFundsResponse.MerchantReference);
             Assert.AreEqual("Received", transferFundsResponse.ResultCode);
@@ -121,10 +121,10 @@ namespace Adyen.Test.MarketPayTest
         [TestMethod]
         public void TestRefundNotPaidOutTransfersSuccess()
         {
-            var client = CreateMockTestClientNullRequiredFieldsRequest("Mocks/marketpay/fund/refund-not-paid-out-transfers-success.json");
-            var fund = new Fund(client);
-            var refundNotPaidOutTransfersRequest = new RefundNotPaidOutTransfersRequest(accountCode: "189184578", accountHolderCode: "TestAccountHolder502924");
-            var refundNotPaidOutTransfersResponse = fund.RefundNotPaidOutTransfers(refundNotPaidOutTransfersRequest);
+            Client client = CreateMockTestClientNullRequiredFieldsRequest("Mocks/marketpay/fund/refund-not-paid-out-transfers-success.json");
+            Fund fund = new Fund(client);
+            RefundNotPaidOutTransfersRequest refundNotPaidOutTransfersRequest = new RefundNotPaidOutTransfersRequest(accountCode: "189184578", accountHolderCode: "TestAccountHolder502924");
+            RefundNotPaidOutTransfersResponse refundNotPaidOutTransfersResponse = fund.RefundNotPaidOutTransfers(refundNotPaidOutTransfersRequest);
             Assert.AreEqual("9915090894215323", refundNotPaidOutTransfersResponse.PspReference);
             Assert.AreEqual("Failed", refundNotPaidOutTransfersResponse.ResultCode);
         }
@@ -135,10 +135,10 @@ namespace Adyen.Test.MarketPayTest
         [TestMethod]
         public void TestSetupBeneficiary()
         {
-            var client = CreateMockTestClientNullRequiredFieldsRequest("Mocks/marketpay/fund/setup-beneficiary-success.json");
-            var fund = new Fund(client);
-            var setupBeneficiaryRequest = new SetupBeneficiaryRequest(destinationAccountCode: "128952522", merchantReference: "TestMerchantReference", sourceAccountCode: "134498192");
-            var setupBeneficiaryResponse = fund.SetupBeneficiary(setupBeneficiaryRequest);
+            Client client = CreateMockTestClientNullRequiredFieldsRequest("Mocks/marketpay/fund/setup-beneficiary-success.json");
+            Fund fund = new Fund(client);
+            SetupBeneficiaryRequest setupBeneficiaryRequest = new SetupBeneficiaryRequest(destinationAccountCode: "128952522", merchantReference: "TestMerchantReference", sourceAccountCode: "134498192");
+            SetupBeneficiaryResponse setupBeneficiaryResponse = fund.SetupBeneficiary(setupBeneficiaryRequest);
             Assert.AreEqual("9914860354282596", setupBeneficiaryResponse.PspReference);
             Assert.AreEqual("Success", setupBeneficiaryResponse.ResultCode);
         }
@@ -149,11 +149,11 @@ namespace Adyen.Test.MarketPayTest
         [TestMethod]
         public void TestPayoutAccountHolderSuccess()
         {
-            var amount = new Amount("EUR", 1000);
-            var client = CreateMockTestClientNullRequiredFieldsRequest("Mocks/marketpay/fund/payout-account-holder-success.json");
-            var fund = new Fund(client);
-            var payoutAccountHolderRequest = new PayoutAccountHolderRequest(accountCode: "189184578", accountHolderCode: "TestAccountHolder502924", amount: amount);
-            var payoutAccountHolderResponse = fund.PayoutAccountHolder(payoutAccountHolderRequest);
+            Amount amount = new Amount("EUR", 1000);
+            Client client = CreateMockTestClientNullRequiredFieldsRequest("Mocks/marketpay/fund/payout-account-holder-success.json");
+            Fund fund = new Fund(client);
+            PayoutAccountHolderRequest payoutAccountHolderRequest = new PayoutAccountHolderRequest(accountCode: "189184578", accountHolderCode: "TestAccountHolder502924", amount: amount);
+            PayoutAccountHolderResponse payoutAccountHolderResponse = fund.PayoutAccountHolder(payoutAccountHolderRequest);
             Assert.AreEqual("9915090894325643", payoutAccountHolderResponse.PspReference);
             Assert.AreEqual("testbankaccount", payoutAccountHolderResponse.BankAccountUUID);
             Assert.AreEqual("MerchantReference", payoutAccountHolderResponse.MerchantReference);
@@ -165,11 +165,11 @@ namespace Adyen.Test.MarketPayTest
         [TestMethod]
         public void TestRefundFundsTransferSuccess()
         {
-            var amount = new Amount("EUR", 1000);
-            var client = CreateMockTestClientNullRequiredFieldsRequest("Mocks/marketpay/fund/refund-funds-transfer.json");
-            var fund = new Fund(client);
-            var refundFundsTransferRequest = new RefundFundsTransferRequest(originalReference: "reference", amount: amount);
-            var refundFundsTransferResponse = fund.RefundFundsTransfer(refundFundsTransferRequest);
+            Amount amount = new Amount("EUR", 1000);
+            Client client = CreateMockTestClientNullRequiredFieldsRequest("Mocks/marketpay/fund/refund-funds-transfer.json");
+            Fund fund = new Fund(client);
+            RefundFundsTransferRequest refundFundsTransferRequest = new RefundFundsTransferRequest(originalReference: "reference", amount: amount);
+            RefundFundsTransferResponse refundFundsTransferResponse = fund.RefundFundsTransfer(refundFundsTransferRequest);
             Assert.AreEqual("9915090893984580", refundFundsTransferResponse.PspReference);
             Assert.AreEqual("Received", refundFundsTransferResponse.ResultCode);
         }

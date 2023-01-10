@@ -62,7 +62,7 @@ namespace Adyen.Model.Payments
         /// <returns>String presentation of the object</returns>
         public override string ToString()
         {
-            var sb = new StringBuilder();
+            StringBuilder sb = new StringBuilder();
             sb.Append("class CommonField {\n");
             sb.Append("  Name: ").Append(Name).Append("\n");
             sb.Append("  Version: ").Append(Version).Append("\n");

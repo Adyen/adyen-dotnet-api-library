@@ -199,7 +199,7 @@ namespace Adyen.Model.Recurring
         /// <returns>String presentation of the object</returns>
         public override string ToString()
         {
-            var sb = new StringBuilder();
+            StringBuilder sb = new StringBuilder();
             sb.Append("class RecurringDetail {\n");
             sb.Append("  TokenDetails: ").Append(TokenDetails).Append("\n");
             sb.Append("  SocialSecurityNumber: ").Append(SocialSecurityNumber).Append("\n");

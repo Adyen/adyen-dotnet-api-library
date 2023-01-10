@@ -71,7 +71,7 @@ namespace Adyen.Model.LegalEntityManagement
         /// <returns>String presentation of the object</returns>
         public override string ToString()
         {
-            var sb = new StringBuilder();
+            StringBuilder sb = new StringBuilder();
             sb.Append("class RecurringDetail {\n");
             sb.Append("  MerchantAccount: ").Append(MerchantAccount).Append("\n");
             sb.Append("  Reference: ").Append(Reference).Append("\n");

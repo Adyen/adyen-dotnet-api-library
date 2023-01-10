@@ -39,23 +39,23 @@ namespace Adyen.Service.LegalEntityManagement
 
         public async Task<OnboardingLink> CreateAsync(string legalEntityId, OnboardingLinkInfo request)
         {
-            var jsonRequest = request.ToJson();
-            var resource = new LegalEntityManagementResource(this, "/legalEntities/" + legalEntityId);
-            var jsonResult = await resource.RequestAsync(jsonRequest);
+            string jsonRequest = request.ToJson();
+            LegalEntityManagementResource resource = new LegalEntityManagementResource(this, "/legalEntities/" + legalEntityId);
+            string jsonResult = await resource.RequestAsync(jsonRequest);
             return JsonConvert.DeserializeObject<OnboardingLink>(jsonResult);
         }
         
         public async Task<OnboardingThemes> ListThemesAsync()
         {
-            var resource = new LegalEntityManagementResource(this, "/themes");
-            var jsonResult = await resource.RequestAsync(null, null, HttpMethod.Get);
+            LegalEntityManagementResource resource = new LegalEntityManagementResource(this, "/themes");
+            string jsonResult = await resource.RequestAsync(null, null, HttpMethod.Get);
             return JsonConvert.DeserializeObject<OnboardingThemes>(jsonResult);
         }
         
         public async Task<OnboardingTheme> RetrieveThemesAsync(string themeId)
         {
-            var resource = new LegalEntityManagementResource(this, "/themes/" + themeId);
-            var jsonResult = await resource.RequestAsync(null, null, HttpMethod.Get);
+            LegalEntityManagementResource resource = new LegalEntityManagementResource(this, "/themes/" + themeId);
+            string jsonResult = await resource.RequestAsync(null, null, HttpMethod.Get);
             return JsonConvert.DeserializeObject<OnboardingTheme>(jsonResult);
         }
         

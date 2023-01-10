@@ -35,8 +35,8 @@ namespace Adyen.Service
         public async Task<StoreDetailAndSubmitResponse> StoreDetailAndSubmitThirdPartyAsync(
             StoreDetailAndSubmitRequest storeDetailAndSubmitRequest, RequestOptions requestOptions = null)
         {
-            var jsonRequest = storeDetailAndSubmitRequest.ToJson();
-            var jsonResponse = await _storeDetailAndSubmitThirdParty.RequestAsync(jsonRequest, requestOptions);
+            string jsonRequest = storeDetailAndSubmitRequest.ToJson();
+            string jsonResponse = await _storeDetailAndSubmitThirdParty.RequestAsync(jsonRequest, requestOptions);
             return JsonConvert.DeserializeObject<StoreDetailAndSubmitResponse>(jsonResponse);
         }
         
@@ -59,8 +59,8 @@ namespace Adyen.Service
         /// <returns>PaymentsResponse</returns>
         public async Task<ModifyResponse> ConfirmThirdPartyAsync(ModifyRequest modifyRequest, RequestOptions requestOptions = null)
         {
-            var jsonRequest = modifyRequest.ToJson();
-            var jsonResponse = await _confirmThirdParty.RequestAsync(jsonRequest, requestOptions);
+            string jsonRequest = modifyRequest.ToJson();
+            string jsonResponse = await _confirmThirdParty.RequestAsync(jsonRequest, requestOptions);
             return JsonConvert.DeserializeObject<ModifyResponse>(jsonResponse);
         }
 
@@ -83,8 +83,8 @@ namespace Adyen.Service
         /// <returns>PaymentsResponse</returns>
         public async Task<ModifyResponse> DeclineThirdPartyAsync(ModifyRequest modifyRequest, RequestOptions requestOptions = null)
         {
-            var jsonRequest = modifyRequest.ToJson();
-            var jsonResponse = await _declineThirdParty.RequestAsync(jsonRequest, requestOptions);
+            string jsonRequest = modifyRequest.ToJson();
+            string jsonResponse = await _declineThirdParty.RequestAsync(jsonRequest, requestOptions);
             return JsonConvert.DeserializeObject<ModifyResponse>(jsonResponse);
         }
 
@@ -107,8 +107,8 @@ namespace Adyen.Service
         /// <returns>PaymentsResponse</returns>
         public async Task<StoreDetailResponse> StoreDetailAsync(StoreDetailRequest storeDetailRequest, RequestOptions requestOptions = null)
         {
-            var jsonRequest = storeDetailRequest.ToJson();
-            var jsonResponse = await _storeDetail.RequestAsync(jsonRequest, requestOptions);
+            string jsonRequest = storeDetailRequest.ToJson();
+            string jsonResponse = await _storeDetail.RequestAsync(jsonRequest, requestOptions);
             return JsonConvert.DeserializeObject<StoreDetailResponse>(jsonResponse);
         }
         
@@ -131,8 +131,8 @@ namespace Adyen.Service
         /// <returns>PaymentsResponse</returns>
         public async Task<SubmitResponse> SubmitThirdPartyAsync(SubmitRequest submitRequest, RequestOptions requestOptions = null)
         {
-            var jsonRequest = submitRequest.ToJson();
-            var jsonResponse = await _submitThirdParty.RequestAsync(jsonRequest, requestOptions);
+            string jsonRequest = submitRequest.ToJson();
+            string jsonResponse = await _submitThirdParty.RequestAsync(jsonRequest, requestOptions);
             return JsonConvert.DeserializeObject<SubmitResponse>(jsonResponse);
         }
 
@@ -155,8 +155,8 @@ namespace Adyen.Service
         /// <returns>PaymentsResponse</returns>
         public async Task<PayoutResponse> PayoutSubmitAsync(PayoutRequest payoutRequest, RequestOptions requestOptions = null)
         {
-            var jsonRequest = payoutRequest.ToJson();
-            var jsonResponse = await _payoutService.RequestAsync(jsonRequest, requestOptions);
+            string jsonRequest = payoutRequest.ToJson();
+            string jsonResponse = await _payoutService.RequestAsync(jsonRequest, requestOptions);
             return JsonConvert.DeserializeObject<PayoutResponse>(jsonResponse);
         }
 

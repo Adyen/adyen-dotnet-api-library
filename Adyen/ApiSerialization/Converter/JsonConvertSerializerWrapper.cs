@@ -34,7 +34,7 @@ namespace Adyen.ApiSerialization.Converter
 
         internal static string Serialize(SaleToPOIMessage saleToPoiMessage)
         {
-            var serialize= JsonConvert.SerializeObject(saleToPoiMessage,
+            string serialize= JsonConvert.SerializeObject(saleToPoiMessage,
                 new SaleToPoiMessageConverter(),
                 new StringEnumConverter(),
                 new IsoDateTimeConverter() { DateTimeFormat = DateTimeFormat });

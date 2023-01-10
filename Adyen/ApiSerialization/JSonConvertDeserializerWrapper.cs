@@ -36,7 +36,7 @@ namespace Adyen.ApiSerialization
                 MissingMemberHandling = MissingMemberHandling.Error,
                 Error = delegate (object sender, ErrorEventArgs args)
                 {
-                    var exceptionMessage = string.Format(ExceptionMessages.ExceptionDuringDeserialization,
+                    string exceptionMessage = string.Format(ExceptionMessages.ExceptionDuringDeserialization,
                         objectToDeserialize,
                         args.ErrorContext.Error.Message);
 

@@ -32,7 +32,7 @@ namespace Adyen.Test
         [TestMethod]
         public void TerminalCertificateCommonNameTest()
         {
-            foreach (var terminalCNValidationParameter in GetTerminalCNValidationParameters())
+            foreach (TerminalCNValidationParameters terminalCNValidationParameter in GetTerminalCNValidationParameters())
             {
                 bool result = Security.TerminalCommonNameValidator.ValidateCertificate(terminalCNValidationParameter.CommonName, terminalCNValidationParameter.Environment);
                 Assert.AreEqual(result, terminalCNValidationParameter.TestSuccess);

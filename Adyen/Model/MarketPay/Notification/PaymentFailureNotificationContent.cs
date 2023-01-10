@@ -90,7 +90,7 @@ namespace Adyen.Model.MarketPay.Notification
         /// <returns>String presentation of the object</returns>
         public override string ToString()
         {
-            var sb = new StringBuilder();
+            StringBuilder sb = new StringBuilder();
             sb.Append("class PaymentFailureNotificationContent {\n");
             sb.Append("  ErrorFields: ").Append(ErrorFields.ObjectListToString()).Append("\n");
             sb.Append("  ErrorMessage: ").Append(ErrorMessage).Append("\n");

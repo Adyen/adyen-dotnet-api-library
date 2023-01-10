@@ -44,15 +44,15 @@ namespace Adyen.Security
         {
             _aesManaged.Key = encryptionDerivedKey.CipherKey;
             _aesManaged.IV = TransformIV(encryptionDerivedKey.IV, ivMod);
-            var encryptTransform = _aesManaged.CreateEncryptor();
-            var byteArrayEncrypted = encryptTransform.TransformFinalBlock(byteArrayToEncrypt, 0, byteArrayToEncrypt.Length);
+            ICryptoTransform encryptTransform = _aesManaged.CreateEncryptor();
+            byte[] byteArrayEncrypted = encryptTransform.TransformFinalBlock(byteArrayToEncrypt, 0, byteArrayToEncrypt.Length);
 
             return byteArrayEncrypted;
         }
 
         private byte[] TransformIV(byte[] originalIV, byte[] ivMod)
         {
-            var updatedIV = new byte[EncryptionDerivedKey.IVLength];
+            byte[] updatedIV = new byte[EncryptionDerivedKey.IVLength];
             for (int i = 0; i < EncryptionDerivedKey.IVLength; i++)
             {
                 updatedIV[i] = (byte)(originalIV[i] ^ ivMod[i]);
@@ -64,7 +64,7 @@ namespace Adyen.Security
         {
             _aesManaged.Key = encryptionDerivedKey.CipherKey;
             _aesManaged.IV = TransformIV(encryptionDerivedKey.IV, ivMod);
-            var aesDecryptor = _aesManaged.CreateDecryptor();
+            ICryptoTransform aesDecryptor = _aesManaged.CreateDecryptor();
 
             return aesDecryptor.TransformFinalBlock(byteArrayToDecrypt, 0, byteArrayToDecrypt.Length);
         }

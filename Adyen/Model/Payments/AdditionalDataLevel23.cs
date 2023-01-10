@@ -197,7 +197,7 @@ namespace Adyen.Model.Payments
         /// <returns>String presentation of the object</returns>
         public override string ToString()
         {
-            var sb = new StringBuilder();
+            StringBuilder sb = new StringBuilder();
             sb.Append("class AdditionalDataLevel23 {\n");
             sb.Append("  EnhancedSchemeDataCustomerReference: ").Append(EnhancedSchemeDataCustomerReference).Append("\n");
             sb.Append("  EnhancedSchemeDataDestinationCountryCode: ").Append(EnhancedSchemeDataDestinationCountryCode).Append("\n");

@@ -36,14 +36,14 @@ namespace Adyen.Test
         [TestMethod]
         public void Get3dsAvailabilitySuccessMockedTest()
         {
-            var client = CreateMockTestClientApiKeyBasedRequest("Mocks/binlookup/get3dsavailability-success.json");
-            var binLookup = new BinLookup(client);
-            var threeDsAvailabilityRequest = new ThreeDSAvailabilityRequest
+            Client client = CreateMockTestClientApiKeyBasedRequest("Mocks/binlookup/get3dsavailability-success.json");
+            BinLookup binLookup = new BinLookup(client);
+            ThreeDSAvailabilityRequest threeDsAvailabilityRequest = new ThreeDSAvailabilityRequest
             {
                 MerchantAccount = "merchantAccount",
                 CardNumber = "4111111111111111"
             };
-            var threeDsAvailabilityResponse = binLookup.ThreeDsAvailability(threeDsAvailabilityRequest);
+            ThreeDSAvailabilityResponse threeDsAvailabilityResponse = binLookup.ThreeDsAvailability(threeDsAvailabilityRequest);
             Assert.AreEqual("F013371337", threeDsAvailabilityResponse.DsPublicKeys[0].DirectoryServerId);
             Assert.AreEqual("visa", threeDsAvailabilityResponse.DsPublicKeys[0].Brand);
             Assert.AreEqual("411111111111", threeDsAvailabilityResponse.ThreeDS2CardRangeDetails[0].StartRange);
@@ -57,16 +57,16 @@ namespace Adyen.Test
         [TestMethod]
         public void GetCostEstimateSuccessMockedTest()
         {
-            var client = CreateMockTestClientApiKeyBasedRequest("Mocks/binlookup/getcostestimate-success.json");
-            var binLookup = new BinLookup(client);
-            var costEstimateRequest = new CostEstimateRequest();
-            var amount = new Amount
+            Client client = CreateMockTestClientApiKeyBasedRequest("Mocks/binlookup/getcostestimate-success.json");
+            BinLookup binLookup = new BinLookup(client);
+            CostEstimateRequest costEstimateRequest = new CostEstimateRequest();
+            Amount amount = new Amount
             {
                 Currency = "EUR",
                 Value = 1000
             };
             costEstimateRequest.Amount = amount;
-            var costEstimateAssumptions = new CostEstimateAssumptions
+            CostEstimateAssumptions costEstimateAssumptions = new CostEstimateAssumptions
             {
                 AssumeLevel3Data = true,
                 Assume3DSecureAuthenticated = true
@@ -74,7 +74,7 @@ namespace Adyen.Test
             costEstimateRequest.Assumptions = costEstimateAssumptions;
             costEstimateRequest.CardNumber = "4111111111111111";
             costEstimateRequest.MerchantAccount = "merchantAccount";
-            var merchantDetails = new MerchantDetails
+            MerchantDetails merchantDetails = new MerchantDetails
             {
                 CountryCode = "NL",
                 Mcc = "7411",
@@ -82,7 +82,7 @@ namespace Adyen.Test
             };
             costEstimateRequest.MerchantDetails = (merchantDetails);
             costEstimateRequest.ShopperInteraction = CostEstimateRequest.ShopperInteractionEnum.Ecommerce;
-            var costEstimateResponse = binLookup.CostEstimate(costEstimateRequest);
+            CostEstimateResponse costEstimateResponse = binLookup.CostEstimate(costEstimateRequest);
             Assert.AreEqual("1111", costEstimateResponse.CardBin.Summary);
             Assert.AreEqual("Unsupported", costEstimateResponse.ResultCode);
             Assert.AreEqual("ZERO", costEstimateResponse.SurchargeType);
@@ -91,9 +91,9 @@ namespace Adyen.Test
         [TestMethod]
         public void GetCostEstimateSuccessGenerateShopperInteractionFromEnum()
         {
-            var ecommerce = Util.JsonOperation.SerializeRequest(CostEstimateRequest.ShopperInteractionEnum.Ecommerce);
-            var contAuth = Util.JsonOperation.SerializeRequest(CostEstimateRequest.ShopperInteractionEnum.ContAuth);
-            var moto = Util.JsonOperation.SerializeRequest(CostEstimateRequest.ShopperInteractionEnum.Moto);
+            string ecommerce = Util.JsonOperation.SerializeRequest(CostEstimateRequest.ShopperInteractionEnum.Ecommerce);
+            string contAuth = Util.JsonOperation.SerializeRequest(CostEstimateRequest.ShopperInteractionEnum.ContAuth);
+            string moto = Util.JsonOperation.SerializeRequest(CostEstimateRequest.ShopperInteractionEnum.Moto);
             Assert.AreEqual("\"Ecommerce\"", ecommerce);
             Assert.AreEqual("\"ContAuth\"", contAuth);
             Assert.AreEqual("\"Moto\"", moto);

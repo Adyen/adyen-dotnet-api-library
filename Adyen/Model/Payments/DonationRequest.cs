@@ -93,7 +93,7 @@ namespace Adyen.Model.Payments
         /// <returns>String presentation of the object</returns>
         public override string ToString()
         {
-            var sb = new StringBuilder();
+            StringBuilder sb = new StringBuilder();
             sb.Append("class DonationRequest {\n");
             sb.Append("  DonationAccount: ").Append(DonationAccount).Append("\n");
             sb.Append("  MerchantAccount: ").Append(MerchantAccount).Append("\n");

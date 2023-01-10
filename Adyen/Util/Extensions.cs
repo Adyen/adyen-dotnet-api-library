@@ -21,8 +21,10 @@
 //  */
 #endregion
 
+using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using Newtonsoft.Json;
 
@@ -34,13 +36,13 @@ namespace Adyen.Util
         {
             try
             {
-                var t = o.GetType();
+                Type t = o.GetType();
 
-                var propertyString = new StringBuilder().AppendLine($"class {o.GetType().Name} {{");
+                StringBuilder propertyString = new StringBuilder().AppendLine($"class {o.GetType().Name} {{");
 
-                foreach (var prop in t.GetProperties())
+                foreach (PropertyInfo prop in t.GetProperties())
                 {
-                    var propertyValue = prop.GetValue(o, null);
+                    object propertyValue = prop.GetValue(o, null);
 
                     propertyString.Append("\t")
                         .AppendLine(propertyValue != null

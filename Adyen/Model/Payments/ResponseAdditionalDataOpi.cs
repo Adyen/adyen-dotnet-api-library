@@ -53,7 +53,7 @@ namespace Adyen.Model.Payments
         /// <returns>String presentation of the object</returns>
         public override string ToString()
         {
-            var sb = new StringBuilder();
+            StringBuilder sb = new StringBuilder();
             sb.Append("class ResponseAdditionalDataOpi {\n");
             sb.Append("  OpiTransToken: ").Append(OpiTransToken).Append("\n");
             sb.Append("}\n");

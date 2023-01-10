@@ -125,7 +125,7 @@ namespace Adyen.Model.MarketPay
         /// <returns>String presentation of the object</returns>
         public override string ToString()
         {
-            var sb = new StringBuilder();
+            StringBuilder sb = new StringBuilder();
             sb.Append("class ViasName {\n");
             sb.Append("  FirstName: ").Append(FirstName).Append("\n");
             sb.Append("  Gender: ").Append(Gender).Append("\n");

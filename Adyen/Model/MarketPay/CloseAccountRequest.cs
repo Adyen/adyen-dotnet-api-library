@@ -67,7 +67,7 @@ namespace Adyen.Model.MarketPay
         /// <returns>String presentation of the object</returns>
         public override string ToString()
         {
-            var sb = new StringBuilder();
+            StringBuilder sb = new StringBuilder();
             sb.Append("class CloseAccountRequest {\n");
             sb.Append("  AccountCode: ").Append(AccountCode).Append("\n");
             sb.Append("}\n");

@@ -121,7 +121,7 @@ namespace Adyen.Model
         /// <returns>String presentation of the object</returns>
         public override string ToString()
         {
-            var sb = new StringBuilder();
+            StringBuilder sb = new StringBuilder();
             sb.Append("class ThreeDSResult {\n");
             sb.Append("  AuthenticationValue: ").Append(AuthenticationValue).Append("\n");
             sb.Append("  ECI: ").Append(ECI).Append("\n");

@@ -53,7 +53,7 @@ namespace Adyen.Model.Payments
         /// <returns>String presentation of the object</returns>
         public override string ToString()
         {
-            var sb = new StringBuilder();
+            StringBuilder sb = new StringBuilder();
             sb.Append("class AdditionalDataModifications {\n");
             sb.Append("  InstallmentPaymentDataSelectedInstallmentOption: ").Append(InstallmentPaymentDataSelectedInstallmentOption).Append("\n");
             sb.Append("}\n");

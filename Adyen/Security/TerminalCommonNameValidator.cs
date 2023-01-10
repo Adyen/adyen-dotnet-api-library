@@ -21,6 +21,7 @@
  */
 #endregion
 
+using System.Collections.Generic;
 using System.Linq;
 using System.Text.RegularExpressions;
 
@@ -34,10 +35,10 @@ namespace Adyen.Security
 
         public static bool ValidateCertificate(string certificateSubject, Model.Enum.Environment environment)
         {
-            var environmentName = environment.ToString().ToLower();
-            var regexPatternTerminalSpecificCert = _terminalApiCnRegex.Replace(_environmentWildcard, environmentName);
-            var regexPatternLegacyCert = _terminalApiLegacy.Replace(_environmentWildcard, environmentName);
-            var subject = certificateSubject.Split(',')
+            string environmentName = environment.ToString().ToLower();
+            string regexPatternTerminalSpecificCert = _terminalApiCnRegex.Replace(_environmentWildcard, environmentName);
+            string regexPatternLegacyCert = _terminalApiLegacy.Replace(_environmentWildcard, environmentName);
+            Dictionary<string, string> subject = certificateSubject.Split(',')
                      .Select(x => x.Split('='))
                      .ToDictionary(x => x[0].Trim(' '), x => x[1]);
             if (subject.ContainsKey("CN"))

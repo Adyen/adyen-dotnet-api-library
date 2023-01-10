@@ -39,7 +39,7 @@ namespace Adyen.ApiSerialization.Converter
 
         public override void WriteJson(JsonWriter writer, object value, JsonSerializer serializer)
         {
-            var json = JsonConvert.SerializeObject(value, Formatting.None,
+            string json = JsonConvert.SerializeObject(value, Formatting.None,
                             new JsonSerializerSettings
                             {
                                 NullValueHandling = NullValueHandling.Ignore

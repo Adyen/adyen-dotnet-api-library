@@ -192,7 +192,7 @@ namespace Adyen.Model.LegalEntityManagement
         /// <returns>String presentation of the object</returns>
         public override string ToString()
         {
-            var sb = new StringBuilder();
+            StringBuilder sb = new StringBuilder();
             sb.Append("class IdentificationData {\n");
             sb.Append("  ExpiryDate: ").Append(ExpiryDate).Append("\n");
             sb.Append("  IssuerCountry: ").Append(IssuerCountry).Append("\n");

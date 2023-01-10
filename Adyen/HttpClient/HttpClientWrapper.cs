@@ -55,10 +55,10 @@ namespace Adyen.HttpClient
 
         public async Task<string> RequestAsync(string endpoint, string requestBody, RequestOptions requestOptions = null, HttpMethod httpMethod = null)
         {
-            using (var request = GetHttpRequestMessage(endpoint, requestBody, requestOptions, httpMethod))
-            using (var httpResponseMessage = await _httpClient.SendAsync(request))
+            using (HttpRequestMessage request = GetHttpRequestMessage(endpoint, requestBody, requestOptions, httpMethod))
+            using (HttpResponseMessage httpResponseMessage = await _httpClient.SendAsync(request))
             {
-                var responseText = await httpResponseMessage.Content.ReadAsStringAsync();
+                string responseText = await httpResponseMessage.Content.ReadAsStringAsync();
                 if(httpResponseMessage.IsSuccessStatusCode)
                 {
                     return responseText;
@@ -69,11 +69,11 @@ namespace Adyen.HttpClient
 
         public string Post(string endpoint, Dictionary<string, string> postParameters)
         {
-            var dictToString = QueryString(postParameters);
+            string dictToString = QueryString(postParameters);
 
-            var content = new StringContent(dictToString, _encoding, "application/x-www-form-urlencoded");
-            using (var request = new HttpRequestMessage(HttpMethod.Post, endpoint) {Content = content})
-            using (var response = _httpClient.SendAsync(request).GetAwaiter().GetResult())
+            StringContent content = new StringContent(dictToString, _encoding, "application/x-www-form-urlencoded");
+            using (HttpRequestMessage request = new HttpRequestMessage(HttpMethod.Post, endpoint) {Content = content})
+            using (HttpResponseMessage response = _httpClient.SendAsync(request).GetAwaiter().GetResult())
             {
                 response.EnsureSuccessStatusCode();
                 return response.Content.ReadAsStringAsync().GetAwaiter().GetResult();
@@ -84,10 +84,10 @@ namespace Adyen.HttpClient
         {   
             if (httpMethod == null) {httpMethod = HttpMethod.Post;}
             
-            var httpWebRequest = new HttpRequestMessage(httpMethod, endpoint);
+            HttpRequestMessage httpWebRequest = new HttpRequestMessage(httpMethod, endpoint);
             
             // Custom patch method for dotnet <2.1
-            var patchMethod = new HttpMethod("PATCH");
+            HttpMethod patchMethod = new HttpMethod("PATCH");
             
             if (httpMethod == HttpMethod.Post || httpMethod == patchMethod)
             {
@@ -110,9 +110,9 @@ namespace Adyen.HttpClient
             }
             else if (_config.HasPassword)
             {
-                var authString = _config.Username + ":" + _config.Password;
-                var bytes = Encoding.UTF8.GetBytes(authString);
-                var credentials = Convert.ToBase64String(bytes);
+                string authString = _config.Username + ":" + _config.Password;
+                byte[] bytes = Encoding.UTF8.GetBytes(authString);
+                string credentials = Convert.ToBase64String(bytes);
                 httpWebRequest.Headers.Add("Authorization", "Basic " + credentials);
             }
 
@@ -121,8 +121,8 @@ namespace Adyen.HttpClient
 
         private static string QueryString(IDictionary<string, string> dict)
         {
-            var stringBuilder = new StringBuilder();
-            foreach (var item in dict)
+            StringBuilder stringBuilder = new StringBuilder();
+            foreach (KeyValuePair<string, string> item in dict)
             {
                 stringBuilder.Append(item.Key);
                 stringBuilder.Append('=');

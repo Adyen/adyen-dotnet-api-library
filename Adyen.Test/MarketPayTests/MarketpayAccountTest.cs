@@ -37,10 +37,10 @@ namespace Adyen.Test.MarketPayTest
         [TestMethod]
         public void TestCloseAccountSuccess()
         {
-            var client = CreateMockTestClientNullRequiredFieldsRequest("Mocks/marketpay/account/close-account-success.json");
-            var account = new Account(client);
-            var closeAccountRequest = new CloseAccountRequest(accountCode: "123456");
-            var closeAccountResponse = account.CloseAccount(closeAccountRequest);
+            Client client = CreateMockTestClientNullRequiredFieldsRequest("Mocks/marketpay/account/close-account-success.json");
+            Account account = new Account(client);
+            CloseAccountRequest closeAccountRequest = new CloseAccountRequest(accountCode: "123456");
+            CloseAccountResponse closeAccountResponse = account.CloseAccount(closeAccountRequest);
             Assert.IsNotNull(closeAccountResponse);
             Assert.AreEqual(closeAccountResponse.PspReference, "8515810799236011");
             Assert.AreEqual(closeAccountResponse.Status,CloseAccountResponse.StatusEnum.Closed);
@@ -52,10 +52,10 @@ namespace Adyen.Test.MarketPayTest
         [TestMethod]
         public void TestCloseAccountSuccessAsync()
         {
-          var client = CreateMockTestClientNullRequiredFieldsRequest("Mocks/marketpay/account/close-account-success.json");
-          var account = new Account(client);
-          var closeAccountRequest = new CloseAccountRequest(accountCode: "123456");
-          var closeAccountResponse = account.CloseAccountAsync(closeAccountRequest).Result;
+          Client client = CreateMockTestClientNullRequiredFieldsRequest("Mocks/marketpay/account/close-account-success.json");
+          Account account = new Account(client);
+          CloseAccountRequest closeAccountRequest = new CloseAccountRequest(accountCode: "123456");
+          CloseAccountResponse closeAccountResponse = account.CloseAccountAsync(closeAccountRequest).Result;
           Assert.IsNotNull(closeAccountResponse);
           Assert.AreEqual(closeAccountResponse.PspReference, "8515810799236011");
           Assert.AreEqual(closeAccountResponse.Status, CloseAccountResponse.StatusEnum.Closed);
@@ -67,10 +67,10 @@ namespace Adyen.Test.MarketPayTest
         [TestMethod]
         public void TestCloseAccountHolderSuccess()
         {
-            var client = CreateMockTestClientNullRequiredFieldsRequest("Mocks/marketpay/account/close-account-holder-success.json");
-            var account = new Account(client);
-            var closeAccountHolderRequest = new CloseAccountHolderRequest(accountHolderCode: "123456");
-            var closeAccountHolderResponse = account.CloseAccountHolder(closeAccountHolderRequest);
+            Client client = CreateMockTestClientNullRequiredFieldsRequest("Mocks/marketpay/account/close-account-holder-success.json");
+            Account account = new Account(client);
+            CloseAccountHolderRequest closeAccountHolderRequest = new CloseAccountHolderRequest(accountHolderCode: "123456");
+            CloseAccountHolderResponse closeAccountHolderResponse = account.CloseAccountHolder(closeAccountHolderRequest);
             Assert.IsNotNull(closeAccountHolderResponse);
             Assert.AreEqual(closeAccountHolderResponse.PspReference, "8515810799236011");
             Assert.IsNotNull(closeAccountHolderResponse);
@@ -89,10 +89,10 @@ namespace Adyen.Test.MarketPayTest
         [TestMethod]
         public void TestCloseAccountHolderSuccessAsync()
         {
-            var client = CreateMockTestClientNullRequiredFieldsRequest("Mocks/marketpay/account/close-account-holder-success.json");
-            var account = new Account(client);
-            var closeAccountHolderRequest = new CloseAccountHolderRequest(accountHolderCode: "123456");
-            var closeAccountHolderResponse = account.CloseAccountHolderAsync(closeAccountHolderRequest).Result;
+            Client client = CreateMockTestClientNullRequiredFieldsRequest("Mocks/marketpay/account/close-account-holder-success.json");
+            Account account = new Account(client);
+            CloseAccountHolderRequest closeAccountHolderRequest = new CloseAccountHolderRequest(accountHolderCode: "123456");
+            CloseAccountHolderResponse closeAccountHolderResponse = account.CloseAccountHolderAsync(closeAccountHolderRequest).Result;
             Assert.IsNotNull(closeAccountHolderResponse);
             Assert.AreEqual(closeAccountHolderResponse.PspReference, "8515810799236011");
             Assert.IsNotNull(closeAccountHolderResponse);
@@ -111,10 +111,10 @@ namespace Adyen.Test.MarketPayTest
         [TestMethod]
         public void TestCreateAccountSuccess()
         {
-            var client = CreateMockTestClientNullRequiredFieldsRequest("Mocks/marketpay/account/create-account-success.json");
-            var account = new Account(client);
-            var createAccountRequest = new CreateAccountRequest(accountHolderCode: "123456");
-            var createAccountResponse = account.CreateAccount(createAccountRequest);
+            Client client = CreateMockTestClientNullRequiredFieldsRequest("Mocks/marketpay/account/create-account-success.json");
+            Account account = new Account(client);
+            CreateAccountRequest createAccountRequest = new CreateAccountRequest(accountHolderCode: "123456");
+            CreateAccountResponse createAccountResponse = account.CreateAccount(createAccountRequest);
             Assert.AreEqual(createAccountResponse.PspReference, "9914913130220156");
             Assert.AreEqual(createAccountResponse.Status, CreateAccountResponse.StatusEnum.Active);
             Assert.AreEqual(createAccountResponse.AccountHolderCode, "TestAccountHolder5691");
@@ -127,10 +127,10 @@ namespace Adyen.Test.MarketPayTest
         [TestMethod]
         public void TestCreateAccountSuccessAsync()
         {
-            var client = CreateMockTestClientNullRequiredFieldsRequest("Mocks/marketpay/account/create-account-success.json");
-            var account = new Account(client);
-            var createAccountRequest = new CreateAccountRequest(accountHolderCode: "123456");
-            var createAccountResponse = account.CreateAccountAsync(createAccountRequest).Result;
+            Client client = CreateMockTestClientNullRequiredFieldsRequest("Mocks/marketpay/account/create-account-success.json");
+            Account account = new Account(client);
+            CreateAccountRequest createAccountRequest = new CreateAccountRequest(accountHolderCode: "123456");
+            CreateAccountResponse createAccountResponse = account.CreateAccountAsync(createAccountRequest).Result;
             Assert.AreEqual(createAccountResponse.PspReference, "9914913130220156");
             Assert.AreEqual(createAccountResponse.Status, CreateAccountResponse.StatusEnum.Active);
             Assert.AreEqual(createAccountResponse.AccountHolderCode, "TestAccountHolder5691");
@@ -143,10 +143,10 @@ namespace Adyen.Test.MarketPayTest
         [TestMethod]
         public void TestCreateAccountHolderSuccess()
         {
-            var client = CreateMockTestClientNullRequiredFieldsRequest("Mocks/marketpay/account/create-account-holder-success.json");
-            var account = new Account(client);
-            var createAccountHolderRequest = new CreateAccountHolderRequest(accountHolderCode: "123456", accountHolderDetails: new AccountHolderDetails(email: "test@test.com", fullPhoneNumber: "123456789", webAddress: "webaddress"));
-            var createAccountHolderResponse = account.CreateAccountHolder(createAccountHolderRequest);
+            Client client = CreateMockTestClientNullRequiredFieldsRequest("Mocks/marketpay/account/create-account-holder-success.json");
+            Account account = new Account(client);
+            CreateAccountHolderRequest createAccountHolderRequest = new CreateAccountHolderRequest(accountHolderCode: "123456", accountHolderDetails: new AccountHolderDetails(email: "test@test.com", fullPhoneNumber: "123456789", webAddress: "webaddress"));
+            CreateAccountHolderResponse createAccountHolderResponse = account.CreateAccountHolder(createAccountHolderRequest);
             Assert.AreEqual(createAccountHolderResponse.PspReference, "8815810875863517");
             Assert.AreEqual(createAccountHolderResponse.AccountCode, "8815810875863525");
             Assert.AreEqual(createAccountHolderResponse.AccountHolderCode, "97112729718522222");
@@ -171,10 +171,10 @@ namespace Adyen.Test.MarketPayTest
         [TestMethod]
         public void TestCreateAccountHolderSuccessAsync()
         {
-            var client = CreateMockTestClientNullRequiredFieldsRequest("Mocks/marketpay/account/create-account-holder-success.json");
-            var account = new Account(client);
-            var createAccountHolderRequest = new CreateAccountHolderRequest(accountHolderCode: "123456", accountHolderDetails: new AccountHolderDetails(email: "test@test.com", fullPhoneNumber: "123456789", webAddress: "webaddress"));
-            var createAccountHolderResponse = account.CreateAccountHolderAsync(createAccountHolderRequest).Result;
+            Client client = CreateMockTestClientNullRequiredFieldsRequest("Mocks/marketpay/account/create-account-holder-success.json");
+            Account account = new Account(client);
+            CreateAccountHolderRequest createAccountHolderRequest = new CreateAccountHolderRequest(accountHolderCode: "123456", accountHolderDetails: new AccountHolderDetails(email: "test@test.com", fullPhoneNumber: "123456789", webAddress: "webaddress"));
+            CreateAccountHolderResponse createAccountHolderResponse = account.CreateAccountHolderAsync(createAccountHolderRequest).Result;
             Assert.AreEqual(createAccountHolderResponse.PspReference, "8815810875863517");
             Assert.AreEqual(createAccountHolderResponse.AccountCode, "8815810875863525");
             Assert.AreEqual(createAccountHolderResponse.AccountHolderCode, "97112729718522222");
@@ -199,10 +199,10 @@ namespace Adyen.Test.MarketPayTest
         [TestMethod]
         public void TestCreateAccountHolderError()
         {
-            var client = CreateMockTestClientNullRequiredFieldsRequest("Mocks/marketpay/account/create-account-holder-error-invalid-fields.json");
-            var account = new Account(client);
-            var createAccountHolderRequest = new CreateAccountHolderRequest(accountHolderCode: "123456", accountHolderDetails: new AccountHolderDetails(email: "test@test.com", fullPhoneNumber: "123456789", webAddress: "webaddress"));
-            var createAccountHolderResponse = account.CreateAccountHolder(createAccountHolderRequest);
+            Client client = CreateMockTestClientNullRequiredFieldsRequest("Mocks/marketpay/account/create-account-holder-error-invalid-fields.json");
+            Account account = new Account(client);
+            CreateAccountHolderRequest createAccountHolderRequest = new CreateAccountHolderRequest(accountHolderCode: "123456", accountHolderDetails: new AccountHolderDetails(email: "test@test.com", fullPhoneNumber: "123456789", webAddress: "webaddress"));
+            CreateAccountHolderResponse createAccountHolderResponse = account.CreateAccountHolder(createAccountHolderRequest);
             Assert.AreEqual(createAccountHolderResponse.PspReference, "8815813233102537");
             Assert.IsNotNull(createAccountHolderResponse.InvalidFields);
             Assert.AreEqual(createAccountHolderResponse.InvalidFields[0].ErrorCode, 28);
@@ -216,10 +216,10 @@ namespace Adyen.Test.MarketPayTest
         [TestMethod]
         public void TestCreateAccountHolderErrorAsync()
         {
-            var client = CreateMockTestClientNullRequiredFieldsRequest("Mocks/marketpay/account/create-account-holder-error-invalid-fields.json");
-            var account = new Account(client);
-            var createAccountHolderRequest = new CreateAccountHolderRequest(accountHolderCode: "123456", accountHolderDetails: new AccountHolderDetails(email: "test@test.com", fullPhoneNumber: "123456789", webAddress: "webaddress"));
-            var createAccountHolderResponse = account.CreateAccountHolderAsync(createAccountHolderRequest).Result;
+            Client client = CreateMockTestClientNullRequiredFieldsRequest("Mocks/marketpay/account/create-account-holder-error-invalid-fields.json");
+            Account account = new Account(client);
+            CreateAccountHolderRequest createAccountHolderRequest = new CreateAccountHolderRequest(accountHolderCode: "123456", accountHolderDetails: new AccountHolderDetails(email: "test@test.com", fullPhoneNumber: "123456789", webAddress: "webaddress"));
+            CreateAccountHolderResponse createAccountHolderResponse = account.CreateAccountHolderAsync(createAccountHolderRequest).Result;
             Assert.AreEqual(createAccountHolderResponse.PspReference, "8815813233102537");
             Assert.IsNotNull(createAccountHolderResponse.InvalidFields);
             Assert.AreEqual(createAccountHolderResponse.InvalidFields[0].ErrorCode, 28);
@@ -233,10 +233,10 @@ namespace Adyen.Test.MarketPayTest
         [TestMethod]
         public void TestDeleteBankAccountSuccess()
         {
-            var client = CreateMockTestClientNullRequiredFieldsRequest("Mocks/marketpay/account/delete-bank-account-success.json");
-            var account = new Account(client);
-            var deleteAccountSuccessRequest = new DeleteBankAccountRequest(accountHolderCode: "123456", bankAccountUUIDs: new List<string>());
-            var deleteAccountSuccessResponse = account.DeleteBankAccount(deleteAccountSuccessRequest);
+            Client client = CreateMockTestClientNullRequiredFieldsRequest("Mocks/marketpay/account/delete-bank-account-success.json");
+            Account account = new Account(client);
+            DeleteBankAccountRequest deleteAccountSuccessRequest = new DeleteBankAccountRequest(accountHolderCode: "123456", bankAccountUUIDs: new List<string>());
+            GenericResponse deleteAccountSuccessResponse = account.DeleteBankAccount(deleteAccountSuccessRequest);
             Assert.AreEqual(deleteAccountSuccessResponse.PspReference, "9914694372670551");
         }
 
@@ -246,10 +246,10 @@ namespace Adyen.Test.MarketPayTest
         [TestMethod]
         public void TestDeleteBankAccountSuccessAsync()
         {
-            var client = CreateMockTestClientNullRequiredFieldsRequest("Mocks/marketpay/account/delete-bank-account-success.json");
-            var account = new Account(client);
-            var deleteAccountSuccessRequest = new DeleteBankAccountRequest(accountHolderCode: "123456", bankAccountUUIDs: new List<string>());
-            var deleteAccountSuccessResponse = account.DeleteBankAccountAsync(deleteAccountSuccessRequest).Result;
+            Client client = CreateMockTestClientNullRequiredFieldsRequest("Mocks/marketpay/account/delete-bank-account-success.json");
+            Account account = new Account(client);
+            DeleteBankAccountRequest deleteAccountSuccessRequest = new DeleteBankAccountRequest(accountHolderCode: "123456", bankAccountUUIDs: new List<string>());
+            GenericResponse deleteAccountSuccessResponse = account.DeleteBankAccountAsync(deleteAccountSuccessRequest).Result;
             Assert.AreEqual(deleteAccountSuccessResponse.PspReference, "9914694372670551");
         }
 
@@ -259,10 +259,10 @@ namespace Adyen.Test.MarketPayTest
         [TestMethod]
         public void TestDeleteShareholderSuccess()
         {
-            var client = CreateMockTestClientNullRequiredFieldsRequest("Mocks/marketpay/account/delete-shareholder-success.json");
-            var account = new Account(client);
-            var deleteShareholderRequest = new DeleteShareholderRequest(accountHolderCode: "123456", shareholderCodes: new List<string>());
-            var deleteShareholderResponse = account.DeleteShareHolder(deleteShareholderRequest);
+            Client client = CreateMockTestClientNullRequiredFieldsRequest("Mocks/marketpay/account/delete-shareholder-success.json");
+            Account account = new Account(client);
+            DeleteShareholderRequest deleteShareholderRequest = new DeleteShareholderRequest(accountHolderCode: "123456", shareholderCodes: new List<string>());
+            GenericResponse deleteShareholderResponse = account.DeleteShareHolder(deleteShareholderRequest);
             Assert.AreEqual(deleteShareholderResponse.PspReference, "9914694372990637");
         }
 
@@ -272,10 +272,10 @@ namespace Adyen.Test.MarketPayTest
         [TestMethod]
         public void TestDeleteShareholderSuccessAsync()
         {
-            var client = CreateMockTestClientNullRequiredFieldsRequest("Mocks/marketpay/account/delete-shareholder-success.json");
-            var account = new Account(client);
-            var deleteShareholderRequest = new DeleteShareholderRequest(accountHolderCode: "123456", shareholderCodes: new List<string>());
-            var deleteShareholderResponse = account.DeleteShareHolderAsync(deleteShareholderRequest).Result;
+            Client client = CreateMockTestClientNullRequiredFieldsRequest("Mocks/marketpay/account/delete-shareholder-success.json");
+            Account account = new Account(client);
+            DeleteShareholderRequest deleteShareholderRequest = new DeleteShareholderRequest(accountHolderCode: "123456", shareholderCodes: new List<string>());
+            GenericResponse deleteShareholderResponse = account.DeleteShareHolderAsync(deleteShareholderRequest).Result;
             Assert.AreEqual(deleteShareholderResponse.PspReference, "9914694372990637");
         }
 
@@ -285,10 +285,10 @@ namespace Adyen.Test.MarketPayTest
         [TestMethod]
         public void TestGetAccountHolders()
         {
-            var client = CreateMockTestClientNullRequiredFieldsRequest("Mocks/marketpay/account/get-account-holder-success.json");
-            var account = new Account(client);
-            var getAccountHolderRequest = new GetAccountHolderRequest(accountHolderCode: "123456");
-            var getAccountHolderResponse = account.GetAccountHolder(getAccountHolderRequest);
+            Client client = CreateMockTestClientNullRequiredFieldsRequest("Mocks/marketpay/account/get-account-holder-success.json");
+            Account account = new Account(client);
+            GetAccountHolderRequest getAccountHolderRequest = new GetAccountHolderRequest(accountHolderCode: "123456");
+            GetAccountHolderResponse getAccountHolderResponse = account.GetAccountHolder(getAccountHolderRequest);
             Assert.AreEqual(getAccountHolderResponse.PspReference, "8515813355311349");
             Assert.AreEqual(getAccountHolderResponse.AccountHolderCode, "8515843355311359");
             Assert.AreEqual(getAccountHolderResponse.AccountHolderDetails.Email, "test@test.com");
@@ -323,10 +323,10 @@ namespace Adyen.Test.MarketPayTest
         [TestMethod]
         public void TestGetAccountHoldersAsync()
         {
-            var client = CreateMockTestClientNullRequiredFieldsRequest("Mocks/marketpay/account/get-account-holder-success.json");
-            var account = new Account(client);
-            var getAccountHolderRequest = new GetAccountHolderRequest(accountHolderCode: "123456");
-            var getAccountHolderResponse = account.GetAccountHolderAsync(getAccountHolderRequest).Result;
+            Client client = CreateMockTestClientNullRequiredFieldsRequest("Mocks/marketpay/account/get-account-holder-success.json");
+            Account account = new Account(client);
+            GetAccountHolderRequest getAccountHolderRequest = new GetAccountHolderRequest(accountHolderCode: "123456");
+            GetAccountHolderResponse getAccountHolderResponse = account.GetAccountHolderAsync(getAccountHolderRequest).Result;
             Assert.AreEqual(getAccountHolderResponse.PspReference, "8515813355311349");
             Assert.AreEqual(getAccountHolderResponse.AccountHolderCode, "8515843355311359");
             Assert.AreEqual(getAccountHolderResponse.AccountHolderDetails.Email, "test@test.com");
@@ -360,10 +360,10 @@ namespace Adyen.Test.MarketPayTest
         [TestMethod]
         public void TestGetUploadedDocumentsSuccess()
         {
-            var client = CreateMockTestClientNullRequiredFieldsRequest("Mocks/marketpay/account/get-uploaded-documents-success.json");
-            var account = new Account(client);
-            var getUploadedDocumentsRequest = new GetUploadedDocumentsRequest(accountHolderCode: "123456");
-            var getUploadedDocumentsResponse = account.GetUploadedDocuments(getUploadedDocumentsRequest);
+            Client client = CreateMockTestClientNullRequiredFieldsRequest("Mocks/marketpay/account/get-uploaded-documents-success.json");
+            Account account = new Account(client);
+            GetUploadedDocumentsRequest getUploadedDocumentsRequest = new GetUploadedDocumentsRequest(accountHolderCode: "123456");
+            GetUploadedDocumentsResponse getUploadedDocumentsResponse = account.GetUploadedDocuments(getUploadedDocumentsRequest);
             Assert.AreEqual(getUploadedDocumentsResponse.PspReference, "9914694369860322");
             Assert.AreEqual(getUploadedDocumentsResponse.DocumentDetails[0].AccountHolderCode, "TestAccountHolder8031");
             Assert.AreEqual(getUploadedDocumentsResponse.DocumentDetails[0].BankAccountUUID, "EXAMPLE_UUID");
@@ -378,10 +378,10 @@ namespace Adyen.Test.MarketPayTest
         [TestMethod]
         public void TestGetUploadedDocumentsSuccessAsync()
         {
-            var client = CreateMockTestClientNullRequiredFieldsRequest("Mocks/marketpay/account/get-uploaded-documents-success.json");
-            var account = new Account(client);
-            var getUploadedDocumentsRequest = new GetUploadedDocumentsRequest(accountHolderCode: "123456");
-            var getUploadedDocumentsResponse = account.GetUploadedDocumentsAsync(getUploadedDocumentsRequest).Result;
+            Client client = CreateMockTestClientNullRequiredFieldsRequest("Mocks/marketpay/account/get-uploaded-documents-success.json");
+            Account account = new Account(client);
+            GetUploadedDocumentsRequest getUploadedDocumentsRequest = new GetUploadedDocumentsRequest(accountHolderCode: "123456");
+            GetUploadedDocumentsResponse getUploadedDocumentsResponse = account.GetUploadedDocumentsAsync(getUploadedDocumentsRequest).Result;
             Assert.AreEqual(getUploadedDocumentsResponse.PspReference, "9914694369860322");
             Assert.AreEqual(getUploadedDocumentsResponse.DocumentDetails[0].AccountHolderCode, "TestAccountHolder8031");
             Assert.AreEqual(getUploadedDocumentsResponse.DocumentDetails[0].BankAccountUUID, "EXAMPLE_UUID");
@@ -396,10 +396,10 @@ namespace Adyen.Test.MarketPayTest
         [TestMethod]
         public void TestSuspendAccountHolderSuccess()
         {
-            var client = CreateMockTestClientNullRequiredFieldsRequest("Mocks/marketpay/account/suspend-account-holder-success.json");
-            var account = new Account(client);
-            var suspendAccountHolderRequest = new SuspendAccountHolderRequest(accountHolderCode: "123456");
-            var suspendAccountHolderResponse = account.SuspendAccountHolder(suspendAccountHolderRequest);
+            Client client = CreateMockTestClientNullRequiredFieldsRequest("Mocks/marketpay/account/suspend-account-holder-success.json");
+            Account account = new Account(client);
+            SuspendAccountHolderRequest suspendAccountHolderRequest = new SuspendAccountHolderRequest(accountHolderCode: "123456");
+            SuspendAccountHolderResponse suspendAccountHolderResponse = account.SuspendAccountHolder(suspendAccountHolderRequest);
             Assert.AreEqual(suspendAccountHolderResponse.PspReference, "8515813523937793");
             Assert.AreEqual(suspendAccountHolderResponse.AccountHolderStatus.Status, AccountHolderStatus.StatusEnum.Suspended);
             Assert.AreEqual(suspendAccountHolderResponse.AccountHolderStatus.PayoutState.AllowPayout, false);
@@ -413,10 +413,10 @@ namespace Adyen.Test.MarketPayTest
         [TestMethod]
         public void TestSuspendAccountHolderSuccessAsync()
         {
-            var client = CreateMockTestClientNullRequiredFieldsRequest("Mocks/marketpay/account/suspend-account-holder-success.json");
-            var account = new Account(client);
-            var suspendAccountHolderRequest = new SuspendAccountHolderRequest(accountHolderCode: "123456");
-            var suspendAccountHolderResponse = account.SuspendAccountHolderAsync(suspendAccountHolderRequest).Result;
+            Client client = CreateMockTestClientNullRequiredFieldsRequest("Mocks/marketpay/account/suspend-account-holder-success.json");
+            Account account = new Account(client);
+            SuspendAccountHolderRequest suspendAccountHolderRequest = new SuspendAccountHolderRequest(accountHolderCode: "123456");
+            SuspendAccountHolderResponse suspendAccountHolderResponse = account.SuspendAccountHolderAsync(suspendAccountHolderRequest).Result;
             Assert.AreEqual(suspendAccountHolderResponse.PspReference, "8515813523937793");
             Assert.AreEqual(suspendAccountHolderResponse.AccountHolderStatus.Status, AccountHolderStatus.StatusEnum.Suspended);
             Assert.AreEqual(suspendAccountHolderResponse.AccountHolderStatus.PayoutState.AllowPayout, false);
@@ -429,10 +429,10 @@ namespace Adyen.Test.MarketPayTest
         [TestMethod]
         public void TestUnSuspendAccountHolderSuccess()
         {
-            var client = CreateMockTestClientNullRequiredFieldsRequest("Mocks/marketpay/account/un-suspend-account-holder-success.json");
-            var account = new Account(client);
-            var unSuspendAccountHolderRequest = new UnSuspendAccountHolderRequest(accountHolderCode: "123456");
-            var unSuspendAccountHolderResponse = account.UnSuspendAccountHolder(unSuspendAccountHolderRequest);
+            Client client = CreateMockTestClientNullRequiredFieldsRequest("Mocks/marketpay/account/un-suspend-account-holder-success.json");
+            Account account = new Account(client);
+            UnSuspendAccountHolderRequest unSuspendAccountHolderRequest = new UnSuspendAccountHolderRequest(accountHolderCode: "123456");
+            UnSuspendAccountHolderResponse unSuspendAccountHolderResponse = account.UnSuspendAccountHolder(unSuspendAccountHolderRequest);
             Assert.AreEqual(unSuspendAccountHolderResponse.PspReference, "8815813528286482");
             Assert.AreEqual(unSuspendAccountHolderResponse.AccountHolderStatus.Status, AccountHolderStatus.StatusEnum.Active);
             Assert.AreEqual(unSuspendAccountHolderResponse.AccountHolderStatus.PayoutState.AllowPayout, false);
@@ -445,10 +445,10 @@ namespace Adyen.Test.MarketPayTest
         [TestMethod]
         public void TestUnSuspendAccountHolderSuccessAsync()
         {
-            var client = CreateMockTestClientNullRequiredFieldsRequest("Mocks/marketpay/account/un-suspend-account-holder-success.json");
-            var account = new Account(client);
-            var unSuspendAccountHolderRequest = new UnSuspendAccountHolderRequest(accountHolderCode: "123456");
-            var unSuspendAccountHolderResponse = account.UnSuspendAccountHolderAsync(unSuspendAccountHolderRequest).Result;
+            Client client = CreateMockTestClientNullRequiredFieldsRequest("Mocks/marketpay/account/un-suspend-account-holder-success.json");
+            Account account = new Account(client);
+            UnSuspendAccountHolderRequest unSuspendAccountHolderRequest = new UnSuspendAccountHolderRequest(accountHolderCode: "123456");
+            UnSuspendAccountHolderResponse unSuspendAccountHolderResponse = account.UnSuspendAccountHolderAsync(unSuspendAccountHolderRequest).Result;
             Assert.AreEqual(unSuspendAccountHolderResponse.PspReference, "8815813528286482");
             Assert.AreEqual(unSuspendAccountHolderResponse.AccountHolderStatus.Status, AccountHolderStatus.StatusEnum.Active);
             Assert.AreEqual(unSuspendAccountHolderResponse.AccountHolderStatus.PayoutState.AllowPayout, false);
@@ -461,10 +461,10 @@ namespace Adyen.Test.MarketPayTest
         [TestMethod]
         public void TestUpdateAccountSuccess()
         {
-            var client = CreateMockTestClientNullRequiredFieldsRequest("Mocks/marketpay/account/update-account-success.json");
-            var account = new Account(client);
-            var updateAccountRequest = new UpdateAccountRequest(accountCode: "123456");
-            var updateAccountResponse = account.UpdateAccount(updateAccountRequest);
+            Client client = CreateMockTestClientNullRequiredFieldsRequest("Mocks/marketpay/account/update-account-success.json");
+            Account account = new Account(client);
+            UpdateAccountRequest updateAccountRequest = new UpdateAccountRequest(accountCode: "123456");
+            UpdateAccountResponse updateAccountResponse = account.UpdateAccount(updateAccountRequest);
             Assert.AreEqual(updateAccountResponse.PspReference, "9914860311411119");
             Assert.AreEqual(updateAccountResponse.AccountCode, "198360329231");
             Assert.AreEqual(updateAccountResponse.PayoutSchedule.Schedule, PayoutScheduleResponse.ScheduleEnum.WEEKLY);
@@ -477,10 +477,10 @@ namespace Adyen.Test.MarketPayTest
         [TestMethod]
         public void TestUpdateAccountSuccessAsync()
         {
-            var client = CreateMockTestClientNullRequiredFieldsRequest("Mocks/marketpay/account/update-account-success.json");
-            var account = new Account(client);
-            var updateAccountRequest = new UpdateAccountRequest(accountCode: "123456");
-            var updateAccountResponse = account.UpdateAccountAsync(updateAccountRequest).Result;
+            Client client = CreateMockTestClientNullRequiredFieldsRequest("Mocks/marketpay/account/update-account-success.json");
+            Account account = new Account(client);
+            UpdateAccountRequest updateAccountRequest = new UpdateAccountRequest(accountCode: "123456");
+            UpdateAccountResponse updateAccountResponse = account.UpdateAccountAsync(updateAccountRequest).Result;
             Assert.AreEqual(updateAccountResponse.PspReference, "9914860311411119");
             Assert.AreEqual(updateAccountResponse.AccountCode, "198360329231");
             Assert.AreEqual(updateAccountResponse.PayoutSchedule.Schedule, PayoutScheduleResponse.ScheduleEnum.WEEKLY);
@@ -492,10 +492,10 @@ namespace Adyen.Test.MarketPayTest
         [TestMethod]
         public void TestUpdateAccountHolderSuccess()
         {
-            var client = CreateMockTestClientNullRequiredFieldsRequest("Mocks/marketpay/account/update-account-holder-success.json");
-            var account = new Account(client);
-            var updateAccountHolderRequest = new UpdateAccountHolderRequest(accountHolderCode: "123456");
-            var updateAccountHolderResponse = account.UpdateAccountHolder(updateAccountHolderRequest);
+            Client client = CreateMockTestClientNullRequiredFieldsRequest("Mocks/marketpay/account/update-account-holder-success.json");
+            Account account = new Account(client);
+            UpdateAccountHolderRequest updateAccountHolderRequest = new UpdateAccountHolderRequest(accountHolderCode: "123456");
+            UpdateAccountHolderResponse updateAccountHolderResponse = account.UpdateAccountHolder(updateAccountHolderRequest);
             Assert.AreEqual(updateAccountHolderResponse.PspReference, "8515813355311349");
             Assert.AreEqual(updateAccountHolderResponse.AccountHolderCode, "8515843355311359");
             Assert.AreEqual(updateAccountHolderResponse.AccountHolderDetails.Email, "test@test.com");
@@ -521,10 +521,10 @@ namespace Adyen.Test.MarketPayTest
         [TestMethod]
         public void TestUpdateAccountHolderSuccessAsync()
         {
-            var client = CreateMockTestClientNullRequiredFieldsRequest("Mocks/marketpay/account/update-account-holder-success.json");
-            var account = new Account(client);
-            var updateAccountHolderRequest = new UpdateAccountHolderRequest(accountHolderCode: "123456");
-            var updateAccountHolderResponse = account.UpdateAccountHolderAsync(updateAccountHolderRequest).Result;
+            Client client = CreateMockTestClientNullRequiredFieldsRequest("Mocks/marketpay/account/update-account-holder-success.json");
+            Account account = new Account(client);
+            UpdateAccountHolderRequest updateAccountHolderRequest = new UpdateAccountHolderRequest(accountHolderCode: "123456");
+            UpdateAccountHolderResponse updateAccountHolderResponse = account.UpdateAccountHolderAsync(updateAccountHolderRequest).Result;
             Assert.AreEqual(updateAccountHolderResponse.PspReference, "8515813355311349");
             Assert.AreEqual(updateAccountHolderResponse.AccountHolderCode, "8515843355311359");
             Assert.AreEqual(updateAccountHolderResponse.AccountHolderDetails.Email, "test@test.com");
@@ -549,10 +549,10 @@ namespace Adyen.Test.MarketPayTest
         [TestMethod]
         public void TestUpdateAccountHolderStateSuccess()
         {
-            var client = CreateMockTestClientNullRequiredFieldsRequest("Mocks/marketpay/account/update-account-holder-state-success.json");
-            var account = new Account(client);
-            var updateAccountHolderStateRequest = new UpdateAccountHolderStateRequest(accountHolderCode: "123456", reason: "test reason payout", stateType: UpdateAccountHolderStateRequest.StateTypeEnum.Payout, disable: false);
-            var updateAccountHolderStateResponse = account.UpdateAccountHolderState(updateAccountHolderStateRequest);
+            Client client = CreateMockTestClientNullRequiredFieldsRequest("Mocks/marketpay/account/update-account-holder-state-success.json");
+            Account account = new Account(client);
+            UpdateAccountHolderStateRequest updateAccountHolderStateRequest = new UpdateAccountHolderStateRequest(accountHolderCode: "123456", reason: "test reason payout", stateType: UpdateAccountHolderStateRequest.StateTypeEnum.Payout, disable: false);
+            GetAccountHolderStatusResponse updateAccountHolderStateResponse = account.UpdateAccountHolderState(updateAccountHolderStateRequest);
             Assert.AreEqual(updateAccountHolderStateResponse.PspReference, "8515813355311349");
             Assert.AreEqual(updateAccountHolderStateResponse.AccountHolderCode, "8515843355311359");
             Assert.AreEqual(updateAccountHolderStateResponse.AccountHolderStatus.Status,
@@ -573,10 +573,10 @@ namespace Adyen.Test.MarketPayTest
         [TestMethod]
         public void TestUpdateAccountHolderStateSuccessAsync()
         {
-            var client = CreateMockTestClientNullRequiredFieldsRequest("Mocks/marketpay/account/update-account-holder-state-success.json");
-            var account = new Account(client);
-            var updateAccountHolderStateRequest = new UpdateAccountHolderStateRequest(accountHolderCode: "123456", reason: "test reason payout", stateType: UpdateAccountHolderStateRequest.StateTypeEnum.Payout, disable: false);
-            var updateAccountHolderStateResponse = account.UpdateAccountHolderStateAsync(updateAccountHolderStateRequest).GetAwaiter().GetResult();
+            Client client = CreateMockTestClientNullRequiredFieldsRequest("Mocks/marketpay/account/update-account-holder-state-success.json");
+            Account account = new Account(client);
+            UpdateAccountHolderStateRequest updateAccountHolderStateRequest = new UpdateAccountHolderStateRequest(accountHolderCode: "123456", reason: "test reason payout", stateType: UpdateAccountHolderStateRequest.StateTypeEnum.Payout, disable: false);
+            GetAccountHolderStatusResponse updateAccountHolderStateResponse = account.UpdateAccountHolderStateAsync(updateAccountHolderStateRequest).GetAwaiter().GetResult();
             Assert.AreEqual(updateAccountHolderStateResponse.PspReference, "8515813355311349");
             Assert.AreEqual(updateAccountHolderStateResponse.AccountHolderCode, "8515843355311359");
             Assert.AreEqual(updateAccountHolderStateResponse.AccountHolderStatus.Status,
@@ -596,11 +596,11 @@ namespace Adyen.Test.MarketPayTest
         [TestMethod]
         public void TestUpdateDocumentSuccess()
         {
-            var client = CreateMockTestClientNullRequiredFieldsRequest("Mocks/marketpay/account/upload-document-success.json");
-            var account = new Account(client);
-            var documentDetail = new DocumentDetail(accountHolderCode: "123456", filename: "stament.pdf", bankAccountUUID: "aaaaaaaa-7863-f943-4e3s-ffffffff", documentType: DocumentDetail.DocumentTypeEnum.BANKSTATEMENT);          
-            var uploadDocumentRequest = new UploadDocumentRequest(documentDetail:documentDetail,documentContent:new byte[1000]);
-            var uploadDocumentResponse = account.UploadDocument(uploadDocumentRequest);
+            Client client = CreateMockTestClientNullRequiredFieldsRequest("Mocks/marketpay/account/upload-document-success.json");
+            Account account = new Account(client);
+            DocumentDetail documentDetail = new DocumentDetail(accountHolderCode: "123456", filename: "stament.pdf", bankAccountUUID: "aaaaaaaa-7863-f943-4e3s-ffffffff", documentType: DocumentDetail.DocumentTypeEnum.BANKSTATEMENT);          
+            UploadDocumentRequest uploadDocumentRequest = new UploadDocumentRequest(documentDetail:documentDetail,documentContent:new byte[1000]);
+            UploadDocumentResponse uploadDocumentResponse = account.UploadDocument(uploadDocumentRequest);
             Assert.AreEqual(uploadDocumentResponse.PspReference, "8815815165741111");
             Assert.AreEqual(uploadDocumentResponse.AccountHolderCode, "TestAccountHolder8031");
         }
@@ -611,11 +611,11 @@ namespace Adyen.Test.MarketPayTest
         [TestMethod]
         public void TestUpdateDocumentSuccessAsync()
         {
-            var client = CreateMockTestClientNullRequiredFieldsRequest("Mocks/marketpay/account/upload-document-success.json");
-            var account = new Account(client);
-            var documentDetail = new DocumentDetail(accountHolderCode: "123456", filename: "stament.pdf", bankAccountUUID: "aaaaaaaa-7863-f943-4e3s-ffffffff", documentType: DocumentDetail.DocumentTypeEnum.BANKSTATEMENT);          
-            var uploadDocumentRequest = new UploadDocumentRequest(documentDetail:documentDetail,documentContent:new byte[1000]);
-            var uploadDocumentResponse = account.UploadDocumentAsync(uploadDocumentRequest).Result;
+            Client client = CreateMockTestClientNullRequiredFieldsRequest("Mocks/marketpay/account/upload-document-success.json");
+            Account account = new Account(client);
+            DocumentDetail documentDetail = new DocumentDetail(accountHolderCode: "123456", filename: "stament.pdf", bankAccountUUID: "aaaaaaaa-7863-f943-4e3s-ffffffff", documentType: DocumentDetail.DocumentTypeEnum.BANKSTATEMENT);          
+            UploadDocumentRequest uploadDocumentRequest = new UploadDocumentRequest(documentDetail:documentDetail,documentContent:new byte[1000]);
+            UploadDocumentResponse uploadDocumentResponse = account.UploadDocumentAsync(uploadDocumentRequest).Result;
             Assert.AreEqual(uploadDocumentResponse.PspReference, "8815815165741111");
             Assert.AreEqual(uploadDocumentResponse.AccountHolderCode, "TestAccountHolder8031");
         }
@@ -626,10 +626,10 @@ namespace Adyen.Test.MarketPayTest
         [TestMethod]
         public void TestDeletePayoutMethodsSuccess()
         {
-            var client = CreateMockTestClientNullRequiredFieldsRequest("Mocks/marketpay/account/delete-payout-methods.json");
-            var account = new Account(client);
-            var deletePayoutMethodRequest = new DeletePayoutMethodRequest(accountHolderCode: "123456",payoutMethodCodes:new List<string>());
-            var genericResponse = account.DeletePayoutMethods(deletePayoutMethodRequest);
+            Client client = CreateMockTestClientNullRequiredFieldsRequest("Mocks/marketpay/account/delete-payout-methods.json");
+            Account account = new Account(client);
+            DeletePayoutMethodRequest deletePayoutMethodRequest = new DeletePayoutMethodRequest(accountHolderCode: "123456",payoutMethodCodes:new List<string>());
+            GenericResponse genericResponse = account.DeletePayoutMethods(deletePayoutMethodRequest);
             Assert.AreEqual(genericResponse.PspReference, "85158152328111154");
             Assert.AreEqual(genericResponse.ResultCode, "Success");
         }
@@ -640,10 +640,10 @@ namespace Adyen.Test.MarketPayTest
         [TestMethod]
         public void TestDeletePayoutMethodsSuccessAsync()
         {
-            var client = CreateMockTestClientNullRequiredFieldsRequest("Mocks/marketpay/account/delete-payout-methods.json");
-            var account = new Account(client);
-            var deletePayoutMethodRequest = new DeletePayoutMethodRequest(accountHolderCode: "123456",payoutMethodCodes:new List<string>());
-            var genericResponse = account.DeletePayoutMethodsAsync(deletePayoutMethodRequest).Result;
+            Client client = CreateMockTestClientNullRequiredFieldsRequest("Mocks/marketpay/account/delete-payout-methods.json");
+            Account account = new Account(client);
+            DeletePayoutMethodRequest deletePayoutMethodRequest = new DeletePayoutMethodRequest(accountHolderCode: "123456",payoutMethodCodes:new List<string>());
+            GenericResponse genericResponse = account.DeletePayoutMethodsAsync(deletePayoutMethodRequest).Result;
             Assert.AreEqual(genericResponse.PspReference, "85158152328111154");
             Assert.AreEqual(genericResponse.ResultCode, "Success");
         }
@@ -654,10 +654,10 @@ namespace Adyen.Test.MarketPayTest
         [TestMethod]
         public void TestCheckAccountHolderSuccess()
         {
-            var client = CreateMockTestClientNullRequiredFieldsRequest("Mocks/marketpay/account/check-account-holder-success.json");
-            var account = new Account(client);
-            var performVerificationRequest = new PerformVerificationRequest(accountHolderCode: "TestAccountHolder8031", accountStateType: PerformVerificationRequest.AccountStateTypeEnum.Processing, tier: 2);
-            var genericResponse = account.CheckAccountholder(performVerificationRequest);
+            Client client = CreateMockTestClientNullRequiredFieldsRequest("Mocks/marketpay/account/check-account-holder-success.json");
+            Account account = new Account(client);
+            PerformVerificationRequest performVerificationRequest = new PerformVerificationRequest(accountHolderCode: "TestAccountHolder8031", accountStateType: PerformVerificationRequest.AccountStateTypeEnum.Processing, tier: 2);
+            GenericResponse genericResponse = account.CheckAccountholder(performVerificationRequest);
             Assert.AreEqual(genericResponse.PspReference, "85158152328111154");
             Assert.AreEqual(genericResponse.ResultCode, "Success");
         }
@@ -668,10 +668,10 @@ namespace Adyen.Test.MarketPayTest
         [TestMethod]
         public void TestCheckAccountHolderSuccessAsync()
         {
-            var client = CreateMockTestClientNullRequiredFieldsRequest("Mocks/marketpay/account/check-account-holder-success.json");
-            var account = new Account(client);
-            var performVerificationRequest = new PerformVerificationRequest(accountHolderCode: "TestAccountHolder8031", accountStateType: PerformVerificationRequest.AccountStateTypeEnum.Processing, tier: 2);
-            var genericResponse = account.CheckAccountholderAsync(performVerificationRequest).Result;
+            Client client = CreateMockTestClientNullRequiredFieldsRequest("Mocks/marketpay/account/check-account-holder-success.json");
+            Account account = new Account(client);
+            PerformVerificationRequest performVerificationRequest = new PerformVerificationRequest(accountHolderCode: "TestAccountHolder8031", accountStateType: PerformVerificationRequest.AccountStateTypeEnum.Processing, tier: 2);
+            GenericResponse genericResponse = account.CheckAccountholderAsync(performVerificationRequest).Result;
             Assert.AreEqual(genericResponse.PspReference, "85158152328111154");
             Assert.AreEqual(genericResponse.ResultCode, "Success");
         }

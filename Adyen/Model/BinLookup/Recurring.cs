@@ -138,7 +138,7 @@ namespace Adyen.Model.BinLookup
         /// <returns>String presentation of the object</returns>
         public override string ToString()
         {
-            var sb = new StringBuilder();
+            StringBuilder sb = new StringBuilder();
             sb.Append("class Recurring {\n");
             sb.Append("  Contract: ").Append(Contract).Append("\n");
             sb.Append("  RecurringDetailName: ").Append(RecurringDetailName).Append("\n");

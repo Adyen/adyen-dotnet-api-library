@@ -35,12 +35,12 @@ namespace Adyen.Test
         [TestMethod]
         public void TestDeviceRenderOptionsObjectListToString()
         {
-            var deviceRenderOptions = new DeviceRenderOptions
+            DeviceRenderOptions deviceRenderOptions = new DeviceRenderOptions
             {
                 SdkInterface = DeviceRenderOptions.SdkInterfaceEnum.Native,
                 SdkUiType = new List<DeviceRenderOptions.SdkUiTypeEnum> { DeviceRenderOptions.SdkUiTypeEnum.MultiSelect, DeviceRenderOptions.SdkUiTypeEnum.OtherHtml }
             };
-            var expected = "\"multiSelect\"";
+            string expected = "\"multiSelect\"";
             Assert.IsTrue(deviceRenderOptions.ToJson().Contains(expected));
         }
 
@@ -65,8 +65,8 @@ namespace Adyen.Test
         [TestMethod]
         public void TestToCollectionsStringEmpty()
         {
-            var paymentVerificationResponse = new PaymentVerificationResponse(merchantReference:"ref",shopperLocale:"NL", additionalData:new Dictionary<string, string>(){{"scaExemptionRequested","lowValue"}});
-            var expected = "\"scaExemptionRequested\": \"lowValue\"";
+            PaymentVerificationResponse paymentVerificationResponse = new PaymentVerificationResponse(merchantReference:"ref",shopperLocale:"NL", additionalData:new Dictionary<string, string>(){{"scaExemptionRequested","lowValue"}});
+            string expected = "\"scaExemptionRequested\": \"lowValue\"";
             Assert.IsTrue(paymentVerificationResponse.ToJson().Contains(expected));
         }
     }

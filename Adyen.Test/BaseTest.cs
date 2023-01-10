@@ -42,6 +42,7 @@ using Adyen.Model.Checkout;
 using System.Threading.Tasks;
 using CardDetails = Adyen.Service.Resource.Checkout.CardDetails;
 using CommonField = Adyen.Model.Checkout.CommonField;
+using PaymentRequest = Adyen.Model.Payments.PaymentRequest;
 
 namespace Adyen.Test
 {
@@ -56,20 +57,20 @@ namespace Adyen.Test
         /// <returns></returns>
         protected PaymentResult CreatePaymentResultFromFile(string fileName)
         {
-            var client = CreateMockTestClientRequest(fileName);
-            var payment = new Payment(client);
-            var paymentRequest = MockPaymentData.CreateFullPaymentRequest();
-            var paymentResult = payment.Authorise(paymentRequest);
+            Client client = CreateMockTestClientRequest(fileName);
+            Payment payment = new Payment(client);
+            PaymentRequest paymentRequest = MockPaymentData.CreateFullPaymentRequest();
+            PaymentResult paymentResult = payment.Authorise(paymentRequest);
             return paymentResult;
         }
 
         protected PaymentResult CreatePaymentApiKeyBasedResultFromFile(string fileName)
         {
-            var client = CreateMockTestClientApiKeyBasedRequest(fileName);
-            var payment = new Payment(client);
-            var paymentRequest = MockPaymentData.CreateFullPaymentRequest();
+            Client client = CreateMockTestClientApiKeyBasedRequest(fileName);
+            Payment payment = new Payment(client);
+            PaymentRequest paymentRequest = MockPaymentData.CreateFullPaymentRequest();
 
-            var paymentResult = payment.Authorise(paymentRequest);
+            PaymentResult paymentResult = payment.Authorise(paymentRequest);
             return paymentResult;
         }
         #endregion
@@ -78,7 +79,7 @@ namespace Adyen.Test
 
         protected CaptureRequest CreateCaptureTestRequest(string pspReference)
         {
-            var captureRequest = new CaptureRequest
+            CaptureRequest captureRequest = new CaptureRequest
             {
                 MerchantAccount = "MerchantAccount",
                 ModificationAmount = new Model.Payments.Amount("EUR", 150),
@@ -92,7 +93,7 @@ namespace Adyen.Test
 
         protected CancelOrRefundRequest CreateCancelOrRefundTestRequest(string pspReference)
         {
-            var cancelOrRefundRequest = new CancelOrRefundRequest()
+            CancelOrRefundRequest cancelOrRefundRequest = new CancelOrRefundRequest()
             {
                 MerchantAccount = "MerchantAccount",
                 Reference = "cancelOrRefund - " + DateTime.Now.ToString("yyyyMMdd"),
@@ -103,7 +104,7 @@ namespace Adyen.Test
 
         protected RefundRequest CreateRefundTestRequest(string pspReference)
         {
-            var refundRequest = new RefundRequest()
+            RefundRequest refundRequest = new RefundRequest()
             {
                 MerchantAccount = "MerchantAccount",
                 ModificationAmount = new Model.Payments.Amount("EUR", 150),
@@ -115,7 +116,7 @@ namespace Adyen.Test
 
         protected CancelRequest CreateCancelTestRequest(string pspReference)
         {
-            var cancelRequest = new CancelRequest()
+            CancelRequest cancelRequest = new CancelRequest()
             {
                 MerchantAccount = "MerchantAccount",
                 Reference = "cancel - " + DateTime.Now.ToString("yyyyMMdd"),
@@ -126,7 +127,7 @@ namespace Adyen.Test
 
         protected AdjustAuthorisationRequest CreateAdjustAuthorisationRequest(string pspReference)
         {
-            var adjustAuthorisationRequest = new AdjustAuthorisationRequest()
+            AdjustAuthorisationRequest adjustAuthorisationRequest = new AdjustAuthorisationRequest()
             {
                 MerchantAccount = "MerchantAccount",
                 ModificationAmount = new Model.Payments.Amount("EUR", 150),
@@ -145,14 +146,14 @@ namespace Adyen.Test
         /// <returns></returns>
         public Model.Checkout.PaymentRequest CreatePaymentRequestCheckout()
         {
-            var amount = new Model.Checkout.Amount("USD", 1000);
-            var paymentsRequest = new Model.Checkout.PaymentRequest
+            Model.Checkout.Amount amount = new Model.Checkout.Amount("USD", 1000);
+            Model.Checkout.PaymentRequest paymentsRequest = new Model.Checkout.PaymentRequest
             {
                 Reference = "Your order number ",
                 ReturnUrl = @"https://your-company.com/...",
                 MerchantAccount = "MerchantAccount",
             };
-            var cardDetails = new Model.Checkout.CardDetails()
+            Model.Checkout.CardDetails cardDetails = new Model.Checkout.CardDetails()
             {
                 Number = "4111111111111111",
                 ExpiryMonth = "10",
@@ -171,8 +172,8 @@ namespace Adyen.Test
         /// <returns></returns>
         public Model.Checkout.PaymentRequest CreatePaymentRequest3DS2()
         {
-            var amount = new Model.Checkout.Amount("USD", 1000);
-            var paymentsRequest = new Model.Checkout.PaymentRequest
+            Model.Checkout.Amount amount = new Model.Checkout.Amount("USD", 1000);
+            Model.Checkout.PaymentRequest paymentsRequest = new Model.Checkout.PaymentRequest
             {
                 Reference = "Your order number ",
                 Amount = amount,
@@ -180,7 +181,7 @@ namespace Adyen.Test
                 MerchantAccount = "MerchantAccount",
                 Channel = Model.Checkout.PaymentRequest.ChannelEnum.Web
             };
-            var cardDetails = new Model.Checkout.CardDetails()
+            Model.Checkout.CardDetails cardDetails = new Model.Checkout.CardDetails()
             {
                 Number = "4111111111111111",
                 ExpiryMonth = "10",
@@ -197,13 +198,13 @@ namespace Adyen.Test
         /// <returns>Returns a sample PaymentsDetailsRequest object with test data</returns>
         protected DetailsRequest CreateDetailsRequest()
         {
-            var paymentData = "Ab02b4c0!BQABAgCJN1wRZuGJmq8dMncmypvknj9s7l5Tj...";
-            var details = new PaymentCompletionDetails()
+            string paymentData = "Ab02b4c0!BQABAgCJN1wRZuGJmq8dMncmypvknj9s7l5Tj...";
+            PaymentCompletionDetails details = new PaymentCompletionDetails()
             {
                 MD= "sdfsdfsdf...",
                 PaReq = "sdfsdfsdf..."
             };
-            var paymentsDetailsRequest = new DetailsRequest(details: details, paymentData: paymentData);
+            DetailsRequest paymentsDetailsRequest = new DetailsRequest(details: details, paymentData: paymentData);
 
             return paymentsDetailsRequest;
         }
@@ -234,7 +235,7 @@ namespace Adyen.Test
         /// <returns></returns>
         protected PaymentVerificationRequest CreatePaymentVerificationRequest()
         {
-            var payload = @"Ab0oCC2/wy96FiEMLvoI8RfayxEmZHQZcw...riRbNBzP3pQscLYBHN/MfZkgfGHdqy7JfQoQbRUmA==";
+            string payload = @"Ab0oCC2/wy96FiEMLvoI8RfayxEmZHQZcw...riRbNBzP3pQscLYBHN/MfZkgfGHdqy7JfQoQbRUmA==";
             return new PaymentVerificationRequest(payload: payload);
         }
 
@@ -247,18 +248,18 @@ namespace Adyen.Test
         /// <returns>IClient implementation</returns>
         protected Client CreateMockTestClientRequest(string fileName)
         {
-            var mockPath = GetMockFilePath(fileName);
-            var response = MockFileToString(mockPath);
+            string mockPath = GetMockFilePath(fileName);
+            string response = MockFileToString(mockPath);
             //Create a mock interface
-            var clientInterfaceMock = new Mock<IClient>();
-            var confMock = MockPaymentData.CreateConfigMock();
+            Mock<IClient> clientInterfaceMock = new Mock<IClient>();
+            Config confMock = MockPaymentData.CreateConfigMock();
 
             clientInterfaceMock.Setup(x => x.Request(It.IsAny<string>(), It.IsAny<string>(), It.IsAny<RequestOptions>(), null)).Returns(response);
-            var config = new Config()
+            Config config = new Config()
             {
                 Environment = It.IsAny<Model.Enum.Environment>()
             };
-            var clientMock = new Client(config)
+            Client clientMock = new Client(config)
             {
                 HttpClient = clientInterfaceMock.Object,
                 Config = confMock
@@ -273,20 +274,20 @@ namespace Adyen.Test
         /// <returns>IClient implementation</returns>
         protected Client CreateMockTestClientNullRequiredFieldsRequest(string fileName)
         {
-            var mockPath = GetMockFilePath(fileName);
-            var response = MockFileToString(mockPath);
+            string mockPath = GetMockFilePath(fileName);
+            string response = MockFileToString(mockPath);
             //Create a mock interface
-            var clientInterfaceMock = new Mock<IClient>();
-            var confMock = MockPaymentData.CreateConfigMock();
+            Mock<IClient> clientInterfaceMock = new Mock<IClient>();
+            Config confMock = MockPaymentData.CreateConfigMock();
 
             clientInterfaceMock.Setup(x => x.Request(It.IsAny<string>(), It.IsAny<string>(), It.IsAny<RequestOptions>(), null)).Returns(response);
             clientInterfaceMock.Setup(x => x.Request(It.IsAny<string>(), It.IsAny<string>(), It.IsAny<RequestOptions>(), null)).Returns(response);
             clientInterfaceMock.Setup(x => x.RequestAsync(It.IsAny<string>(), It.IsAny<string>(), It.IsAny<RequestOptions>(), null)).Returns(Task.FromResult(response));
-            var config = new Config()
+            Config config = new Config()
             {
                 Environment = It.IsAny<Model.Enum.Environment>()
             };
-            var clientMock = new Client(config)
+            Client clientMock = new Client(config)
             {
                 HttpClient = clientInterfaceMock.Object,
                 Config = confMock
@@ -301,18 +302,18 @@ namespace Adyen.Test
         /// <returns>IClient implementation</returns>
         protected Client CreateMockTestClientApiKeyBasedRequest(string fileName)
         {
-            var mockPath = GetMockFilePath(fileName);
-            var response = MockFileToString(mockPath);
+            string mockPath = GetMockFilePath(fileName);
+            string response = MockFileToString(mockPath);
             //Create a mock interface
-            var clientInterfaceMock = new Mock<IClient>();
-            var confMock = MockPaymentData.CreateConfigApiKeyBasedMock();
+            Mock<IClient> clientInterfaceMock = new Mock<IClient>();
+            Config confMock = MockPaymentData.CreateConfigApiKeyBasedMock();
             clientInterfaceMock.Setup(x => x.Request(It.IsAny<string>(),
                 It.IsAny<string>(), It.IsAny<RequestOptions>(), null)).Returns(response);
-            var config = new Config()
+            Config config = new Config()
             {
                 Environment = It.IsAny<Model.Enum.Environment>()
             };
-            var clientMock = new Client(config)
+            Client clientMock = new Client(config)
             {
                 HttpClient = clientInterfaceMock.Object,
                 Config = confMock
@@ -327,18 +328,18 @@ namespace Adyen.Test
         /// <returns>IClient implementation</returns>
         protected Client CreateMockTestClientApiKeyBasedRequestAsync(string fileName)
         {
-            var mockPath = GetMockFilePath(fileName);
-            var response = MockFileToString(mockPath);
+            string mockPath = GetMockFilePath(fileName);
+            string response = MockFileToString(mockPath);
             //Create a mock interface
-            var clientInterfaceMock = new Mock<IClient>();
-            var confMock = MockPaymentData.CreateConfigApiKeyBasedMock();
+            Mock<IClient> clientInterfaceMock = new Mock<IClient>();
+            Config confMock = MockPaymentData.CreateConfigApiKeyBasedMock();
             clientInterfaceMock.Setup(x => x.RequestAsync(It.IsAny<string>(),
                 It.IsAny<string>(), It.IsAny<RequestOptions>(), It.IsAny<HttpMethod>())).ReturnsAsync(response);
-            var config = new Config()
+            Config config = new Config()
             {
                 Environment = It.IsAny<Model.Enum.Environment>()
             };
-            var clientMock = new Client(config)
+            Client clientMock = new Client(config)
             {
                 HttpClient = clientInterfaceMock.Object,
                 Config = confMock
@@ -353,19 +354,19 @@ namespace Adyen.Test
         /// <returns>IClient implementation</returns>
         protected Client CreateAsyncMockTestClientApiKeyBasedRequest(string fileName)
         {
-            var mockPath = GetMockFilePath(fileName);
-            var response = MockFileToString(mockPath);
+            string mockPath = GetMockFilePath(fileName);
+            string response = MockFileToString(mockPath);
             //Create a mock interface
-            var clientInterfaceMock = new Mock<IClient>();
-            var confMock = MockPaymentData.CreateConfigApiKeyBasedMock();
+            Mock<IClient> clientInterfaceMock = new Mock<IClient>();
+            Config confMock = MockPaymentData.CreateConfigApiKeyBasedMock();
             clientInterfaceMock.Setup(x => x.RequestAsync(It.IsAny<string>(),
                     It.IsAny<string>(), It.IsAny<RequestOptions>(), null))
                 .ReturnsAsync(response);
-            var config = new Config()
+            Config config = new Config()
             {
                 Environment = It.IsAny<Model.Enum.Environment>()
             };
-            var clientMock = new Client(config)
+            Client clientMock = new Client(config)
             {
                 HttpClient = clientInterfaceMock.Object,
                 Config = confMock
@@ -380,18 +381,18 @@ namespace Adyen.Test
         /// <returns>IClient implementation</returns>
         protected Client CreateMockTestClientPosCloudApiRequest(string fileName)
         {
-            var config = new Config { CloudApiEndPoint = ClientConfig.CloudApiEndPointTest };
-            var mockPath = GetMockFilePath(fileName);
-            var response = MockFileToString(mockPath);
+            Config config = new Config { CloudApiEndPoint = ClientConfig.CloudApiEndPointTest };
+            string mockPath = GetMockFilePath(fileName);
+            string response = MockFileToString(mockPath);
             //Create a mock interface
-            var clientInterfaceMock = new Mock<IClient>();
+            Mock<IClient> clientInterfaceMock = new Mock<IClient>();
             clientInterfaceMock.Setup(x => x.Request(It.IsAny<string>(),
                 It.IsAny<string>(), It.IsAny<RequestOptions>(), null)).Returns(response);
-            var anyConfig = new Config()
+            Config anyConfig = new Config()
             {
                 Environment = It.IsAny<Model.Enum.Environment>()
             };
-            var clientMock = new Client(anyConfig)
+            Client clientMock = new Client(anyConfig)
             {
                 HttpClient = clientInterfaceMock.Object,
                 Config = config
@@ -406,21 +407,21 @@ namespace Adyen.Test
         /// <returns>IClient implementation</returns>
         protected Client CreateMockTestClientPosLocalApiRequest(string fileName)
         {
-            var config = new Config { Endpoint = @"https://_terminal_:8443/nexo/" };
-            var mockPath = GetMockFilePath(fileName);
-            var response = MockFileToString(mockPath);
+            Config config = new Config { Endpoint = @"https://_terminal_:8443/nexo/" };
+            string mockPath = GetMockFilePath(fileName);
+            string response = MockFileToString(mockPath);
             //Create a mock interface
-            var clientInterfaceMock = new Mock<IClient>();
+            Mock<IClient> clientInterfaceMock = new Mock<IClient>();
             clientInterfaceMock.Setup(x => x.Request(It.IsAny<string>(),
                 It.IsAny<string>(),
                 It.IsAny<RequestOptions>(), null
                ))
                 .Returns(response);
-            var anyConfig = new Config()
+            Config anyConfig = new Config()
             {
                 Environment = It.IsAny<Model.Enum.Environment>()
             };
-            var clientMock = new Client(anyConfig)
+            Client clientMock = new Client(anyConfig)
             {
                 HttpClient = clientInterfaceMock.Object,
                 Config = config
@@ -434,19 +435,19 @@ namespace Adyen.Test
         /// <returns></returns>
         protected Client CreateMockTestClientPost(string fileName)
         {
-            var mockPath = GetMockFilePath(fileName);
-            var response = MockFileToString(mockPath);
+            string mockPath = GetMockFilePath(fileName);
+            string response = MockFileToString(mockPath);
             //Create a mock interface
-            var clientInterfaceMock = new Mock<IClient>();
-            var confMock = MockPaymentData.CreateConfigMock();
+            Mock<IClient> clientInterfaceMock = new Mock<IClient>();
+            Config confMock = MockPaymentData.CreateConfigMock();
 
             clientInterfaceMock.Setup(x => x.Post(It.IsAny<string>(),
                 It.IsAny<Dictionary<string, string>>())).Returns(response);
-            var config = new Config()
+            Config config = new Config()
             {
                 Environment = It.IsAny<Model.Enum.Environment>()
             };
-            var clientMock = new Client(config)
+            Client clientMock = new Client(config)
             {
                 HttpClient = clientInterfaceMock.Object,
                 Config = confMock
@@ -462,21 +463,21 @@ namespace Adyen.Test
         /// <returns></returns>
         protected Client CreateAsyncMockTestClientForErrors(int status, string fileName)
         {
-            var mockPath = GetMockFilePath(fileName);
-            var response = MockFileToString(mockPath);
+            string mockPath = GetMockFilePath(fileName);
+            string response = MockFileToString(mockPath);
             //Create a mock interface
-            var clientInterfaceMock = new Mock<IClient>();
-            var confMock = MockPaymentData.CreateConfigMock();
-            var httpClientException =
+            Mock<IClient> clientInterfaceMock = new Mock<IClient>();
+            Config confMock = MockPaymentData.CreateConfigMock();
+            HttpClientException httpClientException =
                 new HttpClientException(status, "An error occured", new WebHeaderCollection(), response);
 
             clientInterfaceMock.Setup(x => x.RequestAsync(It.IsAny<string>(),
                 It.IsAny<string>(), It.IsAny<RequestOptions>(), null)).Throws(httpClientException);
-            var config = new Config()
+            Config config = new Config()
             {
                 Environment = It.IsAny<Model.Enum.Environment>()
             };
-            var clientMock = new Client(config)
+            Client clientMock = new Client(config)
             {
                 HttpClient = clientInterfaceMock.Object,
                 Config = confMock
@@ -492,21 +493,21 @@ namespace Adyen.Test
         /// <returns></returns>
         protected Client CreateMockTestClientForErrors(int status, string fileName)
         {
-            var mockPath = GetMockFilePath(fileName);
-            var response = MockFileToString(mockPath);
+            string mockPath = GetMockFilePath(fileName);
+            string response = MockFileToString(mockPath);
             //Create a mock interface
-            var clientInterfaceMock = new Mock<IClient>();
-            var confMock = MockPaymentData.CreateConfigMock();
-            var httpClientException =
+            Mock<IClient> clientInterfaceMock = new Mock<IClient>();
+            Config confMock = MockPaymentData.CreateConfigMock();
+            HttpClientException httpClientException =
                 new HttpClientException(status, "An error occured", new WebHeaderCollection(), response);
 
             clientInterfaceMock.Setup(x => x.Request(It.IsAny<string>(),
                 It.IsAny<string>(), It.IsAny<RequestOptions>(), null)).Throws(httpClientException);
-            var config = new Config()
+            Config config = new Config()
             {
                 Environment = It.IsAny<Model.Enum.Environment>()
             };
-            var clientMock = new Client(config)
+            Client clientMock = new Client(config)
             {
                 HttpClient = clientInterfaceMock.Object,
                 Config = confMock
@@ -525,7 +526,7 @@ namespace Adyen.Test
             }
             try
             {
-                using (var streamReader = new StreamReader(fileName, Encoding.UTF8))
+                using (StreamReader streamReader = new StreamReader(fileName, Encoding.UTF8))
                 {
                     text = streamReader.ReadToEnd();
                 }
@@ -556,7 +557,7 @@ namespace Adyen.Test
         /// <returns></returns>
         protected MessageHeader MockNexoMessageHeaderRequest()
         {
-            var header = new MessageHeader
+            MessageHeader header = new MessageHeader
             {
                 MessageType = MessageType.Request,
                 MessageClass = MessageClassType.Service,
@@ -600,8 +601,8 @@ namespace Adyen.Test
             {
                 return "";
             }
-            var projectPath = Directory.GetParent(Environment.CurrentDirectory).Parent.Parent.FullName;
-            var mockPath = Path.Combine(projectPath, fileName);
+            string projectPath = Directory.GetParent(Environment.CurrentDirectory).Parent.Parent.FullName;
+            string mockPath = Path.Combine(projectPath, fileName);
             return mockPath;
         }
     }

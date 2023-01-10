@@ -70,7 +70,7 @@ namespace Adyen.Model.Terminal
 
         public string ToBase64()
         {
-            var json = JsonConvert.SerializeObject(this);
+            string json = JsonConvert.SerializeObject(this);
             return Convert.ToBase64String(Encoding.UTF8.GetBytes((string)json));
         }
 
@@ -80,7 +80,7 @@ namespace Adyen.Model.Terminal
         /// <returns>String presentation of the object</returns>
         public override string ToString()
         {
-            var sb = new StringBuilder();
+            StringBuilder sb = new StringBuilder();
             sb.Append("class SaleToAcquirerData {\n");
             sb.Append("  Metadata: ").Append(Metadata).Append("\n");
             sb.Append("  ShopperEmail: ").Append(ShopperEmail).Append("\n");

@@ -51,7 +51,7 @@ namespace Adyen.Model.MarketPay.Notification
         /// <returns>String presentation of the object</returns>
         public override string ToString()
         {
-            var sb = new StringBuilder();
+            StringBuilder sb = new StringBuilder();
             sb.Append("class CompensateNegativeBalanceNotificationContent {\n");
             sb.Append("  Records: ").Append(Records.ObjectListToString()).Append("\n");
             sb.Append("}\n");

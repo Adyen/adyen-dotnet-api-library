@@ -39,15 +39,15 @@ namespace Adyen.ApiSerialization
         }
         public SaleToPOIResponse Deserialize(string saleToPoiMessageDto)
         {
-            var saleToPoiMessageJObject = JObject.Parse(saleToPoiMessageDto);
-            var saleToPoiMessageRootJToken = saleToPoiMessageJObject.First;
-            var saleToPoiMessageWithoutRootJToken = saleToPoiMessageRootJToken.First;
+            JObject saleToPoiMessageJObject = JObject.Parse(saleToPoiMessageDto);
+            JToken saleToPoiMessageRootJToken = saleToPoiMessageJObject.First;
+            JToken saleToPoiMessageWithoutRootJToken = saleToPoiMessageRootJToken.First;
             //Messageheader
-            var messageHeader = DeserializeMessageHeader(saleToPoiMessageWithoutRootJToken);
+            MessageHeader messageHeader = DeserializeMessageHeader(saleToPoiMessageWithoutRootJToken);
             //Message payload
             object messagePayload = DeserializeMessagePayload(messageHeader, saleToPoiMessageWithoutRootJToken);
 
-            var deserializedOutputMessage = new SaleToPOIResponse
+            SaleToPOIResponse deserializedOutputMessage = new SaleToPOIResponse
             {
                 MessageHeader = messageHeader,
                 MessagePayload = messagePayload
@@ -56,7 +56,7 @@ namespace Adyen.ApiSerialization
             //Check and deserialize RepeatedMessageResponse. RepeatedMessageResponse is optional
             if (saleToPoiMessageDto.Contains("TransactionStatusResponse") && saleToPoiMessageDto.Contains("RepeatedMessageResponse") && saleToPoiMessageDto.Contains("RepeatedResponseMessageBody"))
             {
-                var response = GetDeserializedRepeatedResponseMessagePayload(saleToPoiMessageWithoutRootJToken);
+                object response = GetDeserializedRepeatedResponseMessagePayload(saleToPoiMessageWithoutRootJToken);
                 TransactionStatusResponse deserializedOutput = (TransactionStatusResponse)deserializedOutputMessage.MessagePayload;
                 deserializedOutput.RepeatedMessageResponse.RepeatedResponseMessageBody.MessagePayload = response;
                 deserializedOutputMessage.MessagePayload = deserializedOutput;
@@ -66,11 +66,11 @@ namespace Adyen.ApiSerialization
 
         private object DeserializeMessagePayload(MessageHeader messageHeader, JToken saleToPoiMessageWithoutRootJToken)
         {
-            var messageCategory = messageHeader.MessageCategory;
-            var messageType = messageHeader.MessageType;
-            var messagePayloadJson = GetMessagePayloadJSon(saleToPoiMessageWithoutRootJToken, messageCategory.ToString(), messageType.ToString());
+            MessageCategoryType messageCategory = messageHeader.MessageCategory;
+            MessageType messageType = messageHeader.MessageType;
+            string messagePayloadJson = GetMessagePayloadJSon(saleToPoiMessageWithoutRootJToken, messageCategory.ToString(), messageType.ToString());
 
-            var messagePayloadSerializer = _messagePayloadSerializerFactory.CreateSerializer(messageCategory.ToString(), messageType.ToString());
+            IMessagePayloadSerializer<IMessagePayload> messagePayloadSerializer = _messagePayloadSerializerFactory.CreateSerializer(messageCategory.ToString(), messageType.ToString());
             return messagePayloadSerializer.Deserialize(messagePayloadJson);
         }
 
@@ -86,7 +86,7 @@ namespace Adyen.ApiSerialization
 
         private string GetMessagePayloadJSon(JToken saleToPoiMessageWithoutRootJToken, string messageCategory, string messageType)
         {
-            var messagePayloadTypedJson = saleToPoiMessageWithoutRootJToken.SelectToken(messageCategory + messageType.ToString());
+            JToken messagePayloadTypedJson = saleToPoiMessageWithoutRootJToken.SelectToken(messageCategory + messageType.ToString());
             if (messagePayloadTypedJson == null)
             {
                 return saleToPoiMessageWithoutRootJToken.SelectToken("MessagePayload").ToString();
@@ -95,15 +95,15 @@ namespace Adyen.ApiSerialization
         }
         private MessageHeader DeserializeMessageHeader(JToken saleToPoiMessageWithoutRootJObject)
         {
-            var messageHeaderJson = saleToPoiMessageWithoutRootJObject.SelectToken("MessageHeader").ToString();
+            string messageHeaderJson = saleToPoiMessageWithoutRootJObject.SelectToken("MessageHeader").ToString();
             return _messageHeaderSerializer.Deserialize(messageHeaderJson);
         }
 
         private object GetDeserializedRepeatedResponseMessagePayload(JToken saletoPoiMessageJtoken)
         {
-            var repeatedMessageResponse = saletoPoiMessageJtoken.ToString();
-            var repeatedMessage = saletoPoiMessageJtoken["TransactionStatusResponse"]["RepeatedMessageResponse"]["RepeatedResponseMessageBody"].ToString();
-            var objMessage = JObject.Parse(repeatedMessage);
+            string repeatedMessageResponse = saletoPoiMessageJtoken.ToString();
+            string repeatedMessage = saletoPoiMessageJtoken["TransactionStatusResponse"]["RepeatedMessageResponse"]["RepeatedResponseMessageBody"].ToString();
+            JObject objMessage = JObject.Parse(repeatedMessage);
          
             if (repeatedMessageResponse.Contains("CardAcquisitionResponse"))
             {

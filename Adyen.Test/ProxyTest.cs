@@ -9,18 +9,18 @@ namespace Adyen.Test
         [TestMethod]
         public void CreateClientWithNullProxyConfiguration()
         {
-            var config = new Config();
+            Config config = new Config();
             config.Proxy = null;
-            var client = new Client(config);
+            Client client = new Client(config);
             Assert.AreEqual(client.Config.Proxy, config.Proxy);
         }
 
         [TestMethod]
         public void CreateClientWithProxyConfiguration()
         {
-            var config = new Config();
+            Config config = new Config();
             config.Proxy = new WebProxy();
-            var client = new Client(config);
+            Client client = new Client(config);
             Assert.AreEqual(client.Config.Proxy, config.Proxy);
         }
     }

@@ -44,7 +44,7 @@ namespace Adyen.ApiSerialization.Converter
 
             writer.WriteStartObject();
 
-            var saleToPoiMessageSecured = value as SaleToPoiMessageSecured;
+            SaleToPoiMessageSecured saleToPoiMessageSecured = value as SaleToPoiMessageSecured;
 
             writer.WritePropertyName(saleToPoiMessageSecured.MessageHeader.GetType().Name);
             serializer.Serialize(writer, saleToPoiMessageSecured.MessageHeader);

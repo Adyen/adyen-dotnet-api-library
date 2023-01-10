@@ -44,7 +44,7 @@ namespace Adyen.Model
         /// <returns>String presentation of the object</returns>
         public override string ToString()
         {
-            var sb = new StringBuilder();
+            StringBuilder sb = new StringBuilder();
             sb.Append("class ApiError {\n");
             sb.Append("  ErrorCode: ").Append(ErrorCode).Append("\n");
             sb.Append("  Message: ").Append(Message).Append("\n");

@@ -71,7 +71,7 @@ namespace Adyen.Model.LegalEntityManagement
         /// <returns>String presentation of the object</returns>
         public override string ToString()
         {
-            var sb = new StringBuilder();
+            StringBuilder sb = new StringBuilder();
             sb.Append("class StockData {\n");
             sb.Append("  MarketIdentifier: ").Append(MarketIdentifier).Append("\n");
             sb.Append("  StockNumber: ").Append(StockNumber).Append("\n");

@@ -140,7 +140,7 @@ namespace Adyen.Model.LegalEntityManagement
         /// <returns>String presentation of the object</returns>
         public override string ToString()
         {
-            var sb = new StringBuilder();
+            StringBuilder sb = new StringBuilder();
             sb.Append("class SoleProprietorship {\n");
             sb.Append("  CountryOfGoverningLaw: ").Append(CountryOfGoverningLaw).Append("\n");
             sb.Append("  DoingBusinessAs: ").Append(DoingBusinessAs).Append("\n");

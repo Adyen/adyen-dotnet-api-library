@@ -71,7 +71,7 @@ namespace Adyen.Model.Hop
         /// <returns>String presentation of the object</returns>
         public override string ToString()
         {
-            var sb = new StringBuilder();
+            StringBuilder sb = new StringBuilder();
             sb.Append("class GetOnboardingUrlResponse {\n");
             sb.Append("  InvalidFields: ").Append(InvalidFields.ObjectListToString()).Append("\n");
             sb.Append("  PspReference: ").Append(PspReference).Append("\n");

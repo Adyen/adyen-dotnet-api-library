@@ -75,8 +75,8 @@ namespace Adyen.Service
         /// <returns>CloseAccountResponse</returns>
         public CloseAccountResponse CloseAccount(CloseAccountRequest closeAccountRequest)
         {
-            var jsonRequest = Util.JsonOperation.SerializeRequest(closeAccountRequest);
-            var jsonResponse = _closeAccount.Request(jsonRequest);
+            string jsonRequest = Util.JsonOperation.SerializeRequest(closeAccountRequest);
+            string jsonResponse = _closeAccount.Request(jsonRequest);
             return JsonConvert.DeserializeObject<CloseAccountResponse>(jsonResponse);
         }
 
@@ -87,8 +87,8 @@ namespace Adyen.Service
         /// <returns>CloseAccountResponse</returns>
         public async Task<CloseAccountResponse> CloseAccountAsync(CloseAccountRequest closeAccountRequest)
         {
-            var jsonRequest = Util.JsonOperation.SerializeRequest(closeAccountRequest);
-            var jsonResponse = await _closeAccount.RequestAsync(jsonRequest);
+            string jsonRequest = Util.JsonOperation.SerializeRequest(closeAccountRequest);
+            string jsonResponse = await _closeAccount.RequestAsync(jsonRequest);
             return JsonConvert.DeserializeObject<CloseAccountResponse>(jsonResponse);
         }
 
@@ -99,8 +99,8 @@ namespace Adyen.Service
         /// <returns>CloseAccountResponse</returns>
         public CloseAccountHolderResponse CloseAccountHolder(CloseAccountHolderRequest closeAccountHolderRequest)
         {
-            var jsonRequest = Util.JsonOperation.SerializeRequest(closeAccountHolderRequest);
-            var jsonResponse = _closeAccountHolder.Request(jsonRequest);
+            string jsonRequest = Util.JsonOperation.SerializeRequest(closeAccountHolderRequest);
+            string jsonResponse = _closeAccountHolder.Request(jsonRequest);
             return JsonConvert.DeserializeObject<CloseAccountHolderResponse>(jsonResponse);
         }
 
@@ -111,8 +111,8 @@ namespace Adyen.Service
         /// <returns>CloseAccountResponse</returns>
         public async Task<CloseAccountHolderResponse> CloseAccountHolderAsync(CloseAccountHolderRequest closeAccountHolderRequest)
         {
-            var jsonRequest = Util.JsonOperation.SerializeRequest(closeAccountHolderRequest);
-            var jsonResponse = await _closeAccountHolder.RequestAsync(jsonRequest);
+            string jsonRequest = Util.JsonOperation.SerializeRequest(closeAccountHolderRequest);
+            string jsonResponse = await _closeAccountHolder.RequestAsync(jsonRequest);
             return JsonConvert.DeserializeObject<CloseAccountHolderResponse>(jsonResponse);
         }
 
@@ -123,8 +123,8 @@ namespace Adyen.Service
         /// <returns>CloseAccountResponse</returns>
         public CreateAccountResponse CreateAccount(CreateAccountRequest createAccountRequest)
         {
-            var jsonRequest = Util.JsonOperation.SerializeRequest(createAccountRequest);
-            var jsonResponse = _createAccount.Request(jsonRequest);
+            string jsonRequest = Util.JsonOperation.SerializeRequest(createAccountRequest);
+            string jsonResponse = _createAccount.Request(jsonRequest);
             return JsonConvert.DeserializeObject<CreateAccountResponse>(jsonResponse);
         }
 
@@ -135,8 +135,8 @@ namespace Adyen.Service
         /// <returns>CloseAccountResponse</returns>
         public async Task<CreateAccountResponse> CreateAccountAsync(CreateAccountRequest createAccountRequest)
         {
-            var jsonRequest = Util.JsonOperation.SerializeRequest(createAccountRequest);
-            var jsonResponse = await _createAccount.RequestAsync(jsonRequest);
+            string jsonRequest = Util.JsonOperation.SerializeRequest(createAccountRequest);
+            string jsonResponse = await _createAccount.RequestAsync(jsonRequest);
             return JsonConvert.DeserializeObject<CreateAccountResponse>(jsonResponse);
         }
 
@@ -147,8 +147,8 @@ namespace Adyen.Service
         /// <returns>CloseAccountHolderResponse</returns>
         public CreateAccountHolderResponse CreateAccountHolder(CreateAccountHolderRequest createAccountHolderRequest)
         {
-            var jsonRequest = Util.JsonOperation.SerializeRequest(createAccountHolderRequest);
-            var jsonResponse = _createAccountHolder.Request(jsonRequest);
+            string jsonRequest = Util.JsonOperation.SerializeRequest(createAccountHolderRequest);
+            string jsonResponse = _createAccountHolder.Request(jsonRequest);
             return JsonConvert.DeserializeObject<CreateAccountHolderResponse>(jsonResponse);
         }
 
@@ -159,8 +159,8 @@ namespace Adyen.Service
         /// <returns>CloseAccountHolderResponse</returns>
         public async Task<CreateAccountHolderResponse> CreateAccountHolderAsync(CreateAccountHolderRequest createAccountHolderRequest)
         {
-            var jsonRequest = Util.JsonOperation.SerializeRequest(createAccountHolderRequest);
-            var jsonResponse = await _createAccountHolder.RequestAsync(jsonRequest);
+            string jsonRequest = Util.JsonOperation.SerializeRequest(createAccountHolderRequest);
+            string jsonResponse = await _createAccountHolder.RequestAsync(jsonRequest);
             return JsonConvert.DeserializeObject<CreateAccountHolderResponse>(jsonResponse);
         }
 
@@ -171,8 +171,8 @@ namespace Adyen.Service
         /// <returns>GenericResponse</returns>
         public GenericResponse DeleteBankAccount(DeleteBankAccountRequest deleteBankAccountRequest)
         {
-            var jsonRequest = Util.JsonOperation.SerializeRequest(deleteBankAccountRequest);
-            var jsonResponse = _deleteBankAccount.Request(jsonRequest);
+            string jsonRequest = Util.JsonOperation.SerializeRequest(deleteBankAccountRequest);
+            string jsonResponse = _deleteBankAccount.Request(jsonRequest);
             return JsonConvert.DeserializeObject<GenericResponse>(jsonResponse);
         }
 
@@ -183,8 +183,8 @@ namespace Adyen.Service
         /// <returns>GenericResponse</returns>
         public async Task<GenericResponse> DeleteBankAccountAsync(DeleteBankAccountRequest deleteBankAccountRequest)
         {
-            var jsonRequest = Util.JsonOperation.SerializeRequest(deleteBankAccountRequest);
-            var jsonResponse = await _deleteBankAccount.RequestAsync(jsonRequest);
+            string jsonRequest = Util.JsonOperation.SerializeRequest(deleteBankAccountRequest);
+            string jsonResponse = await _deleteBankAccount.RequestAsync(jsonRequest);
             return JsonConvert.DeserializeObject<GenericResponse>(jsonResponse);
         }
 
@@ -195,8 +195,8 @@ namespace Adyen.Service
         /// <returns>GenericResponse</returns>
         public GenericResponse DeleteShareHolder(DeleteShareholderRequest deleteShareholderRequest)
         {
-            var jsonRequest = Util.JsonOperation.SerializeRequest(deleteShareholderRequest);
-            var jsonResponse = _deleteShareholder.Request(jsonRequest);
+            string jsonRequest = Util.JsonOperation.SerializeRequest(deleteShareholderRequest);
+            string jsonResponse = _deleteShareholder.Request(jsonRequest);
             return JsonConvert.DeserializeObject<GenericResponse>(jsonResponse);
         }
 
@@ -207,8 +207,8 @@ namespace Adyen.Service
         /// <returns>GenericResponse</returns>
         public async Task<GenericResponse> DeleteShareHolderAsync(DeleteShareholderRequest deleteShareholderRequest)
         {
-            var jsonRequest = Util.JsonOperation.SerializeRequest(deleteShareholderRequest);
-            var jsonResponse = await _deleteShareholder.RequestAsync(jsonRequest);
+            string jsonRequest = Util.JsonOperation.SerializeRequest(deleteShareholderRequest);
+            string jsonResponse = await _deleteShareholder.RequestAsync(jsonRequest);
             return JsonConvert.DeserializeObject<GenericResponse>(jsonResponse);
         }
 
@@ -219,8 +219,8 @@ namespace Adyen.Service
         /// <returns>GetAccountHolderResponse</returns>
         public GetAccountHolderResponse GetAccountHolder(GetAccountHolderRequest getAccountHolderRequest)
         {
-            var jsonRequest = Util.JsonOperation.SerializeRequest(getAccountHolderRequest);
-            var jsonResponse = _getAccountHolder.Request(jsonRequest);
+            string jsonRequest = Util.JsonOperation.SerializeRequest(getAccountHolderRequest);
+            string jsonResponse = _getAccountHolder.Request(jsonRequest);
             return JsonConvert.DeserializeObject<GetAccountHolderResponse>(jsonResponse);
         }
 
@@ -231,8 +231,8 @@ namespace Adyen.Service
         /// <returns>GetAccountHolderResponse</returns>
         public async Task<GetAccountHolderResponse> GetAccountHolderAsync(GetAccountHolderRequest getAccountHolderRequest)
         {
-            var jsonRequest = Util.JsonOperation.SerializeRequest(getAccountHolderRequest);
-            var jsonResponse = await _getAccountHolder.RequestAsync(jsonRequest);
+            string jsonRequest = Util.JsonOperation.SerializeRequest(getAccountHolderRequest);
+            string jsonResponse = await _getAccountHolder.RequestAsync(jsonRequest);
             return JsonConvert.DeserializeObject<GetAccountHolderResponse>(jsonResponse);
         }
 
@@ -243,8 +243,8 @@ namespace Adyen.Service
         /// <returns>GetUploadedDocumentsResponse</returns>
         public GetUploadedDocumentsResponse GetUploadedDocuments(GetUploadedDocumentsRequest getUploadedDocumentsRequest)
         {
-            var jsonRequest = Util.JsonOperation.SerializeRequest(getUploadedDocumentsRequest);
-            var jsonResponse = _getUploadedDocuments.Request(jsonRequest);
+            string jsonRequest = Util.JsonOperation.SerializeRequest(getUploadedDocumentsRequest);
+            string jsonResponse = _getUploadedDocuments.Request(jsonRequest);
             return JsonConvert.DeserializeObject<GetUploadedDocumentsResponse>(jsonResponse);
         }
 
@@ -255,8 +255,8 @@ namespace Adyen.Service
         /// <returns>GetUploadedDocumentsResponse</returns>
         public async Task<GetUploadedDocumentsResponse> GetUploadedDocumentsAsync(GetUploadedDocumentsRequest getUploadedDocumentsRequest)
         {
-            var jsonRequest = Util.JsonOperation.SerializeRequest(getUploadedDocumentsRequest);
-            var jsonResponse = await _getUploadedDocuments.RequestAsync(jsonRequest);
+            string jsonRequest = Util.JsonOperation.SerializeRequest(getUploadedDocumentsRequest);
+            string jsonResponse = await _getUploadedDocuments.RequestAsync(jsonRequest);
             return JsonConvert.DeserializeObject<GetUploadedDocumentsResponse>(jsonResponse);
         }
 
@@ -267,8 +267,8 @@ namespace Adyen.Service
         /// <returns>SuspendAccountHolderResponse</returns>
         public SuspendAccountHolderResponse SuspendAccountHolder(SuspendAccountHolderRequest suspendAccountHolderRequest)
         {
-            var jsonRequest = Util.JsonOperation.SerializeRequest(suspendAccountHolderRequest);
-            var jsonResponse = _suspendAccountHolder.Request(jsonRequest);
+            string jsonRequest = Util.JsonOperation.SerializeRequest(suspendAccountHolderRequest);
+            string jsonResponse = _suspendAccountHolder.Request(jsonRequest);
             return JsonConvert.DeserializeObject<SuspendAccountHolderResponse>(jsonResponse);
         }
 
@@ -279,8 +279,8 @@ namespace Adyen.Service
         /// <returns>SuspendAccountHolderResponse</returns>
         public async Task<SuspendAccountHolderResponse> SuspendAccountHolderAsync(SuspendAccountHolderRequest suspendAccountHolderRequest)
         {
-            var jsonRequest = Util.JsonOperation.SerializeRequest(suspendAccountHolderRequest);
-            var jsonResponse = await _suspendAccountHolder.RequestAsync(jsonRequest);
+            string jsonRequest = Util.JsonOperation.SerializeRequest(suspendAccountHolderRequest);
+            string jsonResponse = await _suspendAccountHolder.RequestAsync(jsonRequest);
             return JsonConvert.DeserializeObject<SuspendAccountHolderResponse>(jsonResponse);
         }
 
@@ -291,8 +291,8 @@ namespace Adyen.Service
         /// <returns>UnSuspendAccountHolderResponse</returns>
         public UnSuspendAccountHolderResponse UnSuspendAccountHolder(UnSuspendAccountHolderRequest unSuspendAccountHolderRequest)
         {
-            var jsonRequest = Util.JsonOperation.SerializeRequest(unSuspendAccountHolderRequest);
-            var jsonResponse = _unSuspendAccountHolder.Request(jsonRequest);
+            string jsonRequest = Util.JsonOperation.SerializeRequest(unSuspendAccountHolderRequest);
+            string jsonResponse = _unSuspendAccountHolder.Request(jsonRequest);
             return JsonConvert.DeserializeObject<UnSuspendAccountHolderResponse>(jsonResponse);
         }
 
@@ -303,8 +303,8 @@ namespace Adyen.Service
         /// <returns>UnSuspendAccountHolderResponse</returns>
         public async Task<UnSuspendAccountHolderResponse> UnSuspendAccountHolderAsync(UnSuspendAccountHolderRequest unSuspendAccountHolderRequest)
         {
-            var jsonRequest = Util.JsonOperation.SerializeRequest(unSuspendAccountHolderRequest);
-            var jsonResponse = await _unSuspendAccountHolder.RequestAsync(jsonRequest);
+            string jsonRequest = Util.JsonOperation.SerializeRequest(unSuspendAccountHolderRequest);
+            string jsonResponse = await _unSuspendAccountHolder.RequestAsync(jsonRequest);
             return JsonConvert.DeserializeObject<UnSuspendAccountHolderResponse>(jsonResponse);
         }
 
@@ -315,8 +315,8 @@ namespace Adyen.Service
         /// <returns>UpdateAccountResponse</returns>
         public UpdateAccountResponse UpdateAccount(UpdateAccountRequest updateAccountRequest)
         {
-            var jsonRequest = Util.JsonOperation.SerializeRequest(updateAccountRequest);
-            var jsonResponse = _updateAccount.Request(jsonRequest);
+            string jsonRequest = Util.JsonOperation.SerializeRequest(updateAccountRequest);
+            string jsonResponse = _updateAccount.Request(jsonRequest);
             return JsonConvert.DeserializeObject<UpdateAccountResponse>(jsonResponse);
         }
 
@@ -327,8 +327,8 @@ namespace Adyen.Service
         /// <returns>UpdateAccountResponse</returns>
         public async Task<UpdateAccountResponse> UpdateAccountAsync(UpdateAccountRequest updateAccountRequest)
         {
-            var jsonRequest = Util.JsonOperation.SerializeRequest(updateAccountRequest);
-            var jsonResponse = await _updateAccount.RequestAsync(jsonRequest);
+            string jsonRequest = Util.JsonOperation.SerializeRequest(updateAccountRequest);
+            string jsonResponse = await _updateAccount.RequestAsync(jsonRequest);
             return JsonConvert.DeserializeObject<UpdateAccountResponse>(jsonResponse);
         }
 
@@ -339,8 +339,8 @@ namespace Adyen.Service
         /// <returns>UpdateAccountHolderResponse</returns>
         public UpdateAccountHolderResponse UpdateAccountHolder(UpdateAccountHolderRequest updateAccountHolderRequest)
         {
-            var jsonRequest = Util.JsonOperation.SerializeRequest(updateAccountHolderRequest);
-            var jsonResponse = _updateAccountHolder.Request(jsonRequest);
+            string jsonRequest = Util.JsonOperation.SerializeRequest(updateAccountHolderRequest);
+            string jsonResponse = _updateAccountHolder.Request(jsonRequest);
             return JsonConvert.DeserializeObject<UpdateAccountHolderResponse>(jsonResponse);
         }
 
@@ -351,8 +351,8 @@ namespace Adyen.Service
         /// <returns>UpdateAccountHolderResponse</returns>
         public async Task<UpdateAccountHolderResponse> UpdateAccountHolderAsync(UpdateAccountHolderRequest updateAccountHolderRequest)
         {
-            var jsonRequest = Util.JsonOperation.SerializeRequest(updateAccountHolderRequest);
-            var jsonResponse = await _updateAccountHolder.RequestAsync(jsonRequest);
+            string jsonRequest = Util.JsonOperation.SerializeRequest(updateAccountHolderRequest);
+            string jsonResponse = await _updateAccountHolder.RequestAsync(jsonRequest);
             return JsonConvert.DeserializeObject<UpdateAccountHolderResponse>(jsonResponse);
         }
 
@@ -363,8 +363,8 @@ namespace Adyen.Service
         /// <returns>GetAccountHolderStatusResponse</returns>
         public GetAccountHolderStatusResponse UpdateAccountHolderState(UpdateAccountHolderStateRequest updateAccountHolderStateRequest)
         {
-            var jsonRequest = Util.JsonOperation.SerializeRequest(updateAccountHolderStateRequest);
-            var jsonResponse = _updateAccountHolderState.Request(jsonRequest);
+            string jsonRequest = Util.JsonOperation.SerializeRequest(updateAccountHolderStateRequest);
+            string jsonResponse = _updateAccountHolderState.Request(jsonRequest);
             return JsonConvert.DeserializeObject<GetAccountHolderStatusResponse>(jsonResponse);
         }
 
@@ -375,8 +375,8 @@ namespace Adyen.Service
         /// <returns>GetAccountHolderStatusResponse</returns>
         public async Task<GetAccountHolderStatusResponse> UpdateAccountHolderStateAsync(UpdateAccountHolderStateRequest updateAccountHolderStateRequest)
         {
-            var jsonRequest = Util.JsonOperation.SerializeRequest(updateAccountHolderStateRequest);
-            var jsonResponse = await _updateAccountHolderState.RequestAsync(jsonRequest);
+            string jsonRequest = Util.JsonOperation.SerializeRequest(updateAccountHolderStateRequest);
+            string jsonResponse = await _updateAccountHolderState.RequestAsync(jsonRequest);
             return JsonConvert.DeserializeObject<GetAccountHolderStatusResponse>(jsonResponse);
         }
 
@@ -387,8 +387,8 @@ namespace Adyen.Service
         /// <returns> UploadDocumentResponse </returns>
         public UploadDocumentResponse UploadDocument(UploadDocumentRequest uploadDocumentRequest)
         {
-            var jsonRequest = Util.JsonOperation.SerializeRequest(uploadDocumentRequest);
-            var jsonResponse = _uploadDocument.Request(jsonRequest);
+            string jsonRequest = Util.JsonOperation.SerializeRequest(uploadDocumentRequest);
+            string jsonResponse = _uploadDocument.Request(jsonRequest);
             return JsonConvert.DeserializeObject<UploadDocumentResponse>(jsonResponse);
         }
 
@@ -399,8 +399,8 @@ namespace Adyen.Service
         /// <returns> UploadDocumentResponse </returns>
         public async Task<UploadDocumentResponse> UploadDocumentAsync(UploadDocumentRequest uploadDocumentRequest)
         {
-            var jsonRequest = Util.JsonOperation.SerializeRequest(uploadDocumentRequest);
-            var jsonResponse = await _uploadDocument.RequestAsync(jsonRequest);
+            string jsonRequest = Util.JsonOperation.SerializeRequest(uploadDocumentRequest);
+            string jsonResponse = await _uploadDocument.RequestAsync(jsonRequest);
             return JsonConvert.DeserializeObject<UploadDocumentResponse>(jsonResponse);
         }
 
@@ -411,8 +411,8 @@ namespace Adyen.Service
         /// <returns>GenericResponse</returns>
         public GenericResponse CheckAccountholder(PerformVerificationRequest performVerificationRequest)
         {
-            var jsonRequest = Util.JsonOperation.SerializeRequest(performVerificationRequest);
-            var jsonResponse = _checkAccountHolder.Request(jsonRequest);
+            string jsonRequest = Util.JsonOperation.SerializeRequest(performVerificationRequest);
+            string jsonResponse = _checkAccountHolder.Request(jsonRequest);
             return JsonConvert.DeserializeObject<GenericResponse>(jsonResponse);
         }
 
@@ -423,8 +423,8 @@ namespace Adyen.Service
         /// <returns>GenericResponse</returns>
         public async Task<GenericResponse> CheckAccountholderAsync(PerformVerificationRequest performVerificationRequest)
         {
-            var jsonRequest = Util.JsonOperation.SerializeRequest(performVerificationRequest);
-            var jsonResponse = await _checkAccountHolder.RequestAsync(jsonRequest);
+            string jsonRequest = Util.JsonOperation.SerializeRequest(performVerificationRequest);
+            string jsonResponse = await _checkAccountHolder.RequestAsync(jsonRequest);
             return JsonConvert.DeserializeObject<GenericResponse>(jsonResponse);
         }
 
@@ -435,8 +435,8 @@ namespace Adyen.Service
         /// <returns>GenericResponse</returns>
         public GenericResponse DeletePayoutMethods(DeletePayoutMethodRequest deletePayoutMethodRequest)
         {
-            var jsonRequest = Util.JsonOperation.SerializeRequest(deletePayoutMethodRequest);
-            var jsonResponse = _deletePayoutMethods.Request(jsonRequest);
+            string jsonRequest = Util.JsonOperation.SerializeRequest(deletePayoutMethodRequest);
+            string jsonResponse = _deletePayoutMethods.Request(jsonRequest);
             return JsonConvert.DeserializeObject<GenericResponse>(jsonResponse);
         }
 
@@ -447,8 +447,8 @@ namespace Adyen.Service
         /// <returns>GenericResponse</returns>
         public async Task<GenericResponse> DeletePayoutMethodsAsync(DeletePayoutMethodRequest deletePayoutMethodRequest)
         {
-            var jsonRequest = Util.JsonOperation.SerializeRequest(deletePayoutMethodRequest);
-            var jsonResponse = await _deletePayoutMethods.RequestAsync(jsonRequest);
+            string jsonRequest = Util.JsonOperation.SerializeRequest(deletePayoutMethodRequest);
+            string jsonResponse = await _deletePayoutMethods.RequestAsync(jsonRequest);
             return JsonConvert.DeserializeObject<GenericResponse>(jsonResponse);
         }
     }

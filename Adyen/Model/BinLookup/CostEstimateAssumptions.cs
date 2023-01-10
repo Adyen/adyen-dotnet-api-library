@@ -72,7 +72,7 @@ namespace Adyen.Model.BinLookup
         /// <returns>String presentation of the object</returns>
         public override string ToString()
         {
-            var sb = new StringBuilder();
+            StringBuilder sb = new StringBuilder();
             sb.Append("class CostEstimateAssumptions {\n");
             sb.Append("  Assume3DSecureAuthenticated: ").Append(Assume3DSecureAuthenticated).Append("\n");
             sb.Append("  AssumeLevel3Data: ").Append(AssumeLevel3Data).Append("\n");

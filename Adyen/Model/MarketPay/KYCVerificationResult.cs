@@ -114,7 +114,7 @@ namespace Adyen.Model.MarketPay
         /// <returns>String presentation of the object</returns>
         public override string ToString()
         {
-            var sb = new StringBuilder();
+            StringBuilder sb = new StringBuilder();
             sb.Append("class KYCVerificationResult {\n");
             sb.Append("  AccountHolder: ").Append(AccountHolder).Append("\n");
             sb.Append("  LegalArrangements: ").Append(LegalArrangements.ObjectListToString()).Append("\n");

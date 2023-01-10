@@ -455,7 +455,7 @@ namespace Adyen.Model.MarketPay
         /// <returns>String presentation of the object</returns>
         public override string ToString()
         {
-            var sb = new StringBuilder();
+            StringBuilder sb = new StringBuilder();
             sb.Append("class Transaction {\n");
             sb.Append("  Amount: ").Append(Amount).Append("\n");
             sb.Append("  BalanceAccountId: ").Append(BalanceAccountId).Append("\n");

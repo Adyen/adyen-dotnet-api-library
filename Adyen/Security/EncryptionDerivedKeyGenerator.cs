@@ -35,7 +35,7 @@ namespace Adyen.Security
         {
             byte[] salt = Encoding.ASCII.GetBytes(Salt);
 
-            var rfc2898 = new Rfc2898DeriveBytes(encryptionCredentialDetails.Password, salt, Iterations);
+            Rfc2898DeriveBytes rfc2898 = new Rfc2898DeriveBytes(encryptionCredentialDetails.Password, salt, Iterations);
             byte[] key = rfc2898.GetBytes(80);
 
             return new EncryptionDerivedKey()

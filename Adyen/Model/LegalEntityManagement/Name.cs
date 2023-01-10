@@ -76,7 +76,7 @@ namespace Adyen.Model.LegalEntityManagement
         /// <returns>String presentation of the object</returns>
         public override string ToString()
         {
-            var sb = new StringBuilder();
+            StringBuilder sb = new StringBuilder();
             sb.Append("class Name {\n");
             sb.Append("  FirstName: ").Append(FirstName).Append("\n");
             sb.Append("  Infix: ").Append(Infix).Append("\n");

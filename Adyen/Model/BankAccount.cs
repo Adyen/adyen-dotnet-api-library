@@ -130,7 +130,7 @@ namespace Adyen.Model
         /// <returns>String presentation of the object</returns>
         public override string ToString()
         {
-            var sb = new StringBuilder();
+            StringBuilder sb = new StringBuilder();
             sb.Append("class BankAccount {\n");
             sb.Append("  OwnerName: ").Append(OwnerName).Append("\n");
             sb.Append("  CountryCode: ").Append(CountryCode).Append("\n");

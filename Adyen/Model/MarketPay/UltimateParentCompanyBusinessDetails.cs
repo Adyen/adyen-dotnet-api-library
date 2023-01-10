@@ -93,7 +93,7 @@ namespace Adyen.Model.MarketPay
         /// <returns>String presentation of the object</returns>
         public override string ToString()
         {
-            var sb = new StringBuilder();
+            StringBuilder sb = new StringBuilder();
             sb.Append("class UltimateParentCompanyBusinessDetails {\n");
             sb.Append("  LegalBusinessName: ").Append(LegalBusinessName).Append("\n");
             sb.Append("  RegistrationNumber: ").Append(RegistrationNumber).Append("\n");

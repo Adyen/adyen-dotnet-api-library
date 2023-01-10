@@ -71,7 +71,7 @@ namespace Adyen.Model.Payments
         /// <returns>String presentation of the object</returns>
         public override string ToString()
         {
-            var sb = new StringBuilder();
+            StringBuilder sb = new StringBuilder();
             sb.Append("class MerchantDevice {\n");
             sb.Append("  Os: ").Append(Os).Append("\n");
             sb.Append("  OsVersion: ").Append(OsVersion).Append("\n");

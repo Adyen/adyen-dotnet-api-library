@@ -40,7 +40,7 @@ namespace Adyen.Model.Notification
         /// <returns>String presentation of the object</returns>
         public override string ToString()
         {
-            var sb = new StringBuilder();
+            StringBuilder sb = new StringBuilder();
             sb.Append("class NotificationRequest {\n");
             sb.Append("  Live: ").Append(this.Live).Append("\n");
             sb.Append("  NotificationItemContainers: ").Append(this.NotificationItemContainers).Append("\n");

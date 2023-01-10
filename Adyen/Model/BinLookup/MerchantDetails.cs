@@ -72,7 +72,7 @@ namespace Adyen.Model.BinLookup
         /// <returns>String presentation of the object</returns>
         public override string ToString()
         {
-            var sb = new StringBuilder();
+            StringBuilder sb = new StringBuilder();
             sb.Append("class MerchantDetails {\n");
             sb.Append("  CountryCode: ").Append(CountryCode).Append("\n");
             sb.Append("  EnrolledIn3DSecure: ").Append(EnrolledIn3DSecure).Append("\n");
