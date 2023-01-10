@@ -12,7 +12,6 @@
 
 using System;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
 using System.Linq;
 using System.Net.Http;
 using System.Threading.Tasks;
@@ -25,7 +24,7 @@ namespace Adyen.Service.Management
     /// <summary>
     /// Represents a collection of functions to interact with the API endpoints
     /// </summary>
-    public partial class APIKeyMerchantLevelApi : AbstractService
+    public class APIKeyMerchantLevelApi : AbstractService
     {
         public APIKeyMerchantLevelApi(Client client) : base(client) {}
     
@@ -50,10 +49,10 @@ namespace Adyen.Service.Management
         /// <returns>Task of GenerateApiKeyResponse</returns>
         public async Task<GenerateApiKeyResponse> PostMerchantsMerchantIdApiCredentialsApiCredentialIdGenerateApiKeyAsync(string merchantId, string apiCredentialId)
         {
-            var httpMethod = new HttpMethod("POST");
+            var endpoint = $"/merchants/{merchantId}/apiCredentials/{apiCredentialId}/generateApiKey";
             string jsonRequest = null;
-            var resource = new ManagementResource(this, $"/merchants/{merchantId}/apiCredentials/{apiCredentialId}/generateApiKey");
-            var jsonResult = await resource.RequestAsync(jsonRequest, null, httpMethod);
+            var resource = new ManagementResource(this, endpoint);
+            var jsonResult = await resource.RequestAsync(jsonRequest, null, new HttpMethod("POST"));
             return JsonConvert.DeserializeObject<GenerateApiKeyResponse>(jsonResult);
         }
 

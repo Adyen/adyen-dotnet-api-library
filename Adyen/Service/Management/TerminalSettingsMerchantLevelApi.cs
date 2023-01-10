@@ -12,7 +12,6 @@
 
 using System;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
 using System.Linq;
 using System.Net.Http;
 using System.Threading.Tasks;
@@ -25,7 +24,7 @@ namespace Adyen.Service.Management
     /// <summary>
     /// Represents a collection of functions to interact with the API endpoints
     /// </summary>
-    public partial class TerminalSettingsMerchantLevelApi : AbstractService
+    public class TerminalSettingsMerchantLevelApi : AbstractService
     {
         public TerminalSettingsMerchantLevelApi(Client client) : base(client) {}
     
@@ -50,10 +49,16 @@ namespace Adyen.Service.Management
         /// <returns>Task of Logo</returns>
         public async Task<Logo> GetMerchantsMerchantIdTerminalLogosAsync(string merchantId, string model = default(string))
         {
-            var httpMethod = new HttpMethod("GET");
+            var endpoint = $"/merchants/{merchantId}/terminalLogos";
+            // Build the query string
+            var queryParams = new Dictionary<string, string>();
+            if (model != null) queryParams.Add("model", model.ToString());
+            var queryString = string.Join("&", queryParams.Select(kvp => $"{kvp.Key}={kvp.Value}"));
+            if (!string.IsNullOrEmpty(queryString)) endpoint += "?" + queryString;
+
             string jsonRequest = null;
-            var resource = new ManagementResource(this, $"/merchants/{merchantId}/terminalLogos");
-            var jsonResult = await resource.RequestAsync(jsonRequest, null, httpMethod);
+            var resource = new ManagementResource(this, endpoint);
+            var jsonResult = await resource.RequestAsync(jsonRequest, null, new HttpMethod("GET"));
             return JsonConvert.DeserializeObject<Logo>(jsonResult);
         }
 
@@ -76,10 +81,10 @@ namespace Adyen.Service.Management
         /// <returns>Task of TerminalSettings</returns>
         public async Task<TerminalSettings> GetMerchantsMerchantIdTerminalSettingsAsync(string merchantId)
         {
-            var httpMethod = new HttpMethod("GET");
+            var endpoint = $"/merchants/{merchantId}/terminalSettings";
             string jsonRequest = null;
-            var resource = new ManagementResource(this, $"/merchants/{merchantId}/terminalSettings");
-            var jsonResult = await resource.RequestAsync(jsonRequest, null, httpMethod);
+            var resource = new ManagementResource(this, endpoint);
+            var jsonResult = await resource.RequestAsync(jsonRequest, null, new HttpMethod("GET"));
             return JsonConvert.DeserializeObject<TerminalSettings>(jsonResult);
         }
 
@@ -106,10 +111,16 @@ namespace Adyen.Service.Management
         /// <returns>Task of Logo</returns>
         public async Task<Logo> PatchMerchantsMerchantIdTerminalLogosAsync(string merchantId, Logo logo, string model = default(string))
         {
-            var httpMethod = new HttpMethod("PATCH");
+            var endpoint = $"/merchants/{merchantId}/terminalLogos";
+            // Build the query string
+            var queryParams = new Dictionary<string, string>();
+            if (model != null) queryParams.Add("model", model.ToString());
+            var queryString = string.Join("&", queryParams.Select(kvp => $"{kvp.Key}={kvp.Value}"));
+            if (!string.IsNullOrEmpty(queryString)) endpoint += "?" + queryString;
+
             string jsonRequest = logo.ToJson();
-            var resource = new ManagementResource(this, $"/merchants/{merchantId}/terminalLogos");
-            var jsonResult = await resource.RequestAsync(jsonRequest, null, httpMethod);
+            var resource = new ManagementResource(this, endpoint);
+            var jsonResult = await resource.RequestAsync(jsonRequest, null, new HttpMethod("PATCH"));
             return JsonConvert.DeserializeObject<Logo>(jsonResult);
         }
 
@@ -134,10 +145,10 @@ namespace Adyen.Service.Management
         /// <returns>Task of TerminalSettings</returns>
         public async Task<TerminalSettings> PatchMerchantsMerchantIdTerminalSettingsAsync(string merchantId, TerminalSettings terminalSettings)
         {
-            var httpMethod = new HttpMethod("PATCH");
+            var endpoint = $"/merchants/{merchantId}/terminalSettings";
             string jsonRequest = terminalSettings.ToJson();
-            var resource = new ManagementResource(this, $"/merchants/{merchantId}/terminalSettings");
-            var jsonResult = await resource.RequestAsync(jsonRequest, null, httpMethod);
+            var resource = new ManagementResource(this, endpoint);
+            var jsonResult = await resource.RequestAsync(jsonRequest, null, new HttpMethod("PATCH"));
             return JsonConvert.DeserializeObject<TerminalSettings>(jsonResult);
         }
 

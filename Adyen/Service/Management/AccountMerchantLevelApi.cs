@@ -12,7 +12,6 @@
 
 using System;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
 using System.Linq;
 using System.Net.Http;
 using System.Threading.Tasks;
@@ -25,7 +24,7 @@ namespace Adyen.Service.Management
     /// <summary>
     /// Represents a collection of functions to interact with the API endpoints
     /// </summary>
-    public partial class AccountMerchantLevelApi : AbstractService
+    public class AccountMerchantLevelApi : AbstractService
     {
         public AccountMerchantLevelApi(Client client) : base(client) {}
     
@@ -50,10 +49,17 @@ namespace Adyen.Service.Management
         /// <returns>Task of ListMerchantResponse</returns>
         public async Task<ListMerchantResponse> GetMerchantsAsync(int? pageNumber = default(int?), int? pageSize = default(int?))
         {
-            var httpMethod = new HttpMethod("GET");
+            var endpoint = "/merchants";
+            // Build the query string
+            var queryParams = new Dictionary<string, string>();
+            if (pageNumber != null) queryParams.Add("pageNumber", pageNumber.ToString());
+            if (pageSize != null) queryParams.Add("pageSize", pageSize.ToString());
+            var queryString = string.Join("&", queryParams.Select(kvp => $"{kvp.Key}={kvp.Value}"));
+            if (!string.IsNullOrEmpty(queryString)) endpoint += "?" + queryString;
+
             string jsonRequest = null;
-            var resource = new ManagementResource(this, $"/merchants");
-            var jsonResult = await resource.RequestAsync(jsonRequest, null, httpMethod);
+            var resource = new ManagementResource(this, endpoint);
+            var jsonResult = await resource.RequestAsync(jsonRequest, null, new HttpMethod("GET"));
             return JsonConvert.DeserializeObject<ListMerchantResponse>(jsonResult);
         }
 
@@ -76,10 +82,10 @@ namespace Adyen.Service.Management
         /// <returns>Task of Merchant</returns>
         public async Task<Merchant> GetMerchantsMerchantIdAsync(string merchantId)
         {
-            var httpMethod = new HttpMethod("GET");
+            var endpoint = $"/merchants/{merchantId}";
             string jsonRequest = null;
-            var resource = new ManagementResource(this, $"/merchants/{merchantId}");
-            var jsonResult = await resource.RequestAsync(jsonRequest, null, httpMethod);
+            var resource = new ManagementResource(this, endpoint);
+            var jsonResult = await resource.RequestAsync(jsonRequest, null, new HttpMethod("GET"));
             return JsonConvert.DeserializeObject<Merchant>(jsonResult);
         }
 
@@ -102,10 +108,10 @@ namespace Adyen.Service.Management
         /// <returns>Task of CreateMerchantResponse</returns>
         public async Task<CreateMerchantResponse> PostMerchantsAsync(CreateMerchantRequest createMerchantRequest)
         {
-            var httpMethod = new HttpMethod("POST");
+            var endpoint = "/merchants";
             string jsonRequest = createMerchantRequest.ToJson();
-            var resource = new ManagementResource(this, $"/merchants");
-            var jsonResult = await resource.RequestAsync(jsonRequest, null, httpMethod);
+            var resource = new ManagementResource(this, endpoint);
+            var jsonResult = await resource.RequestAsync(jsonRequest, null, new HttpMethod("POST"));
             return JsonConvert.DeserializeObject<CreateMerchantResponse>(jsonResult);
         }
 
@@ -128,10 +134,10 @@ namespace Adyen.Service.Management
         /// <returns>Task of RequestActivationResponse</returns>
         public async Task<RequestActivationResponse> PostMerchantsMerchantIdActivateAsync(string merchantId)
         {
-            var httpMethod = new HttpMethod("POST");
+            var endpoint = $"/merchants/{merchantId}/activate";
             string jsonRequest = null;
-            var resource = new ManagementResource(this, $"/merchants/{merchantId}/activate");
-            var jsonResult = await resource.RequestAsync(jsonRequest, null, httpMethod);
+            var resource = new ManagementResource(this, endpoint);
+            var jsonResult = await resource.RequestAsync(jsonRequest, null, new HttpMethod("POST"));
             return JsonConvert.DeserializeObject<RequestActivationResponse>(jsonResult);
         }
 

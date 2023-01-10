@@ -12,7 +12,6 @@
 
 using System;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
 using System.Linq;
 using System.Net.Http;
 using System.Threading.Tasks;
@@ -25,7 +24,7 @@ namespace Adyen.Service.Management
     /// <summary>
     /// Represents a collection of functions to interact with the API endpoints
     /// </summary>
-    public partial class ClientKeyCompanyLevelApi : AbstractService
+    public class ClientKeyCompanyLevelApi : AbstractService
     {
         public ClientKeyCompanyLevelApi(Client client) : base(client) {}
     
@@ -50,10 +49,10 @@ namespace Adyen.Service.Management
         /// <returns>Task of GenerateClientKeyResponse</returns>
         public async Task<GenerateClientKeyResponse> PostCompaniesCompanyIdApiCredentialsApiCredentialIdGenerateClientKeyAsync(string companyId, string apiCredentialId)
         {
-            var httpMethod = new HttpMethod("POST");
+            var endpoint = $"/companies/{companyId}/apiCredentials/{apiCredentialId}/generateClientKey";
             string jsonRequest = null;
-            var resource = new ManagementResource(this, $"/companies/{companyId}/apiCredentials/{apiCredentialId}/generateClientKey");
-            var jsonResult = await resource.RequestAsync(jsonRequest, null, httpMethod);
+            var resource = new ManagementResource(this, endpoint);
+            var jsonResult = await resource.RequestAsync(jsonRequest, null, new HttpMethod("POST"));
             return JsonConvert.DeserializeObject<GenerateClientKeyResponse>(jsonResult);
         }
 

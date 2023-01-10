@@ -12,7 +12,6 @@
 
 using System;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
 using System.Linq;
 using System.Net.Http;
 using System.Threading.Tasks;
@@ -25,7 +24,7 @@ namespace Adyen.Service.Management
     /// <summary>
     /// Represents a collection of functions to interact with the API endpoints
     /// </summary>
-    public partial class APICredentialsMerchantLevelApi : AbstractService
+    public class APICredentialsMerchantLevelApi : AbstractService
     {
         public APICredentialsMerchantLevelApi(Client client) : base(client) {}
     
@@ -52,10 +51,17 @@ namespace Adyen.Service.Management
         /// <returns>Task of ListMerchantApiCredentialsResponse</returns>
         public async Task<ListMerchantApiCredentialsResponse> GetMerchantsMerchantIdApiCredentialsAsync(string merchantId, int? pageNumber = default(int?), int? pageSize = default(int?))
         {
-            var httpMethod = new HttpMethod("GET");
+            var endpoint = $"/merchants/{merchantId}/apiCredentials";
+            // Build the query string
+            var queryParams = new Dictionary<string, string>();
+            if (pageNumber != null) queryParams.Add("pageNumber", pageNumber.ToString());
+            if (pageSize != null) queryParams.Add("pageSize", pageSize.ToString());
+            var queryString = string.Join("&", queryParams.Select(kvp => $"{kvp.Key}={kvp.Value}"));
+            if (!string.IsNullOrEmpty(queryString)) endpoint += "?" + queryString;
+
             string jsonRequest = null;
-            var resource = new ManagementResource(this, $"/merchants/{merchantId}/apiCredentials");
-            var jsonResult = await resource.RequestAsync(jsonRequest, null, httpMethod);
+            var resource = new ManagementResource(this, endpoint);
+            var jsonResult = await resource.RequestAsync(jsonRequest, null, new HttpMethod("GET"));
             return JsonConvert.DeserializeObject<ListMerchantApiCredentialsResponse>(jsonResult);
         }
 
@@ -80,10 +86,10 @@ namespace Adyen.Service.Management
         /// <returns>Task of ApiCredential</returns>
         public async Task<ApiCredential> GetMerchantsMerchantIdApiCredentialsApiCredentialIdAsync(string merchantId, string apiCredentialId)
         {
-            var httpMethod = new HttpMethod("GET");
+            var endpoint = $"/merchants/{merchantId}/apiCredentials/{apiCredentialId}";
             string jsonRequest = null;
-            var resource = new ManagementResource(this, $"/merchants/{merchantId}/apiCredentials/{apiCredentialId}");
-            var jsonResult = await resource.RequestAsync(jsonRequest, null, httpMethod);
+            var resource = new ManagementResource(this, endpoint);
+            var jsonResult = await resource.RequestAsync(jsonRequest, null, new HttpMethod("GET"));
             return JsonConvert.DeserializeObject<ApiCredential>(jsonResult);
         }
 
@@ -110,10 +116,10 @@ namespace Adyen.Service.Management
         /// <returns>Task of ApiCredential</returns>
         public async Task<ApiCredential> PatchMerchantsMerchantIdApiCredentialsApiCredentialIdAsync(string merchantId, string apiCredentialId, UpdateMerchantApiCredentialRequest updateMerchantApiCredentialRequest)
         {
-            var httpMethod = new HttpMethod("PATCH");
+            var endpoint = $"/merchants/{merchantId}/apiCredentials/{apiCredentialId}";
             string jsonRequest = updateMerchantApiCredentialRequest.ToJson();
-            var resource = new ManagementResource(this, $"/merchants/{merchantId}/apiCredentials/{apiCredentialId}");
-            var jsonResult = await resource.RequestAsync(jsonRequest, null, httpMethod);
+            var resource = new ManagementResource(this, endpoint);
+            var jsonResult = await resource.RequestAsync(jsonRequest, null, new HttpMethod("PATCH"));
             return JsonConvert.DeserializeObject<ApiCredential>(jsonResult);
         }
 
@@ -138,10 +144,10 @@ namespace Adyen.Service.Management
         /// <returns>Task of CreateApiCredentialResponse</returns>
         public async Task<CreateApiCredentialResponse> PostMerchantsMerchantIdApiCredentialsAsync(string merchantId, CreateMerchantApiCredentialRequest createMerchantApiCredentialRequest)
         {
-            var httpMethod = new HttpMethod("POST");
+            var endpoint = $"/merchants/{merchantId}/apiCredentials";
             string jsonRequest = createMerchantApiCredentialRequest.ToJson();
-            var resource = new ManagementResource(this, $"/merchants/{merchantId}/apiCredentials");
-            var jsonResult = await resource.RequestAsync(jsonRequest, null, httpMethod);
+            var resource = new ManagementResource(this, endpoint);
+            var jsonResult = await resource.RequestAsync(jsonRequest, null, new HttpMethod("POST"));
             return JsonConvert.DeserializeObject<CreateApiCredentialResponse>(jsonResult);
         }
 

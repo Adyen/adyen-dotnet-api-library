@@ -12,7 +12,6 @@
 
 using System;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
 using System.Linq;
 using System.Net.Http;
 using System.Threading.Tasks;
@@ -25,7 +24,7 @@ namespace Adyen.Service.Management
     /// <summary>
     /// Represents a collection of functions to interact with the API endpoints
     /// </summary>
-    public partial class AccountCompanyLevelApi : AbstractService
+    public class AccountCompanyLevelApi : AbstractService
     {
         public AccountCompanyLevelApi(Client client) : base(client) {}
     
@@ -50,10 +49,17 @@ namespace Adyen.Service.Management
         /// <returns>Task of ListCompanyResponse</returns>
         public async Task<ListCompanyResponse> GetCompaniesAsync(int? pageNumber = default(int?), int? pageSize = default(int?))
         {
-            var httpMethod = new HttpMethod("GET");
+            var endpoint = "/companies";
+            // Build the query string
+            var queryParams = new Dictionary<string, string>();
+            if (pageNumber != null) queryParams.Add("pageNumber", pageNumber.ToString());
+            if (pageSize != null) queryParams.Add("pageSize", pageSize.ToString());
+            var queryString = string.Join("&", queryParams.Select(kvp => $"{kvp.Key}={kvp.Value}"));
+            if (!string.IsNullOrEmpty(queryString)) endpoint += "?" + queryString;
+
             string jsonRequest = null;
-            var resource = new ManagementResource(this, $"/companies");
-            var jsonResult = await resource.RequestAsync(jsonRequest, null, httpMethod);
+            var resource = new ManagementResource(this, endpoint);
+            var jsonResult = await resource.RequestAsync(jsonRequest, null, new HttpMethod("GET"));
             return JsonConvert.DeserializeObject<ListCompanyResponse>(jsonResult);
         }
 
@@ -76,10 +82,10 @@ namespace Adyen.Service.Management
         /// <returns>Task of Company</returns>
         public async Task<Company> GetCompaniesCompanyIdAsync(string companyId)
         {
-            var httpMethod = new HttpMethod("GET");
+            var endpoint = $"/companies/{companyId}";
             string jsonRequest = null;
-            var resource = new ManagementResource(this, $"/companies/{companyId}");
-            var jsonResult = await resource.RequestAsync(jsonRequest, null, httpMethod);
+            var resource = new ManagementResource(this, endpoint);
+            var jsonResult = await resource.RequestAsync(jsonRequest, null, new HttpMethod("GET"));
             return JsonConvert.DeserializeObject<Company>(jsonResult);
         }
 
@@ -106,10 +112,17 @@ namespace Adyen.Service.Management
         /// <returns>Task of ListMerchantResponse</returns>
         public async Task<ListMerchantResponse> GetCompaniesCompanyIdMerchantsAsync(string companyId, int? pageNumber = default(int?), int? pageSize = default(int?))
         {
-            var httpMethod = new HttpMethod("GET");
+            var endpoint = $"/companies/{companyId}/merchants";
+            // Build the query string
+            var queryParams = new Dictionary<string, string>();
+            if (pageNumber != null) queryParams.Add("pageNumber", pageNumber.ToString());
+            if (pageSize != null) queryParams.Add("pageSize", pageSize.ToString());
+            var queryString = string.Join("&", queryParams.Select(kvp => $"{kvp.Key}={kvp.Value}"));
+            if (!string.IsNullOrEmpty(queryString)) endpoint += "?" + queryString;
+
             string jsonRequest = null;
-            var resource = new ManagementResource(this, $"/companies/{companyId}/merchants");
-            var jsonResult = await resource.RequestAsync(jsonRequest, null, httpMethod);
+            var resource = new ManagementResource(this, endpoint);
+            var jsonResult = await resource.RequestAsync(jsonRequest, null, new HttpMethod("GET"));
             return JsonConvert.DeserializeObject<ListMerchantResponse>(jsonResult);
         }
 

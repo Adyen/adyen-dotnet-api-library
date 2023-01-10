@@ -12,7 +12,6 @@
 
 using System;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
 using System.Linq;
 using System.Net.Http;
 using System.Threading.Tasks;
@@ -25,7 +24,7 @@ namespace Adyen.Service.Management
     /// <summary>
     /// Represents a collection of functions to interact with the API endpoints
     /// </summary>
-    public partial class TerminalActionsTerminalLevelApi : AbstractService
+    public class TerminalActionsTerminalLevelApi : AbstractService
     {
         public TerminalActionsTerminalLevelApi(Client client) : base(client) {}
     
@@ -48,10 +47,10 @@ namespace Adyen.Service.Management
         /// <returns>Task of ScheduleTerminalActionsResponse</returns>
         public async Task<ScheduleTerminalActionsResponse> PostTerminalsScheduleActionsAsync(ScheduleTerminalActionsRequest scheduleTerminalActionsRequest)
         {
-            var httpMethod = new HttpMethod("POST");
+            var endpoint = "/terminals/scheduleActions";
             string jsonRequest = scheduleTerminalActionsRequest.ToJson();
-            var resource = new ManagementResource(this, $"/terminals/scheduleActions");
-            var jsonResult = await resource.RequestAsync(jsonRequest, null, httpMethod);
+            var resource = new ManagementResource(this, endpoint);
+            var jsonResult = await resource.RequestAsync(jsonRequest, null, new HttpMethod("POST"));
             return JsonConvert.DeserializeObject<ScheduleTerminalActionsResponse>(jsonResult);
         }
 

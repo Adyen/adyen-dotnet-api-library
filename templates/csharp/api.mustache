@@ -1,7 +1,6 @@
 {{>partial_header}}
 using System;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
 using System.Linq;
 using System.Net.Http;
 using System.Threading.Tasks;
@@ -16,7 +15,7 @@ namespace {{packageName}}.{{apiPackage}}
     /// <summary>
     /// Represents a collection of functions to interact with the API endpoints
     /// </summary>
-    {{>visibility}} partial class {{classname}} : AbstractService
+    {{>visibility}} class {{classname}} : AbstractService
     {
         public {{classname}}(Client client) : base(client) {}
     
@@ -47,13 +46,23 @@ namespace {{packageName}}.{{apiPackage}}
         {{/isDeprecated}}
         {{#returnType}}public async Task<{{{.}}}>{{/returnType}}{{^returnType}}public async Task{{/returnType}} {{operationId}}Async({{>api_parameters}})
         {
-            var httpMethod = new HttpMethod("{{httpMethod}}");
+            var endpoint = {{#hasPathParams}}${{/hasPathParams}}"{{{path}}}";
+            {{#hasQueryParams}}
+            // Build the query string
+            var queryParams = new Dictionary<string, string>();
+            {{#queryParams}}
+            if ({{paramName}} != null) queryParams.Add("{{baseName}}", {{paramName}}.ToString());
+            {{/queryParams}}
+            var queryString = string.Join("&", queryParams.Select(kvp => $"{kvp.Key}={kvp.Value}"));
+            if (!string.IsNullOrEmpty(queryString)) endpoint += "?" + queryString;
+
+            {{/hasQueryParams}}
             string jsonRequest = {{#bodyParam}}{{paramName}}.ToJson(){{/bodyParam}}{{^bodyParam}}null{{/bodyParam}};
-            var resource = new {{#lambda.titlecase}}{{serviceName}}{{/lambda.titlecase}}Resource(this, $"{{{path}}}");
-            {{#returnType}}var jsonResult = {{/returnType}}await resource.RequestAsync(jsonRequest, null, httpMethod);
-        {{#returnType}}
+            var resource = new {{#lambda.titlecase}}{{serviceName}}{{/lambda.titlecase}}Resource(this, endpoint);
+            {{#returnType}}var jsonResult = {{/returnType}}await resource.RequestAsync(jsonRequest, null, new HttpMethod("{{httpMethod}}"));
+            {{#returnType}}
             return JsonConvert.DeserializeObject<{{returnType}}>(jsonResult);
-        {{/returnType}}
+            {{/returnType}}
         }
 
         {{/supportsAsync}}

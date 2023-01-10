@@ -12,7 +12,6 @@
 
 using System;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
 using System.Linq;
 using System.Net.Http;
 using System.Threading.Tasks;
@@ -25,7 +24,7 @@ namespace Adyen.Service.Management
     /// <summary>
     /// Represents a collection of functions to interact with the API endpoints
     /// </summary>
-    public partial class PaymentMethodsMerchantLevelApi : AbstractService
+    public class PaymentMethodsMerchantLevelApi : AbstractService
     {
         public PaymentMethodsMerchantLevelApi(Client client) : base(client) {}
     
@@ -56,10 +55,19 @@ namespace Adyen.Service.Management
         /// <returns>Task of PaymentMethodResponse</returns>
         public async Task<PaymentMethodResponse> GetMerchantsMerchantIdPaymentMethodSettingsAsync(string merchantId, string storeId = default(string), string businessLineId = default(string), int? pageSize = default(int?), int? pageNumber = default(int?))
         {
-            var httpMethod = new HttpMethod("GET");
+            var endpoint = $"/merchants/{merchantId}/paymentMethodSettings";
+            // Build the query string
+            var queryParams = new Dictionary<string, string>();
+            if (storeId != null) queryParams.Add("storeId", storeId.ToString());
+            if (businessLineId != null) queryParams.Add("businessLineId", businessLineId.ToString());
+            if (pageSize != null) queryParams.Add("pageSize", pageSize.ToString());
+            if (pageNumber != null) queryParams.Add("pageNumber", pageNumber.ToString());
+            var queryString = string.Join("&", queryParams.Select(kvp => $"{kvp.Key}={kvp.Value}"));
+            if (!string.IsNullOrEmpty(queryString)) endpoint += "?" + queryString;
+
             string jsonRequest = null;
-            var resource = new ManagementResource(this, $"/merchants/{merchantId}/paymentMethodSettings");
-            var jsonResult = await resource.RequestAsync(jsonRequest, null, httpMethod);
+            var resource = new ManagementResource(this, endpoint);
+            var jsonResult = await resource.RequestAsync(jsonRequest, null, new HttpMethod("GET"));
             return JsonConvert.DeserializeObject<PaymentMethodResponse>(jsonResult);
         }
 
@@ -84,10 +92,10 @@ namespace Adyen.Service.Management
         /// <returns>Task of PaymentMethod</returns>
         public async Task<PaymentMethod> GetMerchantsMerchantIdPaymentMethodSettingsPaymentMethodIdAsync(string merchantId, string paymentMethodId)
         {
-            var httpMethod = new HttpMethod("GET");
+            var endpoint = $"/merchants/{merchantId}/paymentMethodSettings/{paymentMethodId}";
             string jsonRequest = null;
-            var resource = new ManagementResource(this, $"/merchants/{merchantId}/paymentMethodSettings/{paymentMethodId}");
-            var jsonResult = await resource.RequestAsync(jsonRequest, null, httpMethod);
+            var resource = new ManagementResource(this, endpoint);
+            var jsonResult = await resource.RequestAsync(jsonRequest, null, new HttpMethod("GET"));
             return JsonConvert.DeserializeObject<PaymentMethod>(jsonResult);
         }
 
@@ -112,10 +120,10 @@ namespace Adyen.Service.Management
         /// <returns>Task of ApplePayInfo</returns>
         public async Task<ApplePayInfo> GetMerchantsMerchantIdPaymentMethodSettingsPaymentMethodIdGetApplePayDomainsAsync(string merchantId, string paymentMethodId)
         {
-            var httpMethod = new HttpMethod("GET");
+            var endpoint = $"/merchants/{merchantId}/paymentMethodSettings/{paymentMethodId}/getApplePayDomains";
             string jsonRequest = null;
-            var resource = new ManagementResource(this, $"/merchants/{merchantId}/paymentMethodSettings/{paymentMethodId}/getApplePayDomains");
-            var jsonResult = await resource.RequestAsync(jsonRequest, null, httpMethod);
+            var resource = new ManagementResource(this, endpoint);
+            var jsonResult = await resource.RequestAsync(jsonRequest, null, new HttpMethod("GET"));
             return JsonConvert.DeserializeObject<ApplePayInfo>(jsonResult);
         }
 
@@ -142,10 +150,10 @@ namespace Adyen.Service.Management
         /// <returns>Task of PaymentMethod</returns>
         public async Task<PaymentMethod> PatchMerchantsMerchantIdPaymentMethodSettingsPaymentMethodIdAsync(string merchantId, string paymentMethodId, UpdatePaymentMethodInfo updatePaymentMethodInfo)
         {
-            var httpMethod = new HttpMethod("PATCH");
+            var endpoint = $"/merchants/{merchantId}/paymentMethodSettings/{paymentMethodId}";
             string jsonRequest = updatePaymentMethodInfo.ToJson();
-            var resource = new ManagementResource(this, $"/merchants/{merchantId}/paymentMethodSettings/{paymentMethodId}");
-            var jsonResult = await resource.RequestAsync(jsonRequest, null, httpMethod);
+            var resource = new ManagementResource(this, endpoint);
+            var jsonResult = await resource.RequestAsync(jsonRequest, null, new HttpMethod("PATCH"));
             return JsonConvert.DeserializeObject<PaymentMethod>(jsonResult);
         }
 
@@ -170,10 +178,10 @@ namespace Adyen.Service.Management
         /// <returns>Task of PaymentMethod</returns>
         public async Task<PaymentMethod> PostMerchantsMerchantIdPaymentMethodSettingsAsync(string merchantId, PaymentMethodSetupInfo paymentMethodSetupInfo)
         {
-            var httpMethod = new HttpMethod("POST");
+            var endpoint = $"/merchants/{merchantId}/paymentMethodSettings";
             string jsonRequest = paymentMethodSetupInfo.ToJson();
-            var resource = new ManagementResource(this, $"/merchants/{merchantId}/paymentMethodSettings");
-            var jsonResult = await resource.RequestAsync(jsonRequest, null, httpMethod);
+            var resource = new ManagementResource(this, endpoint);
+            var jsonResult = await resource.RequestAsync(jsonRequest, null, new HttpMethod("POST"));
             return JsonConvert.DeserializeObject<PaymentMethod>(jsonResult);
         }
 
@@ -200,10 +208,10 @@ namespace Adyen.Service.Management
         /// <returns>Task of Object</returns>
         public async Task<Object> PostMerchantsMerchantIdPaymentMethodSettingsPaymentMethodIdAddApplePayDomainsAsync(string merchantId, string paymentMethodId, ApplePayInfo applePayInfo)
         {
-            var httpMethod = new HttpMethod("POST");
+            var endpoint = $"/merchants/{merchantId}/paymentMethodSettings/{paymentMethodId}/addApplePayDomains";
             string jsonRequest = applePayInfo.ToJson();
-            var resource = new ManagementResource(this, $"/merchants/{merchantId}/paymentMethodSettings/{paymentMethodId}/addApplePayDomains");
-            var jsonResult = await resource.RequestAsync(jsonRequest, null, httpMethod);
+            var resource = new ManagementResource(this, endpoint);
+            var jsonResult = await resource.RequestAsync(jsonRequest, null, new HttpMethod("POST"));
             return JsonConvert.DeserializeObject<Object>(jsonResult);
         }
 

@@ -12,7 +12,6 @@
 
 using System;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
 using System.Linq;
 using System.Net.Http;
 using System.Threading.Tasks;
@@ -25,7 +24,7 @@ namespace Adyen.Service.Management
     /// <summary>
     /// Represents a collection of functions to interact with the API endpoints
     /// </summary>
-    public partial class TerminalActionsCompanyLevelApi : AbstractService
+    public class TerminalActionsCompanyLevelApi : AbstractService
     {
         public TerminalActionsCompanyLevelApi(Client client) : base(client) {}
     
@@ -52,10 +51,17 @@ namespace Adyen.Service.Management
         /// <returns>Task of AndroidAppsResponse</returns>
         public async Task<AndroidAppsResponse> GetCompaniesCompanyIdAndroidAppsAsync(string companyId, int? pageNumber = default(int?), int? pageSize = default(int?))
         {
-            var httpMethod = new HttpMethod("GET");
+            var endpoint = $"/companies/{companyId}/androidApps";
+            // Build the query string
+            var queryParams = new Dictionary<string, string>();
+            if (pageNumber != null) queryParams.Add("pageNumber", pageNumber.ToString());
+            if (pageSize != null) queryParams.Add("pageSize", pageSize.ToString());
+            var queryString = string.Join("&", queryParams.Select(kvp => $"{kvp.Key}={kvp.Value}"));
+            if (!string.IsNullOrEmpty(queryString)) endpoint += "?" + queryString;
+
             string jsonRequest = null;
-            var resource = new ManagementResource(this, $"/companies/{companyId}/androidApps");
-            var jsonResult = await resource.RequestAsync(jsonRequest, null, httpMethod);
+            var resource = new ManagementResource(this, endpoint);
+            var jsonResult = await resource.RequestAsync(jsonRequest, null, new HttpMethod("GET"));
             return JsonConvert.DeserializeObject<AndroidAppsResponse>(jsonResult);
         }
 
@@ -82,10 +88,17 @@ namespace Adyen.Service.Management
         /// <returns>Task of AndroidCertificatesResponse</returns>
         public async Task<AndroidCertificatesResponse> GetCompaniesCompanyIdAndroidCertificatesAsync(string companyId, int? pageNumber = default(int?), int? pageSize = default(int?))
         {
-            var httpMethod = new HttpMethod("GET");
+            var endpoint = $"/companies/{companyId}/androidCertificates";
+            // Build the query string
+            var queryParams = new Dictionary<string, string>();
+            if (pageNumber != null) queryParams.Add("pageNumber", pageNumber.ToString());
+            if (pageSize != null) queryParams.Add("pageSize", pageSize.ToString());
+            var queryString = string.Join("&", queryParams.Select(kvp => $"{kvp.Key}={kvp.Value}"));
+            if (!string.IsNullOrEmpty(queryString)) endpoint += "?" + queryString;
+
             string jsonRequest = null;
-            var resource = new ManagementResource(this, $"/companies/{companyId}/androidCertificates");
-            var jsonResult = await resource.RequestAsync(jsonRequest, null, httpMethod);
+            var resource = new ManagementResource(this, endpoint);
+            var jsonResult = await resource.RequestAsync(jsonRequest, null, new HttpMethod("GET"));
             return JsonConvert.DeserializeObject<AndroidCertificatesResponse>(jsonResult);
         }
 
@@ -116,10 +129,19 @@ namespace Adyen.Service.Management
         /// <returns>Task of ListExternalTerminalActionsResponse</returns>
         public async Task<ListExternalTerminalActionsResponse> GetCompaniesCompanyIdTerminalActionsAsync(string companyId, int? pageNumber = default(int?), int? pageSize = default(int?), string status = default(string), string type = default(string))
         {
-            var httpMethod = new HttpMethod("GET");
+            var endpoint = $"/companies/{companyId}/terminalActions";
+            // Build the query string
+            var queryParams = new Dictionary<string, string>();
+            if (pageNumber != null) queryParams.Add("pageNumber", pageNumber.ToString());
+            if (pageSize != null) queryParams.Add("pageSize", pageSize.ToString());
+            if (status != null) queryParams.Add("status", status.ToString());
+            if (type != null) queryParams.Add("type", type.ToString());
+            var queryString = string.Join("&", queryParams.Select(kvp => $"{kvp.Key}={kvp.Value}"));
+            if (!string.IsNullOrEmpty(queryString)) endpoint += "?" + queryString;
+
             string jsonRequest = null;
-            var resource = new ManagementResource(this, $"/companies/{companyId}/terminalActions");
-            var jsonResult = await resource.RequestAsync(jsonRequest, null, httpMethod);
+            var resource = new ManagementResource(this, endpoint);
+            var jsonResult = await resource.RequestAsync(jsonRequest, null, new HttpMethod("GET"));
             return JsonConvert.DeserializeObject<ListExternalTerminalActionsResponse>(jsonResult);
         }
 
@@ -144,10 +166,10 @@ namespace Adyen.Service.Management
         /// <returns>Task of ExternalTerminalAction</returns>
         public async Task<ExternalTerminalAction> GetCompaniesCompanyIdTerminalActionsActionIdAsync(string companyId, string actionId)
         {
-            var httpMethod = new HttpMethod("GET");
+            var endpoint = $"/companies/{companyId}/terminalActions/{actionId}";
             string jsonRequest = null;
-            var resource = new ManagementResource(this, $"/companies/{companyId}/terminalActions/{actionId}");
-            var jsonResult = await resource.RequestAsync(jsonRequest, null, httpMethod);
+            var resource = new ManagementResource(this, endpoint);
+            var jsonResult = await resource.RequestAsync(jsonRequest, null, new HttpMethod("GET"));
             return JsonConvert.DeserializeObject<ExternalTerminalAction>(jsonResult);
         }
 

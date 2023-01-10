@@ -12,7 +12,6 @@
 
 using System;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
 using System.Linq;
 using System.Net.Http;
 using System.Threading.Tasks;
@@ -25,7 +24,7 @@ namespace Adyen.Service.Management
     /// <summary>
     /// Represents a collection of functions to interact with the API endpoints
     /// </summary>
-    public partial class PayoutSettingsMerchantLevelApi : AbstractService
+    public class PayoutSettingsMerchantLevelApi : AbstractService
     {
         public PayoutSettingsMerchantLevelApi(Client client) : base(client) {}
     
@@ -50,10 +49,10 @@ namespace Adyen.Service.Management
         /// <returns>Task of Object</returns>
         public async Task<Object> DeleteMerchantsMerchantIdPayoutSettingsPayoutSettingsIdAsync(string merchantId, string payoutSettingsId)
         {
-            var httpMethod = new HttpMethod("DELETE");
+            var endpoint = $"/merchants/{merchantId}/payoutSettings/{payoutSettingsId}";
             string jsonRequest = null;
-            var resource = new ManagementResource(this, $"/merchants/{merchantId}/payoutSettings/{payoutSettingsId}");
-            var jsonResult = await resource.RequestAsync(jsonRequest, null, httpMethod);
+            var resource = new ManagementResource(this, endpoint);
+            var jsonResult = await resource.RequestAsync(jsonRequest, null, new HttpMethod("DELETE"));
             return JsonConvert.DeserializeObject<Object>(jsonResult);
         }
 
@@ -76,10 +75,10 @@ namespace Adyen.Service.Management
         /// <returns>Task of PayoutSettingsResponse</returns>
         public async Task<PayoutSettingsResponse> GetMerchantsMerchantIdPayoutSettingsAsync(string merchantId)
         {
-            var httpMethod = new HttpMethod("GET");
+            var endpoint = $"/merchants/{merchantId}/payoutSettings";
             string jsonRequest = null;
-            var resource = new ManagementResource(this, $"/merchants/{merchantId}/payoutSettings");
-            var jsonResult = await resource.RequestAsync(jsonRequest, null, httpMethod);
+            var resource = new ManagementResource(this, endpoint);
+            var jsonResult = await resource.RequestAsync(jsonRequest, null, new HttpMethod("GET"));
             return JsonConvert.DeserializeObject<PayoutSettingsResponse>(jsonResult);
         }
 
@@ -104,10 +103,10 @@ namespace Adyen.Service.Management
         /// <returns>Task of PayoutSettings</returns>
         public async Task<PayoutSettings> GetMerchantsMerchantIdPayoutSettingsPayoutSettingsIdAsync(string merchantId, string payoutSettingsId)
         {
-            var httpMethod = new HttpMethod("GET");
+            var endpoint = $"/merchants/{merchantId}/payoutSettings/{payoutSettingsId}";
             string jsonRequest = null;
-            var resource = new ManagementResource(this, $"/merchants/{merchantId}/payoutSettings/{payoutSettingsId}");
-            var jsonResult = await resource.RequestAsync(jsonRequest, null, httpMethod);
+            var resource = new ManagementResource(this, endpoint);
+            var jsonResult = await resource.RequestAsync(jsonRequest, null, new HttpMethod("GET"));
             return JsonConvert.DeserializeObject<PayoutSettings>(jsonResult);
         }
 
@@ -134,10 +133,10 @@ namespace Adyen.Service.Management
         /// <returns>Task of PayoutSettings</returns>
         public async Task<PayoutSettings> PatchMerchantsMerchantIdPayoutSettingsPayoutSettingsIdAsync(string merchantId, string payoutSettingsId, UpdatePayoutSettingsRequest updatePayoutSettingsRequest)
         {
-            var httpMethod = new HttpMethod("PATCH");
+            var endpoint = $"/merchants/{merchantId}/payoutSettings/{payoutSettingsId}";
             string jsonRequest = updatePayoutSettingsRequest.ToJson();
-            var resource = new ManagementResource(this, $"/merchants/{merchantId}/payoutSettings/{payoutSettingsId}");
-            var jsonResult = await resource.RequestAsync(jsonRequest, null, httpMethod);
+            var resource = new ManagementResource(this, endpoint);
+            var jsonResult = await resource.RequestAsync(jsonRequest, null, new HttpMethod("PATCH"));
             return JsonConvert.DeserializeObject<PayoutSettings>(jsonResult);
         }
 
@@ -162,10 +161,10 @@ namespace Adyen.Service.Management
         /// <returns>Task of PayoutSettings</returns>
         public async Task<PayoutSettings> PostMerchantsMerchantIdPayoutSettingsAsync(string merchantId, PayoutSettingsRequest payoutSettingsRequest)
         {
-            var httpMethod = new HttpMethod("POST");
+            var endpoint = $"/merchants/{merchantId}/payoutSettings";
             string jsonRequest = payoutSettingsRequest.ToJson();
-            var resource = new ManagementResource(this, $"/merchants/{merchantId}/payoutSettings");
-            var jsonResult = await resource.RequestAsync(jsonRequest, null, httpMethod);
+            var resource = new ManagementResource(this, endpoint);
+            var jsonResult = await resource.RequestAsync(jsonRequest, null, new HttpMethod("POST"));
             return JsonConvert.DeserializeObject<PayoutSettings>(jsonResult);
         }
 

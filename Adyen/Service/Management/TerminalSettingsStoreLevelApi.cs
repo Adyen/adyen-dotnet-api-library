@@ -12,7 +12,6 @@
 
 using System;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
 using System.Linq;
 using System.Net.Http;
 using System.Threading.Tasks;
@@ -25,7 +24,7 @@ namespace Adyen.Service.Management
     /// <summary>
     /// Represents a collection of functions to interact with the API endpoints
     /// </summary>
-    public partial class TerminalSettingsStoreLevelApi : AbstractService
+    public class TerminalSettingsStoreLevelApi : AbstractService
     {
         public TerminalSettingsStoreLevelApi(Client client) : base(client) {}
     
@@ -52,10 +51,16 @@ namespace Adyen.Service.Management
         /// <returns>Task of Logo</returns>
         public async Task<Logo> GetMerchantsMerchantIdStoresReferenceTerminalLogosAsync(string merchantId, string reference, string model = default(string))
         {
-            var httpMethod = new HttpMethod("GET");
+            var endpoint = $"/merchants/{merchantId}/stores/{reference}/terminalLogos";
+            // Build the query string
+            var queryParams = new Dictionary<string, string>();
+            if (model != null) queryParams.Add("model", model.ToString());
+            var queryString = string.Join("&", queryParams.Select(kvp => $"{kvp.Key}={kvp.Value}"));
+            if (!string.IsNullOrEmpty(queryString)) endpoint += "?" + queryString;
+
             string jsonRequest = null;
-            var resource = new ManagementResource(this, $"/merchants/{merchantId}/stores/{reference}/terminalLogos");
-            var jsonResult = await resource.RequestAsync(jsonRequest, null, httpMethod);
+            var resource = new ManagementResource(this, endpoint);
+            var jsonResult = await resource.RequestAsync(jsonRequest, null, new HttpMethod("GET"));
             return JsonConvert.DeserializeObject<Logo>(jsonResult);
         }
 
@@ -80,10 +85,10 @@ namespace Adyen.Service.Management
         /// <returns>Task of TerminalSettings</returns>
         public async Task<TerminalSettings> GetMerchantsMerchantIdStoresReferenceTerminalSettingsAsync(string merchantId, string reference)
         {
-            var httpMethod = new HttpMethod("GET");
+            var endpoint = $"/merchants/{merchantId}/stores/{reference}/terminalSettings";
             string jsonRequest = null;
-            var resource = new ManagementResource(this, $"/merchants/{merchantId}/stores/{reference}/terminalSettings");
-            var jsonResult = await resource.RequestAsync(jsonRequest, null, httpMethod);
+            var resource = new ManagementResource(this, endpoint);
+            var jsonResult = await resource.RequestAsync(jsonRequest, null, new HttpMethod("GET"));
             return JsonConvert.DeserializeObject<TerminalSettings>(jsonResult);
         }
 
@@ -108,10 +113,16 @@ namespace Adyen.Service.Management
         /// <returns>Task of Logo</returns>
         public async Task<Logo> GetStoresStoreIdTerminalLogosAsync(string storeId, string model = default(string))
         {
-            var httpMethod = new HttpMethod("GET");
+            var endpoint = $"/stores/{storeId}/terminalLogos";
+            // Build the query string
+            var queryParams = new Dictionary<string, string>();
+            if (model != null) queryParams.Add("model", model.ToString());
+            var queryString = string.Join("&", queryParams.Select(kvp => $"{kvp.Key}={kvp.Value}"));
+            if (!string.IsNullOrEmpty(queryString)) endpoint += "?" + queryString;
+
             string jsonRequest = null;
-            var resource = new ManagementResource(this, $"/stores/{storeId}/terminalLogos");
-            var jsonResult = await resource.RequestAsync(jsonRequest, null, httpMethod);
+            var resource = new ManagementResource(this, endpoint);
+            var jsonResult = await resource.RequestAsync(jsonRequest, null, new HttpMethod("GET"));
             return JsonConvert.DeserializeObject<Logo>(jsonResult);
         }
 
@@ -134,10 +145,10 @@ namespace Adyen.Service.Management
         /// <returns>Task of TerminalSettings</returns>
         public async Task<TerminalSettings> GetStoresStoreIdTerminalSettingsAsync(string storeId)
         {
-            var httpMethod = new HttpMethod("GET");
+            var endpoint = $"/stores/{storeId}/terminalSettings";
             string jsonRequest = null;
-            var resource = new ManagementResource(this, $"/stores/{storeId}/terminalSettings");
-            var jsonResult = await resource.RequestAsync(jsonRequest, null, httpMethod);
+            var resource = new ManagementResource(this, endpoint);
+            var jsonResult = await resource.RequestAsync(jsonRequest, null, new HttpMethod("GET"));
             return JsonConvert.DeserializeObject<TerminalSettings>(jsonResult);
         }
 
@@ -166,10 +177,16 @@ namespace Adyen.Service.Management
         /// <returns>Task of Logo</returns>
         public async Task<Logo> PatchMerchantsMerchantIdStoresReferenceTerminalLogosAsync(string merchantId, string reference, Logo logo, string model = default(string))
         {
-            var httpMethod = new HttpMethod("PATCH");
+            var endpoint = $"/merchants/{merchantId}/stores/{reference}/terminalLogos";
+            // Build the query string
+            var queryParams = new Dictionary<string, string>();
+            if (model != null) queryParams.Add("model", model.ToString());
+            var queryString = string.Join("&", queryParams.Select(kvp => $"{kvp.Key}={kvp.Value}"));
+            if (!string.IsNullOrEmpty(queryString)) endpoint += "?" + queryString;
+
             string jsonRequest = logo.ToJson();
-            var resource = new ManagementResource(this, $"/merchants/{merchantId}/stores/{reference}/terminalLogos");
-            var jsonResult = await resource.RequestAsync(jsonRequest, null, httpMethod);
+            var resource = new ManagementResource(this, endpoint);
+            var jsonResult = await resource.RequestAsync(jsonRequest, null, new HttpMethod("PATCH"));
             return JsonConvert.DeserializeObject<Logo>(jsonResult);
         }
 
@@ -196,10 +213,10 @@ namespace Adyen.Service.Management
         /// <returns>Task of TerminalSettings</returns>
         public async Task<TerminalSettings> PatchMerchantsMerchantIdStoresReferenceTerminalSettingsAsync(string merchantId, string reference, TerminalSettings terminalSettings)
         {
-            var httpMethod = new HttpMethod("PATCH");
+            var endpoint = $"/merchants/{merchantId}/stores/{reference}/terminalSettings";
             string jsonRequest = terminalSettings.ToJson();
-            var resource = new ManagementResource(this, $"/merchants/{merchantId}/stores/{reference}/terminalSettings");
-            var jsonResult = await resource.RequestAsync(jsonRequest, null, httpMethod);
+            var resource = new ManagementResource(this, endpoint);
+            var jsonResult = await resource.RequestAsync(jsonRequest, null, new HttpMethod("PATCH"));
             return JsonConvert.DeserializeObject<TerminalSettings>(jsonResult);
         }
 
@@ -226,10 +243,16 @@ namespace Adyen.Service.Management
         /// <returns>Task of Logo</returns>
         public async Task<Logo> PatchStoresStoreIdTerminalLogosAsync(string storeId, Logo logo, string model = default(string))
         {
-            var httpMethod = new HttpMethod("PATCH");
+            var endpoint = $"/stores/{storeId}/terminalLogos";
+            // Build the query string
+            var queryParams = new Dictionary<string, string>();
+            if (model != null) queryParams.Add("model", model.ToString());
+            var queryString = string.Join("&", queryParams.Select(kvp => $"{kvp.Key}={kvp.Value}"));
+            if (!string.IsNullOrEmpty(queryString)) endpoint += "?" + queryString;
+
             string jsonRequest = logo.ToJson();
-            var resource = new ManagementResource(this, $"/stores/{storeId}/terminalLogos");
-            var jsonResult = await resource.RequestAsync(jsonRequest, null, httpMethod);
+            var resource = new ManagementResource(this, endpoint);
+            var jsonResult = await resource.RequestAsync(jsonRequest, null, new HttpMethod("PATCH"));
             return JsonConvert.DeserializeObject<Logo>(jsonResult);
         }
 
@@ -254,10 +277,10 @@ namespace Adyen.Service.Management
         /// <returns>Task of TerminalSettings</returns>
         public async Task<TerminalSettings> PatchStoresStoreIdTerminalSettingsAsync(string storeId, TerminalSettings terminalSettings)
         {
-            var httpMethod = new HttpMethod("PATCH");
+            var endpoint = $"/stores/{storeId}/terminalSettings";
             string jsonRequest = terminalSettings.ToJson();
-            var resource = new ManagementResource(this, $"/stores/{storeId}/terminalSettings");
-            var jsonResult = await resource.RequestAsync(jsonRequest, null, httpMethod);
+            var resource = new ManagementResource(this, endpoint);
+            var jsonResult = await resource.RequestAsync(jsonRequest, null, new HttpMethod("PATCH"));
             return JsonConvert.DeserializeObject<TerminalSettings>(jsonResult);
         }
 

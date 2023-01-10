@@ -12,7 +12,6 @@
 
 using System;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
 using System.Linq;
 using System.Net.Http;
 using System.Threading.Tasks;
@@ -25,7 +24,7 @@ namespace Adyen.Service.Management
     /// <summary>
     /// Represents a collection of functions to interact with the API endpoints
     /// </summary>
-    public partial class APICredentialsCompanyLevelApi : AbstractService
+    public class APICredentialsCompanyLevelApi : AbstractService
     {
         public APICredentialsCompanyLevelApi(Client client) : base(client) {}
     
@@ -52,10 +51,17 @@ namespace Adyen.Service.Management
         /// <returns>Task of ListCompanyApiCredentialsResponse</returns>
         public async Task<ListCompanyApiCredentialsResponse> GetCompaniesCompanyIdApiCredentialsAsync(string companyId, int? pageNumber = default(int?), int? pageSize = default(int?))
         {
-            var httpMethod = new HttpMethod("GET");
+            var endpoint = $"/companies/{companyId}/apiCredentials";
+            // Build the query string
+            var queryParams = new Dictionary<string, string>();
+            if (pageNumber != null) queryParams.Add("pageNumber", pageNumber.ToString());
+            if (pageSize != null) queryParams.Add("pageSize", pageSize.ToString());
+            var queryString = string.Join("&", queryParams.Select(kvp => $"{kvp.Key}={kvp.Value}"));
+            if (!string.IsNullOrEmpty(queryString)) endpoint += "?" + queryString;
+
             string jsonRequest = null;
-            var resource = new ManagementResource(this, $"/companies/{companyId}/apiCredentials");
-            var jsonResult = await resource.RequestAsync(jsonRequest, null, httpMethod);
+            var resource = new ManagementResource(this, endpoint);
+            var jsonResult = await resource.RequestAsync(jsonRequest, null, new HttpMethod("GET"));
             return JsonConvert.DeserializeObject<ListCompanyApiCredentialsResponse>(jsonResult);
         }
 
@@ -80,10 +86,10 @@ namespace Adyen.Service.Management
         /// <returns>Task of CompanyApiCredential</returns>
         public async Task<CompanyApiCredential> GetCompaniesCompanyIdApiCredentialsApiCredentialIdAsync(string companyId, string apiCredentialId)
         {
-            var httpMethod = new HttpMethod("GET");
+            var endpoint = $"/companies/{companyId}/apiCredentials/{apiCredentialId}";
             string jsonRequest = null;
-            var resource = new ManagementResource(this, $"/companies/{companyId}/apiCredentials/{apiCredentialId}");
-            var jsonResult = await resource.RequestAsync(jsonRequest, null, httpMethod);
+            var resource = new ManagementResource(this, endpoint);
+            var jsonResult = await resource.RequestAsync(jsonRequest, null, new HttpMethod("GET"));
             return JsonConvert.DeserializeObject<CompanyApiCredential>(jsonResult);
         }
 
@@ -110,10 +116,10 @@ namespace Adyen.Service.Management
         /// <returns>Task of CompanyApiCredential</returns>
         public async Task<CompanyApiCredential> PatchCompaniesCompanyIdApiCredentialsApiCredentialIdAsync(string companyId, string apiCredentialId, UpdateCompanyApiCredentialRequest updateCompanyApiCredentialRequest)
         {
-            var httpMethod = new HttpMethod("PATCH");
+            var endpoint = $"/companies/{companyId}/apiCredentials/{apiCredentialId}";
             string jsonRequest = updateCompanyApiCredentialRequest.ToJson();
-            var resource = new ManagementResource(this, $"/companies/{companyId}/apiCredentials/{apiCredentialId}");
-            var jsonResult = await resource.RequestAsync(jsonRequest, null, httpMethod);
+            var resource = new ManagementResource(this, endpoint);
+            var jsonResult = await resource.RequestAsync(jsonRequest, null, new HttpMethod("PATCH"));
             return JsonConvert.DeserializeObject<CompanyApiCredential>(jsonResult);
         }
 
@@ -138,10 +144,10 @@ namespace Adyen.Service.Management
         /// <returns>Task of CreateCompanyApiCredentialResponse</returns>
         public async Task<CreateCompanyApiCredentialResponse> PostCompaniesCompanyIdApiCredentialsAsync(string companyId, CreateCompanyApiCredentialRequest createCompanyApiCredentialRequest)
         {
-            var httpMethod = new HttpMethod("POST");
+            var endpoint = $"/companies/{companyId}/apiCredentials";
             string jsonRequest = createCompanyApiCredentialRequest.ToJson();
-            var resource = new ManagementResource(this, $"/companies/{companyId}/apiCredentials");
-            var jsonResult = await resource.RequestAsync(jsonRequest, null, httpMethod);
+            var resource = new ManagementResource(this, endpoint);
+            var jsonResult = await resource.RequestAsync(jsonRequest, null, new HttpMethod("POST"));
             return JsonConvert.DeserializeObject<CreateCompanyApiCredentialResponse>(jsonResult);
         }
 

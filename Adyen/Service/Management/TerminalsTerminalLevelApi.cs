@@ -12,7 +12,6 @@
 
 using System;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
 using System.Linq;
 using System.Net.Http;
 using System.Threading.Tasks;
@@ -25,7 +24,7 @@ namespace Adyen.Service.Management
     /// <summary>
     /// Represents a collection of functions to interact with the API endpoints
     /// </summary>
-    public partial class TerminalsTerminalLevelApi : AbstractService
+    public class TerminalsTerminalLevelApi : AbstractService
     {
         public TerminalsTerminalLevelApi(Client client) : base(client) {}
     
@@ -60,10 +59,22 @@ namespace Adyen.Service.Management
         /// <returns>Task of ListTerminalsResponse</returns>
         public async Task<ListTerminalsResponse> GetTerminalsAsync(string searchQuery = default(string), string countries = default(string), string merchantIds = default(string), string storeIds = default(string), string brandModels = default(string), int? pageNumber = default(int?), int? pageSize = default(int?))
         {
-            var httpMethod = new HttpMethod("GET");
+            var endpoint = "/terminals";
+            // Build the query string
+            var queryParams = new Dictionary<string, string>();
+            if (searchQuery != null) queryParams.Add("searchQuery", searchQuery.ToString());
+            if (countries != null) queryParams.Add("countries", countries.ToString());
+            if (merchantIds != null) queryParams.Add("merchantIds", merchantIds.ToString());
+            if (storeIds != null) queryParams.Add("storeIds", storeIds.ToString());
+            if (brandModels != null) queryParams.Add("brandModels", brandModels.ToString());
+            if (pageNumber != null) queryParams.Add("pageNumber", pageNumber.ToString());
+            if (pageSize != null) queryParams.Add("pageSize", pageSize.ToString());
+            var queryString = string.Join("&", queryParams.Select(kvp => $"{kvp.Key}={kvp.Value}"));
+            if (!string.IsNullOrEmpty(queryString)) endpoint += "?" + queryString;
+
             string jsonRequest = null;
-            var resource = new ManagementResource(this, $"/terminals");
-            var jsonResult = await resource.RequestAsync(jsonRequest, null, httpMethod);
+            var resource = new ManagementResource(this, endpoint);
+            var jsonResult = await resource.RequestAsync(jsonRequest, null, new HttpMethod("GET"));
             return JsonConvert.DeserializeObject<ListTerminalsResponse>(jsonResult);
         }
 
