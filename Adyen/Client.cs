@@ -117,7 +117,7 @@ namespace Adyen
                     Config.MarketPayEndpoint = ClientConfig.MarketpayEndPointLive;
                     Config.PosTerminalManagementEndpoint = ClientConfig.PosTerminalManagementEndpointLive;
                     Config.LegalEntityManagementEndpoint = ClientConfig.LegalEntityManagementEndpointLive;
-                    Config.BalancePlatformEndpoint = ClientConfig.BalancePlatformEnndpointLive;
+                    Config.BalancePlatformEndpoint = ClientConfig.BalancePlatformEndpointLive;
                     break;
             }
         }
