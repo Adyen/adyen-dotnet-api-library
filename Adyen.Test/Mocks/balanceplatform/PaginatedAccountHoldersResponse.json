@@ -1,0 +1,34 @@
+{
+  "accountHolders": [
+    {
+      "contactDetails": {
+        "address": {
+          "city": "Amsterdam",
+          "country": "NL",
+          "houseNumberOrName": "6",
+          "postalCode": "12336750",
+          "street": "Simon Carmiggeltstraat"
+        }
+      },
+      "description": "J. Doe",
+      "id": "AH32272223222B59DDWSCCMP7",
+      "status": "Active"
+    },
+    {
+      "contactDetails": {
+        "address": {
+          "city": "Amsterdam",
+          "country": "NL",
+          "houseNumberOrName": "11",
+          "postalCode": "12336750",
+          "street": "Simon Carmiggeltstraat"
+        }
+      },
+      "description": "S. Hopper",
+      "id": "AH32272223222B59DJ7QBCMPN",
+      "status": "Active"
+    }
+  ],
+  "hasNext": "true",
+  "hasPrevious": "false"
+}

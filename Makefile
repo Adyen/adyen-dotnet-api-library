@@ -5,7 +5,7 @@ openapi-generator-cli:=java -jar $(openapi-generator-jar)
 
 
 generator:=csharp-netcore
-services:=BinLookup Checkout LegalEntityManagement Payments Payouts PosTerminalManagement 
+services:=BalancePlatform BinLookup Checkout LegalEntityManagement Payments Payouts PosTerminalManagement 
 models:=Adyen/Model
 output:=target/out
 

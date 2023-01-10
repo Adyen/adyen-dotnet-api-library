@@ -59,6 +59,9 @@ namespace Adyen.Constants
         public static string LegalEntityManagementEndpointTest = "https://kyc-test.adyen.com/lem/";
         public static string LegalEntityManagementEndpointLive = "https://kyc-live.adyen.com/lem/";
         public static string LegalEntityManagementVersion = "v2";
+        public static string BalancePlatformEndpointTest = "https://balanceplatform-api-test.adyen.com/bcl/";
+        public static string BalancePlatformEnndpointLive = "https://balanceplatform-api-test.adyen.com/bcl/";
+        public static string BalancePlatformVersion = "v2";
 
         public static string LibName = "adyen-dotnet-api-library";
         public static string LibVersion = "9.1.0";

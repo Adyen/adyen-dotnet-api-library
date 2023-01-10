@@ -25,11 +25,9 @@
 
   <ItemGroup>
     <Compile Remove="MochFiles\**" />
-    <Compile Remove="Mocks\**" />
     <EmbeddedResource Remove="MochFiles\**" />
-    <EmbeddedResource Remove="Mocks\**" />
     <None Remove="MochFiles\**" />
-    <None Remove="Mocks\**" />
+    <None Include="Mocks\balanceplatform\PaymentInstrumentGroup.json" />
   </ItemGroup>
 
   <ItemGroup>
@@ -44,6 +42,13 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Adyen\Adyen.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="Mocks\balanceplatform\PaymentInstrument.json" />
+    <Content Include="Mocks\balanceplatform\TransactionRule.json" />
+    <Content Include="Mocks\balanceplatform\TransactionRuleResponse.json" />
+    <Content Include="Mocks\balanceplatform\TransactionRulesResponse.json" />
   </ItemGroup>
 
   <Target Name="PostBuild" AfterTargets="PostBuildEvent" Condition="'$(OS)' == 'Windows'">

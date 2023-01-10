@@ -1,0 +1,21 @@
+{
+  "description": "Allow only point-of-sale transactions",
+  "reference": "YOUR_REFERENCE_4F7346",
+  "entityKey": {
+    "entityType": "paymentInstrument",
+    "entityReference": "PI3227C223222B5BPCMFXD2XG"
+  },
+  "status": "active",
+  "interval": {
+    "type": "perTransaction"
+  },
+  "ruleRestrictions": {
+    "processingTypes": {
+      "operation": "noneMatch",
+      "value": [
+        "pos"
+      ]
+    }
+  },
+  "type": "blockList"
+}

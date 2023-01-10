@@ -84,6 +84,7 @@ namespace Adyen.Test
 
         }
         #endregion
+        
         #region TransferInstruments
         /// <summary>
         /// Test createTransferInstruments
