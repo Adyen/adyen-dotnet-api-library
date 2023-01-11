@@ -11,13 +11,12 @@
 */
 
 using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Net.Http;
 using System.Threading.Tasks;
-using Newtonsoft.Json;
+using Adyen.Model;
 using Adyen.Service.Resource;
 using Adyen.Model.Management;
+using Newtonsoft.Json;
 
 namespace Adyen.Service.Management
 {
@@ -34,9 +33,10 @@ namespace Adyen.Service.Management
         /// <exception cref="Adyen.Service.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="originId">Unique identifier of the allowed origin.</param>
         /// <returns></returns>
-        public void DeleteMeAllowedOriginsOriginId(string originId)
+        /// <param name="requestOptions">Additional request options</param>
+        public void DeleteMeAllowedOriginsOriginId(string originId, RequestOptions requestOptions = default)
         {
-            DeleteMeAllowedOriginsOriginIdAsync(originId);
+            DeleteMeAllowedOriginsOriginIdAsync(originId, requestOptions);
         }
 
         /// <summary>
@@ -45,7 +45,8 @@ namespace Adyen.Service.Management
         /// <exception cref="Adyen.Service.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="originId">Unique identifier of the allowed origin.</param>
         /// <returns>Task of void</returns>
-        public async Task DeleteMeAllowedOriginsOriginIdAsync(string originId)
+        /// <param name="requestOptions">Additional request options</param>
+        public async Task DeleteMeAllowedOriginsOriginIdAsync(string originId, RequestOptions requestOptions = default)
         {
             var endpoint = $"/me/allowedOrigins/{originId}";
             string jsonRequest = null;
@@ -58,9 +59,10 @@ namespace Adyen.Service.Management
         /// </summary>
         /// <exception cref="Adyen.Service.Client.ApiException">Thrown when fails to make API call</exception>
         /// <returns>MeApiCredential</returns>
-        public MeApiCredential GetMe()
+        /// <param name="requestOptions">Additional request options</param>
+        public MeApiCredential GetMe(RequestOptions requestOptions = default)
         {
-            return GetMeAsync().GetAwaiter().GetResult();
+            return GetMeAsync(requestOptions).GetAwaiter().GetResult();
         }
 
         /// <summary>
@@ -68,7 +70,8 @@ namespace Adyen.Service.Management
         /// </summary>
         /// <exception cref="Adyen.Service.Client.ApiException">Thrown when fails to make API call</exception>
         /// <returns>Task of MeApiCredential</returns>
-        public async Task<MeApiCredential> GetMeAsync()
+        /// <param name="requestOptions">Additional request options</param>
+        public async Task<MeApiCredential> GetMeAsync(RequestOptions requestOptions = default)
         {
             var endpoint = "/me";
             string jsonRequest = null;
@@ -82,9 +85,10 @@ namespace Adyen.Service.Management
         /// </summary>
         /// <exception cref="Adyen.Service.Client.ApiException">Thrown when fails to make API call</exception>
         /// <returns>AllowedOriginsResponse</returns>
-        public AllowedOriginsResponse GetMeAllowedOrigins()
+        /// <param name="requestOptions">Additional request options</param>
+        public AllowedOriginsResponse GetMeAllowedOrigins(RequestOptions requestOptions = default)
         {
-            return GetMeAllowedOriginsAsync().GetAwaiter().GetResult();
+            return GetMeAllowedOriginsAsync(requestOptions).GetAwaiter().GetResult();
         }
 
         /// <summary>
@@ -92,7 +96,8 @@ namespace Adyen.Service.Management
         /// </summary>
         /// <exception cref="Adyen.Service.Client.ApiException">Thrown when fails to make API call</exception>
         /// <returns>Task of AllowedOriginsResponse</returns>
-        public async Task<AllowedOriginsResponse> GetMeAllowedOriginsAsync()
+        /// <param name="requestOptions">Additional request options</param>
+        public async Task<AllowedOriginsResponse> GetMeAllowedOriginsAsync(RequestOptions requestOptions = default)
         {
             var endpoint = "/me/allowedOrigins";
             string jsonRequest = null;
@@ -107,9 +112,10 @@ namespace Adyen.Service.Management
         /// <exception cref="Adyen.Service.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="originId">Unique identifier of the allowed origin.</param>
         /// <returns>AllowedOrigin</returns>
-        public AllowedOrigin GetMeAllowedOriginsOriginId(string originId)
+        /// <param name="requestOptions">Additional request options</param>
+        public AllowedOrigin GetMeAllowedOriginsOriginId(string originId, RequestOptions requestOptions = default)
         {
-            return GetMeAllowedOriginsOriginIdAsync(originId).GetAwaiter().GetResult();
+            return GetMeAllowedOriginsOriginIdAsync(originId, requestOptions).GetAwaiter().GetResult();
         }
 
         /// <summary>
@@ -118,7 +124,8 @@ namespace Adyen.Service.Management
         /// <exception cref="Adyen.Service.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="originId">Unique identifier of the allowed origin.</param>
         /// <returns>Task of AllowedOrigin</returns>
-        public async Task<AllowedOrigin> GetMeAllowedOriginsOriginIdAsync(string originId)
+        /// <param name="requestOptions">Additional request options</param>
+        public async Task<AllowedOrigin> GetMeAllowedOriginsOriginIdAsync(string originId, RequestOptions requestOptions = default)
         {
             var endpoint = $"/me/allowedOrigins/{originId}";
             string jsonRequest = null;
@@ -133,9 +140,10 @@ namespace Adyen.Service.Management
         /// <exception cref="Adyen.Service.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="createAllowedOriginRequest"> (optional)</param>
         /// <returns>AllowedOriginsResponse</returns>
-        public AllowedOriginsResponse PostMeAllowedOrigins(CreateAllowedOriginRequest createAllowedOriginRequest)
+        /// <param name="requestOptions">Additional request options</param>
+        public AllowedOriginsResponse PostMeAllowedOrigins(CreateAllowedOriginRequest createAllowedOriginRequest, RequestOptions requestOptions = default)
         {
-            return PostMeAllowedOriginsAsync(createAllowedOriginRequest).GetAwaiter().GetResult();
+            return PostMeAllowedOriginsAsync(createAllowedOriginRequest, requestOptions).GetAwaiter().GetResult();
         }
 
         /// <summary>
@@ -144,7 +152,8 @@ namespace Adyen.Service.Management
         /// <exception cref="Adyen.Service.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="createAllowedOriginRequest"> (optional)</param>
         /// <returns>Task of AllowedOriginsResponse</returns>
-        public async Task<AllowedOriginsResponse> PostMeAllowedOriginsAsync(CreateAllowedOriginRequest createAllowedOriginRequest)
+        /// <param name="requestOptions">Additional request options</param>
+        public async Task<AllowedOriginsResponse> PostMeAllowedOriginsAsync(CreateAllowedOriginRequest createAllowedOriginRequest, RequestOptions requestOptions = default)
         {
             var endpoint = "/me/allowedOrigins";
             string jsonRequest = createAllowedOriginRequest.ToJson();

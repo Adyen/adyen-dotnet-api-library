@@ -11,13 +11,12 @@
 */
 
 using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Net.Http;
 using System.Threading.Tasks;
-using Newtonsoft.Json;
+using Adyen.Model;
 using Adyen.Service.Resource;
 using Adyen.Model.Management;
+using Newtonsoft.Json;
 
 namespace Adyen.Service.Management
 {
@@ -35,9 +34,10 @@ namespace Adyen.Service.Management
         /// <param name="companyId">The unique identifier of the company account.</param>
         /// <param name="model">The terminal model. Possible values: E355, VX675WIFIBT, VX680, VX690, VX700, VX820, M400, MX925, P400Plus, UX300, UX410, V200cPlus, V240mPlus, V400cPlus, V400m, e280, e285, e285p, S1E, S1EL, S1F2, S1L, S1U, S7T. (optional)</param>
         /// <returns>Logo</returns>
-        public Logo GetCompaniesCompanyIdTerminalLogos(string companyId, string model = default(string))
+        /// <param name="requestOptions">Additional request options</param>
+        public Logo GetCompaniesCompanyIdTerminalLogos(string companyId, RequestOptions requestOptions = default)
         {
-            return GetCompaniesCompanyIdTerminalLogosAsync(companyId, model).GetAwaiter().GetResult();
+            return GetCompaniesCompanyIdTerminalLogosAsync(companyId, requestOptions).GetAwaiter().GetResult();
         }
 
         /// <summary>
@@ -47,15 +47,10 @@ namespace Adyen.Service.Management
         /// <param name="companyId">The unique identifier of the company account.</param>
         /// <param name="model">The terminal model. Possible values: E355, VX675WIFIBT, VX680, VX690, VX700, VX820, M400, MX925, P400Plus, UX300, UX410, V200cPlus, V240mPlus, V400cPlus, V400m, e280, e285, e285p, S1E, S1EL, S1F2, S1L, S1U, S7T. (optional)</param>
         /// <returns>Task of Logo</returns>
-        public async Task<Logo> GetCompaniesCompanyIdTerminalLogosAsync(string companyId, string model = default(string))
+        /// <param name="requestOptions">Additional request options</param>
+        public async Task<Logo> GetCompaniesCompanyIdTerminalLogosAsync(string companyId, RequestOptions requestOptions = default)
         {
-            var endpoint = $"/companies/{companyId}/terminalLogos";
-            // Build the query string
-            var queryParams = new Dictionary<string, string>();
-            if (model != null) queryParams.Add("model", model.ToString());
-            var queryString = string.Join("&", queryParams.Select(kvp => $"{kvp.Key}={kvp.Value}"));
-            if (!string.IsNullOrEmpty(queryString)) endpoint += "?" + queryString;
-
+            var endpoint = $"/companies/{companyId}/terminalLogos" + ToQueryString(requestOptions?.QueryParameters);
             string jsonRequest = null;
             var resource = new ManagementResource(this, endpoint);
             var jsonResult = await resource.RequestAsync(jsonRequest, null, new HttpMethod("GET"));
@@ -68,9 +63,10 @@ namespace Adyen.Service.Management
         /// <exception cref="Adyen.Service.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="companyId">The unique identifier of the company account.</param>
         /// <returns>TerminalSettings</returns>
-        public TerminalSettings GetCompaniesCompanyIdTerminalSettings(string companyId)
+        /// <param name="requestOptions">Additional request options</param>
+        public TerminalSettings GetCompaniesCompanyIdTerminalSettings(string companyId, RequestOptions requestOptions = default)
         {
-            return GetCompaniesCompanyIdTerminalSettingsAsync(companyId).GetAwaiter().GetResult();
+            return GetCompaniesCompanyIdTerminalSettingsAsync(companyId, requestOptions).GetAwaiter().GetResult();
         }
 
         /// <summary>
@@ -79,7 +75,8 @@ namespace Adyen.Service.Management
         /// <exception cref="Adyen.Service.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="companyId">The unique identifier of the company account.</param>
         /// <returns>Task of TerminalSettings</returns>
-        public async Task<TerminalSettings> GetCompaniesCompanyIdTerminalSettingsAsync(string companyId)
+        /// <param name="requestOptions">Additional request options</param>
+        public async Task<TerminalSettings> GetCompaniesCompanyIdTerminalSettingsAsync(string companyId, RequestOptions requestOptions = default)
         {
             var endpoint = $"/companies/{companyId}/terminalSettings";
             string jsonRequest = null;
@@ -96,9 +93,10 @@ namespace Adyen.Service.Management
         /// <param name="model">The terminal model. Possible values: E355, VX675WIFIBT, VX680, VX690, VX700, VX820, M400, MX925, P400Plus, UX300, UX410, V200cPlus, V240mPlus, V400cPlus, V400m, e280, e285, e285p, S1E, S1EL, S1F2, S1L, S1U, S7T. (optional)</param>
         /// <param name="logo"> (optional)</param>
         /// <returns>Logo</returns>
-        public Logo PatchCompaniesCompanyIdTerminalLogos(string companyId, Logo logo, string model = default(string))
+        /// <param name="requestOptions">Additional request options</param>
+        public Logo PatchCompaniesCompanyIdTerminalLogos(string companyId, Logo logo, RequestOptions requestOptions = default)
         {
-            return PatchCompaniesCompanyIdTerminalLogosAsync(companyId, logo, model).GetAwaiter().GetResult();
+            return PatchCompaniesCompanyIdTerminalLogosAsync(companyId, logo, requestOptions).GetAwaiter().GetResult();
         }
 
         /// <summary>
@@ -109,15 +107,10 @@ namespace Adyen.Service.Management
         /// <param name="model">The terminal model. Possible values: E355, VX675WIFIBT, VX680, VX690, VX700, VX820, M400, MX925, P400Plus, UX300, UX410, V200cPlus, V240mPlus, V400cPlus, V400m, e280, e285, e285p, S1E, S1EL, S1F2, S1L, S1U, S7T. (optional)</param>
         /// <param name="logo"> (optional)</param>
         /// <returns>Task of Logo</returns>
-        public async Task<Logo> PatchCompaniesCompanyIdTerminalLogosAsync(string companyId, Logo logo, string model = default(string))
+        /// <param name="requestOptions">Additional request options</param>
+        public async Task<Logo> PatchCompaniesCompanyIdTerminalLogosAsync(string companyId, Logo logo, RequestOptions requestOptions = default)
         {
-            var endpoint = $"/companies/{companyId}/terminalLogos";
-            // Build the query string
-            var queryParams = new Dictionary<string, string>();
-            if (model != null) queryParams.Add("model", model.ToString());
-            var queryString = string.Join("&", queryParams.Select(kvp => $"{kvp.Key}={kvp.Value}"));
-            if (!string.IsNullOrEmpty(queryString)) endpoint += "?" + queryString;
-
+            var endpoint = $"/companies/{companyId}/terminalLogos" + ToQueryString(requestOptions?.QueryParameters);
             string jsonRequest = logo.ToJson();
             var resource = new ManagementResource(this, endpoint);
             var jsonResult = await resource.RequestAsync(jsonRequest, null, new HttpMethod("PATCH"));
@@ -131,9 +124,10 @@ namespace Adyen.Service.Management
         /// <param name="companyId">The unique identifier of the company account.</param>
         /// <param name="terminalSettings"> (optional)</param>
         /// <returns>TerminalSettings</returns>
-        public TerminalSettings PatchCompaniesCompanyIdTerminalSettings(string companyId, TerminalSettings terminalSettings)
+        /// <param name="requestOptions">Additional request options</param>
+        public TerminalSettings PatchCompaniesCompanyIdTerminalSettings(string companyId, TerminalSettings terminalSettings, RequestOptions requestOptions = default)
         {
-            return PatchCompaniesCompanyIdTerminalSettingsAsync(companyId, terminalSettings).GetAwaiter().GetResult();
+            return PatchCompaniesCompanyIdTerminalSettingsAsync(companyId, terminalSettings, requestOptions).GetAwaiter().GetResult();
         }
 
         /// <summary>
@@ -143,7 +137,8 @@ namespace Adyen.Service.Management
         /// <param name="companyId">The unique identifier of the company account.</param>
         /// <param name="terminalSettings"> (optional)</param>
         /// <returns>Task of TerminalSettings</returns>
-        public async Task<TerminalSettings> PatchCompaniesCompanyIdTerminalSettingsAsync(string companyId, TerminalSettings terminalSettings)
+        /// <param name="requestOptions">Additional request options</param>
+        public async Task<TerminalSettings> PatchCompaniesCompanyIdTerminalSettingsAsync(string companyId, TerminalSettings terminalSettings, RequestOptions requestOptions = default)
         {
             var endpoint = $"/companies/{companyId}/terminalSettings";
             string jsonRequest = terminalSettings.ToJson();

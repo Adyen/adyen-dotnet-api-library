@@ -11,13 +11,12 @@
 */
 
 using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Net.Http;
 using System.Threading.Tasks;
-using Newtonsoft.Json;
+using Adyen.Model;
 using Adyen.Service.Resource;
 using Adyen.Model.Management;
+using Newtonsoft.Json;
 
 namespace Adyen.Service.Management
 {
@@ -34,9 +33,10 @@ namespace Adyen.Service.Management
         /// <exception cref="Adyen.Service.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="scheduleTerminalActionsRequest"> (optional)</param>
         /// <returns>ScheduleTerminalActionsResponse</returns>
-        public ScheduleTerminalActionsResponse PostTerminalsScheduleActions(ScheduleTerminalActionsRequest scheduleTerminalActionsRequest)
+        /// <param name="requestOptions">Additional request options</param>
+        public ScheduleTerminalActionsResponse PostTerminalsScheduleActions(ScheduleTerminalActionsRequest scheduleTerminalActionsRequest, RequestOptions requestOptions = default)
         {
-            return PostTerminalsScheduleActionsAsync(scheduleTerminalActionsRequest).GetAwaiter().GetResult();
+            return PostTerminalsScheduleActionsAsync(scheduleTerminalActionsRequest, requestOptions).GetAwaiter().GetResult();
         }
 
         /// <summary>
@@ -45,7 +45,8 @@ namespace Adyen.Service.Management
         /// <exception cref="Adyen.Service.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="scheduleTerminalActionsRequest"> (optional)</param>
         /// <returns>Task of ScheduleTerminalActionsResponse</returns>
-        public async Task<ScheduleTerminalActionsResponse> PostTerminalsScheduleActionsAsync(ScheduleTerminalActionsRequest scheduleTerminalActionsRequest)
+        /// <param name="requestOptions">Additional request options</param>
+        public async Task<ScheduleTerminalActionsResponse> PostTerminalsScheduleActionsAsync(ScheduleTerminalActionsRequest scheduleTerminalActionsRequest, RequestOptions requestOptions = default)
         {
             var endpoint = "/terminals/scheduleActions";
             string jsonRequest = scheduleTerminalActionsRequest.ToJson();

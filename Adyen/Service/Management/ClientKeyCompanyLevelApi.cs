@@ -11,13 +11,12 @@
 */
 
 using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Net.Http;
 using System.Threading.Tasks;
-using Newtonsoft.Json;
+using Adyen.Model;
 using Adyen.Service.Resource;
 using Adyen.Model.Management;
+using Newtonsoft.Json;
 
 namespace Adyen.Service.Management
 {
@@ -35,9 +34,10 @@ namespace Adyen.Service.Management
         /// <param name="companyId">The unique identifier of the company account.</param>
         /// <param name="apiCredentialId">Unique identifier of the API credential.</param>
         /// <returns>GenerateClientKeyResponse</returns>
-        public GenerateClientKeyResponse PostCompaniesCompanyIdApiCredentialsApiCredentialIdGenerateClientKey(string companyId, string apiCredentialId)
+        /// <param name="requestOptions">Additional request options</param>
+        public GenerateClientKeyResponse PostCompaniesCompanyIdApiCredentialsApiCredentialIdGenerateClientKey(string companyId, string apiCredentialId, RequestOptions requestOptions = default)
         {
-            return PostCompaniesCompanyIdApiCredentialsApiCredentialIdGenerateClientKeyAsync(companyId, apiCredentialId).GetAwaiter().GetResult();
+            return PostCompaniesCompanyIdApiCredentialsApiCredentialIdGenerateClientKeyAsync(companyId, apiCredentialId, requestOptions).GetAwaiter().GetResult();
         }
 
         /// <summary>
@@ -47,7 +47,8 @@ namespace Adyen.Service.Management
         /// <param name="companyId">The unique identifier of the company account.</param>
         /// <param name="apiCredentialId">Unique identifier of the API credential.</param>
         /// <returns>Task of GenerateClientKeyResponse</returns>
-        public async Task<GenerateClientKeyResponse> PostCompaniesCompanyIdApiCredentialsApiCredentialIdGenerateClientKeyAsync(string companyId, string apiCredentialId)
+        /// <param name="requestOptions">Additional request options</param>
+        public async Task<GenerateClientKeyResponse> PostCompaniesCompanyIdApiCredentialsApiCredentialIdGenerateClientKeyAsync(string companyId, string apiCredentialId, RequestOptions requestOptions = default)
         {
             var endpoint = $"/companies/{companyId}/apiCredentials/{apiCredentialId}/generateClientKey";
             string jsonRequest = null;

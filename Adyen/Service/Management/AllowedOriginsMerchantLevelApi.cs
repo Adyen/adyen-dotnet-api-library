@@ -11,13 +11,12 @@
 */
 
 using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Net.Http;
 using System.Threading.Tasks;
-using Newtonsoft.Json;
+using Adyen.Model;
 using Adyen.Service.Resource;
 using Adyen.Model.Management;
+using Newtonsoft.Json;
 
 namespace Adyen.Service.Management
 {
@@ -36,9 +35,10 @@ namespace Adyen.Service.Management
         /// <param name="apiCredentialId">Unique identifier of the API credential.</param>
         /// <param name="originId">Unique identifier of the allowed origin.</param>
         /// <returns></returns>
-        public void DeleteMerchantsMerchantIdApiCredentialsApiCredentialIdAllowedOriginsOriginId(string merchantId, string apiCredentialId, string originId)
+        /// <param name="requestOptions">Additional request options</param>
+        public void DeleteMerchantsMerchantIdApiCredentialsApiCredentialIdAllowedOriginsOriginId(string merchantId, string apiCredentialId, string originId, RequestOptions requestOptions = default)
         {
-            DeleteMerchantsMerchantIdApiCredentialsApiCredentialIdAllowedOriginsOriginIdAsync(merchantId, apiCredentialId, originId);
+            DeleteMerchantsMerchantIdApiCredentialsApiCredentialIdAllowedOriginsOriginIdAsync(merchantId, apiCredentialId, originId, requestOptions);
         }
 
         /// <summary>
@@ -49,7 +49,8 @@ namespace Adyen.Service.Management
         /// <param name="apiCredentialId">Unique identifier of the API credential.</param>
         /// <param name="originId">Unique identifier of the allowed origin.</param>
         /// <returns>Task of void</returns>
-        public async Task DeleteMerchantsMerchantIdApiCredentialsApiCredentialIdAllowedOriginsOriginIdAsync(string merchantId, string apiCredentialId, string originId)
+        /// <param name="requestOptions">Additional request options</param>
+        public async Task DeleteMerchantsMerchantIdApiCredentialsApiCredentialIdAllowedOriginsOriginIdAsync(string merchantId, string apiCredentialId, string originId, RequestOptions requestOptions = default)
         {
             var endpoint = $"/merchants/{merchantId}/apiCredentials/{apiCredentialId}/allowedOrigins/{originId}";
             string jsonRequest = null;
@@ -64,9 +65,10 @@ namespace Adyen.Service.Management
         /// <param name="merchantId">The unique identifier of the merchant account.</param>
         /// <param name="apiCredentialId">Unique identifier of the API credential.</param>
         /// <returns>AllowedOriginsResponse</returns>
-        public AllowedOriginsResponse GetMerchantsMerchantIdApiCredentialsApiCredentialIdAllowedOrigins(string merchantId, string apiCredentialId)
+        /// <param name="requestOptions">Additional request options</param>
+        public AllowedOriginsResponse GetMerchantsMerchantIdApiCredentialsApiCredentialIdAllowedOrigins(string merchantId, string apiCredentialId, RequestOptions requestOptions = default)
         {
-            return GetMerchantsMerchantIdApiCredentialsApiCredentialIdAllowedOriginsAsync(merchantId, apiCredentialId).GetAwaiter().GetResult();
+            return GetMerchantsMerchantIdApiCredentialsApiCredentialIdAllowedOriginsAsync(merchantId, apiCredentialId, requestOptions).GetAwaiter().GetResult();
         }
 
         /// <summary>
@@ -76,7 +78,8 @@ namespace Adyen.Service.Management
         /// <param name="merchantId">The unique identifier of the merchant account.</param>
         /// <param name="apiCredentialId">Unique identifier of the API credential.</param>
         /// <returns>Task of AllowedOriginsResponse</returns>
-        public async Task<AllowedOriginsResponse> GetMerchantsMerchantIdApiCredentialsApiCredentialIdAllowedOriginsAsync(string merchantId, string apiCredentialId)
+        /// <param name="requestOptions">Additional request options</param>
+        public async Task<AllowedOriginsResponse> GetMerchantsMerchantIdApiCredentialsApiCredentialIdAllowedOriginsAsync(string merchantId, string apiCredentialId, RequestOptions requestOptions = default)
         {
             var endpoint = $"/merchants/{merchantId}/apiCredentials/{apiCredentialId}/allowedOrigins";
             string jsonRequest = null;
@@ -93,9 +96,10 @@ namespace Adyen.Service.Management
         /// <param name="apiCredentialId">Unique identifier of the API credential.</param>
         /// <param name="originId">Unique identifier of the allowed origin.</param>
         /// <returns>AllowedOrigin</returns>
-        public AllowedOrigin GetMerchantsMerchantIdApiCredentialsApiCredentialIdAllowedOriginsOriginId(string merchantId, string apiCredentialId, string originId)
+        /// <param name="requestOptions">Additional request options</param>
+        public AllowedOrigin GetMerchantsMerchantIdApiCredentialsApiCredentialIdAllowedOriginsOriginId(string merchantId, string apiCredentialId, string originId, RequestOptions requestOptions = default)
         {
-            return GetMerchantsMerchantIdApiCredentialsApiCredentialIdAllowedOriginsOriginIdAsync(merchantId, apiCredentialId, originId).GetAwaiter().GetResult();
+            return GetMerchantsMerchantIdApiCredentialsApiCredentialIdAllowedOriginsOriginIdAsync(merchantId, apiCredentialId, originId, requestOptions).GetAwaiter().GetResult();
         }
 
         /// <summary>
@@ -106,7 +110,8 @@ namespace Adyen.Service.Management
         /// <param name="apiCredentialId">Unique identifier of the API credential.</param>
         /// <param name="originId">Unique identifier of the allowed origin.</param>
         /// <returns>Task of AllowedOrigin</returns>
-        public async Task<AllowedOrigin> GetMerchantsMerchantIdApiCredentialsApiCredentialIdAllowedOriginsOriginIdAsync(string merchantId, string apiCredentialId, string originId)
+        /// <param name="requestOptions">Additional request options</param>
+        public async Task<AllowedOrigin> GetMerchantsMerchantIdApiCredentialsApiCredentialIdAllowedOriginsOriginIdAsync(string merchantId, string apiCredentialId, string originId, RequestOptions requestOptions = default)
         {
             var endpoint = $"/merchants/{merchantId}/apiCredentials/{apiCredentialId}/allowedOrigins/{originId}";
             string jsonRequest = null;
@@ -123,9 +128,10 @@ namespace Adyen.Service.Management
         /// <param name="apiCredentialId">Unique identifier of the API credential.</param>
         /// <param name="allowedOrigin"> (optional)</param>
         /// <returns>AllowedOriginsResponse</returns>
-        public AllowedOriginsResponse PostMerchantsMerchantIdApiCredentialsApiCredentialIdAllowedOrigins(string merchantId, string apiCredentialId, AllowedOrigin allowedOrigin)
+        /// <param name="requestOptions">Additional request options</param>
+        public AllowedOriginsResponse PostMerchantsMerchantIdApiCredentialsApiCredentialIdAllowedOrigins(string merchantId, string apiCredentialId, AllowedOrigin allowedOrigin, RequestOptions requestOptions = default)
         {
-            return PostMerchantsMerchantIdApiCredentialsApiCredentialIdAllowedOriginsAsync(merchantId, apiCredentialId, allowedOrigin).GetAwaiter().GetResult();
+            return PostMerchantsMerchantIdApiCredentialsApiCredentialIdAllowedOriginsAsync(merchantId, apiCredentialId, allowedOrigin, requestOptions).GetAwaiter().GetResult();
         }
 
         /// <summary>
@@ -136,7 +142,8 @@ namespace Adyen.Service.Management
         /// <param name="apiCredentialId">Unique identifier of the API credential.</param>
         /// <param name="allowedOrigin"> (optional)</param>
         /// <returns>Task of AllowedOriginsResponse</returns>
-        public async Task<AllowedOriginsResponse> PostMerchantsMerchantIdApiCredentialsApiCredentialIdAllowedOriginsAsync(string merchantId, string apiCredentialId, AllowedOrigin allowedOrigin)
+        /// <param name="requestOptions">Additional request options</param>
+        public async Task<AllowedOriginsResponse> PostMerchantsMerchantIdApiCredentialsApiCredentialIdAllowedOriginsAsync(string merchantId, string apiCredentialId, AllowedOrigin allowedOrigin, RequestOptions requestOptions = default)
         {
             var endpoint = $"/merchants/{merchantId}/apiCredentials/{apiCredentialId}/allowedOrigins";
             string jsonRequest = allowedOrigin.ToJson();

@@ -11,13 +11,12 @@
 */
 
 using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Net.Http;
 using System.Threading.Tasks;
-using Newtonsoft.Json;
+using Adyen.Model;
 using Adyen.Service.Resource;
 using Adyen.Model.Management;
+using Newtonsoft.Json;
 
 namespace Adyen.Service.Management
 {
@@ -36,9 +35,10 @@ namespace Adyen.Service.Management
         /// <param name="pageNumber">The number of the page to fetch. (optional)</param>
         /// <param name="pageSize">The number of items to have on a page, maximum 100. The default is 10 items on a page. (optional)</param>
         /// <returns>ListMerchantApiCredentialsResponse</returns>
-        public ListMerchantApiCredentialsResponse GetMerchantsMerchantIdApiCredentials(string merchantId, int? pageNumber = default(int?), int? pageSize = default(int?))
+        /// <param name="requestOptions">Additional request options</param>
+        public ListMerchantApiCredentialsResponse GetMerchantsMerchantIdApiCredentials(string merchantId, RequestOptions requestOptions = default)
         {
-            return GetMerchantsMerchantIdApiCredentialsAsync(merchantId, pageNumber, pageSize).GetAwaiter().GetResult();
+            return GetMerchantsMerchantIdApiCredentialsAsync(merchantId, requestOptions).GetAwaiter().GetResult();
         }
 
         /// <summary>
@@ -49,16 +49,10 @@ namespace Adyen.Service.Management
         /// <param name="pageNumber">The number of the page to fetch. (optional)</param>
         /// <param name="pageSize">The number of items to have on a page, maximum 100. The default is 10 items on a page. (optional)</param>
         /// <returns>Task of ListMerchantApiCredentialsResponse</returns>
-        public async Task<ListMerchantApiCredentialsResponse> GetMerchantsMerchantIdApiCredentialsAsync(string merchantId, int? pageNumber = default(int?), int? pageSize = default(int?))
+        /// <param name="requestOptions">Additional request options</param>
+        public async Task<ListMerchantApiCredentialsResponse> GetMerchantsMerchantIdApiCredentialsAsync(string merchantId, RequestOptions requestOptions = default)
         {
-            var endpoint = $"/merchants/{merchantId}/apiCredentials";
-            // Build the query string
-            var queryParams = new Dictionary<string, string>();
-            if (pageNumber != null) queryParams.Add("pageNumber", pageNumber.ToString());
-            if (pageSize != null) queryParams.Add("pageSize", pageSize.ToString());
-            var queryString = string.Join("&", queryParams.Select(kvp => $"{kvp.Key}={kvp.Value}"));
-            if (!string.IsNullOrEmpty(queryString)) endpoint += "?" + queryString;
-
+            var endpoint = $"/merchants/{merchantId}/apiCredentials" + ToQueryString(requestOptions?.QueryParameters);
             string jsonRequest = null;
             var resource = new ManagementResource(this, endpoint);
             var jsonResult = await resource.RequestAsync(jsonRequest, null, new HttpMethod("GET"));
@@ -72,9 +66,10 @@ namespace Adyen.Service.Management
         /// <param name="merchantId">The unique identifier of the merchant account.</param>
         /// <param name="apiCredentialId">Unique identifier of the API credential.</param>
         /// <returns>ApiCredential</returns>
-        public ApiCredential GetMerchantsMerchantIdApiCredentialsApiCredentialId(string merchantId, string apiCredentialId)
+        /// <param name="requestOptions">Additional request options</param>
+        public ApiCredential GetMerchantsMerchantIdApiCredentialsApiCredentialId(string merchantId, string apiCredentialId, RequestOptions requestOptions = default)
         {
-            return GetMerchantsMerchantIdApiCredentialsApiCredentialIdAsync(merchantId, apiCredentialId).GetAwaiter().GetResult();
+            return GetMerchantsMerchantIdApiCredentialsApiCredentialIdAsync(merchantId, apiCredentialId, requestOptions).GetAwaiter().GetResult();
         }
 
         /// <summary>
@@ -84,7 +79,8 @@ namespace Adyen.Service.Management
         /// <param name="merchantId">The unique identifier of the merchant account.</param>
         /// <param name="apiCredentialId">Unique identifier of the API credential.</param>
         /// <returns>Task of ApiCredential</returns>
-        public async Task<ApiCredential> GetMerchantsMerchantIdApiCredentialsApiCredentialIdAsync(string merchantId, string apiCredentialId)
+        /// <param name="requestOptions">Additional request options</param>
+        public async Task<ApiCredential> GetMerchantsMerchantIdApiCredentialsApiCredentialIdAsync(string merchantId, string apiCredentialId, RequestOptions requestOptions = default)
         {
             var endpoint = $"/merchants/{merchantId}/apiCredentials/{apiCredentialId}";
             string jsonRequest = null;
@@ -101,9 +97,10 @@ namespace Adyen.Service.Management
         /// <param name="apiCredentialId">Unique identifier of the API credential.</param>
         /// <param name="updateMerchantApiCredentialRequest"> (optional)</param>
         /// <returns>ApiCredential</returns>
-        public ApiCredential PatchMerchantsMerchantIdApiCredentialsApiCredentialId(string merchantId, string apiCredentialId, UpdateMerchantApiCredentialRequest updateMerchantApiCredentialRequest)
+        /// <param name="requestOptions">Additional request options</param>
+        public ApiCredential PatchMerchantsMerchantIdApiCredentialsApiCredentialId(string merchantId, string apiCredentialId, UpdateMerchantApiCredentialRequest updateMerchantApiCredentialRequest, RequestOptions requestOptions = default)
         {
-            return PatchMerchantsMerchantIdApiCredentialsApiCredentialIdAsync(merchantId, apiCredentialId, updateMerchantApiCredentialRequest).GetAwaiter().GetResult();
+            return PatchMerchantsMerchantIdApiCredentialsApiCredentialIdAsync(merchantId, apiCredentialId, updateMerchantApiCredentialRequest, requestOptions).GetAwaiter().GetResult();
         }
 
         /// <summary>
@@ -114,7 +111,8 @@ namespace Adyen.Service.Management
         /// <param name="apiCredentialId">Unique identifier of the API credential.</param>
         /// <param name="updateMerchantApiCredentialRequest"> (optional)</param>
         /// <returns>Task of ApiCredential</returns>
-        public async Task<ApiCredential> PatchMerchantsMerchantIdApiCredentialsApiCredentialIdAsync(string merchantId, string apiCredentialId, UpdateMerchantApiCredentialRequest updateMerchantApiCredentialRequest)
+        /// <param name="requestOptions">Additional request options</param>
+        public async Task<ApiCredential> PatchMerchantsMerchantIdApiCredentialsApiCredentialIdAsync(string merchantId, string apiCredentialId, UpdateMerchantApiCredentialRequest updateMerchantApiCredentialRequest, RequestOptions requestOptions = default)
         {
             var endpoint = $"/merchants/{merchantId}/apiCredentials/{apiCredentialId}";
             string jsonRequest = updateMerchantApiCredentialRequest.ToJson();
@@ -130,9 +128,10 @@ namespace Adyen.Service.Management
         /// <param name="merchantId">The unique identifier of the merchant account.</param>
         /// <param name="createMerchantApiCredentialRequest"> (optional)</param>
         /// <returns>CreateApiCredentialResponse</returns>
-        public CreateApiCredentialResponse PostMerchantsMerchantIdApiCredentials(string merchantId, CreateMerchantApiCredentialRequest createMerchantApiCredentialRequest)
+        /// <param name="requestOptions">Additional request options</param>
+        public CreateApiCredentialResponse PostMerchantsMerchantIdApiCredentials(string merchantId, CreateMerchantApiCredentialRequest createMerchantApiCredentialRequest, RequestOptions requestOptions = default)
         {
-            return PostMerchantsMerchantIdApiCredentialsAsync(merchantId, createMerchantApiCredentialRequest).GetAwaiter().GetResult();
+            return PostMerchantsMerchantIdApiCredentialsAsync(merchantId, createMerchantApiCredentialRequest, requestOptions).GetAwaiter().GetResult();
         }
 
         /// <summary>
@@ -142,7 +141,8 @@ namespace Adyen.Service.Management
         /// <param name="merchantId">The unique identifier of the merchant account.</param>
         /// <param name="createMerchantApiCredentialRequest"> (optional)</param>
         /// <returns>Task of CreateApiCredentialResponse</returns>
-        public async Task<CreateApiCredentialResponse> PostMerchantsMerchantIdApiCredentialsAsync(string merchantId, CreateMerchantApiCredentialRequest createMerchantApiCredentialRequest)
+        /// <param name="requestOptions">Additional request options</param>
+        public async Task<CreateApiCredentialResponse> PostMerchantsMerchantIdApiCredentialsAsync(string merchantId, CreateMerchantApiCredentialRequest createMerchantApiCredentialRequest, RequestOptions requestOptions = default)
         {
             var endpoint = $"/merchants/{merchantId}/apiCredentials";
             string jsonRequest = createMerchantApiCredentialRequest.ToJson();

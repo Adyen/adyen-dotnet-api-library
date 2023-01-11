@@ -11,13 +11,12 @@
 */
 
 using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Net.Http;
 using System.Threading.Tasks;
-using Newtonsoft.Json;
+using Adyen.Model;
 using Adyen.Service.Resource;
 using Adyen.Model.Management;
+using Newtonsoft.Json;
 
 namespace Adyen.Service.Management
 {
@@ -38,9 +37,10 @@ namespace Adyen.Service.Management
         /// <param name="pageSize">The number of items to have on a page, maximum 100. The default is 10 items on a page. (optional)</param>
         /// <param name="pageNumber">The number of the page to fetch. (optional)</param>
         /// <returns>PaymentMethodResponse</returns>
-        public PaymentMethodResponse GetMerchantsMerchantIdPaymentMethodSettings(string merchantId, string storeId = default(string), string businessLineId = default(string), int? pageSize = default(int?), int? pageNumber = default(int?))
+        /// <param name="requestOptions">Additional request options</param>
+        public PaymentMethodResponse GetMerchantsMerchantIdPaymentMethodSettings(string merchantId, RequestOptions requestOptions = default)
         {
-            return GetMerchantsMerchantIdPaymentMethodSettingsAsync(merchantId, storeId, businessLineId, pageSize, pageNumber).GetAwaiter().GetResult();
+            return GetMerchantsMerchantIdPaymentMethodSettingsAsync(merchantId, requestOptions).GetAwaiter().GetResult();
         }
 
         /// <summary>
@@ -53,18 +53,10 @@ namespace Adyen.Service.Management
         /// <param name="pageSize">The number of items to have on a page, maximum 100. The default is 10 items on a page. (optional)</param>
         /// <param name="pageNumber">The number of the page to fetch. (optional)</param>
         /// <returns>Task of PaymentMethodResponse</returns>
-        public async Task<PaymentMethodResponse> GetMerchantsMerchantIdPaymentMethodSettingsAsync(string merchantId, string storeId = default(string), string businessLineId = default(string), int? pageSize = default(int?), int? pageNumber = default(int?))
+        /// <param name="requestOptions">Additional request options</param>
+        public async Task<PaymentMethodResponse> GetMerchantsMerchantIdPaymentMethodSettingsAsync(string merchantId, RequestOptions requestOptions = default)
         {
-            var endpoint = $"/merchants/{merchantId}/paymentMethodSettings";
-            // Build the query string
-            var queryParams = new Dictionary<string, string>();
-            if (storeId != null) queryParams.Add("storeId", storeId.ToString());
-            if (businessLineId != null) queryParams.Add("businessLineId", businessLineId.ToString());
-            if (pageSize != null) queryParams.Add("pageSize", pageSize.ToString());
-            if (pageNumber != null) queryParams.Add("pageNumber", pageNumber.ToString());
-            var queryString = string.Join("&", queryParams.Select(kvp => $"{kvp.Key}={kvp.Value}"));
-            if (!string.IsNullOrEmpty(queryString)) endpoint += "?" + queryString;
-
+            var endpoint = $"/merchants/{merchantId}/paymentMethodSettings" + ToQueryString(requestOptions?.QueryParameters);
             string jsonRequest = null;
             var resource = new ManagementResource(this, endpoint);
             var jsonResult = await resource.RequestAsync(jsonRequest, null, new HttpMethod("GET"));
@@ -78,9 +70,10 @@ namespace Adyen.Service.Management
         /// <param name="merchantId">The unique identifier of the merchant account.</param>
         /// <param name="paymentMethodId">The unique identifier of the payment method.</param>
         /// <returns>PaymentMethod</returns>
-        public PaymentMethod GetMerchantsMerchantIdPaymentMethodSettingsPaymentMethodId(string merchantId, string paymentMethodId)
+        /// <param name="requestOptions">Additional request options</param>
+        public PaymentMethod GetMerchantsMerchantIdPaymentMethodSettingsPaymentMethodId(string merchantId, string paymentMethodId, RequestOptions requestOptions = default)
         {
-            return GetMerchantsMerchantIdPaymentMethodSettingsPaymentMethodIdAsync(merchantId, paymentMethodId).GetAwaiter().GetResult();
+            return GetMerchantsMerchantIdPaymentMethodSettingsPaymentMethodIdAsync(merchantId, paymentMethodId, requestOptions).GetAwaiter().GetResult();
         }
 
         /// <summary>
@@ -90,7 +83,8 @@ namespace Adyen.Service.Management
         /// <param name="merchantId">The unique identifier of the merchant account.</param>
         /// <param name="paymentMethodId">The unique identifier of the payment method.</param>
         /// <returns>Task of PaymentMethod</returns>
-        public async Task<PaymentMethod> GetMerchantsMerchantIdPaymentMethodSettingsPaymentMethodIdAsync(string merchantId, string paymentMethodId)
+        /// <param name="requestOptions">Additional request options</param>
+        public async Task<PaymentMethod> GetMerchantsMerchantIdPaymentMethodSettingsPaymentMethodIdAsync(string merchantId, string paymentMethodId, RequestOptions requestOptions = default)
         {
             var endpoint = $"/merchants/{merchantId}/paymentMethodSettings/{paymentMethodId}";
             string jsonRequest = null;
@@ -106,9 +100,10 @@ namespace Adyen.Service.Management
         /// <param name="merchantId">The unique identifier of the merchant account.</param>
         /// <param name="paymentMethodId">The unique identifier of the payment method.</param>
         /// <returns>ApplePayInfo</returns>
-        public ApplePayInfo GetMerchantsMerchantIdPaymentMethodSettingsPaymentMethodIdGetApplePayDomains(string merchantId, string paymentMethodId)
+        /// <param name="requestOptions">Additional request options</param>
+        public ApplePayInfo GetMerchantsMerchantIdPaymentMethodSettingsPaymentMethodIdGetApplePayDomains(string merchantId, string paymentMethodId, RequestOptions requestOptions = default)
         {
-            return GetMerchantsMerchantIdPaymentMethodSettingsPaymentMethodIdGetApplePayDomainsAsync(merchantId, paymentMethodId).GetAwaiter().GetResult();
+            return GetMerchantsMerchantIdPaymentMethodSettingsPaymentMethodIdGetApplePayDomainsAsync(merchantId, paymentMethodId, requestOptions).GetAwaiter().GetResult();
         }
 
         /// <summary>
@@ -118,7 +113,8 @@ namespace Adyen.Service.Management
         /// <param name="merchantId">The unique identifier of the merchant account.</param>
         /// <param name="paymentMethodId">The unique identifier of the payment method.</param>
         /// <returns>Task of ApplePayInfo</returns>
-        public async Task<ApplePayInfo> GetMerchantsMerchantIdPaymentMethodSettingsPaymentMethodIdGetApplePayDomainsAsync(string merchantId, string paymentMethodId)
+        /// <param name="requestOptions">Additional request options</param>
+        public async Task<ApplePayInfo> GetMerchantsMerchantIdPaymentMethodSettingsPaymentMethodIdGetApplePayDomainsAsync(string merchantId, string paymentMethodId, RequestOptions requestOptions = default)
         {
             var endpoint = $"/merchants/{merchantId}/paymentMethodSettings/{paymentMethodId}/getApplePayDomains";
             string jsonRequest = null;
@@ -135,9 +131,10 @@ namespace Adyen.Service.Management
         /// <param name="paymentMethodId">The unique identifier of the payment method.</param>
         /// <param name="updatePaymentMethodInfo"> (optional)</param>
         /// <returns>PaymentMethod</returns>
-        public PaymentMethod PatchMerchantsMerchantIdPaymentMethodSettingsPaymentMethodId(string merchantId, string paymentMethodId, UpdatePaymentMethodInfo updatePaymentMethodInfo)
+        /// <param name="requestOptions">Additional request options</param>
+        public PaymentMethod PatchMerchantsMerchantIdPaymentMethodSettingsPaymentMethodId(string merchantId, string paymentMethodId, UpdatePaymentMethodInfo updatePaymentMethodInfo, RequestOptions requestOptions = default)
         {
-            return PatchMerchantsMerchantIdPaymentMethodSettingsPaymentMethodIdAsync(merchantId, paymentMethodId, updatePaymentMethodInfo).GetAwaiter().GetResult();
+            return PatchMerchantsMerchantIdPaymentMethodSettingsPaymentMethodIdAsync(merchantId, paymentMethodId, updatePaymentMethodInfo, requestOptions).GetAwaiter().GetResult();
         }
 
         /// <summary>
@@ -148,7 +145,8 @@ namespace Adyen.Service.Management
         /// <param name="paymentMethodId">The unique identifier of the payment method.</param>
         /// <param name="updatePaymentMethodInfo"> (optional)</param>
         /// <returns>Task of PaymentMethod</returns>
-        public async Task<PaymentMethod> PatchMerchantsMerchantIdPaymentMethodSettingsPaymentMethodIdAsync(string merchantId, string paymentMethodId, UpdatePaymentMethodInfo updatePaymentMethodInfo)
+        /// <param name="requestOptions">Additional request options</param>
+        public async Task<PaymentMethod> PatchMerchantsMerchantIdPaymentMethodSettingsPaymentMethodIdAsync(string merchantId, string paymentMethodId, UpdatePaymentMethodInfo updatePaymentMethodInfo, RequestOptions requestOptions = default)
         {
             var endpoint = $"/merchants/{merchantId}/paymentMethodSettings/{paymentMethodId}";
             string jsonRequest = updatePaymentMethodInfo.ToJson();
@@ -164,9 +162,10 @@ namespace Adyen.Service.Management
         /// <param name="merchantId">The unique identifier of the merchant account.</param>
         /// <param name="paymentMethodSetupInfo"> (optional)</param>
         /// <returns>PaymentMethod</returns>
-        public PaymentMethod PostMerchantsMerchantIdPaymentMethodSettings(string merchantId, PaymentMethodSetupInfo paymentMethodSetupInfo)
+        /// <param name="requestOptions">Additional request options</param>
+        public PaymentMethod PostMerchantsMerchantIdPaymentMethodSettings(string merchantId, PaymentMethodSetupInfo paymentMethodSetupInfo, RequestOptions requestOptions = default)
         {
-            return PostMerchantsMerchantIdPaymentMethodSettingsAsync(merchantId, paymentMethodSetupInfo).GetAwaiter().GetResult();
+            return PostMerchantsMerchantIdPaymentMethodSettingsAsync(merchantId, paymentMethodSetupInfo, requestOptions).GetAwaiter().GetResult();
         }
 
         /// <summary>
@@ -176,7 +175,8 @@ namespace Adyen.Service.Management
         /// <param name="merchantId">The unique identifier of the merchant account.</param>
         /// <param name="paymentMethodSetupInfo"> (optional)</param>
         /// <returns>Task of PaymentMethod</returns>
-        public async Task<PaymentMethod> PostMerchantsMerchantIdPaymentMethodSettingsAsync(string merchantId, PaymentMethodSetupInfo paymentMethodSetupInfo)
+        /// <param name="requestOptions">Additional request options</param>
+        public async Task<PaymentMethod> PostMerchantsMerchantIdPaymentMethodSettingsAsync(string merchantId, PaymentMethodSetupInfo paymentMethodSetupInfo, RequestOptions requestOptions = default)
         {
             var endpoint = $"/merchants/{merchantId}/paymentMethodSettings";
             string jsonRequest = paymentMethodSetupInfo.ToJson();
@@ -193,9 +193,10 @@ namespace Adyen.Service.Management
         /// <param name="paymentMethodId">The unique identifier of the payment method.</param>
         /// <param name="applePayInfo"> (optional)</param>
         /// <returns>Object</returns>
-        public Object PostMerchantsMerchantIdPaymentMethodSettingsPaymentMethodIdAddApplePayDomains(string merchantId, string paymentMethodId, ApplePayInfo applePayInfo)
+        /// <param name="requestOptions">Additional request options</param>
+        public Object PostMerchantsMerchantIdPaymentMethodSettingsPaymentMethodIdAddApplePayDomains(string merchantId, string paymentMethodId, ApplePayInfo applePayInfo, RequestOptions requestOptions = default)
         {
-            return PostMerchantsMerchantIdPaymentMethodSettingsPaymentMethodIdAddApplePayDomainsAsync(merchantId, paymentMethodId, applePayInfo).GetAwaiter().GetResult();
+            return PostMerchantsMerchantIdPaymentMethodSettingsPaymentMethodIdAddApplePayDomainsAsync(merchantId, paymentMethodId, applePayInfo, requestOptions).GetAwaiter().GetResult();
         }
 
         /// <summary>
@@ -206,7 +207,8 @@ namespace Adyen.Service.Management
         /// <param name="paymentMethodId">The unique identifier of the payment method.</param>
         /// <param name="applePayInfo"> (optional)</param>
         /// <returns>Task of Object</returns>
-        public async Task<Object> PostMerchantsMerchantIdPaymentMethodSettingsPaymentMethodIdAddApplePayDomainsAsync(string merchantId, string paymentMethodId, ApplePayInfo applePayInfo)
+        /// <param name="requestOptions">Additional request options</param>
+        public async Task<Object> PostMerchantsMerchantIdPaymentMethodSettingsPaymentMethodIdAddApplePayDomainsAsync(string merchantId, string paymentMethodId, ApplePayInfo applePayInfo, RequestOptions requestOptions = default)
         {
             var endpoint = $"/merchants/{merchantId}/paymentMethodSettings/{paymentMethodId}/addApplePayDomains";
             string jsonRequest = applePayInfo.ToJson();

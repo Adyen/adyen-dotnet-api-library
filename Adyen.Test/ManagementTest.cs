@@ -1,5 +1,7 @@
+using System.Collections.Generic;
 using System.Net.Http;
 using System.Threading.Tasks;
+using Adyen.Model;
 using Adyen.Model.Management;
 using Adyen.Service.Management;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
@@ -29,7 +31,14 @@ namespace Adyen.Test
             var client = CreateMockTestClientApiKeyBasedRequestAsync("Mocks/management/list-merchant-accounts.json");
             var service = new AccountCompanyLevelApi(client);
 
-            var response = service.GetCompaniesCompanyIdMerchants("ABC123", 1, 10);
+            var response = service.GetCompaniesCompanyIdMerchants("ABC123", new RequestOptions
+            {
+                QueryParameters = new Dictionary<string, string>
+                {
+                    { "pageNumber", "1" },
+                    { "pageSize", "10" }
+                }
+            });
 
             Assert.AreEqual(22, response.ItemsTotal);
             Assert.AreEqual("YOUR_MERCHANT_ACCOUNT_1", response.Data[0].Id);
@@ -44,7 +53,15 @@ namespace Adyen.Test
             var client = CreateMockTestClientApiKeyBasedRequestAsync("Mocks/management/logo.json");
             var service = new TerminalSettingsCompanyLevelApi(client);
 
-            var logo = await service.PatchCompaniesCompanyIdTerminalLogosAsync("123ABC", new Logo("base64"), "E355");
+            var requestOptions = new RequestOptions
+            {
+                QueryParameters = new Dictionary<string, string>
+                {
+                    { "model", "E355" }
+                }
+            };
+            var logo = await service.PatchCompaniesCompanyIdTerminalLogosAsync("123ABC", new Logo("base64"),
+                requestOptions);
 
             Assert.AreEqual("BASE-64_ENCODED_STRING_FROM_THE_REQUEST", logo.Data);
             ClientInterfaceMock.Verify(mock =>

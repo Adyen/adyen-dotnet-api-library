@@ -11,13 +11,12 @@
 */
 
 using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Net.Http;
 using System.Threading.Tasks;
-using Newtonsoft.Json;
+using Adyen.Model;
 using Adyen.Service.Resource;
 using Adyen.Model.Management;
+using Newtonsoft.Json;
 
 namespace Adyen.Service.Management
 {
@@ -35,9 +34,10 @@ namespace Adyen.Service.Management
         /// <param name="pageNumber">The number of the page to fetch. (optional)</param>
         /// <param name="pageSize">The number of items to have on a page, maximum 100. The default is 10 items on a page. (optional)</param>
         /// <returns>ListMerchantResponse</returns>
-        public ListMerchantResponse GetMerchants(int? pageNumber = default(int?), int? pageSize = default(int?))
+        /// <param name="requestOptions">Additional request options</param>
+        public ListMerchantResponse GetMerchants(RequestOptions requestOptions = default)
         {
-            return GetMerchantsAsync(pageNumber, pageSize).GetAwaiter().GetResult();
+            return GetMerchantsAsync(requestOptions).GetAwaiter().GetResult();
         }
 
         /// <summary>
@@ -47,16 +47,10 @@ namespace Adyen.Service.Management
         /// <param name="pageNumber">The number of the page to fetch. (optional)</param>
         /// <param name="pageSize">The number of items to have on a page, maximum 100. The default is 10 items on a page. (optional)</param>
         /// <returns>Task of ListMerchantResponse</returns>
-        public async Task<ListMerchantResponse> GetMerchantsAsync(int? pageNumber = default(int?), int? pageSize = default(int?))
+        /// <param name="requestOptions">Additional request options</param>
+        public async Task<ListMerchantResponse> GetMerchantsAsync(RequestOptions requestOptions = default)
         {
-            var endpoint = "/merchants";
-            // Build the query string
-            var queryParams = new Dictionary<string, string>();
-            if (pageNumber != null) queryParams.Add("pageNumber", pageNumber.ToString());
-            if (pageSize != null) queryParams.Add("pageSize", pageSize.ToString());
-            var queryString = string.Join("&", queryParams.Select(kvp => $"{kvp.Key}={kvp.Value}"));
-            if (!string.IsNullOrEmpty(queryString)) endpoint += "?" + queryString;
-
+            var endpoint = "/merchants" + ToQueryString(requestOptions?.QueryParameters);
             string jsonRequest = null;
             var resource = new ManagementResource(this, endpoint);
             var jsonResult = await resource.RequestAsync(jsonRequest, null, new HttpMethod("GET"));
@@ -69,9 +63,10 @@ namespace Adyen.Service.Management
         /// <exception cref="Adyen.Service.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="merchantId">The unique identifier of the merchant account.</param>
         /// <returns>Merchant</returns>
-        public Merchant GetMerchantsMerchantId(string merchantId)
+        /// <param name="requestOptions">Additional request options</param>
+        public Merchant GetMerchantsMerchantId(string merchantId, RequestOptions requestOptions = default)
         {
-            return GetMerchantsMerchantIdAsync(merchantId).GetAwaiter().GetResult();
+            return GetMerchantsMerchantIdAsync(merchantId, requestOptions).GetAwaiter().GetResult();
         }
 
         /// <summary>
@@ -80,7 +75,8 @@ namespace Adyen.Service.Management
         /// <exception cref="Adyen.Service.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="merchantId">The unique identifier of the merchant account.</param>
         /// <returns>Task of Merchant</returns>
-        public async Task<Merchant> GetMerchantsMerchantIdAsync(string merchantId)
+        /// <param name="requestOptions">Additional request options</param>
+        public async Task<Merchant> GetMerchantsMerchantIdAsync(string merchantId, RequestOptions requestOptions = default)
         {
             var endpoint = $"/merchants/{merchantId}";
             string jsonRequest = null;
@@ -95,9 +91,10 @@ namespace Adyen.Service.Management
         /// <exception cref="Adyen.Service.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="createMerchantRequest"> (optional)</param>
         /// <returns>CreateMerchantResponse</returns>
-        public CreateMerchantResponse PostMerchants(CreateMerchantRequest createMerchantRequest)
+        /// <param name="requestOptions">Additional request options</param>
+        public CreateMerchantResponse PostMerchants(CreateMerchantRequest createMerchantRequest, RequestOptions requestOptions = default)
         {
-            return PostMerchantsAsync(createMerchantRequest).GetAwaiter().GetResult();
+            return PostMerchantsAsync(createMerchantRequest, requestOptions).GetAwaiter().GetResult();
         }
 
         /// <summary>
@@ -106,7 +103,8 @@ namespace Adyen.Service.Management
         /// <exception cref="Adyen.Service.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="createMerchantRequest"> (optional)</param>
         /// <returns>Task of CreateMerchantResponse</returns>
-        public async Task<CreateMerchantResponse> PostMerchantsAsync(CreateMerchantRequest createMerchantRequest)
+        /// <param name="requestOptions">Additional request options</param>
+        public async Task<CreateMerchantResponse> PostMerchantsAsync(CreateMerchantRequest createMerchantRequest, RequestOptions requestOptions = default)
         {
             var endpoint = "/merchants";
             string jsonRequest = createMerchantRequest.ToJson();
@@ -121,9 +119,10 @@ namespace Adyen.Service.Management
         /// <exception cref="Adyen.Service.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="merchantId">The unique identifier of the merchant account.</param>
         /// <returns>RequestActivationResponse</returns>
-        public RequestActivationResponse PostMerchantsMerchantIdActivate(string merchantId)
+        /// <param name="requestOptions">Additional request options</param>
+        public RequestActivationResponse PostMerchantsMerchantIdActivate(string merchantId, RequestOptions requestOptions = default)
         {
-            return PostMerchantsMerchantIdActivateAsync(merchantId).GetAwaiter().GetResult();
+            return PostMerchantsMerchantIdActivateAsync(merchantId, requestOptions).GetAwaiter().GetResult();
         }
 
         /// <summary>
@@ -132,7 +131,8 @@ namespace Adyen.Service.Management
         /// <exception cref="Adyen.Service.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="merchantId">The unique identifier of the merchant account.</param>
         /// <returns>Task of RequestActivationResponse</returns>
-        public async Task<RequestActivationResponse> PostMerchantsMerchantIdActivateAsync(string merchantId)
+        /// <param name="requestOptions">Additional request options</param>
+        public async Task<RequestActivationResponse> PostMerchantsMerchantIdActivateAsync(string merchantId, RequestOptions requestOptions = default)
         {
             var endpoint = $"/merchants/{merchantId}/activate";
             string jsonRequest = null;

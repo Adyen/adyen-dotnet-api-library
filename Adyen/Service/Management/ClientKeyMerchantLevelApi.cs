@@ -11,13 +11,12 @@
 */
 
 using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Net.Http;
 using System.Threading.Tasks;
-using Newtonsoft.Json;
+using Adyen.Model;
 using Adyen.Service.Resource;
 using Adyen.Model.Management;
+using Newtonsoft.Json;
 
 namespace Adyen.Service.Management
 {
@@ -35,9 +34,10 @@ namespace Adyen.Service.Management
         /// <param name="merchantId">The unique identifier of the merchant account.</param>
         /// <param name="apiCredentialId">Unique identifier of the API credential.</param>
         /// <returns>GenerateClientKeyResponse</returns>
-        public GenerateClientKeyResponse PostMerchantsMerchantIdApiCredentialsApiCredentialIdGenerateClientKey(string merchantId, string apiCredentialId)
+        /// <param name="requestOptions">Additional request options</param>
+        public GenerateClientKeyResponse PostMerchantsMerchantIdApiCredentialsApiCredentialIdGenerateClientKey(string merchantId, string apiCredentialId, RequestOptions requestOptions = default)
         {
-            return PostMerchantsMerchantIdApiCredentialsApiCredentialIdGenerateClientKeyAsync(merchantId, apiCredentialId).GetAwaiter().GetResult();
+            return PostMerchantsMerchantIdApiCredentialsApiCredentialIdGenerateClientKeyAsync(merchantId, apiCredentialId, requestOptions).GetAwaiter().GetResult();
         }
 
         /// <summary>
@@ -47,7 +47,8 @@ namespace Adyen.Service.Management
         /// <param name="merchantId">The unique identifier of the merchant account.</param>
         /// <param name="apiCredentialId">Unique identifier of the API credential.</param>
         /// <returns>Task of GenerateClientKeyResponse</returns>
-        public async Task<GenerateClientKeyResponse> PostMerchantsMerchantIdApiCredentialsApiCredentialIdGenerateClientKeyAsync(string merchantId, string apiCredentialId)
+        /// <param name="requestOptions">Additional request options</param>
+        public async Task<GenerateClientKeyResponse> PostMerchantsMerchantIdApiCredentialsApiCredentialIdGenerateClientKeyAsync(string merchantId, string apiCredentialId, RequestOptions requestOptions = default)
         {
             var endpoint = $"/merchants/{merchantId}/apiCredentials/{apiCredentialId}/generateClientKey";
             string jsonRequest = null;

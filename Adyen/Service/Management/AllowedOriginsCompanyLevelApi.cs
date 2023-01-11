@@ -11,13 +11,12 @@
 */
 
 using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Net.Http;
 using System.Threading.Tasks;
-using Newtonsoft.Json;
+using Adyen.Model;
 using Adyen.Service.Resource;
 using Adyen.Model.Management;
+using Newtonsoft.Json;
 
 namespace Adyen.Service.Management
 {
@@ -36,9 +35,10 @@ namespace Adyen.Service.Management
         /// <param name="apiCredentialId">Unique identifier of the API credential.</param>
         /// <param name="originId">Unique identifier of the allowed origin.</param>
         /// <returns></returns>
-        public void DeleteCompaniesCompanyIdApiCredentialsApiCredentialIdAllowedOriginsOriginId(string companyId, string apiCredentialId, string originId)
+        /// <param name="requestOptions">Additional request options</param>
+        public void DeleteCompaniesCompanyIdApiCredentialsApiCredentialIdAllowedOriginsOriginId(string companyId, string apiCredentialId, string originId, RequestOptions requestOptions = default)
         {
-            DeleteCompaniesCompanyIdApiCredentialsApiCredentialIdAllowedOriginsOriginIdAsync(companyId, apiCredentialId, originId);
+            DeleteCompaniesCompanyIdApiCredentialsApiCredentialIdAllowedOriginsOriginIdAsync(companyId, apiCredentialId, originId, requestOptions);
         }
 
         /// <summary>
@@ -49,7 +49,8 @@ namespace Adyen.Service.Management
         /// <param name="apiCredentialId">Unique identifier of the API credential.</param>
         /// <param name="originId">Unique identifier of the allowed origin.</param>
         /// <returns>Task of void</returns>
-        public async Task DeleteCompaniesCompanyIdApiCredentialsApiCredentialIdAllowedOriginsOriginIdAsync(string companyId, string apiCredentialId, string originId)
+        /// <param name="requestOptions">Additional request options</param>
+        public async Task DeleteCompaniesCompanyIdApiCredentialsApiCredentialIdAllowedOriginsOriginIdAsync(string companyId, string apiCredentialId, string originId, RequestOptions requestOptions = default)
         {
             var endpoint = $"/companies/{companyId}/apiCredentials/{apiCredentialId}/allowedOrigins/{originId}";
             string jsonRequest = null;
@@ -64,9 +65,10 @@ namespace Adyen.Service.Management
         /// <param name="companyId">The unique identifier of the company account.</param>
         /// <param name="apiCredentialId">Unique identifier of the API credential.</param>
         /// <returns>AllowedOriginsResponse</returns>
-        public AllowedOriginsResponse GetCompaniesCompanyIdApiCredentialsApiCredentialIdAllowedOrigins(string companyId, string apiCredentialId)
+        /// <param name="requestOptions">Additional request options</param>
+        public AllowedOriginsResponse GetCompaniesCompanyIdApiCredentialsApiCredentialIdAllowedOrigins(string companyId, string apiCredentialId, RequestOptions requestOptions = default)
         {
-            return GetCompaniesCompanyIdApiCredentialsApiCredentialIdAllowedOriginsAsync(companyId, apiCredentialId).GetAwaiter().GetResult();
+            return GetCompaniesCompanyIdApiCredentialsApiCredentialIdAllowedOriginsAsync(companyId, apiCredentialId, requestOptions).GetAwaiter().GetResult();
         }
 
         /// <summary>
@@ -76,7 +78,8 @@ namespace Adyen.Service.Management
         /// <param name="companyId">The unique identifier of the company account.</param>
         /// <param name="apiCredentialId">Unique identifier of the API credential.</param>
         /// <returns>Task of AllowedOriginsResponse</returns>
-        public async Task<AllowedOriginsResponse> GetCompaniesCompanyIdApiCredentialsApiCredentialIdAllowedOriginsAsync(string companyId, string apiCredentialId)
+        /// <param name="requestOptions">Additional request options</param>
+        public async Task<AllowedOriginsResponse> GetCompaniesCompanyIdApiCredentialsApiCredentialIdAllowedOriginsAsync(string companyId, string apiCredentialId, RequestOptions requestOptions = default)
         {
             var endpoint = $"/companies/{companyId}/apiCredentials/{apiCredentialId}/allowedOrigins";
             string jsonRequest = null;
@@ -93,9 +96,10 @@ namespace Adyen.Service.Management
         /// <param name="apiCredentialId">Unique identifier of the API credential.</param>
         /// <param name="originId">Unique identifier of the allowed origin.</param>
         /// <returns>AllowedOrigin</returns>
-        public AllowedOrigin GetCompaniesCompanyIdApiCredentialsApiCredentialIdAllowedOriginsOriginId(string companyId, string apiCredentialId, string originId)
+        /// <param name="requestOptions">Additional request options</param>
+        public AllowedOrigin GetCompaniesCompanyIdApiCredentialsApiCredentialIdAllowedOriginsOriginId(string companyId, string apiCredentialId, string originId, RequestOptions requestOptions = default)
         {
-            return GetCompaniesCompanyIdApiCredentialsApiCredentialIdAllowedOriginsOriginIdAsync(companyId, apiCredentialId, originId).GetAwaiter().GetResult();
+            return GetCompaniesCompanyIdApiCredentialsApiCredentialIdAllowedOriginsOriginIdAsync(companyId, apiCredentialId, originId, requestOptions).GetAwaiter().GetResult();
         }
 
         /// <summary>
@@ -106,7 +110,8 @@ namespace Adyen.Service.Management
         /// <param name="apiCredentialId">Unique identifier of the API credential.</param>
         /// <param name="originId">Unique identifier of the allowed origin.</param>
         /// <returns>Task of AllowedOrigin</returns>
-        public async Task<AllowedOrigin> GetCompaniesCompanyIdApiCredentialsApiCredentialIdAllowedOriginsOriginIdAsync(string companyId, string apiCredentialId, string originId)
+        /// <param name="requestOptions">Additional request options</param>
+        public async Task<AllowedOrigin> GetCompaniesCompanyIdApiCredentialsApiCredentialIdAllowedOriginsOriginIdAsync(string companyId, string apiCredentialId, string originId, RequestOptions requestOptions = default)
         {
             var endpoint = $"/companies/{companyId}/apiCredentials/{apiCredentialId}/allowedOrigins/{originId}";
             string jsonRequest = null;
@@ -123,9 +128,10 @@ namespace Adyen.Service.Management
         /// <param name="apiCredentialId">Unique identifier of the API credential.</param>
         /// <param name="allowedOrigin"> (optional)</param>
         /// <returns>AllowedOriginsResponse</returns>
-        public AllowedOriginsResponse PostCompaniesCompanyIdApiCredentialsApiCredentialIdAllowedOrigins(string companyId, string apiCredentialId, AllowedOrigin allowedOrigin)
+        /// <param name="requestOptions">Additional request options</param>
+        public AllowedOriginsResponse PostCompaniesCompanyIdApiCredentialsApiCredentialIdAllowedOrigins(string companyId, string apiCredentialId, AllowedOrigin allowedOrigin, RequestOptions requestOptions = default)
         {
-            return PostCompaniesCompanyIdApiCredentialsApiCredentialIdAllowedOriginsAsync(companyId, apiCredentialId, allowedOrigin).GetAwaiter().GetResult();
+            return PostCompaniesCompanyIdApiCredentialsApiCredentialIdAllowedOriginsAsync(companyId, apiCredentialId, allowedOrigin, requestOptions).GetAwaiter().GetResult();
         }
 
         /// <summary>
@@ -136,7 +142,8 @@ namespace Adyen.Service.Management
         /// <param name="apiCredentialId">Unique identifier of the API credential.</param>
         /// <param name="allowedOrigin"> (optional)</param>
         /// <returns>Task of AllowedOriginsResponse</returns>
-        public async Task<AllowedOriginsResponse> PostCompaniesCompanyIdApiCredentialsApiCredentialIdAllowedOriginsAsync(string companyId, string apiCredentialId, AllowedOrigin allowedOrigin)
+        /// <param name="requestOptions">Additional request options</param>
+        public async Task<AllowedOriginsResponse> PostCompaniesCompanyIdApiCredentialsApiCredentialIdAllowedOriginsAsync(string companyId, string apiCredentialId, AllowedOrigin allowedOrigin, RequestOptions requestOptions = default)
         {
             var endpoint = $"/companies/{companyId}/apiCredentials/{apiCredentialId}/allowedOrigins";
             string jsonRequest = allowedOrigin.ToJson();

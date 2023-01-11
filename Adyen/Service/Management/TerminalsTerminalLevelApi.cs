@@ -11,13 +11,12 @@
 */
 
 using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Net.Http;
 using System.Threading.Tasks;
-using Newtonsoft.Json;
+using Adyen.Model;
 using Adyen.Service.Resource;
 using Adyen.Model.Management;
+using Newtonsoft.Json;
 
 namespace Adyen.Service.Management
 {
@@ -40,9 +39,10 @@ namespace Adyen.Service.Management
         /// <param name="pageNumber">The number of the page to fetch. (optional)</param>
         /// <param name="pageSize">The number of items to have on a page, maximum 100. The default is 20 items on a page. (optional)</param>
         /// <returns>ListTerminalsResponse</returns>
-        public ListTerminalsResponse GetTerminals(string searchQuery = default(string), string countries = default(string), string merchantIds = default(string), string storeIds = default(string), string brandModels = default(string), int? pageNumber = default(int?), int? pageSize = default(int?))
+        /// <param name="requestOptions">Additional request options</param>
+        public ListTerminalsResponse GetTerminals(RequestOptions requestOptions = default)
         {
-            return GetTerminalsAsync(searchQuery, countries, merchantIds, storeIds, brandModels, pageNumber, pageSize).GetAwaiter().GetResult();
+            return GetTerminalsAsync(requestOptions).GetAwaiter().GetResult();
         }
 
         /// <summary>
@@ -57,21 +57,10 @@ namespace Adyen.Service.Management
         /// <param name="pageNumber">The number of the page to fetch. (optional)</param>
         /// <param name="pageSize">The number of items to have on a page, maximum 100. The default is 20 items on a page. (optional)</param>
         /// <returns>Task of ListTerminalsResponse</returns>
-        public async Task<ListTerminalsResponse> GetTerminalsAsync(string searchQuery = default(string), string countries = default(string), string merchantIds = default(string), string storeIds = default(string), string brandModels = default(string), int? pageNumber = default(int?), int? pageSize = default(int?))
+        /// <param name="requestOptions">Additional request options</param>
+        public async Task<ListTerminalsResponse> GetTerminalsAsync(RequestOptions requestOptions = default)
         {
-            var endpoint = "/terminals";
-            // Build the query string
-            var queryParams = new Dictionary<string, string>();
-            if (searchQuery != null) queryParams.Add("searchQuery", searchQuery.ToString());
-            if (countries != null) queryParams.Add("countries", countries.ToString());
-            if (merchantIds != null) queryParams.Add("merchantIds", merchantIds.ToString());
-            if (storeIds != null) queryParams.Add("storeIds", storeIds.ToString());
-            if (brandModels != null) queryParams.Add("brandModels", brandModels.ToString());
-            if (pageNumber != null) queryParams.Add("pageNumber", pageNumber.ToString());
-            if (pageSize != null) queryParams.Add("pageSize", pageSize.ToString());
-            var queryString = string.Join("&", queryParams.Select(kvp => $"{kvp.Key}={kvp.Value}"));
-            if (!string.IsNullOrEmpty(queryString)) endpoint += "?" + queryString;
-
+            var endpoint = "/terminals" + ToQueryString(requestOptions?.QueryParameters);
             string jsonRequest = null;
             var resource = new ManagementResource(this, endpoint);
             var jsonResult = await resource.RequestAsync(jsonRequest, null, new HttpMethod("GET"));

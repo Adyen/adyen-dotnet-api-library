@@ -11,13 +11,12 @@
 */
 
 using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Net.Http;
 using System.Threading.Tasks;
-using Newtonsoft.Json;
+using Adyen.Model;
 using Adyen.Service.Resource;
 using Adyen.Model.Management;
+using Newtonsoft.Json;
 
 namespace Adyen.Service.Management
 {
@@ -36,9 +35,10 @@ namespace Adyen.Service.Management
         /// <param name="pageNumber">The number of the page to fetch. (optional)</param>
         /// <param name="pageSize">The number of items to have on a page. Maximum value is **100**. The default is **10** items on a page. (optional)</param>
         /// <returns>ListMerchantUsersResponse</returns>
-        public ListMerchantUsersResponse GetMerchantsMerchantIdUsers(string merchantId, int? pageNumber = default(int?), int? pageSize = default(int?))
+        /// <param name="requestOptions">Additional request options</param>
+        public ListMerchantUsersResponse GetMerchantsMerchantIdUsers(string merchantId, RequestOptions requestOptions = default)
         {
-            return GetMerchantsMerchantIdUsersAsync(merchantId, pageNumber, pageSize).GetAwaiter().GetResult();
+            return GetMerchantsMerchantIdUsersAsync(merchantId, requestOptions).GetAwaiter().GetResult();
         }
 
         /// <summary>
@@ -49,16 +49,10 @@ namespace Adyen.Service.Management
         /// <param name="pageNumber">The number of the page to fetch. (optional)</param>
         /// <param name="pageSize">The number of items to have on a page. Maximum value is **100**. The default is **10** items on a page. (optional)</param>
         /// <returns>Task of ListMerchantUsersResponse</returns>
-        public async Task<ListMerchantUsersResponse> GetMerchantsMerchantIdUsersAsync(string merchantId, int? pageNumber = default(int?), int? pageSize = default(int?))
+        /// <param name="requestOptions">Additional request options</param>
+        public async Task<ListMerchantUsersResponse> GetMerchantsMerchantIdUsersAsync(string merchantId, RequestOptions requestOptions = default)
         {
-            var endpoint = $"/merchants/{merchantId}/users";
-            // Build the query string
-            var queryParams = new Dictionary<string, string>();
-            if (pageNumber != null) queryParams.Add("pageNumber", pageNumber.ToString());
-            if (pageSize != null) queryParams.Add("pageSize", pageSize.ToString());
-            var queryString = string.Join("&", queryParams.Select(kvp => $"{kvp.Key}={kvp.Value}"));
-            if (!string.IsNullOrEmpty(queryString)) endpoint += "?" + queryString;
-
+            var endpoint = $"/merchants/{merchantId}/users" + ToQueryString(requestOptions?.QueryParameters);
             string jsonRequest = null;
             var resource = new ManagementResource(this, endpoint);
             var jsonResult = await resource.RequestAsync(jsonRequest, null, new HttpMethod("GET"));
@@ -72,9 +66,10 @@ namespace Adyen.Service.Management
         /// <param name="merchantId">Unique identifier of the merchant.</param>
         /// <param name="userId">Unique identifier of the user.</param>
         /// <returns>User</returns>
-        public User GetMerchantsMerchantIdUsersUserId(string merchantId, string userId)
+        /// <param name="requestOptions">Additional request options</param>
+        public User GetMerchantsMerchantIdUsersUserId(string merchantId, string userId, RequestOptions requestOptions = default)
         {
-            return GetMerchantsMerchantIdUsersUserIdAsync(merchantId, userId).GetAwaiter().GetResult();
+            return GetMerchantsMerchantIdUsersUserIdAsync(merchantId, userId, requestOptions).GetAwaiter().GetResult();
         }
 
         /// <summary>
@@ -84,7 +79,8 @@ namespace Adyen.Service.Management
         /// <param name="merchantId">Unique identifier of the merchant.</param>
         /// <param name="userId">Unique identifier of the user.</param>
         /// <returns>Task of User</returns>
-        public async Task<User> GetMerchantsMerchantIdUsersUserIdAsync(string merchantId, string userId)
+        /// <param name="requestOptions">Additional request options</param>
+        public async Task<User> GetMerchantsMerchantIdUsersUserIdAsync(string merchantId, string userId, RequestOptions requestOptions = default)
         {
             var endpoint = $"/merchants/{merchantId}/users/{userId}";
             string jsonRequest = null;
@@ -101,9 +97,10 @@ namespace Adyen.Service.Management
         /// <param name="userId">Unique identifier of the user.</param>
         /// <param name="updateMerchantUserRequest"> (optional)</param>
         /// <returns>User</returns>
-        public User PatchMerchantsMerchantIdUsersUserId(string merchantId, string userId, UpdateMerchantUserRequest updateMerchantUserRequest)
+        /// <param name="requestOptions">Additional request options</param>
+        public User PatchMerchantsMerchantIdUsersUserId(string merchantId, string userId, UpdateMerchantUserRequest updateMerchantUserRequest, RequestOptions requestOptions = default)
         {
-            return PatchMerchantsMerchantIdUsersUserIdAsync(merchantId, userId, updateMerchantUserRequest).GetAwaiter().GetResult();
+            return PatchMerchantsMerchantIdUsersUserIdAsync(merchantId, userId, updateMerchantUserRequest, requestOptions).GetAwaiter().GetResult();
         }
 
         /// <summary>
@@ -114,7 +111,8 @@ namespace Adyen.Service.Management
         /// <param name="userId">Unique identifier of the user.</param>
         /// <param name="updateMerchantUserRequest"> (optional)</param>
         /// <returns>Task of User</returns>
-        public async Task<User> PatchMerchantsMerchantIdUsersUserIdAsync(string merchantId, string userId, UpdateMerchantUserRequest updateMerchantUserRequest)
+        /// <param name="requestOptions">Additional request options</param>
+        public async Task<User> PatchMerchantsMerchantIdUsersUserIdAsync(string merchantId, string userId, UpdateMerchantUserRequest updateMerchantUserRequest, RequestOptions requestOptions = default)
         {
             var endpoint = $"/merchants/{merchantId}/users/{userId}";
             string jsonRequest = updateMerchantUserRequest.ToJson();
@@ -130,9 +128,10 @@ namespace Adyen.Service.Management
         /// <param name="merchantId">Unique identifier of the merchant.</param>
         /// <param name="createMerchantUserRequest"> (optional)</param>
         /// <returns>CreateUserResponse</returns>
-        public CreateUserResponse PostMerchantsMerchantIdUsers(string merchantId, CreateMerchantUserRequest createMerchantUserRequest)
+        /// <param name="requestOptions">Additional request options</param>
+        public CreateUserResponse PostMerchantsMerchantIdUsers(string merchantId, CreateMerchantUserRequest createMerchantUserRequest, RequestOptions requestOptions = default)
         {
-            return PostMerchantsMerchantIdUsersAsync(merchantId, createMerchantUserRequest).GetAwaiter().GetResult();
+            return PostMerchantsMerchantIdUsersAsync(merchantId, createMerchantUserRequest, requestOptions).GetAwaiter().GetResult();
         }
 
         /// <summary>
@@ -142,7 +141,8 @@ namespace Adyen.Service.Management
         /// <param name="merchantId">Unique identifier of the merchant.</param>
         /// <param name="createMerchantUserRequest"> (optional)</param>
         /// <returns>Task of CreateUserResponse</returns>
-        public async Task<CreateUserResponse> PostMerchantsMerchantIdUsersAsync(string merchantId, CreateMerchantUserRequest createMerchantUserRequest)
+        /// <param name="requestOptions">Additional request options</param>
+        public async Task<CreateUserResponse> PostMerchantsMerchantIdUsersAsync(string merchantId, CreateMerchantUserRequest createMerchantUserRequest, RequestOptions requestOptions = default)
         {
             var endpoint = $"/merchants/{merchantId}/users";
             string jsonRequest = createMerchantUserRequest.ToJson();

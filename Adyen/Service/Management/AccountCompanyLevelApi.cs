@@ -11,13 +11,12 @@
 */
 
 using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Net.Http;
 using System.Threading.Tasks;
-using Newtonsoft.Json;
+using Adyen.Model;
 using Adyen.Service.Resource;
 using Adyen.Model.Management;
+using Newtonsoft.Json;
 
 namespace Adyen.Service.Management
 {
@@ -35,9 +34,10 @@ namespace Adyen.Service.Management
         /// <param name="pageNumber">The number of the page to fetch. (optional)</param>
         /// <param name="pageSize">The number of items to have on a page, maximum 100. The default is 10 items on a page. (optional)</param>
         /// <returns>ListCompanyResponse</returns>
-        public ListCompanyResponse GetCompanies(int? pageNumber = default(int?), int? pageSize = default(int?))
+        /// <param name="requestOptions">Additional request options</param>
+        public ListCompanyResponse GetCompanies(RequestOptions requestOptions = default)
         {
-            return GetCompaniesAsync(pageNumber, pageSize).GetAwaiter().GetResult();
+            return GetCompaniesAsync(requestOptions).GetAwaiter().GetResult();
         }
 
         /// <summary>
@@ -47,16 +47,10 @@ namespace Adyen.Service.Management
         /// <param name="pageNumber">The number of the page to fetch. (optional)</param>
         /// <param name="pageSize">The number of items to have on a page, maximum 100. The default is 10 items on a page. (optional)</param>
         /// <returns>Task of ListCompanyResponse</returns>
-        public async Task<ListCompanyResponse> GetCompaniesAsync(int? pageNumber = default(int?), int? pageSize = default(int?))
+        /// <param name="requestOptions">Additional request options</param>
+        public async Task<ListCompanyResponse> GetCompaniesAsync(RequestOptions requestOptions = default)
         {
-            var endpoint = "/companies";
-            // Build the query string
-            var queryParams = new Dictionary<string, string>();
-            if (pageNumber != null) queryParams.Add("pageNumber", pageNumber.ToString());
-            if (pageSize != null) queryParams.Add("pageSize", pageSize.ToString());
-            var queryString = string.Join("&", queryParams.Select(kvp => $"{kvp.Key}={kvp.Value}"));
-            if (!string.IsNullOrEmpty(queryString)) endpoint += "?" + queryString;
-
+            var endpoint = "/companies" + ToQueryString(requestOptions?.QueryParameters);
             string jsonRequest = null;
             var resource = new ManagementResource(this, endpoint);
             var jsonResult = await resource.RequestAsync(jsonRequest, null, new HttpMethod("GET"));
@@ -69,9 +63,10 @@ namespace Adyen.Service.Management
         /// <exception cref="Adyen.Service.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="companyId">The unique identifier of the company account.</param>
         /// <returns>Company</returns>
-        public Company GetCompaniesCompanyId(string companyId)
+        /// <param name="requestOptions">Additional request options</param>
+        public Company GetCompaniesCompanyId(string companyId, RequestOptions requestOptions = default)
         {
-            return GetCompaniesCompanyIdAsync(companyId).GetAwaiter().GetResult();
+            return GetCompaniesCompanyIdAsync(companyId, requestOptions).GetAwaiter().GetResult();
         }
 
         /// <summary>
@@ -80,7 +75,8 @@ namespace Adyen.Service.Management
         /// <exception cref="Adyen.Service.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="companyId">The unique identifier of the company account.</param>
         /// <returns>Task of Company</returns>
-        public async Task<Company> GetCompaniesCompanyIdAsync(string companyId)
+        /// <param name="requestOptions">Additional request options</param>
+        public async Task<Company> GetCompaniesCompanyIdAsync(string companyId, RequestOptions requestOptions = default)
         {
             var endpoint = $"/companies/{companyId}";
             string jsonRequest = null;
@@ -97,9 +93,10 @@ namespace Adyen.Service.Management
         /// <param name="pageNumber">The number of the page to fetch. (optional)</param>
         /// <param name="pageSize">The number of items to have on a page, maximum 100. The default is 10 items on a page. (optional)</param>
         /// <returns>ListMerchantResponse</returns>
-        public ListMerchantResponse GetCompaniesCompanyIdMerchants(string companyId, int? pageNumber = default(int?), int? pageSize = default(int?))
+        /// <param name="requestOptions">Additional request options</param>
+        public ListMerchantResponse GetCompaniesCompanyIdMerchants(string companyId, RequestOptions requestOptions = default)
         {
-            return GetCompaniesCompanyIdMerchantsAsync(companyId, pageNumber, pageSize).GetAwaiter().GetResult();
+            return GetCompaniesCompanyIdMerchantsAsync(companyId, requestOptions).GetAwaiter().GetResult();
         }
 
         /// <summary>
@@ -110,16 +107,10 @@ namespace Adyen.Service.Management
         /// <param name="pageNumber">The number of the page to fetch. (optional)</param>
         /// <param name="pageSize">The number of items to have on a page, maximum 100. The default is 10 items on a page. (optional)</param>
         /// <returns>Task of ListMerchantResponse</returns>
-        public async Task<ListMerchantResponse> GetCompaniesCompanyIdMerchantsAsync(string companyId, int? pageNumber = default(int?), int? pageSize = default(int?))
+        /// <param name="requestOptions">Additional request options</param>
+        public async Task<ListMerchantResponse> GetCompaniesCompanyIdMerchantsAsync(string companyId, RequestOptions requestOptions = default)
         {
-            var endpoint = $"/companies/{companyId}/merchants";
-            // Build the query string
-            var queryParams = new Dictionary<string, string>();
-            if (pageNumber != null) queryParams.Add("pageNumber", pageNumber.ToString());
-            if (pageSize != null) queryParams.Add("pageSize", pageSize.ToString());
-            var queryString = string.Join("&", queryParams.Select(kvp => $"{kvp.Key}={kvp.Value}"));
-            if (!string.IsNullOrEmpty(queryString)) endpoint += "?" + queryString;
-
+            var endpoint = $"/companies/{companyId}/merchants" + ToQueryString(requestOptions?.QueryParameters);
             string jsonRequest = null;
             var resource = new ManagementResource(this, endpoint);
             var jsonResult = await resource.RequestAsync(jsonRequest, null, new HttpMethod("GET"));
