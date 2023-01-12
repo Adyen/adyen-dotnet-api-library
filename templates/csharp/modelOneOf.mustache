@@ -149,7 +149,7 @@
             try
             {
                 // if it does not contains "AdditionalProperties", use SerializerSettings to deserialize
-                if (typeof({{{.}}}).GetProperty("AdditionalProperties") == null && type != null && JsonConvert.SerializeObject(({{{.}}}.TypeEnum) 1).Contains(type))
+                if (typeof({{{.}}}).GetProperty("AdditionalProperties") == null)
                 {
                     new{{classname}} = new {{classname}}(JsonConvert.DeserializeObject<{{{.}}}>(jsonString, {{classname}}.SerializerSettings));
                 }
@@ -157,8 +157,11 @@
                 {
                     new{{classname}} = new {{classname}}(JsonConvert.DeserializeObject<{{{.}}}>(jsonString, {{classname}}.AdditionalPropertiesSerializerSettings));
                 }
-                matchedTypes.Add("{{{.}}}");
-                match++;
+                if (type != null || JsonConvert.SerializeObject(({{{.}}}.TypeEnum) 1).Contains(type))
+                {
+                    matchedTypes.Add("{{{.}}}");
+                    match++;
+                }
             }
             catch (Exception ex)
             {

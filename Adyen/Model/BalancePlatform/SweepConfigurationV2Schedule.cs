@@ -150,7 +150,7 @@ namespace Adyen.Model.BalancePlatform
             try
             {
                 // if it does not contains "AdditionalProperties", use SerializerSettings to deserialize
-                if (typeof(CronSweepSchedule).GetProperty("AdditionalProperties") == null && type != null && JsonConvert.SerializeObject((CronSweepSchedule.TypeEnum) 1).Contains(type))
+                if (typeof(CronSweepSchedule).GetProperty("AdditionalProperties") == null)
                 {
                     newSweepConfigurationV2Schedule = new SweepConfigurationV2Schedule(JsonConvert.DeserializeObject<CronSweepSchedule>(jsonString, SweepConfigurationV2Schedule.SerializerSettings));
                 }
@@ -158,8 +158,11 @@ namespace Adyen.Model.BalancePlatform
                 {
                     newSweepConfigurationV2Schedule = new SweepConfigurationV2Schedule(JsonConvert.DeserializeObject<CronSweepSchedule>(jsonString, SweepConfigurationV2Schedule.AdditionalPropertiesSerializerSettings));
                 }
-                matchedTypes.Add("CronSweepSchedule");
-                match++;
+                if (type != null || JsonConvert.SerializeObject((CronSweepSchedule.TypeEnum) 1).Contains(type))
+                {
+                    matchedTypes.Add("CronSweepSchedule");
+                    match++;
+                }
             }
             catch (Exception ex)
             {
@@ -172,7 +175,7 @@ namespace Adyen.Model.BalancePlatform
             try
             {
                 // if it does not contains "AdditionalProperties", use SerializerSettings to deserialize
-                if (typeof(SweepSchedule).GetProperty("AdditionalProperties") == null && type != null && JsonConvert.SerializeObject((SweepSchedule.TypeEnum) 1).Contains(type))
+                if (typeof(SweepSchedule).GetProperty("AdditionalProperties") == null)
                 {
                     newSweepConfigurationV2Schedule = new SweepConfigurationV2Schedule(JsonConvert.DeserializeObject<SweepSchedule>(jsonString, SweepConfigurationV2Schedule.SerializerSettings));
                 }
@@ -180,8 +183,11 @@ namespace Adyen.Model.BalancePlatform
                 {
                     newSweepConfigurationV2Schedule = new SweepConfigurationV2Schedule(JsonConvert.DeserializeObject<SweepSchedule>(jsonString, SweepConfigurationV2Schedule.AdditionalPropertiesSerializerSettings));
                 }
-                matchedTypes.Add("SweepSchedule");
-                match++;
+                if (type != null || JsonConvert.SerializeObject((SweepSchedule.TypeEnum) 1).Contains(type))
+                {
+                    matchedTypes.Add("SweepSchedule");
+                    match++;
+                }
             }
             catch (Exception ex)
             {
