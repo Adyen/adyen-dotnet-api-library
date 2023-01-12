@@ -26,7 +26,7 @@ namespace {{packageName}}.{{apiPackage}}
         {{/isDeprecated}}
         public {{{returnType}}}{{^returnType}}void{{/returnType}} {{operationId}}({{>api_parameters}})
         {
-            {{#returnType}}return {{/returnType}}{{operationId}}Async({{>api_invoke}}){{#returnType}}.GetAwaiter().GetResult(){{/returnType}};
+            {{#returnType}}return {{/returnType}}{{operationId}}Async({{>api_invoke}}).GetAwaiter().GetResult();
         }
 
         {{#supportsAsync}}

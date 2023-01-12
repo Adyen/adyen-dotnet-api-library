@@ -35,7 +35,7 @@ namespace Adyen.Service.Management
         /// <param name="requestOptions">Additional request options.</param>
         public void DeleteMerchantsMerchantIdWebhooksWebhookId(string merchantId, string webhookId, RequestOptions requestOptions = null)
         {
-            DeleteMerchantsMerchantIdWebhooksWebhookIdAsync(merchantId, webhookId, requestOptions);
+            DeleteMerchantsMerchantIdWebhooksWebhookIdAsync(merchantId, webhookId, requestOptions).GetAwaiter().GetResult();
         }
 
         /// <summary>

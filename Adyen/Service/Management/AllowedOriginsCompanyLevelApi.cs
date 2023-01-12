@@ -36,7 +36,7 @@ namespace Adyen.Service.Management
         /// <param name="requestOptions">Additional request options.</param>
         public void DeleteCompaniesCompanyIdApiCredentialsApiCredentialIdAllowedOriginsOriginId(string companyId, string apiCredentialId, string originId, RequestOptions requestOptions = null)
         {
-            DeleteCompaniesCompanyIdApiCredentialsApiCredentialIdAllowedOriginsOriginIdAsync(companyId, apiCredentialId, originId, requestOptions);
+            DeleteCompaniesCompanyIdApiCredentialsApiCredentialIdAllowedOriginsOriginIdAsync(companyId, apiCredentialId, originId, requestOptions).GetAwaiter().GetResult();
         }
 
         /// <summary>

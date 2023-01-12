@@ -34,7 +34,7 @@ namespace Adyen.Service.Management
         /// <param name="requestOptions">Additional request options.</param>
         public void DeleteMeAllowedOriginsOriginId(string originId, RequestOptions requestOptions = null)
         {
-            DeleteMeAllowedOriginsOriginIdAsync(originId, requestOptions);
+            DeleteMeAllowedOriginsOriginIdAsync(originId, requestOptions).GetAwaiter().GetResult();
         }
 
         /// <summary>
