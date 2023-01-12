@@ -49,9 +49,8 @@ namespace Adyen.Service.Management
         public async Task<GenerateClientKeyResponse> PostMerchantsMerchantIdApiCredentialsApiCredentialIdGenerateClientKeyAsync(string merchantId, string apiCredentialId, RequestOptions requestOptions = null)
         {
             var endpoint = $"/merchants/{merchantId}/apiCredentials/{apiCredentialId}/generateClientKey";
-            string jsonRequest = null;
             var resource = new ManagementResource(this, endpoint);
-            var jsonResult = await resource.RequestAsync(jsonRequest, null, new HttpMethod("POST"));
+            var jsonResult = await resource.RequestAsync(null, null, new HttpMethod("POST"));
             return JsonConvert.DeserializeObject<GenerateClientKeyResponse>(jsonResult);
         }
 

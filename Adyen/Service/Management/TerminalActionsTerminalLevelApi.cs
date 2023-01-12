@@ -47,9 +47,8 @@ namespace Adyen.Service.Management
         public async Task<ScheduleTerminalActionsResponse> PostTerminalsScheduleActionsAsync(ScheduleTerminalActionsRequest scheduleTerminalActionsRequest, RequestOptions requestOptions = null)
         {
             var endpoint = "/terminals/scheduleActions";
-            string jsonRequest = scheduleTerminalActionsRequest.ToJson();
             var resource = new ManagementResource(this, endpoint);
-            var jsonResult = await resource.RequestAsync(jsonRequest, null, new HttpMethod("POST"));
+            var jsonResult = await resource.RequestAsync(scheduleTerminalActionsRequest.ToJson(), null, new HttpMethod("POST"));
             return JsonConvert.DeserializeObject<ScheduleTerminalActionsResponse>(jsonResult);
         }
 

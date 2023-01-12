@@ -91,9 +91,8 @@ namespace Adyen.Service.Management
         public async Task<PaymentMethodResponse> GetMerchantsMerchantIdPaymentMethodSettingsAsync(string merchantId, RequestOptions requestOptions = null)
         {
             var endpoint = $"/merchants/{merchantId}/paymentMethodSettings" + ToQueryString(requestOptions?.QueryParameters);
-            string jsonRequest = null;
             var resource = new ManagementResource(this, endpoint);
-            var jsonResult = await resource.RequestAsync(jsonRequest, null, new HttpMethod("GET"));
+            var jsonResult = await resource.RequestAsync(null, null, new HttpMethod("GET"));
             return JsonConvert.DeserializeObject<PaymentMethodResponse>(jsonResult);
         }
 
@@ -119,9 +118,8 @@ namespace Adyen.Service.Management
         public async Task<PaymentMethod> GetMerchantsMerchantIdPaymentMethodSettingsPaymentMethodIdAsync(string merchantId, string paymentMethodId, RequestOptions requestOptions = null)
         {
             var endpoint = $"/merchants/{merchantId}/paymentMethodSettings/{paymentMethodId}";
-            string jsonRequest = null;
             var resource = new ManagementResource(this, endpoint);
-            var jsonResult = await resource.RequestAsync(jsonRequest, null, new HttpMethod("GET"));
+            var jsonResult = await resource.RequestAsync(null, null, new HttpMethod("GET"));
             return JsonConvert.DeserializeObject<PaymentMethod>(jsonResult);
         }
 
@@ -147,9 +145,8 @@ namespace Adyen.Service.Management
         public async Task<ApplePayInfo> GetMerchantsMerchantIdPaymentMethodSettingsPaymentMethodIdGetApplePayDomainsAsync(string merchantId, string paymentMethodId, RequestOptions requestOptions = null)
         {
             var endpoint = $"/merchants/{merchantId}/paymentMethodSettings/{paymentMethodId}/getApplePayDomains";
-            string jsonRequest = null;
             var resource = new ManagementResource(this, endpoint);
-            var jsonResult = await resource.RequestAsync(jsonRequest, null, new HttpMethod("GET"));
+            var jsonResult = await resource.RequestAsync(null, null, new HttpMethod("GET"));
             return JsonConvert.DeserializeObject<ApplePayInfo>(jsonResult);
         }
 
@@ -177,9 +174,8 @@ namespace Adyen.Service.Management
         public async Task<PaymentMethod> PatchMerchantsMerchantIdPaymentMethodSettingsPaymentMethodIdAsync(string merchantId, string paymentMethodId, UpdatePaymentMethodInfo updatePaymentMethodInfo, RequestOptions requestOptions = null)
         {
             var endpoint = $"/merchants/{merchantId}/paymentMethodSettings/{paymentMethodId}";
-            string jsonRequest = updatePaymentMethodInfo.ToJson();
             var resource = new ManagementResource(this, endpoint);
-            var jsonResult = await resource.RequestAsync(jsonRequest, null, new HttpMethod("PATCH"));
+            var jsonResult = await resource.RequestAsync(updatePaymentMethodInfo.ToJson(), null, new HttpMethod("PATCH"));
             return JsonConvert.DeserializeObject<PaymentMethod>(jsonResult);
         }
 
@@ -205,9 +201,8 @@ namespace Adyen.Service.Management
         public async Task<PaymentMethod> PostMerchantsMerchantIdPaymentMethodSettingsAsync(string merchantId, PaymentMethodSetupInfo paymentMethodSetupInfo, RequestOptions requestOptions = null)
         {
             var endpoint = $"/merchants/{merchantId}/paymentMethodSettings";
-            string jsonRequest = paymentMethodSetupInfo.ToJson();
             var resource = new ManagementResource(this, endpoint);
-            var jsonResult = await resource.RequestAsync(jsonRequest, null, new HttpMethod("POST"));
+            var jsonResult = await resource.RequestAsync(paymentMethodSetupInfo.ToJson(), null, new HttpMethod("POST"));
             return JsonConvert.DeserializeObject<PaymentMethod>(jsonResult);
         }
 
@@ -235,9 +230,8 @@ namespace Adyen.Service.Management
         public async Task<Object> PostMerchantsMerchantIdPaymentMethodSettingsPaymentMethodIdAddApplePayDomainsAsync(string merchantId, string paymentMethodId, ApplePayInfo applePayInfo, RequestOptions requestOptions = null)
         {
             var endpoint = $"/merchants/{merchantId}/paymentMethodSettings/{paymentMethodId}/addApplePayDomains";
-            string jsonRequest = applePayInfo.ToJson();
             var resource = new ManagementResource(this, endpoint);
-            var jsonResult = await resource.RequestAsync(jsonRequest, null, new HttpMethod("POST"));
+            var jsonResult = await resource.RequestAsync(applePayInfo.ToJson(), null, new HttpMethod("POST"));
             return JsonConvert.DeserializeObject<Object>(jsonResult);
         }
 

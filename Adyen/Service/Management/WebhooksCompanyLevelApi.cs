@@ -47,9 +47,8 @@ namespace Adyen.Service.Management
         public async Task DeleteCompaniesCompanyIdWebhooksWebhookIdAsync(string companyId, string webhookId, RequestOptions requestOptions = null)
         {
             var endpoint = $"/companies/{companyId}/webhooks/{webhookId}";
-            string jsonRequest = null;
             var resource = new ManagementResource(this, endpoint);
-            await resource.RequestAsync(jsonRequest, null, new HttpMethod("DELETE"));
+            await resource.RequestAsync(null, null, new HttpMethod("DELETE"));
         }
 
         /// <summary>
@@ -100,9 +99,8 @@ namespace Adyen.Service.Management
         public async Task<ListWebhooksResponse> GetCompaniesCompanyIdWebhooksAsync(string companyId, RequestOptions requestOptions = null)
         {
             var endpoint = $"/companies/{companyId}/webhooks" + ToQueryString(requestOptions?.QueryParameters);
-            string jsonRequest = null;
             var resource = new ManagementResource(this, endpoint);
-            var jsonResult = await resource.RequestAsync(jsonRequest, null, new HttpMethod("GET"));
+            var jsonResult = await resource.RequestAsync(null, null, new HttpMethod("GET"));
             return JsonConvert.DeserializeObject<ListWebhooksResponse>(jsonResult);
         }
 
@@ -128,9 +126,8 @@ namespace Adyen.Service.Management
         public async Task<Webhook> GetCompaniesCompanyIdWebhooksWebhookIdAsync(string companyId, string webhookId, RequestOptions requestOptions = null)
         {
             var endpoint = $"/companies/{companyId}/webhooks/{webhookId}";
-            string jsonRequest = null;
             var resource = new ManagementResource(this, endpoint);
-            var jsonResult = await resource.RequestAsync(jsonRequest, null, new HttpMethod("GET"));
+            var jsonResult = await resource.RequestAsync(null, null, new HttpMethod("GET"));
             return JsonConvert.DeserializeObject<Webhook>(jsonResult);
         }
 
@@ -158,9 +155,8 @@ namespace Adyen.Service.Management
         public async Task<Webhook> PatchCompaniesCompanyIdWebhooksWebhookIdAsync(string companyId, string webhookId, UpdateCompanyWebhookRequest updateCompanyWebhookRequest, RequestOptions requestOptions = null)
         {
             var endpoint = $"/companies/{companyId}/webhooks/{webhookId}";
-            string jsonRequest = updateCompanyWebhookRequest.ToJson();
             var resource = new ManagementResource(this, endpoint);
-            var jsonResult = await resource.RequestAsync(jsonRequest, null, new HttpMethod("PATCH"));
+            var jsonResult = await resource.RequestAsync(updateCompanyWebhookRequest.ToJson(), null, new HttpMethod("PATCH"));
             return JsonConvert.DeserializeObject<Webhook>(jsonResult);
         }
 
@@ -186,9 +182,8 @@ namespace Adyen.Service.Management
         public async Task<Webhook> PostCompaniesCompanyIdWebhooksAsync(string companyId, CreateCompanyWebhookRequest createCompanyWebhookRequest, RequestOptions requestOptions = null)
         {
             var endpoint = $"/companies/{companyId}/webhooks";
-            string jsonRequest = createCompanyWebhookRequest.ToJson();
             var resource = new ManagementResource(this, endpoint);
-            var jsonResult = await resource.RequestAsync(jsonRequest, null, new HttpMethod("POST"));
+            var jsonResult = await resource.RequestAsync(createCompanyWebhookRequest.ToJson(), null, new HttpMethod("POST"));
             return JsonConvert.DeserializeObject<Webhook>(jsonResult);
         }
 
@@ -214,9 +209,8 @@ namespace Adyen.Service.Management
         public async Task<GenerateHmacKeyResponse> PostCompaniesCompanyIdWebhooksWebhookIdGenerateHmacAsync(string companyId, string webhookId, RequestOptions requestOptions = null)
         {
             var endpoint = $"/companies/{companyId}/webhooks/{webhookId}/generateHmac";
-            string jsonRequest = null;
             var resource = new ManagementResource(this, endpoint);
-            var jsonResult = await resource.RequestAsync(jsonRequest, null, new HttpMethod("POST"));
+            var jsonResult = await resource.RequestAsync(null, null, new HttpMethod("POST"));
             return JsonConvert.DeserializeObject<GenerateHmacKeyResponse>(jsonResult);
         }
 
@@ -244,9 +238,8 @@ namespace Adyen.Service.Management
         public async Task<TestWebhookResponse> PostCompaniesCompanyIdWebhooksWebhookIdTestAsync(string companyId, string webhookId, TestCompanyWebhookRequest testCompanyWebhookRequest, RequestOptions requestOptions = null)
         {
             var endpoint = $"/companies/{companyId}/webhooks/{webhookId}/test";
-            string jsonRequest = testCompanyWebhookRequest.ToJson();
             var resource = new ManagementResource(this, endpoint);
-            var jsonResult = await resource.RequestAsync(jsonRequest, null, new HttpMethod("POST"));
+            var jsonResult = await resource.RequestAsync(testCompanyWebhookRequest.ToJson(), null, new HttpMethod("POST"));
             return JsonConvert.DeserializeObject<TestWebhookResponse>(jsonResult);
         }
 

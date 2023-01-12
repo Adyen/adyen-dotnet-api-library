@@ -75,9 +75,8 @@ namespace Adyen.Service.Management
         public async Task<ListMerchantUsersResponse> GetMerchantsMerchantIdUsersAsync(string merchantId, RequestOptions requestOptions = null)
         {
             var endpoint = $"/merchants/{merchantId}/users" + ToQueryString(requestOptions?.QueryParameters);
-            string jsonRequest = null;
             var resource = new ManagementResource(this, endpoint);
-            var jsonResult = await resource.RequestAsync(jsonRequest, null, new HttpMethod("GET"));
+            var jsonResult = await resource.RequestAsync(null, null, new HttpMethod("GET"));
             return JsonConvert.DeserializeObject<ListMerchantUsersResponse>(jsonResult);
         }
 
@@ -103,9 +102,8 @@ namespace Adyen.Service.Management
         public async Task<User> GetMerchantsMerchantIdUsersUserIdAsync(string merchantId, string userId, RequestOptions requestOptions = null)
         {
             var endpoint = $"/merchants/{merchantId}/users/{userId}";
-            string jsonRequest = null;
             var resource = new ManagementResource(this, endpoint);
-            var jsonResult = await resource.RequestAsync(jsonRequest, null, new HttpMethod("GET"));
+            var jsonResult = await resource.RequestAsync(null, null, new HttpMethod("GET"));
             return JsonConvert.DeserializeObject<User>(jsonResult);
         }
 
@@ -133,9 +131,8 @@ namespace Adyen.Service.Management
         public async Task<User> PatchMerchantsMerchantIdUsersUserIdAsync(string merchantId, string userId, UpdateMerchantUserRequest updateMerchantUserRequest, RequestOptions requestOptions = null)
         {
             var endpoint = $"/merchants/{merchantId}/users/{userId}";
-            string jsonRequest = updateMerchantUserRequest.ToJson();
             var resource = new ManagementResource(this, endpoint);
-            var jsonResult = await resource.RequestAsync(jsonRequest, null, new HttpMethod("PATCH"));
+            var jsonResult = await resource.RequestAsync(updateMerchantUserRequest.ToJson(), null, new HttpMethod("PATCH"));
             return JsonConvert.DeserializeObject<User>(jsonResult);
         }
 
@@ -161,9 +158,8 @@ namespace Adyen.Service.Management
         public async Task<CreateUserResponse> PostMerchantsMerchantIdUsersAsync(string merchantId, CreateMerchantUserRequest createMerchantUserRequest, RequestOptions requestOptions = null)
         {
             var endpoint = $"/merchants/{merchantId}/users";
-            string jsonRequest = createMerchantUserRequest.ToJson();
             var resource = new ManagementResource(this, endpoint);
-            var jsonResult = await resource.RequestAsync(jsonRequest, null, new HttpMethod("POST"));
+            var jsonResult = await resource.RequestAsync(createMerchantUserRequest.ToJson(), null, new HttpMethod("POST"));
             return JsonConvert.DeserializeObject<CreateUserResponse>(jsonResult);
         }
 

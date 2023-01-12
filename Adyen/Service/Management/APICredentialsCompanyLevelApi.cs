@@ -75,9 +75,8 @@ namespace Adyen.Service.Management
         public async Task<ListCompanyApiCredentialsResponse> GetCompaniesCompanyIdApiCredentialsAsync(string companyId, RequestOptions requestOptions = null)
         {
             var endpoint = $"/companies/{companyId}/apiCredentials" + ToQueryString(requestOptions?.QueryParameters);
-            string jsonRequest = null;
             var resource = new ManagementResource(this, endpoint);
-            var jsonResult = await resource.RequestAsync(jsonRequest, null, new HttpMethod("GET"));
+            var jsonResult = await resource.RequestAsync(null, null, new HttpMethod("GET"));
             return JsonConvert.DeserializeObject<ListCompanyApiCredentialsResponse>(jsonResult);
         }
 
@@ -103,9 +102,8 @@ namespace Adyen.Service.Management
         public async Task<CompanyApiCredential> GetCompaniesCompanyIdApiCredentialsApiCredentialIdAsync(string companyId, string apiCredentialId, RequestOptions requestOptions = null)
         {
             var endpoint = $"/companies/{companyId}/apiCredentials/{apiCredentialId}";
-            string jsonRequest = null;
             var resource = new ManagementResource(this, endpoint);
-            var jsonResult = await resource.RequestAsync(jsonRequest, null, new HttpMethod("GET"));
+            var jsonResult = await resource.RequestAsync(null, null, new HttpMethod("GET"));
             return JsonConvert.DeserializeObject<CompanyApiCredential>(jsonResult);
         }
 
@@ -133,9 +131,8 @@ namespace Adyen.Service.Management
         public async Task<CompanyApiCredential> PatchCompaniesCompanyIdApiCredentialsApiCredentialIdAsync(string companyId, string apiCredentialId, UpdateCompanyApiCredentialRequest updateCompanyApiCredentialRequest, RequestOptions requestOptions = null)
         {
             var endpoint = $"/companies/{companyId}/apiCredentials/{apiCredentialId}";
-            string jsonRequest = updateCompanyApiCredentialRequest.ToJson();
             var resource = new ManagementResource(this, endpoint);
-            var jsonResult = await resource.RequestAsync(jsonRequest, null, new HttpMethod("PATCH"));
+            var jsonResult = await resource.RequestAsync(updateCompanyApiCredentialRequest.ToJson(), null, new HttpMethod("PATCH"));
             return JsonConvert.DeserializeObject<CompanyApiCredential>(jsonResult);
         }
 
@@ -161,9 +158,8 @@ namespace Adyen.Service.Management
         public async Task<CreateCompanyApiCredentialResponse> PostCompaniesCompanyIdApiCredentialsAsync(string companyId, CreateCompanyApiCredentialRequest createCompanyApiCredentialRequest, RequestOptions requestOptions = null)
         {
             var endpoint = $"/companies/{companyId}/apiCredentials";
-            string jsonRequest = createCompanyApiCredentialRequest.ToJson();
             var resource = new ManagementResource(this, endpoint);
-            var jsonResult = await resource.RequestAsync(jsonRequest, null, new HttpMethod("POST"));
+            var jsonResult = await resource.RequestAsync(createCompanyApiCredentialRequest.ToJson(), null, new HttpMethod("POST"));
             return JsonConvert.DeserializeObject<CreateCompanyApiCredentialResponse>(jsonResult);
         }
 

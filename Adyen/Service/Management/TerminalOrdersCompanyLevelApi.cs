@@ -67,9 +67,8 @@ namespace Adyen.Service.Management
         public async Task<BillingEntitiesResponse> GetCompaniesCompanyIdBillingEntitiesAsync(string companyId, RequestOptions requestOptions = null)
         {
             var endpoint = $"/companies/{companyId}/billingEntities" + ToQueryString(requestOptions?.QueryParameters);
-            string jsonRequest = null;
             var resource = new ManagementResource(this, endpoint);
-            var jsonResult = await resource.RequestAsync(jsonRequest, null, new HttpMethod("GET"));
+            var jsonResult = await resource.RequestAsync(null, null, new HttpMethod("GET"));
             return JsonConvert.DeserializeObject<BillingEntitiesResponse>(jsonResult);
         }
 
@@ -129,9 +128,8 @@ namespace Adyen.Service.Management
         public async Task<ShippingLocationsResponse> GetCompaniesCompanyIdShippingLocationsAsync(string companyId, RequestOptions requestOptions = null)
         {
             var endpoint = $"/companies/{companyId}/shippingLocations" + ToQueryString(requestOptions?.QueryParameters);
-            string jsonRequest = null;
             var resource = new ManagementResource(this, endpoint);
-            var jsonResult = await resource.RequestAsync(jsonRequest, null, new HttpMethod("GET"));
+            var jsonResult = await resource.RequestAsync(null, null, new HttpMethod("GET"));
             return JsonConvert.DeserializeObject<ShippingLocationsResponse>(jsonResult);
         }
 
@@ -155,9 +153,8 @@ namespace Adyen.Service.Management
         public async Task<TerminalModelsResponse> GetCompaniesCompanyIdTerminalModelsAsync(string companyId, RequestOptions requestOptions = null)
         {
             var endpoint = $"/companies/{companyId}/terminalModels";
-            string jsonRequest = null;
             var resource = new ManagementResource(this, endpoint);
-            var jsonResult = await resource.RequestAsync(jsonRequest, null, new HttpMethod("GET"));
+            var jsonResult = await resource.RequestAsync(null, null, new HttpMethod("GET"));
             return JsonConvert.DeserializeObject<TerminalModelsResponse>(jsonResult);
         }
 
@@ -225,9 +222,8 @@ namespace Adyen.Service.Management
         public async Task<TerminalOrdersResponse> GetCompaniesCompanyIdTerminalOrdersAsync(string companyId, RequestOptions requestOptions = null)
         {
             var endpoint = $"/companies/{companyId}/terminalOrders" + ToQueryString(requestOptions?.QueryParameters);
-            string jsonRequest = null;
             var resource = new ManagementResource(this, endpoint);
-            var jsonResult = await resource.RequestAsync(jsonRequest, null, new HttpMethod("GET"));
+            var jsonResult = await resource.RequestAsync(null, null, new HttpMethod("GET"));
             return JsonConvert.DeserializeObject<TerminalOrdersResponse>(jsonResult);
         }
 
@@ -253,9 +249,8 @@ namespace Adyen.Service.Management
         public async Task<TerminalOrder> GetCompaniesCompanyIdTerminalOrdersOrderIdAsync(string companyId, string orderId, RequestOptions requestOptions = null)
         {
             var endpoint = $"/companies/{companyId}/terminalOrders/{orderId}";
-            string jsonRequest = null;
             var resource = new ManagementResource(this, endpoint);
-            var jsonResult = await resource.RequestAsync(jsonRequest, null, new HttpMethod("GET"));
+            var jsonResult = await resource.RequestAsync(null, null, new HttpMethod("GET"));
             return JsonConvert.DeserializeObject<TerminalOrder>(jsonResult);
         }
 
@@ -323,9 +318,8 @@ namespace Adyen.Service.Management
         public async Task<TerminalProductsResponse> GetCompaniesCompanyIdTerminalProductsAsync(string companyId, RequestOptions requestOptions = null)
         {
             var endpoint = $"/companies/{companyId}/terminalProducts" + ToQueryString(requestOptions?.QueryParameters);
-            string jsonRequest = null;
             var resource = new ManagementResource(this, endpoint);
-            var jsonResult = await resource.RequestAsync(jsonRequest, null, new HttpMethod("GET"));
+            var jsonResult = await resource.RequestAsync(null, null, new HttpMethod("GET"));
             return JsonConvert.DeserializeObject<TerminalProductsResponse>(jsonResult);
         }
 
@@ -353,9 +347,8 @@ namespace Adyen.Service.Management
         public async Task<TerminalOrder> PatchCompaniesCompanyIdTerminalOrdersOrderIdAsync(string companyId, string orderId, TerminalOrderRequest terminalOrderRequest, RequestOptions requestOptions = null)
         {
             var endpoint = $"/companies/{companyId}/terminalOrders/{orderId}";
-            string jsonRequest = terminalOrderRequest.ToJson();
             var resource = new ManagementResource(this, endpoint);
-            var jsonResult = await resource.RequestAsync(jsonRequest, null, new HttpMethod("PATCH"));
+            var jsonResult = await resource.RequestAsync(terminalOrderRequest.ToJson(), null, new HttpMethod("PATCH"));
             return JsonConvert.DeserializeObject<TerminalOrder>(jsonResult);
         }
 
@@ -381,9 +374,8 @@ namespace Adyen.Service.Management
         public async Task<ShippingLocation> PostCompaniesCompanyIdShippingLocationsAsync(string companyId, ShippingLocation shippingLocation, RequestOptions requestOptions = null)
         {
             var endpoint = $"/companies/{companyId}/shippingLocations";
-            string jsonRequest = shippingLocation.ToJson();
             var resource = new ManagementResource(this, endpoint);
-            var jsonResult = await resource.RequestAsync(jsonRequest, null, new HttpMethod("POST"));
+            var jsonResult = await resource.RequestAsync(shippingLocation.ToJson(), null, new HttpMethod("POST"));
             return JsonConvert.DeserializeObject<ShippingLocation>(jsonResult);
         }
 
@@ -409,9 +401,8 @@ namespace Adyen.Service.Management
         public async Task<TerminalOrder> PostCompaniesCompanyIdTerminalOrdersAsync(string companyId, TerminalOrderRequest terminalOrderRequest, RequestOptions requestOptions = null)
         {
             var endpoint = $"/companies/{companyId}/terminalOrders";
-            string jsonRequest = terminalOrderRequest.ToJson();
             var resource = new ManagementResource(this, endpoint);
-            var jsonResult = await resource.RequestAsync(jsonRequest, null, new HttpMethod("POST"));
+            var jsonResult = await resource.RequestAsync(terminalOrderRequest.ToJson(), null, new HttpMethod("POST"));
             return JsonConvert.DeserializeObject<TerminalOrder>(jsonResult);
         }
 
@@ -437,9 +428,8 @@ namespace Adyen.Service.Management
         public async Task<TerminalOrder> PostCompaniesCompanyIdTerminalOrdersOrderIdCancelAsync(string companyId, string orderId, RequestOptions requestOptions = null)
         {
             var endpoint = $"/companies/{companyId}/terminalOrders/{orderId}/cancel";
-            string jsonRequest = null;
             var resource = new ManagementResource(this, endpoint);
-            var jsonResult = await resource.RequestAsync(jsonRequest, null, new HttpMethod("POST"));
+            var jsonResult = await resource.RequestAsync(null, null, new HttpMethod("POST"));
             return JsonConvert.DeserializeObject<TerminalOrder>(jsonResult);
         }
 

@@ -47,9 +47,8 @@ namespace Adyen.Service.Management
         public async Task<Logo> GetTerminalsTerminalIdTerminalLogosAsync(string terminalId, RequestOptions requestOptions = null)
         {
             var endpoint = $"/terminals/{terminalId}/terminalLogos";
-            string jsonRequest = null;
             var resource = new ManagementResource(this, endpoint);
-            var jsonResult = await resource.RequestAsync(jsonRequest, null, new HttpMethod("GET"));
+            var jsonResult = await resource.RequestAsync(null, null, new HttpMethod("GET"));
             return JsonConvert.DeserializeObject<Logo>(jsonResult);
         }
 
@@ -73,9 +72,8 @@ namespace Adyen.Service.Management
         public async Task<TerminalSettings> GetTerminalsTerminalIdTerminalSettingsAsync(string terminalId, RequestOptions requestOptions = null)
         {
             var endpoint = $"/terminals/{terminalId}/terminalSettings";
-            string jsonRequest = null;
             var resource = new ManagementResource(this, endpoint);
-            var jsonResult = await resource.RequestAsync(jsonRequest, null, new HttpMethod("GET"));
+            var jsonResult = await resource.RequestAsync(null, null, new HttpMethod("GET"));
             return JsonConvert.DeserializeObject<TerminalSettings>(jsonResult);
         }
 
@@ -101,9 +99,8 @@ namespace Adyen.Service.Management
         public async Task<Logo> PatchTerminalsTerminalIdTerminalLogosAsync(string terminalId, Logo logo, RequestOptions requestOptions = null)
         {
             var endpoint = $"/terminals/{terminalId}/terminalLogos";
-            string jsonRequest = logo.ToJson();
             var resource = new ManagementResource(this, endpoint);
-            var jsonResult = await resource.RequestAsync(jsonRequest, null, new HttpMethod("PATCH"));
+            var jsonResult = await resource.RequestAsync(logo.ToJson(), null, new HttpMethod("PATCH"));
             return JsonConvert.DeserializeObject<Logo>(jsonResult);
         }
 
@@ -129,9 +126,8 @@ namespace Adyen.Service.Management
         public async Task<TerminalSettings> PatchTerminalsTerminalIdTerminalSettingsAsync(string terminalId, TerminalSettings terminalSettings, RequestOptions requestOptions = null)
         {
             var endpoint = $"/terminals/{terminalId}/terminalSettings";
-            string jsonRequest = terminalSettings.ToJson();
             var resource = new ManagementResource(this, endpoint);
-            var jsonResult = await resource.RequestAsync(jsonRequest, null, new HttpMethod("PATCH"));
+            var jsonResult = await resource.RequestAsync(terminalSettings.ToJson(), null, new HttpMethod("PATCH"));
             return JsonConvert.DeserializeObject<TerminalSettings>(jsonResult);
         }
 

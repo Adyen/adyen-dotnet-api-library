@@ -75,9 +75,8 @@ namespace Adyen.Service.Management
         public async Task<ListCompanyUsersResponse> GetCompaniesCompanyIdUsersAsync(string companyId, RequestOptions requestOptions = null)
         {
             var endpoint = $"/companies/{companyId}/users" + ToQueryString(requestOptions?.QueryParameters);
-            string jsonRequest = null;
             var resource = new ManagementResource(this, endpoint);
-            var jsonResult = await resource.RequestAsync(jsonRequest, null, new HttpMethod("GET"));
+            var jsonResult = await resource.RequestAsync(null, null, new HttpMethod("GET"));
             return JsonConvert.DeserializeObject<ListCompanyUsersResponse>(jsonResult);
         }
 
@@ -103,9 +102,8 @@ namespace Adyen.Service.Management
         public async Task<CompanyUser> GetCompaniesCompanyIdUsersUserIdAsync(string companyId, string userId, RequestOptions requestOptions = null)
         {
             var endpoint = $"/companies/{companyId}/users/{userId}";
-            string jsonRequest = null;
             var resource = new ManagementResource(this, endpoint);
-            var jsonResult = await resource.RequestAsync(jsonRequest, null, new HttpMethod("GET"));
+            var jsonResult = await resource.RequestAsync(null, null, new HttpMethod("GET"));
             return JsonConvert.DeserializeObject<CompanyUser>(jsonResult);
         }
 
@@ -133,9 +131,8 @@ namespace Adyen.Service.Management
         public async Task<CompanyUser> PatchCompaniesCompanyIdUsersUserIdAsync(string companyId, string userId, UpdateCompanyUserRequest updateCompanyUserRequest, RequestOptions requestOptions = null)
         {
             var endpoint = $"/companies/{companyId}/users/{userId}";
-            string jsonRequest = updateCompanyUserRequest.ToJson();
             var resource = new ManagementResource(this, endpoint);
-            var jsonResult = await resource.RequestAsync(jsonRequest, null, new HttpMethod("PATCH"));
+            var jsonResult = await resource.RequestAsync(updateCompanyUserRequest.ToJson(), null, new HttpMethod("PATCH"));
             return JsonConvert.DeserializeObject<CompanyUser>(jsonResult);
         }
 
@@ -161,9 +158,8 @@ namespace Adyen.Service.Management
         public async Task<CreateCompanyUserResponse> PostCompaniesCompanyIdUsersAsync(string companyId, CreateCompanyUserRequest createCompanyUserRequest, RequestOptions requestOptions = null)
         {
             var endpoint = $"/companies/{companyId}/users";
-            string jsonRequest = createCompanyUserRequest.ToJson();
             var resource = new ManagementResource(this, endpoint);
-            var jsonResult = await resource.RequestAsync(jsonRequest, null, new HttpMethod("POST"));
+            var jsonResult = await resource.RequestAsync(createCompanyUserRequest.ToJson(), null, new HttpMethod("POST"));
             return JsonConvert.DeserializeObject<CreateCompanyUserResponse>(jsonResult);
         }
 

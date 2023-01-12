@@ -38,9 +38,8 @@ namespace {{packageName}}.{{apiPackage}}
         {{#returnType}}public async Task<{{{.}}}>{{/returnType}}{{^returnType}}public async Task{{/returnType}} {{operationId}}Async({{>api_parameters}})
         {
             var endpoint = {{#hasPathParams}}${{/hasPathParams}}"{{{path}}}"{{#hasQueryParams}} + ToQueryString(requestOptions?.QueryParameters){{/hasQueryParams}};
-            string jsonRequest = {{#bodyParam}}{{paramName}}.ToJson(){{/bodyParam}}{{^bodyParam}}null{{/bodyParam}};
             var resource = new {{#lambda.titlecase}}{{serviceName}}{{/lambda.titlecase}}Resource(this, endpoint);
-            {{#returnType}}var jsonResult = {{/returnType}}await resource.RequestAsync(jsonRequest, null, new HttpMethod("{{httpMethod}}"));
+            {{#returnType}}var jsonResult = {{/returnType}}await resource.RequestAsync({{#bodyParam}}{{paramName}}.ToJson(){{/bodyParam}}{{^bodyParam}}null{{/bodyParam}}, null, new HttpMethod("{{httpMethod}}"));
             {{#returnType}}
             return JsonConvert.DeserializeObject<{{returnType}}>(jsonResult);
             {{/returnType}}

@@ -73,9 +73,8 @@ namespace Adyen.Service.Management
         public async Task<ListCompanyResponse> GetCompaniesAsync(RequestOptions requestOptions = null)
         {
             var endpoint = "/companies" + ToQueryString(requestOptions?.QueryParameters);
-            string jsonRequest = null;
             var resource = new ManagementResource(this, endpoint);
-            var jsonResult = await resource.RequestAsync(jsonRequest, null, new HttpMethod("GET"));
+            var jsonResult = await resource.RequestAsync(null, null, new HttpMethod("GET"));
             return JsonConvert.DeserializeObject<ListCompanyResponse>(jsonResult);
         }
 
@@ -99,9 +98,8 @@ namespace Adyen.Service.Management
         public async Task<Company> GetCompaniesCompanyIdAsync(string companyId, RequestOptions requestOptions = null)
         {
             var endpoint = $"/companies/{companyId}";
-            string jsonRequest = null;
             var resource = new ManagementResource(this, endpoint);
-            var jsonResult = await resource.RequestAsync(jsonRequest, null, new HttpMethod("GET"));
+            var jsonResult = await resource.RequestAsync(null, null, new HttpMethod("GET"));
             return JsonConvert.DeserializeObject<Company>(jsonResult);
         }
 
@@ -153,9 +151,8 @@ namespace Adyen.Service.Management
         public async Task<ListMerchantResponse> GetCompaniesCompanyIdMerchantsAsync(string companyId, RequestOptions requestOptions = null)
         {
             var endpoint = $"/companies/{companyId}/merchants" + ToQueryString(requestOptions?.QueryParameters);
-            string jsonRequest = null;
             var resource = new ManagementResource(this, endpoint);
-            var jsonResult = await resource.RequestAsync(jsonRequest, null, new HttpMethod("GET"));
+            var jsonResult = await resource.RequestAsync(null, null, new HttpMethod("GET"));
             return JsonConvert.DeserializeObject<ListMerchantResponse>(jsonResult);
         }
 

@@ -113,9 +113,8 @@ namespace Adyen.Service.Management
         public async Task<ListTerminalsResponse> GetTerminalsAsync(RequestOptions requestOptions = null)
         {
             var endpoint = "/terminals" + ToQueryString(requestOptions?.QueryParameters);
-            string jsonRequest = null;
             var resource = new ManagementResource(this, endpoint);
-            var jsonResult = await resource.RequestAsync(jsonRequest, null, new HttpMethod("GET"));
+            var jsonResult = await resource.RequestAsync(null, null, new HttpMethod("GET"));
             return JsonConvert.DeserializeObject<ListTerminalsResponse>(jsonResult);
         }
 

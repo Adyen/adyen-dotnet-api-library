@@ -67,9 +67,8 @@ namespace Adyen.Service.Management
         public async Task<Logo> GetCompaniesCompanyIdTerminalLogosAsync(string companyId, RequestOptions requestOptions = null)
         {
             var endpoint = $"/companies/{companyId}/terminalLogos" + ToQueryString(requestOptions?.QueryParameters);
-            string jsonRequest = null;
             var resource = new ManagementResource(this, endpoint);
-            var jsonResult = await resource.RequestAsync(jsonRequest, null, new HttpMethod("GET"));
+            var jsonResult = await resource.RequestAsync(null, null, new HttpMethod("GET"));
             return JsonConvert.DeserializeObject<Logo>(jsonResult);
         }
 
@@ -93,9 +92,8 @@ namespace Adyen.Service.Management
         public async Task<TerminalSettings> GetCompaniesCompanyIdTerminalSettingsAsync(string companyId, RequestOptions requestOptions = null)
         {
             var endpoint = $"/companies/{companyId}/terminalSettings";
-            string jsonRequest = null;
             var resource = new ManagementResource(this, endpoint);
-            var jsonResult = await resource.RequestAsync(jsonRequest, null, new HttpMethod("GET"));
+            var jsonResult = await resource.RequestAsync(null, null, new HttpMethod("GET"));
             return JsonConvert.DeserializeObject<TerminalSettings>(jsonResult);
         }
 
@@ -141,9 +139,8 @@ namespace Adyen.Service.Management
         public async Task<Logo> PatchCompaniesCompanyIdTerminalLogosAsync(string companyId, Logo logo, RequestOptions requestOptions = null)
         {
             var endpoint = $"/companies/{companyId}/terminalLogos" + ToQueryString(requestOptions?.QueryParameters);
-            string jsonRequest = logo.ToJson();
             var resource = new ManagementResource(this, endpoint);
-            var jsonResult = await resource.RequestAsync(jsonRequest, null, new HttpMethod("PATCH"));
+            var jsonResult = await resource.RequestAsync(logo.ToJson(), null, new HttpMethod("PATCH"));
             return JsonConvert.DeserializeObject<Logo>(jsonResult);
         }
 
@@ -169,9 +166,8 @@ namespace Adyen.Service.Management
         public async Task<TerminalSettings> PatchCompaniesCompanyIdTerminalSettingsAsync(string companyId, TerminalSettings terminalSettings, RequestOptions requestOptions = null)
         {
             var endpoint = $"/companies/{companyId}/terminalSettings";
-            string jsonRequest = terminalSettings.ToJson();
             var resource = new ManagementResource(this, endpoint);
-            var jsonResult = await resource.RequestAsync(jsonRequest, null, new HttpMethod("PATCH"));
+            var jsonResult = await resource.RequestAsync(terminalSettings.ToJson(), null, new HttpMethod("PATCH"));
             return JsonConvert.DeserializeObject<TerminalSettings>(jsonResult);
         }
 
