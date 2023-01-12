@@ -68,7 +68,10 @@ namespace Adyen.Service.Management
         /// <returns>ListTerminalsResponse</returns>
         public ListTerminalsResponse GetTerminals(RequestOptions requestOptions = null)
         {
-            return GetTerminalsAsync(requestOptions).GetAwaiter().GetResult();
+            var endpoint = "/terminals" + ToQueryString(requestOptions?.QueryParameters);
+            var resource = new ManagementResource(this, endpoint);
+            var jsonResult = resource.Request(null, null, new HttpMethod("GET"));
+            return JsonConvert.DeserializeObject<ListTerminalsResponse>(jsonResult);
         }
 
         /// <summary>

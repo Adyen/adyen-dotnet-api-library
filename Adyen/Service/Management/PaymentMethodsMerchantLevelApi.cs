@@ -57,7 +57,10 @@ namespace Adyen.Service.Management
         /// <returns>PaymentMethodResponse</returns>
         public PaymentMethodResponse GetMerchantsMerchantIdPaymentMethodSettings(string merchantId, RequestOptions requestOptions = null)
         {
-            return GetMerchantsMerchantIdPaymentMethodSettingsAsync(merchantId, requestOptions).GetAwaiter().GetResult();
+            var endpoint = $"/merchants/{merchantId}/paymentMethodSettings" + ToQueryString(requestOptions?.QueryParameters);
+            var resource = new ManagementResource(this, endpoint);
+            var jsonResult = resource.Request(null, null, new HttpMethod("GET"));
+            return JsonConvert.DeserializeObject<PaymentMethodResponse>(jsonResult);
         }
 
         /// <summary>
@@ -105,7 +108,10 @@ namespace Adyen.Service.Management
         /// <returns>PaymentMethod</returns>
         public PaymentMethod GetMerchantsMerchantIdPaymentMethodSettingsPaymentMethodId(string merchantId, string paymentMethodId, RequestOptions requestOptions = null)
         {
-            return GetMerchantsMerchantIdPaymentMethodSettingsPaymentMethodIdAsync(merchantId, paymentMethodId, requestOptions).GetAwaiter().GetResult();
+            var endpoint = $"/merchants/{merchantId}/paymentMethodSettings/{paymentMethodId}";
+            var resource = new ManagementResource(this, endpoint);
+            var jsonResult = resource.Request(null, null, new HttpMethod("GET"));
+            return JsonConvert.DeserializeObject<PaymentMethod>(jsonResult);
         }
 
         /// <summary>
@@ -132,7 +138,10 @@ namespace Adyen.Service.Management
         /// <returns>ApplePayInfo</returns>
         public ApplePayInfo GetMerchantsMerchantIdPaymentMethodSettingsPaymentMethodIdGetApplePayDomains(string merchantId, string paymentMethodId, RequestOptions requestOptions = null)
         {
-            return GetMerchantsMerchantIdPaymentMethodSettingsPaymentMethodIdGetApplePayDomainsAsync(merchantId, paymentMethodId, requestOptions).GetAwaiter().GetResult();
+            var endpoint = $"/merchants/{merchantId}/paymentMethodSettings/{paymentMethodId}/getApplePayDomains";
+            var resource = new ManagementResource(this, endpoint);
+            var jsonResult = resource.Request(null, null, new HttpMethod("GET"));
+            return JsonConvert.DeserializeObject<ApplePayInfo>(jsonResult);
         }
 
         /// <summary>
@@ -160,7 +169,10 @@ namespace Adyen.Service.Management
         /// <returns>PaymentMethod</returns>
         public PaymentMethod PatchMerchantsMerchantIdPaymentMethodSettingsPaymentMethodId(string merchantId, string paymentMethodId, UpdatePaymentMethodInfo updatePaymentMethodInfo, RequestOptions requestOptions = null)
         {
-            return PatchMerchantsMerchantIdPaymentMethodSettingsPaymentMethodIdAsync(merchantId, paymentMethodId, updatePaymentMethodInfo, requestOptions).GetAwaiter().GetResult();
+            var endpoint = $"/merchants/{merchantId}/paymentMethodSettings/{paymentMethodId}";
+            var resource = new ManagementResource(this, endpoint);
+            var jsonResult = resource.Request(updatePaymentMethodInfo.ToJson(), null, new HttpMethod("PATCH"));
+            return JsonConvert.DeserializeObject<PaymentMethod>(jsonResult);
         }
 
         /// <summary>
@@ -188,7 +200,10 @@ namespace Adyen.Service.Management
         /// <returns>PaymentMethod</returns>
         public PaymentMethod PostMerchantsMerchantIdPaymentMethodSettings(string merchantId, PaymentMethodSetupInfo paymentMethodSetupInfo, RequestOptions requestOptions = null)
         {
-            return PostMerchantsMerchantIdPaymentMethodSettingsAsync(merchantId, paymentMethodSetupInfo, requestOptions).GetAwaiter().GetResult();
+            var endpoint = $"/merchants/{merchantId}/paymentMethodSettings";
+            var resource = new ManagementResource(this, endpoint);
+            var jsonResult = resource.Request(paymentMethodSetupInfo.ToJson(), null, new HttpMethod("POST"));
+            return JsonConvert.DeserializeObject<PaymentMethod>(jsonResult);
         }
 
         /// <summary>
@@ -216,7 +231,10 @@ namespace Adyen.Service.Management
         /// <returns>Object</returns>
         public Object PostMerchantsMerchantIdPaymentMethodSettingsPaymentMethodIdAddApplePayDomains(string merchantId, string paymentMethodId, ApplePayInfo applePayInfo, RequestOptions requestOptions = null)
         {
-            return PostMerchantsMerchantIdPaymentMethodSettingsPaymentMethodIdAddApplePayDomainsAsync(merchantId, paymentMethodId, applePayInfo, requestOptions).GetAwaiter().GetResult();
+            var endpoint = $"/merchants/{merchantId}/paymentMethodSettings/{paymentMethodId}/addApplePayDomains";
+            var resource = new ManagementResource(this, endpoint);
+            var jsonResult = resource.Request(applePayInfo.ToJson(), null, new HttpMethod("POST"));
+            return JsonConvert.DeserializeObject<Object>(jsonResult);
         }
 
         /// <summary>

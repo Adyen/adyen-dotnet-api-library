@@ -49,7 +49,10 @@ namespace Adyen.Service.Management
         /// <returns>AndroidAppsResponse</returns>
         public AndroidAppsResponse GetCompaniesCompanyIdAndroidApps(string companyId, RequestOptions requestOptions = null)
         {
-            return GetCompaniesCompanyIdAndroidAppsAsync(companyId, requestOptions).GetAwaiter().GetResult();
+            var endpoint = $"/companies/{companyId}/androidApps" + ToQueryString(requestOptions?.QueryParameters);
+            var resource = new ManagementResource(this, endpoint);
+            var jsonResult = resource.Request(null, null, new HttpMethod("GET"));
+            return JsonConvert.DeserializeObject<AndroidAppsResponse>(jsonResult);
         }
 
         /// <summary>
@@ -102,7 +105,10 @@ namespace Adyen.Service.Management
         /// <returns>AndroidCertificatesResponse</returns>
         public AndroidCertificatesResponse GetCompaniesCompanyIdAndroidCertificates(string companyId, RequestOptions requestOptions = null)
         {
-            return GetCompaniesCompanyIdAndroidCertificatesAsync(companyId, requestOptions).GetAwaiter().GetResult();
+            var endpoint = $"/companies/{companyId}/androidCertificates" + ToQueryString(requestOptions?.QueryParameters);
+            var resource = new ManagementResource(this, endpoint);
+            var jsonResult = resource.Request(null, null, new HttpMethod("GET"));
+            return JsonConvert.DeserializeObject<AndroidCertificatesResponse>(jsonResult);
         }
 
         /// <summary>
@@ -163,7 +169,10 @@ namespace Adyen.Service.Management
         /// <returns>ListExternalTerminalActionsResponse</returns>
         public ListExternalTerminalActionsResponse GetCompaniesCompanyIdTerminalActions(string companyId, RequestOptions requestOptions = null)
         {
-            return GetCompaniesCompanyIdTerminalActionsAsync(companyId, requestOptions).GetAwaiter().GetResult();
+            var endpoint = $"/companies/{companyId}/terminalActions" + ToQueryString(requestOptions?.QueryParameters);
+            var resource = new ManagementResource(this, endpoint);
+            var jsonResult = resource.Request(null, null, new HttpMethod("GET"));
+            return JsonConvert.DeserializeObject<ListExternalTerminalActionsResponse>(jsonResult);
         }
 
         /// <summary>
@@ -211,7 +220,10 @@ namespace Adyen.Service.Management
         /// <returns>ExternalTerminalAction</returns>
         public ExternalTerminalAction GetCompaniesCompanyIdTerminalActionsActionId(string companyId, string actionId, RequestOptions requestOptions = null)
         {
-            return GetCompaniesCompanyIdTerminalActionsActionIdAsync(companyId, actionId, requestOptions).GetAwaiter().GetResult();
+            var endpoint = $"/companies/{companyId}/terminalActions/{actionId}";
+            var resource = new ManagementResource(this, endpoint);
+            var jsonResult = resource.Request(null, null, new HttpMethod("GET"));
+            return JsonConvert.DeserializeObject<ExternalTerminalAction>(jsonResult);
         }
 
         /// <summary>

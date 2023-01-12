@@ -36,7 +36,10 @@ namespace Adyen.Service.Management
         /// <returns>GenerateClientKeyResponse</returns>
         public GenerateClientKeyResponse PostCompaniesCompanyIdApiCredentialsApiCredentialIdGenerateClientKey(string companyId, string apiCredentialId, RequestOptions requestOptions = null)
         {
-            return PostCompaniesCompanyIdApiCredentialsApiCredentialIdGenerateClientKeyAsync(companyId, apiCredentialId, requestOptions).GetAwaiter().GetResult();
+            var endpoint = $"/companies/{companyId}/apiCredentials/{apiCredentialId}/generateClientKey";
+            var resource = new ManagementResource(this, endpoint);
+            var jsonResult = resource.Request(null, null, new HttpMethod("POST"));
+            return JsonConvert.DeserializeObject<GenerateClientKeyResponse>(jsonResult);
         }
 
         /// <summary>

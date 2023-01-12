@@ -45,7 +45,10 @@ namespace Adyen.Service.Management
         /// <returns>Logo</returns>
         public Logo GetMerchantsMerchantIdTerminalLogos(string merchantId, RequestOptions requestOptions = null)
         {
-            return GetMerchantsMerchantIdTerminalLogosAsync(merchantId, requestOptions).GetAwaiter().GetResult();
+            var endpoint = $"/merchants/{merchantId}/terminalLogos" + ToQueryString(requestOptions?.QueryParameters);
+            var resource = new ManagementResource(this, endpoint);
+            var jsonResult = resource.Request(null, null, new HttpMethod("GET"));
+            return JsonConvert.DeserializeObject<Logo>(jsonResult);
         }
 
         /// <summary>
@@ -80,7 +83,10 @@ namespace Adyen.Service.Management
         /// <returns>TerminalSettings</returns>
         public TerminalSettings GetMerchantsMerchantIdTerminalSettings(string merchantId, RequestOptions requestOptions = null)
         {
-            return GetMerchantsMerchantIdTerminalSettingsAsync(merchantId, requestOptions).GetAwaiter().GetResult();
+            var endpoint = $"/merchants/{merchantId}/terminalSettings";
+            var resource = new ManagementResource(this, endpoint);
+            var jsonResult = resource.Request(null, null, new HttpMethod("GET"));
+            return JsonConvert.DeserializeObject<TerminalSettings>(jsonResult);
         }
 
         /// <summary>
@@ -116,7 +122,10 @@ namespace Adyen.Service.Management
         /// <returns>Logo</returns>
         public Logo PatchMerchantsMerchantIdTerminalLogos(string merchantId, Logo logo, RequestOptions requestOptions = null)
         {
-            return PatchMerchantsMerchantIdTerminalLogosAsync(merchantId, logo, requestOptions).GetAwaiter().GetResult();
+            var endpoint = $"/merchants/{merchantId}/terminalLogos" + ToQueryString(requestOptions?.QueryParameters);
+            var resource = new ManagementResource(this, endpoint);
+            var jsonResult = resource.Request(logo.ToJson(), null, new HttpMethod("PATCH"));
+            return JsonConvert.DeserializeObject<Logo>(jsonResult);
         }
 
         /// <summary>
@@ -153,7 +162,10 @@ namespace Adyen.Service.Management
         /// <returns>TerminalSettings</returns>
         public TerminalSettings PatchMerchantsMerchantIdTerminalSettings(string merchantId, TerminalSettings terminalSettings, RequestOptions requestOptions = null)
         {
-            return PatchMerchantsMerchantIdTerminalSettingsAsync(merchantId, terminalSettings, requestOptions).GetAwaiter().GetResult();
+            var endpoint = $"/merchants/{merchantId}/terminalSettings";
+            var resource = new ManagementResource(this, endpoint);
+            var jsonResult = resource.Request(terminalSettings.ToJson(), null, new HttpMethod("PATCH"));
+            return JsonConvert.DeserializeObject<TerminalSettings>(jsonResult);
         }
 
         /// <summary>

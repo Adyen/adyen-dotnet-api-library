@@ -48,7 +48,10 @@ namespace Adyen.Service.Management
         /// <returns>ListCompanyResponse</returns>
         public ListCompanyResponse GetCompanies(RequestOptions requestOptions = null)
         {
-            return GetCompaniesAsync(requestOptions).GetAwaiter().GetResult();
+            var endpoint = "/companies" + ToQueryString(requestOptions?.QueryParameters);
+            var resource = new ManagementResource(this, endpoint);
+            var jsonResult = resource.Request(null, null, new HttpMethod("GET"));
+            return JsonConvert.DeserializeObject<ListCompanyResponse>(jsonResult);
         }
 
         /// <summary>
@@ -86,7 +89,10 @@ namespace Adyen.Service.Management
         /// <returns>Company</returns>
         public Company GetCompaniesCompanyId(string companyId, RequestOptions requestOptions = null)
         {
-            return GetCompaniesCompanyIdAsync(companyId, requestOptions).GetAwaiter().GetResult();
+            var endpoint = $"/companies/{companyId}";
+            var resource = new ManagementResource(this, endpoint);
+            var jsonResult = resource.Request(null, null, new HttpMethod("GET"));
+            return JsonConvert.DeserializeObject<Company>(jsonResult);
         }
 
         /// <summary>
@@ -125,7 +131,10 @@ namespace Adyen.Service.Management
         /// <returns>ListMerchantResponse</returns>
         public ListMerchantResponse GetCompaniesCompanyIdMerchants(string companyId, RequestOptions requestOptions = null)
         {
-            return GetCompaniesCompanyIdMerchantsAsync(companyId, requestOptions).GetAwaiter().GetResult();
+            var endpoint = $"/companies/{companyId}/merchants" + ToQueryString(requestOptions?.QueryParameters);
+            var resource = new ManagementResource(this, endpoint);
+            var jsonResult = resource.Request(null, null, new HttpMethod("GET"));
+            return JsonConvert.DeserializeObject<ListMerchantResponse>(jsonResult);
         }
 
         /// <summary>
