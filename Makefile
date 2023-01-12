@@ -45,21 +45,22 @@ $(services): target/spec $(openapi-generator-jar)
 	mkdir Adyen/Model/$@
 	mv target/out/src/Adyen.Model/$@/* Adyen/Model/$@
 
-# Service
+# Generate a full client (models and service classes)
 Management: target/spec $(openapi-generator-jar)  
+	rm -rf $(output)
 	$(openapi-generator-cli) generate \
 		-i target/spec/json/$(spec).json \
 		-g $(generator) \
 		-t templates/csharp \
 		-o $(output) \
-		--additional-properties packageName=Adyen.Service \
-		--api-package $@ \
+		--additional-properties packageName=Adyen \
+		--api-package Service.$@ \
 		--model-package Model.$@ \
 		--reserved-words-mappings Version=Version \
-		--global-property apis \
 		--additional-properties=serviceName=$@
-	rm -rf Adyen/Service/$@
-	mv target/out/src/Adyen.Service/$@ Adyen/Service
+	rm -rf Adyen/Service/$@ Adyen/Model/$@
+	mv target/out/src/Adyen/Service.$@ Adyen/Service/$@
+	mv target/out/src/Adyen/Model.$@ Adyen/Model/$@
 
 # Checkout spec (and patch version)
 target/spec:
