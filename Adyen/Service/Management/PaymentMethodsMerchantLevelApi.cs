@@ -28,33 +28,67 @@ namespace Adyen.Service.Management
         public PaymentMethodsMerchantLevelApi(Client client) : base(client) {}
     
         /// <summary>
-        /// Get all payment methods Returns details for all payment methods of the merchant account identified in the path.  To make this request, your API credential must have the following [role](https://docs.adyen.com/development-resources/api-credentials#api-permissions): * Management API—Payment methods read 
+        /// Get all payment methods
         /// </summary>
-        /// <exception cref="Adyen.Service.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="merchantId">The unique identifier of the merchant account.</param>
-        /// <param name="storeId">The unique identifier of the store for which to return the payment methods. (optional)</param>
-        /// <param name="businessLineId">The unique identifier of the Business Line for which to return the payment methods. (optional)</param>
-        /// <param name="pageSize">The number of items to have on a page, maximum 100. The default is 10 items on a page. (optional)</param>
-        /// <param name="pageNumber">The number of the page to fetch. (optional)</param>
+        /// <param name="requestOptions">Additional request options. Query parameters:
+        /// <list type="table">
+        ///     <listheader>
+        ///         <term>parameter</term>
+        ///         <description>description</description>
+        ///     </listheader>
+        ///     <item>
+        ///         <term>storeId</term>
+        ///         <description>The unique identifier of the store for which to return the payment methods.</description>
+        ///     </item>
+        ///     <item>
+        ///         <term>businessLineId</term>
+        ///         <description>The unique identifier of the Business Line for which to return the payment methods.</description>
+        ///     </item>
+        ///     <item>
+        ///         <term>pageSize</term>
+        ///         <description>The number of items to have on a page, maximum 100. The default is 10 items on a page.</description>
+        ///     </item>
+        ///     <item>
+        ///         <term>pageNumber</term>
+        ///         <description>The number of the page to fetch.</description>
+        ///     </item>
+        /// </list></param>
         /// <returns>PaymentMethodResponse</returns>
-        /// <param name="requestOptions">Additional request options</param>
-        public PaymentMethodResponse GetMerchantsMerchantIdPaymentMethodSettings(string merchantId, RequestOptions requestOptions = default)
+        public PaymentMethodResponse GetMerchantsMerchantIdPaymentMethodSettings(string merchantId, RequestOptions requestOptions = null)
         {
             return GetMerchantsMerchantIdPaymentMethodSettingsAsync(merchantId, requestOptions).GetAwaiter().GetResult();
         }
 
         /// <summary>
-        /// Get all payment methods Returns details for all payment methods of the merchant account identified in the path.  To make this request, your API credential must have the following [role](https://docs.adyen.com/development-resources/api-credentials#api-permissions): * Management API—Payment methods read 
+        /// Get all payment methods
         /// </summary>
-        /// <exception cref="Adyen.Service.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="merchantId">The unique identifier of the merchant account.</param>
-        /// <param name="storeId">The unique identifier of the store for which to return the payment methods. (optional)</param>
-        /// <param name="businessLineId">The unique identifier of the Business Line for which to return the payment methods. (optional)</param>
-        /// <param name="pageSize">The number of items to have on a page, maximum 100. The default is 10 items on a page. (optional)</param>
-        /// <param name="pageNumber">The number of the page to fetch. (optional)</param>
+        /// <param name="requestOptions">Additional request options. Query parameters:
+        /// <list type="table">
+        ///     <listheader>
+        ///         <term>parameter</term>
+        ///         <description>description</description>
+        ///     </listheader>
+        ///     <item>
+        ///         <term>storeId</term>
+        ///         <description>The unique identifier of the store for which to return the payment methods.</description>
+        ///     </item>
+        ///     <item>
+        ///         <term>businessLineId</term>
+        ///         <description>The unique identifier of the Business Line for which to return the payment methods.</description>
+        ///     </item>
+        ///     <item>
+        ///         <term>pageSize</term>
+        ///         <description>The number of items to have on a page, maximum 100. The default is 10 items on a page.</description>
+        ///     </item>
+        ///     <item>
+        ///         <term>pageNumber</term>
+        ///         <description>The number of the page to fetch.</description>
+        ///     </item>
+        /// </list></param>
         /// <returns>Task of PaymentMethodResponse</returns>
-        /// <param name="requestOptions">Additional request options</param>
-        public async Task<PaymentMethodResponse> GetMerchantsMerchantIdPaymentMethodSettingsAsync(string merchantId, RequestOptions requestOptions = default)
+        public async Task<PaymentMethodResponse> GetMerchantsMerchantIdPaymentMethodSettingsAsync(string merchantId, RequestOptions requestOptions = null)
         {
             var endpoint = $"/merchants/{merchantId}/paymentMethodSettings" + ToQueryString(requestOptions?.QueryParameters);
             string jsonRequest = null;
@@ -64,27 +98,25 @@ namespace Adyen.Service.Management
         }
 
         /// <summary>
-        /// Get payment method details Returns details for the merchant account and the payment method identified in the path.  To make this request, your API credential must have the following [role](https://docs.adyen.com/development-resources/api-credentials#api-permissions): * Management API—Payment methods read 
+        /// Get payment method details
         /// </summary>
-        /// <exception cref="Adyen.Service.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="merchantId">The unique identifier of the merchant account.</param>
         /// <param name="paymentMethodId">The unique identifier of the payment method.</param>
+        /// <param name="requestOptions">Additional request options.</param>
         /// <returns>PaymentMethod</returns>
-        /// <param name="requestOptions">Additional request options</param>
-        public PaymentMethod GetMerchantsMerchantIdPaymentMethodSettingsPaymentMethodId(string merchantId, string paymentMethodId, RequestOptions requestOptions = default)
+        public PaymentMethod GetMerchantsMerchantIdPaymentMethodSettingsPaymentMethodId(string merchantId, string paymentMethodId, RequestOptions requestOptions = null)
         {
             return GetMerchantsMerchantIdPaymentMethodSettingsPaymentMethodIdAsync(merchantId, paymentMethodId, requestOptions).GetAwaiter().GetResult();
         }
 
         /// <summary>
-        /// Get payment method details Returns details for the merchant account and the payment method identified in the path.  To make this request, your API credential must have the following [role](https://docs.adyen.com/development-resources/api-credentials#api-permissions): * Management API—Payment methods read 
+        /// Get payment method details
         /// </summary>
-        /// <exception cref="Adyen.Service.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="merchantId">The unique identifier of the merchant account.</param>
         /// <param name="paymentMethodId">The unique identifier of the payment method.</param>
+        /// <param name="requestOptions">Additional request options.</param>
         /// <returns>Task of PaymentMethod</returns>
-        /// <param name="requestOptions">Additional request options</param>
-        public async Task<PaymentMethod> GetMerchantsMerchantIdPaymentMethodSettingsPaymentMethodIdAsync(string merchantId, string paymentMethodId, RequestOptions requestOptions = default)
+        public async Task<PaymentMethod> GetMerchantsMerchantIdPaymentMethodSettingsPaymentMethodIdAsync(string merchantId, string paymentMethodId, RequestOptions requestOptions = null)
         {
             var endpoint = $"/merchants/{merchantId}/paymentMethodSettings/{paymentMethodId}";
             string jsonRequest = null;
@@ -94,27 +126,25 @@ namespace Adyen.Service.Management
         }
 
         /// <summary>
-        /// Get Apple Pay domains Returns all Apple Pay domains that are registered with the merchant account and the payment method identified in the path. For more information, see [Apple Pay documentation](https://docs.adyen.com/payment-methods/apple-pay/enable-apple-pay#register-merchant-domain).  To make this request, your API credential must have the following [role](https://docs.adyen.com/development-resources/api-credentials#api-permissions): * Management API—Payment methods read 
+        /// Get Apple Pay domains
         /// </summary>
-        /// <exception cref="Adyen.Service.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="merchantId">The unique identifier of the merchant account.</param>
         /// <param name="paymentMethodId">The unique identifier of the payment method.</param>
+        /// <param name="requestOptions">Additional request options.</param>
         /// <returns>ApplePayInfo</returns>
-        /// <param name="requestOptions">Additional request options</param>
-        public ApplePayInfo GetMerchantsMerchantIdPaymentMethodSettingsPaymentMethodIdGetApplePayDomains(string merchantId, string paymentMethodId, RequestOptions requestOptions = default)
+        public ApplePayInfo GetMerchantsMerchantIdPaymentMethodSettingsPaymentMethodIdGetApplePayDomains(string merchantId, string paymentMethodId, RequestOptions requestOptions = null)
         {
             return GetMerchantsMerchantIdPaymentMethodSettingsPaymentMethodIdGetApplePayDomainsAsync(merchantId, paymentMethodId, requestOptions).GetAwaiter().GetResult();
         }
 
         /// <summary>
-        /// Get Apple Pay domains Returns all Apple Pay domains that are registered with the merchant account and the payment method identified in the path. For more information, see [Apple Pay documentation](https://docs.adyen.com/payment-methods/apple-pay/enable-apple-pay#register-merchant-domain).  To make this request, your API credential must have the following [role](https://docs.adyen.com/development-resources/api-credentials#api-permissions): * Management API—Payment methods read 
+        /// Get Apple Pay domains
         /// </summary>
-        /// <exception cref="Adyen.Service.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="merchantId">The unique identifier of the merchant account.</param>
         /// <param name="paymentMethodId">The unique identifier of the payment method.</param>
+        /// <param name="requestOptions">Additional request options.</param>
         /// <returns>Task of ApplePayInfo</returns>
-        /// <param name="requestOptions">Additional request options</param>
-        public async Task<ApplePayInfo> GetMerchantsMerchantIdPaymentMethodSettingsPaymentMethodIdGetApplePayDomainsAsync(string merchantId, string paymentMethodId, RequestOptions requestOptions = default)
+        public async Task<ApplePayInfo> GetMerchantsMerchantIdPaymentMethodSettingsPaymentMethodIdGetApplePayDomainsAsync(string merchantId, string paymentMethodId, RequestOptions requestOptions = null)
         {
             var endpoint = $"/merchants/{merchantId}/paymentMethodSettings/{paymentMethodId}/getApplePayDomains";
             string jsonRequest = null;
@@ -124,29 +154,27 @@ namespace Adyen.Service.Management
         }
 
         /// <summary>
-        /// Update a payment method Updates payment method details for the merchant account and the payment method identified in the path.  To make this request, your API credential must have the following [role](https://docs.adyen.com/development-resources/api-credentials#api-permissions): * Management API—Payment methods read and write 
+        /// Update a payment method
         /// </summary>
-        /// <exception cref="Adyen.Service.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="merchantId">The unique identifier of the merchant account.</param>
         /// <param name="paymentMethodId">The unique identifier of the payment method.</param>
-        /// <param name="updatePaymentMethodInfo"> (optional)</param>
+        /// <param name="updatePaymentMethodInfo"></param>
+        /// <param name="requestOptions">Additional request options.</param>
         /// <returns>PaymentMethod</returns>
-        /// <param name="requestOptions">Additional request options</param>
-        public PaymentMethod PatchMerchantsMerchantIdPaymentMethodSettingsPaymentMethodId(string merchantId, string paymentMethodId, UpdatePaymentMethodInfo updatePaymentMethodInfo, RequestOptions requestOptions = default)
+        public PaymentMethod PatchMerchantsMerchantIdPaymentMethodSettingsPaymentMethodId(string merchantId, string paymentMethodId, UpdatePaymentMethodInfo updatePaymentMethodInfo, RequestOptions requestOptions = null)
         {
             return PatchMerchantsMerchantIdPaymentMethodSettingsPaymentMethodIdAsync(merchantId, paymentMethodId, updatePaymentMethodInfo, requestOptions).GetAwaiter().GetResult();
         }
 
         /// <summary>
-        /// Update a payment method Updates payment method details for the merchant account and the payment method identified in the path.  To make this request, your API credential must have the following [role](https://docs.adyen.com/development-resources/api-credentials#api-permissions): * Management API—Payment methods read and write 
+        /// Update a payment method
         /// </summary>
-        /// <exception cref="Adyen.Service.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="merchantId">The unique identifier of the merchant account.</param>
         /// <param name="paymentMethodId">The unique identifier of the payment method.</param>
-        /// <param name="updatePaymentMethodInfo"> (optional)</param>
+        /// <param name="updatePaymentMethodInfo"></param>
+        /// <param name="requestOptions">Additional request options.</param>
         /// <returns>Task of PaymentMethod</returns>
-        /// <param name="requestOptions">Additional request options</param>
-        public async Task<PaymentMethod> PatchMerchantsMerchantIdPaymentMethodSettingsPaymentMethodIdAsync(string merchantId, string paymentMethodId, UpdatePaymentMethodInfo updatePaymentMethodInfo, RequestOptions requestOptions = default)
+        public async Task<PaymentMethod> PatchMerchantsMerchantIdPaymentMethodSettingsPaymentMethodIdAsync(string merchantId, string paymentMethodId, UpdatePaymentMethodInfo updatePaymentMethodInfo, RequestOptions requestOptions = null)
         {
             var endpoint = $"/merchants/{merchantId}/paymentMethodSettings/{paymentMethodId}";
             string jsonRequest = updatePaymentMethodInfo.ToJson();
@@ -156,27 +184,25 @@ namespace Adyen.Service.Management
         }
 
         /// <summary>
-        /// Request a payment method Sends a request to add a new payment method to the merchant account identified in the path.  To make this request, your API credential must have the following [role](https://docs.adyen.com/development-resources/api-credentials#api-permissions): * Management API—Payment methods read and write 
+        /// Request a payment method
         /// </summary>
-        /// <exception cref="Adyen.Service.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="merchantId">The unique identifier of the merchant account.</param>
-        /// <param name="paymentMethodSetupInfo"> (optional)</param>
+        /// <param name="paymentMethodSetupInfo"></param>
+        /// <param name="requestOptions">Additional request options.</param>
         /// <returns>PaymentMethod</returns>
-        /// <param name="requestOptions">Additional request options</param>
-        public PaymentMethod PostMerchantsMerchantIdPaymentMethodSettings(string merchantId, PaymentMethodSetupInfo paymentMethodSetupInfo, RequestOptions requestOptions = default)
+        public PaymentMethod PostMerchantsMerchantIdPaymentMethodSettings(string merchantId, PaymentMethodSetupInfo paymentMethodSetupInfo, RequestOptions requestOptions = null)
         {
             return PostMerchantsMerchantIdPaymentMethodSettingsAsync(merchantId, paymentMethodSetupInfo, requestOptions).GetAwaiter().GetResult();
         }
 
         /// <summary>
-        /// Request a payment method Sends a request to add a new payment method to the merchant account identified in the path.  To make this request, your API credential must have the following [role](https://docs.adyen.com/development-resources/api-credentials#api-permissions): * Management API—Payment methods read and write 
+        /// Request a payment method
         /// </summary>
-        /// <exception cref="Adyen.Service.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="merchantId">The unique identifier of the merchant account.</param>
-        /// <param name="paymentMethodSetupInfo"> (optional)</param>
+        /// <param name="paymentMethodSetupInfo"></param>
+        /// <param name="requestOptions">Additional request options.</param>
         /// <returns>Task of PaymentMethod</returns>
-        /// <param name="requestOptions">Additional request options</param>
-        public async Task<PaymentMethod> PostMerchantsMerchantIdPaymentMethodSettingsAsync(string merchantId, PaymentMethodSetupInfo paymentMethodSetupInfo, RequestOptions requestOptions = default)
+        public async Task<PaymentMethod> PostMerchantsMerchantIdPaymentMethodSettingsAsync(string merchantId, PaymentMethodSetupInfo paymentMethodSetupInfo, RequestOptions requestOptions = null)
         {
             var endpoint = $"/merchants/{merchantId}/paymentMethodSettings";
             string jsonRequest = paymentMethodSetupInfo.ToJson();
@@ -186,29 +212,27 @@ namespace Adyen.Service.Management
         }
 
         /// <summary>
-        /// Add an Apple Pay domain Adds the new domain to the list of Apple Pay domains that are registered with the merchant account and the payment method identified in the path. For more information, see [Apple Pay documentation](https://docs.adyen.com/payment-methods/apple-pay/enable-apple-pay#register-merchant-domain).  To make this request, your API credential must have the following [role](https://docs.adyen.com/development-resources/api-credentials#api-permissions): * Management API—Payment methods read and write 
+        /// Add an Apple Pay domain
         /// </summary>
-        /// <exception cref="Adyen.Service.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="merchantId">The unique identifier of the merchant account.</param>
         /// <param name="paymentMethodId">The unique identifier of the payment method.</param>
-        /// <param name="applePayInfo"> (optional)</param>
+        /// <param name="applePayInfo"></param>
+        /// <param name="requestOptions">Additional request options.</param>
         /// <returns>Object</returns>
-        /// <param name="requestOptions">Additional request options</param>
-        public Object PostMerchantsMerchantIdPaymentMethodSettingsPaymentMethodIdAddApplePayDomains(string merchantId, string paymentMethodId, ApplePayInfo applePayInfo, RequestOptions requestOptions = default)
+        public Object PostMerchantsMerchantIdPaymentMethodSettingsPaymentMethodIdAddApplePayDomains(string merchantId, string paymentMethodId, ApplePayInfo applePayInfo, RequestOptions requestOptions = null)
         {
             return PostMerchantsMerchantIdPaymentMethodSettingsPaymentMethodIdAddApplePayDomainsAsync(merchantId, paymentMethodId, applePayInfo, requestOptions).GetAwaiter().GetResult();
         }
 
         /// <summary>
-        /// Add an Apple Pay domain Adds the new domain to the list of Apple Pay domains that are registered with the merchant account and the payment method identified in the path. For more information, see [Apple Pay documentation](https://docs.adyen.com/payment-methods/apple-pay/enable-apple-pay#register-merchant-domain).  To make this request, your API credential must have the following [role](https://docs.adyen.com/development-resources/api-credentials#api-permissions): * Management API—Payment methods read and write 
+        /// Add an Apple Pay domain
         /// </summary>
-        /// <exception cref="Adyen.Service.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="merchantId">The unique identifier of the merchant account.</param>
         /// <param name="paymentMethodId">The unique identifier of the payment method.</param>
-        /// <param name="applePayInfo"> (optional)</param>
+        /// <param name="applePayInfo"></param>
+        /// <param name="requestOptions">Additional request options.</param>
         /// <returns>Task of Object</returns>
-        /// <param name="requestOptions">Additional request options</param>
-        public async Task<Object> PostMerchantsMerchantIdPaymentMethodSettingsPaymentMethodIdAddApplePayDomainsAsync(string merchantId, string paymentMethodId, ApplePayInfo applePayInfo, RequestOptions requestOptions = default)
+        public async Task<Object> PostMerchantsMerchantIdPaymentMethodSettingsPaymentMethodIdAddApplePayDomainsAsync(string merchantId, string paymentMethodId, ApplePayInfo applePayInfo, RequestOptions requestOptions = null)
         {
             var endpoint = $"/merchants/{merchantId}/paymentMethodSettings/{paymentMethodId}/addApplePayDomains";
             string jsonRequest = applePayInfo.ToJson();

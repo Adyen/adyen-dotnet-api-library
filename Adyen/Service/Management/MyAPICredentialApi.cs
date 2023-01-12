@@ -28,25 +28,21 @@ namespace Adyen.Service.Management
         public MyAPICredentialApi(Client client) : base(client) {}
     
         /// <summary>
-        /// Remove allowed origin Removes the [allowed origin](https://docs.adyen.com/development-resources/client-side-authentication#allowed-origins) specified in the path. The API key from the request is used to identify the [API credential](https://docs.adyen.com/development-resources/api-credentials).  You can make this request with any of the Management API roles.
+        /// Remove allowed origin
         /// </summary>
-        /// <exception cref="Adyen.Service.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="originId">Unique identifier of the allowed origin.</param>
-        /// <returns></returns>
-        /// <param name="requestOptions">Additional request options</param>
-        public void DeleteMeAllowedOriginsOriginId(string originId, RequestOptions requestOptions = default)
+        /// <param name="requestOptions">Additional request options.</param>
+        public void DeleteMeAllowedOriginsOriginId(string originId, RequestOptions requestOptions = null)
         {
             DeleteMeAllowedOriginsOriginIdAsync(originId, requestOptions);
         }
 
         /// <summary>
-        /// Remove allowed origin Removes the [allowed origin](https://docs.adyen.com/development-resources/client-side-authentication#allowed-origins) specified in the path. The API key from the request is used to identify the [API credential](https://docs.adyen.com/development-resources/api-credentials).  You can make this request with any of the Management API roles.
+        /// Remove allowed origin
         /// </summary>
-        /// <exception cref="Adyen.Service.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="originId">Unique identifier of the allowed origin.</param>
-        /// <returns>Task of void</returns>
-        /// <param name="requestOptions">Additional request options</param>
-        public async Task DeleteMeAllowedOriginsOriginIdAsync(string originId, RequestOptions requestOptions = default)
+        /// <param name="requestOptions">Additional request options.</param>
+        public async Task DeleteMeAllowedOriginsOriginIdAsync(string originId, RequestOptions requestOptions = null)
         {
             var endpoint = $"/me/allowedOrigins/{originId}";
             string jsonRequest = null;
@@ -55,23 +51,21 @@ namespace Adyen.Service.Management
         }
 
         /// <summary>
-        /// Get API credential details Returns your [API credential](https://docs.adyen.com/development-resources/api-credentials) details based on the API Key you used in the request.  You can make this request with any of the Management API roles.
+        /// Get API credential details
         /// </summary>
-        /// <exception cref="Adyen.Service.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="requestOptions">Additional request options.</param>
         /// <returns>MeApiCredential</returns>
-        /// <param name="requestOptions">Additional request options</param>
-        public MeApiCredential GetMe(RequestOptions requestOptions = default)
+        public MeApiCredential GetMe(RequestOptions requestOptions = null)
         {
             return GetMeAsync(requestOptions).GetAwaiter().GetResult();
         }
 
         /// <summary>
-        /// Get API credential details Returns your [API credential](https://docs.adyen.com/development-resources/api-credentials) details based on the API Key you used in the request.  You can make this request with any of the Management API roles.
+        /// Get API credential details
         /// </summary>
-        /// <exception cref="Adyen.Service.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="requestOptions">Additional request options.</param>
         /// <returns>Task of MeApiCredential</returns>
-        /// <param name="requestOptions">Additional request options</param>
-        public async Task<MeApiCredential> GetMeAsync(RequestOptions requestOptions = default)
+        public async Task<MeApiCredential> GetMeAsync(RequestOptions requestOptions = null)
         {
             var endpoint = "/me";
             string jsonRequest = null;
@@ -81,23 +75,21 @@ namespace Adyen.Service.Management
         }
 
         /// <summary>
-        /// Get allowed origins Returns the list of [allowed origins](https://docs.adyen.com/development-resources/client-side-authentication#allowed-origins) of your [API credential](https://docs.adyen.com/development-resources/api-credentials) based on the API key you used in the request.  You can make this request with any of the Management API roles.
+        /// Get allowed origins
         /// </summary>
-        /// <exception cref="Adyen.Service.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="requestOptions">Additional request options.</param>
         /// <returns>AllowedOriginsResponse</returns>
-        /// <param name="requestOptions">Additional request options</param>
-        public AllowedOriginsResponse GetMeAllowedOrigins(RequestOptions requestOptions = default)
+        public AllowedOriginsResponse GetMeAllowedOrigins(RequestOptions requestOptions = null)
         {
             return GetMeAllowedOriginsAsync(requestOptions).GetAwaiter().GetResult();
         }
 
         /// <summary>
-        /// Get allowed origins Returns the list of [allowed origins](https://docs.adyen.com/development-resources/client-side-authentication#allowed-origins) of your [API credential](https://docs.adyen.com/development-resources/api-credentials) based on the API key you used in the request.  You can make this request with any of the Management API roles.
+        /// Get allowed origins
         /// </summary>
-        /// <exception cref="Adyen.Service.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="requestOptions">Additional request options.</param>
         /// <returns>Task of AllowedOriginsResponse</returns>
-        /// <param name="requestOptions">Additional request options</param>
-        public async Task<AllowedOriginsResponse> GetMeAllowedOriginsAsync(RequestOptions requestOptions = default)
+        public async Task<AllowedOriginsResponse> GetMeAllowedOriginsAsync(RequestOptions requestOptions = null)
         {
             var endpoint = "/me/allowedOrigins";
             string jsonRequest = null;
@@ -107,25 +99,23 @@ namespace Adyen.Service.Management
         }
 
         /// <summary>
-        /// Get allowed origin details Returns the details of the [allowed origin](https://docs.adyen.com/development-resources/client-side-authentication#allowed-origins) specified in the path. The API key from the request is used to identify the [API credential](https://docs.adyen.com/development-resources/api-credentials).  You can make this request with any of the Management API roles.
+        /// Get allowed origin details
         /// </summary>
-        /// <exception cref="Adyen.Service.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="originId">Unique identifier of the allowed origin.</param>
+        /// <param name="requestOptions">Additional request options.</param>
         /// <returns>AllowedOrigin</returns>
-        /// <param name="requestOptions">Additional request options</param>
-        public AllowedOrigin GetMeAllowedOriginsOriginId(string originId, RequestOptions requestOptions = default)
+        public AllowedOrigin GetMeAllowedOriginsOriginId(string originId, RequestOptions requestOptions = null)
         {
             return GetMeAllowedOriginsOriginIdAsync(originId, requestOptions).GetAwaiter().GetResult();
         }
 
         /// <summary>
-        /// Get allowed origin details Returns the details of the [allowed origin](https://docs.adyen.com/development-resources/client-side-authentication#allowed-origins) specified in the path. The API key from the request is used to identify the [API credential](https://docs.adyen.com/development-resources/api-credentials).  You can make this request with any of the Management API roles.
+        /// Get allowed origin details
         /// </summary>
-        /// <exception cref="Adyen.Service.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="originId">Unique identifier of the allowed origin.</param>
+        /// <param name="requestOptions">Additional request options.</param>
         /// <returns>Task of AllowedOrigin</returns>
-        /// <param name="requestOptions">Additional request options</param>
-        public async Task<AllowedOrigin> GetMeAllowedOriginsOriginIdAsync(string originId, RequestOptions requestOptions = default)
+        public async Task<AllowedOrigin> GetMeAllowedOriginsOriginIdAsync(string originId, RequestOptions requestOptions = null)
         {
             var endpoint = $"/me/allowedOrigins/{originId}";
             string jsonRequest = null;
@@ -135,25 +125,23 @@ namespace Adyen.Service.Management
         }
 
         /// <summary>
-        /// Add allowed origin Adds an allowed origin to the list of [allowed origins](https://docs.adyen.com/development-resources/client-side-authentication#allowed-origins) of your API credential. The API key from the request is used to identify the [API credential](https://docs.adyen.com/development-resources/api-credentials).  You can make this request with any of the Management API roles.
+        /// Add allowed origin
         /// </summary>
-        /// <exception cref="Adyen.Service.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="createAllowedOriginRequest"> (optional)</param>
+        /// <param name="createAllowedOriginRequest"></param>
+        /// <param name="requestOptions">Additional request options.</param>
         /// <returns>AllowedOriginsResponse</returns>
-        /// <param name="requestOptions">Additional request options</param>
-        public AllowedOriginsResponse PostMeAllowedOrigins(CreateAllowedOriginRequest createAllowedOriginRequest, RequestOptions requestOptions = default)
+        public AllowedOriginsResponse PostMeAllowedOrigins(CreateAllowedOriginRequest createAllowedOriginRequest, RequestOptions requestOptions = null)
         {
             return PostMeAllowedOriginsAsync(createAllowedOriginRequest, requestOptions).GetAwaiter().GetResult();
         }
 
         /// <summary>
-        /// Add allowed origin Adds an allowed origin to the list of [allowed origins](https://docs.adyen.com/development-resources/client-side-authentication#allowed-origins) of your API credential. The API key from the request is used to identify the [API credential](https://docs.adyen.com/development-resources/api-credentials).  You can make this request with any of the Management API roles.
+        /// Add allowed origin
         /// </summary>
-        /// <exception cref="Adyen.Service.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="createAllowedOriginRequest"> (optional)</param>
+        /// <param name="createAllowedOriginRequest"></param>
+        /// <param name="requestOptions">Additional request options.</param>
         /// <returns>Task of AllowedOriginsResponse</returns>
-        /// <param name="requestOptions">Additional request options</param>
-        public async Task<AllowedOriginsResponse> PostMeAllowedOriginsAsync(CreateAllowedOriginRequest createAllowedOriginRequest, RequestOptions requestOptions = default)
+        public async Task<AllowedOriginsResponse> PostMeAllowedOriginsAsync(CreateAllowedOriginRequest createAllowedOriginRequest, RequestOptions requestOptions = null)
         {
             var endpoint = "/me/allowedOrigins";
             string jsonRequest = createAllowedOriginRequest.ToJson();

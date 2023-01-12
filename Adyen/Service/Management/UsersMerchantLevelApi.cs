@@ -28,29 +28,51 @@ namespace Adyen.Service.Management
         public UsersMerchantLevelApi(Client client) : base(client) {}
     
         /// <summary>
-        /// Get a list of users Returns a list of users associated with the `merchantId` specified in the path.  To make this request, your API credential must have the following [role](https://docs.adyen.com/development-resources/api-credentials#api-permissions): * Management API—Users read and write 
+        /// Get a list of users
         /// </summary>
-        /// <exception cref="Adyen.Service.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="merchantId">Unique identifier of the merchant.</param>
-        /// <param name="pageNumber">The number of the page to fetch. (optional)</param>
-        /// <param name="pageSize">The number of items to have on a page. Maximum value is **100**. The default is **10** items on a page. (optional)</param>
+        /// <param name="requestOptions">Additional request options. Query parameters:
+        /// <list type="table">
+        ///     <listheader>
+        ///         <term>parameter</term>
+        ///         <description>description</description>
+        ///     </listheader>
+        ///     <item>
+        ///         <term>pageNumber</term>
+        ///         <description>The number of the page to fetch.</description>
+        ///     </item>
+        ///     <item>
+        ///         <term>pageSize</term>
+        ///         <description>The number of items to have on a page. Maximum value is **100**. The default is **10** items on a page.</description>
+        ///     </item>
+        /// </list></param>
         /// <returns>ListMerchantUsersResponse</returns>
-        /// <param name="requestOptions">Additional request options</param>
-        public ListMerchantUsersResponse GetMerchantsMerchantIdUsers(string merchantId, RequestOptions requestOptions = default)
+        public ListMerchantUsersResponse GetMerchantsMerchantIdUsers(string merchantId, RequestOptions requestOptions = null)
         {
             return GetMerchantsMerchantIdUsersAsync(merchantId, requestOptions).GetAwaiter().GetResult();
         }
 
         /// <summary>
-        /// Get a list of users Returns a list of users associated with the `merchantId` specified in the path.  To make this request, your API credential must have the following [role](https://docs.adyen.com/development-resources/api-credentials#api-permissions): * Management API—Users read and write 
+        /// Get a list of users
         /// </summary>
-        /// <exception cref="Adyen.Service.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="merchantId">Unique identifier of the merchant.</param>
-        /// <param name="pageNumber">The number of the page to fetch. (optional)</param>
-        /// <param name="pageSize">The number of items to have on a page. Maximum value is **100**. The default is **10** items on a page. (optional)</param>
+        /// <param name="requestOptions">Additional request options. Query parameters:
+        /// <list type="table">
+        ///     <listheader>
+        ///         <term>parameter</term>
+        ///         <description>description</description>
+        ///     </listheader>
+        ///     <item>
+        ///         <term>pageNumber</term>
+        ///         <description>The number of the page to fetch.</description>
+        ///     </item>
+        ///     <item>
+        ///         <term>pageSize</term>
+        ///         <description>The number of items to have on a page. Maximum value is **100**. The default is **10** items on a page.</description>
+        ///     </item>
+        /// </list></param>
         /// <returns>Task of ListMerchantUsersResponse</returns>
-        /// <param name="requestOptions">Additional request options</param>
-        public async Task<ListMerchantUsersResponse> GetMerchantsMerchantIdUsersAsync(string merchantId, RequestOptions requestOptions = default)
+        public async Task<ListMerchantUsersResponse> GetMerchantsMerchantIdUsersAsync(string merchantId, RequestOptions requestOptions = null)
         {
             var endpoint = $"/merchants/{merchantId}/users" + ToQueryString(requestOptions?.QueryParameters);
             string jsonRequest = null;
@@ -60,27 +82,25 @@ namespace Adyen.Service.Management
         }
 
         /// <summary>
-        /// Get user details Returns user details for the `userId` and the `merchantId` specified in the path.  To make this request, your API credential must have the following [role](https://docs.adyen.com/development-resources/api-credentials#api-permissions): * Management API—Users read and write 
+        /// Get user details
         /// </summary>
-        /// <exception cref="Adyen.Service.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="merchantId">Unique identifier of the merchant.</param>
         /// <param name="userId">Unique identifier of the user.</param>
+        /// <param name="requestOptions">Additional request options.</param>
         /// <returns>User</returns>
-        /// <param name="requestOptions">Additional request options</param>
-        public User GetMerchantsMerchantIdUsersUserId(string merchantId, string userId, RequestOptions requestOptions = default)
+        public User GetMerchantsMerchantIdUsersUserId(string merchantId, string userId, RequestOptions requestOptions = null)
         {
             return GetMerchantsMerchantIdUsersUserIdAsync(merchantId, userId, requestOptions).GetAwaiter().GetResult();
         }
 
         /// <summary>
-        /// Get user details Returns user details for the `userId` and the `merchantId` specified in the path.  To make this request, your API credential must have the following [role](https://docs.adyen.com/development-resources/api-credentials#api-permissions): * Management API—Users read and write 
+        /// Get user details
         /// </summary>
-        /// <exception cref="Adyen.Service.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="merchantId">Unique identifier of the merchant.</param>
         /// <param name="userId">Unique identifier of the user.</param>
+        /// <param name="requestOptions">Additional request options.</param>
         /// <returns>Task of User</returns>
-        /// <param name="requestOptions">Additional request options</param>
-        public async Task<User> GetMerchantsMerchantIdUsersUserIdAsync(string merchantId, string userId, RequestOptions requestOptions = default)
+        public async Task<User> GetMerchantsMerchantIdUsersUserIdAsync(string merchantId, string userId, RequestOptions requestOptions = null)
         {
             var endpoint = $"/merchants/{merchantId}/users/{userId}";
             string jsonRequest = null;
@@ -90,29 +110,27 @@ namespace Adyen.Service.Management
         }
 
         /// <summary>
-        /// Update a user Updates user details for the `userId` and the `merchantId` specified in the path.  To make this request, your API credential must have the following [role](https://docs.adyen.com/development-resources/api-credentials#api-permissions): * Management API—Users read and write 
+        /// Update a user
         /// </summary>
-        /// <exception cref="Adyen.Service.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="merchantId">Unique identifier of the merchant.</param>
         /// <param name="userId">Unique identifier of the user.</param>
-        /// <param name="updateMerchantUserRequest"> (optional)</param>
+        /// <param name="updateMerchantUserRequest"></param>
+        /// <param name="requestOptions">Additional request options.</param>
         /// <returns>User</returns>
-        /// <param name="requestOptions">Additional request options</param>
-        public User PatchMerchantsMerchantIdUsersUserId(string merchantId, string userId, UpdateMerchantUserRequest updateMerchantUserRequest, RequestOptions requestOptions = default)
+        public User PatchMerchantsMerchantIdUsersUserId(string merchantId, string userId, UpdateMerchantUserRequest updateMerchantUserRequest, RequestOptions requestOptions = null)
         {
             return PatchMerchantsMerchantIdUsersUserIdAsync(merchantId, userId, updateMerchantUserRequest, requestOptions).GetAwaiter().GetResult();
         }
 
         /// <summary>
-        /// Update a user Updates user details for the `userId` and the `merchantId` specified in the path.  To make this request, your API credential must have the following [role](https://docs.adyen.com/development-resources/api-credentials#api-permissions): * Management API—Users read and write 
+        /// Update a user
         /// </summary>
-        /// <exception cref="Adyen.Service.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="merchantId">Unique identifier of the merchant.</param>
         /// <param name="userId">Unique identifier of the user.</param>
-        /// <param name="updateMerchantUserRequest"> (optional)</param>
+        /// <param name="updateMerchantUserRequest"></param>
+        /// <param name="requestOptions">Additional request options.</param>
         /// <returns>Task of User</returns>
-        /// <param name="requestOptions">Additional request options</param>
-        public async Task<User> PatchMerchantsMerchantIdUsersUserIdAsync(string merchantId, string userId, UpdateMerchantUserRequest updateMerchantUserRequest, RequestOptions requestOptions = default)
+        public async Task<User> PatchMerchantsMerchantIdUsersUserIdAsync(string merchantId, string userId, UpdateMerchantUserRequest updateMerchantUserRequest, RequestOptions requestOptions = null)
         {
             var endpoint = $"/merchants/{merchantId}/users/{userId}";
             string jsonRequest = updateMerchantUserRequest.ToJson();
@@ -122,27 +140,25 @@ namespace Adyen.Service.Management
         }
 
         /// <summary>
-        /// Create a new user Creates a user for the `merchantId` specified in the path.  To make this request, your API credential must have the following [role](https://docs.adyen.com/development-resources/api-credentials#api-permissions): * Management API—Users read and write 
+        /// Create a new user
         /// </summary>
-        /// <exception cref="Adyen.Service.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="merchantId">Unique identifier of the merchant.</param>
-        /// <param name="createMerchantUserRequest"> (optional)</param>
+        /// <param name="createMerchantUserRequest"></param>
+        /// <param name="requestOptions">Additional request options.</param>
         /// <returns>CreateUserResponse</returns>
-        /// <param name="requestOptions">Additional request options</param>
-        public CreateUserResponse PostMerchantsMerchantIdUsers(string merchantId, CreateMerchantUserRequest createMerchantUserRequest, RequestOptions requestOptions = default)
+        public CreateUserResponse PostMerchantsMerchantIdUsers(string merchantId, CreateMerchantUserRequest createMerchantUserRequest, RequestOptions requestOptions = null)
         {
             return PostMerchantsMerchantIdUsersAsync(merchantId, createMerchantUserRequest, requestOptions).GetAwaiter().GetResult();
         }
 
         /// <summary>
-        /// Create a new user Creates a user for the `merchantId` specified in the path.  To make this request, your API credential must have the following [role](https://docs.adyen.com/development-resources/api-credentials#api-permissions): * Management API—Users read and write 
+        /// Create a new user
         /// </summary>
-        /// <exception cref="Adyen.Service.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="merchantId">Unique identifier of the merchant.</param>
-        /// <param name="createMerchantUserRequest"> (optional)</param>
+        /// <param name="createMerchantUserRequest"></param>
+        /// <param name="requestOptions">Additional request options.</param>
         /// <returns>Task of CreateUserResponse</returns>
-        /// <param name="requestOptions">Additional request options</param>
-        public async Task<CreateUserResponse> PostMerchantsMerchantIdUsersAsync(string merchantId, CreateMerchantUserRequest createMerchantUserRequest, RequestOptions requestOptions = default)
+        public async Task<CreateUserResponse> PostMerchantsMerchantIdUsersAsync(string merchantId, CreateMerchantUserRequest createMerchantUserRequest, RequestOptions requestOptions = null)
         {
             var endpoint = $"/merchants/{merchantId}/users";
             string jsonRequest = createMerchantUserRequest.ToJson();

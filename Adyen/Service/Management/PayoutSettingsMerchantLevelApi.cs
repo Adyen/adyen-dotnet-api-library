@@ -28,27 +28,25 @@ namespace Adyen.Service.Management
         public PayoutSettingsMerchantLevelApi(Client client) : base(client) {}
     
         /// <summary>
-        /// Delete a payout setting Deletes the payout setting identified in the path.  Use this endpoint if your integration requires it, such as Adyen for Platforms Manage. Your Adyen contact will set up your access.  To make this request, your API credential must have the following [roles](https://docs.adyen.com/development-resources/api-credentials#api-permissions):  * Management API—Payout account settings read and write
+        /// Delete a payout setting
         /// </summary>
-        /// <exception cref="Adyen.Service.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="merchantId">The unique identifier of the merchant account.</param>
         /// <param name="payoutSettingsId">The unique identifier of the payout setting.</param>
+        /// <param name="requestOptions">Additional request options.</param>
         /// <returns>Object</returns>
-        /// <param name="requestOptions">Additional request options</param>
-        public Object DeleteMerchantsMerchantIdPayoutSettingsPayoutSettingsId(string merchantId, string payoutSettingsId, RequestOptions requestOptions = default)
+        public Object DeleteMerchantsMerchantIdPayoutSettingsPayoutSettingsId(string merchantId, string payoutSettingsId, RequestOptions requestOptions = null)
         {
             return DeleteMerchantsMerchantIdPayoutSettingsPayoutSettingsIdAsync(merchantId, payoutSettingsId, requestOptions).GetAwaiter().GetResult();
         }
 
         /// <summary>
-        /// Delete a payout setting Deletes the payout setting identified in the path.  Use this endpoint if your integration requires it, such as Adyen for Platforms Manage. Your Adyen contact will set up your access.  To make this request, your API credential must have the following [roles](https://docs.adyen.com/development-resources/api-credentials#api-permissions):  * Management API—Payout account settings read and write
+        /// Delete a payout setting
         /// </summary>
-        /// <exception cref="Adyen.Service.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="merchantId">The unique identifier of the merchant account.</param>
         /// <param name="payoutSettingsId">The unique identifier of the payout setting.</param>
+        /// <param name="requestOptions">Additional request options.</param>
         /// <returns>Task of Object</returns>
-        /// <param name="requestOptions">Additional request options</param>
-        public async Task<Object> DeleteMerchantsMerchantIdPayoutSettingsPayoutSettingsIdAsync(string merchantId, string payoutSettingsId, RequestOptions requestOptions = default)
+        public async Task<Object> DeleteMerchantsMerchantIdPayoutSettingsPayoutSettingsIdAsync(string merchantId, string payoutSettingsId, RequestOptions requestOptions = null)
         {
             var endpoint = $"/merchants/{merchantId}/payoutSettings/{payoutSettingsId}";
             string jsonRequest = null;
@@ -58,25 +56,23 @@ namespace Adyen.Service.Management
         }
 
         /// <summary>
-        /// Get a list of payout settings Returns the list of payout settings for the merchant account identified in the path.  Use this endpoint if your integration requires it, such as Adyen for Platforms Manage. Your Adyen contact will set up your access.  To make this request, your API credential must have the following [roles](https://docs.adyen.com/development-resources/api-credentials#api-permissions): * Management API—Payout account settings read
+        /// Get a list of payout settings
         /// </summary>
-        /// <exception cref="Adyen.Service.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="merchantId">The unique identifier of the merchant account.</param>
+        /// <param name="requestOptions">Additional request options.</param>
         /// <returns>PayoutSettingsResponse</returns>
-        /// <param name="requestOptions">Additional request options</param>
-        public PayoutSettingsResponse GetMerchantsMerchantIdPayoutSettings(string merchantId, RequestOptions requestOptions = default)
+        public PayoutSettingsResponse GetMerchantsMerchantIdPayoutSettings(string merchantId, RequestOptions requestOptions = null)
         {
             return GetMerchantsMerchantIdPayoutSettingsAsync(merchantId, requestOptions).GetAwaiter().GetResult();
         }
 
         /// <summary>
-        /// Get a list of payout settings Returns the list of payout settings for the merchant account identified in the path.  Use this endpoint if your integration requires it, such as Adyen for Platforms Manage. Your Adyen contact will set up your access.  To make this request, your API credential must have the following [roles](https://docs.adyen.com/development-resources/api-credentials#api-permissions): * Management API—Payout account settings read
+        /// Get a list of payout settings
         /// </summary>
-        /// <exception cref="Adyen.Service.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="merchantId">The unique identifier of the merchant account.</param>
+        /// <param name="requestOptions">Additional request options.</param>
         /// <returns>Task of PayoutSettingsResponse</returns>
-        /// <param name="requestOptions">Additional request options</param>
-        public async Task<PayoutSettingsResponse> GetMerchantsMerchantIdPayoutSettingsAsync(string merchantId, RequestOptions requestOptions = default)
+        public async Task<PayoutSettingsResponse> GetMerchantsMerchantIdPayoutSettingsAsync(string merchantId, RequestOptions requestOptions = null)
         {
             var endpoint = $"/merchants/{merchantId}/payoutSettings";
             string jsonRequest = null;
@@ -86,27 +82,25 @@ namespace Adyen.Service.Management
         }
 
         /// <summary>
-        /// Get a payout setting Returns the payout setting identified in the path.  Use this endpoint if your integration requires it, such as Adyen for Platforms Manage. Your Adyen contact will set up your access.  To make this request, your API credential must have the following [roles](https://docs.adyen.com/development-resources/api-credentials#api-permissions): * Management API—Payout account settings read
+        /// Get a payout setting
         /// </summary>
-        /// <exception cref="Adyen.Service.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="merchantId">The unique identifier of the merchant account.</param>
         /// <param name="payoutSettingsId">The unique identifier of the payout setting.</param>
+        /// <param name="requestOptions">Additional request options.</param>
         /// <returns>PayoutSettings</returns>
-        /// <param name="requestOptions">Additional request options</param>
-        public PayoutSettings GetMerchantsMerchantIdPayoutSettingsPayoutSettingsId(string merchantId, string payoutSettingsId, RequestOptions requestOptions = default)
+        public PayoutSettings GetMerchantsMerchantIdPayoutSettingsPayoutSettingsId(string merchantId, string payoutSettingsId, RequestOptions requestOptions = null)
         {
             return GetMerchantsMerchantIdPayoutSettingsPayoutSettingsIdAsync(merchantId, payoutSettingsId, requestOptions).GetAwaiter().GetResult();
         }
 
         /// <summary>
-        /// Get a payout setting Returns the payout setting identified in the path.  Use this endpoint if your integration requires it, such as Adyen for Platforms Manage. Your Adyen contact will set up your access.  To make this request, your API credential must have the following [roles](https://docs.adyen.com/development-resources/api-credentials#api-permissions): * Management API—Payout account settings read
+        /// Get a payout setting
         /// </summary>
-        /// <exception cref="Adyen.Service.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="merchantId">The unique identifier of the merchant account.</param>
         /// <param name="payoutSettingsId">The unique identifier of the payout setting.</param>
+        /// <param name="requestOptions">Additional request options.</param>
         /// <returns>Task of PayoutSettings</returns>
-        /// <param name="requestOptions">Additional request options</param>
-        public async Task<PayoutSettings> GetMerchantsMerchantIdPayoutSettingsPayoutSettingsIdAsync(string merchantId, string payoutSettingsId, RequestOptions requestOptions = default)
+        public async Task<PayoutSettings> GetMerchantsMerchantIdPayoutSettingsPayoutSettingsIdAsync(string merchantId, string payoutSettingsId, RequestOptions requestOptions = null)
         {
             var endpoint = $"/merchants/{merchantId}/payoutSettings/{payoutSettingsId}";
             string jsonRequest = null;
@@ -116,29 +110,27 @@ namespace Adyen.Service.Management
         }
 
         /// <summary>
-        /// Update a payout setting Updates the payout setting identified in the path. You can enable or disable the payout setting.  Use this endpoint if your integration requires it, such as Adyen for Platforms Manage. Your Adyen contact will set up your access.  To make this request, your API credential must have the following [roles](https://docs.adyen.com/development-resources/api-credentials#api-permissions):  * Management API—Payout account settings read and write
+        /// Update a payout setting
         /// </summary>
-        /// <exception cref="Adyen.Service.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="merchantId">The unique identifier of the merchant account.</param>
         /// <param name="payoutSettingsId">The unique identifier of the payout setting.</param>
-        /// <param name="updatePayoutSettingsRequest"> (optional)</param>
+        /// <param name="updatePayoutSettingsRequest"></param>
+        /// <param name="requestOptions">Additional request options.</param>
         /// <returns>PayoutSettings</returns>
-        /// <param name="requestOptions">Additional request options</param>
-        public PayoutSettings PatchMerchantsMerchantIdPayoutSettingsPayoutSettingsId(string merchantId, string payoutSettingsId, UpdatePayoutSettingsRequest updatePayoutSettingsRequest, RequestOptions requestOptions = default)
+        public PayoutSettings PatchMerchantsMerchantIdPayoutSettingsPayoutSettingsId(string merchantId, string payoutSettingsId, UpdatePayoutSettingsRequest updatePayoutSettingsRequest, RequestOptions requestOptions = null)
         {
             return PatchMerchantsMerchantIdPayoutSettingsPayoutSettingsIdAsync(merchantId, payoutSettingsId, updatePayoutSettingsRequest, requestOptions).GetAwaiter().GetResult();
         }
 
         /// <summary>
-        /// Update a payout setting Updates the payout setting identified in the path. You can enable or disable the payout setting.  Use this endpoint if your integration requires it, such as Adyen for Platforms Manage. Your Adyen contact will set up your access.  To make this request, your API credential must have the following [roles](https://docs.adyen.com/development-resources/api-credentials#api-permissions):  * Management API—Payout account settings read and write
+        /// Update a payout setting
         /// </summary>
-        /// <exception cref="Adyen.Service.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="merchantId">The unique identifier of the merchant account.</param>
         /// <param name="payoutSettingsId">The unique identifier of the payout setting.</param>
-        /// <param name="updatePayoutSettingsRequest"> (optional)</param>
+        /// <param name="updatePayoutSettingsRequest"></param>
+        /// <param name="requestOptions">Additional request options.</param>
         /// <returns>Task of PayoutSettings</returns>
-        /// <param name="requestOptions">Additional request options</param>
-        public async Task<PayoutSettings> PatchMerchantsMerchantIdPayoutSettingsPayoutSettingsIdAsync(string merchantId, string payoutSettingsId, UpdatePayoutSettingsRequest updatePayoutSettingsRequest, RequestOptions requestOptions = default)
+        public async Task<PayoutSettings> PatchMerchantsMerchantIdPayoutSettingsPayoutSettingsIdAsync(string merchantId, string payoutSettingsId, UpdatePayoutSettingsRequest updatePayoutSettingsRequest, RequestOptions requestOptions = null)
         {
             var endpoint = $"/merchants/{merchantId}/payoutSettings/{payoutSettingsId}";
             string jsonRequest = updatePayoutSettingsRequest.ToJson();
@@ -148,27 +140,25 @@ namespace Adyen.Service.Management
         }
 
         /// <summary>
-        /// Add a payout setting Sends a request to add a payout setting for the merchant account specified in the path. A payout setting links the merchant account to the [transfer instrument](https://docs.adyen.com/api-explorer/#/legalentity/latest/post/transferInstruments) that contains the details of the payout bank account. Adyen verifies the bank account before allowing and enabling the payout setting.  If you're accepting payments in multiple currencies, you may add multiple payout settings for the merchant account.  Use this endpoint if your integration requires it, such as Adyen for Platforms Manage. Your Adyen contact will set up your access.  To make this request, your API credential must have the following [roles](https://docs.adyen.com/development-resources/api-credentials#api-permissions):  * Management API—Payout account settings read and write
+        /// Add a payout setting
         /// </summary>
-        /// <exception cref="Adyen.Service.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="merchantId">The unique identifier of the merchant account.</param>
-        /// <param name="payoutSettingsRequest"> (optional)</param>
+        /// <param name="payoutSettingsRequest"></param>
+        /// <param name="requestOptions">Additional request options.</param>
         /// <returns>PayoutSettings</returns>
-        /// <param name="requestOptions">Additional request options</param>
-        public PayoutSettings PostMerchantsMerchantIdPayoutSettings(string merchantId, PayoutSettingsRequest payoutSettingsRequest, RequestOptions requestOptions = default)
+        public PayoutSettings PostMerchantsMerchantIdPayoutSettings(string merchantId, PayoutSettingsRequest payoutSettingsRequest, RequestOptions requestOptions = null)
         {
             return PostMerchantsMerchantIdPayoutSettingsAsync(merchantId, payoutSettingsRequest, requestOptions).GetAwaiter().GetResult();
         }
 
         /// <summary>
-        /// Add a payout setting Sends a request to add a payout setting for the merchant account specified in the path. A payout setting links the merchant account to the [transfer instrument](https://docs.adyen.com/api-explorer/#/legalentity/latest/post/transferInstruments) that contains the details of the payout bank account. Adyen verifies the bank account before allowing and enabling the payout setting.  If you're accepting payments in multiple currencies, you may add multiple payout settings for the merchant account.  Use this endpoint if your integration requires it, such as Adyen for Platforms Manage. Your Adyen contact will set up your access.  To make this request, your API credential must have the following [roles](https://docs.adyen.com/development-resources/api-credentials#api-permissions):  * Management API—Payout account settings read and write
+        /// Add a payout setting
         /// </summary>
-        /// <exception cref="Adyen.Service.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="merchantId">The unique identifier of the merchant account.</param>
-        /// <param name="payoutSettingsRequest"> (optional)</param>
+        /// <param name="payoutSettingsRequest"></param>
+        /// <param name="requestOptions">Additional request options.</param>
         /// <returns>Task of PayoutSettings</returns>
-        /// <param name="requestOptions">Additional request options</param>
-        public async Task<PayoutSettings> PostMerchantsMerchantIdPayoutSettingsAsync(string merchantId, PayoutSettingsRequest payoutSettingsRequest, RequestOptions requestOptions = default)
+        public async Task<PayoutSettings> PostMerchantsMerchantIdPayoutSettingsAsync(string merchantId, PayoutSettingsRequest payoutSettingsRequest, RequestOptions requestOptions = null)
         {
             var endpoint = $"/merchants/{merchantId}/payoutSettings";
             string jsonRequest = payoutSettingsRequest.ToJson();

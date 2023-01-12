@@ -28,27 +28,25 @@ namespace Adyen.Service.Management
         public APIKeyCompanyLevelApi(Client client) : base(client) {}
     
         /// <summary>
-        /// Generate new API key Returns a new API key for the API credential. You can use the new API key a few minutes after generating it. The old API key stops working 24 hours after generating a new one.  To make this request, your API credential must have the following [roles](https://docs.adyen.com/development-resources/api-credentials#api-permissions): * Management API—API credentials read and write
+        /// Generate new API key
         /// </summary>
-        /// <exception cref="Adyen.Service.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="companyId">The unique identifier of the company account.</param>
         /// <param name="apiCredentialId">Unique identifier of the API credential.</param>
+        /// <param name="requestOptions">Additional request options.</param>
         /// <returns>GenerateApiKeyResponse</returns>
-        /// <param name="requestOptions">Additional request options</param>
-        public GenerateApiKeyResponse PostCompaniesCompanyIdApiCredentialsApiCredentialIdGenerateApiKey(string companyId, string apiCredentialId, RequestOptions requestOptions = default)
+        public GenerateApiKeyResponse PostCompaniesCompanyIdApiCredentialsApiCredentialIdGenerateApiKey(string companyId, string apiCredentialId, RequestOptions requestOptions = null)
         {
             return PostCompaniesCompanyIdApiCredentialsApiCredentialIdGenerateApiKeyAsync(companyId, apiCredentialId, requestOptions).GetAwaiter().GetResult();
         }
 
         /// <summary>
-        /// Generate new API key Returns a new API key for the API credential. You can use the new API key a few minutes after generating it. The old API key stops working 24 hours after generating a new one.  To make this request, your API credential must have the following [roles](https://docs.adyen.com/development-resources/api-credentials#api-permissions): * Management API—API credentials read and write
+        /// Generate new API key
         /// </summary>
-        /// <exception cref="Adyen.Service.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="companyId">The unique identifier of the company account.</param>
         /// <param name="apiCredentialId">Unique identifier of the API credential.</param>
+        /// <param name="requestOptions">Additional request options.</param>
         /// <returns>Task of GenerateApiKeyResponse</returns>
-        /// <param name="requestOptions">Additional request options</param>
-        public async Task<GenerateApiKeyResponse> PostCompaniesCompanyIdApiCredentialsApiCredentialIdGenerateApiKeyAsync(string companyId, string apiCredentialId, RequestOptions requestOptions = default)
+        public async Task<GenerateApiKeyResponse> PostCompaniesCompanyIdApiCredentialsApiCredentialIdGenerateApiKeyAsync(string companyId, string apiCredentialId, RequestOptions requestOptions = null)
         {
             var endpoint = $"/companies/{companyId}/apiCredentials/{apiCredentialId}/generateApiKey";
             string jsonRequest = null;

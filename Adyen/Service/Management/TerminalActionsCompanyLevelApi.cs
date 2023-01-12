@@ -28,29 +28,51 @@ namespace Adyen.Service.Management
         public TerminalActionsCompanyLevelApi(Client client) : base(client) {}
     
         /// <summary>
-        /// Get a list of Android apps Returns a list of the Android apps that are available for the company identified in the path.  These apps have been uploaded to Adyen and can be installed or uninstalled on Android payment terminals through [terminal actions](https://docs.adyen.com/point-of-sale/automating-terminal-management/terminal-actions-api).  To make this request, your API credential must have one of the following [roles](https://docs.adyen.com/development-resources/api-credentials#api-permissions): * Management API—Terminal actions read * Management API—Terminal actions read and write
+        /// Get a list of Android apps
         /// </summary>
-        /// <exception cref="Adyen.Service.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="companyId">The unique identifier of the company account.</param>
-        /// <param name="pageNumber">The number of the page to fetch. (optional)</param>
-        /// <param name="pageSize">The number of items to have on a page, maximum 100. The default is 20 items on a page. (optional)</param>
+        /// <param name="requestOptions">Additional request options. Query parameters:
+        /// <list type="table">
+        ///     <listheader>
+        ///         <term>parameter</term>
+        ///         <description>description</description>
+        ///     </listheader>
+        ///     <item>
+        ///         <term>pageNumber</term>
+        ///         <description>The number of the page to fetch.</description>
+        ///     </item>
+        ///     <item>
+        ///         <term>pageSize</term>
+        ///         <description>The number of items to have on a page, maximum 100. The default is 20 items on a page.</description>
+        ///     </item>
+        /// </list></param>
         /// <returns>AndroidAppsResponse</returns>
-        /// <param name="requestOptions">Additional request options</param>
-        public AndroidAppsResponse GetCompaniesCompanyIdAndroidApps(string companyId, RequestOptions requestOptions = default)
+        public AndroidAppsResponse GetCompaniesCompanyIdAndroidApps(string companyId, RequestOptions requestOptions = null)
         {
             return GetCompaniesCompanyIdAndroidAppsAsync(companyId, requestOptions).GetAwaiter().GetResult();
         }
 
         /// <summary>
-        /// Get a list of Android apps Returns a list of the Android apps that are available for the company identified in the path.  These apps have been uploaded to Adyen and can be installed or uninstalled on Android payment terminals through [terminal actions](https://docs.adyen.com/point-of-sale/automating-terminal-management/terminal-actions-api).  To make this request, your API credential must have one of the following [roles](https://docs.adyen.com/development-resources/api-credentials#api-permissions): * Management API—Terminal actions read * Management API—Terminal actions read and write
+        /// Get a list of Android apps
         /// </summary>
-        /// <exception cref="Adyen.Service.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="companyId">The unique identifier of the company account.</param>
-        /// <param name="pageNumber">The number of the page to fetch. (optional)</param>
-        /// <param name="pageSize">The number of items to have on a page, maximum 100. The default is 20 items on a page. (optional)</param>
+        /// <param name="requestOptions">Additional request options. Query parameters:
+        /// <list type="table">
+        ///     <listheader>
+        ///         <term>parameter</term>
+        ///         <description>description</description>
+        ///     </listheader>
+        ///     <item>
+        ///         <term>pageNumber</term>
+        ///         <description>The number of the page to fetch.</description>
+        ///     </item>
+        ///     <item>
+        ///         <term>pageSize</term>
+        ///         <description>The number of items to have on a page, maximum 100. The default is 20 items on a page.</description>
+        ///     </item>
+        /// </list></param>
         /// <returns>Task of AndroidAppsResponse</returns>
-        /// <param name="requestOptions">Additional request options</param>
-        public async Task<AndroidAppsResponse> GetCompaniesCompanyIdAndroidAppsAsync(string companyId, RequestOptions requestOptions = default)
+        public async Task<AndroidAppsResponse> GetCompaniesCompanyIdAndroidAppsAsync(string companyId, RequestOptions requestOptions = null)
         {
             var endpoint = $"/companies/{companyId}/androidApps" + ToQueryString(requestOptions?.QueryParameters);
             string jsonRequest = null;
@@ -60,29 +82,51 @@ namespace Adyen.Service.Management
         }
 
         /// <summary>
-        /// Get a list of Android certificates Returns a list of the Android certificates that are available for the company identified in the path. Typically, these certificates enable running apps on Android payment terminals. The certifcates in the list have been uploaded to Adyen and can be installed or uninstalled on Android terminals through [terminal actions](https://docs.adyen.com/point-of-sale/automating-terminal-management/terminal-actions-api).  To make this request, your API credential must have one of the following [roles](https://docs.adyen.com/development-resources/api-credentials#api-permissions): * Management API—Terminal actions read * Management API—Terminal actions read and write
+        /// Get a list of Android certificates
         /// </summary>
-        /// <exception cref="Adyen.Service.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="companyId">The unique identifier of the company account.</param>
-        /// <param name="pageNumber">The number of the page to fetch. (optional)</param>
-        /// <param name="pageSize">The number of items to have on a page, maximum 100. The default is 20 items on a page. (optional)</param>
+        /// <param name="requestOptions">Additional request options. Query parameters:
+        /// <list type="table">
+        ///     <listheader>
+        ///         <term>parameter</term>
+        ///         <description>description</description>
+        ///     </listheader>
+        ///     <item>
+        ///         <term>pageNumber</term>
+        ///         <description>The number of the page to fetch.</description>
+        ///     </item>
+        ///     <item>
+        ///         <term>pageSize</term>
+        ///         <description>The number of items to have on a page, maximum 100. The default is 20 items on a page.</description>
+        ///     </item>
+        /// </list></param>
         /// <returns>AndroidCertificatesResponse</returns>
-        /// <param name="requestOptions">Additional request options</param>
-        public AndroidCertificatesResponse GetCompaniesCompanyIdAndroidCertificates(string companyId, RequestOptions requestOptions = default)
+        public AndroidCertificatesResponse GetCompaniesCompanyIdAndroidCertificates(string companyId, RequestOptions requestOptions = null)
         {
             return GetCompaniesCompanyIdAndroidCertificatesAsync(companyId, requestOptions).GetAwaiter().GetResult();
         }
 
         /// <summary>
-        /// Get a list of Android certificates Returns a list of the Android certificates that are available for the company identified in the path. Typically, these certificates enable running apps on Android payment terminals. The certifcates in the list have been uploaded to Adyen and can be installed or uninstalled on Android terminals through [terminal actions](https://docs.adyen.com/point-of-sale/automating-terminal-management/terminal-actions-api).  To make this request, your API credential must have one of the following [roles](https://docs.adyen.com/development-resources/api-credentials#api-permissions): * Management API—Terminal actions read * Management API—Terminal actions read and write
+        /// Get a list of Android certificates
         /// </summary>
-        /// <exception cref="Adyen.Service.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="companyId">The unique identifier of the company account.</param>
-        /// <param name="pageNumber">The number of the page to fetch. (optional)</param>
-        /// <param name="pageSize">The number of items to have on a page, maximum 100. The default is 20 items on a page. (optional)</param>
+        /// <param name="requestOptions">Additional request options. Query parameters:
+        /// <list type="table">
+        ///     <listheader>
+        ///         <term>parameter</term>
+        ///         <description>description</description>
+        ///     </listheader>
+        ///     <item>
+        ///         <term>pageNumber</term>
+        ///         <description>The number of the page to fetch.</description>
+        ///     </item>
+        ///     <item>
+        ///         <term>pageSize</term>
+        ///         <description>The number of items to have on a page, maximum 100. The default is 20 items on a page.</description>
+        ///     </item>
+        /// </list></param>
         /// <returns>Task of AndroidCertificatesResponse</returns>
-        /// <param name="requestOptions">Additional request options</param>
-        public async Task<AndroidCertificatesResponse> GetCompaniesCompanyIdAndroidCertificatesAsync(string companyId, RequestOptions requestOptions = default)
+        public async Task<AndroidCertificatesResponse> GetCompaniesCompanyIdAndroidCertificatesAsync(string companyId, RequestOptions requestOptions = null)
         {
             var endpoint = $"/companies/{companyId}/androidCertificates" + ToQueryString(requestOptions?.QueryParameters);
             string jsonRequest = null;
@@ -92,33 +136,67 @@ namespace Adyen.Service.Management
         }
 
         /// <summary>
-        /// Get a list of terminal actions Returns the [terminal actions](https://docs.adyen.com/point-of-sale/automating-terminal-management/terminal-actions-api) that have been scheduled for the company identified in the path.The response doesn't include actions that are scheduled by Adyen. To make this request, your API credential must have one of the following [roles](https://docs.adyen.com/development-resources/api-credentials#api-permissions): * Management API—Terminal actions read * Management API—Terminal actions read and write
+        /// Get a list of terminal actions
         /// </summary>
-        /// <exception cref="Adyen.Service.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="companyId">The unique identifier of the company account.</param>
-        /// <param name="pageNumber">The number of the page to fetch. (optional)</param>
-        /// <param name="pageSize">The number of items to have on a page, maximum 100. The default is 20 items on a page. (optional)</param>
-        /// <param name="status">Returns terminal actions with the specified status.  Allowed values: **pending**, **successful**, **failed**, **cancelled**, **tryLater**. (optional)</param>
-        /// <param name="type">Returns terminal actions of the specified type.  Allowed values: **InstallAndroidApp**, **UninstallAndroidApp**, **InstallAndroidCertificate**, **UninstallAndroidCertificate**. (optional)</param>
+        /// <param name="requestOptions">Additional request options. Query parameters:
+        /// <list type="table">
+        ///     <listheader>
+        ///         <term>parameter</term>
+        ///         <description>description</description>
+        ///     </listheader>
+        ///     <item>
+        ///         <term>pageNumber</term>
+        ///         <description>The number of the page to fetch.</description>
+        ///     </item>
+        ///     <item>
+        ///         <term>pageSize</term>
+        ///         <description>The number of items to have on a page, maximum 100. The default is 20 items on a page.</description>
+        ///     </item>
+        ///     <item>
+        ///         <term>status</term>
+        ///         <description>Returns terminal actions with the specified status.  Allowed values: **pending**, **successful**, **failed**, **cancelled**, **tryLater**.</description>
+        ///     </item>
+        ///     <item>
+        ///         <term>type</term>
+        ///         <description>Returns terminal actions of the specified type.  Allowed values: **InstallAndroidApp**, **UninstallAndroidApp**, **InstallAndroidCertificate**, **UninstallAndroidCertificate**.</description>
+        ///     </item>
+        /// </list></param>
         /// <returns>ListExternalTerminalActionsResponse</returns>
-        /// <param name="requestOptions">Additional request options</param>
-        public ListExternalTerminalActionsResponse GetCompaniesCompanyIdTerminalActions(string companyId, RequestOptions requestOptions = default)
+        public ListExternalTerminalActionsResponse GetCompaniesCompanyIdTerminalActions(string companyId, RequestOptions requestOptions = null)
         {
             return GetCompaniesCompanyIdTerminalActionsAsync(companyId, requestOptions).GetAwaiter().GetResult();
         }
 
         /// <summary>
-        /// Get a list of terminal actions Returns the [terminal actions](https://docs.adyen.com/point-of-sale/automating-terminal-management/terminal-actions-api) that have been scheduled for the company identified in the path.The response doesn't include actions that are scheduled by Adyen. To make this request, your API credential must have one of the following [roles](https://docs.adyen.com/development-resources/api-credentials#api-permissions): * Management API—Terminal actions read * Management API—Terminal actions read and write
+        /// Get a list of terminal actions
         /// </summary>
-        /// <exception cref="Adyen.Service.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="companyId">The unique identifier of the company account.</param>
-        /// <param name="pageNumber">The number of the page to fetch. (optional)</param>
-        /// <param name="pageSize">The number of items to have on a page, maximum 100. The default is 20 items on a page. (optional)</param>
-        /// <param name="status">Returns terminal actions with the specified status.  Allowed values: **pending**, **successful**, **failed**, **cancelled**, **tryLater**. (optional)</param>
-        /// <param name="type">Returns terminal actions of the specified type.  Allowed values: **InstallAndroidApp**, **UninstallAndroidApp**, **InstallAndroidCertificate**, **UninstallAndroidCertificate**. (optional)</param>
+        /// <param name="requestOptions">Additional request options. Query parameters:
+        /// <list type="table">
+        ///     <listheader>
+        ///         <term>parameter</term>
+        ///         <description>description</description>
+        ///     </listheader>
+        ///     <item>
+        ///         <term>pageNumber</term>
+        ///         <description>The number of the page to fetch.</description>
+        ///     </item>
+        ///     <item>
+        ///         <term>pageSize</term>
+        ///         <description>The number of items to have on a page, maximum 100. The default is 20 items on a page.</description>
+        ///     </item>
+        ///     <item>
+        ///         <term>status</term>
+        ///         <description>Returns terminal actions with the specified status.  Allowed values: **pending**, **successful**, **failed**, **cancelled**, **tryLater**.</description>
+        ///     </item>
+        ///     <item>
+        ///         <term>type</term>
+        ///         <description>Returns terminal actions of the specified type.  Allowed values: **InstallAndroidApp**, **UninstallAndroidApp**, **InstallAndroidCertificate**, **UninstallAndroidCertificate**.</description>
+        ///     </item>
+        /// </list></param>
         /// <returns>Task of ListExternalTerminalActionsResponse</returns>
-        /// <param name="requestOptions">Additional request options</param>
-        public async Task<ListExternalTerminalActionsResponse> GetCompaniesCompanyIdTerminalActionsAsync(string companyId, RequestOptions requestOptions = default)
+        public async Task<ListExternalTerminalActionsResponse> GetCompaniesCompanyIdTerminalActionsAsync(string companyId, RequestOptions requestOptions = null)
         {
             var endpoint = $"/companies/{companyId}/terminalActions" + ToQueryString(requestOptions?.QueryParameters);
             string jsonRequest = null;
@@ -128,27 +206,25 @@ namespace Adyen.Service.Management
         }
 
         /// <summary>
-        /// Get terminal action Returns the details of the [terminal action](https://docs.adyen.com/point-of-sale/automating-terminal-management/terminal-actions-api) identified in the path. To make this request, your API credential must have one of the following [roles](https://docs.adyen.com/development-resources/api-credentials#api-permissions): * Management API—Terminal actions read * Management API—Terminal actions read and write
+        /// Get terminal action
         /// </summary>
-        /// <exception cref="Adyen.Service.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="companyId">The unique identifier of the company account.</param>
         /// <param name="actionId">The unique identifier of the terminal action.</param>
+        /// <param name="requestOptions">Additional request options.</param>
         /// <returns>ExternalTerminalAction</returns>
-        /// <param name="requestOptions">Additional request options</param>
-        public ExternalTerminalAction GetCompaniesCompanyIdTerminalActionsActionId(string companyId, string actionId, RequestOptions requestOptions = default)
+        public ExternalTerminalAction GetCompaniesCompanyIdTerminalActionsActionId(string companyId, string actionId, RequestOptions requestOptions = null)
         {
             return GetCompaniesCompanyIdTerminalActionsActionIdAsync(companyId, actionId, requestOptions).GetAwaiter().GetResult();
         }
 
         /// <summary>
-        /// Get terminal action Returns the details of the [terminal action](https://docs.adyen.com/point-of-sale/automating-terminal-management/terminal-actions-api) identified in the path. To make this request, your API credential must have one of the following [roles](https://docs.adyen.com/development-resources/api-credentials#api-permissions): * Management API—Terminal actions read * Management API—Terminal actions read and write
+        /// Get terminal action
         /// </summary>
-        /// <exception cref="Adyen.Service.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="companyId">The unique identifier of the company account.</param>
         /// <param name="actionId">The unique identifier of the terminal action.</param>
+        /// <param name="requestOptions">Additional request options.</param>
         /// <returns>Task of ExternalTerminalAction</returns>
-        /// <param name="requestOptions">Additional request options</param>
-        public async Task<ExternalTerminalAction> GetCompaniesCompanyIdTerminalActionsActionIdAsync(string companyId, string actionId, RequestOptions requestOptions = default)
+        public async Task<ExternalTerminalAction> GetCompaniesCompanyIdTerminalActionsActionIdAsync(string companyId, string actionId, RequestOptions requestOptions = null)
         {
             var endpoint = $"/companies/{companyId}/terminalActions/{actionId}";
             string jsonRequest = null;

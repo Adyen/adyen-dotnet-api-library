@@ -28,27 +28,25 @@ namespace Adyen.Service.Management
         public ClientKeyCompanyLevelApi(Client client) : base(client) {}
     
         /// <summary>
-        /// Generate new client key Returns a new [client key](https://docs.adyen.com/development-resources/client-side-authentication#how-it-works) for the API credential identified in the path. You can use the new client key a few minutes after generating it. The old client key stops working 24 hours after generating a new one.  To make this request, your API credential must have the following [roles](https://docs.adyen.com/development-resources/api-credentials#api-permissions): * Management API—API credentials read and write
+        /// Generate new client key
         /// </summary>
-        /// <exception cref="Adyen.Service.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="companyId">The unique identifier of the company account.</param>
         /// <param name="apiCredentialId">Unique identifier of the API credential.</param>
+        /// <param name="requestOptions">Additional request options.</param>
         /// <returns>GenerateClientKeyResponse</returns>
-        /// <param name="requestOptions">Additional request options</param>
-        public GenerateClientKeyResponse PostCompaniesCompanyIdApiCredentialsApiCredentialIdGenerateClientKey(string companyId, string apiCredentialId, RequestOptions requestOptions = default)
+        public GenerateClientKeyResponse PostCompaniesCompanyIdApiCredentialsApiCredentialIdGenerateClientKey(string companyId, string apiCredentialId, RequestOptions requestOptions = null)
         {
             return PostCompaniesCompanyIdApiCredentialsApiCredentialIdGenerateClientKeyAsync(companyId, apiCredentialId, requestOptions).GetAwaiter().GetResult();
         }
 
         /// <summary>
-        /// Generate new client key Returns a new [client key](https://docs.adyen.com/development-resources/client-side-authentication#how-it-works) for the API credential identified in the path. You can use the new client key a few minutes after generating it. The old client key stops working 24 hours after generating a new one.  To make this request, your API credential must have the following [roles](https://docs.adyen.com/development-resources/api-credentials#api-permissions): * Management API—API credentials read and write
+        /// Generate new client key
         /// </summary>
-        /// <exception cref="Adyen.Service.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="companyId">The unique identifier of the company account.</param>
         /// <param name="apiCredentialId">Unique identifier of the API credential.</param>
+        /// <param name="requestOptions">Additional request options.</param>
         /// <returns>Task of GenerateClientKeyResponse</returns>
-        /// <param name="requestOptions">Additional request options</param>
-        public async Task<GenerateClientKeyResponse> PostCompaniesCompanyIdApiCredentialsApiCredentialIdGenerateClientKeyAsync(string companyId, string apiCredentialId, RequestOptions requestOptions = default)
+        public async Task<GenerateClientKeyResponse> PostCompaniesCompanyIdApiCredentialsApiCredentialIdGenerateClientKeyAsync(string companyId, string apiCredentialId, RequestOptions requestOptions = null)
         {
             var endpoint = $"/companies/{companyId}/apiCredentials/{apiCredentialId}/generateClientKey";
             string jsonRequest = null;

@@ -19,13 +19,8 @@ namespace {{packageName}}.{{apiPackage}}
         public {{classname}}(Client client) : base(client) {}
     
         {{#operation}}
-        /// <summary>
-        /// {{{summary}}} {{{notes}}}
-        /// </summary>
-        /// <exception cref="{{packageName}}.Client.ApiException">Thrown when fails to make API call</exception>
-        {{#allParams}}/// <param name="{{paramName}}">{{description}}{{^required}} (optional{{#defaultValue}}, default to {{.}}{{/defaultValue}}){{/required}}{{#isDeprecated}} (deprecated){{/isDeprecated}}</param>
-        {{/allParams}}/// <returns>{{{returnType}}}</returns>
-        /// <param name="requestOptions">Additional request options</param>
+{{>method_documentation}}{{#returnType}}
+        /// <returns>{{{returnType}}}</returns>{{/returnType}}
         {{#isDeprecated}}
         [Obsolete]
         {{/isDeprecated}}
@@ -35,13 +30,8 @@ namespace {{packageName}}.{{apiPackage}}
         }
 
         {{#supportsAsync}}
-        /// <summary>
-        /// {{{summary}}} {{{notes}}}
-        /// </summary>
-        /// <exception cref="{{packageName}}.Client.ApiException">Thrown when fails to make API call</exception>
-        {{#allParams}}/// <param name="{{paramName}}">{{description}}{{^required}} (optional{{#defaultValue}}, default to {{.}}{{/defaultValue}}){{/required}}{{#isDeprecated}} (deprecated){{/isDeprecated}}</param>
-        {{/allParams}}/// <returns>Task of {{{returnType}}}{{^returnType}}void{{/returnType}}</returns>
-        /// <param name="requestOptions">Additional request options</param>
+{{>method_documentation}}{{#returnType}}
+        /// <returns>Task of {{{returnType}}}{{^returnType}}void{{/returnType}}</returns>{{/returnType}}
         {{#isDeprecated}}
         [Obsolete]
         {{/isDeprecated}}

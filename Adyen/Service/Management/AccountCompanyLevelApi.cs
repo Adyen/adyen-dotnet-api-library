@@ -28,27 +28,49 @@ namespace Adyen.Service.Management
         public AccountCompanyLevelApi(Client client) : base(client) {}
     
         /// <summary>
-        /// Get a list of company accounts Returns the list of company accounts that your API credential has access to. The list is grouped into pages as defined by the query parameters.  To make this request, your API credential must have the following [roles](https://docs.adyen.com/development-resources/api-credentials#api-permissions):  * Management API—Account read
+        /// Get a list of company accounts
         /// </summary>
-        /// <exception cref="Adyen.Service.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="pageNumber">The number of the page to fetch. (optional)</param>
-        /// <param name="pageSize">The number of items to have on a page, maximum 100. The default is 10 items on a page. (optional)</param>
+        /// <param name="requestOptions">Additional request options. Query parameters:
+        /// <list type="table">
+        ///     <listheader>
+        ///         <term>parameter</term>
+        ///         <description>description</description>
+        ///     </listheader>
+        ///     <item>
+        ///         <term>pageNumber</term>
+        ///         <description>The number of the page to fetch.</description>
+        ///     </item>
+        ///     <item>
+        ///         <term>pageSize</term>
+        ///         <description>The number of items to have on a page, maximum 100. The default is 10 items on a page.</description>
+        ///     </item>
+        /// </list></param>
         /// <returns>ListCompanyResponse</returns>
-        /// <param name="requestOptions">Additional request options</param>
-        public ListCompanyResponse GetCompanies(RequestOptions requestOptions = default)
+        public ListCompanyResponse GetCompanies(RequestOptions requestOptions = null)
         {
             return GetCompaniesAsync(requestOptions).GetAwaiter().GetResult();
         }
 
         /// <summary>
-        /// Get a list of company accounts Returns the list of company accounts that your API credential has access to. The list is grouped into pages as defined by the query parameters.  To make this request, your API credential must have the following [roles](https://docs.adyen.com/development-resources/api-credentials#api-permissions):  * Management API—Account read
+        /// Get a list of company accounts
         /// </summary>
-        /// <exception cref="Adyen.Service.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="pageNumber">The number of the page to fetch. (optional)</param>
-        /// <param name="pageSize">The number of items to have on a page, maximum 100. The default is 10 items on a page. (optional)</param>
+        /// <param name="requestOptions">Additional request options. Query parameters:
+        /// <list type="table">
+        ///     <listheader>
+        ///         <term>parameter</term>
+        ///         <description>description</description>
+        ///     </listheader>
+        ///     <item>
+        ///         <term>pageNumber</term>
+        ///         <description>The number of the page to fetch.</description>
+        ///     </item>
+        ///     <item>
+        ///         <term>pageSize</term>
+        ///         <description>The number of items to have on a page, maximum 100. The default is 10 items on a page.</description>
+        ///     </item>
+        /// </list></param>
         /// <returns>Task of ListCompanyResponse</returns>
-        /// <param name="requestOptions">Additional request options</param>
-        public async Task<ListCompanyResponse> GetCompaniesAsync(RequestOptions requestOptions = default)
+        public async Task<ListCompanyResponse> GetCompaniesAsync(RequestOptions requestOptions = null)
         {
             var endpoint = "/companies" + ToQueryString(requestOptions?.QueryParameters);
             string jsonRequest = null;
@@ -58,25 +80,23 @@ namespace Adyen.Service.Management
         }
 
         /// <summary>
-        /// Get a company account Returns the company account specified in the path. Your API credential must have access to the company account.   To make this request, your API credential must have the following [roles](https://docs.adyen.com/development-resources/api-credentials#api-permissions): * Management API—Account read
+        /// Get a company account
         /// </summary>
-        /// <exception cref="Adyen.Service.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="companyId">The unique identifier of the company account.</param>
+        /// <param name="requestOptions">Additional request options.</param>
         /// <returns>Company</returns>
-        /// <param name="requestOptions">Additional request options</param>
-        public Company GetCompaniesCompanyId(string companyId, RequestOptions requestOptions = default)
+        public Company GetCompaniesCompanyId(string companyId, RequestOptions requestOptions = null)
         {
             return GetCompaniesCompanyIdAsync(companyId, requestOptions).GetAwaiter().GetResult();
         }
 
         /// <summary>
-        /// Get a company account Returns the company account specified in the path. Your API credential must have access to the company account.   To make this request, your API credential must have the following [roles](https://docs.adyen.com/development-resources/api-credentials#api-permissions): * Management API—Account read
+        /// Get a company account
         /// </summary>
-        /// <exception cref="Adyen.Service.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="companyId">The unique identifier of the company account.</param>
+        /// <param name="requestOptions">Additional request options.</param>
         /// <returns>Task of Company</returns>
-        /// <param name="requestOptions">Additional request options</param>
-        public async Task<Company> GetCompaniesCompanyIdAsync(string companyId, RequestOptions requestOptions = default)
+        public async Task<Company> GetCompaniesCompanyIdAsync(string companyId, RequestOptions requestOptions = null)
         {
             var endpoint = $"/companies/{companyId}";
             string jsonRequest = null;
@@ -86,29 +106,51 @@ namespace Adyen.Service.Management
         }
 
         /// <summary>
-        /// Get a list of merchant accounts Returns the list of merchant accounts under the company account specified in the path. The list only includes merchant accounts that your API credential has access to. The list is grouped into pages as defined by the query parameters.   To make this request, your API credential must have the following [roles](https://docs.adyen.com/development-resources/api-credentials#api-permissions): * Management API—Account read
+        /// Get a list of merchant accounts
         /// </summary>
-        /// <exception cref="Adyen.Service.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="companyId">The unique identifier of the company account.</param>
-        /// <param name="pageNumber">The number of the page to fetch. (optional)</param>
-        /// <param name="pageSize">The number of items to have on a page, maximum 100. The default is 10 items on a page. (optional)</param>
+        /// <param name="requestOptions">Additional request options. Query parameters:
+        /// <list type="table">
+        ///     <listheader>
+        ///         <term>parameter</term>
+        ///         <description>description</description>
+        ///     </listheader>
+        ///     <item>
+        ///         <term>pageNumber</term>
+        ///         <description>The number of the page to fetch.</description>
+        ///     </item>
+        ///     <item>
+        ///         <term>pageSize</term>
+        ///         <description>The number of items to have on a page, maximum 100. The default is 10 items on a page.</description>
+        ///     </item>
+        /// </list></param>
         /// <returns>ListMerchantResponse</returns>
-        /// <param name="requestOptions">Additional request options</param>
-        public ListMerchantResponse GetCompaniesCompanyIdMerchants(string companyId, RequestOptions requestOptions = default)
+        public ListMerchantResponse GetCompaniesCompanyIdMerchants(string companyId, RequestOptions requestOptions = null)
         {
             return GetCompaniesCompanyIdMerchantsAsync(companyId, requestOptions).GetAwaiter().GetResult();
         }
 
         /// <summary>
-        /// Get a list of merchant accounts Returns the list of merchant accounts under the company account specified in the path. The list only includes merchant accounts that your API credential has access to. The list is grouped into pages as defined by the query parameters.   To make this request, your API credential must have the following [roles](https://docs.adyen.com/development-resources/api-credentials#api-permissions): * Management API—Account read
+        /// Get a list of merchant accounts
         /// </summary>
-        /// <exception cref="Adyen.Service.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="companyId">The unique identifier of the company account.</param>
-        /// <param name="pageNumber">The number of the page to fetch. (optional)</param>
-        /// <param name="pageSize">The number of items to have on a page, maximum 100. The default is 10 items on a page. (optional)</param>
+        /// <param name="requestOptions">Additional request options. Query parameters:
+        /// <list type="table">
+        ///     <listheader>
+        ///         <term>parameter</term>
+        ///         <description>description</description>
+        ///     </listheader>
+        ///     <item>
+        ///         <term>pageNumber</term>
+        ///         <description>The number of the page to fetch.</description>
+        ///     </item>
+        ///     <item>
+        ///         <term>pageSize</term>
+        ///         <description>The number of items to have on a page, maximum 100. The default is 10 items on a page.</description>
+        ///     </item>
+        /// </list></param>
         /// <returns>Task of ListMerchantResponse</returns>
-        /// <param name="requestOptions">Additional request options</param>
-        public async Task<ListMerchantResponse> GetCompaniesCompanyIdMerchantsAsync(string companyId, RequestOptions requestOptions = default)
+        public async Task<ListMerchantResponse> GetCompaniesCompanyIdMerchantsAsync(string companyId, RequestOptions requestOptions = null)
         {
             var endpoint = $"/companies/{companyId}/merchants" + ToQueryString(requestOptions?.QueryParameters);
             string jsonRequest = null;

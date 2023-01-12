@@ -28,31 +28,59 @@ namespace Adyen.Service.Management
         public AccountStoreLevelApi(Client client) : base(client) {}
     
         /// <summary>
-        /// Get a list of stores Returns a list of stores for the merchant account identified in the path. The list is grouped into pages as defined by the query parameters.  To make this request, your API credential must have one of the following [roles](https://docs.adyen.com/development-resources/api-credentials#api-permissions): * Management API—Stores read * Management API—Stores read and write
+        /// Get a list of stores
         /// </summary>
-        /// <exception cref="Adyen.Service.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="merchantId">The unique identifier of the merchant account.</param>
-        /// <param name="pageNumber">The number of the page to fetch. (optional)</param>
-        /// <param name="pageSize">The number of items to have on a page, maximum 100. The default is 10 items on a page. (optional)</param>
-        /// <param name="reference">The reference of the store. (optional)</param>
+        /// <param name="requestOptions">Additional request options. Query parameters:
+        /// <list type="table">
+        ///     <listheader>
+        ///         <term>parameter</term>
+        ///         <description>description</description>
+        ///     </listheader>
+        ///     <item>
+        ///         <term>pageNumber</term>
+        ///         <description>The number of the page to fetch.</description>
+        ///     </item>
+        ///     <item>
+        ///         <term>pageSize</term>
+        ///         <description>The number of items to have on a page, maximum 100. The default is 10 items on a page.</description>
+        ///     </item>
+        ///     <item>
+        ///         <term>reference</term>
+        ///         <description>The reference of the store.</description>
+        ///     </item>
+        /// </list></param>
         /// <returns>ListStoresResponse</returns>
-        /// <param name="requestOptions">Additional request options</param>
-        public ListStoresResponse GetMerchantsMerchantIdStores(string merchantId, RequestOptions requestOptions = default)
+        public ListStoresResponse GetMerchantsMerchantIdStores(string merchantId, RequestOptions requestOptions = null)
         {
             return GetMerchantsMerchantIdStoresAsync(merchantId, requestOptions).GetAwaiter().GetResult();
         }
 
         /// <summary>
-        /// Get a list of stores Returns a list of stores for the merchant account identified in the path. The list is grouped into pages as defined by the query parameters.  To make this request, your API credential must have one of the following [roles](https://docs.adyen.com/development-resources/api-credentials#api-permissions): * Management API—Stores read * Management API—Stores read and write
+        /// Get a list of stores
         /// </summary>
-        /// <exception cref="Adyen.Service.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="merchantId">The unique identifier of the merchant account.</param>
-        /// <param name="pageNumber">The number of the page to fetch. (optional)</param>
-        /// <param name="pageSize">The number of items to have on a page, maximum 100. The default is 10 items on a page. (optional)</param>
-        /// <param name="reference">The reference of the store. (optional)</param>
+        /// <param name="requestOptions">Additional request options. Query parameters:
+        /// <list type="table">
+        ///     <listheader>
+        ///         <term>parameter</term>
+        ///         <description>description</description>
+        ///     </listheader>
+        ///     <item>
+        ///         <term>pageNumber</term>
+        ///         <description>The number of the page to fetch.</description>
+        ///     </item>
+        ///     <item>
+        ///         <term>pageSize</term>
+        ///         <description>The number of items to have on a page, maximum 100. The default is 10 items on a page.</description>
+        ///     </item>
+        ///     <item>
+        ///         <term>reference</term>
+        ///         <description>The reference of the store.</description>
+        ///     </item>
+        /// </list></param>
         /// <returns>Task of ListStoresResponse</returns>
-        /// <param name="requestOptions">Additional request options</param>
-        public async Task<ListStoresResponse> GetMerchantsMerchantIdStoresAsync(string merchantId, RequestOptions requestOptions = default)
+        public async Task<ListStoresResponse> GetMerchantsMerchantIdStoresAsync(string merchantId, RequestOptions requestOptions = null)
         {
             var endpoint = $"/merchants/{merchantId}/stores" + ToQueryString(requestOptions?.QueryParameters);
             string jsonRequest = null;
@@ -62,27 +90,25 @@ namespace Adyen.Service.Management
         }
 
         /// <summary>
-        /// Get a store Returns the details of the store identified in the path.  To make this request, your API credential must have one of the following [roles](https://docs.adyen.com/development-resources/api-credentials#api-permissions): * Management API—Stores read * Management API—Stores read and write
+        /// Get a store
         /// </summary>
-        /// <exception cref="Adyen.Service.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="merchantId">The unique identifier of the merchant account.</param>
         /// <param name="storeId">The unique identifier of the store.</param>
+        /// <param name="requestOptions">Additional request options.</param>
         /// <returns>Store</returns>
-        /// <param name="requestOptions">Additional request options</param>
-        public Store GetMerchantsMerchantIdStoresStoreId(string merchantId, string storeId, RequestOptions requestOptions = default)
+        public Store GetMerchantsMerchantIdStoresStoreId(string merchantId, string storeId, RequestOptions requestOptions = null)
         {
             return GetMerchantsMerchantIdStoresStoreIdAsync(merchantId, storeId, requestOptions).GetAwaiter().GetResult();
         }
 
         /// <summary>
-        /// Get a store Returns the details of the store identified in the path.  To make this request, your API credential must have one of the following [roles](https://docs.adyen.com/development-resources/api-credentials#api-permissions): * Management API—Stores read * Management API—Stores read and write
+        /// Get a store
         /// </summary>
-        /// <exception cref="Adyen.Service.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="merchantId">The unique identifier of the merchant account.</param>
         /// <param name="storeId">The unique identifier of the store.</param>
+        /// <param name="requestOptions">Additional request options.</param>
         /// <returns>Task of Store</returns>
-        /// <param name="requestOptions">Additional request options</param>
-        public async Task<Store> GetMerchantsMerchantIdStoresStoreIdAsync(string merchantId, string storeId, RequestOptions requestOptions = default)
+        public async Task<Store> GetMerchantsMerchantIdStoresStoreIdAsync(string merchantId, string storeId, RequestOptions requestOptions = null)
         {
             var endpoint = $"/merchants/{merchantId}/stores/{storeId}";
             string jsonRequest = null;
@@ -92,31 +118,65 @@ namespace Adyen.Service.Management
         }
 
         /// <summary>
-        /// Get a list of stores Returns a list of stores. The list is grouped into pages as defined by the query parameters.  To make this request, your API credential must have one of the following [roles](https://docs.adyen.com/development-resources/api-credentials#api-permissions): * Management API—Stores read * Management API—Stores read and write
+        /// Get a list of stores
         /// </summary>
-        /// <exception cref="Adyen.Service.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="pageNumber">The number of the page to fetch. (optional)</param>
-        /// <param name="pageSize">The number of items to have on a page, maximum 100. The default is 10 items on a page. (optional)</param>
-        /// <param name="reference">The reference of the store. (optional)</param>
-        /// <param name="merchantId">The unique identifier of the merchant account. (optional)</param>
+        /// <param name="requestOptions">Additional request options. Query parameters:
+        /// <list type="table">
+        ///     <listheader>
+        ///         <term>parameter</term>
+        ///         <description>description</description>
+        ///     </listheader>
+        ///     <item>
+        ///         <term>pageNumber</term>
+        ///         <description>The number of the page to fetch.</description>
+        ///     </item>
+        ///     <item>
+        ///         <term>pageSize</term>
+        ///         <description>The number of items to have on a page, maximum 100. The default is 10 items on a page.</description>
+        ///     </item>
+        ///     <item>
+        ///         <term>reference</term>
+        ///         <description>The reference of the store.</description>
+        ///     </item>
+        ///     <item>
+        ///         <term>merchantId</term>
+        ///         <description>The unique identifier of the merchant account.</description>
+        ///     </item>
+        /// </list></param>
         /// <returns>ListStoresResponse</returns>
-        /// <param name="requestOptions">Additional request options</param>
-        public ListStoresResponse GetStores(RequestOptions requestOptions = default)
+        public ListStoresResponse GetStores(RequestOptions requestOptions = null)
         {
             return GetStoresAsync(requestOptions).GetAwaiter().GetResult();
         }
 
         /// <summary>
-        /// Get a list of stores Returns a list of stores. The list is grouped into pages as defined by the query parameters.  To make this request, your API credential must have one of the following [roles](https://docs.adyen.com/development-resources/api-credentials#api-permissions): * Management API—Stores read * Management API—Stores read and write
+        /// Get a list of stores
         /// </summary>
-        /// <exception cref="Adyen.Service.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="pageNumber">The number of the page to fetch. (optional)</param>
-        /// <param name="pageSize">The number of items to have on a page, maximum 100. The default is 10 items on a page. (optional)</param>
-        /// <param name="reference">The reference of the store. (optional)</param>
-        /// <param name="merchantId">The unique identifier of the merchant account. (optional)</param>
+        /// <param name="requestOptions">Additional request options. Query parameters:
+        /// <list type="table">
+        ///     <listheader>
+        ///         <term>parameter</term>
+        ///         <description>description</description>
+        ///     </listheader>
+        ///     <item>
+        ///         <term>pageNumber</term>
+        ///         <description>The number of the page to fetch.</description>
+        ///     </item>
+        ///     <item>
+        ///         <term>pageSize</term>
+        ///         <description>The number of items to have on a page, maximum 100. The default is 10 items on a page.</description>
+        ///     </item>
+        ///     <item>
+        ///         <term>reference</term>
+        ///         <description>The reference of the store.</description>
+        ///     </item>
+        ///     <item>
+        ///         <term>merchantId</term>
+        ///         <description>The unique identifier of the merchant account.</description>
+        ///     </item>
+        /// </list></param>
         /// <returns>Task of ListStoresResponse</returns>
-        /// <param name="requestOptions">Additional request options</param>
-        public async Task<ListStoresResponse> GetStoresAsync(RequestOptions requestOptions = default)
+        public async Task<ListStoresResponse> GetStoresAsync(RequestOptions requestOptions = null)
         {
             var endpoint = "/stores" + ToQueryString(requestOptions?.QueryParameters);
             string jsonRequest = null;
@@ -126,25 +186,23 @@ namespace Adyen.Service.Management
         }
 
         /// <summary>
-        /// Get a store Returns the details of the store identified in the path.  To make this request, your API credential must have one of the following [roles](https://docs.adyen.com/development-resources/api-credentials#api-permissions): * Management API—Stores read * Management API—Stores read and write
+        /// Get a store
         /// </summary>
-        /// <exception cref="Adyen.Service.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="storeId">The unique identifier of the store.</param>
+        /// <param name="requestOptions">Additional request options.</param>
         /// <returns>Store</returns>
-        /// <param name="requestOptions">Additional request options</param>
-        public Store GetStoresStoreId(string storeId, RequestOptions requestOptions = default)
+        public Store GetStoresStoreId(string storeId, RequestOptions requestOptions = null)
         {
             return GetStoresStoreIdAsync(storeId, requestOptions).GetAwaiter().GetResult();
         }
 
         /// <summary>
-        /// Get a store Returns the details of the store identified in the path.  To make this request, your API credential must have one of the following [roles](https://docs.adyen.com/development-resources/api-credentials#api-permissions): * Management API—Stores read * Management API—Stores read and write
+        /// Get a store
         /// </summary>
-        /// <exception cref="Adyen.Service.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="storeId">The unique identifier of the store.</param>
+        /// <param name="requestOptions">Additional request options.</param>
         /// <returns>Task of Store</returns>
-        /// <param name="requestOptions">Additional request options</param>
-        public async Task<Store> GetStoresStoreIdAsync(string storeId, RequestOptions requestOptions = default)
+        public async Task<Store> GetStoresStoreIdAsync(string storeId, RequestOptions requestOptions = null)
         {
             var endpoint = $"/stores/{storeId}";
             string jsonRequest = null;
@@ -154,29 +212,27 @@ namespace Adyen.Service.Management
         }
 
         /// <summary>
-        /// Update a store Updates the store identified in the path. You can only update some store parameters.  To make this request, your API credential must have the following [role](https://docs.adyen.com/development-resources/api-credentials#api-permissions): * Management API—Stores read and write
+        /// Update a store
         /// </summary>
-        /// <exception cref="Adyen.Service.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="merchantId">The unique identifier of the merchant account.</param>
         /// <param name="storeId">The unique identifier of the store.</param>
-        /// <param name="updateStoreRequest"> (optional)</param>
+        /// <param name="updateStoreRequest"></param>
+        /// <param name="requestOptions">Additional request options.</param>
         /// <returns>Store</returns>
-        /// <param name="requestOptions">Additional request options</param>
-        public Store PatchMerchantsMerchantIdStoresStoreId(string merchantId, string storeId, UpdateStoreRequest updateStoreRequest, RequestOptions requestOptions = default)
+        public Store PatchMerchantsMerchantIdStoresStoreId(string merchantId, string storeId, UpdateStoreRequest updateStoreRequest, RequestOptions requestOptions = null)
         {
             return PatchMerchantsMerchantIdStoresStoreIdAsync(merchantId, storeId, updateStoreRequest, requestOptions).GetAwaiter().GetResult();
         }
 
         /// <summary>
-        /// Update a store Updates the store identified in the path. You can only update some store parameters.  To make this request, your API credential must have the following [role](https://docs.adyen.com/development-resources/api-credentials#api-permissions): * Management API—Stores read and write
+        /// Update a store
         /// </summary>
-        /// <exception cref="Adyen.Service.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="merchantId">The unique identifier of the merchant account.</param>
         /// <param name="storeId">The unique identifier of the store.</param>
-        /// <param name="updateStoreRequest"> (optional)</param>
+        /// <param name="updateStoreRequest"></param>
+        /// <param name="requestOptions">Additional request options.</param>
         /// <returns>Task of Store</returns>
-        /// <param name="requestOptions">Additional request options</param>
-        public async Task<Store> PatchMerchantsMerchantIdStoresStoreIdAsync(string merchantId, string storeId, UpdateStoreRequest updateStoreRequest, RequestOptions requestOptions = default)
+        public async Task<Store> PatchMerchantsMerchantIdStoresStoreIdAsync(string merchantId, string storeId, UpdateStoreRequest updateStoreRequest, RequestOptions requestOptions = null)
         {
             var endpoint = $"/merchants/{merchantId}/stores/{storeId}";
             string jsonRequest = updateStoreRequest.ToJson();
@@ -186,27 +242,25 @@ namespace Adyen.Service.Management
         }
 
         /// <summary>
-        /// Update a store Updates the store identified in the path. You can only update some store parameters.  To make this request, your API credential must have the following [role](https://docs.adyen.com/development-resources/api-credentials#api-permissions): * Management API—Stores read and write
+        /// Update a store
         /// </summary>
-        /// <exception cref="Adyen.Service.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="storeId">The unique identifier of the store.</param>
-        /// <param name="updateStoreRequest"> (optional)</param>
+        /// <param name="updateStoreRequest"></param>
+        /// <param name="requestOptions">Additional request options.</param>
         /// <returns>Store</returns>
-        /// <param name="requestOptions">Additional request options</param>
-        public Store PatchStoresStoreId(string storeId, UpdateStoreRequest updateStoreRequest, RequestOptions requestOptions = default)
+        public Store PatchStoresStoreId(string storeId, UpdateStoreRequest updateStoreRequest, RequestOptions requestOptions = null)
         {
             return PatchStoresStoreIdAsync(storeId, updateStoreRequest, requestOptions).GetAwaiter().GetResult();
         }
 
         /// <summary>
-        /// Update a store Updates the store identified in the path. You can only update some store parameters.  To make this request, your API credential must have the following [role](https://docs.adyen.com/development-resources/api-credentials#api-permissions): * Management API—Stores read and write
+        /// Update a store
         /// </summary>
-        /// <exception cref="Adyen.Service.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="storeId">The unique identifier of the store.</param>
-        /// <param name="updateStoreRequest"> (optional)</param>
+        /// <param name="updateStoreRequest"></param>
+        /// <param name="requestOptions">Additional request options.</param>
         /// <returns>Task of Store</returns>
-        /// <param name="requestOptions">Additional request options</param>
-        public async Task<Store> PatchStoresStoreIdAsync(string storeId, UpdateStoreRequest updateStoreRequest, RequestOptions requestOptions = default)
+        public async Task<Store> PatchStoresStoreIdAsync(string storeId, UpdateStoreRequest updateStoreRequest, RequestOptions requestOptions = null)
         {
             var endpoint = $"/stores/{storeId}";
             string jsonRequest = updateStoreRequest.ToJson();
@@ -216,27 +270,25 @@ namespace Adyen.Service.Management
         }
 
         /// <summary>
-        /// Create a store Creates a store for the merchant account identified in the path.  To make this request, your API credential must have the following [role](https://docs.adyen.com/development-resources/api-credentials#api-permissions): * Management API—Stores read and write
+        /// Create a store
         /// </summary>
-        /// <exception cref="Adyen.Service.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="merchantId">The unique identifier of the merchant account.</param>
-        /// <param name="storeCreationRequest"> (optional)</param>
+        /// <param name="storeCreationRequest"></param>
+        /// <param name="requestOptions">Additional request options.</param>
         /// <returns>Store</returns>
-        /// <param name="requestOptions">Additional request options</param>
-        public Store PostMerchantsMerchantIdStores(string merchantId, StoreCreationRequest storeCreationRequest, RequestOptions requestOptions = default)
+        public Store PostMerchantsMerchantIdStores(string merchantId, StoreCreationRequest storeCreationRequest, RequestOptions requestOptions = null)
         {
             return PostMerchantsMerchantIdStoresAsync(merchantId, storeCreationRequest, requestOptions).GetAwaiter().GetResult();
         }
 
         /// <summary>
-        /// Create a store Creates a store for the merchant account identified in the path.  To make this request, your API credential must have the following [role](https://docs.adyen.com/development-resources/api-credentials#api-permissions): * Management API—Stores read and write
+        /// Create a store
         /// </summary>
-        /// <exception cref="Adyen.Service.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="merchantId">The unique identifier of the merchant account.</param>
-        /// <param name="storeCreationRequest"> (optional)</param>
+        /// <param name="storeCreationRequest"></param>
+        /// <param name="requestOptions">Additional request options.</param>
         /// <returns>Task of Store</returns>
-        /// <param name="requestOptions">Additional request options</param>
-        public async Task<Store> PostMerchantsMerchantIdStoresAsync(string merchantId, StoreCreationRequest storeCreationRequest, RequestOptions requestOptions = default)
+        public async Task<Store> PostMerchantsMerchantIdStoresAsync(string merchantId, StoreCreationRequest storeCreationRequest, RequestOptions requestOptions = null)
         {
             var endpoint = $"/merchants/{merchantId}/stores";
             string jsonRequest = storeCreationRequest.ToJson();
@@ -246,25 +298,23 @@ namespace Adyen.Service.Management
         }
 
         /// <summary>
-        /// Create a store Creates a store for the merchant account specified in the request.  To make this request, your API credential must have the following [role](https://docs.adyen.com/development-resources/api-credentials#api-permissions): * Management API—Stores read and write
+        /// Create a store
         /// </summary>
-        /// <exception cref="Adyen.Service.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="storeCreationWithMerchantCodeRequest"> (optional)</param>
+        /// <param name="storeCreationWithMerchantCodeRequest"></param>
+        /// <param name="requestOptions">Additional request options.</param>
         /// <returns>Store</returns>
-        /// <param name="requestOptions">Additional request options</param>
-        public Store PostStores(StoreCreationWithMerchantCodeRequest storeCreationWithMerchantCodeRequest, RequestOptions requestOptions = default)
+        public Store PostStores(StoreCreationWithMerchantCodeRequest storeCreationWithMerchantCodeRequest, RequestOptions requestOptions = null)
         {
             return PostStoresAsync(storeCreationWithMerchantCodeRequest, requestOptions).GetAwaiter().GetResult();
         }
 
         /// <summary>
-        /// Create a store Creates a store for the merchant account specified in the request.  To make this request, your API credential must have the following [role](https://docs.adyen.com/development-resources/api-credentials#api-permissions): * Management API—Stores read and write
+        /// Create a store
         /// </summary>
-        /// <exception cref="Adyen.Service.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="storeCreationWithMerchantCodeRequest"> (optional)</param>
+        /// <param name="storeCreationWithMerchantCodeRequest"></param>
+        /// <param name="requestOptions">Additional request options.</param>
         /// <returns>Task of Store</returns>
-        /// <param name="requestOptions">Additional request options</param>
-        public async Task<Store> PostStoresAsync(StoreCreationWithMerchantCodeRequest storeCreationWithMerchantCodeRequest, RequestOptions requestOptions = default)
+        public async Task<Store> PostStoresAsync(StoreCreationWithMerchantCodeRequest storeCreationWithMerchantCodeRequest, RequestOptions requestOptions = null)
         {
             var endpoint = "/stores";
             string jsonRequest = storeCreationWithMerchantCodeRequest.ToJson();

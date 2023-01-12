@@ -28,27 +28,43 @@ namespace Adyen.Service.Management
         public TerminalSettingsMerchantLevelApi(Client client) : base(client) {}
     
         /// <summary>
-        /// Get the terminal logo Returns the logo that is configured for a specific payment terminal model at the merchant account identified in the path. You must specify the terminal model as a query parameter.  The logo is returned as a Base64-encoded string. You need to Base64-decode the string to get the actual image file.  This logo applies to all terminals of the specified model under the merchant account, unless a different logo is configured at a lower level (store or individual terminal).  To make this request, your API credential must have one of the following [roles](https://docs.adyen.com/development-resources/api-credentials#api-permissions): * Management API—Terminal settings read * Management API—Terminal settings read and write
+        /// Get the terminal logo
         /// </summary>
-        /// <exception cref="Adyen.Service.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="merchantId">The unique identifier of the merchant account.</param>
-        /// <param name="model">The terminal model. Possible values: E355, VX675WIFIBT, VX680, VX690, VX700, VX820, M400, MX925, P400Plus, UX300, UX410, V200cPlus, V240mPlus, V400cPlus, V400m, e280, e285, e285p, S1E, S1EL, S1F2, S1L, S1U, S7T. (optional)</param>
+        /// <param name="requestOptions">Additional request options. Query parameters:
+        /// <list type="table">
+        ///     <listheader>
+        ///         <term>parameter</term>
+        ///         <description>description</description>
+        ///     </listheader>
+        ///     <item>
+        ///         <term>model</term>
+        ///         <description>The terminal model. Possible values: E355, VX675WIFIBT, VX680, VX690, VX700, VX820, M400, MX925, P400Plus, UX300, UX410, V200cPlus, V240mPlus, V400cPlus, V400m, e280, e285, e285p, S1E, S1EL, S1F2, S1L, S1U, S7T.</description>
+        ///     </item>
+        /// </list></param>
         /// <returns>Logo</returns>
-        /// <param name="requestOptions">Additional request options</param>
-        public Logo GetMerchantsMerchantIdTerminalLogos(string merchantId, RequestOptions requestOptions = default)
+        public Logo GetMerchantsMerchantIdTerminalLogos(string merchantId, RequestOptions requestOptions = null)
         {
             return GetMerchantsMerchantIdTerminalLogosAsync(merchantId, requestOptions).GetAwaiter().GetResult();
         }
 
         /// <summary>
-        /// Get the terminal logo Returns the logo that is configured for a specific payment terminal model at the merchant account identified in the path. You must specify the terminal model as a query parameter.  The logo is returned as a Base64-encoded string. You need to Base64-decode the string to get the actual image file.  This logo applies to all terminals of the specified model under the merchant account, unless a different logo is configured at a lower level (store or individual terminal).  To make this request, your API credential must have one of the following [roles](https://docs.adyen.com/development-resources/api-credentials#api-permissions): * Management API—Terminal settings read * Management API—Terminal settings read and write
+        /// Get the terminal logo
         /// </summary>
-        /// <exception cref="Adyen.Service.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="merchantId">The unique identifier of the merchant account.</param>
-        /// <param name="model">The terminal model. Possible values: E355, VX675WIFIBT, VX680, VX690, VX700, VX820, M400, MX925, P400Plus, UX300, UX410, V200cPlus, V240mPlus, V400cPlus, V400m, e280, e285, e285p, S1E, S1EL, S1F2, S1L, S1U, S7T. (optional)</param>
+        /// <param name="requestOptions">Additional request options. Query parameters:
+        /// <list type="table">
+        ///     <listheader>
+        ///         <term>parameter</term>
+        ///         <description>description</description>
+        ///     </listheader>
+        ///     <item>
+        ///         <term>model</term>
+        ///         <description>The terminal model. Possible values: E355, VX675WIFIBT, VX680, VX690, VX700, VX820, M400, MX925, P400Plus, UX300, UX410, V200cPlus, V240mPlus, V400cPlus, V400m, e280, e285, e285p, S1E, S1EL, S1F2, S1L, S1U, S7T.</description>
+        ///     </item>
+        /// </list></param>
         /// <returns>Task of Logo</returns>
-        /// <param name="requestOptions">Additional request options</param>
-        public async Task<Logo> GetMerchantsMerchantIdTerminalLogosAsync(string merchantId, RequestOptions requestOptions = default)
+        public async Task<Logo> GetMerchantsMerchantIdTerminalLogosAsync(string merchantId, RequestOptions requestOptions = null)
         {
             var endpoint = $"/merchants/{merchantId}/terminalLogos" + ToQueryString(requestOptions?.QueryParameters);
             string jsonRequest = null;
@@ -58,25 +74,23 @@ namespace Adyen.Service.Management
         }
 
         /// <summary>
-        /// Get terminal settings Returns the payment terminal settings that are configured for the merchant account identified in the path. These settings apply to all terminals under the merchant account unless different values are configured at a lower level (store or individual terminal).  To make this request, your API credential must have one of the following [roles](https://docs.adyen.com/development-resources/api-credentials#api-permissions): * Management API—Terminal settings read * Management API—Terminal settings read and write
+        /// Get terminal settings
         /// </summary>
-        /// <exception cref="Adyen.Service.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="merchantId">The unique identifier of the merchant account.</param>
+        /// <param name="requestOptions">Additional request options.</param>
         /// <returns>TerminalSettings</returns>
-        /// <param name="requestOptions">Additional request options</param>
-        public TerminalSettings GetMerchantsMerchantIdTerminalSettings(string merchantId, RequestOptions requestOptions = default)
+        public TerminalSettings GetMerchantsMerchantIdTerminalSettings(string merchantId, RequestOptions requestOptions = null)
         {
             return GetMerchantsMerchantIdTerminalSettingsAsync(merchantId, requestOptions).GetAwaiter().GetResult();
         }
 
         /// <summary>
-        /// Get terminal settings Returns the payment terminal settings that are configured for the merchant account identified in the path. These settings apply to all terminals under the merchant account unless different values are configured at a lower level (store or individual terminal).  To make this request, your API credential must have one of the following [roles](https://docs.adyen.com/development-resources/api-credentials#api-permissions): * Management API—Terminal settings read * Management API—Terminal settings read and write
+        /// Get terminal settings
         /// </summary>
-        /// <exception cref="Adyen.Service.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="merchantId">The unique identifier of the merchant account.</param>
+        /// <param name="requestOptions">Additional request options.</param>
         /// <returns>Task of TerminalSettings</returns>
-        /// <param name="requestOptions">Additional request options</param>
-        public async Task<TerminalSettings> GetMerchantsMerchantIdTerminalSettingsAsync(string merchantId, RequestOptions requestOptions = default)
+        public async Task<TerminalSettings> GetMerchantsMerchantIdTerminalSettingsAsync(string merchantId, RequestOptions requestOptions = null)
         {
             var endpoint = $"/merchants/{merchantId}/terminalSettings";
             string jsonRequest = null;
@@ -86,29 +100,45 @@ namespace Adyen.Service.Management
         }
 
         /// <summary>
-        /// Update the terminal logo Updates the logo for a specific payment terminal model at the merchant account identified in the path. You must specify the terminal model as a query parameter. You can update the logo for only one terminal model at a time.  This logo applies to all terminals of the specified model under the merchant account, unless a different logo is configured at a lower level (store or individual terminal).  * To change the logo, specify the image file as a Base64-encoded string. * To restore the logo inherited from the company account, specify an empty logo value.  To make this request, your API credential must have the following [role](https://docs.adyen.com/development-resources/api-credentials#api-permissions): * Management API—Terminal settings read and write
+        /// Update the terminal logo
         /// </summary>
-        /// <exception cref="Adyen.Service.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="merchantId">The unique identifier of the merchant account.</param>
-        /// <param name="model">The terminal model. Allowed values: E355, VX675WIFIBT, VX680, VX690, VX700, VX820, M400, MX925, P400Plus, UX300, UX410, V200cPlus, V240mPlus, V400cPlus, V400m, e280, e285, e285p, S1E, S1EL, S1F2, S1L, S1U, S7T. (optional)</param>
-        /// <param name="logo"> (optional)</param>
+        /// <param name="logo"></param>
+        /// <param name="requestOptions">Additional request options. Query parameters:
+        /// <list type="table">
+        ///     <listheader>
+        ///         <term>parameter</term>
+        ///         <description>description</description>
+        ///     </listheader>
+        ///     <item>
+        ///         <term>model</term>
+        ///         <description>The terminal model. Allowed values: E355, VX675WIFIBT, VX680, VX690, VX700, VX820, M400, MX925, P400Plus, UX300, UX410, V200cPlus, V240mPlus, V400cPlus, V400m, e280, e285, e285p, S1E, S1EL, S1F2, S1L, S1U, S7T.</description>
+        ///     </item>
+        /// </list></param>
         /// <returns>Logo</returns>
-        /// <param name="requestOptions">Additional request options</param>
-        public Logo PatchMerchantsMerchantIdTerminalLogos(string merchantId, Logo logo, RequestOptions requestOptions = default)
+        public Logo PatchMerchantsMerchantIdTerminalLogos(string merchantId, Logo logo, RequestOptions requestOptions = null)
         {
             return PatchMerchantsMerchantIdTerminalLogosAsync(merchantId, logo, requestOptions).GetAwaiter().GetResult();
         }
 
         /// <summary>
-        /// Update the terminal logo Updates the logo for a specific payment terminal model at the merchant account identified in the path. You must specify the terminal model as a query parameter. You can update the logo for only one terminal model at a time.  This logo applies to all terminals of the specified model under the merchant account, unless a different logo is configured at a lower level (store or individual terminal).  * To change the logo, specify the image file as a Base64-encoded string. * To restore the logo inherited from the company account, specify an empty logo value.  To make this request, your API credential must have the following [role](https://docs.adyen.com/development-resources/api-credentials#api-permissions): * Management API—Terminal settings read and write
+        /// Update the terminal logo
         /// </summary>
-        /// <exception cref="Adyen.Service.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="merchantId">The unique identifier of the merchant account.</param>
-        /// <param name="model">The terminal model. Allowed values: E355, VX675WIFIBT, VX680, VX690, VX700, VX820, M400, MX925, P400Plus, UX300, UX410, V200cPlus, V240mPlus, V400cPlus, V400m, e280, e285, e285p, S1E, S1EL, S1F2, S1L, S1U, S7T. (optional)</param>
-        /// <param name="logo"> (optional)</param>
+        /// <param name="logo"></param>
+        /// <param name="requestOptions">Additional request options. Query parameters:
+        /// <list type="table">
+        ///     <listheader>
+        ///         <term>parameter</term>
+        ///         <description>description</description>
+        ///     </listheader>
+        ///     <item>
+        ///         <term>model</term>
+        ///         <description>The terminal model. Allowed values: E355, VX675WIFIBT, VX680, VX690, VX700, VX820, M400, MX925, P400Plus, UX300, UX410, V200cPlus, V240mPlus, V400cPlus, V400m, e280, e285, e285p, S1E, S1EL, S1F2, S1L, S1U, S7T.</description>
+        ///     </item>
+        /// </list></param>
         /// <returns>Task of Logo</returns>
-        /// <param name="requestOptions">Additional request options</param>
-        public async Task<Logo> PatchMerchantsMerchantIdTerminalLogosAsync(string merchantId, Logo logo, RequestOptions requestOptions = default)
+        public async Task<Logo> PatchMerchantsMerchantIdTerminalLogosAsync(string merchantId, Logo logo, RequestOptions requestOptions = null)
         {
             var endpoint = $"/merchants/{merchantId}/terminalLogos" + ToQueryString(requestOptions?.QueryParameters);
             string jsonRequest = logo.ToJson();
@@ -118,27 +148,25 @@ namespace Adyen.Service.Management
         }
 
         /// <summary>
-        /// Update terminal settings Updates payment terminal settings for the merchant account identified in the path. These settings apply to all terminals under the merchant account, unless different values are configured at a lower level (store or individual terminal).  * To change a parameter value, include the full object that contains the parameter, even if you don't want to change all parameters in the object. * To restore a parameter value inherited from a higher level, include the full object that contains the parameter, and specify an empty value for the parameter or omit the parameter. * Objects that are not included in the request are not updated.  To make this request, your API credential must have the following [role](https://docs.adyen.com/development-resources/api-credentials#api-permissions): * Management API—Terminal settings read and write
+        /// Update terminal settings
         /// </summary>
-        /// <exception cref="Adyen.Service.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="merchantId">The unique identifier of the merchant account.</param>
-        /// <param name="terminalSettings"> (optional)</param>
+        /// <param name="terminalSettings"></param>
+        /// <param name="requestOptions">Additional request options.</param>
         /// <returns>TerminalSettings</returns>
-        /// <param name="requestOptions">Additional request options</param>
-        public TerminalSettings PatchMerchantsMerchantIdTerminalSettings(string merchantId, TerminalSettings terminalSettings, RequestOptions requestOptions = default)
+        public TerminalSettings PatchMerchantsMerchantIdTerminalSettings(string merchantId, TerminalSettings terminalSettings, RequestOptions requestOptions = null)
         {
             return PatchMerchantsMerchantIdTerminalSettingsAsync(merchantId, terminalSettings, requestOptions).GetAwaiter().GetResult();
         }
 
         /// <summary>
-        /// Update terminal settings Updates payment terminal settings for the merchant account identified in the path. These settings apply to all terminals under the merchant account, unless different values are configured at a lower level (store or individual terminal).  * To change a parameter value, include the full object that contains the parameter, even if you don't want to change all parameters in the object. * To restore a parameter value inherited from a higher level, include the full object that contains the parameter, and specify an empty value for the parameter or omit the parameter. * Objects that are not included in the request are not updated.  To make this request, your API credential must have the following [role](https://docs.adyen.com/development-resources/api-credentials#api-permissions): * Management API—Terminal settings read and write
+        /// Update terminal settings
         /// </summary>
-        /// <exception cref="Adyen.Service.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="merchantId">The unique identifier of the merchant account.</param>
-        /// <param name="terminalSettings"> (optional)</param>
+        /// <param name="terminalSettings"></param>
+        /// <param name="requestOptions">Additional request options.</param>
         /// <returns>Task of TerminalSettings</returns>
-        /// <param name="requestOptions">Additional request options</param>
-        public async Task<TerminalSettings> PatchMerchantsMerchantIdTerminalSettingsAsync(string merchantId, TerminalSettings terminalSettings, RequestOptions requestOptions = default)
+        public async Task<TerminalSettings> PatchMerchantsMerchantIdTerminalSettingsAsync(string merchantId, TerminalSettings terminalSettings, RequestOptions requestOptions = null)
         {
             var endpoint = $"/merchants/{merchantId}/terminalSettings";
             string jsonRequest = terminalSettings.ToJson();

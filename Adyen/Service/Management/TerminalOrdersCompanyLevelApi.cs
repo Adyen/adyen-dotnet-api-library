@@ -28,27 +28,43 @@ namespace Adyen.Service.Management
         public TerminalOrdersCompanyLevelApi(Client client) : base(client) {}
     
         /// <summary>
-        /// Get a list of billing entities Returns the billing entities of the company identified in the path and all merchant accounts belonging to the company. A billing entity is a legal entity where we charge orders to. An order for terminal products must contain the ID of a billing entity.  To make this request, your API credential must have one of the following [roles](https://docs.adyen.com/development-resources/api-credentials#api-permissions): * Management API—Terminal ordering read * Management API—Terminal ordering read and write
+        /// Get a list of billing entities
         /// </summary>
-        /// <exception cref="Adyen.Service.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="companyId">The unique identifier of the company account.</param>
-        /// <param name="name">The name of the billing entity. (optional)</param>
+        /// <param name="requestOptions">Additional request options. Query parameters:
+        /// <list type="table">
+        ///     <listheader>
+        ///         <term>parameter</term>
+        ///         <description>description</description>
+        ///     </listheader>
+        ///     <item>
+        ///         <term>name</term>
+        ///         <description>The name of the billing entity.</description>
+        ///     </item>
+        /// </list></param>
         /// <returns>BillingEntitiesResponse</returns>
-        /// <param name="requestOptions">Additional request options</param>
-        public BillingEntitiesResponse GetCompaniesCompanyIdBillingEntities(string companyId, RequestOptions requestOptions = default)
+        public BillingEntitiesResponse GetCompaniesCompanyIdBillingEntities(string companyId, RequestOptions requestOptions = null)
         {
             return GetCompaniesCompanyIdBillingEntitiesAsync(companyId, requestOptions).GetAwaiter().GetResult();
         }
 
         /// <summary>
-        /// Get a list of billing entities Returns the billing entities of the company identified in the path and all merchant accounts belonging to the company. A billing entity is a legal entity where we charge orders to. An order for terminal products must contain the ID of a billing entity.  To make this request, your API credential must have one of the following [roles](https://docs.adyen.com/development-resources/api-credentials#api-permissions): * Management API—Terminal ordering read * Management API—Terminal ordering read and write
+        /// Get a list of billing entities
         /// </summary>
-        /// <exception cref="Adyen.Service.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="companyId">The unique identifier of the company account.</param>
-        /// <param name="name">The name of the billing entity. (optional)</param>
+        /// <param name="requestOptions">Additional request options. Query parameters:
+        /// <list type="table">
+        ///     <listheader>
+        ///         <term>parameter</term>
+        ///         <description>description</description>
+        ///     </listheader>
+        ///     <item>
+        ///         <term>name</term>
+        ///         <description>The name of the billing entity.</description>
+        ///     </item>
+        /// </list></param>
         /// <returns>Task of BillingEntitiesResponse</returns>
-        /// <param name="requestOptions">Additional request options</param>
-        public async Task<BillingEntitiesResponse> GetCompaniesCompanyIdBillingEntitiesAsync(string companyId, RequestOptions requestOptions = default)
+        public async Task<BillingEntitiesResponse> GetCompaniesCompanyIdBillingEntitiesAsync(string companyId, RequestOptions requestOptions = null)
         {
             var endpoint = $"/companies/{companyId}/billingEntities" + ToQueryString(requestOptions?.QueryParameters);
             string jsonRequest = null;
@@ -58,31 +74,59 @@ namespace Adyen.Service.Management
         }
 
         /// <summary>
-        /// Get a list of shipping locations Returns the shipping locations for the company identified in the path and all merchant accounts belonging to the company. A shipping location includes the address where orders can be delivered, and an ID which you need to specify when ordering terminal products.  To make this request, your API credential must have one of the following [roles](https://docs.adyen.com/development-resources/api-credentials#api-permissions): * Management API—Terminal ordering read * Management API—Terminal ordering read and write
+        /// Get a list of shipping locations
         /// </summary>
-        /// <exception cref="Adyen.Service.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="companyId">The unique identifier of the company account.</param>
-        /// <param name="name">The name of the shipping location. (optional)</param>
-        /// <param name="offset">The number of locations to skip. (optional)</param>
-        /// <param name="limit">The number of locations to return. (optional)</param>
+        /// <param name="requestOptions">Additional request options. Query parameters:
+        /// <list type="table">
+        ///     <listheader>
+        ///         <term>parameter</term>
+        ///         <description>description</description>
+        ///     </listheader>
+        ///     <item>
+        ///         <term>name</term>
+        ///         <description>The name of the shipping location.</description>
+        ///     </item>
+        ///     <item>
+        ///         <term>offset</term>
+        ///         <description>The number of locations to skip.</description>
+        ///     </item>
+        ///     <item>
+        ///         <term>limit</term>
+        ///         <description>The number of locations to return.</description>
+        ///     </item>
+        /// </list></param>
         /// <returns>ShippingLocationsResponse</returns>
-        /// <param name="requestOptions">Additional request options</param>
-        public ShippingLocationsResponse GetCompaniesCompanyIdShippingLocations(string companyId, RequestOptions requestOptions = default)
+        public ShippingLocationsResponse GetCompaniesCompanyIdShippingLocations(string companyId, RequestOptions requestOptions = null)
         {
             return GetCompaniesCompanyIdShippingLocationsAsync(companyId, requestOptions).GetAwaiter().GetResult();
         }
 
         /// <summary>
-        /// Get a list of shipping locations Returns the shipping locations for the company identified in the path and all merchant accounts belonging to the company. A shipping location includes the address where orders can be delivered, and an ID which you need to specify when ordering terminal products.  To make this request, your API credential must have one of the following [roles](https://docs.adyen.com/development-resources/api-credentials#api-permissions): * Management API—Terminal ordering read * Management API—Terminal ordering read and write
+        /// Get a list of shipping locations
         /// </summary>
-        /// <exception cref="Adyen.Service.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="companyId">The unique identifier of the company account.</param>
-        /// <param name="name">The name of the shipping location. (optional)</param>
-        /// <param name="offset">The number of locations to skip. (optional)</param>
-        /// <param name="limit">The number of locations to return. (optional)</param>
+        /// <param name="requestOptions">Additional request options. Query parameters:
+        /// <list type="table">
+        ///     <listheader>
+        ///         <term>parameter</term>
+        ///         <description>description</description>
+        ///     </listheader>
+        ///     <item>
+        ///         <term>name</term>
+        ///         <description>The name of the shipping location.</description>
+        ///     </item>
+        ///     <item>
+        ///         <term>offset</term>
+        ///         <description>The number of locations to skip.</description>
+        ///     </item>
+        ///     <item>
+        ///         <term>limit</term>
+        ///         <description>The number of locations to return.</description>
+        ///     </item>
+        /// </list></param>
         /// <returns>Task of ShippingLocationsResponse</returns>
-        /// <param name="requestOptions">Additional request options</param>
-        public async Task<ShippingLocationsResponse> GetCompaniesCompanyIdShippingLocationsAsync(string companyId, RequestOptions requestOptions = default)
+        public async Task<ShippingLocationsResponse> GetCompaniesCompanyIdShippingLocationsAsync(string companyId, RequestOptions requestOptions = null)
         {
             var endpoint = $"/companies/{companyId}/shippingLocations" + ToQueryString(requestOptions?.QueryParameters);
             string jsonRequest = null;
@@ -92,25 +136,23 @@ namespace Adyen.Service.Management
         }
 
         /// <summary>
-        /// Get a list of terminal models Returns a list of payment terminal models that the company identified in the path has access to. The response includes the terminal model ID, which can be used as a query parameter when getting a list of terminals or a list of products for ordering.  To make this request, your API credential must have one of the following [roles](https://docs.adyen.com/development-resources/api-credentials#api-permissions): * Management API—Terminal ordering read * Management API—Terminal ordering read and write
+        /// Get a list of terminal models
         /// </summary>
-        /// <exception cref="Adyen.Service.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="companyId">The unique identifier of the company account.</param>
+        /// <param name="requestOptions">Additional request options.</param>
         /// <returns>TerminalModelsResponse</returns>
-        /// <param name="requestOptions">Additional request options</param>
-        public TerminalModelsResponse GetCompaniesCompanyIdTerminalModels(string companyId, RequestOptions requestOptions = default)
+        public TerminalModelsResponse GetCompaniesCompanyIdTerminalModels(string companyId, RequestOptions requestOptions = null)
         {
             return GetCompaniesCompanyIdTerminalModelsAsync(companyId, requestOptions).GetAwaiter().GetResult();
         }
 
         /// <summary>
-        /// Get a list of terminal models Returns a list of payment terminal models that the company identified in the path has access to. The response includes the terminal model ID, which can be used as a query parameter when getting a list of terminals or a list of products for ordering.  To make this request, your API credential must have one of the following [roles](https://docs.adyen.com/development-resources/api-credentials#api-permissions): * Management API—Terminal ordering read * Management API—Terminal ordering read and write
+        /// Get a list of terminal models
         /// </summary>
-        /// <exception cref="Adyen.Service.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="companyId">The unique identifier of the company account.</param>
+        /// <param name="requestOptions">Additional request options.</param>
         /// <returns>Task of TerminalModelsResponse</returns>
-        /// <param name="requestOptions">Additional request options</param>
-        public async Task<TerminalModelsResponse> GetCompaniesCompanyIdTerminalModelsAsync(string companyId, RequestOptions requestOptions = default)
+        public async Task<TerminalModelsResponse> GetCompaniesCompanyIdTerminalModelsAsync(string companyId, RequestOptions requestOptions = null)
         {
             var endpoint = $"/companies/{companyId}/terminalModels";
             string jsonRequest = null;
@@ -120,33 +162,67 @@ namespace Adyen.Service.Management
         }
 
         /// <summary>
-        /// Get a list of orders Returns a lists of terminal products orders for the company identified in the path. To filter the list, use one or more of the query parameters.  To make this request, your API credential must have one of the following [roles](https://docs.adyen.com/development-resources/api-credentials#api-permissions): * Management API—Terminal ordering read * Management API—Terminal ordering read and write
+        /// Get a list of orders
         /// </summary>
-        /// <exception cref="Adyen.Service.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="companyId">The unique identifier of the company account.</param>
-        /// <param name="customerOrderReference">Your purchase order number. (optional)</param>
-        /// <param name="status">The order status. Possible values (not case-sensitive): Placed, Confirmed, Cancelled, Shipped, Delivered. (optional)</param>
-        /// <param name="offset">The number of orders to skip. (optional)</param>
-        /// <param name="limit">The number of orders to return. (optional)</param>
+        /// <param name="requestOptions">Additional request options. Query parameters:
+        /// <list type="table">
+        ///     <listheader>
+        ///         <term>parameter</term>
+        ///         <description>description</description>
+        ///     </listheader>
+        ///     <item>
+        ///         <term>customerOrderReference</term>
+        ///         <description>Your purchase order number.</description>
+        ///     </item>
+        ///     <item>
+        ///         <term>status</term>
+        ///         <description>The order status. Possible values (not case-sensitive): Placed, Confirmed, Cancelled, Shipped, Delivered.</description>
+        ///     </item>
+        ///     <item>
+        ///         <term>offset</term>
+        ///         <description>The number of orders to skip.</description>
+        ///     </item>
+        ///     <item>
+        ///         <term>limit</term>
+        ///         <description>The number of orders to return.</description>
+        ///     </item>
+        /// </list></param>
         /// <returns>TerminalOrdersResponse</returns>
-        /// <param name="requestOptions">Additional request options</param>
-        public TerminalOrdersResponse GetCompaniesCompanyIdTerminalOrders(string companyId, RequestOptions requestOptions = default)
+        public TerminalOrdersResponse GetCompaniesCompanyIdTerminalOrders(string companyId, RequestOptions requestOptions = null)
         {
             return GetCompaniesCompanyIdTerminalOrdersAsync(companyId, requestOptions).GetAwaiter().GetResult();
         }
 
         /// <summary>
-        /// Get a list of orders Returns a lists of terminal products orders for the company identified in the path. To filter the list, use one or more of the query parameters.  To make this request, your API credential must have one of the following [roles](https://docs.adyen.com/development-resources/api-credentials#api-permissions): * Management API—Terminal ordering read * Management API—Terminal ordering read and write
+        /// Get a list of orders
         /// </summary>
-        /// <exception cref="Adyen.Service.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="companyId">The unique identifier of the company account.</param>
-        /// <param name="customerOrderReference">Your purchase order number. (optional)</param>
-        /// <param name="status">The order status. Possible values (not case-sensitive): Placed, Confirmed, Cancelled, Shipped, Delivered. (optional)</param>
-        /// <param name="offset">The number of orders to skip. (optional)</param>
-        /// <param name="limit">The number of orders to return. (optional)</param>
+        /// <param name="requestOptions">Additional request options. Query parameters:
+        /// <list type="table">
+        ///     <listheader>
+        ///         <term>parameter</term>
+        ///         <description>description</description>
+        ///     </listheader>
+        ///     <item>
+        ///         <term>customerOrderReference</term>
+        ///         <description>Your purchase order number.</description>
+        ///     </item>
+        ///     <item>
+        ///         <term>status</term>
+        ///         <description>The order status. Possible values (not case-sensitive): Placed, Confirmed, Cancelled, Shipped, Delivered.</description>
+        ///     </item>
+        ///     <item>
+        ///         <term>offset</term>
+        ///         <description>The number of orders to skip.</description>
+        ///     </item>
+        ///     <item>
+        ///         <term>limit</term>
+        ///         <description>The number of orders to return.</description>
+        ///     </item>
+        /// </list></param>
         /// <returns>Task of TerminalOrdersResponse</returns>
-        /// <param name="requestOptions">Additional request options</param>
-        public async Task<TerminalOrdersResponse> GetCompaniesCompanyIdTerminalOrdersAsync(string companyId, RequestOptions requestOptions = default)
+        public async Task<TerminalOrdersResponse> GetCompaniesCompanyIdTerminalOrdersAsync(string companyId, RequestOptions requestOptions = null)
         {
             var endpoint = $"/companies/{companyId}/terminalOrders" + ToQueryString(requestOptions?.QueryParameters);
             string jsonRequest = null;
@@ -156,27 +232,25 @@ namespace Adyen.Service.Management
         }
 
         /// <summary>
-        /// Get an order Returns the details of the terminal products order identified in the path.  To make this request, your API credential must have one of the following [roles](https://docs.adyen.com/development-resources/api-credentials#api-permissions): * Management API—Terminal ordering read * Management API—Terminal ordering read and write
+        /// Get an order
         /// </summary>
-        /// <exception cref="Adyen.Service.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="companyId">The unique identifier of the company account.</param>
         /// <param name="orderId">The unique identifier of the order.</param>
+        /// <param name="requestOptions">Additional request options.</param>
         /// <returns>TerminalOrder</returns>
-        /// <param name="requestOptions">Additional request options</param>
-        public TerminalOrder GetCompaniesCompanyIdTerminalOrdersOrderId(string companyId, string orderId, RequestOptions requestOptions = default)
+        public TerminalOrder GetCompaniesCompanyIdTerminalOrdersOrderId(string companyId, string orderId, RequestOptions requestOptions = null)
         {
             return GetCompaniesCompanyIdTerminalOrdersOrderIdAsync(companyId, orderId, requestOptions).GetAwaiter().GetResult();
         }
 
         /// <summary>
-        /// Get an order Returns the details of the terminal products order identified in the path.  To make this request, your API credential must have one of the following [roles](https://docs.adyen.com/development-resources/api-credentials#api-permissions): * Management API—Terminal ordering read * Management API—Terminal ordering read and write
+        /// Get an order
         /// </summary>
-        /// <exception cref="Adyen.Service.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="companyId">The unique identifier of the company account.</param>
         /// <param name="orderId">The unique identifier of the order.</param>
+        /// <param name="requestOptions">Additional request options.</param>
         /// <returns>Task of TerminalOrder</returns>
-        /// <param name="requestOptions">Additional request options</param>
-        public async Task<TerminalOrder> GetCompaniesCompanyIdTerminalOrdersOrderIdAsync(string companyId, string orderId, RequestOptions requestOptions = default)
+        public async Task<TerminalOrder> GetCompaniesCompanyIdTerminalOrdersOrderIdAsync(string companyId, string orderId, RequestOptions requestOptions = null)
         {
             var endpoint = $"/companies/{companyId}/terminalOrders/{orderId}";
             string jsonRequest = null;
@@ -186,33 +260,67 @@ namespace Adyen.Service.Management
         }
 
         /// <summary>
-        /// Get a list of terminal products Returns a list of payment terminal packages and parts that the company identified in the path has access to.  To filter the list, use one or more of the query parameters. The `country` query parameter is required.  To make this request, your API credential must have one of the following [roles](https://docs.adyen.com/development-resources/api-credentials#api-permissions): * Management API—Terminal ordering read * Management API—Terminal ordering read and write
+        /// Get a list of terminal products
         /// </summary>
-        /// <exception cref="Adyen.Service.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="companyId">The unique identifier of the company account.</param>
-        /// <param name="country">The country to return products for, in [ISO 3166-1 alpha-2](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2) format. For example, **US** (optional)</param>
-        /// <param name="terminalModelId">The terminal model to return products for. Use the ID returned in the [GET &#x60;/terminalModels&#x60;](https://docs.adyen.com/api-explorer/#/ManagementService/latest/get/terminalModels) response. For example, **Verifone.M400** (optional)</param>
-        /// <param name="offset">The number of products to skip. (optional)</param>
-        /// <param name="limit">The number of products to return. (optional)</param>
+        /// <param name="requestOptions">Additional request options. Query parameters:
+        /// <list type="table">
+        ///     <listheader>
+        ///         <term>parameter</term>
+        ///         <description>description</description>
+        ///     </listheader>
+        ///     <item>
+        ///         <term>country</term>
+        ///         <description>The country to return products for, in [ISO 3166-1 alpha-2](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2) format. For example, **US**</description>
+        ///     </item>
+        ///     <item>
+        ///         <term>terminalModelId</term>
+        ///         <description>The terminal model to return products for. Use the ID returned in the [GET &#x60;/terminalModels&#x60;](https://docs.adyen.com/api-explorer/#/ManagementService/latest/get/terminalModels) response. For example, **Verifone.M400**</description>
+        ///     </item>
+        ///     <item>
+        ///         <term>offset</term>
+        ///         <description>The number of products to skip.</description>
+        ///     </item>
+        ///     <item>
+        ///         <term>limit</term>
+        ///         <description>The number of products to return.</description>
+        ///     </item>
+        /// </list></param>
         /// <returns>TerminalProductsResponse</returns>
-        /// <param name="requestOptions">Additional request options</param>
-        public TerminalProductsResponse GetCompaniesCompanyIdTerminalProducts(string companyId, RequestOptions requestOptions = default)
+        public TerminalProductsResponse GetCompaniesCompanyIdTerminalProducts(string companyId, RequestOptions requestOptions = null)
         {
             return GetCompaniesCompanyIdTerminalProductsAsync(companyId, requestOptions).GetAwaiter().GetResult();
         }
 
         /// <summary>
-        /// Get a list of terminal products Returns a list of payment terminal packages and parts that the company identified in the path has access to.  To filter the list, use one or more of the query parameters. The `country` query parameter is required.  To make this request, your API credential must have one of the following [roles](https://docs.adyen.com/development-resources/api-credentials#api-permissions): * Management API—Terminal ordering read * Management API—Terminal ordering read and write
+        /// Get a list of terminal products
         /// </summary>
-        /// <exception cref="Adyen.Service.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="companyId">The unique identifier of the company account.</param>
-        /// <param name="country">The country to return products for, in [ISO 3166-1 alpha-2](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2) format. For example, **US** (optional)</param>
-        /// <param name="terminalModelId">The terminal model to return products for. Use the ID returned in the [GET &#x60;/terminalModels&#x60;](https://docs.adyen.com/api-explorer/#/ManagementService/latest/get/terminalModels) response. For example, **Verifone.M400** (optional)</param>
-        /// <param name="offset">The number of products to skip. (optional)</param>
-        /// <param name="limit">The number of products to return. (optional)</param>
+        /// <param name="requestOptions">Additional request options. Query parameters:
+        /// <list type="table">
+        ///     <listheader>
+        ///         <term>parameter</term>
+        ///         <description>description</description>
+        ///     </listheader>
+        ///     <item>
+        ///         <term>country</term>
+        ///         <description>The country to return products for, in [ISO 3166-1 alpha-2](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2) format. For example, **US**</description>
+        ///     </item>
+        ///     <item>
+        ///         <term>terminalModelId</term>
+        ///         <description>The terminal model to return products for. Use the ID returned in the [GET &#x60;/terminalModels&#x60;](https://docs.adyen.com/api-explorer/#/ManagementService/latest/get/terminalModels) response. For example, **Verifone.M400**</description>
+        ///     </item>
+        ///     <item>
+        ///         <term>offset</term>
+        ///         <description>The number of products to skip.</description>
+        ///     </item>
+        ///     <item>
+        ///         <term>limit</term>
+        ///         <description>The number of products to return.</description>
+        ///     </item>
+        /// </list></param>
         /// <returns>Task of TerminalProductsResponse</returns>
-        /// <param name="requestOptions">Additional request options</param>
-        public async Task<TerminalProductsResponse> GetCompaniesCompanyIdTerminalProductsAsync(string companyId, RequestOptions requestOptions = default)
+        public async Task<TerminalProductsResponse> GetCompaniesCompanyIdTerminalProductsAsync(string companyId, RequestOptions requestOptions = null)
         {
             var endpoint = $"/companies/{companyId}/terminalProducts" + ToQueryString(requestOptions?.QueryParameters);
             string jsonRequest = null;
@@ -222,29 +330,27 @@ namespace Adyen.Service.Management
         }
 
         /// <summary>
-        /// Update an order Updates the terminal products order identified in the path. Updating is only possible while the order has the status **Placed**.  The request body only needs to contain what you want to change.  However, to update the products in the `items` array, you must provide the entire array. For example, if the array has three items:  To remove one item, the array must include the remaining two items. Or to add one item, the array must include all four items.  To make this request, your API credential must have the following [role](https://docs.adyen.com/development-resources/api-credentials#api-permissions): * Management API—Terminal ordering read and write
+        /// Update an order
         /// </summary>
-        /// <exception cref="Adyen.Service.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="companyId">The unique identifier of the company account.</param>
         /// <param name="orderId">The unique identifier of the order.</param>
-        /// <param name="terminalOrderRequest"> (optional)</param>
+        /// <param name="terminalOrderRequest"></param>
+        /// <param name="requestOptions">Additional request options.</param>
         /// <returns>TerminalOrder</returns>
-        /// <param name="requestOptions">Additional request options</param>
-        public TerminalOrder PatchCompaniesCompanyIdTerminalOrdersOrderId(string companyId, string orderId, TerminalOrderRequest terminalOrderRequest, RequestOptions requestOptions = default)
+        public TerminalOrder PatchCompaniesCompanyIdTerminalOrdersOrderId(string companyId, string orderId, TerminalOrderRequest terminalOrderRequest, RequestOptions requestOptions = null)
         {
             return PatchCompaniesCompanyIdTerminalOrdersOrderIdAsync(companyId, orderId, terminalOrderRequest, requestOptions).GetAwaiter().GetResult();
         }
 
         /// <summary>
-        /// Update an order Updates the terminal products order identified in the path. Updating is only possible while the order has the status **Placed**.  The request body only needs to contain what you want to change.  However, to update the products in the `items` array, you must provide the entire array. For example, if the array has three items:  To remove one item, the array must include the remaining two items. Or to add one item, the array must include all four items.  To make this request, your API credential must have the following [role](https://docs.adyen.com/development-resources/api-credentials#api-permissions): * Management API—Terminal ordering read and write
+        /// Update an order
         /// </summary>
-        /// <exception cref="Adyen.Service.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="companyId">The unique identifier of the company account.</param>
         /// <param name="orderId">The unique identifier of the order.</param>
-        /// <param name="terminalOrderRequest"> (optional)</param>
+        /// <param name="terminalOrderRequest"></param>
+        /// <param name="requestOptions">Additional request options.</param>
         /// <returns>Task of TerminalOrder</returns>
-        /// <param name="requestOptions">Additional request options</param>
-        public async Task<TerminalOrder> PatchCompaniesCompanyIdTerminalOrdersOrderIdAsync(string companyId, string orderId, TerminalOrderRequest terminalOrderRequest, RequestOptions requestOptions = default)
+        public async Task<TerminalOrder> PatchCompaniesCompanyIdTerminalOrdersOrderIdAsync(string companyId, string orderId, TerminalOrderRequest terminalOrderRequest, RequestOptions requestOptions = null)
         {
             var endpoint = $"/companies/{companyId}/terminalOrders/{orderId}";
             string jsonRequest = terminalOrderRequest.ToJson();
@@ -254,27 +360,25 @@ namespace Adyen.Service.Management
         }
 
         /// <summary>
-        /// Create a shipping location Creates a shipping location for the company identified in the path. A shipping location defines an address where orders can be delivered.  To make this request, your API credential must have the following [role](https://docs.adyen.com/development-resources/api-credentials#api-permissions): * Management API—Terminal ordering read and write
+        /// Create a shipping location
         /// </summary>
-        /// <exception cref="Adyen.Service.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="companyId">The unique identifier of the company account.</param>
-        /// <param name="shippingLocation"> (optional)</param>
+        /// <param name="shippingLocation"></param>
+        /// <param name="requestOptions">Additional request options.</param>
         /// <returns>ShippingLocation</returns>
-        /// <param name="requestOptions">Additional request options</param>
-        public ShippingLocation PostCompaniesCompanyIdShippingLocations(string companyId, ShippingLocation shippingLocation, RequestOptions requestOptions = default)
+        public ShippingLocation PostCompaniesCompanyIdShippingLocations(string companyId, ShippingLocation shippingLocation, RequestOptions requestOptions = null)
         {
             return PostCompaniesCompanyIdShippingLocationsAsync(companyId, shippingLocation, requestOptions).GetAwaiter().GetResult();
         }
 
         /// <summary>
-        /// Create a shipping location Creates a shipping location for the company identified in the path. A shipping location defines an address where orders can be delivered.  To make this request, your API credential must have the following [role](https://docs.adyen.com/development-resources/api-credentials#api-permissions): * Management API—Terminal ordering read and write
+        /// Create a shipping location
         /// </summary>
-        /// <exception cref="Adyen.Service.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="companyId">The unique identifier of the company account.</param>
-        /// <param name="shippingLocation"> (optional)</param>
+        /// <param name="shippingLocation"></param>
+        /// <param name="requestOptions">Additional request options.</param>
         /// <returns>Task of ShippingLocation</returns>
-        /// <param name="requestOptions">Additional request options</param>
-        public async Task<ShippingLocation> PostCompaniesCompanyIdShippingLocationsAsync(string companyId, ShippingLocation shippingLocation, RequestOptions requestOptions = default)
+        public async Task<ShippingLocation> PostCompaniesCompanyIdShippingLocationsAsync(string companyId, ShippingLocation shippingLocation, RequestOptions requestOptions = null)
         {
             var endpoint = $"/companies/{companyId}/shippingLocations";
             string jsonRequest = shippingLocation.ToJson();
@@ -284,27 +388,25 @@ namespace Adyen.Service.Management
         }
 
         /// <summary>
-        /// Create an order Creates an order for payment terminal products for the company identified in the path.  To make this request, your API credential must have the following [role](https://docs.adyen.com/development-resources/api-credentials#api-permissions): * Management API—Terminal ordering read and write
+        /// Create an order
         /// </summary>
-        /// <exception cref="Adyen.Service.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="companyId">The unique identifier of the company account.</param>
-        /// <param name="terminalOrderRequest"> (optional)</param>
+        /// <param name="terminalOrderRequest"></param>
+        /// <param name="requestOptions">Additional request options.</param>
         /// <returns>TerminalOrder</returns>
-        /// <param name="requestOptions">Additional request options</param>
-        public TerminalOrder PostCompaniesCompanyIdTerminalOrders(string companyId, TerminalOrderRequest terminalOrderRequest, RequestOptions requestOptions = default)
+        public TerminalOrder PostCompaniesCompanyIdTerminalOrders(string companyId, TerminalOrderRequest terminalOrderRequest, RequestOptions requestOptions = null)
         {
             return PostCompaniesCompanyIdTerminalOrdersAsync(companyId, terminalOrderRequest, requestOptions).GetAwaiter().GetResult();
         }
 
         /// <summary>
-        /// Create an order Creates an order for payment terminal products for the company identified in the path.  To make this request, your API credential must have the following [role](https://docs.adyen.com/development-resources/api-credentials#api-permissions): * Management API—Terminal ordering read and write
+        /// Create an order
         /// </summary>
-        /// <exception cref="Adyen.Service.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="companyId">The unique identifier of the company account.</param>
-        /// <param name="terminalOrderRequest"> (optional)</param>
+        /// <param name="terminalOrderRequest"></param>
+        /// <param name="requestOptions">Additional request options.</param>
         /// <returns>Task of TerminalOrder</returns>
-        /// <param name="requestOptions">Additional request options</param>
-        public async Task<TerminalOrder> PostCompaniesCompanyIdTerminalOrdersAsync(string companyId, TerminalOrderRequest terminalOrderRequest, RequestOptions requestOptions = default)
+        public async Task<TerminalOrder> PostCompaniesCompanyIdTerminalOrdersAsync(string companyId, TerminalOrderRequest terminalOrderRequest, RequestOptions requestOptions = null)
         {
             var endpoint = $"/companies/{companyId}/terminalOrders";
             string jsonRequest = terminalOrderRequest.ToJson();
@@ -314,27 +416,25 @@ namespace Adyen.Service.Management
         }
 
         /// <summary>
-        /// Cancel an order Cancels the terminal products order identified in the path. Cancelling is only possible while the order has the status **Placed**. To cancel an order, make a POST call without a request body. The response returns the full order details, but with the status changed to **Cancelled**.  To make this request, your API credential must have the following [role](https://docs.adyen.com/development-resources/api-credentials#api-permissions): * Management API—Terminal ordering read and write
+        /// Cancel an order
         /// </summary>
-        /// <exception cref="Adyen.Service.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="companyId">The unique identifier of the company account.</param>
         /// <param name="orderId">The unique identifier of the order.</param>
+        /// <param name="requestOptions">Additional request options.</param>
         /// <returns>TerminalOrder</returns>
-        /// <param name="requestOptions">Additional request options</param>
-        public TerminalOrder PostCompaniesCompanyIdTerminalOrdersOrderIdCancel(string companyId, string orderId, RequestOptions requestOptions = default)
+        public TerminalOrder PostCompaniesCompanyIdTerminalOrdersOrderIdCancel(string companyId, string orderId, RequestOptions requestOptions = null)
         {
             return PostCompaniesCompanyIdTerminalOrdersOrderIdCancelAsync(companyId, orderId, requestOptions).GetAwaiter().GetResult();
         }
 
         /// <summary>
-        /// Cancel an order Cancels the terminal products order identified in the path. Cancelling is only possible while the order has the status **Placed**. To cancel an order, make a POST call without a request body. The response returns the full order details, but with the status changed to **Cancelled**.  To make this request, your API credential must have the following [role](https://docs.adyen.com/development-resources/api-credentials#api-permissions): * Management API—Terminal ordering read and write
+        /// Cancel an order
         /// </summary>
-        /// <exception cref="Adyen.Service.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="companyId">The unique identifier of the company account.</param>
         /// <param name="orderId">The unique identifier of the order.</param>
+        /// <param name="requestOptions">Additional request options.</param>
         /// <returns>Task of TerminalOrder</returns>
-        /// <param name="requestOptions">Additional request options</param>
-        public async Task<TerminalOrder> PostCompaniesCompanyIdTerminalOrdersOrderIdCancelAsync(string companyId, string orderId, RequestOptions requestOptions = default)
+        public async Task<TerminalOrder> PostCompaniesCompanyIdTerminalOrdersOrderIdCancelAsync(string companyId, string orderId, RequestOptions requestOptions = null)
         {
             var endpoint = $"/companies/{companyId}/terminalOrders/{orderId}/cancel";
             string jsonRequest = null;

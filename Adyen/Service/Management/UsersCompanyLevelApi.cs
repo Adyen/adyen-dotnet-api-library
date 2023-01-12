@@ -28,29 +28,51 @@ namespace Adyen.Service.Management
         public UsersCompanyLevelApi(Client client) : base(client) {}
     
         /// <summary>
-        /// Get a list of users Returns the list of users for the `companyId` identified in the path.  To make this request, your API credential must have the following [role](https://docs.adyen.com/development-resources/api-credentials#api-permissions): * Management API—Users read and write 
+        /// Get a list of users
         /// </summary>
-        /// <exception cref="Adyen.Service.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="companyId">The unique identifier of the company account.</param>
-        /// <param name="pageNumber">The number of the page to return. (optional)</param>
-        /// <param name="pageSize">The number of items to have on a page. Maximum value is **100**. The default is **10** items on a page. (optional)</param>
+        /// <param name="requestOptions">Additional request options. Query parameters:
+        /// <list type="table">
+        ///     <listheader>
+        ///         <term>parameter</term>
+        ///         <description>description</description>
+        ///     </listheader>
+        ///     <item>
+        ///         <term>pageNumber</term>
+        ///         <description>The number of the page to return.</description>
+        ///     </item>
+        ///     <item>
+        ///         <term>pageSize</term>
+        ///         <description>The number of items to have on a page. Maximum value is **100**. The default is **10** items on a page.</description>
+        ///     </item>
+        /// </list></param>
         /// <returns>ListCompanyUsersResponse</returns>
-        /// <param name="requestOptions">Additional request options</param>
-        public ListCompanyUsersResponse GetCompaniesCompanyIdUsers(string companyId, RequestOptions requestOptions = default)
+        public ListCompanyUsersResponse GetCompaniesCompanyIdUsers(string companyId, RequestOptions requestOptions = null)
         {
             return GetCompaniesCompanyIdUsersAsync(companyId, requestOptions).GetAwaiter().GetResult();
         }
 
         /// <summary>
-        /// Get a list of users Returns the list of users for the `companyId` identified in the path.  To make this request, your API credential must have the following [role](https://docs.adyen.com/development-resources/api-credentials#api-permissions): * Management API—Users read and write 
+        /// Get a list of users
         /// </summary>
-        /// <exception cref="Adyen.Service.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="companyId">The unique identifier of the company account.</param>
-        /// <param name="pageNumber">The number of the page to return. (optional)</param>
-        /// <param name="pageSize">The number of items to have on a page. Maximum value is **100**. The default is **10** items on a page. (optional)</param>
+        /// <param name="requestOptions">Additional request options. Query parameters:
+        /// <list type="table">
+        ///     <listheader>
+        ///         <term>parameter</term>
+        ///         <description>description</description>
+        ///     </listheader>
+        ///     <item>
+        ///         <term>pageNumber</term>
+        ///         <description>The number of the page to return.</description>
+        ///     </item>
+        ///     <item>
+        ///         <term>pageSize</term>
+        ///         <description>The number of items to have on a page. Maximum value is **100**. The default is **10** items on a page.</description>
+        ///     </item>
+        /// </list></param>
         /// <returns>Task of ListCompanyUsersResponse</returns>
-        /// <param name="requestOptions">Additional request options</param>
-        public async Task<ListCompanyUsersResponse> GetCompaniesCompanyIdUsersAsync(string companyId, RequestOptions requestOptions = default)
+        public async Task<ListCompanyUsersResponse> GetCompaniesCompanyIdUsersAsync(string companyId, RequestOptions requestOptions = null)
         {
             var endpoint = $"/companies/{companyId}/users" + ToQueryString(requestOptions?.QueryParameters);
             string jsonRequest = null;
@@ -60,27 +82,25 @@ namespace Adyen.Service.Management
         }
 
         /// <summary>
-        /// Get user details Returns user details for the `userId` and the `companyId` identified in the path.  To make this request, your API credential must have the following [role](https://docs.adyen.com/development-resources/api-credentials#api-permissions): * Management API—Users read and write 
+        /// Get user details
         /// </summary>
-        /// <exception cref="Adyen.Service.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="companyId">The unique identifier of the company account.</param>
         /// <param name="userId">The unique identifier of the user.</param>
+        /// <param name="requestOptions">Additional request options.</param>
         /// <returns>CompanyUser</returns>
-        /// <param name="requestOptions">Additional request options</param>
-        public CompanyUser GetCompaniesCompanyIdUsersUserId(string companyId, string userId, RequestOptions requestOptions = default)
+        public CompanyUser GetCompaniesCompanyIdUsersUserId(string companyId, string userId, RequestOptions requestOptions = null)
         {
             return GetCompaniesCompanyIdUsersUserIdAsync(companyId, userId, requestOptions).GetAwaiter().GetResult();
         }
 
         /// <summary>
-        /// Get user details Returns user details for the `userId` and the `companyId` identified in the path.  To make this request, your API credential must have the following [role](https://docs.adyen.com/development-resources/api-credentials#api-permissions): * Management API—Users read and write 
+        /// Get user details
         /// </summary>
-        /// <exception cref="Adyen.Service.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="companyId">The unique identifier of the company account.</param>
         /// <param name="userId">The unique identifier of the user.</param>
+        /// <param name="requestOptions">Additional request options.</param>
         /// <returns>Task of CompanyUser</returns>
-        /// <param name="requestOptions">Additional request options</param>
-        public async Task<CompanyUser> GetCompaniesCompanyIdUsersUserIdAsync(string companyId, string userId, RequestOptions requestOptions = default)
+        public async Task<CompanyUser> GetCompaniesCompanyIdUsersUserIdAsync(string companyId, string userId, RequestOptions requestOptions = null)
         {
             var endpoint = $"/companies/{companyId}/users/{userId}";
             string jsonRequest = null;
@@ -90,29 +110,27 @@ namespace Adyen.Service.Management
         }
 
         /// <summary>
-        /// Update user details Updates user details for the `userId` and the `companyId` identified in the path.  To make this request, your API credential must have the following [role](https://docs.adyen.com/development-resources/api-credentials#api-permissions): * Management API—Users read and write 
+        /// Update user details
         /// </summary>
-        /// <exception cref="Adyen.Service.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="companyId">The unique identifier of the company account.</param>
         /// <param name="userId">The unique identifier of the user.</param>
-        /// <param name="updateCompanyUserRequest"> (optional)</param>
+        /// <param name="updateCompanyUserRequest"></param>
+        /// <param name="requestOptions">Additional request options.</param>
         /// <returns>CompanyUser</returns>
-        /// <param name="requestOptions">Additional request options</param>
-        public CompanyUser PatchCompaniesCompanyIdUsersUserId(string companyId, string userId, UpdateCompanyUserRequest updateCompanyUserRequest, RequestOptions requestOptions = default)
+        public CompanyUser PatchCompaniesCompanyIdUsersUserId(string companyId, string userId, UpdateCompanyUserRequest updateCompanyUserRequest, RequestOptions requestOptions = null)
         {
             return PatchCompaniesCompanyIdUsersUserIdAsync(companyId, userId, updateCompanyUserRequest, requestOptions).GetAwaiter().GetResult();
         }
 
         /// <summary>
-        /// Update user details Updates user details for the `userId` and the `companyId` identified in the path.  To make this request, your API credential must have the following [role](https://docs.adyen.com/development-resources/api-credentials#api-permissions): * Management API—Users read and write 
+        /// Update user details
         /// </summary>
-        /// <exception cref="Adyen.Service.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="companyId">The unique identifier of the company account.</param>
         /// <param name="userId">The unique identifier of the user.</param>
-        /// <param name="updateCompanyUserRequest"> (optional)</param>
+        /// <param name="updateCompanyUserRequest"></param>
+        /// <param name="requestOptions">Additional request options.</param>
         /// <returns>Task of CompanyUser</returns>
-        /// <param name="requestOptions">Additional request options</param>
-        public async Task<CompanyUser> PatchCompaniesCompanyIdUsersUserIdAsync(string companyId, string userId, UpdateCompanyUserRequest updateCompanyUserRequest, RequestOptions requestOptions = default)
+        public async Task<CompanyUser> PatchCompaniesCompanyIdUsersUserIdAsync(string companyId, string userId, UpdateCompanyUserRequest updateCompanyUserRequest, RequestOptions requestOptions = null)
         {
             var endpoint = $"/companies/{companyId}/users/{userId}";
             string jsonRequest = updateCompanyUserRequest.ToJson();
@@ -122,27 +140,25 @@ namespace Adyen.Service.Management
         }
 
         /// <summary>
-        /// Create a new user Creates the user for the `companyId` identified in the path.  To make this request, your API credential must have the following [role](https://docs.adyen.com/development-resources/api-credentials#api-permissions): * Management API—Users read and write 
+        /// Create a new user
         /// </summary>
-        /// <exception cref="Adyen.Service.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="companyId">The unique identifier of the company account.</param>
-        /// <param name="createCompanyUserRequest"> (optional)</param>
+        /// <param name="createCompanyUserRequest"></param>
+        /// <param name="requestOptions">Additional request options.</param>
         /// <returns>CreateCompanyUserResponse</returns>
-        /// <param name="requestOptions">Additional request options</param>
-        public CreateCompanyUserResponse PostCompaniesCompanyIdUsers(string companyId, CreateCompanyUserRequest createCompanyUserRequest, RequestOptions requestOptions = default)
+        public CreateCompanyUserResponse PostCompaniesCompanyIdUsers(string companyId, CreateCompanyUserRequest createCompanyUserRequest, RequestOptions requestOptions = null)
         {
             return PostCompaniesCompanyIdUsersAsync(companyId, createCompanyUserRequest, requestOptions).GetAwaiter().GetResult();
         }
 
         /// <summary>
-        /// Create a new user Creates the user for the `companyId` identified in the path.  To make this request, your API credential must have the following [role](https://docs.adyen.com/development-resources/api-credentials#api-permissions): * Management API—Users read and write 
+        /// Create a new user
         /// </summary>
-        /// <exception cref="Adyen.Service.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="companyId">The unique identifier of the company account.</param>
-        /// <param name="createCompanyUserRequest"> (optional)</param>
+        /// <param name="createCompanyUserRequest"></param>
+        /// <param name="requestOptions">Additional request options.</param>
         /// <returns>Task of CreateCompanyUserResponse</returns>
-        /// <param name="requestOptions">Additional request options</param>
-        public async Task<CreateCompanyUserResponse> PostCompaniesCompanyIdUsersAsync(string companyId, CreateCompanyUserRequest createCompanyUserRequest, RequestOptions requestOptions = default)
+        public async Task<CreateCompanyUserResponse> PostCompaniesCompanyIdUsersAsync(string companyId, CreateCompanyUserRequest createCompanyUserRequest, RequestOptions requestOptions = null)
         {
             var endpoint = $"/companies/{companyId}/users";
             string jsonRequest = createCompanyUserRequest.ToJson();

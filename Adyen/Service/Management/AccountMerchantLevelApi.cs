@@ -28,27 +28,49 @@ namespace Adyen.Service.Management
         public AccountMerchantLevelApi(Client client) : base(client) {}
     
         /// <summary>
-        /// Get a list of merchant accounts Returns the list of merchant accounts that your API credential has access to. The list is grouped into pages as defined by the query parameters.   To make this request, your API credential must have the following [roles](https://docs.adyen.com/development-resources/api-credentials#api-permissions): * Management API—Account read
+        /// Get a list of merchant accounts
         /// </summary>
-        /// <exception cref="Adyen.Service.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="pageNumber">The number of the page to fetch. (optional)</param>
-        /// <param name="pageSize">The number of items to have on a page, maximum 100. The default is 10 items on a page. (optional)</param>
+        /// <param name="requestOptions">Additional request options. Query parameters:
+        /// <list type="table">
+        ///     <listheader>
+        ///         <term>parameter</term>
+        ///         <description>description</description>
+        ///     </listheader>
+        ///     <item>
+        ///         <term>pageNumber</term>
+        ///         <description>The number of the page to fetch.</description>
+        ///     </item>
+        ///     <item>
+        ///         <term>pageSize</term>
+        ///         <description>The number of items to have on a page, maximum 100. The default is 10 items on a page.</description>
+        ///     </item>
+        /// </list></param>
         /// <returns>ListMerchantResponse</returns>
-        /// <param name="requestOptions">Additional request options</param>
-        public ListMerchantResponse GetMerchants(RequestOptions requestOptions = default)
+        public ListMerchantResponse GetMerchants(RequestOptions requestOptions = null)
         {
             return GetMerchantsAsync(requestOptions).GetAwaiter().GetResult();
         }
 
         /// <summary>
-        /// Get a list of merchant accounts Returns the list of merchant accounts that your API credential has access to. The list is grouped into pages as defined by the query parameters.   To make this request, your API credential must have the following [roles](https://docs.adyen.com/development-resources/api-credentials#api-permissions): * Management API—Account read
+        /// Get a list of merchant accounts
         /// </summary>
-        /// <exception cref="Adyen.Service.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="pageNumber">The number of the page to fetch. (optional)</param>
-        /// <param name="pageSize">The number of items to have on a page, maximum 100. The default is 10 items on a page. (optional)</param>
+        /// <param name="requestOptions">Additional request options. Query parameters:
+        /// <list type="table">
+        ///     <listheader>
+        ///         <term>parameter</term>
+        ///         <description>description</description>
+        ///     </listheader>
+        ///     <item>
+        ///         <term>pageNumber</term>
+        ///         <description>The number of the page to fetch.</description>
+        ///     </item>
+        ///     <item>
+        ///         <term>pageSize</term>
+        ///         <description>The number of items to have on a page, maximum 100. The default is 10 items on a page.</description>
+        ///     </item>
+        /// </list></param>
         /// <returns>Task of ListMerchantResponse</returns>
-        /// <param name="requestOptions">Additional request options</param>
-        public async Task<ListMerchantResponse> GetMerchantsAsync(RequestOptions requestOptions = default)
+        public async Task<ListMerchantResponse> GetMerchantsAsync(RequestOptions requestOptions = null)
         {
             var endpoint = "/merchants" + ToQueryString(requestOptions?.QueryParameters);
             string jsonRequest = null;
@@ -58,25 +80,23 @@ namespace Adyen.Service.Management
         }
 
         /// <summary>
-        /// Get a merchant account Returns the merchant account specified in the path. Your API credential must have access to the merchant account.  To make this request, your API credential must have the following [roles](https://docs.adyen.com/development-resources/api-credentials#api-permissions): * Management API—Account read
+        /// Get a merchant account
         /// </summary>
-        /// <exception cref="Adyen.Service.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="merchantId">The unique identifier of the merchant account.</param>
+        /// <param name="requestOptions">Additional request options.</param>
         /// <returns>Merchant</returns>
-        /// <param name="requestOptions">Additional request options</param>
-        public Merchant GetMerchantsMerchantId(string merchantId, RequestOptions requestOptions = default)
+        public Merchant GetMerchantsMerchantId(string merchantId, RequestOptions requestOptions = null)
         {
             return GetMerchantsMerchantIdAsync(merchantId, requestOptions).GetAwaiter().GetResult();
         }
 
         /// <summary>
-        /// Get a merchant account Returns the merchant account specified in the path. Your API credential must have access to the merchant account.  To make this request, your API credential must have the following [roles](https://docs.adyen.com/development-resources/api-credentials#api-permissions): * Management API—Account read
+        /// Get a merchant account
         /// </summary>
-        /// <exception cref="Adyen.Service.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="merchantId">The unique identifier of the merchant account.</param>
+        /// <param name="requestOptions">Additional request options.</param>
         /// <returns>Task of Merchant</returns>
-        /// <param name="requestOptions">Additional request options</param>
-        public async Task<Merchant> GetMerchantsMerchantIdAsync(string merchantId, RequestOptions requestOptions = default)
+        public async Task<Merchant> GetMerchantsMerchantIdAsync(string merchantId, RequestOptions requestOptions = null)
         {
             var endpoint = $"/merchants/{merchantId}";
             string jsonRequest = null;
@@ -86,25 +106,23 @@ namespace Adyen.Service.Management
         }
 
         /// <summary>
-        /// Create a merchant account Creates a merchant account for the company account specified in the request.  Use this endpoint if your integration requires it, such as Adyen for Platforms Manage. Your Adyen contact will set up your access.  To make this request, your API credential must have the following [roles](https://docs.adyen.com/development-resources/api-credentials#api-permissions): * Management API—Accounts read and write
+        /// Create a merchant account
         /// </summary>
-        /// <exception cref="Adyen.Service.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="createMerchantRequest"> (optional)</param>
+        /// <param name="createMerchantRequest"></param>
+        /// <param name="requestOptions">Additional request options.</param>
         /// <returns>CreateMerchantResponse</returns>
-        /// <param name="requestOptions">Additional request options</param>
-        public CreateMerchantResponse PostMerchants(CreateMerchantRequest createMerchantRequest, RequestOptions requestOptions = default)
+        public CreateMerchantResponse PostMerchants(CreateMerchantRequest createMerchantRequest, RequestOptions requestOptions = null)
         {
             return PostMerchantsAsync(createMerchantRequest, requestOptions).GetAwaiter().GetResult();
         }
 
         /// <summary>
-        /// Create a merchant account Creates a merchant account for the company account specified in the request.  Use this endpoint if your integration requires it, such as Adyen for Platforms Manage. Your Adyen contact will set up your access.  To make this request, your API credential must have the following [roles](https://docs.adyen.com/development-resources/api-credentials#api-permissions): * Management API—Accounts read and write
+        /// Create a merchant account
         /// </summary>
-        /// <exception cref="Adyen.Service.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="createMerchantRequest"> (optional)</param>
+        /// <param name="createMerchantRequest"></param>
+        /// <param name="requestOptions">Additional request options.</param>
         /// <returns>Task of CreateMerchantResponse</returns>
-        /// <param name="requestOptions">Additional request options</param>
-        public async Task<CreateMerchantResponse> PostMerchantsAsync(CreateMerchantRequest createMerchantRequest, RequestOptions requestOptions = default)
+        public async Task<CreateMerchantResponse> PostMerchantsAsync(CreateMerchantRequest createMerchantRequest, RequestOptions requestOptions = null)
         {
             var endpoint = "/merchants";
             string jsonRequest = createMerchantRequest.ToJson();
@@ -114,25 +132,23 @@ namespace Adyen.Service.Management
         }
 
         /// <summary>
-        /// Request to activate a merchant account Sends a request to activate the merchant account identified in the path.  You get the result of the activation asychronously through a [`merchant.updated`](https://docs.adyen.com/api-explorer/ManagementNotification/latest/post/merchant.updated) webhook. Once the merchant account is activated, you can start using it to accept payments and payouts.  Use this endpoint if your integration requires it, such as Adyen for Platforms Manage. Your Adyen contact will set up your access.  To make this request, your API credential must have the following [roles](https://docs.adyen.com/development-resources/api-credentials#api-permissions): * Management API—Accounts read and write
+        /// Request to activate a merchant account
         /// </summary>
-        /// <exception cref="Adyen.Service.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="merchantId">The unique identifier of the merchant account.</param>
+        /// <param name="requestOptions">Additional request options.</param>
         /// <returns>RequestActivationResponse</returns>
-        /// <param name="requestOptions">Additional request options</param>
-        public RequestActivationResponse PostMerchantsMerchantIdActivate(string merchantId, RequestOptions requestOptions = default)
+        public RequestActivationResponse PostMerchantsMerchantIdActivate(string merchantId, RequestOptions requestOptions = null)
         {
             return PostMerchantsMerchantIdActivateAsync(merchantId, requestOptions).GetAwaiter().GetResult();
         }
 
         /// <summary>
-        /// Request to activate a merchant account Sends a request to activate the merchant account identified in the path.  You get the result of the activation asychronously through a [`merchant.updated`](https://docs.adyen.com/api-explorer/ManagementNotification/latest/post/merchant.updated) webhook. Once the merchant account is activated, you can start using it to accept payments and payouts.  Use this endpoint if your integration requires it, such as Adyen for Platforms Manage. Your Adyen contact will set up your access.  To make this request, your API credential must have the following [roles](https://docs.adyen.com/development-resources/api-credentials#api-permissions): * Management API—Accounts read and write
+        /// Request to activate a merchant account
         /// </summary>
-        /// <exception cref="Adyen.Service.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="merchantId">The unique identifier of the merchant account.</param>
+        /// <param name="requestOptions">Additional request options.</param>
         /// <returns>Task of RequestActivationResponse</returns>
-        /// <param name="requestOptions">Additional request options</param>
-        public async Task<RequestActivationResponse> PostMerchantsMerchantIdActivateAsync(string merchantId, RequestOptions requestOptions = default)
+        public async Task<RequestActivationResponse> PostMerchantsMerchantIdActivateAsync(string merchantId, RequestOptions requestOptions = null)
         {
             var endpoint = $"/merchants/{merchantId}/activate";
             string jsonRequest = null;

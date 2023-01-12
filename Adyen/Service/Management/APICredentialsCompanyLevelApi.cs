@@ -28,29 +28,51 @@ namespace Adyen.Service.Management
         public APICredentialsCompanyLevelApi(Client client) : base(client) {}
     
         /// <summary>
-        /// Get a list of API credentials Returns the list of [API credentials](https://docs.adyen.com/development-resources/api-credentials) for the company account. The list is grouped into pages as defined by the query parameters.  To make this request, your API credential must have the following [roles](https://docs.adyen.com/development-resources/api-credentials#api-permissions): * Management API—API credentials read and write
+        /// Get a list of API credentials
         /// </summary>
-        /// <exception cref="Adyen.Service.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="companyId">The unique identifier of the company account.</param>
-        /// <param name="pageNumber">The number of the page to fetch. (optional)</param>
-        /// <param name="pageSize">The number of items to have on a page, maximum 100. The default is 10 items on a page. (optional)</param>
+        /// <param name="requestOptions">Additional request options. Query parameters:
+        /// <list type="table">
+        ///     <listheader>
+        ///         <term>parameter</term>
+        ///         <description>description</description>
+        ///     </listheader>
+        ///     <item>
+        ///         <term>pageNumber</term>
+        ///         <description>The number of the page to fetch.</description>
+        ///     </item>
+        ///     <item>
+        ///         <term>pageSize</term>
+        ///         <description>The number of items to have on a page, maximum 100. The default is 10 items on a page.</description>
+        ///     </item>
+        /// </list></param>
         /// <returns>ListCompanyApiCredentialsResponse</returns>
-        /// <param name="requestOptions">Additional request options</param>
-        public ListCompanyApiCredentialsResponse GetCompaniesCompanyIdApiCredentials(string companyId, RequestOptions requestOptions = default)
+        public ListCompanyApiCredentialsResponse GetCompaniesCompanyIdApiCredentials(string companyId, RequestOptions requestOptions = null)
         {
             return GetCompaniesCompanyIdApiCredentialsAsync(companyId, requestOptions).GetAwaiter().GetResult();
         }
 
         /// <summary>
-        /// Get a list of API credentials Returns the list of [API credentials](https://docs.adyen.com/development-resources/api-credentials) for the company account. The list is grouped into pages as defined by the query parameters.  To make this request, your API credential must have the following [roles](https://docs.adyen.com/development-resources/api-credentials#api-permissions): * Management API—API credentials read and write
+        /// Get a list of API credentials
         /// </summary>
-        /// <exception cref="Adyen.Service.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="companyId">The unique identifier of the company account.</param>
-        /// <param name="pageNumber">The number of the page to fetch. (optional)</param>
-        /// <param name="pageSize">The number of items to have on a page, maximum 100. The default is 10 items on a page. (optional)</param>
+        /// <param name="requestOptions">Additional request options. Query parameters:
+        /// <list type="table">
+        ///     <listheader>
+        ///         <term>parameter</term>
+        ///         <description>description</description>
+        ///     </listheader>
+        ///     <item>
+        ///         <term>pageNumber</term>
+        ///         <description>The number of the page to fetch.</description>
+        ///     </item>
+        ///     <item>
+        ///         <term>pageSize</term>
+        ///         <description>The number of items to have on a page, maximum 100. The default is 10 items on a page.</description>
+        ///     </item>
+        /// </list></param>
         /// <returns>Task of ListCompanyApiCredentialsResponse</returns>
-        /// <param name="requestOptions">Additional request options</param>
-        public async Task<ListCompanyApiCredentialsResponse> GetCompaniesCompanyIdApiCredentialsAsync(string companyId, RequestOptions requestOptions = default)
+        public async Task<ListCompanyApiCredentialsResponse> GetCompaniesCompanyIdApiCredentialsAsync(string companyId, RequestOptions requestOptions = null)
         {
             var endpoint = $"/companies/{companyId}/apiCredentials" + ToQueryString(requestOptions?.QueryParameters);
             string jsonRequest = null;
@@ -60,27 +82,25 @@ namespace Adyen.Service.Management
         }
 
         /// <summary>
-        /// Get an API credential Returns the [API credential](https://docs.adyen.com/development-resources/api-credentials) identified in the path.  To make this request, your API credential must have the following [roles](https://docs.adyen.com/development-resources/api-credentials#api-permissions): * Management API—API credentials read and write
+        /// Get an API credential
         /// </summary>
-        /// <exception cref="Adyen.Service.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="companyId">The unique identifier of the company account.</param>
         /// <param name="apiCredentialId">Unique identifier of the API credential.</param>
+        /// <param name="requestOptions">Additional request options.</param>
         /// <returns>CompanyApiCredential</returns>
-        /// <param name="requestOptions">Additional request options</param>
-        public CompanyApiCredential GetCompaniesCompanyIdApiCredentialsApiCredentialId(string companyId, string apiCredentialId, RequestOptions requestOptions = default)
+        public CompanyApiCredential GetCompaniesCompanyIdApiCredentialsApiCredentialId(string companyId, string apiCredentialId, RequestOptions requestOptions = null)
         {
             return GetCompaniesCompanyIdApiCredentialsApiCredentialIdAsync(companyId, apiCredentialId, requestOptions).GetAwaiter().GetResult();
         }
 
         /// <summary>
-        /// Get an API credential Returns the [API credential](https://docs.adyen.com/development-resources/api-credentials) identified in the path.  To make this request, your API credential must have the following [roles](https://docs.adyen.com/development-resources/api-credentials#api-permissions): * Management API—API credentials read and write
+        /// Get an API credential
         /// </summary>
-        /// <exception cref="Adyen.Service.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="companyId">The unique identifier of the company account.</param>
         /// <param name="apiCredentialId">Unique identifier of the API credential.</param>
+        /// <param name="requestOptions">Additional request options.</param>
         /// <returns>Task of CompanyApiCredential</returns>
-        /// <param name="requestOptions">Additional request options</param>
-        public async Task<CompanyApiCredential> GetCompaniesCompanyIdApiCredentialsApiCredentialIdAsync(string companyId, string apiCredentialId, RequestOptions requestOptions = default)
+        public async Task<CompanyApiCredential> GetCompaniesCompanyIdApiCredentialsApiCredentialIdAsync(string companyId, string apiCredentialId, RequestOptions requestOptions = null)
         {
             var endpoint = $"/companies/{companyId}/apiCredentials/{apiCredentialId}";
             string jsonRequest = null;
@@ -90,29 +110,27 @@ namespace Adyen.Service.Management
         }
 
         /// <summary>
-        /// Update an API credential. Changes the API credential's roles, merchant account access, or allowed origins. The request has the new values for the fields you want to change. The response contains the full updated API credential, including the new values from the request.   To make this request, your API credential must have the following [roles](https://docs.adyen.com/development-resources/api-credentials#api-permissions): * Management API—API credentials read and write
+        /// Update an API credential.
         /// </summary>
-        /// <exception cref="Adyen.Service.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="companyId">The unique identifier of the company account.</param>
         /// <param name="apiCredentialId">Unique identifier of the API credential.</param>
-        /// <param name="updateCompanyApiCredentialRequest"> (optional)</param>
+        /// <param name="updateCompanyApiCredentialRequest"></param>
+        /// <param name="requestOptions">Additional request options.</param>
         /// <returns>CompanyApiCredential</returns>
-        /// <param name="requestOptions">Additional request options</param>
-        public CompanyApiCredential PatchCompaniesCompanyIdApiCredentialsApiCredentialId(string companyId, string apiCredentialId, UpdateCompanyApiCredentialRequest updateCompanyApiCredentialRequest, RequestOptions requestOptions = default)
+        public CompanyApiCredential PatchCompaniesCompanyIdApiCredentialsApiCredentialId(string companyId, string apiCredentialId, UpdateCompanyApiCredentialRequest updateCompanyApiCredentialRequest, RequestOptions requestOptions = null)
         {
             return PatchCompaniesCompanyIdApiCredentialsApiCredentialIdAsync(companyId, apiCredentialId, updateCompanyApiCredentialRequest, requestOptions).GetAwaiter().GetResult();
         }
 
         /// <summary>
-        /// Update an API credential. Changes the API credential's roles, merchant account access, or allowed origins. The request has the new values for the fields you want to change. The response contains the full updated API credential, including the new values from the request.   To make this request, your API credential must have the following [roles](https://docs.adyen.com/development-resources/api-credentials#api-permissions): * Management API—API credentials read and write
+        /// Update an API credential.
         /// </summary>
-        /// <exception cref="Adyen.Service.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="companyId">The unique identifier of the company account.</param>
         /// <param name="apiCredentialId">Unique identifier of the API credential.</param>
-        /// <param name="updateCompanyApiCredentialRequest"> (optional)</param>
+        /// <param name="updateCompanyApiCredentialRequest"></param>
+        /// <param name="requestOptions">Additional request options.</param>
         /// <returns>Task of CompanyApiCredential</returns>
-        /// <param name="requestOptions">Additional request options</param>
-        public async Task<CompanyApiCredential> PatchCompaniesCompanyIdApiCredentialsApiCredentialIdAsync(string companyId, string apiCredentialId, UpdateCompanyApiCredentialRequest updateCompanyApiCredentialRequest, RequestOptions requestOptions = default)
+        public async Task<CompanyApiCredential> PatchCompaniesCompanyIdApiCredentialsApiCredentialIdAsync(string companyId, string apiCredentialId, UpdateCompanyApiCredentialRequest updateCompanyApiCredentialRequest, RequestOptions requestOptions = null)
         {
             var endpoint = $"/companies/{companyId}/apiCredentials/{apiCredentialId}";
             string jsonRequest = updateCompanyApiCredentialRequest.ToJson();
@@ -122,27 +140,25 @@ namespace Adyen.Service.Management
         }
 
         /// <summary>
-        /// Create an API credential. Creates an [API credential](https://docs.adyen.com/development-resources/api-credentials) for the company account identified in the path. In the request, you can specify which merchant accounts the new API credential will have access to, as well as its roles and allowed origins.  The response includes several types of authentication details: * [API key](https://docs.adyen.com/development-resources/api-authentication#api-key-authentication): used for API request authentication. * [Client key](https://docs.adyen.com/development-resources/client-side-authentication#how-it-works): public key used for client-side authentication. * [Username and password](https://docs.adyen.com/development-resources/api-authentication#using-basic-authentication): used for basic authentication.  > Make sure you store the API key securely in your system. You won't be able to retrieve it later.  If your API key is lost or compromised, you need to [generate a new API key](https://docs.adyen.com/api-explorer/#/ManagementService/v1/post/companies/{companyId}/apiCredentials/{apiCredentialId}/generateApiKey).  To make this request, your API credential must have the following [roles](https://docs.adyen.com/development-resources/api-credentials#api-permissions): * Management API—API credentials read and write
+        /// Create an API credential.
         /// </summary>
-        /// <exception cref="Adyen.Service.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="companyId">The unique identifier of the company account.</param>
-        /// <param name="createCompanyApiCredentialRequest"> (optional)</param>
+        /// <param name="createCompanyApiCredentialRequest"></param>
+        /// <param name="requestOptions">Additional request options.</param>
         /// <returns>CreateCompanyApiCredentialResponse</returns>
-        /// <param name="requestOptions">Additional request options</param>
-        public CreateCompanyApiCredentialResponse PostCompaniesCompanyIdApiCredentials(string companyId, CreateCompanyApiCredentialRequest createCompanyApiCredentialRequest, RequestOptions requestOptions = default)
+        public CreateCompanyApiCredentialResponse PostCompaniesCompanyIdApiCredentials(string companyId, CreateCompanyApiCredentialRequest createCompanyApiCredentialRequest, RequestOptions requestOptions = null)
         {
             return PostCompaniesCompanyIdApiCredentialsAsync(companyId, createCompanyApiCredentialRequest, requestOptions).GetAwaiter().GetResult();
         }
 
         /// <summary>
-        /// Create an API credential. Creates an [API credential](https://docs.adyen.com/development-resources/api-credentials) for the company account identified in the path. In the request, you can specify which merchant accounts the new API credential will have access to, as well as its roles and allowed origins.  The response includes several types of authentication details: * [API key](https://docs.adyen.com/development-resources/api-authentication#api-key-authentication): used for API request authentication. * [Client key](https://docs.adyen.com/development-resources/client-side-authentication#how-it-works): public key used for client-side authentication. * [Username and password](https://docs.adyen.com/development-resources/api-authentication#using-basic-authentication): used for basic authentication.  > Make sure you store the API key securely in your system. You won't be able to retrieve it later.  If your API key is lost or compromised, you need to [generate a new API key](https://docs.adyen.com/api-explorer/#/ManagementService/v1/post/companies/{companyId}/apiCredentials/{apiCredentialId}/generateApiKey).  To make this request, your API credential must have the following [roles](https://docs.adyen.com/development-resources/api-credentials#api-permissions): * Management API—API credentials read and write
+        /// Create an API credential.
         /// </summary>
-        /// <exception cref="Adyen.Service.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="companyId">The unique identifier of the company account.</param>
-        /// <param name="createCompanyApiCredentialRequest"> (optional)</param>
+        /// <param name="createCompanyApiCredentialRequest"></param>
+        /// <param name="requestOptions">Additional request options.</param>
         /// <returns>Task of CreateCompanyApiCredentialResponse</returns>
-        /// <param name="requestOptions">Additional request options</param>
-        public async Task<CreateCompanyApiCredentialResponse> PostCompaniesCompanyIdApiCredentialsAsync(string companyId, CreateCompanyApiCredentialRequest createCompanyApiCredentialRequest, RequestOptions requestOptions = default)
+        public async Task<CreateCompanyApiCredentialResponse> PostCompaniesCompanyIdApiCredentialsAsync(string companyId, CreateCompanyApiCredentialRequest createCompanyApiCredentialRequest, RequestOptions requestOptions = null)
         {
             var endpoint = $"/companies/{companyId}/apiCredentials";
             string jsonRequest = createCompanyApiCredentialRequest.ToJson();

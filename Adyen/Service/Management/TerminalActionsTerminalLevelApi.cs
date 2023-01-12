@@ -28,25 +28,23 @@ namespace Adyen.Service.Management
         public TerminalActionsTerminalLevelApi(Client client) : base(client) {}
     
         /// <summary>
-        /// Create a terminal action Schedules a [terminal action](https://docs.adyen.com/point-of-sale/automating-terminal-management/terminal-actions-api) by specifying the action and the terminals that the action must be applied to.   The following restrictions apply: * You can schedule only one action at a time. For example, to install a new app version and remove an old app version, you have to make two API requests.  * The maximum number of terminals in a request is **100**. For example, to apply an action to 250 terminals, you have to divide the terminals over three API requests.  * If there is an error with one or more terminal IDs in the request, the action is scheduled for none of the terminals. You need to fix the error and try again.   To make this request, your API credential must have the following [role](https://docs.adyen.com/development-resources/api-credentials#api-permissions): * Management API—Terminal actions read and write
+        /// Create a terminal action
         /// </summary>
-        /// <exception cref="Adyen.Service.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="scheduleTerminalActionsRequest"> (optional)</param>
+        /// <param name="scheduleTerminalActionsRequest"></param>
+        /// <param name="requestOptions">Additional request options.</param>
         /// <returns>ScheduleTerminalActionsResponse</returns>
-        /// <param name="requestOptions">Additional request options</param>
-        public ScheduleTerminalActionsResponse PostTerminalsScheduleActions(ScheduleTerminalActionsRequest scheduleTerminalActionsRequest, RequestOptions requestOptions = default)
+        public ScheduleTerminalActionsResponse PostTerminalsScheduleActions(ScheduleTerminalActionsRequest scheduleTerminalActionsRequest, RequestOptions requestOptions = null)
         {
             return PostTerminalsScheduleActionsAsync(scheduleTerminalActionsRequest, requestOptions).GetAwaiter().GetResult();
         }
 
         /// <summary>
-        /// Create a terminal action Schedules a [terminal action](https://docs.adyen.com/point-of-sale/automating-terminal-management/terminal-actions-api) by specifying the action and the terminals that the action must be applied to.   The following restrictions apply: * You can schedule only one action at a time. For example, to install a new app version and remove an old app version, you have to make two API requests.  * The maximum number of terminals in a request is **100**. For example, to apply an action to 250 terminals, you have to divide the terminals over three API requests.  * If there is an error with one or more terminal IDs in the request, the action is scheduled for none of the terminals. You need to fix the error and try again.   To make this request, your API credential must have the following [role](https://docs.adyen.com/development-resources/api-credentials#api-permissions): * Management API—Terminal actions read and write
+        /// Create a terminal action
         /// </summary>
-        /// <exception cref="Adyen.Service.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="scheduleTerminalActionsRequest"> (optional)</param>
+        /// <param name="scheduleTerminalActionsRequest"></param>
+        /// <param name="requestOptions">Additional request options.</param>
         /// <returns>Task of ScheduleTerminalActionsResponse</returns>
-        /// <param name="requestOptions">Additional request options</param>
-        public async Task<ScheduleTerminalActionsResponse> PostTerminalsScheduleActionsAsync(ScheduleTerminalActionsRequest scheduleTerminalActionsRequest, RequestOptions requestOptions = default)
+        public async Task<ScheduleTerminalActionsResponse> PostTerminalsScheduleActionsAsync(ScheduleTerminalActionsRequest scheduleTerminalActionsRequest, RequestOptions requestOptions = null)
         {
             var endpoint = "/terminals/scheduleActions";
             string jsonRequest = scheduleTerminalActionsRequest.ToJson();

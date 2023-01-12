@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Linq;
 using System.Net.Http;
 using System.Threading.Tasks;
 using Adyen.Model;
@@ -69,6 +70,32 @@ namespace Adyen.Test
                     It.IsRegex(@"""data"": ""base64"""),
                     null,
                     new HttpMethod("PATCH")));
+        }
+
+        [TestMethod]
+        public void ListTerminals()
+        {
+            var client = CreateMockTestClientApiKeyBasedRequestAsync("Mocks/management/list-terminals.json");
+            var service = new TerminalsTerminalLevelApi(client);
+
+            var terminals = service.GetTerminals(new RequestOptions
+            {
+                QueryParameters = new Dictionary<string, string>
+                {
+                    { "searchQuery", "ABC OR 123" },
+                    { "pageSize", "2" },
+                }
+            });
+
+            Assert.AreEqual(2, terminals.Data.Count);
+            ClientInterfaceMock.Verify(mock =>
+                mock.RequestAsync("/v1/terminals?searchQuery=ABC+OR+123&pageSize=2",
+                    null, null, new HttpMethod("GET")));
+            var terminal =
+                from o in terminals.Data
+                where o.SerialNumber == "080-020-970" && o.Status == "onlineLast1Day"
+                select o;
+            Assert.AreEqual("6064364710330000000", terminal.First().Iccid);
         }
     }
 }

@@ -28,25 +28,23 @@ namespace Adyen.Service.Management
         public TerminalSettingsTerminalLevelApi(Client client) : base(client) {}
     
         /// <summary>
-        /// Get the terminal logo Returns the logo that is configured for the payment terminal identified in the path. The logo is returned as a Base64-encoded string. You need to Base64-decode the string to get the actual image file.  To make this request, your API credential must have one of the following [roles](https://docs.adyen.com/development-resources/api-credentials#api-permissions): * Management API—Terminal settings read * Management API—Terminal settings read and write
+        /// Get the terminal logo
         /// </summary>
-        /// <exception cref="Adyen.Service.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="terminalId">The unique identifier of the payment terminal.</param>
+        /// <param name="requestOptions">Additional request options.</param>
         /// <returns>Logo</returns>
-        /// <param name="requestOptions">Additional request options</param>
-        public Logo GetTerminalsTerminalIdTerminalLogos(string terminalId, RequestOptions requestOptions = default)
+        public Logo GetTerminalsTerminalIdTerminalLogos(string terminalId, RequestOptions requestOptions = null)
         {
             return GetTerminalsTerminalIdTerminalLogosAsync(terminalId, requestOptions).GetAwaiter().GetResult();
         }
 
         /// <summary>
-        /// Get the terminal logo Returns the logo that is configured for the payment terminal identified in the path. The logo is returned as a Base64-encoded string. You need to Base64-decode the string to get the actual image file.  To make this request, your API credential must have one of the following [roles](https://docs.adyen.com/development-resources/api-credentials#api-permissions): * Management API—Terminal settings read * Management API—Terminal settings read and write
+        /// Get the terminal logo
         /// </summary>
-        /// <exception cref="Adyen.Service.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="terminalId">The unique identifier of the payment terminal.</param>
+        /// <param name="requestOptions">Additional request options.</param>
         /// <returns>Task of Logo</returns>
-        /// <param name="requestOptions">Additional request options</param>
-        public async Task<Logo> GetTerminalsTerminalIdTerminalLogosAsync(string terminalId, RequestOptions requestOptions = default)
+        public async Task<Logo> GetTerminalsTerminalIdTerminalLogosAsync(string terminalId, RequestOptions requestOptions = null)
         {
             var endpoint = $"/terminals/{terminalId}/terminalLogos";
             string jsonRequest = null;
@@ -56,25 +54,23 @@ namespace Adyen.Service.Management
         }
 
         /// <summary>
-        /// Get terminal settings Returns the settings that are configured for the payment terminal identified in the path.  To make this request, your API credential must have one of the following [roles](https://docs.adyen.com/development-resources/api-credentials#api-permissions): * Management API—Terminal settings read * Management API—Terminal settings read and write
+        /// Get terminal settings
         /// </summary>
-        /// <exception cref="Adyen.Service.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="terminalId">The unique identifier of the payment terminal.</param>
+        /// <param name="requestOptions">Additional request options.</param>
         /// <returns>TerminalSettings</returns>
-        /// <param name="requestOptions">Additional request options</param>
-        public TerminalSettings GetTerminalsTerminalIdTerminalSettings(string terminalId, RequestOptions requestOptions = default)
+        public TerminalSettings GetTerminalsTerminalIdTerminalSettings(string terminalId, RequestOptions requestOptions = null)
         {
             return GetTerminalsTerminalIdTerminalSettingsAsync(terminalId, requestOptions).GetAwaiter().GetResult();
         }
 
         /// <summary>
-        /// Get terminal settings Returns the settings that are configured for the payment terminal identified in the path.  To make this request, your API credential must have one of the following [roles](https://docs.adyen.com/development-resources/api-credentials#api-permissions): * Management API—Terminal settings read * Management API—Terminal settings read and write
+        /// Get terminal settings
         /// </summary>
-        /// <exception cref="Adyen.Service.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="terminalId">The unique identifier of the payment terminal.</param>
+        /// <param name="requestOptions">Additional request options.</param>
         /// <returns>Task of TerminalSettings</returns>
-        /// <param name="requestOptions">Additional request options</param>
-        public async Task<TerminalSettings> GetTerminalsTerminalIdTerminalSettingsAsync(string terminalId, RequestOptions requestOptions = default)
+        public async Task<TerminalSettings> GetTerminalsTerminalIdTerminalSettingsAsync(string terminalId, RequestOptions requestOptions = null)
         {
             var endpoint = $"/terminals/{terminalId}/terminalSettings";
             string jsonRequest = null;
@@ -84,27 +80,25 @@ namespace Adyen.Service.Management
         }
 
         /// <summary>
-        /// Update the logo Updates the logo for the payment terminal identified in the path.  * To change the logo, specify the image file as a Base64-encoded string. * To restore the logo inherited from a higher level (store, merchant account, or company account), specify an empty logo value.  To make this request, your API credential must have the following [role](https://docs.adyen.com/development-resources/api-credentials#api-permissions): * Management API—Terminal settings read and write
+        /// Update the logo
         /// </summary>
-        /// <exception cref="Adyen.Service.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="terminalId">The unique identifier of the payment terminal.</param>
-        /// <param name="logo"> (optional)</param>
+        /// <param name="logo"></param>
+        /// <param name="requestOptions">Additional request options.</param>
         /// <returns>Logo</returns>
-        /// <param name="requestOptions">Additional request options</param>
-        public Logo PatchTerminalsTerminalIdTerminalLogos(string terminalId, Logo logo, RequestOptions requestOptions = default)
+        public Logo PatchTerminalsTerminalIdTerminalLogos(string terminalId, Logo logo, RequestOptions requestOptions = null)
         {
             return PatchTerminalsTerminalIdTerminalLogosAsync(terminalId, logo, requestOptions).GetAwaiter().GetResult();
         }
 
         /// <summary>
-        /// Update the logo Updates the logo for the payment terminal identified in the path.  * To change the logo, specify the image file as a Base64-encoded string. * To restore the logo inherited from a higher level (store, merchant account, or company account), specify an empty logo value.  To make this request, your API credential must have the following [role](https://docs.adyen.com/development-resources/api-credentials#api-permissions): * Management API—Terminal settings read and write
+        /// Update the logo
         /// </summary>
-        /// <exception cref="Adyen.Service.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="terminalId">The unique identifier of the payment terminal.</param>
-        /// <param name="logo"> (optional)</param>
+        /// <param name="logo"></param>
+        /// <param name="requestOptions">Additional request options.</param>
         /// <returns>Task of Logo</returns>
-        /// <param name="requestOptions">Additional request options</param>
-        public async Task<Logo> PatchTerminalsTerminalIdTerminalLogosAsync(string terminalId, Logo logo, RequestOptions requestOptions = default)
+        public async Task<Logo> PatchTerminalsTerminalIdTerminalLogosAsync(string terminalId, Logo logo, RequestOptions requestOptions = null)
         {
             var endpoint = $"/terminals/{terminalId}/terminalLogos";
             string jsonRequest = logo.ToJson();
@@ -114,27 +108,25 @@ namespace Adyen.Service.Management
         }
 
         /// <summary>
-        /// Update terminal settings Updates the settings that are configured for the payment terminal identified in the path.  * To change a parameter value, include the full object that contains the parameter, even if you don't want to change all parameters in the object. * To restore a parameter value inherited from a higher level, include the full object that contains the parameter, and specify an empty value for the parameter or omit the parameter. * Objects that are not included in the request are not updated.  To make this request, your API credential must have the following [role](https://docs.adyen.com/development-resources/api-credentials#api-permissions): * Management API—Terminal settings read and write
+        /// Update terminal settings
         /// </summary>
-        /// <exception cref="Adyen.Service.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="terminalId">The unique identifier of the payment terminal.</param>
-        /// <param name="terminalSettings"> (optional)</param>
+        /// <param name="terminalSettings"></param>
+        /// <param name="requestOptions">Additional request options.</param>
         /// <returns>TerminalSettings</returns>
-        /// <param name="requestOptions">Additional request options</param>
-        public TerminalSettings PatchTerminalsTerminalIdTerminalSettings(string terminalId, TerminalSettings terminalSettings, RequestOptions requestOptions = default)
+        public TerminalSettings PatchTerminalsTerminalIdTerminalSettings(string terminalId, TerminalSettings terminalSettings, RequestOptions requestOptions = null)
         {
             return PatchTerminalsTerminalIdTerminalSettingsAsync(terminalId, terminalSettings, requestOptions).GetAwaiter().GetResult();
         }
 
         /// <summary>
-        /// Update terminal settings Updates the settings that are configured for the payment terminal identified in the path.  * To change a parameter value, include the full object that contains the parameter, even if you don't want to change all parameters in the object. * To restore a parameter value inherited from a higher level, include the full object that contains the parameter, and specify an empty value for the parameter or omit the parameter. * Objects that are not included in the request are not updated.  To make this request, your API credential must have the following [role](https://docs.adyen.com/development-resources/api-credentials#api-permissions): * Management API—Terminal settings read and write
+        /// Update terminal settings
         /// </summary>
-        /// <exception cref="Adyen.Service.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="terminalId">The unique identifier of the payment terminal.</param>
-        /// <param name="terminalSettings"> (optional)</param>
+        /// <param name="terminalSettings"></param>
+        /// <param name="requestOptions">Additional request options.</param>
         /// <returns>Task of TerminalSettings</returns>
-        /// <param name="requestOptions">Additional request options</param>
-        public async Task<TerminalSettings> PatchTerminalsTerminalIdTerminalSettingsAsync(string terminalId, TerminalSettings terminalSettings, RequestOptions requestOptions = default)
+        public async Task<TerminalSettings> PatchTerminalsTerminalIdTerminalSettingsAsync(string terminalId, TerminalSettings terminalSettings, RequestOptions requestOptions = null)
         {
             var endpoint = $"/terminals/{terminalId}/terminalSettings";
             string jsonRequest = terminalSettings.ToJson();
