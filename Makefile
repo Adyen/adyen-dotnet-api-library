@@ -36,6 +36,7 @@ $(services): target/spec $(openapi-generator-jar)
 		-t templates/csharp \
 		-o $(output) \
 		--model-package $@ \
+		--skip-validate-spec \
 		--reserved-words-mappings Version=Version \
 		--global-property modelDocs=false \
         --global-property modelTests=false \

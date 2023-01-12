@@ -143,12 +143,13 @@
             {{/useOneOfDiscriminatorLookup}}
             int match = 0;
             List<string> matchedTypes = new List<string>();
+            var type = (string)JObject.Parse(jsonString)["type"];
             {{#oneOf}}
 
             try
             {
                 // if it does not contains "AdditionalProperties", use SerializerSettings to deserialize
-                if (typeof({{{.}}}).GetProperty("AdditionalProperties") == null)
+                if (typeof({{{.}}}).GetProperty("AdditionalProperties") == null && type != null && JsonConvert.SerializeObject(({{{.}}}.TypeEnum) 1).Contains(type))
                 {
                     new{{classname}} = new {{classname}}(JsonConvert.DeserializeObject<{{{.}}}>(jsonString, {{classname}}.SerializerSettings));
                 }
@@ -172,11 +173,7 @@
             {
                 throw new InvalidDataException("The JSON string `" + jsonString + "` cannot be deserialized into any schema defined.");
             }
-            else if (match > 1)
-            {
-                throw new InvalidDataException("The JSON string `" + jsonString + "` incorrectly matches more than one schema (should be exactly one match): " + matchedTypes);
-            }
-
+            
             // deserialization is considered successful at this point if no exception has been thrown.
             return new{{classname}};
         }
