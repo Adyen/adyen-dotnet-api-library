@@ -16,7 +16,7 @@ namespace Adyen.Test
         [TestMethod]
         public void Me()
         {
-            var client = CreateMockTestClientApiKeyBasedRequest("Mocks/management/me.json");
+            var client = CreateMockTestClientApiKeyBasedRequestAsync("Mocks/management/me.json");
             var service = new MyAPICredentialApi(client);
 
             var response = service.GetMe();
@@ -29,7 +29,7 @@ namespace Adyen.Test
         [TestMethod]
         public void ListMerchantAccounts()
         {
-            var client = CreateMockTestClientApiKeyBasedRequest("Mocks/management/list-merchant-accounts.json");
+            var client = CreateMockTestClientApiKeyBasedRequestAsync("Mocks/management/list-merchant-accounts.json");
             var service = new AccountCompanyLevelApi(client);
 
             var response = service.GetCompaniesCompanyIdMerchants("ABC123", new RequestOptions
@@ -44,7 +44,7 @@ namespace Adyen.Test
             Assert.AreEqual(22, response.ItemsTotal);
             Assert.AreEqual("YOUR_MERCHANT_ACCOUNT_1", response.Data[0].Id);
             ClientInterfaceMock.Verify(mock =>
-                mock.Request("/v1/companies/ABC123/merchants?pageNumber=1&pageSize=10", null, null,
+                mock.RequestAsync("/v1/companies/ABC123/merchants?pageNumber=1&pageSize=10", null, null,
                     HttpMethod.Get));
         }
 
@@ -75,7 +75,7 @@ namespace Adyen.Test
         [TestMethod]
         public void ListTerminals()
         {
-            var client = CreateMockTestClientApiKeyBasedRequest("Mocks/management/list-terminals.json");
+            var client = CreateMockTestClientApiKeyBasedRequestAsync("Mocks/management/list-terminals.json");
             var service = new TerminalsTerminalLevelApi(client);
 
             var terminals = service.GetTerminals(new RequestOptions
@@ -89,7 +89,7 @@ namespace Adyen.Test
 
             Assert.AreEqual(2, terminals.Data.Count);
             ClientInterfaceMock.Verify(mock =>
-                mock.Request("/v1/terminals?searchQuery=ABC+OR+123&pageSize=2",
+                mock.RequestAsync("/v1/terminals?searchQuery=ABC+OR+123&pageSize=2",
                     null, null, new HttpMethod("GET")));
             var terminal =
                 from o in terminals.Data

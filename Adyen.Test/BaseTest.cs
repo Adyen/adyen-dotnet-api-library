@@ -288,17 +288,17 @@ namespace Adyen.Test
             var mockPath = GetMockFilePath(fileName);
             var response = MockFileToString(mockPath);
             //Create a mock interface
-            ClientInterfaceMock = new Mock<IClient>();
+            var clientInterfaceMock = new Mock<IClient>();
             var confMock = MockPaymentData.CreateConfigApiKeyBasedMock();
-            ClientInterfaceMock.Setup(x => x.Request(It.IsAny<string>(),
-                It.IsAny<string>(), It.IsAny<RequestOptions>(), It.IsAny<HttpMethod>())).Returns(response);
+            clientInterfaceMock.Setup(x => x.Request(It.IsAny<string>(),
+                It.IsAny<string>(), It.IsAny<RequestOptions>(), null)).Returns(response);
             var config = new Config()
             {
                 Environment = It.IsAny<Model.Enum.Environment>()
             };
             var clientMock = new Client(config)
             {
-                HttpClient = ClientInterfaceMock.Object,
+                HttpClient = clientInterfaceMock.Object,
                 Config = confMock
             };
             return clientMock;
