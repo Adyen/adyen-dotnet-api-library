@@ -2,7 +2,7 @@
 # Adyen .net API Library
 [![nuget](https://img.shields.io/nuget/v/adyen.svg)](https://www.nuget.org/packages/adyen/) [![nuget](https://img.shields.io/nuget/dt/adyen.svg)](https://www.nuget.org/packages/adyen/) ![.NET Core](https://github.com/Adyen/adyen-dotnet-api-library/workflows/.NET%20Core/badge.svg)
 
-This is the officially supported .net library for using Adyen's APIs.
+This is the officially supported .NET library for using Adyen's APIs.
 ## Supported API versions
 The library supports all APIs under the following services:
 
