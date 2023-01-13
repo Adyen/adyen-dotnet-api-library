@@ -45,10 +45,7 @@ namespace Adyen.Service.Management
         /// <returns>BillingEntitiesResponse</returns>
         public BillingEntitiesResponse GetMerchantsMerchantIdBillingEntities(string merchantId, RequestOptions requestOptions = null)
         {
-            var endpoint = $"/merchants/{merchantId}/billingEntities" + ToQueryString(requestOptions?.QueryParameters);
-            var resource = new ManagementResource(this, endpoint);
-            var jsonResult = resource.Request(null, null, new HttpMethod("GET"));
-            return JsonConvert.DeserializeObject<BillingEntitiesResponse>(jsonResult);
+            return GetMerchantsMerchantIdBillingEntitiesAsync(merchantId, requestOptions).GetAwaiter().GetResult();
         }
 
         /// <summary>
@@ -101,10 +98,7 @@ namespace Adyen.Service.Management
         /// <returns>ShippingLocationsResponse</returns>
         public ShippingLocationsResponse GetMerchantsMerchantIdShippingLocations(string merchantId, RequestOptions requestOptions = null)
         {
-            var endpoint = $"/merchants/{merchantId}/shippingLocations" + ToQueryString(requestOptions?.QueryParameters);
-            var resource = new ManagementResource(this, endpoint);
-            var jsonResult = resource.Request(null, null, new HttpMethod("GET"));
-            return JsonConvert.DeserializeObject<ShippingLocationsResponse>(jsonResult);
+            return GetMerchantsMerchantIdShippingLocationsAsync(merchantId, requestOptions).GetAwaiter().GetResult();
         }
 
         /// <summary>
@@ -147,10 +141,7 @@ namespace Adyen.Service.Management
         /// <returns>TerminalModelsResponse</returns>
         public TerminalModelsResponse GetMerchantsMerchantIdTerminalModels(string merchantId, RequestOptions requestOptions = null)
         {
-            var endpoint = $"/merchants/{merchantId}/terminalModels";
-            var resource = new ManagementResource(this, endpoint);
-            var jsonResult = resource.Request(null, null, new HttpMethod("GET"));
-            return JsonConvert.DeserializeObject<TerminalModelsResponse>(jsonResult);
+            return GetMerchantsMerchantIdTerminalModelsAsync(merchantId, requestOptions).GetAwaiter().GetResult();
         }
 
         /// <summary>
@@ -197,10 +188,7 @@ namespace Adyen.Service.Management
         /// <returns>TerminalOrdersResponse</returns>
         public TerminalOrdersResponse GetMerchantsMerchantIdTerminalOrders(string merchantId, RequestOptions requestOptions = null)
         {
-            var endpoint = $"/merchants/{merchantId}/terminalOrders" + ToQueryString(requestOptions?.QueryParameters);
-            var resource = new ManagementResource(this, endpoint);
-            var jsonResult = resource.Request(null, null, new HttpMethod("GET"));
-            return JsonConvert.DeserializeObject<TerminalOrdersResponse>(jsonResult);
+            return GetMerchantsMerchantIdTerminalOrdersAsync(merchantId, requestOptions).GetAwaiter().GetResult();
         }
 
         /// <summary>
@@ -248,10 +236,7 @@ namespace Adyen.Service.Management
         /// <returns>TerminalOrder</returns>
         public TerminalOrder GetMerchantsMerchantIdTerminalOrdersOrderId(string merchantId, string orderId, RequestOptions requestOptions = null)
         {
-            var endpoint = $"/merchants/{merchantId}/terminalOrders/{orderId}";
-            var resource = new ManagementResource(this, endpoint);
-            var jsonResult = resource.Request(null, null, new HttpMethod("GET"));
-            return JsonConvert.DeserializeObject<TerminalOrder>(jsonResult);
+            return GetMerchantsMerchantIdTerminalOrdersOrderIdAsync(merchantId, orderId, requestOptions).GetAwaiter().GetResult();
         }
 
         /// <summary>
@@ -299,10 +284,7 @@ namespace Adyen.Service.Management
         /// <returns>TerminalProductsResponse</returns>
         public TerminalProductsResponse GetMerchantsMerchantIdTerminalProducts(string merchantId, RequestOptions requestOptions = null)
         {
-            var endpoint = $"/merchants/{merchantId}/terminalProducts" + ToQueryString(requestOptions?.QueryParameters);
-            var resource = new ManagementResource(this, endpoint);
-            var jsonResult = resource.Request(null, null, new HttpMethod("GET"));
-            return JsonConvert.DeserializeObject<TerminalProductsResponse>(jsonResult);
+            return GetMerchantsMerchantIdTerminalProductsAsync(merchantId, requestOptions).GetAwaiter().GetResult();
         }
 
         /// <summary>
@@ -351,10 +333,7 @@ namespace Adyen.Service.Management
         /// <returns>TerminalOrder</returns>
         public TerminalOrder PatchMerchantsMerchantIdTerminalOrdersOrderId(string merchantId, string orderId, TerminalOrderRequest terminalOrderRequest, RequestOptions requestOptions = null)
         {
-            var endpoint = $"/merchants/{merchantId}/terminalOrders/{orderId}";
-            var resource = new ManagementResource(this, endpoint);
-            var jsonResult = resource.Request(terminalOrderRequest.ToJson(), null, new HttpMethod("PATCH"));
-            return JsonConvert.DeserializeObject<TerminalOrder>(jsonResult);
+            return PatchMerchantsMerchantIdTerminalOrdersOrderIdAsync(merchantId, orderId, terminalOrderRequest, requestOptions).GetAwaiter().GetResult();
         }
 
         /// <summary>
@@ -382,10 +361,7 @@ namespace Adyen.Service.Management
         /// <returns>ShippingLocation</returns>
         public ShippingLocation PostMerchantsMerchantIdShippingLocations(string merchantId, ShippingLocation shippingLocation, RequestOptions requestOptions = null)
         {
-            var endpoint = $"/merchants/{merchantId}/shippingLocations";
-            var resource = new ManagementResource(this, endpoint);
-            var jsonResult = resource.Request(shippingLocation.ToJson(), null, new HttpMethod("POST"));
-            return JsonConvert.DeserializeObject<ShippingLocation>(jsonResult);
+            return PostMerchantsMerchantIdShippingLocationsAsync(merchantId, shippingLocation, requestOptions).GetAwaiter().GetResult();
         }
 
         /// <summary>
@@ -412,10 +388,7 @@ namespace Adyen.Service.Management
         /// <returns>TerminalOrder</returns>
         public TerminalOrder PostMerchantsMerchantIdTerminalOrders(string merchantId, TerminalOrderRequest terminalOrderRequest, RequestOptions requestOptions = null)
         {
-            var endpoint = $"/merchants/{merchantId}/terminalOrders";
-            var resource = new ManagementResource(this, endpoint);
-            var jsonResult = resource.Request(terminalOrderRequest.ToJson(), null, new HttpMethod("POST"));
-            return JsonConvert.DeserializeObject<TerminalOrder>(jsonResult);
+            return PostMerchantsMerchantIdTerminalOrdersAsync(merchantId, terminalOrderRequest, requestOptions).GetAwaiter().GetResult();
         }
 
         /// <summary>
@@ -442,10 +415,7 @@ namespace Adyen.Service.Management
         /// <returns>TerminalOrder</returns>
         public TerminalOrder PostMerchantsMerchantIdTerminalOrdersOrderIdCancel(string merchantId, string orderId, RequestOptions requestOptions = null)
         {
-            var endpoint = $"/merchants/{merchantId}/terminalOrders/{orderId}/cancel";
-            var resource = new ManagementResource(this, endpoint);
-            var jsonResult = resource.Request(null, null, new HttpMethod("POST"));
-            return JsonConvert.DeserializeObject<TerminalOrder>(jsonResult);
+            return PostMerchantsMerchantIdTerminalOrdersOrderIdCancelAsync(merchantId, orderId, requestOptions).GetAwaiter().GetResult();
         }
 
         /// <summary>

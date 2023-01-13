@@ -49,10 +49,7 @@ namespace Adyen.Service.Management
         /// <returns>ListMerchantApiCredentialsResponse</returns>
         public ListMerchantApiCredentialsResponse GetMerchantsMerchantIdApiCredentials(string merchantId, RequestOptions requestOptions = null)
         {
-            var endpoint = $"/merchants/{merchantId}/apiCredentials" + ToQueryString(requestOptions?.QueryParameters);
-            var resource = new ManagementResource(this, endpoint);
-            var jsonResult = resource.Request(null, null, new HttpMethod("GET"));
-            return JsonConvert.DeserializeObject<ListMerchantApiCredentialsResponse>(jsonResult);
+            return GetMerchantsMerchantIdApiCredentialsAsync(merchantId, requestOptions).GetAwaiter().GetResult();
         }
 
         /// <summary>
@@ -92,10 +89,7 @@ namespace Adyen.Service.Management
         /// <returns>ApiCredential</returns>
         public ApiCredential GetMerchantsMerchantIdApiCredentialsApiCredentialId(string merchantId, string apiCredentialId, RequestOptions requestOptions = null)
         {
-            var endpoint = $"/merchants/{merchantId}/apiCredentials/{apiCredentialId}";
-            var resource = new ManagementResource(this, endpoint);
-            var jsonResult = resource.Request(null, null, new HttpMethod("GET"));
-            return JsonConvert.DeserializeObject<ApiCredential>(jsonResult);
+            return GetMerchantsMerchantIdApiCredentialsApiCredentialIdAsync(merchantId, apiCredentialId, requestOptions).GetAwaiter().GetResult();
         }
 
         /// <summary>
@@ -123,10 +117,7 @@ namespace Adyen.Service.Management
         /// <returns>ApiCredential</returns>
         public ApiCredential PatchMerchantsMerchantIdApiCredentialsApiCredentialId(string merchantId, string apiCredentialId, UpdateMerchantApiCredentialRequest updateMerchantApiCredentialRequest, RequestOptions requestOptions = null)
         {
-            var endpoint = $"/merchants/{merchantId}/apiCredentials/{apiCredentialId}";
-            var resource = new ManagementResource(this, endpoint);
-            var jsonResult = resource.Request(updateMerchantApiCredentialRequest.ToJson(), null, new HttpMethod("PATCH"));
-            return JsonConvert.DeserializeObject<ApiCredential>(jsonResult);
+            return PatchMerchantsMerchantIdApiCredentialsApiCredentialIdAsync(merchantId, apiCredentialId, updateMerchantApiCredentialRequest, requestOptions).GetAwaiter().GetResult();
         }
 
         /// <summary>
@@ -154,10 +145,7 @@ namespace Adyen.Service.Management
         /// <returns>CreateApiCredentialResponse</returns>
         public CreateApiCredentialResponse PostMerchantsMerchantIdApiCredentials(string merchantId, CreateMerchantApiCredentialRequest createMerchantApiCredentialRequest, RequestOptions requestOptions = null)
         {
-            var endpoint = $"/merchants/{merchantId}/apiCredentials";
-            var resource = new ManagementResource(this, endpoint);
-            var jsonResult = resource.Request(createMerchantApiCredentialRequest.ToJson(), null, new HttpMethod("POST"));
-            return JsonConvert.DeserializeObject<CreateApiCredentialResponse>(jsonResult);
+            return PostMerchantsMerchantIdApiCredentialsAsync(merchantId, createMerchantApiCredentialRequest, requestOptions).GetAwaiter().GetResult();
         }
 
         /// <summary>

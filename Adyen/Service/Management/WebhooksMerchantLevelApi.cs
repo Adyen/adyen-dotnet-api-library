@@ -35,9 +35,7 @@ namespace Adyen.Service.Management
         /// <param name="requestOptions">Additional request options.</param>
         public void DeleteMerchantsMerchantIdWebhooksWebhookId(string merchantId, string webhookId, RequestOptions requestOptions = null)
         {
-            var endpoint = $"/merchants/{merchantId}/webhooks/{webhookId}";
-            var resource = new ManagementResource(this, endpoint);
-            resource.Request(null, null, new HttpMethod("DELETE"));
+            DeleteMerchantsMerchantIdWebhooksWebhookIdAsync(merchantId, webhookId, requestOptions).GetAwaiter().GetResult();
         }
 
         /// <summary>
@@ -75,10 +73,7 @@ namespace Adyen.Service.Management
         /// <returns>ListWebhooksResponse</returns>
         public ListWebhooksResponse GetMerchantsMerchantIdWebhooks(string merchantId, RequestOptions requestOptions = null)
         {
-            var endpoint = $"/merchants/{merchantId}/webhooks" + ToQueryString(requestOptions?.QueryParameters);
-            var resource = new ManagementResource(this, endpoint);
-            var jsonResult = resource.Request(null, null, new HttpMethod("GET"));
-            return JsonConvert.DeserializeObject<ListWebhooksResponse>(jsonResult);
+            return GetMerchantsMerchantIdWebhooksAsync(merchantId, requestOptions).GetAwaiter().GetResult();
         }
 
         /// <summary>
@@ -118,10 +113,7 @@ namespace Adyen.Service.Management
         /// <returns>Webhook</returns>
         public Webhook GetMerchantsMerchantIdWebhooksWebhookId(string merchantId, string webhookId, RequestOptions requestOptions = null)
         {
-            var endpoint = $"/merchants/{merchantId}/webhooks/{webhookId}";
-            var resource = new ManagementResource(this, endpoint);
-            var jsonResult = resource.Request(null, null, new HttpMethod("GET"));
-            return JsonConvert.DeserializeObject<Webhook>(jsonResult);
+            return GetMerchantsMerchantIdWebhooksWebhookIdAsync(merchantId, webhookId, requestOptions).GetAwaiter().GetResult();
         }
 
         /// <summary>
@@ -149,10 +141,7 @@ namespace Adyen.Service.Management
         /// <returns>Webhook</returns>
         public Webhook PatchMerchantsMerchantIdWebhooksWebhookId(string merchantId, string webhookId, UpdateMerchantWebhookRequest updateMerchantWebhookRequest, RequestOptions requestOptions = null)
         {
-            var endpoint = $"/merchants/{merchantId}/webhooks/{webhookId}";
-            var resource = new ManagementResource(this, endpoint);
-            var jsonResult = resource.Request(updateMerchantWebhookRequest.ToJson(), null, new HttpMethod("PATCH"));
-            return JsonConvert.DeserializeObject<Webhook>(jsonResult);
+            return PatchMerchantsMerchantIdWebhooksWebhookIdAsync(merchantId, webhookId, updateMerchantWebhookRequest, requestOptions).GetAwaiter().GetResult();
         }
 
         /// <summary>
@@ -180,10 +169,7 @@ namespace Adyen.Service.Management
         /// <returns>Webhook</returns>
         public Webhook PostMerchantsMerchantIdWebhooks(string merchantId, CreateMerchantWebhookRequest createMerchantWebhookRequest, RequestOptions requestOptions = null)
         {
-            var endpoint = $"/merchants/{merchantId}/webhooks";
-            var resource = new ManagementResource(this, endpoint);
-            var jsonResult = resource.Request(createMerchantWebhookRequest.ToJson(), null, new HttpMethod("POST"));
-            return JsonConvert.DeserializeObject<Webhook>(jsonResult);
+            return PostMerchantsMerchantIdWebhooksAsync(merchantId, createMerchantWebhookRequest, requestOptions).GetAwaiter().GetResult();
         }
 
         /// <summary>
@@ -210,10 +196,7 @@ namespace Adyen.Service.Management
         /// <returns>GenerateHmacKeyResponse</returns>
         public GenerateHmacKeyResponse PostMerchantsMerchantIdWebhooksWebhookIdGenerateHmac(string merchantId, string webhookId, RequestOptions requestOptions = null)
         {
-            var endpoint = $"/merchants/{merchantId}/webhooks/{webhookId}/generateHmac";
-            var resource = new ManagementResource(this, endpoint);
-            var jsonResult = resource.Request(null, null, new HttpMethod("POST"));
-            return JsonConvert.DeserializeObject<GenerateHmacKeyResponse>(jsonResult);
+            return PostMerchantsMerchantIdWebhooksWebhookIdGenerateHmacAsync(merchantId, webhookId, requestOptions).GetAwaiter().GetResult();
         }
 
         /// <summary>
@@ -241,10 +224,7 @@ namespace Adyen.Service.Management
         /// <returns>TestWebhookResponse</returns>
         public TestWebhookResponse PostMerchantsMerchantIdWebhooksWebhookIdTest(string merchantId, string webhookId, TestWebhookRequest testWebhookRequest, RequestOptions requestOptions = null)
         {
-            var endpoint = $"/merchants/{merchantId}/webhooks/{webhookId}/test";
-            var resource = new ManagementResource(this, endpoint);
-            var jsonResult = resource.Request(testWebhookRequest.ToJson(), null, new HttpMethod("POST"));
-            return JsonConvert.DeserializeObject<TestWebhookResponse>(jsonResult);
+            return PostMerchantsMerchantIdWebhooksWebhookIdTestAsync(merchantId, webhookId, testWebhookRequest, requestOptions).GetAwaiter().GetResult();
         }
 
         /// <summary>

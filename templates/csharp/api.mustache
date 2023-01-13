@@ -26,12 +26,7 @@ namespace {{packageName}}.{{apiPackage}}
         {{/isDeprecated}}
         public {{{returnType}}}{{^returnType}}void{{/returnType}} {{operationId}}({{>api_parameters}})
         {
-            var endpoint = {{#hasPathParams}}${{/hasPathParams}}"{{{path}}}"{{#hasQueryParams}} + ToQueryString(requestOptions?.QueryParameters){{/hasQueryParams}};
-            var resource = new {{#lambda.titlecase}}{{serviceName}}{{/lambda.titlecase}}Resource(this, endpoint);
-            {{#returnType}}var jsonResult = {{/returnType}}resource.Request({{#bodyParam}}{{paramName}}.ToJson(){{/bodyParam}}{{^bodyParam}}null{{/bodyParam}}, null, new HttpMethod("{{httpMethod}}"));
-            {{#returnType}}
-            return JsonConvert.DeserializeObject<{{returnType}}>(jsonResult);
-            {{/returnType}}
+            {{#returnType}}return {{/returnType}}{{operationId}}Async({{>api_invoke}}).GetAwaiter().GetResult();
         }
 
         {{#supportsAsync}}

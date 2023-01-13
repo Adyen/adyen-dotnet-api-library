@@ -49,10 +49,7 @@ namespace Adyen.Service.Management
         /// <returns>ListCompanyUsersResponse</returns>
         public ListCompanyUsersResponse GetCompaniesCompanyIdUsers(string companyId, RequestOptions requestOptions = null)
         {
-            var endpoint = $"/companies/{companyId}/users" + ToQueryString(requestOptions?.QueryParameters);
-            var resource = new ManagementResource(this, endpoint);
-            var jsonResult = resource.Request(null, null, new HttpMethod("GET"));
-            return JsonConvert.DeserializeObject<ListCompanyUsersResponse>(jsonResult);
+            return GetCompaniesCompanyIdUsersAsync(companyId, requestOptions).GetAwaiter().GetResult();
         }
 
         /// <summary>
@@ -92,10 +89,7 @@ namespace Adyen.Service.Management
         /// <returns>CompanyUser</returns>
         public CompanyUser GetCompaniesCompanyIdUsersUserId(string companyId, string userId, RequestOptions requestOptions = null)
         {
-            var endpoint = $"/companies/{companyId}/users/{userId}";
-            var resource = new ManagementResource(this, endpoint);
-            var jsonResult = resource.Request(null, null, new HttpMethod("GET"));
-            return JsonConvert.DeserializeObject<CompanyUser>(jsonResult);
+            return GetCompaniesCompanyIdUsersUserIdAsync(companyId, userId, requestOptions).GetAwaiter().GetResult();
         }
 
         /// <summary>
@@ -123,10 +117,7 @@ namespace Adyen.Service.Management
         /// <returns>CompanyUser</returns>
         public CompanyUser PatchCompaniesCompanyIdUsersUserId(string companyId, string userId, UpdateCompanyUserRequest updateCompanyUserRequest, RequestOptions requestOptions = null)
         {
-            var endpoint = $"/companies/{companyId}/users/{userId}";
-            var resource = new ManagementResource(this, endpoint);
-            var jsonResult = resource.Request(updateCompanyUserRequest.ToJson(), null, new HttpMethod("PATCH"));
-            return JsonConvert.DeserializeObject<CompanyUser>(jsonResult);
+            return PatchCompaniesCompanyIdUsersUserIdAsync(companyId, userId, updateCompanyUserRequest, requestOptions).GetAwaiter().GetResult();
         }
 
         /// <summary>
@@ -154,10 +145,7 @@ namespace Adyen.Service.Management
         /// <returns>CreateCompanyUserResponse</returns>
         public CreateCompanyUserResponse PostCompaniesCompanyIdUsers(string companyId, CreateCompanyUserRequest createCompanyUserRequest, RequestOptions requestOptions = null)
         {
-            var endpoint = $"/companies/{companyId}/users";
-            var resource = new ManagementResource(this, endpoint);
-            var jsonResult = resource.Request(createCompanyUserRequest.ToJson(), null, new HttpMethod("POST"));
-            return JsonConvert.DeserializeObject<CreateCompanyUserResponse>(jsonResult);
+            return PostCompaniesCompanyIdUsersAsync(companyId, createCompanyUserRequest, requestOptions).GetAwaiter().GetResult();
         }
 
         /// <summary>

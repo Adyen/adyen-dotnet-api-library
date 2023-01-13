@@ -48,10 +48,7 @@ namespace Adyen.Service.Management
         /// <returns>ListMerchantResponse</returns>
         public ListMerchantResponse GetMerchants(RequestOptions requestOptions = null)
         {
-            var endpoint = "/merchants" + ToQueryString(requestOptions?.QueryParameters);
-            var resource = new ManagementResource(this, endpoint);
-            var jsonResult = resource.Request(null, null, new HttpMethod("GET"));
-            return JsonConvert.DeserializeObject<ListMerchantResponse>(jsonResult);
+            return GetMerchantsAsync(requestOptions).GetAwaiter().GetResult();
         }
 
         /// <summary>
@@ -89,10 +86,7 @@ namespace Adyen.Service.Management
         /// <returns>Merchant</returns>
         public Merchant GetMerchantsMerchantId(string merchantId, RequestOptions requestOptions = null)
         {
-            var endpoint = $"/merchants/{merchantId}";
-            var resource = new ManagementResource(this, endpoint);
-            var jsonResult = resource.Request(null, null, new HttpMethod("GET"));
-            return JsonConvert.DeserializeObject<Merchant>(jsonResult);
+            return GetMerchantsMerchantIdAsync(merchantId, requestOptions).GetAwaiter().GetResult();
         }
 
         /// <summary>
@@ -117,10 +111,7 @@ namespace Adyen.Service.Management
         /// <returns>CreateMerchantResponse</returns>
         public CreateMerchantResponse PostMerchants(CreateMerchantRequest createMerchantRequest, RequestOptions requestOptions = null)
         {
-            var endpoint = "/merchants";
-            var resource = new ManagementResource(this, endpoint);
-            var jsonResult = resource.Request(createMerchantRequest.ToJson(), null, new HttpMethod("POST"));
-            return JsonConvert.DeserializeObject<CreateMerchantResponse>(jsonResult);
+            return PostMerchantsAsync(createMerchantRequest, requestOptions).GetAwaiter().GetResult();
         }
 
         /// <summary>
@@ -145,10 +136,7 @@ namespace Adyen.Service.Management
         /// <returns>RequestActivationResponse</returns>
         public RequestActivationResponse PostMerchantsMerchantIdActivate(string merchantId, RequestOptions requestOptions = null)
         {
-            var endpoint = $"/merchants/{merchantId}/activate";
-            var resource = new ManagementResource(this, endpoint);
-            var jsonResult = resource.Request(null, null, new HttpMethod("POST"));
-            return JsonConvert.DeserializeObject<RequestActivationResponse>(jsonResult);
+            return PostMerchantsMerchantIdActivateAsync(merchantId, requestOptions).GetAwaiter().GetResult();
         }
 
         /// <summary>

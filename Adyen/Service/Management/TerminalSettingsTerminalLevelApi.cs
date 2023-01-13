@@ -35,10 +35,7 @@ namespace Adyen.Service.Management
         /// <returns>Logo</returns>
         public Logo GetTerminalsTerminalIdTerminalLogos(string terminalId, RequestOptions requestOptions = null)
         {
-            var endpoint = $"/terminals/{terminalId}/terminalLogos";
-            var resource = new ManagementResource(this, endpoint);
-            var jsonResult = resource.Request(null, null, new HttpMethod("GET"));
-            return JsonConvert.DeserializeObject<Logo>(jsonResult);
+            return GetTerminalsTerminalIdTerminalLogosAsync(terminalId, requestOptions).GetAwaiter().GetResult();
         }
 
         /// <summary>
@@ -63,10 +60,7 @@ namespace Adyen.Service.Management
         /// <returns>TerminalSettings</returns>
         public TerminalSettings GetTerminalsTerminalIdTerminalSettings(string terminalId, RequestOptions requestOptions = null)
         {
-            var endpoint = $"/terminals/{terminalId}/terminalSettings";
-            var resource = new ManagementResource(this, endpoint);
-            var jsonResult = resource.Request(null, null, new HttpMethod("GET"));
-            return JsonConvert.DeserializeObject<TerminalSettings>(jsonResult);
+            return GetTerminalsTerminalIdTerminalSettingsAsync(terminalId, requestOptions).GetAwaiter().GetResult();
         }
 
         /// <summary>
@@ -92,10 +86,7 @@ namespace Adyen.Service.Management
         /// <returns>Logo</returns>
         public Logo PatchTerminalsTerminalIdTerminalLogos(string terminalId, Logo logo, RequestOptions requestOptions = null)
         {
-            var endpoint = $"/terminals/{terminalId}/terminalLogos";
-            var resource = new ManagementResource(this, endpoint);
-            var jsonResult = resource.Request(logo.ToJson(), null, new HttpMethod("PATCH"));
-            return JsonConvert.DeserializeObject<Logo>(jsonResult);
+            return PatchTerminalsTerminalIdTerminalLogosAsync(terminalId, logo, requestOptions).GetAwaiter().GetResult();
         }
 
         /// <summary>
@@ -122,10 +113,7 @@ namespace Adyen.Service.Management
         /// <returns>TerminalSettings</returns>
         public TerminalSettings PatchTerminalsTerminalIdTerminalSettings(string terminalId, TerminalSettings terminalSettings, RequestOptions requestOptions = null)
         {
-            var endpoint = $"/terminals/{terminalId}/terminalSettings";
-            var resource = new ManagementResource(this, endpoint);
-            var jsonResult = resource.Request(terminalSettings.ToJson(), null, new HttpMethod("PATCH"));
-            return JsonConvert.DeserializeObject<TerminalSettings>(jsonResult);
+            return PatchTerminalsTerminalIdTerminalSettingsAsync(terminalId, terminalSettings, requestOptions).GetAwaiter().GetResult();
         }
 
         /// <summary>

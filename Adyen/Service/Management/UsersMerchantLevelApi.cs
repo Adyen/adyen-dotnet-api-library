@@ -49,10 +49,7 @@ namespace Adyen.Service.Management
         /// <returns>ListMerchantUsersResponse</returns>
         public ListMerchantUsersResponse GetMerchantsMerchantIdUsers(string merchantId, RequestOptions requestOptions = null)
         {
-            var endpoint = $"/merchants/{merchantId}/users" + ToQueryString(requestOptions?.QueryParameters);
-            var resource = new ManagementResource(this, endpoint);
-            var jsonResult = resource.Request(null, null, new HttpMethod("GET"));
-            return JsonConvert.DeserializeObject<ListMerchantUsersResponse>(jsonResult);
+            return GetMerchantsMerchantIdUsersAsync(merchantId, requestOptions).GetAwaiter().GetResult();
         }
 
         /// <summary>
@@ -92,10 +89,7 @@ namespace Adyen.Service.Management
         /// <returns>User</returns>
         public User GetMerchantsMerchantIdUsersUserId(string merchantId, string userId, RequestOptions requestOptions = null)
         {
-            var endpoint = $"/merchants/{merchantId}/users/{userId}";
-            var resource = new ManagementResource(this, endpoint);
-            var jsonResult = resource.Request(null, null, new HttpMethod("GET"));
-            return JsonConvert.DeserializeObject<User>(jsonResult);
+            return GetMerchantsMerchantIdUsersUserIdAsync(merchantId, userId, requestOptions).GetAwaiter().GetResult();
         }
 
         /// <summary>
@@ -123,10 +117,7 @@ namespace Adyen.Service.Management
         /// <returns>User</returns>
         public User PatchMerchantsMerchantIdUsersUserId(string merchantId, string userId, UpdateMerchantUserRequest updateMerchantUserRequest, RequestOptions requestOptions = null)
         {
-            var endpoint = $"/merchants/{merchantId}/users/{userId}";
-            var resource = new ManagementResource(this, endpoint);
-            var jsonResult = resource.Request(updateMerchantUserRequest.ToJson(), null, new HttpMethod("PATCH"));
-            return JsonConvert.DeserializeObject<User>(jsonResult);
+            return PatchMerchantsMerchantIdUsersUserIdAsync(merchantId, userId, updateMerchantUserRequest, requestOptions).GetAwaiter().GetResult();
         }
 
         /// <summary>
@@ -154,10 +145,7 @@ namespace Adyen.Service.Management
         /// <returns>CreateUserResponse</returns>
         public CreateUserResponse PostMerchantsMerchantIdUsers(string merchantId, CreateMerchantUserRequest createMerchantUserRequest, RequestOptions requestOptions = null)
         {
-            var endpoint = $"/merchants/{merchantId}/users";
-            var resource = new ManagementResource(this, endpoint);
-            var jsonResult = resource.Request(createMerchantUserRequest.ToJson(), null, new HttpMethod("POST"));
-            return JsonConvert.DeserializeObject<CreateUserResponse>(jsonResult);
+            return PostMerchantsMerchantIdUsersAsync(merchantId, createMerchantUserRequest, requestOptions).GetAwaiter().GetResult();
         }
 
         /// <summary>

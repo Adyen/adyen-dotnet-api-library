@@ -49,10 +49,7 @@ namespace Adyen.Service.Management
         /// <returns>ListCompanyApiCredentialsResponse</returns>
         public ListCompanyApiCredentialsResponse GetCompaniesCompanyIdApiCredentials(string companyId, RequestOptions requestOptions = null)
         {
-            var endpoint = $"/companies/{companyId}/apiCredentials" + ToQueryString(requestOptions?.QueryParameters);
-            var resource = new ManagementResource(this, endpoint);
-            var jsonResult = resource.Request(null, null, new HttpMethod("GET"));
-            return JsonConvert.DeserializeObject<ListCompanyApiCredentialsResponse>(jsonResult);
+            return GetCompaniesCompanyIdApiCredentialsAsync(companyId, requestOptions).GetAwaiter().GetResult();
         }
 
         /// <summary>
@@ -92,10 +89,7 @@ namespace Adyen.Service.Management
         /// <returns>CompanyApiCredential</returns>
         public CompanyApiCredential GetCompaniesCompanyIdApiCredentialsApiCredentialId(string companyId, string apiCredentialId, RequestOptions requestOptions = null)
         {
-            var endpoint = $"/companies/{companyId}/apiCredentials/{apiCredentialId}";
-            var resource = new ManagementResource(this, endpoint);
-            var jsonResult = resource.Request(null, null, new HttpMethod("GET"));
-            return JsonConvert.DeserializeObject<CompanyApiCredential>(jsonResult);
+            return GetCompaniesCompanyIdApiCredentialsApiCredentialIdAsync(companyId, apiCredentialId, requestOptions).GetAwaiter().GetResult();
         }
 
         /// <summary>
@@ -123,10 +117,7 @@ namespace Adyen.Service.Management
         /// <returns>CompanyApiCredential</returns>
         public CompanyApiCredential PatchCompaniesCompanyIdApiCredentialsApiCredentialId(string companyId, string apiCredentialId, UpdateCompanyApiCredentialRequest updateCompanyApiCredentialRequest, RequestOptions requestOptions = null)
         {
-            var endpoint = $"/companies/{companyId}/apiCredentials/{apiCredentialId}";
-            var resource = new ManagementResource(this, endpoint);
-            var jsonResult = resource.Request(updateCompanyApiCredentialRequest.ToJson(), null, new HttpMethod("PATCH"));
-            return JsonConvert.DeserializeObject<CompanyApiCredential>(jsonResult);
+            return PatchCompaniesCompanyIdApiCredentialsApiCredentialIdAsync(companyId, apiCredentialId, updateCompanyApiCredentialRequest, requestOptions).GetAwaiter().GetResult();
         }
 
         /// <summary>
@@ -154,10 +145,7 @@ namespace Adyen.Service.Management
         /// <returns>CreateCompanyApiCredentialResponse</returns>
         public CreateCompanyApiCredentialResponse PostCompaniesCompanyIdApiCredentials(string companyId, CreateCompanyApiCredentialRequest createCompanyApiCredentialRequest, RequestOptions requestOptions = null)
         {
-            var endpoint = $"/companies/{companyId}/apiCredentials";
-            var resource = new ManagementResource(this, endpoint);
-            var jsonResult = resource.Request(createCompanyApiCredentialRequest.ToJson(), null, new HttpMethod("POST"));
-            return JsonConvert.DeserializeObject<CreateCompanyApiCredentialResponse>(jsonResult);
+            return PostCompaniesCompanyIdApiCredentialsAsync(companyId, createCompanyApiCredentialRequest, requestOptions).GetAwaiter().GetResult();
         }
 
         /// <summary>
