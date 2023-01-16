@@ -82,7 +82,7 @@ namespace Adyen.ApiSerialization
             var messageHeader = DeserializeMessageHeader(saleToPoiRequestType);
             
             // Get Payload
-            var payload = saleToPoiRequestJson["SaleToPOIRequest"];
+            
             var notification = new SaleToPOIRequest
             {
                 MessageHeader = messageHeader
