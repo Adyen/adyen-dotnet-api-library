@@ -21,8 +21,13 @@
 //  */
 #endregion
 
+using System;
+using System.Diagnostics;
+using System.Linq;
 using Adyen.Model.Nexo;
+using Adyen.Model.Nexo.Message;
 using Adyen.Security;
+using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 
 namespace Adyen.ApiSerialization
@@ -62,6 +67,34 @@ namespace Adyen.ApiSerialization
                 deserializedOutputMessage.MessagePayload = deserializedOutput;
             }
             return deserializedOutputMessage;
+        }
+
+        public SaleToPOIRequest DeserializeTerminalNotification(string terminalNotificationJson)
+        {
+            // Parse JsonObject
+            var saleToPoiRequestJson = JObject.Parse(terminalNotificationJson);
+            var saleToPoiRequestItem = saleToPoiRequestJson.First;
+            var saleToPoiRequestType = saleToPoiRequestItem?.First;
+            Debug.Assert(saleToPoiRequestType != null, nameof(saleToPoiRequestType) + " != null");
+            var stringItem = saleToPoiRequestType.ToString();
+
+            // Get Message Header
+            var messageHeader = DeserializeMessageHeader(saleToPoiRequestType);
+            
+            // Get Payload
+            var payload = saleToPoiRequestJson["SaleToPOIRequest"];
+            var notification = new SaleToPOIRequest
+            {
+                MessageHeader = messageHeader
+            };
+            if (stringItem.Contains("DisplayRequest"))
+            {
+                notification.MessagePayload = saleToPoiRequestType["DisplayRequest"]?.ToObject<DisplayRequest>();
+            } if (stringItem.Contains("EventNotification"))
+            {
+                notification.MessagePayload = saleToPoiRequestType["EventNotification"]?.ToObject<EventNotification>();
+            }
+            return notification;
         }
 
         private object DeserializeMessagePayload(MessageHeader messageHeader, JToken saleToPoiMessageWithoutRootJToken)
