@@ -6,20 +6,20 @@ This is the officially supported .NET library for using Adyen's APIs.
 ## Supported API versions
 The library supports all APIs under the following services:
 
-|API | Description | Service Name | Supported version |
-|----| ----------- |-------|--------|
-| [Checkout API](https://docs.adyen.com/api-explorer/#/CheckoutService/v68/overview) | Our latest integration for accepting online payments. Current supported version | Checkout API | **v69** |
-| [Payments API](https://docs.adyen.com/api-explorer/#/Payment/v51/overview) | Our classic integration for online payments. Current supported version | Payments API | **v51** |
-| [Recurring API](https://docs.adyen.com/api-explorer/#/Recurring/v49/overview) | Endpoints for managing saved payment details. Current supported version| Recurring API | **v49** |
-| [Payouts API](https://docs.adyen.com/api-explorer/#/Payout/v51/overview) | Endpoints for sending funds to your customers. Current supported version| Payouts API | **v51** |
-| [Adyen BinLookup API](https://docs.adyen.com/api-explorer/#/BinLookup/v52/overview) | Endpoints for retrieving information, such as cost estimates, and 3D Secure supported version based on a given BIN. Current supported version |Adyen BinLookup API| **v52**|
-| [Utility API](https://docs.adyen.com/api-explorer/#/CheckoutService/v67/post/originKeys) | This operation takes the origin domains and returns a JSON object containing the corresponding origin keys for the domains. Current supported version|Utility API| **v67**|
-| [Hosted Onboarding API](https://docs.adyen.com/api-explorer/#/Hop/v1/overview) | Current supported version | Hosted Onboarding API | **v1** |
-| [Account API](https://docs.adyen.com/api-explorer/#/Account/v5/overview) | Current supported version | Account API | **v5** |
-| [Fund API](https://docs.adyen.com/api-explorer/#/Fund/v5/overview) | Current supported version|   Fund API  | **v5** |
-| [Cloud-based Terminal API](https://docs.adyen.com/point-of-sale/choose-your-architecture/cloud) | Our point-of-sale integration.| Cloud-based Terminal API | Cloud-based Terminal API       |      |
-| [Local-based Terminal API](https://docs.adyen.com/point-of-sale/choose-your-architecture/local) | Our point-of-sale integration.| Local-based Terminal API |   Local-based Terminal API     |      |
-| [POS Terminal Management API](https://docs.adyen.com/api-explorer/#/postfmapi/v1/overview) | Endpoints for managing your point-of-sale payment terminals| POS Terminal Management API | **v1** |
+| API                                                                                         | Description | Service Name | Supported version |
+|---------------------------------------------------------------------------------------------| ----------- |-------|--------|
+| [Checkout API](https://docs.adyen.com/api-explorer/#/CheckoutService/v68/overview)          | Our latest integration for accepting online payments. Current supported version | Checkout API | **v69** |
+| [Payments API](https://docs.adyen.com/api-explorer/#/Payment/v51/overview)                  | Our classic integration for online payments. Current supported version | Payments API | **v51** |
+| [Recurring API](https://docs.adyen.com/api-explorer/#/Recurring/v49/overview)               | Endpoints for managing saved payment details. Current supported version| Recurring API | **v49** |
+| [Payouts API](https://docs.adyen.com/api-explorer/#/Payout/v51/overview)                    | Endpoints for sending funds to your customers. Current supported version| Payouts API | **v51** |
+| [Adyen BinLookup API](https://docs.adyen.com/api-explorer/#/BinLookup/v52/overview)         | Endpoints for retrieving information, such as cost estimates, and 3D Secure supported version based on a given BIN. Current supported version |Adyen BinLookup API| **v52**|
+| [Utility API](https://docs.adyen.com/api-explorer/#/CheckoutService/v67/post/originKeys)    | This operation takes the origin domains and returns a JSON object containing the corresponding origin keys for the domains. Current supported version|Utility API| **v67**|
+| [Hosted Onboarding API](https://docs.adyen.com/api-explorer/#/Hop/v1/overview)              | Current supported version | Hosted Onboarding API | **v1** |
+| [Account API](https://docs.adyen.com/api-explorer/#/Account/v5/overview)                    | Current supported version | Account API | **v5** |
+| [Fund API](https://docs.adyen.com/api-explorer/#/Fund/v5/overview)                          | Current supported version|   Fund API  | **v5** |
+| [Terminal API (Cloud communications)](https://docs.adyen.com/point-of-sale/choose-your-architecture/cloud) | Our point-of-sale integration.| Cloud-based Terminal API | Cloud-based Terminal API       |      |
+| [Terminal API (Local communications)](https://docs.adyen.com/point-of-sale/choose-your-architecture/local) | Our point-of-sale integration.| Local-based Terminal API |   Local-based Terminal API     |      |
+| [POS Terminal Management API](https://docs.adyen.com/api-explorer/#/postfmapi/v1/overview)  | Endpoints for managing your point-of-sale payment terminals| POS Terminal Management API | **v1** |
 
 For more information, refer to our [documentation](https://docs.adyen.com/) or the [API Explorer](https://docs.adyen.com/api-explorer/).
 
@@ -39,24 +39,31 @@ PM> Install-Package Adyen -Version x.x.x
 
 In order to submit http request to Adyen API you need to initialize the client. The following example makes a checkout payment request:
 ```c#
+
 // Create a paymentsRequest
-var amount = new Model.Checkout.Amount("USD", 1000);
-var paymentRequest = new Model.Checkout.PaymentRequest
+using Adyen;
+using Adyen.Model.Checkout;
+using Adyen.Service;
+using Environment = Adyen.Model.Enum.Environment;
+
+// Create a paymentsRequest
+var amount = new Amount("USD", 1000);
+var paymentRequest = new PaymentRequest
 {
-      Reference = "Your order number",
-      Amount = amount,
-      ReturnUrl = @"https://your-company.com/...",
-      MerchantAccount = ClientConstants.MerchantAccount,
+    Reference = "Your order number",
+    Amount = amount,
+    ReturnUrl = @"https://your-company.com/...",
+    MerchantAccount = "Your merchantAccount",
 };
-paymentRequest.AddCardData("4111111111111111", "10", "2020", "737", "John Smith");
 
 //Create the http client
 var config = new Config
-  {
+{
     XApiKey = "Your merchant XAPI key",
-    Enviroment = Enviroment.Test
-  };
- var checkout = new Checkout(client);
+    Environment = Environment.Test
+};
+var client = new Client(config);
+var checkout = new Checkout(client);
 //Make the call to the service. This example code makes a call to /payments
 var paymentResponse = checkout.Payments(paymentRequest);
 ```
@@ -72,6 +79,9 @@ In order to submit POS request with Cloud API you need to initialize the client 
 For more information please read our [documentation](https://docs.adyen.com/point-of-sale/terminal-api-fundamentals#cloud)
 ```c#
 //Example for EU based Endpoint Syncronous
+using Adyen;
+using Adyen.Constants;
+
 var config = new Config
   {
     XApiKey = "Your merchant XAPI key",
