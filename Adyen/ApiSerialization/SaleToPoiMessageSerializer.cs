@@ -22,6 +22,7 @@
 #endregion
 
 using System;
+using System.Data;
 using System.Diagnostics;
 using System.Linq;
 using Adyen.Model.Nexo;
@@ -69,20 +70,18 @@ namespace Adyen.ApiSerialization
             return deserializedOutputMessage;
         }
 
-        public SaleToPOIRequest DeserializeTerminalNotification(string terminalNotificationJson)
+        public SaleToPOIRequest DeserializeNotification(string terminalNotificationJson)
         {
             // Parse JsonObject
             var saleToPoiRequestJson = JObject.Parse(terminalNotificationJson);
             var saleToPoiRequestItem = saleToPoiRequestJson.First;
             var saleToPoiRequestType = saleToPoiRequestItem?.First;
-            Debug.Assert(saleToPoiRequestType != null, nameof(saleToPoiRequestType) + " != null");
-            var stringItem = saleToPoiRequestType.ToString();
+            var stringItem = saleToPoiRequestType?.ToString() ?? throw new ArgumentNullException(nameof(SaleToPOIMessage));
 
             // Get Message Header
             var messageHeader = DeserializeMessageHeader(saleToPoiRequestType);
             
-            // Get Payload
-            
+            // Get Payload and create new SaleToPOIRequest object
             var notification = new SaleToPOIRequest
             {
                 MessageHeader = messageHeader
@@ -90,9 +89,12 @@ namespace Adyen.ApiSerialization
             if (stringItem.Contains("DisplayRequest"))
             {
                 notification.MessagePayload = saleToPoiRequestType["DisplayRequest"]?.ToObject<DisplayRequest>();
-            } if (stringItem.Contains("EventNotification"))
+            } else if (stringItem.Contains("EventNotification"))
             {
                 notification.MessagePayload = saleToPoiRequestType["EventNotification"]?.ToObject<EventNotification>();
+            } else
+            {
+                throw new Exception("Json input is not a terminal notification.");
             }
             return notification;
         }
