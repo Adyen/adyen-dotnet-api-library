@@ -90,7 +90,7 @@ namespace Adyen.Test
                 OriginalReference = "originalReference",
                 MerchantAccountCode = "merchantAccount",
                 MerchantReference = "reference",
-                Amount = new Model.Amount("EUR", 1000),
+                Amount = new Model.Checkout.Amount("EUR", 1000),
                 EventCode = "EVENT",
                 Success = true,
                 AdditionalData = additionalData
@@ -136,7 +136,7 @@ namespace Adyen.Test
                 OriginalReference = "originalReference",
                 MerchantAccountCode = "merchantAccount",
                 MerchantReference = "reference",
-                Amount = new Model.Amount("EUR", 1000),
+                Amount = new Model.Checkout.Amount("EUR", 1000),
                 EventCode = "EVENT",
                 Success = true,
                 AdditionalData = null

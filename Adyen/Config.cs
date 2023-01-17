@@ -23,7 +23,7 @@
 
 using System;
 using System.Net;
-using Environment = Adyen.Model.Enum.Environment;
+using Environment = Adyen.Model.Environment;
 
 namespace Adyen
 {

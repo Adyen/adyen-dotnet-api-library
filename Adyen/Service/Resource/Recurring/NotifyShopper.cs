@@ -34,7 +34,7 @@ namespace Adyen.Service.Resource.Recurring
             : base(abstractService, abstractService.Client.Config.Endpoint + "/pal/servlet/Recurring/" + abstractService.Client.RecurringApiVersion + "/notifyShopper",
                 new List<string>
                 {
-                    "merchantAccount",
+                    "merchqantAccount",
                     "shopperReference",
                     "amount",
                     "reference"

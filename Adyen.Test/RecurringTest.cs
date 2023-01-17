@@ -22,7 +22,8 @@
 #endregion
 
 using System;
-using Adyen.Model.Enum;
+using System.Collections.Generic;
+using System.Linq;
 using Adyen.Model.Recurring;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Recurring = Adyen.Model.Recurring.Recurring;
@@ -42,11 +43,12 @@ namespace Adyen.Test
             var recurring = new Service.Recurring(client);
             var recurringDetailsRequest = this.CreateRecurringDetailsRequest();
             var recurringDetailsResult = recurring.ListRecurringDetails(recurringDetailsRequest);
-            Assert.AreEqual(1L, (long)recurringDetailsResult.Details.Count);
+            Assert.AreEqual(3L, recurringDetailsResult.Details.Count);
             var recurringDetail = recurringDetailsResult.Details[0].RecurringDetail;
-            Assert.AreEqual("recurringReference", recurringDetail.RecurringDetailReference);
-            Assert.AreEqual("cardAlias", recurringDetail.Alias);
-            Assert.AreEqual("1111", recurringDetail.Card.Number);
+
+            Assert.AreEqual("BFXCHLC5L6KXWD82", recurringDetail.RecurringDetailReference);
+            Assert.AreEqual("K652534298119846", recurringDetail.Alias);
+            Assert.AreEqual("0002", recurringDetail.Card.Number);
         }
 
         [TestMethod]
@@ -56,11 +58,11 @@ namespace Adyen.Test
             var recurring = new Service.Recurring(client);
             var recurringDetailsRequest = this.CreateRecurringDetailsRequest();
             var recurringDetailsResult = await recurring.ListRecurringDetailsAsync(recurringDetailsRequest);
-            Assert.AreEqual(1L, (long)recurringDetailsResult.Details.Count);
-            var recurringDetail = recurringDetailsResult.Details[0].RecurringDetail;
-            Assert.AreEqual("recurringReference", recurringDetail.RecurringDetailReference);
-            Assert.AreEqual("cardAlias", recurringDetail.Alias);
-            Assert.AreEqual("1111", recurringDetail.Card.Number);
+            Assert.AreEqual(3L, recurringDetailsResult.Details.Count);
+            var recurringDetail = recurringDetailsResult.Details[1].RecurringDetail;
+            Assert.AreEqual("JW6RTP5PL6KXWD82", recurringDetail.RecurringDetailReference);
+            Assert.AreEqual("Wirecard", recurringDetail.Bank.BankName);
+            Assert.AreEqual("sepadirectdebit", recurringDetail.Variant);
         }
 
         [TestMethod]
@@ -121,10 +123,11 @@ namespace Adyen.Test
 
         private RecurringDetailsRequest CreateRecurringDetailsRequest()
         {
-            var request = new RecurringDetailsRequest
+            var request = new RecurringDetailsRequest 
             {
                 ShopperReference = "test-123",
-                MerchantAccount = "DotNetAlexandros"
+                MerchantAccount = "DotNetAlexandros",
+                Recurring = new Recurring(Recurring.ContractEnum.RECURRING)
             };
             return request;
         }

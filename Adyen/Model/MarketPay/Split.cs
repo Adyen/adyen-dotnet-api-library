@@ -30,7 +30,7 @@ using System.Text;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
 
-namespace Adyen.Model
+namespace Adyen.Model.MarketPay
 {
     /// <summary>
     /// Split

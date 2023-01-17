@@ -36,16 +36,14 @@ using System.Threading.Tasks;
 using static Adyen.Model.Checkout.PaymentResponse;
 using Amount = Adyen.Model.Checkout.Amount;
 using ApplicationInfo = Adyen.Model.ApplicationInformation.ApplicationInfo;
-using Environment = Adyen.Model.Enum.Environment;
-using PaymentDetails = Adyen.Service.Resource.Checkout.PaymentDetails;
-using PaymentRequest = Adyen.Model.Checkout.PaymentRequest;
+using Environment = Adyen.Model.Environment;
+
 
 namespace Adyen.Test
 {
     [TestClass]
     public class CheckoutTest : BaseTest
     {
-        public object CheckoutOrdersResponse { get; private set; }
 
         /// <summary>
         /// Tests successful checkout client Test URL generation.
@@ -673,7 +671,86 @@ namespace Adyen.Test
             Assert.IsInstanceOfType<DragonpayDetails>(result);
             Assert.AreEqual(result.Type, DragonpayDetails.TypeEnum.Ebanking);
         }
-
+        
+        [TestMethod]
+        public void AfterPayDetailsDeserializationTest()
+        {
+            var json = @"{
+                'resultCode':'RedirectShopper',
+            'action':{
+                'paymentMethodType':'afterpaytouch',
+                'method':'GET',
+                'url':'https://checkoutshopper-test.adyen.com/checkoutshopper/checkoutPaymentRedirect?redirectData=...',
+                'type':'redirect'
+            }
+            }";
+            var result = JsonConvert.DeserializeObject<PaymentResponse>(json);
+            Assert.IsInstanceOfType<CheckoutRedirectAction>(result.Action.GetCheckoutRedirectAction());
+            Assert.AreEqual(result.Action.GetCheckoutRedirectAction().PaymentMethodType, "afterpaytouch");
+        }
+        [TestMethod]
+        public void AfterPayDetailsSerializationTest()
+        {
+            var json = @"{
+              'paymentMethod':{
+                        'type':'afterpaytouch'
+                    },
+                    'amount':{
+                        'value':1000,
+                        'currency':'AUD'
+                    },
+                'shopperName':{
+                    'firstName':'Simon',
+                    'lastName':'Hopper'
+                },
+                'shopperEmail':'s.hopper@example.com',
+                'shopperReference':'YOUR_UNIQUE_SHOPPER_ID',
+                'reference':'YOUR_ORDER_REFERENCE',
+                'merchantAccount':'YOUR_MERCHANT_ACCOUNT',
+                'returnUrl':'https://your-company.com/checkout?shopperOrder=12xy..',
+                'countryCode':'AU',
+                'telephoneNumber':'+61 2 8520 3890',
+                'billingAddress':{
+                    'city':'Sydney',
+                    'country':'AU',
+                    'houseNumberOrName':'123',
+                    'postalCode':'2000',
+                    'stateOrProvince':'NSW',
+                    'street':'Happy Street'
+                },
+                'deliveryAddress':{
+                    'city':'Sydney',
+                    'country':'AU',
+                    'houseNumberOrName':'123',
+                    'postalCode':'2000',
+                    'stateOrProvince':'NSW',
+                    'street':'Happy Street'
+                },
+                'lineItems':[
+                {
+                    'description':'Shoes',
+                    'quantity':'1',
+                    'amountIncludingTax':'400',
+                    'amountExcludingTax': '331',
+                    'taxAmount': '69',
+                    'id':'Item #1'
+                },
+                {
+                'description':'Socks',
+                'quantity':'2',
+                'amountIncludingTax':'300',
+                'amountExcludingTax': '248',
+                'taxAmount': '52',
+                'id':'Item #2'
+                 }
+                 ]
+                 }";
+            
+            var result = JsonConvert.DeserializeObject<PaymentRequest>(json);
+            Assert.IsInstanceOfType<AfterpayDetails>(result.PaymentMethod.GetAfterpayDetails());
+            Assert.AreEqual(result.PaymentMethod.GetAfterpayDetails().Type, AfterpayDetails.TypeEnum.Afterpaytouch);
+        }
+        
         [TestMethod]
         public void LianLianPayDetailsDeserializationTest()
         {

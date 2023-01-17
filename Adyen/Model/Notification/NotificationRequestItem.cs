@@ -22,6 +22,7 @@
 #endregion
 
 using System.Collections.Generic;
+using Adyen.Model.Checkout;
 
 namespace Adyen.Model.Notification
 {

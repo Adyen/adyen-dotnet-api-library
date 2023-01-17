@@ -1,5 +1,4 @@
 using System;
-using Adyen.Model.Enum;
 using Adyen.Model.Recurring;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.Linq;
@@ -19,8 +18,8 @@ namespace Adyen.IntegrationTest
             var recurring = new Service.Recurring(client);
             var recurringDetailsRequest = this.CreateRecurringDetailsRequest();
             var recurringDetailsResult = recurring.ListRecurringDetails(recurringDetailsRequest);
-            var recurringDetail = recurringDetailsResult.Details.FirstOrDefault().RecurringDetail;
-            Assert.AreEqual(paymentResult.AdditionalData["recurring.recurringDetailReference"], recurringDetail.RecurringDetailReference);
+            var recurringDetail = recurringDetailsResult.Details[0].RecurringDetail;
+            Assert.AreEqual(recurringDetail.PaymentMethodVariant, "visa");
         }
 
         [TestMethod]

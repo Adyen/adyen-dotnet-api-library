@@ -27,7 +27,7 @@ using Adyen.Constants;
 using Adyen.HttpClient.Interfaces;
 using Adyen.HttpClient;
 using Adyen.Exceptions;
-using Environment = Adyen.Model.Enum.Environment;
+using Environment = Adyen.Model.Environment;
 
 namespace Adyen
 {

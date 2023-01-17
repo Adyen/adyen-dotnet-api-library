@@ -28,33 +28,35 @@ using System.ComponentModel.DataAnnotations;
 namespace Adyen.Model.Recurring
 {
     /// <summary>
-    /// TokenDetails
+    /// CreatePermitResult
     /// </summary>
-    [DataContract(Name = "TokenDetails")]
-    public partial class TokenDetails : IEquatable<TokenDetails>, IValidatableObject
+    [DataContract(Name = "CreatePermitResult")]
+    public partial class CreatePermitResult : IEquatable<CreatePermitResult>, IValidatableObject
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="TokenDetails" /> class.
+        /// Initializes a new instance of the <see cref="CreatePermitResult" /> class.
         /// </summary>
-        /// <param name="tokenData">tokenData.</param>
-        /// <param name="tokenDataType">tokenDataType.</param>
-        public TokenDetails(Dictionary<string, string> tokenData = default(Dictionary<string, string>), string tokenDataType = default(string))
+        /// <param name="permitResultList">List of new permits..</param>
+        /// <param name="pspReference">A unique reference associated with the request. This value is globally unique; quote it when communicating with us about this request..</param>
+        public CreatePermitResult(List<PermitResult> permitResultList = default(List<PermitResult>), string pspReference = default(string))
         {
-            this.TokenData = tokenData;
-            this.TokenDataType = tokenDataType;
+            this.PermitResultList = permitResultList;
+            this.PspReference = pspReference;
         }
 
         /// <summary>
-        /// Gets or Sets TokenData
+        /// List of new permits.
         /// </summary>
-        [DataMember(Name = "tokenData", EmitDefaultValue = false)]
-        public Dictionary<string, string> TokenData { get; set; }
+        /// <value>List of new permits.</value>
+        [DataMember(Name = "permitResultList", EmitDefaultValue = false)]
+        public List<PermitResult> PermitResultList { get; set; }
 
         /// <summary>
-        /// Gets or Sets TokenDataType
+        /// A unique reference associated with the request. This value is globally unique; quote it when communicating with us about this request.
         /// </summary>
-        [DataMember(Name = "tokenDataType", EmitDefaultValue = false)]
-        public string TokenDataType { get; set; }
+        /// <value>A unique reference associated with the request. This value is globally unique; quote it when communicating with us about this request.</value>
+        [DataMember(Name = "pspReference", EmitDefaultValue = false)]
+        public string PspReference { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -63,9 +65,9 @@ namespace Adyen.Model.Recurring
         public override string ToString()
         {
             StringBuilder sb = new StringBuilder();
-            sb.Append("class TokenDetails {\n");
-            sb.Append("  TokenData: ").Append(TokenData).Append("\n");
-            sb.Append("  TokenDataType: ").Append(TokenDataType).Append("\n");
+            sb.Append("class CreatePermitResult {\n");
+            sb.Append("  PermitResultList: ").Append(PermitResultList).Append("\n");
+            sb.Append("  PspReference: ").Append(PspReference).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -86,15 +88,15 @@ namespace Adyen.Model.Recurring
         /// <returns>Boolean</returns>
         public override bool Equals(object input)
         {
-            return this.Equals(input as TokenDetails);
+            return this.Equals(input as CreatePermitResult);
         }
 
         /// <summary>
-        /// Returns true if TokenDetails instances are equal
+        /// Returns true if CreatePermitResult instances are equal
         /// </summary>
-        /// <param name="input">Instance of TokenDetails to be compared</param>
+        /// <param name="input">Instance of CreatePermitResult to be compared</param>
         /// <returns>Boolean</returns>
-        public bool Equals(TokenDetails input)
+        public bool Equals(CreatePermitResult input)
         {
             if (input == null)
             {
@@ -102,15 +104,15 @@ namespace Adyen.Model.Recurring
             }
             return 
                 (
-                    this.TokenData == input.TokenData ||
-                    this.TokenData != null &&
-                    input.TokenData != null &&
-                    this.TokenData.SequenceEqual(input.TokenData)
+                    this.PermitResultList == input.PermitResultList ||
+                    this.PermitResultList != null &&
+                    input.PermitResultList != null &&
+                    this.PermitResultList.SequenceEqual(input.PermitResultList)
                 ) && 
                 (
-                    this.TokenDataType == input.TokenDataType ||
-                    (this.TokenDataType != null &&
-                    this.TokenDataType.Equals(input.TokenDataType))
+                    this.PspReference == input.PspReference ||
+                    (this.PspReference != null &&
+                    this.PspReference.Equals(input.PspReference))
                 );
         }
 
@@ -123,13 +125,13 @@ namespace Adyen.Model.Recurring
             unchecked // Overflow is fine, just wrap
             {
                 int hashCode = 41;
-                if (this.TokenData != null)
+                if (this.PermitResultList != null)
                 {
-                    hashCode = (hashCode * 59) + this.TokenData.GetHashCode();
+                    hashCode = (hashCode * 59) + this.PermitResultList.GetHashCode();
                 }
-                if (this.TokenDataType != null)
+                if (this.PspReference != null)
                 {
-                    hashCode = (hashCode * 59) + this.TokenDataType.GetHashCode();
+                    hashCode = (hashCode * 59) + this.PspReference.GetHashCode();
                 }
                 return hashCode;
             }
