@@ -29,6 +29,7 @@ using System.Collections.Generic;
 using System.Text;
 using Adyen.Model.MarketPay;
 using Adyen.Model.Payments;
+using Newtonsoft.Json;
 using Account = Adyen.Service.Account;
 
 namespace Adyen.Test
@@ -125,6 +126,56 @@ namespace Adyen.Test
             notificationRequestItem.AdditionalData = new Dictionary<string, string>();
             var isValidHmacAdditionalDataEmpty = hmacValidator.IsValidHmac(notificationRequestItem, "key");
             Assert.IsFalse(isValidHmacAdditionalDataEmpty);
+        }
+        
+        [TestMethod]
+        public void TestColonAndBackslashHmacValidator()
+        {
+            var hmacValidator = new HmacValidator();
+            var jsonNotification = @"{
+              'additionalData': {
+                        'acquirerCode': 'TestPmmAcquirer',
+                        'acquirerReference': 'J8DXDJ2PV6P',
+                        'authCode': '052095',
+                        'avsResult': '5 No AVS data provided',
+                        'avsResultRaw': '5',
+                        'cardSummary': '1111',
+                        'checkout.cardAddedBrand': 'visa',
+                        'cvcResult': '1 Matches',
+                        'cvcResultRaw': 'M',
+                        'expiryDate': '03/2030',
+                        'hmacSignature': 'CZErGCNQaSsxbaQfZaJlakqo7KPP+mIa8a+wx3yNs9A=',
+                        'paymentMethod': 'visa',
+                        'refusalReasonRaw': 'AUTHORISED',
+                        'retry.attempt1.acquirer': 'TestPmmAcquirer',
+                        'retry.attempt1.acquirerAccount': 'TestPmmAcquirerAccount',
+                        'retry.attempt1.avsResultRaw': '5',
+                        'retry.attempt1.rawResponse': 'AUTHORISED',
+                        'retry.attempt1.responseCode': 'Approved',
+                        'retry.attempt1.scaExemptionRequested': 'lowValue',
+                        'scaExemptionRequested': 'lowValue'
+                    },
+                    'amount': {
+                        'currency': 'EUR',
+                        'value': 1000
+                    },
+                'eventCode': 'AUTHORISATION',
+                'eventDate': '2023-01-10T13:42:29+01:00',
+                'merchantAccountCode': 'AntoniStroinski',
+                'merchantReference': '\\:/\\/slashes are fun',
+                'operations': [
+                'CANCEL',
+                'CAPTURE',
+                'REFUND'
+                    ],
+                'paymentMethod': 'visa',
+                'pspReference': 'ZVWN7D3WSMK2WN82',
+                'reason': '052095:1111:03/2030',
+                'success': 'true'
+            }";
+            var notificationRequestItem = JsonConvert.DeserializeObject<NotificationRequestItem>(jsonNotification);
+            var isValidHmac = hmacValidator.IsValidHmac(notificationRequestItem, "74F490DD33F7327BAECC88B2947C011FC02D014A473AAA33A8EC93E4DC069174");
+            Assert.IsTrue(isValidHmac);
         }
         
         [TestMethod]
