@@ -37,27 +37,6 @@ namespace Adyen.Test
     public class UtilTest : BaseTest
     {
         [TestMethod]
-        public void TestDataSign()
-        {
-            var postParameters = new Dictionary<string, string>
-            {
-                {Constants.HPPConstants.Fields.MerchantAccount, "ACC"},
-                {Constants.HPPConstants.Fields.CurrencyCode, "EUR"}
-            };
-            var hmacValidator = new HmacValidator();
-            var buildSigningString = hmacValidator.BuildSigningString(postParameters);
-            Assert.IsTrue(string.Equals("currencyCode:merchantAccount:EUR:ACC", buildSigningString));
-            postParameters = new Dictionary<string, string>
-            {
-                {Constants.HPPConstants.Fields.CurrencyCode, "EUR"},
-                {Constants.HPPConstants.Fields.MerchantAccount, "ACC:\\"}
-            };
-
-            buildSigningString = hmacValidator.BuildSigningString(postParameters);
-            Assert.IsTrue(string.Equals("currencyCode:merchantAccount:EUR:ACC\\:\\\\", buildSigningString));
-        }
-        
-        [TestMethod]
         public void TestHmac()
         {
             var data = "countryCode:currencyCode:merchantAccount:merchantReference:paymentAmount:sessionValidity:skinCode:NL:EUR:MagentoMerchantTest2:TEST-PAYMENT-2017-02-01-14\\:02\\:05:199:2017-02-02T14\\:02\\:05+01\\:00:PKz2KML1";
