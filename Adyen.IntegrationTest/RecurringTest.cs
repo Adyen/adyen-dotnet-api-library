@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using Adyen.Model.Recurring;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.Linq;
