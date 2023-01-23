@@ -487,12 +487,11 @@ namespace Adyen.Test
             Assert.IsNotNull(client.Config.Endpoint);
         }
 
-        [Ignore]// The adyen library info will not be added anymore by default, let's investigate if we should.
+        [Ignore] // The adyen library info will not be added anymore by default, let's investigate if we should.
         [TestMethod]
         public void PaymentRequestApplicationInfoTest()
         {
             var paymentRequest = CreatePaymentRequestCheckout();
-            Console.WriteLine(paymentRequest.ToJson());
             var name = paymentRequest.ApplicationInfo.AdyenLibrary.Name;
             var version = paymentRequest.ApplicationInfo.AdyenLibrary.Version;
             Assert.AreEqual(version, Constants.ClientConfig.LibVersion);
