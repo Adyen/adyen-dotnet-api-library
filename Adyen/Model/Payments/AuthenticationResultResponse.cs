@@ -10,17 +10,19 @@
 * Do not edit the class manually.
 */
 
+
 using System;
-using System.Linq;
-using System.IO;
-using System.Text;
-using System.Text.RegularExpressions;
 using System.Collections;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Linq;
+using System.IO;
 using System.Runtime.Serialization;
+using System.Text;
+using System.Text.RegularExpressions;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
+using Newtonsoft.Json.Linq;
 using System.ComponentModel.DataAnnotations;
 
 namespace Adyen.Model.Payments
@@ -28,8 +30,8 @@ namespace Adyen.Model.Payments
     /// <summary>
     /// AuthenticationResultResponse
     /// </summary>
-    [DataContract]
-    public partial class AuthenticationResultResponse :  IEquatable<AuthenticationResultResponse>, IValidatableObject
+    [DataContract(Name = "AuthenticationResultResponse")]
+    public partial class AuthenticationResultResponse : IEquatable<AuthenticationResultResponse>, IValidatableObject
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="AuthenticationResultResponse" /> class.
@@ -45,22 +47,22 @@ namespace Adyen.Model.Payments
         /// <summary>
         /// Gets or Sets ThreeDS1Result
         /// </summary>
-        [DataMember(Name="threeDS1Result", EmitDefaultValue=false)]
+        [DataMember(Name = "threeDS1Result", EmitDefaultValue = false)]
         public ThreeDS1Result ThreeDS1Result { get; set; }
-
+        
         /// <summary>
         /// Gets or Sets ThreeDS2Result
         /// </summary>
-        [DataMember(Name="threeDS2Result", EmitDefaultValue=false)]
+        [DataMember(Name = "threeDS2Result", EmitDefaultValue = false)]
         public ThreeDS2Result ThreeDS2Result { get; set; }
-
+        
         /// <summary>
         /// Returns the string presentation of the object
         /// </summary>
         /// <returns>String presentation of the object</returns>
         public override string ToString()
         {
-            var sb = new StringBuilder();
+            StringBuilder sb = new StringBuilder();
             sb.Append("class AuthenticationResultResponse {\n");
             sb.Append("  ThreeDS1Result: ").Append(ThreeDS1Result).Append("\n");
             sb.Append("  ThreeDS2Result: ").Append(ThreeDS2Result).Append("\n");
@@ -95,8 +97,9 @@ namespace Adyen.Model.Payments
         public bool Equals(AuthenticationResultResponse input)
         {
             if (input == null)
+            {
                 return false;
-
+            }
             return 
                 (
                     this.ThreeDS1Result == input.ThreeDS1Result ||
@@ -120,9 +123,13 @@ namespace Adyen.Model.Payments
             {
                 int hashCode = 41;
                 if (this.ThreeDS1Result != null)
-                    hashCode = hashCode * 59 + this.ThreeDS1Result.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.ThreeDS1Result.GetHashCode();
+                }
                 if (this.ThreeDS2Result != null)
-                    hashCode = hashCode * 59 + this.ThreeDS2Result.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.ThreeDS2Result.GetHashCode();
+                }
                 return hashCode;
             }
         }
@@ -132,7 +139,7 @@ namespace Adyen.Model.Payments
         /// </summary>
         /// <param name="validationContext">Validation context</param>
         /// <returns>Validation Result</returns>
-        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+        public IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> Validate(ValidationContext validationContext)
         {
             yield break;
         }

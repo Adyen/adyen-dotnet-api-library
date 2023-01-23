@@ -10,17 +10,19 @@
 * Do not edit the class manually.
 */
 
+
 using System;
-using System.Linq;
-using System.IO;
-using System.Text;
-using System.Text.RegularExpressions;
 using System.Collections;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Linq;
+using System.IO;
 using System.Runtime.Serialization;
+using System.Text;
+using System.Text.RegularExpressions;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
+using Newtonsoft.Json.Linq;
 using System.ComponentModel.DataAnnotations;
 
 namespace Adyen.Model.Payments
@@ -28,8 +30,8 @@ namespace Adyen.Model.Payments
     /// <summary>
     /// ModificationResult
     /// </summary>
-    [DataContract]
-    public partial class ModificationResult :  IEquatable<ModificationResult>, IValidatableObject
+    [DataContract(Name = "ModificationResult")]
+    public partial class ModificationResult : IEquatable<ModificationResult>, IValidatableObject
     {
         /// <summary>
         /// Indicates if the modification request has been received for processing.
@@ -88,11 +90,12 @@ namespace Adyen.Model.Payments
 
         }
 
+
         /// <summary>
         /// Indicates if the modification request has been received for processing.
         /// </summary>
         /// <value>Indicates if the modification request has been received for processing.</value>
-        [DataMember(Name="response", EmitDefaultValue=true)]
+        [DataMember(Name = "response", IsRequired = false, EmitDefaultValue = true)]
         public ResponseEnum Response { get; set; }
         /// <summary>
         /// Initializes a new instance of the <see cref="ModificationResult" /> class.
@@ -107,33 +110,32 @@ namespace Adyen.Model.Payments
         /// <param name="response">Indicates if the modification request has been received for processing. (required).</param>
         public ModificationResult(Dictionary<string, string> additionalData = default(Dictionary<string, string>), string pspReference = default(string), ResponseEnum response = default(ResponseEnum))
         {
-            this.AdditionalData = additionalData;
             this.PspReference = pspReference;
             this.Response = response;
+            this.AdditionalData = additionalData;
         }
 
         /// <summary>
         /// This field contains additional data, which may be returned in a particular modification response.
         /// </summary>
         /// <value>This field contains additional data, which may be returned in a particular modification response.</value>
-        [DataMember(Name="additionalData", EmitDefaultValue=false)]
+        [DataMember(Name = "additionalData", EmitDefaultValue = false)]
         public Dictionary<string, string> AdditionalData { get; set; }
-
+        
         /// <summary>
         /// Adyen&#39;s 16-character string reference associated with the transaction/request. This value is globally unique; quote it when communicating with us about this request.
         /// </summary>
         /// <value>Adyen&#39;s 16-character string reference associated with the transaction/request. This value is globally unique; quote it when communicating with us about this request.</value>
-        [DataMember(Name="pspReference", EmitDefaultValue=true)]
+        [DataMember(Name = "pspReference", IsRequired = false, EmitDefaultValue = true)]
         public string PspReference { get; set; }
-
-
+        
         /// <summary>
         /// Returns the string presentation of the object
         /// </summary>
         /// <returns>String presentation of the object</returns>
         public override string ToString()
         {
-            var sb = new StringBuilder();
+            StringBuilder sb = new StringBuilder();
             sb.Append("class ModificationResult {\n");
             sb.Append("  AdditionalData: ").Append(AdditionalData).Append("\n");
             sb.Append("  PspReference: ").Append(PspReference).Append("\n");
@@ -169,8 +171,9 @@ namespace Adyen.Model.Payments
         public bool Equals(ModificationResult input)
         {
             if (input == null)
+            {
                 return false;
-
+            }
             return 
                 (
                     this.AdditionalData == input.AdditionalData ||
@@ -185,8 +188,7 @@ namespace Adyen.Model.Payments
                 ) && 
                 (
                     this.Response == input.Response ||
-                    (this.Response != null &&
-                    this.Response.Equals(input.Response))
+                    this.Response.Equals(input.Response)
                 );
         }
 
@@ -200,11 +202,14 @@ namespace Adyen.Model.Payments
             {
                 int hashCode = 41;
                 if (this.AdditionalData != null)
-                    hashCode = hashCode * 59 + this.AdditionalData.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.AdditionalData.GetHashCode();
+                }
                 if (this.PspReference != null)
-                    hashCode = hashCode * 59 + this.PspReference.GetHashCode();
-                if (this.Response != null)
-                    hashCode = hashCode * 59 + this.Response.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.PspReference.GetHashCode();
+                }
+                hashCode = (hashCode * 59) + this.Response.GetHashCode();
                 return hashCode;
             }
         }
@@ -214,7 +219,7 @@ namespace Adyen.Model.Payments
         /// </summary>
         /// <param name="validationContext">Validation context</param>
         /// <returns>Validation Result</returns>
-        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+        public IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> Validate(ValidationContext validationContext)
         {
             yield break;
         }

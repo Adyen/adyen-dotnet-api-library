@@ -10,17 +10,19 @@
 * Do not edit the class manually.
 */
 
+
 using System;
-using System.Linq;
-using System.IO;
-using System.Text;
-using System.Text.RegularExpressions;
 using System.Collections;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Linq;
+using System.IO;
 using System.Runtime.Serialization;
+using System.Text;
+using System.Text.RegularExpressions;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
+using Newtonsoft.Json.Linq;
 using System.ComponentModel.DataAnnotations;
 
 namespace Adyen.Model.Payments
@@ -28,8 +30,8 @@ namespace Adyen.Model.Payments
     /// <summary>
     /// Installments
     /// </summary>
-    [DataContract]
-    public partial class Installments :  IEquatable<Installments>, IValidatableObject
+    [DataContract(Name = "Installments")]
+    public partial class Installments : IEquatable<Installments>, IValidatableObject
     {
         /// <summary>
         /// The installment plan, used for [card installments in Japan](https://docs.adyen.com/payment-methods/cards/credit-card-installments#make-a-payment-japan). By default, this is set to **regular**. Possible values: * **regular** * **revolving** 
@@ -52,11 +54,12 @@ namespace Adyen.Model.Payments
 
         }
 
+
         /// <summary>
         /// The installment plan, used for [card installments in Japan](https://docs.adyen.com/payment-methods/cards/credit-card-installments#make-a-payment-japan). By default, this is set to **regular**. Possible values: * **regular** * **revolving** 
         /// </summary>
         /// <value>The installment plan, used for [card installments in Japan](https://docs.adyen.com/payment-methods/cards/credit-card-installments#make-a-payment-japan). By default, this is set to **regular**. Possible values: * **regular** * **revolving** </value>
-        [DataMember(Name="plan", EmitDefaultValue=false)]
+        [DataMember(Name = "plan", EmitDefaultValue = false)]
         public PlanEnum? Plan { get; set; }
         /// <summary>
         /// Initializes a new instance of the <see cref="Installments" /> class.
@@ -68,27 +71,26 @@ namespace Adyen.Model.Payments
         /// </summary>
         /// <param name="plan">The installment plan, used for [card installments in Japan](https://docs.adyen.com/payment-methods/cards/credit-card-installments#make-a-payment-japan). By default, this is set to **regular**. Possible values: * **regular** * **revolving** .</param>
         /// <param name="value">Defines the number of installments. Its value needs to be greater than zero.  Usually, the maximum allowed number of installments is capped. For example, it may not be possible to split a payment in more than 24 installments. The acquirer sets this upper limit, so its value may vary. (required).</param>
-        public Installments(PlanEnum? plan = default(PlanEnum?), int value = default(int))
+        public Installments(PlanEnum? plan = default(PlanEnum?), int? value = default(int?))
         {
-            this.Plan = plan;
             this.Value = value;
+            this.Plan = plan;
         }
-
 
         /// <summary>
         /// Defines the number of installments. Its value needs to be greater than zero.  Usually, the maximum allowed number of installments is capped. For example, it may not be possible to split a payment in more than 24 installments. The acquirer sets this upper limit, so its value may vary.
         /// </summary>
         /// <value>Defines the number of installments. Its value needs to be greater than zero.  Usually, the maximum allowed number of installments is capped. For example, it may not be possible to split a payment in more than 24 installments. The acquirer sets this upper limit, so its value may vary.</value>
-        [DataMember(Name="value", EmitDefaultValue=true)]
-        public int Value { get; set; }
-
+        [DataMember(Name = "value", IsRequired = false, EmitDefaultValue = true)]
+        public int? Value { get; set; }
+        
         /// <summary>
         /// Returns the string presentation of the object
         /// </summary>
         /// <returns>String presentation of the object</returns>
         public override string ToString()
         {
-            var sb = new StringBuilder();
+            StringBuilder sb = new StringBuilder();
             sb.Append("class Installments {\n");
             sb.Append("  Plan: ").Append(Plan).Append("\n");
             sb.Append("  Value: ").Append(Value).Append("\n");
@@ -123,18 +125,17 @@ namespace Adyen.Model.Payments
         public bool Equals(Installments input)
         {
             if (input == null)
+            {
                 return false;
-
+            }
             return 
                 (
                     this.Plan == input.Plan ||
-                    (this.Plan != null &&
-                    this.Plan.Equals(input.Plan))
+                    this.Plan.Equals(input.Plan)
                 ) && 
                 (
                     this.Value == input.Value ||
-                    (this.Value != null &&
-                    this.Value.Equals(input.Value))
+                    this.Value.Equals(input.Value)
                 );
         }
 
@@ -147,10 +148,8 @@ namespace Adyen.Model.Payments
             unchecked // Overflow is fine, just wrap
             {
                 int hashCode = 41;
-                if (this.Plan != null)
-                    hashCode = hashCode * 59 + this.Plan.GetHashCode();
-                if (this.Value != null)
-                    hashCode = hashCode * 59 + this.Value.GetHashCode();
+                hashCode = (hashCode * 59) + this.Plan.GetHashCode();
+                hashCode = (hashCode * 59) + this.Value.GetHashCode();
                 return hashCode;
             }
         }
@@ -160,7 +159,7 @@ namespace Adyen.Model.Payments
         /// </summary>
         /// <param name="validationContext">Validation context</param>
         /// <returns>Validation Result</returns>
-        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+        public IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> Validate(ValidationContext validationContext)
         {
             yield break;
         }

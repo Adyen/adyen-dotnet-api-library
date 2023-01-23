@@ -10,17 +10,19 @@
 * Do not edit the class manually.
 */
 
+
 using System;
-using System.Linq;
-using System.IO;
-using System.Text;
-using System.Text.RegularExpressions;
 using System.Collections;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Linq;
+using System.IO;
 using System.Runtime.Serialization;
+using System.Text;
+using System.Text.RegularExpressions;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
+using Newtonsoft.Json.Linq;
 using System.ComponentModel.DataAnnotations;
 
 namespace Adyen.Model.Payments
@@ -28,8 +30,8 @@ namespace Adyen.Model.Payments
     /// <summary>
     /// ThreeDS2RequestData
     /// </summary>
-    [DataContract]
-    public partial class ThreeDS2RequestData :  IEquatable<ThreeDS2RequestData>, IValidatableObject
+    [DataContract(Name = "ThreeDS2RequestData")]
+    public partial class ThreeDS2RequestData : IEquatable<ThreeDS2RequestData>, IValidatableObject
     {
         /// <summary>
         /// Indicates the type of account. For example, for a multi-account card product. Length: 2 characters. Allowed values: * **01** — Not applicable * **02** — Credit * **03** — Debit
@@ -58,11 +60,12 @@ namespace Adyen.Model.Payments
 
         }
 
+
         /// <summary>
         /// Indicates the type of account. For example, for a multi-account card product. Length: 2 characters. Allowed values: * **01** — Not applicable * **02** — Credit * **03** — Debit
         /// </summary>
         /// <value>Indicates the type of account. For example, for a multi-account card product. Length: 2 characters. Allowed values: * **01** — Not applicable * **02** — Credit * **03** — Debit</value>
-        [DataMember(Name="acctType", EmitDefaultValue=false)]
+        [DataMember(Name = "acctType", EmitDefaultValue = false)]
         public AcctTypeEnum? AcctType { get; set; }
         /// <summary>
         /// Indicates whether the Cardholder Shipping Address and Cardholder Billing Address are the same. Allowed values: * **Y** — Shipping Address matches Billing Address. * **N** — Shipping Address does not match Billing Address.
@@ -85,11 +88,12 @@ namespace Adyen.Model.Payments
 
         }
 
+
         /// <summary>
         /// Indicates whether the Cardholder Shipping Address and Cardholder Billing Address are the same. Allowed values: * **Y** — Shipping Address matches Billing Address. * **N** — Shipping Address does not match Billing Address.
         /// </summary>
         /// <value>Indicates whether the Cardholder Shipping Address and Cardholder Billing Address are the same. Allowed values: * **Y** — Shipping Address matches Billing Address. * **N** — Shipping Address does not match Billing Address.</value>
-        [DataMember(Name="addrMatch", EmitDefaultValue=false)]
+        [DataMember(Name = "addrMatch", EmitDefaultValue = false)]
         public AddrMatchEnum? AddrMatch { get; set; }
         /// <summary>
         /// Possibility to specify a preference for receiving a challenge from the issuer. Allowed values: * &#x60;noPreference&#x60; * &#x60;requestNoChallenge&#x60; * &#x60;requestChallenge&#x60; * &#x60;requestChallengeAsMandate&#x60; 
@@ -124,17 +128,18 @@ namespace Adyen.Model.Payments
 
         }
 
+
         /// <summary>
         /// Possibility to specify a preference for receiving a challenge from the issuer. Allowed values: * &#x60;noPreference&#x60; * &#x60;requestNoChallenge&#x60; * &#x60;requestChallenge&#x60; * &#x60;requestChallengeAsMandate&#x60; 
         /// </summary>
         /// <value>Possibility to specify a preference for receiving a challenge from the issuer. Allowed values: * &#x60;noPreference&#x60; * &#x60;requestNoChallenge&#x60; * &#x60;requestChallenge&#x60; * &#x60;requestChallengeAsMandate&#x60; </value>
-        [DataMember(Name="challengeIndicator", EmitDefaultValue=false)]
+        [DataMember(Name = "challengeIndicator", EmitDefaultValue = false)]
         [Obsolete]
         public ChallengeIndicatorEnum? ChallengeIndicator { get; set; }
         /// <summary>
-        /// Indicates whether a challenge is requested for this transaction. Possible values: * **01** — No preference * **02** — No challenge requested * **03** — Challenge requested (3DS Requestor preference) * **04** — Challenge requested (Mandate) * **05** — No challenge (transactional risk analysis is already performed)
+        /// Indicates whether a challenge is requested for this transaction. Possible values: * **01** — No preference * **02** — No challenge requested * **03** — Challenge requested (3DS Requestor preference) * **04** — Challenge requested (Mandate) * **05** — No challenge (transactional risk analysis is already performed) * **06** — Data Only
         /// </summary>
-        /// <value>Indicates whether a challenge is requested for this transaction. Possible values: * **01** — No preference * **02** — No challenge requested * **03** — Challenge requested (3DS Requestor preference) * **04** — Challenge requested (Mandate) * **05** — No challenge (transactional risk analysis is already performed)</value>
+        /// <value>Indicates whether a challenge is requested for this transaction. Possible values: * **01** — No preference * **02** — No challenge requested * **03** — Challenge requested (3DS Requestor preference) * **04** — Challenge requested (Mandate) * **05** — No challenge (transactional risk analysis is already performed) * **06** — Data Only</value>
         [JsonConverter(typeof(StringEnumConverter))]
         public enum ThreeDSRequestorChallengeIndEnum
         {
@@ -166,15 +171,22 @@ namespace Adyen.Model.Payments
             /// Enum _05 for value: 05
             /// </summary>
             [EnumMember(Value = "05")]
-            _05 = 5
+            _05 = 5,
+
+            /// <summary>
+            /// Enum _06 for value: 06
+            /// </summary>
+            [EnumMember(Value = "06")]
+            _06 = 6
 
         }
 
+
         /// <summary>
-        /// Indicates whether a challenge is requested for this transaction. Possible values: * **01** — No preference * **02** — No challenge requested * **03** — Challenge requested (3DS Requestor preference) * **04** — Challenge requested (Mandate) * **05** — No challenge (transactional risk analysis is already performed)
+        /// Indicates whether a challenge is requested for this transaction. Possible values: * **01** — No preference * **02** — No challenge requested * **03** — Challenge requested (3DS Requestor preference) * **04** — Challenge requested (Mandate) * **05** — No challenge (transactional risk analysis is already performed) * **06** — Data Only
         /// </summary>
-        /// <value>Indicates whether a challenge is requested for this transaction. Possible values: * **01** — No preference * **02** — No challenge requested * **03** — Challenge requested (3DS Requestor preference) * **04** — Challenge requested (Mandate) * **05** — No challenge (transactional risk analysis is already performed)</value>
-        [DataMember(Name="threeDSRequestorChallengeInd", EmitDefaultValue=false)]
+        /// <value>Indicates whether a challenge is requested for this transaction. Possible values: * **01** — No preference * **02** — No challenge requested * **03** — Challenge requested (3DS Requestor preference) * **04** — Challenge requested (Mandate) * **05** — No challenge (transactional risk analysis is already performed) * **06** — Data Only</value>
+        [DataMember(Name = "threeDSRequestorChallengeInd", EmitDefaultValue = false)]
         public ThreeDSRequestorChallengeIndEnum? ThreeDSRequestorChallengeInd { get; set; }
         /// <summary>
         /// Identifies the type of transaction being authenticated. Length: 2 characters. Allowed values: * **01** — Goods/Service Purchase * **03** — Check Acceptance * **10** — Account Funding * **11** — Quasi-Cash Transaction * **28** — Prepaid Activation and Load
@@ -215,11 +227,12 @@ namespace Adyen.Model.Payments
 
         }
 
+
         /// <summary>
         /// Identifies the type of transaction being authenticated. Length: 2 characters. Allowed values: * **01** — Goods/Service Purchase * **03** — Check Acceptance * **10** — Account Funding * **11** — Quasi-Cash Transaction * **28** — Prepaid Activation and Load
         /// </summary>
         /// <value>Identifies the type of transaction being authenticated. Length: 2 characters. Allowed values: * **01** — Goods/Service Purchase * **03** — Check Acceptance * **10** — Account Funding * **11** — Quasi-Cash Transaction * **28** — Prepaid Activation and Load</value>
-        [DataMember(Name="transType", EmitDefaultValue=false)]
+        [DataMember(Name = "transType", EmitDefaultValue = false)]
         public TransTypeEnum? TransType { get; set; }
         /// <summary>
         /// Identify the type of the transaction being authenticated.
@@ -260,11 +273,12 @@ namespace Adyen.Model.Payments
 
         }
 
+
         /// <summary>
         /// Identify the type of the transaction being authenticated.
         /// </summary>
         /// <value>Identify the type of the transaction being authenticated.</value>
-        [DataMember(Name="transactionType", EmitDefaultValue=false)]
+        [DataMember(Name = "transactionType", EmitDefaultValue = false)]
         public TransactionTypeEnum? TransactionType { get; set; }
         /// <summary>
         /// Initializes a new instance of the <see cref="ThreeDS2RequestData" /> class.
@@ -304,7 +318,7 @@ namespace Adyen.Model.Payments
         /// <param name="threeDSCompInd">Completion indicator for the device fingerprinting..</param>
         /// <param name="threeDSRequestorAuthenticationInd">Indicates the type of Authentication request..</param>
         /// <param name="threeDSRequestorAuthenticationInfo">threeDSRequestorAuthenticationInfo.</param>
-        /// <param name="threeDSRequestorChallengeInd">Indicates whether a challenge is requested for this transaction. Possible values: * **01** — No preference * **02** — No challenge requested * **03** — Challenge requested (3DS Requestor preference) * **04** — Challenge requested (Mandate) * **05** — No challenge (transactional risk analysis is already performed).</param>
+        /// <param name="threeDSRequestorChallengeInd">Indicates whether a challenge is requested for this transaction. Possible values: * **01** — No preference * **02** — No challenge requested * **03** — Challenge requested (3DS Requestor preference) * **04** — Challenge requested (Mandate) * **05** — No challenge (transactional risk analysis is already performed) * **06** — Data Only.</param>
         /// <param name="threeDSRequestorID">Required for [authentication-only integration](https://docs.adyen.com/online-payments/3d-secure/other-3ds-flows/authentication-only) for Visa. Unique 3D Secure requestor identifier assigned by the Directory Server when you enrol for 3D Secure 2..</param>
         /// <param name="threeDSRequestorName">Required for [authentication-only integration](https://docs.adyen.com/online-payments/3d-secure/other-3ds-flows/authentication-only) for Visa. Unique 3D Secure requestor name assigned by the Directory Server when you enrol for 3D Secure 2..</param>
         /// <param name="threeDSRequestorPriorAuthenticationInfo">threeDSRequestorPriorAuthenticationInfo.</param>
@@ -313,8 +327,9 @@ namespace Adyen.Model.Payments
         /// <param name="transactionType">Identify the type of the transaction being authenticated..</param>
         /// <param name="whiteListStatus">The &#x60;whiteListStatus&#x60; value returned from a previous 3D Secure 2 transaction, only applicable for 3D Secure 2 protocol version 2.2.0..</param>
         /// <param name="workPhone">workPhone.</param>
-        public ThreeDS2RequestData(AcctInfo acctInfo = default(AcctInfo), AcctTypeEnum? acctType = default(AcctTypeEnum?), string acquirerBIN = default(string), string acquirerMerchantID = default(string), AddrMatchEnum? addrMatch = default(AddrMatchEnum?), bool authenticationOnly = false, ChallengeIndicatorEnum? challengeIndicator = default(ChallengeIndicatorEnum?), string deviceChannel = default(string), DeviceRenderOptions deviceRenderOptions = default(DeviceRenderOptions), Phone homePhone = default(Phone), string mcc = default(string), string merchantName = default(string), string messageVersion = "2.1.0", Phone mobilePhone = default(Phone), string notificationURL = default(string), bool payTokenInd = default(bool), string paymentAuthenticationUseCase = default(string), string purchaseInstalData = default(string), string recurringExpiry = default(string), string recurringFrequency = default(string), string sdkAppID = default(string), string sdkEncData = default(string), SDKEphemPubKey sdkEphemPubKey = default(SDKEphemPubKey), int sdkMaxTimeout = 60, string sdkReferenceNumber = default(string), string sdkTransID = default(string), string sdkVersion = default(string), string threeDSCompInd = default(string), string threeDSRequestorAuthenticationInd = default(string), ThreeDSRequestorAuthenticationInfo threeDSRequestorAuthenticationInfo = default(ThreeDSRequestorAuthenticationInfo), ThreeDSRequestorChallengeIndEnum? threeDSRequestorChallengeInd = default(ThreeDSRequestorChallengeIndEnum?), string threeDSRequestorID = default(string), string threeDSRequestorName = default(string), ThreeDSRequestorPriorAuthenticationInfo threeDSRequestorPriorAuthenticationInfo = default(ThreeDSRequestorPriorAuthenticationInfo), string threeDSRequestorURL = default(string), TransTypeEnum? transType = default(TransTypeEnum?), TransactionTypeEnum? transactionType = default(TransactionTypeEnum?), string whiteListStatus = default(string), Phone workPhone = default(Phone))
+        public ThreeDS2RequestData(AcctInfo acctInfo = default(AcctInfo), AcctTypeEnum? acctType = default(AcctTypeEnum?), string acquirerBIN = default(string), string acquirerMerchantID = default(string), AddrMatchEnum? addrMatch = default(AddrMatchEnum?), bool authenticationOnly = false, ChallengeIndicatorEnum? challengeIndicator = default(ChallengeIndicatorEnum?), string deviceChannel = default(string), DeviceRenderOptions deviceRenderOptions = default(DeviceRenderOptions), Phone homePhone = default(Phone), string mcc = default(string), string merchantName = default(string), string messageVersion = "2.1.0", Phone mobilePhone = default(Phone), string notificationURL = default(string), bool payTokenInd = default(bool), string paymentAuthenticationUseCase = default(string), string purchaseInstalData = default(string), string recurringExpiry = default(string), string recurringFrequency = default(string), string sdkAppID = default(string), string sdkEncData = default(string), SDKEphemPubKey sdkEphemPubKey = default(SDKEphemPubKey), int? sdkMaxTimeout = 60, string sdkReferenceNumber = default(string), string sdkTransID = default(string), string sdkVersion = default(string), string threeDSCompInd = default(string), string threeDSRequestorAuthenticationInd = default(string), ThreeDSRequestorAuthenticationInfo threeDSRequestorAuthenticationInfo = default(ThreeDSRequestorAuthenticationInfo), ThreeDSRequestorChallengeIndEnum? threeDSRequestorChallengeInd = default(ThreeDSRequestorChallengeIndEnum?), string threeDSRequestorID = default(string), string threeDSRequestorName = default(string), ThreeDSRequestorPriorAuthenticationInfo threeDSRequestorPriorAuthenticationInfo = default(ThreeDSRequestorPriorAuthenticationInfo), string threeDSRequestorURL = default(string), TransTypeEnum? transType = default(TransTypeEnum?), TransactionTypeEnum? transactionType = default(TransactionTypeEnum?), string whiteListStatus = default(string), Phone workPhone = default(Phone))
         {
+            this.DeviceChannel = deviceChannel;
             this.AcctInfo = acctInfo;
             this.AcctType = acctType;
             this.AcquirerBIN = acquirerBIN;
@@ -322,12 +337,12 @@ namespace Adyen.Model.Payments
             this.AddrMatch = addrMatch;
             this.AuthenticationOnly = authenticationOnly;
             this.ChallengeIndicator = challengeIndicator;
-            this.DeviceChannel = deviceChannel;
             this.DeviceRenderOptions = deviceRenderOptions;
             this.HomePhone = homePhone;
             this.Mcc = mcc;
             this.MerchantName = merchantName;
-            this.MessageVersion = messageVersion;
+            // use default value if no "messageVersion" provided
+            this.MessageVersion = messageVersion ?? "2.1.0";
             this.MobilePhone = mobilePhone;
             this.NotificationURL = notificationURL;
             this.PayTokenInd = payTokenInd;
@@ -359,240 +374,234 @@ namespace Adyen.Model.Payments
         /// <summary>
         /// Gets or Sets AcctInfo
         /// </summary>
-        [DataMember(Name="acctInfo", EmitDefaultValue=false)]
+        [DataMember(Name = "acctInfo", EmitDefaultValue = false)]
         public AcctInfo AcctInfo { get; set; }
-
-
+        
         /// <summary>
         /// Required for [authentication-only integration](https://docs.adyen.com/online-payments/3d-secure/other-3ds-flows/authentication-only). The acquiring BIN enrolled for 3D Secure 2. This string should match the value that you will use in the authorisation. Use 123456 on the Test platform.
         /// </summary>
         /// <value>Required for [authentication-only integration](https://docs.adyen.com/online-payments/3d-secure/other-3ds-flows/authentication-only). The acquiring BIN enrolled for 3D Secure 2. This string should match the value that you will use in the authorisation. Use 123456 on the Test platform.</value>
-        [DataMember(Name="acquirerBIN", EmitDefaultValue=false)]
+        [DataMember(Name = "acquirerBIN", EmitDefaultValue = false)]
         public string AcquirerBIN { get; set; }
-
+        
         /// <summary>
         /// Required for [authentication-only integration](https://docs.adyen.com/online-payments/3d-secure/other-3ds-flows/authentication-only). The merchantId that is enrolled for 3D Secure 2 by the merchant&#39;s acquirer. This string should match the value that you will use in the authorisation. Use 123456 on the Test platform.
         /// </summary>
         /// <value>Required for [authentication-only integration](https://docs.adyen.com/online-payments/3d-secure/other-3ds-flows/authentication-only). The merchantId that is enrolled for 3D Secure 2 by the merchant&#39;s acquirer. This string should match the value that you will use in the authorisation. Use 123456 on the Test platform.</value>
-        [DataMember(Name="acquirerMerchantID", EmitDefaultValue=false)]
+        [DataMember(Name = "acquirerMerchantID", EmitDefaultValue = false)]
         public string AcquirerMerchantID { get; set; }
-
-
+        
         /// <summary>
         /// If set to true, you will only perform the [3D Secure 2 authentication](https://docs.adyen.com/online-payments/3d-secure/other-3ds-flows/authentication-only), and not the payment authorisation.
         /// </summary>
         /// <value>If set to true, you will only perform the [3D Secure 2 authentication](https://docs.adyen.com/online-payments/3d-secure/other-3ds-flows/authentication-only), and not the payment authorisation.</value>
-        [DataMember(Name="authenticationOnly", EmitDefaultValue=false)]
+        [DataMember(Name = "authenticationOnly", EmitDefaultValue = false)]
         [Obsolete]
         public bool AuthenticationOnly { get; set; }
-
-
+        
         /// <summary>
         /// The environment of the shopper. Allowed values: * &#x60;app&#x60; * &#x60;browser&#x60;
         /// </summary>
         /// <value>The environment of the shopper. Allowed values: * &#x60;app&#x60; * &#x60;browser&#x60;</value>
-        [DataMember(Name="deviceChannel", EmitDefaultValue=true)]
+        [DataMember(Name = "deviceChannel", IsRequired = false, EmitDefaultValue = true)]
         public string DeviceChannel { get; set; }
-
+        
         /// <summary>
         /// Gets or Sets DeviceRenderOptions
         /// </summary>
-        [DataMember(Name="deviceRenderOptions", EmitDefaultValue=false)]
+        [DataMember(Name = "deviceRenderOptions", EmitDefaultValue = false)]
         public DeviceRenderOptions DeviceRenderOptions { get; set; }
-
+        
         /// <summary>
         /// Gets or Sets HomePhone
         /// </summary>
-        [DataMember(Name="homePhone", EmitDefaultValue=false)]
+        [DataMember(Name = "homePhone", EmitDefaultValue = false)]
         public Phone HomePhone { get; set; }
-
+        
         /// <summary>
         /// Required for merchants that have been enrolled for 3D Secure 2 by another party than Adyen, mostly [authentication-only integrations](https://docs.adyen.com/online-payments/3d-secure/other-3ds-flows/authentication-only). The &#x60;mcc&#x60; is a four-digit code with which the previously given &#x60;acquirerMerchantID&#x60; is registered at the scheme.
         /// </summary>
         /// <value>Required for merchants that have been enrolled for 3D Secure 2 by another party than Adyen, mostly [authentication-only integrations](https://docs.adyen.com/online-payments/3d-secure/other-3ds-flows/authentication-only). The &#x60;mcc&#x60; is a four-digit code with which the previously given &#x60;acquirerMerchantID&#x60; is registered at the scheme.</value>
-        [DataMember(Name="mcc", EmitDefaultValue=false)]
+        [DataMember(Name = "mcc", EmitDefaultValue = false)]
         public string Mcc { get; set; }
-
+        
         /// <summary>
         /// Required for [authentication-only integration](https://docs.adyen.com/online-payments/3d-secure/other-3ds-flows/authentication-only). The merchant name that the issuer presents to the shopper if they get a challenge. We recommend to use the same value that you will use in the authorization. Maximum length is 40 characters. &gt; Optional for a [full 3D Secure 2 integration](https://docs.adyen.com/online-payments/3d-secure/native-3ds2/api-integration). Use this field if you are enrolled for 3D Secure 2 with us and want to override the merchant name already configured on your account.
         /// </summary>
         /// <value>Required for [authentication-only integration](https://docs.adyen.com/online-payments/3d-secure/other-3ds-flows/authentication-only). The merchant name that the issuer presents to the shopper if they get a challenge. We recommend to use the same value that you will use in the authorization. Maximum length is 40 characters. &gt; Optional for a [full 3D Secure 2 integration](https://docs.adyen.com/online-payments/3d-secure/native-3ds2/api-integration). Use this field if you are enrolled for 3D Secure 2 with us and want to override the merchant name already configured on your account.</value>
-        [DataMember(Name="merchantName", EmitDefaultValue=false)]
+        [DataMember(Name = "merchantName", EmitDefaultValue = false)]
         public string MerchantName { get; set; }
-
+        
         /// <summary>
         /// The &#x60;messageVersion&#x60; value indicating the 3D Secure 2 protocol version.
         /// </summary>
         /// <value>The &#x60;messageVersion&#x60; value indicating the 3D Secure 2 protocol version.</value>
-        [DataMember(Name="messageVersion", EmitDefaultValue=false)]
+        [DataMember(Name = "messageVersion", EmitDefaultValue = false)]
         public string MessageVersion { get; set; }
-
+        
         /// <summary>
         /// Gets or Sets MobilePhone
         /// </summary>
-        [DataMember(Name="mobilePhone", EmitDefaultValue=false)]
+        [DataMember(Name = "mobilePhone", EmitDefaultValue = false)]
         public Phone MobilePhone { get; set; }
-
+        
         /// <summary>
         /// URL to where the issuer should send the &#x60;CRes&#x60;. Required if you are not using components for &#x60;channel&#x60; **Web** or if you are using classic integration &#x60;deviceChannel&#x60; **browser**.
         /// </summary>
         /// <value>URL to where the issuer should send the &#x60;CRes&#x60;. Required if you are not using components for &#x60;channel&#x60; **Web** or if you are using classic integration &#x60;deviceChannel&#x60; **browser**.</value>
-        [DataMember(Name="notificationURL", EmitDefaultValue=false)]
+        [DataMember(Name = "notificationURL", EmitDefaultValue = false)]
         public string NotificationURL { get; set; }
-
+        
         /// <summary>
         /// Value **true** indicates that the transaction was de-tokenised prior to being received by the ACS.
         /// </summary>
         /// <value>Value **true** indicates that the transaction was de-tokenised prior to being received by the ACS.</value>
-        [DataMember(Name="payTokenInd", EmitDefaultValue=false)]
+        [DataMember(Name = "payTokenInd", EmitDefaultValue = false)]
         public bool PayTokenInd { get; set; }
-
+        
         /// <summary>
         /// Indicates the type of payment for which an authentication is requested (message extension)
         /// </summary>
         /// <value>Indicates the type of payment for which an authentication is requested (message extension)</value>
-        [DataMember(Name="paymentAuthenticationUseCase", EmitDefaultValue=false)]
+        [DataMember(Name = "paymentAuthenticationUseCase", EmitDefaultValue = false)]
         public string PaymentAuthenticationUseCase { get; set; }
-
+        
         /// <summary>
         /// Indicates the maximum number of authorisations permitted for instalment payments. Length: 1–3 characters.
         /// </summary>
         /// <value>Indicates the maximum number of authorisations permitted for instalment payments. Length: 1–3 characters.</value>
-        [DataMember(Name="purchaseInstalData", EmitDefaultValue=false)]
+        [DataMember(Name = "purchaseInstalData", EmitDefaultValue = false)]
         public string PurchaseInstalData { get; set; }
-
+        
         /// <summary>
         /// Date after which no further authorisations shall be performed. Format: YYYYMMDD
         /// </summary>
         /// <value>Date after which no further authorisations shall be performed. Format: YYYYMMDD</value>
-        [DataMember(Name="recurringExpiry", EmitDefaultValue=false)]
+        [DataMember(Name = "recurringExpiry", EmitDefaultValue = false)]
         public string RecurringExpiry { get; set; }
-
+        
         /// <summary>
         /// Indicates the minimum number of days between authorisations. Maximum length: 4 characters.
         /// </summary>
         /// <value>Indicates the minimum number of days between authorisations. Maximum length: 4 characters.</value>
-        [DataMember(Name="recurringFrequency", EmitDefaultValue=false)]
+        [DataMember(Name = "recurringFrequency", EmitDefaultValue = false)]
         public string RecurringFrequency { get; set; }
-
+        
         /// <summary>
         /// The &#x60;sdkAppID&#x60; value as received from the 3D Secure 2 SDK. Required for &#x60;deviceChannel&#x60; set to **app**.
         /// </summary>
         /// <value>The &#x60;sdkAppID&#x60; value as received from the 3D Secure 2 SDK. Required for &#x60;deviceChannel&#x60; set to **app**.</value>
-        [DataMember(Name="sdkAppID", EmitDefaultValue=false)]
+        [DataMember(Name = "sdkAppID", EmitDefaultValue = false)]
         public string SdkAppID { get; set; }
-
+        
         /// <summary>
         /// The &#x60;sdkEncData&#x60; value as received from the 3D Secure 2 SDK. Required for &#x60;deviceChannel&#x60; set to **app**.
         /// </summary>
         /// <value>The &#x60;sdkEncData&#x60; value as received from the 3D Secure 2 SDK. Required for &#x60;deviceChannel&#x60; set to **app**.</value>
-        [DataMember(Name="sdkEncData", EmitDefaultValue=false)]
+        [DataMember(Name = "sdkEncData", EmitDefaultValue = false)]
         public string SdkEncData { get; set; }
-
+        
         /// <summary>
         /// Gets or Sets SdkEphemPubKey
         /// </summary>
-        [DataMember(Name="sdkEphemPubKey", EmitDefaultValue=false)]
+        [DataMember(Name = "sdkEphemPubKey", EmitDefaultValue = false)]
         public SDKEphemPubKey SdkEphemPubKey { get; set; }
-
+        
         /// <summary>
         /// The maximum amount of time in minutes for the 3D Secure 2 authentication process. Optional and only for &#x60;deviceChannel&#x60; set to **app**. Defaults to **60** minutes.
         /// </summary>
         /// <value>The maximum amount of time in minutes for the 3D Secure 2 authentication process. Optional and only for &#x60;deviceChannel&#x60; set to **app**. Defaults to **60** minutes.</value>
-        [DataMember(Name="sdkMaxTimeout", EmitDefaultValue=false)]
-        public int SdkMaxTimeout { get; set; }
-
+        [DataMember(Name = "sdkMaxTimeout", EmitDefaultValue = false)]
+        public int? SdkMaxTimeout { get; set; }
+        
         /// <summary>
         /// The &#x60;sdkReferenceNumber&#x60; value as received from the 3D Secure 2 SDK. Only for &#x60;deviceChannel&#x60; set to **app**.
         /// </summary>
         /// <value>The &#x60;sdkReferenceNumber&#x60; value as received from the 3D Secure 2 SDK. Only for &#x60;deviceChannel&#x60; set to **app**.</value>
-        [DataMember(Name="sdkReferenceNumber", EmitDefaultValue=false)]
+        [DataMember(Name = "sdkReferenceNumber", EmitDefaultValue = false)]
         public string SdkReferenceNumber { get; set; }
-
+        
         /// <summary>
         /// The &#x60;sdkTransID&#x60; value as received from the 3D Secure 2 SDK. Only for &#x60;deviceChannel&#x60; set to **app**.
         /// </summary>
         /// <value>The &#x60;sdkTransID&#x60; value as received from the 3D Secure 2 SDK. Only for &#x60;deviceChannel&#x60; set to **app**.</value>
-        [DataMember(Name="sdkTransID", EmitDefaultValue=false)]
+        [DataMember(Name = "sdkTransID", EmitDefaultValue = false)]
         public string SdkTransID { get; set; }
-
+        
         /// <summary>
         /// Version of the 3D Secure 2 mobile SDK.  Only for &#x60;deviceChannel&#x60; set to **app**.
         /// </summary>
         /// <value>Version of the 3D Secure 2 mobile SDK.  Only for &#x60;deviceChannel&#x60; set to **app**.</value>
-        [DataMember(Name="sdkVersion", EmitDefaultValue=false)]
+        [DataMember(Name = "sdkVersion", EmitDefaultValue = false)]
         public string SdkVersion { get; set; }
-
+        
         /// <summary>
         /// Completion indicator for the device fingerprinting.
         /// </summary>
         /// <value>Completion indicator for the device fingerprinting.</value>
-        [DataMember(Name="threeDSCompInd", EmitDefaultValue=false)]
+        [DataMember(Name = "threeDSCompInd", EmitDefaultValue = false)]
         public string ThreeDSCompInd { get; set; }
-
+        
         /// <summary>
         /// Indicates the type of Authentication request.
         /// </summary>
         /// <value>Indicates the type of Authentication request.</value>
-        [DataMember(Name="threeDSRequestorAuthenticationInd", EmitDefaultValue=false)]
+        [DataMember(Name = "threeDSRequestorAuthenticationInd", EmitDefaultValue = false)]
         public string ThreeDSRequestorAuthenticationInd { get; set; }
-
+        
         /// <summary>
         /// Gets or Sets ThreeDSRequestorAuthenticationInfo
         /// </summary>
-        [DataMember(Name="threeDSRequestorAuthenticationInfo", EmitDefaultValue=false)]
+        [DataMember(Name = "threeDSRequestorAuthenticationInfo", EmitDefaultValue = false)]
         public ThreeDSRequestorAuthenticationInfo ThreeDSRequestorAuthenticationInfo { get; set; }
-
-
+        
         /// <summary>
         /// Required for [authentication-only integration](https://docs.adyen.com/online-payments/3d-secure/other-3ds-flows/authentication-only) for Visa. Unique 3D Secure requestor identifier assigned by the Directory Server when you enrol for 3D Secure 2.
         /// </summary>
         /// <value>Required for [authentication-only integration](https://docs.adyen.com/online-payments/3d-secure/other-3ds-flows/authentication-only) for Visa. Unique 3D Secure requestor identifier assigned by the Directory Server when you enrol for 3D Secure 2.</value>
-        [DataMember(Name="threeDSRequestorID", EmitDefaultValue=false)]
+        [DataMember(Name = "threeDSRequestorID", EmitDefaultValue = false)]
         public string ThreeDSRequestorID { get; set; }
-
+        
         /// <summary>
         /// Required for [authentication-only integration](https://docs.adyen.com/online-payments/3d-secure/other-3ds-flows/authentication-only) for Visa. Unique 3D Secure requestor name assigned by the Directory Server when you enrol for 3D Secure 2.
         /// </summary>
         /// <value>Required for [authentication-only integration](https://docs.adyen.com/online-payments/3d-secure/other-3ds-flows/authentication-only) for Visa. Unique 3D Secure requestor name assigned by the Directory Server when you enrol for 3D Secure 2.</value>
-        [DataMember(Name="threeDSRequestorName", EmitDefaultValue=false)]
+        [DataMember(Name = "threeDSRequestorName", EmitDefaultValue = false)]
         public string ThreeDSRequestorName { get; set; }
-
+        
         /// <summary>
         /// Gets or Sets ThreeDSRequestorPriorAuthenticationInfo
         /// </summary>
-        [DataMember(Name="threeDSRequestorPriorAuthenticationInfo", EmitDefaultValue=false)]
+        [DataMember(Name = "threeDSRequestorPriorAuthenticationInfo", EmitDefaultValue = false)]
         public ThreeDSRequestorPriorAuthenticationInfo ThreeDSRequestorPriorAuthenticationInfo { get; set; }
-
+        
         /// <summary>
         /// URL of the (customer service) website that will be shown to the shopper in case of technical errors during the 3D Secure 2 process.
         /// </summary>
         /// <value>URL of the (customer service) website that will be shown to the shopper in case of technical errors during the 3D Secure 2 process.</value>
-        [DataMember(Name="threeDSRequestorURL", EmitDefaultValue=false)]
+        [DataMember(Name = "threeDSRequestorURL", EmitDefaultValue = false)]
         public string ThreeDSRequestorURL { get; set; }
-
-
-
+        
         /// <summary>
         /// The &#x60;whiteListStatus&#x60; value returned from a previous 3D Secure 2 transaction, only applicable for 3D Secure 2 protocol version 2.2.0.
         /// </summary>
         /// <value>The &#x60;whiteListStatus&#x60; value returned from a previous 3D Secure 2 transaction, only applicable for 3D Secure 2 protocol version 2.2.0.</value>
-        [DataMember(Name="whiteListStatus", EmitDefaultValue=false)]
+        [DataMember(Name = "whiteListStatus", EmitDefaultValue = false)]
         public string WhiteListStatus { get; set; }
-
+        
         /// <summary>
         /// Gets or Sets WorkPhone
         /// </summary>
-        [DataMember(Name="workPhone", EmitDefaultValue=false)]
+        [DataMember(Name = "workPhone", EmitDefaultValue = false)]
         public Phone WorkPhone { get; set; }
-
+        
         /// <summary>
         /// Returns the string presentation of the object
         /// </summary>
         /// <returns>String presentation of the object</returns>
         public override string ToString()
         {
-            var sb = new StringBuilder();
+            StringBuilder sb = new StringBuilder();
             sb.Append("class ThreeDS2RequestData {\n");
             sb.Append("  AcctInfo: ").Append(AcctInfo).Append("\n");
             sb.Append("  AcctType: ").Append(AcctType).Append("\n");
@@ -664,8 +673,9 @@ namespace Adyen.Model.Payments
         public bool Equals(ThreeDS2RequestData input)
         {
             if (input == null)
+            {
                 return false;
-
+            }
             return 
                 (
                     this.AcctInfo == input.AcctInfo ||
@@ -674,8 +684,7 @@ namespace Adyen.Model.Payments
                 ) && 
                 (
                     this.AcctType == input.AcctType ||
-                    (this.AcctType != null &&
-                    this.AcctType.Equals(input.AcctType))
+                    this.AcctType.Equals(input.AcctType)
                 ) && 
                 (
                     this.AcquirerBIN == input.AcquirerBIN ||
@@ -689,18 +698,15 @@ namespace Adyen.Model.Payments
                 ) && 
                 (
                     this.AddrMatch == input.AddrMatch ||
-                    (this.AddrMatch != null &&
-                    this.AddrMatch.Equals(input.AddrMatch))
+                    this.AddrMatch.Equals(input.AddrMatch)
                 ) && 
                 (
                     this.AuthenticationOnly == input.AuthenticationOnly ||
-                    (this.AuthenticationOnly != null &&
-                    this.AuthenticationOnly.Equals(input.AuthenticationOnly))
+                    this.AuthenticationOnly.Equals(input.AuthenticationOnly)
                 ) && 
                 (
                     this.ChallengeIndicator == input.ChallengeIndicator ||
-                    (this.ChallengeIndicator != null &&
-                    this.ChallengeIndicator.Equals(input.ChallengeIndicator))
+                    this.ChallengeIndicator.Equals(input.ChallengeIndicator)
                 ) && 
                 (
                     this.DeviceChannel == input.DeviceChannel ||
@@ -744,8 +750,7 @@ namespace Adyen.Model.Payments
                 ) && 
                 (
                     this.PayTokenInd == input.PayTokenInd ||
-                    (this.PayTokenInd != null &&
-                    this.PayTokenInd.Equals(input.PayTokenInd))
+                    this.PayTokenInd.Equals(input.PayTokenInd)
                 ) && 
                 (
                     this.PaymentAuthenticationUseCase == input.PaymentAuthenticationUseCase ||
@@ -784,8 +789,7 @@ namespace Adyen.Model.Payments
                 ) && 
                 (
                     this.SdkMaxTimeout == input.SdkMaxTimeout ||
-                    (this.SdkMaxTimeout != null &&
-                    this.SdkMaxTimeout.Equals(input.SdkMaxTimeout))
+                    this.SdkMaxTimeout.Equals(input.SdkMaxTimeout)
                 ) && 
                 (
                     this.SdkReferenceNumber == input.SdkReferenceNumber ||
@@ -819,8 +823,7 @@ namespace Adyen.Model.Payments
                 ) && 
                 (
                     this.ThreeDSRequestorChallengeInd == input.ThreeDSRequestorChallengeInd ||
-                    (this.ThreeDSRequestorChallengeInd != null &&
-                    this.ThreeDSRequestorChallengeInd.Equals(input.ThreeDSRequestorChallengeInd))
+                    this.ThreeDSRequestorChallengeInd.Equals(input.ThreeDSRequestorChallengeInd)
                 ) && 
                 (
                     this.ThreeDSRequestorID == input.ThreeDSRequestorID ||
@@ -844,13 +847,11 @@ namespace Adyen.Model.Payments
                 ) && 
                 (
                     this.TransType == input.TransType ||
-                    (this.TransType != null &&
-                    this.TransType.Equals(input.TransType))
+                    this.TransType.Equals(input.TransType)
                 ) && 
                 (
                     this.TransactionType == input.TransactionType ||
-                    (this.TransactionType != null &&
-                    this.TransactionType.Equals(input.TransactionType))
+                    this.TransactionType.Equals(input.TransactionType)
                 ) && 
                 (
                     this.WhiteListStatus == input.WhiteListStatus ||
@@ -874,83 +875,134 @@ namespace Adyen.Model.Payments
             {
                 int hashCode = 41;
                 if (this.AcctInfo != null)
-                    hashCode = hashCode * 59 + this.AcctInfo.GetHashCode();
-                if (this.AcctType != null)
-                    hashCode = hashCode * 59 + this.AcctType.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.AcctInfo.GetHashCode();
+                }
+                hashCode = (hashCode * 59) + this.AcctType.GetHashCode();
                 if (this.AcquirerBIN != null)
-                    hashCode = hashCode * 59 + this.AcquirerBIN.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.AcquirerBIN.GetHashCode();
+                }
                 if (this.AcquirerMerchantID != null)
-                    hashCode = hashCode * 59 + this.AcquirerMerchantID.GetHashCode();
-                if (this.AddrMatch != null)
-                    hashCode = hashCode * 59 + this.AddrMatch.GetHashCode();
-                if (this.AuthenticationOnly != null)
-                    hashCode = hashCode * 59 + this.AuthenticationOnly.GetHashCode();
-                if (this.ChallengeIndicator != null)
-                    hashCode = hashCode * 59 + this.ChallengeIndicator.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.AcquirerMerchantID.GetHashCode();
+                }
+                hashCode = (hashCode * 59) + this.AddrMatch.GetHashCode();
+                hashCode = (hashCode * 59) + this.AuthenticationOnly.GetHashCode();
+                hashCode = (hashCode * 59) + this.ChallengeIndicator.GetHashCode();
                 if (this.DeviceChannel != null)
-                    hashCode = hashCode * 59 + this.DeviceChannel.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.DeviceChannel.GetHashCode();
+                }
                 if (this.DeviceRenderOptions != null)
-                    hashCode = hashCode * 59 + this.DeviceRenderOptions.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.DeviceRenderOptions.GetHashCode();
+                }
                 if (this.HomePhone != null)
-                    hashCode = hashCode * 59 + this.HomePhone.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.HomePhone.GetHashCode();
+                }
                 if (this.Mcc != null)
-                    hashCode = hashCode * 59 + this.Mcc.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.Mcc.GetHashCode();
+                }
                 if (this.MerchantName != null)
-                    hashCode = hashCode * 59 + this.MerchantName.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.MerchantName.GetHashCode();
+                }
                 if (this.MessageVersion != null)
-                    hashCode = hashCode * 59 + this.MessageVersion.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.MessageVersion.GetHashCode();
+                }
                 if (this.MobilePhone != null)
-                    hashCode = hashCode * 59 + this.MobilePhone.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.MobilePhone.GetHashCode();
+                }
                 if (this.NotificationURL != null)
-                    hashCode = hashCode * 59 + this.NotificationURL.GetHashCode();
-                if (this.PayTokenInd != null)
-                    hashCode = hashCode * 59 + this.PayTokenInd.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.NotificationURL.GetHashCode();
+                }
+                hashCode = (hashCode * 59) + this.PayTokenInd.GetHashCode();
                 if (this.PaymentAuthenticationUseCase != null)
-                    hashCode = hashCode * 59 + this.PaymentAuthenticationUseCase.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.PaymentAuthenticationUseCase.GetHashCode();
+                }
                 if (this.PurchaseInstalData != null)
-                    hashCode = hashCode * 59 + this.PurchaseInstalData.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.PurchaseInstalData.GetHashCode();
+                }
                 if (this.RecurringExpiry != null)
-                    hashCode = hashCode * 59 + this.RecurringExpiry.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.RecurringExpiry.GetHashCode();
+                }
                 if (this.RecurringFrequency != null)
-                    hashCode = hashCode * 59 + this.RecurringFrequency.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.RecurringFrequency.GetHashCode();
+                }
                 if (this.SdkAppID != null)
-                    hashCode = hashCode * 59 + this.SdkAppID.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.SdkAppID.GetHashCode();
+                }
                 if (this.SdkEncData != null)
-                    hashCode = hashCode * 59 + this.SdkEncData.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.SdkEncData.GetHashCode();
+                }
                 if (this.SdkEphemPubKey != null)
-                    hashCode = hashCode * 59 + this.SdkEphemPubKey.GetHashCode();
-                if (this.SdkMaxTimeout != null)
-                    hashCode = hashCode * 59 + this.SdkMaxTimeout.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.SdkEphemPubKey.GetHashCode();
+                }
+                hashCode = (hashCode * 59) + this.SdkMaxTimeout.GetHashCode();
                 if (this.SdkReferenceNumber != null)
-                    hashCode = hashCode * 59 + this.SdkReferenceNumber.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.SdkReferenceNumber.GetHashCode();
+                }
                 if (this.SdkTransID != null)
-                    hashCode = hashCode * 59 + this.SdkTransID.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.SdkTransID.GetHashCode();
+                }
                 if (this.SdkVersion != null)
-                    hashCode = hashCode * 59 + this.SdkVersion.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.SdkVersion.GetHashCode();
+                }
                 if (this.ThreeDSCompInd != null)
-                    hashCode = hashCode * 59 + this.ThreeDSCompInd.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.ThreeDSCompInd.GetHashCode();
+                }
                 if (this.ThreeDSRequestorAuthenticationInd != null)
-                    hashCode = hashCode * 59 + this.ThreeDSRequestorAuthenticationInd.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.ThreeDSRequestorAuthenticationInd.GetHashCode();
+                }
                 if (this.ThreeDSRequestorAuthenticationInfo != null)
-                    hashCode = hashCode * 59 + this.ThreeDSRequestorAuthenticationInfo.GetHashCode();
-                if (this.ThreeDSRequestorChallengeInd != null)
-                    hashCode = hashCode * 59 + this.ThreeDSRequestorChallengeInd.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.ThreeDSRequestorAuthenticationInfo.GetHashCode();
+                }
+                hashCode = (hashCode * 59) + this.ThreeDSRequestorChallengeInd.GetHashCode();
                 if (this.ThreeDSRequestorID != null)
-                    hashCode = hashCode * 59 + this.ThreeDSRequestorID.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.ThreeDSRequestorID.GetHashCode();
+                }
                 if (this.ThreeDSRequestorName != null)
-                    hashCode = hashCode * 59 + this.ThreeDSRequestorName.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.ThreeDSRequestorName.GetHashCode();
+                }
                 if (this.ThreeDSRequestorPriorAuthenticationInfo != null)
-                    hashCode = hashCode * 59 + this.ThreeDSRequestorPriorAuthenticationInfo.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.ThreeDSRequestorPriorAuthenticationInfo.GetHashCode();
+                }
                 if (this.ThreeDSRequestorURL != null)
-                    hashCode = hashCode * 59 + this.ThreeDSRequestorURL.GetHashCode();
-                if (this.TransType != null)
-                    hashCode = hashCode * 59 + this.TransType.GetHashCode();
-                if (this.TransactionType != null)
-                    hashCode = hashCode * 59 + this.TransactionType.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.ThreeDSRequestorURL.GetHashCode();
+                }
+                hashCode = (hashCode * 59) + this.TransType.GetHashCode();
+                hashCode = (hashCode * 59) + this.TransactionType.GetHashCode();
                 if (this.WhiteListStatus != null)
-                    hashCode = hashCode * 59 + this.WhiteListStatus.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.WhiteListStatus.GetHashCode();
+                }
                 if (this.WorkPhone != null)
-                    hashCode = hashCode * 59 + this.WorkPhone.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.WorkPhone.GetHashCode();
+                }
                 return hashCode;
             }
         }
@@ -960,61 +1012,24 @@ namespace Adyen.Model.Payments
         /// </summary>
         /// <param name="validationContext">Validation context</param>
         /// <returns>Validation Result</returns>
-        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+        public IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> Validate(ValidationContext validationContext)
         {
-            // AcctType (string) maxLength
-            if(this.AcctType != null && this.AcctType.ToString().Length > 2)
-            {
-                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for AcctType, length must be less than 2.", new [] { "AcctType" });
-            }
-
-            // AcctType (string) minLength
-            if(this.AcctType != null && this.AcctType.ToString().Length < 2)
-            {
-                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for AcctType, length must be greater than 2.", new [] { "AcctType" });
-            }
-
-            // AddrMatch (string) maxLength
-            if(this.AddrMatch != null && this.AddrMatch.ToString().Length > 1)
-            {
-                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for AddrMatch, length must be less than 1.", new [] { "AddrMatch" });
-            }
-
-            // AddrMatch (string) minLength
-            if(this.AddrMatch != null && this.AddrMatch.ToString().Length < 1)
-            {
-                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for AddrMatch, length must be greater than 1.", new [] { "AddrMatch" });
-            }
-
             // PurchaseInstalData (string) maxLength
-            if(this.PurchaseInstalData != null && this.PurchaseInstalData.Length > 3)
+            if (this.PurchaseInstalData != null && this.PurchaseInstalData.Length > 3)
             {
                 yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for PurchaseInstalData, length must be less than 3.", new [] { "PurchaseInstalData" });
             }
 
             // PurchaseInstalData (string) minLength
-            if(this.PurchaseInstalData != null && this.PurchaseInstalData.Length < 1)
+            if (this.PurchaseInstalData != null && this.PurchaseInstalData.Length < 1)
             {
                 yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for PurchaseInstalData, length must be greater than 1.", new [] { "PurchaseInstalData" });
             }
 
             // RecurringFrequency (string) maxLength
-            if(this.RecurringFrequency != null && this.RecurringFrequency.Length > 4)
+            if (this.RecurringFrequency != null && this.RecurringFrequency.Length > 4)
             {
                 yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for RecurringFrequency, length must be less than 4.", new [] { "RecurringFrequency" });
-            }
-
-
-            // TransType (string) maxLength
-            if(this.TransType != null && this.TransType.ToString().Length > 2)
-            {
-                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for TransType, length must be less than 2.", new [] { "TransType" });
-            }
-
-            // TransType (string) minLength
-            if(this.TransType != null && this.TransType.ToString().Length < 2)
-            {
-                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for TransType, length must be greater than 2.", new [] { "TransType" });
             }
 
             yield break;

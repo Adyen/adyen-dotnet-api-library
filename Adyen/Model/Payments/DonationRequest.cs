@@ -10,17 +10,19 @@
 * Do not edit the class manually.
 */
 
+
 using System;
-using System.Linq;
-using System.IO;
-using System.Text;
-using System.Text.RegularExpressions;
 using System.Collections;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Linq;
+using System.IO;
 using System.Runtime.Serialization;
+using System.Text;
+using System.Text.RegularExpressions;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
+using Newtonsoft.Json.Linq;
 using System.ComponentModel.DataAnnotations;
 
 namespace Adyen.Model.Payments
@@ -28,8 +30,8 @@ namespace Adyen.Model.Payments
     /// <summary>
     /// DonationRequest
     /// </summary>
-    [DataContract]
-    public partial class DonationRequest :  IEquatable<DonationRequest>, IValidatableObject
+    [DataContract(Name = "DonationRequest")]
+    public partial class DonationRequest : IEquatable<DonationRequest>, IValidatableObject
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="DonationRequest" /> class.
@@ -57,43 +59,43 @@ namespace Adyen.Model.Payments
         /// The Adyen account name of the charity.
         /// </summary>
         /// <value>The Adyen account name of the charity.</value>
-        [DataMember(Name="donationAccount", EmitDefaultValue=true)]
+        [DataMember(Name = "donationAccount", IsRequired = false, EmitDefaultValue = true)]
         public string DonationAccount { get; set; }
-
+        
         /// <summary>
         /// The merchant account that is used to process the payment.
         /// </summary>
         /// <value>The merchant account that is used to process the payment.</value>
-        [DataMember(Name="merchantAccount", EmitDefaultValue=true)]
+        [DataMember(Name = "merchantAccount", IsRequired = false, EmitDefaultValue = true)]
         public string MerchantAccount { get; set; }
-
+        
         /// <summary>
         /// Gets or Sets ModificationAmount
         /// </summary>
-        [DataMember(Name="modificationAmount", EmitDefaultValue=true)]
+        [DataMember(Name = "modificationAmount", IsRequired = false, EmitDefaultValue = true)]
         public Amount ModificationAmount { get; set; }
-
+        
         /// <summary>
         /// The original pspReference of the payment to modify. This reference is returned in: * authorisation response * authorisation notification  
         /// </summary>
         /// <value>The original pspReference of the payment to modify. This reference is returned in: * authorisation response * authorisation notification  </value>
-        [DataMember(Name="originalReference", EmitDefaultValue=false)]
+        [DataMember(Name = "originalReference", EmitDefaultValue = false)]
         public string OriginalReference { get; set; }
-
+        
         /// <summary>
         /// Your reference for the payment modification. This reference is visible in Customer Area and in reports. Maximum length: 80 characters.
         /// </summary>
         /// <value>Your reference for the payment modification. This reference is visible in Customer Area and in reports. Maximum length: 80 characters.</value>
-        [DataMember(Name="reference", EmitDefaultValue=false)]
+        [DataMember(Name = "reference", EmitDefaultValue = false)]
         public string Reference { get; set; }
-
+        
         /// <summary>
         /// Returns the string presentation of the object
         /// </summary>
         /// <returns>String presentation of the object</returns>
         public override string ToString()
         {
-            var sb = new StringBuilder();
+            StringBuilder sb = new StringBuilder();
             sb.Append("class DonationRequest {\n");
             sb.Append("  DonationAccount: ").Append(DonationAccount).Append("\n");
             sb.Append("  MerchantAccount: ").Append(MerchantAccount).Append("\n");
@@ -131,8 +133,9 @@ namespace Adyen.Model.Payments
         public bool Equals(DonationRequest input)
         {
             if (input == null)
+            {
                 return false;
-
+            }
             return 
                 (
                     this.DonationAccount == input.DonationAccount ||
@@ -171,15 +174,25 @@ namespace Adyen.Model.Payments
             {
                 int hashCode = 41;
                 if (this.DonationAccount != null)
-                    hashCode = hashCode * 59 + this.DonationAccount.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.DonationAccount.GetHashCode();
+                }
                 if (this.MerchantAccount != null)
-                    hashCode = hashCode * 59 + this.MerchantAccount.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.MerchantAccount.GetHashCode();
+                }
                 if (this.ModificationAmount != null)
-                    hashCode = hashCode * 59 + this.ModificationAmount.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.ModificationAmount.GetHashCode();
+                }
                 if (this.OriginalReference != null)
-                    hashCode = hashCode * 59 + this.OriginalReference.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.OriginalReference.GetHashCode();
+                }
                 if (this.Reference != null)
-                    hashCode = hashCode * 59 + this.Reference.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.Reference.GetHashCode();
+                }
                 return hashCode;
             }
         }
@@ -189,7 +202,7 @@ namespace Adyen.Model.Payments
         /// </summary>
         /// <param name="validationContext">Validation context</param>
         /// <returns>Validation Result</returns>
-        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+        public IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> Validate(ValidationContext validationContext)
         {
             yield break;
         }

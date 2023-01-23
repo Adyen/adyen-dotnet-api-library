@@ -10,17 +10,19 @@
 * Do not edit the class manually.
 */
 
+
 using System;
-using System.Linq;
-using System.IO;
-using System.Text;
-using System.Text.RegularExpressions;
 using System.Collections;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Linq;
+using System.IO;
 using System.Runtime.Serialization;
+using System.Text;
+using System.Text.RegularExpressions;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
+using Newtonsoft.Json.Linq;
 using System.ComponentModel.DataAnnotations;
 
 namespace Adyen.Model.Payments
@@ -28,8 +30,8 @@ namespace Adyen.Model.Payments
     /// <summary>
     /// BankAccount
     /// </summary>
-    [DataContract]
-    public partial class BankAccount :  IEquatable<BankAccount>, IValidatableObject
+    [DataContract(Name = "BankAccount")]
+    public partial class BankAccount : IEquatable<BankAccount>, IValidatableObject
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="BankAccount" /> class.
@@ -60,72 +62,72 @@ namespace Adyen.Model.Payments
         /// The bank account number (without separators).
         /// </summary>
         /// <value>The bank account number (without separators).</value>
-        [DataMember(Name="bankAccountNumber", EmitDefaultValue=false)]
+        [DataMember(Name = "bankAccountNumber", EmitDefaultValue = false)]
         public string BankAccountNumber { get; set; }
-
+        
         /// <summary>
         /// The bank city.
         /// </summary>
         /// <value>The bank city.</value>
-        [DataMember(Name="bankCity", EmitDefaultValue=false)]
+        [DataMember(Name = "bankCity", EmitDefaultValue = false)]
         public string BankCity { get; set; }
-
+        
         /// <summary>
         /// The location id of the bank. The field value is &#x60;nil&#x60; in most cases.
         /// </summary>
         /// <value>The location id of the bank. The field value is &#x60;nil&#x60; in most cases.</value>
-        [DataMember(Name="bankLocationId", EmitDefaultValue=false)]
+        [DataMember(Name = "bankLocationId", EmitDefaultValue = false)]
         public string BankLocationId { get; set; }
-
+        
         /// <summary>
         /// The name of the bank.
         /// </summary>
         /// <value>The name of the bank.</value>
-        [DataMember(Name="bankName", EmitDefaultValue=false)]
+        [DataMember(Name = "bankName", EmitDefaultValue = false)]
         public string BankName { get; set; }
-
+        
         /// <summary>
         /// The [Business Identifier Code](https://en.wikipedia.org/wiki/ISO_9362) (BIC) is the SWIFT address assigned to a bank. The field value is &#x60;nil&#x60; in most cases.
         /// </summary>
         /// <value>The [Business Identifier Code](https://en.wikipedia.org/wiki/ISO_9362) (BIC) is the SWIFT address assigned to a bank. The field value is &#x60;nil&#x60; in most cases.</value>
-        [DataMember(Name="bic", EmitDefaultValue=false)]
+        [DataMember(Name = "bic", EmitDefaultValue = false)]
         public string Bic { get; set; }
-
+        
         /// <summary>
         /// Country code where the bank is located.  A valid value is an ISO two-character country code (e.g. &#39;NL&#39;).
         /// </summary>
         /// <value>Country code where the bank is located.  A valid value is an ISO two-character country code (e.g. &#39;NL&#39;).</value>
-        [DataMember(Name="countryCode", EmitDefaultValue=false)]
+        [DataMember(Name = "countryCode", EmitDefaultValue = false)]
         public string CountryCode { get; set; }
-
+        
         /// <summary>
         /// The [International Bank Account Number](https://en.wikipedia.org/wiki/International_Bank_Account_Number) (IBAN).
         /// </summary>
         /// <value>The [International Bank Account Number](https://en.wikipedia.org/wiki/International_Bank_Account_Number) (IBAN).</value>
-        [DataMember(Name="iban", EmitDefaultValue=false)]
+        [DataMember(Name = "iban", EmitDefaultValue = false)]
         public string Iban { get; set; }
-
+        
         /// <summary>
         /// The name of the bank account holder. If you submit a name with non-Latin characters, we automatically replace some of them with corresponding Latin characters to meet the FATF recommendations. For example: * χ12 is converted to ch12. * üA is converted to euA. * Peter Møller is converted to Peter Mller, because banks don&#39;t accept &#39;ø&#39;. After replacement, the ownerName must have at least three alphanumeric characters (A-Z, a-z, 0-9), and at least one of them must be a valid Latin character (A-Z, a-z). For example: * John17 - allowed. * J17 - allowed. * 171 - not allowed. * John-7 - allowed. &gt; If provided details don&#39;t match the required format, the response returns the error message: 203 &#39;Invalid bank account holder name&#39;.
         /// </summary>
         /// <value>The name of the bank account holder. If you submit a name with non-Latin characters, we automatically replace some of them with corresponding Latin characters to meet the FATF recommendations. For example: * χ12 is converted to ch12. * üA is converted to euA. * Peter Møller is converted to Peter Mller, because banks don&#39;t accept &#39;ø&#39;. After replacement, the ownerName must have at least three alphanumeric characters (A-Z, a-z, 0-9), and at least one of them must be a valid Latin character (A-Z, a-z). For example: * John17 - allowed. * J17 - allowed. * 171 - not allowed. * John-7 - allowed. &gt; If provided details don&#39;t match the required format, the response returns the error message: 203 &#39;Invalid bank account holder name&#39;.</value>
-        [DataMember(Name="ownerName", EmitDefaultValue=false)]
+        [DataMember(Name = "ownerName", EmitDefaultValue = false)]
         public string OwnerName { get; set; }
-
+        
         /// <summary>
         /// The bank account holder&#39;s tax ID.
         /// </summary>
         /// <value>The bank account holder&#39;s tax ID.</value>
-        [DataMember(Name="taxId", EmitDefaultValue=false)]
+        [DataMember(Name = "taxId", EmitDefaultValue = false)]
         public string TaxId { get; set; }
-
+        
         /// <summary>
         /// Returns the string presentation of the object
         /// </summary>
         /// <returns>String presentation of the object</returns>
         public override string ToString()
         {
-            var sb = new StringBuilder();
+            StringBuilder sb = new StringBuilder();
             sb.Append("class BankAccount {\n");
             sb.Append("  BankAccountNumber: ").Append(BankAccountNumber).Append("\n");
             sb.Append("  BankCity: ").Append(BankCity).Append("\n");
@@ -167,8 +169,9 @@ namespace Adyen.Model.Payments
         public bool Equals(BankAccount input)
         {
             if (input == null)
+            {
                 return false;
-
+            }
             return 
                 (
                     this.BankAccountNumber == input.BankAccountNumber ||
@@ -227,23 +230,41 @@ namespace Adyen.Model.Payments
             {
                 int hashCode = 41;
                 if (this.BankAccountNumber != null)
-                    hashCode = hashCode * 59 + this.BankAccountNumber.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.BankAccountNumber.GetHashCode();
+                }
                 if (this.BankCity != null)
-                    hashCode = hashCode * 59 + this.BankCity.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.BankCity.GetHashCode();
+                }
                 if (this.BankLocationId != null)
-                    hashCode = hashCode * 59 + this.BankLocationId.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.BankLocationId.GetHashCode();
+                }
                 if (this.BankName != null)
-                    hashCode = hashCode * 59 + this.BankName.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.BankName.GetHashCode();
+                }
                 if (this.Bic != null)
-                    hashCode = hashCode * 59 + this.Bic.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.Bic.GetHashCode();
+                }
                 if (this.CountryCode != null)
-                    hashCode = hashCode * 59 + this.CountryCode.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.CountryCode.GetHashCode();
+                }
                 if (this.Iban != null)
-                    hashCode = hashCode * 59 + this.Iban.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.Iban.GetHashCode();
+                }
                 if (this.OwnerName != null)
-                    hashCode = hashCode * 59 + this.OwnerName.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.OwnerName.GetHashCode();
+                }
                 if (this.TaxId != null)
-                    hashCode = hashCode * 59 + this.TaxId.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.TaxId.GetHashCode();
+                }
                 return hashCode;
             }
         }
@@ -253,7 +274,7 @@ namespace Adyen.Model.Payments
         /// </summary>
         /// <param name="validationContext">Validation context</param>
         /// <returns>Validation Result</returns>
-        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+        public IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> Validate(ValidationContext validationContext)
         {
             yield break;
         }

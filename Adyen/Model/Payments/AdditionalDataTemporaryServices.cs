@@ -10,17 +10,19 @@
 * Do not edit the class manually.
 */
 
+
 using System;
-using System.Linq;
-using System.IO;
-using System.Text;
-using System.Text.RegularExpressions;
 using System.Collections;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Linq;
+using System.IO;
 using System.Runtime.Serialization;
+using System.Text;
+using System.Text.RegularExpressions;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
+using Newtonsoft.Json.Linq;
 using System.ComponentModel.DataAnnotations;
 
 namespace Adyen.Model.Payments
@@ -28,8 +30,8 @@ namespace Adyen.Model.Payments
     /// <summary>
     /// AdditionalDataTemporaryServices
     /// </summary>
-    [DataContract]
-    public partial class AdditionalDataTemporaryServices :  IEquatable<AdditionalDataTemporaryServices>, IValidatableObject
+    [DataContract(Name = "AdditionalDataTemporaryServices")]
+    public partial class AdditionalDataTemporaryServices : IEquatable<AdditionalDataTemporaryServices>, IValidatableObject
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="AdditionalDataTemporaryServices" /> class.
@@ -60,72 +62,72 @@ namespace Adyen.Model.Payments
         /// Customer code, if supplied by a customer. * Encoding: ASCII * maxLength: 25
         /// </summary>
         /// <value>Customer code, if supplied by a customer. * Encoding: ASCII * maxLength: 25</value>
-        [DataMember(Name="enhancedSchemeData.customerReference", EmitDefaultValue=false)]
+        [DataMember(Name = "enhancedSchemeData.customerReference", EmitDefaultValue = false)]
         public string EnhancedSchemeDataCustomerReference { get; set; }
-
+        
         /// <summary>
         /// Name or ID associated with the individual working in a temporary capacity. * maxLength: 40
         /// </summary>
         /// <value>Name or ID associated with the individual working in a temporary capacity. * maxLength: 40</value>
-        [DataMember(Name="enhancedSchemeData.employeeName", EmitDefaultValue=false)]
+        [DataMember(Name = "enhancedSchemeData.employeeName", EmitDefaultValue = false)]
         public string EnhancedSchemeDataEmployeeName { get; set; }
-
+        
         /// <summary>
         /// Description of the job or task of the individual working in a temporary capacity. * maxLength: 40
         /// </summary>
         /// <value>Description of the job or task of the individual working in a temporary capacity. * maxLength: 40</value>
-        [DataMember(Name="enhancedSchemeData.jobDescription", EmitDefaultValue=false)]
+        [DataMember(Name = "enhancedSchemeData.jobDescription", EmitDefaultValue = false)]
         public string EnhancedSchemeDataJobDescription { get; set; }
-
+        
         /// <summary>
         /// Amount paid per regular hours worked, minor units. * maxLength: 7
         /// </summary>
         /// <value>Amount paid per regular hours worked, minor units. * maxLength: 7</value>
-        [DataMember(Name="enhancedSchemeData.regularHoursRate", EmitDefaultValue=false)]
+        [DataMember(Name = "enhancedSchemeData.regularHoursRate", EmitDefaultValue = false)]
         public string EnhancedSchemeDataRegularHoursRate { get; set; }
-
+        
         /// <summary>
         /// Amount of time worked during a normal operation for the task or job. * maxLength: 7
         /// </summary>
         /// <value>Amount of time worked during a normal operation for the task or job. * maxLength: 7</value>
-        [DataMember(Name="enhancedSchemeData.regularHoursWorked", EmitDefaultValue=false)]
+        [DataMember(Name = "enhancedSchemeData.regularHoursWorked", EmitDefaultValue = false)]
         public string EnhancedSchemeDataRegularHoursWorked { get; set; }
-
+        
         /// <summary>
         /// Name of the individual requesting temporary services. * maxLength: 40
         /// </summary>
         /// <value>Name of the individual requesting temporary services. * maxLength: 40</value>
-        [DataMember(Name="enhancedSchemeData.requestName", EmitDefaultValue=false)]
+        [DataMember(Name = "enhancedSchemeData.requestName", EmitDefaultValue = false)]
         public string EnhancedSchemeDataRequestName { get; set; }
-
+        
         /// <summary>
         /// Date for the beginning of the pay period. * Format: ddMMyy * maxLength: 6
         /// </summary>
         /// <value>Date for the beginning of the pay period. * Format: ddMMyy * maxLength: 6</value>
-        [DataMember(Name="enhancedSchemeData.tempStartDate", EmitDefaultValue=false)]
+        [DataMember(Name = "enhancedSchemeData.tempStartDate", EmitDefaultValue = false)]
         public string EnhancedSchemeDataTempStartDate { get; set; }
-
+        
         /// <summary>
         /// Date of the end of the billing cycle. * Format: ddMMyy * maxLength: 6
         /// </summary>
         /// <value>Date of the end of the billing cycle. * Format: ddMMyy * maxLength: 6</value>
-        [DataMember(Name="enhancedSchemeData.tempWeekEnding", EmitDefaultValue=false)]
+        [DataMember(Name = "enhancedSchemeData.tempWeekEnding", EmitDefaultValue = false)]
         public string EnhancedSchemeDataTempWeekEnding { get; set; }
-
+        
         /// <summary>
         /// Total tax amount, in minor units. For example, 2000 means USD 20.00 * maxLength: 12
         /// </summary>
         /// <value>Total tax amount, in minor units. For example, 2000 means USD 20.00 * maxLength: 12</value>
-        [DataMember(Name="enhancedSchemeData.totalTaxAmount", EmitDefaultValue=false)]
+        [DataMember(Name = "enhancedSchemeData.totalTaxAmount", EmitDefaultValue = false)]
         public string EnhancedSchemeDataTotalTaxAmount { get; set; }
-
+        
         /// <summary>
         /// Returns the string presentation of the object
         /// </summary>
         /// <returns>String presentation of the object</returns>
         public override string ToString()
         {
-            var sb = new StringBuilder();
+            StringBuilder sb = new StringBuilder();
             sb.Append("class AdditionalDataTemporaryServices {\n");
             sb.Append("  EnhancedSchemeDataCustomerReference: ").Append(EnhancedSchemeDataCustomerReference).Append("\n");
             sb.Append("  EnhancedSchemeDataEmployeeName: ").Append(EnhancedSchemeDataEmployeeName).Append("\n");
@@ -167,8 +169,9 @@ namespace Adyen.Model.Payments
         public bool Equals(AdditionalDataTemporaryServices input)
         {
             if (input == null)
+            {
                 return false;
-
+            }
             return 
                 (
                     this.EnhancedSchemeDataCustomerReference == input.EnhancedSchemeDataCustomerReference ||
@@ -227,23 +230,41 @@ namespace Adyen.Model.Payments
             {
                 int hashCode = 41;
                 if (this.EnhancedSchemeDataCustomerReference != null)
-                    hashCode = hashCode * 59 + this.EnhancedSchemeDataCustomerReference.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.EnhancedSchemeDataCustomerReference.GetHashCode();
+                }
                 if (this.EnhancedSchemeDataEmployeeName != null)
-                    hashCode = hashCode * 59 + this.EnhancedSchemeDataEmployeeName.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.EnhancedSchemeDataEmployeeName.GetHashCode();
+                }
                 if (this.EnhancedSchemeDataJobDescription != null)
-                    hashCode = hashCode * 59 + this.EnhancedSchemeDataJobDescription.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.EnhancedSchemeDataJobDescription.GetHashCode();
+                }
                 if (this.EnhancedSchemeDataRegularHoursRate != null)
-                    hashCode = hashCode * 59 + this.EnhancedSchemeDataRegularHoursRate.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.EnhancedSchemeDataRegularHoursRate.GetHashCode();
+                }
                 if (this.EnhancedSchemeDataRegularHoursWorked != null)
-                    hashCode = hashCode * 59 + this.EnhancedSchemeDataRegularHoursWorked.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.EnhancedSchemeDataRegularHoursWorked.GetHashCode();
+                }
                 if (this.EnhancedSchemeDataRequestName != null)
-                    hashCode = hashCode * 59 + this.EnhancedSchemeDataRequestName.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.EnhancedSchemeDataRequestName.GetHashCode();
+                }
                 if (this.EnhancedSchemeDataTempStartDate != null)
-                    hashCode = hashCode * 59 + this.EnhancedSchemeDataTempStartDate.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.EnhancedSchemeDataTempStartDate.GetHashCode();
+                }
                 if (this.EnhancedSchemeDataTempWeekEnding != null)
-                    hashCode = hashCode * 59 + this.EnhancedSchemeDataTempWeekEnding.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.EnhancedSchemeDataTempWeekEnding.GetHashCode();
+                }
                 if (this.EnhancedSchemeDataTotalTaxAmount != null)
-                    hashCode = hashCode * 59 + this.EnhancedSchemeDataTotalTaxAmount.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.EnhancedSchemeDataTotalTaxAmount.GetHashCode();
+                }
                 return hashCode;
             }
         }
@@ -253,7 +274,7 @@ namespace Adyen.Model.Payments
         /// </summary>
         /// <param name="validationContext">Validation context</param>
         /// <returns>Validation Result</returns>
-        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+        public IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> Validate(ValidationContext validationContext)
         {
             yield break;
         }

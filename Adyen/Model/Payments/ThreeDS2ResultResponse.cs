@@ -10,17 +10,19 @@
 * Do not edit the class manually.
 */
 
+
 using System;
-using System.Linq;
-using System.IO;
-using System.Text;
-using System.Text.RegularExpressions;
 using System.Collections;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Linq;
+using System.IO;
 using System.Runtime.Serialization;
+using System.Text;
+using System.Text.RegularExpressions;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
+using Newtonsoft.Json.Linq;
 using System.ComponentModel.DataAnnotations;
 
 namespace Adyen.Model.Payments
@@ -28,8 +30,8 @@ namespace Adyen.Model.Payments
     /// <summary>
     /// ThreeDS2ResultResponse
     /// </summary>
-    [DataContract]
-    public partial class ThreeDS2ResultResponse :  IEquatable<ThreeDS2ResultResponse>, IValidatableObject
+    [DataContract(Name = "ThreeDS2ResultResponse")]
+    public partial class ThreeDS2ResultResponse : IEquatable<ThreeDS2ResultResponse>, IValidatableObject
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="ThreeDS2ResultResponse" /> class.
@@ -43,16 +45,16 @@ namespace Adyen.Model.Payments
         /// <summary>
         /// Gets or Sets ThreeDS2Result
         /// </summary>
-        [DataMember(Name="threeDS2Result", EmitDefaultValue=false)]
+        [DataMember(Name = "threeDS2Result", EmitDefaultValue = false)]
         public ThreeDS2Result ThreeDS2Result { get; set; }
-
+        
         /// <summary>
         /// Returns the string presentation of the object
         /// </summary>
         /// <returns>String presentation of the object</returns>
         public override string ToString()
         {
-            var sb = new StringBuilder();
+            StringBuilder sb = new StringBuilder();
             sb.Append("class ThreeDS2ResultResponse {\n");
             sb.Append("  ThreeDS2Result: ").Append(ThreeDS2Result).Append("\n");
             sb.Append("}\n");
@@ -86,8 +88,9 @@ namespace Adyen.Model.Payments
         public bool Equals(ThreeDS2ResultResponse input)
         {
             if (input == null)
+            {
                 return false;
-
+            }
             return 
                 (
                     this.ThreeDS2Result == input.ThreeDS2Result ||
@@ -106,7 +109,9 @@ namespace Adyen.Model.Payments
             {
                 int hashCode = 41;
                 if (this.ThreeDS2Result != null)
-                    hashCode = hashCode * 59 + this.ThreeDS2Result.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.ThreeDS2Result.GetHashCode();
+                }
                 return hashCode;
             }
         }
@@ -116,7 +121,7 @@ namespace Adyen.Model.Payments
         /// </summary>
         /// <param name="validationContext">Validation context</param>
         /// <returns>Validation Result</returns>
-        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+        public IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> Validate(ValidationContext validationContext)
         {
             yield break;
         }

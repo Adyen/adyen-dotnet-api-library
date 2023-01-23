@@ -49,6 +49,7 @@ namespace Adyen.Test
             {
                 Attachment = new Attachment()
             };
+            Console.WriteLine(document.ToJson());
             var response = service.Create(document);
             Assert.AreEqual(Encoding.ASCII.GetString(response.Attachments[0].Content), "This is a string");
             Assert.AreEqual(response.Id, "SE322KT223222D5FJ7TJN2986");

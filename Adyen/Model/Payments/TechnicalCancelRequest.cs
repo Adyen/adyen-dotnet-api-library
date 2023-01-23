@@ -10,17 +10,19 @@
 * Do not edit the class manually.
 */
 
+
 using System;
-using System.Linq;
-using System.IO;
-using System.Text;
-using System.Text.RegularExpressions;
 using System.Collections;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Linq;
+using System.IO;
 using System.Runtime.Serialization;
+using System.Text;
+using System.Text.RegularExpressions;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
+using Newtonsoft.Json.Linq;
 using System.ComponentModel.DataAnnotations;
 
 namespace Adyen.Model.Payments
@@ -28,8 +30,8 @@ namespace Adyen.Model.Payments
     /// <summary>
     /// TechnicalCancelRequest
     /// </summary>
-    [DataContract]
-    public partial class TechnicalCancelRequest :  IEquatable<TechnicalCancelRequest>, IValidatableObject
+    [DataContract(Name = "TechnicalCancelRequest")]
+    public partial class TechnicalCancelRequest : IEquatable<TechnicalCancelRequest>, IValidatableObject
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="TechnicalCancelRequest" /> class.
@@ -50,11 +52,11 @@ namespace Adyen.Model.Payments
         /// <param name="uniqueTerminalId">Unique terminal ID for the PED that originally processed the request. For point-of-sale integrations only..</param>
         public TechnicalCancelRequest(Dictionary<string, string> additionalData = default(Dictionary<string, string>), string merchantAccount = default(string), Amount modificationAmount = default(Amount), ThreeDSecureData mpiData = default(ThreeDSecureData), string originalMerchantReference = default(string), string reference = default(string), List<Split> splits = default(List<Split>), string tenderReference = default(string), string uniqueTerminalId = default(string))
         {
-            this.AdditionalData = additionalData;
             this.MerchantAccount = merchantAccount;
+            this.OriginalMerchantReference = originalMerchantReference;
+            this.AdditionalData = additionalData;
             this.ModificationAmount = modificationAmount;
             this.MpiData = mpiData;
-            this.OriginalMerchantReference = originalMerchantReference;
             this.Reference = reference;
             this.Splits = splits;
             this.TenderReference = tenderReference;
@@ -65,70 +67,70 @@ namespace Adyen.Model.Payments
         /// This field contains additional data, which may be required for a particular modification request.  The additionalData object consists of entries, each of which includes the key and value.
         /// </summary>
         /// <value>This field contains additional data, which may be required for a particular modification request.  The additionalData object consists of entries, each of which includes the key and value.</value>
-        [DataMember(Name="additionalData", EmitDefaultValue=false)]
+        [DataMember(Name = "additionalData", EmitDefaultValue = false)]
         public Dictionary<string, string> AdditionalData { get; set; }
-
+        
         /// <summary>
         /// The merchant account that is used to process the payment.
         /// </summary>
         /// <value>The merchant account that is used to process the payment.</value>
-        [DataMember(Name="merchantAccount", EmitDefaultValue=true)]
+        [DataMember(Name = "merchantAccount", IsRequired = false, EmitDefaultValue = true)]
         public string MerchantAccount { get; set; }
-
+        
         /// <summary>
         /// Gets or Sets ModificationAmount
         /// </summary>
-        [DataMember(Name="modificationAmount", EmitDefaultValue=false)]
+        [DataMember(Name = "modificationAmount", EmitDefaultValue = false)]
         public Amount ModificationAmount { get; set; }
-
+        
         /// <summary>
         /// Gets or Sets MpiData
         /// </summary>
-        [DataMember(Name="mpiData", EmitDefaultValue=false)]
+        [DataMember(Name = "mpiData", EmitDefaultValue = false)]
         public ThreeDSecureData MpiData { get; set; }
-
+        
         /// <summary>
         /// The original merchant reference to cancel.
         /// </summary>
         /// <value>The original merchant reference to cancel.</value>
-        [DataMember(Name="originalMerchantReference", EmitDefaultValue=true)]
+        [DataMember(Name = "originalMerchantReference", IsRequired = false, EmitDefaultValue = true)]
         public string OriginalMerchantReference { get; set; }
-
+        
         /// <summary>
         /// Your reference for the payment modification. This reference is visible in Customer Area and in reports. Maximum length: 80 characters.
         /// </summary>
         /// <value>Your reference for the payment modification. This reference is visible in Customer Area and in reports. Maximum length: 80 characters.</value>
-        [DataMember(Name="reference", EmitDefaultValue=false)]
+        [DataMember(Name = "reference", EmitDefaultValue = false)]
         public string Reference { get; set; }
-
+        
         /// <summary>
         /// An array of objects specifying how the amount should be split between accounts when using Adyen for Platforms. For details, refer to [Providing split information](https://docs.adyen.com/marketplaces-and-platforms/processing-payments#providing-split-information).
         /// </summary>
         /// <value>An array of objects specifying how the amount should be split between accounts when using Adyen for Platforms. For details, refer to [Providing split information](https://docs.adyen.com/marketplaces-and-platforms/processing-payments#providing-split-information).</value>
-        [DataMember(Name="splits", EmitDefaultValue=false)]
+        [DataMember(Name = "splits", EmitDefaultValue = false)]
         public List<Split> Splits { get; set; }
-
+        
         /// <summary>
         /// The transaction reference provided by the PED. For point-of-sale integrations only.
         /// </summary>
         /// <value>The transaction reference provided by the PED. For point-of-sale integrations only.</value>
-        [DataMember(Name="tenderReference", EmitDefaultValue=false)]
+        [DataMember(Name = "tenderReference", EmitDefaultValue = false)]
         public string TenderReference { get; set; }
-
+        
         /// <summary>
         /// Unique terminal ID for the PED that originally processed the request. For point-of-sale integrations only.
         /// </summary>
         /// <value>Unique terminal ID for the PED that originally processed the request. For point-of-sale integrations only.</value>
-        [DataMember(Name="uniqueTerminalId", EmitDefaultValue=false)]
+        [DataMember(Name = "uniqueTerminalId", EmitDefaultValue = false)]
         public string UniqueTerminalId { get; set; }
-
+        
         /// <summary>
         /// Returns the string presentation of the object
         /// </summary>
         /// <returns>String presentation of the object</returns>
         public override string ToString()
         {
-            var sb = new StringBuilder();
+            StringBuilder sb = new StringBuilder();
             sb.Append("class TechnicalCancelRequest {\n");
             sb.Append("  AdditionalData: ").Append(AdditionalData).Append("\n");
             sb.Append("  MerchantAccount: ").Append(MerchantAccount).Append("\n");
@@ -170,8 +172,9 @@ namespace Adyen.Model.Payments
         public bool Equals(TechnicalCancelRequest input)
         {
             if (input == null)
+            {
                 return false;
-
+            }
             return 
                 (
                     this.AdditionalData == input.AdditionalData ||
@@ -232,23 +235,41 @@ namespace Adyen.Model.Payments
             {
                 int hashCode = 41;
                 if (this.AdditionalData != null)
-                    hashCode = hashCode * 59 + this.AdditionalData.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.AdditionalData.GetHashCode();
+                }
                 if (this.MerchantAccount != null)
-                    hashCode = hashCode * 59 + this.MerchantAccount.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.MerchantAccount.GetHashCode();
+                }
                 if (this.ModificationAmount != null)
-                    hashCode = hashCode * 59 + this.ModificationAmount.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.ModificationAmount.GetHashCode();
+                }
                 if (this.MpiData != null)
-                    hashCode = hashCode * 59 + this.MpiData.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.MpiData.GetHashCode();
+                }
                 if (this.OriginalMerchantReference != null)
-                    hashCode = hashCode * 59 + this.OriginalMerchantReference.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.OriginalMerchantReference.GetHashCode();
+                }
                 if (this.Reference != null)
-                    hashCode = hashCode * 59 + this.Reference.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.Reference.GetHashCode();
+                }
                 if (this.Splits != null)
-                    hashCode = hashCode * 59 + this.Splits.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.Splits.GetHashCode();
+                }
                 if (this.TenderReference != null)
-                    hashCode = hashCode * 59 + this.TenderReference.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.TenderReference.GetHashCode();
+                }
                 if (this.UniqueTerminalId != null)
-                    hashCode = hashCode * 59 + this.UniqueTerminalId.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.UniqueTerminalId.GetHashCode();
+                }
                 return hashCode;
             }
         }
@@ -258,7 +279,7 @@ namespace Adyen.Model.Payments
         /// </summary>
         /// <param name="validationContext">Validation context</param>
         /// <returns>Validation Result</returns>
-        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+        public IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> Validate(ValidationContext validationContext)
         {
             yield break;
         }

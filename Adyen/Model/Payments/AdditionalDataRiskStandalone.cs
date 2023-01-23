@@ -10,17 +10,19 @@
 * Do not edit the class manually.
 */
 
+
 using System;
-using System.Linq;
-using System.IO;
-using System.Text;
-using System.Text.RegularExpressions;
 using System.Collections;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Linq;
+using System.IO;
 using System.Runtime.Serialization;
+using System.Text;
+using System.Text.RegularExpressions;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
+using Newtonsoft.Json.Linq;
 using System.ComponentModel.DataAnnotations;
 
 namespace Adyen.Model.Payments
@@ -28,8 +30,8 @@ namespace Adyen.Model.Payments
     /// <summary>
     /// AdditionalDataRiskStandalone
     /// </summary>
-    [DataContract]
-    public partial class AdditionalDataRiskStandalone :  IEquatable<AdditionalDataRiskStandalone>, IValidatableObject
+    [DataContract(Name = "AdditionalDataRiskStandalone")]
+    public partial class AdditionalDataRiskStandalone : IEquatable<AdditionalDataRiskStandalone>, IValidatableObject
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="AdditionalDataRiskStandalone" /> class.
@@ -72,114 +74,114 @@ namespace Adyen.Model.Payments
         /// Shopper&#39;s country of residence in the form of ISO standard 3166 2-character country codes.
         /// </summary>
         /// <value>Shopper&#39;s country of residence in the form of ISO standard 3166 2-character country codes.</value>
-        [DataMember(Name="PayPal.CountryCode", EmitDefaultValue=false)]
+        [DataMember(Name = "PayPal.CountryCode", EmitDefaultValue = false)]
         public string PayPalCountryCode { get; set; }
-
+        
         /// <summary>
         /// Shopper&#39;s email.
         /// </summary>
         /// <value>Shopper&#39;s email.</value>
-        [DataMember(Name="PayPal.EmailId", EmitDefaultValue=false)]
+        [DataMember(Name = "PayPal.EmailId", EmitDefaultValue = false)]
         public string PayPalEmailId { get; set; }
-
+        
         /// <summary>
         /// Shopper&#39;s first name.
         /// </summary>
         /// <value>Shopper&#39;s first name.</value>
-        [DataMember(Name="PayPal.FirstName", EmitDefaultValue=false)]
+        [DataMember(Name = "PayPal.FirstName", EmitDefaultValue = false)]
         public string PayPalFirstName { get; set; }
-
+        
         /// <summary>
         /// Shopper&#39;s last name.
         /// </summary>
         /// <value>Shopper&#39;s last name.</value>
-        [DataMember(Name="PayPal.LastName", EmitDefaultValue=false)]
+        [DataMember(Name = "PayPal.LastName", EmitDefaultValue = false)]
         public string PayPalLastName { get; set; }
-
+        
         /// <summary>
         /// Unique PayPal Customer Account identification number. Character length and limitations: 13 single-byte alphanumeric characters.
         /// </summary>
         /// <value>Unique PayPal Customer Account identification number. Character length and limitations: 13 single-byte alphanumeric characters.</value>
-        [DataMember(Name="PayPal.PayerId", EmitDefaultValue=false)]
+        [DataMember(Name = "PayPal.PayerId", EmitDefaultValue = false)]
         public string PayPalPayerId { get; set; }
-
+        
         /// <summary>
         /// Shopper&#39;s phone number.
         /// </summary>
         /// <value>Shopper&#39;s phone number.</value>
-        [DataMember(Name="PayPal.Phone", EmitDefaultValue=false)]
+        [DataMember(Name = "PayPal.Phone", EmitDefaultValue = false)]
         public string PayPalPhone { get; set; }
-
+        
         /// <summary>
         /// Allowed values: * **Eligible** — Merchant is protected by PayPal&#39;s Seller Protection Policy for Unauthorized Payments and Item Not Received.  * **PartiallyEligible** — Merchant is protected by PayPal&#39;s Seller Protection Policy for Item Not Received.  * **Ineligible** — Merchant is not protected under the Seller Protection Policy.
         /// </summary>
         /// <value>Allowed values: * **Eligible** — Merchant is protected by PayPal&#39;s Seller Protection Policy for Unauthorized Payments and Item Not Received.  * **PartiallyEligible** — Merchant is protected by PayPal&#39;s Seller Protection Policy for Item Not Received.  * **Ineligible** — Merchant is not protected under the Seller Protection Policy.</value>
-        [DataMember(Name="PayPal.ProtectionEligibility", EmitDefaultValue=false)]
+        [DataMember(Name = "PayPal.ProtectionEligibility", EmitDefaultValue = false)]
         public string PayPalProtectionEligibility { get; set; }
-
+        
         /// <summary>
         /// Unique transaction ID of the payment.
         /// </summary>
         /// <value>Unique transaction ID of the payment.</value>
-        [DataMember(Name="PayPal.TransactionId", EmitDefaultValue=false)]
+        [DataMember(Name = "PayPal.TransactionId", EmitDefaultValue = false)]
         public string PayPalTransactionId { get; set; }
-
+        
         /// <summary>
         /// Raw AVS result received from the acquirer, where available. Example: D
         /// </summary>
         /// <value>Raw AVS result received from the acquirer, where available. Example: D</value>
-        [DataMember(Name="avsResultRaw", EmitDefaultValue=false)]
+        [DataMember(Name = "avsResultRaw", EmitDefaultValue = false)]
         public string AvsResultRaw { get; set; }
-
+        
         /// <summary>
         /// The Bank Identification Number of a credit card, which is the first six digits of a card number. Required for [tokenized card request](https://docs.adyen.com/risk-management/standalone-risk#tokenised-pan-request).
         /// </summary>
         /// <value>The Bank Identification Number of a credit card, which is the first six digits of a card number. Required for [tokenized card request](https://docs.adyen.com/risk-management/standalone-risk#tokenised-pan-request).</value>
-        [DataMember(Name="bin", EmitDefaultValue=false)]
+        [DataMember(Name = "bin", EmitDefaultValue = false)]
         public string Bin { get; set; }
-
+        
         /// <summary>
         /// Raw CVC result received from the acquirer, where available. Example: 1
         /// </summary>
         /// <value>Raw CVC result received from the acquirer, where available. Example: 1</value>
-        [DataMember(Name="cvcResultRaw", EmitDefaultValue=false)]
+        [DataMember(Name = "cvcResultRaw", EmitDefaultValue = false)]
         public string CvcResultRaw { get; set; }
-
+        
         /// <summary>
         /// Unique identifier or token for the shopper&#39;s card details.
         /// </summary>
         /// <value>Unique identifier or token for the shopper&#39;s card details.</value>
-        [DataMember(Name="riskToken", EmitDefaultValue=false)]
+        [DataMember(Name = "riskToken", EmitDefaultValue = false)]
         public string RiskToken { get; set; }
-
+        
         /// <summary>
         /// A Boolean value indicating whether 3DS authentication was completed on this payment. Example: true
         /// </summary>
         /// <value>A Boolean value indicating whether 3DS authentication was completed on this payment. Example: true</value>
-        [DataMember(Name="threeDAuthenticated", EmitDefaultValue=false)]
+        [DataMember(Name = "threeDAuthenticated", EmitDefaultValue = false)]
         public string ThreeDAuthenticated { get; set; }
-
+        
         /// <summary>
         /// A Boolean value indicating whether 3DS was offered for this payment. Example: true
         /// </summary>
         /// <value>A Boolean value indicating whether 3DS was offered for this payment. Example: true</value>
-        [DataMember(Name="threeDOffered", EmitDefaultValue=false)]
+        [DataMember(Name = "threeDOffered", EmitDefaultValue = false)]
         public string ThreeDOffered { get; set; }
-
+        
         /// <summary>
         /// Required for PayPal payments only. The only supported value is: **paypal**.
         /// </summary>
         /// <value>Required for PayPal payments only. The only supported value is: **paypal**.</value>
-        [DataMember(Name="tokenDataType", EmitDefaultValue=false)]
+        [DataMember(Name = "tokenDataType", EmitDefaultValue = false)]
         public string TokenDataType { get; set; }
-
+        
         /// <summary>
         /// Returns the string presentation of the object
         /// </summary>
         /// <returns>String presentation of the object</returns>
         public override string ToString()
         {
-            var sb = new StringBuilder();
+            StringBuilder sb = new StringBuilder();
             sb.Append("class AdditionalDataRiskStandalone {\n");
             sb.Append("  PayPalCountryCode: ").Append(PayPalCountryCode).Append("\n");
             sb.Append("  PayPalEmailId: ").Append(PayPalEmailId).Append("\n");
@@ -227,8 +229,9 @@ namespace Adyen.Model.Payments
         public bool Equals(AdditionalDataRiskStandalone input)
         {
             if (input == null)
+            {
                 return false;
-
+            }
             return 
                 (
                     this.PayPalCountryCode == input.PayPalCountryCode ||
@@ -317,35 +320,65 @@ namespace Adyen.Model.Payments
             {
                 int hashCode = 41;
                 if (this.PayPalCountryCode != null)
-                    hashCode = hashCode * 59 + this.PayPalCountryCode.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.PayPalCountryCode.GetHashCode();
+                }
                 if (this.PayPalEmailId != null)
-                    hashCode = hashCode * 59 + this.PayPalEmailId.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.PayPalEmailId.GetHashCode();
+                }
                 if (this.PayPalFirstName != null)
-                    hashCode = hashCode * 59 + this.PayPalFirstName.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.PayPalFirstName.GetHashCode();
+                }
                 if (this.PayPalLastName != null)
-                    hashCode = hashCode * 59 + this.PayPalLastName.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.PayPalLastName.GetHashCode();
+                }
                 if (this.PayPalPayerId != null)
-                    hashCode = hashCode * 59 + this.PayPalPayerId.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.PayPalPayerId.GetHashCode();
+                }
                 if (this.PayPalPhone != null)
-                    hashCode = hashCode * 59 + this.PayPalPhone.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.PayPalPhone.GetHashCode();
+                }
                 if (this.PayPalProtectionEligibility != null)
-                    hashCode = hashCode * 59 + this.PayPalProtectionEligibility.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.PayPalProtectionEligibility.GetHashCode();
+                }
                 if (this.PayPalTransactionId != null)
-                    hashCode = hashCode * 59 + this.PayPalTransactionId.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.PayPalTransactionId.GetHashCode();
+                }
                 if (this.AvsResultRaw != null)
-                    hashCode = hashCode * 59 + this.AvsResultRaw.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.AvsResultRaw.GetHashCode();
+                }
                 if (this.Bin != null)
-                    hashCode = hashCode * 59 + this.Bin.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.Bin.GetHashCode();
+                }
                 if (this.CvcResultRaw != null)
-                    hashCode = hashCode * 59 + this.CvcResultRaw.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.CvcResultRaw.GetHashCode();
+                }
                 if (this.RiskToken != null)
-                    hashCode = hashCode * 59 + this.RiskToken.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.RiskToken.GetHashCode();
+                }
                 if (this.ThreeDAuthenticated != null)
-                    hashCode = hashCode * 59 + this.ThreeDAuthenticated.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.ThreeDAuthenticated.GetHashCode();
+                }
                 if (this.ThreeDOffered != null)
-                    hashCode = hashCode * 59 + this.ThreeDOffered.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.ThreeDOffered.GetHashCode();
+                }
                 if (this.TokenDataType != null)
-                    hashCode = hashCode * 59 + this.TokenDataType.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.TokenDataType.GetHashCode();
+                }
                 return hashCode;
             }
         }
@@ -355,7 +388,7 @@ namespace Adyen.Model.Payments
         /// </summary>
         /// <param name="validationContext">Validation context</param>
         /// <returns>Validation Result</returns>
-        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+        public IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> Validate(ValidationContext validationContext)
         {
             yield break;
         }

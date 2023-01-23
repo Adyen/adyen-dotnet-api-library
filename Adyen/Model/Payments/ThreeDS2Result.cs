@@ -10,17 +10,19 @@
 * Do not edit the class manually.
 */
 
+
 using System;
-using System.Linq;
-using System.IO;
-using System.Text;
-using System.Text.RegularExpressions;
 using System.Collections;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Linq;
+using System.IO;
 using System.Runtime.Serialization;
+using System.Text;
+using System.Text.RegularExpressions;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
+using Newtonsoft.Json.Linq;
 using System.ComponentModel.DataAnnotations;
 
 namespace Adyen.Model.Payments
@@ -28,8 +30,8 @@ namespace Adyen.Model.Payments
     /// <summary>
     /// ThreeDS2Result
     /// </summary>
-    [DataContract]
-    public partial class ThreeDS2Result :  IEquatable<ThreeDS2Result>, IValidatableObject
+    [DataContract(Name = "ThreeDS2Result")]
+    public partial class ThreeDS2Result : IEquatable<ThreeDS2Result>, IValidatableObject
     {
         /// <summary>
         /// Indicator informing the Access Control Server (ACS) and the Directory Server (DS) that the authentication has been cancelled. For possible values, refer to [3D Secure API reference](https://docs.adyen.com/online-payments/3d-secure/api-reference#mpidata).
@@ -82,11 +84,12 @@ namespace Adyen.Model.Payments
 
         }
 
+
         /// <summary>
         /// Indicator informing the Access Control Server (ACS) and the Directory Server (DS) that the authentication has been cancelled. For possible values, refer to [3D Secure API reference](https://docs.adyen.com/online-payments/3d-secure/api-reference#mpidata).
         /// </summary>
         /// <value>Indicator informing the Access Control Server (ACS) and the Directory Server (DS) that the authentication has been cancelled. For possible values, refer to [3D Secure API reference](https://docs.adyen.com/online-payments/3d-secure/api-reference#mpidata).</value>
-        [DataMember(Name="challengeCancel", EmitDefaultValue=false)]
+        [DataMember(Name = "challengeCancel", EmitDefaultValue = false)]
         public ChallengeCancelEnum? ChallengeCancel { get; set; }
         /// <summary>
         /// Specifies a preference for receiving a challenge from the issuer. Allowed values: * &#x60;noPreference&#x60; * &#x60;requestNoChallenge&#x60; * &#x60;requestChallenge&#x60; * &#x60;requestChallengeAsMandate&#x60; 
@@ -121,11 +124,12 @@ namespace Adyen.Model.Payments
 
         }
 
+
         /// <summary>
         /// Specifies a preference for receiving a challenge from the issuer. Allowed values: * &#x60;noPreference&#x60; * &#x60;requestNoChallenge&#x60; * &#x60;requestChallenge&#x60; * &#x60;requestChallengeAsMandate&#x60; 
         /// </summary>
         /// <value>Specifies a preference for receiving a challenge from the issuer. Allowed values: * &#x60;noPreference&#x60; * &#x60;requestNoChallenge&#x60; * &#x60;requestChallenge&#x60; * &#x60;requestChallengeAsMandate&#x60; </value>
-        [DataMember(Name="challengeIndicator", EmitDefaultValue=false)]
+        [DataMember(Name = "challengeIndicator", EmitDefaultValue = false)]
         public ChallengeIndicatorEnum? ChallengeIndicator { get; set; }
         /// <summary>
         /// Indicates the exemption type that was applied by the issuer to the authentication, if exemption applied. Allowed values: * &#x60;lowValue&#x60; * &#x60;secureCorporate&#x60; * &#x60;trustedBeneficiary&#x60; * &#x60;transactionRiskAnalysis&#x60; 
@@ -160,11 +164,12 @@ namespace Adyen.Model.Payments
 
         }
 
+
         /// <summary>
         /// Indicates the exemption type that was applied by the issuer to the authentication, if exemption applied. Allowed values: * &#x60;lowValue&#x60; * &#x60;secureCorporate&#x60; * &#x60;trustedBeneficiary&#x60; * &#x60;transactionRiskAnalysis&#x60; 
         /// </summary>
         /// <value>Indicates the exemption type that was applied by the issuer to the authentication, if exemption applied. Allowed values: * &#x60;lowValue&#x60; * &#x60;secureCorporate&#x60; * &#x60;trustedBeneficiary&#x60; * &#x60;transactionRiskAnalysis&#x60; </value>
-        [DataMember(Name="exemptionIndicator", EmitDefaultValue=false)]
+        [DataMember(Name = "exemptionIndicator", EmitDefaultValue = false)]
         public ExemptionIndicatorEnum? ExemptionIndicator { get; set; }
         /// <summary>
         /// Initializes a new instance of the <see cref="ThreeDS2Result" /> class.
@@ -205,89 +210,86 @@ namespace Adyen.Model.Payments
         /// The &#x60;authenticationValue&#x60; value as defined in the 3D Secure 2 specification.
         /// </summary>
         /// <value>The &#x60;authenticationValue&#x60; value as defined in the 3D Secure 2 specification.</value>
-        [DataMember(Name="authenticationValue", EmitDefaultValue=false)]
+        [DataMember(Name = "authenticationValue", EmitDefaultValue = false)]
         public string AuthenticationValue { get; set; }
-
+        
         /// <summary>
         /// The algorithm used by the ACS to calculate the authentication value, only for Cartes Bancaires integrations.
         /// </summary>
         /// <value>The algorithm used by the ACS to calculate the authentication value, only for Cartes Bancaires integrations.</value>
-        [DataMember(Name="cavvAlgorithm", EmitDefaultValue=false)]
+        [DataMember(Name = "cavvAlgorithm", EmitDefaultValue = false)]
         public string CavvAlgorithm { get; set; }
-
-
-
+        
         /// <summary>
         /// The &#x60;dsTransID&#x60; value as defined in the 3D Secure 2 specification.
         /// </summary>
         /// <value>The &#x60;dsTransID&#x60; value as defined in the 3D Secure 2 specification.</value>
-        [DataMember(Name="dsTransID", EmitDefaultValue=false)]
+        [DataMember(Name = "dsTransID", EmitDefaultValue = false)]
         public string DsTransID { get; set; }
-
+        
         /// <summary>
         /// The &#x60;eci&#x60; value as defined in the 3D Secure 2 specification.
         /// </summary>
         /// <value>The &#x60;eci&#x60; value as defined in the 3D Secure 2 specification.</value>
-        [DataMember(Name="eci", EmitDefaultValue=false)]
+        [DataMember(Name = "eci", EmitDefaultValue = false)]
         public string Eci { get; set; }
-
-
+        
         /// <summary>
         /// The &#x60;messageVersion&#x60; value as defined in the 3D Secure 2 specification.
         /// </summary>
         /// <value>The &#x60;messageVersion&#x60; value as defined in the 3D Secure 2 specification.</value>
-        [DataMember(Name="messageVersion", EmitDefaultValue=false)]
+        [DataMember(Name = "messageVersion", EmitDefaultValue = false)]
         public string MessageVersion { get; set; }
-
+        
         /// <summary>
         /// Risk score calculated by Cartes Bancaires Directory Server (DS).
         /// </summary>
         /// <value>Risk score calculated by Cartes Bancaires Directory Server (DS).</value>
-        [DataMember(Name="riskScore", EmitDefaultValue=false)]
+        [DataMember(Name = "riskScore", EmitDefaultValue = false)]
         public string RiskScore { get; set; }
-
+        
         /// <summary>
         /// The &#x60;threeDSServerTransID&#x60; value as defined in the 3D Secure 2 specification.
         /// </summary>
         /// <value>The &#x60;threeDSServerTransID&#x60; value as defined in the 3D Secure 2 specification.</value>
-        [DataMember(Name="threeDSServerTransID", EmitDefaultValue=false)]
+        [DataMember(Name = "threeDSServerTransID", EmitDefaultValue = false)]
         public string ThreeDSServerTransID { get; set; }
-
+        
         /// <summary>
         /// The &#x60;timestamp&#x60; value of the 3D Secure 2 authentication.
         /// </summary>
         /// <value>The &#x60;timestamp&#x60; value of the 3D Secure 2 authentication.</value>
-        [DataMember(Name="timestamp", EmitDefaultValue=false)]
+        [DataMember(Name = "timestamp", EmitDefaultValue = false)]
         public string Timestamp { get; set; }
-
+        
         /// <summary>
         /// The &#x60;transStatus&#x60; value as defined in the 3D Secure 2 specification.
         /// </summary>
         /// <value>The &#x60;transStatus&#x60; value as defined in the 3D Secure 2 specification.</value>
-        [DataMember(Name="transStatus", EmitDefaultValue=false)]
+        [DataMember(Name = "transStatus", EmitDefaultValue = false)]
         public string TransStatus { get; set; }
-
+        
         /// <summary>
         /// Provides information on why the &#x60;transStatus&#x60; field has the specified value. For possible values, refer to [our docs](https://docs.adyen.com/online-payments/3d-secure/api-reference#possible-transstatusreason-values).
         /// </summary>
         /// <value>Provides information on why the &#x60;transStatus&#x60; field has the specified value. For possible values, refer to [our docs](https://docs.adyen.com/online-payments/3d-secure/api-reference#possible-transstatusreason-values).</value>
-        [DataMember(Name="transStatusReason", EmitDefaultValue=false)]
+        [DataMember(Name = "transStatusReason", EmitDefaultValue = false)]
         public string TransStatusReason { get; set; }
-
+        
         /// <summary>
         /// The &#x60;whiteListStatus&#x60; value as defined in the 3D Secure 2 specification.
         /// </summary>
         /// <value>The &#x60;whiteListStatus&#x60; value as defined in the 3D Secure 2 specification.</value>
-        [DataMember(Name="whiteListStatus", EmitDefaultValue=false)]
+        [DataMember(Name = "whiteListStatus", EmitDefaultValue = false)]
         public string WhiteListStatus { get; set; }
-
+        
         /// <summary>
         /// Returns the string presentation of the object
         /// </summary>
         /// <returns>String presentation of the object</returns>
         public override string ToString()
         {
-            var sb = new StringBuilder();
+            StringBuilder sb = new StringBuilder();
             sb.Append("class ThreeDS2Result {\n");
             sb.Append("  AuthenticationValue: ").Append(AuthenticationValue).Append("\n");
             sb.Append("  CavvAlgorithm: ").Append(CavvAlgorithm).Append("\n");
@@ -334,8 +336,9 @@ namespace Adyen.Model.Payments
         public bool Equals(ThreeDS2Result input)
         {
             if (input == null)
+            {
                 return false;
-
+            }
             return 
                 (
                     this.AuthenticationValue == input.AuthenticationValue ||
@@ -349,13 +352,11 @@ namespace Adyen.Model.Payments
                 ) && 
                 (
                     this.ChallengeCancel == input.ChallengeCancel ||
-                    (this.ChallengeCancel != null &&
-                    this.ChallengeCancel.Equals(input.ChallengeCancel))
+                    this.ChallengeCancel.Equals(input.ChallengeCancel)
                 ) && 
                 (
                     this.ChallengeIndicator == input.ChallengeIndicator ||
-                    (this.ChallengeIndicator != null &&
-                    this.ChallengeIndicator.Equals(input.ChallengeIndicator))
+                    this.ChallengeIndicator.Equals(input.ChallengeIndicator)
                 ) && 
                 (
                     this.DsTransID == input.DsTransID ||
@@ -369,8 +370,7 @@ namespace Adyen.Model.Payments
                 ) && 
                 (
                     this.ExemptionIndicator == input.ExemptionIndicator ||
-                    (this.ExemptionIndicator != null &&
-                    this.ExemptionIndicator.Equals(input.ExemptionIndicator))
+                    this.ExemptionIndicator.Equals(input.ExemptionIndicator)
                 ) && 
                 (
                     this.MessageVersion == input.MessageVersion ||
@@ -419,33 +419,52 @@ namespace Adyen.Model.Payments
             {
                 int hashCode = 41;
                 if (this.AuthenticationValue != null)
-                    hashCode = hashCode * 59 + this.AuthenticationValue.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.AuthenticationValue.GetHashCode();
+                }
                 if (this.CavvAlgorithm != null)
-                    hashCode = hashCode * 59 + this.CavvAlgorithm.GetHashCode();
-                if (this.ChallengeCancel != null)
-                    hashCode = hashCode * 59 + this.ChallengeCancel.GetHashCode();
-                if (this.ChallengeIndicator != null)
-                    hashCode = hashCode * 59 + this.ChallengeIndicator.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.CavvAlgorithm.GetHashCode();
+                }
+                hashCode = (hashCode * 59) + this.ChallengeCancel.GetHashCode();
+                hashCode = (hashCode * 59) + this.ChallengeIndicator.GetHashCode();
                 if (this.DsTransID != null)
-                    hashCode = hashCode * 59 + this.DsTransID.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.DsTransID.GetHashCode();
+                }
                 if (this.Eci != null)
-                    hashCode = hashCode * 59 + this.Eci.GetHashCode();
-                if (this.ExemptionIndicator != null)
-                    hashCode = hashCode * 59 + this.ExemptionIndicator.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.Eci.GetHashCode();
+                }
+                hashCode = (hashCode * 59) + this.ExemptionIndicator.GetHashCode();
                 if (this.MessageVersion != null)
-                    hashCode = hashCode * 59 + this.MessageVersion.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.MessageVersion.GetHashCode();
+                }
                 if (this.RiskScore != null)
-                    hashCode = hashCode * 59 + this.RiskScore.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.RiskScore.GetHashCode();
+                }
                 if (this.ThreeDSServerTransID != null)
-                    hashCode = hashCode * 59 + this.ThreeDSServerTransID.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.ThreeDSServerTransID.GetHashCode();
+                }
                 if (this.Timestamp != null)
-                    hashCode = hashCode * 59 + this.Timestamp.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.Timestamp.GetHashCode();
+                }
                 if (this.TransStatus != null)
-                    hashCode = hashCode * 59 + this.TransStatus.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.TransStatus.GetHashCode();
+                }
                 if (this.TransStatusReason != null)
-                    hashCode = hashCode * 59 + this.TransStatusReason.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.TransStatusReason.GetHashCode();
+                }
                 if (this.WhiteListStatus != null)
-                    hashCode = hashCode * 59 + this.WhiteListStatus.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.WhiteListStatus.GetHashCode();
+                }
                 return hashCode;
             }
         }
@@ -455,7 +474,7 @@ namespace Adyen.Model.Payments
         /// </summary>
         /// <param name="validationContext">Validation context</param>
         /// <returns>Validation Result</returns>
-        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+        public IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> Validate(ValidationContext validationContext)
         {
             yield break;
         }

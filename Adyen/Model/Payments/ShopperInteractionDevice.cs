@@ -10,17 +10,19 @@
 * Do not edit the class manually.
 */
 
+
 using System;
-using System.Linq;
-using System.IO;
-using System.Text;
-using System.Text.RegularExpressions;
 using System.Collections;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Linq;
+using System.IO;
 using System.Runtime.Serialization;
+using System.Text;
+using System.Text.RegularExpressions;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
+using Newtonsoft.Json.Linq;
 using System.ComponentModel.DataAnnotations;
 
 namespace Adyen.Model.Payments
@@ -28,8 +30,8 @@ namespace Adyen.Model.Payments
     /// <summary>
     /// ShopperInteractionDevice
     /// </summary>
-    [DataContract]
-    public partial class ShopperInteractionDevice :  IEquatable<ShopperInteractionDevice>, IValidatableObject
+    [DataContract(Name = "ShopperInteractionDevice")]
+    public partial class ShopperInteractionDevice : IEquatable<ShopperInteractionDevice>, IValidatableObject
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="ShopperInteractionDevice" /> class.
@@ -48,30 +50,30 @@ namespace Adyen.Model.Payments
         /// Locale on the shopper interaction device.
         /// </summary>
         /// <value>Locale on the shopper interaction device.</value>
-        [DataMember(Name="locale", EmitDefaultValue=false)]
+        [DataMember(Name = "locale", EmitDefaultValue = false)]
         public string Locale { get; set; }
-
+        
         /// <summary>
         /// Operating system running on the shopper interaction device.
         /// </summary>
         /// <value>Operating system running on the shopper interaction device.</value>
-        [DataMember(Name="os", EmitDefaultValue=false)]
+        [DataMember(Name = "os", EmitDefaultValue = false)]
         public string Os { get; set; }
-
+        
         /// <summary>
         /// Version of the operating system on the shopper interaction device.
         /// </summary>
         /// <value>Version of the operating system on the shopper interaction device.</value>
-        [DataMember(Name="osVersion", EmitDefaultValue=false)]
+        [DataMember(Name = "osVersion", EmitDefaultValue = false)]
         public string OsVersion { get; set; }
-
+        
         /// <summary>
         /// Returns the string presentation of the object
         /// </summary>
         /// <returns>String presentation of the object</returns>
         public override string ToString()
         {
-            var sb = new StringBuilder();
+            StringBuilder sb = new StringBuilder();
             sb.Append("class ShopperInteractionDevice {\n");
             sb.Append("  Locale: ").Append(Locale).Append("\n");
             sb.Append("  Os: ").Append(Os).Append("\n");
@@ -107,8 +109,9 @@ namespace Adyen.Model.Payments
         public bool Equals(ShopperInteractionDevice input)
         {
             if (input == null)
+            {
                 return false;
-
+            }
             return 
                 (
                     this.Locale == input.Locale ||
@@ -137,11 +140,17 @@ namespace Adyen.Model.Payments
             {
                 int hashCode = 41;
                 if (this.Locale != null)
-                    hashCode = hashCode * 59 + this.Locale.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.Locale.GetHashCode();
+                }
                 if (this.Os != null)
-                    hashCode = hashCode * 59 + this.Os.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.Os.GetHashCode();
+                }
                 if (this.OsVersion != null)
-                    hashCode = hashCode * 59 + this.OsVersion.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.OsVersion.GetHashCode();
+                }
                 return hashCode;
             }
         }
@@ -151,7 +160,7 @@ namespace Adyen.Model.Payments
         /// </summary>
         /// <param name="validationContext">Validation context</param>
         /// <returns>Validation Result</returns>
-        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+        public IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> Validate(ValidationContext validationContext)
         {
             yield break;
         }

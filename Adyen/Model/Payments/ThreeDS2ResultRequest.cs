@@ -10,17 +10,19 @@
 * Do not edit the class manually.
 */
 
+
 using System;
-using System.Linq;
-using System.IO;
-using System.Text;
-using System.Text.RegularExpressions;
 using System.Collections;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Linq;
+using System.IO;
 using System.Runtime.Serialization;
+using System.Text;
+using System.Text.RegularExpressions;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
+using Newtonsoft.Json.Linq;
 using System.ComponentModel.DataAnnotations;
 
 namespace Adyen.Model.Payments
@@ -28,8 +30,8 @@ namespace Adyen.Model.Payments
     /// <summary>
     /// ThreeDS2ResultRequest
     /// </summary>
-    [DataContract]
-    public partial class ThreeDS2ResultRequest :  IEquatable<ThreeDS2ResultRequest>, IValidatableObject
+    [DataContract(Name = "ThreeDS2ResultRequest")]
+    public partial class ThreeDS2ResultRequest : IEquatable<ThreeDS2ResultRequest>, IValidatableObject
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="ThreeDS2ResultRequest" /> class.
@@ -51,23 +53,23 @@ namespace Adyen.Model.Payments
         /// The merchant account identifier, with which you want to process the transaction.
         /// </summary>
         /// <value>The merchant account identifier, with which you want to process the transaction.</value>
-        [DataMember(Name="merchantAccount", EmitDefaultValue=true)]
+        [DataMember(Name = "merchantAccount", IsRequired = false, EmitDefaultValue = true)]
         public string MerchantAccount { get; set; }
-
+        
         /// <summary>
         /// The pspReference returned in the /authorise call.
         /// </summary>
         /// <value>The pspReference returned in the /authorise call.</value>
-        [DataMember(Name="pspReference", EmitDefaultValue=true)]
+        [DataMember(Name = "pspReference", IsRequired = false, EmitDefaultValue = true)]
         public string PspReference { get; set; }
-
+        
         /// <summary>
         /// Returns the string presentation of the object
         /// </summary>
         /// <returns>String presentation of the object</returns>
         public override string ToString()
         {
-            var sb = new StringBuilder();
+            StringBuilder sb = new StringBuilder();
             sb.Append("class ThreeDS2ResultRequest {\n");
             sb.Append("  MerchantAccount: ").Append(MerchantAccount).Append("\n");
             sb.Append("  PspReference: ").Append(PspReference).Append("\n");
@@ -102,8 +104,9 @@ namespace Adyen.Model.Payments
         public bool Equals(ThreeDS2ResultRequest input)
         {
             if (input == null)
+            {
                 return false;
-
+            }
             return 
                 (
                     this.MerchantAccount == input.MerchantAccount ||
@@ -127,9 +130,13 @@ namespace Adyen.Model.Payments
             {
                 int hashCode = 41;
                 if (this.MerchantAccount != null)
-                    hashCode = hashCode * 59 + this.MerchantAccount.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.MerchantAccount.GetHashCode();
+                }
                 if (this.PspReference != null)
-                    hashCode = hashCode * 59 + this.PspReference.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.PspReference.GetHashCode();
+                }
                 return hashCode;
             }
         }
@@ -139,7 +146,7 @@ namespace Adyen.Model.Payments
         /// </summary>
         /// <param name="validationContext">Validation context</param>
         /// <returns>Validation Result</returns>
-        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+        public IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> Validate(ValidationContext validationContext)
         {
             yield break;
         }

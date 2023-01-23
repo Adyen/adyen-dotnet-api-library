@@ -10,17 +10,19 @@
 * Do not edit the class manually.
 */
 
+
 using System;
-using System.Linq;
-using System.IO;
-using System.Text;
-using System.Text.RegularExpressions;
 using System.Collections;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Linq;
+using System.IO;
 using System.Runtime.Serialization;
+using System.Text;
+using System.Text.RegularExpressions;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
+using Newtonsoft.Json.Linq;
 using System.ComponentModel.DataAnnotations;
 
 namespace Adyen.Model.Payments
@@ -28,8 +30,8 @@ namespace Adyen.Model.Payments
     /// <summary>
     /// Name
     /// </summary>
-    [DataContract]
-    public partial class Name :  IEquatable<Name>, IValidatableObject
+    [DataContract(Name = "Name")]
+    public partial class Name : IEquatable<Name>, IValidatableObject
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="Name" /> class.
@@ -51,23 +53,23 @@ namespace Adyen.Model.Payments
         /// The first name.
         /// </summary>
         /// <value>The first name.</value>
-        [DataMember(Name="firstName", EmitDefaultValue=true)]
+        [DataMember(Name = "firstName", IsRequired = false, EmitDefaultValue = true)]
         public string FirstName { get; set; }
-
+        
         /// <summary>
         /// The last name.
         /// </summary>
         /// <value>The last name.</value>
-        [DataMember(Name="lastName", EmitDefaultValue=true)]
+        [DataMember(Name = "lastName", IsRequired = false, EmitDefaultValue = true)]
         public string LastName { get; set; }
-
+        
         /// <summary>
         /// Returns the string presentation of the object
         /// </summary>
         /// <returns>String presentation of the object</returns>
         public override string ToString()
         {
-            var sb = new StringBuilder();
+            StringBuilder sb = new StringBuilder();
             sb.Append("class Name {\n");
             sb.Append("  FirstName: ").Append(FirstName).Append("\n");
             sb.Append("  LastName: ").Append(LastName).Append("\n");
@@ -102,8 +104,9 @@ namespace Adyen.Model.Payments
         public bool Equals(Name input)
         {
             if (input == null)
+            {
                 return false;
-
+            }
             return 
                 (
                     this.FirstName == input.FirstName ||
@@ -127,9 +130,13 @@ namespace Adyen.Model.Payments
             {
                 int hashCode = 41;
                 if (this.FirstName != null)
-                    hashCode = hashCode * 59 + this.FirstName.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.FirstName.GetHashCode();
+                }
                 if (this.LastName != null)
-                    hashCode = hashCode * 59 + this.LastName.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.LastName.GetHashCode();
+                }
                 return hashCode;
             }
         }
@@ -139,7 +146,7 @@ namespace Adyen.Model.Payments
         /// </summary>
         /// <param name="validationContext">Validation context</param>
         /// <returns>Validation Result</returns>
-        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+        public IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> Validate(ValidationContext validationContext)
         {
             yield break;
         }

@@ -10,17 +10,19 @@
 * Do not edit the class manually.
 */
 
+
 using System;
-using System.Linq;
-using System.IO;
-using System.Text;
-using System.Text.RegularExpressions;
 using System.Collections;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Linq;
+using System.IO;
 using System.Runtime.Serialization;
+using System.Text;
+using System.Text.RegularExpressions;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
+using Newtonsoft.Json.Linq;
 using System.ComponentModel.DataAnnotations;
 
 namespace Adyen.Model.Payments
@@ -28,8 +30,8 @@ namespace Adyen.Model.Payments
     /// <summary>
     /// AcctInfo
     /// </summary>
-    [DataContract]
-    public partial class AcctInfo :  IEquatable<AcctInfo>, IValidatableObject
+    [DataContract(Name = "AcctInfo")]
+    public partial class AcctInfo : IEquatable<AcctInfo>, IValidatableObject
     {
         /// <summary>
         /// Length of time that the cardholder has had the account with the 3DS Requestor.  Allowed values: * **01** — No account * **02** — Created during this transaction * **03** — Less than 30 days * **04** — 30–60 days * **05** — More than 60 days
@@ -70,11 +72,12 @@ namespace Adyen.Model.Payments
 
         }
 
+
         /// <summary>
         /// Length of time that the cardholder has had the account with the 3DS Requestor.  Allowed values: * **01** — No account * **02** — Created during this transaction * **03** — Less than 30 days * **04** — 30–60 days * **05** — More than 60 days
         /// </summary>
         /// <value>Length of time that the cardholder has had the account with the 3DS Requestor.  Allowed values: * **01** — No account * **02** — Created during this transaction * **03** — Less than 30 days * **04** — 30–60 days * **05** — More than 60 days</value>
-        [DataMember(Name="chAccAgeInd", EmitDefaultValue=false)]
+        [DataMember(Name = "chAccAgeInd", EmitDefaultValue = false)]
         public ChAccAgeIndEnum? ChAccAgeInd { get; set; }
         /// <summary>
         /// Length of time since the cardholder’s account information with the 3DS Requestor was last changed, including Billing or Shipping address, new payment account, or new user(s) added.  Allowed values: * **01** — Changed during this transaction * **02** — Less than 30 days * **03** — 30–60 days * **04** — More than 60 days
@@ -109,11 +112,12 @@ namespace Adyen.Model.Payments
 
         }
 
+
         /// <summary>
         /// Length of time since the cardholder’s account information with the 3DS Requestor was last changed, including Billing or Shipping address, new payment account, or new user(s) added.  Allowed values: * **01** — Changed during this transaction * **02** — Less than 30 days * **03** — 30–60 days * **04** — More than 60 days
         /// </summary>
         /// <value>Length of time since the cardholder’s account information with the 3DS Requestor was last changed, including Billing or Shipping address, new payment account, or new user(s) added.  Allowed values: * **01** — Changed during this transaction * **02** — Less than 30 days * **03** — 30–60 days * **04** — More than 60 days</value>
-        [DataMember(Name="chAccChangeInd", EmitDefaultValue=false)]
+        [DataMember(Name = "chAccChangeInd", EmitDefaultValue = false)]
         public ChAccChangeIndEnum? ChAccChangeInd { get; set; }
         /// <summary>
         /// Indicates the length of time since the cardholder’s account with the 3DS Requestor had a password change or account reset.  Allowed values: * **01** — No change * **02** — Changed during this transaction * **03** — Less than 30 days * **04** — 30–60 days * **05** — More than 60 days
@@ -154,11 +158,12 @@ namespace Adyen.Model.Payments
 
         }
 
+
         /// <summary>
         /// Indicates the length of time since the cardholder’s account with the 3DS Requestor had a password change or account reset.  Allowed values: * **01** — No change * **02** — Changed during this transaction * **03** — Less than 30 days * **04** — 30–60 days * **05** — More than 60 days
         /// </summary>
         /// <value>Indicates the length of time since the cardholder’s account with the 3DS Requestor had a password change or account reset.  Allowed values: * **01** — No change * **02** — Changed during this transaction * **03** — Less than 30 days * **04** — 30–60 days * **05** — More than 60 days</value>
-        [DataMember(Name="chAccPwChangeInd", EmitDefaultValue=false)]
+        [DataMember(Name = "chAccPwChangeInd", EmitDefaultValue = false)]
         public ChAccPwChangeIndEnum? ChAccPwChangeInd { get; set; }
         /// <summary>
         /// Indicates the length of time that the payment account was enrolled in the cardholder’s account with the 3DS Requestor.  Allowed values: * **01** — No account (guest checkout) * **02** — During this transaction * **03** — Less than 30 days * **04** — 30–60 days * **05** — More than 60 days
@@ -199,11 +204,12 @@ namespace Adyen.Model.Payments
 
         }
 
+
         /// <summary>
         /// Indicates the length of time that the payment account was enrolled in the cardholder’s account with the 3DS Requestor.  Allowed values: * **01** — No account (guest checkout) * **02** — During this transaction * **03** — Less than 30 days * **04** — 30–60 days * **05** — More than 60 days
         /// </summary>
         /// <value>Indicates the length of time that the payment account was enrolled in the cardholder’s account with the 3DS Requestor.  Allowed values: * **01** — No account (guest checkout) * **02** — During this transaction * **03** — Less than 30 days * **04** — 30–60 days * **05** — More than 60 days</value>
-        [DataMember(Name="paymentAccInd", EmitDefaultValue=false)]
+        [DataMember(Name = "paymentAccInd", EmitDefaultValue = false)]
         public PaymentAccIndEnum? PaymentAccInd { get; set; }
         /// <summary>
         /// Indicates when the shipping address used for this transaction was first used with the 3DS Requestor.  Allowed values: * **01** — This transaction * **02** — Less than 30 days * **03** — 30–60 days * **04** — More than 60 days
@@ -238,11 +244,12 @@ namespace Adyen.Model.Payments
 
         }
 
+
         /// <summary>
         /// Indicates when the shipping address used for this transaction was first used with the 3DS Requestor.  Allowed values: * **01** — This transaction * **02** — Less than 30 days * **03** — 30–60 days * **04** — More than 60 days
         /// </summary>
         /// <value>Indicates when the shipping address used for this transaction was first used with the 3DS Requestor.  Allowed values: * **01** — This transaction * **02** — Less than 30 days * **03** — 30–60 days * **04** — More than 60 days</value>
-        [DataMember(Name="shipAddressUsageInd", EmitDefaultValue=false)]
+        [DataMember(Name = "shipAddressUsageInd", EmitDefaultValue = false)]
         public ShipAddressUsageIndEnum? ShipAddressUsageInd { get; set; }
         /// <summary>
         /// Indicates if the Cardholder Name on the account is identical to the shipping Name used for this transaction.  Allowed values: * **01** — Account Name identical to shipping Name * **02** — Account Name different to shipping Name
@@ -265,11 +272,12 @@ namespace Adyen.Model.Payments
 
         }
 
+
         /// <summary>
         /// Indicates if the Cardholder Name on the account is identical to the shipping Name used for this transaction.  Allowed values: * **01** — Account Name identical to shipping Name * **02** — Account Name different to shipping Name
         /// </summary>
         /// <value>Indicates if the Cardholder Name on the account is identical to the shipping Name used for this transaction.  Allowed values: * **01** — Account Name identical to shipping Name * **02** — Account Name different to shipping Name</value>
-        [DataMember(Name="shipNameIndicator", EmitDefaultValue=false)]
+        [DataMember(Name = "shipNameIndicator", EmitDefaultValue = false)]
         public ShipNameIndicatorEnum? ShipNameIndicator { get; set; }
         /// <summary>
         /// Indicates whether the 3DS Requestor has experienced suspicious activity (including previous fraud) on the cardholder account.  Allowed values: * **01** — No suspicious activity has been observed * **02** — Suspicious activity has been observed
@@ -292,11 +300,12 @@ namespace Adyen.Model.Payments
 
         }
 
+
         /// <summary>
         /// Indicates whether the 3DS Requestor has experienced suspicious activity (including previous fraud) on the cardholder account.  Allowed values: * **01** — No suspicious activity has been observed * **02** — Suspicious activity has been observed
         /// </summary>
         /// <value>Indicates whether the 3DS Requestor has experienced suspicious activity (including previous fraud) on the cardholder account.  Allowed values: * **01** — No suspicious activity has been observed * **02** — Suspicious activity has been observed</value>
-        [DataMember(Name="suspiciousAccActivity", EmitDefaultValue=false)]
+        [DataMember(Name = "suspiciousAccActivity", EmitDefaultValue = false)]
         public SuspiciousAccActivityEnum? SuspiciousAccActivity { get; set; }
         /// <summary>
         /// Initializes a new instance of the <see cref="AcctInfo" /> class.
@@ -337,83 +346,76 @@ namespace Adyen.Model.Payments
             this.TxnActivityYear = txnActivityYear;
         }
 
-
         /// <summary>
         /// Date that the cardholder’s account with the 3DS Requestor was last changed, including Billing or Shipping address, new payment account, or new user(s) added.  Format: **YYYYMMDD**
         /// </summary>
         /// <value>Date that the cardholder’s account with the 3DS Requestor was last changed, including Billing or Shipping address, new payment account, or new user(s) added.  Format: **YYYYMMDD**</value>
-        [DataMember(Name="chAccChange", EmitDefaultValue=false)]
+        [DataMember(Name = "chAccChange", EmitDefaultValue = false)]
         public string ChAccChange { get; set; }
-
-
+        
         /// <summary>
         /// Date that cardholder’s account with the 3DS Requestor had a password change or account reset.  Format: **YYYYMMDD**
         /// </summary>
         /// <value>Date that cardholder’s account with the 3DS Requestor had a password change or account reset.  Format: **YYYYMMDD**</value>
-        [DataMember(Name="chAccPwChange", EmitDefaultValue=false)]
+        [DataMember(Name = "chAccPwChange", EmitDefaultValue = false)]
         public string ChAccPwChange { get; set; }
-
-
+        
         /// <summary>
         /// Date that the cardholder opened the account with the 3DS Requestor.  Format: **YYYYMMDD**
         /// </summary>
         /// <value>Date that the cardholder opened the account with the 3DS Requestor.  Format: **YYYYMMDD**</value>
-        [DataMember(Name="chAccString", EmitDefaultValue=false)]
+        [DataMember(Name = "chAccString", EmitDefaultValue = false)]
         public string ChAccString { get; set; }
-
+        
         /// <summary>
         /// Number of purchases with this cardholder account during the previous six months. Max length: 4 characters.
         /// </summary>
         /// <value>Number of purchases with this cardholder account during the previous six months. Max length: 4 characters.</value>
-        [DataMember(Name="nbPurchaseAccount", EmitDefaultValue=false)]
+        [DataMember(Name = "nbPurchaseAccount", EmitDefaultValue = false)]
         public string NbPurchaseAccount { get; set; }
-
+        
         /// <summary>
         /// String that the payment account was enrolled in the cardholder’s account with the 3DS Requestor.  Format: **YYYYMMDD**
         /// </summary>
         /// <value>String that the payment account was enrolled in the cardholder’s account with the 3DS Requestor.  Format: **YYYYMMDD**</value>
-        [DataMember(Name="paymentAccAge", EmitDefaultValue=false)]
+        [DataMember(Name = "paymentAccAge", EmitDefaultValue = false)]
         public string PaymentAccAge { get; set; }
-
-
+        
         /// <summary>
         /// Number of Add Card attempts in the last 24 hours. Max length: 3 characters.
         /// </summary>
         /// <value>Number of Add Card attempts in the last 24 hours. Max length: 3 characters.</value>
-        [DataMember(Name="provisionAttemptsDay", EmitDefaultValue=false)]
+        [DataMember(Name = "provisionAttemptsDay", EmitDefaultValue = false)]
         public string ProvisionAttemptsDay { get; set; }
-
+        
         /// <summary>
         /// String when the shipping address used for this transaction was first used with the 3DS Requestor.  Format: **YYYYMMDD**
         /// </summary>
         /// <value>String when the shipping address used for this transaction was first used with the 3DS Requestor.  Format: **YYYYMMDD**</value>
-        [DataMember(Name="shipAddressUsage", EmitDefaultValue=false)]
+        [DataMember(Name = "shipAddressUsage", EmitDefaultValue = false)]
         public string ShipAddressUsage { get; set; }
-
-
-
-
+        
         /// <summary>
         /// Number of transactions (successful and abandoned) for this cardholder account with the 3DS Requestor across all payment accounts in the previous 24 hours. Max length: 3 characters.
         /// </summary>
         /// <value>Number of transactions (successful and abandoned) for this cardholder account with the 3DS Requestor across all payment accounts in the previous 24 hours. Max length: 3 characters.</value>
-        [DataMember(Name="txnActivityDay", EmitDefaultValue=false)]
+        [DataMember(Name = "txnActivityDay", EmitDefaultValue = false)]
         public string TxnActivityDay { get; set; }
-
+        
         /// <summary>
         /// Number of transactions (successful and abandoned) for this cardholder account with the 3DS Requestor across all payment accounts in the previous year. Max length: 3 characters.
         /// </summary>
         /// <value>Number of transactions (successful and abandoned) for this cardholder account with the 3DS Requestor across all payment accounts in the previous year. Max length: 3 characters.</value>
-        [DataMember(Name="txnActivityYear", EmitDefaultValue=false)]
+        [DataMember(Name = "txnActivityYear", EmitDefaultValue = false)]
         public string TxnActivityYear { get; set; }
-
+        
         /// <summary>
         /// Returns the string presentation of the object
         /// </summary>
         /// <returns>String presentation of the object</returns>
         public override string ToString()
         {
-            var sb = new StringBuilder();
+            StringBuilder sb = new StringBuilder();
             sb.Append("class AcctInfo {\n");
             sb.Append("  ChAccAgeInd: ").Append(ChAccAgeInd).Append("\n");
             sb.Append("  ChAccChange: ").Append(ChAccChange).Append("\n");
@@ -462,13 +464,13 @@ namespace Adyen.Model.Payments
         public bool Equals(AcctInfo input)
         {
             if (input == null)
+            {
                 return false;
-
+            }
             return 
                 (
                     this.ChAccAgeInd == input.ChAccAgeInd ||
-                    (this.ChAccAgeInd != null &&
-                    this.ChAccAgeInd.Equals(input.ChAccAgeInd))
+                    this.ChAccAgeInd.Equals(input.ChAccAgeInd)
                 ) && 
                 (
                     this.ChAccChange == input.ChAccChange ||
@@ -477,8 +479,7 @@ namespace Adyen.Model.Payments
                 ) && 
                 (
                     this.ChAccChangeInd == input.ChAccChangeInd ||
-                    (this.ChAccChangeInd != null &&
-                    this.ChAccChangeInd.Equals(input.ChAccChangeInd))
+                    this.ChAccChangeInd.Equals(input.ChAccChangeInd)
                 ) && 
                 (
                     this.ChAccPwChange == input.ChAccPwChange ||
@@ -487,8 +488,7 @@ namespace Adyen.Model.Payments
                 ) && 
                 (
                     this.ChAccPwChangeInd == input.ChAccPwChangeInd ||
-                    (this.ChAccPwChangeInd != null &&
-                    this.ChAccPwChangeInd.Equals(input.ChAccPwChangeInd))
+                    this.ChAccPwChangeInd.Equals(input.ChAccPwChangeInd)
                 ) && 
                 (
                     this.ChAccString == input.ChAccString ||
@@ -507,8 +507,7 @@ namespace Adyen.Model.Payments
                 ) && 
                 (
                     this.PaymentAccInd == input.PaymentAccInd ||
-                    (this.PaymentAccInd != null &&
-                    this.PaymentAccInd.Equals(input.PaymentAccInd))
+                    this.PaymentAccInd.Equals(input.PaymentAccInd)
                 ) && 
                 (
                     this.ProvisionAttemptsDay == input.ProvisionAttemptsDay ||
@@ -522,18 +521,15 @@ namespace Adyen.Model.Payments
                 ) && 
                 (
                     this.ShipAddressUsageInd == input.ShipAddressUsageInd ||
-                    (this.ShipAddressUsageInd != null &&
-                    this.ShipAddressUsageInd.Equals(input.ShipAddressUsageInd))
+                    this.ShipAddressUsageInd.Equals(input.ShipAddressUsageInd)
                 ) && 
                 (
                     this.ShipNameIndicator == input.ShipNameIndicator ||
-                    (this.ShipNameIndicator != null &&
-                    this.ShipNameIndicator.Equals(input.ShipNameIndicator))
+                    this.ShipNameIndicator.Equals(input.ShipNameIndicator)
                 ) && 
                 (
                     this.SuspiciousAccActivity == input.SuspiciousAccActivity ||
-                    (this.SuspiciousAccActivity != null &&
-                    this.SuspiciousAccActivity.Equals(input.SuspiciousAccActivity))
+                    this.SuspiciousAccActivity.Equals(input.SuspiciousAccActivity)
                 ) && 
                 (
                     this.TxnActivityDay == input.TxnActivityDay ||
@@ -556,38 +552,49 @@ namespace Adyen.Model.Payments
             unchecked // Overflow is fine, just wrap
             {
                 int hashCode = 41;
-                if (this.ChAccAgeInd != null)
-                    hashCode = hashCode * 59 + this.ChAccAgeInd.GetHashCode();
+                hashCode = (hashCode * 59) + this.ChAccAgeInd.GetHashCode();
                 if (this.ChAccChange != null)
-                    hashCode = hashCode * 59 + this.ChAccChange.GetHashCode();
-                if (this.ChAccChangeInd != null)
-                    hashCode = hashCode * 59 + this.ChAccChangeInd.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.ChAccChange.GetHashCode();
+                }
+                hashCode = (hashCode * 59) + this.ChAccChangeInd.GetHashCode();
                 if (this.ChAccPwChange != null)
-                    hashCode = hashCode * 59 + this.ChAccPwChange.GetHashCode();
-                if (this.ChAccPwChangeInd != null)
-                    hashCode = hashCode * 59 + this.ChAccPwChangeInd.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.ChAccPwChange.GetHashCode();
+                }
+                hashCode = (hashCode * 59) + this.ChAccPwChangeInd.GetHashCode();
                 if (this.ChAccString != null)
-                    hashCode = hashCode * 59 + this.ChAccString.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.ChAccString.GetHashCode();
+                }
                 if (this.NbPurchaseAccount != null)
-                    hashCode = hashCode * 59 + this.NbPurchaseAccount.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.NbPurchaseAccount.GetHashCode();
+                }
                 if (this.PaymentAccAge != null)
-                    hashCode = hashCode * 59 + this.PaymentAccAge.GetHashCode();
-                if (this.PaymentAccInd != null)
-                    hashCode = hashCode * 59 + this.PaymentAccInd.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.PaymentAccAge.GetHashCode();
+                }
+                hashCode = (hashCode * 59) + this.PaymentAccInd.GetHashCode();
                 if (this.ProvisionAttemptsDay != null)
-                    hashCode = hashCode * 59 + this.ProvisionAttemptsDay.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.ProvisionAttemptsDay.GetHashCode();
+                }
                 if (this.ShipAddressUsage != null)
-                    hashCode = hashCode * 59 + this.ShipAddressUsage.GetHashCode();
-                if (this.ShipAddressUsageInd != null)
-                    hashCode = hashCode * 59 + this.ShipAddressUsageInd.GetHashCode();
-                if (this.ShipNameIndicator != null)
-                    hashCode = hashCode * 59 + this.ShipNameIndicator.GetHashCode();
-                if (this.SuspiciousAccActivity != null)
-                    hashCode = hashCode * 59 + this.SuspiciousAccActivity.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.ShipAddressUsage.GetHashCode();
+                }
+                hashCode = (hashCode * 59) + this.ShipAddressUsageInd.GetHashCode();
+                hashCode = (hashCode * 59) + this.ShipNameIndicator.GetHashCode();
+                hashCode = (hashCode * 59) + this.SuspiciousAccActivity.GetHashCode();
                 if (this.TxnActivityDay != null)
-                    hashCode = hashCode * 59 + this.TxnActivityDay.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.TxnActivityDay.GetHashCode();
+                }
                 if (this.TxnActivityYear != null)
-                    hashCode = hashCode * 59 + this.TxnActivityYear.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.TxnActivityYear.GetHashCode();
+                }
                 return hashCode;
             }
         }
@@ -597,105 +604,19 @@ namespace Adyen.Model.Payments
         /// </summary>
         /// <param name="validationContext">Validation context</param>
         /// <returns>Validation Result</returns>
-        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+        public IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> Validate(ValidationContext validationContext)
         {
-            // ChAccAgeInd (string) maxLength
-            if(this.ChAccAgeInd != null && this.ChAccAgeInd.ToString().Length > 2)
-            {
-                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for ChAccAgeInd, length must be less than 2.", new [] { "ChAccAgeInd" });
-            }
-
-            // ChAccAgeInd (string) minLength
-            if(this.ChAccAgeInd != null && this.ChAccAgeInd.ToString().Length < 2)
-            {
-                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for ChAccAgeInd, length must be greater than 2.", new [] { "ChAccAgeInd" });
-            }
-
-            // ChAccChangeInd (string) maxLength
-            if(this.ChAccChangeInd != null && this.ChAccChangeInd.ToString().Length > 2)
-            {
-                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for ChAccChangeInd, length must be less than 2.", new [] { "ChAccChangeInd" });
-            }
-
-            // ChAccChangeInd (string) minLength
-            if(this.ChAccChangeInd != null && this.ChAccChangeInd.ToString().Length < 2)
-            {
-                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for ChAccChangeInd, length must be greater than 2.", new [] { "ChAccChangeInd" });
-            }
-
-            // ChAccPwChangeInd (string) maxLength
-            if(this.ChAccPwChangeInd != null && this.ChAccPwChangeInd.ToString().Length > 2)
-            {
-                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for ChAccPwChangeInd, length must be less than 2.", new [] { "ChAccPwChangeInd" });
-            }
-
-            // ChAccPwChangeInd (string) minLength
-            if(this.ChAccPwChangeInd != null && this.ChAccPwChangeInd.ToString().Length < 2)
-            {
-                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for ChAccPwChangeInd, length must be greater than 2.", new [] { "ChAccPwChangeInd" });
-            }
-
-            // PaymentAccInd (string) maxLength
-            if(this.PaymentAccInd != null && this.PaymentAccInd.ToString().Length > 2)
-            {
-                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for PaymentAccInd, length must be less than 2.", new [] { "PaymentAccInd" });
-            }
-
-            // PaymentAccInd (string) minLength
-            if(this.PaymentAccInd != null && this.PaymentAccInd.ToString().Length < 2)
-            {
-                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for PaymentAccInd, length must be greater than 2.", new [] { "PaymentAccInd" });
-            }
-
-            // ShipAddressUsageInd (string) maxLength
-            if(this.ShipAddressUsageInd != null && this.ShipAddressUsageInd.ToString().Length > 2)
-            {
-                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for ShipAddressUsageInd, length must be less than 2.", new [] { "ShipAddressUsageInd" });
-            }
-
-            // ShipAddressUsageInd (string) minLength
-            if(this.ShipAddressUsageInd != null && this.ShipAddressUsageInd.ToString().Length < 2)
-            {
-                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for ShipAddressUsageInd, length must be greater than 2.", new [] { "ShipAddressUsageInd" });
-            }
-
-            // ShipNameIndicator (string) maxLength
-            if(this.ShipNameIndicator != null && this.ShipNameIndicator.ToString().Length > 2)
-            {
-                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for ShipNameIndicator, length must be less than 2.", new [] { "ShipNameIndicator" });
-            }
-
-            // ShipNameIndicator (string) minLength
-            if(this.ShipNameIndicator != null && this.ShipNameIndicator.ToString().Length < 2)
-            {
-                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for ShipNameIndicator, length must be greater than 2.", new [] { "ShipNameIndicator" });
-            }
-
-            // SuspiciousAccActivity (string) maxLength
-            if(this.SuspiciousAccActivity != null && this.SuspiciousAccActivity.ToString().Length > 2)
-            {
-                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for SuspiciousAccActivity, length must be less than 2.", new [] { "SuspiciousAccActivity" });
-            }
-
-            // SuspiciousAccActivity (string) minLength
-            if(this.SuspiciousAccActivity != null && this.SuspiciousAccActivity.ToString().Length < 2)
-            {
-                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for SuspiciousAccActivity, length must be greater than 2.", new [] { "SuspiciousAccActivity" });
-            }
-
             // TxnActivityDay (string) maxLength
-            if(this.TxnActivityDay != null && this.TxnActivityDay.Length > 3)
+            if (this.TxnActivityDay != null && this.TxnActivityDay.Length > 3)
             {
                 yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for TxnActivityDay, length must be less than 3.", new [] { "TxnActivityDay" });
             }
 
-
             // TxnActivityYear (string) maxLength
-            if(this.TxnActivityYear != null && this.TxnActivityYear.Length > 3)
+            if (this.TxnActivityYear != null && this.TxnActivityYear.Length > 3)
             {
                 yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for TxnActivityYear, length must be less than 3.", new [] { "TxnActivityYear" });
             }
-
 
             yield break;
         }
