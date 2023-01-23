@@ -67,19 +67,6 @@ namespace Adyen.HttpClient
             }
         }
 
-        public string Post(string endpoint, Dictionary<string, string> postParameters)
-        {
-            var dictToString = QueryString(postParameters);
-
-            var content = new StringContent(dictToString, _encoding, "application/x-www-form-urlencoded");
-            using (var request = new HttpRequestMessage(HttpMethod.Post, endpoint) {Content = content})
-            using (var response = _httpClient.SendAsync(request).GetAwaiter().GetResult())
-            {
-                response.EnsureSuccessStatusCode();
-                return response.Content.ReadAsStringAsync().GetAwaiter().GetResult();
-            }
-        }
-
         public HttpRequestMessage GetHttpRequestMessage(string endpoint, string requestBody, RequestOptions requestOptions, HttpMethod httpMethod)
         {   
             if (httpMethod == null) {httpMethod = HttpMethod.Post;}
