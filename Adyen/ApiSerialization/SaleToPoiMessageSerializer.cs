@@ -22,13 +22,9 @@
 #endregion
 
 using System;
-using System.Data;
-using System.Diagnostics;
-using System.Linq;
 using Adyen.Model.Nexo;
 using Adyen.Model.Nexo.Message;
 using Adyen.Security;
-using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 
 namespace Adyen.ApiSerialization
@@ -76,7 +72,7 @@ namespace Adyen.ApiSerialization
             var saleToPoiRequestJson = JObject.Parse(terminalNotificationJson);
             var saleToPoiRequestItem = saleToPoiRequestJson.First;
             var saleToPoiRequestType = saleToPoiRequestItem?.First;
-            var stringItem = saleToPoiRequestType?.ToString() ?? throw new ArgumentNullException(nameof(SaleToPOIMessage));
+            var saleToPoiString = saleToPoiRequestType?.ToString() ?? throw new ArgumentNullException(nameof(terminalNotificationJson));
 
             // Get Message Header
             var messageHeader = DeserializeMessageHeader(saleToPoiRequestType);
@@ -86,10 +82,10 @@ namespace Adyen.ApiSerialization
             {
                 MessageHeader = messageHeader
             };
-            if (stringItem.Contains("DisplayRequest"))
+            if (saleToPoiString.Contains("DisplayRequest"))
             {
                 notification.MessagePayload = saleToPoiRequestType["DisplayRequest"]?.ToObject<DisplayRequest>();
-            } else if (stringItem.Contains("EventNotification"))
+            } else if (saleToPoiString.Contains("EventNotification"))
             {
                 notification.MessagePayload = saleToPoiRequestType["EventNotification"]?.ToObject<EventNotification>();
             } else

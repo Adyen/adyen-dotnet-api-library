@@ -84,7 +84,7 @@ var config = new Config
   };
 var client = new Client(config);
 ~~~~
-To parse the terminal API notifications, please use the following custom deserializer:
+To parse the terminal API notifications, please use the following custom deserializer. This method will throw an exception for non-notification requests.
 ~~~~ csharp
 var serializer = new SaleToPoiMessageSerializer();
 var saleToPoiRequest = serializer.DeserializeNotification(your_terminal_notification);
