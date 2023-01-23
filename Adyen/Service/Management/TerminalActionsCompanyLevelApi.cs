@@ -11,6 +11,7 @@
 */
 
 using System;
+using System.Collections.Generic;
 using System.Net.Http;
 using System.Threading.Tasks;
 using Adyen.Model;
@@ -31,52 +32,32 @@ namespace Adyen.Service.Management
         /// Get a list of Android apps
         /// </summary>
         /// <param name="companyId">The unique identifier of the company account.</param>
-        /// <param name="requestOptions">Additional request options. Query parameters:
-        /// <list type="table">
-        ///     <listheader>
-        ///         <term>parameter</term>
-        ///         <description>description</description>
-        ///     </listheader>
-        ///     <item>
-        ///         <term>pageNumber</term>
-        ///         <description>The number of the page to fetch.</description>
-        ///     </item>
-        ///     <item>
-        ///         <term>pageSize</term>
-        ///         <description>The number of items to have on a page, maximum 100. The default is 20 items on a page.</description>
-        ///     </item>
-        /// </list></param>
+        /// <param name="pageNumber">The number of the page to fetch.</param>
+        /// <param name="pageSize">The number of items to have on a page, maximum 100. The default is 20 items on a page.</param>
+        /// <param name="requestOptions">Additional request options.</param>
         /// <returns>AndroidAppsResponse</returns>
-        public AndroidAppsResponse GetCompaniesCompanyIdAndroidApps(string companyId, RequestOptions requestOptions = null)
+        public AndroidAppsResponse GetCompaniesCompanyIdAndroidApps(string companyId, int? pageNumber = default, int? pageSize = default, RequestOptions requestOptions = default)
         {
-            return GetCompaniesCompanyIdAndroidAppsAsync(companyId, requestOptions).GetAwaiter().GetResult();
+            return GetCompaniesCompanyIdAndroidAppsAsync(companyId, pageNumber, pageSize, requestOptions).GetAwaiter().GetResult();
         }
 
         /// <summary>
         /// Get a list of Android apps
         /// </summary>
         /// <param name="companyId">The unique identifier of the company account.</param>
-        /// <param name="requestOptions">Additional request options. Query parameters:
-        /// <list type="table">
-        ///     <listheader>
-        ///         <term>parameter</term>
-        ///         <description>description</description>
-        ///     </listheader>
-        ///     <item>
-        ///         <term>pageNumber</term>
-        ///         <description>The number of the page to fetch.</description>
-        ///     </item>
-        ///     <item>
-        ///         <term>pageSize</term>
-        ///         <description>The number of items to have on a page, maximum 100. The default is 20 items on a page.</description>
-        ///     </item>
-        /// </list></param>
+        /// <param name="pageNumber">The number of the page to fetch.</param>
+        /// <param name="pageSize">The number of items to have on a page, maximum 100. The default is 20 items on a page.</param>
+        /// <param name="requestOptions">Additional request options.</param>
         /// <returns>Task of AndroidAppsResponse</returns>
-        public async Task<AndroidAppsResponse> GetCompaniesCompanyIdAndroidAppsAsync(string companyId, RequestOptions requestOptions = null)
+        public async Task<AndroidAppsResponse> GetCompaniesCompanyIdAndroidAppsAsync(string companyId, int? pageNumber = default, int? pageSize = default, RequestOptions requestOptions = default)
         {
-            var endpoint = $"/companies/{companyId}/androidApps" + ToQueryString(requestOptions?.QueryParameters);
+            // Build the query string
+            var queryParams = new Dictionary<string, string>();
+            if (pageNumber != null) queryParams.Add("pageNumber", pageNumber.ToString());
+            if (pageSize != null) queryParams.Add("pageSize", pageSize.ToString());
+            var endpoint = $"/companies/{companyId}/androidApps" + ToQueryString(queryParams);
             var resource = new ManagementResource(this, endpoint);
-            var jsonResult = await resource.RequestAsync(null, null, new HttpMethod("GET"));
+            var jsonResult = await resource.RequestAsync(null, requestOptions, new HttpMethod("GET"));
             return JsonConvert.DeserializeObject<AndroidAppsResponse>(jsonResult);
         }
 
@@ -84,52 +65,32 @@ namespace Adyen.Service.Management
         /// Get a list of Android certificates
         /// </summary>
         /// <param name="companyId">The unique identifier of the company account.</param>
-        /// <param name="requestOptions">Additional request options. Query parameters:
-        /// <list type="table">
-        ///     <listheader>
-        ///         <term>parameter</term>
-        ///         <description>description</description>
-        ///     </listheader>
-        ///     <item>
-        ///         <term>pageNumber</term>
-        ///         <description>The number of the page to fetch.</description>
-        ///     </item>
-        ///     <item>
-        ///         <term>pageSize</term>
-        ///         <description>The number of items to have on a page, maximum 100. The default is 20 items on a page.</description>
-        ///     </item>
-        /// </list></param>
+        /// <param name="pageNumber">The number of the page to fetch.</param>
+        /// <param name="pageSize">The number of items to have on a page, maximum 100. The default is 20 items on a page.</param>
+        /// <param name="requestOptions">Additional request options.</param>
         /// <returns>AndroidCertificatesResponse</returns>
-        public AndroidCertificatesResponse GetCompaniesCompanyIdAndroidCertificates(string companyId, RequestOptions requestOptions = null)
+        public AndroidCertificatesResponse GetCompaniesCompanyIdAndroidCertificates(string companyId, int? pageNumber = default, int? pageSize = default, RequestOptions requestOptions = default)
         {
-            return GetCompaniesCompanyIdAndroidCertificatesAsync(companyId, requestOptions).GetAwaiter().GetResult();
+            return GetCompaniesCompanyIdAndroidCertificatesAsync(companyId, pageNumber, pageSize, requestOptions).GetAwaiter().GetResult();
         }
 
         /// <summary>
         /// Get a list of Android certificates
         /// </summary>
         /// <param name="companyId">The unique identifier of the company account.</param>
-        /// <param name="requestOptions">Additional request options. Query parameters:
-        /// <list type="table">
-        ///     <listheader>
-        ///         <term>parameter</term>
-        ///         <description>description</description>
-        ///     </listheader>
-        ///     <item>
-        ///         <term>pageNumber</term>
-        ///         <description>The number of the page to fetch.</description>
-        ///     </item>
-        ///     <item>
-        ///         <term>pageSize</term>
-        ///         <description>The number of items to have on a page, maximum 100. The default is 20 items on a page.</description>
-        ///     </item>
-        /// </list></param>
+        /// <param name="pageNumber">The number of the page to fetch.</param>
+        /// <param name="pageSize">The number of items to have on a page, maximum 100. The default is 20 items on a page.</param>
+        /// <param name="requestOptions">Additional request options.</param>
         /// <returns>Task of AndroidCertificatesResponse</returns>
-        public async Task<AndroidCertificatesResponse> GetCompaniesCompanyIdAndroidCertificatesAsync(string companyId, RequestOptions requestOptions = null)
+        public async Task<AndroidCertificatesResponse> GetCompaniesCompanyIdAndroidCertificatesAsync(string companyId, int? pageNumber = default, int? pageSize = default, RequestOptions requestOptions = default)
         {
-            var endpoint = $"/companies/{companyId}/androidCertificates" + ToQueryString(requestOptions?.QueryParameters);
+            // Build the query string
+            var queryParams = new Dictionary<string, string>();
+            if (pageNumber != null) queryParams.Add("pageNumber", pageNumber.ToString());
+            if (pageSize != null) queryParams.Add("pageSize", pageSize.ToString());
+            var endpoint = $"/companies/{companyId}/androidCertificates" + ToQueryString(queryParams);
             var resource = new ManagementResource(this, endpoint);
-            var jsonResult = await resource.RequestAsync(null, null, new HttpMethod("GET"));
+            var jsonResult = await resource.RequestAsync(null, requestOptions, new HttpMethod("GET"));
             return JsonConvert.DeserializeObject<AndroidCertificatesResponse>(jsonResult);
         }
 
@@ -137,68 +98,38 @@ namespace Adyen.Service.Management
         /// Get a list of terminal actions
         /// </summary>
         /// <param name="companyId">The unique identifier of the company account.</param>
-        /// <param name="requestOptions">Additional request options. Query parameters:
-        /// <list type="table">
-        ///     <listheader>
-        ///         <term>parameter</term>
-        ///         <description>description</description>
-        ///     </listheader>
-        ///     <item>
-        ///         <term>pageNumber</term>
-        ///         <description>The number of the page to fetch.</description>
-        ///     </item>
-        ///     <item>
-        ///         <term>pageSize</term>
-        ///         <description>The number of items to have on a page, maximum 100. The default is 20 items on a page.</description>
-        ///     </item>
-        ///     <item>
-        ///         <term>status</term>
-        ///         <description>Returns terminal actions with the specified status.  Allowed values: **pending**, **successful**, **failed**, **cancelled**, **tryLater**.</description>
-        ///     </item>
-        ///     <item>
-        ///         <term>type</term>
-        ///         <description>Returns terminal actions of the specified type.  Allowed values: **InstallAndroidApp**, **UninstallAndroidApp**, **InstallAndroidCertificate**, **UninstallAndroidCertificate**.</description>
-        ///     </item>
-        /// </list></param>
+        /// <param name="pageNumber">The number of the page to fetch.</param>
+        /// <param name="pageSize">The number of items to have on a page, maximum 100. The default is 20 items on a page.</param>
+        /// <param name="status">Returns terminal actions with the specified status.  Allowed values: **pending**, **successful**, **failed**, **cancelled**, **tryLater**.</param>
+        /// <param name="type">Returns terminal actions of the specified type.  Allowed values: **InstallAndroidApp**, **UninstallAndroidApp**, **InstallAndroidCertificate**, **UninstallAndroidCertificate**.</param>
+        /// <param name="requestOptions">Additional request options.</param>
         /// <returns>ListExternalTerminalActionsResponse</returns>
-        public ListExternalTerminalActionsResponse GetCompaniesCompanyIdTerminalActions(string companyId, RequestOptions requestOptions = null)
+        public ListExternalTerminalActionsResponse GetCompaniesCompanyIdTerminalActions(string companyId, int? pageNumber = default, int? pageSize = default, string status = default, string type = default, RequestOptions requestOptions = default)
         {
-            return GetCompaniesCompanyIdTerminalActionsAsync(companyId, requestOptions).GetAwaiter().GetResult();
+            return GetCompaniesCompanyIdTerminalActionsAsync(companyId, pageNumber, pageSize, status, type, requestOptions).GetAwaiter().GetResult();
         }
 
         /// <summary>
         /// Get a list of terminal actions
         /// </summary>
         /// <param name="companyId">The unique identifier of the company account.</param>
-        /// <param name="requestOptions">Additional request options. Query parameters:
-        /// <list type="table">
-        ///     <listheader>
-        ///         <term>parameter</term>
-        ///         <description>description</description>
-        ///     </listheader>
-        ///     <item>
-        ///         <term>pageNumber</term>
-        ///         <description>The number of the page to fetch.</description>
-        ///     </item>
-        ///     <item>
-        ///         <term>pageSize</term>
-        ///         <description>The number of items to have on a page, maximum 100. The default is 20 items on a page.</description>
-        ///     </item>
-        ///     <item>
-        ///         <term>status</term>
-        ///         <description>Returns terminal actions with the specified status.  Allowed values: **pending**, **successful**, **failed**, **cancelled**, **tryLater**.</description>
-        ///     </item>
-        ///     <item>
-        ///         <term>type</term>
-        ///         <description>Returns terminal actions of the specified type.  Allowed values: **InstallAndroidApp**, **UninstallAndroidApp**, **InstallAndroidCertificate**, **UninstallAndroidCertificate**.</description>
-        ///     </item>
-        /// </list></param>
+        /// <param name="pageNumber">The number of the page to fetch.</param>
+        /// <param name="pageSize">The number of items to have on a page, maximum 100. The default is 20 items on a page.</param>
+        /// <param name="status">Returns terminal actions with the specified status.  Allowed values: **pending**, **successful**, **failed**, **cancelled**, **tryLater**.</param>
+        /// <param name="type">Returns terminal actions of the specified type.  Allowed values: **InstallAndroidApp**, **UninstallAndroidApp**, **InstallAndroidCertificate**, **UninstallAndroidCertificate**.</param>
+        /// <param name="requestOptions">Additional request options.</param>
         /// <returns>Task of ListExternalTerminalActionsResponse</returns>
-        public async Task<ListExternalTerminalActionsResponse> GetCompaniesCompanyIdTerminalActionsAsync(string companyId, RequestOptions requestOptions = null)
+        public async Task<ListExternalTerminalActionsResponse> GetCompaniesCompanyIdTerminalActionsAsync(string companyId, int? pageNumber = default, int? pageSize = default, string status = default, string type = default, RequestOptions requestOptions = default)
         {
-            var endpoint = $"/companies/{companyId}/terminalActions" + ToQueryString(requestOptions?.QueryParameters);
+            // Build the query string
+            var queryParams = new Dictionary<string, string>();
+            if (pageNumber != null) queryParams.Add("pageNumber", pageNumber.ToString());
+            if (pageSize != null) queryParams.Add("pageSize", pageSize.ToString());
+            if (status != null) queryParams.Add("status", status);
+            if (type != null) queryParams.Add("type", type);
+            var endpoint = $"/companies/{companyId}/terminalActions" + ToQueryString(queryParams);
             var resource = new ManagementResource(this, endpoint);
-            var jsonResult = await resource.RequestAsync(null, null, new HttpMethod("GET"));
+            var jsonResult = await resource.RequestAsync(null, requestOptions, new HttpMethod("GET"));
             return JsonConvert.DeserializeObject<ListExternalTerminalActionsResponse>(jsonResult);
         }
 
@@ -209,7 +140,7 @@ namespace Adyen.Service.Management
         /// <param name="actionId">The unique identifier of the terminal action.</param>
         /// <param name="requestOptions">Additional request options.</param>
         /// <returns>ExternalTerminalAction</returns>
-        public ExternalTerminalAction GetCompaniesCompanyIdTerminalActionsActionId(string companyId, string actionId, RequestOptions requestOptions = null)
+        public ExternalTerminalAction GetCompaniesCompanyIdTerminalActionsActionId(string companyId, string actionId, RequestOptions requestOptions = default)
         {
             return GetCompaniesCompanyIdTerminalActionsActionIdAsync(companyId, actionId, requestOptions).GetAwaiter().GetResult();
         }
@@ -221,11 +152,11 @@ namespace Adyen.Service.Management
         /// <param name="actionId">The unique identifier of the terminal action.</param>
         /// <param name="requestOptions">Additional request options.</param>
         /// <returns>Task of ExternalTerminalAction</returns>
-        public async Task<ExternalTerminalAction> GetCompaniesCompanyIdTerminalActionsActionIdAsync(string companyId, string actionId, RequestOptions requestOptions = null)
+        public async Task<ExternalTerminalAction> GetCompaniesCompanyIdTerminalActionsActionIdAsync(string companyId, string actionId, RequestOptions requestOptions = default)
         {
             var endpoint = $"/companies/{companyId}/terminalActions/{actionId}";
             var resource = new ManagementResource(this, endpoint);
-            var jsonResult = await resource.RequestAsync(null, null, new HttpMethod("GET"));
+            var jsonResult = await resource.RequestAsync(null, requestOptions, new HttpMethod("GET"));
             return JsonConvert.DeserializeObject<ExternalTerminalAction>(jsonResult);
         }
 

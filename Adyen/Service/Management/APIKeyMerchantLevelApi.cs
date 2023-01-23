@@ -11,6 +11,7 @@
 */
 
 using System;
+using System.Collections.Generic;
 using System.Net.Http;
 using System.Threading.Tasks;
 using Adyen.Model;
@@ -34,7 +35,7 @@ namespace Adyen.Service.Management
         /// <param name="apiCredentialId">Unique identifier of the API credential.</param>
         /// <param name="requestOptions">Additional request options.</param>
         /// <returns>GenerateApiKeyResponse</returns>
-        public GenerateApiKeyResponse PostMerchantsMerchantIdApiCredentialsApiCredentialIdGenerateApiKey(string merchantId, string apiCredentialId, RequestOptions requestOptions = null)
+        public GenerateApiKeyResponse PostMerchantsMerchantIdApiCredentialsApiCredentialIdGenerateApiKey(string merchantId, string apiCredentialId, RequestOptions requestOptions = default)
         {
             return PostMerchantsMerchantIdApiCredentialsApiCredentialIdGenerateApiKeyAsync(merchantId, apiCredentialId, requestOptions).GetAwaiter().GetResult();
         }
@@ -46,11 +47,11 @@ namespace Adyen.Service.Management
         /// <param name="apiCredentialId">Unique identifier of the API credential.</param>
         /// <param name="requestOptions">Additional request options.</param>
         /// <returns>Task of GenerateApiKeyResponse</returns>
-        public async Task<GenerateApiKeyResponse> PostMerchantsMerchantIdApiCredentialsApiCredentialIdGenerateApiKeyAsync(string merchantId, string apiCredentialId, RequestOptions requestOptions = null)
+        public async Task<GenerateApiKeyResponse> PostMerchantsMerchantIdApiCredentialsApiCredentialIdGenerateApiKeyAsync(string merchantId, string apiCredentialId, RequestOptions requestOptions = default)
         {
             var endpoint = $"/merchants/{merchantId}/apiCredentials/{apiCredentialId}/generateApiKey";
             var resource = new ManagementResource(this, endpoint);
-            var jsonResult = await resource.RequestAsync(null, null, new HttpMethod("POST"));
+            var jsonResult = await resource.RequestAsync(null, requestOptions, new HttpMethod("POST"));
             return JsonConvert.DeserializeObject<GenerateApiKeyResponse>(jsonResult);
         }
 

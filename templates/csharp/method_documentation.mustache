@@ -1,17 +1,5 @@
         /// <summary>
         /// {{{summary}}}
         /// </summary>
-        {{#allParams}}{{^isQueryParam}}/// <param name="{{paramName}}">{{description}}{{#isDeprecated}} (deprecated){{/isDeprecated}}</param>
-        {{/isQueryParam}}{{/allParams}}/// <param name="requestOptions">Additional request options.{{#hasQueryParams}} Query parameters:
-        /// <list type="table">
-        ///     <listheader>
-        ///         <term>parameter</term>
-        ///         <description>description</description>
-        ///     </listheader>
-        {{#queryParams}}
-        ///     <item>
-        ///         <term>{{paramName}}</term>
-        ///         <description>{{description}}{{#isDeprecated}} (deprecated){{/isDeprecated}}</description>
-        ///     </item>
-        {{/queryParams}}
-        /// </list>{{/hasQueryParams}}</param>
+        {{#allParams}}/// <param name="{{paramName}}">{{description}}{{#isDeprecated}} (deprecated){{/isDeprecated}}</param>
+        {{/allParams}}/// <param name="requestOptions">Additional request options.</param>

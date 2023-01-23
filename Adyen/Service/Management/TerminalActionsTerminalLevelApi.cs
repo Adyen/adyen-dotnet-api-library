@@ -11,6 +11,7 @@
 */
 
 using System;
+using System.Collections.Generic;
 using System.Net.Http;
 using System.Threading.Tasks;
 using Adyen.Model;
@@ -33,7 +34,7 @@ namespace Adyen.Service.Management
         /// <param name="scheduleTerminalActionsRequest"></param>
         /// <param name="requestOptions">Additional request options.</param>
         /// <returns>ScheduleTerminalActionsResponse</returns>
-        public ScheduleTerminalActionsResponse PostTerminalsScheduleActions(ScheduleTerminalActionsRequest scheduleTerminalActionsRequest, RequestOptions requestOptions = null)
+        public ScheduleTerminalActionsResponse PostTerminalsScheduleActions(ScheduleTerminalActionsRequest scheduleTerminalActionsRequest, RequestOptions requestOptions = default)
         {
             return PostTerminalsScheduleActionsAsync(scheduleTerminalActionsRequest, requestOptions).GetAwaiter().GetResult();
         }
@@ -44,11 +45,11 @@ namespace Adyen.Service.Management
         /// <param name="scheduleTerminalActionsRequest"></param>
         /// <param name="requestOptions">Additional request options.</param>
         /// <returns>Task of ScheduleTerminalActionsResponse</returns>
-        public async Task<ScheduleTerminalActionsResponse> PostTerminalsScheduleActionsAsync(ScheduleTerminalActionsRequest scheduleTerminalActionsRequest, RequestOptions requestOptions = null)
+        public async Task<ScheduleTerminalActionsResponse> PostTerminalsScheduleActionsAsync(ScheduleTerminalActionsRequest scheduleTerminalActionsRequest, RequestOptions requestOptions = default)
         {
             var endpoint = "/terminals/scheduleActions";
             var resource = new ManagementResource(this, endpoint);
-            var jsonResult = await resource.RequestAsync(scheduleTerminalActionsRequest.ToJson(), null, new HttpMethod("POST"));
+            var jsonResult = await resource.RequestAsync(scheduleTerminalActionsRequest.ToJson(), requestOptions, new HttpMethod("POST"));
             return JsonConvert.DeserializeObject<ScheduleTerminalActionsResponse>(jsonResult);
         }
 

@@ -32,14 +32,7 @@ namespace Adyen.Test
             var client = CreateMockTestClientApiKeyBasedRequestAsync("Mocks/management/list-merchant-accounts.json");
             var service = new AccountCompanyLevelApi(client);
 
-            var response = service.GetCompaniesCompanyIdMerchants("ABC123", new RequestOptions
-            {
-                QueryParameters = new Dictionary<string, string>
-                {
-                    { "pageNumber", "1" },
-                    { "pageSize", "10" }
-                }
-            });
+            var response = service.GetCompaniesCompanyIdMerchants("ABC123", 1, 10);
 
             Assert.AreEqual(22, response.ItemsTotal);
             Assert.AreEqual("YOUR_MERCHANT_ACCOUNT_1", response.Data[0].Id);
@@ -54,15 +47,7 @@ namespace Adyen.Test
             var client = CreateMockTestClientApiKeyBasedRequestAsync("Mocks/management/logo.json");
             var service = new TerminalSettingsCompanyLevelApi(client);
 
-            var requestOptions = new RequestOptions
-            {
-                QueryParameters = new Dictionary<string, string>
-                {
-                    { "model", "E355" }
-                }
-            };
-            var logo = await service.PatchCompaniesCompanyIdTerminalLogosAsync("123ABC", new Logo("base64"),
-                requestOptions);
+            var logo = await service.PatchCompaniesCompanyIdTerminalLogosAsync("123ABC", new Logo("base64"), "E355");
 
             Assert.AreEqual("BASE-64_ENCODED_STRING_FROM_THE_REQUEST", logo.Data);
             ClientInterfaceMock.Verify(mock =>
@@ -78,14 +63,7 @@ namespace Adyen.Test
             var client = CreateMockTestClientApiKeyBasedRequestAsync("Mocks/management/list-terminals.json");
             var service = new TerminalsTerminalLevelApi(client);
 
-            var terminals = service.GetTerminals(new RequestOptions
-            {
-                QueryParameters = new Dictionary<string, string>
-                {
-                    { "searchQuery", "ABC OR 123" },
-                    { "pageSize", "2" },
-                }
-            });
+            var terminals = service.GetTerminals(searchQuery: "ABC OR 123", pageSize: 2);
 
             Assert.AreEqual(2, terminals.Data.Count);
             ClientInterfaceMock.Verify(mock =>

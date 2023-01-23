@@ -11,6 +11,7 @@
 */
 
 using System;
+using System.Collections.Generic;
 using System.Net.Http;
 using System.Threading.Tasks;
 using Adyen.Model;
@@ -30,51 +31,31 @@ namespace Adyen.Service.Management
         /// <summary>
         /// Get a list of company accounts
         /// </summary>
-        /// <param name="requestOptions">Additional request options. Query parameters:
-        /// <list type="table">
-        ///     <listheader>
-        ///         <term>parameter</term>
-        ///         <description>description</description>
-        ///     </listheader>
-        ///     <item>
-        ///         <term>pageNumber</term>
-        ///         <description>The number of the page to fetch.</description>
-        ///     </item>
-        ///     <item>
-        ///         <term>pageSize</term>
-        ///         <description>The number of items to have on a page, maximum 100. The default is 10 items on a page.</description>
-        ///     </item>
-        /// </list></param>
+        /// <param name="pageNumber">The number of the page to fetch.</param>
+        /// <param name="pageSize">The number of items to have on a page, maximum 100. The default is 10 items on a page.</param>
+        /// <param name="requestOptions">Additional request options.</param>
         /// <returns>ListCompanyResponse</returns>
-        public ListCompanyResponse GetCompanies(RequestOptions requestOptions = null)
+        public ListCompanyResponse GetCompanies(int? pageNumber = default, int? pageSize = default, RequestOptions requestOptions = default)
         {
-            return GetCompaniesAsync(requestOptions).GetAwaiter().GetResult();
+            return GetCompaniesAsync(pageNumber, pageSize, requestOptions).GetAwaiter().GetResult();
         }
 
         /// <summary>
         /// Get a list of company accounts
         /// </summary>
-        /// <param name="requestOptions">Additional request options. Query parameters:
-        /// <list type="table">
-        ///     <listheader>
-        ///         <term>parameter</term>
-        ///         <description>description</description>
-        ///     </listheader>
-        ///     <item>
-        ///         <term>pageNumber</term>
-        ///         <description>The number of the page to fetch.</description>
-        ///     </item>
-        ///     <item>
-        ///         <term>pageSize</term>
-        ///         <description>The number of items to have on a page, maximum 100. The default is 10 items on a page.</description>
-        ///     </item>
-        /// </list></param>
+        /// <param name="pageNumber">The number of the page to fetch.</param>
+        /// <param name="pageSize">The number of items to have on a page, maximum 100. The default is 10 items on a page.</param>
+        /// <param name="requestOptions">Additional request options.</param>
         /// <returns>Task of ListCompanyResponse</returns>
-        public async Task<ListCompanyResponse> GetCompaniesAsync(RequestOptions requestOptions = null)
+        public async Task<ListCompanyResponse> GetCompaniesAsync(int? pageNumber = default, int? pageSize = default, RequestOptions requestOptions = default)
         {
-            var endpoint = "/companies" + ToQueryString(requestOptions?.QueryParameters);
+            // Build the query string
+            var queryParams = new Dictionary<string, string>();
+            if (pageNumber != null) queryParams.Add("pageNumber", pageNumber.ToString());
+            if (pageSize != null) queryParams.Add("pageSize", pageSize.ToString());
+            var endpoint = "/companies" + ToQueryString(queryParams);
             var resource = new ManagementResource(this, endpoint);
-            var jsonResult = await resource.RequestAsync(null, null, new HttpMethod("GET"));
+            var jsonResult = await resource.RequestAsync(null, requestOptions, new HttpMethod("GET"));
             return JsonConvert.DeserializeObject<ListCompanyResponse>(jsonResult);
         }
 
@@ -84,7 +65,7 @@ namespace Adyen.Service.Management
         /// <param name="companyId">The unique identifier of the company account.</param>
         /// <param name="requestOptions">Additional request options.</param>
         /// <returns>Company</returns>
-        public Company GetCompaniesCompanyId(string companyId, RequestOptions requestOptions = null)
+        public Company GetCompaniesCompanyId(string companyId, RequestOptions requestOptions = default)
         {
             return GetCompaniesCompanyIdAsync(companyId, requestOptions).GetAwaiter().GetResult();
         }
@@ -95,11 +76,11 @@ namespace Adyen.Service.Management
         /// <param name="companyId">The unique identifier of the company account.</param>
         /// <param name="requestOptions">Additional request options.</param>
         /// <returns>Task of Company</returns>
-        public async Task<Company> GetCompaniesCompanyIdAsync(string companyId, RequestOptions requestOptions = null)
+        public async Task<Company> GetCompaniesCompanyIdAsync(string companyId, RequestOptions requestOptions = default)
         {
             var endpoint = $"/companies/{companyId}";
             var resource = new ManagementResource(this, endpoint);
-            var jsonResult = await resource.RequestAsync(null, null, new HttpMethod("GET"));
+            var jsonResult = await resource.RequestAsync(null, requestOptions, new HttpMethod("GET"));
             return JsonConvert.DeserializeObject<Company>(jsonResult);
         }
 
@@ -107,52 +88,32 @@ namespace Adyen.Service.Management
         /// Get a list of merchant accounts
         /// </summary>
         /// <param name="companyId">The unique identifier of the company account.</param>
-        /// <param name="requestOptions">Additional request options. Query parameters:
-        /// <list type="table">
-        ///     <listheader>
-        ///         <term>parameter</term>
-        ///         <description>description</description>
-        ///     </listheader>
-        ///     <item>
-        ///         <term>pageNumber</term>
-        ///         <description>The number of the page to fetch.</description>
-        ///     </item>
-        ///     <item>
-        ///         <term>pageSize</term>
-        ///         <description>The number of items to have on a page, maximum 100. The default is 10 items on a page.</description>
-        ///     </item>
-        /// </list></param>
+        /// <param name="pageNumber">The number of the page to fetch.</param>
+        /// <param name="pageSize">The number of items to have on a page, maximum 100. The default is 10 items on a page.</param>
+        /// <param name="requestOptions">Additional request options.</param>
         /// <returns>ListMerchantResponse</returns>
-        public ListMerchantResponse GetCompaniesCompanyIdMerchants(string companyId, RequestOptions requestOptions = null)
+        public ListMerchantResponse GetCompaniesCompanyIdMerchants(string companyId, int? pageNumber = default, int? pageSize = default, RequestOptions requestOptions = default)
         {
-            return GetCompaniesCompanyIdMerchantsAsync(companyId, requestOptions).GetAwaiter().GetResult();
+            return GetCompaniesCompanyIdMerchantsAsync(companyId, pageNumber, pageSize, requestOptions).GetAwaiter().GetResult();
         }
 
         /// <summary>
         /// Get a list of merchant accounts
         /// </summary>
         /// <param name="companyId">The unique identifier of the company account.</param>
-        /// <param name="requestOptions">Additional request options. Query parameters:
-        /// <list type="table">
-        ///     <listheader>
-        ///         <term>parameter</term>
-        ///         <description>description</description>
-        ///     </listheader>
-        ///     <item>
-        ///         <term>pageNumber</term>
-        ///         <description>The number of the page to fetch.</description>
-        ///     </item>
-        ///     <item>
-        ///         <term>pageSize</term>
-        ///         <description>The number of items to have on a page, maximum 100. The default is 10 items on a page.</description>
-        ///     </item>
-        /// </list></param>
+        /// <param name="pageNumber">The number of the page to fetch.</param>
+        /// <param name="pageSize">The number of items to have on a page, maximum 100. The default is 10 items on a page.</param>
+        /// <param name="requestOptions">Additional request options.</param>
         /// <returns>Task of ListMerchantResponse</returns>
-        public async Task<ListMerchantResponse> GetCompaniesCompanyIdMerchantsAsync(string companyId, RequestOptions requestOptions = null)
+        public async Task<ListMerchantResponse> GetCompaniesCompanyIdMerchantsAsync(string companyId, int? pageNumber = default, int? pageSize = default, RequestOptions requestOptions = default)
         {
-            var endpoint = $"/companies/{companyId}/merchants" + ToQueryString(requestOptions?.QueryParameters);
+            // Build the query string
+            var queryParams = new Dictionary<string, string>();
+            if (pageNumber != null) queryParams.Add("pageNumber", pageNumber.ToString());
+            if (pageSize != null) queryParams.Add("pageSize", pageSize.ToString());
+            var endpoint = $"/companies/{companyId}/merchants" + ToQueryString(queryParams);
             var resource = new ManagementResource(this, endpoint);
-            var jsonResult = await resource.RequestAsync(null, null, new HttpMethod("GET"));
+            var jsonResult = await resource.RequestAsync(null, requestOptions, new HttpMethod("GET"));
             return JsonConvert.DeserializeObject<ListMerchantResponse>(jsonResult);
         }
 

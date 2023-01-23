@@ -11,6 +11,7 @@
 */
 
 using System;
+using System.Collections.Generic;
 using System.Net.Http;
 using System.Threading.Tasks;
 using Adyen.Model;
@@ -33,7 +34,7 @@ namespace Adyen.Service.Management
         /// <param name="terminalId">The unique identifier of the payment terminal.</param>
         /// <param name="requestOptions">Additional request options.</param>
         /// <returns>Logo</returns>
-        public Logo GetTerminalsTerminalIdTerminalLogos(string terminalId, RequestOptions requestOptions = null)
+        public Logo GetTerminalsTerminalIdTerminalLogos(string terminalId, RequestOptions requestOptions = default)
         {
             return GetTerminalsTerminalIdTerminalLogosAsync(terminalId, requestOptions).GetAwaiter().GetResult();
         }
@@ -44,11 +45,11 @@ namespace Adyen.Service.Management
         /// <param name="terminalId">The unique identifier of the payment terminal.</param>
         /// <param name="requestOptions">Additional request options.</param>
         /// <returns>Task of Logo</returns>
-        public async Task<Logo> GetTerminalsTerminalIdTerminalLogosAsync(string terminalId, RequestOptions requestOptions = null)
+        public async Task<Logo> GetTerminalsTerminalIdTerminalLogosAsync(string terminalId, RequestOptions requestOptions = default)
         {
             var endpoint = $"/terminals/{terminalId}/terminalLogos";
             var resource = new ManagementResource(this, endpoint);
-            var jsonResult = await resource.RequestAsync(null, null, new HttpMethod("GET"));
+            var jsonResult = await resource.RequestAsync(null, requestOptions, new HttpMethod("GET"));
             return JsonConvert.DeserializeObject<Logo>(jsonResult);
         }
 
@@ -58,7 +59,7 @@ namespace Adyen.Service.Management
         /// <param name="terminalId">The unique identifier of the payment terminal.</param>
         /// <param name="requestOptions">Additional request options.</param>
         /// <returns>TerminalSettings</returns>
-        public TerminalSettings GetTerminalsTerminalIdTerminalSettings(string terminalId, RequestOptions requestOptions = null)
+        public TerminalSettings GetTerminalsTerminalIdTerminalSettings(string terminalId, RequestOptions requestOptions = default)
         {
             return GetTerminalsTerminalIdTerminalSettingsAsync(terminalId, requestOptions).GetAwaiter().GetResult();
         }
@@ -69,11 +70,11 @@ namespace Adyen.Service.Management
         /// <param name="terminalId">The unique identifier of the payment terminal.</param>
         /// <param name="requestOptions">Additional request options.</param>
         /// <returns>Task of TerminalSettings</returns>
-        public async Task<TerminalSettings> GetTerminalsTerminalIdTerminalSettingsAsync(string terminalId, RequestOptions requestOptions = null)
+        public async Task<TerminalSettings> GetTerminalsTerminalIdTerminalSettingsAsync(string terminalId, RequestOptions requestOptions = default)
         {
             var endpoint = $"/terminals/{terminalId}/terminalSettings";
             var resource = new ManagementResource(this, endpoint);
-            var jsonResult = await resource.RequestAsync(null, null, new HttpMethod("GET"));
+            var jsonResult = await resource.RequestAsync(null, requestOptions, new HttpMethod("GET"));
             return JsonConvert.DeserializeObject<TerminalSettings>(jsonResult);
         }
 
@@ -84,7 +85,7 @@ namespace Adyen.Service.Management
         /// <param name="logo"></param>
         /// <param name="requestOptions">Additional request options.</param>
         /// <returns>Logo</returns>
-        public Logo PatchTerminalsTerminalIdTerminalLogos(string terminalId, Logo logo, RequestOptions requestOptions = null)
+        public Logo PatchTerminalsTerminalIdTerminalLogos(string terminalId, Logo logo, RequestOptions requestOptions = default)
         {
             return PatchTerminalsTerminalIdTerminalLogosAsync(terminalId, logo, requestOptions).GetAwaiter().GetResult();
         }
@@ -96,11 +97,11 @@ namespace Adyen.Service.Management
         /// <param name="logo"></param>
         /// <param name="requestOptions">Additional request options.</param>
         /// <returns>Task of Logo</returns>
-        public async Task<Logo> PatchTerminalsTerminalIdTerminalLogosAsync(string terminalId, Logo logo, RequestOptions requestOptions = null)
+        public async Task<Logo> PatchTerminalsTerminalIdTerminalLogosAsync(string terminalId, Logo logo, RequestOptions requestOptions = default)
         {
             var endpoint = $"/terminals/{terminalId}/terminalLogos";
             var resource = new ManagementResource(this, endpoint);
-            var jsonResult = await resource.RequestAsync(logo.ToJson(), null, new HttpMethod("PATCH"));
+            var jsonResult = await resource.RequestAsync(logo.ToJson(), requestOptions, new HttpMethod("PATCH"));
             return JsonConvert.DeserializeObject<Logo>(jsonResult);
         }
 
@@ -111,7 +112,7 @@ namespace Adyen.Service.Management
         /// <param name="terminalSettings"></param>
         /// <param name="requestOptions">Additional request options.</param>
         /// <returns>TerminalSettings</returns>
-        public TerminalSettings PatchTerminalsTerminalIdTerminalSettings(string terminalId, TerminalSettings terminalSettings, RequestOptions requestOptions = null)
+        public TerminalSettings PatchTerminalsTerminalIdTerminalSettings(string terminalId, TerminalSettings terminalSettings, RequestOptions requestOptions = default)
         {
             return PatchTerminalsTerminalIdTerminalSettingsAsync(terminalId, terminalSettings, requestOptions).GetAwaiter().GetResult();
         }
@@ -123,11 +124,11 @@ namespace Adyen.Service.Management
         /// <param name="terminalSettings"></param>
         /// <param name="requestOptions">Additional request options.</param>
         /// <returns>Task of TerminalSettings</returns>
-        public async Task<TerminalSettings> PatchTerminalsTerminalIdTerminalSettingsAsync(string terminalId, TerminalSettings terminalSettings, RequestOptions requestOptions = null)
+        public async Task<TerminalSettings> PatchTerminalsTerminalIdTerminalSettingsAsync(string terminalId, TerminalSettings terminalSettings, RequestOptions requestOptions = default)
         {
             var endpoint = $"/terminals/{terminalId}/terminalSettings";
             var resource = new ManagementResource(this, endpoint);
-            var jsonResult = await resource.RequestAsync(terminalSettings.ToJson(), null, new HttpMethod("PATCH"));
+            var jsonResult = await resource.RequestAsync(terminalSettings.ToJson(), requestOptions, new HttpMethod("PATCH"));
             return JsonConvert.DeserializeObject<TerminalSettings>(jsonResult);
         }
 

@@ -11,6 +11,7 @@
 */
 
 using System;
+using System.Collections.Generic;
 using System.Net.Http;
 using System.Threading.Tasks;
 using Adyen.Model;
@@ -34,7 +35,7 @@ namespace Adyen.Service.Management
         /// <param name="apiCredentialId">Unique identifier of the API credential.</param>
         /// <param name="originId">Unique identifier of the allowed origin.</param>
         /// <param name="requestOptions">Additional request options.</param>
-        public void DeleteMerchantsMerchantIdApiCredentialsApiCredentialIdAllowedOriginsOriginId(string merchantId, string apiCredentialId, string originId, RequestOptions requestOptions = null)
+        public void DeleteMerchantsMerchantIdApiCredentialsApiCredentialIdAllowedOriginsOriginId(string merchantId, string apiCredentialId, string originId, RequestOptions requestOptions = default)
         {
             DeleteMerchantsMerchantIdApiCredentialsApiCredentialIdAllowedOriginsOriginIdAsync(merchantId, apiCredentialId, originId, requestOptions).GetAwaiter().GetResult();
         }
@@ -46,11 +47,11 @@ namespace Adyen.Service.Management
         /// <param name="apiCredentialId">Unique identifier of the API credential.</param>
         /// <param name="originId">Unique identifier of the allowed origin.</param>
         /// <param name="requestOptions">Additional request options.</param>
-        public async Task DeleteMerchantsMerchantIdApiCredentialsApiCredentialIdAllowedOriginsOriginIdAsync(string merchantId, string apiCredentialId, string originId, RequestOptions requestOptions = null)
+        public async Task DeleteMerchantsMerchantIdApiCredentialsApiCredentialIdAllowedOriginsOriginIdAsync(string merchantId, string apiCredentialId, string originId, RequestOptions requestOptions = default)
         {
             var endpoint = $"/merchants/{merchantId}/apiCredentials/{apiCredentialId}/allowedOrigins/{originId}";
             var resource = new ManagementResource(this, endpoint);
-            await resource.RequestAsync(null, null, new HttpMethod("DELETE"));
+            await resource.RequestAsync(null, requestOptions, new HttpMethod("DELETE"));
         }
 
         /// <summary>
@@ -60,7 +61,7 @@ namespace Adyen.Service.Management
         /// <param name="apiCredentialId">Unique identifier of the API credential.</param>
         /// <param name="requestOptions">Additional request options.</param>
         /// <returns>AllowedOriginsResponse</returns>
-        public AllowedOriginsResponse GetMerchantsMerchantIdApiCredentialsApiCredentialIdAllowedOrigins(string merchantId, string apiCredentialId, RequestOptions requestOptions = null)
+        public AllowedOriginsResponse GetMerchantsMerchantIdApiCredentialsApiCredentialIdAllowedOrigins(string merchantId, string apiCredentialId, RequestOptions requestOptions = default)
         {
             return GetMerchantsMerchantIdApiCredentialsApiCredentialIdAllowedOriginsAsync(merchantId, apiCredentialId, requestOptions).GetAwaiter().GetResult();
         }
@@ -72,11 +73,11 @@ namespace Adyen.Service.Management
         /// <param name="apiCredentialId">Unique identifier of the API credential.</param>
         /// <param name="requestOptions">Additional request options.</param>
         /// <returns>Task of AllowedOriginsResponse</returns>
-        public async Task<AllowedOriginsResponse> GetMerchantsMerchantIdApiCredentialsApiCredentialIdAllowedOriginsAsync(string merchantId, string apiCredentialId, RequestOptions requestOptions = null)
+        public async Task<AllowedOriginsResponse> GetMerchantsMerchantIdApiCredentialsApiCredentialIdAllowedOriginsAsync(string merchantId, string apiCredentialId, RequestOptions requestOptions = default)
         {
             var endpoint = $"/merchants/{merchantId}/apiCredentials/{apiCredentialId}/allowedOrigins";
             var resource = new ManagementResource(this, endpoint);
-            var jsonResult = await resource.RequestAsync(null, null, new HttpMethod("GET"));
+            var jsonResult = await resource.RequestAsync(null, requestOptions, new HttpMethod("GET"));
             return JsonConvert.DeserializeObject<AllowedOriginsResponse>(jsonResult);
         }
 
@@ -88,7 +89,7 @@ namespace Adyen.Service.Management
         /// <param name="originId">Unique identifier of the allowed origin.</param>
         /// <param name="requestOptions">Additional request options.</param>
         /// <returns>AllowedOrigin</returns>
-        public AllowedOrigin GetMerchantsMerchantIdApiCredentialsApiCredentialIdAllowedOriginsOriginId(string merchantId, string apiCredentialId, string originId, RequestOptions requestOptions = null)
+        public AllowedOrigin GetMerchantsMerchantIdApiCredentialsApiCredentialIdAllowedOriginsOriginId(string merchantId, string apiCredentialId, string originId, RequestOptions requestOptions = default)
         {
             return GetMerchantsMerchantIdApiCredentialsApiCredentialIdAllowedOriginsOriginIdAsync(merchantId, apiCredentialId, originId, requestOptions).GetAwaiter().GetResult();
         }
@@ -101,11 +102,11 @@ namespace Adyen.Service.Management
         /// <param name="originId">Unique identifier of the allowed origin.</param>
         /// <param name="requestOptions">Additional request options.</param>
         /// <returns>Task of AllowedOrigin</returns>
-        public async Task<AllowedOrigin> GetMerchantsMerchantIdApiCredentialsApiCredentialIdAllowedOriginsOriginIdAsync(string merchantId, string apiCredentialId, string originId, RequestOptions requestOptions = null)
+        public async Task<AllowedOrigin> GetMerchantsMerchantIdApiCredentialsApiCredentialIdAllowedOriginsOriginIdAsync(string merchantId, string apiCredentialId, string originId, RequestOptions requestOptions = default)
         {
             var endpoint = $"/merchants/{merchantId}/apiCredentials/{apiCredentialId}/allowedOrigins/{originId}";
             var resource = new ManagementResource(this, endpoint);
-            var jsonResult = await resource.RequestAsync(null, null, new HttpMethod("GET"));
+            var jsonResult = await resource.RequestAsync(null, requestOptions, new HttpMethod("GET"));
             return JsonConvert.DeserializeObject<AllowedOrigin>(jsonResult);
         }
 
@@ -117,7 +118,7 @@ namespace Adyen.Service.Management
         /// <param name="allowedOrigin"></param>
         /// <param name="requestOptions">Additional request options.</param>
         /// <returns>AllowedOriginsResponse</returns>
-        public AllowedOriginsResponse PostMerchantsMerchantIdApiCredentialsApiCredentialIdAllowedOrigins(string merchantId, string apiCredentialId, AllowedOrigin allowedOrigin, RequestOptions requestOptions = null)
+        public AllowedOriginsResponse PostMerchantsMerchantIdApiCredentialsApiCredentialIdAllowedOrigins(string merchantId, string apiCredentialId, AllowedOrigin allowedOrigin, RequestOptions requestOptions = default)
         {
             return PostMerchantsMerchantIdApiCredentialsApiCredentialIdAllowedOriginsAsync(merchantId, apiCredentialId, allowedOrigin, requestOptions).GetAwaiter().GetResult();
         }
@@ -130,11 +131,11 @@ namespace Adyen.Service.Management
         /// <param name="allowedOrigin"></param>
         /// <param name="requestOptions">Additional request options.</param>
         /// <returns>Task of AllowedOriginsResponse</returns>
-        public async Task<AllowedOriginsResponse> PostMerchantsMerchantIdApiCredentialsApiCredentialIdAllowedOriginsAsync(string merchantId, string apiCredentialId, AllowedOrigin allowedOrigin, RequestOptions requestOptions = null)
+        public async Task<AllowedOriginsResponse> PostMerchantsMerchantIdApiCredentialsApiCredentialIdAllowedOriginsAsync(string merchantId, string apiCredentialId, AllowedOrigin allowedOrigin, RequestOptions requestOptions = default)
         {
             var endpoint = $"/merchants/{merchantId}/apiCredentials/{apiCredentialId}/allowedOrigins";
             var resource = new ManagementResource(this, endpoint);
-            var jsonResult = await resource.RequestAsync(allowedOrigin.ToJson(), null, new HttpMethod("POST"));
+            var jsonResult = await resource.RequestAsync(allowedOrigin.ToJson(), requestOptions, new HttpMethod("POST"));
             return JsonConvert.DeserializeObject<AllowedOriginsResponse>(jsonResult);
         }
 

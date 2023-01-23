@@ -11,6 +11,7 @@
 */
 
 using System;
+using System.Collections.Generic;
 using System.Net.Http;
 using System.Threading.Tasks;
 using Adyen.Model;
@@ -31,68 +32,38 @@ namespace Adyen.Service.Management
         /// Get all payment methods
         /// </summary>
         /// <param name="merchantId">The unique identifier of the merchant account.</param>
-        /// <param name="requestOptions">Additional request options. Query parameters:
-        /// <list type="table">
-        ///     <listheader>
-        ///         <term>parameter</term>
-        ///         <description>description</description>
-        ///     </listheader>
-        ///     <item>
-        ///         <term>storeId</term>
-        ///         <description>The unique identifier of the store for which to return the payment methods.</description>
-        ///     </item>
-        ///     <item>
-        ///         <term>businessLineId</term>
-        ///         <description>The unique identifier of the Business Line for which to return the payment methods.</description>
-        ///     </item>
-        ///     <item>
-        ///         <term>pageSize</term>
-        ///         <description>The number of items to have on a page, maximum 100. The default is 10 items on a page.</description>
-        ///     </item>
-        ///     <item>
-        ///         <term>pageNumber</term>
-        ///         <description>The number of the page to fetch.</description>
-        ///     </item>
-        /// </list></param>
+        /// <param name="storeId">The unique identifier of the store for which to return the payment methods.</param>
+        /// <param name="businessLineId">The unique identifier of the Business Line for which to return the payment methods.</param>
+        /// <param name="pageSize">The number of items to have on a page, maximum 100. The default is 10 items on a page.</param>
+        /// <param name="pageNumber">The number of the page to fetch.</param>
+        /// <param name="requestOptions">Additional request options.</param>
         /// <returns>PaymentMethodResponse</returns>
-        public PaymentMethodResponse GetMerchantsMerchantIdPaymentMethodSettings(string merchantId, RequestOptions requestOptions = null)
+        public PaymentMethodResponse GetMerchantsMerchantIdPaymentMethodSettings(string merchantId, string storeId = default, string businessLineId = default, int? pageSize = default, int? pageNumber = default, RequestOptions requestOptions = default)
         {
-            return GetMerchantsMerchantIdPaymentMethodSettingsAsync(merchantId, requestOptions).GetAwaiter().GetResult();
+            return GetMerchantsMerchantIdPaymentMethodSettingsAsync(merchantId, storeId, businessLineId, pageSize, pageNumber, requestOptions).GetAwaiter().GetResult();
         }
 
         /// <summary>
         /// Get all payment methods
         /// </summary>
         /// <param name="merchantId">The unique identifier of the merchant account.</param>
-        /// <param name="requestOptions">Additional request options. Query parameters:
-        /// <list type="table">
-        ///     <listheader>
-        ///         <term>parameter</term>
-        ///         <description>description</description>
-        ///     </listheader>
-        ///     <item>
-        ///         <term>storeId</term>
-        ///         <description>The unique identifier of the store for which to return the payment methods.</description>
-        ///     </item>
-        ///     <item>
-        ///         <term>businessLineId</term>
-        ///         <description>The unique identifier of the Business Line for which to return the payment methods.</description>
-        ///     </item>
-        ///     <item>
-        ///         <term>pageSize</term>
-        ///         <description>The number of items to have on a page, maximum 100. The default is 10 items on a page.</description>
-        ///     </item>
-        ///     <item>
-        ///         <term>pageNumber</term>
-        ///         <description>The number of the page to fetch.</description>
-        ///     </item>
-        /// </list></param>
+        /// <param name="storeId">The unique identifier of the store for which to return the payment methods.</param>
+        /// <param name="businessLineId">The unique identifier of the Business Line for which to return the payment methods.</param>
+        /// <param name="pageSize">The number of items to have on a page, maximum 100. The default is 10 items on a page.</param>
+        /// <param name="pageNumber">The number of the page to fetch.</param>
+        /// <param name="requestOptions">Additional request options.</param>
         /// <returns>Task of PaymentMethodResponse</returns>
-        public async Task<PaymentMethodResponse> GetMerchantsMerchantIdPaymentMethodSettingsAsync(string merchantId, RequestOptions requestOptions = null)
+        public async Task<PaymentMethodResponse> GetMerchantsMerchantIdPaymentMethodSettingsAsync(string merchantId, string storeId = default, string businessLineId = default, int? pageSize = default, int? pageNumber = default, RequestOptions requestOptions = default)
         {
-            var endpoint = $"/merchants/{merchantId}/paymentMethodSettings" + ToQueryString(requestOptions?.QueryParameters);
+            // Build the query string
+            var queryParams = new Dictionary<string, string>();
+            if (storeId != null) queryParams.Add("storeId", storeId);
+            if (businessLineId != null) queryParams.Add("businessLineId", businessLineId);
+            if (pageSize != null) queryParams.Add("pageSize", pageSize.ToString());
+            if (pageNumber != null) queryParams.Add("pageNumber", pageNumber.ToString());
+            var endpoint = $"/merchants/{merchantId}/paymentMethodSettings" + ToQueryString(queryParams);
             var resource = new ManagementResource(this, endpoint);
-            var jsonResult = await resource.RequestAsync(null, null, new HttpMethod("GET"));
+            var jsonResult = await resource.RequestAsync(null, requestOptions, new HttpMethod("GET"));
             return JsonConvert.DeserializeObject<PaymentMethodResponse>(jsonResult);
         }
 
@@ -103,7 +74,7 @@ namespace Adyen.Service.Management
         /// <param name="paymentMethodId">The unique identifier of the payment method.</param>
         /// <param name="requestOptions">Additional request options.</param>
         /// <returns>PaymentMethod</returns>
-        public PaymentMethod GetMerchantsMerchantIdPaymentMethodSettingsPaymentMethodId(string merchantId, string paymentMethodId, RequestOptions requestOptions = null)
+        public PaymentMethod GetMerchantsMerchantIdPaymentMethodSettingsPaymentMethodId(string merchantId, string paymentMethodId, RequestOptions requestOptions = default)
         {
             return GetMerchantsMerchantIdPaymentMethodSettingsPaymentMethodIdAsync(merchantId, paymentMethodId, requestOptions).GetAwaiter().GetResult();
         }
@@ -115,11 +86,11 @@ namespace Adyen.Service.Management
         /// <param name="paymentMethodId">The unique identifier of the payment method.</param>
         /// <param name="requestOptions">Additional request options.</param>
         /// <returns>Task of PaymentMethod</returns>
-        public async Task<PaymentMethod> GetMerchantsMerchantIdPaymentMethodSettingsPaymentMethodIdAsync(string merchantId, string paymentMethodId, RequestOptions requestOptions = null)
+        public async Task<PaymentMethod> GetMerchantsMerchantIdPaymentMethodSettingsPaymentMethodIdAsync(string merchantId, string paymentMethodId, RequestOptions requestOptions = default)
         {
             var endpoint = $"/merchants/{merchantId}/paymentMethodSettings/{paymentMethodId}";
             var resource = new ManagementResource(this, endpoint);
-            var jsonResult = await resource.RequestAsync(null, null, new HttpMethod("GET"));
+            var jsonResult = await resource.RequestAsync(null, requestOptions, new HttpMethod("GET"));
             return JsonConvert.DeserializeObject<PaymentMethod>(jsonResult);
         }
 
@@ -130,7 +101,7 @@ namespace Adyen.Service.Management
         /// <param name="paymentMethodId">The unique identifier of the payment method.</param>
         /// <param name="requestOptions">Additional request options.</param>
         /// <returns>ApplePayInfo</returns>
-        public ApplePayInfo GetMerchantsMerchantIdPaymentMethodSettingsPaymentMethodIdGetApplePayDomains(string merchantId, string paymentMethodId, RequestOptions requestOptions = null)
+        public ApplePayInfo GetMerchantsMerchantIdPaymentMethodSettingsPaymentMethodIdGetApplePayDomains(string merchantId, string paymentMethodId, RequestOptions requestOptions = default)
         {
             return GetMerchantsMerchantIdPaymentMethodSettingsPaymentMethodIdGetApplePayDomainsAsync(merchantId, paymentMethodId, requestOptions).GetAwaiter().GetResult();
         }
@@ -142,11 +113,11 @@ namespace Adyen.Service.Management
         /// <param name="paymentMethodId">The unique identifier of the payment method.</param>
         /// <param name="requestOptions">Additional request options.</param>
         /// <returns>Task of ApplePayInfo</returns>
-        public async Task<ApplePayInfo> GetMerchantsMerchantIdPaymentMethodSettingsPaymentMethodIdGetApplePayDomainsAsync(string merchantId, string paymentMethodId, RequestOptions requestOptions = null)
+        public async Task<ApplePayInfo> GetMerchantsMerchantIdPaymentMethodSettingsPaymentMethodIdGetApplePayDomainsAsync(string merchantId, string paymentMethodId, RequestOptions requestOptions = default)
         {
             var endpoint = $"/merchants/{merchantId}/paymentMethodSettings/{paymentMethodId}/getApplePayDomains";
             var resource = new ManagementResource(this, endpoint);
-            var jsonResult = await resource.RequestAsync(null, null, new HttpMethod("GET"));
+            var jsonResult = await resource.RequestAsync(null, requestOptions, new HttpMethod("GET"));
             return JsonConvert.DeserializeObject<ApplePayInfo>(jsonResult);
         }
 
@@ -158,7 +129,7 @@ namespace Adyen.Service.Management
         /// <param name="updatePaymentMethodInfo"></param>
         /// <param name="requestOptions">Additional request options.</param>
         /// <returns>PaymentMethod</returns>
-        public PaymentMethod PatchMerchantsMerchantIdPaymentMethodSettingsPaymentMethodId(string merchantId, string paymentMethodId, UpdatePaymentMethodInfo updatePaymentMethodInfo, RequestOptions requestOptions = null)
+        public PaymentMethod PatchMerchantsMerchantIdPaymentMethodSettingsPaymentMethodId(string merchantId, string paymentMethodId, UpdatePaymentMethodInfo updatePaymentMethodInfo, RequestOptions requestOptions = default)
         {
             return PatchMerchantsMerchantIdPaymentMethodSettingsPaymentMethodIdAsync(merchantId, paymentMethodId, updatePaymentMethodInfo, requestOptions).GetAwaiter().GetResult();
         }
@@ -171,11 +142,11 @@ namespace Adyen.Service.Management
         /// <param name="updatePaymentMethodInfo"></param>
         /// <param name="requestOptions">Additional request options.</param>
         /// <returns>Task of PaymentMethod</returns>
-        public async Task<PaymentMethod> PatchMerchantsMerchantIdPaymentMethodSettingsPaymentMethodIdAsync(string merchantId, string paymentMethodId, UpdatePaymentMethodInfo updatePaymentMethodInfo, RequestOptions requestOptions = null)
+        public async Task<PaymentMethod> PatchMerchantsMerchantIdPaymentMethodSettingsPaymentMethodIdAsync(string merchantId, string paymentMethodId, UpdatePaymentMethodInfo updatePaymentMethodInfo, RequestOptions requestOptions = default)
         {
             var endpoint = $"/merchants/{merchantId}/paymentMethodSettings/{paymentMethodId}";
             var resource = new ManagementResource(this, endpoint);
-            var jsonResult = await resource.RequestAsync(updatePaymentMethodInfo.ToJson(), null, new HttpMethod("PATCH"));
+            var jsonResult = await resource.RequestAsync(updatePaymentMethodInfo.ToJson(), requestOptions, new HttpMethod("PATCH"));
             return JsonConvert.DeserializeObject<PaymentMethod>(jsonResult);
         }
 
@@ -186,7 +157,7 @@ namespace Adyen.Service.Management
         /// <param name="paymentMethodSetupInfo"></param>
         /// <param name="requestOptions">Additional request options.</param>
         /// <returns>PaymentMethod</returns>
-        public PaymentMethod PostMerchantsMerchantIdPaymentMethodSettings(string merchantId, PaymentMethodSetupInfo paymentMethodSetupInfo, RequestOptions requestOptions = null)
+        public PaymentMethod PostMerchantsMerchantIdPaymentMethodSettings(string merchantId, PaymentMethodSetupInfo paymentMethodSetupInfo, RequestOptions requestOptions = default)
         {
             return PostMerchantsMerchantIdPaymentMethodSettingsAsync(merchantId, paymentMethodSetupInfo, requestOptions).GetAwaiter().GetResult();
         }
@@ -198,11 +169,11 @@ namespace Adyen.Service.Management
         /// <param name="paymentMethodSetupInfo"></param>
         /// <param name="requestOptions">Additional request options.</param>
         /// <returns>Task of PaymentMethod</returns>
-        public async Task<PaymentMethod> PostMerchantsMerchantIdPaymentMethodSettingsAsync(string merchantId, PaymentMethodSetupInfo paymentMethodSetupInfo, RequestOptions requestOptions = null)
+        public async Task<PaymentMethod> PostMerchantsMerchantIdPaymentMethodSettingsAsync(string merchantId, PaymentMethodSetupInfo paymentMethodSetupInfo, RequestOptions requestOptions = default)
         {
             var endpoint = $"/merchants/{merchantId}/paymentMethodSettings";
             var resource = new ManagementResource(this, endpoint);
-            var jsonResult = await resource.RequestAsync(paymentMethodSetupInfo.ToJson(), null, new HttpMethod("POST"));
+            var jsonResult = await resource.RequestAsync(paymentMethodSetupInfo.ToJson(), requestOptions, new HttpMethod("POST"));
             return JsonConvert.DeserializeObject<PaymentMethod>(jsonResult);
         }
 
@@ -214,7 +185,7 @@ namespace Adyen.Service.Management
         /// <param name="applePayInfo"></param>
         /// <param name="requestOptions">Additional request options.</param>
         /// <returns>Object</returns>
-        public Object PostMerchantsMerchantIdPaymentMethodSettingsPaymentMethodIdAddApplePayDomains(string merchantId, string paymentMethodId, ApplePayInfo applePayInfo, RequestOptions requestOptions = null)
+        public Object PostMerchantsMerchantIdPaymentMethodSettingsPaymentMethodIdAddApplePayDomains(string merchantId, string paymentMethodId, ApplePayInfo applePayInfo, RequestOptions requestOptions = default)
         {
             return PostMerchantsMerchantIdPaymentMethodSettingsPaymentMethodIdAddApplePayDomainsAsync(merchantId, paymentMethodId, applePayInfo, requestOptions).GetAwaiter().GetResult();
         }
@@ -227,11 +198,11 @@ namespace Adyen.Service.Management
         /// <param name="applePayInfo"></param>
         /// <param name="requestOptions">Additional request options.</param>
         /// <returns>Task of Object</returns>
-        public async Task<Object> PostMerchantsMerchantIdPaymentMethodSettingsPaymentMethodIdAddApplePayDomainsAsync(string merchantId, string paymentMethodId, ApplePayInfo applePayInfo, RequestOptions requestOptions = null)
+        public async Task<Object> PostMerchantsMerchantIdPaymentMethodSettingsPaymentMethodIdAddApplePayDomainsAsync(string merchantId, string paymentMethodId, ApplePayInfo applePayInfo, RequestOptions requestOptions = default)
         {
             var endpoint = $"/merchants/{merchantId}/paymentMethodSettings/{paymentMethodId}/addApplePayDomains";
             var resource = new ManagementResource(this, endpoint);
-            var jsonResult = await resource.RequestAsync(applePayInfo.ToJson(), null, new HttpMethod("POST"));
+            var jsonResult = await resource.RequestAsync(applePayInfo.ToJson(), requestOptions, new HttpMethod("POST"));
             return JsonConvert.DeserializeObject<Object>(jsonResult);
         }
 
