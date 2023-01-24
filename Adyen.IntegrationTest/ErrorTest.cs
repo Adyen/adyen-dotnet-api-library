@@ -61,7 +61,6 @@ namespace Adyen.IntegrationTest
             }
             catch(HttpClientException ex)
             {
-                Console.WriteLine(ex);
                 Assert.AreEqual(ex.ResponseBody, "{\"status\":422,\"errorCode\":\"130\",\"message\":\"Required field 'reference' is not provided.\",\"errorType\":\"validation\"}");
             }
         }
@@ -115,7 +114,6 @@ namespace Adyen.IntegrationTest
             }
             catch (HttpClientException ex)
             {
-                Console.WriteLine(ex);
                 Assert.IsTrue(ex.ResponseBody.Contains(@"""title"":""Invalid parameters"",""status"":422,"));
             }
         }
@@ -129,7 +127,6 @@ namespace Adyen.IntegrationTest
             }
             catch (HttpClientException ex)
             {
-                Console.WriteLine(ex);
                 Assert.IsTrue(ex.ResponseBody.Contains(@"""title"":""Bad request"",""status"":400,""detail"""));
             }
         }
