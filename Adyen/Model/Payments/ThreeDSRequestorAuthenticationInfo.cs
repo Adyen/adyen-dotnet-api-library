@@ -104,14 +104,14 @@ namespace Adyen.Model.Payments
         /// <value>Data that documents and supports a specific authentication process. Maximum length: 2048 bytes.</value>
         [DataMember(Name = "threeDSReqAuthData", EmitDefaultValue = false)]
         public string ThreeDSReqAuthData { get; set; }
-        
+
         /// <summary>
         /// Date and time in UTC of the cardholder authentication. Format: YYYYMMDDHHMM
         /// </summary>
         /// <value>Date and time in UTC of the cardholder authentication. Format: YYYYMMDDHHMM</value>
         [DataMember(Name = "threeDSReqAuthTimestamp", EmitDefaultValue = false)]
         public string ThreeDSReqAuthTimestamp { get; set; }
-        
+
         /// <summary>
         /// Returns the string presentation of the object
         /// </summary>
@@ -195,7 +195,6 @@ namespace Adyen.Model.Payments
                 return hashCode;
             }
         }
-
         /// <summary>
         /// To validate all properties of the instance
         /// </summary>

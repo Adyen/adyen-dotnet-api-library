@@ -336,28 +336,28 @@ namespace Adyen.Model.Payments
         /// <value>Date when the shopper&#39;s account was last changed.</value>
         [DataMember(Name = "accountChangeDate", EmitDefaultValue = false)]
         public DateTime AccountChangeDate { get; set; }
-        
+
         /// <summary>
         /// Date when the shopper&#39;s account was created.
         /// </summary>
         /// <value>Date when the shopper&#39;s account was created.</value>
         [DataMember(Name = "accountCreationDate", EmitDefaultValue = false)]
         public DateTime AccountCreationDate { get; set; }
-        
+
         /// <summary>
         /// Number of attempts the shopper tried to add a card to their account in the last day.
         /// </summary>
         /// <value>Number of attempts the shopper tried to add a card to their account in the last day.</value>
         [DataMember(Name = "addCardAttemptsDay", EmitDefaultValue = false)]
         public int? AddCardAttemptsDay { get; set; }
-        
+
         /// <summary>
         /// Date the selected delivery address was first used.
         /// </summary>
         /// <value>Date the selected delivery address was first used.</value>
         [DataMember(Name = "deliveryAddressUsageDate", EmitDefaultValue = false)]
         public DateTime DeliveryAddressUsageDate { get; set; }
-        
+
         /// <summary>
         /// Shopper&#39;s home phone number (including the country code).
         /// </summary>
@@ -365,7 +365,7 @@ namespace Adyen.Model.Payments
         [DataMember(Name = "homePhone", EmitDefaultValue = false)]
         [Obsolete]
         public string HomePhone { get; set; }
-        
+
         /// <summary>
         /// Shopper&#39;s mobile phone number (including the country code).
         /// </summary>
@@ -373,49 +373,49 @@ namespace Adyen.Model.Payments
         [DataMember(Name = "mobilePhone", EmitDefaultValue = false)]
         [Obsolete]
         public string MobilePhone { get; set; }
-        
+
         /// <summary>
         /// Date when the shopper last changed their password.
         /// </summary>
         /// <value>Date when the shopper last changed their password.</value>
         [DataMember(Name = "passwordChangeDate", EmitDefaultValue = false)]
         public DateTime PasswordChangeDate { get; set; }
-        
+
         /// <summary>
         /// Number of all transactions (successful and abandoned) from this shopper in the past 24 hours.
         /// </summary>
         /// <value>Number of all transactions (successful and abandoned) from this shopper in the past 24 hours.</value>
         [DataMember(Name = "pastTransactionsDay", EmitDefaultValue = false)]
         public int? PastTransactionsDay { get; set; }
-        
+
         /// <summary>
         /// Number of all transactions (successful and abandoned) from this shopper in the past year.
         /// </summary>
         /// <value>Number of all transactions (successful and abandoned) from this shopper in the past year.</value>
         [DataMember(Name = "pastTransactionsYear", EmitDefaultValue = false)]
         public int? PastTransactionsYear { get; set; }
-        
+
         /// <summary>
         /// Date this payment method was added to the shopper&#39;s account.
         /// </summary>
         /// <value>Date this payment method was added to the shopper&#39;s account.</value>
         [DataMember(Name = "paymentAccountAge", EmitDefaultValue = false)]
         public DateTime PaymentAccountAge { get; set; }
-        
+
         /// <summary>
         /// Number of successful purchases in the last six months.
         /// </summary>
         /// <value>Number of successful purchases in the last six months.</value>
         [DataMember(Name = "purchasesLast6Months", EmitDefaultValue = false)]
         public int? PurchasesLast6Months { get; set; }
-        
+
         /// <summary>
         /// Whether suspicious activity was recorded on this account.
         /// </summary>
         /// <value>Whether suspicious activity was recorded on this account.</value>
         [DataMember(Name = "suspiciousActivity", EmitDefaultValue = false)]
         public bool SuspiciousActivity { get; set; }
-        
+
         /// <summary>
         /// Shopper&#39;s work phone number (including the country code).
         /// </summary>
@@ -423,7 +423,7 @@ namespace Adyen.Model.Payments
         [DataMember(Name = "workPhone", EmitDefaultValue = false)]
         [Obsolete]
         public string WorkPhone { get; set; }
-        
+
         /// <summary>
         /// Returns the string presentation of the object
         /// </summary>
@@ -627,7 +627,6 @@ namespace Adyen.Model.Payments
                 return hashCode;
             }
         }
-
         /// <summary>
         /// To validate all properties of the instance
         /// </summary>

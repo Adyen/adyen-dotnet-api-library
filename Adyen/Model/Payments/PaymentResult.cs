@@ -162,68 +162,68 @@ namespace Adyen.Model.Payments
         /// <value>Contains additional information about the payment. Some data fields are included only if you select them first: Go to **Customer Area** &gt; **Developers** &gt; **Additional data**.</value>
         [DataMember(Name = "additionalData", EmitDefaultValue = false)]
         public Dictionary<string, string> AdditionalData { get; set; }
-        
+
         /// <summary>
         /// Authorisation code: * When the payment is authorised successfully, this field holds the authorisation code for the payment. * When the payment is not authorised, this field is empty.
         /// </summary>
         /// <value>Authorisation code: * When the payment is authorised successfully, this field holds the authorisation code for the payment. * When the payment is not authorised, this field is empty.</value>
         [DataMember(Name = "authCode", EmitDefaultValue = false)]
         public string AuthCode { get; set; }
-        
+
         /// <summary>
         /// Gets or Sets DccAmount
         /// </summary>
         [DataMember(Name = "dccAmount", EmitDefaultValue = false)]
         public Amount DccAmount { get; set; }
-        
+
         /// <summary>
         /// Cryptographic signature used to verify &#x60;dccQuote&#x60;. &gt; This value only applies if you have implemented Dynamic Currency Conversion. For more information, [contact Support](https://www.adyen.help/hc/en-us/requests/new).
         /// </summary>
         /// <value>Cryptographic signature used to verify &#x60;dccQuote&#x60;. &gt; This value only applies if you have implemented Dynamic Currency Conversion. For more information, [contact Support](https://www.adyen.help/hc/en-us/requests/new).</value>
         [DataMember(Name = "dccSignature", EmitDefaultValue = false)]
         public string DccSignature { get; set; }
-        
+
         /// <summary>
         /// Gets or Sets FraudResult
         /// </summary>
         [DataMember(Name = "fraudResult", EmitDefaultValue = false)]
         public FraudResult FraudResult { get; set; }
-        
+
         /// <summary>
         /// The URL to direct the shopper to. &gt; In case of SecurePlus, do not redirect a shopper to this URL.
         /// </summary>
         /// <value>The URL to direct the shopper to. &gt; In case of SecurePlus, do not redirect a shopper to this URL.</value>
         [DataMember(Name = "issuerUrl", EmitDefaultValue = false)]
         public string IssuerUrl { get; set; }
-        
+
         /// <summary>
         /// The payment session.
         /// </summary>
         /// <value>The payment session.</value>
         [DataMember(Name = "md", EmitDefaultValue = false)]
         public string Md { get; set; }
-        
+
         /// <summary>
         /// The 3D request data for the issuer.  If the value is **CUPSecurePlus-CollectSMSVerificationCode**, collect an SMS code from the shopper and pass it in the &#x60;/authorise3D&#x60; request. For more information, see [3D Secure](https://docs.adyen.com/classic-integration/3d-secure).
         /// </summary>
         /// <value>The 3D request data for the issuer.  If the value is **CUPSecurePlus-CollectSMSVerificationCode**, collect an SMS code from the shopper and pass it in the &#x60;/authorise3D&#x60; request. For more information, see [3D Secure](https://docs.adyen.com/classic-integration/3d-secure).</value>
         [DataMember(Name = "paRequest", EmitDefaultValue = false)]
         public string PaRequest { get; set; }
-        
+
         /// <summary>
         /// Adyen&#39;s 16-character reference associated with the transaction/request. This value is globally unique; quote it when communicating with us about this request.
         /// </summary>
         /// <value>Adyen&#39;s 16-character reference associated with the transaction/request. This value is globally unique; quote it when communicating with us about this request.</value>
         [DataMember(Name = "pspReference", EmitDefaultValue = false)]
         public string PspReference { get; set; }
-        
+
         /// <summary>
         /// If the payment&#39;s authorisation is refused or an error occurs during authorisation, this field holds Adyen&#39;s mapped reason for the refusal or a description of the error. When a transaction fails, the authorisation response includes &#x60;resultCode&#x60; and &#x60;refusalReason&#x60; values.  For more information, see [Refusal reasons](https://docs.adyen.com/development-resources/refusal-reasons).
         /// </summary>
         /// <value>If the payment&#39;s authorisation is refused or an error occurs during authorisation, this field holds Adyen&#39;s mapped reason for the refusal or a description of the error. When a transaction fails, the authorisation response includes &#x60;resultCode&#x60; and &#x60;refusalReason&#x60; values.  For more information, see [Refusal reasons](https://docs.adyen.com/development-resources/refusal-reasons).</value>
         [DataMember(Name = "refusalReason", EmitDefaultValue = false)]
         public string RefusalReason { get; set; }
-        
+
         /// <summary>
         /// Returns the string presentation of the object
         /// </summary>
@@ -388,7 +388,6 @@ namespace Adyen.Model.Payments
                 return hashCode;
             }
         }
-
         /// <summary>
         /// To validate all properties of the instance
         /// </summary>

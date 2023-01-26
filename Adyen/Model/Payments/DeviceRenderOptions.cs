@@ -122,7 +122,7 @@ namespace Adyen.Model.Payments
         /// <value>UI types supported for displaying specific challenges. Allowed values: * text * singleSelect * outOfBand * otherHtml * multiSelect</value>
         [DataMember(Name = "sdkUiType", EmitDefaultValue = false)]
         public List<DeviceRenderOptions.SdkUiTypeEnum> SdkUiType { get; set; }
-        
+
         /// <summary>
         /// Returns the string presentation of the object
         /// </summary>
@@ -197,7 +197,6 @@ namespace Adyen.Model.Payments
                 return hashCode;
             }
         }
-
         /// <summary>
         /// To validate all properties of the instance
         /// </summary>

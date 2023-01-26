@@ -52,21 +52,21 @@ namespace Adyen.Model.Payments
         /// <value>Operating system running on the merchant device.</value>
         [DataMember(Name = "os", EmitDefaultValue = false)]
         public string Os { get; set; }
-        
+
         /// <summary>
         /// Version of the operating system on the merchant device.
         /// </summary>
         /// <value>Version of the operating system on the merchant device.</value>
         [DataMember(Name = "osVersion", EmitDefaultValue = false)]
         public string OsVersion { get; set; }
-        
+
         /// <summary>
         /// Merchant device reference.
         /// </summary>
         /// <value>Merchant device reference.</value>
         [DataMember(Name = "reference", EmitDefaultValue = false)]
         public string Reference { get; set; }
-        
+
         /// <summary>
         /// Returns the string presentation of the object
         /// </summary>
@@ -154,7 +154,6 @@ namespace Adyen.Model.Payments
                 return hashCode;
             }
         }
-
         /// <summary>
         /// To validate all properties of the instance
         /// </summary>

@@ -66,70 +66,70 @@ namespace Adyen.Model.Payments
         /// <value>Required for transactions performed by registered payment facilitators. Indicates the number of sub-merchants contained in the request. For example, **3**.</value>
         [DataMember(Name = "subMerchant.numberOfSubSellers", EmitDefaultValue = false)]
         public string SubMerchantNumberOfSubSellers { get; set; }
-        
+
         /// <summary>
         /// Required for transactions performed by registered payment facilitators. The city of the sub-merchant&#39;s address. * Format: Alphanumeric * Maximum length: 13 characters
         /// </summary>
         /// <value>Required for transactions performed by registered payment facilitators. The city of the sub-merchant&#39;s address. * Format: Alphanumeric * Maximum length: 13 characters</value>
         [DataMember(Name = "subMerchant.subSeller[subSellerNr].city", EmitDefaultValue = false)]
         public string SubMerchantSubSellerSubSellerNrCity { get; set; }
-        
+
         /// <summary>
         /// Required for transactions performed by registered payment facilitators. The three-letter country code of the sub-merchant&#39;s address. For example, **BRA** for Brazil.  * Format: [ISO 3166-1 alpha-3](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-3) * Fixed length: 3 characters
         /// </summary>
         /// <value>Required for transactions performed by registered payment facilitators. The three-letter country code of the sub-merchant&#39;s address. For example, **BRA** for Brazil.  * Format: [ISO 3166-1 alpha-3](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-3) * Fixed length: 3 characters</value>
         [DataMember(Name = "subMerchant.subSeller[subSellerNr].country", EmitDefaultValue = false)]
         public string SubMerchantSubSellerSubSellerNrCountry { get; set; }
-        
+
         /// <summary>
         /// Required for transactions performed by registered payment facilitators. A unique identifier that you create for the sub-merchant, used by schemes to identify the sub-merchant.  * Format: Alphanumeric * Maximum length: 15 characters
         /// </summary>
         /// <value>Required for transactions performed by registered payment facilitators. A unique identifier that you create for the sub-merchant, used by schemes to identify the sub-merchant.  * Format: Alphanumeric * Maximum length: 15 characters</value>
         [DataMember(Name = "subMerchant.subSeller[subSellerNr].id", EmitDefaultValue = false)]
         public string SubMerchantSubSellerSubSellerNrId { get; set; }
-        
+
         /// <summary>
         /// Required for transactions performed by registered payment facilitators. The sub-merchant&#39;s 4-digit Merchant Category Code (MCC).  * Format: Numeric * Fixed length: 4 digits
         /// </summary>
         /// <value>Required for transactions performed by registered payment facilitators. The sub-merchant&#39;s 4-digit Merchant Category Code (MCC).  * Format: Numeric * Fixed length: 4 digits</value>
         [DataMember(Name = "subMerchant.subSeller[subSellerNr].mcc", EmitDefaultValue = false)]
         public string SubMerchantSubSellerSubSellerNrMcc { get; set; }
-        
+
         /// <summary>
         /// Required for transactions performed by registered payment facilitators. The name of the sub-merchant. Based on scheme specifications, this value will overwrite the shopper statement  that will appear in the card statement. * Format: Alphanumeric * Maximum length: 22 characters
         /// </summary>
         /// <value>Required for transactions performed by registered payment facilitators. The name of the sub-merchant. Based on scheme specifications, this value will overwrite the shopper statement  that will appear in the card statement. * Format: Alphanumeric * Maximum length: 22 characters</value>
         [DataMember(Name = "subMerchant.subSeller[subSellerNr].name", EmitDefaultValue = false)]
         public string SubMerchantSubSellerSubSellerNrName { get; set; }
-        
+
         /// <summary>
         /// Required for transactions performed by registered payment facilitators. The postal code of the sub-merchant&#39;s address, without dashes. * Format: Numeric * Fixed length: 8 digits
         /// </summary>
         /// <value>Required for transactions performed by registered payment facilitators. The postal code of the sub-merchant&#39;s address, without dashes. * Format: Numeric * Fixed length: 8 digits</value>
         [DataMember(Name = "subMerchant.subSeller[subSellerNr].postalCode", EmitDefaultValue = false)]
         public string SubMerchantSubSellerSubSellerNrPostalCode { get; set; }
-        
+
         /// <summary>
         /// Required for transactions performed by registered payment facilitators. The state code of the sub-merchant&#39;s address, if applicable to the country. * Format: Alphanumeric * Maximum length: 2 characters
         /// </summary>
         /// <value>Required for transactions performed by registered payment facilitators. The state code of the sub-merchant&#39;s address, if applicable to the country. * Format: Alphanumeric * Maximum length: 2 characters</value>
         [DataMember(Name = "subMerchant.subSeller[subSellerNr].state", EmitDefaultValue = false)]
         public string SubMerchantSubSellerSubSellerNrState { get; set; }
-        
+
         /// <summary>
         /// Required for transactions performed by registered payment facilitators. The street name and house number of the sub-merchant&#39;s address. * Format: Alphanumeric * Maximum length: 60 characters
         /// </summary>
         /// <value>Required for transactions performed by registered payment facilitators. The street name and house number of the sub-merchant&#39;s address. * Format: Alphanumeric * Maximum length: 60 characters</value>
         [DataMember(Name = "subMerchant.subSeller[subSellerNr].street", EmitDefaultValue = false)]
         public string SubMerchantSubSellerSubSellerNrStreet { get; set; }
-        
+
         /// <summary>
         /// Required for transactions performed by registered payment facilitators. The tax ID of the sub-merchant. * Format: Numeric * Fixed length: 11 digits for the CPF or 14 digits for the CNPJ
         /// </summary>
         /// <value>Required for transactions performed by registered payment facilitators. The tax ID of the sub-merchant. * Format: Numeric * Fixed length: 11 digits for the CPF or 14 digits for the CNPJ</value>
         [DataMember(Name = "subMerchant.subSeller[subSellerNr].taxId", EmitDefaultValue = false)]
         public string SubMerchantSubSellerSubSellerNrTaxId { get; set; }
-        
+
         /// <summary>
         /// Returns the string presentation of the object
         /// </summary>
@@ -287,7 +287,6 @@ namespace Adyen.Model.Payments
                 return hashCode;
             }
         }
-
         /// <summary>
         /// To validate all properties of the instance
         /// </summary>

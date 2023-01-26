@@ -53,16 +53,16 @@ namespace Adyen.Model.Payments
         /// The merchant account identifier, with which the authentication was processed.
         /// </summary>
         /// <value>The merchant account identifier, with which the authentication was processed.</value>
-        [DataMember(Name = "merchantAccount", IsRequired = false, EmitDefaultValue = true)]
+        [DataMember(Name = "merchantAccount", IsRequired = false, EmitDefaultValue = false)]
         public string MerchantAccount { get; set; }
-        
+
         /// <summary>
         /// The pspReference identifier for the transaction.
         /// </summary>
         /// <value>The pspReference identifier for the transaction.</value>
-        [DataMember(Name = "pspReference", IsRequired = false, EmitDefaultValue = true)]
+        [DataMember(Name = "pspReference", IsRequired = false, EmitDefaultValue = false)]
         public string PspReference { get; set; }
-        
+
         /// <summary>
         /// Returns the string presentation of the object
         /// </summary>
@@ -140,7 +140,6 @@ namespace Adyen.Model.Payments
                 return hashCode;
             }
         }
-
         /// <summary>
         /// To validate all properties of the instance
         /// </summary>

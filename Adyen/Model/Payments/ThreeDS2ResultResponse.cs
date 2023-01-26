@@ -47,7 +47,7 @@ namespace Adyen.Model.Payments
         /// </summary>
         [DataMember(Name = "threeDS2Result", EmitDefaultValue = false)]
         public ThreeDS2Result ThreeDS2Result { get; set; }
-        
+
         /// <summary>
         /// Returns the string presentation of the object
         /// </summary>
@@ -115,7 +115,6 @@ namespace Adyen.Model.Payments
                 return hashCode;
             }
         }
-
         /// <summary>
         /// To validate all properties of the instance
         /// </summary>

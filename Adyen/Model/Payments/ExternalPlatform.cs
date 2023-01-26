@@ -52,21 +52,21 @@ namespace Adyen.Model.Payments
         /// <value>External platform integrator.</value>
         [DataMember(Name = "integrator", EmitDefaultValue = false)]
         public string Integrator { get; set; }
-        
+
         /// <summary>
         /// Name of the field. For example, Name of External Platform.
         /// </summary>
         /// <value>Name of the field. For example, Name of External Platform.</value>
         [DataMember(Name = "name", EmitDefaultValue = false)]
         public string Name { get; set; }
-        
+
         /// <summary>
         /// Version of the field. For example, Version of External Platform.
         /// </summary>
         /// <value>Version of the field. For example, Version of External Platform.</value>
         [DataMember(Name = "version", EmitDefaultValue = false)]
         public string Version { get; set; }
-        
+
         /// <summary>
         /// Returns the string presentation of the object
         /// </summary>
@@ -154,7 +154,6 @@ namespace Adyen.Model.Payments
                 return hashCode;
             }
         }
-
         /// <summary>
         /// To validate all properties of the instance
         /// </summary>

@@ -52,21 +52,21 @@ namespace Adyen.Model.Payments
         /// <value>The transaction signature date.  Format: yyyy-MM-dd</value>
         [DataMember(Name = "sepadirectdebit.dateOfSignature", EmitDefaultValue = false)]
         public string SepadirectdebitDateOfSignature { get; set; }
-        
+
         /// <summary>
         /// Its value corresponds to the pspReference value of the transaction.
         /// </summary>
         /// <value>Its value corresponds to the pspReference value of the transaction.</value>
         [DataMember(Name = "sepadirectdebit.mandateId", EmitDefaultValue = false)]
         public string SepadirectdebitMandateId { get; set; }
-        
+
         /// <summary>
         /// This field can take one of the following values: * OneOff: (OOFF) Direct debit instruction to initiate exactly one direct debit transaction.  * First: (FRST) Initial/first collection in a series of direct debit instructions. * Recurring: (RCUR) Direct debit instruction to carry out regular direct debit transactions initiated by the creditor. * Final: (FNAL) Last/final collection in a series of direct debit instructions.  Example: OOFF
         /// </summary>
         /// <value>This field can take one of the following values: * OneOff: (OOFF) Direct debit instruction to initiate exactly one direct debit transaction.  * First: (FRST) Initial/first collection in a series of direct debit instructions. * Recurring: (RCUR) Direct debit instruction to carry out regular direct debit transactions initiated by the creditor. * Final: (FNAL) Last/final collection in a series of direct debit instructions.  Example: OOFF</value>
         [DataMember(Name = "sepadirectdebit.sequenceType", EmitDefaultValue = false)]
         public string SepadirectdebitSequenceType { get; set; }
-        
+
         /// <summary>
         /// Returns the string presentation of the object
         /// </summary>
@@ -154,7 +154,6 @@ namespace Adyen.Model.Payments
                 return hashCode;
             }
         }
-
         /// <summary>
         /// To validate all properties of the instance
         /// </summary>

@@ -56,35 +56,35 @@ namespace Adyen.Model.Payments
         /// <value>Information provided by the issuer to the cardholder. If this field is present, you need to display this information to the cardholder. </value>
         [DataMember(Name = "cardHolderInfo", EmitDefaultValue = false)]
         public string CardHolderInfo { get; set; }
-        
+
         /// <summary>
         /// The Cardholder Authentication Verification Value (CAVV) for the 3D Secure authentication session, as a Base64-encoded 20-byte array.
         /// </summary>
         /// <value>The Cardholder Authentication Verification Value (CAVV) for the 3D Secure authentication session, as a Base64-encoded 20-byte array.</value>
         [DataMember(Name = "cavv", EmitDefaultValue = false)]
         public string Cavv { get; set; }
-        
+
         /// <summary>
         /// The CAVV algorithm used.
         /// </summary>
         /// <value>The CAVV algorithm used.</value>
         [DataMember(Name = "cavvAlgorithm", EmitDefaultValue = false)]
         public string CavvAlgorithm { get; set; }
-        
+
         /// <summary>
         /// Shows the [exemption type](https://docs.adyen.com/payments-fundamentals/psd2-sca-compliance-and-implementation-guide#specifypreferenceinyourapirequest) that Adyen requested for the payment.   Possible values: * **lowValue**  * **secureCorporate**  * **trustedBeneficiary**  * **transactionRiskAnalysis** 
         /// </summary>
         /// <value>Shows the [exemption type](https://docs.adyen.com/payments-fundamentals/psd2-sca-compliance-and-implementation-guide#specifypreferenceinyourapirequest) that Adyen requested for the payment.   Possible values: * **lowValue**  * **secureCorporate**  * **trustedBeneficiary**  * **transactionRiskAnalysis** </value>
         [DataMember(Name = "scaExemptionRequested", EmitDefaultValue = false)]
         public string ScaExemptionRequested { get; set; }
-        
+
         /// <summary>
         /// Indicates whether a card is enrolled for 3D Secure 2.
         /// </summary>
         /// <value>Indicates whether a card is enrolled for 3D Secure 2.</value>
         [DataMember(Name = "threeds2.cardEnrolled", EmitDefaultValue = false)]
         public bool Threeds2CardEnrolled { get; set; }
-        
+
         /// <summary>
         /// Returns the string presentation of the object
         /// </summary>
@@ -188,7 +188,6 @@ namespace Adyen.Model.Payments
                 return hashCode;
             }
         }
-
         /// <summary>
         /// To validate all properties of the instance
         /// </summary>

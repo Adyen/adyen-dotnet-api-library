@@ -57,37 +57,37 @@ namespace Adyen.Model.Payments
         /// </summary>
         [DataMember(Name = "adyenLibrary", EmitDefaultValue = false)]
         public CommonField AdyenLibrary { get; set; }
-        
+
         /// <summary>
         /// Gets or Sets AdyenPaymentSource
         /// </summary>
         [DataMember(Name = "adyenPaymentSource", EmitDefaultValue = false)]
         public CommonField AdyenPaymentSource { get; set; }
-        
+
         /// <summary>
         /// Gets or Sets ExternalPlatform
         /// </summary>
         [DataMember(Name = "externalPlatform", EmitDefaultValue = false)]
         public ExternalPlatform ExternalPlatform { get; set; }
-        
+
         /// <summary>
         /// Gets or Sets MerchantApplication
         /// </summary>
         [DataMember(Name = "merchantApplication", EmitDefaultValue = false)]
         public CommonField MerchantApplication { get; set; }
-        
+
         /// <summary>
         /// Gets or Sets MerchantDevice
         /// </summary>
         [DataMember(Name = "merchantDevice", EmitDefaultValue = false)]
         public MerchantDevice MerchantDevice { get; set; }
-        
+
         /// <summary>
         /// Gets or Sets ShopperInteractionDevice
         /// </summary>
         [DataMember(Name = "shopperInteractionDevice", EmitDefaultValue = false)]
         public ShopperInteractionDevice ShopperInteractionDevice { get; set; }
-        
+
         /// <summary>
         /// Returns the string presentation of the object
         /// </summary>
@@ -205,7 +205,6 @@ namespace Adyen.Model.Payments
                 return hashCode;
             }
         }
-
         /// <summary>
         /// To validate all properties of the instance
         /// </summary>

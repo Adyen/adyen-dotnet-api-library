@@ -59,36 +59,36 @@ namespace Adyen.Model.Payments
         /// The Adyen account name of the charity.
         /// </summary>
         /// <value>The Adyen account name of the charity.</value>
-        [DataMember(Name = "donationAccount", IsRequired = false, EmitDefaultValue = true)]
+        [DataMember(Name = "donationAccount", IsRequired = false, EmitDefaultValue = false)]
         public string DonationAccount { get; set; }
-        
+
         /// <summary>
         /// The merchant account that is used to process the payment.
         /// </summary>
         /// <value>The merchant account that is used to process the payment.</value>
-        [DataMember(Name = "merchantAccount", IsRequired = false, EmitDefaultValue = true)]
+        [DataMember(Name = "merchantAccount", IsRequired = false, EmitDefaultValue = false)]
         public string MerchantAccount { get; set; }
-        
+
         /// <summary>
         /// Gets or Sets ModificationAmount
         /// </summary>
-        [DataMember(Name = "modificationAmount", IsRequired = false, EmitDefaultValue = true)]
+        [DataMember(Name = "modificationAmount", IsRequired = false, EmitDefaultValue = false)]
         public Amount ModificationAmount { get; set; }
-        
+
         /// <summary>
         /// The original pspReference of the payment to modify. This reference is returned in: * authorisation response * authorisation notification  
         /// </summary>
         /// <value>The original pspReference of the payment to modify. This reference is returned in: * authorisation response * authorisation notification  </value>
         [DataMember(Name = "originalReference", EmitDefaultValue = false)]
         public string OriginalReference { get; set; }
-        
+
         /// <summary>
         /// Your reference for the payment modification. This reference is visible in Customer Area and in reports. Maximum length: 80 characters.
         /// </summary>
         /// <value>Your reference for the payment modification. This reference is visible in Customer Area and in reports. Maximum length: 80 characters.</value>
         [DataMember(Name = "reference", EmitDefaultValue = false)]
         public string Reference { get; set; }
-        
+
         /// <summary>
         /// Returns the string presentation of the object
         /// </summary>
@@ -196,7 +196,6 @@ namespace Adyen.Model.Payments
                 return hashCode;
             }
         }
-
         /// <summary>
         /// To validate all properties of the instance
         /// </summary>

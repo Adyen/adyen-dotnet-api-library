@@ -67,55 +67,55 @@ namespace Adyen.Model.Payments
         /// <value>This field contains additional data, which may be required for a particular modification request.  The additionalData object consists of entries, each of which includes the key and value.</value>
         [DataMember(Name = "additionalData", EmitDefaultValue = false)]
         public Dictionary<string, string> AdditionalData { get; set; }
-        
+
         /// <summary>
         /// The merchant account that is used to process the payment.
         /// </summary>
         /// <value>The merchant account that is used to process the payment.</value>
-        [DataMember(Name = "merchantAccount", IsRequired = false, EmitDefaultValue = true)]
+        [DataMember(Name = "merchantAccount", IsRequired = false, EmitDefaultValue = false)]
         public string MerchantAccount { get; set; }
-        
+
         /// <summary>
         /// Gets or Sets MpiData
         /// </summary>
         [DataMember(Name = "mpiData", EmitDefaultValue = false)]
         public ThreeDSecureData MpiData { get; set; }
-        
+
         /// <summary>
         /// The original merchant reference to cancel.
         /// </summary>
         /// <value>The original merchant reference to cancel.</value>
         [DataMember(Name = "originalMerchantReference", EmitDefaultValue = false)]
         public string OriginalMerchantReference { get; set; }
-        
+
         /// <summary>
         /// The original pspReference of the payment to modify. This reference is returned in: * authorisation response * authorisation notification  
         /// </summary>
         /// <value>The original pspReference of the payment to modify. This reference is returned in: * authorisation response * authorisation notification  </value>
-        [DataMember(Name = "originalReference", IsRequired = false, EmitDefaultValue = true)]
+        [DataMember(Name = "originalReference", IsRequired = false, EmitDefaultValue = false)]
         public string OriginalReference { get; set; }
-        
+
         /// <summary>
         /// Your reference for the payment modification. This reference is visible in Customer Area and in reports. Maximum length: 80 characters.
         /// </summary>
         /// <value>Your reference for the payment modification. This reference is visible in Customer Area and in reports. Maximum length: 80 characters.</value>
         [DataMember(Name = "reference", EmitDefaultValue = false)]
         public string Reference { get; set; }
-        
+
         /// <summary>
         /// The transaction reference provided by the PED. For point-of-sale integrations only.
         /// </summary>
         /// <value>The transaction reference provided by the PED. For point-of-sale integrations only.</value>
         [DataMember(Name = "tenderReference", EmitDefaultValue = false)]
         public string TenderReference { get; set; }
-        
+
         /// <summary>
         /// Unique terminal ID for the PED that originally processed the request. For point-of-sale integrations only.
         /// </summary>
         /// <value>Unique terminal ID for the PED that originally processed the request. For point-of-sale integrations only.</value>
         [DataMember(Name = "uniqueTerminalId", EmitDefaultValue = false)]
         public string UniqueTerminalId { get; set; }
-        
+
         /// <summary>
         /// Returns the string presentation of the object
         /// </summary>
@@ -254,7 +254,6 @@ namespace Adyen.Model.Payments
                 return hashCode;
             }
         }
-
         /// <summary>
         /// To validate all properties of the instance
         /// </summary>

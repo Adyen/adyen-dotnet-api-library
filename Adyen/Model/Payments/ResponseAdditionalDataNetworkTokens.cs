@@ -52,21 +52,21 @@ namespace Adyen.Model.Payments
         /// <value>Indicates whether a network token is available for the specified card.</value>
         [DataMember(Name = "networkToken.available", EmitDefaultValue = false)]
         public string NetworkTokenAvailable { get; set; }
-        
+
         /// <summary>
         /// The Bank Identification Number of a tokenized card, which is the first six digits of a card number.
         /// </summary>
         /// <value>The Bank Identification Number of a tokenized card, which is the first six digits of a card number.</value>
         [DataMember(Name = "networkToken.bin", EmitDefaultValue = false)]
         public string NetworkTokenBin { get; set; }
-        
+
         /// <summary>
         /// The last four digits of a network token.
         /// </summary>
         /// <value>The last four digits of a network token.</value>
         [DataMember(Name = "networkToken.tokenSummary", EmitDefaultValue = false)]
         public string NetworkTokenTokenSummary { get; set; }
-        
+
         /// <summary>
         /// Returns the string presentation of the object
         /// </summary>
@@ -154,7 +154,6 @@ namespace Adyen.Model.Payments
                 return hashCode;
             }
         }
-
         /// <summary>
         /// To validate all properties of the instance
         /// </summary>

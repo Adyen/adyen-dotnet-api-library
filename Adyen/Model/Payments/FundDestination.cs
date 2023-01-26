@@ -64,59 +64,59 @@ namespace Adyen.Model.Payments
         /// <value>a map of name/value pairs for passing in additional/industry-specific data</value>
         [DataMember(Name = "additionalData", EmitDefaultValue = false)]
         public Dictionary<string, string> AdditionalData { get; set; }
-        
+
         /// <summary>
         /// Gets or Sets BillingAddress
         /// </summary>
         [DataMember(Name = "billingAddress", EmitDefaultValue = false)]
         public Address BillingAddress { get; set; }
-        
+
         /// <summary>
         /// Gets or Sets Card
         /// </summary>
         [DataMember(Name = "card", EmitDefaultValue = false)]
         public Card Card { get; set; }
-        
+
         /// <summary>
         /// The &#x60;recurringDetailReference&#x60; you want to use for this payment. The value &#x60;LATEST&#x60; can be used to select the most recently stored recurring detail.
         /// </summary>
         /// <value>The &#x60;recurringDetailReference&#x60; you want to use for this payment. The value &#x60;LATEST&#x60; can be used to select the most recently stored recurring detail.</value>
         [DataMember(Name = "selectedRecurringDetailReference", EmitDefaultValue = false)]
         public string SelectedRecurringDetailReference { get; set; }
-        
+
         /// <summary>
         /// the email address of the person
         /// </summary>
         /// <value>the email address of the person</value>
         [DataMember(Name = "shopperEmail", EmitDefaultValue = false)]
         public string ShopperEmail { get; set; }
-        
+
         /// <summary>
         /// Gets or Sets ShopperName
         /// </summary>
         [DataMember(Name = "shopperName", EmitDefaultValue = false)]
         public Name ShopperName { get; set; }
-        
+
         /// <summary>
         /// Required for recurring payments.  Your reference to uniquely identify this shopper, for example user ID or account ID. Minimum length: 3 characters. &gt; Your reference must not include personally identifiable information (PII), for example name or email address.
         /// </summary>
         /// <value>Required for recurring payments.  Your reference to uniquely identify this shopper, for example user ID or account ID. Minimum length: 3 characters. &gt; Your reference must not include personally identifiable information (PII), for example name or email address.</value>
         [DataMember(Name = "shopperReference", EmitDefaultValue = false)]
         public string ShopperReference { get; set; }
-        
+
         /// <summary>
         /// Gets or Sets SubMerchant
         /// </summary>
         [DataMember(Name = "subMerchant", EmitDefaultValue = false)]
         public SubMerchant SubMerchant { get; set; }
-        
+
         /// <summary>
         /// the telephone number of the person
         /// </summary>
         /// <value>the telephone number of the person</value>
         [DataMember(Name = "telephoneNumber", EmitDefaultValue = false)]
         public string TelephoneNumber { get; set; }
-        
+
         /// <summary>
         /// Returns the string presentation of the object
         /// </summary>
@@ -265,7 +265,6 @@ namespace Adyen.Model.Payments
                 return hashCode;
             }
         }
-
         /// <summary>
         /// To validate all properties of the instance
         /// </summary>

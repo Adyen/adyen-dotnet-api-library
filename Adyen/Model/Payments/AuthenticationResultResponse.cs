@@ -49,13 +49,13 @@ namespace Adyen.Model.Payments
         /// </summary>
         [DataMember(Name = "threeDS1Result", EmitDefaultValue = false)]
         public ThreeDS1Result ThreeDS1Result { get; set; }
-        
+
         /// <summary>
         /// Gets or Sets ThreeDS2Result
         /// </summary>
         [DataMember(Name = "threeDS2Result", EmitDefaultValue = false)]
         public ThreeDS2Result ThreeDS2Result { get; set; }
-        
+
         /// <summary>
         /// Returns the string presentation of the object
         /// </summary>
@@ -133,7 +133,6 @@ namespace Adyen.Model.Payments
                 return hashCode;
             }
         }
-
         /// <summary>
         /// To validate all properties of the instance
         /// </summary>

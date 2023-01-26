@@ -48,7 +48,7 @@ namespace Adyen.Model.Payments
         /// <value>This is the installment option selected by the shopper. It is required only if specified by the user.</value>
         [DataMember(Name = "installmentPaymentData.selectedInstallmentOption", EmitDefaultValue = false)]
         public string InstallmentPaymentDataSelectedInstallmentOption { get; set; }
-        
+
         /// <summary>
         /// Returns the string presentation of the object
         /// </summary>
@@ -116,7 +116,6 @@ namespace Adyen.Model.Payments
                 return hashCode;
             }
         }
-
         /// <summary>
         /// To validate all properties of the instance
         /// </summary>

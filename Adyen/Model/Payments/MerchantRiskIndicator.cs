@@ -172,7 +172,7 @@ namespace Adyen.Model.Payments
         /// <value>Whether the chosen delivery address is identical to the billing address.</value>
         [DataMember(Name = "addressMatch", EmitDefaultValue = false)]
         public bool AddressMatch { get; set; }
-        
+
         /// <summary>
         /// The delivery email address (for digital goods).
         /// </summary>
@@ -180,76 +180,76 @@ namespace Adyen.Model.Payments
         [DataMember(Name = "deliveryEmail", EmitDefaultValue = false)]
         [Obsolete]
         public string DeliveryEmail { get; set; }
-        
+
         /// <summary>
         /// For Electronic delivery, the email address to which the merchandise was delivered. Maximum length: 254 characters.
         /// </summary>
         /// <value>For Electronic delivery, the email address to which the merchandise was delivered. Maximum length: 254 characters.</value>
         [DataMember(Name = "deliveryEmailAddress", EmitDefaultValue = false)]
         public string DeliveryEmailAddress { get; set; }
-        
+
         /// <summary>
         /// Gets or Sets GiftCardAmount
         /// </summary>
         [DataMember(Name = "giftCardAmount", EmitDefaultValue = false)]
         public Amount GiftCardAmount { get; set; }
-        
+
         /// <summary>
         /// For prepaid or gift card purchase, total count of individual prepaid or gift cards/codes purchased.
         /// </summary>
         /// <value>For prepaid or gift card purchase, total count of individual prepaid or gift cards/codes purchased.</value>
         [DataMember(Name = "giftCardCount", EmitDefaultValue = false)]
         public int? GiftCardCount { get; set; }
-        
+
         /// <summary>
         /// For prepaid or gift card purchase, [ISO 4217](https://www.iso.org/iso-4217-currency-codes.html) three-digit currency code of the gift card, other than those listed in Table A.5 of the EMVCo 3D Secure Protocol and Core Functions Specification.
         /// </summary>
         /// <value>For prepaid or gift card purchase, [ISO 4217](https://www.iso.org/iso-4217-currency-codes.html) three-digit currency code of the gift card, other than those listed in Table A.5 of the EMVCo 3D Secure Protocol and Core Functions Specification.</value>
         [DataMember(Name = "giftCardCurr", EmitDefaultValue = false)]
         public string GiftCardCurr { get; set; }
-        
+
         /// <summary>
         /// For pre-order purchases, the expected date this product will be available to the shopper.
         /// </summary>
         /// <value>For pre-order purchases, the expected date this product will be available to the shopper.</value>
         [DataMember(Name = "preOrderDate", EmitDefaultValue = false)]
         public DateTime PreOrderDate { get; set; }
-        
+
         /// <summary>
         /// Indicator for whether this transaction is for pre-ordering a product.
         /// </summary>
         /// <value>Indicator for whether this transaction is for pre-ordering a product.</value>
         [DataMember(Name = "preOrderPurchase", EmitDefaultValue = false)]
         public bool PreOrderPurchase { get; set; }
-        
+
         /// <summary>
         /// Indicates whether Cardholder is placing an order for merchandise with a future availability or release date.
         /// </summary>
         /// <value>Indicates whether Cardholder is placing an order for merchandise with a future availability or release date.</value>
         [DataMember(Name = "preOrderPurchaseInd", EmitDefaultValue = false)]
         public string PreOrderPurchaseInd { get; set; }
-        
+
         /// <summary>
         /// Indicator for whether the shopper has already purchased the same items in the past.
         /// </summary>
         /// <value>Indicator for whether the shopper has already purchased the same items in the past.</value>
         [DataMember(Name = "reorderItems", EmitDefaultValue = false)]
         public bool ReorderItems { get; set; }
-        
+
         /// <summary>
         /// Indicates whether the cardholder is reordering previously purchased merchandise.
         /// </summary>
         /// <value>Indicates whether the cardholder is reordering previously purchased merchandise.</value>
         [DataMember(Name = "reorderItemsInd", EmitDefaultValue = false)]
         public string ReorderItemsInd { get; set; }
-        
+
         /// <summary>
         /// Indicates shipping method chosen for the transaction.
         /// </summary>
         /// <value>Indicates shipping method chosen for the transaction.</value>
         [DataMember(Name = "shipIndicator", EmitDefaultValue = false)]
         public string ShipIndicator { get; set; }
-        
+
         /// <summary>
         /// Returns the string presentation of the object
         /// </summary>
@@ -423,7 +423,6 @@ namespace Adyen.Model.Payments
                 return hashCode;
             }
         }
-
         /// <summary>
         /// To validate all properties of the instance
         /// </summary>

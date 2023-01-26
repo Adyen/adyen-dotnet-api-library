@@ -55,14 +55,14 @@ namespace Adyen.Model.Payments
         /// <value>The three-character [ISO currency code](https://docs.adyen.com/development-resources/currency-codes).  If this value is not provided, the currency in which the payment is made will be used.</value>
         [DataMember(Name = "currency", EmitDefaultValue = false)]
         public string Currency { get; set; }
-        
+
         /// <summary>
         /// The amount in [minor units](https://docs.adyen.com/development-resources/currency-codes).
         /// </summary>
         /// <value>The amount in [minor units](https://docs.adyen.com/development-resources/currency-codes).</value>
-        [DataMember(Name = "value", IsRequired = false, EmitDefaultValue = true)]
+        [DataMember(Name = "value", IsRequired = false, EmitDefaultValue = false)]
         public long Value { get; set; }
-        
+
         /// <summary>
         /// Returns the string presentation of the object
         /// </summary>
@@ -136,7 +136,6 @@ namespace Adyen.Model.Payments
                 return hashCode;
             }
         }
-
         /// <summary>
         /// To validate all properties of the instance
         /// </summary>

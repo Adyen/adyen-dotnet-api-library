@@ -64,63 +64,63 @@ namespace Adyen.Model.Payments
         /// <value>Customer code, if supplied by a customer. * Encoding: ASCII * maxLength: 25</value>
         [DataMember(Name = "enhancedSchemeData.customerReference", EmitDefaultValue = false)]
         public string EnhancedSchemeDataCustomerReference { get; set; }
-        
+
         /// <summary>
         /// Name or ID associated with the individual working in a temporary capacity. * maxLength: 40
         /// </summary>
         /// <value>Name or ID associated with the individual working in a temporary capacity. * maxLength: 40</value>
         [DataMember(Name = "enhancedSchemeData.employeeName", EmitDefaultValue = false)]
         public string EnhancedSchemeDataEmployeeName { get; set; }
-        
+
         /// <summary>
         /// Description of the job or task of the individual working in a temporary capacity. * maxLength: 40
         /// </summary>
         /// <value>Description of the job or task of the individual working in a temporary capacity. * maxLength: 40</value>
         [DataMember(Name = "enhancedSchemeData.jobDescription", EmitDefaultValue = false)]
         public string EnhancedSchemeDataJobDescription { get; set; }
-        
+
         /// <summary>
         /// Amount paid per regular hours worked, minor units. * maxLength: 7
         /// </summary>
         /// <value>Amount paid per regular hours worked, minor units. * maxLength: 7</value>
         [DataMember(Name = "enhancedSchemeData.regularHoursRate", EmitDefaultValue = false)]
         public string EnhancedSchemeDataRegularHoursRate { get; set; }
-        
+
         /// <summary>
         /// Amount of time worked during a normal operation for the task or job. * maxLength: 7
         /// </summary>
         /// <value>Amount of time worked during a normal operation for the task or job. * maxLength: 7</value>
         [DataMember(Name = "enhancedSchemeData.regularHoursWorked", EmitDefaultValue = false)]
         public string EnhancedSchemeDataRegularHoursWorked { get; set; }
-        
+
         /// <summary>
         /// Name of the individual requesting temporary services. * maxLength: 40
         /// </summary>
         /// <value>Name of the individual requesting temporary services. * maxLength: 40</value>
         [DataMember(Name = "enhancedSchemeData.requestName", EmitDefaultValue = false)]
         public string EnhancedSchemeDataRequestName { get; set; }
-        
+
         /// <summary>
         /// Date for the beginning of the pay period. * Format: ddMMyy * maxLength: 6
         /// </summary>
         /// <value>Date for the beginning of the pay period. * Format: ddMMyy * maxLength: 6</value>
         [DataMember(Name = "enhancedSchemeData.tempStartDate", EmitDefaultValue = false)]
         public string EnhancedSchemeDataTempStartDate { get; set; }
-        
+
         /// <summary>
         /// Date of the end of the billing cycle. * Format: ddMMyy * maxLength: 6
         /// </summary>
         /// <value>Date of the end of the billing cycle. * Format: ddMMyy * maxLength: 6</value>
         [DataMember(Name = "enhancedSchemeData.tempWeekEnding", EmitDefaultValue = false)]
         public string EnhancedSchemeDataTempWeekEnding { get; set; }
-        
+
         /// <summary>
         /// Total tax amount, in minor units. For example, 2000 means USD 20.00 * maxLength: 12
         /// </summary>
         /// <value>Total tax amount, in minor units. For example, 2000 means USD 20.00 * maxLength: 12</value>
         [DataMember(Name = "enhancedSchemeData.totalTaxAmount", EmitDefaultValue = false)]
         public string EnhancedSchemeDataTotalTaxAmount { get; set; }
-        
+
         /// <summary>
         /// Returns the string presentation of the object
         /// </summary>
@@ -268,7 +268,6 @@ namespace Adyen.Model.Payments
                 return hashCode;
             }
         }
-
         /// <summary>
         /// To validate all properties of the instance
         /// </summary>

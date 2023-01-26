@@ -157,7 +157,7 @@ namespace Adyen.Model.Payments
         /// The frequency with which a shopper should be charged.  Possible values: **daily**, **weekly**, **biWeekly**, **monthly**, **quarterly**, **halfYearly**, **yearly**.
         /// </summary>
         /// <value>The frequency with which a shopper should be charged.  Possible values: **daily**, **weekly**, **biWeekly**, **monthly**, **quarterly**, **halfYearly**, **yearly**.</value>
-        [DataMember(Name = "frequency", IsRequired = false, EmitDefaultValue = true)]
+        [DataMember(Name = "frequency", IsRequired = false, EmitDefaultValue = false)]
         public FrequencyEnum Frequency { get; set; }
         /// <summary>
         /// Initializes a new instance of the <see cref="Mandate" /> class.
@@ -191,37 +191,37 @@ namespace Adyen.Model.Payments
         /// The billing amount (in minor units) of the recurring transactions.
         /// </summary>
         /// <value>The billing amount (in minor units) of the recurring transactions.</value>
-        [DataMember(Name = "amount", IsRequired = false, EmitDefaultValue = true)]
+        [DataMember(Name = "amount", IsRequired = false, EmitDefaultValue = false)]
         public string Amount { get; set; }
-        
+
         /// <summary>
         /// The number of the day, on which the recurring debit can happen. Should be within the same calendar month as the mandate recurring date.  Possible values: 1-31 based on the &#x60;frequency&#x60;.
         /// </summary>
         /// <value>The number of the day, on which the recurring debit can happen. Should be within the same calendar month as the mandate recurring date.  Possible values: 1-31 based on the &#x60;frequency&#x60;.</value>
         [DataMember(Name = "billingDay", EmitDefaultValue = false)]
         public string BillingDay { get; set; }
-        
+
         /// <summary>
         /// End date of the billing plan, in YYYY-MM-DD format.
         /// </summary>
         /// <value>End date of the billing plan, in YYYY-MM-DD format.</value>
-        [DataMember(Name = "endsAt", IsRequired = false, EmitDefaultValue = true)]
+        [DataMember(Name = "endsAt", IsRequired = false, EmitDefaultValue = false)]
         public string EndsAt { get; set; }
-        
+
         /// <summary>
         /// The message shown by UPI to the shopper on the approval screen.
         /// </summary>
         /// <value>The message shown by UPI to the shopper on the approval screen.</value>
         [DataMember(Name = "remarks", EmitDefaultValue = false)]
         public string Remarks { get; set; }
-        
+
         /// <summary>
         /// Start date of the billing plan, in YYYY-MM-DD format. By default, the transaction date.
         /// </summary>
         /// <value>Start date of the billing plan, in YYYY-MM-DD format. By default, the transaction date.</value>
         [DataMember(Name = "startsAt", EmitDefaultValue = false)]
         public string StartsAt { get; set; }
-        
+
         /// <summary>
         /// Returns the string presentation of the object
         /// </summary>
@@ -347,7 +347,6 @@ namespace Adyen.Model.Payments
                 return hashCode;
             }
         }
-
         /// <summary>
         /// To validate all properties of the instance
         /// </summary>

@@ -352,63 +352,63 @@ namespace Adyen.Model.Payments
         /// <value>Date that the cardholder’s account with the 3DS Requestor was last changed, including Billing or Shipping address, new payment account, or new user(s) added.  Format: **YYYYMMDD**</value>
         [DataMember(Name = "chAccChange", EmitDefaultValue = false)]
         public string ChAccChange { get; set; }
-        
+
         /// <summary>
         /// Date that cardholder’s account with the 3DS Requestor had a password change or account reset.  Format: **YYYYMMDD**
         /// </summary>
         /// <value>Date that cardholder’s account with the 3DS Requestor had a password change or account reset.  Format: **YYYYMMDD**</value>
         [DataMember(Name = "chAccPwChange", EmitDefaultValue = false)]
         public string ChAccPwChange { get; set; }
-        
+
         /// <summary>
         /// Date that the cardholder opened the account with the 3DS Requestor.  Format: **YYYYMMDD**
         /// </summary>
         /// <value>Date that the cardholder opened the account with the 3DS Requestor.  Format: **YYYYMMDD**</value>
         [DataMember(Name = "chAccString", EmitDefaultValue = false)]
         public string ChAccString { get; set; }
-        
+
         /// <summary>
         /// Number of purchases with this cardholder account during the previous six months. Max length: 4 characters.
         /// </summary>
         /// <value>Number of purchases with this cardholder account during the previous six months. Max length: 4 characters.</value>
         [DataMember(Name = "nbPurchaseAccount", EmitDefaultValue = false)]
         public string NbPurchaseAccount { get; set; }
-        
+
         /// <summary>
         /// String that the payment account was enrolled in the cardholder’s account with the 3DS Requestor.  Format: **YYYYMMDD**
         /// </summary>
         /// <value>String that the payment account was enrolled in the cardholder’s account with the 3DS Requestor.  Format: **YYYYMMDD**</value>
         [DataMember(Name = "paymentAccAge", EmitDefaultValue = false)]
         public string PaymentAccAge { get; set; }
-        
+
         /// <summary>
         /// Number of Add Card attempts in the last 24 hours. Max length: 3 characters.
         /// </summary>
         /// <value>Number of Add Card attempts in the last 24 hours. Max length: 3 characters.</value>
         [DataMember(Name = "provisionAttemptsDay", EmitDefaultValue = false)]
         public string ProvisionAttemptsDay { get; set; }
-        
+
         /// <summary>
         /// String when the shipping address used for this transaction was first used with the 3DS Requestor.  Format: **YYYYMMDD**
         /// </summary>
         /// <value>String when the shipping address used for this transaction was first used with the 3DS Requestor.  Format: **YYYYMMDD**</value>
         [DataMember(Name = "shipAddressUsage", EmitDefaultValue = false)]
         public string ShipAddressUsage { get; set; }
-        
+
         /// <summary>
         /// Number of transactions (successful and abandoned) for this cardholder account with the 3DS Requestor across all payment accounts in the previous 24 hours. Max length: 3 characters.
         /// </summary>
         /// <value>Number of transactions (successful and abandoned) for this cardholder account with the 3DS Requestor across all payment accounts in the previous 24 hours. Max length: 3 characters.</value>
         [DataMember(Name = "txnActivityDay", EmitDefaultValue = false)]
         public string TxnActivityDay { get; set; }
-        
+
         /// <summary>
         /// Number of transactions (successful and abandoned) for this cardholder account with the 3DS Requestor across all payment accounts in the previous year. Max length: 3 characters.
         /// </summary>
         /// <value>Number of transactions (successful and abandoned) for this cardholder account with the 3DS Requestor across all payment accounts in the previous year. Max length: 3 characters.</value>
         [DataMember(Name = "txnActivityYear", EmitDefaultValue = false)]
         public string TxnActivityYear { get; set; }
-        
+
         /// <summary>
         /// Returns the string presentation of the object
         /// </summary>
@@ -598,7 +598,6 @@ namespace Adyen.Model.Payments
                 return hashCode;
             }
         }
-
         /// <summary>
         /// To validate all properties of the instance
         /// </summary>

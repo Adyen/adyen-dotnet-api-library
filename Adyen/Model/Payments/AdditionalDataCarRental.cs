@@ -92,161 +92,161 @@ namespace Adyen.Model.Payments
         /// <value>Pick-up date. * Date format: &#x60;yyyyMMdd&#x60;</value>
         [DataMember(Name = "carRental.checkOutDate", EmitDefaultValue = false)]
         public string CarRentalCheckOutDate { get; set; }
-        
+
         /// <summary>
         /// The customer service phone number of the car rental company. * Format: Alphanumeric * maxLength: 17
         /// </summary>
         /// <value>The customer service phone number of the car rental company. * Format: Alphanumeric * maxLength: 17</value>
         [DataMember(Name = "carRental.customerServiceTollFreeNumber", EmitDefaultValue = false)]
         public string CarRentalCustomerServiceTollFreeNumber { get; set; }
-        
+
         /// <summary>
         /// Number of days for which the car is being rented. * Format: Numeric * maxLength: 19
         /// </summary>
         /// <value>Number of days for which the car is being rented. * Format: Numeric * maxLength: 19</value>
         [DataMember(Name = "carRental.daysRented", EmitDefaultValue = false)]
         public string CarRentalDaysRented { get; set; }
-        
+
         /// <summary>
         /// Any fuel charges associated with the rental. * Format: Numeric * maxLength: 12
         /// </summary>
         /// <value>Any fuel charges associated with the rental. * Format: Numeric * maxLength: 12</value>
         [DataMember(Name = "carRental.fuelCharges", EmitDefaultValue = false)]
         public string CarRentalFuelCharges { get; set; }
-        
+
         /// <summary>
         /// Any insurance charges associated with the rental. * Format: Numeric * maxLength: 12
         /// </summary>
         /// <value>Any insurance charges associated with the rental. * Format: Numeric * maxLength: 12</value>
         [DataMember(Name = "carRental.insuranceCharges", EmitDefaultValue = false)]
         public string CarRentalInsuranceCharges { get; set; }
-        
+
         /// <summary>
         /// The city from which the car is rented. * Format: Alphanumeric * maxLength: 18
         /// </summary>
         /// <value>The city from which the car is rented. * Format: Alphanumeric * maxLength: 18</value>
         [DataMember(Name = "carRental.locationCity", EmitDefaultValue = false)]
         public string CarRentalLocationCity { get; set; }
-        
+
         /// <summary>
         /// The country from which the car is rented. * Format: Alphanumeric * maxLength: 2
         /// </summary>
         /// <value>The country from which the car is rented. * Format: Alphanumeric * maxLength: 2</value>
         [DataMember(Name = "carRental.locationCountry", EmitDefaultValue = false)]
         public string CarRentalLocationCountry { get; set; }
-        
+
         /// <summary>
         /// The state or province from where the car is rented. * Format: Alphanumeric * maxLength: 3
         /// </summary>
         /// <value>The state or province from where the car is rented. * Format: Alphanumeric * maxLength: 3</value>
         [DataMember(Name = "carRental.locationStateProvince", EmitDefaultValue = false)]
         public string CarRentalLocationStateProvince { get; set; }
-        
+
         /// <summary>
         /// Indicates if the customer was a \&quot;no-show\&quot; (neither keeps nor cancels their booking). * Y - Customer was a no show. * N - Not applicable.
         /// </summary>
         /// <value>Indicates if the customer was a \&quot;no-show\&quot; (neither keeps nor cancels their booking). * Y - Customer was a no show. * N - Not applicable.</value>
         [DataMember(Name = "carRental.noShowIndicator", EmitDefaultValue = false)]
         public string CarRentalNoShowIndicator { get; set; }
-        
+
         /// <summary>
         /// Charge associated with not returning a vehicle to the original rental location.
         /// </summary>
         /// <value>Charge associated with not returning a vehicle to the original rental location.</value>
         [DataMember(Name = "carRental.oneWayDropOffCharges", EmitDefaultValue = false)]
         public string CarRentalOneWayDropOffCharges { get; set; }
-        
+
         /// <summary>
         /// Daily rental rate. * Format: Alphanumeric * maxLength: 12
         /// </summary>
         /// <value>Daily rental rate. * Format: Alphanumeric * maxLength: 12</value>
         [DataMember(Name = "carRental.rate", EmitDefaultValue = false)]
         public string CarRentalRate { get; set; }
-        
+
         /// <summary>
         /// Specifies whether the given rate is applied daily or weekly. * D - Daily rate. * W - Weekly rate.
         /// </summary>
         /// <value>Specifies whether the given rate is applied daily or weekly. * D - Daily rate. * W - Weekly rate.</value>
         [DataMember(Name = "carRental.rateIndicator", EmitDefaultValue = false)]
         public string CarRentalRateIndicator { get; set; }
-        
+
         /// <summary>
         /// The rental agreement number associated with this car rental. * Format: Alphanumeric * maxLength: 9
         /// </summary>
         /// <value>The rental agreement number associated with this car rental. * Format: Alphanumeric * maxLength: 9</value>
         [DataMember(Name = "carRental.rentalAgreementNumber", EmitDefaultValue = false)]
         public string CarRentalRentalAgreementNumber { get; set; }
-        
+
         /// <summary>
         /// Daily rental rate. * Format: Alphanumeric * maxLength: 12
         /// </summary>
         /// <value>Daily rental rate. * Format: Alphanumeric * maxLength: 12</value>
         [DataMember(Name = "carRental.rentalClassId", EmitDefaultValue = false)]
         public string CarRentalRentalClassId { get; set; }
-        
+
         /// <summary>
         /// The name of the person renting the car. * Format: Alphanumeric * maxLength: 26
         /// </summary>
         /// <value>The name of the person renting the car. * Format: Alphanumeric * maxLength: 26</value>
         [DataMember(Name = "carRental.renterName", EmitDefaultValue = false)]
         public string CarRentalRenterName { get; set; }
-        
+
         /// <summary>
         /// The city where the car must be returned. * Format: Alphanumeric * maxLength: 18
         /// </summary>
         /// <value>The city where the car must be returned. * Format: Alphanumeric * maxLength: 18</value>
         [DataMember(Name = "carRental.returnCity", EmitDefaultValue = false)]
         public string CarRentalReturnCity { get; set; }
-        
+
         /// <summary>
         /// The country where the car must be returned. * Format: Alphanumeric * maxLength: 2
         /// </summary>
         /// <value>The country where the car must be returned. * Format: Alphanumeric * maxLength: 2</value>
         [DataMember(Name = "carRental.returnCountry", EmitDefaultValue = false)]
         public string CarRentalReturnCountry { get; set; }
-        
+
         /// <summary>
         /// The last date to return the car by. * Date format: &#x60;yyyyMMdd&#x60;
         /// </summary>
         /// <value>The last date to return the car by. * Date format: &#x60;yyyyMMdd&#x60;</value>
         [DataMember(Name = "carRental.returnDate", EmitDefaultValue = false)]
         public string CarRentalReturnDate { get; set; }
-        
+
         /// <summary>
         /// Agency code, phone number, or address abbreviation * Format: Alphanumeric * maxLength: 10
         /// </summary>
         /// <value>Agency code, phone number, or address abbreviation * Format: Alphanumeric * maxLength: 10</value>
         [DataMember(Name = "carRental.returnLocationId", EmitDefaultValue = false)]
         public string CarRentalReturnLocationId { get; set; }
-        
+
         /// <summary>
         /// The state or province where the car must be returned. * Format: Alphanumeric * maxLength: 3
         /// </summary>
         /// <value>The state or province where the car must be returned. * Format: Alphanumeric * maxLength: 3</value>
         [DataMember(Name = "carRental.returnStateProvince", EmitDefaultValue = false)]
         public string CarRentalReturnStateProvince { get; set; }
-        
+
         /// <summary>
         /// Indicates whether the goods or services were tax-exempt, or tax was not collected.  Values: * Y - Goods or services were tax exempt * N - Tax was not collected
         /// </summary>
         /// <value>Indicates whether the goods or services were tax-exempt, or tax was not collected.  Values: * Y - Goods or services were tax exempt * N - Tax was not collected</value>
         [DataMember(Name = "carRental.taxExemptIndicator", EmitDefaultValue = false)]
         public string CarRentalTaxExemptIndicator { get; set; }
-        
+
         /// <summary>
         /// Number of nights.  This should be included in the auth message. * Format: Numeric * maxLength: 2
         /// </summary>
         /// <value>Number of nights.  This should be included in the auth message. * Format: Numeric * maxLength: 2</value>
         [DataMember(Name = "travelEntertainmentAuthData.duration", EmitDefaultValue = false)]
         public string TravelEntertainmentAuthDataDuration { get; set; }
-        
+
         /// <summary>
         /// Indicates what market-specific dataset will be submitted or is being submitted. Value should be \&quot;A\&quot; for Car rental. This should be included in the auth message. * Format: Alphanumeric * maxLength: 1
         /// </summary>
         /// <value>Indicates what market-specific dataset will be submitted or is being submitted. Value should be \&quot;A\&quot; for Car rental. This should be included in the auth message. * Format: Alphanumeric * maxLength: 1</value>
         [DataMember(Name = "travelEntertainmentAuthData.market", EmitDefaultValue = false)]
         public string TravelEntertainmentAuthDataMarket { get; set; }
-        
+
         /// <summary>
         /// Returns the string presentation of the object
         /// </summary>
@@ -534,7 +534,6 @@ namespace Adyen.Model.Payments
                 return hashCode;
             }
         }
-
         /// <summary>
         /// To validate all properties of the instance
         /// </summary>

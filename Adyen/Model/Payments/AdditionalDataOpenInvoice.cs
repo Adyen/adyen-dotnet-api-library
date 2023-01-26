@@ -82,126 +82,126 @@ namespace Adyen.Model.Payments
         /// <value>Holds different merchant data points like product, purchase, customer, and so on. It takes data in a Base64 encoded string.  The &#x60;merchantData&#x60; parameter needs to be added to the &#x60;openinvoicedata&#x60; signature at the end.  Since the field is optional, if it&#39;s not included it does not impact computing the merchant signature.  Applies only to Klarna.  You can contact Klarna for the format and structure of the string.</value>
         [DataMember(Name = "openinvoicedata.merchantData", EmitDefaultValue = false)]
         public string OpeninvoicedataMerchantData { get; set; }
-        
+
         /// <summary>
         /// The number of invoice lines included in &#x60;openinvoicedata&#x60;.  There needs to be at least one line, so &#x60;numberOfLines&#x60; needs to be at least 1.
         /// </summary>
         /// <value>The number of invoice lines included in &#x60;openinvoicedata&#x60;.  There needs to be at least one line, so &#x60;numberOfLines&#x60; needs to be at least 1.</value>
         [DataMember(Name = "openinvoicedata.numberOfLines", EmitDefaultValue = false)]
         public string OpeninvoicedataNumberOfLines { get; set; }
-        
+
         /// <summary>
         /// First name of the recipient. If the delivery address and the billing address are different, specify the &#x60;recipientFirstName&#x60; and &#x60;recipientLastName&#x60; to share the delivery address with Klarna. Otherwise, only the billing address is shared with Klarna.
         /// </summary>
         /// <value>First name of the recipient. If the delivery address and the billing address are different, specify the &#x60;recipientFirstName&#x60; and &#x60;recipientLastName&#x60; to share the delivery address with Klarna. Otherwise, only the billing address is shared with Klarna.</value>
         [DataMember(Name = "openinvoicedata.recipientFirstName", EmitDefaultValue = false)]
         public string OpeninvoicedataRecipientFirstName { get; set; }
-        
+
         /// <summary>
         /// Last name of the recipient. If the delivery address and the billing address are different, specify the &#x60;recipientFirstName&#x60; and &#x60;recipientLastName&#x60; to share the delivery address with Klarna. Otherwise, only the billing address is shared with Klarna.
         /// </summary>
         /// <value>Last name of the recipient. If the delivery address and the billing address are different, specify the &#x60;recipientFirstName&#x60; and &#x60;recipientLastName&#x60; to share the delivery address with Klarna. Otherwise, only the billing address is shared with Klarna.</value>
         [DataMember(Name = "openinvoicedata.recipientLastName", EmitDefaultValue = false)]
         public string OpeninvoicedataRecipientLastName { get; set; }
-        
+
         /// <summary>
         /// The three-character ISO currency code.
         /// </summary>
         /// <value>The three-character ISO currency code.</value>
         [DataMember(Name = "openinvoicedataLine[itemNr].currencyCode", EmitDefaultValue = false)]
         public string OpeninvoicedataLineItemNrCurrencyCode { get; set; }
-        
+
         /// <summary>
         /// A text description of the product the invoice line refers to.
         /// </summary>
         /// <value>A text description of the product the invoice line refers to.</value>
         [DataMember(Name = "openinvoicedataLine[itemNr].description", EmitDefaultValue = false)]
         public string OpeninvoicedataLineItemNrDescription { get; set; }
-        
+
         /// <summary>
         /// The price for one item in the invoice line, represented in minor units.  The due amount for the item, VAT excluded.
         /// </summary>
         /// <value>The price for one item in the invoice line, represented in minor units.  The due amount for the item, VAT excluded.</value>
         [DataMember(Name = "openinvoicedataLine[itemNr].itemAmount", EmitDefaultValue = false)]
         public string OpeninvoicedataLineItemNrItemAmount { get; set; }
-        
+
         /// <summary>
         /// A unique id for this item. Required for RatePay if the description of each item is not unique.
         /// </summary>
         /// <value>A unique id for this item. Required for RatePay if the description of each item is not unique.</value>
         [DataMember(Name = "openinvoicedataLine[itemNr].itemId", EmitDefaultValue = false)]
         public string OpeninvoicedataLineItemNrItemId { get; set; }
-        
+
         /// <summary>
         /// The VAT due for one item in the invoice line, represented in minor units.
         /// </summary>
         /// <value>The VAT due for one item in the invoice line, represented in minor units.</value>
         [DataMember(Name = "openinvoicedataLine[itemNr].itemVatAmount", EmitDefaultValue = false)]
         public string OpeninvoicedataLineItemNrItemVatAmount { get; set; }
-        
+
         /// <summary>
         /// The VAT percentage for one item in the invoice line, represented in minor units.  For example, 19% VAT is specified as 1900.
         /// </summary>
         /// <value>The VAT percentage for one item in the invoice line, represented in minor units.  For example, 19% VAT is specified as 1900.</value>
         [DataMember(Name = "openinvoicedataLine[itemNr].itemVatPercentage", EmitDefaultValue = false)]
         public string OpeninvoicedataLineItemNrItemVatPercentage { get; set; }
-        
+
         /// <summary>
         /// The number of units purchased of a specific product.
         /// </summary>
         /// <value>The number of units purchased of a specific product.</value>
         [DataMember(Name = "openinvoicedataLine[itemNr].numberOfItems", EmitDefaultValue = false)]
         public string OpeninvoicedataLineItemNrNumberOfItems { get; set; }
-        
+
         /// <summary>
         /// Name of the shipping company handling the the return shipment.
         /// </summary>
         /// <value>Name of the shipping company handling the the return shipment.</value>
         [DataMember(Name = "openinvoicedataLine[itemNr].returnShippingCompany", EmitDefaultValue = false)]
         public string OpeninvoicedataLineItemNrReturnShippingCompany { get; set; }
-        
+
         /// <summary>
         /// The tracking number for the return of the shipment.
         /// </summary>
         /// <value>The tracking number for the return of the shipment.</value>
         [DataMember(Name = "openinvoicedataLine[itemNr].returnTrackingNumber", EmitDefaultValue = false)]
         public string OpeninvoicedataLineItemNrReturnTrackingNumber { get; set; }
-        
+
         /// <summary>
         /// URI where the customer can track the return of their shipment.
         /// </summary>
         /// <value>URI where the customer can track the return of their shipment.</value>
         [DataMember(Name = "openinvoicedataLine[itemNr].returnTrackingUri", EmitDefaultValue = false)]
         public string OpeninvoicedataLineItemNrReturnTrackingUri { get; set; }
-        
+
         /// <summary>
         /// Name of the shipping company handling the delivery.
         /// </summary>
         /// <value>Name of the shipping company handling the delivery.</value>
         [DataMember(Name = "openinvoicedataLine[itemNr].shippingCompany", EmitDefaultValue = false)]
         public string OpeninvoicedataLineItemNrShippingCompany { get; set; }
-        
+
         /// <summary>
         /// Shipping method.
         /// </summary>
         /// <value>Shipping method.</value>
         [DataMember(Name = "openinvoicedataLine[itemNr].shippingMethod", EmitDefaultValue = false)]
         public string OpeninvoicedataLineItemNrShippingMethod { get; set; }
-        
+
         /// <summary>
         /// The tracking number for the shipment.
         /// </summary>
         /// <value>The tracking number for the shipment.</value>
         [DataMember(Name = "openinvoicedataLine[itemNr].trackingNumber", EmitDefaultValue = false)]
         public string OpeninvoicedataLineItemNrTrackingNumber { get; set; }
-        
+
         /// <summary>
         /// URI where the customer can track their shipment.
         /// </summary>
         /// <value>URI where the customer can track their shipment.</value>
         [DataMember(Name = "openinvoicedataLine[itemNr].trackingUri", EmitDefaultValue = false)]
         public string OpeninvoicedataLineItemNrTrackingUri { get; set; }
-        
+
         /// <summary>
         /// Returns the string presentation of the object
         /// </summary>
@@ -439,7 +439,6 @@ namespace Adyen.Model.Payments
                 return hashCode;
             }
         }
-
         /// <summary>
         /// To validate all properties of the instance
         /// </summary>

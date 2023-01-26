@@ -80,119 +80,119 @@ namespace Adyen.Model.Payments
         /// <value>The arrival date. * Date format: &#x60;yyyyMMdd&#x60;</value>
         [DataMember(Name = "lodging.checkInDate", EmitDefaultValue = false)]
         public string LodgingCheckInDate { get; set; }
-        
+
         /// <summary>
         /// The departure date. * Date format: &#x60;yyyyMMdd&#x60;
         /// </summary>
         /// <value>The departure date. * Date format: &#x60;yyyyMMdd&#x60;</value>
         [DataMember(Name = "lodging.checkOutDate", EmitDefaultValue = false)]
         public string LodgingCheckOutDate { get; set; }
-        
+
         /// <summary>
         /// The toll free phone number for the hotel/lodgings. * Format: Alphanumeric * maxLength: 17
         /// </summary>
         /// <value>The toll free phone number for the hotel/lodgings. * Format: Alphanumeric * maxLength: 17</value>
         [DataMember(Name = "lodging.customerServiceTollFreeNumber", EmitDefaultValue = false)]
         public string LodgingCustomerServiceTollFreeNumber { get; set; }
-        
+
         /// <summary>
         /// Identifies that the facility complies with the Hotel and Motel Fire Safety Act of 1990. Values can be: &#39;Y&#39; or &#39;N&#39;. * Format: Alphabetic * maxLength: 1
         /// </summary>
         /// <value>Identifies that the facility complies with the Hotel and Motel Fire Safety Act of 1990. Values can be: &#39;Y&#39; or &#39;N&#39;. * Format: Alphabetic * maxLength: 1</value>
         [DataMember(Name = "lodging.fireSafetyActIndicator", EmitDefaultValue = false)]
         public string LodgingFireSafetyActIndicator { get; set; }
-        
+
         /// <summary>
         /// The folio cash advances. * Format: Numeric * maxLength: 12
         /// </summary>
         /// <value>The folio cash advances. * Format: Numeric * maxLength: 12</value>
         [DataMember(Name = "lodging.folioCashAdvances", EmitDefaultValue = false)]
         public string LodgingFolioCashAdvances { get; set; }
-        
+
         /// <summary>
         /// Card acceptor’s internal invoice or billing ID reference number. * Format: Alphanumeric * maxLength: 25
         /// </summary>
         /// <value>Card acceptor’s internal invoice or billing ID reference number. * Format: Alphanumeric * maxLength: 25</value>
         [DataMember(Name = "lodging.folioNumber", EmitDefaultValue = false)]
         public string LodgingFolioNumber { get; set; }
-        
+
         /// <summary>
         /// Any charges for food and beverages associated with the booking. * Format: Numeric * maxLength: 12
         /// </summary>
         /// <value>Any charges for food and beverages associated with the booking. * Format: Numeric * maxLength: 12</value>
         [DataMember(Name = "lodging.foodBeverageCharges", EmitDefaultValue = false)]
         public string LodgingFoodBeverageCharges { get; set; }
-        
+
         /// <summary>
         /// Indicates if the customer was a \&quot;no-show\&quot; (neither keeps nor cancels their booking).  Value should be Y or N. * Format: Numeric * maxLength: 1
         /// </summary>
         /// <value>Indicates if the customer was a \&quot;no-show\&quot; (neither keeps nor cancels their booking).  Value should be Y or N. * Format: Numeric * maxLength: 1</value>
         [DataMember(Name = "lodging.noShowIndicator", EmitDefaultValue = false)]
         public string LodgingNoShowIndicator { get; set; }
-        
+
         /// <summary>
         /// Prepaid expenses for the booking. * Format: Numeric * maxLength: 12
         /// </summary>
         /// <value>Prepaid expenses for the booking. * Format: Numeric * maxLength: 12</value>
         [DataMember(Name = "lodging.prepaidExpenses", EmitDefaultValue = false)]
         public string LodgingPrepaidExpenses { get; set; }
-        
+
         /// <summary>
         /// Identifies specific lodging property location by its local phone number. * Format: Alphanumeric * maxLength: 17
         /// </summary>
         /// <value>Identifies specific lodging property location by its local phone number. * Format: Alphanumeric * maxLength: 17</value>
         [DataMember(Name = "lodging.propertyPhoneNumber", EmitDefaultValue = false)]
         public string LodgingPropertyPhoneNumber { get; set; }
-        
+
         /// <summary>
         /// Total number of nights the room will be rented. * Format: Numeric * maxLength: 4
         /// </summary>
         /// <value>Total number of nights the room will be rented. * Format: Numeric * maxLength: 4</value>
         [DataMember(Name = "lodging.room1.numberOfNights", EmitDefaultValue = false)]
         public string LodgingRoom1NumberOfNights { get; set; }
-        
+
         /// <summary>
         /// The rate of the room. * Format: Numeric * maxLength: 12
         /// </summary>
         /// <value>The rate of the room. * Format: Numeric * maxLength: 12</value>
         [DataMember(Name = "lodging.room1.rate", EmitDefaultValue = false)]
         public string LodgingRoom1Rate { get; set; }
-        
+
         /// <summary>
         /// The total amount of tax to be paid. * Format: Numeric * maxLength: 12
         /// </summary>
         /// <value>The total amount of tax to be paid. * Format: Numeric * maxLength: 12</value>
         [DataMember(Name = "lodging.room1.tax", EmitDefaultValue = false)]
         public string LodgingRoom1Tax { get; set; }
-        
+
         /// <summary>
         /// Total room tax amount. * Format: Numeric * maxLength: 12
         /// </summary>
         /// <value>Total room tax amount. * Format: Numeric * maxLength: 12</value>
         [DataMember(Name = "lodging.totalRoomTax", EmitDefaultValue = false)]
         public string LodgingTotalRoomTax { get; set; }
-        
+
         /// <summary>
         /// Total tax amount. * Format: Numeric * maxLength: 12
         /// </summary>
         /// <value>Total tax amount. * Format: Numeric * maxLength: 12</value>
         [DataMember(Name = "lodging.totalTax", EmitDefaultValue = false)]
         public string LodgingTotalTax { get; set; }
-        
+
         /// <summary>
         /// Number of nights. This should be included in the auth message. * Format: Numeric * maxLength: 2
         /// </summary>
         /// <value>Number of nights. This should be included in the auth message. * Format: Numeric * maxLength: 2</value>
         [DataMember(Name = "travelEntertainmentAuthData.duration", EmitDefaultValue = false)]
         public string TravelEntertainmentAuthDataDuration { get; set; }
-        
+
         /// <summary>
         /// Indicates what market-specific dataset will be submitted or is being submitted. Value should be \&quot;H\&quot; for Hotel. This should be included in the auth message.  * Format: Alphanumeric * maxLength: 1
         /// </summary>
         /// <value>Indicates what market-specific dataset will be submitted or is being submitted. Value should be \&quot;H\&quot; for Hotel. This should be included in the auth message.  * Format: Alphanumeric * maxLength: 1</value>
         [DataMember(Name = "travelEntertainmentAuthData.market", EmitDefaultValue = false)]
         public string TravelEntertainmentAuthDataMarket { get; set; }
-        
+
         /// <summary>
         /// Returns the string presentation of the object
         /// </summary>
@@ -420,7 +420,6 @@ namespace Adyen.Model.Payments
                 return hashCode;
             }
         }
-
         /// <summary>
         /// To validate all properties of the instance
         /// </summary>

@@ -212,282 +212,282 @@ namespace Adyen.Model.Payments
         /// </summary>
         [DataMember(Name = "accountInfo", EmitDefaultValue = false)]
         public AccountInfo AccountInfo { get; set; }
-        
+
         /// <summary>
         /// Gets or Sets AdditionalAmount
         /// </summary>
         [DataMember(Name = "additionalAmount", EmitDefaultValue = false)]
         public Amount AdditionalAmount { get; set; }
-        
+
         /// <summary>
         /// This field contains additional data, which may be required for a particular payment request.  The &#x60;additionalData&#x60; object consists of entries, each of which includes the key and value.
         /// </summary>
         /// <value>This field contains additional data, which may be required for a particular payment request.  The &#x60;additionalData&#x60; object consists of entries, each of which includes the key and value.</value>
         [DataMember(Name = "additionalData", EmitDefaultValue = false)]
         public Dictionary<string, string> AdditionalData { get; set; }
-        
+
         /// <summary>
         /// Gets or Sets Amount
         /// </summary>
         [DataMember(Name = "amount", EmitDefaultValue = false)]
         public Amount Amount { get; set; }
-        
+
         /// <summary>
         /// Gets or Sets ApplicationInfo
         /// </summary>
         [DataMember(Name = "applicationInfo", EmitDefaultValue = false)]
         public ApplicationInfo ApplicationInfo { get; set; }
-        
+
         /// <summary>
         /// Gets or Sets BillingAddress
         /// </summary>
         [DataMember(Name = "billingAddress", EmitDefaultValue = false)]
         public Address BillingAddress { get; set; }
-        
+
         /// <summary>
         /// Gets or Sets BrowserInfo
         /// </summary>
         [DataMember(Name = "browserInfo", EmitDefaultValue = false)]
         public BrowserInfo BrowserInfo { get; set; }
-        
+
         /// <summary>
         /// The delay between the authorisation and scheduled auto-capture, specified in hours.
         /// </summary>
         /// <value>The delay between the authorisation and scheduled auto-capture, specified in hours.</value>
         [DataMember(Name = "captureDelayHours", EmitDefaultValue = false)]
         public int? CaptureDelayHours { get; set; }
-        
+
         /// <summary>
         /// The shopper&#39;s date of birth.  Format [ISO-8601](https://www.w3.org/TR/NOTE-datetime): YYYY-MM-DD
         /// </summary>
         /// <value>The shopper&#39;s date of birth.  Format [ISO-8601](https://www.w3.org/TR/NOTE-datetime): YYYY-MM-DD</value>
         [DataMember(Name = "dateOfBirth", EmitDefaultValue = false)]
         public DateTime DateOfBirth { get; set; }
-        
+
         /// <summary>
         /// Gets or Sets DccQuote
         /// </summary>
         [DataMember(Name = "dccQuote", EmitDefaultValue = false)]
         public ForexQuote DccQuote { get; set; }
-        
+
         /// <summary>
         /// Gets or Sets DeliveryAddress
         /// </summary>
         [DataMember(Name = "deliveryAddress", EmitDefaultValue = false)]
         public Address DeliveryAddress { get; set; }
-        
+
         /// <summary>
         /// The date and time the purchased goods should be delivered.  Format [ISO 8601](https://www.w3.org/TR/NOTE-datetime): YYYY-MM-DDThh:mm:ss.sssTZD  Example: 2017-07-17T13:42:40.428+01:00
         /// </summary>
         /// <value>The date and time the purchased goods should be delivered.  Format [ISO 8601](https://www.w3.org/TR/NOTE-datetime): YYYY-MM-DDThh:mm:ss.sssTZD  Example: 2017-07-17T13:42:40.428+01:00</value>
         [DataMember(Name = "deliveryDate", EmitDefaultValue = false)]
         public DateTime DeliveryDate { get; set; }
-        
+
         /// <summary>
         /// A string containing the shopper&#39;s device fingerprint. For more information, refer to [Device fingerprinting](https://docs.adyen.com/risk-management/device-fingerprinting).
         /// </summary>
         /// <value>A string containing the shopper&#39;s device fingerprint. For more information, refer to [Device fingerprinting](https://docs.adyen.com/risk-management/device-fingerprinting).</value>
         [DataMember(Name = "deviceFingerprint", EmitDefaultValue = false)]
         public string DeviceFingerprint { get; set; }
-        
+
         /// <summary>
         /// An integer value that is added to the normal fraud score. The value can be either positive or negative.
         /// </summary>
         /// <value>An integer value that is added to the normal fraud score. The value can be either positive or negative.</value>
         [DataMember(Name = "fraudOffset", EmitDefaultValue = false)]
         public int? FraudOffset { get; set; }
-        
+
         /// <summary>
         /// Gets or Sets Installments
         /// </summary>
         [DataMember(Name = "installments", EmitDefaultValue = false)]
         public Installments Installments { get; set; }
-        
+
         /// <summary>
         /// The [merchant category code](https://en.wikipedia.org/wiki/Merchant_category_code) (MCC) is a four-digit number, which relates to a particular market segment. This code reflects the predominant activity that is conducted by the merchant.
         /// </summary>
         /// <value>The [merchant category code](https://en.wikipedia.org/wiki/Merchant_category_code) (MCC) is a four-digit number, which relates to a particular market segment. This code reflects the predominant activity that is conducted by the merchant.</value>
         [DataMember(Name = "mcc", EmitDefaultValue = false)]
         public string Mcc { get; set; }
-        
+
         /// <summary>
         /// The payment session identifier returned by the card issuer.
         /// </summary>
         /// <value>The payment session identifier returned by the card issuer.</value>
-        [DataMember(Name = "md", IsRequired = false, EmitDefaultValue = true)]
+        [DataMember(Name = "md", IsRequired = false, EmitDefaultValue = false)]
         public string Md { get; set; }
-        
+
         /// <summary>
         /// The merchant account identifier, with which you want to process the transaction.
         /// </summary>
         /// <value>The merchant account identifier, with which you want to process the transaction.</value>
-        [DataMember(Name = "merchantAccount", IsRequired = false, EmitDefaultValue = true)]
+        [DataMember(Name = "merchantAccount", IsRequired = false, EmitDefaultValue = false)]
         public string MerchantAccount { get; set; }
-        
+
         /// <summary>
         /// This reference allows linking multiple transactions to each other for reporting purposes (i.e. order auth-rate). The reference should be unique per billing cycle. The same merchant order reference should never be reused after the first authorised attempt. If used, this field should be supplied for all incoming authorisations. &gt; We strongly recommend you send the &#x60;merchantOrderReference&#x60; value to benefit from linking payment requests when authorisation retries take place. In addition, we recommend you provide &#x60;retry.orderAttemptNumber&#x60;, &#x60;retry.chainAttemptNumber&#x60;, and &#x60;retry.skipRetry&#x60; values in &#x60;PaymentRequest.additionalData&#x60;.
         /// </summary>
         /// <value>This reference allows linking multiple transactions to each other for reporting purposes (i.e. order auth-rate). The reference should be unique per billing cycle. The same merchant order reference should never be reused after the first authorised attempt. If used, this field should be supplied for all incoming authorisations. &gt; We strongly recommend you send the &#x60;merchantOrderReference&#x60; value to benefit from linking payment requests when authorisation retries take place. In addition, we recommend you provide &#x60;retry.orderAttemptNumber&#x60;, &#x60;retry.chainAttemptNumber&#x60;, and &#x60;retry.skipRetry&#x60; values in &#x60;PaymentRequest.additionalData&#x60;.</value>
         [DataMember(Name = "merchantOrderReference", EmitDefaultValue = false)]
         public string MerchantOrderReference { get; set; }
-        
+
         /// <summary>
         /// Gets or Sets MerchantRiskIndicator
         /// </summary>
         [DataMember(Name = "merchantRiskIndicator", EmitDefaultValue = false)]
         public MerchantRiskIndicator MerchantRiskIndicator { get; set; }
-        
+
         /// <summary>
         /// Metadata consists of entries, each of which includes a key and a value. Limits: * Maximum 20 key-value pairs per request. When exceeding, the \&quot;177\&quot; error occurs: \&quot;Metadata size exceeds limit\&quot;. * Maximum 20 characters per key. * Maximum 80 characters per value. 
         /// </summary>
         /// <value>Metadata consists of entries, each of which includes a key and a value. Limits: * Maximum 20 key-value pairs per request. When exceeding, the \&quot;177\&quot; error occurs: \&quot;Metadata size exceeds limit\&quot;. * Maximum 20 characters per key. * Maximum 80 characters per value. </value>
         [DataMember(Name = "metadata", EmitDefaultValue = false)]
         public Dictionary<string, string> Metadata { get; set; }
-        
+
         /// <summary>
         /// When you are doing multiple partial (gift card) payments, this is the &#x60;pspReference&#x60; of the first payment. We use this to link the multiple payments to each other. As your own reference for linking multiple payments, use the &#x60;merchantOrderReference&#x60;instead.
         /// </summary>
         /// <value>When you are doing multiple partial (gift card) payments, this is the &#x60;pspReference&#x60; of the first payment. We use this to link the multiple payments to each other. As your own reference for linking multiple payments, use the &#x60;merchantOrderReference&#x60;instead.</value>
         [DataMember(Name = "orderReference", EmitDefaultValue = false)]
         public string OrderReference { get; set; }
-        
+
         /// <summary>
         /// Payment authorisation response returned by the card issuer. The &#x60;paResponse&#x60; field holds the PaRes value received from the card issuer.
         /// </summary>
         /// <value>Payment authorisation response returned by the card issuer. The &#x60;paResponse&#x60; field holds the PaRes value received from the card issuer.</value>
-        [DataMember(Name = "paResponse", IsRequired = false, EmitDefaultValue = true)]
+        [DataMember(Name = "paResponse", IsRequired = false, EmitDefaultValue = false)]
         public string PaResponse { get; set; }
-        
+
         /// <summary>
         /// Gets or Sets Recurring
         /// </summary>
         [DataMember(Name = "recurring", EmitDefaultValue = false)]
         public Recurring Recurring { get; set; }
-        
+
         /// <summary>
         /// The reference to uniquely identify a payment. This reference is used in all communication with you about the payment status. We recommend using a unique value per payment; however, it is not a requirement. If you need to provide multiple references for a transaction, separate them with hyphens (\&quot;-\&quot;). Maximum length: 80 characters.
         /// </summary>
         /// <value>The reference to uniquely identify a payment. This reference is used in all communication with you about the payment status. We recommend using a unique value per payment; however, it is not a requirement. If you need to provide multiple references for a transaction, separate them with hyphens (\&quot;-\&quot;). Maximum length: 80 characters.</value>
         [DataMember(Name = "reference", EmitDefaultValue = false)]
         public string Reference { get; set; }
-        
+
         /// <summary>
         /// Some payment methods require defining a value for this field to specify how to process the transaction.  For the Bancontact payment method, it can be set to: * &#x60;maestro&#x60; (default), to be processed like a Maestro card, or * &#x60;bcmc&#x60;, to be processed like a Bancontact card.
         /// </summary>
         /// <value>Some payment methods require defining a value for this field to specify how to process the transaction.  For the Bancontact payment method, it can be set to: * &#x60;maestro&#x60; (default), to be processed like a Maestro card, or * &#x60;bcmc&#x60;, to be processed like a Bancontact card.</value>
         [DataMember(Name = "selectedBrand", EmitDefaultValue = false)]
         public string SelectedBrand { get; set; }
-        
+
         /// <summary>
         /// The &#x60;recurringDetailReference&#x60; you want to use for this payment. The value &#x60;LATEST&#x60; can be used to select the most recently stored recurring detail.
         /// </summary>
         /// <value>The &#x60;recurringDetailReference&#x60; you want to use for this payment. The value &#x60;LATEST&#x60; can be used to select the most recently stored recurring detail.</value>
         [DataMember(Name = "selectedRecurringDetailReference", EmitDefaultValue = false)]
         public string SelectedRecurringDetailReference { get; set; }
-        
+
         /// <summary>
         /// A session ID used to identify a payment session.
         /// </summary>
         /// <value>A session ID used to identify a payment session.</value>
         [DataMember(Name = "sessionId", EmitDefaultValue = false)]
         public string SessionId { get; set; }
-        
+
         /// <summary>
         /// The shopper&#39;s email address. We recommend that you provide this data, as it is used in velocity fraud checks. &gt; For 3D Secure 2 transactions, schemes require &#x60;shopperEmail&#x60; for all browser-based and mobile implementations.
         /// </summary>
         /// <value>The shopper&#39;s email address. We recommend that you provide this data, as it is used in velocity fraud checks. &gt; For 3D Secure 2 transactions, schemes require &#x60;shopperEmail&#x60; for all browser-based and mobile implementations.</value>
         [DataMember(Name = "shopperEmail", EmitDefaultValue = false)]
         public string ShopperEmail { get; set; }
-        
+
         /// <summary>
         /// The shopper&#39;s IP address. In general, we recommend that you provide this data, as it is used in a number of risk checks (for instance, number of payment attempts or location-based checks). &gt; For 3D Secure 2 transactions, schemes require &#x60;shopperIP&#x60; for all browser-based implementations. This field is also mandatory for some merchants depending on your business model. For more information, [contact Support](https://www.adyen.help/hc/en-us/requests/new).
         /// </summary>
         /// <value>The shopper&#39;s IP address. In general, we recommend that you provide this data, as it is used in a number of risk checks (for instance, number of payment attempts or location-based checks). &gt; For 3D Secure 2 transactions, schemes require &#x60;shopperIP&#x60; for all browser-based implementations. This field is also mandatory for some merchants depending on your business model. For more information, [contact Support](https://www.adyen.help/hc/en-us/requests/new).</value>
         [DataMember(Name = "shopperIP", EmitDefaultValue = false)]
         public string ShopperIP { get; set; }
-        
+
         /// <summary>
         /// The combination of a language code and a country code to specify the language to be used in the payment.
         /// </summary>
         /// <value>The combination of a language code and a country code to specify the language to be used in the payment.</value>
         [DataMember(Name = "shopperLocale", EmitDefaultValue = false)]
         public string ShopperLocale { get; set; }
-        
+
         /// <summary>
         /// Gets or Sets ShopperName
         /// </summary>
         [DataMember(Name = "shopperName", EmitDefaultValue = false)]
         public Name ShopperName { get; set; }
-        
+
         /// <summary>
         /// Required for recurring payments.  Your reference to uniquely identify this shopper, for example user ID or account ID. Minimum length: 3 characters. &gt; Your reference must not include personally identifiable information (PII), for example name or email address.
         /// </summary>
         /// <value>Required for recurring payments.  Your reference to uniquely identify this shopper, for example user ID or account ID. Minimum length: 3 characters. &gt; Your reference must not include personally identifiable information (PII), for example name or email address.</value>
         [DataMember(Name = "shopperReference", EmitDefaultValue = false)]
         public string ShopperReference { get; set; }
-        
+
         /// <summary>
         /// The text to be shown on the shopper&#39;s bank statement.  We recommend sending a maximum of 22 characters, otherwise banks might truncate the string.  Allowed characters: **a-z**, **A-Z**, **0-9**, spaces, and special characters **. , &#39; _ - ? + * /_**.
         /// </summary>
         /// <value>The text to be shown on the shopper&#39;s bank statement.  We recommend sending a maximum of 22 characters, otherwise banks might truncate the string.  Allowed characters: **a-z**, **A-Z**, **0-9**, spaces, and special characters **. , &#39; _ - ? + * /_**.</value>
         [DataMember(Name = "shopperStatement", EmitDefaultValue = false)]
         public string ShopperStatement { get; set; }
-        
+
         /// <summary>
         /// The shopper&#39;s social security number.
         /// </summary>
         /// <value>The shopper&#39;s social security number.</value>
         [DataMember(Name = "socialSecurityNumber", EmitDefaultValue = false)]
         public string SocialSecurityNumber { get; set; }
-        
+
         /// <summary>
         /// An array of objects specifying how the payment should be split when using [Adyen for Platforms](https://docs.adyen.com/marketplaces-and-platforms/processing-payments#providing-split-information) or [Issuing](https://docs.adyen.com/issuing/add-manage-funds#split).
         /// </summary>
         /// <value>An array of objects specifying how the payment should be split when using [Adyen for Platforms](https://docs.adyen.com/marketplaces-and-platforms/processing-payments#providing-split-information) or [Issuing](https://docs.adyen.com/issuing/add-manage-funds#split).</value>
         [DataMember(Name = "splits", EmitDefaultValue = false)]
         public List<Split> Splits { get; set; }
-        
+
         /// <summary>
         /// The ecommerce or point-of-sale store that is processing the payment. Used in [partner model integrations](https://docs.adyen.com/marketplaces-and-platforms/classic/platforms-for-partners#route-payments) for Adyen for Platforms.
         /// </summary>
         /// <value>The ecommerce or point-of-sale store that is processing the payment. Used in [partner model integrations](https://docs.adyen.com/marketplaces-and-platforms/classic/platforms-for-partners#route-payments) for Adyen for Platforms.</value>
         [DataMember(Name = "store", EmitDefaultValue = false)]
         public string Store { get; set; }
-        
+
         /// <summary>
         /// The shopper&#39;s telephone number.
         /// </summary>
         /// <value>The shopper&#39;s telephone number.</value>
         [DataMember(Name = "telephoneNumber", EmitDefaultValue = false)]
         public string TelephoneNumber { get; set; }
-        
+
         /// <summary>
         /// Gets or Sets ThreeDS2RequestData
         /// </summary>
         [DataMember(Name = "threeDS2RequestData", EmitDefaultValue = false)]
         public ThreeDS2RequestData ThreeDS2RequestData { get; set; }
-        
+
         /// <summary>
         /// If set to true, you will only perform the [3D Secure 2 authentication](https://docs.adyen.com/online-payments/3d-secure/other-3ds-flows/authentication-only), and not the payment authorisation.
         /// </summary>
         /// <value>If set to true, you will only perform the [3D Secure 2 authentication](https://docs.adyen.com/online-payments/3d-secure/other-3ds-flows/authentication-only), and not the payment authorisation.</value>
         [DataMember(Name = "threeDSAuthenticationOnly", EmitDefaultValue = false)]
         public bool ThreeDSAuthenticationOnly { get; set; }
-        
+
         /// <summary>
         /// The reference value to aggregate sales totals in reporting. When not specified, the store field is used (if available).
         /// </summary>
         /// <value>The reference value to aggregate sales totals in reporting. When not specified, the store field is used (if available).</value>
         [DataMember(Name = "totalsGroup", EmitDefaultValue = false)]
         public string TotalsGroup { get; set; }
-        
+
         /// <summary>
         /// Set to true if the payment should be routed to a trusted MID.
         /// </summary>
         /// <value>Set to true if the payment should be routed to a trusted MID.</value>
         [DataMember(Name = "trustedShopper", EmitDefaultValue = false)]
         public bool TrustedShopper { get; set; }
-        
+
         /// <summary>
         /// Returns the string presentation of the object
         /// </summary>
@@ -964,7 +964,6 @@ namespace Adyen.Model.Payments
                 return hashCode;
             }
         }
-
         /// <summary>
         /// To validate all properties of the instance
         /// </summary>

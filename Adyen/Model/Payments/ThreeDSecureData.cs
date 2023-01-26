@@ -232,63 +232,63 @@ namespace Adyen.Model.Payments
         /// <value>The cardholder authentication value (base64 encoded, 20 bytes in a decoded form).</value>
         [DataMember(Name = "cavv", EmitDefaultValue = false)]
         public byte[] Cavv { get; set; }
-        
+
         /// <summary>
         /// The CAVV algorithm used. Include this only for 3D Secure 1.
         /// </summary>
         /// <value>The CAVV algorithm used. Include this only for 3D Secure 1.</value>
         [DataMember(Name = "cavvAlgorithm", EmitDefaultValue = false)]
         public string CavvAlgorithm { get; set; }
-        
+
         /// <summary>
         /// Supported for 3D Secure 2. The unique transaction identifier assigned by the Directory Server (DS) to identify a single transaction.
         /// </summary>
         /// <value>Supported for 3D Secure 2. The unique transaction identifier assigned by the Directory Server (DS) to identify a single transaction.</value>
         [DataMember(Name = "dsTransID", EmitDefaultValue = false)]
         public string DsTransID { get; set; }
-        
+
         /// <summary>
         /// The electronic commerce indicator.
         /// </summary>
         /// <value>The electronic commerce indicator.</value>
         [DataMember(Name = "eci", EmitDefaultValue = false)]
         public string Eci { get; set; }
-        
+
         /// <summary>
         /// Risk score calculated by Directory Server (DS). Required for Cartes Bancaires integrations.
         /// </summary>
         /// <value>Risk score calculated by Directory Server (DS). Required for Cartes Bancaires integrations.</value>
         [DataMember(Name = "riskScore", EmitDefaultValue = false)]
         public string RiskScore { get; set; }
-        
+
         /// <summary>
         /// The version of the 3D Secure protocol.
         /// </summary>
         /// <value>The version of the 3D Secure protocol.</value>
         [DataMember(Name = "threeDSVersion", EmitDefaultValue = false)]
         public string ThreeDSVersion { get; set; }
-        
+
         /// <summary>
         /// Network token authentication verification value (TAVV). The network token cryptogram.
         /// </summary>
         /// <value>Network token authentication verification value (TAVV). The network token cryptogram.</value>
         [DataMember(Name = "tokenAuthenticationVerificationValue", EmitDefaultValue = false)]
         public byte[] TokenAuthenticationVerificationValue { get; set; }
-        
+
         /// <summary>
         /// Provides information on why the &#x60;transStatus&#x60; field has the specified value. For possible values, refer to [our docs](https://docs.adyen.com/online-payments/3d-secure/api-reference#possible-transstatusreason-values).
         /// </summary>
         /// <value>Provides information on why the &#x60;transStatus&#x60; field has the specified value. For possible values, refer to [our docs](https://docs.adyen.com/online-payments/3d-secure/api-reference#possible-transstatusreason-values).</value>
         [DataMember(Name = "transStatusReason", EmitDefaultValue = false)]
         public string TransStatusReason { get; set; }
-        
+
         /// <summary>
         /// Supported for 3D Secure 1. The transaction identifier (Base64-encoded, 20 bytes in a decoded form).
         /// </summary>
         /// <value>Supported for 3D Secure 1. The transaction identifier (Base64-encoded, 20 bytes in a decoded form).</value>
         [DataMember(Name = "xid", EmitDefaultValue = false)]
         public byte[] Xid { get; set; }
-        
+
         /// <summary>
         /// Returns the string presentation of the object
         /// </summary>
@@ -454,7 +454,6 @@ namespace Adyen.Model.Payments
                 return hashCode;
             }
         }
-
         /// <summary>
         /// To validate all properties of the instance
         /// </summary>

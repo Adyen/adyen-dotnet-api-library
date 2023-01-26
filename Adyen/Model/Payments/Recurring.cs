@@ -118,21 +118,21 @@ namespace Adyen.Model.Payments
         /// <value>A descriptive name for this detail.</value>
         [DataMember(Name = "recurringDetailName", EmitDefaultValue = false)]
         public string RecurringDetailName { get; set; }
-        
+
         /// <summary>
         /// Date after which no further authorisations shall be performed. Only for 3D Secure 2.
         /// </summary>
         /// <value>Date after which no further authorisations shall be performed. Only for 3D Secure 2.</value>
         [DataMember(Name = "recurringExpiry", EmitDefaultValue = false)]
         public DateTime RecurringExpiry { get; set; }
-        
+
         /// <summary>
         /// Minimum number of days between authorisations. Only for 3D Secure 2.
         /// </summary>
         /// <value>Minimum number of days between authorisations. Only for 3D Secure 2.</value>
         [DataMember(Name = "recurringFrequency", EmitDefaultValue = false)]
         public string RecurringFrequency { get; set; }
-        
+
         /// <summary>
         /// Returns the string presentation of the object
         /// </summary>
@@ -232,7 +232,6 @@ namespace Adyen.Model.Payments
                 return hashCode;
             }
         }
-
         /// <summary>
         /// To validate all properties of the instance
         /// </summary>

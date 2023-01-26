@@ -58,42 +58,42 @@ namespace Adyen.Model.Payments
         /// <value>The billing address city passed in the payment request.</value>
         [DataMember(Name = "billingAddress.city", EmitDefaultValue = false)]
         public string BillingAddressCity { get; set; }
-        
+
         /// <summary>
         /// The billing address country passed in the payment request.  Example: NL
         /// </summary>
         /// <value>The billing address country passed in the payment request.  Example: NL</value>
         [DataMember(Name = "billingAddress.country", EmitDefaultValue = false)]
         public string BillingAddressCountry { get; set; }
-        
+
         /// <summary>
         /// The billing address house number or name passed in the payment request.
         /// </summary>
         /// <value>The billing address house number or name passed in the payment request.</value>
         [DataMember(Name = "billingAddress.houseNumberOrName", EmitDefaultValue = false)]
         public string BillingAddressHouseNumberOrName { get; set; }
-        
+
         /// <summary>
         /// The billing address postal code passed in the payment request.  Example: 1011 DJ
         /// </summary>
         /// <value>The billing address postal code passed in the payment request.  Example: 1011 DJ</value>
         [DataMember(Name = "billingAddress.postalCode", EmitDefaultValue = false)]
         public string BillingAddressPostalCode { get; set; }
-        
+
         /// <summary>
         /// The billing address state or province passed in the payment request.  Example: NH
         /// </summary>
         /// <value>The billing address state or province passed in the payment request.  Example: NH</value>
         [DataMember(Name = "billingAddress.stateOrProvince", EmitDefaultValue = false)]
         public string BillingAddressStateOrProvince { get; set; }
-        
+
         /// <summary>
         /// The billing address street passed in the payment request.
         /// </summary>
         /// <value>The billing address street passed in the payment request.</value>
         [DataMember(Name = "billingAddress.street", EmitDefaultValue = false)]
         public string BillingAddressStreet { get; set; }
-        
+
         /// <summary>
         /// Returns the string presentation of the object
         /// </summary>
@@ -211,7 +211,6 @@ namespace Adyen.Model.Payments
                 return hashCode;
             }
         }
-
         /// <summary>
         /// To validate all properties of the instance
         /// </summary>

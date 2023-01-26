@@ -58,42 +58,42 @@ namespace Adyen.Model.Payments
         /// <value>The Android Pay token retrieved from the SDK.</value>
         [DataMember(Name = "androidpay.token", EmitDefaultValue = false)]
         public string AndroidpayToken { get; set; }
-        
+
         /// <summary>
         /// The Mastercard Masterpass Transaction ID retrieved from the SDK.
         /// </summary>
         /// <value>The Mastercard Masterpass Transaction ID retrieved from the SDK.</value>
         [DataMember(Name = "masterpass.transactionId", EmitDefaultValue = false)]
         public string MasterpassTransactionId { get; set; }
-        
+
         /// <summary>
         /// The Apple Pay token retrieved from the SDK.
         /// </summary>
         /// <value>The Apple Pay token retrieved from the SDK.</value>
         [DataMember(Name = "payment.token", EmitDefaultValue = false)]
         public string PaymentToken { get; set; }
-        
+
         /// <summary>
         /// The Google Pay token retrieved from the SDK.
         /// </summary>
         /// <value>The Google Pay token retrieved from the SDK.</value>
         [DataMember(Name = "paywithgoogle.token", EmitDefaultValue = false)]
         public string PaywithgoogleToken { get; set; }
-        
+
         /// <summary>
         /// The Samsung Pay token retrieved from the SDK.
         /// </summary>
         /// <value>The Samsung Pay token retrieved from the SDK.</value>
         [DataMember(Name = "samsungpay.token", EmitDefaultValue = false)]
         public string SamsungpayToken { get; set; }
-        
+
         /// <summary>
         /// The Visa Checkout Call ID retrieved from the SDK.
         /// </summary>
         /// <value>The Visa Checkout Call ID retrieved from the SDK.</value>
         [DataMember(Name = "visacheckout.callId", EmitDefaultValue = false)]
         public string VisacheckoutCallId { get; set; }
-        
+
         /// <summary>
         /// Returns the string presentation of the object
         /// </summary>
@@ -211,7 +211,6 @@ namespace Adyen.Model.Payments
                 return hashCode;
             }
         }
-
         /// <summary>
         /// To validate all properties of the instance
         /// </summary>

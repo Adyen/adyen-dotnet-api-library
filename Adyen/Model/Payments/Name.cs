@@ -53,16 +53,16 @@ namespace Adyen.Model.Payments
         /// The first name.
         /// </summary>
         /// <value>The first name.</value>
-        [DataMember(Name = "firstName", IsRequired = false, EmitDefaultValue = true)]
+        [DataMember(Name = "firstName", IsRequired = false, EmitDefaultValue = false)]
         public string FirstName { get; set; }
-        
+
         /// <summary>
         /// The last name.
         /// </summary>
         /// <value>The last name.</value>
-        [DataMember(Name = "lastName", IsRequired = false, EmitDefaultValue = true)]
+        [DataMember(Name = "lastName", IsRequired = false, EmitDefaultValue = false)]
         public string LastName { get; set; }
-        
+
         /// <summary>
         /// Returns the string presentation of the object
         /// </summary>
@@ -140,7 +140,6 @@ namespace Adyen.Model.Payments
                 return hashCode;
             }
         }
-
         /// <summary>
         /// To validate all properties of the instance
         /// </summary>

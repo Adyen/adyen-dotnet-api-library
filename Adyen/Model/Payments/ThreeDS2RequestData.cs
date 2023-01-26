@@ -376,21 +376,21 @@ namespace Adyen.Model.Payments
         /// </summary>
         [DataMember(Name = "acctInfo", EmitDefaultValue = false)]
         public AcctInfo AcctInfo { get; set; }
-        
+
         /// <summary>
         /// Required for [authentication-only integration](https://docs.adyen.com/online-payments/3d-secure/other-3ds-flows/authentication-only). The acquiring BIN enrolled for 3D Secure 2. This string should match the value that you will use in the authorisation. Use 123456 on the Test platform.
         /// </summary>
         /// <value>Required for [authentication-only integration](https://docs.adyen.com/online-payments/3d-secure/other-3ds-flows/authentication-only). The acquiring BIN enrolled for 3D Secure 2. This string should match the value that you will use in the authorisation. Use 123456 on the Test platform.</value>
         [DataMember(Name = "acquirerBIN", EmitDefaultValue = false)]
         public string AcquirerBIN { get; set; }
-        
+
         /// <summary>
         /// Required for [authentication-only integration](https://docs.adyen.com/online-payments/3d-secure/other-3ds-flows/authentication-only). The merchantId that is enrolled for 3D Secure 2 by the merchant&#39;s acquirer. This string should match the value that you will use in the authorisation. Use 123456 on the Test platform.
         /// </summary>
         /// <value>Required for [authentication-only integration](https://docs.adyen.com/online-payments/3d-secure/other-3ds-flows/authentication-only). The merchantId that is enrolled for 3D Secure 2 by the merchant&#39;s acquirer. This string should match the value that you will use in the authorisation. Use 123456 on the Test platform.</value>
         [DataMember(Name = "acquirerMerchantID", EmitDefaultValue = false)]
         public string AcquirerMerchantID { get; set; }
-        
+
         /// <summary>
         /// If set to true, you will only perform the [3D Secure 2 authentication](https://docs.adyen.com/online-payments/3d-secure/other-3ds-flows/authentication-only), and not the payment authorisation.
         /// </summary>
@@ -398,203 +398,203 @@ namespace Adyen.Model.Payments
         [DataMember(Name = "authenticationOnly", EmitDefaultValue = false)]
         [Obsolete]
         public bool AuthenticationOnly { get; set; }
-        
+
         /// <summary>
         /// The environment of the shopper. Allowed values: * &#x60;app&#x60; * &#x60;browser&#x60;
         /// </summary>
         /// <value>The environment of the shopper. Allowed values: * &#x60;app&#x60; * &#x60;browser&#x60;</value>
-        [DataMember(Name = "deviceChannel", IsRequired = false, EmitDefaultValue = true)]
+        [DataMember(Name = "deviceChannel", IsRequired = false, EmitDefaultValue = false)]
         public string DeviceChannel { get; set; }
-        
+
         /// <summary>
         /// Gets or Sets DeviceRenderOptions
         /// </summary>
         [DataMember(Name = "deviceRenderOptions", EmitDefaultValue = false)]
         public DeviceRenderOptions DeviceRenderOptions { get; set; }
-        
+
         /// <summary>
         /// Gets or Sets HomePhone
         /// </summary>
         [DataMember(Name = "homePhone", EmitDefaultValue = false)]
         public Phone HomePhone { get; set; }
-        
+
         /// <summary>
         /// Required for merchants that have been enrolled for 3D Secure 2 by another party than Adyen, mostly [authentication-only integrations](https://docs.adyen.com/online-payments/3d-secure/other-3ds-flows/authentication-only). The &#x60;mcc&#x60; is a four-digit code with which the previously given &#x60;acquirerMerchantID&#x60; is registered at the scheme.
         /// </summary>
         /// <value>Required for merchants that have been enrolled for 3D Secure 2 by another party than Adyen, mostly [authentication-only integrations](https://docs.adyen.com/online-payments/3d-secure/other-3ds-flows/authentication-only). The &#x60;mcc&#x60; is a four-digit code with which the previously given &#x60;acquirerMerchantID&#x60; is registered at the scheme.</value>
         [DataMember(Name = "mcc", EmitDefaultValue = false)]
         public string Mcc { get; set; }
-        
+
         /// <summary>
         /// Required for [authentication-only integration](https://docs.adyen.com/online-payments/3d-secure/other-3ds-flows/authentication-only). The merchant name that the issuer presents to the shopper if they get a challenge. We recommend to use the same value that you will use in the authorization. Maximum length is 40 characters. &gt; Optional for a [full 3D Secure 2 integration](https://docs.adyen.com/online-payments/3d-secure/native-3ds2/api-integration). Use this field if you are enrolled for 3D Secure 2 with us and want to override the merchant name already configured on your account.
         /// </summary>
         /// <value>Required for [authentication-only integration](https://docs.adyen.com/online-payments/3d-secure/other-3ds-flows/authentication-only). The merchant name that the issuer presents to the shopper if they get a challenge. We recommend to use the same value that you will use in the authorization. Maximum length is 40 characters. &gt; Optional for a [full 3D Secure 2 integration](https://docs.adyen.com/online-payments/3d-secure/native-3ds2/api-integration). Use this field if you are enrolled for 3D Secure 2 with us and want to override the merchant name already configured on your account.</value>
         [DataMember(Name = "merchantName", EmitDefaultValue = false)]
         public string MerchantName { get; set; }
-        
+
         /// <summary>
         /// The &#x60;messageVersion&#x60; value indicating the 3D Secure 2 protocol version.
         /// </summary>
         /// <value>The &#x60;messageVersion&#x60; value indicating the 3D Secure 2 protocol version.</value>
         [DataMember(Name = "messageVersion", EmitDefaultValue = false)]
         public string MessageVersion { get; set; }
-        
+
         /// <summary>
         /// Gets or Sets MobilePhone
         /// </summary>
         [DataMember(Name = "mobilePhone", EmitDefaultValue = false)]
         public Phone MobilePhone { get; set; }
-        
+
         /// <summary>
         /// URL to where the issuer should send the &#x60;CRes&#x60;. Required if you are not using components for &#x60;channel&#x60; **Web** or if you are using classic integration &#x60;deviceChannel&#x60; **browser**.
         /// </summary>
         /// <value>URL to where the issuer should send the &#x60;CRes&#x60;. Required if you are not using components for &#x60;channel&#x60; **Web** or if you are using classic integration &#x60;deviceChannel&#x60; **browser**.</value>
         [DataMember(Name = "notificationURL", EmitDefaultValue = false)]
         public string NotificationURL { get; set; }
-        
+
         /// <summary>
         /// Value **true** indicates that the transaction was de-tokenised prior to being received by the ACS.
         /// </summary>
         /// <value>Value **true** indicates that the transaction was de-tokenised prior to being received by the ACS.</value>
         [DataMember(Name = "payTokenInd", EmitDefaultValue = false)]
         public bool PayTokenInd { get; set; }
-        
+
         /// <summary>
         /// Indicates the type of payment for which an authentication is requested (message extension)
         /// </summary>
         /// <value>Indicates the type of payment for which an authentication is requested (message extension)</value>
         [DataMember(Name = "paymentAuthenticationUseCase", EmitDefaultValue = false)]
         public string PaymentAuthenticationUseCase { get; set; }
-        
+
         /// <summary>
         /// Indicates the maximum number of authorisations permitted for instalment payments. Length: 1–3 characters.
         /// </summary>
         /// <value>Indicates the maximum number of authorisations permitted for instalment payments. Length: 1–3 characters.</value>
         [DataMember(Name = "purchaseInstalData", EmitDefaultValue = false)]
         public string PurchaseInstalData { get; set; }
-        
+
         /// <summary>
         /// Date after which no further authorisations shall be performed. Format: YYYYMMDD
         /// </summary>
         /// <value>Date after which no further authorisations shall be performed. Format: YYYYMMDD</value>
         [DataMember(Name = "recurringExpiry", EmitDefaultValue = false)]
         public string RecurringExpiry { get; set; }
-        
+
         /// <summary>
         /// Indicates the minimum number of days between authorisations. Maximum length: 4 characters.
         /// </summary>
         /// <value>Indicates the minimum number of days between authorisations. Maximum length: 4 characters.</value>
         [DataMember(Name = "recurringFrequency", EmitDefaultValue = false)]
         public string RecurringFrequency { get; set; }
-        
+
         /// <summary>
         /// The &#x60;sdkAppID&#x60; value as received from the 3D Secure 2 SDK. Required for &#x60;deviceChannel&#x60; set to **app**.
         /// </summary>
         /// <value>The &#x60;sdkAppID&#x60; value as received from the 3D Secure 2 SDK. Required for &#x60;deviceChannel&#x60; set to **app**.</value>
         [DataMember(Name = "sdkAppID", EmitDefaultValue = false)]
         public string SdkAppID { get; set; }
-        
+
         /// <summary>
         /// The &#x60;sdkEncData&#x60; value as received from the 3D Secure 2 SDK. Required for &#x60;deviceChannel&#x60; set to **app**.
         /// </summary>
         /// <value>The &#x60;sdkEncData&#x60; value as received from the 3D Secure 2 SDK. Required for &#x60;deviceChannel&#x60; set to **app**.</value>
         [DataMember(Name = "sdkEncData", EmitDefaultValue = false)]
         public string SdkEncData { get; set; }
-        
+
         /// <summary>
         /// Gets or Sets SdkEphemPubKey
         /// </summary>
         [DataMember(Name = "sdkEphemPubKey", EmitDefaultValue = false)]
         public SDKEphemPubKey SdkEphemPubKey { get; set; }
-        
+
         /// <summary>
         /// The maximum amount of time in minutes for the 3D Secure 2 authentication process. Optional and only for &#x60;deviceChannel&#x60; set to **app**. Defaults to **60** minutes.
         /// </summary>
         /// <value>The maximum amount of time in minutes for the 3D Secure 2 authentication process. Optional and only for &#x60;deviceChannel&#x60; set to **app**. Defaults to **60** minutes.</value>
         [DataMember(Name = "sdkMaxTimeout", EmitDefaultValue = false)]
         public int? SdkMaxTimeout { get; set; }
-        
+
         /// <summary>
         /// The &#x60;sdkReferenceNumber&#x60; value as received from the 3D Secure 2 SDK. Only for &#x60;deviceChannel&#x60; set to **app**.
         /// </summary>
         /// <value>The &#x60;sdkReferenceNumber&#x60; value as received from the 3D Secure 2 SDK. Only for &#x60;deviceChannel&#x60; set to **app**.</value>
         [DataMember(Name = "sdkReferenceNumber", EmitDefaultValue = false)]
         public string SdkReferenceNumber { get; set; }
-        
+
         /// <summary>
         /// The &#x60;sdkTransID&#x60; value as received from the 3D Secure 2 SDK. Only for &#x60;deviceChannel&#x60; set to **app**.
         /// </summary>
         /// <value>The &#x60;sdkTransID&#x60; value as received from the 3D Secure 2 SDK. Only for &#x60;deviceChannel&#x60; set to **app**.</value>
         [DataMember(Name = "sdkTransID", EmitDefaultValue = false)]
         public string SdkTransID { get; set; }
-        
+
         /// <summary>
         /// Version of the 3D Secure 2 mobile SDK.  Only for &#x60;deviceChannel&#x60; set to **app**.
         /// </summary>
         /// <value>Version of the 3D Secure 2 mobile SDK.  Only for &#x60;deviceChannel&#x60; set to **app**.</value>
         [DataMember(Name = "sdkVersion", EmitDefaultValue = false)]
         public string SdkVersion { get; set; }
-        
+
         /// <summary>
         /// Completion indicator for the device fingerprinting.
         /// </summary>
         /// <value>Completion indicator for the device fingerprinting.</value>
         [DataMember(Name = "threeDSCompInd", EmitDefaultValue = false)]
         public string ThreeDSCompInd { get; set; }
-        
+
         /// <summary>
         /// Indicates the type of Authentication request.
         /// </summary>
         /// <value>Indicates the type of Authentication request.</value>
         [DataMember(Name = "threeDSRequestorAuthenticationInd", EmitDefaultValue = false)]
         public string ThreeDSRequestorAuthenticationInd { get; set; }
-        
+
         /// <summary>
         /// Gets or Sets ThreeDSRequestorAuthenticationInfo
         /// </summary>
         [DataMember(Name = "threeDSRequestorAuthenticationInfo", EmitDefaultValue = false)]
         public ThreeDSRequestorAuthenticationInfo ThreeDSRequestorAuthenticationInfo { get; set; }
-        
+
         /// <summary>
         /// Required for [authentication-only integration](https://docs.adyen.com/online-payments/3d-secure/other-3ds-flows/authentication-only) for Visa. Unique 3D Secure requestor identifier assigned by the Directory Server when you enrol for 3D Secure 2.
         /// </summary>
         /// <value>Required for [authentication-only integration](https://docs.adyen.com/online-payments/3d-secure/other-3ds-flows/authentication-only) for Visa. Unique 3D Secure requestor identifier assigned by the Directory Server when you enrol for 3D Secure 2.</value>
         [DataMember(Name = "threeDSRequestorID", EmitDefaultValue = false)]
         public string ThreeDSRequestorID { get; set; }
-        
+
         /// <summary>
         /// Required for [authentication-only integration](https://docs.adyen.com/online-payments/3d-secure/other-3ds-flows/authentication-only) for Visa. Unique 3D Secure requestor name assigned by the Directory Server when you enrol for 3D Secure 2.
         /// </summary>
         /// <value>Required for [authentication-only integration](https://docs.adyen.com/online-payments/3d-secure/other-3ds-flows/authentication-only) for Visa. Unique 3D Secure requestor name assigned by the Directory Server when you enrol for 3D Secure 2.</value>
         [DataMember(Name = "threeDSRequestorName", EmitDefaultValue = false)]
         public string ThreeDSRequestorName { get; set; }
-        
+
         /// <summary>
         /// Gets or Sets ThreeDSRequestorPriorAuthenticationInfo
         /// </summary>
         [DataMember(Name = "threeDSRequestorPriorAuthenticationInfo", EmitDefaultValue = false)]
         public ThreeDSRequestorPriorAuthenticationInfo ThreeDSRequestorPriorAuthenticationInfo { get; set; }
-        
+
         /// <summary>
         /// URL of the (customer service) website that will be shown to the shopper in case of technical errors during the 3D Secure 2 process.
         /// </summary>
         /// <value>URL of the (customer service) website that will be shown to the shopper in case of technical errors during the 3D Secure 2 process.</value>
         [DataMember(Name = "threeDSRequestorURL", EmitDefaultValue = false)]
         public string ThreeDSRequestorURL { get; set; }
-        
+
         /// <summary>
         /// The &#x60;whiteListStatus&#x60; value returned from a previous 3D Secure 2 transaction, only applicable for 3D Secure 2 protocol version 2.2.0.
         /// </summary>
         /// <value>The &#x60;whiteListStatus&#x60; value returned from a previous 3D Secure 2 transaction, only applicable for 3D Secure 2 protocol version 2.2.0.</value>
         [DataMember(Name = "whiteListStatus", EmitDefaultValue = false)]
         public string WhiteListStatus { get; set; }
-        
+
         /// <summary>
         /// Gets or Sets WorkPhone
         /// </summary>
         [DataMember(Name = "workPhone", EmitDefaultValue = false)]
         public Phone WorkPhone { get; set; }
-        
+
         /// <summary>
         /// Returns the string presentation of the object
         /// </summary>
@@ -1006,7 +1006,6 @@ namespace Adyen.Model.Payments
                 return hashCode;
             }
         }
-
         /// <summary>
         /// To validate all properties of the instance
         /// </summary>

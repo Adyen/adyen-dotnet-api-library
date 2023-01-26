@@ -58,42 +58,42 @@ namespace Adyen.Model.Payments
         /// <value>Contains additional information about the payment. Some data fields are included only if you select them first. Go to **Customer Area** &gt; **Developers** &gt; **Additional data**.</value>
         [DataMember(Name = "additionalData", EmitDefaultValue = false)]
         public Dictionary<string, string> AdditionalData { get; set; }
-        
+
         /// <summary>
         /// The error code mapped to the error message.
         /// </summary>
         /// <value>The error code mapped to the error message.</value>
         [DataMember(Name = "errorCode", EmitDefaultValue = false)]
         public string ErrorCode { get; set; }
-        
+
         /// <summary>
         /// The category of the error.
         /// </summary>
         /// <value>The category of the error.</value>
         [DataMember(Name = "errorType", EmitDefaultValue = false)]
         public string ErrorType { get; set; }
-        
+
         /// <summary>
         /// A short explanation of the issue.
         /// </summary>
         /// <value>A short explanation of the issue.</value>
         [DataMember(Name = "message", EmitDefaultValue = false)]
         public string Message { get; set; }
-        
+
         /// <summary>
         /// The PSP reference of the payment.
         /// </summary>
         /// <value>The PSP reference of the payment.</value>
         [DataMember(Name = "pspReference", EmitDefaultValue = false)]
         public string PspReference { get; set; }
-        
+
         /// <summary>
         /// The HTTP response status.
         /// </summary>
         /// <value>The HTTP response status.</value>
         [DataMember(Name = "status", EmitDefaultValue = false)]
         public int? Status { get; set; }
-        
+
         /// <summary>
         /// Returns the string presentation of the object
         /// </summary>
@@ -208,7 +208,6 @@ namespace Adyen.Model.Payments
                 return hashCode;
             }
         }
-
         /// <summary>
         /// To validate all properties of the instance
         /// </summary>

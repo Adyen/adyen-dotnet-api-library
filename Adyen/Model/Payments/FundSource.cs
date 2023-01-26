@@ -58,39 +58,39 @@ namespace Adyen.Model.Payments
         /// <value>A map of name-value pairs for passing additional or industry-specific data.</value>
         [DataMember(Name = "additionalData", EmitDefaultValue = false)]
         public Dictionary<string, string> AdditionalData { get; set; }
-        
+
         /// <summary>
         /// Gets or Sets BillingAddress
         /// </summary>
         [DataMember(Name = "billingAddress", EmitDefaultValue = false)]
         public Address BillingAddress { get; set; }
-        
+
         /// <summary>
         /// Gets or Sets Card
         /// </summary>
         [DataMember(Name = "card", EmitDefaultValue = false)]
         public Card Card { get; set; }
-        
+
         /// <summary>
         /// Email address of the person.
         /// </summary>
         /// <value>Email address of the person.</value>
         [DataMember(Name = "shopperEmail", EmitDefaultValue = false)]
         public string ShopperEmail { get; set; }
-        
+
         /// <summary>
         /// Gets or Sets ShopperName
         /// </summary>
         [DataMember(Name = "shopperName", EmitDefaultValue = false)]
         public Name ShopperName { get; set; }
-        
+
         /// <summary>
         /// Phone number of the person
         /// </summary>
         /// <value>Phone number of the person</value>
         [DataMember(Name = "telephoneNumber", EmitDefaultValue = false)]
         public string TelephoneNumber { get; set; }
-        
+
         /// <summary>
         /// Returns the string presentation of the object
         /// </summary>
@@ -209,7 +209,6 @@ namespace Adyen.Model.Payments
                 return hashCode;
             }
         }
-
         /// <summary>
         /// To validate all properties of the instance
         /// </summary>

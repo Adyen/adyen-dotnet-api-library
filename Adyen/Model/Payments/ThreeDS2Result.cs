@@ -212,77 +212,77 @@ namespace Adyen.Model.Payments
         /// <value>The &#x60;authenticationValue&#x60; value as defined in the 3D Secure 2 specification.</value>
         [DataMember(Name = "authenticationValue", EmitDefaultValue = false)]
         public string AuthenticationValue { get; set; }
-        
+
         /// <summary>
         /// The algorithm used by the ACS to calculate the authentication value, only for Cartes Bancaires integrations.
         /// </summary>
         /// <value>The algorithm used by the ACS to calculate the authentication value, only for Cartes Bancaires integrations.</value>
         [DataMember(Name = "cavvAlgorithm", EmitDefaultValue = false)]
         public string CavvAlgorithm { get; set; }
-        
+
         /// <summary>
         /// The &#x60;dsTransID&#x60; value as defined in the 3D Secure 2 specification.
         /// </summary>
         /// <value>The &#x60;dsTransID&#x60; value as defined in the 3D Secure 2 specification.</value>
         [DataMember(Name = "dsTransID", EmitDefaultValue = false)]
         public string DsTransID { get; set; }
-        
+
         /// <summary>
         /// The &#x60;eci&#x60; value as defined in the 3D Secure 2 specification.
         /// </summary>
         /// <value>The &#x60;eci&#x60; value as defined in the 3D Secure 2 specification.</value>
         [DataMember(Name = "eci", EmitDefaultValue = false)]
         public string Eci { get; set; }
-        
+
         /// <summary>
         /// The &#x60;messageVersion&#x60; value as defined in the 3D Secure 2 specification.
         /// </summary>
         /// <value>The &#x60;messageVersion&#x60; value as defined in the 3D Secure 2 specification.</value>
         [DataMember(Name = "messageVersion", EmitDefaultValue = false)]
         public string MessageVersion { get; set; }
-        
+
         /// <summary>
         /// Risk score calculated by Cartes Bancaires Directory Server (DS).
         /// </summary>
         /// <value>Risk score calculated by Cartes Bancaires Directory Server (DS).</value>
         [DataMember(Name = "riskScore", EmitDefaultValue = false)]
         public string RiskScore { get; set; }
-        
+
         /// <summary>
         /// The &#x60;threeDSServerTransID&#x60; value as defined in the 3D Secure 2 specification.
         /// </summary>
         /// <value>The &#x60;threeDSServerTransID&#x60; value as defined in the 3D Secure 2 specification.</value>
         [DataMember(Name = "threeDSServerTransID", EmitDefaultValue = false)]
         public string ThreeDSServerTransID { get; set; }
-        
+
         /// <summary>
         /// The &#x60;timestamp&#x60; value of the 3D Secure 2 authentication.
         /// </summary>
         /// <value>The &#x60;timestamp&#x60; value of the 3D Secure 2 authentication.</value>
         [DataMember(Name = "timestamp", EmitDefaultValue = false)]
         public string Timestamp { get; set; }
-        
+
         /// <summary>
         /// The &#x60;transStatus&#x60; value as defined in the 3D Secure 2 specification.
         /// </summary>
         /// <value>The &#x60;transStatus&#x60; value as defined in the 3D Secure 2 specification.</value>
         [DataMember(Name = "transStatus", EmitDefaultValue = false)]
         public string TransStatus { get; set; }
-        
+
         /// <summary>
         /// Provides information on why the &#x60;transStatus&#x60; field has the specified value. For possible values, refer to [our docs](https://docs.adyen.com/online-payments/3d-secure/api-reference#possible-transstatusreason-values).
         /// </summary>
         /// <value>Provides information on why the &#x60;transStatus&#x60; field has the specified value. For possible values, refer to [our docs](https://docs.adyen.com/online-payments/3d-secure/api-reference#possible-transstatusreason-values).</value>
         [DataMember(Name = "transStatusReason", EmitDefaultValue = false)]
         public string TransStatusReason { get; set; }
-        
+
         /// <summary>
         /// The &#x60;whiteListStatus&#x60; value as defined in the 3D Secure 2 specification.
         /// </summary>
         /// <value>The &#x60;whiteListStatus&#x60; value as defined in the 3D Secure 2 specification.</value>
         [DataMember(Name = "whiteListStatus", EmitDefaultValue = false)]
         public string WhiteListStatus { get; set; }
-        
+
         /// <summary>
         /// Returns the string presentation of the object
         /// </summary>
@@ -468,7 +468,6 @@ namespace Adyen.Model.Payments
                 return hashCode;
             }
         }
-
         /// <summary>
         /// To validate all properties of the instance
         /// </summary>

@@ -50,14 +50,14 @@ namespace Adyen.Model.Payments
         /// <value>Country code. Length: 1–3 characters.</value>
         [DataMember(Name = "cc", EmitDefaultValue = false)]
         public string Cc { get; set; }
-        
+
         /// <summary>
         /// Subscriber number. Maximum length: 15 characters.
         /// </summary>
         /// <value>Subscriber number. Maximum length: 15 characters.</value>
         [DataMember(Name = "subscriber", EmitDefaultValue = false)]
         public string Subscriber { get; set; }
-        
+
         /// <summary>
         /// Returns the string presentation of the object
         /// </summary>
@@ -135,7 +135,6 @@ namespace Adyen.Model.Payments
                 return hashCode;
             }
         }
-
         /// <summary>
         /// To validate all properties of the instance
         /// </summary>

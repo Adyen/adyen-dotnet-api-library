@@ -95,7 +95,7 @@ namespace Adyen.Model.Payments
         /// Indicates if the modification request has been received for processing.
         /// </summary>
         /// <value>Indicates if the modification request has been received for processing.</value>
-        [DataMember(Name = "response", IsRequired = false, EmitDefaultValue = true)]
+        [DataMember(Name = "response", IsRequired = false, EmitDefaultValue = false)]
         public ResponseEnum Response { get; set; }
         /// <summary>
         /// Initializes a new instance of the <see cref="ModificationResult" /> class.
@@ -121,14 +121,14 @@ namespace Adyen.Model.Payments
         /// <value>This field contains additional data, which may be returned in a particular modification response.</value>
         [DataMember(Name = "additionalData", EmitDefaultValue = false)]
         public Dictionary<string, string> AdditionalData { get; set; }
-        
+
         /// <summary>
         /// Adyen&#39;s 16-character string reference associated with the transaction/request. This value is globally unique; quote it when communicating with us about this request.
         /// </summary>
         /// <value>Adyen&#39;s 16-character string reference associated with the transaction/request. This value is globally unique; quote it when communicating with us about this request.</value>
-        [DataMember(Name = "pspReference", IsRequired = false, EmitDefaultValue = true)]
+        [DataMember(Name = "pspReference", IsRequired = false, EmitDefaultValue = false)]
         public string PspReference { get; set; }
-        
+
         /// <summary>
         /// Returns the string presentation of the object
         /// </summary>
@@ -213,7 +213,6 @@ namespace Adyen.Model.Payments
                 return hashCode;
             }
         }
-
         /// <summary>
         /// To validate all properties of the instance
         /// </summary>

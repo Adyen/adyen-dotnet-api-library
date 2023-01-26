@@ -107,196 +107,196 @@ namespace Adyen.Model.Payments
         /// <value>Reference number for the invoice, issued by the agency. * minLength: 1 * maxLength: 6</value>
         [DataMember(Name = "airline.agency_invoice_number", EmitDefaultValue = false)]
         public string AirlineAgencyInvoiceNumber { get; set; }
-        
+
         /// <summary>
         /// 2-letter agency plan identifier; alphabetical. * minLength: 2 * maxLength: 2
         /// </summary>
         /// <value>2-letter agency plan identifier; alphabetical. * minLength: 2 * maxLength: 2</value>
         [DataMember(Name = "airline.agency_plan_name", EmitDefaultValue = false)]
         public string AirlineAgencyPlanName { get; set; }
-        
+
         /// <summary>
         /// [IATA](https://www.iata.org/services/pages/codes.aspx) 3-digit accounting code (PAX); numeric. It identifies the carrier. * Format: IATA 3-digit accounting code (PAX) * Example: KLM &#x3D; 074 * minLength: 3 * maxLength: 3
         /// </summary>
         /// <value>[IATA](https://www.iata.org/services/pages/codes.aspx) 3-digit accounting code (PAX); numeric. It identifies the carrier. * Format: IATA 3-digit accounting code (PAX) * Example: KLM &#x3D; 074 * minLength: 3 * maxLength: 3</value>
         [DataMember(Name = "airline.airline_code", EmitDefaultValue = false)]
         public string AirlineAirlineCode { get; set; }
-        
+
         /// <summary>
         /// [IATA](https://www.iata.org/services/pages/codes.aspx) 2-letter accounting code (PAX); alphabetical. It identifies the carrier. * Format: [IATA](https://www.iata.org/services/pages/codes.aspx) 2-letter airline code * Example: KLM &#x3D; KL * minLength: 2 * maxLength: 2
         /// </summary>
         /// <value>[IATA](https://www.iata.org/services/pages/codes.aspx) 2-letter accounting code (PAX); alphabetical. It identifies the carrier. * Format: [IATA](https://www.iata.org/services/pages/codes.aspx) 2-letter airline code * Example: KLM &#x3D; KL * minLength: 2 * maxLength: 2</value>
         [DataMember(Name = "airline.airline_designator_code", EmitDefaultValue = false)]
         public string AirlineAirlineDesignatorCode { get; set; }
-        
+
         /// <summary>
         /// Chargeable amount for boarding the plane. The transaction amount needs to be represented in minor units according to the [following table](https://docs.adyen.com/development-resources/currency-codes). * minLength: 1 * maxLength: 18
         /// </summary>
         /// <value>Chargeable amount for boarding the plane. The transaction amount needs to be represented in minor units according to the [following table](https://docs.adyen.com/development-resources/currency-codes). * minLength: 1 * maxLength: 18</value>
         [DataMember(Name = "airline.boarding_fee", EmitDefaultValue = false)]
         public string AirlineBoardingFee { get; set; }
-        
+
         /// <summary>
         /// The [CRS](https://en.wikipedia.org/wiki/Computer_reservation_system) used to make the reservation and purchase the ticket. * Format: alphanumeric. * minLength: 4 * maxLength: 4
         /// </summary>
         /// <value>The [CRS](https://en.wikipedia.org/wiki/Computer_reservation_system) used to make the reservation and purchase the ticket. * Format: alphanumeric. * minLength: 4 * maxLength: 4</value>
         [DataMember(Name = "airline.computerized_reservation_system", EmitDefaultValue = false)]
         public string AirlineComputerizedReservationSystem { get; set; }
-        
+
         /// <summary>
         /// Reference number; alphanumeric. * minLength: 0 * maxLength: 20
         /// </summary>
         /// <value>Reference number; alphanumeric. * minLength: 0 * maxLength: 20</value>
         [DataMember(Name = "airline.customer_reference_number", EmitDefaultValue = false)]
         public string AirlineCustomerReferenceNumber { get; set; }
-        
+
         /// <summary>
         /// Optional 2-digit code; alphanumeric. It identifies the type of product of the transaction. The description of the code may appear on credit card statements. * Format: 2-digit code * Example: Passenger ticket &#x3D; 01 * minLength: 2 * maxLength: 2
         /// </summary>
         /// <value>Optional 2-digit code; alphanumeric. It identifies the type of product of the transaction. The description of the code may appear on credit card statements. * Format: 2-digit code * Example: Passenger ticket &#x3D; 01 * minLength: 2 * maxLength: 2</value>
         [DataMember(Name = "airline.document_type", EmitDefaultValue = false)]
         public string AirlineDocumentType { get; set; }
-        
+
         /// <summary>
         /// Flight departure date. Local time &#x60;(HH:mm)&#x60; is optional. * Date format: &#x60;yyyy-MM-dd&#x60; * Date and time format: &#x60;yyyy-MM-dd HH:mm&#x60; * minLength: 10 * maxLength: 16
         /// </summary>
         /// <value>Flight departure date. Local time &#x60;(HH:mm)&#x60; is optional. * Date format: &#x60;yyyy-MM-dd&#x60; * Date and time format: &#x60;yyyy-MM-dd HH:mm&#x60; * minLength: 10 * maxLength: 16</value>
         [DataMember(Name = "airline.flight_date", EmitDefaultValue = false)]
         public string AirlineFlightDate { get; set; }
-        
+
         /// <summary>
         /// [IATA](https://www.iata.org/services/pages/codes.aspx) 2-letter accounting code (PAX); alphabetical. It identifies the carrier. This field is required/mandatory if the airline data includes leg details. * Format: IATA 2-letter airline code * Example: KLM &#x3D; KL * minLength: 2 * maxLength: 2
         /// </summary>
         /// <value>[IATA](https://www.iata.org/services/pages/codes.aspx) 2-letter accounting code (PAX); alphabetical. It identifies the carrier. This field is required/mandatory if the airline data includes leg details. * Format: IATA 2-letter airline code * Example: KLM &#x3D; KL * minLength: 2 * maxLength: 2</value>
         [DataMember(Name = "airline.leg.carrier_code", EmitDefaultValue = false)]
         public string AirlineLegCarrierCode { get; set; }
-        
+
         /// <summary>
         /// 1-letter travel class identifier; alphabetical. There is no standard; however, the following codes are used rather consistently: * F: first class * J: business class * Y: economy class * W: premium economy  Limitations: * minLength: 1 * maxLength: 1
         /// </summary>
         /// <value>1-letter travel class identifier; alphabetical. There is no standard; however, the following codes are used rather consistently: * F: first class * J: business class * Y: economy class * W: premium economy  Limitations: * minLength: 1 * maxLength: 1</value>
         [DataMember(Name = "airline.leg.class_of_travel", EmitDefaultValue = false)]
         public string AirlineLegClassOfTravel { get; set; }
-        
+
         /// <summary>
         ///   Date and time of travel. [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601)-compliant. * Format: &#x60;yyyy-MM-dd HH:mm&#x60; * minLength: 16 * maxLength: 16
         /// </summary>
         /// <value>  Date and time of travel. [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601)-compliant. * Format: &#x60;yyyy-MM-dd HH:mm&#x60; * minLength: 16 * maxLength: 16</value>
         [DataMember(Name = "airline.leg.date_of_travel", EmitDefaultValue = false)]
         public string AirlineLegDateOfTravel { get; set; }
-        
+
         /// <summary>
         /// Alphabetical identifier of the departure airport. This field is required if the airline data includes leg details. * Format: [IATA](https://www.iata.org/services/pages/codes.aspx) 3-letter airport code. * Example: Amsterdam &#x3D; AMS * minLength: 3 * maxLength: 3
         /// </summary>
         /// <value>Alphabetical identifier of the departure airport. This field is required if the airline data includes leg details. * Format: [IATA](https://www.iata.org/services/pages/codes.aspx) 3-letter airport code. * Example: Amsterdam &#x3D; AMS * minLength: 3 * maxLength: 3</value>
         [DataMember(Name = "airline.leg.depart_airport", EmitDefaultValue = false)]
         public string AirlineLegDepartAirport { get; set; }
-        
+
         /// <summary>
         /// [Departure tax](https://en.wikipedia.org/wiki/Departure_tax). Amount charged by a country to an individual upon their leaving. The transaction amount needs to be represented in minor units according to the [following table](https://docs.adyen.com/development-resources/currency-codes). * minLength: 1 * maxLength: 12
         /// </summary>
         /// <value>[Departure tax](https://en.wikipedia.org/wiki/Departure_tax). Amount charged by a country to an individual upon their leaving. The transaction amount needs to be represented in minor units according to the [following table](https://docs.adyen.com/development-resources/currency-codes). * minLength: 1 * maxLength: 12</value>
         [DataMember(Name = "airline.leg.depart_tax", EmitDefaultValue = false)]
         public string AirlineLegDepartTax { get; set; }
-        
+
         /// <summary>
         /// Alphabetical identifier of the destination/arrival airport. This field is required/mandatory if the airline data includes leg details. * Format: [IATA](https://www.iata.org/services/pages/codes.aspx) 3-letter airport code. * Example: Amsterdam &#x3D; AMS * minLength: 3 * maxLength: 3
         /// </summary>
         /// <value>Alphabetical identifier of the destination/arrival airport. This field is required/mandatory if the airline data includes leg details. * Format: [IATA](https://www.iata.org/services/pages/codes.aspx) 3-letter airport code. * Example: Amsterdam &#x3D; AMS * minLength: 3 * maxLength: 3</value>
         [DataMember(Name = "airline.leg.destination_code", EmitDefaultValue = false)]
         public string AirlineLegDestinationCode { get; set; }
-        
+
         /// <summary>
         /// [Fare basis code](https://en.wikipedia.org/wiki/Fare_basis_code); alphanumeric. * minLength: 1 * maxLength: 7
         /// </summary>
         /// <value>[Fare basis code](https://en.wikipedia.org/wiki/Fare_basis_code); alphanumeric. * minLength: 1 * maxLength: 7</value>
         [DataMember(Name = "airline.leg.fare_base_code", EmitDefaultValue = false)]
         public string AirlineLegFareBaseCode { get; set; }
-        
+
         /// <summary>
         /// The flight identifier. * minLength: 1 * maxLength: 5
         /// </summary>
         /// <value>The flight identifier. * minLength: 1 * maxLength: 5</value>
         [DataMember(Name = "airline.leg.flight_number", EmitDefaultValue = false)]
         public string AirlineLegFlightNumber { get; set; }
-        
+
         /// <summary>
         /// 1-letter code that indicates whether the passenger is entitled to make a stopover. Only two types of characters are allowed: * O: Stopover allowed * X: Stopover not allowed  Limitations: * minLength: 1 * maxLength: 1
         /// </summary>
         /// <value>1-letter code that indicates whether the passenger is entitled to make a stopover. Only two types of characters are allowed: * O: Stopover allowed * X: Stopover not allowed  Limitations: * minLength: 1 * maxLength: 1</value>
         [DataMember(Name = "airline.leg.stop_over_code", EmitDefaultValue = false)]
         public string AirlineLegStopOverCode { get; set; }
-        
+
         /// <summary>
         /// Date of birth of the passenger.  Date format: &#x60;yyyy-MM-dd&#x60; * minLength: 10 * maxLength: 10
         /// </summary>
         /// <value>Date of birth of the passenger.  Date format: &#x60;yyyy-MM-dd&#x60; * minLength: 10 * maxLength: 10</value>
         [DataMember(Name = "airline.passenger.date_of_birth", EmitDefaultValue = false)]
         public string AirlinePassengerDateOfBirth { get; set; }
-        
+
         /// <summary>
         /// Passenger first name/given name. &gt; This field is required/mandatory if the airline data includes passenger details or leg details.
         /// </summary>
         /// <value>Passenger first name/given name. &gt; This field is required/mandatory if the airline data includes passenger details or leg details.</value>
         [DataMember(Name = "airline.passenger.first_name", EmitDefaultValue = false)]
         public string AirlinePassengerFirstName { get; set; }
-        
+
         /// <summary>
         /// Passenger last name/family name. &gt; This field is required/mandatory if the airline data includes passenger details or leg details.
         /// </summary>
         /// <value>Passenger last name/family name. &gt; This field is required/mandatory if the airline data includes passenger details or leg details.</value>
         [DataMember(Name = "airline.passenger.last_name", EmitDefaultValue = false)]
         public string AirlinePassengerLastName { get; set; }
-        
+
         /// <summary>
         /// Telephone number of the passenger, including country code. This is an alphanumeric field that can include the &#39;+&#39; and &#39;-&#39; signs. * minLength: 3 * maxLength: 30
         /// </summary>
         /// <value>Telephone number of the passenger, including country code. This is an alphanumeric field that can include the &#39;+&#39; and &#39;-&#39; signs. * minLength: 3 * maxLength: 30</value>
         [DataMember(Name = "airline.passenger.telephone_number", EmitDefaultValue = false)]
         public string AirlinePassengerTelephoneNumber { get; set; }
-        
+
         /// <summary>
         /// Passenger type code (PTC). IATA PTC values are 3-letter alphabetical. Example: ADT, SRC, CNN, INS.  However, several carriers use non-standard codes that can be up to 5 alphanumeric characters. * minLength: 3 * maxLength: 6
         /// </summary>
         /// <value>Passenger type code (PTC). IATA PTC values are 3-letter alphabetical. Example: ADT, SRC, CNN, INS.  However, several carriers use non-standard codes that can be up to 5 alphanumeric characters. * minLength: 3 * maxLength: 6</value>
         [DataMember(Name = "airline.passenger.traveller_type", EmitDefaultValue = false)]
         public string AirlinePassengerTravellerType { get; set; }
-        
+
         /// <summary>
         /// Passenger name, initials, and a title. * Format: last name + first name or initials + title. * Example: *FLYER / MARY MS*. * minLength: 1 * maxLength: 49
         /// </summary>
         /// <value>Passenger name, initials, and a title. * Format: last name + first name or initials + title. * Example: *FLYER / MARY MS*. * minLength: 1 * maxLength: 49</value>
-        [DataMember(Name = "airline.passenger_name", IsRequired = false, EmitDefaultValue = true)]
+        [DataMember(Name = "airline.passenger_name", IsRequired = false, EmitDefaultValue = false)]
         public string AirlinePassengerName { get; set; }
-        
+
         /// <summary>
         /// Address of the place/agency that issued the ticket. * minLength: 0 * maxLength: 16
         /// </summary>
         /// <value>Address of the place/agency that issued the ticket. * minLength: 0 * maxLength: 16</value>
         [DataMember(Name = "airline.ticket_issue_address", EmitDefaultValue = false)]
         public string AirlineTicketIssueAddress { get; set; }
-        
+
         /// <summary>
         /// The ticket&#39;s unique identifier. * minLength: 1 * maxLength: 150
         /// </summary>
         /// <value>The ticket&#39;s unique identifier. * minLength: 1 * maxLength: 150</value>
         [DataMember(Name = "airline.ticket_number", EmitDefaultValue = false)]
         public string AirlineTicketNumber { get; set; }
-        
+
         /// <summary>
         /// IATA number, also ARC number or ARC/IATA number. Unique identifier number for travel agencies. * minLength: 1 * maxLength: 8
         /// </summary>
         /// <value>IATA number, also ARC number or ARC/IATA number. Unique identifier number for travel agencies. * minLength: 1 * maxLength: 8</value>
         [DataMember(Name = "airline.travel_agency_code", EmitDefaultValue = false)]
         public string AirlineTravelAgencyCode { get; set; }
-        
+
         /// <summary>
         /// The name of the travel agency. * minLength: 1 * maxLength: 25
         /// </summary>
         /// <value>The name of the travel agency. * minLength: 1 * maxLength: 25</value>
         [DataMember(Name = "airline.travel_agency_name", EmitDefaultValue = false)]
         public string AirlineTravelAgencyName { get; set; }
-        
+
         /// <summary>
         /// Returns the string presentation of the object
         /// </summary>
@@ -634,7 +634,6 @@ namespace Adyen.Model.Payments
                 return hashCode;
             }
         }
-
         /// <summary>
         /// To validate all properties of the instance
         /// </summary>

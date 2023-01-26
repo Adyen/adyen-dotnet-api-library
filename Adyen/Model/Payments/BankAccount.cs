@@ -64,63 +64,63 @@ namespace Adyen.Model.Payments
         /// <value>The bank account number (without separators).</value>
         [DataMember(Name = "bankAccountNumber", EmitDefaultValue = false)]
         public string BankAccountNumber { get; set; }
-        
+
         /// <summary>
         /// The bank city.
         /// </summary>
         /// <value>The bank city.</value>
         [DataMember(Name = "bankCity", EmitDefaultValue = false)]
         public string BankCity { get; set; }
-        
+
         /// <summary>
         /// The location id of the bank. The field value is &#x60;nil&#x60; in most cases.
         /// </summary>
         /// <value>The location id of the bank. The field value is &#x60;nil&#x60; in most cases.</value>
         [DataMember(Name = "bankLocationId", EmitDefaultValue = false)]
         public string BankLocationId { get; set; }
-        
+
         /// <summary>
         /// The name of the bank.
         /// </summary>
         /// <value>The name of the bank.</value>
         [DataMember(Name = "bankName", EmitDefaultValue = false)]
         public string BankName { get; set; }
-        
+
         /// <summary>
         /// The [Business Identifier Code](https://en.wikipedia.org/wiki/ISO_9362) (BIC) is the SWIFT address assigned to a bank. The field value is &#x60;nil&#x60; in most cases.
         /// </summary>
         /// <value>The [Business Identifier Code](https://en.wikipedia.org/wiki/ISO_9362) (BIC) is the SWIFT address assigned to a bank. The field value is &#x60;nil&#x60; in most cases.</value>
         [DataMember(Name = "bic", EmitDefaultValue = false)]
         public string Bic { get; set; }
-        
+
         /// <summary>
         /// Country code where the bank is located.  A valid value is an ISO two-character country code (e.g. &#39;NL&#39;).
         /// </summary>
         /// <value>Country code where the bank is located.  A valid value is an ISO two-character country code (e.g. &#39;NL&#39;).</value>
         [DataMember(Name = "countryCode", EmitDefaultValue = false)]
         public string CountryCode { get; set; }
-        
+
         /// <summary>
         /// The [International Bank Account Number](https://en.wikipedia.org/wiki/International_Bank_Account_Number) (IBAN).
         /// </summary>
         /// <value>The [International Bank Account Number](https://en.wikipedia.org/wiki/International_Bank_Account_Number) (IBAN).</value>
         [DataMember(Name = "iban", EmitDefaultValue = false)]
         public string Iban { get; set; }
-        
+
         /// <summary>
         /// The name of the bank account holder. If you submit a name with non-Latin characters, we automatically replace some of them with corresponding Latin characters to meet the FATF recommendations. For example: * χ12 is converted to ch12. * üA is converted to euA. * Peter Møller is converted to Peter Mller, because banks don&#39;t accept &#39;ø&#39;. After replacement, the ownerName must have at least three alphanumeric characters (A-Z, a-z, 0-9), and at least one of them must be a valid Latin character (A-Z, a-z). For example: * John17 - allowed. * J17 - allowed. * 171 - not allowed. * John-7 - allowed. &gt; If provided details don&#39;t match the required format, the response returns the error message: 203 &#39;Invalid bank account holder name&#39;.
         /// </summary>
         /// <value>The name of the bank account holder. If you submit a name with non-Latin characters, we automatically replace some of them with corresponding Latin characters to meet the FATF recommendations. For example: * χ12 is converted to ch12. * üA is converted to euA. * Peter Møller is converted to Peter Mller, because banks don&#39;t accept &#39;ø&#39;. After replacement, the ownerName must have at least three alphanumeric characters (A-Z, a-z, 0-9), and at least one of them must be a valid Latin character (A-Z, a-z). For example: * John17 - allowed. * J17 - allowed. * 171 - not allowed. * John-7 - allowed. &gt; If provided details don&#39;t match the required format, the response returns the error message: 203 &#39;Invalid bank account holder name&#39;.</value>
         [DataMember(Name = "ownerName", EmitDefaultValue = false)]
         public string OwnerName { get; set; }
-        
+
         /// <summary>
         /// The bank account holder&#39;s tax ID.
         /// </summary>
         /// <value>The bank account holder&#39;s tax ID.</value>
         [DataMember(Name = "taxId", EmitDefaultValue = false)]
         public string TaxId { get; set; }
-        
+
         /// <summary>
         /// Returns the string presentation of the object
         /// </summary>
@@ -268,7 +268,6 @@ namespace Adyen.Model.Payments
                 return hashCode;
             }
         }
-
         /// <summary>
         /// To validate all properties of the instance
         /// </summary>

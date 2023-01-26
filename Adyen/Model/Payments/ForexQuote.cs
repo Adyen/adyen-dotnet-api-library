@@ -75,80 +75,80 @@ namespace Adyen.Model.Payments
         /// <value>The account name.</value>
         [DataMember(Name = "account", EmitDefaultValue = false)]
         public string Account { get; set; }
-        
+
         /// <summary>
         /// The account type.
         /// </summary>
         /// <value>The account type.</value>
         [DataMember(Name = "accountType", EmitDefaultValue = false)]
         public string AccountType { get; set; }
-        
+
         /// <summary>
         /// Gets or Sets BaseAmount
         /// </summary>
         [DataMember(Name = "baseAmount", EmitDefaultValue = false)]
         public Amount BaseAmount { get; set; }
-        
+
         /// <summary>
         /// The base points.
         /// </summary>
         /// <value>The base points.</value>
-        [DataMember(Name = "basePoints", IsRequired = false, EmitDefaultValue = true)]
+        [DataMember(Name = "basePoints", IsRequired = false, EmitDefaultValue = false)]
         public int? BasePoints { get; set; }
-        
+
         /// <summary>
         /// Gets or Sets Buy
         /// </summary>
         [DataMember(Name = "buy", EmitDefaultValue = false)]
         public Amount Buy { get; set; }
-        
+
         /// <summary>
         /// Gets or Sets Interbank
         /// </summary>
         [DataMember(Name = "interbank", EmitDefaultValue = false)]
         public Amount Interbank { get; set; }
-        
+
         /// <summary>
         /// The reference assigned to the forex quote request.
         /// </summary>
         /// <value>The reference assigned to the forex quote request.</value>
         [DataMember(Name = "reference", EmitDefaultValue = false)]
         public string Reference { get; set; }
-        
+
         /// <summary>
         /// Gets or Sets Sell
         /// </summary>
         [DataMember(Name = "sell", EmitDefaultValue = false)]
         public Amount Sell { get; set; }
-        
+
         /// <summary>
         /// The signature to validate the integrity.
         /// </summary>
         /// <value>The signature to validate the integrity.</value>
         [DataMember(Name = "signature", EmitDefaultValue = false)]
         public string Signature { get; set; }
-        
+
         /// <summary>
         /// The source of the forex quote.
         /// </summary>
         /// <value>The source of the forex quote.</value>
         [DataMember(Name = "source", EmitDefaultValue = false)]
         public string Source { get; set; }
-        
+
         /// <summary>
         /// The type of forex.
         /// </summary>
         /// <value>The type of forex.</value>
         [DataMember(Name = "type", EmitDefaultValue = false)]
         public string Type { get; set; }
-        
+
         /// <summary>
         /// The date until which the forex quote is valid.
         /// </summary>
         /// <value>The date until which the forex quote is valid.</value>
-        [DataMember(Name = "validTill", IsRequired = false, EmitDefaultValue = true)]
+        [DataMember(Name = "validTill", IsRequired = false, EmitDefaultValue = false)]
         public DateTime ValidTill { get; set; }
-        
+
         /// <summary>
         /// Returns the string presentation of the object
         /// </summary>
@@ -322,7 +322,6 @@ namespace Adyen.Model.Payments
                 return hashCode;
             }
         }
-
         /// <summary>
         /// To validate all properties of the instance
         /// </summary>

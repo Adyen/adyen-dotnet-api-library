@@ -54,28 +54,28 @@ namespace Adyen.Model.Payments
         /// <value>The &#x60;crv&#x60; value as received from the 3D Secure 2 SDK.</value>
         [DataMember(Name = "crv", EmitDefaultValue = false)]
         public string Crv { get; set; }
-        
+
         /// <summary>
         /// The &#x60;kty&#x60; value as received from the 3D Secure 2 SDK.
         /// </summary>
         /// <value>The &#x60;kty&#x60; value as received from the 3D Secure 2 SDK.</value>
         [DataMember(Name = "kty", EmitDefaultValue = false)]
         public string Kty { get; set; }
-        
+
         /// <summary>
         /// The &#x60;x&#x60; value as received from the 3D Secure 2 SDK.
         /// </summary>
         /// <value>The &#x60;x&#x60; value as received from the 3D Secure 2 SDK.</value>
         [DataMember(Name = "x", EmitDefaultValue = false)]
         public string X { get; set; }
-        
+
         /// <summary>
         /// The &#x60;y&#x60; value as received from the 3D Secure 2 SDK.
         /// </summary>
         /// <value>The &#x60;y&#x60; value as received from the 3D Secure 2 SDK.</value>
         [DataMember(Name = "y", EmitDefaultValue = false)]
         public string Y { get; set; }
-        
+
         /// <summary>
         /// Returns the string presentation of the object
         /// </summary>
@@ -173,7 +173,6 @@ namespace Adyen.Model.Payments
                 return hashCode;
             }
         }
-
         /// <summary>
         /// To validate all properties of the instance
         /// </summary>

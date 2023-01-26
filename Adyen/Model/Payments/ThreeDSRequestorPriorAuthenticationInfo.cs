@@ -94,21 +94,21 @@ namespace Adyen.Model.Payments
         /// <value>Data that documents and supports a specific authentication process. Maximum length: 2048 bytes.</value>
         [DataMember(Name = "threeDSReqPriorAuthData", EmitDefaultValue = false)]
         public string ThreeDSReqPriorAuthData { get; set; }
-        
+
         /// <summary>
         /// Date and time in UTC of the prior cardholder authentication. Format: YYYYMMDDHHMM
         /// </summary>
         /// <value>Date and time in UTC of the prior cardholder authentication. Format: YYYYMMDDHHMM</value>
         [DataMember(Name = "threeDSReqPriorAuthTimestamp", EmitDefaultValue = false)]
         public string ThreeDSReqPriorAuthTimestamp { get; set; }
-        
+
         /// <summary>
         /// This data element provides additional information to the ACS to determine the best approach for handing a request. This data element contains an ACS Transaction ID for a prior authenticated transaction. For example, the first recurring transaction that was authenticated with the cardholder. Length: 30 characters.
         /// </summary>
         /// <value>This data element provides additional information to the ACS to determine the best approach for handing a request. This data element contains an ACS Transaction ID for a prior authenticated transaction. For example, the first recurring transaction that was authenticated with the cardholder. Length: 30 characters.</value>
         [DataMember(Name = "threeDSReqPriorRef", EmitDefaultValue = false)]
         public string ThreeDSReqPriorRef { get; set; }
-        
+
         /// <summary>
         /// Returns the string presentation of the object
         /// </summary>
@@ -202,7 +202,6 @@ namespace Adyen.Model.Payments
                 return hashCode;
             }
         }
-
         /// <summary>
         /// To validate all properties of the instance
         /// </summary>

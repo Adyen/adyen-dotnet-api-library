@@ -80,119 +80,119 @@ namespace Adyen.Model.Payments
         /// <value>Customer code, if supplied by a customer.  Encoding: ASCII.  Max length: 25 characters.  &gt; Required for Level 2 and Level 3 data.</value>
         [DataMember(Name = "enhancedSchemeData.customerReference", EmitDefaultValue = false)]
         public string EnhancedSchemeDataCustomerReference { get; set; }
-        
+
         /// <summary>
         /// Destination country code.  Encoding: ASCII.  Max length: 3 characters.
         /// </summary>
         /// <value>Destination country code.  Encoding: ASCII.  Max length: 3 characters.</value>
         [DataMember(Name = "enhancedSchemeData.destinationCountryCode", EmitDefaultValue = false)]
         public string EnhancedSchemeDataDestinationCountryCode { get; set; }
-        
+
         /// <summary>
         /// The postal code of a destination address.  Encoding: ASCII.  Max length: 10 characters.  &gt; Required for American Express.
         /// </summary>
         /// <value>The postal code of a destination address.  Encoding: ASCII.  Max length: 10 characters.  &gt; Required for American Express.</value>
         [DataMember(Name = "enhancedSchemeData.destinationPostalCode", EmitDefaultValue = false)]
         public string EnhancedSchemeDataDestinationPostalCode { get; set; }
-        
+
         /// <summary>
         /// Destination state or province code.  Encoding: ASCII.Max length: 3 characters.
         /// </summary>
         /// <value>Destination state or province code.  Encoding: ASCII.Max length: 3 characters.</value>
         [DataMember(Name = "enhancedSchemeData.destinationStateProvinceCode", EmitDefaultValue = false)]
         public string EnhancedSchemeDataDestinationStateProvinceCode { get; set; }
-        
+
         /// <summary>
         /// Duty amount, in minor units.  For example, 2000 means USD 20.00.  Max length: 12 characters.
         /// </summary>
         /// <value>Duty amount, in minor units.  For example, 2000 means USD 20.00.  Max length: 12 characters.</value>
         [DataMember(Name = "enhancedSchemeData.dutyAmount", EmitDefaultValue = false)]
         public string EnhancedSchemeDataDutyAmount { get; set; }
-        
+
         /// <summary>
         /// Shipping amount, in minor units.  For example, 2000 means USD 20.00.  Max length: 12 characters.
         /// </summary>
         /// <value>Shipping amount, in minor units.  For example, 2000 means USD 20.00.  Max length: 12 characters.</value>
         [DataMember(Name = "enhancedSchemeData.freightAmount", EmitDefaultValue = false)]
         public string EnhancedSchemeDataFreightAmount { get; set; }
-        
+
         /// <summary>
         /// Item commodity code.  Encoding: ASCII.  Max length: 12 characters.
         /// </summary>
         /// <value>Item commodity code.  Encoding: ASCII.  Max length: 12 characters.</value>
         [DataMember(Name = "enhancedSchemeData.itemDetailLine[itemNr].commodityCode", EmitDefaultValue = false)]
         public string EnhancedSchemeDataItemDetailLineItemNrCommodityCode { get; set; }
-        
+
         /// <summary>
         /// Item description.  Encoding: ASCII.  Max length: 26 characters.
         /// </summary>
         /// <value>Item description.  Encoding: ASCII.  Max length: 26 characters.</value>
         [DataMember(Name = "enhancedSchemeData.itemDetailLine[itemNr].description", EmitDefaultValue = false)]
         public string EnhancedSchemeDataItemDetailLineItemNrDescription { get; set; }
-        
+
         /// <summary>
         /// Discount amount, in minor units.  For example, 2000 means USD 20.00.  Max length: 12 characters.
         /// </summary>
         /// <value>Discount amount, in minor units.  For example, 2000 means USD 20.00.  Max length: 12 characters.</value>
         [DataMember(Name = "enhancedSchemeData.itemDetailLine[itemNr].discountAmount", EmitDefaultValue = false)]
         public string EnhancedSchemeDataItemDetailLineItemNrDiscountAmount { get; set; }
-        
+
         /// <summary>
         /// Product code.  Encoding: ASCII.  Max length: 12 characters.
         /// </summary>
         /// <value>Product code.  Encoding: ASCII.  Max length: 12 characters.</value>
         [DataMember(Name = "enhancedSchemeData.itemDetailLine[itemNr].productCode", EmitDefaultValue = false)]
         public string EnhancedSchemeDataItemDetailLineItemNrProductCode { get; set; }
-        
+
         /// <summary>
         /// Quantity, specified as an integer value.  Value must be greater than 0.  Max length: 12 characters.
         /// </summary>
         /// <value>Quantity, specified as an integer value.  Value must be greater than 0.  Max length: 12 characters.</value>
         [DataMember(Name = "enhancedSchemeData.itemDetailLine[itemNr].quantity", EmitDefaultValue = false)]
         public string EnhancedSchemeDataItemDetailLineItemNrQuantity { get; set; }
-        
+
         /// <summary>
         /// Total amount, in minor units.  For example, 2000 means USD 20.00.  Max length: 12 characters.
         /// </summary>
         /// <value>Total amount, in minor units.  For example, 2000 means USD 20.00.  Max length: 12 characters.</value>
         [DataMember(Name = "enhancedSchemeData.itemDetailLine[itemNr].totalAmount", EmitDefaultValue = false)]
         public string EnhancedSchemeDataItemDetailLineItemNrTotalAmount { get; set; }
-        
+
         /// <summary>
         /// Item unit of measurement.  Encoding: ASCII.  Max length: 3 characters.
         /// </summary>
         /// <value>Item unit of measurement.  Encoding: ASCII.  Max length: 3 characters.</value>
         [DataMember(Name = "enhancedSchemeData.itemDetailLine[itemNr].unitOfMeasure", EmitDefaultValue = false)]
         public string EnhancedSchemeDataItemDetailLineItemNrUnitOfMeasure { get; set; }
-        
+
         /// <summary>
         /// Unit price, specified in [minor units](https://docs.adyen.com/development-resources/currency-codes).  Max length: 12 characters.
         /// </summary>
         /// <value>Unit price, specified in [minor units](https://docs.adyen.com/development-resources/currency-codes).  Max length: 12 characters.</value>
         [DataMember(Name = "enhancedSchemeData.itemDetailLine[itemNr].unitPrice", EmitDefaultValue = false)]
         public string EnhancedSchemeDataItemDetailLineItemNrUnitPrice { get; set; }
-        
+
         /// <summary>
         /// Order date. * Format: &#x60;ddMMyy&#x60;  Encoding: ASCII.  Max length: 6 characters.
         /// </summary>
         /// <value>Order date. * Format: &#x60;ddMMyy&#x60;  Encoding: ASCII.  Max length: 6 characters.</value>
         [DataMember(Name = "enhancedSchemeData.orderDate", EmitDefaultValue = false)]
         public string EnhancedSchemeDataOrderDate { get; set; }
-        
+
         /// <summary>
         /// The postal code of a \&quot;ship-from\&quot; address.  Encoding: ASCII.  Max length: 10 characters.
         /// </summary>
         /// <value>The postal code of a \&quot;ship-from\&quot; address.  Encoding: ASCII.  Max length: 10 characters.</value>
         [DataMember(Name = "enhancedSchemeData.shipFromPostalCode", EmitDefaultValue = false)]
         public string EnhancedSchemeDataShipFromPostalCode { get; set; }
-        
+
         /// <summary>
         /// Total tax amount, in minor units.  For example, 2000 means USD 20.00.  Max length: 12 characters.  &gt; Required for Level 2 and Level 3 data.
         /// </summary>
         /// <value>Total tax amount, in minor units.  For example, 2000 means USD 20.00.  Max length: 12 characters.  &gt; Required for Level 2 and Level 3 data.</value>
         [DataMember(Name = "enhancedSchemeData.totalTaxAmount", EmitDefaultValue = false)]
         public string EnhancedSchemeDataTotalTaxAmount { get; set; }
-        
+
         /// <summary>
         /// Returns the string presentation of the object
         /// </summary>
@@ -420,7 +420,6 @@ namespace Adyen.Model.Payments
                 return hashCode;
             }
         }
-
         /// <summary>
         /// To validate all properties of the instance
         /// </summary>

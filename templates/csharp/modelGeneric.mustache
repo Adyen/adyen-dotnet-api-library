@@ -63,7 +63,6 @@
         {{/deprecated}}
         public {{{complexType}}}{{^complexType}}{{{datatypeWithEnum}}}{{/complexType}}{{^isContainer}}{{^required}}?{{/required}}{{/isContainer}} {{name}} { get; set; }
 
-
         /// <summary>
         /// Returns false as {{name}} should not be serialized given that it's read-only.
         /// </summary>
@@ -207,7 +206,7 @@
         [Obsolete]
         {{/deprecated}}
         public {{{dataType}}}{{#isInteger}}?{{/isInteger}} {{name}} { get; {{#isReadOnly}}private {{/isReadOnly}}set; }
-        
+
         {{#isReadOnly}}
         /// <summary>
         /// Returns false as {{name}} should not be serialized given that it's read-only.
@@ -397,7 +396,6 @@
                 return hashCode;
             }
         }
-
 {{#validatable}}
 {{>validatable}}
 {{/validatable}}

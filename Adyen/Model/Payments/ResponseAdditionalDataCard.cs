@@ -62,56 +62,56 @@ namespace Adyen.Model.Payments
         /// <value>The first six digits of the card number.  This is the [Bank Identification Number (BIN)](https://docs.adyen.com/get-started-with-adyen/payment-glossary#bank-identification-number-bin) for card numbers with a six-digit BIN.  Example: 521234</value>
         [DataMember(Name = "cardBin", EmitDefaultValue = false)]
         public string CardBin { get; set; }
-        
+
         /// <summary>
         /// The cardholder name passed in the payment request.
         /// </summary>
         /// <value>The cardholder name passed in the payment request.</value>
         [DataMember(Name = "cardHolderName", EmitDefaultValue = false)]
         public string CardHolderName { get; set; }
-        
+
         /// <summary>
         /// The bank or the financial institution granting lines of credit through card association branded payment cards. This information can be included when available.
         /// </summary>
         /// <value>The bank or the financial institution granting lines of credit through card association branded payment cards. This information can be included when available.</value>
         [DataMember(Name = "cardIssuingBank", EmitDefaultValue = false)]
         public string CardIssuingBank { get; set; }
-        
+
         /// <summary>
         /// The country where the card was issued.  Example: US
         /// </summary>
         /// <value>The country where the card was issued.  Example: US</value>
         [DataMember(Name = "cardIssuingCountry", EmitDefaultValue = false)]
         public string CardIssuingCountry { get; set; }
-        
+
         /// <summary>
         /// The currency in which the card is issued, if this information is available. Provided as the currency code or currency number from the ISO-4217 standard.   Example: USD
         /// </summary>
         /// <value>The currency in which the card is issued, if this information is available. Provided as the currency code or currency number from the ISO-4217 standard.   Example: USD</value>
         [DataMember(Name = "cardIssuingCurrency", EmitDefaultValue = false)]
         public string CardIssuingCurrency { get; set; }
-        
+
         /// <summary>
         /// The card payment method used for the transaction.  Example: amex
         /// </summary>
         /// <value>The card payment method used for the transaction.  Example: amex</value>
         [DataMember(Name = "cardPaymentMethod", EmitDefaultValue = false)]
         public string CardPaymentMethod { get; set; }
-        
+
         /// <summary>
         /// The last four digits of a card number.  &gt; Returned only in case of a card payment.
         /// </summary>
         /// <value>The last four digits of a card number.  &gt; Returned only in case of a card payment.</value>
         [DataMember(Name = "cardSummary", EmitDefaultValue = false)]
         public string CardSummary { get; set; }
-        
+
         /// <summary>
         /// The first eight digits of the card number. Only returned if the card number is 16 digits or more.  This is the [Bank Identification Number (BIN)](https://docs.adyen.com/get-started-with-adyen/payment-glossary#bank-identification-number-bin) for card numbers with an eight-digit BIN.  Example: 52123423
         /// </summary>
         /// <value>The first eight digits of the card number. Only returned if the card number is 16 digits or more.  This is the [Bank Identification Number (BIN)](https://docs.adyen.com/get-started-with-adyen/payment-glossary#bank-identification-number-bin) for card numbers with an eight-digit BIN.  Example: 52123423</value>
         [DataMember(Name = "issuerBin", EmitDefaultValue = false)]
         public string IssuerBin { get; set; }
-        
+
         /// <summary>
         /// Returns the string presentation of the object
         /// </summary>
@@ -249,7 +249,6 @@ namespace Adyen.Model.Payments
                 return hashCode;
             }
         }
-
         /// <summary>
         /// To validate all properties of the instance
         /// </summary>
