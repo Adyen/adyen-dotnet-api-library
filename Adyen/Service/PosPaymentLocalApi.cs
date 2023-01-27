@@ -33,7 +33,7 @@ using Adyen.Service.Resource.Terminal;
 
 namespace Adyen.Service
 {
-   public class PosPaymentLocalApi: AbstractService
+   public class PosPaymentLocalApi: AbstractService, IPosPaymentLocalApi
     {
         private readonly TerminalApiLocal _terminalApiLocal;
         private readonly SaleToPoiMessageSerializer _saleToPoiMessageSerializer;
