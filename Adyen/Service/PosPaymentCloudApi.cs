@@ -28,7 +28,7 @@ using Adyen.Service.Resource.Terminal;
 
 namespace Adyen.Service
 {
-    public class PosPaymentCloudApi : AbstractService
+    public class PosPaymentCloudApi : AbstractService, IPosPaymentCloudApi
     {
         private readonly TerminalApi _terminalApiAsync;
         private readonly TerminalApi _terminalApiSync;
