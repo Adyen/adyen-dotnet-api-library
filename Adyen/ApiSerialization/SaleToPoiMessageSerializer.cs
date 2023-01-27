@@ -21,7 +21,9 @@
 //  */
 #endregion
 
+using System;
 using Adyen.Model.Nexo;
+using Adyen.Model.Nexo.Message;
 using Adyen.Security;
 using Newtonsoft.Json.Linq;
 
@@ -62,6 +64,35 @@ namespace Adyen.ApiSerialization
                 deserializedOutputMessage.MessagePayload = deserializedOutput;
             }
             return deserializedOutputMessage;
+        }
+
+        public SaleToPOIRequest DeserializeNotification(string terminalNotificationJson)
+        {
+            // Parse JsonObject
+            var saleToPoiRequestJson = JObject.Parse(terminalNotificationJson);
+            var saleToPoiRequestItem = saleToPoiRequestJson.First;
+            var saleToPoiRequestType = saleToPoiRequestItem?.First;
+            var saleToPoiString = saleToPoiRequestType?.ToString() ?? throw new ArgumentNullException(nameof(terminalNotificationJson));
+
+            // Get Message Header
+            var messageHeader = DeserializeMessageHeader(saleToPoiRequestType);
+            
+            // Get Payload and create new SaleToPOIRequest object
+            var notification = new SaleToPOIRequest
+            {
+                MessageHeader = messageHeader
+            };
+            if (saleToPoiString.Contains("DisplayRequest"))
+            {
+                notification.MessagePayload = saleToPoiRequestType["DisplayRequest"]?.ToObject<DisplayRequest>();
+            } else if (saleToPoiString.Contains("EventNotification"))
+            {
+                notification.MessagePayload = saleToPoiRequestType["EventNotification"]?.ToObject<EventNotification>();
+            } else
+            {
+                throw new Exception("Json input is not a terminal notification.");
+            }
+            return notification;
         }
 
         private object DeserializeMessagePayload(MessageHeader messageHeader, JToken saleToPoiMessageWithoutRootJToken)

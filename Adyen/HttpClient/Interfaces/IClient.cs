@@ -50,6 +50,5 @@ namespace Adyen.HttpClient.Interfaces
         /// <param name="httpMethod">Request Method.</param>
         /// <returns>A <see cref="Task"/> with string response in json format.</returns>
         Task<string> RequestAsync(string endpoint, string json, RequestOptions requestOptions = null, HttpMethod httpMethod = null);
-        string Post(string endpoint, Dictionary<string, string> postParameters);
     }
 }

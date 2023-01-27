@@ -427,32 +427,6 @@ namespace Adyen.Test
             };
             return clientMock;
         }
-        /// <summary>
-        /// Creates mock test client 
-        /// </summary>
-        /// <param name="fileName"></param>
-        /// <returns></returns>
-        protected Client CreateMockTestClientPost(string fileName)
-        {
-            var mockPath = GetMockFilePath(fileName);
-            var response = MockFileToString(mockPath);
-            //Create a mock interface
-            var clientInterfaceMock = new Mock<IClient>();
-            var confMock = MockPaymentData.CreateConfigMock();
-
-            clientInterfaceMock.Setup(x => x.Post(It.IsAny<string>(),
-                It.IsAny<Dictionary<string, string>>())).Returns(response);
-            var config = new Config()
-            {
-                Environment = It.IsAny<Model.Environment>()
-            };
-            var clientMock = new Client(config)
-            {
-                HttpClient = clientInterfaceMock.Object,
-                Config = confMock
-            };
-            return clientMock;
-        }
 
         /// <summary>
         /// Creates mock test client errors
