@@ -688,6 +688,7 @@ namespace Adyen.Test
             Assert.IsInstanceOfType<CheckoutRedirectAction>(result.Action.GetCheckoutRedirectAction());
             Assert.AreEqual(result.Action.GetCheckoutRedirectAction().PaymentMethodType, "afterpaytouch");
         }
+        
         [TestMethod]
         public void AfterPayDetailsSerializationTest()
         {
