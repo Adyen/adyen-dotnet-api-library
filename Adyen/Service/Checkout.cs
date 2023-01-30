@@ -281,8 +281,7 @@ namespace Adyen.Service
         public CreateCheckoutSessionResponse Sessions(CreateCheckoutSessionRequest createCheckoutSessionRequest)
         {
             var jsonRequest = createCheckoutSessionRequest.ToJson();
-            var jsonResponse =_sessions.Request(jsonRequest);
-            return JsonConvert.DeserializeObject<CreateCheckoutSessionResponse>(jsonResponse);
+            return _sessions.Request<CreateCheckoutSessionResponse>(jsonRequest);
         }
 
         /// <summary>
@@ -293,8 +292,7 @@ namespace Adyen.Service
         public async Task<CreateCheckoutSessionResponse> SessionsAsync(CreateCheckoutSessionRequest createCheckoutSessionRequest)
         {
             var jsonRequest = createCheckoutSessionRequest.ToJson();
-            var jsonResponse = await _sessions.RequestAsync(jsonRequest);
-            return JsonConvert.DeserializeObject<CreateCheckoutSessionResponse>(jsonResponse);
+            return await _sessions.RequestAsync<CreateCheckoutSessionResponse>(jsonRequest);
         }
 
         /// <summary>

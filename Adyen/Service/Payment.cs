@@ -24,8 +24,11 @@
 using Adyen.Model.Payments;
 using Newtonsoft.Json;
 using System.Threading.Tasks;
+using Adyen.Model.Checkout;
 using Adyen.Service.Resource;
+using PaymentRequest = Adyen.Model.Payments.PaymentRequest;
 using RequestOptions = Adyen.Model.RequestOptions;
+using ThreeDS2Result = Adyen.Model.Payments.ThreeDS2Result;
 
 namespace Adyen.Service
 {
@@ -69,29 +72,25 @@ namespace Adyen.Service
         public PaymentResult Authorise(PaymentRequest paymentRequest, RequestOptions requestOptions = null)
         {
             var jsonRequest = paymentRequest.ToJson();
-            var jsonResponse = _authorise.Request(jsonRequest, requestOptions);
-            return JsonConvert.DeserializeObject<PaymentResult>(jsonResponse);
+            return _authorise.Request<PaymentResult>(jsonRequest, requestOptions);
         }
 
         public PaymentResult Authorise(PaymentRequest3ds2 paymentRequest, RequestOptions requestOptions = null)
         {
             var jsonRequest = paymentRequest.ToJson();
-            var jsonResponse = _authorise.Request(jsonRequest, requestOptions);
-            return JsonConvert.DeserializeObject<PaymentResult>(jsonResponse);
+            return _authorise.Request<PaymentResult>(jsonRequest, requestOptions);
         }
 
         public async Task<PaymentResult> AuthoriseAsync(PaymentRequest paymentRequest, RequestOptions requestOptions = null)
         {
             var jsonRequest = paymentRequest.ToJson();
-            var jsonResponse = await _authorise.RequestAsync(jsonRequest, requestOptions);
-            return JsonConvert.DeserializeObject<PaymentResult>(jsonResponse);
+            return await _authorise.RequestAsync<PaymentResult>(jsonRequest, requestOptions);
         }
 
         public async Task<PaymentResult> AuthoriseAsync(PaymentRequest3ds2 paymentRequest, RequestOptions requestOptions = null)
         {
             var jsonRequest = paymentRequest.ToJson();
-            var jsonResponse = await _authorise.RequestAsync(jsonRequest, requestOptions);
-            return JsonConvert.DeserializeObject<PaymentResult>(jsonResponse);
+            return await _authorise.RequestAsync<PaymentResult>(jsonRequest, requestOptions);
         }
 
         public PaymentResult Authorise3D(PaymentRequest3d paymentRequest, RequestOptions requestOptions = null)
