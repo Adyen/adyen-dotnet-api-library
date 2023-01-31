@@ -1,32 +1,84 @@
 {
-  "creationDate": "2017-03-01T11:53:11+01:00",
+  "creationDate": "2022-12-15T06:58:49+01:00",
   "details": [
     {
       "RecurringDetail": {
-        "acquirer": "TestPmmAcquirer",
-        "acquirerAccount": "TestPmmAcquirerAccount",
+        "additionalData": {
+          "cardBin": "370000"
+        },
+        "alias": "K652534298119846",
+        "aliasType": "Default",
+        "billingAddress": {
+          "city": "So Paulo",
+          "country": "BR",
+          "houseNumberOrName": "999",
+          "postalCode": "59000060",
+          "stateOrProvince": "SP",
+          "street": "Roque Petroni Jr"
+        },
+        "card": {
+          "expiryMonth": "3",
+          "expiryYear": "2030",
+          "holderName": "Checkout Shopper PlaceHolder",
+          "number": "0002"
+        },
+        "contractTypes": [
+          "RECURRING"
+        ],
+        "creationDate": "2022-12-23T22:11:46+01:00",
+        "firstPspReference": "ZGSHJ8ZQXSGLNK82",
+        "name": "YOUR_ORDER_NUMBER",
+        "networkTxReference": "666188927730889",
+        "paymentMethodVariant": "amex",
+        "recurringDetailReference": "BFXCHLC5L6KXWD82",
+        "variant": "amex"
+      }
+    },
+    {
+      "RecurringDetail": {
+        "bank": {
+          "bankName": "Wirecard",
+          "bic": "TESTDE01",
+          "countryCode": "DE",
+          "iban": "DE87123456781234567890",
+          "ownerName": "Simon Hopper"
+        },
+        "contractTypes": [
+          "RECURRING"
+        ],
+        "creationDate": "2023-01-10T12:55:17+01:00",
+        "firstPspReference": "F6PCPTPNM4BLNK82",
+        "paymentMethodVariant": "sepadirectdebit_received",
+        "recurringDetailReference": "JW6RTP5PL6KXWD82",
+        "variant": "sepadirectdebit"
+      }
+    },
+    {
+      "RecurringDetail": {
         "additionalData": {
           "cardBin": "411111"
         },
-        "alias": "cardAlias",
+        "alias": "K333136193308394",
         "aliasType": "Default",
         "card": {
-          "expiryMonth": "8",
-          "expiryYear": "2018",
-          "holderName": "Holder",
+          "expiryMonth": "3",
+          "expiryYear": "2030",
+          "holderName": "John Smith",
           "number": "1111"
         },
         "contractTypes": [
-          "ONECLICK"
+          "ONECLICK",
+          "RECURRING"
         ],
-        "creationDate": "2017-03-07T09:43:33+01:00",
-        "firstPspReference": "8524888762135795",
+        "creationDate": "2023-01-16T15:34:08+01:00",
+        "firstPspReference": "ML9NLGMQJ8NKGK82",
+        "networkTxReference": "512888978637400",
         "paymentMethodVariant": "visa",
-        "recurringDetailReference": "recurringReference",
+        "recurringDetailReference": "N3KLKVRL63M84H82",
         "variant": "visa"
       }
     }
   ],
-  "shopperReference": "test-123",
-  "invalidOneclickContracts": "false"
+  "lastKnownShopperEmail": "s.hopper@test.com",
+  "shopperReference": "YOUR_UNIQUE_SHOPPER_ID"
 }
