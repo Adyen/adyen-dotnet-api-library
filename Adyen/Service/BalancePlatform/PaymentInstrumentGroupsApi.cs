@@ -27,7 +27,7 @@ namespace Adyen.Service.BalancePlatform
     public class PaymentInstrumentGroupsApi : AbstractService
     {
         public PaymentInstrumentGroupsApi(Client client) : base(client) {}
-    
+
         /// <summary>
         /// Get a payment instrument group
         /// </summary>
@@ -49,8 +49,7 @@ namespace Adyen.Service.BalancePlatform
         {
             var endpoint = $"/paymentInstrumentGroups/{id}";
             var resource = new BalancePlatformResource(this, endpoint);
-            var jsonResult = await resource.RequestAsync(null, requestOptions, new HttpMethod("GET"));
-            return JsonConvert.DeserializeObject<PaymentInstrumentGroup>(jsonResult);
+            return await resource.RequestAsync<PaymentInstrumentGroup>(null, requestOptions, new HttpMethod("GET"));
         }
 
         /// <summary>
@@ -74,8 +73,7 @@ namespace Adyen.Service.BalancePlatform
         {
             var endpoint = $"/paymentInstrumentGroups/{id}/transactionRules";
             var resource = new BalancePlatformResource(this, endpoint);
-            var jsonResult = await resource.RequestAsync(null, requestOptions, new HttpMethod("GET"));
-            return JsonConvert.DeserializeObject<TransactionRulesResponse>(jsonResult);
+            return await resource.RequestAsync<TransactionRulesResponse>(null, requestOptions, new HttpMethod("GET"));
         }
 
         /// <summary>
@@ -99,8 +97,7 @@ namespace Adyen.Service.BalancePlatform
         {
             var endpoint = "/paymentInstrumentGroups";
             var resource = new BalancePlatformResource(this, endpoint);
-            var jsonResult = await resource.RequestAsync(paymentInstrumentGroupInfo.ToJson(), requestOptions, new HttpMethod("POST"));
-            return JsonConvert.DeserializeObject<PaymentInstrumentGroup>(jsonResult);
+            return await resource.RequestAsync<PaymentInstrumentGroup>(paymentInstrumentGroupInfo.ToJson(), requestOptions, new HttpMethod("POST"));
         }
 
     }

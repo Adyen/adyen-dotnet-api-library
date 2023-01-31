@@ -27,7 +27,7 @@ namespace Adyen.Service.BalancePlatform
     public class TransactionRulesApi : AbstractService
     {
         public TransactionRulesApi(Client client) : base(client) {}
-    
+
         /// <summary>
         /// Delete a transaction rule
         /// </summary>
@@ -49,8 +49,7 @@ namespace Adyen.Service.BalancePlatform
         {
             var endpoint = $"/transactionRules/{transactionRuleId}";
             var resource = new BalancePlatformResource(this, endpoint);
-            var jsonResult = await resource.RequestAsync(null, requestOptions, new HttpMethod("DELETE"));
-            return JsonConvert.DeserializeObject<TransactionRule>(jsonResult);
+            return await resource.RequestAsync<TransactionRule>(null, requestOptions, new HttpMethod("DELETE"));
         }
 
         /// <summary>
@@ -74,8 +73,7 @@ namespace Adyen.Service.BalancePlatform
         {
             var endpoint = $"/transactionRules/{transactionRuleId}";
             var resource = new BalancePlatformResource(this, endpoint);
-            var jsonResult = await resource.RequestAsync(null, requestOptions, new HttpMethod("GET"));
-            return JsonConvert.DeserializeObject<TransactionRuleResponse>(jsonResult);
+            return await resource.RequestAsync<TransactionRuleResponse>(null, requestOptions, new HttpMethod("GET"));
         }
 
         /// <summary>
@@ -101,8 +99,7 @@ namespace Adyen.Service.BalancePlatform
         {
             var endpoint = $"/transactionRules/{transactionRuleId}";
             var resource = new BalancePlatformResource(this, endpoint);
-            var jsonResult = await resource.RequestAsync(transactionRuleInfo.ToJson(), requestOptions, new HttpMethod("PATCH"));
-            return JsonConvert.DeserializeObject<TransactionRule>(jsonResult);
+            return await resource.RequestAsync<TransactionRule>(transactionRuleInfo.ToJson(), requestOptions, new HttpMethod("PATCH"));
         }
 
         /// <summary>
@@ -126,8 +123,7 @@ namespace Adyen.Service.BalancePlatform
         {
             var endpoint = "/transactionRules";
             var resource = new BalancePlatformResource(this, endpoint);
-            var jsonResult = await resource.RequestAsync(transactionRuleInfo.ToJson(), requestOptions, new HttpMethod("POST"));
-            return JsonConvert.DeserializeObject<TransactionRule>(jsonResult);
+            return await resource.RequestAsync<TransactionRule>(transactionRuleInfo.ToJson(), requestOptions, new HttpMethod("POST"));
         }
 
     }

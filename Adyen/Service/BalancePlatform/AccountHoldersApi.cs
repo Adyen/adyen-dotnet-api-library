@@ -27,7 +27,7 @@ namespace Adyen.Service.BalancePlatform
     public class AccountHoldersApi : AbstractService
     {
         public AccountHoldersApi(Client client) : base(client) {}
-    
+
         /// <summary>
         /// Get an account holder
         /// </summary>
@@ -49,8 +49,7 @@ namespace Adyen.Service.BalancePlatform
         {
             var endpoint = $"/accountHolders/{id}";
             var resource = new BalancePlatformResource(this, endpoint);
-            var jsonResult = await resource.RequestAsync(null, requestOptions, new HttpMethod("GET"));
-            return JsonConvert.DeserializeObject<AccountHolder>(jsonResult);
+            return await resource.RequestAsync<AccountHolder>(null, requestOptions, new HttpMethod("GET"));
         }
 
         /// <summary>
@@ -82,8 +81,7 @@ namespace Adyen.Service.BalancePlatform
             if (limit != null) queryParams.Add("limit", limit.ToString());
             var endpoint = $"/accountHolders/{id}/balanceAccounts" + ToQueryString(queryParams);
             var resource = new BalancePlatformResource(this, endpoint);
-            var jsonResult = await resource.RequestAsync(null, requestOptions, new HttpMethod("GET"));
-            return JsonConvert.DeserializeObject<PaginatedBalanceAccountsResponse>(jsonResult);
+            return await resource.RequestAsync<PaginatedBalanceAccountsResponse>(null, requestOptions, new HttpMethod("GET"));
         }
 
         /// <summary>
@@ -109,8 +107,7 @@ namespace Adyen.Service.BalancePlatform
         {
             var endpoint = $"/accountHolders/{id}";
             var resource = new BalancePlatformResource(this, endpoint);
-            var jsonResult = await resource.RequestAsync(accountHolder.ToJson(), requestOptions, new HttpMethod("PATCH"));
-            return JsonConvert.DeserializeObject<AccountHolder>(jsonResult);
+            return await resource.RequestAsync<AccountHolder>(accountHolder.ToJson(), requestOptions, new HttpMethod("PATCH"));
         }
 
         /// <summary>
@@ -134,8 +131,7 @@ namespace Adyen.Service.BalancePlatform
         {
             var endpoint = "/accountHolders";
             var resource = new BalancePlatformResource(this, endpoint);
-            var jsonResult = await resource.RequestAsync(accountHolderInfo.ToJson(), requestOptions, new HttpMethod("POST"));
-            return JsonConvert.DeserializeObject<AccountHolder>(jsonResult);
+            return await resource.RequestAsync<AccountHolder>(accountHolderInfo.ToJson(), requestOptions, new HttpMethod("POST"));
         }
 
     }

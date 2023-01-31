@@ -27,7 +27,7 @@ namespace Adyen.Service.BalancePlatform
     public class PaymentInstrumentsApi : AbstractService
     {
         public PaymentInstrumentsApi(Client client) : base(client) {}
-    
+
         /// <summary>
         /// Get a payment instrument
         /// </summary>
@@ -49,8 +49,7 @@ namespace Adyen.Service.BalancePlatform
         {
             var endpoint = $"/paymentInstruments/{id}";
             var resource = new BalancePlatformResource(this, endpoint);
-            var jsonResult = await resource.RequestAsync(null, requestOptions, new HttpMethod("GET"));
-            return JsonConvert.DeserializeObject<PaymentInstrument>(jsonResult);
+            return await resource.RequestAsync<PaymentInstrument>(null, requestOptions, new HttpMethod("GET"));
         }
 
         /// <summary>
@@ -74,8 +73,7 @@ namespace Adyen.Service.BalancePlatform
         {
             var endpoint = $"/paymentInstruments/{id}/transactionRules";
             var resource = new BalancePlatformResource(this, endpoint);
-            var jsonResult = await resource.RequestAsync(null, requestOptions, new HttpMethod("GET"));
-            return JsonConvert.DeserializeObject<TransactionRulesResponse>(jsonResult);
+            return await resource.RequestAsync<TransactionRulesResponse>(null, requestOptions, new HttpMethod("GET"));
         }
 
         /// <summary>
@@ -101,8 +99,7 @@ namespace Adyen.Service.BalancePlatform
         {
             var endpoint = $"/paymentInstruments/{id}";
             var resource = new BalancePlatformResource(this, endpoint);
-            var jsonResult = await resource.RequestAsync(paymentInstrumentUpdateRequest.ToJson(), requestOptions, new HttpMethod("PATCH"));
-            return JsonConvert.DeserializeObject<PaymentInstrument>(jsonResult);
+            return await resource.RequestAsync<PaymentInstrument>(paymentInstrumentUpdateRequest.ToJson(), requestOptions, new HttpMethod("PATCH"));
         }
 
         /// <summary>
@@ -126,8 +123,7 @@ namespace Adyen.Service.BalancePlatform
         {
             var endpoint = "/paymentInstruments";
             var resource = new BalancePlatformResource(this, endpoint);
-            var jsonResult = await resource.RequestAsync(paymentInstrumentInfo.ToJson(), requestOptions, new HttpMethod("POST"));
-            return JsonConvert.DeserializeObject<PaymentInstrument>(jsonResult);
+            return await resource.RequestAsync<PaymentInstrument>(paymentInstrumentInfo.ToJson(), requestOptions, new HttpMethod("POST"));
         }
 
     }

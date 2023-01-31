@@ -17,7 +17,6 @@ using System.Threading.Tasks;
 using Adyen.Model;
 using Adyen.Service.Resource;
 using Adyen.Model.BalancePlatform;
-using Newtonsoft.Json;
 
 namespace Adyen.Service.BalancePlatform
 {
@@ -27,7 +26,7 @@ namespace Adyen.Service.BalancePlatform
     public class PlatformApi : AbstractService
     {
         public PlatformApi(Client client) : base(client) {}
-    
+
         /// <summary>
         /// Get a balance platform
         /// </summary>
@@ -49,8 +48,7 @@ namespace Adyen.Service.BalancePlatform
         {
             var endpoint = $"/balancePlatforms/{id}";
             var resource = new BalancePlatformResource(this, endpoint);
-            var jsonResult = await resource.RequestAsync(null, requestOptions, new HttpMethod("GET"));
-            return JsonConvert.DeserializeObject<Model.BalancePlatform.BalancePlatform>(jsonResult);
+            return await resource.RequestAsync<Model.BalancePlatform.BalancePlatform>(null, requestOptions, new HttpMethod("GET"));
         }
 
         /// <summary>
@@ -82,8 +80,7 @@ namespace Adyen.Service.BalancePlatform
             if (limit != null) queryParams.Add("limit", limit.ToString());
             var endpoint = $"/balancePlatforms/{id}/accountHolders" + ToQueryString(queryParams);
             var resource = new BalancePlatformResource(this, endpoint);
-            var jsonResult = await resource.RequestAsync(null, requestOptions, new HttpMethod("GET"));
-            return JsonConvert.DeserializeObject<PaginatedAccountHoldersResponse>(jsonResult);
+            return await resource.RequestAsync<PaginatedAccountHoldersResponse>(null, requestOptions, new HttpMethod("GET"));
         }
 
     }

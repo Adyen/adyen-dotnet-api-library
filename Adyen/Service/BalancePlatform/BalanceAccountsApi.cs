@@ -27,7 +27,7 @@ namespace Adyen.Service.BalancePlatform
     public class BalanceAccountsApi : AbstractService
     {
         public BalanceAccountsApi(Client client) : base(client) {}
-    
+
         /// <summary>
         /// Delete a sweep
         /// </summary>
@@ -81,8 +81,7 @@ namespace Adyen.Service.BalancePlatform
             if (limit != null) queryParams.Add("limit", limit.ToString());
             var endpoint = $"/balanceAccounts/{balanceAccountId}/sweeps" + ToQueryString(queryParams);
             var resource = new BalancePlatformResource(this, endpoint);
-            var jsonResult = await resource.RequestAsync(null, requestOptions, new HttpMethod("GET"));
-            return JsonConvert.DeserializeObject<BalanceSweepConfigurationsResponse>(jsonResult);
+            return await resource.RequestAsync<BalanceSweepConfigurationsResponse>(null, requestOptions, new HttpMethod("GET"));
         }
 
         /// <summary>
@@ -108,8 +107,7 @@ namespace Adyen.Service.BalancePlatform
         {
             var endpoint = $"/balanceAccounts/{balanceAccountId}/sweeps/{sweepId}";
             var resource = new BalancePlatformResource(this, endpoint);
-            var jsonResult = await resource.RequestAsync(null, requestOptions, new HttpMethod("GET"));
-            return JsonConvert.DeserializeObject<SweepConfigurationV2>(jsonResult);
+            return await resource.RequestAsync<SweepConfigurationV2>(null, requestOptions, new HttpMethod("GET"));
         }
 
         /// <summary>
@@ -133,8 +131,7 @@ namespace Adyen.Service.BalancePlatform
         {
             var endpoint = $"/balanceAccounts/{id}";
             var resource = new BalancePlatformResource(this, endpoint);
-            var jsonResult = await resource.RequestAsync(null, requestOptions, new HttpMethod("GET"));
-            return JsonConvert.DeserializeObject<BalanceAccount>(jsonResult);
+            return await resource.RequestAsync<BalanceAccount>(null, requestOptions, new HttpMethod("GET"));
         }
 
         /// <summary>
@@ -166,8 +163,7 @@ namespace Adyen.Service.BalancePlatform
             if (limit != null) queryParams.Add("limit", limit.ToString());
             var endpoint = $"/balanceAccounts/{id}/paymentInstruments" + ToQueryString(queryParams);
             var resource = new BalancePlatformResource(this, endpoint);
-            var jsonResult = await resource.RequestAsync(null, requestOptions, new HttpMethod("GET"));
-            return JsonConvert.DeserializeObject<PaginatedPaymentInstrumentsResponse>(jsonResult);
+            return await resource.RequestAsync<PaginatedPaymentInstrumentsResponse>(null, requestOptions, new HttpMethod("GET"));
         }
 
         /// <summary>
@@ -195,8 +191,7 @@ namespace Adyen.Service.BalancePlatform
         {
             var endpoint = $"/balanceAccounts/{balanceAccountId}/sweeps/{sweepId}";
             var resource = new BalancePlatformResource(this, endpoint);
-            var jsonResult = await resource.RequestAsync(sweepConfigurationV2.ToJson(), requestOptions, new HttpMethod("PATCH"));
-            return JsonConvert.DeserializeObject<SweepConfigurationV2>(jsonResult);
+            return await resource.RequestAsync<SweepConfigurationV2>(sweepConfigurationV2.ToJson(), requestOptions, new HttpMethod("PATCH"));
         }
 
         /// <summary>
@@ -222,8 +217,7 @@ namespace Adyen.Service.BalancePlatform
         {
             var endpoint = $"/balanceAccounts/{id}";
             var resource = new BalancePlatformResource(this, endpoint);
-            var jsonResult = await resource.RequestAsync(balanceAccountUpdateRequest.ToJson(), requestOptions, new HttpMethod("PATCH"));
-            return JsonConvert.DeserializeObject<BalanceAccount>(jsonResult);
+            return await resource.RequestAsync<BalanceAccount>(balanceAccountUpdateRequest.ToJson(), requestOptions, new HttpMethod("PATCH"));
         }
 
         /// <summary>
@@ -247,8 +241,7 @@ namespace Adyen.Service.BalancePlatform
         {
             var endpoint = "/balanceAccounts";
             var resource = new BalancePlatformResource(this, endpoint);
-            var jsonResult = await resource.RequestAsync(balanceAccountInfo.ToJson(), requestOptions, new HttpMethod("POST"));
-            return JsonConvert.DeserializeObject<BalanceAccount>(jsonResult);
+            return await resource.RequestAsync<BalanceAccount>(balanceAccountInfo.ToJson(), requestOptions, new HttpMethod("POST"));
         }
 
         /// <summary>
@@ -274,8 +267,7 @@ namespace Adyen.Service.BalancePlatform
         {
             var endpoint = $"/balanceAccounts/{balanceAccountId}/sweeps";
             var resource = new BalancePlatformResource(this, endpoint);
-            var jsonResult = await resource.RequestAsync(sweepConfigurationV2.ToJson(), requestOptions, new HttpMethod("POST"));
-            return JsonConvert.DeserializeObject<SweepConfigurationV2>(jsonResult);
+            return await resource.RequestAsync<SweepConfigurationV2>(sweepConfigurationV2.ToJson(), requestOptions, new HttpMethod("POST"));
         }
 
     }

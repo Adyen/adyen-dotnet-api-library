@@ -7,7 +7,6 @@ using Adyen.Model;
 using Adyen.Service.Resource;
 {{#hasImport}}using Adyen.{{modelPackage}};
 {{/hasImport}}
-using Newtonsoft.Json;
 
 namespace {{packageName}}.{{apiPackage}}
 {
@@ -47,10 +46,7 @@ namespace {{packageName}}.{{apiPackage}}
             {{/hasQueryParams}}
             var endpoint = {{#hasPathParams}}${{/hasPathParams}}"{{{path}}}"{{#hasQueryParams}} + ToQueryString(queryParams){{/hasQueryParams}};
             var resource = new {{#lambda.titlecase}}{{serviceName}}{{/lambda.titlecase}}Resource(this, endpoint);
-            {{#returnType}}var jsonResult = {{/returnType}}await resource.RequestAsync<{{returnType}}>({{#bodyParam}}{{paramName}}.ToJson(){{/bodyParam}}{{^bodyParam}}null{{/bodyParam}}, requestOptions, new HttpMethod("{{httpMethod}}"));
-            {{#returnType}}
-            return JsonConvert.DeserializeObject<{{returnType}}>(jsonResult);
-            {{/returnType}}
+            {{#returnType}}return {{/returnType}}await resource.RequestAsync{{#returnType}}<{{returnType}}>{{/returnType}}({{#bodyParam}}{{paramName}}.ToJson(){{/bodyParam}}{{^bodyParam}}null{{/bodyParam}}, requestOptions, new HttpMethod("{{httpMethod}}"));
         }
 
         {{/supportsAsync}}
