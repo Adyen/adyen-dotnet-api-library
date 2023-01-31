@@ -1,0 +1,60 @@
+{{>partial_header}}
+using System;
+using System.Collections.Generic;
+using System.Net.Http;
+using System.Threading.Tasks;
+using Adyen.Model;
+using Adyen.Service.Resource;
+{{#hasImport}}using Adyen.{{modelPackage}};
+{{/hasImport}}
+using Newtonsoft.Json;
+
+namespace {{packageName}}.{{apiPackage}}
+{
+    {{#operations}}
+    /// <summary>
+    /// Represents a collection of functions to interact with the API endpoints
+    /// </summary>
+    {{>visibility}} class {{classname}} : AbstractService
+    {
+        public {{classname}}(Client client) : base(client) {}
+
+        {{#operation}}
+{{>method_documentation}}{{#returnType}}
+        /// <returns>{{{returnType}}}</returns>{{/returnType}}
+        {{#isDeprecated}}
+        [Obsolete]
+        {{/isDeprecated}}
+        public {{{returnType}}}{{^returnType}}void{{/returnType}} {{operationId}}({{>api_parameters}})
+        {
+            {{#returnType}}return {{/returnType}}{{operationId}}Async({{>api_invoke}}).GetAwaiter().GetResult();
+        }
+
+        {{#supportsAsync}}
+{{>method_documentation}}{{#returnType}}
+        /// <returns>Task of {{{returnType}}}{{^returnType}}void{{/returnType}}</returns>{{/returnType}}
+        {{#isDeprecated}}
+        [Obsolete]
+        {{/isDeprecated}}
+        {{#returnType}}public async Task<{{{.}}}>{{/returnType}}{{^returnType}}public async Task{{/returnType}} {{operationId}}Async({{>api_parameters}})
+        {
+            {{#hasQueryParams}}
+            // Build the query string
+            var queryParams = new Dictionary<string, string>();
+            {{#queryParams}}
+            if ({{paramName}} != null) queryParams.Add("{{baseName}}", {{paramName}}{{^isString}}.ToString(){{/isString}});
+            {{/queryParams}}
+            {{/hasQueryParams}}
+            var endpoint = {{#hasPathParams}}${{/hasPathParams}}"{{{path}}}"{{#hasQueryParams}} + ToQueryString(queryParams){{/hasQueryParams}};
+            var resource = new {{#lambda.titlecase}}{{serviceName}}{{/lambda.titlecase}}Resource(this, endpoint);
+            {{#returnType}}var jsonResult = {{/returnType}}await resource.RequestAsync<{{returnType}}>({{#bodyParam}}{{paramName}}.ToJson(){{/bodyParam}}{{^bodyParam}}null{{/bodyParam}}, requestOptions, new HttpMethod("{{httpMethod}}"));
+            {{#returnType}}
+            return JsonConvert.DeserializeObject<{{returnType}}>(jsonResult);
+            {{/returnType}}
+        }
+
+        {{/supportsAsync}}
+        {{/operation}}
+    }
+    {{/operations}}
+}
