@@ -32,7 +32,7 @@ namespace Adyen.Security
         private static string _terminalApiCnRegex = "[a-zA-Z0-9]{3,}-[0-9]{9,15}\\." + _environmentWildcard + "\\.terminal\\.adyen\\.com";
         private static string _terminalApiLegacy = "legacy-terminal-certificate." + _environmentWildcard + ".terminal.adyen.com";
 
-        public static bool ValidateCertificate(string certificateSubject, Model.Enum.Environment environment)
+        public static bool ValidateCertificate(string certificateSubject, Model.Environment environment)
         {
             var environmentName = environment.ToString().ToLower();
             var regexPatternTerminalSpecificCert = _terminalApiCnRegex.Replace(_environmentWildcard, environmentName);

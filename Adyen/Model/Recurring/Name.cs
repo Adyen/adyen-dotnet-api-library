@@ -28,33 +28,40 @@ using System.ComponentModel.DataAnnotations;
 namespace Adyen.Model.Recurring
 {
     /// <summary>
-    /// TokenDetails
+    /// Name
     /// </summary>
-    [DataContract(Name = "TokenDetails")]
-    public partial class TokenDetails : IEquatable<TokenDetails>, IValidatableObject
+    [DataContract(Name = "Name")]
+    public partial class Name : IEquatable<Name>, IValidatableObject
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="TokenDetails" /> class.
+        /// Initializes a new instance of the <see cref="Name" /> class.
         /// </summary>
-        /// <param name="tokenData">tokenData.</param>
-        /// <param name="tokenDataType">tokenDataType.</param>
-        public TokenDetails(Dictionary<string, string> tokenData = default(Dictionary<string, string>), string tokenDataType = default(string))
+        [JsonConstructorAttribute]
+        protected Name() { }
+        /// <summary>
+        /// Initializes a new instance of the <see cref="Name" /> class.
+        /// </summary>
+        /// <param name="firstName">The first name. (required).</param>
+        /// <param name="lastName">The last name. (required).</param>
+        public Name(string firstName = default(string), string lastName = default(string))
         {
-            this.TokenData = tokenData;
-            this.TokenDataType = tokenDataType;
+            this.FirstName = firstName;
+            this.LastName = lastName;
         }
 
         /// <summary>
-        /// Gets or Sets TokenData
+        /// The first name.
         /// </summary>
-        [DataMember(Name = "tokenData", EmitDefaultValue = false)]
-        public Dictionary<string, string> TokenData { get; set; }
+        /// <value>The first name.</value>
+        [DataMember(Name = "firstName", IsRequired = false, EmitDefaultValue = true)]
+        public string FirstName { get; set; }
 
         /// <summary>
-        /// Gets or Sets TokenDataType
+        /// The last name.
         /// </summary>
-        [DataMember(Name = "tokenDataType", EmitDefaultValue = false)]
-        public string TokenDataType { get; set; }
+        /// <value>The last name.</value>
+        [DataMember(Name = "lastName", IsRequired = false, EmitDefaultValue = true)]
+        public string LastName { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -63,9 +70,9 @@ namespace Adyen.Model.Recurring
         public override string ToString()
         {
             StringBuilder sb = new StringBuilder();
-            sb.Append("class TokenDetails {\n");
-            sb.Append("  TokenData: ").Append(TokenData).Append("\n");
-            sb.Append("  TokenDataType: ").Append(TokenDataType).Append("\n");
+            sb.Append("class Name {\n");
+            sb.Append("  FirstName: ").Append(FirstName).Append("\n");
+            sb.Append("  LastName: ").Append(LastName).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -86,15 +93,15 @@ namespace Adyen.Model.Recurring
         /// <returns>Boolean</returns>
         public override bool Equals(object input)
         {
-            return this.Equals(input as TokenDetails);
+            return this.Equals(input as Name);
         }
 
         /// <summary>
-        /// Returns true if TokenDetails instances are equal
+        /// Returns true if Name instances are equal
         /// </summary>
-        /// <param name="input">Instance of TokenDetails to be compared</param>
+        /// <param name="input">Instance of Name to be compared</param>
         /// <returns>Boolean</returns>
-        public bool Equals(TokenDetails input)
+        public bool Equals(Name input)
         {
             if (input == null)
             {
@@ -102,15 +109,14 @@ namespace Adyen.Model.Recurring
             }
             return 
                 (
-                    this.TokenData == input.TokenData ||
-                    this.TokenData != null &&
-                    input.TokenData != null &&
-                    this.TokenData.SequenceEqual(input.TokenData)
+                    this.FirstName == input.FirstName ||
+                    (this.FirstName != null &&
+                    this.FirstName.Equals(input.FirstName))
                 ) && 
                 (
-                    this.TokenDataType == input.TokenDataType ||
-                    (this.TokenDataType != null &&
-                    this.TokenDataType.Equals(input.TokenDataType))
+                    this.LastName == input.LastName ||
+                    (this.LastName != null &&
+                    this.LastName.Equals(input.LastName))
                 );
         }
 
@@ -123,13 +129,13 @@ namespace Adyen.Model.Recurring
             unchecked // Overflow is fine, just wrap
             {
                 int hashCode = 41;
-                if (this.TokenData != null)
+                if (this.FirstName != null)
                 {
-                    hashCode = (hashCode * 59) + this.TokenData.GetHashCode();
+                    hashCode = (hashCode * 59) + this.FirstName.GetHashCode();
                 }
-                if (this.TokenDataType != null)
+                if (this.LastName != null)
                 {
-                    hashCode = (hashCode * 59) + this.TokenDataType.GetHashCode();
+                    hashCode = (hashCode * 59) + this.LastName.GetHashCode();
                 }
                 return hashCode;
             }

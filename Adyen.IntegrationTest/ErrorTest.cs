@@ -7,7 +7,7 @@ using Adyen.Service.Resource.Checkout;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Amount = Adyen.Model.Payments.Amount;
 using Card = Adyen.Model.Payments.Card;
-using Environment = Adyen.Model.Enum.Environment;
+using Environment = Adyen.Model.Environment;
 using PaymentRequest = Adyen.Model.Payments.PaymentRequest;
 using Recurring = Adyen.Model.Payments.Recurring;
 

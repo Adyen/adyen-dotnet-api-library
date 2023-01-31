@@ -28,33 +28,40 @@ using System.ComponentModel.DataAnnotations;
 namespace Adyen.Model.Recurring
 {
     /// <summary>
-    /// TokenDetails
+    /// DisablePermitRequest
     /// </summary>
-    [DataContract(Name = "TokenDetails")]
-    public partial class TokenDetails : IEquatable<TokenDetails>, IValidatableObject
+    [DataContract(Name = "DisablePermitRequest")]
+    public partial class DisablePermitRequest : IEquatable<DisablePermitRequest>, IValidatableObject
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="TokenDetails" /> class.
+        /// Initializes a new instance of the <see cref="DisablePermitRequest" /> class.
         /// </summary>
-        /// <param name="tokenData">tokenData.</param>
-        /// <param name="tokenDataType">tokenDataType.</param>
-        public TokenDetails(Dictionary<string, string> tokenData = default(Dictionary<string, string>), string tokenDataType = default(string))
+        [JsonConstructorAttribute]
+        protected DisablePermitRequest() { }
+        /// <summary>
+        /// Initializes a new instance of the <see cref="DisablePermitRequest" /> class.
+        /// </summary>
+        /// <param name="merchantAccount">The merchant account identifier, with which you want to process the transaction. (required).</param>
+        /// <param name="token">The permit token to disable. (required).</param>
+        public DisablePermitRequest(string merchantAccount = default(string), string token = default(string))
         {
-            this.TokenData = tokenData;
-            this.TokenDataType = tokenDataType;
+            this.MerchantAccount = merchantAccount;
+            this.Token = token;
         }
 
         /// <summary>
-        /// Gets or Sets TokenData
+        /// The merchant account identifier, with which you want to process the transaction.
         /// </summary>
-        [DataMember(Name = "tokenData", EmitDefaultValue = false)]
-        public Dictionary<string, string> TokenData { get; set; }
+        /// <value>The merchant account identifier, with which you want to process the transaction.</value>
+        [DataMember(Name = "merchantAccount", IsRequired = false, EmitDefaultValue = true)]
+        public string MerchantAccount { get; set; }
 
         /// <summary>
-        /// Gets or Sets TokenDataType
+        /// The permit token to disable.
         /// </summary>
-        [DataMember(Name = "tokenDataType", EmitDefaultValue = false)]
-        public string TokenDataType { get; set; }
+        /// <value>The permit token to disable.</value>
+        [DataMember(Name = "token", IsRequired = false, EmitDefaultValue = true)]
+        public string Token { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -63,9 +70,9 @@ namespace Adyen.Model.Recurring
         public override string ToString()
         {
             StringBuilder sb = new StringBuilder();
-            sb.Append("class TokenDetails {\n");
-            sb.Append("  TokenData: ").Append(TokenData).Append("\n");
-            sb.Append("  TokenDataType: ").Append(TokenDataType).Append("\n");
+            sb.Append("class DisablePermitRequest {\n");
+            sb.Append("  MerchantAccount: ").Append(MerchantAccount).Append("\n");
+            sb.Append("  Token: ").Append(Token).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -86,15 +93,15 @@ namespace Adyen.Model.Recurring
         /// <returns>Boolean</returns>
         public override bool Equals(object input)
         {
-            return this.Equals(input as TokenDetails);
+            return this.Equals(input as DisablePermitRequest);
         }
 
         /// <summary>
-        /// Returns true if TokenDetails instances are equal
+        /// Returns true if DisablePermitRequest instances are equal
         /// </summary>
-        /// <param name="input">Instance of TokenDetails to be compared</param>
+        /// <param name="input">Instance of DisablePermitRequest to be compared</param>
         /// <returns>Boolean</returns>
-        public bool Equals(TokenDetails input)
+        public bool Equals(DisablePermitRequest input)
         {
             if (input == null)
             {
@@ -102,15 +109,14 @@ namespace Adyen.Model.Recurring
             }
             return 
                 (
-                    this.TokenData == input.TokenData ||
-                    this.TokenData != null &&
-                    input.TokenData != null &&
-                    this.TokenData.SequenceEqual(input.TokenData)
+                    this.MerchantAccount == input.MerchantAccount ||
+                    (this.MerchantAccount != null &&
+                    this.MerchantAccount.Equals(input.MerchantAccount))
                 ) && 
                 (
-                    this.TokenDataType == input.TokenDataType ||
-                    (this.TokenDataType != null &&
-                    this.TokenDataType.Equals(input.TokenDataType))
+                    this.Token == input.Token ||
+                    (this.Token != null &&
+                    this.Token.Equals(input.Token))
                 );
         }
 
@@ -123,13 +129,13 @@ namespace Adyen.Model.Recurring
             unchecked // Overflow is fine, just wrap
             {
                 int hashCode = 41;
-                if (this.TokenData != null)
+                if (this.MerchantAccount != null)
                 {
-                    hashCode = (hashCode * 59) + this.TokenData.GetHashCode();
+                    hashCode = (hashCode * 59) + this.MerchantAccount.GetHashCode();
                 }
-                if (this.TokenDataType != null)
+                if (this.Token != null)
                 {
-                    hashCode = (hashCode * 59) + this.TokenDataType.GetHashCode();
+                    hashCode = (hashCode * 59) + this.Token.GetHashCode();
                 }
                 return hashCode;
             }
