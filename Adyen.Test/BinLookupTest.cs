@@ -22,7 +22,6 @@
 #endregion
 
 using Adyen.Model.BinLookup;
-using Adyen.Model.Enum;
 using Adyen.Service;
 using Adyen.Service.Resource.BinLookup;
 using Microsoft.VisualStudio.TestTools.UnitTesting;

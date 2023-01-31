@@ -28,56 +28,56 @@ using System.ComponentModel.DataAnnotations;
 namespace Adyen.Model.Recurring
 {
     /// <summary>
-    /// DisableRequest
+    /// CreatePermitRequest
     /// </summary>
-    [DataContract(Name = "DisableRequest")]
-    public partial class DisableRequest : IEquatable<DisableRequest>, IValidatableObject
+    [DataContract(Name = "CreatePermitRequest")]
+    public partial class CreatePermitRequest : IEquatable<CreatePermitRequest>, IValidatableObject
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="DisableRequest" /> class.
+        /// Initializes a new instance of the <see cref="CreatePermitRequest" /> class.
         /// </summary>
         [JsonConstructorAttribute]
-        protected DisableRequest() { }
+        protected CreatePermitRequest() { }
         /// <summary>
-        /// Initializes a new instance of the <see cref="DisableRequest" /> class.
+        /// Initializes a new instance of the <see cref="CreatePermitRequest" /> class.
         /// </summary>
-        /// <param name="contract">Specify the contract if you only want to disable a specific use.  This field can be set to one of the following values, or to their combination (comma-separated): * ONECLICK * RECURRING * PAYOUT.</param>
-        /// <param name="merchantAccount">The merchant account identifier with which you want to process the transaction. (required).</param>
-        /// <param name="recurringDetailReference">The ID that uniquely identifies the recurring detail reference.  If it is not provided, the whole recurring contract of the &#x60;shopperReference&#x60; will be disabled, which includes all recurring details..</param>
-        /// <param name="shopperReference">The ID that uniquely identifies the shopper.  This &#x60;shopperReference&#x60; must be the same as the &#x60;shopperReference&#x60; used in the initial payment. (required).</param>
-        public DisableRequest(string contract = default(string), string merchantAccount = default(string), string recurringDetailReference = default(string), string shopperReference = default(string))
+        /// <param name="merchantAccount">The merchant account identifier, with which you want to process the transaction. (required).</param>
+        /// <param name="permits">The permits to create for this recurring contract. (required).</param>
+        /// <param name="recurringDetailReference">The recurring contract the new permits will use. (required).</param>
+        /// <param name="shopperReference">The shopper&#39;s reference to uniquely identify this shopper (e.g. user ID or account ID). (required).</param>
+        public CreatePermitRequest(string merchantAccount = default(string), List<Permit> permits = default(List<Permit>), string recurringDetailReference = default(string), string shopperReference = default(string))
         {
             this.MerchantAccount = merchantAccount;
-            this.ShopperReference = shopperReference;
-            this.Contract = contract;
+            this.Permits = permits;
             this.RecurringDetailReference = recurringDetailReference;
+            this.ShopperReference = shopperReference;
         }
 
         /// <summary>
-        /// Specify the contract if you only want to disable a specific use.  This field can be set to one of the following values, or to their combination (comma-separated): * ONECLICK * RECURRING * PAYOUT
+        /// The merchant account identifier, with which you want to process the transaction.
         /// </summary>
-        /// <value>Specify the contract if you only want to disable a specific use.  This field can be set to one of the following values, or to their combination (comma-separated): * ONECLICK * RECURRING * PAYOUT</value>
-        [DataMember(Name = "contract", EmitDefaultValue = false)]
-        public string Contract { get; set; }
-
-        /// <summary>
-        /// The merchant account identifier with which you want to process the transaction.
-        /// </summary>
-        /// <value>The merchant account identifier with which you want to process the transaction.</value>
+        /// <value>The merchant account identifier, with which you want to process the transaction.</value>
         [DataMember(Name = "merchantAccount", IsRequired = false, EmitDefaultValue = true)]
         public string MerchantAccount { get; set; }
 
         /// <summary>
-        /// The ID that uniquely identifies the recurring detail reference.  If it is not provided, the whole recurring contract of the &#x60;shopperReference&#x60; will be disabled, which includes all recurring details.
+        /// The permits to create for this recurring contract.
         /// </summary>
-        /// <value>The ID that uniquely identifies the recurring detail reference.  If it is not provided, the whole recurring contract of the &#x60;shopperReference&#x60; will be disabled, which includes all recurring details.</value>
-        [DataMember(Name = "recurringDetailReference", EmitDefaultValue = false)]
+        /// <value>The permits to create for this recurring contract.</value>
+        [DataMember(Name = "permits", IsRequired = false, EmitDefaultValue = true)]
+        public List<Permit> Permits { get; set; }
+
+        /// <summary>
+        /// The recurring contract the new permits will use.
+        /// </summary>
+        /// <value>The recurring contract the new permits will use.</value>
+        [DataMember(Name = "recurringDetailReference", IsRequired = false, EmitDefaultValue = true)]
         public string RecurringDetailReference { get; set; }
 
         /// <summary>
-        /// The ID that uniquely identifies the shopper.  This &#x60;shopperReference&#x60; must be the same as the &#x60;shopperReference&#x60; used in the initial payment.
+        /// The shopper&#39;s reference to uniquely identify this shopper (e.g. user ID or account ID).
         /// </summary>
-        /// <value>The ID that uniquely identifies the shopper.  This &#x60;shopperReference&#x60; must be the same as the &#x60;shopperReference&#x60; used in the initial payment.</value>
+        /// <value>The shopper&#39;s reference to uniquely identify this shopper (e.g. user ID or account ID).</value>
         [DataMember(Name = "shopperReference", IsRequired = false, EmitDefaultValue = true)]
         public string ShopperReference { get; set; }
 
@@ -88,9 +88,9 @@ namespace Adyen.Model.Recurring
         public override string ToString()
         {
             StringBuilder sb = new StringBuilder();
-            sb.Append("class DisableRequest {\n");
-            sb.Append("  Contract: ").Append(Contract).Append("\n");
+            sb.Append("class CreatePermitRequest {\n");
             sb.Append("  MerchantAccount: ").Append(MerchantAccount).Append("\n");
+            sb.Append("  Permits: ").Append(Permits).Append("\n");
             sb.Append("  RecurringDetailReference: ").Append(RecurringDetailReference).Append("\n");
             sb.Append("  ShopperReference: ").Append(ShopperReference).Append("\n");
             sb.Append("}\n");
@@ -113,15 +113,15 @@ namespace Adyen.Model.Recurring
         /// <returns>Boolean</returns>
         public override bool Equals(object input)
         {
-            return this.Equals(input as DisableRequest);
+            return this.Equals(input as CreatePermitRequest);
         }
 
         /// <summary>
-        /// Returns true if DisableRequest instances are equal
+        /// Returns true if CreatePermitRequest instances are equal
         /// </summary>
-        /// <param name="input">Instance of DisableRequest to be compared</param>
+        /// <param name="input">Instance of CreatePermitRequest to be compared</param>
         /// <returns>Boolean</returns>
-        public bool Equals(DisableRequest input)
+        public bool Equals(CreatePermitRequest input)
         {
             if (input == null)
             {
@@ -129,14 +129,15 @@ namespace Adyen.Model.Recurring
             }
             return 
                 (
-                    this.Contract == input.Contract ||
-                    (this.Contract != null &&
-                    this.Contract.Equals(input.Contract))
-                ) && 
-                (
                     this.MerchantAccount == input.MerchantAccount ||
                     (this.MerchantAccount != null &&
                     this.MerchantAccount.Equals(input.MerchantAccount))
+                ) && 
+                (
+                    this.Permits == input.Permits ||
+                    this.Permits != null &&
+                    input.Permits != null &&
+                    this.Permits.SequenceEqual(input.Permits)
                 ) && 
                 (
                     this.RecurringDetailReference == input.RecurringDetailReference ||
@@ -159,13 +160,13 @@ namespace Adyen.Model.Recurring
             unchecked // Overflow is fine, just wrap
             {
                 int hashCode = 41;
-                if (this.Contract != null)
-                {
-                    hashCode = (hashCode * 59) + this.Contract.GetHashCode();
-                }
                 if (this.MerchantAccount != null)
                 {
                     hashCode = (hashCode * 59) + this.MerchantAccount.GetHashCode();
+                }
+                if (this.Permits != null)
+                {
+                    hashCode = (hashCode * 59) + this.Permits.GetHashCode();
                 }
                 if (this.RecurringDetailReference != null)
                 {
