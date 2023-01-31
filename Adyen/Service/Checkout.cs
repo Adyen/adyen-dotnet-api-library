@@ -25,7 +25,6 @@ using System.Net.Http;
 using System.Threading.Tasks;
 using Adyen.Model.Checkout;
 using Adyen.Service.Resource.Checkout;
-using Newtonsoft.Json;
 using CardDetails = Adyen.Service.Resource.Checkout.CardDetails;
 using PaymentDetails = Adyen.Service.Resource.Checkout.PaymentDetails;
 using PaymentRequest = Adyen.Model.Checkout.PaymentRequest;
@@ -76,8 +75,7 @@ namespace Adyen.Service
         public PaymentResponse Payments(PaymentRequest paymentRequest, RequestOptions requestOptions = null)
         {
             var jsonRequest = paymentRequest.ToJson();
-            var jsonResponse = _payments.Request(jsonRequest, requestOptions);
-            return JsonConvert.DeserializeObject<PaymentResponse>(jsonResponse);
+            return _payments.Request<PaymentResponse>(jsonRequest, requestOptions);
         }
 
         /// <summary>
@@ -89,8 +87,7 @@ namespace Adyen.Service
         public async Task<PaymentResponse> PaymentsAsync(PaymentRequest paymentRequest, RequestOptions requestOptions = null)
         {
             var jsonRequest = paymentRequest.ToJson();
-            var jsonResponse = await _payments.RequestAsync(jsonRequest, requestOptions);
-            return JsonConvert.DeserializeObject<PaymentResponse>(jsonResponse);
+            return await _payments.RequestAsync<PaymentResponse>(jsonRequest, requestOptions);
         }
 
         /// <summary>
@@ -101,8 +98,7 @@ namespace Adyen.Service
         public PaymentMethodsResponse PaymentMethods(PaymentMethodsRequest paymentMethodsRequest)
         {
             var jsonRequest = paymentMethodsRequest.ToJson();
-            var jsonResponse = _paymentMethods.Request(jsonRequest);
-            return JsonConvert.DeserializeObject<PaymentMethodsResponse>(jsonResponse);
+            return _paymentMethods.Request<PaymentMethodsResponse>(jsonRequest);
         }
 
         /// <summary>
@@ -113,8 +109,7 @@ namespace Adyen.Service
         public async Task<PaymentMethodsResponse> PaymentMethodsAsync(PaymentMethodsRequest paymentMethodsRequest)
         {
             var jsonRequest = paymentMethodsRequest.ToJson();
-            var jsonResponse = await _paymentMethods.RequestAsync(jsonRequest);
-            return JsonConvert.DeserializeObject<PaymentMethodsResponse>(jsonResponse);
+            return await _paymentMethods.RequestAsync<PaymentMethodsResponse>(jsonRequest);
         }
 
         /// <summary>
@@ -126,8 +121,7 @@ namespace Adyen.Service
         public PaymentDetailsResponse PaymentDetails(DetailsRequest paymentsDetailsRequest, RequestOptions requestOptions = null)
         {
             var jsonRequest = paymentsDetailsRequest.ToJson();
-            var jsonResponse = _paymentDetails.Request(jsonRequest, requestOptions);
-            return JsonConvert.DeserializeObject<PaymentDetailsResponse>(jsonResponse);
+            return _paymentDetails.Request<PaymentDetailsResponse>(jsonRequest, requestOptions);
         }
 
         /// <summary>
@@ -139,8 +133,7 @@ namespace Adyen.Service
         public async Task<PaymentDetailsResponse> PaymentDetailsAsync(DetailsRequest paymentsDetailsRequest, RequestOptions requestOptions = null)
         {
             var jsonRequest = (paymentsDetailsRequest).ToJson();
-            var jsonResponse = await _paymentDetails.RequestAsync(jsonRequest, requestOptions);
-            return JsonConvert.DeserializeObject<PaymentDetailsResponse>(jsonResponse);
+            return await _paymentDetails.RequestAsync<PaymentDetailsResponse>(jsonRequest, requestOptions);
         }
 
         /// <summary>
@@ -151,8 +144,7 @@ namespace Adyen.Service
         public PaymentSetupResponse PaymentSession(PaymentSetupRequest paymentSetupRequest)
         {
             var jsonRequest = paymentSetupRequest.ToJson();
-            var jsonResponse = _paymentSession.Request(jsonRequest);
-            return JsonConvert.DeserializeObject<PaymentSetupResponse>(jsonResponse);
+            return _paymentSession.Request<PaymentSetupResponse>(jsonRequest);
         }
 
         /// <summary>
@@ -163,8 +155,7 @@ namespace Adyen.Service
         public async Task<PaymentSetupResponse> PaymentSessionAsync(PaymentSetupRequest paymentSetupRequest)
         {
             var jsonRequest = paymentSetupRequest.ToJson();
-            var jsonResponse = await _paymentSession.RequestAsync(jsonRequest);
-            return JsonConvert.DeserializeObject<PaymentSetupResponse>(jsonResponse);
+            return await _paymentSession.RequestAsync<PaymentSetupResponse>(jsonRequest);
         }
 
         /// <summary>
@@ -175,8 +166,7 @@ namespace Adyen.Service
         public PaymentVerificationResponse PaymentsResult(PaymentVerificationRequest paymentVerificationRequest)
         {
             var jsonRequest = paymentVerificationRequest.ToJson();
-            var jsonResponse = _paymentsResult.Request(jsonRequest);
-            return JsonConvert.DeserializeObject<PaymentVerificationResponse>(jsonResponse);
+            return _paymentsResult.Request<PaymentVerificationResponse>(jsonRequest);
         }
 
         /// <summary>
@@ -187,8 +177,7 @@ namespace Adyen.Service
         public async Task<PaymentVerificationResponse> PaymentsResultAsync(PaymentVerificationRequest paymentVerificationRequest)
         {
             var jsonRequest = paymentVerificationRequest.ToJson();
-            var jsonResponse = await _paymentsResult.RequestAsync(jsonRequest);
-            return JsonConvert.DeserializeObject<PaymentVerificationResponse>(jsonResponse);
+            return await _paymentsResult.RequestAsync<PaymentVerificationResponse>(jsonRequest);
         }
 
         /// <summary>
@@ -199,8 +188,7 @@ namespace Adyen.Service
         public PaymentLinkResponse PaymentLinks(CreatePaymentLinkRequest createPaymentLinkRequest)
         {
             var jsonRequest = createPaymentLinkRequest.ToJson();
-            var jsonResponse = _paymentLinksResult.Request(jsonRequest);
-            return JsonConvert.DeserializeObject<PaymentLinkResponse>(jsonResponse);
+            return _paymentLinksResult.Request<PaymentLinkResponse>(jsonRequest);
         }
         
         /// <summary>
@@ -211,8 +199,7 @@ namespace Adyen.Service
         public async Task<PaymentLinkResponse> PaymentLinksAsync(CreatePaymentLinkRequest createPaymentLinkRequest)
         {
             var jsonRequest = createPaymentLinkRequest.ToJson();
-            var jsonResponse = await _paymentLinksResult.RequestAsync(jsonRequest);
-            return JsonConvert.DeserializeObject<PaymentLinkResponse>(jsonResponse);
+            return await _paymentLinksResult.RequestAsync<PaymentLinkResponse>(jsonRequest);
         }
         
         /// <summary>
@@ -224,8 +211,7 @@ namespace Adyen.Service
         {
             linkId = "/" + linkId;
             var paymentLinks = new PaymentLinks(this, linkId);
-            var jsonResponse = paymentLinks.Request(null, null, HttpMethod.Get);
-            return JsonConvert.DeserializeObject<PaymentLinkResponse>(jsonResponse);
+            return paymentLinks.Request<PaymentLinkResponse>(null, null, HttpMethod.Get);
         }
         
         /// <summary>
@@ -237,8 +223,7 @@ namespace Adyen.Service
         {
             linkId = "/" + linkId;
             var paymentLinks = new PaymentLinks(this, linkId);
-            var jsonResponse = await paymentLinks.RequestAsync(null, null, HttpMethod.Get);
-            return JsonConvert.DeserializeObject<PaymentLinkResponse>(jsonResponse);
+            return await paymentLinks.RequestAsync<PaymentLinkResponse>(null, null, HttpMethod.Get);
         }
         
         /// <summary>
@@ -253,8 +238,7 @@ namespace Adyen.Service
             var paymentLinks = new PaymentLinks(this, linkId);
             var jsonRequest = updatePaymentLinkRequest.ToJson();
             var patch = new HttpMethod("PATCH");
-            var jsonResponse = paymentLinks.Request(jsonRequest, null, patch);
-            return JsonConvert.DeserializeObject<PaymentLinkResponse>(jsonResponse);
+            return paymentLinks.Request<PaymentLinkResponse>(jsonRequest, null, patch);
         }
         
         /// <summary>
@@ -269,8 +253,7 @@ namespace Adyen.Service
             var paymentLinks = new PaymentLinks(this, linkId);
             var jsonRequest = updatePaymentLinkRequest.ToJson();
             var patch = new HttpMethod("PATCH");
-            var jsonResponse = await paymentLinks.RequestAsync(jsonRequest, null, patch);
-            return JsonConvert.DeserializeObject<PaymentLinkResponse>(jsonResponse);
+            return await paymentLinks.RequestAsync<PaymentLinkResponse>(jsonRequest, null, patch);
         }
 
         /// <summary>
@@ -303,8 +286,7 @@ namespace Adyen.Service
         public CheckoutBalanceCheckResponse PaymentMethodsBalance(CheckoutBalanceCheckRequest checkoutBalanceCheckRequest)
         {
             var jsonRequest = checkoutBalanceCheckRequest.ToJson();
-            var jsonResponse = _paymentMethodsBalance.Request(jsonRequest);
-            return JsonConvert.DeserializeObject<CheckoutBalanceCheckResponse>(jsonResponse);
+            return _paymentMethodsBalance.Request<CheckoutBalanceCheckResponse>(jsonRequest);
         }
 
         /// <summary>
@@ -315,8 +297,7 @@ namespace Adyen.Service
         public async Task<CheckoutBalanceCheckResponse> PaymentMethodsBalanceAsync(CheckoutBalanceCheckRequest checkoutBalanceCheckRequest)
         {
             var jsonRequest = checkoutBalanceCheckRequest.ToJson();
-            var jsonResponse = await _paymentMethodsBalance.RequestAsync(jsonRequest);
-            return JsonConvert.DeserializeObject<CheckoutBalanceCheckResponse>(jsonResponse);
+            return await _paymentMethodsBalance.RequestAsync<CheckoutBalanceCheckResponse>(jsonRequest);
         }
 
         /// <summary>
@@ -327,8 +308,7 @@ namespace Adyen.Service
         public CheckoutCreateOrderResponse Orders(CheckoutCreateOrderRequest checkoutCreateOrderRequest)
         {
             var jsonRequest = checkoutCreateOrderRequest.ToJson();
-            var jsonResponse = _orders.Request(jsonRequest);
-            return JsonConvert.DeserializeObject<CheckoutCreateOrderResponse>(jsonResponse);
+            return _orders.Request<CheckoutCreateOrderResponse>(jsonRequest);
         }
 
         /// <summary>
@@ -339,8 +319,7 @@ namespace Adyen.Service
         public async Task<CheckoutCreateOrderResponse> OrdersAsync(CheckoutCreateOrderRequest checkoutCreateOrderRequest)
         {
             var jsonRequest = checkoutCreateOrderRequest.ToJson();
-            var jsonResponse = await _orders.RequestAsync(jsonRequest);
-            return JsonConvert.DeserializeObject<CheckoutCreateOrderResponse>(jsonResponse);
+            return await _orders.RequestAsync<CheckoutCreateOrderResponse>(jsonRequest);
         }
 
         /// <summary>
@@ -351,8 +330,7 @@ namespace Adyen.Service
         public CheckoutCancelOrderResponse OrdersCancel(CheckoutCancelOrderRequest checkoutCancelOrderRequest)
         {
             var jsonRequest = checkoutCancelOrderRequest.ToJson();
-            var jsonResponse = _ordersCancel.Request(jsonRequest);
-            return JsonConvert.DeserializeObject<CheckoutCancelOrderResponse>(jsonResponse);
+            return _ordersCancel.Request<CheckoutCancelOrderResponse>(jsonRequest);
         }
 
         /// <summary>
@@ -363,8 +341,7 @@ namespace Adyen.Service
         public async Task<CheckoutCancelOrderResponse> OrdersCancelAsync(CheckoutCancelOrderRequest checkoutCancelOrderRequest)
         {
             var jsonRequest = checkoutCancelOrderRequest.ToJson();
-            var jsonResponse = await _ordersCancel.RequestAsync(jsonRequest);
-            return JsonConvert.DeserializeObject<CheckoutCancelOrderResponse>(jsonResponse);
+            return await _ordersCancel.RequestAsync<CheckoutCancelOrderResponse>(jsonRequest);
         }
 
         /// <summary>
@@ -377,8 +354,7 @@ namespace Adyen.Service
         {
             var paymentsCancels = new PaymentsCancels(this, paymentPspReference);
             var jsonRequest = createPaymentCancelRequest.ToJson();
-            var jsonResponse = paymentsCancels.Request(jsonRequest);
-            return JsonConvert.DeserializeObject<PaymentCancelResource>(jsonResponse);
+            return paymentsCancels.Request<PaymentCancelResource>(jsonRequest);
         }
 
         /// <summary>
@@ -391,8 +367,7 @@ namespace Adyen.Service
         {
             var paymentsCancels = new PaymentsCancels(this, paymentPspReference);
             var jsonRequest = Util.JsonOperation.SerializeRequest(createPaymentCancelRequest);
-            var jsonResponse = await paymentsCancels.RequestAsync(jsonRequest);
-            return JsonConvert.DeserializeObject<PaymentCancelResource>(jsonResponse);
+            return await paymentsCancels.RequestAsync<PaymentCancelResource>(jsonRequest);
         }
 
         /// <summary>
@@ -405,8 +380,7 @@ namespace Adyen.Service
         {
             var paymentsCapture = new PaymentsCapture(this, paymentPspReference);
             var jsonRequest = createPaymentCaptureRequest.ToJson();
-            var jsonResponse = paymentsCapture.Request(jsonRequest);
-            return JsonConvert.DeserializeObject<PaymentCaptureResource>(jsonResponse);
+            return paymentsCapture.Request<PaymentCaptureResource>(jsonRequest);
         }
 
         /// <summary>
@@ -419,8 +393,7 @@ namespace Adyen.Service
         {
             var paymentsCapture = new PaymentsCapture(this, paymentPspReference);
             var jsonRequest = createPaymentCaptureRequest.ToJson();
-            var jsonResponse = await paymentsCapture.RequestAsync(jsonRequest);
-            return JsonConvert.DeserializeObject<PaymentCaptureResource>(jsonResponse);
+            return await paymentsCapture.RequestAsync<PaymentCaptureResource>(jsonRequest);
         }
         
         /// <summary>
@@ -433,8 +406,7 @@ namespace Adyen.Service
         {
             var paymentsRefunds = new PaymentsRefunds(this, paymentPspReference);
             var jsonRequest = createPaymentRefundRequest.ToJson();
-            var jsonResponse = paymentsRefunds.Request(jsonRequest);
-            return JsonConvert.DeserializeObject<PaymentRefundResource>(jsonResponse);
+            return paymentsRefunds.Request<PaymentRefundResource>(jsonRequest);
         }
 
         /// <summary>
@@ -447,8 +419,7 @@ namespace Adyen.Service
         {
             var paymentsRefunds = new PaymentsRefunds(this, paymentPspReference);
             var jsonRequest = createPaymentRefundRequest.ToJson();
-            var jsonResponse = await paymentsRefunds.RequestAsync(jsonRequest);
-            return JsonConvert.DeserializeObject<PaymentRefundResource>(jsonResponse);
+            return await paymentsRefunds.RequestAsync<PaymentRefundResource>(jsonRequest);
         }
         
         /// <summary>
@@ -461,8 +432,7 @@ namespace Adyen.Service
         {
             var paymentReversal = new PaymentsReversals(this, paymentPspReference);
             var jsonRequest = createPaymentReversalRequest.ToJson();
-            var jsonResponse = paymentReversal.Request(jsonRequest);
-            return JsonConvert.DeserializeObject<PaymentReversalResource>(jsonResponse);
+            return paymentReversal.Request<PaymentReversalResource>(jsonRequest);
         }
 
         /// <summary>
@@ -475,8 +445,7 @@ namespace Adyen.Service
         {
             var paymentReversal = new PaymentsReversals(this, paymentPspReference);
             var jsonRequest = createPaymentReversalRequest.ToJson();
-            var jsonResponse = await paymentReversal.RequestAsync(jsonRequest);
-            return JsonConvert.DeserializeObject<PaymentReversalResource>(jsonResponse);
+            return await paymentReversal.RequestAsync<PaymentReversalResource>(jsonRequest);
         }
         
         /// <summary>
@@ -489,8 +458,7 @@ namespace Adyen.Service
         {
             var paymentsAmountUpdates = new PaymentsAmountUpdates(this, paymentPspReference); 
             var jsonRequest = createPaymentAmountUpdateRequest.ToJson();
-            var jsonResponse = paymentsAmountUpdates.Request(jsonRequest);
-            return JsonConvert.DeserializeObject<PaymentAmountUpdateResource>(jsonResponse);
+            return paymentsAmountUpdates.Request<PaymentAmountUpdateResource>(jsonRequest);
         }
 
         /// <summary>
@@ -503,8 +471,7 @@ namespace Adyen.Service
         {
             var paymentsAmountUpdates = new PaymentsAmountUpdates(this, paymentPspReference);      
             var jsonRequest = createPaymentAmountUpdateRequest.ToJson();
-            var jsonResponse = await paymentsAmountUpdates.RequestAsync(jsonRequest);
-            return JsonConvert.DeserializeObject<PaymentAmountUpdateResource>(jsonResponse);
+            return await paymentsAmountUpdates.RequestAsync<PaymentAmountUpdateResource>(jsonRequest);
         }
         
         /// <summary>
@@ -515,8 +482,7 @@ namespace Adyen.Service
         public StandalonePaymentCancelResource Cancels(CreateStandalonePaymentCancelRequest createStandalonePaymentCancelRequest)
         {
             var jsonRequest = createStandalonePaymentCancelRequest.ToJson();
-            var jsonResponse = _cancels.Request(jsonRequest);
-            return JsonConvert.DeserializeObject<StandalonePaymentCancelResource>(jsonResponse);
+            return _cancels.Request<StandalonePaymentCancelResource>(jsonRequest);
         }
 
         /// <summary>
@@ -527,8 +493,7 @@ namespace Adyen.Service
         public async Task<StandalonePaymentCancelResource> CancelsAsync( CreateStandalonePaymentCancelRequest createStandalonePaymentCancelRequest)
         {
             var jsonRequest = createStandalonePaymentCancelRequest.ToJson();
-            var jsonResponse = await _cancels.RequestAsync(jsonRequest);
-            return JsonConvert.DeserializeObject<StandalonePaymentCancelResource>(jsonResponse);
+            return await _cancels.RequestAsync<StandalonePaymentCancelResource>(jsonRequest);
         }
 
         /// <summary>
@@ -539,8 +504,7 @@ namespace Adyen.Service
         public DonationResponse Donations(PaymentDonationRequest paymentDonationRequest)
         {
             var jsonRequest = paymentDonationRequest.ToJson();
-            var jsonResponse = _donations.Request(jsonRequest);
-            return JsonConvert.DeserializeObject<DonationResponse>(jsonResponse);
+            return _donations.Request<DonationResponse>(jsonRequest);
         }
 
         /// <summary>
@@ -551,8 +515,7 @@ namespace Adyen.Service
         public async Task<DonationResponse> DonationsAsync( PaymentDonationRequest paymentDonationRequest)
         {
             var jsonRequest = paymentDonationRequest.ToJson();
-            var jsonResponse = await _donations.RequestAsync(jsonRequest);
-            return JsonConvert.DeserializeObject<DonationResponse>(jsonResponse);
+            return await _donations.RequestAsync<DonationResponse>(jsonRequest);
         }
         
         /// <summary>
@@ -563,8 +526,7 @@ namespace Adyen.Service
         public CardDetailsResponse CardDetails(CardDetailsRequest cardDetailsRequest)
         {
             var jsonRequest = cardDetailsRequest.ToJson();
-            var jsonResponse = _cardDetails.Request(jsonRequest);
-            return JsonConvert.DeserializeObject<CardDetailsResponse>(jsonResponse);
+            return _cardDetails.Request<CardDetailsResponse>(jsonRequest);
         }
         
         /// <summary>
@@ -575,8 +537,7 @@ namespace Adyen.Service
         public async Task<CardDetailsResponse> CardDetailsAsync(CardDetailsRequest cardDetailsRequest)
         {
             var jsonRequest = cardDetailsRequest.ToJson();
-            var jsonResponse = await _cardDetails.RequestAsync(jsonRequest);
-            return JsonConvert.DeserializeObject<CardDetailsResponse>(jsonResponse);
+            return await _cardDetails.RequestAsync<CardDetailsResponse>(jsonRequest);
         }
 
         /// <summary>
@@ -587,8 +548,7 @@ namespace Adyen.Service
         public async Task<ApplePaySessionResponse> ApplePaySessionsAsync(CreateApplePaySessionRequest createApplePaySessionRequest)
         {
             var jsonRequest = createApplePaySessionRequest.ToJson();
-            var jsonResult = await _applePaySessions.RequestAsync(jsonRequest);
-            return JsonConvert.DeserializeObject<ApplePaySessionResponse>(jsonResult);
+            return await _applePaySessions.RequestAsync<ApplePaySessionResponse>(jsonRequest);
         }
         
         /// <summary>
@@ -600,6 +560,5 @@ namespace Adyen.Service
         {
             return ApplePaySessionsAsync(createApplePaySessionRequest).GetAwaiter().GetResult();
         }
-        
     }
 }
