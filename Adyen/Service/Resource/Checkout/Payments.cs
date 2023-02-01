@@ -31,7 +31,7 @@ namespace Adyen.Service.Resource.Checkout
     public class Payments : ServiceResource
     {
         public Payments(AbstractService abstractService)
-            : base(abstractService, abstractService.Client.Config.CheckoutEndpoint + "/" + ClientConfig.CheckoutApiVersion + "/payments", new List<string> { "merchantAccount", "reference", "amount", "returnUrl", "paymentMethod" })
+            : base(abstractService, abstractService.Client.Config.CheckoutEndpoint + "/" + ClientConfig.CheckoutApiVersion + "/payments")
         {
         }
     }

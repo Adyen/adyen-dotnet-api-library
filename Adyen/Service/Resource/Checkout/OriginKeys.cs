@@ -29,7 +29,7 @@ namespace Adyen.Service.Resource.Checkout
     public class OriginKeys : ServiceResource
     {
         public OriginKeys(AbstractService abstractService)
-            : base(abstractService, abstractService.Client.Config.CheckoutEndpoint + "/" + ClientConfig.CheckoutApiVersion + "/originKeys", new List<string> { "originDomains" })
+            : base(abstractService, abstractService.Client.Config.CheckoutEndpoint + "/" + ClientConfig.CheckoutApiVersion + "/originKeys")
         {
         }
     }

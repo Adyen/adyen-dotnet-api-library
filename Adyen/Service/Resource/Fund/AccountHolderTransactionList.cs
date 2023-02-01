@@ -27,7 +27,7 @@ namespace Adyen.Service.Resource.Fund
     public class AccountHolderTransactionList : Resource
     {
         public AccountHolderTransactionList(AbstractService abstractService)
-            : base(abstractService, abstractService.Client.Config.MarketPayEndpoint + "/Fund/" + ClientConfig.MarketPayFundApiVersion + "/accountHolderTransactionList", null)
+            : base(abstractService, abstractService.Client.Config.MarketPayEndpoint + "/Fund/" + ClientConfig.MarketPayFundApiVersion + "/accountHolderTransactionList")
         {
         }
     }
