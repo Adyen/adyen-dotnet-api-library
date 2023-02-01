@@ -23,6 +23,7 @@
 
 using System;
 using System.Net.Http;
+using System.Threading;
 using Adyen.Constants;
 using Adyen.HttpClient.Interfaces;
 using Adyen.HttpClient;
@@ -53,7 +54,12 @@ namespace Adyen
                 Environment = environment
             };
             SetEnvironment(environment, liveEndpointUrlPrefix);
-            _client = new HttpClientWrapper(Config, new System.Net.Http.HttpClient());
+            
+            // Set Timeout for HttpClient
+            var httpClient = new System.Net.Http.HttpClient();
+            httpClient.Timeout = Config.Timeout == default ? TimeSpan.FromMilliseconds(100000) : TimeSpan.FromMilliseconds(Config.Timeout);
+            
+            _client = new HttpClientWrapper(Config, httpClient);
         }
         
         [Obsolete("Providing x-api-key is obsolete, please use Config instead.")]
@@ -66,14 +72,24 @@ namespace Adyen
                 LiveEndpointUrlPrefix = liveEndpointUrlPrefix
             };
             SetEnvironment(environment, Config.LiveEndpointUrlPrefix);
-            _client = new HttpClientWrapper(Config, new System.Net.Http.HttpClient());
+            
+            // Set Timeout for HttpClient
+            var httpClient = new System.Net.Http.HttpClient();
+            httpClient.Timeout = Config.Timeout == default ? TimeSpan.FromMilliseconds(100000) : TimeSpan.FromMilliseconds(Config.Timeout);
+            
+            _client = new HttpClientWrapper(Config, httpClient);
         }
 
         public Client(Config config)
         {
             Config = config;
             SetEnvironment(Config.Environment, Config.LiveEndpointUrlPrefix);
-            _client = new HttpClientWrapper(Config, new System.Net.Http.HttpClient());
+            
+            // Set Timeout for HttpClient
+            var httpClient = new System.Net.Http.HttpClient();
+            httpClient.Timeout = Config.Timeout == default ? TimeSpan.FromMilliseconds(100000) : TimeSpan.FromMilliseconds(Config.Timeout);
+            
+            _client = new HttpClientWrapper(Config, httpClient);
         }
 
         public Client(Config config, System.Net.Http.HttpClient httpClient)
