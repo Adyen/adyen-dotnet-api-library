@@ -33,7 +33,7 @@ namespace Adyen.Service.Resource.Checkout
         public PaymentsReversals(AbstractService abstractService, string paymentPspReference)
             : base(abstractService,
                 abstractService.Client.Config.CheckoutEndpoint + "/" + ClientConfig.CheckoutApiVersion + "/payments/" +
-                paymentPspReference + "/reversals")
+                paymentPspReference + "/reversals", new List<string> {"amount", "merchantAccount"})
         {
         }
     }

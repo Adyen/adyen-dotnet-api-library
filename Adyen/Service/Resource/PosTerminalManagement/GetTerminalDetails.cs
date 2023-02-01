@@ -32,7 +32,7 @@ namespace Adyen.Service.Resource.PosTerminalManagement
         public GetTerminalDetails(AbstractService abstractService)
             : base(abstractService,
                 abstractService.Client.Config.PosTerminalManagementEndpoint + "/" +
-                ClientConfig.PosTerminalManagementVersion + "/getTerminalDetails")
+                ClientConfig.PosTerminalManagementVersion + "/getTerminalDetails", new List<string> {"terminal"})
         {
         }
     }

@@ -6,7 +6,7 @@ namespace Adyen.Service.Resource.Checkout
     {
         public CheckoutResource(AbstractService abstractService, string endpoint)
             : base(abstractService,
-                abstractService.Client.Config.CheckoutEndpoint + "/" + ClientConfig.CheckoutApiVersion + endpoint)
+                abstractService.Client.Config.CheckoutEndpoint + "/" + ClientConfig.CheckoutApiVersion + endpoint, null)
         {
         }
     }

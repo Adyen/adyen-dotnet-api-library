@@ -12,7 +12,7 @@ namespace Adyen.Service
         private readonly AbstractService _abstractService;
         protected string Endpoint;
        
-        public ServiceResource(AbstractService abstractService, string endpoint)
+        public ServiceResource(AbstractService abstractService, string endpoint, List<string> requiredFields)
         {
             _abstractService = abstractService;
             Endpoint = endpoint;

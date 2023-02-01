@@ -30,7 +30,8 @@ namespace Adyen.Service.Resource.Checkout
     {
         public CardDetails(AbstractService abstractService)
             : base(abstractService,
-                abstractService.Client.Config.CheckoutEndpoint + "/" + ClientConfig.CheckoutApiVersion + "/cardDetails")
+                abstractService.Client.Config.CheckoutEndpoint + "/" + ClientConfig.CheckoutApiVersion + "/cardDetails",
+                new List<string> {"merchantAccount", "cardNumber"})
         {
         }
     }

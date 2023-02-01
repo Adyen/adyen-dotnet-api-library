@@ -29,7 +29,7 @@ namespace Adyen.Service.Resource.Checkout
     public class OrdersCancel : ServiceResource
     {
         public OrdersCancel(AbstractService abstractService)
-           : base(abstractService, abstractService.Client.Config.CheckoutEndpoint + "/" + ClientConfig.CheckoutApiVersion + "/orders/cancel")
+           : base(abstractService, abstractService.Client.Config.CheckoutEndpoint + "/" + ClientConfig.CheckoutApiVersion + "/orders/cancel", new List<string> { "order", "merchantAccount" })
         {
         }
     }

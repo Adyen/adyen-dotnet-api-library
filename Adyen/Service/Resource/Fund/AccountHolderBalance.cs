@@ -27,7 +27,7 @@ namespace Adyen.Service.Resource.Fund
     public class AccountHolderBalance : Resource
     {
         public AccountHolderBalance(AbstractService abstractService)
-            : base(abstractService, abstractService.Client.Config.MarketPayEndpoint + "/Fund/" + ClientConfig.MarketPayFundApiVersion + "/accountHolderBalance")
+            : base(abstractService, abstractService.Client.Config.MarketPayEndpoint + "/Fund/" + ClientConfig.MarketPayFundApiVersion + "/accountHolderBalance", null)
         {
         }
     }

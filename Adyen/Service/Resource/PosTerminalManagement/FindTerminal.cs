@@ -27,7 +27,7 @@ namespace Adyen.Service.Resource.PosTerminalManagement
    public class FindTerminal : ServiceResource
     {
         public FindTerminal(AbstractService abstractService)
-            : base(abstractService, abstractService.Client.Config.PosTerminalManagementEndpoint + "/" + ClientConfig.PosTerminalManagementVersion + "/findTerminal")
+            : base(abstractService, abstractService.Client.Config.PosTerminalManagementEndpoint + "/" + ClientConfig.PosTerminalManagementVersion + "/findTerminal", new List<string> { "terminal" })
         {
         }
     }

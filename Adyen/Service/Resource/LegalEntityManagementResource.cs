@@ -29,7 +29,7 @@ namespace Adyen.Service.Resource
     public class LegalEntityManagementResource : ServiceResource
     {
         public LegalEntityManagementResource(AbstractService abstractService, string endpoint)
-            : base(abstractService, abstractService.Client.Config.LegalEntityManagementEndpoint + "/" + ClientConfig.LegalEntityManagementVersion + endpoint)
+            : base(abstractService, abstractService.Client.Config.LegalEntityManagementEndpoint + "/" + ClientConfig.LegalEntityManagementVersion + endpoint,null)
         {
         }
     }

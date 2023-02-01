@@ -29,7 +29,7 @@ namespace Adyen.Service.Resource.Checkout
     public class Sessions : ServiceResource
     {
         public Sessions(AbstractService abstractService)
-            : base(abstractService, abstractService.Client.Config.CheckoutEndpoint + "/" + ClientConfig.CheckoutApiVersion + "/sessions")
+            : base(abstractService, abstractService.Client.Config.CheckoutEndpoint + "/" + ClientConfig.CheckoutApiVersion + "/sessions", new List<string> { "amount", "reference", "returnUrl", "merchantAccount" })
         {
         }
     }

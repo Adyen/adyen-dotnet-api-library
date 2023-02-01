@@ -33,7 +33,7 @@ namespace Adyen.Service.Resource.Checkout
         public PaymentsCancels(AbstractService abstractService, string paymentPspReference)
             : base(abstractService,
                 abstractService.Client.Config.CheckoutEndpoint + "/" + ClientConfig.CheckoutApiVersion + "/payments/" +
-                paymentPspReference + "/cancels")
+                paymentPspReference + "/cancels", new List<string> {"amount", "merchantAccount"})
         {
         }
     }
