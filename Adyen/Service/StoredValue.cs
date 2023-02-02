@@ -1,4 +1,5 @@
 using System;
+using System.Threading;
 using System.Threading.Tasks;
 using Adyen.Model.StoredValue;
 
@@ -6,6 +7,7 @@ namespace Adyen.Service
 {
     public class StoredValue : AbstractService
     {
+        private readonly string _baseUrl;
         private readonly ServiceResource _issue;
         private readonly ServiceResource _changeStatus;
         private readonly ServiceResource _load;
@@ -15,13 +17,13 @@ namespace Adyen.Service
         
         public StoredValue(Client client) :  base(client)
         {
-            var baseUrl = client.Config.StoredValueEndpoint + "/" + Constants.ClientConfig.StoredValueVersion;
-            _issue = new ServiceResource(this, baseUrl + "/issue", null);
-            _changeStatus = new ServiceResource(this, baseUrl + "/changeStatus", null);
-            _load = new ServiceResource(this, baseUrl + "/load", null);
-            _checkBalance = new ServiceResource(this, baseUrl + "/checkBalance", null);
-            _mergeBalance = new ServiceResource(this, baseUrl + "/mergeBalance", null);
-            _voidTransaction = new ServiceResource(this, baseUrl + "/voidTransaction", null);
+            _baseUrl = client.Config.StoredValueEndpoint + "/" + Constants.ClientConfig.StoredValueVersion;
+            _issue = new ServiceResource(this, _baseUrl + "/issue", null);
+            _changeStatus = new ServiceResource(this, _baseUrl + "/changeStatus", null);
+            _load = new ServiceResource(this, _baseUrl + "/load", null);
+            _checkBalance = new ServiceResource(this, _baseUrl + "/checkBalance", null);
+            _mergeBalance = new ServiceResource(this, _baseUrl + "/mergeBalance", null);
+            _voidTransaction = new ServiceResource(this, _baseUrl + "/voidTransaction", null);
         }
 
         /// <summary>
@@ -29,7 +31,7 @@ namespace Adyen.Service
         /// </summary>
         /// <param name="storedValueIssueRequest"></param>
         /// <returns>StoredValueIssueResponse</returns>
-        public async Task<StoredValueIssueResponse> Issue(StoredValueIssueRequest storedValueIssueRequest)
+        public async Task<StoredValueIssueResponse> IssueAsync(StoredValueIssueRequest storedValueIssueRequest)
         {
             var jsonRequest = storedValueIssueRequest.ToJson();
             return await _issue.RequestAsync<StoredValueIssueResponse>(jsonRequest);
@@ -40,9 +42,9 @@ namespace Adyen.Service
         /// </summary>
         /// <param name="storedValueIssueRequest"></param>
         /// <returns>StoredValueIssueResponse</returns>
-        public StoredValueIssueResponse IssueSync(StoredValueIssueRequest storedValueIssueRequest)
+        public StoredValueIssueResponse Issue(StoredValueIssueRequest storedValueIssueRequest)
         {
-            return Issue(storedValueIssueRequest).ConfigureAwait(false).GetAwaiter().GetResult();
+            return IssueAsync(storedValueIssueRequest).ConfigureAwait(false).GetAwaiter().GetResult();
         }
         
         /// <summary>
@@ -50,7 +52,7 @@ namespace Adyen.Service
         /// </summary>
         /// <param name="storedValueStatusChangeRequest"></param>
         /// <returns>StoredValueStatusChangeResponse</returns>
-        public async Task<StoredValueStatusChangeResponse> ChangeStatus(StoredValueStatusChangeRequest storedValueStatusChangeRequest)
+        public async Task<StoredValueStatusChangeResponse> ChangeStatusAsync(StoredValueStatusChangeRequest storedValueStatusChangeRequest)
         {
             var jsonRequest = storedValueStatusChangeRequest.ToJson();
             return await _changeStatus.RequestAsync<StoredValueStatusChangeResponse>(jsonRequest);
@@ -61,9 +63,9 @@ namespace Adyen.Service
         /// </summary>
         /// <param name="storedValueStatusChangeRequest"></param>
         /// <returns>StoredValueStatusChangeResponse</returns>
-        public StoredValueStatusChangeResponse ChangeStatusSync(StoredValueStatusChangeRequest storedValueStatusChangeRequest)
+        public StoredValueStatusChangeResponse ChangeStatus(StoredValueStatusChangeRequest storedValueStatusChangeRequest)
         {
-            return ChangeStatus(storedValueStatusChangeRequest).ConfigureAwait(false).GetAwaiter().GetResult();
+            return ChangeStatusAsync(storedValueStatusChangeRequest).ConfigureAwait(false).GetAwaiter().GetResult();
         }
         
         /// <summary>
@@ -71,7 +73,7 @@ namespace Adyen.Service
         /// </summary>
         /// <param name="storedValueLoadRequest"></param>
         /// <returns>StoredValueLoadResponse</returns>
-        public async Task<StoredValueLoadResponse> Load(StoredValueLoadRequest storedValueLoadRequest)
+        public async Task<StoredValueLoadResponse> LoadAsync(StoredValueLoadRequest storedValueLoadRequest)
         {
             var jsonRequest = storedValueLoadRequest.ToJson();
             return await _load.RequestAsync<StoredValueLoadResponse>(jsonRequest);
@@ -82,9 +84,9 @@ namespace Adyen.Service
         /// </summary>
         /// <param name="storedValueLoadRequest"></param>
         /// <returns>StoredValueLoadResponse</returns>
-        public StoredValueLoadResponse LoadSync(StoredValueLoadRequest storedValueLoadRequest)
+        public StoredValueLoadResponse Load(StoredValueLoadRequest storedValueLoadRequest)
         {
-            return Load(storedValueLoadRequest).ConfigureAwait(false).GetAwaiter().GetResult();
+            return LoadAsync(storedValueLoadRequest).ConfigureAwait(false).GetAwaiter().GetResult();
         }
         
         /// <summary>
@@ -92,7 +94,7 @@ namespace Adyen.Service
         /// </summary>
         /// <param name="storedValueBalanceCheckRequest"></param>
         /// <returns>StoredValueBalanceCheckResponse</returns>
-        public async Task<StoredValueBalanceCheckResponse> CheckBalance(StoredValueBalanceCheckRequest storedValueBalanceCheckRequest)
+        public async Task<StoredValueBalanceCheckResponse> CheckBalanceAsync(StoredValueBalanceCheckRequest storedValueBalanceCheckRequest)
         {
             var jsonRequest = storedValueBalanceCheckRequest.ToJson();
             return await _checkBalance.RequestAsync<StoredValueBalanceCheckResponse>(jsonRequest);
@@ -103,9 +105,9 @@ namespace Adyen.Service
         /// </summary>
         /// <param name="storedValueBalanceCheckRequest"></param>
         /// <returns>StoredValueBalanceCheckResponse</returns>
-        public StoredValueBalanceCheckResponse CheckBalanceSync(StoredValueBalanceCheckRequest storedValueBalanceCheckRequest)
+        public StoredValueBalanceCheckResponse CheckBalance(StoredValueBalanceCheckRequest storedValueBalanceCheckRequest)
         {
-            return CheckBalance(storedValueBalanceCheckRequest).ConfigureAwait(false).GetAwaiter().GetResult();
+            return CheckBalanceAsync(storedValueBalanceCheckRequest).ConfigureAwait(false).GetAwaiter().GetResult();
         }
         
         /// <summary>
@@ -113,7 +115,7 @@ namespace Adyen.Service
         /// </summary>
         /// <param name="storedValueBalanceMergeRequest"></param>
         /// <returns>StoredValueBalanceMergeResponse</returns>
-        public async Task<StoredValueBalanceMergeResponse> MergeBalance(StoredValueBalanceMergeRequest storedValueBalanceMergeRequest)
+        public async Task<StoredValueBalanceMergeResponse> MergeBalanceAsync(StoredValueBalanceMergeRequest storedValueBalanceMergeRequest)
         {
             var jsonRequest = storedValueBalanceMergeRequest.ToJson();
             return await _mergeBalance.RequestAsync<StoredValueBalanceMergeResponse>(jsonRequest);
@@ -124,9 +126,9 @@ namespace Adyen.Service
         /// </summary>
         /// <param name="storedValueBalanceMergeRequest"></param>
         /// <returns>StoredValueBalanceMergeResponse</returns>
-        public StoredValueBalanceMergeResponse MergeBalanceSync(StoredValueBalanceMergeRequest storedValueBalanceMergeRequest)
+        public StoredValueBalanceMergeResponse MergeBalance(StoredValueBalanceMergeRequest storedValueBalanceMergeRequest)
         {
-            return MergeBalance(storedValueBalanceMergeRequest).ConfigureAwait(false).GetAwaiter().GetResult();
+            return MergeBalanceAsync(storedValueBalanceMergeRequest).ConfigureAwait(false).GetAwaiter().GetResult();
         }
         
         /// <summary>
@@ -134,7 +136,7 @@ namespace Adyen.Service
         /// </summary>
         /// <param name="storedValueVoidRequest"></param>
         /// <returns>StoredValueVoidResponse</returns>
-        public async Task<StoredValueVoidResponse> VoidTransaction(StoredValueVoidRequest storedValueVoidRequest)
+        public async Task<StoredValueVoidResponse> VoidTransactionAsync(StoredValueVoidRequest storedValueVoidRequest)
         {
             var jsonRequest = storedValueVoidRequest.ToJson();
             return await _voidTransaction.RequestAsync<StoredValueVoidResponse>(jsonRequest);
@@ -145,9 +147,9 @@ namespace Adyen.Service
         /// </summary>
         /// <param name="storedValueVoidRequest"></param>
         /// <returns>StoredValueVoidResponse</returns>
-        public StoredValueVoidResponse VoidTransactionSync(StoredValueVoidRequest storedValueVoidRequest)
+        public StoredValueVoidResponse VoidTransaction(StoredValueVoidRequest storedValueVoidRequest)
         {
-            return VoidTransaction(storedValueVoidRequest).ConfigureAwait(false).GetAwaiter().GetResult();
+            return VoidTransactionAsync(storedValueVoidRequest).ConfigureAwait(false).GetAwaiter().GetResult();
         }
     }
 }
