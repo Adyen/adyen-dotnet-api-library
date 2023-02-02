@@ -22,10 +22,11 @@
 #endregion
 
 using Adyen.Model.Payments;
-using Newtonsoft.Json;
 using System.Threading.Tasks;
 using Adyen.Service.Resource;
+using PaymentRequest = Adyen.Model.Payments.PaymentRequest;
 using RequestOptions = Adyen.Model.RequestOptions;
+using ThreeDS2Result = Adyen.Model.Payments.ThreeDS2Result;
 
 namespace Adyen.Service
 {
@@ -69,64 +70,55 @@ namespace Adyen.Service
         public PaymentResult Authorise(PaymentRequest paymentRequest, RequestOptions requestOptions = null)
         {
             var jsonRequest = paymentRequest.ToJson();
-            var jsonResponse = _authorise.Request(jsonRequest, requestOptions);
-            return JsonConvert.DeserializeObject<PaymentResult>(jsonResponse);
+            return _authorise.Request<PaymentResult>(jsonRequest, requestOptions);
         }
 
         public PaymentResult Authorise(PaymentRequest3ds2 paymentRequest, RequestOptions requestOptions = null)
         {
             var jsonRequest = paymentRequest.ToJson();
-            var jsonResponse = _authorise.Request(jsonRequest, requestOptions);
-            return JsonConvert.DeserializeObject<PaymentResult>(jsonResponse);
+            return _authorise.Request<PaymentResult>(jsonRequest, requestOptions);
         }
 
         public async Task<PaymentResult> AuthoriseAsync(PaymentRequest paymentRequest, RequestOptions requestOptions = null)
         {
             var jsonRequest = paymentRequest.ToJson();
-            var jsonResponse = await _authorise.RequestAsync(jsonRequest, requestOptions);
-            return JsonConvert.DeserializeObject<PaymentResult>(jsonResponse);
+            return await _authorise.RequestAsync<PaymentResult>(jsonRequest, requestOptions);
         }
 
         public async Task<PaymentResult> AuthoriseAsync(PaymentRequest3ds2 paymentRequest, RequestOptions requestOptions = null)
         {
             var jsonRequest = paymentRequest.ToJson();
-            var jsonResponse = await _authorise.RequestAsync(jsonRequest, requestOptions);
-            return JsonConvert.DeserializeObject<PaymentResult>(jsonResponse);
+            return await _authorise.RequestAsync<PaymentResult>(jsonRequest, requestOptions);
         }
 
         public PaymentResult Authorise3D(PaymentRequest3d paymentRequest, RequestOptions requestOptions = null)
         {
             var jsonRequest = paymentRequest.ToJson();
-            var jsonResponse = _authorise3D.Request(jsonRequest, requestOptions);
-            return JsonConvert.DeserializeObject<PaymentResult>(jsonResponse);
+            return _authorise3D.Request<PaymentResult>(jsonRequest, requestOptions);
         }
 
         public async Task<PaymentResult> Authorise3DAsync(PaymentRequest3d paymentRequest, RequestOptions requestOptions = null)
         {
             var jsonRequest = paymentRequest.ToJson();
-            var jsonResponse = await _authorise3D.RequestAsync(jsonRequest, requestOptions);
-            return JsonConvert.DeserializeObject<PaymentResult>(jsonResponse);
+            return await _authorise3D.RequestAsync<PaymentResult>(jsonRequest, requestOptions);
         }
 
         public PaymentResult Authorise3DS2(PaymentRequest3ds2 paymentRequest, RequestOptions requestOptions = null)
         {
             var jsonRequest = paymentRequest.ToJson();
-            var jsonResponse =  _authorise3DS2.Request(jsonRequest, requestOptions);
-            return JsonConvert.DeserializeObject<PaymentResult>(jsonResponse);
+            return _authorise3DS2.Request<PaymentResult>(jsonRequest, requestOptions);
         }
 
         public async Task<PaymentResult> Authorise3DS2Async(PaymentRequest3ds2 paymentRequest, RequestOptions requestOptions = null)
         {
             var jsonRequest = paymentRequest.ToJson();
-            var jsonResponse = await _authorise3DS2.RequestAsync(jsonRequest, requestOptions);
-            return JsonConvert.DeserializeObject<PaymentResult>(jsonResponse);
+            return await _authorise3DS2.RequestAsync<PaymentResult>(jsonRequest, requestOptions);
         }
 
         public async Task<AuthenticationResultResponse> GetAuthenticationResultAsync(AuthenticationResultRequest authenticationResultRequest, RequestOptions requestOptions = null)
         {
             var jsonRequest = authenticationResultRequest.ToJson();
-            var jsonResponse = await _getAuthenticationResult.RequestAsync(jsonRequest, requestOptions);
-            return JsonConvert.DeserializeObject<AuthenticationResultResponse>(jsonResponse);
+            return await _getAuthenticationResult.RequestAsync<AuthenticationResultResponse>(jsonRequest, requestOptions);
         }
 
         public AuthenticationResultResponse GetAuthenticationResult(AuthenticationResultRequest authenticationResultRequest, RequestOptions requestOptions = null)
@@ -137,8 +129,7 @@ namespace Adyen.Service
         public async Task<ThreeDS2Result> Retrieve3DS2ResultAsync(AuthenticationResultRequest authenticationResultRequest, RequestOptions requestOptions = null)
         {
             var jsonRequest = authenticationResultRequest.ToJson();
-            var jsonResponse = await _retrieve3DS2Result.RequestAsync(jsonRequest, requestOptions);
-            return JsonConvert.DeserializeObject<ThreeDS2Result>(jsonResponse);
+            return await _retrieve3DS2Result.RequestAsync<ThreeDS2Result>(jsonRequest, requestOptions);
         }
 
         public ThreeDS2Result Retrieve3DS2Result(AuthenticationResultRequest authenticationResultRequest, RequestOptions requestOptions = null)
@@ -151,92 +142,79 @@ namespace Adyen.Service
         public ModificationResult Capture(CaptureRequest request, RequestOptions requestOptions = null)
         {
             var jsonRequest = request.ToJson();
-            var jsonResult = _capture.Request(jsonRequest, requestOptions);
-            return JsonConvert.DeserializeObject<ModificationResult>(jsonResult);
+            return _capture.Request<ModificationResult>(jsonRequest, requestOptions);
         }
 
         public async Task<ModificationResult> CaptureAsync(CaptureRequest request, RequestOptions requestOptions = null)
         {
             var jsonRequest = request.ToJson();
-            var jsonResult = await _capture.RequestAsync(jsonRequest, requestOptions);
-            return JsonConvert.DeserializeObject<ModificationResult>(jsonResult);
+            return await _capture.RequestAsync<ModificationResult>(jsonRequest, requestOptions);
         }
 
         public ModificationResult CancelOrRefund(CancelOrRefundRequest request, RequestOptions requestOptions = null)
         {
             var jsonRequest = request.ToJson();
-            var jsonResult = _cancelOrRefund.Request(jsonRequest, requestOptions);
-            return JsonConvert.DeserializeObject<ModificationResult>(jsonResult);
+            return _cancelOrRefund.Request<ModificationResult>(jsonRequest, requestOptions);
         }
 
         public async Task<ModificationResult> CancelOrRefundAsync(CancelOrRefundRequest request, RequestOptions requestOptions = null)
         {
             var jsonRequest = request.ToJson();
-            var jsonResult = await _cancelOrRefund.RequestAsync(jsonRequest, requestOptions);
-            return JsonConvert.DeserializeObject<ModificationResult>(jsonResult);
+            return await _cancelOrRefund.RequestAsync<ModificationResult>(jsonRequest, requestOptions);
         }
 
         public ModificationResult Refund(RefundRequest request, RequestOptions requestOptions = null)
         {
             var jsonRequest = request.ToJson();
-            var jsonResult = _refund.Request(jsonRequest, requestOptions);
-            return JsonConvert.DeserializeObject<ModificationResult>(jsonResult);
+            return _refund.Request<ModificationResult>(jsonRequest, requestOptions);
         }
 
         public async Task<ModificationResult> RefundAsync(RefundRequest request, RequestOptions requestOptions = null)
         {
             var jsonRequest = request.ToJson();
-            var jsonResult = await _refund.RequestAsync(jsonRequest, requestOptions);
-            return JsonConvert.DeserializeObject<ModificationResult>(jsonResult);
+            return await _refund.RequestAsync<ModificationResult>(jsonRequest, requestOptions);
         }
 
         public ModificationResult Cancel(CancelRequest request, RequestOptions requestOptions = null)
         {
             var jsonRequest = request.ToJson();
-            var jsonResult = _cancel.Request(jsonRequest, requestOptions);
-            return JsonConvert.DeserializeObject<ModificationResult>(jsonResult);
+            return _cancel.Request<ModificationResult>(jsonRequest, requestOptions);
         }
 
         public async Task<ModificationResult> CancelAsync(CancelRequest request, RequestOptions requestOptions = null)
         {
             var jsonRequest = request.ToJson();
-            var jsonResult = await _cancel.RequestAsync(jsonRequest, requestOptions);
-            return JsonConvert.DeserializeObject<ModificationResult>(jsonResult);
+            return await _cancel.RequestAsync<ModificationResult>(jsonRequest, requestOptions);
         }
 
         public ModificationResult AdjustAuthorisation(AdjustAuthorisationRequest request, RequestOptions requestOptions = null)
         {
             var jsonRequest = request.ToJson();
-            var jsonResult = _adjustAuthorisation.Request(jsonRequest, requestOptions);
-            return JsonConvert.DeserializeObject<ModificationResult>(jsonResult);
+            return _adjustAuthorisation.Request<ModificationResult>(jsonRequest, requestOptions);
         }
 
         public async Task<ModificationResult> AdjustAuthorisationAsync(AdjustAuthorisationRequest request, RequestOptions requestOptions = null)
         {
             var jsonRequest = request.ToJson();
-            var jsonResult = await _adjustAuthorisation.RequestAsync(jsonRequest, requestOptions);
-            return JsonConvert.DeserializeObject<ModificationResult>(jsonResult);
+            return await _adjustAuthorisation.RequestAsync<ModificationResult>(jsonRequest, requestOptions);
         }
 
         public ModificationResult VoidPendingRefund(VoidPendingRefundRequest request, RequestOptions requestOptions = null)
         {
             var jsonRequest = request.ToJson();
-            var jsonResult = _voidPendingRefund.Request(jsonRequest, requestOptions);
-            return JsonConvert.DeserializeObject<ModificationResult>(jsonResult);
+            return _voidPendingRefund.Request<ModificationResult>(jsonRequest, requestOptions);
         }
 
         public async Task<ModificationResult> VoidPendingRefundAsync(VoidPendingRefundRequest request, RequestOptions requestOptions = null)
         {
             var jsonRequest = request.ToJson();
-            var jsonResult = await _voidPendingRefund.RequestAsync(jsonRequest, requestOptions);
-            return JsonConvert.DeserializeObject<ModificationResult>(jsonResult);
+            return await _voidPendingRefund.RequestAsync<ModificationResult>(jsonRequest, requestOptions);
         }
 
         public async Task<ModificationResult> TechnicalCancelAsync(TechnicalCancelRequest request, RequestOptions requestOptions = null)
         {
             var jsonRequest = request.ToJson();
-            var jsonResult = await _technicalCancel.RequestAsync(jsonRequest, requestOptions);
-            return JsonConvert.DeserializeObject<ModificationResult>(jsonResult);
+            return await _technicalCancel.RequestAsync<ModificationResult>(jsonRequest, requestOptions);
         }
 
         public ModificationResult TechnicalCancel(TechnicalCancelRequest request, RequestOptions requestOptions = null)
@@ -247,8 +225,7 @@ namespace Adyen.Service
         public async Task<ModificationResult> DonateAsync(DonationRequest request, RequestOptions requestOptions = null)
         {
             var jsonRequest = request.ToJson();
-            var jsonResult = await _donate.RequestAsync(jsonRequest, requestOptions);
-            return JsonConvert.DeserializeObject<ModificationResult>(jsonResult);
+            return await _donate.RequestAsync<ModificationResult>(jsonRequest, requestOptions);
         }
 
         public ModificationResult Donate(DonationRequest request, RequestOptions requestOptions = null)
