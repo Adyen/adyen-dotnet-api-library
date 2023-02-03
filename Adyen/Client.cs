@@ -55,14 +55,7 @@ namespace Adyen
             };
             SetEnvironment(environment, liveEndpointUrlPrefix);
             
-            // Set Timeout for HttpClient
-            var httpClient = new System.Net.Http.HttpClient();
-            if (Config.Timeout != default)
-            {
-                httpClient.Timeout = TimeSpan.FromMilliseconds(Config.Timeout);
-            }
-            
-            _client = new HttpClientWrapper(Config, httpClient);
+            _client = new HttpClientWrapper(Config, GetHttpClient());
         }
         
         [Obsolete("Providing x-api-key is obsolete, please use Config instead.")]
@@ -75,15 +68,8 @@ namespace Adyen
                 LiveEndpointUrlPrefix = liveEndpointUrlPrefix
             };
             SetEnvironment(environment, Config.LiveEndpointUrlPrefix);
-            
-            // Set Timeout for HttpClient
-            var httpClient = new System.Net.Http.HttpClient();
-            if (Config.Timeout != default)
-            {
-                httpClient.Timeout = TimeSpan.FromMilliseconds(Config.Timeout);
-            }
-            
-            _client = new HttpClientWrapper(Config, httpClient);
+
+            _client = new HttpClientWrapper(Config, GetHttpClient());
         }
 
         public Client(Config config)
@@ -91,14 +77,7 @@ namespace Adyen
             Config = config;
             SetEnvironment(Config.Environment, Config.LiveEndpointUrlPrefix);
             
-            // Set Timeout for HttpClient
-            var httpClient = new System.Net.Http.HttpClient();
-            if (Config.Timeout != default)
-            {
-                httpClient.Timeout = TimeSpan.FromMilliseconds(Config.Timeout);
-            }
-            
-            _client = new HttpClientWrapper(Config, httpClient);
+            _client = new HttpClientWrapper(Config, GetHttpClient());
         }
 
         public Client(Config config, System.Net.Http.HttpClient httpClient)
@@ -141,6 +120,18 @@ namespace Adyen
                     Config.LegalEntityManagementEndpoint = ClientConfig.LegalEntityManagementEndpointLive;
                     break;
             }
+        }
+
+        // Get a new HttpClient and set a timeout
+        private System.Net.Http.HttpClient GetHttpClient()
+        {
+            // Set Timeout for HttpClient
+            var httpClient = new System.Net.Http.HttpClient();
+            if (Config.Timeout != default)
+            {
+                httpClient.Timeout = TimeSpan.FromMilliseconds(Config.Timeout);
+            }
+            return httpClient;
         }
 
         public IClient HttpClient
