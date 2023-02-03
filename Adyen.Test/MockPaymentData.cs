@@ -25,7 +25,7 @@ using Adyen.Model.Payments;
 using System;
 using System.Collections.Generic;
 using Adyen.Constants;
-using Environment = Adyen.Model.Enum.Environment;
+using Environment = Adyen.Model.Environment;
 
 namespace Adyen.Test
 {

@@ -26,6 +26,8 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Adyen.Model.Nexo;
 using System.Text;
 using Adyen.Model;
+using Adyen.Model.Checkout;
+using PaymentResponse = Adyen.Model.Nexo.PaymentResponse;
 
 namespace Adyen.Test
 {

@@ -5,7 +5,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 using Adyen.HttpClient;
 using CreateCheckoutSessionRequest = Adyen.Model.Checkout.CreateCheckoutSessionRequest;
-using Environment = Adyen.Model.Enum.Environment;
+using Environment = Adyen.Model.Environment;
 
 namespace Adyen.IntegrationTest
 {
