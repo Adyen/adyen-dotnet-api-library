@@ -170,6 +170,13 @@ namespace Adyen.Model.LegalEntityManagement
         public List<Attachment> Attachments { get; set; }
 
         /// <summary>
+        /// The creation date of the document.
+        /// </summary>
+        /// <value>The creation date of the document.</value>
+        [DataMember(Name="creationDate", EmitDefaultValue=false)]
+        public DateTime CreationDate { get; private set; }
+
+        /// <summary>
         /// Your description for the document.
         /// </summary>
         /// <value>Your description for the document.</value>
@@ -215,6 +222,13 @@ namespace Adyen.Model.LegalEntityManagement
         public string IssuerState { get; set; }
 
         /// <summary>
+        /// The modification date of the document.
+        /// </summary>
+        /// <value>The modification date of the document.</value>
+        [DataMember(Name="modificationDate", EmitDefaultValue=false)]
+        public DateTime ModificationDate { get; private set; }
+
+        /// <summary>
         /// The number in the document.
         /// </summary>
         /// <value>The number in the document.</value>
@@ -238,12 +252,14 @@ namespace Adyen.Model.LegalEntityManagement
             sb.Append("class Document {\n");
             sb.Append("  Attachment: ").Append(Attachment).Append("\n");
             sb.Append("  Attachments: ").Append(Attachments).Append("\n");
+            sb.Append("  CreationDate: ").Append(CreationDate).Append("\n");
             sb.Append("  Description: ").Append(Description).Append("\n");
             sb.Append("  ExpiryDate: ").Append(ExpiryDate).Append("\n");
             sb.Append("  FileName: ").Append(FileName).Append("\n");
             sb.Append("  Id: ").Append(Id).Append("\n");
             sb.Append("  IssuerCountry: ").Append(IssuerCountry).Append("\n");
             sb.Append("  IssuerState: ").Append(IssuerState).Append("\n");
+            sb.Append("  ModificationDate: ").Append(ModificationDate).Append("\n");
             sb.Append("  Number: ").Append(Number).Append("\n");
             sb.Append("  Owner: ").Append(Owner).Append("\n");
             sb.Append("  Type: ").Append(Type).Append("\n");
@@ -293,6 +309,11 @@ namespace Adyen.Model.LegalEntityManagement
                     this.Attachments.SequenceEqual(input.Attachments)
                 ) && 
                 (
+                    this.CreationDate == input.CreationDate ||
+                    (this.CreationDate != null &&
+                    this.CreationDate.Equals(input.CreationDate))
+                ) && 
+                (
                     this.Description == input.Description ||
                     (this.Description != null &&
                     this.Description.Equals(input.Description))
@@ -321,6 +342,11 @@ namespace Adyen.Model.LegalEntityManagement
                     this.IssuerState == input.IssuerState ||
                     (this.IssuerState != null &&
                     this.IssuerState.Equals(input.IssuerState))
+                ) && 
+                (
+                    this.ModificationDate == input.ModificationDate ||
+                    (this.ModificationDate != null &&
+                    this.ModificationDate.Equals(input.ModificationDate))
                 ) && 
                 (
                     this.Number == input.Number ||
@@ -352,6 +378,8 @@ namespace Adyen.Model.LegalEntityManagement
                     hashCode = hashCode * 59 + this.Attachment.GetHashCode();
                 if (this.Attachments != null)
                     hashCode = hashCode * 59 + this.Attachments.GetHashCode();
+                if (this.CreationDate != null)
+                    hashCode = hashCode * 59 + this.CreationDate.GetHashCode();
                 if (this.Description != null)
                     hashCode = hashCode * 59 + this.Description.GetHashCode();
                 if (this.ExpiryDate != null)
@@ -364,6 +392,8 @@ namespace Adyen.Model.LegalEntityManagement
                     hashCode = hashCode * 59 + this.IssuerCountry.GetHashCode();
                 if (this.IssuerState != null)
                     hashCode = hashCode * 59 + this.IssuerState.GetHashCode();
+                if (this.ModificationDate != null)
+                    hashCode = hashCode * 59 + this.ModificationDate.GetHashCode();
                 if (this.Number != null)
                     hashCode = hashCode * 59 + this.Number.GetHashCode();
                 if (this.Owner != null)

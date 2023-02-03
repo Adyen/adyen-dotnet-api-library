@@ -84,14 +84,16 @@ namespace Adyen.Model.LegalEntityManagement
         /// <summary>
         /// Initializes a new instance of the <see cref="LegalEntityInfo" /> class.
         /// </summary>
+        /// <param name="capabilities">Overview of capabilities for this legal entity.</param>
         /// <param name="entityAssociations">List of legal entities associated with the current legal entity. For example, ultimate beneficial owners associated with an organization through ownership or control, or as signatories..</param>
         /// <param name="individual">individual.</param>
         /// <param name="organization">organization.</param>
         /// <param name="reference">Your reference for the legal entity, maximum 150 characters..</param>
         /// <param name="soleProprietorship">soleProprietorship.</param>
         /// <param name="type">The type of legal entity.   Possible values: **individual**, **organization**, or **soleProprietorship**. (required).</param>
-        public LegalEntityInfo(List<LegalEntityAssociation> entityAssociations = default(List<LegalEntityAssociation>), Individual individual = default(Individual), Organization organization = default(Organization), string reference = default(string), SoleProprietorship soleProprietorship = default(SoleProprietorship), TypeEnum type = default(TypeEnum))
+        public LegalEntityInfo(Dictionary<string, LegalEntityCapability> capabilities = default(Dictionary<string, LegalEntityCapability>), List<LegalEntityAssociation> entityAssociations = default(List<LegalEntityAssociation>), Individual individual = default(Individual), Organization organization = default(Organization), string reference = default(string), SoleProprietorship soleProprietorship = default(SoleProprietorship), TypeEnum type = default(TypeEnum))
         {
+            this.Capabilities = capabilities;
             this.EntityAssociations = entityAssociations;
             this.Individual = individual;
             this.Organization = organization;
@@ -99,6 +101,13 @@ namespace Adyen.Model.LegalEntityManagement
             this.SoleProprietorship = soleProprietorship;
             this.Type = type;
         }
+
+        /// <summary>
+        /// Overview of capabilities for this legal entity
+        /// </summary>
+        /// <value>Overview of capabilities for this legal entity</value>
+        [DataMember(Name="capabilities", EmitDefaultValue=false)]
+        public Dictionary<string, LegalEntityCapability> Capabilities { get; set; }
 
         /// <summary>
         /// List of legal entities associated with the current legal entity. For example, ultimate beneficial owners associated with an organization through ownership or control, or as signatories.
@@ -141,6 +150,7 @@ namespace Adyen.Model.LegalEntityManagement
         {
             var sb = new StringBuilder();
             sb.Append("class LegalEntityInfo {\n");
+            sb.Append("  Capabilities: ").Append(Capabilities).Append("\n");
             sb.Append("  EntityAssociations: ").Append(EntityAssociations).Append("\n");
             sb.Append("  Individual: ").Append(Individual).Append("\n");
             sb.Append("  Organization: ").Append(Organization).Append("\n");
@@ -181,6 +191,12 @@ namespace Adyen.Model.LegalEntityManagement
                 return false;
 
             return 
+                (
+                    this.Capabilities == input.Capabilities ||
+                    this.Capabilities != null &&
+                    input.Capabilities != null &&
+                    this.Capabilities.SequenceEqual(input.Capabilities)
+                ) && 
                 (
                     this.EntityAssociations == input.EntityAssociations ||
                     this.EntityAssociations != null &&
@@ -223,6 +239,8 @@ namespace Adyen.Model.LegalEntityManagement
             unchecked // Overflow is fine, just wrap
             {
                 int hashCode = 41;
+                if (this.Capabilities != null)
+                    hashCode = hashCode * 59 + this.Capabilities.GetHashCode();
                 if (this.EntityAssociations != null)
                     hashCode = hashCode * 59 + this.EntityAssociations.GetHashCode();
                 if (this.Individual != null)
