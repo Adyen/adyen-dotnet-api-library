@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 using static Adyen.Model.Checkout.PaymentResponse;
 using Amount = Adyen.Model.Checkout.Amount;
 using ApplicationInfo = Adyen.Model.ApplicationInformation.ApplicationInfo;
-using Environment = Adyen.Model.Enum.Environment;
+using Environment = Adyen.Model.Environment;
 
 namespace Adyen.Test
 {
