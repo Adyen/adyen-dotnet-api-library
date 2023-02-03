@@ -57,7 +57,10 @@ namespace Adyen
             
             // Set Timeout for HttpClient
             var httpClient = new System.Net.Http.HttpClient();
-            httpClient.Timeout = Config.Timeout == default ? TimeSpan.FromMilliseconds(100000) : TimeSpan.FromMilliseconds(Config.Timeout);
+            if (Config.Timeout != default)
+            {
+                httpClient.Timeout = TimeSpan.FromMilliseconds(Config.Timeout);
+            }
             
             _client = new HttpClientWrapper(Config, httpClient);
         }
@@ -75,7 +78,10 @@ namespace Adyen
             
             // Set Timeout for HttpClient
             var httpClient = new System.Net.Http.HttpClient();
-            httpClient.Timeout = Config.Timeout == default ? TimeSpan.FromMilliseconds(100000) : TimeSpan.FromMilliseconds(Config.Timeout);
+            if (Config.Timeout != default)
+            {
+                httpClient.Timeout = TimeSpan.FromMilliseconds(Config.Timeout);
+            }
             
             _client = new HttpClientWrapper(Config, httpClient);
         }
@@ -87,7 +93,10 @@ namespace Adyen
             
             // Set Timeout for HttpClient
             var httpClient = new System.Net.Http.HttpClient();
-            httpClient.Timeout = Config.Timeout == default ? TimeSpan.FromMilliseconds(100000) : TimeSpan.FromMilliseconds(Config.Timeout);
+            if (Config.Timeout != default)
+            {
+                httpClient.Timeout = TimeSpan.FromMilliseconds(Config.Timeout);
+            }
             
             _client = new HttpClientWrapper(Config, httpClient);
         }
