@@ -36,7 +36,7 @@ using System.Text;
 using Adyen.HttpClient.Interfaces;
 using Adyen.Model;
 using Environment = System.Environment;
-using Amount = Adyen.Model.Amount;
+using Amount = Adyen.Model.Checkout;
 using PaymentResult = Adyen.Model.Payments.PaymentResult;
 using Adyen.Model.Checkout;
 using System.Threading.Tasks;
@@ -256,7 +256,7 @@ namespace Adyen.Test
             clientInterfaceMock.Setup(x => x.Request(It.IsAny<string>(), It.IsAny<string>(), It.IsAny<RequestOptions>(), null)).Returns(response);
             var config = new Config()
             {
-                Environment = It.IsAny<Model.Enum.Environment>()
+                Environment = It.IsAny<Model.Environment>()
             };
             var clientMock = new Client(config)
             {
@@ -284,7 +284,7 @@ namespace Adyen.Test
             clientInterfaceMock.Setup(x => x.RequestAsync(It.IsAny<string>(), It.IsAny<string>(), It.IsAny<RequestOptions>(), null)).Returns(Task.FromResult(response));
             var config = new Config()
             {
-                Environment = It.IsAny<Model.Enum.Environment>()
+                Environment = It.IsAny<Model.Environment>()
             };
             var clientMock = new Client(config)
             {
@@ -310,7 +310,7 @@ namespace Adyen.Test
                 It.IsAny<string>(), It.IsAny<RequestOptions>(), null)).Returns(response);
             var config = new Config()
             {
-                Environment = It.IsAny<Model.Enum.Environment>()
+                Environment = It.IsAny<Model.Environment>()
             };
             var clientMock = new Client(config)
             {
@@ -336,7 +336,7 @@ namespace Adyen.Test
                 It.IsAny<string>(), It.IsAny<RequestOptions>(), It.IsAny<HttpMethod>())).ReturnsAsync(response);
             var config = new Config()
             {
-                Environment = It.IsAny<Model.Enum.Environment>()
+                Environment = It.IsAny<Model.Environment>()
             };
             var clientMock = new Client(config)
             {
@@ -363,7 +363,7 @@ namespace Adyen.Test
                 .ReturnsAsync(response);
             var config = new Config()
             {
-                Environment = It.IsAny<Model.Enum.Environment>()
+                Environment = It.IsAny<Model.Environment>()
             };
             var clientMock = new Client(config)
             {
@@ -389,7 +389,7 @@ namespace Adyen.Test
                 It.IsAny<string>(), It.IsAny<RequestOptions>(), null)).Returns(response);
             var anyConfig = new Config()
             {
-                Environment = It.IsAny<Model.Enum.Environment>()
+                Environment = It.IsAny<Model.Environment>()
             };
             var clientMock = new Client(anyConfig)
             {
@@ -418,7 +418,7 @@ namespace Adyen.Test
                 .Returns(response);
             var anyConfig = new Config()
             {
-                Environment = It.IsAny<Model.Enum.Environment>()
+                Environment = It.IsAny<Model.Environment>()
             };
             var clientMock = new Client(anyConfig)
             {
@@ -427,24 +427,28 @@ namespace Adyen.Test
             };
             return clientMock;
         }
+
         /// <summary>
-        /// Creates mock test client 
+        /// Creates mock test client errors
         /// </summary>
+        /// <param name="status"></param>
         /// <param name="fileName"></param>
         /// <returns></returns>
-        protected Client CreateMockTestClientPost(string fileName)
+        protected Client CreateAsyncMockTestClientForErrors(int status, string fileName)
         {
             var mockPath = GetMockFilePath(fileName);
             var response = MockFileToString(mockPath);
             //Create a mock interface
             var clientInterfaceMock = new Mock<IClient>();
             var confMock = MockPaymentData.CreateConfigMock();
+            var httpClientException =
+                new HttpClientException(status, "An error occured", new WebHeaderCollection(), response);
 
-            clientInterfaceMock.Setup(x => x.Post(It.IsAny<string>(),
-                It.IsAny<Dictionary<string, string>>())).Returns(response);
+            clientInterfaceMock.Setup(x => x.RequestAsync(It.IsAny<string>(),
+                It.IsAny<string>(), It.IsAny<RequestOptions>(), null)).Throws(httpClientException);
             var config = new Config()
             {
-                Environment = It.IsAny<Model.Enum.Environment>()
+                Environment = It.IsAny<Model.Environment>()
             };
             var clientMock = new Client(config)
             {
@@ -453,7 +457,7 @@ namespace Adyen.Test
             };
             return clientMock;
         }
-
+        
         /// <summary>
         /// Creates mock test client errors
         /// </summary>
@@ -474,7 +478,7 @@ namespace Adyen.Test
                 It.IsAny<string>(), It.IsAny<RequestOptions>(), null)).Throws(httpClientException);
             var config = new Config()
             {
-                Environment = It.IsAny<Model.Enum.Environment>()
+                Environment = It.IsAny<Model.Environment>()
             };
             var clientMock = new Client(config)
             {

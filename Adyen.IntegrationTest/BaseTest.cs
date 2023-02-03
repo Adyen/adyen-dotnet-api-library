@@ -7,10 +7,10 @@ using Adyen.Model.BinLookup;
 using Adyen.Model.Checkout;
 using Adyen.Model.Payments;
 using Adyen.Service;
-using Amount = Adyen.Model.Amount;
+using Amount = Adyen.Model.Checkout;
 using PaymentRequest = Adyen.Model.Payments.PaymentRequest;
 using PaymentResult = Adyen.Model.Payments.PaymentResult;
-using Environment = Adyen.Model.Enum.Environment;
+using Environment = Adyen.Model.Environment;
 using ExternalPlatform = Adyen.Model.ApplicationInformation.ExternalPlatform;
 using Recurring = Adyen.Model.Payments.Recurring;
 
@@ -180,18 +180,6 @@ namespace Adyen.IntegrationTest
 
             };
             paymentRequest.ApplicationInfo.ExternalPlatform = new Model.Payments.ExternalPlatform("test merchant", "merchant name", "2.8");
-            return paymentRequest;
-        }
-
-        public PaymentRequest3D CreateFullPaymentRequest3D()
-        {
-            var paymentRequest = new PaymentRequest3D
-            {
-                MerchantAccount = ClientConstants.MerchantAccount,
-                Md = "testtokenMd",
-                PaResponse = "unique pa"
-            };
-            paymentRequest.ApplicationInfo.ExternalPlatform = new Adyen.Model.ApplicationInformation.ExternalPlatform("test merchant", "merchant name", "2.8");
             return paymentRequest;
         }
 

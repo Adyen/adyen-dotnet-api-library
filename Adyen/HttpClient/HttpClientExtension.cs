@@ -40,7 +40,7 @@ namespace Adyen.HttpClient
             };
         }
 
-        public static bool ServerCertificateValidationCallback(object sender, X509Certificate certificate, X509Chain chain, SslPolicyErrors sslPolicyErrors, Adyen.Model.Enum.Environment environment)
+        public static bool ServerCertificateValidationCallback(object sender, X509Certificate certificate, X509Chain chain, SslPolicyErrors sslPolicyErrors, Adyen.Model.Environment environment)
         {
             switch (sslPolicyErrors)
             {

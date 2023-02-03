@@ -28,8 +28,6 @@ namespace Adyen.Constants
         public static string EndpointTest = "https://pal-test.adyen.com";
         public static string EndpointLive = "https://pal-live.adyen.com";
         public static string EndpointLiveSuffix = "-pal-live.adyenpayments.com";
-        public static string HppTest = "https://test.adyen.com/hpp";
-        public static string HppLive = "https://live.adyen.com/hpp";
         public static string CheckoutEndpointTest = "https://checkout-test.adyen.com";
         public static string CheckoutEndpointLiveSuffix = "-checkout-live.adyenpayments.com/checkout";
         //Test cloud api endpoints
@@ -46,9 +44,9 @@ namespace Adyen.Constants
         public static string MarketPayFundApiVersion = "v5";
         public static string MarketPayAccountApiVersion = "v5";
         public static string HopApiVersion = "v1";
-        public static string RecurringApiVersion = "v49";
+        public static string RecurringApiVersion = "v68";
         public static string ApiVersion = "v68";
-        public static string PayoutApiVersion = "v51";
+        public static string PayoutApiVersion = "v68";
         public static string CheckoutApiVersion = "v69";
         public static string PosTerminalManagementVersion = "v1";
         public static string UserAgentSuffix = "adyen-dotnet-api-library/";

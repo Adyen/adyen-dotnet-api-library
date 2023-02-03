@@ -88,9 +88,13 @@ var config = new Config
     CloudApiEndPoint = ClientConfig.CloudApiEndPointEULive
   };
 var client = new Client(config);
-```
-## Example integration ecommerce
-For a closer look at how our dotnet library works, clone our [ASP .net example integration](https://github.com/adyen-examples/adyen-dotnet-online-payments). This includes commented code, highlighting key features and concepts, and examples of API calls that can be made using the library.
+
+~~~~
+To parse the terminal API notifications, please use the following custom deserializer. This method will throw an exception for non-notification requests.
+~~~~ csharp
+var serializer = new SaleToPoiMessageSerializer();
+var saleToPoiRequest = serializer.DeserializeNotification(your_terminal_notification);
+~~~~
 
 ## Example cloud API integration
 ```c#

@@ -1,3 +1,4 @@
+using System;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Adyen.Service;
 using Adyen.Model.Payout;
@@ -22,47 +23,36 @@ namespace Adyen.IntegrationTest
         [TestMethod]
         public void PayoutSuccessTest()
         {
-            PayoutRequest payoutRequest = CreatePayoutRequest("DotNetAlexandros");
-            PayoutResponse result = _payout.PayoutSubmit(payoutRequest);
-            Assert.AreEqual(result.ResultCode, "Authorised");
+            var payoutRequest = CreatePayoutRequest("DotNetAlexandros");
+            var result = _payout.PayoutSubmit(payoutRequest);
+            Assert.AreEqual(result.ResultCode, PayoutResponse.ResultCodeEnum.Authorised);
         }
 
 
         [TestMethod]
         public void PayoutErrorMissingMerchantTest()
         {
-            PayoutRequest payoutRequest = CreatePayoutRequest("");
-            try
-            {
-                PayoutResponse result = _payout.PayoutSubmit(payoutRequest);
-            }
-            catch (HttpClientException e)
-            {
-                Assert.AreEqual("403: Forbidden, ResponseBody: {\"status\":403,\"errorCode\":\"901\",\"message\":\"Invalid Merchant Account\",\"errorType\":\"security\"}", e.Message);
-            }
+            var payoutRequest = CreatePayoutRequest("");
+            var ex = Assert.ThrowsException<HttpClientException>(() => _payout.PayoutSubmit(payoutRequest));
+            Assert.AreEqual(ex.Code, 403);
         }
 
         [TestMethod]
         public void PayoutErrorMissingReferenceTest()
         {
-            PayoutRequest payoutRequest = CreatePayoutRequest("DotNetAlexandros");
-            payoutRequest.ShopperReference = "";
-            try
-            {
-                PayoutResponse result = _payout.PayoutSubmit(payoutRequest);
-            }
-            catch (HttpClientException e)
-            {
-                Assert.AreEqual(403, e.Code);
-            }
+            var payoutRequest = CreatePayoutRequest("DotNetAlexandros");
+            payoutRequest.Reference = "";
+            var ex = Assert.ThrowsException<HttpClientException>(() => _payout.PayoutSubmit(payoutRequest));
+            Assert.AreEqual("{\"status\":422,\"errorCode\":\"130\",\"message\":\"Required field 'reference' is not provided.\",\"errorType\":\"validation\"}",ex.ResponseBody);
+            Assert.AreEqual(422, ex.Code);
         }
 
         private PayoutRequest CreatePayoutRequest(string merchantAccount)
         {
-            PayoutRequest payoutRequest = new PayoutRequest
+            var payoutRequest = new PayoutRequest
             {
-                Amount = new Model.Amount { Currency = "EUR", Value = 10 },
-                Card = new Card
+                Amount = new Model.Payout.Amount { Currency = "EUR", Value = 10 },
+                Card = new Model.Payout.Card
                 {
                     Number = "4111111111111111",
                     ExpiryMonth = "03",
