@@ -67,24 +67,19 @@ namespace Adyen.Model.Management
         /// <summary>
         /// Initializes a new instance of the <see cref="ShopperStatement" /> class.
         /// </summary>
-        [JsonConstructorAttribute]
-        protected ShopperStatement() { }
-        /// <summary>
-        /// Initializes a new instance of the <see cref="ShopperStatement" /> class.
-        /// </summary>
-        /// <param name="doingBusinessAsName">The name you want to be shown on the shopper&#39;s bank or credit card statement. Maximum length: 22 characters; can&#39;t be all numbers. (required).</param>
-        /// <param name="type">The type of shopperstatement you want to use: fixed, append or dynamic.</param>
-        public ShopperStatement(string doingBusinessAsName = default(string), TypeEnum? type = default(TypeEnum?))
+        /// <param name="doingBusinessAsName">The name you want to be shown on the shopper&#39;s bank or credit card statement. Can&#39;t be all numbers. If a shopper statement is present, this field is required..</param>
+        /// <param name="type">The type of shopperstatement you want to use: fixed, append or dynamic (default to TypeEnum.Dynamic).</param>
+        public ShopperStatement(string doingBusinessAsName = default(string), TypeEnum? type = TypeEnum.Dynamic)
         {
             this.DoingBusinessAsName = doingBusinessAsName;
             this.Type = type;
         }
 
         /// <summary>
-        /// The name you want to be shown on the shopper&#39;s bank or credit card statement. Maximum length: 22 characters; can&#39;t be all numbers.
+        /// The name you want to be shown on the shopper&#39;s bank or credit card statement. Can&#39;t be all numbers. If a shopper statement is present, this field is required.
         /// </summary>
-        /// <value>The name you want to be shown on the shopper&#39;s bank or credit card statement. Maximum length: 22 characters; can&#39;t be all numbers.</value>
-        [DataMember(Name="doingBusinessAsName", EmitDefaultValue=true)]
+        /// <value>The name you want to be shown on the shopper&#39;s bank or credit card statement. Can&#39;t be all numbers. If a shopper statement is present, this field is required.</value>
+        [DataMember(Name="doingBusinessAsName", EmitDefaultValue=false)]
         public string DoingBusinessAsName { get; set; }
 
 
@@ -168,6 +163,13 @@ namespace Adyen.Model.Management
         /// <returns>Validation Result</returns>
         IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
         {
+            // DoingBusinessAsName (string) maxLength
+            if(this.DoingBusinessAsName != null && this.DoingBusinessAsName.Length > 22)
+            {
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for DoingBusinessAsName, length must be less than 22.", new [] { "DoingBusinessAsName" });
+            }
+
+
             yield break;
         }
     }

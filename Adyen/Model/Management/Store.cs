@@ -79,7 +79,7 @@ namespace Adyen.Model.Management
         /// <param name="shopperStatement">The store name shown on the shopper&#39;s bank or credit card statement and on the shopper receipt..</param>
         /// <param name="splitConfiguration">splitConfiguration.</param>
         /// <param name="status">The status of the store. Possible values are:  - **active**. This value is assigned automatically when a store is created.  - **inactive**. The terminals under the store are blocked from accepting new transactions, but capturing outstanding transactions is still possible. - **closed**. This status is irreversible. The terminals under the store are reassigned to the merchant inventory..</param>
-        public Store(Links links = default(Links), Address2 address = default(Address2), List<string> businessLineIds = default(List<string>), string description = default(string), string externalReferenceId = default(string), string id = default(string), string merchantId = default(string), string phoneNumber = default(string), string reference = default(string), string shopperStatement = default(string), StoreSplitConfiguration splitConfiguration = default(StoreSplitConfiguration), StatusEnum? status = default(StatusEnum?))
+        public Store(Links links = default(Links), StoreLocation address = default(StoreLocation), List<string> businessLineIds = default(List<string>), string description = default(string), string externalReferenceId = default(string), string id = default(string), string merchantId = default(string), string phoneNumber = default(string), string reference = default(string), string shopperStatement = default(string), StoreSplitConfiguration splitConfiguration = default(StoreSplitConfiguration), StatusEnum? status = default(StatusEnum?))
         {
             this.Links = links;
             this.Address = address;
@@ -105,7 +105,7 @@ namespace Adyen.Model.Management
         /// Gets or Sets Address
         /// </summary>
         [DataMember(Name="address", EmitDefaultValue=false)]
-        public Address2 Address { get; set; }
+        public StoreLocation Address { get; set; }
 
         /// <summary>
         /// The unique identifiers of the [business lines](https://docs.adyen.com/api-explorer/#/legalentity/latest/post/businesslines__resParam_id) that the store is associated with.  If not specified, the business line of the merchant account is used. Required when there are multiple business lines under the merchant account.

@@ -68,8 +68,8 @@ namespace Adyen.Model.Management
         /// The region of operation. For example, **NA**, **EU**, **CH**, **AU**.
         /// </summary>
         /// <value>The region of operation. For example, **NA**, **EU**, **CH**, **AU**.</value>
-        [DataMember(Name="region", EmitDefaultValue=true)]
-        public RegionEnum Region { get; set; }
+        [DataMember(Name="region", EmitDefaultValue=false)]
+        public RegionEnum? Region { get; set; }
         /// <summary>
         /// Initializes a new instance of the <see cref="KlarnaInfo" /> class.
         /// </summary>
@@ -80,9 +80,9 @@ namespace Adyen.Model.Management
         /// </summary>
         /// <param name="autoCapture">Indicates the status of [Automatic capture](https://docs.adyen.com/online-payments/capture#automatic-capture). Default value: **false**..</param>
         /// <param name="disputeEmail">The email address for disputes. (required).</param>
-        /// <param name="region">The region of operation. For example, **NA**, **EU**, **CH**, **AU**. (required).</param>
+        /// <param name="region">The region of operation. For example, **NA**, **EU**, **CH**, **AU**..</param>
         /// <param name="supportEmail">The email address of merchant support. (required).</param>
-        public KlarnaInfo(bool autoCapture = default(bool), string disputeEmail = default(string), RegionEnum region = default(RegionEnum), string supportEmail = default(string))
+        public KlarnaInfo(bool autoCapture = default(bool), string disputeEmail = default(string), RegionEnum? region = default(RegionEnum?), string supportEmail = default(string))
         {
             this.AutoCapture = autoCapture;
             this.DisputeEmail = disputeEmail;

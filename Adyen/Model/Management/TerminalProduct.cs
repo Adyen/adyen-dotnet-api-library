@@ -39,7 +39,7 @@ namespace Adyen.Model.Management
         /// <param name="itemsIncluded">A list of parts included in the terminal package..</param>
         /// <param name="name">The descriptive name of the product..</param>
         /// <param name="price">price.</param>
-        public TerminalProduct(string description = default(string), string id = default(string), List<string> itemsIncluded = default(List<string>), string name = default(string), Amount price = default(Amount))
+        public TerminalProduct(string description = default(string), string id = default(string), List<string> itemsIncluded = default(List<string>), string name = default(string), TerminalProductPrice price = default(TerminalProductPrice))
         {
             this.Description = description;
             this.Id = id;
@@ -80,7 +80,7 @@ namespace Adyen.Model.Management
         /// Gets or Sets Price
         /// </summary>
         [DataMember(Name="price", EmitDefaultValue=false)]
-        public Amount Price { get; set; }
+        public TerminalProductPrice Price { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object

@@ -26,18 +26,18 @@ using System.ComponentModel.DataAnnotations;
 namespace Adyen.Model.Management
 {
     /// <summary>
-    /// Address2
+    /// StoreLocation
     /// </summary>
     [DataContract]
-    public partial class Address2 :  IEquatable<Address2>, IValidatableObject
+    public partial class StoreLocation :  IEquatable<StoreLocation>, IValidatableObject
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="Address2" /> class.
+        /// Initializes a new instance of the <see cref="StoreLocation" /> class.
         /// </summary>
         [JsonConstructorAttribute]
-        protected Address2() { }
+        protected StoreLocation() { }
         /// <summary>
-        /// Initializes a new instance of the <see cref="Address2" /> class.
+        /// Initializes a new instance of the <see cref="StoreLocation" /> class.
         /// </summary>
         /// <param name="city">The name of the city..</param>
         /// <param name="country">The two-letter country code in [ISO_3166-1_alpha-2](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2) format. (required).</param>
@@ -46,7 +46,7 @@ namespace Adyen.Model.Management
         /// <param name="line3">Third address line..</param>
         /// <param name="postalCode">The postal code..</param>
         /// <param name="stateOrProvince">The state or province code as defined in [ISO 3166-2](https://www.iso.org/standard/72483.html). For example, **ON** for Ontario, Canada.  Required for the following countries:  - Australia - Brazil - Canada - India - Mexico - New Zealand - United States.</param>
-        public Address2(string city = default(string), string country = default(string), string line1 = default(string), string line2 = default(string), string line3 = default(string), string postalCode = default(string), string stateOrProvince = default(string))
+        public StoreLocation(string city = default(string), string country = default(string), string line1 = default(string), string line2 = default(string), string line3 = default(string), string postalCode = default(string), string stateOrProvince = default(string))
         {
             this.City = city;
             this.Country = country;
@@ -113,7 +113,7 @@ namespace Adyen.Model.Management
         public override string ToString()
         {
             var sb = new StringBuilder();
-            sb.Append("class Address2 {\n");
+            sb.Append("class StoreLocation {\n");
             sb.Append("  City: ").Append(City).Append("\n");
             sb.Append("  Country: ").Append(Country).Append("\n");
             sb.Append("  Line1: ").Append(Line1).Append("\n");
@@ -141,15 +141,15 @@ namespace Adyen.Model.Management
         /// <returns>Boolean</returns>
         public override bool Equals(object input)
         {
-            return this.Equals(input as Address2);
+            return this.Equals(input as StoreLocation);
         }
 
         /// <summary>
-        /// Returns true if Address2 instances are equal
+        /// Returns true if StoreLocation instances are equal
         /// </summary>
-        /// <param name="input">Instance of Address2 to be compared</param>
+        /// <param name="input">Instance of StoreLocation to be compared</param>
         /// <returns>Boolean</returns>
-        public bool Equals(Address2 input)
+        public bool Equals(StoreLocation input)
         {
             if (input == null)
                 return false;

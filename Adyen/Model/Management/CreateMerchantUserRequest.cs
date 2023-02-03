@@ -34,17 +34,12 @@ namespace Adyen.Model.Management
         /// <summary>
         /// Initializes a new instance of the <see cref="CreateMerchantUserRequest" /> class.
         /// </summary>
-        [JsonConstructorAttribute]
-        protected CreateMerchantUserRequest() { }
-        /// <summary>
-        /// Initializes a new instance of the <see cref="CreateMerchantUserRequest" /> class.
-        /// </summary>
         /// <param name="accountGroups">The list of [account groups](https://docs.adyen.com/account/account-structure#account-groups) associated with this user..</param>
-        /// <param name="email">The email address of the user. (required).</param>
-        /// <param name="name">name (required).</param>
+        /// <param name="email">The email address of the user..</param>
+        /// <param name="name">name.</param>
         /// <param name="roles">The list of [roles](https://docs.adyen.com/account/user-roles) for this user..</param>
         /// <param name="timeZoneCode">The [tz database name](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones) of the time zone of the user. For example, **Europe/Amsterdam**..</param>
-        /// <param name="username">The username for this user. Allowed length: 255 alphanumeric characters. (required).</param>
+        /// <param name="username">The username for this user. Allowed length: 255 alphanumeric characters..</param>
         public CreateMerchantUserRequest(List<string> accountGroups = default(List<string>), string email = default(string), Name name = default(Name), List<string> roles = default(List<string>), string timeZoneCode = default(string), string username = default(string))
         {
             this.AccountGroups = accountGroups;
@@ -66,13 +61,13 @@ namespace Adyen.Model.Management
         /// The email address of the user.
         /// </summary>
         /// <value>The email address of the user.</value>
-        [DataMember(Name="email", EmitDefaultValue=true)]
+        [DataMember(Name="email", EmitDefaultValue=false)]
         public string Email { get; set; }
 
         /// <summary>
         /// Gets or Sets Name
         /// </summary>
-        [DataMember(Name="name", EmitDefaultValue=true)]
+        [DataMember(Name="name", EmitDefaultValue=false)]
         public Name Name { get; set; }
 
         /// <summary>
@@ -93,7 +88,7 @@ namespace Adyen.Model.Management
         /// The username for this user. Allowed length: 255 alphanumeric characters.
         /// </summary>
         /// <value>The username for this user. Allowed length: 255 alphanumeric characters.</value>
-        [DataMember(Name="username", EmitDefaultValue=true)]
+        [DataMember(Name="username", EmitDefaultValue=false)]
         public string Username { get; set; }
 
         /// <summary>

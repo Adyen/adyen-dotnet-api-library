@@ -36,12 +36,14 @@ namespace Adyen.Model.Management
         /// </summary>
         /// <param name="countries">The list of countries where a payment method is available. By default, all countries supported by the payment method..</param>
         /// <param name="currencies">The list of currencies that a payment method supports. By default, all currencies supported by the payment method..</param>
+        /// <param name="customRoutingFlags">Custom routing flags for acquirer routing..</param>
         /// <param name="enabled">Indicates whether the payment method is enabled (**true**) or disabled (**false**)..</param>
         /// <param name="shopperStatement">shopperStatement.</param>
-        public UpdatePaymentMethodInfo(List<string> countries = default(List<string>), List<string> currencies = default(List<string>), bool enabled = default(bool), ShopperStatement shopperStatement = default(ShopperStatement))
+        public UpdatePaymentMethodInfo(List<string> countries = default(List<string>), List<string> currencies = default(List<string>), List<string> customRoutingFlags = default(List<string>), bool enabled = default(bool), ShopperStatement shopperStatement = default(ShopperStatement))
         {
             this.Countries = countries;
             this.Currencies = currencies;
+            this.CustomRoutingFlags = customRoutingFlags;
             this.Enabled = enabled;
             this.ShopperStatement = shopperStatement;
         }
@@ -59,6 +61,13 @@ namespace Adyen.Model.Management
         /// <value>The list of currencies that a payment method supports. By default, all currencies supported by the payment method.</value>
         [DataMember(Name="currencies", EmitDefaultValue=false)]
         public List<string> Currencies { get; set; }
+
+        /// <summary>
+        /// Custom routing flags for acquirer routing.
+        /// </summary>
+        /// <value>Custom routing flags for acquirer routing.</value>
+        [DataMember(Name="customRoutingFlags", EmitDefaultValue=false)]
+        public List<string> CustomRoutingFlags { get; set; }
 
         /// <summary>
         /// Indicates whether the payment method is enabled (**true**) or disabled (**false**).
@@ -83,6 +92,7 @@ namespace Adyen.Model.Management
             sb.Append("class UpdatePaymentMethodInfo {\n");
             sb.Append("  Countries: ").Append(Countries).Append("\n");
             sb.Append("  Currencies: ").Append(Currencies).Append("\n");
+            sb.Append("  CustomRoutingFlags: ").Append(CustomRoutingFlags).Append("\n");
             sb.Append("  Enabled: ").Append(Enabled).Append("\n");
             sb.Append("  ShopperStatement: ").Append(ShopperStatement).Append("\n");
             sb.Append("}\n");
@@ -132,6 +142,12 @@ namespace Adyen.Model.Management
                     this.Currencies.SequenceEqual(input.Currencies)
                 ) && 
                 (
+                    this.CustomRoutingFlags == input.CustomRoutingFlags ||
+                    this.CustomRoutingFlags != null &&
+                    input.CustomRoutingFlags != null &&
+                    this.CustomRoutingFlags.SequenceEqual(input.CustomRoutingFlags)
+                ) && 
+                (
                     this.Enabled == input.Enabled ||
                     (this.Enabled != null &&
                     this.Enabled.Equals(input.Enabled))
@@ -156,6 +172,8 @@ namespace Adyen.Model.Management
                     hashCode = hashCode * 59 + this.Countries.GetHashCode();
                 if (this.Currencies != null)
                     hashCode = hashCode * 59 + this.Currencies.GetHashCode();
+                if (this.CustomRoutingFlags != null)
+                    hashCode = hashCode * 59 + this.CustomRoutingFlags.GetHashCode();
                 if (this.Enabled != null)
                     hashCode = hashCode * 59 + this.Enabled.GetHashCode();
                 if (this.ShopperStatement != null)

@@ -26,44 +26,44 @@ using System.ComponentModel.DataAnnotations;
 namespace Adyen.Model.Management
 {
     /// <summary>
-    /// Settings
+    /// Key
     /// </summary>
     [DataContract]
-    public partial class Settings :  IEquatable<Settings>, IValidatableObject
+    public partial class Key :  IEquatable<Key>, IValidatableObject
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="Settings" /> class.
+        /// Initializes a new instance of the <see cref="Key" /> class.
         /// </summary>
-        /// <param name="band">The preferred Wi-Fi band, for use if the terminals support multiple bands. Possible values: All, 2.4GHz, 5GHz..</param>
-        /// <param name="roaming">Indicates whether roaming is enabled on the terminals..</param>
-        /// <param name="timeout">The connection time-out in seconds. Minimum value: 0..</param>
-        public Settings(string band = default(string), bool roaming = default(bool), int timeout = default(int))
+        /// <param name="identifier">The unique identifier of the shared key..</param>
+        /// <param name="passphrase">The secure passphrase to protect the shared key..</param>
+        /// <param name="version">The version number of the shared key..</param>
+        public Key(string identifier = default(string), string passphrase = default(string), int version = default(int))
         {
-            this.Band = band;
-            this.Roaming = roaming;
-            this.Timeout = timeout;
+            this.Identifier = identifier;
+            this.Passphrase = passphrase;
+            this.Version = version;
         }
 
         /// <summary>
-        /// The preferred Wi-Fi band, for use if the terminals support multiple bands. Possible values: All, 2.4GHz, 5GHz.
+        /// The unique identifier of the shared key.
         /// </summary>
-        /// <value>The preferred Wi-Fi band, for use if the terminals support multiple bands. Possible values: All, 2.4GHz, 5GHz.</value>
-        [DataMember(Name="band", EmitDefaultValue=false)]
-        public string Band { get; set; }
+        /// <value>The unique identifier of the shared key.</value>
+        [DataMember(Name="identifier", EmitDefaultValue=false)]
+        public string Identifier { get; set; }
 
         /// <summary>
-        /// Indicates whether roaming is enabled on the terminals.
+        /// The secure passphrase to protect the shared key.
         /// </summary>
-        /// <value>Indicates whether roaming is enabled on the terminals.</value>
-        [DataMember(Name="roaming", EmitDefaultValue=false)]
-        public bool Roaming { get; set; }
+        /// <value>The secure passphrase to protect the shared key.</value>
+        [DataMember(Name="passphrase", EmitDefaultValue=false)]
+        public string Passphrase { get; set; }
 
         /// <summary>
-        /// The connection time-out in seconds. Minimum value: 0.
+        /// The version number of the shared key.
         /// </summary>
-        /// <value>The connection time-out in seconds. Minimum value: 0.</value>
-        [DataMember(Name="timeout", EmitDefaultValue=false)]
-        public int Timeout { get; set; }
+        /// <value>The version number of the shared key.</value>
+        [DataMember(Name="version", EmitDefaultValue=false)]
+        public int Version { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -72,10 +72,10 @@ namespace Adyen.Model.Management
         public override string ToString()
         {
             var sb = new StringBuilder();
-            sb.Append("class Settings {\n");
-            sb.Append("  Band: ").Append(Band).Append("\n");
-            sb.Append("  Roaming: ").Append(Roaming).Append("\n");
-            sb.Append("  Timeout: ").Append(Timeout).Append("\n");
+            sb.Append("class Key {\n");
+            sb.Append("  Identifier: ").Append(Identifier).Append("\n");
+            sb.Append("  Passphrase: ").Append(Passphrase).Append("\n");
+            sb.Append("  Version: ").Append(Version).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -96,34 +96,34 @@ namespace Adyen.Model.Management
         /// <returns>Boolean</returns>
         public override bool Equals(object input)
         {
-            return this.Equals(input as Settings);
+            return this.Equals(input as Key);
         }
 
         /// <summary>
-        /// Returns true if Settings instances are equal
+        /// Returns true if Key instances are equal
         /// </summary>
-        /// <param name="input">Instance of Settings to be compared</param>
+        /// <param name="input">Instance of Key to be compared</param>
         /// <returns>Boolean</returns>
-        public bool Equals(Settings input)
+        public bool Equals(Key input)
         {
             if (input == null)
                 return false;
 
             return 
                 (
-                    this.Band == input.Band ||
-                    (this.Band != null &&
-                    this.Band.Equals(input.Band))
+                    this.Identifier == input.Identifier ||
+                    (this.Identifier != null &&
+                    this.Identifier.Equals(input.Identifier))
                 ) && 
                 (
-                    this.Roaming == input.Roaming ||
-                    (this.Roaming != null &&
-                    this.Roaming.Equals(input.Roaming))
+                    this.Passphrase == input.Passphrase ||
+                    (this.Passphrase != null &&
+                    this.Passphrase.Equals(input.Passphrase))
                 ) && 
                 (
-                    this.Timeout == input.Timeout ||
-                    (this.Timeout != null &&
-                    this.Timeout.Equals(input.Timeout))
+                    this.Version == input.Version ||
+                    (this.Version != null &&
+                    this.Version.Equals(input.Version))
                 );
         }
 
@@ -136,12 +136,12 @@ namespace Adyen.Model.Management
             unchecked // Overflow is fine, just wrap
             {
                 int hashCode = 41;
-                if (this.Band != null)
-                    hashCode = hashCode * 59 + this.Band.GetHashCode();
-                if (this.Roaming != null)
-                    hashCode = hashCode * 59 + this.Roaming.GetHashCode();
-                if (this.Timeout != null)
-                    hashCode = hashCode * 59 + this.Timeout.GetHashCode();
+                if (this.Identifier != null)
+                    hashCode = hashCode * 59 + this.Identifier.GetHashCode();
+                if (this.Passphrase != null)
+                    hashCode = hashCode * 59 + this.Passphrase.GetHashCode();
+                if (this.Version != null)
+                    hashCode = hashCode * 59 + this.Version.GetHashCode();
                 return hashCode;
             }
         }

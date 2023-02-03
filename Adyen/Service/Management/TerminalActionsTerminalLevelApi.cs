@@ -34,9 +34,9 @@ namespace Adyen.Service.Management
         /// <param name="scheduleTerminalActionsRequest"></param>
         /// <param name="requestOptions">Additional request options.</param>
         /// <returns>ScheduleTerminalActionsResponse</returns>
-        public ScheduleTerminalActionsResponse PostTerminalsScheduleActions(ScheduleTerminalActionsRequest scheduleTerminalActionsRequest, RequestOptions requestOptions = default)
+        public ScheduleTerminalActionsResponse CreateTerminalAction(ScheduleTerminalActionsRequest scheduleTerminalActionsRequest, RequestOptions requestOptions = default)
         {
-            return PostTerminalsScheduleActionsAsync(scheduleTerminalActionsRequest, requestOptions).GetAwaiter().GetResult();
+            return CreateTerminalActionAsync(scheduleTerminalActionsRequest, requestOptions).GetAwaiter().GetResult();
         }
 
         /// <summary>
@@ -45,7 +45,7 @@ namespace Adyen.Service.Management
         /// <param name="scheduleTerminalActionsRequest"></param>
         /// <param name="requestOptions">Additional request options.</param>
         /// <returns>Task of ScheduleTerminalActionsResponse</returns>
-        public async Task<ScheduleTerminalActionsResponse> PostTerminalsScheduleActionsAsync(ScheduleTerminalActionsRequest scheduleTerminalActionsRequest, RequestOptions requestOptions = default)
+        public async Task<ScheduleTerminalActionsResponse> CreateTerminalActionAsync(ScheduleTerminalActionsRequest scheduleTerminalActionsRequest, RequestOptions requestOptions = default)
         {
             var endpoint = "/terminals/scheduleActions";
             var resource = new ManagementResource(this, endpoint);

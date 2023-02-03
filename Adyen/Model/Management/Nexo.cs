@@ -34,13 +34,29 @@ namespace Adyen.Model.Management
         /// <summary>
         /// Initializes a new instance of the <see cref="Nexo" /> class.
         /// </summary>
+        /// <param name="displayUrls">displayUrls.</param>
+        /// <param name="encryptionKey">encryptionKey.</param>
         /// <param name="eventUrls">eventUrls.</param>
-        /// <param name="nexoEventUrls">@deprecated One or more URLs to send event messages to when using Terminal API..</param>
-        public Nexo(EventUrl eventUrls = default(EventUrl), List<string> nexoEventUrls = default(List<string>))
+        /// <param name="nexoEventUrls">One or more URLs to send event messages to when using Terminal API..</param>
+        public Nexo(NotificationUrl displayUrls = default(NotificationUrl), Key encryptionKey = default(Key), EventUrl eventUrls = default(EventUrl), List<string> nexoEventUrls = default(List<string>))
         {
+            this.DisplayUrls = displayUrls;
+            this.EncryptionKey = encryptionKey;
             this.EventUrls = eventUrls;
             this.NexoEventUrls = nexoEventUrls;
         }
+
+        /// <summary>
+        /// Gets or Sets DisplayUrls
+        /// </summary>
+        [DataMember(Name="displayUrls", EmitDefaultValue=false)]
+        public NotificationUrl DisplayUrls { get; set; }
+
+        /// <summary>
+        /// Gets or Sets EncryptionKey
+        /// </summary>
+        [DataMember(Name="encryptionKey", EmitDefaultValue=false)]
+        public Key EncryptionKey { get; set; }
 
         /// <summary>
         /// Gets or Sets EventUrls
@@ -49,9 +65,9 @@ namespace Adyen.Model.Management
         public EventUrl EventUrls { get; set; }
 
         /// <summary>
-        /// @deprecated One or more URLs to send event messages to when using Terminal API.
+        /// One or more URLs to send event messages to when using Terminal API.
         /// </summary>
-        /// <value>@deprecated One or more URLs to send event messages to when using Terminal API.</value>
+        /// <value>One or more URLs to send event messages to when using Terminal API.</value>
         [DataMember(Name="nexoEventUrls", EmitDefaultValue=false)]
         [Obsolete]
         public List<string> NexoEventUrls { get; set; }
@@ -64,6 +80,8 @@ namespace Adyen.Model.Management
         {
             var sb = new StringBuilder();
             sb.Append("class Nexo {\n");
+            sb.Append("  DisplayUrls: ").Append(DisplayUrls).Append("\n");
+            sb.Append("  EncryptionKey: ").Append(EncryptionKey).Append("\n");
             sb.Append("  EventUrls: ").Append(EventUrls).Append("\n");
             sb.Append("  NexoEventUrls: ").Append(NexoEventUrls).Append("\n");
             sb.Append("}\n");
@@ -101,6 +119,16 @@ namespace Adyen.Model.Management
 
             return 
                 (
+                    this.DisplayUrls == input.DisplayUrls ||
+                    (this.DisplayUrls != null &&
+                    this.DisplayUrls.Equals(input.DisplayUrls))
+                ) && 
+                (
+                    this.EncryptionKey == input.EncryptionKey ||
+                    (this.EncryptionKey != null &&
+                    this.EncryptionKey.Equals(input.EncryptionKey))
+                ) && 
+                (
                     this.EventUrls == input.EventUrls ||
                     (this.EventUrls != null &&
                     this.EventUrls.Equals(input.EventUrls))
@@ -122,6 +150,10 @@ namespace Adyen.Model.Management
             unchecked // Overflow is fine, just wrap
             {
                 int hashCode = 41;
+                if (this.DisplayUrls != null)
+                    hashCode = hashCode * 59 + this.DisplayUrls.GetHashCode();
+                if (this.EncryptionKey != null)
+                    hashCode = hashCode * 59 + this.EncryptionKey.GetHashCode();
                 if (this.EventUrls != null)
                     hashCode = hashCode * 59 + this.EventUrls.GetHashCode();
                 if (this.NexoEventUrls != null)

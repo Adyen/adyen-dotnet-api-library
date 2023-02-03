@@ -116,130 +116,184 @@ namespace Adyen.Model.Management
             Eftposaustralia = 13,
 
             /// <summary>
+            /// Enum Elo for value: elo
+            /// </summary>
+            [EnumMember(Value = "elo")]
+            Elo = 14,
+
+            /// <summary>
+            /// Enum Elocredit for value: elocredit
+            /// </summary>
+            [EnumMember(Value = "elocredit")]
+            Elocredit = 15,
+
+            /// <summary>
+            /// Enum Elodebit for value: elodebit
+            /// </summary>
+            [EnumMember(Value = "elodebit")]
+            Elodebit = 16,
+
+            /// <summary>
             /// Enum Girocard for value: girocard
             /// </summary>
             [EnumMember(Value = "girocard")]
-            Girocard = 14,
+            Girocard = 17,
 
             /// <summary>
             /// Enum Giropay for value: giropay
             /// </summary>
             [EnumMember(Value = "giropay")]
-            Giropay = 15,
+            Giropay = 18,
 
             /// <summary>
             /// Enum Googlepay for value: googlepay
             /// </summary>
             [EnumMember(Value = "googlepay")]
-            Googlepay = 16,
+            Googlepay = 19,
+
+            /// <summary>
+            /// Enum Hiper for value: hiper
+            /// </summary>
+            [EnumMember(Value = "hiper")]
+            Hiper = 20,
+
+            /// <summary>
+            /// Enum Hipercard for value: hipercard
+            /// </summary>
+            [EnumMember(Value = "hipercard")]
+            Hipercard = 21,
 
             /// <summary>
             /// Enum Ideal for value: ideal
             /// </summary>
             [EnumMember(Value = "ideal")]
-            Ideal = 17,
+            Ideal = 22,
 
             /// <summary>
             /// Enum Interaccard for value: interac_card
             /// </summary>
             [EnumMember(Value = "interac_card")]
-            Interaccard = 18,
+            Interaccard = 23,
 
             /// <summary>
             /// Enum Jcb for value: jcb
             /// </summary>
             [EnumMember(Value = "jcb")]
-            Jcb = 19,
+            Jcb = 24,
 
             /// <summary>
             /// Enum Klarna for value: klarna
             /// </summary>
             [EnumMember(Value = "klarna")]
-            Klarna = 20,
+            Klarna = 25,
 
             /// <summary>
             /// Enum Klarnaaccount for value: klarna_account
             /// </summary>
             [EnumMember(Value = "klarna_account")]
-            Klarnaaccount = 21,
+            Klarnaaccount = 26,
 
             /// <summary>
             /// Enum Klarnapaynow for value: klarna_paynow
             /// </summary>
             [EnumMember(Value = "klarna_paynow")]
-            Klarnapaynow = 22,
+            Klarnapaynow = 27,
 
             /// <summary>
             /// Enum Maestro for value: maestro
             /// </summary>
             [EnumMember(Value = "maestro")]
-            Maestro = 23,
+            Maestro = 28,
 
             /// <summary>
             /// Enum Mbway for value: mbway
             /// </summary>
             [EnumMember(Value = "mbway")]
-            Mbway = 24,
+            Mbway = 29,
 
             /// <summary>
             /// Enum Mc for value: mc
             /// </summary>
             [EnumMember(Value = "mc")]
-            Mc = 25,
+            Mc = 30,
+
+            /// <summary>
+            /// Enum Mcdebit for value: mcdebit
+            /// </summary>
+            [EnumMember(Value = "mcdebit")]
+            Mcdebit = 31,
+
+            /// <summary>
+            /// Enum MealVoucherFR for value: mealVoucher_FR
+            /// </summary>
+            [EnumMember(Value = "mealVoucher_FR")]
+            MealVoucherFR = 32,
 
             /// <summary>
             /// Enum Mobilepay for value: mobilepay
             /// </summary>
             [EnumMember(Value = "mobilepay")]
-            Mobilepay = 26,
+            Mobilepay = 33,
 
             /// <summary>
             /// Enum Multibanco for value: multibanco
             /// </summary>
             [EnumMember(Value = "multibanco")]
-            Multibanco = 27,
+            Multibanco = 34,
 
             /// <summary>
             /// Enum Paypal for value: paypal
             /// </summary>
             [EnumMember(Value = "paypal")]
-            Paypal = 28,
+            Paypal = 35,
 
             /// <summary>
             /// Enum Payshop for value: payshop
             /// </summary>
             [EnumMember(Value = "payshop")]
-            Payshop = 29,
+            Payshop = 36,
 
             /// <summary>
             /// Enum Swish for value: swish
             /// </summary>
             [EnumMember(Value = "swish")]
-            Swish = 30,
+            Swish = 37,
 
             /// <summary>
             /// Enum Trustly for value: trustly
             /// </summary>
             [EnumMember(Value = "trustly")]
-            Trustly = 31,
+            Trustly = 38,
 
             /// <summary>
             /// Enum Visa for value: visa
             /// </summary>
             [EnumMember(Value = "visa")]
-            Visa = 32,
+            Visa = 39,
+
+            /// <summary>
+            /// Enum Visadebit for value: visadebit
+            /// </summary>
+            [EnumMember(Value = "visadebit")]
+            Visadebit = 40,
+
+            /// <summary>
+            /// Enum Vpay for value: vpay
+            /// </summary>
+            [EnumMember(Value = "vpay")]
+            Vpay = 41,
 
             /// <summary>
             /// Enum Wechatpay for value: wechatpay
             /// </summary>
             [EnumMember(Value = "wechatpay")]
-            Wechatpay = 33,
+            Wechatpay = 42,
 
             /// <summary>
             /// Enum Wechatpaypos for value: wechatpay_pos
             /// </summary>
             [EnumMember(Value = "wechatpay_pos")]
-            Wechatpaypos = 34
+            Wechatpaypos = 43
 
         }
 

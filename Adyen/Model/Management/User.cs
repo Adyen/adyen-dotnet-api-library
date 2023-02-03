@@ -47,7 +47,7 @@ namespace Adyen.Model.Management
         /// <param name="name">name.</param>
         /// <param name="roles">The list of [roles](https://docs.adyen.com/account/user-roles) for this user. (required).</param>
         /// <param name="timeZoneCode">The [tz database name](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones) of the time zone of the user. For example, **Europe/Amsterdam**. (required).</param>
-        /// <param name="username">The username for this user. (required).</param>
+        /// <param name="username">The username for this user..</param>
         public User(Links links = default(Links), List<string> accountGroups = default(List<string>), bool active = default(bool), string email = default(string), string id = default(string), Name name = default(Name), List<string> roles = default(List<string>), string timeZoneCode = default(string), string username = default(string))
         {
             this.Links = links;
@@ -119,7 +119,7 @@ namespace Adyen.Model.Management
         /// The username for this user.
         /// </summary>
         /// <value>The username for this user.</value>
-        [DataMember(Name="username", EmitDefaultValue=true)]
+        [DataMember(Name="username", EmitDefaultValue=false)]
         public string Username { get; set; }
 
         /// <summary>

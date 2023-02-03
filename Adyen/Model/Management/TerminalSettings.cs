@@ -41,13 +41,15 @@ namespace Adyen.Model.Management
         /// <param name="nexo">nexo.</param>
         /// <param name="offlineProcessing">offlineProcessing.</param>
         /// <param name="opi">opi.</param>
+        /// <param name="passcodes">passcodes.</param>
         /// <param name="receiptOptions">receiptOptions.</param>
         /// <param name="receiptPrinting">receiptPrinting.</param>
         /// <param name="signature">signature.</param>
+        /// <param name="standalone">standalone.</param>
         /// <param name="surcharge">surcharge.</param>
         /// <param name="timeouts">timeouts.</param>
         /// <param name="wifiProfiles">wifiProfiles.</param>
-        public TerminalSettings(CardholderReceipt cardholderReceipt = default(CardholderReceipt), Connectivity connectivity = default(Connectivity), List<Gratuity> gratuities = default(List<Gratuity>), Hardware hardware = default(Hardware), Nexo nexo = default(Nexo), OfflineProcessing offlineProcessing = default(OfflineProcessing), Opi opi = default(Opi), ReceiptOptions receiptOptions = default(ReceiptOptions), ReceiptPrinting receiptPrinting = default(ReceiptPrinting), Signature signature = default(Signature), Surcharge surcharge = default(Surcharge), Timeouts timeouts = default(Timeouts), WifiProfiles wifiProfiles = default(WifiProfiles))
+        public TerminalSettings(CardholderReceipt cardholderReceipt = default(CardholderReceipt), Connectivity connectivity = default(Connectivity), List<Gratuity> gratuities = default(List<Gratuity>), Hardware hardware = default(Hardware), Nexo nexo = default(Nexo), OfflineProcessing offlineProcessing = default(OfflineProcessing), Opi opi = default(Opi), Passcodes passcodes = default(Passcodes), ReceiptOptions receiptOptions = default(ReceiptOptions), ReceiptPrinting receiptPrinting = default(ReceiptPrinting), Signature signature = default(Signature), Standalone standalone = default(Standalone), Surcharge surcharge = default(Surcharge), Timeouts timeouts = default(Timeouts), WifiProfiles wifiProfiles = default(WifiProfiles))
         {
             this.CardholderReceipt = cardholderReceipt;
             this.Connectivity = connectivity;
@@ -56,9 +58,11 @@ namespace Adyen.Model.Management
             this.Nexo = nexo;
             this.OfflineProcessing = offlineProcessing;
             this.Opi = opi;
+            this.Passcodes = passcodes;
             this.ReceiptOptions = receiptOptions;
             this.ReceiptPrinting = receiptPrinting;
             this.Signature = signature;
+            this.Standalone = standalone;
             this.Surcharge = surcharge;
             this.Timeouts = timeouts;
             this.WifiProfiles = wifiProfiles;
@@ -108,6 +112,12 @@ namespace Adyen.Model.Management
         public Opi Opi { get; set; }
 
         /// <summary>
+        /// Gets or Sets Passcodes
+        /// </summary>
+        [DataMember(Name="passcodes", EmitDefaultValue=false)]
+        public Passcodes Passcodes { get; set; }
+
+        /// <summary>
         /// Gets or Sets ReceiptOptions
         /// </summary>
         [DataMember(Name="receiptOptions", EmitDefaultValue=false)]
@@ -124,6 +134,12 @@ namespace Adyen.Model.Management
         /// </summary>
         [DataMember(Name="signature", EmitDefaultValue=false)]
         public Signature Signature { get; set; }
+
+        /// <summary>
+        /// Gets or Sets Standalone
+        /// </summary>
+        [DataMember(Name="standalone", EmitDefaultValue=false)]
+        public Standalone Standalone { get; set; }
 
         /// <summary>
         /// Gets or Sets Surcharge
@@ -158,9 +174,11 @@ namespace Adyen.Model.Management
             sb.Append("  Nexo: ").Append(Nexo).Append("\n");
             sb.Append("  OfflineProcessing: ").Append(OfflineProcessing).Append("\n");
             sb.Append("  Opi: ").Append(Opi).Append("\n");
+            sb.Append("  Passcodes: ").Append(Passcodes).Append("\n");
             sb.Append("  ReceiptOptions: ").Append(ReceiptOptions).Append("\n");
             sb.Append("  ReceiptPrinting: ").Append(ReceiptPrinting).Append("\n");
             sb.Append("  Signature: ").Append(Signature).Append("\n");
+            sb.Append("  Standalone: ").Append(Standalone).Append("\n");
             sb.Append("  Surcharge: ").Append(Surcharge).Append("\n");
             sb.Append("  Timeouts: ").Append(Timeouts).Append("\n");
             sb.Append("  WifiProfiles: ").Append(WifiProfiles).Append("\n");
@@ -235,6 +253,11 @@ namespace Adyen.Model.Management
                     this.Opi.Equals(input.Opi))
                 ) && 
                 (
+                    this.Passcodes == input.Passcodes ||
+                    (this.Passcodes != null &&
+                    this.Passcodes.Equals(input.Passcodes))
+                ) && 
+                (
                     this.ReceiptOptions == input.ReceiptOptions ||
                     (this.ReceiptOptions != null &&
                     this.ReceiptOptions.Equals(input.ReceiptOptions))
@@ -248,6 +271,11 @@ namespace Adyen.Model.Management
                     this.Signature == input.Signature ||
                     (this.Signature != null &&
                     this.Signature.Equals(input.Signature))
+                ) && 
+                (
+                    this.Standalone == input.Standalone ||
+                    (this.Standalone != null &&
+                    this.Standalone.Equals(input.Standalone))
                 ) && 
                 (
                     this.Surcharge == input.Surcharge ||
@@ -289,12 +317,16 @@ namespace Adyen.Model.Management
                     hashCode = hashCode * 59 + this.OfflineProcessing.GetHashCode();
                 if (this.Opi != null)
                     hashCode = hashCode * 59 + this.Opi.GetHashCode();
+                if (this.Passcodes != null)
+                    hashCode = hashCode * 59 + this.Passcodes.GetHashCode();
                 if (this.ReceiptOptions != null)
                     hashCode = hashCode * 59 + this.ReceiptOptions.GetHashCode();
                 if (this.ReceiptPrinting != null)
                     hashCode = hashCode * 59 + this.ReceiptPrinting.GetHashCode();
                 if (this.Signature != null)
                     hashCode = hashCode * 59 + this.Signature.GetHashCode();
+                if (this.Standalone != null)
+                    hashCode = hashCode * 59 + this.Standalone.GetHashCode();
                 if (this.Surcharge != null)
                     hashCode = hashCode * 59 + this.Surcharge.GetHashCode();
                 if (this.Timeouts != null)

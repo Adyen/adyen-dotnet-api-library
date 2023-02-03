@@ -34,9 +34,9 @@ namespace Adyen.Model.Management
         /// <summary>
         /// Initializes a new instance of the <see cref="Url" /> class.
         /// </summary>
-        /// <param name="password">The password for authentication of the event notifications..</param>
+        /// <param name="password">The password for authentication of the notifications..</param>
         /// <param name="url">The URL in the format: http(s)://domain.com..</param>
-        /// <param name="username">The username for authentication of the event notifications..</param>
+        /// <param name="username">The username for authentication of the notifications..</param>
         public Url(string password = default(string), string url = default(string), string username = default(string))
         {
             this.Password = password;
@@ -45,9 +45,9 @@ namespace Adyen.Model.Management
         }
 
         /// <summary>
-        /// The password for authentication of the event notifications.
+        /// The password for authentication of the notifications.
         /// </summary>
-        /// <value>The password for authentication of the event notifications.</value>
+        /// <value>The password for authentication of the notifications.</value>
         [DataMember(Name="password", EmitDefaultValue=false)]
         public string Password { get; set; }
 
@@ -59,9 +59,9 @@ namespace Adyen.Model.Management
         public string _Url { get; set; }
 
         /// <summary>
-        /// The username for authentication of the event notifications.
+        /// The username for authentication of the notifications.
         /// </summary>
-        /// <value>The username for authentication of the event notifications.</value>
+        /// <value>The username for authentication of the notifications.</value>
         [DataMember(Name="username", EmitDefaultValue=false)]
         public string Username { get; set; }
 

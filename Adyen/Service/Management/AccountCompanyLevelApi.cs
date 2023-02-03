@@ -35,9 +35,9 @@ namespace Adyen.Service.Management
         /// <param name="pageSize">The number of items to have on a page, maximum 100. The default is 10 items on a page.</param>
         /// <param name="requestOptions">Additional request options.</param>
         /// <returns>ListCompanyResponse</returns>
-        public ListCompanyResponse GetCompanies(int? pageNumber = default, int? pageSize = default, RequestOptions requestOptions = default)
+        public ListCompanyResponse ListCompanyAccounts(int? pageNumber = default, int? pageSize = default, RequestOptions requestOptions = default)
         {
-            return GetCompaniesAsync(pageNumber, pageSize, requestOptions).GetAwaiter().GetResult();
+            return ListCompanyAccountsAsync(pageNumber, pageSize, requestOptions).GetAwaiter().GetResult();
         }
 
         /// <summary>
@@ -47,7 +47,7 @@ namespace Adyen.Service.Management
         /// <param name="pageSize">The number of items to have on a page, maximum 100. The default is 10 items on a page.</param>
         /// <param name="requestOptions">Additional request options.</param>
         /// <returns>Task of ListCompanyResponse</returns>
-        public async Task<ListCompanyResponse> GetCompaniesAsync(int? pageNumber = default, int? pageSize = default, RequestOptions requestOptions = default)
+        public async Task<ListCompanyResponse> ListCompanyAccountsAsync(int? pageNumber = default, int? pageSize = default, RequestOptions requestOptions = default)
         {
             // Build the query string
             var queryParams = new Dictionary<string, string>();
@@ -65,9 +65,9 @@ namespace Adyen.Service.Management
         /// <param name="companyId">The unique identifier of the company account.</param>
         /// <param name="requestOptions">Additional request options.</param>
         /// <returns>Company</returns>
-        public Company GetCompaniesCompanyId(string companyId, RequestOptions requestOptions = default)
+        public Company GetCompanyAccount(string companyId, RequestOptions requestOptions = default)
         {
-            return GetCompaniesCompanyIdAsync(companyId, requestOptions).GetAwaiter().GetResult();
+            return GetCompanyAccountAsync(companyId, requestOptions).GetAwaiter().GetResult();
         }
 
         /// <summary>
@@ -76,7 +76,7 @@ namespace Adyen.Service.Management
         /// <param name="companyId">The unique identifier of the company account.</param>
         /// <param name="requestOptions">Additional request options.</param>
         /// <returns>Task of Company</returns>
-        public async Task<Company> GetCompaniesCompanyIdAsync(string companyId, RequestOptions requestOptions = default)
+        public async Task<Company> GetCompanyAccountAsync(string companyId, RequestOptions requestOptions = default)
         {
             var endpoint = $"/companies/{companyId}";
             var resource = new ManagementResource(this, endpoint);
@@ -92,9 +92,9 @@ namespace Adyen.Service.Management
         /// <param name="pageSize">The number of items to have on a page, maximum 100. The default is 10 items on a page.</param>
         /// <param name="requestOptions">Additional request options.</param>
         /// <returns>ListMerchantResponse</returns>
-        public ListMerchantResponse GetCompaniesCompanyIdMerchants(string companyId, int? pageNumber = default, int? pageSize = default, RequestOptions requestOptions = default)
+        public ListMerchantResponse ListMerchantAccounts(string companyId, int? pageNumber = default, int? pageSize = default, RequestOptions requestOptions = default)
         {
-            return GetCompaniesCompanyIdMerchantsAsync(companyId, pageNumber, pageSize, requestOptions).GetAwaiter().GetResult();
+            return ListMerchantAccountsAsync(companyId, pageNumber, pageSize, requestOptions).GetAwaiter().GetResult();
         }
 
         /// <summary>
@@ -105,7 +105,7 @@ namespace Adyen.Service.Management
         /// <param name="pageSize">The number of items to have on a page, maximum 100. The default is 10 items on a page.</param>
         /// <param name="requestOptions">Additional request options.</param>
         /// <returns>Task of ListMerchantResponse</returns>
-        public async Task<ListMerchantResponse> GetCompaniesCompanyIdMerchantsAsync(string companyId, int? pageNumber = default, int? pageSize = default, RequestOptions requestOptions = default)
+        public async Task<ListMerchantResponse> ListMerchantAccountsAsync(string companyId, int? pageNumber = default, int? pageSize = default, RequestOptions requestOptions = default)
         {
             // Build the query string
             var queryParams = new Dictionary<string, string>();

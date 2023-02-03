@@ -33,9 +33,9 @@ namespace Adyen.Service.Management
         /// </summary>
         /// <param name="originId">Unique identifier of the allowed origin.</param>
         /// <param name="requestOptions">Additional request options.</param>
-        public void DeleteMeAllowedOriginsOriginId(string originId, RequestOptions requestOptions = default)
+        public void RemoveAllowedOrigin(string originId, RequestOptions requestOptions = default)
         {
-            DeleteMeAllowedOriginsOriginIdAsync(originId, requestOptions).GetAwaiter().GetResult();
+            RemoveAllowedOriginAsync(originId, requestOptions).GetAwaiter().GetResult();
         }
 
         /// <summary>
@@ -43,7 +43,7 @@ namespace Adyen.Service.Management
         /// </summary>
         /// <param name="originId">Unique identifier of the allowed origin.</param>
         /// <param name="requestOptions">Additional request options.</param>
-        public async Task DeleteMeAllowedOriginsOriginIdAsync(string originId, RequestOptions requestOptions = default)
+        public async Task RemoveAllowedOriginAsync(string originId, RequestOptions requestOptions = default)
         {
             var endpoint = $"/me/allowedOrigins/{originId}";
             var resource = new ManagementResource(this, endpoint);
@@ -55,9 +55,9 @@ namespace Adyen.Service.Management
         /// </summary>
         /// <param name="requestOptions">Additional request options.</param>
         /// <returns>MeApiCredential</returns>
-        public MeApiCredential GetMe(RequestOptions requestOptions = default)
+        public MeApiCredential GetApiCredentialDetails(RequestOptions requestOptions = default)
         {
-            return GetMeAsync(requestOptions).GetAwaiter().GetResult();
+            return GetApiCredentialDetailsAsync(requestOptions).GetAwaiter().GetResult();
         }
 
         /// <summary>
@@ -65,7 +65,7 @@ namespace Adyen.Service.Management
         /// </summary>
         /// <param name="requestOptions">Additional request options.</param>
         /// <returns>Task of MeApiCredential</returns>
-        public async Task<MeApiCredential> GetMeAsync(RequestOptions requestOptions = default)
+        public async Task<MeApiCredential> GetApiCredentialDetailsAsync(RequestOptions requestOptions = default)
         {
             var endpoint = "/me";
             var resource = new ManagementResource(this, endpoint);
@@ -78,9 +78,9 @@ namespace Adyen.Service.Management
         /// </summary>
         /// <param name="requestOptions">Additional request options.</param>
         /// <returns>AllowedOriginsResponse</returns>
-        public AllowedOriginsResponse GetMeAllowedOrigins(RequestOptions requestOptions = default)
+        public AllowedOriginsResponse GetAllowedOrigins(RequestOptions requestOptions = default)
         {
-            return GetMeAllowedOriginsAsync(requestOptions).GetAwaiter().GetResult();
+            return GetAllowedOriginsAsync(requestOptions).GetAwaiter().GetResult();
         }
 
         /// <summary>
@@ -88,7 +88,7 @@ namespace Adyen.Service.Management
         /// </summary>
         /// <param name="requestOptions">Additional request options.</param>
         /// <returns>Task of AllowedOriginsResponse</returns>
-        public async Task<AllowedOriginsResponse> GetMeAllowedOriginsAsync(RequestOptions requestOptions = default)
+        public async Task<AllowedOriginsResponse> GetAllowedOriginsAsync(RequestOptions requestOptions = default)
         {
             var endpoint = "/me/allowedOrigins";
             var resource = new ManagementResource(this, endpoint);
@@ -102,9 +102,9 @@ namespace Adyen.Service.Management
         /// <param name="originId">Unique identifier of the allowed origin.</param>
         /// <param name="requestOptions">Additional request options.</param>
         /// <returns>AllowedOrigin</returns>
-        public AllowedOrigin GetMeAllowedOriginsOriginId(string originId, RequestOptions requestOptions = default)
+        public AllowedOrigin GetAllowedOriginDetails(string originId, RequestOptions requestOptions = default)
         {
-            return GetMeAllowedOriginsOriginIdAsync(originId, requestOptions).GetAwaiter().GetResult();
+            return GetAllowedOriginDetailsAsync(originId, requestOptions).GetAwaiter().GetResult();
         }
 
         /// <summary>
@@ -113,7 +113,7 @@ namespace Adyen.Service.Management
         /// <param name="originId">Unique identifier of the allowed origin.</param>
         /// <param name="requestOptions">Additional request options.</param>
         /// <returns>Task of AllowedOrigin</returns>
-        public async Task<AllowedOrigin> GetMeAllowedOriginsOriginIdAsync(string originId, RequestOptions requestOptions = default)
+        public async Task<AllowedOrigin> GetAllowedOriginDetailsAsync(string originId, RequestOptions requestOptions = default)
         {
             var endpoint = $"/me/allowedOrigins/{originId}";
             var resource = new ManagementResource(this, endpoint);
@@ -127,9 +127,9 @@ namespace Adyen.Service.Management
         /// <param name="createAllowedOriginRequest"></param>
         /// <param name="requestOptions">Additional request options.</param>
         /// <returns>AllowedOriginsResponse</returns>
-        public AllowedOriginsResponse PostMeAllowedOrigins(CreateAllowedOriginRequest createAllowedOriginRequest, RequestOptions requestOptions = default)
+        public AllowedOriginsResponse AddAllowedOrigin(CreateAllowedOriginRequest createAllowedOriginRequest, RequestOptions requestOptions = default)
         {
-            return PostMeAllowedOriginsAsync(createAllowedOriginRequest, requestOptions).GetAwaiter().GetResult();
+            return AddAllowedOriginAsync(createAllowedOriginRequest, requestOptions).GetAwaiter().GetResult();
         }
 
         /// <summary>
@@ -138,7 +138,7 @@ namespace Adyen.Service.Management
         /// <param name="createAllowedOriginRequest"></param>
         /// <param name="requestOptions">Additional request options.</param>
         /// <returns>Task of AllowedOriginsResponse</returns>
-        public async Task<AllowedOriginsResponse> PostMeAllowedOriginsAsync(CreateAllowedOriginRequest createAllowedOriginRequest, RequestOptions requestOptions = default)
+        public async Task<AllowedOriginsResponse> AddAllowedOriginAsync(CreateAllowedOriginRequest createAllowedOriginRequest, RequestOptions requestOptions = default)
         {
             var endpoint = "/me/allowedOrigins";
             var resource = new ManagementResource(this, endpoint);

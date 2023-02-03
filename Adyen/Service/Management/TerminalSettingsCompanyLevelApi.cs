@@ -35,9 +35,9 @@ namespace Adyen.Service.Management
         /// <param name="model">The terminal model. Possible values: E355, VX675WIFIBT, VX680, VX690, VX700, VX820, M400, MX925, P400Plus, UX300, UX410, V200cPlus, V240mPlus, V400cPlus, V400m, e280, e285, e285p, S1E, S1EL, S1F2, S1L, S1U, S7T.</param>
         /// <param name="requestOptions">Additional request options.</param>
         /// <returns>Logo</returns>
-        public Logo GetCompaniesCompanyIdTerminalLogos(string companyId, string model = default, RequestOptions requestOptions = default)
+        public Logo GetTerminalLogo(string companyId, string model = default, RequestOptions requestOptions = default)
         {
-            return GetCompaniesCompanyIdTerminalLogosAsync(companyId, model, requestOptions).GetAwaiter().GetResult();
+            return GetTerminalLogoAsync(companyId, model, requestOptions).GetAwaiter().GetResult();
         }
 
         /// <summary>
@@ -47,7 +47,7 @@ namespace Adyen.Service.Management
         /// <param name="model">The terminal model. Possible values: E355, VX675WIFIBT, VX680, VX690, VX700, VX820, M400, MX925, P400Plus, UX300, UX410, V200cPlus, V240mPlus, V400cPlus, V400m, e280, e285, e285p, S1E, S1EL, S1F2, S1L, S1U, S7T.</param>
         /// <param name="requestOptions">Additional request options.</param>
         /// <returns>Task of Logo</returns>
-        public async Task<Logo> GetCompaniesCompanyIdTerminalLogosAsync(string companyId, string model = default, RequestOptions requestOptions = default)
+        public async Task<Logo> GetTerminalLogoAsync(string companyId, string model = default, RequestOptions requestOptions = default)
         {
             // Build the query string
             var queryParams = new Dictionary<string, string>();
@@ -64,9 +64,9 @@ namespace Adyen.Service.Management
         /// <param name="companyId">The unique identifier of the company account.</param>
         /// <param name="requestOptions">Additional request options.</param>
         /// <returns>TerminalSettings</returns>
-        public TerminalSettings GetCompaniesCompanyIdTerminalSettings(string companyId, RequestOptions requestOptions = default)
+        public TerminalSettings GetTerminalSettings(string companyId, RequestOptions requestOptions = default)
         {
-            return GetCompaniesCompanyIdTerminalSettingsAsync(companyId, requestOptions).GetAwaiter().GetResult();
+            return GetTerminalSettingsAsync(companyId, requestOptions).GetAwaiter().GetResult();
         }
 
         /// <summary>
@@ -75,7 +75,7 @@ namespace Adyen.Service.Management
         /// <param name="companyId">The unique identifier of the company account.</param>
         /// <param name="requestOptions">Additional request options.</param>
         /// <returns>Task of TerminalSettings</returns>
-        public async Task<TerminalSettings> GetCompaniesCompanyIdTerminalSettingsAsync(string companyId, RequestOptions requestOptions = default)
+        public async Task<TerminalSettings> GetTerminalSettingsAsync(string companyId, RequestOptions requestOptions = default)
         {
             var endpoint = $"/companies/{companyId}/terminalSettings";
             var resource = new ManagementResource(this, endpoint);
@@ -91,9 +91,9 @@ namespace Adyen.Service.Management
         /// <param name="logo"></param>
         /// <param name="requestOptions">Additional request options.</param>
         /// <returns>Logo</returns>
-        public Logo PatchCompaniesCompanyIdTerminalLogos(string companyId, Logo logo, string model = default, RequestOptions requestOptions = default)
+        public Logo UpdateTerminalLogo(string companyId, Logo logo, string model = default, RequestOptions requestOptions = default)
         {
-            return PatchCompaniesCompanyIdTerminalLogosAsync(companyId, logo, model, requestOptions).GetAwaiter().GetResult();
+            return UpdateTerminalLogoAsync(companyId, logo, model, requestOptions).GetAwaiter().GetResult();
         }
 
         /// <summary>
@@ -104,7 +104,7 @@ namespace Adyen.Service.Management
         /// <param name="logo"></param>
         /// <param name="requestOptions">Additional request options.</param>
         /// <returns>Task of Logo</returns>
-        public async Task<Logo> PatchCompaniesCompanyIdTerminalLogosAsync(string companyId, Logo logo, string model = default, RequestOptions requestOptions = default)
+        public async Task<Logo> UpdateTerminalLogoAsync(string companyId, Logo logo, string model = default, RequestOptions requestOptions = default)
         {
             // Build the query string
             var queryParams = new Dictionary<string, string>();
@@ -122,9 +122,9 @@ namespace Adyen.Service.Management
         /// <param name="terminalSettings"></param>
         /// <param name="requestOptions">Additional request options.</param>
         /// <returns>TerminalSettings</returns>
-        public TerminalSettings PatchCompaniesCompanyIdTerminalSettings(string companyId, TerminalSettings terminalSettings, RequestOptions requestOptions = default)
+        public TerminalSettings UpdateTerminalSettings(string companyId, TerminalSettings terminalSettings, RequestOptions requestOptions = default)
         {
-            return PatchCompaniesCompanyIdTerminalSettingsAsync(companyId, terminalSettings, requestOptions).GetAwaiter().GetResult();
+            return UpdateTerminalSettingsAsync(companyId, terminalSettings, requestOptions).GetAwaiter().GetResult();
         }
 
         /// <summary>
@@ -134,7 +134,7 @@ namespace Adyen.Service.Management
         /// <param name="terminalSettings"></param>
         /// <param name="requestOptions">Additional request options.</param>
         /// <returns>Task of TerminalSettings</returns>
-        public async Task<TerminalSettings> PatchCompaniesCompanyIdTerminalSettingsAsync(string companyId, TerminalSettings terminalSettings, RequestOptions requestOptions = default)
+        public async Task<TerminalSettings> UpdateTerminalSettingsAsync(string companyId, TerminalSettings terminalSettings, RequestOptions requestOptions = default)
         {
             var endpoint = $"/companies/{companyId}/terminalSettings";
             var resource = new ManagementResource(this, endpoint);

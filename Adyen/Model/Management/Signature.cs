@@ -36,11 +36,13 @@ namespace Adyen.Model.Management
         /// </summary>
         /// <param name="askSignatureOnScreen">If &#x60;skipSignature&#x60; is false, indicates whether the shopper should provide a signature on the display (**true**) or on the merchant receipt (**false**)..</param>
         /// <param name="deviceName">Name that identifies the terminal..</param>
+        /// <param name="deviceSlogan">Slogan shown on the start screen of the device..</param>
         /// <param name="skipSignature">Skip asking for a signature. This is possible because all global card schemes (American Express, Diners, Discover, JCB, MasterCard, VISA, and UnionPay) regard a signature as optional..</param>
-        public Signature(bool askSignatureOnScreen = default(bool), string deviceName = default(string), bool skipSignature = default(bool))
+        public Signature(bool askSignatureOnScreen = default(bool), string deviceName = default(string), string deviceSlogan = default(string), bool skipSignature = default(bool))
         {
             this.AskSignatureOnScreen = askSignatureOnScreen;
             this.DeviceName = deviceName;
+            this.DeviceSlogan = deviceSlogan;
             this.SkipSignature = skipSignature;
         }
 
@@ -59,6 +61,13 @@ namespace Adyen.Model.Management
         public string DeviceName { get; set; }
 
         /// <summary>
+        /// Slogan shown on the start screen of the device.
+        /// </summary>
+        /// <value>Slogan shown on the start screen of the device.</value>
+        [DataMember(Name="deviceSlogan", EmitDefaultValue=false)]
+        public string DeviceSlogan { get; set; }
+
+        /// <summary>
         /// Skip asking for a signature. This is possible because all global card schemes (American Express, Diners, Discover, JCB, MasterCard, VISA, and UnionPay) regard a signature as optional.
         /// </summary>
         /// <value>Skip asking for a signature. This is possible because all global card schemes (American Express, Diners, Discover, JCB, MasterCard, VISA, and UnionPay) regard a signature as optional.</value>
@@ -75,6 +84,7 @@ namespace Adyen.Model.Management
             sb.Append("class Signature {\n");
             sb.Append("  AskSignatureOnScreen: ").Append(AskSignatureOnScreen).Append("\n");
             sb.Append("  DeviceName: ").Append(DeviceName).Append("\n");
+            sb.Append("  DeviceSlogan: ").Append(DeviceSlogan).Append("\n");
             sb.Append("  SkipSignature: ").Append(SkipSignature).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
@@ -121,6 +131,11 @@ namespace Adyen.Model.Management
                     this.DeviceName.Equals(input.DeviceName))
                 ) && 
                 (
+                    this.DeviceSlogan == input.DeviceSlogan ||
+                    (this.DeviceSlogan != null &&
+                    this.DeviceSlogan.Equals(input.DeviceSlogan))
+                ) && 
+                (
                     this.SkipSignature == input.SkipSignature ||
                     (this.SkipSignature != null &&
                     this.SkipSignature.Equals(input.SkipSignature))
@@ -140,6 +155,8 @@ namespace Adyen.Model.Management
                     hashCode = hashCode * 59 + this.AskSignatureOnScreen.GetHashCode();
                 if (this.DeviceName != null)
                     hashCode = hashCode * 59 + this.DeviceName.GetHashCode();
+                if (this.DeviceSlogan != null)
+                    hashCode = hashCode * 59 + this.DeviceSlogan.GetHashCode();
                 if (this.SkipSignature != null)
                     hashCode = hashCode * 59 + this.SkipSignature.GetHashCode();
                 return hashCode;
@@ -153,6 +170,13 @@ namespace Adyen.Model.Management
         /// <returns>Validation Result</returns>
         IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
         {
+            // DeviceSlogan (string) maxLength
+            if(this.DeviceSlogan != null && this.DeviceSlogan.Length > 50)
+            {
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for DeviceSlogan, length must be less than 50.", new [] { "DeviceSlogan" });
+            }
+
+
             yield break;
         }
     }

@@ -35,9 +35,9 @@ namespace Adyen.Service.Management
         /// <param name="name">The name of the billing entity.</param>
         /// <param name="requestOptions">Additional request options.</param>
         /// <returns>BillingEntitiesResponse</returns>
-        public BillingEntitiesResponse GetCompaniesCompanyIdBillingEntities(string companyId, string name = default, RequestOptions requestOptions = default)
+        public BillingEntitiesResponse ListBillingEntities(string companyId, string name = default, RequestOptions requestOptions = default)
         {
-            return GetCompaniesCompanyIdBillingEntitiesAsync(companyId, name, requestOptions).GetAwaiter().GetResult();
+            return ListBillingEntitiesAsync(companyId, name, requestOptions).GetAwaiter().GetResult();
         }
 
         /// <summary>
@@ -47,7 +47,7 @@ namespace Adyen.Service.Management
         /// <param name="name">The name of the billing entity.</param>
         /// <param name="requestOptions">Additional request options.</param>
         /// <returns>Task of BillingEntitiesResponse</returns>
-        public async Task<BillingEntitiesResponse> GetCompaniesCompanyIdBillingEntitiesAsync(string companyId, string name = default, RequestOptions requestOptions = default)
+        public async Task<BillingEntitiesResponse> ListBillingEntitiesAsync(string companyId, string name = default, RequestOptions requestOptions = default)
         {
             // Build the query string
             var queryParams = new Dictionary<string, string>();
@@ -67,9 +67,9 @@ namespace Adyen.Service.Management
         /// <param name="limit">The number of locations to return.</param>
         /// <param name="requestOptions">Additional request options.</param>
         /// <returns>ShippingLocationsResponse</returns>
-        public ShippingLocationsResponse GetCompaniesCompanyIdShippingLocations(string companyId, string name = default, int? offset = default, int? limit = default, RequestOptions requestOptions = default)
+        public ShippingLocationsResponse ListShippingLocations(string companyId, string name = default, int? offset = default, int? limit = default, RequestOptions requestOptions = default)
         {
-            return GetCompaniesCompanyIdShippingLocationsAsync(companyId, name, offset, limit, requestOptions).GetAwaiter().GetResult();
+            return ListShippingLocationsAsync(companyId, name, offset, limit, requestOptions).GetAwaiter().GetResult();
         }
 
         /// <summary>
@@ -81,7 +81,7 @@ namespace Adyen.Service.Management
         /// <param name="limit">The number of locations to return.</param>
         /// <param name="requestOptions">Additional request options.</param>
         /// <returns>Task of ShippingLocationsResponse</returns>
-        public async Task<ShippingLocationsResponse> GetCompaniesCompanyIdShippingLocationsAsync(string companyId, string name = default, int? offset = default, int? limit = default, RequestOptions requestOptions = default)
+        public async Task<ShippingLocationsResponse> ListShippingLocationsAsync(string companyId, string name = default, int? offset = default, int? limit = default, RequestOptions requestOptions = default)
         {
             // Build the query string
             var queryParams = new Dictionary<string, string>();
@@ -100,9 +100,9 @@ namespace Adyen.Service.Management
         /// <param name="companyId">The unique identifier of the company account.</param>
         /// <param name="requestOptions">Additional request options.</param>
         /// <returns>TerminalModelsResponse</returns>
-        public TerminalModelsResponse GetCompaniesCompanyIdTerminalModels(string companyId, RequestOptions requestOptions = default)
+        public TerminalModelsResponse ListTerminalModels(string companyId, RequestOptions requestOptions = default)
         {
-            return GetCompaniesCompanyIdTerminalModelsAsync(companyId, requestOptions).GetAwaiter().GetResult();
+            return ListTerminalModelsAsync(companyId, requestOptions).GetAwaiter().GetResult();
         }
 
         /// <summary>
@@ -111,7 +111,7 @@ namespace Adyen.Service.Management
         /// <param name="companyId">The unique identifier of the company account.</param>
         /// <param name="requestOptions">Additional request options.</param>
         /// <returns>Task of TerminalModelsResponse</returns>
-        public async Task<TerminalModelsResponse> GetCompaniesCompanyIdTerminalModelsAsync(string companyId, RequestOptions requestOptions = default)
+        public async Task<TerminalModelsResponse> ListTerminalModelsAsync(string companyId, RequestOptions requestOptions = default)
         {
             var endpoint = $"/companies/{companyId}/terminalModels";
             var resource = new ManagementResource(this, endpoint);
@@ -129,9 +129,9 @@ namespace Adyen.Service.Management
         /// <param name="limit">The number of orders to return.</param>
         /// <param name="requestOptions">Additional request options.</param>
         /// <returns>TerminalOrdersResponse</returns>
-        public TerminalOrdersResponse GetCompaniesCompanyIdTerminalOrders(string companyId, string customerOrderReference = default, string status = default, int? offset = default, int? limit = default, RequestOptions requestOptions = default)
+        public TerminalOrdersResponse ListOrders(string companyId, string customerOrderReference = default, string status = default, int? offset = default, int? limit = default, RequestOptions requestOptions = default)
         {
-            return GetCompaniesCompanyIdTerminalOrdersAsync(companyId, customerOrderReference, status, offset, limit, requestOptions).GetAwaiter().GetResult();
+            return ListOrdersAsync(companyId, customerOrderReference, status, offset, limit, requestOptions).GetAwaiter().GetResult();
         }
 
         /// <summary>
@@ -144,7 +144,7 @@ namespace Adyen.Service.Management
         /// <param name="limit">The number of orders to return.</param>
         /// <param name="requestOptions">Additional request options.</param>
         /// <returns>Task of TerminalOrdersResponse</returns>
-        public async Task<TerminalOrdersResponse> GetCompaniesCompanyIdTerminalOrdersAsync(string companyId, string customerOrderReference = default, string status = default, int? offset = default, int? limit = default, RequestOptions requestOptions = default)
+        public async Task<TerminalOrdersResponse> ListOrdersAsync(string companyId, string customerOrderReference = default, string status = default, int? offset = default, int? limit = default, RequestOptions requestOptions = default)
         {
             // Build the query string
             var queryParams = new Dictionary<string, string>();
@@ -165,9 +165,9 @@ namespace Adyen.Service.Management
         /// <param name="orderId">The unique identifier of the order.</param>
         /// <param name="requestOptions">Additional request options.</param>
         /// <returns>TerminalOrder</returns>
-        public TerminalOrder GetCompaniesCompanyIdTerminalOrdersOrderId(string companyId, string orderId, RequestOptions requestOptions = default)
+        public TerminalOrder GetOrder(string companyId, string orderId, RequestOptions requestOptions = default)
         {
-            return GetCompaniesCompanyIdTerminalOrdersOrderIdAsync(companyId, orderId, requestOptions).GetAwaiter().GetResult();
+            return GetOrderAsync(companyId, orderId, requestOptions).GetAwaiter().GetResult();
         }
 
         /// <summary>
@@ -177,7 +177,7 @@ namespace Adyen.Service.Management
         /// <param name="orderId">The unique identifier of the order.</param>
         /// <param name="requestOptions">Additional request options.</param>
         /// <returns>Task of TerminalOrder</returns>
-        public async Task<TerminalOrder> GetCompaniesCompanyIdTerminalOrdersOrderIdAsync(string companyId, string orderId, RequestOptions requestOptions = default)
+        public async Task<TerminalOrder> GetOrderAsync(string companyId, string orderId, RequestOptions requestOptions = default)
         {
             var endpoint = $"/companies/{companyId}/terminalOrders/{orderId}";
             var resource = new ManagementResource(this, endpoint);
@@ -190,14 +190,14 @@ namespace Adyen.Service.Management
         /// </summary>
         /// <param name="companyId">The unique identifier of the company account.</param>
         /// <param name="country">The country to return products for, in [ISO 3166-1 alpha-2](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2) format. For example, **US**</param>
-        /// <param name="terminalModelId">The terminal model to return products for. Use the ID returned in the [GET &#x60;/terminalModels&#x60;](https://docs.adyen.com/api-explorer/#/ManagementService/latest/get/terminalModels) response. For example, **Verifone.M400**</param>
+        /// <param name="terminalModelId">The terminal model to return products for. Use the ID returned in the [GET &#x60;/terminalModels&#x60;](https://docs.adyen.com/api-explorer/#/ManagementService/latest/get/companies/{companyId}/terminalModels) response. For example, **Verifone.M400**</param>
         /// <param name="offset">The number of products to skip.</param>
         /// <param name="limit">The number of products to return.</param>
         /// <param name="requestOptions">Additional request options.</param>
         /// <returns>TerminalProductsResponse</returns>
-        public TerminalProductsResponse GetCompaniesCompanyIdTerminalProducts(string companyId, string country = default, string terminalModelId = default, int? offset = default, int? limit = default, RequestOptions requestOptions = default)
+        public TerminalProductsResponse ListTerminalProducts(string companyId, string country = default, string terminalModelId = default, int? offset = default, int? limit = default, RequestOptions requestOptions = default)
         {
-            return GetCompaniesCompanyIdTerminalProductsAsync(companyId, country, terminalModelId, offset, limit, requestOptions).GetAwaiter().GetResult();
+            return ListTerminalProductsAsync(companyId, country, terminalModelId, offset, limit, requestOptions).GetAwaiter().GetResult();
         }
 
         /// <summary>
@@ -205,12 +205,12 @@ namespace Adyen.Service.Management
         /// </summary>
         /// <param name="companyId">The unique identifier of the company account.</param>
         /// <param name="country">The country to return products for, in [ISO 3166-1 alpha-2](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2) format. For example, **US**</param>
-        /// <param name="terminalModelId">The terminal model to return products for. Use the ID returned in the [GET &#x60;/terminalModels&#x60;](https://docs.adyen.com/api-explorer/#/ManagementService/latest/get/terminalModels) response. For example, **Verifone.M400**</param>
+        /// <param name="terminalModelId">The terminal model to return products for. Use the ID returned in the [GET &#x60;/terminalModels&#x60;](https://docs.adyen.com/api-explorer/#/ManagementService/latest/get/companies/{companyId}/terminalModels) response. For example, **Verifone.M400**</param>
         /// <param name="offset">The number of products to skip.</param>
         /// <param name="limit">The number of products to return.</param>
         /// <param name="requestOptions">Additional request options.</param>
         /// <returns>Task of TerminalProductsResponse</returns>
-        public async Task<TerminalProductsResponse> GetCompaniesCompanyIdTerminalProductsAsync(string companyId, string country = default, string terminalModelId = default, int? offset = default, int? limit = default, RequestOptions requestOptions = default)
+        public async Task<TerminalProductsResponse> ListTerminalProductsAsync(string companyId, string country = default, string terminalModelId = default, int? offset = default, int? limit = default, RequestOptions requestOptions = default)
         {
             // Build the query string
             var queryParams = new Dictionary<string, string>();
@@ -232,9 +232,9 @@ namespace Adyen.Service.Management
         /// <param name="terminalOrderRequest"></param>
         /// <param name="requestOptions">Additional request options.</param>
         /// <returns>TerminalOrder</returns>
-        public TerminalOrder PatchCompaniesCompanyIdTerminalOrdersOrderId(string companyId, string orderId, TerminalOrderRequest terminalOrderRequest, RequestOptions requestOptions = default)
+        public TerminalOrder UpdateOrder(string companyId, string orderId, TerminalOrderRequest terminalOrderRequest, RequestOptions requestOptions = default)
         {
-            return PatchCompaniesCompanyIdTerminalOrdersOrderIdAsync(companyId, orderId, terminalOrderRequest, requestOptions).GetAwaiter().GetResult();
+            return UpdateOrderAsync(companyId, orderId, terminalOrderRequest, requestOptions).GetAwaiter().GetResult();
         }
 
         /// <summary>
@@ -245,7 +245,7 @@ namespace Adyen.Service.Management
         /// <param name="terminalOrderRequest"></param>
         /// <param name="requestOptions">Additional request options.</param>
         /// <returns>Task of TerminalOrder</returns>
-        public async Task<TerminalOrder> PatchCompaniesCompanyIdTerminalOrdersOrderIdAsync(string companyId, string orderId, TerminalOrderRequest terminalOrderRequest, RequestOptions requestOptions = default)
+        public async Task<TerminalOrder> UpdateOrderAsync(string companyId, string orderId, TerminalOrderRequest terminalOrderRequest, RequestOptions requestOptions = default)
         {
             var endpoint = $"/companies/{companyId}/terminalOrders/{orderId}";
             var resource = new ManagementResource(this, endpoint);
@@ -260,9 +260,9 @@ namespace Adyen.Service.Management
         /// <param name="shippingLocation"></param>
         /// <param name="requestOptions">Additional request options.</param>
         /// <returns>ShippingLocation</returns>
-        public ShippingLocation PostCompaniesCompanyIdShippingLocations(string companyId, ShippingLocation shippingLocation, RequestOptions requestOptions = default)
+        public ShippingLocation CreateShippingLocation(string companyId, ShippingLocation shippingLocation, RequestOptions requestOptions = default)
         {
-            return PostCompaniesCompanyIdShippingLocationsAsync(companyId, shippingLocation, requestOptions).GetAwaiter().GetResult();
+            return CreateShippingLocationAsync(companyId, shippingLocation, requestOptions).GetAwaiter().GetResult();
         }
 
         /// <summary>
@@ -272,7 +272,7 @@ namespace Adyen.Service.Management
         /// <param name="shippingLocation"></param>
         /// <param name="requestOptions">Additional request options.</param>
         /// <returns>Task of ShippingLocation</returns>
-        public async Task<ShippingLocation> PostCompaniesCompanyIdShippingLocationsAsync(string companyId, ShippingLocation shippingLocation, RequestOptions requestOptions = default)
+        public async Task<ShippingLocation> CreateShippingLocationAsync(string companyId, ShippingLocation shippingLocation, RequestOptions requestOptions = default)
         {
             var endpoint = $"/companies/{companyId}/shippingLocations";
             var resource = new ManagementResource(this, endpoint);
@@ -287,9 +287,9 @@ namespace Adyen.Service.Management
         /// <param name="terminalOrderRequest"></param>
         /// <param name="requestOptions">Additional request options.</param>
         /// <returns>TerminalOrder</returns>
-        public TerminalOrder PostCompaniesCompanyIdTerminalOrders(string companyId, TerminalOrderRequest terminalOrderRequest, RequestOptions requestOptions = default)
+        public TerminalOrder CreateOrder(string companyId, TerminalOrderRequest terminalOrderRequest, RequestOptions requestOptions = default)
         {
-            return PostCompaniesCompanyIdTerminalOrdersAsync(companyId, terminalOrderRequest, requestOptions).GetAwaiter().GetResult();
+            return CreateOrderAsync(companyId, terminalOrderRequest, requestOptions).GetAwaiter().GetResult();
         }
 
         /// <summary>
@@ -299,7 +299,7 @@ namespace Adyen.Service.Management
         /// <param name="terminalOrderRequest"></param>
         /// <param name="requestOptions">Additional request options.</param>
         /// <returns>Task of TerminalOrder</returns>
-        public async Task<TerminalOrder> PostCompaniesCompanyIdTerminalOrdersAsync(string companyId, TerminalOrderRequest terminalOrderRequest, RequestOptions requestOptions = default)
+        public async Task<TerminalOrder> CreateOrderAsync(string companyId, TerminalOrderRequest terminalOrderRequest, RequestOptions requestOptions = default)
         {
             var endpoint = $"/companies/{companyId}/terminalOrders";
             var resource = new ManagementResource(this, endpoint);
@@ -314,9 +314,9 @@ namespace Adyen.Service.Management
         /// <param name="orderId">The unique identifier of the order.</param>
         /// <param name="requestOptions">Additional request options.</param>
         /// <returns>TerminalOrder</returns>
-        public TerminalOrder PostCompaniesCompanyIdTerminalOrdersOrderIdCancel(string companyId, string orderId, RequestOptions requestOptions = default)
+        public TerminalOrder CancelOrder(string companyId, string orderId, RequestOptions requestOptions = default)
         {
-            return PostCompaniesCompanyIdTerminalOrdersOrderIdCancelAsync(companyId, orderId, requestOptions).GetAwaiter().GetResult();
+            return CancelOrderAsync(companyId, orderId, requestOptions).GetAwaiter().GetResult();
         }
 
         /// <summary>
@@ -326,7 +326,7 @@ namespace Adyen.Service.Management
         /// <param name="orderId">The unique identifier of the order.</param>
         /// <param name="requestOptions">Additional request options.</param>
         /// <returns>Task of TerminalOrder</returns>
-        public async Task<TerminalOrder> PostCompaniesCompanyIdTerminalOrdersOrderIdCancelAsync(string companyId, string orderId, RequestOptions requestOptions = default)
+        public async Task<TerminalOrder> CancelOrderAsync(string companyId, string orderId, RequestOptions requestOptions = default)
         {
             var endpoint = $"/companies/{companyId}/terminalOrders/{orderId}/cancel";
             var resource = new ManagementResource(this, endpoint);

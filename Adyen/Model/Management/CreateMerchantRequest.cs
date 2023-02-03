@@ -45,7 +45,8 @@ namespace Adyen.Model.Management
         /// <param name="legalEntityId">The unique identifier of the [legal entity](https://docs.adyen.com/api-explorer/#/legalentity/latest/post/legalEntities). Required for an Adyen for Platforms Manage integration..</param>
         /// <param name="pricingPlan">Sets the pricing plan for the merchant account. Required for an Adyen for Platforms Manage integration. Your Adyen contact will provide the values that you can use..</param>
         /// <param name="reference">Your reference for the merchant account. To make this reference the unique identifier of the merchant account, your Adyen contact can set up a template on your company account. The template can have 6 to 255 characters with upper- and lower-case letters, underscores, and numbers. When your company account has a template, then the &#x60;reference&#x60; is required and must be unique within the company account..</param>
-        public CreateMerchantRequest(string businessLineId = default(string), string companyId = default(string), string description = default(string), string legalEntityId = default(string), string pricingPlan = default(string), string reference = default(string))
+        /// <param name="salesChannels">List of sales channels that the merchant will process payments with.</param>
+        public CreateMerchantRequest(string businessLineId = default(string), string companyId = default(string), string description = default(string), string legalEntityId = default(string), string pricingPlan = default(string), string reference = default(string), List<string> salesChannels = default(List<string>))
         {
             this.BusinessLineId = businessLineId;
             this.CompanyId = companyId;
@@ -53,6 +54,7 @@ namespace Adyen.Model.Management
             this.LegalEntityId = legalEntityId;
             this.PricingPlan = pricingPlan;
             this.Reference = reference;
+            this.SalesChannels = salesChannels;
         }
 
         /// <summary>
@@ -98,6 +100,13 @@ namespace Adyen.Model.Management
         public string Reference { get; set; }
 
         /// <summary>
+        /// List of sales channels that the merchant will process payments with
+        /// </summary>
+        /// <value>List of sales channels that the merchant will process payments with</value>
+        [DataMember(Name="salesChannels", EmitDefaultValue=false)]
+        public List<string> SalesChannels { get; set; }
+
+        /// <summary>
         /// Returns the string presentation of the object
         /// </summary>
         /// <returns>String presentation of the object</returns>
@@ -111,6 +120,7 @@ namespace Adyen.Model.Management
             sb.Append("  LegalEntityId: ").Append(LegalEntityId).Append("\n");
             sb.Append("  PricingPlan: ").Append(PricingPlan).Append("\n");
             sb.Append("  Reference: ").Append(Reference).Append("\n");
+            sb.Append("  SalesChannels: ").Append(SalesChannels).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -174,6 +184,12 @@ namespace Adyen.Model.Management
                     this.Reference == input.Reference ||
                     (this.Reference != null &&
                     this.Reference.Equals(input.Reference))
+                ) && 
+                (
+                    this.SalesChannels == input.SalesChannels ||
+                    this.SalesChannels != null &&
+                    input.SalesChannels != null &&
+                    this.SalesChannels.SequenceEqual(input.SalesChannels)
                 );
         }
 
@@ -198,6 +214,8 @@ namespace Adyen.Model.Management
                     hashCode = hashCode * 59 + this.PricingPlan.GetHashCode();
                 if (this.Reference != null)
                     hashCode = hashCode * 59 + this.Reference.GetHashCode();
+                if (this.SalesChannels != null)
+                    hashCode = hashCode * 59 + this.SalesChannels.GetHashCode();
                 return hashCode;
             }
         }

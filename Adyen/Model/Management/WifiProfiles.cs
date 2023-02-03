@@ -34,7 +34,7 @@ namespace Adyen.Model.Management
         /// <summary>
         /// Initializes a new instance of the <see cref="WifiProfiles" /> class.
         /// </summary>
-        /// <param name="profiles">List of remote Wi-Fi profiles.</param>
+        /// <param name="profiles">List of remote Wi-Fi profiles..</param>
         /// <param name="settings">settings.</param>
         public WifiProfiles(List<Profile> profiles = default(List<Profile>), Settings settings = default(Settings))
         {
@@ -43,9 +43,9 @@ namespace Adyen.Model.Management
         }
 
         /// <summary>
-        /// List of remote Wi-Fi profiles
+        /// List of remote Wi-Fi profiles.
         /// </summary>
-        /// <value>List of remote Wi-Fi profiles</value>
+        /// <value>List of remote Wi-Fi profiles.</value>
         [DataMember(Name="profiles", EmitDefaultValue=false)]
         public List<Profile> Profiles { get; set; }
 

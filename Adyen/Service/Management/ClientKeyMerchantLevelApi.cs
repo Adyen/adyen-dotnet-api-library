@@ -35,9 +35,9 @@ namespace Adyen.Service.Management
         /// <param name="apiCredentialId">Unique identifier of the API credential.</param>
         /// <param name="requestOptions">Additional request options.</param>
         /// <returns>GenerateClientKeyResponse</returns>
-        public GenerateClientKeyResponse PostMerchantsMerchantIdApiCredentialsApiCredentialIdGenerateClientKey(string merchantId, string apiCredentialId, RequestOptions requestOptions = default)
+        public GenerateClientKeyResponse GenerateNewClientKey(string merchantId, string apiCredentialId, RequestOptions requestOptions = default)
         {
-            return PostMerchantsMerchantIdApiCredentialsApiCredentialIdGenerateClientKeyAsync(merchantId, apiCredentialId, requestOptions).GetAwaiter().GetResult();
+            return GenerateNewClientKeyAsync(merchantId, apiCredentialId, requestOptions).GetAwaiter().GetResult();
         }
 
         /// <summary>
@@ -47,7 +47,7 @@ namespace Adyen.Service.Management
         /// <param name="apiCredentialId">Unique identifier of the API credential.</param>
         /// <param name="requestOptions">Additional request options.</param>
         /// <returns>Task of GenerateClientKeyResponse</returns>
-        public async Task<GenerateClientKeyResponse> PostMerchantsMerchantIdApiCredentialsApiCredentialIdGenerateClientKeyAsync(string merchantId, string apiCredentialId, RequestOptions requestOptions = default)
+        public async Task<GenerateClientKeyResponse> GenerateNewClientKeyAsync(string merchantId, string apiCredentialId, RequestOptions requestOptions = default)
         {
             var endpoint = $"/merchants/{merchantId}/apiCredentials/{apiCredentialId}/generateClientKey";
             var resource = new ManagementResource(this, endpoint);

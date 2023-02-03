@@ -34,11 +34,12 @@ namespace Adyen.Service.Management
         /// <param name="companyId">The unique identifier of the company account.</param>
         /// <param name="pageNumber">The number of the page to return.</param>
         /// <param name="pageSize">The number of items to have on a page. Maximum value is **100**. The default is **10** items on a page.</param>
+        /// <param name="username">The partial or complete username to select all users that match.</param>
         /// <param name="requestOptions">Additional request options.</param>
         /// <returns>ListCompanyUsersResponse</returns>
-        public ListCompanyUsersResponse GetCompaniesCompanyIdUsers(string companyId, int? pageNumber = default, int? pageSize = default, RequestOptions requestOptions = default)
+        public ListCompanyUsersResponse ListUsers(string companyId, int? pageNumber = default, int? pageSize = default, string username = default, RequestOptions requestOptions = default)
         {
-            return GetCompaniesCompanyIdUsersAsync(companyId, pageNumber, pageSize, requestOptions).GetAwaiter().GetResult();
+            return ListUsersAsync(companyId, pageNumber, pageSize, username, requestOptions).GetAwaiter().GetResult();
         }
 
         /// <summary>
@@ -47,14 +48,16 @@ namespace Adyen.Service.Management
         /// <param name="companyId">The unique identifier of the company account.</param>
         /// <param name="pageNumber">The number of the page to return.</param>
         /// <param name="pageSize">The number of items to have on a page. Maximum value is **100**. The default is **10** items on a page.</param>
+        /// <param name="username">The partial or complete username to select all users that match.</param>
         /// <param name="requestOptions">Additional request options.</param>
         /// <returns>Task of ListCompanyUsersResponse</returns>
-        public async Task<ListCompanyUsersResponse> GetCompaniesCompanyIdUsersAsync(string companyId, int? pageNumber = default, int? pageSize = default, RequestOptions requestOptions = default)
+        public async Task<ListCompanyUsersResponse> ListUsersAsync(string companyId, int? pageNumber = default, int? pageSize = default, string username = default, RequestOptions requestOptions = default)
         {
             // Build the query string
             var queryParams = new Dictionary<string, string>();
             if (pageNumber != null) queryParams.Add("pageNumber", pageNumber.ToString());
             if (pageSize != null) queryParams.Add("pageSize", pageSize.ToString());
+            if (username != null) queryParams.Add("username", username);
             var endpoint = $"/companies/{companyId}/users" + ToQueryString(queryParams);
             var resource = new ManagementResource(this, endpoint);
             var jsonResult = await resource.RequestAsync(null, requestOptions, new HttpMethod("GET"));
@@ -68,9 +71,9 @@ namespace Adyen.Service.Management
         /// <param name="userId">The unique identifier of the user.</param>
         /// <param name="requestOptions">Additional request options.</param>
         /// <returns>CompanyUser</returns>
-        public CompanyUser GetCompaniesCompanyIdUsersUserId(string companyId, string userId, RequestOptions requestOptions = default)
+        public CompanyUser GetUserDetails(string companyId, string userId, RequestOptions requestOptions = default)
         {
-            return GetCompaniesCompanyIdUsersUserIdAsync(companyId, userId, requestOptions).GetAwaiter().GetResult();
+            return GetUserDetailsAsync(companyId, userId, requestOptions).GetAwaiter().GetResult();
         }
 
         /// <summary>
@@ -80,7 +83,7 @@ namespace Adyen.Service.Management
         /// <param name="userId">The unique identifier of the user.</param>
         /// <param name="requestOptions">Additional request options.</param>
         /// <returns>Task of CompanyUser</returns>
-        public async Task<CompanyUser> GetCompaniesCompanyIdUsersUserIdAsync(string companyId, string userId, RequestOptions requestOptions = default)
+        public async Task<CompanyUser> GetUserDetailsAsync(string companyId, string userId, RequestOptions requestOptions = default)
         {
             var endpoint = $"/companies/{companyId}/users/{userId}";
             var resource = new ManagementResource(this, endpoint);
@@ -96,9 +99,9 @@ namespace Adyen.Service.Management
         /// <param name="updateCompanyUserRequest"></param>
         /// <param name="requestOptions">Additional request options.</param>
         /// <returns>CompanyUser</returns>
-        public CompanyUser PatchCompaniesCompanyIdUsersUserId(string companyId, string userId, UpdateCompanyUserRequest updateCompanyUserRequest, RequestOptions requestOptions = default)
+        public CompanyUser UpdateUserDetails(string companyId, string userId, UpdateCompanyUserRequest updateCompanyUserRequest, RequestOptions requestOptions = default)
         {
-            return PatchCompaniesCompanyIdUsersUserIdAsync(companyId, userId, updateCompanyUserRequest, requestOptions).GetAwaiter().GetResult();
+            return UpdateUserDetailsAsync(companyId, userId, updateCompanyUserRequest, requestOptions).GetAwaiter().GetResult();
         }
 
         /// <summary>
@@ -109,7 +112,7 @@ namespace Adyen.Service.Management
         /// <param name="updateCompanyUserRequest"></param>
         /// <param name="requestOptions">Additional request options.</param>
         /// <returns>Task of CompanyUser</returns>
-        public async Task<CompanyUser> PatchCompaniesCompanyIdUsersUserIdAsync(string companyId, string userId, UpdateCompanyUserRequest updateCompanyUserRequest, RequestOptions requestOptions = default)
+        public async Task<CompanyUser> UpdateUserDetailsAsync(string companyId, string userId, UpdateCompanyUserRequest updateCompanyUserRequest, RequestOptions requestOptions = default)
         {
             var endpoint = $"/companies/{companyId}/users/{userId}";
             var resource = new ManagementResource(this, endpoint);
@@ -124,9 +127,9 @@ namespace Adyen.Service.Management
         /// <param name="createCompanyUserRequest"></param>
         /// <param name="requestOptions">Additional request options.</param>
         /// <returns>CreateCompanyUserResponse</returns>
-        public CreateCompanyUserResponse PostCompaniesCompanyIdUsers(string companyId, CreateCompanyUserRequest createCompanyUserRequest, RequestOptions requestOptions = default)
+        public CreateCompanyUserResponse CreateNewUser(string companyId, CreateCompanyUserRequest createCompanyUserRequest, RequestOptions requestOptions = default)
         {
-            return PostCompaniesCompanyIdUsersAsync(companyId, createCompanyUserRequest, requestOptions).GetAwaiter().GetResult();
+            return CreateNewUserAsync(companyId, createCompanyUserRequest, requestOptions).GetAwaiter().GetResult();
         }
 
         /// <summary>
@@ -136,7 +139,7 @@ namespace Adyen.Service.Management
         /// <param name="createCompanyUserRequest"></param>
         /// <param name="requestOptions">Additional request options.</param>
         /// <returns>Task of CreateCompanyUserResponse</returns>
-        public async Task<CreateCompanyUserResponse> PostCompaniesCompanyIdUsersAsync(string companyId, CreateCompanyUserRequest createCompanyUserRequest, RequestOptions requestOptions = default)
+        public async Task<CreateCompanyUserResponse> CreateNewUserAsync(string companyId, CreateCompanyUserRequest createCompanyUserRequest, RequestOptions requestOptions = default)
         {
             var endpoint = $"/companies/{companyId}/users";
             var resource = new ManagementResource(this, endpoint);

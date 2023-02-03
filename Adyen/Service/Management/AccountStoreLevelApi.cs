@@ -37,9 +37,9 @@ namespace Adyen.Service.Management
         /// <param name="reference">The reference of the store.</param>
         /// <param name="requestOptions">Additional request options.</param>
         /// <returns>ListStoresResponse</returns>
-        public ListStoresResponse GetMerchantsMerchantIdStores(string merchantId, int? pageNumber = default, int? pageSize = default, string reference = default, RequestOptions requestOptions = default)
+        public ListStoresResponse ListStoresByMerchantId(string merchantId, int? pageNumber = default, int? pageSize = default, string reference = default, RequestOptions requestOptions = default)
         {
-            return GetMerchantsMerchantIdStoresAsync(merchantId, pageNumber, pageSize, reference, requestOptions).GetAwaiter().GetResult();
+            return ListStoresByMerchantIdAsync(merchantId, pageNumber, pageSize, reference, requestOptions).GetAwaiter().GetResult();
         }
 
         /// <summary>
@@ -51,7 +51,7 @@ namespace Adyen.Service.Management
         /// <param name="reference">The reference of the store.</param>
         /// <param name="requestOptions">Additional request options.</param>
         /// <returns>Task of ListStoresResponse</returns>
-        public async Task<ListStoresResponse> GetMerchantsMerchantIdStoresAsync(string merchantId, int? pageNumber = default, int? pageSize = default, string reference = default, RequestOptions requestOptions = default)
+        public async Task<ListStoresResponse> ListStoresByMerchantIdAsync(string merchantId, int? pageNumber = default, int? pageSize = default, string reference = default, RequestOptions requestOptions = default)
         {
             // Build the query string
             var queryParams = new Dictionary<string, string>();
@@ -71,9 +71,9 @@ namespace Adyen.Service.Management
         /// <param name="storeId">The unique identifier of the store.</param>
         /// <param name="requestOptions">Additional request options.</param>
         /// <returns>Store</returns>
-        public Store GetMerchantsMerchantIdStoresStoreId(string merchantId, string storeId, RequestOptions requestOptions = default)
+        public Store GetStore(string merchantId, string storeId, RequestOptions requestOptions = default)
         {
-            return GetMerchantsMerchantIdStoresStoreIdAsync(merchantId, storeId, requestOptions).GetAwaiter().GetResult();
+            return GetStoreAsync(merchantId, storeId, requestOptions).GetAwaiter().GetResult();
         }
 
         /// <summary>
@@ -83,7 +83,7 @@ namespace Adyen.Service.Management
         /// <param name="storeId">The unique identifier of the store.</param>
         /// <param name="requestOptions">Additional request options.</param>
         /// <returns>Task of Store</returns>
-        public async Task<Store> GetMerchantsMerchantIdStoresStoreIdAsync(string merchantId, string storeId, RequestOptions requestOptions = default)
+        public async Task<Store> GetStoreAsync(string merchantId, string storeId, RequestOptions requestOptions = default)
         {
             var endpoint = $"/merchants/{merchantId}/stores/{storeId}";
             var resource = new ManagementResource(this, endpoint);
@@ -100,9 +100,9 @@ namespace Adyen.Service.Management
         /// <param name="merchantId">The unique identifier of the merchant account.</param>
         /// <param name="requestOptions">Additional request options.</param>
         /// <returns>ListStoresResponse</returns>
-        public ListStoresResponse GetStores(int? pageNumber = default, int? pageSize = default, string reference = default, string merchantId = default, RequestOptions requestOptions = default)
+        public ListStoresResponse ListStores(int? pageNumber = default, int? pageSize = default, string reference = default, string merchantId = default, RequestOptions requestOptions = default)
         {
-            return GetStoresAsync(pageNumber, pageSize, reference, merchantId, requestOptions).GetAwaiter().GetResult();
+            return ListStoresAsync(pageNumber, pageSize, reference, merchantId, requestOptions).GetAwaiter().GetResult();
         }
 
         /// <summary>
@@ -114,7 +114,7 @@ namespace Adyen.Service.Management
         /// <param name="merchantId">The unique identifier of the merchant account.</param>
         /// <param name="requestOptions">Additional request options.</param>
         /// <returns>Task of ListStoresResponse</returns>
-        public async Task<ListStoresResponse> GetStoresAsync(int? pageNumber = default, int? pageSize = default, string reference = default, string merchantId = default, RequestOptions requestOptions = default)
+        public async Task<ListStoresResponse> ListStoresAsync(int? pageNumber = default, int? pageSize = default, string reference = default, string merchantId = default, RequestOptions requestOptions = default)
         {
             // Build the query string
             var queryParams = new Dictionary<string, string>();
@@ -134,9 +134,9 @@ namespace Adyen.Service.Management
         /// <param name="storeId">The unique identifier of the store.</param>
         /// <param name="requestOptions">Additional request options.</param>
         /// <returns>Store</returns>
-        public Store GetStoresStoreId(string storeId, RequestOptions requestOptions = default)
+        public Store GetStoreById(string storeId, RequestOptions requestOptions = default)
         {
-            return GetStoresStoreIdAsync(storeId, requestOptions).GetAwaiter().GetResult();
+            return GetStoreByIdAsync(storeId, requestOptions).GetAwaiter().GetResult();
         }
 
         /// <summary>
@@ -145,7 +145,7 @@ namespace Adyen.Service.Management
         /// <param name="storeId">The unique identifier of the store.</param>
         /// <param name="requestOptions">Additional request options.</param>
         /// <returns>Task of Store</returns>
-        public async Task<Store> GetStoresStoreIdAsync(string storeId, RequestOptions requestOptions = default)
+        public async Task<Store> GetStoreByIdAsync(string storeId, RequestOptions requestOptions = default)
         {
             var endpoint = $"/stores/{storeId}";
             var resource = new ManagementResource(this, endpoint);
@@ -161,9 +161,9 @@ namespace Adyen.Service.Management
         /// <param name="updateStoreRequest"></param>
         /// <param name="requestOptions">Additional request options.</param>
         /// <returns>Store</returns>
-        public Store PatchMerchantsMerchantIdStoresStoreId(string merchantId, string storeId, UpdateStoreRequest updateStoreRequest, RequestOptions requestOptions = default)
+        public Store UpdateStore(string merchantId, string storeId, UpdateStoreRequest updateStoreRequest, RequestOptions requestOptions = default)
         {
-            return PatchMerchantsMerchantIdStoresStoreIdAsync(merchantId, storeId, updateStoreRequest, requestOptions).GetAwaiter().GetResult();
+            return UpdateStoreAsync(merchantId, storeId, updateStoreRequest, requestOptions).GetAwaiter().GetResult();
         }
 
         /// <summary>
@@ -174,7 +174,7 @@ namespace Adyen.Service.Management
         /// <param name="updateStoreRequest"></param>
         /// <param name="requestOptions">Additional request options.</param>
         /// <returns>Task of Store</returns>
-        public async Task<Store> PatchMerchantsMerchantIdStoresStoreIdAsync(string merchantId, string storeId, UpdateStoreRequest updateStoreRequest, RequestOptions requestOptions = default)
+        public async Task<Store> UpdateStoreAsync(string merchantId, string storeId, UpdateStoreRequest updateStoreRequest, RequestOptions requestOptions = default)
         {
             var endpoint = $"/merchants/{merchantId}/stores/{storeId}";
             var resource = new ManagementResource(this, endpoint);
@@ -189,9 +189,9 @@ namespace Adyen.Service.Management
         /// <param name="updateStoreRequest"></param>
         /// <param name="requestOptions">Additional request options.</param>
         /// <returns>Store</returns>
-        public Store PatchStoresStoreId(string storeId, UpdateStoreRequest updateStoreRequest, RequestOptions requestOptions = default)
+        public Store UpdateStoreById(string storeId, UpdateStoreRequest updateStoreRequest, RequestOptions requestOptions = default)
         {
-            return PatchStoresStoreIdAsync(storeId, updateStoreRequest, requestOptions).GetAwaiter().GetResult();
+            return UpdateStoreByIdAsync(storeId, updateStoreRequest, requestOptions).GetAwaiter().GetResult();
         }
 
         /// <summary>
@@ -201,7 +201,7 @@ namespace Adyen.Service.Management
         /// <param name="updateStoreRequest"></param>
         /// <param name="requestOptions">Additional request options.</param>
         /// <returns>Task of Store</returns>
-        public async Task<Store> PatchStoresStoreIdAsync(string storeId, UpdateStoreRequest updateStoreRequest, RequestOptions requestOptions = default)
+        public async Task<Store> UpdateStoreByIdAsync(string storeId, UpdateStoreRequest updateStoreRequest, RequestOptions requestOptions = default)
         {
             var endpoint = $"/stores/{storeId}";
             var resource = new ManagementResource(this, endpoint);
@@ -216,9 +216,9 @@ namespace Adyen.Service.Management
         /// <param name="storeCreationRequest"></param>
         /// <param name="requestOptions">Additional request options.</param>
         /// <returns>Store</returns>
-        public Store PostMerchantsMerchantIdStores(string merchantId, StoreCreationRequest storeCreationRequest, RequestOptions requestOptions = default)
+        public Store CreateStoreByMerchantId(string merchantId, StoreCreationRequest storeCreationRequest, RequestOptions requestOptions = default)
         {
-            return PostMerchantsMerchantIdStoresAsync(merchantId, storeCreationRequest, requestOptions).GetAwaiter().GetResult();
+            return CreateStoreByMerchantIdAsync(merchantId, storeCreationRequest, requestOptions).GetAwaiter().GetResult();
         }
 
         /// <summary>
@@ -228,7 +228,7 @@ namespace Adyen.Service.Management
         /// <param name="storeCreationRequest"></param>
         /// <param name="requestOptions">Additional request options.</param>
         /// <returns>Task of Store</returns>
-        public async Task<Store> PostMerchantsMerchantIdStoresAsync(string merchantId, StoreCreationRequest storeCreationRequest, RequestOptions requestOptions = default)
+        public async Task<Store> CreateStoreByMerchantIdAsync(string merchantId, StoreCreationRequest storeCreationRequest, RequestOptions requestOptions = default)
         {
             var endpoint = $"/merchants/{merchantId}/stores";
             var resource = new ManagementResource(this, endpoint);
@@ -242,9 +242,9 @@ namespace Adyen.Service.Management
         /// <param name="storeCreationWithMerchantCodeRequest"></param>
         /// <param name="requestOptions">Additional request options.</param>
         /// <returns>Store</returns>
-        public Store PostStores(StoreCreationWithMerchantCodeRequest storeCreationWithMerchantCodeRequest, RequestOptions requestOptions = default)
+        public Store CreateStore(StoreCreationWithMerchantCodeRequest storeCreationWithMerchantCodeRequest, RequestOptions requestOptions = default)
         {
-            return PostStoresAsync(storeCreationWithMerchantCodeRequest, requestOptions).GetAwaiter().GetResult();
+            return CreateStoreAsync(storeCreationWithMerchantCodeRequest, requestOptions).GetAwaiter().GetResult();
         }
 
         /// <summary>
@@ -253,7 +253,7 @@ namespace Adyen.Service.Management
         /// <param name="storeCreationWithMerchantCodeRequest"></param>
         /// <param name="requestOptions">Additional request options.</param>
         /// <returns>Task of Store</returns>
-        public async Task<Store> PostStoresAsync(StoreCreationWithMerchantCodeRequest storeCreationWithMerchantCodeRequest, RequestOptions requestOptions = default)
+        public async Task<Store> CreateStoreAsync(StoreCreationWithMerchantCodeRequest storeCreationWithMerchantCodeRequest, RequestOptions requestOptions = default)
         {
             var endpoint = "/stores";
             var resource = new ManagementResource(this, endpoint);

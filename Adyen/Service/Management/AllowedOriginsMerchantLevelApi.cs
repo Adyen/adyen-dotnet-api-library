@@ -35,9 +35,9 @@ namespace Adyen.Service.Management
         /// <param name="apiCredentialId">Unique identifier of the API credential.</param>
         /// <param name="originId">Unique identifier of the allowed origin.</param>
         /// <param name="requestOptions">Additional request options.</param>
-        public void DeleteMerchantsMerchantIdApiCredentialsApiCredentialIdAllowedOriginsOriginId(string merchantId, string apiCredentialId, string originId, RequestOptions requestOptions = default)
+        public void DeleteAllowedOrigin(string merchantId, string apiCredentialId, string originId, RequestOptions requestOptions = default)
         {
-            DeleteMerchantsMerchantIdApiCredentialsApiCredentialIdAllowedOriginsOriginIdAsync(merchantId, apiCredentialId, originId, requestOptions).GetAwaiter().GetResult();
+            DeleteAllowedOriginAsync(merchantId, apiCredentialId, originId, requestOptions).GetAwaiter().GetResult();
         }
 
         /// <summary>
@@ -47,7 +47,7 @@ namespace Adyen.Service.Management
         /// <param name="apiCredentialId">Unique identifier of the API credential.</param>
         /// <param name="originId">Unique identifier of the allowed origin.</param>
         /// <param name="requestOptions">Additional request options.</param>
-        public async Task DeleteMerchantsMerchantIdApiCredentialsApiCredentialIdAllowedOriginsOriginIdAsync(string merchantId, string apiCredentialId, string originId, RequestOptions requestOptions = default)
+        public async Task DeleteAllowedOriginAsync(string merchantId, string apiCredentialId, string originId, RequestOptions requestOptions = default)
         {
             var endpoint = $"/merchants/{merchantId}/apiCredentials/{apiCredentialId}/allowedOrigins/{originId}";
             var resource = new ManagementResource(this, endpoint);
@@ -61,9 +61,9 @@ namespace Adyen.Service.Management
         /// <param name="apiCredentialId">Unique identifier of the API credential.</param>
         /// <param name="requestOptions">Additional request options.</param>
         /// <returns>AllowedOriginsResponse</returns>
-        public AllowedOriginsResponse GetMerchantsMerchantIdApiCredentialsApiCredentialIdAllowedOrigins(string merchantId, string apiCredentialId, RequestOptions requestOptions = default)
+        public AllowedOriginsResponse ListAllowedOrigins(string merchantId, string apiCredentialId, RequestOptions requestOptions = default)
         {
-            return GetMerchantsMerchantIdApiCredentialsApiCredentialIdAllowedOriginsAsync(merchantId, apiCredentialId, requestOptions).GetAwaiter().GetResult();
+            return ListAllowedOriginsAsync(merchantId, apiCredentialId, requestOptions).GetAwaiter().GetResult();
         }
 
         /// <summary>
@@ -73,7 +73,7 @@ namespace Adyen.Service.Management
         /// <param name="apiCredentialId">Unique identifier of the API credential.</param>
         /// <param name="requestOptions">Additional request options.</param>
         /// <returns>Task of AllowedOriginsResponse</returns>
-        public async Task<AllowedOriginsResponse> GetMerchantsMerchantIdApiCredentialsApiCredentialIdAllowedOriginsAsync(string merchantId, string apiCredentialId, RequestOptions requestOptions = default)
+        public async Task<AllowedOriginsResponse> ListAllowedOriginsAsync(string merchantId, string apiCredentialId, RequestOptions requestOptions = default)
         {
             var endpoint = $"/merchants/{merchantId}/apiCredentials/{apiCredentialId}/allowedOrigins";
             var resource = new ManagementResource(this, endpoint);
@@ -89,9 +89,9 @@ namespace Adyen.Service.Management
         /// <param name="originId">Unique identifier of the allowed origin.</param>
         /// <param name="requestOptions">Additional request options.</param>
         /// <returns>AllowedOrigin</returns>
-        public AllowedOrigin GetMerchantsMerchantIdApiCredentialsApiCredentialIdAllowedOriginsOriginId(string merchantId, string apiCredentialId, string originId, RequestOptions requestOptions = default)
+        public AllowedOrigin GetAllowedOrigin(string merchantId, string apiCredentialId, string originId, RequestOptions requestOptions = default)
         {
-            return GetMerchantsMerchantIdApiCredentialsApiCredentialIdAllowedOriginsOriginIdAsync(merchantId, apiCredentialId, originId, requestOptions).GetAwaiter().GetResult();
+            return GetAllowedOriginAsync(merchantId, apiCredentialId, originId, requestOptions).GetAwaiter().GetResult();
         }
 
         /// <summary>
@@ -102,7 +102,7 @@ namespace Adyen.Service.Management
         /// <param name="originId">Unique identifier of the allowed origin.</param>
         /// <param name="requestOptions">Additional request options.</param>
         /// <returns>Task of AllowedOrigin</returns>
-        public async Task<AllowedOrigin> GetMerchantsMerchantIdApiCredentialsApiCredentialIdAllowedOriginsOriginIdAsync(string merchantId, string apiCredentialId, string originId, RequestOptions requestOptions = default)
+        public async Task<AllowedOrigin> GetAllowedOriginAsync(string merchantId, string apiCredentialId, string originId, RequestOptions requestOptions = default)
         {
             var endpoint = $"/merchants/{merchantId}/apiCredentials/{apiCredentialId}/allowedOrigins/{originId}";
             var resource = new ManagementResource(this, endpoint);
@@ -118,9 +118,9 @@ namespace Adyen.Service.Management
         /// <param name="allowedOrigin"></param>
         /// <param name="requestOptions">Additional request options.</param>
         /// <returns>AllowedOriginsResponse</returns>
-        public AllowedOriginsResponse PostMerchantsMerchantIdApiCredentialsApiCredentialIdAllowedOrigins(string merchantId, string apiCredentialId, AllowedOrigin allowedOrigin, RequestOptions requestOptions = default)
+        public AllowedOriginsResponse CreateAllowedOrigin(string merchantId, string apiCredentialId, AllowedOrigin allowedOrigin, RequestOptions requestOptions = default)
         {
-            return PostMerchantsMerchantIdApiCredentialsApiCredentialIdAllowedOriginsAsync(merchantId, apiCredentialId, allowedOrigin, requestOptions).GetAwaiter().GetResult();
+            return CreateAllowedOriginAsync(merchantId, apiCredentialId, allowedOrigin, requestOptions).GetAwaiter().GetResult();
         }
 
         /// <summary>
@@ -131,7 +131,7 @@ namespace Adyen.Service.Management
         /// <param name="allowedOrigin"></param>
         /// <param name="requestOptions">Additional request options.</param>
         /// <returns>Task of AllowedOriginsResponse</returns>
-        public async Task<AllowedOriginsResponse> PostMerchantsMerchantIdApiCredentialsApiCredentialIdAllowedOriginsAsync(string merchantId, string apiCredentialId, AllowedOrigin allowedOrigin, RequestOptions requestOptions = default)
+        public async Task<AllowedOriginsResponse> CreateAllowedOriginAsync(string merchantId, string apiCredentialId, AllowedOrigin allowedOrigin, RequestOptions requestOptions = default)
         {
             var endpoint = $"/merchants/{merchantId}/apiCredentials/{apiCredentialId}/allowedOrigins";
             var resource = new ManagementResource(this, endpoint);

@@ -40,9 +40,9 @@ namespace Adyen.Service.Management
         /// <param name="pageSize">The number of items to have on a page, maximum 100. The default is 20 items on a page.</param>
         /// <param name="requestOptions">Additional request options.</param>
         /// <returns>ListTerminalsResponse</returns>
-        public ListTerminalsResponse GetTerminals(string searchQuery = default, string countries = default, string merchantIds = default, string storeIds = default, string brandModels = default, int? pageNumber = default, int? pageSize = default, RequestOptions requestOptions = default)
+        public ListTerminalsResponse ListTerminals(string searchQuery = default, string countries = default, string merchantIds = default, string storeIds = default, string brandModels = default, int? pageNumber = default, int? pageSize = default, RequestOptions requestOptions = default)
         {
-            return GetTerminalsAsync(searchQuery, countries, merchantIds, storeIds, brandModels, pageNumber, pageSize, requestOptions).GetAwaiter().GetResult();
+            return ListTerminalsAsync(searchQuery, countries, merchantIds, storeIds, brandModels, pageNumber, pageSize, requestOptions).GetAwaiter().GetResult();
         }
 
         /// <summary>
@@ -57,7 +57,7 @@ namespace Adyen.Service.Management
         /// <param name="pageSize">The number of items to have on a page, maximum 100. The default is 20 items on a page.</param>
         /// <param name="requestOptions">Additional request options.</param>
         /// <returns>Task of ListTerminalsResponse</returns>
-        public async Task<ListTerminalsResponse> GetTerminalsAsync(string searchQuery = default, string countries = default, string merchantIds = default, string storeIds = default, string brandModels = default, int? pageNumber = default, int? pageSize = default, RequestOptions requestOptions = default)
+        public async Task<ListTerminalsResponse> ListTerminalsAsync(string searchQuery = default, string countries = default, string merchantIds = default, string storeIds = default, string brandModels = default, int? pageNumber = default, int? pageSize = default, RequestOptions requestOptions = default)
         {
             // Build the query string
             var queryParams = new Dictionary<string, string>();

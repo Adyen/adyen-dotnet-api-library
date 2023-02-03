@@ -48,7 +48,7 @@ namespace Adyen.Model.Management
         /// <param name="reference">Your reference to recognize the store by. Also known as the store code.  Allowed characters: Lowercase and uppercase letters without diacritics, numbers 0 through 9, hyphen (-), and underscore (_)..</param>
         /// <param name="shopperStatement">The store name to be shown on the shopper&#39;s bank or credit card statement and on the shopper receipt. Maximum length: 22 characters; can&#39;t be all numbers. (required).</param>
         /// <param name="splitConfiguration">splitConfiguration.</param>
-        public StoreCreationWithMerchantCodeRequest(Address2 address = default(Address2), List<string> businessLineIds = default(List<string>), string description = default(string), string externalReferenceId = default(string), string merchantId = default(string), string phoneNumber = default(string), string reference = default(string), string shopperStatement = default(string), StoreSplitConfiguration splitConfiguration = default(StoreSplitConfiguration))
+        public StoreCreationWithMerchantCodeRequest(StoreLocation address = default(StoreLocation), List<string> businessLineIds = default(List<string>), string description = default(string), string externalReferenceId = default(string), string merchantId = default(string), string phoneNumber = default(string), string reference = default(string), string shopperStatement = default(string), StoreSplitConfiguration splitConfiguration = default(StoreSplitConfiguration))
         {
             this.Address = address;
             this.BusinessLineIds = businessLineIds;
@@ -65,7 +65,7 @@ namespace Adyen.Model.Management
         /// Gets or Sets Address
         /// </summary>
         [DataMember(Name="address", EmitDefaultValue=true)]
-        public Address2 Address { get; set; }
+        public StoreLocation Address { get; set; }
 
         /// <summary>
         /// The unique identifiers of the [business lines](https://docs.adyen.com/api-explorer/#/legalentity/latest/post/businesslines__resParam_id) that the store is associated with. If not specified, the business line of the merchant account is used. Required when there are multiple business lines under the merchant account.

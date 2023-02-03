@@ -26,26 +26,35 @@ using System.ComponentModel.DataAnnotations;
 namespace Adyen.Model.Management
 {
     /// <summary>
-    /// ApplePayInfo
+    /// NotificationUrl
     /// </summary>
     [DataContract]
-    public partial class ApplePayInfo :  IEquatable<ApplePayInfo>, IValidatableObject
+    public partial class NotificationUrl :  IEquatable<NotificationUrl>, IValidatableObject
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="ApplePayInfo" /> class.
+        /// Initializes a new instance of the <see cref="NotificationUrl" /> class.
         /// </summary>
-        /// <param name="domains">The list of merchant domains. Maximum: 99 domains per request.  For more information, see [Apple Pay documentation](https://docs.adyen.com/payment-methods/apple-pay/web-drop-in?tab&#x3D;adyen-certificate-live_1#going-live)..</param>
-        public ApplePayInfo(List<string> domains = default(List<string>))
+        /// <param name="localUrls">One or more local URLs to send notifications to when using Terminal API..</param>
+        /// <param name="publicUrls">One or more public URLs to send notifications to when using Terminal API..</param>
+        public NotificationUrl(List<Url> localUrls = default(List<Url>), List<Url> publicUrls = default(List<Url>))
         {
-            this.Domains = domains;
+            this.LocalUrls = localUrls;
+            this.PublicUrls = publicUrls;
         }
 
         /// <summary>
-        /// The list of merchant domains. Maximum: 99 domains per request.  For more information, see [Apple Pay documentation](https://docs.adyen.com/payment-methods/apple-pay/web-drop-in?tab&#x3D;adyen-certificate-live_1#going-live).
+        /// One or more local URLs to send notifications to when using Terminal API.
         /// </summary>
-        /// <value>The list of merchant domains. Maximum: 99 domains per request.  For more information, see [Apple Pay documentation](https://docs.adyen.com/payment-methods/apple-pay/web-drop-in?tab&#x3D;adyen-certificate-live_1#going-live).</value>
-        [DataMember(Name="domains", EmitDefaultValue=false)]
-        public List<string> Domains { get; set; }
+        /// <value>One or more local URLs to send notifications to when using Terminal API.</value>
+        [DataMember(Name="localUrls", EmitDefaultValue=false)]
+        public List<Url> LocalUrls { get; set; }
+
+        /// <summary>
+        /// One or more public URLs to send notifications to when using Terminal API.
+        /// </summary>
+        /// <value>One or more public URLs to send notifications to when using Terminal API.</value>
+        [DataMember(Name="publicUrls", EmitDefaultValue=false)]
+        public List<Url> PublicUrls { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -54,8 +63,9 @@ namespace Adyen.Model.Management
         public override string ToString()
         {
             var sb = new StringBuilder();
-            sb.Append("class ApplePayInfo {\n");
-            sb.Append("  Domains: ").Append(Domains).Append("\n");
+            sb.Append("class NotificationUrl {\n");
+            sb.Append("  LocalUrls: ").Append(LocalUrls).Append("\n");
+            sb.Append("  PublicUrls: ").Append(PublicUrls).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -76,25 +86,31 @@ namespace Adyen.Model.Management
         /// <returns>Boolean</returns>
         public override bool Equals(object input)
         {
-            return this.Equals(input as ApplePayInfo);
+            return this.Equals(input as NotificationUrl);
         }
 
         /// <summary>
-        /// Returns true if ApplePayInfo instances are equal
+        /// Returns true if NotificationUrl instances are equal
         /// </summary>
-        /// <param name="input">Instance of ApplePayInfo to be compared</param>
+        /// <param name="input">Instance of NotificationUrl to be compared</param>
         /// <returns>Boolean</returns>
-        public bool Equals(ApplePayInfo input)
+        public bool Equals(NotificationUrl input)
         {
             if (input == null)
                 return false;
 
             return 
                 (
-                    this.Domains == input.Domains ||
-                    this.Domains != null &&
-                    input.Domains != null &&
-                    this.Domains.SequenceEqual(input.Domains)
+                    this.LocalUrls == input.LocalUrls ||
+                    this.LocalUrls != null &&
+                    input.LocalUrls != null &&
+                    this.LocalUrls.SequenceEqual(input.LocalUrls)
+                ) && 
+                (
+                    this.PublicUrls == input.PublicUrls ||
+                    this.PublicUrls != null &&
+                    input.PublicUrls != null &&
+                    this.PublicUrls.SequenceEqual(input.PublicUrls)
                 );
         }
 
@@ -107,8 +123,10 @@ namespace Adyen.Model.Management
             unchecked // Overflow is fine, just wrap
             {
                 int hashCode = 41;
-                if (this.Domains != null)
-                    hashCode = hashCode * 59 + this.Domains.GetHashCode();
+                if (this.LocalUrls != null)
+                    hashCode = hashCode * 59 + this.LocalUrls.GetHashCode();
+                if (this.PublicUrls != null)
+                    hashCode = hashCode * 59 + this.PublicUrls.GetHashCode();
                 return hashCode;
             }
         }

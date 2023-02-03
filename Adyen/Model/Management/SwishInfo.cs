@@ -34,12 +34,7 @@ namespace Adyen.Model.Management
         /// <summary>
         /// Initializes a new instance of the <see cref="SwishInfo" /> class.
         /// </summary>
-        [JsonConstructorAttribute]
-        protected SwishInfo() { }
-        /// <summary>
-        /// Initializes a new instance of the <see cref="SwishInfo" /> class.
-        /// </summary>
-        /// <param name="swishNumber">Swish number. Format: 10 digits without spaces. For example, **1231111111**. (required).</param>
+        /// <param name="swishNumber">Swish number. Format: 10 digits without spaces. For example, **1231111111**..</param>
         public SwishInfo(string swishNumber = default(string))
         {
             this.SwishNumber = swishNumber;
@@ -49,7 +44,7 @@ namespace Adyen.Model.Management
         /// Swish number. Format: 10 digits without spaces. For example, **1231111111**.
         /// </summary>
         /// <value>Swish number. Format: 10 digits without spaces. For example, **1231111111**.</value>
-        [DataMember(Name="swishNumber", EmitDefaultValue=true)]
+        [DataMember(Name="swishNumber", EmitDefaultValue=false)]
         public string SwishNumber { get; set; }
 
         /// <summary>

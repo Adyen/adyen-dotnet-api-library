@@ -85,19 +85,22 @@ namespace Adyen.Model.Management
         /// <param name="cartesBancaires">cartesBancaires.</param>
         /// <param name="countries">The list of countries where a payment method is available. By default, all countries supported by the payment method..</param>
         /// <param name="currencies">The list of currencies that a payment method supports. By default, all currencies supported by the payment method..</param>
+        /// <param name="customRoutingFlags">The list of custom routing flags to route payment to the intended acquirer..</param>
         /// <param name="enabled">Indicates whether the payment method is enabled (**true**) or disabled (**false**)..</param>
         /// <param name="giroPay">giroPay.</param>
         /// <param name="googlePay">googlePay.</param>
         /// <param name="id">The identifier of the resource. (required).</param>
         /// <param name="klarna">klarna.</param>
+        /// <param name="mealVoucherFR">mealVoucherFR.</param>
         /// <param name="paypal">paypal.</param>
+        /// <param name="reference">Your reference for the payment method. Supported characters a-z, A-Z, 0-9..</param>
         /// <param name="shopperInteraction">The sales channel..</param>
         /// <param name="sofort">sofort.</param>
         /// <param name="storeId">The ID of the [store](https://docs.adyen.com/api-explorer/#/ManagementService/latest/post/stores__resParam_id), if any..</param>
         /// <param name="swish">swish.</param>
         /// <param name="type">Payment method [variant](https://docs.adyen.com/development-resources/paymentmethodvariant#management-api)..</param>
         /// <param name="verificationStatus">Payment method status. Possible values: * **valid** * **pending** * **invalid** * **rejected**.</param>
-        public PaymentMethod(bool allowed = default(bool), ApplePayInfo applePay = default(ApplePayInfo), BcmcInfo bcmc = default(BcmcInfo), string businessLineId = default(string), CartesBancairesInfo cartesBancaires = default(CartesBancairesInfo), List<string> countries = default(List<string>), List<string> currencies = default(List<string>), bool enabled = default(bool), GiroPayInfo giroPay = default(GiroPayInfo), GooglePayInfo googlePay = default(GooglePayInfo), string id = default(string), KlarnaInfo klarna = default(KlarnaInfo), PayPalInfo paypal = default(PayPalInfo), string shopperInteraction = default(string), SofortInfo sofort = default(SofortInfo), string storeId = default(string), SwishInfo swish = default(SwishInfo), string type = default(string), VerificationStatusEnum? verificationStatus = default(VerificationStatusEnum?))
+        public PaymentMethod(bool allowed = default(bool), ApplePayInfo applePay = default(ApplePayInfo), BcmcInfo bcmc = default(BcmcInfo), string businessLineId = default(string), CartesBancairesInfo cartesBancaires = default(CartesBancairesInfo), List<string> countries = default(List<string>), List<string> currencies = default(List<string>), List<string> customRoutingFlags = default(List<string>), bool enabled = default(bool), GiroPayInfo giroPay = default(GiroPayInfo), GooglePayInfo googlePay = default(GooglePayInfo), string id = default(string), KlarnaInfo klarna = default(KlarnaInfo), MealVoucherFRInfo mealVoucherFR = default(MealVoucherFRInfo), PayPalInfo paypal = default(PayPalInfo), string reference = default(string), string shopperInteraction = default(string), SofortInfo sofort = default(SofortInfo), string storeId = default(string), SwishInfo swish = default(SwishInfo), string type = default(string), VerificationStatusEnum? verificationStatus = default(VerificationStatusEnum?))
         {
             this.Allowed = allowed;
             this.ApplePay = applePay;
@@ -106,12 +109,15 @@ namespace Adyen.Model.Management
             this.CartesBancaires = cartesBancaires;
             this.Countries = countries;
             this.Currencies = currencies;
+            this.CustomRoutingFlags = customRoutingFlags;
             this.Enabled = enabled;
             this.GiroPay = giroPay;
             this.GooglePay = googlePay;
             this.Id = id;
             this.Klarna = klarna;
+            this.MealVoucherFR = mealVoucherFR;
             this.Paypal = paypal;
+            this.Reference = reference;
             this.ShopperInteraction = shopperInteraction;
             this.Sofort = sofort;
             this.StoreId = storeId;
@@ -167,6 +173,13 @@ namespace Adyen.Model.Management
         public List<string> Currencies { get; set; }
 
         /// <summary>
+        /// The list of custom routing flags to route payment to the intended acquirer.
+        /// </summary>
+        /// <value>The list of custom routing flags to route payment to the intended acquirer.</value>
+        [DataMember(Name="customRoutingFlags", EmitDefaultValue=false)]
+        public List<string> CustomRoutingFlags { get; set; }
+
+        /// <summary>
         /// Indicates whether the payment method is enabled (**true**) or disabled (**false**).
         /// </summary>
         /// <value>Indicates whether the payment method is enabled (**true**) or disabled (**false**).</value>
@@ -199,10 +212,23 @@ namespace Adyen.Model.Management
         public KlarnaInfo Klarna { get; set; }
 
         /// <summary>
+        /// Gets or Sets MealVoucherFR
+        /// </summary>
+        [DataMember(Name="mealVoucher_FR", EmitDefaultValue=false)]
+        public MealVoucherFRInfo MealVoucherFR { get; set; }
+
+        /// <summary>
         /// Gets or Sets Paypal
         /// </summary>
         [DataMember(Name="paypal", EmitDefaultValue=false)]
         public PayPalInfo Paypal { get; set; }
+
+        /// <summary>
+        /// Your reference for the payment method. Supported characters a-z, A-Z, 0-9.
+        /// </summary>
+        /// <value>Your reference for the payment method. Supported characters a-z, A-Z, 0-9.</value>
+        [DataMember(Name="reference", EmitDefaultValue=false)]
+        public string Reference { get; set; }
 
         /// <summary>
         /// The sales channel.
@@ -253,12 +279,15 @@ namespace Adyen.Model.Management
             sb.Append("  CartesBancaires: ").Append(CartesBancaires).Append("\n");
             sb.Append("  Countries: ").Append(Countries).Append("\n");
             sb.Append("  Currencies: ").Append(Currencies).Append("\n");
+            sb.Append("  CustomRoutingFlags: ").Append(CustomRoutingFlags).Append("\n");
             sb.Append("  Enabled: ").Append(Enabled).Append("\n");
             sb.Append("  GiroPay: ").Append(GiroPay).Append("\n");
             sb.Append("  GooglePay: ").Append(GooglePay).Append("\n");
             sb.Append("  Id: ").Append(Id).Append("\n");
             sb.Append("  Klarna: ").Append(Klarna).Append("\n");
+            sb.Append("  MealVoucherFR: ").Append(MealVoucherFR).Append("\n");
             sb.Append("  Paypal: ").Append(Paypal).Append("\n");
+            sb.Append("  Reference: ").Append(Reference).Append("\n");
             sb.Append("  ShopperInteraction: ").Append(ShopperInteraction).Append("\n");
             sb.Append("  Sofort: ").Append(Sofort).Append("\n");
             sb.Append("  StoreId: ").Append(StoreId).Append("\n");
@@ -337,6 +366,12 @@ namespace Adyen.Model.Management
                     this.Currencies.SequenceEqual(input.Currencies)
                 ) && 
                 (
+                    this.CustomRoutingFlags == input.CustomRoutingFlags ||
+                    this.CustomRoutingFlags != null &&
+                    input.CustomRoutingFlags != null &&
+                    this.CustomRoutingFlags.SequenceEqual(input.CustomRoutingFlags)
+                ) && 
+                (
                     this.Enabled == input.Enabled ||
                     (this.Enabled != null &&
                     this.Enabled.Equals(input.Enabled))
@@ -362,9 +397,19 @@ namespace Adyen.Model.Management
                     this.Klarna.Equals(input.Klarna))
                 ) && 
                 (
+                    this.MealVoucherFR == input.MealVoucherFR ||
+                    (this.MealVoucherFR != null &&
+                    this.MealVoucherFR.Equals(input.MealVoucherFR))
+                ) && 
+                (
                     this.Paypal == input.Paypal ||
                     (this.Paypal != null &&
                     this.Paypal.Equals(input.Paypal))
+                ) && 
+                (
+                    this.Reference == input.Reference ||
+                    (this.Reference != null &&
+                    this.Reference.Equals(input.Reference))
                 ) && 
                 (
                     this.ShopperInteraction == input.ShopperInteraction ||
@@ -421,6 +466,8 @@ namespace Adyen.Model.Management
                     hashCode = hashCode * 59 + this.Countries.GetHashCode();
                 if (this.Currencies != null)
                     hashCode = hashCode * 59 + this.Currencies.GetHashCode();
+                if (this.CustomRoutingFlags != null)
+                    hashCode = hashCode * 59 + this.CustomRoutingFlags.GetHashCode();
                 if (this.Enabled != null)
                     hashCode = hashCode * 59 + this.Enabled.GetHashCode();
                 if (this.GiroPay != null)
@@ -431,8 +478,12 @@ namespace Adyen.Model.Management
                     hashCode = hashCode * 59 + this.Id.GetHashCode();
                 if (this.Klarna != null)
                     hashCode = hashCode * 59 + this.Klarna.GetHashCode();
+                if (this.MealVoucherFR != null)
+                    hashCode = hashCode * 59 + this.MealVoucherFR.GetHashCode();
                 if (this.Paypal != null)
                     hashCode = hashCode * 59 + this.Paypal.GetHashCode();
+                if (this.Reference != null)
+                    hashCode = hashCode * 59 + this.Reference.GetHashCode();
                 if (this.ShopperInteraction != null)
                     hashCode = hashCode * 59 + this.ShopperInteraction.GetHashCode();
                 if (this.Sofort != null)
@@ -456,6 +507,13 @@ namespace Adyen.Model.Management
         /// <returns>Validation Result</returns>
         IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
         {
+            // Reference (string) maxLength
+            if(this.Reference != null && this.Reference.Length > 150)
+            {
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for Reference, length must be less than 150.", new [] { "Reference" });
+            }
+
+
             yield break;
         }
     }

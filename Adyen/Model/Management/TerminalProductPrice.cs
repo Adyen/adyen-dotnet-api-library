@@ -26,22 +26,17 @@ using System.ComponentModel.DataAnnotations;
 namespace Adyen.Model.Management
 {
     /// <summary>
-    /// Amount2
+    /// TerminalProductPrice
     /// </summary>
     [DataContract]
-    public partial class Amount2 :  IEquatable<Amount2>, IValidatableObject
+    public partial class TerminalProductPrice :  IEquatable<TerminalProductPrice>, IValidatableObject
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="Amount2" /> class.
+        /// Initializes a new instance of the <see cref="TerminalProductPrice" /> class.
         /// </summary>
-        [JsonConstructorAttribute]
-        protected Amount2() { }
-        /// <summary>
-        /// Initializes a new instance of the <see cref="Amount2" /> class.
-        /// </summary>
-        /// <param name="currency">The three-character [ISO currency code](https://docs.adyen.com/development-resources/currency-codes). (required).</param>
-        /// <param name="value">The amount of the transaction, in [minor units](https://docs.adyen.com/development-resources/currency-codes). (required).</param>
-        public Amount2(string currency = default(string), long value = default(long))
+        /// <param name="currency">The three-character [ISO currency code](https://docs.adyen.com/development-resources/currency-codes)..</param>
+        /// <param name="value">value.</param>
+        public TerminalProductPrice(string currency = default(string), Object value = default(Object))
         {
             this.Currency = currency;
             this.Value = value;
@@ -51,15 +46,14 @@ namespace Adyen.Model.Management
         /// The three-character [ISO currency code](https://docs.adyen.com/development-resources/currency-codes).
         /// </summary>
         /// <value>The three-character [ISO currency code](https://docs.adyen.com/development-resources/currency-codes).</value>
-        [DataMember(Name="currency", EmitDefaultValue=true)]
+        [DataMember(Name="currency", EmitDefaultValue=false)]
         public string Currency { get; set; }
 
         /// <summary>
-        /// The amount of the transaction, in [minor units](https://docs.adyen.com/development-resources/currency-codes).
+        /// Gets or Sets Value
         /// </summary>
-        /// <value>The amount of the transaction, in [minor units](https://docs.adyen.com/development-resources/currency-codes).</value>
         [DataMember(Name="value", EmitDefaultValue=true)]
-        public long Value { get; set; }
+        public Object Value { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -68,7 +62,7 @@ namespace Adyen.Model.Management
         public override string ToString()
         {
             var sb = new StringBuilder();
-            sb.Append("class Amount2 {\n");
+            sb.Append("class TerminalProductPrice {\n");
             sb.Append("  Currency: ").Append(Currency).Append("\n");
             sb.Append("  Value: ").Append(Value).Append("\n");
             sb.Append("}\n");
@@ -91,15 +85,15 @@ namespace Adyen.Model.Management
         /// <returns>Boolean</returns>
         public override bool Equals(object input)
         {
-            return this.Equals(input as Amount2);
+            return this.Equals(input as TerminalProductPrice);
         }
 
         /// <summary>
-        /// Returns true if Amount2 instances are equal
+        /// Returns true if TerminalProductPrice instances are equal
         /// </summary>
-        /// <param name="input">Instance of Amount2 to be compared</param>
+        /// <param name="input">Instance of TerminalProductPrice to be compared</param>
         /// <returns>Boolean</returns>
-        public bool Equals(Amount2 input)
+        public bool Equals(TerminalProductPrice input)
         {
             if (input == null)
                 return false;
@@ -141,18 +135,6 @@ namespace Adyen.Model.Management
         /// <returns>Validation Result</returns>
         IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
         {
-            // Currency (string) maxLength
-            if(this.Currency != null && this.Currency.Length > 3)
-            {
-                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for Currency, length must be less than 3.", new [] { "Currency" });
-            }
-
-            // Currency (string) minLength
-            if(this.Currency != null && this.Currency.Length < 3)
-            {
-                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for Currency, length must be greater than 3.", new [] { "Currency" });
-            }
-
             yield break;
         }
     }

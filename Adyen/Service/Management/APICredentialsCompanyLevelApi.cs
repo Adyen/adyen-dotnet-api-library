@@ -36,9 +36,9 @@ namespace Adyen.Service.Management
         /// <param name="pageSize">The number of items to have on a page, maximum 100. The default is 10 items on a page.</param>
         /// <param name="requestOptions">Additional request options.</param>
         /// <returns>ListCompanyApiCredentialsResponse</returns>
-        public ListCompanyApiCredentialsResponse GetCompaniesCompanyIdApiCredentials(string companyId, int? pageNumber = default, int? pageSize = default, RequestOptions requestOptions = default)
+        public ListCompanyApiCredentialsResponse ListApiCredentials(string companyId, int? pageNumber = default, int? pageSize = default, RequestOptions requestOptions = default)
         {
-            return GetCompaniesCompanyIdApiCredentialsAsync(companyId, pageNumber, pageSize, requestOptions).GetAwaiter().GetResult();
+            return ListApiCredentialsAsync(companyId, pageNumber, pageSize, requestOptions).GetAwaiter().GetResult();
         }
 
         /// <summary>
@@ -49,7 +49,7 @@ namespace Adyen.Service.Management
         /// <param name="pageSize">The number of items to have on a page, maximum 100. The default is 10 items on a page.</param>
         /// <param name="requestOptions">Additional request options.</param>
         /// <returns>Task of ListCompanyApiCredentialsResponse</returns>
-        public async Task<ListCompanyApiCredentialsResponse> GetCompaniesCompanyIdApiCredentialsAsync(string companyId, int? pageNumber = default, int? pageSize = default, RequestOptions requestOptions = default)
+        public async Task<ListCompanyApiCredentialsResponse> ListApiCredentialsAsync(string companyId, int? pageNumber = default, int? pageSize = default, RequestOptions requestOptions = default)
         {
             // Build the query string
             var queryParams = new Dictionary<string, string>();
@@ -68,9 +68,9 @@ namespace Adyen.Service.Management
         /// <param name="apiCredentialId">Unique identifier of the API credential.</param>
         /// <param name="requestOptions">Additional request options.</param>
         /// <returns>CompanyApiCredential</returns>
-        public CompanyApiCredential GetCompaniesCompanyIdApiCredentialsApiCredentialId(string companyId, string apiCredentialId, RequestOptions requestOptions = default)
+        public CompanyApiCredential GetApiCredential(string companyId, string apiCredentialId, RequestOptions requestOptions = default)
         {
-            return GetCompaniesCompanyIdApiCredentialsApiCredentialIdAsync(companyId, apiCredentialId, requestOptions).GetAwaiter().GetResult();
+            return GetApiCredentialAsync(companyId, apiCredentialId, requestOptions).GetAwaiter().GetResult();
         }
 
         /// <summary>
@@ -80,7 +80,7 @@ namespace Adyen.Service.Management
         /// <param name="apiCredentialId">Unique identifier of the API credential.</param>
         /// <param name="requestOptions">Additional request options.</param>
         /// <returns>Task of CompanyApiCredential</returns>
-        public async Task<CompanyApiCredential> GetCompaniesCompanyIdApiCredentialsApiCredentialIdAsync(string companyId, string apiCredentialId, RequestOptions requestOptions = default)
+        public async Task<CompanyApiCredential> GetApiCredentialAsync(string companyId, string apiCredentialId, RequestOptions requestOptions = default)
         {
             var endpoint = $"/companies/{companyId}/apiCredentials/{apiCredentialId}";
             var resource = new ManagementResource(this, endpoint);
@@ -96,9 +96,9 @@ namespace Adyen.Service.Management
         /// <param name="updateCompanyApiCredentialRequest"></param>
         /// <param name="requestOptions">Additional request options.</param>
         /// <returns>CompanyApiCredential</returns>
-        public CompanyApiCredential PatchCompaniesCompanyIdApiCredentialsApiCredentialId(string companyId, string apiCredentialId, UpdateCompanyApiCredentialRequest updateCompanyApiCredentialRequest, RequestOptions requestOptions = default)
+        public CompanyApiCredential UpdateApiCredential(string companyId, string apiCredentialId, UpdateCompanyApiCredentialRequest updateCompanyApiCredentialRequest, RequestOptions requestOptions = default)
         {
-            return PatchCompaniesCompanyIdApiCredentialsApiCredentialIdAsync(companyId, apiCredentialId, updateCompanyApiCredentialRequest, requestOptions).GetAwaiter().GetResult();
+            return UpdateApiCredentialAsync(companyId, apiCredentialId, updateCompanyApiCredentialRequest, requestOptions).GetAwaiter().GetResult();
         }
 
         /// <summary>
@@ -109,7 +109,7 @@ namespace Adyen.Service.Management
         /// <param name="updateCompanyApiCredentialRequest"></param>
         /// <param name="requestOptions">Additional request options.</param>
         /// <returns>Task of CompanyApiCredential</returns>
-        public async Task<CompanyApiCredential> PatchCompaniesCompanyIdApiCredentialsApiCredentialIdAsync(string companyId, string apiCredentialId, UpdateCompanyApiCredentialRequest updateCompanyApiCredentialRequest, RequestOptions requestOptions = default)
+        public async Task<CompanyApiCredential> UpdateApiCredentialAsync(string companyId, string apiCredentialId, UpdateCompanyApiCredentialRequest updateCompanyApiCredentialRequest, RequestOptions requestOptions = default)
         {
             var endpoint = $"/companies/{companyId}/apiCredentials/{apiCredentialId}";
             var resource = new ManagementResource(this, endpoint);
@@ -124,9 +124,9 @@ namespace Adyen.Service.Management
         /// <param name="createCompanyApiCredentialRequest"></param>
         /// <param name="requestOptions">Additional request options.</param>
         /// <returns>CreateCompanyApiCredentialResponse</returns>
-        public CreateCompanyApiCredentialResponse PostCompaniesCompanyIdApiCredentials(string companyId, CreateCompanyApiCredentialRequest createCompanyApiCredentialRequest, RequestOptions requestOptions = default)
+        public CreateCompanyApiCredentialResponse CreateApiCredential(string companyId, CreateCompanyApiCredentialRequest createCompanyApiCredentialRequest, RequestOptions requestOptions = default)
         {
-            return PostCompaniesCompanyIdApiCredentialsAsync(companyId, createCompanyApiCredentialRequest, requestOptions).GetAwaiter().GetResult();
+            return CreateApiCredentialAsync(companyId, createCompanyApiCredentialRequest, requestOptions).GetAwaiter().GetResult();
         }
 
         /// <summary>
@@ -136,7 +136,7 @@ namespace Adyen.Service.Management
         /// <param name="createCompanyApiCredentialRequest"></param>
         /// <param name="requestOptions">Additional request options.</param>
         /// <returns>Task of CreateCompanyApiCredentialResponse</returns>
-        public async Task<CreateCompanyApiCredentialResponse> PostCompaniesCompanyIdApiCredentialsAsync(string companyId, CreateCompanyApiCredentialRequest createCompanyApiCredentialRequest, RequestOptions requestOptions = default)
+        public async Task<CreateCompanyApiCredentialResponse> CreateApiCredentialAsync(string companyId, CreateCompanyApiCredentialRequest createCompanyApiCredentialRequest, RequestOptions requestOptions = default)
         {
             var endpoint = $"/companies/{companyId}/apiCredentials";
             var resource = new ManagementResource(this, endpoint);

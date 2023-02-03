@@ -19,6 +19,7 @@ The library supports all APIs under the following services:
 * [Cloud-based Terminal API](https://docs.adyen.com/point-of-sale/choose-your-architecture/cloud): Our point-of-sale integration.
 * [Local-based Terminal API](https://docs.adyen.com/point-of-sale/choose-your-architecture/local): Our point-of-sale integration.
 * [POS Terminal Management API](https://docs.adyen.com/api-explorer/#/postfmapi/v1/overview): Endpoints for managing your point-of-sale payment terminals **v1**
+* [Management API](https://docs.adyen.com/api-explorer/Management/1/overview): Configure and manage your Adyen company and merchant accounts, stores, and payment terminals. **v1**
 
 For more information, refer to our [documentation](https://docs.adyen.com/) or the [API Explorer](https://docs.adyen.com/api-explorer/).
 

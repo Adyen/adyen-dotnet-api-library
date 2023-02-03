@@ -34,9 +34,9 @@ namespace Adyen.Service.Management
         /// <param name="companyId">The unique identifier of the company account.</param>
         /// <param name="webhookId">Unique identifier of the webhook configuration.</param>
         /// <param name="requestOptions">Additional request options.</param>
-        public void DeleteCompaniesCompanyIdWebhooksWebhookId(string companyId, string webhookId, RequestOptions requestOptions = default)
+        public void RemoveWebhook(string companyId, string webhookId, RequestOptions requestOptions = default)
         {
-            DeleteCompaniesCompanyIdWebhooksWebhookIdAsync(companyId, webhookId, requestOptions).GetAwaiter().GetResult();
+            RemoveWebhookAsync(companyId, webhookId, requestOptions).GetAwaiter().GetResult();
         }
 
         /// <summary>
@@ -45,7 +45,7 @@ namespace Adyen.Service.Management
         /// <param name="companyId">The unique identifier of the company account.</param>
         /// <param name="webhookId">Unique identifier of the webhook configuration.</param>
         /// <param name="requestOptions">Additional request options.</param>
-        public async Task DeleteCompaniesCompanyIdWebhooksWebhookIdAsync(string companyId, string webhookId, RequestOptions requestOptions = default)
+        public async Task RemoveWebhookAsync(string companyId, string webhookId, RequestOptions requestOptions = default)
         {
             var endpoint = $"/companies/{companyId}/webhooks/{webhookId}";
             var resource = new ManagementResource(this, endpoint);
@@ -60,9 +60,9 @@ namespace Adyen.Service.Management
         /// <param name="pageSize">The number of items to have on a page, maximum 100. The default is 10 items on a page.</param>
         /// <param name="requestOptions">Additional request options.</param>
         /// <returns>ListWebhooksResponse</returns>
-        public ListWebhooksResponse GetCompaniesCompanyIdWebhooks(string companyId, int? pageNumber = default, int? pageSize = default, RequestOptions requestOptions = default)
+        public ListWebhooksResponse ListAllWebhooks(string companyId, int? pageNumber = default, int? pageSize = default, RequestOptions requestOptions = default)
         {
-            return GetCompaniesCompanyIdWebhooksAsync(companyId, pageNumber, pageSize, requestOptions).GetAwaiter().GetResult();
+            return ListAllWebhooksAsync(companyId, pageNumber, pageSize, requestOptions).GetAwaiter().GetResult();
         }
 
         /// <summary>
@@ -73,7 +73,7 @@ namespace Adyen.Service.Management
         /// <param name="pageSize">The number of items to have on a page, maximum 100. The default is 10 items on a page.</param>
         /// <param name="requestOptions">Additional request options.</param>
         /// <returns>Task of ListWebhooksResponse</returns>
-        public async Task<ListWebhooksResponse> GetCompaniesCompanyIdWebhooksAsync(string companyId, int? pageNumber = default, int? pageSize = default, RequestOptions requestOptions = default)
+        public async Task<ListWebhooksResponse> ListAllWebhooksAsync(string companyId, int? pageNumber = default, int? pageSize = default, RequestOptions requestOptions = default)
         {
             // Build the query string
             var queryParams = new Dictionary<string, string>();
@@ -92,9 +92,9 @@ namespace Adyen.Service.Management
         /// <param name="webhookId">Unique identifier of the webhook configuration.</param>
         /// <param name="requestOptions">Additional request options.</param>
         /// <returns>Webhook</returns>
-        public Webhook GetCompaniesCompanyIdWebhooksWebhookId(string companyId, string webhookId, RequestOptions requestOptions = default)
+        public Webhook GetWebhook(string companyId, string webhookId, RequestOptions requestOptions = default)
         {
-            return GetCompaniesCompanyIdWebhooksWebhookIdAsync(companyId, webhookId, requestOptions).GetAwaiter().GetResult();
+            return GetWebhookAsync(companyId, webhookId, requestOptions).GetAwaiter().GetResult();
         }
 
         /// <summary>
@@ -104,7 +104,7 @@ namespace Adyen.Service.Management
         /// <param name="webhookId">Unique identifier of the webhook configuration.</param>
         /// <param name="requestOptions">Additional request options.</param>
         /// <returns>Task of Webhook</returns>
-        public async Task<Webhook> GetCompaniesCompanyIdWebhooksWebhookIdAsync(string companyId, string webhookId, RequestOptions requestOptions = default)
+        public async Task<Webhook> GetWebhookAsync(string companyId, string webhookId, RequestOptions requestOptions = default)
         {
             var endpoint = $"/companies/{companyId}/webhooks/{webhookId}";
             var resource = new ManagementResource(this, endpoint);
@@ -120,9 +120,9 @@ namespace Adyen.Service.Management
         /// <param name="updateCompanyWebhookRequest"></param>
         /// <param name="requestOptions">Additional request options.</param>
         /// <returns>Webhook</returns>
-        public Webhook PatchCompaniesCompanyIdWebhooksWebhookId(string companyId, string webhookId, UpdateCompanyWebhookRequest updateCompanyWebhookRequest, RequestOptions requestOptions = default)
+        public Webhook UpdateWebhook(string companyId, string webhookId, UpdateCompanyWebhookRequest updateCompanyWebhookRequest, RequestOptions requestOptions = default)
         {
-            return PatchCompaniesCompanyIdWebhooksWebhookIdAsync(companyId, webhookId, updateCompanyWebhookRequest, requestOptions).GetAwaiter().GetResult();
+            return UpdateWebhookAsync(companyId, webhookId, updateCompanyWebhookRequest, requestOptions).GetAwaiter().GetResult();
         }
 
         /// <summary>
@@ -133,7 +133,7 @@ namespace Adyen.Service.Management
         /// <param name="updateCompanyWebhookRequest"></param>
         /// <param name="requestOptions">Additional request options.</param>
         /// <returns>Task of Webhook</returns>
-        public async Task<Webhook> PatchCompaniesCompanyIdWebhooksWebhookIdAsync(string companyId, string webhookId, UpdateCompanyWebhookRequest updateCompanyWebhookRequest, RequestOptions requestOptions = default)
+        public async Task<Webhook> UpdateWebhookAsync(string companyId, string webhookId, UpdateCompanyWebhookRequest updateCompanyWebhookRequest, RequestOptions requestOptions = default)
         {
             var endpoint = $"/companies/{companyId}/webhooks/{webhookId}";
             var resource = new ManagementResource(this, endpoint);
@@ -148,9 +148,9 @@ namespace Adyen.Service.Management
         /// <param name="createCompanyWebhookRequest"></param>
         /// <param name="requestOptions">Additional request options.</param>
         /// <returns>Webhook</returns>
-        public Webhook PostCompaniesCompanyIdWebhooks(string companyId, CreateCompanyWebhookRequest createCompanyWebhookRequest, RequestOptions requestOptions = default)
+        public Webhook SetUpWebhook(string companyId, CreateCompanyWebhookRequest createCompanyWebhookRequest, RequestOptions requestOptions = default)
         {
-            return PostCompaniesCompanyIdWebhooksAsync(companyId, createCompanyWebhookRequest, requestOptions).GetAwaiter().GetResult();
+            return SetUpWebhookAsync(companyId, createCompanyWebhookRequest, requestOptions).GetAwaiter().GetResult();
         }
 
         /// <summary>
@@ -160,7 +160,7 @@ namespace Adyen.Service.Management
         /// <param name="createCompanyWebhookRequest"></param>
         /// <param name="requestOptions">Additional request options.</param>
         /// <returns>Task of Webhook</returns>
-        public async Task<Webhook> PostCompaniesCompanyIdWebhooksAsync(string companyId, CreateCompanyWebhookRequest createCompanyWebhookRequest, RequestOptions requestOptions = default)
+        public async Task<Webhook> SetUpWebhookAsync(string companyId, CreateCompanyWebhookRequest createCompanyWebhookRequest, RequestOptions requestOptions = default)
         {
             var endpoint = $"/companies/{companyId}/webhooks";
             var resource = new ManagementResource(this, endpoint);
@@ -175,9 +175,9 @@ namespace Adyen.Service.Management
         /// <param name="webhookId">Unique identifier of the webhook configuration.</param>
         /// <param name="requestOptions">Additional request options.</param>
         /// <returns>GenerateHmacKeyResponse</returns>
-        public GenerateHmacKeyResponse PostCompaniesCompanyIdWebhooksWebhookIdGenerateHmac(string companyId, string webhookId, RequestOptions requestOptions = default)
+        public GenerateHmacKeyResponse GenerateHmacKey(string companyId, string webhookId, RequestOptions requestOptions = default)
         {
-            return PostCompaniesCompanyIdWebhooksWebhookIdGenerateHmacAsync(companyId, webhookId, requestOptions).GetAwaiter().GetResult();
+            return GenerateHmacKeyAsync(companyId, webhookId, requestOptions).GetAwaiter().GetResult();
         }
 
         /// <summary>
@@ -187,7 +187,7 @@ namespace Adyen.Service.Management
         /// <param name="webhookId">Unique identifier of the webhook configuration.</param>
         /// <param name="requestOptions">Additional request options.</param>
         /// <returns>Task of GenerateHmacKeyResponse</returns>
-        public async Task<GenerateHmacKeyResponse> PostCompaniesCompanyIdWebhooksWebhookIdGenerateHmacAsync(string companyId, string webhookId, RequestOptions requestOptions = default)
+        public async Task<GenerateHmacKeyResponse> GenerateHmacKeyAsync(string companyId, string webhookId, RequestOptions requestOptions = default)
         {
             var endpoint = $"/companies/{companyId}/webhooks/{webhookId}/generateHmac";
             var resource = new ManagementResource(this, endpoint);
@@ -203,9 +203,9 @@ namespace Adyen.Service.Management
         /// <param name="testCompanyWebhookRequest"></param>
         /// <param name="requestOptions">Additional request options.</param>
         /// <returns>TestWebhookResponse</returns>
-        public TestWebhookResponse PostCompaniesCompanyIdWebhooksWebhookIdTest(string companyId, string webhookId, TestCompanyWebhookRequest testCompanyWebhookRequest, RequestOptions requestOptions = default)
+        public TestWebhookResponse TestWebhook(string companyId, string webhookId, TestCompanyWebhookRequest testCompanyWebhookRequest, RequestOptions requestOptions = default)
         {
-            return PostCompaniesCompanyIdWebhooksWebhookIdTestAsync(companyId, webhookId, testCompanyWebhookRequest, requestOptions).GetAwaiter().GetResult();
+            return TestWebhookAsync(companyId, webhookId, testCompanyWebhookRequest, requestOptions).GetAwaiter().GetResult();
         }
 
         /// <summary>
@@ -216,7 +216,7 @@ namespace Adyen.Service.Management
         /// <param name="testCompanyWebhookRequest"></param>
         /// <param name="requestOptions">Additional request options.</param>
         /// <returns>Task of TestWebhookResponse</returns>
-        public async Task<TestWebhookResponse> PostCompaniesCompanyIdWebhooksWebhookIdTestAsync(string companyId, string webhookId, TestCompanyWebhookRequest testCompanyWebhookRequest, RequestOptions requestOptions = default)
+        public async Task<TestWebhookResponse> TestWebhookAsync(string companyId, string webhookId, TestCompanyWebhookRequest testCompanyWebhookRequest, RequestOptions requestOptions = default)
         {
             var endpoint = $"/companies/{companyId}/webhooks/{webhookId}/test";
             var resource = new ManagementResource(this, endpoint);

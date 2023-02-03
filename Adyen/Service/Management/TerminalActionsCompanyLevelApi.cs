@@ -36,9 +36,9 @@ namespace Adyen.Service.Management
         /// <param name="pageSize">The number of items to have on a page, maximum 100. The default is 20 items on a page.</param>
         /// <param name="requestOptions">Additional request options.</param>
         /// <returns>AndroidAppsResponse</returns>
-        public AndroidAppsResponse GetCompaniesCompanyIdAndroidApps(string companyId, int? pageNumber = default, int? pageSize = default, RequestOptions requestOptions = default)
+        public AndroidAppsResponse ListAndroidApps(string companyId, int? pageNumber = default, int? pageSize = default, RequestOptions requestOptions = default)
         {
-            return GetCompaniesCompanyIdAndroidAppsAsync(companyId, pageNumber, pageSize, requestOptions).GetAwaiter().GetResult();
+            return ListAndroidAppsAsync(companyId, pageNumber, pageSize, requestOptions).GetAwaiter().GetResult();
         }
 
         /// <summary>
@@ -49,7 +49,7 @@ namespace Adyen.Service.Management
         /// <param name="pageSize">The number of items to have on a page, maximum 100. The default is 20 items on a page.</param>
         /// <param name="requestOptions">Additional request options.</param>
         /// <returns>Task of AndroidAppsResponse</returns>
-        public async Task<AndroidAppsResponse> GetCompaniesCompanyIdAndroidAppsAsync(string companyId, int? pageNumber = default, int? pageSize = default, RequestOptions requestOptions = default)
+        public async Task<AndroidAppsResponse> ListAndroidAppsAsync(string companyId, int? pageNumber = default, int? pageSize = default, RequestOptions requestOptions = default)
         {
             // Build the query string
             var queryParams = new Dictionary<string, string>();
@@ -69,9 +69,9 @@ namespace Adyen.Service.Management
         /// <param name="pageSize">The number of items to have on a page, maximum 100. The default is 20 items on a page.</param>
         /// <param name="requestOptions">Additional request options.</param>
         /// <returns>AndroidCertificatesResponse</returns>
-        public AndroidCertificatesResponse GetCompaniesCompanyIdAndroidCertificates(string companyId, int? pageNumber = default, int? pageSize = default, RequestOptions requestOptions = default)
+        public AndroidCertificatesResponse ListAndroidCertificates(string companyId, int? pageNumber = default, int? pageSize = default, RequestOptions requestOptions = default)
         {
-            return GetCompaniesCompanyIdAndroidCertificatesAsync(companyId, pageNumber, pageSize, requestOptions).GetAwaiter().GetResult();
+            return ListAndroidCertificatesAsync(companyId, pageNumber, pageSize, requestOptions).GetAwaiter().GetResult();
         }
 
         /// <summary>
@@ -82,7 +82,7 @@ namespace Adyen.Service.Management
         /// <param name="pageSize">The number of items to have on a page, maximum 100. The default is 20 items on a page.</param>
         /// <param name="requestOptions">Additional request options.</param>
         /// <returns>Task of AndroidCertificatesResponse</returns>
-        public async Task<AndroidCertificatesResponse> GetCompaniesCompanyIdAndroidCertificatesAsync(string companyId, int? pageNumber = default, int? pageSize = default, RequestOptions requestOptions = default)
+        public async Task<AndroidCertificatesResponse> ListAndroidCertificatesAsync(string companyId, int? pageNumber = default, int? pageSize = default, RequestOptions requestOptions = default)
         {
             // Build the query string
             var queryParams = new Dictionary<string, string>();
@@ -104,9 +104,9 @@ namespace Adyen.Service.Management
         /// <param name="type">Returns terminal actions of the specified type.  Allowed values: **InstallAndroidApp**, **UninstallAndroidApp**, **InstallAndroidCertificate**, **UninstallAndroidCertificate**.</param>
         /// <param name="requestOptions">Additional request options.</param>
         /// <returns>ListExternalTerminalActionsResponse</returns>
-        public ListExternalTerminalActionsResponse GetCompaniesCompanyIdTerminalActions(string companyId, int? pageNumber = default, int? pageSize = default, string status = default, string type = default, RequestOptions requestOptions = default)
+        public ListExternalTerminalActionsResponse ListTerminalActions(string companyId, int? pageNumber = default, int? pageSize = default, string status = default, string type = default, RequestOptions requestOptions = default)
         {
-            return GetCompaniesCompanyIdTerminalActionsAsync(companyId, pageNumber, pageSize, status, type, requestOptions).GetAwaiter().GetResult();
+            return ListTerminalActionsAsync(companyId, pageNumber, pageSize, status, type, requestOptions).GetAwaiter().GetResult();
         }
 
         /// <summary>
@@ -119,7 +119,7 @@ namespace Adyen.Service.Management
         /// <param name="type">Returns terminal actions of the specified type.  Allowed values: **InstallAndroidApp**, **UninstallAndroidApp**, **InstallAndroidCertificate**, **UninstallAndroidCertificate**.</param>
         /// <param name="requestOptions">Additional request options.</param>
         /// <returns>Task of ListExternalTerminalActionsResponse</returns>
-        public async Task<ListExternalTerminalActionsResponse> GetCompaniesCompanyIdTerminalActionsAsync(string companyId, int? pageNumber = default, int? pageSize = default, string status = default, string type = default, RequestOptions requestOptions = default)
+        public async Task<ListExternalTerminalActionsResponse> ListTerminalActionsAsync(string companyId, int? pageNumber = default, int? pageSize = default, string status = default, string type = default, RequestOptions requestOptions = default)
         {
             // Build the query string
             var queryParams = new Dictionary<string, string>();
@@ -140,9 +140,9 @@ namespace Adyen.Service.Management
         /// <param name="actionId">The unique identifier of the terminal action.</param>
         /// <param name="requestOptions">Additional request options.</param>
         /// <returns>ExternalTerminalAction</returns>
-        public ExternalTerminalAction GetCompaniesCompanyIdTerminalActionsActionId(string companyId, string actionId, RequestOptions requestOptions = default)
+        public ExternalTerminalAction GetTerminalAction(string companyId, string actionId, RequestOptions requestOptions = default)
         {
-            return GetCompaniesCompanyIdTerminalActionsActionIdAsync(companyId, actionId, requestOptions).GetAwaiter().GetResult();
+            return GetTerminalActionAsync(companyId, actionId, requestOptions).GetAwaiter().GetResult();
         }
 
         /// <summary>
@@ -152,7 +152,7 @@ namespace Adyen.Service.Management
         /// <param name="actionId">The unique identifier of the terminal action.</param>
         /// <param name="requestOptions">Additional request options.</param>
         /// <returns>Task of ExternalTerminalAction</returns>
-        public async Task<ExternalTerminalAction> GetCompaniesCompanyIdTerminalActionsActionIdAsync(string companyId, string actionId, RequestOptions requestOptions = default)
+        public async Task<ExternalTerminalAction> GetTerminalActionAsync(string companyId, string actionId, RequestOptions requestOptions = default)
         {
             var endpoint = $"/companies/{companyId}/terminalActions/{actionId}";
             var resource = new ManagementResource(this, endpoint);

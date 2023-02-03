@@ -34,22 +34,17 @@ namespace Adyen.Model.Management
         /// <summary>
         /// Initializes a new instance of the <see cref="GooglePayInfo" /> class.
         /// </summary>
-        [JsonConstructorAttribute]
-        protected GooglePayInfo() { }
-        /// <summary>
-        /// Initializes a new instance of the <see cref="GooglePayInfo" /> class.
-        /// </summary>
-        /// <param name="merchantId">GooglePay Merchant ID. Character length and limitations: 16 alphanumeric characters or 20 numeric characters. (required).</param>
+        /// <param name="merchantId">Google Pay [Merchant ID](https://support.google.com/paymentscenter/answer/7163092?hl&#x3D;en). Character length and limitations: 16 alphanumeric characters or 20 numeric characters..</param>
         public GooglePayInfo(string merchantId = default(string))
         {
             this.MerchantId = merchantId;
         }
 
         /// <summary>
-        /// GooglePay Merchant ID. Character length and limitations: 16 alphanumeric characters or 20 numeric characters.
+        /// Google Pay [Merchant ID](https://support.google.com/paymentscenter/answer/7163092?hl&#x3D;en). Character length and limitations: 16 alphanumeric characters or 20 numeric characters.
         /// </summary>
-        /// <value>GooglePay Merchant ID. Character length and limitations: 16 alphanumeric characters or 20 numeric characters.</value>
-        [DataMember(Name="merchantId", EmitDefaultValue=true)]
+        /// <value>Google Pay [Merchant ID](https://support.google.com/paymentscenter/answer/7163092?hl&#x3D;en). Character length and limitations: 16 alphanumeric characters or 20 numeric characters.</value>
+        [DataMember(Name="merchantId", EmitDefaultValue=false)]
         public string MerchantId { get; set; }
 
         /// <summary>

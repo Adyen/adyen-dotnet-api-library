@@ -34,9 +34,14 @@ namespace Adyen.Model.Management
         /// <summary>
         /// Initializes a new instance of the <see cref="Amount" /> class.
         /// </summary>
-        /// <param name="currency">The three-character [ISO currency code](https://docs.adyen.com/development-resources/currency-codes)..</param>
-        /// <param name="value">value.</param>
-        public Amount(string currency = default(string), Object value = default(Object))
+        [JsonConstructorAttribute]
+        protected Amount() { }
+        /// <summary>
+        /// Initializes a new instance of the <see cref="Amount" /> class.
+        /// </summary>
+        /// <param name="currency">The three-character [ISO currency code](https://docs.adyen.com/development-resources/currency-codes). (required).</param>
+        /// <param name="value">The amount of the transaction, in [minor units](https://docs.adyen.com/development-resources/currency-codes). (required).</param>
+        public Amount(string currency = default(string), long value = default(long))
         {
             this.Currency = currency;
             this.Value = value;
@@ -46,14 +51,15 @@ namespace Adyen.Model.Management
         /// The three-character [ISO currency code](https://docs.adyen.com/development-resources/currency-codes).
         /// </summary>
         /// <value>The three-character [ISO currency code](https://docs.adyen.com/development-resources/currency-codes).</value>
-        [DataMember(Name="currency", EmitDefaultValue=false)]
+        [DataMember(Name="currency", EmitDefaultValue=true)]
         public string Currency { get; set; }
 
         /// <summary>
-        /// Gets or Sets Value
+        /// The amount of the transaction, in [minor units](https://docs.adyen.com/development-resources/currency-codes).
         /// </summary>
+        /// <value>The amount of the transaction, in [minor units](https://docs.adyen.com/development-resources/currency-codes).</value>
         [DataMember(Name="value", EmitDefaultValue=true)]
-        public Object Value { get; set; }
+        public long Value { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -135,6 +141,18 @@ namespace Adyen.Model.Management
         /// <returns>Validation Result</returns>
         IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
         {
+            // Currency (string) maxLength
+            if(this.Currency != null && this.Currency.Length > 3)
+            {
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for Currency, length must be less than 3.", new [] { "Currency" });
+            }
+
+            // Currency (string) minLength
+            if(this.Currency != null && this.Currency.Length < 3)
+            {
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for Currency, length must be greater than 3.", new [] { "Currency" });
+            }
+
             yield break;
         }
     }

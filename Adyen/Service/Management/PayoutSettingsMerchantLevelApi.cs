@@ -34,10 +34,9 @@ namespace Adyen.Service.Management
         /// <param name="merchantId">The unique identifier of the merchant account.</param>
         /// <param name="payoutSettingsId">The unique identifier of the payout setting.</param>
         /// <param name="requestOptions">Additional request options.</param>
-        /// <returns>Object</returns>
-        public Object DeleteMerchantsMerchantIdPayoutSettingsPayoutSettingsId(string merchantId, string payoutSettingsId, RequestOptions requestOptions = default)
+        public void DeletePayoutSetting(string merchantId, string payoutSettingsId, RequestOptions requestOptions = default)
         {
-            return DeleteMerchantsMerchantIdPayoutSettingsPayoutSettingsIdAsync(merchantId, payoutSettingsId, requestOptions).GetAwaiter().GetResult();
+            DeletePayoutSettingAsync(merchantId, payoutSettingsId, requestOptions).GetAwaiter().GetResult();
         }
 
         /// <summary>
@@ -46,13 +45,11 @@ namespace Adyen.Service.Management
         /// <param name="merchantId">The unique identifier of the merchant account.</param>
         /// <param name="payoutSettingsId">The unique identifier of the payout setting.</param>
         /// <param name="requestOptions">Additional request options.</param>
-        /// <returns>Task of Object</returns>
-        public async Task<Object> DeleteMerchantsMerchantIdPayoutSettingsPayoutSettingsIdAsync(string merchantId, string payoutSettingsId, RequestOptions requestOptions = default)
+        public async Task DeletePayoutSettingAsync(string merchantId, string payoutSettingsId, RequestOptions requestOptions = default)
         {
             var endpoint = $"/merchants/{merchantId}/payoutSettings/{payoutSettingsId}";
             var resource = new ManagementResource(this, endpoint);
-            var jsonResult = await resource.RequestAsync(null, requestOptions, new HttpMethod("DELETE"));
-            return JsonConvert.DeserializeObject<Object>(jsonResult);
+            await resource.RequestAsync(null, requestOptions, new HttpMethod("DELETE"));
         }
 
         /// <summary>
@@ -61,9 +58,9 @@ namespace Adyen.Service.Management
         /// <param name="merchantId">The unique identifier of the merchant account.</param>
         /// <param name="requestOptions">Additional request options.</param>
         /// <returns>PayoutSettingsResponse</returns>
-        public PayoutSettingsResponse GetMerchantsMerchantIdPayoutSettings(string merchantId, RequestOptions requestOptions = default)
+        public PayoutSettingsResponse ListPayoutSettings(string merchantId, RequestOptions requestOptions = default)
         {
-            return GetMerchantsMerchantIdPayoutSettingsAsync(merchantId, requestOptions).GetAwaiter().GetResult();
+            return ListPayoutSettingsAsync(merchantId, requestOptions).GetAwaiter().GetResult();
         }
 
         /// <summary>
@@ -72,7 +69,7 @@ namespace Adyen.Service.Management
         /// <param name="merchantId">The unique identifier of the merchant account.</param>
         /// <param name="requestOptions">Additional request options.</param>
         /// <returns>Task of PayoutSettingsResponse</returns>
-        public async Task<PayoutSettingsResponse> GetMerchantsMerchantIdPayoutSettingsAsync(string merchantId, RequestOptions requestOptions = default)
+        public async Task<PayoutSettingsResponse> ListPayoutSettingsAsync(string merchantId, RequestOptions requestOptions = default)
         {
             var endpoint = $"/merchants/{merchantId}/payoutSettings";
             var resource = new ManagementResource(this, endpoint);
@@ -87,9 +84,9 @@ namespace Adyen.Service.Management
         /// <param name="payoutSettingsId">The unique identifier of the payout setting.</param>
         /// <param name="requestOptions">Additional request options.</param>
         /// <returns>PayoutSettings</returns>
-        public PayoutSettings GetMerchantsMerchantIdPayoutSettingsPayoutSettingsId(string merchantId, string payoutSettingsId, RequestOptions requestOptions = default)
+        public PayoutSettings GetPayoutSetting(string merchantId, string payoutSettingsId, RequestOptions requestOptions = default)
         {
-            return GetMerchantsMerchantIdPayoutSettingsPayoutSettingsIdAsync(merchantId, payoutSettingsId, requestOptions).GetAwaiter().GetResult();
+            return GetPayoutSettingAsync(merchantId, payoutSettingsId, requestOptions).GetAwaiter().GetResult();
         }
 
         /// <summary>
@@ -99,7 +96,7 @@ namespace Adyen.Service.Management
         /// <param name="payoutSettingsId">The unique identifier of the payout setting.</param>
         /// <param name="requestOptions">Additional request options.</param>
         /// <returns>Task of PayoutSettings</returns>
-        public async Task<PayoutSettings> GetMerchantsMerchantIdPayoutSettingsPayoutSettingsIdAsync(string merchantId, string payoutSettingsId, RequestOptions requestOptions = default)
+        public async Task<PayoutSettings> GetPayoutSettingAsync(string merchantId, string payoutSettingsId, RequestOptions requestOptions = default)
         {
             var endpoint = $"/merchants/{merchantId}/payoutSettings/{payoutSettingsId}";
             var resource = new ManagementResource(this, endpoint);
@@ -115,9 +112,9 @@ namespace Adyen.Service.Management
         /// <param name="updatePayoutSettingsRequest"></param>
         /// <param name="requestOptions">Additional request options.</param>
         /// <returns>PayoutSettings</returns>
-        public PayoutSettings PatchMerchantsMerchantIdPayoutSettingsPayoutSettingsId(string merchantId, string payoutSettingsId, UpdatePayoutSettingsRequest updatePayoutSettingsRequest, RequestOptions requestOptions = default)
+        public PayoutSettings UpdatePayoutSetting(string merchantId, string payoutSettingsId, UpdatePayoutSettingsRequest updatePayoutSettingsRequest, RequestOptions requestOptions = default)
         {
-            return PatchMerchantsMerchantIdPayoutSettingsPayoutSettingsIdAsync(merchantId, payoutSettingsId, updatePayoutSettingsRequest, requestOptions).GetAwaiter().GetResult();
+            return UpdatePayoutSettingAsync(merchantId, payoutSettingsId, updatePayoutSettingsRequest, requestOptions).GetAwaiter().GetResult();
         }
 
         /// <summary>
@@ -128,7 +125,7 @@ namespace Adyen.Service.Management
         /// <param name="updatePayoutSettingsRequest"></param>
         /// <param name="requestOptions">Additional request options.</param>
         /// <returns>Task of PayoutSettings</returns>
-        public async Task<PayoutSettings> PatchMerchantsMerchantIdPayoutSettingsPayoutSettingsIdAsync(string merchantId, string payoutSettingsId, UpdatePayoutSettingsRequest updatePayoutSettingsRequest, RequestOptions requestOptions = default)
+        public async Task<PayoutSettings> UpdatePayoutSettingAsync(string merchantId, string payoutSettingsId, UpdatePayoutSettingsRequest updatePayoutSettingsRequest, RequestOptions requestOptions = default)
         {
             var endpoint = $"/merchants/{merchantId}/payoutSettings/{payoutSettingsId}";
             var resource = new ManagementResource(this, endpoint);
@@ -143,9 +140,9 @@ namespace Adyen.Service.Management
         /// <param name="payoutSettingsRequest"></param>
         /// <param name="requestOptions">Additional request options.</param>
         /// <returns>PayoutSettings</returns>
-        public PayoutSettings PostMerchantsMerchantIdPayoutSettings(string merchantId, PayoutSettingsRequest payoutSettingsRequest, RequestOptions requestOptions = default)
+        public PayoutSettings AddPayoutSetting(string merchantId, PayoutSettingsRequest payoutSettingsRequest, RequestOptions requestOptions = default)
         {
-            return PostMerchantsMerchantIdPayoutSettingsAsync(merchantId, payoutSettingsRequest, requestOptions).GetAwaiter().GetResult();
+            return AddPayoutSettingAsync(merchantId, payoutSettingsRequest, requestOptions).GetAwaiter().GetResult();
         }
 
         /// <summary>
@@ -155,7 +152,7 @@ namespace Adyen.Service.Management
         /// <param name="payoutSettingsRequest"></param>
         /// <param name="requestOptions">Additional request options.</param>
         /// <returns>Task of PayoutSettings</returns>
-        public async Task<PayoutSettings> PostMerchantsMerchantIdPayoutSettingsAsync(string merchantId, PayoutSettingsRequest payoutSettingsRequest, RequestOptions requestOptions = default)
+        public async Task<PayoutSettings> AddPayoutSettingAsync(string merchantId, PayoutSettingsRequest payoutSettingsRequest, RequestOptions requestOptions = default)
         {
             var endpoint = $"/merchants/{merchantId}/payoutSettings";
             var resource = new ManagementResource(this, endpoint);
