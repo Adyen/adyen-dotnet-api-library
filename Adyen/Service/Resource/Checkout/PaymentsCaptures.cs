@@ -33,7 +33,7 @@ namespace Adyen.Service.Resource.Checkout
         public PaymentsCapture(AbstractService abstractService, string paymentPspReference)
             : base(abstractService,
                 abstractService.Client.Config.CheckoutEndpoint + "/" + ClientConfig.CheckoutApiVersion + "/payments/" +
-                paymentPspReference + "/captures", new List<string> {"amount", "merchantAccount"})
+                paymentPspReference + "/captures")
         {
         }
     }
