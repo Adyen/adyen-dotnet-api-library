@@ -1,0 +1,25 @@
+{
+  "id": "S2-6262224667",
+  "username": "ws_123456@Company.Test",
+  "clientKey": "test_UCP6BO23234FFEFE33E4GWX63",
+  "allowedIpAddresses": [],
+  "roles": [
+    "Management API - Users read and write",
+    "Management API - Accounts read",
+    "Trigger webhook notifications",
+    "Management API - Payout Account Settings Read And Write",
+    "Manage LegalEntities via API",
+    "Manage associated partner accounts via API",
+    "PSP Pos initial configuration"
+  ],
+  "_links": {
+    "self": {
+      "href": "https://management-test.adyen.com/v1/me"
+    },
+    "allowedOrigins": {
+      "href": "https://management-test.adyen.com/v1/me/allowedOrigins"
+    }
+  },
+  "companyName": "Test",
+  "active": true
+}

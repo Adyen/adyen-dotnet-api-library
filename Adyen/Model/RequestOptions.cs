@@ -21,10 +21,13 @@
 //  */
 #endregion
 
+using System.Collections.Generic;
+
 namespace Adyen.Model
 {
     public class RequestOptions
     {
         public string IdempotencyKey { get; set; }
+        public IDictionary<string, string> QueryParameters { get; set; }
     }
 }
