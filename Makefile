@@ -13,7 +13,8 @@ output:=target/out
 models: $(services)
 
 BinLookup: spec=BinLookupService-v52
-Checkout: spec=CheckoutService-v69
+Checkout: spec=CheckoutService-v70
+Checkout: service=checkout
 StoredValue: spec=StoredValueService-v46
 PosTerminalManagement: spec=TfmAPIService-v1
 Payments: spec=PaymentService-v68
@@ -46,7 +47,7 @@ $(services): target/spec $(openapi-generator-jar)
 	mv target/out/src/Adyen.Model/$@/* Adyen/Model/$@
 
 # Generate a full client (models and service classes)
-Management: target/spec $(openapi-generator-jar)  
+Checkout: target/spec $(openapi-generator-jar)  
 	rm -rf $(output)
 	$(openapi-generator-cli) generate \
 		-i target/spec/json/$(spec).json \
