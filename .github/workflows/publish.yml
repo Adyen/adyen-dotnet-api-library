@@ -1,0 +1,36 @@
+name: publish to nuget
+on:
+  push:
+    branches:
+      - main # Default release branch, may also be named 'master' or 'develop'
+jobs:
+  publish:
+    name: build, pack & publish
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      
+      # Sets up .NET 
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v3
+        with:
+          dotnet-version: |
+            2.1.x
+            6.0.x
+
+      # Publish
+      - name: publish on version change
+        id: publish_nuget
+        uses: brandedoutcast/publish-nuget@v2
+        with:
+          # Filepath of the project to be packaged, relative to root of repository
+          PROJECT_FILE_PATH: Adyen/Adyen.csproj
+          
+          # Configuration to build and package
+          BUILD_CONFIGURATION: Release
+          
+          # NuGet package id, used for version detection & defaults to project name
+          PACKAGE_NAME: Adyen
+
+          # API key to authenticate with NuGet server
+          # NUGET_KEY: ${{secrets.NUGET_API_KEY}}
