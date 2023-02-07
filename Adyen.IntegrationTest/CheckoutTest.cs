@@ -297,5 +297,20 @@ namespace Adyen.IntegrationTest
             Assert.AreEqual(paymentsResponse.PspReference, paymentAmountUpdateResource.PaymentPspReference);
             Assert.AreEqual(paymentAmountUpdateResource.Reference, "my_updates_reference");
         }
+        
+        /// <summary>
+        /// Test success orders cancel
+        /// GET /storedPaymentMethods
+        /// </summary>
+        [TestMethod]
+        public void GetStoredPaymentMethodsTest()
+        {
+            var client = CreateApiKeyTestClient();
+            var checkout = new RecurringService(client);
+            var listStoredPaymentMethodsResponse = checkout.GetTokensForStoredPaymentDetails("test-1234", ClientConstants.MerchantAccount);
+            Console.WriteLine(listStoredPaymentMethodsResponse.ToJson());
+            Assert.AreEqual("scheme", listStoredPaymentMethodsResponse.StoredPaymentMethods[0].Type);
+            Assert.AreEqual(ClientConstants.MerchantAccount, listStoredPaymentMethodsResponse.MerchantAccount);
+        }
     }
 }

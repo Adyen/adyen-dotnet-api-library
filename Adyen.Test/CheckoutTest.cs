@@ -908,6 +908,32 @@ namespace Adyen.Test
             Assert.AreEqual("8515931182066678", checkoutOrdersCancelResponse.PspReference);
         }
         
+        /// <summary>
+        /// Test success orders cancel
+        /// GET /storedPaymentMethods
+        /// </summary>
+        [TestMethod]
+        public void GetStoredPaymentMethodsTest()
+        {
+            var client = CreateMockTestClientApiKeyBasedRequestAsync("Mocks/checkout/get-storedPaymentMethod-success.json");
+            var checkout = new RecurringService(client);
+            var listStoredPaymentMethodsResponse = checkout.GetTokensForStoredPaymentDetails("shopperRef", "merchantAccount");
+            Assert.AreEqual("string", listStoredPaymentMethodsResponse.StoredPaymentMethods[0].Type);
+            Assert.AreEqual("merchantAccount", listStoredPaymentMethodsResponse.MerchantAccount);
+        }
+        
+        /// <summary>
+        /// Test success orders cancel
+        /// GET /storedPaymentMethods
+        /// </summary>
+        [TestMethod]
+        public void DeleteStoredPaymentMethodsTest()
+        {
+            var client = CreateMockTestClientApiKeyBasedRequestAsync("Mocks/checkout/get-storedPaymentMethod-success.json");
+            var checkout = new RecurringService(client);
+            checkout.DeleteTokenForStoredPaymentDetails("shopperRef", "merchantAccount");
+        }
+        
         #region  Modification endpoints tests
         /// <summary>
         /// Test success capture

@@ -10,7 +10,6 @@
 * Do not edit the class manually.
 */
 
-
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -44,13 +43,15 @@ namespace Adyen.Model.Checkout
         /// </summary>
         /// <param name="cardNumber">A minimum of the first 8 digits of the card number and a maximum of the full card number. 11 digits gives the best result.   You must be [fully PCI compliant](https://docs.adyen.com/development-resources/pci-dss-compliance-guide) to collect raw card data. (required).</param>
         /// <param name="countryCode">The shopper country.  Format: [ISO 3166-1 alpha-2](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2) Example: NL or DE.</param>
+        /// <param name="encryptedCardNumber">The encrypted card number..</param>
         /// <param name="merchantAccount">The merchant account identifier, with which you want to process the transaction. (required).</param>
         /// <param name="supportedBrands">The card brands you support. This is the [&#x60;brands&#x60;](https://docs.adyen.com/api-explorer/#/CheckoutService/latest/post/paymentMethods__resParam_paymentMethods-brands) array from your [&#x60;/paymentMethods&#x60;](https://docs.adyen.com/api-explorer/#/CheckoutService/latest/post/paymentMethods) response.   If not included, our API uses the ones configured for your merchant account and, if provided, the country code..</param>
-        public CardDetailsRequest(string cardNumber = default(string), string countryCode = default(string), string merchantAccount = default(string), List<string> supportedBrands = default(List<string>))
+        public CardDetailsRequest(string cardNumber = default(string), string countryCode = default(string), string encryptedCardNumber = default(string), string merchantAccount = default(string), List<string> supportedBrands = default(List<string>))
         {
             this.CardNumber = cardNumber;
             this.MerchantAccount = merchantAccount;
             this.CountryCode = countryCode;
+            this.EncryptedCardNumber = encryptedCardNumber;
             this.SupportedBrands = supportedBrands;
         }
 
@@ -67,6 +68,13 @@ namespace Adyen.Model.Checkout
         /// <value>The shopper country.  Format: [ISO 3166-1 alpha-2](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2) Example: NL or DE</value>
         [DataMember(Name = "countryCode", EmitDefaultValue = false)]
         public string CountryCode { get; set; }
+
+        /// <summary>
+        /// The encrypted card number.
+        /// </summary>
+        /// <value>The encrypted card number.</value>
+        [DataMember(Name = "encryptedCardNumber", EmitDefaultValue = false)]
+        public string EncryptedCardNumber { get; set; }
 
         /// <summary>
         /// The merchant account identifier, with which you want to process the transaction.
@@ -92,6 +100,7 @@ namespace Adyen.Model.Checkout
             sb.Append("class CardDetailsRequest {\n");
             sb.Append("  CardNumber: ").Append(CardNumber).Append("\n");
             sb.Append("  CountryCode: ").Append(CountryCode).Append("\n");
+            sb.Append("  EncryptedCardNumber: ").Append(EncryptedCardNumber).Append("\n");
             sb.Append("  MerchantAccount: ").Append(MerchantAccount).Append("\n");
             sb.Append("  SupportedBrands: ").Append(SupportedBrands).Append("\n");
             sb.Append("}\n");
@@ -140,6 +149,11 @@ namespace Adyen.Model.Checkout
                     this.CountryCode.Equals(input.CountryCode))
                 ) && 
                 (
+                    this.EncryptedCardNumber == input.EncryptedCardNumber ||
+                    (this.EncryptedCardNumber != null &&
+                    this.EncryptedCardNumber.Equals(input.EncryptedCardNumber))
+                ) && 
+                (
                     this.MerchantAccount == input.MerchantAccount ||
                     (this.MerchantAccount != null &&
                     this.MerchantAccount.Equals(input.MerchantAccount))
@@ -168,6 +182,10 @@ namespace Adyen.Model.Checkout
                 if (this.CountryCode != null)
                 {
                     hashCode = (hashCode * 59) + this.CountryCode.GetHashCode();
+                }
+                if (this.EncryptedCardNumber != null)
+                {
+                    hashCode = (hashCode * 59) + this.EncryptedCardNumber.GetHashCode();
                 }
                 if (this.MerchantAccount != null)
                 {
