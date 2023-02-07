@@ -47,6 +47,7 @@ namespace Adyen.Test
 {
     public class BaseTest
     {
+        private protected Mock<IClient> ClientInterfaceMock;
 
         #region Payment request 
         /// <summary>
@@ -330,9 +331,9 @@ namespace Adyen.Test
             var mockPath = GetMockFilePath(fileName);
             var response = MockFileToString(mockPath);
             //Create a mock interface
-            var clientInterfaceMock = new Mock<IClient>();
+            ClientInterfaceMock = new Mock<IClient>();
             var confMock = MockPaymentData.CreateConfigApiKeyBasedMock();
-            clientInterfaceMock.Setup(x => x.RequestAsync(It.IsAny<string>(),
+            ClientInterfaceMock.Setup(x => x.RequestAsync(It.IsAny<string>(),
                 It.IsAny<string>(), It.IsAny<RequestOptions>(), It.IsAny<HttpMethod>())).ReturnsAsync(response);
             var config = new Config()
             {
@@ -340,7 +341,7 @@ namespace Adyen.Test
             };
             var clientMock = new Client(config)
             {
-                HttpClient = clientInterfaceMock.Object,
+                HttpClient = ClientInterfaceMock.Object,
                 Config = confMock
             };
             return clientMock;
