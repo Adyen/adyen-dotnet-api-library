@@ -798,6 +798,24 @@ namespace Adyen.Test
             Assert.AreEqual(ResultCodeEnum.IdentifyShopper, paymentResponse.ResultCode);
             Assert.AreEqual(CheckoutThreeDS2Action.TypeEnum.ThreeDS2, paymentResponseThreeDs2Action.Type);
         }
+        
+        [TestMethod]
+        public void CheckoutLocalDateSerializationTest()
+        {
+            var checkoutSessionRequest = new CreateCheckoutSessionRequest
+            {
+                MerchantAccount = "merchant",
+                Reference = "TestReference",
+                ReturnUrl = "http://test-url.com",
+                Amount = new Amount("EUR", 10000L),
+                DateOfBirth = new DateTime(1998, 1, 1, 1, 1, 1),
+                ExpiresAt = new DateTime(2023, 4, 1 ,1, 1, 1)
+            };
+            // Create a DateTime object with minutes and seconds and verify it gets omitted
+            Assert.IsTrue(checkoutSessionRequest.ToJson().Contains("1998-01-01"));
+            // Opposite; check that it keeps full ISO string for other Date parameters
+            Assert.IsTrue(checkoutSessionRequest.ToJson().Contains("2023-04-01T01:01:01"));
+        }
 
         /// <summary>
         /// Test success sessions
