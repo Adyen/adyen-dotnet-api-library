@@ -19,7 +19,6 @@ namespace Adyen.IntegrationTest
             var recurring = new Service.Recurring(client);
             var recurringDetailsRequest = this.CreateRecurringDetailsRequest();
             var recurringDetailsResult = recurring.ListRecurringDetails(recurringDetailsRequest);
-            Console.WriteLine(recurringDetailsResult.ToJson());
             var recurringDetail = recurringDetailsResult.Details[0].RecurringDetail;
             Assert.AreEqual(recurringDetail.PaymentMethodVariant, "visa");
         }

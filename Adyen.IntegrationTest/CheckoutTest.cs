@@ -305,10 +305,12 @@ namespace Adyen.IntegrationTest
         [TestMethod]
         public void GetStoredPaymentMethodsTest()
         {
+            // First execute RecurringTest
+            var test = new RecurringTest();
+            test.TestListRecurringDetails();
             var client = CreateApiKeyTestClient();
             var checkout = new RecurringService(client);
             var listStoredPaymentMethodsResponse = checkout.GetTokensForStoredPaymentDetails("test-1234", ClientConstants.MerchantAccount);
-            Console.WriteLine(listStoredPaymentMethodsResponse.ToJson());
             Assert.AreEqual("scheme", listStoredPaymentMethodsResponse.StoredPaymentMethods[0].Type);
             Assert.AreEqual(ClientConstants.MerchantAccount, listStoredPaymentMethodsResponse.MerchantAccount);
         }
