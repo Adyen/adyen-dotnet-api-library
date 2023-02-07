@@ -69,7 +69,7 @@ namespace Adyen.IntegrationTest
         [TestMethod]
         public void TestCheckoutErrorHandling()
         {
-            var payments = new PaymentsApi(_client);
+            var payments = new PaymentsService(_client);
             var request = new Model.Checkout.PaymentRequest {
                 Amount = new Model.Checkout.Amount(){
                     Value = 1500,

@@ -121,7 +121,7 @@ namespace Adyen.Test
         {
             var paymentRequest = CreatePaymentRequestCheckout();
             var client = CreateMockTestClientApiKeyBasedRequestAsync("Mocks/checkout/payments-success.json");
-            var checkout = new PaymentsApi(client);
+            var checkout = new PaymentsService(client);
             var paymentResponse = checkout.Payments(paymentRequest);
             Assert.AreEqual("8535296650153317", paymentResponse.PspReference);
             Assert.AreEqual(ResultCodeEnum.Authorised, paymentResponse.ResultCode);
@@ -147,7 +147,7 @@ namespace Adyen.Test
         {
             var paymentRequest = CreatePaymentRequestCheckout();
             var client = CreateMockTestClientApiKeyBasedRequestAsync("Mocks/checkout/payments-success.json");
-            var checkout = new PaymentsApi(client);
+            var checkout = new PaymentsService(client);
             var paymentResponse = await checkout.PaymentsAsync(paymentRequest);
             Assert.AreEqual("8535296650153317", paymentResponse.PspReference);
             Assert.AreEqual(ResultCodeEnum.Authorised, paymentResponse.ResultCode);
@@ -173,7 +173,7 @@ namespace Adyen.Test
         {
             var payment3DS2Request = CreatePaymentRequest3DS2();
             var client = CreateMockTestClientApiKeyBasedRequestAsync("Mocks/checkout/payments-3DS2-IdentifyShopper.json");
-            var checkout = new PaymentsApi(client);
+            var checkout = new PaymentsService(client);
             var paymentResponse = checkout.Payments(payment3DS2Request);
             Assert.AreEqual(paymentResponse.ResultCode, ResultCodeEnum.IdentifyShopper);
             Assert.AreEqual(paymentResponse.Action.GetCheckoutThreeDS2Action().Type.ToString(), "ThreeDS2");
@@ -189,7 +189,7 @@ namespace Adyen.Test
         {
             var paymentResultRequest = CreatePaymentVerificationRequest();
             var client = CreateMockTestClientApiKeyBasedRequestAsync("Mocks/threedsecure2/authorise3ds2-success.json");
-            var checkout = new ClassicCheckoutSDKApi(client);
+            var checkout = new ClassicCheckoutSDKService(client);
             var paymentResultResponse = checkout.VerifyPaymentResult(paymentResultRequest);
             Assert.IsNotNull(paymentResultResponse.AdditionalData);
             Assert.AreEqual(paymentResultResponse.AdditionalData["cvcResult"], "1 Matches");
@@ -206,7 +206,7 @@ namespace Adyen.Test
         {
             var paymentMethodsRequest = CreatePaymentRequestCheckout();
             var client = CreateMockTestClientApiKeyBasedRequestAsync("Mocks/checkout/payments-error-invalid-data-422.json");
-            var checkout = new PaymentsApi(client);
+            var checkout = new PaymentsService(client);
             var paymentResponse = checkout.Payments(paymentMethodsRequest);
             Assert.IsNull(paymentResponse.PspReference);
         }
@@ -221,7 +221,7 @@ namespace Adyen.Test
             var detailsRequest = CreateDetailsRequest();
             detailsRequest.Details = new PaymentCompletionDetails(payload: "Ab02b4c0!BQABAgBQn96RxfJHpp2RXhqQBuhQFWgE...gfGHb4IZSP4IpoCC2==RXhqQBuhQ");
             var client = CreateMockTestClientApiKeyBasedRequestAsync("Mocks/checkout/paymentsdetails-success.json");
-            var checkout = new PaymentsApi(client);
+            var checkout = new PaymentsService(client);
             var paymentResponse = checkout.PaymentsDetails(detailsRequest);
             Assert.AreEqual("8515232733321252", paymentResponse.PspReference);
         }
@@ -238,7 +238,7 @@ namespace Adyen.Test
                 new PaymentCompletionDetails(
                     payload: "Ab02b4c0!BQABAgBQn96RxfJHpp2RXhqQBuhQFWgE...gfGHb4IZSP4IpoCC2==RXhqQBuhQ");
             var client = CreateMockTestClientApiKeyBasedRequestAsync("Mocks/checkout/paymentsdetails-success.json");
-            var checkout = new PaymentsApi(client);
+            var checkout = new PaymentsService(client);
             var paymentResponse = await checkout.PaymentsDetailsAsync(detailsRequest);
             Assert.AreEqual("8515232733321252", paymentResponse.PspReference);
         }
@@ -256,7 +256,7 @@ namespace Adyen.Test
                     payload: "Ab02b4c0!BQABAgBQn96RxfJHpp2RXhqQBuhQFWgE...gfGHb4IZSP4IpoCC2==RXhqQBuhQ");
             var client =
                 CreateMockTestClientApiKeyBasedRequestAsync("Mocks/checkout/paymentsdetails-error-invalid-data-422.json");
-            var checkout = new PaymentsApi(client);
+            var checkout = new PaymentsService(client);
             var paymentResponse = checkout.PaymentsDetails(detailsRequest);
             Assert.IsNull(paymentResponse.ResultCode);
         }
@@ -273,7 +273,7 @@ namespace Adyen.Test
                 new PaymentCompletionDetails(
                     payload: "Ab02b4c0!BQABAgBQn96RxfJHpp2RXhqQBuhQFWgE...gfGHb4IZSP4IpoCC2==RXhqQBuhQ");
             var client = CreateMockTestClientApiKeyBasedRequestAsync("Mocks/checkout/paymentsdetails-action-success.json");
-            var checkout = new PaymentsApi(client);
+            var checkout = new PaymentsService(client);
             var paymentResponse = checkout.PaymentsDetails(detailsRequest);
             Assert.AreEqual(paymentResponse.PspReference, "8515232733321252");
             Assert.AreEqual(paymentResponse.ResultCode, PaymentDetailsResponse.ResultCodeEnum.Authorised);
@@ -288,7 +288,7 @@ namespace Adyen.Test
         {
             var paymentMethodsRequest = CreatePaymentMethodRequest("YourMerchantAccount");
             var client = CreateMockTestClientApiKeyBasedRequestAsync("Mocks/checkout/paymentmethods-success.json");
-            var checkout = new PaymentsApi(client);
+            var checkout = new PaymentsService(client);
             var paymentMethodsResponse = checkout.PaymentMethods(paymentMethodsRequest);
             Assert.AreEqual(paymentMethodsResponse.PaymentMethods.Count, 32);
         }
@@ -302,7 +302,7 @@ namespace Adyen.Test
         {
             var paymentMethodsRequest = CreatePaymentMethodRequest("YourMerchantAccount");
             var client = CreateMockTestClientApiKeyBasedRequestAsync("Mocks/checkout/paymentmethods-success.json");
-            var checkout = new PaymentsApi(client);
+            var checkout = new PaymentsService(client);
             var paymentMethodsResponse = checkout.PaymentMethods(paymentMethodsRequest);
             Assert.IsNotNull(paymentMethodsResponse.PaymentMethods[12].Issuers);
             Assert.AreEqual(paymentMethodsResponse.PaymentMethods[12].Issuers[0].Id, "66");
@@ -330,7 +330,7 @@ namespace Adyen.Test
         {
             var paymentMethodsRequest = CreatePaymentMethodRequest("YourMerchantAccount");
             var client = CreateMockTestClientApiKeyBasedRequestAsync("Mocks/checkout/paymentmethods-success.json");
-            var checkout = new PaymentsApi(client);
+            var checkout = new PaymentsService(client);
             var paymentMethodsResponse = await checkout.PaymentMethodsAsync(paymentMethodsRequest);
             Assert.AreEqual(paymentMethodsResponse.PaymentMethods.Count, 32);
         }
@@ -344,7 +344,7 @@ namespace Adyen.Test
         {
             var paymentMethodsRequest = CreatePaymentMethodRequest("YourMerchantAccount");
             var client = CreateMockTestClientApiKeyBasedRequestAsync("Mocks/checkout/paymentmethods-error-forbidden-403.json");
-            var checkout = new PaymentsApi(client);
+            var checkout = new PaymentsService(client);
             var paymentMethodsResponse = checkout.PaymentMethods(paymentMethodsRequest);
             Assert.IsNull(paymentMethodsResponse.PaymentMethods);
         }
@@ -358,7 +358,7 @@ namespace Adyen.Test
         {
             var paymentMethodsRequest = CreatePaymentMethodRequest("YourMerchantAccount");
             var client = CreateMockTestClientApiKeyBasedRequestAsync("Mocks/checkout/paymentmethods-brands-success.json");
-            var checkout = new PaymentsApi(client);
+            var checkout = new PaymentsService(client);
             var paymentMethodsResponse = checkout.PaymentMethods(paymentMethodsRequest);
             Assert.AreEqual(paymentMethodsResponse.PaymentMethods.Count, 7);
             Assert.AreEqual(paymentMethodsResponse.PaymentMethods[0].Brands.Count, 5);
@@ -378,7 +378,7 @@ namespace Adyen.Test
         {
             var paymentMethodsRequest = CreatePaymentMethodRequest("YourMerchantAccount");
             var client = CreateMockTestClientApiKeyBasedRequestAsync("Mocks/checkout/paymentmethods-without-brands-success.json");
-            var checkout = new PaymentsApi(client);
+            var checkout = new PaymentsService(client);
             var paymentMethodsResponse = checkout.PaymentMethods(paymentMethodsRequest);
             Assert.AreEqual(paymentMethodsResponse.PaymentMethods.Count, 50);
         }
@@ -393,7 +393,7 @@ namespace Adyen.Test
         {
             var paymentSessionRequest = CreatePaymentSetupRequest();
             var client = CreateMockTestClientApiKeyBasedRequestAsync("Mocks/checkout/paymentsession-success.json");
-            var checkout = new ClassicCheckoutSDKApi(client);
+            var checkout = new ClassicCheckoutSDKService(client);
             var paymentSessionResponse = checkout.PaymentSession(paymentSessionRequest);
             Assert.IsNotNull(paymentSessionResponse.PaymentSession);
         }
@@ -407,7 +407,7 @@ namespace Adyen.Test
         {
             var paymentSetupRequest = CreatePaymentSetupRequest();
             var client = CreateMockTestClientApiKeyBasedRequestAsync("Mocks/checkout/paymentsession-success.json");
-            var checkout = new ClassicCheckoutSDKApi(client);
+            var checkout = new ClassicCheckoutSDKService(client);
             var paymentSetupResponse = await checkout.PaymentSessionAsync(paymentSetupRequest);
             Assert.IsNotNull(paymentSetupResponse.PaymentSession);
         }
@@ -422,7 +422,7 @@ namespace Adyen.Test
             var paymentSetupRequest = CreatePaymentSetupRequest();
             var client =
                 CreateMockTestClientApiKeyBasedRequestAsync("Mocks/checkout/paymentsession-error-invalid-data-422.json");
-            var checkout = new ClassicCheckoutSDKApi(client);
+            var checkout = new ClassicCheckoutSDKService(client);
             var paymentSetupResponse = checkout.PaymentSession(paymentSetupRequest);
             Assert.IsNull(paymentSetupResponse.PaymentSession);
         }
@@ -436,7 +436,7 @@ namespace Adyen.Test
         {
             var paymentResultRequest = CreatePaymentVerificationRequest();
             var client = CreateMockTestClientApiKeyBasedRequestAsync("Mocks/checkout/paymentsresult-success.json");
-            var checkout = new ClassicCheckoutSDKApi(client);
+            var checkout = new ClassicCheckoutSDKService(client);
             var paymentResultResponse = checkout.VerifyPaymentResult(paymentResultRequest);
             Assert.AreEqual(paymentResultResponse.ResultCode, PaymentVerificationResponse.ResultCodeEnum.Authorised);
         }
@@ -450,7 +450,7 @@ namespace Adyen.Test
         {
             var paymentVerificationRequest = CreatePaymentVerificationRequest();
             var client = CreateMockTestClientApiKeyBasedRequestAsync("Mocks/checkout/paymentsresult-success.json");
-            var checkout = new ClassicCheckoutSDKApi(client);
+            var checkout = new ClassicCheckoutSDKService(client);
             var paymentVerificationResponse = await checkout.VerifyPaymentResultAsync(paymentVerificationRequest);
             Assert.AreEqual(paymentVerificationResponse.ResultCode, PaymentVerificationResponse.ResultCodeEnum.Authorised);
         }
@@ -466,7 +466,7 @@ namespace Adyen.Test
             var client =
                 CreateMockTestClientApiKeyBasedRequestAsync(
                     "Mocks/checkout/paymentsresult-error-invalid-data-payload-422.json");
-            var checkout = new ClassicCheckoutSDKApi(client);
+            var checkout = new ClassicCheckoutSDKService(client);
             var paymentResultResponse = checkout.VerifyPaymentResult(paymentResultRequest);
             Assert.IsNull(paymentResultResponse.ResultCode);
         }
@@ -550,7 +550,7 @@ namespace Adyen.Test
         public void PaymentLinksSuccess()
         {
             var client = CreateMockTestClientApiKeyBasedRequestAsync("Mocks/checkout/payment-links-success.json");
-            var checkout = new PaymentLinksApi(client);
+            var checkout = new PaymentLinksService(client);
             var createPaymentLinkRequest = new CreatePaymentLinkRequest(amount: new Amount(currency: "EUR", 1000),
                 merchantAccount: "MerchantAccount", reference: "YOUR_ORDER_NUMBER");
             var paymentLinksResponse = checkout.CreatePaymentLink(createPaymentLinkRequest);
@@ -570,7 +570,7 @@ namespace Adyen.Test
         {
             var client =
                 CreateMockTestClientApiKeyBasedRequestAsync("Mocks/checkout/paymentlinks-recurring-payment-success.json");
-            var checkout = new PaymentLinksApi(client);
+            var checkout = new PaymentLinksService(client);
 
             var createPaymentLinkRequest = new CreatePaymentLinkRequest(amount: new Amount(currency: "EUR", 100),
                 merchantAccount: "MerchantAccount", reference: "REFERENCE_NUMBER")
@@ -601,7 +601,7 @@ namespace Adyen.Test
         public void MultibancoPaymentSuccessMockedTest()
         {
             var client = CreateMockTestClientApiKeyBasedRequestAsync("Mocks/checkout/paymentsresult-multibanco-success.json");
-            var checkout = new PaymentsApi(client);
+            var checkout = new PaymentsService(client);
             var paymentRequest = CreatePaymentRequestCheckout();
             var paymentResponse = checkout.Payments(paymentRequest);
             var paymentResponseAction = paymentResponse.Action.GetCheckoutVoucherAction();
@@ -635,7 +635,7 @@ namespace Adyen.Test
         public void PaypalPaymentSuccessTest()
         {
             var client = CreateMockTestClientApiKeyBasedRequestAsync("Mocks/checkout/payments-success-paypal.json");
-            var checkout = new PaymentsApi(client);
+            var checkout = new PaymentsService(client);
             var paymentRequest = CreatePaymentRequestCheckout();
             var paymentResponse = checkout.Payments(paymentRequest);
             var result = paymentResponse.Action.GetCheckoutSDKAction();
@@ -762,7 +762,7 @@ namespace Adyen.Test
             var paymentRequest = CreatePaymentRequestCheckout();
             var client =
                 CreateMockTestClientApiKeyBasedRequestAsync("Mocks/checkout/paymentResponse-3DS-ChallengeShopper.json");
-            var checkout = new PaymentsApi(client);
+            var checkout = new PaymentsService(client);
             var paymentResponse = checkout.Payments(paymentRequest);
             var paymentResponseToJson = paymentResponse.ToJson();
             var jObject = JObject.Parse(paymentResponseToJson);
@@ -774,7 +774,7 @@ namespace Adyen.Test
         {
             var client =
                 CreateMockTestClientApiKeyBasedRequestAsync("Mocks/checkout/paymentmethods-storedpaymentmethods.json");
-            var checkout = new PaymentsApi(client);
+            var checkout = new PaymentsService(client);
             var paymentMethodsRequest = new PaymentMethodsRequest(merchantAccount: "TestMerchant");
             var paymentMethodsResponse = checkout.PaymentMethods(paymentMethodsRequest);
             Assert.AreEqual(4, paymentMethodsResponse.StoredPaymentMethods.Count);
@@ -792,7 +792,7 @@ namespace Adyen.Test
         {
             var paymentRequest = CreatePaymentRequestCheckout();
             var client = CreateMockTestClientApiKeyBasedRequestAsync("Mocks/checkout/paymentResponse-3DS2-Action.json");
-            var checkout = new PaymentsApi(client);
+            var checkout = new PaymentsService(client);
             var paymentResponse = checkout.Payments(paymentRequest);
             var paymentResponseThreeDs2Action = paymentResponse.Action.GetCheckoutThreeDS2Action();
             Assert.AreEqual(ResultCodeEnum.IdentifyShopper, paymentResponse.ResultCode);
@@ -815,7 +815,7 @@ namespace Adyen.Test
                 Store = "My Store"
             };
             var client = CreateMockTestClientApiKeyBasedRequestAsync("Mocks/checkout/sessions-success.json");
-            var checkout = new PaymentsApi(client);
+            var checkout = new PaymentsService(client);
             var checkoutSessionResponse = checkout.Sessions(checkoutSessionRequest);
             Assert.AreEqual("TestMerchant", checkoutSessionResponse.MerchantAccount);
             Assert.AreEqual("TestReference", checkoutSessionResponse.Reference);
@@ -844,7 +844,7 @@ namespace Adyen.Test
                     {"cvc", "737"}
                 });
             var client = CreateMockTestClientApiKeyBasedRequestAsync("Mocks/checkout/paymentmethods-balance-success.json");
-            var checkout = new OrdersApi(client);
+            var checkout = new OrdersService(client);
             var checkoutBalanceCheckResponse = checkout.GetBalanceOfGiftCard(checkoutBalanceCheckRequest);
             Assert.AreEqual(CheckoutBalanceCheckResponse.ResultCodeEnum.Success,
                 checkoutBalanceCheckResponse.ResultCode);
@@ -864,7 +864,7 @@ namespace Adyen.Test
                 merchantAccount: "TestMerchant",
                 reference: "TestReference");
             var client = CreateMockTestClientApiKeyBasedRequestAsync("Mocks/checkout/orders-success.json");
-            var checkout = new OrdersApi(client);
+            var checkout = new OrdersService(client);
             var checkoutOrdersResponse = checkout.CreateOrder(checkoutCreateOrderRequest);
             Assert.AreEqual(CheckoutCreateOrderResponse.ResultCodeEnum.Success, checkoutOrdersResponse.ResultCode);
             Assert.AreEqual("8515930288670953", checkoutOrdersResponse.PspReference);
@@ -884,7 +884,7 @@ namespace Adyen.Test
             (merchantAccount: "TestMerchant",
                 order: new CheckoutOrder(orderData: "823fh892f8f18f4...148f13f9f3f", pspReference: "8815517812932012"));
             var client = CreateMockTestClientApiKeyBasedRequestAsync("Mocks/checkout/orders-cancel-success.json");
-            var checkout = new OrdersApi(client);
+            var checkout = new OrdersService(client);
             var checkoutOrdersCancelResponse = checkout.CancelOrder(checkoutCancelOrderRequest);
             Assert.AreEqual("Received", checkoutOrdersCancelResponse.ResultCode.ToString());
             Assert.AreEqual("8515931182066678", checkoutOrdersCancelResponse.PspReference);
@@ -899,7 +899,7 @@ namespace Adyen.Test
         public void PaymentsCapturesTest()
         {
             var client = CreateMockTestClientApiKeyBasedRequestAsync("Mocks/checkout/captures-success.json");
-            var checkout = new ModificationsApi(client);
+            var checkout = new ModificationsService(client);
             var createPaymentCaptureRequest = new CreatePaymentCaptureRequest(amount: new Amount("EUR", 1000L),
                 merchantAccount: "test_merchant_account");
             var paymentCaptureResource = checkout.CaptureAuthorisedPayment("12321A", createPaymentCaptureRequest);
@@ -915,7 +915,7 @@ namespace Adyen.Test
         public void PaymentsCancelsTest()
         {
             var client = CreateMockTestClientApiKeyBasedRequestAsync("Mocks/checkout/cancels-success.json");
-            var checkout = new ModificationsApi(client);
+            var checkout = new ModificationsService(client);
             var createPaymentCancelRequest = new CreatePaymentCancelRequest(merchantAccount: "test_merchant_account");
             var paymentCancelResource = checkout.CancelAuthorisedPaymentByPspReference("12321A", createPaymentCancelRequest);
             Assert.AreEqual(PaymentCancelResource.StatusEnum.Received, paymentCancelResource.Status);
@@ -930,7 +930,7 @@ namespace Adyen.Test
         public void CancelsTest()
         {
             var client = CreateMockTestClientApiKeyBasedRequestAsync("Mocks/checkout/standalone-cancels-success.json");
-            var checkout = new ModificationsApi(client);
+            var checkout = new ModificationsService(client);
             var createStandalonePaymentCancelRequest =
                 new CreateStandalonePaymentCancelRequest(merchantAccount: "test_merchant_account");
             var standalonePaymentCancelResource = checkout.CancelAuthorisedPayment(createStandalonePaymentCancelRequest);
@@ -947,7 +947,7 @@ namespace Adyen.Test
         public void TestPaymentsRefunds()
         {
             var client = CreateMockTestClientApiKeyBasedRequestAsync("Mocks/checkout/refunds-success.json");
-            var checkout = new ModificationsApi(client);
+            var checkout = new ModificationsService(client);
             var createPaymentRefundRequest = new CreatePaymentRefundRequest(amount: new Amount("EUR", 1000L),
                 merchantAccount: "test_merchant_account");
             var paymentRefundResource = checkout.RefundCapturedPayment("12321A", createPaymentRefundRequest);
@@ -963,7 +963,7 @@ namespace Adyen.Test
         public void PaymentsReversalsTest()
         {
             var client = CreateMockTestClientApiKeyBasedRequestAsync("Mocks/checkout/reversals-success.json");
-            var checkout = new ModificationsApi(client);
+            var checkout = new ModificationsService(client);
             var createPaymentReversalRequest =
                 new CreatePaymentReversalRequest(merchantAccount: "test_merchant_account");
             var paymentReversalResource = checkout.RefundOrCancelPayment("12321A", createPaymentReversalRequest);
@@ -979,7 +979,7 @@ namespace Adyen.Test
         public void PaymentsAmountUpdatesTest()
         {
             var client = CreateMockTestClientApiKeyBasedRequestAsync("Mocks/checkout/amount-updates-success.json");
-            var checkout = new ModificationsApi(client);
+            var checkout = new ModificationsService(client);
             var createPaymentAmountUpdateRequest = new CreatePaymentAmountUpdateRequest(
                 amount: new Amount("EUR", 1000L),
                 merchantAccount: "test_merchant_account");
@@ -997,7 +997,7 @@ namespace Adyen.Test
         public void DonationsTest()
         {
             var client = CreateMockTestClientApiKeyBasedRequestAsync("Mocks/checkout/donations-success.json");
-            var checkout = new PaymentsApi(client);
+            var checkout = new PaymentsService(client);
             var paymentDonationRequest =
                 new PaymentDonationRequest(
                     merchantAccount: "test_merchant_account",
@@ -1020,7 +1020,7 @@ namespace Adyen.Test
         public void CardDetailsTest()
         {
             var client = CreateMockTestClientApiKeyBasedRequestAsync("Mocks/checkout/card-details-success.json");
-            var checkout = new PaymentsApi(client);
+            var checkout = new PaymentsService(client);
             var cardDetailRequest =
                 new CardDetailsRequest
                 {
@@ -1041,7 +1041,7 @@ namespace Adyen.Test
         public void ApplePaySessionsTest()
         {
             var client = CreateMockTestClientApiKeyBasedRequestAsync("Mocks/checkout/apple-pay-sessions-success.json");
-            var checkout = new UtilityApi(client);
+            var checkout = new UtilityService(client);
             var applePaySessionRequest = new CreateApplePaySessionRequest
             {
                 DisplayName = "YOUR_MERCHANT_NAME",

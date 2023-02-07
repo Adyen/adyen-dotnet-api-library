@@ -25,11 +25,11 @@ namespace Adyen.Service.Checkout
     /// <summary>
     /// Represents a collection of functions to interact with the API endpoints
     /// </summary>
-    public class PaymentLinksApi : AbstractService
+    public class PaymentLinksService : AbstractService
     {
         private readonly string _baseUrl;
         
-        public PaymentLinksApi(Client client) : base(client)
+        public PaymentLinksService(Client client) : base(client)
         {
             _baseUrl = client.Config.CheckoutEndpoint + "/" + ClientConfig.CheckoutApiVersion;
         }

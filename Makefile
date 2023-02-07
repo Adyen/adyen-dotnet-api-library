@@ -56,6 +56,7 @@ Checkout: target/spec $(openapi-generator-jar)
 		-o $(output) \
 		--additional-properties packageName=Adyen \
 		--api-package Service.$@ \
+		--api-name-suffix Service \
 		--model-package Model.$@ \
 		--reserved-words-mappings Version=Version \
 		--additional-properties=serviceName=$@

@@ -144,7 +144,7 @@ namespace Adyen.Test
         public void TestPendingRefundReceived()
         {
             var client = CreateMockTestClientApiKeyBasedRequest("Mocks/voidPendingRefund-received.json");
-            var checkout = new ModificationsApi(client);
+            var checkout = new ModificationsService(client);
             var modification = new Payment(client);
             var voidPendingRefundRequest = new VoidPendingRefundRequest();
             var modificationResult = modification.VoidPendingRefund(voidPendingRefundRequest);

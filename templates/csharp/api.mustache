@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Net.Http;
 using System.Threading.Tasks;
+using Adyen.Constants;
 using Adyen.Model;
 using Adyen.Service.Resource;
 {{#hasImport}}using Adyen.{{modelPackage}};
@@ -21,7 +22,7 @@ namespace {{packageName}}.{{apiPackage}}
         
         public {{classname}}(Client client) : base(client)
         {
-            _baseUrl = "string";
+            _baseUrl = client.Config.CheckoutEndpoint + "/" + ClientConfig.CheckoutVersion;
         }
     
         {{#operation}}

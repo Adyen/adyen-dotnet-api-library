@@ -25,11 +25,11 @@ namespace Adyen.Service.Checkout
     /// <summary>
     /// Represents a collection of functions to interact with the API endpoints
     /// </summary>
-    public class UtilityApi : AbstractService
+    public class UtilityService : AbstractService
     {
         private readonly string _baseUrl;
         
-        public UtilityApi(Client client) : base(client)
+        public UtilityService(Client client) : base(client)
         {
             _baseUrl = client.Config.CheckoutEndpoint + "/" + ClientConfig.CheckoutApiVersion;
         }

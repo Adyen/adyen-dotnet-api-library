@@ -25,11 +25,11 @@ namespace Adyen.Service.Checkout
     /// <summary>
     /// Represents a collection of functions to interact with the API endpoints
     /// </summary>
-    public class RecurringApi : AbstractService
+    public class RecurringService : AbstractService
     {
         private readonly string _baseUrl;
         
-        public RecurringApi(Client client) : base(client)
+        public RecurringService(Client client) : base(client)
         {
             _baseUrl = client.Config.CheckoutEndpoint + "/" + ClientConfig.CheckoutApiVersion;
         }
