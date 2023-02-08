@@ -14,9 +14,11 @@ using System;
 using System.Collections.Generic;
 using System.Net.Http;
 using System.Threading.Tasks;
+using Adyen.Constants;
 using Adyen.Model;
 using Adyen.Service.Resource;
 using Adyen.Model.BalancePlatform;
+using Newtonsoft.Json;
 
 namespace Adyen.Service.BalancePlatform
 {
@@ -25,17 +27,22 @@ namespace Adyen.Service.BalancePlatform
     /// </summary>
     public class PlatformApi : AbstractService
     {
-        public PlatformApi(Client client) : base(client) {}
-
+        private readonly string _baseUrl;
+        
+        public PlatformApi(Client client) : base(client)
+        {
+            _baseUrl = client.Config.CheckoutEndpoint + "/" + ClientConfig.CheckoutVersion;
+        }
+    
         /// <summary>
         /// Get a balance platform
         /// </summary>
         /// <param name="id">The unique identifier of the balance platform.</param>
         /// <param name="requestOptions">Additional request options.</param>
         /// <returns>BalancePlatform</returns>
-        public Model.BalancePlatform.BalancePlatform GetBalancePlatformsId(string id, RequestOptions requestOptions = default)
+        public BalancePlatform (string id, RequestOptions requestOptions = default)
         {
-            return GetBalancePlatformsIdAsync(id, requestOptions).GetAwaiter().GetResult();
+            return Async(id, requestOptions).GetAwaiter().GetResult();
         }
 
         /// <summary>
@@ -44,11 +51,11 @@ namespace Adyen.Service.BalancePlatform
         /// <param name="id">The unique identifier of the balance platform.</param>
         /// <param name="requestOptions">Additional request options.</param>
         /// <returns>Task of BalancePlatform</returns>
-        public async Task<Model.BalancePlatform.BalancePlatform> GetBalancePlatformsIdAsync(string id, RequestOptions requestOptions = default)
+        public async Task<BalancePlatform> Async(string id, RequestOptions requestOptions = default)
         {
-            var endpoint = $"/balancePlatforms/{id}";
-            var resource = new BalancePlatformResource(this, endpoint);
-            return await resource.RequestAsync<Model.BalancePlatform.BalancePlatform>(null, requestOptions, new HttpMethod("GET"));
+            var endpoint = _baseUrl + $"/balancePlatforms/{id}";
+            var resource = new ServiceResource(this, endpoint);
+            return await resource.RequestAsync<BalancePlatform>(null, requestOptions, new HttpMethod("GET"));
         }
 
         /// <summary>
@@ -59,9 +66,9 @@ namespace Adyen.Service.BalancePlatform
         /// <param name="limit">The number of items returned per page, maximum 100 items. By default, the response returns 10 items per page.</param>
         /// <param name="requestOptions">Additional request options.</param>
         /// <returns>PaginatedAccountHoldersResponse</returns>
-        public PaginatedAccountHoldersResponse GetBalancePlatformsIdAccountHolders(string id, int? offset = default, int? limit = default, RequestOptions requestOptions = default)
+        public PaginatedAccountHoldersResponse (string id, int? offset = default, int? limit = default, RequestOptions requestOptions = default)
         {
-            return GetBalancePlatformsIdAccountHoldersAsync(id, offset, limit, requestOptions).GetAwaiter().GetResult();
+            return Async(id, offset, limit, requestOptions).GetAwaiter().GetResult();
         }
 
         /// <summary>
@@ -72,14 +79,14 @@ namespace Adyen.Service.BalancePlatform
         /// <param name="limit">The number of items returned per page, maximum 100 items. By default, the response returns 10 items per page.</param>
         /// <param name="requestOptions">Additional request options.</param>
         /// <returns>Task of PaginatedAccountHoldersResponse</returns>
-        public async Task<PaginatedAccountHoldersResponse> GetBalancePlatformsIdAccountHoldersAsync(string id, int? offset = default, int? limit = default, RequestOptions requestOptions = default)
+        public async Task<PaginatedAccountHoldersResponse> Async(string id, int? offset = default, int? limit = default, RequestOptions requestOptions = default)
         {
             // Build the query string
             var queryParams = new Dictionary<string, string>();
             if (offset != null) queryParams.Add("offset", offset.ToString());
             if (limit != null) queryParams.Add("limit", limit.ToString());
-            var endpoint = $"/balancePlatforms/{id}/accountHolders" + ToQueryString(queryParams);
-            var resource = new BalancePlatformResource(this, endpoint);
+            var endpoint = _baseUrl + $"/balancePlatforms/{id}/accountHolders" + ToQueryString(queryParams);
+            var resource = new ServiceResource(this, endpoint);
             return await resource.RequestAsync<PaginatedAccountHoldersResponse>(null, requestOptions, new HttpMethod("GET"));
         }
 

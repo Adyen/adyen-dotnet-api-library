@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Net.Http;
 using System.Threading.Tasks;
+using Adyen.Constants;
 using Adyen.Model;
 using Adyen.Service.Resource;
 {{#hasImport}}using Adyen.{{modelPackage}};
@@ -17,7 +18,12 @@ namespace {{packageName}}.{{apiPackage}}
     /// </summary>
     {{>visibility}} class {{classname}} : AbstractService
     {
-        public {{classname}}(Client client) : base(client) {}
+        private readonly string _baseUrl;
+        
+        public {{classname}}(Client client) : base(client)
+        {
+            _baseUrl = client.Config.CheckoutEndpoint + "/" + ClientConfig.CheckoutVersion;
+        }
     
         {{#operation}}
 {{>method_documentation}}{{#returnType}}
@@ -45,17 +51,13 @@ namespace {{packageName}}.{{apiPackage}}
             if ({{paramName}} != null) queryParams.Add("{{baseName}}", {{paramName}}{{^isString}}.ToString(){{/isString}});
             {{/queryParams}}
             {{/hasQueryParams}}
-            var endpoint = {{#hasPathParams}}${{/hasPathParams}}"{{{path}}}"{{#hasQueryParams}} + ToQueryString(queryParams){{/hasQueryParams}};
-            var resource = new {{#lambda.titlecase}}{{serviceName}}{{/lambda.titlecase}}Resource(this, endpoint);
-            {{#returnType}}var jsonResult = {{/returnType}}await resource.RequestAsync({{#bodyParam}}{{paramName}}.ToJson(){{/bodyParam}}{{^bodyParam}}null{{/bodyParam}}, requestOptions, new HttpMethod("{{httpMethod}}"));
-            {{#returnType}}
-            return JsonConvert.DeserializeObject<{{returnType}}>(jsonResult);
-            {{/returnType}}
+            var endpoint = _baseUrl + {{#hasPathParams}}${{/hasPathParams}}"{{{path}}}"{{#hasQueryParams}} + ToQueryString(queryParams){{/hasQueryParams}};
+            var resource = new ServiceResource(this, endpoint);
+            {{#returnType}}return {{/returnType}}await resource.RequestAsync{{#returnType}}<{{returnType}}>{{/returnType}}({{#bodyParam}}{{paramName}}.ToJson(){{/bodyParam}}{{^bodyParam}}null{{/bodyParam}}, requestOptions, new HttpMethod("{{httpMethod}}"));
         }
 
         {{/supportsAsync}}
         {{/operation}}
     }
     {{/operations}}
-<<<<<<< HEAD
 }

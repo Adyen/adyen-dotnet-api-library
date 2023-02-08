@@ -14,6 +14,7 @@ using System;
 using System.Collections.Generic;
 using System.Net.Http;
 using System.Threading.Tasks;
+using Adyen.Constants;
 using Adyen.Model;
 using Adyen.Service.Resource;
 using Adyen.Model.BalancePlatform;
@@ -26,17 +27,22 @@ namespace Adyen.Service.BalancePlatform
     /// </summary>
     public class AccountHoldersApi : AbstractService
     {
-        public AccountHoldersApi(Client client) : base(client) {}
-
+        private readonly string _baseUrl;
+        
+        public AccountHoldersApi(Client client) : base(client)
+        {
+            _baseUrl = client.Config.CheckoutEndpoint + "/" + ClientConfig.CheckoutVersion;
+        }
+    
         /// <summary>
         /// Get an account holder
         /// </summary>
         /// <param name="id">The unique identifier of the account holder.</param>
         /// <param name="requestOptions">Additional request options.</param>
         /// <returns>AccountHolder</returns>
-        public AccountHolder GetAccountHoldersId(string id, RequestOptions requestOptions = default)
+        public AccountHolder (string id, RequestOptions requestOptions = default)
         {
-            return GetAccountHoldersIdAsync(id, requestOptions).GetAwaiter().GetResult();
+            return Async(id, requestOptions).GetAwaiter().GetResult();
         }
 
         /// <summary>
@@ -45,10 +51,10 @@ namespace Adyen.Service.BalancePlatform
         /// <param name="id">The unique identifier of the account holder.</param>
         /// <param name="requestOptions">Additional request options.</param>
         /// <returns>Task of AccountHolder</returns>
-        public async Task<AccountHolder> GetAccountHoldersIdAsync(string id, RequestOptions requestOptions = default)
+        public async Task<AccountHolder> Async(string id, RequestOptions requestOptions = default)
         {
-            var endpoint = $"/accountHolders/{id}";
-            var resource = new BalancePlatformResource(this, endpoint);
+            var endpoint = _baseUrl + $"/accountHolders/{id}";
+            var resource = new ServiceResource(this, endpoint);
             return await resource.RequestAsync<AccountHolder>(null, requestOptions, new HttpMethod("GET"));
         }
 
@@ -60,9 +66,9 @@ namespace Adyen.Service.BalancePlatform
         /// <param name="limit">The number of items returned per page, maximum 100 items. By default, the response returns 10 items per page.</param>
         /// <param name="requestOptions">Additional request options.</param>
         /// <returns>PaginatedBalanceAccountsResponse</returns>
-        public PaginatedBalanceAccountsResponse GetAccountHoldersIdBalanceAccounts(string id, int? offset = default, int? limit = default, RequestOptions requestOptions = default)
+        public PaginatedBalanceAccountsResponse (string id, int? offset = default, int? limit = default, RequestOptions requestOptions = default)
         {
-            return GetAccountHoldersIdBalanceAccountsAsync(id, offset, limit, requestOptions).GetAwaiter().GetResult();
+            return Async(id, offset, limit, requestOptions).GetAwaiter().GetResult();
         }
 
         /// <summary>
@@ -73,14 +79,14 @@ namespace Adyen.Service.BalancePlatform
         /// <param name="limit">The number of items returned per page, maximum 100 items. By default, the response returns 10 items per page.</param>
         /// <param name="requestOptions">Additional request options.</param>
         /// <returns>Task of PaginatedBalanceAccountsResponse</returns>
-        public async Task<PaginatedBalanceAccountsResponse> GetAccountHoldersIdBalanceAccountsAsync(string id, int? offset = default, int? limit = default, RequestOptions requestOptions = default)
+        public async Task<PaginatedBalanceAccountsResponse> Async(string id, int? offset = default, int? limit = default, RequestOptions requestOptions = default)
         {
             // Build the query string
             var queryParams = new Dictionary<string, string>();
             if (offset != null) queryParams.Add("offset", offset.ToString());
             if (limit != null) queryParams.Add("limit", limit.ToString());
-            var endpoint = $"/accountHolders/{id}/balanceAccounts" + ToQueryString(queryParams);
-            var resource = new BalancePlatformResource(this, endpoint);
+            var endpoint = _baseUrl + $"/accountHolders/{id}/balanceAccounts" + ToQueryString(queryParams);
+            var resource = new ServiceResource(this, endpoint);
             return await resource.RequestAsync<PaginatedBalanceAccountsResponse>(null, requestOptions, new HttpMethod("GET"));
         }
 
@@ -91,9 +97,9 @@ namespace Adyen.Service.BalancePlatform
         /// <param name="accountHolder"></param>
         /// <param name="requestOptions">Additional request options.</param>
         /// <returns>AccountHolder</returns>
-        public AccountHolder PatchAccountHoldersId(string id, AccountHolder accountHolder, RequestOptions requestOptions = default)
+        public AccountHolder (string id, AccountHolder accountHolder, RequestOptions requestOptions = default)
         {
-            return PatchAccountHoldersIdAsync(id, accountHolder, requestOptions).GetAwaiter().GetResult();
+            return Async(id, accountHolder, requestOptions).GetAwaiter().GetResult();
         }
 
         /// <summary>
@@ -103,10 +109,10 @@ namespace Adyen.Service.BalancePlatform
         /// <param name="accountHolder"></param>
         /// <param name="requestOptions">Additional request options.</param>
         /// <returns>Task of AccountHolder</returns>
-        public async Task<AccountHolder> PatchAccountHoldersIdAsync(string id, AccountHolder accountHolder, RequestOptions requestOptions = default)
+        public async Task<AccountHolder> Async(string id, AccountHolder accountHolder, RequestOptions requestOptions = default)
         {
-            var endpoint = $"/accountHolders/{id}";
-            var resource = new BalancePlatformResource(this, endpoint);
+            var endpoint = _baseUrl + $"/accountHolders/{id}";
+            var resource = new ServiceResource(this, endpoint);
             return await resource.RequestAsync<AccountHolder>(accountHolder.ToJson(), requestOptions, new HttpMethod("PATCH"));
         }
 
@@ -116,9 +122,9 @@ namespace Adyen.Service.BalancePlatform
         /// <param name="accountHolderInfo"></param>
         /// <param name="requestOptions">Additional request options.</param>
         /// <returns>AccountHolder</returns>
-        public AccountHolder PostAccountHolders(AccountHolderInfo accountHolderInfo, RequestOptions requestOptions = default)
+        public AccountHolder (AccountHolderInfo accountHolderInfo, RequestOptions requestOptions = default)
         {
-            return PostAccountHoldersAsync(accountHolderInfo, requestOptions).GetAwaiter().GetResult();
+            return Async(accountHolderInfo, requestOptions).GetAwaiter().GetResult();
         }
 
         /// <summary>
@@ -127,10 +133,10 @@ namespace Adyen.Service.BalancePlatform
         /// <param name="accountHolderInfo"></param>
         /// <param name="requestOptions">Additional request options.</param>
         /// <returns>Task of AccountHolder</returns>
-        public async Task<AccountHolder> PostAccountHoldersAsync(AccountHolderInfo accountHolderInfo, RequestOptions requestOptions = default)
+        public async Task<AccountHolder> Async(AccountHolderInfo accountHolderInfo, RequestOptions requestOptions = default)
         {
-            var endpoint = "/accountHolders";
-            var resource = new BalancePlatformResource(this, endpoint);
+            var endpoint = _baseUrl + "/accountHolders";
+            var resource = new ServiceResource(this, endpoint);
             return await resource.RequestAsync<AccountHolder>(accountHolderInfo.ToJson(), requestOptions, new HttpMethod("POST"));
         }
 
