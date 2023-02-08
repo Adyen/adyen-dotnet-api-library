@@ -15,7 +15,7 @@ namespace Adyen.Service.Resource
     public class ManagementResource : ServiceResource
     {
         public ManagementResource(AbstractService abstractService, string endpoint)
-            : base(abstractService, abstractService.Client.Config.ManagementEndpoint + "/" + ClientConfig.ManagementVersion + endpoint,null)
+            : base(abstractService, abstractService.Client.Config.ManagementEndpoint + "/" + ClientConfig.ManagementVersion + endpoint)
         {
         }
     }
