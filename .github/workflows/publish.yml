@@ -27,9 +27,7 @@ jobs:
         run: dotnet test --no-build -c Debug -f net6.0 Adyen.Test/Adyen.Test.csproj
       # Pack Release
       - name: Pack
-        run: dotnet pack Adyen --no-build --output nuget
-      # Publish Package ${{ secrets.NUGET_KEY }}
+        run: dotnet pack Adyen --no-build --configuration Release --output nuget
+      # Publish Package
       - name: Publish Nuget
-        run: dotnet nuget push nuget/*.nupkg --api-key "key" --source "nuget.org"
-
-  # create release notes
+        run: dotnet nuget push nuget/*.nupkg --api-key ${{ secrets.NUGET_KEY }} --source "nuget.org"
