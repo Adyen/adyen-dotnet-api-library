@@ -60,6 +60,10 @@ namespace Adyen.Constants
         public static string StoredValueEndpointTest = "https://pal-test.adyen.com/pal/servlet/StoredValue";
         public static string StoredValueEndpointLive = "https://pal-live.adyen.com/pal/servlet/StoredValue";
         public static string StoredValueVersion = "v46";
+        public static string ManagementEndpointTest = "https://management-test.adyen.com";
+        public static string ManagementEndpointLive = "https://management-live.adyen.com";
+        public static string ManagementVersion = "v1";
+
         public static string LibName = "adyen-dotnet-api-library";
         public static string LibVersion = "9.1.0";
     }

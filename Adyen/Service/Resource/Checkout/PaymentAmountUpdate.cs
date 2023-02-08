@@ -33,7 +33,7 @@ namespace Adyen.Service.Resource.Checkout
         public PaymentAmountUpdate(AbstractService abstractService, string paymentPspReference)
             : base(abstractService,
                 abstractService.Client.Config.CheckoutEndpoint + "/" + ClientConfig.CheckoutApiVersion + "/payments/" +
-                paymentPspReference + "/amountUpdates", new List<string> {"amount", "merchantAccount"})
+                paymentPspReference + "/amountUpdates")
         {
         }
     }

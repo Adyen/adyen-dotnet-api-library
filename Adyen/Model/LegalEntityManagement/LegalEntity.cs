@@ -84,6 +84,7 @@ namespace Adyen.Model.LegalEntityManagement
         /// <summary>
         /// Initializes a new instance of the <see cref="LegalEntity" /> class.
         /// </summary>
+        /// <param name="capabilities">Overview of capabilities for this legal entity.</param>
         /// <param name="documentDetails">List of documents uploaded for the legal entity..</param>
         /// <param name="documents">List of documents uploaded for the legal entity..</param>
         /// <param name="entityAssociations">List of legal entities associated with the current legal entity. For example, ultimate beneficial owners associated with an organization through ownership or control, or as signatories..</param>
@@ -93,8 +94,9 @@ namespace Adyen.Model.LegalEntityManagement
         /// <param name="soleProprietorship">soleProprietorship.</param>
         /// <param name="transferInstruments">List of transfer instruments owned by the legal entity..</param>
         /// <param name="type">The type of legal entity.   Possible values: **individual**, **organization**, or **soleProprietorship**. (required).</param>
-        public LegalEntity(List<DocumentReference> documentDetails = default(List<DocumentReference>), List<EntityReference> documents = default(List<EntityReference>), List<LegalEntityAssociation> entityAssociations = default(List<LegalEntityAssociation>), Individual individual = default(Individual), Organization organization = default(Organization), string reference = default(string), SoleProprietorship soleProprietorship = default(SoleProprietorship), List<EntityReference> transferInstruments = default(List<EntityReference>), TypeEnum type = default(TypeEnum))
+        public LegalEntity(Dictionary<string, LegalEntityCapability> capabilities = default(Dictionary<string, LegalEntityCapability>), List<DocumentReference> documentDetails = default(List<DocumentReference>), List<EntityReference> documents = default(List<EntityReference>), List<LegalEntityAssociation> entityAssociations = default(List<LegalEntityAssociation>), Individual individual = default(Individual), Organization organization = default(Organization), string reference = default(string), SoleProprietorship soleProprietorship = default(SoleProprietorship), List<TransferInstrumentReference> transferInstruments = default(List<TransferInstrumentReference>), TypeEnum type = default(TypeEnum))
         {
+            this.Capabilities = capabilities;
             this.DocumentDetails = documentDetails;
             this.Documents = documents;
             this.EntityAssociations = entityAssociations;
@@ -105,6 +107,13 @@ namespace Adyen.Model.LegalEntityManagement
             this.TransferInstruments = transferInstruments;
             this.Type = type;
         }
+
+        /// <summary>
+        /// Overview of capabilities for this legal entity
+        /// </summary>
+        /// <value>Overview of capabilities for this legal entity</value>
+        [DataMember(Name="capabilities", EmitDefaultValue=false)]
+        public Dictionary<string, LegalEntityCapability> Capabilities { get; set; }
 
         /// <summary>
         /// List of documents uploaded for the legal entity.
@@ -165,7 +174,7 @@ namespace Adyen.Model.LegalEntityManagement
         /// </summary>
         /// <value>List of transfer instruments owned by the legal entity.</value>
         [DataMember(Name="transferInstruments", EmitDefaultValue=false)]
-        public List<EntityReference> TransferInstruments { get; set; }
+        public List<TransferInstrumentReference> TransferInstruments { get; set; }
 
 
         /// <summary>
@@ -176,6 +185,7 @@ namespace Adyen.Model.LegalEntityManagement
         {
             var sb = new StringBuilder();
             sb.Append("class LegalEntity {\n");
+            sb.Append("  Capabilities: ").Append(Capabilities).Append("\n");
             sb.Append("  DocumentDetails: ").Append(DocumentDetails).Append("\n");
             sb.Append("  Documents: ").Append(Documents).Append("\n");
             sb.Append("  EntityAssociations: ").Append(EntityAssociations).Append("\n");
@@ -220,6 +230,12 @@ namespace Adyen.Model.LegalEntityManagement
                 return false;
 
             return 
+                (
+                    this.Capabilities == input.Capabilities ||
+                    this.Capabilities != null &&
+                    input.Capabilities != null &&
+                    this.Capabilities.SequenceEqual(input.Capabilities)
+                ) && 
                 (
                     this.DocumentDetails == input.DocumentDetails ||
                     this.DocumentDetails != null &&
@@ -285,6 +301,8 @@ namespace Adyen.Model.LegalEntityManagement
             unchecked // Overflow is fine, just wrap
             {
                 int hashCode = 41;
+                if (this.Capabilities != null)
+                    hashCode = hashCode * 59 + this.Capabilities.GetHashCode();
                 if (this.DocumentDetails != null)
                     hashCode = hashCode * 59 + this.DocumentDetails.GetHashCode();
                 if (this.Documents != null)

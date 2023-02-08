@@ -132,14 +132,16 @@ namespace Adyen.Model.LegalEntityManagement
         /// <summary>
         /// Initializes a new instance of the <see cref="IdentificationData" /> class.
         /// </summary>
+        /// <param name="cardNumber">The card number of the document that was issued (AU only)..</param>
         /// <param name="expiryDate">The expiry date of the document, in YYYY-MM-DD format..</param>
         /// <param name="issuerCountry">The two-character [ISO 3166-1 alpha-2](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2) country code where the document was issued. For example, **US**..</param>
         /// <param name="issuerState">The state or province where the document was issued (AU only)..</param>
         /// <param name="nationalIdExempt">Applies only to individuals in the US. Set to **true** if the individual does not have an SSN. To verify their identity, Adyen will require them to upload an ID document..</param>
         /// <param name="number">The number in the document..</param>
         /// <param name="type">Type of document, used when providing an ID number or uploading a document. The possible values depend on the legal entity type.  When providing ID numbers: * For **individual**, the &#x60;type&#x60; values can be **driversLicense**, **identityCard**, **nationalIdNumber**, or **passport**.  When uploading documents: * For **organization**, the &#x60;type&#x60; values can be **proofOfAddress**, **registrationDocument**, **vatDocument**, **proofOfOrganizationTaxInfo**, **proofOfOwnership**, or **proofOfIndustry**.   * For **individual**, the &#x60;type&#x60; values can be **identityCard**, **driversLicense**, **passport**, **proofOfNationalIdNumber**, **proofOfResidency**, **proofOfIndustry**, or **proofOfIndividualTaxId**.  * For **soleProprietorship**, the &#x60;type&#x60; values can be **constitutionalDocument**, **proofOfAddress**, or **proofOfIndustry**.  * Use **bankStatement** to upload documents for a [transfer instrument](https://docs.adyen.com/api-explorer/#/legalentity/latest/post/transferInstruments__resParam_id). (required).</param>
-        public IdentificationData(string expiryDate = default(string), string issuerCountry = default(string), string issuerState = default(string), bool nationalIdExempt = default(bool), string number = default(string), TypeEnum type = default(TypeEnum))
+        public IdentificationData(string cardNumber = default(string), string expiryDate = default(string), string issuerCountry = default(string), string issuerState = default(string), bool nationalIdExempt = default(bool), string number = default(string), TypeEnum type = default(TypeEnum))
         {
+            this.CardNumber = cardNumber;
             this.ExpiryDate = expiryDate;
             this.IssuerCountry = issuerCountry;
             this.IssuerState = issuerState;
@@ -147,6 +149,13 @@ namespace Adyen.Model.LegalEntityManagement
             this.Number = number;
             this.Type = type;
         }
+
+        /// <summary>
+        /// The card number of the document that was issued (AU only).
+        /// </summary>
+        /// <value>The card number of the document that was issued (AU only).</value>
+        [DataMember(Name="cardNumber", EmitDefaultValue=false)]
+        public string CardNumber { get; set; }
 
         /// <summary>
         /// The expiry date of the document, in YYYY-MM-DD format.
@@ -194,6 +203,7 @@ namespace Adyen.Model.LegalEntityManagement
         {
             var sb = new StringBuilder();
             sb.Append("class IdentificationData {\n");
+            sb.Append("  CardNumber: ").Append(CardNumber).Append("\n");
             sb.Append("  ExpiryDate: ").Append(ExpiryDate).Append("\n");
             sb.Append("  IssuerCountry: ").Append(IssuerCountry).Append("\n");
             sb.Append("  IssuerState: ").Append(IssuerState).Append("\n");
@@ -235,6 +245,11 @@ namespace Adyen.Model.LegalEntityManagement
 
             return 
                 (
+                    this.CardNumber == input.CardNumber ||
+                    (this.CardNumber != null &&
+                    this.CardNumber.Equals(input.CardNumber))
+                ) && 
+                (
                     this.ExpiryDate == input.ExpiryDate ||
                     (this.ExpiryDate != null &&
                     this.ExpiryDate.Equals(input.ExpiryDate))
@@ -275,6 +290,8 @@ namespace Adyen.Model.LegalEntityManagement
             unchecked // Overflow is fine, just wrap
             {
                 int hashCode = 41;
+                if (this.CardNumber != null)
+                    hashCode = hashCode * 59 + this.CardNumber.GetHashCode();
                 if (this.ExpiryDate != null)
                     hashCode = hashCode * 59 + this.ExpiryDate.GetHashCode();
                 if (this.IssuerCountry != null)

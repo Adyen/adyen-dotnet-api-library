@@ -31,7 +31,7 @@ namespace Adyen.Service.Resource.Hop
         public GetOnboardingUrl(AbstractService abstractService)
             : base(abstractService,
                 abstractService.Client.Config.MarketPayEndpoint + "/Hop/" + ClientConfig.HopApiVersion +
-                "/getOnboardingUrl", new List<string> { })
+                "/getOnboardingUrl")
         {
         }
     }

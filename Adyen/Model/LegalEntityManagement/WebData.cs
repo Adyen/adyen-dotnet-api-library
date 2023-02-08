@@ -35,9 +35,11 @@ namespace Adyen.Model.LegalEntityManagement
         /// Initializes a new instance of the <see cref="WebData" /> class.
         /// </summary>
         /// <param name="webAddress">The URL of the website..</param>
-        public WebData(string webAddress = default(string))
+        /// <param name="webAddressId">The unique identifier of the web address..</param>
+        public WebData(string webAddress = default(string), string webAddressId = default(string))
         {
             this.WebAddress = webAddress;
+            this.WebAddressId = webAddressId;
         }
 
         /// <summary>
@@ -48,6 +50,13 @@ namespace Adyen.Model.LegalEntityManagement
         public string WebAddress { get; set; }
 
         /// <summary>
+        /// The unique identifier of the web address.
+        /// </summary>
+        /// <value>The unique identifier of the web address.</value>
+        [DataMember(Name="webAddressId", EmitDefaultValue=false)]
+        public string WebAddressId { get; set; }
+
+        /// <summary>
         /// Returns the string presentation of the object
         /// </summary>
         /// <returns>String presentation of the object</returns>
@@ -56,6 +65,7 @@ namespace Adyen.Model.LegalEntityManagement
             var sb = new StringBuilder();
             sb.Append("class WebData {\n");
             sb.Append("  WebAddress: ").Append(WebAddress).Append("\n");
+            sb.Append("  WebAddressId: ").Append(WebAddressId).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -94,6 +104,11 @@ namespace Adyen.Model.LegalEntityManagement
                     this.WebAddress == input.WebAddress ||
                     (this.WebAddress != null &&
                     this.WebAddress.Equals(input.WebAddress))
+                ) && 
+                (
+                    this.WebAddressId == input.WebAddressId ||
+                    (this.WebAddressId != null &&
+                    this.WebAddressId.Equals(input.WebAddressId))
                 );
         }
 
@@ -108,6 +123,8 @@ namespace Adyen.Model.LegalEntityManagement
                 int hashCode = 41;
                 if (this.WebAddress != null)
                     hashCode = hashCode * 59 + this.WebAddress.GetHashCode();
+                if (this.WebAddressId != null)
+                    hashCode = hashCode * 59 + this.WebAddressId.GetHashCode();
                 return hashCode;
             }
         }
