@@ -18,12 +18,12 @@ namespace Adyen.Service
         public StoredValue(Client client) :  base(client)
         {
             _baseUrl = client.Config.StoredValueEndpoint + "/" + Constants.ClientConfig.StoredValueVersion;
-            _issue = new ServiceResource(this, _baseUrl + "/issue", null);
-            _changeStatus = new ServiceResource(this, _baseUrl + "/changeStatus", null);
-            _load = new ServiceResource(this, _baseUrl + "/load", null);
-            _checkBalance = new ServiceResource(this, _baseUrl + "/checkBalance", null);
-            _mergeBalance = new ServiceResource(this, _baseUrl + "/mergeBalance", null);
-            _voidTransaction = new ServiceResource(this, _baseUrl + "/voidTransaction", null);
+            _issue = new ServiceResource(this, _baseUrl + "/issue");
+            _changeStatus = new ServiceResource(this, _baseUrl + "/changeStatus");
+            _load = new ServiceResource(this, _baseUrl + "/load");
+            _checkBalance = new ServiceResource(this, _baseUrl + "/checkBalance");
+            _mergeBalance = new ServiceResource(this, _baseUrl + "/mergeBalance");
+            _voidTransaction = new ServiceResource(this, _baseUrl + "/voidTransaction");
         }
 
         /// <summary>
