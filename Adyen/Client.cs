@@ -101,6 +101,7 @@ namespace Adyen
                     Config.MarketPayEndpoint = ClientConfig.MarketpayEndPointTest;
                     Config.PosTerminalManagementEndpoint = ClientConfig.PosTerminalManagementEndpointTest;
                     Config.LegalEntityManagementEndpoint = ClientConfig.LegalEntityManagementEndpointTest;
+                    Config.ManagementEndpoint = ClientConfig.ManagementEndpointTest;
                     Config.BalancePlatformEndpoint = ClientConfig.BalancePlatformEndpointTest;
                     break;
                 case Environment.Live:
@@ -116,6 +117,7 @@ namespace Adyen
                     Config.PosTerminalManagementEndpoint = ClientConfig.PosTerminalManagementEndpointLive;
                     Config.LegalEntityManagementEndpoint = ClientConfig.LegalEntityManagementEndpointLive;
                     Config.BalancePlatformEndpoint = ClientConfig.BalancePlatformEndpointLive;
+                    Config.ManagementEndpoint = ClientConfig.ManagementEndpointLive;
                     break;
             }
         }

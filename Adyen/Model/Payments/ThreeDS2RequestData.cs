@@ -132,9 +132,9 @@ namespace Adyen.Model.Payments
         [Obsolete]
         public ChallengeIndicatorEnum? ChallengeIndicator { get; set; }
         /// <summary>
-        /// Indicates whether a challenge is requested for this transaction. Possible values: * **01** — No preference * **02** — No challenge requested * **03** — Challenge requested (3DS Requestor preference) * **04** — Challenge requested (Mandate) * **05** — No challenge (transactional risk analysis is already performed)
+        /// Indicates whether a challenge is requested for this transaction. Possible values: * **01** — No preference * **02** — No challenge requested * **03** — Challenge requested (3DS Requestor preference) * **04** — Challenge requested (Mandate) * **05** — No challenge (transactional risk analysis is already performed) * **06** — Data Only
         /// </summary>
-        /// <value>Indicates whether a challenge is requested for this transaction. Possible values: * **01** — No preference * **02** — No challenge requested * **03** — Challenge requested (3DS Requestor preference) * **04** — Challenge requested (Mandate) * **05** — No challenge (transactional risk analysis is already performed)</value>
+        /// <value>Indicates whether a challenge is requested for this transaction. Possible values: * **01** — No preference * **02** — No challenge requested * **03** — Challenge requested (3DS Requestor preference) * **04** — Challenge requested (Mandate) * **05** — No challenge (transactional risk analysis is already performed) * **06** — Data Only</value>
         [JsonConverter(typeof(StringEnumConverter))]
         public enum ThreeDSRequestorChallengeIndEnum
         {
@@ -166,14 +166,20 @@ namespace Adyen.Model.Payments
             /// Enum _05 for value: 05
             /// </summary>
             [EnumMember(Value = "05")]
-            _05 = 5
+            _05 = 5,
+
+            /// <summary>
+            /// Enum _06 for value: 06
+            /// </summary>
+            [EnumMember(Value = "06")]
+            _06 = 6
 
         }
 
         /// <summary>
-        /// Indicates whether a challenge is requested for this transaction. Possible values: * **01** — No preference * **02** — No challenge requested * **03** — Challenge requested (3DS Requestor preference) * **04** — Challenge requested (Mandate) * **05** — No challenge (transactional risk analysis is already performed)
+        /// Indicates whether a challenge is requested for this transaction. Possible values: * **01** — No preference * **02** — No challenge requested * **03** — Challenge requested (3DS Requestor preference) * **04** — Challenge requested (Mandate) * **05** — No challenge (transactional risk analysis is already performed) * **06** — Data Only
         /// </summary>
-        /// <value>Indicates whether a challenge is requested for this transaction. Possible values: * **01** — No preference * **02** — No challenge requested * **03** — Challenge requested (3DS Requestor preference) * **04** — Challenge requested (Mandate) * **05** — No challenge (transactional risk analysis is already performed)</value>
+        /// <value>Indicates whether a challenge is requested for this transaction. Possible values: * **01** — No preference * **02** — No challenge requested * **03** — Challenge requested (3DS Requestor preference) * **04** — Challenge requested (Mandate) * **05** — No challenge (transactional risk analysis is already performed) * **06** — Data Only</value>
         [DataMember(Name="threeDSRequestorChallengeInd", EmitDefaultValue=false)]
         public ThreeDSRequestorChallengeIndEnum? ThreeDSRequestorChallengeInd { get; set; }
         /// <summary>
@@ -304,7 +310,7 @@ namespace Adyen.Model.Payments
         /// <param name="threeDSCompInd">Completion indicator for the device fingerprinting..</param>
         /// <param name="threeDSRequestorAuthenticationInd">Indicates the type of Authentication request..</param>
         /// <param name="threeDSRequestorAuthenticationInfo">threeDSRequestorAuthenticationInfo.</param>
-        /// <param name="threeDSRequestorChallengeInd">Indicates whether a challenge is requested for this transaction. Possible values: * **01** — No preference * **02** — No challenge requested * **03** — Challenge requested (3DS Requestor preference) * **04** — Challenge requested (Mandate) * **05** — No challenge (transactional risk analysis is already performed).</param>
+        /// <param name="threeDSRequestorChallengeInd">Indicates whether a challenge is requested for this transaction. Possible values: * **01** — No preference * **02** — No challenge requested * **03** — Challenge requested (3DS Requestor preference) * **04** — Challenge requested (Mandate) * **05** — No challenge (transactional risk analysis is already performed) * **06** — Data Only.</param>
         /// <param name="threeDSRequestorID">Required for [authentication-only integration](https://docs.adyen.com/online-payments/3d-secure/other-3ds-flows/authentication-only) for Visa. Unique 3D Secure requestor identifier assigned by the Directory Server when you enrol for 3D Secure 2..</param>
         /// <param name="threeDSRequestorName">Required for [authentication-only integration](https://docs.adyen.com/online-payments/3d-secure/other-3ds-flows/authentication-only) for Visa. Unique 3D Secure requestor name assigned by the Directory Server when you enrol for 3D Secure 2..</param>
         /// <param name="threeDSRequestorPriorAuthenticationInfo">threeDSRequestorPriorAuthenticationInfo.</param>

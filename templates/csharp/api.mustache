@@ -7,6 +7,7 @@ using Adyen.Model;
 using Adyen.Service.Resource;
 {{#hasImport}}using Adyen.{{modelPackage}};
 {{/hasImport}}
+using Newtonsoft.Json;
 
 namespace {{packageName}}.{{apiPackage}}
 {
@@ -17,16 +18,16 @@ namespace {{packageName}}.{{apiPackage}}
     {{>visibility}} class {{classname}} : AbstractService
     {
         public {{classname}}(Client client) : base(client) {}
-
+    
         {{#operation}}
 {{>method_documentation}}{{#returnType}}
         /// <returns>{{{returnType}}}</returns>{{/returnType}}
         {{#isDeprecated}}
         [Obsolete]
         {{/isDeprecated}}
-        public {{{returnType}}}{{^returnType}}void{{/returnType}} {{operationId}}({{>api_parameters}})
+        public {{{returnType}}}{{^returnType}}void{{/returnType}} {{#lambda.pascalcase}}{{vendorExtensions.x-methodName}}{{/lambda.pascalcase}}({{>api_parameters}})
         {
-            {{#returnType}}return {{/returnType}}{{operationId}}Async({{>api_invoke}}).GetAwaiter().GetResult();
+            {{#returnType}}return {{/returnType}}{{#lambda.pascalcase}}{{vendorExtensions.x-methodName}}{{/lambda.pascalcase}}Async({{>api_invoke}}).GetAwaiter().GetResult();
         }
 
         {{#supportsAsync}}
@@ -35,7 +36,7 @@ namespace {{packageName}}.{{apiPackage}}
         {{#isDeprecated}}
         [Obsolete]
         {{/isDeprecated}}
-        {{#returnType}}public async Task<{{{.}}}>{{/returnType}}{{^returnType}}public async Task{{/returnType}} {{operationId}}Async({{>api_parameters}})
+        {{#returnType}}public async Task<{{{.}}}>{{/returnType}}{{^returnType}}public async Task{{/returnType}} {{#lambda.pascalcase}}{{vendorExtensions.x-methodName}}{{/lambda.pascalcase}}Async({{>api_parameters}})
         {
             {{#hasQueryParams}}
             // Build the query string
@@ -46,11 +47,15 @@ namespace {{packageName}}.{{apiPackage}}
             {{/hasQueryParams}}
             var endpoint = {{#hasPathParams}}${{/hasPathParams}}"{{{path}}}"{{#hasQueryParams}} + ToQueryString(queryParams){{/hasQueryParams}};
             var resource = new {{#lambda.titlecase}}{{serviceName}}{{/lambda.titlecase}}Resource(this, endpoint);
-            {{#returnType}}return {{/returnType}}await resource.RequestAsync{{#returnType}}<{{returnType}}>{{/returnType}}({{#bodyParam}}{{paramName}}.ToJson(){{/bodyParam}}{{^bodyParam}}null{{/bodyParam}}, requestOptions, new HttpMethod("{{httpMethod}}"));
+            {{#returnType}}var jsonResult = {{/returnType}}await resource.RequestAsync({{#bodyParam}}{{paramName}}.ToJson(){{/bodyParam}}{{^bodyParam}}null{{/bodyParam}}, requestOptions, new HttpMethod("{{httpMethod}}"));
+            {{#returnType}}
+            return JsonConvert.DeserializeObject<{{returnType}}>(jsonResult);
+            {{/returnType}}
         }
 
         {{/supportsAsync}}
         {{/operation}}
     }
     {{/operations}}
+<<<<<<< HEAD
 }
