@@ -31,13 +31,11 @@ namespace Adyen.Service.Resource
     {
         private AbstractService _abstractService;
         protected string Endpoint;
-        protected List<string> RequiredFields;
 
-        public Resource(AbstractService abstractService, string endpoint, List<string> requiredFields)
+        public Resource(AbstractService abstractService, string endpoint)
         {
             _abstractService = abstractService;
             Endpoint = endpoint;
-            RequiredFields = requiredFields;
         }
         
         public string Request(string json, RequestOptions requestOptions = null)

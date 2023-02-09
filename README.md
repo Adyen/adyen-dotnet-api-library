@@ -21,6 +21,7 @@ The library supports all APIs under the following services:
 | [Terminal API (Local communications)](https://docs.adyen.com/point-of-sale/choose-your-architecture/local) | Our point-of-sale integration.| Local-based Terminal API |   Local-based Terminal API     |      |
 | [POS Terminal Management API](https://docs.adyen.com/api-explorer/#/postfmapi/v1/overview)  | Endpoints for managing your point-of-sale payment terminals| POS Terminal Management API | **v1** |
 
+
 For more information, refer to our [documentation](https://docs.adyen.com/) or the [API Explorer](https://docs.adyen.com/api-explorer/).
 
 ## Prerequisites

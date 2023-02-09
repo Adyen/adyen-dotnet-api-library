@@ -29,7 +29,7 @@ namespace Adyen.Service.Resource
     public class ClassicResource : ServiceResource
     {
         public ClassicResource(AbstractService abstractService, string endpoint)
-            : base(abstractService, abstractService.Client.Config.Endpoint + "/pal/servlet/Payment/" + abstractService.Client.ApiVersion + endpoint,null)
+            : base(abstractService, abstractService.Client.Config.Endpoint + "/pal/servlet/Payment/" + abstractService.Client.ApiVersion + endpoint)
         {
         }
     }

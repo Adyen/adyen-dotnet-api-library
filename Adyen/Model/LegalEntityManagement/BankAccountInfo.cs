@@ -34,11 +34,6 @@ namespace Adyen.Model.LegalEntityManagement
         /// <summary>
         /// Initializes a new instance of the <see cref="BankAccountInfo" /> class.
         /// </summary>
-        [JsonConstructorAttribute]
-        protected BankAccountInfo() { }
-        /// <summary>
-        /// Initializes a new instance of the <see cref="BankAccountInfo" /> class.
-        /// </summary>
         /// <param name="accountNumber">The bank account number (without separators).   When this is provided, the &#x60;branchCode&#x60; is also required..</param>
         /// <param name="accountType">The type of bank account..</param>
         /// <param name="bankBicSwift">The bank&#39;s BIC or SWIFT code..</param>
@@ -47,8 +42,8 @@ namespace Adyen.Model.LegalEntityManagement
         /// <param name="bankName">The name of the banking institution where the bank account is held..</param>
         /// <param name="branchCode">The branch code of the branch under which the bank account is registered.  Required when you provide an &#x60;accountNumber&#x60;.   In the following countries, this value corresponds to:   * United States: routing number * United Kingdom: sort code * Germany: Bankleitzahl.</param>
         /// <param name="checkCode">The check code of the bank account..</param>
-        /// <param name="countryCode">The two-character [ISO 3166-1 alpha-2](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2) country code where the bank account is registered. For example, **NL**. (required).</param>
-        /// <param name="currencyCode">The account&#39;s three-character [ISO currency code](https://docs.adyen.com/development-resources/currency-codes). For example, **EUR**. (required).</param>
+        /// <param name="countryCode">The two-character [ISO 3166-1 alpha-2](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2) country code where the bank account is registered. For example, **NL**..</param>
+        /// <param name="currencyCode">The account&#39;s three-character [ISO currency code](https://docs.adyen.com/development-resources/currency-codes). For example, **EUR**..</param>
         /// <param name="iban">The international bank account number as defined in the [ISO-13616](https://www.iso.org/standard/81090.html) standard..</param>
         public BankAccountInfo(string accountNumber = default(string), string accountType = default(string), string bankBicSwift = default(string), string bankCity = default(string), string bankCode = default(string), string bankName = default(string), string branchCode = default(string), string checkCode = default(string), string countryCode = default(string), string currencyCode = default(string), string iban = default(string))
         {
@@ -126,14 +121,14 @@ namespace Adyen.Model.LegalEntityManagement
         /// The two-character [ISO 3166-1 alpha-2](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2) country code where the bank account is registered. For example, **NL**.
         /// </summary>
         /// <value>The two-character [ISO 3166-1 alpha-2](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2) country code where the bank account is registered. For example, **NL**.</value>
-        [DataMember(Name="countryCode", EmitDefaultValue=true)]
+        [DataMember(Name="countryCode", EmitDefaultValue=false)]
         public string CountryCode { get; set; }
 
         /// <summary>
         /// The account&#39;s three-character [ISO currency code](https://docs.adyen.com/development-resources/currency-codes). For example, **EUR**.
         /// </summary>
         /// <value>The account&#39;s three-character [ISO currency code](https://docs.adyen.com/development-resources/currency-codes). For example, **EUR**.</value>
-        [DataMember(Name="currencyCode", EmitDefaultValue=true)]
+        [DataMember(Name="currencyCode", EmitDefaultValue=false)]
         public string CurrencyCode { get; set; }
 
         /// <summary>

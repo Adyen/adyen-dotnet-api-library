@@ -1,0 +1,39 @@
+{
+  "data": [
+    {
+      "id": "S1F2-000150183300032",
+      "status": "OnlineToday",
+      "assigned": true,
+      "companyAccount": "YOUR_COMPANY_ACCOUNT",
+      "deviceModel": "S1F2",
+      "firmwareVersion": "Castles_Android 1.79.4",
+      "iccid": "6006491286999921374",
+      "lastActivityDateTime": "2022-08-09T12:44:11+02:00",
+      "serialNumber": "000150183300032",
+      "city": "Amsterdam",
+      "countryCode": "NL",
+      "storeStatus": "Active",
+      "wifiIp": "198.51.100.1",
+      "wifiMac": "C4:6E:00:16:A1:01"
+    },
+    {
+      "id": "V400m-080020970",
+      "status": "onlineLast1Day",
+      "assigned": true,
+      "bluetoothMac": "a4:60:11:83:0e:00",
+      "companyAccount": "YOUR_COMPANY_ACCOUNT",
+      "deviceModel": "V400m",
+      "ethernetMac": "64:5a:ed:f5:68:55",
+      "firmwareVersion": "Verifone_VOS 1.79.4",
+      "iccid": "6064364710330000000",
+      "lastActivityDateTime": "2022-08-10T14:09:14+02:00",
+      "serialNumber": "080-020-970",
+      "city": "Amsterdam",
+      "countryCode": "NL",
+      "storeStatus": "Active",
+      "wifiIp": "198.51.100.1",
+      "wifiMac": "d0:17:69:7c:02:4d",
+      "wifiSsid": "GUEST"
+    }
+  ]
+}

@@ -41,8 +41,9 @@ namespace Adyen.Model.Payments
         /// <param name="shopperEmail">the email address of the person.</param>
         /// <param name="shopperName">shopperName.</param>
         /// <param name="shopperReference">Required for recurring payments.  Your reference to uniquely identify this shopper, for example user ID or account ID. Minimum length: 3 characters. &gt; Your reference must not include personally identifiable information (PII), for example name or email address..</param>
+        /// <param name="subMerchant">subMerchant.</param>
         /// <param name="telephoneNumber">the telephone number of the person.</param>
-        public FundDestination(Dictionary<string, string> additionalData = default(Dictionary<string, string>), Address billingAddress = default(Address), Card card = default(Card), string selectedRecurringDetailReference = default(string), string shopperEmail = default(string), Name shopperName = default(Name), string shopperReference = default(string), string telephoneNumber = default(string))
+        public FundDestination(Dictionary<string, string> additionalData = default(Dictionary<string, string>), Address billingAddress = default(Address), Card card = default(Card), string selectedRecurringDetailReference = default(string), string shopperEmail = default(string), Name shopperName = default(Name), string shopperReference = default(string), SubMerchant subMerchant = default(SubMerchant), string telephoneNumber = default(string))
         {
             this.AdditionalData = additionalData;
             this.BillingAddress = billingAddress;
@@ -51,6 +52,7 @@ namespace Adyen.Model.Payments
             this.ShopperEmail = shopperEmail;
             this.ShopperName = shopperName;
             this.ShopperReference = shopperReference;
+            this.SubMerchant = subMerchant;
             this.TelephoneNumber = telephoneNumber;
         }
 
@@ -101,6 +103,12 @@ namespace Adyen.Model.Payments
         public string ShopperReference { get; set; }
 
         /// <summary>
+        /// Gets or Sets SubMerchant
+        /// </summary>
+        [DataMember(Name="subMerchant", EmitDefaultValue=false)]
+        public SubMerchant SubMerchant { get; set; }
+
+        /// <summary>
         /// the telephone number of the person
         /// </summary>
         /// <value>the telephone number of the person</value>
@@ -122,6 +130,7 @@ namespace Adyen.Model.Payments
             sb.Append("  ShopperEmail: ").Append(ShopperEmail).Append("\n");
             sb.Append("  ShopperName: ").Append(ShopperName).Append("\n");
             sb.Append("  ShopperReference: ").Append(ShopperReference).Append("\n");
+            sb.Append("  SubMerchant: ").Append(SubMerchant).Append("\n");
             sb.Append("  TelephoneNumber: ").Append(TelephoneNumber).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
@@ -194,6 +203,11 @@ namespace Adyen.Model.Payments
                     this.ShopperReference.Equals(input.ShopperReference))
                 ) && 
                 (
+                    this.SubMerchant == input.SubMerchant ||
+                    (this.SubMerchant != null &&
+                    this.SubMerchant.Equals(input.SubMerchant))
+                ) && 
+                (
                     this.TelephoneNumber == input.TelephoneNumber ||
                     (this.TelephoneNumber != null &&
                     this.TelephoneNumber.Equals(input.TelephoneNumber))
@@ -223,6 +237,8 @@ namespace Adyen.Model.Payments
                     hashCode = hashCode * 59 + this.ShopperName.GetHashCode();
                 if (this.ShopperReference != null)
                     hashCode = hashCode * 59 + this.ShopperReference.GetHashCode();
+                if (this.SubMerchant != null)
+                    hashCode = hashCode * 59 + this.SubMerchant.GetHashCode();
                 if (this.TelephoneNumber != null)
                     hashCode = hashCode * 59 + this.TelephoneNumber.GetHashCode();
                 return hashCode;

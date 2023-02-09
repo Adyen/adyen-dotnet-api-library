@@ -32,9 +32,9 @@ namespace Adyen.Model.LegalEntityManagement
     public partial class TransferInstrument :  IEquatable<TransferInstrument>, IValidatableObject
     {
         /// <summary>
-        /// The type of transfer instrument.  Possible values: **bankAccount**, **recurringDetail**.
+        /// The type of transfer instrument.  Possible value: **bankAccount**.
         /// </summary>
-        /// <value>The type of transfer instrument.  Possible values: **bankAccount**, **recurringDetail**.</value>
+        /// <value>The type of transfer instrument.  Possible value: **bankAccount**.</value>
         [JsonConverter(typeof(StringEnumConverter))]
         public enum TypeEnum
         {
@@ -53,9 +53,9 @@ namespace Adyen.Model.LegalEntityManagement
         }
 
         /// <summary>
-        /// The type of transfer instrument.  Possible values: **bankAccount**, **recurringDetail**.
+        /// The type of transfer instrument.  Possible value: **bankAccount**.
         /// </summary>
-        /// <value>The type of transfer instrument.  Possible values: **bankAccount**, **recurringDetail**.</value>
+        /// <value>The type of transfer instrument.  Possible value: **bankAccount**.</value>
         [DataMember(Name="type", EmitDefaultValue=true)]
         public TypeEnum Type { get; set; }
         /// <summary>
@@ -66,24 +66,22 @@ namespace Adyen.Model.LegalEntityManagement
         /// <summary>
         /// Initializes a new instance of the <see cref="TransferInstrument" /> class.
         /// </summary>
-        /// <param name="bankAccount">bankAccount.</param>
+        /// <param name="bankAccount">bankAccount (required).</param>
         /// <param name="documentDetails">List of documents uploaded for the transfer instrument..</param>
         /// <param name="legalEntityId">The unique identifier of the [legal entity](https://docs.adyen.com/api-explorer/#/legalentity/latest/post/legalEntities__resParam_id) that owns the transfer instrument. (required).</param>
-        /// <param name="recurringDetail">recurringDetail.</param>
-        /// <param name="type">The type of transfer instrument.  Possible values: **bankAccount**, **recurringDetail**. (required).</param>
-        public TransferInstrument(BankAccountInfo bankAccount = default(BankAccountInfo), List<DocumentReference> documentDetails = default(List<DocumentReference>), string legalEntityId = default(string), RecurringDetail recurringDetail = default(RecurringDetail), TypeEnum type = default(TypeEnum))
+        /// <param name="type">The type of transfer instrument.  Possible value: **bankAccount**. (required).</param>
+        public TransferInstrument(BankAccountInfo bankAccount = default(BankAccountInfo), List<DocumentReference> documentDetails = default(List<DocumentReference>), string legalEntityId = default(string), TypeEnum type = default(TypeEnum))
         {
             this.BankAccount = bankAccount;
             this.DocumentDetails = documentDetails;
             this.LegalEntityId = legalEntityId;
-            this.RecurringDetail = recurringDetail;
             this.Type = type;
         }
 
         /// <summary>
         /// Gets or Sets BankAccount
         /// </summary>
-        [DataMember(Name="bankAccount", EmitDefaultValue=false)]
+        [DataMember(Name="bankAccount", EmitDefaultValue=true)]
         public BankAccountInfo BankAccount { get; set; }
 
         /// <summary>
@@ -107,12 +105,6 @@ namespace Adyen.Model.LegalEntityManagement
         [DataMember(Name="legalEntityId", EmitDefaultValue=true)]
         public string LegalEntityId { get; set; }
 
-        /// <summary>
-        /// Gets or Sets RecurringDetail
-        /// </summary>
-        [DataMember(Name="recurringDetail", EmitDefaultValue=false)]
-        public RecurringDetail RecurringDetail { get; set; }
-
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -126,7 +118,6 @@ namespace Adyen.Model.LegalEntityManagement
             sb.Append("  DocumentDetails: ").Append(DocumentDetails).Append("\n");
             sb.Append("  Id: ").Append(Id).Append("\n");
             sb.Append("  LegalEntityId: ").Append(LegalEntityId).Append("\n");
-            sb.Append("  RecurringDetail: ").Append(RecurringDetail).Append("\n");
             sb.Append("  Type: ").Append(Type).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
@@ -184,11 +175,6 @@ namespace Adyen.Model.LegalEntityManagement
                     this.LegalEntityId.Equals(input.LegalEntityId))
                 ) && 
                 (
-                    this.RecurringDetail == input.RecurringDetail ||
-                    (this.RecurringDetail != null &&
-                    this.RecurringDetail.Equals(input.RecurringDetail))
-                ) && 
-                (
                     this.Type == input.Type ||
                     (this.Type != null &&
                     this.Type.Equals(input.Type))
@@ -212,8 +198,6 @@ namespace Adyen.Model.LegalEntityManagement
                     hashCode = hashCode * 59 + this.Id.GetHashCode();
                 if (this.LegalEntityId != null)
                     hashCode = hashCode * 59 + this.LegalEntityId.GetHashCode();
-                if (this.RecurringDetail != null)
-                    hashCode = hashCode * 59 + this.RecurringDetail.GetHashCode();
                 if (this.Type != null)
                     hashCode = hashCode * 59 + this.Type.GetHashCode();
                 return hashCode;

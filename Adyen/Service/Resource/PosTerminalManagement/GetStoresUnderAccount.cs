@@ -8,8 +8,7 @@ namespace Adyen.Service.Resource.PosTerminalManagement
         public GetStoresUnderAccount(AbstractService abstractService)
             : base(abstractService,
                 abstractService.Client.Config.PosTerminalManagementEndpoint + "/" +
-                ClientConfig.PosTerminalManagementVersion + "/getStoresUnderAccount",
-                new List<string> {"companyAccount"})
+                ClientConfig.PosTerminalManagementVersion + "/getStoresUnderAccount")
         {
         }
     }
