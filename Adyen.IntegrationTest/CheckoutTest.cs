@@ -70,7 +70,6 @@ namespace Adyen.IntegrationTest
         public void PaymentsTest()
         {
             var paymentResponse = _checkout.Payments(CreatePaymentRequestCheckout());
-            Console.WriteLine(paymentResponse.ToJson());
             Assert.IsNotNull(paymentResponse.AdditionalData);
             Assert.AreEqual("1111", paymentResponse.AdditionalData["cardSummary"]);
             Assert.IsNotNull(paymentResponse.AdditionalData["avsResult"]);

@@ -1,31 +1,4 @@
-﻿#region License
-
-/*
- *                       ######
- *                       ######
- * ############    ####( ######  #####. ######  ############   ############
- * #############  #####( ######  #####. ######  #############  #############
- *        ######  #####( ######  #####. ######  #####  ######  #####  ######
- * ###### ######  #####( ######  #####. ######  #####  #####   #####  ######
- * ###### ######  #####( ######  #####. ######  #####          #####  ######
- * #############  #############  #############  #############  #####  ######
- *  ############   ############  #############   ############  #####  ######
- *                                      ######
- *                               #############
- *                               ############
- *
- * Adyen Dotnet API Library
- *
- * Copyright (c) 2022 Adyen N.V.
- * This file is open source and available under the MIT license.
- * See the LICENSE file for more info.
- */
-
-#endregion
-
-using Adyen.Model;
-using Adyen.Model.ApplicationInformation;
-using Adyen.Model.Checkout;
+﻿using Adyen.Model.Checkout;
 using Adyen.Service;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Newtonsoft.Json;
@@ -37,7 +10,6 @@ using static Adyen.Model.Checkout.PaymentResponse;
 using Amount = Adyen.Model.Checkout.Amount;
 using ApplicationInfo = Adyen.Model.ApplicationInformation.ApplicationInfo;
 using Environment = Adyen.Model.Environment;
-
 
 namespace Adyen.Test
 {
@@ -790,29 +762,6 @@ namespace Adyen.Test
             Assert.AreEqual("Adyen", paymentMethodsResponse.StoredPaymentMethods[0].OwnerName);
             Assert.AreEqual("sepadirectdebit", paymentMethodsResponse.StoredPaymentMethods[0].Type);
         }
-
-        /*/// <summary>
-        /// Test if the fraud result are properly deseriazed
-        /// POST /payments
-        /// </summary>
-        [TestMethod]
-        public void FraudResultParsingTest()
-        {
-            var paymentRequest = CreatePaymentRequestCheckout();
-            var client = CreateMockTestClientApiKeyBasedRequest("Mocks/checkout/payments-success.json");
-            var checkout = new Checkout(client);
-            var paymentResponse = checkout.Payments(paymentRequest);
-            Assert.AreEqual(25, paymentResponse.FraudResult.AccountScore);
-            var fraudResults = paymentResponse.FraudResult.Results;
-            Assert.IsNotNull(fraudResults);
-            Assert.AreEqual(11, fraudResults.Count);
-            Assert.AreEqual("CardChunkUsage", fraudResults[0].FraudCheckResult.Name);
-            Assert.AreEqual(0, fraudResults[0].FraudCheckResult.AccountScore);
-            Assert.AreEqual(2, fraudResults[0].FraudCheckResult.CheckId);
-            Assert.AreEqual("PaymentDetailUsage", fraudResults[1].FraudCheckResult.Name);
-            Assert.AreEqual(0, fraudResults[1].FraudCheckResult.AccountScore);
-            Assert.AreEqual(3, fraudResults[1].FraudCheckResult.CheckId);
-        }*/
 
         /// <summary>
         /// Test if the fraud result are properly deseriazed

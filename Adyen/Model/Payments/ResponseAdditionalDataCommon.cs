@@ -11,16 +11,17 @@
 */
 
 using System;
-using System.Linq;
-using System.IO;
-using System.Text;
-using System.Text.RegularExpressions;
 using System.Collections;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Linq;
+using System.IO;
 using System.Runtime.Serialization;
+using System.Text;
+using System.Text.RegularExpressions;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
+using Newtonsoft.Json.Linq;
 using System.ComponentModel.DataAnnotations;
 
 namespace Adyen.Model.Payments
@@ -28,8 +29,8 @@ namespace Adyen.Model.Payments
     /// <summary>
     /// ResponseAdditionalDataCommon
     /// </summary>
-    [DataContract]
-    public partial class ResponseAdditionalDataCommon :  IEquatable<ResponseAdditionalDataCommon>, IValidatableObject
+    [DataContract(Name = "ResponseAdditionalDataCommon")]
+    public partial class ResponseAdditionalDataCommon : IEquatable<ResponseAdditionalDataCommon>, IValidatableObject
     {
         /// <summary>
         /// The fraud result properties of the payment.
@@ -52,11 +53,12 @@ namespace Adyen.Model.Payments
 
         }
 
+
         /// <summary>
         /// The fraud result properties of the payment.
         /// </summary>
         /// <value>The fraud result properties of the payment.</value>
-        [DataMember(Name="fraudResultType", EmitDefaultValue=false)]
+        [DataMember(Name = "fraudResultType", EmitDefaultValue = false)]
         public FraudResultTypeEnum? FraudResultType { get; set; }
         /// <summary>
         /// The processing model used for the recurring transaction.
@@ -85,11 +87,12 @@ namespace Adyen.Model.Payments
 
         }
 
+
         /// <summary>
         /// The processing model used for the recurring transaction.
         /// </summary>
         /// <value>The processing model used for the recurring transaction.</value>
-        [DataMember(Name="recurringProcessingModel", EmitDefaultValue=false)]
+        [DataMember(Name = "recurringProcessingModel", EmitDefaultValue = false)]
         public RecurringProcessingModelEnum? RecurringProcessingModel { get; set; }
         /// <summary>
         /// Initializes a new instance of the <see cref="ResponseAdditionalDataCommon" /> class.
@@ -220,401 +223,399 @@ namespace Adyen.Model.Payments
         /// The name of the Adyen acquirer account.  Example: PayPalSandbox_TestAcquirer  &gt; Only relevant for PayPal transactions.
         /// </summary>
         /// <value>The name of the Adyen acquirer account.  Example: PayPalSandbox_TestAcquirer  &gt; Only relevant for PayPal transactions.</value>
-        [DataMember(Name="acquirerAccountCode", EmitDefaultValue=false)]
+        [DataMember(Name = "acquirerAccountCode", EmitDefaultValue = false)]
         public string AcquirerAccountCode { get; set; }
 
         /// <summary>
         /// The name of the acquirer processing the payment request.  Example: TestPmmAcquirer
         /// </summary>
         /// <value>The name of the acquirer processing the payment request.  Example: TestPmmAcquirer</value>
-        [DataMember(Name="acquirerCode", EmitDefaultValue=false)]
+        [DataMember(Name = "acquirerCode", EmitDefaultValue = false)]
         public string AcquirerCode { get; set; }
 
         /// <summary>
         /// The reference number that can be used for reconciliation in case a non-Adyen acquirer is used for settlement.  Example: 7C9N3FNBKT9
         /// </summary>
         /// <value>The reference number that can be used for reconciliation in case a non-Adyen acquirer is used for settlement.  Example: 7C9N3FNBKT9</value>
-        [DataMember(Name="acquirerReference", EmitDefaultValue=false)]
+        [DataMember(Name = "acquirerReference", EmitDefaultValue = false)]
         public string AcquirerReference { get; set; }
 
         /// <summary>
         /// The Adyen alias of the card.  Example: H167852639363479
         /// </summary>
         /// <value>The Adyen alias of the card.  Example: H167852639363479</value>
-        [DataMember(Name="alias", EmitDefaultValue=false)]
+        [DataMember(Name = "alias", EmitDefaultValue = false)]
         public string Alias { get; set; }
 
         /// <summary>
         /// The type of the card alias.  Example: Default
         /// </summary>
         /// <value>The type of the card alias.  Example: Default</value>
-        [DataMember(Name="aliasType", EmitDefaultValue=false)]
+        [DataMember(Name = "aliasType", EmitDefaultValue = false)]
         public string AliasType { get; set; }
 
         /// <summary>
         /// Authorisation code: * When the payment is authorised successfully, this field holds the authorisation code for the payment. * When the payment is not authorised, this field is empty.  Example: 58747
         /// </summary>
         /// <value>Authorisation code: * When the payment is authorised successfully, this field holds the authorisation code for the payment. * When the payment is not authorised, this field is empty.  Example: 58747</value>
-        [DataMember(Name="authCode", EmitDefaultValue=false)]
+        [DataMember(Name = "authCode", EmitDefaultValue = false)]
         public string AuthCode { get; set; }
 
         /// <summary>
         /// Merchant ID known by the acquirer.
         /// </summary>
         /// <value>Merchant ID known by the acquirer.</value>
-        [DataMember(Name="authorisationMid", EmitDefaultValue=false)]
+        [DataMember(Name = "authorisationMid", EmitDefaultValue = false)]
         public string AuthorisationMid { get; set; }
 
         /// <summary>
         /// The currency of the authorised amount, as a three-character [ISO currency code](https://docs.adyen.com/development-resources/currency-codes).
         /// </summary>
         /// <value>The currency of the authorised amount, as a three-character [ISO currency code](https://docs.adyen.com/development-resources/currency-codes).</value>
-        [DataMember(Name="authorisedAmountCurrency", EmitDefaultValue=false)]
+        [DataMember(Name = "authorisedAmountCurrency", EmitDefaultValue = false)]
         public string AuthorisedAmountCurrency { get; set; }
 
         /// <summary>
         /// Value of the amount authorised.  This amount is represented in minor units according to the [following table](https://docs.adyen.com/development-resources/currency-codes).
         /// </summary>
         /// <value>Value of the amount authorised.  This amount is represented in minor units according to the [following table](https://docs.adyen.com/development-resources/currency-codes).</value>
-        [DataMember(Name="authorisedAmountValue", EmitDefaultValue=false)]
+        [DataMember(Name = "authorisedAmountValue", EmitDefaultValue = false)]
         public string AuthorisedAmountValue { get; set; }
 
         /// <summary>
         /// The AVS result code of the payment, which provides information about the outcome of the AVS check.  For possible values, see [AVS](https://docs.adyen.com/risk-management/configure-standard-risk-rules/consistency-rules#billing-address-does-not-match-cardholder-address-avs).
         /// </summary>
         /// <value>The AVS result code of the payment, which provides information about the outcome of the AVS check.  For possible values, see [AVS](https://docs.adyen.com/risk-management/configure-standard-risk-rules/consistency-rules#billing-address-does-not-match-cardholder-address-avs).</value>
-        [DataMember(Name="avsResult", EmitDefaultValue=false)]
+        [DataMember(Name = "avsResult", EmitDefaultValue = false)]
         public string AvsResult { get; set; }
 
         /// <summary>
         /// Raw AVS result received from the acquirer, where available.  Example: D
         /// </summary>
         /// <value>Raw AVS result received from the acquirer, where available.  Example: D</value>
-        [DataMember(Name="avsResultRaw", EmitDefaultValue=false)]
+        [DataMember(Name = "avsResultRaw", EmitDefaultValue = false)]
         public string AvsResultRaw { get; set; }
 
         /// <summary>
         /// BIC of a bank account.  Example: TESTNL01  &gt; Only relevant for SEPA Direct Debit transactions.
         /// </summary>
         /// <value>BIC of a bank account.  Example: TESTNL01  &gt; Only relevant for SEPA Direct Debit transactions.</value>
-        [DataMember(Name="bic", EmitDefaultValue=false)]
+        [DataMember(Name = "bic", EmitDefaultValue = false)]
         public string Bic { get; set; }
 
         /// <summary>
         /// Includes the co-branded card information.
         /// </summary>
         /// <value>Includes the co-branded card information.</value>
-        [DataMember(Name="coBrandedWith", EmitDefaultValue=false)]
+        [DataMember(Name = "coBrandedWith", EmitDefaultValue = false)]
         public string CoBrandedWith { get; set; }
 
         /// <summary>
         /// The result of CVC verification.
         /// </summary>
         /// <value>The result of CVC verification.</value>
-        [DataMember(Name="cvcResult", EmitDefaultValue=false)]
+        [DataMember(Name = "cvcResult", EmitDefaultValue = false)]
         public string CvcResult { get; set; }
 
         /// <summary>
         /// The raw result of CVC verification.
         /// </summary>
         /// <value>The raw result of CVC verification.</value>
-        [DataMember(Name="cvcResultRaw", EmitDefaultValue=false)]
+        [DataMember(Name = "cvcResultRaw", EmitDefaultValue = false)]
         public string CvcResultRaw { get; set; }
 
         /// <summary>
         /// Supported for 3D Secure 2. The unique transaction identifier assigned by the DS to identify a single transaction.
         /// </summary>
         /// <value>Supported for 3D Secure 2. The unique transaction identifier assigned by the DS to identify a single transaction.</value>
-        [DataMember(Name="dsTransID", EmitDefaultValue=false)]
+        [DataMember(Name = "dsTransID", EmitDefaultValue = false)]
         public string DsTransID { get; set; }
 
         /// <summary>
         /// The Electronic Commerce Indicator returned from the schemes for the 3DS payment session.  Example: 02
         /// </summary>
         /// <value>The Electronic Commerce Indicator returned from the schemes for the 3DS payment session.  Example: 02</value>
-        [DataMember(Name="eci", EmitDefaultValue=false)]
+        [DataMember(Name = "eci", EmitDefaultValue = false)]
         public string Eci { get; set; }
 
         /// <summary>
         /// The expiry date on the card.  Example: 6/2016  &gt; Returned only in case of a card payment.
         /// </summary>
         /// <value>The expiry date on the card.  Example: 6/2016  &gt; Returned only in case of a card payment.</value>
-        [DataMember(Name="expiryDate", EmitDefaultValue=false)]
+        [DataMember(Name = "expiryDate", EmitDefaultValue = false)]
         public string ExpiryDate { get; set; }
 
         /// <summary>
         /// The currency of the extra amount charged due to additional amounts set in the skin used in the HPP payment request.  Example: EUR
         /// </summary>
         /// <value>The currency of the extra amount charged due to additional amounts set in the skin used in the HPP payment request.  Example: EUR</value>
-        [DataMember(Name="extraCostsCurrency", EmitDefaultValue=false)]
+        [DataMember(Name = "extraCostsCurrency", EmitDefaultValue = false)]
         public string ExtraCostsCurrency { get; set; }
 
         /// <summary>
         /// The value of the extra amount charged due to additional amounts set in the skin used in the HPP payment request. The amount is in minor units.
         /// </summary>
         /// <value>The value of the extra amount charged due to additional amounts set in the skin used in the HPP payment request. The amount is in minor units.</value>
-        [DataMember(Name="extraCostsValue", EmitDefaultValue=false)]
+        [DataMember(Name = "extraCostsValue", EmitDefaultValue = false)]
         public string ExtraCostsValue { get; set; }
 
         /// <summary>
         /// The fraud score due to a particular fraud check. The fraud check name is found in the key of the key-value pair.
         /// </summary>
         /// <value>The fraud score due to a particular fraud check. The fraud check name is found in the key of the key-value pair.</value>
-        [DataMember(Name="fraudCheck-[itemNr]-[FraudCheckname]", EmitDefaultValue=false)]
+        [DataMember(Name = "fraudCheck-[itemNr]-[FraudCheckname]", EmitDefaultValue = false)]
         public string FraudCheckItemNrFraudCheckname { get; set; }
 
         /// <summary>
         /// Indicates if the payment is sent to manual review.
         /// </summary>
         /// <value>Indicates if the payment is sent to manual review.</value>
-        [DataMember(Name="fraudManualReview", EmitDefaultValue=false)]
+        [DataMember(Name = "fraudManualReview", EmitDefaultValue = false)]
         public string FraudManualReview { get; set; }
-
 
         /// <summary>
         /// Information regarding the funding type of the card. The possible return values are: * CHARGE * CREDIT * DEBIT * PREPAID * PREPAID_RELOADABLE  * PREPAID_NONRELOADABLE * DEFFERED_DEBIT  &gt; This functionality requires additional configuration on Adyen&#39;s end. To enable it, contact the Support Team.  For receiving this field in the notification, enable **Include Funding Source** in **Notifications** &gt; **Additional settings**.
         /// </summary>
         /// <value>Information regarding the funding type of the card. The possible return values are: * CHARGE * CREDIT * DEBIT * PREPAID * PREPAID_RELOADABLE  * PREPAID_NONRELOADABLE * DEFFERED_DEBIT  &gt; This functionality requires additional configuration on Adyen&#39;s end. To enable it, contact the Support Team.  For receiving this field in the notification, enable **Include Funding Source** in **Notifications** &gt; **Additional settings**.</value>
-        [DataMember(Name="fundingSource", EmitDefaultValue=false)]
+        [DataMember(Name = "fundingSource", EmitDefaultValue = false)]
         public string FundingSource { get; set; }
 
         /// <summary>
         /// Indicates availability of funds.  Visa: * \&quot;I\&quot; (fast funds are supported) * \&quot;N\&quot; (otherwise)  Mastercard: * \&quot;I\&quot; (product type is Prepaid or Debit, or issuing country is in CEE/HGEM list) * \&quot;N\&quot; (otherwise)  &gt; Returned when you verify a card BIN or estimate costs, and only if payoutEligible is \&quot;Y\&quot; or \&quot;D\&quot;.
         /// </summary>
         /// <value>Indicates availability of funds.  Visa: * \&quot;I\&quot; (fast funds are supported) * \&quot;N\&quot; (otherwise)  Mastercard: * \&quot;I\&quot; (product type is Prepaid or Debit, or issuing country is in CEE/HGEM list) * \&quot;N\&quot; (otherwise)  &gt; Returned when you verify a card BIN or estimate costs, and only if payoutEligible is \&quot;Y\&quot; or \&quot;D\&quot;.</value>
-        [DataMember(Name="fundsAvailability", EmitDefaultValue=false)]
+        [DataMember(Name = "fundsAvailability", EmitDefaultValue = false)]
         public string FundsAvailability { get; set; }
 
         /// <summary>
         /// Provides the more granular indication of why a transaction was refused. When a transaction fails with either \&quot;Refused\&quot;, \&quot;Restricted Card\&quot;, \&quot;Transaction Not Permitted\&quot;, \&quot;Not supported\&quot; or \&quot;DeclinedNon Generic\&quot; refusalReason from the issuer, Adyen cross references its PSP-wide data for extra insight into the refusal reason. If an inferred refusal reason is available, the &#x60;inferredRefusalReason&#x60;, field is populated and the &#x60;refusalReason&#x60;, is set to \&quot;Not Supported\&quot;.  Possible values:  * 3D Secure Mandated * Closed Account * ContAuth Not Supported * CVC Mandated * Ecommerce Not Allowed * Crossborder Not Supported * Card Updated  * Low Authrate Bin * Non-reloadable prepaid card
         /// </summary>
         /// <value>Provides the more granular indication of why a transaction was refused. When a transaction fails with either \&quot;Refused\&quot;, \&quot;Restricted Card\&quot;, \&quot;Transaction Not Permitted\&quot;, \&quot;Not supported\&quot; or \&quot;DeclinedNon Generic\&quot; refusalReason from the issuer, Adyen cross references its PSP-wide data for extra insight into the refusal reason. If an inferred refusal reason is available, the &#x60;inferredRefusalReason&#x60;, field is populated and the &#x60;refusalReason&#x60;, is set to \&quot;Not Supported\&quot;.  Possible values:  * 3D Secure Mandated * Closed Account * ContAuth Not Supported * CVC Mandated * Ecommerce Not Allowed * Crossborder Not Supported * Card Updated  * Low Authrate Bin * Non-reloadable prepaid card</value>
-        [DataMember(Name="inferredRefusalReason", EmitDefaultValue=false)]
+        [DataMember(Name = "inferredRefusalReason", EmitDefaultValue = false)]
         public string InferredRefusalReason { get; set; }
 
         /// <summary>
         /// Indicates if the card is used for business purposes only.
         /// </summary>
         /// <value>Indicates if the card is used for business purposes only.</value>
-        [DataMember(Name="isCardCommercial", EmitDefaultValue=false)]
+        [DataMember(Name = "isCardCommercial", EmitDefaultValue = false)]
         public string IsCardCommercial { get; set; }
 
         /// <summary>
         /// The issuing country of the card based on the BIN list that Adyen maintains.  Example: JP
         /// </summary>
         /// <value>The issuing country of the card based on the BIN list that Adyen maintains.  Example: JP</value>
-        [DataMember(Name="issuerCountry", EmitDefaultValue=false)]
+        [DataMember(Name = "issuerCountry", EmitDefaultValue = false)]
         public string IssuerCountry { get; set; }
 
         /// <summary>
         /// A Boolean value indicating whether a liability shift was offered for this payment.
         /// </summary>
         /// <value>A Boolean value indicating whether a liability shift was offered for this payment.</value>
-        [DataMember(Name="liabilityShift", EmitDefaultValue=false)]
+        [DataMember(Name = "liabilityShift", EmitDefaultValue = false)]
         public string LiabilityShift { get; set; }
 
         /// <summary>
         /// The &#x60;mcBankNetReferenceNumber&#x60;, is a minimum of six characters and a maximum of nine characters long.  &gt; Contact Support Team to enable this field.
         /// </summary>
         /// <value>The &#x60;mcBankNetReferenceNumber&#x60;, is a minimum of six characters and a maximum of nine characters long.  &gt; Contact Support Team to enable this field.</value>
-        [DataMember(Name="mcBankNetReferenceNumber", EmitDefaultValue=false)]
+        [DataMember(Name = "mcBankNetReferenceNumber", EmitDefaultValue = false)]
         public string McBankNetReferenceNumber { get; set; }
 
         /// <summary>
         /// The Merchant Advice Code (MAC) can be returned by Mastercard issuers for refused payments. If present, the MAC contains information about why the payment failed, and whether it can be retried.  For more information see [Mastercard Merchant Advice Codes](https://docs.adyen.com/development-resources/raw-acquirer-responses#mastercard-merchant-advice-codes).
         /// </summary>
         /// <value>The Merchant Advice Code (MAC) can be returned by Mastercard issuers for refused payments. If present, the MAC contains information about why the payment failed, and whether it can be retried.  For more information see [Mastercard Merchant Advice Codes](https://docs.adyen.com/development-resources/raw-acquirer-responses#mastercard-merchant-advice-codes).</value>
-        [DataMember(Name="merchantAdviceCode", EmitDefaultValue=false)]
+        [DataMember(Name = "merchantAdviceCode", EmitDefaultValue = false)]
         public string MerchantAdviceCode { get; set; }
 
         /// <summary>
         /// The reference provided for the transaction.
         /// </summary>
         /// <value>The reference provided for the transaction.</value>
-        [DataMember(Name="merchantReference", EmitDefaultValue=false)]
+        [DataMember(Name = "merchantReference", EmitDefaultValue = false)]
         public string MerchantReference { get; set; }
 
         /// <summary>
         /// Returned in the response if you are not tokenizing with Adyen and are using the Merchant-initiated transactions (MIT) framework from Mastercard or Visa.  This contains either the Mastercard Trace ID or the Visa Transaction ID.
         /// </summary>
         /// <value>Returned in the response if you are not tokenizing with Adyen and are using the Merchant-initiated transactions (MIT) framework from Mastercard or Visa.  This contains either the Mastercard Trace ID or the Visa Transaction ID.</value>
-        [DataMember(Name="networkTxReference", EmitDefaultValue=false)]
+        [DataMember(Name = "networkTxReference", EmitDefaultValue = false)]
         public string NetworkTxReference { get; set; }
 
         /// <summary>
         /// The owner name of a bank account.  Only relevant for SEPA Direct Debit transactions.
         /// </summary>
         /// <value>The owner name of a bank account.  Only relevant for SEPA Direct Debit transactions.</value>
-        [DataMember(Name="ownerName", EmitDefaultValue=false)]
+        [DataMember(Name = "ownerName", EmitDefaultValue = false)]
         public string OwnerName { get; set; }
 
         /// <summary>
         /// The Payment Account Reference (PAR) value links a network token with the underlying primary account number (PAN). The PAR value consists of 29 uppercase alphanumeric characters.
         /// </summary>
         /// <value>The Payment Account Reference (PAR) value links a network token with the underlying primary account number (PAN). The PAR value consists of 29 uppercase alphanumeric characters.</value>
-        [DataMember(Name="paymentAccountReference", EmitDefaultValue=false)]
+        [DataMember(Name = "paymentAccountReference", EmitDefaultValue = false)]
         public string PaymentAccountReference { get; set; }
 
         /// <summary>
         /// The payment method used in the transaction.
         /// </summary>
         /// <value>The payment method used in the transaction.</value>
-        [DataMember(Name="paymentMethod", EmitDefaultValue=false)]
+        [DataMember(Name = "paymentMethod", EmitDefaultValue = false)]
         public string PaymentMethod { get; set; }
 
         /// <summary>
         /// The Adyen sub-variant of the payment method used for the payment request.  For more information, refer to [PaymentMethodVariant](https://docs.adyen.com/development-resources/paymentmethodvariant).  Example: mcpro
         /// </summary>
         /// <value>The Adyen sub-variant of the payment method used for the payment request.  For more information, refer to [PaymentMethodVariant](https://docs.adyen.com/development-resources/paymentmethodvariant).  Example: mcpro</value>
-        [DataMember(Name="paymentMethodVariant", EmitDefaultValue=false)]
+        [DataMember(Name = "paymentMethodVariant", EmitDefaultValue = false)]
         public string PaymentMethodVariant { get; set; }
 
         /// <summary>
         /// Indicates whether a payout is eligible or not for this card.  Visa: * \&quot;Y\&quot; * \&quot;N\&quot;  Mastercard: * \&quot;Y\&quot; (domestic and cross-border)  * \&quot;D\&quot; (only domestic) * \&quot;N\&quot; (no MoneySend) * \&quot;U\&quot; (unknown)
         /// </summary>
         /// <value>Indicates whether a payout is eligible or not for this card.  Visa: * \&quot;Y\&quot; * \&quot;N\&quot;  Mastercard: * \&quot;Y\&quot; (domestic and cross-border)  * \&quot;D\&quot; (only domestic) * \&quot;N\&quot; (no MoneySend) * \&quot;U\&quot; (unknown)</value>
-        [DataMember(Name="payoutEligible", EmitDefaultValue=false)]
+        [DataMember(Name = "payoutEligible", EmitDefaultValue = false)]
         public string PayoutEligible { get; set; }
 
         /// <summary>
         /// The response code from the Real Time Account Updater service.  Possible return values are: * CardChanged * CardExpiryChanged * CloseAccount  * ContactCardAccountHolder
         /// </summary>
         /// <value>The response code from the Real Time Account Updater service.  Possible return values are: * CardChanged * CardExpiryChanged * CloseAccount  * ContactCardAccountHolder</value>
-        [DataMember(Name="realtimeAccountUpdaterStatus", EmitDefaultValue=false)]
+        [DataMember(Name = "realtimeAccountUpdaterStatus", EmitDefaultValue = false)]
         public string RealtimeAccountUpdaterStatus { get; set; }
 
         /// <summary>
         /// Message to be displayed on the terminal.
         /// </summary>
         /// <value>Message to be displayed on the terminal.</value>
-        [DataMember(Name="receiptFreeText", EmitDefaultValue=false)]
+        [DataMember(Name = "receiptFreeText", EmitDefaultValue = false)]
         public string ReceiptFreeText { get; set; }
 
         /// <summary>
         /// The recurring contract types applicable to the transaction.
         /// </summary>
         /// <value>The recurring contract types applicable to the transaction.</value>
-        [DataMember(Name="recurring.contractTypes", EmitDefaultValue=false)]
+        [DataMember(Name = "recurring.contractTypes", EmitDefaultValue = false)]
         public string RecurringContractTypes { get; set; }
 
         /// <summary>
         /// The &#x60;pspReference&#x60;, of the first recurring payment that created the recurring detail.  This functionality requires additional configuration on Adyen&#39;s end. To enable it, contact the Support Team.
         /// </summary>
         /// <value>The &#x60;pspReference&#x60;, of the first recurring payment that created the recurring detail.  This functionality requires additional configuration on Adyen&#39;s end. To enable it, contact the Support Team.</value>
-        [DataMember(Name="recurring.firstPspReference", EmitDefaultValue=false)]
+        [DataMember(Name = "recurring.firstPspReference", EmitDefaultValue = false)]
         public string RecurringFirstPspReference { get; set; }
 
         /// <summary>
         /// The reference that uniquely identifies the recurring transaction.
         /// </summary>
         /// <value>The reference that uniquely identifies the recurring transaction.</value>
-        [DataMember(Name="recurring.recurringDetailReference", EmitDefaultValue=false)]
+        [DataMember(Name = "recurring.recurringDetailReference", EmitDefaultValue = false)]
         public string RecurringRecurringDetailReference { get; set; }
 
         /// <summary>
         /// The provided reference of the shopper for a recurring transaction.
         /// </summary>
         /// <value>The provided reference of the shopper for a recurring transaction.</value>
-        [DataMember(Name="recurring.shopperReference", EmitDefaultValue=false)]
+        [DataMember(Name = "recurring.shopperReference", EmitDefaultValue = false)]
         public string RecurringShopperReference { get; set; }
-
 
         /// <summary>
         /// If the payment is referred, this field is set to true.  This field is unavailable if the payment is referred and is usually not returned with ecommerce transactions.  Example: true
         /// </summary>
         /// <value>If the payment is referred, this field is set to true.  This field is unavailable if the payment is referred and is usually not returned with ecommerce transactions.  Example: true</value>
-        [DataMember(Name="referred", EmitDefaultValue=false)]
+        [DataMember(Name = "referred", EmitDefaultValue = false)]
         public string Referred { get; set; }
 
         /// <summary>
         /// Raw refusal reason received from the acquirer, where available.  Example: AUTHORISED
         /// </summary>
         /// <value>Raw refusal reason received from the acquirer, where available.  Example: AUTHORISED</value>
-        [DataMember(Name="refusalReasonRaw", EmitDefaultValue=false)]
+        [DataMember(Name = "refusalReasonRaw", EmitDefaultValue = false)]
         public string RefusalReasonRaw { get; set; }
 
         /// <summary>
         /// The amount of the payment request.
         /// </summary>
         /// <value>The amount of the payment request.</value>
-        [DataMember(Name="requestAmount", EmitDefaultValue=false)]
+        [DataMember(Name = "requestAmount", EmitDefaultValue = false)]
         public string RequestAmount { get; set; }
 
         /// <summary>
         /// The currency of the payment request.
         /// </summary>
         /// <value>The currency of the payment request.</value>
-        [DataMember(Name="requestCurrencyCode", EmitDefaultValue=false)]
+        [DataMember(Name = "requestCurrencyCode", EmitDefaultValue = false)]
         public string RequestCurrencyCode { get; set; }
 
         /// <summary>
         /// The shopper interaction type of the payment request.  Example: Ecommerce
         /// </summary>
         /// <value>The shopper interaction type of the payment request.  Example: Ecommerce</value>
-        [DataMember(Name="shopperInteraction", EmitDefaultValue=false)]
+        [DataMember(Name = "shopperInteraction", EmitDefaultValue = false)]
         public string ShopperInteraction { get; set; }
 
         /// <summary>
         /// The shopperReference passed in the payment request.  Example: AdyenTestShopperXX
         /// </summary>
         /// <value>The shopperReference passed in the payment request.  Example: AdyenTestShopperXX</value>
-        [DataMember(Name="shopperReference", EmitDefaultValue=false)]
+        [DataMember(Name = "shopperReference", EmitDefaultValue = false)]
         public string ShopperReference { get; set; }
 
         /// <summary>
         /// The terminal ID used in a point-of-sale payment.  Example: 06022622
         /// </summary>
         /// <value>The terminal ID used in a point-of-sale payment.  Example: 06022622</value>
-        [DataMember(Name="terminalId", EmitDefaultValue=false)]
+        [DataMember(Name = "terminalId", EmitDefaultValue = false)]
         public string TerminalId { get; set; }
 
         /// <summary>
         /// A Boolean value indicating whether 3DS authentication was completed on this payment.  Example: true
         /// </summary>
         /// <value>A Boolean value indicating whether 3DS authentication was completed on this payment.  Example: true</value>
-        [DataMember(Name="threeDAuthenticated", EmitDefaultValue=false)]
+        [DataMember(Name = "threeDAuthenticated", EmitDefaultValue = false)]
         public string ThreeDAuthenticated { get; set; }
 
         /// <summary>
         /// The raw 3DS authentication result from the card issuer.  Example: N
         /// </summary>
         /// <value>The raw 3DS authentication result from the card issuer.  Example: N</value>
-        [DataMember(Name="threeDAuthenticatedResponse", EmitDefaultValue=false)]
+        [DataMember(Name = "threeDAuthenticatedResponse", EmitDefaultValue = false)]
         public string ThreeDAuthenticatedResponse { get; set; }
 
         /// <summary>
         /// A Boolean value indicating whether 3DS was offered for this payment.  Example: true
         /// </summary>
         /// <value>A Boolean value indicating whether 3DS was offered for this payment.  Example: true</value>
-        [DataMember(Name="threeDOffered", EmitDefaultValue=false)]
+        [DataMember(Name = "threeDOffered", EmitDefaultValue = false)]
         public string ThreeDOffered { get; set; }
 
         /// <summary>
         /// The raw enrollment result from the 3DS directory services of the card schemes.  Example: Y
         /// </summary>
         /// <value>The raw enrollment result from the 3DS directory services of the card schemes.  Example: Y</value>
-        [DataMember(Name="threeDOfferedResponse", EmitDefaultValue=false)]
+        [DataMember(Name = "threeDOfferedResponse", EmitDefaultValue = false)]
         public string ThreeDOfferedResponse { get; set; }
 
         /// <summary>
         /// The 3D Secure 2 version.
         /// </summary>
         /// <value>The 3D Secure 2 version.</value>
-        [DataMember(Name="threeDSVersion", EmitDefaultValue=false)]
+        [DataMember(Name = "threeDSVersion", EmitDefaultValue = false)]
         public string ThreeDSVersion { get; set; }
 
         /// <summary>
         /// The &#x60;visaTransactionId&#x60;, has a fixed length of 15 numeric characters.  &gt; Contact Support Team to enable this field.
         /// </summary>
         /// <value>The &#x60;visaTransactionId&#x60;, has a fixed length of 15 numeric characters.  &gt; Contact Support Team to enable this field.</value>
-        [DataMember(Name="visaTransactionId", EmitDefaultValue=false)]
+        [DataMember(Name = "visaTransactionId", EmitDefaultValue = false)]
         public string VisaTransactionId { get; set; }
 
         /// <summary>
         /// The 3DS transaction ID of the 3DS session sent in notifications. The value is Base64-encoded and is returned for transactions with directoryResponse &#39;N&#39; or &#39;Y&#39;. If you want to submit the xid in your 3D Secure 1 request, use the &#x60;mpiData.xid&#x60;, field.  Example: ODgxNDc2MDg2MDExODk5MAAAAAA&#x3D;
         /// </summary>
         /// <value>The 3DS transaction ID of the 3DS session sent in notifications. The value is Base64-encoded and is returned for transactions with directoryResponse &#39;N&#39; or &#39;Y&#39;. If you want to submit the xid in your 3D Secure 1 request, use the &#x60;mpiData.xid&#x60;, field.  Example: ODgxNDc2MDg2MDExODk5MAAAAAA&#x3D;</value>
-        [DataMember(Name="xid", EmitDefaultValue=false)]
+        [DataMember(Name = "xid", EmitDefaultValue = false)]
         public string Xid { get; set; }
 
         /// <summary>
@@ -623,7 +624,7 @@ namespace Adyen.Model.Payments
         /// <returns>String presentation of the object</returns>
         public override string ToString()
         {
-            var sb = new StringBuilder();
+            StringBuilder sb = new StringBuilder();
             sb.Append("class ResponseAdditionalDataCommon {\n");
             sb.Append("  AcquirerAccountCode: ").Append(AcquirerAccountCode).Append("\n");
             sb.Append("  AcquirerCode: ").Append(AcquirerCode).Append("\n");
@@ -715,8 +716,9 @@ namespace Adyen.Model.Payments
         public bool Equals(ResponseAdditionalDataCommon input)
         {
             if (input == null)
+            {
                 return false;
-
+            }
             return 
                 (
                     this.AcquirerAccountCode == input.AcquirerAccountCode ||
@@ -830,8 +832,7 @@ namespace Adyen.Model.Payments
                 ) && 
                 (
                     this.FraudResultType == input.FraudResultType ||
-                    (this.FraudResultType != null &&
-                    this.FraudResultType.Equals(input.FraudResultType))
+                    this.FraudResultType.Equals(input.FraudResultType)
                 ) && 
                 (
                     this.FundingSource == input.FundingSource ||
@@ -940,8 +941,7 @@ namespace Adyen.Model.Payments
                 ) && 
                 (
                     this.RecurringProcessingModel == input.RecurringProcessingModel ||
-                    (this.RecurringProcessingModel != null &&
-                    this.RecurringProcessingModel.Equals(input.RecurringProcessingModel))
+                    this.RecurringProcessingModel.Equals(input.RecurringProcessingModel)
                 ) && 
                 (
                     this.Referred == input.Referred ||
@@ -1025,133 +1025,244 @@ namespace Adyen.Model.Payments
             {
                 int hashCode = 41;
                 if (this.AcquirerAccountCode != null)
-                    hashCode = hashCode * 59 + this.AcquirerAccountCode.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.AcquirerAccountCode.GetHashCode();
+                }
                 if (this.AcquirerCode != null)
-                    hashCode = hashCode * 59 + this.AcquirerCode.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.AcquirerCode.GetHashCode();
+                }
                 if (this.AcquirerReference != null)
-                    hashCode = hashCode * 59 + this.AcquirerReference.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.AcquirerReference.GetHashCode();
+                }
                 if (this.Alias != null)
-                    hashCode = hashCode * 59 + this.Alias.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.Alias.GetHashCode();
+                }
                 if (this.AliasType != null)
-                    hashCode = hashCode * 59 + this.AliasType.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.AliasType.GetHashCode();
+                }
                 if (this.AuthCode != null)
-                    hashCode = hashCode * 59 + this.AuthCode.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.AuthCode.GetHashCode();
+                }
                 if (this.AuthorisationMid != null)
-                    hashCode = hashCode * 59 + this.AuthorisationMid.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.AuthorisationMid.GetHashCode();
+                }
                 if (this.AuthorisedAmountCurrency != null)
-                    hashCode = hashCode * 59 + this.AuthorisedAmountCurrency.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.AuthorisedAmountCurrency.GetHashCode();
+                }
                 if (this.AuthorisedAmountValue != null)
-                    hashCode = hashCode * 59 + this.AuthorisedAmountValue.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.AuthorisedAmountValue.GetHashCode();
+                }
                 if (this.AvsResult != null)
-                    hashCode = hashCode * 59 + this.AvsResult.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.AvsResult.GetHashCode();
+                }
                 if (this.AvsResultRaw != null)
-                    hashCode = hashCode * 59 + this.AvsResultRaw.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.AvsResultRaw.GetHashCode();
+                }
                 if (this.Bic != null)
-                    hashCode = hashCode * 59 + this.Bic.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.Bic.GetHashCode();
+                }
                 if (this.CoBrandedWith != null)
-                    hashCode = hashCode * 59 + this.CoBrandedWith.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.CoBrandedWith.GetHashCode();
+                }
                 if (this.CvcResult != null)
-                    hashCode = hashCode * 59 + this.CvcResult.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.CvcResult.GetHashCode();
+                }
                 if (this.CvcResultRaw != null)
-                    hashCode = hashCode * 59 + this.CvcResultRaw.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.CvcResultRaw.GetHashCode();
+                }
                 if (this.DsTransID != null)
-                    hashCode = hashCode * 59 + this.DsTransID.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.DsTransID.GetHashCode();
+                }
                 if (this.Eci != null)
-                    hashCode = hashCode * 59 + this.Eci.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.Eci.GetHashCode();
+                }
                 if (this.ExpiryDate != null)
-                    hashCode = hashCode * 59 + this.ExpiryDate.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.ExpiryDate.GetHashCode();
+                }
                 if (this.ExtraCostsCurrency != null)
-                    hashCode = hashCode * 59 + this.ExtraCostsCurrency.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.ExtraCostsCurrency.GetHashCode();
+                }
                 if (this.ExtraCostsValue != null)
-                    hashCode = hashCode * 59 + this.ExtraCostsValue.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.ExtraCostsValue.GetHashCode();
+                }
                 if (this.FraudCheckItemNrFraudCheckname != null)
-                    hashCode = hashCode * 59 + this.FraudCheckItemNrFraudCheckname.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.FraudCheckItemNrFraudCheckname.GetHashCode();
+                }
                 if (this.FraudManualReview != null)
-                    hashCode = hashCode * 59 + this.FraudManualReview.GetHashCode();
-                if (this.FraudResultType != null)
-                    hashCode = hashCode * 59 + this.FraudResultType.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.FraudManualReview.GetHashCode();
+                }
+                hashCode = (hashCode * 59) + this.FraudResultType.GetHashCode();
                 if (this.FundingSource != null)
-                    hashCode = hashCode * 59 + this.FundingSource.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.FundingSource.GetHashCode();
+                }
                 if (this.FundsAvailability != null)
-                    hashCode = hashCode * 59 + this.FundsAvailability.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.FundsAvailability.GetHashCode();
+                }
                 if (this.InferredRefusalReason != null)
-                    hashCode = hashCode * 59 + this.InferredRefusalReason.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.InferredRefusalReason.GetHashCode();
+                }
                 if (this.IsCardCommercial != null)
-                    hashCode = hashCode * 59 + this.IsCardCommercial.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.IsCardCommercial.GetHashCode();
+                }
                 if (this.IssuerCountry != null)
-                    hashCode = hashCode * 59 + this.IssuerCountry.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.IssuerCountry.GetHashCode();
+                }
                 if (this.LiabilityShift != null)
-                    hashCode = hashCode * 59 + this.LiabilityShift.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.LiabilityShift.GetHashCode();
+                }
                 if (this.McBankNetReferenceNumber != null)
-                    hashCode = hashCode * 59 + this.McBankNetReferenceNumber.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.McBankNetReferenceNumber.GetHashCode();
+                }
                 if (this.MerchantAdviceCode != null)
-                    hashCode = hashCode * 59 + this.MerchantAdviceCode.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.MerchantAdviceCode.GetHashCode();
+                }
                 if (this.MerchantReference != null)
-                    hashCode = hashCode * 59 + this.MerchantReference.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.MerchantReference.GetHashCode();
+                }
                 if (this.NetworkTxReference != null)
-                    hashCode = hashCode * 59 + this.NetworkTxReference.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.NetworkTxReference.GetHashCode();
+                }
                 if (this.OwnerName != null)
-                    hashCode = hashCode * 59 + this.OwnerName.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.OwnerName.GetHashCode();
+                }
                 if (this.PaymentAccountReference != null)
-                    hashCode = hashCode * 59 + this.PaymentAccountReference.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.PaymentAccountReference.GetHashCode();
+                }
                 if (this.PaymentMethod != null)
-                    hashCode = hashCode * 59 + this.PaymentMethod.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.PaymentMethod.GetHashCode();
+                }
                 if (this.PaymentMethodVariant != null)
-                    hashCode = hashCode * 59 + this.PaymentMethodVariant.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.PaymentMethodVariant.GetHashCode();
+                }
                 if (this.PayoutEligible != null)
-                    hashCode = hashCode * 59 + this.PayoutEligible.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.PayoutEligible.GetHashCode();
+                }
                 if (this.RealtimeAccountUpdaterStatus != null)
-                    hashCode = hashCode * 59 + this.RealtimeAccountUpdaterStatus.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.RealtimeAccountUpdaterStatus.GetHashCode();
+                }
                 if (this.ReceiptFreeText != null)
-                    hashCode = hashCode * 59 + this.ReceiptFreeText.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.ReceiptFreeText.GetHashCode();
+                }
                 if (this.RecurringContractTypes != null)
-                    hashCode = hashCode * 59 + this.RecurringContractTypes.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.RecurringContractTypes.GetHashCode();
+                }
                 if (this.RecurringFirstPspReference != null)
-                    hashCode = hashCode * 59 + this.RecurringFirstPspReference.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.RecurringFirstPspReference.GetHashCode();
+                }
                 if (this.RecurringRecurringDetailReference != null)
-                    hashCode = hashCode * 59 + this.RecurringRecurringDetailReference.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.RecurringRecurringDetailReference.GetHashCode();
+                }
                 if (this.RecurringShopperReference != null)
-                    hashCode = hashCode * 59 + this.RecurringShopperReference.GetHashCode();
-                if (this.RecurringProcessingModel != null)
-                    hashCode = hashCode * 59 + this.RecurringProcessingModel.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.RecurringShopperReference.GetHashCode();
+                }
+                hashCode = (hashCode * 59) + this.RecurringProcessingModel.GetHashCode();
                 if (this.Referred != null)
-                    hashCode = hashCode * 59 + this.Referred.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.Referred.GetHashCode();
+                }
                 if (this.RefusalReasonRaw != null)
-                    hashCode = hashCode * 59 + this.RefusalReasonRaw.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.RefusalReasonRaw.GetHashCode();
+                }
                 if (this.RequestAmount != null)
-                    hashCode = hashCode * 59 + this.RequestAmount.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.RequestAmount.GetHashCode();
+                }
                 if (this.RequestCurrencyCode != null)
-                    hashCode = hashCode * 59 + this.RequestCurrencyCode.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.RequestCurrencyCode.GetHashCode();
+                }
                 if (this.ShopperInteraction != null)
-                    hashCode = hashCode * 59 + this.ShopperInteraction.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.ShopperInteraction.GetHashCode();
+                }
                 if (this.ShopperReference != null)
-                    hashCode = hashCode * 59 + this.ShopperReference.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.ShopperReference.GetHashCode();
+                }
                 if (this.TerminalId != null)
-                    hashCode = hashCode * 59 + this.TerminalId.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.TerminalId.GetHashCode();
+                }
                 if (this.ThreeDAuthenticated != null)
-                    hashCode = hashCode * 59 + this.ThreeDAuthenticated.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.ThreeDAuthenticated.GetHashCode();
+                }
                 if (this.ThreeDAuthenticatedResponse != null)
-                    hashCode = hashCode * 59 + this.ThreeDAuthenticatedResponse.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.ThreeDAuthenticatedResponse.GetHashCode();
+                }
                 if (this.ThreeDOffered != null)
-                    hashCode = hashCode * 59 + this.ThreeDOffered.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.ThreeDOffered.GetHashCode();
+                }
                 if (this.ThreeDOfferedResponse != null)
-                    hashCode = hashCode * 59 + this.ThreeDOfferedResponse.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.ThreeDOfferedResponse.GetHashCode();
+                }
                 if (this.ThreeDSVersion != null)
-                    hashCode = hashCode * 59 + this.ThreeDSVersion.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.ThreeDSVersion.GetHashCode();
+                }
                 if (this.VisaTransactionId != null)
-                    hashCode = hashCode * 59 + this.VisaTransactionId.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.VisaTransactionId.GetHashCode();
+                }
                 if (this.Xid != null)
-                    hashCode = hashCode * 59 + this.Xid.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.Xid.GetHashCode();
+                }
                 return hashCode;
             }
         }
-
         /// <summary>
         /// To validate all properties of the instance
         /// </summary>
         /// <param name="validationContext">Validation context</param>
         /// <returns>Validation Result</returns>
-        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+        public IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> Validate(ValidationContext validationContext)
         {
             yield break;
         }

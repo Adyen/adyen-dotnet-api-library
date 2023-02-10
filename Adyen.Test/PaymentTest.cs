@@ -173,6 +173,15 @@ namespace Adyen.Test
             Assert.AreEqual(paymentRequest.ApplicationInfo.AdyenLibrary.Name, ClientConfig.LibName);
             Assert.AreEqual(paymentRequest.ApplicationInfo.AdyenLibrary.Version, ClientConfig.LibVersion);
         }
+        
+        [TestMethod]
+        public void TestCaptureDelaySerialization()
+        {
+            var paymentRequest = MockPaymentData.CreateFullPaymentRequest3D();
+            string jsonString = paymentRequest.ToJson();
+            Assert.IsTrue(jsonString.Contains("\"captureDelayHours\": 0,"));
+            Assert.IsFalse(jsonString.Contains("\"fraudOffset\": 0"));
+        }
 
         [TestMethod]
         public void TestAuthenticationResult3ds1Success()

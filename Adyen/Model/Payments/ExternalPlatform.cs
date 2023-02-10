@@ -11,16 +11,17 @@
 */
 
 using System;
-using System.Linq;
-using System.IO;
-using System.Text;
-using System.Text.RegularExpressions;
 using System.Collections;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Linq;
+using System.IO;
 using System.Runtime.Serialization;
+using System.Text;
+using System.Text.RegularExpressions;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
+using Newtonsoft.Json.Linq;
 using System.ComponentModel.DataAnnotations;
 
 namespace Adyen.Model.Payments
@@ -28,8 +29,8 @@ namespace Adyen.Model.Payments
     /// <summary>
     /// ExternalPlatform
     /// </summary>
-    [DataContract]
-    public partial class ExternalPlatform :  IEquatable<ExternalPlatform>, IValidatableObject
+    [DataContract(Name = "ExternalPlatform")]
+    public partial class ExternalPlatform : IEquatable<ExternalPlatform>, IValidatableObject
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="ExternalPlatform" /> class.
@@ -48,21 +49,21 @@ namespace Adyen.Model.Payments
         /// External platform integrator.
         /// </summary>
         /// <value>External platform integrator.</value>
-        [DataMember(Name="integrator", EmitDefaultValue=false)]
+        [DataMember(Name = "integrator", EmitDefaultValue = false)]
         public string Integrator { get; set; }
 
         /// <summary>
         /// Name of the field. For example, Name of External Platform.
         /// </summary>
         /// <value>Name of the field. For example, Name of External Platform.</value>
-        [DataMember(Name="name", EmitDefaultValue=false)]
+        [DataMember(Name = "name", EmitDefaultValue = false)]
         public string Name { get; set; }
 
         /// <summary>
         /// Version of the field. For example, Version of External Platform.
         /// </summary>
         /// <value>Version of the field. For example, Version of External Platform.</value>
-        [DataMember(Name="version", EmitDefaultValue=false)]
+        [DataMember(Name = "version", EmitDefaultValue = false)]
         public string Version { get; set; }
 
         /// <summary>
@@ -71,7 +72,7 @@ namespace Adyen.Model.Payments
         /// <returns>String presentation of the object</returns>
         public override string ToString()
         {
-            var sb = new StringBuilder();
+            StringBuilder sb = new StringBuilder();
             sb.Append("class ExternalPlatform {\n");
             sb.Append("  Integrator: ").Append(Integrator).Append("\n");
             sb.Append("  Name: ").Append(Name).Append("\n");
@@ -107,8 +108,9 @@ namespace Adyen.Model.Payments
         public bool Equals(ExternalPlatform input)
         {
             if (input == null)
+            {
                 return false;
-
+            }
             return 
                 (
                     this.Integrator == input.Integrator ||
@@ -137,21 +139,26 @@ namespace Adyen.Model.Payments
             {
                 int hashCode = 41;
                 if (this.Integrator != null)
-                    hashCode = hashCode * 59 + this.Integrator.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.Integrator.GetHashCode();
+                }
                 if (this.Name != null)
-                    hashCode = hashCode * 59 + this.Name.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.Name.GetHashCode();
+                }
                 if (this.Version != null)
-                    hashCode = hashCode * 59 + this.Version.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.Version.GetHashCode();
+                }
                 return hashCode;
             }
         }
-
         /// <summary>
         /// To validate all properties of the instance
         /// </summary>
         /// <param name="validationContext">Validation context</param>
         /// <returns>Validation Result</returns>
-        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+        public IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> Validate(ValidationContext validationContext)
         {
             yield break;
         }

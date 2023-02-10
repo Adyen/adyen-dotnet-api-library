@@ -152,6 +152,7 @@ namespace Adyen.Test
                 Reference = "Your order number ",
                 ReturnUrl = @"https://your-company.com/...",
                 MerchantAccount = "MerchantAccount",
+                CaptureDelayHours = 0
             };
             var cardDetails = new Model.Checkout.CardDetails()
             {
@@ -160,6 +161,7 @@ namespace Adyen.Test
                 ExpiryYear = "2020",
                 HolderName = "John Smith"
             };
+            paymentsRequest.Amount = amount;
             paymentsRequest.PaymentMethod = new PaymentDonationRequestPaymentMethod(cardDetails);
             paymentsRequest.ApplicationInfo = new Model.Checkout.ApplicationInfo(adyenLibrary: new CommonField());
             return paymentsRequest;
@@ -226,7 +228,7 @@ namespace Adyen.Test
         {
             return new PaymentSetupRequest(merchantAccount: "MerchantAccount", reference: "MerchantReference",
                  amount: new Model.Checkout.Amount("EUR", 1200), returnUrl: @"https://your-company.com/...", countryCode: "NL",
-                 channel: PaymentSetupRequest.ChannelEnum.Web, sdkVersion: "1.3.0");
+                 channel: PaymentSetupRequest.ChannelEnum.Web, sdkVersion: "1.3.0", captureDelayHours:0);
         }
 
         /// <summary>

@@ -11,16 +11,17 @@
 */
 
 using System;
-using System.Linq;
-using System.IO;
-using System.Text;
-using System.Text.RegularExpressions;
 using System.Collections;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Linq;
+using System.IO;
 using System.Runtime.Serialization;
+using System.Text;
+using System.Text.RegularExpressions;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
+using Newtonsoft.Json.Linq;
 using System.ComponentModel.DataAnnotations;
 
 namespace Adyen.Model.Payments
@@ -28,8 +29,8 @@ namespace Adyen.Model.Payments
     /// <summary>
     /// ResponseAdditionalDataSepa
     /// </summary>
-    [DataContract]
-    public partial class ResponseAdditionalDataSepa :  IEquatable<ResponseAdditionalDataSepa>, IValidatableObject
+    [DataContract(Name = "ResponseAdditionalDataSepa")]
+    public partial class ResponseAdditionalDataSepa : IEquatable<ResponseAdditionalDataSepa>, IValidatableObject
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="ResponseAdditionalDataSepa" /> class.
@@ -48,21 +49,21 @@ namespace Adyen.Model.Payments
         /// The transaction signature date.  Format: yyyy-MM-dd
         /// </summary>
         /// <value>The transaction signature date.  Format: yyyy-MM-dd</value>
-        [DataMember(Name="sepadirectdebit.dateOfSignature", EmitDefaultValue=false)]
+        [DataMember(Name = "sepadirectdebit.dateOfSignature", EmitDefaultValue = false)]
         public string SepadirectdebitDateOfSignature { get; set; }
 
         /// <summary>
         /// Its value corresponds to the pspReference value of the transaction.
         /// </summary>
         /// <value>Its value corresponds to the pspReference value of the transaction.</value>
-        [DataMember(Name="sepadirectdebit.mandateId", EmitDefaultValue=false)]
+        [DataMember(Name = "sepadirectdebit.mandateId", EmitDefaultValue = false)]
         public string SepadirectdebitMandateId { get; set; }
 
         /// <summary>
         /// This field can take one of the following values: * OneOff: (OOFF) Direct debit instruction to initiate exactly one direct debit transaction.  * First: (FRST) Initial/first collection in a series of direct debit instructions. * Recurring: (RCUR) Direct debit instruction to carry out regular direct debit transactions initiated by the creditor. * Final: (FNAL) Last/final collection in a series of direct debit instructions.  Example: OOFF
         /// </summary>
         /// <value>This field can take one of the following values: * OneOff: (OOFF) Direct debit instruction to initiate exactly one direct debit transaction.  * First: (FRST) Initial/first collection in a series of direct debit instructions. * Recurring: (RCUR) Direct debit instruction to carry out regular direct debit transactions initiated by the creditor. * Final: (FNAL) Last/final collection in a series of direct debit instructions.  Example: OOFF</value>
-        [DataMember(Name="sepadirectdebit.sequenceType", EmitDefaultValue=false)]
+        [DataMember(Name = "sepadirectdebit.sequenceType", EmitDefaultValue = false)]
         public string SepadirectdebitSequenceType { get; set; }
 
         /// <summary>
@@ -71,7 +72,7 @@ namespace Adyen.Model.Payments
         /// <returns>String presentation of the object</returns>
         public override string ToString()
         {
-            var sb = new StringBuilder();
+            StringBuilder sb = new StringBuilder();
             sb.Append("class ResponseAdditionalDataSepa {\n");
             sb.Append("  SepadirectdebitDateOfSignature: ").Append(SepadirectdebitDateOfSignature).Append("\n");
             sb.Append("  SepadirectdebitMandateId: ").Append(SepadirectdebitMandateId).Append("\n");
@@ -107,8 +108,9 @@ namespace Adyen.Model.Payments
         public bool Equals(ResponseAdditionalDataSepa input)
         {
             if (input == null)
+            {
                 return false;
-
+            }
             return 
                 (
                     this.SepadirectdebitDateOfSignature == input.SepadirectdebitDateOfSignature ||
@@ -137,21 +139,26 @@ namespace Adyen.Model.Payments
             {
                 int hashCode = 41;
                 if (this.SepadirectdebitDateOfSignature != null)
-                    hashCode = hashCode * 59 + this.SepadirectdebitDateOfSignature.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.SepadirectdebitDateOfSignature.GetHashCode();
+                }
                 if (this.SepadirectdebitMandateId != null)
-                    hashCode = hashCode * 59 + this.SepadirectdebitMandateId.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.SepadirectdebitMandateId.GetHashCode();
+                }
                 if (this.SepadirectdebitSequenceType != null)
-                    hashCode = hashCode * 59 + this.SepadirectdebitSequenceType.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.SepadirectdebitSequenceType.GetHashCode();
+                }
                 return hashCode;
             }
         }
-
         /// <summary>
         /// To validate all properties of the instance
         /// </summary>
         /// <param name="validationContext">Validation context</param>
         /// <returns>Validation Result</returns>
-        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+        public IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> Validate(ValidationContext validationContext)
         {
             yield break;
         }

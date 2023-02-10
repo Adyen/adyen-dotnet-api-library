@@ -11,16 +11,17 @@
 */
 
 using System;
-using System.Linq;
-using System.IO;
-using System.Text;
-using System.Text.RegularExpressions;
 using System.Collections;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Linq;
+using System.IO;
 using System.Runtime.Serialization;
+using System.Text;
+using System.Text.RegularExpressions;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
+using Newtonsoft.Json.Linq;
 using System.ComponentModel.DataAnnotations;
 
 namespace Adyen.Model.Payments
@@ -28,8 +29,8 @@ namespace Adyen.Model.Payments
     /// <summary>
     /// ResponseAdditionalDataBillingAddress
     /// </summary>
-    [DataContract]
-    public partial class ResponseAdditionalDataBillingAddress :  IEquatable<ResponseAdditionalDataBillingAddress>, IValidatableObject
+    [DataContract(Name = "ResponseAdditionalDataBillingAddress")]
+    public partial class ResponseAdditionalDataBillingAddress : IEquatable<ResponseAdditionalDataBillingAddress>, IValidatableObject
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="ResponseAdditionalDataBillingAddress" /> class.
@@ -54,42 +55,42 @@ namespace Adyen.Model.Payments
         /// The billing address city passed in the payment request.
         /// </summary>
         /// <value>The billing address city passed in the payment request.</value>
-        [DataMember(Name="billingAddress.city", EmitDefaultValue=false)]
+        [DataMember(Name = "billingAddress.city", EmitDefaultValue = false)]
         public string BillingAddressCity { get; set; }
 
         /// <summary>
         /// The billing address country passed in the payment request.  Example: NL
         /// </summary>
         /// <value>The billing address country passed in the payment request.  Example: NL</value>
-        [DataMember(Name="billingAddress.country", EmitDefaultValue=false)]
+        [DataMember(Name = "billingAddress.country", EmitDefaultValue = false)]
         public string BillingAddressCountry { get; set; }
 
         /// <summary>
         /// The billing address house number or name passed in the payment request.
         /// </summary>
         /// <value>The billing address house number or name passed in the payment request.</value>
-        [DataMember(Name="billingAddress.houseNumberOrName", EmitDefaultValue=false)]
+        [DataMember(Name = "billingAddress.houseNumberOrName", EmitDefaultValue = false)]
         public string BillingAddressHouseNumberOrName { get; set; }
 
         /// <summary>
         /// The billing address postal code passed in the payment request.  Example: 1011 DJ
         /// </summary>
         /// <value>The billing address postal code passed in the payment request.  Example: 1011 DJ</value>
-        [DataMember(Name="billingAddress.postalCode", EmitDefaultValue=false)]
+        [DataMember(Name = "billingAddress.postalCode", EmitDefaultValue = false)]
         public string BillingAddressPostalCode { get; set; }
 
         /// <summary>
         /// The billing address state or province passed in the payment request.  Example: NH
         /// </summary>
         /// <value>The billing address state or province passed in the payment request.  Example: NH</value>
-        [DataMember(Name="billingAddress.stateOrProvince", EmitDefaultValue=false)]
+        [DataMember(Name = "billingAddress.stateOrProvince", EmitDefaultValue = false)]
         public string BillingAddressStateOrProvince { get; set; }
 
         /// <summary>
         /// The billing address street passed in the payment request.
         /// </summary>
         /// <value>The billing address street passed in the payment request.</value>
-        [DataMember(Name="billingAddress.street", EmitDefaultValue=false)]
+        [DataMember(Name = "billingAddress.street", EmitDefaultValue = false)]
         public string BillingAddressStreet { get; set; }
 
         /// <summary>
@@ -98,7 +99,7 @@ namespace Adyen.Model.Payments
         /// <returns>String presentation of the object</returns>
         public override string ToString()
         {
-            var sb = new StringBuilder();
+            StringBuilder sb = new StringBuilder();
             sb.Append("class ResponseAdditionalDataBillingAddress {\n");
             sb.Append("  BillingAddressCity: ").Append(BillingAddressCity).Append("\n");
             sb.Append("  BillingAddressCountry: ").Append(BillingAddressCountry).Append("\n");
@@ -137,8 +138,9 @@ namespace Adyen.Model.Payments
         public bool Equals(ResponseAdditionalDataBillingAddress input)
         {
             if (input == null)
+            {
                 return false;
-
+            }
             return 
                 (
                     this.BillingAddressCity == input.BillingAddressCity ||
@@ -182,27 +184,38 @@ namespace Adyen.Model.Payments
             {
                 int hashCode = 41;
                 if (this.BillingAddressCity != null)
-                    hashCode = hashCode * 59 + this.BillingAddressCity.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.BillingAddressCity.GetHashCode();
+                }
                 if (this.BillingAddressCountry != null)
-                    hashCode = hashCode * 59 + this.BillingAddressCountry.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.BillingAddressCountry.GetHashCode();
+                }
                 if (this.BillingAddressHouseNumberOrName != null)
-                    hashCode = hashCode * 59 + this.BillingAddressHouseNumberOrName.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.BillingAddressHouseNumberOrName.GetHashCode();
+                }
                 if (this.BillingAddressPostalCode != null)
-                    hashCode = hashCode * 59 + this.BillingAddressPostalCode.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.BillingAddressPostalCode.GetHashCode();
+                }
                 if (this.BillingAddressStateOrProvince != null)
-                    hashCode = hashCode * 59 + this.BillingAddressStateOrProvince.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.BillingAddressStateOrProvince.GetHashCode();
+                }
                 if (this.BillingAddressStreet != null)
-                    hashCode = hashCode * 59 + this.BillingAddressStreet.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.BillingAddressStreet.GetHashCode();
+                }
                 return hashCode;
             }
         }
-
         /// <summary>
         /// To validate all properties of the instance
         /// </summary>
         /// <param name="validationContext">Validation context</param>
         /// <returns>Validation Result</returns>
-        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+        public IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> Validate(ValidationContext validationContext)
         {
             yield break;
         }
