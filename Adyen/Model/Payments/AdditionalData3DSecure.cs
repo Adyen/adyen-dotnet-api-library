@@ -11,16 +11,17 @@
 */
 
 using System;
-using System.Linq;
-using System.IO;
-using System.Text;
-using System.Text.RegularExpressions;
 using System.Collections;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Linq;
+using System.IO;
 using System.Runtime.Serialization;
+using System.Text;
+using System.Text.RegularExpressions;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
+using Newtonsoft.Json.Linq;
 using System.ComponentModel.DataAnnotations;
 
 namespace Adyen.Model.Payments
@@ -28,8 +29,8 @@ namespace Adyen.Model.Payments
     /// <summary>
     /// AdditionalData3DSecure
     /// </summary>
-    [DataContract]
-    public partial class AdditionalData3DSecure :  IEquatable<AdditionalData3DSecure>, IValidatableObject
+    [DataContract(Name = "AdditionalData3DSecure")]
+    public partial class AdditionalData3DSecure : IEquatable<AdditionalData3DSecure>, IValidatableObject
     {
         /// <summary>
         /// Dimensions of the 3DS2 challenge window to be displayed to the cardholder.  Possible values:  * **01** - size of 250x400  * **02** - size of 390x400 * **03** - size of 500x600 * **04** - size of 600x400 * **05** - Fullscreen
@@ -70,11 +71,12 @@ namespace Adyen.Model.Payments
 
         }
 
+
         /// <summary>
         /// Dimensions of the 3DS2 challenge window to be displayed to the cardholder.  Possible values:  * **01** - size of 250x400  * **02** - size of 390x400 * **03** - size of 500x600 * **04** - size of 600x400 * **05** - Fullscreen
         /// </summary>
         /// <value>Dimensions of the 3DS2 challenge window to be displayed to the cardholder.  Possible values:  * **01** - size of 250x400  * **02** - size of 390x400 * **03** - size of 500x600 * **04** - size of 600x400 * **05** - Fullscreen</value>
-        [DataMember(Name="challengeWindowSize", EmitDefaultValue=false)]
+        [DataMember(Name = "challengeWindowSize", EmitDefaultValue = false)]
         public ChallengeWindowSizeEnum? ChallengeWindowSize { get; set; }
         /// <summary>
         /// Initializes a new instance of the <see cref="AdditionalData3DSecure" /> class.
@@ -99,36 +101,35 @@ namespace Adyen.Model.Payments
         /// Indicates if you are able to process 3D Secure 2 transactions natively on your payment page. Send this parameter when you are using &#x60;/payments&#x60; endpoint with any of our [native 3D Secure 2 solutions](https://docs.adyen.com/online-payments/3d-secure/native-3ds2).   &gt; This parameter only indicates readiness to support native 3D Secure 2 authentication. To specify if you _want_ to perform 3D Secure, use [Dynamic 3D Secure](/risk-management/dynamic-3d-secure) or send the &#x60;executeThreeD&#x60; parameter.  Possible values: * **true** - Ready to support native 3D Secure 2 authentication. Setting this to true does not mean always applying 3D Secure 2. Adyen still selects the version of 3D Secure based on configuration to optimize authorisation rates and improve the shopper&#39;s experience. * **false** – Not ready to support native 3D Secure 2 authentication. Adyen will not offer 3D Secure 2 to your shopper regardless of your configuration. 
         /// </summary>
         /// <value>Indicates if you are able to process 3D Secure 2 transactions natively on your payment page. Send this parameter when you are using &#x60;/payments&#x60; endpoint with any of our [native 3D Secure 2 solutions](https://docs.adyen.com/online-payments/3d-secure/native-3ds2).   &gt; This parameter only indicates readiness to support native 3D Secure 2 authentication. To specify if you _want_ to perform 3D Secure, use [Dynamic 3D Secure](/risk-management/dynamic-3d-secure) or send the &#x60;executeThreeD&#x60; parameter.  Possible values: * **true** - Ready to support native 3D Secure 2 authentication. Setting this to true does not mean always applying 3D Secure 2. Adyen still selects the version of 3D Secure based on configuration to optimize authorisation rates and improve the shopper&#39;s experience. * **false** – Not ready to support native 3D Secure 2 authentication. Adyen will not offer 3D Secure 2 to your shopper regardless of your configuration. </value>
-        [DataMember(Name="allow3DS2", EmitDefaultValue=false)]
+        [DataMember(Name = "allow3DS2", EmitDefaultValue = false)]
         public string Allow3DS2 { get; set; }
-
 
         /// <summary>
         /// Indicates if you want to perform 3D Secure authentication on a transaction.   &gt; Alternatively, you can use [Dynamic 3D Secure](/risk-management/dynamic-3d-secure) to configure rules for applying 3D Secure.  Possible values: * **true** – Perform 3D Secure authentication. * **false** – Don&#39;t perform 3D Secure authentication. Note that this setting results in refusals if the issuer mandates 3D Secure because of the PSD2 directive  or other, national regulations.  
         /// </summary>
         /// <value>Indicates if you want to perform 3D Secure authentication on a transaction.   &gt; Alternatively, you can use [Dynamic 3D Secure](/risk-management/dynamic-3d-secure) to configure rules for applying 3D Secure.  Possible values: * **true** – Perform 3D Secure authentication. * **false** – Don&#39;t perform 3D Secure authentication. Note that this setting results in refusals if the issuer mandates 3D Secure because of the PSD2 directive  or other, national regulations.  </value>
-        [DataMember(Name="executeThreeD", EmitDefaultValue=false)]
+        [DataMember(Name = "executeThreeD", EmitDefaultValue = false)]
         public string ExecuteThreeD { get; set; }
 
         /// <summary>
         /// In case of Secure+, this field must be set to **CUPSecurePlus**.
         /// </summary>
         /// <value>In case of Secure+, this field must be set to **CUPSecurePlus**.</value>
-        [DataMember(Name="mpiImplementationType", EmitDefaultValue=false)]
+        [DataMember(Name = "mpiImplementationType", EmitDefaultValue = false)]
         public string MpiImplementationType { get; set; }
 
         /// <summary>
         /// Indicates the [exemption type](https://docs.adyen.com/payments-fundamentals/psd2-sca-compliance-and-implementation-guide#specifypreferenceinyourapirequest) that you want to request for the transaction.   Possible values: * **lowValue**  * **secureCorporate**  * **trustedBeneficiary**  * **transactionRiskAnalysis** 
         /// </summary>
         /// <value>Indicates the [exemption type](https://docs.adyen.com/payments-fundamentals/psd2-sca-compliance-and-implementation-guide#specifypreferenceinyourapirequest) that you want to request for the transaction.   Possible values: * **lowValue**  * **secureCorporate**  * **trustedBeneficiary**  * **transactionRiskAnalysis** </value>
-        [DataMember(Name="scaExemption", EmitDefaultValue=false)]
+        [DataMember(Name = "scaExemption", EmitDefaultValue = false)]
         public string ScaExemption { get; set; }
 
         /// <summary>
         /// Indicates your preference for the 3D Secure version.  &gt; If you use this parameter, you override the checks from Adyen&#39;s Authentication Engine. We recommend to use this field only if you have an extensive knowledge of 3D Secure.  Possible values: * **1.0.2**: Apply 3D Secure version 1.0.2.  * **2.1.0**: Apply 3D Secure version 2.1.0.  * **2.2.0**: Apply 3D Secure version 2.2.0. If the issuer does not support version 2.2.0, we will fall back to 2.1.0.  The following rules apply: * If you prefer 2.1.0 or 2.2.0 but we receive a negative &#x60;transStatus&#x60; in the &#x60;ARes&#x60;, we will apply the fallback policy configured in your account. For example, if the configuration is to fall back to 3D Secure 1, we will apply version 1.0.2. * If you prefer 2.1.0 or 2.2.0 but the BIN is not enrolled, you will receive an error.  
         /// </summary>
         /// <value>Indicates your preference for the 3D Secure version.  &gt; If you use this parameter, you override the checks from Adyen&#39;s Authentication Engine. We recommend to use this field only if you have an extensive knowledge of 3D Secure.  Possible values: * **1.0.2**: Apply 3D Secure version 1.0.2.  * **2.1.0**: Apply 3D Secure version 2.1.0.  * **2.2.0**: Apply 3D Secure version 2.2.0. If the issuer does not support version 2.2.0, we will fall back to 2.1.0.  The following rules apply: * If you prefer 2.1.0 or 2.2.0 but we receive a negative &#x60;transStatus&#x60; in the &#x60;ARes&#x60;, we will apply the fallback policy configured in your account. For example, if the configuration is to fall back to 3D Secure 1, we will apply version 1.0.2. * If you prefer 2.1.0 or 2.2.0 but the BIN is not enrolled, you will receive an error.  </value>
-        [DataMember(Name="threeDSVersion", EmitDefaultValue=false)]
+        [DataMember(Name = "threeDSVersion", EmitDefaultValue = false)]
         public string ThreeDSVersion { get; set; }
 
         /// <summary>
@@ -137,7 +138,7 @@ namespace Adyen.Model.Payments
         /// <returns>String presentation of the object</returns>
         public override string ToString()
         {
-            var sb = new StringBuilder();
+            StringBuilder sb = new StringBuilder();
             sb.Append("class AdditionalData3DSecure {\n");
             sb.Append("  Allow3DS2: ").Append(Allow3DS2).Append("\n");
             sb.Append("  ChallengeWindowSize: ").Append(ChallengeWindowSize).Append("\n");
@@ -176,8 +177,9 @@ namespace Adyen.Model.Payments
         public bool Equals(AdditionalData3DSecure input)
         {
             if (input == null)
+            {
                 return false;
-
+            }
             return 
                 (
                     this.Allow3DS2 == input.Allow3DS2 ||
@@ -186,8 +188,7 @@ namespace Adyen.Model.Payments
                 ) && 
                 (
                     this.ChallengeWindowSize == input.ChallengeWindowSize ||
-                    (this.ChallengeWindowSize != null &&
-                    this.ChallengeWindowSize.Equals(input.ChallengeWindowSize))
+                    this.ChallengeWindowSize.Equals(input.ChallengeWindowSize)
                 ) && 
                 (
                     this.ExecuteThreeD == input.ExecuteThreeD ||
@@ -221,27 +222,35 @@ namespace Adyen.Model.Payments
             {
                 int hashCode = 41;
                 if (this.Allow3DS2 != null)
-                    hashCode = hashCode * 59 + this.Allow3DS2.GetHashCode();
-                if (this.ChallengeWindowSize != null)
-                    hashCode = hashCode * 59 + this.ChallengeWindowSize.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.Allow3DS2.GetHashCode();
+                }
+                hashCode = (hashCode * 59) + this.ChallengeWindowSize.GetHashCode();
                 if (this.ExecuteThreeD != null)
-                    hashCode = hashCode * 59 + this.ExecuteThreeD.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.ExecuteThreeD.GetHashCode();
+                }
                 if (this.MpiImplementationType != null)
-                    hashCode = hashCode * 59 + this.MpiImplementationType.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.MpiImplementationType.GetHashCode();
+                }
                 if (this.ScaExemption != null)
-                    hashCode = hashCode * 59 + this.ScaExemption.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.ScaExemption.GetHashCode();
+                }
                 if (this.ThreeDSVersion != null)
-                    hashCode = hashCode * 59 + this.ThreeDSVersion.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.ThreeDSVersion.GetHashCode();
+                }
                 return hashCode;
             }
         }
-
         /// <summary>
         /// To validate all properties of the instance
         /// </summary>
         /// <param name="validationContext">Validation context</param>
         /// <returns>Validation Result</returns>
-        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+        public IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> Validate(ValidationContext validationContext)
         {
             yield break;
         }

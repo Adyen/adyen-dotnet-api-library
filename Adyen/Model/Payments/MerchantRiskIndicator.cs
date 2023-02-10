@@ -11,16 +11,17 @@
 */
 
 using System;
-using System.Linq;
-using System.IO;
-using System.Text;
-using System.Text.RegularExpressions;
 using System.Collections;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Linq;
+using System.IO;
 using System.Runtime.Serialization;
+using System.Text;
+using System.Text.RegularExpressions;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
+using Newtonsoft.Json.Linq;
 using System.ComponentModel.DataAnnotations;
 
 namespace Adyen.Model.Payments
@@ -28,8 +29,8 @@ namespace Adyen.Model.Payments
     /// <summary>
     /// MerchantRiskIndicator
     /// </summary>
-    [DataContract]
-    public partial class MerchantRiskIndicator :  IEquatable<MerchantRiskIndicator>, IValidatableObject
+    [DataContract(Name = "MerchantRiskIndicator")]
+    public partial class MerchantRiskIndicator : IEquatable<MerchantRiskIndicator>, IValidatableObject
     {
         /// <summary>
         /// Indicator regarding the delivery address. Allowed values: * &#x60;shipToBillingAddress&#x60; * &#x60;shipToVerifiedAddress&#x60; * &#x60;shipToNewAddress&#x60; * &#x60;shipToStore&#x60; * &#x60;digitalGoods&#x60; * &#x60;goodsNotShipped&#x60; * &#x60;other&#x60;
@@ -82,11 +83,12 @@ namespace Adyen.Model.Payments
 
         }
 
+
         /// <summary>
         /// Indicator regarding the delivery address. Allowed values: * &#x60;shipToBillingAddress&#x60; * &#x60;shipToVerifiedAddress&#x60; * &#x60;shipToNewAddress&#x60; * &#x60;shipToStore&#x60; * &#x60;digitalGoods&#x60; * &#x60;goodsNotShipped&#x60; * &#x60;other&#x60;
         /// </summary>
         /// <value>Indicator regarding the delivery address. Allowed values: * &#x60;shipToBillingAddress&#x60; * &#x60;shipToVerifiedAddress&#x60; * &#x60;shipToNewAddress&#x60; * &#x60;shipToStore&#x60; * &#x60;digitalGoods&#x60; * &#x60;goodsNotShipped&#x60; * &#x60;other&#x60;</value>
-        [DataMember(Name="deliveryAddressIndicator", EmitDefaultValue=false)]
+        [DataMember(Name = "deliveryAddressIndicator", EmitDefaultValue = false)]
         public DeliveryAddressIndicatorEnum? DeliveryAddressIndicator { get; set; }
         /// <summary>
         /// The estimated delivery time for the shopper to receive the goods. Allowed values: * &#x60;electronicDelivery&#x60; * &#x60;sameDayShipping&#x60; * &#x60;overnightShipping&#x60; * &#x60;twoOrMoreDaysShipping&#x60;
@@ -121,11 +123,12 @@ namespace Adyen.Model.Payments
 
         }
 
+
         /// <summary>
         /// The estimated delivery time for the shopper to receive the goods. Allowed values: * &#x60;electronicDelivery&#x60; * &#x60;sameDayShipping&#x60; * &#x60;overnightShipping&#x60; * &#x60;twoOrMoreDaysShipping&#x60;
         /// </summary>
         /// <value>The estimated delivery time for the shopper to receive the goods. Allowed values: * &#x60;electronicDelivery&#x60; * &#x60;sameDayShipping&#x60; * &#x60;overnightShipping&#x60; * &#x60;twoOrMoreDaysShipping&#x60;</value>
-        [DataMember(Name="deliveryTimeframe", EmitDefaultValue=false)]
+        [DataMember(Name = "deliveryTimeframe", EmitDefaultValue = false)]
         public DeliveryTimeframeEnum? DeliveryTimeframe { get; set; }
         /// <summary>
         /// Initializes a new instance of the <see cref="MerchantRiskIndicator" /> class.
@@ -144,7 +147,7 @@ namespace Adyen.Model.Payments
         /// <param name="reorderItems">Indicator for whether the shopper has already purchased the same items in the past..</param>
         /// <param name="reorderItemsInd">Indicates whether the cardholder is reordering previously purchased merchandise..</param>
         /// <param name="shipIndicator">Indicates shipping method chosen for the transaction..</param>
-        public MerchantRiskIndicator(bool addressMatch = default(bool), DeliveryAddressIndicatorEnum? deliveryAddressIndicator = default(DeliveryAddressIndicatorEnum?), string deliveryEmail = default(string), string deliveryEmailAddress = default(string), DeliveryTimeframeEnum? deliveryTimeframe = default(DeliveryTimeframeEnum?), Amount giftCardAmount = default(Amount), int giftCardCount = default(int), string giftCardCurr = default(string), DateTime preOrderDate = default(DateTime), bool preOrderPurchase = default(bool), string preOrderPurchaseInd = default(string), bool reorderItems = default(bool), string reorderItemsInd = default(string), string shipIndicator = default(string))
+        public MerchantRiskIndicator(bool addressMatch = default(bool), DeliveryAddressIndicatorEnum? deliveryAddressIndicator = default(DeliveryAddressIndicatorEnum?), string deliveryEmail = default(string), string deliveryEmailAddress = default(string), DeliveryTimeframeEnum? deliveryTimeframe = default(DeliveryTimeframeEnum?), Amount giftCardAmount = default(Amount), int? giftCardCount = default(int?), string giftCardCurr = default(string), DateTime preOrderDate = default(DateTime), bool preOrderPurchase = default(bool), string preOrderPurchaseInd = default(string), bool reorderItems = default(bool), string reorderItemsInd = default(string), string shipIndicator = default(string))
         {
             this.AddressMatch = addressMatch;
             this.DeliveryAddressIndicator = deliveryAddressIndicator;
@@ -166,15 +169,14 @@ namespace Adyen.Model.Payments
         /// Whether the chosen delivery address is identical to the billing address.
         /// </summary>
         /// <value>Whether the chosen delivery address is identical to the billing address.</value>
-        [DataMember(Name="addressMatch", EmitDefaultValue=false)]
+        [DataMember(Name = "addressMatch", EmitDefaultValue = false)]
         public bool AddressMatch { get; set; }
-
 
         /// <summary>
         /// The delivery email address (for digital goods).
         /// </summary>
         /// <value>The delivery email address (for digital goods).</value>
-        [DataMember(Name="deliveryEmail", EmitDefaultValue=false)]
+        [DataMember(Name = "deliveryEmail", EmitDefaultValue = false)]
         [Obsolete]
         public string DeliveryEmail { get; set; }
 
@@ -182,70 +184,69 @@ namespace Adyen.Model.Payments
         /// For Electronic delivery, the email address to which the merchandise was delivered. Maximum length: 254 characters.
         /// </summary>
         /// <value>For Electronic delivery, the email address to which the merchandise was delivered. Maximum length: 254 characters.</value>
-        [DataMember(Name="deliveryEmailAddress", EmitDefaultValue=false)]
+        [DataMember(Name = "deliveryEmailAddress", EmitDefaultValue = false)]
         public string DeliveryEmailAddress { get; set; }
-
 
         /// <summary>
         /// Gets or Sets GiftCardAmount
         /// </summary>
-        [DataMember(Name="giftCardAmount", EmitDefaultValue=false)]
+        [DataMember(Name = "giftCardAmount", EmitDefaultValue = false)]
         public Amount GiftCardAmount { get; set; }
 
         /// <summary>
         /// For prepaid or gift card purchase, total count of individual prepaid or gift cards/codes purchased.
         /// </summary>
         /// <value>For prepaid or gift card purchase, total count of individual prepaid or gift cards/codes purchased.</value>
-        [DataMember(Name="giftCardCount", EmitDefaultValue=false)]
-        public int GiftCardCount { get; set; }
+        [DataMember(Name = "giftCardCount", EmitDefaultValue = false)]
+        public int? GiftCardCount { get; set; }
 
         /// <summary>
         /// For prepaid or gift card purchase, [ISO 4217](https://www.iso.org/iso-4217-currency-codes.html) three-digit currency code of the gift card, other than those listed in Table A.5 of the EMVCo 3D Secure Protocol and Core Functions Specification.
         /// </summary>
         /// <value>For prepaid or gift card purchase, [ISO 4217](https://www.iso.org/iso-4217-currency-codes.html) three-digit currency code of the gift card, other than those listed in Table A.5 of the EMVCo 3D Secure Protocol and Core Functions Specification.</value>
-        [DataMember(Name="giftCardCurr", EmitDefaultValue=false)]
+        [DataMember(Name = "giftCardCurr", EmitDefaultValue = false)]
         public string GiftCardCurr { get; set; }
 
         /// <summary>
         /// For pre-order purchases, the expected date this product will be available to the shopper.
         /// </summary>
         /// <value>For pre-order purchases, the expected date this product will be available to the shopper.</value>
-        [DataMember(Name="preOrderDate", EmitDefaultValue=false)]
+        [DataMember(Name = "preOrderDate", EmitDefaultValue = false)]
         public DateTime PreOrderDate { get; set; }
 
         /// <summary>
         /// Indicator for whether this transaction is for pre-ordering a product.
         /// </summary>
         /// <value>Indicator for whether this transaction is for pre-ordering a product.</value>
-        [DataMember(Name="preOrderPurchase", EmitDefaultValue=false)]
+        [DataMember(Name = "preOrderPurchase", EmitDefaultValue = false)]
         public bool PreOrderPurchase { get; set; }
 
         /// <summary>
         /// Indicates whether Cardholder is placing an order for merchandise with a future availability or release date.
         /// </summary>
         /// <value>Indicates whether Cardholder is placing an order for merchandise with a future availability or release date.</value>
-        [DataMember(Name="preOrderPurchaseInd", EmitDefaultValue=false)]
+        [DataMember(Name = "preOrderPurchaseInd", EmitDefaultValue = false)]
         public string PreOrderPurchaseInd { get; set; }
 
         /// <summary>
         /// Indicator for whether the shopper has already purchased the same items in the past.
         /// </summary>
         /// <value>Indicator for whether the shopper has already purchased the same items in the past.</value>
-        [DataMember(Name="reorderItems", EmitDefaultValue=false)]
+        [DataMember(Name = "reorderItems", EmitDefaultValue = false)]
         public bool ReorderItems { get; set; }
 
         /// <summary>
         /// Indicates whether the cardholder is reordering previously purchased merchandise.
         /// </summary>
         /// <value>Indicates whether the cardholder is reordering previously purchased merchandise.</value>
-        [DataMember(Name="reorderItemsInd", EmitDefaultValue=false)]
+        [DataMember(Name = "reorderItemsInd", EmitDefaultValue = false)]
         public string ReorderItemsInd { get; set; }
 
         /// <summary>
         /// Indicates shipping method chosen for the transaction.
         /// </summary>
         /// <value>Indicates shipping method chosen for the transaction.</value>
-        [DataMember(Name="shipIndicator", EmitDefaultValue=false)]
+        [DataMember(Name = "shipIndicator", EmitDefaultValue = false)]
         public string ShipIndicator { get; set; }
 
         /// <summary>
@@ -254,7 +255,7 @@ namespace Adyen.Model.Payments
         /// <returns>String presentation of the object</returns>
         public override string ToString()
         {
-            var sb = new StringBuilder();
+            StringBuilder sb = new StringBuilder();
             sb.Append("class MerchantRiskIndicator {\n");
             sb.Append("  AddressMatch: ").Append(AddressMatch).Append("\n");
             sb.Append("  DeliveryAddressIndicator: ").Append(DeliveryAddressIndicator).Append("\n");
@@ -301,18 +302,17 @@ namespace Adyen.Model.Payments
         public bool Equals(MerchantRiskIndicator input)
         {
             if (input == null)
+            {
                 return false;
-
+            }
             return 
                 (
                     this.AddressMatch == input.AddressMatch ||
-                    (this.AddressMatch != null &&
-                    this.AddressMatch.Equals(input.AddressMatch))
+                    this.AddressMatch.Equals(input.AddressMatch)
                 ) && 
                 (
                     this.DeliveryAddressIndicator == input.DeliveryAddressIndicator ||
-                    (this.DeliveryAddressIndicator != null &&
-                    this.DeliveryAddressIndicator.Equals(input.DeliveryAddressIndicator))
+                    this.DeliveryAddressIndicator.Equals(input.DeliveryAddressIndicator)
                 ) && 
                 (
                     this.DeliveryEmail == input.DeliveryEmail ||
@@ -326,8 +326,7 @@ namespace Adyen.Model.Payments
                 ) && 
                 (
                     this.DeliveryTimeframe == input.DeliveryTimeframe ||
-                    (this.DeliveryTimeframe != null &&
-                    this.DeliveryTimeframe.Equals(input.DeliveryTimeframe))
+                    this.DeliveryTimeframe.Equals(input.DeliveryTimeframe)
                 ) && 
                 (
                     this.GiftCardAmount == input.GiftCardAmount ||
@@ -336,8 +335,7 @@ namespace Adyen.Model.Payments
                 ) && 
                 (
                     this.GiftCardCount == input.GiftCardCount ||
-                    (this.GiftCardCount != null &&
-                    this.GiftCardCount.Equals(input.GiftCardCount))
+                    this.GiftCardCount.Equals(input.GiftCardCount)
                 ) && 
                 (
                     this.GiftCardCurr == input.GiftCardCurr ||
@@ -351,8 +349,7 @@ namespace Adyen.Model.Payments
                 ) && 
                 (
                     this.PreOrderPurchase == input.PreOrderPurchase ||
-                    (this.PreOrderPurchase != null &&
-                    this.PreOrderPurchase.Equals(input.PreOrderPurchase))
+                    this.PreOrderPurchase.Equals(input.PreOrderPurchase)
                 ) && 
                 (
                     this.PreOrderPurchaseInd == input.PreOrderPurchaseInd ||
@@ -361,8 +358,7 @@ namespace Adyen.Model.Payments
                 ) && 
                 (
                     this.ReorderItems == input.ReorderItems ||
-                    (this.ReorderItems != null &&
-                    this.ReorderItems.Equals(input.ReorderItems))
+                    this.ReorderItems.Equals(input.ReorderItems)
                 ) && 
                 (
                     this.ReorderItemsInd == input.ReorderItemsInd ||
@@ -385,51 +381,59 @@ namespace Adyen.Model.Payments
             unchecked // Overflow is fine, just wrap
             {
                 int hashCode = 41;
-                if (this.AddressMatch != null)
-                    hashCode = hashCode * 59 + this.AddressMatch.GetHashCode();
-                if (this.DeliveryAddressIndicator != null)
-                    hashCode = hashCode * 59 + this.DeliveryAddressIndicator.GetHashCode();
+                hashCode = (hashCode * 59) + this.AddressMatch.GetHashCode();
+                hashCode = (hashCode * 59) + this.DeliveryAddressIndicator.GetHashCode();
                 if (this.DeliveryEmail != null)
-                    hashCode = hashCode * 59 + this.DeliveryEmail.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.DeliveryEmail.GetHashCode();
+                }
                 if (this.DeliveryEmailAddress != null)
-                    hashCode = hashCode * 59 + this.DeliveryEmailAddress.GetHashCode();
-                if (this.DeliveryTimeframe != null)
-                    hashCode = hashCode * 59 + this.DeliveryTimeframe.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.DeliveryEmailAddress.GetHashCode();
+                }
+                hashCode = (hashCode * 59) + this.DeliveryTimeframe.GetHashCode();
                 if (this.GiftCardAmount != null)
-                    hashCode = hashCode * 59 + this.GiftCardAmount.GetHashCode();
-                if (this.GiftCardCount != null)
-                    hashCode = hashCode * 59 + this.GiftCardCount.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.GiftCardAmount.GetHashCode();
+                }
+                hashCode = (hashCode * 59) + this.GiftCardCount.GetHashCode();
                 if (this.GiftCardCurr != null)
-                    hashCode = hashCode * 59 + this.GiftCardCurr.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.GiftCardCurr.GetHashCode();
+                }
                 if (this.PreOrderDate != null)
-                    hashCode = hashCode * 59 + this.PreOrderDate.GetHashCode();
-                if (this.PreOrderPurchase != null)
-                    hashCode = hashCode * 59 + this.PreOrderPurchase.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.PreOrderDate.GetHashCode();
+                }
+                hashCode = (hashCode * 59) + this.PreOrderPurchase.GetHashCode();
                 if (this.PreOrderPurchaseInd != null)
-                    hashCode = hashCode * 59 + this.PreOrderPurchaseInd.GetHashCode();
-                if (this.ReorderItems != null)
-                    hashCode = hashCode * 59 + this.ReorderItems.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.PreOrderPurchaseInd.GetHashCode();
+                }
+                hashCode = (hashCode * 59) + this.ReorderItems.GetHashCode();
                 if (this.ReorderItemsInd != null)
-                    hashCode = hashCode * 59 + this.ReorderItemsInd.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.ReorderItemsInd.GetHashCode();
+                }
                 if (this.ShipIndicator != null)
-                    hashCode = hashCode * 59 + this.ShipIndicator.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.ShipIndicator.GetHashCode();
+                }
                 return hashCode;
             }
         }
-
         /// <summary>
         /// To validate all properties of the instance
         /// </summary>
         /// <param name="validationContext">Validation context</param>
         /// <returns>Validation Result</returns>
-        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+        public IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> Validate(ValidationContext validationContext)
         {
             // DeliveryEmailAddress (string) maxLength
-            if(this.DeliveryEmailAddress != null && this.DeliveryEmailAddress.Length > 254)
+            if (this.DeliveryEmailAddress != null && this.DeliveryEmailAddress.Length > 254)
             {
                 yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for DeliveryEmailAddress, length must be less than 254.", new [] { "DeliveryEmailAddress" });
             }
-
 
             yield break;
         }

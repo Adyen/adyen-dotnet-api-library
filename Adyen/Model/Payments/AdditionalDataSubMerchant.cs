@@ -11,16 +11,17 @@
 */
 
 using System;
-using System.Linq;
-using System.IO;
-using System.Text;
-using System.Text.RegularExpressions;
 using System.Collections;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Linq;
+using System.IO;
 using System.Runtime.Serialization;
+using System.Text;
+using System.Text.RegularExpressions;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
+using Newtonsoft.Json.Linq;
 using System.ComponentModel.DataAnnotations;
 
 namespace Adyen.Model.Payments
@@ -28,8 +29,8 @@ namespace Adyen.Model.Payments
     /// <summary>
     /// AdditionalDataSubMerchant
     /// </summary>
-    [DataContract]
-    public partial class AdditionalDataSubMerchant :  IEquatable<AdditionalDataSubMerchant>, IValidatableObject
+    [DataContract(Name = "AdditionalDataSubMerchant")]
+    public partial class AdditionalDataSubMerchant : IEquatable<AdditionalDataSubMerchant>, IValidatableObject
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="AdditionalDataSubMerchant" /> class.
@@ -62,70 +63,70 @@ namespace Adyen.Model.Payments
         /// Required for transactions performed by registered payment facilitators. Indicates the number of sub-merchants contained in the request. For example, **3**.
         /// </summary>
         /// <value>Required for transactions performed by registered payment facilitators. Indicates the number of sub-merchants contained in the request. For example, **3**.</value>
-        [DataMember(Name="subMerchant.numberOfSubSellers", EmitDefaultValue=false)]
+        [DataMember(Name = "subMerchant.numberOfSubSellers", EmitDefaultValue = false)]
         public string SubMerchantNumberOfSubSellers { get; set; }
 
         /// <summary>
         /// Required for transactions performed by registered payment facilitators. The city of the sub-merchant&#39;s address. * Format: Alphanumeric * Maximum length: 13 characters
         /// </summary>
         /// <value>Required for transactions performed by registered payment facilitators. The city of the sub-merchant&#39;s address. * Format: Alphanumeric * Maximum length: 13 characters</value>
-        [DataMember(Name="subMerchant.subSeller[subSellerNr].city", EmitDefaultValue=false)]
+        [DataMember(Name = "subMerchant.subSeller[subSellerNr].city", EmitDefaultValue = false)]
         public string SubMerchantSubSellerSubSellerNrCity { get; set; }
 
         /// <summary>
         /// Required for transactions performed by registered payment facilitators. The three-letter country code of the sub-merchant&#39;s address. For example, **BRA** for Brazil.  * Format: [ISO 3166-1 alpha-3](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-3) * Fixed length: 3 characters
         /// </summary>
         /// <value>Required for transactions performed by registered payment facilitators. The three-letter country code of the sub-merchant&#39;s address. For example, **BRA** for Brazil.  * Format: [ISO 3166-1 alpha-3](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-3) * Fixed length: 3 characters</value>
-        [DataMember(Name="subMerchant.subSeller[subSellerNr].country", EmitDefaultValue=false)]
+        [DataMember(Name = "subMerchant.subSeller[subSellerNr].country", EmitDefaultValue = false)]
         public string SubMerchantSubSellerSubSellerNrCountry { get; set; }
 
         /// <summary>
         /// Required for transactions performed by registered payment facilitators. A unique identifier that you create for the sub-merchant, used by schemes to identify the sub-merchant.  * Format: Alphanumeric * Maximum length: 15 characters
         /// </summary>
         /// <value>Required for transactions performed by registered payment facilitators. A unique identifier that you create for the sub-merchant, used by schemes to identify the sub-merchant.  * Format: Alphanumeric * Maximum length: 15 characters</value>
-        [DataMember(Name="subMerchant.subSeller[subSellerNr].id", EmitDefaultValue=false)]
+        [DataMember(Name = "subMerchant.subSeller[subSellerNr].id", EmitDefaultValue = false)]
         public string SubMerchantSubSellerSubSellerNrId { get; set; }
 
         /// <summary>
         /// Required for transactions performed by registered payment facilitators. The sub-merchant&#39;s 4-digit Merchant Category Code (MCC).  * Format: Numeric * Fixed length: 4 digits
         /// </summary>
         /// <value>Required for transactions performed by registered payment facilitators. The sub-merchant&#39;s 4-digit Merchant Category Code (MCC).  * Format: Numeric * Fixed length: 4 digits</value>
-        [DataMember(Name="subMerchant.subSeller[subSellerNr].mcc", EmitDefaultValue=false)]
+        [DataMember(Name = "subMerchant.subSeller[subSellerNr].mcc", EmitDefaultValue = false)]
         public string SubMerchantSubSellerSubSellerNrMcc { get; set; }
 
         /// <summary>
         /// Required for transactions performed by registered payment facilitators. The name of the sub-merchant. Based on scheme specifications, this value will overwrite the shopper statement  that will appear in the card statement. * Format: Alphanumeric * Maximum length: 22 characters
         /// </summary>
         /// <value>Required for transactions performed by registered payment facilitators. The name of the sub-merchant. Based on scheme specifications, this value will overwrite the shopper statement  that will appear in the card statement. * Format: Alphanumeric * Maximum length: 22 characters</value>
-        [DataMember(Name="subMerchant.subSeller[subSellerNr].name", EmitDefaultValue=false)]
+        [DataMember(Name = "subMerchant.subSeller[subSellerNr].name", EmitDefaultValue = false)]
         public string SubMerchantSubSellerSubSellerNrName { get; set; }
 
         /// <summary>
         /// Required for transactions performed by registered payment facilitators. The postal code of the sub-merchant&#39;s address, without dashes. * Format: Numeric * Fixed length: 8 digits
         /// </summary>
         /// <value>Required for transactions performed by registered payment facilitators. The postal code of the sub-merchant&#39;s address, without dashes. * Format: Numeric * Fixed length: 8 digits</value>
-        [DataMember(Name="subMerchant.subSeller[subSellerNr].postalCode", EmitDefaultValue=false)]
+        [DataMember(Name = "subMerchant.subSeller[subSellerNr].postalCode", EmitDefaultValue = false)]
         public string SubMerchantSubSellerSubSellerNrPostalCode { get; set; }
 
         /// <summary>
         /// Required for transactions performed by registered payment facilitators. The state code of the sub-merchant&#39;s address, if applicable to the country. * Format: Alphanumeric * Maximum length: 2 characters
         /// </summary>
         /// <value>Required for transactions performed by registered payment facilitators. The state code of the sub-merchant&#39;s address, if applicable to the country. * Format: Alphanumeric * Maximum length: 2 characters</value>
-        [DataMember(Name="subMerchant.subSeller[subSellerNr].state", EmitDefaultValue=false)]
+        [DataMember(Name = "subMerchant.subSeller[subSellerNr].state", EmitDefaultValue = false)]
         public string SubMerchantSubSellerSubSellerNrState { get; set; }
 
         /// <summary>
         /// Required for transactions performed by registered payment facilitators. The street name and house number of the sub-merchant&#39;s address. * Format: Alphanumeric * Maximum length: 60 characters
         /// </summary>
         /// <value>Required for transactions performed by registered payment facilitators. The street name and house number of the sub-merchant&#39;s address. * Format: Alphanumeric * Maximum length: 60 characters</value>
-        [DataMember(Name="subMerchant.subSeller[subSellerNr].street", EmitDefaultValue=false)]
+        [DataMember(Name = "subMerchant.subSeller[subSellerNr].street", EmitDefaultValue = false)]
         public string SubMerchantSubSellerSubSellerNrStreet { get; set; }
 
         /// <summary>
         /// Required for transactions performed by registered payment facilitators. The tax ID of the sub-merchant. * Format: Numeric * Fixed length: 11 digits for the CPF or 14 digits for the CNPJ
         /// </summary>
         /// <value>Required for transactions performed by registered payment facilitators. The tax ID of the sub-merchant. * Format: Numeric * Fixed length: 11 digits for the CPF or 14 digits for the CNPJ</value>
-        [DataMember(Name="subMerchant.subSeller[subSellerNr].taxId", EmitDefaultValue=false)]
+        [DataMember(Name = "subMerchant.subSeller[subSellerNr].taxId", EmitDefaultValue = false)]
         public string SubMerchantSubSellerSubSellerNrTaxId { get; set; }
 
         /// <summary>
@@ -134,7 +135,7 @@ namespace Adyen.Model.Payments
         /// <returns>String presentation of the object</returns>
         public override string ToString()
         {
-            var sb = new StringBuilder();
+            StringBuilder sb = new StringBuilder();
             sb.Append("class AdditionalDataSubMerchant {\n");
             sb.Append("  SubMerchantNumberOfSubSellers: ").Append(SubMerchantNumberOfSubSellers).Append("\n");
             sb.Append("  SubMerchantSubSellerSubSellerNrCity: ").Append(SubMerchantSubSellerSubSellerNrCity).Append("\n");
@@ -177,8 +178,9 @@ namespace Adyen.Model.Payments
         public bool Equals(AdditionalDataSubMerchant input)
         {
             if (input == null)
+            {
                 return false;
-
+            }
             return 
                 (
                     this.SubMerchantNumberOfSubSellers == input.SubMerchantNumberOfSubSellers ||
@@ -242,35 +244,54 @@ namespace Adyen.Model.Payments
             {
                 int hashCode = 41;
                 if (this.SubMerchantNumberOfSubSellers != null)
-                    hashCode = hashCode * 59 + this.SubMerchantNumberOfSubSellers.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.SubMerchantNumberOfSubSellers.GetHashCode();
+                }
                 if (this.SubMerchantSubSellerSubSellerNrCity != null)
-                    hashCode = hashCode * 59 + this.SubMerchantSubSellerSubSellerNrCity.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.SubMerchantSubSellerSubSellerNrCity.GetHashCode();
+                }
                 if (this.SubMerchantSubSellerSubSellerNrCountry != null)
-                    hashCode = hashCode * 59 + this.SubMerchantSubSellerSubSellerNrCountry.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.SubMerchantSubSellerSubSellerNrCountry.GetHashCode();
+                }
                 if (this.SubMerchantSubSellerSubSellerNrId != null)
-                    hashCode = hashCode * 59 + this.SubMerchantSubSellerSubSellerNrId.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.SubMerchantSubSellerSubSellerNrId.GetHashCode();
+                }
                 if (this.SubMerchantSubSellerSubSellerNrMcc != null)
-                    hashCode = hashCode * 59 + this.SubMerchantSubSellerSubSellerNrMcc.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.SubMerchantSubSellerSubSellerNrMcc.GetHashCode();
+                }
                 if (this.SubMerchantSubSellerSubSellerNrName != null)
-                    hashCode = hashCode * 59 + this.SubMerchantSubSellerSubSellerNrName.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.SubMerchantSubSellerSubSellerNrName.GetHashCode();
+                }
                 if (this.SubMerchantSubSellerSubSellerNrPostalCode != null)
-                    hashCode = hashCode * 59 + this.SubMerchantSubSellerSubSellerNrPostalCode.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.SubMerchantSubSellerSubSellerNrPostalCode.GetHashCode();
+                }
                 if (this.SubMerchantSubSellerSubSellerNrState != null)
-                    hashCode = hashCode * 59 + this.SubMerchantSubSellerSubSellerNrState.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.SubMerchantSubSellerSubSellerNrState.GetHashCode();
+                }
                 if (this.SubMerchantSubSellerSubSellerNrStreet != null)
-                    hashCode = hashCode * 59 + this.SubMerchantSubSellerSubSellerNrStreet.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.SubMerchantSubSellerSubSellerNrStreet.GetHashCode();
+                }
                 if (this.SubMerchantSubSellerSubSellerNrTaxId != null)
-                    hashCode = hashCode * 59 + this.SubMerchantSubSellerSubSellerNrTaxId.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.SubMerchantSubSellerSubSellerNrTaxId.GetHashCode();
+                }
                 return hashCode;
             }
         }
-
         /// <summary>
         /// To validate all properties of the instance
         /// </summary>
         /// <param name="validationContext">Validation context</param>
         /// <returns>Validation Result</returns>
-        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+        public IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> Validate(ValidationContext validationContext)
         {
             yield break;
         }

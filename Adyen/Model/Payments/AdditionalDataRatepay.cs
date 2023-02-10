@@ -11,16 +11,17 @@
 */
 
 using System;
-using System.Linq;
-using System.IO;
-using System.Text;
-using System.Text.RegularExpressions;
 using System.Collections;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Linq;
+using System.IO;
 using System.Runtime.Serialization;
+using System.Text;
+using System.Text.RegularExpressions;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
+using Newtonsoft.Json.Linq;
 using System.ComponentModel.DataAnnotations;
 
 namespace Adyen.Model.Payments
@@ -28,8 +29,8 @@ namespace Adyen.Model.Payments
     /// <summary>
     /// AdditionalDataRatepay
     /// </summary>
-    [DataContract]
-    public partial class AdditionalDataRatepay :  IEquatable<AdditionalDataRatepay>, IValidatableObject
+    [DataContract(Name = "AdditionalDataRatepay")]
+    public partial class AdditionalDataRatepay : IEquatable<AdditionalDataRatepay>, IValidatableObject
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="AdditionalDataRatepay" /> class.
@@ -58,56 +59,56 @@ namespace Adyen.Model.Payments
         /// Amount the customer has to pay each month.
         /// </summary>
         /// <value>Amount the customer has to pay each month.</value>
-        [DataMember(Name="ratepay.installmentAmount", EmitDefaultValue=false)]
+        [DataMember(Name = "ratepay.installmentAmount", EmitDefaultValue = false)]
         public string RatepayInstallmentAmount { get; set; }
 
         /// <summary>
         /// Interest rate of this installment.
         /// </summary>
         /// <value>Interest rate of this installment.</value>
-        [DataMember(Name="ratepay.interestRate", EmitDefaultValue=false)]
+        [DataMember(Name = "ratepay.interestRate", EmitDefaultValue = false)]
         public string RatepayInterestRate { get; set; }
 
         /// <summary>
         /// Amount of the last installment.
         /// </summary>
         /// <value>Amount of the last installment.</value>
-        [DataMember(Name="ratepay.lastInstallmentAmount", EmitDefaultValue=false)]
+        [DataMember(Name = "ratepay.lastInstallmentAmount", EmitDefaultValue = false)]
         public string RatepayLastInstallmentAmount { get; set; }
 
         /// <summary>
         /// Calendar day of the first payment.
         /// </summary>
         /// <value>Calendar day of the first payment.</value>
-        [DataMember(Name="ratepay.paymentFirstday", EmitDefaultValue=false)]
+        [DataMember(Name = "ratepay.paymentFirstday", EmitDefaultValue = false)]
         public string RatepayPaymentFirstday { get; set; }
 
         /// <summary>
         /// Date the merchant delivered the goods to the customer.
         /// </summary>
         /// <value>Date the merchant delivered the goods to the customer.</value>
-        [DataMember(Name="ratepaydata.deliveryDate", EmitDefaultValue=false)]
+        [DataMember(Name = "ratepaydata.deliveryDate", EmitDefaultValue = false)]
         public string RatepaydataDeliveryDate { get; set; }
 
         /// <summary>
         /// Date by which the customer must settle the payment.
         /// </summary>
         /// <value>Date by which the customer must settle the payment.</value>
-        [DataMember(Name="ratepaydata.dueDate", EmitDefaultValue=false)]
+        [DataMember(Name = "ratepaydata.dueDate", EmitDefaultValue = false)]
         public string RatepaydataDueDate { get; set; }
 
         /// <summary>
         /// Invoice date, defined by the merchant. If not included, the invoice date is set to the delivery date.
         /// </summary>
         /// <value>Invoice date, defined by the merchant. If not included, the invoice date is set to the delivery date.</value>
-        [DataMember(Name="ratepaydata.invoiceDate", EmitDefaultValue=false)]
+        [DataMember(Name = "ratepaydata.invoiceDate", EmitDefaultValue = false)]
         public string RatepaydataInvoiceDate { get; set; }
 
         /// <summary>
         /// Identification name or number for the invoice, defined by the merchant.
         /// </summary>
         /// <value>Identification name or number for the invoice, defined by the merchant.</value>
-        [DataMember(Name="ratepaydata.invoiceId", EmitDefaultValue=false)]
+        [DataMember(Name = "ratepaydata.invoiceId", EmitDefaultValue = false)]
         public string RatepaydataInvoiceId { get; set; }
 
         /// <summary>
@@ -116,7 +117,7 @@ namespace Adyen.Model.Payments
         /// <returns>String presentation of the object</returns>
         public override string ToString()
         {
-            var sb = new StringBuilder();
+            StringBuilder sb = new StringBuilder();
             sb.Append("class AdditionalDataRatepay {\n");
             sb.Append("  RatepayInstallmentAmount: ").Append(RatepayInstallmentAmount).Append("\n");
             sb.Append("  RatepayInterestRate: ").Append(RatepayInterestRate).Append("\n");
@@ -157,8 +158,9 @@ namespace Adyen.Model.Payments
         public bool Equals(AdditionalDataRatepay input)
         {
             if (input == null)
+            {
                 return false;
-
+            }
             return 
                 (
                     this.RatepayInstallmentAmount == input.RatepayInstallmentAmount ||
@@ -212,31 +214,46 @@ namespace Adyen.Model.Payments
             {
                 int hashCode = 41;
                 if (this.RatepayInstallmentAmount != null)
-                    hashCode = hashCode * 59 + this.RatepayInstallmentAmount.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.RatepayInstallmentAmount.GetHashCode();
+                }
                 if (this.RatepayInterestRate != null)
-                    hashCode = hashCode * 59 + this.RatepayInterestRate.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.RatepayInterestRate.GetHashCode();
+                }
                 if (this.RatepayLastInstallmentAmount != null)
-                    hashCode = hashCode * 59 + this.RatepayLastInstallmentAmount.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.RatepayLastInstallmentAmount.GetHashCode();
+                }
                 if (this.RatepayPaymentFirstday != null)
-                    hashCode = hashCode * 59 + this.RatepayPaymentFirstday.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.RatepayPaymentFirstday.GetHashCode();
+                }
                 if (this.RatepaydataDeliveryDate != null)
-                    hashCode = hashCode * 59 + this.RatepaydataDeliveryDate.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.RatepaydataDeliveryDate.GetHashCode();
+                }
                 if (this.RatepaydataDueDate != null)
-                    hashCode = hashCode * 59 + this.RatepaydataDueDate.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.RatepaydataDueDate.GetHashCode();
+                }
                 if (this.RatepaydataInvoiceDate != null)
-                    hashCode = hashCode * 59 + this.RatepaydataInvoiceDate.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.RatepaydataInvoiceDate.GetHashCode();
+                }
                 if (this.RatepaydataInvoiceId != null)
-                    hashCode = hashCode * 59 + this.RatepaydataInvoiceId.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.RatepaydataInvoiceId.GetHashCode();
+                }
                 return hashCode;
             }
         }
-
         /// <summary>
         /// To validate all properties of the instance
         /// </summary>
         /// <param name="validationContext">Validation context</param>
         /// <returns>Validation Result</returns>
-        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+        public IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> Validate(ValidationContext validationContext)
         {
             yield break;
         }

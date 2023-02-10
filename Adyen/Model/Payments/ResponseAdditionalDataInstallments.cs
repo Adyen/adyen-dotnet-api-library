@@ -11,16 +11,17 @@
 */
 
 using System;
-using System.Linq;
-using System.IO;
-using System.Text;
-using System.Text.RegularExpressions;
 using System.Collections;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Linq;
+using System.IO;
 using System.Runtime.Serialization;
+using System.Text;
+using System.Text.RegularExpressions;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
+using Newtonsoft.Json.Linq;
 using System.ComponentModel.DataAnnotations;
 
 namespace Adyen.Model.Payments
@@ -28,8 +29,8 @@ namespace Adyen.Model.Payments
     /// <summary>
     /// ResponseAdditionalDataInstallments
     /// </summary>
-    [DataContract]
-    public partial class ResponseAdditionalDataInstallments :  IEquatable<ResponseAdditionalDataInstallments>, IValidatableObject
+    [DataContract(Name = "ResponseAdditionalDataInstallments")]
+    public partial class ResponseAdditionalDataInstallments : IEquatable<ResponseAdditionalDataInstallments>, IValidatableObject
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="ResponseAdditionalDataInstallments" /> class.
@@ -66,84 +67,84 @@ namespace Adyen.Model.Payments
         /// Type of installment. The value of &#x60;installmentType&#x60; should be **IssuerFinanced**.
         /// </summary>
         /// <value>Type of installment. The value of &#x60;installmentType&#x60; should be **IssuerFinanced**.</value>
-        [DataMember(Name="installmentPaymentData.installmentType", EmitDefaultValue=false)]
+        [DataMember(Name = "installmentPaymentData.installmentType", EmitDefaultValue = false)]
         public string InstallmentPaymentDataInstallmentType { get; set; }
 
         /// <summary>
         /// Annual interest rate.
         /// </summary>
         /// <value>Annual interest rate.</value>
-        [DataMember(Name="installmentPaymentData.option[itemNr].annualPercentageRate", EmitDefaultValue=false)]
+        [DataMember(Name = "installmentPaymentData.option[itemNr].annualPercentageRate", EmitDefaultValue = false)]
         public string InstallmentPaymentDataOptionItemNrAnnualPercentageRate { get; set; }
 
         /// <summary>
         /// First Installment Amount in minor units.
         /// </summary>
         /// <value>First Installment Amount in minor units.</value>
-        [DataMember(Name="installmentPaymentData.option[itemNr].firstInstallmentAmount", EmitDefaultValue=false)]
+        [DataMember(Name = "installmentPaymentData.option[itemNr].firstInstallmentAmount", EmitDefaultValue = false)]
         public string InstallmentPaymentDataOptionItemNrFirstInstallmentAmount { get; set; }
 
         /// <summary>
         /// Installment fee amount in minor units.
         /// </summary>
         /// <value>Installment fee amount in minor units.</value>
-        [DataMember(Name="installmentPaymentData.option[itemNr].installmentFee", EmitDefaultValue=false)]
+        [DataMember(Name = "installmentPaymentData.option[itemNr].installmentFee", EmitDefaultValue = false)]
         public string InstallmentPaymentDataOptionItemNrInstallmentFee { get; set; }
 
         /// <summary>
         /// Interest rate for the installment period.
         /// </summary>
         /// <value>Interest rate for the installment period.</value>
-        [DataMember(Name="installmentPaymentData.option[itemNr].interestRate", EmitDefaultValue=false)]
+        [DataMember(Name = "installmentPaymentData.option[itemNr].interestRate", EmitDefaultValue = false)]
         public string InstallmentPaymentDataOptionItemNrInterestRate { get; set; }
 
         /// <summary>
         /// Maximum number of installments possible for this payment.
         /// </summary>
         /// <value>Maximum number of installments possible for this payment.</value>
-        [DataMember(Name="installmentPaymentData.option[itemNr].maximumNumberOfInstallments", EmitDefaultValue=false)]
+        [DataMember(Name = "installmentPaymentData.option[itemNr].maximumNumberOfInstallments", EmitDefaultValue = false)]
         public string InstallmentPaymentDataOptionItemNrMaximumNumberOfInstallments { get; set; }
 
         /// <summary>
         /// Minimum number of installments possible for this payment.
         /// </summary>
         /// <value>Minimum number of installments possible for this payment.</value>
-        [DataMember(Name="installmentPaymentData.option[itemNr].minimumNumberOfInstallments", EmitDefaultValue=false)]
+        [DataMember(Name = "installmentPaymentData.option[itemNr].minimumNumberOfInstallments", EmitDefaultValue = false)]
         public string InstallmentPaymentDataOptionItemNrMinimumNumberOfInstallments { get; set; }
 
         /// <summary>
         /// Total number of installments possible for this payment.
         /// </summary>
         /// <value>Total number of installments possible for this payment.</value>
-        [DataMember(Name="installmentPaymentData.option[itemNr].numberOfInstallments", EmitDefaultValue=false)]
+        [DataMember(Name = "installmentPaymentData.option[itemNr].numberOfInstallments", EmitDefaultValue = false)]
         public string InstallmentPaymentDataOptionItemNrNumberOfInstallments { get; set; }
 
         /// <summary>
         /// Subsequent Installment Amount in minor units.
         /// </summary>
         /// <value>Subsequent Installment Amount in minor units.</value>
-        [DataMember(Name="installmentPaymentData.option[itemNr].subsequentInstallmentAmount", EmitDefaultValue=false)]
+        [DataMember(Name = "installmentPaymentData.option[itemNr].subsequentInstallmentAmount", EmitDefaultValue = false)]
         public string InstallmentPaymentDataOptionItemNrSubsequentInstallmentAmount { get; set; }
 
         /// <summary>
         /// Total amount in minor units.
         /// </summary>
         /// <value>Total amount in minor units.</value>
-        [DataMember(Name="installmentPaymentData.option[itemNr].totalAmountDue", EmitDefaultValue=false)]
+        [DataMember(Name = "installmentPaymentData.option[itemNr].totalAmountDue", EmitDefaultValue = false)]
         public string InstallmentPaymentDataOptionItemNrTotalAmountDue { get; set; }
 
         /// <summary>
         /// Possible values: * PayInInstallmentsOnly * PayInFullOnly * PayInFullOrInstallments
         /// </summary>
         /// <value>Possible values: * PayInInstallmentsOnly * PayInFullOnly * PayInFullOrInstallments</value>
-        [DataMember(Name="installmentPaymentData.paymentOptions", EmitDefaultValue=false)]
+        [DataMember(Name = "installmentPaymentData.paymentOptions", EmitDefaultValue = false)]
         public string InstallmentPaymentDataPaymentOptions { get; set; }
 
         /// <summary>
         /// The number of installments that the payment amount should be charged with.  Example: 5 &gt; Only relevant for card payments in countries that support installments.
         /// </summary>
         /// <value>The number of installments that the payment amount should be charged with.  Example: 5 &gt; Only relevant for card payments in countries that support installments.</value>
-        [DataMember(Name="installments.value", EmitDefaultValue=false)]
+        [DataMember(Name = "installments.value", EmitDefaultValue = false)]
         public string InstallmentsValue { get; set; }
 
         /// <summary>
@@ -152,7 +153,7 @@ namespace Adyen.Model.Payments
         /// <returns>String presentation of the object</returns>
         public override string ToString()
         {
-            var sb = new StringBuilder();
+            StringBuilder sb = new StringBuilder();
             sb.Append("class ResponseAdditionalDataInstallments {\n");
             sb.Append("  InstallmentPaymentDataInstallmentType: ").Append(InstallmentPaymentDataInstallmentType).Append("\n");
             sb.Append("  InstallmentPaymentDataOptionItemNrAnnualPercentageRate: ").Append(InstallmentPaymentDataOptionItemNrAnnualPercentageRate).Append("\n");
@@ -197,8 +198,9 @@ namespace Adyen.Model.Payments
         public bool Equals(ResponseAdditionalDataInstallments input)
         {
             if (input == null)
+            {
                 return false;
-
+            }
             return 
                 (
                     this.InstallmentPaymentDataInstallmentType == input.InstallmentPaymentDataInstallmentType ||
@@ -272,39 +274,62 @@ namespace Adyen.Model.Payments
             {
                 int hashCode = 41;
                 if (this.InstallmentPaymentDataInstallmentType != null)
-                    hashCode = hashCode * 59 + this.InstallmentPaymentDataInstallmentType.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.InstallmentPaymentDataInstallmentType.GetHashCode();
+                }
                 if (this.InstallmentPaymentDataOptionItemNrAnnualPercentageRate != null)
-                    hashCode = hashCode * 59 + this.InstallmentPaymentDataOptionItemNrAnnualPercentageRate.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.InstallmentPaymentDataOptionItemNrAnnualPercentageRate.GetHashCode();
+                }
                 if (this.InstallmentPaymentDataOptionItemNrFirstInstallmentAmount != null)
-                    hashCode = hashCode * 59 + this.InstallmentPaymentDataOptionItemNrFirstInstallmentAmount.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.InstallmentPaymentDataOptionItemNrFirstInstallmentAmount.GetHashCode();
+                }
                 if (this.InstallmentPaymentDataOptionItemNrInstallmentFee != null)
-                    hashCode = hashCode * 59 + this.InstallmentPaymentDataOptionItemNrInstallmentFee.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.InstallmentPaymentDataOptionItemNrInstallmentFee.GetHashCode();
+                }
                 if (this.InstallmentPaymentDataOptionItemNrInterestRate != null)
-                    hashCode = hashCode * 59 + this.InstallmentPaymentDataOptionItemNrInterestRate.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.InstallmentPaymentDataOptionItemNrInterestRate.GetHashCode();
+                }
                 if (this.InstallmentPaymentDataOptionItemNrMaximumNumberOfInstallments != null)
-                    hashCode = hashCode * 59 + this.InstallmentPaymentDataOptionItemNrMaximumNumberOfInstallments.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.InstallmentPaymentDataOptionItemNrMaximumNumberOfInstallments.GetHashCode();
+                }
                 if (this.InstallmentPaymentDataOptionItemNrMinimumNumberOfInstallments != null)
-                    hashCode = hashCode * 59 + this.InstallmentPaymentDataOptionItemNrMinimumNumberOfInstallments.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.InstallmentPaymentDataOptionItemNrMinimumNumberOfInstallments.GetHashCode();
+                }
                 if (this.InstallmentPaymentDataOptionItemNrNumberOfInstallments != null)
-                    hashCode = hashCode * 59 + this.InstallmentPaymentDataOptionItemNrNumberOfInstallments.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.InstallmentPaymentDataOptionItemNrNumberOfInstallments.GetHashCode();
+                }
                 if (this.InstallmentPaymentDataOptionItemNrSubsequentInstallmentAmount != null)
-                    hashCode = hashCode * 59 + this.InstallmentPaymentDataOptionItemNrSubsequentInstallmentAmount.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.InstallmentPaymentDataOptionItemNrSubsequentInstallmentAmount.GetHashCode();
+                }
                 if (this.InstallmentPaymentDataOptionItemNrTotalAmountDue != null)
-                    hashCode = hashCode * 59 + this.InstallmentPaymentDataOptionItemNrTotalAmountDue.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.InstallmentPaymentDataOptionItemNrTotalAmountDue.GetHashCode();
+                }
                 if (this.InstallmentPaymentDataPaymentOptions != null)
-                    hashCode = hashCode * 59 + this.InstallmentPaymentDataPaymentOptions.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.InstallmentPaymentDataPaymentOptions.GetHashCode();
+                }
                 if (this.InstallmentsValue != null)
-                    hashCode = hashCode * 59 + this.InstallmentsValue.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.InstallmentsValue.GetHashCode();
+                }
                 return hashCode;
             }
         }
-
         /// <summary>
         /// To validate all properties of the instance
         /// </summary>
         /// <param name="validationContext">Validation context</param>
         /// <returns>Validation Result</returns>
-        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+        public IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> Validate(ValidationContext validationContext)
         {
             yield break;
         }
