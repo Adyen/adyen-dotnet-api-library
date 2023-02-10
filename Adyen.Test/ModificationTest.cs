@@ -25,6 +25,8 @@ using Adyen.Constants;
 using Adyen.Service;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Adyen.Model.Payments;
+using Adyen.Service.Checkout;
+
 namespace Adyen.Test
 {
     [TestClass]
@@ -142,7 +144,7 @@ namespace Adyen.Test
         public void TestPendingRefundReceived()
         {
             var client = CreateMockTestClientApiKeyBasedRequest("Mocks/voidPendingRefund-received.json");
-            var checkout = new Checkout(client);
+            var checkout = new ModificationsService(client);
             var modification = new Payment(client);
             var voidPendingRefundRequest = new VoidPendingRefundRequest();
             var modificationResult = modification.VoidPendingRefund(voidPendingRefundRequest);
