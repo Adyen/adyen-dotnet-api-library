@@ -1,0 +1,16 @@
+{
+  "authCode": "authCode",
+  "currentBalance": {
+    "currency": "str",
+    "value": 0
+  },
+  "paymentMethod": {
+    "additionalProp1": "string",
+    "additionalProp2": "string",
+    "additionalProp3": "string"
+  },
+  "pspReference": "string",
+  "refusalReason": "string",
+  "resultCode": "Success",
+  "thirdPartyRefusalReason": "string"
+}
