@@ -57,6 +57,9 @@ namespace Adyen.Constants
         public static string LegalEntityManagementEndpointTest = "https://kyc-test.adyen.com/lem/";
         public static string LegalEntityManagementEndpointLive = "https://kyc-live.adyen.com/lem/";
         public static string LegalEntityManagementVersion = "v2";
+        public static string StoredValueEndpointTest = "https://pal-test.adyen.com/pal/servlet/StoredValue";
+        public static string StoredValueEndpointLive = "https://pal-live.adyen.com/pal/servlet/StoredValue";
+        public static string StoredValueVersion = "v46";
         public static string ManagementEndpointTest = "https://management-test.adyen.com";
         public static string ManagementEndpointLive = "https://management-live.adyen.com";
         public static string ManagementVersion = "v1";
