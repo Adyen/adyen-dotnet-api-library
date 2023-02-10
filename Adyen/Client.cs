@@ -23,6 +23,7 @@
 
 using System;
 using System.Net.Http;
+using System.Threading;
 using Adyen.Constants;
 using Adyen.HttpClient.Interfaces;
 using Adyen.HttpClient;
@@ -53,7 +54,8 @@ namespace Adyen
                 Environment = environment
             };
             SetEnvironment(environment, liveEndpointUrlPrefix);
-            _client = new HttpClientWrapper(Config, new System.Net.Http.HttpClient());
+            
+            _client = new HttpClientWrapper(Config, GetHttpClient());
         }
         
         [Obsolete("Providing x-api-key is obsolete, please use Config instead.")]
@@ -66,14 +68,16 @@ namespace Adyen
                 LiveEndpointUrlPrefix = liveEndpointUrlPrefix
             };
             SetEnvironment(environment, Config.LiveEndpointUrlPrefix);
-            _client = new HttpClientWrapper(Config, new System.Net.Http.HttpClient());
+
+            _client = new HttpClientWrapper(Config, GetHttpClient());
         }
 
         public Client(Config config)
         {
             Config = config;
             SetEnvironment(Config.Environment, Config.LiveEndpointUrlPrefix);
-            _client = new HttpClientWrapper(Config, new System.Net.Http.HttpClient());
+            
+            _client = new HttpClientWrapper(Config, GetHttpClient());
         }
 
         public Client(Config config, System.Net.Http.HttpClient httpClient)
@@ -101,6 +105,7 @@ namespace Adyen
                     Config.MarketPayEndpoint = ClientConfig.MarketpayEndPointTest;
                     Config.PosTerminalManagementEndpoint = ClientConfig.PosTerminalManagementEndpointTest;
                     Config.LegalEntityManagementEndpoint = ClientConfig.LegalEntityManagementEndpointTest;
+                    Config.ManagementEndpoint = ClientConfig.ManagementEndpointTest;
                     break;
                 case Environment.Live:
                     if (string.IsNullOrEmpty(liveEndpointUrlPrefix))
@@ -114,8 +119,21 @@ namespace Adyen
                     Config.MarketPayEndpoint = ClientConfig.MarketpayEndPointLive;
                     Config.PosTerminalManagementEndpoint = ClientConfig.PosTerminalManagementEndpointLive;
                     Config.LegalEntityManagementEndpoint = ClientConfig.LegalEntityManagementEndpointLive;
+                    Config.ManagementEndpoint = ClientConfig.ManagementEndpointLive;
                     break;
             }
+        }
+
+        // Get a new HttpClient and set a timeout
+        private System.Net.Http.HttpClient GetHttpClient()
+        {
+            // Set Timeout for HttpClient
+            var httpClient = new System.Net.Http.HttpClient();
+            if (Config.Timeout != default)
+            {
+                httpClient.Timeout = TimeSpan.FromMilliseconds(Config.Timeout);
+            }
+            return httpClient;
         }
 
         public IClient HttpClient
