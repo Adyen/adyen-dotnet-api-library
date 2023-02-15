@@ -72,7 +72,7 @@ namespace Adyen.Test
                 MerchantReference = "reference",
                 Amount = new Model.Checkout.Amount("EUR", 1000),
                 EventCode = "EVENT",
-                Success = true,
+                Success = "true",
                 AdditionalData = additionalData
             };
             var hmacValidator = new HmacValidator();
@@ -93,7 +93,7 @@ namespace Adyen.Test
             var response = MockFileToString(mockPath);
             var hmacValidator = new HmacValidator();
             var notificationRequest = JsonOperation.Deserialize<NotificationRequest>(response);
-            var notificationItem = notificationRequest.NotificationItemContainers[0].NotificationItem;
+            var notificationItem = notificationRequest.NotificationItems[0].NotificationRequestItem;
             var isValidHmac = hmacValidator.IsValidHmac(notificationItem, key);
             Assert.IsTrue(isValidHmac);
         }
@@ -118,7 +118,7 @@ namespace Adyen.Test
                 MerchantReference = "reference",
                 Amount = new Model.Checkout.Amount("EUR", 1000),
                 EventCode = "EVENT",
-                Success = true,
+                Success = "true",
                 AdditionalData = null
             };
             var isValidHmacAdditionalDataNull = hmacValidator.IsValidHmac(notificationRequestItem, "key");

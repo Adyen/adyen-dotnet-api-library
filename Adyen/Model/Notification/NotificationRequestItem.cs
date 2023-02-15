@@ -36,7 +36,7 @@ namespace Adyen.Model.Notification
         public string OriginalReference { get; set; }
         public string PspReference { get; set; }
         public string Reason { get; set; }
-        public bool Success { get; set; }
+        public string Success { get; set; }
         public string PaymentMethod { get; set; }
         public List<string> Operations { get; set; }
         public Dictionary<string, string> AdditionalData { get; set; }

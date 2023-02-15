@@ -31,14 +31,14 @@ namespace Adyen.Model.Notification
     public class NotificationRequestItemContainer
     {
         [JsonProperty("NotificationRequestItem")]
-        public NotificationRequestItem NotificationItem { get; set; }
+        public NotificationRequestItem NotificationRequestItem { get; set; }
 
         public override string ToString()
         {
             StringBuilder sb = new StringBuilder();
             sb.Append("class NotificationRequestItemContainer {\n");
 
-            sb.Append("  notificationItem: ").Append(NotificationItem.ToIndentedString()).Append("\n");
+            sb.Append("  notificationItem: ").Append(NotificationRequestItem.ToIndentedString()).Append("\n");
             sb.Append("}");
             return sb.ToString();
         }
