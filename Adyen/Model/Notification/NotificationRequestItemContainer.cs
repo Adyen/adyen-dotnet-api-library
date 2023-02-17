@@ -23,6 +23,7 @@
 
 using Adyen.Util;
 using System.Text;
+using System.Text.Json.Serialization;
 
 namespace Adyen.Model.Notification
 {
@@ -31,14 +32,15 @@ namespace Adyen.Model.Notification
     public class NotificationRequestItemContainer
     {
         [JsonProperty("NotificationRequestItem")]
-        public NotificationRequestItem NotificationRequestItem { get; set; }
+        [JsonPropertyName("NotificationRequestItem")]
+        public NotificationRequestItem NotificationItem { get; set; }
 
         public override string ToString()
         {
             StringBuilder sb = new StringBuilder();
             sb.Append("class NotificationRequestItemContainer {\n");
 
-            sb.Append("  notificationItem: ").Append(NotificationRequestItem.ToIndentedString()).Append("\n");
+            sb.Append("  notificationItem: ").Append(NotificationItem.ToIndentedString()).Append("\n");
             sb.Append("}");
             return sb.ToString();
         }

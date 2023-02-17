@@ -93,7 +93,7 @@ namespace Adyen.Test
             var response = MockFileToString(mockPath);
             var hmacValidator = new HmacValidator();
             var notificationRequest = JsonOperation.Deserialize<NotificationRequest>(response);
-            var notificationItem = notificationRequest.NotificationItems[0].NotificationRequestItem;
+            var notificationItem = notificationRequest.NotificationItemContainers[0].NotificationItem;
             var isValidHmac = hmacValidator.IsValidHmac(notificationItem, key);
             Assert.IsTrue(isValidHmac);
         }
