@@ -10,7 +10,6 @@
 * Do not edit the class manually.
 */
 
-
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -24,6 +23,7 @@ using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
 using Newtonsoft.Json.Linq;
 using System.ComponentModel.DataAnnotations;
+using OpenAPIDateConverter = Adyen.ApiSerialization.OpenAPIDateConverter;
 
 namespace Adyen.Model.Payout
 {
@@ -64,7 +64,7 @@ namespace Adyen.Model.Payout
         /// A new reference to uniquely identify this request.
         /// </summary>
         /// <value>A new reference to uniquely identify this request.</value>
-        [DataMember(Name = "pspReference", IsRequired = false, EmitDefaultValue = true)]
+        [DataMember(Name = "pspReference", IsRequired = false, EmitDefaultValue = false)]
         public string PspReference { get; set; }
 
         /// <summary>
@@ -78,7 +78,7 @@ namespace Adyen.Model.Payout
         /// The response:  * In case of success is payout-submit-received. * In case of an error, an informational message is returned.
         /// </summary>
         /// <value>The response:  * In case of success is payout-submit-received. * In case of an error, an informational message is returned.</value>
-        [DataMember(Name = "resultCode", IsRequired = false, EmitDefaultValue = true)]
+        [DataMember(Name = "resultCode", IsRequired = false, EmitDefaultValue = false)]
         public string ResultCode { get; set; }
 
         /// <summary>
@@ -179,7 +179,6 @@ namespace Adyen.Model.Payout
                 return hashCode;
             }
         }
-
         /// <summary>
         /// To validate all properties of the instance
         /// </summary>

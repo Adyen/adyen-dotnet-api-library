@@ -10,7 +10,6 @@
 * Do not edit the class manually.
 */
 
-
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -24,6 +23,7 @@ using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
 using Newtonsoft.Json.Linq;
 using System.ComponentModel.DataAnnotations;
+using OpenAPIDateConverter = Adyen.ApiSerialization.OpenAPIDateConverter;
 
 namespace Adyen.Model.Payout
 {
@@ -95,7 +95,7 @@ namespace Adyen.Model.Payout
         /// <param name="shopperName">shopperName.</param>
         /// <param name="shopperReference">Required for recurring payments.  Your reference to uniquely identify this shopper, for example user ID or account ID. Minimum length: 3 characters. &gt; Your reference must not include personally identifiable information (PII), for example name or email address..</param>
         /// <param name="telephoneNumber">The shopper&#39;s telephone number..</param>
-        public PayoutRequest(Amount amount = default(Amount), Address billingAddress = default(Address), Card card = default(Card), int fraudOffset = default(int), FundSource fundSource = default(FundSource), string merchantAccount = default(string), Recurring recurring = default(Recurring), string reference = default(string), string selectedRecurringDetailReference = default(string), string shopperEmail = default(string), ShopperInteractionEnum? shopperInteraction = default(ShopperInteractionEnum?), Name shopperName = default(Name), string shopperReference = default(string), string telephoneNumber = default(string))
+        public PayoutRequest(Amount amount = default(Amount), Address billingAddress = default(Address), Card card = default(Card), int? fraudOffset = default(int?), FundSource fundSource = default(FundSource), string merchantAccount = default(string), Recurring recurring = default(Recurring), string reference = default(string), string selectedRecurringDetailReference = default(string), string shopperEmail = default(string), ShopperInteractionEnum? shopperInteraction = default(ShopperInteractionEnum?), Name shopperName = default(Name), string shopperReference = default(string), string telephoneNumber = default(string))
         {
             this.Amount = amount;
             this.MerchantAccount = merchantAccount;
@@ -116,7 +116,7 @@ namespace Adyen.Model.Payout
         /// <summary>
         /// Gets or Sets Amount
         /// </summary>
-        [DataMember(Name = "amount", IsRequired = false, EmitDefaultValue = true)]
+        [DataMember(Name = "amount", IsRequired = false, EmitDefaultValue = false)]
         public Amount Amount { get; set; }
 
         /// <summary>
@@ -136,7 +136,7 @@ namespace Adyen.Model.Payout
         /// </summary>
         /// <value>An integer value that is added to the normal fraud score. The value can be either positive or negative.</value>
         [DataMember(Name = "fraudOffset", EmitDefaultValue = false)]
-        public int FraudOffset { get; set; }
+        public int? FraudOffset { get; set; }
 
         /// <summary>
         /// Gets or Sets FundSource
@@ -148,7 +148,7 @@ namespace Adyen.Model.Payout
         /// The merchant account identifier, with which you want to process the transaction.
         /// </summary>
         /// <value>The merchant account identifier, with which you want to process the transaction.</value>
-        [DataMember(Name = "merchantAccount", IsRequired = false, EmitDefaultValue = true)]
+        [DataMember(Name = "merchantAccount", IsRequired = false, EmitDefaultValue = false)]
         public string MerchantAccount { get; set; }
 
         /// <summary>
@@ -161,7 +161,7 @@ namespace Adyen.Model.Payout
         /// The reference to uniquely identify a payment. This reference is used in all communication with you about the payment status. We recommend using a unique value per payment; however, it is not a requirement. If you need to provide multiple references for a transaction, separate them with hyphens (\&quot;-\&quot;). Maximum length: 80 characters.
         /// </summary>
         /// <value>The reference to uniquely identify a payment. This reference is used in all communication with you about the payment status. We recommend using a unique value per payment; however, it is not a requirement. If you need to provide multiple references for a transaction, separate them with hyphens (\&quot;-\&quot;). Maximum length: 80 characters.</value>
-        [DataMember(Name = "reference", IsRequired = false, EmitDefaultValue = true)]
+        [DataMember(Name = "reference", IsRequired = false, EmitDefaultValue = false)]
         public string Reference { get; set; }
 
         /// <summary>
@@ -387,7 +387,6 @@ namespace Adyen.Model.Payout
                 return hashCode;
             }
         }
-
         /// <summary>
         /// To validate all properties of the instance
         /// </summary>

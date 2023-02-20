@@ -10,7 +10,6 @@
 * Do not edit the class manually.
 */
 
-
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -24,6 +23,7 @@ using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
 using Newtonsoft.Json.Linq;
 using System.ComponentModel.DataAnnotations;
+using OpenAPIDateConverter = Adyen.ApiSerialization.OpenAPIDateConverter;
 
 namespace Adyen.Model.Payout
 {
@@ -64,21 +64,21 @@ namespace Adyen.Model.Payout
         /// A new reference to uniquely identify this request.
         /// </summary>
         /// <value>A new reference to uniquely identify this request.</value>
-        [DataMember(Name = "pspReference", IsRequired = false, EmitDefaultValue = true)]
+        [DataMember(Name = "pspReference", IsRequired = false, EmitDefaultValue = false)]
         public string PspReference { get; set; }
 
         /// <summary>
         /// The token which you can use later on for submitting the payout.
         /// </summary>
         /// <value>The token which you can use later on for submitting the payout.</value>
-        [DataMember(Name = "recurringDetailReference", IsRequired = false, EmitDefaultValue = true)]
+        [DataMember(Name = "recurringDetailReference", IsRequired = false, EmitDefaultValue = false)]
         public string RecurringDetailReference { get; set; }
 
         /// <summary>
         /// The result code of the transaction. &#x60;Success&#x60; indicates that the details were stored successfully.
         /// </summary>
         /// <value>The result code of the transaction. &#x60;Success&#x60; indicates that the details were stored successfully.</value>
-        [DataMember(Name = "resultCode", IsRequired = false, EmitDefaultValue = true)]
+        [DataMember(Name = "resultCode", IsRequired = false, EmitDefaultValue = false)]
         public string ResultCode { get; set; }
 
         /// <summary>
@@ -179,7 +179,6 @@ namespace Adyen.Model.Payout
                 return hashCode;
             }
         }
-
         /// <summary>
         /// To validate all properties of the instance
         /// </summary>

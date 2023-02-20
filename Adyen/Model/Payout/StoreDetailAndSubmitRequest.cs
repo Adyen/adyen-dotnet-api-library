@@ -10,7 +10,6 @@
 * Do not edit the class manually.
 */
 
-
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -24,6 +23,7 @@ using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
 using Newtonsoft.Json.Linq;
 using System.ComponentModel.DataAnnotations;
+using OpenAPIDateConverter = Adyen.ApiSerialization.OpenAPIDateConverter;
 
 namespace Adyen.Model.Payout
 {
@@ -59,7 +59,7 @@ namespace Adyen.Model.Payout
         /// The type of the entity the payout is processed for.
         /// </summary>
         /// <value>The type of the entity the payout is processed for.</value>
-        [DataMember(Name = "entityType", IsRequired = false, EmitDefaultValue = true)]
+        [DataMember(Name = "entityType", IsRequired = false, EmitDefaultValue = false)]
         public EntityTypeEnum EntityType { get; set; }
         /// <summary>
         /// Initializes a new instance of the <see cref="StoreDetailAndSubmitRequest" /> class.
@@ -88,7 +88,7 @@ namespace Adyen.Model.Payout
         /// <param name="shopperStatement">The description of this payout. This description is shown on the bank statement of the shopper (if this is supported by the chosen payment method)..</param>
         /// <param name="socialSecurityNumber">The shopper&#39;s social security number..</param>
         /// <param name="telephoneNumber">The shopper&#39;s phone number..</param>
-        public StoreDetailAndSubmitRequest(Dictionary<string, string> additionalData = default(Dictionary<string, string>), Amount amount = default(Amount), BankAccount bank = default(BankAccount), Address billingAddress = default(Address), Card card = default(Card), DateTime dateOfBirth = default(DateTime), EntityTypeEnum entityType = default(EntityTypeEnum), int fraudOffset = default(int), string merchantAccount = default(string), string nationality = default(string), Recurring recurring = default(Recurring), string reference = default(string), string selectedBrand = default(string), string shopperEmail = default(string), Name shopperName = default(Name), string shopperReference = default(string), string shopperStatement = default(string), string socialSecurityNumber = default(string), string telephoneNumber = default(string))
+        public StoreDetailAndSubmitRequest(Dictionary<string, string> additionalData = default(Dictionary<string, string>), Amount amount = default(Amount), BankAccount bank = default(BankAccount), Address billingAddress = default(Address), Card card = default(Card), DateTime dateOfBirth = default(DateTime), EntityTypeEnum entityType = default(EntityTypeEnum), int? fraudOffset = default(int?), string merchantAccount = default(string), string nationality = default(string), Recurring recurring = default(Recurring), string reference = default(string), string selectedBrand = default(string), string shopperEmail = default(string), Name shopperName = default(Name), string shopperReference = default(string), string shopperStatement = default(string), string socialSecurityNumber = default(string), string telephoneNumber = default(string))
         {
             this.Amount = amount;
             this.DateOfBirth = dateOfBirth;
@@ -121,7 +121,7 @@ namespace Adyen.Model.Payout
         /// <summary>
         /// Gets or Sets Amount
         /// </summary>
-        [DataMember(Name = "amount", IsRequired = false, EmitDefaultValue = true)]
+        [DataMember(Name = "amount", IsRequired = false, EmitDefaultValue = false)]
         public Amount Amount { get; set; }
 
         /// <summary>
@@ -146,7 +146,7 @@ namespace Adyen.Model.Payout
         /// The date of birth. Format: [ISO-8601](https://www.w3.org/TR/NOTE-datetime); example: YYYY-MM-DD For Paysafecard it must be the same as used when registering the Paysafecard account. &gt; This field is mandatory for natural persons.
         /// </summary>
         /// <value>The date of birth. Format: [ISO-8601](https://www.w3.org/TR/NOTE-datetime); example: YYYY-MM-DD For Paysafecard it must be the same as used when registering the Paysafecard account. &gt; This field is mandatory for natural persons.</value>
-        [DataMember(Name = "dateOfBirth", IsRequired = false, EmitDefaultValue = true)]
+        [DataMember(Name = "dateOfBirth", IsRequired = false, EmitDefaultValue = false)]
         public DateTime DateOfBirth { get; set; }
 
         /// <summary>
@@ -154,33 +154,33 @@ namespace Adyen.Model.Payout
         /// </summary>
         /// <value>An integer value that is added to the normal fraud score. The value can be either positive or negative.</value>
         [DataMember(Name = "fraudOffset", EmitDefaultValue = false)]
-        public int FraudOffset { get; set; }
+        public int? FraudOffset { get; set; }
 
         /// <summary>
         /// The merchant account identifier, with which you want to process the transaction.
         /// </summary>
         /// <value>The merchant account identifier, with which you want to process the transaction.</value>
-        [DataMember(Name = "merchantAccount", IsRequired = false, EmitDefaultValue = true)]
+        [DataMember(Name = "merchantAccount", IsRequired = false, EmitDefaultValue = false)]
         public string MerchantAccount { get; set; }
 
         /// <summary>
         /// The shopper&#39;s nationality.  A valid value is an ISO 2-character country code (e.g. &#39;NL&#39;).
         /// </summary>
         /// <value>The shopper&#39;s nationality.  A valid value is an ISO 2-character country code (e.g. &#39;NL&#39;).</value>
-        [DataMember(Name = "nationality", IsRequired = false, EmitDefaultValue = true)]
+        [DataMember(Name = "nationality", IsRequired = false, EmitDefaultValue = false)]
         public string Nationality { get; set; }
 
         /// <summary>
         /// Gets or Sets Recurring
         /// </summary>
-        [DataMember(Name = "recurring", IsRequired = false, EmitDefaultValue = true)]
+        [DataMember(Name = "recurring", IsRequired = false, EmitDefaultValue = false)]
         public Recurring Recurring { get; set; }
 
         /// <summary>
         /// The merchant reference for this payment. This reference will be used in all communication to the merchant about the status of the payout. Although it is a good idea to make sure it is unique, this is not a requirement.
         /// </summary>
         /// <value>The merchant reference for this payment. This reference will be used in all communication to the merchant about the status of the payout. Although it is a good idea to make sure it is unique, this is not a requirement.</value>
-        [DataMember(Name = "reference", IsRequired = false, EmitDefaultValue = true)]
+        [DataMember(Name = "reference", IsRequired = false, EmitDefaultValue = false)]
         public string Reference { get; set; }
 
         /// <summary>
@@ -194,7 +194,7 @@ namespace Adyen.Model.Payout
         /// The shopper&#39;s email address.
         /// </summary>
         /// <value>The shopper&#39;s email address.</value>
-        [DataMember(Name = "shopperEmail", IsRequired = false, EmitDefaultValue = true)]
+        [DataMember(Name = "shopperEmail", IsRequired = false, EmitDefaultValue = false)]
         public string ShopperEmail { get; set; }
 
         /// <summary>
@@ -207,7 +207,7 @@ namespace Adyen.Model.Payout
         /// The shopper&#39;s reference for the payment transaction.
         /// </summary>
         /// <value>The shopper&#39;s reference for the payment transaction.</value>
-        [DataMember(Name = "shopperReference", IsRequired = false, EmitDefaultValue = true)]
+        [DataMember(Name = "shopperReference", IsRequired = false, EmitDefaultValue = false)]
         public string ShopperReference { get; set; }
 
         /// <summary>
@@ -471,7 +471,6 @@ namespace Adyen.Model.Payout
                 return hashCode;
             }
         }
-
         /// <summary>
         /// To validate all properties of the instance
         /// </summary>

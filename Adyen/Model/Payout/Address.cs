@@ -10,7 +10,6 @@
 * Do not edit the class manually.
 */
 
-
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -24,6 +23,7 @@ using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
 using Newtonsoft.Json.Linq;
 using System.ComponentModel.DataAnnotations;
+using OpenAPIDateConverter = Adyen.ApiSerialization.OpenAPIDateConverter;
 
 namespace Adyen.Model.Payout
 {
@@ -61,28 +61,28 @@ namespace Adyen.Model.Payout
         /// The name of the city. Maximum length: 3000 characters.
         /// </summary>
         /// <value>The name of the city. Maximum length: 3000 characters.</value>
-        [DataMember(Name = "city", IsRequired = false, EmitDefaultValue = true)]
+        [DataMember(Name = "city", IsRequired = false, EmitDefaultValue = false)]
         public string City { get; set; }
 
         /// <summary>
         /// The two-character ISO-3166-1 alpha-2 country code. For example, **US**. &gt; If you don&#39;t know the country or are not collecting the country from the shopper, provide &#x60;country&#x60; as &#x60;ZZ&#x60;.
         /// </summary>
         /// <value>The two-character ISO-3166-1 alpha-2 country code. For example, **US**. &gt; If you don&#39;t know the country or are not collecting the country from the shopper, provide &#x60;country&#x60; as &#x60;ZZ&#x60;.</value>
-        [DataMember(Name = "country", IsRequired = false, EmitDefaultValue = true)]
+        [DataMember(Name = "country", IsRequired = false, EmitDefaultValue = false)]
         public string Country { get; set; }
 
         /// <summary>
         /// The number or name of the house. Maximum length: 3000 characters.
         /// </summary>
         /// <value>The number or name of the house. Maximum length: 3000 characters.</value>
-        [DataMember(Name = "houseNumberOrName", IsRequired = false, EmitDefaultValue = true)]
+        [DataMember(Name = "houseNumberOrName", IsRequired = false, EmitDefaultValue = false)]
         public string HouseNumberOrName { get; set; }
 
         /// <summary>
         /// A maximum of five digits for an address in the US, or a maximum of ten characters for an address in all other countries.
         /// </summary>
         /// <value>A maximum of five digits for an address in the US, or a maximum of ten characters for an address in all other countries.</value>
-        [DataMember(Name = "postalCode", IsRequired = false, EmitDefaultValue = true)]
+        [DataMember(Name = "postalCode", IsRequired = false, EmitDefaultValue = false)]
         public string PostalCode { get; set; }
 
         /// <summary>
@@ -96,7 +96,7 @@ namespace Adyen.Model.Payout
         /// The name of the street. Maximum length: 3000 characters. &gt; The house number should not be included in this field; it should be separately provided via &#x60;houseNumberOrName&#x60;.
         /// </summary>
         /// <value>The name of the street. Maximum length: 3000 characters. &gt; The house number should not be included in this field; it should be separately provided via &#x60;houseNumberOrName&#x60;.</value>
-        [DataMember(Name = "street", IsRequired = false, EmitDefaultValue = true)]
+        [DataMember(Name = "street", IsRequired = false, EmitDefaultValue = false)]
         public string Street { get; set; }
 
         /// <summary>
@@ -216,7 +216,6 @@ namespace Adyen.Model.Payout
                 return hashCode;
             }
         }
-
         /// <summary>
         /// To validate all properties of the instance
         /// </summary>

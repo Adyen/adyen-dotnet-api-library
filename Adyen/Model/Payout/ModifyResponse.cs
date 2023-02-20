@@ -10,7 +10,6 @@
 * Do not edit the class manually.
 */
 
-
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -24,6 +23,7 @@ using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
 using Newtonsoft.Json.Linq;
 using System.ComponentModel.DataAnnotations;
+using OpenAPIDateConverter = Adyen.ApiSerialization.OpenAPIDateConverter;
 
 namespace Adyen.Model.Payout
 {
@@ -62,14 +62,14 @@ namespace Adyen.Model.Payout
         /// Adyen&#39;s 16-character string reference associated with the transaction. This value is globally unique; quote it when communicating with us about this response.
         /// </summary>
         /// <value>Adyen&#39;s 16-character string reference associated with the transaction. This value is globally unique; quote it when communicating with us about this response.</value>
-        [DataMember(Name = "pspReference", IsRequired = false, EmitDefaultValue = true)]
+        [DataMember(Name = "pspReference", IsRequired = false, EmitDefaultValue = false)]
         public string PspReference { get; set; }
 
         /// <summary>
         /// The response: * In case of success, it is either &#x60;payout-confirm-received&#x60; or &#x60;payout-decline-received&#x60;. * In case of an error, an informational message is returned.
         /// </summary>
         /// <value>The response: * In case of success, it is either &#x60;payout-confirm-received&#x60; or &#x60;payout-decline-received&#x60;. * In case of an error, an informational message is returned.</value>
-        [DataMember(Name = "response", IsRequired = false, EmitDefaultValue = true)]
+        [DataMember(Name = "response", IsRequired = false, EmitDefaultValue = false)]
         public string Response { get; set; }
 
         /// <summary>
@@ -160,7 +160,6 @@ namespace Adyen.Model.Payout
                 return hashCode;
             }
         }
-
         /// <summary>
         /// To validate all properties of the instance
         /// </summary>

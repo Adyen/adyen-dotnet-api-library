@@ -10,7 +10,6 @@
 * Do not edit the class manually.
 */
 
-
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -24,6 +23,7 @@ using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
 using Newtonsoft.Json.Linq;
 using System.ComponentModel.DataAnnotations;
+using OpenAPIDateConverter = Adyen.ApiSerialization.OpenAPIDateConverter;
 
 namespace Adyen.Model.Payout
 {
@@ -72,21 +72,21 @@ namespace Adyen.Model.Payout
         /// The card expiry month. Format: 2 digits, zero-padded for single digits. For example: * 03 &#x3D; March * 11 &#x3D; November
         /// </summary>
         /// <value>The card expiry month. Format: 2 digits, zero-padded for single digits. For example: * 03 &#x3D; March * 11 &#x3D; November</value>
-        [DataMember(Name = "expiryMonth", IsRequired = false, EmitDefaultValue = true)]
+        [DataMember(Name = "expiryMonth", IsRequired = false, EmitDefaultValue = false)]
         public string ExpiryMonth { get; set; }
 
         /// <summary>
         /// The card expiry year. Format: 4 digits. For example: 2020
         /// </summary>
         /// <value>The card expiry year. Format: 4 digits. For example: 2020</value>
-        [DataMember(Name = "expiryYear", IsRequired = false, EmitDefaultValue = true)]
+        [DataMember(Name = "expiryYear", IsRequired = false, EmitDefaultValue = false)]
         public string ExpiryYear { get; set; }
 
         /// <summary>
         /// The name of the cardholder, as printed on the card.
         /// </summary>
         /// <value>The name of the cardholder, as printed on the card.</value>
-        [DataMember(Name = "holderName", IsRequired = false, EmitDefaultValue = true)]
+        [DataMember(Name = "holderName", IsRequired = false, EmitDefaultValue = false)]
         public string HolderName { get; set; }
 
         /// <summary>
@@ -100,7 +100,7 @@ namespace Adyen.Model.Payout
         /// The card number (4-19 characters). Do not use any separators. When this value is returned in a response, only the last 4 digits of the card number are returned.
         /// </summary>
         /// <value>The card number (4-19 characters). Do not use any separators. When this value is returned in a response, only the last 4 digits of the card number are returned.</value>
-        [DataMember(Name = "number", IsRequired = false, EmitDefaultValue = true)]
+        [DataMember(Name = "number", IsRequired = false, EmitDefaultValue = false)]
         public string Number { get; set; }
 
         /// <summary>
@@ -254,7 +254,6 @@ namespace Adyen.Model.Payout
                 return hashCode;
             }
         }
-
         /// <summary>
         /// To validate all properties of the instance
         /// </summary>

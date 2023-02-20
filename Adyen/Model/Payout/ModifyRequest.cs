@@ -10,7 +10,6 @@
 * Do not edit the class manually.
 */
 
-
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -24,6 +23,7 @@ using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
 using Newtonsoft.Json.Linq;
 using System.ComponentModel.DataAnnotations;
+using OpenAPIDateConverter = Adyen.ApiSerialization.OpenAPIDateConverter;
 
 namespace Adyen.Model.Payout
 {
@@ -62,14 +62,14 @@ namespace Adyen.Model.Payout
         /// The merchant account identifier, with which you want to process the transaction.
         /// </summary>
         /// <value>The merchant account identifier, with which you want to process the transaction.</value>
-        [DataMember(Name = "merchantAccount", IsRequired = false, EmitDefaultValue = true)]
+        [DataMember(Name = "merchantAccount", IsRequired = false, EmitDefaultValue = false)]
         public string MerchantAccount { get; set; }
 
         /// <summary>
         /// The PSP reference received in the &#x60;/submitThirdParty&#x60; response.
         /// </summary>
         /// <value>The PSP reference received in the &#x60;/submitThirdParty&#x60; response.</value>
-        [DataMember(Name = "originalReference", IsRequired = false, EmitDefaultValue = true)]
+        [DataMember(Name = "originalReference", IsRequired = false, EmitDefaultValue = false)]
         public string OriginalReference { get; set; }
 
         /// <summary>
@@ -160,7 +160,6 @@ namespace Adyen.Model.Payout
                 return hashCode;
             }
         }
-
         /// <summary>
         /// To validate all properties of the instance
         /// </summary>
