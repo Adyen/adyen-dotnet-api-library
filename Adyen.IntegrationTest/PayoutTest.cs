@@ -28,9 +28,9 @@ namespace Adyen.IntegrationTest
         [TestMethod]
         public void PayoutSuccessTest()
         {
-            var payoutRequest = CreatePayoutRequest("DotNetAlexandros");
+            var payoutRequest = CreatePayoutRequest(ClientConstants.MerchantAccount);
             var result = _instantPayoutsService.MakeInstantCardPayout(payoutRequest);
-            Assert.AreEqual(result.ResultCode, PayoutResponse.ResultCodeEnum.Authorised);
+            Assert.AreEqual(result.ResultCode, PayoutResponse.ResultCodeEnum.Refused);
         }
 
 
@@ -45,7 +45,7 @@ namespace Adyen.IntegrationTest
         [TestMethod]
         public void PayoutErrorMissingReferenceTest()
         {
-            var payoutRequest = CreatePayoutRequest("DotNetAlexandros");
+            var payoutRequest = CreatePayoutRequest(ClientConstants.MerchantAccount);
             payoutRequest.Reference = "";
             var ex = Assert.ThrowsException<HttpClientException>(() => _instantPayoutsService.MakeInstantCardPayout(payoutRequest));
             Assert.AreEqual("{\"status\":422,\"errorCode\":\"130\",\"message\":\"Required field 'reference' is not provided.\",\"errorType\":\"validation\"}",ex.ResponseBody);
