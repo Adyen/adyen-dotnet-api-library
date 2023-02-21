@@ -28,74 +28,55 @@ using OpenAPIDateConverter = Adyen.ApiSerialization.OpenAPIDateConverter;
 namespace Adyen.Model.LegalEntityManagement
 {
     /// <summary>
-    /// GetTermsOfServiceDocumentRequest
+    /// PLLocalAccountIdentification
     /// </summary>
-    [DataContract(Name = "GetTermsOfServiceDocumentRequest")]
-    public partial class GetTermsOfServiceDocumentRequest : IEquatable<GetTermsOfServiceDocumentRequest>, IValidatableObject
+    [DataContract(Name = "PLLocalAccountIdentification")]
+    public partial class PLLocalAccountIdentification : IEquatable<PLLocalAccountIdentification>, IValidatableObject
     {
         /// <summary>
-        /// The type of Terms of Service.
+        /// **plLocal**
         /// </summary>
-        /// <value>The type of Terms of Service.</value>
+        /// <value>**plLocal**</value>
         [JsonConverter(typeof(StringEnumConverter))]
         public enum TypeEnum
         {
             /// <summary>
-            /// Enum AdyenAccount for value: adyenAccount
+            /// Enum PlLocal for value: plLocal
             /// </summary>
-            [EnumMember(Value = "adyenAccount")]
-            AdyenAccount = 1,
-
-            /// <summary>
-            /// Enum AdyenCapital for value: adyenCapital
-            /// </summary>
-            [EnumMember(Value = "adyenCapital")]
-            AdyenCapital = 2,
-
-            /// <summary>
-            /// Enum AdyenForPlatformsAdvanced for value: adyenForPlatformsAdvanced
-            /// </summary>
-            [EnumMember(Value = "adyenForPlatformsAdvanced")]
-            AdyenForPlatformsAdvanced = 3,
-
-            /// <summary>
-            /// Enum AdyenForPlatformsManage for value: adyenForPlatformsManage
-            /// </summary>
-            [EnumMember(Value = "adyenForPlatformsManage")]
-            AdyenForPlatformsManage = 4,
-
-            /// <summary>
-            /// Enum AdyenIssuing for value: adyenIssuing
-            /// </summary>
-            [EnumMember(Value = "adyenIssuing")]
-            AdyenIssuing = 5
+            [EnumMember(Value = "plLocal")]
+            PlLocal = 1
 
         }
 
 
         /// <summary>
-        /// The type of Terms of Service.
+        /// **plLocal**
         /// </summary>
-        /// <value>The type of Terms of Service.</value>
-        [DataMember(Name = "type", EmitDefaultValue = false)]
-        public TypeEnum? Type { get; set; }
+        /// <value>**plLocal**</value>
+        [DataMember(Name = "type", IsRequired = false, EmitDefaultValue = false)]
+        public TypeEnum Type { get; set; }
         /// <summary>
-        /// Initializes a new instance of the <see cref="GetTermsOfServiceDocumentRequest" /> class.
+        /// Initializes a new instance of the <see cref="PLLocalAccountIdentification" /> class.
         /// </summary>
-        /// <param name="language">The language to be used for the Terms of Service document, specified by the two letter [ISO 639-1](https://en.wikipedia.org/wiki/List_of_ISO_639-1_codes) language code. For example, **nl** for Dutch..</param>
-        /// <param name="type">The type of Terms of Service..</param>
-        public GetTermsOfServiceDocumentRequest(string language = default(string), TypeEnum? type = default(TypeEnum?))
+        [JsonConstructorAttribute]
+        protected PLLocalAccountIdentification() { }
+        /// <summary>
+        /// Initializes a new instance of the <see cref="PLLocalAccountIdentification" /> class.
+        /// </summary>
+        /// <param name="accountNumber">The 26-digit bank account number ([Numer rachunku](https://pl.wikipedia.org/wiki/Numer_Rachunku_Bankowego)), without separators or whitespace. (required).</param>
+        /// <param name="type">**plLocal** (required) (default to TypeEnum.PlLocal).</param>
+        public PLLocalAccountIdentification(string accountNumber = default(string), TypeEnum type = TypeEnum.PlLocal)
         {
-            this.Language = language;
+            this.AccountNumber = accountNumber;
             this.Type = type;
         }
 
         /// <summary>
-        /// The language to be used for the Terms of Service document, specified by the two letter [ISO 639-1](https://en.wikipedia.org/wiki/List_of_ISO_639-1_codes) language code. For example, **nl** for Dutch.
+        /// The 26-digit bank account number ([Numer rachunku](https://pl.wikipedia.org/wiki/Numer_Rachunku_Bankowego)), without separators or whitespace.
         /// </summary>
-        /// <value>The language to be used for the Terms of Service document, specified by the two letter [ISO 639-1](https://en.wikipedia.org/wiki/List_of_ISO_639-1_codes) language code. For example, **nl** for Dutch.</value>
-        [DataMember(Name = "language", EmitDefaultValue = false)]
-        public string Language { get; set; }
+        /// <value>The 26-digit bank account number ([Numer rachunku](https://pl.wikipedia.org/wiki/Numer_Rachunku_Bankowego)), without separators or whitespace.</value>
+        [DataMember(Name = "accountNumber", IsRequired = false, EmitDefaultValue = false)]
+        public string AccountNumber { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -104,8 +85,8 @@ namespace Adyen.Model.LegalEntityManagement
         public override string ToString()
         {
             StringBuilder sb = new StringBuilder();
-            sb.Append("class GetTermsOfServiceDocumentRequest {\n");
-            sb.Append("  Language: ").Append(Language).Append("\n");
+            sb.Append("class PLLocalAccountIdentification {\n");
+            sb.Append("  AccountNumber: ").Append(AccountNumber).Append("\n");
             sb.Append("  Type: ").Append(Type).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
@@ -127,15 +108,15 @@ namespace Adyen.Model.LegalEntityManagement
         /// <returns>Boolean</returns>
         public override bool Equals(object input)
         {
-            return this.Equals(input as GetTermsOfServiceDocumentRequest);
+            return this.Equals(input as PLLocalAccountIdentification);
         }
 
         /// <summary>
-        /// Returns true if GetTermsOfServiceDocumentRequest instances are equal
+        /// Returns true if PLLocalAccountIdentification instances are equal
         /// </summary>
-        /// <param name="input">Instance of GetTermsOfServiceDocumentRequest to be compared</param>
+        /// <param name="input">Instance of PLLocalAccountIdentification to be compared</param>
         /// <returns>Boolean</returns>
-        public bool Equals(GetTermsOfServiceDocumentRequest input)
+        public bool Equals(PLLocalAccountIdentification input)
         {
             if (input == null)
             {
@@ -143,9 +124,9 @@ namespace Adyen.Model.LegalEntityManagement
             }
             return 
                 (
-                    this.Language == input.Language ||
-                    (this.Language != null &&
-                    this.Language.Equals(input.Language))
+                    this.AccountNumber == input.AccountNumber ||
+                    (this.AccountNumber != null &&
+                    this.AccountNumber.Equals(input.AccountNumber))
                 ) && 
                 (
                     this.Type == input.Type ||
@@ -162,9 +143,9 @@ namespace Adyen.Model.LegalEntityManagement
             unchecked // Overflow is fine, just wrap
             {
                 int hashCode = 41;
-                if (this.Language != null)
+                if (this.AccountNumber != null)
                 {
-                    hashCode = (hashCode * 59) + this.Language.GetHashCode();
+                    hashCode = (hashCode * 59) + this.AccountNumber.GetHashCode();
                 }
                 hashCode = (hashCode * 59) + this.Type.GetHashCode();
                 return hashCode;
@@ -177,6 +158,18 @@ namespace Adyen.Model.LegalEntityManagement
         /// <returns>Validation Result</returns>
         public IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> Validate(ValidationContext validationContext)
         {
+            // AccountNumber (string) maxLength
+            if (this.AccountNumber != null && this.AccountNumber.Length > 26)
+            {
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for AccountNumber, length must be less than 26.", new [] { "AccountNumber" });
+            }
+
+            // AccountNumber (string) minLength
+            if (this.AccountNumber != null && this.AccountNumber.Length < 26)
+            {
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for AccountNumber, length must be greater than 26.", new [] { "AccountNumber" });
+            }
+
             yield break;
         }
     }

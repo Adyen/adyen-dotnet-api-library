@@ -28,33 +28,26 @@ using OpenAPIDateConverter = Adyen.ApiSerialization.OpenAPIDateConverter;
 namespace Adyen.Model.LegalEntityManagement
 {
     /// <summary>
-    /// CapabilityProblem
+    /// VerificationErrors
     /// </summary>
-    [DataContract(Name = "CapabilityProblem")]
-    public partial class CapabilityProblem : IEquatable<CapabilityProblem>, IValidatableObject
+    [DataContract(Name = "VerificationErrors")]
+    public partial class VerificationErrors : IEquatable<VerificationErrors>, IValidatableObject
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="CapabilityProblem" /> class.
+        /// Initializes a new instance of the <see cref="VerificationErrors" /> class.
         /// </summary>
-        /// <param name="entity">entity.</param>
-        /// <param name="verificationErrors">verificationErrors.</param>
-        public CapabilityProblem(CapabilityProblemEntity entity = default(CapabilityProblemEntity), List<VerificationError> verificationErrors = default(List<VerificationError>))
+        /// <param name="problems">List of the verification errors..</param>
+        public VerificationErrors(List<CapabilityProblem> problems = default(List<CapabilityProblem>))
         {
-            this.Entity = entity;
-            this.VerificationErrors = verificationErrors;
+            this.Problems = problems;
         }
 
         /// <summary>
-        /// Gets or Sets Entity
+        /// List of the verification errors.
         /// </summary>
-        [DataMember(Name = "entity", EmitDefaultValue = false)]
-        public CapabilityProblemEntity Entity { get; set; }
-
-        /// <summary>
-        /// Gets or Sets VerificationErrors
-        /// </summary>
-        [DataMember(Name = "verificationErrors", EmitDefaultValue = false)]
-        public List<VerificationError> VerificationErrors { get; set; }
+        /// <value>List of the verification errors.</value>
+        [DataMember(Name = "problems", EmitDefaultValue = false)]
+        public List<CapabilityProblem> Problems { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -63,9 +56,8 @@ namespace Adyen.Model.LegalEntityManagement
         public override string ToString()
         {
             StringBuilder sb = new StringBuilder();
-            sb.Append("class CapabilityProblem {\n");
-            sb.Append("  Entity: ").Append(Entity).Append("\n");
-            sb.Append("  VerificationErrors: ").Append(VerificationErrors).Append("\n");
+            sb.Append("class VerificationErrors {\n");
+            sb.Append("  Problems: ").Append(Problems).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -86,15 +78,15 @@ namespace Adyen.Model.LegalEntityManagement
         /// <returns>Boolean</returns>
         public override bool Equals(object input)
         {
-            return this.Equals(input as CapabilityProblem);
+            return this.Equals(input as VerificationErrors);
         }
 
         /// <summary>
-        /// Returns true if CapabilityProblem instances are equal
+        /// Returns true if VerificationErrors instances are equal
         /// </summary>
-        /// <param name="input">Instance of CapabilityProblem to be compared</param>
+        /// <param name="input">Instance of VerificationErrors to be compared</param>
         /// <returns>Boolean</returns>
-        public bool Equals(CapabilityProblem input)
+        public bool Equals(VerificationErrors input)
         {
             if (input == null)
             {
@@ -102,15 +94,10 @@ namespace Adyen.Model.LegalEntityManagement
             }
             return 
                 (
-                    this.Entity == input.Entity ||
-                    (this.Entity != null &&
-                    this.Entity.Equals(input.Entity))
-                ) && 
-                (
-                    this.VerificationErrors == input.VerificationErrors ||
-                    this.VerificationErrors != null &&
-                    input.VerificationErrors != null &&
-                    this.VerificationErrors.SequenceEqual(input.VerificationErrors)
+                    this.Problems == input.Problems ||
+                    this.Problems != null &&
+                    input.Problems != null &&
+                    this.Problems.SequenceEqual(input.Problems)
                 );
         }
 
@@ -123,13 +110,9 @@ namespace Adyen.Model.LegalEntityManagement
             unchecked // Overflow is fine, just wrap
             {
                 int hashCode = 41;
-                if (this.Entity != null)
+                if (this.Problems != null)
                 {
-                    hashCode = (hashCode * 59) + this.Entity.GetHashCode();
-                }
-                if (this.VerificationErrors != null)
-                {
-                    hashCode = (hashCode * 59) + this.VerificationErrors.GetHashCode();
+                    hashCode = (hashCode * 59) + this.Problems.GetHashCode();
                 }
                 return hashCode;
             }

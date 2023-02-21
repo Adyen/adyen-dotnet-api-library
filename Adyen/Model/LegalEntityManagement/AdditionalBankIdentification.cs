@@ -28,74 +28,56 @@ using OpenAPIDateConverter = Adyen.ApiSerialization.OpenAPIDateConverter;
 namespace Adyen.Model.LegalEntityManagement
 {
     /// <summary>
-    /// GetTermsOfServiceDocumentRequest
+    /// AdditionalBankIdentification
     /// </summary>
-    [DataContract(Name = "GetTermsOfServiceDocumentRequest")]
-    public partial class GetTermsOfServiceDocumentRequest : IEquatable<GetTermsOfServiceDocumentRequest>, IValidatableObject
+    [DataContract(Name = "AdditionalBankIdentification")]
+    public partial class AdditionalBankIdentification : IEquatable<AdditionalBankIdentification>, IValidatableObject
     {
         /// <summary>
-        /// The type of Terms of Service.
+        /// The type of additional bank identification, depending on the country.  Possible values:   * **gbSortCode**: The 6-digit [UK sort code](https://en.wikipedia.org/wiki/Sort_code), without separators or spaces  * **usRoutingNumber**: The 9-digit [routing number](https://en.wikipedia.org/wiki/ABA_routing_transit_number), without separators or spaces.
         /// </summary>
-        /// <value>The type of Terms of Service.</value>
+        /// <value>The type of additional bank identification, depending on the country.  Possible values:   * **gbSortCode**: The 6-digit [UK sort code](https://en.wikipedia.org/wiki/Sort_code), without separators or spaces  * **usRoutingNumber**: The 9-digit [routing number](https://en.wikipedia.org/wiki/ABA_routing_transit_number), without separators or spaces.</value>
         [JsonConverter(typeof(StringEnumConverter))]
         public enum TypeEnum
         {
             /// <summary>
-            /// Enum AdyenAccount for value: adyenAccount
+            /// Enum GbSortCode for value: gbSortCode
             /// </summary>
-            [EnumMember(Value = "adyenAccount")]
-            AdyenAccount = 1,
+            [EnumMember(Value = "gbSortCode")]
+            GbSortCode = 1,
 
             /// <summary>
-            /// Enum AdyenCapital for value: adyenCapital
+            /// Enum UsRoutingNumber for value: usRoutingNumber
             /// </summary>
-            [EnumMember(Value = "adyenCapital")]
-            AdyenCapital = 2,
-
-            /// <summary>
-            /// Enum AdyenForPlatformsAdvanced for value: adyenForPlatformsAdvanced
-            /// </summary>
-            [EnumMember(Value = "adyenForPlatformsAdvanced")]
-            AdyenForPlatformsAdvanced = 3,
-
-            /// <summary>
-            /// Enum AdyenForPlatformsManage for value: adyenForPlatformsManage
-            /// </summary>
-            [EnumMember(Value = "adyenForPlatformsManage")]
-            AdyenForPlatformsManage = 4,
-
-            /// <summary>
-            /// Enum AdyenIssuing for value: adyenIssuing
-            /// </summary>
-            [EnumMember(Value = "adyenIssuing")]
-            AdyenIssuing = 5
+            [EnumMember(Value = "usRoutingNumber")]
+            UsRoutingNumber = 2
 
         }
 
 
         /// <summary>
-        /// The type of Terms of Service.
+        /// The type of additional bank identification, depending on the country.  Possible values:   * **gbSortCode**: The 6-digit [UK sort code](https://en.wikipedia.org/wiki/Sort_code), without separators or spaces  * **usRoutingNumber**: The 9-digit [routing number](https://en.wikipedia.org/wiki/ABA_routing_transit_number), without separators or spaces.
         /// </summary>
-        /// <value>The type of Terms of Service.</value>
+        /// <value>The type of additional bank identification, depending on the country.  Possible values:   * **gbSortCode**: The 6-digit [UK sort code](https://en.wikipedia.org/wiki/Sort_code), without separators or spaces  * **usRoutingNumber**: The 9-digit [routing number](https://en.wikipedia.org/wiki/ABA_routing_transit_number), without separators or spaces.</value>
         [DataMember(Name = "type", EmitDefaultValue = false)]
         public TypeEnum? Type { get; set; }
         /// <summary>
-        /// Initializes a new instance of the <see cref="GetTermsOfServiceDocumentRequest" /> class.
+        /// Initializes a new instance of the <see cref="AdditionalBankIdentification" /> class.
         /// </summary>
-        /// <param name="language">The language to be used for the Terms of Service document, specified by the two letter [ISO 639-1](https://en.wikipedia.org/wiki/List_of_ISO_639-1_codes) language code. For example, **nl** for Dutch..</param>
-        /// <param name="type">The type of Terms of Service..</param>
-        public GetTermsOfServiceDocumentRequest(string language = default(string), TypeEnum? type = default(TypeEnum?))
+        /// <param name="code">The value of the additional bank identification..</param>
+        /// <param name="type">The type of additional bank identification, depending on the country.  Possible values:   * **gbSortCode**: The 6-digit [UK sort code](https://en.wikipedia.org/wiki/Sort_code), without separators or spaces  * **usRoutingNumber**: The 9-digit [routing number](https://en.wikipedia.org/wiki/ABA_routing_transit_number), without separators or spaces..</param>
+        public AdditionalBankIdentification(string code = default(string), TypeEnum? type = default(TypeEnum?))
         {
-            this.Language = language;
+            this.Code = code;
             this.Type = type;
         }
 
         /// <summary>
-        /// The language to be used for the Terms of Service document, specified by the two letter [ISO 639-1](https://en.wikipedia.org/wiki/List_of_ISO_639-1_codes) language code. For example, **nl** for Dutch.
+        /// The value of the additional bank identification.
         /// </summary>
-        /// <value>The language to be used for the Terms of Service document, specified by the two letter [ISO 639-1](https://en.wikipedia.org/wiki/List_of_ISO_639-1_codes) language code. For example, **nl** for Dutch.</value>
-        [DataMember(Name = "language", EmitDefaultValue = false)]
-        public string Language { get; set; }
+        /// <value>The value of the additional bank identification.</value>
+        [DataMember(Name = "code", EmitDefaultValue = false)]
+        public string Code { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -104,8 +86,8 @@ namespace Adyen.Model.LegalEntityManagement
         public override string ToString()
         {
             StringBuilder sb = new StringBuilder();
-            sb.Append("class GetTermsOfServiceDocumentRequest {\n");
-            sb.Append("  Language: ").Append(Language).Append("\n");
+            sb.Append("class AdditionalBankIdentification {\n");
+            sb.Append("  Code: ").Append(Code).Append("\n");
             sb.Append("  Type: ").Append(Type).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
@@ -127,15 +109,15 @@ namespace Adyen.Model.LegalEntityManagement
         /// <returns>Boolean</returns>
         public override bool Equals(object input)
         {
-            return this.Equals(input as GetTermsOfServiceDocumentRequest);
+            return this.Equals(input as AdditionalBankIdentification);
         }
 
         /// <summary>
-        /// Returns true if GetTermsOfServiceDocumentRequest instances are equal
+        /// Returns true if AdditionalBankIdentification instances are equal
         /// </summary>
-        /// <param name="input">Instance of GetTermsOfServiceDocumentRequest to be compared</param>
+        /// <param name="input">Instance of AdditionalBankIdentification to be compared</param>
         /// <returns>Boolean</returns>
-        public bool Equals(GetTermsOfServiceDocumentRequest input)
+        public bool Equals(AdditionalBankIdentification input)
         {
             if (input == null)
             {
@@ -143,9 +125,9 @@ namespace Adyen.Model.LegalEntityManagement
             }
             return 
                 (
-                    this.Language == input.Language ||
-                    (this.Language != null &&
-                    this.Language.Equals(input.Language))
+                    this.Code == input.Code ||
+                    (this.Code != null &&
+                    this.Code.Equals(input.Code))
                 ) && 
                 (
                     this.Type == input.Type ||
@@ -162,9 +144,9 @@ namespace Adyen.Model.LegalEntityManagement
             unchecked // Overflow is fine, just wrap
             {
                 int hashCode = 41;
-                if (this.Language != null)
+                if (this.Code != null)
                 {
-                    hashCode = (hashCode * 59) + this.Language.GetHashCode();
+                    hashCode = (hashCode * 59) + this.Code.GetHashCode();
                 }
                 hashCode = (hashCode * 59) + this.Type.GetHashCode();
                 return hashCode;

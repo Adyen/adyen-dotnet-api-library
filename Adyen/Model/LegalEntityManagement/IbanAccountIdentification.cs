@@ -28,33 +28,55 @@ using OpenAPIDateConverter = Adyen.ApiSerialization.OpenAPIDateConverter;
 namespace Adyen.Model.LegalEntityManagement
 {
     /// <summary>
-    /// CapabilityProblem
+    /// IbanAccountIdentification
     /// </summary>
-    [DataContract(Name = "CapabilityProblem")]
-    public partial class CapabilityProblem : IEquatable<CapabilityProblem>, IValidatableObject
+    [DataContract(Name = "IbanAccountIdentification")]
+    public partial class IbanAccountIdentification : IEquatable<IbanAccountIdentification>, IValidatableObject
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="CapabilityProblem" /> class.
+        /// **iban**
         /// </summary>
-        /// <param name="entity">entity.</param>
-        /// <param name="verificationErrors">verificationErrors.</param>
-        public CapabilityProblem(CapabilityProblemEntity entity = default(CapabilityProblemEntity), List<VerificationError> verificationErrors = default(List<VerificationError>))
+        /// <value>**iban**</value>
+        [JsonConverter(typeof(StringEnumConverter))]
+        public enum TypeEnum
         {
-            this.Entity = entity;
-            this.VerificationErrors = verificationErrors;
+            /// <summary>
+            /// Enum Iban for value: iban
+            /// </summary>
+            [EnumMember(Value = "iban")]
+            Iban = 1
+
+        }
+
+
+        /// <summary>
+        /// **iban**
+        /// </summary>
+        /// <value>**iban**</value>
+        [DataMember(Name = "type", IsRequired = false, EmitDefaultValue = false)]
+        public TypeEnum Type { get; set; }
+        /// <summary>
+        /// Initializes a new instance of the <see cref="IbanAccountIdentification" /> class.
+        /// </summary>
+        [JsonConstructorAttribute]
+        protected IbanAccountIdentification() { }
+        /// <summary>
+        /// Initializes a new instance of the <see cref="IbanAccountIdentification" /> class.
+        /// </summary>
+        /// <param name="iban">The international bank account number as defined in the [ISO-13616](https://www.iso.org/standard/81090.html) standard. (required).</param>
+        /// <param name="type">**iban** (required) (default to TypeEnum.Iban).</param>
+        public IbanAccountIdentification(string iban = default(string), TypeEnum type = TypeEnum.Iban)
+        {
+            this.Iban = iban;
+            this.Type = type;
         }
 
         /// <summary>
-        /// Gets or Sets Entity
+        /// The international bank account number as defined in the [ISO-13616](https://www.iso.org/standard/81090.html) standard.
         /// </summary>
-        [DataMember(Name = "entity", EmitDefaultValue = false)]
-        public CapabilityProblemEntity Entity { get; set; }
-
-        /// <summary>
-        /// Gets or Sets VerificationErrors
-        /// </summary>
-        [DataMember(Name = "verificationErrors", EmitDefaultValue = false)]
-        public List<VerificationError> VerificationErrors { get; set; }
+        /// <value>The international bank account number as defined in the [ISO-13616](https://www.iso.org/standard/81090.html) standard.</value>
+        [DataMember(Name = "iban", IsRequired = false, EmitDefaultValue = false)]
+        public string Iban { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -63,9 +85,9 @@ namespace Adyen.Model.LegalEntityManagement
         public override string ToString()
         {
             StringBuilder sb = new StringBuilder();
-            sb.Append("class CapabilityProblem {\n");
-            sb.Append("  Entity: ").Append(Entity).Append("\n");
-            sb.Append("  VerificationErrors: ").Append(VerificationErrors).Append("\n");
+            sb.Append("class IbanAccountIdentification {\n");
+            sb.Append("  Iban: ").Append(Iban).Append("\n");
+            sb.Append("  Type: ").Append(Type).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -86,15 +108,15 @@ namespace Adyen.Model.LegalEntityManagement
         /// <returns>Boolean</returns>
         public override bool Equals(object input)
         {
-            return this.Equals(input as CapabilityProblem);
+            return this.Equals(input as IbanAccountIdentification);
         }
 
         /// <summary>
-        /// Returns true if CapabilityProblem instances are equal
+        /// Returns true if IbanAccountIdentification instances are equal
         /// </summary>
-        /// <param name="input">Instance of CapabilityProblem to be compared</param>
+        /// <param name="input">Instance of IbanAccountIdentification to be compared</param>
         /// <returns>Boolean</returns>
-        public bool Equals(CapabilityProblem input)
+        public bool Equals(IbanAccountIdentification input)
         {
             if (input == null)
             {
@@ -102,15 +124,13 @@ namespace Adyen.Model.LegalEntityManagement
             }
             return 
                 (
-                    this.Entity == input.Entity ||
-                    (this.Entity != null &&
-                    this.Entity.Equals(input.Entity))
+                    this.Iban == input.Iban ||
+                    (this.Iban != null &&
+                    this.Iban.Equals(input.Iban))
                 ) && 
                 (
-                    this.VerificationErrors == input.VerificationErrors ||
-                    this.VerificationErrors != null &&
-                    input.VerificationErrors != null &&
-                    this.VerificationErrors.SequenceEqual(input.VerificationErrors)
+                    this.Type == input.Type ||
+                    this.Type.Equals(input.Type)
                 );
         }
 
@@ -123,14 +143,11 @@ namespace Adyen.Model.LegalEntityManagement
             unchecked // Overflow is fine, just wrap
             {
                 int hashCode = 41;
-                if (this.Entity != null)
+                if (this.Iban != null)
                 {
-                    hashCode = (hashCode * 59) + this.Entity.GetHashCode();
+                    hashCode = (hashCode * 59) + this.Iban.GetHashCode();
                 }
-                if (this.VerificationErrors != null)
-                {
-                    hashCode = (hashCode * 59) + this.VerificationErrors.GetHashCode();
-                }
+                hashCode = (hashCode * 59) + this.Type.GetHashCode();
                 return hashCode;
             }
         }
