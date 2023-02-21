@@ -11,25 +11,27 @@
 */
 
 using System;
-using System.Linq;
-using System.IO;
-using System.Text;
-using System.Text.RegularExpressions;
 using System.Collections;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Linq;
+using System.IO;
 using System.Runtime.Serialization;
+using System.Text;
+using System.Text.RegularExpressions;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
+using Newtonsoft.Json.Linq;
 using System.ComponentModel.DataAnnotations;
+using OpenAPIDateConverter = Adyen.ApiSerialization.OpenAPIDateConverter;
 
 namespace Adyen.Model.LegalEntityManagement
 {
     /// <summary>
     /// CapabilitySettings
     /// </summary>
-    [DataContract]
-    public partial class CapabilitySettings :  IEquatable<CapabilitySettings>, IValidatableObject
+    [DataContract(Name = "CapabilitySettings")]
+    public partial class CapabilitySettings : IEquatable<CapabilitySettings>, IValidatableObject
     {
         /// <summary>
         /// Defines FundingSource
@@ -58,8 +60,9 @@ namespace Adyen.Model.LegalEntityManagement
         }
 
         /// <summary>
-        /// Defines Interval
+        /// The period when the rule conditions apply.
         /// </summary>
+        /// <value>The period when the rule conditions apply.</value>
         [JsonConverter(typeof(StringEnumConverter))]
         public enum IntervalEnum
         {
@@ -83,18 +86,20 @@ namespace Adyen.Model.LegalEntityManagement
 
         }
 
+
         /// <summary>
-        /// Gets or Sets Interval
+        /// The period when the rule conditions apply.
         /// </summary>
-        [DataMember(Name="interval", EmitDefaultValue=false)]
+        /// <value>The period when the rule conditions apply.</value>
+        [DataMember(Name = "interval", EmitDefaultValue = false)]
         public IntervalEnum? Interval { get; set; }
         /// <summary>
         /// Initializes a new instance of the <see cref="CapabilitySettings" /> class.
         /// </summary>
-        /// <param name="amountPerIndustry">amountPerIndustry.</param>
-        /// <param name="authorizedCardUsers">authorizedCardUsers.</param>
-        /// <param name="fundingSource">fundingSource.</param>
-        /// <param name="interval">interval.</param>
+        /// <param name="amountPerIndustry">The maximum amount a card holder can spend per industry..</param>
+        /// <param name="authorizedCardUsers">The number of card holders who can use the card..</param>
+        /// <param name="fundingSource">The funding source of the card, for example **debit**..</param>
+        /// <param name="interval">The period when the rule conditions apply..</param>
         /// <param name="maxAmount">maxAmount.</param>
         public CapabilitySettings(Dictionary<string, Amount> amountPerIndustry = default(Dictionary<string, Amount>), bool authorizedCardUsers = default(bool), List<FundingSourceEnum> fundingSource = default(List<FundingSourceEnum>), IntervalEnum? interval = default(IntervalEnum?), Amount maxAmount = default(Amount))
         {
@@ -106,28 +111,30 @@ namespace Adyen.Model.LegalEntityManagement
         }
 
         /// <summary>
-        /// Gets or Sets AmountPerIndustry
+        /// The maximum amount a card holder can spend per industry.
         /// </summary>
-        [DataMember(Name="amountPerIndustry", EmitDefaultValue=false)]
+        /// <value>The maximum amount a card holder can spend per industry.</value>
+        [DataMember(Name = "amountPerIndustry", EmitDefaultValue = false)]
         public Dictionary<string, Amount> AmountPerIndustry { get; set; }
 
         /// <summary>
-        /// Gets or Sets AuthorizedCardUsers
+        /// The number of card holders who can use the card.
         /// </summary>
-        [DataMember(Name="authorizedCardUsers", EmitDefaultValue=false)]
+        /// <value>The number of card holders who can use the card.</value>
+        [DataMember(Name = "authorizedCardUsers", EmitDefaultValue = false)]
         public bool AuthorizedCardUsers { get; set; }
 
         /// <summary>
-        /// Gets or Sets FundingSource
+        /// The funding source of the card, for example **debit**.
         /// </summary>
-        [DataMember(Name="fundingSource", EmitDefaultValue=false)]
+        /// <value>The funding source of the card, for example **debit**.</value>
+        [DataMember(Name = "fundingSource", EmitDefaultValue = false)]
         public List<CapabilitySettings.FundingSourceEnum> FundingSource { get; set; }
-
 
         /// <summary>
         /// Gets or Sets MaxAmount
         /// </summary>
-        [DataMember(Name="maxAmount", EmitDefaultValue=false)]
+        [DataMember(Name = "maxAmount", EmitDefaultValue = false)]
         public Amount MaxAmount { get; set; }
 
         /// <summary>
@@ -136,7 +143,7 @@ namespace Adyen.Model.LegalEntityManagement
         /// <returns>String presentation of the object</returns>
         public override string ToString()
         {
-            var sb = new StringBuilder();
+            StringBuilder sb = new StringBuilder();
             sb.Append("class CapabilitySettings {\n");
             sb.Append("  AmountPerIndustry: ").Append(AmountPerIndustry).Append("\n");
             sb.Append("  AuthorizedCardUsers: ").Append(AuthorizedCardUsers).Append("\n");
@@ -174,8 +181,9 @@ namespace Adyen.Model.LegalEntityManagement
         public bool Equals(CapabilitySettings input)
         {
             if (input == null)
+            {
                 return false;
-
+            }
             return 
                 (
                     this.AmountPerIndustry == input.AmountPerIndustry ||
@@ -185,8 +193,7 @@ namespace Adyen.Model.LegalEntityManagement
                 ) && 
                 (
                     this.AuthorizedCardUsers == input.AuthorizedCardUsers ||
-                    (this.AuthorizedCardUsers != null &&
-                    this.AuthorizedCardUsers.Equals(input.AuthorizedCardUsers))
+                    this.AuthorizedCardUsers.Equals(input.AuthorizedCardUsers)
                 ) && 
                 (
                     this.FundingSource == input.FundingSource ||
@@ -196,8 +203,7 @@ namespace Adyen.Model.LegalEntityManagement
                 ) && 
                 (
                     this.Interval == input.Interval ||
-                    (this.Interval != null &&
-                    this.Interval.Equals(input.Interval))
+                    this.Interval.Equals(input.Interval)
                 ) && 
                 (
                     this.MaxAmount == input.MaxAmount ||
@@ -216,25 +222,28 @@ namespace Adyen.Model.LegalEntityManagement
             {
                 int hashCode = 41;
                 if (this.AmountPerIndustry != null)
-                    hashCode = hashCode * 59 + this.AmountPerIndustry.GetHashCode();
-                if (this.AuthorizedCardUsers != null)
-                    hashCode = hashCode * 59 + this.AuthorizedCardUsers.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.AmountPerIndustry.GetHashCode();
+                }
+                hashCode = (hashCode * 59) + this.AuthorizedCardUsers.GetHashCode();
                 if (this.FundingSource != null)
-                    hashCode = hashCode * 59 + this.FundingSource.GetHashCode();
-                if (this.Interval != null)
-                    hashCode = hashCode * 59 + this.Interval.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.FundingSource.GetHashCode();
+                }
+                hashCode = (hashCode * 59) + this.Interval.GetHashCode();
                 if (this.MaxAmount != null)
-                    hashCode = hashCode * 59 + this.MaxAmount.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.MaxAmount.GetHashCode();
+                }
                 return hashCode;
             }
         }
-
         /// <summary>
         /// To validate all properties of the instance
         /// </summary>
         /// <param name="validationContext">Validation context</param>
         /// <returns>Validation Result</returns>
-        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+        public IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> Validate(ValidationContext validationContext)
         {
             yield break;
         }

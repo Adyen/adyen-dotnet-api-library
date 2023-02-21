@@ -11,25 +11,27 @@
 */
 
 using System;
-using System.Linq;
-using System.IO;
-using System.Text;
-using System.Text.RegularExpressions;
 using System.Collections;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Linq;
+using System.IO;
 using System.Runtime.Serialization;
+using System.Text;
+using System.Text.RegularExpressions;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
+using Newtonsoft.Json.Linq;
 using System.ComponentModel.DataAnnotations;
+using OpenAPIDateConverter = Adyen.ApiSerialization.OpenAPIDateConverter;
 
 namespace Adyen.Model.LegalEntityManagement
 {
     /// <summary>
     /// TransferInstrumentInfo
     /// </summary>
-    [DataContract]
-    public partial class TransferInstrumentInfo :  IEquatable<TransferInstrumentInfo>, IValidatableObject
+    [DataContract(Name = "TransferInstrumentInfo")]
+    public partial class TransferInstrumentInfo : IEquatable<TransferInstrumentInfo>, IValidatableObject
     {
         /// <summary>
         /// The type of transfer instrument.  Possible value: **bankAccount**.
@@ -52,11 +54,12 @@ namespace Adyen.Model.LegalEntityManagement
 
         }
 
+
         /// <summary>
         /// The type of transfer instrument.  Possible value: **bankAccount**.
         /// </summary>
         /// <value>The type of transfer instrument.  Possible value: **bankAccount**.</value>
-        [DataMember(Name="type", EmitDefaultValue=true)]
+        [DataMember(Name = "type", IsRequired = false, EmitDefaultValue = false)]
         public TypeEnum Type { get; set; }
         /// <summary>
         /// Initializes a new instance of the <see cref="TransferInstrumentInfo" /> class.
@@ -79,16 +82,15 @@ namespace Adyen.Model.LegalEntityManagement
         /// <summary>
         /// Gets or Sets BankAccount
         /// </summary>
-        [DataMember(Name="bankAccount", EmitDefaultValue=true)]
+        [DataMember(Name = "bankAccount", IsRequired = false, EmitDefaultValue = false)]
         public BankAccountInfo BankAccount { get; set; }
 
         /// <summary>
         /// The unique identifier of the [legal entity](https://docs.adyen.com/api-explorer/#/legalentity/latest/post/legalEntities__resParam_id) that owns the transfer instrument.
         /// </summary>
         /// <value>The unique identifier of the [legal entity](https://docs.adyen.com/api-explorer/#/legalentity/latest/post/legalEntities__resParam_id) that owns the transfer instrument.</value>
-        [DataMember(Name="legalEntityId", EmitDefaultValue=true)]
+        [DataMember(Name = "legalEntityId", IsRequired = false, EmitDefaultValue = false)]
         public string LegalEntityId { get; set; }
-
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -96,7 +98,7 @@ namespace Adyen.Model.LegalEntityManagement
         /// <returns>String presentation of the object</returns>
         public override string ToString()
         {
-            var sb = new StringBuilder();
+            StringBuilder sb = new StringBuilder();
             sb.Append("class TransferInstrumentInfo {\n");
             sb.Append("  BankAccount: ").Append(BankAccount).Append("\n");
             sb.Append("  LegalEntityId: ").Append(LegalEntityId).Append("\n");
@@ -132,8 +134,9 @@ namespace Adyen.Model.LegalEntityManagement
         public bool Equals(TransferInstrumentInfo input)
         {
             if (input == null)
+            {
                 return false;
-
+            }
             return 
                 (
                     this.BankAccount == input.BankAccount ||
@@ -147,8 +150,7 @@ namespace Adyen.Model.LegalEntityManagement
                 ) && 
                 (
                     this.Type == input.Type ||
-                    (this.Type != null &&
-                    this.Type.Equals(input.Type))
+                    this.Type.Equals(input.Type)
                 );
         }
 
@@ -162,21 +164,23 @@ namespace Adyen.Model.LegalEntityManagement
             {
                 int hashCode = 41;
                 if (this.BankAccount != null)
-                    hashCode = hashCode * 59 + this.BankAccount.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.BankAccount.GetHashCode();
+                }
                 if (this.LegalEntityId != null)
-                    hashCode = hashCode * 59 + this.LegalEntityId.GetHashCode();
-                if (this.Type != null)
-                    hashCode = hashCode * 59 + this.Type.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.LegalEntityId.GetHashCode();
+                }
+                hashCode = (hashCode * 59) + this.Type.GetHashCode();
                 return hashCode;
             }
         }
-
         /// <summary>
         /// To validate all properties of the instance
         /// </summary>
         /// <param name="validationContext">Validation context</param>
         /// <returns>Validation Result</returns>
-        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+        public IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> Validate(ValidationContext validationContext)
         {
             yield break;
         }

@@ -11,25 +11,27 @@
 */
 
 using System;
-using System.Linq;
-using System.IO;
-using System.Text;
-using System.Text.RegularExpressions;
 using System.Collections;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Linq;
+using System.IO;
 using System.Runtime.Serialization;
+using System.Text;
+using System.Text.RegularExpressions;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
+using Newtonsoft.Json.Linq;
 using System.ComponentModel.DataAnnotations;
+using OpenAPIDateConverter = Adyen.ApiSerialization.OpenAPIDateConverter;
 
 namespace Adyen.Model.LegalEntityManagement
 {
     /// <summary>
     /// TaxInformation
     /// </summary>
-    [DataContract]
-    public partial class TaxInformation :  IEquatable<TaxInformation>, IValidatableObject
+    [DataContract(Name = "TaxInformation")]
+    public partial class TaxInformation : IEquatable<TaxInformation>, IValidatableObject
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="TaxInformation" /> class.
@@ -48,21 +50,21 @@ namespace Adyen.Model.LegalEntityManagement
         /// The two-letter [ISO 3166-1 alpha-2](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2) country code.
         /// </summary>
         /// <value>The two-letter [ISO 3166-1 alpha-2](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2) country code.</value>
-        [DataMember(Name="country", EmitDefaultValue=false)]
+        [DataMember(Name = "country", EmitDefaultValue = false)]
         public string Country { get; set; }
 
         /// <summary>
         /// The tax ID number (TIN) of the organization or individual.
         /// </summary>
         /// <value>The tax ID number (TIN) of the organization or individual.</value>
-        [DataMember(Name="number", EmitDefaultValue=false)]
+        [DataMember(Name = "number", EmitDefaultValue = false)]
         public string Number { get; set; }
 
         /// <summary>
         /// The TIN type depending on the country where it was issued. Provide only for countries that have multiple tax IDs, such as Sweden, the UK, or the US. For example, provide **SSN**, **EIN**, or **ITIN** for the US.
         /// </summary>
         /// <value>The TIN type depending on the country where it was issued. Provide only for countries that have multiple tax IDs, such as Sweden, the UK, or the US. For example, provide **SSN**, **EIN**, or **ITIN** for the US.</value>
-        [DataMember(Name="type", EmitDefaultValue=false)]
+        [DataMember(Name = "type", EmitDefaultValue = false)]
         public string Type { get; set; }
 
         /// <summary>
@@ -71,7 +73,7 @@ namespace Adyen.Model.LegalEntityManagement
         /// <returns>String presentation of the object</returns>
         public override string ToString()
         {
-            var sb = new StringBuilder();
+            StringBuilder sb = new StringBuilder();
             sb.Append("class TaxInformation {\n");
             sb.Append("  Country: ").Append(Country).Append("\n");
             sb.Append("  Number: ").Append(Number).Append("\n");
@@ -107,8 +109,9 @@ namespace Adyen.Model.LegalEntityManagement
         public bool Equals(TaxInformation input)
         {
             if (input == null)
+            {
                 return false;
-
+            }
             return 
                 (
                     this.Country == input.Country ||
@@ -137,30 +140,35 @@ namespace Adyen.Model.LegalEntityManagement
             {
                 int hashCode = 41;
                 if (this.Country != null)
-                    hashCode = hashCode * 59 + this.Country.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.Country.GetHashCode();
+                }
                 if (this.Number != null)
-                    hashCode = hashCode * 59 + this.Number.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.Number.GetHashCode();
+                }
                 if (this.Type != null)
-                    hashCode = hashCode * 59 + this.Type.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.Type.GetHashCode();
+                }
                 return hashCode;
             }
         }
-
         /// <summary>
         /// To validate all properties of the instance
         /// </summary>
         /// <param name="validationContext">Validation context</param>
         /// <returns>Validation Result</returns>
-        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+        public IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> Validate(ValidationContext validationContext)
         {
             // Country (string) maxLength
-            if(this.Country != null && this.Country.Length > 2)
+            if (this.Country != null && this.Country.Length > 2)
             {
                 yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for Country, length must be less than 2.", new [] { "Country" });
             }
 
             // Country (string) minLength
-            if(this.Country != null && this.Country.Length < 2)
+            if (this.Country != null && this.Country.Length < 2)
             {
                 yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for Country, length must be greater than 2.", new [] { "Country" });
             }

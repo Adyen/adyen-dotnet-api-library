@@ -11,25 +11,27 @@
 */
 
 using System;
-using System.Linq;
-using System.IO;
-using System.Text;
-using System.Text.RegularExpressions;
 using System.Collections;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Linq;
+using System.IO;
 using System.Runtime.Serialization;
+using System.Text;
+using System.Text.RegularExpressions;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
+using Newtonsoft.Json.Linq;
 using System.ComponentModel.DataAnnotations;
+using OpenAPIDateConverter = Adyen.ApiSerialization.OpenAPIDateConverter;
 
 namespace Adyen.Model.LegalEntityManagement
 {
     /// <summary>
     /// CapabilityProblem
     /// </summary>
-    [DataContract]
-    public partial class CapabilityProblem :  IEquatable<CapabilityProblem>, IValidatableObject
+    [DataContract(Name = "CapabilityProblem")]
+    public partial class CapabilityProblem : IEquatable<CapabilityProblem>, IValidatableObject
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="CapabilityProblem" /> class.
@@ -45,13 +47,13 @@ namespace Adyen.Model.LegalEntityManagement
         /// <summary>
         /// Gets or Sets Entity
         /// </summary>
-        [DataMember(Name="entity", EmitDefaultValue=false)]
+        [DataMember(Name = "entity", EmitDefaultValue = false)]
         public CapabilityProblemEntity Entity { get; set; }
 
         /// <summary>
         /// Gets or Sets VerificationErrors
         /// </summary>
-        [DataMember(Name="verificationErrors", EmitDefaultValue=false)]
+        [DataMember(Name = "verificationErrors", EmitDefaultValue = false)]
         public List<VerificationError> VerificationErrors { get; set; }
 
         /// <summary>
@@ -60,7 +62,7 @@ namespace Adyen.Model.LegalEntityManagement
         /// <returns>String presentation of the object</returns>
         public override string ToString()
         {
-            var sb = new StringBuilder();
+            StringBuilder sb = new StringBuilder();
             sb.Append("class CapabilityProblem {\n");
             sb.Append("  Entity: ").Append(Entity).Append("\n");
             sb.Append("  VerificationErrors: ").Append(VerificationErrors).Append("\n");
@@ -95,8 +97,9 @@ namespace Adyen.Model.LegalEntityManagement
         public bool Equals(CapabilityProblem input)
         {
             if (input == null)
+            {
                 return false;
-
+            }
             return 
                 (
                     this.Entity == input.Entity ||
@@ -121,19 +124,22 @@ namespace Adyen.Model.LegalEntityManagement
             {
                 int hashCode = 41;
                 if (this.Entity != null)
-                    hashCode = hashCode * 59 + this.Entity.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.Entity.GetHashCode();
+                }
                 if (this.VerificationErrors != null)
-                    hashCode = hashCode * 59 + this.VerificationErrors.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.VerificationErrors.GetHashCode();
+                }
                 return hashCode;
             }
         }
-
         /// <summary>
         /// To validate all properties of the instance
         /// </summary>
         /// <param name="validationContext">Validation context</param>
         /// <returns>Validation Result</returns>
-        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+        public IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> Validate(ValidationContext validationContext)
         {
             yield break;
         }

@@ -11,25 +11,27 @@
 */
 
 using System;
-using System.Linq;
-using System.IO;
-using System.Text;
-using System.Text.RegularExpressions;
 using System.Collections;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Linq;
+using System.IO;
 using System.Runtime.Serialization;
+using System.Text;
+using System.Text.RegularExpressions;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
+using Newtonsoft.Json.Linq;
 using System.ComponentModel.DataAnnotations;
+using OpenAPIDateConverter = Adyen.ApiSerialization.OpenAPIDateConverter;
 
 namespace Adyen.Model.LegalEntityManagement
 {
     /// <summary>
     /// BusinessLineInfo
     /// </summary>
-    [DataContract]
-    public partial class BusinessLineInfo :  IEquatable<BusinessLineInfo>, IValidatableObject
+    [DataContract(Name = "BusinessLineInfo")]
+    public partial class BusinessLineInfo : IEquatable<BusinessLineInfo>, IValidatableObject
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="BusinessLineInfo" /> class.
@@ -42,7 +44,7 @@ namespace Adyen.Model.LegalEntityManagement
         /// <param name="capability">The capability for which you are creating the business line. For example, **receivePayments**. (required).</param>
         /// <param name="industryCode">A code that represents the industry of the legal entity. For example, **4431A** for computer software stores. (required).</param>
         /// <param name="legalEntityId">Unique identifier of the [legal entity](https://docs.adyen.com/api-explorer/#/legalentity/latest/post/legalEntities__resParam_id) that owns the business line. (required).</param>
-        /// <param name="salesChannels">A list of channels where goods or services are sold. You cannot combine point of sale and ecommerce in one business line.  Possible values and combinations:  - For point of sale: **pos** and **posMoto**  - For ecommerce: **eCommerce** and **ecomMoto**  - For Pay by Link: **payByLink**  Required only in combination with the &#x60;capability&#x60; to **receivePayments** or **receiveFromPlatformPayments**..</param>
+        /// <param name="salesChannels">A list of channels where goods or services are sold.  Possible values:  - For point of sale: **pos** and **posMoto**  - For ecommerce: **eCommerce** and **ecomMoto**  - For Pay by Link: **payByLink**  Required only in combination with the &#x60;capability&#x60; to **receivePayments** or **receiveFromPlatformPayments**..</param>
         /// <param name="sourceOfFunds">sourceOfFunds.</param>
         /// <param name="webData">List of website URLs where your user&#39;s goods or services are sold. When this is required for a capability but your user does not have an online presence, provide the reason in the &#x60;webDataExemption&#x60; object..</param>
         /// <param name="webDataExemption">webDataExemption.</param>
@@ -61,47 +63,47 @@ namespace Adyen.Model.LegalEntityManagement
         /// The capability for which you are creating the business line. For example, **receivePayments**.
         /// </summary>
         /// <value>The capability for which you are creating the business line. For example, **receivePayments**.</value>
-        [DataMember(Name="capability", EmitDefaultValue=true)]
+        [DataMember(Name = "capability", IsRequired = false, EmitDefaultValue = false)]
         public string Capability { get; set; }
 
         /// <summary>
         /// A code that represents the industry of the legal entity. For example, **4431A** for computer software stores.
         /// </summary>
         /// <value>A code that represents the industry of the legal entity. For example, **4431A** for computer software stores.</value>
-        [DataMember(Name="industryCode", EmitDefaultValue=true)]
+        [DataMember(Name = "industryCode", IsRequired = false, EmitDefaultValue = false)]
         public string IndustryCode { get; set; }
 
         /// <summary>
         /// Unique identifier of the [legal entity](https://docs.adyen.com/api-explorer/#/legalentity/latest/post/legalEntities__resParam_id) that owns the business line.
         /// </summary>
         /// <value>Unique identifier of the [legal entity](https://docs.adyen.com/api-explorer/#/legalentity/latest/post/legalEntities__resParam_id) that owns the business line.</value>
-        [DataMember(Name="legalEntityId", EmitDefaultValue=true)]
+        [DataMember(Name = "legalEntityId", IsRequired = false, EmitDefaultValue = false)]
         public string LegalEntityId { get; set; }
 
         /// <summary>
-        /// A list of channels where goods or services are sold. You cannot combine point of sale and ecommerce in one business line.  Possible values and combinations:  - For point of sale: **pos** and **posMoto**  - For ecommerce: **eCommerce** and **ecomMoto**  - For Pay by Link: **payByLink**  Required only in combination with the &#x60;capability&#x60; to **receivePayments** or **receiveFromPlatformPayments**.
+        /// A list of channels where goods or services are sold.  Possible values:  - For point of sale: **pos** and **posMoto**  - For ecommerce: **eCommerce** and **ecomMoto**  - For Pay by Link: **payByLink**  Required only in combination with the &#x60;capability&#x60; to **receivePayments** or **receiveFromPlatformPayments**.
         /// </summary>
-        /// <value>A list of channels where goods or services are sold. You cannot combine point of sale and ecommerce in one business line.  Possible values and combinations:  - For point of sale: **pos** and **posMoto**  - For ecommerce: **eCommerce** and **ecomMoto**  - For Pay by Link: **payByLink**  Required only in combination with the &#x60;capability&#x60; to **receivePayments** or **receiveFromPlatformPayments**.</value>
-        [DataMember(Name="salesChannels", EmitDefaultValue=false)]
+        /// <value>A list of channels where goods or services are sold.  Possible values:  - For point of sale: **pos** and **posMoto**  - For ecommerce: **eCommerce** and **ecomMoto**  - For Pay by Link: **payByLink**  Required only in combination with the &#x60;capability&#x60; to **receivePayments** or **receiveFromPlatformPayments**.</value>
+        [DataMember(Name = "salesChannels", EmitDefaultValue = false)]
         public List<string> SalesChannels { get; set; }
 
         /// <summary>
         /// Gets or Sets SourceOfFunds
         /// </summary>
-        [DataMember(Name="sourceOfFunds", EmitDefaultValue=false)]
+        [DataMember(Name = "sourceOfFunds", EmitDefaultValue = false)]
         public SourceOfFunds SourceOfFunds { get; set; }
 
         /// <summary>
         /// List of website URLs where your user&#39;s goods or services are sold. When this is required for a capability but your user does not have an online presence, provide the reason in the &#x60;webDataExemption&#x60; object.
         /// </summary>
         /// <value>List of website URLs where your user&#39;s goods or services are sold. When this is required for a capability but your user does not have an online presence, provide the reason in the &#x60;webDataExemption&#x60; object.</value>
-        [DataMember(Name="webData", EmitDefaultValue=false)]
+        [DataMember(Name = "webData", EmitDefaultValue = false)]
         public List<WebData> WebData { get; set; }
 
         /// <summary>
         /// Gets or Sets WebDataExemption
         /// </summary>
-        [DataMember(Name="webDataExemption", EmitDefaultValue=false)]
+        [DataMember(Name = "webDataExemption", EmitDefaultValue = false)]
         public WebDataExemption WebDataExemption { get; set; }
 
         /// <summary>
@@ -110,7 +112,7 @@ namespace Adyen.Model.LegalEntityManagement
         /// <returns>String presentation of the object</returns>
         public override string ToString()
         {
-            var sb = new StringBuilder();
+            StringBuilder sb = new StringBuilder();
             sb.Append("class BusinessLineInfo {\n");
             sb.Append("  Capability: ").Append(Capability).Append("\n");
             sb.Append("  IndustryCode: ").Append(IndustryCode).Append("\n");
@@ -150,8 +152,9 @@ namespace Adyen.Model.LegalEntityManagement
         public bool Equals(BusinessLineInfo input)
         {
             if (input == null)
+            {
                 return false;
-
+            }
             return 
                 (
                     this.Capability == input.Capability ||
@@ -202,29 +205,42 @@ namespace Adyen.Model.LegalEntityManagement
             {
                 int hashCode = 41;
                 if (this.Capability != null)
-                    hashCode = hashCode * 59 + this.Capability.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.Capability.GetHashCode();
+                }
                 if (this.IndustryCode != null)
-                    hashCode = hashCode * 59 + this.IndustryCode.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.IndustryCode.GetHashCode();
+                }
                 if (this.LegalEntityId != null)
-                    hashCode = hashCode * 59 + this.LegalEntityId.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.LegalEntityId.GetHashCode();
+                }
                 if (this.SalesChannels != null)
-                    hashCode = hashCode * 59 + this.SalesChannels.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.SalesChannels.GetHashCode();
+                }
                 if (this.SourceOfFunds != null)
-                    hashCode = hashCode * 59 + this.SourceOfFunds.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.SourceOfFunds.GetHashCode();
+                }
                 if (this.WebData != null)
-                    hashCode = hashCode * 59 + this.WebData.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.WebData.GetHashCode();
+                }
                 if (this.WebDataExemption != null)
-                    hashCode = hashCode * 59 + this.WebDataExemption.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.WebDataExemption.GetHashCode();
+                }
                 return hashCode;
             }
         }
-
         /// <summary>
         /// To validate all properties of the instance
         /// </summary>
         /// <param name="validationContext">Validation context</param>
         /// <returns>Validation Result</returns>
-        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+        public IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> Validate(ValidationContext validationContext)
         {
             yield break;
         }

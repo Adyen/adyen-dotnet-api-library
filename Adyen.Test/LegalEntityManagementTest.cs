@@ -44,12 +44,12 @@ namespace Adyen.Test
         public void CreateDocument()
         {
             var client = CreateMockTestClientApiKeyBasedRequestAsync("Mocks/legalentitymanagement/Document.json");
-            var service = new Documents(client);
+            var service = new DocumentsService(client);
             var document = new Document()
             {
                 Attachment = new Attachment()
             };
-            var response = service.Create(document);
+            var response = service.UploadDocumentForVerificationChecks(document);
             Assert.AreEqual(Encoding.ASCII.GetString(response.Attachments[0].Content), "This is a string");
             Assert.AreEqual(response.Id, "SE322KT223222D5FJ7TJN2986");
         }
@@ -61,12 +61,12 @@ namespace Adyen.Test
         public void UpdateDocument()
         {
             var client = CreateMockTestClientApiKeyBasedRequestAsync("Mocks/legalentitymanagement/Document.json");
-            var service = new Documents(client);
+            var service = new DocumentsService(client);
             var document = new Document()
             {
                 Attachment = new Attachment()
             };
-            var response = service.Update("SE322KT223222D5FJ7TJN2986",document);
+            var response = service.UpdateDocument("SE322KT223222D5FJ7TJN2986",document);
             Assert.AreEqual(Encoding.ASCII.GetString(response.Attachments[0].Content), "This is a string");
             Assert.AreEqual(response.Id, "SE322KT223222D5FJ7TJN2986");
 
@@ -79,8 +79,8 @@ namespace Adyen.Test
         public void DeleteDocumentTest()
         {
             var client = CreateMockTestClientApiKeyBasedRequestAsync("Mocks/legalentitymanagement/Document.json");
-            var service = new Documents(client);
-            service.Delete("SE322KT223222D5FJ7TJN2986");
+            var service = new DocumentsService(client);
+            service.DeleteDocument("SE322KT223222D5FJ7TJN2986");
 
         }
         #endregion
@@ -92,13 +92,13 @@ namespace Adyen.Test
         public void CreateTransferInstrumentsTest()
         {
             var client = CreateMockTestClientApiKeyBasedRequestAsync("Mocks/legalentitymanagement/TransferInstrument.json");
-            var service = new TransferInstruments(client);
+            var service = new TransferInstrumentsService(client);
             var transferInstrumentInfo = new TransferInstrumentInfo()
             {
                 LegalEntityId = "",
                 Type = TransferInstrumentInfo.TypeEnum.BankAccount
             };
-            var response = service.Create(transferInstrumentInfo);
+            var response = service.CreateTransferInstrument(transferInstrumentInfo);
             Assert.AreEqual(response.LegalEntityId, "LE322KH223222D5GG4C9J83RN");
             Assert.AreEqual(response.Id, "SE576BH223222F5GJVKHH6BDT");
         }
@@ -109,13 +109,13 @@ namespace Adyen.Test
         public void UpdateTransferInstrumentsTest()
         {
             var client = CreateMockTestClientApiKeyBasedRequestAsync("Mocks/legalentitymanagement/TransferInstrument.json");
-            var service = new TransferInstruments(client);
+            var service = new TransferInstrumentsService(client);
             var transferInstrumentInfo = new TransferInstrumentInfo()
             {
                 LegalEntityId = "",
                 Type = TransferInstrumentInfo.TypeEnum.BankAccount
             };
-            var task = service.UpdateAsync("SE576BH223222F5GJVKHH6BDT", transferInstrumentInfo);
+            var task = service.UpdateTransferInstrumentAsync("SE576BH223222F5GJVKHH6BDT", transferInstrumentInfo);
             var response = task.Result;
             Assert.AreEqual(response.LegalEntityId, "LE322KH223222D5GG4C9J83RN");
             Assert.AreEqual(response.Id, "SE576BH223222F5GJVKHH6BDT");
@@ -130,8 +130,8 @@ namespace Adyen.Test
         public void ListThemesTest()
         {
             var client = CreateMockTestClientApiKeyBasedRequestAsync("Mocks/legalentitymanagement/OnboardingThemes.json");
-            var service = new HostedOnboarding(client);
-            var task = service.ListThemesAsync();
+            var service = new HostedOnboardingService(client);
+            var task = service.ListHostedOnboardingPageThemesAsync();
             var response = task.Result;
             Assert.AreEqual(response.Themes[0].Id, "SE322KT223222D5FJ7TJN2986");
             Assert.AreEqual(response.Themes[0].CreatedAt, DateTime.Parse("2022-10-31T01:30:00+01:00"));
@@ -146,7 +146,7 @@ namespace Adyen.Test
         public void UpdateLegalEntitiesTest()
         {
             var client = CreateMockTestClientApiKeyBasedRequestAsync("Mocks/legalentitymanagement/LegalEntity.json");
-            var service = new LegalEntities(client);
+            var service = new LegalEntitiesService(client);
             var legalEntityInfo = new LegalEntityInfo()
             {
                 Organization = new Organization(),
@@ -154,7 +154,7 @@ namespace Adyen.Test
                 EntityAssociations = new List<LegalEntityAssociation>(),
                 SoleProprietorship = new SoleProprietorship()
             };
-            var response = service.Update("LE322JV223222D5GG42KN6869", legalEntityInfo);
+            var response = service.UpdateLegalEntity("LE322JV223222D5GG42KN6869", legalEntityInfo);
             Assert.AreEqual(response.Id, "LE322JV223222D5GG42KN6869");
             Assert.AreEqual(response.Type, LegalEntity.TypeEnum.Individual);
         }
@@ -168,15 +168,29 @@ namespace Adyen.Test
         public void UpdateBusinessLinesTest()
         {
             var client = CreateMockTestClientApiKeyBasedRequestAsync("Mocks/legalentitymanagement/BusinessLine.json");
-            var service = new BusinessLineService(client);
-            var businessLine = new BusinessLineInfo()
+            var service = new BusinessLinesService(client);
+            var businessLine = new BusinessLineInfoUpdate()
             {
                 IndustryCode = "124rrdfer",
                 SourceOfFunds = new SourceOfFunds()
             };
-            var response = service.Update("SE322KT223222D5FJ7TJN2986", businessLine);
+            var response = service.UpdateBusinessLine("SE322KT223222D5FJ7TJN2986", businessLine);
             Assert.AreEqual(response.Id, "SE322KT223222D5FJ7TJN2986");
             Assert.AreEqual(response.IndustryCode, "55");
+        }
+        #endregion
+        
+        #region TermsOfService
+        /// <summary>
+        /// Test get TermsOfService Status
+        /// </summary>
+        [TestMethod]
+        public void GetTermsOfServiceStatus()
+        {
+            var client = CreateMockTestClientApiKeyBasedRequestAsync("Mocks/legalentitymanagement/TermsOfServiceStatus.json");
+            var service = new TermsOfServiceService(client);
+            var response = service.GetTermsOfServiceStatus("id");
+            Assert.AreEqual(response.TermsOfServiceTypes[0], CalculateTermsOfServiceStatusResponse.TermsOfServiceTypesEnum.AdyenIssuing);
         }
         #endregion
     }

@@ -28,10 +28,10 @@ using OpenAPIDateConverter = Adyen.ApiSerialization.OpenAPIDateConverter;
 namespace Adyen.Model.LegalEntityManagement
 {
     /// <summary>
-    /// LegalEntityInfo
+    /// LegalEntityInfoRequiredType
     /// </summary>
-    [DataContract(Name = "LegalEntityInfo")]
-    public partial class LegalEntityInfo : IEquatable<LegalEntityInfo>, IValidatableObject
+    [DataContract(Name = "LegalEntityInfoRequiredType")]
+    public partial class LegalEntityInfoRequiredType : IEquatable<LegalEntityInfoRequiredType>, IValidatableObject
     {
         /// <summary>
         /// The type of legal entity.   Possible values: **individual**, **organization**, or **soleProprietorship**.
@@ -77,25 +77,30 @@ namespace Adyen.Model.LegalEntityManagement
         /// The type of legal entity.   Possible values: **individual**, **organization**, or **soleProprietorship**.
         /// </summary>
         /// <value>The type of legal entity.   Possible values: **individual**, **organization**, or **soleProprietorship**.</value>
-        [DataMember(Name = "type", EmitDefaultValue = false)]
-        public TypeEnum? Type { get; set; }
+        [DataMember(Name = "type", IsRequired = false, EmitDefaultValue = false)]
+        public TypeEnum Type { get; set; }
         /// <summary>
-        /// Initializes a new instance of the <see cref="LegalEntityInfo" /> class.
+        /// Initializes a new instance of the <see cref="LegalEntityInfoRequiredType" /> class.
+        /// </summary>
+        [JsonConstructorAttribute]
+        protected LegalEntityInfoRequiredType() { }
+        /// <summary>
+        /// Initializes a new instance of the <see cref="LegalEntityInfoRequiredType" /> class.
         /// </summary>
         /// <param name="entityAssociations">List of legal entities associated with the current legal entity. For example, ultimate beneficial owners associated with an organization through ownership or control, or as signatories..</param>
         /// <param name="individual">individual.</param>
         /// <param name="organization">organization.</param>
         /// <param name="reference">Your reference for the legal entity, maximum 150 characters..</param>
         /// <param name="soleProprietorship">soleProprietorship.</param>
-        /// <param name="type">The type of legal entity.   Possible values: **individual**, **organization**, or **soleProprietorship**..</param>
-        public LegalEntityInfo(List<LegalEntityAssociation> entityAssociations = default(List<LegalEntityAssociation>), Individual individual = default(Individual), Organization organization = default(Organization), string reference = default(string), SoleProprietorship soleProprietorship = default(SoleProprietorship), TypeEnum? type = default(TypeEnum?))
+        /// <param name="type">The type of legal entity.   Possible values: **individual**, **organization**, or **soleProprietorship**. (required).</param>
+        public LegalEntityInfoRequiredType(List<LegalEntityAssociation> entityAssociations = default(List<LegalEntityAssociation>), Individual individual = default(Individual), Organization organization = default(Organization), string reference = default(string), SoleProprietorship soleProprietorship = default(SoleProprietorship), TypeEnum type = default(TypeEnum))
         {
+            this.Type = type;
             this.EntityAssociations = entityAssociations;
             this.Individual = individual;
             this.Organization = organization;
             this.Reference = reference;
             this.SoleProprietorship = soleProprietorship;
-            this.Type = type;
         }
 
         /// <summary>
@@ -152,7 +157,7 @@ namespace Adyen.Model.LegalEntityManagement
         public override string ToString()
         {
             StringBuilder sb = new StringBuilder();
-            sb.Append("class LegalEntityInfo {\n");
+            sb.Append("class LegalEntityInfoRequiredType {\n");
             sb.Append("  Capabilities: ").Append(Capabilities).Append("\n");
             sb.Append("  EntityAssociations: ").Append(EntityAssociations).Append("\n");
             sb.Append("  Individual: ").Append(Individual).Append("\n");
@@ -180,15 +185,15 @@ namespace Adyen.Model.LegalEntityManagement
         /// <returns>Boolean</returns>
         public override bool Equals(object input)
         {
-            return this.Equals(input as LegalEntityInfo);
+            return this.Equals(input as LegalEntityInfoRequiredType);
         }
 
         /// <summary>
-        /// Returns true if LegalEntityInfo instances are equal
+        /// Returns true if LegalEntityInfoRequiredType instances are equal
         /// </summary>
-        /// <param name="input">Instance of LegalEntityInfo to be compared</param>
+        /// <param name="input">Instance of LegalEntityInfoRequiredType to be compared</param>
         /// <returns>Boolean</returns>
-        public bool Equals(LegalEntityInfo input)
+        public bool Equals(LegalEntityInfoRequiredType input)
         {
             if (input == null)
             {

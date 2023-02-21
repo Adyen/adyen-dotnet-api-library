@@ -11,30 +11,32 @@
 */
 
 using System;
-using System.Linq;
-using System.IO;
-using System.Text;
-using System.Text.RegularExpressions;
 using System.Collections;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Linq;
+using System.IO;
 using System.Runtime.Serialization;
+using System.Text;
+using System.Text.RegularExpressions;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
+using Newtonsoft.Json.Linq;
 using System.ComponentModel.DataAnnotations;
+using OpenAPIDateConverter = Adyen.ApiSerialization.OpenAPIDateConverter;
 
 namespace Adyen.Model.LegalEntityManagement
 {
     /// <summary>
     /// Document
     /// </summary>
-    [DataContract]
-    public partial class Document :  IEquatable<Document>, IValidatableObject
+    [DataContract(Name = "Document")]
+    public partial class Document : IEquatable<Document>, IValidatableObject
     {
         /// <summary>
-        /// Type of document, used when providing an ID number or uploading a document. The possible values depend on the legal entity type.  When providing ID numbers: * For **individual**, the &#x60;type&#x60; values can be **driversLicense**, **identityCard**, **nationalIdNumber**, or **passport**.  When uploading documents: * For **organization**, the &#x60;type&#x60; values can be **proofOfAddress**, **registrationDocument**, **vatDocument**, **proofOfOrganizationTaxInfo**, **proofOfOwnership**, or **proofOfIndustry**.   * For **individual**, the &#x60;type&#x60; values can be **identityCard**, **driversLicense**, **passport**, **proofOfNationalIdNumber**, **proofOfResidency**, **proofOfIndustry**, or **proofOfIndividualTaxId**.  * For **soleProprietorship**, the &#x60;type&#x60; values can be **constitutionalDocument**, **proofOfAddress**, or **proofOfIndustry**.  * Use **bankStatement** to upload documents for a [transfer instrument](https://docs.adyen.com/api-explorer/#/legalentity/latest/post/transferInstruments__resParam_id).
+        /// Type of document, used when providing an ID number or uploading a document. The possible values depend on the legal entity type.  When providing ID numbers: * For **individual**, the &#x60;type&#x60; values can be **driversLicense**, **identityCard**, **nationalIdNumber**, or **passport**.  When uploading photo IDs: * For **individual**, the &#x60;type&#x60; values can be **identityCard**, **driversLicense**, or **passport**.  When uploading other documents: * For **organization**, the &#x60;type&#x60; values can be **proofOfAddress**, **registrationDocument**, **vatDocument**, **proofOfOrganizationTaxInfo**, **proofOfOwnership**, or **proofOfIndustry**.   * For **individual**, the &#x60;type&#x60; values can be **identityCard**, **driversLicense**, **passport**, **proofOfNationalIdNumber**, **proofOfResidency**, **proofOfIndustry**, or **proofOfIndividualTaxId**.  * For **soleProprietorship**, the &#x60;type&#x60; values can be **constitutionalDocument**, **proofOfAddress**, or **proofOfIndustry**.  * Use **bankStatement** to upload documents for a [transfer instrument](https://docs.adyen.com/api-explorer/#/legalentity/latest/post/transferInstruments__resParam_id).
         /// </summary>
-        /// <value>Type of document, used when providing an ID number or uploading a document. The possible values depend on the legal entity type.  When providing ID numbers: * For **individual**, the &#x60;type&#x60; values can be **driversLicense**, **identityCard**, **nationalIdNumber**, or **passport**.  When uploading documents: * For **organization**, the &#x60;type&#x60; values can be **proofOfAddress**, **registrationDocument**, **vatDocument**, **proofOfOrganizationTaxInfo**, **proofOfOwnership**, or **proofOfIndustry**.   * For **individual**, the &#x60;type&#x60; values can be **identityCard**, **driversLicense**, **passport**, **proofOfNationalIdNumber**, **proofOfResidency**, **proofOfIndustry**, or **proofOfIndividualTaxId**.  * For **soleProprietorship**, the &#x60;type&#x60; values can be **constitutionalDocument**, **proofOfAddress**, or **proofOfIndustry**.  * Use **bankStatement** to upload documents for a [transfer instrument](https://docs.adyen.com/api-explorer/#/legalentity/latest/post/transferInstruments__resParam_id).</value>
+        /// <value>Type of document, used when providing an ID number or uploading a document. The possible values depend on the legal entity type.  When providing ID numbers: * For **individual**, the &#x60;type&#x60; values can be **driversLicense**, **identityCard**, **nationalIdNumber**, or **passport**.  When uploading photo IDs: * For **individual**, the &#x60;type&#x60; values can be **identityCard**, **driversLicense**, or **passport**.  When uploading other documents: * For **organization**, the &#x60;type&#x60; values can be **proofOfAddress**, **registrationDocument**, **vatDocument**, **proofOfOrganizationTaxInfo**, **proofOfOwnership**, or **proofOfIndustry**.   * For **individual**, the &#x60;type&#x60; values can be **identityCard**, **driversLicense**, **passport**, **proofOfNationalIdNumber**, **proofOfResidency**, **proofOfIndustry**, or **proofOfIndividualTaxId**.  * For **soleProprietorship**, the &#x60;type&#x60; values can be **constitutionalDocument**, **proofOfAddress**, or **proofOfIndustry**.  * Use **bankStatement** to upload documents for a [transfer instrument](https://docs.adyen.com/api-explorer/#/legalentity/latest/post/transferInstruments__resParam_id).</value>
         [JsonConverter(typeof(StringEnumConverter))]
         public enum TypeEnum
         {
@@ -118,11 +120,12 @@ namespace Adyen.Model.LegalEntityManagement
 
         }
 
+
         /// <summary>
-        /// Type of document, used when providing an ID number or uploading a document. The possible values depend on the legal entity type.  When providing ID numbers: * For **individual**, the &#x60;type&#x60; values can be **driversLicense**, **identityCard**, **nationalIdNumber**, or **passport**.  When uploading documents: * For **organization**, the &#x60;type&#x60; values can be **proofOfAddress**, **registrationDocument**, **vatDocument**, **proofOfOrganizationTaxInfo**, **proofOfOwnership**, or **proofOfIndustry**.   * For **individual**, the &#x60;type&#x60; values can be **identityCard**, **driversLicense**, **passport**, **proofOfNationalIdNumber**, **proofOfResidency**, **proofOfIndustry**, or **proofOfIndividualTaxId**.  * For **soleProprietorship**, the &#x60;type&#x60; values can be **constitutionalDocument**, **proofOfAddress**, or **proofOfIndustry**.  * Use **bankStatement** to upload documents for a [transfer instrument](https://docs.adyen.com/api-explorer/#/legalentity/latest/post/transferInstruments__resParam_id).
+        /// Type of document, used when providing an ID number or uploading a document. The possible values depend on the legal entity type.  When providing ID numbers: * For **individual**, the &#x60;type&#x60; values can be **driversLicense**, **identityCard**, **nationalIdNumber**, or **passport**.  When uploading photo IDs: * For **individual**, the &#x60;type&#x60; values can be **identityCard**, **driversLicense**, or **passport**.  When uploading other documents: * For **organization**, the &#x60;type&#x60; values can be **proofOfAddress**, **registrationDocument**, **vatDocument**, **proofOfOrganizationTaxInfo**, **proofOfOwnership**, or **proofOfIndustry**.   * For **individual**, the &#x60;type&#x60; values can be **identityCard**, **driversLicense**, **passport**, **proofOfNationalIdNumber**, **proofOfResidency**, **proofOfIndustry**, or **proofOfIndividualTaxId**.  * For **soleProprietorship**, the &#x60;type&#x60; values can be **constitutionalDocument**, **proofOfAddress**, or **proofOfIndustry**.  * Use **bankStatement** to upload documents for a [transfer instrument](https://docs.adyen.com/api-explorer/#/legalentity/latest/post/transferInstruments__resParam_id).
         /// </summary>
-        /// <value>Type of document, used when providing an ID number or uploading a document. The possible values depend on the legal entity type.  When providing ID numbers: * For **individual**, the &#x60;type&#x60; values can be **driversLicense**, **identityCard**, **nationalIdNumber**, or **passport**.  When uploading documents: * For **organization**, the &#x60;type&#x60; values can be **proofOfAddress**, **registrationDocument**, **vatDocument**, **proofOfOrganizationTaxInfo**, **proofOfOwnership**, or **proofOfIndustry**.   * For **individual**, the &#x60;type&#x60; values can be **identityCard**, **driversLicense**, **passport**, **proofOfNationalIdNumber**, **proofOfResidency**, **proofOfIndustry**, or **proofOfIndividualTaxId**.  * For **soleProprietorship**, the &#x60;type&#x60; values can be **constitutionalDocument**, **proofOfAddress**, or **proofOfIndustry**.  * Use **bankStatement** to upload documents for a [transfer instrument](https://docs.adyen.com/api-explorer/#/legalentity/latest/post/transferInstruments__resParam_id).</value>
-        [DataMember(Name="type", EmitDefaultValue=true)]
+        /// <value>Type of document, used when providing an ID number or uploading a document. The possible values depend on the legal entity type.  When providing ID numbers: * For **individual**, the &#x60;type&#x60; values can be **driversLicense**, **identityCard**, **nationalIdNumber**, or **passport**.  When uploading photo IDs: * For **individual**, the &#x60;type&#x60; values can be **identityCard**, **driversLicense**, or **passport**.  When uploading other documents: * For **organization**, the &#x60;type&#x60; values can be **proofOfAddress**, **registrationDocument**, **vatDocument**, **proofOfOrganizationTaxInfo**, **proofOfOwnership**, or **proofOfIndustry**.   * For **individual**, the &#x60;type&#x60; values can be **identityCard**, **driversLicense**, **passport**, **proofOfNationalIdNumber**, **proofOfResidency**, **proofOfIndustry**, or **proofOfIndividualTaxId**.  * For **soleProprietorship**, the &#x60;type&#x60; values can be **constitutionalDocument**, **proofOfAddress**, or **proofOfIndustry**.  * Use **bankStatement** to upload documents for a [transfer instrument](https://docs.adyen.com/api-explorer/#/legalentity/latest/post/transferInstruments__resParam_id).</value>
+        [DataMember(Name = "type", IsRequired = false, EmitDefaultValue = false)]
         public TypeEnum Type { get; set; }
         /// <summary>
         /// Initializes a new instance of the <see cref="Document" /> class.
@@ -141,53 +144,61 @@ namespace Adyen.Model.LegalEntityManagement
         /// <param name="issuerState">The state or province where the document was issued (AU only)..</param>
         /// <param name="number">The number in the document..</param>
         /// <param name="owner">owner (required).</param>
-        /// <param name="type">Type of document, used when providing an ID number or uploading a document. The possible values depend on the legal entity type.  When providing ID numbers: * For **individual**, the &#x60;type&#x60; values can be **driversLicense**, **identityCard**, **nationalIdNumber**, or **passport**.  When uploading documents: * For **organization**, the &#x60;type&#x60; values can be **proofOfAddress**, **registrationDocument**, **vatDocument**, **proofOfOrganizationTaxInfo**, **proofOfOwnership**, or **proofOfIndustry**.   * For **individual**, the &#x60;type&#x60; values can be **identityCard**, **driversLicense**, **passport**, **proofOfNationalIdNumber**, **proofOfResidency**, **proofOfIndustry**, or **proofOfIndividualTaxId**.  * For **soleProprietorship**, the &#x60;type&#x60; values can be **constitutionalDocument**, **proofOfAddress**, or **proofOfIndustry**.  * Use **bankStatement** to upload documents for a [transfer instrument](https://docs.adyen.com/api-explorer/#/legalentity/latest/post/transferInstruments__resParam_id). (required).</param>
+        /// <param name="type">Type of document, used when providing an ID number or uploading a document. The possible values depend on the legal entity type.  When providing ID numbers: * For **individual**, the &#x60;type&#x60; values can be **driversLicense**, **identityCard**, **nationalIdNumber**, or **passport**.  When uploading photo IDs: * For **individual**, the &#x60;type&#x60; values can be **identityCard**, **driversLicense**, or **passport**.  When uploading other documents: * For **organization**, the &#x60;type&#x60; values can be **proofOfAddress**, **registrationDocument**, **vatDocument**, **proofOfOrganizationTaxInfo**, **proofOfOwnership**, or **proofOfIndustry**.   * For **individual**, the &#x60;type&#x60; values can be **identityCard**, **driversLicense**, **passport**, **proofOfNationalIdNumber**, **proofOfResidency**, **proofOfIndustry**, or **proofOfIndividualTaxId**.  * For **soleProprietorship**, the &#x60;type&#x60; values can be **constitutionalDocument**, **proofOfAddress**, or **proofOfIndustry**.  * Use **bankStatement** to upload documents for a [transfer instrument](https://docs.adyen.com/api-explorer/#/legalentity/latest/post/transferInstruments__resParam_id). (required).</param>
         public Document(Attachment attachment = default(Attachment), List<Attachment> attachments = default(List<Attachment>), string description = default(string), string expiryDate = default(string), string fileName = default(string), string issuerCountry = default(string), string issuerState = default(string), string number = default(string), OwnerEntity owner = default(OwnerEntity), TypeEnum type = default(TypeEnum))
         {
-            this.Attachment = attachment;
             this.Attachments = attachments;
             this.Description = description;
+            this.Owner = owner;
+            this.Type = type;
+            this.Attachment = attachment;
             this.ExpiryDate = expiryDate;
             this.FileName = fileName;
             this.IssuerCountry = issuerCountry;
             this.IssuerState = issuerState;
             this.Number = number;
-            this.Owner = owner;
-            this.Type = type;
         }
 
         /// <summary>
         /// Gets or Sets Attachment
         /// </summary>
-        [DataMember(Name="attachment", EmitDefaultValue=false)]
+        [DataMember(Name = "attachment", EmitDefaultValue = false)]
         public Attachment Attachment { get; set; }
 
         /// <summary>
         /// Array that contains the document. The array supports multiple attachments for uploading different sides or pages of a document.
         /// </summary>
         /// <value>Array that contains the document. The array supports multiple attachments for uploading different sides or pages of a document.</value>
-        [DataMember(Name="attachments", EmitDefaultValue=true)]
+        [DataMember(Name = "attachments", IsRequired = false, EmitDefaultValue = false)]
         public List<Attachment> Attachments { get; set; }
 
         /// <summary>
         /// The creation date of the document.
         /// </summary>
         /// <value>The creation date of the document.</value>
-        [DataMember(Name="creationDate", EmitDefaultValue=false)]
+        [DataMember(Name = "creationDate", EmitDefaultValue = false)]
         public DateTime CreationDate { get; private set; }
 
+        /// <summary>
+        /// Returns false as CreationDate should not be serialized given that it's read-only.
+        /// </summary>
+        /// <returns>false (boolean)</returns>
+        public bool ShouldSerializeCreationDate()
+        {
+            return false;
+        }
         /// <summary>
         /// Your description for the document.
         /// </summary>
         /// <value>Your description for the document.</value>
-        [DataMember(Name="description", EmitDefaultValue=true)]
+        [DataMember(Name = "description", IsRequired = false, EmitDefaultValue = false)]
         public string Description { get; set; }
 
         /// <summary>
         /// The expiry date of the document, in YYYY-MM-DD format.
         /// </summary>
         /// <value>The expiry date of the document, in YYYY-MM-DD format.</value>
-        [DataMember(Name="expiryDate", EmitDefaultValue=false)]
+        [DataMember(Name = "expiryDate", EmitDefaultValue = false)]
         [Obsolete]
         public string ExpiryDate { get; set; }
 
@@ -195,21 +206,29 @@ namespace Adyen.Model.LegalEntityManagement
         /// The filename of the document.
         /// </summary>
         /// <value>The filename of the document.</value>
-        [DataMember(Name="fileName", EmitDefaultValue=false)]
+        [DataMember(Name = "fileName", EmitDefaultValue = false)]
         public string FileName { get; set; }
 
         /// <summary>
         /// The unique identifier of the document.
         /// </summary>
         /// <value>The unique identifier of the document.</value>
-        [DataMember(Name="id", EmitDefaultValue=true)]
+        [DataMember(Name = "id", IsRequired = false, EmitDefaultValue = false)]
         public string Id { get; private set; }
 
+        /// <summary>
+        /// Returns false as Id should not be serialized given that it's read-only.
+        /// </summary>
+        /// <returns>false (boolean)</returns>
+        public bool ShouldSerializeId()
+        {
+            return false;
+        }
         /// <summary>
         /// The two-character [ISO 3166-1 alpha-2](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2) country code where the document was issued. For example, **US**.
         /// </summary>
         /// <value>The two-character [ISO 3166-1 alpha-2](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2) country code where the document was issued. For example, **US**.</value>
-        [DataMember(Name="issuerCountry", EmitDefaultValue=false)]
+        [DataMember(Name = "issuerCountry", EmitDefaultValue = false)]
         [Obsolete]
         public string IssuerCountry { get; set; }
 
@@ -217,7 +236,7 @@ namespace Adyen.Model.LegalEntityManagement
         /// The state or province where the document was issued (AU only).
         /// </summary>
         /// <value>The state or province where the document was issued (AU only).</value>
-        [DataMember(Name="issuerState", EmitDefaultValue=false)]
+        [DataMember(Name = "issuerState", EmitDefaultValue = false)]
         [Obsolete]
         public string IssuerState { get; set; }
 
@@ -225,22 +244,29 @@ namespace Adyen.Model.LegalEntityManagement
         /// The modification date of the document.
         /// </summary>
         /// <value>The modification date of the document.</value>
-        [DataMember(Name="modificationDate", EmitDefaultValue=false)]
+        [DataMember(Name = "modificationDate", EmitDefaultValue = false)]
         public DateTime ModificationDate { get; private set; }
 
+        /// <summary>
+        /// Returns false as ModificationDate should not be serialized given that it's read-only.
+        /// </summary>
+        /// <returns>false (boolean)</returns>
+        public bool ShouldSerializeModificationDate()
+        {
+            return false;
+        }
         /// <summary>
         /// The number in the document.
         /// </summary>
         /// <value>The number in the document.</value>
-        [DataMember(Name="number", EmitDefaultValue=false)]
+        [DataMember(Name = "number", EmitDefaultValue = false)]
         public string Number { get; set; }
 
         /// <summary>
         /// Gets or Sets Owner
         /// </summary>
-        [DataMember(Name="owner", EmitDefaultValue=true)]
+        [DataMember(Name = "owner", IsRequired = false, EmitDefaultValue = false)]
         public OwnerEntity Owner { get; set; }
-
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -248,7 +274,7 @@ namespace Adyen.Model.LegalEntityManagement
         /// <returns>String presentation of the object</returns>
         public override string ToString()
         {
-            var sb = new StringBuilder();
+            StringBuilder sb = new StringBuilder();
             sb.Append("class Document {\n");
             sb.Append("  Attachment: ").Append(Attachment).Append("\n");
             sb.Append("  Attachments: ").Append(Attachments).Append("\n");
@@ -294,8 +320,9 @@ namespace Adyen.Model.LegalEntityManagement
         public bool Equals(Document input)
         {
             if (input == null)
+            {
                 return false;
-
+            }
             return 
                 (
                     this.Attachment == input.Attachment ||
@@ -360,8 +387,7 @@ namespace Adyen.Model.LegalEntityManagement
                 ) && 
                 (
                     this.Type == input.Type ||
-                    (this.Type != null &&
-                    this.Type.Equals(input.Type))
+                    this.Type.Equals(input.Type)
                 );
         }
 
@@ -375,41 +401,63 @@ namespace Adyen.Model.LegalEntityManagement
             {
                 int hashCode = 41;
                 if (this.Attachment != null)
-                    hashCode = hashCode * 59 + this.Attachment.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.Attachment.GetHashCode();
+                }
                 if (this.Attachments != null)
-                    hashCode = hashCode * 59 + this.Attachments.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.Attachments.GetHashCode();
+                }
                 if (this.CreationDate != null)
-                    hashCode = hashCode * 59 + this.CreationDate.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.CreationDate.GetHashCode();
+                }
                 if (this.Description != null)
-                    hashCode = hashCode * 59 + this.Description.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.Description.GetHashCode();
+                }
                 if (this.ExpiryDate != null)
-                    hashCode = hashCode * 59 + this.ExpiryDate.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.ExpiryDate.GetHashCode();
+                }
                 if (this.FileName != null)
-                    hashCode = hashCode * 59 + this.FileName.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.FileName.GetHashCode();
+                }
                 if (this.Id != null)
-                    hashCode = hashCode * 59 + this.Id.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.Id.GetHashCode();
+                }
                 if (this.IssuerCountry != null)
-                    hashCode = hashCode * 59 + this.IssuerCountry.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.IssuerCountry.GetHashCode();
+                }
                 if (this.IssuerState != null)
-                    hashCode = hashCode * 59 + this.IssuerState.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.IssuerState.GetHashCode();
+                }
                 if (this.ModificationDate != null)
-                    hashCode = hashCode * 59 + this.ModificationDate.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.ModificationDate.GetHashCode();
+                }
                 if (this.Number != null)
-                    hashCode = hashCode * 59 + this.Number.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.Number.GetHashCode();
+                }
                 if (this.Owner != null)
-                    hashCode = hashCode * 59 + this.Owner.GetHashCode();
-                if (this.Type != null)
-                    hashCode = hashCode * 59 + this.Type.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.Owner.GetHashCode();
+                }
+                hashCode = (hashCode * 59) + this.Type.GetHashCode();
                 return hashCode;
             }
         }
-
         /// <summary>
         /// To validate all properties of the instance
         /// </summary>
         /// <param name="validationContext">Validation context</param>
         /// <returns>Validation Result</returns>
-        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+        public IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> Validate(ValidationContext validationContext)
         {
             yield break;
         }

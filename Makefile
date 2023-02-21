@@ -23,6 +23,7 @@ Payouts: spec=PayoutService-v68
 Management: spec=ManagementService-v1
 Management: service=management
 LegalEntityManagement: spec=LegalEntityService-v2
+LegalEntityManagement: service=legalentitymanagement
 BalancePlatform: spec=BalancePlatformService-v2
 PlatformsAccount: spec=AccountService-v6
 PlatformsFund: spec=FundService-v6

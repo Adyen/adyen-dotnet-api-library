@@ -11,26 +11,33 @@
 */
 
 using System;
-using System.Linq;
-using System.IO;
-using System.Text;
-using System.Text.RegularExpressions;
 using System.Collections;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Linq;
+using System.IO;
 using System.Runtime.Serialization;
+using System.Text;
+using System.Text.RegularExpressions;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
+using Newtonsoft.Json.Linq;
 using System.ComponentModel.DataAnnotations;
+using OpenAPIDateConverter = Adyen.ApiSerialization.OpenAPIDateConverter;
 
 namespace Adyen.Model.LegalEntityManagement
 {
     /// <summary>
     /// BankAccountInfo
     /// </summary>
-    [DataContract]
-    public partial class BankAccountInfo :  IEquatable<BankAccountInfo>, IValidatableObject
+    [DataContract(Name = "BankAccountInfo")]
+    public partial class BankAccountInfo : IEquatable<BankAccountInfo>, IValidatableObject
     {
+        /// <summary>
+        /// Initializes a new instance of the <see cref="BankAccountInfo" /> class.
+        /// </summary>
+        [JsonConstructorAttribute]
+        protected BankAccountInfo() { }
         /// <summary>
         /// Initializes a new instance of the <see cref="BankAccountInfo" /> class.
         /// </summary>
@@ -43,10 +50,11 @@ namespace Adyen.Model.LegalEntityManagement
         /// <param name="branchCode">The branch code of the branch under which the bank account is registered.  Required when you provide an &#x60;accountNumber&#x60;.   In the following countries, this value corresponds to:   * United States: routing number * United Kingdom: sort code * Germany: Bankleitzahl.</param>
         /// <param name="checkCode">The check code of the bank account..</param>
         /// <param name="countryCode">The two-character [ISO 3166-1 alpha-2](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2) country code where the bank account is registered. For example, **NL**..</param>
-        /// <param name="currencyCode">The account&#39;s three-character [ISO currency code](https://docs.adyen.com/development-resources/currency-codes). For example, **EUR**..</param>
+        /// <param name="currencyCode">The account&#39;s three-character [ISO currency code](https://docs.adyen.com/development-resources/currency-codes). For example, **EUR**. (required).</param>
         /// <param name="iban">The international bank account number as defined in the [ISO-13616](https://www.iso.org/standard/81090.html) standard..</param>
         public BankAccountInfo(string accountNumber = default(string), string accountType = default(string), string bankBicSwift = default(string), string bankCity = default(string), string bankCode = default(string), string bankName = default(string), string branchCode = default(string), string checkCode = default(string), string countryCode = default(string), string currencyCode = default(string), string iban = default(string))
         {
+            this.CurrencyCode = currencyCode;
             this.AccountNumber = accountNumber;
             this.AccountType = accountType;
             this.BankBicSwift = bankBicSwift;
@@ -56,7 +64,6 @@ namespace Adyen.Model.LegalEntityManagement
             this.BranchCode = branchCode;
             this.CheckCode = checkCode;
             this.CountryCode = countryCode;
-            this.CurrencyCode = currencyCode;
             this.Iban = iban;
         }
 
@@ -64,14 +71,14 @@ namespace Adyen.Model.LegalEntityManagement
         /// The bank account number (without separators).   When this is provided, the &#x60;branchCode&#x60; is also required.
         /// </summary>
         /// <value>The bank account number (without separators).   When this is provided, the &#x60;branchCode&#x60; is also required.</value>
-        [DataMember(Name="accountNumber", EmitDefaultValue=false)]
+        [DataMember(Name = "accountNumber", EmitDefaultValue = false)]
         public string AccountNumber { get; set; }
 
         /// <summary>
         /// The type of bank account.
         /// </summary>
         /// <value>The type of bank account.</value>
-        [DataMember(Name="accountType", EmitDefaultValue=false)]
+        [DataMember(Name = "accountType", EmitDefaultValue = false)]
         [Obsolete]
         public string AccountType { get; set; }
 
@@ -79,63 +86,63 @@ namespace Adyen.Model.LegalEntityManagement
         /// The bank&#39;s BIC or SWIFT code.
         /// </summary>
         /// <value>The bank&#39;s BIC or SWIFT code.</value>
-        [DataMember(Name="bankBicSwift", EmitDefaultValue=false)]
+        [DataMember(Name = "bankBicSwift", EmitDefaultValue = false)]
         public string BankBicSwift { get; set; }
 
         /// <summary>
         /// The city where the bank is located.
         /// </summary>
         /// <value>The city where the bank is located.</value>
-        [DataMember(Name="bankCity", EmitDefaultValue=false)]
+        [DataMember(Name = "bankCity", EmitDefaultValue = false)]
         public string BankCity { get; set; }
 
         /// <summary>
         /// The bank code of the banking institution with which the bank account is registered.
         /// </summary>
         /// <value>The bank code of the banking institution with which the bank account is registered.</value>
-        [DataMember(Name="bankCode", EmitDefaultValue=false)]
+        [DataMember(Name = "bankCode", EmitDefaultValue = false)]
         public string BankCode { get; set; }
 
         /// <summary>
         /// The name of the banking institution where the bank account is held.
         /// </summary>
         /// <value>The name of the banking institution where the bank account is held.</value>
-        [DataMember(Name="bankName", EmitDefaultValue=false)]
+        [DataMember(Name = "bankName", EmitDefaultValue = false)]
         public string BankName { get; set; }
 
         /// <summary>
         /// The branch code of the branch under which the bank account is registered.  Required when you provide an &#x60;accountNumber&#x60;.   In the following countries, this value corresponds to:   * United States: routing number * United Kingdom: sort code * Germany: Bankleitzahl
         /// </summary>
         /// <value>The branch code of the branch under which the bank account is registered.  Required when you provide an &#x60;accountNumber&#x60;.   In the following countries, this value corresponds to:   * United States: routing number * United Kingdom: sort code * Germany: Bankleitzahl</value>
-        [DataMember(Name="branchCode", EmitDefaultValue=false)]
+        [DataMember(Name = "branchCode", EmitDefaultValue = false)]
         public string BranchCode { get; set; }
 
         /// <summary>
         /// The check code of the bank account.
         /// </summary>
         /// <value>The check code of the bank account.</value>
-        [DataMember(Name="checkCode", EmitDefaultValue=false)]
+        [DataMember(Name = "checkCode", EmitDefaultValue = false)]
         public string CheckCode { get; set; }
 
         /// <summary>
         /// The two-character [ISO 3166-1 alpha-2](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2) country code where the bank account is registered. For example, **NL**.
         /// </summary>
         /// <value>The two-character [ISO 3166-1 alpha-2](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2) country code where the bank account is registered. For example, **NL**.</value>
-        [DataMember(Name="countryCode", EmitDefaultValue=false)]
+        [DataMember(Name = "countryCode", EmitDefaultValue = false)]
         public string CountryCode { get; set; }
 
         /// <summary>
         /// The account&#39;s three-character [ISO currency code](https://docs.adyen.com/development-resources/currency-codes). For example, **EUR**.
         /// </summary>
         /// <value>The account&#39;s three-character [ISO currency code](https://docs.adyen.com/development-resources/currency-codes). For example, **EUR**.</value>
-        [DataMember(Name="currencyCode", EmitDefaultValue=false)]
+        [DataMember(Name = "currencyCode", IsRequired = false, EmitDefaultValue = false)]
         public string CurrencyCode { get; set; }
 
         /// <summary>
         /// The international bank account number as defined in the [ISO-13616](https://www.iso.org/standard/81090.html) standard.
         /// </summary>
         /// <value>The international bank account number as defined in the [ISO-13616](https://www.iso.org/standard/81090.html) standard.</value>
-        [DataMember(Name="iban", EmitDefaultValue=false)]
+        [DataMember(Name = "iban", EmitDefaultValue = false)]
         public string Iban { get; set; }
 
         /// <summary>
@@ -144,7 +151,7 @@ namespace Adyen.Model.LegalEntityManagement
         /// <returns>String presentation of the object</returns>
         public override string ToString()
         {
-            var sb = new StringBuilder();
+            StringBuilder sb = new StringBuilder();
             sb.Append("class BankAccountInfo {\n");
             sb.Append("  AccountNumber: ").Append(AccountNumber).Append("\n");
             sb.Append("  AccountType: ").Append(AccountType).Append("\n");
@@ -188,8 +195,9 @@ namespace Adyen.Model.LegalEntityManagement
         public bool Equals(BankAccountInfo input)
         {
             if (input == null)
+            {
                 return false;
-
+            }
             return 
                 (
                     this.AccountNumber == input.AccountNumber ||
@@ -258,37 +266,58 @@ namespace Adyen.Model.LegalEntityManagement
             {
                 int hashCode = 41;
                 if (this.AccountNumber != null)
-                    hashCode = hashCode * 59 + this.AccountNumber.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.AccountNumber.GetHashCode();
+                }
                 if (this.AccountType != null)
-                    hashCode = hashCode * 59 + this.AccountType.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.AccountType.GetHashCode();
+                }
                 if (this.BankBicSwift != null)
-                    hashCode = hashCode * 59 + this.BankBicSwift.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.BankBicSwift.GetHashCode();
+                }
                 if (this.BankCity != null)
-                    hashCode = hashCode * 59 + this.BankCity.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.BankCity.GetHashCode();
+                }
                 if (this.BankCode != null)
-                    hashCode = hashCode * 59 + this.BankCode.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.BankCode.GetHashCode();
+                }
                 if (this.BankName != null)
-                    hashCode = hashCode * 59 + this.BankName.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.BankName.GetHashCode();
+                }
                 if (this.BranchCode != null)
-                    hashCode = hashCode * 59 + this.BranchCode.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.BranchCode.GetHashCode();
+                }
                 if (this.CheckCode != null)
-                    hashCode = hashCode * 59 + this.CheckCode.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.CheckCode.GetHashCode();
+                }
                 if (this.CountryCode != null)
-                    hashCode = hashCode * 59 + this.CountryCode.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.CountryCode.GetHashCode();
+                }
                 if (this.CurrencyCode != null)
-                    hashCode = hashCode * 59 + this.CurrencyCode.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.CurrencyCode.GetHashCode();
+                }
                 if (this.Iban != null)
-                    hashCode = hashCode * 59 + this.Iban.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.Iban.GetHashCode();
+                }
                 return hashCode;
             }
         }
-
         /// <summary>
         /// To validate all properties of the instance
         /// </summary>
         /// <param name="validationContext">Validation context</param>
         /// <returns>Validation Result</returns>
-        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+        public IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> Validate(ValidationContext validationContext)
         {
             yield break;
         }

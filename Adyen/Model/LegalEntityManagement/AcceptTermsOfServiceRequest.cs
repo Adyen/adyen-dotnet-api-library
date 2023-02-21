@@ -28,42 +28,36 @@ using OpenAPIDateConverter = Adyen.ApiSerialization.OpenAPIDateConverter;
 namespace Adyen.Model.LegalEntityManagement
 {
     /// <summary>
-    /// WebData
+    /// AcceptTermsOfServiceRequest
     /// </summary>
-    [DataContract(Name = "WebData")]
-    public partial class WebData : IEquatable<WebData>, IValidatableObject
+    [DataContract(Name = "AcceptTermsOfServiceRequest")]
+    public partial class AcceptTermsOfServiceRequest : IEquatable<AcceptTermsOfServiceRequest>, IValidatableObject
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="WebData" /> class.
+        /// Initializes a new instance of the <see cref="AcceptTermsOfServiceRequest" /> class.
         /// </summary>
-        /// <param name="webAddress">The URL of the website or the app store URL..</param>
-        public WebData(string webAddress = default(string))
+        /// <param name="acceptedBy">The unique identifier of the user accepting the Terms of Service..</param>
+        /// <param name="ipAddress">The IP address of the user accepting the Terms of Service..</param>
+        public AcceptTermsOfServiceRequest(string acceptedBy = default(string), string ipAddress = default(string))
         {
-            this.WebAddress = webAddress;
+            this.AcceptedBy = acceptedBy;
+            this.IpAddress = ipAddress;
         }
 
         /// <summary>
-        /// The URL of the website or the app store URL.
+        /// The unique identifier of the user accepting the Terms of Service.
         /// </summary>
-        /// <value>The URL of the website or the app store URL.</value>
-        [DataMember(Name = "webAddress", EmitDefaultValue = false)]
-        public string WebAddress { get; set; }
+        /// <value>The unique identifier of the user accepting the Terms of Service.</value>
+        [DataMember(Name = "acceptedBy", EmitDefaultValue = false)]
+        public string AcceptedBy { get; set; }
 
         /// <summary>
-        /// The unique identifier of the web address.
+        /// The IP address of the user accepting the Terms of Service.
         /// </summary>
-        /// <value>The unique identifier of the web address.</value>
-        [DataMember(Name = "webAddressId", EmitDefaultValue = false)]
-        public string WebAddressId { get; private set; }
+        /// <value>The IP address of the user accepting the Terms of Service.</value>
+        [DataMember(Name = "ipAddress", EmitDefaultValue = false)]
+        public string IpAddress { get; set; }
 
-        /// <summary>
-        /// Returns false as WebAddressId should not be serialized given that it's read-only.
-        /// </summary>
-        /// <returns>false (boolean)</returns>
-        public bool ShouldSerializeWebAddressId()
-        {
-            return false;
-        }
         /// <summary>
         /// Returns the string presentation of the object
         /// </summary>
@@ -71,9 +65,9 @@ namespace Adyen.Model.LegalEntityManagement
         public override string ToString()
         {
             StringBuilder sb = new StringBuilder();
-            sb.Append("class WebData {\n");
-            sb.Append("  WebAddress: ").Append(WebAddress).Append("\n");
-            sb.Append("  WebAddressId: ").Append(WebAddressId).Append("\n");
+            sb.Append("class AcceptTermsOfServiceRequest {\n");
+            sb.Append("  AcceptedBy: ").Append(AcceptedBy).Append("\n");
+            sb.Append("  IpAddress: ").Append(IpAddress).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -94,15 +88,15 @@ namespace Adyen.Model.LegalEntityManagement
         /// <returns>Boolean</returns>
         public override bool Equals(object input)
         {
-            return this.Equals(input as WebData);
+            return this.Equals(input as AcceptTermsOfServiceRequest);
         }
 
         /// <summary>
-        /// Returns true if WebData instances are equal
+        /// Returns true if AcceptTermsOfServiceRequest instances are equal
         /// </summary>
-        /// <param name="input">Instance of WebData to be compared</param>
+        /// <param name="input">Instance of AcceptTermsOfServiceRequest to be compared</param>
         /// <returns>Boolean</returns>
-        public bool Equals(WebData input)
+        public bool Equals(AcceptTermsOfServiceRequest input)
         {
             if (input == null)
             {
@@ -110,14 +104,14 @@ namespace Adyen.Model.LegalEntityManagement
             }
             return 
                 (
-                    this.WebAddress == input.WebAddress ||
-                    (this.WebAddress != null &&
-                    this.WebAddress.Equals(input.WebAddress))
+                    this.AcceptedBy == input.AcceptedBy ||
+                    (this.AcceptedBy != null &&
+                    this.AcceptedBy.Equals(input.AcceptedBy))
                 ) && 
                 (
-                    this.WebAddressId == input.WebAddressId ||
-                    (this.WebAddressId != null &&
-                    this.WebAddressId.Equals(input.WebAddressId))
+                    this.IpAddress == input.IpAddress ||
+                    (this.IpAddress != null &&
+                    this.IpAddress.Equals(input.IpAddress))
                 );
         }
 
@@ -130,13 +124,13 @@ namespace Adyen.Model.LegalEntityManagement
             unchecked // Overflow is fine, just wrap
             {
                 int hashCode = 41;
-                if (this.WebAddress != null)
+                if (this.AcceptedBy != null)
                 {
-                    hashCode = (hashCode * 59) + this.WebAddress.GetHashCode();
+                    hashCode = (hashCode * 59) + this.AcceptedBy.GetHashCode();
                 }
-                if (this.WebAddressId != null)
+                if (this.IpAddress != null)
                 {
-                    hashCode = (hashCode * 59) + this.WebAddressId.GetHashCode();
+                    hashCode = (hashCode * 59) + this.IpAddress.GetHashCode();
                 }
                 return hashCode;
             }

@@ -11,25 +11,27 @@
 */
 
 using System;
-using System.Linq;
-using System.IO;
-using System.Text;
-using System.Text.RegularExpressions;
 using System.Collections;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Linq;
+using System.IO;
 using System.Runtime.Serialization;
+using System.Text;
+using System.Text.RegularExpressions;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
+using Newtonsoft.Json.Linq;
 using System.ComponentModel.DataAnnotations;
+using OpenAPIDateConverter = Adyen.ApiSerialization.OpenAPIDateConverter;
 
 namespace Adyen.Model.LegalEntityManagement
 {
     /// <summary>
     /// OnboardingLink
     /// </summary>
-    [DataContract]
-    public partial class OnboardingLink :  IEquatable<OnboardingLink>, IValidatableObject
+    [DataContract(Name = "OnboardingLink")]
+    public partial class OnboardingLink : IEquatable<OnboardingLink>, IValidatableObject
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="OnboardingLink" /> class.
@@ -44,7 +46,7 @@ namespace Adyen.Model.LegalEntityManagement
         /// The URL of the hosted onboarding page where you need to redirect your user. This URL expires after 4 minutes and can only be used once.  If the link expires, you need to create a new link.
         /// </summary>
         /// <value>The URL of the hosted onboarding page where you need to redirect your user. This URL expires after 4 minutes and can only be used once.  If the link expires, you need to create a new link.</value>
-        [DataMember(Name="url", EmitDefaultValue=false)]
+        [DataMember(Name = "url", EmitDefaultValue = false)]
         public string Url { get; set; }
 
         /// <summary>
@@ -53,7 +55,7 @@ namespace Adyen.Model.LegalEntityManagement
         /// <returns>String presentation of the object</returns>
         public override string ToString()
         {
-            var sb = new StringBuilder();
+            StringBuilder sb = new StringBuilder();
             sb.Append("class OnboardingLink {\n");
             sb.Append("  Url: ").Append(Url).Append("\n");
             sb.Append("}\n");
@@ -87,8 +89,9 @@ namespace Adyen.Model.LegalEntityManagement
         public bool Equals(OnboardingLink input)
         {
             if (input == null)
+            {
                 return false;
-
+            }
             return 
                 (
                     this.Url == input.Url ||
@@ -107,17 +110,18 @@ namespace Adyen.Model.LegalEntityManagement
             {
                 int hashCode = 41;
                 if (this.Url != null)
-                    hashCode = hashCode * 59 + this.Url.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.Url.GetHashCode();
+                }
                 return hashCode;
             }
         }
-
         /// <summary>
         /// To validate all properties of the instance
         /// </summary>
         /// <param name="validationContext">Validation context</param>
         /// <returns>Validation Result</returns>
-        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+        public IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> Validate(ValidationContext validationContext)
         {
             yield break;
         }

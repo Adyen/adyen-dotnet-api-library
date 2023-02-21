@@ -11,25 +11,27 @@
 */
 
 using System;
-using System.Linq;
-using System.IO;
-using System.Text;
-using System.Text.RegularExpressions;
 using System.Collections;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Linq;
+using System.IO;
 using System.Runtime.Serialization;
+using System.Text;
+using System.Text.RegularExpressions;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
+using Newtonsoft.Json.Linq;
 using System.ComponentModel.DataAnnotations;
+using OpenAPIDateConverter = Adyen.ApiSerialization.OpenAPIDateConverter;
 
 namespace Adyen.Model.LegalEntityManagement
 {
     /// <summary>
     /// TaxReportingClassification
     /// </summary>
-    [DataContract]
-    public partial class TaxReportingClassification :  IEquatable<TaxReportingClassification>, IValidatableObject
+    [DataContract(Name = "TaxReportingClassification")]
+    public partial class TaxReportingClassification : IEquatable<TaxReportingClassification>, IValidatableObject
     {
         /// <summary>
         /// The organization&#39;s business type.  Possible values: **other**, **listedPublicCompany**, **subsidiaryOfListedPublicCompany**, **governmentalOrganization**, **internationalOrganization**, **financialInstitution**.
@@ -76,11 +78,12 @@ namespace Adyen.Model.LegalEntityManagement
 
         }
 
+
         /// <summary>
         /// The organization&#39;s business type.  Possible values: **other**, **listedPublicCompany**, **subsidiaryOfListedPublicCompany**, **governmentalOrganization**, **internationalOrganization**, **financialInstitution**.
         /// </summary>
         /// <value>The organization&#39;s business type.  Possible values: **other**, **listedPublicCompany**, **subsidiaryOfListedPublicCompany**, **governmentalOrganization**, **internationalOrganization**, **financialInstitution**.</value>
-        [DataMember(Name="businessType", EmitDefaultValue=false)]
+        [DataMember(Name = "businessType", EmitDefaultValue = false)]
         public BusinessTypeEnum? BusinessType { get; set; }
         /// <summary>
         /// The organization&#39;s main source of income.  Possible values: **businessOperation**, **realEstateSales**, **investmentInterestOrRoyalty**, **propertyRental**, **other**.
@@ -121,11 +124,12 @@ namespace Adyen.Model.LegalEntityManagement
 
         }
 
+
         /// <summary>
         /// The organization&#39;s main source of income.  Possible values: **businessOperation**, **realEstateSales**, **investmentInterestOrRoyalty**, **propertyRental**, **other**.
         /// </summary>
         /// <value>The organization&#39;s main source of income.  Possible values: **businessOperation**, **realEstateSales**, **investmentInterestOrRoyalty**, **propertyRental**, **other**.</value>
-        [DataMember(Name="mainSourceOfIncome", EmitDefaultValue=false)]
+        [DataMember(Name = "mainSourceOfIncome", EmitDefaultValue = false)]
         public MainSourceOfIncomeEnum? MainSourceOfIncome { get; set; }
         /// <summary>
         /// The tax reporting classification type.  Possible values: **nonFinancialNonReportable**, **financialNonReportable**, **nonFinancialActive**, **nonFinancialPassive**.
@@ -160,11 +164,12 @@ namespace Adyen.Model.LegalEntityManagement
 
         }
 
+
         /// <summary>
         /// The tax reporting classification type.  Possible values: **nonFinancialNonReportable**, **financialNonReportable**, **nonFinancialActive**, **nonFinancialPassive**.
         /// </summary>
         /// <value>The tax reporting classification type.  Possible values: **nonFinancialNonReportable**, **financialNonReportable**, **nonFinancialActive**, **nonFinancialPassive**.</value>
-        [DataMember(Name="type", EmitDefaultValue=false)]
+        [DataMember(Name = "type", EmitDefaultValue = false)]
         public TypeEnum? Type { get; set; }
         /// <summary>
         /// Initializes a new instance of the <see cref="TaxReportingClassification" /> class.
@@ -181,15 +186,12 @@ namespace Adyen.Model.LegalEntityManagement
             this.Type = type;
         }
 
-
         /// <summary>
         /// The Global Intermediary Identification Number (GIIN) required for FATCA.
         /// </summary>
         /// <value>The Global Intermediary Identification Number (GIIN) required for FATCA.</value>
-        [DataMember(Name="financialInstitutionNumber", EmitDefaultValue=false)]
+        [DataMember(Name = "financialInstitutionNumber", EmitDefaultValue = false)]
         public string FinancialInstitutionNumber { get; set; }
-
-
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -197,7 +199,7 @@ namespace Adyen.Model.LegalEntityManagement
         /// <returns>String presentation of the object</returns>
         public override string ToString()
         {
-            var sb = new StringBuilder();
+            StringBuilder sb = new StringBuilder();
             sb.Append("class TaxReportingClassification {\n");
             sb.Append("  BusinessType: ").Append(BusinessType).Append("\n");
             sb.Append("  FinancialInstitutionNumber: ").Append(FinancialInstitutionNumber).Append("\n");
@@ -234,13 +236,13 @@ namespace Adyen.Model.LegalEntityManagement
         public bool Equals(TaxReportingClassification input)
         {
             if (input == null)
+            {
                 return false;
-
+            }
             return 
                 (
                     this.BusinessType == input.BusinessType ||
-                    (this.BusinessType != null &&
-                    this.BusinessType.Equals(input.BusinessType))
+                    this.BusinessType.Equals(input.BusinessType)
                 ) && 
                 (
                     this.FinancialInstitutionNumber == input.FinancialInstitutionNumber ||
@@ -249,13 +251,11 @@ namespace Adyen.Model.LegalEntityManagement
                 ) && 
                 (
                     this.MainSourceOfIncome == input.MainSourceOfIncome ||
-                    (this.MainSourceOfIncome != null &&
-                    this.MainSourceOfIncome.Equals(input.MainSourceOfIncome))
+                    this.MainSourceOfIncome.Equals(input.MainSourceOfIncome)
                 ) && 
                 (
                     this.Type == input.Type ||
-                    (this.Type != null &&
-                    this.Type.Equals(input.Type))
+                    this.Type.Equals(input.Type)
                 );
         }
 
@@ -268,24 +268,22 @@ namespace Adyen.Model.LegalEntityManagement
             unchecked // Overflow is fine, just wrap
             {
                 int hashCode = 41;
-                if (this.BusinessType != null)
-                    hashCode = hashCode * 59 + this.BusinessType.GetHashCode();
+                hashCode = (hashCode * 59) + this.BusinessType.GetHashCode();
                 if (this.FinancialInstitutionNumber != null)
-                    hashCode = hashCode * 59 + this.FinancialInstitutionNumber.GetHashCode();
-                if (this.MainSourceOfIncome != null)
-                    hashCode = hashCode * 59 + this.MainSourceOfIncome.GetHashCode();
-                if (this.Type != null)
-                    hashCode = hashCode * 59 + this.Type.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.FinancialInstitutionNumber.GetHashCode();
+                }
+                hashCode = (hashCode * 59) + this.MainSourceOfIncome.GetHashCode();
+                hashCode = (hashCode * 59) + this.Type.GetHashCode();
                 return hashCode;
             }
         }
-
         /// <summary>
         /// To validate all properties of the instance
         /// </summary>
         /// <param name="validationContext">Validation context</param>
         /// <returns>Validation Result</returns>
-        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+        public IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> Validate(ValidationContext validationContext)
         {
             yield break;
         }

@@ -28,42 +28,27 @@ using OpenAPIDateConverter = Adyen.ApiSerialization.OpenAPIDateConverter;
 namespace Adyen.Model.LegalEntityManagement
 {
     /// <summary>
-    /// WebData
+    /// GetTermsOfServiceAcceptanceInfosResponse
     /// </summary>
-    [DataContract(Name = "WebData")]
-    public partial class WebData : IEquatable<WebData>, IValidatableObject
+    [DataContract(Name = "GetTermsOfServiceAcceptanceInfosResponse")]
+    public partial class GetTermsOfServiceAcceptanceInfosResponse : IEquatable<GetTermsOfServiceAcceptanceInfosResponse>, IValidatableObject
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="WebData" /> class.
+        /// Initializes a new instance of the <see cref="GetTermsOfServiceAcceptanceInfosResponse" /> class.
         /// </summary>
-        /// <param name="webAddress">The URL of the website or the app store URL..</param>
-        public WebData(string webAddress = default(string))
+        /// <param name="data">The Terms of Service acceptance information..</param>
+        public GetTermsOfServiceAcceptanceInfosResponse(List<TermsOfServiceAcceptanceInfo> data = default(List<TermsOfServiceAcceptanceInfo>))
         {
-            this.WebAddress = webAddress;
+            this.Data = data;
         }
 
         /// <summary>
-        /// The URL of the website or the app store URL.
+        /// The Terms of Service acceptance information.
         /// </summary>
-        /// <value>The URL of the website or the app store URL.</value>
-        [DataMember(Name = "webAddress", EmitDefaultValue = false)]
-        public string WebAddress { get; set; }
+        /// <value>The Terms of Service acceptance information.</value>
+        [DataMember(Name = "data", EmitDefaultValue = false)]
+        public List<TermsOfServiceAcceptanceInfo> Data { get; set; }
 
-        /// <summary>
-        /// The unique identifier of the web address.
-        /// </summary>
-        /// <value>The unique identifier of the web address.</value>
-        [DataMember(Name = "webAddressId", EmitDefaultValue = false)]
-        public string WebAddressId { get; private set; }
-
-        /// <summary>
-        /// Returns false as WebAddressId should not be serialized given that it's read-only.
-        /// </summary>
-        /// <returns>false (boolean)</returns>
-        public bool ShouldSerializeWebAddressId()
-        {
-            return false;
-        }
         /// <summary>
         /// Returns the string presentation of the object
         /// </summary>
@@ -71,9 +56,8 @@ namespace Adyen.Model.LegalEntityManagement
         public override string ToString()
         {
             StringBuilder sb = new StringBuilder();
-            sb.Append("class WebData {\n");
-            sb.Append("  WebAddress: ").Append(WebAddress).Append("\n");
-            sb.Append("  WebAddressId: ").Append(WebAddressId).Append("\n");
+            sb.Append("class GetTermsOfServiceAcceptanceInfosResponse {\n");
+            sb.Append("  Data: ").Append(Data).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -94,15 +78,15 @@ namespace Adyen.Model.LegalEntityManagement
         /// <returns>Boolean</returns>
         public override bool Equals(object input)
         {
-            return this.Equals(input as WebData);
+            return this.Equals(input as GetTermsOfServiceAcceptanceInfosResponse);
         }
 
         /// <summary>
-        /// Returns true if WebData instances are equal
+        /// Returns true if GetTermsOfServiceAcceptanceInfosResponse instances are equal
         /// </summary>
-        /// <param name="input">Instance of WebData to be compared</param>
+        /// <param name="input">Instance of GetTermsOfServiceAcceptanceInfosResponse to be compared</param>
         /// <returns>Boolean</returns>
-        public bool Equals(WebData input)
+        public bool Equals(GetTermsOfServiceAcceptanceInfosResponse input)
         {
             if (input == null)
             {
@@ -110,14 +94,10 @@ namespace Adyen.Model.LegalEntityManagement
             }
             return 
                 (
-                    this.WebAddress == input.WebAddress ||
-                    (this.WebAddress != null &&
-                    this.WebAddress.Equals(input.WebAddress))
-                ) && 
-                (
-                    this.WebAddressId == input.WebAddressId ||
-                    (this.WebAddressId != null &&
-                    this.WebAddressId.Equals(input.WebAddressId))
+                    this.Data == input.Data ||
+                    this.Data != null &&
+                    input.Data != null &&
+                    this.Data.SequenceEqual(input.Data)
                 );
         }
 
@@ -130,13 +110,9 @@ namespace Adyen.Model.LegalEntityManagement
             unchecked // Overflow is fine, just wrap
             {
                 int hashCode = 41;
-                if (this.WebAddress != null)
+                if (this.Data != null)
                 {
-                    hashCode = (hashCode * 59) + this.WebAddress.GetHashCode();
-                }
-                if (this.WebAddressId != null)
-                {
-                    hashCode = (hashCode * 59) + this.WebAddressId.GetHashCode();
+                    hashCode = (hashCode * 59) + this.Data.GetHashCode();
                 }
                 return hashCode;
             }

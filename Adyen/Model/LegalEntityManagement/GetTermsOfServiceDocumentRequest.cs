@@ -28,67 +28,74 @@ using OpenAPIDateConverter = Adyen.ApiSerialization.OpenAPIDateConverter;
 namespace Adyen.Model.LegalEntityManagement
 {
     /// <summary>
-    /// CapabilityProblemEntity
+    /// GetTermsOfServiceDocumentRequest
     /// </summary>
-    [DataContract(Name = "CapabilityProblemEntity")]
-    public partial class CapabilityProblemEntity : IEquatable<CapabilityProblemEntity>, IValidatableObject
+    [DataContract(Name = "GetTermsOfServiceDocumentRequest")]
+    public partial class GetTermsOfServiceDocumentRequest : IEquatable<GetTermsOfServiceDocumentRequest>, IValidatableObject
     {
         /// <summary>
-        /// Defines Type
+        /// The type of Terms of Service.
         /// </summary>
+        /// <value>The type of Terms of Service.</value>
         [JsonConverter(typeof(StringEnumConverter))]
         public enum TypeEnum
         {
             /// <summary>
-            /// Enum BankAccount for value: BankAccount
+            /// Enum AdyenAccount for value: adyenAccount
             /// </summary>
-            [EnumMember(Value = "BankAccount")]
-            BankAccount = 1,
+            [EnumMember(Value = "adyenAccount")]
+            AdyenAccount = 1,
 
             /// <summary>
-            /// Enum Document for value: Document
+            /// Enum AdyenCapital for value: adyenCapital
             /// </summary>
-            [EnumMember(Value = "Document")]
-            Document = 2,
+            [EnumMember(Value = "adyenCapital")]
+            AdyenCapital = 2,
 
             /// <summary>
-            /// Enum LegalEntity for value: LegalEntity
+            /// Enum AdyenForPlatformsAdvanced for value: adyenForPlatformsAdvanced
             /// </summary>
-            [EnumMember(Value = "LegalEntity")]
-            LegalEntity = 3
+            [EnumMember(Value = "adyenForPlatformsAdvanced")]
+            AdyenForPlatformsAdvanced = 3,
+
+            /// <summary>
+            /// Enum AdyenForPlatformsManage for value: adyenForPlatformsManage
+            /// </summary>
+            [EnumMember(Value = "adyenForPlatformsManage")]
+            AdyenForPlatformsManage = 4,
+
+            /// <summary>
+            /// Enum AdyenIssuing for value: adyenIssuing
+            /// </summary>
+            [EnumMember(Value = "adyenIssuing")]
+            AdyenIssuing = 5
 
         }
 
 
         /// <summary>
-        /// Gets or Sets Type
+        /// The type of Terms of Service.
         /// </summary>
+        /// <value>The type of Terms of Service.</value>
         [DataMember(Name = "type", EmitDefaultValue = false)]
         public TypeEnum? Type { get; set; }
         /// <summary>
-        /// Initializes a new instance of the <see cref="CapabilityProblemEntity" /> class.
+        /// Initializes a new instance of the <see cref="GetTermsOfServiceDocumentRequest" /> class.
         /// </summary>
-        /// <param name="id">id.</param>
-        /// <param name="owner">owner.</param>
-        /// <param name="type">type.</param>
-        public CapabilityProblemEntity(string id = default(string), CapabilityProblemEntityRecursive owner = default(CapabilityProblemEntityRecursive), TypeEnum? type = default(TypeEnum?))
+        /// <param name="language">The language to be used for the Terms of Service document, specified by the two letter [ISO 639-1](https://en.wikipedia.org/wiki/List_of_ISO_639-1_codes) language code. For example, **nl** for Dutch..</param>
+        /// <param name="type">The type of Terms of Service..</param>
+        public GetTermsOfServiceDocumentRequest(string language = default(string), TypeEnum? type = default(TypeEnum?))
         {
-            this.Id = id;
-            this.Owner = owner;
+            this.Language = language;
             this.Type = type;
         }
 
         /// <summary>
-        /// Gets or Sets Id
+        /// The language to be used for the Terms of Service document, specified by the two letter [ISO 639-1](https://en.wikipedia.org/wiki/List_of_ISO_639-1_codes) language code. For example, **nl** for Dutch.
         /// </summary>
-        [DataMember(Name = "id", EmitDefaultValue = false)]
-        public string Id { get; set; }
-
-        /// <summary>
-        /// Gets or Sets Owner
-        /// </summary>
-        [DataMember(Name = "owner", EmitDefaultValue = false)]
-        public CapabilityProblemEntityRecursive Owner { get; set; }
+        /// <value>The language to be used for the Terms of Service document, specified by the two letter [ISO 639-1](https://en.wikipedia.org/wiki/List_of_ISO_639-1_codes) language code. For example, **nl** for Dutch.</value>
+        [DataMember(Name = "language", EmitDefaultValue = false)]
+        public string Language { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -97,9 +104,8 @@ namespace Adyen.Model.LegalEntityManagement
         public override string ToString()
         {
             StringBuilder sb = new StringBuilder();
-            sb.Append("class CapabilityProblemEntity {\n");
-            sb.Append("  Id: ").Append(Id).Append("\n");
-            sb.Append("  Owner: ").Append(Owner).Append("\n");
+            sb.Append("class GetTermsOfServiceDocumentRequest {\n");
+            sb.Append("  Language: ").Append(Language).Append("\n");
             sb.Append("  Type: ").Append(Type).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
@@ -121,15 +127,15 @@ namespace Adyen.Model.LegalEntityManagement
         /// <returns>Boolean</returns>
         public override bool Equals(object input)
         {
-            return this.Equals(input as CapabilityProblemEntity);
+            return this.Equals(input as GetTermsOfServiceDocumentRequest);
         }
 
         /// <summary>
-        /// Returns true if CapabilityProblemEntity instances are equal
+        /// Returns true if GetTermsOfServiceDocumentRequest instances are equal
         /// </summary>
-        /// <param name="input">Instance of CapabilityProblemEntity to be compared</param>
+        /// <param name="input">Instance of GetTermsOfServiceDocumentRequest to be compared</param>
         /// <returns>Boolean</returns>
-        public bool Equals(CapabilityProblemEntity input)
+        public bool Equals(GetTermsOfServiceDocumentRequest input)
         {
             if (input == null)
             {
@@ -137,14 +143,9 @@ namespace Adyen.Model.LegalEntityManagement
             }
             return 
                 (
-                    this.Id == input.Id ||
-                    (this.Id != null &&
-                    this.Id.Equals(input.Id))
-                ) && 
-                (
-                    this.Owner == input.Owner ||
-                    (this.Owner != null &&
-                    this.Owner.Equals(input.Owner))
+                    this.Language == input.Language ||
+                    (this.Language != null &&
+                    this.Language.Equals(input.Language))
                 ) && 
                 (
                     this.Type == input.Type ||
@@ -161,13 +162,9 @@ namespace Adyen.Model.LegalEntityManagement
             unchecked // Overflow is fine, just wrap
             {
                 int hashCode = 41;
-                if (this.Id != null)
+                if (this.Language != null)
                 {
-                    hashCode = (hashCode * 59) + this.Id.GetHashCode();
-                }
-                if (this.Owner != null)
-                {
-                    hashCode = (hashCode * 59) + this.Owner.GetHashCode();
+                    hashCode = (hashCode * 59) + this.Language.GetHashCode();
                 }
                 hashCode = (hashCode * 59) + this.Type.GetHashCode();
                 return hashCode;

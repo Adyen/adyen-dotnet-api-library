@@ -28,67 +28,64 @@ using OpenAPIDateConverter = Adyen.ApiSerialization.OpenAPIDateConverter;
 namespace Adyen.Model.LegalEntityManagement
 {
     /// <summary>
-    /// CapabilityProblemEntity
+    /// CalculateTermsOfServiceStatusResponse
     /// </summary>
-    [DataContract(Name = "CapabilityProblemEntity")]
-    public partial class CapabilityProblemEntity : IEquatable<CapabilityProblemEntity>, IValidatableObject
+    [DataContract(Name = "CalculateTermsOfServiceStatusResponse")]
+    public partial class CalculateTermsOfServiceStatusResponse : IEquatable<CalculateTermsOfServiceStatusResponse>, IValidatableObject
     {
         /// <summary>
-        /// Defines Type
+        /// Defines TermsOfServiceTypes
         /// </summary>
         [JsonConverter(typeof(StringEnumConverter))]
-        public enum TypeEnum
+        public enum TermsOfServiceTypesEnum
         {
             /// <summary>
-            /// Enum BankAccount for value: BankAccount
+            /// Enum AdyenAccount for value: adyenAccount
             /// </summary>
-            [EnumMember(Value = "BankAccount")]
-            BankAccount = 1,
+            [EnumMember(Value = "adyenAccount")]
+            AdyenAccount = 1,
 
             /// <summary>
-            /// Enum Document for value: Document
+            /// Enum AdyenCapital for value: adyenCapital
             /// </summary>
-            [EnumMember(Value = "Document")]
-            Document = 2,
+            [EnumMember(Value = "adyenCapital")]
+            AdyenCapital = 2,
 
             /// <summary>
-            /// Enum LegalEntity for value: LegalEntity
+            /// Enum AdyenForPlatformsAdvanced for value: adyenForPlatformsAdvanced
             /// </summary>
-            [EnumMember(Value = "LegalEntity")]
-            LegalEntity = 3
+            [EnumMember(Value = "adyenForPlatformsAdvanced")]
+            AdyenForPlatformsAdvanced = 3,
+
+            /// <summary>
+            /// Enum AdyenForPlatformsManage for value: adyenForPlatformsManage
+            /// </summary>
+            [EnumMember(Value = "adyenForPlatformsManage")]
+            AdyenForPlatformsManage = 4,
+
+            /// <summary>
+            /// Enum AdyenIssuing for value: adyenIssuing
+            /// </summary>
+            [EnumMember(Value = "adyenIssuing")]
+            AdyenIssuing = 5
 
         }
 
-
         /// <summary>
-        /// Gets or Sets Type
+        /// Initializes a new instance of the <see cref="CalculateTermsOfServiceStatusResponse" /> class.
         /// </summary>
-        [DataMember(Name = "type", EmitDefaultValue = false)]
-        public TypeEnum? Type { get; set; }
-        /// <summary>
-        /// Initializes a new instance of the <see cref="CapabilityProblemEntity" /> class.
-        /// </summary>
-        /// <param name="id">id.</param>
-        /// <param name="owner">owner.</param>
-        /// <param name="type">type.</param>
-        public CapabilityProblemEntity(string id = default(string), CapabilityProblemEntityRecursive owner = default(CapabilityProblemEntityRecursive), TypeEnum? type = default(TypeEnum?))
+        /// <param name="termsOfServiceTypes">The type of Terms of Service that the legal entity needs to accept. If empty, no Terms of Service needs to be accepted..</param>
+        public CalculateTermsOfServiceStatusResponse(List<TermsOfServiceTypesEnum> termsOfServiceTypes = default(List<TermsOfServiceTypesEnum>))
         {
-            this.Id = id;
-            this.Owner = owner;
-            this.Type = type;
+            this.TermsOfServiceTypes = termsOfServiceTypes;
         }
 
         /// <summary>
-        /// Gets or Sets Id
+        /// The type of Terms of Service that the legal entity needs to accept. If empty, no Terms of Service needs to be accepted.
         /// </summary>
-        [DataMember(Name = "id", EmitDefaultValue = false)]
-        public string Id { get; set; }
-
-        /// <summary>
-        /// Gets or Sets Owner
-        /// </summary>
-        [DataMember(Name = "owner", EmitDefaultValue = false)]
-        public CapabilityProblemEntityRecursive Owner { get; set; }
+        /// <value>The type of Terms of Service that the legal entity needs to accept. If empty, no Terms of Service needs to be accepted.</value>
+        [DataMember(Name = "termsOfServiceTypes", EmitDefaultValue = false)]
+        public List<CalculateTermsOfServiceStatusResponse.TermsOfServiceTypesEnum> TermsOfServiceTypes { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -97,10 +94,8 @@ namespace Adyen.Model.LegalEntityManagement
         public override string ToString()
         {
             StringBuilder sb = new StringBuilder();
-            sb.Append("class CapabilityProblemEntity {\n");
-            sb.Append("  Id: ").Append(Id).Append("\n");
-            sb.Append("  Owner: ").Append(Owner).Append("\n");
-            sb.Append("  Type: ").Append(Type).Append("\n");
+            sb.Append("class CalculateTermsOfServiceStatusResponse {\n");
+            sb.Append("  TermsOfServiceTypes: ").Append(TermsOfServiceTypes).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -121,15 +116,15 @@ namespace Adyen.Model.LegalEntityManagement
         /// <returns>Boolean</returns>
         public override bool Equals(object input)
         {
-            return this.Equals(input as CapabilityProblemEntity);
+            return this.Equals(input as CalculateTermsOfServiceStatusResponse);
         }
 
         /// <summary>
-        /// Returns true if CapabilityProblemEntity instances are equal
+        /// Returns true if CalculateTermsOfServiceStatusResponse instances are equal
         /// </summary>
-        /// <param name="input">Instance of CapabilityProblemEntity to be compared</param>
+        /// <param name="input">Instance of CalculateTermsOfServiceStatusResponse to be compared</param>
         /// <returns>Boolean</returns>
-        public bool Equals(CapabilityProblemEntity input)
+        public bool Equals(CalculateTermsOfServiceStatusResponse input)
         {
             if (input == null)
             {
@@ -137,18 +132,10 @@ namespace Adyen.Model.LegalEntityManagement
             }
             return 
                 (
-                    this.Id == input.Id ||
-                    (this.Id != null &&
-                    this.Id.Equals(input.Id))
-                ) && 
-                (
-                    this.Owner == input.Owner ||
-                    (this.Owner != null &&
-                    this.Owner.Equals(input.Owner))
-                ) && 
-                (
-                    this.Type == input.Type ||
-                    this.Type.Equals(input.Type)
+                    this.TermsOfServiceTypes == input.TermsOfServiceTypes ||
+                    this.TermsOfServiceTypes != null &&
+                    input.TermsOfServiceTypes != null &&
+                    this.TermsOfServiceTypes.SequenceEqual(input.TermsOfServiceTypes)
                 );
         }
 
@@ -161,15 +148,10 @@ namespace Adyen.Model.LegalEntityManagement
             unchecked // Overflow is fine, just wrap
             {
                 int hashCode = 41;
-                if (this.Id != null)
+                if (this.TermsOfServiceTypes != null)
                 {
-                    hashCode = (hashCode * 59) + this.Id.GetHashCode();
+                    hashCode = (hashCode * 59) + this.TermsOfServiceTypes.GetHashCode();
                 }
-                if (this.Owner != null)
-                {
-                    hashCode = (hashCode * 59) + this.Owner.GetHashCode();
-                }
-                hashCode = (hashCode * 59) + this.Type.GetHashCode();
                 return hashCode;
             }
         }

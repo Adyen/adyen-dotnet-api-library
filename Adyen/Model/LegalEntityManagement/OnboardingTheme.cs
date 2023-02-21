@@ -11,25 +11,27 @@
 */
 
 using System;
-using System.Linq;
-using System.IO;
-using System.Text;
-using System.Text.RegularExpressions;
 using System.Collections;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Linq;
+using System.IO;
 using System.Runtime.Serialization;
+using System.Text;
+using System.Text.RegularExpressions;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
+using Newtonsoft.Json.Linq;
 using System.ComponentModel.DataAnnotations;
+using OpenAPIDateConverter = Adyen.ApiSerialization.OpenAPIDateConverter;
 
 namespace Adyen.Model.LegalEntityManagement
 {
     /// <summary>
     /// OnboardingTheme
     /// </summary>
-    [DataContract]
-    public partial class OnboardingTheme :  IEquatable<OnboardingTheme>, IValidatableObject
+    [DataContract(Name = "OnboardingTheme")]
+    public partial class OnboardingTheme : IEquatable<OnboardingTheme>, IValidatableObject
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="OnboardingTheme" /> class.
@@ -47,9 +49,9 @@ namespace Adyen.Model.LegalEntityManagement
         public OnboardingTheme(DateTime createdAt = default(DateTime), string description = default(string), string id = default(string), Dictionary<string, string> properties = default(Dictionary<string, string>), DateTime updatedAt = default(DateTime))
         {
             this.CreatedAt = createdAt;
-            this.Description = description;
             this.Id = id;
             this.Properties = properties;
+            this.Description = description;
             this.UpdatedAt = updatedAt;
         }
 
@@ -57,35 +59,35 @@ namespace Adyen.Model.LegalEntityManagement
         /// The creation date of the theme.
         /// </summary>
         /// <value>The creation date of the theme.</value>
-        [DataMember(Name="createdAt", EmitDefaultValue=true)]
+        [DataMember(Name = "createdAt", IsRequired = false, EmitDefaultValue = false)]
         public DateTime CreatedAt { get; set; }
 
         /// <summary>
         /// The description of the theme.
         /// </summary>
         /// <value>The description of the theme.</value>
-        [DataMember(Name="description", EmitDefaultValue=false)]
+        [DataMember(Name = "description", EmitDefaultValue = false)]
         public string Description { get; set; }
 
         /// <summary>
         /// The unique identifier of the theme.
         /// </summary>
         /// <value>The unique identifier of the theme.</value>
-        [DataMember(Name="id", EmitDefaultValue=true)]
+        [DataMember(Name = "id", IsRequired = false, EmitDefaultValue = false)]
         public string Id { get; set; }
 
         /// <summary>
         /// The properties of the theme.
         /// </summary>
         /// <value>The properties of the theme.</value>
-        [DataMember(Name="properties", EmitDefaultValue=true)]
+        [DataMember(Name = "properties", IsRequired = false, EmitDefaultValue = false)]
         public Dictionary<string, string> Properties { get; set; }
 
         /// <summary>
         /// The date when the theme was last updated.
         /// </summary>
         /// <value>The date when the theme was last updated.</value>
-        [DataMember(Name="updatedAt", EmitDefaultValue=false)]
+        [DataMember(Name = "updatedAt", EmitDefaultValue = false)]
         public DateTime UpdatedAt { get; set; }
 
         /// <summary>
@@ -94,7 +96,7 @@ namespace Adyen.Model.LegalEntityManagement
         /// <returns>String presentation of the object</returns>
         public override string ToString()
         {
-            var sb = new StringBuilder();
+            StringBuilder sb = new StringBuilder();
             sb.Append("class OnboardingTheme {\n");
             sb.Append("  CreatedAt: ").Append(CreatedAt).Append("\n");
             sb.Append("  Description: ").Append(Description).Append("\n");
@@ -132,8 +134,9 @@ namespace Adyen.Model.LegalEntityManagement
         public bool Equals(OnboardingTheme input)
         {
             if (input == null)
+            {
                 return false;
-
+            }
             return 
                 (
                     this.CreatedAt == input.CreatedAt ||
@@ -173,25 +176,34 @@ namespace Adyen.Model.LegalEntityManagement
             {
                 int hashCode = 41;
                 if (this.CreatedAt != null)
-                    hashCode = hashCode * 59 + this.CreatedAt.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.CreatedAt.GetHashCode();
+                }
                 if (this.Description != null)
-                    hashCode = hashCode * 59 + this.Description.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.Description.GetHashCode();
+                }
                 if (this.Id != null)
-                    hashCode = hashCode * 59 + this.Id.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.Id.GetHashCode();
+                }
                 if (this.Properties != null)
-                    hashCode = hashCode * 59 + this.Properties.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.Properties.GetHashCode();
+                }
                 if (this.UpdatedAt != null)
-                    hashCode = hashCode * 59 + this.UpdatedAt.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.UpdatedAt.GetHashCode();
+                }
                 return hashCode;
             }
         }
-
         /// <summary>
         /// To validate all properties of the instance
         /// </summary>
         /// <param name="validationContext">Validation context</param>
         /// <returns>Validation Result</returns>
-        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+        public IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> Validate(ValidationContext validationContext)
         {
             yield break;
         }

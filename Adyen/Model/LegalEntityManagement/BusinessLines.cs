@@ -11,25 +11,27 @@
 */
 
 using System;
-using System.Linq;
-using System.IO;
-using System.Text;
-using System.Text.RegularExpressions;
 using System.Collections;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Linq;
+using System.IO;
 using System.Runtime.Serialization;
+using System.Text;
+using System.Text.RegularExpressions;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
+using Newtonsoft.Json.Linq;
 using System.ComponentModel.DataAnnotations;
+using OpenAPIDateConverter = Adyen.ApiSerialization.OpenAPIDateConverter;
 
 namespace Adyen.Model.LegalEntityManagement
 {
     /// <summary>
     /// BusinessLines
     /// </summary>
-    [DataContract]
-    public partial class BusinessLines :  IEquatable<BusinessLines>, IValidatableObject
+    [DataContract(Name = "BusinessLines")]
+    public partial class BusinessLines : IEquatable<BusinessLines>, IValidatableObject
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="BusinessLines" /> class.
@@ -49,7 +51,7 @@ namespace Adyen.Model.LegalEntityManagement
         /// List of business lines.
         /// </summary>
         /// <value>List of business lines.</value>
-        [DataMember(Name="businessLines", EmitDefaultValue=true)]
+        [DataMember(Name = "businessLines", IsRequired = false, EmitDefaultValue = false)]
         public List<BusinessLine> _BusinessLines { get; set; }
 
         /// <summary>
@@ -58,7 +60,7 @@ namespace Adyen.Model.LegalEntityManagement
         /// <returns>String presentation of the object</returns>
         public override string ToString()
         {
-            var sb = new StringBuilder();
+            StringBuilder sb = new StringBuilder();
             sb.Append("class BusinessLines {\n");
             sb.Append("  _BusinessLines: ").Append(_BusinessLines).Append("\n");
             sb.Append("}\n");
@@ -92,8 +94,9 @@ namespace Adyen.Model.LegalEntityManagement
         public bool Equals(BusinessLines input)
         {
             if (input == null)
+            {
                 return false;
-
+            }
             return 
                 (
                     this._BusinessLines == input._BusinessLines ||
@@ -113,17 +116,18 @@ namespace Adyen.Model.LegalEntityManagement
             {
                 int hashCode = 41;
                 if (this._BusinessLines != null)
-                    hashCode = hashCode * 59 + this._BusinessLines.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this._BusinessLines.GetHashCode();
+                }
                 return hashCode;
             }
         }
-
         /// <summary>
         /// To validate all properties of the instance
         /// </summary>
         /// <param name="validationContext">Validation context</param>
         /// <returns>Validation Result</returns>
-        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+        public IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> Validate(ValidationContext validationContext)
         {
             yield break;
         }

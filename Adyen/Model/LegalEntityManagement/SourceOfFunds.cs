@@ -11,25 +11,27 @@
 */
 
 using System;
-using System.Linq;
-using System.IO;
-using System.Text;
-using System.Text.RegularExpressions;
 using System.Collections;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Linq;
+using System.IO;
 using System.Runtime.Serialization;
+using System.Text;
+using System.Text.RegularExpressions;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
+using Newtonsoft.Json.Linq;
 using System.ComponentModel.DataAnnotations;
+using OpenAPIDateConverter = Adyen.ApiSerialization.OpenAPIDateConverter;
 
 namespace Adyen.Model.LegalEntityManagement
 {
     /// <summary>
     /// SourceOfFunds
     /// </summary>
-    [DataContract]
-    public partial class SourceOfFunds :  IEquatable<SourceOfFunds>, IValidatableObject
+    [DataContract(Name = "SourceOfFunds")]
+    public partial class SourceOfFunds : IEquatable<SourceOfFunds>, IValidatableObject
     {
         /// <summary>
         /// The type of the source of funds. Possible value: **business**.
@@ -46,11 +48,12 @@ namespace Adyen.Model.LegalEntityManagement
 
         }
 
+
         /// <summary>
         /// The type of the source of funds. Possible value: **business**.
         /// </summary>
         /// <value>The type of the source of funds. Possible value: **business**.</value>
-        [DataMember(Name="type", EmitDefaultValue=false)]
+        [DataMember(Name = "type", EmitDefaultValue = false)]
         public TypeEnum? Type { get; set; }
         /// <summary>
         /// Initializes a new instance of the <see cref="SourceOfFunds" /> class.
@@ -71,23 +74,22 @@ namespace Adyen.Model.LegalEntityManagement
         /// The unique identifier of the business line that will be the source of funds.This must be a business line for a **receivePayments** or **receiveFromPlatformPayments** capability.
         /// </summary>
         /// <value>The unique identifier of the business line that will be the source of funds.This must be a business line for a **receivePayments** or **receiveFromPlatformPayments** capability.</value>
-        [DataMember(Name="acquiringBusinessLineId", EmitDefaultValue=false)]
+        [DataMember(Name = "acquiringBusinessLineId", EmitDefaultValue = false)]
         public string AcquiringBusinessLineId { get; set; }
 
         /// <summary>
         /// Indicates whether the funds are coming from transactions processed by Adyen. If **false**, a &#x60;description&#x60; is required.
         /// </summary>
         /// <value>Indicates whether the funds are coming from transactions processed by Adyen. If **false**, a &#x60;description&#x60; is required.</value>
-        [DataMember(Name="adyenProcessedFunds", EmitDefaultValue=false)]
+        [DataMember(Name = "adyenProcessedFunds", EmitDefaultValue = false)]
         public bool AdyenProcessedFunds { get; set; }
 
         /// <summary>
         /// Text describing the source of funds. For example, for &#x60;type&#x60; **business**, provide a description of the business. Required when &#x60;adyenProcessedFunds&#x60; is **false**.
         /// </summary>
         /// <value>Text describing the source of funds. For example, for &#x60;type&#x60; **business**, provide a description of the business. Required when &#x60;adyenProcessedFunds&#x60; is **false**.</value>
-        [DataMember(Name="description", EmitDefaultValue=false)]
+        [DataMember(Name = "description", EmitDefaultValue = false)]
         public string Description { get; set; }
-
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -95,7 +97,7 @@ namespace Adyen.Model.LegalEntityManagement
         /// <returns>String presentation of the object</returns>
         public override string ToString()
         {
-            var sb = new StringBuilder();
+            StringBuilder sb = new StringBuilder();
             sb.Append("class SourceOfFunds {\n");
             sb.Append("  AcquiringBusinessLineId: ").Append(AcquiringBusinessLineId).Append("\n");
             sb.Append("  AdyenProcessedFunds: ").Append(AdyenProcessedFunds).Append("\n");
@@ -132,8 +134,9 @@ namespace Adyen.Model.LegalEntityManagement
         public bool Equals(SourceOfFunds input)
         {
             if (input == null)
+            {
                 return false;
-
+            }
             return 
                 (
                     this.AcquiringBusinessLineId == input.AcquiringBusinessLineId ||
@@ -142,8 +145,7 @@ namespace Adyen.Model.LegalEntityManagement
                 ) && 
                 (
                     this.AdyenProcessedFunds == input.AdyenProcessedFunds ||
-                    (this.AdyenProcessedFunds != null &&
-                    this.AdyenProcessedFunds.Equals(input.AdyenProcessedFunds))
+                    this.AdyenProcessedFunds.Equals(input.AdyenProcessedFunds)
                 ) && 
                 (
                     this.Description == input.Description ||
@@ -152,8 +154,7 @@ namespace Adyen.Model.LegalEntityManagement
                 ) && 
                 (
                     this.Type == input.Type ||
-                    (this.Type != null &&
-                    this.Type.Equals(input.Type))
+                    this.Type.Equals(input.Type)
                 );
         }
 
@@ -167,23 +168,24 @@ namespace Adyen.Model.LegalEntityManagement
             {
                 int hashCode = 41;
                 if (this.AcquiringBusinessLineId != null)
-                    hashCode = hashCode * 59 + this.AcquiringBusinessLineId.GetHashCode();
-                if (this.AdyenProcessedFunds != null)
-                    hashCode = hashCode * 59 + this.AdyenProcessedFunds.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.AcquiringBusinessLineId.GetHashCode();
+                }
+                hashCode = (hashCode * 59) + this.AdyenProcessedFunds.GetHashCode();
                 if (this.Description != null)
-                    hashCode = hashCode * 59 + this.Description.GetHashCode();
-                if (this.Type != null)
-                    hashCode = hashCode * 59 + this.Type.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.Description.GetHashCode();
+                }
+                hashCode = (hashCode * 59) + this.Type.GetHashCode();
                 return hashCode;
             }
         }
-
         /// <summary>
         /// To validate all properties of the instance
         /// </summary>
         /// <param name="validationContext">Validation context</param>
         /// <returns>Validation Result</returns>
-        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+        public IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> Validate(ValidationContext validationContext)
         {
             yield break;
         }
