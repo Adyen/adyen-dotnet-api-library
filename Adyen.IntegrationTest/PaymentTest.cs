@@ -71,7 +71,7 @@ namespace Adyen.IntegrationTest
                 XApiKey = ClientConstants.Xapikey
             });
             var service = new StoredValue(client);
-            var ex = Assert.ThrowsException<HttpClientException>(() => service.Issue(new StoredValueIssueRequest()));
+            var ex = Assert.ThrowsException<HttpClientException>(() => service.IssuesNewCard(new StoredValueIssueRequest()));
             Assert.AreEqual(ex.Code, 422);
         }
 

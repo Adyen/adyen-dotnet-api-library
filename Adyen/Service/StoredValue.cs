@@ -1,155 +1,167 @@
 using System;
+using System.Net.Http;
 using System.Threading;
 using System.Threading.Tasks;
+using Adyen.Constants;
+using Adyen.Model;
 using Adyen.Model.StoredValue;
 
 namespace Adyen.Service
 {
+   /// <summary>
+    /// Represents a collection of functions to interact with the API endpoints
+    /// </summary>
     public class StoredValue : AbstractService
     {
         private readonly string _baseUrl;
-        private readonly ServiceResource _issue;
-        private readonly ServiceResource _changeStatus;
-        private readonly ServiceResource _load;
-        private readonly ServiceResource _checkBalance;
-        private readonly ServiceResource _mergeBalance;
-        private readonly ServiceResource _voidTransaction;
         
-        public StoredValue(Client client) :  base(client)
+        public StoredValue(Client client) : base(client)
         {
-            _baseUrl = client.Config.StoredValueEndpoint + "/" + Constants.ClientConfig.StoredValueVersion;
-            _issue = new ServiceResource(this, _baseUrl + "/issue");
-            _changeStatus = new ServiceResource(this, _baseUrl + "/changeStatus");
-            _load = new ServiceResource(this, _baseUrl + "/load");
-            _checkBalance = new ServiceResource(this, _baseUrl + "/checkBalance");
-            _mergeBalance = new ServiceResource(this, _baseUrl + "/mergeBalance");
-            _voidTransaction = new ServiceResource(this, _baseUrl + "/voidTransaction");
+            _baseUrl = client.Config.StoredValueEndpoint + "/" + ClientConfig.StoredValueVersion;
+        }
+    
+        /// <summary>
+        /// Changes the status of the payment method.
+        /// </summary>
+        /// <param name="storedValueStatusChangeRequest"></param>
+        /// <param name="requestOptions">Additional request options.</param>
+        /// <returns>StoredValueStatusChangeResponse</returns>
+        public StoredValueStatusChangeResponse ChangesStatusOfPaymentMethod(StoredValueStatusChangeRequest storedValueStatusChangeRequest, RequestOptions requestOptions = default)
+        {
+            return ChangesStatusOfPaymentMethodAsync(storedValueStatusChangeRequest, requestOptions).GetAwaiter().GetResult();
         }
 
         /// <summary>
-        /// Post /issue API call
+        /// Changes the status of the payment method.
         /// </summary>
-        /// <param name="storedValueIssueRequest"></param>
-        /// <returns>StoredValueIssueResponse</returns>
-        public async Task<StoredValueIssueResponse> IssueAsync(StoredValueIssueRequest storedValueIssueRequest)
+        /// <param name="storedValueStatusChangeRequest"></param>
+        /// <param name="requestOptions">Additional request options.</param>
+        /// <returns>Task of StoredValueStatusChangeResponse</returns>
+        public async Task<StoredValueStatusChangeResponse> ChangesStatusOfPaymentMethodAsync(StoredValueStatusChangeRequest storedValueStatusChangeRequest, RequestOptions requestOptions = default)
         {
-            var jsonRequest = storedValueIssueRequest.ToJson();
-            return await _issue.RequestAsync<StoredValueIssueResponse>(jsonRequest);
+            var endpoint = _baseUrl + "/changeStatus";
+            var resource = new ServiceResource(this, endpoint);
+            return await resource.RequestAsync<StoredValueStatusChangeResponse>(storedValueStatusChangeRequest.ToJson(), requestOptions, new HttpMethod("POST"));
         }
 
         /// <summary>
-        /// Post /issue API call
+        /// Checks the balance.
+        /// </summary>
+        /// <param name="storedValueBalanceCheckRequest"></param>
+        /// <param name="requestOptions">Additional request options.</param>
+        /// <returns>StoredValueBalanceCheckResponse</returns>
+        public StoredValueBalanceCheckResponse ChecksBalance(StoredValueBalanceCheckRequest storedValueBalanceCheckRequest, RequestOptions requestOptions = default)
+        {
+            return ChecksBalanceAsync(storedValueBalanceCheckRequest, requestOptions).GetAwaiter().GetResult();
+        }
+
+        /// <summary>
+        /// Checks the balance.
+        /// </summary>
+        /// <param name="storedValueBalanceCheckRequest"></param>
+        /// <param name="requestOptions">Additional request options.</param>
+        /// <returns>Task of StoredValueBalanceCheckResponse</returns>
+        public async Task<StoredValueBalanceCheckResponse> ChecksBalanceAsync(StoredValueBalanceCheckRequest storedValueBalanceCheckRequest, RequestOptions requestOptions = default)
+        {
+            var endpoint = _baseUrl + "/checkBalance";
+            var resource = new ServiceResource(this, endpoint);
+            return await resource.RequestAsync<StoredValueBalanceCheckResponse>(storedValueBalanceCheckRequest.ToJson(), requestOptions, new HttpMethod("POST"));
+        }
+
+        /// <summary>
+        /// Issues a new card.
         /// </summary>
         /// <param name="storedValueIssueRequest"></param>
+        /// <param name="requestOptions">Additional request options.</param>
         /// <returns>StoredValueIssueResponse</returns>
-        public StoredValueIssueResponse Issue(StoredValueIssueRequest storedValueIssueRequest)
+        public StoredValueIssueResponse IssuesNewCard(StoredValueIssueRequest storedValueIssueRequest, RequestOptions requestOptions = default)
         {
-            return IssueAsync(storedValueIssueRequest).ConfigureAwait(false).GetAwaiter().GetResult();
+            return IssuesNewCardAsync(storedValueIssueRequest, requestOptions).GetAwaiter().GetResult();
         }
-        
+
         /// <summary>
-        /// Post /changeStatus API call
+        /// Issues a new card.
         /// </summary>
-        /// <param name="storedValueStatusChangeRequest"></param>
-        /// <returns>StoredValueStatusChangeResponse</returns>
-        public async Task<StoredValueStatusChangeResponse> ChangeStatusAsync(StoredValueStatusChangeRequest storedValueStatusChangeRequest)
+        /// <param name="storedValueIssueRequest"></param>
+        /// <param name="requestOptions">Additional request options.</param>
+        /// <returns>Task of StoredValueIssueResponse</returns>
+        public async Task<StoredValueIssueResponse> IssuesNewCardAsync(StoredValueIssueRequest storedValueIssueRequest, RequestOptions requestOptions = default)
         {
-            var jsonRequest = storedValueStatusChangeRequest.ToJson();
-            return await _changeStatus.RequestAsync<StoredValueStatusChangeResponse>(jsonRequest);
+            var endpoint = _baseUrl + "/issue";
+            var resource = new ServiceResource(this, endpoint);
+            return await resource.RequestAsync<StoredValueIssueResponse>(storedValueIssueRequest.ToJson(), requestOptions, new HttpMethod("POST"));
         }
-        
+
         /// <summary>
-        /// Post /changeStatus API call
-        /// </summary>
-        /// <param name="storedValueStatusChangeRequest"></param>
-        /// <returns>StoredValueStatusChangeResponse</returns>
-        public StoredValueStatusChangeResponse ChangeStatus(StoredValueStatusChangeRequest storedValueStatusChangeRequest)
-        {
-            return ChangeStatusAsync(storedValueStatusChangeRequest).ConfigureAwait(false).GetAwaiter().GetResult();
-        }
-        
-        /// <summary>
-        /// Post /load API call
+        /// Loads the payment method.
         /// </summary>
         /// <param name="storedValueLoadRequest"></param>
+        /// <param name="requestOptions">Additional request options.</param>
         /// <returns>StoredValueLoadResponse</returns>
-        public async Task<StoredValueLoadResponse> LoadAsync(StoredValueLoadRequest storedValueLoadRequest)
+        public StoredValueLoadResponse LoadsPaymentMethod(StoredValueLoadRequest storedValueLoadRequest, RequestOptions requestOptions = default)
         {
-            var jsonRequest = storedValueLoadRequest.ToJson();
-            return await _load.RequestAsync<StoredValueLoadResponse>(jsonRequest);
+            return LoadsPaymentMethodAsync(storedValueLoadRequest, requestOptions).GetAwaiter().GetResult();
         }
-        
+
         /// <summary>
-        /// Post /load API call
+        /// Loads the payment method.
         /// </summary>
         /// <param name="storedValueLoadRequest"></param>
-        /// <returns>StoredValueLoadResponse</returns>
-        public StoredValueLoadResponse Load(StoredValueLoadRequest storedValueLoadRequest)
+        /// <param name="requestOptions">Additional request options.</param>
+        /// <returns>Task of StoredValueLoadResponse</returns>
+        public async Task<StoredValueLoadResponse> LoadsPaymentMethodAsync(StoredValueLoadRequest storedValueLoadRequest, RequestOptions requestOptions = default)
         {
-            return LoadAsync(storedValueLoadRequest).ConfigureAwait(false).GetAwaiter().GetResult();
+            var endpoint = _baseUrl + "/load";
+            var resource = new ServiceResource(this, endpoint);
+            return await resource.RequestAsync<StoredValueLoadResponse>(storedValueLoadRequest.ToJson(), requestOptions, new HttpMethod("POST"));
         }
-        
+
         /// <summary>
-        /// Post /checkBalance API call
-        /// </summary>
-        /// <param name="storedValueBalanceCheckRequest"></param>
-        /// <returns>StoredValueBalanceCheckResponse</returns>
-        public async Task<StoredValueBalanceCheckResponse> CheckBalanceAsync(StoredValueBalanceCheckRequest storedValueBalanceCheckRequest)
-        {
-            var jsonRequest = storedValueBalanceCheckRequest.ToJson();
-            return await _checkBalance.RequestAsync<StoredValueBalanceCheckResponse>(jsonRequest);
-        }
-        
-        /// <summary>
-        /// Post /checkBalance API call
-        /// </summary>
-        /// <param name="storedValueBalanceCheckRequest"></param>
-        /// <returns>StoredValueBalanceCheckResponse</returns>
-        public StoredValueBalanceCheckResponse CheckBalance(StoredValueBalanceCheckRequest storedValueBalanceCheckRequest)
-        {
-            return CheckBalanceAsync(storedValueBalanceCheckRequest).ConfigureAwait(false).GetAwaiter().GetResult();
-        }
-        
-        /// <summary>
-        /// Post /mergeBalance API call
+        /// Merge the balance of two cards.
         /// </summary>
         /// <param name="storedValueBalanceMergeRequest"></param>
+        /// <param name="requestOptions">Additional request options.</param>
         /// <returns>StoredValueBalanceMergeResponse</returns>
-        public async Task<StoredValueBalanceMergeResponse> MergeBalanceAsync(StoredValueBalanceMergeRequest storedValueBalanceMergeRequest)
+        public StoredValueBalanceMergeResponse MergeBalanceOfTwoCards(StoredValueBalanceMergeRequest storedValueBalanceMergeRequest, RequestOptions requestOptions = default)
         {
-            var jsonRequest = storedValueBalanceMergeRequest.ToJson();
-            return await _mergeBalance.RequestAsync<StoredValueBalanceMergeResponse>(jsonRequest);
+            return MergeBalanceOfTwoCardsAsync(storedValueBalanceMergeRequest, requestOptions).GetAwaiter().GetResult();
         }
-        
+
         /// <summary>
-        /// Post /mergeBalance API call
+        /// Merge the balance of two cards.
         /// </summary>
         /// <param name="storedValueBalanceMergeRequest"></param>
-        /// <returns>StoredValueBalanceMergeResponse</returns>
-        public StoredValueBalanceMergeResponse MergeBalance(StoredValueBalanceMergeRequest storedValueBalanceMergeRequest)
+        /// <param name="requestOptions">Additional request options.</param>
+        /// <returns>Task of StoredValueBalanceMergeResponse</returns>
+        public async Task<StoredValueBalanceMergeResponse> MergeBalanceOfTwoCardsAsync(StoredValueBalanceMergeRequest storedValueBalanceMergeRequest, RequestOptions requestOptions = default)
         {
-            return MergeBalanceAsync(storedValueBalanceMergeRequest).ConfigureAwait(false).GetAwaiter().GetResult();
+            var endpoint = _baseUrl + "/mergeBalance";
+            var resource = new ServiceResource(this, endpoint);
+            return await resource.RequestAsync<StoredValueBalanceMergeResponse>(storedValueBalanceMergeRequest.ToJson(), requestOptions, new HttpMethod("POST"));
         }
-        
+
         /// <summary>
-        /// Post /voidTransaction API call
+        /// Voids a transaction.
         /// </summary>
         /// <param name="storedValueVoidRequest"></param>
+        /// <param name="requestOptions">Additional request options.</param>
         /// <returns>StoredValueVoidResponse</returns>
-        public async Task<StoredValueVoidResponse> VoidTransactionAsync(StoredValueVoidRequest storedValueVoidRequest)
+        public StoredValueVoidResponse VoidsTransaction(StoredValueVoidRequest storedValueVoidRequest, RequestOptions requestOptions = default)
         {
-            var jsonRequest = storedValueVoidRequest.ToJson();
-            return await _voidTransaction.RequestAsync<StoredValueVoidResponse>(jsonRequest);
+            return VoidsTransactionAsync(storedValueVoidRequest, requestOptions).GetAwaiter().GetResult();
         }
-        
+
         /// <summary>
-        /// Post /voidTransaction API call
+        /// Voids a transaction.
         /// </summary>
         /// <param name="storedValueVoidRequest"></param>
-        /// <returns>StoredValueVoidResponse</returns>
-        public StoredValueVoidResponse VoidTransaction(StoredValueVoidRequest storedValueVoidRequest)
+        /// <param name="requestOptions">Additional request options.</param>
+        /// <returns>Task of StoredValueVoidResponse</returns>
+        public async Task<StoredValueVoidResponse> VoidsTransactionAsync(StoredValueVoidRequest storedValueVoidRequest, RequestOptions requestOptions = default)
         {
-            return VoidTransactionAsync(storedValueVoidRequest).ConfigureAwait(false).GetAwaiter().GetResult();
+            var endpoint = _baseUrl + "/voidTransaction";
+            var resource = new ServiceResource(this, endpoint);
+            return await resource.RequestAsync<StoredValueVoidResponse>(storedValueVoidRequest.ToJson(), requestOptions, new HttpMethod("POST"));
         }
     }
 }
