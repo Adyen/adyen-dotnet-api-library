@@ -28,7 +28,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.Collections.Generic;
 using System.Text;
 using Adyen.Model.MarketPay;
-using Adyen.Model.Payments;
+using Adyen.Model.ClassicPayments;
 using Newtonsoft.Json;
 using Account = Adyen.Service.Account;
 

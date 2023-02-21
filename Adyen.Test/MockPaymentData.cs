@@ -21,7 +21,7 @@
 //  */
 #endregion
 
-using Adyen.Model.Payments;
+using Adyen.Model.ClassicPayments;
 using System;
 using System.Collections.Generic;
 using Adyen.Constants;

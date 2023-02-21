@@ -4,13 +4,14 @@ using Adyen.HttpClient;
 using Adyen.Model.Checkout;
 using Adyen.Service;
 using Adyen.Service.Checkout;
+using Adyen.Service.ClassicPayments;
 using Adyen.Service.Resource.Checkout;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using Amount = Adyen.Model.Payments.Amount;
-using Card = Adyen.Model.Payments.Card;
+using Amount = Adyen.Model.ClassicPayments.Amount;
+using Card = Adyen.Model.ClassicPayments.Card;
 using Environment = Adyen.Model.Environment;
-using PaymentRequest = Adyen.Model.Payments.PaymentRequest;
-using Recurring = Adyen.Model.Payments.Recurring;
+using PaymentRequest = Adyen.Model.ClassicPayments.PaymentRequest;
+using Recurring = Adyen.Model.ClassicPayments.Recurring;
 
 namespace Adyen.IntegrationTest
 {
@@ -33,7 +34,7 @@ namespace Adyen.IntegrationTest
         [TestMethod]
         public void TestClassicPaymentErrorHandling()
         {
-            var payments = new Payment(_client);
+            var payments = new PaymentService(_client);
             var request = new PaymentRequest {
                 Amount = new Amount(){
                     Value = 1500,
@@ -58,7 +59,7 @@ namespace Adyen.IntegrationTest
             };
             try
             {
-                payments.Authorise(request);
+                payments.CreateAuthorisation(request);
             }
             catch(HttpClientException ex)
             {

@@ -1,11 +1,12 @@
 using System;
-using Adyen.Model.Payments;
+using Adyen.Model.ClassicPayments;
 using Adyen.Service;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using Adyen.HttpClient;
 using Adyen.Model.StoredValue;
+using Adyen.Service.ClassicPayments;
 using Environment = Adyen.Model.Environment;
 
 namespace Adyen.IntegrationTest
@@ -99,10 +100,10 @@ namespace Adyen.IntegrationTest
                 PspReference = GetTestPspReference()
             };
             var client = CreateApiKeyTestClient();
-            var payment = new Payment(client);
+            var payment = new PaymentService(client);
             try
             {
-                payment.GetAuthenticationResult(authenticationResultRequest);
+                payment.GetThe3dsAuthenticationResult(authenticationResultRequest);
             }
             catch (HttpClientException ex)
             {
