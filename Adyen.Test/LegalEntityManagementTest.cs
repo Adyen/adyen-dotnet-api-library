@@ -188,7 +188,7 @@ namespace Adyen.Test
         public void GetTermsOfServiceStatus()
         {
             var client = CreateMockTestClientApiKeyBasedRequestAsync("Mocks/legalentitymanagement/TermsOfServiceStatus.json");
-            var service = new TermsOfServiceService(client);
+            var service = new TermsOfService(client);
             var response = service.GetTermsOfServiceStatus("id");
             Assert.AreEqual(response.TermsOfServiceTypes[0], CalculateTermsOfServiceStatusResponse.TermsOfServiceTypesEnum.AdyenIssuing);
         }

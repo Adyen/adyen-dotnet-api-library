@@ -25,11 +25,11 @@ namespace Adyen.Service.LegalEntityManagement
     /// <summary>
     /// Represents a collection of functions to interact with the API endpoints
     /// </summary>
-    public class TermsOfServiceService : AbstractService
+    public class TermsOfService : AbstractService
     {
         private readonly string _baseUrl;
         
-        public TermsOfServiceService(Client client) : base(client)
+        public TermsOfService(Client client) : base(client)
         {
             _baseUrl = client.Config.LegalEntityManagementEndpoint + "/" + ClientConfig.LegalEntityManagementVersion;
         }
