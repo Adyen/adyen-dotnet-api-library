@@ -35,14 +35,14 @@ namespace Adyen.Test
         [TestMethod]
         public void Get3dsAvailabilitySuccessMockedTest()
         {
-            var client = CreateMockTestClientApiKeyBasedRequest("Mocks/binlookup/get3dsavailability-success.json");
+            var client = CreateMockTestClientApiKeyBasedRequestAsync("Mocks/binlookup/get3dsavailability-success.json");
             var binLookup = new BinLookup(client);
             var threeDsAvailabilityRequest = new ThreeDSAvailabilityRequest
             {
                 MerchantAccount = "merchantAccount",
                 CardNumber = "4111111111111111"
             };
-            var threeDsAvailabilityResponse = binLookup.ThreeDsAvailability(threeDsAvailabilityRequest);
+            var threeDsAvailabilityResponse = binLookup.Get3dsAvailability(threeDsAvailabilityRequest);
             Assert.AreEqual("F013371337", threeDsAvailabilityResponse.DsPublicKeys[0].DirectoryServerId);
             Assert.AreEqual("visa", threeDsAvailabilityResponse.DsPublicKeys[0].Brand);
             Assert.AreEqual("411111111111", threeDsAvailabilityResponse.ThreeDS2CardRangeDetails[0].StartRange);
@@ -56,7 +56,7 @@ namespace Adyen.Test
         [TestMethod]
         public void GetCostEstimateSuccessMockedTest()
         {
-            var client = CreateMockTestClientApiKeyBasedRequest("Mocks/binlookup/getcostestimate-success.json");
+            var client = CreateMockTestClientApiKeyBasedRequestAsync("Mocks/binlookup/getcostestimate-success.json");
             var binLookup = new BinLookup(client);
             var costEstimateRequest = new CostEstimateRequest();
             var amount = new Amount
@@ -81,7 +81,7 @@ namespace Adyen.Test
             };
             costEstimateRequest.MerchantDetails = (merchantDetails);
             costEstimateRequest.ShopperInteraction = CostEstimateRequest.ShopperInteractionEnum.Ecommerce;
-            var costEstimateResponse = binLookup.CostEstimate(costEstimateRequest);
+            var costEstimateResponse = binLookup.GetCostEstimate(costEstimateRequest);
             Assert.AreEqual("1111", costEstimateResponse.CardBin.Summary);
             Assert.AreEqual("Unsupported", costEstimateResponse.ResultCode);
             Assert.AreEqual("ZERO", costEstimateResponse.SurchargeType);
