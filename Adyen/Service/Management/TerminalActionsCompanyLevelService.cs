@@ -14,6 +14,7 @@ using System;
 using System.Collections.Generic;
 using System.Net.Http;
 using System.Threading.Tasks;
+using Adyen.Constants;
 using Adyen.Model;
 using Adyen.Service.Resource;
 using Adyen.Model.Management;
@@ -24,9 +25,14 @@ namespace Adyen.Service.Management
     /// <summary>
     /// Represents a collection of functions to interact with the API endpoints
     /// </summary>
-    public class TerminalActionsCompanyLevelApi : AbstractService
+    public class TerminalActionsCompanyLevelService : AbstractService
     {
-        public TerminalActionsCompanyLevelApi(Client client) : base(client) {}
+        private readonly string _baseUrl;
+        
+        public TerminalActionsCompanyLevelService(Client client) : base(client)
+        {
+            _baseUrl = client.Config.ManagementEndpoint + "/" + ClientConfig.ManagementVersion;
+        }
     
         /// <summary>
         /// Get a list of Android apps
@@ -55,10 +61,9 @@ namespace Adyen.Service.Management
             var queryParams = new Dictionary<string, string>();
             if (pageNumber != null) queryParams.Add("pageNumber", pageNumber.ToString());
             if (pageSize != null) queryParams.Add("pageSize", pageSize.ToString());
-            var endpoint = $"/companies/{companyId}/androidApps" + ToQueryString(queryParams);
-            var resource = new ManagementResource(this, endpoint);
-            var jsonResult = await resource.RequestAsync(null, requestOptions, new HttpMethod("GET"));
-            return JsonConvert.DeserializeObject<AndroidAppsResponse>(jsonResult);
+            var endpoint = _baseUrl + $"/companies/{companyId}/androidApps" + ToQueryString(queryParams);
+            var resource = new ServiceResource(this, endpoint);
+            return await resource.RequestAsync<AndroidAppsResponse>(null, requestOptions, new HttpMethod("GET"));
         }
 
         /// <summary>
@@ -88,10 +93,9 @@ namespace Adyen.Service.Management
             var queryParams = new Dictionary<string, string>();
             if (pageNumber != null) queryParams.Add("pageNumber", pageNumber.ToString());
             if (pageSize != null) queryParams.Add("pageSize", pageSize.ToString());
-            var endpoint = $"/companies/{companyId}/androidCertificates" + ToQueryString(queryParams);
-            var resource = new ManagementResource(this, endpoint);
-            var jsonResult = await resource.RequestAsync(null, requestOptions, new HttpMethod("GET"));
-            return JsonConvert.DeserializeObject<AndroidCertificatesResponse>(jsonResult);
+            var endpoint = _baseUrl + $"/companies/{companyId}/androidCertificates" + ToQueryString(queryParams);
+            var resource = new ServiceResource(this, endpoint);
+            return await resource.RequestAsync<AndroidCertificatesResponse>(null, requestOptions, new HttpMethod("GET"));
         }
 
         /// <summary>
@@ -127,10 +131,9 @@ namespace Adyen.Service.Management
             if (pageSize != null) queryParams.Add("pageSize", pageSize.ToString());
             if (status != null) queryParams.Add("status", status);
             if (type != null) queryParams.Add("type", type);
-            var endpoint = $"/companies/{companyId}/terminalActions" + ToQueryString(queryParams);
-            var resource = new ManagementResource(this, endpoint);
-            var jsonResult = await resource.RequestAsync(null, requestOptions, new HttpMethod("GET"));
-            return JsonConvert.DeserializeObject<ListExternalTerminalActionsResponse>(jsonResult);
+            var endpoint = _baseUrl + $"/companies/{companyId}/terminalActions" + ToQueryString(queryParams);
+            var resource = new ServiceResource(this, endpoint);
+            return await resource.RequestAsync<ListExternalTerminalActionsResponse>(null, requestOptions, new HttpMethod("GET"));
         }
 
         /// <summary>
@@ -154,10 +157,9 @@ namespace Adyen.Service.Management
         /// <returns>Task of ExternalTerminalAction</returns>
         public async Task<ExternalTerminalAction> GetTerminalActionAsync(string companyId, string actionId, RequestOptions requestOptions = default)
         {
-            var endpoint = $"/companies/{companyId}/terminalActions/{actionId}";
-            var resource = new ManagementResource(this, endpoint);
-            var jsonResult = await resource.RequestAsync(null, requestOptions, new HttpMethod("GET"));
-            return JsonConvert.DeserializeObject<ExternalTerminalAction>(jsonResult);
+            var endpoint = _baseUrl + $"/companies/{companyId}/terminalActions/{actionId}";
+            var resource = new ServiceResource(this, endpoint);
+            return await resource.RequestAsync<ExternalTerminalAction>(null, requestOptions, new HttpMethod("GET"));
         }
 
     }

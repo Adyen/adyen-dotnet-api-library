@@ -14,6 +14,7 @@ using System;
 using System.Collections.Generic;
 using System.Net.Http;
 using System.Threading.Tasks;
+using Adyen.Constants;
 using Adyen.Model;
 using Adyen.Service.Resource;
 using Adyen.Model.Management;
@@ -24,9 +25,14 @@ namespace Adyen.Service.Management
     /// <summary>
     /// Represents a collection of functions to interact with the API endpoints
     /// </summary>
-    public class AllowedOriginsCompanyLevelApi : AbstractService
+    public class AllowedOriginsCompanyLevelService : AbstractService
     {
-        public AllowedOriginsCompanyLevelApi(Client client) : base(client) {}
+        private readonly string _baseUrl;
+        
+        public AllowedOriginsCompanyLevelService(Client client) : base(client)
+        {
+            _baseUrl = client.Config.ManagementEndpoint + "/" + ClientConfig.ManagementVersion;
+        }
     
         /// <summary>
         /// Delete an allowed origin
@@ -49,8 +55,8 @@ namespace Adyen.Service.Management
         /// <param name="requestOptions">Additional request options.</param>
         public async Task DeleteAllowedOriginAsync(string companyId, string apiCredentialId, string originId, RequestOptions requestOptions = default)
         {
-            var endpoint = $"/companies/{companyId}/apiCredentials/{apiCredentialId}/allowedOrigins/{originId}";
-            var resource = new ManagementResource(this, endpoint);
+            var endpoint = _baseUrl + $"/companies/{companyId}/apiCredentials/{apiCredentialId}/allowedOrigins/{originId}";
+            var resource = new ServiceResource(this, endpoint);
             await resource.RequestAsync(null, requestOptions, new HttpMethod("DELETE"));
         }
 
@@ -75,10 +81,9 @@ namespace Adyen.Service.Management
         /// <returns>Task of AllowedOriginsResponse</returns>
         public async Task<AllowedOriginsResponse> ListAllowedOriginsAsync(string companyId, string apiCredentialId, RequestOptions requestOptions = default)
         {
-            var endpoint = $"/companies/{companyId}/apiCredentials/{apiCredentialId}/allowedOrigins";
-            var resource = new ManagementResource(this, endpoint);
-            var jsonResult = await resource.RequestAsync(null, requestOptions, new HttpMethod("GET"));
-            return JsonConvert.DeserializeObject<AllowedOriginsResponse>(jsonResult);
+            var endpoint = _baseUrl + $"/companies/{companyId}/apiCredentials/{apiCredentialId}/allowedOrigins";
+            var resource = new ServiceResource(this, endpoint);
+            return await resource.RequestAsync<AllowedOriginsResponse>(null, requestOptions, new HttpMethod("GET"));
         }
 
         /// <summary>
@@ -104,10 +109,9 @@ namespace Adyen.Service.Management
         /// <returns>Task of AllowedOrigin</returns>
         public async Task<AllowedOrigin> GetAllowedOriginAsync(string companyId, string apiCredentialId, string originId, RequestOptions requestOptions = default)
         {
-            var endpoint = $"/companies/{companyId}/apiCredentials/{apiCredentialId}/allowedOrigins/{originId}";
-            var resource = new ManagementResource(this, endpoint);
-            var jsonResult = await resource.RequestAsync(null, requestOptions, new HttpMethod("GET"));
-            return JsonConvert.DeserializeObject<AllowedOrigin>(jsonResult);
+            var endpoint = _baseUrl + $"/companies/{companyId}/apiCredentials/{apiCredentialId}/allowedOrigins/{originId}";
+            var resource = new ServiceResource(this, endpoint);
+            return await resource.RequestAsync<AllowedOrigin>(null, requestOptions, new HttpMethod("GET"));
         }
 
         /// <summary>
@@ -133,10 +137,9 @@ namespace Adyen.Service.Management
         /// <returns>Task of AllowedOriginsResponse</returns>
         public async Task<AllowedOriginsResponse> CreateAllowedOriginAsync(string companyId, string apiCredentialId, AllowedOrigin allowedOrigin, RequestOptions requestOptions = default)
         {
-            var endpoint = $"/companies/{companyId}/apiCredentials/{apiCredentialId}/allowedOrigins";
-            var resource = new ManagementResource(this, endpoint);
-            var jsonResult = await resource.RequestAsync(allowedOrigin.ToJson(), requestOptions, new HttpMethod("POST"));
-            return JsonConvert.DeserializeObject<AllowedOriginsResponse>(jsonResult);
+            var endpoint = _baseUrl + $"/companies/{companyId}/apiCredentials/{apiCredentialId}/allowedOrigins";
+            var resource = new ServiceResource(this, endpoint);
+            return await resource.RequestAsync<AllowedOriginsResponse>(allowedOrigin.ToJson(), requestOptions, new HttpMethod("POST"));
         }
 
     }

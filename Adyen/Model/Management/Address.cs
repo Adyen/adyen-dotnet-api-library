@@ -11,25 +11,27 @@
 */
 
 using System;
-using System.Linq;
-using System.IO;
-using System.Text;
-using System.Text.RegularExpressions;
 using System.Collections;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Linq;
+using System.IO;
 using System.Runtime.Serialization;
+using System.Text;
+using System.Text.RegularExpressions;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
+using Newtonsoft.Json.Linq;
 using System.ComponentModel.DataAnnotations;
+using OpenAPIDateConverter = Adyen.ApiSerialization.OpenAPIDateConverter;
 
 namespace Adyen.Model.Management
 {
     /// <summary>
     /// Address
     /// </summary>
-    [DataContract]
-    public partial class Address :  IEquatable<Address>, IValidatableObject
+    [DataContract(Name = "Address")]
+    public partial class Address : IEquatable<Address>, IValidatableObject
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="Address" /> class.
@@ -56,49 +58,49 @@ namespace Adyen.Model.Management
         /// The name of the city.
         /// </summary>
         /// <value>The name of the city.</value>
-        [DataMember(Name="city", EmitDefaultValue=false)]
+        [DataMember(Name = "city", EmitDefaultValue = false)]
         public string City { get; set; }
 
         /// <summary>
         /// The name of the company.
         /// </summary>
         /// <value>The name of the company.</value>
-        [DataMember(Name="companyName", EmitDefaultValue=false)]
+        [DataMember(Name = "companyName", EmitDefaultValue = false)]
         public string CompanyName { get; set; }
 
         /// <summary>
         /// The two-letter country code, in [ISO 3166-1 alpha-2](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2) format.
         /// </summary>
         /// <value>The two-letter country code, in [ISO 3166-1 alpha-2](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2) format.</value>
-        [DataMember(Name="country", EmitDefaultValue=false)]
+        [DataMember(Name = "country", EmitDefaultValue = false)]
         public string Country { get; set; }
 
         /// <summary>
         /// The postal code.
         /// </summary>
         /// <value>The postal code.</value>
-        [DataMember(Name="postalCode", EmitDefaultValue=false)]
+        [DataMember(Name = "postalCode", EmitDefaultValue = false)]
         public string PostalCode { get; set; }
 
         /// <summary>
         /// The state or province as defined in [ISO 3166-2](https://www.iso.org/standard/72483.html). For example, **ON** for Ontario, Canada.   Applicable for the following countries: - Australia - Brazil - Canada - India - Mexico - New Zealand - United States
         /// </summary>
         /// <value>The state or province as defined in [ISO 3166-2](https://www.iso.org/standard/72483.html). For example, **ON** for Ontario, Canada.   Applicable for the following countries: - Australia - Brazil - Canada - India - Mexico - New Zealand - United States</value>
-        [DataMember(Name="stateOrProvince", EmitDefaultValue=false)]
+        [DataMember(Name = "stateOrProvince", EmitDefaultValue = false)]
         public string StateOrProvince { get; set; }
 
         /// <summary>
         /// The name of the street, and the house or building number.
         /// </summary>
         /// <value>The name of the street, and the house or building number.</value>
-        [DataMember(Name="streetAddress", EmitDefaultValue=false)]
+        [DataMember(Name = "streetAddress", EmitDefaultValue = false)]
         public string StreetAddress { get; set; }
 
         /// <summary>
         /// Additional address details, if any.
         /// </summary>
         /// <value>Additional address details, if any.</value>
-        [DataMember(Name="streetAddress2", EmitDefaultValue=false)]
+        [DataMember(Name = "streetAddress2", EmitDefaultValue = false)]
         public string StreetAddress2 { get; set; }
 
         /// <summary>
@@ -107,7 +109,7 @@ namespace Adyen.Model.Management
         /// <returns>String presentation of the object</returns>
         public override string ToString()
         {
-            var sb = new StringBuilder();
+            StringBuilder sb = new StringBuilder();
             sb.Append("class Address {\n");
             sb.Append("  City: ").Append(City).Append("\n");
             sb.Append("  CompanyName: ").Append(CompanyName).Append("\n");
@@ -147,8 +149,9 @@ namespace Adyen.Model.Management
         public bool Equals(Address input)
         {
             if (input == null)
+            {
                 return false;
-
+            }
             return 
                 (
                     this.City == input.City ||
@@ -197,29 +200,42 @@ namespace Adyen.Model.Management
             {
                 int hashCode = 41;
                 if (this.City != null)
-                    hashCode = hashCode * 59 + this.City.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.City.GetHashCode();
+                }
                 if (this.CompanyName != null)
-                    hashCode = hashCode * 59 + this.CompanyName.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.CompanyName.GetHashCode();
+                }
                 if (this.Country != null)
-                    hashCode = hashCode * 59 + this.Country.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.Country.GetHashCode();
+                }
                 if (this.PostalCode != null)
-                    hashCode = hashCode * 59 + this.PostalCode.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.PostalCode.GetHashCode();
+                }
                 if (this.StateOrProvince != null)
-                    hashCode = hashCode * 59 + this.StateOrProvince.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.StateOrProvince.GetHashCode();
+                }
                 if (this.StreetAddress != null)
-                    hashCode = hashCode * 59 + this.StreetAddress.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.StreetAddress.GetHashCode();
+                }
                 if (this.StreetAddress2 != null)
-                    hashCode = hashCode * 59 + this.StreetAddress2.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.StreetAddress2.GetHashCode();
+                }
                 return hashCode;
             }
         }
-
         /// <summary>
         /// To validate all properties of the instance
         /// </summary>
         /// <param name="validationContext">Validation context</param>
         /// <returns>Validation Result</returns>
-        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+        public IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> Validate(ValidationContext validationContext)
         {
             yield break;
         }

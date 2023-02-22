@@ -14,6 +14,7 @@ using System;
 using System.Collections.Generic;
 using System.Net.Http;
 using System.Threading.Tasks;
+using Adyen.Constants;
 using Adyen.Model;
 using Adyen.Service.Resource;
 using Adyen.Model.Management;
@@ -24,35 +25,39 @@ namespace Adyen.Service.Management
     /// <summary>
     /// Represents a collection of functions to interact with the API endpoints
     /// </summary>
-    public class APIKeyMerchantLevelApi : AbstractService
+    public class APIKeyCompanyLevelService : AbstractService
     {
-        public APIKeyMerchantLevelApi(Client client) : base(client) {}
+        private readonly string _baseUrl;
+        
+        public APIKeyCompanyLevelService(Client client) : base(client)
+        {
+            _baseUrl = client.Config.ManagementEndpoint + "/" + ClientConfig.ManagementVersion;
+        }
     
         /// <summary>
         /// Generate new API key
         /// </summary>
-        /// <param name="merchantId">The unique identifier of the merchant account.</param>
+        /// <param name="companyId">The unique identifier of the company account.</param>
         /// <param name="apiCredentialId">Unique identifier of the API credential.</param>
         /// <param name="requestOptions">Additional request options.</param>
         /// <returns>GenerateApiKeyResponse</returns>
-        public GenerateApiKeyResponse GenerateNewApiKey(string merchantId, string apiCredentialId, RequestOptions requestOptions = default)
+        public GenerateApiKeyResponse GenerateNewApiKey(string companyId, string apiCredentialId, RequestOptions requestOptions = default)
         {
-            return GenerateNewApiKeyAsync(merchantId, apiCredentialId, requestOptions).GetAwaiter().GetResult();
+            return GenerateNewApiKeyAsync(companyId, apiCredentialId, requestOptions).GetAwaiter().GetResult();
         }
 
         /// <summary>
         /// Generate new API key
         /// </summary>
-        /// <param name="merchantId">The unique identifier of the merchant account.</param>
+        /// <param name="companyId">The unique identifier of the company account.</param>
         /// <param name="apiCredentialId">Unique identifier of the API credential.</param>
         /// <param name="requestOptions">Additional request options.</param>
         /// <returns>Task of GenerateApiKeyResponse</returns>
-        public async Task<GenerateApiKeyResponse> GenerateNewApiKeyAsync(string merchantId, string apiCredentialId, RequestOptions requestOptions = default)
+        public async Task<GenerateApiKeyResponse> GenerateNewApiKeyAsync(string companyId, string apiCredentialId, RequestOptions requestOptions = default)
         {
-            var endpoint = $"/merchants/{merchantId}/apiCredentials/{apiCredentialId}/generateApiKey";
-            var resource = new ManagementResource(this, endpoint);
-            var jsonResult = await resource.RequestAsync(null, requestOptions, new HttpMethod("POST"));
-            return JsonConvert.DeserializeObject<GenerateApiKeyResponse>(jsonResult);
+            var endpoint = _baseUrl + $"/companies/{companyId}/apiCredentials/{apiCredentialId}/generateApiKey";
+            var resource = new ServiceResource(this, endpoint);
+            return await resource.RequestAsync<GenerateApiKeyResponse>(null, requestOptions, new HttpMethod("POST"));
         }
 
     }

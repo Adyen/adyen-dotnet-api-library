@@ -11,25 +11,27 @@
 */
 
 using System;
-using System.Linq;
-using System.IO;
-using System.Text;
-using System.Text.RegularExpressions;
 using System.Collections;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Linq;
+using System.IO;
 using System.Runtime.Serialization;
+using System.Text;
+using System.Text.RegularExpressions;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
+using Newtonsoft.Json.Linq;
 using System.ComponentModel.DataAnnotations;
+using OpenAPIDateConverter = Adyen.ApiSerialization.OpenAPIDateConverter;
 
 namespace Adyen.Model.Management
 {
     /// <summary>
     /// CreateCompanyApiCredentialRequest
     /// </summary>
-    [DataContract]
-    public partial class CreateCompanyApiCredentialRequest :  IEquatable<CreateCompanyApiCredentialRequest>, IValidatableObject
+    [DataContract(Name = "CreateCompanyApiCredentialRequest")]
+    public partial class CreateCompanyApiCredentialRequest : IEquatable<CreateCompanyApiCredentialRequest>, IValidatableObject
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="CreateCompanyApiCredentialRequest" /> class.
@@ -50,28 +52,28 @@ namespace Adyen.Model.Management
         /// List of [allowed origins](https://docs.adyen.com/development-resources/client-side-authentication#allowed-origins) for the new API credential.
         /// </summary>
         /// <value>List of [allowed origins](https://docs.adyen.com/development-resources/client-side-authentication#allowed-origins) for the new API credential.</value>
-        [DataMember(Name="allowedOrigins", EmitDefaultValue=false)]
+        [DataMember(Name = "allowedOrigins", EmitDefaultValue = false)]
         public List<string> AllowedOrigins { get; set; }
 
         /// <summary>
         /// List of merchant accounts that the API credential has access to.
         /// </summary>
         /// <value>List of merchant accounts that the API credential has access to.</value>
-        [DataMember(Name="associatedMerchantAccounts", EmitDefaultValue=false)]
+        [DataMember(Name = "associatedMerchantAccounts", EmitDefaultValue = false)]
         public List<string> AssociatedMerchantAccounts { get; set; }
 
         /// <summary>
         /// Description of the API credential.
         /// </summary>
         /// <value>Description of the API credential.</value>
-        [DataMember(Name="description", EmitDefaultValue=false)]
+        [DataMember(Name = "description", EmitDefaultValue = false)]
         public string Description { get; set; }
 
         /// <summary>
         /// List of [roles](https://docs.adyen.com/development-resources/api-credentials#roles-1) of the API credential.
         /// </summary>
         /// <value>List of [roles](https://docs.adyen.com/development-resources/api-credentials#roles-1) of the API credential.</value>
-        [DataMember(Name="roles", EmitDefaultValue=false)]
+        [DataMember(Name = "roles", EmitDefaultValue = false)]
         public List<string> Roles { get; set; }
 
         /// <summary>
@@ -80,7 +82,7 @@ namespace Adyen.Model.Management
         /// <returns>String presentation of the object</returns>
         public override string ToString()
         {
-            var sb = new StringBuilder();
+            StringBuilder sb = new StringBuilder();
             sb.Append("class CreateCompanyApiCredentialRequest {\n");
             sb.Append("  AllowedOrigins: ").Append(AllowedOrigins).Append("\n");
             sb.Append("  AssociatedMerchantAccounts: ").Append(AssociatedMerchantAccounts).Append("\n");
@@ -117,8 +119,9 @@ namespace Adyen.Model.Management
         public bool Equals(CreateCompanyApiCredentialRequest input)
         {
             if (input == null)
+            {
                 return false;
-
+            }
             return 
                 (
                     this.AllowedOrigins == input.AllowedOrigins ||
@@ -155,23 +158,30 @@ namespace Adyen.Model.Management
             {
                 int hashCode = 41;
                 if (this.AllowedOrigins != null)
-                    hashCode = hashCode * 59 + this.AllowedOrigins.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.AllowedOrigins.GetHashCode();
+                }
                 if (this.AssociatedMerchantAccounts != null)
-                    hashCode = hashCode * 59 + this.AssociatedMerchantAccounts.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.AssociatedMerchantAccounts.GetHashCode();
+                }
                 if (this.Description != null)
-                    hashCode = hashCode * 59 + this.Description.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.Description.GetHashCode();
+                }
                 if (this.Roles != null)
-                    hashCode = hashCode * 59 + this.Roles.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.Roles.GetHashCode();
+                }
                 return hashCode;
             }
         }
-
         /// <summary>
         /// To validate all properties of the instance
         /// </summary>
         /// <param name="validationContext">Validation context</param>
         /// <returns>Validation Result</returns>
-        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+        public IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> Validate(ValidationContext validationContext)
         {
             yield break;
         }

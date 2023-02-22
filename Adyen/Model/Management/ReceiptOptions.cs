@@ -11,25 +11,27 @@
 */
 
 using System;
-using System.Linq;
-using System.IO;
-using System.Text;
-using System.Text.RegularExpressions;
 using System.Collections;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Linq;
+using System.IO;
 using System.Runtime.Serialization;
+using System.Text;
+using System.Text.RegularExpressions;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
+using Newtonsoft.Json.Linq;
 using System.ComponentModel.DataAnnotations;
+using OpenAPIDateConverter = Adyen.ApiSerialization.OpenAPIDateConverter;
 
 namespace Adyen.Model.Management
 {
     /// <summary>
     /// ReceiptOptions
     /// </summary>
-    [DataContract]
-    public partial class ReceiptOptions :  IEquatable<ReceiptOptions>, IValidatableObject
+    [DataContract(Name = "ReceiptOptions")]
+    public partial class ReceiptOptions : IEquatable<ReceiptOptions>, IValidatableObject
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="ReceiptOptions" /> class.
@@ -46,14 +48,14 @@ namespace Adyen.Model.Management
         /// The receipt logo converted to a Base64-encoded string. The image must be a .bmp file of &lt; 256 KB, dimensions 240 (H) x 384 (W) px.
         /// </summary>
         /// <value>The receipt logo converted to a Base64-encoded string. The image must be a .bmp file of &lt; 256 KB, dimensions 240 (H) x 384 (W) px.</value>
-        [DataMember(Name="logo", EmitDefaultValue=false)]
+        [DataMember(Name = "logo", EmitDefaultValue = false)]
         public string Logo { get; set; }
 
         /// <summary>
         /// Data to print on the receipt as a QR code. This can include static text and the following variables:  - &#x60;${merchantreference}&#x60;: the merchant reference of the transaction. - &#x60;${pspreference}&#x60;: the PSP reference of the transaction.   For example, **http://www.example.com/order/${pspreference}/${merchantreference}**.
         /// </summary>
         /// <value>Data to print on the receipt as a QR code. This can include static text and the following variables:  - &#x60;${merchantreference}&#x60;: the merchant reference of the transaction. - &#x60;${pspreference}&#x60;: the PSP reference of the transaction.   For example, **http://www.example.com/order/${pspreference}/${merchantreference}**.</value>
-        [DataMember(Name="qrCodeData", EmitDefaultValue=false)]
+        [DataMember(Name = "qrCodeData", EmitDefaultValue = false)]
         public string QrCodeData { get; set; }
 
         /// <summary>
@@ -62,7 +64,7 @@ namespace Adyen.Model.Management
         /// <returns>String presentation of the object</returns>
         public override string ToString()
         {
-            var sb = new StringBuilder();
+            StringBuilder sb = new StringBuilder();
             sb.Append("class ReceiptOptions {\n");
             sb.Append("  Logo: ").Append(Logo).Append("\n");
             sb.Append("  QrCodeData: ").Append(QrCodeData).Append("\n");
@@ -97,8 +99,9 @@ namespace Adyen.Model.Management
         public bool Equals(ReceiptOptions input)
         {
             if (input == null)
+            {
                 return false;
-
+            }
             return 
                 (
                     this.Logo == input.Logo ||
@@ -122,26 +125,28 @@ namespace Adyen.Model.Management
             {
                 int hashCode = 41;
                 if (this.Logo != null)
-                    hashCode = hashCode * 59 + this.Logo.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.Logo.GetHashCode();
+                }
                 if (this.QrCodeData != null)
-                    hashCode = hashCode * 59 + this.QrCodeData.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.QrCodeData.GetHashCode();
+                }
                 return hashCode;
             }
         }
-
         /// <summary>
         /// To validate all properties of the instance
         /// </summary>
         /// <param name="validationContext">Validation context</param>
         /// <returns>Validation Result</returns>
-        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+        public IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> Validate(ValidationContext validationContext)
         {
             // Logo (string) maxLength
-            if(this.Logo != null && this.Logo.Length > 350000)
+            if (this.Logo != null && this.Logo.Length > 350000)
             {
                 yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for Logo, length must be less than 350000.", new [] { "Logo" });
             }
-
 
             yield break;
         }

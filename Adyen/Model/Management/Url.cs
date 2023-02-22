@@ -11,25 +11,27 @@
 */
 
 using System;
-using System.Linq;
-using System.IO;
-using System.Text;
-using System.Text.RegularExpressions;
 using System.Collections;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Linq;
+using System.IO;
 using System.Runtime.Serialization;
+using System.Text;
+using System.Text.RegularExpressions;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
+using Newtonsoft.Json.Linq;
 using System.ComponentModel.DataAnnotations;
+using OpenAPIDateConverter = Adyen.ApiSerialization.OpenAPIDateConverter;
 
 namespace Adyen.Model.Management
 {
     /// <summary>
     /// Url
     /// </summary>
-    [DataContract]
-    public partial class Url :  IEquatable<Url>, IValidatableObject
+    [DataContract(Name = "Url")]
+    public partial class Url : IEquatable<Url>, IValidatableObject
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="Url" /> class.
@@ -48,21 +50,21 @@ namespace Adyen.Model.Management
         /// The password for authentication of the notifications.
         /// </summary>
         /// <value>The password for authentication of the notifications.</value>
-        [DataMember(Name="password", EmitDefaultValue=false)]
+        [DataMember(Name = "password", EmitDefaultValue = false)]
         public string Password { get; set; }
 
         /// <summary>
         /// The URL in the format: http(s)://domain.com.
         /// </summary>
         /// <value>The URL in the format: http(s)://domain.com.</value>
-        [DataMember(Name="url", EmitDefaultValue=false)]
+        [DataMember(Name = "url", EmitDefaultValue = false)]
         public string _Url { get; set; }
 
         /// <summary>
         /// The username for authentication of the notifications.
         /// </summary>
         /// <value>The username for authentication of the notifications.</value>
-        [DataMember(Name="username", EmitDefaultValue=false)]
+        [DataMember(Name = "username", EmitDefaultValue = false)]
         public string Username { get; set; }
 
         /// <summary>
@@ -71,7 +73,7 @@ namespace Adyen.Model.Management
         /// <returns>String presentation of the object</returns>
         public override string ToString()
         {
-            var sb = new StringBuilder();
+            StringBuilder sb = new StringBuilder();
             sb.Append("class Url {\n");
             sb.Append("  Password: ").Append(Password).Append("\n");
             sb.Append("  _Url: ").Append(_Url).Append("\n");
@@ -107,8 +109,9 @@ namespace Adyen.Model.Management
         public bool Equals(Url input)
         {
             if (input == null)
+            {
                 return false;
-
+            }
             return 
                 (
                     this.Password == input.Password ||
@@ -137,21 +140,26 @@ namespace Adyen.Model.Management
             {
                 int hashCode = 41;
                 if (this.Password != null)
-                    hashCode = hashCode * 59 + this.Password.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.Password.GetHashCode();
+                }
                 if (this._Url != null)
-                    hashCode = hashCode * 59 + this._Url.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this._Url.GetHashCode();
+                }
                 if (this.Username != null)
-                    hashCode = hashCode * 59 + this.Username.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.Username.GetHashCode();
+                }
                 return hashCode;
             }
         }
-
         /// <summary>
         /// To validate all properties of the instance
         /// </summary>
         /// <param name="validationContext">Validation context</param>
         /// <returns>Validation Result</returns>
-        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+        public IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> Validate(ValidationContext validationContext)
         {
             yield break;
         }

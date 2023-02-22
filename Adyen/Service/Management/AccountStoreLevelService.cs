@@ -14,6 +14,7 @@ using System;
 using System.Collections.Generic;
 using System.Net.Http;
 using System.Threading.Tasks;
+using Adyen.Constants;
 using Adyen.Model;
 using Adyen.Service.Resource;
 using Adyen.Model.Management;
@@ -24,9 +25,14 @@ namespace Adyen.Service.Management
     /// <summary>
     /// Represents a collection of functions to interact with the API endpoints
     /// </summary>
-    public class AccountStoreLevelApi : AbstractService
+    public class AccountStoreLevelService : AbstractService
     {
-        public AccountStoreLevelApi(Client client) : base(client) {}
+        private readonly string _baseUrl;
+        
+        public AccountStoreLevelService(Client client) : base(client)
+        {
+            _baseUrl = client.Config.ManagementEndpoint + "/" + ClientConfig.ManagementVersion;
+        }
     
         /// <summary>
         /// Get a list of stores
@@ -58,10 +64,9 @@ namespace Adyen.Service.Management
             if (pageNumber != null) queryParams.Add("pageNumber", pageNumber.ToString());
             if (pageSize != null) queryParams.Add("pageSize", pageSize.ToString());
             if (reference != null) queryParams.Add("reference", reference);
-            var endpoint = $"/merchants/{merchantId}/stores" + ToQueryString(queryParams);
-            var resource = new ManagementResource(this, endpoint);
-            var jsonResult = await resource.RequestAsync(null, requestOptions, new HttpMethod("GET"));
-            return JsonConvert.DeserializeObject<ListStoresResponse>(jsonResult);
+            var endpoint = _baseUrl + $"/merchants/{merchantId}/stores" + ToQueryString(queryParams);
+            var resource = new ServiceResource(this, endpoint);
+            return await resource.RequestAsync<ListStoresResponse>(null, requestOptions, new HttpMethod("GET"));
         }
 
         /// <summary>
@@ -85,10 +90,9 @@ namespace Adyen.Service.Management
         /// <returns>Task of Store</returns>
         public async Task<Store> GetStoreAsync(string merchantId, string storeId, RequestOptions requestOptions = default)
         {
-            var endpoint = $"/merchants/{merchantId}/stores/{storeId}";
-            var resource = new ManagementResource(this, endpoint);
-            var jsonResult = await resource.RequestAsync(null, requestOptions, new HttpMethod("GET"));
-            return JsonConvert.DeserializeObject<Store>(jsonResult);
+            var endpoint = _baseUrl + $"/merchants/{merchantId}/stores/{storeId}";
+            var resource = new ServiceResource(this, endpoint);
+            return await resource.RequestAsync<Store>(null, requestOptions, new HttpMethod("GET"));
         }
 
         /// <summary>
@@ -122,10 +126,9 @@ namespace Adyen.Service.Management
             if (pageSize != null) queryParams.Add("pageSize", pageSize.ToString());
             if (reference != null) queryParams.Add("reference", reference);
             if (merchantId != null) queryParams.Add("merchantId", merchantId);
-            var endpoint = "/stores" + ToQueryString(queryParams);
-            var resource = new ManagementResource(this, endpoint);
-            var jsonResult = await resource.RequestAsync(null, requestOptions, new HttpMethod("GET"));
-            return JsonConvert.DeserializeObject<ListStoresResponse>(jsonResult);
+            var endpoint = _baseUrl + "/stores" + ToQueryString(queryParams);
+            var resource = new ServiceResource(this, endpoint);
+            return await resource.RequestAsync<ListStoresResponse>(null, requestOptions, new HttpMethod("GET"));
         }
 
         /// <summary>
@@ -147,10 +150,9 @@ namespace Adyen.Service.Management
         /// <returns>Task of Store</returns>
         public async Task<Store> GetStoreByIdAsync(string storeId, RequestOptions requestOptions = default)
         {
-            var endpoint = $"/stores/{storeId}";
-            var resource = new ManagementResource(this, endpoint);
-            var jsonResult = await resource.RequestAsync(null, requestOptions, new HttpMethod("GET"));
-            return JsonConvert.DeserializeObject<Store>(jsonResult);
+            var endpoint = _baseUrl + $"/stores/{storeId}";
+            var resource = new ServiceResource(this, endpoint);
+            return await resource.RequestAsync<Store>(null, requestOptions, new HttpMethod("GET"));
         }
 
         /// <summary>
@@ -176,10 +178,9 @@ namespace Adyen.Service.Management
         /// <returns>Task of Store</returns>
         public async Task<Store> UpdateStoreAsync(string merchantId, string storeId, UpdateStoreRequest updateStoreRequest, RequestOptions requestOptions = default)
         {
-            var endpoint = $"/merchants/{merchantId}/stores/{storeId}";
-            var resource = new ManagementResource(this, endpoint);
-            var jsonResult = await resource.RequestAsync(updateStoreRequest.ToJson(), requestOptions, new HttpMethod("PATCH"));
-            return JsonConvert.DeserializeObject<Store>(jsonResult);
+            var endpoint = _baseUrl + $"/merchants/{merchantId}/stores/{storeId}";
+            var resource = new ServiceResource(this, endpoint);
+            return await resource.RequestAsync<Store>(updateStoreRequest.ToJson(), requestOptions, new HttpMethod("PATCH"));
         }
 
         /// <summary>
@@ -203,10 +204,9 @@ namespace Adyen.Service.Management
         /// <returns>Task of Store</returns>
         public async Task<Store> UpdateStoreByIdAsync(string storeId, UpdateStoreRequest updateStoreRequest, RequestOptions requestOptions = default)
         {
-            var endpoint = $"/stores/{storeId}";
-            var resource = new ManagementResource(this, endpoint);
-            var jsonResult = await resource.RequestAsync(updateStoreRequest.ToJson(), requestOptions, new HttpMethod("PATCH"));
-            return JsonConvert.DeserializeObject<Store>(jsonResult);
+            var endpoint = _baseUrl + $"/stores/{storeId}";
+            var resource = new ServiceResource(this, endpoint);
+            return await resource.RequestAsync<Store>(updateStoreRequest.ToJson(), requestOptions, new HttpMethod("PATCH"));
         }
 
         /// <summary>
@@ -230,10 +230,9 @@ namespace Adyen.Service.Management
         /// <returns>Task of Store</returns>
         public async Task<Store> CreateStoreByMerchantIdAsync(string merchantId, StoreCreationRequest storeCreationRequest, RequestOptions requestOptions = default)
         {
-            var endpoint = $"/merchants/{merchantId}/stores";
-            var resource = new ManagementResource(this, endpoint);
-            var jsonResult = await resource.RequestAsync(storeCreationRequest.ToJson(), requestOptions, new HttpMethod("POST"));
-            return JsonConvert.DeserializeObject<Store>(jsonResult);
+            var endpoint = _baseUrl + $"/merchants/{merchantId}/stores";
+            var resource = new ServiceResource(this, endpoint);
+            return await resource.RequestAsync<Store>(storeCreationRequest.ToJson(), requestOptions, new HttpMethod("POST"));
         }
 
         /// <summary>
@@ -255,10 +254,9 @@ namespace Adyen.Service.Management
         /// <returns>Task of Store</returns>
         public async Task<Store> CreateStoreAsync(StoreCreationWithMerchantCodeRequest storeCreationWithMerchantCodeRequest, RequestOptions requestOptions = default)
         {
-            var endpoint = "/stores";
-            var resource = new ManagementResource(this, endpoint);
-            var jsonResult = await resource.RequestAsync(storeCreationWithMerchantCodeRequest.ToJson(), requestOptions, new HttpMethod("POST"));
-            return JsonConvert.DeserializeObject<Store>(jsonResult);
+            var endpoint = _baseUrl + "/stores";
+            var resource = new ServiceResource(this, endpoint);
+            return await resource.RequestAsync<Store>(storeCreationWithMerchantCodeRequest.ToJson(), requestOptions, new HttpMethod("POST"));
         }
 
     }

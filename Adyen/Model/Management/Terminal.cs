@@ -11,25 +11,27 @@
 */
 
 using System;
-using System.Linq;
-using System.IO;
-using System.Text;
-using System.Text.RegularExpressions;
 using System.Collections;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Linq;
+using System.IO;
 using System.Runtime.Serialization;
+using System.Text;
+using System.Text.RegularExpressions;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
+using Newtonsoft.Json.Linq;
 using System.ComponentModel.DataAnnotations;
+using OpenAPIDateConverter = Adyen.ApiSerialization.OpenAPIDateConverter;
 
 namespace Adyen.Model.Management
 {
     /// <summary>
     /// Terminal
     /// </summary>
-    [DataContract]
-    public partial class Terminal :  IEquatable<Terminal>, IValidatableObject
+    [DataContract(Name = "Terminal")]
+    public partial class Terminal : IEquatable<Terminal>, IValidatableObject
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="Terminal" /> class.
@@ -86,154 +88,154 @@ namespace Adyen.Model.Management
         /// The [assignment status](https://docs.adyen.com/point-of-sale/automating-terminal-management/assign-terminals-api) of the terminal. If true, the terminal is assigned. If false, the terminal is in inventory and can&#39;t be boarded.
         /// </summary>
         /// <value>The [assignment status](https://docs.adyen.com/point-of-sale/automating-terminal-management/assign-terminals-api) of the terminal. If true, the terminal is assigned. If false, the terminal is in inventory and can&#39;t be boarded.</value>
-        [DataMember(Name="assigned", EmitDefaultValue=false)]
+        [DataMember(Name = "assigned", EmitDefaultValue = false)]
         public bool Assigned { get; set; }
 
         /// <summary>
         /// The Bluetooth IP address of the terminal.
         /// </summary>
         /// <value>The Bluetooth IP address of the terminal.</value>
-        [DataMember(Name="bluetoothIp", EmitDefaultValue=false)]
+        [DataMember(Name = "bluetoothIp", EmitDefaultValue = false)]
         public string BluetoothIp { get; set; }
 
         /// <summary>
         /// The Bluetooth MAC address of the terminal.
         /// </summary>
         /// <value>The Bluetooth MAC address of the terminal.</value>
-        [DataMember(Name="bluetoothMac", EmitDefaultValue=false)]
+        [DataMember(Name = "bluetoothMac", EmitDefaultValue = false)]
         public string BluetoothMac { get; set; }
 
         /// <summary>
         /// The city where the terminal is located.
         /// </summary>
         /// <value>The city where the terminal is located.</value>
-        [DataMember(Name="city", EmitDefaultValue=false)]
+        [DataMember(Name = "city", EmitDefaultValue = false)]
         public string City { get; set; }
 
         /// <summary>
         /// The company account that the terminal is associated with. If this is the only account level shown in the response, the terminal is assigned to the inventory of the company account.
         /// </summary>
         /// <value>The company account that the terminal is associated with. If this is the only account level shown in the response, the terminal is assigned to the inventory of the company account.</value>
-        [DataMember(Name="companyAccount", EmitDefaultValue=false)]
+        [DataMember(Name = "companyAccount", EmitDefaultValue = false)]
         public string CompanyAccount { get; set; }
 
         /// <summary>
         /// The country code of the country where the terminal is located.
         /// </summary>
         /// <value>The country code of the country where the terminal is located.</value>
-        [DataMember(Name="countryCode", EmitDefaultValue=false)]
+        [DataMember(Name = "countryCode", EmitDefaultValue = false)]
         public string CountryCode { get; set; }
 
         /// <summary>
         /// The model name of the terminal.
         /// </summary>
         /// <value>The model name of the terminal.</value>
-        [DataMember(Name="deviceModel", EmitDefaultValue=false)]
+        [DataMember(Name = "deviceModel", EmitDefaultValue = false)]
         public string DeviceModel { get; set; }
 
         /// <summary>
         /// The ethernet IP address of the terminal.
         /// </summary>
         /// <value>The ethernet IP address of the terminal.</value>
-        [DataMember(Name="ethernetIp", EmitDefaultValue=false)]
+        [DataMember(Name = "ethernetIp", EmitDefaultValue = false)]
         public string EthernetIp { get; set; }
 
         /// <summary>
         /// The ethernet MAC address of the terminal.
         /// </summary>
         /// <value>The ethernet MAC address of the terminal.</value>
-        [DataMember(Name="ethernetMac", EmitDefaultValue=false)]
+        [DataMember(Name = "ethernetMac", EmitDefaultValue = false)]
         public string EthernetMac { get; set; }
 
         /// <summary>
         /// The software release currently in use on the terminal.
         /// </summary>
         /// <value>The software release currently in use on the terminal.</value>
-        [DataMember(Name="firmwareVersion", EmitDefaultValue=false)]
+        [DataMember(Name = "firmwareVersion", EmitDefaultValue = false)]
         public string FirmwareVersion { get; set; }
 
         /// <summary>
         /// The integrated circuit card identifier (ICCID) of the SIM card in the terminal.
         /// </summary>
         /// <value>The integrated circuit card identifier (ICCID) of the SIM card in the terminal.</value>
-        [DataMember(Name="iccid", EmitDefaultValue=false)]
+        [DataMember(Name = "iccid", EmitDefaultValue = false)]
         public string Iccid { get; set; }
 
         /// <summary>
         /// The unique identifier of the terminal.
         /// </summary>
         /// <value>The unique identifier of the terminal.</value>
-        [DataMember(Name="id", EmitDefaultValue=false)]
+        [DataMember(Name = "id", EmitDefaultValue = false)]
         public string Id { get; set; }
 
         /// <summary>
         /// Date and time of the last activity on the terminal. Not included when the last activity was more than 14 days ago.
         /// </summary>
         /// <value>Date and time of the last activity on the terminal. Not included when the last activity was more than 14 days ago.</value>
-        [DataMember(Name="lastActivityDateTime", EmitDefaultValue=false)]
+        [DataMember(Name = "lastActivityDateTime", EmitDefaultValue = false)]
         public DateTime LastActivityDateTime { get; set; }
 
         /// <summary>
         /// Date and time of the last transaction on the terminal. Not included when the last transaction was more than 14 days ago.
         /// </summary>
         /// <value>Date and time of the last transaction on the terminal. Not included when the last transaction was more than 14 days ago.</value>
-        [DataMember(Name="lastTransactionDateTime", EmitDefaultValue=false)]
+        [DataMember(Name = "lastTransactionDateTime", EmitDefaultValue = false)]
         public DateTime LastTransactionDateTime { get; set; }
 
         /// <summary>
         /// The Ethernet link negotiation that the terminal uses:  - &#x60;auto&#x60;: Auto-negotiation  - &#x60;100full&#x60;: 100 Mbps full duplex
         /// </summary>
         /// <value>The Ethernet link negotiation that the terminal uses:  - &#x60;auto&#x60;: Auto-negotiation  - &#x60;100full&#x60;: 100 Mbps full duplex</value>
-        [DataMember(Name="linkNegotiation", EmitDefaultValue=false)]
+        [DataMember(Name = "linkNegotiation", EmitDefaultValue = false)]
         public string LinkNegotiation { get; set; }
 
         /// <summary>
         /// The serial number of the terminal.
         /// </summary>
         /// <value>The serial number of the terminal.</value>
-        [DataMember(Name="serialNumber", EmitDefaultValue=false)]
+        [DataMember(Name = "serialNumber", EmitDefaultValue = false)]
         public string SerialNumber { get; set; }
 
         /// <summary>
         /// On a terminal that supports 3G or 4G connectivity, indicates the status of the SIM card in the terminal: ACTIVE or INVENTORY.
         /// </summary>
         /// <value>On a terminal that supports 3G or 4G connectivity, indicates the status of the SIM card in the terminal: ACTIVE or INVENTORY.</value>
-        [DataMember(Name="simStatus", EmitDefaultValue=false)]
+        [DataMember(Name = "simStatus", EmitDefaultValue = false)]
         public string SimStatus { get; set; }
 
         /// <summary>
         /// Indicates when the terminal was last online, whether the terminal is being reassigned, or whether the terminal is turned off. If the terminal was last online more that a week ago, it is also shown as turned off.
         /// </summary>
         /// <value>Indicates when the terminal was last online, whether the terminal is being reassigned, or whether the terminal is turned off. If the terminal was last online more that a week ago, it is also shown as turned off.</value>
-        [DataMember(Name="status", EmitDefaultValue=false)]
+        [DataMember(Name = "status", EmitDefaultValue = false)]
         public string Status { get; set; }
 
         /// <summary>
         /// The status of the store that the terminal is assigned to.
         /// </summary>
         /// <value>The status of the store that the terminal is assigned to.</value>
-        [DataMember(Name="storeStatus", EmitDefaultValue=false)]
+        [DataMember(Name = "storeStatus", EmitDefaultValue = false)]
         public string StoreStatus { get; set; }
 
         /// <summary>
         /// The terminal&#39;s IP address in your Wi-Fi network.
         /// </summary>
         /// <value>The terminal&#39;s IP address in your Wi-Fi network.</value>
-        [DataMember(Name="wifiIp", EmitDefaultValue=false)]
+        [DataMember(Name = "wifiIp", EmitDefaultValue = false)]
         public string WifiIp { get; set; }
 
         /// <summary>
         /// The terminal&#39;s MAC address in your Wi-Fi network.
         /// </summary>
         /// <value>The terminal&#39;s MAC address in your Wi-Fi network.</value>
-        [DataMember(Name="wifiMac", EmitDefaultValue=false)]
+        [DataMember(Name = "wifiMac", EmitDefaultValue = false)]
         public string WifiMac { get; set; }
 
         /// <summary>
         /// The SSID of the Wi-Fi network that your terminal is connected to.
         /// </summary>
         /// <value>The SSID of the Wi-Fi network that your terminal is connected to.</value>
-        [DataMember(Name="wifiSsid", EmitDefaultValue=false)]
+        [DataMember(Name = "wifiSsid", EmitDefaultValue = false)]
         public string WifiSsid { get; set; }
 
         /// <summary>
@@ -242,7 +244,7 @@ namespace Adyen.Model.Management
         /// <returns>String presentation of the object</returns>
         public override string ToString()
         {
-            var sb = new StringBuilder();
+            StringBuilder sb = new StringBuilder();
             sb.Append("class Terminal {\n");
             sb.Append("  Assigned: ").Append(Assigned).Append("\n");
             sb.Append("  BluetoothIp: ").Append(BluetoothIp).Append("\n");
@@ -297,13 +299,13 @@ namespace Adyen.Model.Management
         public bool Equals(Terminal input)
         {
             if (input == null)
+            {
                 return false;
-
+            }
             return 
                 (
                     this.Assigned == input.Assigned ||
-                    (this.Assigned != null &&
-                    this.Assigned.Equals(input.Assigned))
+                    this.Assigned.Equals(input.Assigned)
                 ) && 
                 (
                     this.BluetoothIp == input.BluetoothIp ||
@@ -421,60 +423,100 @@ namespace Adyen.Model.Management
             unchecked // Overflow is fine, just wrap
             {
                 int hashCode = 41;
-                if (this.Assigned != null)
-                    hashCode = hashCode * 59 + this.Assigned.GetHashCode();
+                hashCode = (hashCode * 59) + this.Assigned.GetHashCode();
                 if (this.BluetoothIp != null)
-                    hashCode = hashCode * 59 + this.BluetoothIp.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.BluetoothIp.GetHashCode();
+                }
                 if (this.BluetoothMac != null)
-                    hashCode = hashCode * 59 + this.BluetoothMac.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.BluetoothMac.GetHashCode();
+                }
                 if (this.City != null)
-                    hashCode = hashCode * 59 + this.City.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.City.GetHashCode();
+                }
                 if (this.CompanyAccount != null)
-                    hashCode = hashCode * 59 + this.CompanyAccount.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.CompanyAccount.GetHashCode();
+                }
                 if (this.CountryCode != null)
-                    hashCode = hashCode * 59 + this.CountryCode.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.CountryCode.GetHashCode();
+                }
                 if (this.DeviceModel != null)
-                    hashCode = hashCode * 59 + this.DeviceModel.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.DeviceModel.GetHashCode();
+                }
                 if (this.EthernetIp != null)
-                    hashCode = hashCode * 59 + this.EthernetIp.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.EthernetIp.GetHashCode();
+                }
                 if (this.EthernetMac != null)
-                    hashCode = hashCode * 59 + this.EthernetMac.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.EthernetMac.GetHashCode();
+                }
                 if (this.FirmwareVersion != null)
-                    hashCode = hashCode * 59 + this.FirmwareVersion.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.FirmwareVersion.GetHashCode();
+                }
                 if (this.Iccid != null)
-                    hashCode = hashCode * 59 + this.Iccid.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.Iccid.GetHashCode();
+                }
                 if (this.Id != null)
-                    hashCode = hashCode * 59 + this.Id.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.Id.GetHashCode();
+                }
                 if (this.LastActivityDateTime != null)
-                    hashCode = hashCode * 59 + this.LastActivityDateTime.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.LastActivityDateTime.GetHashCode();
+                }
                 if (this.LastTransactionDateTime != null)
-                    hashCode = hashCode * 59 + this.LastTransactionDateTime.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.LastTransactionDateTime.GetHashCode();
+                }
                 if (this.LinkNegotiation != null)
-                    hashCode = hashCode * 59 + this.LinkNegotiation.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.LinkNegotiation.GetHashCode();
+                }
                 if (this.SerialNumber != null)
-                    hashCode = hashCode * 59 + this.SerialNumber.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.SerialNumber.GetHashCode();
+                }
                 if (this.SimStatus != null)
-                    hashCode = hashCode * 59 + this.SimStatus.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.SimStatus.GetHashCode();
+                }
                 if (this.Status != null)
-                    hashCode = hashCode * 59 + this.Status.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.Status.GetHashCode();
+                }
                 if (this.StoreStatus != null)
-                    hashCode = hashCode * 59 + this.StoreStatus.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.StoreStatus.GetHashCode();
+                }
                 if (this.WifiIp != null)
-                    hashCode = hashCode * 59 + this.WifiIp.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.WifiIp.GetHashCode();
+                }
                 if (this.WifiMac != null)
-                    hashCode = hashCode * 59 + this.WifiMac.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.WifiMac.GetHashCode();
+                }
                 if (this.WifiSsid != null)
-                    hashCode = hashCode * 59 + this.WifiSsid.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.WifiSsid.GetHashCode();
+                }
                 return hashCode;
             }
         }
-
         /// <summary>
         /// To validate all properties of the instance
         /// </summary>
         /// <param name="validationContext">Validation context</param>
         /// <returns>Validation Result</returns>
-        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+        public IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> Validate(ValidationContext validationContext)
         {
             yield break;
         }

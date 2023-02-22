@@ -11,84 +11,91 @@
 */
 
 using System;
-using System.Linq;
-using System.IO;
-using System.Text;
-using System.Text.RegularExpressions;
 using System.Collections;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Linq;
+using System.IO;
 using System.Runtime.Serialization;
+using System.Text;
+using System.Text.RegularExpressions;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
+using Newtonsoft.Json.Linq;
 using System.ComponentModel.DataAnnotations;
+using OpenAPIDateConverter = Adyen.ApiSerialization.OpenAPIDateConverter;
 
 namespace Adyen.Model.Management
 {
     /// <summary>
     /// CreateMerchantUserRequest
     /// </summary>
-    [DataContract]
-    public partial class CreateMerchantUserRequest :  IEquatable<CreateMerchantUserRequest>, IValidatableObject
+    [DataContract(Name = "CreateMerchantUserRequest")]
+    public partial class CreateMerchantUserRequest : IEquatable<CreateMerchantUserRequest>, IValidatableObject
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="CreateMerchantUserRequest" /> class.
         /// </summary>
+        [JsonConstructorAttribute]
+        protected CreateMerchantUserRequest() { }
+        /// <summary>
+        /// Initializes a new instance of the <see cref="CreateMerchantUserRequest" /> class.
+        /// </summary>
         /// <param name="accountGroups">The list of [account groups](https://docs.adyen.com/account/account-structure#account-groups) associated with this user..</param>
-        /// <param name="email">The email address of the user..</param>
-        /// <param name="name">name.</param>
+        /// <param name="email">The email address of the user. (required).</param>
+        /// <param name="name">name (required).</param>
         /// <param name="roles">The list of [roles](https://docs.adyen.com/account/user-roles) for this user..</param>
         /// <param name="timeZoneCode">The [tz database name](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones) of the time zone of the user. For example, **Europe/Amsterdam**..</param>
-        /// <param name="username">The username for this user. Allowed length: 255 alphanumeric characters..</param>
+        /// <param name="username">The username for this user. Allowed length: 255 alphanumeric characters. (required).</param>
         public CreateMerchantUserRequest(List<string> accountGroups = default(List<string>), string email = default(string), Name name = default(Name), List<string> roles = default(List<string>), string timeZoneCode = default(string), string username = default(string))
         {
-            this.AccountGroups = accountGroups;
             this.Email = email;
             this.Name = name;
+            this.Username = username;
+            this.AccountGroups = accountGroups;
             this.Roles = roles;
             this.TimeZoneCode = timeZoneCode;
-            this.Username = username;
         }
 
         /// <summary>
         /// The list of [account groups](https://docs.adyen.com/account/account-structure#account-groups) associated with this user.
         /// </summary>
         /// <value>The list of [account groups](https://docs.adyen.com/account/account-structure#account-groups) associated with this user.</value>
-        [DataMember(Name="accountGroups", EmitDefaultValue=false)]
+        [DataMember(Name = "accountGroups", EmitDefaultValue = false)]
         public List<string> AccountGroups { get; set; }
 
         /// <summary>
         /// The email address of the user.
         /// </summary>
         /// <value>The email address of the user.</value>
-        [DataMember(Name="email", EmitDefaultValue=false)]
+        [DataMember(Name = "email", IsRequired = false, EmitDefaultValue = false)]
         public string Email { get; set; }
 
         /// <summary>
         /// Gets or Sets Name
         /// </summary>
-        [DataMember(Name="name", EmitDefaultValue=false)]
+        [DataMember(Name = "name", IsRequired = false, EmitDefaultValue = false)]
         public Name Name { get; set; }
 
         /// <summary>
         /// The list of [roles](https://docs.adyen.com/account/user-roles) for this user.
         /// </summary>
         /// <value>The list of [roles](https://docs.adyen.com/account/user-roles) for this user.</value>
-        [DataMember(Name="roles", EmitDefaultValue=false)]
+        [DataMember(Name = "roles", EmitDefaultValue = false)]
         public List<string> Roles { get; set; }
 
         /// <summary>
         /// The [tz database name](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones) of the time zone of the user. For example, **Europe/Amsterdam**.
         /// </summary>
         /// <value>The [tz database name](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones) of the time zone of the user. For example, **Europe/Amsterdam**.</value>
-        [DataMember(Name="timeZoneCode", EmitDefaultValue=false)]
+        [DataMember(Name = "timeZoneCode", EmitDefaultValue = false)]
         public string TimeZoneCode { get; set; }
 
         /// <summary>
         /// The username for this user. Allowed length: 255 alphanumeric characters.
         /// </summary>
         /// <value>The username for this user. Allowed length: 255 alphanumeric characters.</value>
-        [DataMember(Name="username", EmitDefaultValue=false)]
+        [DataMember(Name = "username", IsRequired = false, EmitDefaultValue = false)]
         public string Username { get; set; }
 
         /// <summary>
@@ -97,7 +104,7 @@ namespace Adyen.Model.Management
         /// <returns>String presentation of the object</returns>
         public override string ToString()
         {
-            var sb = new StringBuilder();
+            StringBuilder sb = new StringBuilder();
             sb.Append("class CreateMerchantUserRequest {\n");
             sb.Append("  AccountGroups: ").Append(AccountGroups).Append("\n");
             sb.Append("  Email: ").Append(Email).Append("\n");
@@ -136,8 +143,9 @@ namespace Adyen.Model.Management
         public bool Equals(CreateMerchantUserRequest input)
         {
             if (input == null)
+            {
                 return false;
-
+            }
             return 
                 (
                     this.AccountGroups == input.AccountGroups ||
@@ -183,36 +191,47 @@ namespace Adyen.Model.Management
             {
                 int hashCode = 41;
                 if (this.AccountGroups != null)
-                    hashCode = hashCode * 59 + this.AccountGroups.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.AccountGroups.GetHashCode();
+                }
                 if (this.Email != null)
-                    hashCode = hashCode * 59 + this.Email.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.Email.GetHashCode();
+                }
                 if (this.Name != null)
-                    hashCode = hashCode * 59 + this.Name.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.Name.GetHashCode();
+                }
                 if (this.Roles != null)
-                    hashCode = hashCode * 59 + this.Roles.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.Roles.GetHashCode();
+                }
                 if (this.TimeZoneCode != null)
-                    hashCode = hashCode * 59 + this.TimeZoneCode.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.TimeZoneCode.GetHashCode();
+                }
                 if (this.Username != null)
-                    hashCode = hashCode * 59 + this.Username.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.Username.GetHashCode();
+                }
                 return hashCode;
             }
         }
-
         /// <summary>
         /// To validate all properties of the instance
         /// </summary>
         /// <param name="validationContext">Validation context</param>
         /// <returns>Validation Result</returns>
-        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+        public IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> Validate(ValidationContext validationContext)
         {
             // Username (string) maxLength
-            if(this.Username != null && this.Username.Length > 255)
+            if (this.Username != null && this.Username.Length > 255)
             {
                 yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for Username, length must be less than 255.", new [] { "Username" });
             }
 
             // Username (string) minLength
-            if(this.Username != null && this.Username.Length < 1)
+            if (this.Username != null && this.Username.Length < 1)
             {
                 yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for Username, length must be greater than 1.", new [] { "Username" });
             }

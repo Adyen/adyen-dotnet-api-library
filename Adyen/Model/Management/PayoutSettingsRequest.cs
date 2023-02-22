@@ -11,25 +11,27 @@
 */
 
 using System;
-using System.Linq;
-using System.IO;
-using System.Text;
-using System.Text.RegularExpressions;
 using System.Collections;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Linq;
+using System.IO;
 using System.Runtime.Serialization;
+using System.Text;
+using System.Text.RegularExpressions;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
+using Newtonsoft.Json.Linq;
 using System.ComponentModel.DataAnnotations;
+using OpenAPIDateConverter = Adyen.ApiSerialization.OpenAPIDateConverter;
 
 namespace Adyen.Model.Management
 {
     /// <summary>
     /// PayoutSettingsRequest
     /// </summary>
-    [DataContract]
-    public partial class PayoutSettingsRequest :  IEquatable<PayoutSettingsRequest>, IValidatableObject
+    [DataContract(Name = "PayoutSettingsRequest")]
+    public partial class PayoutSettingsRequest : IEquatable<PayoutSettingsRequest>, IValidatableObject
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="PayoutSettingsRequest" /> class.
@@ -44,30 +46,30 @@ namespace Adyen.Model.Management
         /// <param name="transferInstrumentId">The unique identifier of the [transfer instrument](https://docs.adyen.com/api-explorer/#/legalentity/latest/post/transferInstruments) that contains the details of the bank account. (required).</param>
         public PayoutSettingsRequest(bool enabled = default(bool), string enabledFromDate = default(string), string transferInstrumentId = default(string))
         {
+            this.TransferInstrumentId = transferInstrumentId;
             this.Enabled = enabled;
             this.EnabledFromDate = enabledFromDate;
-            this.TransferInstrumentId = transferInstrumentId;
         }
 
         /// <summary>
         /// Indicates if payouts to this bank account are enabled. Default: **true**.  To receive payouts into this bank account, both &#x60;enabled&#x60; and &#x60;allowed&#x60; must be **true**.
         /// </summary>
         /// <value>Indicates if payouts to this bank account are enabled. Default: **true**.  To receive payouts into this bank account, both &#x60;enabled&#x60; and &#x60;allowed&#x60; must be **true**.</value>
-        [DataMember(Name="enabled", EmitDefaultValue=false)]
+        [DataMember(Name = "enabled", EmitDefaultValue = false)]
         public bool Enabled { get; set; }
 
         /// <summary>
         /// The date when Adyen starts paying out to this bank account.  Format: [ISO 8601](https://www.w3.org/TR/NOTE-datetime), for example, **2019-11-23T12:25:28Z** or **2020-05-27T20:25:28+08:00**.  If not specified, the &#x60;enabled&#x60; field indicates if payouts are enabled for this bank account.  If a date is specified and:  * &#x60;enabled&#x60;: **true**, payouts are enabled starting the specified date. * &#x60;enabled&#x60;: **false**, payouts are disabled until the specified date. On the specified date, &#x60;enabled&#x60; changes to **true** and this field is reset to **null**.
         /// </summary>
         /// <value>The date when Adyen starts paying out to this bank account.  Format: [ISO 8601](https://www.w3.org/TR/NOTE-datetime), for example, **2019-11-23T12:25:28Z** or **2020-05-27T20:25:28+08:00**.  If not specified, the &#x60;enabled&#x60; field indicates if payouts are enabled for this bank account.  If a date is specified and:  * &#x60;enabled&#x60;: **true**, payouts are enabled starting the specified date. * &#x60;enabled&#x60;: **false**, payouts are disabled until the specified date. On the specified date, &#x60;enabled&#x60; changes to **true** and this field is reset to **null**.</value>
-        [DataMember(Name="enabledFromDate", EmitDefaultValue=false)]
+        [DataMember(Name = "enabledFromDate", EmitDefaultValue = false)]
         public string EnabledFromDate { get; set; }
 
         /// <summary>
         /// The unique identifier of the [transfer instrument](https://docs.adyen.com/api-explorer/#/legalentity/latest/post/transferInstruments) that contains the details of the bank account.
         /// </summary>
         /// <value>The unique identifier of the [transfer instrument](https://docs.adyen.com/api-explorer/#/legalentity/latest/post/transferInstruments) that contains the details of the bank account.</value>
-        [DataMember(Name="transferInstrumentId", EmitDefaultValue=true)]
+        [DataMember(Name = "transferInstrumentId", IsRequired = false, EmitDefaultValue = false)]
         public string TransferInstrumentId { get; set; }
 
         /// <summary>
@@ -76,7 +78,7 @@ namespace Adyen.Model.Management
         /// <returns>String presentation of the object</returns>
         public override string ToString()
         {
-            var sb = new StringBuilder();
+            StringBuilder sb = new StringBuilder();
             sb.Append("class PayoutSettingsRequest {\n");
             sb.Append("  Enabled: ").Append(Enabled).Append("\n");
             sb.Append("  EnabledFromDate: ").Append(EnabledFromDate).Append("\n");
@@ -112,13 +114,13 @@ namespace Adyen.Model.Management
         public bool Equals(PayoutSettingsRequest input)
         {
             if (input == null)
+            {
                 return false;
-
+            }
             return 
                 (
                     this.Enabled == input.Enabled ||
-                    (this.Enabled != null &&
-                    this.Enabled.Equals(input.Enabled))
+                    this.Enabled.Equals(input.Enabled)
                 ) && 
                 (
                     this.EnabledFromDate == input.EnabledFromDate ||
@@ -141,22 +143,24 @@ namespace Adyen.Model.Management
             unchecked // Overflow is fine, just wrap
             {
                 int hashCode = 41;
-                if (this.Enabled != null)
-                    hashCode = hashCode * 59 + this.Enabled.GetHashCode();
+                hashCode = (hashCode * 59) + this.Enabled.GetHashCode();
                 if (this.EnabledFromDate != null)
-                    hashCode = hashCode * 59 + this.EnabledFromDate.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.EnabledFromDate.GetHashCode();
+                }
                 if (this.TransferInstrumentId != null)
-                    hashCode = hashCode * 59 + this.TransferInstrumentId.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.TransferInstrumentId.GetHashCode();
+                }
                 return hashCode;
             }
         }
-
         /// <summary>
         /// To validate all properties of the instance
         /// </summary>
         /// <param name="validationContext">Validation context</param>
         /// <returns>Validation Result</returns>
-        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+        public IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> Validate(ValidationContext validationContext)
         {
             yield break;
         }
