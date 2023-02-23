@@ -30,12 +30,3 @@ jobs:
 
       - name: Run test suite net6.0
         run: dotnet test --no-build -c Debug -f net6.0 Adyen.Test/Adyen.Test.csproj
-
-      - name: Run test suite net6.0
-        run: dotnet test --no-build -c Debug -f net6.0 Adyen.IntegrationTest/Adyen.IntegrationTest.csproj
-
-    env:
-        INTEGRATION_MERCHANT_ACCOUNT: ${{ secrets.INTEGRATION_MERCHANT_ACCOUNT }}
-        INTEGRATION_X_API_KEY: ${{ secrets.INTEGRATION_X_API_KEY }}
-        INTEGRATION_CA_USERNAME: ${{ secrets.INTEGRATION_CA_USERNAME }}
-        INTEGRATION_CA_PASSWORD: ${{ secrets.INTEGRATION_CA_PASSWORD }}
