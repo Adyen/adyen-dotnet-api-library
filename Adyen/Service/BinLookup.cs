@@ -81,5 +81,6 @@ namespace Adyen.Service
             var resource = new ServiceResource(this, endpoint);
             return await resource.RequestAsync<CostEstimateResponse>(costEstimateRequest.ToJson(), requestOptions, new HttpMethod("POST"));
         }
+
     }
 }

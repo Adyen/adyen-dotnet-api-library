@@ -21,6 +21,7 @@
 //  */
 #endregion
 
+using System.Linq;
 using Adyen.Model.BinLookup;
 using Adyen.Service;
 using Adyen.Service.Resource.BinLookup;
@@ -47,7 +48,7 @@ namespace Adyen.Test
             Assert.AreEqual("visa", threeDsAvailabilityResponse.DsPublicKeys[0].Brand);
             Assert.AreEqual("411111111111", threeDsAvailabilityResponse.ThreeDS2CardRangeDetails[0].StartRange);
             Assert.AreEqual("411111111111", threeDsAvailabilityResponse.ThreeDS2CardRangeDetails[0].EndRange);
-            Assert.AreEqual("2.1.0", threeDsAvailabilityResponse.ThreeDS2CardRangeDetails[0].ThreeDS2Version);
+            Assert.AreEqual("2.1.0", threeDsAvailabilityResponse.ThreeDS2CardRangeDetails[0].ThreeDS2Versions.FirstOrDefault());
             Assert.AreEqual("https://pal-test.adyen.com/threeds2simulator/acs/startMethod.shtml", threeDsAvailabilityResponse.ThreeDS2CardRangeDetails[0].ThreeDSMethodURL);
             Assert.AreEqual(true, threeDsAvailabilityResponse.ThreeDS1Supported);
             Assert.AreEqual(true, threeDsAvailabilityResponse.ThreeDS2supported);
