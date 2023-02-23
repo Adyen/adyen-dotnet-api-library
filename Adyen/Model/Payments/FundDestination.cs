@@ -11,16 +11,17 @@
 */
 
 using System;
-using System.Linq;
-using System.IO;
-using System.Text;
-using System.Text.RegularExpressions;
 using System.Collections;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Linq;
+using System.IO;
 using System.Runtime.Serialization;
+using System.Text;
+using System.Text.RegularExpressions;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
+using Newtonsoft.Json.Linq;
 using System.ComponentModel.DataAnnotations;
 
 namespace Adyen.Model.Payments
@@ -28,8 +29,8 @@ namespace Adyen.Model.Payments
     /// <summary>
     /// FundDestination
     /// </summary>
-    [DataContract]
-    public partial class FundDestination :  IEquatable<FundDestination>, IValidatableObject
+    [DataContract(Name = "FundDestination")]
+    public partial class FundDestination : IEquatable<FundDestination>, IValidatableObject
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="FundDestination" /> class.
@@ -60,59 +61,59 @@ namespace Adyen.Model.Payments
         /// a map of name/value pairs for passing in additional/industry-specific data
         /// </summary>
         /// <value>a map of name/value pairs for passing in additional/industry-specific data</value>
-        [DataMember(Name="additionalData", EmitDefaultValue=false)]
+        [DataMember(Name = "additionalData", EmitDefaultValue = false)]
         public Dictionary<string, string> AdditionalData { get; set; }
 
         /// <summary>
         /// Gets or Sets BillingAddress
         /// </summary>
-        [DataMember(Name="billingAddress", EmitDefaultValue=false)]
+        [DataMember(Name = "billingAddress", EmitDefaultValue = false)]
         public Address BillingAddress { get; set; }
 
         /// <summary>
         /// Gets or Sets Card
         /// </summary>
-        [DataMember(Name="card", EmitDefaultValue=false)]
+        [DataMember(Name = "card", EmitDefaultValue = false)]
         public Card Card { get; set; }
 
         /// <summary>
         /// The &#x60;recurringDetailReference&#x60; you want to use for this payment. The value &#x60;LATEST&#x60; can be used to select the most recently stored recurring detail.
         /// </summary>
         /// <value>The &#x60;recurringDetailReference&#x60; you want to use for this payment. The value &#x60;LATEST&#x60; can be used to select the most recently stored recurring detail.</value>
-        [DataMember(Name="selectedRecurringDetailReference", EmitDefaultValue=false)]
+        [DataMember(Name = "selectedRecurringDetailReference", EmitDefaultValue = false)]
         public string SelectedRecurringDetailReference { get; set; }
 
         /// <summary>
         /// the email address of the person
         /// </summary>
         /// <value>the email address of the person</value>
-        [DataMember(Name="shopperEmail", EmitDefaultValue=false)]
+        [DataMember(Name = "shopperEmail", EmitDefaultValue = false)]
         public string ShopperEmail { get; set; }
 
         /// <summary>
         /// Gets or Sets ShopperName
         /// </summary>
-        [DataMember(Name="shopperName", EmitDefaultValue=false)]
+        [DataMember(Name = "shopperName", EmitDefaultValue = false)]
         public Name ShopperName { get; set; }
 
         /// <summary>
         /// Required for recurring payments.  Your reference to uniquely identify this shopper, for example user ID or account ID. Minimum length: 3 characters. &gt; Your reference must not include personally identifiable information (PII), for example name or email address.
         /// </summary>
         /// <value>Required for recurring payments.  Your reference to uniquely identify this shopper, for example user ID or account ID. Minimum length: 3 characters. &gt; Your reference must not include personally identifiable information (PII), for example name or email address.</value>
-        [DataMember(Name="shopperReference", EmitDefaultValue=false)]
+        [DataMember(Name = "shopperReference", EmitDefaultValue = false)]
         public string ShopperReference { get; set; }
 
         /// <summary>
         /// Gets or Sets SubMerchant
         /// </summary>
-        [DataMember(Name="subMerchant", EmitDefaultValue=false)]
+        [DataMember(Name = "subMerchant", EmitDefaultValue = false)]
         public SubMerchant SubMerchant { get; set; }
 
         /// <summary>
         /// the telephone number of the person
         /// </summary>
         /// <value>the telephone number of the person</value>
-        [DataMember(Name="telephoneNumber", EmitDefaultValue=false)]
+        [DataMember(Name = "telephoneNumber", EmitDefaultValue = false)]
         public string TelephoneNumber { get; set; }
 
         /// <summary>
@@ -121,7 +122,7 @@ namespace Adyen.Model.Payments
         /// <returns>String presentation of the object</returns>
         public override string ToString()
         {
-            var sb = new StringBuilder();
+            StringBuilder sb = new StringBuilder();
             sb.Append("class FundDestination {\n");
             sb.Append("  AdditionalData: ").Append(AdditionalData).Append("\n");
             sb.Append("  BillingAddress: ").Append(BillingAddress).Append("\n");
@@ -163,8 +164,9 @@ namespace Adyen.Model.Payments
         public bool Equals(FundDestination input)
         {
             if (input == null)
+            {
                 return false;
-
+            }
             return 
                 (
                     this.AdditionalData == input.AdditionalData ||
@@ -224,33 +226,50 @@ namespace Adyen.Model.Payments
             {
                 int hashCode = 41;
                 if (this.AdditionalData != null)
-                    hashCode = hashCode * 59 + this.AdditionalData.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.AdditionalData.GetHashCode();
+                }
                 if (this.BillingAddress != null)
-                    hashCode = hashCode * 59 + this.BillingAddress.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.BillingAddress.GetHashCode();
+                }
                 if (this.Card != null)
-                    hashCode = hashCode * 59 + this.Card.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.Card.GetHashCode();
+                }
                 if (this.SelectedRecurringDetailReference != null)
-                    hashCode = hashCode * 59 + this.SelectedRecurringDetailReference.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.SelectedRecurringDetailReference.GetHashCode();
+                }
                 if (this.ShopperEmail != null)
-                    hashCode = hashCode * 59 + this.ShopperEmail.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.ShopperEmail.GetHashCode();
+                }
                 if (this.ShopperName != null)
-                    hashCode = hashCode * 59 + this.ShopperName.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.ShopperName.GetHashCode();
+                }
                 if (this.ShopperReference != null)
-                    hashCode = hashCode * 59 + this.ShopperReference.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.ShopperReference.GetHashCode();
+                }
                 if (this.SubMerchant != null)
-                    hashCode = hashCode * 59 + this.SubMerchant.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.SubMerchant.GetHashCode();
+                }
                 if (this.TelephoneNumber != null)
-                    hashCode = hashCode * 59 + this.TelephoneNumber.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.TelephoneNumber.GetHashCode();
+                }
                 return hashCode;
             }
         }
-
         /// <summary>
         /// To validate all properties of the instance
         /// </summary>
         /// <param name="validationContext">Validation context</param>
         /// <returns>Validation Result</returns>
-        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+        public IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> Validate(ValidationContext validationContext)
         {
             yield break;
         }

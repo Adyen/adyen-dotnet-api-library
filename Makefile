@@ -5,7 +5,7 @@ openapi-generator-cli:=java -jar $(openapi-generator-jar)
 
 
 generator:=csharp-netcore
-services:=BinLookup Checkout LegalEntityManagement Payments Payouts PosTerminalManagement 
+services:=BinLookup Checkout LegalEntityManagement Payments Payouts PosTerminalManagement StoredValue
 models:=Adyen/Model
 output:=target/out
 
@@ -13,7 +13,8 @@ output:=target/out
 models: $(services)
 
 BinLookup: spec=BinLookupService-v52
-Checkout: spec=CheckoutService-v69
+Checkout: spec=CheckoutService-v70
+Checkout: service=checkout
 StoredValue: spec=StoredValueService-v46
 PosTerminalManagement: spec=TfmAPIService-v1
 Payments: spec=PaymentService-v68
@@ -37,6 +38,7 @@ $(services): target/spec $(openapi-generator-jar)
 		-t templates/csharp \
 		-o $(output) \
 		--model-package $@ \
+		--skip-validate-spec \
 		--reserved-words-mappings Version=Version \
 		--global-property modelDocs=false \
         --global-property modelTests=false \
@@ -55,6 +57,7 @@ Management: target/spec $(openapi-generator-jar)
 		-o $(output) \
 		--additional-properties packageName=Adyen \
 		--api-package Service.$@ \
+		--api-name-suffix Service \
 		--model-package Model.$@ \
 		--reserved-words-mappings Version=Version \
 		--additional-properties=serviceName=$@

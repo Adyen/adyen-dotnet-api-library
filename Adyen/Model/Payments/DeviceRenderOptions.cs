@@ -11,16 +11,17 @@
 */
 
 using System;
-using System.Linq;
-using System.IO;
-using System.Text;
-using System.Text.RegularExpressions;
 using System.Collections;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Linq;
+using System.IO;
 using System.Runtime.Serialization;
+using System.Text;
+using System.Text.RegularExpressions;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
+using Newtonsoft.Json.Linq;
 using System.ComponentModel.DataAnnotations;
 
 namespace Adyen.Model.Payments
@@ -28,8 +29,8 @@ namespace Adyen.Model.Payments
     /// <summary>
     /// DeviceRenderOptions
     /// </summary>
-    [DataContract]
-    public partial class DeviceRenderOptions :  IEquatable<DeviceRenderOptions>, IValidatableObject
+    [DataContract(Name = "DeviceRenderOptions")]
+    public partial class DeviceRenderOptions : IEquatable<DeviceRenderOptions>, IValidatableObject
     {
         /// <summary>
         /// Supported SDK interface types. Allowed values: * native * html * both
@@ -58,11 +59,12 @@ namespace Adyen.Model.Payments
 
         }
 
+
         /// <summary>
         /// Supported SDK interface types. Allowed values: * native * html * both
         /// </summary>
         /// <value>Supported SDK interface types. Allowed values: * native * html * both</value>
-        [DataMember(Name="sdkInterface", EmitDefaultValue=false)]
+        [DataMember(Name = "sdkInterface", EmitDefaultValue = false)]
         public SdkInterfaceEnum? SdkInterface { get; set; }
         /// <summary>
         /// Defines SdkUiType
@@ -113,12 +115,11 @@ namespace Adyen.Model.Payments
             this.SdkUiType = sdkUiType;
         }
 
-
         /// <summary>
         /// UI types supported for displaying specific challenges. Allowed values: * text * singleSelect * outOfBand * otherHtml * multiSelect
         /// </summary>
         /// <value>UI types supported for displaying specific challenges. Allowed values: * text * singleSelect * outOfBand * otherHtml * multiSelect</value>
-        [DataMember(Name="sdkUiType", EmitDefaultValue=false)]
+        [DataMember(Name = "sdkUiType", EmitDefaultValue = false)]
         public List<DeviceRenderOptions.SdkUiTypeEnum> SdkUiType { get; set; }
 
         /// <summary>
@@ -127,7 +128,7 @@ namespace Adyen.Model.Payments
         /// <returns>String presentation of the object</returns>
         public override string ToString()
         {
-            var sb = new StringBuilder();
+            StringBuilder sb = new StringBuilder();
             sb.Append("class DeviceRenderOptions {\n");
             sb.Append("  SdkInterface: ").Append(SdkInterface).Append("\n");
             sb.Append("  SdkUiType: ").Append(SdkUiType).Append("\n");
@@ -162,13 +163,13 @@ namespace Adyen.Model.Payments
         public bool Equals(DeviceRenderOptions input)
         {
             if (input == null)
+            {
                 return false;
-
+            }
             return 
                 (
                     this.SdkInterface == input.SdkInterface ||
-                    (this.SdkInterface != null &&
-                    this.SdkInterface.Equals(input.SdkInterface))
+                    this.SdkInterface.Equals(input.SdkInterface)
                 ) && 
                 (
                     this.SdkUiType == input.SdkUiType ||
@@ -187,20 +188,20 @@ namespace Adyen.Model.Payments
             unchecked // Overflow is fine, just wrap
             {
                 int hashCode = 41;
-                if (this.SdkInterface != null)
-                    hashCode = hashCode * 59 + this.SdkInterface.GetHashCode();
+                hashCode = (hashCode * 59) + this.SdkInterface.GetHashCode();
                 if (this.SdkUiType != null)
-                    hashCode = hashCode * 59 + this.SdkUiType.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.SdkUiType.GetHashCode();
+                }
                 return hashCode;
             }
         }
-
         /// <summary>
         /// To validate all properties of the instance
         /// </summary>
         /// <param name="validationContext">Validation context</param>
         /// <returns>Validation Result</returns>
-        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+        public IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> Validate(ValidationContext validationContext)
         {
             yield break;
         }

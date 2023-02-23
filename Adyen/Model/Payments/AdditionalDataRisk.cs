@@ -11,16 +11,17 @@
 */
 
 using System;
-using System.Linq;
-using System.IO;
-using System.Text;
-using System.Text.RegularExpressions;
 using System.Collections;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Linq;
+using System.IO;
 using System.Runtime.Serialization;
+using System.Text;
+using System.Text.RegularExpressions;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
+using Newtonsoft.Json.Linq;
 using System.ComponentModel.DataAnnotations;
 
 namespace Adyen.Model.Payments
@@ -28,8 +29,8 @@ namespace Adyen.Model.Payments
     /// <summary>
     /// AdditionalDataRisk
     /// </summary>
-    [DataContract]
-    public partial class AdditionalDataRisk :  IEquatable<AdditionalDataRisk>, IValidatableObject
+    [DataContract(Name = "AdditionalDataRisk")]
+    public partial class AdditionalDataRisk : IEquatable<AdditionalDataRisk>, IValidatableObject
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="AdditionalDataRisk" /> class.
@@ -84,147 +85,147 @@ namespace Adyen.Model.Payments
         /// The data for your custom risk field. For more information, refer to [Create custom risk fields](https://docs.adyen.com/risk-management/configure-custom-risk-rules#step-1-create-custom-risk-fields).
         /// </summary>
         /// <value>The data for your custom risk field. For more information, refer to [Create custom risk fields](https://docs.adyen.com/risk-management/configure-custom-risk-rules#step-1-create-custom-risk-fields).</value>
-        [DataMember(Name="riskdata.[customFieldName]", EmitDefaultValue=false)]
+        [DataMember(Name = "riskdata.[customFieldName]", EmitDefaultValue = false)]
         public string RiskdataCustomFieldName { get; set; }
 
         /// <summary>
         /// The price of item in the basket, represented in [minor units](https://docs.adyen.com/development-resources/currency-codes).
         /// </summary>
         /// <value>The price of item in the basket, represented in [minor units](https://docs.adyen.com/development-resources/currency-codes).</value>
-        [DataMember(Name="riskdata.basket.item[itemNr].amountPerItem", EmitDefaultValue=false)]
+        [DataMember(Name = "riskdata.basket.item[itemNr].amountPerItem", EmitDefaultValue = false)]
         public string RiskdataBasketItemItemNrAmountPerItem { get; set; }
 
         /// <summary>
         /// Brand of the item.
         /// </summary>
         /// <value>Brand of the item.</value>
-        [DataMember(Name="riskdata.basket.item[itemNr].brand", EmitDefaultValue=false)]
+        [DataMember(Name = "riskdata.basket.item[itemNr].brand", EmitDefaultValue = false)]
         public string RiskdataBasketItemItemNrBrand { get; set; }
 
         /// <summary>
         /// Category of the item.
         /// </summary>
         /// <value>Category of the item.</value>
-        [DataMember(Name="riskdata.basket.item[itemNr].category", EmitDefaultValue=false)]
+        [DataMember(Name = "riskdata.basket.item[itemNr].category", EmitDefaultValue = false)]
         public string RiskdataBasketItemItemNrCategory { get; set; }
 
         /// <summary>
         /// Color of the item.
         /// </summary>
         /// <value>Color of the item.</value>
-        [DataMember(Name="riskdata.basket.item[itemNr].color", EmitDefaultValue=false)]
+        [DataMember(Name = "riskdata.basket.item[itemNr].color", EmitDefaultValue = false)]
         public string RiskdataBasketItemItemNrColor { get; set; }
 
         /// <summary>
         /// The three-character [ISO currency code](https://en.wikipedia.org/wiki/ISO_4217).
         /// </summary>
         /// <value>The three-character [ISO currency code](https://en.wikipedia.org/wiki/ISO_4217).</value>
-        [DataMember(Name="riskdata.basket.item[itemNr].currency", EmitDefaultValue=false)]
+        [DataMember(Name = "riskdata.basket.item[itemNr].currency", EmitDefaultValue = false)]
         public string RiskdataBasketItemItemNrCurrency { get; set; }
 
         /// <summary>
         /// ID of the item.
         /// </summary>
         /// <value>ID of the item.</value>
-        [DataMember(Name="riskdata.basket.item[itemNr].itemID", EmitDefaultValue=false)]
+        [DataMember(Name = "riskdata.basket.item[itemNr].itemID", EmitDefaultValue = false)]
         public string RiskdataBasketItemItemNrItemID { get; set; }
 
         /// <summary>
         /// Manufacturer of the item.
         /// </summary>
         /// <value>Manufacturer of the item.</value>
-        [DataMember(Name="riskdata.basket.item[itemNr].manufacturer", EmitDefaultValue=false)]
+        [DataMember(Name = "riskdata.basket.item[itemNr].manufacturer", EmitDefaultValue = false)]
         public string RiskdataBasketItemItemNrManufacturer { get; set; }
 
         /// <summary>
         /// A text description of the product the invoice line refers to.
         /// </summary>
         /// <value>A text description of the product the invoice line refers to.</value>
-        [DataMember(Name="riskdata.basket.item[itemNr].productTitle", EmitDefaultValue=false)]
+        [DataMember(Name = "riskdata.basket.item[itemNr].productTitle", EmitDefaultValue = false)]
         public string RiskdataBasketItemItemNrProductTitle { get; set; }
 
         /// <summary>
         /// Quantity of the item purchased.
         /// </summary>
         /// <value>Quantity of the item purchased.</value>
-        [DataMember(Name="riskdata.basket.item[itemNr].quantity", EmitDefaultValue=false)]
+        [DataMember(Name = "riskdata.basket.item[itemNr].quantity", EmitDefaultValue = false)]
         public string RiskdataBasketItemItemNrQuantity { get; set; }
 
         /// <summary>
         /// Email associated with the given product in the basket (usually in electronic gift cards).
         /// </summary>
         /// <value>Email associated with the given product in the basket (usually in electronic gift cards).</value>
-        [DataMember(Name="riskdata.basket.item[itemNr].receiverEmail", EmitDefaultValue=false)]
+        [DataMember(Name = "riskdata.basket.item[itemNr].receiverEmail", EmitDefaultValue = false)]
         public string RiskdataBasketItemItemNrReceiverEmail { get; set; }
 
         /// <summary>
         /// Size of the item.
         /// </summary>
         /// <value>Size of the item.</value>
-        [DataMember(Name="riskdata.basket.item[itemNr].size", EmitDefaultValue=false)]
+        [DataMember(Name = "riskdata.basket.item[itemNr].size", EmitDefaultValue = false)]
         public string RiskdataBasketItemItemNrSize { get; set; }
 
         /// <summary>
         /// [Stock keeping unit](https://en.wikipedia.org/wiki/Stock_keeping_unit).
         /// </summary>
         /// <value>[Stock keeping unit](https://en.wikipedia.org/wiki/Stock_keeping_unit).</value>
-        [DataMember(Name="riskdata.basket.item[itemNr].sku", EmitDefaultValue=false)]
+        [DataMember(Name = "riskdata.basket.item[itemNr].sku", EmitDefaultValue = false)]
         public string RiskdataBasketItemItemNrSku { get; set; }
 
         /// <summary>
         /// [Universal Product Code](https://en.wikipedia.org/wiki/Universal_Product_Code).
         /// </summary>
         /// <value>[Universal Product Code](https://en.wikipedia.org/wiki/Universal_Product_Code).</value>
-        [DataMember(Name="riskdata.basket.item[itemNr].upc", EmitDefaultValue=false)]
+        [DataMember(Name = "riskdata.basket.item[itemNr].upc", EmitDefaultValue = false)]
         public string RiskdataBasketItemItemNrUpc { get; set; }
 
         /// <summary>
         /// Code of the promotion.
         /// </summary>
         /// <value>Code of the promotion.</value>
-        [DataMember(Name="riskdata.promotions.promotion[itemNr].promotionCode", EmitDefaultValue=false)]
+        [DataMember(Name = "riskdata.promotions.promotion[itemNr].promotionCode", EmitDefaultValue = false)]
         public string RiskdataPromotionsPromotionItemNrPromotionCode { get; set; }
 
         /// <summary>
         /// The discount amount of the promotion, represented in [minor units](https://docs.adyen.com/development-resources/currency-codes).
         /// </summary>
         /// <value>The discount amount of the promotion, represented in [minor units](https://docs.adyen.com/development-resources/currency-codes).</value>
-        [DataMember(Name="riskdata.promotions.promotion[itemNr].promotionDiscountAmount", EmitDefaultValue=false)]
+        [DataMember(Name = "riskdata.promotions.promotion[itemNr].promotionDiscountAmount", EmitDefaultValue = false)]
         public string RiskdataPromotionsPromotionItemNrPromotionDiscountAmount { get; set; }
 
         /// <summary>
         /// The three-character [ISO currency code](https://en.wikipedia.org/wiki/ISO_4217).
         /// </summary>
         /// <value>The three-character [ISO currency code](https://en.wikipedia.org/wiki/ISO_4217).</value>
-        [DataMember(Name="riskdata.promotions.promotion[itemNr].promotionDiscountCurrency", EmitDefaultValue=false)]
+        [DataMember(Name = "riskdata.promotions.promotion[itemNr].promotionDiscountCurrency", EmitDefaultValue = false)]
         public string RiskdataPromotionsPromotionItemNrPromotionDiscountCurrency { get; set; }
 
         /// <summary>
         /// Promotion&#39;s percentage discount. It is represented in percentage value and there is no need to include the &#39;%&#39; sign.  e.g. for a promotion discount of 30%, the value of the field should be 30.
         /// </summary>
         /// <value>Promotion&#39;s percentage discount. It is represented in percentage value and there is no need to include the &#39;%&#39; sign.  e.g. for a promotion discount of 30%, the value of the field should be 30.</value>
-        [DataMember(Name="riskdata.promotions.promotion[itemNr].promotionDiscountPercentage", EmitDefaultValue=false)]
+        [DataMember(Name = "riskdata.promotions.promotion[itemNr].promotionDiscountPercentage", EmitDefaultValue = false)]
         public string RiskdataPromotionsPromotionItemNrPromotionDiscountPercentage { get; set; }
 
         /// <summary>
         /// Name of the promotion.
         /// </summary>
         /// <value>Name of the promotion.</value>
-        [DataMember(Name="riskdata.promotions.promotion[itemNr].promotionName", EmitDefaultValue=false)]
+        [DataMember(Name = "riskdata.promotions.promotion[itemNr].promotionName", EmitDefaultValue = false)]
         public string RiskdataPromotionsPromotionItemNrPromotionName { get; set; }
 
         /// <summary>
         /// Reference number of the risk profile that you want to apply to the payment. If not provided or left blank, the merchant-level account&#39;s default risk profile will be applied to the payment. For more information, see [dynamically assign a risk profile to a payment](https://docs.adyen.com/risk-management/create-and-use-risk-profiles#dynamically-assign-a-risk-profile-to-a-payment).
         /// </summary>
         /// <value>Reference number of the risk profile that you want to apply to the payment. If not provided or left blank, the merchant-level account&#39;s default risk profile will be applied to the payment. For more information, see [dynamically assign a risk profile to a payment](https://docs.adyen.com/risk-management/create-and-use-risk-profiles#dynamically-assign-a-risk-profile-to-a-payment).</value>
-        [DataMember(Name="riskdata.riskProfileReference", EmitDefaultValue=false)]
+        [DataMember(Name = "riskdata.riskProfileReference", EmitDefaultValue = false)]
         public string RiskdataRiskProfileReference { get; set; }
 
         /// <summary>
         /// If this parameter is provided with the value **true**, risk checks for the payment request are skipped and the transaction will not get a risk score.
         /// </summary>
         /// <value>If this parameter is provided with the value **true**, risk checks for the payment request are skipped and the transaction will not get a risk score.</value>
-        [DataMember(Name="riskdata.skipRisk", EmitDefaultValue=false)]
+        [DataMember(Name = "riskdata.skipRisk", EmitDefaultValue = false)]
         public string RiskdataSkipRisk { get; set; }
 
         /// <summary>
@@ -233,7 +234,7 @@ namespace Adyen.Model.Payments
         /// <returns>String presentation of the object</returns>
         public override string ToString()
         {
-            var sb = new StringBuilder();
+            StringBuilder sb = new StringBuilder();
             sb.Append("class AdditionalDataRisk {\n");
             sb.Append("  RiskdataCustomFieldName: ").Append(RiskdataCustomFieldName).Append("\n");
             sb.Append("  RiskdataBasketItemItemNrAmountPerItem: ").Append(RiskdataBasketItemItemNrAmountPerItem).Append("\n");
@@ -287,8 +288,9 @@ namespace Adyen.Model.Payments
         public bool Equals(AdditionalDataRisk input)
         {
             if (input == null)
+            {
                 return false;
-
+            }
             return 
                 (
                     this.RiskdataCustomFieldName == input.RiskdataCustomFieldName ||
@@ -407,57 +409,98 @@ namespace Adyen.Model.Payments
             {
                 int hashCode = 41;
                 if (this.RiskdataCustomFieldName != null)
-                    hashCode = hashCode * 59 + this.RiskdataCustomFieldName.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.RiskdataCustomFieldName.GetHashCode();
+                }
                 if (this.RiskdataBasketItemItemNrAmountPerItem != null)
-                    hashCode = hashCode * 59 + this.RiskdataBasketItemItemNrAmountPerItem.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.RiskdataBasketItemItemNrAmountPerItem.GetHashCode();
+                }
                 if (this.RiskdataBasketItemItemNrBrand != null)
-                    hashCode = hashCode * 59 + this.RiskdataBasketItemItemNrBrand.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.RiskdataBasketItemItemNrBrand.GetHashCode();
+                }
                 if (this.RiskdataBasketItemItemNrCategory != null)
-                    hashCode = hashCode * 59 + this.RiskdataBasketItemItemNrCategory.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.RiskdataBasketItemItemNrCategory.GetHashCode();
+                }
                 if (this.RiskdataBasketItemItemNrColor != null)
-                    hashCode = hashCode * 59 + this.RiskdataBasketItemItemNrColor.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.RiskdataBasketItemItemNrColor.GetHashCode();
+                }
                 if (this.RiskdataBasketItemItemNrCurrency != null)
-                    hashCode = hashCode * 59 + this.RiskdataBasketItemItemNrCurrency.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.RiskdataBasketItemItemNrCurrency.GetHashCode();
+                }
                 if (this.RiskdataBasketItemItemNrItemID != null)
-                    hashCode = hashCode * 59 + this.RiskdataBasketItemItemNrItemID.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.RiskdataBasketItemItemNrItemID.GetHashCode();
+                }
                 if (this.RiskdataBasketItemItemNrManufacturer != null)
-                    hashCode = hashCode * 59 + this.RiskdataBasketItemItemNrManufacturer.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.RiskdataBasketItemItemNrManufacturer.GetHashCode();
+                }
                 if (this.RiskdataBasketItemItemNrProductTitle != null)
-                    hashCode = hashCode * 59 + this.RiskdataBasketItemItemNrProductTitle.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.RiskdataBasketItemItemNrProductTitle.GetHashCode();
+                }
                 if (this.RiskdataBasketItemItemNrQuantity != null)
-                    hashCode = hashCode * 59 + this.RiskdataBasketItemItemNrQuantity.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.RiskdataBasketItemItemNrQuantity.GetHashCode();
+                }
                 if (this.RiskdataBasketItemItemNrReceiverEmail != null)
-                    hashCode = hashCode * 59 + this.RiskdataBasketItemItemNrReceiverEmail.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.RiskdataBasketItemItemNrReceiverEmail.GetHashCode();
+                }
                 if (this.RiskdataBasketItemItemNrSize != null)
-                    hashCode = hashCode * 59 + this.RiskdataBasketItemItemNrSize.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.RiskdataBasketItemItemNrSize.GetHashCode();
+                }
                 if (this.RiskdataBasketItemItemNrSku != null)
-                    hashCode = hashCode * 59 + this.RiskdataBasketItemItemNrSku.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.RiskdataBasketItemItemNrSku.GetHashCode();
+                }
                 if (this.RiskdataBasketItemItemNrUpc != null)
-                    hashCode = hashCode * 59 + this.RiskdataBasketItemItemNrUpc.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.RiskdataBasketItemItemNrUpc.GetHashCode();
+                }
                 if (this.RiskdataPromotionsPromotionItemNrPromotionCode != null)
-                    hashCode = hashCode * 59 + this.RiskdataPromotionsPromotionItemNrPromotionCode.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.RiskdataPromotionsPromotionItemNrPromotionCode.GetHashCode();
+                }
                 if (this.RiskdataPromotionsPromotionItemNrPromotionDiscountAmount != null)
-                    hashCode = hashCode * 59 + this.RiskdataPromotionsPromotionItemNrPromotionDiscountAmount.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.RiskdataPromotionsPromotionItemNrPromotionDiscountAmount.GetHashCode();
+                }
                 if (this.RiskdataPromotionsPromotionItemNrPromotionDiscountCurrency != null)
-                    hashCode = hashCode * 59 + this.RiskdataPromotionsPromotionItemNrPromotionDiscountCurrency.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.RiskdataPromotionsPromotionItemNrPromotionDiscountCurrency.GetHashCode();
+                }
                 if (this.RiskdataPromotionsPromotionItemNrPromotionDiscountPercentage != null)
-                    hashCode = hashCode * 59 + this.RiskdataPromotionsPromotionItemNrPromotionDiscountPercentage.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.RiskdataPromotionsPromotionItemNrPromotionDiscountPercentage.GetHashCode();
+                }
                 if (this.RiskdataPromotionsPromotionItemNrPromotionName != null)
-                    hashCode = hashCode * 59 + this.RiskdataPromotionsPromotionItemNrPromotionName.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.RiskdataPromotionsPromotionItemNrPromotionName.GetHashCode();
+                }
                 if (this.RiskdataRiskProfileReference != null)
-                    hashCode = hashCode * 59 + this.RiskdataRiskProfileReference.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.RiskdataRiskProfileReference.GetHashCode();
+                }
                 if (this.RiskdataSkipRisk != null)
-                    hashCode = hashCode * 59 + this.RiskdataSkipRisk.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.RiskdataSkipRisk.GetHashCode();
+                }
                 return hashCode;
             }
         }
-
         /// <summary>
         /// To validate all properties of the instance
         /// </summary>
         /// <param name="validationContext">Validation context</param>
         /// <returns>Validation Result</returns>
-        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+        public IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> Validate(ValidationContext validationContext)
         {
             yield break;
         }

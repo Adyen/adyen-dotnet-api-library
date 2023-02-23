@@ -11,16 +11,17 @@
 */
 
 using System;
-using System.Linq;
-using System.IO;
-using System.Text;
-using System.Text.RegularExpressions;
 using System.Collections;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Linq;
+using System.IO;
 using System.Runtime.Serialization;
+using System.Text;
+using System.Text.RegularExpressions;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
+using Newtonsoft.Json.Linq;
 using System.ComponentModel.DataAnnotations;
 
 namespace Adyen.Model.Payments
@@ -28,8 +29,8 @@ namespace Adyen.Model.Payments
     /// <summary>
     /// AdditionalDataRetry
     /// </summary>
-    [DataContract]
-    public partial class AdditionalDataRetry :  IEquatable<AdditionalDataRetry>, IValidatableObject
+    [DataContract(Name = "AdditionalDataRetry")]
+    public partial class AdditionalDataRetry : IEquatable<AdditionalDataRetry>, IValidatableObject
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="AdditionalDataRetry" /> class.
@@ -48,21 +49,21 @@ namespace Adyen.Model.Payments
         /// The number of times the transaction (not order) has been retried between different payment service providers. For instance, the &#x60;chainAttemptNumber&#x60; set to 2 means that this transaction has been recently tried on another provider before being sent to Adyen.  &gt; If you submit &#x60;retry.chainAttemptNumber&#x60;, &#x60;retry.orderAttemptNumber&#x60;, and &#x60;retry.skipRetry&#x60; values, we also recommend you provide the &#x60;merchantOrderReference&#x60; to facilitate linking payment attempts together.
         /// </summary>
         /// <value>The number of times the transaction (not order) has been retried between different payment service providers. For instance, the &#x60;chainAttemptNumber&#x60; set to 2 means that this transaction has been recently tried on another provider before being sent to Adyen.  &gt; If you submit &#x60;retry.chainAttemptNumber&#x60;, &#x60;retry.orderAttemptNumber&#x60;, and &#x60;retry.skipRetry&#x60; values, we also recommend you provide the &#x60;merchantOrderReference&#x60; to facilitate linking payment attempts together.</value>
-        [DataMember(Name="retry.chainAttemptNumber", EmitDefaultValue=false)]
+        [DataMember(Name = "retry.chainAttemptNumber", EmitDefaultValue = false)]
         public string RetryChainAttemptNumber { get; set; }
 
         /// <summary>
         /// The index of the attempt to bill a particular order, which is identified by the &#x60;merchantOrderReference&#x60; field. For example, if a recurring transaction fails and is retried one day later, then the order number for these attempts would be 1 and 2, respectively.  &gt; If you submit &#x60;retry.chainAttemptNumber&#x60;, &#x60;retry.orderAttemptNumber&#x60;, and &#x60;retry.skipRetry&#x60; values, we also recommend you provide the &#x60;merchantOrderReference&#x60; to facilitate linking payment attempts together.
         /// </summary>
         /// <value>The index of the attempt to bill a particular order, which is identified by the &#x60;merchantOrderReference&#x60; field. For example, if a recurring transaction fails and is retried one day later, then the order number for these attempts would be 1 and 2, respectively.  &gt; If you submit &#x60;retry.chainAttemptNumber&#x60;, &#x60;retry.orderAttemptNumber&#x60;, and &#x60;retry.skipRetry&#x60; values, we also recommend you provide the &#x60;merchantOrderReference&#x60; to facilitate linking payment attempts together.</value>
-        [DataMember(Name="retry.orderAttemptNumber", EmitDefaultValue=false)]
+        [DataMember(Name = "retry.orderAttemptNumber", EmitDefaultValue = false)]
         public string RetryOrderAttemptNumber { get; set; }
 
         /// <summary>
         /// The Boolean value indicating whether Adyen should skip or retry this transaction, if possible.  &gt; If you submit &#x60;retry.chainAttemptNumber&#x60;, &#x60;retry.orderAttemptNumber&#x60;, and &#x60;retry.skipRetry&#x60; values, we also recommend you provide the &#x60;merchantOrderReference&#x60; to facilitate linking payment attempts together.
         /// </summary>
         /// <value>The Boolean value indicating whether Adyen should skip or retry this transaction, if possible.  &gt; If you submit &#x60;retry.chainAttemptNumber&#x60;, &#x60;retry.orderAttemptNumber&#x60;, and &#x60;retry.skipRetry&#x60; values, we also recommend you provide the &#x60;merchantOrderReference&#x60; to facilitate linking payment attempts together.</value>
-        [DataMember(Name="retry.skipRetry", EmitDefaultValue=false)]
+        [DataMember(Name = "retry.skipRetry", EmitDefaultValue = false)]
         public string RetrySkipRetry { get; set; }
 
         /// <summary>
@@ -71,7 +72,7 @@ namespace Adyen.Model.Payments
         /// <returns>String presentation of the object</returns>
         public override string ToString()
         {
-            var sb = new StringBuilder();
+            StringBuilder sb = new StringBuilder();
             sb.Append("class AdditionalDataRetry {\n");
             sb.Append("  RetryChainAttemptNumber: ").Append(RetryChainAttemptNumber).Append("\n");
             sb.Append("  RetryOrderAttemptNumber: ").Append(RetryOrderAttemptNumber).Append("\n");
@@ -107,8 +108,9 @@ namespace Adyen.Model.Payments
         public bool Equals(AdditionalDataRetry input)
         {
             if (input == null)
+            {
                 return false;
-
+            }
             return 
                 (
                     this.RetryChainAttemptNumber == input.RetryChainAttemptNumber ||
@@ -137,21 +139,26 @@ namespace Adyen.Model.Payments
             {
                 int hashCode = 41;
                 if (this.RetryChainAttemptNumber != null)
-                    hashCode = hashCode * 59 + this.RetryChainAttemptNumber.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.RetryChainAttemptNumber.GetHashCode();
+                }
                 if (this.RetryOrderAttemptNumber != null)
-                    hashCode = hashCode * 59 + this.RetryOrderAttemptNumber.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.RetryOrderAttemptNumber.GetHashCode();
+                }
                 if (this.RetrySkipRetry != null)
-                    hashCode = hashCode * 59 + this.RetrySkipRetry.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.RetrySkipRetry.GetHashCode();
+                }
                 return hashCode;
             }
         }
-
         /// <summary>
         /// To validate all properties of the instance
         /// </summary>
         /// <param name="validationContext">Validation context</param>
         /// <returns>Validation Result</returns>
-        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+        public IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> Validate(ValidationContext validationContext)
         {
             yield break;
         }

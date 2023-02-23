@@ -1,9 +1,9 @@
 
 using Adyen.Model.Checkout;
-using Adyen.Service;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 using Adyen.HttpClient;
+using Adyen.Service.Checkout;
 using CreateCheckoutSessionRequest = Adyen.Model.Checkout.CreateCheckoutSessionRequest;
 using Environment = Adyen.Model.Environment;
 
@@ -13,14 +13,24 @@ namespace Adyen.IntegrationTest
     public class CheckoutTest : BaseTest
     {
         private Client _client;
-        private Checkout _checkout;
+        private PaymentsService _checkout;
+        private RecurringService _recurring;
+        private ModificationsService _modifications;
+        private PaymentLinksService _paymentLinksService;
+        private ClassicCheckoutSDKService _classicCheckoutSdkService;
+        private PaymentsService _paymentsService;
         private static readonly string MerchantAccount = ClientConstants.MerchantAccount;
 
         [TestInitialize]
         public void Init()
         {
             _client = CreateApiKeyTestClient();
-            _checkout = new Checkout(_client);
+            _checkout = new PaymentsService(_client);
+            _recurring = new RecurringService(_client);
+            _modifications = new ModificationsService(_client);
+            _paymentLinksService = new PaymentLinksService(_client);
+            _classicCheckoutSdkService = new ClassicCheckoutSDKService(_client);
+            _paymentsService = new PaymentsService(_client);
         }
 
         [TestMethod]
@@ -70,7 +80,6 @@ namespace Adyen.IntegrationTest
         public void PaymentsTest()
         {
             var paymentResponse = _checkout.Payments(CreatePaymentRequestCheckout());
-            Console.WriteLine(paymentResponse.ToJson());
             Assert.IsNotNull(paymentResponse.AdditionalData);
             Assert.AreEqual("1111", paymentResponse.AdditionalData["cardSummary"]);
             Assert.IsNotNull(paymentResponse.AdditionalData["avsResult"]);
@@ -108,7 +117,7 @@ namespace Adyen.IntegrationTest
         public void PaymentSessionTest()
         {
             var paymentSessionRequest = CreatePaymentSessionRequest();
-            var paymentSessionResponse = _checkout.PaymentSession(paymentSessionRequest);
+            var paymentSessionResponse = _classicCheckoutSdkService.PaymentSession(paymentSessionRequest);
             Assert.IsNotNull(paymentSessionResponse.PaymentSession);
         }
 
@@ -126,7 +135,7 @@ namespace Adyen.IntegrationTest
                 DeliveryAddress = address,
                 ExpiresAt = DateTime.Now.AddHours(4).ToString("yyyy-MM-ddTHH:mm:ss")
             };
-            var createPaymentLinkResponse = _checkout.PaymentLinks(createPaymentLinkRequest);
+            var createPaymentLinkResponse = _paymentLinksService.CreatePaymentLink(createPaymentLinkRequest);
             PaymentLinksGetSuccessTest(createPaymentLinkResponse.Id);
             PaymentLinksPatchSuccessTest(createPaymentLinkResponse.Id);
             Assert.IsNotNull(createPaymentLinkResponse);
@@ -139,7 +148,7 @@ namespace Adyen.IntegrationTest
         private void PaymentLinksGetSuccessTest(string Id)
         {   
             
-            var createPaymentLinkResponse = _checkout.GetPaymentLinks(Id);
+            var createPaymentLinkResponse = _paymentLinksService.GetPaymentLink(Id);
             Assert.IsNotNull(createPaymentLinkResponse);
             Assert.IsNotNull(createPaymentLinkResponse.Url);
             Assert.IsNotNull(createPaymentLinkResponse.Amount);
@@ -151,7 +160,7 @@ namespace Adyen.IntegrationTest
         {
             var updatePaymentLinksRequest = new UpdatePaymentLinkRequest(status: UpdatePaymentLinkRequest.StatusEnum.Expired);
             
-            var createPaymentLinkResponse = _checkout.PatchPaymentLinks(updatePaymentLinksRequest, Id);
+            var createPaymentLinkResponse = _paymentLinksService.UpdatePaymentLink(Id, updatePaymentLinksRequest);
             Assert.IsNotNull(createPaymentLinkResponse);
             Assert.IsNotNull(createPaymentLinkResponse.Url);
             Assert.IsNotNull(createPaymentLinkResponse.Amount);
@@ -195,8 +204,6 @@ namespace Adyen.IntegrationTest
                 Environment = Environment.Test,
                 XApiKey = ClientConstants.Xapikey
             };
-            var client = new Client(config, new System.Net.Http.HttpClient());
-            var service = new Checkout(client);
 
             var checkoutSessionRequest = new CreateCheckoutSessionRequest
             {
@@ -205,7 +212,7 @@ namespace Adyen.IntegrationTest
                 ReturnUrl = "http://test-url.com",
                 Amount = new Amount("EUR", 10000L)
             };
-            var createCheckoutSessionResponse = service.Sessions(checkoutSessionRequest);
+            var createCheckoutSessionResponse = _paymentsService.Sessions(checkoutSessionRequest);
             Assert.AreEqual(MerchantAccount, createCheckoutSessionResponse.MerchantAccount);
             Assert.AreEqual("TestReference", createCheckoutSessionResponse.Reference);
             Assert.AreEqual("http://test-url.com", createCheckoutSessionResponse.ReturnUrl);
@@ -222,11 +229,11 @@ namespace Adyen.IntegrationTest
         public void ModificationsCapturesTest()
         {
             var paymentsResponse = _checkout.Payments(CreatePaymentRequestCheckout());
-            var createPaymentCaptureRequest = new CreatePaymentCaptureRequest(
-                amount: new Amount(currency: "EUR", value: 500L), reference: "my_capture_reference",
+            var createPaymentCaptureRequest = new Model.Checkout.CreatePaymentCaptureRequest(
+                amount: new Model.Checkout.Amount(currency: "EUR", value: 500L), reference: "my_capture_reference",
                 merchantAccount: MerchantAccount);
             var paymentCaptureResource =
-                _checkout.PaymentsCaptures(paymentsResponse.PspReference, createPaymentCaptureRequest);
+                _modifications.CaptureAuthorisedPayment(paymentsResponse.PspReference, createPaymentCaptureRequest);
             Assert.AreEqual(paymentsResponse.PspReference, paymentCaptureResource.PaymentPspReference);
             Assert.AreEqual(paymentCaptureResource.Reference, "my_capture_reference");
         }
@@ -239,10 +246,10 @@ namespace Adyen.IntegrationTest
         public void ModificationsCancelsTest()
         {
             var paymentsResponse = _checkout.Payments(CreatePaymentRequestCheckout());
-            var createPaymentCancelRequest = new CreatePaymentCancelRequest(reference: "my_cancel_reference",
+            var createPaymentCancelRequest = new Model.Checkout.CreatePaymentCancelRequest(reference: "my_cancel_reference",
                 merchantAccount: MerchantAccount);
             var paymentCancelResource =
-                _checkout.PaymentsCancels(paymentsResponse.PspReference, createPaymentCancelRequest);
+                _modifications.CancelAuthorisedPaymentByPspReference(paymentsResponse.PspReference, createPaymentCancelRequest);
             Assert.AreEqual(paymentsResponse.PspReference, paymentCancelResource.PaymentPspReference);
             Assert.AreEqual(paymentCancelResource.Reference, "my_cancel_reference");
         }
@@ -255,10 +262,10 @@ namespace Adyen.IntegrationTest
         public void ModificationReversalsTest()
         {
             var paymentsResponse = _checkout.Payments(CreatePaymentRequestCheckout());
-            var createPaymentReversalRequest = new CreatePaymentReversalRequest(reference: "my_reversal_reference",
+            var createPaymentReversalRequest = new Model.Checkout.CreatePaymentReversalRequest(reference: "my_reversal_reference",
                 merchantAccount: MerchantAccount);
             var paymentReversalResource =
-                _checkout.PaymentsReversals(paymentsResponse.PspReference, createPaymentReversalRequest);
+                _modifications.RefundOrCancelPayment(paymentsResponse.PspReference, createPaymentReversalRequest);
             Assert.AreEqual(paymentsResponse.PspReference, paymentReversalResource.PaymentPspReference);
             Assert.AreEqual(paymentReversalResource.Reference, "my_reversal_reference");
         }
@@ -271,11 +278,11 @@ namespace Adyen.IntegrationTest
         public void ModificationsRefundsTest()
         {
             var paymentsResponse = _checkout.Payments(CreatePaymentRequestCheckout());
-            var createPaymentRefundRequest = new CreatePaymentRefundRequest(
-                amount: new Amount(currency: "EUR", value: 500L), reference: "my_refund_reference",
+            var createPaymentRefundRequest = new Model.Checkout.CreatePaymentRefundRequest(
+                amount: new Model.Checkout.Amount(currency: "EUR", value: 500L), reference: "my_refund_reference",
                 merchantAccount: MerchantAccount);
             var paymentRefundResource =
-                _checkout.PaymentsRefunds(paymentsResponse.PspReference, createPaymentRefundRequest);
+                _modifications.RefundCapturedPayment(paymentsResponse.PspReference, createPaymentRefundRequest);
             Assert.AreEqual(paymentsResponse.PspReference, paymentRefundResource.PaymentPspReference);
             Assert.AreEqual(paymentRefundResource.Reference, "my_refund_reference");
         }
@@ -288,13 +295,28 @@ namespace Adyen.IntegrationTest
         public void ModificationsAmountUpdatesTest()
         {
             var paymentsResponse = _checkout.Payments(CreatePaymentRequestCheckout());
-            var createPaymentAmountUpdateRequest = new CreatePaymentAmountUpdateRequest(
-                amount: new Amount(currency: "EUR", value: 500L), reference: "my_updates_reference",
+            var createPaymentAmountUpdateRequest = new Model.Checkout.CreatePaymentAmountUpdateRequest(
+                amount: new Model.Checkout.Amount(currency: "EUR", value: 500L), reference: "my_updates_reference",
                 merchantAccount: MerchantAccount);
             var paymentAmountUpdateResource =
-                _checkout.PaymentsAmountUpdates(paymentsResponse.PspReference, createPaymentAmountUpdateRequest);
+                _modifications.UpdateAuthorisedAmount(paymentsResponse.PspReference, createPaymentAmountUpdateRequest);
             Assert.AreEqual(paymentsResponse.PspReference, paymentAmountUpdateResource.PaymentPspReference);
             Assert.AreEqual(paymentAmountUpdateResource.Reference, "my_updates_reference");
+        }
+        
+        /// <summary>
+        /// Test success orders cancel
+        /// GET /storedPaymentMethods
+        /// </summary>
+        [TestMethod]
+        public void GetStoredPaymentMethodsTest()
+        {
+            // First execute RecurringTest
+            var test = new RecurringTest();
+            test.TestListRecurringDetails();
+            var listStoredPaymentMethodsResponse = _recurring.GetTokensForStoredPaymentDetails("test-1234", ClientConstants.MerchantAccount);
+            Assert.AreEqual("scheme", listStoredPaymentMethodsResponse.StoredPaymentMethods[0].Type);
+            Assert.AreEqual(ClientConstants.MerchantAccount, listStoredPaymentMethodsResponse.MerchantAccount);
         }
     }
 }

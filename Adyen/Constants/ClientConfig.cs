@@ -47,7 +47,7 @@ namespace Adyen.Constants
         public static string RecurringApiVersion = "v68";
         public static string ApiVersion = "v68";
         public static string PayoutApiVersion = "v68";
-        public static string CheckoutApiVersion = "v69";
+        public static string CheckoutApiVersion = "v70";
         public static string PosTerminalManagementVersion = "v1";
         public static string UserAgentSuffix = "adyen-dotnet-api-library/";
         public static string EndpointProtocol = "https://";
@@ -57,6 +57,9 @@ namespace Adyen.Constants
         public static string LegalEntityManagementEndpointTest = "https://kyc-test.adyen.com/lem/";
         public static string LegalEntityManagementEndpointLive = "https://kyc-live.adyen.com/lem/";
         public static string LegalEntityManagementVersion = "v2";
+        public static string StoredValueEndpointTest = "https://pal-test.adyen.com/pal/servlet/StoredValue";
+        public static string StoredValueEndpointLive = "https://pal-live.adyen.com/pal/servlet/StoredValue";
+        public static string StoredValueVersion = "v46";
         public static string ManagementEndpointTest = "https://management-test.adyen.com";
         public static string ManagementEndpointLive = "https://management-live.adyen.com";
         public static string ManagementVersion = "v1";

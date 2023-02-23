@@ -11,16 +11,17 @@
 */
 
 using System;
-using System.Linq;
-using System.IO;
-using System.Text;
-using System.Text.RegularExpressions;
 using System.Collections;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Linq;
+using System.IO;
 using System.Runtime.Serialization;
+using System.Text;
+using System.Text.RegularExpressions;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
+using Newtonsoft.Json.Linq;
 using System.ComponentModel.DataAnnotations;
 
 namespace Adyen.Model.Payments
@@ -28,8 +29,8 @@ namespace Adyen.Model.Payments
     /// <summary>
     /// PaymentResult
     /// </summary>
-    [DataContract]
-    public partial class PaymentResult :  IEquatable<PaymentResult>, IValidatableObject
+    [DataContract(Name = "PaymentResult")]
+    public partial class PaymentResult : IEquatable<PaymentResult>, IValidatableObject
     {
         /// <summary>
         /// The result of the payment. For more information, see [Result codes](https://docs.adyen.com/online-payments/payment-result-codes).  Possible values:  * **AuthenticationFinished** – The payment has been successfully authenticated with 3D Secure 2. Returned for 3D Secure 2 authentication-only transactions. * **AuthenticationNotRequired** – The transaction does not require 3D Secure authentication. Returned for [standalone authentication-only integrations](https://docs.adyen.com/online-payments/3d-secure/other-3ds-flows/authentication-only). * **Authorised** – The payment was successfully authorised. This state serves as an indicator to proceed with the delivery of goods and services. This is a final state. * **Cancelled** – Indicates the payment has been cancelled (either by the shopper or the merchant) before processing was completed. This is a final state. * **ChallengeShopper** – The issuer requires further shopper interaction before the payment can be authenticated. Returned for 3D Secure 2 transactions. * **Error** – There was an error when the payment was being processed. The reason is given in the &#x60;refusalReason&#x60; field. This is a final state. * **IdentifyShopper** – The issuer requires the shopper&#39;s device fingerprint before the payment can be authenticated. Returned for 3D Secure 2 transactions. * **Pending** – Indicates that it is not possible to obtain the final status of the payment. This can happen if the systems providing final status information for the payment are unavailable, or if the shopper needs to take further action to complete the payment. * **PresentToShopper** – Indicates that the response contains additional information that you need to present to a shopper, so that they can use it to complete a payment. * **Received** – Indicates the payment has successfully been received by Adyen, and will be processed. This is the initial state for all payments. * **RedirectShopper** – Indicates the shopper should be redirected to an external web page or app to complete the authorisation. * **Refused** – Indicates the payment was refused. The reason is given in the &#x60;refusalReason&#x60; field. This is a final state.
@@ -118,11 +119,12 @@ namespace Adyen.Model.Payments
 
         }
 
+
         /// <summary>
         /// The result of the payment. For more information, see [Result codes](https://docs.adyen.com/online-payments/payment-result-codes).  Possible values:  * **AuthenticationFinished** – The payment has been successfully authenticated with 3D Secure 2. Returned for 3D Secure 2 authentication-only transactions. * **AuthenticationNotRequired** – The transaction does not require 3D Secure authentication. Returned for [standalone authentication-only integrations](https://docs.adyen.com/online-payments/3d-secure/other-3ds-flows/authentication-only). * **Authorised** – The payment was successfully authorised. This state serves as an indicator to proceed with the delivery of goods and services. This is a final state. * **Cancelled** – Indicates the payment has been cancelled (either by the shopper or the merchant) before processing was completed. This is a final state. * **ChallengeShopper** – The issuer requires further shopper interaction before the payment can be authenticated. Returned for 3D Secure 2 transactions. * **Error** – There was an error when the payment was being processed. The reason is given in the &#x60;refusalReason&#x60; field. This is a final state. * **IdentifyShopper** – The issuer requires the shopper&#39;s device fingerprint before the payment can be authenticated. Returned for 3D Secure 2 transactions. * **Pending** – Indicates that it is not possible to obtain the final status of the payment. This can happen if the systems providing final status information for the payment are unavailable, or if the shopper needs to take further action to complete the payment. * **PresentToShopper** – Indicates that the response contains additional information that you need to present to a shopper, so that they can use it to complete a payment. * **Received** – Indicates the payment has successfully been received by Adyen, and will be processed. This is the initial state for all payments. * **RedirectShopper** – Indicates the shopper should be redirected to an external web page or app to complete the authorisation. * **Refused** – Indicates the payment was refused. The reason is given in the &#x60;refusalReason&#x60; field. This is a final state.
         /// </summary>
         /// <value>The result of the payment. For more information, see [Result codes](https://docs.adyen.com/online-payments/payment-result-codes).  Possible values:  * **AuthenticationFinished** – The payment has been successfully authenticated with 3D Secure 2. Returned for 3D Secure 2 authentication-only transactions. * **AuthenticationNotRequired** – The transaction does not require 3D Secure authentication. Returned for [standalone authentication-only integrations](https://docs.adyen.com/online-payments/3d-secure/other-3ds-flows/authentication-only). * **Authorised** – The payment was successfully authorised. This state serves as an indicator to proceed with the delivery of goods and services. This is a final state. * **Cancelled** – Indicates the payment has been cancelled (either by the shopper or the merchant) before processing was completed. This is a final state. * **ChallengeShopper** – The issuer requires further shopper interaction before the payment can be authenticated. Returned for 3D Secure 2 transactions. * **Error** – There was an error when the payment was being processed. The reason is given in the &#x60;refusalReason&#x60; field. This is a final state. * **IdentifyShopper** – The issuer requires the shopper&#39;s device fingerprint before the payment can be authenticated. Returned for 3D Secure 2 transactions. * **Pending** – Indicates that it is not possible to obtain the final status of the payment. This can happen if the systems providing final status information for the payment are unavailable, or if the shopper needs to take further action to complete the payment. * **PresentToShopper** – Indicates that the response contains additional information that you need to present to a shopper, so that they can use it to complete a payment. * **Received** – Indicates the payment has successfully been received by Adyen, and will be processed. This is the initial state for all payments. * **RedirectShopper** – Indicates the shopper should be redirected to an external web page or app to complete the authorisation. * **Refused** – Indicates the payment was refused. The reason is given in the &#x60;refusalReason&#x60; field. This is a final state.</value>
-        [DataMember(Name="resultCode", EmitDefaultValue=false)]
+        [DataMember(Name = "resultCode", EmitDefaultValue = false)]
         public ResultCodeEnum? ResultCode { get; set; }
         /// <summary>
         /// Initializes a new instance of the <see cref="PaymentResult" /> class.
@@ -157,70 +159,69 @@ namespace Adyen.Model.Payments
         /// Contains additional information about the payment. Some data fields are included only if you select them first: Go to **Customer Area** &gt; **Developers** &gt; **Additional data**.
         /// </summary>
         /// <value>Contains additional information about the payment. Some data fields are included only if you select them first: Go to **Customer Area** &gt; **Developers** &gt; **Additional data**.</value>
-        [DataMember(Name="additionalData", EmitDefaultValue=false)]
+        [DataMember(Name = "additionalData", EmitDefaultValue = false)]
         public Dictionary<string, string> AdditionalData { get; set; }
 
         /// <summary>
         /// Authorisation code: * When the payment is authorised successfully, this field holds the authorisation code for the payment. * When the payment is not authorised, this field is empty.
         /// </summary>
         /// <value>Authorisation code: * When the payment is authorised successfully, this field holds the authorisation code for the payment. * When the payment is not authorised, this field is empty.</value>
-        [DataMember(Name="authCode", EmitDefaultValue=false)]
+        [DataMember(Name = "authCode", EmitDefaultValue = false)]
         public string AuthCode { get; set; }
 
         /// <summary>
         /// Gets or Sets DccAmount
         /// </summary>
-        [DataMember(Name="dccAmount", EmitDefaultValue=false)]
+        [DataMember(Name = "dccAmount", EmitDefaultValue = false)]
         public Amount DccAmount { get; set; }
 
         /// <summary>
         /// Cryptographic signature used to verify &#x60;dccQuote&#x60;. &gt; This value only applies if you have implemented Dynamic Currency Conversion. For more information, [contact Support](https://www.adyen.help/hc/en-us/requests/new).
         /// </summary>
         /// <value>Cryptographic signature used to verify &#x60;dccQuote&#x60;. &gt; This value only applies if you have implemented Dynamic Currency Conversion. For more information, [contact Support](https://www.adyen.help/hc/en-us/requests/new).</value>
-        [DataMember(Name="dccSignature", EmitDefaultValue=false)]
+        [DataMember(Name = "dccSignature", EmitDefaultValue = false)]
         public string DccSignature { get; set; }
 
         /// <summary>
         /// Gets or Sets FraudResult
         /// </summary>
-        [DataMember(Name="fraudResult", EmitDefaultValue=false)]
+        [DataMember(Name = "fraudResult", EmitDefaultValue = false)]
         public FraudResult FraudResult { get; set; }
 
         /// <summary>
         /// The URL to direct the shopper to. &gt; In case of SecurePlus, do not redirect a shopper to this URL.
         /// </summary>
         /// <value>The URL to direct the shopper to. &gt; In case of SecurePlus, do not redirect a shopper to this URL.</value>
-        [DataMember(Name="issuerUrl", EmitDefaultValue=false)]
+        [DataMember(Name = "issuerUrl", EmitDefaultValue = false)]
         public string IssuerUrl { get; set; }
 
         /// <summary>
         /// The payment session.
         /// </summary>
         /// <value>The payment session.</value>
-        [DataMember(Name="md", EmitDefaultValue=false)]
+        [DataMember(Name = "md", EmitDefaultValue = false)]
         public string Md { get; set; }
 
         /// <summary>
         /// The 3D request data for the issuer.  If the value is **CUPSecurePlus-CollectSMSVerificationCode**, collect an SMS code from the shopper and pass it in the &#x60;/authorise3D&#x60; request. For more information, see [3D Secure](https://docs.adyen.com/classic-integration/3d-secure).
         /// </summary>
         /// <value>The 3D request data for the issuer.  If the value is **CUPSecurePlus-CollectSMSVerificationCode**, collect an SMS code from the shopper and pass it in the &#x60;/authorise3D&#x60; request. For more information, see [3D Secure](https://docs.adyen.com/classic-integration/3d-secure).</value>
-        [DataMember(Name="paRequest", EmitDefaultValue=false)]
+        [DataMember(Name = "paRequest", EmitDefaultValue = false)]
         public string PaRequest { get; set; }
 
         /// <summary>
         /// Adyen&#39;s 16-character reference associated with the transaction/request. This value is globally unique; quote it when communicating with us about this request.
         /// </summary>
         /// <value>Adyen&#39;s 16-character reference associated with the transaction/request. This value is globally unique; quote it when communicating with us about this request.</value>
-        [DataMember(Name="pspReference", EmitDefaultValue=false)]
+        [DataMember(Name = "pspReference", EmitDefaultValue = false)]
         public string PspReference { get; set; }
 
         /// <summary>
         /// If the payment&#39;s authorisation is refused or an error occurs during authorisation, this field holds Adyen&#39;s mapped reason for the refusal or a description of the error. When a transaction fails, the authorisation response includes &#x60;resultCode&#x60; and &#x60;refusalReason&#x60; values.  For more information, see [Refusal reasons](https://docs.adyen.com/development-resources/refusal-reasons).
         /// </summary>
         /// <value>If the payment&#39;s authorisation is refused or an error occurs during authorisation, this field holds Adyen&#39;s mapped reason for the refusal or a description of the error. When a transaction fails, the authorisation response includes &#x60;resultCode&#x60; and &#x60;refusalReason&#x60; values.  For more information, see [Refusal reasons](https://docs.adyen.com/development-resources/refusal-reasons).</value>
-        [DataMember(Name="refusalReason", EmitDefaultValue=false)]
+        [DataMember(Name = "refusalReason", EmitDefaultValue = false)]
         public string RefusalReason { get; set; }
-
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -228,7 +229,7 @@ namespace Adyen.Model.Payments
         /// <returns>String presentation of the object</returns>
         public override string ToString()
         {
-            var sb = new StringBuilder();
+            StringBuilder sb = new StringBuilder();
             sb.Append("class PaymentResult {\n");
             sb.Append("  AdditionalData: ").Append(AdditionalData).Append("\n");
             sb.Append("  AuthCode: ").Append(AuthCode).Append("\n");
@@ -272,8 +273,9 @@ namespace Adyen.Model.Payments
         public bool Equals(PaymentResult input)
         {
             if (input == null)
+            {
                 return false;
-
+            }
             return 
                 (
                     this.AdditionalData == input.AdditionalData ||
@@ -328,8 +330,7 @@ namespace Adyen.Model.Payments
                 ) && 
                 (
                     this.ResultCode == input.ResultCode ||
-                    (this.ResultCode != null &&
-                    this.ResultCode.Equals(input.ResultCode))
+                    this.ResultCode.Equals(input.ResultCode)
                 );
         }
 
@@ -343,44 +344,61 @@ namespace Adyen.Model.Payments
             {
                 int hashCode = 41;
                 if (this.AdditionalData != null)
-                    hashCode = hashCode * 59 + this.AdditionalData.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.AdditionalData.GetHashCode();
+                }
                 if (this.AuthCode != null)
-                    hashCode = hashCode * 59 + this.AuthCode.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.AuthCode.GetHashCode();
+                }
                 if (this.DccAmount != null)
-                    hashCode = hashCode * 59 + this.DccAmount.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.DccAmount.GetHashCode();
+                }
                 if (this.DccSignature != null)
-                    hashCode = hashCode * 59 + this.DccSignature.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.DccSignature.GetHashCode();
+                }
                 if (this.FraudResult != null)
-                    hashCode = hashCode * 59 + this.FraudResult.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.FraudResult.GetHashCode();
+                }
                 if (this.IssuerUrl != null)
-                    hashCode = hashCode * 59 + this.IssuerUrl.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.IssuerUrl.GetHashCode();
+                }
                 if (this.Md != null)
-                    hashCode = hashCode * 59 + this.Md.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.Md.GetHashCode();
+                }
                 if (this.PaRequest != null)
-                    hashCode = hashCode * 59 + this.PaRequest.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.PaRequest.GetHashCode();
+                }
                 if (this.PspReference != null)
-                    hashCode = hashCode * 59 + this.PspReference.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.PspReference.GetHashCode();
+                }
                 if (this.RefusalReason != null)
-                    hashCode = hashCode * 59 + this.RefusalReason.GetHashCode();
-                if (this.ResultCode != null)
-                    hashCode = hashCode * 59 + this.ResultCode.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.RefusalReason.GetHashCode();
+                }
+                hashCode = (hashCode * 59) + this.ResultCode.GetHashCode();
                 return hashCode;
             }
         }
-
         /// <summary>
         /// To validate all properties of the instance
         /// </summary>
         /// <param name="validationContext">Validation context</param>
         /// <returns>Validation Result</returns>
-        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+        public IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> Validate(ValidationContext validationContext)
         {
             // Md (string) maxLength
-            if(this.Md != null && this.Md.Length > 20000)
+            if (this.Md != null && this.Md.Length > 20000)
             {
                 yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for Md, length must be less than 20000.", new [] { "Md" });
             }
-
 
             yield break;
         }

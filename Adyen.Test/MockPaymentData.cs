@@ -116,6 +116,7 @@ namespace Adyen.Test
                 MerchantAccount = "MerchantAccount",
                 BrowserInfo = CreateMockBrowserInfo(),
                 Reference = "payment - " + DateTime.Now.ToString("yyyyMMdd"),
+                CaptureDelayHours = 0
             };
             return paymentRequest;
         }
