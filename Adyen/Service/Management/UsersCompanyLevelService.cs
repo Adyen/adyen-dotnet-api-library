@@ -14,6 +14,7 @@ using System;
 using System.Collections.Generic;
 using System.Net.Http;
 using System.Threading.Tasks;
+using Adyen.Constants;
 using Adyen.Model;
 using Adyen.Service.Resource;
 using Adyen.Model.Management;
@@ -24,9 +25,14 @@ namespace Adyen.Service.Management
     /// <summary>
     /// Represents a collection of functions to interact with the API endpoints
     /// </summary>
-    public class UsersCompanyLevelApi : AbstractService
+    public class UsersCompanyLevelService : AbstractService
     {
-        public UsersCompanyLevelApi(Client client) : base(client) {}
+        private readonly string _baseUrl;
+        
+        public UsersCompanyLevelService(Client client) : base(client)
+        {
+            _baseUrl = client.Config.ManagementEndpoint + "/" + ClientConfig.ManagementVersion;
+        }
     
         /// <summary>
         /// Get a list of users
@@ -58,10 +64,9 @@ namespace Adyen.Service.Management
             if (pageNumber != null) queryParams.Add("pageNumber", pageNumber.ToString());
             if (pageSize != null) queryParams.Add("pageSize", pageSize.ToString());
             if (username != null) queryParams.Add("username", username);
-            var endpoint = $"/companies/{companyId}/users" + ToQueryString(queryParams);
-            var resource = new ManagementResource(this, endpoint);
-            var jsonResult = await resource.RequestAsync(null, requestOptions, new HttpMethod("GET"));
-            return JsonConvert.DeserializeObject<ListCompanyUsersResponse>(jsonResult);
+            var endpoint = _baseUrl + $"/companies/{companyId}/users" + ToQueryString(queryParams);
+            var resource = new ServiceResource(this, endpoint);
+            return await resource.RequestAsync<ListCompanyUsersResponse>(null, requestOptions, new HttpMethod("GET"));
         }
 
         /// <summary>
@@ -85,10 +90,9 @@ namespace Adyen.Service.Management
         /// <returns>Task of CompanyUser</returns>
         public async Task<CompanyUser> GetUserDetailsAsync(string companyId, string userId, RequestOptions requestOptions = default)
         {
-            var endpoint = $"/companies/{companyId}/users/{userId}";
-            var resource = new ManagementResource(this, endpoint);
-            var jsonResult = await resource.RequestAsync(null, requestOptions, new HttpMethod("GET"));
-            return JsonConvert.DeserializeObject<CompanyUser>(jsonResult);
+            var endpoint = _baseUrl + $"/companies/{companyId}/users/{userId}";
+            var resource = new ServiceResource(this, endpoint);
+            return await resource.RequestAsync<CompanyUser>(null, requestOptions, new HttpMethod("GET"));
         }
 
         /// <summary>
@@ -114,10 +118,9 @@ namespace Adyen.Service.Management
         /// <returns>Task of CompanyUser</returns>
         public async Task<CompanyUser> UpdateUserDetailsAsync(string companyId, string userId, UpdateCompanyUserRequest updateCompanyUserRequest, RequestOptions requestOptions = default)
         {
-            var endpoint = $"/companies/{companyId}/users/{userId}";
-            var resource = new ManagementResource(this, endpoint);
-            var jsonResult = await resource.RequestAsync(updateCompanyUserRequest.ToJson(), requestOptions, new HttpMethod("PATCH"));
-            return JsonConvert.DeserializeObject<CompanyUser>(jsonResult);
+            var endpoint = _baseUrl + $"/companies/{companyId}/users/{userId}";
+            var resource = new ServiceResource(this, endpoint);
+            return await resource.RequestAsync<CompanyUser>(updateCompanyUserRequest.ToJson(), requestOptions, new HttpMethod("PATCH"));
         }
 
         /// <summary>
@@ -141,10 +144,9 @@ namespace Adyen.Service.Management
         /// <returns>Task of CreateCompanyUserResponse</returns>
         public async Task<CreateCompanyUserResponse> CreateNewUserAsync(string companyId, CreateCompanyUserRequest createCompanyUserRequest, RequestOptions requestOptions = default)
         {
-            var endpoint = $"/companies/{companyId}/users";
-            var resource = new ManagementResource(this, endpoint);
-            var jsonResult = await resource.RequestAsync(createCompanyUserRequest.ToJson(), requestOptions, new HttpMethod("POST"));
-            return JsonConvert.DeserializeObject<CreateCompanyUserResponse>(jsonResult);
+            var endpoint = _baseUrl + $"/companies/{companyId}/users";
+            var resource = new ServiceResource(this, endpoint);
+            return await resource.RequestAsync<CreateCompanyUserResponse>(createCompanyUserRequest.ToJson(), requestOptions, new HttpMethod("POST"));
         }
 
     }

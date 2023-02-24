@@ -11,25 +11,27 @@
 */
 
 using System;
-using System.Linq;
-using System.IO;
-using System.Text;
-using System.Text.RegularExpressions;
 using System.Collections;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Linq;
+using System.IO;
 using System.Runtime.Serialization;
+using System.Text;
+using System.Text.RegularExpressions;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
+using Newtonsoft.Json.Linq;
 using System.ComponentModel.DataAnnotations;
+using OpenAPIDateConverter = Adyen.ApiSerialization.OpenAPIDateConverter;
 
 namespace Adyen.Model.Management
 {
     /// <summary>
     /// JSONObject
     /// </summary>
-    [DataContract]
-    public partial class JSONObject :  IEquatable<JSONObject>, IValidatableObject
+    [DataContract(Name = "JSONObject")]
+    public partial class JSONObject : IEquatable<JSONObject>, IValidatableObject
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="JSONObject" /> class.
@@ -45,13 +47,13 @@ namespace Adyen.Model.Management
         /// <summary>
         /// Gets or Sets Paths
         /// </summary>
-        [DataMember(Name="paths", EmitDefaultValue=false)]
+        [DataMember(Name = "paths", EmitDefaultValue = false)]
         public List<JSONPath> Paths { get; set; }
 
         /// <summary>
         /// Gets or Sets RootPath
         /// </summary>
-        [DataMember(Name="rootPath", EmitDefaultValue=false)]
+        [DataMember(Name = "rootPath", EmitDefaultValue = false)]
         public JSONPath RootPath { get; set; }
 
         /// <summary>
@@ -60,7 +62,7 @@ namespace Adyen.Model.Management
         /// <returns>String presentation of the object</returns>
         public override string ToString()
         {
-            var sb = new StringBuilder();
+            StringBuilder sb = new StringBuilder();
             sb.Append("class JSONObject {\n");
             sb.Append("  Paths: ").Append(Paths).Append("\n");
             sb.Append("  RootPath: ").Append(RootPath).Append("\n");
@@ -95,8 +97,9 @@ namespace Adyen.Model.Management
         public bool Equals(JSONObject input)
         {
             if (input == null)
+            {
                 return false;
-
+            }
             return 
                 (
                     this.Paths == input.Paths ||
@@ -121,19 +124,22 @@ namespace Adyen.Model.Management
             {
                 int hashCode = 41;
                 if (this.Paths != null)
-                    hashCode = hashCode * 59 + this.Paths.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.Paths.GetHashCode();
+                }
                 if (this.RootPath != null)
-                    hashCode = hashCode * 59 + this.RootPath.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.RootPath.GetHashCode();
+                }
                 return hashCode;
             }
         }
-
         /// <summary>
         /// To validate all properties of the instance
         /// </summary>
         /// <param name="validationContext">Validation context</param>
         /// <returns>Validation Result</returns>
-        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+        public IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> Validate(ValidationContext validationContext)
         {
             yield break;
         }

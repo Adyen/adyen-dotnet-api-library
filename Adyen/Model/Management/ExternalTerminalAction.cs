@@ -11,25 +11,27 @@
 */
 
 using System;
-using System.Linq;
-using System.IO;
-using System.Text;
-using System.Text.RegularExpressions;
 using System.Collections;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Linq;
+using System.IO;
 using System.Runtime.Serialization;
+using System.Text;
+using System.Text.RegularExpressions;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
+using Newtonsoft.Json.Linq;
 using System.ComponentModel.DataAnnotations;
+using OpenAPIDateConverter = Adyen.ApiSerialization.OpenAPIDateConverter;
 
 namespace Adyen.Model.Management
 {
     /// <summary>
     /// ExternalTerminalAction
     /// </summary>
-    [DataContract]
-    public partial class ExternalTerminalAction :  IEquatable<ExternalTerminalAction>, IValidatableObject
+    [DataContract(Name = "ExternalTerminalAction")]
+    public partial class ExternalTerminalAction : IEquatable<ExternalTerminalAction>, IValidatableObject
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="ExternalTerminalAction" /> class.
@@ -58,56 +60,56 @@ namespace Adyen.Model.Management
         /// The type of terminal action: **InstallAndroidApp**, **UninstallAndroidApp**, **InstallAndroidCertificate**, or **UninstallAndroidCertificate**.
         /// </summary>
         /// <value>The type of terminal action: **InstallAndroidApp**, **UninstallAndroidApp**, **InstallAndroidCertificate**, or **UninstallAndroidCertificate**.</value>
-        [DataMember(Name="actionType", EmitDefaultValue=false)]
+        [DataMember(Name = "actionType", EmitDefaultValue = false)]
         public string ActionType { get; set; }
 
         /// <summary>
         /// Technical information about the terminal action.
         /// </summary>
         /// <value>Technical information about the terminal action.</value>
-        [DataMember(Name="config", EmitDefaultValue=false)]
+        [DataMember(Name = "config", EmitDefaultValue = false)]
         public string Config { get; set; }
 
         /// <summary>
         /// The date and time when the action was carried out.
         /// </summary>
         /// <value>The date and time when the action was carried out.</value>
-        [DataMember(Name="confirmedAt", EmitDefaultValue=false)]
+        [DataMember(Name = "confirmedAt", EmitDefaultValue = false)]
         public DateTime ConfirmedAt { get; set; }
 
         /// <summary>
         /// The unique ID of the terminal action.
         /// </summary>
         /// <value>The unique ID of the terminal action.</value>
-        [DataMember(Name="id", EmitDefaultValue=false)]
+        [DataMember(Name = "id", EmitDefaultValue = false)]
         public string Id { get; set; }
 
         /// <summary>
         /// The result message for the action.
         /// </summary>
         /// <value>The result message for the action.</value>
-        [DataMember(Name="result", EmitDefaultValue=false)]
+        [DataMember(Name = "result", EmitDefaultValue = false)]
         public string Result { get; set; }
 
         /// <summary>
         /// The date and time when the action was scheduled to happen.
         /// </summary>
         /// <value>The date and time when the action was scheduled to happen.</value>
-        [DataMember(Name="scheduledAt", EmitDefaultValue=false)]
+        [DataMember(Name = "scheduledAt", EmitDefaultValue = false)]
         public DateTime ScheduledAt { get; set; }
 
         /// <summary>
         /// The status of the terminal action: **pending**, **successful**, **failed**, **cancelled**, or **tryLater**.
         /// </summary>
         /// <value>The status of the terminal action: **pending**, **successful**, **failed**, **cancelled**, or **tryLater**.</value>
-        [DataMember(Name="status", EmitDefaultValue=false)]
+        [DataMember(Name = "status", EmitDefaultValue = false)]
         public string Status { get; set; }
 
         /// <summary>
         /// The unique ID of the terminal that the action applies to.
         /// </summary>
         /// <value>The unique ID of the terminal that the action applies to.</value>
-        [DataMember(Name="terminalId", EmitDefaultValue=false)]
+        [DataMember(Name = "terminalId", EmitDefaultValue = false)]
         public string TerminalId { get; set; }
 
         /// <summary>
@@ -116,7 +118,7 @@ namespace Adyen.Model.Management
         /// <returns>String presentation of the object</returns>
         public override string ToString()
         {
-            var sb = new StringBuilder();
+            StringBuilder sb = new StringBuilder();
             sb.Append("class ExternalTerminalAction {\n");
             sb.Append("  ActionType: ").Append(ActionType).Append("\n");
             sb.Append("  Config: ").Append(Config).Append("\n");
@@ -157,8 +159,9 @@ namespace Adyen.Model.Management
         public bool Equals(ExternalTerminalAction input)
         {
             if (input == null)
+            {
                 return false;
-
+            }
             return 
                 (
                     this.ActionType == input.ActionType ||
@@ -212,31 +215,46 @@ namespace Adyen.Model.Management
             {
                 int hashCode = 41;
                 if (this.ActionType != null)
-                    hashCode = hashCode * 59 + this.ActionType.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.ActionType.GetHashCode();
+                }
                 if (this.Config != null)
-                    hashCode = hashCode * 59 + this.Config.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.Config.GetHashCode();
+                }
                 if (this.ConfirmedAt != null)
-                    hashCode = hashCode * 59 + this.ConfirmedAt.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.ConfirmedAt.GetHashCode();
+                }
                 if (this.Id != null)
-                    hashCode = hashCode * 59 + this.Id.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.Id.GetHashCode();
+                }
                 if (this.Result != null)
-                    hashCode = hashCode * 59 + this.Result.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.Result.GetHashCode();
+                }
                 if (this.ScheduledAt != null)
-                    hashCode = hashCode * 59 + this.ScheduledAt.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.ScheduledAt.GetHashCode();
+                }
                 if (this.Status != null)
-                    hashCode = hashCode * 59 + this.Status.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.Status.GetHashCode();
+                }
                 if (this.TerminalId != null)
-                    hashCode = hashCode * 59 + this.TerminalId.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.TerminalId.GetHashCode();
+                }
                 return hashCode;
             }
         }
-
         /// <summary>
         /// To validate all properties of the instance
         /// </summary>
         /// <param name="validationContext">Validation context</param>
         /// <returns>Validation Result</returns>
-        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+        public IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> Validate(ValidationContext validationContext)
         {
             yield break;
         }

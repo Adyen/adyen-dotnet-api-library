@@ -14,6 +14,7 @@ using System;
 using System.Collections.Generic;
 using System.Net.Http;
 using System.Threading.Tasks;
+using Adyen.Constants;
 using Adyen.Model;
 using Adyen.Service.Resource;
 using Adyen.Model.Management;
@@ -24,9 +25,14 @@ namespace Adyen.Service.Management
     /// <summary>
     /// Represents a collection of functions to interact with the API endpoints
     /// </summary>
-    public class ClientKeyMerchantLevelApi : AbstractService
+    public class ClientKeyMerchantLevelService : AbstractService
     {
-        public ClientKeyMerchantLevelApi(Client client) : base(client) {}
+        private readonly string _baseUrl;
+        
+        public ClientKeyMerchantLevelService(Client client) : base(client)
+        {
+            _baseUrl = client.Config.ManagementEndpoint + "/" + ClientConfig.ManagementVersion;
+        }
     
         /// <summary>
         /// Generate new client key
@@ -49,10 +55,9 @@ namespace Adyen.Service.Management
         /// <returns>Task of GenerateClientKeyResponse</returns>
         public async Task<GenerateClientKeyResponse> GenerateNewClientKeyAsync(string merchantId, string apiCredentialId, RequestOptions requestOptions = default)
         {
-            var endpoint = $"/merchants/{merchantId}/apiCredentials/{apiCredentialId}/generateClientKey";
-            var resource = new ManagementResource(this, endpoint);
-            var jsonResult = await resource.RequestAsync(null, requestOptions, new HttpMethod("POST"));
-            return JsonConvert.DeserializeObject<GenerateClientKeyResponse>(jsonResult);
+            var endpoint = _baseUrl + $"/merchants/{merchantId}/apiCredentials/{apiCredentialId}/generateClientKey";
+            var resource = new ServiceResource(this, endpoint);
+            return await resource.RequestAsync<GenerateClientKeyResponse>(null, requestOptions, new HttpMethod("POST"));
         }
 
     }

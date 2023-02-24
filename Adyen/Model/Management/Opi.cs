@@ -11,25 +11,27 @@
 */
 
 using System;
-using System.Linq;
-using System.IO;
-using System.Text;
-using System.Text.RegularExpressions;
 using System.Collections;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Linq;
+using System.IO;
 using System.Runtime.Serialization;
+using System.Text;
+using System.Text.RegularExpressions;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
+using Newtonsoft.Json.Linq;
 using System.ComponentModel.DataAnnotations;
+using OpenAPIDateConverter = Adyen.ApiSerialization.OpenAPIDateConverter;
 
 namespace Adyen.Model.Management
 {
     /// <summary>
     /// Opi
     /// </summary>
-    [DataContract]
-    public partial class Opi :  IEquatable<Opi>, IValidatableObject
+    [DataContract(Name = "Opi")]
+    public partial class Opi : IEquatable<Opi>, IValidatableObject
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="Opi" /> class.
@@ -48,21 +50,21 @@ namespace Adyen.Model.Management
         /// Indicates if Pay at Table is enabled.
         /// </summary>
         /// <value>Indicates if Pay at Table is enabled.</value>
-        [DataMember(Name="enablePayAtTable", EmitDefaultValue=false)]
+        [DataMember(Name = "enablePayAtTable", EmitDefaultValue = false)]
         public bool EnablePayAtTable { get; set; }
 
         /// <summary>
         /// The store number to use for Pay at Table.
         /// </summary>
         /// <value>The store number to use for Pay at Table.</value>
-        [DataMember(Name="payAtTableStoreNumber", EmitDefaultValue=false)]
+        [DataMember(Name = "payAtTableStoreNumber", EmitDefaultValue = false)]
         public string PayAtTableStoreNumber { get; set; }
 
         /// <summary>
         /// The URL and port number used for Pay at Table communication.
         /// </summary>
         /// <value>The URL and port number used for Pay at Table communication.</value>
-        [DataMember(Name="payAtTableURL", EmitDefaultValue=false)]
+        [DataMember(Name = "payAtTableURL", EmitDefaultValue = false)]
         public string PayAtTableURL { get; set; }
 
         /// <summary>
@@ -71,7 +73,7 @@ namespace Adyen.Model.Management
         /// <returns>String presentation of the object</returns>
         public override string ToString()
         {
-            var sb = new StringBuilder();
+            StringBuilder sb = new StringBuilder();
             sb.Append("class Opi {\n");
             sb.Append("  EnablePayAtTable: ").Append(EnablePayAtTable).Append("\n");
             sb.Append("  PayAtTableStoreNumber: ").Append(PayAtTableStoreNumber).Append("\n");
@@ -107,13 +109,13 @@ namespace Adyen.Model.Management
         public bool Equals(Opi input)
         {
             if (input == null)
+            {
                 return false;
-
+            }
             return 
                 (
                     this.EnablePayAtTable == input.EnablePayAtTable ||
-                    (this.EnablePayAtTable != null &&
-                    this.EnablePayAtTable.Equals(input.EnablePayAtTable))
+                    this.EnablePayAtTable.Equals(input.EnablePayAtTable)
                 ) && 
                 (
                     this.PayAtTableStoreNumber == input.PayAtTableStoreNumber ||
@@ -136,22 +138,24 @@ namespace Adyen.Model.Management
             unchecked // Overflow is fine, just wrap
             {
                 int hashCode = 41;
-                if (this.EnablePayAtTable != null)
-                    hashCode = hashCode * 59 + this.EnablePayAtTable.GetHashCode();
+                hashCode = (hashCode * 59) + this.EnablePayAtTable.GetHashCode();
                 if (this.PayAtTableStoreNumber != null)
-                    hashCode = hashCode * 59 + this.PayAtTableStoreNumber.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.PayAtTableStoreNumber.GetHashCode();
+                }
                 if (this.PayAtTableURL != null)
-                    hashCode = hashCode * 59 + this.PayAtTableURL.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.PayAtTableURL.GetHashCode();
+                }
                 return hashCode;
             }
         }
-
         /// <summary>
         /// To validate all properties of the instance
         /// </summary>
         /// <param name="validationContext">Validation context</param>
         /// <returns>Validation Result</returns>
-        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+        public IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> Validate(ValidationContext validationContext)
         {
             yield break;
         }

@@ -14,6 +14,7 @@ using System;
 using System.Collections.Generic;
 using System.Net.Http;
 using System.Threading.Tasks;
+using Adyen.Constants;
 using Adyen.Model;
 using Adyen.Service.Resource;
 using Adyen.Model.Management;
@@ -24,9 +25,14 @@ namespace Adyen.Service.Management
     /// <summary>
     /// Represents a collection of functions to interact with the API endpoints
     /// </summary>
-    public class TerminalsTerminalLevelApi : AbstractService
+    public class TerminalsTerminalLevelService : AbstractService
     {
-        public TerminalsTerminalLevelApi(Client client) : base(client) {}
+        private readonly string _baseUrl;
+        
+        public TerminalsTerminalLevelService(Client client) : base(client)
+        {
+            _baseUrl = client.Config.ManagementEndpoint + "/" + ClientConfig.ManagementVersion;
+        }
     
         /// <summary>
         /// Get a list of terminals
@@ -68,10 +74,9 @@ namespace Adyen.Service.Management
             if (brandModels != null) queryParams.Add("brandModels", brandModels);
             if (pageNumber != null) queryParams.Add("pageNumber", pageNumber.ToString());
             if (pageSize != null) queryParams.Add("pageSize", pageSize.ToString());
-            var endpoint = "/terminals" + ToQueryString(queryParams);
-            var resource = new ManagementResource(this, endpoint);
-            var jsonResult = await resource.RequestAsync(null, requestOptions, new HttpMethod("GET"));
-            return JsonConvert.DeserializeObject<ListTerminalsResponse>(jsonResult);
+            var endpoint = _baseUrl + "/terminals" + ToQueryString(queryParams);
+            var resource = new ServiceResource(this, endpoint);
+            return await resource.RequestAsync<ListTerminalsResponse>(null, requestOptions, new HttpMethod("GET"));
         }
 
     }

@@ -11,25 +11,27 @@
 */
 
 using System;
-using System.Linq;
-using System.IO;
-using System.Text;
-using System.Text.RegularExpressions;
 using System.Collections;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Linq;
+using System.IO;
 using System.Runtime.Serialization;
+using System.Text;
+using System.Text.RegularExpressions;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
+using Newtonsoft.Json.Linq;
 using System.ComponentModel.DataAnnotations;
+using OpenAPIDateConverter = Adyen.ApiSerialization.OpenAPIDateConverter;
 
 namespace Adyen.Model.Management
 {
     /// <summary>
     /// Standalone
     /// </summary>
-    [DataContract]
-    public partial class Standalone :  IEquatable<Standalone>, IValidatableObject
+    [DataContract(Name = "Standalone")]
+    public partial class Standalone : IEquatable<Standalone>, IValidatableObject
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="Standalone" /> class.
@@ -46,14 +48,14 @@ namespace Adyen.Model.Management
         /// The default currency of the standalone payment terminal as an [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) currency code.
         /// </summary>
         /// <value>The default currency of the standalone payment terminal as an [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) currency code.</value>
-        [DataMember(Name="currencyCode", EmitDefaultValue=false)]
+        [DataMember(Name = "currencyCode", EmitDefaultValue = false)]
         public string CurrencyCode { get; set; }
 
         /// <summary>
         /// Enable standalone mode.
         /// </summary>
         /// <value>Enable standalone mode.</value>
-        [DataMember(Name="enableStandalone", EmitDefaultValue=false)]
+        [DataMember(Name = "enableStandalone", EmitDefaultValue = false)]
         public bool EnableStandalone { get; set; }
 
         /// <summary>
@@ -62,7 +64,7 @@ namespace Adyen.Model.Management
         /// <returns>String presentation of the object</returns>
         public override string ToString()
         {
-            var sb = new StringBuilder();
+            StringBuilder sb = new StringBuilder();
             sb.Append("class Standalone {\n");
             sb.Append("  CurrencyCode: ").Append(CurrencyCode).Append("\n");
             sb.Append("  EnableStandalone: ").Append(EnableStandalone).Append("\n");
@@ -97,8 +99,9 @@ namespace Adyen.Model.Management
         public bool Equals(Standalone input)
         {
             if (input == null)
+            {
                 return false;
-
+            }
             return 
                 (
                     this.CurrencyCode == input.CurrencyCode ||
@@ -107,8 +110,7 @@ namespace Adyen.Model.Management
                 ) && 
                 (
                     this.EnableStandalone == input.EnableStandalone ||
-                    (this.EnableStandalone != null &&
-                    this.EnableStandalone.Equals(input.EnableStandalone))
+                    this.EnableStandalone.Equals(input.EnableStandalone)
                 );
         }
 
@@ -122,28 +124,28 @@ namespace Adyen.Model.Management
             {
                 int hashCode = 41;
                 if (this.CurrencyCode != null)
-                    hashCode = hashCode * 59 + this.CurrencyCode.GetHashCode();
-                if (this.EnableStandalone != null)
-                    hashCode = hashCode * 59 + this.EnableStandalone.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.CurrencyCode.GetHashCode();
+                }
+                hashCode = (hashCode * 59) + this.EnableStandalone.GetHashCode();
                 return hashCode;
             }
         }
-
         /// <summary>
         /// To validate all properties of the instance
         /// </summary>
         /// <param name="validationContext">Validation context</param>
         /// <returns>Validation Result</returns>
-        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+        public IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> Validate(ValidationContext validationContext)
         {
             // CurrencyCode (string) maxLength
-            if(this.CurrencyCode != null && this.CurrencyCode.Length > 3)
+            if (this.CurrencyCode != null && this.CurrencyCode.Length > 3)
             {
                 yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for CurrencyCode, length must be less than 3.", new [] { "CurrencyCode" });
             }
 
             // CurrencyCode (string) minLength
-            if(this.CurrencyCode != null && this.CurrencyCode.Length < 3)
+            if (this.CurrencyCode != null && this.CurrencyCode.Length < 3)
             {
                 yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for CurrencyCode, length must be greater than 3.", new [] { "CurrencyCode" });
             }
