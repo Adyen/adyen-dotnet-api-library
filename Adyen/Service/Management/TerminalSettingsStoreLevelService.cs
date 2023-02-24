@@ -14,6 +14,7 @@ using System;
 using System.Collections.Generic;
 using System.Net.Http;
 using System.Threading.Tasks;
+using Adyen.Constants;
 using Adyen.Model;
 using Adyen.Service.Resource;
 using Adyen.Model.Management;
@@ -24,9 +25,14 @@ namespace Adyen.Service.Management
     /// <summary>
     /// Represents a collection of functions to interact with the API endpoints
     /// </summary>
-    public class TerminalSettingsStoreLevelApi : AbstractService
+    public class TerminalSettingsStoreLevelService : AbstractService
     {
-        public TerminalSettingsStoreLevelApi(Client client) : base(client) {}
+        private readonly string _baseUrl;
+        
+        public TerminalSettingsStoreLevelService(Client client) : base(client)
+        {
+            _baseUrl = client.Config.ManagementEndpoint + "/" + ClientConfig.ManagementVersion;
+        }
     
         /// <summary>
         /// Get the terminal logo
@@ -36,7 +42,7 @@ namespace Adyen.Service.Management
         /// <param name="model">The terminal model. Possible values: E355, VX675WIFIBT, VX680, VX690, VX700, VX820, M400, MX925, P400Plus, UX300, UX410, V200cPlus, V240mPlus, V400cPlus, V400m, e280, e285, e285p, S1E, S1EL, S1F2, S1L, S1U, S7T.</param>
         /// <param name="requestOptions">Additional request options.</param>
         /// <returns>Logo</returns>
-        public Logo GetTerminalLogo(string merchantId, string reference, string model = default, RequestOptions requestOptions = default)
+        public Logo GetTerminalLogo(string merchantId, string reference, string model, RequestOptions requestOptions = default)
         {
             return GetTerminalLogoAsync(merchantId, reference, model, requestOptions).GetAwaiter().GetResult();
         }
@@ -49,15 +55,14 @@ namespace Adyen.Service.Management
         /// <param name="model">The terminal model. Possible values: E355, VX675WIFIBT, VX680, VX690, VX700, VX820, M400, MX925, P400Plus, UX300, UX410, V200cPlus, V240mPlus, V400cPlus, V400m, e280, e285, e285p, S1E, S1EL, S1F2, S1L, S1U, S7T.</param>
         /// <param name="requestOptions">Additional request options.</param>
         /// <returns>Task of Logo</returns>
-        public async Task<Logo> GetTerminalLogoAsync(string merchantId, string reference, string model = default, RequestOptions requestOptions = default)
+        public async Task<Logo> GetTerminalLogoAsync(string merchantId, string reference, string model, RequestOptions requestOptions = default)
         {
             // Build the query string
             var queryParams = new Dictionary<string, string>();
             if (model != null) queryParams.Add("model", model);
-            var endpoint = $"/merchants/{merchantId}/stores/{reference}/terminalLogos" + ToQueryString(queryParams);
-            var resource = new ManagementResource(this, endpoint);
-            var jsonResult = await resource.RequestAsync(null, requestOptions, new HttpMethod("GET"));
-            return JsonConvert.DeserializeObject<Logo>(jsonResult);
+            var endpoint = _baseUrl + $"/merchants/{merchantId}/stores/{reference}/terminalLogos" + ToQueryString(queryParams);
+            var resource = new ServiceResource(this, endpoint);
+            return await resource.RequestAsync<Logo>(null, requestOptions, new HttpMethod("GET"));
         }
 
         /// <summary>
@@ -81,10 +86,9 @@ namespace Adyen.Service.Management
         /// <returns>Task of TerminalSettings</returns>
         public async Task<TerminalSettings> GetTerminalSettingsAsync(string merchantId, string reference, RequestOptions requestOptions = default)
         {
-            var endpoint = $"/merchants/{merchantId}/stores/{reference}/terminalSettings";
-            var resource = new ManagementResource(this, endpoint);
-            var jsonResult = await resource.RequestAsync(null, requestOptions, new HttpMethod("GET"));
-            return JsonConvert.DeserializeObject<TerminalSettings>(jsonResult);
+            var endpoint = _baseUrl + $"/merchants/{merchantId}/stores/{reference}/terminalSettings";
+            var resource = new ServiceResource(this, endpoint);
+            return await resource.RequestAsync<TerminalSettings>(null, requestOptions, new HttpMethod("GET"));
         }
 
         /// <summary>
@@ -94,7 +98,7 @@ namespace Adyen.Service.Management
         /// <param name="model">The terminal model. Possible values: E355, VX675WIFIBT, VX680, VX690, VX700, VX820, M400, MX925, P400Plus, UX300, UX410, V200cPlus, V240mPlus, V400cPlus, V400m, e280, e285, e285p, S1E, S1EL, S1F2, S1L, S1U, S7T.</param>
         /// <param name="requestOptions">Additional request options.</param>
         /// <returns>Logo</returns>
-        public Logo GetTerminalLogoByStoreId(string storeId, string model = default, RequestOptions requestOptions = default)
+        public Logo GetTerminalLogoByStoreId(string storeId, string model, RequestOptions requestOptions = default)
         {
             return GetTerminalLogoByStoreIdAsync(storeId, model, requestOptions).GetAwaiter().GetResult();
         }
@@ -106,15 +110,14 @@ namespace Adyen.Service.Management
         /// <param name="model">The terminal model. Possible values: E355, VX675WIFIBT, VX680, VX690, VX700, VX820, M400, MX925, P400Plus, UX300, UX410, V200cPlus, V240mPlus, V400cPlus, V400m, e280, e285, e285p, S1E, S1EL, S1F2, S1L, S1U, S7T.</param>
         /// <param name="requestOptions">Additional request options.</param>
         /// <returns>Task of Logo</returns>
-        public async Task<Logo> GetTerminalLogoByStoreIdAsync(string storeId, string model = default, RequestOptions requestOptions = default)
+        public async Task<Logo> GetTerminalLogoByStoreIdAsync(string storeId, string model, RequestOptions requestOptions = default)
         {
             // Build the query string
             var queryParams = new Dictionary<string, string>();
             if (model != null) queryParams.Add("model", model);
-            var endpoint = $"/stores/{storeId}/terminalLogos" + ToQueryString(queryParams);
-            var resource = new ManagementResource(this, endpoint);
-            var jsonResult = await resource.RequestAsync(null, requestOptions, new HttpMethod("GET"));
-            return JsonConvert.DeserializeObject<Logo>(jsonResult);
+            var endpoint = _baseUrl + $"/stores/{storeId}/terminalLogos" + ToQueryString(queryParams);
+            var resource = new ServiceResource(this, endpoint);
+            return await resource.RequestAsync<Logo>(null, requestOptions, new HttpMethod("GET"));
         }
 
         /// <summary>
@@ -136,10 +139,9 @@ namespace Adyen.Service.Management
         /// <returns>Task of TerminalSettings</returns>
         public async Task<TerminalSettings> GetTerminalSettingsByStoreIdAsync(string storeId, RequestOptions requestOptions = default)
         {
-            var endpoint = $"/stores/{storeId}/terminalSettings";
-            var resource = new ManagementResource(this, endpoint);
-            var jsonResult = await resource.RequestAsync(null, requestOptions, new HttpMethod("GET"));
-            return JsonConvert.DeserializeObject<TerminalSettings>(jsonResult);
+            var endpoint = _baseUrl + $"/stores/{storeId}/terminalSettings";
+            var resource = new ServiceResource(this, endpoint);
+            return await resource.RequestAsync<TerminalSettings>(null, requestOptions, new HttpMethod("GET"));
         }
 
         /// <summary>
@@ -151,7 +153,7 @@ namespace Adyen.Service.Management
         /// <param name="logo"></param>
         /// <param name="requestOptions">Additional request options.</param>
         /// <returns>Logo</returns>
-        public Logo UpdateTerminalLogo(string merchantId, string reference, Logo logo, string model = default, RequestOptions requestOptions = default)
+        public Logo UpdateTerminalLogo(string merchantId, string reference, Logo logo, string model, RequestOptions requestOptions = default)
         {
             return UpdateTerminalLogoAsync(merchantId, reference, logo, model, requestOptions).GetAwaiter().GetResult();
         }
@@ -165,15 +167,14 @@ namespace Adyen.Service.Management
         /// <param name="logo"></param>
         /// <param name="requestOptions">Additional request options.</param>
         /// <returns>Task of Logo</returns>
-        public async Task<Logo> UpdateTerminalLogoAsync(string merchantId, string reference, Logo logo, string model = default, RequestOptions requestOptions = default)
+        public async Task<Logo> UpdateTerminalLogoAsync(string merchantId, string reference, Logo logo, string model, RequestOptions requestOptions = default)
         {
             // Build the query string
             var queryParams = new Dictionary<string, string>();
             if (model != null) queryParams.Add("model", model);
-            var endpoint = $"/merchants/{merchantId}/stores/{reference}/terminalLogos" + ToQueryString(queryParams);
-            var resource = new ManagementResource(this, endpoint);
-            var jsonResult = await resource.RequestAsync(logo.ToJson(), requestOptions, new HttpMethod("PATCH"));
-            return JsonConvert.DeserializeObject<Logo>(jsonResult);
+            var endpoint = _baseUrl + $"/merchants/{merchantId}/stores/{reference}/terminalLogos" + ToQueryString(queryParams);
+            var resource = new ServiceResource(this, endpoint);
+            return await resource.RequestAsync<Logo>(logo.ToJson(), requestOptions, new HttpMethod("PATCH"));
         }
 
         /// <summary>
@@ -199,10 +200,9 @@ namespace Adyen.Service.Management
         /// <returns>Task of TerminalSettings</returns>
         public async Task<TerminalSettings> UpdateTerminalSettingsAsync(string merchantId, string reference, TerminalSettings terminalSettings, RequestOptions requestOptions = default)
         {
-            var endpoint = $"/merchants/{merchantId}/stores/{reference}/terminalSettings";
-            var resource = new ManagementResource(this, endpoint);
-            var jsonResult = await resource.RequestAsync(terminalSettings.ToJson(), requestOptions, new HttpMethod("PATCH"));
-            return JsonConvert.DeserializeObject<TerminalSettings>(jsonResult);
+            var endpoint = _baseUrl + $"/merchants/{merchantId}/stores/{reference}/terminalSettings";
+            var resource = new ServiceResource(this, endpoint);
+            return await resource.RequestAsync<TerminalSettings>(terminalSettings.ToJson(), requestOptions, new HttpMethod("PATCH"));
         }
 
         /// <summary>
@@ -213,7 +213,7 @@ namespace Adyen.Service.Management
         /// <param name="logo"></param>
         /// <param name="requestOptions">Additional request options.</param>
         /// <returns>Logo</returns>
-        public Logo UpdateTerminalLogoByStoreId(string storeId, Logo logo, string model = default, RequestOptions requestOptions = default)
+        public Logo UpdateTerminalLogoByStoreId(string storeId, Logo logo, string model, RequestOptions requestOptions = default)
         {
             return UpdateTerminalLogoByStoreIdAsync(storeId, logo, model, requestOptions).GetAwaiter().GetResult();
         }
@@ -226,15 +226,14 @@ namespace Adyen.Service.Management
         /// <param name="logo"></param>
         /// <param name="requestOptions">Additional request options.</param>
         /// <returns>Task of Logo</returns>
-        public async Task<Logo> UpdateTerminalLogoByStoreIdAsync(string storeId, Logo logo, string model = default, RequestOptions requestOptions = default)
+        public async Task<Logo> UpdateTerminalLogoByStoreIdAsync(string storeId, Logo logo, string model, RequestOptions requestOptions = default)
         {
             // Build the query string
             var queryParams = new Dictionary<string, string>();
             if (model != null) queryParams.Add("model", model);
-            var endpoint = $"/stores/{storeId}/terminalLogos" + ToQueryString(queryParams);
-            var resource = new ManagementResource(this, endpoint);
-            var jsonResult = await resource.RequestAsync(logo.ToJson(), requestOptions, new HttpMethod("PATCH"));
-            return JsonConvert.DeserializeObject<Logo>(jsonResult);
+            var endpoint = _baseUrl + $"/stores/{storeId}/terminalLogos" + ToQueryString(queryParams);
+            var resource = new ServiceResource(this, endpoint);
+            return await resource.RequestAsync<Logo>(logo.ToJson(), requestOptions, new HttpMethod("PATCH"));
         }
 
         /// <summary>
@@ -258,10 +257,9 @@ namespace Adyen.Service.Management
         /// <returns>Task of TerminalSettings</returns>
         public async Task<TerminalSettings> UpdateTerminalSettingsByStoreIdAsync(string storeId, TerminalSettings terminalSettings, RequestOptions requestOptions = default)
         {
-            var endpoint = $"/stores/{storeId}/terminalSettings";
-            var resource = new ManagementResource(this, endpoint);
-            var jsonResult = await resource.RequestAsync(terminalSettings.ToJson(), requestOptions, new HttpMethod("PATCH"));
-            return JsonConvert.DeserializeObject<TerminalSettings>(jsonResult);
+            var endpoint = _baseUrl + $"/stores/{storeId}/terminalSettings";
+            var resource = new ServiceResource(this, endpoint);
+            return await resource.RequestAsync<TerminalSettings>(terminalSettings.ToJson(), requestOptions, new HttpMethod("PATCH"));
         }
 
     }

@@ -11,25 +11,27 @@
 */
 
 using System;
-using System.Linq;
-using System.IO;
-using System.Text;
-using System.Text.RegularExpressions;
 using System.Collections;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Linq;
+using System.IO;
 using System.Runtime.Serialization;
+using System.Text;
+using System.Text.RegularExpressions;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
+using Newtonsoft.Json.Linq;
 using System.ComponentModel.DataAnnotations;
+using OpenAPIDateConverter = Adyen.ApiSerialization.OpenAPIDateConverter;
 
 namespace Adyen.Model.Management
 {
     /// <summary>
     /// Nexo
     /// </summary>
-    [DataContract]
-    public partial class Nexo :  IEquatable<Nexo>, IValidatableObject
+    [DataContract(Name = "Nexo")]
+    public partial class Nexo : IEquatable<Nexo>, IValidatableObject
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="Nexo" /> class.
@@ -49,26 +51,26 @@ namespace Adyen.Model.Management
         /// <summary>
         /// Gets or Sets DisplayUrls
         /// </summary>
-        [DataMember(Name="displayUrls", EmitDefaultValue=false)]
+        [DataMember(Name = "displayUrls", EmitDefaultValue = false)]
         public NotificationUrl DisplayUrls { get; set; }
 
         /// <summary>
         /// Gets or Sets EncryptionKey
         /// </summary>
-        [DataMember(Name="encryptionKey", EmitDefaultValue=false)]
+        [DataMember(Name = "encryptionKey", EmitDefaultValue = false)]
         public Key EncryptionKey { get; set; }
 
         /// <summary>
         /// Gets or Sets EventUrls
         /// </summary>
-        [DataMember(Name="eventUrls", EmitDefaultValue=false)]
+        [DataMember(Name = "eventUrls", EmitDefaultValue = false)]
         public EventUrl EventUrls { get; set; }
 
         /// <summary>
         /// One or more URLs to send event messages to when using Terminal API.
         /// </summary>
         /// <value>One or more URLs to send event messages to when using Terminal API.</value>
-        [DataMember(Name="nexoEventUrls", EmitDefaultValue=false)]
+        [DataMember(Name = "nexoEventUrls", EmitDefaultValue = false)]
         [Obsolete]
         public List<string> NexoEventUrls { get; set; }
 
@@ -78,7 +80,7 @@ namespace Adyen.Model.Management
         /// <returns>String presentation of the object</returns>
         public override string ToString()
         {
-            var sb = new StringBuilder();
+            StringBuilder sb = new StringBuilder();
             sb.Append("class Nexo {\n");
             sb.Append("  DisplayUrls: ").Append(DisplayUrls).Append("\n");
             sb.Append("  EncryptionKey: ").Append(EncryptionKey).Append("\n");
@@ -115,8 +117,9 @@ namespace Adyen.Model.Management
         public bool Equals(Nexo input)
         {
             if (input == null)
+            {
                 return false;
-
+            }
             return 
                 (
                     this.DisplayUrls == input.DisplayUrls ||
@@ -151,23 +154,30 @@ namespace Adyen.Model.Management
             {
                 int hashCode = 41;
                 if (this.DisplayUrls != null)
-                    hashCode = hashCode * 59 + this.DisplayUrls.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.DisplayUrls.GetHashCode();
+                }
                 if (this.EncryptionKey != null)
-                    hashCode = hashCode * 59 + this.EncryptionKey.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.EncryptionKey.GetHashCode();
+                }
                 if (this.EventUrls != null)
-                    hashCode = hashCode * 59 + this.EventUrls.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.EventUrls.GetHashCode();
+                }
                 if (this.NexoEventUrls != null)
-                    hashCode = hashCode * 59 + this.NexoEventUrls.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.NexoEventUrls.GetHashCode();
+                }
                 return hashCode;
             }
         }
-
         /// <summary>
         /// To validate all properties of the instance
         /// </summary>
         /// <param name="validationContext">Validation context</param>
         /// <returns>Validation Result</returns>
-        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+        public IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> Validate(ValidationContext validationContext)
         {
             yield break;
         }

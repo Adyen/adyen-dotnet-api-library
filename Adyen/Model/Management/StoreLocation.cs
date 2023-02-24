@@ -11,25 +11,27 @@
 */
 
 using System;
-using System.Linq;
-using System.IO;
-using System.Text;
-using System.Text.RegularExpressions;
 using System.Collections;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Linq;
+using System.IO;
 using System.Runtime.Serialization;
+using System.Text;
+using System.Text.RegularExpressions;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
+using Newtonsoft.Json.Linq;
 using System.ComponentModel.DataAnnotations;
+using OpenAPIDateConverter = Adyen.ApiSerialization.OpenAPIDateConverter;
 
 namespace Adyen.Model.Management
 {
     /// <summary>
     /// StoreLocation
     /// </summary>
-    [DataContract]
-    public partial class StoreLocation :  IEquatable<StoreLocation>, IValidatableObject
+    [DataContract(Name = "StoreLocation")]
+    public partial class StoreLocation : IEquatable<StoreLocation>, IValidatableObject
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="StoreLocation" /> class.
@@ -48,8 +50,8 @@ namespace Adyen.Model.Management
         /// <param name="stateOrProvince">The state or province code as defined in [ISO 3166-2](https://www.iso.org/standard/72483.html). For example, **ON** for Ontario, Canada.  Required for the following countries:  - Australia - Brazil - Canada - India - Mexico - New Zealand - United States.</param>
         public StoreLocation(string city = default(string), string country = default(string), string line1 = default(string), string line2 = default(string), string line3 = default(string), string postalCode = default(string), string stateOrProvince = default(string))
         {
-            this.City = city;
             this.Country = country;
+            this.City = city;
             this.Line1 = line1;
             this.Line2 = line2;
             this.Line3 = line3;
@@ -61,49 +63,49 @@ namespace Adyen.Model.Management
         /// The name of the city.
         /// </summary>
         /// <value>The name of the city.</value>
-        [DataMember(Name="city", EmitDefaultValue=false)]
+        [DataMember(Name = "city", EmitDefaultValue = false)]
         public string City { get; set; }
 
         /// <summary>
         /// The two-letter country code in [ISO_3166-1_alpha-2](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2) format.
         /// </summary>
         /// <value>The two-letter country code in [ISO_3166-1_alpha-2](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2) format.</value>
-        [DataMember(Name="country", EmitDefaultValue=true)]
+        [DataMember(Name = "country", IsRequired = false, EmitDefaultValue = false)]
         public string Country { get; set; }
 
         /// <summary>
         /// The street address.
         /// </summary>
         /// <value>The street address.</value>
-        [DataMember(Name="line1", EmitDefaultValue=false)]
+        [DataMember(Name = "line1", EmitDefaultValue = false)]
         public string Line1 { get; set; }
 
         /// <summary>
         /// Second address line.
         /// </summary>
         /// <value>Second address line.</value>
-        [DataMember(Name="line2", EmitDefaultValue=false)]
+        [DataMember(Name = "line2", EmitDefaultValue = false)]
         public string Line2 { get; set; }
 
         /// <summary>
         /// Third address line.
         /// </summary>
         /// <value>Third address line.</value>
-        [DataMember(Name="line3", EmitDefaultValue=false)]
+        [DataMember(Name = "line3", EmitDefaultValue = false)]
         public string Line3 { get; set; }
 
         /// <summary>
         /// The postal code.
         /// </summary>
         /// <value>The postal code.</value>
-        [DataMember(Name="postalCode", EmitDefaultValue=false)]
+        [DataMember(Name = "postalCode", EmitDefaultValue = false)]
         public string PostalCode { get; set; }
 
         /// <summary>
         /// The state or province code as defined in [ISO 3166-2](https://www.iso.org/standard/72483.html). For example, **ON** for Ontario, Canada.  Required for the following countries:  - Australia - Brazil - Canada - India - Mexico - New Zealand - United States
         /// </summary>
         /// <value>The state or province code as defined in [ISO 3166-2](https://www.iso.org/standard/72483.html). For example, **ON** for Ontario, Canada.  Required for the following countries:  - Australia - Brazil - Canada - India - Mexico - New Zealand - United States</value>
-        [DataMember(Name="stateOrProvince", EmitDefaultValue=false)]
+        [DataMember(Name = "stateOrProvince", EmitDefaultValue = false)]
         public string StateOrProvince { get; set; }
 
         /// <summary>
@@ -112,7 +114,7 @@ namespace Adyen.Model.Management
         /// <returns>String presentation of the object</returns>
         public override string ToString()
         {
-            var sb = new StringBuilder();
+            StringBuilder sb = new StringBuilder();
             sb.Append("class StoreLocation {\n");
             sb.Append("  City: ").Append(City).Append("\n");
             sb.Append("  Country: ").Append(Country).Append("\n");
@@ -152,8 +154,9 @@ namespace Adyen.Model.Management
         public bool Equals(StoreLocation input)
         {
             if (input == null)
+            {
                 return false;
-
+            }
             return 
                 (
                     this.City == input.City ||
@@ -202,29 +205,42 @@ namespace Adyen.Model.Management
             {
                 int hashCode = 41;
                 if (this.City != null)
-                    hashCode = hashCode * 59 + this.City.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.City.GetHashCode();
+                }
                 if (this.Country != null)
-                    hashCode = hashCode * 59 + this.Country.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.Country.GetHashCode();
+                }
                 if (this.Line1 != null)
-                    hashCode = hashCode * 59 + this.Line1.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.Line1.GetHashCode();
+                }
                 if (this.Line2 != null)
-                    hashCode = hashCode * 59 + this.Line2.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.Line2.GetHashCode();
+                }
                 if (this.Line3 != null)
-                    hashCode = hashCode * 59 + this.Line3.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.Line3.GetHashCode();
+                }
                 if (this.PostalCode != null)
-                    hashCode = hashCode * 59 + this.PostalCode.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.PostalCode.GetHashCode();
+                }
                 if (this.StateOrProvince != null)
-                    hashCode = hashCode * 59 + this.StateOrProvince.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.StateOrProvince.GetHashCode();
+                }
                 return hashCode;
             }
         }
-
         /// <summary>
         /// To validate all properties of the instance
         /// </summary>
         /// <param name="validationContext">Validation context</param>
         /// <returns>Validation Result</returns>
-        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+        public IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> Validate(ValidationContext validationContext)
         {
             yield break;
         }

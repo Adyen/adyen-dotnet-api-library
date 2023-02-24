@@ -11,25 +11,27 @@
 */
 
 using System;
-using System.Linq;
-using System.IO;
-using System.Text;
-using System.Text.RegularExpressions;
 using System.Collections;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Linq;
+using System.IO;
 using System.Runtime.Serialization;
+using System.Text;
+using System.Text.RegularExpressions;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
+using Newtonsoft.Json.Linq;
 using System.ComponentModel.DataAnnotations;
+using OpenAPIDateConverter = Adyen.ApiSerialization.OpenAPIDateConverter;
 
 namespace Adyen.Model.Management
 {
     /// <summary>
     /// CreateAllowedOriginRequest
     /// </summary>
-    [DataContract]
-    public partial class CreateAllowedOriginRequest :  IEquatable<CreateAllowedOriginRequest>, IValidatableObject
+    [DataContract(Name = "CreateAllowedOriginRequest")]
+    public partial class CreateAllowedOriginRequest : IEquatable<CreateAllowedOriginRequest>, IValidatableObject
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="CreateAllowedOriginRequest" /> class.
@@ -44,29 +46,29 @@ namespace Adyen.Model.Management
         /// <param name="id">Unique identifier of the allowed origin..</param>
         public CreateAllowedOriginRequest(Links links = default(Links), string domain = default(string), string id = default(string))
         {
-            this.Links = links;
             this.Domain = domain;
+            this.Links = links;
             this.Id = id;
         }
 
         /// <summary>
         /// Gets or Sets Links
         /// </summary>
-        [DataMember(Name="_links", EmitDefaultValue=false)]
+        [DataMember(Name = "_links", EmitDefaultValue = false)]
         public Links Links { get; set; }
 
         /// <summary>
         /// Domain of the allowed origin.
         /// </summary>
         /// <value>Domain of the allowed origin.</value>
-        [DataMember(Name="domain", EmitDefaultValue=true)]
+        [DataMember(Name = "domain", IsRequired = false, EmitDefaultValue = false)]
         public string Domain { get; set; }
 
         /// <summary>
         /// Unique identifier of the allowed origin.
         /// </summary>
         /// <value>Unique identifier of the allowed origin.</value>
-        [DataMember(Name="id", EmitDefaultValue=false)]
+        [DataMember(Name = "id", EmitDefaultValue = false)]
         public string Id { get; set; }
 
         /// <summary>
@@ -75,7 +77,7 @@ namespace Adyen.Model.Management
         /// <returns>String presentation of the object</returns>
         public override string ToString()
         {
-            var sb = new StringBuilder();
+            StringBuilder sb = new StringBuilder();
             sb.Append("class CreateAllowedOriginRequest {\n");
             sb.Append("  Links: ").Append(Links).Append("\n");
             sb.Append("  Domain: ").Append(Domain).Append("\n");
@@ -111,8 +113,9 @@ namespace Adyen.Model.Management
         public bool Equals(CreateAllowedOriginRequest input)
         {
             if (input == null)
+            {
                 return false;
-
+            }
             return 
                 (
                     this.Links == input.Links ||
@@ -141,21 +144,26 @@ namespace Adyen.Model.Management
             {
                 int hashCode = 41;
                 if (this.Links != null)
-                    hashCode = hashCode * 59 + this.Links.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.Links.GetHashCode();
+                }
                 if (this.Domain != null)
-                    hashCode = hashCode * 59 + this.Domain.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.Domain.GetHashCode();
+                }
                 if (this.Id != null)
-                    hashCode = hashCode * 59 + this.Id.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.Id.GetHashCode();
+                }
                 return hashCode;
             }
         }
-
         /// <summary>
         /// To validate all properties of the instance
         /// </summary>
         /// <param name="validationContext">Validation context</param>
         /// <returns>Validation Result</returns>
-        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+        public IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> Validate(ValidationContext validationContext)
         {
             yield break;
         }

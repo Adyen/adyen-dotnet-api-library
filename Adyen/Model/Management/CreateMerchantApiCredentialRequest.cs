@@ -11,25 +11,27 @@
 */
 
 using System;
-using System.Linq;
-using System.IO;
-using System.Text;
-using System.Text.RegularExpressions;
 using System.Collections;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Linq;
+using System.IO;
 using System.Runtime.Serialization;
+using System.Text;
+using System.Text.RegularExpressions;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
+using Newtonsoft.Json.Linq;
 using System.ComponentModel.DataAnnotations;
+using OpenAPIDateConverter = Adyen.ApiSerialization.OpenAPIDateConverter;
 
 namespace Adyen.Model.Management
 {
     /// <summary>
     /// CreateMerchantApiCredentialRequest
     /// </summary>
-    [DataContract]
-    public partial class CreateMerchantApiCredentialRequest :  IEquatable<CreateMerchantApiCredentialRequest>, IValidatableObject
+    [DataContract(Name = "CreateMerchantApiCredentialRequest")]
+    public partial class CreateMerchantApiCredentialRequest : IEquatable<CreateMerchantApiCredentialRequest>, IValidatableObject
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="CreateMerchantApiCredentialRequest" /> class.
@@ -48,21 +50,21 @@ namespace Adyen.Model.Management
         /// The list of [allowed origins](https://docs.adyen.com/development-resources/client-side-authentication#allowed-origins) for the new API credential.
         /// </summary>
         /// <value>The list of [allowed origins](https://docs.adyen.com/development-resources/client-side-authentication#allowed-origins) for the new API credential.</value>
-        [DataMember(Name="allowedOrigins", EmitDefaultValue=false)]
+        [DataMember(Name = "allowedOrigins", EmitDefaultValue = false)]
         public List<string> AllowedOrigins { get; set; }
 
         /// <summary>
         /// Description of the API credential.
         /// </summary>
         /// <value>Description of the API credential.</value>
-        [DataMember(Name="description", EmitDefaultValue=false)]
+        [DataMember(Name = "description", EmitDefaultValue = false)]
         public string Description { get; set; }
 
         /// <summary>
         /// List of [roles](https://docs.adyen.com/development-resources/api-credentials#roles-1) for the API credential.
         /// </summary>
         /// <value>List of [roles](https://docs.adyen.com/development-resources/api-credentials#roles-1) for the API credential.</value>
-        [DataMember(Name="roles", EmitDefaultValue=false)]
+        [DataMember(Name = "roles", EmitDefaultValue = false)]
         public List<string> Roles { get; set; }
 
         /// <summary>
@@ -71,7 +73,7 @@ namespace Adyen.Model.Management
         /// <returns>String presentation of the object</returns>
         public override string ToString()
         {
-            var sb = new StringBuilder();
+            StringBuilder sb = new StringBuilder();
             sb.Append("class CreateMerchantApiCredentialRequest {\n");
             sb.Append("  AllowedOrigins: ").Append(AllowedOrigins).Append("\n");
             sb.Append("  Description: ").Append(Description).Append("\n");
@@ -107,8 +109,9 @@ namespace Adyen.Model.Management
         public bool Equals(CreateMerchantApiCredentialRequest input)
         {
             if (input == null)
+            {
                 return false;
-
+            }
             return 
                 (
                     this.AllowedOrigins == input.AllowedOrigins ||
@@ -139,21 +142,26 @@ namespace Adyen.Model.Management
             {
                 int hashCode = 41;
                 if (this.AllowedOrigins != null)
-                    hashCode = hashCode * 59 + this.AllowedOrigins.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.AllowedOrigins.GetHashCode();
+                }
                 if (this.Description != null)
-                    hashCode = hashCode * 59 + this.Description.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.Description.GetHashCode();
+                }
                 if (this.Roles != null)
-                    hashCode = hashCode * 59 + this.Roles.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.Roles.GetHashCode();
+                }
                 return hashCode;
             }
         }
-
         /// <summary>
         /// To validate all properties of the instance
         /// </summary>
         /// <param name="validationContext">Validation context</param>
         /// <returns>Validation Result</returns>
-        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+        public IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> Validate(ValidationContext validationContext)
         {
             yield break;
         }

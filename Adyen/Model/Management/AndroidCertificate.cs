@@ -11,25 +11,27 @@
 */
 
 using System;
-using System.Linq;
-using System.IO;
-using System.Text;
-using System.Text.RegularExpressions;
 using System.Collections;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Linq;
+using System.IO;
 using System.Runtime.Serialization;
+using System.Text;
+using System.Text.RegularExpressions;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
+using Newtonsoft.Json.Linq;
 using System.ComponentModel.DataAnnotations;
+using OpenAPIDateConverter = Adyen.ApiSerialization.OpenAPIDateConverter;
 
 namespace Adyen.Model.Management
 {
     /// <summary>
     /// AndroidCertificate
     /// </summary>
-    [DataContract]
-    public partial class AndroidCertificate :  IEquatable<AndroidCertificate>, IValidatableObject
+    [DataContract(Name = "AndroidCertificate")]
+    public partial class AndroidCertificate : IEquatable<AndroidCertificate>, IValidatableObject
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="AndroidCertificate" /> class.
@@ -48,9 +50,9 @@ namespace Adyen.Model.Management
         /// <param name="status">The status of the certificate..</param>
         public AndroidCertificate(string description = default(string), string extension = default(string), string id = default(string), string name = default(string), DateTime notAfter = default(DateTime), DateTime notBefore = default(DateTime), string status = default(string))
         {
+            this.Id = id;
             this.Description = description;
             this.Extension = extension;
-            this.Id = id;
             this.Name = name;
             this.NotAfter = notAfter;
             this.NotBefore = notBefore;
@@ -61,49 +63,49 @@ namespace Adyen.Model.Management
         /// The description that was provided when uploading the certificate.
         /// </summary>
         /// <value>The description that was provided when uploading the certificate.</value>
-        [DataMember(Name="description", EmitDefaultValue=false)]
+        [DataMember(Name = "description", EmitDefaultValue = false)]
         public string Description { get; set; }
 
         /// <summary>
         /// The file format of the certificate, as indicated by the file extension. For example, **.cert** or **.pem**.
         /// </summary>
         /// <value>The file format of the certificate, as indicated by the file extension. For example, **.cert** or **.pem**.</value>
-        [DataMember(Name="extension", EmitDefaultValue=false)]
+        [DataMember(Name = "extension", EmitDefaultValue = false)]
         public string Extension { get; set; }
 
         /// <summary>
         /// The unique identifier of the certificate.
         /// </summary>
         /// <value>The unique identifier of the certificate.</value>
-        [DataMember(Name="id", EmitDefaultValue=true)]
+        [DataMember(Name = "id", IsRequired = false, EmitDefaultValue = false)]
         public string Id { get; set; }
 
         /// <summary>
         /// The file name of the certificate. For example, **mycert**.
         /// </summary>
         /// <value>The file name of the certificate. For example, **mycert**.</value>
-        [DataMember(Name="name", EmitDefaultValue=false)]
+        [DataMember(Name = "name", EmitDefaultValue = false)]
         public string Name { get; set; }
 
         /// <summary>
         /// The date when the certificate stops to be valid.
         /// </summary>
         /// <value>The date when the certificate stops to be valid.</value>
-        [DataMember(Name="notAfter", EmitDefaultValue=false)]
+        [DataMember(Name = "notAfter", EmitDefaultValue = false)]
         public DateTime NotAfter { get; set; }
 
         /// <summary>
         /// The date when the certificate starts to be valid.
         /// </summary>
         /// <value>The date when the certificate starts to be valid.</value>
-        [DataMember(Name="notBefore", EmitDefaultValue=false)]
+        [DataMember(Name = "notBefore", EmitDefaultValue = false)]
         public DateTime NotBefore { get; set; }
 
         /// <summary>
         /// The status of the certificate.
         /// </summary>
         /// <value>The status of the certificate.</value>
-        [DataMember(Name="status", EmitDefaultValue=false)]
+        [DataMember(Name = "status", EmitDefaultValue = false)]
         public string Status { get; set; }
 
         /// <summary>
@@ -112,7 +114,7 @@ namespace Adyen.Model.Management
         /// <returns>String presentation of the object</returns>
         public override string ToString()
         {
-            var sb = new StringBuilder();
+            StringBuilder sb = new StringBuilder();
             sb.Append("class AndroidCertificate {\n");
             sb.Append("  Description: ").Append(Description).Append("\n");
             sb.Append("  Extension: ").Append(Extension).Append("\n");
@@ -152,8 +154,9 @@ namespace Adyen.Model.Management
         public bool Equals(AndroidCertificate input)
         {
             if (input == null)
+            {
                 return false;
-
+            }
             return 
                 (
                     this.Description == input.Description ||
@@ -202,29 +205,42 @@ namespace Adyen.Model.Management
             {
                 int hashCode = 41;
                 if (this.Description != null)
-                    hashCode = hashCode * 59 + this.Description.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.Description.GetHashCode();
+                }
                 if (this.Extension != null)
-                    hashCode = hashCode * 59 + this.Extension.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.Extension.GetHashCode();
+                }
                 if (this.Id != null)
-                    hashCode = hashCode * 59 + this.Id.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.Id.GetHashCode();
+                }
                 if (this.Name != null)
-                    hashCode = hashCode * 59 + this.Name.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.Name.GetHashCode();
+                }
                 if (this.NotAfter != null)
-                    hashCode = hashCode * 59 + this.NotAfter.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.NotAfter.GetHashCode();
+                }
                 if (this.NotBefore != null)
-                    hashCode = hashCode * 59 + this.NotBefore.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.NotBefore.GetHashCode();
+                }
                 if (this.Status != null)
-                    hashCode = hashCode * 59 + this.Status.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.Status.GetHashCode();
+                }
                 return hashCode;
             }
         }
-
         /// <summary>
         /// To validate all properties of the instance
         /// </summary>
         /// <param name="validationContext">Validation context</param>
         /// <returns>Validation Result</returns>
-        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+        public IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> Validate(ValidationContext validationContext)
         {
             yield break;
         }
