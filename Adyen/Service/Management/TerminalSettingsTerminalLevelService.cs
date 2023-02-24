@@ -14,6 +14,7 @@ using System;
 using System.Collections.Generic;
 using System.Net.Http;
 using System.Threading.Tasks;
+using Adyen.Constants;
 using Adyen.Model;
 using Adyen.Service.Resource;
 using Adyen.Model.Management;
@@ -24,9 +25,14 @@ namespace Adyen.Service.Management
     /// <summary>
     /// Represents a collection of functions to interact with the API endpoints
     /// </summary>
-    public class TerminalSettingsTerminalLevelApi : AbstractService
+    public class TerminalSettingsTerminalLevelService : AbstractService
     {
-        public TerminalSettingsTerminalLevelApi(Client client) : base(client) {}
+        private readonly string _baseUrl;
+        
+        public TerminalSettingsTerminalLevelService(Client client) : base(client)
+        {
+            _baseUrl = client.Config.ManagementEndpoint + "/" + ClientConfig.ManagementVersion;
+        }
     
         /// <summary>
         /// Get the terminal logo
@@ -47,10 +53,9 @@ namespace Adyen.Service.Management
         /// <returns>Task of Logo</returns>
         public async Task<Logo> GetTerminalLogoAsync(string terminalId, RequestOptions requestOptions = default)
         {
-            var endpoint = $"/terminals/{terminalId}/terminalLogos";
-            var resource = new ManagementResource(this, endpoint);
-            var jsonResult = await resource.RequestAsync(null, requestOptions, new HttpMethod("GET"));
-            return JsonConvert.DeserializeObject<Logo>(jsonResult);
+            var endpoint = _baseUrl + $"/terminals/{terminalId}/terminalLogos";
+            var resource = new ServiceResource(this, endpoint);
+            return await resource.RequestAsync<Logo>(null, requestOptions, new HttpMethod("GET"));
         }
 
         /// <summary>
@@ -72,10 +77,9 @@ namespace Adyen.Service.Management
         /// <returns>Task of TerminalSettings</returns>
         public async Task<TerminalSettings> GetTerminalSettingsAsync(string terminalId, RequestOptions requestOptions = default)
         {
-            var endpoint = $"/terminals/{terminalId}/terminalSettings";
-            var resource = new ManagementResource(this, endpoint);
-            var jsonResult = await resource.RequestAsync(null, requestOptions, new HttpMethod("GET"));
-            return JsonConvert.DeserializeObject<TerminalSettings>(jsonResult);
+            var endpoint = _baseUrl + $"/terminals/{terminalId}/terminalSettings";
+            var resource = new ServiceResource(this, endpoint);
+            return await resource.RequestAsync<TerminalSettings>(null, requestOptions, new HttpMethod("GET"));
         }
 
         /// <summary>
@@ -99,10 +103,9 @@ namespace Adyen.Service.Management
         /// <returns>Task of Logo</returns>
         public async Task<Logo> UpdateLogoAsync(string terminalId, Logo logo, RequestOptions requestOptions = default)
         {
-            var endpoint = $"/terminals/{terminalId}/terminalLogos";
-            var resource = new ManagementResource(this, endpoint);
-            var jsonResult = await resource.RequestAsync(logo.ToJson(), requestOptions, new HttpMethod("PATCH"));
-            return JsonConvert.DeserializeObject<Logo>(jsonResult);
+            var endpoint = _baseUrl + $"/terminals/{terminalId}/terminalLogos";
+            var resource = new ServiceResource(this, endpoint);
+            return await resource.RequestAsync<Logo>(logo.ToJson(), requestOptions, new HttpMethod("PATCH"));
         }
 
         /// <summary>
@@ -126,10 +129,9 @@ namespace Adyen.Service.Management
         /// <returns>Task of TerminalSettings</returns>
         public async Task<TerminalSettings> UpdateTerminalSettingsAsync(string terminalId, TerminalSettings terminalSettings, RequestOptions requestOptions = default)
         {
-            var endpoint = $"/terminals/{terminalId}/terminalSettings";
-            var resource = new ManagementResource(this, endpoint);
-            var jsonResult = await resource.RequestAsync(terminalSettings.ToJson(), requestOptions, new HttpMethod("PATCH"));
-            return JsonConvert.DeserializeObject<TerminalSettings>(jsonResult);
+            var endpoint = _baseUrl + $"/terminals/{terminalId}/terminalSettings";
+            var resource = new ServiceResource(this, endpoint);
+            return await resource.RequestAsync<TerminalSettings>(terminalSettings.ToJson(), requestOptions, new HttpMethod("PATCH"));
         }
 
     }

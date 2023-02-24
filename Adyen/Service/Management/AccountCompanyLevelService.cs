@@ -14,6 +14,7 @@ using System;
 using System.Collections.Generic;
 using System.Net.Http;
 using System.Threading.Tasks;
+using Adyen.Constants;
 using Adyen.Model;
 using Adyen.Service.Resource;
 using Adyen.Model.Management;
@@ -24,9 +25,14 @@ namespace Adyen.Service.Management
     /// <summary>
     /// Represents a collection of functions to interact with the API endpoints
     /// </summary>
-    public class AccountCompanyLevelApi : AbstractService
+    public class AccountCompanyLevelService : AbstractService
     {
-        public AccountCompanyLevelApi(Client client) : base(client) {}
+        private readonly string _baseUrl;
+        
+        public AccountCompanyLevelService(Client client) : base(client)
+        {
+            _baseUrl = client.Config.ManagementEndpoint + "/" + ClientConfig.ManagementVersion;
+        }
     
         /// <summary>
         /// Get a list of company accounts
@@ -53,10 +59,9 @@ namespace Adyen.Service.Management
             var queryParams = new Dictionary<string, string>();
             if (pageNumber != null) queryParams.Add("pageNumber", pageNumber.ToString());
             if (pageSize != null) queryParams.Add("pageSize", pageSize.ToString());
-            var endpoint = "/companies" + ToQueryString(queryParams);
-            var resource = new ManagementResource(this, endpoint);
-            var jsonResult = await resource.RequestAsync(null, requestOptions, new HttpMethod("GET"));
-            return JsonConvert.DeserializeObject<ListCompanyResponse>(jsonResult);
+            var endpoint = _baseUrl + "/companies" + ToQueryString(queryParams);
+            var resource = new ServiceResource(this, endpoint);
+            return await resource.RequestAsync<ListCompanyResponse>(null, requestOptions, new HttpMethod("GET"));
         }
 
         /// <summary>
@@ -78,10 +83,9 @@ namespace Adyen.Service.Management
         /// <returns>Task of Company</returns>
         public async Task<Company> GetCompanyAccountAsync(string companyId, RequestOptions requestOptions = default)
         {
-            var endpoint = $"/companies/{companyId}";
-            var resource = new ManagementResource(this, endpoint);
-            var jsonResult = await resource.RequestAsync(null, requestOptions, new HttpMethod("GET"));
-            return JsonConvert.DeserializeObject<Company>(jsonResult);
+            var endpoint = _baseUrl + $"/companies/{companyId}";
+            var resource = new ServiceResource(this, endpoint);
+            return await resource.RequestAsync<Company>(null, requestOptions, new HttpMethod("GET"));
         }
 
         /// <summary>
@@ -111,10 +115,9 @@ namespace Adyen.Service.Management
             var queryParams = new Dictionary<string, string>();
             if (pageNumber != null) queryParams.Add("pageNumber", pageNumber.ToString());
             if (pageSize != null) queryParams.Add("pageSize", pageSize.ToString());
-            var endpoint = $"/companies/{companyId}/merchants" + ToQueryString(queryParams);
-            var resource = new ManagementResource(this, endpoint);
-            var jsonResult = await resource.RequestAsync(null, requestOptions, new HttpMethod("GET"));
-            return JsonConvert.DeserializeObject<ListMerchantResponse>(jsonResult);
+            var endpoint = _baseUrl + $"/companies/{companyId}/merchants" + ToQueryString(queryParams);
+            var resource = new ServiceResource(this, endpoint);
+            return await resource.RequestAsync<ListMerchantResponse>(null, requestOptions, new HttpMethod("GET"));
         }
 
     }

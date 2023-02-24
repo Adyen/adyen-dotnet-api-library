@@ -11,25 +11,27 @@
 */
 
 using System;
-using System.Linq;
-using System.IO;
-using System.Text;
-using System.Text.RegularExpressions;
 using System.Collections;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Linq;
+using System.IO;
 using System.Runtime.Serialization;
+using System.Text;
+using System.Text.RegularExpressions;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
+using Newtonsoft.Json.Linq;
 using System.ComponentModel.DataAnnotations;
+using OpenAPIDateConverter = Adyen.ApiSerialization.OpenAPIDateConverter;
 
 namespace Adyen.Model.Management
 {
     /// <summary>
     /// StoreSplitConfiguration
     /// </summary>
-    [DataContract]
-    public partial class StoreSplitConfiguration :  IEquatable<StoreSplitConfiguration>, IValidatableObject
+    [DataContract(Name = "StoreSplitConfiguration")]
+    public partial class StoreSplitConfiguration : IEquatable<StoreSplitConfiguration>, IValidatableObject
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="StoreSplitConfiguration" /> class.
@@ -46,14 +48,14 @@ namespace Adyen.Model.Management
         /// The [balance account](https://docs.adyen.com/api-explorer/#/balanceplatform/latest/get/balanceAccounts/{id}__queryParam_id) linked to the account holder.
         /// </summary>
         /// <value>The [balance account](https://docs.adyen.com/api-explorer/#/balanceplatform/latest/get/balanceAccounts/{id}__queryParam_id) linked to the account holder.</value>
-        [DataMember(Name="balanceAccountId", EmitDefaultValue=false)]
+        [DataMember(Name = "balanceAccountId", EmitDefaultValue = false)]
         public string BalanceAccountId { get; set; }
 
         /// <summary>
         /// The UUID of the [split configuration](https://docs.adyen.com/marketplaces-and-platforms/classic/split-configuration-for-stores) from the Customer Area.
         /// </summary>
         /// <value>The UUID of the [split configuration](https://docs.adyen.com/marketplaces-and-platforms/classic/split-configuration-for-stores) from the Customer Area.</value>
-        [DataMember(Name="splitConfigurationId", EmitDefaultValue=false)]
+        [DataMember(Name = "splitConfigurationId", EmitDefaultValue = false)]
         public string SplitConfigurationId { get; set; }
 
         /// <summary>
@@ -62,7 +64,7 @@ namespace Adyen.Model.Management
         /// <returns>String presentation of the object</returns>
         public override string ToString()
         {
-            var sb = new StringBuilder();
+            StringBuilder sb = new StringBuilder();
             sb.Append("class StoreSplitConfiguration {\n");
             sb.Append("  BalanceAccountId: ").Append(BalanceAccountId).Append("\n");
             sb.Append("  SplitConfigurationId: ").Append(SplitConfigurationId).Append("\n");
@@ -97,8 +99,9 @@ namespace Adyen.Model.Management
         public bool Equals(StoreSplitConfiguration input)
         {
             if (input == null)
+            {
                 return false;
-
+            }
             return 
                 (
                     this.BalanceAccountId == input.BalanceAccountId ||
@@ -122,19 +125,22 @@ namespace Adyen.Model.Management
             {
                 int hashCode = 41;
                 if (this.BalanceAccountId != null)
-                    hashCode = hashCode * 59 + this.BalanceAccountId.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.BalanceAccountId.GetHashCode();
+                }
                 if (this.SplitConfigurationId != null)
-                    hashCode = hashCode * 59 + this.SplitConfigurationId.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.SplitConfigurationId.GetHashCode();
+                }
                 return hashCode;
             }
         }
-
         /// <summary>
         /// To validate all properties of the instance
         /// </summary>
         /// <param name="validationContext">Validation context</param>
         /// <returns>Validation Result</returns>
-        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+        public IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> Validate(ValidationContext validationContext)
         {
             yield break;
         }

@@ -11,25 +11,27 @@
 */
 
 using System;
-using System.Linq;
-using System.IO;
-using System.Text;
-using System.Text.RegularExpressions;
 using System.Collections;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Linq;
+using System.IO;
 using System.Runtime.Serialization;
+using System.Text;
+using System.Text.RegularExpressions;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
+using Newtonsoft.Json.Linq;
 using System.ComponentModel.DataAnnotations;
+using OpenAPIDateConverter = Adyen.ApiSerialization.OpenAPIDateConverter;
 
 namespace Adyen.Model.Management
 {
     /// <summary>
     /// TerminalOrder
     /// </summary>
-    [DataContract]
-    public partial class TerminalOrder :  IEquatable<TerminalOrder>, IValidatableObject
+    [DataContract(Name = "TerminalOrder")]
+    public partial class TerminalOrder : IEquatable<TerminalOrder>, IValidatableObject
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="TerminalOrder" /> class.
@@ -57,55 +59,55 @@ namespace Adyen.Model.Management
         /// <summary>
         /// Gets or Sets BillingEntity
         /// </summary>
-        [DataMember(Name="billingEntity", EmitDefaultValue=false)]
+        [DataMember(Name = "billingEntity", EmitDefaultValue = false)]
         public BillingEntity BillingEntity { get; set; }
 
         /// <summary>
         /// The merchant-defined purchase order number. This will be printed on the packing list.
         /// </summary>
         /// <value>The merchant-defined purchase order number. This will be printed on the packing list.</value>
-        [DataMember(Name="customerOrderReference", EmitDefaultValue=false)]
+        [DataMember(Name = "customerOrderReference", EmitDefaultValue = false)]
         public string CustomerOrderReference { get; set; }
 
         /// <summary>
         /// The unique identifier of the order.
         /// </summary>
         /// <value>The unique identifier of the order.</value>
-        [DataMember(Name="id", EmitDefaultValue=false)]
+        [DataMember(Name = "id", EmitDefaultValue = false)]
         public string Id { get; set; }
 
         /// <summary>
         /// The products included in the order.
         /// </summary>
         /// <value>The products included in the order.</value>
-        [DataMember(Name="items", EmitDefaultValue=false)]
+        [DataMember(Name = "items", EmitDefaultValue = false)]
         public List<OrderItem> Items { get; set; }
 
         /// <summary>
         /// The date and time that the order was placed, in UTC ISO 8601 format. For example, \&quot;2011-12-03T10:15:30Z\&quot;.
         /// </summary>
         /// <value>The date and time that the order was placed, in UTC ISO 8601 format. For example, \&quot;2011-12-03T10:15:30Z\&quot;.</value>
-        [DataMember(Name="orderDate", EmitDefaultValue=false)]
+        [DataMember(Name = "orderDate", EmitDefaultValue = false)]
         public string OrderDate { get; set; }
 
         /// <summary>
         /// Gets or Sets ShippingLocation
         /// </summary>
-        [DataMember(Name="shippingLocation", EmitDefaultValue=false)]
+        [DataMember(Name = "shippingLocation", EmitDefaultValue = false)]
         public ShippingLocation ShippingLocation { get; set; }
 
         /// <summary>
         /// The processing status of the order.
         /// </summary>
         /// <value>The processing status of the order.</value>
-        [DataMember(Name="status", EmitDefaultValue=false)]
+        [DataMember(Name = "status", EmitDefaultValue = false)]
         public string Status { get; set; }
 
         /// <summary>
         /// The URL, provided by the carrier company, where the shipment can be tracked.
         /// </summary>
         /// <value>The URL, provided by the carrier company, where the shipment can be tracked.</value>
-        [DataMember(Name="trackingUrl", EmitDefaultValue=false)]
+        [DataMember(Name = "trackingUrl", EmitDefaultValue = false)]
         public string TrackingUrl { get; set; }
 
         /// <summary>
@@ -114,7 +116,7 @@ namespace Adyen.Model.Management
         /// <returns>String presentation of the object</returns>
         public override string ToString()
         {
-            var sb = new StringBuilder();
+            StringBuilder sb = new StringBuilder();
             sb.Append("class TerminalOrder {\n");
             sb.Append("  BillingEntity: ").Append(BillingEntity).Append("\n");
             sb.Append("  CustomerOrderReference: ").Append(CustomerOrderReference).Append("\n");
@@ -155,8 +157,9 @@ namespace Adyen.Model.Management
         public bool Equals(TerminalOrder input)
         {
             if (input == null)
+            {
                 return false;
-
+            }
             return 
                 (
                     this.BillingEntity == input.BillingEntity ||
@@ -211,31 +214,46 @@ namespace Adyen.Model.Management
             {
                 int hashCode = 41;
                 if (this.BillingEntity != null)
-                    hashCode = hashCode * 59 + this.BillingEntity.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.BillingEntity.GetHashCode();
+                }
                 if (this.CustomerOrderReference != null)
-                    hashCode = hashCode * 59 + this.CustomerOrderReference.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.CustomerOrderReference.GetHashCode();
+                }
                 if (this.Id != null)
-                    hashCode = hashCode * 59 + this.Id.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.Id.GetHashCode();
+                }
                 if (this.Items != null)
-                    hashCode = hashCode * 59 + this.Items.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.Items.GetHashCode();
+                }
                 if (this.OrderDate != null)
-                    hashCode = hashCode * 59 + this.OrderDate.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.OrderDate.GetHashCode();
+                }
                 if (this.ShippingLocation != null)
-                    hashCode = hashCode * 59 + this.ShippingLocation.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.ShippingLocation.GetHashCode();
+                }
                 if (this.Status != null)
-                    hashCode = hashCode * 59 + this.Status.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.Status.GetHashCode();
+                }
                 if (this.TrackingUrl != null)
-                    hashCode = hashCode * 59 + this.TrackingUrl.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.TrackingUrl.GetHashCode();
+                }
                 return hashCode;
             }
         }
-
         /// <summary>
         /// To validate all properties of the instance
         /// </summary>
         /// <param name="validationContext">Validation context</param>
         /// <returns>Validation Result</returns>
-        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+        public IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> Validate(ValidationContext validationContext)
         {
             yield break;
         }

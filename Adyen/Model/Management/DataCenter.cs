@@ -11,25 +11,27 @@
 */
 
 using System;
-using System.Linq;
-using System.IO;
-using System.Text;
-using System.Text.RegularExpressions;
 using System.Collections;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Linq;
+using System.IO;
 using System.Runtime.Serialization;
+using System.Text;
+using System.Text.RegularExpressions;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
+using Newtonsoft.Json.Linq;
 using System.ComponentModel.DataAnnotations;
+using OpenAPIDateConverter = Adyen.ApiSerialization.OpenAPIDateConverter;
 
 namespace Adyen.Model.Management
 {
     /// <summary>
     /// DataCenter
     /// </summary>
-    [DataContract]
-    public partial class DataCenter :  IEquatable<DataCenter>, IValidatableObject
+    [DataContract(Name = "DataCenter")]
+    public partial class DataCenter : IEquatable<DataCenter>, IValidatableObject
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="DataCenter" /> class.
@@ -46,14 +48,14 @@ namespace Adyen.Model.Management
         /// The unique [live URL prefix](https://docs.adyen.com/development-resources/live-endpoints#live-url-prefix) for your live endpoint. Each data center has its own live URL prefix.  This field is empty for requests made in the test environment.
         /// </summary>
         /// <value>The unique [live URL prefix](https://docs.adyen.com/development-resources/live-endpoints#live-url-prefix) for your live endpoint. Each data center has its own live URL prefix.  This field is empty for requests made in the test environment.</value>
-        [DataMember(Name="livePrefix", EmitDefaultValue=false)]
+        [DataMember(Name = "livePrefix", EmitDefaultValue = false)]
         public string LivePrefix { get; set; }
 
         /// <summary>
         /// The name assigned to a data center, for example **EU** for the European data center. Possible values are:  * **default**: the European data center. This value is always returned in the test environment.  * **AU** * **EU** * **US**
         /// </summary>
         /// <value>The name assigned to a data center, for example **EU** for the European data center. Possible values are:  * **default**: the European data center. This value is always returned in the test environment.  * **AU** * **EU** * **US**</value>
-        [DataMember(Name="name", EmitDefaultValue=false)]
+        [DataMember(Name = "name", EmitDefaultValue = false)]
         public string Name { get; set; }
 
         /// <summary>
@@ -62,7 +64,7 @@ namespace Adyen.Model.Management
         /// <returns>String presentation of the object</returns>
         public override string ToString()
         {
-            var sb = new StringBuilder();
+            StringBuilder sb = new StringBuilder();
             sb.Append("class DataCenter {\n");
             sb.Append("  LivePrefix: ").Append(LivePrefix).Append("\n");
             sb.Append("  Name: ").Append(Name).Append("\n");
@@ -97,8 +99,9 @@ namespace Adyen.Model.Management
         public bool Equals(DataCenter input)
         {
             if (input == null)
+            {
                 return false;
-
+            }
             return 
                 (
                     this.LivePrefix == input.LivePrefix ||
@@ -122,19 +125,22 @@ namespace Adyen.Model.Management
             {
                 int hashCode = 41;
                 if (this.LivePrefix != null)
-                    hashCode = hashCode * 59 + this.LivePrefix.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.LivePrefix.GetHashCode();
+                }
                 if (this.Name != null)
-                    hashCode = hashCode * 59 + this.Name.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.Name.GetHashCode();
+                }
                 return hashCode;
             }
         }
-
         /// <summary>
         /// To validate all properties of the instance
         /// </summary>
         /// <param name="validationContext">Validation context</param>
         /// <returns>Validation Result</returns>
-        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+        public IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> Validate(ValidationContext validationContext)
         {
             yield break;
         }

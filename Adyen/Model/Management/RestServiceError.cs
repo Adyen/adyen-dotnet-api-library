@@ -11,25 +11,27 @@
 */
 
 using System;
-using System.Linq;
-using System.IO;
-using System.Text;
-using System.Text.RegularExpressions;
 using System.Collections;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Linq;
+using System.IO;
 using System.Runtime.Serialization;
+using System.Text;
+using System.Text.RegularExpressions;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
+using Newtonsoft.Json.Linq;
 using System.ComponentModel.DataAnnotations;
+using OpenAPIDateConverter = Adyen.ApiSerialization.OpenAPIDateConverter;
 
 namespace Adyen.Model.Management
 {
     /// <summary>
     /// RestServiceError
     /// </summary>
-    [DataContract]
-    public partial class RestServiceError :  IEquatable<RestServiceError>, IValidatableObject
+    [DataContract(Name = "RestServiceError")]
+    public partial class RestServiceError : IEquatable<RestServiceError>, IValidatableObject
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="RestServiceError" /> class.
@@ -48,79 +50,79 @@ namespace Adyen.Model.Management
         /// <param name="status">The HTTP status code. (required).</param>
         /// <param name="title">A short, human-readable summary of the problem type. (required).</param>
         /// <param name="type">A URI that identifies the problem type, pointing to human-readable documentation on this problem type. (required).</param>
-        public RestServiceError(string detail = default(string), string errorCode = default(string), string instance = default(string), List<InvalidField> invalidFields = default(List<InvalidField>), string requestId = default(string), JSONObject response = default(JSONObject), int status = default(int), string title = default(string), string type = default(string))
+        public RestServiceError(string detail = default(string), string errorCode = default(string), string instance = default(string), List<InvalidField> invalidFields = default(List<InvalidField>), string requestId = default(string), JSONObject response = default(JSONObject), int? status = default(int?), string title = default(string), string type = default(string))
         {
             this.Detail = detail;
             this.ErrorCode = errorCode;
+            this.Status = status;
+            this.Title = title;
+            this.Type = type;
             this.Instance = instance;
             this.InvalidFields = invalidFields;
             this.RequestId = requestId;
             this.Response = response;
-            this.Status = status;
-            this.Title = title;
-            this.Type = type;
         }
 
         /// <summary>
         /// A human-readable explanation specific to this occurrence of the problem.
         /// </summary>
         /// <value>A human-readable explanation specific to this occurrence of the problem.</value>
-        [DataMember(Name="detail", EmitDefaultValue=true)]
+        [DataMember(Name = "detail", IsRequired = false, EmitDefaultValue = false)]
         public string Detail { get; set; }
 
         /// <summary>
         /// A code that identifies the problem type.
         /// </summary>
         /// <value>A code that identifies the problem type.</value>
-        [DataMember(Name="errorCode", EmitDefaultValue=true)]
+        [DataMember(Name = "errorCode", IsRequired = false, EmitDefaultValue = false)]
         public string ErrorCode { get; set; }
 
         /// <summary>
         /// A unique URI that identifies the specific occurrence of the problem.
         /// </summary>
         /// <value>A unique URI that identifies the specific occurrence of the problem.</value>
-        [DataMember(Name="instance", EmitDefaultValue=false)]
+        [DataMember(Name = "instance", EmitDefaultValue = false)]
         public string Instance { get; set; }
 
         /// <summary>
         /// Detailed explanation of each validation error, when applicable.
         /// </summary>
         /// <value>Detailed explanation of each validation error, when applicable.</value>
-        [DataMember(Name="invalidFields", EmitDefaultValue=false)]
+        [DataMember(Name = "invalidFields", EmitDefaultValue = false)]
         public List<InvalidField> InvalidFields { get; set; }
 
         /// <summary>
         /// A unique reference for the request, essentially the same as &#x60;pspReference&#x60;.
         /// </summary>
         /// <value>A unique reference for the request, essentially the same as &#x60;pspReference&#x60;.</value>
-        [DataMember(Name="requestId", EmitDefaultValue=false)]
+        [DataMember(Name = "requestId", EmitDefaultValue = false)]
         public string RequestId { get; set; }
 
         /// <summary>
         /// Gets or Sets Response
         /// </summary>
-        [DataMember(Name="response", EmitDefaultValue=false)]
+        [DataMember(Name = "response", EmitDefaultValue = false)]
         public JSONObject Response { get; set; }
 
         /// <summary>
         /// The HTTP status code.
         /// </summary>
         /// <value>The HTTP status code.</value>
-        [DataMember(Name="status", EmitDefaultValue=true)]
-        public int Status { get; set; }
+        [DataMember(Name = "status", IsRequired = false, EmitDefaultValue = false)]
+        public int? Status { get; set; }
 
         /// <summary>
         /// A short, human-readable summary of the problem type.
         /// </summary>
         /// <value>A short, human-readable summary of the problem type.</value>
-        [DataMember(Name="title", EmitDefaultValue=true)]
+        [DataMember(Name = "title", IsRequired = false, EmitDefaultValue = false)]
         public string Title { get; set; }
 
         /// <summary>
         /// A URI that identifies the problem type, pointing to human-readable documentation on this problem type.
         /// </summary>
         /// <value>A URI that identifies the problem type, pointing to human-readable documentation on this problem type.</value>
-        [DataMember(Name="type", EmitDefaultValue=true)]
+        [DataMember(Name = "type", IsRequired = false, EmitDefaultValue = false)]
         public string Type { get; set; }
 
         /// <summary>
@@ -129,7 +131,7 @@ namespace Adyen.Model.Management
         /// <returns>String presentation of the object</returns>
         public override string ToString()
         {
-            var sb = new StringBuilder();
+            StringBuilder sb = new StringBuilder();
             sb.Append("class RestServiceError {\n");
             sb.Append("  Detail: ").Append(Detail).Append("\n");
             sb.Append("  ErrorCode: ").Append(ErrorCode).Append("\n");
@@ -171,8 +173,9 @@ namespace Adyen.Model.Management
         public bool Equals(RestServiceError input)
         {
             if (input == null)
+            {
                 return false;
-
+            }
             return 
                 (
                     this.Detail == input.Detail ||
@@ -207,8 +210,7 @@ namespace Adyen.Model.Management
                 ) && 
                 (
                     this.Status == input.Status ||
-                    (this.Status != null &&
-                    this.Status.Equals(input.Status))
+                    this.Status.Equals(input.Status)
                 ) && 
                 (
                     this.Title == input.Title ||
@@ -232,33 +234,47 @@ namespace Adyen.Model.Management
             {
                 int hashCode = 41;
                 if (this.Detail != null)
-                    hashCode = hashCode * 59 + this.Detail.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.Detail.GetHashCode();
+                }
                 if (this.ErrorCode != null)
-                    hashCode = hashCode * 59 + this.ErrorCode.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.ErrorCode.GetHashCode();
+                }
                 if (this.Instance != null)
-                    hashCode = hashCode * 59 + this.Instance.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.Instance.GetHashCode();
+                }
                 if (this.InvalidFields != null)
-                    hashCode = hashCode * 59 + this.InvalidFields.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.InvalidFields.GetHashCode();
+                }
                 if (this.RequestId != null)
-                    hashCode = hashCode * 59 + this.RequestId.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.RequestId.GetHashCode();
+                }
                 if (this.Response != null)
-                    hashCode = hashCode * 59 + this.Response.GetHashCode();
-                if (this.Status != null)
-                    hashCode = hashCode * 59 + this.Status.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.Response.GetHashCode();
+                }
+                hashCode = (hashCode * 59) + this.Status.GetHashCode();
                 if (this.Title != null)
-                    hashCode = hashCode * 59 + this.Title.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.Title.GetHashCode();
+                }
                 if (this.Type != null)
-                    hashCode = hashCode * 59 + this.Type.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.Type.GetHashCode();
+                }
                 return hashCode;
             }
         }
-
         /// <summary>
         /// To validate all properties of the instance
         /// </summary>
         /// <param name="validationContext">Validation context</param>
         /// <returns>Validation Result</returns>
-        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+        public IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> Validate(ValidationContext validationContext)
         {
             yield break;
         }

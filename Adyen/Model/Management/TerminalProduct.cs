@@ -11,25 +11,27 @@
 */
 
 using System;
-using System.Linq;
-using System.IO;
-using System.Text;
-using System.Text.RegularExpressions;
 using System.Collections;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Linq;
+using System.IO;
 using System.Runtime.Serialization;
+using System.Text;
+using System.Text.RegularExpressions;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
+using Newtonsoft.Json.Linq;
 using System.ComponentModel.DataAnnotations;
+using OpenAPIDateConverter = Adyen.ApiSerialization.OpenAPIDateConverter;
 
 namespace Adyen.Model.Management
 {
     /// <summary>
     /// TerminalProduct
     /// </summary>
-    [DataContract]
-    public partial class TerminalProduct :  IEquatable<TerminalProduct>, IValidatableObject
+    [DataContract(Name = "TerminalProduct")]
+    public partial class TerminalProduct : IEquatable<TerminalProduct>, IValidatableObject
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="TerminalProduct" /> class.
@@ -52,34 +54,34 @@ namespace Adyen.Model.Management
         /// Information about items included and integration options.
         /// </summary>
         /// <value>Information about items included and integration options.</value>
-        [DataMember(Name="description", EmitDefaultValue=false)]
+        [DataMember(Name = "description", EmitDefaultValue = false)]
         public string Description { get; set; }
 
         /// <summary>
         /// The unique identifier of the product.
         /// </summary>
         /// <value>The unique identifier of the product.</value>
-        [DataMember(Name="id", EmitDefaultValue=false)]
+        [DataMember(Name = "id", EmitDefaultValue = false)]
         public string Id { get; set; }
 
         /// <summary>
         /// A list of parts included in the terminal package.
         /// </summary>
         /// <value>A list of parts included in the terminal package.</value>
-        [DataMember(Name="itemsIncluded", EmitDefaultValue=false)]
+        [DataMember(Name = "itemsIncluded", EmitDefaultValue = false)]
         public List<string> ItemsIncluded { get; set; }
 
         /// <summary>
         /// The descriptive name of the product.
         /// </summary>
         /// <value>The descriptive name of the product.</value>
-        [DataMember(Name="name", EmitDefaultValue=false)]
+        [DataMember(Name = "name", EmitDefaultValue = false)]
         public string Name { get; set; }
 
         /// <summary>
         /// Gets or Sets Price
         /// </summary>
-        [DataMember(Name="price", EmitDefaultValue=false)]
+        [DataMember(Name = "price", EmitDefaultValue = false)]
         public TerminalProductPrice Price { get; set; }
 
         /// <summary>
@@ -88,7 +90,7 @@ namespace Adyen.Model.Management
         /// <returns>String presentation of the object</returns>
         public override string ToString()
         {
-            var sb = new StringBuilder();
+            StringBuilder sb = new StringBuilder();
             sb.Append("class TerminalProduct {\n");
             sb.Append("  Description: ").Append(Description).Append("\n");
             sb.Append("  Id: ").Append(Id).Append("\n");
@@ -126,8 +128,9 @@ namespace Adyen.Model.Management
         public bool Equals(TerminalProduct input)
         {
             if (input == null)
+            {
                 return false;
-
+            }
             return 
                 (
                     this.Description == input.Description ||
@@ -167,25 +170,34 @@ namespace Adyen.Model.Management
             {
                 int hashCode = 41;
                 if (this.Description != null)
-                    hashCode = hashCode * 59 + this.Description.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.Description.GetHashCode();
+                }
                 if (this.Id != null)
-                    hashCode = hashCode * 59 + this.Id.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.Id.GetHashCode();
+                }
                 if (this.ItemsIncluded != null)
-                    hashCode = hashCode * 59 + this.ItemsIncluded.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.ItemsIncluded.GetHashCode();
+                }
                 if (this.Name != null)
-                    hashCode = hashCode * 59 + this.Name.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.Name.GetHashCode();
+                }
                 if (this.Price != null)
-                    hashCode = hashCode * 59 + this.Price.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.Price.GetHashCode();
+                }
                 return hashCode;
             }
         }
-
         /// <summary>
         /// To validate all properties of the instance
         /// </summary>
         /// <param name="validationContext">Validation context</param>
         /// <returns>Validation Result</returns>
-        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+        public IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> Validate(ValidationContext validationContext)
         {
             yield break;
         }

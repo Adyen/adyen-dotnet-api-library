@@ -11,25 +11,27 @@
 */
 
 using System;
-using System.Linq;
-using System.IO;
-using System.Text;
-using System.Text.RegularExpressions;
 using System.Collections;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Linq;
+using System.IO;
 using System.Runtime.Serialization;
+using System.Text;
+using System.Text.RegularExpressions;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
+using Newtonsoft.Json.Linq;
 using System.ComponentModel.DataAnnotations;
+using OpenAPIDateConverter = Adyen.ApiSerialization.OpenAPIDateConverter;
 
 namespace Adyen.Model.Management
 {
     /// <summary>
     /// UpdatePayoutSettingsRequest
     /// </summary>
-    [DataContract]
-    public partial class UpdatePayoutSettingsRequest :  IEquatable<UpdatePayoutSettingsRequest>, IValidatableObject
+    [DataContract(Name = "UpdatePayoutSettingsRequest")]
+    public partial class UpdatePayoutSettingsRequest : IEquatable<UpdatePayoutSettingsRequest>, IValidatableObject
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="UpdatePayoutSettingsRequest" /> class.
@@ -44,7 +46,7 @@ namespace Adyen.Model.Management
         /// Indicates if payouts to this bank account are enabled. Default: **true**.  To receive payouts into this bank account, both &#x60;enabled&#x60; and &#x60;allowed&#x60; must be **true**.
         /// </summary>
         /// <value>Indicates if payouts to this bank account are enabled. Default: **true**.  To receive payouts into this bank account, both &#x60;enabled&#x60; and &#x60;allowed&#x60; must be **true**.</value>
-        [DataMember(Name="enabled", EmitDefaultValue=false)]
+        [DataMember(Name = "enabled", EmitDefaultValue = false)]
         public bool Enabled { get; set; }
 
         /// <summary>
@@ -53,7 +55,7 @@ namespace Adyen.Model.Management
         /// <returns>String presentation of the object</returns>
         public override string ToString()
         {
-            var sb = new StringBuilder();
+            StringBuilder sb = new StringBuilder();
             sb.Append("class UpdatePayoutSettingsRequest {\n");
             sb.Append("  Enabled: ").Append(Enabled).Append("\n");
             sb.Append("}\n");
@@ -87,13 +89,13 @@ namespace Adyen.Model.Management
         public bool Equals(UpdatePayoutSettingsRequest input)
         {
             if (input == null)
+            {
                 return false;
-
+            }
             return 
                 (
                     this.Enabled == input.Enabled ||
-                    (this.Enabled != null &&
-                    this.Enabled.Equals(input.Enabled))
+                    this.Enabled.Equals(input.Enabled)
                 );
         }
 
@@ -106,18 +108,16 @@ namespace Adyen.Model.Management
             unchecked // Overflow is fine, just wrap
             {
                 int hashCode = 41;
-                if (this.Enabled != null)
-                    hashCode = hashCode * 59 + this.Enabled.GetHashCode();
+                hashCode = (hashCode * 59) + this.Enabled.GetHashCode();
                 return hashCode;
             }
         }
-
         /// <summary>
         /// To validate all properties of the instance
         /// </summary>
         /// <param name="validationContext">Validation context</param>
         /// <returns>Validation Result</returns>
-        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+        public IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> Validate(ValidationContext validationContext)
         {
             yield break;
         }

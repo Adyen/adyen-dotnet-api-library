@@ -11,25 +11,27 @@
 */
 
 using System;
-using System.Linq;
-using System.IO;
-using System.Text;
-using System.Text.RegularExpressions;
 using System.Collections;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Linq;
+using System.IO;
 using System.Runtime.Serialization;
+using System.Text;
+using System.Text.RegularExpressions;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
+using Newtonsoft.Json.Linq;
 using System.ComponentModel.DataAnnotations;
+using OpenAPIDateConverter = Adyen.ApiSerialization.OpenAPIDateConverter;
 
 namespace Adyen.Model.Management
 {
     /// <summary>
     /// Key
     /// </summary>
-    [DataContract]
-    public partial class Key :  IEquatable<Key>, IValidatableObject
+    [DataContract(Name = "Key")]
+    public partial class Key : IEquatable<Key>, IValidatableObject
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="Key" /> class.
@@ -37,7 +39,7 @@ namespace Adyen.Model.Management
         /// <param name="identifier">The unique identifier of the shared key..</param>
         /// <param name="passphrase">The secure passphrase to protect the shared key..</param>
         /// <param name="version">The version number of the shared key..</param>
-        public Key(string identifier = default(string), string passphrase = default(string), int version = default(int))
+        public Key(string identifier = default(string), string passphrase = default(string), int? version = default(int?))
         {
             this.Identifier = identifier;
             this.Passphrase = passphrase;
@@ -48,22 +50,22 @@ namespace Adyen.Model.Management
         /// The unique identifier of the shared key.
         /// </summary>
         /// <value>The unique identifier of the shared key.</value>
-        [DataMember(Name="identifier", EmitDefaultValue=false)]
+        [DataMember(Name = "identifier", EmitDefaultValue = false)]
         public string Identifier { get; set; }
 
         /// <summary>
         /// The secure passphrase to protect the shared key.
         /// </summary>
         /// <value>The secure passphrase to protect the shared key.</value>
-        [DataMember(Name="passphrase", EmitDefaultValue=false)]
+        [DataMember(Name = "passphrase", EmitDefaultValue = false)]
         public string Passphrase { get; set; }
 
         /// <summary>
         /// The version number of the shared key.
         /// </summary>
         /// <value>The version number of the shared key.</value>
-        [DataMember(Name="version", EmitDefaultValue=false)]
-        public int Version { get; set; }
+        [DataMember(Name = "version", EmitDefaultValue = false)]
+        public int? Version { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -71,7 +73,7 @@ namespace Adyen.Model.Management
         /// <returns>String presentation of the object</returns>
         public override string ToString()
         {
-            var sb = new StringBuilder();
+            StringBuilder sb = new StringBuilder();
             sb.Append("class Key {\n");
             sb.Append("  Identifier: ").Append(Identifier).Append("\n");
             sb.Append("  Passphrase: ").Append(Passphrase).Append("\n");
@@ -107,8 +109,9 @@ namespace Adyen.Model.Management
         public bool Equals(Key input)
         {
             if (input == null)
+            {
                 return false;
-
+            }
             return 
                 (
                     this.Identifier == input.Identifier ||
@@ -122,8 +125,7 @@ namespace Adyen.Model.Management
                 ) && 
                 (
                     this.Version == input.Version ||
-                    (this.Version != null &&
-                    this.Version.Equals(input.Version))
+                    this.Version.Equals(input.Version)
                 );
         }
 
@@ -137,21 +139,23 @@ namespace Adyen.Model.Management
             {
                 int hashCode = 41;
                 if (this.Identifier != null)
-                    hashCode = hashCode * 59 + this.Identifier.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.Identifier.GetHashCode();
+                }
                 if (this.Passphrase != null)
-                    hashCode = hashCode * 59 + this.Passphrase.GetHashCode();
-                if (this.Version != null)
-                    hashCode = hashCode * 59 + this.Version.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.Passphrase.GetHashCode();
+                }
+                hashCode = (hashCode * 59) + this.Version.GetHashCode();
                 return hashCode;
             }
         }
-
         /// <summary>
         /// To validate all properties of the instance
         /// </summary>
         /// <param name="validationContext">Validation context</param>
         /// <returns>Validation Result</returns>
-        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+        public IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> Validate(ValidationContext validationContext)
         {
             yield break;
         }

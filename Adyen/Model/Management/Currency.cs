@@ -11,25 +11,27 @@
 */
 
 using System;
-using System.Linq;
-using System.IO;
-using System.Text;
-using System.Text.RegularExpressions;
 using System.Collections;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Linq;
+using System.IO;
 using System.Runtime.Serialization;
+using System.Text;
+using System.Text.RegularExpressions;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
+using Newtonsoft.Json.Linq;
 using System.ComponentModel.DataAnnotations;
+using OpenAPIDateConverter = Adyen.ApiSerialization.OpenAPIDateConverter;
 
 namespace Adyen.Model.Management
 {
     /// <summary>
     /// Currency
     /// </summary>
-    [DataContract]
-    public partial class Currency :  IEquatable<Currency>, IValidatableObject
+    [DataContract(Name = "Currency")]
+    public partial class Currency : IEquatable<Currency>, IValidatableObject
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="Currency" /> class.
@@ -42,10 +44,10 @@ namespace Adyen.Model.Management
         /// <param name="amount">Surcharge amount per transaction, in [minor units](https://docs.adyen.com/development-resources/currency-codes)..</param>
         /// <param name="currencyCode">Three-character [ISO currency code](https://docs.adyen.com/development-resources/currency-codes). For example, **AUD**. (required).</param>
         /// <param name="percentage">percentage.</param>
-        public Currency(int amount = default(int), string currencyCode = default(string), Object percentage = default(Object))
+        public Currency(int? amount = default(int?), string currencyCode = default(string), Object percentage = default(Object))
         {
-            this.Amount = amount;
             this.CurrencyCode = currencyCode;
+            this.Amount = amount;
             this.Percentage = percentage;
         }
 
@@ -53,20 +55,20 @@ namespace Adyen.Model.Management
         /// Surcharge amount per transaction, in [minor units](https://docs.adyen.com/development-resources/currency-codes).
         /// </summary>
         /// <value>Surcharge amount per transaction, in [minor units](https://docs.adyen.com/development-resources/currency-codes).</value>
-        [DataMember(Name="amount", EmitDefaultValue=false)]
-        public int Amount { get; set; }
+        [DataMember(Name = "amount", EmitDefaultValue = false)]
+        public int? Amount { get; set; }
 
         /// <summary>
         /// Three-character [ISO currency code](https://docs.adyen.com/development-resources/currency-codes). For example, **AUD**.
         /// </summary>
         /// <value>Three-character [ISO currency code](https://docs.adyen.com/development-resources/currency-codes). For example, **AUD**.</value>
-        [DataMember(Name="currencyCode", EmitDefaultValue=true)]
+        [DataMember(Name = "currencyCode", IsRequired = false, EmitDefaultValue = false)]
         public string CurrencyCode { get; set; }
 
         /// <summary>
         /// Gets or Sets Percentage
         /// </summary>
-        [DataMember(Name="percentage", EmitDefaultValue=true)]
+        [DataMember(Name = "percentage", EmitDefaultValue = false)]
         public Object Percentage { get; set; }
 
         /// <summary>
@@ -75,7 +77,7 @@ namespace Adyen.Model.Management
         /// <returns>String presentation of the object</returns>
         public override string ToString()
         {
-            var sb = new StringBuilder();
+            StringBuilder sb = new StringBuilder();
             sb.Append("class Currency {\n");
             sb.Append("  Amount: ").Append(Amount).Append("\n");
             sb.Append("  CurrencyCode: ").Append(CurrencyCode).Append("\n");
@@ -111,13 +113,13 @@ namespace Adyen.Model.Management
         public bool Equals(Currency input)
         {
             if (input == null)
+            {
                 return false;
-
+            }
             return 
                 (
                     this.Amount == input.Amount ||
-                    (this.Amount != null &&
-                    this.Amount.Equals(input.Amount))
+                    this.Amount.Equals(input.Amount)
                 ) && 
                 (
                     this.CurrencyCode == input.CurrencyCode ||
@@ -140,22 +142,24 @@ namespace Adyen.Model.Management
             unchecked // Overflow is fine, just wrap
             {
                 int hashCode = 41;
-                if (this.Amount != null)
-                    hashCode = hashCode * 59 + this.Amount.GetHashCode();
+                hashCode = (hashCode * 59) + this.Amount.GetHashCode();
                 if (this.CurrencyCode != null)
-                    hashCode = hashCode * 59 + this.CurrencyCode.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.CurrencyCode.GetHashCode();
+                }
                 if (this.Percentage != null)
-                    hashCode = hashCode * 59 + this.Percentage.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.Percentage.GetHashCode();
+                }
                 return hashCode;
             }
         }
-
         /// <summary>
         /// To validate all properties of the instance
         /// </summary>
         /// <param name="validationContext">Validation context</param>
         /// <returns>Validation Result</returns>
-        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+        public IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> Validate(ValidationContext validationContext)
         {
             yield break;
         }
