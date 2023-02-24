@@ -1,8 +1,8 @@
 using System.Net.Http;
 using Adyen.HttpClient;
-using Adyen.Model.ClassicPayments;
+using Adyen.Model.Payments;
 using Adyen.Service;
-using Adyen.Service.ClassicPayments;
+using Adyen.Service.Payments;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace Adyen.IntegrationTest
@@ -19,7 +19,7 @@ namespace Adyen.IntegrationTest
             var modification = new ModificationsService(client);
             //Send capture call with psp refernce
             var captureRequest = base.CreateCaptureTestRequest(paymentResultPspReference);
-            var captureResult = modification.CaptureAuthorisation(captureRequest);
+            var captureResult = modification.Capture(captureRequest);
             Assert.AreEqual(captureResult.Response, ModificationResult.ResponseEnum.CaptureReceived);
         }
 
@@ -31,7 +31,7 @@ namespace Adyen.IntegrationTest
             var client = base.CreateApiKeyTestClient();
             var modification = new ModificationsService(client);
             var cancelOrRefundRequest = base.CreateCancelOrRefundTestRequest(pspReference: paymentResultPspReference);
-            var cancelOrRefundResult = modification.CancelOrRefundPayment(cancelOrRefundRequest);
+            var cancelOrRefundResult = modification.CancelOrRefund(cancelOrRefundRequest);
             Assert.AreEqual(cancelOrRefundResult.Response, ModificationResult.ResponseEnum.CancelOrRefundReceived);
         }
 
@@ -43,7 +43,7 @@ namespace Adyen.IntegrationTest
             var client = base.CreateApiKeyTestClient();
             var modification = new ModificationsService(client);
             var refundRequest = base.CreateRefundTestRequest(pspReference: paymentResultPspReference);
-            var refundResult = modification.RefundCapturedPayment(refundRequest);
+            var refundResult = modification.Refund(refundRequest);
             Assert.AreEqual(refundResult.Response, ModificationResult.ResponseEnum.RefundReceived);
         }
 
@@ -55,7 +55,7 @@ namespace Adyen.IntegrationTest
             var client = base.CreateApiKeyTestClient();
             var modification = new ModificationsService(client);
             var cancelRequest = base.CreateCancelTestRequest(pspReference: paymentResultPspReference);
-            var refundResult = modification.CancelAuthorisation(cancelRequest);
+            var refundResult = modification.Cancel(cancelRequest);
             Assert.AreEqual(refundResult.Response, ModificationResult.ResponseEnum.CancelReceived);
         }
 
@@ -67,7 +67,7 @@ namespace Adyen.IntegrationTest
             var client = base.CreateApiKeyTestClient();
             var modification = new ModificationsService(client);
             var adjustAuthorisationtestRequest = base.CreateAdjustAuthorisationtestRequest(pspReference: paymentResultPspReference);
-            var adjustAuthorisationtestResult = modification.ChangeTheAuthorisedAmount(adjustAuthorisationtestRequest);
+            var adjustAuthorisationtestResult = modification.AdjustAuthorisation(adjustAuthorisationtestRequest);
             Assert.AreEqual(adjustAuthorisationtestResult.Response, ModificationResult.ResponseEnum.AdjustAuthorisationReceived);
         }
         
@@ -83,7 +83,7 @@ namespace Adyen.IntegrationTest
                 OriginalMerchantReference = pspRef,
                 Reference = "reference123"
             };
-            var techCancelResponse = modification.CancelAuthorisationUsingYourReference(technicalCancelRequest);
+            var techCancelResponse = modification.TechnicalCancel(technicalCancelRequest);
             Assert.AreEqual(techCancelResponse.Response, ModificationResult.ResponseEnum.TechnicalCancelReceived);
         }
         
@@ -104,7 +104,7 @@ namespace Adyen.IntegrationTest
             };
             try
             {
-                modification.CreateDonationAsync(donationRequest).GetAwaiter().GetResult();
+                modification.DonateAsync(donationRequest).GetAwaiter().GetResult();
             }
             catch (HttpClientException e)
             {
