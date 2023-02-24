@@ -20,7 +20,7 @@ using Adyen.Service.Resource;
 using Adyen.Model.BalanceControl;
 using Newtonsoft.Json;
 
-namespace Adyen.Service.BalanceControl
+namespace Adyen.Service
 {
     /// <summary>
     /// Represents a collection of functions to interact with the API endpoints
@@ -40,9 +40,9 @@ namespace Adyen.Service.BalanceControl
         /// <param name="balanceTransferRequest"></param>
         /// <param name="requestOptions">Additional request options.</param>
         /// <returns>BalanceTransferResponse</returns>
-        public BalanceTransferResponse StartBalanceTransfer(BalanceTransferRequest balanceTransferRequest, RequestOptions requestOptions = default)
+        public BalanceTransferResponse BalanceTransfer(BalanceTransferRequest balanceTransferRequest, RequestOptions requestOptions = default)
         {
-            return StartBalanceTransferAsync(balanceTransferRequest, requestOptions).GetAwaiter().GetResult();
+            return BalanceTransferAsync(balanceTransferRequest, requestOptions).GetAwaiter().GetResult();
         }
 
         /// <summary>
@@ -51,7 +51,7 @@ namespace Adyen.Service.BalanceControl
         /// <param name="balanceTransferRequest"></param>
         /// <param name="requestOptions">Additional request options.</param>
         /// <returns>Task of BalanceTransferResponse</returns>
-        public async Task<BalanceTransferResponse> StartBalanceTransferAsync(BalanceTransferRequest balanceTransferRequest, RequestOptions requestOptions = default)
+        public async Task<BalanceTransferResponse> BalanceTransferAsync(BalanceTransferRequest balanceTransferRequest, RequestOptions requestOptions = default)
         {
             var endpoint = _baseUrl + "/balanceTransfer";
             var resource = new ServiceResource(this, endpoint);
