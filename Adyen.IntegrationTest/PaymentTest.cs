@@ -1,12 +1,12 @@
 using System;
-using Adyen.Model.ClassicPayments;
+using Adyen.Model.Payments;
 using Adyen.Service;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using Adyen.HttpClient;
 using Adyen.Model.StoredValue;
-using Adyen.Service.ClassicPayments;
+using Adyen.Service.Payments;
 using Environment = Adyen.Model.Environment;
 
 namespace Adyen.IntegrationTest
@@ -103,7 +103,7 @@ namespace Adyen.IntegrationTest
             var payment = new PaymentService(client);
             try
             {
-                payment.GetThe3dsAuthenticationResult(authenticationResultRequest);
+                payment.GetAuthenticationResult(authenticationResultRequest);
             }
             catch (HttpClientException ex)
             {

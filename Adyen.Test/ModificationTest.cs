@@ -24,8 +24,8 @@
 using Adyen.Constants;
 using Adyen.Service;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using Adyen.Model.ClassicPayments;
-using Adyen.Service.ClassicPayments;
+using Adyen.Model.Payments;
+using Adyen.Service.Payments;
 
 namespace Adyen.Test
 {
@@ -41,7 +41,7 @@ namespace Adyen.Test
             var modification = new ModificationsService(client);
             //Send capture call with psp refernce
             var captureRequest = base.CreateCaptureTestRequest(paymentResultPspReference);
-            var captureResult = modification.CaptureAuthorisation(captureRequest);
+            var captureResult = modification.Capture(captureRequest);
             Assert.AreEqual(captureResult.Response, ModificationResult.ResponseEnum.CaptureReceived);
             Assert.AreEqual(captureRequest.AdditionalData["authorisationType"],"PreAuth");
         }
@@ -54,7 +54,7 @@ namespace Adyen.Test
             var client = base.CreateMockTestClientApiKeyBasedRequestAsync("Mocks/cancelOrRefund-received.json");
             var modification = new ModificationsService(client);
             var cancelOrRefundRequest = base.CreateCancelOrRefundTestRequest(pspReference: paymentResultPspReference);
-            var cancelOrRefundResult = modification.CancelOrRefundPayment(cancelOrRefundRequest);
+            var cancelOrRefundResult = modification.CancelOrRefund(cancelOrRefundRequest);
             Assert.AreEqual(cancelOrRefundResult.Response, ModificationResult.ResponseEnum.CancelOrRefundReceived);
         }
 
@@ -66,7 +66,7 @@ namespace Adyen.Test
             var client = base.CreateMockTestClientApiKeyBasedRequestAsync("Mocks/refund-received.json");
             var modification = new ModificationsService(client);
             var refundRequest = base.CreateRefundTestRequest(pspReference: paymentResultPspReference);
-            var refundResult = modification.RefundCapturedPayment(refundRequest);
+            var refundResult = modification.Refund(refundRequest);
             Assert.AreEqual(refundResult.Response, ModificationResult.ResponseEnum.RefundReceived);
         }
 
@@ -78,7 +78,7 @@ namespace Adyen.Test
             var client = base.CreateMockTestClientApiKeyBasedRequestAsync("Mocks/cancel-received.json");
             var modification = new ModificationsService(client);
             var cancelRequest = base.CreateCancelTestRequest(pspReference: paymentResultPspReference);
-            var cancelResult = modification.CancelAuthorisation(cancelRequest);
+            var cancelResult = modification.Cancel(cancelRequest);
             Assert.AreEqual(cancelResult.Response, ModificationResult.ResponseEnum.CancelReceived);
         }
 
@@ -90,7 +90,7 @@ namespace Adyen.Test
             var client = base.CreateMockTestClientApiKeyBasedRequestAsync("Mocks/adjustAuthorisation-received.json");
             var modification = new ModificationsService(client);
             var authorisationRequest = base.CreateAdjustAuthorisationRequest(pspReference: paymentResultPspReference);
-            var adjustAuthorisationResult = modification.ChangeTheAuthorisedAmount(authorisationRequest);
+            var adjustAuthorisationResult = modification.AdjustAuthorisation(authorisationRequest);
             Assert.AreEqual(adjustAuthorisationResult.Response, ModificationResult.ResponseEnum.AdjustAuthorisationReceived);
             Assert.AreEqual(adjustAuthorisationResult.PspReference, "853569123456789D");
             Assert.AreEqual(adjustAuthorisationResult.AdditionalData["merchantReference"], "payment - 20190901");
@@ -147,7 +147,7 @@ namespace Adyen.Test
             var checkout = new ModificationsService(client);
             var modification = new ModificationsService(client);
             var voidPendingRefundRequest = new VoidPendingRefundRequest();
-            var modificationResult = modification.CancelInpersonRefund(voidPendingRefundRequest);
+            var modificationResult = modification.VoidPendingRefund(voidPendingRefundRequest);
             Assert.AreEqual(modificationResult.Response, ModificationResult.ResponseEnum.VoidPendingRefundReceived);
         }
     }

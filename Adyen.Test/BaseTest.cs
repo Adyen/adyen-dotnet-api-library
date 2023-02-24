@@ -23,7 +23,7 @@
 
 using Adyen.Constants;
 using Adyen.HttpClient;
-using Adyen.Model.ClassicPayments;
+using Adyen.Model.Payments;
 using Adyen.Model.Nexo;
 using Adyen.Service;
 using Moq;
@@ -37,10 +37,10 @@ using Adyen.HttpClient.Interfaces;
 using Adyen.Model;
 using Environment = System.Environment;
 using Amount = Adyen.Model.Checkout;
-using PaymentResult = Adyen.Model.ClassicPayments.PaymentResult;
+using PaymentResult = Adyen.Model.Payments.PaymentResult;
 using Adyen.Model.Checkout;
 using System.Threading.Tasks;
-using Adyen.Service.ClassicPayments;
+using Adyen.Service.Payments;
 using CardDetails = Adyen.Service.Resource.Checkout.CardDetails;
 using CommonField = Adyen.Model.Checkout.CommonField;
 
@@ -61,7 +61,7 @@ namespace Adyen.Test
             var client = CreateMockTestClientApiKeyBasedRequestAsync(fileName);
             var payment = new PaymentService(client);
             var paymentRequest = MockPaymentData.CreateFullPaymentRequest();
-            var paymentResult = payment.CreateAuthorisation(paymentRequest);
+            var paymentResult = payment.Authorise(paymentRequest);
             return paymentResult;
         }
 
@@ -71,7 +71,7 @@ namespace Adyen.Test
             var payment = new PaymentService(client);
             var paymentRequest = MockPaymentData.CreateFullPaymentRequest();
 
-            var paymentResult = payment.CreateAuthorisation(paymentRequest);
+            var paymentResult = payment.Authorise(paymentRequest);
             return paymentResult;
         }
         #endregion
@@ -83,7 +83,7 @@ namespace Adyen.Test
             var captureRequest = new CaptureRequest
             {
                 MerchantAccount = "MerchantAccount",
-                ModificationAmount = new Model.ClassicPayments.Amount("EUR", 150),
+                ModificationAmount = new Model.Payments.Amount("EUR", 150),
                 Reference = "capture - " + DateTime.Now.ToString("yyyyMMdd"),
                 OriginalReference = pspReference,
                 AdditionalData = new Dictionary<string, string> {{"authorisationType", "PreAuth"}}
@@ -108,7 +108,7 @@ namespace Adyen.Test
             var refundRequest = new RefundRequest()
             {
                 MerchantAccount = "MerchantAccount",
-                ModificationAmount = new Model.ClassicPayments.Amount("EUR", 150),
+                ModificationAmount = new Model.Payments.Amount("EUR", 150),
                 Reference = "refund - " + DateTime.Now.ToString("yyyyMMdd"),
                 OriginalReference = pspReference
             };
@@ -131,7 +131,7 @@ namespace Adyen.Test
             var adjustAuthorisationRequest = new AdjustAuthorisationRequest()
             {
                 MerchantAccount = "MerchantAccount",
-                ModificationAmount = new Model.ClassicPayments.Amount("EUR", 150),
+                ModificationAmount = new Model.Payments.Amount("EUR", 150),
                 Reference = "adjustAuthorisationRequest - " + DateTime.Now.ToString("yyyyMMdd"),
                 OriginalReference = pspReference,
             };
@@ -563,9 +563,9 @@ namespace Adyen.Test
         /// Create dummy AuthenticationResultRequest
         /// </summary>
         /// <returns>AuthenticationResultRequest</returns>
-        protected Model.ClassicPayments.AuthenticationResultRequest CreateAuthenticationResultRequest()
+        protected Model.Payments.AuthenticationResultRequest CreateAuthenticationResultRequest()
         {
-            return new Model.ClassicPayments.AuthenticationResultRequest
+            return new Model.Payments.AuthenticationResultRequest
             {
                 MerchantAccount = "MerchantAccount",
                 PspReference = "pspReference"

@@ -23,12 +23,11 @@
 
 using System;
 using Adyen.Constants;
-using Adyen.Model.ClassicPayments;
+using Adyen.Model.Payments;
 using Adyen.Service;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.Collections.Generic;
-using System.Threading;
-using Adyen.Service.ClassicPayments;
+using Adyen.Service.Payments;
 
 namespace Adyen.Test
 {
@@ -65,7 +64,7 @@ namespace Adyen.Test
             var client = CreateMockTestClientApiKeyBasedRequestAsync("Mocks/authorise-success-3d.json");
             var payment = new PaymentService(client);
             var paymentRequest = MockPaymentData.CreateFullPaymentRequest();
-            var paymentResult = payment.CreateAuthorisation(paymentRequest);
+            var paymentResult = payment.Authorise(paymentRequest);
             Assert.IsNotNull(paymentResult.Md);
             Assert.IsNotNull(paymentResult.IssuerUrl);
             Assert.IsNotNull(paymentResult.PaRequest);
@@ -77,7 +76,7 @@ namespace Adyen.Test
             var client = CreateMockTestClientApiKeyBasedRequestAsync("Mocks/threedsecure2/authorise-response-identifyshopper.json");
             var payment = new PaymentService(client);
             var paymentRequest = MockPaymentData.CreateFullPaymentRequest3DS2();
-            var paymentResult = payment.Complete3ds2Authorisation(paymentRequest);
+            var paymentResult = payment.Authorise3ds2(paymentRequest);
 
             Assert.AreEqual(paymentResult.ResultCode, PaymentResult.ResultCodeEnum.IdentifyShopper);
             Assert.IsNotNull(paymentResult.PspReference);
@@ -93,7 +92,7 @@ namespace Adyen.Test
             var client = CreateMockTestClientApiKeyBasedRequestAsync("Mocks/threedsecure2/authorise3ds2-response-challengeshopper.json");
             var payment = new PaymentService(client);
             var paymentRequest = MockPaymentData.CreateFullPaymentRequest3DS2();
-            var paymentResult = payment.Complete3ds2Authorisation(paymentRequest);
+            var paymentResult = payment.Authorise3ds2(paymentRequest);
 
             Assert.AreEqual(paymentResult.ResultCode, PaymentResult.ResultCodeEnum.ChallengeShopper);
             Assert.IsNotNull(paymentResult.PspReference);
@@ -115,7 +114,7 @@ namespace Adyen.Test
             var client = CreateMockTestClientApiKeyBasedRequestAsync("Mocks/threedsecure2/authorise3ds2-success.json");
             var payment = new PaymentService(client);
             var paymentRequest = MockPaymentData.CreateFullPaymentRequest3DS2();
-            var paymentResult = payment.Complete3ds2Authorisation(paymentRequest);
+            var paymentResult = payment.Authorise3ds2(paymentRequest);
 
             Assert.AreEqual(paymentResult.ResultCode, PaymentResult.ResultCodeEnum.Authorised);
             Assert.IsNotNull(paymentResult.PspReference);
@@ -127,7 +126,7 @@ namespace Adyen.Test
             var client = CreateMockTestClientApiKeyBasedRequestAsync("Mocks/authorise3d-success.json");
             var payment = new PaymentService(client);
             var paymentRequest = MockPaymentData.CreateFullPaymentRequest3D();
-            var paymentResult = payment.Complete3dsAuthorisation(paymentRequest);
+            var paymentResult = payment.Authorise3d(paymentRequest);
             Assert.AreEqual(paymentResult.ResultCode, PaymentResult.ResultCodeEnum.Authorised);
             Assert.IsNotNull(paymentResult.PspReference);
         }
@@ -152,7 +151,7 @@ namespace Adyen.Test
             var client = CreateMockTestClientRequest("Mocks/authorise-success-klarna.json");
             var payment = new PaymentService(client);
             var paymentRequest = MockOpenInvoicePayment.CreateOpenInvoicePaymentRequest();
-            var paymentResult = payment.CreateAuthorisation(paymentRequest);
+            var paymentResult = payment.Authorise(paymentRequest);
             Assert.AreEqual("2374421290", paymentResult.AdditionalData["additionalData.acquirerReference"]);
             Assert.AreEqual("klarna", paymentResult.AdditionalData["paymentMethodVariant"]);
         }
@@ -190,7 +189,7 @@ namespace Adyen.Test
             var client = CreateMockTestClientApiKeyBasedRequestAsync("Mocks/authentication-result-success-3ds1.json");
             var payment = new PaymentService(client);
             var authenticationResultRequest = new AuthenticationResultRequest();
-            var authenticationResultResponse = payment.GetThe3dsAuthenticationResult(authenticationResultRequest);
+            var authenticationResultResponse = payment.GetAuthenticationResult(authenticationResultRequest);
             Assert.IsNotNull(authenticationResultResponse);
             Assert.IsNotNull(authenticationResultResponse.ThreeDS1Result);
             Assert.IsNull(authenticationResultResponse.ThreeDS2Result);
@@ -202,7 +201,7 @@ namespace Adyen.Test
             var client = CreateMockTestClientApiKeyBasedRequestAsync("Mocks/authentication-result-success-3ds2.json");
             var payment = new PaymentService(client);
             var authenticationResultRequest = new AuthenticationResultRequest();
-            var authenticationResultResponse = payment.GetThe3dsAuthenticationResult(authenticationResultRequest);
+            var authenticationResultResponse = payment.GetAuthenticationResult(authenticationResultRequest);
             Assert.IsNotNull(authenticationResultResponse);
             Assert.IsNull(authenticationResultResponse.ThreeDS1Result);
             Assert.IsNotNull(authenticationResultResponse.ThreeDS2Result);
@@ -214,7 +213,7 @@ namespace Adyen.Test
             var client = CreateMockTestClientApiKeyBasedRequestAsync("Mocks/ThreeDS2Result.json");
             var payment = new PaymentService(client);
             var authenticationResultRequest = new AuthenticationResultRequest();
-            var ThreeDSTwoResult = payment.GetThe3dsAuthenticationResult(authenticationResultRequest);
+            var ThreeDSTwoResult = payment.GetAuthenticationResult(authenticationResultRequest);
             Assert.AreEqual("f04ec32b-f46b-46ef-9ccd-44be42fb0d7e", ThreeDSTwoResult.ThreeDS2Result.ThreeDSServerTransID);
             Assert.AreEqual("80a16fa0-4eea-43c9-8de5-b0470d09d14d", ThreeDSTwoResult.ThreeDS2Result.DsTransID);
             Assert.IsNotNull(ThreeDSTwoResult);
