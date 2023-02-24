@@ -40,9 +40,9 @@ namespace Adyen.Service
         /// <param name="storedValueStatusChangeRequest"></param>
         /// <param name="requestOptions">Additional request options.</param>
         /// <returns>StoredValueStatusChangeResponse</returns>
-        public StoredValueStatusChangeResponse ChangesStatusOfPaymentMethod(StoredValueStatusChangeRequest storedValueStatusChangeRequest, RequestOptions requestOptions = default)
+        public StoredValueStatusChangeResponse ChangeStatus(StoredValueStatusChangeRequest storedValueStatusChangeRequest, RequestOptions requestOptions = default)
         {
-            return ChangesStatusOfPaymentMethodAsync(storedValueStatusChangeRequest, requestOptions).GetAwaiter().GetResult();
+            return ChangeStatusAsync(storedValueStatusChangeRequest, requestOptions).GetAwaiter().GetResult();
         }
 
         /// <summary>
@@ -51,7 +51,7 @@ namespace Adyen.Service
         /// <param name="storedValueStatusChangeRequest"></param>
         /// <param name="requestOptions">Additional request options.</param>
         /// <returns>Task of StoredValueStatusChangeResponse</returns>
-        public async Task<StoredValueStatusChangeResponse> ChangesStatusOfPaymentMethodAsync(StoredValueStatusChangeRequest storedValueStatusChangeRequest, RequestOptions requestOptions = default)
+        public async Task<StoredValueStatusChangeResponse> ChangeStatusAsync(StoredValueStatusChangeRequest storedValueStatusChangeRequest, RequestOptions requestOptions = default)
         {
             var endpoint = _baseUrl + "/changeStatus";
             var resource = new ServiceResource(this, endpoint);
@@ -64,9 +64,9 @@ namespace Adyen.Service
         /// <param name="storedValueBalanceCheckRequest"></param>
         /// <param name="requestOptions">Additional request options.</param>
         /// <returns>StoredValueBalanceCheckResponse</returns>
-        public StoredValueBalanceCheckResponse ChecksBalance(StoredValueBalanceCheckRequest storedValueBalanceCheckRequest, RequestOptions requestOptions = default)
+        public StoredValueBalanceCheckResponse CheckBalance(StoredValueBalanceCheckRequest storedValueBalanceCheckRequest, RequestOptions requestOptions = default)
         {
-            return ChecksBalanceAsync(storedValueBalanceCheckRequest, requestOptions).GetAwaiter().GetResult();
+            return CheckBalanceAsync(storedValueBalanceCheckRequest, requestOptions).GetAwaiter().GetResult();
         }
 
         /// <summary>
@@ -75,7 +75,7 @@ namespace Adyen.Service
         /// <param name="storedValueBalanceCheckRequest"></param>
         /// <param name="requestOptions">Additional request options.</param>
         /// <returns>Task of StoredValueBalanceCheckResponse</returns>
-        public async Task<StoredValueBalanceCheckResponse> ChecksBalanceAsync(StoredValueBalanceCheckRequest storedValueBalanceCheckRequest, RequestOptions requestOptions = default)
+        public async Task<StoredValueBalanceCheckResponse> CheckBalanceAsync(StoredValueBalanceCheckRequest storedValueBalanceCheckRequest, RequestOptions requestOptions = default)
         {
             var endpoint = _baseUrl + "/checkBalance";
             var resource = new ServiceResource(this, endpoint);
@@ -88,9 +88,9 @@ namespace Adyen.Service
         /// <param name="storedValueIssueRequest"></param>
         /// <param name="requestOptions">Additional request options.</param>
         /// <returns>StoredValueIssueResponse</returns>
-        public StoredValueIssueResponse IssuesNewCard(StoredValueIssueRequest storedValueIssueRequest, RequestOptions requestOptions = default)
+        public StoredValueIssueResponse Issue(StoredValueIssueRequest storedValueIssueRequest, RequestOptions requestOptions = default)
         {
-            return IssuesNewCardAsync(storedValueIssueRequest, requestOptions).GetAwaiter().GetResult();
+            return IssueAsync(storedValueIssueRequest, requestOptions).GetAwaiter().GetResult();
         }
 
         /// <summary>
@@ -99,7 +99,7 @@ namespace Adyen.Service
         /// <param name="storedValueIssueRequest"></param>
         /// <param name="requestOptions">Additional request options.</param>
         /// <returns>Task of StoredValueIssueResponse</returns>
-        public async Task<StoredValueIssueResponse> IssuesNewCardAsync(StoredValueIssueRequest storedValueIssueRequest, RequestOptions requestOptions = default)
+        public async Task<StoredValueIssueResponse> IssueAsync(StoredValueIssueRequest storedValueIssueRequest, RequestOptions requestOptions = default)
         {
             var endpoint = _baseUrl + "/issue";
             var resource = new ServiceResource(this, endpoint);
@@ -112,9 +112,9 @@ namespace Adyen.Service
         /// <param name="storedValueLoadRequest"></param>
         /// <param name="requestOptions">Additional request options.</param>
         /// <returns>StoredValueLoadResponse</returns>
-        public StoredValueLoadResponse LoadsPaymentMethod(StoredValueLoadRequest storedValueLoadRequest, RequestOptions requestOptions = default)
+        public StoredValueLoadResponse Load(StoredValueLoadRequest storedValueLoadRequest, RequestOptions requestOptions = default)
         {
-            return LoadsPaymentMethodAsync(storedValueLoadRequest, requestOptions).GetAwaiter().GetResult();
+            return LoadAsync(storedValueLoadRequest, requestOptions).GetAwaiter().GetResult();
         }
 
         /// <summary>
@@ -123,7 +123,7 @@ namespace Adyen.Service
         /// <param name="storedValueLoadRequest"></param>
         /// <param name="requestOptions">Additional request options.</param>
         /// <returns>Task of StoredValueLoadResponse</returns>
-        public async Task<StoredValueLoadResponse> LoadsPaymentMethodAsync(StoredValueLoadRequest storedValueLoadRequest, RequestOptions requestOptions = default)
+        public async Task<StoredValueLoadResponse> LoadAsync(StoredValueLoadRequest storedValueLoadRequest, RequestOptions requestOptions = default)
         {
             var endpoint = _baseUrl + "/load";
             var resource = new ServiceResource(this, endpoint);
@@ -136,9 +136,9 @@ namespace Adyen.Service
         /// <param name="storedValueBalanceMergeRequest"></param>
         /// <param name="requestOptions">Additional request options.</param>
         /// <returns>StoredValueBalanceMergeResponse</returns>
-        public StoredValueBalanceMergeResponse MergeBalanceOfTwoCards(StoredValueBalanceMergeRequest storedValueBalanceMergeRequest, RequestOptions requestOptions = default)
+        public StoredValueBalanceMergeResponse MergeBalance(StoredValueBalanceMergeRequest storedValueBalanceMergeRequest, RequestOptions requestOptions = default)
         {
-            return MergeBalanceOfTwoCardsAsync(storedValueBalanceMergeRequest, requestOptions).GetAwaiter().GetResult();
+            return MergeBalanceAsync(storedValueBalanceMergeRequest, requestOptions).GetAwaiter().GetResult();
         }
 
         /// <summary>
@@ -147,7 +147,7 @@ namespace Adyen.Service
         /// <param name="storedValueBalanceMergeRequest"></param>
         /// <param name="requestOptions">Additional request options.</param>
         /// <returns>Task of StoredValueBalanceMergeResponse</returns>
-        public async Task<StoredValueBalanceMergeResponse> MergeBalanceOfTwoCardsAsync(StoredValueBalanceMergeRequest storedValueBalanceMergeRequest, RequestOptions requestOptions = default)
+        public async Task<StoredValueBalanceMergeResponse> MergeBalanceAsync(StoredValueBalanceMergeRequest storedValueBalanceMergeRequest, RequestOptions requestOptions = default)
         {
             var endpoint = _baseUrl + "/mergeBalance";
             var resource = new ServiceResource(this, endpoint);
@@ -160,9 +160,9 @@ namespace Adyen.Service
         /// <param name="storedValueVoidRequest"></param>
         /// <param name="requestOptions">Additional request options.</param>
         /// <returns>StoredValueVoidResponse</returns>
-        public StoredValueVoidResponse VoidsTransaction(StoredValueVoidRequest storedValueVoidRequest, RequestOptions requestOptions = default)
+        public StoredValueVoidResponse VoidTransaction(StoredValueVoidRequest storedValueVoidRequest, RequestOptions requestOptions = default)
         {
-            return VoidsTransactionAsync(storedValueVoidRequest, requestOptions).GetAwaiter().GetResult();
+            return VoidTransactionAsync(storedValueVoidRequest, requestOptions).GetAwaiter().GetResult();
         }
 
         /// <summary>
@@ -171,7 +171,7 @@ namespace Adyen.Service
         /// <param name="storedValueVoidRequest"></param>
         /// <param name="requestOptions">Additional request options.</param>
         /// <returns>Task of StoredValueVoidResponse</returns>
-        public async Task<StoredValueVoidResponse> VoidsTransactionAsync(StoredValueVoidRequest storedValueVoidRequest, RequestOptions requestOptions = default)
+        public async Task<StoredValueVoidResponse> VoidTransactionAsync(StoredValueVoidRequest storedValueVoidRequest, RequestOptions requestOptions = default)
         {
             var endpoint = _baseUrl + "/voidTransaction";
             var resource = new ServiceResource(this, endpoint);
