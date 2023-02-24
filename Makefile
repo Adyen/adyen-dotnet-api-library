@@ -29,7 +29,8 @@ PlatformsAccount: spec=AccountService-v6
 PlatformsFund: spec=FundService-v6
 PlatformsNotificationConfiguration: spec=NotificationConfigurationService-v6
 PlatformsHostedOnboardingPage: spec=HopService-v6
-Transfer: spec=TransferService-v3
+Transfers: spec=TransferService-v3
+Transfers: service=transfers
 
 $(services): target/spec $(openapi-generator-jar) 
 	rm -rf $(models)/$@ $(output)
