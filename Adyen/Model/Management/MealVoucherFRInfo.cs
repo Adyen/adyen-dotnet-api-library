@@ -11,25 +11,27 @@
 */
 
 using System;
-using System.Linq;
-using System.IO;
-using System.Text;
-using System.Text.RegularExpressions;
 using System.Collections;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Linq;
+using System.IO;
 using System.Runtime.Serialization;
+using System.Text;
+using System.Text.RegularExpressions;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
+using Newtonsoft.Json.Linq;
 using System.ComponentModel.DataAnnotations;
+using OpenAPIDateConverter = Adyen.ApiSerialization.OpenAPIDateConverter;
 
 namespace Adyen.Model.Management
 {
     /// <summary>
     /// MealVoucherFRInfo
     /// </summary>
-    [DataContract]
-    public partial class MealVoucherFRInfo :  IEquatable<MealVoucherFRInfo>, IValidatableObject
+    [DataContract(Name = "MealVoucherFRInfo")]
+    public partial class MealVoucherFRInfo : IEquatable<MealVoucherFRInfo>, IValidatableObject
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="MealVoucherFRInfo" /> class.
@@ -53,21 +55,21 @@ namespace Adyen.Model.Management
         /// Meal Voucher conecsId. Format: digits only
         /// </summary>
         /// <value>Meal Voucher conecsId. Format: digits only</value>
-        [DataMember(Name="conecsId", EmitDefaultValue=true)]
+        [DataMember(Name = "conecsId", IsRequired = false, EmitDefaultValue = false)]
         public string ConecsId { get; set; }
 
         /// <summary>
         /// Meal Voucher siret. Format: 14 digits.
         /// </summary>
         /// <value>Meal Voucher siret. Format: 14 digits.</value>
-        [DataMember(Name="siret", EmitDefaultValue=true)]
+        [DataMember(Name = "siret", IsRequired = false, EmitDefaultValue = false)]
         public string Siret { get; set; }
 
         /// <summary>
         /// The list of additional payment methods. Allowed values: **mealVoucher_FR_endenred**, **mealVoucher_FR_groupeup**, **mealVoucher_FR_natixis**, **mealVoucher_FR_sodexo**.
         /// </summary>
         /// <value>The list of additional payment methods. Allowed values: **mealVoucher_FR_endenred**, **mealVoucher_FR_groupeup**, **mealVoucher_FR_natixis**, **mealVoucher_FR_sodexo**.</value>
-        [DataMember(Name="subTypes", EmitDefaultValue=true)]
+        [DataMember(Name = "subTypes", IsRequired = false, EmitDefaultValue = false)]
         public List<string> SubTypes { get; set; }
 
         /// <summary>
@@ -76,7 +78,7 @@ namespace Adyen.Model.Management
         /// <returns>String presentation of the object</returns>
         public override string ToString()
         {
-            var sb = new StringBuilder();
+            StringBuilder sb = new StringBuilder();
             sb.Append("class MealVoucherFRInfo {\n");
             sb.Append("  ConecsId: ").Append(ConecsId).Append("\n");
             sb.Append("  Siret: ").Append(Siret).Append("\n");
@@ -112,8 +114,9 @@ namespace Adyen.Model.Management
         public bool Equals(MealVoucherFRInfo input)
         {
             if (input == null)
+            {
                 return false;
-
+            }
             return 
                 (
                     this.ConecsId == input.ConecsId ||
@@ -143,30 +146,35 @@ namespace Adyen.Model.Management
             {
                 int hashCode = 41;
                 if (this.ConecsId != null)
-                    hashCode = hashCode * 59 + this.ConecsId.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.ConecsId.GetHashCode();
+                }
                 if (this.Siret != null)
-                    hashCode = hashCode * 59 + this.Siret.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.Siret.GetHashCode();
+                }
                 if (this.SubTypes != null)
-                    hashCode = hashCode * 59 + this.SubTypes.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.SubTypes.GetHashCode();
+                }
                 return hashCode;
             }
         }
-
         /// <summary>
         /// To validate all properties of the instance
         /// </summary>
         /// <param name="validationContext">Validation context</param>
         /// <returns>Validation Result</returns>
-        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+        public IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> Validate(ValidationContext validationContext)
         {
             // Siret (string) maxLength
-            if(this.Siret != null && this.Siret.Length > 14)
+            if (this.Siret != null && this.Siret.Length > 14)
             {
                 yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for Siret, length must be less than 14.", new [] { "Siret" });
             }
 
             // Siret (string) minLength
-            if(this.Siret != null && this.Siret.Length < 14)
+            if (this.Siret != null && this.Siret.Length < 14)
             {
                 yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for Siret, length must be greater than 14.", new [] { "Siret" });
             }

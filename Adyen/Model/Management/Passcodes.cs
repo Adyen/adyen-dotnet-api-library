@@ -11,25 +11,27 @@
 */
 
 using System;
-using System.Linq;
-using System.IO;
-using System.Text;
-using System.Text.RegularExpressions;
 using System.Collections;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Linq;
+using System.IO;
 using System.Runtime.Serialization;
+using System.Text;
+using System.Text.RegularExpressions;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
+using Newtonsoft.Json.Linq;
 using System.ComponentModel.DataAnnotations;
+using OpenAPIDateConverter = Adyen.ApiSerialization.OpenAPIDateConverter;
 
 namespace Adyen.Model.Management
 {
     /// <summary>
     /// Passcodes
     /// </summary>
-    [DataContract]
-    public partial class Passcodes :  IEquatable<Passcodes>, IValidatableObject
+    [DataContract(Name = "Passcodes")]
+    public partial class Passcodes : IEquatable<Passcodes>, IValidatableObject
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="Passcodes" /> class.
@@ -50,28 +52,28 @@ namespace Adyen.Model.Management
         /// The passcode for the Admin menu and the Settings menu.
         /// </summary>
         /// <value>The passcode for the Admin menu and the Settings menu.</value>
-        [DataMember(Name="adminMenuPin", EmitDefaultValue=false)]
+        [DataMember(Name = "adminMenuPin", EmitDefaultValue = false)]
         public string AdminMenuPin { get; set; }
 
         /// <summary>
         /// The passcode for unreferenced refunds on standalone terminals.
         /// </summary>
         /// <value>The passcode for unreferenced refunds on standalone terminals.</value>
-        [DataMember(Name="refundPin", EmitDefaultValue=false)]
+        [DataMember(Name = "refundPin", EmitDefaultValue = false)]
         public string RefundPin { get; set; }
 
         /// <summary>
         /// The passcode to unlock the terminal screen after a timeout.
         /// </summary>
         /// <value>The passcode to unlock the terminal screen after a timeout.</value>
-        [DataMember(Name="screenLockPin", EmitDefaultValue=false)]
+        [DataMember(Name = "screenLockPin", EmitDefaultValue = false)]
         public string ScreenLockPin { get; set; }
 
         /// <summary>
         /// The passcode for the Transactions menu.
         /// </summary>
         /// <value>The passcode for the Transactions menu.</value>
-        [DataMember(Name="txMenuPin", EmitDefaultValue=false)]
+        [DataMember(Name = "txMenuPin", EmitDefaultValue = false)]
         public string TxMenuPin { get; set; }
 
         /// <summary>
@@ -80,7 +82,7 @@ namespace Adyen.Model.Management
         /// <returns>String presentation of the object</returns>
         public override string ToString()
         {
-            var sb = new StringBuilder();
+            StringBuilder sb = new StringBuilder();
             sb.Append("class Passcodes {\n");
             sb.Append("  AdminMenuPin: ").Append(AdminMenuPin).Append("\n");
             sb.Append("  RefundPin: ").Append(RefundPin).Append("\n");
@@ -117,8 +119,9 @@ namespace Adyen.Model.Management
         public bool Equals(Passcodes input)
         {
             if (input == null)
+            {
                 return false;
-
+            }
             return 
                 (
                     this.AdminMenuPin == input.AdminMenuPin ||
@@ -152,56 +155,60 @@ namespace Adyen.Model.Management
             {
                 int hashCode = 41;
                 if (this.AdminMenuPin != null)
-                    hashCode = hashCode * 59 + this.AdminMenuPin.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.AdminMenuPin.GetHashCode();
+                }
                 if (this.RefundPin != null)
-                    hashCode = hashCode * 59 + this.RefundPin.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.RefundPin.GetHashCode();
+                }
                 if (this.ScreenLockPin != null)
-                    hashCode = hashCode * 59 + this.ScreenLockPin.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.ScreenLockPin.GetHashCode();
+                }
                 if (this.TxMenuPin != null)
-                    hashCode = hashCode * 59 + this.TxMenuPin.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.TxMenuPin.GetHashCode();
+                }
                 return hashCode;
             }
         }
-
         /// <summary>
         /// To validate all properties of the instance
         /// </summary>
         /// <param name="validationContext">Validation context</param>
         /// <returns>Validation Result</returns>
-        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+        public IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> Validate(ValidationContext validationContext)
         {
             // AdminMenuPin (string) maxLength
-            if(this.AdminMenuPin != null && this.AdminMenuPin.Length > 6)
+            if (this.AdminMenuPin != null && this.AdminMenuPin.Length > 6)
             {
                 yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for AdminMenuPin, length must be less than 6.", new [] { "AdminMenuPin" });
             }
 
-
             // RefundPin (string) maxLength
-            if(this.RefundPin != null && this.RefundPin.Length > 6)
+            if (this.RefundPin != null && this.RefundPin.Length > 6)
             {
                 yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for RefundPin, length must be less than 6.", new [] { "RefundPin" });
             }
 
-
             // ScreenLockPin (string) maxLength
-            if(this.ScreenLockPin != null && this.ScreenLockPin.Length > 6)
+            if (this.ScreenLockPin != null && this.ScreenLockPin.Length > 6)
             {
                 yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for ScreenLockPin, length must be less than 6.", new [] { "ScreenLockPin" });
             }
 
             // ScreenLockPin (string) minLength
-            if(this.ScreenLockPin != null && this.ScreenLockPin.Length < 4)
+            if (this.ScreenLockPin != null && this.ScreenLockPin.Length < 4)
             {
                 yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for ScreenLockPin, length must be greater than 4.", new [] { "ScreenLockPin" });
             }
 
             // TxMenuPin (string) maxLength
-            if(this.TxMenuPin != null && this.TxMenuPin.Length > 6)
+            if (this.TxMenuPin != null && this.TxMenuPin.Length > 6)
             {
                 yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for TxMenuPin, length must be less than 6.", new [] { "TxMenuPin" });
             }
-
 
             yield break;
         }
