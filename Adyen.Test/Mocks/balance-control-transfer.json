@@ -3,7 +3,7 @@
     "value": 50000,
     "currency": "EUR"
   },
-  "createdAt": "2022-01-24T14:59:11+01:00",
+  "createdAt": "2022-01-24",
   "description": "Your description for the transfer",
   "fromMerchant": "MerchantAccount_NL",
   "toMerchant": "MerchantAccount_DE",
