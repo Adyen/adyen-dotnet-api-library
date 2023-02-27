@@ -11,32 +11,34 @@
 */
 
 using System;
-using System.Linq;
-using System.IO;
-using System.Text;
-using System.Text.RegularExpressions;
 using System.Collections;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Linq;
+using System.IO;
 using System.Runtime.Serialization;
+using System.Text;
+using System.Text.RegularExpressions;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
+using Newtonsoft.Json.Linq;
 using System.ComponentModel.DataAnnotations;
+using OpenAPIDateConverter = Adyen.ApiSerialization.OpenAPIDateConverter;
 
 namespace Adyen.Model.Management
 {
     /// <summary>
     /// MinorUnitsMonetaryValue
     /// </summary>
-    [DataContract]
-    public partial class MinorUnitsMonetaryValue :  IEquatable<MinorUnitsMonetaryValue>, IValidatableObject
+    [DataContract(Name = "MinorUnitsMonetaryValue")]
+    public partial class MinorUnitsMonetaryValue : IEquatable<MinorUnitsMonetaryValue>, IValidatableObject
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="MinorUnitsMonetaryValue" /> class.
         /// </summary>
         /// <param name="amount">The transaction amount, in [minor units](https://docs.adyen.com/development-resources/currency-codes)..</param>
         /// <param name="currencyCode">The three-character [ISO currency code](https://docs.adyen.com/development-resources/currency-codes)..</param>
-        public MinorUnitsMonetaryValue(int amount = default(int), string currencyCode = default(string))
+        public MinorUnitsMonetaryValue(int? amount = default(int?), string currencyCode = default(string))
         {
             this.Amount = amount;
             this.CurrencyCode = currencyCode;
@@ -46,14 +48,14 @@ namespace Adyen.Model.Management
         /// The transaction amount, in [minor units](https://docs.adyen.com/development-resources/currency-codes).
         /// </summary>
         /// <value>The transaction amount, in [minor units](https://docs.adyen.com/development-resources/currency-codes).</value>
-        [DataMember(Name="amount", EmitDefaultValue=false)]
-        public int Amount { get; set; }
+        [DataMember(Name = "amount", EmitDefaultValue = false)]
+        public int? Amount { get; set; }
 
         /// <summary>
         /// The three-character [ISO currency code](https://docs.adyen.com/development-resources/currency-codes).
         /// </summary>
         /// <value>The three-character [ISO currency code](https://docs.adyen.com/development-resources/currency-codes).</value>
-        [DataMember(Name="currencyCode", EmitDefaultValue=false)]
+        [DataMember(Name = "currencyCode", EmitDefaultValue = false)]
         public string CurrencyCode { get; set; }
 
         /// <summary>
@@ -62,7 +64,7 @@ namespace Adyen.Model.Management
         /// <returns>String presentation of the object</returns>
         public override string ToString()
         {
-            var sb = new StringBuilder();
+            StringBuilder sb = new StringBuilder();
             sb.Append("class MinorUnitsMonetaryValue {\n");
             sb.Append("  Amount: ").Append(Amount).Append("\n");
             sb.Append("  CurrencyCode: ").Append(CurrencyCode).Append("\n");
@@ -97,13 +99,13 @@ namespace Adyen.Model.Management
         public bool Equals(MinorUnitsMonetaryValue input)
         {
             if (input == null)
+            {
                 return false;
-
+            }
             return 
                 (
                     this.Amount == input.Amount ||
-                    (this.Amount != null &&
-                    this.Amount.Equals(input.Amount))
+                    this.Amount.Equals(input.Amount)
                 ) && 
                 (
                     this.CurrencyCode == input.CurrencyCode ||
@@ -121,20 +123,20 @@ namespace Adyen.Model.Management
             unchecked // Overflow is fine, just wrap
             {
                 int hashCode = 41;
-                if (this.Amount != null)
-                    hashCode = hashCode * 59 + this.Amount.GetHashCode();
+                hashCode = (hashCode * 59) + this.Amount.GetHashCode();
                 if (this.CurrencyCode != null)
-                    hashCode = hashCode * 59 + this.CurrencyCode.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.CurrencyCode.GetHashCode();
+                }
                 return hashCode;
             }
         }
-
         /// <summary>
         /// To validate all properties of the instance
         /// </summary>
         /// <param name="validationContext">Validation context</param>
         /// <returns>Validation Result</returns>
-        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+        public IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> Validate(ValidationContext validationContext)
         {
             yield break;
         }

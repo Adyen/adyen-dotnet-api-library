@@ -11,25 +11,27 @@
 */
 
 using System;
-using System.Linq;
-using System.IO;
-using System.Text;
-using System.Text.RegularExpressions;
 using System.Collections;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Linq;
+using System.IO;
 using System.Runtime.Serialization;
+using System.Text;
+using System.Text.RegularExpressions;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
+using Newtonsoft.Json.Linq;
 using System.ComponentModel.DataAnnotations;
+using OpenAPIDateConverter = Adyen.ApiSerialization.OpenAPIDateConverter;
 
 namespace Adyen.Model.Management
 {
     /// <summary>
     /// UpdateCompanyUserRequest
     /// </summary>
-    [DataContract]
-    public partial class UpdateCompanyUserRequest :  IEquatable<UpdateCompanyUserRequest>, IValidatableObject
+    [DataContract(Name = "UpdateCompanyUserRequest")]
+    public partial class UpdateCompanyUserRequest : IEquatable<UpdateCompanyUserRequest>, IValidatableObject
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="UpdateCompanyUserRequest" /> class.
@@ -56,48 +58,48 @@ namespace Adyen.Model.Management
         /// The list of [account groups](https://docs.adyen.com/account/account-structure#account-groups) associated with this user.
         /// </summary>
         /// <value>The list of [account groups](https://docs.adyen.com/account/account-structure#account-groups) associated with this user.</value>
-        [DataMember(Name="accountGroups", EmitDefaultValue=false)]
+        [DataMember(Name = "accountGroups", EmitDefaultValue = false)]
         public List<string> AccountGroups { get; set; }
 
         /// <summary>
         /// Indicates whether this user is active.
         /// </summary>
         /// <value>Indicates whether this user is active.</value>
-        [DataMember(Name="active", EmitDefaultValue=false)]
+        [DataMember(Name = "active", EmitDefaultValue = false)]
         public bool Active { get; set; }
 
         /// <summary>
         /// The list of [merchant accounts](https://docs.adyen.com/account/account-structure#merchant-accounts) to associate the user with.
         /// </summary>
         /// <value>The list of [merchant accounts](https://docs.adyen.com/account/account-structure#merchant-accounts) to associate the user with.</value>
-        [DataMember(Name="associatedMerchantAccounts", EmitDefaultValue=false)]
+        [DataMember(Name = "associatedMerchantAccounts", EmitDefaultValue = false)]
         public List<string> AssociatedMerchantAccounts { get; set; }
 
         /// <summary>
         /// The email address of the user.
         /// </summary>
         /// <value>The email address of the user.</value>
-        [DataMember(Name="email", EmitDefaultValue=false)]
+        [DataMember(Name = "email", EmitDefaultValue = false)]
         public string Email { get; set; }
 
         /// <summary>
         /// Gets or Sets Name
         /// </summary>
-        [DataMember(Name="name", EmitDefaultValue=false)]
+        [DataMember(Name = "name", EmitDefaultValue = false)]
         public Name2 Name { get; set; }
 
         /// <summary>
         /// The list of [roles](https://docs.adyen.com/account/user-roles) for this user.
         /// </summary>
         /// <value>The list of [roles](https://docs.adyen.com/account/user-roles) for this user.</value>
-        [DataMember(Name="roles", EmitDefaultValue=false)]
+        [DataMember(Name = "roles", EmitDefaultValue = false)]
         public List<string> Roles { get; set; }
 
         /// <summary>
         /// The [tz database name](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones) of the time zone of the user. For example, **Europe/Amsterdam**.
         /// </summary>
         /// <value>The [tz database name](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones) of the time zone of the user. For example, **Europe/Amsterdam**.</value>
-        [DataMember(Name="timeZoneCode", EmitDefaultValue=false)]
+        [DataMember(Name = "timeZoneCode", EmitDefaultValue = false)]
         public string TimeZoneCode { get; set; }
 
         /// <summary>
@@ -106,7 +108,7 @@ namespace Adyen.Model.Management
         /// <returns>String presentation of the object</returns>
         public override string ToString()
         {
-            var sb = new StringBuilder();
+            StringBuilder sb = new StringBuilder();
             sb.Append("class UpdateCompanyUserRequest {\n");
             sb.Append("  AccountGroups: ").Append(AccountGroups).Append("\n");
             sb.Append("  Active: ").Append(Active).Append("\n");
@@ -146,8 +148,9 @@ namespace Adyen.Model.Management
         public bool Equals(UpdateCompanyUserRequest input)
         {
             if (input == null)
+            {
                 return false;
-
+            }
             return 
                 (
                     this.AccountGroups == input.AccountGroups ||
@@ -157,8 +160,7 @@ namespace Adyen.Model.Management
                 ) && 
                 (
                     this.Active == input.Active ||
-                    (this.Active != null &&
-                    this.Active.Equals(input.Active))
+                    this.Active.Equals(input.Active)
                 ) && 
                 (
                     this.AssociatedMerchantAccounts == input.AssociatedMerchantAccounts ||
@@ -199,29 +201,39 @@ namespace Adyen.Model.Management
             {
                 int hashCode = 41;
                 if (this.AccountGroups != null)
-                    hashCode = hashCode * 59 + this.AccountGroups.GetHashCode();
-                if (this.Active != null)
-                    hashCode = hashCode * 59 + this.Active.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.AccountGroups.GetHashCode();
+                }
+                hashCode = (hashCode * 59) + this.Active.GetHashCode();
                 if (this.AssociatedMerchantAccounts != null)
-                    hashCode = hashCode * 59 + this.AssociatedMerchantAccounts.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.AssociatedMerchantAccounts.GetHashCode();
+                }
                 if (this.Email != null)
-                    hashCode = hashCode * 59 + this.Email.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.Email.GetHashCode();
+                }
                 if (this.Name != null)
-                    hashCode = hashCode * 59 + this.Name.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.Name.GetHashCode();
+                }
                 if (this.Roles != null)
-                    hashCode = hashCode * 59 + this.Roles.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.Roles.GetHashCode();
+                }
                 if (this.TimeZoneCode != null)
-                    hashCode = hashCode * 59 + this.TimeZoneCode.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.TimeZoneCode.GetHashCode();
+                }
                 return hashCode;
             }
         }
-
         /// <summary>
         /// To validate all properties of the instance
         /// </summary>
         /// <param name="validationContext">Validation context</param>
         /// <returns>Validation Result</returns>
-        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+        public IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> Validate(ValidationContext validationContext)
         {
             yield break;
         }

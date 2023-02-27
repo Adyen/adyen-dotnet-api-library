@@ -11,25 +11,27 @@
 */
 
 using System;
-using System.Linq;
-using System.IO;
-using System.Text;
-using System.Text.RegularExpressions;
 using System.Collections;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Linq;
+using System.IO;
 using System.Runtime.Serialization;
+using System.Text;
+using System.Text.RegularExpressions;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
+using Newtonsoft.Json.Linq;
 using System.ComponentModel.DataAnnotations;
+using OpenAPIDateConverter = Adyen.ApiSerialization.OpenAPIDateConverter;
 
 namespace Adyen.Model.Management
 {
     /// <summary>
     /// Signature
     /// </summary>
-    [DataContract]
-    public partial class Signature :  IEquatable<Signature>, IValidatableObject
+    [DataContract(Name = "Signature")]
+    public partial class Signature : IEquatable<Signature>, IValidatableObject
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="Signature" /> class.
@@ -50,28 +52,28 @@ namespace Adyen.Model.Management
         /// If &#x60;skipSignature&#x60; is false, indicates whether the shopper should provide a signature on the display (**true**) or on the merchant receipt (**false**).
         /// </summary>
         /// <value>If &#x60;skipSignature&#x60; is false, indicates whether the shopper should provide a signature on the display (**true**) or on the merchant receipt (**false**).</value>
-        [DataMember(Name="askSignatureOnScreen", EmitDefaultValue=false)]
+        [DataMember(Name = "askSignatureOnScreen", EmitDefaultValue = false)]
         public bool AskSignatureOnScreen { get; set; }
 
         /// <summary>
         /// Name that identifies the terminal.
         /// </summary>
         /// <value>Name that identifies the terminal.</value>
-        [DataMember(Name="deviceName", EmitDefaultValue=false)]
+        [DataMember(Name = "deviceName", EmitDefaultValue = false)]
         public string DeviceName { get; set; }
 
         /// <summary>
         /// Slogan shown on the start screen of the device.
         /// </summary>
         /// <value>Slogan shown on the start screen of the device.</value>
-        [DataMember(Name="deviceSlogan", EmitDefaultValue=false)]
+        [DataMember(Name = "deviceSlogan", EmitDefaultValue = false)]
         public string DeviceSlogan { get; set; }
 
         /// <summary>
         /// Skip asking for a signature. This is possible because all global card schemes (American Express, Diners, Discover, JCB, MasterCard, VISA, and UnionPay) regard a signature as optional.
         /// </summary>
         /// <value>Skip asking for a signature. This is possible because all global card schemes (American Express, Diners, Discover, JCB, MasterCard, VISA, and UnionPay) regard a signature as optional.</value>
-        [DataMember(Name="skipSignature", EmitDefaultValue=false)]
+        [DataMember(Name = "skipSignature", EmitDefaultValue = false)]
         public bool SkipSignature { get; set; }
 
         /// <summary>
@@ -80,7 +82,7 @@ namespace Adyen.Model.Management
         /// <returns>String presentation of the object</returns>
         public override string ToString()
         {
-            var sb = new StringBuilder();
+            StringBuilder sb = new StringBuilder();
             sb.Append("class Signature {\n");
             sb.Append("  AskSignatureOnScreen: ").Append(AskSignatureOnScreen).Append("\n");
             sb.Append("  DeviceName: ").Append(DeviceName).Append("\n");
@@ -117,13 +119,13 @@ namespace Adyen.Model.Management
         public bool Equals(Signature input)
         {
             if (input == null)
+            {
                 return false;
-
+            }
             return 
                 (
                     this.AskSignatureOnScreen == input.AskSignatureOnScreen ||
-                    (this.AskSignatureOnScreen != null &&
-                    this.AskSignatureOnScreen.Equals(input.AskSignatureOnScreen))
+                    this.AskSignatureOnScreen.Equals(input.AskSignatureOnScreen)
                 ) && 
                 (
                     this.DeviceName == input.DeviceName ||
@@ -137,8 +139,7 @@ namespace Adyen.Model.Management
                 ) && 
                 (
                     this.SkipSignature == input.SkipSignature ||
-                    (this.SkipSignature != null &&
-                    this.SkipSignature.Equals(input.SkipSignature))
+                    this.SkipSignature.Equals(input.SkipSignature)
                 );
         }
 
@@ -151,31 +152,31 @@ namespace Adyen.Model.Management
             unchecked // Overflow is fine, just wrap
             {
                 int hashCode = 41;
-                if (this.AskSignatureOnScreen != null)
-                    hashCode = hashCode * 59 + this.AskSignatureOnScreen.GetHashCode();
+                hashCode = (hashCode * 59) + this.AskSignatureOnScreen.GetHashCode();
                 if (this.DeviceName != null)
-                    hashCode = hashCode * 59 + this.DeviceName.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.DeviceName.GetHashCode();
+                }
                 if (this.DeviceSlogan != null)
-                    hashCode = hashCode * 59 + this.DeviceSlogan.GetHashCode();
-                if (this.SkipSignature != null)
-                    hashCode = hashCode * 59 + this.SkipSignature.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.DeviceSlogan.GetHashCode();
+                }
+                hashCode = (hashCode * 59) + this.SkipSignature.GetHashCode();
                 return hashCode;
             }
         }
-
         /// <summary>
         /// To validate all properties of the instance
         /// </summary>
         /// <param name="validationContext">Validation context</param>
         /// <returns>Validation Result</returns>
-        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+        public IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> Validate(ValidationContext validationContext)
         {
             // DeviceSlogan (string) maxLength
-            if(this.DeviceSlogan != null && this.DeviceSlogan.Length > 50)
+            if (this.DeviceSlogan != null && this.DeviceSlogan.Length > 50)
             {
                 yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for DeviceSlogan, length must be less than 50.", new [] { "DeviceSlogan" });
             }
-
 
             yield break;
         }
