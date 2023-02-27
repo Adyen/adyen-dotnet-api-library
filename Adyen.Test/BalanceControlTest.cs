@@ -14,7 +14,7 @@ namespace Adyen.Test
             var client = CreateMockTestClientApiKeyBasedRequestAsync("Mocks/balance-control-transfer.json");
             var service = new BalanceControlService(client);
             var response = service.BalanceTransfer(new BalanceTransferRequest());
-            Assert.AreEqual(response.CreatedAt, new DateTime(2022,01, 24, 14,59, 11, DateTimeKind.Utc));
+            Assert.AreEqual(response.CreatedAt, new DateTime(2022,01, 24, 14,59, 11, DateTimeKind.Local));
             Assert.AreEqual(response.Status, BalanceTransferResponse.StatusEnum.Transferred);
         }
     }
