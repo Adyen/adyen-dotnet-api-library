@@ -11,31 +11,33 @@
 */
 
 using System;
-using System.Linq;
-using System.IO;
-using System.Text;
-using System.Text.RegularExpressions;
 using System.Collections;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Linq;
+using System.IO;
 using System.Runtime.Serialization;
+using System.Text;
+using System.Text.RegularExpressions;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
+using Newtonsoft.Json.Linq;
 using System.ComponentModel.DataAnnotations;
+using OpenAPIDateConverter = Adyen.ApiSerialization.OpenAPIDateConverter;
 
 namespace Adyen.Model.Management
 {
     /// <summary>
     /// Timeouts
     /// </summary>
-    [DataContract]
-    public partial class Timeouts :  IEquatable<Timeouts>, IValidatableObject
+    [DataContract(Name = "Timeouts")]
+    public partial class Timeouts : IEquatable<Timeouts>, IValidatableObject
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="Timeouts" /> class.
         /// </summary>
         /// <param name="fromActiveToSleep">Indicates the number of seconds of inactivity after which the terminal display goes into sleep mode..</param>
-        public Timeouts(int fromActiveToSleep = default(int))
+        public Timeouts(int? fromActiveToSleep = default(int?))
         {
             this.FromActiveToSleep = fromActiveToSleep;
         }
@@ -44,8 +46,8 @@ namespace Adyen.Model.Management
         /// Indicates the number of seconds of inactivity after which the terminal display goes into sleep mode.
         /// </summary>
         /// <value>Indicates the number of seconds of inactivity after which the terminal display goes into sleep mode.</value>
-        [DataMember(Name="fromActiveToSleep", EmitDefaultValue=false)]
-        public int FromActiveToSleep { get; set; }
+        [DataMember(Name = "fromActiveToSleep", EmitDefaultValue = false)]
+        public int? FromActiveToSleep { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -53,7 +55,7 @@ namespace Adyen.Model.Management
         /// <returns>String presentation of the object</returns>
         public override string ToString()
         {
-            var sb = new StringBuilder();
+            StringBuilder sb = new StringBuilder();
             sb.Append("class Timeouts {\n");
             sb.Append("  FromActiveToSleep: ").Append(FromActiveToSleep).Append("\n");
             sb.Append("}\n");
@@ -87,13 +89,13 @@ namespace Adyen.Model.Management
         public bool Equals(Timeouts input)
         {
             if (input == null)
+            {
                 return false;
-
+            }
             return 
                 (
                     this.FromActiveToSleep == input.FromActiveToSleep ||
-                    (this.FromActiveToSleep != null &&
-                    this.FromActiveToSleep.Equals(input.FromActiveToSleep))
+                    this.FromActiveToSleep.Equals(input.FromActiveToSleep)
                 );
         }
 
@@ -106,18 +108,16 @@ namespace Adyen.Model.Management
             unchecked // Overflow is fine, just wrap
             {
                 int hashCode = 41;
-                if (this.FromActiveToSleep != null)
-                    hashCode = hashCode * 59 + this.FromActiveToSleep.GetHashCode();
+                hashCode = (hashCode * 59) + this.FromActiveToSleep.GetHashCode();
                 return hashCode;
             }
         }
-
         /// <summary>
         /// To validate all properties of the instance
         /// </summary>
         /// <param name="validationContext">Validation context</param>
         /// <returns>Validation Result</returns>
-        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+        public IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> Validate(ValidationContext validationContext)
         {
             yield break;
         }

@@ -11,25 +11,27 @@
 */
 
 using System;
-using System.Linq;
-using System.IO;
-using System.Text;
-using System.Text.RegularExpressions;
 using System.Collections;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Linq;
+using System.IO;
 using System.Runtime.Serialization;
+using System.Text;
+using System.Text.RegularExpressions;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
+using Newtonsoft.Json.Linq;
 using System.ComponentModel.DataAnnotations;
+using OpenAPIDateConverter = Adyen.ApiSerialization.OpenAPIDateConverter;
 
 namespace Adyen.Model.Management
 {
     /// <summary>
     /// SofortInfo
     /// </summary>
-    [DataContract]
-    public partial class SofortInfo :  IEquatable<SofortInfo>, IValidatableObject
+    [DataContract(Name = "SofortInfo")]
+    public partial class SofortInfo : IEquatable<SofortInfo>, IValidatableObject
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="SofortInfo" /> class.
@@ -51,14 +53,14 @@ namespace Adyen.Model.Management
         /// Sofort currency code. For example, **EUR**.
         /// </summary>
         /// <value>Sofort currency code. For example, **EUR**.</value>
-        [DataMember(Name="currencyCode", EmitDefaultValue=true)]
+        [DataMember(Name = "currencyCode", IsRequired = false, EmitDefaultValue = false)]
         public string CurrencyCode { get; set; }
 
         /// <summary>
         /// Sofort logo. Format: Base64-encoded string.
         /// </summary>
         /// <value>Sofort logo. Format: Base64-encoded string.</value>
-        [DataMember(Name="logo", EmitDefaultValue=true)]
+        [DataMember(Name = "logo", IsRequired = false, EmitDefaultValue = false)]
         public string Logo { get; set; }
 
         /// <summary>
@@ -67,7 +69,7 @@ namespace Adyen.Model.Management
         /// <returns>String presentation of the object</returns>
         public override string ToString()
         {
-            var sb = new StringBuilder();
+            StringBuilder sb = new StringBuilder();
             sb.Append("class SofortInfo {\n");
             sb.Append("  CurrencyCode: ").Append(CurrencyCode).Append("\n");
             sb.Append("  Logo: ").Append(Logo).Append("\n");
@@ -102,8 +104,9 @@ namespace Adyen.Model.Management
         public bool Equals(SofortInfo input)
         {
             if (input == null)
+            {
                 return false;
-
+            }
             return 
                 (
                     this.CurrencyCode == input.CurrencyCode ||
@@ -127,19 +130,22 @@ namespace Adyen.Model.Management
             {
                 int hashCode = 41;
                 if (this.CurrencyCode != null)
-                    hashCode = hashCode * 59 + this.CurrencyCode.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.CurrencyCode.GetHashCode();
+                }
                 if (this.Logo != null)
-                    hashCode = hashCode * 59 + this.Logo.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.Logo.GetHashCode();
+                }
                 return hashCode;
             }
         }
-
         /// <summary>
         /// To validate all properties of the instance
         /// </summary>
         /// <param name="validationContext">Validation context</param>
         /// <returns>Validation Result</returns>
-        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+        public IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> Validate(ValidationContext validationContext)
         {
             yield break;
         }

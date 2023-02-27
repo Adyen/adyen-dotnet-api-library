@@ -11,83 +11,180 @@
 */
 
 using System;
-using System.Linq;
-using System.IO;
-using System.Text;
-using System.Text.RegularExpressions;
 using System.Collections;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Linq;
+using System.IO;
 using System.Runtime.Serialization;
+using System.Text;
+using System.Text.RegularExpressions;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
+using Newtonsoft.Json.Linq;
 using System.ComponentModel.DataAnnotations;
+using OpenAPIDateConverter = Adyen.ApiSerialization.OpenAPIDateConverter;
+using System.Reflection;
 
 namespace Adyen.Model.Management
 {
     /// <summary>
     /// Information about the action to take.
     /// </summary>
-    [DataContract]
-    public partial class ScheduleTerminalActionsRequestActionDetails :  IEquatable<ScheduleTerminalActionsRequestActionDetails>, IValidatableObject
+    [JsonConverter(typeof(ScheduleTerminalActionsRequestActionDetailsJsonConverter))]
+    [DataContract(Name = "ScheduleTerminalActionsRequest_actionDetails")]
+    public partial class ScheduleTerminalActionsRequestActionDetails : AbstractOpenAPISchema, IEquatable<ScheduleTerminalActionsRequestActionDetails>, IValidatableObject
     {
         /// <summary>
-        /// Type of terminal action: Uninstall an Android certificate.
+        /// Initializes a new instance of the <see cref="ScheduleTerminalActionsRequestActionDetails" /> class
+        /// with the <see cref="InstallAndroidAppDetails" /> class
         /// </summary>
-        /// <value>Type of terminal action: Uninstall an Android certificate.</value>
-        [JsonConverter(typeof(StringEnumConverter))]
-        public enum TypeEnum
+        /// <param name="actualInstance">An instance of InstallAndroidAppDetails.</param>
+        public ScheduleTerminalActionsRequestActionDetails(InstallAndroidAppDetails actualInstance)
         {
-            /// <summary>
-            /// Enum UninstallAndroidCertificate for value: UninstallAndroidCertificate
-            /// </summary>
-            [EnumMember(Value = "UninstallAndroidCertificate")]
-            UninstallAndroidCertificate = 1
-
+            this.IsNullable = false;
+            this.SchemaType= "oneOf";
+            this.ActualInstance = actualInstance ?? throw new ArgumentException("Invalid instance found. Must not be null.");
         }
 
         /// <summary>
-        /// Type of terminal action: Uninstall an Android certificate.
+        /// Initializes a new instance of the <see cref="ScheduleTerminalActionsRequestActionDetails" /> class
+        /// with the <see cref="InstallAndroidCertificateDetails" /> class
         /// </summary>
-        /// <value>Type of terminal action: Uninstall an Android certificate.</value>
-        [DataMember(Name="type", EmitDefaultValue=false)]
-        public TypeEnum? Type { get; set; }
-        /// <summary>
-        /// Initializes a new instance of the <see cref="ScheduleTerminalActionsRequestActionDetails" /> class.
-        /// </summary>
-        /// <param name="appId">The unique identifier of the app to be uninstalled..</param>
-        /// <param name="type">Type of terminal action: Uninstall an Android certificate. (default to TypeEnum.UninstallAndroidCertificate).</param>
-        /// <param name="certificateId">The unique identifier of the certificate to be uninstalled..</param>
-        /// <param name="updateAtFirstMaintenanceCall">Boolean flag that tells if the terminal should update at the first next maintenance call. If false, terminal will update on its configured reboot time..</param>
-        public ScheduleTerminalActionsRequestActionDetails(string appId = default(string), TypeEnum? type = TypeEnum.UninstallAndroidCertificate, string certificateId = default(string), bool updateAtFirstMaintenanceCall = default(bool))
+        /// <param name="actualInstance">An instance of InstallAndroidCertificateDetails.</param>
+        public ScheduleTerminalActionsRequestActionDetails(InstallAndroidCertificateDetails actualInstance)
         {
-            this.AppId = appId;
-            this.Type = type;
-            this.CertificateId = certificateId;
-            this.UpdateAtFirstMaintenanceCall = updateAtFirstMaintenanceCall;
+            this.IsNullable = false;
+            this.SchemaType= "oneOf";
+            this.ActualInstance = actualInstance ?? throw new ArgumentException("Invalid instance found. Must not be null.");
         }
 
         /// <summary>
-        /// The unique identifier of the app to be uninstalled.
+        /// Initializes a new instance of the <see cref="ScheduleTerminalActionsRequestActionDetails" /> class
+        /// with the <see cref="ReleaseUpdateDetails" /> class
         /// </summary>
-        /// <value>The unique identifier of the app to be uninstalled.</value>
-        [DataMember(Name="appId", EmitDefaultValue=false)]
-        public string AppId { get; set; }
-
-
-        /// <summary>
-        /// The unique identifier of the certificate to be uninstalled.
-        /// </summary>
-        /// <value>The unique identifier of the certificate to be uninstalled.</value>
-        [DataMember(Name="certificateId", EmitDefaultValue=false)]
-        public string CertificateId { get; set; }
+        /// <param name="actualInstance">An instance of ReleaseUpdateDetails.</param>
+        public ScheduleTerminalActionsRequestActionDetails(ReleaseUpdateDetails actualInstance)
+        {
+            this.IsNullable = false;
+            this.SchemaType= "oneOf";
+            this.ActualInstance = actualInstance ?? throw new ArgumentException("Invalid instance found. Must not be null.");
+        }
 
         /// <summary>
-        /// Boolean flag that tells if the terminal should update at the first next maintenance call. If false, terminal will update on its configured reboot time.
+        /// Initializes a new instance of the <see cref="ScheduleTerminalActionsRequestActionDetails" /> class
+        /// with the <see cref="UninstallAndroidAppDetails" /> class
         /// </summary>
-        /// <value>Boolean flag that tells if the terminal should update at the first next maintenance call. If false, terminal will update on its configured reboot time.</value>
-        [DataMember(Name="updateAtFirstMaintenanceCall", EmitDefaultValue=false)]
-        public bool UpdateAtFirstMaintenanceCall { get; set; }
+        /// <param name="actualInstance">An instance of UninstallAndroidAppDetails.</param>
+        public ScheduleTerminalActionsRequestActionDetails(UninstallAndroidAppDetails actualInstance)
+        {
+            this.IsNullable = false;
+            this.SchemaType= "oneOf";
+            this.ActualInstance = actualInstance ?? throw new ArgumentException("Invalid instance found. Must not be null.");
+        }
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="ScheduleTerminalActionsRequestActionDetails" /> class
+        /// with the <see cref="UninstallAndroidCertificateDetails" /> class
+        /// </summary>
+        /// <param name="actualInstance">An instance of UninstallAndroidCertificateDetails.</param>
+        public ScheduleTerminalActionsRequestActionDetails(UninstallAndroidCertificateDetails actualInstance)
+        {
+            this.IsNullable = false;
+            this.SchemaType= "oneOf";
+            this.ActualInstance = actualInstance ?? throw new ArgumentException("Invalid instance found. Must not be null.");
+        }
+
+
+        private Object _actualInstance;
+
+        /// <summary>
+        /// Gets or Sets ActualInstance
+        /// </summary>
+        public override Object ActualInstance
+        {
+            get
+            {
+                return _actualInstance;
+            }
+            set
+            {
+                if (value.GetType() == typeof(InstallAndroidAppDetails))
+                {
+                    this._actualInstance = value;
+                }
+                else if (value.GetType() == typeof(InstallAndroidCertificateDetails))
+                {
+                    this._actualInstance = value;
+                }
+                else if (value.GetType() == typeof(ReleaseUpdateDetails))
+                {
+                    this._actualInstance = value;
+                }
+                else if (value.GetType() == typeof(UninstallAndroidAppDetails))
+                {
+                    this._actualInstance = value;
+                }
+                else if (value.GetType() == typeof(UninstallAndroidCertificateDetails))
+                {
+                    this._actualInstance = value;
+                }
+                else
+                {
+                    throw new ArgumentException("Invalid instance found. Must be the following types: InstallAndroidAppDetails, InstallAndroidCertificateDetails, ReleaseUpdateDetails, UninstallAndroidAppDetails, UninstallAndroidCertificateDetails");
+                }
+            }
+        }
+
+        /// <summary>
+        /// Get the actual instance of `InstallAndroidAppDetails`. If the actual instance is not `InstallAndroidAppDetails`,
+        /// the InvalidClassException will be thrown
+        /// </summary>
+        /// <returns>An instance of InstallAndroidAppDetails</returns>
+        public InstallAndroidAppDetails GetInstallAndroidAppDetails()
+        {
+            return (InstallAndroidAppDetails)this.ActualInstance;
+        }
+
+        /// <summary>
+        /// Get the actual instance of `InstallAndroidCertificateDetails`. If the actual instance is not `InstallAndroidCertificateDetails`,
+        /// the InvalidClassException will be thrown
+        /// </summary>
+        /// <returns>An instance of InstallAndroidCertificateDetails</returns>
+        public InstallAndroidCertificateDetails GetInstallAndroidCertificateDetails()
+        {
+            return (InstallAndroidCertificateDetails)this.ActualInstance;
+        }
+
+        /// <summary>
+        /// Get the actual instance of `ReleaseUpdateDetails`. If the actual instance is not `ReleaseUpdateDetails`,
+        /// the InvalidClassException will be thrown
+        /// </summary>
+        /// <returns>An instance of ReleaseUpdateDetails</returns>
+        public ReleaseUpdateDetails GetReleaseUpdateDetails()
+        {
+            return (ReleaseUpdateDetails)this.ActualInstance;
+        }
+
+        /// <summary>
+        /// Get the actual instance of `UninstallAndroidAppDetails`. If the actual instance is not `UninstallAndroidAppDetails`,
+        /// the InvalidClassException will be thrown
+        /// </summary>
+        /// <returns>An instance of UninstallAndroidAppDetails</returns>
+        public UninstallAndroidAppDetails GetUninstallAndroidAppDetails()
+        {
+            return (UninstallAndroidAppDetails)this.ActualInstance;
+        }
+
+        /// <summary>
+        /// Get the actual instance of `UninstallAndroidCertificateDetails`. If the actual instance is not `UninstallAndroidCertificateDetails`,
+        /// the InvalidClassException will be thrown
+        /// </summary>
+        /// <returns>An instance of UninstallAndroidCertificateDetails</returns>
+        public UninstallAndroidCertificateDetails GetUninstallAndroidCertificateDetails()
+        {
+            return (UninstallAndroidCertificateDetails)this.ActualInstance;
+        }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -97,10 +194,7 @@ namespace Adyen.Model.Management
         {
             var sb = new StringBuilder();
             sb.Append("class ScheduleTerminalActionsRequestActionDetails {\n");
-            sb.Append("  AppId: ").Append(AppId).Append("\n");
-            sb.Append("  Type: ").Append(Type).Append("\n");
-            sb.Append("  CertificateId: ").Append(CertificateId).Append("\n");
-            sb.Append("  UpdateAtFirstMaintenanceCall: ").Append(UpdateAtFirstMaintenanceCall).Append("\n");
+            sb.Append("  ActualInstance: ").Append(this.ActualInstance).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -109,9 +203,148 @@ namespace Adyen.Model.Management
         /// Returns the JSON string presentation of the object
         /// </summary>
         /// <returns>JSON string presentation of the object</returns>
-        public virtual string ToJson()
+        public override string ToJson()
         {
-            return Newtonsoft.Json.JsonConvert.SerializeObject(this, Newtonsoft.Json.Formatting.Indented);
+            return JsonConvert.SerializeObject(this.ActualInstance, ScheduleTerminalActionsRequestActionDetails.SerializerSettings);
+        }
+
+        /// <summary>
+        /// Converts the JSON string into an instance of ScheduleTerminalActionsRequestActionDetails
+        /// </summary>
+        /// <param name="jsonString">JSON string</param>
+        /// <returns>An instance of ScheduleTerminalActionsRequestActionDetails</returns>
+        public static ScheduleTerminalActionsRequestActionDetails FromJson(string jsonString)
+        {
+            ScheduleTerminalActionsRequestActionDetails newScheduleTerminalActionsRequestActionDetails = null;
+
+            if (string.IsNullOrEmpty(jsonString))
+            {
+                return newScheduleTerminalActionsRequestActionDetails;
+            }
+            int match = 0;
+            List<string> matchedTypes = new List<string>();
+
+            try
+            {
+                // if it does not contains "AdditionalProperties", use SerializerSettings to deserialize
+                if (typeof(InstallAndroidAppDetails).GetProperty("AdditionalProperties") == null)
+                {
+                    newScheduleTerminalActionsRequestActionDetails = new ScheduleTerminalActionsRequestActionDetails(JsonConvert.DeserializeObject<InstallAndroidAppDetails>(jsonString, ScheduleTerminalActionsRequestActionDetails.SerializerSettings));
+                }
+                else
+                {
+                    newScheduleTerminalActionsRequestActionDetails = new ScheduleTerminalActionsRequestActionDetails(JsonConvert.DeserializeObject<InstallAndroidAppDetails>(jsonString, ScheduleTerminalActionsRequestActionDetails.AdditionalPropertiesSerializerSettings));
+                }
+                matchedTypes.Add("InstallAndroidAppDetails");
+                match++;
+            }
+            catch (Exception ex)
+            {
+                if (!(ex is JsonSerializationException))
+                {
+                    throw new Exception(string.Format("Failed to deserialize `{0}` into CheckoutThreeDS2Action: {1}", jsonString, ex.ToString()));
+                }
+            }
+
+            try
+            {
+                // if it does not contains "AdditionalProperties", use SerializerSettings to deserialize
+                if (typeof(InstallAndroidCertificateDetails).GetProperty("AdditionalProperties") == null)
+                {
+                    newScheduleTerminalActionsRequestActionDetails = new ScheduleTerminalActionsRequestActionDetails(JsonConvert.DeserializeObject<InstallAndroidCertificateDetails>(jsonString, ScheduleTerminalActionsRequestActionDetails.SerializerSettings));
+                }
+                else
+                {
+                    newScheduleTerminalActionsRequestActionDetails = new ScheduleTerminalActionsRequestActionDetails(JsonConvert.DeserializeObject<InstallAndroidCertificateDetails>(jsonString, ScheduleTerminalActionsRequestActionDetails.AdditionalPropertiesSerializerSettings));
+                }
+                matchedTypes.Add("InstallAndroidCertificateDetails");
+                match++;
+            }
+            catch (Exception ex)
+            {
+                if (!(ex is JsonSerializationException))
+                {
+                    throw new Exception(string.Format("Failed to deserialize `{0}` into CheckoutThreeDS2Action: {1}", jsonString, ex.ToString()));
+                }
+            }
+
+            try
+            {
+                // if it does not contains "AdditionalProperties", use SerializerSettings to deserialize
+                if (typeof(ReleaseUpdateDetails).GetProperty("AdditionalProperties") == null)
+                {
+                    newScheduleTerminalActionsRequestActionDetails = new ScheduleTerminalActionsRequestActionDetails(JsonConvert.DeserializeObject<ReleaseUpdateDetails>(jsonString, ScheduleTerminalActionsRequestActionDetails.SerializerSettings));
+                }
+                else
+                {
+                    newScheduleTerminalActionsRequestActionDetails = new ScheduleTerminalActionsRequestActionDetails(JsonConvert.DeserializeObject<ReleaseUpdateDetails>(jsonString, ScheduleTerminalActionsRequestActionDetails.AdditionalPropertiesSerializerSettings));
+                }
+                matchedTypes.Add("ReleaseUpdateDetails");
+                match++;
+            }
+            catch (Exception ex)
+            {
+                if (!(ex is JsonSerializationException))
+                {
+                    throw new Exception(string.Format("Failed to deserialize `{0}` into CheckoutThreeDS2Action: {1}", jsonString, ex.ToString()));
+                }
+            }
+
+            try
+            {
+                // if it does not contains "AdditionalProperties", use SerializerSettings to deserialize
+                if (typeof(UninstallAndroidAppDetails).GetProperty("AdditionalProperties") == null)
+                {
+                    newScheduleTerminalActionsRequestActionDetails = new ScheduleTerminalActionsRequestActionDetails(JsonConvert.DeserializeObject<UninstallAndroidAppDetails>(jsonString, ScheduleTerminalActionsRequestActionDetails.SerializerSettings));
+                }
+                else
+                {
+                    newScheduleTerminalActionsRequestActionDetails = new ScheduleTerminalActionsRequestActionDetails(JsonConvert.DeserializeObject<UninstallAndroidAppDetails>(jsonString, ScheduleTerminalActionsRequestActionDetails.AdditionalPropertiesSerializerSettings));
+                }
+                matchedTypes.Add("UninstallAndroidAppDetails");
+                match++;
+            }
+            catch (Exception ex)
+            {
+                if (!(ex is JsonSerializationException))
+                {
+                    throw new Exception(string.Format("Failed to deserialize `{0}` into CheckoutThreeDS2Action: {1}", jsonString, ex.ToString()));
+                }
+            }
+
+            try
+            {
+                // if it does not contains "AdditionalProperties", use SerializerSettings to deserialize
+                if (typeof(UninstallAndroidCertificateDetails).GetProperty("AdditionalProperties") == null)
+                {
+                    newScheduleTerminalActionsRequestActionDetails = new ScheduleTerminalActionsRequestActionDetails(JsonConvert.DeserializeObject<UninstallAndroidCertificateDetails>(jsonString, ScheduleTerminalActionsRequestActionDetails.SerializerSettings));
+                }
+                else
+                {
+                    newScheduleTerminalActionsRequestActionDetails = new ScheduleTerminalActionsRequestActionDetails(JsonConvert.DeserializeObject<UninstallAndroidCertificateDetails>(jsonString, ScheduleTerminalActionsRequestActionDetails.AdditionalPropertiesSerializerSettings));
+                }
+                matchedTypes.Add("UninstallAndroidCertificateDetails");
+                match++;
+            }
+            catch (Exception ex)
+            {
+                if (!(ex is JsonSerializationException))
+                {
+                    throw new Exception(string.Format("Failed to deserialize `{0}` into CheckoutThreeDS2Action: {1}", jsonString, ex.ToString()));
+                }
+            }
+
+            if (match == 0)
+            {
+                throw new InvalidDataException("The JSON string `" + jsonString + "` cannot be deserialized into any schema defined.");
+            }
+            else if (match > 1)
+            {
+                throw new InvalidDataException("The JSON string `" + jsonString + "` incorrectly matches more than one schema (should be exactly one match): " + matchedTypes);
+            }
+
+            // deserialization is considered successful at this point if no exception has been thrown.
+            return newScheduleTerminalActionsRequestActionDetails;
         }
 
         /// <summary>
@@ -134,27 +367,7 @@ namespace Adyen.Model.Management
             if (input == null)
                 return false;
 
-            return 
-                (
-                    this.AppId == input.AppId ||
-                    (this.AppId != null &&
-                    this.AppId.Equals(input.AppId))
-                ) && 
-                (
-                    this.Type == input.Type ||
-                    (this.Type != null &&
-                    this.Type.Equals(input.Type))
-                ) && 
-                (
-                    this.CertificateId == input.CertificateId ||
-                    (this.CertificateId != null &&
-                    this.CertificateId.Equals(input.CertificateId))
-                ) && 
-                (
-                    this.UpdateAtFirstMaintenanceCall == input.UpdateAtFirstMaintenanceCall ||
-                    (this.UpdateAtFirstMaintenanceCall != null &&
-                    this.UpdateAtFirstMaintenanceCall.Equals(input.UpdateAtFirstMaintenanceCall))
-                );
+            return this.ActualInstance.Equals(input.ActualInstance);
         }
 
         /// <summary>
@@ -166,14 +379,8 @@ namespace Adyen.Model.Management
             unchecked // Overflow is fine, just wrap
             {
                 int hashCode = 41;
-                if (this.AppId != null)
-                    hashCode = hashCode * 59 + this.AppId.GetHashCode();
-                if (this.Type != null)
-                    hashCode = hashCode * 59 + this.Type.GetHashCode();
-                if (this.CertificateId != null)
-                    hashCode = hashCode * 59 + this.CertificateId.GetHashCode();
-                if (this.UpdateAtFirstMaintenanceCall != null)
-                    hashCode = hashCode * 59 + this.UpdateAtFirstMaintenanceCall.GetHashCode();
+                if (this.ActualInstance != null)
+                    hashCode = hashCode * 59 + this.ActualInstance.GetHashCode();
                 return hashCode;
             }
         }
@@ -186,6 +393,50 @@ namespace Adyen.Model.Management
         IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
         {
             yield break;
+        }
+    }
+
+    /// <summary>
+    /// Custom JSON converter for ScheduleTerminalActionsRequestActionDetails
+    /// </summary>
+    public class ScheduleTerminalActionsRequestActionDetailsJsonConverter : JsonConverter
+    {
+        /// <summary>
+        /// To write the JSON string
+        /// </summary>
+        /// <param name="writer">JSON writer</param>
+        /// <param name="value">Object to be converted into a JSON string</param>
+        /// <param name="serializer">JSON Serializer</param>
+        public override void WriteJson(JsonWriter writer, object value, JsonSerializer serializer)
+        {
+            writer.WriteRawValue((string)(typeof(ScheduleTerminalActionsRequestActionDetails).GetMethod("ToJson").Invoke(value, null)));
+        }
+
+        /// <summary>
+        /// To convert a JSON string into an object
+        /// </summary>
+        /// <param name="reader">JSON reader</param>
+        /// <param name="objectType">Object type</param>
+        /// <param name="existingValue">Existing value</param>
+        /// <param name="serializer">JSON Serializer</param>
+        /// <returns>The object converted from the JSON string</returns>
+        public override object ReadJson(JsonReader reader, Type objectType, object existingValue, JsonSerializer serializer)
+        {
+            if(reader.TokenType != JsonToken.Null)
+            {
+                return ScheduleTerminalActionsRequestActionDetails.FromJson(JObject.Load(reader).ToString(Formatting.None));
+            }
+            return null;
+        }
+
+        /// <summary>
+        /// Check if the object can be converted
+        /// </summary>
+        /// <param name="objectType">Object type</param>
+        /// <returns>True if the object can be converted</returns>
+        public override bool CanConvert(Type objectType)
+        {
+            return false;
         }
     }
 

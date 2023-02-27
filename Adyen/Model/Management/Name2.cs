@@ -11,25 +11,27 @@
 */
 
 using System;
-using System.Linq;
-using System.IO;
-using System.Text;
-using System.Text.RegularExpressions;
 using System.Collections;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Linq;
+using System.IO;
 using System.Runtime.Serialization;
+using System.Text;
+using System.Text.RegularExpressions;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
+using Newtonsoft.Json.Linq;
 using System.ComponentModel.DataAnnotations;
+using OpenAPIDateConverter = Adyen.ApiSerialization.OpenAPIDateConverter;
 
 namespace Adyen.Model.Management
 {
     /// <summary>
     /// Name2
     /// </summary>
-    [DataContract]
-    public partial class Name2 :  IEquatable<Name2>, IValidatableObject
+    [DataContract(Name = "Name2")]
+    public partial class Name2 : IEquatable<Name2>, IValidatableObject
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="Name2" /> class.
@@ -46,14 +48,14 @@ namespace Adyen.Model.Management
         /// The first name.
         /// </summary>
         /// <value>The first name.</value>
-        [DataMember(Name="firstName", EmitDefaultValue=false)]
+        [DataMember(Name = "firstName", EmitDefaultValue = false)]
         public string FirstName { get; set; }
 
         /// <summary>
         /// The last name.
         /// </summary>
         /// <value>The last name.</value>
-        [DataMember(Name="lastName", EmitDefaultValue=false)]
+        [DataMember(Name = "lastName", EmitDefaultValue = false)]
         public string LastName { get; set; }
 
         /// <summary>
@@ -62,7 +64,7 @@ namespace Adyen.Model.Management
         /// <returns>String presentation of the object</returns>
         public override string ToString()
         {
-            var sb = new StringBuilder();
+            StringBuilder sb = new StringBuilder();
             sb.Append("class Name2 {\n");
             sb.Append("  FirstName: ").Append(FirstName).Append("\n");
             sb.Append("  LastName: ").Append(LastName).Append("\n");
@@ -97,8 +99,9 @@ namespace Adyen.Model.Management
         public bool Equals(Name2 input)
         {
             if (input == null)
+            {
                 return false;
-
+            }
             return 
                 (
                     this.FirstName == input.FirstName ||
@@ -122,19 +125,22 @@ namespace Adyen.Model.Management
             {
                 int hashCode = 41;
                 if (this.FirstName != null)
-                    hashCode = hashCode * 59 + this.FirstName.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.FirstName.GetHashCode();
+                }
                 if (this.LastName != null)
-                    hashCode = hashCode * 59 + this.LastName.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.LastName.GetHashCode();
+                }
                 return hashCode;
             }
         }
-
         /// <summary>
         /// To validate all properties of the instance
         /// </summary>
         /// <param name="validationContext">Validation context</param>
         /// <returns>Validation Result</returns>
-        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+        public IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> Validate(ValidationContext validationContext)
         {
             yield break;
         }

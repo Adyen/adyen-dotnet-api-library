@@ -11,25 +11,27 @@
 */
 
 using System;
-using System.Linq;
-using System.IO;
-using System.Text;
-using System.Text.RegularExpressions;
 using System.Collections;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Linq;
+using System.IO;
 using System.Runtime.Serialization;
+using System.Text;
+using System.Text.RegularExpressions;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
+using Newtonsoft.Json.Linq;
 using System.ComponentModel.DataAnnotations;
+using OpenAPIDateConverter = Adyen.ApiSerialization.OpenAPIDateConverter;
 
 namespace Adyen.Model.Management
 {
     /// <summary>
     /// PaymentMethodResponse
     /// </summary>
-    [DataContract]
-    public partial class PaymentMethodResponse :  IEquatable<PaymentMethodResponse>, IValidatableObject
+    [DataContract(Name = "PaymentMethodResponse")]
+    public partial class PaymentMethodResponse : IEquatable<PaymentMethodResponse>, IValidatableObject
     {
         /// <summary>
         /// Defines TypesWithErrors
@@ -110,10 +112,10 @@ namespace Adyen.Model.Management
             EbankingFI = 12,
 
             /// <summary>
-            /// Enum Eftposaustralia for value: eftpos_australia
+            /// Enum EftposAustralia for value: eftpos_australia
             /// </summary>
             [EnumMember(Value = "eftpos_australia")]
-            Eftposaustralia = 13,
+            EftposAustralia = 13,
 
             /// <summary>
             /// Enum Elo for value: elo
@@ -170,10 +172,10 @@ namespace Adyen.Model.Management
             Ideal = 22,
 
             /// <summary>
-            /// Enum Interaccard for value: interac_card
+            /// Enum InteracCard for value: interac_card
             /// </summary>
             [EnumMember(Value = "interac_card")]
-            Interaccard = 23,
+            InteracCard = 23,
 
             /// <summary>
             /// Enum Jcb for value: jcb
@@ -188,16 +190,16 @@ namespace Adyen.Model.Management
             Klarna = 25,
 
             /// <summary>
-            /// Enum Klarnaaccount for value: klarna_account
+            /// Enum KlarnaAccount for value: klarna_account
             /// </summary>
             [EnumMember(Value = "klarna_account")]
-            Klarnaaccount = 26,
+            KlarnaAccount = 26,
 
             /// <summary>
-            /// Enum Klarnapaynow for value: klarna_paynow
+            /// Enum KlarnaPaynow for value: klarna_paynow
             /// </summary>
             [EnumMember(Value = "klarna_paynow")]
-            Klarnapaynow = 27,
+            KlarnaPaynow = 27,
 
             /// <summary>
             /// Enum Maestro for value: maestro
@@ -290,10 +292,10 @@ namespace Adyen.Model.Management
             Wechatpay = 42,
 
             /// <summary>
-            /// Enum Wechatpaypos for value: wechatpay_pos
+            /// Enum WechatpayPos for value: wechatpay_pos
             /// </summary>
             [EnumMember(Value = "wechatpay_pos")]
-            Wechatpaypos = 43
+            WechatpayPos = 43
 
         }
 
@@ -310,47 +312,47 @@ namespace Adyen.Model.Management
         /// <param name="itemsTotal">Total number of items. (required).</param>
         /// <param name="pagesTotal">Total number of pages. (required).</param>
         /// <param name="typesWithErrors">Payment method types with errors..</param>
-        public PaymentMethodResponse(PaginationLinks links = default(PaginationLinks), List<PaymentMethod> data = default(List<PaymentMethod>), int itemsTotal = default(int), int pagesTotal = default(int), List<TypesWithErrorsEnum> typesWithErrors = default(List<TypesWithErrorsEnum>))
+        public PaymentMethodResponse(PaginationLinks links = default(PaginationLinks), List<PaymentMethod> data = default(List<PaymentMethod>), int? itemsTotal = default(int?), int? pagesTotal = default(int?), List<TypesWithErrorsEnum> typesWithErrors = default(List<TypesWithErrorsEnum>))
         {
-            this.Links = links;
-            this.Data = data;
             this.ItemsTotal = itemsTotal;
             this.PagesTotal = pagesTotal;
+            this.Links = links;
+            this.Data = data;
             this.TypesWithErrors = typesWithErrors;
         }
 
         /// <summary>
         /// Gets or Sets Links
         /// </summary>
-        [DataMember(Name="_links", EmitDefaultValue=false)]
+        [DataMember(Name = "_links", EmitDefaultValue = false)]
         public PaginationLinks Links { get; set; }
 
         /// <summary>
         /// Payment methods details.
         /// </summary>
         /// <value>Payment methods details.</value>
-        [DataMember(Name="data", EmitDefaultValue=false)]
+        [DataMember(Name = "data", EmitDefaultValue = false)]
         public List<PaymentMethod> Data { get; set; }
 
         /// <summary>
         /// Total number of items.
         /// </summary>
         /// <value>Total number of items.</value>
-        [DataMember(Name="itemsTotal", EmitDefaultValue=true)]
-        public int ItemsTotal { get; set; }
+        [DataMember(Name = "itemsTotal", IsRequired = false, EmitDefaultValue = false)]
+        public int? ItemsTotal { get; set; }
 
         /// <summary>
         /// Total number of pages.
         /// </summary>
         /// <value>Total number of pages.</value>
-        [DataMember(Name="pagesTotal", EmitDefaultValue=true)]
-        public int PagesTotal { get; set; }
+        [DataMember(Name = "pagesTotal", IsRequired = false, EmitDefaultValue = false)]
+        public int? PagesTotal { get; set; }
 
         /// <summary>
         /// Payment method types with errors.
         /// </summary>
         /// <value>Payment method types with errors.</value>
-        [DataMember(Name="typesWithErrors", EmitDefaultValue=false)]
+        [DataMember(Name = "typesWithErrors", EmitDefaultValue = false)]
         public List<PaymentMethodResponse.TypesWithErrorsEnum> TypesWithErrors { get; set; }
 
         /// <summary>
@@ -359,7 +361,7 @@ namespace Adyen.Model.Management
         /// <returns>String presentation of the object</returns>
         public override string ToString()
         {
-            var sb = new StringBuilder();
+            StringBuilder sb = new StringBuilder();
             sb.Append("class PaymentMethodResponse {\n");
             sb.Append("  Links: ").Append(Links).Append("\n");
             sb.Append("  Data: ").Append(Data).Append("\n");
@@ -397,8 +399,9 @@ namespace Adyen.Model.Management
         public bool Equals(PaymentMethodResponse input)
         {
             if (input == null)
+            {
                 return false;
-
+            }
             return 
                 (
                     this.Links == input.Links ||
@@ -413,13 +416,11 @@ namespace Adyen.Model.Management
                 ) && 
                 (
                     this.ItemsTotal == input.ItemsTotal ||
-                    (this.ItemsTotal != null &&
-                    this.ItemsTotal.Equals(input.ItemsTotal))
+                    this.ItemsTotal.Equals(input.ItemsTotal)
                 ) && 
                 (
                     this.PagesTotal == input.PagesTotal ||
-                    (this.PagesTotal != null &&
-                    this.PagesTotal.Equals(input.PagesTotal))
+                    this.PagesTotal.Equals(input.PagesTotal)
                 ) && 
                 (
                     this.TypesWithErrors == input.TypesWithErrors ||
@@ -439,25 +440,28 @@ namespace Adyen.Model.Management
             {
                 int hashCode = 41;
                 if (this.Links != null)
-                    hashCode = hashCode * 59 + this.Links.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.Links.GetHashCode();
+                }
                 if (this.Data != null)
-                    hashCode = hashCode * 59 + this.Data.GetHashCode();
-                if (this.ItemsTotal != null)
-                    hashCode = hashCode * 59 + this.ItemsTotal.GetHashCode();
-                if (this.PagesTotal != null)
-                    hashCode = hashCode * 59 + this.PagesTotal.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.Data.GetHashCode();
+                }
+                hashCode = (hashCode * 59) + this.ItemsTotal.GetHashCode();
+                hashCode = (hashCode * 59) + this.PagesTotal.GetHashCode();
                 if (this.TypesWithErrors != null)
-                    hashCode = hashCode * 59 + this.TypesWithErrors.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.TypesWithErrors.GetHashCode();
+                }
                 return hashCode;
             }
         }
-
         /// <summary>
         /// To validate all properties of the instance
         /// </summary>
         /// <param name="validationContext">Validation context</param>
         /// <returns>Validation Result</returns>
-        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+        public IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> Validate(ValidationContext validationContext)
         {
             yield break;
         }
