@@ -11,25 +11,27 @@
 */
 
 using System;
-using System.Linq;
-using System.IO;
-using System.Text;
-using System.Text.RegularExpressions;
 using System.Collections;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Linq;
+using System.IO;
 using System.Runtime.Serialization;
+using System.Text;
+using System.Text.RegularExpressions;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
+using Newtonsoft.Json.Linq;
 using System.ComponentModel.DataAnnotations;
+using OpenAPIDateConverter = Adyen.ApiSerialization.OpenAPIDateConverter;
 
 namespace Adyen.Model.Management
 {
     /// <summary>
     /// CreateCompanyWebhookRequest
     /// </summary>
-    [DataContract]
-    public partial class CreateCompanyWebhookRequest :  IEquatable<CreateCompanyWebhookRequest>, IValidatableObject
+    [DataContract(Name = "CreateCompanyWebhookRequest")]
+    public partial class CreateCompanyWebhookRequest : IEquatable<CreateCompanyWebhookRequest>, IValidatableObject
     {
         /// <summary>
         /// Format or protocol for receiving webhooks. Possible values: * **soap** * **http** * **json** 
@@ -58,11 +60,12 @@ namespace Adyen.Model.Management
 
         }
 
+
         /// <summary>
         /// Format or protocol for receiving webhooks. Possible values: * **soap** * **http** * **json** 
         /// </summary>
         /// <value>Format or protocol for receiving webhooks. Possible values: * **soap** * **http** * **json** </value>
-        [DataMember(Name="communicationFormat", EmitDefaultValue=true)]
+        [DataMember(Name = "communicationFormat", IsRequired = false, EmitDefaultValue = false)]
         public CommunicationFormatEnum CommunicationFormat { get; set; }
         /// <summary>
         /// Shows how merchant accounts are filtered when configuring the webhook. Possible values: * **includeAccounts**: The webhook is configured for the merchant accounts listed in &#x60;filterMerchantAccounts&#x60;. * **excludeAccounts**: The webhook is not configured for the merchant accounts listed in &#x60;filterMerchantAccounts&#x60;. * **allAccounts**: Includes all merchant accounts, and does not require specifying &#x60;filterMerchantAccounts&#x60;.
@@ -91,11 +94,12 @@ namespace Adyen.Model.Management
 
         }
 
+
         /// <summary>
         /// Shows how merchant accounts are filtered when configuring the webhook. Possible values: * **includeAccounts**: The webhook is configured for the merchant accounts listed in &#x60;filterMerchantAccounts&#x60;. * **excludeAccounts**: The webhook is not configured for the merchant accounts listed in &#x60;filterMerchantAccounts&#x60;. * **allAccounts**: Includes all merchant accounts, and does not require specifying &#x60;filterMerchantAccounts&#x60;.
         /// </summary>
         /// <value>Shows how merchant accounts are filtered when configuring the webhook. Possible values: * **includeAccounts**: The webhook is configured for the merchant accounts listed in &#x60;filterMerchantAccounts&#x60;. * **excludeAccounts**: The webhook is not configured for the merchant accounts listed in &#x60;filterMerchantAccounts&#x60;. * **allAccounts**: Includes all merchant accounts, and does not require specifying &#x60;filterMerchantAccounts&#x60;.</value>
-        [DataMember(Name="filterMerchantAccountType", EmitDefaultValue=true)]
+        [DataMember(Name = "filterMerchantAccountType", IsRequired = false, EmitDefaultValue = false)]
         public FilterMerchantAccountTypeEnum FilterMerchantAccountType { get; set; }
         /// <summary>
         /// Network type for Terminal API notification webhooks. Possible values: * **public** * **local**  Default Value: **public**.
@@ -118,11 +122,12 @@ namespace Adyen.Model.Management
 
         }
 
+
         /// <summary>
         /// Network type for Terminal API notification webhooks. Possible values: * **public** * **local**  Default Value: **public**.
         /// </summary>
         /// <value>Network type for Terminal API notification webhooks. Possible values: * **public** * **local**  Default Value: **public**.</value>
-        [DataMember(Name="networkType", EmitDefaultValue=false)]
+        [DataMember(Name = "networkType", EmitDefaultValue = false)]
         public NetworkTypeEnum? NetworkType { get; set; }
         /// <summary>
         /// SSL version to access the public webhook URL specified in the &#x60;url&#x60; field. Possible values: * **TLSv1.3** * **TLSv1.2** * **HTTP** - Only allowed on Test environment.  If not specified, the webhook will use &#x60;sslVersion&#x60;: **TLSv1.2**.
@@ -193,11 +198,12 @@ namespace Adyen.Model.Management
 
         }
 
+
         /// <summary>
         /// SSL version to access the public webhook URL specified in the &#x60;url&#x60; field. Possible values: * **TLSv1.3** * **TLSv1.2** * **HTTP** - Only allowed on Test environment.  If not specified, the webhook will use &#x60;sslVersion&#x60;: **TLSv1.2**.
         /// </summary>
         /// <value>SSL version to access the public webhook URL specified in the &#x60;url&#x60; field. Possible values: * **TLSv1.3** * **TLSv1.2** * **HTTP** - Only allowed on Test environment.  If not specified, the webhook will use &#x60;sslVersion&#x60;: **TLSv1.2**.</value>
-        [DataMember(Name="sslVersion", EmitDefaultValue=false)]
+        [DataMember(Name = "sslVersion", EmitDefaultValue = false)]
         public SslVersionEnum? SslVersion { get; set; }
         /// <summary>
         /// Initializes a new instance of the <see cref="CreateCompanyWebhookRequest" /> class.
@@ -225,21 +231,21 @@ namespace Adyen.Model.Management
         /// <param name="username">Username to access the webhook URL..</param>
         public CreateCompanyWebhookRequest(bool acceptsExpiredCertificate = default(bool), bool acceptsSelfSignedCertificate = default(bool), bool acceptsUntrustedRootCertificate = default(bool), bool active = default(bool), AdditionalSettings additionalSettings = default(AdditionalSettings), CommunicationFormatEnum communicationFormat = default(CommunicationFormatEnum), string description = default(string), FilterMerchantAccountTypeEnum filterMerchantAccountType = default(FilterMerchantAccountTypeEnum), List<string> filterMerchantAccounts = default(List<string>), NetworkTypeEnum? networkType = default(NetworkTypeEnum?), string password = default(string), bool populateSoapActionHeader = default(bool), SslVersionEnum? sslVersion = default(SslVersionEnum?), string type = default(string), string url = default(string), string username = default(string))
         {
+            this.Active = active;
+            this.CommunicationFormat = communicationFormat;
+            this.FilterMerchantAccountType = filterMerchantAccountType;
+            this.FilterMerchantAccounts = filterMerchantAccounts;
+            this.Type = type;
+            this.Url = url;
             this.AcceptsExpiredCertificate = acceptsExpiredCertificate;
             this.AcceptsSelfSignedCertificate = acceptsSelfSignedCertificate;
             this.AcceptsUntrustedRootCertificate = acceptsUntrustedRootCertificate;
-            this.Active = active;
             this.AdditionalSettings = additionalSettings;
-            this.CommunicationFormat = communicationFormat;
             this.Description = description;
-            this.FilterMerchantAccountType = filterMerchantAccountType;
-            this.FilterMerchantAccounts = filterMerchantAccounts;
             this.NetworkType = networkType;
             this.Password = password;
             this.PopulateSoapActionHeader = populateSoapActionHeader;
             this.SslVersion = sslVersion;
-            this.Type = type;
-            this.Url = url;
             this.Username = username;
         }
 
@@ -247,87 +253,83 @@ namespace Adyen.Model.Management
         /// Indicates if expired SSL certificates are accepted. Default value: **false**.
         /// </summary>
         /// <value>Indicates if expired SSL certificates are accepted. Default value: **false**.</value>
-        [DataMember(Name="acceptsExpiredCertificate", EmitDefaultValue=false)]
+        [DataMember(Name = "acceptsExpiredCertificate", EmitDefaultValue = false)]
         public bool AcceptsExpiredCertificate { get; set; }
 
         /// <summary>
         /// Indicates if self-signed SSL certificates are accepted. Default value: **false**.
         /// </summary>
         /// <value>Indicates if self-signed SSL certificates are accepted. Default value: **false**.</value>
-        [DataMember(Name="acceptsSelfSignedCertificate", EmitDefaultValue=false)]
+        [DataMember(Name = "acceptsSelfSignedCertificate", EmitDefaultValue = false)]
         public bool AcceptsSelfSignedCertificate { get; set; }
 
         /// <summary>
         /// Indicates if untrusted SSL certificates are accepted. Default value: **false**.
         /// </summary>
         /// <value>Indicates if untrusted SSL certificates are accepted. Default value: **false**.</value>
-        [DataMember(Name="acceptsUntrustedRootCertificate", EmitDefaultValue=false)]
+        [DataMember(Name = "acceptsUntrustedRootCertificate", EmitDefaultValue = false)]
         public bool AcceptsUntrustedRootCertificate { get; set; }
 
         /// <summary>
         /// Indicates if the webhook configuration is active. The field must be **true** for us to send webhooks about events related an account.
         /// </summary>
         /// <value>Indicates if the webhook configuration is active. The field must be **true** for us to send webhooks about events related an account.</value>
-        [DataMember(Name="active", EmitDefaultValue=true)]
+        [DataMember(Name = "active", IsRequired = false, EmitDefaultValue = false)]
         public bool Active { get; set; }
 
         /// <summary>
         /// Gets or Sets AdditionalSettings
         /// </summary>
-        [DataMember(Name="additionalSettings", EmitDefaultValue=false)]
+        [DataMember(Name = "additionalSettings", EmitDefaultValue = false)]
         public AdditionalSettings AdditionalSettings { get; set; }
-
 
         /// <summary>
         /// Your description for this webhook configuration.
         /// </summary>
         /// <value>Your description for this webhook configuration.</value>
-        [DataMember(Name="description", EmitDefaultValue=false)]
+        [DataMember(Name = "description", EmitDefaultValue = false)]
         public string Description { get; set; }
-
 
         /// <summary>
         /// A list of merchant account names that are included or excluded from receiving the webhook. Inclusion or exclusion is based on the value defined for &#x60;filterMerchantAccountType&#x60;.  Required if &#x60;filterMerchantAccountType&#x60; is either: * **includeAccounts** * **excludeAccounts**  Not needed for &#x60;filterMerchantAccountType&#x60;: **allAccounts**.
         /// </summary>
         /// <value>A list of merchant account names that are included or excluded from receiving the webhook. Inclusion or exclusion is based on the value defined for &#x60;filterMerchantAccountType&#x60;.  Required if &#x60;filterMerchantAccountType&#x60; is either: * **includeAccounts** * **excludeAccounts**  Not needed for &#x60;filterMerchantAccountType&#x60;: **allAccounts**.</value>
-        [DataMember(Name="filterMerchantAccounts", EmitDefaultValue=true)]
+        [DataMember(Name = "filterMerchantAccounts", IsRequired = false, EmitDefaultValue = false)]
         public List<string> FilterMerchantAccounts { get; set; }
-
 
         /// <summary>
         /// Password to access the webhook URL.
         /// </summary>
         /// <value>Password to access the webhook URL.</value>
-        [DataMember(Name="password", EmitDefaultValue=false)]
+        [DataMember(Name = "password", EmitDefaultValue = false)]
         public string Password { get; set; }
 
         /// <summary>
         /// Indicates if the SOAP action header needs to be populated. Default value: **false**.  Only applies if &#x60;communicationFormat&#x60;: **soap**.
         /// </summary>
         /// <value>Indicates if the SOAP action header needs to be populated. Default value: **false**.  Only applies if &#x60;communicationFormat&#x60;: **soap**.</value>
-        [DataMember(Name="populateSoapActionHeader", EmitDefaultValue=false)]
+        [DataMember(Name = "populateSoapActionHeader", EmitDefaultValue = false)]
         public bool PopulateSoapActionHeader { get; set; }
-
 
         /// <summary>
         /// The type of webhook that is being created. Possible values are:  - **standard** - **account-settings-notification** - **banktransfer-notification** - **boletobancario-notification** - **directdebit-notification** - **pending-notification** - **ideal-notification** - **ideal-pending-notification** - **report-notification** - **rreq-notification**  Find out more about [standard notification webhooks](https://docs.adyen.com/development-resources/webhooks/understand-notifications#event-codes) and [other types of notifications](https://docs.adyen.com/development-resources/webhooks/understand-notifications#other-notifications).
         /// </summary>
         /// <value>The type of webhook that is being created. Possible values are:  - **standard** - **account-settings-notification** - **banktransfer-notification** - **boletobancario-notification** - **directdebit-notification** - **pending-notification** - **ideal-notification** - **ideal-pending-notification** - **report-notification** - **rreq-notification**  Find out more about [standard notification webhooks](https://docs.adyen.com/development-resources/webhooks/understand-notifications#event-codes) and [other types of notifications](https://docs.adyen.com/development-resources/webhooks/understand-notifications#other-notifications).</value>
-        [DataMember(Name="type", EmitDefaultValue=true)]
+        [DataMember(Name = "type", IsRequired = false, EmitDefaultValue = false)]
         public string Type { get; set; }
 
         /// <summary>
         /// Public URL where webhooks will be sent, for example **https://www.domain.com/webhook-endpoint**.
         /// </summary>
         /// <value>Public URL where webhooks will be sent, for example **https://www.domain.com/webhook-endpoint**.</value>
-        [DataMember(Name="url", EmitDefaultValue=true)]
+        [DataMember(Name = "url", IsRequired = false, EmitDefaultValue = false)]
         public string Url { get; set; }
 
         /// <summary>
         /// Username to access the webhook URL.
         /// </summary>
         /// <value>Username to access the webhook URL.</value>
-        [DataMember(Name="username", EmitDefaultValue=false)]
+        [DataMember(Name = "username", EmitDefaultValue = false)]
         public string Username { get; set; }
 
         /// <summary>
@@ -336,7 +338,7 @@ namespace Adyen.Model.Management
         /// <returns>String presentation of the object</returns>
         public override string ToString()
         {
-            var sb = new StringBuilder();
+            StringBuilder sb = new StringBuilder();
             sb.Append("class CreateCompanyWebhookRequest {\n");
             sb.Append("  AcceptsExpiredCertificate: ").Append(AcceptsExpiredCertificate).Append("\n");
             sb.Append("  AcceptsSelfSignedCertificate: ").Append(AcceptsSelfSignedCertificate).Append("\n");
@@ -385,28 +387,25 @@ namespace Adyen.Model.Management
         public bool Equals(CreateCompanyWebhookRequest input)
         {
             if (input == null)
+            {
                 return false;
-
+            }
             return 
                 (
                     this.AcceptsExpiredCertificate == input.AcceptsExpiredCertificate ||
-                    (this.AcceptsExpiredCertificate != null &&
-                    this.AcceptsExpiredCertificate.Equals(input.AcceptsExpiredCertificate))
+                    this.AcceptsExpiredCertificate.Equals(input.AcceptsExpiredCertificate)
                 ) && 
                 (
                     this.AcceptsSelfSignedCertificate == input.AcceptsSelfSignedCertificate ||
-                    (this.AcceptsSelfSignedCertificate != null &&
-                    this.AcceptsSelfSignedCertificate.Equals(input.AcceptsSelfSignedCertificate))
+                    this.AcceptsSelfSignedCertificate.Equals(input.AcceptsSelfSignedCertificate)
                 ) && 
                 (
                     this.AcceptsUntrustedRootCertificate == input.AcceptsUntrustedRootCertificate ||
-                    (this.AcceptsUntrustedRootCertificate != null &&
-                    this.AcceptsUntrustedRootCertificate.Equals(input.AcceptsUntrustedRootCertificate))
+                    this.AcceptsUntrustedRootCertificate.Equals(input.AcceptsUntrustedRootCertificate)
                 ) && 
                 (
                     this.Active == input.Active ||
-                    (this.Active != null &&
-                    this.Active.Equals(input.Active))
+                    this.Active.Equals(input.Active)
                 ) && 
                 (
                     this.AdditionalSettings == input.AdditionalSettings ||
@@ -415,8 +414,7 @@ namespace Adyen.Model.Management
                 ) && 
                 (
                     this.CommunicationFormat == input.CommunicationFormat ||
-                    (this.CommunicationFormat != null &&
-                    this.CommunicationFormat.Equals(input.CommunicationFormat))
+                    this.CommunicationFormat.Equals(input.CommunicationFormat)
                 ) && 
                 (
                     this.Description == input.Description ||
@@ -425,8 +423,7 @@ namespace Adyen.Model.Management
                 ) && 
                 (
                     this.FilterMerchantAccountType == input.FilterMerchantAccountType ||
-                    (this.FilterMerchantAccountType != null &&
-                    this.FilterMerchantAccountType.Equals(input.FilterMerchantAccountType))
+                    this.FilterMerchantAccountType.Equals(input.FilterMerchantAccountType)
                 ) && 
                 (
                     this.FilterMerchantAccounts == input.FilterMerchantAccounts ||
@@ -436,8 +433,7 @@ namespace Adyen.Model.Management
                 ) && 
                 (
                     this.NetworkType == input.NetworkType ||
-                    (this.NetworkType != null &&
-                    this.NetworkType.Equals(input.NetworkType))
+                    this.NetworkType.Equals(input.NetworkType)
                 ) && 
                 (
                     this.Password == input.Password ||
@@ -446,13 +442,11 @@ namespace Adyen.Model.Management
                 ) && 
                 (
                     this.PopulateSoapActionHeader == input.PopulateSoapActionHeader ||
-                    (this.PopulateSoapActionHeader != null &&
-                    this.PopulateSoapActionHeader.Equals(input.PopulateSoapActionHeader))
+                    this.PopulateSoapActionHeader.Equals(input.PopulateSoapActionHeader)
                 ) && 
                 (
                     this.SslVersion == input.SslVersion ||
-                    (this.SslVersion != null &&
-                    this.SslVersion.Equals(input.SslVersion))
+                    this.SslVersion.Equals(input.SslVersion)
                 ) && 
                 (
                     this.Type == input.Type ||
@@ -480,55 +474,58 @@ namespace Adyen.Model.Management
             unchecked // Overflow is fine, just wrap
             {
                 int hashCode = 41;
-                if (this.AcceptsExpiredCertificate != null)
-                    hashCode = hashCode * 59 + this.AcceptsExpiredCertificate.GetHashCode();
-                if (this.AcceptsSelfSignedCertificate != null)
-                    hashCode = hashCode * 59 + this.AcceptsSelfSignedCertificate.GetHashCode();
-                if (this.AcceptsUntrustedRootCertificate != null)
-                    hashCode = hashCode * 59 + this.AcceptsUntrustedRootCertificate.GetHashCode();
-                if (this.Active != null)
-                    hashCode = hashCode * 59 + this.Active.GetHashCode();
+                hashCode = (hashCode * 59) + this.AcceptsExpiredCertificate.GetHashCode();
+                hashCode = (hashCode * 59) + this.AcceptsSelfSignedCertificate.GetHashCode();
+                hashCode = (hashCode * 59) + this.AcceptsUntrustedRootCertificate.GetHashCode();
+                hashCode = (hashCode * 59) + this.Active.GetHashCode();
                 if (this.AdditionalSettings != null)
-                    hashCode = hashCode * 59 + this.AdditionalSettings.GetHashCode();
-                if (this.CommunicationFormat != null)
-                    hashCode = hashCode * 59 + this.CommunicationFormat.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.AdditionalSettings.GetHashCode();
+                }
+                hashCode = (hashCode * 59) + this.CommunicationFormat.GetHashCode();
                 if (this.Description != null)
-                    hashCode = hashCode * 59 + this.Description.GetHashCode();
-                if (this.FilterMerchantAccountType != null)
-                    hashCode = hashCode * 59 + this.FilterMerchantAccountType.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.Description.GetHashCode();
+                }
+                hashCode = (hashCode * 59) + this.FilterMerchantAccountType.GetHashCode();
                 if (this.FilterMerchantAccounts != null)
-                    hashCode = hashCode * 59 + this.FilterMerchantAccounts.GetHashCode();
-                if (this.NetworkType != null)
-                    hashCode = hashCode * 59 + this.NetworkType.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.FilterMerchantAccounts.GetHashCode();
+                }
+                hashCode = (hashCode * 59) + this.NetworkType.GetHashCode();
                 if (this.Password != null)
-                    hashCode = hashCode * 59 + this.Password.GetHashCode();
-                if (this.PopulateSoapActionHeader != null)
-                    hashCode = hashCode * 59 + this.PopulateSoapActionHeader.GetHashCode();
-                if (this.SslVersion != null)
-                    hashCode = hashCode * 59 + this.SslVersion.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.Password.GetHashCode();
+                }
+                hashCode = (hashCode * 59) + this.PopulateSoapActionHeader.GetHashCode();
+                hashCode = (hashCode * 59) + this.SslVersion.GetHashCode();
                 if (this.Type != null)
-                    hashCode = hashCode * 59 + this.Type.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.Type.GetHashCode();
+                }
                 if (this.Url != null)
-                    hashCode = hashCode * 59 + this.Url.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.Url.GetHashCode();
+                }
                 if (this.Username != null)
-                    hashCode = hashCode * 59 + this.Username.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.Username.GetHashCode();
+                }
                 return hashCode;
             }
         }
-
         /// <summary>
         /// To validate all properties of the instance
         /// </summary>
         /// <param name="validationContext">Validation context</param>
         /// <returns>Validation Result</returns>
-        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+        public IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> Validate(ValidationContext validationContext)
         {
             // Username (string) maxLength
-            if(this.Username != null && this.Username.Length > 255)
+            if (this.Username != null && this.Username.Length > 255)
             {
                 yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for Username, length must be less than 255.", new [] { "Username" });
             }
-
 
             yield break;
         }

@@ -11,25 +11,27 @@
 */
 
 using System;
-using System.Linq;
-using System.IO;
-using System.Text;
-using System.Text.RegularExpressions;
 using System.Collections;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Linq;
+using System.IO;
 using System.Runtime.Serialization;
+using System.Text;
+using System.Text.RegularExpressions;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
+using Newtonsoft.Json.Linq;
 using System.ComponentModel.DataAnnotations;
+using OpenAPIDateConverter = Adyen.ApiSerialization.OpenAPIDateConverter;
 
 namespace Adyen.Model.Management
 {
     /// <summary>
     /// TerminalActionScheduleDetail
     /// </summary>
-    [DataContract]
-    public partial class TerminalActionScheduleDetail :  IEquatable<TerminalActionScheduleDetail>, IValidatableObject
+    [DataContract(Name = "TerminalActionScheduleDetail")]
+    public partial class TerminalActionScheduleDetail : IEquatable<TerminalActionScheduleDetail>, IValidatableObject
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="TerminalActionScheduleDetail" /> class.
@@ -46,14 +48,14 @@ namespace Adyen.Model.Management
         /// The ID of the action on the specified terminal.
         /// </summary>
         /// <value>The ID of the action on the specified terminal.</value>
-        [DataMember(Name="id", EmitDefaultValue=false)]
+        [DataMember(Name = "id", EmitDefaultValue = false)]
         public string Id { get; set; }
 
         /// <summary>
         /// The unique ID of the terminal that the action applies to.
         /// </summary>
         /// <value>The unique ID of the terminal that the action applies to.</value>
-        [DataMember(Name="terminalId", EmitDefaultValue=false)]
+        [DataMember(Name = "terminalId", EmitDefaultValue = false)]
         public string TerminalId { get; set; }
 
         /// <summary>
@@ -62,7 +64,7 @@ namespace Adyen.Model.Management
         /// <returns>String presentation of the object</returns>
         public override string ToString()
         {
-            var sb = new StringBuilder();
+            StringBuilder sb = new StringBuilder();
             sb.Append("class TerminalActionScheduleDetail {\n");
             sb.Append("  Id: ").Append(Id).Append("\n");
             sb.Append("  TerminalId: ").Append(TerminalId).Append("\n");
@@ -97,8 +99,9 @@ namespace Adyen.Model.Management
         public bool Equals(TerminalActionScheduleDetail input)
         {
             if (input == null)
+            {
                 return false;
-
+            }
             return 
                 (
                     this.Id == input.Id ||
@@ -122,19 +125,22 @@ namespace Adyen.Model.Management
             {
                 int hashCode = 41;
                 if (this.Id != null)
-                    hashCode = hashCode * 59 + this.Id.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.Id.GetHashCode();
+                }
                 if (this.TerminalId != null)
-                    hashCode = hashCode * 59 + this.TerminalId.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.TerminalId.GetHashCode();
+                }
                 return hashCode;
             }
         }
-
         /// <summary>
         /// To validate all properties of the instance
         /// </summary>
         /// <param name="validationContext">Validation context</param>
         /// <returns>Validation Result</returns>
-        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+        public IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> Validate(ValidationContext validationContext)
         {
             yield break;
         }

@@ -11,25 +11,27 @@
 */
 
 using System;
-using System.Linq;
-using System.IO;
-using System.Text;
-using System.Text.RegularExpressions;
 using System.Collections;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Linq;
+using System.IO;
 using System.Runtime.Serialization;
+using System.Text;
+using System.Text.RegularExpressions;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
+using Newtonsoft.Json.Linq;
 using System.ComponentModel.DataAnnotations;
+using OpenAPIDateConverter = Adyen.ApiSerialization.OpenAPIDateConverter;
 
 namespace Adyen.Model.Management
 {
     /// <summary>
     /// WifiProfiles
     /// </summary>
-    [DataContract]
-    public partial class WifiProfiles :  IEquatable<WifiProfiles>, IValidatableObject
+    [DataContract(Name = "WifiProfiles")]
+    public partial class WifiProfiles : IEquatable<WifiProfiles>, IValidatableObject
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="WifiProfiles" /> class.
@@ -46,13 +48,13 @@ namespace Adyen.Model.Management
         /// List of remote Wi-Fi profiles.
         /// </summary>
         /// <value>List of remote Wi-Fi profiles.</value>
-        [DataMember(Name="profiles", EmitDefaultValue=false)]
+        [DataMember(Name = "profiles", EmitDefaultValue = false)]
         public List<Profile> Profiles { get; set; }
 
         /// <summary>
         /// Gets or Sets Settings
         /// </summary>
-        [DataMember(Name="settings", EmitDefaultValue=false)]
+        [DataMember(Name = "settings", EmitDefaultValue = false)]
         public Settings Settings { get; set; }
 
         /// <summary>
@@ -61,7 +63,7 @@ namespace Adyen.Model.Management
         /// <returns>String presentation of the object</returns>
         public override string ToString()
         {
-            var sb = new StringBuilder();
+            StringBuilder sb = new StringBuilder();
             sb.Append("class WifiProfiles {\n");
             sb.Append("  Profiles: ").Append(Profiles).Append("\n");
             sb.Append("  Settings: ").Append(Settings).Append("\n");
@@ -96,8 +98,9 @@ namespace Adyen.Model.Management
         public bool Equals(WifiProfiles input)
         {
             if (input == null)
+            {
                 return false;
-
+            }
             return 
                 (
                     this.Profiles == input.Profiles ||
@@ -122,19 +125,22 @@ namespace Adyen.Model.Management
             {
                 int hashCode = 41;
                 if (this.Profiles != null)
-                    hashCode = hashCode * 59 + this.Profiles.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.Profiles.GetHashCode();
+                }
                 if (this.Settings != null)
-                    hashCode = hashCode * 59 + this.Settings.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.Settings.GetHashCode();
+                }
                 return hashCode;
             }
         }
-
         /// <summary>
         /// To validate all properties of the instance
         /// </summary>
         /// <param name="validationContext">Validation context</param>
         /// <returns>Validation Result</returns>
-        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+        public IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> Validate(ValidationContext validationContext)
         {
             yield break;
         }

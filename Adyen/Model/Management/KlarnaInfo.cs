@@ -11,25 +11,27 @@
 */
 
 using System;
-using System.Linq;
-using System.IO;
-using System.Text;
-using System.Text.RegularExpressions;
 using System.Collections;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Linq;
+using System.IO;
 using System.Runtime.Serialization;
+using System.Text;
+using System.Text.RegularExpressions;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
+using Newtonsoft.Json.Linq;
 using System.ComponentModel.DataAnnotations;
+using OpenAPIDateConverter = Adyen.ApiSerialization.OpenAPIDateConverter;
 
 namespace Adyen.Model.Management
 {
     /// <summary>
     /// KlarnaInfo
     /// </summary>
-    [DataContract]
-    public partial class KlarnaInfo :  IEquatable<KlarnaInfo>, IValidatableObject
+    [DataContract(Name = "KlarnaInfo")]
+    public partial class KlarnaInfo : IEquatable<KlarnaInfo>, IValidatableObject
     {
         /// <summary>
         /// The region of operation. For example, **NA**, **EU**, **CH**, **AU**.
@@ -64,11 +66,12 @@ namespace Adyen.Model.Management
 
         }
 
+
         /// <summary>
         /// The region of operation. For example, **NA**, **EU**, **CH**, **AU**.
         /// </summary>
         /// <value>The region of operation. For example, **NA**, **EU**, **CH**, **AU**.</value>
-        [DataMember(Name="region", EmitDefaultValue=false)]
+        [DataMember(Name = "region", EmitDefaultValue = false)]
         public RegionEnum? Region { get; set; }
         /// <summary>
         /// Initializes a new instance of the <see cref="KlarnaInfo" /> class.
@@ -84,32 +87,31 @@ namespace Adyen.Model.Management
         /// <param name="supportEmail">The email address of merchant support. (required).</param>
         public KlarnaInfo(bool autoCapture = default(bool), string disputeEmail = default(string), RegionEnum? region = default(RegionEnum?), string supportEmail = default(string))
         {
-            this.AutoCapture = autoCapture;
             this.DisputeEmail = disputeEmail;
-            this.Region = region;
             this.SupportEmail = supportEmail;
+            this.AutoCapture = autoCapture;
+            this.Region = region;
         }
 
         /// <summary>
         /// Indicates the status of [Automatic capture](https://docs.adyen.com/online-payments/capture#automatic-capture). Default value: **false**.
         /// </summary>
         /// <value>Indicates the status of [Automatic capture](https://docs.adyen.com/online-payments/capture#automatic-capture). Default value: **false**.</value>
-        [DataMember(Name="autoCapture", EmitDefaultValue=false)]
+        [DataMember(Name = "autoCapture", EmitDefaultValue = false)]
         public bool AutoCapture { get; set; }
 
         /// <summary>
         /// The email address for disputes.
         /// </summary>
         /// <value>The email address for disputes.</value>
-        [DataMember(Name="disputeEmail", EmitDefaultValue=true)]
+        [DataMember(Name = "disputeEmail", IsRequired = false, EmitDefaultValue = false)]
         public string DisputeEmail { get; set; }
-
 
         /// <summary>
         /// The email address of merchant support.
         /// </summary>
         /// <value>The email address of merchant support.</value>
-        [DataMember(Name="supportEmail", EmitDefaultValue=true)]
+        [DataMember(Name = "supportEmail", IsRequired = false, EmitDefaultValue = false)]
         public string SupportEmail { get; set; }
 
         /// <summary>
@@ -118,7 +120,7 @@ namespace Adyen.Model.Management
         /// <returns>String presentation of the object</returns>
         public override string ToString()
         {
-            var sb = new StringBuilder();
+            StringBuilder sb = new StringBuilder();
             sb.Append("class KlarnaInfo {\n");
             sb.Append("  AutoCapture: ").Append(AutoCapture).Append("\n");
             sb.Append("  DisputeEmail: ").Append(DisputeEmail).Append("\n");
@@ -155,13 +157,13 @@ namespace Adyen.Model.Management
         public bool Equals(KlarnaInfo input)
         {
             if (input == null)
+            {
                 return false;
-
+            }
             return 
                 (
                     this.AutoCapture == input.AutoCapture ||
-                    (this.AutoCapture != null &&
-                    this.AutoCapture.Equals(input.AutoCapture))
+                    this.AutoCapture.Equals(input.AutoCapture)
                 ) && 
                 (
                     this.DisputeEmail == input.DisputeEmail ||
@@ -170,8 +172,7 @@ namespace Adyen.Model.Management
                 ) && 
                 (
                     this.Region == input.Region ||
-                    (this.Region != null &&
-                    this.Region.Equals(input.Region))
+                    this.Region.Equals(input.Region)
                 ) && 
                 (
                     this.SupportEmail == input.SupportEmail ||
@@ -189,37 +190,26 @@ namespace Adyen.Model.Management
             unchecked // Overflow is fine, just wrap
             {
                 int hashCode = 41;
-                if (this.AutoCapture != null)
-                    hashCode = hashCode * 59 + this.AutoCapture.GetHashCode();
+                hashCode = (hashCode * 59) + this.AutoCapture.GetHashCode();
                 if (this.DisputeEmail != null)
-                    hashCode = hashCode * 59 + this.DisputeEmail.GetHashCode();
-                if (this.Region != null)
-                    hashCode = hashCode * 59 + this.Region.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.DisputeEmail.GetHashCode();
+                }
+                hashCode = (hashCode * 59) + this.Region.GetHashCode();
                 if (this.SupportEmail != null)
-                    hashCode = hashCode * 59 + this.SupportEmail.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.SupportEmail.GetHashCode();
+                }
                 return hashCode;
             }
         }
-
         /// <summary>
         /// To validate all properties of the instance
         /// </summary>
         /// <param name="validationContext">Validation context</param>
         /// <returns>Validation Result</returns>
-        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+        public IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> Validate(ValidationContext validationContext)
         {
-            // Region (string) maxLength
-            if(this.Region != null && this.Region.ToString().Length > 2)
-            {
-                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for Region, length must be less than 2.", new [] { "Region" });
-            }
-
-            // Region (string) minLength
-            if(this.Region != null && this.Region.ToString().Length < 2)
-            {
-                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for Region, length must be greater than 2.", new [] { "Region" });
-            }
-
             yield break;
         }
     }

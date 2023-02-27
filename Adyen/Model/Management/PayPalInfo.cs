@@ -11,25 +11,27 @@
 */
 
 using System;
-using System.Linq;
-using System.IO;
-using System.Text;
-using System.Text.RegularExpressions;
 using System.Collections;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Linq;
+using System.IO;
 using System.Runtime.Serialization;
+using System.Text;
+using System.Text.RegularExpressions;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
+using Newtonsoft.Json.Linq;
 using System.ComponentModel.DataAnnotations;
+using OpenAPIDateConverter = Adyen.ApiSerialization.OpenAPIDateConverter;
 
 namespace Adyen.Model.Management
 {
     /// <summary>
     /// PayPalInfo
     /// </summary>
-    [DataContract]
-    public partial class PayPalInfo :  IEquatable<PayPalInfo>, IValidatableObject
+    [DataContract(Name = "PayPalInfo")]
+    public partial class PayPalInfo : IEquatable<PayPalInfo>, IValidatableObject
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="PayPalInfo" /> class.
@@ -44,30 +46,30 @@ namespace Adyen.Model.Management
         /// <param name="subject">Your business email address. (required).</param>
         public PayPalInfo(bool directCapture = default(bool), string payerId = default(string), string subject = default(string))
         {
-            this.DirectCapture = directCapture;
             this.PayerId = payerId;
             this.Subject = subject;
+            this.DirectCapture = directCapture;
         }
 
         /// <summary>
         /// Indicates if direct (immediate) capture for PayPal is enabled. If set to **true**, this setting overrides the [capture](https://docs.adyen.com/online-payments/capture) settings of your merchant account. Default value: **true**.
         /// </summary>
         /// <value>Indicates if direct (immediate) capture for PayPal is enabled. If set to **true**, this setting overrides the [capture](https://docs.adyen.com/online-payments/capture) settings of your merchant account. Default value: **true**.</value>
-        [DataMember(Name="directCapture", EmitDefaultValue=false)]
+        [DataMember(Name = "directCapture", EmitDefaultValue = false)]
         public bool DirectCapture { get; set; }
 
         /// <summary>
         /// PayPal Merchant ID. Character length and limitations: 13 single-byte alphanumeric characters.
         /// </summary>
         /// <value>PayPal Merchant ID. Character length and limitations: 13 single-byte alphanumeric characters.</value>
-        [DataMember(Name="payerId", EmitDefaultValue=true)]
+        [DataMember(Name = "payerId", IsRequired = false, EmitDefaultValue = false)]
         public string PayerId { get; set; }
 
         /// <summary>
         /// Your business email address.
         /// </summary>
         /// <value>Your business email address.</value>
-        [DataMember(Name="subject", EmitDefaultValue=true)]
+        [DataMember(Name = "subject", IsRequired = false, EmitDefaultValue = false)]
         public string Subject { get; set; }
 
         /// <summary>
@@ -76,7 +78,7 @@ namespace Adyen.Model.Management
         /// <returns>String presentation of the object</returns>
         public override string ToString()
         {
-            var sb = new StringBuilder();
+            StringBuilder sb = new StringBuilder();
             sb.Append("class PayPalInfo {\n");
             sb.Append("  DirectCapture: ").Append(DirectCapture).Append("\n");
             sb.Append("  PayerId: ").Append(PayerId).Append("\n");
@@ -112,13 +114,13 @@ namespace Adyen.Model.Management
         public bool Equals(PayPalInfo input)
         {
             if (input == null)
+            {
                 return false;
-
+            }
             return 
                 (
                     this.DirectCapture == input.DirectCapture ||
-                    (this.DirectCapture != null &&
-                    this.DirectCapture.Equals(input.DirectCapture))
+                    this.DirectCapture.Equals(input.DirectCapture)
                 ) && 
                 (
                     this.PayerId == input.PayerId ||
@@ -141,31 +143,33 @@ namespace Adyen.Model.Management
             unchecked // Overflow is fine, just wrap
             {
                 int hashCode = 41;
-                if (this.DirectCapture != null)
-                    hashCode = hashCode * 59 + this.DirectCapture.GetHashCode();
+                hashCode = (hashCode * 59) + this.DirectCapture.GetHashCode();
                 if (this.PayerId != null)
-                    hashCode = hashCode * 59 + this.PayerId.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.PayerId.GetHashCode();
+                }
                 if (this.Subject != null)
-                    hashCode = hashCode * 59 + this.Subject.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.Subject.GetHashCode();
+                }
                 return hashCode;
             }
         }
-
         /// <summary>
         /// To validate all properties of the instance
         /// </summary>
         /// <param name="validationContext">Validation context</param>
         /// <returns>Validation Result</returns>
-        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+        public IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> Validate(ValidationContext validationContext)
         {
             // PayerId (string) maxLength
-            if(this.PayerId != null && this.PayerId.Length > 13)
+            if (this.PayerId != null && this.PayerId.Length > 13)
             {
                 yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for PayerId, length must be less than 13.", new [] { "PayerId" });
             }
 
             // PayerId (string) minLength
-            if(this.PayerId != null && this.PayerId.Length < 13)
+            if (this.PayerId != null && this.PayerId.Length < 13)
             {
                 yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for PayerId, length must be greater than 13.", new [] { "PayerId" });
             }
