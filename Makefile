@@ -16,6 +16,7 @@ BinLookup: spec=BinLookupService-v52
 Checkout: spec=CheckoutService-v70
 Checkout: service=checkout
 StoredValue: spec=StoredValueService-v46
+StoredValue: service=storedvalue
 PosTerminalManagement: spec=TfmAPIService-v1
 Payments: spec=PaymentService-v68
 Recurring: spec=RecurringService-v68
