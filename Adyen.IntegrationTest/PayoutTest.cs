@@ -1,10 +1,10 @@
 using System;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Adyen.Service;
-using Adyen.Model.Payout;
+using Adyen.Model.Payouts;
 using Adyen.Model;
 using Adyen.HttpClient;
-using Adyen.Service.Payout;
+using Adyen.Service.Payouts;
 
 namespace Adyen.IntegrationTest
 {
@@ -56,8 +56,8 @@ namespace Adyen.IntegrationTest
         {
             var payoutRequest = new PayoutRequest
             {
-                Amount = new Model.Payout.Amount { Currency = "EUR", Value = 10 },
-                Card = new Model.Payout.Card
+                Amount = new Model.Payouts.Amount { Currency = "EUR", Value = 10 },
+                Card = new Model.Payouts.Card
                 {
                     Number = "4111111111111111",
                     ExpiryMonth = "03",

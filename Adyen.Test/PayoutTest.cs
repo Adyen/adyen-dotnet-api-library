@@ -22,9 +22,9 @@
 #endregion
 
 using Adyen.HttpClient;
-using Adyen.Model.Payout;
+using Adyen.Model.Payouts;
 using Adyen.Service;
-using Adyen.Service.Payout;
+using Adyen.Service.Payouts;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq.Language.Flow;
 
