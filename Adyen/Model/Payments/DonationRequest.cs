@@ -23,6 +23,7 @@ using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
 using Newtonsoft.Json.Linq;
 using System.ComponentModel.DataAnnotations;
+using OpenAPIDateConverter = Adyen.ApiSerialization.OpenAPIDateConverter;
 
 namespace Adyen.Model.Payments
 {
@@ -44,13 +45,15 @@ namespace Adyen.Model.Payments
         /// <param name="merchantAccount">The merchant account that is used to process the payment. (required).</param>
         /// <param name="modificationAmount">modificationAmount (required).</param>
         /// <param name="originalReference">The original pspReference of the payment to modify. This reference is returned in: * authorisation response * authorisation notification  .</param>
+        /// <param name="platformChargebackLogic">platformChargebackLogic.</param>
         /// <param name="reference">Your reference for the payment modification. This reference is visible in Customer Area and in reports. Maximum length: 80 characters..</param>
-        public DonationRequest(string donationAccount = default(string), string merchantAccount = default(string), Amount modificationAmount = default(Amount), string originalReference = default(string), string reference = default(string))
+        public DonationRequest(string donationAccount = default(string), string merchantAccount = default(string), Amount modificationAmount = default(Amount), string originalReference = default(string), PlatformChargebackLogic platformChargebackLogic = default(PlatformChargebackLogic), string reference = default(string))
         {
             this.DonationAccount = donationAccount;
             this.MerchantAccount = merchantAccount;
             this.ModificationAmount = modificationAmount;
             this.OriginalReference = originalReference;
+            this.PlatformChargebackLogic = platformChargebackLogic;
             this.Reference = reference;
         }
 
@@ -82,6 +85,12 @@ namespace Adyen.Model.Payments
         public string OriginalReference { get; set; }
 
         /// <summary>
+        /// Gets or Sets PlatformChargebackLogic
+        /// </summary>
+        [DataMember(Name = "platformChargebackLogic", EmitDefaultValue = false)]
+        public PlatformChargebackLogic PlatformChargebackLogic { get; set; }
+
+        /// <summary>
         /// Your reference for the payment modification. This reference is visible in Customer Area and in reports. Maximum length: 80 characters.
         /// </summary>
         /// <value>Your reference for the payment modification. This reference is visible in Customer Area and in reports. Maximum length: 80 characters.</value>
@@ -100,6 +109,7 @@ namespace Adyen.Model.Payments
             sb.Append("  MerchantAccount: ").Append(MerchantAccount).Append("\n");
             sb.Append("  ModificationAmount: ").Append(ModificationAmount).Append("\n");
             sb.Append("  OriginalReference: ").Append(OriginalReference).Append("\n");
+            sb.Append("  PlatformChargebackLogic: ").Append(PlatformChargebackLogic).Append("\n");
             sb.Append("  Reference: ").Append(Reference).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
@@ -157,6 +167,11 @@ namespace Adyen.Model.Payments
                     this.OriginalReference.Equals(input.OriginalReference))
                 ) && 
                 (
+                    this.PlatformChargebackLogic == input.PlatformChargebackLogic ||
+                    (this.PlatformChargebackLogic != null &&
+                    this.PlatformChargebackLogic.Equals(input.PlatformChargebackLogic))
+                ) && 
+                (
                     this.Reference == input.Reference ||
                     (this.Reference != null &&
                     this.Reference.Equals(input.Reference))
@@ -187,6 +202,10 @@ namespace Adyen.Model.Payments
                 if (this.OriginalReference != null)
                 {
                     hashCode = (hashCode * 59) + this.OriginalReference.GetHashCode();
+                }
+                if (this.PlatformChargebackLogic != null)
+                {
+                    hashCode = (hashCode * 59) + this.PlatformChargebackLogic.GetHashCode();
                 }
                 if (this.Reference != null)
                 {

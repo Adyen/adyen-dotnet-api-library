@@ -7,6 +7,7 @@ using Adyen.Model.BinLookup;
 using Adyen.Model.Checkout;
 using Adyen.Model.Payments;
 using Adyen.Service;
+using Adyen.Service.Payments;
 using Amount = Adyen.Model.Checkout;
 using PaymentRequest = Adyen.Model.Payments.PaymentRequest;
 using PaymentResult = Adyen.Model.Payments.PaymentResult;
@@ -21,7 +22,7 @@ namespace Adyen.IntegrationTest
         public PaymentResult CreatePaymentResult()
         {
             var client = CreateApiKeyTestClient();
-            var payment = new Payment(client);
+            var payment = new PaymentService(client);
             var paymentRequest = CreateFullPaymentRequest();
             var paymentResult = payment.Authorise(paymentRequest);
 
@@ -31,7 +32,7 @@ namespace Adyen.IntegrationTest
         public async Task<PaymentResult> CreatePaymentResultAsync()
         {
             var client = CreateApiKeyTestClient();
-            var payment = new Payment(client);
+            var payment = new PaymentService(client);
             var paymentRequest = CreateFullPaymentRequest();
             var paymentResult = await payment.AuthoriseAsync(paymentRequest);
 
@@ -41,7 +42,7 @@ namespace Adyen.IntegrationTest
         public PaymentResult CreatePaymentResultWithApiKeyAuthentication()
         {
             var client = CreateApiKeyTestClient();
-            var payment = new Payment(client);
+            var payment = new PaymentService(client);
             var paymentRequest = CreateFullPaymentRequest();
             var paymentResult = payment.Authorise(paymentRequest);
 
@@ -51,7 +52,7 @@ namespace Adyen.IntegrationTest
         public PaymentResult CreatePaymentResultWithIdempotency(string idempotency)
         {
             var client = CreateApiKeyTestClient();
-            var payment = new Payment(client);
+            var payment = new PaymentService(client);
             var paymentRequest = CreateFullPaymentRequest();
             var paymentResult = payment.Authorise(paymentRequest, new RequestOptions{ IdempotencyKey=idempotency});
 
@@ -61,7 +62,7 @@ namespace Adyen.IntegrationTest
         public PaymentResult CreatePaymentResultWithRecurring(Recurring.ContractEnum contract)
         {
             var client = CreateApiKeyTestClient();
-            var payment = new Payment(client);
+            var payment = new PaymentService(client);
             var paymentRequest = CreateFullPaymentRequestWithRecurring(contract);
             var paymentResult = payment.Authorise(paymentRequest);
 
@@ -193,7 +194,7 @@ namespace Adyen.IntegrationTest
                 Reference = "payment - " + DateTime.Now.ToString("yyyyMMdd"),
                 ShopperReference = "test-1234",
                 AdditionalData = CreateAdditionalData(),
-                Recurring = new Model.Payments.Recurring { Contract = contract },
+                Recurring = new Recurring { Contract = contract },
                 ApplicationInfo = new Model.Payments.ApplicationInfo()
                 {
                     ExternalPlatform = new Model.Payments.ExternalPlatform()
