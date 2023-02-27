@@ -28,40 +28,59 @@ using OpenAPIDateConverter = Adyen.ApiSerialization.OpenAPIDateConverter;
 namespace Adyen.Model.Payments
 {
     /// <summary>
-    /// Name
+    /// PlatformChargebackLogic
     /// </summary>
-    [DataContract(Name = "Name")]
-    public partial class Name : IEquatable<Name>, IValidatableObject
+    [DataContract(Name = "PlatformChargebackLogic")]
+    public partial class PlatformChargebackLogic : IEquatable<PlatformChargebackLogic>, IValidatableObject
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="Name" /> class.
+        /// Defines Behavior
         /// </summary>
-        [JsonConstructorAttribute]
-        protected Name() { }
-        /// <summary>
-        /// Initializes a new instance of the <see cref="Name" /> class.
-        /// </summary>
-        /// <param name="firstName">The first name. (required).</param>
-        /// <param name="lastName">The last name. (required).</param>
-        public Name(string firstName = default(string), string lastName = default(string))
+        [JsonConverter(typeof(StringEnumConverter))]
+        public enum BehaviorEnum
         {
-            this.FirstName = firstName;
-            this.LastName = lastName;
+            /// <summary>
+            /// Enum DeductAccordingToSplitRatio for value: deductAccordingToSplitRatio
+            /// </summary>
+            [EnumMember(Value = "deductAccordingToSplitRatio")]
+            DeductAccordingToSplitRatio = 1,
+
+            /// <summary>
+            /// Enum DeductFromLiableAccount for value: deductFromLiableAccount
+            /// </summary>
+            [EnumMember(Value = "deductFromLiableAccount")]
+            DeductFromLiableAccount = 2,
+
+            /// <summary>
+            /// Enum DeductFromOneBalanceAccount for value: deductFromOneBalanceAccount
+            /// </summary>
+            [EnumMember(Value = "deductFromOneBalanceAccount")]
+            DeductFromOneBalanceAccount = 3
+
+        }
+
+
+        /// <summary>
+        /// Gets or Sets Behavior
+        /// </summary>
+        [DataMember(Name = "behavior", EmitDefaultValue = false)]
+        public BehaviorEnum? Behavior { get; set; }
+        /// <summary>
+        /// Initializes a new instance of the <see cref="PlatformChargebackLogic" /> class.
+        /// </summary>
+        /// <param name="behavior">behavior.</param>
+        /// <param name="targetAccount">targetAccount.</param>
+        public PlatformChargebackLogic(BehaviorEnum? behavior = default(BehaviorEnum?), string targetAccount = default(string))
+        {
+            this.Behavior = behavior;
+            this.TargetAccount = targetAccount;
         }
 
         /// <summary>
-        /// The first name.
+        /// Gets or Sets TargetAccount
         /// </summary>
-        /// <value>The first name.</value>
-        [DataMember(Name = "firstName", IsRequired = false, EmitDefaultValue = false)]
-        public string FirstName { get; set; }
-
-        /// <summary>
-        /// The last name.
-        /// </summary>
-        /// <value>The last name.</value>
-        [DataMember(Name = "lastName", IsRequired = false, EmitDefaultValue = false)]
-        public string LastName { get; set; }
+        [DataMember(Name = "targetAccount", EmitDefaultValue = false)]
+        public string TargetAccount { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -70,9 +89,9 @@ namespace Adyen.Model.Payments
         public override string ToString()
         {
             StringBuilder sb = new StringBuilder();
-            sb.Append("class Name {\n");
-            sb.Append("  FirstName: ").Append(FirstName).Append("\n");
-            sb.Append("  LastName: ").Append(LastName).Append("\n");
+            sb.Append("class PlatformChargebackLogic {\n");
+            sb.Append("  Behavior: ").Append(Behavior).Append("\n");
+            sb.Append("  TargetAccount: ").Append(TargetAccount).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -93,15 +112,15 @@ namespace Adyen.Model.Payments
         /// <returns>Boolean</returns>
         public override bool Equals(object input)
         {
-            return this.Equals(input as Name);
+            return this.Equals(input as PlatformChargebackLogic);
         }
 
         /// <summary>
-        /// Returns true if Name instances are equal
+        /// Returns true if PlatformChargebackLogic instances are equal
         /// </summary>
-        /// <param name="input">Instance of Name to be compared</param>
+        /// <param name="input">Instance of PlatformChargebackLogic to be compared</param>
         /// <returns>Boolean</returns>
-        public bool Equals(Name input)
+        public bool Equals(PlatformChargebackLogic input)
         {
             if (input == null)
             {
@@ -109,14 +128,13 @@ namespace Adyen.Model.Payments
             }
             return 
                 (
-                    this.FirstName == input.FirstName ||
-                    (this.FirstName != null &&
-                    this.FirstName.Equals(input.FirstName))
+                    this.Behavior == input.Behavior ||
+                    this.Behavior.Equals(input.Behavior)
                 ) && 
                 (
-                    this.LastName == input.LastName ||
-                    (this.LastName != null &&
-                    this.LastName.Equals(input.LastName))
+                    this.TargetAccount == input.TargetAccount ||
+                    (this.TargetAccount != null &&
+                    this.TargetAccount.Equals(input.TargetAccount))
                 );
         }
 
@@ -129,13 +147,10 @@ namespace Adyen.Model.Payments
             unchecked // Overflow is fine, just wrap
             {
                 int hashCode = 41;
-                if (this.FirstName != null)
+                hashCode = (hashCode * 59) + this.Behavior.GetHashCode();
+                if (this.TargetAccount != null)
                 {
-                    hashCode = (hashCode * 59) + this.FirstName.GetHashCode();
-                }
-                if (this.LastName != null)
-                {
-                    hashCode = (hashCode * 59) + this.LastName.GetHashCode();
+                    hashCode = (hashCode * 59) + this.TargetAccount.GetHashCode();
                 }
                 return hashCode;
             }
