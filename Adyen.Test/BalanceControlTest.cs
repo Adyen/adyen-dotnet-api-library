@@ -17,5 +17,5 @@ namespace Adyen.Test
             Assert.AreEqual(response.CreatedAt, new DateTimeOffset(new DateTime(2022,01, 24, 14,59, 11)));
             Assert.AreEqual(response.Status, BalanceTransferResponse.StatusEnum.Transferred);
         }
-    }it 
+    }
 }
