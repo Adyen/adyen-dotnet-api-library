@@ -37,7 +37,7 @@ namespace Adyen.Test
         public void Get3dsAvailabilitySuccessMockedTest()
         {
             var client = CreateMockTestClientApiKeyBasedRequestAsync("Mocks/binlookup/get3dsavailability-success.json");
-            var binLookup = new BinLookup(client);
+            var binLookup = new BinLookupService(client);
             var threeDsAvailabilityRequest = new ThreeDSAvailabilityRequest
             {
                 MerchantAccount = "merchantAccount",
@@ -58,7 +58,7 @@ namespace Adyen.Test
         public void GetCostEstimateSuccessMockedTest()
         {
             var client = CreateMockTestClientApiKeyBasedRequestAsync("Mocks/binlookup/getcostestimate-success.json");
-            var binLookup = new BinLookup(client);
+            var binLookup = new BinLookupService(client);
             var costEstimateRequest = new CostEstimateRequest();
             var amount = new Amount
             {

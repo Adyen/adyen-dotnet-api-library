@@ -25,11 +25,11 @@ namespace Adyen.Service
     /// <summary>
     /// Represents a collection of functions to interact with the API endpoints
     /// </summary>
-    public class BinLookup : AbstractService
+    public class BinLookupService : AbstractService
     {
         private readonly string _baseUrl;
         
-        public BinLookup(Client client) : base(client)
+        public BinLookupService(Client client) : base(client)
         {
             _baseUrl = client.Config.Endpoint + ClientConfig.BinLookupPalSuffix + ClientConfig.BinLookupApiVersion;
         }
