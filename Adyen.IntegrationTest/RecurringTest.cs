@@ -16,7 +16,7 @@ namespace Adyen.IntegrationTest
         {
             var paymentResult = base.CreatePaymentResultWithRecurring(Model.Payments.Recurring.ContractEnum.RECURRING);
             var client = CreateApiKeyTestClient();
-            var recurring = new Service.Recurring(client);
+            var recurring = new Service.RecurringService(client);
             var recurringDetailsRequest = this.CreateRecurringDetailsRequest();
             var recurringDetailsResult = recurring.ListRecurringDetails(recurringDetailsRequest);
             var recurringDetail = recurringDetailsResult.Details[0].RecurringDetail;
@@ -28,7 +28,7 @@ namespace Adyen.IntegrationTest
         {
             var paymentResult = base.CreatePaymentResultWithRecurring(Model.Payments.Recurring.ContractEnum.ONECLICK);
             var client = CreateApiKeyTestClient();
-            var recurring = new Service.Recurring(client);
+            var recurring = new Service.RecurringService(client);
             var disableRequest = this.CreateDisableRequest();
             var disableResult = recurring.Disable(disableRequest);
             Assert.AreEqual("[all-details-successfully-disabled]", disableResult.Response);

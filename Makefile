@@ -24,6 +24,7 @@ PosTerminalManagement: spec=TfmAPIService-v1
 Payments: spec=PaymentService-v68
 Payments: service=payments
 Recurring: spec=RecurringService-v68
+Recurring: service=recurring
 Payouts: spec=PayoutService-v68
 Management: spec=ManagementService-v1
 Management: service=management

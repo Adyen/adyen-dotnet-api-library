@@ -10,7 +10,6 @@
 * Do not edit the class manually.
 */
 
-
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -24,6 +23,7 @@ using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
 using Newtonsoft.Json.Linq;
 using System.ComponentModel.DataAnnotations;
+using OpenAPIDateConverter = Adyen.ApiSerialization.OpenAPIDateConverter;
 
 namespace Adyen.Model.Recurring
 {
@@ -53,14 +53,14 @@ namespace Adyen.Model.Recurring
         /// Adyen&#39;s 16-character unique reference associated with the transaction. This value is globally unique; quote it when communicating with us about this request.
         /// </summary>
         /// <value>Adyen&#39;s 16-character unique reference associated with the transaction. This value is globally unique; quote it when communicating with us about this request.</value>
-        [DataMember(Name = "pspReference", IsRequired = false, EmitDefaultValue = true)]
+        [DataMember(Name = "pspReference", IsRequired = false, EmitDefaultValue = false)]
         public string PspReference { get; set; }
 
         /// <summary>
         /// The result of scheduling an Account Updater. If scheduling was successful, this field returns **Success**; otherwise it contains the error message.
         /// </summary>
         /// <value>The result of scheduling an Account Updater. If scheduling was successful, this field returns **Success**; otherwise it contains the error message.</value>
-        [DataMember(Name = "result", IsRequired = false, EmitDefaultValue = true)]
+        [DataMember(Name = "result", IsRequired = false, EmitDefaultValue = false)]
         public string Result { get; set; }
 
         /// <summary>
@@ -140,7 +140,6 @@ namespace Adyen.Model.Recurring
                 return hashCode;
             }
         }
-
         /// <summary>
         /// To validate all properties of the instance
         /// </summary>

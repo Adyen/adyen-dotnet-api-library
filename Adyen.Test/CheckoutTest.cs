@@ -11,6 +11,7 @@ using static Adyen.Model.Checkout.PaymentResponse;
 using Amount = Adyen.Model.Checkout.Amount;
 using ApplicationInfo = Adyen.Model.ApplicationInformation.ApplicationInfo;
 using Environment = Adyen.Model.Environment;
+using RecurringService = Adyen.Service.Checkout.RecurringService;
 
 namespace Adyen.Test
 {
