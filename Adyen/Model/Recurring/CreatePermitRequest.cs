@@ -10,7 +10,6 @@
 * Do not edit the class manually.
 */
 
-
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -24,6 +23,7 @@ using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
 using Newtonsoft.Json.Linq;
 using System.ComponentModel.DataAnnotations;
+using OpenAPIDateConverter = Adyen.ApiSerialization.OpenAPIDateConverter;
 
 namespace Adyen.Model.Recurring
 {
@@ -57,28 +57,28 @@ namespace Adyen.Model.Recurring
         /// The merchant account identifier, with which you want to process the transaction.
         /// </summary>
         /// <value>The merchant account identifier, with which you want to process the transaction.</value>
-        [DataMember(Name = "merchantAccount", IsRequired = false, EmitDefaultValue = true)]
+        [DataMember(Name = "merchantAccount", IsRequired = false, EmitDefaultValue = false)]
         public string MerchantAccount { get; set; }
 
         /// <summary>
         /// The permits to create for this recurring contract.
         /// </summary>
         /// <value>The permits to create for this recurring contract.</value>
-        [DataMember(Name = "permits", IsRequired = false, EmitDefaultValue = true)]
+        [DataMember(Name = "permits", IsRequired = false, EmitDefaultValue = false)]
         public List<Permit> Permits { get; set; }
 
         /// <summary>
         /// The recurring contract the new permits will use.
         /// </summary>
         /// <value>The recurring contract the new permits will use.</value>
-        [DataMember(Name = "recurringDetailReference", IsRequired = false, EmitDefaultValue = true)]
+        [DataMember(Name = "recurringDetailReference", IsRequired = false, EmitDefaultValue = false)]
         public string RecurringDetailReference { get; set; }
 
         /// <summary>
         /// The shopper&#39;s reference to uniquely identify this shopper (e.g. user ID or account ID).
         /// </summary>
         /// <value>The shopper&#39;s reference to uniquely identify this shopper (e.g. user ID or account ID).</value>
-        [DataMember(Name = "shopperReference", IsRequired = false, EmitDefaultValue = true)]
+        [DataMember(Name = "shopperReference", IsRequired = false, EmitDefaultValue = false)]
         public string ShopperReference { get; set; }
 
         /// <summary>
@@ -179,7 +179,6 @@ namespace Adyen.Model.Recurring
                 return hashCode;
             }
         }
-
         /// <summary>
         /// To validate all properties of the instance
         /// </summary>

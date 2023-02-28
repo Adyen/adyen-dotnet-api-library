@@ -10,7 +10,6 @@
 * Do not edit the class manually.
 */
 
-
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -24,6 +23,7 @@ using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
 using Newtonsoft.Json.Linq;
 using System.ComponentModel.DataAnnotations;
+using OpenAPIDateConverter = Adyen.ApiSerialization.OpenAPIDateConverter;
 
 namespace Adyen.Model.Recurring
 {
@@ -164,7 +164,7 @@ namespace Adyen.Model.Recurring
         /// The reference that uniquely identifies the recurring detail.
         /// </summary>
         /// <value>The reference that uniquely identifies the recurring detail.</value>
-        [DataMember(Name = "recurringDetailReference", IsRequired = false, EmitDefaultValue = true)]
+        [DataMember(Name = "recurringDetailReference", IsRequired = false, EmitDefaultValue = false)]
         public string RecurringDetailReference { get; set; }
 
         /// <summary>
@@ -190,7 +190,7 @@ namespace Adyen.Model.Recurring
         /// The payment method, such as “mc\&quot;, \&quot;visa\&quot;, \&quot;ideal\&quot;, \&quot;paypal\&quot;.
         /// </summary>
         /// <value>The payment method, such as “mc\&quot;, \&quot;visa\&quot;, \&quot;ideal\&quot;, \&quot;paypal\&quot;.</value>
-        [DataMember(Name = "variant", IsRequired = false, EmitDefaultValue = true)]
+        [DataMember(Name = "variant", IsRequired = false, EmitDefaultValue = false)]
         public string Variant { get; set; }
 
         /// <summary>
@@ -422,7 +422,6 @@ namespace Adyen.Model.Recurring
                 return hashCode;
             }
         }
-
         /// <summary>
         /// To validate all properties of the instance
         /// </summary>

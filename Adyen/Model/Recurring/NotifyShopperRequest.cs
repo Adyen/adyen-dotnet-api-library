@@ -10,7 +10,6 @@
 * Do not edit the class manually.
 */
 
-
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -24,6 +23,7 @@ using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
 using Newtonsoft.Json.Linq;
 using System.ComponentModel.DataAnnotations;
+using OpenAPIDateConverter = Adyen.ApiSerialization.OpenAPIDateConverter;
 
 namespace Adyen.Model.Recurring
 {
@@ -66,7 +66,7 @@ namespace Adyen.Model.Recurring
         /// <summary>
         /// Gets or Sets Amount
         /// </summary>
-        [DataMember(Name = "amount", IsRequired = false, EmitDefaultValue = true)]
+        [DataMember(Name = "amount", IsRequired = false, EmitDefaultValue = false)]
         public Amount Amount { get; set; }
 
         /// <summary>
@@ -94,7 +94,7 @@ namespace Adyen.Model.Recurring
         /// The merchant account identifier with which you want to process the transaction.
         /// </summary>
         /// <value>The merchant account identifier with which you want to process the transaction.</value>
-        [DataMember(Name = "merchantAccount", IsRequired = false, EmitDefaultValue = true)]
+        [DataMember(Name = "merchantAccount", IsRequired = false, EmitDefaultValue = false)]
         public string MerchantAccount { get; set; }
 
         /// <summary>
@@ -108,14 +108,14 @@ namespace Adyen.Model.Recurring
         /// Pre-debit notification reference sent by the merchant. This is a mandatory field
         /// </summary>
         /// <value>Pre-debit notification reference sent by the merchant. This is a mandatory field</value>
-        [DataMember(Name = "reference", IsRequired = false, EmitDefaultValue = true)]
+        [DataMember(Name = "reference", IsRequired = false, EmitDefaultValue = false)]
         public string Reference { get; set; }
 
         /// <summary>
         /// The ID that uniquely identifies the shopper.  This &#x60;shopperReference&#x60; must be the same as the &#x60;shopperReference&#x60; used in the initial payment.
         /// </summary>
         /// <value>The ID that uniquely identifies the shopper.  This &#x60;shopperReference&#x60; must be the same as the &#x60;shopperReference&#x60; used in the initial payment.</value>
-        [DataMember(Name = "shopperReference", IsRequired = false, EmitDefaultValue = true)]
+        [DataMember(Name = "shopperReference", IsRequired = false, EmitDefaultValue = false)]
         public string ShopperReference { get; set; }
 
         /// <summary>
@@ -272,7 +272,6 @@ namespace Adyen.Model.Recurring
                 return hashCode;
             }
         }
-
         /// <summary>
         /// To validate all properties of the instance
         /// </summary>
