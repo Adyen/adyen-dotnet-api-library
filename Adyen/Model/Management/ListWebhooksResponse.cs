@@ -11,25 +11,27 @@
 */
 
 using System;
-using System.Linq;
-using System.IO;
-using System.Text;
-using System.Text.RegularExpressions;
 using System.Collections;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Linq;
+using System.IO;
 using System.Runtime.Serialization;
+using System.Text;
+using System.Text.RegularExpressions;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
+using Newtonsoft.Json.Linq;
 using System.ComponentModel.DataAnnotations;
+using OpenAPIDateConverter = Adyen.ApiSerialization.OpenAPIDateConverter;
 
 namespace Adyen.Model.Management
 {
     /// <summary>
     /// ListWebhooksResponse
     /// </summary>
-    [DataContract]
-    public partial class ListWebhooksResponse :  IEquatable<ListWebhooksResponse>, IValidatableObject
+    [DataContract(Name = "ListWebhooksResponse")]
+    public partial class ListWebhooksResponse : IEquatable<ListWebhooksResponse>, IValidatableObject
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="ListWebhooksResponse" /> class.
@@ -44,48 +46,48 @@ namespace Adyen.Model.Management
         /// <param name="data">The list of webhooks configured for this account..</param>
         /// <param name="itemsTotal">Total number of items. (required).</param>
         /// <param name="pagesTotal">Total number of pages. (required).</param>
-        public ListWebhooksResponse(PaginationLinks links = default(PaginationLinks), string accountReference = default(string), List<Webhook> data = default(List<Webhook>), int itemsTotal = default(int), int pagesTotal = default(int))
+        public ListWebhooksResponse(PaginationLinks links = default(PaginationLinks), string accountReference = default(string), List<Webhook> data = default(List<Webhook>), int? itemsTotal = default(int?), int? pagesTotal = default(int?))
         {
+            this.ItemsTotal = itemsTotal;
+            this.PagesTotal = pagesTotal;
             this.Links = links;
             this.AccountReference = accountReference;
             this.Data = data;
-            this.ItemsTotal = itemsTotal;
-            this.PagesTotal = pagesTotal;
         }
 
         /// <summary>
         /// Gets or Sets Links
         /// </summary>
-        [DataMember(Name="_links", EmitDefaultValue=false)]
+        [DataMember(Name = "_links", EmitDefaultValue = false)]
         public PaginationLinks Links { get; set; }
 
         /// <summary>
         /// Reference to the account.
         /// </summary>
         /// <value>Reference to the account.</value>
-        [DataMember(Name="accountReference", EmitDefaultValue=false)]
+        [DataMember(Name = "accountReference", EmitDefaultValue = false)]
         public string AccountReference { get; set; }
 
         /// <summary>
         /// The list of webhooks configured for this account.
         /// </summary>
         /// <value>The list of webhooks configured for this account.</value>
-        [DataMember(Name="data", EmitDefaultValue=false)]
+        [DataMember(Name = "data", EmitDefaultValue = false)]
         public List<Webhook> Data { get; set; }
 
         /// <summary>
         /// Total number of items.
         /// </summary>
         /// <value>Total number of items.</value>
-        [DataMember(Name="itemsTotal", EmitDefaultValue=true)]
-        public int ItemsTotal { get; set; }
+        [DataMember(Name = "itemsTotal", IsRequired = false, EmitDefaultValue = false)]
+        public int? ItemsTotal { get; set; }
 
         /// <summary>
         /// Total number of pages.
         /// </summary>
         /// <value>Total number of pages.</value>
-        [DataMember(Name="pagesTotal", EmitDefaultValue=true)]
-        public int PagesTotal { get; set; }
+        [DataMember(Name = "pagesTotal", IsRequired = false, EmitDefaultValue = false)]
+        public int? PagesTotal { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -93,7 +95,7 @@ namespace Adyen.Model.Management
         /// <returns>String presentation of the object</returns>
         public override string ToString()
         {
-            var sb = new StringBuilder();
+            StringBuilder sb = new StringBuilder();
             sb.Append("class ListWebhooksResponse {\n");
             sb.Append("  Links: ").Append(Links).Append("\n");
             sb.Append("  AccountReference: ").Append(AccountReference).Append("\n");
@@ -131,8 +133,9 @@ namespace Adyen.Model.Management
         public bool Equals(ListWebhooksResponse input)
         {
             if (input == null)
+            {
                 return false;
-
+            }
             return 
                 (
                     this.Links == input.Links ||
@@ -152,13 +155,11 @@ namespace Adyen.Model.Management
                 ) && 
                 (
                     this.ItemsTotal == input.ItemsTotal ||
-                    (this.ItemsTotal != null &&
-                    this.ItemsTotal.Equals(input.ItemsTotal))
+                    this.ItemsTotal.Equals(input.ItemsTotal)
                 ) && 
                 (
                     this.PagesTotal == input.PagesTotal ||
-                    (this.PagesTotal != null &&
-                    this.PagesTotal.Equals(input.PagesTotal))
+                    this.PagesTotal.Equals(input.PagesTotal)
                 );
         }
 
@@ -172,25 +173,28 @@ namespace Adyen.Model.Management
             {
                 int hashCode = 41;
                 if (this.Links != null)
-                    hashCode = hashCode * 59 + this.Links.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.Links.GetHashCode();
+                }
                 if (this.AccountReference != null)
-                    hashCode = hashCode * 59 + this.AccountReference.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.AccountReference.GetHashCode();
+                }
                 if (this.Data != null)
-                    hashCode = hashCode * 59 + this.Data.GetHashCode();
-                if (this.ItemsTotal != null)
-                    hashCode = hashCode * 59 + this.ItemsTotal.GetHashCode();
-                if (this.PagesTotal != null)
-                    hashCode = hashCode * 59 + this.PagesTotal.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.Data.GetHashCode();
+                }
+                hashCode = (hashCode * 59) + this.ItemsTotal.GetHashCode();
+                hashCode = (hashCode * 59) + this.PagesTotal.GetHashCode();
                 return hashCode;
             }
         }
-
         /// <summary>
         /// To validate all properties of the instance
         /// </summary>
         /// <param name="validationContext">Validation context</param>
         /// <returns>Validation Result</returns>
-        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+        public IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> Validate(ValidationContext validationContext)
         {
             yield break;
         }

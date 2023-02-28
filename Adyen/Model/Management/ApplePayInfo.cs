@@ -11,25 +11,27 @@
 */
 
 using System;
-using System.Linq;
-using System.IO;
-using System.Text;
-using System.Text.RegularExpressions;
 using System.Collections;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Linq;
+using System.IO;
 using System.Runtime.Serialization;
+using System.Text;
+using System.Text.RegularExpressions;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
+using Newtonsoft.Json.Linq;
 using System.ComponentModel.DataAnnotations;
+using OpenAPIDateConverter = Adyen.ApiSerialization.OpenAPIDateConverter;
 
 namespace Adyen.Model.Management
 {
     /// <summary>
     /// ApplePayInfo
     /// </summary>
-    [DataContract]
-    public partial class ApplePayInfo :  IEquatable<ApplePayInfo>, IValidatableObject
+    [DataContract(Name = "ApplePayInfo")]
+    public partial class ApplePayInfo : IEquatable<ApplePayInfo>, IValidatableObject
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="ApplePayInfo" /> class.
@@ -44,7 +46,7 @@ namespace Adyen.Model.Management
         /// The list of merchant domains. Maximum: 99 domains per request.  For more information, see [Apple Pay documentation](https://docs.adyen.com/payment-methods/apple-pay/web-drop-in?tab&#x3D;adyen-certificate-live_1#going-live).
         /// </summary>
         /// <value>The list of merchant domains. Maximum: 99 domains per request.  For more information, see [Apple Pay documentation](https://docs.adyen.com/payment-methods/apple-pay/web-drop-in?tab&#x3D;adyen-certificate-live_1#going-live).</value>
-        [DataMember(Name="domains", EmitDefaultValue=false)]
+        [DataMember(Name = "domains", EmitDefaultValue = false)]
         public List<string> Domains { get; set; }
 
         /// <summary>
@@ -53,7 +55,7 @@ namespace Adyen.Model.Management
         /// <returns>String presentation of the object</returns>
         public override string ToString()
         {
-            var sb = new StringBuilder();
+            StringBuilder sb = new StringBuilder();
             sb.Append("class ApplePayInfo {\n");
             sb.Append("  Domains: ").Append(Domains).Append("\n");
             sb.Append("}\n");
@@ -87,8 +89,9 @@ namespace Adyen.Model.Management
         public bool Equals(ApplePayInfo input)
         {
             if (input == null)
+            {
                 return false;
-
+            }
             return 
                 (
                     this.Domains == input.Domains ||
@@ -108,17 +111,18 @@ namespace Adyen.Model.Management
             {
                 int hashCode = 41;
                 if (this.Domains != null)
-                    hashCode = hashCode * 59 + this.Domains.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.Domains.GetHashCode();
+                }
                 return hashCode;
             }
         }
-
         /// <summary>
         /// To validate all properties of the instance
         /// </summary>
         /// <param name="validationContext">Validation context</param>
         /// <returns>Validation Result</returns>
-        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+        public IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> Validate(ValidationContext validationContext)
         {
             yield break;
         }

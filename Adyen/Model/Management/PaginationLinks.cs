@@ -11,25 +11,27 @@
 */
 
 using System;
-using System.Linq;
-using System.IO;
-using System.Text;
-using System.Text.RegularExpressions;
 using System.Collections;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Linq;
+using System.IO;
 using System.Runtime.Serialization;
+using System.Text;
+using System.Text.RegularExpressions;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
+using Newtonsoft.Json.Linq;
 using System.ComponentModel.DataAnnotations;
+using OpenAPIDateConverter = Adyen.ApiSerialization.OpenAPIDateConverter;
 
 namespace Adyen.Model.Management
 {
     /// <summary>
     /// PaginationLinks
     /// </summary>
-    [DataContract]
-    public partial class PaginationLinks :  IEquatable<PaginationLinks>, IValidatableObject
+    [DataContract(Name = "PaginationLinks")]
+    public partial class PaginationLinks : IEquatable<PaginationLinks>, IValidatableObject
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="PaginationLinks" /> class.
@@ -48,39 +50,39 @@ namespace Adyen.Model.Management
         {
             this.First = first;
             this.Last = last;
+            this.Self = self;
             this.Next = next;
             this.Prev = prev;
-            this.Self = self;
         }
 
         /// <summary>
         /// Gets or Sets First
         /// </summary>
-        [DataMember(Name="first", EmitDefaultValue=true)]
+        [DataMember(Name = "first", IsRequired = false, EmitDefaultValue = false)]
         public LinksElement First { get; set; }
 
         /// <summary>
         /// Gets or Sets Last
         /// </summary>
-        [DataMember(Name="last", EmitDefaultValue=true)]
+        [DataMember(Name = "last", IsRequired = false, EmitDefaultValue = false)]
         public LinksElement Last { get; set; }
 
         /// <summary>
         /// Gets or Sets Next
         /// </summary>
-        [DataMember(Name="next", EmitDefaultValue=false)]
+        [DataMember(Name = "next", EmitDefaultValue = false)]
         public LinksElement Next { get; set; }
 
         /// <summary>
         /// Gets or Sets Prev
         /// </summary>
-        [DataMember(Name="prev", EmitDefaultValue=false)]
+        [DataMember(Name = "prev", EmitDefaultValue = false)]
         public LinksElement Prev { get; set; }
 
         /// <summary>
         /// Gets or Sets Self
         /// </summary>
-        [DataMember(Name="self", EmitDefaultValue=true)]
+        [DataMember(Name = "self", IsRequired = false, EmitDefaultValue = false)]
         public LinksElement Self { get; set; }
 
         /// <summary>
@@ -89,7 +91,7 @@ namespace Adyen.Model.Management
         /// <returns>String presentation of the object</returns>
         public override string ToString()
         {
-            var sb = new StringBuilder();
+            StringBuilder sb = new StringBuilder();
             sb.Append("class PaginationLinks {\n");
             sb.Append("  First: ").Append(First).Append("\n");
             sb.Append("  Last: ").Append(Last).Append("\n");
@@ -127,8 +129,9 @@ namespace Adyen.Model.Management
         public bool Equals(PaginationLinks input)
         {
             if (input == null)
+            {
                 return false;
-
+            }
             return 
                 (
                     this.First == input.First ||
@@ -167,25 +170,34 @@ namespace Adyen.Model.Management
             {
                 int hashCode = 41;
                 if (this.First != null)
-                    hashCode = hashCode * 59 + this.First.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.First.GetHashCode();
+                }
                 if (this.Last != null)
-                    hashCode = hashCode * 59 + this.Last.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.Last.GetHashCode();
+                }
                 if (this.Next != null)
-                    hashCode = hashCode * 59 + this.Next.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.Next.GetHashCode();
+                }
                 if (this.Prev != null)
-                    hashCode = hashCode * 59 + this.Prev.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.Prev.GetHashCode();
+                }
                 if (this.Self != null)
-                    hashCode = hashCode * 59 + this.Self.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.Self.GetHashCode();
+                }
                 return hashCode;
             }
         }
-
         /// <summary>
         /// To validate all properties of the instance
         /// </summary>
         /// <param name="validationContext">Validation context</param>
         /// <returns>Validation Result</returns>
-        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+        public IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> Validate(ValidationContext validationContext)
         {
             yield break;
         }

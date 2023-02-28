@@ -11,25 +11,27 @@
 */
 
 using System;
-using System.Linq;
-using System.IO;
-using System.Text;
-using System.Text.RegularExpressions;
 using System.Collections;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Linq;
+using System.IO;
 using System.Runtime.Serialization;
+using System.Text;
+using System.Text.RegularExpressions;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
+using Newtonsoft.Json.Linq;
 using System.ComponentModel.DataAnnotations;
+using OpenAPIDateConverter = Adyen.ApiSerialization.OpenAPIDateConverter;
 
 namespace Adyen.Model.Management
 {
     /// <summary>
     /// CreateApiCredentialResponse
     /// </summary>
-    [DataContract]
-    public partial class CreateApiCredentialResponse :  IEquatable<CreateApiCredentialResponse>, IValidatableObject
+    [DataContract(Name = "CreateApiCredentialResponse")]
+    public partial class CreateApiCredentialResponse : IEquatable<CreateApiCredentialResponse>, IValidatableObject
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="CreateApiCredentialResponse" /> class.
@@ -52,93 +54,93 @@ namespace Adyen.Model.Management
         /// <param name="username">The name of the [API credential](https://docs.adyen.com/development-resources/api-credentials), for example **ws@Company.TestCompany**. (required).</param>
         public CreateApiCredentialResponse(ApiCredentialLinks links = default(ApiCredentialLinks), bool active = default(bool), List<string> allowedIpAddresses = default(List<string>), List<AllowedOrigin> allowedOrigins = default(List<AllowedOrigin>), string apiKey = default(string), string clientKey = default(string), string description = default(string), string id = default(string), string password = default(string), List<string> roles = default(List<string>), string username = default(string))
         {
-            this.Links = links;
             this.Active = active;
             this.AllowedIpAddresses = allowedIpAddresses;
-            this.AllowedOrigins = allowedOrigins;
             this.ApiKey = apiKey;
             this.ClientKey = clientKey;
-            this.Description = description;
             this.Id = id;
             this.Password = password;
             this.Roles = roles;
             this.Username = username;
+            this.Links = links;
+            this.AllowedOrigins = allowedOrigins;
+            this.Description = description;
         }
 
         /// <summary>
         /// Gets or Sets Links
         /// </summary>
-        [DataMember(Name="_links", EmitDefaultValue=false)]
+        [DataMember(Name = "_links", EmitDefaultValue = false)]
         public ApiCredentialLinks Links { get; set; }
 
         /// <summary>
         /// Indicates if the API credential is enabled. Must be set to **true** to use the credential in your integration.
         /// </summary>
         /// <value>Indicates if the API credential is enabled. Must be set to **true** to use the credential in your integration.</value>
-        [DataMember(Name="active", EmitDefaultValue=true)]
+        [DataMember(Name = "active", IsRequired = false, EmitDefaultValue = false)]
         public bool Active { get; set; }
 
         /// <summary>
         /// List of IP addresses from which your client can make requests.  If the list is empty, we allow requests from any IP. If the list is not empty and we get a request from an IP which is not on the list, you get a security error.
         /// </summary>
         /// <value>List of IP addresses from which your client can make requests.  If the list is empty, we allow requests from any IP. If the list is not empty and we get a request from an IP which is not on the list, you get a security error.</value>
-        [DataMember(Name="allowedIpAddresses", EmitDefaultValue=true)]
+        [DataMember(Name = "allowedIpAddresses", IsRequired = false, EmitDefaultValue = false)]
         public List<string> AllowedIpAddresses { get; set; }
 
         /// <summary>
         /// List containing the [allowed origins](https://docs.adyen.com/development-resources/client-side-authentication#allowed-origins) linked to the API credential.
         /// </summary>
         /// <value>List containing the [allowed origins](https://docs.adyen.com/development-resources/client-side-authentication#allowed-origins) linked to the API credential.</value>
-        [DataMember(Name="allowedOrigins", EmitDefaultValue=false)]
+        [DataMember(Name = "allowedOrigins", EmitDefaultValue = false)]
         public List<AllowedOrigin> AllowedOrigins { get; set; }
 
         /// <summary>
         /// The API key for the API credential that was created.
         /// </summary>
         /// <value>The API key for the API credential that was created.</value>
-        [DataMember(Name="apiKey", EmitDefaultValue=true)]
+        [DataMember(Name = "apiKey", IsRequired = false, EmitDefaultValue = false)]
         public string ApiKey { get; set; }
 
         /// <summary>
         /// Public key used for [client-side authentication](https://docs.adyen.com/development-resources/client-side-authentication). The client key is required for Drop-in and Components integrations.
         /// </summary>
         /// <value>Public key used for [client-side authentication](https://docs.adyen.com/development-resources/client-side-authentication). The client key is required for Drop-in and Components integrations.</value>
-        [DataMember(Name="clientKey", EmitDefaultValue=true)]
+        [DataMember(Name = "clientKey", IsRequired = false, EmitDefaultValue = false)]
         public string ClientKey { get; set; }
 
         /// <summary>
         /// Description of the API credential.
         /// </summary>
         /// <value>Description of the API credential.</value>
-        [DataMember(Name="description", EmitDefaultValue=false)]
+        [DataMember(Name = "description", EmitDefaultValue = false)]
         public string Description { get; set; }
 
         /// <summary>
         /// Unique identifier of the API credential.
         /// </summary>
         /// <value>Unique identifier of the API credential.</value>
-        [DataMember(Name="id", EmitDefaultValue=true)]
+        [DataMember(Name = "id", IsRequired = false, EmitDefaultValue = false)]
         public string Id { get; set; }
 
         /// <summary>
         /// The password for the API credential that was created.
         /// </summary>
         /// <value>The password for the API credential that was created.</value>
-        [DataMember(Name="password", EmitDefaultValue=true)]
+        [DataMember(Name = "password", IsRequired = false, EmitDefaultValue = false)]
         public string Password { get; set; }
 
         /// <summary>
         /// List of [roles](https://docs.adyen.com/development-resources/api-credentials#roles-1) for the API credential.
         /// </summary>
         /// <value>List of [roles](https://docs.adyen.com/development-resources/api-credentials#roles-1) for the API credential.</value>
-        [DataMember(Name="roles", EmitDefaultValue=true)]
+        [DataMember(Name = "roles", IsRequired = false, EmitDefaultValue = false)]
         public List<string> Roles { get; set; }
 
         /// <summary>
         /// The name of the [API credential](https://docs.adyen.com/development-resources/api-credentials), for example **ws@Company.TestCompany**.
         /// </summary>
         /// <value>The name of the [API credential](https://docs.adyen.com/development-resources/api-credentials), for example **ws@Company.TestCompany**.</value>
-        [DataMember(Name="username", EmitDefaultValue=true)]
+        [DataMember(Name = "username", IsRequired = false, EmitDefaultValue = false)]
         public string Username { get; set; }
 
         /// <summary>
@@ -147,7 +149,7 @@ namespace Adyen.Model.Management
         /// <returns>String presentation of the object</returns>
         public override string ToString()
         {
-            var sb = new StringBuilder();
+            StringBuilder sb = new StringBuilder();
             sb.Append("class CreateApiCredentialResponse {\n");
             sb.Append("  Links: ").Append(Links).Append("\n");
             sb.Append("  Active: ").Append(Active).Append("\n");
@@ -191,8 +193,9 @@ namespace Adyen.Model.Management
         public bool Equals(CreateApiCredentialResponse input)
         {
             if (input == null)
+            {
                 return false;
-
+            }
             return 
                 (
                     this.Links == input.Links ||
@@ -201,8 +204,7 @@ namespace Adyen.Model.Management
                 ) && 
                 (
                     this.Active == input.Active ||
-                    (this.Active != null &&
-                    this.Active.Equals(input.Active))
+                    this.Active.Equals(input.Active)
                 ) && 
                 (
                     this.AllowedIpAddresses == input.AllowedIpAddresses ||
@@ -264,44 +266,61 @@ namespace Adyen.Model.Management
             {
                 int hashCode = 41;
                 if (this.Links != null)
-                    hashCode = hashCode * 59 + this.Links.GetHashCode();
-                if (this.Active != null)
-                    hashCode = hashCode * 59 + this.Active.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.Links.GetHashCode();
+                }
+                hashCode = (hashCode * 59) + this.Active.GetHashCode();
                 if (this.AllowedIpAddresses != null)
-                    hashCode = hashCode * 59 + this.AllowedIpAddresses.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.AllowedIpAddresses.GetHashCode();
+                }
                 if (this.AllowedOrigins != null)
-                    hashCode = hashCode * 59 + this.AllowedOrigins.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.AllowedOrigins.GetHashCode();
+                }
                 if (this.ApiKey != null)
-                    hashCode = hashCode * 59 + this.ApiKey.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.ApiKey.GetHashCode();
+                }
                 if (this.ClientKey != null)
-                    hashCode = hashCode * 59 + this.ClientKey.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.ClientKey.GetHashCode();
+                }
                 if (this.Description != null)
-                    hashCode = hashCode * 59 + this.Description.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.Description.GetHashCode();
+                }
                 if (this.Id != null)
-                    hashCode = hashCode * 59 + this.Id.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.Id.GetHashCode();
+                }
                 if (this.Password != null)
-                    hashCode = hashCode * 59 + this.Password.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.Password.GetHashCode();
+                }
                 if (this.Roles != null)
-                    hashCode = hashCode * 59 + this.Roles.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.Roles.GetHashCode();
+                }
                 if (this.Username != null)
-                    hashCode = hashCode * 59 + this.Username.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.Username.GetHashCode();
+                }
                 return hashCode;
             }
         }
-
         /// <summary>
         /// To validate all properties of the instance
         /// </summary>
         /// <param name="validationContext">Validation context</param>
         /// <returns>Validation Result</returns>
-        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+        public IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> Validate(ValidationContext validationContext)
         {
             // Description (string) maxLength
-            if(this.Description != null && this.Description.Length > 50)
+            if (this.Description != null && this.Description.Length > 50)
             {
                 yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for Description, length must be less than 50.", new [] { "Description" });
             }
-
 
             yield break;
         }

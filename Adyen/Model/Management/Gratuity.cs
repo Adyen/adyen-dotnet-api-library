@@ -11,25 +11,27 @@
 */
 
 using System;
-using System.Linq;
-using System.IO;
-using System.Text;
-using System.Text.RegularExpressions;
 using System.Collections;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Linq;
+using System.IO;
 using System.Runtime.Serialization;
+using System.Text;
+using System.Text.RegularExpressions;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
+using Newtonsoft.Json.Linq;
 using System.ComponentModel.DataAnnotations;
+using OpenAPIDateConverter = Adyen.ApiSerialization.OpenAPIDateConverter;
 
 namespace Adyen.Model.Management
 {
     /// <summary>
     /// Gratuity
     /// </summary>
-    [DataContract]
-    public partial class Gratuity :  IEquatable<Gratuity>, IValidatableObject
+    [DataContract(Name = "Gratuity")]
+    public partial class Gratuity : IEquatable<Gratuity>, IValidatableObject
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="Gratuity" /> class.
@@ -50,28 +52,28 @@ namespace Adyen.Model.Management
         /// Indicates whether one of the predefined tipping options is to let the shopper enter a custom tip. If **true**, only three of the other options defined in &#x60;predefinedTipEntries&#x60; are shown.
         /// </summary>
         /// <value>Indicates whether one of the predefined tipping options is to let the shopper enter a custom tip. If **true**, only three of the other options defined in &#x60;predefinedTipEntries&#x60; are shown.</value>
-        [DataMember(Name="allowCustomAmount", EmitDefaultValue=false)]
+        [DataMember(Name = "allowCustomAmount", EmitDefaultValue = false)]
         public bool AllowCustomAmount { get; set; }
 
         /// <summary>
         /// The currency that the tipping settings apply to.
         /// </summary>
         /// <value>The currency that the tipping settings apply to.</value>
-        [DataMember(Name="currency", EmitDefaultValue=false)]
+        [DataMember(Name = "currency", EmitDefaultValue = false)]
         public string Currency { get; set; }
 
         /// <summary>
         /// Tipping options the shopper can choose from if &#x60;usePredefinedTipEntries&#x60; is **true**. The maximum number of predefined options is four, or three plus the option to enter a custom tip. The options can be a mix of:  - A percentage of the transaction amount. Example: **5%** - A tip amount in [minor units](https://docs.adyen.com/development-resources/currency-codes). Example: **500** for a EUR 5 tip.
         /// </summary>
         /// <value>Tipping options the shopper can choose from if &#x60;usePredefinedTipEntries&#x60; is **true**. The maximum number of predefined options is four, or three plus the option to enter a custom tip. The options can be a mix of:  - A percentage of the transaction amount. Example: **5%** - A tip amount in [minor units](https://docs.adyen.com/development-resources/currency-codes). Example: **500** for a EUR 5 tip.</value>
-        [DataMember(Name="predefinedTipEntries", EmitDefaultValue=false)]
+        [DataMember(Name = "predefinedTipEntries", EmitDefaultValue = false)]
         public List<string> PredefinedTipEntries { get; set; }
 
         /// <summary>
         /// Indicates whether the terminal shows a prompt to enter a tip (**false**), or predefined tipping options to choose from (**true**).
         /// </summary>
         /// <value>Indicates whether the terminal shows a prompt to enter a tip (**false**), or predefined tipping options to choose from (**true**).</value>
-        [DataMember(Name="usePredefinedTipEntries", EmitDefaultValue=false)]
+        [DataMember(Name = "usePredefinedTipEntries", EmitDefaultValue = false)]
         public bool UsePredefinedTipEntries { get; set; }
 
         /// <summary>
@@ -80,7 +82,7 @@ namespace Adyen.Model.Management
         /// <returns>String presentation of the object</returns>
         public override string ToString()
         {
-            var sb = new StringBuilder();
+            StringBuilder sb = new StringBuilder();
             sb.Append("class Gratuity {\n");
             sb.Append("  AllowCustomAmount: ").Append(AllowCustomAmount).Append("\n");
             sb.Append("  Currency: ").Append(Currency).Append("\n");
@@ -117,13 +119,13 @@ namespace Adyen.Model.Management
         public bool Equals(Gratuity input)
         {
             if (input == null)
+            {
                 return false;
-
+            }
             return 
                 (
                     this.AllowCustomAmount == input.AllowCustomAmount ||
-                    (this.AllowCustomAmount != null &&
-                    this.AllowCustomAmount.Equals(input.AllowCustomAmount))
+                    this.AllowCustomAmount.Equals(input.AllowCustomAmount)
                 ) && 
                 (
                     this.Currency == input.Currency ||
@@ -138,8 +140,7 @@ namespace Adyen.Model.Management
                 ) && 
                 (
                     this.UsePredefinedTipEntries == input.UsePredefinedTipEntries ||
-                    (this.UsePredefinedTipEntries != null &&
-                    this.UsePredefinedTipEntries.Equals(input.UsePredefinedTipEntries))
+                    this.UsePredefinedTipEntries.Equals(input.UsePredefinedTipEntries)
                 );
         }
 
@@ -152,24 +153,25 @@ namespace Adyen.Model.Management
             unchecked // Overflow is fine, just wrap
             {
                 int hashCode = 41;
-                if (this.AllowCustomAmount != null)
-                    hashCode = hashCode * 59 + this.AllowCustomAmount.GetHashCode();
+                hashCode = (hashCode * 59) + this.AllowCustomAmount.GetHashCode();
                 if (this.Currency != null)
-                    hashCode = hashCode * 59 + this.Currency.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.Currency.GetHashCode();
+                }
                 if (this.PredefinedTipEntries != null)
-                    hashCode = hashCode * 59 + this.PredefinedTipEntries.GetHashCode();
-                if (this.UsePredefinedTipEntries != null)
-                    hashCode = hashCode * 59 + this.UsePredefinedTipEntries.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.PredefinedTipEntries.GetHashCode();
+                }
+                hashCode = (hashCode * 59) + this.UsePredefinedTipEntries.GetHashCode();
                 return hashCode;
             }
         }
-
         /// <summary>
         /// To validate all properties of the instance
         /// </summary>
         /// <param name="validationContext">Validation context</param>
         /// <returns>Validation Result</returns>
-        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+        public IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> Validate(ValidationContext validationContext)
         {
             yield break;
         }

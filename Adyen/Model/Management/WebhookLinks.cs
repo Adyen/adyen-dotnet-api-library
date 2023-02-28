@@ -11,25 +11,27 @@
 */
 
 using System;
-using System.Linq;
-using System.IO;
-using System.Text;
-using System.Text.RegularExpressions;
 using System.Collections;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Linq;
+using System.IO;
 using System.Runtime.Serialization;
+using System.Text;
+using System.Text.RegularExpressions;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
+using Newtonsoft.Json.Linq;
 using System.ComponentModel.DataAnnotations;
+using OpenAPIDateConverter = Adyen.ApiSerialization.OpenAPIDateConverter;
 
 namespace Adyen.Model.Management
 {
     /// <summary>
     /// WebhookLinks
     /// </summary>
-    [DataContract]
-    public partial class WebhookLinks :  IEquatable<WebhookLinks>, IValidatableObject
+    [DataContract(Name = "WebhookLinks")]
+    public partial class WebhookLinks : IEquatable<WebhookLinks>, IValidatableObject
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="WebhookLinks" /> class.
@@ -46,41 +48,41 @@ namespace Adyen.Model.Management
         /// <param name="testWebhook">testWebhook (required).</param>
         public WebhookLinks(LinksElement company = default(LinksElement), LinksElement generateHmac = default(LinksElement), LinksElement merchant = default(LinksElement), LinksElement self = default(LinksElement), LinksElement testWebhook = default(LinksElement))
         {
-            this.Company = company;
             this.GenerateHmac = generateHmac;
-            this.Merchant = merchant;
             this.Self = self;
             this.TestWebhook = testWebhook;
+            this.Company = company;
+            this.Merchant = merchant;
         }
 
         /// <summary>
         /// Gets or Sets Company
         /// </summary>
-        [DataMember(Name="company", EmitDefaultValue=false)]
+        [DataMember(Name = "company", EmitDefaultValue = false)]
         public LinksElement Company { get; set; }
 
         /// <summary>
         /// Gets or Sets GenerateHmac
         /// </summary>
-        [DataMember(Name="generateHmac", EmitDefaultValue=true)]
+        [DataMember(Name = "generateHmac", IsRequired = false, EmitDefaultValue = false)]
         public LinksElement GenerateHmac { get; set; }
 
         /// <summary>
         /// Gets or Sets Merchant
         /// </summary>
-        [DataMember(Name="merchant", EmitDefaultValue=false)]
+        [DataMember(Name = "merchant", EmitDefaultValue = false)]
         public LinksElement Merchant { get; set; }
 
         /// <summary>
         /// Gets or Sets Self
         /// </summary>
-        [DataMember(Name="self", EmitDefaultValue=true)]
+        [DataMember(Name = "self", IsRequired = false, EmitDefaultValue = false)]
         public LinksElement Self { get; set; }
 
         /// <summary>
         /// Gets or Sets TestWebhook
         /// </summary>
-        [DataMember(Name="testWebhook", EmitDefaultValue=true)]
+        [DataMember(Name = "testWebhook", IsRequired = false, EmitDefaultValue = false)]
         public LinksElement TestWebhook { get; set; }
 
         /// <summary>
@@ -89,7 +91,7 @@ namespace Adyen.Model.Management
         /// <returns>String presentation of the object</returns>
         public override string ToString()
         {
-            var sb = new StringBuilder();
+            StringBuilder sb = new StringBuilder();
             sb.Append("class WebhookLinks {\n");
             sb.Append("  Company: ").Append(Company).Append("\n");
             sb.Append("  GenerateHmac: ").Append(GenerateHmac).Append("\n");
@@ -127,8 +129,9 @@ namespace Adyen.Model.Management
         public bool Equals(WebhookLinks input)
         {
             if (input == null)
+            {
                 return false;
-
+            }
             return 
                 (
                     this.Company == input.Company ||
@@ -167,25 +170,34 @@ namespace Adyen.Model.Management
             {
                 int hashCode = 41;
                 if (this.Company != null)
-                    hashCode = hashCode * 59 + this.Company.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.Company.GetHashCode();
+                }
                 if (this.GenerateHmac != null)
-                    hashCode = hashCode * 59 + this.GenerateHmac.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.GenerateHmac.GetHashCode();
+                }
                 if (this.Merchant != null)
-                    hashCode = hashCode * 59 + this.Merchant.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.Merchant.GetHashCode();
+                }
                 if (this.Self != null)
-                    hashCode = hashCode * 59 + this.Self.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.Self.GetHashCode();
+                }
                 if (this.TestWebhook != null)
-                    hashCode = hashCode * 59 + this.TestWebhook.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.TestWebhook.GetHashCode();
+                }
                 return hashCode;
             }
         }
-
         /// <summary>
         /// To validate all properties of the instance
         /// </summary>
         /// <param name="validationContext">Validation context</param>
         /// <returns>Validation Result</returns>
-        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+        public IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> Validate(ValidationContext validationContext)
         {
             yield break;
         }

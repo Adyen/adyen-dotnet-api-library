@@ -12,24 +12,28 @@ output:=target/out
 # Generate models (for each service)
 models: $(services)
 
-BinLookup: spec=BinLookupService-v54
-BinLookup: service=binlookup
+BalanceControl: spec=BalanceControlService-v1
+BalanceControl: service=balanceControlService
+BalancePlatform: spec=BalancePlatformService-v2
+BinLookup: spec=BinLookupService-v52
 Checkout: spec=CheckoutService-v70
 Checkout: service=checkout
 StoredValue: spec=StoredValueService-v46
+StoredValue: service=storedvalue
 PosTerminalManagement: spec=TfmAPIService-v1
 Payments: spec=PaymentService-v68
+Payments: service=payments
 Recurring: spec=RecurringService-v68
 Payouts: spec=PayoutService-v68
 Management: spec=ManagementService-v1
 Management: service=management
 LegalEntityManagement: spec=LegalEntityService-v2
-BalancePlatform: spec=BalancePlatformService-v2
 PlatformsAccount: spec=AccountService-v6
 PlatformsFund: spec=FundService-v6
 PlatformsNotificationConfiguration: spec=NotificationConfigurationService-v6
 PlatformsHostedOnboardingPage: spec=HopService-v6
-Transfer: spec=TransferService-v3
+Transfers: spec=TransferService-v3
+Transfers: service=transfers
 
 $(services): target/spec $(openapi-generator-jar) 
 	rm -rf $(models)/$@ $(output)

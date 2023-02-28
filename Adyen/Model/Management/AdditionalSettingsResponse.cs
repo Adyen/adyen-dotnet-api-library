@@ -11,25 +11,27 @@
 */
 
 using System;
-using System.Linq;
-using System.IO;
-using System.Text;
-using System.Text.RegularExpressions;
 using System.Collections;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Linq;
+using System.IO;
 using System.Runtime.Serialization;
+using System.Text;
+using System.Text.RegularExpressions;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
+using Newtonsoft.Json.Linq;
 using System.ComponentModel.DataAnnotations;
+using OpenAPIDateConverter = Adyen.ApiSerialization.OpenAPIDateConverter;
 
 namespace Adyen.Model.Management
 {
     /// <summary>
     /// AdditionalSettingsResponse
     /// </summary>
-    [DataContract]
-    public partial class AdditionalSettingsResponse :  IEquatable<AdditionalSettingsResponse>, IValidatableObject
+    [DataContract(Name = "AdditionalSettingsResponse")]
+    public partial class AdditionalSettingsResponse : IEquatable<AdditionalSettingsResponse>, IValidatableObject
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="AdditionalSettingsResponse" /> class.
@@ -48,21 +50,21 @@ namespace Adyen.Model.Management
         /// Object containing list of event codes for which the notifcation will not be sent. 
         /// </summary>
         /// <value>Object containing list of event codes for which the notifcation will not be sent. </value>
-        [DataMember(Name="excludeEventCodes", EmitDefaultValue=false)]
+        [DataMember(Name = "excludeEventCodes", EmitDefaultValue = false)]
         public List<string> ExcludeEventCodes { get; set; }
 
         /// <summary>
         /// Object containing list of event codes for which the notifcation will be sent. 
         /// </summary>
         /// <value>Object containing list of event codes for which the notifcation will be sent. </value>
-        [DataMember(Name="includeEventCodes", EmitDefaultValue=false)]
+        [DataMember(Name = "includeEventCodes", EmitDefaultValue = false)]
         public List<string> IncludeEventCodes { get; set; }
 
         /// <summary>
         /// Object containing boolean key-value pairs. The key can be any [standard webhook additional setting](https://docs.adyen.com/development-resources/webhooks/additional-settings), and the value indicates if the setting is enabled. For example, &#x60;captureDelayHours&#x60;: **true** means the standard notifications you get will contain the number of hours remaining until the payment will be captured.
         /// </summary>
         /// <value>Object containing boolean key-value pairs. The key can be any [standard webhook additional setting](https://docs.adyen.com/development-resources/webhooks/additional-settings), and the value indicates if the setting is enabled. For example, &#x60;captureDelayHours&#x60;: **true** means the standard notifications you get will contain the number of hours remaining until the payment will be captured.</value>
-        [DataMember(Name="properties", EmitDefaultValue=false)]
+        [DataMember(Name = "properties", EmitDefaultValue = false)]
         public Dictionary<string, bool> Properties { get; set; }
 
         /// <summary>
@@ -71,7 +73,7 @@ namespace Adyen.Model.Management
         /// <returns>String presentation of the object</returns>
         public override string ToString()
         {
-            var sb = new StringBuilder();
+            StringBuilder sb = new StringBuilder();
             sb.Append("class AdditionalSettingsResponse {\n");
             sb.Append("  ExcludeEventCodes: ").Append(ExcludeEventCodes).Append("\n");
             sb.Append("  IncludeEventCodes: ").Append(IncludeEventCodes).Append("\n");
@@ -107,8 +109,9 @@ namespace Adyen.Model.Management
         public bool Equals(AdditionalSettingsResponse input)
         {
             if (input == null)
+            {
                 return false;
-
+            }
             return 
                 (
                     this.ExcludeEventCodes == input.ExcludeEventCodes ||
@@ -140,21 +143,26 @@ namespace Adyen.Model.Management
             {
                 int hashCode = 41;
                 if (this.ExcludeEventCodes != null)
-                    hashCode = hashCode * 59 + this.ExcludeEventCodes.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.ExcludeEventCodes.GetHashCode();
+                }
                 if (this.IncludeEventCodes != null)
-                    hashCode = hashCode * 59 + this.IncludeEventCodes.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.IncludeEventCodes.GetHashCode();
+                }
                 if (this.Properties != null)
-                    hashCode = hashCode * 59 + this.Properties.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.Properties.GetHashCode();
+                }
                 return hashCode;
             }
         }
-
         /// <summary>
         /// To validate all properties of the instance
         /// </summary>
         /// <param name="validationContext">Validation context</param>
         /// <returns>Validation Result</returns>
-        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+        public IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> Validate(ValidationContext validationContext)
         {
             yield break;
         }

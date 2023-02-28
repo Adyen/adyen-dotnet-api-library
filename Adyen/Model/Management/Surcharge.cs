@@ -11,25 +11,27 @@
 */
 
 using System;
-using System.Linq;
-using System.IO;
-using System.Text;
-using System.Text.RegularExpressions;
 using System.Collections;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Linq;
+using System.IO;
 using System.Runtime.Serialization;
+using System.Text;
+using System.Text.RegularExpressions;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
+using Newtonsoft.Json.Linq;
 using System.ComponentModel.DataAnnotations;
+using OpenAPIDateConverter = Adyen.ApiSerialization.OpenAPIDateConverter;
 
 namespace Adyen.Model.Management
 {
     /// <summary>
     /// Surcharge
     /// </summary>
-    [DataContract]
-    public partial class Surcharge :  IEquatable<Surcharge>, IValidatableObject
+    [DataContract(Name = "Surcharge")]
+    public partial class Surcharge : IEquatable<Surcharge>, IValidatableObject
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="Surcharge" /> class.
@@ -46,14 +48,14 @@ namespace Adyen.Model.Management
         /// Show the surcharge details on the terminal, so the shopper can confirm.
         /// </summary>
         /// <value>Show the surcharge details on the terminal, so the shopper can confirm.</value>
-        [DataMember(Name="askConfirmation", EmitDefaultValue=false)]
+        [DataMember(Name = "askConfirmation", EmitDefaultValue = false)]
         public bool AskConfirmation { get; set; }
 
         /// <summary>
         /// Surcharge fees or percentages for specific payment methods, funding sources (credit or debit), and currencies.
         /// </summary>
         /// <value>Surcharge fees or percentages for specific payment methods, funding sources (credit or debit), and currencies.</value>
-        [DataMember(Name="configurations", EmitDefaultValue=false)]
+        [DataMember(Name = "configurations", EmitDefaultValue = false)]
         public List<ModelConfiguration> Configurations { get; set; }
 
         /// <summary>
@@ -62,7 +64,7 @@ namespace Adyen.Model.Management
         /// <returns>String presentation of the object</returns>
         public override string ToString()
         {
-            var sb = new StringBuilder();
+            StringBuilder sb = new StringBuilder();
             sb.Append("class Surcharge {\n");
             sb.Append("  AskConfirmation: ").Append(AskConfirmation).Append("\n");
             sb.Append("  Configurations: ").Append(Configurations).Append("\n");
@@ -97,13 +99,13 @@ namespace Adyen.Model.Management
         public bool Equals(Surcharge input)
         {
             if (input == null)
+            {
                 return false;
-
+            }
             return 
                 (
                     this.AskConfirmation == input.AskConfirmation ||
-                    (this.AskConfirmation != null &&
-                    this.AskConfirmation.Equals(input.AskConfirmation))
+                    this.AskConfirmation.Equals(input.AskConfirmation)
                 ) && 
                 (
                     this.Configurations == input.Configurations ||
@@ -122,20 +124,20 @@ namespace Adyen.Model.Management
             unchecked // Overflow is fine, just wrap
             {
                 int hashCode = 41;
-                if (this.AskConfirmation != null)
-                    hashCode = hashCode * 59 + this.AskConfirmation.GetHashCode();
+                hashCode = (hashCode * 59) + this.AskConfirmation.GetHashCode();
                 if (this.Configurations != null)
-                    hashCode = hashCode * 59 + this.Configurations.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.Configurations.GetHashCode();
+                }
                 return hashCode;
             }
         }
-
         /// <summary>
         /// To validate all properties of the instance
         /// </summary>
         /// <param name="validationContext">Validation context</param>
         /// <returns>Validation Result</returns>
-        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+        public IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> Validate(ValidationContext validationContext)
         {
             yield break;
         }

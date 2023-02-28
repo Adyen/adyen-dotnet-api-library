@@ -17,7 +17,7 @@ namespace Adyen.Test
         public void Me()
         {
             var client = CreateMockTestClientApiKeyBasedRequestAsync("Mocks/management/me.json");
-            var service = new MyAPICredentialApi(client);
+            var service = new MyAPICredentialService(client);
 
             var response = service.GetApiCredentialDetails();
 
@@ -30,7 +30,7 @@ namespace Adyen.Test
         public void ListMerchantAccounts()
         {
             var client = CreateMockTestClientApiKeyBasedRequestAsync("Mocks/management/list-merchant-accounts.json");
-            var service = new AccountCompanyLevelApi(client);
+            var service = new AccountCompanyLevelService(client);
 
             var response = service.ListMerchantAccounts("ABC123", 1, 10);
 
@@ -45,7 +45,7 @@ namespace Adyen.Test
         public async Task UpdateResource()
         {
             var client = CreateMockTestClientApiKeyBasedRequestAsync("Mocks/management/logo.json");
-            var service = new TerminalSettingsCompanyLevelApi(client);
+            var service = new TerminalSettingsCompanyLevelService(client);
 
             var logo = await service.UpdateTerminalLogoAsync("123ABC", new Logo("base64"), "E355");
 
@@ -61,7 +61,7 @@ namespace Adyen.Test
         public void ListTerminals()
         {
             var client = CreateMockTestClientApiKeyBasedRequestAsync("Mocks/management/list-terminals.json");
-            var service = new TerminalsTerminalLevelApi(client);
+            var service = new TerminalsTerminalLevelService(client);
 
             var terminals = service.ListTerminals(searchQuery: "ABC OR 123", pageSize: 2);
 
