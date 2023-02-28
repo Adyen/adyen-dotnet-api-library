@@ -24,6 +24,7 @@
 using System;
 using System.Linq;
 using System.Net.Http;
+using Adyen.Constants;
 using Adyen.HttpClient;
 using Adyen.Model;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
@@ -135,6 +136,18 @@ namespace Adyen.Test
 
             Assert.IsNotNull(httpWebRequest.Headers.GetValues("Idempotency-Key"));
             Assert.AreEqual(requestOptions.IdempotencyKey, httpWebRequest.Headers.GetValues("Idempotency-Key").FirstOrDefault());
+        }
+        
+        [TestMethod]
+        public void LibraryAnalysisConstantsInHeaderTest()
+        {
+            var client = new HttpClientWrapper(MockPaymentData.CreateConfigMock(), new System.Net.Http.HttpClient());
+            var httpWebRequest = client.GetHttpRequestMessage(_endpoint,"requestBody", null, null);
+
+            Assert.IsNotNull(httpWebRequest.Headers.GetValues(ApiConstants.AdyenLibraryName));
+            Assert.AreEqual(ClientConfig.LibName, httpWebRequest.Headers.GetValues(ApiConstants.AdyenLibraryName).FirstOrDefault());
+            Assert.IsNotNull(httpWebRequest.Headers.GetValues(ApiConstants.AdyenLibraryVersion));
+            Assert.AreEqual(ClientConfig.LibVersion, httpWebRequest.Headers.GetValues(ApiConstants.AdyenLibraryVersion).FirstOrDefault());
         }
     }
 }
