@@ -107,6 +107,7 @@ namespace Adyen
                     Config.LegalEntityManagementEndpoint = ClientConfig.LegalEntityManagementEndpointTest;
                     Config.StoredValueEndpoint = ClientConfig.StoredValueEndpointTest;
                     Config.ManagementEndpoint = ClientConfig.ManagementEndpointTest;
+                    Config.TransfersEndpoint = ClientConfig.TransfersEndpointTest;
                     break;
                 case Environment.Live:
                     if (string.IsNullOrEmpty(liveEndpointUrlPrefix))
@@ -122,6 +123,7 @@ namespace Adyen
                     Config.LegalEntityManagementEndpoint = ClientConfig.LegalEntityManagementEndpointLive;
                     Config.StoredValueEndpoint = ClientConfig.StoredValueEndpointLive;
                     Config.ManagementEndpoint = ClientConfig.ManagementEndpointLive;
+                    Config.TransfersEndpoint = ClientConfig.TransfersEndpointLive;
                     break;
             }
         }

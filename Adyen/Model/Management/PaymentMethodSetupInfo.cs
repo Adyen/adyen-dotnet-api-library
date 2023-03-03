@@ -11,25 +11,27 @@
 */
 
 using System;
-using System.Linq;
-using System.IO;
-using System.Text;
-using System.Text.RegularExpressions;
 using System.Collections;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Linq;
+using System.IO;
 using System.Runtime.Serialization;
+using System.Text;
+using System.Text.RegularExpressions;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
+using Newtonsoft.Json.Linq;
 using System.ComponentModel.DataAnnotations;
+using OpenAPIDateConverter = Adyen.ApiSerialization.OpenAPIDateConverter;
 
 namespace Adyen.Model.Management
 {
     /// <summary>
     /// PaymentMethodSetupInfo
     /// </summary>
-    [DataContract]
-    public partial class PaymentMethodSetupInfo :  IEquatable<PaymentMethodSetupInfo>, IValidatableObject
+    [DataContract(Name = "PaymentMethodSetupInfo")]
+    public partial class PaymentMethodSetupInfo : IEquatable<PaymentMethodSetupInfo>, IValidatableObject
     {
         /// <summary>
         /// The sales channel. Required if the merchant account does not have a sales channel. When you provide this field, it overrides the default sales channel set on the merchant account.  Possible values: **eCommerce**, **pos**, **contAuth**, and **moto**. 
@@ -64,11 +66,12 @@ namespace Adyen.Model.Management
 
         }
 
+
         /// <summary>
         /// The sales channel. Required if the merchant account does not have a sales channel. When you provide this field, it overrides the default sales channel set on the merchant account.  Possible values: **eCommerce**, **pos**, **contAuth**, and **moto**. 
         /// </summary>
         /// <value>The sales channel. Required if the merchant account does not have a sales channel. When you provide this field, it overrides the default sales channel set on the merchant account.  Possible values: **eCommerce**, **pos**, **contAuth**, and **moto**. </value>
-        [DataMember(Name="shopperInteraction", EmitDefaultValue=false)]
+        [DataMember(Name = "shopperInteraction", EmitDefaultValue = false)]
         public ShopperInteractionEnum? ShopperInteraction { get; set; }
         /// <summary>
         /// Payment method [variant](https://docs.adyen.com/development-resources/paymentmethodvariant#management-api).
@@ -150,10 +153,10 @@ namespace Adyen.Model.Management
             EbankingFI = 12,
 
             /// <summary>
-            /// Enum Eftposaustralia for value: eftpos_australia
+            /// Enum EftposAustralia for value: eftpos_australia
             /// </summary>
             [EnumMember(Value = "eftpos_australia")]
-            Eftposaustralia = 13,
+            EftposAustralia = 13,
 
             /// <summary>
             /// Enum Elo for value: elo
@@ -210,10 +213,10 @@ namespace Adyen.Model.Management
             Ideal = 22,
 
             /// <summary>
-            /// Enum Interaccard for value: interac_card
+            /// Enum InteracCard for value: interac_card
             /// </summary>
             [EnumMember(Value = "interac_card")]
-            Interaccard = 23,
+            InteracCard = 23,
 
             /// <summary>
             /// Enum Jcb for value: jcb
@@ -228,16 +231,16 @@ namespace Adyen.Model.Management
             Klarna = 25,
 
             /// <summary>
-            /// Enum Klarnaaccount for value: klarna_account
+            /// Enum KlarnaAccount for value: klarna_account
             /// </summary>
             [EnumMember(Value = "klarna_account")]
-            Klarnaaccount = 26,
+            KlarnaAccount = 26,
 
             /// <summary>
-            /// Enum Klarnapaynow for value: klarna_paynow
+            /// Enum KlarnaPaynow for value: klarna_paynow
             /// </summary>
             [EnumMember(Value = "klarna_paynow")]
-            Klarnapaynow = 27,
+            KlarnaPaynow = 27,
 
             /// <summary>
             /// Enum Maestro for value: maestro
@@ -330,18 +333,19 @@ namespace Adyen.Model.Management
             Wechatpay = 42,
 
             /// <summary>
-            /// Enum Wechatpaypos for value: wechatpay_pos
+            /// Enum WechatpayPos for value: wechatpay_pos
             /// </summary>
             [EnumMember(Value = "wechatpay_pos")]
-            Wechatpaypos = 43
+            WechatpayPos = 43
 
         }
+
 
         /// <summary>
         /// Payment method [variant](https://docs.adyen.com/development-resources/paymentmethodvariant#management-api).
         /// </summary>
         /// <value>Payment method [variant](https://docs.adyen.com/development-resources/paymentmethodvariant#management-api).</value>
-        [DataMember(Name="type", EmitDefaultValue=false)]
+        [DataMember(Name = "type", EmitDefaultValue = false)]
         public TypeEnum? Type { get; set; }
         /// <summary>
         /// Initializes a new instance of the <see cref="PaymentMethodSetupInfo" /> class.
@@ -389,106 +393,104 @@ namespace Adyen.Model.Management
         /// <summary>
         /// Gets or Sets ApplePay
         /// </summary>
-        [DataMember(Name="applePay", EmitDefaultValue=false)]
+        [DataMember(Name = "applePay", EmitDefaultValue = false)]
         public ApplePayInfo ApplePay { get; set; }
 
         /// <summary>
         /// Gets or Sets Bcmc
         /// </summary>
-        [DataMember(Name="bcmc", EmitDefaultValue=false)]
+        [DataMember(Name = "bcmc", EmitDefaultValue = false)]
         public BcmcInfo Bcmc { get; set; }
 
         /// <summary>
         /// The unique identifier of the business line.
         /// </summary>
         /// <value>The unique identifier of the business line.</value>
-        [DataMember(Name="businessLineId", EmitDefaultValue=false)]
+        [DataMember(Name = "businessLineId", EmitDefaultValue = false)]
         public string BusinessLineId { get; set; }
 
         /// <summary>
         /// Gets or Sets CartesBancaires
         /// </summary>
-        [DataMember(Name="cartesBancaires", EmitDefaultValue=false)]
+        [DataMember(Name = "cartesBancaires", EmitDefaultValue = false)]
         public CartesBancairesInfo CartesBancaires { get; set; }
 
         /// <summary>
         /// The list of countries where a payment method is available. By default, all countries supported by the payment method.
         /// </summary>
         /// <value>The list of countries where a payment method is available. By default, all countries supported by the payment method.</value>
-        [DataMember(Name="countries", EmitDefaultValue=false)]
+        [DataMember(Name = "countries", EmitDefaultValue = false)]
         public List<string> Countries { get; set; }
 
         /// <summary>
         /// The list of currencies that a payment method supports. By default, all currencies supported by the payment method.
         /// </summary>
         /// <value>The list of currencies that a payment method supports. By default, all currencies supported by the payment method.</value>
-        [DataMember(Name="currencies", EmitDefaultValue=false)]
+        [DataMember(Name = "currencies", EmitDefaultValue = false)]
         public List<string> Currencies { get; set; }
 
         /// <summary>
         /// The list of custom routing flags to route payment to the intended acquirer.
         /// </summary>
         /// <value>The list of custom routing flags to route payment to the intended acquirer.</value>
-        [DataMember(Name="customRoutingFlags", EmitDefaultValue=false)]
+        [DataMember(Name = "customRoutingFlags", EmitDefaultValue = false)]
         public List<string> CustomRoutingFlags { get; set; }
 
         /// <summary>
         /// Gets or Sets GiroPay
         /// </summary>
-        [DataMember(Name="giroPay", EmitDefaultValue=false)]
+        [DataMember(Name = "giroPay", EmitDefaultValue = false)]
         public GiroPayInfo GiroPay { get; set; }
 
         /// <summary>
         /// Gets or Sets GooglePay
         /// </summary>
-        [DataMember(Name="googlePay", EmitDefaultValue=false)]
+        [DataMember(Name = "googlePay", EmitDefaultValue = false)]
         public GooglePayInfo GooglePay { get; set; }
 
         /// <summary>
         /// Gets or Sets Klarna
         /// </summary>
-        [DataMember(Name="klarna", EmitDefaultValue=false)]
+        [DataMember(Name = "klarna", EmitDefaultValue = false)]
         public KlarnaInfo Klarna { get; set; }
 
         /// <summary>
         /// Gets or Sets MealVoucherFR
         /// </summary>
-        [DataMember(Name="mealVoucher_FR", EmitDefaultValue=false)]
+        [DataMember(Name = "mealVoucher_FR", EmitDefaultValue = false)]
         public MealVoucherFRInfo MealVoucherFR { get; set; }
 
         /// <summary>
         /// Gets or Sets Paypal
         /// </summary>
-        [DataMember(Name="paypal", EmitDefaultValue=false)]
+        [DataMember(Name = "paypal", EmitDefaultValue = false)]
         public PayPalInfo Paypal { get; set; }
 
         /// <summary>
         /// Your reference for the payment method. Supported characters a-z, A-Z, 0-9.
         /// </summary>
         /// <value>Your reference for the payment method. Supported characters a-z, A-Z, 0-9.</value>
-        [DataMember(Name="reference", EmitDefaultValue=false)]
+        [DataMember(Name = "reference", EmitDefaultValue = false)]
         public string Reference { get; set; }
-
 
         /// <summary>
         /// Gets or Sets Sofort
         /// </summary>
-        [DataMember(Name="sofort", EmitDefaultValue=false)]
+        [DataMember(Name = "sofort", EmitDefaultValue = false)]
         public SofortInfo Sofort { get; set; }
 
         /// <summary>
         /// The ID of the [store](https://docs.adyen.com/api-explorer/#/ManagementService/latest/post/stores__resParam_id), if any.
         /// </summary>
         /// <value>The ID of the [store](https://docs.adyen.com/api-explorer/#/ManagementService/latest/post/stores__resParam_id), if any.</value>
-        [DataMember(Name="storeId", EmitDefaultValue=false)]
+        [DataMember(Name = "storeId", EmitDefaultValue = false)]
         public string StoreId { get; set; }
 
         /// <summary>
         /// Gets or Sets Swish
         /// </summary>
-        [DataMember(Name="swish", EmitDefaultValue=false)]
+        [DataMember(Name = "swish", EmitDefaultValue = false)]
         public SwishInfo Swish { get; set; }
-
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -496,7 +498,7 @@ namespace Adyen.Model.Management
         /// <returns>String presentation of the object</returns>
         public override string ToString()
         {
-            var sb = new StringBuilder();
+            StringBuilder sb = new StringBuilder();
             sb.Append("class PaymentMethodSetupInfo {\n");
             sb.Append("  ApplePay: ").Append(ApplePay).Append("\n");
             sb.Append("  Bcmc: ").Append(Bcmc).Append("\n");
@@ -547,8 +549,9 @@ namespace Adyen.Model.Management
         public bool Equals(PaymentMethodSetupInfo input)
         {
             if (input == null)
+            {
                 return false;
-
+            }
             return 
                 (
                     this.ApplePay == input.ApplePay ||
@@ -620,8 +623,7 @@ namespace Adyen.Model.Management
                 ) && 
                 (
                     this.ShopperInteraction == input.ShopperInteraction ||
-                    (this.ShopperInteraction != null &&
-                    this.ShopperInteraction.Equals(input.ShopperInteraction))
+                    this.ShopperInteraction.Equals(input.ShopperInteraction)
                 ) && 
                 (
                     this.Sofort == input.Sofort ||
@@ -640,8 +642,7 @@ namespace Adyen.Model.Management
                 ) && 
                 (
                     this.Type == input.Type ||
-                    (this.Type != null &&
-                    this.Type.Equals(input.Type))
+                    this.Type.Equals(input.Type)
                 );
         }
 
@@ -655,58 +656,86 @@ namespace Adyen.Model.Management
             {
                 int hashCode = 41;
                 if (this.ApplePay != null)
-                    hashCode = hashCode * 59 + this.ApplePay.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.ApplePay.GetHashCode();
+                }
                 if (this.Bcmc != null)
-                    hashCode = hashCode * 59 + this.Bcmc.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.Bcmc.GetHashCode();
+                }
                 if (this.BusinessLineId != null)
-                    hashCode = hashCode * 59 + this.BusinessLineId.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.BusinessLineId.GetHashCode();
+                }
                 if (this.CartesBancaires != null)
-                    hashCode = hashCode * 59 + this.CartesBancaires.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.CartesBancaires.GetHashCode();
+                }
                 if (this.Countries != null)
-                    hashCode = hashCode * 59 + this.Countries.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.Countries.GetHashCode();
+                }
                 if (this.Currencies != null)
-                    hashCode = hashCode * 59 + this.Currencies.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.Currencies.GetHashCode();
+                }
                 if (this.CustomRoutingFlags != null)
-                    hashCode = hashCode * 59 + this.CustomRoutingFlags.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.CustomRoutingFlags.GetHashCode();
+                }
                 if (this.GiroPay != null)
-                    hashCode = hashCode * 59 + this.GiroPay.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.GiroPay.GetHashCode();
+                }
                 if (this.GooglePay != null)
-                    hashCode = hashCode * 59 + this.GooglePay.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.GooglePay.GetHashCode();
+                }
                 if (this.Klarna != null)
-                    hashCode = hashCode * 59 + this.Klarna.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.Klarna.GetHashCode();
+                }
                 if (this.MealVoucherFR != null)
-                    hashCode = hashCode * 59 + this.MealVoucherFR.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.MealVoucherFR.GetHashCode();
+                }
                 if (this.Paypal != null)
-                    hashCode = hashCode * 59 + this.Paypal.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.Paypal.GetHashCode();
+                }
                 if (this.Reference != null)
-                    hashCode = hashCode * 59 + this.Reference.GetHashCode();
-                if (this.ShopperInteraction != null)
-                    hashCode = hashCode * 59 + this.ShopperInteraction.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.Reference.GetHashCode();
+                }
+                hashCode = (hashCode * 59) + this.ShopperInteraction.GetHashCode();
                 if (this.Sofort != null)
-                    hashCode = hashCode * 59 + this.Sofort.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.Sofort.GetHashCode();
+                }
                 if (this.StoreId != null)
-                    hashCode = hashCode * 59 + this.StoreId.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.StoreId.GetHashCode();
+                }
                 if (this.Swish != null)
-                    hashCode = hashCode * 59 + this.Swish.GetHashCode();
-                if (this.Type != null)
-                    hashCode = hashCode * 59 + this.Type.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.Swish.GetHashCode();
+                }
+                hashCode = (hashCode * 59) + this.Type.GetHashCode();
                 return hashCode;
             }
         }
-
         /// <summary>
         /// To validate all properties of the instance
         /// </summary>
         /// <param name="validationContext">Validation context</param>
         /// <returns>Validation Result</returns>
-        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+        public IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> Validate(ValidationContext validationContext)
         {
             // Reference (string) maxLength
-            if(this.Reference != null && this.Reference.Length > 150)
+            if (this.Reference != null && this.Reference.Length > 150)
             {
                 yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for Reference, length must be less than 150.", new [] { "Reference" });
             }
-
 
             yield break;
         }

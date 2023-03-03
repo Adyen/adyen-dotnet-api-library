@@ -11,25 +11,27 @@
 */
 
 using System;
-using System.Linq;
-using System.IO;
-using System.Text;
-using System.Text.RegularExpressions;
 using System.Collections;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Linq;
+using System.IO;
 using System.Runtime.Serialization;
+using System.Text;
+using System.Text.RegularExpressions;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
+using Newtonsoft.Json.Linq;
 using System.ComponentModel.DataAnnotations;
+using OpenAPIDateConverter = Adyen.ApiSerialization.OpenAPIDateConverter;
 
 namespace Adyen.Model.Management
 {
     /// <summary>
     /// Profile
     /// </summary>
-    [DataContract]
-    public partial class Profile :  IEquatable<Profile>, IValidatableObject
+    [DataContract(Name = "Profile")]
+    public partial class Profile : IEquatable<Profile>, IValidatableObject
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="Profile" /> class.
@@ -57,11 +59,13 @@ namespace Adyen.Model.Management
         /// <param name="psk">For &#x60;authType&#x60; **wpa-psk or **wpa2-psk**. The password to the wireless network..</param>
         /// <param name="ssid">The name of the wireless network. (required).</param>
         /// <param name="wsec">The type of encryption. Possible values: **auto**, **ccmp** (recommended), **tkip** (required).</param>
-        public Profile(string authType = default(string), bool autoWifi = default(bool), string bssType = default(string), int channel = default(int), bool defaultProfile = default(bool), string eap = default(string), File eapCaCert = default(File), File eapClientCert = default(File), File eapClientKey = default(File), string eapClientPwd = default(string), string eapIdentity = default(string), File eapIntermediateCert = default(File), string eapPwd = default(string), bool hiddenSsid = default(bool), string name = default(string), string psk = default(string), string ssid = default(string), string wsec = default(string))
+        public Profile(string authType = default(string), bool autoWifi = default(bool), string bssType = default(string), int? channel = default(int?), bool defaultProfile = default(bool), string eap = default(string), File eapCaCert = default(File), File eapClientCert = default(File), File eapClientKey = default(File), string eapClientPwd = default(string), string eapIdentity = default(string), File eapIntermediateCert = default(File), string eapPwd = default(string), bool hiddenSsid = default(bool), string name = default(string), string psk = default(string), string ssid = default(string), string wsec = default(string))
         {
             this.AuthType = authType;
-            this.AutoWifi = autoWifi;
             this.BssType = bssType;
+            this.Ssid = ssid;
+            this.Wsec = wsec;
+            this.AutoWifi = autoWifi;
             this.Channel = channel;
             this.DefaultProfile = defaultProfile;
             this.Eap = eap;
@@ -75,130 +79,128 @@ namespace Adyen.Model.Management
             this.HiddenSsid = hiddenSsid;
             this.Name = name;
             this.Psk = psk;
-            this.Ssid = ssid;
-            this.Wsec = wsec;
         }
 
         /// <summary>
         /// The type of Wi-Fi network. Possible values: **wpa-psk**, **wpa2-psk**, **wpa-eap**, **wpa2-eap**.
         /// </summary>
         /// <value>The type of Wi-Fi network. Possible values: **wpa-psk**, **wpa2-psk**, **wpa-eap**, **wpa2-eap**.</value>
-        [DataMember(Name="authType", EmitDefaultValue=true)]
+        [DataMember(Name = "authType", IsRequired = false, EmitDefaultValue = false)]
         public string AuthType { get; set; }
 
         /// <summary>
         /// Indicates whether to automatically select the best authentication method available. Does not work on older terminal models.
         /// </summary>
         /// <value>Indicates whether to automatically select the best authentication method available. Does not work on older terminal models.</value>
-        [DataMember(Name="autoWifi", EmitDefaultValue=false)]
+        [DataMember(Name = "autoWifi", EmitDefaultValue = false)]
         public bool AutoWifi { get; set; }
 
         /// <summary>
         /// Use **infra** for infrastructure-based networks. This applies to most networks. Use **adhoc** only if the communication is p2p-based between base stations.
         /// </summary>
         /// <value>Use **infra** for infrastructure-based networks. This applies to most networks. Use **adhoc** only if the communication is p2p-based between base stations.</value>
-        [DataMember(Name="bssType", EmitDefaultValue=true)]
+        [DataMember(Name = "bssType", IsRequired = false, EmitDefaultValue = false)]
         public string BssType { get; set; }
 
         /// <summary>
         /// The channel number of the Wi-Fi network. The recommended setting is **0** for automatic channel selection.
         /// </summary>
         /// <value>The channel number of the Wi-Fi network. The recommended setting is **0** for automatic channel selection.</value>
-        [DataMember(Name="channel", EmitDefaultValue=false)]
-        public int Channel { get; set; }
+        [DataMember(Name = "channel", EmitDefaultValue = false)]
+        public int? Channel { get; set; }
 
         /// <summary>
         /// Indicates whether this is your preferred wireless network. If **true**, the terminal will try connecting to this network first.
         /// </summary>
         /// <value>Indicates whether this is your preferred wireless network. If **true**, the terminal will try connecting to this network first.</value>
-        [DataMember(Name="defaultProfile", EmitDefaultValue=false)]
+        [DataMember(Name = "defaultProfile", EmitDefaultValue = false)]
         public bool DefaultProfile { get; set; }
 
         /// <summary>
         /// For &#x60;authType&#x60; **wpa-eap** or **wpa2-eap**. Possible values: **tls**, **peap**, **leap**, **fast**
         /// </summary>
         /// <value>For &#x60;authType&#x60; **wpa-eap** or **wpa2-eap**. Possible values: **tls**, **peap**, **leap**, **fast**</value>
-        [DataMember(Name="eap", EmitDefaultValue=false)]
+        [DataMember(Name = "eap", EmitDefaultValue = false)]
         public string Eap { get; set; }
 
         /// <summary>
         /// Gets or Sets EapCaCert
         /// </summary>
-        [DataMember(Name="eapCaCert", EmitDefaultValue=false)]
+        [DataMember(Name = "eapCaCert", EmitDefaultValue = false)]
         public File EapCaCert { get; set; }
 
         /// <summary>
         /// Gets or Sets EapClientCert
         /// </summary>
-        [DataMember(Name="eapClientCert", EmitDefaultValue=false)]
+        [DataMember(Name = "eapClientCert", EmitDefaultValue = false)]
         public File EapClientCert { get; set; }
 
         /// <summary>
         /// Gets or Sets EapClientKey
         /// </summary>
-        [DataMember(Name="eapClientKey", EmitDefaultValue=false)]
+        [DataMember(Name = "eapClientKey", EmitDefaultValue = false)]
         public File EapClientKey { get; set; }
 
         /// <summary>
         /// For &#x60;eap&#x60; **tls**. The password of the RSA key file, if that file is password-protected.
         /// </summary>
         /// <value>For &#x60;eap&#x60; **tls**. The password of the RSA key file, if that file is password-protected.</value>
-        [DataMember(Name="eapClientPwd", EmitDefaultValue=false)]
+        [DataMember(Name = "eapClientPwd", EmitDefaultValue = false)]
         public string EapClientPwd { get; set; }
 
         /// <summary>
         /// For &#x60;authType&#x60; **wpa-eap** or **wpa2-eap**. The EAP-PEAP username from your MS-CHAP account. Must match the configuration of your RADIUS server.
         /// </summary>
         /// <value>For &#x60;authType&#x60; **wpa-eap** or **wpa2-eap**. The EAP-PEAP username from your MS-CHAP account. Must match the configuration of your RADIUS server.</value>
-        [DataMember(Name="eapIdentity", EmitDefaultValue=false)]
+        [DataMember(Name = "eapIdentity", EmitDefaultValue = false)]
         public string EapIdentity { get; set; }
 
         /// <summary>
         /// Gets or Sets EapIntermediateCert
         /// </summary>
-        [DataMember(Name="eapIntermediateCert", EmitDefaultValue=false)]
+        [DataMember(Name = "eapIntermediateCert", EmitDefaultValue = false)]
         public File EapIntermediateCert { get; set; }
 
         /// <summary>
         /// For &#x60;eap&#x60; **peap**. The EAP-PEAP password from your MS-CHAP account. Must match the configuration of your RADIUS server.
         /// </summary>
         /// <value>For &#x60;eap&#x60; **peap**. The EAP-PEAP password from your MS-CHAP account. Must match the configuration of your RADIUS server.</value>
-        [DataMember(Name="eapPwd", EmitDefaultValue=false)]
+        [DataMember(Name = "eapPwd", EmitDefaultValue = false)]
         public string EapPwd { get; set; }
 
         /// <summary>
         /// Indicates if the network doesn&#39;t broadcast its SSID. Mandatory for Android terminals, because these terminals rely on this setting to be able to connect to any network.
         /// </summary>
         /// <value>Indicates if the network doesn&#39;t broadcast its SSID. Mandatory for Android terminals, because these terminals rely on this setting to be able to connect to any network.</value>
-        [DataMember(Name="hiddenSsid", EmitDefaultValue=false)]
+        [DataMember(Name = "hiddenSsid", EmitDefaultValue = false)]
         public bool HiddenSsid { get; set; }
 
         /// <summary>
         /// Your name for the Wi-Fi profile.
         /// </summary>
         /// <value>Your name for the Wi-Fi profile.</value>
-        [DataMember(Name="name", EmitDefaultValue=false)]
+        [DataMember(Name = "name", EmitDefaultValue = false)]
         public string Name { get; set; }
 
         /// <summary>
         /// For &#x60;authType&#x60; **wpa-psk or **wpa2-psk**. The password to the wireless network.
         /// </summary>
         /// <value>For &#x60;authType&#x60; **wpa-psk or **wpa2-psk**. The password to the wireless network.</value>
-        [DataMember(Name="psk", EmitDefaultValue=false)]
+        [DataMember(Name = "psk", EmitDefaultValue = false)]
         public string Psk { get; set; }
 
         /// <summary>
         /// The name of the wireless network.
         /// </summary>
         /// <value>The name of the wireless network.</value>
-        [DataMember(Name="ssid", EmitDefaultValue=true)]
+        [DataMember(Name = "ssid", IsRequired = false, EmitDefaultValue = false)]
         public string Ssid { get; set; }
 
         /// <summary>
         /// The type of encryption. Possible values: **auto**, **ccmp** (recommended), **tkip**
         /// </summary>
         /// <value>The type of encryption. Possible values: **auto**, **ccmp** (recommended), **tkip**</value>
-        [DataMember(Name="wsec", EmitDefaultValue=true)]
+        [DataMember(Name = "wsec", IsRequired = false, EmitDefaultValue = false)]
         public string Wsec { get; set; }
 
         /// <summary>
@@ -207,7 +209,7 @@ namespace Adyen.Model.Management
         /// <returns>String presentation of the object</returns>
         public override string ToString()
         {
-            var sb = new StringBuilder();
+            StringBuilder sb = new StringBuilder();
             sb.Append("class Profile {\n");
             sb.Append("  AuthType: ").Append(AuthType).Append("\n");
             sb.Append("  AutoWifi: ").Append(AutoWifi).Append("\n");
@@ -258,8 +260,9 @@ namespace Adyen.Model.Management
         public bool Equals(Profile input)
         {
             if (input == null)
+            {
                 return false;
-
+            }
             return 
                 (
                     this.AuthType == input.AuthType ||
@@ -268,8 +271,7 @@ namespace Adyen.Model.Management
                 ) && 
                 (
                     this.AutoWifi == input.AutoWifi ||
-                    (this.AutoWifi != null &&
-                    this.AutoWifi.Equals(input.AutoWifi))
+                    this.AutoWifi.Equals(input.AutoWifi)
                 ) && 
                 (
                     this.BssType == input.BssType ||
@@ -278,13 +280,11 @@ namespace Adyen.Model.Management
                 ) && 
                 (
                     this.Channel == input.Channel ||
-                    (this.Channel != null &&
-                    this.Channel.Equals(input.Channel))
+                    this.Channel.Equals(input.Channel)
                 ) && 
                 (
                     this.DefaultProfile == input.DefaultProfile ||
-                    (this.DefaultProfile != null &&
-                    this.DefaultProfile.Equals(input.DefaultProfile))
+                    this.DefaultProfile.Equals(input.DefaultProfile)
                 ) && 
                 (
                     this.Eap == input.Eap ||
@@ -328,8 +328,7 @@ namespace Adyen.Model.Management
                 ) && 
                 (
                     this.HiddenSsid == input.HiddenSsid ||
-                    (this.HiddenSsid != null &&
-                    this.HiddenSsid.Equals(input.HiddenSsid))
+                    this.HiddenSsid.Equals(input.HiddenSsid)
                 ) && 
                 (
                     this.Name == input.Name ||
@@ -363,51 +362,74 @@ namespace Adyen.Model.Management
             {
                 int hashCode = 41;
                 if (this.AuthType != null)
-                    hashCode = hashCode * 59 + this.AuthType.GetHashCode();
-                if (this.AutoWifi != null)
-                    hashCode = hashCode * 59 + this.AutoWifi.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.AuthType.GetHashCode();
+                }
+                hashCode = (hashCode * 59) + this.AutoWifi.GetHashCode();
                 if (this.BssType != null)
-                    hashCode = hashCode * 59 + this.BssType.GetHashCode();
-                if (this.Channel != null)
-                    hashCode = hashCode * 59 + this.Channel.GetHashCode();
-                if (this.DefaultProfile != null)
-                    hashCode = hashCode * 59 + this.DefaultProfile.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.BssType.GetHashCode();
+                }
+                hashCode = (hashCode * 59) + this.Channel.GetHashCode();
+                hashCode = (hashCode * 59) + this.DefaultProfile.GetHashCode();
                 if (this.Eap != null)
-                    hashCode = hashCode * 59 + this.Eap.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.Eap.GetHashCode();
+                }
                 if (this.EapCaCert != null)
-                    hashCode = hashCode * 59 + this.EapCaCert.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.EapCaCert.GetHashCode();
+                }
                 if (this.EapClientCert != null)
-                    hashCode = hashCode * 59 + this.EapClientCert.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.EapClientCert.GetHashCode();
+                }
                 if (this.EapClientKey != null)
-                    hashCode = hashCode * 59 + this.EapClientKey.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.EapClientKey.GetHashCode();
+                }
                 if (this.EapClientPwd != null)
-                    hashCode = hashCode * 59 + this.EapClientPwd.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.EapClientPwd.GetHashCode();
+                }
                 if (this.EapIdentity != null)
-                    hashCode = hashCode * 59 + this.EapIdentity.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.EapIdentity.GetHashCode();
+                }
                 if (this.EapIntermediateCert != null)
-                    hashCode = hashCode * 59 + this.EapIntermediateCert.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.EapIntermediateCert.GetHashCode();
+                }
                 if (this.EapPwd != null)
-                    hashCode = hashCode * 59 + this.EapPwd.GetHashCode();
-                if (this.HiddenSsid != null)
-                    hashCode = hashCode * 59 + this.HiddenSsid.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.EapPwd.GetHashCode();
+                }
+                hashCode = (hashCode * 59) + this.HiddenSsid.GetHashCode();
                 if (this.Name != null)
-                    hashCode = hashCode * 59 + this.Name.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.Name.GetHashCode();
+                }
                 if (this.Psk != null)
-                    hashCode = hashCode * 59 + this.Psk.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.Psk.GetHashCode();
+                }
                 if (this.Ssid != null)
-                    hashCode = hashCode * 59 + this.Ssid.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.Ssid.GetHashCode();
+                }
                 if (this.Wsec != null)
-                    hashCode = hashCode * 59 + this.Wsec.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.Wsec.GetHashCode();
+                }
                 return hashCode;
             }
         }
-
         /// <summary>
         /// To validate all properties of the instance
         /// </summary>
         /// <param name="validationContext">Validation context</param>
         /// <returns>Validation Result</returns>
-        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+        public IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> Validate(ValidationContext validationContext)
         {
             yield break;
         }

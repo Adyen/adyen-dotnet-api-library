@@ -23,6 +23,7 @@ using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
 using Newtonsoft.Json.Linq;
 using System.ComponentModel.DataAnnotations;
+using OpenAPIDateConverter = Adyen.ApiSerialization.OpenAPIDateConverter;
 
 namespace Adyen.Model.Payments
 {
@@ -185,6 +186,7 @@ namespace Adyen.Model.Payments
         /// <param name="fundSource">fundSource.</param>
         /// <param name="fundingSource">The funding source that should be used when multiple sources are available. For Brazilian combo cards, by default the funding source is credit. To use debit, set this value to **debit**..</param>
         /// <param name="installments">installments.</param>
+        /// <param name="localizedShopperStatement">This field allows merchants to use dynamic shopper statement in local character sets. The local shopper statement field can be supplied in markets where localized merchant descriptors are used. Currently, Adyen only supports this in the Japanese market .The available character sets at the moment are: * Processing in Japan: **ja-Kana** The character set **ja-Kana** supports UTF-8 based Katakana and alphanumeric and special characters. Merchants should send the Katakana shopperStatement in full-width characters.  An example request would be: &gt; {   \&quot;shopperStatement\&quot; : \&quot;ADYEN - SELLER-A\&quot;,   \&quot;localizedShopperStatement\&quot; : {     \&quot;ja-Kana\&quot; : \&quot;ADYEN - セラーA\&quot;   } } We recommend merchants to always supply the field localizedShopperStatement in addition to the field shopperStatement.It is issuer dependent whether the localized shopper statement field is supported. In the case of non-domestic transactions (e.g. US-issued cards processed in JP) the field &#x60;shopperStatement&#x60; is used to modify the statement of the shopper. Adyen handles the complexity of ensuring the correct descriptors are assigned..</param>
         /// <param name="mandate">mandate.</param>
         /// <param name="mcc">The [merchant category code](https://en.wikipedia.org/wiki/Merchant_category_code) (MCC) is a four-digit number, which relates to a particular market segment. This code reflects the predominant activity that is conducted by the merchant..</param>
         /// <param name="merchantAccount">The merchant account identifier, with which you want to process the transaction. (required).</param>
@@ -194,6 +196,7 @@ namespace Adyen.Model.Payments
         /// <param name="mpiData">mpiData.</param>
         /// <param name="nationality">The two-character country code of the shopper&#39;s nationality..</param>
         /// <param name="orderReference">When you are doing multiple partial (gift card) payments, this is the &#x60;pspReference&#x60; of the first payment. We use this to link the multiple payments to each other. As your own reference for linking multiple payments, use the &#x60;merchantOrderReference&#x60;instead..</param>
+        /// <param name="platformChargebackLogic">platformChargebackLogic.</param>
         /// <param name="recurring">recurring.</param>
         /// <param name="recurringProcessingModel">Defines a recurring payment type. Allowed values: * &#x60;Subscription&#x60; – A transaction for a fixed or variable amount, which follows a fixed schedule. * &#x60;CardOnFile&#x60; – With a card-on-file (CoF) transaction, card details are stored to enable one-click or omnichannel journeys, or simply to streamline the checkout process. Any subscription not following a fixed schedule is also considered a card-on-file transaction. * &#x60;UnscheduledCardOnFile&#x60; – An unscheduled card-on-file (UCoF) transaction is a transaction that occurs on a non-fixed schedule and/or have variable amounts. For example, automatic top-ups when a cardholder&#39;s balance drops below a certain amount. .</param>
         /// <param name="reference">The reference to uniquely identify a payment. This reference is used in all communication with you about the payment status. We recommend using a unique value per payment; however, it is not a requirement. If you need to provide multiple references for a transaction, separate them with hyphens (\&quot;-\&quot;). Maximum length: 80 characters. (required).</param>
@@ -215,7 +218,7 @@ namespace Adyen.Model.Payments
         /// <param name="threeDSAuthenticationOnly">If set to true, you will only perform the [3D Secure 2 authentication](https://docs.adyen.com/online-payments/3d-secure/other-3ds-flows/authentication-only), and not the payment authorisation. (default to false).</param>
         /// <param name="totalsGroup">The reference value to aggregate sales totals in reporting. When not specified, the store field is used (if available)..</param>
         /// <param name="trustedShopper">Set to true if the payment should be routed to a trusted MID..</param>
-        public PaymentRequest(AccountInfo accountInfo = default(AccountInfo), Amount additionalAmount = default(Amount), Dictionary<string, string> additionalData = default(Dictionary<string, string>), Amount amount = default(Amount), ApplicationInfo applicationInfo = default(ApplicationInfo), BankAccount bankAccount = default(BankAccount), Address billingAddress = default(Address), BrowserInfo browserInfo = default(BrowserInfo), int? captureDelayHours = default(int?), Card card = default(Card), DateTime dateOfBirth = default(DateTime), ForexQuote dccQuote = default(ForexQuote), Address deliveryAddress = default(Address), DateTime deliveryDate = default(DateTime), string deviceFingerprint = default(string), EntityTypeEnum? entityType = default(EntityTypeEnum?), int? fraudOffset = default(int?), FundDestination fundDestination = default(FundDestination), FundSource fundSource = default(FundSource), FundingSourceEnum? fundingSource = default(FundingSourceEnum?), Installments installments = default(Installments), Mandate mandate = default(Mandate), string mcc = default(string), string merchantAccount = default(string), string merchantOrderReference = default(string), MerchantRiskIndicator merchantRiskIndicator = default(MerchantRiskIndicator), Dictionary<string, string> metadata = default(Dictionary<string, string>), ThreeDSecureData mpiData = default(ThreeDSecureData), string nationality = default(string), string orderReference = default(string), Recurring recurring = default(Recurring), RecurringProcessingModelEnum? recurringProcessingModel = default(RecurringProcessingModelEnum?), string reference = default(string), string selectedBrand = default(string), string selectedRecurringDetailReference = default(string), string sessionId = default(string), string shopperEmail = default(string), string shopperIP = default(string), ShopperInteractionEnum? shopperInteraction = default(ShopperInteractionEnum?), string shopperLocale = default(string), Name shopperName = default(Name), string shopperReference = default(string), string shopperStatement = default(string), string socialSecurityNumber = default(string), List<Split> splits = default(List<Split>), string store = default(string), string telephoneNumber = default(string), ThreeDS2RequestData threeDS2RequestData = default(ThreeDS2RequestData), bool threeDSAuthenticationOnly = false, string totalsGroup = default(string), bool trustedShopper = default(bool))
+        public PaymentRequest(AccountInfo accountInfo = default(AccountInfo), Amount additionalAmount = default(Amount), Dictionary<string, string> additionalData = default(Dictionary<string, string>), Amount amount = default(Amount), ApplicationInfo applicationInfo = default(ApplicationInfo), BankAccount bankAccount = default(BankAccount), Address billingAddress = default(Address), BrowserInfo browserInfo = default(BrowserInfo), int? captureDelayHours = default(int?), Card card = default(Card), DateTime dateOfBirth = default(DateTime), ForexQuote dccQuote = default(ForexQuote), Address deliveryAddress = default(Address), DateTime deliveryDate = default(DateTime), string deviceFingerprint = default(string), EntityTypeEnum? entityType = default(EntityTypeEnum?), int? fraudOffset = default(int?), FundDestination fundDestination = default(FundDestination), FundSource fundSource = default(FundSource), FundingSourceEnum? fundingSource = default(FundingSourceEnum?), Installments installments = default(Installments), Dictionary<string, string> localizedShopperStatement = default(Dictionary<string, string>), Mandate mandate = default(Mandate), string mcc = default(string), string merchantAccount = default(string), string merchantOrderReference = default(string), MerchantRiskIndicator merchantRiskIndicator = default(MerchantRiskIndicator), Dictionary<string, string> metadata = default(Dictionary<string, string>), ThreeDSecureData mpiData = default(ThreeDSecureData), string nationality = default(string), string orderReference = default(string), PlatformChargebackLogic platformChargebackLogic = default(PlatformChargebackLogic), Recurring recurring = default(Recurring), RecurringProcessingModelEnum? recurringProcessingModel = default(RecurringProcessingModelEnum?), string reference = default(string), string selectedBrand = default(string), string selectedRecurringDetailReference = default(string), string sessionId = default(string), string shopperEmail = default(string), string shopperIP = default(string), ShopperInteractionEnum? shopperInteraction = default(ShopperInteractionEnum?), string shopperLocale = default(string), Name shopperName = default(Name), string shopperReference = default(string), string shopperStatement = default(string), string socialSecurityNumber = default(string), List<Split> splits = default(List<Split>), string store = default(string), string telephoneNumber = default(string), ThreeDS2RequestData threeDS2RequestData = default(ThreeDS2RequestData), bool threeDSAuthenticationOnly = false, string totalsGroup = default(string), bool trustedShopper = default(bool))
         {
             this.Amount = amount;
             this.MerchantAccount = merchantAccount;
@@ -240,6 +243,7 @@ namespace Adyen.Model.Payments
             this.FundSource = fundSource;
             this.FundingSource = fundingSource;
             this.Installments = installments;
+            this.LocalizedShopperStatement = localizedShopperStatement;
             this.Mandate = mandate;
             this.Mcc = mcc;
             this.MerchantOrderReference = merchantOrderReference;
@@ -248,6 +252,7 @@ namespace Adyen.Model.Payments
             this.MpiData = mpiData;
             this.Nationality = nationality;
             this.OrderReference = orderReference;
+            this.PlatformChargebackLogic = platformChargebackLogic;
             this.Recurring = recurring;
             this.RecurringProcessingModel = recurringProcessingModel;
             this.SelectedBrand = selectedBrand;
@@ -337,6 +342,7 @@ namespace Adyen.Model.Payments
         /// </summary>
         /// <value>The shopper&#39;s date of birth.  Format [ISO-8601](https://www.w3.org/TR/NOTE-datetime): YYYY-MM-DD</value>
         [DataMember(Name = "dateOfBirth", EmitDefaultValue = false)]
+        [JsonConverter(typeof(OpenAPIDateConverter))]
         public DateTime DateOfBirth { get; set; }
 
         /// <summary>
@@ -389,6 +395,13 @@ namespace Adyen.Model.Payments
         /// </summary>
         [DataMember(Name = "installments", EmitDefaultValue = false)]
         public Installments Installments { get; set; }
+
+        /// <summary>
+        /// This field allows merchants to use dynamic shopper statement in local character sets. The local shopper statement field can be supplied in markets where localized merchant descriptors are used. Currently, Adyen only supports this in the Japanese market .The available character sets at the moment are: * Processing in Japan: **ja-Kana** The character set **ja-Kana** supports UTF-8 based Katakana and alphanumeric and special characters. Merchants should send the Katakana shopperStatement in full-width characters.  An example request would be: &gt; {   \&quot;shopperStatement\&quot; : \&quot;ADYEN - SELLER-A\&quot;,   \&quot;localizedShopperStatement\&quot; : {     \&quot;ja-Kana\&quot; : \&quot;ADYEN - セラーA\&quot;   } } We recommend merchants to always supply the field localizedShopperStatement in addition to the field shopperStatement.It is issuer dependent whether the localized shopper statement field is supported. In the case of non-domestic transactions (e.g. US-issued cards processed in JP) the field &#x60;shopperStatement&#x60; is used to modify the statement of the shopper. Adyen handles the complexity of ensuring the correct descriptors are assigned.
+        /// </summary>
+        /// <value>This field allows merchants to use dynamic shopper statement in local character sets. The local shopper statement field can be supplied in markets where localized merchant descriptors are used. Currently, Adyen only supports this in the Japanese market .The available character sets at the moment are: * Processing in Japan: **ja-Kana** The character set **ja-Kana** supports UTF-8 based Katakana and alphanumeric and special characters. Merchants should send the Katakana shopperStatement in full-width characters.  An example request would be: &gt; {   \&quot;shopperStatement\&quot; : \&quot;ADYEN - SELLER-A\&quot;,   \&quot;localizedShopperStatement\&quot; : {     \&quot;ja-Kana\&quot; : \&quot;ADYEN - セラーA\&quot;   } } We recommend merchants to always supply the field localizedShopperStatement in addition to the field shopperStatement.It is issuer dependent whether the localized shopper statement field is supported. In the case of non-domestic transactions (e.g. US-issued cards processed in JP) the field &#x60;shopperStatement&#x60; is used to modify the statement of the shopper. Adyen handles the complexity of ensuring the correct descriptors are assigned.</value>
+        [DataMember(Name = "localizedShopperStatement", EmitDefaultValue = false)]
+        public Dictionary<string, string> LocalizedShopperStatement { get; set; }
 
         /// <summary>
         /// Gets or Sets Mandate
@@ -449,6 +462,12 @@ namespace Adyen.Model.Payments
         /// <value>When you are doing multiple partial (gift card) payments, this is the &#x60;pspReference&#x60; of the first payment. We use this to link the multiple payments to each other. As your own reference for linking multiple payments, use the &#x60;merchantOrderReference&#x60;instead.</value>
         [DataMember(Name = "orderReference", EmitDefaultValue = false)]
         public string OrderReference { get; set; }
+
+        /// <summary>
+        /// Gets or Sets PlatformChargebackLogic
+        /// </summary>
+        [DataMember(Name = "platformChargebackLogic", EmitDefaultValue = false)]
+        public PlatformChargebackLogic PlatformChargebackLogic { get; set; }
 
         /// <summary>
         /// Gets or Sets Recurring
@@ -609,6 +628,7 @@ namespace Adyen.Model.Payments
             sb.Append("  FundSource: ").Append(FundSource).Append("\n");
             sb.Append("  FundingSource: ").Append(FundingSource).Append("\n");
             sb.Append("  Installments: ").Append(Installments).Append("\n");
+            sb.Append("  LocalizedShopperStatement: ").Append(LocalizedShopperStatement).Append("\n");
             sb.Append("  Mandate: ").Append(Mandate).Append("\n");
             sb.Append("  Mcc: ").Append(Mcc).Append("\n");
             sb.Append("  MerchantAccount: ").Append(MerchantAccount).Append("\n");
@@ -618,6 +638,7 @@ namespace Adyen.Model.Payments
             sb.Append("  MpiData: ").Append(MpiData).Append("\n");
             sb.Append("  Nationality: ").Append(Nationality).Append("\n");
             sb.Append("  OrderReference: ").Append(OrderReference).Append("\n");
+            sb.Append("  PlatformChargebackLogic: ").Append(PlatformChargebackLogic).Append("\n");
             sb.Append("  Recurring: ").Append(Recurring).Append("\n");
             sb.Append("  RecurringProcessingModel: ").Append(RecurringProcessingModel).Append("\n");
             sb.Append("  Reference: ").Append(Reference).Append("\n");
@@ -777,6 +798,12 @@ namespace Adyen.Model.Payments
                     this.Installments.Equals(input.Installments))
                 ) && 
                 (
+                    this.LocalizedShopperStatement == input.LocalizedShopperStatement ||
+                    this.LocalizedShopperStatement != null &&
+                    input.LocalizedShopperStatement != null &&
+                    this.LocalizedShopperStatement.SequenceEqual(input.LocalizedShopperStatement)
+                ) && 
+                (
                     this.Mandate == input.Mandate ||
                     (this.Mandate != null &&
                     this.Mandate.Equals(input.Mandate))
@@ -821,6 +848,11 @@ namespace Adyen.Model.Payments
                     this.OrderReference == input.OrderReference ||
                     (this.OrderReference != null &&
                     this.OrderReference.Equals(input.OrderReference))
+                ) && 
+                (
+                    this.PlatformChargebackLogic == input.PlatformChargebackLogic ||
+                    (this.PlatformChargebackLogic != null &&
+                    this.PlatformChargebackLogic.Equals(input.PlatformChargebackLogic))
                 ) && 
                 (
                     this.Recurring == input.Recurring ||
@@ -1007,6 +1039,10 @@ namespace Adyen.Model.Payments
                 {
                     hashCode = (hashCode * 59) + this.Installments.GetHashCode();
                 }
+                if (this.LocalizedShopperStatement != null)
+                {
+                    hashCode = (hashCode * 59) + this.LocalizedShopperStatement.GetHashCode();
+                }
                 if (this.Mandate != null)
                 {
                     hashCode = (hashCode * 59) + this.Mandate.GetHashCode();
@@ -1042,6 +1078,10 @@ namespace Adyen.Model.Payments
                 if (this.OrderReference != null)
                 {
                     hashCode = (hashCode * 59) + this.OrderReference.GetHashCode();
+                }
+                if (this.PlatformChargebackLogic != null)
+                {
+                    hashCode = (hashCode * 59) + this.PlatformChargebackLogic.GetHashCode();
                 }
                 if (this.Recurring != null)
                 {

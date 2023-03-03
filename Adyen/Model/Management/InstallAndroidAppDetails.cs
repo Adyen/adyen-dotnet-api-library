@@ -11,25 +11,27 @@
 */
 
 using System;
-using System.Linq;
-using System.IO;
-using System.Text;
-using System.Text.RegularExpressions;
 using System.Collections;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Linq;
+using System.IO;
 using System.Runtime.Serialization;
+using System.Text;
+using System.Text.RegularExpressions;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
+using Newtonsoft.Json.Linq;
 using System.ComponentModel.DataAnnotations;
+using OpenAPIDateConverter = Adyen.ApiSerialization.OpenAPIDateConverter;
 
 namespace Adyen.Model.Management
 {
     /// <summary>
     /// InstallAndroidAppDetails
     /// </summary>
-    [DataContract]
-    public partial class InstallAndroidAppDetails :  IEquatable<InstallAndroidAppDetails>, IValidatableObject
+    [DataContract(Name = "InstallAndroidAppDetails")]
+    public partial class InstallAndroidAppDetails : IEquatable<InstallAndroidAppDetails>, IValidatableObject
     {
         /// <summary>
         /// Type of terminal action: Install an Android app.
@@ -46,11 +48,12 @@ namespace Adyen.Model.Management
 
         }
 
+
         /// <summary>
         /// Type of terminal action: Install an Android app.
         /// </summary>
         /// <value>Type of terminal action: Install an Android app.</value>
-        [DataMember(Name="type", EmitDefaultValue=false)]
+        [DataMember(Name = "type", EmitDefaultValue = false)]
         public TypeEnum? Type { get; set; }
         /// <summary>
         /// Initializes a new instance of the <see cref="InstallAndroidAppDetails" /> class.
@@ -67,9 +70,8 @@ namespace Adyen.Model.Management
         /// The unique identifier of the app to be installed.
         /// </summary>
         /// <value>The unique identifier of the app to be installed.</value>
-        [DataMember(Name="appId", EmitDefaultValue=false)]
+        [DataMember(Name = "appId", EmitDefaultValue = false)]
         public string AppId { get; set; }
-
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -77,7 +79,7 @@ namespace Adyen.Model.Management
         /// <returns>String presentation of the object</returns>
         public override string ToString()
         {
-            var sb = new StringBuilder();
+            StringBuilder sb = new StringBuilder();
             sb.Append("class InstallAndroidAppDetails {\n");
             sb.Append("  AppId: ").Append(AppId).Append("\n");
             sb.Append("  Type: ").Append(Type).Append("\n");
@@ -112,8 +114,9 @@ namespace Adyen.Model.Management
         public bool Equals(InstallAndroidAppDetails input)
         {
             if (input == null)
+            {
                 return false;
-
+            }
             return 
                 (
                     this.AppId == input.AppId ||
@@ -122,8 +125,7 @@ namespace Adyen.Model.Management
                 ) && 
                 (
                     this.Type == input.Type ||
-                    (this.Type != null &&
-                    this.Type.Equals(input.Type))
+                    this.Type.Equals(input.Type)
                 );
         }
 
@@ -137,19 +139,19 @@ namespace Adyen.Model.Management
             {
                 int hashCode = 41;
                 if (this.AppId != null)
-                    hashCode = hashCode * 59 + this.AppId.GetHashCode();
-                if (this.Type != null)
-                    hashCode = hashCode * 59 + this.Type.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.AppId.GetHashCode();
+                }
+                hashCode = (hashCode * 59) + this.Type.GetHashCode();
                 return hashCode;
             }
         }
-
         /// <summary>
         /// To validate all properties of the instance
         /// </summary>
         /// <param name="validationContext">Validation context</param>
         /// <returns>Validation Result</returns>
-        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+        public IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> Validate(ValidationContext validationContext)
         {
             yield break;
         }

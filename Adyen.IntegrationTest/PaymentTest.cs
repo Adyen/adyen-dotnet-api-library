@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using Adyen.HttpClient;
 using Adyen.Model.StoredValue;
+using Adyen.Service.Payments;
 using Environment = Adyen.Model.Environment;
 
 namespace Adyen.IntegrationTest
@@ -99,7 +100,7 @@ namespace Adyen.IntegrationTest
                 PspReference = GetTestPspReference()
             };
             var client = CreateApiKeyTestClient();
-            var payment = new Payment(client);
+            var payment = new PaymentService(client);
             try
             {
                 payment.GetAuthenticationResult(authenticationResultRequest);

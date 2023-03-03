@@ -10,7 +10,6 @@
 * Do not edit the class manually.
 */
 
-
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -24,6 +23,7 @@ using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
 using Newtonsoft.Json.Linq;
 using System.ComponentModel.DataAnnotations;
+using OpenAPIDateConverter = Adyen.ApiSerialization.OpenAPIDateConverter;
 
 namespace Adyen.Model.StoredValue
 {
@@ -61,14 +61,14 @@ namespace Adyen.Model.StoredValue
         /// The merchant account identifier, with which you want to process the transaction.
         /// </summary>
         /// <value>The merchant account identifier, with which you want to process the transaction.</value>
-        [DataMember(Name = "merchantAccount", IsRequired = false, EmitDefaultValue = true)]
+        [DataMember(Name = "merchantAccount", IsRequired = false, EmitDefaultValue = false)]
         public string MerchantAccount { get; set; }
 
         /// <summary>
         /// The original pspReference of the payment to modify.
         /// </summary>
         /// <value>The original pspReference of the payment to modify.</value>
-        [DataMember(Name = "originalReference", IsRequired = false, EmitDefaultValue = true)]
+        [DataMember(Name = "originalReference", IsRequired = false, EmitDefaultValue = false)]
         public string OriginalReference { get; set; }
 
         /// <summary>
@@ -216,7 +216,6 @@ namespace Adyen.Model.StoredValue
                 return hashCode;
             }
         }
-
         /// <summary>
         /// To validate all properties of the instance
         /// </summary>

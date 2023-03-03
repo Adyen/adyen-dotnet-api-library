@@ -11,25 +11,27 @@
 */
 
 using System;
-using System.Linq;
-using System.IO;
-using System.Text;
-using System.Text.RegularExpressions;
 using System.Collections;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Linq;
+using System.IO;
 using System.Runtime.Serialization;
+using System.Text;
+using System.Text.RegularExpressions;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
+using Newtonsoft.Json.Linq;
 using System.ComponentModel.DataAnnotations;
+using OpenAPIDateConverter = Adyen.ApiSerialization.OpenAPIDateConverter;
 
 namespace Adyen.Model.Management
 {
     /// <summary>
     /// StoreCreationWithMerchantCodeRequest
     /// </summary>
-    [DataContract]
-    public partial class StoreCreationWithMerchantCodeRequest :  IEquatable<StoreCreationWithMerchantCodeRequest>, IValidatableObject
+    [DataContract(Name = "StoreCreationWithMerchantCodeRequest")]
+    public partial class StoreCreationWithMerchantCodeRequest : IEquatable<StoreCreationWithMerchantCodeRequest>, IValidatableObject
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="StoreCreationWithMerchantCodeRequest" /> class.
@@ -51,75 +53,75 @@ namespace Adyen.Model.Management
         public StoreCreationWithMerchantCodeRequest(StoreLocation address = default(StoreLocation), List<string> businessLineIds = default(List<string>), string description = default(string), string externalReferenceId = default(string), string merchantId = default(string), string phoneNumber = default(string), string reference = default(string), string shopperStatement = default(string), StoreSplitConfiguration splitConfiguration = default(StoreSplitConfiguration))
         {
             this.Address = address;
-            this.BusinessLineIds = businessLineIds;
             this.Description = description;
-            this.ExternalReferenceId = externalReferenceId;
             this.MerchantId = merchantId;
             this.PhoneNumber = phoneNumber;
-            this.Reference = reference;
             this.ShopperStatement = shopperStatement;
+            this.BusinessLineIds = businessLineIds;
+            this.ExternalReferenceId = externalReferenceId;
+            this.Reference = reference;
             this.SplitConfiguration = splitConfiguration;
         }
 
         /// <summary>
         /// Gets or Sets Address
         /// </summary>
-        [DataMember(Name="address", EmitDefaultValue=true)]
+        [DataMember(Name = "address", IsRequired = false, EmitDefaultValue = false)]
         public StoreLocation Address { get; set; }
 
         /// <summary>
         /// The unique identifiers of the [business lines](https://docs.adyen.com/api-explorer/#/legalentity/latest/post/businesslines__resParam_id) that the store is associated with. If not specified, the business line of the merchant account is used. Required when there are multiple business lines under the merchant account.
         /// </summary>
         /// <value>The unique identifiers of the [business lines](https://docs.adyen.com/api-explorer/#/legalentity/latest/post/businesslines__resParam_id) that the store is associated with. If not specified, the business line of the merchant account is used. Required when there are multiple business lines under the merchant account.</value>
-        [DataMember(Name="businessLineIds", EmitDefaultValue=false)]
+        [DataMember(Name = "businessLineIds", EmitDefaultValue = false)]
         public List<string> BusinessLineIds { get; set; }
 
         /// <summary>
         /// Your description of the store.
         /// </summary>
         /// <value>Your description of the store.</value>
-        [DataMember(Name="description", EmitDefaultValue=true)]
+        [DataMember(Name = "description", IsRequired = false, EmitDefaultValue = false)]
         public string Description { get; set; }
 
         /// <summary>
         /// When using the Zip payment method: The location ID that Zip has assigned to your store.
         /// </summary>
         /// <value>When using the Zip payment method: The location ID that Zip has assigned to your store.</value>
-        [DataMember(Name="externalReferenceId", EmitDefaultValue=false)]
+        [DataMember(Name = "externalReferenceId", EmitDefaultValue = false)]
         public string ExternalReferenceId { get; set; }
 
         /// <summary>
         /// The unique identifier of the merchant account that the store belongs to.
         /// </summary>
         /// <value>The unique identifier of the merchant account that the store belongs to.</value>
-        [DataMember(Name="merchantId", EmitDefaultValue=true)]
+        [DataMember(Name = "merchantId", IsRequired = false, EmitDefaultValue = false)]
         public string MerchantId { get; set; }
 
         /// <summary>
         /// The phone number of the store, including &#39;+&#39; and country code.
         /// </summary>
         /// <value>The phone number of the store, including &#39;+&#39; and country code.</value>
-        [DataMember(Name="phoneNumber", EmitDefaultValue=true)]
+        [DataMember(Name = "phoneNumber", IsRequired = false, EmitDefaultValue = false)]
         public string PhoneNumber { get; set; }
 
         /// <summary>
         /// Your reference to recognize the store by. Also known as the store code.  Allowed characters: Lowercase and uppercase letters without diacritics, numbers 0 through 9, hyphen (-), and underscore (_).
         /// </summary>
         /// <value>Your reference to recognize the store by. Also known as the store code.  Allowed characters: Lowercase and uppercase letters without diacritics, numbers 0 through 9, hyphen (-), and underscore (_).</value>
-        [DataMember(Name="reference", EmitDefaultValue=false)]
+        [DataMember(Name = "reference", EmitDefaultValue = false)]
         public string Reference { get; set; }
 
         /// <summary>
         /// The store name to be shown on the shopper&#39;s bank or credit card statement and on the shopper receipt. Maximum length: 22 characters; can&#39;t be all numbers.
         /// </summary>
         /// <value>The store name to be shown on the shopper&#39;s bank or credit card statement and on the shopper receipt. Maximum length: 22 characters; can&#39;t be all numbers.</value>
-        [DataMember(Name="shopperStatement", EmitDefaultValue=true)]
+        [DataMember(Name = "shopperStatement", IsRequired = false, EmitDefaultValue = false)]
         public string ShopperStatement { get; set; }
 
         /// <summary>
         /// Gets or Sets SplitConfiguration
         /// </summary>
-        [DataMember(Name="splitConfiguration", EmitDefaultValue=false)]
+        [DataMember(Name = "splitConfiguration", EmitDefaultValue = false)]
         public StoreSplitConfiguration SplitConfiguration { get; set; }
 
         /// <summary>
@@ -128,7 +130,7 @@ namespace Adyen.Model.Management
         /// <returns>String presentation of the object</returns>
         public override string ToString()
         {
-            var sb = new StringBuilder();
+            StringBuilder sb = new StringBuilder();
             sb.Append("class StoreCreationWithMerchantCodeRequest {\n");
             sb.Append("  Address: ").Append(Address).Append("\n");
             sb.Append("  BusinessLineIds: ").Append(BusinessLineIds).Append("\n");
@@ -170,8 +172,9 @@ namespace Adyen.Model.Management
         public bool Equals(StoreCreationWithMerchantCodeRequest input)
         {
             if (input == null)
+            {
                 return false;
-
+            }
             return 
                 (
                     this.Address == input.Address ||
@@ -231,33 +234,50 @@ namespace Adyen.Model.Management
             {
                 int hashCode = 41;
                 if (this.Address != null)
-                    hashCode = hashCode * 59 + this.Address.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.Address.GetHashCode();
+                }
                 if (this.BusinessLineIds != null)
-                    hashCode = hashCode * 59 + this.BusinessLineIds.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.BusinessLineIds.GetHashCode();
+                }
                 if (this.Description != null)
-                    hashCode = hashCode * 59 + this.Description.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.Description.GetHashCode();
+                }
                 if (this.ExternalReferenceId != null)
-                    hashCode = hashCode * 59 + this.ExternalReferenceId.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.ExternalReferenceId.GetHashCode();
+                }
                 if (this.MerchantId != null)
-                    hashCode = hashCode * 59 + this.MerchantId.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.MerchantId.GetHashCode();
+                }
                 if (this.PhoneNumber != null)
-                    hashCode = hashCode * 59 + this.PhoneNumber.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.PhoneNumber.GetHashCode();
+                }
                 if (this.Reference != null)
-                    hashCode = hashCode * 59 + this.Reference.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.Reference.GetHashCode();
+                }
                 if (this.ShopperStatement != null)
-                    hashCode = hashCode * 59 + this.ShopperStatement.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.ShopperStatement.GetHashCode();
+                }
                 if (this.SplitConfiguration != null)
-                    hashCode = hashCode * 59 + this.SplitConfiguration.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.SplitConfiguration.GetHashCode();
+                }
                 return hashCode;
             }
         }
-
         /// <summary>
         /// To validate all properties of the instance
         /// </summary>
         /// <param name="validationContext">Validation context</param>
         /// <returns>Validation Result</returns>
-        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+        public IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> Validate(ValidationContext validationContext)
         {
             yield break;
         }

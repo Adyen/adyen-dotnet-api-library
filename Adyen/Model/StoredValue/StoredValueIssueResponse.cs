@@ -10,7 +10,6 @@
 * Do not edit the class manually.
 */
 
-
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -24,6 +23,7 @@ using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
 using Newtonsoft.Json.Linq;
 using System.ComponentModel.DataAnnotations;
+using OpenAPIDateConverter = Adyen.ApiSerialization.OpenAPIDateConverter;
 
 namespace Adyen.Model.StoredValue
 {
@@ -259,7 +259,6 @@ namespace Adyen.Model.StoredValue
                 return hashCode;
             }
         }
-
         /// <summary>
         /// To validate all properties of the instance
         /// </summary>

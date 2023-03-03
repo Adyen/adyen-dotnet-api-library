@@ -10,7 +10,6 @@
 * Do not edit the class manually.
 */
 
-
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -24,6 +23,7 @@ using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
 using Newtonsoft.Json.Linq;
 using System.ComponentModel.DataAnnotations;
+using OpenAPIDateConverter = Adyen.ApiSerialization.OpenAPIDateConverter;
 
 namespace Adyen.Model.StoredValue
 {
@@ -99,7 +99,7 @@ namespace Adyen.Model.StoredValue
         /// The status you want to change to
         /// </summary>
         /// <value>The status you want to change to</value>
-        [DataMember(Name = "status", IsRequired = false, EmitDefaultValue = true)]
+        [DataMember(Name = "status", IsRequired = false, EmitDefaultValue = false)]
         public StatusEnum Status { get; set; }
         /// <summary>
         /// Initializes a new instance of the <see cref="StoredValueStatusChangeRequest" /> class.
@@ -141,14 +141,14 @@ namespace Adyen.Model.StoredValue
         /// The merchant account identifier, with which you want to process the transaction.
         /// </summary>
         /// <value>The merchant account identifier, with which you want to process the transaction.</value>
-        [DataMember(Name = "merchantAccount", IsRequired = false, EmitDefaultValue = true)]
+        [DataMember(Name = "merchantAccount", IsRequired = false, EmitDefaultValue = false)]
         public string MerchantAccount { get; set; }
 
         /// <summary>
         /// The collection that contains the type of the payment method and its specific information if available
         /// </summary>
         /// <value>The collection that contains the type of the payment method and its specific information if available</value>
-        [DataMember(Name = "paymentMethod", IsRequired = false, EmitDefaultValue = true)]
+        [DataMember(Name = "paymentMethod", IsRequired = false, EmitDefaultValue = false)]
         public Dictionary<string, string> PaymentMethod { get; set; }
 
         /// <summary>
@@ -161,7 +161,7 @@ namespace Adyen.Model.StoredValue
         /// The reference to uniquely identify a payment. This reference is used in all communication with you about the payment status. We recommend using a unique value per payment; however, it is not a requirement. If you need to provide multiple references for a transaction, separate them with hyphens (\&quot;-\&quot;). Maximum length: 80 characters.
         /// </summary>
         /// <value>The reference to uniquely identify a payment. This reference is used in all communication with you about the payment status. We recommend using a unique value per payment; however, it is not a requirement. If you need to provide multiple references for a transaction, separate them with hyphens (\&quot;-\&quot;). Maximum length: 80 characters.</value>
-        [DataMember(Name = "reference", IsRequired = false, EmitDefaultValue = true)]
+        [DataMember(Name = "reference", IsRequired = false, EmitDefaultValue = false)]
         public string Reference { get; set; }
 
         /// <summary>
@@ -317,7 +317,6 @@ namespace Adyen.Model.StoredValue
                 return hashCode;
             }
         }
-
         /// <summary>
         /// To validate all properties of the instance
         /// </summary>
