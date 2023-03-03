@@ -65,7 +65,7 @@ namespace Adyen.Model.BalancePlatform
         /// The form factor of the card. Possible values: **virtual**, **physical**.
         /// </summary>
         /// <value>The form factor of the card. Possible values: **virtual**, **physical**.</value>
-        [DataMember(Name = "formFactor", IsRequired = false, EmitDefaultValue = true)]
+        [DataMember(Name = "formFactor", IsRequired = false, EmitDefaultValue = false)]
         public FormFactorEnum FormFactor { get; set; }
         /// <summary>
         /// Initializes a new instance of the <see cref="Card" /> class.
@@ -118,21 +118,21 @@ namespace Adyen.Model.BalancePlatform
         /// The brand of the payment instrument. Possible values: **visa**, **mc**.
         /// </summary>
         /// <value>The brand of the payment instrument. Possible values: **visa**, **mc**.</value>
-        [DataMember(Name = "brand", IsRequired = false, EmitDefaultValue = true)]
+        [DataMember(Name = "brand", IsRequired = false, EmitDefaultValue = false)]
         public string Brand { get; set; }
 
         /// <summary>
         /// The brand variant of the payment instrument. &gt;Contact your Adyen Implementation Manager to get the values that are relevant to your integration. Examples: **visadebit**, **mcprepaid**.
         /// </summary>
         /// <value>The brand variant of the payment instrument. &gt;Contact your Adyen Implementation Manager to get the values that are relevant to your integration. Examples: **visadebit**, **mcprepaid**.</value>
-        [DataMember(Name = "brandVariant", IsRequired = false, EmitDefaultValue = true)]
+        [DataMember(Name = "brandVariant", IsRequired = false, EmitDefaultValue = false)]
         public string BrandVariant { get; set; }
 
         /// <summary>
         /// The name of the cardholder.  Maximum length: 26 characters.
         /// </summary>
         /// <value>The name of the cardholder.  Maximum length: 26 characters.</value>
-        [DataMember(Name = "cardholderName", IsRequired = false, EmitDefaultValue = true)]
+        [DataMember(Name = "cardholderName", IsRequired = false, EmitDefaultValue = false)]
         public string CardholderName { get; set; }
 
         /// <summary>
@@ -171,7 +171,7 @@ namespace Adyen.Model.BalancePlatform
         /// The primary account number (PAN) of the card. &gt; The PAN is masked by default and returned only for single-use virtual cards.
         /// </summary>
         /// <value>The primary account number (PAN) of the card. &gt; The PAN is masked by default and returned only for single-use virtual cards.</value>
-        [DataMember(Name = "number", IsRequired = false, EmitDefaultValue = true)]
+        [DataMember(Name = "number", IsRequired = false, EmitDefaultValue = false)]
         public string Number { get; private set; }
 
         /// <summary>
@@ -355,7 +355,6 @@ namespace Adyen.Model.BalancePlatform
                 return hashCode;
             }
         }
-
         /// <summary>
         /// To validate all properties of the instance
         /// </summary>

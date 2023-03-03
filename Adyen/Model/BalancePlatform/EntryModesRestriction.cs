@@ -115,7 +115,7 @@ namespace Adyen.Model.BalancePlatform
         /// Defines how the condition must be evaluated.
         /// </summary>
         /// <value>Defines how the condition must be evaluated.</value>
-        [DataMember(Name = "operation", IsRequired = false, EmitDefaultValue = true)]
+        [DataMember(Name = "operation", IsRequired = false, EmitDefaultValue = false)]
         public string Operation { get; set; }
 
         /// <summary>
@@ -203,7 +203,6 @@ namespace Adyen.Model.BalancePlatform
                 return hashCode;
             }
         }
-
         /// <summary>
         /// To validate all properties of the instance
         /// </summary>

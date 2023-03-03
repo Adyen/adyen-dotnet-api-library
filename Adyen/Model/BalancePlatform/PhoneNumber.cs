@@ -95,14 +95,14 @@ namespace Adyen.Model.BalancePlatform
         /// The two-character ISO-3166-1 alpha-2 country code of the phone number. For example, **US** or **NL**.
         /// </summary>
         /// <value>The two-character ISO-3166-1 alpha-2 country code of the phone number. For example, **US** or **NL**.</value>
-        [DataMember(Name = "phoneCountryCode", IsRequired = false, EmitDefaultValue = true)]
+        [DataMember(Name = "phoneCountryCode", IsRequired = false, EmitDefaultValue = false)]
         public string PhoneCountryCode { get; set; }
 
         /// <summary>
         /// The phone number. The inclusion of the phone number country code is not necessary.
         /// </summary>
         /// <value>The phone number. The inclusion of the phone number country code is not necessary.</value>
-        [DataMember(Name = "phoneNumber", IsRequired = false, EmitDefaultValue = true)]
+        [DataMember(Name = "phoneNumber", IsRequired = false, EmitDefaultValue = false)]
         public string _PhoneNumber { get; set; }
 
         /// <summary>
@@ -188,7 +188,6 @@ namespace Adyen.Model.BalancePlatform
                 return hashCode;
             }
         }
-
         /// <summary>
         /// To validate all properties of the instance
         /// </summary>

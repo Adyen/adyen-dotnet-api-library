@@ -25,13 +25,13 @@ namespace Adyen.Service.BalancePlatform
     /// <summary>
     /// Represents a collection of functions to interact with the API endpoints
     /// </summary>
-    public class PaymentInstrumentGroupsApi : AbstractService
+    public class PaymentInstrumentGroupsService : AbstractService
     {
         private readonly string _baseUrl;
         
-        public PaymentInstrumentGroupsApi(Client client) : base(client)
+        public PaymentInstrumentGroupsService(Client client) : base(client)
         {
-            _baseUrl = client.Config.CheckoutEndpoint + "/" + ClientConfig.CheckoutVersion;
+            _baseUrl = client.Config.BalancePlatformEndpoint + "/" + ClientConfig.BalancePlatformVersion;
         }
     
         /// <summary>
@@ -40,9 +40,9 @@ namespace Adyen.Service.BalancePlatform
         /// <param name="id">The unique identifier of the payment instrument group.</param>
         /// <param name="requestOptions">Additional request options.</param>
         /// <returns>PaymentInstrumentGroup</returns>
-        public PaymentInstrumentGroup (string id, RequestOptions requestOptions = default)
+        public PaymentInstrumentGroup Retrieve(string id, RequestOptions requestOptions = default)
         {
-            return Async(id, requestOptions).GetAwaiter().GetResult();
+            return RetrieveAsync(id, requestOptions).GetAwaiter().GetResult();
         }
 
         /// <summary>
@@ -51,7 +51,7 @@ namespace Adyen.Service.BalancePlatform
         /// <param name="id">The unique identifier of the payment instrument group.</param>
         /// <param name="requestOptions">Additional request options.</param>
         /// <returns>Task of PaymentInstrumentGroup</returns>
-        public async Task<PaymentInstrumentGroup> Async(string id, RequestOptions requestOptions = default)
+        public async Task<PaymentInstrumentGroup> RetrieveAsync(string id, RequestOptions requestOptions = default)
         {
             var endpoint = _baseUrl + $"/paymentInstrumentGroups/{id}";
             var resource = new ServiceResource(this, endpoint);
@@ -64,9 +64,9 @@ namespace Adyen.Service.BalancePlatform
         /// <param name="id">The unique identifier of the payment instrument group.</param>
         /// <param name="requestOptions">Additional request options.</param>
         /// <returns>TransactionRulesResponse</returns>
-        public TransactionRulesResponse (string id, RequestOptions requestOptions = default)
+        public TransactionRulesResponse ListTransactionRules(string id, RequestOptions requestOptions = default)
         {
-            return Async(id, requestOptions).GetAwaiter().GetResult();
+            return ListTransactionRulesAsync(id, requestOptions).GetAwaiter().GetResult();
         }
 
         /// <summary>
@@ -75,7 +75,7 @@ namespace Adyen.Service.BalancePlatform
         /// <param name="id">The unique identifier of the payment instrument group.</param>
         /// <param name="requestOptions">Additional request options.</param>
         /// <returns>Task of TransactionRulesResponse</returns>
-        public async Task<TransactionRulesResponse> Async(string id, RequestOptions requestOptions = default)
+        public async Task<TransactionRulesResponse> ListTransactionRulesAsync(string id, RequestOptions requestOptions = default)
         {
             var endpoint = _baseUrl + $"/paymentInstrumentGroups/{id}/transactionRules";
             var resource = new ServiceResource(this, endpoint);
@@ -88,9 +88,9 @@ namespace Adyen.Service.BalancePlatform
         /// <param name="paymentInstrumentGroupInfo"></param>
         /// <param name="requestOptions">Additional request options.</param>
         /// <returns>PaymentInstrumentGroup</returns>
-        public PaymentInstrumentGroup (PaymentInstrumentGroupInfo paymentInstrumentGroupInfo, RequestOptions requestOptions = default)
+        public PaymentInstrumentGroup Create(PaymentInstrumentGroupInfo paymentInstrumentGroupInfo, RequestOptions requestOptions = default)
         {
-            return Async(paymentInstrumentGroupInfo, requestOptions).GetAwaiter().GetResult();
+            return CreateAsync(paymentInstrumentGroupInfo, requestOptions).GetAwaiter().GetResult();
         }
 
         /// <summary>
@@ -99,7 +99,7 @@ namespace Adyen.Service.BalancePlatform
         /// <param name="paymentInstrumentGroupInfo"></param>
         /// <param name="requestOptions">Additional request options.</param>
         /// <returns>Task of PaymentInstrumentGroup</returns>
-        public async Task<PaymentInstrumentGroup> Async(PaymentInstrumentGroupInfo paymentInstrumentGroupInfo, RequestOptions requestOptions = default)
+        public async Task<PaymentInstrumentGroup> CreateAsync(PaymentInstrumentGroupInfo paymentInstrumentGroupInfo, RequestOptions requestOptions = default)
         {
             var endpoint = _baseUrl + "/paymentInstrumentGroups";
             var resource = new ServiceResource(this, endpoint);

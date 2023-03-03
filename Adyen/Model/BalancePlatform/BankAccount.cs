@@ -51,7 +51,7 @@ namespace Adyen.Model.BalancePlatform
         /// The [International Bank Account Number](https://en.wikipedia.org/wiki/International_Bank_Account_Number) (IBAN).
         /// </summary>
         /// <value>The [International Bank Account Number](https://en.wikipedia.org/wiki/International_Bank_Account_Number) (IBAN).</value>
-        [DataMember(Name = "iban", IsRequired = false, EmitDefaultValue = true)]
+        [DataMember(Name = "iban", IsRequired = false, EmitDefaultValue = false)]
         public string Iban { get; set; }
 
         /// <summary>
@@ -121,7 +121,6 @@ namespace Adyen.Model.BalancePlatform
                 return hashCode;
             }
         }
-
         /// <summary>
         /// To validate all properties of the instance
         /// </summary>

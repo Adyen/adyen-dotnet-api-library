@@ -5,7 +5,7 @@ openapi-generator-cli:=java -jar $(openapi-generator-jar)
 
 
 generator:=csharp-netcore
-services:=BinLookup Checkout LegalEntityManagement Payments Payouts PosTerminalManagement StoredValue
+services:=BalancePlatform BinLookup Checkout LegalEntityManagement Payments Payouts PosTerminalManagement StoredValue
 models:=Adyen/Model
 output:=target/out
 
@@ -15,6 +15,7 @@ models: $(services)
 BalanceControl: spec=BalanceControlService-v1
 BalanceControl: service=balanceControlService
 BalancePlatform: spec=BalancePlatformService-v2
+BalancePlatform: service=balancePlatformService
 BinLookup: spec=BinLookupService-v52
 Checkout: spec=CheckoutService-v70
 Checkout: service=checkout
@@ -56,7 +57,7 @@ $(services): target/spec $(openapi-generator-jar)
 	mv target/out/src/Adyen.Model/$@/* Adyen/Model/$@
 
 # Generate a full client (models and service classes)
-Management: target/spec $(openapi-generator-jar)  
+BalancePlatform: target/spec $(openapi-generator-jar)  
 	rm -rf $(output)
 	$(openapi-generator-cli) generate \
 		-i target/spec/json/$(spec).json \

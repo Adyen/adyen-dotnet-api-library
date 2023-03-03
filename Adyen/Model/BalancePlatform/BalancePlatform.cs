@@ -62,7 +62,7 @@ namespace Adyen.Model.BalancePlatform
         /// The unique identifier of the balance platform.
         /// </summary>
         /// <value>The unique identifier of the balance platform.</value>
-        [DataMember(Name = "id", IsRequired = false, EmitDefaultValue = true)]
+        [DataMember(Name = "id", IsRequired = false, EmitDefaultValue = false)]
         public string Id { get; set; }
 
         /// <summary>
@@ -159,7 +159,6 @@ namespace Adyen.Model.BalancePlatform
                 return hashCode;
             }
         }
-
         /// <summary>
         /// To validate all properties of the instance
         /// </summary>

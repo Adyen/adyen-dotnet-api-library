@@ -127,7 +127,7 @@ namespace Adyen.Model.BalancePlatform
         /// The [type of rule](https://docs.adyen.com/issuing/transaction-rules#rule-types), which defines if a rule blocks transactions based on individual characteristics or accumulates data.  Possible values:  * **blockList**: decline a transaction when the conditions are met.  * **maxUsage**: add the amount or number of transactions for the lifetime of a payment instrument, and then decline a transaction when the specified limits are met.  * **velocity**: add the amount or number of transactions based on a specified time interval, and then decline a transaction when the specified limits are met. 
         /// </summary>
         /// <value>The [type of rule](https://docs.adyen.com/issuing/transaction-rules#rule-types), which defines if a rule blocks transactions based on individual characteristics or accumulates data.  Possible values:  * **blockList**: decline a transaction when the conditions are met.  * **maxUsage**: add the amount or number of transactions for the lifetime of a payment instrument, and then decline a transaction when the specified limits are met.  * **velocity**: add the amount or number of transactions based on a specified time interval, and then decline a transaction when the specified limits are met. </value>
-        [DataMember(Name = "type", IsRequired = false, EmitDefaultValue = true)]
+        [DataMember(Name = "type", IsRequired = false, EmitDefaultValue = false)]
         public TypeEnum Type { get; set; }
         /// <summary>
         /// Initializes a new instance of the <see cref="TransactionRuleInfo" /> class.
@@ -149,7 +149,7 @@ namespace Adyen.Model.BalancePlatform
         /// <param name="startDate">The date when the rule will start to be evaluated, in ISO 8601 extended offset date-time format. For example, **2020-12-18T10:15:30+01:00**.  If not provided when creating a transaction rule, the &#x60;startDate&#x60; is set to the date when the rule status is set to **active**.   .</param>
         /// <param name="status">The status of the transaction rule. If you provide a &#x60;startDate&#x60; in the request, the rule is automatically created  with an **active** status.   Possible values: **active**, **inactive**..</param>
         /// <param name="type">The [type of rule](https://docs.adyen.com/issuing/transaction-rules#rule-types), which defines if a rule blocks transactions based on individual characteristics or accumulates data.  Possible values:  * **blockList**: decline a transaction when the conditions are met.  * **maxUsage**: add the amount or number of transactions for the lifetime of a payment instrument, and then decline a transaction when the specified limits are met.  * **velocity**: add the amount or number of transactions based on a specified time interval, and then decline a transaction when the specified limits are met.  (required).</param>
-        public TransactionRuleInfo(string aggregationLevel = default(string), string description = default(string), string endDate = default(string), TransactionRuleEntityKey entityKey = default(TransactionRuleEntityKey), TransactionRuleInterval interval = default(TransactionRuleInterval), OutcomeTypeEnum? outcomeType = default(OutcomeTypeEnum?), string reference = default(string), TransactionRuleRestrictions ruleRestrictions = default(TransactionRuleRestrictions), int score = default(int), string startDate = default(string), StatusEnum? status = default(StatusEnum?), TypeEnum type = default(TypeEnum))
+        public TransactionRuleInfo(string aggregationLevel = default(string), string description = default(string), string endDate = default(string), TransactionRuleEntityKey entityKey = default(TransactionRuleEntityKey), TransactionRuleInterval interval = default(TransactionRuleInterval), OutcomeTypeEnum? outcomeType = default(OutcomeTypeEnum?), string reference = default(string), TransactionRuleRestrictions ruleRestrictions = default(TransactionRuleRestrictions), int? score = default(int?), string startDate = default(string), StatusEnum? status = default(StatusEnum?), TypeEnum type = default(TypeEnum))
         {
             this.Description = description;
             this.EntityKey = entityKey;
@@ -176,7 +176,7 @@ namespace Adyen.Model.BalancePlatform
         /// Your description for the transaction rule, maximum 300 characters.
         /// </summary>
         /// <value>Your description for the transaction rule, maximum 300 characters.</value>
-        [DataMember(Name = "description", IsRequired = false, EmitDefaultValue = true)]
+        [DataMember(Name = "description", IsRequired = false, EmitDefaultValue = false)]
         public string Description { get; set; }
 
         /// <summary>
@@ -189,26 +189,26 @@ namespace Adyen.Model.BalancePlatform
         /// <summary>
         /// Gets or Sets EntityKey
         /// </summary>
-        [DataMember(Name = "entityKey", IsRequired = false, EmitDefaultValue = true)]
+        [DataMember(Name = "entityKey", IsRequired = false, EmitDefaultValue = false)]
         public TransactionRuleEntityKey EntityKey { get; set; }
 
         /// <summary>
         /// Gets or Sets Interval
         /// </summary>
-        [DataMember(Name = "interval", IsRequired = false, EmitDefaultValue = true)]
+        [DataMember(Name = "interval", IsRequired = false, EmitDefaultValue = false)]
         public TransactionRuleInterval Interval { get; set; }
 
         /// <summary>
         /// Your reference for the transaction rule, maximum 150 characters.
         /// </summary>
         /// <value>Your reference for the transaction rule, maximum 150 characters.</value>
-        [DataMember(Name = "reference", IsRequired = false, EmitDefaultValue = true)]
+        [DataMember(Name = "reference", IsRequired = false, EmitDefaultValue = false)]
         public string Reference { get; set; }
 
         /// <summary>
         /// Gets or Sets RuleRestrictions
         /// </summary>
-        [DataMember(Name = "ruleRestrictions", IsRequired = false, EmitDefaultValue = true)]
+        [DataMember(Name = "ruleRestrictions", IsRequired = false, EmitDefaultValue = false)]
         public TransactionRuleRestrictions RuleRestrictions { get; set; }
 
         /// <summary>
@@ -216,7 +216,7 @@ namespace Adyen.Model.BalancePlatform
         /// </summary>
         /// <value>A positive or negative score applied to the transaction if it meets the conditions of the rule. Required when &#x60;outcomeType&#x60; is **scoreBased**.  The value must be between **-100** and **100**.</value>
         [DataMember(Name = "score", EmitDefaultValue = false)]
-        public int Score { get; set; }
+        public int? Score { get; set; }
 
         /// <summary>
         /// The date when the rule will start to be evaluated, in ISO 8601 extended offset date-time format. For example, **2020-12-18T10:15:30+01:00**.  If not provided when creating a transaction rule, the &#x60;startDate&#x60; is set to the date when the rule status is set to **active**.   
@@ -386,7 +386,6 @@ namespace Adyen.Model.BalancePlatform
                 return hashCode;
             }
         }
-
         /// <summary>
         /// To validate all properties of the instance
         /// </summary>

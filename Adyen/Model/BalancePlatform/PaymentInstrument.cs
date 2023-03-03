@@ -163,7 +163,7 @@ namespace Adyen.Model.BalancePlatform
         /// Type of payment instrument.  Possible value: **card**, **bankAccount**. 
         /// </summary>
         /// <value>Type of payment instrument.  Possible value: **card**, **bankAccount**. </value>
-        [DataMember(Name = "type", IsRequired = false, EmitDefaultValue = true)]
+        [DataMember(Name = "type", IsRequired = false, EmitDefaultValue = false)]
         public TypeEnum Type { get; set; }
         /// <summary>
         /// Initializes a new instance of the <see cref="PaymentInstrument" /> class.
@@ -203,7 +203,7 @@ namespace Adyen.Model.BalancePlatform
         /// The unique identifier of the [balance account](https://docs.adyen.com/api-explorer/#/balanceplatform/v1/post/balanceAccounts__resParam_id) associated with the payment instrument.
         /// </summary>
         /// <value>The unique identifier of the [balance account](https://docs.adyen.com/api-explorer/#/balanceplatform/v1/post/balanceAccounts__resParam_id) associated with the payment instrument.</value>
-        [DataMember(Name = "balanceAccountId", IsRequired = false, EmitDefaultValue = true)]
+        [DataMember(Name = "balanceAccountId", IsRequired = false, EmitDefaultValue = false)]
         public string BalanceAccountId { get; set; }
 
         /// <summary>
@@ -229,14 +229,14 @@ namespace Adyen.Model.BalancePlatform
         /// The unique identifier of the payment instrument.
         /// </summary>
         /// <value>The unique identifier of the payment instrument.</value>
-        [DataMember(Name = "id", IsRequired = false, EmitDefaultValue = true)]
+        [DataMember(Name = "id", IsRequired = false, EmitDefaultValue = false)]
         public string Id { get; set; }
 
         /// <summary>
         /// The two-character [ISO 3166-1 alpha-2](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2) country code where the payment instrument is issued. For example, **NL** or **US**.
         /// </summary>
         /// <value>The two-character [ISO 3166-1 alpha-2](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2) country code where the payment instrument is issued. For example, **NL** or **US**.</value>
-        [DataMember(Name = "issuingCountryCode", IsRequired = false, EmitDefaultValue = true)]
+        [DataMember(Name = "issuingCountryCode", IsRequired = false, EmitDefaultValue = false)]
         public string IssuingCountryCode { get; set; }
 
         /// <summary>
@@ -408,7 +408,6 @@ namespace Adyen.Model.BalancePlatform
                 return hashCode;
             }
         }
-
         /// <summary>
         /// To validate all properties of the instance
         /// </summary>

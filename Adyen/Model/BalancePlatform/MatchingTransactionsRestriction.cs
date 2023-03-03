@@ -43,7 +43,7 @@ namespace Adyen.Model.BalancePlatform
         /// </summary>
         /// <param name="operation">Defines how the condition must be evaluated. (required).</param>
         /// <param name="value">The number of transactions..</param>
-        public MatchingTransactionsRestriction(string operation = default(string), int value = default(int))
+        public MatchingTransactionsRestriction(string operation = default(string), int? value = default(int?))
         {
             this.Operation = operation;
             this.Value = value;
@@ -53,7 +53,7 @@ namespace Adyen.Model.BalancePlatform
         /// Defines how the condition must be evaluated.
         /// </summary>
         /// <value>Defines how the condition must be evaluated.</value>
-        [DataMember(Name = "operation", IsRequired = false, EmitDefaultValue = true)]
+        [DataMember(Name = "operation", IsRequired = false, EmitDefaultValue = false)]
         public string Operation { get; set; }
 
         /// <summary>
@@ -61,7 +61,7 @@ namespace Adyen.Model.BalancePlatform
         /// </summary>
         /// <value>The number of transactions.</value>
         [DataMember(Name = "value", EmitDefaultValue = false)]
-        public int Value { get; set; }
+        public int? Value { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -136,7 +136,6 @@ namespace Adyen.Model.BalancePlatform
                 return hashCode;
             }
         }
-
         /// <summary>
         /// To validate all properties of the instance
         /// </summary>

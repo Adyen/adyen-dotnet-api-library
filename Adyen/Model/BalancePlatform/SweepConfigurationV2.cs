@@ -122,14 +122,14 @@ namespace Adyen.Model.BalancePlatform
         /// <summary>
         /// Gets or Sets Counterparty
         /// </summary>
-        [DataMember(Name = "counterparty", IsRequired = false, EmitDefaultValue = true)]
+        [DataMember(Name = "counterparty", IsRequired = false, EmitDefaultValue = false)]
         public SweepCounterparty Counterparty { get; set; }
 
         /// <summary>
         /// The three-character [ISO currency code](https://docs.adyen.com/development-resources/currency-codes) in uppercase. For example, **EUR**.  The sweep currency must match any of the [balances currencies](https://docs.adyen.com/api-explorer/#/balanceplatform/latest/get/balanceAccounts/{id}__resParam_balances).
         /// </summary>
         /// <value>The three-character [ISO currency code](https://docs.adyen.com/development-resources/currency-codes) in uppercase. For example, **EUR**.  The sweep currency must match any of the [balances currencies](https://docs.adyen.com/api-explorer/#/balanceplatform/latest/get/balanceAccounts/{id}__resParam_balances).</value>
-        [DataMember(Name = "currency", IsRequired = false, EmitDefaultValue = true)]
+        [DataMember(Name = "currency", IsRequired = false, EmitDefaultValue = false)]
         public string Currency { get; set; }
 
         /// <summary>
@@ -143,7 +143,7 @@ namespace Adyen.Model.BalancePlatform
         /// The unique identifier of the sweep.
         /// </summary>
         /// <value>The unique identifier of the sweep.</value>
-        [DataMember(Name = "id", IsRequired = false, EmitDefaultValue = true)]
+        [DataMember(Name = "id", IsRequired = false, EmitDefaultValue = false)]
         public string Id { get; private set; }
 
         /// <summary>
@@ -157,7 +157,7 @@ namespace Adyen.Model.BalancePlatform
         /// <summary>
         /// Gets or Sets Schedule
         /// </summary>
-        [DataMember(Name = "schedule", IsRequired = false, EmitDefaultValue = true)]
+        [DataMember(Name = "schedule", IsRequired = false, EmitDefaultValue = false)]
         public SweepConfigurationV2Schedule Schedule { get; set; }
 
         /// <summary>
@@ -327,7 +327,6 @@ namespace Adyen.Model.BalancePlatform
                 return hashCode;
             }
         }
-
         /// <summary>
         /// To validate all properties of the instance
         /// </summary>

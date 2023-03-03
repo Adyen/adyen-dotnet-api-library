@@ -55,21 +55,21 @@ namespace Adyen.Model.BalancePlatform
         /// Indicates whether there are more items on the next page.
         /// </summary>
         /// <value>Indicates whether there are more items on the next page.</value>
-        [DataMember(Name = "hasNext", IsRequired = false, EmitDefaultValue = true)]
+        [DataMember(Name = "hasNext", IsRequired = false, EmitDefaultValue = false)]
         public bool HasNext { get; set; }
 
         /// <summary>
         /// Indicates whether there are more items on the previous page.
         /// </summary>
         /// <value>Indicates whether there are more items on the previous page.</value>
-        [DataMember(Name = "hasPrevious", IsRequired = false, EmitDefaultValue = true)]
+        [DataMember(Name = "hasPrevious", IsRequired = false, EmitDefaultValue = false)]
         public bool HasPrevious { get; set; }
 
         /// <summary>
         /// List of payment instruments associated with the balance account.
         /// </summary>
         /// <value>List of payment instruments associated with the balance account.</value>
-        [DataMember(Name = "paymentInstruments", IsRequired = false, EmitDefaultValue = true)]
+        [DataMember(Name = "paymentInstruments", IsRequired = false, EmitDefaultValue = false)]
         public List<PaymentInstrument> PaymentInstruments { get; set; }
 
         /// <summary>
@@ -152,7 +152,6 @@ namespace Adyen.Model.BalancePlatform
                 return hashCode;
             }
         }
-
         /// <summary>
         /// To validate all properties of the instance
         /// </summary>

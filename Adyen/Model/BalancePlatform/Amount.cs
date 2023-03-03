@@ -53,14 +53,14 @@ namespace Adyen.Model.BalancePlatform
         /// The three-character [ISO currency code](https://docs.adyen.com/development-resources/currency-codes).
         /// </summary>
         /// <value>The three-character [ISO currency code](https://docs.adyen.com/development-resources/currency-codes).</value>
-        [DataMember(Name = "currency", IsRequired = false, EmitDefaultValue = true)]
+        [DataMember(Name = "currency", IsRequired = false, EmitDefaultValue = false)]
         public string Currency { get; set; }
 
         /// <summary>
         /// The amount of the transaction, in [minor units](https://docs.adyen.com/development-resources/currency-codes).
         /// </summary>
         /// <value>The amount of the transaction, in [minor units](https://docs.adyen.com/development-resources/currency-codes).</value>
-        [DataMember(Name = "value", IsRequired = false, EmitDefaultValue = true)]
+        [DataMember(Name = "value", IsRequired = false, EmitDefaultValue = false)]
         public long Value { get; set; }
 
         /// <summary>
@@ -136,7 +136,6 @@ namespace Adyen.Model.BalancePlatform
                 return hashCode;
             }
         }
-
         /// <summary>
         /// To validate all properties of the instance
         /// </summary>

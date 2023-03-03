@@ -81,7 +81,7 @@ namespace Adyen.Model.BalancePlatform
         /// The two-character ISO-3166-1 alpha-2 country code. For example, **US**.
         /// </summary>
         /// <value>The two-character ISO-3166-1 alpha-2 country code. For example, **US**.</value>
-        [DataMember(Name = "country", IsRequired = false, EmitDefaultValue = true)]
+        [DataMember(Name = "country", IsRequired = false, EmitDefaultValue = false)]
         public string Country { get; set; }
 
         /// <summary>
@@ -273,7 +273,6 @@ namespace Adyen.Model.BalancePlatform
                 return hashCode;
             }
         }
-
         /// <summary>
         /// To validate all properties of the instance
         /// </summary>

@@ -60,7 +60,7 @@ namespace Adyen.Model.BalancePlatform
         /// <summary>
         /// Gets or Sets Address
         /// </summary>
-        [DataMember(Name = "address", IsRequired = false, EmitDefaultValue = true)]
+        [DataMember(Name = "address", IsRequired = false, EmitDefaultValue = false)]
         public Address2 Address { get; set; }
 
         /// <summary>
@@ -80,7 +80,7 @@ namespace Adyen.Model.BalancePlatform
         /// <summary>
         /// Gets or Sets Name
         /// </summary>
-        [DataMember(Name = "name", IsRequired = false, EmitDefaultValue = true)]
+        [DataMember(Name = "name", IsRequired = false, EmitDefaultValue = false)]
         public Name Name { get; set; }
 
         /// <summary>
@@ -213,7 +213,6 @@ namespace Adyen.Model.BalancePlatform
                 return hashCode;
             }
         }
-
         /// <summary>
         /// To validate all properties of the instance
         /// </summary>

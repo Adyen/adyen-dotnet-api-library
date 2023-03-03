@@ -55,21 +55,21 @@ namespace Adyen.Model.BalancePlatform
         /// Description of the validation error.
         /// </summary>
         /// <value>Description of the validation error.</value>
-        [DataMember(Name = "message", IsRequired = false, EmitDefaultValue = true)]
+        [DataMember(Name = "message", IsRequired = false, EmitDefaultValue = false)]
         public string Message { get; set; }
 
         /// <summary>
         /// The field that has an invalid value.
         /// </summary>
         /// <value>The field that has an invalid value.</value>
-        [DataMember(Name = "name", IsRequired = false, EmitDefaultValue = true)]
+        [DataMember(Name = "name", IsRequired = false, EmitDefaultValue = false)]
         public string Name { get; set; }
 
         /// <summary>
         /// The invalid value.
         /// </summary>
         /// <value>The invalid value.</value>
-        [DataMember(Name = "value", IsRequired = false, EmitDefaultValue = true)]
+        [DataMember(Name = "value", IsRequired = false, EmitDefaultValue = false)]
         public string Value { get; set; }
 
         /// <summary>
@@ -159,7 +159,6 @@ namespace Adyen.Model.BalancePlatform
                 return hashCode;
             }
         }
-
         /// <summary>
         /// To validate all properties of the instance
         /// </summary>

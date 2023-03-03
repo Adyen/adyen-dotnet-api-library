@@ -90,7 +90,7 @@ namespace Adyen.Model.BalancePlatform
         /// The unique identifier of the [legal entity](https://docs.adyen.com/api-explorer/#/legalentity/latest/post/legalEntities__resParam_id) associated with the account holder. Adyen performs a verification process against the legal entity of the account holder.
         /// </summary>
         /// <value>The unique identifier of the [legal entity](https://docs.adyen.com/api-explorer/#/legalentity/latest/post/legalEntities__resParam_id) associated with the account holder. Adyen performs a verification process against the legal entity of the account holder.</value>
-        [DataMember(Name = "legalEntityId", IsRequired = false, EmitDefaultValue = true)]
+        [DataMember(Name = "legalEntityId", IsRequired = false, EmitDefaultValue = false)]
         public string LegalEntityId { get; set; }
 
         /// <summary>
@@ -235,7 +235,6 @@ namespace Adyen.Model.BalancePlatform
                 return hashCode;
             }
         }
-
         /// <summary>
         /// To validate all properties of the instance
         /// </summary>

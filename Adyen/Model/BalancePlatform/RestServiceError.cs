@@ -50,7 +50,7 @@ namespace Adyen.Model.BalancePlatform
         /// <param name="status">The HTTP status code. (required).</param>
         /// <param name="title">A short, human-readable summary of the problem type. (required).</param>
         /// <param name="type">A URI that identifies the problem type, pointing to human-readable documentation on this problem type. (required).</param>
-        public RestServiceError(string detail = default(string), string errorCode = default(string), string instance = default(string), List<InvalidField> invalidFields = default(List<InvalidField>), string requestId = default(string), JSONObject response = default(JSONObject), int status = default(int), string title = default(string), string type = default(string))
+        public RestServiceError(string detail = default(string), string errorCode = default(string), string instance = default(string), List<InvalidField> invalidFields = default(List<InvalidField>), string requestId = default(string), JSONObject response = default(JSONObject), int? status = default(int?), string title = default(string), string type = default(string))
         {
             this.Detail = detail;
             this.ErrorCode = errorCode;
@@ -67,14 +67,14 @@ namespace Adyen.Model.BalancePlatform
         /// A human-readable explanation specific to this occurrence of the problem.
         /// </summary>
         /// <value>A human-readable explanation specific to this occurrence of the problem.</value>
-        [DataMember(Name = "detail", IsRequired = false, EmitDefaultValue = true)]
+        [DataMember(Name = "detail", IsRequired = false, EmitDefaultValue = false)]
         public string Detail { get; set; }
 
         /// <summary>
         /// A code that identifies the problem type.
         /// </summary>
         /// <value>A code that identifies the problem type.</value>
-        [DataMember(Name = "errorCode", IsRequired = false, EmitDefaultValue = true)]
+        [DataMember(Name = "errorCode", IsRequired = false, EmitDefaultValue = false)]
         public string ErrorCode { get; set; }
 
         /// <summary>
@@ -108,21 +108,21 @@ namespace Adyen.Model.BalancePlatform
         /// The HTTP status code.
         /// </summary>
         /// <value>The HTTP status code.</value>
-        [DataMember(Name = "status", IsRequired = false, EmitDefaultValue = true)]
-        public int Status { get; set; }
+        [DataMember(Name = "status", IsRequired = false, EmitDefaultValue = false)]
+        public int? Status { get; set; }
 
         /// <summary>
         /// A short, human-readable summary of the problem type.
         /// </summary>
         /// <value>A short, human-readable summary of the problem type.</value>
-        [DataMember(Name = "title", IsRequired = false, EmitDefaultValue = true)]
+        [DataMember(Name = "title", IsRequired = false, EmitDefaultValue = false)]
         public string Title { get; set; }
 
         /// <summary>
         /// A URI that identifies the problem type, pointing to human-readable documentation on this problem type.
         /// </summary>
         /// <value>A URI that identifies the problem type, pointing to human-readable documentation on this problem type.</value>
-        [DataMember(Name = "type", IsRequired = false, EmitDefaultValue = true)]
+        [DataMember(Name = "type", IsRequired = false, EmitDefaultValue = false)]
         public string Type { get; set; }
 
         /// <summary>
@@ -269,7 +269,6 @@ namespace Adyen.Model.BalancePlatform
                 return hashCode;
             }
         }
-
         /// <summary>
         /// To validate all properties of the instance
         /// </summary>

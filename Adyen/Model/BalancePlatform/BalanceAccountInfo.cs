@@ -59,7 +59,7 @@ namespace Adyen.Model.BalancePlatform
         /// The unique identifier of the [account holder](https://docs.adyen.com/api-explorer/#/balanceplatform/latest/post/accountHolders__resParam_id) associated with the balance account.
         /// </summary>
         /// <value>The unique identifier of the [account holder](https://docs.adyen.com/api-explorer/#/balanceplatform/latest/post/accountHolders__resParam_id) associated with the balance account.</value>
-        [DataMember(Name = "accountHolderId", IsRequired = false, EmitDefaultValue = true)]
+        [DataMember(Name = "accountHolderId", IsRequired = false, EmitDefaultValue = false)]
         public string AccountHolderId { get; set; }
 
         /// <summary>
@@ -197,7 +197,6 @@ namespace Adyen.Model.BalancePlatform
                 return hashCode;
             }
         }
-
         /// <summary>
         /// To validate all properties of the instance
         /// </summary>

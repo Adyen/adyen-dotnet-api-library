@@ -57,28 +57,28 @@ namespace Adyen.Model.BalancePlatform
         /// The remaining amount available for spending.
         /// </summary>
         /// <value>The remaining amount available for spending.</value>
-        [DataMember(Name = "available", IsRequired = false, EmitDefaultValue = true)]
+        [DataMember(Name = "available", IsRequired = false, EmitDefaultValue = false)]
         public long Available { get; set; }
 
         /// <summary>
         /// The total amount in the balance.
         /// </summary>
         /// <value>The total amount in the balance.</value>
-        [DataMember(Name = "balance", IsRequired = false, EmitDefaultValue = true)]
+        [DataMember(Name = "balance", IsRequired = false, EmitDefaultValue = false)]
         public long _Balance { get; set; }
 
         /// <summary>
         /// The three-character [ISO currency code](https://docs.adyen.com/development-resources/currency-codes) of the balance.
         /// </summary>
         /// <value>The three-character [ISO currency code](https://docs.adyen.com/development-resources/currency-codes) of the balance.</value>
-        [DataMember(Name = "currency", IsRequired = false, EmitDefaultValue = true)]
+        [DataMember(Name = "currency", IsRequired = false, EmitDefaultValue = false)]
         public string Currency { get; set; }
 
         /// <summary>
         /// The amount reserved for payments that have been authorised, but have not been captured yet.
         /// </summary>
         /// <value>The amount reserved for payments that have been authorised, but have not been captured yet.</value>
-        [DataMember(Name = "reserved", IsRequired = false, EmitDefaultValue = true)]
+        [DataMember(Name = "reserved", IsRequired = false, EmitDefaultValue = false)]
         public long Reserved { get; set; }
 
         /// <summary>
@@ -166,7 +166,6 @@ namespace Adyen.Model.BalancePlatform
                 return hashCode;
             }
         }
-
         /// <summary>
         /// To validate all properties of the instance
         /// </summary>

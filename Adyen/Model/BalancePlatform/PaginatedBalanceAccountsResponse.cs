@@ -55,21 +55,21 @@ namespace Adyen.Model.BalancePlatform
         /// List of balance accounts.
         /// </summary>
         /// <value>List of balance accounts.</value>
-        [DataMember(Name = "balanceAccounts", IsRequired = false, EmitDefaultValue = true)]
+        [DataMember(Name = "balanceAccounts", IsRequired = false, EmitDefaultValue = false)]
         public List<BalanceAccount> BalanceAccounts { get; set; }
 
         /// <summary>
         /// Indicates whether there are more items on the next page.
         /// </summary>
         /// <value>Indicates whether there are more items on the next page.</value>
-        [DataMember(Name = "hasNext", IsRequired = false, EmitDefaultValue = true)]
+        [DataMember(Name = "hasNext", IsRequired = false, EmitDefaultValue = false)]
         public bool HasNext { get; set; }
 
         /// <summary>
         /// Indicates whether there are more items on the previous page.
         /// </summary>
         /// <value>Indicates whether there are more items on the previous page.</value>
-        [DataMember(Name = "hasPrevious", IsRequired = false, EmitDefaultValue = true)]
+        [DataMember(Name = "hasPrevious", IsRequired = false, EmitDefaultValue = false)]
         public bool HasPrevious { get; set; }
 
         /// <summary>
@@ -152,7 +152,6 @@ namespace Adyen.Model.BalancePlatform
                 return hashCode;
             }
         }
-
         /// <summary>
         /// To validate all properties of the instance
         /// </summary>

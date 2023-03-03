@@ -59,7 +59,7 @@ namespace Adyen.Model.BalancePlatform
         /// The unique identifier of the [balance platform](https://docs.adyen.com/api-explorer/#/balanceplatform/latest/get/balancePlatforms/{id}__queryParam_id) to which the payment instrument group belongs.
         /// </summary>
         /// <value>The unique identifier of the [balance platform](https://docs.adyen.com/api-explorer/#/balanceplatform/latest/get/balancePlatforms/{id}__queryParam_id) to which the payment instrument group belongs.</value>
-        [DataMember(Name = "balancePlatform", IsRequired = false, EmitDefaultValue = true)]
+        [DataMember(Name = "balancePlatform", IsRequired = false, EmitDefaultValue = false)]
         public string BalancePlatform { get; set; }
 
         /// <summary>
@@ -87,7 +87,7 @@ namespace Adyen.Model.BalancePlatform
         /// The tx variant of the payment instrument group.
         /// </summary>
         /// <value>The tx variant of the payment instrument group.</value>
-        [DataMember(Name = "txVariant", IsRequired = false, EmitDefaultValue = true)]
+        [DataMember(Name = "txVariant", IsRequired = false, EmitDefaultValue = false)]
         public string TxVariant { get; set; }
 
         /// <summary>
@@ -198,7 +198,6 @@ namespace Adyen.Model.BalancePlatform
                 return hashCode;
             }
         }
-
         /// <summary>
         /// To validate all properties of the instance
         /// </summary>

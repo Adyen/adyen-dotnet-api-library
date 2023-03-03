@@ -59,7 +59,7 @@ namespace Adyen.Model.BalancePlatform
         /// Type of phone number. Possible values:  **Landline**, **Mobile**. 
         /// </summary>
         /// <value>Type of phone number. Possible values:  **Landline**, **Mobile**. </value>
-        [DataMember(Name = "type", IsRequired = false, EmitDefaultValue = true)]
+        [DataMember(Name = "type", IsRequired = false, EmitDefaultValue = false)]
         public TypeEnum Type { get; set; }
         /// <summary>
         /// Initializes a new instance of the <see cref="Phone" /> class.
@@ -81,7 +81,7 @@ namespace Adyen.Model.BalancePlatform
         /// The full phone number provided as a single string.  For example, **\&quot;0031 6 11 22 33 44\&quot;**, **\&quot;+316/1122-3344\&quot;**,    or **\&quot;(0031) 611223344\&quot;**.
         /// </summary>
         /// <value>The full phone number provided as a single string.  For example, **\&quot;0031 6 11 22 33 44\&quot;**, **\&quot;+316/1122-3344\&quot;**,    or **\&quot;(0031) 611223344\&quot;**.</value>
-        [DataMember(Name = "number", IsRequired = false, EmitDefaultValue = true)]
+        [DataMember(Name = "number", IsRequired = false, EmitDefaultValue = false)]
         public string Number { get; set; }
 
         /// <summary>
@@ -157,7 +157,6 @@ namespace Adyen.Model.BalancePlatform
                 return hashCode;
             }
         }
-
         /// <summary>
         /// To validate all properties of the instance
         /// </summary>

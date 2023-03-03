@@ -56,20 +56,20 @@ namespace Adyen.Model.BalancePlatform
         /// <summary>
         /// Gets or Sets Address
         /// </summary>
-        [DataMember(Name = "address", IsRequired = false, EmitDefaultValue = true)]
+        [DataMember(Name = "address", IsRequired = false, EmitDefaultValue = false)]
         public Address Address { get; set; }
 
         /// <summary>
         /// The email address of the account holder.
         /// </summary>
         /// <value>The email address of the account holder.</value>
-        [DataMember(Name = "email", IsRequired = false, EmitDefaultValue = true)]
+        [DataMember(Name = "email", IsRequired = false, EmitDefaultValue = false)]
         public string Email { get; set; }
 
         /// <summary>
         /// Gets or Sets Phone
         /// </summary>
-        [DataMember(Name = "phone", IsRequired = false, EmitDefaultValue = true)]
+        [DataMember(Name = "phone", IsRequired = false, EmitDefaultValue = false)]
         public Phone Phone { get; set; }
 
         /// <summary>
@@ -176,7 +176,6 @@ namespace Adyen.Model.BalancePlatform
                 return hashCode;
             }
         }
-
         /// <summary>
         /// To validate all properties of the instance
         /// </summary>

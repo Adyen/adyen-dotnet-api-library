@@ -118,7 +118,7 @@ namespace Adyen.Model.BalancePlatform
         /// The ID of the card configuration profile that contains the settings of the card. For example, the envelope and PIN mailer designs or the logistics company handling the shipment. All the settings in the profile are applied to the card, unless you provide other fields to override them.  For example, send the &#x60;shipmentMethod&#x60; to override the logistics company defined in the card configuration profile.
         /// </summary>
         /// <value>The ID of the card configuration profile that contains the settings of the card. For example, the envelope and PIN mailer designs or the logistics company handling the shipment. All the settings in the profile are applied to the card, unless you provide other fields to override them.  For example, send the &#x60;shipmentMethod&#x60; to override the logistics company defined in the card configuration profile.</value>
-        [DataMember(Name = "configurationProfileId", IsRequired = false, EmitDefaultValue = true)]
+        [DataMember(Name = "configurationProfileId", IsRequired = false, EmitDefaultValue = false)]
         public string ConfigurationProfileId { get; set; }
 
         /// <summary>
@@ -367,7 +367,6 @@ namespace Adyen.Model.BalancePlatform
                 return hashCode;
             }
         }
-
         /// <summary>
         /// To validate all properties of the instance
         /// </summary>

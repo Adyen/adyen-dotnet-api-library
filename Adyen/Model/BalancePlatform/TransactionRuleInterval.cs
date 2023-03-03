@@ -147,7 +147,7 @@ namespace Adyen.Model.BalancePlatform
         /// The [type of interval](https://docs.adyen.com/issuing/transaction-rules#time-intervals) during which the rule conditions and limits apply, and how often counters are reset.  Possible values:   * **perTransaction**: conditions are evaluated and the counters are reset for every transaction.  * **daily**: the counters are reset daily at 00:00:00 UTC.  * **weekly**: the counters are reset every Monday at 00:00:00 UTC.   * **monthly**: the counters reset every first day of the month at 00:00:00 UTC.   * **lifetime**: conditions are applied to the lifetime of the payment instrument.  * **rolling**: conditions are applied and the counters are reset based on a &#x60;duration&#x60;. If the reset date and time are not provided, Adyen applies the default reset time similar to fixed intervals. For example, if the duration is every two weeks, the counter resets every third Monday at 00:00:00 UTC.  * **sliding**: conditions are applied and the counters are reset based on the current time and a &#x60;duration&#x60; that you specify.
         /// </summary>
         /// <value>The [type of interval](https://docs.adyen.com/issuing/transaction-rules#time-intervals) during which the rule conditions and limits apply, and how often counters are reset.  Possible values:   * **perTransaction**: conditions are evaluated and the counters are reset for every transaction.  * **daily**: the counters are reset daily at 00:00:00 UTC.  * **weekly**: the counters are reset every Monday at 00:00:00 UTC.   * **monthly**: the counters reset every first day of the month at 00:00:00 UTC.   * **lifetime**: conditions are applied to the lifetime of the payment instrument.  * **rolling**: conditions are applied and the counters are reset based on a &#x60;duration&#x60;. If the reset date and time are not provided, Adyen applies the default reset time similar to fixed intervals. For example, if the duration is every two weeks, the counter resets every third Monday at 00:00:00 UTC.  * **sliding**: conditions are applied and the counters are reset based on the current time and a &#x60;duration&#x60; that you specify.</value>
-        [DataMember(Name = "type", IsRequired = false, EmitDefaultValue = true)]
+        [DataMember(Name = "type", IsRequired = false, EmitDefaultValue = false)]
         public TypeEnum Type { get; set; }
         /// <summary>
         /// Initializes a new instance of the <see cref="TransactionRuleInterval" /> class.
@@ -163,7 +163,7 @@ namespace Adyen.Model.BalancePlatform
         /// <param name="timeOfDay">The time of day, in **hh:mm:ss** format, used when the &#x60;duration.unit&#x60; is **hours**. If not provided, by default, this is set to **00:00:00**..</param>
         /// <param name="timeZone">The [time zone](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones). For example, **Europe/Amsterdam**. By default, this is set to **UTC**..</param>
         /// <param name="type">The [type of interval](https://docs.adyen.com/issuing/transaction-rules#time-intervals) during which the rule conditions and limits apply, and how often counters are reset.  Possible values:   * **perTransaction**: conditions are evaluated and the counters are reset for every transaction.  * **daily**: the counters are reset daily at 00:00:00 UTC.  * **weekly**: the counters are reset every Monday at 00:00:00 UTC.   * **monthly**: the counters reset every first day of the month at 00:00:00 UTC.   * **lifetime**: conditions are applied to the lifetime of the payment instrument.  * **rolling**: conditions are applied and the counters are reset based on a &#x60;duration&#x60;. If the reset date and time are not provided, Adyen applies the default reset time similar to fixed intervals. For example, if the duration is every two weeks, the counter resets every third Monday at 00:00:00 UTC.  * **sliding**: conditions are applied and the counters are reset based on the current time and a &#x60;duration&#x60; that you specify. (required).</param>
-        public TransactionRuleInterval(int dayOfMonth = default(int), DayOfWeekEnum? dayOfWeek = default(DayOfWeekEnum?), Duration duration = default(Duration), string timeOfDay = default(string), string timeZone = default(string), TypeEnum type = default(TypeEnum))
+        public TransactionRuleInterval(int? dayOfMonth = default(int?), DayOfWeekEnum? dayOfWeek = default(DayOfWeekEnum?), Duration duration = default(Duration), string timeOfDay = default(string), string timeZone = default(string), TypeEnum type = default(TypeEnum))
         {
             this.Type = type;
             this.DayOfMonth = dayOfMonth;
@@ -178,7 +178,7 @@ namespace Adyen.Model.BalancePlatform
         /// </summary>
         /// <value>The day of month, used when the &#x60;duration.unit&#x60; is **months**. If not provided, by default, this is set to **1**, the first day of the month.</value>
         [DataMember(Name = "dayOfMonth", EmitDefaultValue = false)]
-        public int DayOfMonth { get; set; }
+        public int? DayOfMonth { get; set; }
 
         /// <summary>
         /// Gets or Sets Duration
@@ -305,7 +305,6 @@ namespace Adyen.Model.BalancePlatform
                 return hashCode;
             }
         }
-
         /// <summary>
         /// To validate all properties of the instance
         /// </summary>
