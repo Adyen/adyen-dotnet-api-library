@@ -4,6 +4,7 @@ using Adyen.HttpClient;
 using Adyen.Model.Checkout;
 using Adyen.Service;
 using Adyen.Service.Checkout;
+using Adyen.Service.Payments;
 using Adyen.Service.Resource.Checkout;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Amount = Adyen.Model.Payments.Amount;
@@ -33,7 +34,7 @@ namespace Adyen.IntegrationTest
         [TestMethod]
         public void TestClassicPaymentErrorHandling()
         {
-            var payments = new Payment(_client);
+            var payments = new PaymentService(_client);
             var request = new PaymentRequest {
                 Amount = new Amount(){
                     Value = 1500,

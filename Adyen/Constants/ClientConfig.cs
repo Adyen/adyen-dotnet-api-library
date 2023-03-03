@@ -46,6 +46,7 @@ namespace Adyen.Constants
         public static string HopApiVersion = "v1";
         public static string RecurringApiVersion = "v68";
         public static string ApiVersion = "v68";
+        public static string BalanceControlVersion = "v1";
         public static string PayoutApiVersion = "v68";
         public static string CheckoutApiVersion = "v70";
         public static string PosTerminalManagementVersion = "v1";

@@ -23,6 +23,7 @@ using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
 using Newtonsoft.Json.Linq;
 using System.ComponentModel.DataAnnotations;
+using OpenAPIDateConverter = Adyen.ApiSerialization.OpenAPIDateConverter;
 
 namespace Adyen.Model.Payments
 {
@@ -46,11 +47,12 @@ namespace Adyen.Model.Payments
         /// <param name="mpiData">mpiData.</param>
         /// <param name="originalMerchantReference">The original merchant reference to cancel..</param>
         /// <param name="originalReference">The original pspReference of the payment to modify. This reference is returned in: * authorisation response * authorisation notification   (required).</param>
+        /// <param name="platformChargebackLogic">platformChargebackLogic.</param>
         /// <param name="reference">Your reference for the payment modification. This reference is visible in Customer Area and in reports. Maximum length: 80 characters..</param>
         /// <param name="splits">An array of objects specifying how the amount should be split between accounts when using Adyen for Platforms. For details, refer to [Providing split information](https://docs.adyen.com/marketplaces-and-platforms/processing-payments#providing-split-information)..</param>
         /// <param name="tenderReference">The transaction reference provided by the PED. For point-of-sale integrations only..</param>
         /// <param name="uniqueTerminalId">Unique terminal ID for the PED that originally processed the request. For point-of-sale integrations only..</param>
-        public CaptureRequest(Dictionary<string, string> additionalData = default(Dictionary<string, string>), string merchantAccount = default(string), Amount modificationAmount = default(Amount), ThreeDSecureData mpiData = default(ThreeDSecureData), string originalMerchantReference = default(string), string originalReference = default(string), string reference = default(string), List<Split> splits = default(List<Split>), string tenderReference = default(string), string uniqueTerminalId = default(string))
+        public CaptureRequest(Dictionary<string, string> additionalData = default(Dictionary<string, string>), string merchantAccount = default(string), Amount modificationAmount = default(Amount), ThreeDSecureData mpiData = default(ThreeDSecureData), string originalMerchantReference = default(string), string originalReference = default(string), PlatformChargebackLogic platformChargebackLogic = default(PlatformChargebackLogic), string reference = default(string), List<Split> splits = default(List<Split>), string tenderReference = default(string), string uniqueTerminalId = default(string))
         {
             this.MerchantAccount = merchantAccount;
             this.ModificationAmount = modificationAmount;
@@ -58,6 +60,7 @@ namespace Adyen.Model.Payments
             this.AdditionalData = additionalData;
             this.MpiData = mpiData;
             this.OriginalMerchantReference = originalMerchantReference;
+            this.PlatformChargebackLogic = platformChargebackLogic;
             this.Reference = reference;
             this.Splits = splits;
             this.TenderReference = tenderReference;
@@ -105,6 +108,12 @@ namespace Adyen.Model.Payments
         public string OriginalReference { get; set; }
 
         /// <summary>
+        /// Gets or Sets PlatformChargebackLogic
+        /// </summary>
+        [DataMember(Name = "platformChargebackLogic", EmitDefaultValue = false)]
+        public PlatformChargebackLogic PlatformChargebackLogic { get; set; }
+
+        /// <summary>
         /// Your reference for the payment modification. This reference is visible in Customer Area and in reports. Maximum length: 80 characters.
         /// </summary>
         /// <value>Your reference for the payment modification. This reference is visible in Customer Area and in reports. Maximum length: 80 characters.</value>
@@ -146,6 +155,7 @@ namespace Adyen.Model.Payments
             sb.Append("  MpiData: ").Append(MpiData).Append("\n");
             sb.Append("  OriginalMerchantReference: ").Append(OriginalMerchantReference).Append("\n");
             sb.Append("  OriginalReference: ").Append(OriginalReference).Append("\n");
+            sb.Append("  PlatformChargebackLogic: ").Append(PlatformChargebackLogic).Append("\n");
             sb.Append("  Reference: ").Append(Reference).Append("\n");
             sb.Append("  Splits: ").Append(Splits).Append("\n");
             sb.Append("  TenderReference: ").Append(TenderReference).Append("\n");
@@ -217,6 +227,11 @@ namespace Adyen.Model.Payments
                     this.OriginalReference.Equals(input.OriginalReference))
                 ) && 
                 (
+                    this.PlatformChargebackLogic == input.PlatformChargebackLogic ||
+                    (this.PlatformChargebackLogic != null &&
+                    this.PlatformChargebackLogic.Equals(input.PlatformChargebackLogic))
+                ) && 
+                (
                     this.Reference == input.Reference ||
                     (this.Reference != null &&
                     this.Reference.Equals(input.Reference))
@@ -271,6 +286,10 @@ namespace Adyen.Model.Payments
                 if (this.OriginalReference != null)
                 {
                     hashCode = (hashCode * 59) + this.OriginalReference.GetHashCode();
+                }
+                if (this.PlatformChargebackLogic != null)
+                {
+                    hashCode = (hashCode * 59) + this.PlatformChargebackLogic.GetHashCode();
                 }
                 if (this.Reference != null)
                 {

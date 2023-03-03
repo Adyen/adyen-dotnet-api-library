@@ -12,19 +12,24 @@ output:=target/out
 # Generate models (for each service)
 models: $(services)
 
+BalanceControl: spec=BalanceControlService-v1
+BalanceControl: service=balanceControlService
+BalancePlatform: spec=BalancePlatformService-v2
 BinLookup: spec=BinLookupService-v52
 Checkout: spec=CheckoutService-v70
 Checkout: service=checkout
 StoredValue: spec=StoredValueService-v46
+StoredValue: service=storedvalue
 PosTerminalManagement: spec=TfmAPIService-v1
 Payments: spec=PaymentService-v68
+Payments: service=payments
 Recurring: spec=RecurringService-v68
+Recurring: service=recurring
 Payouts: spec=PayoutService-v68
 Payouts: service=payoutsService
 Management: spec=ManagementService-v1
 Management: service=management
 LegalEntityManagement: spec=LegalEntityService-v2
-BalancePlatform: spec=BalancePlatformService-v2
 PlatformsAccount: spec=AccountService-v6
 PlatformsFund: spec=FundService-v6
 PlatformsNotificationConfiguration: spec=NotificationConfigurationService-v6

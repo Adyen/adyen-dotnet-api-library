@@ -40,6 +40,7 @@ using Amount = Adyen.Model.Checkout;
 using PaymentResult = Adyen.Model.Payments.PaymentResult;
 using Adyen.Model.Checkout;
 using System.Threading.Tasks;
+using Adyen.Service.Payments;
 using CardDetails = Adyen.Service.Resource.Checkout.CardDetails;
 using CommonField = Adyen.Model.Checkout.CommonField;
 
@@ -57,8 +58,8 @@ namespace Adyen.Test
         /// <returns></returns>
         protected PaymentResult CreatePaymentResultFromFile(string fileName)
         {
-            var client = CreateMockTestClientRequest(fileName);
-            var payment = new Payment(client);
+            var client = CreateMockTestClientApiKeyBasedRequestAsync(fileName);
+            var payment = new PaymentService(client);
             var paymentRequest = MockPaymentData.CreateFullPaymentRequest();
             var paymentResult = payment.Authorise(paymentRequest);
             return paymentResult;
@@ -66,8 +67,8 @@ namespace Adyen.Test
 
         protected PaymentResult CreatePaymentApiKeyBasedResultFromFile(string fileName)
         {
-            var client = CreateMockTestClientApiKeyBasedRequest(fileName);
-            var payment = new Payment(client);
+            var client = CreateMockTestClientApiKeyBasedRequestAsync(fileName);
+            var payment = new PaymentService(client);
             var paymentRequest = MockPaymentData.CreateFullPaymentRequest();
 
             var paymentResult = payment.Authorise(paymentRequest);
