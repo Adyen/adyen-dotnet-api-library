@@ -11,25 +11,27 @@
 */
 
 using System;
-using System.Linq;
-using System.IO;
-using System.Text;
-using System.Text.RegularExpressions;
 using System.Collections;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Linq;
+using System.IO;
 using System.Runtime.Serialization;
+using System.Text;
+using System.Text.RegularExpressions;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
+using Newtonsoft.Json.Linq;
 using System.ComponentModel.DataAnnotations;
+using OpenAPIDateConverter = Adyen.ApiSerialization.OpenAPIDateConverter;
 
 namespace Adyen.Model.Payments
 {
     /// <summary>
     /// ResponseAdditionalDataNetworkTokens
     /// </summary>
-    [DataContract]
-    public partial class ResponseAdditionalDataNetworkTokens :  IEquatable<ResponseAdditionalDataNetworkTokens>, IValidatableObject
+    [DataContract(Name = "ResponseAdditionalDataNetworkTokens")]
+    public partial class ResponseAdditionalDataNetworkTokens : IEquatable<ResponseAdditionalDataNetworkTokens>, IValidatableObject
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="ResponseAdditionalDataNetworkTokens" /> class.
@@ -48,21 +50,21 @@ namespace Adyen.Model.Payments
         /// Indicates whether a network token is available for the specified card.
         /// </summary>
         /// <value>Indicates whether a network token is available for the specified card.</value>
-        [DataMember(Name="networkToken.available", EmitDefaultValue=false)]
+        [DataMember(Name = "networkToken.available", EmitDefaultValue = false)]
         public string NetworkTokenAvailable { get; set; }
 
         /// <summary>
         /// The Bank Identification Number of a tokenized card, which is the first six digits of a card number.
         /// </summary>
         /// <value>The Bank Identification Number of a tokenized card, which is the first six digits of a card number.</value>
-        [DataMember(Name="networkToken.bin", EmitDefaultValue=false)]
+        [DataMember(Name = "networkToken.bin", EmitDefaultValue = false)]
         public string NetworkTokenBin { get; set; }
 
         /// <summary>
         /// The last four digits of a network token.
         /// </summary>
         /// <value>The last four digits of a network token.</value>
-        [DataMember(Name="networkToken.tokenSummary", EmitDefaultValue=false)]
+        [DataMember(Name = "networkToken.tokenSummary", EmitDefaultValue = false)]
         public string NetworkTokenTokenSummary { get; set; }
 
         /// <summary>
@@ -71,7 +73,7 @@ namespace Adyen.Model.Payments
         /// <returns>String presentation of the object</returns>
         public override string ToString()
         {
-            var sb = new StringBuilder();
+            StringBuilder sb = new StringBuilder();
             sb.Append("class ResponseAdditionalDataNetworkTokens {\n");
             sb.Append("  NetworkTokenAvailable: ").Append(NetworkTokenAvailable).Append("\n");
             sb.Append("  NetworkTokenBin: ").Append(NetworkTokenBin).Append("\n");
@@ -107,8 +109,9 @@ namespace Adyen.Model.Payments
         public bool Equals(ResponseAdditionalDataNetworkTokens input)
         {
             if (input == null)
+            {
                 return false;
-
+            }
             return 
                 (
                     this.NetworkTokenAvailable == input.NetworkTokenAvailable ||
@@ -137,21 +140,26 @@ namespace Adyen.Model.Payments
             {
                 int hashCode = 41;
                 if (this.NetworkTokenAvailable != null)
-                    hashCode = hashCode * 59 + this.NetworkTokenAvailable.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.NetworkTokenAvailable.GetHashCode();
+                }
                 if (this.NetworkTokenBin != null)
-                    hashCode = hashCode * 59 + this.NetworkTokenBin.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.NetworkTokenBin.GetHashCode();
+                }
                 if (this.NetworkTokenTokenSummary != null)
-                    hashCode = hashCode * 59 + this.NetworkTokenTokenSummary.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.NetworkTokenTokenSummary.GetHashCode();
+                }
                 return hashCode;
             }
         }
-
         /// <summary>
         /// To validate all properties of the instance
         /// </summary>
         /// <param name="validationContext">Validation context</param>
         /// <returns>Validation Result</returns>
-        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+        public IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> Validate(ValidationContext validationContext)
         {
             yield break;
         }

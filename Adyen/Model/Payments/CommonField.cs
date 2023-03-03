@@ -11,25 +11,27 @@
 */
 
 using System;
-using System.Linq;
-using System.IO;
-using System.Text;
-using System.Text.RegularExpressions;
 using System.Collections;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Linq;
+using System.IO;
 using System.Runtime.Serialization;
+using System.Text;
+using System.Text.RegularExpressions;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
+using Newtonsoft.Json.Linq;
 using System.ComponentModel.DataAnnotations;
+using OpenAPIDateConverter = Adyen.ApiSerialization.OpenAPIDateConverter;
 
 namespace Adyen.Model.Payments
 {
     /// <summary>
     /// CommonField
     /// </summary>
-    [DataContract]
-    public partial class CommonField :  IEquatable<CommonField>, IValidatableObject
+    [DataContract(Name = "CommonField")]
+    public partial class CommonField : IEquatable<CommonField>, IValidatableObject
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="CommonField" /> class.
@@ -46,14 +48,14 @@ namespace Adyen.Model.Payments
         /// Name of the field. For example, Name of External Platform.
         /// </summary>
         /// <value>Name of the field. For example, Name of External Platform.</value>
-        [DataMember(Name="name", EmitDefaultValue=false)]
+        [DataMember(Name = "name", EmitDefaultValue = false)]
         public string Name { get; set; }
 
         /// <summary>
         /// Version of the field. For example, Version of External Platform.
         /// </summary>
         /// <value>Version of the field. For example, Version of External Platform.</value>
-        [DataMember(Name="version", EmitDefaultValue=false)]
+        [DataMember(Name = "version", EmitDefaultValue = false)]
         public string Version { get; set; }
 
         /// <summary>
@@ -62,7 +64,7 @@ namespace Adyen.Model.Payments
         /// <returns>String presentation of the object</returns>
         public override string ToString()
         {
-            var sb = new StringBuilder();
+            StringBuilder sb = new StringBuilder();
             sb.Append("class CommonField {\n");
             sb.Append("  Name: ").Append(Name).Append("\n");
             sb.Append("  Version: ").Append(Version).Append("\n");
@@ -97,8 +99,9 @@ namespace Adyen.Model.Payments
         public bool Equals(CommonField input)
         {
             if (input == null)
+            {
                 return false;
-
+            }
             return 
                 (
                     this.Name == input.Name ||
@@ -122,19 +125,22 @@ namespace Adyen.Model.Payments
             {
                 int hashCode = 41;
                 if (this.Name != null)
-                    hashCode = hashCode * 59 + this.Name.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.Name.GetHashCode();
+                }
                 if (this.Version != null)
-                    hashCode = hashCode * 59 + this.Version.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.Version.GetHashCode();
+                }
                 return hashCode;
             }
         }
-
         /// <summary>
         /// To validate all properties of the instance
         /// </summary>
         /// <param name="validationContext">Validation context</param>
         /// <returns>Validation Result</returns>
-        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+        public IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> Validate(ValidationContext validationContext)
         {
             yield break;
         }

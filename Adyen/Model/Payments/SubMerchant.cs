@@ -11,25 +11,27 @@
 */
 
 using System;
-using System.Linq;
-using System.IO;
-using System.Text;
-using System.Text.RegularExpressions;
 using System.Collections;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Linq;
+using System.IO;
 using System.Runtime.Serialization;
+using System.Text;
+using System.Text.RegularExpressions;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
+using Newtonsoft.Json.Linq;
 using System.ComponentModel.DataAnnotations;
+using OpenAPIDateConverter = Adyen.ApiSerialization.OpenAPIDateConverter;
 
 namespace Adyen.Model.Payments
 {
     /// <summary>
     /// SubMerchant
     /// </summary>
-    [DataContract]
-    public partial class SubMerchant :  IEquatable<SubMerchant>, IValidatableObject
+    [DataContract(Name = "SubMerchant")]
+    public partial class SubMerchant : IEquatable<SubMerchant>, IValidatableObject
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="SubMerchant" /> class.
@@ -52,35 +54,35 @@ namespace Adyen.Model.Payments
         /// The city of the sub-merchant&#39;s address. * Format: Alphanumeric * Maximum length: 13 characters
         /// </summary>
         /// <value>The city of the sub-merchant&#39;s address. * Format: Alphanumeric * Maximum length: 13 characters</value>
-        [DataMember(Name="city", EmitDefaultValue=false)]
+        [DataMember(Name = "city", EmitDefaultValue = false)]
         public string City { get; set; }
 
         /// <summary>
         /// The three-letter country code of the sub-merchant&#39;s address. For example, **BRA** for Brazil.  * Format: [ISO 3166-1 alpha-3](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-3) * Fixed length: 3 characters
         /// </summary>
         /// <value>The three-letter country code of the sub-merchant&#39;s address. For example, **BRA** for Brazil.  * Format: [ISO 3166-1 alpha-3](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-3) * Fixed length: 3 characters</value>
-        [DataMember(Name="country", EmitDefaultValue=false)]
+        [DataMember(Name = "country", EmitDefaultValue = false)]
         public string Country { get; set; }
 
         /// <summary>
         /// The sub-merchant&#39;s 4-digit Merchant Category Code (MCC).  * Format: Numeric * Fixed length: 4 digits
         /// </summary>
         /// <value>The sub-merchant&#39;s 4-digit Merchant Category Code (MCC).  * Format: Numeric * Fixed length: 4 digits</value>
-        [DataMember(Name="mcc", EmitDefaultValue=false)]
+        [DataMember(Name = "mcc", EmitDefaultValue = false)]
         public string Mcc { get; set; }
 
         /// <summary>
         /// The name of the sub-merchant. Based on scheme specifications, this value will overwrite the shopper statement  that will appear in the card statement. * Format: Alphanumeric * Maximum length: 22 characters
         /// </summary>
         /// <value>The name of the sub-merchant. Based on scheme specifications, this value will overwrite the shopper statement  that will appear in the card statement. * Format: Alphanumeric * Maximum length: 22 characters</value>
-        [DataMember(Name="name", EmitDefaultValue=false)]
+        [DataMember(Name = "name", EmitDefaultValue = false)]
         public string Name { get; set; }
 
         /// <summary>
         /// The tax ID of the sub-merchant. * Format: Numeric * Fixed length: 11 digits for the CPF or 14 digits for the CNPJ
         /// </summary>
         /// <value>The tax ID of the sub-merchant. * Format: Numeric * Fixed length: 11 digits for the CPF or 14 digits for the CNPJ</value>
-        [DataMember(Name="taxId", EmitDefaultValue=false)]
+        [DataMember(Name = "taxId", EmitDefaultValue = false)]
         public string TaxId { get; set; }
 
         /// <summary>
@@ -89,7 +91,7 @@ namespace Adyen.Model.Payments
         /// <returns>String presentation of the object</returns>
         public override string ToString()
         {
-            var sb = new StringBuilder();
+            StringBuilder sb = new StringBuilder();
             sb.Append("class SubMerchant {\n");
             sb.Append("  City: ").Append(City).Append("\n");
             sb.Append("  Country: ").Append(Country).Append("\n");
@@ -127,8 +129,9 @@ namespace Adyen.Model.Payments
         public bool Equals(SubMerchant input)
         {
             if (input == null)
+            {
                 return false;
-
+            }
             return 
                 (
                     this.City == input.City ||
@@ -167,25 +170,34 @@ namespace Adyen.Model.Payments
             {
                 int hashCode = 41;
                 if (this.City != null)
-                    hashCode = hashCode * 59 + this.City.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.City.GetHashCode();
+                }
                 if (this.Country != null)
-                    hashCode = hashCode * 59 + this.Country.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.Country.GetHashCode();
+                }
                 if (this.Mcc != null)
-                    hashCode = hashCode * 59 + this.Mcc.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.Mcc.GetHashCode();
+                }
                 if (this.Name != null)
-                    hashCode = hashCode * 59 + this.Name.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.Name.GetHashCode();
+                }
                 if (this.TaxId != null)
-                    hashCode = hashCode * 59 + this.TaxId.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.TaxId.GetHashCode();
+                }
                 return hashCode;
             }
         }
-
         /// <summary>
         /// To validate all properties of the instance
         /// </summary>
         /// <param name="validationContext">Validation context</param>
         /// <returns>Validation Result</returns>
-        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+        public IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> Validate(ValidationContext validationContext)
         {
             yield break;
         }

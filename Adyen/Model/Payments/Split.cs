@@ -11,25 +11,27 @@
 */
 
 using System;
-using System.Linq;
-using System.IO;
-using System.Text;
-using System.Text.RegularExpressions;
 using System.Collections;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Linq;
+using System.IO;
 using System.Runtime.Serialization;
+using System.Text;
+using System.Text.RegularExpressions;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
+using Newtonsoft.Json.Linq;
 using System.ComponentModel.DataAnnotations;
+using OpenAPIDateConverter = Adyen.ApiSerialization.OpenAPIDateConverter;
 
 namespace Adyen.Model.Payments
 {
     /// <summary>
     /// Split
     /// </summary>
-    [DataContract]
-    public partial class Split :  IEquatable<Split>, IValidatableObject
+    [DataContract(Name = "Split")]
+    public partial class Split : IEquatable<Split>, IValidatableObject
     {
         /// <summary>
         /// The type of split. Possible values: **Default**, **PaymentFee**, **VAT**, **Commission**, **MarketPlace**, **BalanceAccount**, **Remainder**, **Surcharge**, **Tip**.
@@ -100,11 +102,12 @@ namespace Adyen.Model.Payments
 
         }
 
+
         /// <summary>
         /// The type of split. Possible values: **Default**, **PaymentFee**, **VAT**, **Commission**, **MarketPlace**, **BalanceAccount**, **Remainder**, **Surcharge**, **Tip**.
         /// </summary>
         /// <value>The type of split. Possible values: **Default**, **PaymentFee**, **VAT**, **Commission**, **MarketPlace**, **BalanceAccount**, **Remainder**, **Surcharge**, **Tip**.</value>
-        [DataMember(Name="type", EmitDefaultValue=true)]
+        [DataMember(Name = "type", IsRequired = false, EmitDefaultValue = false)]
         public TypeEnum Type { get; set; }
         /// <summary>
         /// Initializes a new instance of the <see cref="Split" /> class.
@@ -121,40 +124,39 @@ namespace Adyen.Model.Payments
         /// <param name="type">The type of split. Possible values: **Default**, **PaymentFee**, **VAT**, **Commission**, **MarketPlace**, **BalanceAccount**, **Remainder**, **Surcharge**, **Tip**. (required).</param>
         public Split(string account = default(string), SplitAmount amount = default(SplitAmount), string description = default(string), string reference = default(string), TypeEnum type = default(TypeEnum))
         {
-            this.Account = account;
             this.Amount = amount;
+            this.Type = type;
+            this.Account = account;
             this.Description = description;
             this.Reference = reference;
-            this.Type = type;
         }
 
         /// <summary>
         /// Unique identifier of the account where the split amount should be sent. This is required if &#x60;type&#x60; is **MarketPlace** or **BalanceAccount**.  
         /// </summary>
         /// <value>Unique identifier of the account where the split amount should be sent. This is required if &#x60;type&#x60; is **MarketPlace** or **BalanceAccount**.  </value>
-        [DataMember(Name="account", EmitDefaultValue=false)]
+        [DataMember(Name = "account", EmitDefaultValue = false)]
         public string Account { get; set; }
 
         /// <summary>
         /// Gets or Sets Amount
         /// </summary>
-        [DataMember(Name="amount", EmitDefaultValue=true)]
+        [DataMember(Name = "amount", IsRequired = false, EmitDefaultValue = false)]
         public SplitAmount Amount { get; set; }
 
         /// <summary>
         /// A description of this split.
         /// </summary>
         /// <value>A description of this split.</value>
-        [DataMember(Name="description", EmitDefaultValue=false)]
+        [DataMember(Name = "description", EmitDefaultValue = false)]
         public string Description { get; set; }
 
         /// <summary>
         /// Your reference for the split, which you can use to link the split to other operations such as captures and refunds.  This is required if &#x60;type&#x60; is **MarketPlace** or **BalanceAccount**. For the other types, we also recommend sending a reference so you can reconcile the split and the associated payment in the transaction overview and in the reports. If the reference is not provided, the split is reported as part of the aggregated [TransferBalance record type](https://docs.adyen.com/reporting/marketpay-payments-accounting-report) in Adyen for Platforms.
         /// </summary>
         /// <value>Your reference for the split, which you can use to link the split to other operations such as captures and refunds.  This is required if &#x60;type&#x60; is **MarketPlace** or **BalanceAccount**. For the other types, we also recommend sending a reference so you can reconcile the split and the associated payment in the transaction overview and in the reports. If the reference is not provided, the split is reported as part of the aggregated [TransferBalance record type](https://docs.adyen.com/reporting/marketpay-payments-accounting-report) in Adyen for Platforms.</value>
-        [DataMember(Name="reference", EmitDefaultValue=false)]
+        [DataMember(Name = "reference", EmitDefaultValue = false)]
         public string Reference { get; set; }
-
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -162,7 +164,7 @@ namespace Adyen.Model.Payments
         /// <returns>String presentation of the object</returns>
         public override string ToString()
         {
-            var sb = new StringBuilder();
+            StringBuilder sb = new StringBuilder();
             sb.Append("class Split {\n");
             sb.Append("  Account: ").Append(Account).Append("\n");
             sb.Append("  Amount: ").Append(Amount).Append("\n");
@@ -200,8 +202,9 @@ namespace Adyen.Model.Payments
         public bool Equals(Split input)
         {
             if (input == null)
+            {
                 return false;
-
+            }
             return 
                 (
                     this.Account == input.Account ||
@@ -225,8 +228,7 @@ namespace Adyen.Model.Payments
                 ) && 
                 (
                     this.Type == input.Type ||
-                    (this.Type != null &&
-                    this.Type.Equals(input.Type))
+                    this.Type.Equals(input.Type)
                 );
         }
 
@@ -240,25 +242,31 @@ namespace Adyen.Model.Payments
             {
                 int hashCode = 41;
                 if (this.Account != null)
-                    hashCode = hashCode * 59 + this.Account.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.Account.GetHashCode();
+                }
                 if (this.Amount != null)
-                    hashCode = hashCode * 59 + this.Amount.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.Amount.GetHashCode();
+                }
                 if (this.Description != null)
-                    hashCode = hashCode * 59 + this.Description.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.Description.GetHashCode();
+                }
                 if (this.Reference != null)
-                    hashCode = hashCode * 59 + this.Reference.GetHashCode();
-                if (this.Type != null)
-                    hashCode = hashCode * 59 + this.Type.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.Reference.GetHashCode();
+                }
+                hashCode = (hashCode * 59) + this.Type.GetHashCode();
                 return hashCode;
             }
         }
-
         /// <summary>
         /// To validate all properties of the instance
         /// </summary>
         /// <param name="validationContext">Validation context</param>
         /// <returns>Validation Result</returns>
-        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+        public IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> Validate(ValidationContext validationContext)
         {
             yield break;
         }

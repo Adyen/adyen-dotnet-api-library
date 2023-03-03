@@ -11,25 +11,27 @@
 */
 
 using System;
-using System.Linq;
-using System.IO;
-using System.Text;
-using System.Text.RegularExpressions;
 using System.Collections;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Linq;
+using System.IO;
 using System.Runtime.Serialization;
+using System.Text;
+using System.Text.RegularExpressions;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
+using Newtonsoft.Json.Linq;
 using System.ComponentModel.DataAnnotations;
+using OpenAPIDateConverter = Adyen.ApiSerialization.OpenAPIDateConverter;
 
 namespace Adyen.Model.Payments
 {
     /// <summary>
     /// ForexQuote
     /// </summary>
-    [DataContract]
-    public partial class ForexQuote :  IEquatable<ForexQuote>, IValidatableObject
+    [DataContract(Name = "ForexQuote")]
+    public partial class ForexQuote : IEquatable<ForexQuote>, IValidatableObject
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="ForexQuote" /> class.
@@ -51,12 +53,13 @@ namespace Adyen.Model.Payments
         /// <param name="source">The source of the forex quote..</param>
         /// <param name="type">The type of forex..</param>
         /// <param name="validTill">The date until which the forex quote is valid. (required).</param>
-        public ForexQuote(string account = default(string), string accountType = default(string), Amount baseAmount = default(Amount), int basePoints = default(int), Amount buy = default(Amount), Amount interbank = default(Amount), string reference = default(string), Amount sell = default(Amount), string signature = default(string), string source = default(string), string type = default(string), DateTime validTill = default(DateTime))
+        public ForexQuote(string account = default(string), string accountType = default(string), Amount baseAmount = default(Amount), int? basePoints = default(int?), Amount buy = default(Amount), Amount interbank = default(Amount), string reference = default(string), Amount sell = default(Amount), string signature = default(string), string source = default(string), string type = default(string), DateTime validTill = default(DateTime))
         {
+            this.BasePoints = basePoints;
+            this.ValidTill = validTill;
             this.Account = account;
             this.AccountType = accountType;
             this.BaseAmount = baseAmount;
-            this.BasePoints = basePoints;
             this.Buy = buy;
             this.Interbank = interbank;
             this.Reference = reference;
@@ -64,87 +67,86 @@ namespace Adyen.Model.Payments
             this.Signature = signature;
             this.Source = source;
             this.Type = type;
-            this.ValidTill = validTill;
         }
 
         /// <summary>
         /// The account name.
         /// </summary>
         /// <value>The account name.</value>
-        [DataMember(Name="account", EmitDefaultValue=false)]
+        [DataMember(Name = "account", EmitDefaultValue = false)]
         public string Account { get; set; }
 
         /// <summary>
         /// The account type.
         /// </summary>
         /// <value>The account type.</value>
-        [DataMember(Name="accountType", EmitDefaultValue=false)]
+        [DataMember(Name = "accountType", EmitDefaultValue = false)]
         public string AccountType { get; set; }
 
         /// <summary>
         /// Gets or Sets BaseAmount
         /// </summary>
-        [DataMember(Name="baseAmount", EmitDefaultValue=false)]
+        [DataMember(Name = "baseAmount", EmitDefaultValue = false)]
         public Amount BaseAmount { get; set; }
 
         /// <summary>
         /// The base points.
         /// </summary>
         /// <value>The base points.</value>
-        [DataMember(Name="basePoints", EmitDefaultValue=true)]
-        public int BasePoints { get; set; }
+        [DataMember(Name = "basePoints", IsRequired = false, EmitDefaultValue = false)]
+        public int? BasePoints { get; set; }
 
         /// <summary>
         /// Gets or Sets Buy
         /// </summary>
-        [DataMember(Name="buy", EmitDefaultValue=false)]
+        [DataMember(Name = "buy", EmitDefaultValue = false)]
         public Amount Buy { get; set; }
 
         /// <summary>
         /// Gets or Sets Interbank
         /// </summary>
-        [DataMember(Name="interbank", EmitDefaultValue=false)]
+        [DataMember(Name = "interbank", EmitDefaultValue = false)]
         public Amount Interbank { get; set; }
 
         /// <summary>
         /// The reference assigned to the forex quote request.
         /// </summary>
         /// <value>The reference assigned to the forex quote request.</value>
-        [DataMember(Name="reference", EmitDefaultValue=false)]
+        [DataMember(Name = "reference", EmitDefaultValue = false)]
         public string Reference { get; set; }
 
         /// <summary>
         /// Gets or Sets Sell
         /// </summary>
-        [DataMember(Name="sell", EmitDefaultValue=false)]
+        [DataMember(Name = "sell", EmitDefaultValue = false)]
         public Amount Sell { get; set; }
 
         /// <summary>
         /// The signature to validate the integrity.
         /// </summary>
         /// <value>The signature to validate the integrity.</value>
-        [DataMember(Name="signature", EmitDefaultValue=false)]
+        [DataMember(Name = "signature", EmitDefaultValue = false)]
         public string Signature { get; set; }
 
         /// <summary>
         /// The source of the forex quote.
         /// </summary>
         /// <value>The source of the forex quote.</value>
-        [DataMember(Name="source", EmitDefaultValue=false)]
+        [DataMember(Name = "source", EmitDefaultValue = false)]
         public string Source { get; set; }
 
         /// <summary>
         /// The type of forex.
         /// </summary>
         /// <value>The type of forex.</value>
-        [DataMember(Name="type", EmitDefaultValue=false)]
+        [DataMember(Name = "type", EmitDefaultValue = false)]
         public string Type { get; set; }
 
         /// <summary>
         /// The date until which the forex quote is valid.
         /// </summary>
         /// <value>The date until which the forex quote is valid.</value>
-        [DataMember(Name="validTill", EmitDefaultValue=true)]
+        [DataMember(Name = "validTill", IsRequired = false, EmitDefaultValue = false)]
         public DateTime ValidTill { get; set; }
 
         /// <summary>
@@ -153,7 +155,7 @@ namespace Adyen.Model.Payments
         /// <returns>String presentation of the object</returns>
         public override string ToString()
         {
-            var sb = new StringBuilder();
+            StringBuilder sb = new StringBuilder();
             sb.Append("class ForexQuote {\n");
             sb.Append("  Account: ").Append(Account).Append("\n");
             sb.Append("  AccountType: ").Append(AccountType).Append("\n");
@@ -198,8 +200,9 @@ namespace Adyen.Model.Payments
         public bool Equals(ForexQuote input)
         {
             if (input == null)
+            {
                 return false;
-
+            }
             return 
                 (
                     this.Account == input.Account ||
@@ -218,8 +221,7 @@ namespace Adyen.Model.Payments
                 ) && 
                 (
                     this.BasePoints == input.BasePoints ||
-                    (this.BasePoints != null &&
-                    this.BasePoints.Equals(input.BasePoints))
+                    this.BasePoints.Equals(input.BasePoints)
                 ) && 
                 (
                     this.Buy == input.Buy ||
@@ -273,39 +275,59 @@ namespace Adyen.Model.Payments
             {
                 int hashCode = 41;
                 if (this.Account != null)
-                    hashCode = hashCode * 59 + this.Account.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.Account.GetHashCode();
+                }
                 if (this.AccountType != null)
-                    hashCode = hashCode * 59 + this.AccountType.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.AccountType.GetHashCode();
+                }
                 if (this.BaseAmount != null)
-                    hashCode = hashCode * 59 + this.BaseAmount.GetHashCode();
-                if (this.BasePoints != null)
-                    hashCode = hashCode * 59 + this.BasePoints.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.BaseAmount.GetHashCode();
+                }
+                hashCode = (hashCode * 59) + this.BasePoints.GetHashCode();
                 if (this.Buy != null)
-                    hashCode = hashCode * 59 + this.Buy.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.Buy.GetHashCode();
+                }
                 if (this.Interbank != null)
-                    hashCode = hashCode * 59 + this.Interbank.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.Interbank.GetHashCode();
+                }
                 if (this.Reference != null)
-                    hashCode = hashCode * 59 + this.Reference.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.Reference.GetHashCode();
+                }
                 if (this.Sell != null)
-                    hashCode = hashCode * 59 + this.Sell.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.Sell.GetHashCode();
+                }
                 if (this.Signature != null)
-                    hashCode = hashCode * 59 + this.Signature.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.Signature.GetHashCode();
+                }
                 if (this.Source != null)
-                    hashCode = hashCode * 59 + this.Source.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.Source.GetHashCode();
+                }
                 if (this.Type != null)
-                    hashCode = hashCode * 59 + this.Type.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.Type.GetHashCode();
+                }
                 if (this.ValidTill != null)
-                    hashCode = hashCode * 59 + this.ValidTill.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.ValidTill.GetHashCode();
+                }
                 return hashCode;
             }
         }
-
         /// <summary>
         /// To validate all properties of the instance
         /// </summary>
         /// <param name="validationContext">Validation context</param>
         /// <returns>Validation Result</returns>
-        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+        public IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> Validate(ValidationContext validationContext)
         {
             yield break;
         }

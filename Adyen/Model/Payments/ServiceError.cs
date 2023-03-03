@@ -11,25 +11,27 @@
 */
 
 using System;
-using System.Linq;
-using System.IO;
-using System.Text;
-using System.Text.RegularExpressions;
 using System.Collections;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Linq;
+using System.IO;
 using System.Runtime.Serialization;
+using System.Text;
+using System.Text.RegularExpressions;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
+using Newtonsoft.Json.Linq;
 using System.ComponentModel.DataAnnotations;
+using OpenAPIDateConverter = Adyen.ApiSerialization.OpenAPIDateConverter;
 
 namespace Adyen.Model.Payments
 {
     /// <summary>
     /// ServiceError
     /// </summary>
-    [DataContract]
-    public partial class ServiceError :  IEquatable<ServiceError>, IValidatableObject
+    [DataContract(Name = "ServiceError")]
+    public partial class ServiceError : IEquatable<ServiceError>, IValidatableObject
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="ServiceError" /> class.
@@ -40,7 +42,7 @@ namespace Adyen.Model.Payments
         /// <param name="message">A short explanation of the issue..</param>
         /// <param name="pspReference">The PSP reference of the payment..</param>
         /// <param name="status">The HTTP response status..</param>
-        public ServiceError(Dictionary<string, string> additionalData = default(Dictionary<string, string>), string errorCode = default(string), string errorType = default(string), string message = default(string), string pspReference = default(string), int status = default(int))
+        public ServiceError(Dictionary<string, string> additionalData = default(Dictionary<string, string>), string errorCode = default(string), string errorType = default(string), string message = default(string), string pspReference = default(string), int? status = default(int?))
         {
             this.AdditionalData = additionalData;
             this.ErrorCode = errorCode;
@@ -54,43 +56,43 @@ namespace Adyen.Model.Payments
         /// Contains additional information about the payment. Some data fields are included only if you select them first. Go to **Customer Area** &gt; **Developers** &gt; **Additional data**.
         /// </summary>
         /// <value>Contains additional information about the payment. Some data fields are included only if you select them first. Go to **Customer Area** &gt; **Developers** &gt; **Additional data**.</value>
-        [DataMember(Name="additionalData", EmitDefaultValue=false)]
+        [DataMember(Name = "additionalData", EmitDefaultValue = false)]
         public Dictionary<string, string> AdditionalData { get; set; }
 
         /// <summary>
         /// The error code mapped to the error message.
         /// </summary>
         /// <value>The error code mapped to the error message.</value>
-        [DataMember(Name="errorCode", EmitDefaultValue=false)]
+        [DataMember(Name = "errorCode", EmitDefaultValue = false)]
         public string ErrorCode { get; set; }
 
         /// <summary>
         /// The category of the error.
         /// </summary>
         /// <value>The category of the error.</value>
-        [DataMember(Name="errorType", EmitDefaultValue=false)]
+        [DataMember(Name = "errorType", EmitDefaultValue = false)]
         public string ErrorType { get; set; }
 
         /// <summary>
         /// A short explanation of the issue.
         /// </summary>
         /// <value>A short explanation of the issue.</value>
-        [DataMember(Name="message", EmitDefaultValue=false)]
+        [DataMember(Name = "message", EmitDefaultValue = false)]
         public string Message { get; set; }
 
         /// <summary>
         /// The PSP reference of the payment.
         /// </summary>
         /// <value>The PSP reference of the payment.</value>
-        [DataMember(Name="pspReference", EmitDefaultValue=false)]
+        [DataMember(Name = "pspReference", EmitDefaultValue = false)]
         public string PspReference { get; set; }
 
         /// <summary>
         /// The HTTP response status.
         /// </summary>
         /// <value>The HTTP response status.</value>
-        [DataMember(Name="status", EmitDefaultValue=false)]
-        public int Status { get; set; }
+        [DataMember(Name = "status", EmitDefaultValue = false)]
+        public int? Status { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -98,7 +100,7 @@ namespace Adyen.Model.Payments
         /// <returns>String presentation of the object</returns>
         public override string ToString()
         {
-            var sb = new StringBuilder();
+            StringBuilder sb = new StringBuilder();
             sb.Append("class ServiceError {\n");
             sb.Append("  AdditionalData: ").Append(AdditionalData).Append("\n");
             sb.Append("  ErrorCode: ").Append(ErrorCode).Append("\n");
@@ -137,8 +139,9 @@ namespace Adyen.Model.Payments
         public bool Equals(ServiceError input)
         {
             if (input == null)
+            {
                 return false;
-
+            }
             return 
                 (
                     this.AdditionalData == input.AdditionalData ||
@@ -168,8 +171,7 @@ namespace Adyen.Model.Payments
                 ) && 
                 (
                     this.Status == input.Status ||
-                    (this.Status != null &&
-                    this.Status.Equals(input.Status))
+                    this.Status.Equals(input.Status)
                 );
         }
 
@@ -183,27 +185,35 @@ namespace Adyen.Model.Payments
             {
                 int hashCode = 41;
                 if (this.AdditionalData != null)
-                    hashCode = hashCode * 59 + this.AdditionalData.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.AdditionalData.GetHashCode();
+                }
                 if (this.ErrorCode != null)
-                    hashCode = hashCode * 59 + this.ErrorCode.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.ErrorCode.GetHashCode();
+                }
                 if (this.ErrorType != null)
-                    hashCode = hashCode * 59 + this.ErrorType.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.ErrorType.GetHashCode();
+                }
                 if (this.Message != null)
-                    hashCode = hashCode * 59 + this.Message.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.Message.GetHashCode();
+                }
                 if (this.PspReference != null)
-                    hashCode = hashCode * 59 + this.PspReference.GetHashCode();
-                if (this.Status != null)
-                    hashCode = hashCode * 59 + this.Status.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.PspReference.GetHashCode();
+                }
+                hashCode = (hashCode * 59) + this.Status.GetHashCode();
                 return hashCode;
             }
         }
-
         /// <summary>
         /// To validate all properties of the instance
         /// </summary>
         /// <param name="validationContext">Validation context</param>
         /// <returns>Validation Result</returns>
-        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+        public IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> Validate(ValidationContext validationContext)
         {
             yield break;
         }

@@ -11,25 +11,27 @@
 */
 
 using System;
-using System.Linq;
-using System.IO;
-using System.Text;
-using System.Text.RegularExpressions;
 using System.Collections;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Linq;
+using System.IO;
 using System.Runtime.Serialization;
+using System.Text;
+using System.Text.RegularExpressions;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
+using Newtonsoft.Json.Linq;
 using System.ComponentModel.DataAnnotations;
+using OpenAPIDateConverter = Adyen.ApiSerialization.OpenAPIDateConverter;
 
 namespace Adyen.Model.Management
 {
     /// <summary>
     /// ScheduleTerminalActionsResponse
     /// </summary>
-    [DataContract]
-    public partial class ScheduleTerminalActionsResponse :  IEquatable<ScheduleTerminalActionsResponse>, IValidatableObject
+    [DataContract(Name = "ScheduleTerminalActionsResponse")]
+    public partial class ScheduleTerminalActionsResponse : IEquatable<ScheduleTerminalActionsResponse>, IValidatableObject
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="ScheduleTerminalActionsResponse" /> class.
@@ -42,7 +44,7 @@ namespace Adyen.Model.Management
         /// <param name="terminalsWithErrors">The validation errors that occurred in the list of terminals, and for each error the IDs of the terminals that the error applies to..</param>
         /// <param name="totalErrors">The number of terminals for which scheduling the action failed..</param>
         /// <param name="totalScheduled">The number of terminals for which the action was successfully scheduled. This doesn&#39;t mean the action has happened yet..</param>
-        public ScheduleTerminalActionsResponse(ScheduleTerminalActionsRequestActionDetails actionDetails = default(ScheduleTerminalActionsRequestActionDetails), List<TerminalActionScheduleDetail> items = default(List<TerminalActionScheduleDetail>), string scheduledAt = default(string), string storeId = default(string), List<string> terminalIds = default(List<string>), Dictionary<string, List<string>> terminalsWithErrors = default(Dictionary<string, List<string>>), int totalErrors = default(int), int totalScheduled = default(int))
+        public ScheduleTerminalActionsResponse(ScheduleTerminalActionsRequestActionDetails actionDetails = default(ScheduleTerminalActionsRequestActionDetails), List<TerminalActionScheduleDetail> items = default(List<TerminalActionScheduleDetail>), string scheduledAt = default(string), string storeId = default(string), List<string> terminalIds = default(List<string>), Dictionary<string, List<string>> terminalsWithErrors = default(Dictionary<string, List<string>>), int? totalErrors = default(int?), int? totalScheduled = default(int?))
         {
             this.ActionDetails = actionDetails;
             this.Items = items;
@@ -57,35 +59,35 @@ namespace Adyen.Model.Management
         /// <summary>
         /// Gets or Sets ActionDetails
         /// </summary>
-        [DataMember(Name="actionDetails", EmitDefaultValue=false)]
+        [DataMember(Name = "actionDetails", EmitDefaultValue = false)]
         public ScheduleTerminalActionsRequestActionDetails ActionDetails { get; set; }
 
         /// <summary>
         /// A list containing a terminal ID and an action ID for each terminal that the action was scheduled for.
         /// </summary>
         /// <value>A list containing a terminal ID and an action ID for each terminal that the action was scheduled for.</value>
-        [DataMember(Name="items", EmitDefaultValue=false)]
+        [DataMember(Name = "items", EmitDefaultValue = false)]
         public List<TerminalActionScheduleDetail> Items { get; set; }
 
         /// <summary>
         /// The date and time when the action should happen.  Format: [RFC 3339](https://www.rfc-editor.org/rfc/rfc3339), but without the **Z** before the time offset. For example, **2021-11-15T12:16:21+01:00**  The action is sent with the first [maintenance call](https://docs.adyen.com/point-of-sale/automating-terminal-management/terminal-actions-api#when-actions-take-effect) after the specified date and time in the time zone of the terminal.  An empty value causes the action to be sent as soon as possible: at the next maintenance call.
         /// </summary>
         /// <value>The date and time when the action should happen.  Format: [RFC 3339](https://www.rfc-editor.org/rfc/rfc3339), but without the **Z** before the time offset. For example, **2021-11-15T12:16:21+01:00**  The action is sent with the first [maintenance call](https://docs.adyen.com/point-of-sale/automating-terminal-management/terminal-actions-api#when-actions-take-effect) after the specified date and time in the time zone of the terminal.  An empty value causes the action to be sent as soon as possible: at the next maintenance call.</value>
-        [DataMember(Name="scheduledAt", EmitDefaultValue=false)]
+        [DataMember(Name = "scheduledAt", EmitDefaultValue = false)]
         public string ScheduledAt { get; set; }
 
         /// <summary>
         /// The unique ID of the [store](https://docs.adyen.com/api-explorer/#/ManagementService/latest/get/stores). If present, all terminals in the &#x60;terminalIds&#x60; list must be assigned to this store.
         /// </summary>
         /// <value>The unique ID of the [store](https://docs.adyen.com/api-explorer/#/ManagementService/latest/get/stores). If present, all terminals in the &#x60;terminalIds&#x60; list must be assigned to this store.</value>
-        [DataMember(Name="storeId", EmitDefaultValue=false)]
+        [DataMember(Name = "storeId", EmitDefaultValue = false)]
         public string StoreId { get; set; }
 
         /// <summary>
         /// A list of unique IDs of the terminals that the action applies to.
         /// </summary>
         /// <value>A list of unique IDs of the terminals that the action applies to.</value>
-        [DataMember(Name="terminalIds", EmitDefaultValue=false)]
+        [DataMember(Name = "terminalIds", EmitDefaultValue = false)]
         [Obsolete]
         public List<string> TerminalIds { get; set; }
 
@@ -93,22 +95,22 @@ namespace Adyen.Model.Management
         /// The validation errors that occurred in the list of terminals, and for each error the IDs of the terminals that the error applies to.
         /// </summary>
         /// <value>The validation errors that occurred in the list of terminals, and for each error the IDs of the terminals that the error applies to.</value>
-        [DataMember(Name="terminalsWithErrors", EmitDefaultValue=false)]
+        [DataMember(Name = "terminalsWithErrors", EmitDefaultValue = false)]
         public Dictionary<string, List<string>> TerminalsWithErrors { get; set; }
 
         /// <summary>
         /// The number of terminals for which scheduling the action failed.
         /// </summary>
         /// <value>The number of terminals for which scheduling the action failed.</value>
-        [DataMember(Name="totalErrors", EmitDefaultValue=false)]
-        public int TotalErrors { get; set; }
+        [DataMember(Name = "totalErrors", EmitDefaultValue = false)]
+        public int? TotalErrors { get; set; }
 
         /// <summary>
         /// The number of terminals for which the action was successfully scheduled. This doesn&#39;t mean the action has happened yet.
         /// </summary>
         /// <value>The number of terminals for which the action was successfully scheduled. This doesn&#39;t mean the action has happened yet.</value>
-        [DataMember(Name="totalScheduled", EmitDefaultValue=false)]
-        public int TotalScheduled { get; set; }
+        [DataMember(Name = "totalScheduled", EmitDefaultValue = false)]
+        public int? TotalScheduled { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -116,7 +118,7 @@ namespace Adyen.Model.Management
         /// <returns>String presentation of the object</returns>
         public override string ToString()
         {
-            var sb = new StringBuilder();
+            StringBuilder sb = new StringBuilder();
             sb.Append("class ScheduleTerminalActionsResponse {\n");
             sb.Append("  ActionDetails: ").Append(ActionDetails).Append("\n");
             sb.Append("  Items: ").Append(Items).Append("\n");
@@ -157,8 +159,9 @@ namespace Adyen.Model.Management
         public bool Equals(ScheduleTerminalActionsResponse input)
         {
             if (input == null)
+            {
                 return false;
-
+            }
             return 
                 (
                     this.ActionDetails == input.ActionDetails ||
@@ -195,13 +198,11 @@ namespace Adyen.Model.Management
                 ) && 
                 (
                     this.TotalErrors == input.TotalErrors ||
-                    (this.TotalErrors != null &&
-                    this.TotalErrors.Equals(input.TotalErrors))
+                    this.TotalErrors.Equals(input.TotalErrors)
                 ) && 
                 (
                     this.TotalScheduled == input.TotalScheduled ||
-                    (this.TotalScheduled != null &&
-                    this.TotalScheduled.Equals(input.TotalScheduled))
+                    this.TotalScheduled.Equals(input.TotalScheduled)
                 );
         }
 
@@ -215,31 +216,40 @@ namespace Adyen.Model.Management
             {
                 int hashCode = 41;
                 if (this.ActionDetails != null)
-                    hashCode = hashCode * 59 + this.ActionDetails.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.ActionDetails.GetHashCode();
+                }
                 if (this.Items != null)
-                    hashCode = hashCode * 59 + this.Items.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.Items.GetHashCode();
+                }
                 if (this.ScheduledAt != null)
-                    hashCode = hashCode * 59 + this.ScheduledAt.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.ScheduledAt.GetHashCode();
+                }
                 if (this.StoreId != null)
-                    hashCode = hashCode * 59 + this.StoreId.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.StoreId.GetHashCode();
+                }
                 if (this.TerminalIds != null)
-                    hashCode = hashCode * 59 + this.TerminalIds.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.TerminalIds.GetHashCode();
+                }
                 if (this.TerminalsWithErrors != null)
-                    hashCode = hashCode * 59 + this.TerminalsWithErrors.GetHashCode();
-                if (this.TotalErrors != null)
-                    hashCode = hashCode * 59 + this.TotalErrors.GetHashCode();
-                if (this.TotalScheduled != null)
-                    hashCode = hashCode * 59 + this.TotalScheduled.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.TerminalsWithErrors.GetHashCode();
+                }
+                hashCode = (hashCode * 59) + this.TotalErrors.GetHashCode();
+                hashCode = (hashCode * 59) + this.TotalScheduled.GetHashCode();
                 return hashCode;
             }
         }
-
         /// <summary>
         /// To validate all properties of the instance
         /// </summary>
         /// <param name="validationContext">Validation context</param>
         /// <returns>Validation Result</returns>
-        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+        public IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> Validate(ValidationContext validationContext)
         {
             yield break;
         }

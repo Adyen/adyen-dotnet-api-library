@@ -11,25 +11,27 @@
 */
 
 using System;
-using System.Linq;
-using System.IO;
-using System.Text;
-using System.Text.RegularExpressions;
 using System.Collections;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Linq;
+using System.IO;
 using System.Runtime.Serialization;
+using System.Text;
+using System.Text.RegularExpressions;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
+using Newtonsoft.Json.Linq;
 using System.ComponentModel.DataAnnotations;
+using OpenAPIDateConverter = Adyen.ApiSerialization.OpenAPIDateConverter;
 
 namespace Adyen.Model.Payments
 {
     /// <summary>
     /// ApplicationInfo
     /// </summary>
-    [DataContract]
-    public partial class ApplicationInfo :  IEquatable<ApplicationInfo>, IValidatableObject
+    [DataContract(Name = "ApplicationInfo")]
+    public partial class ApplicationInfo : IEquatable<ApplicationInfo>, IValidatableObject
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="ApplicationInfo" /> class.
@@ -53,37 +55,37 @@ namespace Adyen.Model.Payments
         /// <summary>
         /// Gets or Sets AdyenLibrary
         /// </summary>
-        [DataMember(Name="adyenLibrary", EmitDefaultValue=false)]
+        [DataMember(Name = "adyenLibrary", EmitDefaultValue = false)]
         public CommonField AdyenLibrary { get; set; }
 
         /// <summary>
         /// Gets or Sets AdyenPaymentSource
         /// </summary>
-        [DataMember(Name="adyenPaymentSource", EmitDefaultValue=false)]
+        [DataMember(Name = "adyenPaymentSource", EmitDefaultValue = false)]
         public CommonField AdyenPaymentSource { get; set; }
 
         /// <summary>
         /// Gets or Sets ExternalPlatform
         /// </summary>
-        [DataMember(Name="externalPlatform", EmitDefaultValue=false)]
+        [DataMember(Name = "externalPlatform", EmitDefaultValue = false)]
         public ExternalPlatform ExternalPlatform { get; set; }
 
         /// <summary>
         /// Gets or Sets MerchantApplication
         /// </summary>
-        [DataMember(Name="merchantApplication", EmitDefaultValue=false)]
+        [DataMember(Name = "merchantApplication", EmitDefaultValue = false)]
         public CommonField MerchantApplication { get; set; }
 
         /// <summary>
         /// Gets or Sets MerchantDevice
         /// </summary>
-        [DataMember(Name="merchantDevice", EmitDefaultValue=false)]
+        [DataMember(Name = "merchantDevice", EmitDefaultValue = false)]
         public MerchantDevice MerchantDevice { get; set; }
 
         /// <summary>
         /// Gets or Sets ShopperInteractionDevice
         /// </summary>
-        [DataMember(Name="shopperInteractionDevice", EmitDefaultValue=false)]
+        [DataMember(Name = "shopperInteractionDevice", EmitDefaultValue = false)]
         public ShopperInteractionDevice ShopperInteractionDevice { get; set; }
 
         /// <summary>
@@ -92,7 +94,7 @@ namespace Adyen.Model.Payments
         /// <returns>String presentation of the object</returns>
         public override string ToString()
         {
-            var sb = new StringBuilder();
+            StringBuilder sb = new StringBuilder();
             sb.Append("class ApplicationInfo {\n");
             sb.Append("  AdyenLibrary: ").Append(AdyenLibrary).Append("\n");
             sb.Append("  AdyenPaymentSource: ").Append(AdyenPaymentSource).Append("\n");
@@ -131,8 +133,9 @@ namespace Adyen.Model.Payments
         public bool Equals(ApplicationInfo input)
         {
             if (input == null)
+            {
                 return false;
-
+            }
             return 
                 (
                     this.AdyenLibrary == input.AdyenLibrary ||
@@ -176,27 +179,38 @@ namespace Adyen.Model.Payments
             {
                 int hashCode = 41;
                 if (this.AdyenLibrary != null)
-                    hashCode = hashCode * 59 + this.AdyenLibrary.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.AdyenLibrary.GetHashCode();
+                }
                 if (this.AdyenPaymentSource != null)
-                    hashCode = hashCode * 59 + this.AdyenPaymentSource.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.AdyenPaymentSource.GetHashCode();
+                }
                 if (this.ExternalPlatform != null)
-                    hashCode = hashCode * 59 + this.ExternalPlatform.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.ExternalPlatform.GetHashCode();
+                }
                 if (this.MerchantApplication != null)
-                    hashCode = hashCode * 59 + this.MerchantApplication.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.MerchantApplication.GetHashCode();
+                }
                 if (this.MerchantDevice != null)
-                    hashCode = hashCode * 59 + this.MerchantDevice.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.MerchantDevice.GetHashCode();
+                }
                 if (this.ShopperInteractionDevice != null)
-                    hashCode = hashCode * 59 + this.ShopperInteractionDevice.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.ShopperInteractionDevice.GetHashCode();
+                }
                 return hashCode;
             }
         }
-
         /// <summary>
         /// To validate all properties of the instance
         /// </summary>
         /// <param name="validationContext">Validation context</param>
         /// <returns>Validation Result</returns>
-        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+        public IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> Validate(ValidationContext validationContext)
         {
             yield break;
         }

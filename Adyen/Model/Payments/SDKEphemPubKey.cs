@@ -11,25 +11,27 @@
 */
 
 using System;
-using System.Linq;
-using System.IO;
-using System.Text;
-using System.Text.RegularExpressions;
 using System.Collections;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Linq;
+using System.IO;
 using System.Runtime.Serialization;
+using System.Text;
+using System.Text.RegularExpressions;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
+using Newtonsoft.Json.Linq;
 using System.ComponentModel.DataAnnotations;
+using OpenAPIDateConverter = Adyen.ApiSerialization.OpenAPIDateConverter;
 
 namespace Adyen.Model.Payments
 {
     /// <summary>
     /// SDKEphemPubKey
     /// </summary>
-    [DataContract]
-    public partial class SDKEphemPubKey :  IEquatable<SDKEphemPubKey>, IValidatableObject
+    [DataContract(Name = "SDKEphemPubKey")]
+    public partial class SDKEphemPubKey : IEquatable<SDKEphemPubKey>, IValidatableObject
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="SDKEphemPubKey" /> class.
@@ -50,28 +52,28 @@ namespace Adyen.Model.Payments
         /// The &#x60;crv&#x60; value as received from the 3D Secure 2 SDK.
         /// </summary>
         /// <value>The &#x60;crv&#x60; value as received from the 3D Secure 2 SDK.</value>
-        [DataMember(Name="crv", EmitDefaultValue=false)]
+        [DataMember(Name = "crv", EmitDefaultValue = false)]
         public string Crv { get; set; }
 
         /// <summary>
         /// The &#x60;kty&#x60; value as received from the 3D Secure 2 SDK.
         /// </summary>
         /// <value>The &#x60;kty&#x60; value as received from the 3D Secure 2 SDK.</value>
-        [DataMember(Name="kty", EmitDefaultValue=false)]
+        [DataMember(Name = "kty", EmitDefaultValue = false)]
         public string Kty { get; set; }
 
         /// <summary>
         /// The &#x60;x&#x60; value as received from the 3D Secure 2 SDK.
         /// </summary>
         /// <value>The &#x60;x&#x60; value as received from the 3D Secure 2 SDK.</value>
-        [DataMember(Name="x", EmitDefaultValue=false)]
+        [DataMember(Name = "x", EmitDefaultValue = false)]
         public string X { get; set; }
 
         /// <summary>
         /// The &#x60;y&#x60; value as received from the 3D Secure 2 SDK.
         /// </summary>
         /// <value>The &#x60;y&#x60; value as received from the 3D Secure 2 SDK.</value>
-        [DataMember(Name="y", EmitDefaultValue=false)]
+        [DataMember(Name = "y", EmitDefaultValue = false)]
         public string Y { get; set; }
 
         /// <summary>
@@ -80,7 +82,7 @@ namespace Adyen.Model.Payments
         /// <returns>String presentation of the object</returns>
         public override string ToString()
         {
-            var sb = new StringBuilder();
+            StringBuilder sb = new StringBuilder();
             sb.Append("class SDKEphemPubKey {\n");
             sb.Append("  Crv: ").Append(Crv).Append("\n");
             sb.Append("  Kty: ").Append(Kty).Append("\n");
@@ -117,8 +119,9 @@ namespace Adyen.Model.Payments
         public bool Equals(SDKEphemPubKey input)
         {
             if (input == null)
+            {
                 return false;
-
+            }
             return 
                 (
                     this.Crv == input.Crv ||
@@ -152,23 +155,30 @@ namespace Adyen.Model.Payments
             {
                 int hashCode = 41;
                 if (this.Crv != null)
-                    hashCode = hashCode * 59 + this.Crv.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.Crv.GetHashCode();
+                }
                 if (this.Kty != null)
-                    hashCode = hashCode * 59 + this.Kty.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.Kty.GetHashCode();
+                }
                 if (this.X != null)
-                    hashCode = hashCode * 59 + this.X.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.X.GetHashCode();
+                }
                 if (this.Y != null)
-                    hashCode = hashCode * 59 + this.Y.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.Y.GetHashCode();
+                }
                 return hashCode;
             }
         }
-
         /// <summary>
         /// To validate all properties of the instance
         /// </summary>
         /// <param name="validationContext">Validation context</param>
         /// <returns>Validation Result</returns>
-        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+        public IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> Validate(ValidationContext validationContext)
         {
             yield break;
         }

@@ -5,6 +5,9 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using Adyen.HttpClient;
+using Adyen.Model.StoredValue;
+using Adyen.Service.Payments;
+using Environment = Adyen.Model.Environment;
 
 namespace Adyen.IntegrationTest
 {
@@ -59,6 +62,19 @@ namespace Adyen.IntegrationTest
             var paymentResult2 = CreatePaymentResultWithIdempotency("AUTH_IDEMPOTENCY_KEY_AUTHOR");
             Assert.AreEqual(paymentResult1.PspReference, paymentResult2.PspReference);
         }
+        
+        [TestMethod]
+        public void StoredValueIssueFailIntegrationTest()
+        {
+            var client = new Client(new Config()
+            {
+                Environment = Environment.Test,
+                XApiKey = ClientConstants.Xapikey
+            });
+            var service = new StoredValue(client);
+            var ex = Assert.ThrowsException<HttpClientException>(() => service.Issue(new StoredValueIssueRequest()));
+            Assert.AreEqual(ex.Code, 422);
+        }
 
         [TestMethod]
         public void ApiIdemptotencyKeyFailTest()
@@ -84,7 +100,7 @@ namespace Adyen.IntegrationTest
                 PspReference = GetTestPspReference()
             };
             var client = CreateApiKeyTestClient();
-            var payment = new Payment(client);
+            var payment = new PaymentService(client);
             try
             {
                 payment.GetAuthenticationResult(authenticationResultRequest);

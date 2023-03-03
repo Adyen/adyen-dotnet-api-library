@@ -11,25 +11,27 @@
 */
 
 using System;
-using System.Linq;
-using System.IO;
-using System.Text;
-using System.Text.RegularExpressions;
 using System.Collections;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Linq;
+using System.IO;
 using System.Runtime.Serialization;
+using System.Text;
+using System.Text.RegularExpressions;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
+using Newtonsoft.Json.Linq;
 using System.ComponentModel.DataAnnotations;
+using OpenAPIDateConverter = Adyen.ApiSerialization.OpenAPIDateConverter;
 
 namespace Adyen.Model.Payments
 {
     /// <summary>
     /// ThreeDSRequestorAuthenticationInfo
     /// </summary>
-    [DataContract]
-    public partial class ThreeDSRequestorAuthenticationInfo :  IEquatable<ThreeDSRequestorAuthenticationInfo>, IValidatableObject
+    [DataContract(Name = "ThreeDSRequestorAuthenticationInfo")]
+    public partial class ThreeDSRequestorAuthenticationInfo : IEquatable<ThreeDSRequestorAuthenticationInfo>, IValidatableObject
     {
         /// <summary>
         /// Mechanism used by the Cardholder to authenticate to the 3DS Requestor. Allowed values: * **01** — No 3DS Requestor authentication occurred (for example, cardholder “logged in” as guest). * **02** — Login to the cardholder account at the 3DS Requestor system using 3DS Requestor’s own credentials. * **03** — Login to the cardholder account at the 3DS Requestor system using federated ID. * **04** — Login to the cardholder account at the 3DS Requestor system using issuer credentials. * **05** — Login to the cardholder account at the 3DS Requestor system using third-party authentication. * **06** — Login to the cardholder account at the 3DS Requestor system using FIDO Authenticator.
@@ -76,11 +78,12 @@ namespace Adyen.Model.Payments
 
         }
 
+
         /// <summary>
         /// Mechanism used by the Cardholder to authenticate to the 3DS Requestor. Allowed values: * **01** — No 3DS Requestor authentication occurred (for example, cardholder “logged in” as guest). * **02** — Login to the cardholder account at the 3DS Requestor system using 3DS Requestor’s own credentials. * **03** — Login to the cardholder account at the 3DS Requestor system using federated ID. * **04** — Login to the cardholder account at the 3DS Requestor system using issuer credentials. * **05** — Login to the cardholder account at the 3DS Requestor system using third-party authentication. * **06** — Login to the cardholder account at the 3DS Requestor system using FIDO Authenticator.
         /// </summary>
         /// <value>Mechanism used by the Cardholder to authenticate to the 3DS Requestor. Allowed values: * **01** — No 3DS Requestor authentication occurred (for example, cardholder “logged in” as guest). * **02** — Login to the cardholder account at the 3DS Requestor system using 3DS Requestor’s own credentials. * **03** — Login to the cardholder account at the 3DS Requestor system using federated ID. * **04** — Login to the cardholder account at the 3DS Requestor system using issuer credentials. * **05** — Login to the cardholder account at the 3DS Requestor system using third-party authentication. * **06** — Login to the cardholder account at the 3DS Requestor system using FIDO Authenticator.</value>
-        [DataMember(Name="threeDSReqAuthMethod", EmitDefaultValue=false)]
+        [DataMember(Name = "threeDSReqAuthMethod", EmitDefaultValue = false)]
         public ThreeDSReqAuthMethodEnum? ThreeDSReqAuthMethod { get; set; }
         /// <summary>
         /// Initializes a new instance of the <see cref="ThreeDSRequestorAuthenticationInfo" /> class.
@@ -99,15 +102,14 @@ namespace Adyen.Model.Payments
         /// Data that documents and supports a specific authentication process. Maximum length: 2048 bytes.
         /// </summary>
         /// <value>Data that documents and supports a specific authentication process. Maximum length: 2048 bytes.</value>
-        [DataMember(Name="threeDSReqAuthData", EmitDefaultValue=false)]
+        [DataMember(Name = "threeDSReqAuthData", EmitDefaultValue = false)]
         public string ThreeDSReqAuthData { get; set; }
-
 
         /// <summary>
         /// Date and time in UTC of the cardholder authentication. Format: YYYYMMDDHHMM
         /// </summary>
         /// <value>Date and time in UTC of the cardholder authentication. Format: YYYYMMDDHHMM</value>
-        [DataMember(Name="threeDSReqAuthTimestamp", EmitDefaultValue=false)]
+        [DataMember(Name = "threeDSReqAuthTimestamp", EmitDefaultValue = false)]
         public string ThreeDSReqAuthTimestamp { get; set; }
 
         /// <summary>
@@ -116,7 +118,7 @@ namespace Adyen.Model.Payments
         /// <returns>String presentation of the object</returns>
         public override string ToString()
         {
-            var sb = new StringBuilder();
+            StringBuilder sb = new StringBuilder();
             sb.Append("class ThreeDSRequestorAuthenticationInfo {\n");
             sb.Append("  ThreeDSReqAuthData: ").Append(ThreeDSReqAuthData).Append("\n");
             sb.Append("  ThreeDSReqAuthMethod: ").Append(ThreeDSReqAuthMethod).Append("\n");
@@ -152,8 +154,9 @@ namespace Adyen.Model.Payments
         public bool Equals(ThreeDSRequestorAuthenticationInfo input)
         {
             if (input == null)
+            {
                 return false;
-
+            }
             return 
                 (
                     this.ThreeDSReqAuthData == input.ThreeDSReqAuthData ||
@@ -162,8 +165,7 @@ namespace Adyen.Model.Payments
                 ) && 
                 (
                     this.ThreeDSReqAuthMethod == input.ThreeDSReqAuthMethod ||
-                    (this.ThreeDSReqAuthMethod != null &&
-                    this.ThreeDSReqAuthMethod.Equals(input.ThreeDSReqAuthMethod))
+                    this.ThreeDSReqAuthMethod.Equals(input.ThreeDSReqAuthMethod)
                 ) && 
                 (
                     this.ThreeDSReqAuthTimestamp == input.ThreeDSReqAuthTimestamp ||
@@ -182,42 +184,32 @@ namespace Adyen.Model.Payments
             {
                 int hashCode = 41;
                 if (this.ThreeDSReqAuthData != null)
-                    hashCode = hashCode * 59 + this.ThreeDSReqAuthData.GetHashCode();
-                if (this.ThreeDSReqAuthMethod != null)
-                    hashCode = hashCode * 59 + this.ThreeDSReqAuthMethod.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.ThreeDSReqAuthData.GetHashCode();
+                }
+                hashCode = (hashCode * 59) + this.ThreeDSReqAuthMethod.GetHashCode();
                 if (this.ThreeDSReqAuthTimestamp != null)
-                    hashCode = hashCode * 59 + this.ThreeDSReqAuthTimestamp.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.ThreeDSReqAuthTimestamp.GetHashCode();
+                }
                 return hashCode;
             }
         }
-
         /// <summary>
         /// To validate all properties of the instance
         /// </summary>
         /// <param name="validationContext">Validation context</param>
         /// <returns>Validation Result</returns>
-        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+        public IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> Validate(ValidationContext validationContext)
         {
-            // ThreeDSReqAuthMethod (string) maxLength
-            if(this.ThreeDSReqAuthMethod != null && this.ThreeDSReqAuthMethod.ToString().Length > 2)
-            {
-                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for ThreeDSReqAuthMethod, length must be less than 2.", new [] { "ThreeDSReqAuthMethod" });
-            }
-
-            // ThreeDSReqAuthMethod (string) minLength
-            if(this.ThreeDSReqAuthMethod != null && this.ThreeDSReqAuthMethod.ToString().Length < 2)
-            {
-                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for ThreeDSReqAuthMethod, length must be greater than 2.", new [] { "ThreeDSReqAuthMethod" });
-            }
-
             // ThreeDSReqAuthTimestamp (string) maxLength
-            if(this.ThreeDSReqAuthTimestamp != null && this.ThreeDSReqAuthTimestamp.Length > 12)
+            if (this.ThreeDSReqAuthTimestamp != null && this.ThreeDSReqAuthTimestamp.Length > 12)
             {
                 yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for ThreeDSReqAuthTimestamp, length must be less than 12.", new [] { "ThreeDSReqAuthTimestamp" });
             }
 
             // ThreeDSReqAuthTimestamp (string) minLength
-            if(this.ThreeDSReqAuthTimestamp != null && this.ThreeDSReqAuthTimestamp.Length < 12)
+            if (this.ThreeDSReqAuthTimestamp != null && this.ThreeDSReqAuthTimestamp.Length < 12)
             {
                 yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for ThreeDSReqAuthTimestamp, length must be greater than 12.", new [] { "ThreeDSReqAuthTimestamp" });
             }

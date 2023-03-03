@@ -11,25 +11,27 @@
 */
 
 using System;
-using System.Linq;
-using System.IO;
-using System.Text;
-using System.Text.RegularExpressions;
 using System.Collections;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Linq;
+using System.IO;
 using System.Runtime.Serialization;
+using System.Text;
+using System.Text.RegularExpressions;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
+using Newtonsoft.Json.Linq;
 using System.ComponentModel.DataAnnotations;
+using OpenAPIDateConverter = Adyen.ApiSerialization.OpenAPIDateConverter;
 
 namespace Adyen.Model.Payments
 {
     /// <summary>
     /// FundSource
     /// </summary>
-    [DataContract]
-    public partial class FundSource :  IEquatable<FundSource>, IValidatableObject
+    [DataContract(Name = "FundSource")]
+    public partial class FundSource : IEquatable<FundSource>, IValidatableObject
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="FundSource" /> class.
@@ -54,39 +56,39 @@ namespace Adyen.Model.Payments
         /// A map of name-value pairs for passing additional or industry-specific data.
         /// </summary>
         /// <value>A map of name-value pairs for passing additional or industry-specific data.</value>
-        [DataMember(Name="additionalData", EmitDefaultValue=false)]
+        [DataMember(Name = "additionalData", EmitDefaultValue = false)]
         public Dictionary<string, string> AdditionalData { get; set; }
 
         /// <summary>
         /// Gets or Sets BillingAddress
         /// </summary>
-        [DataMember(Name="billingAddress", EmitDefaultValue=false)]
+        [DataMember(Name = "billingAddress", EmitDefaultValue = false)]
         public Address BillingAddress { get; set; }
 
         /// <summary>
         /// Gets or Sets Card
         /// </summary>
-        [DataMember(Name="card", EmitDefaultValue=false)]
+        [DataMember(Name = "card", EmitDefaultValue = false)]
         public Card Card { get; set; }
 
         /// <summary>
         /// Email address of the person.
         /// </summary>
         /// <value>Email address of the person.</value>
-        [DataMember(Name="shopperEmail", EmitDefaultValue=false)]
+        [DataMember(Name = "shopperEmail", EmitDefaultValue = false)]
         public string ShopperEmail { get; set; }
 
         /// <summary>
         /// Gets or Sets ShopperName
         /// </summary>
-        [DataMember(Name="shopperName", EmitDefaultValue=false)]
+        [DataMember(Name = "shopperName", EmitDefaultValue = false)]
         public Name ShopperName { get; set; }
 
         /// <summary>
         /// Phone number of the person
         /// </summary>
         /// <value>Phone number of the person</value>
-        [DataMember(Name="telephoneNumber", EmitDefaultValue=false)]
+        [DataMember(Name = "telephoneNumber", EmitDefaultValue = false)]
         public string TelephoneNumber { get; set; }
 
         /// <summary>
@@ -95,7 +97,7 @@ namespace Adyen.Model.Payments
         /// <returns>String presentation of the object</returns>
         public override string ToString()
         {
-            var sb = new StringBuilder();
+            StringBuilder sb = new StringBuilder();
             sb.Append("class FundSource {\n");
             sb.Append("  AdditionalData: ").Append(AdditionalData).Append("\n");
             sb.Append("  BillingAddress: ").Append(BillingAddress).Append("\n");
@@ -134,8 +136,9 @@ namespace Adyen.Model.Payments
         public bool Equals(FundSource input)
         {
             if (input == null)
+            {
                 return false;
-
+            }
             return 
                 (
                     this.AdditionalData == input.AdditionalData ||
@@ -180,27 +183,38 @@ namespace Adyen.Model.Payments
             {
                 int hashCode = 41;
                 if (this.AdditionalData != null)
-                    hashCode = hashCode * 59 + this.AdditionalData.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.AdditionalData.GetHashCode();
+                }
                 if (this.BillingAddress != null)
-                    hashCode = hashCode * 59 + this.BillingAddress.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.BillingAddress.GetHashCode();
+                }
                 if (this.Card != null)
-                    hashCode = hashCode * 59 + this.Card.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.Card.GetHashCode();
+                }
                 if (this.ShopperEmail != null)
-                    hashCode = hashCode * 59 + this.ShopperEmail.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.ShopperEmail.GetHashCode();
+                }
                 if (this.ShopperName != null)
-                    hashCode = hashCode * 59 + this.ShopperName.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.ShopperName.GetHashCode();
+                }
                 if (this.TelephoneNumber != null)
-                    hashCode = hashCode * 59 + this.TelephoneNumber.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.TelephoneNumber.GetHashCode();
+                }
                 return hashCode;
             }
         }
-
         /// <summary>
         /// To validate all properties of the instance
         /// </summary>
         /// <param name="validationContext">Validation context</param>
         /// <returns>Validation Result</returns>
-        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+        public IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> Validate(ValidationContext validationContext)
         {
             yield break;
         }

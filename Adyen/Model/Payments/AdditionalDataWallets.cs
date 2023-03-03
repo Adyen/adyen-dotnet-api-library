@@ -11,25 +11,27 @@
 */
 
 using System;
-using System.Linq;
-using System.IO;
-using System.Text;
-using System.Text.RegularExpressions;
 using System.Collections;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Linq;
+using System.IO;
 using System.Runtime.Serialization;
+using System.Text;
+using System.Text.RegularExpressions;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
+using Newtonsoft.Json.Linq;
 using System.ComponentModel.DataAnnotations;
+using OpenAPIDateConverter = Adyen.ApiSerialization.OpenAPIDateConverter;
 
 namespace Adyen.Model.Payments
 {
     /// <summary>
     /// AdditionalDataWallets
     /// </summary>
-    [DataContract]
-    public partial class AdditionalDataWallets :  IEquatable<AdditionalDataWallets>, IValidatableObject
+    [DataContract(Name = "AdditionalDataWallets")]
+    public partial class AdditionalDataWallets : IEquatable<AdditionalDataWallets>, IValidatableObject
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="AdditionalDataWallets" /> class.
@@ -54,42 +56,42 @@ namespace Adyen.Model.Payments
         /// The Android Pay token retrieved from the SDK.
         /// </summary>
         /// <value>The Android Pay token retrieved from the SDK.</value>
-        [DataMember(Name="androidpay.token", EmitDefaultValue=false)]
+        [DataMember(Name = "androidpay.token", EmitDefaultValue = false)]
         public string AndroidpayToken { get; set; }
 
         /// <summary>
         /// The Mastercard Masterpass Transaction ID retrieved from the SDK.
         /// </summary>
         /// <value>The Mastercard Masterpass Transaction ID retrieved from the SDK.</value>
-        [DataMember(Name="masterpass.transactionId", EmitDefaultValue=false)]
+        [DataMember(Name = "masterpass.transactionId", EmitDefaultValue = false)]
         public string MasterpassTransactionId { get; set; }
 
         /// <summary>
         /// The Apple Pay token retrieved from the SDK.
         /// </summary>
         /// <value>The Apple Pay token retrieved from the SDK.</value>
-        [DataMember(Name="payment.token", EmitDefaultValue=false)]
+        [DataMember(Name = "payment.token", EmitDefaultValue = false)]
         public string PaymentToken { get; set; }
 
         /// <summary>
         /// The Google Pay token retrieved from the SDK.
         /// </summary>
         /// <value>The Google Pay token retrieved from the SDK.</value>
-        [DataMember(Name="paywithgoogle.token", EmitDefaultValue=false)]
+        [DataMember(Name = "paywithgoogle.token", EmitDefaultValue = false)]
         public string PaywithgoogleToken { get; set; }
 
         /// <summary>
         /// The Samsung Pay token retrieved from the SDK.
         /// </summary>
         /// <value>The Samsung Pay token retrieved from the SDK.</value>
-        [DataMember(Name="samsungpay.token", EmitDefaultValue=false)]
+        [DataMember(Name = "samsungpay.token", EmitDefaultValue = false)]
         public string SamsungpayToken { get; set; }
 
         /// <summary>
         /// The Visa Checkout Call ID retrieved from the SDK.
         /// </summary>
         /// <value>The Visa Checkout Call ID retrieved from the SDK.</value>
-        [DataMember(Name="visacheckout.callId", EmitDefaultValue=false)]
+        [DataMember(Name = "visacheckout.callId", EmitDefaultValue = false)]
         public string VisacheckoutCallId { get; set; }
 
         /// <summary>
@@ -98,7 +100,7 @@ namespace Adyen.Model.Payments
         /// <returns>String presentation of the object</returns>
         public override string ToString()
         {
-            var sb = new StringBuilder();
+            StringBuilder sb = new StringBuilder();
             sb.Append("class AdditionalDataWallets {\n");
             sb.Append("  AndroidpayToken: ").Append(AndroidpayToken).Append("\n");
             sb.Append("  MasterpassTransactionId: ").Append(MasterpassTransactionId).Append("\n");
@@ -137,8 +139,9 @@ namespace Adyen.Model.Payments
         public bool Equals(AdditionalDataWallets input)
         {
             if (input == null)
+            {
                 return false;
-
+            }
             return 
                 (
                     this.AndroidpayToken == input.AndroidpayToken ||
@@ -182,27 +185,38 @@ namespace Adyen.Model.Payments
             {
                 int hashCode = 41;
                 if (this.AndroidpayToken != null)
-                    hashCode = hashCode * 59 + this.AndroidpayToken.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.AndroidpayToken.GetHashCode();
+                }
                 if (this.MasterpassTransactionId != null)
-                    hashCode = hashCode * 59 + this.MasterpassTransactionId.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.MasterpassTransactionId.GetHashCode();
+                }
                 if (this.PaymentToken != null)
-                    hashCode = hashCode * 59 + this.PaymentToken.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.PaymentToken.GetHashCode();
+                }
                 if (this.PaywithgoogleToken != null)
-                    hashCode = hashCode * 59 + this.PaywithgoogleToken.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.PaywithgoogleToken.GetHashCode();
+                }
                 if (this.SamsungpayToken != null)
-                    hashCode = hashCode * 59 + this.SamsungpayToken.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.SamsungpayToken.GetHashCode();
+                }
                 if (this.VisacheckoutCallId != null)
-                    hashCode = hashCode * 59 + this.VisacheckoutCallId.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.VisacheckoutCallId.GetHashCode();
+                }
                 return hashCode;
             }
         }
-
         /// <summary>
         /// To validate all properties of the instance
         /// </summary>
         /// <param name="validationContext">Validation context</param>
         /// <returns>Validation Result</returns>
-        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+        public IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> Validate(ValidationContext validationContext)
         {
             yield break;
         }

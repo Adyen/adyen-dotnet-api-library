@@ -11,25 +11,27 @@
 */
 
 using System;
-using System.Linq;
-using System.IO;
-using System.Text;
-using System.Text.RegularExpressions;
 using System.Collections;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Linq;
+using System.IO;
 using System.Runtime.Serialization;
+using System.Text;
+using System.Text.RegularExpressions;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
+using Newtonsoft.Json.Linq;
 using System.ComponentModel.DataAnnotations;
+using OpenAPIDateConverter = Adyen.ApiSerialization.OpenAPIDateConverter;
 
 namespace Adyen.Model.Payments
 {
     /// <summary>
     /// MerchantDevice
     /// </summary>
-    [DataContract]
-    public partial class MerchantDevice :  IEquatable<MerchantDevice>, IValidatableObject
+    [DataContract(Name = "MerchantDevice")]
+    public partial class MerchantDevice : IEquatable<MerchantDevice>, IValidatableObject
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="MerchantDevice" /> class.
@@ -48,21 +50,21 @@ namespace Adyen.Model.Payments
         /// Operating system running on the merchant device.
         /// </summary>
         /// <value>Operating system running on the merchant device.</value>
-        [DataMember(Name="os", EmitDefaultValue=false)]
+        [DataMember(Name = "os", EmitDefaultValue = false)]
         public string Os { get; set; }
 
         /// <summary>
         /// Version of the operating system on the merchant device.
         /// </summary>
         /// <value>Version of the operating system on the merchant device.</value>
-        [DataMember(Name="osVersion", EmitDefaultValue=false)]
+        [DataMember(Name = "osVersion", EmitDefaultValue = false)]
         public string OsVersion { get; set; }
 
         /// <summary>
         /// Merchant device reference.
         /// </summary>
         /// <value>Merchant device reference.</value>
-        [DataMember(Name="reference", EmitDefaultValue=false)]
+        [DataMember(Name = "reference", EmitDefaultValue = false)]
         public string Reference { get; set; }
 
         /// <summary>
@@ -71,7 +73,7 @@ namespace Adyen.Model.Payments
         /// <returns>String presentation of the object</returns>
         public override string ToString()
         {
-            var sb = new StringBuilder();
+            StringBuilder sb = new StringBuilder();
             sb.Append("class MerchantDevice {\n");
             sb.Append("  Os: ").Append(Os).Append("\n");
             sb.Append("  OsVersion: ").Append(OsVersion).Append("\n");
@@ -107,8 +109,9 @@ namespace Adyen.Model.Payments
         public bool Equals(MerchantDevice input)
         {
             if (input == null)
+            {
                 return false;
-
+            }
             return 
                 (
                     this.Os == input.Os ||
@@ -137,21 +140,26 @@ namespace Adyen.Model.Payments
             {
                 int hashCode = 41;
                 if (this.Os != null)
-                    hashCode = hashCode * 59 + this.Os.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.Os.GetHashCode();
+                }
                 if (this.OsVersion != null)
-                    hashCode = hashCode * 59 + this.OsVersion.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.OsVersion.GetHashCode();
+                }
                 if (this.Reference != null)
-                    hashCode = hashCode * 59 + this.Reference.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.Reference.GetHashCode();
+                }
                 return hashCode;
             }
         }
-
         /// <summary>
         /// To validate all properties of the instance
         /// </summary>
         /// <param name="validationContext">Validation context</param>
         /// <returns>Validation Result</returns>
-        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+        public IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> Validate(ValidationContext validationContext)
         {
             yield break;
         }

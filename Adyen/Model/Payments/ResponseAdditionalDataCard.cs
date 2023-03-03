@@ -11,25 +11,27 @@
 */
 
 using System;
-using System.Linq;
-using System.IO;
-using System.Text;
-using System.Text.RegularExpressions;
 using System.Collections;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Linq;
+using System.IO;
 using System.Runtime.Serialization;
+using System.Text;
+using System.Text.RegularExpressions;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
+using Newtonsoft.Json.Linq;
 using System.ComponentModel.DataAnnotations;
+using OpenAPIDateConverter = Adyen.ApiSerialization.OpenAPIDateConverter;
 
 namespace Adyen.Model.Payments
 {
     /// <summary>
     /// ResponseAdditionalDataCard
     /// </summary>
-    [DataContract]
-    public partial class ResponseAdditionalDataCard :  IEquatable<ResponseAdditionalDataCard>, IValidatableObject
+    [DataContract(Name = "ResponseAdditionalDataCard")]
+    public partial class ResponseAdditionalDataCard : IEquatable<ResponseAdditionalDataCard>, IValidatableObject
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="ResponseAdditionalDataCard" /> class.
@@ -58,56 +60,56 @@ namespace Adyen.Model.Payments
         /// The first six digits of the card number.  This is the [Bank Identification Number (BIN)](https://docs.adyen.com/get-started-with-adyen/payment-glossary#bank-identification-number-bin) for card numbers with a six-digit BIN.  Example: 521234
         /// </summary>
         /// <value>The first six digits of the card number.  This is the [Bank Identification Number (BIN)](https://docs.adyen.com/get-started-with-adyen/payment-glossary#bank-identification-number-bin) for card numbers with a six-digit BIN.  Example: 521234</value>
-        [DataMember(Name="cardBin", EmitDefaultValue=false)]
+        [DataMember(Name = "cardBin", EmitDefaultValue = false)]
         public string CardBin { get; set; }
 
         /// <summary>
         /// The cardholder name passed in the payment request.
         /// </summary>
         /// <value>The cardholder name passed in the payment request.</value>
-        [DataMember(Name="cardHolderName", EmitDefaultValue=false)]
+        [DataMember(Name = "cardHolderName", EmitDefaultValue = false)]
         public string CardHolderName { get; set; }
 
         /// <summary>
         /// The bank or the financial institution granting lines of credit through card association branded payment cards. This information can be included when available.
         /// </summary>
         /// <value>The bank or the financial institution granting lines of credit through card association branded payment cards. This information can be included when available.</value>
-        [DataMember(Name="cardIssuingBank", EmitDefaultValue=false)]
+        [DataMember(Name = "cardIssuingBank", EmitDefaultValue = false)]
         public string CardIssuingBank { get; set; }
 
         /// <summary>
         /// The country where the card was issued.  Example: US
         /// </summary>
         /// <value>The country where the card was issued.  Example: US</value>
-        [DataMember(Name="cardIssuingCountry", EmitDefaultValue=false)]
+        [DataMember(Name = "cardIssuingCountry", EmitDefaultValue = false)]
         public string CardIssuingCountry { get; set; }
 
         /// <summary>
         /// The currency in which the card is issued, if this information is available. Provided as the currency code or currency number from the ISO-4217 standard.   Example: USD
         /// </summary>
         /// <value>The currency in which the card is issued, if this information is available. Provided as the currency code or currency number from the ISO-4217 standard.   Example: USD</value>
-        [DataMember(Name="cardIssuingCurrency", EmitDefaultValue=false)]
+        [DataMember(Name = "cardIssuingCurrency", EmitDefaultValue = false)]
         public string CardIssuingCurrency { get; set; }
 
         /// <summary>
         /// The card payment method used for the transaction.  Example: amex
         /// </summary>
         /// <value>The card payment method used for the transaction.  Example: amex</value>
-        [DataMember(Name="cardPaymentMethod", EmitDefaultValue=false)]
+        [DataMember(Name = "cardPaymentMethod", EmitDefaultValue = false)]
         public string CardPaymentMethod { get; set; }
 
         /// <summary>
         /// The last four digits of a card number.  &gt; Returned only in case of a card payment.
         /// </summary>
         /// <value>The last four digits of a card number.  &gt; Returned only in case of a card payment.</value>
-        [DataMember(Name="cardSummary", EmitDefaultValue=false)]
+        [DataMember(Name = "cardSummary", EmitDefaultValue = false)]
         public string CardSummary { get; set; }
 
         /// <summary>
         /// The first eight digits of the card number. Only returned if the card number is 16 digits or more.  This is the [Bank Identification Number (BIN)](https://docs.adyen.com/get-started-with-adyen/payment-glossary#bank-identification-number-bin) for card numbers with an eight-digit BIN.  Example: 52123423
         /// </summary>
         /// <value>The first eight digits of the card number. Only returned if the card number is 16 digits or more.  This is the [Bank Identification Number (BIN)](https://docs.adyen.com/get-started-with-adyen/payment-glossary#bank-identification-number-bin) for card numbers with an eight-digit BIN.  Example: 52123423</value>
-        [DataMember(Name="issuerBin", EmitDefaultValue=false)]
+        [DataMember(Name = "issuerBin", EmitDefaultValue = false)]
         public string IssuerBin { get; set; }
 
         /// <summary>
@@ -116,7 +118,7 @@ namespace Adyen.Model.Payments
         /// <returns>String presentation of the object</returns>
         public override string ToString()
         {
-            var sb = new StringBuilder();
+            StringBuilder sb = new StringBuilder();
             sb.Append("class ResponseAdditionalDataCard {\n");
             sb.Append("  CardBin: ").Append(CardBin).Append("\n");
             sb.Append("  CardHolderName: ").Append(CardHolderName).Append("\n");
@@ -157,8 +159,9 @@ namespace Adyen.Model.Payments
         public bool Equals(ResponseAdditionalDataCard input)
         {
             if (input == null)
+            {
                 return false;
-
+            }
             return 
                 (
                     this.CardBin == input.CardBin ||
@@ -212,31 +215,46 @@ namespace Adyen.Model.Payments
             {
                 int hashCode = 41;
                 if (this.CardBin != null)
-                    hashCode = hashCode * 59 + this.CardBin.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.CardBin.GetHashCode();
+                }
                 if (this.CardHolderName != null)
-                    hashCode = hashCode * 59 + this.CardHolderName.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.CardHolderName.GetHashCode();
+                }
                 if (this.CardIssuingBank != null)
-                    hashCode = hashCode * 59 + this.CardIssuingBank.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.CardIssuingBank.GetHashCode();
+                }
                 if (this.CardIssuingCountry != null)
-                    hashCode = hashCode * 59 + this.CardIssuingCountry.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.CardIssuingCountry.GetHashCode();
+                }
                 if (this.CardIssuingCurrency != null)
-                    hashCode = hashCode * 59 + this.CardIssuingCurrency.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.CardIssuingCurrency.GetHashCode();
+                }
                 if (this.CardPaymentMethod != null)
-                    hashCode = hashCode * 59 + this.CardPaymentMethod.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.CardPaymentMethod.GetHashCode();
+                }
                 if (this.CardSummary != null)
-                    hashCode = hashCode * 59 + this.CardSummary.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.CardSummary.GetHashCode();
+                }
                 if (this.IssuerBin != null)
-                    hashCode = hashCode * 59 + this.IssuerBin.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.IssuerBin.GetHashCode();
+                }
                 return hashCode;
             }
         }
-
         /// <summary>
         /// To validate all properties of the instance
         /// </summary>
         /// <param name="validationContext">Validation context</param>
         /// <returns>Validation Result</returns>
-        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+        public IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> Validate(ValidationContext validationContext)
         {
             yield break;
         }

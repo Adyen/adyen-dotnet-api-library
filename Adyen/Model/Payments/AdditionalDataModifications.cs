@@ -11,25 +11,27 @@
 */
 
 using System;
-using System.Linq;
-using System.IO;
-using System.Text;
-using System.Text.RegularExpressions;
 using System.Collections;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Linq;
+using System.IO;
 using System.Runtime.Serialization;
+using System.Text;
+using System.Text.RegularExpressions;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
+using Newtonsoft.Json.Linq;
 using System.ComponentModel.DataAnnotations;
+using OpenAPIDateConverter = Adyen.ApiSerialization.OpenAPIDateConverter;
 
 namespace Adyen.Model.Payments
 {
     /// <summary>
     /// AdditionalDataModifications
     /// </summary>
-    [DataContract]
-    public partial class AdditionalDataModifications :  IEquatable<AdditionalDataModifications>, IValidatableObject
+    [DataContract(Name = "AdditionalDataModifications")]
+    public partial class AdditionalDataModifications : IEquatable<AdditionalDataModifications>, IValidatableObject
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="AdditionalDataModifications" /> class.
@@ -44,7 +46,7 @@ namespace Adyen.Model.Payments
         /// This is the installment option selected by the shopper. It is required only if specified by the user.
         /// </summary>
         /// <value>This is the installment option selected by the shopper. It is required only if specified by the user.</value>
-        [DataMember(Name="installmentPaymentData.selectedInstallmentOption", EmitDefaultValue=false)]
+        [DataMember(Name = "installmentPaymentData.selectedInstallmentOption", EmitDefaultValue = false)]
         public string InstallmentPaymentDataSelectedInstallmentOption { get; set; }
 
         /// <summary>
@@ -53,7 +55,7 @@ namespace Adyen.Model.Payments
         /// <returns>String presentation of the object</returns>
         public override string ToString()
         {
-            var sb = new StringBuilder();
+            StringBuilder sb = new StringBuilder();
             sb.Append("class AdditionalDataModifications {\n");
             sb.Append("  InstallmentPaymentDataSelectedInstallmentOption: ").Append(InstallmentPaymentDataSelectedInstallmentOption).Append("\n");
             sb.Append("}\n");
@@ -87,8 +89,9 @@ namespace Adyen.Model.Payments
         public bool Equals(AdditionalDataModifications input)
         {
             if (input == null)
+            {
                 return false;
-
+            }
             return 
                 (
                     this.InstallmentPaymentDataSelectedInstallmentOption == input.InstallmentPaymentDataSelectedInstallmentOption ||
@@ -107,17 +110,18 @@ namespace Adyen.Model.Payments
             {
                 int hashCode = 41;
                 if (this.InstallmentPaymentDataSelectedInstallmentOption != null)
-                    hashCode = hashCode * 59 + this.InstallmentPaymentDataSelectedInstallmentOption.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.InstallmentPaymentDataSelectedInstallmentOption.GetHashCode();
+                }
                 return hashCode;
             }
         }
-
         /// <summary>
         /// To validate all properties of the instance
         /// </summary>
         /// <param name="validationContext">Validation context</param>
         /// <returns>Validation Result</returns>
-        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+        public IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> Validate(ValidationContext validationContext)
         {
             yield break;
         }

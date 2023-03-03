@@ -102,6 +102,10 @@ namespace Adyen.HttpClient
                 var credentials = Convert.ToBase64String(bytes);
                 httpWebRequest.Headers.Add("Authorization", "Basic " + credentials);
             }
+            
+            // Add library name and version to request for analysis
+            httpWebRequest.Headers.Add(ApiConstants.AdyenLibraryName, ClientConfig.LibName);
+            httpWebRequest.Headers.Add(ApiConstants.AdyenLibraryVersion, ClientConfig.LibVersion);
 
             return httpWebRequest;
         }

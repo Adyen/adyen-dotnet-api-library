@@ -11,25 +11,27 @@
 */
 
 using System;
-using System.Linq;
-using System.IO;
-using System.Text;
-using System.Text.RegularExpressions;
 using System.Collections;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Linq;
+using System.IO;
 using System.Runtime.Serialization;
+using System.Text;
+using System.Text.RegularExpressions;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
+using Newtonsoft.Json.Linq;
 using System.ComponentModel.DataAnnotations;
+using OpenAPIDateConverter = Adyen.ApiSerialization.OpenAPIDateConverter;
 
 namespace Adyen.Model.Payments
 {
     /// <summary>
     /// ThreeDSRequestorPriorAuthenticationInfo
     /// </summary>
-    [DataContract]
-    public partial class ThreeDSRequestorPriorAuthenticationInfo :  IEquatable<ThreeDSRequestorPriorAuthenticationInfo>, IValidatableObject
+    [DataContract(Name = "ThreeDSRequestorPriorAuthenticationInfo")]
+    public partial class ThreeDSRequestorPriorAuthenticationInfo : IEquatable<ThreeDSRequestorPriorAuthenticationInfo>, IValidatableObject
     {
         /// <summary>
         /// Mechanism used by the Cardholder to previously authenticate to the 3DS Requestor. Allowed values: * **01** — Frictionless authentication occurred by ACS. * **02** — Cardholder challenge occurred by ACS. * **03** — AVS verified. * **04** — Other issuer methods.
@@ -64,11 +66,12 @@ namespace Adyen.Model.Payments
 
         }
 
+
         /// <summary>
         /// Mechanism used by the Cardholder to previously authenticate to the 3DS Requestor. Allowed values: * **01** — Frictionless authentication occurred by ACS. * **02** — Cardholder challenge occurred by ACS. * **03** — AVS verified. * **04** — Other issuer methods.
         /// </summary>
         /// <value>Mechanism used by the Cardholder to previously authenticate to the 3DS Requestor. Allowed values: * **01** — Frictionless authentication occurred by ACS. * **02** — Cardholder challenge occurred by ACS. * **03** — AVS verified. * **04** — Other issuer methods.</value>
-        [DataMember(Name="threeDSReqPriorAuthMethod", EmitDefaultValue=false)]
+        [DataMember(Name = "threeDSReqPriorAuthMethod", EmitDefaultValue = false)]
         public ThreeDSReqPriorAuthMethodEnum? ThreeDSReqPriorAuthMethod { get; set; }
         /// <summary>
         /// Initializes a new instance of the <see cref="ThreeDSRequestorPriorAuthenticationInfo" /> class.
@@ -89,22 +92,21 @@ namespace Adyen.Model.Payments
         /// Data that documents and supports a specific authentication process. Maximum length: 2048 bytes.
         /// </summary>
         /// <value>Data that documents and supports a specific authentication process. Maximum length: 2048 bytes.</value>
-        [DataMember(Name="threeDSReqPriorAuthData", EmitDefaultValue=false)]
+        [DataMember(Name = "threeDSReqPriorAuthData", EmitDefaultValue = false)]
         public string ThreeDSReqPriorAuthData { get; set; }
-
 
         /// <summary>
         /// Date and time in UTC of the prior cardholder authentication. Format: YYYYMMDDHHMM
         /// </summary>
         /// <value>Date and time in UTC of the prior cardholder authentication. Format: YYYYMMDDHHMM</value>
-        [DataMember(Name="threeDSReqPriorAuthTimestamp", EmitDefaultValue=false)]
+        [DataMember(Name = "threeDSReqPriorAuthTimestamp", EmitDefaultValue = false)]
         public string ThreeDSReqPriorAuthTimestamp { get; set; }
 
         /// <summary>
         /// This data element provides additional information to the ACS to determine the best approach for handing a request. This data element contains an ACS Transaction ID for a prior authenticated transaction. For example, the first recurring transaction that was authenticated with the cardholder. Length: 30 characters.
         /// </summary>
         /// <value>This data element provides additional information to the ACS to determine the best approach for handing a request. This data element contains an ACS Transaction ID for a prior authenticated transaction. For example, the first recurring transaction that was authenticated with the cardholder. Length: 30 characters.</value>
-        [DataMember(Name="threeDSReqPriorRef", EmitDefaultValue=false)]
+        [DataMember(Name = "threeDSReqPriorRef", EmitDefaultValue = false)]
         public string ThreeDSReqPriorRef { get; set; }
 
         /// <summary>
@@ -113,7 +115,7 @@ namespace Adyen.Model.Payments
         /// <returns>String presentation of the object</returns>
         public override string ToString()
         {
-            var sb = new StringBuilder();
+            StringBuilder sb = new StringBuilder();
             sb.Append("class ThreeDSRequestorPriorAuthenticationInfo {\n");
             sb.Append("  ThreeDSReqPriorAuthData: ").Append(ThreeDSReqPriorAuthData).Append("\n");
             sb.Append("  ThreeDSReqPriorAuthMethod: ").Append(ThreeDSReqPriorAuthMethod).Append("\n");
@@ -150,8 +152,9 @@ namespace Adyen.Model.Payments
         public bool Equals(ThreeDSRequestorPriorAuthenticationInfo input)
         {
             if (input == null)
+            {
                 return false;
-
+            }
             return 
                 (
                     this.ThreeDSReqPriorAuthData == input.ThreeDSReqPriorAuthData ||
@@ -160,8 +163,7 @@ namespace Adyen.Model.Payments
                 ) && 
                 (
                     this.ThreeDSReqPriorAuthMethod == input.ThreeDSReqPriorAuthMethod ||
-                    (this.ThreeDSReqPriorAuthMethod != null &&
-                    this.ThreeDSReqPriorAuthMethod.Equals(input.ThreeDSReqPriorAuthMethod))
+                    this.ThreeDSReqPriorAuthMethod.Equals(input.ThreeDSReqPriorAuthMethod)
                 ) && 
                 (
                     this.ThreeDSReqPriorAuthTimestamp == input.ThreeDSReqPriorAuthTimestamp ||
@@ -185,56 +187,48 @@ namespace Adyen.Model.Payments
             {
                 int hashCode = 41;
                 if (this.ThreeDSReqPriorAuthData != null)
-                    hashCode = hashCode * 59 + this.ThreeDSReqPriorAuthData.GetHashCode();
-                if (this.ThreeDSReqPriorAuthMethod != null)
-                    hashCode = hashCode * 59 + this.ThreeDSReqPriorAuthMethod.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.ThreeDSReqPriorAuthData.GetHashCode();
+                }
+                hashCode = (hashCode * 59) + this.ThreeDSReqPriorAuthMethod.GetHashCode();
                 if (this.ThreeDSReqPriorAuthTimestamp != null)
-                    hashCode = hashCode * 59 + this.ThreeDSReqPriorAuthTimestamp.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.ThreeDSReqPriorAuthTimestamp.GetHashCode();
+                }
                 if (this.ThreeDSReqPriorRef != null)
-                    hashCode = hashCode * 59 + this.ThreeDSReqPriorRef.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.ThreeDSReqPriorRef.GetHashCode();
+                }
                 return hashCode;
             }
         }
-
         /// <summary>
         /// To validate all properties of the instance
         /// </summary>
         /// <param name="validationContext">Validation context</param>
         /// <returns>Validation Result</returns>
-        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+        public IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> Validate(ValidationContext validationContext)
         {
-            // ThreeDSReqPriorAuthMethod (string) maxLength
-            if(this.ThreeDSReqPriorAuthMethod != null && this.ThreeDSReqPriorAuthMethod.ToString().Length > 2)
-            {
-                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for ThreeDSReqPriorAuthMethod, length must be less than 2.", new [] { "ThreeDSReqPriorAuthMethod" });
-            }
-
-            // ThreeDSReqPriorAuthMethod (string) minLength
-            if(this.ThreeDSReqPriorAuthMethod != null && this.ThreeDSReqPriorAuthMethod.ToString().Length < 2)
-            {
-                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for ThreeDSReqPriorAuthMethod, length must be greater than 2.", new [] { "ThreeDSReqPriorAuthMethod" });
-            }
-
             // ThreeDSReqPriorAuthTimestamp (string) maxLength
-            if(this.ThreeDSReqPriorAuthTimestamp != null && this.ThreeDSReqPriorAuthTimestamp.Length > 12)
+            if (this.ThreeDSReqPriorAuthTimestamp != null && this.ThreeDSReqPriorAuthTimestamp.Length > 12)
             {
                 yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for ThreeDSReqPriorAuthTimestamp, length must be less than 12.", new [] { "ThreeDSReqPriorAuthTimestamp" });
             }
 
             // ThreeDSReqPriorAuthTimestamp (string) minLength
-            if(this.ThreeDSReqPriorAuthTimestamp != null && this.ThreeDSReqPriorAuthTimestamp.Length < 12)
+            if (this.ThreeDSReqPriorAuthTimestamp != null && this.ThreeDSReqPriorAuthTimestamp.Length < 12)
             {
                 yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for ThreeDSReqPriorAuthTimestamp, length must be greater than 12.", new [] { "ThreeDSReqPriorAuthTimestamp" });
             }
 
             // ThreeDSReqPriorRef (string) maxLength
-            if(this.ThreeDSReqPriorRef != null && this.ThreeDSReqPriorRef.Length > 36)
+            if (this.ThreeDSReqPriorRef != null && this.ThreeDSReqPriorRef.Length > 36)
             {
                 yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for ThreeDSReqPriorRef, length must be less than 36.", new [] { "ThreeDSReqPriorRef" });
             }
 
             // ThreeDSReqPriorRef (string) minLength
-            if(this.ThreeDSReqPriorRef != null && this.ThreeDSReqPriorRef.Length < 36)
+            if (this.ThreeDSReqPriorRef != null && this.ThreeDSReqPriorRef.Length < 36)
             {
                 yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for ThreeDSReqPriorRef, length must be greater than 36.", new [] { "ThreeDSReqPriorRef" });
             }

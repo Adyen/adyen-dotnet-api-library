@@ -11,25 +11,27 @@
 */
 
 using System;
-using System.Linq;
-using System.IO;
-using System.Text;
-using System.Text.RegularExpressions;
 using System.Collections;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Linq;
+using System.IO;
 using System.Runtime.Serialization;
+using System.Text;
+using System.Text.RegularExpressions;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
+using Newtonsoft.Json.Linq;
 using System.ComponentModel.DataAnnotations;
+using OpenAPIDateConverter = Adyen.ApiSerialization.OpenAPIDateConverter;
 
 namespace Adyen.Model.Payments
 {
     /// <summary>
     /// AuthenticationResultRequest
     /// </summary>
-    [DataContract]
-    public partial class AuthenticationResultRequest :  IEquatable<AuthenticationResultRequest>, IValidatableObject
+    [DataContract(Name = "AuthenticationResultRequest")]
+    public partial class AuthenticationResultRequest : IEquatable<AuthenticationResultRequest>, IValidatableObject
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="AuthenticationResultRequest" /> class.
@@ -51,14 +53,14 @@ namespace Adyen.Model.Payments
         /// The merchant account identifier, with which the authentication was processed.
         /// </summary>
         /// <value>The merchant account identifier, with which the authentication was processed.</value>
-        [DataMember(Name="merchantAccount", EmitDefaultValue=true)]
+        [DataMember(Name = "merchantAccount", IsRequired = false, EmitDefaultValue = false)]
         public string MerchantAccount { get; set; }
 
         /// <summary>
         /// The pspReference identifier for the transaction.
         /// </summary>
         /// <value>The pspReference identifier for the transaction.</value>
-        [DataMember(Name="pspReference", EmitDefaultValue=true)]
+        [DataMember(Name = "pspReference", IsRequired = false, EmitDefaultValue = false)]
         public string PspReference { get; set; }
 
         /// <summary>
@@ -67,7 +69,7 @@ namespace Adyen.Model.Payments
         /// <returns>String presentation of the object</returns>
         public override string ToString()
         {
-            var sb = new StringBuilder();
+            StringBuilder sb = new StringBuilder();
             sb.Append("class AuthenticationResultRequest {\n");
             sb.Append("  MerchantAccount: ").Append(MerchantAccount).Append("\n");
             sb.Append("  PspReference: ").Append(PspReference).Append("\n");
@@ -102,8 +104,9 @@ namespace Adyen.Model.Payments
         public bool Equals(AuthenticationResultRequest input)
         {
             if (input == null)
+            {
                 return false;
-
+            }
             return 
                 (
                     this.MerchantAccount == input.MerchantAccount ||
@@ -127,19 +130,22 @@ namespace Adyen.Model.Payments
             {
                 int hashCode = 41;
                 if (this.MerchantAccount != null)
-                    hashCode = hashCode * 59 + this.MerchantAccount.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.MerchantAccount.GetHashCode();
+                }
                 if (this.PspReference != null)
-                    hashCode = hashCode * 59 + this.PspReference.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.PspReference.GetHashCode();
+                }
                 return hashCode;
             }
         }
-
         /// <summary>
         /// To validate all properties of the instance
         /// </summary>
         /// <param name="validationContext">Validation context</param>
         /// <returns>Validation Result</returns>
-        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+        public IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> Validate(ValidationContext validationContext)
         {
             yield break;
         }

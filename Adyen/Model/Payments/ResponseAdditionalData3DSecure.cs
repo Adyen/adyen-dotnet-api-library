@@ -11,25 +11,27 @@
 */
 
 using System;
-using System.Linq;
-using System.IO;
-using System.Text;
-using System.Text.RegularExpressions;
 using System.Collections;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Linq;
+using System.IO;
 using System.Runtime.Serialization;
+using System.Text;
+using System.Text.RegularExpressions;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
+using Newtonsoft.Json.Linq;
 using System.ComponentModel.DataAnnotations;
+using OpenAPIDateConverter = Adyen.ApiSerialization.OpenAPIDateConverter;
 
 namespace Adyen.Model.Payments
 {
     /// <summary>
     /// ResponseAdditionalData3DSecure
     /// </summary>
-    [DataContract]
-    public partial class ResponseAdditionalData3DSecure :  IEquatable<ResponseAdditionalData3DSecure>, IValidatableObject
+    [DataContract(Name = "ResponseAdditionalData3DSecure")]
+    public partial class ResponseAdditionalData3DSecure : IEquatable<ResponseAdditionalData3DSecure>, IValidatableObject
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="ResponseAdditionalData3DSecure" /> class.
@@ -52,35 +54,35 @@ namespace Adyen.Model.Payments
         /// Information provided by the issuer to the cardholder. If this field is present, you need to display this information to the cardholder. 
         /// </summary>
         /// <value>Information provided by the issuer to the cardholder. If this field is present, you need to display this information to the cardholder. </value>
-        [DataMember(Name="cardHolderInfo", EmitDefaultValue=false)]
+        [DataMember(Name = "cardHolderInfo", EmitDefaultValue = false)]
         public string CardHolderInfo { get; set; }
 
         /// <summary>
         /// The Cardholder Authentication Verification Value (CAVV) for the 3D Secure authentication session, as a Base64-encoded 20-byte array.
         /// </summary>
         /// <value>The Cardholder Authentication Verification Value (CAVV) for the 3D Secure authentication session, as a Base64-encoded 20-byte array.</value>
-        [DataMember(Name="cavv", EmitDefaultValue=false)]
+        [DataMember(Name = "cavv", EmitDefaultValue = false)]
         public string Cavv { get; set; }
 
         /// <summary>
         /// The CAVV algorithm used.
         /// </summary>
         /// <value>The CAVV algorithm used.</value>
-        [DataMember(Name="cavvAlgorithm", EmitDefaultValue=false)]
+        [DataMember(Name = "cavvAlgorithm", EmitDefaultValue = false)]
         public string CavvAlgorithm { get; set; }
 
         /// <summary>
         /// Shows the [exemption type](https://docs.adyen.com/payments-fundamentals/psd2-sca-compliance-and-implementation-guide#specifypreferenceinyourapirequest) that Adyen requested for the payment.   Possible values: * **lowValue**  * **secureCorporate**  * **trustedBeneficiary**  * **transactionRiskAnalysis** 
         /// </summary>
         /// <value>Shows the [exemption type](https://docs.adyen.com/payments-fundamentals/psd2-sca-compliance-and-implementation-guide#specifypreferenceinyourapirequest) that Adyen requested for the payment.   Possible values: * **lowValue**  * **secureCorporate**  * **trustedBeneficiary**  * **transactionRiskAnalysis** </value>
-        [DataMember(Name="scaExemptionRequested", EmitDefaultValue=false)]
+        [DataMember(Name = "scaExemptionRequested", EmitDefaultValue = false)]
         public string ScaExemptionRequested { get; set; }
 
         /// <summary>
         /// Indicates whether a card is enrolled for 3D Secure 2.
         /// </summary>
         /// <value>Indicates whether a card is enrolled for 3D Secure 2.</value>
-        [DataMember(Name="threeds2.cardEnrolled", EmitDefaultValue=false)]
+        [DataMember(Name = "threeds2.cardEnrolled", EmitDefaultValue = false)]
         public bool Threeds2CardEnrolled { get; set; }
 
         /// <summary>
@@ -89,7 +91,7 @@ namespace Adyen.Model.Payments
         /// <returns>String presentation of the object</returns>
         public override string ToString()
         {
-            var sb = new StringBuilder();
+            StringBuilder sb = new StringBuilder();
             sb.Append("class ResponseAdditionalData3DSecure {\n");
             sb.Append("  CardHolderInfo: ").Append(CardHolderInfo).Append("\n");
             sb.Append("  Cavv: ").Append(Cavv).Append("\n");
@@ -127,8 +129,9 @@ namespace Adyen.Model.Payments
         public bool Equals(ResponseAdditionalData3DSecure input)
         {
             if (input == null)
+            {
                 return false;
-
+            }
             return 
                 (
                     this.CardHolderInfo == input.CardHolderInfo ||
@@ -152,8 +155,7 @@ namespace Adyen.Model.Payments
                 ) && 
                 (
                     this.Threeds2CardEnrolled == input.Threeds2CardEnrolled ||
-                    (this.Threeds2CardEnrolled != null &&
-                    this.Threeds2CardEnrolled.Equals(input.Threeds2CardEnrolled))
+                    this.Threeds2CardEnrolled.Equals(input.Threeds2CardEnrolled)
                 );
         }
 
@@ -167,25 +169,31 @@ namespace Adyen.Model.Payments
             {
                 int hashCode = 41;
                 if (this.CardHolderInfo != null)
-                    hashCode = hashCode * 59 + this.CardHolderInfo.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.CardHolderInfo.GetHashCode();
+                }
                 if (this.Cavv != null)
-                    hashCode = hashCode * 59 + this.Cavv.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.Cavv.GetHashCode();
+                }
                 if (this.CavvAlgorithm != null)
-                    hashCode = hashCode * 59 + this.CavvAlgorithm.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.CavvAlgorithm.GetHashCode();
+                }
                 if (this.ScaExemptionRequested != null)
-                    hashCode = hashCode * 59 + this.ScaExemptionRequested.GetHashCode();
-                if (this.Threeds2CardEnrolled != null)
-                    hashCode = hashCode * 59 + this.Threeds2CardEnrolled.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.ScaExemptionRequested.GetHashCode();
+                }
+                hashCode = (hashCode * 59) + this.Threeds2CardEnrolled.GetHashCode();
                 return hashCode;
             }
         }
-
         /// <summary>
         /// To validate all properties of the instance
         /// </summary>
         /// <param name="validationContext">Validation context</param>
         /// <returns>Validation Result</returns>
-        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+        public IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> Validate(ValidationContext validationContext)
         {
             yield break;
         }

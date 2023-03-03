@@ -11,25 +11,27 @@
 */
 
 using System;
-using System.Linq;
-using System.IO;
-using System.Text;
-using System.Text.RegularExpressions;
 using System.Collections;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Linq;
+using System.IO;
 using System.Runtime.Serialization;
+using System.Text;
+using System.Text.RegularExpressions;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
+using Newtonsoft.Json.Linq;
 using System.ComponentModel.DataAnnotations;
+using OpenAPIDateConverter = Adyen.ApiSerialization.OpenAPIDateConverter;
 
 namespace Adyen.Model.Management
 {
     /// <summary>
     /// ShopperStatement
     /// </summary>
-    [DataContract]
-    public partial class ShopperStatement :  IEquatable<ShopperStatement>, IValidatableObject
+    [DataContract(Name = "ShopperStatement")]
+    public partial class ShopperStatement : IEquatable<ShopperStatement>, IValidatableObject
     {
         /// <summary>
         /// The type of shopperstatement you want to use: fixed, append or dynamic
@@ -58,11 +60,12 @@ namespace Adyen.Model.Management
 
         }
 
+
         /// <summary>
         /// The type of shopperstatement you want to use: fixed, append or dynamic
         /// </summary>
         /// <value>The type of shopperstatement you want to use: fixed, append or dynamic</value>
-        [DataMember(Name="type", EmitDefaultValue=false)]
+        [DataMember(Name = "type", EmitDefaultValue = false)]
         public TypeEnum? Type { get; set; }
         /// <summary>
         /// Initializes a new instance of the <see cref="ShopperStatement" /> class.
@@ -79,9 +82,8 @@ namespace Adyen.Model.Management
         /// The name you want to be shown on the shopper&#39;s bank or credit card statement. Can&#39;t be all numbers. If a shopper statement is present, this field is required.
         /// </summary>
         /// <value>The name you want to be shown on the shopper&#39;s bank or credit card statement. Can&#39;t be all numbers. If a shopper statement is present, this field is required.</value>
-        [DataMember(Name="doingBusinessAsName", EmitDefaultValue=false)]
+        [DataMember(Name = "doingBusinessAsName", EmitDefaultValue = false)]
         public string DoingBusinessAsName { get; set; }
-
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -89,7 +91,7 @@ namespace Adyen.Model.Management
         /// <returns>String presentation of the object</returns>
         public override string ToString()
         {
-            var sb = new StringBuilder();
+            StringBuilder sb = new StringBuilder();
             sb.Append("class ShopperStatement {\n");
             sb.Append("  DoingBusinessAsName: ").Append(DoingBusinessAsName).Append("\n");
             sb.Append("  Type: ").Append(Type).Append("\n");
@@ -124,8 +126,9 @@ namespace Adyen.Model.Management
         public bool Equals(ShopperStatement input)
         {
             if (input == null)
+            {
                 return false;
-
+            }
             return 
                 (
                     this.DoingBusinessAsName == input.DoingBusinessAsName ||
@@ -134,8 +137,7 @@ namespace Adyen.Model.Management
                 ) && 
                 (
                     this.Type == input.Type ||
-                    (this.Type != null &&
-                    this.Type.Equals(input.Type))
+                    this.Type.Equals(input.Type)
                 );
         }
 
@@ -149,26 +151,25 @@ namespace Adyen.Model.Management
             {
                 int hashCode = 41;
                 if (this.DoingBusinessAsName != null)
-                    hashCode = hashCode * 59 + this.DoingBusinessAsName.GetHashCode();
-                if (this.Type != null)
-                    hashCode = hashCode * 59 + this.Type.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.DoingBusinessAsName.GetHashCode();
+                }
+                hashCode = (hashCode * 59) + this.Type.GetHashCode();
                 return hashCode;
             }
         }
-
         /// <summary>
         /// To validate all properties of the instance
         /// </summary>
         /// <param name="validationContext">Validation context</param>
         /// <returns>Validation Result</returns>
-        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+        public IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> Validate(ValidationContext validationContext)
         {
             // DoingBusinessAsName (string) maxLength
-            if(this.DoingBusinessAsName != null && this.DoingBusinessAsName.Length > 22)
+            if (this.DoingBusinessAsName != null && this.DoingBusinessAsName.Length > 22)
             {
                 yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for DoingBusinessAsName, length must be less than 22.", new [] { "DoingBusinessAsName" });
             }
-
 
             yield break;
         }

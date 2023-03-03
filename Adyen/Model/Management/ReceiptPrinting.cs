@@ -11,25 +11,27 @@
 */
 
 using System;
-using System.Linq;
-using System.IO;
-using System.Text;
-using System.Text.RegularExpressions;
 using System.Collections;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Linq;
+using System.IO;
 using System.Runtime.Serialization;
+using System.Text;
+using System.Text.RegularExpressions;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
+using Newtonsoft.Json.Linq;
 using System.ComponentModel.DataAnnotations;
+using OpenAPIDateConverter = Adyen.ApiSerialization.OpenAPIDateConverter;
 
 namespace Adyen.Model.Management
 {
     /// <summary>
     /// ReceiptPrinting
     /// </summary>
-    [DataContract]
-    public partial class ReceiptPrinting :  IEquatable<ReceiptPrinting>, IValidatableObject
+    [DataContract(Name = "ReceiptPrinting")]
+    public partial class ReceiptPrinting : IEquatable<ReceiptPrinting>, IValidatableObject
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="ReceiptPrinting" /> class.
@@ -74,112 +76,112 @@ namespace Adyen.Model.Management
         /// Print a merchant receipt when the payment is approved.
         /// </summary>
         /// <value>Print a merchant receipt when the payment is approved.</value>
-        [DataMember(Name="merchantApproved", EmitDefaultValue=false)]
+        [DataMember(Name = "merchantApproved", EmitDefaultValue = false)]
         public bool MerchantApproved { get; set; }
 
         /// <summary>
         /// Print a merchant receipt when the transaction is cancelled.
         /// </summary>
         /// <value>Print a merchant receipt when the transaction is cancelled.</value>
-        [DataMember(Name="merchantCancelled", EmitDefaultValue=false)]
+        [DataMember(Name = "merchantCancelled", EmitDefaultValue = false)]
         public bool MerchantCancelled { get; set; }
 
         /// <summary>
         /// Print a merchant receipt when capturing the payment is approved.
         /// </summary>
         /// <value>Print a merchant receipt when capturing the payment is approved.</value>
-        [DataMember(Name="merchantCaptureApproved", EmitDefaultValue=false)]
+        [DataMember(Name = "merchantCaptureApproved", EmitDefaultValue = false)]
         public bool MerchantCaptureApproved { get; set; }
 
         /// <summary>
         /// Print a merchant receipt when capturing the payment is refused.
         /// </summary>
         /// <value>Print a merchant receipt when capturing the payment is refused.</value>
-        [DataMember(Name="merchantCaptureRefused", EmitDefaultValue=false)]
+        [DataMember(Name = "merchantCaptureRefused", EmitDefaultValue = false)]
         public bool MerchantCaptureRefused { get; set; }
 
         /// <summary>
         /// Print a merchant receipt when the refund is approved.
         /// </summary>
         /// <value>Print a merchant receipt when the refund is approved.</value>
-        [DataMember(Name="merchantRefundApproved", EmitDefaultValue=false)]
+        [DataMember(Name = "merchantRefundApproved", EmitDefaultValue = false)]
         public bool MerchantRefundApproved { get; set; }
 
         /// <summary>
         /// Print a merchant receipt when the refund is refused.
         /// </summary>
         /// <value>Print a merchant receipt when the refund is refused.</value>
-        [DataMember(Name="merchantRefundRefused", EmitDefaultValue=false)]
+        [DataMember(Name = "merchantRefundRefused", EmitDefaultValue = false)]
         public bool MerchantRefundRefused { get; set; }
 
         /// <summary>
         /// Print a merchant receipt when the payment is refused.
         /// </summary>
         /// <value>Print a merchant receipt when the payment is refused.</value>
-        [DataMember(Name="merchantRefused", EmitDefaultValue=false)]
+        [DataMember(Name = "merchantRefused", EmitDefaultValue = false)]
         public bool MerchantRefused { get; set; }
 
         /// <summary>
         /// Print a merchant receipt when a previous transaction is voided.
         /// </summary>
         /// <value>Print a merchant receipt when a previous transaction is voided.</value>
-        [DataMember(Name="merchantVoid", EmitDefaultValue=false)]
+        [DataMember(Name = "merchantVoid", EmitDefaultValue = false)]
         public bool MerchantVoid { get; set; }
 
         /// <summary>
         /// Print a shopper receipt when the payment is approved.
         /// </summary>
         /// <value>Print a shopper receipt when the payment is approved.</value>
-        [DataMember(Name="shopperApproved", EmitDefaultValue=false)]
+        [DataMember(Name = "shopperApproved", EmitDefaultValue = false)]
         public bool ShopperApproved { get; set; }
 
         /// <summary>
         /// Print a shopper receipt when the transaction is cancelled.
         /// </summary>
         /// <value>Print a shopper receipt when the transaction is cancelled.</value>
-        [DataMember(Name="shopperCancelled", EmitDefaultValue=false)]
+        [DataMember(Name = "shopperCancelled", EmitDefaultValue = false)]
         public bool ShopperCancelled { get; set; }
 
         /// <summary>
         /// Print a shopper receipt when capturing the payment is approved.
         /// </summary>
         /// <value>Print a shopper receipt when capturing the payment is approved.</value>
-        [DataMember(Name="shopperCaptureApproved", EmitDefaultValue=false)]
+        [DataMember(Name = "shopperCaptureApproved", EmitDefaultValue = false)]
         public bool ShopperCaptureApproved { get; set; }
 
         /// <summary>
         /// Print a shopper receipt when capturing the payment is refused.
         /// </summary>
         /// <value>Print a shopper receipt when capturing the payment is refused.</value>
-        [DataMember(Name="shopperCaptureRefused", EmitDefaultValue=false)]
+        [DataMember(Name = "shopperCaptureRefused", EmitDefaultValue = false)]
         public bool ShopperCaptureRefused { get; set; }
 
         /// <summary>
         /// Print a shopper receipt when the refund is approved.
         /// </summary>
         /// <value>Print a shopper receipt when the refund is approved.</value>
-        [DataMember(Name="shopperRefundApproved", EmitDefaultValue=false)]
+        [DataMember(Name = "shopperRefundApproved", EmitDefaultValue = false)]
         public bool ShopperRefundApproved { get; set; }
 
         /// <summary>
         /// Print a shopper receipt when the refund is refused.
         /// </summary>
         /// <value>Print a shopper receipt when the refund is refused.</value>
-        [DataMember(Name="shopperRefundRefused", EmitDefaultValue=false)]
+        [DataMember(Name = "shopperRefundRefused", EmitDefaultValue = false)]
         public bool ShopperRefundRefused { get; set; }
 
         /// <summary>
         /// Print a shopper receipt when the payment is refused.
         /// </summary>
         /// <value>Print a shopper receipt when the payment is refused.</value>
-        [DataMember(Name="shopperRefused", EmitDefaultValue=false)]
+        [DataMember(Name = "shopperRefused", EmitDefaultValue = false)]
         public bool ShopperRefused { get; set; }
 
         /// <summary>
         /// Print a shopper receipt when a previous transaction is voided.
         /// </summary>
         /// <value>Print a shopper receipt when a previous transaction is voided.</value>
-        [DataMember(Name="shopperVoid", EmitDefaultValue=false)]
+        [DataMember(Name = "shopperVoid", EmitDefaultValue = false)]
         public bool ShopperVoid { get; set; }
 
         /// <summary>
@@ -188,7 +190,7 @@ namespace Adyen.Model.Management
         /// <returns>String presentation of the object</returns>
         public override string ToString()
         {
-            var sb = new StringBuilder();
+            StringBuilder sb = new StringBuilder();
             sb.Append("class ReceiptPrinting {\n");
             sb.Append("  MerchantApproved: ").Append(MerchantApproved).Append("\n");
             sb.Append("  MerchantCancelled: ").Append(MerchantCancelled).Append("\n");
@@ -237,88 +239,73 @@ namespace Adyen.Model.Management
         public bool Equals(ReceiptPrinting input)
         {
             if (input == null)
+            {
                 return false;
-
+            }
             return 
                 (
                     this.MerchantApproved == input.MerchantApproved ||
-                    (this.MerchantApproved != null &&
-                    this.MerchantApproved.Equals(input.MerchantApproved))
+                    this.MerchantApproved.Equals(input.MerchantApproved)
                 ) && 
                 (
                     this.MerchantCancelled == input.MerchantCancelled ||
-                    (this.MerchantCancelled != null &&
-                    this.MerchantCancelled.Equals(input.MerchantCancelled))
+                    this.MerchantCancelled.Equals(input.MerchantCancelled)
                 ) && 
                 (
                     this.MerchantCaptureApproved == input.MerchantCaptureApproved ||
-                    (this.MerchantCaptureApproved != null &&
-                    this.MerchantCaptureApproved.Equals(input.MerchantCaptureApproved))
+                    this.MerchantCaptureApproved.Equals(input.MerchantCaptureApproved)
                 ) && 
                 (
                     this.MerchantCaptureRefused == input.MerchantCaptureRefused ||
-                    (this.MerchantCaptureRefused != null &&
-                    this.MerchantCaptureRefused.Equals(input.MerchantCaptureRefused))
+                    this.MerchantCaptureRefused.Equals(input.MerchantCaptureRefused)
                 ) && 
                 (
                     this.MerchantRefundApproved == input.MerchantRefundApproved ||
-                    (this.MerchantRefundApproved != null &&
-                    this.MerchantRefundApproved.Equals(input.MerchantRefundApproved))
+                    this.MerchantRefundApproved.Equals(input.MerchantRefundApproved)
                 ) && 
                 (
                     this.MerchantRefundRefused == input.MerchantRefundRefused ||
-                    (this.MerchantRefundRefused != null &&
-                    this.MerchantRefundRefused.Equals(input.MerchantRefundRefused))
+                    this.MerchantRefundRefused.Equals(input.MerchantRefundRefused)
                 ) && 
                 (
                     this.MerchantRefused == input.MerchantRefused ||
-                    (this.MerchantRefused != null &&
-                    this.MerchantRefused.Equals(input.MerchantRefused))
+                    this.MerchantRefused.Equals(input.MerchantRefused)
                 ) && 
                 (
                     this.MerchantVoid == input.MerchantVoid ||
-                    (this.MerchantVoid != null &&
-                    this.MerchantVoid.Equals(input.MerchantVoid))
+                    this.MerchantVoid.Equals(input.MerchantVoid)
                 ) && 
                 (
                     this.ShopperApproved == input.ShopperApproved ||
-                    (this.ShopperApproved != null &&
-                    this.ShopperApproved.Equals(input.ShopperApproved))
+                    this.ShopperApproved.Equals(input.ShopperApproved)
                 ) && 
                 (
                     this.ShopperCancelled == input.ShopperCancelled ||
-                    (this.ShopperCancelled != null &&
-                    this.ShopperCancelled.Equals(input.ShopperCancelled))
+                    this.ShopperCancelled.Equals(input.ShopperCancelled)
                 ) && 
                 (
                     this.ShopperCaptureApproved == input.ShopperCaptureApproved ||
-                    (this.ShopperCaptureApproved != null &&
-                    this.ShopperCaptureApproved.Equals(input.ShopperCaptureApproved))
+                    this.ShopperCaptureApproved.Equals(input.ShopperCaptureApproved)
                 ) && 
                 (
                     this.ShopperCaptureRefused == input.ShopperCaptureRefused ||
-                    (this.ShopperCaptureRefused != null &&
-                    this.ShopperCaptureRefused.Equals(input.ShopperCaptureRefused))
+                    this.ShopperCaptureRefused.Equals(input.ShopperCaptureRefused)
                 ) && 
                 (
                     this.ShopperRefundApproved == input.ShopperRefundApproved ||
-                    (this.ShopperRefundApproved != null &&
-                    this.ShopperRefundApproved.Equals(input.ShopperRefundApproved))
+                    this.ShopperRefundApproved.Equals(input.ShopperRefundApproved)
                 ) && 
                 (
                     this.ShopperRefundRefused == input.ShopperRefundRefused ||
-                    (this.ShopperRefundRefused != null &&
-                    this.ShopperRefundRefused.Equals(input.ShopperRefundRefused))
+                    this.ShopperRefundRefused.Equals(input.ShopperRefundRefused)
                 ) && 
                 (
                     this.ShopperRefused == input.ShopperRefused ||
-                    (this.ShopperRefused != null &&
-                    this.ShopperRefused.Equals(input.ShopperRefused))
+                    this.ShopperRefused.Equals(input.ShopperRefused)
                 ) && 
                 (
                     this.ShopperVoid == input.ShopperVoid ||
-                    (this.ShopperVoid != null &&
-                    this.ShopperVoid.Equals(input.ShopperVoid))
+                    this.ShopperVoid.Equals(input.ShopperVoid)
                 );
         }
 
@@ -331,48 +318,31 @@ namespace Adyen.Model.Management
             unchecked // Overflow is fine, just wrap
             {
                 int hashCode = 41;
-                if (this.MerchantApproved != null)
-                    hashCode = hashCode * 59 + this.MerchantApproved.GetHashCode();
-                if (this.MerchantCancelled != null)
-                    hashCode = hashCode * 59 + this.MerchantCancelled.GetHashCode();
-                if (this.MerchantCaptureApproved != null)
-                    hashCode = hashCode * 59 + this.MerchantCaptureApproved.GetHashCode();
-                if (this.MerchantCaptureRefused != null)
-                    hashCode = hashCode * 59 + this.MerchantCaptureRefused.GetHashCode();
-                if (this.MerchantRefundApproved != null)
-                    hashCode = hashCode * 59 + this.MerchantRefundApproved.GetHashCode();
-                if (this.MerchantRefundRefused != null)
-                    hashCode = hashCode * 59 + this.MerchantRefundRefused.GetHashCode();
-                if (this.MerchantRefused != null)
-                    hashCode = hashCode * 59 + this.MerchantRefused.GetHashCode();
-                if (this.MerchantVoid != null)
-                    hashCode = hashCode * 59 + this.MerchantVoid.GetHashCode();
-                if (this.ShopperApproved != null)
-                    hashCode = hashCode * 59 + this.ShopperApproved.GetHashCode();
-                if (this.ShopperCancelled != null)
-                    hashCode = hashCode * 59 + this.ShopperCancelled.GetHashCode();
-                if (this.ShopperCaptureApproved != null)
-                    hashCode = hashCode * 59 + this.ShopperCaptureApproved.GetHashCode();
-                if (this.ShopperCaptureRefused != null)
-                    hashCode = hashCode * 59 + this.ShopperCaptureRefused.GetHashCode();
-                if (this.ShopperRefundApproved != null)
-                    hashCode = hashCode * 59 + this.ShopperRefundApproved.GetHashCode();
-                if (this.ShopperRefundRefused != null)
-                    hashCode = hashCode * 59 + this.ShopperRefundRefused.GetHashCode();
-                if (this.ShopperRefused != null)
-                    hashCode = hashCode * 59 + this.ShopperRefused.GetHashCode();
-                if (this.ShopperVoid != null)
-                    hashCode = hashCode * 59 + this.ShopperVoid.GetHashCode();
+                hashCode = (hashCode * 59) + this.MerchantApproved.GetHashCode();
+                hashCode = (hashCode * 59) + this.MerchantCancelled.GetHashCode();
+                hashCode = (hashCode * 59) + this.MerchantCaptureApproved.GetHashCode();
+                hashCode = (hashCode * 59) + this.MerchantCaptureRefused.GetHashCode();
+                hashCode = (hashCode * 59) + this.MerchantRefundApproved.GetHashCode();
+                hashCode = (hashCode * 59) + this.MerchantRefundRefused.GetHashCode();
+                hashCode = (hashCode * 59) + this.MerchantRefused.GetHashCode();
+                hashCode = (hashCode * 59) + this.MerchantVoid.GetHashCode();
+                hashCode = (hashCode * 59) + this.ShopperApproved.GetHashCode();
+                hashCode = (hashCode * 59) + this.ShopperCancelled.GetHashCode();
+                hashCode = (hashCode * 59) + this.ShopperCaptureApproved.GetHashCode();
+                hashCode = (hashCode * 59) + this.ShopperCaptureRefused.GetHashCode();
+                hashCode = (hashCode * 59) + this.ShopperRefundApproved.GetHashCode();
+                hashCode = (hashCode * 59) + this.ShopperRefundRefused.GetHashCode();
+                hashCode = (hashCode * 59) + this.ShopperRefused.GetHashCode();
+                hashCode = (hashCode * 59) + this.ShopperVoid.GetHashCode();
                 return hashCode;
             }
         }
-
         /// <summary>
         /// To validate all properties of the instance
         /// </summary>
         /// <param name="validationContext">Validation context</param>
         /// <returns>Validation Result</returns>
-        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+        public IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> Validate(ValidationContext validationContext)
         {
             yield break;
         }

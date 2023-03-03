@@ -10,7 +10,6 @@
 * Do not edit the class manually.
 */
 
-
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -24,6 +23,7 @@ using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
 using Newtonsoft.Json.Linq;
 using System.ComponentModel.DataAnnotations;
+using OpenAPIDateConverter = Adyen.ApiSerialization.OpenAPIDateConverter;
 
 namespace Adyen.Model.Recurring
 {
@@ -55,7 +55,7 @@ namespace Adyen.Model.Recurring
         /// The merchant account identifier you want to process the (transaction) request with.
         /// </summary>
         /// <value>The merchant account identifier you want to process the (transaction) request with.</value>
-        [DataMember(Name = "merchantAccount", IsRequired = false, EmitDefaultValue = true)]
+        [DataMember(Name = "merchantAccount", IsRequired = false, EmitDefaultValue = false)]
         public string MerchantAccount { get; set; }
 
         /// <summary>
@@ -68,7 +68,7 @@ namespace Adyen.Model.Recurring
         /// The reference you use to uniquely identify the shopper (e.g. user ID or account ID).
         /// </summary>
         /// <value>The reference you use to uniquely identify the shopper (e.g. user ID or account ID).</value>
-        [DataMember(Name = "shopperReference", IsRequired = false, EmitDefaultValue = true)]
+        [DataMember(Name = "shopperReference", IsRequired = false, EmitDefaultValue = false)]
         public string ShopperReference { get; set; }
 
         /// <summary>
@@ -158,7 +158,6 @@ namespace Adyen.Model.Recurring
                 return hashCode;
             }
         }
-
         /// <summary>
         /// To validate all properties of the instance
         /// </summary>

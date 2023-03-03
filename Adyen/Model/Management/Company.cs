@@ -11,25 +11,27 @@
 */
 
 using System;
-using System.Linq;
-using System.IO;
-using System.Text;
-using System.Text.RegularExpressions;
 using System.Collections;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Linq;
+using System.IO;
 using System.Runtime.Serialization;
+using System.Text;
+using System.Text.RegularExpressions;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
+using Newtonsoft.Json.Linq;
 using System.ComponentModel.DataAnnotations;
+using OpenAPIDateConverter = Adyen.ApiSerialization.OpenAPIDateConverter;
 
 namespace Adyen.Model.Management
 {
     /// <summary>
     /// Company
     /// </summary>
-    [DataContract]
-    public partial class Company :  IEquatable<Company>, IValidatableObject
+    [DataContract(Name = "Company")]
+    public partial class Company : IEquatable<Company>, IValidatableObject
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="Company" /> class.
@@ -55,49 +57,49 @@ namespace Adyen.Model.Management
         /// <summary>
         /// Gets or Sets Links
         /// </summary>
-        [DataMember(Name="_links", EmitDefaultValue=false)]
+        [DataMember(Name = "_links", EmitDefaultValue = false)]
         public CompanyLinks Links { get; set; }
 
         /// <summary>
         /// List of available data centers.  Adyen has several data centers around the world.In the URL that you use for making API requests, we recommend you use the live URL prefix from the data center closest to your shoppers.
         /// </summary>
         /// <value>List of available data centers.  Adyen has several data centers around the world.In the URL that you use for making API requests, we recommend you use the live URL prefix from the data center closest to your shoppers.</value>
-        [DataMember(Name="dataCenters", EmitDefaultValue=false)]
+        [DataMember(Name = "dataCenters", EmitDefaultValue = false)]
         public List<DataCenter> DataCenters { get; set; }
 
         /// <summary>
         /// Your description for the company account, maximum 300 characters
         /// </summary>
         /// <value>Your description for the company account, maximum 300 characters</value>
-        [DataMember(Name="description", EmitDefaultValue=false)]
+        [DataMember(Name = "description", EmitDefaultValue = false)]
         public string Description { get; set; }
 
         /// <summary>
         /// The unique identifier of the company account.
         /// </summary>
         /// <value>The unique identifier of the company account.</value>
-        [DataMember(Name="id", EmitDefaultValue=false)]
+        [DataMember(Name = "id", EmitDefaultValue = false)]
         public string Id { get; set; }
 
         /// <summary>
         /// The legal or trading name of the company.
         /// </summary>
         /// <value>The legal or trading name of the company.</value>
-        [DataMember(Name="name", EmitDefaultValue=false)]
+        [DataMember(Name = "name", EmitDefaultValue = false)]
         public string Name { get; set; }
 
         /// <summary>
         /// Your reference to the account
         /// </summary>
         /// <value>Your reference to the account</value>
-        [DataMember(Name="reference", EmitDefaultValue=false)]
+        [DataMember(Name = "reference", EmitDefaultValue = false)]
         public string Reference { get; set; }
 
         /// <summary>
         /// The status of the company account.  Possible values:  * **Active**: Users can log in. Processing and payout capabilities depend on the status of the merchant account. * **Inactive**: Users can log in. Payment processing and payouts are disabled. * **Closed**: The company account is closed and this cannot be reversed. Users cannot log in. Payment processing and payouts are disabled.
         /// </summary>
         /// <value>The status of the company account.  Possible values:  * **Active**: Users can log in. Processing and payout capabilities depend on the status of the merchant account. * **Inactive**: Users can log in. Payment processing and payouts are disabled. * **Closed**: The company account is closed and this cannot be reversed. Users cannot log in. Payment processing and payouts are disabled.</value>
-        [DataMember(Name="status", EmitDefaultValue=false)]
+        [DataMember(Name = "status", EmitDefaultValue = false)]
         public string Status { get; set; }
 
         /// <summary>
@@ -106,7 +108,7 @@ namespace Adyen.Model.Management
         /// <returns>String presentation of the object</returns>
         public override string ToString()
         {
-            var sb = new StringBuilder();
+            StringBuilder sb = new StringBuilder();
             sb.Append("class Company {\n");
             sb.Append("  Links: ").Append(Links).Append("\n");
             sb.Append("  DataCenters: ").Append(DataCenters).Append("\n");
@@ -146,8 +148,9 @@ namespace Adyen.Model.Management
         public bool Equals(Company input)
         {
             if (input == null)
+            {
                 return false;
-
+            }
             return 
                 (
                     this.Links == input.Links ||
@@ -197,29 +200,42 @@ namespace Adyen.Model.Management
             {
                 int hashCode = 41;
                 if (this.Links != null)
-                    hashCode = hashCode * 59 + this.Links.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.Links.GetHashCode();
+                }
                 if (this.DataCenters != null)
-                    hashCode = hashCode * 59 + this.DataCenters.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.DataCenters.GetHashCode();
+                }
                 if (this.Description != null)
-                    hashCode = hashCode * 59 + this.Description.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.Description.GetHashCode();
+                }
                 if (this.Id != null)
-                    hashCode = hashCode * 59 + this.Id.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.Id.GetHashCode();
+                }
                 if (this.Name != null)
-                    hashCode = hashCode * 59 + this.Name.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.Name.GetHashCode();
+                }
                 if (this.Reference != null)
-                    hashCode = hashCode * 59 + this.Reference.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.Reference.GetHashCode();
+                }
                 if (this.Status != null)
-                    hashCode = hashCode * 59 + this.Status.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.Status.GetHashCode();
+                }
                 return hashCode;
             }
         }
-
         /// <summary>
         /// To validate all properties of the instance
         /// </summary>
         /// <param name="validationContext">Validation context</param>
         /// <returns>Validation Result</returns>
-        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+        public IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> Validate(ValidationContext validationContext)
         {
             yield break;
         }
