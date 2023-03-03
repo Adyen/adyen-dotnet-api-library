@@ -49,7 +49,7 @@ $(services): target/spec $(openapi-generator-jar)
 	mv target/out/src/Adyen.Model/$@/* Adyen/Model/$@
 
 # Generate a full client (models and service classes)
-Management: target/spec $(openapi-generator-jar)  
+LegalEntityManagement: target/spec $(openapi-generator-jar)  
 	rm -rf $(output)
 	$(openapi-generator-cli) generate \
 		-i target/spec/json/$(spec).json \
