@@ -11,59 +11,88 @@
 */
 
 using System;
-using System.Linq;
-using System.IO;
-using System.Text;
-using System.Text.RegularExpressions;
 using System.Collections;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Linq;
+using System.IO;
 using System.Runtime.Serialization;
+using System.Text;
+using System.Text.RegularExpressions;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
+using Newtonsoft.Json.Linq;
 using System.ComponentModel.DataAnnotations;
+using OpenAPIDateConverter = Adyen.ApiSerialization.OpenAPIDateConverter;
 
 namespace Adyen.Model.LegalEntityManagement
 {
     /// <summary>
     /// DocumentReference
     /// </summary>
-    [DataContract]
-    public partial class DocumentReference :  IEquatable<DocumentReference>, IValidatableObject
+    [DataContract(Name = "DocumentReference")]
+    public partial class DocumentReference : IEquatable<DocumentReference>, IValidatableObject
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="DocumentReference" /> class.
         /// </summary>
         /// <param name="active">Identifies whether the document is active and used for checks..</param>
+        /// <param name="description">Your description for the document..</param>
         /// <param name="fileName">Document name..</param>
         /// <param name="id">The unique identifier of the resource..</param>
-        public DocumentReference(bool active = default(bool), string fileName = default(string), string id = default(string))
+        /// <param name="modificationDate">The modification date of the document..</param>
+        /// <param name="type">Type of document, used when providing an ID number or uploading a document..</param>
+        public DocumentReference(bool active = default(bool), string description = default(string), string fileName = default(string), string id = default(string), DateTime modificationDate = default(DateTime), string type = default(string))
         {
             this.Active = active;
+            this.Description = description;
             this.FileName = fileName;
             this.Id = id;
+            this.ModificationDate = modificationDate;
+            this.Type = type;
         }
 
         /// <summary>
         /// Identifies whether the document is active and used for checks.
         /// </summary>
         /// <value>Identifies whether the document is active and used for checks.</value>
-        [DataMember(Name="active", EmitDefaultValue=false)]
+        [DataMember(Name = "active", EmitDefaultValue = false)]
         public bool Active { get; set; }
+
+        /// <summary>
+        /// Your description for the document.
+        /// </summary>
+        /// <value>Your description for the document.</value>
+        [DataMember(Name = "description", EmitDefaultValue = false)]
+        public string Description { get; set; }
 
         /// <summary>
         /// Document name.
         /// </summary>
         /// <value>Document name.</value>
-        [DataMember(Name="fileName", EmitDefaultValue=false)]
+        [DataMember(Name = "fileName", EmitDefaultValue = false)]
         public string FileName { get; set; }
 
         /// <summary>
         /// The unique identifier of the resource.
         /// </summary>
         /// <value>The unique identifier of the resource.</value>
-        [DataMember(Name="id", EmitDefaultValue=false)]
+        [DataMember(Name = "id", EmitDefaultValue = false)]
         public string Id { get; set; }
+
+        /// <summary>
+        /// The modification date of the document.
+        /// </summary>
+        /// <value>The modification date of the document.</value>
+        [DataMember(Name = "modificationDate", EmitDefaultValue = false)]
+        public DateTime ModificationDate { get; set; }
+
+        /// <summary>
+        /// Type of document, used when providing an ID number or uploading a document.
+        /// </summary>
+        /// <value>Type of document, used when providing an ID number or uploading a document.</value>
+        [DataMember(Name = "type", EmitDefaultValue = false)]
+        public string Type { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -71,11 +100,14 @@ namespace Adyen.Model.LegalEntityManagement
         /// <returns>String presentation of the object</returns>
         public override string ToString()
         {
-            var sb = new StringBuilder();
+            StringBuilder sb = new StringBuilder();
             sb.Append("class DocumentReference {\n");
             sb.Append("  Active: ").Append(Active).Append("\n");
+            sb.Append("  Description: ").Append(Description).Append("\n");
             sb.Append("  FileName: ").Append(FileName).Append("\n");
             sb.Append("  Id: ").Append(Id).Append("\n");
+            sb.Append("  ModificationDate: ").Append(ModificationDate).Append("\n");
+            sb.Append("  Type: ").Append(Type).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -107,13 +139,18 @@ namespace Adyen.Model.LegalEntityManagement
         public bool Equals(DocumentReference input)
         {
             if (input == null)
+            {
                 return false;
-
+            }
             return 
                 (
                     this.Active == input.Active ||
-                    (this.Active != null &&
-                    this.Active.Equals(input.Active))
+                    this.Active.Equals(input.Active)
+                ) && 
+                (
+                    this.Description == input.Description ||
+                    (this.Description != null &&
+                    this.Description.Equals(input.Description))
                 ) && 
                 (
                     this.FileName == input.FileName ||
@@ -124,6 +161,16 @@ namespace Adyen.Model.LegalEntityManagement
                     this.Id == input.Id ||
                     (this.Id != null &&
                     this.Id.Equals(input.Id))
+                ) && 
+                (
+                    this.ModificationDate == input.ModificationDate ||
+                    (this.ModificationDate != null &&
+                    this.ModificationDate.Equals(input.ModificationDate))
+                ) && 
+                (
+                    this.Type == input.Type ||
+                    (this.Type != null &&
+                    this.Type.Equals(input.Type))
                 );
         }
 
@@ -136,22 +183,36 @@ namespace Adyen.Model.LegalEntityManagement
             unchecked // Overflow is fine, just wrap
             {
                 int hashCode = 41;
-                if (this.Active != null)
-                    hashCode = hashCode * 59 + this.Active.GetHashCode();
+                hashCode = (hashCode * 59) + this.Active.GetHashCode();
+                if (this.Description != null)
+                {
+                    hashCode = (hashCode * 59) + this.Description.GetHashCode();
+                }
                 if (this.FileName != null)
-                    hashCode = hashCode * 59 + this.FileName.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.FileName.GetHashCode();
+                }
                 if (this.Id != null)
-                    hashCode = hashCode * 59 + this.Id.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.Id.GetHashCode();
+                }
+                if (this.ModificationDate != null)
+                {
+                    hashCode = (hashCode * 59) + this.ModificationDate.GetHashCode();
+                }
+                if (this.Type != null)
+                {
+                    hashCode = (hashCode * 59) + this.Type.GetHashCode();
+                }
                 return hashCode;
             }
         }
-
         /// <summary>
         /// To validate all properties of the instance
         /// </summary>
         /// <param name="validationContext">Validation context</param>
         /// <returns>Validation Result</returns>
-        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+        public IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> Validate(ValidationContext validationContext)
         {
             yield break;
         }

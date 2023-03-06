@@ -11,25 +11,27 @@
 */
 
 using System;
-using System.Linq;
-using System.IO;
-using System.Text;
-using System.Text.RegularExpressions;
 using System.Collections;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Linq;
+using System.IO;
 using System.Runtime.Serialization;
+using System.Text;
+using System.Text.RegularExpressions;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
+using Newtonsoft.Json.Linq;
 using System.ComponentModel.DataAnnotations;
+using OpenAPIDateConverter = Adyen.ApiSerialization.OpenAPIDateConverter;
 
 namespace Adyen.Model.BinLookup
 {
     /// <summary>
     /// Recurring
     /// </summary>
-    [DataContract]
-    public partial class Recurring :  IEquatable<Recurring>, IValidatableObject
+    [DataContract(Name = "Recurring")]
+    public partial class Recurring : IEquatable<Recurring>, IValidatableObject
     {
         /// <summary>
         /// The type of recurring contract to be used. Possible values: * &#x60;ONECLICK&#x60; – Payment details can be used to initiate a one-click payment, where the shopper enters the [card security code (CVC/CVV)](https://docs.adyen.com/payments-fundamentals/payment-glossary#card-security-code-cvc-cvv-cid). * &#x60;RECURRING&#x60; – Payment details can be used without the card security code to initiate [card-not-present transactions](https://docs.adyen.com/payments-fundamentals/payment-glossary#card-not-present-cnp). * &#x60;ONECLICK,RECURRING&#x60; – Payment details can be used regardless of whether the shopper is on your site or not. * &#x60;PAYOUT&#x60; – Payment details can be used to [make a payout](https://docs.adyen.com/online-payments/online-payouts).
@@ -58,11 +60,12 @@ namespace Adyen.Model.BinLookup
 
         }
 
+
         /// <summary>
         /// The type of recurring contract to be used. Possible values: * &#x60;ONECLICK&#x60; – Payment details can be used to initiate a one-click payment, where the shopper enters the [card security code (CVC/CVV)](https://docs.adyen.com/payments-fundamentals/payment-glossary#card-security-code-cvc-cvv-cid). * &#x60;RECURRING&#x60; – Payment details can be used without the card security code to initiate [card-not-present transactions](https://docs.adyen.com/payments-fundamentals/payment-glossary#card-not-present-cnp). * &#x60;ONECLICK,RECURRING&#x60; – Payment details can be used regardless of whether the shopper is on your site or not. * &#x60;PAYOUT&#x60; – Payment details can be used to [make a payout](https://docs.adyen.com/online-payments/online-payouts).
         /// </summary>
         /// <value>The type of recurring contract to be used. Possible values: * &#x60;ONECLICK&#x60; – Payment details can be used to initiate a one-click payment, where the shopper enters the [card security code (CVC/CVV)](https://docs.adyen.com/payments-fundamentals/payment-glossary#card-security-code-cvc-cvv-cid). * &#x60;RECURRING&#x60; – Payment details can be used without the card security code to initiate [card-not-present transactions](https://docs.adyen.com/payments-fundamentals/payment-glossary#card-not-present-cnp). * &#x60;ONECLICK,RECURRING&#x60; – Payment details can be used regardless of whether the shopper is on your site or not. * &#x60;PAYOUT&#x60; – Payment details can be used to [make a payout](https://docs.adyen.com/online-payments/online-payouts).</value>
-        [DataMember(Name="contract", EmitDefaultValue=false)]
+        [DataMember(Name = "contract", EmitDefaultValue = false)]
         public ContractEnum? Contract { get; set; }
         /// <summary>
         /// The name of the token service.
@@ -85,11 +88,12 @@ namespace Adyen.Model.BinLookup
 
         }
 
+
         /// <summary>
         /// The name of the token service.
         /// </summary>
         /// <value>The name of the token service.</value>
-        [DataMember(Name="tokenService", EmitDefaultValue=false)]
+        [DataMember(Name = "tokenService", EmitDefaultValue = false)]
         public TokenServiceEnum? TokenService { get; set; }
         /// <summary>
         /// Initializes a new instance of the <see cref="Recurring" /> class.
@@ -108,28 +112,26 @@ namespace Adyen.Model.BinLookup
             this.TokenService = tokenService;
         }
 
-
         /// <summary>
         /// A descriptive name for this detail.
         /// </summary>
         /// <value>A descriptive name for this detail.</value>
-        [DataMember(Name="recurringDetailName", EmitDefaultValue=false)]
+        [DataMember(Name = "recurringDetailName", EmitDefaultValue = false)]
         public string RecurringDetailName { get; set; }
 
         /// <summary>
         /// Date after which no further authorisations shall be performed. Only for 3D Secure 2.
         /// </summary>
         /// <value>Date after which no further authorisations shall be performed. Only for 3D Secure 2.</value>
-        [DataMember(Name="recurringExpiry", EmitDefaultValue=false)]
+        [DataMember(Name = "recurringExpiry", EmitDefaultValue = false)]
         public DateTime RecurringExpiry { get; set; }
 
         /// <summary>
         /// Minimum number of days between authorisations. Only for 3D Secure 2.
         /// </summary>
         /// <value>Minimum number of days between authorisations. Only for 3D Secure 2.</value>
-        [DataMember(Name="recurringFrequency", EmitDefaultValue=false)]
+        [DataMember(Name = "recurringFrequency", EmitDefaultValue = false)]
         public string RecurringFrequency { get; set; }
-
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -137,7 +139,7 @@ namespace Adyen.Model.BinLookup
         /// <returns>String presentation of the object</returns>
         public override string ToString()
         {
-            var sb = new StringBuilder();
+            StringBuilder sb = new StringBuilder();
             sb.Append("class Recurring {\n");
             sb.Append("  Contract: ").Append(Contract).Append("\n");
             sb.Append("  RecurringDetailName: ").Append(RecurringDetailName).Append("\n");
@@ -175,13 +177,13 @@ namespace Adyen.Model.BinLookup
         public bool Equals(Recurring input)
         {
             if (input == null)
+            {
                 return false;
-
+            }
             return 
                 (
                     this.Contract == input.Contract ||
-                    (this.Contract != null &&
-                    this.Contract.Equals(input.Contract))
+                    this.Contract.Equals(input.Contract)
                 ) && 
                 (
                     this.RecurringDetailName == input.RecurringDetailName ||
@@ -200,8 +202,7 @@ namespace Adyen.Model.BinLookup
                 ) && 
                 (
                     this.TokenService == input.TokenService ||
-                    (this.TokenService != null &&
-                    this.TokenService.Equals(input.TokenService))
+                    this.TokenService.Equals(input.TokenService)
                 );
         }
 
@@ -214,26 +215,29 @@ namespace Adyen.Model.BinLookup
             unchecked // Overflow is fine, just wrap
             {
                 int hashCode = 41;
-                if (this.Contract != null)
-                    hashCode = hashCode * 59 + this.Contract.GetHashCode();
+                hashCode = (hashCode * 59) + this.Contract.GetHashCode();
                 if (this.RecurringDetailName != null)
-                    hashCode = hashCode * 59 + this.RecurringDetailName.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.RecurringDetailName.GetHashCode();
+                }
                 if (this.RecurringExpiry != null)
-                    hashCode = hashCode * 59 + this.RecurringExpiry.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.RecurringExpiry.GetHashCode();
+                }
                 if (this.RecurringFrequency != null)
-                    hashCode = hashCode * 59 + this.RecurringFrequency.GetHashCode();
-                if (this.TokenService != null)
-                    hashCode = hashCode * 59 + this.TokenService.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.RecurringFrequency.GetHashCode();
+                }
+                hashCode = (hashCode * 59) + this.TokenService.GetHashCode();
                 return hashCode;
             }
         }
-
         /// <summary>
         /// To validate all properties of the instance
         /// </summary>
         /// <param name="validationContext">Validation context</param>
         /// <returns>Validation Result</returns>
-        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+        public IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> Validate(ValidationContext validationContext)
         {
             yield break;
         }

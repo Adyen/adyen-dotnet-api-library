@@ -96,14 +96,14 @@ namespace Adyen.Model.Checkout
         /// The International Bank Account Number (IBAN).
         /// </summary>
         /// <value>The International Bank Account Number (IBAN).</value>
-        [DataMember(Name = "iban", IsRequired = false, EmitDefaultValue = true)]
+        [DataMember(Name = "iban", IsRequired = false, EmitDefaultValue = false)]
         public string Iban { get; set; }
 
         /// <summary>
         /// The name of the bank account holder.
         /// </summary>
         /// <value>The name of the bank account holder.</value>
-        [DataMember(Name = "ownerName", IsRequired = false, EmitDefaultValue = true)]
+        [DataMember(Name = "ownerName", IsRequired = false, EmitDefaultValue = false)]
         public string OwnerName { get; set; }
 
         /// <summary>
@@ -234,7 +234,6 @@ namespace Adyen.Model.Checkout
                 return hashCode;
             }
         }
-
         /// <summary>
         /// To validate all properties of the instance
         /// </summary>

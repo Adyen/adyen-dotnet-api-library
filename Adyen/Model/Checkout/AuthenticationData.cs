@@ -50,13 +50,7 @@ namespace Adyen.Model.Checkout
             /// Enum Never for value: never
             /// </summary>
             [EnumMember(Value = "never")]
-            Never = 2,
-
-            /// <summary>
-            /// Enum PreferNo for value: preferNo
-            /// </summary>
-            [EnumMember(Value = "preferNo")]
-            PreferNo = 3
+            Never = 2
 
         }
 
@@ -172,7 +166,6 @@ namespace Adyen.Model.Checkout
                 return hashCode;
             }
         }
-
         /// <summary>
         /// To validate all properties of the instance
         /// </summary>

@@ -11,25 +11,27 @@
 */
 
 using System;
-using System.Linq;
-using System.IO;
-using System.Text;
-using System.Text.RegularExpressions;
 using System.Collections;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Linq;
+using System.IO;
 using System.Runtime.Serialization;
+using System.Text;
+using System.Text.RegularExpressions;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
+using Newtonsoft.Json.Linq;
 using System.ComponentModel.DataAnnotations;
+using OpenAPIDateConverter = Adyen.ApiSerialization.OpenAPIDateConverter;
 
 namespace Adyen.Model.BinLookup
 {
     /// <summary>
     /// CostEstimateResponse
     /// </summary>
-    [DataContract]
-    public partial class CostEstimateResponse :  IEquatable<CostEstimateResponse>, IValidatableObject
+    [DataContract(Name = "CostEstimateResponse")]
+    public partial class CostEstimateResponse : IEquatable<CostEstimateResponse>, IValidatableObject
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="CostEstimateResponse" /> class.
@@ -51,34 +53,34 @@ namespace Adyen.Model.BinLookup
         /// <summary>
         /// Gets or Sets CardBin
         /// </summary>
-        [DataMember(Name="cardBin", EmitDefaultValue=false)]
+        [DataMember(Name = "cardBin", EmitDefaultValue = false)]
         public CardBin CardBin { get; set; }
 
         /// <summary>
         /// Gets or Sets CostEstimateAmount
         /// </summary>
-        [DataMember(Name="costEstimateAmount", EmitDefaultValue=false)]
+        [DataMember(Name = "costEstimateAmount", EmitDefaultValue = false)]
         public Amount CostEstimateAmount { get; set; }
 
         /// <summary>
         /// Adyen&#39;s 16-character reference associated with the request.
         /// </summary>
         /// <value>Adyen&#39;s 16-character reference associated with the request.</value>
-        [DataMember(Name="costEstimateReference", EmitDefaultValue=false)]
+        [DataMember(Name = "costEstimateReference", EmitDefaultValue = false)]
         public string CostEstimateReference { get; set; }
 
         /// <summary>
         /// The result of the cost estimation.
         /// </summary>
         /// <value>The result of the cost estimation.</value>
-        [DataMember(Name="resultCode", EmitDefaultValue=false)]
+        [DataMember(Name = "resultCode", EmitDefaultValue = false)]
         public string ResultCode { get; set; }
 
         /// <summary>
         /// Indicates the way the charges can be passed on to the cardholder. The following values are possible: * &#x60;ZERO&#x60; - the charges are not allowed to pass on * &#x60;PASSTHROUGH&#x60; - the charges can be passed on * &#x60;UNLIMITED&#x60; - there is no limit on how much surcharge is passed on
         /// </summary>
         /// <value>Indicates the way the charges can be passed on to the cardholder. The following values are possible: * &#x60;ZERO&#x60; - the charges are not allowed to pass on * &#x60;PASSTHROUGH&#x60; - the charges can be passed on * &#x60;UNLIMITED&#x60; - there is no limit on how much surcharge is passed on</value>
-        [DataMember(Name="surchargeType", EmitDefaultValue=false)]
+        [DataMember(Name = "surchargeType", EmitDefaultValue = false)]
         public string SurchargeType { get; set; }
 
         /// <summary>
@@ -87,7 +89,7 @@ namespace Adyen.Model.BinLookup
         /// <returns>String presentation of the object</returns>
         public override string ToString()
         {
-            var sb = new StringBuilder();
+            StringBuilder sb = new StringBuilder();
             sb.Append("class CostEstimateResponse {\n");
             sb.Append("  CardBin: ").Append(CardBin).Append("\n");
             sb.Append("  CostEstimateAmount: ").Append(CostEstimateAmount).Append("\n");
@@ -125,8 +127,9 @@ namespace Adyen.Model.BinLookup
         public bool Equals(CostEstimateResponse input)
         {
             if (input == null)
+            {
                 return false;
-
+            }
             return 
                 (
                     this.CardBin == input.CardBin ||
@@ -165,25 +168,34 @@ namespace Adyen.Model.BinLookup
             {
                 int hashCode = 41;
                 if (this.CardBin != null)
-                    hashCode = hashCode * 59 + this.CardBin.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.CardBin.GetHashCode();
+                }
                 if (this.CostEstimateAmount != null)
-                    hashCode = hashCode * 59 + this.CostEstimateAmount.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.CostEstimateAmount.GetHashCode();
+                }
                 if (this.CostEstimateReference != null)
-                    hashCode = hashCode * 59 + this.CostEstimateReference.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.CostEstimateReference.GetHashCode();
+                }
                 if (this.ResultCode != null)
-                    hashCode = hashCode * 59 + this.ResultCode.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.ResultCode.GetHashCode();
+                }
                 if (this.SurchargeType != null)
-                    hashCode = hashCode * 59 + this.SurchargeType.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.SurchargeType.GetHashCode();
+                }
                 return hashCode;
             }
         }
-
         /// <summary>
         /// To validate all properties of the instance
         /// </summary>
         /// <param name="validationContext">Validation context</param>
         /// <returns>Validation Result</returns>
-        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+        public IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> Validate(ValidationContext validationContext)
         {
             yield break;
         }

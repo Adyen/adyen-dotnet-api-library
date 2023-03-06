@@ -327,7 +327,7 @@ namespace Adyen.Model.Checkout
         /// <param name="transactionType">Identify the type of the transaction being authenticated..</param>
         /// <param name="whiteListStatus">The &#x60;whiteListStatus&#x60; value returned from a previous 3D Secure 2 transaction, only applicable for 3D Secure 2 protocol version 2.2.0..</param>
         /// <param name="workPhone">workPhone.</param>
-        public ThreeDS2RequestData(AcctInfo acctInfo = default(AcctInfo), AcctTypeEnum? acctType = default(AcctTypeEnum?), string acquirerBIN = default(string), string acquirerMerchantID = default(string), AddrMatchEnum? addrMatch = default(AddrMatchEnum?), bool authenticationOnly = false, ChallengeIndicatorEnum? challengeIndicator = default(ChallengeIndicatorEnum?), string deviceChannel = default(string), DeviceRenderOptions deviceRenderOptions = default(DeviceRenderOptions), Phone homePhone = default(Phone), string mcc = default(string), string merchantName = default(string), string messageVersion = "2.1.0", Phone mobilePhone = default(Phone), string notificationURL = default(string), bool payTokenInd = default(bool), string paymentAuthenticationUseCase = default(string), string purchaseInstalData = default(string), string recurringExpiry = default(string), string recurringFrequency = default(string), string sdkAppID = default(string), string sdkEncData = default(string), SDKEphemPubKey sdkEphemPubKey = default(SDKEphemPubKey), int sdkMaxTimeout = 60, string sdkReferenceNumber = default(string), string sdkTransID = default(string), string sdkVersion = default(string), string threeDSCompInd = default(string), string threeDSRequestorAuthenticationInd = default(string), ThreeDSRequestorAuthenticationInfo threeDSRequestorAuthenticationInfo = default(ThreeDSRequestorAuthenticationInfo), ThreeDSRequestorChallengeIndEnum? threeDSRequestorChallengeInd = default(ThreeDSRequestorChallengeIndEnum?), string threeDSRequestorID = default(string), string threeDSRequestorName = default(string), ThreeDSRequestorPriorAuthenticationInfo threeDSRequestorPriorAuthenticationInfo = default(ThreeDSRequestorPriorAuthenticationInfo), string threeDSRequestorURL = default(string), TransTypeEnum? transType = default(TransTypeEnum?), TransactionTypeEnum? transactionType = default(TransactionTypeEnum?), string whiteListStatus = default(string), Phone workPhone = default(Phone))
+        public ThreeDS2RequestData(AcctInfo acctInfo = default(AcctInfo), AcctTypeEnum? acctType = default(AcctTypeEnum?), string acquirerBIN = default(string), string acquirerMerchantID = default(string), AddrMatchEnum? addrMatch = default(AddrMatchEnum?), bool authenticationOnly = false, ChallengeIndicatorEnum? challengeIndicator = default(ChallengeIndicatorEnum?), string deviceChannel = default(string), DeviceRenderOptions deviceRenderOptions = default(DeviceRenderOptions), Phone homePhone = default(Phone), string mcc = default(string), string merchantName = default(string), string messageVersion = "2.1.0", Phone mobilePhone = default(Phone), string notificationURL = default(string), bool payTokenInd = default(bool), string paymentAuthenticationUseCase = default(string), string purchaseInstalData = default(string), string recurringExpiry = default(string), string recurringFrequency = default(string), string sdkAppID = default(string), string sdkEncData = default(string), SDKEphemPubKey sdkEphemPubKey = default(SDKEphemPubKey), int? sdkMaxTimeout = 60, string sdkReferenceNumber = default(string), string sdkTransID = default(string), string sdkVersion = default(string), string threeDSCompInd = default(string), string threeDSRequestorAuthenticationInd = default(string), ThreeDSRequestorAuthenticationInfo threeDSRequestorAuthenticationInfo = default(ThreeDSRequestorAuthenticationInfo), ThreeDSRequestorChallengeIndEnum? threeDSRequestorChallengeInd = default(ThreeDSRequestorChallengeIndEnum?), string threeDSRequestorID = default(string), string threeDSRequestorName = default(string), ThreeDSRequestorPriorAuthenticationInfo threeDSRequestorPriorAuthenticationInfo = default(ThreeDSRequestorPriorAuthenticationInfo), string threeDSRequestorURL = default(string), TransTypeEnum? transType = default(TransTypeEnum?), TransactionTypeEnum? transactionType = default(TransactionTypeEnum?), string whiteListStatus = default(string), Phone workPhone = default(Phone))
         {
             this.DeviceChannel = deviceChannel;
             this.AcctInfo = acctInfo;
@@ -403,7 +403,7 @@ namespace Adyen.Model.Checkout
         /// The environment of the shopper. Allowed values: * &#x60;app&#x60; * &#x60;browser&#x60;
         /// </summary>
         /// <value>The environment of the shopper. Allowed values: * &#x60;app&#x60; * &#x60;browser&#x60;</value>
-        [DataMember(Name = "deviceChannel", IsRequired = false, EmitDefaultValue = true)]
+        [DataMember(Name = "deviceChannel", IsRequired = false, EmitDefaultValue = false)]
         public string DeviceChannel { get; set; }
 
         /// <summary>
@@ -512,7 +512,7 @@ namespace Adyen.Model.Checkout
         /// </summary>
         /// <value>The maximum amount of time in minutes for the 3D Secure 2 authentication process. Optional and only for &#x60;deviceChannel&#x60; set to **app**. Defaults to **60** minutes.</value>
         [DataMember(Name = "sdkMaxTimeout", EmitDefaultValue = false)]
-        public int SdkMaxTimeout { get; set; }
+        public int? SdkMaxTimeout { get; set; }
 
         /// <summary>
         /// The &#x60;sdkReferenceNumber&#x60; value as received from the 3D Secure 2 SDK. Only for &#x60;deviceChannel&#x60; set to **app**.
@@ -1006,7 +1006,6 @@ namespace Adyen.Model.Checkout
                 return hashCode;
             }
         }
-
         /// <summary>
         /// To validate all properties of the instance
         /// </summary>

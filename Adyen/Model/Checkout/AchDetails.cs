@@ -89,7 +89,7 @@ namespace Adyen.Model.Checkout
         /// The bank account number (without separators).
         /// </summary>
         /// <value>The bank account number (without separators).</value>
-        [DataMember(Name = "bankAccountNumber", IsRequired = false, EmitDefaultValue = true)]
+        [DataMember(Name = "bankAccountNumber", IsRequired = false, EmitDefaultValue = false)]
         public string BankAccountNumber { get; set; }
 
         /// <summary>
@@ -285,7 +285,6 @@ namespace Adyen.Model.Checkout
                 return hashCode;
             }
         }
-
         /// <summary>
         /// To validate all properties of the instance
         /// </summary>

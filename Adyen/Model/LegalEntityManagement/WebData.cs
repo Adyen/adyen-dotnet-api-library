@@ -11,58 +11,66 @@
 */
 
 using System;
-using System.Linq;
-using System.IO;
-using System.Text;
-using System.Text.RegularExpressions;
 using System.Collections;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Linq;
+using System.IO;
 using System.Runtime.Serialization;
+using System.Text;
+using System.Text.RegularExpressions;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
+using Newtonsoft.Json.Linq;
 using System.ComponentModel.DataAnnotations;
+using OpenAPIDateConverter = Adyen.ApiSerialization.OpenAPIDateConverter;
 
 namespace Adyen.Model.LegalEntityManagement
 {
     /// <summary>
     /// WebData
     /// </summary>
-    [DataContract]
-    public partial class WebData :  IEquatable<WebData>, IValidatableObject
+    [DataContract(Name = "WebData")]
+    public partial class WebData : IEquatable<WebData>, IValidatableObject
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="WebData" /> class.
         /// </summary>
-        /// <param name="webAddress">The URL of the website..</param>
-        /// <param name="webAddressId">The unique identifier of the web address..</param>
-        public WebData(string webAddress = default(string), string webAddressId = default(string))
+        /// <param name="webAddress">The URL of the website or the app store URL..</param>
+        public WebData(string webAddress = default(string))
         {
             this.WebAddress = webAddress;
-            this.WebAddressId = webAddressId;
         }
 
         /// <summary>
-        /// The URL of the website.
+        /// The URL of the website or the app store URL.
         /// </summary>
-        /// <value>The URL of the website.</value>
-        [DataMember(Name="webAddress", EmitDefaultValue=false)]
+        /// <value>The URL of the website or the app store URL.</value>
+        [DataMember(Name = "webAddress", EmitDefaultValue = false)]
         public string WebAddress { get; set; }
 
         /// <summary>
         /// The unique identifier of the web address.
         /// </summary>
         /// <value>The unique identifier of the web address.</value>
-        [DataMember(Name="webAddressId", EmitDefaultValue=false)]
-        public string WebAddressId { get; set; }
+        [DataMember(Name = "webAddressId", EmitDefaultValue = false)]
+        public string WebAddressId { get; private set; }
 
+        /// <summary>
+        /// Returns false as WebAddressId should not be serialized given that it's read-only.
+        /// </summary>
+        /// <returns>false (boolean)</returns>
+        public bool ShouldSerializeWebAddressId()
+        {
+            return false;
+        }
         /// <summary>
         /// Returns the string presentation of the object
         /// </summary>
         /// <returns>String presentation of the object</returns>
         public override string ToString()
         {
-            var sb = new StringBuilder();
+            StringBuilder sb = new StringBuilder();
             sb.Append("class WebData {\n");
             sb.Append("  WebAddress: ").Append(WebAddress).Append("\n");
             sb.Append("  WebAddressId: ").Append(WebAddressId).Append("\n");
@@ -97,8 +105,9 @@ namespace Adyen.Model.LegalEntityManagement
         public bool Equals(WebData input)
         {
             if (input == null)
+            {
                 return false;
-
+            }
             return 
                 (
                     this.WebAddress == input.WebAddress ||
@@ -122,19 +131,22 @@ namespace Adyen.Model.LegalEntityManagement
             {
                 int hashCode = 41;
                 if (this.WebAddress != null)
-                    hashCode = hashCode * 59 + this.WebAddress.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.WebAddress.GetHashCode();
+                }
                 if (this.WebAddressId != null)
-                    hashCode = hashCode * 59 + this.WebAddressId.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.WebAddressId.GetHashCode();
+                }
                 return hashCode;
             }
         }
-
         /// <summary>
         /// To validate all properties of the instance
         /// </summary>
         /// <param name="validationContext">Validation context</param>
         /// <returns>Validation Result</returns>
-        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+        public IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> Validate(ValidationContext validationContext)
         {
             yield break;
         }

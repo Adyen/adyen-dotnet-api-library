@@ -40,7 +40,7 @@ namespace Adyen.Model.Checkout
         /// <param name="customFields">Any custom fields used as part of the input to configured risk rules..</param>
         /// <param name="fraudOffset">An integer value that is added to the normal fraud score. The value can be either positive or negative..</param>
         /// <param name="profileReference">The risk profile to assign to this payment. When left empty, the merchant-level account&#39;s default risk profile will be applied..</param>
-        public RiskData(string clientData = default(string), Dictionary<string, string> customFields = default(Dictionary<string, string>), int fraudOffset = default(int), string profileReference = default(string))
+        public RiskData(string clientData = default(string), Dictionary<string, string> customFields = default(Dictionary<string, string>), int? fraudOffset = default(int?), string profileReference = default(string))
         {
             this.ClientData = clientData;
             this.CustomFields = customFields;
@@ -67,7 +67,7 @@ namespace Adyen.Model.Checkout
         /// </summary>
         /// <value>An integer value that is added to the normal fraud score. The value can be either positive or negative.</value>
         [DataMember(Name = "fraudOffset", EmitDefaultValue = false)]
-        public int FraudOffset { get; set; }
+        public int? FraudOffset { get; set; }
 
         /// <summary>
         /// The risk profile to assign to this payment. When left empty, the merchant-level account&#39;s default risk profile will be applied.
@@ -170,7 +170,6 @@ namespace Adyen.Model.Checkout
                 return hashCode;
             }
         }
-
         /// <summary>
         /// To validate all properties of the instance
         /// </summary>

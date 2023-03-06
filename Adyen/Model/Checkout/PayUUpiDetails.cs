@@ -53,7 +53,7 @@ namespace Adyen.Model.Checkout
         /// **payu_IN_upi**
         /// </summary>
         /// <value>**payu_IN_upi**</value>
-        [DataMember(Name = "type", IsRequired = false, EmitDefaultValue = true)]
+        [DataMember(Name = "type", IsRequired = false, EmitDefaultValue = false)]
         public TypeEnum Type { get; set; }
         /// <summary>
         /// Initializes a new instance of the <see cref="PayUUpiDetails" /> class.
@@ -228,7 +228,6 @@ namespace Adyen.Model.Checkout
                 return hashCode;
             }
         }
-
         /// <summary>
         /// To validate all properties of the instance
         /// </summary>

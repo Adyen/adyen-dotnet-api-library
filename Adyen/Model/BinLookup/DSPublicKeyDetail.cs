@@ -11,25 +11,27 @@
 */
 
 using System;
-using System.Linq;
-using System.IO;
-using System.Text;
-using System.Text.RegularExpressions;
 using System.Collections;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Linq;
+using System.IO;
 using System.Runtime.Serialization;
+using System.Text;
+using System.Text.RegularExpressions;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
+using Newtonsoft.Json.Linq;
 using System.ComponentModel.DataAnnotations;
+using OpenAPIDateConverter = Adyen.ApiSerialization.OpenAPIDateConverter;
 
 namespace Adyen.Model.BinLookup
 {
     /// <summary>
     /// DSPublicKeyDetail
     /// </summary>
-    [DataContract]
-    public partial class DSPublicKeyDetail :  IEquatable<DSPublicKeyDetail>, IValidatableObject
+    [DataContract(Name = "DSPublicKeyDetail")]
+    public partial class DSPublicKeyDetail : IEquatable<DSPublicKeyDetail>, IValidatableObject
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="DSPublicKeyDetail" /> class.
@@ -50,28 +52,28 @@ namespace Adyen.Model.BinLookup
         /// Card brand.
         /// </summary>
         /// <value>Card brand.</value>
-        [DataMember(Name="brand", EmitDefaultValue=false)]
+        [DataMember(Name = "brand", EmitDefaultValue = false)]
         public string Brand { get; set; }
 
         /// <summary>
         /// Directory Server (DS) identifier.
         /// </summary>
         /// <value>Directory Server (DS) identifier.</value>
-        [DataMember(Name="directoryServerId", EmitDefaultValue=false)]
+        [DataMember(Name = "directoryServerId", EmitDefaultValue = false)]
         public string DirectoryServerId { get; set; }
 
         /// <summary>
         /// The version of the mobile 3D Secure 2 SDK. For the possible values, refer to the versions in [Adyen 3DS2 Android](https://github.com/Adyen/adyen-3ds2-android/releases) and [Adyen 3DS2 iOS](https://github.com/Adyen/adyen-3ds2-ios/releases).
         /// </summary>
         /// <value>The version of the mobile 3D Secure 2 SDK. For the possible values, refer to the versions in [Adyen 3DS2 Android](https://github.com/Adyen/adyen-3ds2-android/releases) and [Adyen 3DS2 iOS](https://github.com/Adyen/adyen-3ds2-ios/releases).</value>
-        [DataMember(Name="fromSDKVersion", EmitDefaultValue=false)]
+        [DataMember(Name = "fromSDKVersion", EmitDefaultValue = false)]
         public string FromSDKVersion { get; set; }
 
         /// <summary>
         /// Public key. The 3D Secure 2 SDK encrypts the device information by using the DS public key.
         /// </summary>
         /// <value>Public key. The 3D Secure 2 SDK encrypts the device information by using the DS public key.</value>
-        [DataMember(Name="publicKey", EmitDefaultValue=false)]
+        [DataMember(Name = "publicKey", EmitDefaultValue = false)]
         public byte[] PublicKey { get; set; }
 
         /// <summary>
@@ -80,7 +82,7 @@ namespace Adyen.Model.BinLookup
         /// <returns>String presentation of the object</returns>
         public override string ToString()
         {
-            var sb = new StringBuilder();
+            StringBuilder sb = new StringBuilder();
             sb.Append("class DSPublicKeyDetail {\n");
             sb.Append("  Brand: ").Append(Brand).Append("\n");
             sb.Append("  DirectoryServerId: ").Append(DirectoryServerId).Append("\n");
@@ -117,8 +119,9 @@ namespace Adyen.Model.BinLookup
         public bool Equals(DSPublicKeyDetail input)
         {
             if (input == null)
+            {
                 return false;
-
+            }
             return 
                 (
                     this.Brand == input.Brand ||
@@ -152,23 +155,30 @@ namespace Adyen.Model.BinLookup
             {
                 int hashCode = 41;
                 if (this.Brand != null)
-                    hashCode = hashCode * 59 + this.Brand.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.Brand.GetHashCode();
+                }
                 if (this.DirectoryServerId != null)
-                    hashCode = hashCode * 59 + this.DirectoryServerId.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.DirectoryServerId.GetHashCode();
+                }
                 if (this.FromSDKVersion != null)
-                    hashCode = hashCode * 59 + this.FromSDKVersion.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.FromSDKVersion.GetHashCode();
+                }
                 if (this.PublicKey != null)
-                    hashCode = hashCode * 59 + this.PublicKey.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.PublicKey.GetHashCode();
+                }
                 return hashCode;
             }
         }
-
         /// <summary>
         /// To validate all properties of the instance
         /// </summary>
         /// <param name="validationContext">Validation context</param>
         /// <returns>Validation Result</returns>
-        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+        public IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> Validate(ValidationContext validationContext)
         {
             yield break;
         }

@@ -53,7 +53,7 @@ namespace Adyen.Model.Checkout
         /// The result of the order creation request.  The value is always **Success**.
         /// </summary>
         /// <value>The result of the order creation request.  The value is always **Success**.</value>
-        [DataMember(Name = "resultCode", IsRequired = false, EmitDefaultValue = true)]
+        [DataMember(Name = "resultCode", IsRequired = false, EmitDefaultValue = false)]
         public ResultCodeEnum ResultCode { get; set; }
         /// <summary>
         /// Initializes a new instance of the <see cref="CheckoutCreateOrderResponse" /> class.
@@ -97,14 +97,14 @@ namespace Adyen.Model.Checkout
         /// <summary>
         /// Gets or Sets Amount
         /// </summary>
-        [DataMember(Name = "amount", IsRequired = false, EmitDefaultValue = true)]
+        [DataMember(Name = "amount", IsRequired = false, EmitDefaultValue = false)]
         public Amount Amount { get; set; }
 
         /// <summary>
         /// The date that the order will expire.
         /// </summary>
         /// <value>The date that the order will expire.</value>
-        [DataMember(Name = "expiresAt", IsRequired = false, EmitDefaultValue = true)]
+        [DataMember(Name = "expiresAt", IsRequired = false, EmitDefaultValue = false)]
         public string ExpiresAt { get; set; }
 
         /// <summary>
@@ -117,7 +117,7 @@ namespace Adyen.Model.Checkout
         /// The encrypted data that will be used by merchant for adding payments to the order.
         /// </summary>
         /// <value>The encrypted data that will be used by merchant for adding payments to the order.</value>
-        [DataMember(Name = "orderData", IsRequired = false, EmitDefaultValue = true)]
+        [DataMember(Name = "orderData", IsRequired = false, EmitDefaultValue = false)]
         public string OrderData { get; set; }
 
         /// <summary>
@@ -144,7 +144,7 @@ namespace Adyen.Model.Checkout
         /// <summary>
         /// Gets or Sets RemainingAmount
         /// </summary>
-        [DataMember(Name = "remainingAmount", IsRequired = false, EmitDefaultValue = true)]
+        [DataMember(Name = "remainingAmount", IsRequired = false, EmitDefaultValue = false)]
         public Amount RemainingAmount { get; set; }
 
         /// <summary>
@@ -301,7 +301,6 @@ namespace Adyen.Model.Checkout
                 return hashCode;
             }
         }
-
         /// <summary>
         /// To validate all properties of the instance
         /// </summary>

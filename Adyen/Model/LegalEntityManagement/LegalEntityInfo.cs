@@ -11,25 +11,27 @@
 */
 
 using System;
-using System.Linq;
-using System.IO;
-using System.Text;
-using System.Text.RegularExpressions;
 using System.Collections;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Linq;
+using System.IO;
 using System.Runtime.Serialization;
+using System.Text;
+using System.Text.RegularExpressions;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
+using Newtonsoft.Json.Linq;
 using System.ComponentModel.DataAnnotations;
+using OpenAPIDateConverter = Adyen.ApiSerialization.OpenAPIDateConverter;
 
 namespace Adyen.Model.LegalEntityManagement
 {
     /// <summary>
     /// LegalEntityInfo
     /// </summary>
-    [DataContract]
-    public partial class LegalEntityInfo :  IEquatable<LegalEntityInfo>, IValidatableObject
+    [DataContract(Name = "LegalEntityInfo")]
+    public partial class LegalEntityInfo : IEquatable<LegalEntityInfo>, IValidatableObject
     {
         /// <summary>
         /// The type of legal entity.   Possible values: **individual**, **organization**, or **soleProprietorship**.
@@ -70,30 +72,24 @@ namespace Adyen.Model.LegalEntityManagement
 
         }
 
+
         /// <summary>
         /// The type of legal entity.   Possible values: **individual**, **organization**, or **soleProprietorship**.
         /// </summary>
         /// <value>The type of legal entity.   Possible values: **individual**, **organization**, or **soleProprietorship**.</value>
-        [DataMember(Name="type", EmitDefaultValue=true)]
-        public TypeEnum Type { get; set; }
+        [DataMember(Name = "type", EmitDefaultValue = false)]
+        public TypeEnum? Type { get; set; }
         /// <summary>
         /// Initializes a new instance of the <see cref="LegalEntityInfo" /> class.
         /// </summary>
-        [JsonConstructorAttribute]
-        protected LegalEntityInfo() { }
-        /// <summary>
-        /// Initializes a new instance of the <see cref="LegalEntityInfo" /> class.
-        /// </summary>
-        /// <param name="capabilities">Overview of capabilities for this legal entity.</param>
         /// <param name="entityAssociations">List of legal entities associated with the current legal entity. For example, ultimate beneficial owners associated with an organization through ownership or control, or as signatories..</param>
         /// <param name="individual">individual.</param>
         /// <param name="organization">organization.</param>
         /// <param name="reference">Your reference for the legal entity, maximum 150 characters..</param>
         /// <param name="soleProprietorship">soleProprietorship.</param>
-        /// <param name="type">The type of legal entity.   Possible values: **individual**, **organization**, or **soleProprietorship**. (required).</param>
-        public LegalEntityInfo(Dictionary<string, LegalEntityCapability> capabilities = default(Dictionary<string, LegalEntityCapability>), List<LegalEntityAssociation> entityAssociations = default(List<LegalEntityAssociation>), Individual individual = default(Individual), Organization organization = default(Organization), string reference = default(string), SoleProprietorship soleProprietorship = default(SoleProprietorship), TypeEnum type = default(TypeEnum))
+        /// <param name="type">The type of legal entity.   Possible values: **individual**, **organization**, or **soleProprietorship**..</param>
+        public LegalEntityInfo(List<LegalEntityAssociation> entityAssociations = default(List<LegalEntityAssociation>), Individual individual = default(Individual), Organization organization = default(Organization), string reference = default(string), SoleProprietorship soleProprietorship = default(SoleProprietorship), TypeEnum? type = default(TypeEnum?))
         {
-            this.Capabilities = capabilities;
             this.EntityAssociations = entityAssociations;
             this.Individual = individual;
             this.Organization = organization;
@@ -103,44 +99,51 @@ namespace Adyen.Model.LegalEntityManagement
         }
 
         /// <summary>
-        /// Overview of capabilities for this legal entity
+        /// Contains key-value pairs that specify the actions that the legal entity can do in your platform.The key is a capability required for your integration. For example, **issueCard** for Issuing.The value is an object containing the settings for the capability.
         /// </summary>
-        /// <value>Overview of capabilities for this legal entity</value>
-        [DataMember(Name="capabilities", EmitDefaultValue=false)]
-        public Dictionary<string, LegalEntityCapability> Capabilities { get; set; }
+        /// <value>Contains key-value pairs that specify the actions that the legal entity can do in your platform.The key is a capability required for your integration. For example, **issueCard** for Issuing.The value is an object containing the settings for the capability.</value>
+        [DataMember(Name = "capabilities", EmitDefaultValue = false)]
+        public Dictionary<string, LegalEntityCapability> Capabilities { get; private set; }
 
+        /// <summary>
+        /// Returns false as Capabilities should not be serialized given that it's read-only.
+        /// </summary>
+        /// <returns>false (boolean)</returns>
+        public bool ShouldSerializeCapabilities()
+        {
+            return false;
+        }
         /// <summary>
         /// List of legal entities associated with the current legal entity. For example, ultimate beneficial owners associated with an organization through ownership or control, or as signatories.
         /// </summary>
         /// <value>List of legal entities associated with the current legal entity. For example, ultimate beneficial owners associated with an organization through ownership or control, or as signatories.</value>
-        [DataMember(Name="entityAssociations", EmitDefaultValue=false)]
+        [DataMember(Name = "entityAssociations", EmitDefaultValue = false)]
         public List<LegalEntityAssociation> EntityAssociations { get; set; }
 
         /// <summary>
         /// Gets or Sets Individual
         /// </summary>
-        [DataMember(Name="individual", EmitDefaultValue=false)]
+        [DataMember(Name = "individual", EmitDefaultValue = false)]
         public Individual Individual { get; set; }
 
         /// <summary>
         /// Gets or Sets Organization
         /// </summary>
-        [DataMember(Name="organization", EmitDefaultValue=false)]
+        [DataMember(Name = "organization", EmitDefaultValue = false)]
         public Organization Organization { get; set; }
 
         /// <summary>
         /// Your reference for the legal entity, maximum 150 characters.
         /// </summary>
         /// <value>Your reference for the legal entity, maximum 150 characters.</value>
-        [DataMember(Name="reference", EmitDefaultValue=false)]
+        [DataMember(Name = "reference", EmitDefaultValue = false)]
         public string Reference { get; set; }
 
         /// <summary>
         /// Gets or Sets SoleProprietorship
         /// </summary>
-        [DataMember(Name="soleProprietorship", EmitDefaultValue=false)]
+        [DataMember(Name = "soleProprietorship", EmitDefaultValue = false)]
         public SoleProprietorship SoleProprietorship { get; set; }
-
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -148,7 +151,7 @@ namespace Adyen.Model.LegalEntityManagement
         /// <returns>String presentation of the object</returns>
         public override string ToString()
         {
-            var sb = new StringBuilder();
+            StringBuilder sb = new StringBuilder();
             sb.Append("class LegalEntityInfo {\n");
             sb.Append("  Capabilities: ").Append(Capabilities).Append("\n");
             sb.Append("  EntityAssociations: ").Append(EntityAssociations).Append("\n");
@@ -188,8 +191,9 @@ namespace Adyen.Model.LegalEntityManagement
         public bool Equals(LegalEntityInfo input)
         {
             if (input == null)
+            {
                 return false;
-
+            }
             return 
                 (
                     this.Capabilities == input.Capabilities ||
@@ -225,8 +229,7 @@ namespace Adyen.Model.LegalEntityManagement
                 ) && 
                 (
                     this.Type == input.Type ||
-                    (this.Type != null &&
-                    this.Type.Equals(input.Type))
+                    this.Type.Equals(input.Type)
                 );
         }
 
@@ -240,36 +243,45 @@ namespace Adyen.Model.LegalEntityManagement
             {
                 int hashCode = 41;
                 if (this.Capabilities != null)
-                    hashCode = hashCode * 59 + this.Capabilities.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.Capabilities.GetHashCode();
+                }
                 if (this.EntityAssociations != null)
-                    hashCode = hashCode * 59 + this.EntityAssociations.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.EntityAssociations.GetHashCode();
+                }
                 if (this.Individual != null)
-                    hashCode = hashCode * 59 + this.Individual.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.Individual.GetHashCode();
+                }
                 if (this.Organization != null)
-                    hashCode = hashCode * 59 + this.Organization.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.Organization.GetHashCode();
+                }
                 if (this.Reference != null)
-                    hashCode = hashCode * 59 + this.Reference.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.Reference.GetHashCode();
+                }
                 if (this.SoleProprietorship != null)
-                    hashCode = hashCode * 59 + this.SoleProprietorship.GetHashCode();
-                if (this.Type != null)
-                    hashCode = hashCode * 59 + this.Type.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.SoleProprietorship.GetHashCode();
+                }
+                hashCode = (hashCode * 59) + this.Type.GetHashCode();
                 return hashCode;
             }
         }
-
         /// <summary>
         /// To validate all properties of the instance
         /// </summary>
         /// <param name="validationContext">Validation context</param>
         /// <returns>Validation Result</returns>
-        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+        public IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> Validate(ValidationContext validationContext)
         {
             // Reference (string) maxLength
-            if(this.Reference != null && this.Reference.Length > 150)
+            if (this.Reference != null && this.Reference.Length > 150)
             {
                 yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for Reference, length must be less than 150.", new [] { "Reference" });
             }
-
 
             yield break;
         }

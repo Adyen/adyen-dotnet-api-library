@@ -11,25 +11,27 @@
 */
 
 using System;
-using System.Linq;
-using System.IO;
-using System.Text;
-using System.Text.RegularExpressions;
 using System.Collections;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Linq;
+using System.IO;
 using System.Runtime.Serialization;
+using System.Text;
+using System.Text.RegularExpressions;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
+using Newtonsoft.Json.Linq;
 using System.ComponentModel.DataAnnotations;
+using OpenAPIDateConverter = Adyen.ApiSerialization.OpenAPIDateConverter;
 
 namespace Adyen.Model.LegalEntityManagement
 {
     /// <summary>
     /// OnboardingThemes
     /// </summary>
-    [DataContract]
-    public partial class OnboardingThemes :  IEquatable<OnboardingThemes>, IValidatableObject
+    [DataContract(Name = "OnboardingThemes")]
+    public partial class OnboardingThemes : IEquatable<OnboardingThemes>, IValidatableObject
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="OnboardingThemes" /> class.
@@ -44,30 +46,30 @@ namespace Adyen.Model.LegalEntityManagement
         /// <param name="themes">List of onboarding themes. (required).</param>
         public OnboardingThemes(string next = default(string), string previous = default(string), List<OnboardingTheme> themes = default(List<OnboardingTheme>))
         {
+            this.Themes = themes;
             this.Next = next;
             this.Previous = previous;
-            this.Themes = themes;
         }
 
         /// <summary>
         /// The next page. Only present if there is a next page.
         /// </summary>
         /// <value>The next page. Only present if there is a next page.</value>
-        [DataMember(Name="next", EmitDefaultValue=false)]
+        [DataMember(Name = "next", EmitDefaultValue = false)]
         public string Next { get; set; }
 
         /// <summary>
         /// The previous page. Only present if there is a previous page.
         /// </summary>
         /// <value>The previous page. Only present if there is a previous page.</value>
-        [DataMember(Name="previous", EmitDefaultValue=false)]
+        [DataMember(Name = "previous", EmitDefaultValue = false)]
         public string Previous { get; set; }
 
         /// <summary>
         /// List of onboarding themes.
         /// </summary>
         /// <value>List of onboarding themes.</value>
-        [DataMember(Name="themes", EmitDefaultValue=true)]
+        [DataMember(Name = "themes", IsRequired = false, EmitDefaultValue = false)]
         public List<OnboardingTheme> Themes { get; set; }
 
         /// <summary>
@@ -76,7 +78,7 @@ namespace Adyen.Model.LegalEntityManagement
         /// <returns>String presentation of the object</returns>
         public override string ToString()
         {
-            var sb = new StringBuilder();
+            StringBuilder sb = new StringBuilder();
             sb.Append("class OnboardingThemes {\n");
             sb.Append("  Next: ").Append(Next).Append("\n");
             sb.Append("  Previous: ").Append(Previous).Append("\n");
@@ -112,8 +114,9 @@ namespace Adyen.Model.LegalEntityManagement
         public bool Equals(OnboardingThemes input)
         {
             if (input == null)
+            {
                 return false;
-
+            }
             return 
                 (
                     this.Next == input.Next ||
@@ -143,21 +146,26 @@ namespace Adyen.Model.LegalEntityManagement
             {
                 int hashCode = 41;
                 if (this.Next != null)
-                    hashCode = hashCode * 59 + this.Next.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.Next.GetHashCode();
+                }
                 if (this.Previous != null)
-                    hashCode = hashCode * 59 + this.Previous.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.Previous.GetHashCode();
+                }
                 if (this.Themes != null)
-                    hashCode = hashCode * 59 + this.Themes.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.Themes.GetHashCode();
+                }
                 return hashCode;
             }
         }
-
         /// <summary>
         /// To validate all properties of the instance
         /// </summary>
         /// <param name="validationContext">Validation context</param>
         /// <returns>Validation Result</returns>
-        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+        public IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> Validate(ValidationContext validationContext)
         {
             yield break;
         }

@@ -55,14 +55,14 @@ namespace Adyen.Model.Checkout
         /// The merchant account that is used to process the payment.
         /// </summary>
         /// <value>The merchant account that is used to process the payment.</value>
-        [DataMember(Name = "merchantAccount", IsRequired = false, EmitDefaultValue = true)]
+        [DataMember(Name = "merchantAccount", IsRequired = false, EmitDefaultValue = false)]
         public string MerchantAccount { get; set; }
 
         /// <summary>
         /// The [&#x60;reference&#x60;](https://docs.adyen.com/api-explorer/#/CheckoutService/latest/post/payments__reqParam_reference) of the payment that you want to cancel.
         /// </summary>
         /// <value>The [&#x60;reference&#x60;](https://docs.adyen.com/api-explorer/#/CheckoutService/latest/post/payments__reqParam_reference) of the payment that you want to cancel.</value>
-        [DataMember(Name = "paymentReference", IsRequired = false, EmitDefaultValue = true)]
+        [DataMember(Name = "paymentReference", IsRequired = false, EmitDefaultValue = false)]
         public string PaymentReference { get; set; }
 
         /// <summary>
@@ -159,7 +159,6 @@ namespace Adyen.Model.Checkout
                 return hashCode;
             }
         }
-
         /// <summary>
         /// To validate all properties of the instance
         /// </summary>

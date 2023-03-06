@@ -71,7 +71,7 @@ namespace Adyen.Model.Checkout
         /// **genericissuer**
         /// </summary>
         /// <value>**genericissuer**</value>
-        [DataMember(Name = "type", IsRequired = false, EmitDefaultValue = true)]
+        [DataMember(Name = "type", IsRequired = false, EmitDefaultValue = false)]
         public TypeEnum Type { get; set; }
         /// <summary>
         /// Initializes a new instance of the <see cref="GenericIssuerPaymentMethodDetails" /> class.
@@ -106,7 +106,7 @@ namespace Adyen.Model.Checkout
         /// The issuer id of the shopper&#39;s selected bank.
         /// </summary>
         /// <value>The issuer id of the shopper&#39;s selected bank.</value>
-        [DataMember(Name = "issuer", IsRequired = false, EmitDefaultValue = true)]
+        [DataMember(Name = "issuer", IsRequired = false, EmitDefaultValue = false)]
         public string Issuer { get; set; }
 
         /// <summary>
@@ -227,7 +227,6 @@ namespace Adyen.Model.Checkout
                 return hashCode;
             }
         }
-
         /// <summary>
         /// To validate all properties of the instance
         /// </summary>

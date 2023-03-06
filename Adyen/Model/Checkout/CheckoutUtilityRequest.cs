@@ -51,7 +51,7 @@ namespace Adyen.Model.Checkout
         /// The list of origin domains, for which origin keys are requested.
         /// </summary>
         /// <value>The list of origin domains, for which origin keys are requested.</value>
-        [DataMember(Name = "originDomains", IsRequired = false, EmitDefaultValue = true)]
+        [DataMember(Name = "originDomains", IsRequired = false, EmitDefaultValue = false)]
         public List<string> OriginDomains { get; set; }
 
         /// <summary>
@@ -122,7 +122,6 @@ namespace Adyen.Model.Checkout
                 return hashCode;
             }
         }
-
         /// <summary>
         /// To validate all properties of the instance
         /// </summary>

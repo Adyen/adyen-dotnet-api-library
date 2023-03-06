@@ -11,25 +11,27 @@
 */
 
 using System;
-using System.Linq;
-using System.IO;
-using System.Text;
-using System.Text.RegularExpressions;
 using System.Collections;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Linq;
+using System.IO;
 using System.Runtime.Serialization;
+using System.Text;
+using System.Text.RegularExpressions;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
+using Newtonsoft.Json.Linq;
 using System.ComponentModel.DataAnnotations;
+using OpenAPIDateConverter = Adyen.ApiSerialization.OpenAPIDateConverter;
 
 namespace Adyen.Model.LegalEntityManagement
 {
     /// <summary>
     /// Name
     /// </summary>
-    [DataContract]
-    public partial class Name :  IEquatable<Name>, IValidatableObject
+    [DataContract(Name = "Name")]
+    public partial class Name : IEquatable<Name>, IValidatableObject
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="Name" /> class.
@@ -45,29 +47,29 @@ namespace Adyen.Model.LegalEntityManagement
         public Name(string firstName = default(string), string infix = default(string), string lastName = default(string))
         {
             this.FirstName = firstName;
-            this.Infix = infix;
             this.LastName = lastName;
+            this.Infix = infix;
         }
 
         /// <summary>
         /// The individual&#39;s first name.
         /// </summary>
         /// <value>The individual&#39;s first name.</value>
-        [DataMember(Name="firstName", EmitDefaultValue=true)]
+        [DataMember(Name = "firstName", IsRequired = false, EmitDefaultValue = false)]
         public string FirstName { get; set; }
 
         /// <summary>
         /// The infix in the individual&#39;s name, if any.
         /// </summary>
         /// <value>The infix in the individual&#39;s name, if any.</value>
-        [DataMember(Name="infix", EmitDefaultValue=false)]
+        [DataMember(Name = "infix", EmitDefaultValue = false)]
         public string Infix { get; set; }
 
         /// <summary>
         /// The individual&#39;s last name.
         /// </summary>
         /// <value>The individual&#39;s last name.</value>
-        [DataMember(Name="lastName", EmitDefaultValue=true)]
+        [DataMember(Name = "lastName", IsRequired = false, EmitDefaultValue = false)]
         public string LastName { get; set; }
 
         /// <summary>
@@ -76,7 +78,7 @@ namespace Adyen.Model.LegalEntityManagement
         /// <returns>String presentation of the object</returns>
         public override string ToString()
         {
-            var sb = new StringBuilder();
+            StringBuilder sb = new StringBuilder();
             sb.Append("class Name {\n");
             sb.Append("  FirstName: ").Append(FirstName).Append("\n");
             sb.Append("  Infix: ").Append(Infix).Append("\n");
@@ -112,8 +114,9 @@ namespace Adyen.Model.LegalEntityManagement
         public bool Equals(Name input)
         {
             if (input == null)
+            {
                 return false;
-
+            }
             return 
                 (
                     this.FirstName == input.FirstName ||
@@ -142,21 +145,26 @@ namespace Adyen.Model.LegalEntityManagement
             {
                 int hashCode = 41;
                 if (this.FirstName != null)
-                    hashCode = hashCode * 59 + this.FirstName.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.FirstName.GetHashCode();
+                }
                 if (this.Infix != null)
-                    hashCode = hashCode * 59 + this.Infix.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.Infix.GetHashCode();
+                }
                 if (this.LastName != null)
-                    hashCode = hashCode * 59 + this.LastName.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.LastName.GetHashCode();
+                }
                 return hashCode;
             }
         }
-
         /// <summary>
         /// To validate all properties of the instance
         /// </summary>
         /// <param name="validationContext">Validation context</param>
         /// <returns>Validation Result</returns>
-        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+        public IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> Validate(ValidationContext validationContext)
         {
             yield break;
         }

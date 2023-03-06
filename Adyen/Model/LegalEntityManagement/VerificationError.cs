@@ -11,25 +11,27 @@
 */
 
 using System;
-using System.Linq;
-using System.IO;
-using System.Text;
-using System.Text.RegularExpressions;
 using System.Collections;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Linq;
+using System.IO;
 using System.Runtime.Serialization;
+using System.Text;
+using System.Text.RegularExpressions;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
+using Newtonsoft.Json.Linq;
 using System.ComponentModel.DataAnnotations;
+using OpenAPIDateConverter = Adyen.ApiSerialization.OpenAPIDateConverter;
 
 namespace Adyen.Model.LegalEntityManagement
 {
     /// <summary>
     /// VerificationError
     /// </summary>
-    [DataContract]
-    public partial class VerificationError :  IEquatable<VerificationError>, IValidatableObject
+    [DataContract(Name = "VerificationError")]
+    public partial class VerificationError : IEquatable<VerificationError>, IValidatableObject
     {
         /// <summary>
         /// Defines Capabilities
@@ -340,8 +342,9 @@ namespace Adyen.Model.LegalEntityManagement
         }
 
         /// <summary>
-        /// Defines Type
+        /// The type of error.
         /// </summary>
+        /// <value>The type of error.</value>
         [JsonConverter(typeof(StringEnumConverter))]
         public enum TypeEnum
         {
@@ -365,26 +368,26 @@ namespace Adyen.Model.LegalEntityManagement
 
         }
 
+
         /// <summary>
-        /// Gets or Sets Type
+        /// The type of error.
         /// </summary>
-        [DataMember(Name="type", EmitDefaultValue=false)]
+        /// <value>The type of error.</value>
+        [DataMember(Name = "type", EmitDefaultValue = false)]
         public TypeEnum? Type { get; set; }
         /// <summary>
         /// Initializes a new instance of the <see cref="VerificationError" /> class.
         /// </summary>
-        /// <param name="capabilities">capabilities.</param>
-        /// <param name="code">code.</param>
-        /// <param name="entity">entity.</param>
-        /// <param name="message">message.</param>
-        /// <param name="remediatingActions">remediatingActions.</param>
-        /// <param name="subErrors">subErrors.</param>
-        /// <param name="type">type.</param>
-        public VerificationError(List<CapabilitiesEnum> capabilities = default(List<CapabilitiesEnum>), string code = default(string), CapabilityProblemEntity entity = default(CapabilityProblemEntity), string message = default(string), List<RemediatingAction> remediatingActions = default(List<RemediatingAction>), List<VerificationErrorRecursive> subErrors = default(List<VerificationErrorRecursive>), TypeEnum? type = default(TypeEnum?))
+        /// <param name="capabilities">Contains key-value pairs that specify the actions that the legal entity can do in your platform. The key is a capability required for your integration. For example, **issueCard** for Issuing.The value is an object containing the settings for the capability..</param>
+        /// <param name="code">The general error code..</param>
+        /// <param name="message">The general error message..</param>
+        /// <param name="remediatingActions">An object containing possible solutions to fix a verification error..</param>
+        /// <param name="subErrors">An array containing more granular information about the cause of the verification error..</param>
+        /// <param name="type">The type of error..</param>
+        public VerificationError(List<CapabilitiesEnum> capabilities = default(List<CapabilitiesEnum>), string code = default(string), string message = default(string), List<RemediatingAction> remediatingActions = default(List<RemediatingAction>), List<VerificationErrorRecursive> subErrors = default(List<VerificationErrorRecursive>), TypeEnum? type = default(TypeEnum?))
         {
             this.Capabilities = capabilities;
             this.Code = code;
-            this.Entity = entity;
             this.Message = message;
             this.RemediatingActions = remediatingActions;
             this.SubErrors = subErrors;
@@ -392,41 +395,39 @@ namespace Adyen.Model.LegalEntityManagement
         }
 
         /// <summary>
-        /// Gets or Sets Capabilities
+        /// Contains key-value pairs that specify the actions that the legal entity can do in your platform. The key is a capability required for your integration. For example, **issueCard** for Issuing.The value is an object containing the settings for the capability.
         /// </summary>
-        [DataMember(Name="capabilities", EmitDefaultValue=false)]
+        /// <value>Contains key-value pairs that specify the actions that the legal entity can do in your platform. The key is a capability required for your integration. For example, **issueCard** for Issuing.The value is an object containing the settings for the capability.</value>
+        [DataMember(Name = "capabilities", EmitDefaultValue = false)]
         public List<VerificationError.CapabilitiesEnum> Capabilities { get; set; }
 
         /// <summary>
-        /// Gets or Sets Code
+        /// The general error code.
         /// </summary>
-        [DataMember(Name="code", EmitDefaultValue=false)]
+        /// <value>The general error code.</value>
+        [DataMember(Name = "code", EmitDefaultValue = false)]
         public string Code { get; set; }
 
         /// <summary>
-        /// Gets or Sets Entity
+        /// The general error message.
         /// </summary>
-        [DataMember(Name="entity", EmitDefaultValue=false)]
-        public CapabilityProblemEntity Entity { get; set; }
-
-        /// <summary>
-        /// Gets or Sets Message
-        /// </summary>
-        [DataMember(Name="message", EmitDefaultValue=false)]
+        /// <value>The general error message.</value>
+        [DataMember(Name = "message", EmitDefaultValue = false)]
         public string Message { get; set; }
 
         /// <summary>
-        /// Gets or Sets RemediatingActions
+        /// An object containing possible solutions to fix a verification error.
         /// </summary>
-        [DataMember(Name="remediatingActions", EmitDefaultValue=false)]
+        /// <value>An object containing possible solutions to fix a verification error.</value>
+        [DataMember(Name = "remediatingActions", EmitDefaultValue = false)]
         public List<RemediatingAction> RemediatingActions { get; set; }
 
         /// <summary>
-        /// Gets or Sets SubErrors
+        /// An array containing more granular information about the cause of the verification error.
         /// </summary>
-        [DataMember(Name="subErrors", EmitDefaultValue=false)]
+        /// <value>An array containing more granular information about the cause of the verification error.</value>
+        [DataMember(Name = "subErrors", EmitDefaultValue = false)]
         public List<VerificationErrorRecursive> SubErrors { get; set; }
-
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -434,11 +435,10 @@ namespace Adyen.Model.LegalEntityManagement
         /// <returns>String presentation of the object</returns>
         public override string ToString()
         {
-            var sb = new StringBuilder();
+            StringBuilder sb = new StringBuilder();
             sb.Append("class VerificationError {\n");
             sb.Append("  Capabilities: ").Append(Capabilities).Append("\n");
             sb.Append("  Code: ").Append(Code).Append("\n");
-            sb.Append("  Entity: ").Append(Entity).Append("\n");
             sb.Append("  Message: ").Append(Message).Append("\n");
             sb.Append("  RemediatingActions: ").Append(RemediatingActions).Append("\n");
             sb.Append("  SubErrors: ").Append(SubErrors).Append("\n");
@@ -474,8 +474,9 @@ namespace Adyen.Model.LegalEntityManagement
         public bool Equals(VerificationError input)
         {
             if (input == null)
+            {
                 return false;
-
+            }
             return 
                 (
                     this.Capabilities == input.Capabilities ||
@@ -487,11 +488,6 @@ namespace Adyen.Model.LegalEntityManagement
                     this.Code == input.Code ||
                     (this.Code != null &&
                     this.Code.Equals(input.Code))
-                ) && 
-                (
-                    this.Entity == input.Entity ||
-                    (this.Entity != null &&
-                    this.Entity.Equals(input.Entity))
                 ) && 
                 (
                     this.Message == input.Message ||
@@ -512,8 +508,7 @@ namespace Adyen.Model.LegalEntityManagement
                 ) && 
                 (
                     this.Type == input.Type ||
-                    (this.Type != null &&
-                    this.Type.Equals(input.Type))
+                    this.Type.Equals(input.Type)
                 );
         }
 
@@ -527,29 +522,35 @@ namespace Adyen.Model.LegalEntityManagement
             {
                 int hashCode = 41;
                 if (this.Capabilities != null)
-                    hashCode = hashCode * 59 + this.Capabilities.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.Capabilities.GetHashCode();
+                }
                 if (this.Code != null)
-                    hashCode = hashCode * 59 + this.Code.GetHashCode();
-                if (this.Entity != null)
-                    hashCode = hashCode * 59 + this.Entity.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.Code.GetHashCode();
+                }
                 if (this.Message != null)
-                    hashCode = hashCode * 59 + this.Message.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.Message.GetHashCode();
+                }
                 if (this.RemediatingActions != null)
-                    hashCode = hashCode * 59 + this.RemediatingActions.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.RemediatingActions.GetHashCode();
+                }
                 if (this.SubErrors != null)
-                    hashCode = hashCode * 59 + this.SubErrors.GetHashCode();
-                if (this.Type != null)
-                    hashCode = hashCode * 59 + this.Type.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.SubErrors.GetHashCode();
+                }
+                hashCode = (hashCode * 59) + this.Type.GetHashCode();
                 return hashCode;
             }
         }
-
         /// <summary>
         /// To validate all properties of the instance
         /// </summary>
         /// <param name="validationContext">Validation context</param>
         /// <returns>Validation Result</returns>
-        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+        public IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> Validate(ValidationContext validationContext)
         {
             yield break;
         }

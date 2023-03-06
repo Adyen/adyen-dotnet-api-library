@@ -11,25 +11,27 @@
 */
 
 using System;
-using System.Linq;
-using System.IO;
-using System.Text;
-using System.Text.RegularExpressions;
 using System.Collections;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Linq;
+using System.IO;
 using System.Runtime.Serialization;
+using System.Text;
+using System.Text.RegularExpressions;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
+using Newtonsoft.Json.Linq;
 using System.ComponentModel.DataAnnotations;
+using OpenAPIDateConverter = Adyen.ApiSerialization.OpenAPIDateConverter;
 
 namespace Adyen.Model.LegalEntityManagement
 {
     /// <summary>
     /// StockData
     /// </summary>
-    [DataContract]
-    public partial class StockData :  IEquatable<StockData>, IValidatableObject
+    [DataContract(Name = "StockData")]
+    public partial class StockData : IEquatable<StockData>, IValidatableObject
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="StockData" /> class.
@@ -48,21 +50,21 @@ namespace Adyen.Model.LegalEntityManagement
         /// The four-digit [Market Identifier Code](https://en.wikipedia.org/wiki/Market_Identifier_Code) of the stock market where the organization&#39;s stocks are traded.
         /// </summary>
         /// <value>The four-digit [Market Identifier Code](https://en.wikipedia.org/wiki/Market_Identifier_Code) of the stock market where the organization&#39;s stocks are traded.</value>
-        [DataMember(Name="marketIdentifier", EmitDefaultValue=false)]
+        [DataMember(Name = "marketIdentifier", EmitDefaultValue = false)]
         public string MarketIdentifier { get; set; }
 
         /// <summary>
         /// The 12-digit International Securities Identification Number (ISIN) of the company, without dashes (-).
         /// </summary>
         /// <value>The 12-digit International Securities Identification Number (ISIN) of the company, without dashes (-).</value>
-        [DataMember(Name="stockNumber", EmitDefaultValue=false)]
+        [DataMember(Name = "stockNumber", EmitDefaultValue = false)]
         public string StockNumber { get; set; }
 
         /// <summary>
         /// The stock ticker symbol.
         /// </summary>
         /// <value>The stock ticker symbol.</value>
-        [DataMember(Name="tickerSymbol", EmitDefaultValue=false)]
+        [DataMember(Name = "tickerSymbol", EmitDefaultValue = false)]
         public string TickerSymbol { get; set; }
 
         /// <summary>
@@ -71,7 +73,7 @@ namespace Adyen.Model.LegalEntityManagement
         /// <returns>String presentation of the object</returns>
         public override string ToString()
         {
-            var sb = new StringBuilder();
+            StringBuilder sb = new StringBuilder();
             sb.Append("class StockData {\n");
             sb.Append("  MarketIdentifier: ").Append(MarketIdentifier).Append("\n");
             sb.Append("  StockNumber: ").Append(StockNumber).Append("\n");
@@ -107,8 +109,9 @@ namespace Adyen.Model.LegalEntityManagement
         public bool Equals(StockData input)
         {
             if (input == null)
+            {
                 return false;
-
+            }
             return 
                 (
                     this.MarketIdentifier == input.MarketIdentifier ||
@@ -137,21 +140,26 @@ namespace Adyen.Model.LegalEntityManagement
             {
                 int hashCode = 41;
                 if (this.MarketIdentifier != null)
-                    hashCode = hashCode * 59 + this.MarketIdentifier.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.MarketIdentifier.GetHashCode();
+                }
                 if (this.StockNumber != null)
-                    hashCode = hashCode * 59 + this.StockNumber.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.StockNumber.GetHashCode();
+                }
                 if (this.TickerSymbol != null)
-                    hashCode = hashCode * 59 + this.TickerSymbol.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.TickerSymbol.GetHashCode();
+                }
                 return hashCode;
             }
         }
-
         /// <summary>
         /// To validate all properties of the instance
         /// </summary>
         /// <param name="validationContext">Validation context</param>
         /// <returns>Validation Result</returns>
-        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+        public IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> Validate(ValidationContext validationContext)
         {
             yield break;
         }

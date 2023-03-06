@@ -11,25 +11,27 @@
 */
 
 using System;
-using System.Linq;
-using System.IO;
-using System.Text;
-using System.Text.RegularExpressions;
 using System.Collections;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Linq;
+using System.IO;
 using System.Runtime.Serialization;
+using System.Text;
+using System.Text.RegularExpressions;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
+using Newtonsoft.Json.Linq;
 using System.ComponentModel.DataAnnotations;
+using OpenAPIDateConverter = Adyen.ApiSerialization.OpenAPIDateConverter;
 
 namespace Adyen.Model.LegalEntityManagement
 {
     /// <summary>
     /// PhoneNumber
     /// </summary>
-    [DataContract]
-    public partial class PhoneNumber :  IEquatable<PhoneNumber>, IValidatableObject
+    [DataContract(Name = "PhoneNumber")]
+    public partial class PhoneNumber : IEquatable<PhoneNumber>, IValidatableObject
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="PhoneNumber" /> class.
@@ -51,14 +53,14 @@ namespace Adyen.Model.LegalEntityManagement
         /// The full phone number, including the country code. For example, **+3112345678**.
         /// </summary>
         /// <value>The full phone number, including the country code. For example, **+3112345678**.</value>
-        [DataMember(Name="number", EmitDefaultValue=true)]
+        [DataMember(Name = "number", IsRequired = false, EmitDefaultValue = false)]
         public string Number { get; set; }
 
         /// <summary>
         /// The type of phone number.  Possible values: **mobile**, **landline**, **sip**, **fax.** 
         /// </summary>
         /// <value>The type of phone number.  Possible values: **mobile**, **landline**, **sip**, **fax.** </value>
-        [DataMember(Name="type", EmitDefaultValue=false)]
+        [DataMember(Name = "type", EmitDefaultValue = false)]
         public string Type { get; set; }
 
         /// <summary>
@@ -67,7 +69,7 @@ namespace Adyen.Model.LegalEntityManagement
         /// <returns>String presentation of the object</returns>
         public override string ToString()
         {
-            var sb = new StringBuilder();
+            StringBuilder sb = new StringBuilder();
             sb.Append("class PhoneNumber {\n");
             sb.Append("  Number: ").Append(Number).Append("\n");
             sb.Append("  Type: ").Append(Type).Append("\n");
@@ -102,8 +104,9 @@ namespace Adyen.Model.LegalEntityManagement
         public bool Equals(PhoneNumber input)
         {
             if (input == null)
+            {
                 return false;
-
+            }
             return 
                 (
                     this.Number == input.Number ||
@@ -127,19 +130,22 @@ namespace Adyen.Model.LegalEntityManagement
             {
                 int hashCode = 41;
                 if (this.Number != null)
-                    hashCode = hashCode * 59 + this.Number.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.Number.GetHashCode();
+                }
                 if (this.Type != null)
-                    hashCode = hashCode * 59 + this.Type.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.Type.GetHashCode();
+                }
                 return hashCode;
             }
         }
-
         /// <summary>
         /// To validate all properties of the instance
         /// </summary>
         /// <param name="validationContext">Validation context</param>
         /// <returns>Validation Result</returns>
-        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+        public IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> Validate(ValidationContext validationContext)
         {
             yield break;
         }

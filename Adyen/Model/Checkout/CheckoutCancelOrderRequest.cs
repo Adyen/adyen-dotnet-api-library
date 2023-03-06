@@ -53,13 +53,13 @@ namespace Adyen.Model.Checkout
         /// The merchant account identifier that orderData belongs to.
         /// </summary>
         /// <value>The merchant account identifier that orderData belongs to.</value>
-        [DataMember(Name = "merchantAccount", IsRequired = false, EmitDefaultValue = true)]
+        [DataMember(Name = "merchantAccount", IsRequired = false, EmitDefaultValue = false)]
         public string MerchantAccount { get; set; }
 
         /// <summary>
         /// Gets or Sets Order
         /// </summary>
-        [DataMember(Name = "order", IsRequired = false, EmitDefaultValue = true)]
+        [DataMember(Name = "order", IsRequired = false, EmitDefaultValue = false)]
         public CheckoutOrder Order { get; set; }
 
         /// <summary>
@@ -139,7 +139,6 @@ namespace Adyen.Model.Checkout
                 return hashCode;
             }
         }
-
         /// <summary>
         /// To validate all properties of the instance
         /// </summary>

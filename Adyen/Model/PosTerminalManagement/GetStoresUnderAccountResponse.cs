@@ -11,25 +11,27 @@
 */
 
 using System;
-using System.Linq;
-using System.IO;
-using System.Text;
-using System.Text.RegularExpressions;
 using System.Collections;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Linq;
+using System.IO;
 using System.Runtime.Serialization;
+using System.Text;
+using System.Text.RegularExpressions;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
+using Newtonsoft.Json.Linq;
 using System.ComponentModel.DataAnnotations;
+using OpenAPIDateConverter = Adyen.ApiSerialization.OpenAPIDateConverter;
 
 namespace Adyen.Model.PosTerminalManagement
 {
     /// <summary>
     /// GetStoresUnderAccountResponse
     /// </summary>
-    [DataContract]
-    public partial class GetStoresUnderAccountResponse :  IEquatable<GetStoresUnderAccountResponse>, IValidatableObject
+    [DataContract(Name = "GetStoresUnderAccountResponse")]
+    public partial class GetStoresUnderAccountResponse : IEquatable<GetStoresUnderAccountResponse>, IValidatableObject
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="GetStoresUnderAccountResponse" /> class.
@@ -44,7 +46,7 @@ namespace Adyen.Model.PosTerminalManagement
         /// Array that returns a list of all stores for the specified merchant account, or for all merchant accounts under the company account.
         /// </summary>
         /// <value>Array that returns a list of all stores for the specified merchant account, or for all merchant accounts under the company account.</value>
-        [DataMember(Name="stores", EmitDefaultValue=false)]
+        [DataMember(Name = "stores", EmitDefaultValue = false)]
         public List<Store> Stores { get; set; }
 
         /// <summary>
@@ -53,7 +55,7 @@ namespace Adyen.Model.PosTerminalManagement
         /// <returns>String presentation of the object</returns>
         public override string ToString()
         {
-            var sb = new StringBuilder();
+            StringBuilder sb = new StringBuilder();
             sb.Append("class GetStoresUnderAccountResponse {\n");
             sb.Append("  Stores: ").Append(Stores).Append("\n");
             sb.Append("}\n");
@@ -87,8 +89,9 @@ namespace Adyen.Model.PosTerminalManagement
         public bool Equals(GetStoresUnderAccountResponse input)
         {
             if (input == null)
+            {
                 return false;
-
+            }
             return 
                 (
                     this.Stores == input.Stores ||
@@ -108,17 +111,18 @@ namespace Adyen.Model.PosTerminalManagement
             {
                 int hashCode = 41;
                 if (this.Stores != null)
-                    hashCode = hashCode * 59 + this.Stores.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.Stores.GetHashCode();
+                }
                 return hashCode;
             }
         }
-
         /// <summary>
         /// To validate all properties of the instance
         /// </summary>
         /// <param name="validationContext">Validation context</param>
         /// <returns>Validation Result</returns>
-        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+        public IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> Validate(ValidationContext validationContext)
         {
             yield break;
         }

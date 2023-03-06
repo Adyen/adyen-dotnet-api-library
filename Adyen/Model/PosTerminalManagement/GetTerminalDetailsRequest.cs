@@ -11,25 +11,27 @@
 */
 
 using System;
-using System.Linq;
-using System.IO;
-using System.Text;
-using System.Text.RegularExpressions;
 using System.Collections;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Linq;
+using System.IO;
 using System.Runtime.Serialization;
+using System.Text;
+using System.Text.RegularExpressions;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
+using Newtonsoft.Json.Linq;
 using System.ComponentModel.DataAnnotations;
+using OpenAPIDateConverter = Adyen.ApiSerialization.OpenAPIDateConverter;
 
 namespace Adyen.Model.PosTerminalManagement
 {
     /// <summary>
     /// GetTerminalDetailsRequest
     /// </summary>
-    [DataContract]
-    public partial class GetTerminalDetailsRequest :  IEquatable<GetTerminalDetailsRequest>, IValidatableObject
+    [DataContract(Name = "GetTerminalDetailsRequest")]
+    public partial class GetTerminalDetailsRequest : IEquatable<GetTerminalDetailsRequest>, IValidatableObject
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="GetTerminalDetailsRequest" /> class.
@@ -49,7 +51,7 @@ namespace Adyen.Model.PosTerminalManagement
         /// The unique terminal ID in the format &#x60;[Device model]-[Serial number]&#x60;.   For example, **V400m-324689776**.
         /// </summary>
         /// <value>The unique terminal ID in the format &#x60;[Device model]-[Serial number]&#x60;.   For example, **V400m-324689776**.</value>
-        [DataMember(Name="terminal", EmitDefaultValue=true)]
+        [DataMember(Name = "terminal", IsRequired = false, EmitDefaultValue = false)]
         public string Terminal { get; set; }
 
         /// <summary>
@@ -58,7 +60,7 @@ namespace Adyen.Model.PosTerminalManagement
         /// <returns>String presentation of the object</returns>
         public override string ToString()
         {
-            var sb = new StringBuilder();
+            StringBuilder sb = new StringBuilder();
             sb.Append("class GetTerminalDetailsRequest {\n");
             sb.Append("  Terminal: ").Append(Terminal).Append("\n");
             sb.Append("}\n");
@@ -92,8 +94,9 @@ namespace Adyen.Model.PosTerminalManagement
         public bool Equals(GetTerminalDetailsRequest input)
         {
             if (input == null)
+            {
                 return false;
-
+            }
             return 
                 (
                     this.Terminal == input.Terminal ||
@@ -112,17 +115,18 @@ namespace Adyen.Model.PosTerminalManagement
             {
                 int hashCode = 41;
                 if (this.Terminal != null)
-                    hashCode = hashCode * 59 + this.Terminal.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.Terminal.GetHashCode();
+                }
                 return hashCode;
             }
         }
-
         /// <summary>
         /// To validate all properties of the instance
         /// </summary>
         /// <param name="validationContext">Validation context</param>
         /// <returns>Validation Result</returns>
-        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+        public IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> Validate(ValidationContext validationContext)
         {
             yield break;
         }
