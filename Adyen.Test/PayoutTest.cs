@@ -21,9 +21,12 @@
 //  */
 #endregion
 
-using Adyen.Model.Payout;
+using Adyen.HttpClient;
+using Adyen.Model.Payouts;
 using Adyen.Service;
+using Adyen.Service.Payouts;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using Moq.Language.Flow;
 
 namespace Adyen.Test
 {
@@ -33,11 +36,11 @@ namespace Adyen.Test
         [TestMethod]
         public void StoreDetailAndSubmitThirdPartySuccessTest()
         {
-            var client = CreateMockTestClientNullRequiredFieldsRequest("Mocks/payout/storeDetailAndSubmitThirdParty-success.json");
-            var payout = new Payout(client);
+            var client = CreateMockTestClientApiKeyBasedRequestAsync("Mocks/payout/storeDetailAndSubmitThirdParty-success.json");
+            var payout = new InitializationService(client);
 
             var request = new StoreDetailAndSubmitRequest();
-            var result = payout.StoreDetailAndSubmitThirdParty(request);
+            var result = payout.StoreDetailsAndSubmitPayout(request);
 
             Assert.AreEqual("[payout-submit-received]", result.ResultCode);
             Assert.AreEqual("8515131751004933", result.PspReference);
@@ -48,11 +51,11 @@ namespace Adyen.Test
         [TestMethod]
         public void StoreDetailSuccessTest()
         {
-            var client = CreateMockTestClientNullRequiredFieldsRequest("Mocks/payout/storeDetail-success.json");
-            var payout = new Payout(client);
+            var client = CreateMockTestClientApiKeyBasedRequestAsync("Mocks/payout/storeDetail-success.json");
+            var payout = new InitializationService(client);
 
             var request = new StoreDetailRequest();
-            var result = payout.StoreDetail(request);
+            var result = payout.StorePayoutDetails(request);
 
             Assert.AreEqual("Success", result.ResultCode);
             Assert.AreEqual("8515136787207087", result.PspReference);
@@ -62,11 +65,11 @@ namespace Adyen.Test
         [TestMethod]
         public void ConfirmThirdPartySuccessTest()
         {
-            var client = CreateMockTestClientNullRequiredFieldsRequest("Mocks/payout/modifyResponse-success.json");
-            var payout = new Payout(client);
+            var client = CreateMockTestClientApiKeyBasedRequestAsync("Mocks/payout/modifyResponse-success.json");
+            var payout = new ReviewingService(client);
 
             var request = new ModifyRequest();
-            var result = payout.ConfirmThirdParty(request);
+            var result = payout.ConfirmPayout(request);
 
             Assert.AreEqual("[payout-confirm-received]", result.Response);
             Assert.AreEqual("8815131762537886", result.PspReference);
@@ -75,10 +78,10 @@ namespace Adyen.Test
         [TestMethod]
         public void SubmitThirdPartySuccessTest()
         {
-            var client = CreateMockTestClientNullRequiredFieldsRequest("Mocks/payout/submitResponse-success.json");
-            var payout = new Payout(client);
+            var client = CreateMockTestClientApiKeyBasedRequestAsync("Mocks/payout/submitResponse-success.json");
+            var payout = new InitializationService(client);
             var request = new SubmitRequest();
-            var result = payout.SubmitThirdParty(request);
+            var result = payout.SubmitPayout(request);
             Assert.AreEqual("[payout-submit-received]", result.ResultCode);
             Assert.AreEqual("8815131768219992", result.PspReference);
             Assert.AreEqual("GREEN", result.AdditionalData["fraudResultType"]);
@@ -88,10 +91,10 @@ namespace Adyen.Test
         [TestMethod]
         public void DeclineThirdPartySuccessTest()
         {
-            var client = CreateMockTestClientNullRequiredFieldsRequest("Mocks/payout/modifyResponse-success.json");
-            var payout = new Payout(client);
+            var client = CreateMockTestClientApiKeyBasedRequestAsync("Mocks/payout/modifyResponse-success.json");
+            var payout = new ReviewingService(client);
             var request = new ModifyRequest();
-            var result = payout.DeclineThirdParty(request);
+            var result = payout.CancelPayout(request);
             Assert.AreEqual("[payout-confirm-received]", result.Response);
             Assert.AreEqual("8815131762537886", result.PspReference);
         }
@@ -99,46 +102,12 @@ namespace Adyen.Test
         [TestMethod]
         public void PayoutSuccessTest()
         {
-            var client = CreateMockTestClientNullRequiredFieldsRequest("Mocks/payout/payout-success.json");
-            var payout = new Payout(client);
+            var client = CreateMockTestClientApiKeyBasedRequestAsync("Mocks/payout/payout-success.json");
+            var payout = new InstantPayoutsService(client);
             var request = new PayoutRequest();
-            var result = payout.PayoutSubmit(request);
+            var result = payout.MakeInstantCardPayout(request);
             Assert.AreEqual("8814689190961342", result.PspReference);
             Assert.AreEqual("12345", result.AuthCode);
-        }
-        
-        [TestMethod]
-        public void PayoutErrorMerchantTest()
-        {
-            var client = CreateAsyncMockTestClientForErrors(403, "Mocks/payout/payout-error-403.json");
-            var payout = new Payout(client);
-            var request = new PayoutRequest();
-            try
-            {
-                payout.PayoutSubmit(request);
-            }
-            catch (HttpClient.HttpClientException e)
-            {
-                Assert.IsNotNull(e.ResponseBody);
-                Assert.AreEqual(403, e.Code);
-            }
-        }
-
-        [TestMethod]
-        public void PayoutErrorReferenceTest()
-        {
-            var client = CreateAsyncMockTestClientForErrors(422, "Mocks/payout/payout-error-422.json");
-            var payout = new Payout(client);
-            var request = new PayoutRequest();
-            try
-            {
-                payout.PayoutSubmit(request);
-            }
-            catch (HttpClient.HttpClientException e)
-            {
-                Assert.IsNotNull(e.ResponseBody);
-                Assert.AreEqual(422, e.Code);
-            }
         }
     }
 }

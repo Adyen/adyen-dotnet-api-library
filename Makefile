@@ -27,6 +27,7 @@ Payments: service=payments
 Recurring: spec=RecurringService-v68
 Recurring: service=recurring
 Payouts: spec=PayoutService-v68
+Payouts: service=payoutsService
 Management: spec=ManagementService-v1
 Management: service=management
 LegalEntityManagement: spec=LegalEntityService-v3
