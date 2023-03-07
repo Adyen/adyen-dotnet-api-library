@@ -32,6 +32,9 @@ Management: service=management
 LegalEntityManagement: spec=LegalEntityService-v2
 BalancePlatform: spec=BalancePlatformService-v2
 BalancePlatform: service=balancePlatform
+LegalEntityManagement: spec=LegalEntityService-v3
+LegalEntityManagement: service=legalEntityManagement
+BalancePlatform: spec=BalancePlatformService-v2
 PlatformsAccount: spec=AccountService-v6
 PlatformsFund: spec=FundService-v6
 PlatformsNotificationConfiguration: spec=NotificationConfigurationService-v6
@@ -57,7 +60,7 @@ $(services): target/spec $(openapi-generator-jar)
 	mv target/out/src/Adyen.Model/$@/* Adyen/Model/$@
 
 # Generate a full client (models and service classes)
-BalancePlatform: target/spec $(openapi-generator-jar)  
+Management: target/spec $(openapi-generator-jar)  
 	rm -rf $(output)
 	$(openapi-generator-cli) generate \
 		-i target/spec/json/$(spec).json \
