@@ -9,7 +9,7 @@
     "brandCode": "visa",
     "endRange": "411111111111",
     "startRange": "411111111111",
-    "threeDS2Version": "2.1.0",
+    "threeDS2Versions": ["2.1.0"],
     "threeDSMethodURL": "https://pal-test.adyen.com/threeds2simulator/acs/startMethod.shtml"
   }],
   "threeDS2supported": true

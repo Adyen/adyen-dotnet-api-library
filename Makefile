@@ -15,7 +15,8 @@ models: $(services)
 BalanceControl: spec=BalanceControlService-v1
 BalanceControl: service=balanceControlService
 BalancePlatform: spec=BalancePlatformService-v2
-BinLookup: spec=BinLookupService-v52
+BinLookup: spec=BinLookupService-v54
+BinLookup: service=binLookup
 Checkout: spec=CheckoutService-v70
 Checkout: service=checkout
 StoredValue: spec=StoredValueService-v46
