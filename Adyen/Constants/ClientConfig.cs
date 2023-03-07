@@ -57,7 +57,7 @@ namespace Adyen.Constants
         public static string BinLookupApiVersion = "v52";
         public static string LegalEntityManagementEndpointTest = "https://kyc-test.adyen.com/lem/";
         public static string LegalEntityManagementEndpointLive = "https://kyc-live.adyen.com/lem/";
-        public static string LegalEntityManagementVersion = "v2";
+        public static string LegalEntityManagementVersion = "v3";
         public static string StoredValueEndpointTest = "https://pal-test.adyen.com/pal/servlet/StoredValue";
         public static string StoredValueEndpointLive = "https://pal-live.adyen.com/pal/servlet/StoredValue";
         public static string StoredValueVersion = "v46";
