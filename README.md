@@ -163,6 +163,12 @@ namespace Adyen.Terminal
 }
 ```
 
+To parse the terminal API notifications, please use the following custom deserializer. This method will throw an exception for non-notification requests.
+~~~~ csharp
+var serializer = new SaleToPoiMessageSerializer();
+var saleToPoiRequest = serializer.DeserializeNotification(your_terminal_notification);
+
+~~~~
 ## Contributing
 We encourage you to contribute to this repository, so everyone can benefit from new features, bug fixes, and any other improvements.
 Have a look at our [contributing guidelines](https://github.com/Adyen/adyen-dotnet-api-library/blob/develop/CONTRIBUTING.md) to find out how to raise a pull request.
