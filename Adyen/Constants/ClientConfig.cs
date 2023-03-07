@@ -46,6 +46,7 @@ namespace Adyen.Constants
         public static string HopApiVersion = "v1";
         public static string RecurringApiVersion = "v68";
         public static string ApiVersion = "v68";
+        public static string BalanceControlVersion = "v1";
         public static string PayoutApiVersion = "v68";
         public static string CheckoutApiVersion = "v70";
         public static string PosTerminalManagementVersion = "v1";
@@ -63,6 +64,9 @@ namespace Adyen.Constants
         public static string ManagementEndpointTest = "https://management-test.adyen.com";
         public static string ManagementEndpointLive = "https://management-live.adyen.com";
         public static string ManagementVersion = "v1";
+        public static string TransfersEndpointTest = "https://balanceplatform-api-test.adyen.com/btl/";
+        public static string TransfersEndpointLive = "https://balanceplatform-api-live.adyen.com/btl/";
+        public static string TransfersVersion = "v3";
 
         public static string LibName = "adyen-dotnet-api-library";
         public static string LibVersion = "9.1.0";

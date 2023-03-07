@@ -11,25 +11,27 @@
 */
 
 using System;
-using System.Linq;
-using System.IO;
-using System.Text;
-using System.Text.RegularExpressions;
 using System.Collections;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Linq;
+using System.IO;
 using System.Runtime.Serialization;
+using System.Text;
+using System.Text.RegularExpressions;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
+using Newtonsoft.Json.Linq;
 using System.ComponentModel.DataAnnotations;
+using OpenAPIDateConverter = Adyen.ApiSerialization.OpenAPIDateConverter;
 
 namespace Adyen.Model.Management
 {
     /// <summary>
     /// TerminalSettings
     /// </summary>
-    [DataContract]
-    public partial class TerminalSettings :  IEquatable<TerminalSettings>, IValidatableObject
+    [DataContract(Name = "TerminalSettings")]
+    public partial class TerminalSettings : IEquatable<TerminalSettings>, IValidatableObject
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="TerminalSettings" /> class.
@@ -71,92 +73,92 @@ namespace Adyen.Model.Management
         /// <summary>
         /// Gets or Sets CardholderReceipt
         /// </summary>
-        [DataMember(Name="cardholderReceipt", EmitDefaultValue=false)]
+        [DataMember(Name = "cardholderReceipt", EmitDefaultValue = false)]
         public CardholderReceipt CardholderReceipt { get; set; }
 
         /// <summary>
         /// Gets or Sets Connectivity
         /// </summary>
-        [DataMember(Name="connectivity", EmitDefaultValue=false)]
+        [DataMember(Name = "connectivity", EmitDefaultValue = false)]
         public Connectivity Connectivity { get; set; }
 
         /// <summary>
         /// Settings for tipping with or without predefined options to choose from. The maximum number of predefined options is four, or three plus the option to enter a custom tip.
         /// </summary>
         /// <value>Settings for tipping with or without predefined options to choose from. The maximum number of predefined options is four, or three plus the option to enter a custom tip.</value>
-        [DataMember(Name="gratuities", EmitDefaultValue=false)]
+        [DataMember(Name = "gratuities", EmitDefaultValue = false)]
         public List<Gratuity> Gratuities { get; set; }
 
         /// <summary>
         /// Gets or Sets Hardware
         /// </summary>
-        [DataMember(Name="hardware", EmitDefaultValue=false)]
+        [DataMember(Name = "hardware", EmitDefaultValue = false)]
         public Hardware Hardware { get; set; }
 
         /// <summary>
         /// Gets or Sets Nexo
         /// </summary>
-        [DataMember(Name="nexo", EmitDefaultValue=false)]
+        [DataMember(Name = "nexo", EmitDefaultValue = false)]
         public Nexo Nexo { get; set; }
 
         /// <summary>
         /// Gets or Sets OfflineProcessing
         /// </summary>
-        [DataMember(Name="offlineProcessing", EmitDefaultValue=false)]
+        [DataMember(Name = "offlineProcessing", EmitDefaultValue = false)]
         public OfflineProcessing OfflineProcessing { get; set; }
 
         /// <summary>
         /// Gets or Sets Opi
         /// </summary>
-        [DataMember(Name="opi", EmitDefaultValue=false)]
+        [DataMember(Name = "opi", EmitDefaultValue = false)]
         public Opi Opi { get; set; }
 
         /// <summary>
         /// Gets or Sets Passcodes
         /// </summary>
-        [DataMember(Name="passcodes", EmitDefaultValue=false)]
+        [DataMember(Name = "passcodes", EmitDefaultValue = false)]
         public Passcodes Passcodes { get; set; }
 
         /// <summary>
         /// Gets or Sets ReceiptOptions
         /// </summary>
-        [DataMember(Name="receiptOptions", EmitDefaultValue=false)]
+        [DataMember(Name = "receiptOptions", EmitDefaultValue = false)]
         public ReceiptOptions ReceiptOptions { get; set; }
 
         /// <summary>
         /// Gets or Sets ReceiptPrinting
         /// </summary>
-        [DataMember(Name="receiptPrinting", EmitDefaultValue=false)]
+        [DataMember(Name = "receiptPrinting", EmitDefaultValue = false)]
         public ReceiptPrinting ReceiptPrinting { get; set; }
 
         /// <summary>
         /// Gets or Sets Signature
         /// </summary>
-        [DataMember(Name="signature", EmitDefaultValue=false)]
+        [DataMember(Name = "signature", EmitDefaultValue = false)]
         public Signature Signature { get; set; }
 
         /// <summary>
         /// Gets or Sets Standalone
         /// </summary>
-        [DataMember(Name="standalone", EmitDefaultValue=false)]
+        [DataMember(Name = "standalone", EmitDefaultValue = false)]
         public Standalone Standalone { get; set; }
 
         /// <summary>
         /// Gets or Sets Surcharge
         /// </summary>
-        [DataMember(Name="surcharge", EmitDefaultValue=false)]
+        [DataMember(Name = "surcharge", EmitDefaultValue = false)]
         public Surcharge Surcharge { get; set; }
 
         /// <summary>
         /// Gets or Sets Timeouts
         /// </summary>
-        [DataMember(Name="timeouts", EmitDefaultValue=false)]
+        [DataMember(Name = "timeouts", EmitDefaultValue = false)]
         public Timeouts Timeouts { get; set; }
 
         /// <summary>
         /// Gets or Sets WifiProfiles
         /// </summary>
-        [DataMember(Name="wifiProfiles", EmitDefaultValue=false)]
+        [DataMember(Name = "wifiProfiles", EmitDefaultValue = false)]
         public WifiProfiles WifiProfiles { get; set; }
 
         /// <summary>
@@ -165,7 +167,7 @@ namespace Adyen.Model.Management
         /// <returns>String presentation of the object</returns>
         public override string ToString()
         {
-            var sb = new StringBuilder();
+            StringBuilder sb = new StringBuilder();
             sb.Append("class TerminalSettings {\n");
             sb.Append("  CardholderReceipt: ").Append(CardholderReceipt).Append("\n");
             sb.Append("  Connectivity: ").Append(Connectivity).Append("\n");
@@ -213,8 +215,9 @@ namespace Adyen.Model.Management
         public bool Equals(TerminalSettings input)
         {
             if (input == null)
+            {
                 return false;
-
+            }
             return 
                 (
                     this.CardholderReceipt == input.CardholderReceipt ||
@@ -304,45 +307,74 @@ namespace Adyen.Model.Management
             {
                 int hashCode = 41;
                 if (this.CardholderReceipt != null)
-                    hashCode = hashCode * 59 + this.CardholderReceipt.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.CardholderReceipt.GetHashCode();
+                }
                 if (this.Connectivity != null)
-                    hashCode = hashCode * 59 + this.Connectivity.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.Connectivity.GetHashCode();
+                }
                 if (this.Gratuities != null)
-                    hashCode = hashCode * 59 + this.Gratuities.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.Gratuities.GetHashCode();
+                }
                 if (this.Hardware != null)
-                    hashCode = hashCode * 59 + this.Hardware.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.Hardware.GetHashCode();
+                }
                 if (this.Nexo != null)
-                    hashCode = hashCode * 59 + this.Nexo.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.Nexo.GetHashCode();
+                }
                 if (this.OfflineProcessing != null)
-                    hashCode = hashCode * 59 + this.OfflineProcessing.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.OfflineProcessing.GetHashCode();
+                }
                 if (this.Opi != null)
-                    hashCode = hashCode * 59 + this.Opi.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.Opi.GetHashCode();
+                }
                 if (this.Passcodes != null)
-                    hashCode = hashCode * 59 + this.Passcodes.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.Passcodes.GetHashCode();
+                }
                 if (this.ReceiptOptions != null)
-                    hashCode = hashCode * 59 + this.ReceiptOptions.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.ReceiptOptions.GetHashCode();
+                }
                 if (this.ReceiptPrinting != null)
-                    hashCode = hashCode * 59 + this.ReceiptPrinting.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.ReceiptPrinting.GetHashCode();
+                }
                 if (this.Signature != null)
-                    hashCode = hashCode * 59 + this.Signature.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.Signature.GetHashCode();
+                }
                 if (this.Standalone != null)
-                    hashCode = hashCode * 59 + this.Standalone.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.Standalone.GetHashCode();
+                }
                 if (this.Surcharge != null)
-                    hashCode = hashCode * 59 + this.Surcharge.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.Surcharge.GetHashCode();
+                }
                 if (this.Timeouts != null)
-                    hashCode = hashCode * 59 + this.Timeouts.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.Timeouts.GetHashCode();
+                }
                 if (this.WifiProfiles != null)
-                    hashCode = hashCode * 59 + this.WifiProfiles.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.WifiProfiles.GetHashCode();
+                }
                 return hashCode;
             }
         }
-
         /// <summary>
         /// To validate all properties of the instance
         /// </summary>
         /// <param name="validationContext">Validation context</param>
         /// <returns>Validation Result</returns>
-        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+        public IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> Validate(ValidationContext validationContext)
         {
             yield break;
         }

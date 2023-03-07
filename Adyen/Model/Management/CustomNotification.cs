@@ -11,25 +11,27 @@
 */
 
 using System;
-using System.Linq;
-using System.IO;
-using System.Text;
-using System.Text.RegularExpressions;
 using System.Collections;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Linq;
+using System.IO;
 using System.Runtime.Serialization;
+using System.Text;
+using System.Text.RegularExpressions;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
+using Newtonsoft.Json.Linq;
 using System.ComponentModel.DataAnnotations;
+using OpenAPIDateConverter = Adyen.ApiSerialization.OpenAPIDateConverter;
 
 namespace Adyen.Model.Management
 {
     /// <summary>
     /// CustomNotification
     /// </summary>
-    [DataContract]
-    public partial class CustomNotification :  IEquatable<CustomNotification>, IValidatableObject
+    [DataContract(Name = "CustomNotification")]
+    public partial class CustomNotification : IEquatable<CustomNotification>, IValidatableObject
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="CustomNotification" /> class.
@@ -55,49 +57,49 @@ namespace Adyen.Model.Management
         /// <summary>
         /// Gets or Sets Amount
         /// </summary>
-        [DataMember(Name="amount", EmitDefaultValue=false)]
+        [DataMember(Name = "amount", EmitDefaultValue = false)]
         public Amount Amount { get; set; }
 
         /// <summary>
         /// The event that caused the notification to be sent.Currently supported values: * **AUTHORISATION** * **CANCELLATION** * **REFUND** * **CAPTURE** * **DEACTIVATE_RECURRING** * **REPORT_AVAILABLE** * **CHARGEBACK** * **REQUEST_FOR_INFORMATION** * **NOTIFICATION_OF_CHARGEBACK** * **NOTIFICATIONTEST** * **ORDER_OPENED** * **ORDER_CLOSED** * **CHARGEBACK_REVERSED** * **REFUNDED_REVERSED** * **REFUND_WITH_DATA**
         /// </summary>
         /// <value>The event that caused the notification to be sent.Currently supported values: * **AUTHORISATION** * **CANCELLATION** * **REFUND** * **CAPTURE** * **DEACTIVATE_RECURRING** * **REPORT_AVAILABLE** * **CHARGEBACK** * **REQUEST_FOR_INFORMATION** * **NOTIFICATION_OF_CHARGEBACK** * **NOTIFICATIONTEST** * **ORDER_OPENED** * **ORDER_CLOSED** * **CHARGEBACK_REVERSED** * **REFUNDED_REVERSED** * **REFUND_WITH_DATA**</value>
-        [DataMember(Name="eventCode", EmitDefaultValue=false)]
+        [DataMember(Name = "eventCode", EmitDefaultValue = false)]
         public string EventCode { get; set; }
 
         /// <summary>
         /// The time of the event. Format: [ISO 8601](http://www.w3.org/TR/NOTE-datetime), YYYY-MM-DDThh:mm:ssTZD.
         /// </summary>
         /// <value>The time of the event. Format: [ISO 8601](http://www.w3.org/TR/NOTE-datetime), YYYY-MM-DDThh:mm:ssTZD.</value>
-        [DataMember(Name="eventDate", EmitDefaultValue=false)]
+        [DataMember(Name = "eventDate", EmitDefaultValue = false)]
         public DateTime EventDate { get; set; }
 
         /// <summary>
         /// Your reference for the custom test notification.
         /// </summary>
         /// <value>Your reference for the custom test notification.</value>
-        [DataMember(Name="merchantReference", EmitDefaultValue=false)]
+        [DataMember(Name = "merchantReference", EmitDefaultValue = false)]
         public string MerchantReference { get; set; }
 
         /// <summary>
         /// The payment method for the payment that the notification is about. Possible values: * **amex** * **visa** * **mc** * **maestro** * **bcmc** * **paypal**  * **sms**  * **bankTransfer_NL** * **bankTransfer_DE** * **bankTransfer_BE** * **ideal** * **elv** * **sepadirectdebit** 
         /// </summary>
         /// <value>The payment method for the payment that the notification is about. Possible values: * **amex** * **visa** * **mc** * **maestro** * **bcmc** * **paypal**  * **sms**  * **bankTransfer_NL** * **bankTransfer_DE** * **bankTransfer_BE** * **ideal** * **elv** * **sepadirectdebit** </value>
-        [DataMember(Name="paymentMethod", EmitDefaultValue=false)]
+        [DataMember(Name = "paymentMethod", EmitDefaultValue = false)]
         public string PaymentMethod { get; set; }
 
         /// <summary>
         /// A descripton of what caused the notification.
         /// </summary>
         /// <value>A descripton of what caused the notification.</value>
-        [DataMember(Name="reason", EmitDefaultValue=false)]
+        [DataMember(Name = "reason", EmitDefaultValue = false)]
         public string Reason { get; set; }
 
         /// <summary>
         /// The outcome of the event which the notification is about. Set to either **true** or **false**. 
         /// </summary>
         /// <value>The outcome of the event which the notification is about. Set to either **true** or **false**. </value>
-        [DataMember(Name="success", EmitDefaultValue=false)]
+        [DataMember(Name = "success", EmitDefaultValue = false)]
         public bool Success { get; set; }
 
         /// <summary>
@@ -106,7 +108,7 @@ namespace Adyen.Model.Management
         /// <returns>String presentation of the object</returns>
         public override string ToString()
         {
-            var sb = new StringBuilder();
+            StringBuilder sb = new StringBuilder();
             sb.Append("class CustomNotification {\n");
             sb.Append("  Amount: ").Append(Amount).Append("\n");
             sb.Append("  EventCode: ").Append(EventCode).Append("\n");
@@ -146,8 +148,9 @@ namespace Adyen.Model.Management
         public bool Equals(CustomNotification input)
         {
             if (input == null)
+            {
                 return false;
-
+            }
             return 
                 (
                     this.Amount == input.Amount ||
@@ -181,8 +184,7 @@ namespace Adyen.Model.Management
                 ) && 
                 (
                     this.Success == input.Success ||
-                    (this.Success != null &&
-                    this.Success.Equals(input.Success))
+                    this.Success.Equals(input.Success)
                 );
         }
 
@@ -196,29 +198,39 @@ namespace Adyen.Model.Management
             {
                 int hashCode = 41;
                 if (this.Amount != null)
-                    hashCode = hashCode * 59 + this.Amount.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.Amount.GetHashCode();
+                }
                 if (this.EventCode != null)
-                    hashCode = hashCode * 59 + this.EventCode.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.EventCode.GetHashCode();
+                }
                 if (this.EventDate != null)
-                    hashCode = hashCode * 59 + this.EventDate.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.EventDate.GetHashCode();
+                }
                 if (this.MerchantReference != null)
-                    hashCode = hashCode * 59 + this.MerchantReference.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.MerchantReference.GetHashCode();
+                }
                 if (this.PaymentMethod != null)
-                    hashCode = hashCode * 59 + this.PaymentMethod.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.PaymentMethod.GetHashCode();
+                }
                 if (this.Reason != null)
-                    hashCode = hashCode * 59 + this.Reason.GetHashCode();
-                if (this.Success != null)
-                    hashCode = hashCode * 59 + this.Success.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.Reason.GetHashCode();
+                }
+                hashCode = (hashCode * 59) + this.Success.GetHashCode();
                 return hashCode;
             }
         }
-
         /// <summary>
         /// To validate all properties of the instance
         /// </summary>
         /// <param name="validationContext">Validation context</param>
         /// <returns>Validation Result</returns>
-        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+        public IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> Validate(ValidationContext validationContext)
         {
             yield break;
         }

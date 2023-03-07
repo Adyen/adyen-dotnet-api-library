@@ -62,7 +62,7 @@ namespace Adyen.Test
         {
             var client = CreateMockTestClientApiKeyBasedRequestAsync("Mocks/storedvalue/mergeBalance-success.json");
             var service = new StoredValue(client);
-            var response = service.VoidTransaction(new StoredValueVoidRequest());
+            var response = service.VoidTransactionAsync(new StoredValueVoidRequest()).Result;
             Assert.AreEqual(response.ResultCode, StoredValueVoidResponse.ResultCodeEnum.Success);
             Assert.AreEqual(response.CurrentBalance.Value, 0);
         }

@@ -11,25 +11,27 @@
 */
 
 using System;
-using System.Linq;
-using System.IO;
-using System.Text;
-using System.Text.RegularExpressions;
 using System.Collections;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Linq;
+using System.IO;
 using System.Runtime.Serialization;
+using System.Text;
+using System.Text.RegularExpressions;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
+using Newtonsoft.Json.Linq;
 using System.ComponentModel.DataAnnotations;
+using OpenAPIDateConverter = Adyen.ApiSerialization.OpenAPIDateConverter;
 
 namespace Adyen.Model.Management
 {
     /// <summary>
     /// UpdatePaymentMethodInfo
     /// </summary>
-    [DataContract]
-    public partial class UpdatePaymentMethodInfo :  IEquatable<UpdatePaymentMethodInfo>, IValidatableObject
+    [DataContract(Name = "UpdatePaymentMethodInfo")]
+    public partial class UpdatePaymentMethodInfo : IEquatable<UpdatePaymentMethodInfo>, IValidatableObject
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="UpdatePaymentMethodInfo" /> class.
@@ -52,34 +54,34 @@ namespace Adyen.Model.Management
         /// The list of countries where a payment method is available. By default, all countries supported by the payment method.
         /// </summary>
         /// <value>The list of countries where a payment method is available. By default, all countries supported by the payment method.</value>
-        [DataMember(Name="countries", EmitDefaultValue=false)]
+        [DataMember(Name = "countries", EmitDefaultValue = false)]
         public List<string> Countries { get; set; }
 
         /// <summary>
         /// The list of currencies that a payment method supports. By default, all currencies supported by the payment method.
         /// </summary>
         /// <value>The list of currencies that a payment method supports. By default, all currencies supported by the payment method.</value>
-        [DataMember(Name="currencies", EmitDefaultValue=false)]
+        [DataMember(Name = "currencies", EmitDefaultValue = false)]
         public List<string> Currencies { get; set; }
 
         /// <summary>
         /// Custom routing flags for acquirer routing.
         /// </summary>
         /// <value>Custom routing flags for acquirer routing.</value>
-        [DataMember(Name="customRoutingFlags", EmitDefaultValue=false)]
+        [DataMember(Name = "customRoutingFlags", EmitDefaultValue = false)]
         public List<string> CustomRoutingFlags { get; set; }
 
         /// <summary>
         /// Indicates whether the payment method is enabled (**true**) or disabled (**false**).
         /// </summary>
         /// <value>Indicates whether the payment method is enabled (**true**) or disabled (**false**).</value>
-        [DataMember(Name="enabled", EmitDefaultValue=false)]
+        [DataMember(Name = "enabled", EmitDefaultValue = false)]
         public bool Enabled { get; set; }
 
         /// <summary>
         /// Gets or Sets ShopperStatement
         /// </summary>
-        [DataMember(Name="shopperStatement", EmitDefaultValue=false)]
+        [DataMember(Name = "shopperStatement", EmitDefaultValue = false)]
         public ShopperStatement ShopperStatement { get; set; }
 
         /// <summary>
@@ -88,7 +90,7 @@ namespace Adyen.Model.Management
         /// <returns>String presentation of the object</returns>
         public override string ToString()
         {
-            var sb = new StringBuilder();
+            StringBuilder sb = new StringBuilder();
             sb.Append("class UpdatePaymentMethodInfo {\n");
             sb.Append("  Countries: ").Append(Countries).Append("\n");
             sb.Append("  Currencies: ").Append(Currencies).Append("\n");
@@ -126,8 +128,9 @@ namespace Adyen.Model.Management
         public bool Equals(UpdatePaymentMethodInfo input)
         {
             if (input == null)
+            {
                 return false;
-
+            }
             return 
                 (
                     this.Countries == input.Countries ||
@@ -149,8 +152,7 @@ namespace Adyen.Model.Management
                 ) && 
                 (
                     this.Enabled == input.Enabled ||
-                    (this.Enabled != null &&
-                    this.Enabled.Equals(input.Enabled))
+                    this.Enabled.Equals(input.Enabled)
                 ) && 
                 (
                     this.ShopperStatement == input.ShopperStatement ||
@@ -169,25 +171,31 @@ namespace Adyen.Model.Management
             {
                 int hashCode = 41;
                 if (this.Countries != null)
-                    hashCode = hashCode * 59 + this.Countries.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.Countries.GetHashCode();
+                }
                 if (this.Currencies != null)
-                    hashCode = hashCode * 59 + this.Currencies.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.Currencies.GetHashCode();
+                }
                 if (this.CustomRoutingFlags != null)
-                    hashCode = hashCode * 59 + this.CustomRoutingFlags.GetHashCode();
-                if (this.Enabled != null)
-                    hashCode = hashCode * 59 + this.Enabled.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.CustomRoutingFlags.GetHashCode();
+                }
+                hashCode = (hashCode * 59) + this.Enabled.GetHashCode();
                 if (this.ShopperStatement != null)
-                    hashCode = hashCode * 59 + this.ShopperStatement.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.ShopperStatement.GetHashCode();
+                }
                 return hashCode;
             }
         }
-
         /// <summary>
         /// To validate all properties of the instance
         /// </summary>
         /// <param name="validationContext">Validation context</param>
         /// <returns>Validation Result</returns>
-        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+        public IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> Validate(ValidationContext validationContext)
         {
             yield break;
         }

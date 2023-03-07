@@ -10,7 +10,6 @@
 * Do not edit the class manually.
 */
 
-
 using System;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Serialization;

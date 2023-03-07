@@ -10,7 +10,6 @@
 * Do not edit the class manually.
 */
 
-
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -24,6 +23,7 @@ using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
 using Newtonsoft.Json.Linq;
 using System.ComponentModel.DataAnnotations;
+using OpenAPIDateConverter = Adyen.ApiSerialization.OpenAPIDateConverter;
 
 namespace Adyen.Model.Recurring
 {
@@ -53,14 +53,14 @@ namespace Adyen.Model.Recurring
         /// The first name.
         /// </summary>
         /// <value>The first name.</value>
-        [DataMember(Name = "firstName", IsRequired = false, EmitDefaultValue = true)]
+        [DataMember(Name = "firstName", IsRequired = false, EmitDefaultValue = false)]
         public string FirstName { get; set; }
 
         /// <summary>
         /// The last name.
         /// </summary>
         /// <value>The last name.</value>
-        [DataMember(Name = "lastName", IsRequired = false, EmitDefaultValue = true)]
+        [DataMember(Name = "lastName", IsRequired = false, EmitDefaultValue = false)]
         public string LastName { get; set; }
 
         /// <summary>
@@ -140,7 +140,6 @@ namespace Adyen.Model.Recurring
                 return hashCode;
             }
         }
-
         /// <summary>
         /// To validate all properties of the instance
         /// </summary>

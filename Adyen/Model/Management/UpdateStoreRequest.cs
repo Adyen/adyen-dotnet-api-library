@@ -11,25 +11,27 @@
 */
 
 using System;
-using System.Linq;
-using System.IO;
-using System.Text;
-using System.Text.RegularExpressions;
 using System.Collections;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Linq;
+using System.IO;
 using System.Runtime.Serialization;
+using System.Text;
+using System.Text.RegularExpressions;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
+using Newtonsoft.Json.Linq;
 using System.ComponentModel.DataAnnotations;
+using OpenAPIDateConverter = Adyen.ApiSerialization.OpenAPIDateConverter;
 
 namespace Adyen.Model.Management
 {
     /// <summary>
     /// UpdateStoreRequest
     /// </summary>
-    [DataContract]
-    public partial class UpdateStoreRequest :  IEquatable<UpdateStoreRequest>, IValidatableObject
+    [DataContract(Name = "UpdateStoreRequest")]
+    public partial class UpdateStoreRequest : IEquatable<UpdateStoreRequest>, IValidatableObject
     {
         /// <summary>
         /// The status of the store. Possible values are:  - **active**: This value is assigned automatically when a store is created.  - **inactive**: The maximum [transaction limits and number of Store-and-Forward transactions](https://docs.adyen.com/point-of-sale/determine-account-structure/configure-features#payment-features) for the store are set to 0. This blocks new transactions, but captures are still possible. - **closed**: The terminals of the store are reassigned to the merchant inventory, so they can&#39;t process payments.  You can change the status from **active** to **inactive**, and from **inactive** to **active** or **closed**.  Once **closed**, a store can&#39;t be reopened.
@@ -58,11 +60,12 @@ namespace Adyen.Model.Management
 
         }
 
+
         /// <summary>
         /// The status of the store. Possible values are:  - **active**: This value is assigned automatically when a store is created.  - **inactive**: The maximum [transaction limits and number of Store-and-Forward transactions](https://docs.adyen.com/point-of-sale/determine-account-structure/configure-features#payment-features) for the store are set to 0. This blocks new transactions, but captures are still possible. - **closed**: The terminals of the store are reassigned to the merchant inventory, so they can&#39;t process payments.  You can change the status from **active** to **inactive**, and from **inactive** to **active** or **closed**.  Once **closed**, a store can&#39;t be reopened.
         /// </summary>
         /// <value>The status of the store. Possible values are:  - **active**: This value is assigned automatically when a store is created.  - **inactive**: The maximum [transaction limits and number of Store-and-Forward transactions](https://docs.adyen.com/point-of-sale/determine-account-structure/configure-features#payment-features) for the store are set to 0. This blocks new transactions, but captures are still possible. - **closed**: The terminals of the store are reassigned to the merchant inventory, so they can&#39;t process payments.  You can change the status from **active** to **inactive**, and from **inactive** to **active** or **closed**.  Once **closed**, a store can&#39;t be reopened.</value>
-        [DataMember(Name="status", EmitDefaultValue=false)]
+        [DataMember(Name = "status", EmitDefaultValue = false)]
         public StatusEnum? Status { get; set; }
         /// <summary>
         /// Initializes a new instance of the <see cref="UpdateStoreRequest" /> class.
@@ -86,36 +89,35 @@ namespace Adyen.Model.Management
         /// <summary>
         /// Gets or Sets Address
         /// </summary>
-        [DataMember(Name="address", EmitDefaultValue=false)]
+        [DataMember(Name = "address", EmitDefaultValue = false)]
         public UpdatableAddress Address { get; set; }
 
         /// <summary>
         /// The unique identifiers of the [business lines](https://docs.adyen.com/api-explorer/#/legalentity/latest/post/businesslines__resParam_id) that the store is associated with.
         /// </summary>
         /// <value>The unique identifiers of the [business lines](https://docs.adyen.com/api-explorer/#/legalentity/latest/post/businesslines__resParam_id) that the store is associated with.</value>
-        [DataMember(Name="businessLineIds", EmitDefaultValue=false)]
+        [DataMember(Name = "businessLineIds", EmitDefaultValue = false)]
         public List<string> BusinessLineIds { get; set; }
 
         /// <summary>
         /// The description of the store.
         /// </summary>
         /// <value>The description of the store.</value>
-        [DataMember(Name="description", EmitDefaultValue=false)]
+        [DataMember(Name = "description", EmitDefaultValue = false)]
         public string Description { get; set; }
 
         /// <summary>
         /// When using the Zip payment method: The location ID that Zip has assigned to your store.
         /// </summary>
         /// <value>When using the Zip payment method: The location ID that Zip has assigned to your store.</value>
-        [DataMember(Name="externalReferenceId", EmitDefaultValue=false)]
+        [DataMember(Name = "externalReferenceId", EmitDefaultValue = false)]
         public string ExternalReferenceId { get; set; }
 
         /// <summary>
         /// Gets or Sets SplitConfiguration
         /// </summary>
-        [DataMember(Name="splitConfiguration", EmitDefaultValue=false)]
+        [DataMember(Name = "splitConfiguration", EmitDefaultValue = false)]
         public StoreSplitConfiguration SplitConfiguration { get; set; }
-
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -123,7 +125,7 @@ namespace Adyen.Model.Management
         /// <returns>String presentation of the object</returns>
         public override string ToString()
         {
-            var sb = new StringBuilder();
+            StringBuilder sb = new StringBuilder();
             sb.Append("class UpdateStoreRequest {\n");
             sb.Append("  Address: ").Append(Address).Append("\n");
             sb.Append("  BusinessLineIds: ").Append(BusinessLineIds).Append("\n");
@@ -162,8 +164,9 @@ namespace Adyen.Model.Management
         public bool Equals(UpdateStoreRequest input)
         {
             if (input == null)
+            {
                 return false;
-
+            }
             return 
                 (
                     this.Address == input.Address ||
@@ -193,8 +196,7 @@ namespace Adyen.Model.Management
                 ) && 
                 (
                     this.Status == input.Status ||
-                    (this.Status != null &&
-                    this.Status.Equals(input.Status))
+                    this.Status.Equals(input.Status)
                 );
         }
 
@@ -208,27 +210,35 @@ namespace Adyen.Model.Management
             {
                 int hashCode = 41;
                 if (this.Address != null)
-                    hashCode = hashCode * 59 + this.Address.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.Address.GetHashCode();
+                }
                 if (this.BusinessLineIds != null)
-                    hashCode = hashCode * 59 + this.BusinessLineIds.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.BusinessLineIds.GetHashCode();
+                }
                 if (this.Description != null)
-                    hashCode = hashCode * 59 + this.Description.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.Description.GetHashCode();
+                }
                 if (this.ExternalReferenceId != null)
-                    hashCode = hashCode * 59 + this.ExternalReferenceId.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.ExternalReferenceId.GetHashCode();
+                }
                 if (this.SplitConfiguration != null)
-                    hashCode = hashCode * 59 + this.SplitConfiguration.GetHashCode();
-                if (this.Status != null)
-                    hashCode = hashCode * 59 + this.Status.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.SplitConfiguration.GetHashCode();
+                }
+                hashCode = (hashCode * 59) + this.Status.GetHashCode();
                 return hashCode;
             }
         }
-
         /// <summary>
         /// To validate all properties of the instance
         /// </summary>
         /// <param name="validationContext">Validation context</param>
         /// <returns>Validation Result</returns>
-        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+        public IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> Validate(ValidationContext validationContext)
         {
             yield break;
         }

@@ -11,25 +11,27 @@
 */
 
 using System;
-using System.Linq;
-using System.IO;
-using System.Text;
-using System.Text.RegularExpressions;
 using System.Collections;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Linq;
+using System.IO;
 using System.Runtime.Serialization;
+using System.Text;
+using System.Text.RegularExpressions;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
+using Newtonsoft.Json.Linq;
 using System.ComponentModel.DataAnnotations;
+using OpenAPIDateConverter = Adyen.ApiSerialization.OpenAPIDateConverter;
 
 namespace Adyen.Model.Management
 {
     /// <summary>
     /// Merchant
     /// </summary>
-    [DataContract]
-    public partial class Merchant :  IEquatable<Merchant>, IValidatableObject
+    [DataContract(Name = "Merchant")]
+    public partial class Merchant : IEquatable<Merchant>, IValidatableObject
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="Merchant" /> class.
@@ -69,98 +71,98 @@ namespace Adyen.Model.Management
         /// <summary>
         /// Gets or Sets Links
         /// </summary>
-        [DataMember(Name="_links", EmitDefaultValue=false)]
+        [DataMember(Name = "_links", EmitDefaultValue = false)]
         public MerchantLinks Links { get; set; }
 
         /// <summary>
         /// The [capture delay](https://docs.adyen.com/online-payments/capture#capture-delay) set for the merchant account.  Possible values: * **Immediate** * **Manual** * Number of days from **1** to **29**
         /// </summary>
         /// <value>The [capture delay](https://docs.adyen.com/online-payments/capture#capture-delay) set for the merchant account.  Possible values: * **Immediate** * **Manual** * Number of days from **1** to **29**</value>
-        [DataMember(Name="captureDelay", EmitDefaultValue=false)]
+        [DataMember(Name = "captureDelay", EmitDefaultValue = false)]
         public string CaptureDelay { get; set; }
 
         /// <summary>
         /// The unique identifier of the company account this merchant belongs to
         /// </summary>
         /// <value>The unique identifier of the company account this merchant belongs to</value>
-        [DataMember(Name="companyId", EmitDefaultValue=false)]
+        [DataMember(Name = "companyId", EmitDefaultValue = false)]
         public string CompanyId { get; set; }
 
         /// <summary>
         /// List of available data centers.  Adyen has several data centers around the world.In the URL that you use for making API requests, we recommend you use the live URL prefix from the data center closest to your shoppers.
         /// </summary>
         /// <value>List of available data centers.  Adyen has several data centers around the world.In the URL that you use for making API requests, we recommend you use the live URL prefix from the data center closest to your shoppers.</value>
-        [DataMember(Name="dataCenters", EmitDefaultValue=false)]
+        [DataMember(Name = "dataCenters", EmitDefaultValue = false)]
         public List<DataCenter> DataCenters { get; set; }
 
         /// <summary>
         /// The default [&#x60;shopperInteraction&#x60;](https://docs.adyen.com/api-explorer/#/CheckoutService/v68/post/payments__reqParam_shopperInteraction) value used when processing payments through this merchant account.
         /// </summary>
         /// <value>The default [&#x60;shopperInteraction&#x60;](https://docs.adyen.com/api-explorer/#/CheckoutService/v68/post/payments__reqParam_shopperInteraction) value used when processing payments through this merchant account.</value>
-        [DataMember(Name="defaultShopperInteraction", EmitDefaultValue=false)]
+        [DataMember(Name = "defaultShopperInteraction", EmitDefaultValue = false)]
         public string DefaultShopperInteraction { get; set; }
 
         /// <summary>
         /// Your description for the merchant account, maximum 300 characters
         /// </summary>
         /// <value>Your description for the merchant account, maximum 300 characters</value>
-        [DataMember(Name="description", EmitDefaultValue=false)]
+        [DataMember(Name = "description", EmitDefaultValue = false)]
         public string Description { get; set; }
 
         /// <summary>
         /// The unique identifier of the merchant account.
         /// </summary>
         /// <value>The unique identifier of the merchant account.</value>
-        [DataMember(Name="id", EmitDefaultValue=false)]
+        [DataMember(Name = "id", EmitDefaultValue = false)]
         public string Id { get; set; }
 
         /// <summary>
         /// The city where the legal entity of this merchant account is registered.
         /// </summary>
         /// <value>The city where the legal entity of this merchant account is registered.</value>
-        [DataMember(Name="merchantCity", EmitDefaultValue=false)]
+        [DataMember(Name = "merchantCity", EmitDefaultValue = false)]
         public string MerchantCity { get; set; }
 
         /// <summary>
         /// The name of the legal entity associated with the merchant account.
         /// </summary>
         /// <value>The name of the legal entity associated with the merchant account.</value>
-        [DataMember(Name="name", EmitDefaultValue=false)]
+        [DataMember(Name = "name", EmitDefaultValue = false)]
         public string Name { get; set; }
 
         /// <summary>
         /// Only applies to merchant accounts managed by Adyen&#39;s partners. The name of the pricing plan assigned to the merchant account.
         /// </summary>
         /// <value>Only applies to merchant accounts managed by Adyen&#39;s partners. The name of the pricing plan assigned to the merchant account.</value>
-        [DataMember(Name="pricingPlan", EmitDefaultValue=false)]
+        [DataMember(Name = "pricingPlan", EmitDefaultValue = false)]
         public string PricingPlan { get; set; }
 
         /// <summary>
         /// The currency of the country where the legal entity of this merchant account is registered. Format: [ISO currency code](https://docs.adyen.com/development-resources/currency-codes). For example, a legal entity based in the United States has USD as the primary settlement currency.
         /// </summary>
         /// <value>The currency of the country where the legal entity of this merchant account is registered. Format: [ISO currency code](https://docs.adyen.com/development-resources/currency-codes). For example, a legal entity based in the United States has USD as the primary settlement currency.</value>
-        [DataMember(Name="primarySettlementCurrency", EmitDefaultValue=false)]
+        [DataMember(Name = "primarySettlementCurrency", EmitDefaultValue = false)]
         public string PrimarySettlementCurrency { get; set; }
 
         /// <summary>
         /// Reference of the merchant account.
         /// </summary>
         /// <value>Reference of the merchant account.</value>
-        [DataMember(Name="reference", EmitDefaultValue=false)]
+        [DataMember(Name = "reference", EmitDefaultValue = false)]
         public string Reference { get; set; }
 
         /// <summary>
         /// The URL for the ecommerce website used with this merchant account.
         /// </summary>
         /// <value>The URL for the ecommerce website used with this merchant account.</value>
-        [DataMember(Name="shopWebAddress", EmitDefaultValue=false)]
+        [DataMember(Name = "shopWebAddress", EmitDefaultValue = false)]
         public string ShopWebAddress { get; set; }
 
         /// <summary>
         /// The status of the merchant account.  Possible values:  * **PreActive**: The merchant account has been created. Users cannot access the merchant account in the Customer Area. The account cannot process payments. * **Active**: Users can access the merchant account in the Customer Area. If the company account is also **Active**, then payment processing and payouts are enabled. * **InactiveWithModifications**: Users can access the merchant account in the Customer Area. You cannot process new payments but you can still modify payments, for example issue refunds. You can still receive payouts. * **Inactive**: Users can access the merchant account in the Customer Area. Payment processing and payouts are disabled. * **Closed**: The account is closed and this cannot be reversed. Users cannot log in. Payment processing and payouts are disabled.
         /// </summary>
         /// <value>The status of the merchant account.  Possible values:  * **PreActive**: The merchant account has been created. Users cannot access the merchant account in the Customer Area. The account cannot process payments. * **Active**: Users can access the merchant account in the Customer Area. If the company account is also **Active**, then payment processing and payouts are enabled. * **InactiveWithModifications**: Users can access the merchant account in the Customer Area. You cannot process new payments but you can still modify payments, for example issue refunds. You can still receive payouts. * **Inactive**: Users can access the merchant account in the Customer Area. Payment processing and payouts are disabled. * **Closed**: The account is closed and this cannot be reversed. Users cannot log in. Payment processing and payouts are disabled.</value>
-        [DataMember(Name="status", EmitDefaultValue=false)]
+        [DataMember(Name = "status", EmitDefaultValue = false)]
         public string Status { get; set; }
 
         /// <summary>
@@ -169,7 +171,7 @@ namespace Adyen.Model.Management
         /// <returns>String presentation of the object</returns>
         public override string ToString()
         {
-            var sb = new StringBuilder();
+            StringBuilder sb = new StringBuilder();
             sb.Append("class Merchant {\n");
             sb.Append("  Links: ").Append(Links).Append("\n");
             sb.Append("  CaptureDelay: ").Append(CaptureDelay).Append("\n");
@@ -216,8 +218,9 @@ namespace Adyen.Model.Management
         public bool Equals(Merchant input)
         {
             if (input == null)
+            {
                 return false;
-
+            }
             return 
                 (
                     this.Links == input.Links ||
@@ -302,43 +305,70 @@ namespace Adyen.Model.Management
             {
                 int hashCode = 41;
                 if (this.Links != null)
-                    hashCode = hashCode * 59 + this.Links.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.Links.GetHashCode();
+                }
                 if (this.CaptureDelay != null)
-                    hashCode = hashCode * 59 + this.CaptureDelay.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.CaptureDelay.GetHashCode();
+                }
                 if (this.CompanyId != null)
-                    hashCode = hashCode * 59 + this.CompanyId.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.CompanyId.GetHashCode();
+                }
                 if (this.DataCenters != null)
-                    hashCode = hashCode * 59 + this.DataCenters.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.DataCenters.GetHashCode();
+                }
                 if (this.DefaultShopperInteraction != null)
-                    hashCode = hashCode * 59 + this.DefaultShopperInteraction.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.DefaultShopperInteraction.GetHashCode();
+                }
                 if (this.Description != null)
-                    hashCode = hashCode * 59 + this.Description.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.Description.GetHashCode();
+                }
                 if (this.Id != null)
-                    hashCode = hashCode * 59 + this.Id.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.Id.GetHashCode();
+                }
                 if (this.MerchantCity != null)
-                    hashCode = hashCode * 59 + this.MerchantCity.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.MerchantCity.GetHashCode();
+                }
                 if (this.Name != null)
-                    hashCode = hashCode * 59 + this.Name.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.Name.GetHashCode();
+                }
                 if (this.PricingPlan != null)
-                    hashCode = hashCode * 59 + this.PricingPlan.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.PricingPlan.GetHashCode();
+                }
                 if (this.PrimarySettlementCurrency != null)
-                    hashCode = hashCode * 59 + this.PrimarySettlementCurrency.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.PrimarySettlementCurrency.GetHashCode();
+                }
                 if (this.Reference != null)
-                    hashCode = hashCode * 59 + this.Reference.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.Reference.GetHashCode();
+                }
                 if (this.ShopWebAddress != null)
-                    hashCode = hashCode * 59 + this.ShopWebAddress.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.ShopWebAddress.GetHashCode();
+                }
                 if (this.Status != null)
-                    hashCode = hashCode * 59 + this.Status.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.Status.GetHashCode();
+                }
                 return hashCode;
             }
         }
-
         /// <summary>
         /// To validate all properties of the instance
         /// </summary>
         /// <param name="validationContext">Validation context</param>
         /// <returns>Validation Result</returns>
-        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+        public IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> Validate(ValidationContext validationContext)
         {
             yield break;
         }

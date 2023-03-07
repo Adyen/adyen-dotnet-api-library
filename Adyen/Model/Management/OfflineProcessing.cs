@@ -11,32 +11,34 @@
 */
 
 using System;
-using System.Linq;
-using System.IO;
-using System.Text;
-using System.Text.RegularExpressions;
 using System.Collections;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Linq;
+using System.IO;
 using System.Runtime.Serialization;
+using System.Text;
+using System.Text.RegularExpressions;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
+using Newtonsoft.Json.Linq;
 using System.ComponentModel.DataAnnotations;
+using OpenAPIDateConverter = Adyen.ApiSerialization.OpenAPIDateConverter;
 
 namespace Adyen.Model.Management
 {
     /// <summary>
     /// OfflineProcessing
     /// </summary>
-    [DataContract]
-    public partial class OfflineProcessing :  IEquatable<OfflineProcessing>, IValidatableObject
+    [DataContract(Name = "OfflineProcessing")]
+    public partial class OfflineProcessing : IEquatable<OfflineProcessing>, IValidatableObject
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="OfflineProcessing" /> class.
         /// </summary>
         /// <param name="chipFloorLimit">The maximum offline transaction amount for chip cards, in the processing currency and specified in [minor units](https://docs.adyen.com/development-resources/currency-codes)..</param>
         /// <param name="offlineSwipeLimits">The maximum offline transaction amount for swiped cards, in the specified currency..</param>
-        public OfflineProcessing(int chipFloorLimit = default(int), List<MinorUnitsMonetaryValue> offlineSwipeLimits = default(List<MinorUnitsMonetaryValue>))
+        public OfflineProcessing(int? chipFloorLimit = default(int?), List<MinorUnitsMonetaryValue> offlineSwipeLimits = default(List<MinorUnitsMonetaryValue>))
         {
             this.ChipFloorLimit = chipFloorLimit;
             this.OfflineSwipeLimits = offlineSwipeLimits;
@@ -46,14 +48,14 @@ namespace Adyen.Model.Management
         /// The maximum offline transaction amount for chip cards, in the processing currency and specified in [minor units](https://docs.adyen.com/development-resources/currency-codes).
         /// </summary>
         /// <value>The maximum offline transaction amount for chip cards, in the processing currency and specified in [minor units](https://docs.adyen.com/development-resources/currency-codes).</value>
-        [DataMember(Name="chipFloorLimit", EmitDefaultValue=false)]
-        public int ChipFloorLimit { get; set; }
+        [DataMember(Name = "chipFloorLimit", EmitDefaultValue = false)]
+        public int? ChipFloorLimit { get; set; }
 
         /// <summary>
         /// The maximum offline transaction amount for swiped cards, in the specified currency.
         /// </summary>
         /// <value>The maximum offline transaction amount for swiped cards, in the specified currency.</value>
-        [DataMember(Name="offlineSwipeLimits", EmitDefaultValue=false)]
+        [DataMember(Name = "offlineSwipeLimits", EmitDefaultValue = false)]
         public List<MinorUnitsMonetaryValue> OfflineSwipeLimits { get; set; }
 
         /// <summary>
@@ -62,7 +64,7 @@ namespace Adyen.Model.Management
         /// <returns>String presentation of the object</returns>
         public override string ToString()
         {
-            var sb = new StringBuilder();
+            StringBuilder sb = new StringBuilder();
             sb.Append("class OfflineProcessing {\n");
             sb.Append("  ChipFloorLimit: ").Append(ChipFloorLimit).Append("\n");
             sb.Append("  OfflineSwipeLimits: ").Append(OfflineSwipeLimits).Append("\n");
@@ -97,13 +99,13 @@ namespace Adyen.Model.Management
         public bool Equals(OfflineProcessing input)
         {
             if (input == null)
+            {
                 return false;
-
+            }
             return 
                 (
                     this.ChipFloorLimit == input.ChipFloorLimit ||
-                    (this.ChipFloorLimit != null &&
-                    this.ChipFloorLimit.Equals(input.ChipFloorLimit))
+                    this.ChipFloorLimit.Equals(input.ChipFloorLimit)
                 ) && 
                 (
                     this.OfflineSwipeLimits == input.OfflineSwipeLimits ||
@@ -122,20 +124,20 @@ namespace Adyen.Model.Management
             unchecked // Overflow is fine, just wrap
             {
                 int hashCode = 41;
-                if (this.ChipFloorLimit != null)
-                    hashCode = hashCode * 59 + this.ChipFloorLimit.GetHashCode();
+                hashCode = (hashCode * 59) + this.ChipFloorLimit.GetHashCode();
                 if (this.OfflineSwipeLimits != null)
-                    hashCode = hashCode * 59 + this.OfflineSwipeLimits.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.OfflineSwipeLimits.GetHashCode();
+                }
                 return hashCode;
             }
         }
-
         /// <summary>
         /// To validate all properties of the instance
         /// </summary>
         /// <param name="validationContext">Validation context</param>
         /// <returns>Validation Result</returns>
-        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+        public IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> Validate(ValidationContext validationContext)
         {
             yield break;
         }
