@@ -11,25 +11,27 @@
 */
 
 using System;
-using System.Linq;
-using System.IO;
-using System.Text;
-using System.Text.RegularExpressions;
 using System.Collections;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Linq;
+using System.IO;
 using System.Runtime.Serialization;
+using System.Text;
+using System.Text.RegularExpressions;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
+using Newtonsoft.Json.Linq;
 using System.ComponentModel.DataAnnotations;
+using OpenAPIDateConverter = Adyen.ApiSerialization.OpenAPIDateConverter;
 
 namespace Adyen.Model.PosTerminalManagement
 {
     /// <summary>
     /// FindTerminalResponse
     /// </summary>
-    [DataContract]
-    public partial class FindTerminalResponse :  IEquatable<FindTerminalResponse>, IValidatableObject
+    [DataContract(Name = "FindTerminalResponse")]
+    public partial class FindTerminalResponse : IEquatable<FindTerminalResponse>, IValidatableObject
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="FindTerminalResponse" /> class.
@@ -47,45 +49,45 @@ namespace Adyen.Model.PosTerminalManagement
         public FindTerminalResponse(string companyAccount = default(string), string merchantAccount = default(string), bool merchantInventory = default(bool), string store = default(string), string terminal = default(string))
         {
             this.CompanyAccount = companyAccount;
+            this.Terminal = terminal;
             this.MerchantAccount = merchantAccount;
             this.MerchantInventory = merchantInventory;
             this.Store = store;
-            this.Terminal = terminal;
         }
 
         /// <summary>
         /// The company account that the terminal is associated with. If this is the only account level shown in the response, the terminal is assigned to the inventory of the company account.
         /// </summary>
         /// <value>The company account that the terminal is associated with. If this is the only account level shown in the response, the terminal is assigned to the inventory of the company account.</value>
-        [DataMember(Name="companyAccount", EmitDefaultValue=true)]
+        [DataMember(Name = "companyAccount", IsRequired = false, EmitDefaultValue = false)]
         public string CompanyAccount { get; set; }
 
         /// <summary>
         /// The merchant account that the terminal is associated with. If the response doesn&#39;t contain a &#x60;store&#x60; the terminal is assigned to this merchant account.
         /// </summary>
         /// <value>The merchant account that the terminal is associated with. If the response doesn&#39;t contain a &#x60;store&#x60; the terminal is assigned to this merchant account.</value>
-        [DataMember(Name="merchantAccount", EmitDefaultValue=false)]
+        [DataMember(Name = "merchantAccount", EmitDefaultValue = false)]
         public string MerchantAccount { get; set; }
 
         /// <summary>
         /// Boolean that indicates if the terminal is assigned to the merchant inventory. This is returned when the terminal is assigned to a merchant account.  - If **true**, this indicates that the terminal is in the merchant inventory. This also means that the terminal cannot be boarded.  - If **false**, this indicates that the terminal is assigned to the merchant account as an in-store terminal. This means that the terminal is ready to be boarded, or is already boarded.
         /// </summary>
         /// <value>Boolean that indicates if the terminal is assigned to the merchant inventory. This is returned when the terminal is assigned to a merchant account.  - If **true**, this indicates that the terminal is in the merchant inventory. This also means that the terminal cannot be boarded.  - If **false**, this indicates that the terminal is assigned to the merchant account as an in-store terminal. This means that the terminal is ready to be boarded, or is already boarded.</value>
-        [DataMember(Name="merchantInventory", EmitDefaultValue=false)]
+        [DataMember(Name = "merchantInventory", EmitDefaultValue = false)]
         public bool MerchantInventory { get; set; }
 
         /// <summary>
         /// The store code of the store that the terminal is assigned to.
         /// </summary>
         /// <value>The store code of the store that the terminal is assigned to.</value>
-        [DataMember(Name="store", EmitDefaultValue=false)]
+        [DataMember(Name = "store", EmitDefaultValue = false)]
         public string Store { get; set; }
 
         /// <summary>
         /// The unique terminal ID.
         /// </summary>
         /// <value>The unique terminal ID.</value>
-        [DataMember(Name="terminal", EmitDefaultValue=true)]
+        [DataMember(Name = "terminal", IsRequired = false, EmitDefaultValue = false)]
         public string Terminal { get; set; }
 
         /// <summary>
@@ -94,7 +96,7 @@ namespace Adyen.Model.PosTerminalManagement
         /// <returns>String presentation of the object</returns>
         public override string ToString()
         {
-            var sb = new StringBuilder();
+            StringBuilder sb = new StringBuilder();
             sb.Append("class FindTerminalResponse {\n");
             sb.Append("  CompanyAccount: ").Append(CompanyAccount).Append("\n");
             sb.Append("  MerchantAccount: ").Append(MerchantAccount).Append("\n");
@@ -132,8 +134,9 @@ namespace Adyen.Model.PosTerminalManagement
         public bool Equals(FindTerminalResponse input)
         {
             if (input == null)
+            {
                 return false;
-
+            }
             return 
                 (
                     this.CompanyAccount == input.CompanyAccount ||
@@ -147,8 +150,7 @@ namespace Adyen.Model.PosTerminalManagement
                 ) && 
                 (
                     this.MerchantInventory == input.MerchantInventory ||
-                    (this.MerchantInventory != null &&
-                    this.MerchantInventory.Equals(input.MerchantInventory))
+                    this.MerchantInventory.Equals(input.MerchantInventory)
                 ) && 
                 (
                     this.Store == input.Store ||
@@ -172,25 +174,31 @@ namespace Adyen.Model.PosTerminalManagement
             {
                 int hashCode = 41;
                 if (this.CompanyAccount != null)
-                    hashCode = hashCode * 59 + this.CompanyAccount.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.CompanyAccount.GetHashCode();
+                }
                 if (this.MerchantAccount != null)
-                    hashCode = hashCode * 59 + this.MerchantAccount.GetHashCode();
-                if (this.MerchantInventory != null)
-                    hashCode = hashCode * 59 + this.MerchantInventory.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.MerchantAccount.GetHashCode();
+                }
+                hashCode = (hashCode * 59) + this.MerchantInventory.GetHashCode();
                 if (this.Store != null)
-                    hashCode = hashCode * 59 + this.Store.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.Store.GetHashCode();
+                }
                 if (this.Terminal != null)
-                    hashCode = hashCode * 59 + this.Terminal.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.Terminal.GetHashCode();
+                }
                 return hashCode;
             }
         }
-
         /// <summary>
         /// To validate all properties of the instance
         /// </summary>
         /// <param name="validationContext">Validation context</param>
         /// <returns>Validation Result</returns>
-        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+        public IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> Validate(ValidationContext validationContext)
         {
             yield break;
         }

@@ -24,7 +24,6 @@
 using System.Linq;
 using Adyen.Model.BinLookup;
 using Adyen.Service;
-using Adyen.Service.Resource.BinLookup;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.Text;
 

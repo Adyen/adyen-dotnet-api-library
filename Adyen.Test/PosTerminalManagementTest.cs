@@ -27,7 +27,6 @@ using System.Collections.Generic;
 using System.Text;
 using Adyen.Model.PosTerminalManagement;
 using Adyen.Service;
-using Adyen.Service.Resource.PosTerminalManagement;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace Adyen.Test
@@ -41,8 +40,8 @@ namespace Adyen.Test
         [TestMethod]
         public void FindTerminalSuccess()
         {
-            var client = CreateMockTestClientApiKeyBasedRequest("Mocks/pos-terminal-management/find-terminals-success.json");
-            var posTerminalManagement = new PosTerminalManagement(client);
+            var client = CreateMockTestClientApiKeyBasedRequestAsync("Mocks/pos-terminal-management/find-terminals-success.json");
+            var posTerminalManagement = new PosTerminalManagementService(client);
             var findTerminalRequest = new FindTerminalRequest
             {
                 Terminal = "V400m-123456789"
@@ -60,8 +59,8 @@ namespace Adyen.Test
         [TestMethod]
         public void AssignTerminalsSuccess()
         {
-            var client = CreateMockTestClientApiKeyBasedRequest("Mocks/pos-terminal-management/assing-terminals-success.json");
-            var posTerminalManagement = new PosTerminalManagement(client);
+            var client = CreateMockTestClientApiKeyBasedRequestAsync("Mocks/pos-terminal-management/assing-terminals-success.json");
+            var posTerminalManagement = new PosTerminalManagementService(client);
             var assignTerminalsRequest = new AssignTerminalsRequest
             {
                 MerchantAccount = "TestMerchant",
@@ -80,8 +79,8 @@ namespace Adyen.Test
         [TestMethod]
         public void GetTerminalsUnderAccountSuccess()
         {
-            var client = CreateMockTestClientApiKeyBasedRequest("Mocks/pos-terminal-management/get-terminals-under-account-success.json");
-            var posTerminalManagement = new PosTerminalManagement(client);
+            var client = CreateMockTestClientApiKeyBasedRequestAsync("Mocks/pos-terminal-management/get-terminals-under-account-success.json");
+            var posTerminalManagement = new PosTerminalManagementService(client);
             var getTerminalsUnderAccountRequest = new GetTerminalsUnderAccountRequest
             {
                 CompanyAccount = "TestCompany",
@@ -110,9 +109,9 @@ namespace Adyen.Test
         public void GetTerminalDetailsSuccess()
         {
             var client =
-                CreateMockTestClientApiKeyBasedRequest(
+                CreateMockTestClientApiKeyBasedRequestAsync(
                     "Mocks/pos-terminal-management/get-terminals-details-success.json");
-            var posTerminalManagement = new PosTerminalManagement(client);
+            var posTerminalManagement = new PosTerminalManagementService(client);
             var getTerminalDetailsRequest = new GetTerminalDetailsRequest
             {
                 Terminal = "P400Plus-275479597",
@@ -138,9 +137,9 @@ namespace Adyen.Test
         [TestMethod]
         public void GetStoresUnderAccountSuccess()
         {
-            var client = CreateMockTestClientApiKeyBasedRequest(
+            var client = CreateMockTestClientApiKeyBasedRequestAsync(
                     "Mocks/pos-terminal-management/get-stores-under-account-success.json");
-            var posTerminalManagement = new PosTerminalManagement(client);
+            var posTerminalManagement = new PosTerminalManagementService(client);
             var getStoresUnderAccountSuccessRequest = new GetStoresUnderAccountRequest
             {
                 CompanyAccount = "MockCompanyAccount",

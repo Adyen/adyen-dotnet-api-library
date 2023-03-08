@@ -11,25 +11,27 @@
 */
 
 using System;
-using System.Linq;
-using System.IO;
-using System.Text;
-using System.Text.RegularExpressions;
 using System.Collections;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Linq;
+using System.IO;
 using System.Runtime.Serialization;
+using System.Text;
+using System.Text.RegularExpressions;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
+using Newtonsoft.Json.Linq;
 using System.ComponentModel.DataAnnotations;
+using OpenAPIDateConverter = Adyen.ApiSerialization.OpenAPIDateConverter;
 
 namespace Adyen.Model.PosTerminalManagement
 {
     /// <summary>
     /// GetTerminalDetailsResponse
     /// </summary>
-    [DataContract]
-    public partial class GetTerminalDetailsResponse :  IEquatable<GetTerminalDetailsResponse>, IValidatableObject
+    [DataContract(Name = "GetTerminalDetailsResponse")]
+    public partial class GetTerminalDetailsResponse : IEquatable<GetTerminalDetailsResponse>, IValidatableObject
     {
         /// <summary>
         /// The status of the terminal:   - &#x60;OnlineToday&#x60;, &#x60;OnlineLast1Day&#x60;, &#x60;OnlineLast2Days&#x60; etcetera to &#x60;OnlineLast7Days&#x60;: Indicates when in the past week the terminal was last online.   - &#x60;SwitchedOff&#x60;: Indicates it was more than a week ago that the terminal was last online.   - &#x60;ReAssignToInventoryPending&#x60;, &#x60;ReAssignToStorePending&#x60;, &#x60;ReAssignToMerchantInventoryPending&#x60;: Indicates the terminal is scheduled to be reassigned.
@@ -112,11 +114,12 @@ namespace Adyen.Model.PosTerminalManagement
 
         }
 
+
         /// <summary>
         /// The status of the terminal:   - &#x60;OnlineToday&#x60;, &#x60;OnlineLast1Day&#x60;, &#x60;OnlineLast2Days&#x60; etcetera to &#x60;OnlineLast7Days&#x60;: Indicates when in the past week the terminal was last online.   - &#x60;SwitchedOff&#x60;: Indicates it was more than a week ago that the terminal was last online.   - &#x60;ReAssignToInventoryPending&#x60;, &#x60;ReAssignToStorePending&#x60;, &#x60;ReAssignToMerchantInventoryPending&#x60;: Indicates the terminal is scheduled to be reassigned.
         /// </summary>
         /// <value>The status of the terminal:   - &#x60;OnlineToday&#x60;, &#x60;OnlineLast1Day&#x60;, &#x60;OnlineLast2Days&#x60; etcetera to &#x60;OnlineLast7Days&#x60;: Indicates when in the past week the terminal was last online.   - &#x60;SwitchedOff&#x60;: Indicates it was more than a week ago that the terminal was last online.   - &#x60;ReAssignToInventoryPending&#x60;, &#x60;ReAssignToStorePending&#x60;, &#x60;ReAssignToMerchantInventoryPending&#x60;: Indicates the terminal is scheduled to be reassigned.</value>
-        [DataMember(Name="terminalStatus", EmitDefaultValue=false)]
+        [DataMember(Name = "terminalStatus", EmitDefaultValue = false)]
         public TerminalStatusEnum? TerminalStatus { get; set; }
         /// <summary>
         /// Initializes a new instance of the <see cref="GetTerminalDetailsResponse" /> class.
@@ -153,9 +156,10 @@ namespace Adyen.Model.PosTerminalManagement
         /// <param name="wifiMac">The terminal&#39;s MAC address in your Wi-Fi network..</param>
         public GetTerminalDetailsResponse(string bluetoothIp = default(string), string bluetoothMac = default(string), string companyAccount = default(string), string country = default(string), string deviceModel = default(string), bool dhcpEnabled = default(bool), string displayLabel = default(string), string ethernetIp = default(string), string ethernetMac = default(string), string firmwareVersion = default(string), string iccid = default(string), DateTime lastActivityDateTime = default(DateTime), DateTime lastTransactionDateTime = default(DateTime), string linkNegotiation = default(string), string merchantAccount = default(string), bool merchantInventory = default(bool), string permanentTerminalId = default(string), string serialNumber = default(string), string simStatus = default(string), string store = default(string), Store storeDetails = default(Store), string terminal = default(string), TerminalStatusEnum? terminalStatus = default(TerminalStatusEnum?), string wifiIp = default(string), string wifiMac = default(string))
         {
+            this.CompanyAccount = companyAccount;
+            this.Terminal = terminal;
             this.BluetoothIp = bluetoothIp;
             this.BluetoothMac = bluetoothMac;
-            this.CompanyAccount = companyAccount;
             this.Country = country;
             this.DeviceModel = deviceModel;
             this.DhcpEnabled = dhcpEnabled;
@@ -174,7 +178,6 @@ namespace Adyen.Model.PosTerminalManagement
             this.SimStatus = simStatus;
             this.Store = store;
             this.StoreDetails = storeDetails;
-            this.Terminal = terminal;
             this.TerminalStatus = terminalStatus;
             this.WifiIp = wifiIp;
             this.WifiMac = wifiMac;
@@ -184,168 +187,167 @@ namespace Adyen.Model.PosTerminalManagement
         /// The Bluetooth IP address of the terminal.
         /// </summary>
         /// <value>The Bluetooth IP address of the terminal.</value>
-        [DataMember(Name="bluetoothIp", EmitDefaultValue=false)]
+        [DataMember(Name = "bluetoothIp", EmitDefaultValue = false)]
         public string BluetoothIp { get; set; }
 
         /// <summary>
         /// The Bluetooth MAC address of the terminal.
         /// </summary>
         /// <value>The Bluetooth MAC address of the terminal.</value>
-        [DataMember(Name="bluetoothMac", EmitDefaultValue=false)]
+        [DataMember(Name = "bluetoothMac", EmitDefaultValue = false)]
         public string BluetoothMac { get; set; }
 
         /// <summary>
         /// The company account that the terminal is associated with. If this is the only account level shown in the response, the terminal is assigned to the inventory of the company account.
         /// </summary>
         /// <value>The company account that the terminal is associated with. If this is the only account level shown in the response, the terminal is assigned to the inventory of the company account.</value>
-        [DataMember(Name="companyAccount", EmitDefaultValue=true)]
+        [DataMember(Name = "companyAccount", IsRequired = false, EmitDefaultValue = false)]
         public string CompanyAccount { get; set; }
 
         /// <summary>
         /// The country where the terminal is used.
         /// </summary>
         /// <value>The country where the terminal is used.</value>
-        [DataMember(Name="country", EmitDefaultValue=false)]
+        [DataMember(Name = "country", EmitDefaultValue = false)]
         public string Country { get; set; }
 
         /// <summary>
         /// The model name of the terminal.
         /// </summary>
         /// <value>The model name of the terminal.</value>
-        [DataMember(Name="deviceModel", EmitDefaultValue=false)]
+        [DataMember(Name = "deviceModel", EmitDefaultValue = false)]
         public string DeviceModel { get; set; }
 
         /// <summary>
         /// Indicates whether assigning IP addresses through a DHCP server is enabled on the terminal.
         /// </summary>
         /// <value>Indicates whether assigning IP addresses through a DHCP server is enabled on the terminal.</value>
-        [DataMember(Name="dhcpEnabled", EmitDefaultValue=false)]
+        [DataMember(Name = "dhcpEnabled", EmitDefaultValue = false)]
         public bool DhcpEnabled { get; set; }
 
         /// <summary>
         /// The label shown on the status bar of the display. This label (if any) is specified in your Customer Area.
         /// </summary>
         /// <value>The label shown on the status bar of the display. This label (if any) is specified in your Customer Area.</value>
-        [DataMember(Name="displayLabel", EmitDefaultValue=false)]
+        [DataMember(Name = "displayLabel", EmitDefaultValue = false)]
         public string DisplayLabel { get; set; }
 
         /// <summary>
         /// The terminal&#39;s IP address in your Ethernet network.
         /// </summary>
         /// <value>The terminal&#39;s IP address in your Ethernet network.</value>
-        [DataMember(Name="ethernetIp", EmitDefaultValue=false)]
+        [DataMember(Name = "ethernetIp", EmitDefaultValue = false)]
         public string EthernetIp { get; set; }
 
         /// <summary>
         /// The terminal&#39;s MAC address in your Ethernet network.
         /// </summary>
         /// <value>The terminal&#39;s MAC address in your Ethernet network.</value>
-        [DataMember(Name="ethernetMac", EmitDefaultValue=false)]
+        [DataMember(Name = "ethernetMac", EmitDefaultValue = false)]
         public string EthernetMac { get; set; }
 
         /// <summary>
         /// The software release currently in use on the terminal.
         /// </summary>
         /// <value>The software release currently in use on the terminal.</value>
-        [DataMember(Name="firmwareVersion", EmitDefaultValue=false)]
+        [DataMember(Name = "firmwareVersion", EmitDefaultValue = false)]
         public string FirmwareVersion { get; set; }
 
         /// <summary>
         /// The integrated circuit card identifier (ICCID) of the SIM card in the terminal.
         /// </summary>
         /// <value>The integrated circuit card identifier (ICCID) of the SIM card in the terminal.</value>
-        [DataMember(Name="iccid", EmitDefaultValue=false)]
+        [DataMember(Name = "iccid", EmitDefaultValue = false)]
         public string Iccid { get; set; }
 
         /// <summary>
         /// Date and time of the last activity on the terminal. Not included when the last activity was more than 14 days ago.
         /// </summary>
         /// <value>Date and time of the last activity on the terminal. Not included when the last activity was more than 14 days ago.</value>
-        [DataMember(Name="lastActivityDateTime", EmitDefaultValue=false)]
+        [DataMember(Name = "lastActivityDateTime", EmitDefaultValue = false)]
         public DateTime LastActivityDateTime { get; set; }
 
         /// <summary>
         /// Date and time of the last transaction on the terminal. Not included when the last transaction was more than 14 days ago.
         /// </summary>
         /// <value>Date and time of the last transaction on the terminal. Not included when the last transaction was more than 14 days ago.</value>
-        [DataMember(Name="lastTransactionDateTime", EmitDefaultValue=false)]
+        [DataMember(Name = "lastTransactionDateTime", EmitDefaultValue = false)]
         public DateTime LastTransactionDateTime { get; set; }
 
         /// <summary>
         /// The Ethernet link negotiation that the terminal uses:   - &#x60;auto&#x60;: Auto-negotiation  - &#x60;100full&#x60;: 100 Mbps full duplex
         /// </summary>
         /// <value>The Ethernet link negotiation that the terminal uses:   - &#x60;auto&#x60;: Auto-negotiation  - &#x60;100full&#x60;: 100 Mbps full duplex</value>
-        [DataMember(Name="linkNegotiation", EmitDefaultValue=false)]
+        [DataMember(Name = "linkNegotiation", EmitDefaultValue = false)]
         public string LinkNegotiation { get; set; }
 
         /// <summary>
         /// The merchant account that the terminal is associated with. If the response doesn&#39;t contain a &#x60;store&#x60; the terminal is assigned to this merchant account.
         /// </summary>
         /// <value>The merchant account that the terminal is associated with. If the response doesn&#39;t contain a &#x60;store&#x60; the terminal is assigned to this merchant account.</value>
-        [DataMember(Name="merchantAccount", EmitDefaultValue=false)]
+        [DataMember(Name = "merchantAccount", EmitDefaultValue = false)]
         public string MerchantAccount { get; set; }
 
         /// <summary>
         /// Boolean that indicates if the terminal is assigned to the merchant inventory. This is returned when the terminal is assigned to a merchant account.  - If **true**, this indicates that the terminal is in the merchant inventory. This also means that the terminal cannot be boarded.  - If **false**, this indicates that the terminal is assigned to the merchant account as an in-store terminal. This means that the terminal is ready to be boarded, or is already boarded.
         /// </summary>
         /// <value>Boolean that indicates if the terminal is assigned to the merchant inventory. This is returned when the terminal is assigned to a merchant account.  - If **true**, this indicates that the terminal is in the merchant inventory. This also means that the terminal cannot be boarded.  - If **false**, this indicates that the terminal is assigned to the merchant account as an in-store terminal. This means that the terminal is ready to be boarded, or is already boarded.</value>
-        [DataMember(Name="merchantInventory", EmitDefaultValue=false)]
+        [DataMember(Name = "merchantInventory", EmitDefaultValue = false)]
         public bool MerchantInventory { get; set; }
 
         /// <summary>
         /// The permanent terminal ID.
         /// </summary>
         /// <value>The permanent terminal ID.</value>
-        [DataMember(Name="permanentTerminalId", EmitDefaultValue=false)]
+        [DataMember(Name = "permanentTerminalId", EmitDefaultValue = false)]
         public string PermanentTerminalId { get; set; }
 
         /// <summary>
         /// The serial number of the terminal.
         /// </summary>
         /// <value>The serial number of the terminal.</value>
-        [DataMember(Name="serialNumber", EmitDefaultValue=false)]
+        [DataMember(Name = "serialNumber", EmitDefaultValue = false)]
         public string SerialNumber { get; set; }
 
         /// <summary>
         /// On a terminal that supports 3G or 4G connectivity, indicates the status of the SIM card in the terminal: ACTIVE or INVENTORY.
         /// </summary>
         /// <value>On a terminal that supports 3G or 4G connectivity, indicates the status of the SIM card in the terminal: ACTIVE or INVENTORY.</value>
-        [DataMember(Name="simStatus", EmitDefaultValue=false)]
+        [DataMember(Name = "simStatus", EmitDefaultValue = false)]
         public string SimStatus { get; set; }
 
         /// <summary>
         /// The store code of the store that the terminal is assigned to.
         /// </summary>
         /// <value>The store code of the store that the terminal is assigned to.</value>
-        [DataMember(Name="store", EmitDefaultValue=false)]
+        [DataMember(Name = "store", EmitDefaultValue = false)]
         public string Store { get; set; }
 
         /// <summary>
         /// Gets or Sets StoreDetails
         /// </summary>
-        [DataMember(Name="storeDetails", EmitDefaultValue=false)]
+        [DataMember(Name = "storeDetails", EmitDefaultValue = false)]
         public Store StoreDetails { get; set; }
 
         /// <summary>
         /// The unique terminal ID.
         /// </summary>
         /// <value>The unique terminal ID.</value>
-        [DataMember(Name="terminal", EmitDefaultValue=true)]
+        [DataMember(Name = "terminal", IsRequired = false, EmitDefaultValue = false)]
         public string Terminal { get; set; }
-
 
         /// <summary>
         /// The terminal&#39;s IP address in your Wi-Fi network.
         /// </summary>
         /// <value>The terminal&#39;s IP address in your Wi-Fi network.</value>
-        [DataMember(Name="wifiIp", EmitDefaultValue=false)]
+        [DataMember(Name = "wifiIp", EmitDefaultValue = false)]
         public string WifiIp { get; set; }
 
         /// <summary>
         /// The terminal&#39;s MAC address in your Wi-Fi network.
         /// </summary>
         /// <value>The terminal&#39;s MAC address in your Wi-Fi network.</value>
-        [DataMember(Name="wifiMac", EmitDefaultValue=false)]
+        [DataMember(Name = "wifiMac", EmitDefaultValue = false)]
         public string WifiMac { get; set; }
 
         /// <summary>
@@ -354,7 +356,7 @@ namespace Adyen.Model.PosTerminalManagement
         /// <returns>String presentation of the object</returns>
         public override string ToString()
         {
-            var sb = new StringBuilder();
+            StringBuilder sb = new StringBuilder();
             sb.Append("class GetTerminalDetailsResponse {\n");
             sb.Append("  BluetoothIp: ").Append(BluetoothIp).Append("\n");
             sb.Append("  BluetoothMac: ").Append(BluetoothMac).Append("\n");
@@ -412,8 +414,9 @@ namespace Adyen.Model.PosTerminalManagement
         public bool Equals(GetTerminalDetailsResponse input)
         {
             if (input == null)
+            {
                 return false;
-
+            }
             return 
                 (
                     this.BluetoothIp == input.BluetoothIp ||
@@ -442,8 +445,7 @@ namespace Adyen.Model.PosTerminalManagement
                 ) && 
                 (
                     this.DhcpEnabled == input.DhcpEnabled ||
-                    (this.DhcpEnabled != null &&
-                    this.DhcpEnabled.Equals(input.DhcpEnabled))
+                    this.DhcpEnabled.Equals(input.DhcpEnabled)
                 ) && 
                 (
                     this.DisplayLabel == input.DisplayLabel ||
@@ -492,8 +494,7 @@ namespace Adyen.Model.PosTerminalManagement
                 ) && 
                 (
                     this.MerchantInventory == input.MerchantInventory ||
-                    (this.MerchantInventory != null &&
-                    this.MerchantInventory.Equals(input.MerchantInventory))
+                    this.MerchantInventory.Equals(input.MerchantInventory)
                 ) && 
                 (
                     this.PermanentTerminalId == input.PermanentTerminalId ||
@@ -527,8 +528,7 @@ namespace Adyen.Model.PosTerminalManagement
                 ) && 
                 (
                     this.TerminalStatus == input.TerminalStatus ||
-                    (this.TerminalStatus != null &&
-                    this.TerminalStatus.Equals(input.TerminalStatus))
+                    this.TerminalStatus.Equals(input.TerminalStatus)
                 ) && 
                 (
                     this.WifiIp == input.WifiIp ||
@@ -552,65 +552,105 @@ namespace Adyen.Model.PosTerminalManagement
             {
                 int hashCode = 41;
                 if (this.BluetoothIp != null)
-                    hashCode = hashCode * 59 + this.BluetoothIp.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.BluetoothIp.GetHashCode();
+                }
                 if (this.BluetoothMac != null)
-                    hashCode = hashCode * 59 + this.BluetoothMac.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.BluetoothMac.GetHashCode();
+                }
                 if (this.CompanyAccount != null)
-                    hashCode = hashCode * 59 + this.CompanyAccount.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.CompanyAccount.GetHashCode();
+                }
                 if (this.Country != null)
-                    hashCode = hashCode * 59 + this.Country.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.Country.GetHashCode();
+                }
                 if (this.DeviceModel != null)
-                    hashCode = hashCode * 59 + this.DeviceModel.GetHashCode();
-                if (this.DhcpEnabled != null)
-                    hashCode = hashCode * 59 + this.DhcpEnabled.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.DeviceModel.GetHashCode();
+                }
+                hashCode = (hashCode * 59) + this.DhcpEnabled.GetHashCode();
                 if (this.DisplayLabel != null)
-                    hashCode = hashCode * 59 + this.DisplayLabel.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.DisplayLabel.GetHashCode();
+                }
                 if (this.EthernetIp != null)
-                    hashCode = hashCode * 59 + this.EthernetIp.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.EthernetIp.GetHashCode();
+                }
                 if (this.EthernetMac != null)
-                    hashCode = hashCode * 59 + this.EthernetMac.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.EthernetMac.GetHashCode();
+                }
                 if (this.FirmwareVersion != null)
-                    hashCode = hashCode * 59 + this.FirmwareVersion.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.FirmwareVersion.GetHashCode();
+                }
                 if (this.Iccid != null)
-                    hashCode = hashCode * 59 + this.Iccid.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.Iccid.GetHashCode();
+                }
                 if (this.LastActivityDateTime != null)
-                    hashCode = hashCode * 59 + this.LastActivityDateTime.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.LastActivityDateTime.GetHashCode();
+                }
                 if (this.LastTransactionDateTime != null)
-                    hashCode = hashCode * 59 + this.LastTransactionDateTime.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.LastTransactionDateTime.GetHashCode();
+                }
                 if (this.LinkNegotiation != null)
-                    hashCode = hashCode * 59 + this.LinkNegotiation.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.LinkNegotiation.GetHashCode();
+                }
                 if (this.MerchantAccount != null)
-                    hashCode = hashCode * 59 + this.MerchantAccount.GetHashCode();
-                if (this.MerchantInventory != null)
-                    hashCode = hashCode * 59 + this.MerchantInventory.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.MerchantAccount.GetHashCode();
+                }
+                hashCode = (hashCode * 59) + this.MerchantInventory.GetHashCode();
                 if (this.PermanentTerminalId != null)
-                    hashCode = hashCode * 59 + this.PermanentTerminalId.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.PermanentTerminalId.GetHashCode();
+                }
                 if (this.SerialNumber != null)
-                    hashCode = hashCode * 59 + this.SerialNumber.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.SerialNumber.GetHashCode();
+                }
                 if (this.SimStatus != null)
-                    hashCode = hashCode * 59 + this.SimStatus.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.SimStatus.GetHashCode();
+                }
                 if (this.Store != null)
-                    hashCode = hashCode * 59 + this.Store.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.Store.GetHashCode();
+                }
                 if (this.StoreDetails != null)
-                    hashCode = hashCode * 59 + this.StoreDetails.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.StoreDetails.GetHashCode();
+                }
                 if (this.Terminal != null)
-                    hashCode = hashCode * 59 + this.Terminal.GetHashCode();
-                if (this.TerminalStatus != null)
-                    hashCode = hashCode * 59 + this.TerminalStatus.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.Terminal.GetHashCode();
+                }
+                hashCode = (hashCode * 59) + this.TerminalStatus.GetHashCode();
                 if (this.WifiIp != null)
-                    hashCode = hashCode * 59 + this.WifiIp.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.WifiIp.GetHashCode();
+                }
                 if (this.WifiMac != null)
-                    hashCode = hashCode * 59 + this.WifiMac.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.WifiMac.GetHashCode();
+                }
                 return hashCode;
             }
         }
-
         /// <summary>
         /// To validate all properties of the instance
         /// </summary>
         /// <param name="validationContext">Validation context</param>
         /// <returns>Validation Result</returns>
-        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+        public IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> Validate(ValidationContext validationContext)
         {
             yield break;
         }

@@ -11,25 +11,27 @@
 */
 
 using System;
-using System.Linq;
-using System.IO;
-using System.Text;
-using System.Text.RegularExpressions;
 using System.Collections;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Linq;
+using System.IO;
 using System.Runtime.Serialization;
+using System.Text;
+using System.Text.RegularExpressions;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
+using Newtonsoft.Json.Linq;
 using System.ComponentModel.DataAnnotations;
+using OpenAPIDateConverter = Adyen.ApiSerialization.OpenAPIDateConverter;
 
 namespace Adyen.Model.PosTerminalManagement
 {
     /// <summary>
     /// GetStoresUnderAccountRequest
     /// </summary>
-    [DataContract]
-    public partial class GetStoresUnderAccountRequest :  IEquatable<GetStoresUnderAccountRequest>, IValidatableObject
+    [DataContract(Name = "GetStoresUnderAccountRequest")]
+    public partial class GetStoresUnderAccountRequest : IEquatable<GetStoresUnderAccountRequest>, IValidatableObject
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="GetStoresUnderAccountRequest" /> class.
@@ -51,14 +53,14 @@ namespace Adyen.Model.PosTerminalManagement
         /// The company account. If you only specify this parameter, the response includes the stores of all merchant accounts that are associated with the company account.
         /// </summary>
         /// <value>The company account. If you only specify this parameter, the response includes the stores of all merchant accounts that are associated with the company account.</value>
-        [DataMember(Name="companyAccount", EmitDefaultValue=true)]
+        [DataMember(Name = "companyAccount", IsRequired = false, EmitDefaultValue = false)]
         public string CompanyAccount { get; set; }
 
         /// <summary>
         /// The merchant account. With this parameter, the response only includes the stores of the specified merchant account.
         /// </summary>
         /// <value>The merchant account. With this parameter, the response only includes the stores of the specified merchant account.</value>
-        [DataMember(Name="merchantAccount", EmitDefaultValue=false)]
+        [DataMember(Name = "merchantAccount", EmitDefaultValue = false)]
         public string MerchantAccount { get; set; }
 
         /// <summary>
@@ -67,7 +69,7 @@ namespace Adyen.Model.PosTerminalManagement
         /// <returns>String presentation of the object</returns>
         public override string ToString()
         {
-            var sb = new StringBuilder();
+            StringBuilder sb = new StringBuilder();
             sb.Append("class GetStoresUnderAccountRequest {\n");
             sb.Append("  CompanyAccount: ").Append(CompanyAccount).Append("\n");
             sb.Append("  MerchantAccount: ").Append(MerchantAccount).Append("\n");
@@ -102,8 +104,9 @@ namespace Adyen.Model.PosTerminalManagement
         public bool Equals(GetStoresUnderAccountRequest input)
         {
             if (input == null)
+            {
                 return false;
-
+            }
             return 
                 (
                     this.CompanyAccount == input.CompanyAccount ||
@@ -127,19 +130,22 @@ namespace Adyen.Model.PosTerminalManagement
             {
                 int hashCode = 41;
                 if (this.CompanyAccount != null)
-                    hashCode = hashCode * 59 + this.CompanyAccount.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.CompanyAccount.GetHashCode();
+                }
                 if (this.MerchantAccount != null)
-                    hashCode = hashCode * 59 + this.MerchantAccount.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.MerchantAccount.GetHashCode();
+                }
                 return hashCode;
             }
         }
-
         /// <summary>
         /// To validate all properties of the instance
         /// </summary>
         /// <param name="validationContext">Validation context</param>
         /// <returns>Validation Result</returns>
-        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+        public IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> Validate(ValidationContext validationContext)
         {
             yield break;
         }
