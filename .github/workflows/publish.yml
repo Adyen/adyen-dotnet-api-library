@@ -30,4 +30,4 @@ jobs:
         run: dotnet pack Adyen --no-build --configuration Release --output nuget
       # Publish Package
       - name: Publish Nuget
-        run: dotnet nuget push nuget/*.nupkg --api-key ${{ secrets.NUGET_KEY }} --source "nuget.org"
+        run: dotnet nuget push nuget/*.nupkg --api-key ${{ secrets.ADYEN_NUGET }} --source "nuget.org"
