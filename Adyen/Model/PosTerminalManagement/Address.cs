@@ -11,25 +11,27 @@
 */
 
 using System;
-using System.Linq;
-using System.IO;
-using System.Text;
-using System.Text.RegularExpressions;
 using System.Collections;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Linq;
+using System.IO;
 using System.Runtime.Serialization;
+using System.Text;
+using System.Text.RegularExpressions;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
+using Newtonsoft.Json.Linq;
 using System.ComponentModel.DataAnnotations;
+using OpenAPIDateConverter = Adyen.ApiSerialization.OpenAPIDateConverter;
 
 namespace Adyen.Model.PosTerminalManagement
 {
     /// <summary>
     /// Address
     /// </summary>
-    [DataContract]
-    public partial class Address :  IEquatable<Address>, IValidatableObject
+    [DataContract(Name = "Address")]
+    public partial class Address : IEquatable<Address>, IValidatableObject
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="Address" /> class.
@@ -53,37 +55,37 @@ namespace Adyen.Model.PosTerminalManagement
         /// <summary>
         /// Gets or Sets City
         /// </summary>
-        [DataMember(Name="city", EmitDefaultValue=false)]
+        [DataMember(Name = "city", EmitDefaultValue = false)]
         public string City { get; set; }
 
         /// <summary>
         /// Gets or Sets CountryCode
         /// </summary>
-        [DataMember(Name="countryCode", EmitDefaultValue=false)]
+        [DataMember(Name = "countryCode", EmitDefaultValue = false)]
         public string CountryCode { get; set; }
 
         /// <summary>
         /// Gets or Sets PostalCode
         /// </summary>
-        [DataMember(Name="postalCode", EmitDefaultValue=false)]
+        [DataMember(Name = "postalCode", EmitDefaultValue = false)]
         public string PostalCode { get; set; }
 
         /// <summary>
         /// Gets or Sets StateOrProvince
         /// </summary>
-        [DataMember(Name="stateOrProvince", EmitDefaultValue=false)]
+        [DataMember(Name = "stateOrProvince", EmitDefaultValue = false)]
         public string StateOrProvince { get; set; }
 
         /// <summary>
         /// Gets or Sets StreetAddress
         /// </summary>
-        [DataMember(Name="streetAddress", EmitDefaultValue=false)]
+        [DataMember(Name = "streetAddress", EmitDefaultValue = false)]
         public string StreetAddress { get; set; }
 
         /// <summary>
         /// Gets or Sets StreetAddress2
         /// </summary>
-        [DataMember(Name="streetAddress2", EmitDefaultValue=false)]
+        [DataMember(Name = "streetAddress2", EmitDefaultValue = false)]
         public string StreetAddress2 { get; set; }
 
         /// <summary>
@@ -92,7 +94,7 @@ namespace Adyen.Model.PosTerminalManagement
         /// <returns>String presentation of the object</returns>
         public override string ToString()
         {
-            var sb = new StringBuilder();
+            StringBuilder sb = new StringBuilder();
             sb.Append("class Address {\n");
             sb.Append("  City: ").Append(City).Append("\n");
             sb.Append("  CountryCode: ").Append(CountryCode).Append("\n");
@@ -131,8 +133,9 @@ namespace Adyen.Model.PosTerminalManagement
         public bool Equals(Address input)
         {
             if (input == null)
+            {
                 return false;
-
+            }
             return 
                 (
                     this.City == input.City ||
@@ -176,27 +179,38 @@ namespace Adyen.Model.PosTerminalManagement
             {
                 int hashCode = 41;
                 if (this.City != null)
-                    hashCode = hashCode * 59 + this.City.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.City.GetHashCode();
+                }
                 if (this.CountryCode != null)
-                    hashCode = hashCode * 59 + this.CountryCode.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.CountryCode.GetHashCode();
+                }
                 if (this.PostalCode != null)
-                    hashCode = hashCode * 59 + this.PostalCode.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.PostalCode.GetHashCode();
+                }
                 if (this.StateOrProvince != null)
-                    hashCode = hashCode * 59 + this.StateOrProvince.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.StateOrProvince.GetHashCode();
+                }
                 if (this.StreetAddress != null)
-                    hashCode = hashCode * 59 + this.StreetAddress.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.StreetAddress.GetHashCode();
+                }
                 if (this.StreetAddress2 != null)
-                    hashCode = hashCode * 59 + this.StreetAddress2.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.StreetAddress2.GetHashCode();
+                }
                 return hashCode;
             }
         }
-
         /// <summary>
         /// To validate all properties of the instance
         /// </summary>
         /// <param name="validationContext">Validation context</param>
         /// <returns>Validation Result</returns>
-        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+        public IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> Validate(ValidationContext validationContext)
         {
             yield break;
         }

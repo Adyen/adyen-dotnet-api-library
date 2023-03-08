@@ -67,6 +67,9 @@ namespace Adyen.Constants
         public static string TransfersEndpointTest = "https://balanceplatform-api-test.adyen.com/btl/";
         public static string TransfersEndpointLive = "https://balanceplatform-api-live.adyen.com/btl/";
         public static string TransfersVersion = "v3";
+        public static string DataProtectionEndpointTest = "https://ca-test.adyen.com/ca/services/DataProtectionService";
+        public static string DataProtectionEndpointLive = "https://ca-live.adyen.com/ca/services/DataProtectionService";
+        public static string DataProtectionVersion = "v1";
 
         public static string LibName = "adyen-dotnet-api-library";
         public static string LibVersion = "9.2.0";

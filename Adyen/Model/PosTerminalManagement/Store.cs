@@ -11,25 +11,27 @@
 */
 
 using System;
-using System.Linq;
-using System.IO;
-using System.Text;
-using System.Text.RegularExpressions;
 using System.Collections;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Linq;
+using System.IO;
 using System.Runtime.Serialization;
+using System.Text;
+using System.Text.RegularExpressions;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
+using Newtonsoft.Json.Linq;
 using System.ComponentModel.DataAnnotations;
+using OpenAPIDateConverter = Adyen.ApiSerialization.OpenAPIDateConverter;
 
 namespace Adyen.Model.PosTerminalManagement
 {
     /// <summary>
     /// Store
     /// </summary>
-    [DataContract]
-    public partial class Store :  IEquatable<Store>, IValidatableObject
+    [DataContract(Name = "Store")]
+    public partial class Store : IEquatable<Store>, IValidatableObject
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="Store" /> class.
@@ -47,53 +49,53 @@ namespace Adyen.Model.PosTerminalManagement
         /// <param name="store">The code of the store. (required).</param>
         public Store(Address address = default(Address), string description = default(string), List<string> inStoreTerminals = default(List<string>), string merchantAccountCode = default(string), string status = default(string), string store = default(string))
         {
+            this._Store = store;
             this.Address = address;
             this.Description = description;
             this.InStoreTerminals = inStoreTerminals;
             this.MerchantAccountCode = merchantAccountCode;
             this.Status = status;
-            this._Store = store;
         }
 
         /// <summary>
         /// Gets or Sets Address
         /// </summary>
-        [DataMember(Name="address", EmitDefaultValue=false)]
+        [DataMember(Name = "address", EmitDefaultValue = false)]
         public Address Address { get; set; }
 
         /// <summary>
         /// The description of the store.
         /// </summary>
         /// <value>The description of the store.</value>
-        [DataMember(Name="description", EmitDefaultValue=false)]
+        [DataMember(Name = "description", EmitDefaultValue = false)]
         public string Description { get; set; }
 
         /// <summary>
         /// The list of terminals assigned to the store.
         /// </summary>
         /// <value>The list of terminals assigned to the store.</value>
-        [DataMember(Name="inStoreTerminals", EmitDefaultValue=false)]
+        [DataMember(Name = "inStoreTerminals", EmitDefaultValue = false)]
         public List<string> InStoreTerminals { get; set; }
 
         /// <summary>
         /// The code of the merchant account.
         /// </summary>
         /// <value>The code of the merchant account.</value>
-        [DataMember(Name="merchantAccountCode", EmitDefaultValue=false)]
+        [DataMember(Name = "merchantAccountCode", EmitDefaultValue = false)]
         public string MerchantAccountCode { get; set; }
 
         /// <summary>
         /// The status of the store:  - &#x60;PreActive&#x60;: the store has been created, but not yet activated.   - &#x60;Active&#x60;: the store has been activated. This means you can process payments for this store.   - &#x60;Inactive&#x60;: the store is currently not active.   - &#x60;InactiveWithModifications&#x60;: the store is currently not active, but payment modifications such as refunds are possible.   - &#x60;Closed&#x60;: the store has been closed. 
         /// </summary>
         /// <value>The status of the store:  - &#x60;PreActive&#x60;: the store has been created, but not yet activated.   - &#x60;Active&#x60;: the store has been activated. This means you can process payments for this store.   - &#x60;Inactive&#x60;: the store is currently not active.   - &#x60;InactiveWithModifications&#x60;: the store is currently not active, but payment modifications such as refunds are possible.   - &#x60;Closed&#x60;: the store has been closed. </value>
-        [DataMember(Name="status", EmitDefaultValue=false)]
+        [DataMember(Name = "status", EmitDefaultValue = false)]
         public string Status { get; set; }
 
         /// <summary>
         /// The code of the store.
         /// </summary>
         /// <value>The code of the store.</value>
-        [DataMember(Name="store", EmitDefaultValue=true)]
+        [DataMember(Name = "store", IsRequired = false, EmitDefaultValue = false)]
         public string _Store { get; set; }
 
         /// <summary>
@@ -102,7 +104,7 @@ namespace Adyen.Model.PosTerminalManagement
         /// <returns>String presentation of the object</returns>
         public override string ToString()
         {
-            var sb = new StringBuilder();
+            StringBuilder sb = new StringBuilder();
             sb.Append("class Store {\n");
             sb.Append("  Address: ").Append(Address).Append("\n");
             sb.Append("  Description: ").Append(Description).Append("\n");
@@ -141,8 +143,9 @@ namespace Adyen.Model.PosTerminalManagement
         public bool Equals(Store input)
         {
             if (input == null)
+            {
                 return false;
-
+            }
             return 
                 (
                     this.Address == input.Address ||
@@ -187,27 +190,38 @@ namespace Adyen.Model.PosTerminalManagement
             {
                 int hashCode = 41;
                 if (this.Address != null)
-                    hashCode = hashCode * 59 + this.Address.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.Address.GetHashCode();
+                }
                 if (this.Description != null)
-                    hashCode = hashCode * 59 + this.Description.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.Description.GetHashCode();
+                }
                 if (this.InStoreTerminals != null)
-                    hashCode = hashCode * 59 + this.InStoreTerminals.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.InStoreTerminals.GetHashCode();
+                }
                 if (this.MerchantAccountCode != null)
-                    hashCode = hashCode * 59 + this.MerchantAccountCode.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.MerchantAccountCode.GetHashCode();
+                }
                 if (this.Status != null)
-                    hashCode = hashCode * 59 + this.Status.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.Status.GetHashCode();
+                }
                 if (this._Store != null)
-                    hashCode = hashCode * 59 + this._Store.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this._Store.GetHashCode();
+                }
                 return hashCode;
             }
         }
-
         /// <summary>
         /// To validate all properties of the instance
         /// </summary>
         /// <param name="validationContext">Validation context</param>
         /// <returns>Validation Result</returns>
-        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+        public IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> Validate(ValidationContext validationContext)
         {
             yield break;
         }

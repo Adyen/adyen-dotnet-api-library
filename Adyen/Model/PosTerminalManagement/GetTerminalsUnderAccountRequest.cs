@@ -11,25 +11,27 @@
 */
 
 using System;
-using System.Linq;
-using System.IO;
-using System.Text;
-using System.Text.RegularExpressions;
 using System.Collections;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Linq;
+using System.IO;
 using System.Runtime.Serialization;
+using System.Text;
+using System.Text.RegularExpressions;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
+using Newtonsoft.Json.Linq;
 using System.ComponentModel.DataAnnotations;
+using OpenAPIDateConverter = Adyen.ApiSerialization.OpenAPIDateConverter;
 
 namespace Adyen.Model.PosTerminalManagement
 {
     /// <summary>
     /// GetTerminalsUnderAccountRequest
     /// </summary>
-    [DataContract]
-    public partial class GetTerminalsUnderAccountRequest :  IEquatable<GetTerminalsUnderAccountRequest>, IValidatableObject
+    [DataContract(Name = "GetTerminalsUnderAccountRequest")]
+    public partial class GetTerminalsUnderAccountRequest : IEquatable<GetTerminalsUnderAccountRequest>, IValidatableObject
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="GetTerminalsUnderAccountRequest" /> class.
@@ -53,21 +55,21 @@ namespace Adyen.Model.PosTerminalManagement
         /// Your company account. If you only specify this parameter, the response includes all terminals at all account levels.
         /// </summary>
         /// <value>Your company account. If you only specify this parameter, the response includes all terminals at all account levels.</value>
-        [DataMember(Name="companyAccount", EmitDefaultValue=true)]
+        [DataMember(Name = "companyAccount", IsRequired = false, EmitDefaultValue = false)]
         public string CompanyAccount { get; set; }
 
         /// <summary>
         /// The merchant account. This is required if you are retrieving the terminals assigned to a store.If you don&#39;t specify a &#x60;store&#x60; the response includes the terminals assigned to the specified merchant account and the terminals assigned to the stores under this merchant account.
         /// </summary>
         /// <value>The merchant account. This is required if you are retrieving the terminals assigned to a store.If you don&#39;t specify a &#x60;store&#x60; the response includes the terminals assigned to the specified merchant account and the terminals assigned to the stores under this merchant account.</value>
-        [DataMember(Name="merchantAccount", EmitDefaultValue=false)]
+        [DataMember(Name = "merchantAccount", EmitDefaultValue = false)]
         public string MerchantAccount { get; set; }
 
         /// <summary>
         /// The store code of the store. With this parameter, the response only includes the terminals assigned to the specified store.
         /// </summary>
         /// <value>The store code of the store. With this parameter, the response only includes the terminals assigned to the specified store.</value>
-        [DataMember(Name="store", EmitDefaultValue=false)]
+        [DataMember(Name = "store", EmitDefaultValue = false)]
         public string Store { get; set; }
 
         /// <summary>
@@ -76,7 +78,7 @@ namespace Adyen.Model.PosTerminalManagement
         /// <returns>String presentation of the object</returns>
         public override string ToString()
         {
-            var sb = new StringBuilder();
+            StringBuilder sb = new StringBuilder();
             sb.Append("class GetTerminalsUnderAccountRequest {\n");
             sb.Append("  CompanyAccount: ").Append(CompanyAccount).Append("\n");
             sb.Append("  MerchantAccount: ").Append(MerchantAccount).Append("\n");
@@ -112,8 +114,9 @@ namespace Adyen.Model.PosTerminalManagement
         public bool Equals(GetTerminalsUnderAccountRequest input)
         {
             if (input == null)
+            {
                 return false;
-
+            }
             return 
                 (
                     this.CompanyAccount == input.CompanyAccount ||
@@ -142,21 +145,26 @@ namespace Adyen.Model.PosTerminalManagement
             {
                 int hashCode = 41;
                 if (this.CompanyAccount != null)
-                    hashCode = hashCode * 59 + this.CompanyAccount.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.CompanyAccount.GetHashCode();
+                }
                 if (this.MerchantAccount != null)
-                    hashCode = hashCode * 59 + this.MerchantAccount.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.MerchantAccount.GetHashCode();
+                }
                 if (this.Store != null)
-                    hashCode = hashCode * 59 + this.Store.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.Store.GetHashCode();
+                }
                 return hashCode;
             }
         }
-
         /// <summary>
         /// To validate all properties of the instance
         /// </summary>
         /// <param name="validationContext">Validation context</param>
         /// <returns>Validation Result</returns>
-        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+        public IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> Validate(ValidationContext validationContext)
         {
             yield break;
         }

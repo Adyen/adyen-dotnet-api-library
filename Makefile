@@ -19,9 +19,12 @@ BinLookup: spec=BinLookupService-v54
 BinLookup: service=binLookup
 Checkout: spec=CheckoutService-v70
 Checkout: service=checkout
+DataProtection: spec=DataProtectionService-v1
+DataProtection: service=dataProtection
 StoredValue: spec=StoredValueService-v46
 StoredValue: service=storedvalue
 PosTerminalManagement: spec=TfmAPIService-v1
+PosTerminalManagement: service=posTerminalManagement
 Payments: spec=PaymentService-v68
 Payments: service=payments
 Recurring: spec=RecurringService-v68
@@ -58,7 +61,7 @@ $(services): target/spec $(openapi-generator-jar)
 	mv target/out/src/Adyen.Model/$@/* Adyen/Model/$@
 
 # Generate a full client (models and service classes)
-LegalEntityManagement: target/spec $(openapi-generator-jar)  
+PosTerminalManagement: target/spec $(openapi-generator-jar)  
 	rm -rf $(output)
 	$(openapi-generator-cli) generate \
 		-i target/spec/json/$(spec).json \

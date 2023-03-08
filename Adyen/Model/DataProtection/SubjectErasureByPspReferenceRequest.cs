@@ -1,5 +1,5 @@
 /*
-* POS Terminal Management API
+* Adyen Data Protection API
 *
 *
 * The version of the OpenAPI document: 1
@@ -25,43 +25,47 @@ using Newtonsoft.Json.Linq;
 using System.ComponentModel.DataAnnotations;
 using OpenAPIDateConverter = Adyen.ApiSerialization.OpenAPIDateConverter;
 
-namespace Adyen.Model.PosTerminalManagement
+namespace Adyen.Model.DataProtection
 {
     /// <summary>
-    /// GetStoresUnderAccountRequest
+    /// SubjectErasureByPspReferenceRequest
     /// </summary>
-    [DataContract(Name = "GetStoresUnderAccountRequest")]
-    public partial class GetStoresUnderAccountRequest : IEquatable<GetStoresUnderAccountRequest>, IValidatableObject
+    [DataContract(Name = "SubjectErasureByPspReferenceRequest")]
+    public partial class SubjectErasureByPspReferenceRequest : IEquatable<SubjectErasureByPspReferenceRequest>, IValidatableObject
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="GetStoresUnderAccountRequest" /> class.
+        /// Initializes a new instance of the <see cref="SubjectErasureByPspReferenceRequest" /> class.
         /// </summary>
-        [JsonConstructorAttribute]
-        protected GetStoresUnderAccountRequest() { }
-        /// <summary>
-        /// Initializes a new instance of the <see cref="GetStoresUnderAccountRequest" /> class.
-        /// </summary>
-        /// <param name="companyAccount">The company account. If you only specify this parameter, the response includes the stores of all merchant accounts that are associated with the company account. (required).</param>
-        /// <param name="merchantAccount">The merchant account. With this parameter, the response only includes the stores of the specified merchant account..</param>
-        public GetStoresUnderAccountRequest(string companyAccount = default(string), string merchantAccount = default(string))
+        /// <param name="forceErasure">Set this to **true** if you want to delete shopper-related data, even if the shopper has an existing recurring transaction. This only deletes the shopper-related data for the specific payment, but does not cancel the existing recurring transaction..</param>
+        /// <param name="merchantAccount">Your merchant account.</param>
+        /// <param name="pspReference">The PSP reference of the payment. We will delete all shopper-related data for this payment..</param>
+        public SubjectErasureByPspReferenceRequest(bool forceErasure = default(bool), string merchantAccount = default(string), string pspReference = default(string))
         {
-            this.CompanyAccount = companyAccount;
+            this.ForceErasure = forceErasure;
             this.MerchantAccount = merchantAccount;
+            this.PspReference = pspReference;
         }
 
         /// <summary>
-        /// The company account. If you only specify this parameter, the response includes the stores of all merchant accounts that are associated with the company account.
+        /// Set this to **true** if you want to delete shopper-related data, even if the shopper has an existing recurring transaction. This only deletes the shopper-related data for the specific payment, but does not cancel the existing recurring transaction.
         /// </summary>
-        /// <value>The company account. If you only specify this parameter, the response includes the stores of all merchant accounts that are associated with the company account.</value>
-        [DataMember(Name = "companyAccount", IsRequired = false, EmitDefaultValue = false)]
-        public string CompanyAccount { get; set; }
+        /// <value>Set this to **true** if you want to delete shopper-related data, even if the shopper has an existing recurring transaction. This only deletes the shopper-related data for the specific payment, but does not cancel the existing recurring transaction.</value>
+        [DataMember(Name = "forceErasure", EmitDefaultValue = false)]
+        public bool ForceErasure { get; set; }
 
         /// <summary>
-        /// The merchant account. With this parameter, the response only includes the stores of the specified merchant account.
+        /// Your merchant account
         /// </summary>
-        /// <value>The merchant account. With this parameter, the response only includes the stores of the specified merchant account.</value>
+        /// <value>Your merchant account</value>
         [DataMember(Name = "merchantAccount", EmitDefaultValue = false)]
         public string MerchantAccount { get; set; }
+
+        /// <summary>
+        /// The PSP reference of the payment. We will delete all shopper-related data for this payment.
+        /// </summary>
+        /// <value>The PSP reference of the payment. We will delete all shopper-related data for this payment.</value>
+        [DataMember(Name = "pspReference", EmitDefaultValue = false)]
+        public string PspReference { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -70,9 +74,10 @@ namespace Adyen.Model.PosTerminalManagement
         public override string ToString()
         {
             StringBuilder sb = new StringBuilder();
-            sb.Append("class GetStoresUnderAccountRequest {\n");
-            sb.Append("  CompanyAccount: ").Append(CompanyAccount).Append("\n");
+            sb.Append("class SubjectErasureByPspReferenceRequest {\n");
+            sb.Append("  ForceErasure: ").Append(ForceErasure).Append("\n");
             sb.Append("  MerchantAccount: ").Append(MerchantAccount).Append("\n");
+            sb.Append("  PspReference: ").Append(PspReference).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -93,15 +98,15 @@ namespace Adyen.Model.PosTerminalManagement
         /// <returns>Boolean</returns>
         public override bool Equals(object input)
         {
-            return this.Equals(input as GetStoresUnderAccountRequest);
+            return this.Equals(input as SubjectErasureByPspReferenceRequest);
         }
 
         /// <summary>
-        /// Returns true if GetStoresUnderAccountRequest instances are equal
+        /// Returns true if SubjectErasureByPspReferenceRequest instances are equal
         /// </summary>
-        /// <param name="input">Instance of GetStoresUnderAccountRequest to be compared</param>
+        /// <param name="input">Instance of SubjectErasureByPspReferenceRequest to be compared</param>
         /// <returns>Boolean</returns>
-        public bool Equals(GetStoresUnderAccountRequest input)
+        public bool Equals(SubjectErasureByPspReferenceRequest input)
         {
             if (input == null)
             {
@@ -109,14 +114,18 @@ namespace Adyen.Model.PosTerminalManagement
             }
             return 
                 (
-                    this.CompanyAccount == input.CompanyAccount ||
-                    (this.CompanyAccount != null &&
-                    this.CompanyAccount.Equals(input.CompanyAccount))
+                    this.ForceErasure == input.ForceErasure ||
+                    this.ForceErasure.Equals(input.ForceErasure)
                 ) && 
                 (
                     this.MerchantAccount == input.MerchantAccount ||
                     (this.MerchantAccount != null &&
                     this.MerchantAccount.Equals(input.MerchantAccount))
+                ) && 
+                (
+                    this.PspReference == input.PspReference ||
+                    (this.PspReference != null &&
+                    this.PspReference.Equals(input.PspReference))
                 );
         }
 
@@ -129,13 +138,14 @@ namespace Adyen.Model.PosTerminalManagement
             unchecked // Overflow is fine, just wrap
             {
                 int hashCode = 41;
-                if (this.CompanyAccount != null)
-                {
-                    hashCode = (hashCode * 59) + this.CompanyAccount.GetHashCode();
-                }
+                hashCode = (hashCode * 59) + this.ForceErasure.GetHashCode();
                 if (this.MerchantAccount != null)
                 {
                     hashCode = (hashCode * 59) + this.MerchantAccount.GetHashCode();
+                }
+                if (this.PspReference != null)
+                {
+                    hashCode = (hashCode * 59) + this.PspReference.GetHashCode();
                 }
                 return hashCode;
             }

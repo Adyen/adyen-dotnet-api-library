@@ -1,5 +1,5 @@
 /*
-* POS Terminal Management API
+* Adyen Data Protection API
 *
 *
 * The version of the OpenAPI document: 1
@@ -25,34 +25,62 @@ using Newtonsoft.Json.Linq;
 using System.ComponentModel.DataAnnotations;
 using OpenAPIDateConverter = Adyen.ApiSerialization.OpenAPIDateConverter;
 
-namespace Adyen.Model.PosTerminalManagement
+namespace Adyen.Model.DataProtection
 {
     /// <summary>
-    /// FindTerminalRequest
+    /// SubjectErasureResponse
     /// </summary>
-    [DataContract(Name = "FindTerminalRequest")]
-    public partial class FindTerminalRequest : IEquatable<FindTerminalRequest>, IValidatableObject
+    [DataContract(Name = "SubjectErasureResponse")]
+    public partial class SubjectErasureResponse : IEquatable<SubjectErasureResponse>, IValidatableObject
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="FindTerminalRequest" /> class.
+        /// The result of this operation.
         /// </summary>
-        [JsonConstructorAttribute]
-        protected FindTerminalRequest() { }
-        /// <summary>
-        /// Initializes a new instance of the <see cref="FindTerminalRequest" /> class.
-        /// </summary>
-        /// <param name="terminal">The unique terminal ID in the format &#x60;[Device model]-[Serial number]&#x60;.   For example, **V400m-324689776**. (required).</param>
-        public FindTerminalRequest(string terminal = default(string))
+        /// <value>The result of this operation.</value>
+        [JsonConverter(typeof(StringEnumConverter))]
+        public enum ResultEnum
         {
-            this.Terminal = terminal;
+            /// <summary>
+            /// Enum ACTIVERECURRINGTOKENEXISTS for value: ACTIVE_RECURRING_TOKEN_EXISTS
+            /// </summary>
+            [EnumMember(Value = "ACTIVE_RECURRING_TOKEN_EXISTS")]
+            ACTIVERECURRINGTOKENEXISTS = 1,
+
+            /// <summary>
+            /// Enum ALREADYPROCESSED for value: ALREADY_PROCESSED
+            /// </summary>
+            [EnumMember(Value = "ALREADY_PROCESSED")]
+            ALREADYPROCESSED = 2,
+
+            /// <summary>
+            /// Enum PAYMENTNOTFOUND for value: PAYMENT_NOT_FOUND
+            /// </summary>
+            [EnumMember(Value = "PAYMENT_NOT_FOUND")]
+            PAYMENTNOTFOUND = 3,
+
+            /// <summary>
+            /// Enum SUCCESS for value: SUCCESS
+            /// </summary>
+            [EnumMember(Value = "SUCCESS")]
+            SUCCESS = 4
+
         }
 
+
         /// <summary>
-        /// The unique terminal ID in the format &#x60;[Device model]-[Serial number]&#x60;.   For example, **V400m-324689776**.
+        /// The result of this operation.
         /// </summary>
-        /// <value>The unique terminal ID in the format &#x60;[Device model]-[Serial number]&#x60;.   For example, **V400m-324689776**.</value>
-        [DataMember(Name = "terminal", IsRequired = false, EmitDefaultValue = false)]
-        public string Terminal { get; set; }
+        /// <value>The result of this operation.</value>
+        [DataMember(Name = "result", EmitDefaultValue = false)]
+        public ResultEnum? Result { get; set; }
+        /// <summary>
+        /// Initializes a new instance of the <see cref="SubjectErasureResponse" /> class.
+        /// </summary>
+        /// <param name="result">The result of this operation..</param>
+        public SubjectErasureResponse(ResultEnum? result = default(ResultEnum?))
+        {
+            this.Result = result;
+        }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -61,8 +89,8 @@ namespace Adyen.Model.PosTerminalManagement
         public override string ToString()
         {
             StringBuilder sb = new StringBuilder();
-            sb.Append("class FindTerminalRequest {\n");
-            sb.Append("  Terminal: ").Append(Terminal).Append("\n");
+            sb.Append("class SubjectErasureResponse {\n");
+            sb.Append("  Result: ").Append(Result).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -83,15 +111,15 @@ namespace Adyen.Model.PosTerminalManagement
         /// <returns>Boolean</returns>
         public override bool Equals(object input)
         {
-            return this.Equals(input as FindTerminalRequest);
+            return this.Equals(input as SubjectErasureResponse);
         }
 
         /// <summary>
-        /// Returns true if FindTerminalRequest instances are equal
+        /// Returns true if SubjectErasureResponse instances are equal
         /// </summary>
-        /// <param name="input">Instance of FindTerminalRequest to be compared</param>
+        /// <param name="input">Instance of SubjectErasureResponse to be compared</param>
         /// <returns>Boolean</returns>
-        public bool Equals(FindTerminalRequest input)
+        public bool Equals(SubjectErasureResponse input)
         {
             if (input == null)
             {
@@ -99,9 +127,8 @@ namespace Adyen.Model.PosTerminalManagement
             }
             return 
                 (
-                    this.Terminal == input.Terminal ||
-                    (this.Terminal != null &&
-                    this.Terminal.Equals(input.Terminal))
+                    this.Result == input.Result ||
+                    this.Result.Equals(input.Result)
                 );
         }
 
@@ -114,10 +141,7 @@ namespace Adyen.Model.PosTerminalManagement
             unchecked // Overflow is fine, just wrap
             {
                 int hashCode = 41;
-                if (this.Terminal != null)
-                {
-                    hashCode = (hashCode * 59) + this.Terminal.GetHashCode();
-                }
+                hashCode = (hashCode * 59) + this.Result.GetHashCode();
                 return hashCode;
             }
         }

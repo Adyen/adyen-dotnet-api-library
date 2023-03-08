@@ -1,5 +1,5 @@
 /*
-* POS Terminal Management API
+* Adyen Data Protection API
 *
 *
 * The version of the OpenAPI document: 1
@@ -25,7 +25,7 @@ using Newtonsoft.Json.Linq;
 using System.ComponentModel.DataAnnotations;
 using OpenAPIDateConverter = Adyen.ApiSerialization.OpenAPIDateConverter;
 
-namespace Adyen.Model.PosTerminalManagement
+namespace Adyen.Model.DataProtection
 {
     /// <summary>
     /// ServiceError
