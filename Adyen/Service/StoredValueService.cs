@@ -25,11 +25,11 @@ namespace Adyen.Service
     /// <summary>
     /// Represents a collection of functions to interact with the API endpoints
     /// </summary>
-    public class StoredValue : AbstractService
+    public class StoredValueService : AbstractService
     {
         private readonly string _baseUrl;
         
-        public StoredValue(Client client) : base(client)
+        public StoredValueService(Client client) : base(client)
         {
             _baseUrl = client.Config.StoredValueEndpoint + "/" + ClientConfig.StoredValueVersion;
         }
