@@ -41,7 +41,6 @@ using PaymentResult = Adyen.Model.Payments.PaymentResult;
 using Adyen.Model.Checkout;
 using System.Threading.Tasks;
 using Adyen.Service.Payments;
-using CardDetails = Adyen.Service.Resource.Checkout.CardDetails;
 using CommonField = Adyen.Model.Checkout.CommonField;
 
 namespace Adyen.Test

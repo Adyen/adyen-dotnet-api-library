@@ -11,25 +11,27 @@
 */
 
 using System;
-using System.Linq;
-using System.IO;
-using System.Text;
-using System.Text.RegularExpressions;
 using System.Collections;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Linq;
+using System.IO;
 using System.Runtime.Serialization;
+using System.Text;
+using System.Text.RegularExpressions;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
+using Newtonsoft.Json.Linq;
 using System.ComponentModel.DataAnnotations;
+using OpenAPIDateConverter = Adyen.ApiSerialization.OpenAPIDateConverter;
 
 namespace Adyen.Model.PosTerminalManagement
 {
     /// <summary>
     /// GetTerminalsUnderAccountResponse
     /// </summary>
-    [DataContract]
-    public partial class GetTerminalsUnderAccountResponse :  IEquatable<GetTerminalsUnderAccountResponse>, IValidatableObject
+    [DataContract(Name = "GetTerminalsUnderAccountResponse")]
+    public partial class GetTerminalsUnderAccountResponse : IEquatable<GetTerminalsUnderAccountResponse>, IValidatableObject
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="GetTerminalsUnderAccountResponse" /> class.
@@ -53,21 +55,21 @@ namespace Adyen.Model.PosTerminalManagement
         /// Your company account.
         /// </summary>
         /// <value>Your company account.</value>
-        [DataMember(Name="companyAccount", EmitDefaultValue=true)]
+        [DataMember(Name = "companyAccount", IsRequired = false, EmitDefaultValue = false)]
         public string CompanyAccount { get; set; }
 
         /// <summary>
         /// Array that returns a list of all terminals that are in the inventory of the company account.
         /// </summary>
         /// <value>Array that returns a list of all terminals that are in the inventory of the company account.</value>
-        [DataMember(Name="inventoryTerminals", EmitDefaultValue=false)]
+        [DataMember(Name = "inventoryTerminals", EmitDefaultValue = false)]
         public List<string> InventoryTerminals { get; set; }
 
         /// <summary>
         /// Array that returns a list of all merchant accounts belonging to the company account.
         /// </summary>
         /// <value>Array that returns a list of all merchant accounts belonging to the company account.</value>
-        [DataMember(Name="merchantAccounts", EmitDefaultValue=false)]
+        [DataMember(Name = "merchantAccounts", EmitDefaultValue = false)]
         public List<MerchantAccount> MerchantAccounts { get; set; }
 
         /// <summary>
@@ -76,7 +78,7 @@ namespace Adyen.Model.PosTerminalManagement
         /// <returns>String presentation of the object</returns>
         public override string ToString()
         {
-            var sb = new StringBuilder();
+            StringBuilder sb = new StringBuilder();
             sb.Append("class GetTerminalsUnderAccountResponse {\n");
             sb.Append("  CompanyAccount: ").Append(CompanyAccount).Append("\n");
             sb.Append("  InventoryTerminals: ").Append(InventoryTerminals).Append("\n");
@@ -112,8 +114,9 @@ namespace Adyen.Model.PosTerminalManagement
         public bool Equals(GetTerminalsUnderAccountResponse input)
         {
             if (input == null)
+            {
                 return false;
-
+            }
             return 
                 (
                     this.CompanyAccount == input.CompanyAccount ||
@@ -144,21 +147,26 @@ namespace Adyen.Model.PosTerminalManagement
             {
                 int hashCode = 41;
                 if (this.CompanyAccount != null)
-                    hashCode = hashCode * 59 + this.CompanyAccount.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.CompanyAccount.GetHashCode();
+                }
                 if (this.InventoryTerminals != null)
-                    hashCode = hashCode * 59 + this.InventoryTerminals.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.InventoryTerminals.GetHashCode();
+                }
                 if (this.MerchantAccounts != null)
-                    hashCode = hashCode * 59 + this.MerchantAccounts.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.MerchantAccounts.GetHashCode();
+                }
                 return hashCode;
             }
         }
-
         /// <summary>
         /// To validate all properties of the instance
         /// </summary>
         /// <param name="validationContext">Validation context</param>
         /// <returns>Validation Result</returns>
-        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+        public IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> Validate(ValidationContext validationContext)
         {
             yield break;
         }

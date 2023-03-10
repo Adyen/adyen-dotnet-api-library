@@ -5,7 +5,6 @@ using Adyen.Model.Checkout;
 using Adyen.Service;
 using Adyen.Service.Checkout;
 using Adyen.Service.Payments;
-using Adyen.Service.Resource.Checkout;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Amount = Adyen.Model.Payments.Amount;
 using Card = Adyen.Model.Payments.Card;

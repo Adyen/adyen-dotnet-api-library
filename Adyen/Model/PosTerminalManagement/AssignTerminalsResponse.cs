@@ -11,25 +11,27 @@
 */
 
 using System;
-using System.Linq;
-using System.IO;
-using System.Text;
-using System.Text.RegularExpressions;
 using System.Collections;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Linq;
+using System.IO;
 using System.Runtime.Serialization;
+using System.Text;
+using System.Text.RegularExpressions;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
+using Newtonsoft.Json.Linq;
 using System.ComponentModel.DataAnnotations;
+using OpenAPIDateConverter = Adyen.ApiSerialization.OpenAPIDateConverter;
 
 namespace Adyen.Model.PosTerminalManagement
 {
     /// <summary>
     /// AssignTerminalsResponse
     /// </summary>
-    [DataContract]
-    public partial class AssignTerminalsResponse :  IEquatable<AssignTerminalsResponse>, IValidatableObject
+    [DataContract(Name = "AssignTerminalsResponse")]
+    public partial class AssignTerminalsResponse : IEquatable<AssignTerminalsResponse>, IValidatableObject
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="AssignTerminalsResponse" /> class.
@@ -49,7 +51,7 @@ namespace Adyen.Model.PosTerminalManagement
         /// Array that returns a list of the terminals, and for each terminal the result of assigning it to an account or store.  The results can be:    - &#x60;Done&#x60;: The terminal has been assigned.   - &#x60;AssignmentScheduled&#x60;: The terminal will be assigned asynschronously.   - &#x60;RemoveConfigScheduled&#x60;: The terminal was previously assigned and boarded. Wait for the terminal to synchronize with the Adyen platform. For more information, refer to [Reassigning boarded terminals](https://docs.adyen.com/point-of-sale/managing-terminals/assign-terminals#reassign-boarded-terminals).   - &#x60;Error&#x60;: There was an error when assigning the terminal. 
         /// </summary>
         /// <value>Array that returns a list of the terminals, and for each terminal the result of assigning it to an account or store.  The results can be:    - &#x60;Done&#x60;: The terminal has been assigned.   - &#x60;AssignmentScheduled&#x60;: The terminal will be assigned asynschronously.   - &#x60;RemoveConfigScheduled&#x60;: The terminal was previously assigned and boarded. Wait for the terminal to synchronize with the Adyen platform. For more information, refer to [Reassigning boarded terminals](https://docs.adyen.com/point-of-sale/managing-terminals/assign-terminals#reassign-boarded-terminals).   - &#x60;Error&#x60;: There was an error when assigning the terminal. </value>
-        [DataMember(Name="results", EmitDefaultValue=true)]
+        [DataMember(Name = "results", IsRequired = false, EmitDefaultValue = false)]
         public Dictionary<string, string> Results { get; set; }
 
         /// <summary>
@@ -58,7 +60,7 @@ namespace Adyen.Model.PosTerminalManagement
         /// <returns>String presentation of the object</returns>
         public override string ToString()
         {
-            var sb = new StringBuilder();
+            StringBuilder sb = new StringBuilder();
             sb.Append("class AssignTerminalsResponse {\n");
             sb.Append("  Results: ").Append(Results).Append("\n");
             sb.Append("}\n");
@@ -92,8 +94,9 @@ namespace Adyen.Model.PosTerminalManagement
         public bool Equals(AssignTerminalsResponse input)
         {
             if (input == null)
+            {
                 return false;
-
+            }
             return 
                 (
                     this.Results == input.Results ||
@@ -113,17 +116,18 @@ namespace Adyen.Model.PosTerminalManagement
             {
                 int hashCode = 41;
                 if (this.Results != null)
-                    hashCode = hashCode * 59 + this.Results.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.Results.GetHashCode();
+                }
                 return hashCode;
             }
         }
-
         /// <summary>
         /// To validate all properties of the instance
         /// </summary>
         /// <param name="validationContext">Validation context</param>
         /// <returns>Validation Result</returns>
-        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+        public IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> Validate(ValidationContext validationContext)
         {
             yield break;
         }
