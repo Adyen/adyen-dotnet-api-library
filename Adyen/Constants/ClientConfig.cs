@@ -72,6 +72,6 @@ namespace Adyen.Constants
         public static string DataProtectionVersion = "v1";
 
         public static string LibName = "adyen-dotnet-api-library";
-        public static string LibVersion = "9.2.0";
+        public static string LibVersion = "10.0.0-beta";
     }
 }
