@@ -172,6 +172,7 @@ To parse the terminal API notifications, please use the following custom deseria
 var serializer = new SaleToPoiMessageSerializer();
 var saleToPoiRequest = serializer.DeserializeNotification(your_terminal_notification);
 
+
 ~~~~
 ## Contributing
 We encourage you to contribute to this repository, so everyone can benefit from new features, bug fixes, and any other improvements.
