@@ -5,7 +5,7 @@
 
     <IsPackable>false</IsPackable>
 
-    <AssemblyVersion>10.0.0-beta</AssemblyVersion>
+    <AssemblyVersion>10.0.0</AssemblyVersion>
 
     <FileVersion>10.0.0-beta</FileVersion>
 
