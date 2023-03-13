@@ -105,7 +105,7 @@ namespace Adyen.Model.Checkout
         /// The stringified and base64 encoded &#x60;paymentData&#x60; you retrieved from the Apple framework.
         /// </summary>
         /// <value>The stringified and base64 encoded &#x60;paymentData&#x60; you retrieved from the Apple framework.</value>
-        [DataMember(Name = "applePayToken", IsRequired = false, EmitDefaultValue = true)]
+        [DataMember(Name = "applePayToken", IsRequired = false, EmitDefaultValue = false)]
         public string ApplePayToken { get; set; }
 
         /// <summary>
@@ -239,7 +239,6 @@ namespace Adyen.Model.Checkout
                 return hashCode;
             }
         }
-
         /// <summary>
         /// To validate all properties of the instance
         /// </summary>

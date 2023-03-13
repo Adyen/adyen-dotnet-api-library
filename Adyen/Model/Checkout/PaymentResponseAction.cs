@@ -49,6 +49,18 @@ namespace Adyen.Model.Checkout
 
         /// <summary>
         /// Initializes a new instance of the <see cref="PaymentResponseAction" /> class
+        /// with the <see cref="CheckoutNativeRedirectAction" /> class
+        /// </summary>
+        /// <param name="actualInstance">An instance of CheckoutNativeRedirectAction.</param>
+        public PaymentResponseAction(CheckoutNativeRedirectAction actualInstance)
+        {
+            this.IsNullable = false;
+            this.SchemaType= "oneOf";
+            this.ActualInstance = actualInstance ?? throw new ArgumentException("Invalid instance found. Must not be null.");
+        }
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="PaymentResponseAction" /> class
         /// with the <see cref="CheckoutQrCodeAction" /> class
         /// </summary>
         /// <param name="actualInstance">An instance of CheckoutQrCodeAction.</param>
@@ -125,6 +137,10 @@ namespace Adyen.Model.Checkout
                 {
                     this._actualInstance = value;
                 }
+                else if (value.GetType() == typeof(CheckoutNativeRedirectAction))
+                {
+                    this._actualInstance = value;
+                }
                 else if (value.GetType() == typeof(CheckoutQrCodeAction))
                 {
                     this._actualInstance = value;
@@ -147,7 +163,7 @@ namespace Adyen.Model.Checkout
                 }
                 else
                 {
-                    throw new ArgumentException("Invalid instance found. Must be the following types: CheckoutAwaitAction, CheckoutQrCodeAction, CheckoutRedirectAction, CheckoutSDKAction, CheckoutThreeDS2Action, CheckoutVoucherAction");
+                    throw new ArgumentException("Invalid instance found. Must be the following types: CheckoutAwaitAction, CheckoutNativeRedirectAction, CheckoutQrCodeAction, CheckoutRedirectAction, CheckoutSDKAction, CheckoutThreeDS2Action, CheckoutVoucherAction");
                 }
             }
         }
@@ -160,6 +176,16 @@ namespace Adyen.Model.Checkout
         public CheckoutAwaitAction GetCheckoutAwaitAction()
         {
             return (CheckoutAwaitAction)this.ActualInstance;
+        }
+
+        /// <summary>
+        /// Get the actual instance of `CheckoutNativeRedirectAction`. If the actual instance is not `CheckoutNativeRedirectAction`,
+        /// the InvalidClassException will be thrown
+        /// </summary>
+        /// <returns>An instance of CheckoutNativeRedirectAction</returns>
+        public CheckoutNativeRedirectAction GetCheckoutNativeRedirectAction()
+        {
+            return (CheckoutNativeRedirectAction)this.ActualInstance;
         }
 
         /// <summary>
@@ -262,6 +288,28 @@ namespace Adyen.Model.Checkout
                     newPaymentResponseAction = new PaymentResponseAction(JsonConvert.DeserializeObject<CheckoutAwaitAction>(jsonString, PaymentResponseAction.AdditionalPropertiesSerializerSettings));
                 }
                 matchedTypes.Add("CheckoutAwaitAction");
+                match++;
+            }
+            catch (Exception ex)
+            {
+                if (!(ex is JsonSerializationException))
+                {
+                    throw new Exception(string.Format("Failed to deserialize `{0}` into CheckoutThreeDS2Action: {1}", jsonString, ex.ToString()));
+                }
+            }
+
+            try
+            {
+                // if it does not contains "AdditionalProperties", use SerializerSettings to deserialize
+                if (typeof(CheckoutNativeRedirectAction).GetProperty("AdditionalProperties") == null)
+                {
+                    newPaymentResponseAction = new PaymentResponseAction(JsonConvert.DeserializeObject<CheckoutNativeRedirectAction>(jsonString, PaymentResponseAction.SerializerSettings));
+                }
+                else
+                {
+                    newPaymentResponseAction = new PaymentResponseAction(JsonConvert.DeserializeObject<CheckoutNativeRedirectAction>(jsonString, PaymentResponseAction.AdditionalPropertiesSerializerSettings));
+                }
+                matchedTypes.Add("CheckoutNativeRedirectAction");
                 match++;
             }
             catch (Exception ex)

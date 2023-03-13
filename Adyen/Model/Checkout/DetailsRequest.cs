@@ -62,7 +62,7 @@ namespace Adyen.Model.Checkout
         /// <summary>
         /// Gets or Sets Details
         /// </summary>
-        [DataMember(Name = "details", IsRequired = false, EmitDefaultValue = true)]
+        [DataMember(Name = "details", IsRequired = false, EmitDefaultValue = false)]
         public PaymentCompletionDetails Details { get; set; }
 
         /// <summary>
@@ -173,7 +173,6 @@ namespace Adyen.Model.Checkout
                 return hashCode;
             }
         }
-
         /// <summary>
         /// To validate all properties of the instance
         /// </summary>

@@ -108,7 +108,7 @@ namespace Adyen.Model.Checkout
         /// The Visa Click to Pay Call ID value. When your shopper selects a payment and/or a shipping address from Visa Click to Pay, you will receive a Visa Click to Pay Call ID.
         /// </summary>
         /// <value>The Visa Click to Pay Call ID value. When your shopper selects a payment and/or a shipping address from Visa Click to Pay, you will receive a Visa Click to Pay Call ID.</value>
-        [DataMember(Name = "visaCheckoutCallId", IsRequired = false, EmitDefaultValue = true)]
+        [DataMember(Name = "visaCheckoutCallId", IsRequired = false, EmitDefaultValue = false)]
         public string VisaCheckoutCallId { get; set; }
 
         /// <summary>
@@ -200,7 +200,6 @@ namespace Adyen.Model.Checkout
                 return hashCode;
             }
         }
-
         /// <summary>
         /// To validate all properties of the instance
         /// </summary>

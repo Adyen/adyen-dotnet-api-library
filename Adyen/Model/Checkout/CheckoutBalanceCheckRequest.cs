@@ -118,7 +118,7 @@ namespace Adyen.Model.Checkout
         /// <param name="accountInfo">accountInfo.</param>
         /// <param name="additionalAmount">additionalAmount.</param>
         /// <param name="additionalData">This field contains additional data, which may be required for a particular payment request.  The &#x60;additionalData&#x60; object consists of entries, each of which includes the key and value..</param>
-        /// <param name="amount">amount (required).</param>
+        /// <param name="amount">amount.</param>
         /// <param name="applicationInfo">applicationInfo.</param>
         /// <param name="billingAddress">billingAddress.</param>
         /// <param name="browserInfo">browserInfo.</param>
@@ -140,7 +140,7 @@ namespace Adyen.Model.Checkout
         /// <param name="paymentMethod">The collection that contains the type of the payment method and its specific information. (required).</param>
         /// <param name="recurring">recurring.</param>
         /// <param name="recurringProcessingModel">Defines a recurring payment type. Allowed values: * &#x60;Subscription&#x60; – A transaction for a fixed or variable amount, which follows a fixed schedule. * &#x60;CardOnFile&#x60; – With a card-on-file (CoF) transaction, card details are stored to enable one-click or omnichannel journeys, or simply to streamline the checkout process. Any subscription not following a fixed schedule is also considered a card-on-file transaction. * &#x60;UnscheduledCardOnFile&#x60; – An unscheduled card-on-file (UCoF) transaction is a transaction that occurs on a non-fixed schedule and/or have variable amounts. For example, automatic top-ups when a cardholder&#39;s balance drops below a certain amount. .</param>
-        /// <param name="reference">The reference to uniquely identify a payment. This reference is used in all communication with you about the payment status. We recommend using a unique value per payment; however, it is not a requirement. If you need to provide multiple references for a transaction, separate them with hyphens (\&quot;-\&quot;). Maximum length: 80 characters. (required).</param>
+        /// <param name="reference">The reference to uniquely identify a payment. This reference is used in all communication with you about the payment status. We recommend using a unique value per payment; however, it is not a requirement. If you need to provide multiple references for a transaction, separate them with hyphens (\&quot;-\&quot;). Maximum length: 80 characters..</param>
         /// <param name="selectedBrand">Some payment methods require defining a value for this field to specify how to process the transaction.  For the Bancontact payment method, it can be set to: * &#x60;maestro&#x60; (default), to be processed like a Maestro card, or * &#x60;bcmc&#x60;, to be processed like a Bancontact card..</param>
         /// <param name="selectedRecurringDetailReference">The &#x60;recurringDetailReference&#x60; you want to use for this payment. The value &#x60;LATEST&#x60; can be used to select the most recently stored recurring detail..</param>
         /// <param name="sessionId">A session ID used to identify a payment session..</param>
@@ -159,15 +159,14 @@ namespace Adyen.Model.Checkout
         /// <param name="threeDSAuthenticationOnly">If set to true, you will only perform the [3D Secure 2 authentication](https://docs.adyen.com/online-payments/3d-secure/other-3ds-flows/authentication-only), and not the payment authorisation. (default to false).</param>
         /// <param name="totalsGroup">The reference value to aggregate sales totals in reporting. When not specified, the store field is used (if available)..</param>
         /// <param name="trustedShopper">Set to true if the payment should be routed to a trusted MID..</param>
-        public CheckoutBalanceCheckRequest(AccountInfo accountInfo = default(AccountInfo), Amount additionalAmount = default(Amount), Dictionary<string, string> additionalData = default(Dictionary<string, string>), Amount amount = default(Amount), ApplicationInfo applicationInfo = default(ApplicationInfo), Address billingAddress = default(Address), BrowserInfo browserInfo = default(BrowserInfo), int captureDelayHours = default(int), DateTime dateOfBirth = default(DateTime), ForexQuote dccQuote = default(ForexQuote), Address deliveryAddress = default(Address), DateTime deliveryDate = default(DateTime), string deviceFingerprint = default(string), int fraudOffset = default(int), Installments installments = default(Installments), Dictionary<string, string> localizedShopperStatement = default(Dictionary<string, string>), string mcc = default(string), string merchantAccount = default(string), string merchantOrderReference = default(string), MerchantRiskIndicator merchantRiskIndicator = default(MerchantRiskIndicator), Dictionary<string, string> metadata = default(Dictionary<string, string>), string orderReference = default(string), Dictionary<string, string> paymentMethod = default(Dictionary<string, string>), Recurring recurring = default(Recurring), RecurringProcessingModelEnum? recurringProcessingModel = default(RecurringProcessingModelEnum?), string reference = default(string), string selectedBrand = default(string), string selectedRecurringDetailReference = default(string), string sessionId = default(string), string shopperEmail = default(string), string shopperIP = default(string), ShopperInteractionEnum? shopperInteraction = default(ShopperInteractionEnum?), string shopperLocale = default(string), Name shopperName = default(Name), string shopperReference = default(string), string shopperStatement = default(string), string socialSecurityNumber = default(string), List<Split> splits = default(List<Split>), string store = default(string), string telephoneNumber = default(string), ThreeDS2RequestData threeDS2RequestData = default(ThreeDS2RequestData), bool threeDSAuthenticationOnly = false, string totalsGroup = default(string), bool trustedShopper = default(bool))
+        public CheckoutBalanceCheckRequest(AccountInfo accountInfo = default(AccountInfo), Amount additionalAmount = default(Amount), Dictionary<string, string> additionalData = default(Dictionary<string, string>), Amount amount = default(Amount), ApplicationInfo applicationInfo = default(ApplicationInfo), Address billingAddress = default(Address), BrowserInfo browserInfo = default(BrowserInfo), int? captureDelayHours = default(int?), DateTime dateOfBirth = default(DateTime), ForexQuote dccQuote = default(ForexQuote), Address deliveryAddress = default(Address), DateTime deliveryDate = default(DateTime), string deviceFingerprint = default(string), int? fraudOffset = default(int?), Installments installments = default(Installments), Dictionary<string, string> localizedShopperStatement = default(Dictionary<string, string>), string mcc = default(string), string merchantAccount = default(string), string merchantOrderReference = default(string), MerchantRiskIndicator merchantRiskIndicator = default(MerchantRiskIndicator), Dictionary<string, string> metadata = default(Dictionary<string, string>), string orderReference = default(string), Dictionary<string, string> paymentMethod = default(Dictionary<string, string>), Recurring recurring = default(Recurring), RecurringProcessingModelEnum? recurringProcessingModel = default(RecurringProcessingModelEnum?), string reference = default(string), string selectedBrand = default(string), string selectedRecurringDetailReference = default(string), string sessionId = default(string), string shopperEmail = default(string), string shopperIP = default(string), ShopperInteractionEnum? shopperInteraction = default(ShopperInteractionEnum?), string shopperLocale = default(string), Name shopperName = default(Name), string shopperReference = default(string), string shopperStatement = default(string), string socialSecurityNumber = default(string), List<Split> splits = default(List<Split>), string store = default(string), string telephoneNumber = default(string), ThreeDS2RequestData threeDS2RequestData = default(ThreeDS2RequestData), bool threeDSAuthenticationOnly = false, string totalsGroup = default(string), bool trustedShopper = default(bool))
         {
-            this.Amount = amount;
             this.MerchantAccount = merchantAccount;
             this.PaymentMethod = paymentMethod;
-            this.Reference = reference;
             this.AccountInfo = accountInfo;
             this.AdditionalAmount = additionalAmount;
             this.AdditionalData = additionalData;
+            this.Amount = amount;
             this.ApplicationInfo = applicationInfo;
             this.BillingAddress = billingAddress;
             this.BrowserInfo = browserInfo;
@@ -187,6 +186,7 @@ namespace Adyen.Model.Checkout
             this.OrderReference = orderReference;
             this.Recurring = recurring;
             this.RecurringProcessingModel = recurringProcessingModel;
+            this.Reference = reference;
             this.SelectedBrand = selectedBrand;
             this.SelectedRecurringDetailReference = selectedRecurringDetailReference;
             this.SessionId = sessionId;
@@ -229,7 +229,7 @@ namespace Adyen.Model.Checkout
         /// <summary>
         /// Gets or Sets Amount
         /// </summary>
-        [DataMember(Name = "amount", IsRequired = false, EmitDefaultValue = true)]
+        [DataMember(Name = "amount", EmitDefaultValue = false)]
         public Amount Amount { get; set; }
 
         /// <summary>
@@ -255,7 +255,7 @@ namespace Adyen.Model.Checkout
         /// </summary>
         /// <value>The delay between the authorisation and scheduled auto-capture, specified in hours.</value>
         [DataMember(Name = "captureDelayHours", EmitDefaultValue = false)]
-        public int CaptureDelayHours { get; set; }
+        public int? CaptureDelayHours { get; set; }
 
         /// <summary>
         /// The shopper&#39;s date of birth.  Format [ISO-8601](https://www.w3.org/TR/NOTE-datetime): YYYY-MM-DD
@@ -296,7 +296,7 @@ namespace Adyen.Model.Checkout
         /// </summary>
         /// <value>An integer value that is added to the normal fraud score. The value can be either positive or negative.</value>
         [DataMember(Name = "fraudOffset", EmitDefaultValue = false)]
-        public int FraudOffset { get; set; }
+        public int? FraudOffset { get; set; }
 
         /// <summary>
         /// Gets or Sets Installments
@@ -322,7 +322,7 @@ namespace Adyen.Model.Checkout
         /// The merchant account identifier, with which you want to process the transaction.
         /// </summary>
         /// <value>The merchant account identifier, with which you want to process the transaction.</value>
-        [DataMember(Name = "merchantAccount", IsRequired = false, EmitDefaultValue = true)]
+        [DataMember(Name = "merchantAccount", IsRequired = false, EmitDefaultValue = false)]
         public string MerchantAccount { get; set; }
 
         /// <summary>
@@ -356,7 +356,7 @@ namespace Adyen.Model.Checkout
         /// The collection that contains the type of the payment method and its specific information.
         /// </summary>
         /// <value>The collection that contains the type of the payment method and its specific information.</value>
-        [DataMember(Name = "paymentMethod", IsRequired = false, EmitDefaultValue = true)]
+        [DataMember(Name = "paymentMethod", IsRequired = false, EmitDefaultValue = false)]
         public Dictionary<string, string> PaymentMethod { get; set; }
 
         /// <summary>
@@ -369,7 +369,7 @@ namespace Adyen.Model.Checkout
         /// The reference to uniquely identify a payment. This reference is used in all communication with you about the payment status. We recommend using a unique value per payment; however, it is not a requirement. If you need to provide multiple references for a transaction, separate them with hyphens (\&quot;-\&quot;). Maximum length: 80 characters.
         /// </summary>
         /// <value>The reference to uniquely identify a payment. This reference is used in all communication with you about the payment status. We recommend using a unique value per payment; however, it is not a requirement. If you need to provide multiple references for a transaction, separate them with hyphens (\&quot;-\&quot;). Maximum length: 80 characters.</value>
-        [DataMember(Name = "reference", IsRequired = false, EmitDefaultValue = true)]
+        [DataMember(Name = "reference", EmitDefaultValue = false)]
         public string Reference { get; set; }
 
         /// <summary>
@@ -968,7 +968,6 @@ namespace Adyen.Model.Checkout
                 return hashCode;
             }
         }
-
         /// <summary>
         /// To validate all properties of the instance
         /// </summary>

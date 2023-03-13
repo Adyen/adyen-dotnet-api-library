@@ -60,7 +60,7 @@ namespace Adyen.Model.Checkout
         /// The amount in [minor units](https://docs.adyen.com/development-resources/currency-codes).
         /// </summary>
         /// <value>The amount in [minor units](https://docs.adyen.com/development-resources/currency-codes).</value>
-        [DataMember(Name = "value", IsRequired = false, EmitDefaultValue = true)]
+        [DataMember(Name = "value", IsRequired = false, EmitDefaultValue = false)]
         public long Value { get; set; }
 
         /// <summary>
@@ -136,7 +136,6 @@ namespace Adyen.Model.Checkout
                 return hashCode;
             }
         }
-
         /// <summary>
         /// To validate all properties of the instance
         /// </summary>

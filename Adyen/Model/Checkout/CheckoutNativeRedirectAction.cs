@@ -28,59 +28,77 @@ using OpenAPIDateConverter = Adyen.ApiSerialization.OpenAPIDateConverter;
 namespace Adyen.Model.Checkout
 {
     /// <summary>
-    /// CheckoutAwaitAction
+    /// CheckoutNativeRedirectAction
     /// </summary>
-    [DataContract(Name = "CheckoutAwaitAction")]
-    public partial class CheckoutAwaitAction : IEquatable<CheckoutAwaitAction>, IValidatableObject
+    [DataContract(Name = "CheckoutNativeRedirectAction")]
+    public partial class CheckoutNativeRedirectAction : IEquatable<CheckoutNativeRedirectAction>, IValidatableObject
     {
         /// <summary>
-        /// **await**
+        /// **nativeRedirect**
         /// </summary>
-        /// <value>**await**</value>
+        /// <value>**nativeRedirect**</value>
         [JsonConverter(typeof(StringEnumConverter))]
         public enum TypeEnum
         {
             /// <summary>
-            /// Enum Await for value: await
+            /// Enum NativeRedirect for value: nativeRedirect
             /// </summary>
-            [EnumMember(Value = "await")]
-            Await = 1
+            [EnumMember(Value = "nativeRedirect")]
+            NativeRedirect = 1
 
         }
 
 
         /// <summary>
-        /// **await**
+        /// **nativeRedirect**
         /// </summary>
-        /// <value>**await**</value>
+        /// <value>**nativeRedirect**</value>
         [DataMember(Name = "type", IsRequired = false, EmitDefaultValue = false)]
         public TypeEnum Type { get; set; }
         /// <summary>
-        /// Initializes a new instance of the <see cref="CheckoutAwaitAction" /> class.
+        /// Initializes a new instance of the <see cref="CheckoutNativeRedirectAction" /> class.
         /// </summary>
         [JsonConstructorAttribute]
-        protected CheckoutAwaitAction() { }
+        protected CheckoutNativeRedirectAction() { }
         /// <summary>
-        /// Initializes a new instance of the <see cref="CheckoutAwaitAction" /> class.
+        /// Initializes a new instance of the <see cref="CheckoutNativeRedirectAction" /> class.
         /// </summary>
-        /// <param name="paymentData">A value that must be submitted to the &#x60;/payments/details&#x60; endpoint to verify this payment..</param>
+        /// <param name="data">When the redirect URL must be accessed via POST, use this data to post to the redirect URL..</param>
+        /// <param name="method">Specifies the HTTP method, for example GET or POST..</param>
+        /// <param name="nativeRedirectData">Native SDK&#39;s redirect data containing the direct issuer link and state data that must be submitted to the /v1/nativeRedirect/redirectResult..</param>
         /// <param name="paymentMethodType">Specifies the payment method..</param>
-        /// <param name="type">**await** (required).</param>
+        /// <param name="type">**nativeRedirect** (required).</param>
         /// <param name="url">Specifies the URL to redirect to..</param>
-        public CheckoutAwaitAction(string paymentData = default(string), string paymentMethodType = default(string), TypeEnum type = default(TypeEnum), string url = default(string))
+        public CheckoutNativeRedirectAction(Dictionary<string, string> data = default(Dictionary<string, string>), string method = default(string), string nativeRedirectData = default(string), string paymentMethodType = default(string), TypeEnum type = default(TypeEnum), string url = default(string))
         {
             this.Type = type;
-            this.PaymentData = paymentData;
+            this.Data = data;
+            this.Method = method;
+            this.NativeRedirectData = nativeRedirectData;
             this.PaymentMethodType = paymentMethodType;
             this.Url = url;
         }
 
         /// <summary>
-        /// A value that must be submitted to the &#x60;/payments/details&#x60; endpoint to verify this payment.
+        /// When the redirect URL must be accessed via POST, use this data to post to the redirect URL.
         /// </summary>
-        /// <value>A value that must be submitted to the &#x60;/payments/details&#x60; endpoint to verify this payment.</value>
-        [DataMember(Name = "paymentData", EmitDefaultValue = false)]
-        public string PaymentData { get; set; }
+        /// <value>When the redirect URL must be accessed via POST, use this data to post to the redirect URL.</value>
+        [DataMember(Name = "data", EmitDefaultValue = false)]
+        public Dictionary<string, string> Data { get; set; }
+
+        /// <summary>
+        /// Specifies the HTTP method, for example GET or POST.
+        /// </summary>
+        /// <value>Specifies the HTTP method, for example GET or POST.</value>
+        [DataMember(Name = "method", EmitDefaultValue = false)]
+        public string Method { get; set; }
+
+        /// <summary>
+        /// Native SDK&#39;s redirect data containing the direct issuer link and state data that must be submitted to the /v1/nativeRedirect/redirectResult.
+        /// </summary>
+        /// <value>Native SDK&#39;s redirect data containing the direct issuer link and state data that must be submitted to the /v1/nativeRedirect/redirectResult.</value>
+        [DataMember(Name = "nativeRedirectData", EmitDefaultValue = false)]
+        public string NativeRedirectData { get; set; }
 
         /// <summary>
         /// Specifies the payment method.
@@ -103,8 +121,10 @@ namespace Adyen.Model.Checkout
         public override string ToString()
         {
             StringBuilder sb = new StringBuilder();
-            sb.Append("class CheckoutAwaitAction {\n");
-            sb.Append("  PaymentData: ").Append(PaymentData).Append("\n");
+            sb.Append("class CheckoutNativeRedirectAction {\n");
+            sb.Append("  Data: ").Append(Data).Append("\n");
+            sb.Append("  Method: ").Append(Method).Append("\n");
+            sb.Append("  NativeRedirectData: ").Append(NativeRedirectData).Append("\n");
             sb.Append("  PaymentMethodType: ").Append(PaymentMethodType).Append("\n");
             sb.Append("  Type: ").Append(Type).Append("\n");
             sb.Append("  Url: ").Append(Url).Append("\n");
@@ -128,15 +148,15 @@ namespace Adyen.Model.Checkout
         /// <returns>Boolean</returns>
         public override bool Equals(object input)
         {
-            return this.Equals(input as CheckoutAwaitAction);
+            return this.Equals(input as CheckoutNativeRedirectAction);
         }
 
         /// <summary>
-        /// Returns true if CheckoutAwaitAction instances are equal
+        /// Returns true if CheckoutNativeRedirectAction instances are equal
         /// </summary>
-        /// <param name="input">Instance of CheckoutAwaitAction to be compared</param>
+        /// <param name="input">Instance of CheckoutNativeRedirectAction to be compared</param>
         /// <returns>Boolean</returns>
-        public bool Equals(CheckoutAwaitAction input)
+        public bool Equals(CheckoutNativeRedirectAction input)
         {
             if (input == null)
             {
@@ -144,9 +164,20 @@ namespace Adyen.Model.Checkout
             }
             return 
                 (
-                    this.PaymentData == input.PaymentData ||
-                    (this.PaymentData != null &&
-                    this.PaymentData.Equals(input.PaymentData))
+                    this.Data == input.Data ||
+                    this.Data != null &&
+                    input.Data != null &&
+                    this.Data.SequenceEqual(input.Data)
+                ) && 
+                (
+                    this.Method == input.Method ||
+                    (this.Method != null &&
+                    this.Method.Equals(input.Method))
+                ) && 
+                (
+                    this.NativeRedirectData == input.NativeRedirectData ||
+                    (this.NativeRedirectData != null &&
+                    this.NativeRedirectData.Equals(input.NativeRedirectData))
                 ) && 
                 (
                     this.PaymentMethodType == input.PaymentMethodType ||
@@ -173,9 +204,17 @@ namespace Adyen.Model.Checkout
             unchecked // Overflow is fine, just wrap
             {
                 int hashCode = 41;
-                if (this.PaymentData != null)
+                if (this.Data != null)
                 {
-                    hashCode = (hashCode * 59) + this.PaymentData.GetHashCode();
+                    hashCode = (hashCode * 59) + this.Data.GetHashCode();
+                }
+                if (this.Method != null)
+                {
+                    hashCode = (hashCode * 59) + this.Method.GetHashCode();
+                }
+                if (this.NativeRedirectData != null)
+                {
+                    hashCode = (hashCode * 59) + this.NativeRedirectData.GetHashCode();
                 }
                 if (this.PaymentMethodType != null)
                 {

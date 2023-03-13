@@ -53,7 +53,7 @@ namespace Adyen.Model.Checkout
         /// <param name="source">The source of the forex quote..</param>
         /// <param name="type">The type of forex..</param>
         /// <param name="validTill">The date until which the forex quote is valid. (required).</param>
-        public ForexQuote(string account = default(string), string accountType = default(string), Amount baseAmount = default(Amount), int basePoints = default(int), Amount buy = default(Amount), Amount interbank = default(Amount), string reference = default(string), Amount sell = default(Amount), string signature = default(string), string source = default(string), string type = default(string), DateTime validTill = default(DateTime))
+        public ForexQuote(string account = default(string), string accountType = default(string), Amount baseAmount = default(Amount), int? basePoints = default(int?), Amount buy = default(Amount), Amount interbank = default(Amount), string reference = default(string), Amount sell = default(Amount), string signature = default(string), string source = default(string), string type = default(string), DateTime validTill = default(DateTime))
         {
             this.BasePoints = basePoints;
             this.ValidTill = validTill;
@@ -93,8 +93,8 @@ namespace Adyen.Model.Checkout
         /// The base points.
         /// </summary>
         /// <value>The base points.</value>
-        [DataMember(Name = "basePoints", IsRequired = false, EmitDefaultValue = true)]
-        public int BasePoints { get; set; }
+        [DataMember(Name = "basePoints", IsRequired = false, EmitDefaultValue = false)]
+        public int? BasePoints { get; set; }
 
         /// <summary>
         /// Gets or Sets Buy
@@ -146,7 +146,7 @@ namespace Adyen.Model.Checkout
         /// The date until which the forex quote is valid.
         /// </summary>
         /// <value>The date until which the forex quote is valid.</value>
-        [DataMember(Name = "validTill", IsRequired = false, EmitDefaultValue = true)]
+        [DataMember(Name = "validTill", IsRequired = false, EmitDefaultValue = false)]
         public DateTime ValidTill { get; set; }
 
         /// <summary>
@@ -322,7 +322,6 @@ namespace Adyen.Model.Checkout
                 return hashCode;
             }
         }
-
         /// <summary>
         /// To validate all properties of the instance
         /// </summary>

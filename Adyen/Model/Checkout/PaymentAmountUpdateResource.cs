@@ -87,7 +87,7 @@ namespace Adyen.Model.Checkout
         /// The status of your request. This will always have the value **received**.
         /// </summary>
         /// <value>The status of your request. This will always have the value **received**.</value>
-        [DataMember(Name = "status", IsRequired = false, EmitDefaultValue = true)]
+        [DataMember(Name = "status", IsRequired = false, EmitDefaultValue = false)]
         public StatusEnum Status { get; set; }
         /// <summary>
         /// Initializes a new instance of the <see cref="PaymentAmountUpdateResource" /> class.
@@ -120,35 +120,35 @@ namespace Adyen.Model.Checkout
         /// <summary>
         /// Gets or Sets Amount
         /// </summary>
-        [DataMember(Name = "amount", IsRequired = false, EmitDefaultValue = true)]
+        [DataMember(Name = "amount", IsRequired = false, EmitDefaultValue = false)]
         public Amount Amount { get; set; }
 
         /// <summary>
         /// The merchant account that is used to process the payment.
         /// </summary>
         /// <value>The merchant account that is used to process the payment.</value>
-        [DataMember(Name = "merchantAccount", IsRequired = false, EmitDefaultValue = true)]
+        [DataMember(Name = "merchantAccount", IsRequired = false, EmitDefaultValue = false)]
         public string MerchantAccount { get; set; }
 
         /// <summary>
         /// The [&#x60;pspReference&#x60;](https://docs.adyen.com/api-explorer/#/CheckoutService/latest/post/payments__resParam_pspReference) of the payment to update. 
         /// </summary>
         /// <value>The [&#x60;pspReference&#x60;](https://docs.adyen.com/api-explorer/#/CheckoutService/latest/post/payments__resParam_pspReference) of the payment to update. </value>
-        [DataMember(Name = "paymentPspReference", IsRequired = false, EmitDefaultValue = true)]
+        [DataMember(Name = "paymentPspReference", IsRequired = false, EmitDefaultValue = false)]
         public string PaymentPspReference { get; set; }
 
         /// <summary>
         /// Adyen&#39;s 16-character reference associated with the amount update request.
         /// </summary>
         /// <value>Adyen&#39;s 16-character reference associated with the amount update request.</value>
-        [DataMember(Name = "pspReference", IsRequired = false, EmitDefaultValue = true)]
+        [DataMember(Name = "pspReference", IsRequired = false, EmitDefaultValue = false)]
         public string PspReference { get; set; }
 
         /// <summary>
         /// Your reference for the amount update request. Maximum length: 80 characters.
         /// </summary>
         /// <value>Your reference for the amount update request. Maximum length: 80 characters.</value>
-        [DataMember(Name = "reference", IsRequired = false, EmitDefaultValue = true)]
+        [DataMember(Name = "reference", IsRequired = false, EmitDefaultValue = false)]
         public string Reference { get; set; }
 
         /// <summary>
@@ -288,7 +288,6 @@ namespace Adyen.Model.Checkout
                 return hashCode;
             }
         }
-
         /// <summary>
         /// To validate all properties of the instance
         /// </summary>

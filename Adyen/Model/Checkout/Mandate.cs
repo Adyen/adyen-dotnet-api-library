@@ -157,7 +157,7 @@ namespace Adyen.Model.Checkout
         /// The frequency with which a shopper should be charged.  Possible values: **daily**, **weekly**, **biWeekly**, **monthly**, **quarterly**, **halfYearly**, **yearly**.
         /// </summary>
         /// <value>The frequency with which a shopper should be charged.  Possible values: **daily**, **weekly**, **biWeekly**, **monthly**, **quarterly**, **halfYearly**, **yearly**.</value>
-        [DataMember(Name = "frequency", IsRequired = false, EmitDefaultValue = true)]
+        [DataMember(Name = "frequency", IsRequired = false, EmitDefaultValue = false)]
         public FrequencyEnum Frequency { get; set; }
         /// <summary>
         /// Initializes a new instance of the <see cref="Mandate" /> class.
@@ -191,7 +191,7 @@ namespace Adyen.Model.Checkout
         /// The billing amount (in minor units) of the recurring transactions.
         /// </summary>
         /// <value>The billing amount (in minor units) of the recurring transactions.</value>
-        [DataMember(Name = "amount", IsRequired = false, EmitDefaultValue = true)]
+        [DataMember(Name = "amount", IsRequired = false, EmitDefaultValue = false)]
         public string Amount { get; set; }
 
         /// <summary>
@@ -205,7 +205,7 @@ namespace Adyen.Model.Checkout
         /// End date of the billing plan, in YYYY-MM-DD format.
         /// </summary>
         /// <value>End date of the billing plan, in YYYY-MM-DD format.</value>
-        [DataMember(Name = "endsAt", IsRequired = false, EmitDefaultValue = true)]
+        [DataMember(Name = "endsAt", IsRequired = false, EmitDefaultValue = false)]
         public string EndsAt { get; set; }
 
         /// <summary>
@@ -347,7 +347,6 @@ namespace Adyen.Model.Checkout
                 return hashCode;
             }
         }
-
         /// <summary>
         /// To validate all properties of the instance
         /// </summary>

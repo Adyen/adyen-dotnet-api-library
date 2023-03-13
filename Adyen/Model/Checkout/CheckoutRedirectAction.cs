@@ -53,7 +53,7 @@ namespace Adyen.Model.Checkout
         /// **redirect**
         /// </summary>
         /// <value>**redirect**</value>
-        [DataMember(Name = "type", IsRequired = false, EmitDefaultValue = true)]
+        [DataMember(Name = "type", IsRequired = false, EmitDefaultValue = false)]
         public TypeEnum Type { get; set; }
         /// <summary>
         /// Initializes a new instance of the <see cref="CheckoutRedirectAction" /> class.
@@ -209,7 +209,6 @@ namespace Adyen.Model.Checkout
                 return hashCode;
             }
         }
-
         /// <summary>
         /// To validate all properties of the instance
         /// </summary>

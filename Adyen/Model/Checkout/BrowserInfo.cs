@@ -50,7 +50,7 @@ namespace Adyen.Model.Checkout
         /// <param name="screenWidth">The total width of the shopper&#39;s device screen in pixels. (required).</param>
         /// <param name="timeZoneOffset">Time difference between UTC time and the shopper&#39;s browser local time, in minutes. (required).</param>
         /// <param name="userAgent">The user agent value of the shopper&#39;s browser. (required).</param>
-        public BrowserInfo(string acceptHeader = default(string), int colorDepth = default(int), bool javaEnabled = default(bool), bool javaScriptEnabled = true, string language = default(string), int screenHeight = default(int), int screenWidth = default(int), int timeZoneOffset = default(int), string userAgent = default(string))
+        public BrowserInfo(string acceptHeader = default(string), int? colorDepth = default(int?), bool javaEnabled = default(bool), bool javaScriptEnabled = true, string language = default(string), int? screenHeight = default(int?), int? screenWidth = default(int?), int? timeZoneOffset = default(int?), string userAgent = default(string))
         {
             this.AcceptHeader = acceptHeader;
             this.ColorDepth = colorDepth;
@@ -67,21 +67,21 @@ namespace Adyen.Model.Checkout
         /// The accept header value of the shopper&#39;s browser.
         /// </summary>
         /// <value>The accept header value of the shopper&#39;s browser.</value>
-        [DataMember(Name = "acceptHeader", IsRequired = false, EmitDefaultValue = true)]
+        [DataMember(Name = "acceptHeader", IsRequired = false, EmitDefaultValue = false)]
         public string AcceptHeader { get; set; }
 
         /// <summary>
         /// The color depth of the shopper&#39;s browser in bits per pixel. This should be obtained by using the browser&#39;s &#x60;screen.colorDepth&#x60; property. Accepted values: 1, 4, 8, 15, 16, 24, 30, 32 or 48 bit color depth.
         /// </summary>
         /// <value>The color depth of the shopper&#39;s browser in bits per pixel. This should be obtained by using the browser&#39;s &#x60;screen.colorDepth&#x60; property. Accepted values: 1, 4, 8, 15, 16, 24, 30, 32 or 48 bit color depth.</value>
-        [DataMember(Name = "colorDepth", IsRequired = false, EmitDefaultValue = true)]
-        public int ColorDepth { get; set; }
+        [DataMember(Name = "colorDepth", IsRequired = false, EmitDefaultValue = false)]
+        public int? ColorDepth { get; set; }
 
         /// <summary>
         /// Boolean value indicating if the shopper&#39;s browser is able to execute Java.
         /// </summary>
         /// <value>Boolean value indicating if the shopper&#39;s browser is able to execute Java.</value>
-        [DataMember(Name = "javaEnabled", IsRequired = false, EmitDefaultValue = true)]
+        [DataMember(Name = "javaEnabled", IsRequired = false, EmitDefaultValue = false)]
         public bool JavaEnabled { get; set; }
 
         /// <summary>
@@ -95,35 +95,35 @@ namespace Adyen.Model.Checkout
         /// The &#x60;navigator.language&#x60; value of the shopper&#39;s browser (as defined in IETF BCP 47).
         /// </summary>
         /// <value>The &#x60;navigator.language&#x60; value of the shopper&#39;s browser (as defined in IETF BCP 47).</value>
-        [DataMember(Name = "language", IsRequired = false, EmitDefaultValue = true)]
+        [DataMember(Name = "language", IsRequired = false, EmitDefaultValue = false)]
         public string Language { get; set; }
 
         /// <summary>
         /// The total height of the shopper&#39;s device screen in pixels.
         /// </summary>
         /// <value>The total height of the shopper&#39;s device screen in pixels.</value>
-        [DataMember(Name = "screenHeight", IsRequired = false, EmitDefaultValue = true)]
-        public int ScreenHeight { get; set; }
+        [DataMember(Name = "screenHeight", IsRequired = false, EmitDefaultValue = false)]
+        public int? ScreenHeight { get; set; }
 
         /// <summary>
         /// The total width of the shopper&#39;s device screen in pixels.
         /// </summary>
         /// <value>The total width of the shopper&#39;s device screen in pixels.</value>
-        [DataMember(Name = "screenWidth", IsRequired = false, EmitDefaultValue = true)]
-        public int ScreenWidth { get; set; }
+        [DataMember(Name = "screenWidth", IsRequired = false, EmitDefaultValue = false)]
+        public int? ScreenWidth { get; set; }
 
         /// <summary>
         /// Time difference between UTC time and the shopper&#39;s browser local time, in minutes.
         /// </summary>
         /// <value>Time difference between UTC time and the shopper&#39;s browser local time, in minutes.</value>
-        [DataMember(Name = "timeZoneOffset", IsRequired = false, EmitDefaultValue = true)]
-        public int TimeZoneOffset { get; set; }
+        [DataMember(Name = "timeZoneOffset", IsRequired = false, EmitDefaultValue = false)]
+        public int? TimeZoneOffset { get; set; }
 
         /// <summary>
         /// The user agent value of the shopper&#39;s browser.
         /// </summary>
         /// <value>The user agent value of the shopper&#39;s browser.</value>
-        [DataMember(Name = "userAgent", IsRequired = false, EmitDefaultValue = true)]
+        [DataMember(Name = "userAgent", IsRequired = false, EmitDefaultValue = false)]
         public string UserAgent { get; set; }
 
         /// <summary>
@@ -249,7 +249,6 @@ namespace Adyen.Model.Checkout
                 return hashCode;
             }
         }
-
         /// <summary>
         /// To validate all properties of the instance
         /// </summary>

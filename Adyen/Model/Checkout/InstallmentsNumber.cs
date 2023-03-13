@@ -42,7 +42,7 @@ namespace Adyen.Model.Checkout
         /// Initializes a new instance of the <see cref="InstallmentsNumber" /> class.
         /// </summary>
         /// <param name="maxNumberOfInstallments">Maximum number of installments (required).</param>
-        public InstallmentsNumber(int maxNumberOfInstallments = default(int))
+        public InstallmentsNumber(int? maxNumberOfInstallments = default(int?))
         {
             this.MaxNumberOfInstallments = maxNumberOfInstallments;
         }
@@ -51,8 +51,8 @@ namespace Adyen.Model.Checkout
         /// Maximum number of installments
         /// </summary>
         /// <value>Maximum number of installments</value>
-        [DataMember(Name = "maxNumberOfInstallments", IsRequired = false, EmitDefaultValue = true)]
-        public int MaxNumberOfInstallments { get; set; }
+        [DataMember(Name = "maxNumberOfInstallments", IsRequired = false, EmitDefaultValue = false)]
+        public int? MaxNumberOfInstallments { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -117,7 +117,6 @@ namespace Adyen.Model.Checkout
                 return hashCode;
             }
         }
-
         /// <summary>
         /// To validate all properties of the instance
         /// </summary>

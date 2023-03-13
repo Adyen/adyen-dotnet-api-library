@@ -120,7 +120,7 @@ namespace Adyen.Model.Checkout
         /// The payload you received from the Samsung Pay SDK response.
         /// </summary>
         /// <value>The payload you received from the Samsung Pay SDK response.</value>
-        [DataMember(Name = "samsungPayToken", IsRequired = false, EmitDefaultValue = true)]
+        [DataMember(Name = "samsungPayToken", IsRequired = false, EmitDefaultValue = false)]
         public string SamsungPayToken { get; set; }
 
         /// <summary>
@@ -239,7 +239,6 @@ namespace Adyen.Model.Checkout
                 return hashCode;
             }
         }
-
         /// <summary>
         /// To validate all properties of the instance
         /// </summary>

@@ -53,7 +53,7 @@ namespace Adyen.Model.Checkout
         /// The result of the cancellation request.  Possible values:  * **Received** – Indicates the cancellation has successfully been received by Adyen, and will be processed.
         /// </summary>
         /// <value>The result of the cancellation request.  Possible values:  * **Received** – Indicates the cancellation has successfully been received by Adyen, and will be processed.</value>
-        [DataMember(Name = "resultCode", IsRequired = false, EmitDefaultValue = true)]
+        [DataMember(Name = "resultCode", IsRequired = false, EmitDefaultValue = false)]
         public ResultCodeEnum ResultCode { get; set; }
         /// <summary>
         /// Initializes a new instance of the <see cref="CheckoutCancelOrderResponse" /> class.
@@ -75,7 +75,7 @@ namespace Adyen.Model.Checkout
         /// A unique reference of the cancellation request.
         /// </summary>
         /// <value>A unique reference of the cancellation request.</value>
-        [DataMember(Name = "pspReference", IsRequired = false, EmitDefaultValue = true)]
+        [DataMember(Name = "pspReference", IsRequired = false, EmitDefaultValue = false)]
         public string PspReference { get; set; }
 
         /// <summary>
@@ -151,7 +151,6 @@ namespace Adyen.Model.Checkout
                 return hashCode;
             }
         }
-
         /// <summary>
         /// To validate all properties of the instance
         /// </summary>

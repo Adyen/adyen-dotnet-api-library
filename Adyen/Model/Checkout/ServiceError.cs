@@ -42,7 +42,7 @@ namespace Adyen.Model.Checkout
         /// <param name="message">A short explanation of the issue..</param>
         /// <param name="pspReference">The PSP reference of the payment..</param>
         /// <param name="status">The HTTP response status..</param>
-        public ServiceError(Dictionary<string, string> additionalData = default(Dictionary<string, string>), string errorCode = default(string), string errorType = default(string), string message = default(string), string pspReference = default(string), int status = default(int))
+        public ServiceError(Dictionary<string, string> additionalData = default(Dictionary<string, string>), string errorCode = default(string), string errorType = default(string), string message = default(string), string pspReference = default(string), int? status = default(int?))
         {
             this.AdditionalData = additionalData;
             this.ErrorCode = errorCode;
@@ -92,7 +92,7 @@ namespace Adyen.Model.Checkout
         /// </summary>
         /// <value>The HTTP response status.</value>
         [DataMember(Name = "status", EmitDefaultValue = false)]
-        public int Status { get; set; }
+        public int? Status { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -208,7 +208,6 @@ namespace Adyen.Model.Checkout
                 return hashCode;
             }
         }
-
         /// <summary>
         /// To validate all properties of the instance
         /// </summary>

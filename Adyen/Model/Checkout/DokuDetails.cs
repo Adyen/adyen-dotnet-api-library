@@ -101,7 +101,7 @@ namespace Adyen.Model.Checkout
         /// **doku**
         /// </summary>
         /// <value>**doku**</value>
-        [DataMember(Name = "type", IsRequired = false, EmitDefaultValue = true)]
+        [DataMember(Name = "type", IsRequired = false, EmitDefaultValue = false)]
         public TypeEnum Type { get; set; }
         /// <summary>
         /// Initializes a new instance of the <see cref="DokuDetails" /> class.
@@ -136,21 +136,21 @@ namespace Adyen.Model.Checkout
         /// The shopper&#39;s first name.
         /// </summary>
         /// <value>The shopper&#39;s first name.</value>
-        [DataMember(Name = "firstName", IsRequired = false, EmitDefaultValue = true)]
+        [DataMember(Name = "firstName", IsRequired = false, EmitDefaultValue = false)]
         public string FirstName { get; set; }
 
         /// <summary>
         /// The shopper&#39;s last name.
         /// </summary>
         /// <value>The shopper&#39;s last name.</value>
-        [DataMember(Name = "lastName", IsRequired = false, EmitDefaultValue = true)]
+        [DataMember(Name = "lastName", IsRequired = false, EmitDefaultValue = false)]
         public string LastName { get; set; }
 
         /// <summary>
         /// The shopper&#39;s email.
         /// </summary>
         /// <value>The shopper&#39;s email.</value>
-        [DataMember(Name = "shopperEmail", IsRequired = false, EmitDefaultValue = true)]
+        [DataMember(Name = "shopperEmail", IsRequired = false, EmitDefaultValue = false)]
         public string ShopperEmail { get; set; }
 
         /// <summary>
@@ -256,7 +256,6 @@ namespace Adyen.Model.Checkout
                 return hashCode;
             }
         }
-
         /// <summary>
         /// To validate all properties of the instance
         /// </summary>
