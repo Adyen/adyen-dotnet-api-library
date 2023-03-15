@@ -59,7 +59,7 @@ namespace Adyen.Model.Checkout
         /// **molpay**
         /// </summary>
         /// <value>**molpay**</value>
-        [DataMember(Name = "type", IsRequired = false, EmitDefaultValue = true)]
+        [DataMember(Name = "type", IsRequired = false, EmitDefaultValue = false)]
         public TypeEnum Type { get; set; }
         /// <summary>
         /// Initializes a new instance of the <see cref="MolPayDetails" /> class.
@@ -90,7 +90,7 @@ namespace Adyen.Model.Checkout
         /// The shopper&#39;s bank. Specify this with the issuer value that corresponds to this bank.
         /// </summary>
         /// <value>The shopper&#39;s bank. Specify this with the issuer value that corresponds to this bank.</value>
-        [DataMember(Name = "issuer", IsRequired = false, EmitDefaultValue = true)]
+        [DataMember(Name = "issuer", IsRequired = false, EmitDefaultValue = false)]
         public string Issuer { get; set; }
 
         /// <summary>
@@ -176,7 +176,6 @@ namespace Adyen.Model.Checkout
                 return hashCode;
             }
         }
-
         /// <summary>
         /// To validate all properties of the instance
         /// </summary>

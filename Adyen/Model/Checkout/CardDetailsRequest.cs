@@ -59,7 +59,7 @@ namespace Adyen.Model.Checkout
         /// A minimum of the first 8 digits of the card number and a maximum of the full card number. 11 digits gives the best result.   You must be [fully PCI compliant](https://docs.adyen.com/development-resources/pci-dss-compliance-guide) to collect raw card data.
         /// </summary>
         /// <value>A minimum of the first 8 digits of the card number and a maximum of the full card number. 11 digits gives the best result.   You must be [fully PCI compliant](https://docs.adyen.com/development-resources/pci-dss-compliance-guide) to collect raw card data.</value>
-        [DataMember(Name = "cardNumber", IsRequired = false, EmitDefaultValue = true)]
+        [DataMember(Name = "cardNumber", IsRequired = false, EmitDefaultValue = false)]
         public string CardNumber { get; set; }
 
         /// <summary>
@@ -80,7 +80,7 @@ namespace Adyen.Model.Checkout
         /// The merchant account identifier, with which you want to process the transaction.
         /// </summary>
         /// <value>The merchant account identifier, with which you want to process the transaction.</value>
-        [DataMember(Name = "merchantAccount", IsRequired = false, EmitDefaultValue = true)]
+        [DataMember(Name = "merchantAccount", IsRequired = false, EmitDefaultValue = false)]
         public string MerchantAccount { get; set; }
 
         /// <summary>
@@ -198,7 +198,6 @@ namespace Adyen.Model.Checkout
                 return hashCode;
             }
         }
-
         /// <summary>
         /// To validate all properties of the instance
         /// </summary>

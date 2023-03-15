@@ -59,7 +59,7 @@ namespace Adyen.Model.Checkout
         /// <param name="plans">Defines the type of installment plan. If not set, defaults to **regular**.  Possible values: * **regular** * **revolving**.</param>
         /// <param name="preselectedValue">Preselected number of installments offered for this payment method..</param>
         /// <param name="values">An array of the number of installments that the shopper can choose from. For example, **[2,3,5]**. This cannot be specified simultaneously with &#x60;maxValue&#x60;..</param>
-        public CheckoutSessionInstallmentOption(List<PlansEnum> plans = default(List<PlansEnum>), int preselectedValue = default(int), List<int> values = default(List<int>))
+        public CheckoutSessionInstallmentOption(List<PlansEnum> plans = default(List<PlansEnum>), int? preselectedValue = default(int?), List<int> values = default(List<int>))
         {
             this.Plans = plans;
             this.PreselectedValue = preselectedValue;
@@ -78,7 +78,7 @@ namespace Adyen.Model.Checkout
         /// </summary>
         /// <value>Preselected number of installments offered for this payment method.</value>
         [DataMember(Name = "preselectedValue", EmitDefaultValue = false)]
-        public int PreselectedValue { get; set; }
+        public int? PreselectedValue { get; set; }
 
         /// <summary>
         /// An array of the number of installments that the shopper can choose from. For example, **[2,3,5]**. This cannot be specified simultaneously with &#x60;maxValue&#x60;.
@@ -172,7 +172,6 @@ namespace Adyen.Model.Checkout
                 return hashCode;
             }
         }
-
         /// <summary>
         /// To validate all properties of the instance
         /// </summary>

@@ -55,21 +55,21 @@ namespace Adyen.Model.Checkout
         /// This is the name that your shoppers will see in the Apple Pay interface.  The value returned as &#x60;configuration.merchantName&#x60; field from the [&#x60;/paymentMethods&#x60;](https://docs.adyen.com/api-explorer/#/CheckoutService/latest/post/paymentMethods) response.
         /// </summary>
         /// <value>This is the name that your shoppers will see in the Apple Pay interface.  The value returned as &#x60;configuration.merchantName&#x60; field from the [&#x60;/paymentMethods&#x60;](https://docs.adyen.com/api-explorer/#/CheckoutService/latest/post/paymentMethods) response.</value>
-        [DataMember(Name = "displayName", IsRequired = false, EmitDefaultValue = true)]
+        [DataMember(Name = "displayName", IsRequired = false, EmitDefaultValue = false)]
         public string DisplayName { get; set; }
 
         /// <summary>
         /// The domain name you provided when you added Apple Pay in your Customer Area.  This must match the &#x60;window.location.hostname&#x60; of the web shop.
         /// </summary>
         /// <value>The domain name you provided when you added Apple Pay in your Customer Area.  This must match the &#x60;window.location.hostname&#x60; of the web shop.</value>
-        [DataMember(Name = "domainName", IsRequired = false, EmitDefaultValue = true)]
+        [DataMember(Name = "domainName", IsRequired = false, EmitDefaultValue = false)]
         public string DomainName { get; set; }
 
         /// <summary>
         /// Your merchant identifier registered with Apple Pay.  Use the value of the &#x60;configuration.merchantId&#x60; field from the [&#x60;/paymentMethods&#x60;](https://docs.adyen.com/api-explorer/#/CheckoutService/latest/post/paymentMethods) response.
         /// </summary>
         /// <value>Your merchant identifier registered with Apple Pay.  Use the value of the &#x60;configuration.merchantId&#x60; field from the [&#x60;/paymentMethods&#x60;](https://docs.adyen.com/api-explorer/#/CheckoutService/latest/post/paymentMethods) response.</value>
-        [DataMember(Name = "merchantIdentifier", IsRequired = false, EmitDefaultValue = true)]
+        [DataMember(Name = "merchantIdentifier", IsRequired = false, EmitDefaultValue = false)]
         public string MerchantIdentifier { get; set; }
 
         /// <summary>
@@ -159,7 +159,6 @@ namespace Adyen.Model.Checkout
                 return hashCode;
             }
         }
-
         /// <summary>
         /// To validate all properties of the instance
         /// </summary>

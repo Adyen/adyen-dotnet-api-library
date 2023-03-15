@@ -53,7 +53,7 @@ namespace Adyen.Model.Checkout
         /// **upi_collect**
         /// </summary>
         /// <value>**upi_collect**</value>
-        [DataMember(Name = "type", IsRequired = false, EmitDefaultValue = true)]
+        [DataMember(Name = "type", IsRequired = false, EmitDefaultValue = false)]
         public TypeEnum Type { get; set; }
         /// <summary>
         /// Initializes a new instance of the <see cref="UpiCollectDetails" /> class.
@@ -85,7 +85,7 @@ namespace Adyen.Model.Checkout
         /// The sequence number for the debit. For example, send **2** if this is the second debit for the subscription. The sequence number is included in the notification sent to the shopper.
         /// </summary>
         /// <value>The sequence number for the debit. For example, send **2** if this is the second debit for the subscription. The sequence number is included in the notification sent to the shopper.</value>
-        [DataMember(Name = "billingSequenceNumber", IsRequired = false, EmitDefaultValue = true)]
+        [DataMember(Name = "billingSequenceNumber", IsRequired = false, EmitDefaultValue = false)]
         public string BillingSequenceNumber { get; set; }
 
         /// <summary>
@@ -247,7 +247,6 @@ namespace Adyen.Model.Checkout
                 return hashCode;
             }
         }
-
         /// <summary>
         /// To validate all properties of the instance
         /// </summary>

@@ -65,7 +65,7 @@ namespace Adyen.Model.Checkout
         /// The result of the cancellation request.  Possible values:  * **Success** – Indicates that the balance check was successful. * **NotEnoughBalance** – Commonly indicates that the card did not have enough balance to pay the amount in the request, or that the currency of the balance on the card did not match the currency of the requested amount. * **Failed** – Indicates that the balance check failed.
         /// </summary>
         /// <value>The result of the cancellation request.  Possible values:  * **Success** – Indicates that the balance check was successful. * **NotEnoughBalance** – Commonly indicates that the card did not have enough balance to pay the amount in the request, or that the currency of the balance on the card did not match the currency of the requested amount. * **Failed** – Indicates that the balance check failed.</value>
-        [DataMember(Name = "resultCode", IsRequired = false, EmitDefaultValue = true)]
+        [DataMember(Name = "resultCode", IsRequired = false, EmitDefaultValue = false)]
         public ResultCodeEnum ResultCode { get; set; }
         /// <summary>
         /// Initializes a new instance of the <see cref="CheckoutBalanceCheckResponse" /> class.
@@ -103,7 +103,7 @@ namespace Adyen.Model.Checkout
         /// <summary>
         /// Gets or Sets Balance
         /// </summary>
-        [DataMember(Name = "balance", IsRequired = false, EmitDefaultValue = true)]
+        [DataMember(Name = "balance", IsRequired = false, EmitDefaultValue = false)]
         public Amount Balance { get; set; }
 
         /// <summary>
@@ -256,7 +256,6 @@ namespace Adyen.Model.Checkout
                 return hashCode;
             }
         }
-
         /// <summary>
         /// To validate all properties of the instance
         /// </summary>

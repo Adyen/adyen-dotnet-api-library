@@ -51,7 +51,7 @@ namespace Adyen.Model.Checkout
         /// Encrypted and signed payment result data. You should receive this value from the Checkout SDK after the shopper completes the payment.
         /// </summary>
         /// <value>Encrypted and signed payment result data. You should receive this value from the Checkout SDK after the shopper completes the payment.</value>
-        [DataMember(Name = "payload", IsRequired = false, EmitDefaultValue = true)]
+        [DataMember(Name = "payload", IsRequired = false, EmitDefaultValue = false)]
         public string Payload { get; set; }
 
         /// <summary>
@@ -121,7 +121,6 @@ namespace Adyen.Model.Checkout
                 return hashCode;
             }
         }
-
         /// <summary>
         /// To validate all properties of the instance
         /// </summary>

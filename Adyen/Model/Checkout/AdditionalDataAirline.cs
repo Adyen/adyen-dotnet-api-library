@@ -266,7 +266,7 @@ namespace Adyen.Model.Checkout
         /// Passenger name, initials, and a title. * Format: last name + first name or initials + title. * Example: *FLYER / MARY MS*. * minLength: 1 * maxLength: 49
         /// </summary>
         /// <value>Passenger name, initials, and a title. * Format: last name + first name or initials + title. * Example: *FLYER / MARY MS*. * minLength: 1 * maxLength: 49</value>
-        [DataMember(Name = "airline.passenger_name", IsRequired = false, EmitDefaultValue = true)]
+        [DataMember(Name = "airline.passenger_name", IsRequired = false, EmitDefaultValue = false)]
         public string AirlinePassengerName { get; set; }
 
         /// <summary>
@@ -634,7 +634,6 @@ namespace Adyen.Model.Checkout
                 return hashCode;
             }
         }
-
         /// <summary>
         /// To validate all properties of the instance
         /// </summary>

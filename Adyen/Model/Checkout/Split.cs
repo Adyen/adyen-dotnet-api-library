@@ -107,7 +107,7 @@ namespace Adyen.Model.Checkout
         /// The type of split. Possible values: **Default**, **PaymentFee**, **VAT**, **Commission**, **MarketPlace**, **BalanceAccount**, **Remainder**, **Surcharge**, **Tip**.
         /// </summary>
         /// <value>The type of split. Possible values: **Default**, **PaymentFee**, **VAT**, **Commission**, **MarketPlace**, **BalanceAccount**, **Remainder**, **Surcharge**, **Tip**.</value>
-        [DataMember(Name = "type", IsRequired = false, EmitDefaultValue = true)]
+        [DataMember(Name = "type", IsRequired = false, EmitDefaultValue = false)]
         public TypeEnum Type { get; set; }
         /// <summary>
         /// Initializes a new instance of the <see cref="Split" /> class.
@@ -141,7 +141,7 @@ namespace Adyen.Model.Checkout
         /// <summary>
         /// Gets or Sets Amount
         /// </summary>
-        [DataMember(Name = "amount", IsRequired = false, EmitDefaultValue = true)]
+        [DataMember(Name = "amount", IsRequired = false, EmitDefaultValue = false)]
         public SplitAmount Amount { get; set; }
 
         /// <summary>
@@ -261,7 +261,6 @@ namespace Adyen.Model.Checkout
                 return hashCode;
             }
         }
-
         /// <summary>
         /// To validate all properties of the instance
         /// </summary>

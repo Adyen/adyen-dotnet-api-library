@@ -71,7 +71,7 @@ namespace Adyen.Model.Checkout
         /// </summary>
         /// <param name="plan">The installment plan, used for [card installments in Japan](https://docs.adyen.com/payment-methods/cards/credit-card-installments#make-a-payment-japan). By default, this is set to **regular**. Possible values: * **regular** * **revolving** .</param>
         /// <param name="value">Defines the number of installments. Its value needs to be greater than zero.  Usually, the maximum allowed number of installments is capped. For example, it may not be possible to split a payment in more than 24 installments. The acquirer sets this upper limit, so its value may vary. (required).</param>
-        public Installments(PlanEnum? plan = default(PlanEnum?), int value = default(int))
+        public Installments(PlanEnum? plan = default(PlanEnum?), int? value = default(int?))
         {
             this.Value = value;
             this.Plan = plan;
@@ -81,8 +81,8 @@ namespace Adyen.Model.Checkout
         /// Defines the number of installments. Its value needs to be greater than zero.  Usually, the maximum allowed number of installments is capped. For example, it may not be possible to split a payment in more than 24 installments. The acquirer sets this upper limit, so its value may vary.
         /// </summary>
         /// <value>Defines the number of installments. Its value needs to be greater than zero.  Usually, the maximum allowed number of installments is capped. For example, it may not be possible to split a payment in more than 24 installments. The acquirer sets this upper limit, so its value may vary.</value>
-        [DataMember(Name = "value", IsRequired = false, EmitDefaultValue = true)]
-        public int Value { get; set; }
+        [DataMember(Name = "value", IsRequired = false, EmitDefaultValue = false)]
+        public int? Value { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -153,7 +153,6 @@ namespace Adyen.Model.Checkout
                 return hashCode;
             }
         }
-
         /// <summary>
         /// To validate all properties of the instance
         /// </summary>

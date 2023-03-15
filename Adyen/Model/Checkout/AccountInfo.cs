@@ -307,7 +307,7 @@ namespace Adyen.Model.Checkout
         /// <param name="purchasesLast6Months">Number of successful purchases in the last six months..</param>
         /// <param name="suspiciousActivity">Whether suspicious activity was recorded on this account..</param>
         /// <param name="workPhone">Shopper&#39;s work phone number (including the country code)..</param>
-        public AccountInfo(AccountAgeIndicatorEnum? accountAgeIndicator = default(AccountAgeIndicatorEnum?), DateTime accountChangeDate = default(DateTime), AccountChangeIndicatorEnum? accountChangeIndicator = default(AccountChangeIndicatorEnum?), DateTime accountCreationDate = default(DateTime), AccountTypeEnum? accountType = default(AccountTypeEnum?), int addCardAttemptsDay = default(int), DateTime deliveryAddressUsageDate = default(DateTime), DeliveryAddressUsageIndicatorEnum? deliveryAddressUsageIndicator = default(DeliveryAddressUsageIndicatorEnum?), string homePhone = default(string), string mobilePhone = default(string), DateTime passwordChangeDate = default(DateTime), PasswordChangeIndicatorEnum? passwordChangeIndicator = default(PasswordChangeIndicatorEnum?), int pastTransactionsDay = default(int), int pastTransactionsYear = default(int), DateTime paymentAccountAge = default(DateTime), PaymentAccountIndicatorEnum? paymentAccountIndicator = default(PaymentAccountIndicatorEnum?), int purchasesLast6Months = default(int), bool suspiciousActivity = default(bool), string workPhone = default(string))
+        public AccountInfo(AccountAgeIndicatorEnum? accountAgeIndicator = default(AccountAgeIndicatorEnum?), DateTime accountChangeDate = default(DateTime), AccountChangeIndicatorEnum? accountChangeIndicator = default(AccountChangeIndicatorEnum?), DateTime accountCreationDate = default(DateTime), AccountTypeEnum? accountType = default(AccountTypeEnum?), int? addCardAttemptsDay = default(int?), DateTime deliveryAddressUsageDate = default(DateTime), DeliveryAddressUsageIndicatorEnum? deliveryAddressUsageIndicator = default(DeliveryAddressUsageIndicatorEnum?), string homePhone = default(string), string mobilePhone = default(string), DateTime passwordChangeDate = default(DateTime), PasswordChangeIndicatorEnum? passwordChangeIndicator = default(PasswordChangeIndicatorEnum?), int? pastTransactionsDay = default(int?), int? pastTransactionsYear = default(int?), DateTime paymentAccountAge = default(DateTime), PaymentAccountIndicatorEnum? paymentAccountIndicator = default(PaymentAccountIndicatorEnum?), int? purchasesLast6Months = default(int?), bool suspiciousActivity = default(bool), string workPhone = default(string))
         {
             this.AccountAgeIndicator = accountAgeIndicator;
             this.AccountChangeDate = accountChangeDate;
@@ -349,7 +349,7 @@ namespace Adyen.Model.Checkout
         /// </summary>
         /// <value>Number of attempts the shopper tried to add a card to their account in the last day.</value>
         [DataMember(Name = "addCardAttemptsDay", EmitDefaultValue = false)]
-        public int AddCardAttemptsDay { get; set; }
+        public int? AddCardAttemptsDay { get; set; }
 
         /// <summary>
         /// Date the selected delivery address was first used.
@@ -386,14 +386,14 @@ namespace Adyen.Model.Checkout
         /// </summary>
         /// <value>Number of all transactions (successful and abandoned) from this shopper in the past 24 hours.</value>
         [DataMember(Name = "pastTransactionsDay", EmitDefaultValue = false)]
-        public int PastTransactionsDay { get; set; }
+        public int? PastTransactionsDay { get; set; }
 
         /// <summary>
         /// Number of all transactions (successful and abandoned) from this shopper in the past year.
         /// </summary>
         /// <value>Number of all transactions (successful and abandoned) from this shopper in the past year.</value>
         [DataMember(Name = "pastTransactionsYear", EmitDefaultValue = false)]
-        public int PastTransactionsYear { get; set; }
+        public int? PastTransactionsYear { get; set; }
 
         /// <summary>
         /// Date this payment method was added to the shopper&#39;s account.
@@ -407,7 +407,7 @@ namespace Adyen.Model.Checkout
         /// </summary>
         /// <value>Number of successful purchases in the last six months.</value>
         [DataMember(Name = "purchasesLast6Months", EmitDefaultValue = false)]
-        public int PurchasesLast6Months { get; set; }
+        public int? PurchasesLast6Months { get; set; }
 
         /// <summary>
         /// Whether suspicious activity was recorded on this account.
@@ -627,7 +627,6 @@ namespace Adyen.Model.Checkout
                 return hashCode;
             }
         }
-
         /// <summary>
         /// To validate all properties of the instance
         /// </summary>

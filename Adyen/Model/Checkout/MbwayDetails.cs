@@ -85,13 +85,13 @@ namespace Adyen.Model.Checkout
         /// <summary>
         /// Gets or Sets ShopperEmail
         /// </summary>
-        [DataMember(Name = "shopperEmail", IsRequired = false, EmitDefaultValue = true)]
+        [DataMember(Name = "shopperEmail", IsRequired = false, EmitDefaultValue = false)]
         public string ShopperEmail { get; set; }
 
         /// <summary>
         /// Gets or Sets TelephoneNumber
         /// </summary>
-        [DataMember(Name = "telephoneNumber", IsRequired = false, EmitDefaultValue = true)]
+        [DataMember(Name = "telephoneNumber", IsRequired = false, EmitDefaultValue = false)]
         public string TelephoneNumber { get; set; }
 
         /// <summary>
@@ -187,7 +187,6 @@ namespace Adyen.Model.Checkout
                 return hashCode;
             }
         }
-
         /// <summary>
         /// To validate all properties of the instance
         /// </summary>

@@ -104,18 +104,13 @@ namespace Adyen.Model.Checkout
         /// <summary>
         /// Initializes a new instance of the <see cref="CardDetails" /> class.
         /// </summary>
-        [JsonConstructorAttribute]
-        protected CardDetails() { }
-        /// <summary>
-        /// Initializes a new instance of the <see cref="CardDetails" /> class.
-        /// </summary>
         /// <param name="brand">Secondary brand of the card. For example: **plastix**, **hmclub**..</param>
         /// <param name="checkoutAttemptId">The checkout attempt identifier..</param>
         /// <param name="cupsecureplusSmscode">cupsecureplusSmscode.</param>
         /// <param name="cvc">The card verification code. Only collect raw card data if you are [fully PCI compliant](https://docs.adyen.com/development-resources/pci-dss-compliance-guide)..</param>
-        /// <param name="encryptedCardNumber">The encrypted card number. (required).</param>
-        /// <param name="encryptedExpiryMonth">The encrypted card expiry month. (required).</param>
-        /// <param name="encryptedExpiryYear">The encrypted card expiry year. (required).</param>
+        /// <param name="encryptedCardNumber">The encrypted card number..</param>
+        /// <param name="encryptedExpiryMonth">The encrypted card expiry month..</param>
+        /// <param name="encryptedExpiryYear">The encrypted card expiry year..</param>
         /// <param name="encryptedSecurityCode">The encrypted card verification code..</param>
         /// <param name="expiryMonth">The card expiry month. Only collect raw card data if you are [fully PCI compliant](https://docs.adyen.com/development-resources/pci-dss-compliance-guide)..</param>
         /// <param name="expiryYear">The card expiry year. Only collect raw card data if you are [fully PCI compliant](https://docs.adyen.com/development-resources/pci-dss-compliance-guide)..</param>
@@ -130,13 +125,13 @@ namespace Adyen.Model.Checkout
         /// <param name="type">Default payment method details. Common for scheme payment methods, and for simple payment method details. (default to TypeEnum.Scheme).</param>
         public CardDetails(string brand = default(string), string checkoutAttemptId = default(string), string cupsecureplusSmscode = default(string), string cvc = default(string), string encryptedCardNumber = default(string), string encryptedExpiryMonth = default(string), string encryptedExpiryYear = default(string), string encryptedSecurityCode = default(string), string expiryMonth = default(string), string expiryYear = default(string), FundingSourceEnum? fundingSource = default(FundingSourceEnum?), string holderName = default(string), string networkPaymentReference = default(string), string number = default(string), string recurringDetailReference = default(string), string shopperNotificationReference = default(string), string storedPaymentMethodId = default(string), string threeDS2SdkVersion = default(string), TypeEnum? type = TypeEnum.Scheme)
         {
-            this.EncryptedCardNumber = encryptedCardNumber;
-            this.EncryptedExpiryMonth = encryptedExpiryMonth;
-            this.EncryptedExpiryYear = encryptedExpiryYear;
             this.Brand = brand;
             this.CheckoutAttemptId = checkoutAttemptId;
             this.CupsecureplusSmscode = cupsecureplusSmscode;
             this.Cvc = cvc;
+            this.EncryptedCardNumber = encryptedCardNumber;
+            this.EncryptedExpiryMonth = encryptedExpiryMonth;
+            this.EncryptedExpiryYear = encryptedExpiryYear;
             this.EncryptedSecurityCode = encryptedSecurityCode;
             this.ExpiryMonth = expiryMonth;
             this.ExpiryYear = expiryYear;
@@ -183,21 +178,21 @@ namespace Adyen.Model.Checkout
         /// The encrypted card number.
         /// </summary>
         /// <value>The encrypted card number.</value>
-        [DataMember(Name = "encryptedCardNumber", IsRequired = false, EmitDefaultValue = true)]
+        [DataMember(Name = "encryptedCardNumber", EmitDefaultValue = false)]
         public string EncryptedCardNumber { get; set; }
 
         /// <summary>
         /// The encrypted card expiry month.
         /// </summary>
         /// <value>The encrypted card expiry month.</value>
-        [DataMember(Name = "encryptedExpiryMonth", IsRequired = false, EmitDefaultValue = true)]
+        [DataMember(Name = "encryptedExpiryMonth", EmitDefaultValue = false)]
         public string EncryptedExpiryMonth { get; set; }
 
         /// <summary>
         /// The encrypted card expiry year.
         /// </summary>
         /// <value>The encrypted card expiry year.</value>
-        [DataMember(Name = "encryptedExpiryYear", IsRequired = false, EmitDefaultValue = true)]
+        [DataMember(Name = "encryptedExpiryYear", EmitDefaultValue = false)]
         public string EncryptedExpiryYear { get; set; }
 
         /// <summary>
@@ -510,7 +505,6 @@ namespace Adyen.Model.Checkout
                 return hashCode;
             }
         }
-
         /// <summary>
         /// To validate all properties of the instance
         /// </summary>

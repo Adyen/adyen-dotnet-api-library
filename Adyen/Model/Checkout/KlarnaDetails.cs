@@ -89,7 +89,7 @@ namespace Adyen.Model.Checkout
         /// **klarna**
         /// </summary>
         /// <value>**klarna**</value>
-        [DataMember(Name = "type", IsRequired = false, EmitDefaultValue = true)]
+        [DataMember(Name = "type", IsRequired = false, EmitDefaultValue = false)]
         public TypeEnum Type { get; set; }
         /// <summary>
         /// Initializes a new instance of the <see cref="KlarnaDetails" /> class.
@@ -283,7 +283,6 @@ namespace Adyen.Model.Checkout
                 return hashCode;
             }
         }
-
         /// <summary>
         /// To validate all properties of the instance
         /// </summary>

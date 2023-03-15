@@ -53,14 +53,14 @@ namespace Adyen.Model.Checkout
         /// The encrypted order data.
         /// </summary>
         /// <value>The encrypted order data.</value>
-        [DataMember(Name = "orderData", IsRequired = false, EmitDefaultValue = true)]
+        [DataMember(Name = "orderData", IsRequired = false, EmitDefaultValue = false)]
         public string OrderData { get; set; }
 
         /// <summary>
         /// The &#x60;pspReference&#x60; that belongs to the order.
         /// </summary>
         /// <value>The &#x60;pspReference&#x60; that belongs to the order.</value>
-        [DataMember(Name = "pspReference", IsRequired = false, EmitDefaultValue = true)]
+        [DataMember(Name = "pspReference", IsRequired = false, EmitDefaultValue = false)]
         public string PspReference { get; set; }
 
         /// <summary>
@@ -140,7 +140,6 @@ namespace Adyen.Model.Checkout
                 return hashCode;
             }
         }
-
         /// <summary>
         /// To validate all properties of the instance
         /// </summary>

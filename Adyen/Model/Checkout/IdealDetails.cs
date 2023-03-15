@@ -88,7 +88,7 @@ namespace Adyen.Model.Checkout
         /// The iDEAL issuer value of the shopper&#39;s selected bank. Set this to an **id** of an iDEAL issuer to preselect it.
         /// </summary>
         /// <value>The iDEAL issuer value of the shopper&#39;s selected bank. Set this to an **id** of an iDEAL issuer to preselect it.</value>
-        [DataMember(Name = "issuer", IsRequired = false, EmitDefaultValue = true)]
+        [DataMember(Name = "issuer", IsRequired = false, EmitDefaultValue = false)]
         public string Issuer { get; set; }
 
         /// <summary>
@@ -209,7 +209,6 @@ namespace Adyen.Model.Checkout
                 return hashCode;
             }
         }
-
         /// <summary>
         /// To validate all properties of the instance
         /// </summary>
