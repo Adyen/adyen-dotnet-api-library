@@ -1,4 +1,5 @@
-using Adyen.Model.Enum;
+using System;
+using System.Collections.Generic;
 using Adyen.Model.Recurring;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.Linq;
@@ -13,21 +14,21 @@ namespace Adyen.IntegrationTest
         [TestMethod]
         public void TestListRecurringDetails()
         {
-            var paymentResult = base.CreatePaymentResultWithRecurring(ContractEnum.RECURRING);
+            var paymentResult = base.CreatePaymentResultWithRecurring(Model.Payments.Recurring.ContractEnum.RECURRING);
             var client = CreateApiKeyTestClient();
-            var recurring = new Service.Recurring(client);
+            var recurring = new Service.RecurringService(client);
             var recurringDetailsRequest = this.CreateRecurringDetailsRequest();
             var recurringDetailsResult = recurring.ListRecurringDetails(recurringDetailsRequest);
-            var recurringDetail = recurringDetailsResult.Details.FirstOrDefault().RecurringDetail;
-            Assert.AreEqual(paymentResult.AdditionalData["alias"], recurringDetail.Alias);
+            var recurringDetail = recurringDetailsResult.Details[0].RecurringDetail;
+            Assert.AreEqual(recurringDetail.PaymentMethodVariant, "visa");
         }
 
         [TestMethod]
         public void TestDisable()
         {
-            var paymentResult = base.CreatePaymentResultWithRecurring(ContractEnum.ONECLICK);
+            var paymentResult = base.CreatePaymentResultWithRecurring(Model.Payments.Recurring.ContractEnum.ONECLICK);
             var client = CreateApiKeyTestClient();
-            var recurring = new Service.Recurring(client);
+            var recurring = new Service.RecurringService(client);
             var disableRequest = this.CreateDisableRequest();
             var disableResult = recurring.Disable(disableRequest);
             Assert.AreEqual("[all-details-successfully-disabled]", disableResult.Response);

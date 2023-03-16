@@ -1,10 +1,10 @@
-using Adyen.Service.Resource.Payout;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
-using System.Collections.Generic;
-using Adyen.Service;
-using Adyen.Model.Payout;
-using Adyen.Model;
 using System;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
+using Adyen.Service;
+using Adyen.Model.Payouts;
+using Adyen.Model;
+using Adyen.HttpClient;
+using Adyen.Service.Payouts;
 
 namespace Adyen.IntegrationTest
 {
@@ -12,64 +12,58 @@ namespace Adyen.IntegrationTest
     public class PayoutTest : BaseTest
     {
         private Client _client;
-        private Payout _payout;
+        private InstantPayoutsService _instantPayoutsService;
+        private InitializationService _initializationService;
+        private ReviewingService _reviewingService;
 
         [TestInitialize]
         public void Init()
         {
             _client = this.CreateApiKeyTestClient();
-            _payout = new Payout(_client);
+            _instantPayoutsService = new InstantPayoutsService(_client);
+            _initializationService = new InitializationService(_client);
+            _reviewingService = new ReviewingService(_client);
         }
 
         [TestMethod]
         public void PayoutSuccessTest()
         {
-            PayoutRequest payoutRequest = CreatePayoutRequest("DotNetAlexandros");
-            PayoutResponse result = _payout.PayoutSubmit(payoutRequest);
-            Assert.AreEqual(result.ResultCode, "Received");
+            var payoutRequest = CreatePayoutRequest(ClientConstants.MerchantAccount);
+            var result = _instantPayoutsService.MakeInstantCardPayout(payoutRequest);
+            Assert.AreEqual(result.ResultCode, PayoutResponse.ResultCodeEnum.Refused);
         }
 
 
         [TestMethod]
         public void PayoutErrorMissingMerchantTest()
         {
-            PayoutRequest payoutRequest = CreatePayoutRequest("");
-            try
-            {
-                PayoutResponse result = _payout.PayoutSubmit(payoutRequest);
-            }
-            catch (HttpClient.HttpClientException e)
-            {
-                Assert.AreEqual(403, e.Code);
-            }
+            var payoutRequest = CreatePayoutRequest("");
+            var ex = Assert.ThrowsException<HttpClientException>(() => _instantPayoutsService.MakeInstantCardPayout(payoutRequest));
+            Assert.AreEqual(ex.Code, 403);
         }
 
         [TestMethod]
         public void PayoutErrorMissingReferenceTest()
         {
-            PayoutRequest payoutRequest = CreatePayoutRequest("DotNetAlexandros");
-            payoutRequest.ShopperReference = "";
-            try
-            {
-                PayoutResponse result = _payout.PayoutSubmit(payoutRequest);
-            }
-            catch (HttpClient.HttpClientException e)
-            {
-                Assert.AreEqual(403, e.Code);
-            }
+            var payoutRequest = CreatePayoutRequest(ClientConstants.MerchantAccount);
+            payoutRequest.Reference = "";
+            var ex = Assert.ThrowsException<HttpClientException>(() => _instantPayoutsService.MakeInstantCardPayout(payoutRequest));
+            Assert.AreEqual("{\"status\":422,\"errorCode\":\"130\",\"message\":\"Required field 'reference' is not provided.\",\"errorType\":\"validation\"}",ex.ResponseBody);
+            Assert.AreEqual(422, ex.Code);
         }
 
         private PayoutRequest CreatePayoutRequest(string merchantAccount)
         {
-            PayoutRequest payoutRequest = new PayoutRequest
+            var payoutRequest = new PayoutRequest
             {
-                Amount = new Model.Amount { Currency = "EUR", Value = 10 },
-                Card = new Card
+                Amount = new Model.Payouts.Amount { Currency = "EUR", Value = 10 },
+                Card = new Model.Payouts.Card
                 {
                     Number = "4111111111111111",
-                    ExpiryMonth = "10",
-                    ExpiryYear = "2020",
-                    HolderName = "John Smith"
+                    ExpiryMonth = "03",
+                    ExpiryYear = "2030",
+                    HolderName = "John Smith",
+                    Cvc = "737"
                 },
                 MerchantAccount = merchantAccount,
                 Reference = "Your order number from e2e",

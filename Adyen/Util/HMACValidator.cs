@@ -77,35 +77,6 @@ namespace Adyen.Util
             return bytes;
         }
 
-
-        public string BuildSigningString(IDictionary<string, string> dict)
-        {
-            var signDict = dict.OrderBy(d => d.Key).ToDictionary(pair => pair.Key, pair => pair.Value);
-
-            string keystring = string.Join(":", signDict.Keys);
-            string valuestring = string.Join(":", signDict.Values.Select(EscapeVal));
-
-            return string.Format("{0}:{1}", keystring, valuestring);
-        }
-
-
-        public string GetDataToSign(Dictionary<String, String> postParameters)
-        {
-            var parts = new List<string>();
-
-            foreach (var postParameter in postParameters)
-            {
-                parts.Add(EscapeVal(postParameter.Key));
-            }
-
-            foreach (var postParameter in postParameters)
-            {
-                parts.Add(EscapeVal(postParameter.Value));
-            }
-
-            return String.Join("", parts);
-        }
-        
         public string GetDataToSign(NotificationRequestItem notificationRequestItem)
         {
             var amount = notificationRequestItem.Amount;
@@ -137,19 +108,6 @@ namespace Adyen.Util
             var expectedSign = CalculateHmac(notificationRequestItem, key);
             var merchantSign = notificationRequestItem.AdditionalData[Constants.AdditionalData.HmacSignature];
             return string.Equals(expectedSign, merchantSign);
-        }
-
-
-        private string EscapeVal(string val)
-        {
-            if (val == null)
-            {
-                return string.Empty;
-            }
-
-            val = val.Replace(@"\", @"\\");
-            val = val.Replace(":", @"\:");
-            return val;
         }
     }
 }

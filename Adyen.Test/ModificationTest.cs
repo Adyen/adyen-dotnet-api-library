@@ -24,7 +24,9 @@
 using Adyen.Constants;
 using Adyen.Service;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using Adyen.Model.Modification;
+using Adyen.Model.Payments;
+using Adyen.Service.Payments;
+
 namespace Adyen.Test
 {
     [TestClass]
@@ -35,38 +37,25 @@ namespace Adyen.Test
         {
             var paymentResultPspReference = MockPaymentData.GetTestPspReferenceMocked();
             //Call authorization test
-            var client = base.CreateMockTestClientRequest("Mocks/capture-success.json");
-            var modification = new Modification(client);
+            var client = base.CreateMockTestClientApiKeyBasedRequestAsync("Mocks/capture-success.json");
+            var modification = new ModificationsService(client);
             //Send capture call with psp refernce
             var captureRequest = base.CreateCaptureTestRequest(paymentResultPspReference);
             var captureResult = modification.Capture(captureRequest);
-            Assert.AreEqual(captureResult.Response, Adyen.Model.Enum.ResponseEnum.CaptureReceived);
+            Assert.AreEqual(captureResult.Response, ModificationResult.ResponseEnum.CaptureReceived);
             Assert.AreEqual(captureRequest.AdditionalData["authorisationType"],"PreAuth");
         }
-        
-        [TestMethod]
-        public void TestCaptureError167()
-        {
-            var paymentResultPspReference = MockPaymentData.GetTestPspReferenceMocked();
-            //Call authorization test
-            var client = base.CreateMockTestClientRequest("Mocks/capture-error-167.json");
-            var modification = new Modification(client);
-            var captureRequest = base.CreateCaptureTestRequest(paymentResultPspReference);
-            var captureResult = modification.Capture(captureRequest);
-            Assert.AreEqual(captureResult.Status, "422");
-            Assert.AreEqual(captureResult.ErrorCode, "167");
-        }
-        
+
         [TestMethod]
         public void TestCancelOrRefundReceivedMocked()
         {
             var paymentResultPspReference = MockPaymentData.GetTestPspReferenceMocked();
             //Call authorization test
-            var client = base.CreateMockTestClientRequest("Mocks/cancelOrRefund-received.json");
-            var modification = new Modification(client);
+            var client = base.CreateMockTestClientApiKeyBasedRequestAsync("Mocks/cancelOrRefund-received.json");
+            var modification = new ModificationsService(client);
             var cancelOrRefundRequest = base.CreateCancelOrRefundTestRequest(pspReference: paymentResultPspReference);
             var cancelOrRefundResult = modification.CancelOrRefund(cancelOrRefundRequest);
-            Assert.AreEqual(cancelOrRefundResult.Response, Adyen.Model.Enum.ResponseEnum.CancelOrRefundReceived);
+            Assert.AreEqual(cancelOrRefundResult.Response, ModificationResult.ResponseEnum.CancelOrRefundReceived);
         }
 
         [TestMethod]
@@ -74,11 +63,11 @@ namespace Adyen.Test
         {
             var paymentResultPspReference = MockPaymentData.GetTestPspReferenceMocked();
             //Call authorization test
-            var client = base.CreateMockTestClientRequest("Mocks/refund-received.json");
-            var modification = new Modification(client);
+            var client = base.CreateMockTestClientApiKeyBasedRequestAsync("Mocks/refund-received.json");
+            var modification = new ModificationsService(client);
             var refundRequest = base.CreateRefundTestRequest(pspReference: paymentResultPspReference);
             var refundResult = modification.Refund(refundRequest);
-            Assert.AreEqual(refundResult.Response, Adyen.Model.Enum.ResponseEnum.RefundReceived);
+            Assert.AreEqual(refundResult.Response, ModificationResult.ResponseEnum.RefundReceived);
         }
 
         [TestMethod]
@@ -86,11 +75,11 @@ namespace Adyen.Test
         {
             var paymentResultPspReference = MockPaymentData.GetTestPspReferenceMocked();
             //Call authorization test
-            var client = base.CreateMockTestClientRequest("Mocks/cancel-received.json");
-            var modification = new Modification(client);
+            var client = base.CreateMockTestClientApiKeyBasedRequestAsync("Mocks/cancel-received.json");
+            var modification = new ModificationsService(client);
             var cancelRequest = base.CreateCancelTestRequest(pspReference: paymentResultPspReference);
             var cancelResult = modification.Cancel(cancelRequest);
-            Assert.AreEqual(cancelResult.Response, Adyen.Model.Enum.ResponseEnum.CancelReceived);
+            Assert.AreEqual(cancelResult.Response, ModificationResult.ResponseEnum.CancelReceived);
         }
 
         [TestMethod]
@@ -98,11 +87,11 @@ namespace Adyen.Test
         {
             var paymentResultPspReference = MockPaymentData.GetTestPspReferenceMocked();
             //Call authorization test
-            var client = base.CreateMockTestClientRequest("Mocks/adjustAuthorisation-received.json");
-            var modification = new Modification(client);
+            var client = base.CreateMockTestClientApiKeyBasedRequestAsync("Mocks/adjustAuthorisation-received.json");
+            var modification = new ModificationsService(client);
             var authorisationRequest = base.CreateAdjustAuthorisationRequest(pspReference: paymentResultPspReference);
             var adjustAuthorisationResult = modification.AdjustAuthorisation(authorisationRequest);
-            Assert.AreEqual(adjustAuthorisationResult.Response, Adyen.Model.Enum.ResponseEnum.AdjustAuthorisationReceived);
+            Assert.AreEqual(adjustAuthorisationResult.Response, ModificationResult.ResponseEnum.AdjustAuthorisationReceived);
             Assert.AreEqual(adjustAuthorisationResult.PspReference, "853569123456789D");
             Assert.AreEqual(adjustAuthorisationResult.AdditionalData["merchantReference"], "payment - 20190901");
         }
@@ -112,9 +101,7 @@ namespace Adyen.Test
         {
             var paymentResultPspReference = MockPaymentData.GetTestPspReferenceMocked();
             var captureRequest = base.CreateCaptureTestRequest(paymentResultPspReference);
-            Assert.IsNotNull(captureRequest.ApplicationInfo);
-            Assert.AreEqual(captureRequest.ApplicationInfo.AdyenLibrary.Name,ClientConfig.LibName);
-            Assert.AreEqual(captureRequest.ApplicationInfo.AdyenLibrary.Version,ClientConfig.LibVersion);
+            Assert.IsNotNull(captureRequest.AdditionalData);
         }
 
         [TestMethod]
@@ -122,9 +109,8 @@ namespace Adyen.Test
         {
             var paymentResultPspReference = MockPaymentData.GetTestPspReferenceMocked();
             var cancelOrRefundRequest = base.CreateCancelOrRefundTestRequest(pspReference: paymentResultPspReference);
-            Assert.IsNotNull(cancelOrRefundRequest.ApplicationInfo);
-            Assert.AreEqual(cancelOrRefundRequest.ApplicationInfo.AdyenLibrary.Name,ClientConfig.LibName);
-            Assert.AreEqual(cancelOrRefundRequest.ApplicationInfo.AdyenLibrary.Version,ClientConfig.LibVersion);
+            Assert.IsNull(cancelOrRefundRequest.AdditionalData);
+            Assert.AreEqual(cancelOrRefundRequest.MerchantAccount, "MerchantAccount");
         }
         
         [TestMethod]
@@ -132,9 +118,8 @@ namespace Adyen.Test
         {
             var paymentResultPspReference = MockPaymentData.GetTestPspReferenceMocked();
             var refundRequest = base.CreateRefundTestRequest(pspReference: paymentResultPspReference);          
-            Assert.IsNotNull(refundRequest.ApplicationInfo);
-            Assert.AreEqual(refundRequest.ApplicationInfo.AdyenLibrary.Name,ClientConfig.LibName);
-            Assert.AreEqual(refundRequest.ApplicationInfo.AdyenLibrary.Version,ClientConfig.LibVersion);
+            Assert.IsNull(refundRequest.AdditionalData);
+            Assert.AreEqual(refundRequest.MerchantAccount, "MerchantAccount");
         }
 
         [TestMethod]
@@ -142,9 +127,8 @@ namespace Adyen.Test
         {
             var paymentResultPspReference = MockPaymentData.GetTestPspReferenceMocked();
             var authorisationRequest = base.CreateAdjustAuthorisationRequest(pspReference: paymentResultPspReference);
-            Assert.IsNotNull(authorisationRequest.ApplicationInfo);
-            Assert.AreEqual(authorisationRequest.ApplicationInfo.AdyenLibrary.Name, ClientConfig.LibName);
-            Assert.AreEqual(authorisationRequest.ApplicationInfo.AdyenLibrary.Version, ClientConfig.LibVersion);
+            Assert.IsNull(authorisationRequest.AdditionalData);
+            Assert.AreEqual(authorisationRequest.ModificationAmount, new Amount("EUR",150));
         }
 
         [TestMethod]
@@ -152,21 +136,19 @@ namespace Adyen.Test
         {
             var paymentResultPspReference = MockPaymentData.GetTestPspReferenceMocked();
             var cancelRequest = base.CreateCancelTestRequest(pspReference: paymentResultPspReference);
-            Assert.IsNotNull(cancelRequest.ApplicationInfo);
-            Assert.AreEqual(cancelRequest.ApplicationInfo.AdyenLibrary.Name,ClientConfig.LibName);
-            Assert.AreEqual(cancelRequest.ApplicationInfo.AdyenLibrary.Version,ClientConfig.LibVersion);
+            Assert.IsNull(cancelRequest.AdditionalData);
+            Assert.AreEqual(cancelRequest.MerchantAccount, "MerchantAccount");
         }
 
         [TestMethod]
         public void TestPendingRefundReceived()
         {
-            var client = CreateMockTestClientApiKeyBasedRequest("Mocks/voidPendingRefund-received.json");
-            var checkout = new Checkout(client);
-            var modification = new Modification(client);
+            var client = CreateMockTestClientApiKeyBasedRequestAsync("Mocks/voidPendingRefund-received.json");
+            var checkout = new ModificationsService(client);
+            var modification = new ModificationsService(client);
             var voidPendingRefundRequest = new VoidPendingRefundRequest();
             var modificationResult = modification.VoidPendingRefund(voidPendingRefundRequest);
-            Assert.AreEqual(modificationResult.Response, Model.Enum.ResponseEnum.VoidPendingRefundReceived);
+            Assert.AreEqual(modificationResult.Response, ModificationResult.ResponseEnum.VoidPendingRefundReceived);
         }
-
     }
 }

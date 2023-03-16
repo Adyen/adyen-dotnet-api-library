@@ -1,15 +1,15 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>netcoreapp2.0</TargetFramework>
+    <TargetFrameworks>net6.0</TargetFrameworks>
 
     <IsPackable>false</IsPackable>
 
-    <AssemblyVersion>9.2.0</AssemblyVersion>
+    <AssemblyVersion>10.0.0</AssemblyVersion>
 
-    <FileVersion>9.2.0</FileVersion>
+    <FileVersion>10.0.0-beta</FileVersion>
 
-    <Version>9.2.0</Version>
+    <Version>10.0.0-beta</Version>
 
     <LangVersion>7.2</LangVersion>
   </PropertyGroup>
@@ -33,12 +33,13 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.1.0" />
+    <PackageReference Include="Microsoft.CSharp" Version="4.7.0" />
+    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.5.0" />
 
-    <PackageReference Include="Moq" Version="4.17.2" />
-    <PackageReference Include="MSTest.TestAdapter" Version="2.2.10" />
+    <PackageReference Include="Moq" Version="4.18.3" />
+    <PackageReference Include="MSTest.TestAdapter" Version="3.0.2" />
 
-    <PackageReference Include="MSTest.TestFramework" Version="2.2.10" />
+    <PackageReference Include="MSTest.TestFramework" Version="3.0.2" />
   </ItemGroup>
 
   <ItemGroup>

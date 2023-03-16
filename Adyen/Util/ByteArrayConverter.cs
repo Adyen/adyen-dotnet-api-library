@@ -47,7 +47,7 @@ namespace Adyen.Util
         public override void WriteJson(JsonWriter writer, object value, JsonSerializer serializer)
         {
             byte[] bytes = (byte[])value;
-            writer.WriteValue(Encoding.ASCII.GetString(bytes));
+            writer.WriteValue(Encoding.UTF8.GetString(bytes));
         }
         
     }

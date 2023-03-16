@@ -24,11 +24,11 @@
 using System.Threading.Tasks;
 using Adyen.ApiSerialization;
 using Adyen.Model.Nexo;
-using Adyen.Service.Resource.Payment;
+using Adyen.Service.Resource.Terminal;
 
 namespace Adyen.Service
 {
-    public class PosPaymentCloudApi : AbstractService
+    public class PosPaymentCloudApi : AbstractService, IPosPaymentCloudApi
     {
         private readonly TerminalApi _terminalApiAsync;
         private readonly TerminalApi _terminalApiSync;
@@ -37,7 +37,6 @@ namespace Adyen.Service
         public PosPaymentCloudApi(Client client)
             : base(client)
         {
-            IsApiKeyRequired = true;
             _saleToPoiMessageSerializer = new SaleToPoiMessageSerializer();
             _terminalApiAsync = new TerminalApi(this, true);
             _terminalApiSync = new TerminalApi(this, false);

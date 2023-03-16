@@ -21,37 +21,22 @@
 //  */
 #endregion
 
+using System;
 using Adyen.Model.Notification;
 using Adyen.Util;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.Collections.Generic;
+using System.Text;
+using Adyen.Model.MarketPay;
+using Adyen.Model.Payments;
+using Newtonsoft.Json;
+using Account = Adyen.Service.Account;
 
 namespace Adyen.Test
 {
     [TestClass]
     public class UtilTest : BaseTest
     {
-        [TestMethod]
-        public void TestDataSign()
-        {
-            var postParameters = new Dictionary<string, string>
-            {
-                {Constants.HPPConstants.Fields.MerchantAccount, "ACC"},
-                {Constants.HPPConstants.Fields.CurrencyCode, "EUR"}
-            };
-            var hmacValidator = new HmacValidator();
-            var buildSigningString = hmacValidator.BuildSigningString(postParameters);
-            Assert.IsTrue(string.Equals("currencyCode:merchantAccount:EUR:ACC", buildSigningString));
-            postParameters = new Dictionary<string, string>
-            {
-                {Constants.HPPConstants.Fields.CurrencyCode, "EUR"},
-                {Constants.HPPConstants.Fields.MerchantAccount, "ACC:\\"}
-            };
-
-            buildSigningString = hmacValidator.BuildSigningString(postParameters);
-            Assert.IsTrue(string.Equals("currencyCode:merchantAccount:EUR:ACC\\:\\\\", buildSigningString));
-        }
-        
         [TestMethod]
         public void TestHmac()
         {
@@ -63,11 +48,11 @@ namespace Adyen.Test
         }
 
         [TestMethod]
-        public void TestSerializationShopperInteractionDefault()
+        public void TestSerializationShopperInteractionDefaultIsZero()
         {
-            var paymentRequest = MockPaymentData.CreateFullPaymentRequestWithShopperInteraction(default(Model.Enum.ShopperInteraction));
-            var serializedPaymentRequest = JsonOperation.SerializeRequest(paymentRequest);
-            Assert.IsFalse(serializedPaymentRequest.Contains("shopperInteraction"));
+            var paymentRequest = MockPaymentData.CreateFullPaymentRequestWithShopperInteraction(default);
+            var serializedPaymentRequest = paymentRequest.ToJson();
+            Assert.IsTrue(serializedPaymentRequest.Contains("\"shopperInteraction\": 0,"));
         }
         
         [TestMethod]
@@ -85,7 +70,7 @@ namespace Adyen.Test
                 OriginalReference = "originalReference",
                 MerchantAccountCode = "merchantAccount",
                 MerchantReference = "reference",
-                Amount = new Model.Amount("EUR", 1000),
+                Amount = new Model.Checkout.Amount("EUR", 1000),
                 EventCode = "EVENT",
                 Success = true,
                 AdditionalData = additionalData
@@ -116,9 +101,9 @@ namespace Adyen.Test
         [TestMethod]
         public void TestSerializationShopperInteractionMoto()
         {
-            var paymentRequest = MockPaymentData.CreateFullPaymentRequestWithShopperInteraction(Model.Enum.ShopperInteraction.Moto);
+            var paymentRequest = MockPaymentData.CreateFullPaymentRequestWithShopperInteraction(PaymentRequest.ShopperInteractionEnum.Moto);
             var serializedPaymentRequest = JsonOperation.SerializeRequest(paymentRequest);
-            StringAssert.Contains(serializedPaymentRequest, nameof(Model.Enum.ShopperInteraction.Moto));
+            StringAssert.Contains(serializedPaymentRequest, nameof(PaymentRequest.ShopperInteractionEnum.Moto));
         }
 
         [TestMethod]
@@ -131,7 +116,7 @@ namespace Adyen.Test
                 OriginalReference = "originalReference",
                 MerchantAccountCode = "merchantAccount",
                 MerchantReference = "reference",
-                Amount = new Model.Amount("EUR", 1000),
+                Amount = new Model.Checkout.Amount("EUR", 1000),
                 EventCode = "EVENT",
                 Success = true,
                 AdditionalData = null
@@ -141,6 +126,70 @@ namespace Adyen.Test
             notificationRequestItem.AdditionalData = new Dictionary<string, string>();
             var isValidHmacAdditionalDataEmpty = hmacValidator.IsValidHmac(notificationRequestItem, "key");
             Assert.IsFalse(isValidHmacAdditionalDataEmpty);
+        }
+        
+        [TestMethod]
+        public void TestColonAndBackslashHmacValidator()
+        {
+            var hmacValidator = new HmacValidator();
+            var jsonNotification = @"{
+              'additionalData': {
+                        'acquirerCode': 'TestPmmAcquirer',
+                        'acquirerReference': 'J8DXDJ2PV6P',
+                        'authCode': '052095',
+                        'avsResult': '5 No AVS data provided',
+                        'avsResultRaw': '5',
+                        'cardSummary': '1111',
+                        'checkout.cardAddedBrand': 'visa',
+                        'cvcResult': '1 Matches',
+                        'cvcResultRaw': 'M',
+                        'expiryDate': '03/2030',
+                        'hmacSignature': 'CZErGCNQaSsxbaQfZaJlakqo7KPP+mIa8a+wx3yNs9A=',
+                        'paymentMethod': 'visa',
+                        'refusalReasonRaw': 'AUTHORISED',
+                        'retry.attempt1.acquirer': 'TestPmmAcquirer',
+                        'retry.attempt1.acquirerAccount': 'TestPmmAcquirerAccount',
+                        'retry.attempt1.avsResultRaw': '5',
+                        'retry.attempt1.rawResponse': 'AUTHORISED',
+                        'retry.attempt1.responseCode': 'Approved',
+                        'retry.attempt1.scaExemptionRequested': 'lowValue',
+                        'scaExemptionRequested': 'lowValue'
+                    },
+                    'amount': {
+                        'currency': 'EUR',
+                        'value': 1000
+                    },
+                'eventCode': 'AUTHORISATION',
+                'eventDate': '2023-01-10T13:42:29+01:00',
+                'merchantAccountCode': 'AntoniStroinski',
+                'merchantReference': '\\:/\\/slashes are fun',
+                'operations': [
+                'CANCEL',
+                'CAPTURE',
+                'REFUND'
+                    ],
+                'paymentMethod': 'visa',
+                'pspReference': 'ZVWN7D3WSMK2WN82',
+                'reason': '052095:1111:03/2030',
+                'success': 'true'
+            }";
+            var notificationRequestItem = JsonConvert.DeserializeObject<NotificationRequestItem>(jsonNotification);
+            var isValidHmac = hmacValidator.IsValidHmac(notificationRequestItem, "74F490DD33F7327BAECC88B2947C011FC02D014A473AAA33A8EC93E4DC069174");
+            Assert.IsTrue(isValidHmac);
+        }
+        
+        [TestMethod]
+        public void TestByteArrayConverter()
+        {
+            // Encoding UTF8 characters to assess if they get serialised as UTF8 Characters
+            var content = Encoding.UTF8.GetBytes("√√√123456789");
+            var detail = new DocumentDetail(accountHolderCode: "123456789", filename: "filename");
+            var request =
+                new UploadDocumentRequest(documentContent: content, documentDetail: detail);
+            
+            var jsonstring = JsonOperation.SerializeRequest(request);
+            Assert.AreEqual(jsonstring,
+                "{\"documentContent\":\"√√√123456789\",\"documentDetail\":{\"accountHolderCode\":\"123456789\",\"filename\":\"filename\"}}");
         }
     }
 }

@@ -23,6 +23,7 @@
 
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using Adyen.Model;
 
 namespace Adyen.Service.Resource
 {
@@ -30,27 +31,23 @@ namespace Adyen.Service.Resource
     {
         private AbstractService _abstractService;
         protected string Endpoint;
-        protected List<string> RequiredFields;
 
-        public Resource(AbstractService abstractService, string endpoint, List<string> requiredFields)
+        public Resource(AbstractService abstractService, string endpoint)
         {
             _abstractService = abstractService;
             Endpoint = endpoint;
-            RequiredFields = requiredFields;
         }
         
-        public string Request(string json)
+        public string Request(string json, RequestOptions requestOptions = null)
         {
             var clientInterface = this._abstractService.Client.HttpClient;
-            var config = this._abstractService.Client.Config;
-            return clientInterface.Request(this.Endpoint, json, config);
+            return clientInterface.Request(this.Endpoint, json, requestOptions, null);
         }
 
-        public async Task<string> RequestAsync(string json)
+        public async Task<string> RequestAsync(string json, RequestOptions requestOptions = null)
         {
             var clientInterface = this._abstractService.Client.HttpClient;
-            var config = this._abstractService.Client.Config;
-            return await clientInterface.RequestAsync(this.Endpoint, json, config, false, null);
+            return await clientInterface.RequestAsync(this.Endpoint, json, requestOptions, null);
         }
     }
 }

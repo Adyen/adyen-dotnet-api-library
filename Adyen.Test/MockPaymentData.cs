@@ -21,16 +21,11 @@
 //  */
 #endregion
 
-using Adyen.Model;
+using Adyen.Model.Payments;
 using System;
 using System.Collections.Generic;
-using Adyen.Model.Checkout;
-using Adyen.Model.Enum;
-using Amount = Adyen.Model.Amount;
-using BrowserInfo = Adyen.Model.BrowserInfo;
-using Card = Adyen.Model.Card;
-using Environment = Adyen.Model.Enum.Environment;
-using PaymentRequest = Adyen.Model.PaymentRequest;
+using Adyen.Constants;
+using Environment = Adyen.Model.Environment;
 
 namespace Adyen.Test
 {
@@ -38,7 +33,7 @@ namespace Adyen.Test
     {
         #region Mock payment data 
 
-        public static Config CreateConfingMock()
+        public static Config CreateConfigMock()
         {
             return new Config
             {
@@ -51,7 +46,7 @@ namespace Adyen.Test
             };
         }
 
-        public static Config CreateConfingApiKeyBasedMock()
+        public static Config CreateConfigApiKeyBasedMock()
         {
             return new Config
             {
@@ -62,8 +57,12 @@ namespace Adyen.Test
 
         public static PaymentRequest CreateFullPaymentRequest()
         {
-            var paymentRequest = new PaymentRequest
+            var paymentRequest = new PaymentRequest()
             {
+                ApplicationInfo = new ApplicationInfo()
+                {
+                    AdyenLibrary = new CommonField(name: ClientConfig.LibName, version: ClientConfig.LibVersion)
+                },
                 MerchantAccount = "MerchantAccount",
                 Amount = new Amount("EUR", 1500),
                 Card = CreateTestCard(),
@@ -73,9 +72,9 @@ namespace Adyen.Test
             return paymentRequest;
         }
 
-        public static PaymentRequestThreeDS2 CreateFullPaymentRequest3DS2()
+        public static PaymentRequest3ds2 CreateFullPaymentRequest3DS2()
         {
-            var paymentRequest = new PaymentRequestThreeDS2
+            var paymentRequest = new PaymentRequest3ds2()
             {
                 MerchantAccount = "MerchantAccount",
                 Amount = new Amount("EUR", 1500),
@@ -88,7 +87,7 @@ namespace Adyen.Test
             return paymentRequest;
         }
 
-        public static PaymentRequest CreateFullPaymentRequestWithShopperInteraction(Model.Enum.ShopperInteraction shopperInteraction)
+        public static PaymentRequest CreateFullPaymentRequestWithShopperInteraction(PaymentRequest.ShopperInteractionEnum shopperInteraction)
         {
             var paymentRequest = CreateFullPaymentRequest();
             paymentRequest.ShopperInteraction = shopperInteraction;
@@ -106,13 +105,18 @@ namespace Adyen.Test
             };
         }
 
-        public static PaymentRequest3D CreateFullPaymentRequest3D()
+        public static PaymentRequest3d CreateFullPaymentRequest3D()
         {
-            var paymentRequest = new PaymentRequest3D
+            var paymentRequest = new PaymentRequest3d()
             {
+                ApplicationInfo = new ApplicationInfo()
+                {
+                    AdyenLibrary = new CommonField(name: ClientConfig.LibName, version: ClientConfig.LibVersion)
+                },
                 MerchantAccount = "MerchantAccount",
                 BrowserInfo = CreateMockBrowserInfo(),
                 Reference = "payment - " + DateTime.Now.ToString("yyyyMMdd"),
+                CaptureDelayHours = 0
             };
             return paymentRequest;
         }
@@ -129,12 +133,12 @@ namespace Adyen.Test
 
         public static Card CreateTestCard()
         {
-            return new Card(Number: "4111111111111111", ExpiryMonth: "08", ExpiryYear: "2018", Cvc: "737", HolderName: "John Smith");
+            return new Card(number: "4111111111111111", expiryMonth: "08", expiryYear: "2018", cvc: "737", holderName: "John Smith");
         }
 
         public static Card CreateTestCard3D()
         {
-            return new Card(Number: "5212345678901234", ExpiryMonth: "08", ExpiryYear: "2018", Cvc: "737", HolderName: "John Smith");
+            return new Card(number: "5212345678901234", expiryMonth: "08", expiryYear: "2018", cvc: "737", holderName: "John Smith");
         }
 
         public static string GetTestPspReferenceMocked()

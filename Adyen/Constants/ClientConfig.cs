@@ -28,8 +28,6 @@ namespace Adyen.Constants
         public static string EndpointTest = "https://pal-test.adyen.com";
         public static string EndpointLive = "https://pal-live.adyen.com";
         public static string EndpointLiveSuffix = "-pal-live.adyenpayments.com";
-        public static string HppTest = "https://test.adyen.com/hpp";
-        public static string HppLive = "https://live.adyen.com/hpp";
         public static string CheckoutEndpointTest = "https://checkout-test.adyen.com";
         public static string CheckoutEndpointLiveSuffix = "-checkout-live.adyenpayments.com/checkout";
         //Test cloud api endpoints
@@ -46,18 +44,34 @@ namespace Adyen.Constants
         public static string MarketPayFundApiVersion = "v5";
         public static string MarketPayAccountApiVersion = "v5";
         public static string HopApiVersion = "v1";
-        public static string RecurringApiVersion = "v49";
-        public static string ApiVersion = "v51";
-        public static string PayoutApiVersion = "v51";
-        public static string CheckoutApiVersion = "v69";
+        public static string RecurringApiVersion = "v68";
+        public static string ApiVersion = "v68";
+        public static string BalanceControlVersion = "v1";
+        public static string PayoutApiVersion = "v68";
+        public static string CheckoutApiVersion = "v70";
         public static string PosTerminalManagementVersion = "v1";
         public static string UserAgentSuffix = "adyen-dotnet-api-library/";
         public static string EndpointProtocol = "https://";
         public static string NexoProtocolVersion = "3.0";
         public static string BinLookupPalSuffix = "/pal/servlet/BinLookup/";
-        public static string BinLookupApiVersion = "v50";
+        public static string BinLookupApiVersion = "v54";
+        public static string LegalEntityManagementEndpointTest = "https://kyc-test.adyen.com/lem/";
+        public static string LegalEntityManagementEndpointLive = "https://kyc-live.adyen.com/lem/";
+        public static string LegalEntityManagementVersion = "v3";
+        public static string StoredValueEndpointTest = "https://pal-test.adyen.com/pal/servlet/StoredValue";
+        public static string StoredValueEndpointLive = "https://pal-live.adyen.com/pal/servlet/StoredValue";
+        public static string StoredValueVersion = "v46";
+        public static string ManagementEndpointTest = "https://management-test.adyen.com";
+        public static string ManagementEndpointLive = "https://management-live.adyen.com";
+        public static string ManagementVersion = "v1";
+        public static string TransfersEndpointTest = "https://balanceplatform-api-test.adyen.com/btl/";
+        public static string TransfersEndpointLive = "https://balanceplatform-api-live.adyen.com/btl/";
+        public static string TransfersVersion = "v3";
+        public static string DataProtectionEndpointTest = "https://ca-test.adyen.com/ca/services/DataProtectionService";
+        public static string DataProtectionEndpointLive = "https://ca-live.adyen.com/ca/services/DataProtectionService";
+        public static string DataProtectionVersion = "v1";
 
         public static string LibName = "adyen-dotnet-api-library";
-        public static string LibVersion = "9.2.0";
+        public static string LibVersion = "10.0.0-beta";
     }
 }

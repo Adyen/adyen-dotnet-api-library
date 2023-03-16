@@ -1,9 +1,13 @@
-using Adyen.Model;
-using Adyen.Model.Enum;
+using System;
+using Adyen.Model.Payments;
 using Adyen.Service;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using Adyen.HttpClient;
+using Adyen.Model.StoredValue;
+using Adyen.Service.Payments;
+using Environment = Adyen.Model.Environment;
 
 namespace Adyen.IntegrationTest
 {
@@ -14,9 +18,8 @@ namespace Adyen.IntegrationTest
         public void BasicAuthenticationAuthoriseSuccessTest()
         {
             var paymentResult = CreatePaymentResult();
-
-            Assert.AreEqual(paymentResult.ResultCode, ResultCodeEnum.Authorised);
-            Assert.AreEqual("411111", GetAdditionalData(paymentResult.AdditionalData, "cardBin"));
+            Assert.AreEqual(paymentResult.ResultCode, PaymentResult.ResultCodeEnum.Authorised);
+            Assert.AreEqual("1111", GetAdditionalData(paymentResult.AdditionalData, "cardSummary"));
             Assert.IsNotNull(GetAdditionalData(paymentResult.AdditionalData, "avsResult"));
             Assert.AreEqual("1 Matches", GetAdditionalData(paymentResult.AdditionalData, "cvcResult"));
             Assert.AreEqual("H167852639363479", GetAdditionalData(paymentResult.AdditionalData, "alias"));
@@ -29,8 +32,8 @@ namespace Adyen.IntegrationTest
         {
             var paymentResult = await CreatePaymentResultAsync();
 
-            Assert.AreEqual(paymentResult.ResultCode, ResultCodeEnum.Authorised);
-            Assert.AreEqual("411111", GetAdditionalData(paymentResult.AdditionalData, "cardBin"));
+            Assert.AreEqual(paymentResult.ResultCode, PaymentResult.ResultCodeEnum.Authorised);
+            Assert.AreEqual("1111", GetAdditionalData(paymentResult.AdditionalData, "cardSummary"));
             Assert.IsNotNull(GetAdditionalData(paymentResult.AdditionalData, "avsResult"));
             Assert.AreEqual("1 Matches", GetAdditionalData(paymentResult.AdditionalData, "cvcResult"));
             Assert.AreEqual("H167852639363479", GetAdditionalData(paymentResult.AdditionalData, "alias"));
@@ -43,8 +46,8 @@ namespace Adyen.IntegrationTest
         {
             var paymentResult = CreatePaymentResultWithApiKeyAuthentication();
 
-            Assert.AreEqual(paymentResult.ResultCode, ResultCodeEnum.Authorised);
-            Assert.AreEqual("411111", GetAdditionalData(paymentResult.AdditionalData, "cardBin"));
+            Assert.AreEqual(paymentResult.ResultCode, PaymentResult.ResultCodeEnum.Authorised);
+            Assert.AreEqual("1111", GetAdditionalData(paymentResult.AdditionalData, "cardSummary"));
             Assert.IsNotNull(GetAdditionalData(paymentResult.AdditionalData, "avsResult"));
             Assert.AreEqual("1 Matches", GetAdditionalData(paymentResult.AdditionalData, "cvcResult"));
             Assert.AreEqual("H167852639363479", GetAdditionalData(paymentResult.AdditionalData, "alias"));
@@ -59,6 +62,19 @@ namespace Adyen.IntegrationTest
             var paymentResult2 = CreatePaymentResultWithIdempotency("AUTH_IDEMPOTENCY_KEY_AUTHOR");
             Assert.AreEqual(paymentResult1.PspReference, paymentResult2.PspReference);
         }
+        
+        [TestMethod]
+        public void StoredValueIssueFailIntegrationTest()
+        {
+            var client = new Client(new Config()
+            {
+                Environment = Environment.Test,
+                XApiKey = ClientConstants.Xapikey
+            });
+            var service = new StoredValueService(client);
+            var ex = Assert.ThrowsException<HttpClientException>(() => service.Issue(new StoredValueIssueRequest()));
+            Assert.AreEqual(ex.Code, 422);
+        }
 
         [TestMethod]
         public void ApiIdemptotencyKeyFailTest()
@@ -69,12 +85,12 @@ namespace Adyen.IntegrationTest
                 var paymentResult1 = CreatePaymentResultWithIdempotency("AUTH_IDEMPOTENCY_KEY_AUTHOR");
                 var paymentResult2 = CreatePaymentResultWithIdempotency("AUTH_IDEMPOTENCY_KEY_AUTHOR");
             }
-            catch (HttpClient.HttpClientException ex)
+            catch (HttpClientException ex)
             {
                 Assert.AreEqual(ex.Code, 403);
             }
         }
-
+        
         [TestMethod]
         public void AuthenticationResult()
         {
@@ -84,14 +100,14 @@ namespace Adyen.IntegrationTest
                 PspReference = GetTestPspReference()
             };
             var client = CreateApiKeyTestClient();
-            var payment = new Payment(client);
+            var payment = new PaymentService(client);
             try
             {
-                var authenticationResultResponse = payment.GetAuthenticationResult(authenticationResultRequest);
+                payment.GetAuthenticationResult(authenticationResultRequest);
             }
-            catch (HttpClient.HttpClientException ex)
+            catch (HttpClientException ex)
             {
-                Assert.AreEqual(ex.Code, 422);
+                Assert.AreEqual(422, ex.Code);
             }
         }
 
