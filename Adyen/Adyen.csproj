@@ -19,11 +19,11 @@
     <Title>adyen-dotnet-api-library</Title>
     <Product>Adyen library</Product>
     <NeutralLanguage>en</NeutralLanguage>
-    <PackageReleaseNotes></PackageReleaseNotes>
-    <PackageIconUrl>https://www.adyen.com/dam/jcr:39adc4db-76f7-4b9e-aec6-bfa21db4153c/adyen-logo-green.png</PackageIconUrl>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
     <SignAssembly>true</SignAssembly>
     <AssemblyOriginatorKeyFile>adyen-dotnet-api-library-key.snk</AssemblyOriginatorKeyFile>
+    <PackageIcon>adyen-logo.png</PackageIcon>
+    <PackageReadmeFile>README.md</PackageReadmeFile>
   </PropertyGroup>
   <ItemGroup>
     <PackageReference Include="Microsoft.Extensions.Http" Version="7.0.0" />
@@ -41,6 +41,10 @@
     <Reference Include="Microsoft.Build.Framework">
       <HintPath>C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.5\Microsoft.Build.Framework.dll</HintPath>
     </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="adyen-logo.png" Pack="true" Visible="false" PackagePath="" />
+    <None Include="..\README.md" Pack="true" PackagePath="" />
   </ItemGroup>
 
 </Project>
