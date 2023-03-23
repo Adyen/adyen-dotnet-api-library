@@ -40,9 +40,9 @@ namespace Adyen.Service.BalancePlatform
         /// <param name="transactionRuleId">The unique identifier of the transaction rule.</param>
         /// <param name="requestOptions">Additional request options.</param>
         /// <returns>TransactionRule</returns>
-        public TransactionRule Delete(string transactionRuleId, RequestOptions requestOptions = default)
+        public TransactionRule DeleteTransactionRule(string transactionRuleId, RequestOptions requestOptions = default)
         {
-            return DeleteAsync(transactionRuleId, requestOptions).GetAwaiter().GetResult();
+            return DeleteTransactionRuleAsync(transactionRuleId, requestOptions).GetAwaiter().GetResult();
         }
 
         /// <summary>
@@ -51,7 +51,7 @@ namespace Adyen.Service.BalancePlatform
         /// <param name="transactionRuleId">The unique identifier of the transaction rule.</param>
         /// <param name="requestOptions">Additional request options.</param>
         /// <returns>Task of TransactionRule</returns>
-        public async Task<TransactionRule> DeleteAsync(string transactionRuleId, RequestOptions requestOptions = default)
+        public async Task<TransactionRule> DeleteTransactionRuleAsync(string transactionRuleId, RequestOptions requestOptions = default)
         {
             var endpoint = _baseUrl + $"/transactionRules/{transactionRuleId}";
             var resource = new ServiceResource(this, endpoint);
@@ -64,9 +64,9 @@ namespace Adyen.Service.BalancePlatform
         /// <param name="transactionRuleId">The unique identifier of the transaction rule.</param>
         /// <param name="requestOptions">Additional request options.</param>
         /// <returns>TransactionRuleResponse</returns>
-        public TransactionRuleResponse Retrieve(string transactionRuleId, RequestOptions requestOptions = default)
+        public TransactionRuleResponse GetTransactionRule(string transactionRuleId, RequestOptions requestOptions = default)
         {
-            return RetrieveAsync(transactionRuleId, requestOptions).GetAwaiter().GetResult();
+            return GetTransactionRuleAsync(transactionRuleId, requestOptions).GetAwaiter().GetResult();
         }
 
         /// <summary>
@@ -75,7 +75,7 @@ namespace Adyen.Service.BalancePlatform
         /// <param name="transactionRuleId">The unique identifier of the transaction rule.</param>
         /// <param name="requestOptions">Additional request options.</param>
         /// <returns>Task of TransactionRuleResponse</returns>
-        public async Task<TransactionRuleResponse> RetrieveAsync(string transactionRuleId, RequestOptions requestOptions = default)
+        public async Task<TransactionRuleResponse> GetTransactionRuleAsync(string transactionRuleId, RequestOptions requestOptions = default)
         {
             var endpoint = _baseUrl + $"/transactionRules/{transactionRuleId}";
             var resource = new ServiceResource(this, endpoint);
@@ -89,9 +89,9 @@ namespace Adyen.Service.BalancePlatform
         /// <param name="transactionRuleInfo"></param>
         /// <param name="requestOptions">Additional request options.</param>
         /// <returns>TransactionRule</returns>
-        public TransactionRule Update(string transactionRuleId, TransactionRuleInfo transactionRuleInfo, RequestOptions requestOptions = default)
+        public TransactionRule UpdateTransactionRule(string transactionRuleId, TransactionRuleInfo transactionRuleInfo, RequestOptions requestOptions = default)
         {
-            return UpdateAsync(transactionRuleId, transactionRuleInfo, requestOptions).GetAwaiter().GetResult();
+            return UpdateTransactionRuleAsync(transactionRuleId, transactionRuleInfo, requestOptions).GetAwaiter().GetResult();
         }
 
         /// <summary>
@@ -101,7 +101,7 @@ namespace Adyen.Service.BalancePlatform
         /// <param name="transactionRuleInfo"></param>
         /// <param name="requestOptions">Additional request options.</param>
         /// <returns>Task of TransactionRule</returns>
-        public async Task<TransactionRule> UpdateAsync(string transactionRuleId, TransactionRuleInfo transactionRuleInfo, RequestOptions requestOptions = default)
+        public async Task<TransactionRule> UpdateTransactionRuleAsync(string transactionRuleId, TransactionRuleInfo transactionRuleInfo, RequestOptions requestOptions = default)
         {
             var endpoint = _baseUrl + $"/transactionRules/{transactionRuleId}";
             var resource = new ServiceResource(this, endpoint);
@@ -114,9 +114,9 @@ namespace Adyen.Service.BalancePlatform
         /// <param name="transactionRuleInfo"></param>
         /// <param name="requestOptions">Additional request options.</param>
         /// <returns>TransactionRule</returns>
-        public TransactionRule Create(TransactionRuleInfo transactionRuleInfo, RequestOptions requestOptions = default)
+        public TransactionRule CreateTransactionRule(TransactionRuleInfo transactionRuleInfo, RequestOptions requestOptions = default)
         {
-            return CreateAsync(transactionRuleInfo, requestOptions).GetAwaiter().GetResult();
+            return CreateTransactionRuleAsync(transactionRuleInfo, requestOptions).GetAwaiter().GetResult();
         }
 
         /// <summary>
@@ -125,7 +125,7 @@ namespace Adyen.Service.BalancePlatform
         /// <param name="transactionRuleInfo"></param>
         /// <param name="requestOptions">Additional request options.</param>
         /// <returns>Task of TransactionRule</returns>
-        public async Task<TransactionRule> CreateAsync(TransactionRuleInfo transactionRuleInfo, RequestOptions requestOptions = default)
+        public async Task<TransactionRule> CreateTransactionRuleAsync(TransactionRuleInfo transactionRuleInfo, RequestOptions requestOptions = default)
         {
             var endpoint = _baseUrl + "/transactionRules";
             var resource = new ServiceResource(this, endpoint);

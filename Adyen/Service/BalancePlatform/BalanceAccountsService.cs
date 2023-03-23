@@ -66,9 +66,9 @@ namespace Adyen.Service.BalancePlatform
         /// <param name="limit">The number of items returned per page, maximum 100 items. By default, the response returns 10 items per page.</param>
         /// <param name="requestOptions">Additional request options.</param>
         /// <returns>BalanceSweepConfigurationsResponse</returns>
-        public BalanceSweepConfigurationsResponse ListSweeps(string balanceAccountId, int? offset = default, int? limit = default, RequestOptions requestOptions = default)
+        public BalanceSweepConfigurationsResponse GetAllSweepsForBalanceAccount(string balanceAccountId, int? offset = default, int? limit = default, RequestOptions requestOptions = default)
         {
-            return ListSweepsAsync(balanceAccountId, offset, limit, requestOptions).GetAwaiter().GetResult();
+            return GetAllSweepsForBalanceAccountAsync(balanceAccountId, offset, limit, requestOptions).GetAwaiter().GetResult();
         }
 
         /// <summary>
@@ -79,7 +79,7 @@ namespace Adyen.Service.BalancePlatform
         /// <param name="limit">The number of items returned per page, maximum 100 items. By default, the response returns 10 items per page.</param>
         /// <param name="requestOptions">Additional request options.</param>
         /// <returns>Task of BalanceSweepConfigurationsResponse</returns>
-        public async Task<BalanceSweepConfigurationsResponse> ListSweepsAsync(string balanceAccountId, int? offset = default, int? limit = default, RequestOptions requestOptions = default)
+        public async Task<BalanceSweepConfigurationsResponse> GetAllSweepsForBalanceAccountAsync(string balanceAccountId, int? offset = default, int? limit = default, RequestOptions requestOptions = default)
         {
             // Build the query string
             var queryParams = new Dictionary<string, string>();
@@ -97,9 +97,9 @@ namespace Adyen.Service.BalancePlatform
         /// <param name="sweepId">The unique identifier of the sweep.</param>
         /// <param name="requestOptions">Additional request options.</param>
         /// <returns>SweepConfigurationV2</returns>
-        public SweepConfigurationV2 RetrieveSweep(string balanceAccountId, string sweepId, RequestOptions requestOptions = default)
+        public SweepConfigurationV2 GetSweep(string balanceAccountId, string sweepId, RequestOptions requestOptions = default)
         {
-            return RetrieveSweepAsync(balanceAccountId, sweepId, requestOptions).GetAwaiter().GetResult();
+            return GetSweepAsync(balanceAccountId, sweepId, requestOptions).GetAwaiter().GetResult();
         }
 
         /// <summary>
@@ -109,7 +109,7 @@ namespace Adyen.Service.BalancePlatform
         /// <param name="sweepId">The unique identifier of the sweep.</param>
         /// <param name="requestOptions">Additional request options.</param>
         /// <returns>Task of SweepConfigurationV2</returns>
-        public async Task<SweepConfigurationV2> RetrieveSweepAsync(string balanceAccountId, string sweepId, RequestOptions requestOptions = default)
+        public async Task<SweepConfigurationV2> GetSweepAsync(string balanceAccountId, string sweepId, RequestOptions requestOptions = default)
         {
             var endpoint = _baseUrl + $"/balanceAccounts/{balanceAccountId}/sweeps/{sweepId}";
             var resource = new ServiceResource(this, endpoint);
@@ -122,9 +122,9 @@ namespace Adyen.Service.BalancePlatform
         /// <param name="id">The unique identifier of the balance account.</param>
         /// <param name="requestOptions">Additional request options.</param>
         /// <returns>BalanceAccount</returns>
-        public BalanceAccount Retrieve(string id, RequestOptions requestOptions = default)
+        public BalanceAccount GetBalanceAccount(string id, RequestOptions requestOptions = default)
         {
-            return RetrieveAsync(id, requestOptions).GetAwaiter().GetResult();
+            return GetBalanceAccountAsync(id, requestOptions).GetAwaiter().GetResult();
         }
 
         /// <summary>
@@ -133,7 +133,7 @@ namespace Adyen.Service.BalancePlatform
         /// <param name="id">The unique identifier of the balance account.</param>
         /// <param name="requestOptions">Additional request options.</param>
         /// <returns>Task of BalanceAccount</returns>
-        public async Task<BalanceAccount> RetrieveAsync(string id, RequestOptions requestOptions = default)
+        public async Task<BalanceAccount> GetBalanceAccountAsync(string id, RequestOptions requestOptions = default)
         {
             var endpoint = _baseUrl + $"/balanceAccounts/{id}";
             var resource = new ServiceResource(this, endpoint);
@@ -148,9 +148,9 @@ namespace Adyen.Service.BalancePlatform
         /// <param name="limit">The number of items returned per page, maximum 100 items. By default, the response returns 10 items per page.</param>
         /// <param name="requestOptions">Additional request options.</param>
         /// <returns>PaginatedPaymentInstrumentsResponse</returns>
-        public PaginatedPaymentInstrumentsResponse ListPaymentInstruments(string id, int? offset = default, int? limit = default, RequestOptions requestOptions = default)
+        public PaginatedPaymentInstrumentsResponse GetAllPaymentInstrumentsForBalanceAccount(string id, int? offset = default, int? limit = default, RequestOptions requestOptions = default)
         {
-            return ListPaymentInstrumentsAsync(id, offset, limit, requestOptions).GetAwaiter().GetResult();
+            return GetAllPaymentInstrumentsForBalanceAccountAsync(id, offset, limit, requestOptions).GetAwaiter().GetResult();
         }
 
         /// <summary>
@@ -161,7 +161,7 @@ namespace Adyen.Service.BalancePlatform
         /// <param name="limit">The number of items returned per page, maximum 100 items. By default, the response returns 10 items per page.</param>
         /// <param name="requestOptions">Additional request options.</param>
         /// <returns>Task of PaginatedPaymentInstrumentsResponse</returns>
-        public async Task<PaginatedPaymentInstrumentsResponse> ListPaymentInstrumentsAsync(string id, int? offset = default, int? limit = default, RequestOptions requestOptions = default)
+        public async Task<PaginatedPaymentInstrumentsResponse> GetAllPaymentInstrumentsForBalanceAccountAsync(string id, int? offset = default, int? limit = default, RequestOptions requestOptions = default)
         {
             // Build the query string
             var queryParams = new Dictionary<string, string>();
@@ -207,9 +207,9 @@ namespace Adyen.Service.BalancePlatform
         /// <param name="balanceAccountUpdateRequest"></param>
         /// <param name="requestOptions">Additional request options.</param>
         /// <returns>BalanceAccount</returns>
-        public BalanceAccount Update(string id, BalanceAccountUpdateRequest balanceAccountUpdateRequest, RequestOptions requestOptions = default)
+        public BalanceAccount UpdateBalanceAccount(string id, BalanceAccountUpdateRequest balanceAccountUpdateRequest, RequestOptions requestOptions = default)
         {
-            return UpdateAsync(id, balanceAccountUpdateRequest, requestOptions).GetAwaiter().GetResult();
+            return UpdateBalanceAccountAsync(id, balanceAccountUpdateRequest, requestOptions).GetAwaiter().GetResult();
         }
 
         /// <summary>
@@ -219,7 +219,7 @@ namespace Adyen.Service.BalancePlatform
         /// <param name="balanceAccountUpdateRequest"></param>
         /// <param name="requestOptions">Additional request options.</param>
         /// <returns>Task of BalanceAccount</returns>
-        public async Task<BalanceAccount> UpdateAsync(string id, BalanceAccountUpdateRequest balanceAccountUpdateRequest, RequestOptions requestOptions = default)
+        public async Task<BalanceAccount> UpdateBalanceAccountAsync(string id, BalanceAccountUpdateRequest balanceAccountUpdateRequest, RequestOptions requestOptions = default)
         {
             var endpoint = _baseUrl + $"/balanceAccounts/{id}";
             var resource = new ServiceResource(this, endpoint);
@@ -232,9 +232,9 @@ namespace Adyen.Service.BalancePlatform
         /// <param name="balanceAccountInfo"></param>
         /// <param name="requestOptions">Additional request options.</param>
         /// <returns>BalanceAccount</returns>
-        public BalanceAccount Create(BalanceAccountInfo balanceAccountInfo, RequestOptions requestOptions = default)
+        public BalanceAccount CreateBalanceAccount(BalanceAccountInfo balanceAccountInfo, RequestOptions requestOptions = default)
         {
-            return CreateAsync(balanceAccountInfo, requestOptions).GetAwaiter().GetResult();
+            return CreateBalanceAccountAsync(balanceAccountInfo, requestOptions).GetAwaiter().GetResult();
         }
 
         /// <summary>
@@ -243,7 +243,7 @@ namespace Adyen.Service.BalancePlatform
         /// <param name="balanceAccountInfo"></param>
         /// <param name="requestOptions">Additional request options.</param>
         /// <returns>Task of BalanceAccount</returns>
-        public async Task<BalanceAccount> CreateAsync(BalanceAccountInfo balanceAccountInfo, RequestOptions requestOptions = default)
+        public async Task<BalanceAccount> CreateBalanceAccountAsync(BalanceAccountInfo balanceAccountInfo, RequestOptions requestOptions = default)
         {
             var endpoint = _baseUrl + "/balanceAccounts";
             var resource = new ServiceResource(this, endpoint);

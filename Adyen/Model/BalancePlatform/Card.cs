@@ -77,8 +77,8 @@ namespace Adyen.Model.BalancePlatform
         /// </summary>
         /// <param name="authentication">authentication.</param>
         /// <param name="bin">The bank identification number (BIN) of the card number..</param>
-        /// <param name="brand">The brand of the payment instrument. Possible values: **visa**, **mc**. (required).</param>
-        /// <param name="brandVariant">The brand variant of the payment instrument. &gt;Contact your Adyen Implementation Manager to get the values that are relevant to your integration. Examples: **visadebit**, **mcprepaid**. (required).</param>
+        /// <param name="brand">The brand of the physical or the virtual card. Possible values: **visa**, **mc**. (required).</param>
+        /// <param name="brandVariant">The brand variant of the physical or the virtual card. &gt;Contact your Adyen Implementation Manager to get the values that are relevant to your integration. Examples: **visadebit**, **mcprepaid**. (required).</param>
         /// <param name="cardholderName">The name of the cardholder.  Maximum length: 26 characters. (required).</param>
         /// <param name="configuration">configuration.</param>
         /// <param name="cvc">The CVC2 value of the card. &gt; The CVC2 is not sent by default. This is only returned in the &#x60;POST&#x60; response for single-use virtual cards..</param>
@@ -115,16 +115,16 @@ namespace Adyen.Model.BalancePlatform
         public string Bin { get; set; }
 
         /// <summary>
-        /// The brand of the payment instrument. Possible values: **visa**, **mc**.
+        /// The brand of the physical or the virtual card. Possible values: **visa**, **mc**.
         /// </summary>
-        /// <value>The brand of the payment instrument. Possible values: **visa**, **mc**.</value>
+        /// <value>The brand of the physical or the virtual card. Possible values: **visa**, **mc**.</value>
         [DataMember(Name = "brand", IsRequired = false, EmitDefaultValue = false)]
         public string Brand { get; set; }
 
         /// <summary>
-        /// The brand variant of the payment instrument. &gt;Contact your Adyen Implementation Manager to get the values that are relevant to your integration. Examples: **visadebit**, **mcprepaid**.
+        /// The brand variant of the physical or the virtual card. &gt;Contact your Adyen Implementation Manager to get the values that are relevant to your integration. Examples: **visadebit**, **mcprepaid**.
         /// </summary>
-        /// <value>The brand variant of the payment instrument. &gt;Contact your Adyen Implementation Manager to get the values that are relevant to your integration. Examples: **visadebit**, **mcprepaid**.</value>
+        /// <value>The brand variant of the physical or the virtual card. &gt;Contact your Adyen Implementation Manager to get the values that are relevant to your integration. Examples: **visadebit**, **mcprepaid**.</value>
         [DataMember(Name = "brandVariant", IsRequired = false, EmitDefaultValue = false)]
         public string BrandVariant { get; set; }
 

@@ -28,80 +28,56 @@ using OpenAPIDateConverter = Adyen.ApiSerialization.OpenAPIDateConverter;
 namespace Adyen.Model.BalancePlatform
 {
     /// <summary>
-    /// VerificationErrorRecursive
+    /// AdditionalBankIdentification
     /// </summary>
-    [DataContract(Name = "VerificationError-recursive")]
-    public partial class VerificationErrorRecursive : IEquatable<VerificationErrorRecursive>, IValidatableObject
+    [DataContract(Name = "AdditionalBankIdentification")]
+    public partial class AdditionalBankIdentification : IEquatable<AdditionalBankIdentification>, IValidatableObject
     {
         /// <summary>
-        /// The type of error.   Possible values: **invalidInput**, **dataMissing**.
+        /// The type of additional bank identification, depending on the country.  Possible values:   * **gbSortCode**: The 6-digit [UK sort code](https://en.wikipedia.org/wiki/Sort_code), without separators or spaces  * **usRoutingNumber**: The 9-digit [routing number](https://en.wikipedia.org/wiki/ABA_routing_transit_number), without separators or spaces.
         /// </summary>
-        /// <value>The type of error.   Possible values: **invalidInput**, **dataMissing**.</value>
+        /// <value>The type of additional bank identification, depending on the country.  Possible values:   * **gbSortCode**: The 6-digit [UK sort code](https://en.wikipedia.org/wiki/Sort_code), without separators or spaces  * **usRoutingNumber**: The 9-digit [routing number](https://en.wikipedia.org/wiki/ABA_routing_transit_number), without separators or spaces.</value>
         [JsonConverter(typeof(StringEnumConverter))]
         public enum TypeEnum
         {
             /// <summary>
-            /// Enum DataMissing for value: dataMissing
+            /// Enum GbSortCode for value: gbSortCode
             /// </summary>
-            [EnumMember(Value = "dataMissing")]
-            DataMissing = 1,
+            [EnumMember(Value = "gbSortCode")]
+            GbSortCode = 1,
 
             /// <summary>
-            /// Enum InvalidInput for value: invalidInput
+            /// Enum UsRoutingNumber for value: usRoutingNumber
             /// </summary>
-            [EnumMember(Value = "invalidInput")]
-            InvalidInput = 2,
-
-            /// <summary>
-            /// Enum PendingStatus for value: pendingStatus
-            /// </summary>
-            [EnumMember(Value = "pendingStatus")]
-            PendingStatus = 3
+            [EnumMember(Value = "usRoutingNumber")]
+            UsRoutingNumber = 2
 
         }
 
 
         /// <summary>
-        /// The type of error.   Possible values: **invalidInput**, **dataMissing**.
+        /// The type of additional bank identification, depending on the country.  Possible values:   * **gbSortCode**: The 6-digit [UK sort code](https://en.wikipedia.org/wiki/Sort_code), without separators or spaces  * **usRoutingNumber**: The 9-digit [routing number](https://en.wikipedia.org/wiki/ABA_routing_transit_number), without separators or spaces.
         /// </summary>
-        /// <value>The type of error.   Possible values: **invalidInput**, **dataMissing**.</value>
+        /// <value>The type of additional bank identification, depending on the country.  Possible values:   * **gbSortCode**: The 6-digit [UK sort code](https://en.wikipedia.org/wiki/Sort_code), without separators or spaces  * **usRoutingNumber**: The 9-digit [routing number](https://en.wikipedia.org/wiki/ABA_routing_transit_number), without separators or spaces.</value>
         [DataMember(Name = "type", EmitDefaultValue = false)]
         public TypeEnum? Type { get; set; }
         /// <summary>
-        /// Initializes a new instance of the <see cref="VerificationErrorRecursive" /> class.
+        /// Initializes a new instance of the <see cref="AdditionalBankIdentification" /> class.
         /// </summary>
-        /// <param name="code">The verification error code..</param>
-        /// <param name="message">A description of the error..</param>
-        /// <param name="type">The type of error.   Possible values: **invalidInput**, **dataMissing**..</param>
-        /// <param name="remediatingActions">Contains the actions that you can take to resolve the verification error..</param>
-        public VerificationErrorRecursive(string code = default(string), string message = default(string), TypeEnum? type = default(TypeEnum?), List<RemediatingAction> remediatingActions = default(List<RemediatingAction>))
+        /// <param name="code">The value of the additional bank identification..</param>
+        /// <param name="type">The type of additional bank identification, depending on the country.  Possible values:   * **gbSortCode**: The 6-digit [UK sort code](https://en.wikipedia.org/wiki/Sort_code), without separators or spaces  * **usRoutingNumber**: The 9-digit [routing number](https://en.wikipedia.org/wiki/ABA_routing_transit_number), without separators or spaces..</param>
+        public AdditionalBankIdentification(string code = default(string), TypeEnum? type = default(TypeEnum?))
         {
             this.Code = code;
-            this.Message = message;
             this.Type = type;
-            this.RemediatingActions = remediatingActions;
         }
 
         /// <summary>
-        /// The verification error code.
+        /// The value of the additional bank identification.
         /// </summary>
-        /// <value>The verification error code.</value>
+        /// <value>The value of the additional bank identification.</value>
         [DataMember(Name = "code", EmitDefaultValue = false)]
         public string Code { get; set; }
-
-        /// <summary>
-        /// A description of the error.
-        /// </summary>
-        /// <value>A description of the error.</value>
-        [DataMember(Name = "message", EmitDefaultValue = false)]
-        public string Message { get; set; }
-
-        /// <summary>
-        /// Contains the actions that you can take to resolve the verification error.
-        /// </summary>
-        /// <value>Contains the actions that you can take to resolve the verification error.</value>
-        [DataMember(Name = "remediatingActions", EmitDefaultValue = false)]
-        public List<RemediatingAction> RemediatingActions { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -110,11 +86,9 @@ namespace Adyen.Model.BalancePlatform
         public override string ToString()
         {
             StringBuilder sb = new StringBuilder();
-            sb.Append("class VerificationErrorRecursive {\n");
+            sb.Append("class AdditionalBankIdentification {\n");
             sb.Append("  Code: ").Append(Code).Append("\n");
-            sb.Append("  Message: ").Append(Message).Append("\n");
             sb.Append("  Type: ").Append(Type).Append("\n");
-            sb.Append("  RemediatingActions: ").Append(RemediatingActions).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -135,15 +109,15 @@ namespace Adyen.Model.BalancePlatform
         /// <returns>Boolean</returns>
         public override bool Equals(object input)
         {
-            return this.Equals(input as VerificationErrorRecursive);
+            return this.Equals(input as AdditionalBankIdentification);
         }
 
         /// <summary>
-        /// Returns true if VerificationErrorRecursive instances are equal
+        /// Returns true if AdditionalBankIdentification instances are equal
         /// </summary>
-        /// <param name="input">Instance of VerificationErrorRecursive to be compared</param>
+        /// <param name="input">Instance of AdditionalBankIdentification to be compared</param>
         /// <returns>Boolean</returns>
-        public bool Equals(VerificationErrorRecursive input)
+        public bool Equals(AdditionalBankIdentification input)
         {
             if (input == null)
             {
@@ -156,19 +130,8 @@ namespace Adyen.Model.BalancePlatform
                     this.Code.Equals(input.Code))
                 ) && 
                 (
-                    this.Message == input.Message ||
-                    (this.Message != null &&
-                    this.Message.Equals(input.Message))
-                ) && 
-                (
                     this.Type == input.Type ||
                     this.Type.Equals(input.Type)
-                ) && 
-                (
-                    this.RemediatingActions == input.RemediatingActions ||
-                    this.RemediatingActions != null &&
-                    input.RemediatingActions != null &&
-                    this.RemediatingActions.SequenceEqual(input.RemediatingActions)
                 );
         }
 
@@ -185,15 +148,7 @@ namespace Adyen.Model.BalancePlatform
                 {
                     hashCode = (hashCode * 59) + this.Code.GetHashCode();
                 }
-                if (this.Message != null)
-                {
-                    hashCode = (hashCode * 59) + this.Message.GetHashCode();
-                }
                 hashCode = (hashCode * 59) + this.Type.GetHashCode();
-                if (this.RemediatingActions != null)
-                {
-                    hashCode = (hashCode * 59) + this.RemediatingActions.GetHashCode();
-                }
                 return hashCode;
             }
         }

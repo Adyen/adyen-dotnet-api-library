@@ -39,25 +39,29 @@ namespace Adyen.Model.BalancePlatform
         /// <param name="activeNetworkTokens">activeNetworkTokens.</param>
         /// <param name="brandVariants">brandVariants.</param>
         /// <param name="countries">countries.</param>
+        /// <param name="dayOfWeek">dayOfWeek.</param>
         /// <param name="differentCurrencies">differentCurrencies.</param>
         /// <param name="entryModes">entryModes.</param>
         /// <param name="internationalTransaction">internationalTransaction.</param>
         /// <param name="matchingTransactions">matchingTransactions.</param>
         /// <param name="mccs">mccs.</param>
+        /// <param name="merchantNames">merchantNames.</param>
         /// <param name="merchants">merchants.</param>
         /// <param name="processingTypes">processingTypes.</param>
         /// <param name="timeOfDay">timeOfDay.</param>
         /// <param name="totalAmount">totalAmount.</param>
-        public TransactionRuleRestrictions(ActiveNetworkTokensRestriction activeNetworkTokens = default(ActiveNetworkTokensRestriction), BrandVariantsRestriction brandVariants = default(BrandVariantsRestriction), CountriesRestriction countries = default(CountriesRestriction), DifferentCurrenciesRestriction differentCurrencies = default(DifferentCurrenciesRestriction), EntryModesRestriction entryModes = default(EntryModesRestriction), InternationalTransactionRestriction internationalTransaction = default(InternationalTransactionRestriction), MatchingTransactionsRestriction matchingTransactions = default(MatchingTransactionsRestriction), MccsRestriction mccs = default(MccsRestriction), MerchantsRestriction merchants = default(MerchantsRestriction), ProcessingTypesRestriction processingTypes = default(ProcessingTypesRestriction), TimeOfDayRestriction timeOfDay = default(TimeOfDayRestriction), TotalAmountRestriction totalAmount = default(TotalAmountRestriction))
+        public TransactionRuleRestrictions(ActiveNetworkTokensRestriction activeNetworkTokens = default(ActiveNetworkTokensRestriction), BrandVariantsRestriction brandVariants = default(BrandVariantsRestriction), CountriesRestriction countries = default(CountriesRestriction), DayOfWeekRestriction dayOfWeek = default(DayOfWeekRestriction), DifferentCurrenciesRestriction differentCurrencies = default(DifferentCurrenciesRestriction), EntryModesRestriction entryModes = default(EntryModesRestriction), InternationalTransactionRestriction internationalTransaction = default(InternationalTransactionRestriction), MatchingTransactionsRestriction matchingTransactions = default(MatchingTransactionsRestriction), MccsRestriction mccs = default(MccsRestriction), MerchantNamesRestriction merchantNames = default(MerchantNamesRestriction), MerchantsRestriction merchants = default(MerchantsRestriction), ProcessingTypesRestriction processingTypes = default(ProcessingTypesRestriction), TimeOfDayRestriction timeOfDay = default(TimeOfDayRestriction), TotalAmountRestriction totalAmount = default(TotalAmountRestriction))
         {
             this.ActiveNetworkTokens = activeNetworkTokens;
             this.BrandVariants = brandVariants;
             this.Countries = countries;
+            this.DayOfWeek = dayOfWeek;
             this.DifferentCurrencies = differentCurrencies;
             this.EntryModes = entryModes;
             this.InternationalTransaction = internationalTransaction;
             this.MatchingTransactions = matchingTransactions;
             this.Mccs = mccs;
+            this.MerchantNames = merchantNames;
             this.Merchants = merchants;
             this.ProcessingTypes = processingTypes;
             this.TimeOfDay = timeOfDay;
@@ -81,6 +85,12 @@ namespace Adyen.Model.BalancePlatform
         /// </summary>
         [DataMember(Name = "countries", EmitDefaultValue = false)]
         public CountriesRestriction Countries { get; set; }
+
+        /// <summary>
+        /// Gets or Sets DayOfWeek
+        /// </summary>
+        [DataMember(Name = "dayOfWeek", EmitDefaultValue = false)]
+        public DayOfWeekRestriction DayOfWeek { get; set; }
 
         /// <summary>
         /// Gets or Sets DifferentCurrencies
@@ -111,6 +121,12 @@ namespace Adyen.Model.BalancePlatform
         /// </summary>
         [DataMember(Name = "mccs", EmitDefaultValue = false)]
         public MccsRestriction Mccs { get; set; }
+
+        /// <summary>
+        /// Gets or Sets MerchantNames
+        /// </summary>
+        [DataMember(Name = "merchantNames", EmitDefaultValue = false)]
+        public MerchantNamesRestriction MerchantNames { get; set; }
 
         /// <summary>
         /// Gets or Sets Merchants
@@ -147,11 +163,13 @@ namespace Adyen.Model.BalancePlatform
             sb.Append("  ActiveNetworkTokens: ").Append(ActiveNetworkTokens).Append("\n");
             sb.Append("  BrandVariants: ").Append(BrandVariants).Append("\n");
             sb.Append("  Countries: ").Append(Countries).Append("\n");
+            sb.Append("  DayOfWeek: ").Append(DayOfWeek).Append("\n");
             sb.Append("  DifferentCurrencies: ").Append(DifferentCurrencies).Append("\n");
             sb.Append("  EntryModes: ").Append(EntryModes).Append("\n");
             sb.Append("  InternationalTransaction: ").Append(InternationalTransaction).Append("\n");
             sb.Append("  MatchingTransactions: ").Append(MatchingTransactions).Append("\n");
             sb.Append("  Mccs: ").Append(Mccs).Append("\n");
+            sb.Append("  MerchantNames: ").Append(MerchantNames).Append("\n");
             sb.Append("  Merchants: ").Append(Merchants).Append("\n");
             sb.Append("  ProcessingTypes: ").Append(ProcessingTypes).Append("\n");
             sb.Append("  TimeOfDay: ").Append(TimeOfDay).Append("\n");
@@ -207,6 +225,11 @@ namespace Adyen.Model.BalancePlatform
                     this.Countries.Equals(input.Countries))
                 ) && 
                 (
+                    this.DayOfWeek == input.DayOfWeek ||
+                    (this.DayOfWeek != null &&
+                    this.DayOfWeek.Equals(input.DayOfWeek))
+                ) && 
+                (
                     this.DifferentCurrencies == input.DifferentCurrencies ||
                     (this.DifferentCurrencies != null &&
                     this.DifferentCurrencies.Equals(input.DifferentCurrencies))
@@ -230,6 +253,11 @@ namespace Adyen.Model.BalancePlatform
                     this.Mccs == input.Mccs ||
                     (this.Mccs != null &&
                     this.Mccs.Equals(input.Mccs))
+                ) && 
+                (
+                    this.MerchantNames == input.MerchantNames ||
+                    (this.MerchantNames != null &&
+                    this.MerchantNames.Equals(input.MerchantNames))
                 ) && 
                 (
                     this.Merchants == input.Merchants ||
@@ -274,6 +302,10 @@ namespace Adyen.Model.BalancePlatform
                 {
                     hashCode = (hashCode * 59) + this.Countries.GetHashCode();
                 }
+                if (this.DayOfWeek != null)
+                {
+                    hashCode = (hashCode * 59) + this.DayOfWeek.GetHashCode();
+                }
                 if (this.DifferentCurrencies != null)
                 {
                     hashCode = (hashCode * 59) + this.DifferentCurrencies.GetHashCode();
@@ -293,6 +325,10 @@ namespace Adyen.Model.BalancePlatform
                 if (this.Mccs != null)
                 {
                     hashCode = (hashCode * 59) + this.Mccs.GetHashCode();
+                }
+                if (this.MerchantNames != null)
+                {
+                    hashCode = (hashCode * 59) + this.MerchantNames.GetHashCode();
                 }
                 if (this.Merchants != null)
                 {

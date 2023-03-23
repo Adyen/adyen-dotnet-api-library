@@ -16,8 +16,8 @@ using System.Net.Http;
 using System.Threading.Tasks;
 using Adyen.Constants;
 using Adyen.Model;
-using Adyen.Service.Resource;
 using Adyen.Model.BalancePlatform;
+using Adyen.Service.Resource;
 using Newtonsoft.Json;
 
 namespace Adyen.Service.BalancePlatform
@@ -40,9 +40,9 @@ namespace Adyen.Service.BalancePlatform
         /// <param name="id">The unique identifier of the balance platform.</param>
         /// <param name="requestOptions">Additional request options.</param>
         /// <returns>BalancePlatform</returns>
-        public Model.BalancePlatform.BalancePlatform Retrieve(string id, RequestOptions requestOptions = default)
+        public Model.BalancePlatform.BalancePlatform GetBalancePlatform(string id, RequestOptions requestOptions = default)
         {
-            return RetrieveAsync(id, requestOptions).GetAwaiter().GetResult();
+            return GetBalancePlatformAsync(id, requestOptions).GetAwaiter().GetResult();
         }
 
         /// <summary>
@@ -51,7 +51,7 @@ namespace Adyen.Service.BalancePlatform
         /// <param name="id">The unique identifier of the balance platform.</param>
         /// <param name="requestOptions">Additional request options.</param>
         /// <returns>Task of BalancePlatform</returns>
-        public async Task<Model.BalancePlatform.BalancePlatform> RetrieveAsync(string id, RequestOptions requestOptions = default)
+        public async Task<Model.BalancePlatform.BalancePlatform> GetBalancePlatformAsync(string id, RequestOptions requestOptions = default)
         {
             var endpoint = _baseUrl + $"/balancePlatforms/{id}";
             var resource = new ServiceResource(this, endpoint);
@@ -66,9 +66,9 @@ namespace Adyen.Service.BalancePlatform
         /// <param name="limit">The number of items returned per page, maximum 100 items. By default, the response returns 10 items per page.</param>
         /// <param name="requestOptions">Additional request options.</param>
         /// <returns>PaginatedAccountHoldersResponse</returns>
-        public PaginatedAccountHoldersResponse ListAccountHolders(string id, int? offset = default, int? limit = default, RequestOptions requestOptions = default)
+        public PaginatedAccountHoldersResponse GetAllAccountHoldersUnderBalancePlatform(string id, int? offset = default, int? limit = default, RequestOptions requestOptions = default)
         {
-            return ListAccountHoldersAsync(id, offset, limit, requestOptions).GetAwaiter().GetResult();
+            return GetAllAccountHoldersUnderBalancePlatformAsync(id, offset, limit, requestOptions).GetAwaiter().GetResult();
         }
 
         /// <summary>
@@ -79,7 +79,7 @@ namespace Adyen.Service.BalancePlatform
         /// <param name="limit">The number of items returned per page, maximum 100 items. By default, the response returns 10 items per page.</param>
         /// <param name="requestOptions">Additional request options.</param>
         /// <returns>Task of PaginatedAccountHoldersResponse</returns>
-        public async Task<PaginatedAccountHoldersResponse> ListAccountHoldersAsync(string id, int? offset = default, int? limit = default, RequestOptions requestOptions = default)
+        public async Task<PaginatedAccountHoldersResponse> GetAllAccountHoldersUnderBalancePlatformAsync(string id, int? offset = default, int? limit = default, RequestOptions requestOptions = default)
         {
             // Build the query string
             var queryParams = new Dictionary<string, string>();

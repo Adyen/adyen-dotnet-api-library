@@ -45,9 +45,9 @@ namespace Adyen.Model.BalancePlatform
         /// <param name="capabilities">Contains key-value pairs that specify the actions that an account holder can do in your platform. The key is a capability required for your integration. For example, **issueCard** for Issuing. The value is an object containing the settings for the capability..</param>
         /// <param name="contactDetails">contactDetails.</param>
         /// <param name="description">Your description for the account holder, maximum 300 characters..</param>
-        /// <param name="legalEntityId">The unique identifier of the [legal entity](https://docs.adyen.com/api-explorer/#/legalentity/latest/post/legalEntities__resParam_id) associated with the account holder. Adyen performs a verification process against the legal entity of the account holder. (required).</param>
+        /// <param name="legalEntityId">The unique identifier of the [legal entity](https://docs.adyen.com/api-explorer/legalentity/latest/post/legalEntities#responses-200-id) associated with the account holder. Adyen performs a verification process against the legal entity of the account holder. (required).</param>
         /// <param name="reference">Your reference for the account holder, maximum 150 characters..</param>
-        /// <param name="timeZone">The [time zone](https://www.iana.org/time-zones) of the account holder. For example, **Europe/Amsterdam**. If not set, the time zone of the balance account will be used. For possible values, see the [list of time zone codes](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones)..</param>
+        /// <param name="timeZone">The [time zone](https://www.iana.org/time-zones) of the account holder. For example, **Europe/Amsterdam**. Defaults to the time zone of the balance platform if no time zone is set. For possible values, see the [list of time zone codes](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones)..</param>
         public AccountHolderInfo(string balancePlatform = default(string), Dictionary<string, AccountHolderCapability> capabilities = default(Dictionary<string, AccountHolderCapability>), ContactDetails contactDetails = default(ContactDetails), string description = default(string), string legalEntityId = default(string), string reference = default(string), string timeZone = default(string))
         {
             this.LegalEntityId = legalEntityId;
@@ -87,9 +87,9 @@ namespace Adyen.Model.BalancePlatform
         public string Description { get; set; }
 
         /// <summary>
-        /// The unique identifier of the [legal entity](https://docs.adyen.com/api-explorer/#/legalentity/latest/post/legalEntities__resParam_id) associated with the account holder. Adyen performs a verification process against the legal entity of the account holder.
+        /// The unique identifier of the [legal entity](https://docs.adyen.com/api-explorer/legalentity/latest/post/legalEntities#responses-200-id) associated with the account holder. Adyen performs a verification process against the legal entity of the account holder.
         /// </summary>
-        /// <value>The unique identifier of the [legal entity](https://docs.adyen.com/api-explorer/#/legalentity/latest/post/legalEntities__resParam_id) associated with the account holder. Adyen performs a verification process against the legal entity of the account holder.</value>
+        /// <value>The unique identifier of the [legal entity](https://docs.adyen.com/api-explorer/legalentity/latest/post/legalEntities#responses-200-id) associated with the account holder. Adyen performs a verification process against the legal entity of the account holder.</value>
         [DataMember(Name = "legalEntityId", IsRequired = false, EmitDefaultValue = false)]
         public string LegalEntityId { get; set; }
 
@@ -101,9 +101,9 @@ namespace Adyen.Model.BalancePlatform
         public string Reference { get; set; }
 
         /// <summary>
-        /// The [time zone](https://www.iana.org/time-zones) of the account holder. For example, **Europe/Amsterdam**. If not set, the time zone of the balance account will be used. For possible values, see the [list of time zone codes](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones).
+        /// The [time zone](https://www.iana.org/time-zones) of the account holder. For example, **Europe/Amsterdam**. Defaults to the time zone of the balance platform if no time zone is set. For possible values, see the [list of time zone codes](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones).
         /// </summary>
-        /// <value>The [time zone](https://www.iana.org/time-zones) of the account holder. For example, **Europe/Amsterdam**. If not set, the time zone of the balance account will be used. For possible values, see the [list of time zone codes](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones).</value>
+        /// <value>The [time zone](https://www.iana.org/time-zones) of the account holder. For example, **Europe/Amsterdam**. Defaults to the time zone of the balance platform if no time zone is set. For possible values, see the [list of time zone codes](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones).</value>
         [DataMember(Name = "timeZone", EmitDefaultValue = false)]
         public string TimeZone { get; set; }
 

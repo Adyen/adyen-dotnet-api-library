@@ -28,35 +28,55 @@ using OpenAPIDateConverter = Adyen.ApiSerialization.OpenAPIDateConverter;
 namespace Adyen.Model.BalancePlatform
 {
     /// <summary>
-    /// RemediatingAction
+    /// IbanAccountIdentification
     /// </summary>
-    [DataContract(Name = "RemediatingAction")]
-    public partial class RemediatingAction : IEquatable<RemediatingAction>, IValidatableObject
+    [DataContract(Name = "IbanAccountIdentification")]
+    public partial class IbanAccountIdentification : IEquatable<IbanAccountIdentification>, IValidatableObject
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="RemediatingAction" /> class.
+        /// **iban**
         /// </summary>
-        /// <param name="code">The remediating action code..</param>
-        /// <param name="message">A description of how you can resolve the verification error..</param>
-        public RemediatingAction(string code = default(string), string message = default(string))
+        /// <value>**iban**</value>
+        [JsonConverter(typeof(StringEnumConverter))]
+        public enum TypeEnum
         {
-            this.Code = code;
-            this.Message = message;
+            /// <summary>
+            /// Enum Iban for value: iban
+            /// </summary>
+            [EnumMember(Value = "iban")]
+            Iban = 1
+
+        }
+
+
+        /// <summary>
+        /// **iban**
+        /// </summary>
+        /// <value>**iban**</value>
+        [DataMember(Name = "type", IsRequired = false, EmitDefaultValue = false)]
+        public TypeEnum Type { get; set; }
+        /// <summary>
+        /// Initializes a new instance of the <see cref="IbanAccountIdentification" /> class.
+        /// </summary>
+        [JsonConstructorAttribute]
+        protected IbanAccountIdentification() { }
+        /// <summary>
+        /// Initializes a new instance of the <see cref="IbanAccountIdentification" /> class.
+        /// </summary>
+        /// <param name="iban">The international bank account number as defined in the [ISO-13616](https://www.iso.org/standard/81090.html) standard. (required).</param>
+        /// <param name="type">**iban** (required) (default to TypeEnum.Iban).</param>
+        public IbanAccountIdentification(string iban = default(string), TypeEnum type = TypeEnum.Iban)
+        {
+            this.Iban = iban;
+            this.Type = type;
         }
 
         /// <summary>
-        /// The remediating action code.
+        /// The international bank account number as defined in the [ISO-13616](https://www.iso.org/standard/81090.html) standard.
         /// </summary>
-        /// <value>The remediating action code.</value>
-        [DataMember(Name = "code", EmitDefaultValue = false)]
-        public string Code { get; set; }
-
-        /// <summary>
-        /// A description of how you can resolve the verification error.
-        /// </summary>
-        /// <value>A description of how you can resolve the verification error.</value>
-        [DataMember(Name = "message", EmitDefaultValue = false)]
-        public string Message { get; set; }
+        /// <value>The international bank account number as defined in the [ISO-13616](https://www.iso.org/standard/81090.html) standard.</value>
+        [DataMember(Name = "iban", IsRequired = false, EmitDefaultValue = false)]
+        public string Iban { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -65,9 +85,9 @@ namespace Adyen.Model.BalancePlatform
         public override string ToString()
         {
             StringBuilder sb = new StringBuilder();
-            sb.Append("class RemediatingAction {\n");
-            sb.Append("  Code: ").Append(Code).Append("\n");
-            sb.Append("  Message: ").Append(Message).Append("\n");
+            sb.Append("class IbanAccountIdentification {\n");
+            sb.Append("  Iban: ").Append(Iban).Append("\n");
+            sb.Append("  Type: ").Append(Type).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -88,15 +108,15 @@ namespace Adyen.Model.BalancePlatform
         /// <returns>Boolean</returns>
         public override bool Equals(object input)
         {
-            return this.Equals(input as RemediatingAction);
+            return this.Equals(input as IbanAccountIdentification);
         }
 
         /// <summary>
-        /// Returns true if RemediatingAction instances are equal
+        /// Returns true if IbanAccountIdentification instances are equal
         /// </summary>
-        /// <param name="input">Instance of RemediatingAction to be compared</param>
+        /// <param name="input">Instance of IbanAccountIdentification to be compared</param>
         /// <returns>Boolean</returns>
-        public bool Equals(RemediatingAction input)
+        public bool Equals(IbanAccountIdentification input)
         {
             if (input == null)
             {
@@ -104,14 +124,13 @@ namespace Adyen.Model.BalancePlatform
             }
             return 
                 (
-                    this.Code == input.Code ||
-                    (this.Code != null &&
-                    this.Code.Equals(input.Code))
+                    this.Iban == input.Iban ||
+                    (this.Iban != null &&
+                    this.Iban.Equals(input.Iban))
                 ) && 
                 (
-                    this.Message == input.Message ||
-                    (this.Message != null &&
-                    this.Message.Equals(input.Message))
+                    this.Type == input.Type ||
+                    this.Type.Equals(input.Type)
                 );
         }
 
@@ -124,14 +143,11 @@ namespace Adyen.Model.BalancePlatform
             unchecked // Overflow is fine, just wrap
             {
                 int hashCode = 41;
-                if (this.Code != null)
+                if (this.Iban != null)
                 {
-                    hashCode = (hashCode * 59) + this.Code.GetHashCode();
+                    hashCode = (hashCode * 59) + this.Iban.GetHashCode();
                 }
-                if (this.Message != null)
-                {
-                    hashCode = (hashCode * 59) + this.Message.GetHashCode();
-                }
+                hashCode = (hashCode * 59) + this.Type.GetHashCode();
                 return hashCode;
             }
         }

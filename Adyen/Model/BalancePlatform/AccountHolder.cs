@@ -34,9 +34,9 @@ namespace Adyen.Model.BalancePlatform
     public partial class AccountHolder : IEquatable<AccountHolder>, IValidatableObject
     {
         /// <summary>
-        /// The status of the account holder.  Possible values:    * **active**: The account holder is active. This is the default status when creating an account holder.    * **inactive**: The account holder is temporarily inactive due to missing KYC details. You can set the account back to active by providing the missing KYC details.    * **suspended**: The account holder is permanently deactivated by Adyen. This action cannot be undone.   * **closed**: The account holder is permanently deactivated by you. This action cannot be undone.
+        /// The status of the account holder.  Possible values:    * **active**: The account holder is active. This is the default status when creating an account holder.    * **inactive (Deprecated)**: The account holder is temporarily inactive due to missing KYC details. You can set the account back to active by providing the missing KYC details.    * **suspended**: The account holder is permanently deactivated by Adyen. This action cannot be undone.   * **closed**: The account holder is permanently deactivated by you. This action cannot be undone.
         /// </summary>
-        /// <value>The status of the account holder.  Possible values:    * **active**: The account holder is active. This is the default status when creating an account holder.    * **inactive**: The account holder is temporarily inactive due to missing KYC details. You can set the account back to active by providing the missing KYC details.    * **suspended**: The account holder is permanently deactivated by Adyen. This action cannot be undone.   * **closed**: The account holder is permanently deactivated by you. This action cannot be undone.</value>
+        /// <value>The status of the account holder.  Possible values:    * **active**: The account holder is active. This is the default status when creating an account holder.    * **inactive (Deprecated)**: The account holder is temporarily inactive due to missing KYC details. You can set the account back to active by providing the missing KYC details.    * **suspended**: The account holder is permanently deactivated by Adyen. This action cannot be undone.   * **closed**: The account holder is permanently deactivated by you. This action cannot be undone.</value>
         [JsonConverter(typeof(StringEnumConverter))]
         public enum StatusEnum
         {
@@ -68,9 +68,9 @@ namespace Adyen.Model.BalancePlatform
 
 
         /// <summary>
-        /// The status of the account holder.  Possible values:    * **active**: The account holder is active. This is the default status when creating an account holder.    * **inactive**: The account holder is temporarily inactive due to missing KYC details. You can set the account back to active by providing the missing KYC details.    * **suspended**: The account holder is permanently deactivated by Adyen. This action cannot be undone.   * **closed**: The account holder is permanently deactivated by you. This action cannot be undone.
+        /// The status of the account holder.  Possible values:    * **active**: The account holder is active. This is the default status when creating an account holder.    * **inactive (Deprecated)**: The account holder is temporarily inactive due to missing KYC details. You can set the account back to active by providing the missing KYC details.    * **suspended**: The account holder is permanently deactivated by Adyen. This action cannot be undone.   * **closed**: The account holder is permanently deactivated by you. This action cannot be undone.
         /// </summary>
-        /// <value>The status of the account holder.  Possible values:    * **active**: The account holder is active. This is the default status when creating an account holder.    * **inactive**: The account holder is temporarily inactive due to missing KYC details. You can set the account back to active by providing the missing KYC details.    * **suspended**: The account holder is permanently deactivated by Adyen. This action cannot be undone.   * **closed**: The account holder is permanently deactivated by you. This action cannot be undone.</value>
+        /// <value>The status of the account holder.  Possible values:    * **active**: The account holder is active. This is the default status when creating an account holder.    * **inactive (Deprecated)**: The account holder is temporarily inactive due to missing KYC details. You can set the account back to active by providing the missing KYC details.    * **suspended**: The account holder is permanently deactivated by Adyen. This action cannot be undone.   * **closed**: The account holder is permanently deactivated by you. This action cannot be undone.</value>
         [DataMember(Name = "status", EmitDefaultValue = false)]
         public StatusEnum? Status { get; set; }
         /// <summary>
@@ -85,11 +85,11 @@ namespace Adyen.Model.BalancePlatform
         /// <param name="capabilities">Contains key-value pairs that specify the actions that an account holder can do in your platform. The key is a capability required for your integration. For example, **issueCard** for Issuing. The value is an object containing the settings for the capability..</param>
         /// <param name="contactDetails">contactDetails.</param>
         /// <param name="description">Your description for the account holder, maximum 300 characters..</param>
-        /// <param name="legalEntityId">The unique identifier of the [legal entity](https://docs.adyen.com/api-explorer/#/legalentity/latest/post/legalEntities__resParam_id) associated with the account holder. Adyen performs a verification process against the legal entity of the account holder. (required).</param>
+        /// <param name="legalEntityId">The unique identifier of the [legal entity](https://docs.adyen.com/api-explorer/legalentity/latest/post/legalEntities#responses-200-id) associated with the account holder. Adyen performs a verification process against the legal entity of the account holder. (required).</param>
         /// <param name="primaryBalanceAccount">The ID of the account holder&#39;s primary balance account. By default, this is set to the first balance account that you create for the account holder. To assign a different balance account, send a PATCH request..</param>
         /// <param name="reference">Your reference for the account holder, maximum 150 characters..</param>
-        /// <param name="status">The status of the account holder.  Possible values:    * **active**: The account holder is active. This is the default status when creating an account holder.    * **inactive**: The account holder is temporarily inactive due to missing KYC details. You can set the account back to active by providing the missing KYC details.    * **suspended**: The account holder is permanently deactivated by Adyen. This action cannot be undone.   * **closed**: The account holder is permanently deactivated by you. This action cannot be undone..</param>
-        /// <param name="timeZone">The [time zone](https://www.iana.org/time-zones) of the account holder. For example, **Europe/Amsterdam**. If not set, the time zone of the balance account will be used. For possible values, see the [list of time zone codes](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones)..</param>
+        /// <param name="status">The status of the account holder.  Possible values:    * **active**: The account holder is active. This is the default status when creating an account holder.    * **inactive (Deprecated)**: The account holder is temporarily inactive due to missing KYC details. You can set the account back to active by providing the missing KYC details.    * **suspended**: The account holder is permanently deactivated by Adyen. This action cannot be undone.   * **closed**: The account holder is permanently deactivated by you. This action cannot be undone..</param>
+        /// <param name="timeZone">The [time zone](https://www.iana.org/time-zones) of the account holder. For example, **Europe/Amsterdam**. Defaults to the time zone of the balance platform if no time zone is set. For possible values, see the [list of time zone codes](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones)..</param>
         public AccountHolder(string balancePlatform = default(string), Dictionary<string, AccountHolderCapability> capabilities = default(Dictionary<string, AccountHolderCapability>), ContactDetails contactDetails = default(ContactDetails), string description = default(string), string legalEntityId = default(string), string primaryBalanceAccount = default(string), string reference = default(string), StatusEnum? status = default(StatusEnum?), string timeZone = default(string))
         {
             this.LegalEntityId = legalEntityId;
@@ -146,9 +146,9 @@ namespace Adyen.Model.BalancePlatform
             return false;
         }
         /// <summary>
-        /// The unique identifier of the [legal entity](https://docs.adyen.com/api-explorer/#/legalentity/latest/post/legalEntities__resParam_id) associated with the account holder. Adyen performs a verification process against the legal entity of the account holder.
+        /// The unique identifier of the [legal entity](https://docs.adyen.com/api-explorer/legalentity/latest/post/legalEntities#responses-200-id) associated with the account holder. Adyen performs a verification process against the legal entity of the account holder.
         /// </summary>
-        /// <value>The unique identifier of the [legal entity](https://docs.adyen.com/api-explorer/#/legalentity/latest/post/legalEntities__resParam_id) associated with the account holder. Adyen performs a verification process against the legal entity of the account holder.</value>
+        /// <value>The unique identifier of the [legal entity](https://docs.adyen.com/api-explorer/legalentity/latest/post/legalEntities#responses-200-id) associated with the account holder. Adyen performs a verification process against the legal entity of the account holder.</value>
         [DataMember(Name = "legalEntityId", IsRequired = false, EmitDefaultValue = false)]
         public string LegalEntityId { get; set; }
 
@@ -167,12 +167,27 @@ namespace Adyen.Model.BalancePlatform
         public string Reference { get; set; }
 
         /// <summary>
-        /// The [time zone](https://www.iana.org/time-zones) of the account holder. For example, **Europe/Amsterdam**. If not set, the time zone of the balance account will be used. For possible values, see the [list of time zone codes](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones).
+        /// The [time zone](https://www.iana.org/time-zones) of the account holder. For example, **Europe/Amsterdam**. Defaults to the time zone of the balance platform if no time zone is set. For possible values, see the [list of time zone codes](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones).
         /// </summary>
-        /// <value>The [time zone](https://www.iana.org/time-zones) of the account holder. For example, **Europe/Amsterdam**. If not set, the time zone of the balance account will be used. For possible values, see the [list of time zone codes](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones).</value>
+        /// <value>The [time zone](https://www.iana.org/time-zones) of the account holder. For example, **Europe/Amsterdam**. Defaults to the time zone of the balance platform if no time zone is set. For possible values, see the [list of time zone codes](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones).</value>
         [DataMember(Name = "timeZone", EmitDefaultValue = false)]
         public string TimeZone { get; set; }
 
+        /// <summary>
+        /// List of verification deadlines and the capabilities that will be disallowed if verification errors are not resolved.
+        /// </summary>
+        /// <value>List of verification deadlines and the capabilities that will be disallowed if verification errors are not resolved.</value>
+        [DataMember(Name = "verificationDeadlines", EmitDefaultValue = false)]
+        public List<VerificationDeadline> VerificationDeadlines { get; private set; }
+
+        /// <summary>
+        /// Returns false as VerificationDeadlines should not be serialized given that it's read-only.
+        /// </summary>
+        /// <returns>false (boolean)</returns>
+        public bool ShouldSerializeVerificationDeadlines()
+        {
+            return false;
+        }
         /// <summary>
         /// Returns the string presentation of the object
         /// </summary>
@@ -191,6 +206,7 @@ namespace Adyen.Model.BalancePlatform
             sb.Append("  Reference: ").Append(Reference).Append("\n");
             sb.Append("  Status: ").Append(Status).Append("\n");
             sb.Append("  TimeZone: ").Append(TimeZone).Append("\n");
+            sb.Append("  VerificationDeadlines: ").Append(VerificationDeadlines).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -275,6 +291,12 @@ namespace Adyen.Model.BalancePlatform
                     this.TimeZone == input.TimeZone ||
                     (this.TimeZone != null &&
                     this.TimeZone.Equals(input.TimeZone))
+                ) && 
+                (
+                    this.VerificationDeadlines == input.VerificationDeadlines ||
+                    this.VerificationDeadlines != null &&
+                    input.VerificationDeadlines != null &&
+                    this.VerificationDeadlines.SequenceEqual(input.VerificationDeadlines)
                 );
         }
 
@@ -323,6 +345,10 @@ namespace Adyen.Model.BalancePlatform
                 if (this.TimeZone != null)
                 {
                     hashCode = (hashCode * 59) + this.TimeZone.GetHashCode();
+                }
+                if (this.VerificationDeadlines != null)
+                {
+                    hashCode = (hashCode * 59) + this.VerificationDeadlines.GetHashCode();
                 }
                 return hashCode;
             }

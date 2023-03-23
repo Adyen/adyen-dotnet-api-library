@@ -28,10 +28,10 @@ using OpenAPIDateConverter = Adyen.ApiSerialization.OpenAPIDateConverter;
 namespace Adyen.Model.BalancePlatform
 {
     /// <summary>
-    /// AccountHolderCapability
+    /// AccountSupportingEntityCapability
     /// </summary>
-    [DataContract(Name = "AccountHolderCapability")]
-    public partial class AccountHolderCapability : IEquatable<AccountHolderCapability>, IValidatableObject
+    [DataContract(Name = "AccountSupportingEntityCapability")]
+    public partial class AccountSupportingEntityCapability : IEquatable<AccountSupportingEntityCapability>, IValidatableObject
     {
         /// <summary>
         /// The capability level that is allowed for the account holder.  Possible values: **notApplicable**, **low**, **medium**, **high**.
@@ -123,9 +123,9 @@ namespace Adyen.Model.BalancePlatform
         [DataMember(Name = "requestedLevel", EmitDefaultValue = false)]
         public RequestedLevelEnum? RequestedLevel { get; set; }
         /// <summary>
-        /// The status of the verification checks for the capability.  Possible values:  * **pending**: Adyen is running the verification.  * **invalid**: The verification failed. Check if the &#x60;errors&#x60; array contains more information.  * **valid**: The verification has been successfully completed.  * **rejected**: Adyen has verified the information, but found reasons to not allow the capability. 
+        /// The status of the verification checks for the supporting entity capability.  Possible values:  * **pending**: Adyen is running the verification.  * **invalid**: The verification failed. Check if the &#x60;errors&#x60; array contains more information.  * **valid**: The verification has been successfully completed.  * **rejected**: Adyen has verified the information, but found reasons to not allow the capability. 
         /// </summary>
-        /// <value>The status of the verification checks for the capability.  Possible values:  * **pending**: Adyen is running the verification.  * **invalid**: The verification failed. Check if the &#x60;errors&#x60; array contains more information.  * **valid**: The verification has been successfully completed.  * **rejected**: Adyen has verified the information, but found reasons to not allow the capability. </value>
+        /// <value>The status of the verification checks for the supporting entity capability.  Possible values:  * **pending**: Adyen is running the verification.  * **invalid**: The verification failed. Check if the &#x60;errors&#x60; array contains more information.  * **valid**: The verification has been successfully completed.  * **rejected**: Adyen has verified the information, but found reasons to not allow the capability. </value>
         [JsonConverter(typeof(StringEnumConverter))]
         public enum VerificationStatusEnum
         {
@@ -157,9 +157,9 @@ namespace Adyen.Model.BalancePlatform
 
 
         /// <summary>
-        /// The status of the verification checks for the capability.  Possible values:  * **pending**: Adyen is running the verification.  * **invalid**: The verification failed. Check if the &#x60;errors&#x60; array contains more information.  * **valid**: The verification has been successfully completed.  * **rejected**: Adyen has verified the information, but found reasons to not allow the capability. 
+        /// The status of the verification checks for the supporting entity capability.  Possible values:  * **pending**: Adyen is running the verification.  * **invalid**: The verification failed. Check if the &#x60;errors&#x60; array contains more information.  * **valid**: The verification has been successfully completed.  * **rejected**: Adyen has verified the information, but found reasons to not allow the capability. 
         /// </summary>
-        /// <value>The status of the verification checks for the capability.  Possible values:  * **pending**: Adyen is running the verification.  * **invalid**: The verification failed. Check if the &#x60;errors&#x60; array contains more information.  * **valid**: The verification has been successfully completed.  * **rejected**: Adyen has verified the information, but found reasons to not allow the capability. </value>
+        /// <value>The status of the verification checks for the supporting entity capability.  Possible values:  * **pending**: Adyen is running the verification.  * **invalid**: The verification failed. Check if the &#x60;errors&#x60; array contains more information.  * **valid**: The verification has been successfully completed.  * **rejected**: Adyen has verified the information, but found reasons to not allow the capability. </value>
         [DataMember(Name = "verificationStatus", EmitDefaultValue = false)]
         public VerificationStatusEnum? VerificationStatus { get; set; }
 
@@ -172,28 +172,22 @@ namespace Adyen.Model.BalancePlatform
             return false;
         }
         /// <summary>
-        /// Initializes a new instance of the <see cref="AccountHolderCapability" /> class.
+        /// Initializes a new instance of the <see cref="AccountSupportingEntityCapability" /> class.
         /// </summary>
-        /// <param name="allowedSettings">allowedSettings.</param>
         /// <param name="enabled">Indicates whether the capability is enabled. If **false**, the capability is temporarily disabled for the account holder..</param>
         /// <param name="requested">Indicates whether the capability is requested. To check whether the account holder is permitted to use the capability, refer to the &#x60;allowed&#x60; field..</param>
         /// <param name="requestedLevel">The requested level of the capability. Some capabilities, such as those used in [card issuing](https://docs.adyen.com/issuing/add-capabilities#capability-levels), have different levels. Levels increase the capability, but also require additional checks and increased monitoring.  Possible values: **notApplicable**, **low**, **medium**, **high**..</param>
-        /// <param name="requestedSettings">requestedSettings.</param>
-        /// <param name="transferInstruments">Contains the status of the transfer instruments associated with this capability. .</param>
-        public AccountHolderCapability(JSONObject allowedSettings = default(JSONObject), bool enabled = default(bool), bool requested = default(bool), RequestedLevelEnum? requestedLevel = default(RequestedLevelEnum?), JSONObject requestedSettings = default(JSONObject), List<AccountSupportingEntityCapability> transferInstruments = default(List<AccountSupportingEntityCapability>))
+        public AccountSupportingEntityCapability(bool enabled = default(bool), bool requested = default(bool), RequestedLevelEnum? requestedLevel = default(RequestedLevelEnum?))
         {
-            this.AllowedSettings = allowedSettings;
             this.Enabled = enabled;
             this.Requested = requested;
             this.RequestedLevel = requestedLevel;
-            this.RequestedSettings = requestedSettings;
-            this.TransferInstruments = transferInstruments;
         }
 
         /// <summary>
-        /// Indicates whether the capability is allowed. Adyen sets this to **true** if the verification is successful and the account holder is permitted to use the capability.
+        /// Indicates whether the supporting entity capability is allowed. Adyen sets this to **true** if the verification is successful and the account holder is permitted to use the capability.
         /// </summary>
-        /// <value>Indicates whether the capability is allowed. Adyen sets this to **true** if the verification is successful and the account holder is permitted to use the capability.</value>
+        /// <value>Indicates whether the supporting entity capability is allowed. Adyen sets this to **true** if the verification is successful and the account holder is permitted to use the capability.</value>
         [DataMember(Name = "allowed", EmitDefaultValue = false)]
         public bool Allowed { get; private set; }
 
@@ -206,12 +200,6 @@ namespace Adyen.Model.BalancePlatform
             return false;
         }
         /// <summary>
-        /// Gets or Sets AllowedSettings
-        /// </summary>
-        [DataMember(Name = "allowedSettings", EmitDefaultValue = false)]
-        public JSONObject AllowedSettings { get; set; }
-
-        /// <summary>
         /// Indicates whether the capability is enabled. If **false**, the capability is temporarily disabled for the account holder.
         /// </summary>
         /// <value>Indicates whether the capability is enabled. If **false**, the capability is temporarily disabled for the account holder.</value>
@@ -219,17 +207,17 @@ namespace Adyen.Model.BalancePlatform
         public bool Enabled { get; set; }
 
         /// <summary>
-        /// Contains verification errors and the actions that you can take to resolve them.
+        /// The ID of the supporting entity.
         /// </summary>
-        /// <value>Contains verification errors and the actions that you can take to resolve them.</value>
-        [DataMember(Name = "problems", EmitDefaultValue = false)]
-        public List<Object> Problems { get; private set; }
+        /// <value>The ID of the supporting entity.</value>
+        [DataMember(Name = "id", EmitDefaultValue = false)]
+        public string Id { get; private set; }
 
         /// <summary>
-        /// Returns false as Problems should not be serialized given that it's read-only.
+        /// Returns false as Id should not be serialized given that it's read-only.
         /// </summary>
         /// <returns>false (boolean)</returns>
-        public bool ShouldSerializeProblems()
+        public bool ShouldSerializeId()
         {
             return false;
         }
@@ -241,35 +229,19 @@ namespace Adyen.Model.BalancePlatform
         public bool Requested { get; set; }
 
         /// <summary>
-        /// Gets or Sets RequestedSettings
-        /// </summary>
-        [DataMember(Name = "requestedSettings", EmitDefaultValue = false)]
-        public JSONObject RequestedSettings { get; set; }
-
-        /// <summary>
-        /// Contains the status of the transfer instruments associated with this capability. 
-        /// </summary>
-        /// <value>Contains the status of the transfer instruments associated with this capability. </value>
-        [DataMember(Name = "transferInstruments", EmitDefaultValue = false)]
-        public List<AccountSupportingEntityCapability> TransferInstruments { get; set; }
-
-        /// <summary>
         /// Returns the string presentation of the object
         /// </summary>
         /// <returns>String presentation of the object</returns>
         public override string ToString()
         {
             StringBuilder sb = new StringBuilder();
-            sb.Append("class AccountHolderCapability {\n");
+            sb.Append("class AccountSupportingEntityCapability {\n");
             sb.Append("  Allowed: ").Append(Allowed).Append("\n");
             sb.Append("  AllowedLevel: ").Append(AllowedLevel).Append("\n");
-            sb.Append("  AllowedSettings: ").Append(AllowedSettings).Append("\n");
             sb.Append("  Enabled: ").Append(Enabled).Append("\n");
-            sb.Append("  Problems: ").Append(Problems).Append("\n");
+            sb.Append("  Id: ").Append(Id).Append("\n");
             sb.Append("  Requested: ").Append(Requested).Append("\n");
             sb.Append("  RequestedLevel: ").Append(RequestedLevel).Append("\n");
-            sb.Append("  RequestedSettings: ").Append(RequestedSettings).Append("\n");
-            sb.Append("  TransferInstruments: ").Append(TransferInstruments).Append("\n");
             sb.Append("  VerificationStatus: ").Append(VerificationStatus).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
@@ -291,15 +263,15 @@ namespace Adyen.Model.BalancePlatform
         /// <returns>Boolean</returns>
         public override bool Equals(object input)
         {
-            return this.Equals(input as AccountHolderCapability);
+            return this.Equals(input as AccountSupportingEntityCapability);
         }
 
         /// <summary>
-        /// Returns true if AccountHolderCapability instances are equal
+        /// Returns true if AccountSupportingEntityCapability instances are equal
         /// </summary>
-        /// <param name="input">Instance of AccountHolderCapability to be compared</param>
+        /// <param name="input">Instance of AccountSupportingEntityCapability to be compared</param>
         /// <returns>Boolean</returns>
-        public bool Equals(AccountHolderCapability input)
+        public bool Equals(AccountSupportingEntityCapability input)
         {
             if (input == null)
             {
@@ -315,19 +287,13 @@ namespace Adyen.Model.BalancePlatform
                     this.AllowedLevel.Equals(input.AllowedLevel)
                 ) && 
                 (
-                    this.AllowedSettings == input.AllowedSettings ||
-                    (this.AllowedSettings != null &&
-                    this.AllowedSettings.Equals(input.AllowedSettings))
-                ) && 
-                (
                     this.Enabled == input.Enabled ||
                     this.Enabled.Equals(input.Enabled)
                 ) && 
                 (
-                    this.Problems == input.Problems ||
-                    this.Problems != null &&
-                    input.Problems != null &&
-                    this.Problems.SequenceEqual(input.Problems)
+                    this.Id == input.Id ||
+                    (this.Id != null &&
+                    this.Id.Equals(input.Id))
                 ) && 
                 (
                     this.Requested == input.Requested ||
@@ -336,17 +302,6 @@ namespace Adyen.Model.BalancePlatform
                 (
                     this.RequestedLevel == input.RequestedLevel ||
                     this.RequestedLevel.Equals(input.RequestedLevel)
-                ) && 
-                (
-                    this.RequestedSettings == input.RequestedSettings ||
-                    (this.RequestedSettings != null &&
-                    this.RequestedSettings.Equals(input.RequestedSettings))
-                ) && 
-                (
-                    this.TransferInstruments == input.TransferInstruments ||
-                    this.TransferInstruments != null &&
-                    input.TransferInstruments != null &&
-                    this.TransferInstruments.SequenceEqual(input.TransferInstruments)
                 ) && 
                 (
                     this.VerificationStatus == input.VerificationStatus ||
@@ -365,25 +320,13 @@ namespace Adyen.Model.BalancePlatform
                 int hashCode = 41;
                 hashCode = (hashCode * 59) + this.Allowed.GetHashCode();
                 hashCode = (hashCode * 59) + this.AllowedLevel.GetHashCode();
-                if (this.AllowedSettings != null)
-                {
-                    hashCode = (hashCode * 59) + this.AllowedSettings.GetHashCode();
-                }
                 hashCode = (hashCode * 59) + this.Enabled.GetHashCode();
-                if (this.Problems != null)
+                if (this.Id != null)
                 {
-                    hashCode = (hashCode * 59) + this.Problems.GetHashCode();
+                    hashCode = (hashCode * 59) + this.Id.GetHashCode();
                 }
                 hashCode = (hashCode * 59) + this.Requested.GetHashCode();
                 hashCode = (hashCode * 59) + this.RequestedLevel.GetHashCode();
-                if (this.RequestedSettings != null)
-                {
-                    hashCode = (hashCode * 59) + this.RequestedSettings.GetHashCode();
-                }
-                if (this.TransferInstruments != null)
-                {
-                    hashCode = (hashCode * 59) + this.TransferInstruments.GetHashCode();
-                }
                 hashCode = (hashCode * 59) + this.VerificationStatus.GetHashCode();
                 return hashCode;
             }

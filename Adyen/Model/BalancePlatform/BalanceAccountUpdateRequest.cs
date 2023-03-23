@@ -81,7 +81,7 @@ namespace Adyen.Model.BalancePlatform
         /// <param name="description">A human-readable description of the balance account, maximum 300 characters. You can use this parameter to distinguish between multiple balance accounts under an account holder..</param>
         /// <param name="reference">Your reference to the balance account, maximum 150 characters..</param>
         /// <param name="status">The status of the balance account. Payment instruments linked to the balance account can only be used if the balance account status is **active**.  Possible values: **active**, **inactive**, **closed**, **suspended**..</param>
-        /// <param name="timeZone">The [time zone](https://www.iana.org/time-zones) of the balance account. For example, **Europe/Amsterdam**. If not set, the time zone of the account holder will be used. For possible values, see the [list of time zone codes](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones)..</param>
+        /// <param name="timeZone">The [time zone](https://www.iana.org/time-zones) of the balance account. For example, **Europe/Amsterdam**. Defaults to the time zone of the account holder if no time zone is set. For possible values, see the [list of time zone codes](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones)..</param>
         public BalanceAccountUpdateRequest(string accountHolderId = default(string), string defaultCurrencyCode = default(string), string description = default(string), string reference = default(string), StatusEnum? status = default(StatusEnum?), string timeZone = default(string))
         {
             this.AccountHolderId = accountHolderId;
@@ -121,9 +121,9 @@ namespace Adyen.Model.BalancePlatform
         public string Reference { get; set; }
 
         /// <summary>
-        /// The [time zone](https://www.iana.org/time-zones) of the balance account. For example, **Europe/Amsterdam**. If not set, the time zone of the account holder will be used. For possible values, see the [list of time zone codes](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones).
+        /// The [time zone](https://www.iana.org/time-zones) of the balance account. For example, **Europe/Amsterdam**. Defaults to the time zone of the account holder if no time zone is set. For possible values, see the [list of time zone codes](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones).
         /// </summary>
-        /// <value>The [time zone](https://www.iana.org/time-zones) of the balance account. For example, **Europe/Amsterdam**. If not set, the time zone of the account holder will be used. For possible values, see the [list of time zone codes](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones).</value>
+        /// <value>The [time zone](https://www.iana.org/time-zones) of the balance account. For example, **Europe/Amsterdam**. Defaults to the time zone of the account holder if no time zone is set. For possible values, see the [list of time zone codes](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones).</value>
         [DataMember(Name = "timeZone", EmitDefaultValue = false)]
         public string TimeZone { get; set; }
 

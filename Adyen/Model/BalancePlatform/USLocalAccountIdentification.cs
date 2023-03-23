@@ -28,15 +28,15 @@ using OpenAPIDateConverter = Adyen.ApiSerialization.OpenAPIDateConverter;
 namespace Adyen.Model.BalancePlatform
 {
     /// <summary>
-    /// BankAccount
+    /// USLocalAccountIdentification
     /// </summary>
-    [DataContract(Name = "BankAccount")]
-    public partial class BankAccount : IEquatable<BankAccount>, IValidatableObject
+    [DataContract(Name = "USLocalAccountIdentification")]
+    public partial class USLocalAccountIdentification : IEquatable<USLocalAccountIdentification>, IValidatableObject
     {
         /// <summary>
-        /// The bank account type.  Possible values: **checking** only.
+        /// The bank account type.  Possible values: **checking** or **savings**. Defaults to **checking**.
         /// </summary>
-        /// <value>The bank account type.  Possible values: **checking** only.</value>
+        /// <value>The bank account type.  Possible values: **checking** or **savings**. Defaults to **checking**.</value>
         [JsonConverter(typeof(StringEnumConverter))]
         public enum AccountTypeEnum
         {
@@ -44,56 +44,77 @@ namespace Adyen.Model.BalancePlatform
             /// Enum Checking for value: checking
             /// </summary>
             [EnumMember(Value = "checking")]
-            Checking = 1
+            Checking = 1,
+
+            /// <summary>
+            /// Enum Savings for value: savings
+            /// </summary>
+            [EnumMember(Value = "savings")]
+            Savings = 2
 
         }
 
 
         /// <summary>
-        /// The bank account type.  Possible values: **checking** only.
+        /// The bank account type.  Possible values: **checking** or **savings**. Defaults to **checking**.
         /// </summary>
-        /// <value>The bank account type.  Possible values: **checking** only.</value>
+        /// <value>The bank account type.  Possible values: **checking** or **savings**. Defaults to **checking**.</value>
         [DataMember(Name = "accountType", EmitDefaultValue = false)]
         public AccountTypeEnum? AccountType { get; set; }
         /// <summary>
-        /// Initializes a new instance of the <see cref="BankAccount" /> class.
+        /// **usLocal**
+        /// </summary>
+        /// <value>**usLocal**</value>
+        [JsonConverter(typeof(StringEnumConverter))]
+        public enum TypeEnum
+        {
+            /// <summary>
+            /// Enum UsLocal for value: usLocal
+            /// </summary>
+            [EnumMember(Value = "usLocal")]
+            UsLocal = 1
+
+        }
+
+
+        /// <summary>
+        /// **usLocal**
+        /// </summary>
+        /// <value>**usLocal**</value>
+        [DataMember(Name = "type", IsRequired = false, EmitDefaultValue = false)]
+        public TypeEnum Type { get; set; }
+        /// <summary>
+        /// Initializes a new instance of the <see cref="USLocalAccountIdentification" /> class.
         /// </summary>
         [JsonConstructorAttribute]
-        protected BankAccount() { }
+        protected USLocalAccountIdentification() { }
         /// <summary>
-        /// Initializes a new instance of the <see cref="BankAccount" /> class.
+        /// Initializes a new instance of the <see cref="USLocalAccountIdentification" /> class.
         /// </summary>
-        /// <param name="accountNumber">The bank account number, without separators or whitespace..</param>
-        /// <param name="accountType">The bank account type.  Possible values: **checking** only..</param>
-        /// <param name="iban">The [International Bank Account Number](https://en.wikipedia.org/wiki/International_Bank_Account_Number) (IBAN). (required).</param>
-        /// <param name="routingNumber">The 9-digit [routing number](https://en.wikipedia.org/wiki/ABA_routing_transit_number), without separators or whitespace..</param>
-        public BankAccount(string accountNumber = default(string), AccountTypeEnum? accountType = default(AccountTypeEnum?), string iban = default(string), string routingNumber = default(string))
+        /// <param name="accountNumber">The bank account number, without separators or whitespace. (required).</param>
+        /// <param name="accountType">The bank account type.  Possible values: **checking** or **savings**. Defaults to **checking**. (default to AccountTypeEnum.Checking).</param>
+        /// <param name="routingNumber">The 9-digit [routing number](https://en.wikipedia.org/wiki/ABA_routing_transit_number), without separators or whitespace. (required).</param>
+        /// <param name="type">**usLocal** (required) (default to TypeEnum.UsLocal).</param>
+        public USLocalAccountIdentification(string accountNumber = default(string), AccountTypeEnum? accountType = AccountTypeEnum.Checking, string routingNumber = default(string), TypeEnum type = TypeEnum.UsLocal)
         {
-            this.Iban = iban;
             this.AccountNumber = accountNumber;
-            this.AccountType = accountType;
             this.RoutingNumber = routingNumber;
+            this.Type = type;
+            this.AccountType = accountType;
         }
 
         /// <summary>
         /// The bank account number, without separators or whitespace.
         /// </summary>
         /// <value>The bank account number, without separators or whitespace.</value>
-        [DataMember(Name = "accountNumber", EmitDefaultValue = false)]
+        [DataMember(Name = "accountNumber", IsRequired = false, EmitDefaultValue = false)]
         public string AccountNumber { get; set; }
-
-        /// <summary>
-        /// The [International Bank Account Number](https://en.wikipedia.org/wiki/International_Bank_Account_Number) (IBAN).
-        /// </summary>
-        /// <value>The [International Bank Account Number](https://en.wikipedia.org/wiki/International_Bank_Account_Number) (IBAN).</value>
-        [DataMember(Name = "iban", IsRequired = false, EmitDefaultValue = false)]
-        public string Iban { get; set; }
 
         /// <summary>
         /// The 9-digit [routing number](https://en.wikipedia.org/wiki/ABA_routing_transit_number), without separators or whitespace.
         /// </summary>
         /// <value>The 9-digit [routing number](https://en.wikipedia.org/wiki/ABA_routing_transit_number), without separators or whitespace.</value>
-        [DataMember(Name = "routingNumber", EmitDefaultValue = false)]
+        [DataMember(Name = "routingNumber", IsRequired = false, EmitDefaultValue = false)]
         public string RoutingNumber { get; set; }
 
         /// <summary>
@@ -103,11 +124,11 @@ namespace Adyen.Model.BalancePlatform
         public override string ToString()
         {
             StringBuilder sb = new StringBuilder();
-            sb.Append("class BankAccount {\n");
+            sb.Append("class USLocalAccountIdentification {\n");
             sb.Append("  AccountNumber: ").Append(AccountNumber).Append("\n");
             sb.Append("  AccountType: ").Append(AccountType).Append("\n");
-            sb.Append("  Iban: ").Append(Iban).Append("\n");
             sb.Append("  RoutingNumber: ").Append(RoutingNumber).Append("\n");
+            sb.Append("  Type: ").Append(Type).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -128,15 +149,15 @@ namespace Adyen.Model.BalancePlatform
         /// <returns>Boolean</returns>
         public override bool Equals(object input)
         {
-            return this.Equals(input as BankAccount);
+            return this.Equals(input as USLocalAccountIdentification);
         }
 
         /// <summary>
-        /// Returns true if BankAccount instances are equal
+        /// Returns true if USLocalAccountIdentification instances are equal
         /// </summary>
-        /// <param name="input">Instance of BankAccount to be compared</param>
+        /// <param name="input">Instance of USLocalAccountIdentification to be compared</param>
         /// <returns>Boolean</returns>
-        public bool Equals(BankAccount input)
+        public bool Equals(USLocalAccountIdentification input)
         {
             if (input == null)
             {
@@ -153,14 +174,13 @@ namespace Adyen.Model.BalancePlatform
                     this.AccountType.Equals(input.AccountType)
                 ) && 
                 (
-                    this.Iban == input.Iban ||
-                    (this.Iban != null &&
-                    this.Iban.Equals(input.Iban))
-                ) && 
-                (
                     this.RoutingNumber == input.RoutingNumber ||
                     (this.RoutingNumber != null &&
                     this.RoutingNumber.Equals(input.RoutingNumber))
+                ) && 
+                (
+                    this.Type == input.Type ||
+                    this.Type.Equals(input.Type)
                 );
         }
 
@@ -178,14 +198,11 @@ namespace Adyen.Model.BalancePlatform
                     hashCode = (hashCode * 59) + this.AccountNumber.GetHashCode();
                 }
                 hashCode = (hashCode * 59) + this.AccountType.GetHashCode();
-                if (this.Iban != null)
-                {
-                    hashCode = (hashCode * 59) + this.Iban.GetHashCode();
-                }
                 if (this.RoutingNumber != null)
                 {
                     hashCode = (hashCode * 59) + this.RoutingNumber.GetHashCode();
                 }
+                hashCode = (hashCode * 59) + this.Type.GetHashCode();
                 return hashCode;
             }
         }

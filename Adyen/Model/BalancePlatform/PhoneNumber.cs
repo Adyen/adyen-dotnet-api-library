@@ -76,13 +76,8 @@ namespace Adyen.Model.BalancePlatform
         /// <summary>
         /// Initializes a new instance of the <see cref="PhoneNumber" /> class.
         /// </summary>
-        [JsonConstructorAttribute]
-        protected PhoneNumber() { }
-        /// <summary>
-        /// Initializes a new instance of the <see cref="PhoneNumber" /> class.
-        /// </summary>
-        /// <param name="phoneCountryCode">The two-character ISO-3166-1 alpha-2 country code of the phone number. For example, **US** or **NL**. (required).</param>
-        /// <param name="phoneNumber">The phone number. The inclusion of the phone number country code is not necessary. (required).</param>
+        /// <param name="phoneCountryCode">The two-character ISO-3166-1 alpha-2 country code of the phone number. For example, **US** or **NL**..</param>
+        /// <param name="phoneNumber">The phone number. The inclusion of the phone number country code is not necessary..</param>
         /// <param name="phoneType">The type of the phone number. Possible values: **Landline**, **Mobile**, **SIP**, **Fax**..</param>
         public PhoneNumber(string phoneCountryCode = default(string), string phoneNumber = default(string), PhoneTypeEnum? phoneType = default(PhoneTypeEnum?))
         {
@@ -95,14 +90,14 @@ namespace Adyen.Model.BalancePlatform
         /// The two-character ISO-3166-1 alpha-2 country code of the phone number. For example, **US** or **NL**.
         /// </summary>
         /// <value>The two-character ISO-3166-1 alpha-2 country code of the phone number. For example, **US** or **NL**.</value>
-        [DataMember(Name = "phoneCountryCode", IsRequired = false, EmitDefaultValue = false)]
+        [DataMember(Name = "phoneCountryCode", EmitDefaultValue = false)]
         public string PhoneCountryCode { get; set; }
 
         /// <summary>
         /// The phone number. The inclusion of the phone number country code is not necessary.
         /// </summary>
         /// <value>The phone number. The inclusion of the phone number country code is not necessary.</value>
-        [DataMember(Name = "phoneNumber", IsRequired = false, EmitDefaultValue = false)]
+        [DataMember(Name = "phoneNumber", EmitDefaultValue = false)]
         public string _PhoneNumber { get; set; }
 
         /// <summary>
