@@ -10,7 +10,10 @@
 * Do not edit the class manually.
 */
 
-using Newtonsoft.Json.Converters;
+using System;
+using System.Globalization;
+using System.Text.Json;
+using System.Text.Json.Serialization;
 
 namespace Adyen.ApiSerialization
 {
@@ -18,15 +21,16 @@ namespace Adyen.ApiSerialization
     /// Formatter for 'date' openapi formats ss defined by full-date - RFC3339
     /// see https://github.com/OAI/OpenAPI-Specification/blob/master/versions/3.0.0.md#data-types
     /// </summary>
-    public class OpenAPIDateConverter : IsoDateTimeConverter
+    public class OpenAPIDateConverter : JsonConverter<DateTime>
     {
-        /// <summary>
-        /// Initializes a new instance of the <see cref="OpenAPIDateConverter" /> class.
-        /// </summary>
-        public OpenAPIDateConverter()
+        public override DateTime Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
         {
-            // full-date   = date-fullyear "-" date-month "-" date-mday
-            DateTimeFormat = "yyyy-MM-dd";
+           return DateTime.ParseExact(reader.GetString(), "yyyy-MM-dd", CultureInfo.InvariantCulture);
+        }
+
+        public override void Write(Utf8JsonWriter writer, DateTime value, JsonSerializerOptions options)
+        {
+            writer.WriteStringValue(value.ToString("yyyy-MM-dd", CultureInfo.InvariantCulture));
         }
     }
 }

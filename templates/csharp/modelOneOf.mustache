@@ -161,7 +161,10 @@
             }
             catch (Exception ex)
             {
-                throw new Exception(string.Format("Failed to deserialize `{0}` into CheckoutThreeDS2Action: {1}", jsonString, ex.ToString()));
+                if (!(ex is JsonException))
+                {
+                    throw new Exception(string.Format("Failed to deserialize `{0}` into {{{.}}}: {1}", jsonString, ex.ToString()));
+                }
             }
             {{/oneOf}}
 
