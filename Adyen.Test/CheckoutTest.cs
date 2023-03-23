@@ -1,12 +1,12 @@
 ﻿using Adyen.Model.Checkout;
 using Adyen.Service;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using Newtonsoft.Json;
-using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using Adyen.Service.Checkout;
+using System.Text.Json;
+using System.Text.Json.Serialization;
 using static Adyen.Model.Checkout.PaymentResponse;
 using Amount = Adyen.Model.Checkout.Amount;
 using ApplicationInfo = Adyen.Model.ApplicationInformation.ApplicationInfo;
@@ -622,7 +622,7 @@ namespace Adyen.Test
         public void ApplePayDetailsDeserializationTest()
         {
             var json = "{\"type\": \"applepay\",\"applePayToken\": \"VNRWtuNlNEWkRCSm1xWndjMDFFbktkQU...\"}";
-            var result = Util.JsonOperation.Deserialize<ApplePayDetails>(json);
+            var result = JsonSerializer.Deserialize<ApplePayDetails>(json);
             Assert.IsInstanceOfType<ApplePayDetails>(result);
             Assert.AreEqual(result.Type, ApplePayDetails.TypeEnum.Applepay);
         }
@@ -631,7 +631,7 @@ namespace Adyen.Test
         public void BlikDetailsDeserializationTest()
         {
             var json = "{\"type\":\"blik\",\"blikCode\":\"blikCode\"}";
-            var result = JsonConvert.DeserializeObject<BlikDetails>(json);
+            var result = JsonSerializer.Deserialize<BlikDetails>(json);
             Assert.IsInstanceOfType<BlikDetails>(result);
             Assert.AreEqual(result.Type, BlikDetails.TypeEnum.Blik);
         }
@@ -650,15 +650,15 @@ namespace Adyen.Test
         public void AfterPayDetailsDeserializationTest()
         {
             var json = @"{
-                'resultCode':'RedirectShopper',
-            'action':{
-                'paymentMethodType':'afterpaytouch',
-                'method':'GET',
-                'url':'https://checkoutshopper-test.adyen.com/checkoutshopper/checkoutPaymentRedirect?redirectData=...',
-                'type':'redirect'
-            }
+                ""resultCode"":""RedirectShopper"",
+                ""action"":{
+                    ""paymentMethodType"":""afterpaytouch"",
+                    ""method"":""GET"",
+                    ""url"":""https://checkoutshopper-test.adyen.com/checkoutshopper/checkoutPaymentRedirect?redirectData=..."",
+                    ""type"":""redirect""
+                }
             }";
-            var result = JsonConvert.DeserializeObject<PaymentResponse>(json);
+            var result = JsonSerializer.Deserialize<PaymentResponse>(json);
             Assert.IsInstanceOfType<CheckoutRedirectAction>(result.Action.GetCheckoutRedirectAction());
             Assert.AreEqual(result.Action.GetCheckoutRedirectAction().PaymentMethodType, "afterpaytouch");
         }
@@ -667,61 +667,61 @@ namespace Adyen.Test
         public void AfterPayDetailsSerializationTest()
         {
             var json = @"{
-              'paymentMethod':{
-                        'type':'afterpaytouch'
+              ""paymentMethod"":{
+                        ""type"":""afterpaytouch""
                     },
-                    'amount':{
-                        'value':1000,
-                        'currency':'AUD'
+                    ""amount"":{
+                        ""value"":1000,
+                        ""currency"":""AUD""
                     },
-                'shopperName':{
-                    'firstName':'Simon',
-                    'lastName':'Hopper'
+                ""shopperName"":{
+                    ""firstName"":""Simon"",
+                    ""lastName"":""Hopper""
                 },
-                'shopperEmail':'s.hopper@example.com',
-                'shopperReference':'YOUR_UNIQUE_SHOPPER_ID',
-                'reference':'YOUR_ORDER_REFERENCE',
-                'merchantAccount':'YOUR_MERCHANT_ACCOUNT',
-                'returnUrl':'https://your-company.com/checkout?shopperOrder=12xy..',
-                'countryCode':'AU',
-                'telephoneNumber':'+61 2 8520 3890',
-                'billingAddress':{
-                    'city':'Sydney',
-                    'country':'AU',
-                    'houseNumberOrName':'123',
-                    'postalCode':'2000',
-                    'stateOrProvince':'NSW',
-                    'street':'Happy Street'
+                ""shopperEmail"":""s.hopper@example.com"",
+                ""shopperReference"":""YOUR_UNIQUE_SHOPPER_ID"",
+                ""reference"":""YOUR_ORDER_REFERENCE"",
+                ""merchantAccount"":""YOUR_MERCHANT_ACCOUNT"",
+                ""returnUrl"":""https://your-company.com/checkout?shopperOrder=12xy.."",
+                ""countryCode"":""AU"",
+                ""telephoneNumber"":""+61 2 8520 3890"",
+                ""billingAddress"":{
+                    ""city"":""Sydney"",
+                    ""country"":""AU"",
+                    ""houseNumberOrName"":""123"",
+                    ""postalCode"":""2000"",
+                    ""stateOrProvince"":""NSW"",
+                    ""street"":""Happy Street""
                 },
-                'deliveryAddress':{
-                    'city':'Sydney',
-                    'country':'AU',
-                    'houseNumberOrName':'123',
-                    'postalCode':'2000',
-                    'stateOrProvince':'NSW',
-                    'street':'Happy Street'
+                ""deliveryAddress"":{
+                    ""city"":""Sydney"",
+                    ""country"":""AU"",
+                    ""houseNumberOrName"":""123"",
+                    ""postalCode"":""2000"",
+                    ""stateOrProvince"":""NSW"",
+                    ""street"":""Happy Street""
                 },
-                'lineItems':[
+                ""lineItems"":[
                 {
-                    'description':'Shoes',
-                    'quantity':'1',
-                    'amountIncludingTax':'400',
-                    'amountExcludingTax': '331',
-                    'taxAmount': '69',
-                    'id':'Item #1'
+                    ""description"":""Shoes"",
+                    ""quantity"":""1"",
+                    ""amountIncludingTax"":""400"",
+                    ""amountExcludingTax"": ""331"",
+                    ""taxAmount"": ""69"",
+                    ""id"":""Item #1""
                 },
                 {
-                'description':'Socks',
-                'quantity':'2',
-                'amountIncludingTax':'300',
-                'amountExcludingTax': '248',
-                'taxAmount': '52',
-                'id':'Item #2'
+                ""description"":""Socks"",
+                ""quantity"":""2"",
+                ""amountIncludingTax"":""300"",
+                ""amountExcludingTax"": ""248"",
+                ""taxAmount"": ""52"",
+                ""id"":""Item #2""
                  }
                  ]
                  }";
             
-            var result = JsonConvert.DeserializeObject<PaymentRequest>(json);
+            var result = JsonSerializer.Deserialize<PaymentRequest>(json);
             Assert.IsInstanceOfType<AfterpayDetails>(result.PaymentMethod.GetAfterpayDetails());
             Assert.AreEqual(result.PaymentMethod.GetAfterpayDetails().Type, AfterpayDetails.TypeEnum.Afterpaytouch);
         }
@@ -737,9 +737,7 @@ namespace Adyen.Test
                 CreateMockTestClientApiKeyBasedRequestAsync("Mocks/checkout/paymentResponse-3DS-ChallengeShopper.json");
             var checkout = new PaymentsService(client);
             var paymentResponse = checkout.Payments(paymentRequest);
-            var paymentResponseToJson = paymentResponse.ToJson();
-            var jObject = JObject.Parse(paymentResponseToJson);
-            Assert.AreEqual(jObject["action"]["type"], "threeDS2");
+            Assert.AreEqual(paymentResponse.Action.GetCheckoutThreeDS2Action().Subtype, "threeDS2");
         }
 
         [TestMethod]
@@ -784,8 +782,9 @@ namespace Adyen.Test
                 DateOfBirth = new DateTime(1998, 1, 1, 1, 1, 1),
                 ExpiresAt = new DateTime(2023, 4, 1 ,1, 1, 1)
             };
+            var json = checkoutSessionRequest.ToJson();
             // Create a DateTime object with minutes and seconds and verify it gets omitted
-            Assert.IsTrue(checkoutSessionRequest.ToJson().Contains("1998-01-01"));
+            Assert.IsTrue(json.Contains("1998-01-01"));
             // Opposite; check that it keeps full ISO string for other Date parameters
             Assert.IsTrue(checkoutSessionRequest.ToJson().Contains("2023-04-01T01:01:01"));
         }
