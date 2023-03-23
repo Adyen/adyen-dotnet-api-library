@@ -265,21 +265,13 @@
         /// <returns>The object converted from the JSON string</returns>
         public override {{classname}} Read(ref Utf8JsonReader reader, Type objectType, JsonSerializerOptions options)
         {
-            if(reader.TokenType != JsonTokenType.Null)
+            using (var jsonDocument = JsonDocument.ParseValue(ref reader))
             {
-                return {{classname}}.FromJson(reader.GetString());
+            var jsonText = jsonDocument.RootElement.GetRawText();
+            return {{classname}}.FromJson(jsonText);
+    
             }
             return null;
-        }
-
-        /// <summary>
-        /// Check if the object can be converted
-        /// </summary>
-        /// <param name="objectType">Object type</param>
-        /// <returns>True if the object can be converted</returns>
-        public override bool CanConvert(Type objectType)
-        {
-            return false;
         }
     }
 {{/model}}
