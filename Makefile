@@ -15,10 +15,14 @@ models: $(services)
 BalanceControl: spec=BalanceControlService-v1
 BalanceControl: service=balanceControlService
 BalancePlatform: spec=BalancePlatformService-v2
+BinLookup: spec=BinLookupService-v54
+BinLookup: service=binLookup
 BalancePlatform: service=balancePlatformService
 BinLookup: spec=BinLookupService-v52
 Checkout: spec=CheckoutService-v70
 Checkout: service=checkout
+DataProtection: spec=DataProtectionService-v1
+DataProtection: service=dataProtection
 StoredValue: spec=StoredValueService-v46
 StoredValue: service=storedvalue
 PosTerminalManagement: spec=TfmAPIService-v1
@@ -27,6 +31,7 @@ Payments: service=payments
 Recurring: spec=RecurringService-v68
 Recurring: service=recurring
 Payouts: spec=PayoutService-v68
+Payouts: service=payoutsService
 Management: spec=ManagementService-v1
 Management: service=management
 LegalEntityManagement: spec=LegalEntityService-v2
@@ -60,7 +65,8 @@ $(services): target/spec $(openapi-generator-jar)
 	mv target/out/src/Adyen.Model/$@/* Adyen/Model/$@
 
 # Generate a full client (models and service classes)
-Management: target/spec $(openapi-generator-jar)  
+full-services:=LegalEntityManagement PosTerminalManagement
+$(full-services): target/spec $(openapi-generator-jar)  
 	rm -rf $(output)
 	$(openapi-generator-cli) generate \
 		-i target/spec/json/$(spec).json \

@@ -108,7 +108,7 @@ namespace Adyen.Model.Checkout
         /// The Masterpass transaction ID.
         /// </summary>
         /// <value>The Masterpass transaction ID.</value>
-        [DataMember(Name = "masterpassTransactionId", IsRequired = false, EmitDefaultValue = true)]
+        [DataMember(Name = "masterpassTransactionId", IsRequired = false, EmitDefaultValue = false)]
         public string MasterpassTransactionId { get; set; }
 
         /// <summary>
@@ -200,7 +200,6 @@ namespace Adyen.Model.Checkout
                 return hashCode;
             }
         }
-
         /// <summary>
         /// To validate all properties of the instance
         /// </summary>

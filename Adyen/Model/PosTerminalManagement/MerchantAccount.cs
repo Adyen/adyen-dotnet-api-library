@@ -11,25 +11,27 @@
 */
 
 using System;
-using System.Linq;
-using System.IO;
-using System.Text;
-using System.Text.RegularExpressions;
 using System.Collections;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Linq;
+using System.IO;
 using System.Runtime.Serialization;
+using System.Text;
+using System.Text.RegularExpressions;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
+using Newtonsoft.Json.Linq;
 using System.ComponentModel.DataAnnotations;
+using OpenAPIDateConverter = Adyen.ApiSerialization.OpenAPIDateConverter;
 
 namespace Adyen.Model.PosTerminalManagement
 {
     /// <summary>
     /// MerchantAccount
     /// </summary>
-    [DataContract]
-    public partial class MerchantAccount :  IEquatable<MerchantAccount>, IValidatableObject
+    [DataContract(Name = "MerchantAccount")]
+    public partial class MerchantAccount : IEquatable<MerchantAccount>, IValidatableObject
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="MerchantAccount" /> class.
@@ -45,9 +47,9 @@ namespace Adyen.Model.PosTerminalManagement
         /// <param name="stores">Array of stores under this merchant account..</param>
         public MerchantAccount(List<string> inStoreTerminals = default(List<string>), List<string> inventoryTerminals = default(List<string>), string merchantAccount = default(string), List<Store> stores = default(List<Store>))
         {
+            this._MerchantAccount = merchantAccount;
             this.InStoreTerminals = inStoreTerminals;
             this.InventoryTerminals = inventoryTerminals;
-            this._MerchantAccount = merchantAccount;
             this.Stores = stores;
         }
 
@@ -55,28 +57,28 @@ namespace Adyen.Model.PosTerminalManagement
         /// List of terminals assigned to this merchant account as in-store terminals. This means that the terminal is ready to be boarded, or is already boarded.
         /// </summary>
         /// <value>List of terminals assigned to this merchant account as in-store terminals. This means that the terminal is ready to be boarded, or is already boarded.</value>
-        [DataMember(Name="inStoreTerminals", EmitDefaultValue=false)]
+        [DataMember(Name = "inStoreTerminals", EmitDefaultValue = false)]
         public List<string> InStoreTerminals { get; set; }
 
         /// <summary>
         /// List of terminals assigned to the inventory of this merchant account.
         /// </summary>
         /// <value>List of terminals assigned to the inventory of this merchant account.</value>
-        [DataMember(Name="inventoryTerminals", EmitDefaultValue=false)]
+        [DataMember(Name = "inventoryTerminals", EmitDefaultValue = false)]
         public List<string> InventoryTerminals { get; set; }
 
         /// <summary>
         /// The merchant account.
         /// </summary>
         /// <value>The merchant account.</value>
-        [DataMember(Name="merchantAccount", EmitDefaultValue=true)]
+        [DataMember(Name = "merchantAccount", IsRequired = false, EmitDefaultValue = false)]
         public string _MerchantAccount { get; set; }
 
         /// <summary>
         /// Array of stores under this merchant account.
         /// </summary>
         /// <value>Array of stores under this merchant account.</value>
-        [DataMember(Name="stores", EmitDefaultValue=false)]
+        [DataMember(Name = "stores", EmitDefaultValue = false)]
         public List<Store> Stores { get; set; }
 
         /// <summary>
@@ -85,7 +87,7 @@ namespace Adyen.Model.PosTerminalManagement
         /// <returns>String presentation of the object</returns>
         public override string ToString()
         {
-            var sb = new StringBuilder();
+            StringBuilder sb = new StringBuilder();
             sb.Append("class MerchantAccount {\n");
             sb.Append("  InStoreTerminals: ").Append(InStoreTerminals).Append("\n");
             sb.Append("  InventoryTerminals: ").Append(InventoryTerminals).Append("\n");
@@ -122,8 +124,9 @@ namespace Adyen.Model.PosTerminalManagement
         public bool Equals(MerchantAccount input)
         {
             if (input == null)
+            {
                 return false;
-
+            }
             return 
                 (
                     this.InStoreTerminals == input.InStoreTerminals ||
@@ -160,23 +163,30 @@ namespace Adyen.Model.PosTerminalManagement
             {
                 int hashCode = 41;
                 if (this.InStoreTerminals != null)
-                    hashCode = hashCode * 59 + this.InStoreTerminals.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.InStoreTerminals.GetHashCode();
+                }
                 if (this.InventoryTerminals != null)
-                    hashCode = hashCode * 59 + this.InventoryTerminals.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.InventoryTerminals.GetHashCode();
+                }
                 if (this._MerchantAccount != null)
-                    hashCode = hashCode * 59 + this._MerchantAccount.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this._MerchantAccount.GetHashCode();
+                }
                 if (this.Stores != null)
-                    hashCode = hashCode * 59 + this.Stores.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.Stores.GetHashCode();
+                }
                 return hashCode;
             }
         }
-
         /// <summary>
         /// To validate all properties of the instance
         /// </summary>
         /// <param name="validationContext">Validation context</param>
         /// <returns>Validation Result</returns>
-        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+        public IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> Validate(ValidationContext validationContext)
         {
             yield break;
         }

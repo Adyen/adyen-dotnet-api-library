@@ -79,14 +79,14 @@ namespace Adyen.Model.Checkout
         /// The card expiry year. Format: 4 digits. For example: 2020
         /// </summary>
         /// <value>The card expiry year. Format: 4 digits. For example: 2020</value>
-        [DataMember(Name = "expiryYear", IsRequired = false, EmitDefaultValue = true)]
+        [DataMember(Name = "expiryYear", IsRequired = false, EmitDefaultValue = false)]
         public string ExpiryYear { get; set; }
 
         /// <summary>
         /// The name of the cardholder, as printed on the card.
         /// </summary>
         /// <value>The name of the cardholder, as printed on the card.</value>
-        [DataMember(Name = "holderName", IsRequired = false, EmitDefaultValue = true)]
+        [DataMember(Name = "holderName", IsRequired = false, EmitDefaultValue = false)]
         public string HolderName { get; set; }
 
         /// <summary>
@@ -254,7 +254,6 @@ namespace Adyen.Model.Checkout
                 return hashCode;
             }
         }
-
         /// <summary>
         /// To validate all properties of the instance
         /// </summary>

@@ -70,7 +70,7 @@ namespace Adyen.Model.LegalEntityManagement
         /// Initializes a new instance of the <see cref="TransferInstrumentInfo" /> class.
         /// </summary>
         /// <param name="bankAccount">bankAccount (required).</param>
-        /// <param name="legalEntityId">The unique identifier of the [legal entity](https://docs.adyen.com/api-explorer/#/legalentity/latest/post/legalEntities__resParam_id) that owns the transfer instrument. (required).</param>
+        /// <param name="legalEntityId">The unique identifier of the [legal entity](https://docs.adyen.com/api-explorer/legalentity/latest/post/legalEntities#responses-200-id) that owns the transfer instrument. (required).</param>
         /// <param name="type">The type of transfer instrument.  Possible value: **bankAccount**. (required).</param>
         public TransferInstrumentInfo(BankAccountInfo bankAccount = default(BankAccountInfo), string legalEntityId = default(string), TypeEnum type = default(TypeEnum))
         {
@@ -86,9 +86,9 @@ namespace Adyen.Model.LegalEntityManagement
         public BankAccountInfo BankAccount { get; set; }
 
         /// <summary>
-        /// The unique identifier of the [legal entity](https://docs.adyen.com/api-explorer/#/legalentity/latest/post/legalEntities__resParam_id) that owns the transfer instrument.
+        /// The unique identifier of the [legal entity](https://docs.adyen.com/api-explorer/legalentity/latest/post/legalEntities#responses-200-id) that owns the transfer instrument.
         /// </summary>
-        /// <value>The unique identifier of the [legal entity](https://docs.adyen.com/api-explorer/#/legalentity/latest/post/legalEntities__resParam_id) that owns the transfer instrument.</value>
+        /// <value>The unique identifier of the [legal entity](https://docs.adyen.com/api-explorer/legalentity/latest/post/legalEntities#responses-200-id) that owns the transfer instrument.</value>
         [DataMember(Name = "legalEntityId", IsRequired = false, EmitDefaultValue = false)]
         public string LegalEntityId { get; set; }
 

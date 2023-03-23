@@ -148,7 +148,7 @@ namespace Adyen.Model.Checkout
         /// <param name="reorderItems">Indicator for whether the shopper has already purchased the same items in the past..</param>
         /// <param name="reorderItemsInd">Indicates whether the cardholder is reordering previously purchased merchandise..</param>
         /// <param name="shipIndicator">Indicates shipping method chosen for the transaction..</param>
-        public MerchantRiskIndicator(bool addressMatch = default(bool), DeliveryAddressIndicatorEnum? deliveryAddressIndicator = default(DeliveryAddressIndicatorEnum?), string deliveryEmail = default(string), string deliveryEmailAddress = default(string), DeliveryTimeframeEnum? deliveryTimeframe = default(DeliveryTimeframeEnum?), Amount giftCardAmount = default(Amount), int giftCardCount = default(int), string giftCardCurr = default(string), DateTime preOrderDate = default(DateTime), bool preOrderPurchase = default(bool), string preOrderPurchaseInd = default(string), bool reorderItems = default(bool), string reorderItemsInd = default(string), string shipIndicator = default(string))
+        public MerchantRiskIndicator(bool addressMatch = default(bool), DeliveryAddressIndicatorEnum? deliveryAddressIndicator = default(DeliveryAddressIndicatorEnum?), string deliveryEmail = default(string), string deliveryEmailAddress = default(string), DeliveryTimeframeEnum? deliveryTimeframe = default(DeliveryTimeframeEnum?), Amount giftCardAmount = default(Amount), int? giftCardCount = default(int?), string giftCardCurr = default(string), DateTime preOrderDate = default(DateTime), bool preOrderPurchase = default(bool), string preOrderPurchaseInd = default(string), bool reorderItems = default(bool), string reorderItemsInd = default(string), string shipIndicator = default(string))
         {
             this.AddressMatch = addressMatch;
             this.DeliveryAddressIndicator = deliveryAddressIndicator;
@@ -199,7 +199,7 @@ namespace Adyen.Model.Checkout
         /// </summary>
         /// <value>For prepaid or gift card purchase, total count of individual prepaid or gift cards/codes purchased.</value>
         [DataMember(Name = "giftCardCount", EmitDefaultValue = false)]
-        public int GiftCardCount { get; set; }
+        public int? GiftCardCount { get; set; }
 
         /// <summary>
         /// For prepaid or gift card purchase, [ISO 4217](https://www.iso.org/iso-4217-currency-codes.html) three-digit currency code of the gift card, other than those listed in Table A.5 of the EMVCo 3D Secure Protocol and Core Functions Specification.
@@ -423,7 +423,6 @@ namespace Adyen.Model.Checkout
                 return hashCode;
             }
         }
-
         /// <summary>
         /// To validate all properties of the instance
         /// </summary>

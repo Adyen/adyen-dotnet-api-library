@@ -112,7 +112,7 @@ namespace Adyen.Model.Checkout
         /// The &#x60;token&#x60; that you obtained from the [Google Pay API](https://developers.google.com/pay/api/web/reference/response-objects#PaymentData) &#x60;PaymentData&#x60; response.
         /// </summary>
         /// <value>The &#x60;token&#x60; that you obtained from the [Google Pay API](https://developers.google.com/pay/api/web/reference/response-objects#PaymentData) &#x60;PaymentData&#x60; response.</value>
-        [DataMember(Name = "googlePayToken", IsRequired = false, EmitDefaultValue = true)]
+        [DataMember(Name = "googlePayToken", IsRequired = false, EmitDefaultValue = false)]
         public string GooglePayToken { get; set; }
 
         /// <summary>
@@ -239,7 +239,6 @@ namespace Adyen.Model.Checkout
                 return hashCode;
             }
         }
-
         /// <summary>
         /// To validate all properties of the instance
         /// </summary>

@@ -72,7 +72,7 @@ namespace Adyen.Model.LegalEntityManagement
         /// <param name="bankAccount">bankAccount (required).</param>
         /// <param name="capabilities">List of capabilities for this supporting entity..</param>
         /// <param name="documentDetails">List of documents uploaded for the transfer instrument..</param>
-        /// <param name="legalEntityId">The unique identifier of the [legal entity](https://docs.adyen.com/api-explorer/#/legalentity/latest/post/legalEntities__resParam_id) that owns the transfer instrument. (required).</param>
+        /// <param name="legalEntityId">The unique identifier of the [legal entity](https://docs.adyen.com/api-explorer/legalentity/latest/post/legalEntities#responses-200-id) that owns the transfer instrument. (required).</param>
         /// <param name="problems">List of the verification errors from capabilities for this supporting entity..</param>
         /// <param name="type">The type of transfer instrument.  Possible value: **bankAccount**. (required).</param>
         public TransferInstrument(BankAccountInfo bankAccount = default(BankAccountInfo), Dictionary<string, SupportingEntityCapability> capabilities = default(Dictionary<string, SupportingEntityCapability>), List<DocumentReference> documentDetails = default(List<DocumentReference>), string legalEntityId = default(string), List<CapabilityProblem> problems = default(List<CapabilityProblem>), TypeEnum type = default(TypeEnum))
@@ -121,9 +121,9 @@ namespace Adyen.Model.LegalEntityManagement
             return false;
         }
         /// <summary>
-        /// The unique identifier of the [legal entity](https://docs.adyen.com/api-explorer/#/legalentity/latest/post/legalEntities__resParam_id) that owns the transfer instrument.
+        /// The unique identifier of the [legal entity](https://docs.adyen.com/api-explorer/legalentity/latest/post/legalEntities#responses-200-id) that owns the transfer instrument.
         /// </summary>
-        /// <value>The unique identifier of the [legal entity](https://docs.adyen.com/api-explorer/#/legalentity/latest/post/legalEntities__resParam_id) that owns the transfer instrument.</value>
+        /// <value>The unique identifier of the [legal entity](https://docs.adyen.com/api-explorer/legalentity/latest/post/legalEntities#responses-200-id) that owns the transfer instrument.</value>
         [DataMember(Name = "legalEntityId", IsRequired = false, EmitDefaultValue = false)]
         public string LegalEntityId { get; set; }
 

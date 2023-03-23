@@ -51,7 +51,7 @@ namespace Adyen.Model.Checkout
         /// Base64 encoded data you need to [complete the Apple Pay merchant validation](https://docs.adyen.com/payment-methods/apple-pay/api-only?tab&#x3D;adyen-certificate-validation_1#complete-apple-pay-session-validation).
         /// </summary>
         /// <value>Base64 encoded data you need to [complete the Apple Pay merchant validation](https://docs.adyen.com/payment-methods/apple-pay/api-only?tab&#x3D;adyen-certificate-validation_1#complete-apple-pay-session-validation).</value>
-        [DataMember(Name = "data", IsRequired = false, EmitDefaultValue = true)]
+        [DataMember(Name = "data", IsRequired = false, EmitDefaultValue = false)]
         public string Data { get; set; }
 
         /// <summary>
@@ -121,7 +121,6 @@ namespace Adyen.Model.Checkout
                 return hashCode;
             }
         }
-
         /// <summary>
         /// To validate all properties of the instance
         /// </summary>

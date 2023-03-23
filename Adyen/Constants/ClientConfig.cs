@@ -54,7 +54,7 @@ namespace Adyen.Constants
         public static string EndpointProtocol = "https://";
         public static string NexoProtocolVersion = "3.0";
         public static string BinLookupPalSuffix = "/pal/servlet/BinLookup/";
-        public static string BinLookupApiVersion = "v52";
+        public static string BinLookupApiVersion = "v54";
         public static string LegalEntityManagementEndpointTest = "https://kyc-test.adyen.com/lem/";
         public static string LegalEntityManagementEndpointLive = "https://kyc-live.adyen.com/lem/";
         public static string LegalEntityManagementVersion = "v3";
@@ -70,8 +70,11 @@ namespace Adyen.Constants
         public static string TransfersEndpointTest = "https://balanceplatform-api-test.adyen.com/btl/";
         public static string TransfersEndpointLive = "https://balanceplatform-api-live.adyen.com/btl/";
         public static string TransfersVersion = "v3";
+        public static string DataProtectionEndpointTest = "https://ca-test.adyen.com/ca/services/DataProtectionService";
+        public static string DataProtectionEndpointLive = "https://ca-live.adyen.com/ca/services/DataProtectionService";
+        public static string DataProtectionVersion = "v1";
 
         public static string LibName = "adyen-dotnet-api-library";
-        public static string LibVersion = "9.2.0";
+        public static string LibVersion = "10.0.0-beta";
     }
 }

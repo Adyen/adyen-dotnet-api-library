@@ -1,0 +1,33 @@
+name: publish to nuget
+on:
+  push:
+    branches:
+      - main #push to main
+jobs:
+  # publish the nuget package
+  publish:
+    name: build, pack & publish
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      
+      # Sets up .NET 
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v3
+        with:
+          dotnet-version: |
+            2.1.x
+            6.0.x
+      # Build Release and test
+      - name: Build Release
+        run: dotnet build Adyen -c Release
+      - name: Run test suite netcoreapp2.1
+        run: dotnet test --no-build -c Debug -f netcoreapp2.1 Adyen.Test/Adyen.Test.csproj
+      - name: Run test suite net6.0
+        run: dotnet test --no-build -c Debug -f net6.0 Adyen.Test/Adyen.Test.csproj
+      # Pack Release
+      - name: Pack
+        run: dotnet pack Adyen --no-build --configuration Release --output nuget
+      # Publish Package
+      - name: Publish Nuget
+        run: dotnet nuget push nuget/*.nupkg --api-key ${{ secrets.ADYEN_NUGET }} --source "nuget.org"

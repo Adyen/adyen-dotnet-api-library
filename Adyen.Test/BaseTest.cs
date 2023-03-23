@@ -41,7 +41,6 @@ using PaymentResult = Adyen.Model.Payments.PaymentResult;
 using Adyen.Model.Checkout;
 using System.Threading.Tasks;
 using Adyen.Service.Payments;
-using CardDetails = Adyen.Service.Resource.Checkout.CardDetails;
 using CommonField = Adyen.Model.Checkout.CommonField;
 
 namespace Adyen.Test
@@ -432,36 +431,6 @@ namespace Adyen.Test
             return clientMock;
         }
 
-        /// <summary>
-        /// Creates mock test client errors
-        /// </summary>
-        /// <param name="status"></param>
-        /// <param name="fileName"></param>
-        /// <returns></returns>
-        protected Client CreateAsyncMockTestClientForErrors(int status, string fileName)
-        {
-            var mockPath = GetMockFilePath(fileName);
-            var response = MockFileToString(mockPath);
-            //Create a mock interface
-            var clientInterfaceMock = new Mock<IClient>();
-            var confMock = MockPaymentData.CreateConfigMock();
-            var httpClientException =
-                new HttpClientException(status, "An error occured", new WebHeaderCollection(), response);
-
-            clientInterfaceMock.Setup(x => x.RequestAsync(It.IsAny<string>(),
-                It.IsAny<string>(), It.IsAny<RequestOptions>(), null)).Throws(httpClientException);
-            var config = new Config()
-            {
-                Environment = It.IsAny<Model.Environment>()
-            };
-            var clientMock = new Client(config)
-            {
-                HttpClient = clientInterfaceMock.Object,
-                Config = confMock
-            };
-            return clientMock;
-        }
-        
         /// <summary>
         /// Creates mock test client errors
         /// </summary>

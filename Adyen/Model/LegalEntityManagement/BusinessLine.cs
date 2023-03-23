@@ -79,7 +79,7 @@ namespace Adyen.Model.LegalEntityManagement
         /// <param name="industryCode">A code that represents the industry of the legal entity. For example, **4431A** for computer software stores. (required).</param>
         /// <param name="legalEntityId">Unique identifier of the [legal entity](https://docs.adyen.com/api-explorer/#/legalentity/latest/post/legalEntities__resParam_id) that owns the business line. (required).</param>
         /// <param name="problems">List of the verification errors from capabilities for this supporting entity..</param>
-        /// <param name="salesChannels">A list of channels where goods or services are sold.  Possible values:  - For point of sale: **pos** and **posMoto**  - For ecommerce: **eCommerce** and **ecomMoto**  - For Pay by Link: **payByLink**  Required only in combination with the &#x60;service&#x60; **paymentProcessing**..</param>
+        /// <param name="salesChannels">A list of channels where goods or services are sold.  Possible values: **pos**, **posMoto**, **eCommerce**, **ecomMoto**, **payByLink**.  Required only in combination with the &#x60;service&#x60; **paymentProcessing**..</param>
         /// <param name="service">The service for which you are creating the business line.  Possible values:**paymentProcessing**, **issuing**, **banking** (required).</param>
         /// <param name="sourceOfFunds">sourceOfFunds.</param>
         /// <param name="webData">List of website URLs where your user&#39;s goods or services are sold. When this is required for a service but your user does not have an online presence, provide the reason in the &#x60;webDataExemption&#x60; object..</param>
@@ -142,9 +142,9 @@ namespace Adyen.Model.LegalEntityManagement
         public List<CapabilityProblem> Problems { get; set; }
 
         /// <summary>
-        /// A list of channels where goods or services are sold.  Possible values:  - For point of sale: **pos** and **posMoto**  - For ecommerce: **eCommerce** and **ecomMoto**  - For Pay by Link: **payByLink**  Required only in combination with the &#x60;service&#x60; **paymentProcessing**.
+        /// A list of channels where goods or services are sold.  Possible values: **pos**, **posMoto**, **eCommerce**, **ecomMoto**, **payByLink**.  Required only in combination with the &#x60;service&#x60; **paymentProcessing**.
         /// </summary>
-        /// <value>A list of channels where goods or services are sold.  Possible values:  - For point of sale: **pos** and **posMoto**  - For ecommerce: **eCommerce** and **ecomMoto**  - For Pay by Link: **payByLink**  Required only in combination with the &#x60;service&#x60; **paymentProcessing**.</value>
+        /// <value>A list of channels where goods or services are sold.  Possible values: **pos**, **posMoto**, **eCommerce**, **ecomMoto**, **payByLink**.  Required only in combination with the &#x60;service&#x60; **paymentProcessing**.</value>
         [DataMember(Name = "salesChannels", EmitDefaultValue = false)]
         public List<string> SalesChannels { get; set; }
 

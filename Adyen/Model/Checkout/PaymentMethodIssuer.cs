@@ -62,14 +62,14 @@ namespace Adyen.Model.Checkout
         /// The unique identifier of this issuer, to submit in requests to /payments.
         /// </summary>
         /// <value>The unique identifier of this issuer, to submit in requests to /payments.</value>
-        [DataMember(Name = "id", IsRequired = false, EmitDefaultValue = true)]
+        [DataMember(Name = "id", IsRequired = false, EmitDefaultValue = false)]
         public string Id { get; set; }
 
         /// <summary>
         /// A localized name of the issuer.
         /// </summary>
         /// <value>A localized name of the issuer.</value>
-        [DataMember(Name = "name", IsRequired = false, EmitDefaultValue = true)]
+        [DataMember(Name = "name", IsRequired = false, EmitDefaultValue = false)]
         public string Name { get; set; }
 
         /// <summary>
@@ -155,7 +155,6 @@ namespace Adyen.Model.Checkout
                 return hashCode;
             }
         }
-
         /// <summary>
         /// To validate all properties of the instance
         /// </summary>

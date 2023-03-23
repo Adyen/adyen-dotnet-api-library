@@ -46,6 +46,7 @@ namespace Adyen
         public string ManagementEndpoint { get;set; }
         public string TransfersEndpoint { get;set; }
         public string BalancePlatformEndpoint { get;set; }
+        public string DataProtectionEndpoint { get;set; }
         //Terminal cloud api
         public string XApiKey { get; set; }
         // Timeout in milliseconds

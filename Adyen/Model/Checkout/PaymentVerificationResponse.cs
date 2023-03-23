@@ -176,7 +176,7 @@ namespace Adyen.Model.Checkout
         /// A unique value that you provided in the initial &#x60;/paymentSession&#x60; request as a &#x60;reference&#x60; field.
         /// </summary>
         /// <value>A unique value that you provided in the initial &#x60;/paymentSession&#x60; request as a &#x60;reference&#x60; field.</value>
-        [DataMember(Name = "merchantReference", IsRequired = false, EmitDefaultValue = true)]
+        [DataMember(Name = "merchantReference", IsRequired = false, EmitDefaultValue = false)]
         public string MerchantReference { get; set; }
 
         /// <summary>
@@ -216,7 +216,7 @@ namespace Adyen.Model.Checkout
         /// The shopperLocale value provided in the payment request.
         /// </summary>
         /// <value>The shopperLocale value provided in the payment request.</value>
-        [DataMember(Name = "shopperLocale", IsRequired = false, EmitDefaultValue = true)]
+        [DataMember(Name = "shopperLocale", IsRequired = false, EmitDefaultValue = false)]
         public string ShopperLocale { get; set; }
 
         /// <summary>
@@ -373,7 +373,6 @@ namespace Adyen.Model.Checkout
                 return hashCode;
             }
         }
-
         /// <summary>
         /// To validate all properties of the instance
         /// </summary>
