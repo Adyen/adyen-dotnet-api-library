@@ -59,8 +59,8 @@ $(services): target/spec $(openapi-generator-jar)
 	mkdir Adyen/Model/$@
 	mv target/out/src/Adyen.Model/$@/* Adyen/Model/$@
 
-# Generate a full client (models and service classes)
-full-services:=LegalEntityManagement PosTerminalManagement
+# Generate a full client (models and service classes) ((adjust the baseUrl const yourselves))
+full-services:= Checkout 
 $(full-services): target/spec $(openapi-generator-jar)  
 	rm -rf $(output)
 	$(openapi-generator-cli) generate \

@@ -13,12 +13,12 @@
 using System;
 using System.Collections.Generic;
 using System.Net.Http;
+using System.Threading;
 using System.Threading.Tasks;
 using Adyen.Constants;
 using Adyen.Model;
 using Adyen.Service.Resource;
 using Adyen.Model.Checkout;
-using Newtonsoft.Json;
 
 namespace Adyen.Service.Checkout
 {
@@ -40,8 +40,10 @@ namespace Adyen.Service.Checkout
         /// <param name="idempotencyKey">A unique identifier for the message with a maximum of 64 characters (we recommend a UUID).</param>
         /// <param name="createApplePaySessionRequest"></param>
         /// <param name="requestOptions">Additional request options.</param>
+        /// <param name="cancellationToken"></param>
         /// <returns>ApplePaySessionResponse</returns>
-        public ApplePaySessionResponse GetApplePaySession(CreateApplePaySessionRequest createApplePaySessionRequest, RequestOptions requestOptions = default)
+        public ApplePaySessionResponse GetApplePaySession(CreateApplePaySessionRequest createApplePaySessionRequest, RequestOptions requestOptions = default
+)
         {
             return GetApplePaySessionAsync(createApplePaySessionRequest, requestOptions).GetAwaiter().GetResult();
         }
@@ -52,12 +54,13 @@ namespace Adyen.Service.Checkout
         /// <param name="idempotencyKey">A unique identifier for the message with a maximum of 64 characters (we recommend a UUID).</param>
         /// <param name="createApplePaySessionRequest"></param>
         /// <param name="requestOptions">Additional request options.</param>
+        /// <param name="cancellationToken"></param>
         /// <returns>Task of ApplePaySessionResponse</returns>
-        public async Task<ApplePaySessionResponse> GetApplePaySessionAsync(CreateApplePaySessionRequest createApplePaySessionRequest, RequestOptions requestOptions = default)
+        public async Task<ApplePaySessionResponse> GetApplePaySessionAsync(CreateApplePaySessionRequest createApplePaySessionRequest, RequestOptions requestOptions = default, CancellationToken cancellationToken = default)
         {
             var endpoint = _baseUrl + "/applePay/sessions";
             var resource = new ServiceResource(this, endpoint);
-            return await resource.RequestAsync<ApplePaySessionResponse>(createApplePaySessionRequest.ToJson(), requestOptions, new HttpMethod("POST"));
+            return await resource.RequestAsync<ApplePaySessionResponse>(createApplePaySessionRequest.ToJson(), requestOptions, new HttpMethod("POST"), cancellationToken);
         }
 
         /// <summary>
@@ -66,11 +69,13 @@ namespace Adyen.Service.Checkout
         /// <param name="idempotencyKey">A unique identifier for the message with a maximum of 64 characters (we recommend a UUID).</param>
         /// <param name="checkoutUtilityRequest"></param>
         /// <param name="requestOptions">Additional request options.</param>
+        /// <param name="cancellationToken"></param>
         /// <returns>CheckoutUtilityResponse</returns>
         [Obsolete]
-        public CheckoutUtilityResponse CreateOriginkeyValuesForDomains(CheckoutUtilityRequest checkoutUtilityRequest, RequestOptions requestOptions = default)
+        public CheckoutUtilityResponse OriginKeys(CheckoutUtilityRequest checkoutUtilityRequest, RequestOptions requestOptions = default
+)
         {
-            return CreateOriginkeyValuesForDomainsAsync(checkoutUtilityRequest, requestOptions).GetAwaiter().GetResult();
+            return OriginKeysAsync(checkoutUtilityRequest, requestOptions).GetAwaiter().GetResult();
         }
 
         /// <summary>
@@ -79,13 +84,14 @@ namespace Adyen.Service.Checkout
         /// <param name="idempotencyKey">A unique identifier for the message with a maximum of 64 characters (we recommend a UUID).</param>
         /// <param name="checkoutUtilityRequest"></param>
         /// <param name="requestOptions">Additional request options.</param>
+        /// <param name="cancellationToken"></param>
         /// <returns>Task of CheckoutUtilityResponse</returns>
         [Obsolete]
-        public async Task<CheckoutUtilityResponse> CreateOriginkeyValuesForDomainsAsync(CheckoutUtilityRequest checkoutUtilityRequest, RequestOptions requestOptions = default)
+        public async Task<CheckoutUtilityResponse> OriginKeysAsync(CheckoutUtilityRequest checkoutUtilityRequest, RequestOptions requestOptions = default, CancellationToken cancellationToken = default)
         {
             var endpoint = _baseUrl + "/originKeys";
             var resource = new ServiceResource(this, endpoint);
-            return await resource.RequestAsync<CheckoutUtilityResponse>(checkoutUtilityRequest.ToJson(), requestOptions, new HttpMethod("POST"));
+            return await resource.RequestAsync<CheckoutUtilityResponse>(checkoutUtilityRequest.ToJson(), requestOptions, new HttpMethod("POST"), cancellationToken);
         }
 
     }

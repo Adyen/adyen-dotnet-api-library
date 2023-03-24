@@ -13,12 +13,12 @@
 using System;
 using System.Collections.Generic;
 using System.Net.Http;
+using System.Threading;
 using System.Threading.Tasks;
 using Adyen.Constants;
 using Adyen.Model;
 using Adyen.Service.Resource;
 using Adyen.Model.Checkout;
-using Newtonsoft.Json;
 
 namespace Adyen.Service.Checkout
 {
@@ -39,8 +39,10 @@ namespace Adyen.Service.Checkout
         /// </summary>
         /// <param name="linkId">Unique identifier of the payment link.</param>
         /// <param name="requestOptions">Additional request options.</param>
+        /// <param name="cancellationToken"></param>
         /// <returns>PaymentLinkResponse</returns>
-        public PaymentLinkResponse GetPaymentLink(string linkId, RequestOptions requestOptions = default)
+        public PaymentLinkResponse GetPaymentLink(string linkId, RequestOptions requestOptions = default
+)
         {
             return GetPaymentLinkAsync(linkId, requestOptions).GetAwaiter().GetResult();
         }
@@ -50,12 +52,13 @@ namespace Adyen.Service.Checkout
         /// </summary>
         /// <param name="linkId">Unique identifier of the payment link.</param>
         /// <param name="requestOptions">Additional request options.</param>
+        /// <param name="cancellationToken"></param>
         /// <returns>Task of PaymentLinkResponse</returns>
-        public async Task<PaymentLinkResponse> GetPaymentLinkAsync(string linkId, RequestOptions requestOptions = default)
+        public async Task<PaymentLinkResponse> GetPaymentLinkAsync(string linkId, RequestOptions requestOptions = default, CancellationToken cancellationToken = default)
         {
             var endpoint = _baseUrl + $"/paymentLinks/{linkId}";
             var resource = new ServiceResource(this, endpoint);
-            return await resource.RequestAsync<PaymentLinkResponse>(null, requestOptions, new HttpMethod("GET"));
+            return await resource.RequestAsync<PaymentLinkResponse>(null, requestOptions, new HttpMethod("GET"), cancellationToken);
         }
 
         /// <summary>
@@ -64,8 +67,10 @@ namespace Adyen.Service.Checkout
         /// <param name="linkId">Unique identifier of the payment link.</param>
         /// <param name="updatePaymentLinkRequest"></param>
         /// <param name="requestOptions">Additional request options.</param>
+        /// <param name="cancellationToken"></param>
         /// <returns>PaymentLinkResponse</returns>
-        public PaymentLinkResponse UpdatePaymentLink(string linkId, UpdatePaymentLinkRequest updatePaymentLinkRequest, RequestOptions requestOptions = default)
+        public PaymentLinkResponse UpdatePaymentLink(string linkId, UpdatePaymentLinkRequest updatePaymentLinkRequest, RequestOptions requestOptions = default
+)
         {
             return UpdatePaymentLinkAsync(linkId, updatePaymentLinkRequest, requestOptions).GetAwaiter().GetResult();
         }
@@ -76,12 +81,13 @@ namespace Adyen.Service.Checkout
         /// <param name="linkId">Unique identifier of the payment link.</param>
         /// <param name="updatePaymentLinkRequest"></param>
         /// <param name="requestOptions">Additional request options.</param>
+        /// <param name="cancellationToken"></param>
         /// <returns>Task of PaymentLinkResponse</returns>
-        public async Task<PaymentLinkResponse> UpdatePaymentLinkAsync(string linkId, UpdatePaymentLinkRequest updatePaymentLinkRequest, RequestOptions requestOptions = default)
+        public async Task<PaymentLinkResponse> UpdatePaymentLinkAsync(string linkId, UpdatePaymentLinkRequest updatePaymentLinkRequest, RequestOptions requestOptions = default, CancellationToken cancellationToken = default)
         {
             var endpoint = _baseUrl + $"/paymentLinks/{linkId}";
             var resource = new ServiceResource(this, endpoint);
-            return await resource.RequestAsync<PaymentLinkResponse>(updatePaymentLinkRequest.ToJson(), requestOptions, new HttpMethod("PATCH"));
+            return await resource.RequestAsync<PaymentLinkResponse>(updatePaymentLinkRequest.ToJson(), requestOptions, new HttpMethod("PATCH"), cancellationToken);
         }
 
         /// <summary>
@@ -90,10 +96,12 @@ namespace Adyen.Service.Checkout
         /// <param name="idempotencyKey">A unique identifier for the message with a maximum of 64 characters (we recommend a UUID).</param>
         /// <param name="createPaymentLinkRequest"></param>
         /// <param name="requestOptions">Additional request options.</param>
+        /// <param name="cancellationToken"></param>
         /// <returns>PaymentLinkResponse</returns>
-        public PaymentLinkResponse CreatePaymentLink(CreatePaymentLinkRequest createPaymentLinkRequest, RequestOptions requestOptions = default)
+        public PaymentLinkResponse PaymentLinks(CreatePaymentLinkRequest createPaymentLinkRequest, RequestOptions requestOptions = default
+)
         {
-            return CreatePaymentLinkAsync(createPaymentLinkRequest, requestOptions).GetAwaiter().GetResult();
+            return PaymentLinksAsync(createPaymentLinkRequest, requestOptions).GetAwaiter().GetResult();
         }
 
         /// <summary>
@@ -102,12 +110,13 @@ namespace Adyen.Service.Checkout
         /// <param name="idempotencyKey">A unique identifier for the message with a maximum of 64 characters (we recommend a UUID).</param>
         /// <param name="createPaymentLinkRequest"></param>
         /// <param name="requestOptions">Additional request options.</param>
+        /// <param name="cancellationToken"></param>
         /// <returns>Task of PaymentLinkResponse</returns>
-        public async Task<PaymentLinkResponse> CreatePaymentLinkAsync(CreatePaymentLinkRequest createPaymentLinkRequest, RequestOptions requestOptions = default)
+        public async Task<PaymentLinkResponse> PaymentLinksAsync(CreatePaymentLinkRequest createPaymentLinkRequest, RequestOptions requestOptions = default, CancellationToken cancellationToken = default)
         {
             var endpoint = _baseUrl + "/paymentLinks";
             var resource = new ServiceResource(this, endpoint);
-            return await resource.RequestAsync<PaymentLinkResponse>(createPaymentLinkRequest.ToJson(), requestOptions, new HttpMethod("POST"));
+            return await resource.RequestAsync<PaymentLinkResponse>(createPaymentLinkRequest.ToJson(), requestOptions, new HttpMethod("POST"), cancellationToken);
         }
 
     }

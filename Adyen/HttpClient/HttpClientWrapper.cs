@@ -28,10 +28,12 @@ using System;
 using System.Collections.Generic;
 using System.Net.Http;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Web;
 using Adyen.HttpClient.Interfaces;
 using Adyen.Model;
+using Adyen.Model.Payments;
 
 namespace Adyen.HttpClient
 {
@@ -53,10 +55,10 @@ namespace Adyen.HttpClient
             return RequestAsync(endpoint, requestBody, requestOptions,  httpMethod).ConfigureAwait(false).GetAwaiter().GetResult();
         }
 
-        public async Task<string> RequestAsync(string endpoint, string requestBody, RequestOptions requestOptions = null, HttpMethod httpMethod = null)
+        public async Task<string> RequestAsync(string endpoint, string requestBody, RequestOptions requestOptions = null, HttpMethod httpMethod = null, CancellationToken cancellationToken = default)
         {
             using (var request = GetHttpRequestMessage(endpoint, requestBody, requestOptions, httpMethod))
-            using (var httpResponseMessage = await _httpClient.SendAsync(request))
+            using (var httpResponseMessage = await _httpClient.SendAsync(request, cancellationToken))
             {
                 var responseText = await httpResponseMessage.Content.ReadAsStringAsync();
                 if(httpResponseMessage.IsSuccessStatusCode)
