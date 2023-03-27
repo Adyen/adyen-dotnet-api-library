@@ -40,7 +40,6 @@ namespace Adyen.Service.Checkout
         /// <param name="idempotencyKey">A unique identifier for the message with a maximum of 64 characters (we recommend a UUID).</param>
         /// <param name="createApplePaySessionRequest"></param>
         /// <param name="requestOptions">Additional request options.</param>
-        /// <param name="cancellationToken"></param>
         /// <returns>ApplePaySessionResponse</returns>
         public ApplePaySessionResponse GetApplePaySession(CreateApplePaySessionRequest createApplePaySessionRequest, RequestOptions requestOptions = default
 )
@@ -54,7 +53,7 @@ namespace Adyen.Service.Checkout
         /// <param name="idempotencyKey">A unique identifier for the message with a maximum of 64 characters (we recommend a UUID).</param>
         /// <param name="createApplePaySessionRequest"></param>
         /// <param name="requestOptions">Additional request options.</param>
-        /// <param name="cancellationToken"></param>
+        /// <param name="cancellationToken"> A CancellationToken enables cooperative cancellation between threads, thread pool work items, or Task objects.</param>
         /// <returns>Task of ApplePaySessionResponse</returns>
         public async Task<ApplePaySessionResponse> GetApplePaySessionAsync(CreateApplePaySessionRequest createApplePaySessionRequest, RequestOptions requestOptions = default, CancellationToken cancellationToken = default)
         {
@@ -69,7 +68,6 @@ namespace Adyen.Service.Checkout
         /// <param name="idempotencyKey">A unique identifier for the message with a maximum of 64 characters (we recommend a UUID).</param>
         /// <param name="checkoutUtilityRequest"></param>
         /// <param name="requestOptions">Additional request options.</param>
-        /// <param name="cancellationToken"></param>
         /// <returns>CheckoutUtilityResponse</returns>
         [Obsolete]
         public CheckoutUtilityResponse OriginKeys(CheckoutUtilityRequest checkoutUtilityRequest, RequestOptions requestOptions = default
@@ -84,7 +82,7 @@ namespace Adyen.Service.Checkout
         /// <param name="idempotencyKey">A unique identifier for the message with a maximum of 64 characters (we recommend a UUID).</param>
         /// <param name="checkoutUtilityRequest"></param>
         /// <param name="requestOptions">Additional request options.</param>
-        /// <param name="cancellationToken"></param>
+        /// <param name="cancellationToken"> A CancellationToken enables cooperative cancellation between threads, thread pool work items, or Task objects.</param>
         /// <returns>Task of CheckoutUtilityResponse</returns>
         [Obsolete]
         public async Task<CheckoutUtilityResponse> OriginKeysAsync(CheckoutUtilityRequest checkoutUtilityRequest, RequestOptions requestOptions = default, CancellationToken cancellationToken = default)

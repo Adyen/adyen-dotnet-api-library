@@ -41,7 +41,6 @@ namespace Adyen.Service.Checkout
         /// <param name="shopperReference">Your reference to uniquely identify this shopper, for example user ID or account ID. Minimum length: 3 characters. &gt; Your reference must not include personally identifiable information (PII), for example name or email address.</param>
         /// <param name="merchantAccount">Your merchant account.</param>
         /// <param name="requestOptions">Additional request options.</param>
-        /// <param name="cancellationToken"></param>
         /// <returns>StoredPaymentMethodResource</returns>
         public StoredPaymentMethodResource DeleteTokenForStoredPaymentDetails(string recurringId, string shopperReference = default, string merchantAccount = default, RequestOptions requestOptions = default
 )
@@ -56,7 +55,7 @@ namespace Adyen.Service.Checkout
         /// <param name="shopperReference">Your reference to uniquely identify this shopper, for example user ID or account ID. Minimum length: 3 characters. &gt; Your reference must not include personally identifiable information (PII), for example name or email address.</param>
         /// <param name="merchantAccount">Your merchant account.</param>
         /// <param name="requestOptions">Additional request options.</param>
-        /// <param name="cancellationToken"></param>
+        /// <param name="cancellationToken"> A CancellationToken enables cooperative cancellation between threads, thread pool work items, or Task objects.</param>
         /// <returns>Task of StoredPaymentMethodResource</returns>
         public async Task<StoredPaymentMethodResource> DeleteTokenForStoredPaymentDetailsAsync(string recurringId, string shopperReference = default, string merchantAccount = default, RequestOptions requestOptions = default, CancellationToken cancellationToken = default)
         {
@@ -75,7 +74,6 @@ namespace Adyen.Service.Checkout
         /// <param name="shopperReference">Your reference to uniquely identify this shopper, for example user ID or account ID. Minimum length: 3 characters. &gt; Your reference must not include personally identifiable information (PII), for example name or email address.</param>
         /// <param name="merchantAccount">Your merchant account.</param>
         /// <param name="requestOptions">Additional request options.</param>
-        /// <param name="cancellationToken"></param>
         /// <returns>ListStoredPaymentMethodsResponse</returns>
         public ListStoredPaymentMethodsResponse GetTokensForStoredPaymentDetails(string shopperReference = default, string merchantAccount = default, RequestOptions requestOptions = default
 )
@@ -89,7 +87,7 @@ namespace Adyen.Service.Checkout
         /// <param name="shopperReference">Your reference to uniquely identify this shopper, for example user ID or account ID. Minimum length: 3 characters. &gt; Your reference must not include personally identifiable information (PII), for example name or email address.</param>
         /// <param name="merchantAccount">Your merchant account.</param>
         /// <param name="requestOptions">Additional request options.</param>
-        /// <param name="cancellationToken"></param>
+        /// <param name="cancellationToken"> A CancellationToken enables cooperative cancellation between threads, thread pool work items, or Task objects.</param>
         /// <returns>Task of ListStoredPaymentMethodsResponse</returns>
         public async Task<ListStoredPaymentMethodsResponse> GetTokensForStoredPaymentDetailsAsync(string shopperReference = default, string merchantAccount = default, RequestOptions requestOptions = default, CancellationToken cancellationToken = default)
         {

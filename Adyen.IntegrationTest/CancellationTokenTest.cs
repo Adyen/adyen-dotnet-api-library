@@ -22,7 +22,7 @@ namespace Adyen.IntegrationTest
                 HttpClient = new MyDelayedClient(new Config(), new System.Net.Http.HttpClient())
             };
             var cancellationTokenSource = new CancellationTokenSource();
-            cancellationTokenSource.CancelAfter(1);
+            cancellationTokenSource.CancelAfter(1000);
 
             try
             {

@@ -40,7 +40,6 @@ namespace Adyen.Service.Checkout
         /// <param name="idempotencyKey">A unique identifier for the message with a maximum of 64 characters (we recommend a UUID).</param>
         /// <param name="paymentSetupRequest"></param>
         /// <param name="requestOptions">Additional request options.</param>
-        /// <param name="cancellationToken"></param>
         /// <returns>PaymentSetupResponse</returns>
         [Obsolete]
         public PaymentSetupResponse PaymentSession(PaymentSetupRequest paymentSetupRequest, RequestOptions requestOptions = default
@@ -55,7 +54,7 @@ namespace Adyen.Service.Checkout
         /// <param name="idempotencyKey">A unique identifier for the message with a maximum of 64 characters (we recommend a UUID).</param>
         /// <param name="paymentSetupRequest"></param>
         /// <param name="requestOptions">Additional request options.</param>
-        /// <param name="cancellationToken"></param>
+        /// <param name="cancellationToken"> A CancellationToken enables cooperative cancellation between threads, thread pool work items, or Task objects.</param>
         /// <returns>Task of PaymentSetupResponse</returns>
         [Obsolete]
         public async Task<PaymentSetupResponse> PaymentSessionAsync(PaymentSetupRequest paymentSetupRequest, RequestOptions requestOptions = default, CancellationToken cancellationToken = default)
@@ -71,7 +70,6 @@ namespace Adyen.Service.Checkout
         /// <param name="idempotencyKey">A unique identifier for the message with a maximum of 64 characters (we recommend a UUID).</param>
         /// <param name="paymentVerificationRequest"></param>
         /// <param name="requestOptions">Additional request options.</param>
-        /// <param name="cancellationToken"></param>
         /// <returns>PaymentVerificationResponse</returns>
         [Obsolete]
         public PaymentVerificationResponse VerifyPaymentResult(PaymentVerificationRequest paymentVerificationRequest, RequestOptions requestOptions = default
@@ -86,7 +84,7 @@ namespace Adyen.Service.Checkout
         /// <param name="idempotencyKey">A unique identifier for the message with a maximum of 64 characters (we recommend a UUID).</param>
         /// <param name="paymentVerificationRequest"></param>
         /// <param name="requestOptions">Additional request options.</param>
-        /// <param name="cancellationToken"></param>
+        /// <param name="cancellationToken"> A CancellationToken enables cooperative cancellation between threads, thread pool work items, or Task objects.</param>
         /// <returns>Task of PaymentVerificationResponse</returns>
         [Obsolete]
         public async Task<PaymentVerificationResponse> VerifyPaymentResultAsync(PaymentVerificationRequest paymentVerificationRequest, RequestOptions requestOptions = default, CancellationToken cancellationToken = default)
