@@ -21,6 +21,8 @@
 //  */
 #endregion
 
+using System;
+using System.Collections.Generic;
 using Adyen.ApiSerialization;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Adyen.Model.Nexo;
@@ -72,6 +74,28 @@ namespace Adyen.Test
             var paymentResponseOnline = (PaymentResponse)saleToMessageOnline.MessagePayload;
             Assert.AreEqual(paymentResponseOnline.PaymentResult.AuthenticationMethod[0], AuthenticationMethodType.OnLinePIN);
             Assert.AreEqual(paymentResponseOnLine.PaymentResult.AuthenticationMethod[0], AuthenticationMethodType.OnLinePIN);
+        }
+        
+        [TestMethod]
+        public void CheckoutLongSerializationTest()
+        {
+            var checkoutSessionRequest = new CreateCheckoutSessionRequest
+            {
+                MerchantAccount = "merchantAccount",
+                Reference = "TestReference",
+                ReturnUrl = "http://test-url.com",
+                Amount = new Model.Checkout.Amount("EUR", 10000L),
+                Channel =CreateCheckoutSessionRequest.ChannelEnum.Web,
+                CountryCode = "NL",
+                LineItems = new List<LineItem>()
+                {
+                    new LineItem(quantity: 1, amountIncludingTax: 5000, description: "description1", amountExcludingTax: 0),
+                    new LineItem(quantity: 1, amountIncludingTax: 5000, description: "description2", taxAmount: 0)
+                }
+            }.ToJson();
+            // Assert that Long parameters set to zero are actually serialised (just like Int)
+            Assert.IsTrue(checkoutSessionRequest.Contains("amountExcludingTax\": 0,"));
+            Assert.IsTrue(checkoutSessionRequest.Contains("taxAmount\": 0"));
         }
 
         private static string GetSaleToPoiMessage(string online)
