@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFrameworks>net6.0</TargetFrameworks>
+    <TargetFrameworks>net6.0;netstandard2.0</TargetFrameworks>
 
     <IsPackable>false</IsPackable>
 
@@ -11,7 +11,9 @@
 
     <Version>10.0.0-beta</Version>
 
-    <LangVersion>7.2</LangVersion>
+    <LangVersion>10</LangVersion>
+
+    <Nullable>enable</Nullable>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
