@@ -41,8 +41,7 @@ namespace Adyen.Service.Checkout
         /// <param name="createApplePaySessionRequest"></param>
         /// <param name="requestOptions">Additional request options.</param>
         /// <returns>ApplePaySessionResponse</returns>
-        public ApplePaySessionResponse GetApplePaySession(CreateApplePaySessionRequest createApplePaySessionRequest, RequestOptions requestOptions = default
-)
+        public ApplePaySessionResponse GetApplePaySession(CreateApplePaySessionRequest createApplePaySessionRequest, RequestOptions requestOptions = default)
         {
             return GetApplePaySessionAsync(createApplePaySessionRequest, requestOptions).GetAwaiter().GetResult();
         }
@@ -70,8 +69,7 @@ namespace Adyen.Service.Checkout
         /// <param name="requestOptions">Additional request options.</param>
         /// <returns>CheckoutUtilityResponse</returns>
         [Obsolete]
-        public CheckoutUtilityResponse OriginKeys(CheckoutUtilityRequest checkoutUtilityRequest, RequestOptions requestOptions = default
-)
+        public CheckoutUtilityResponse OriginKeys(CheckoutUtilityRequest checkoutUtilityRequest, RequestOptions requestOptions = default)
         {
             return OriginKeysAsync(checkoutUtilityRequest, requestOptions).GetAwaiter().GetResult();
         }

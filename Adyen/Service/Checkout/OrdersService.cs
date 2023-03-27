@@ -41,8 +41,7 @@ namespace Adyen.Service.Checkout
         /// <param name="checkoutCreateOrderRequest"></param>
         /// <param name="requestOptions">Additional request options.</param>
         /// <returns>CheckoutCreateOrderResponse</returns>
-        public CheckoutCreateOrderResponse Orders(CheckoutCreateOrderRequest checkoutCreateOrderRequest, RequestOptions requestOptions = default
-)
+        public CheckoutCreateOrderResponse Orders(CheckoutCreateOrderRequest checkoutCreateOrderRequest, RequestOptions requestOptions = default)
         {
             return OrdersAsync(checkoutCreateOrderRequest, requestOptions).GetAwaiter().GetResult();
         }
@@ -69,8 +68,7 @@ namespace Adyen.Service.Checkout
         /// <param name="checkoutCancelOrderRequest"></param>
         /// <param name="requestOptions">Additional request options.</param>
         /// <returns>CheckoutCancelOrderResponse</returns>
-        public CheckoutCancelOrderResponse CancelOrder(CheckoutCancelOrderRequest checkoutCancelOrderRequest, RequestOptions requestOptions = default
-)
+        public CheckoutCancelOrderResponse CancelOrder(CheckoutCancelOrderRequest checkoutCancelOrderRequest, RequestOptions requestOptions = default)
         {
             return CancelOrderAsync(checkoutCancelOrderRequest, requestOptions).GetAwaiter().GetResult();
         }
@@ -97,8 +95,7 @@ namespace Adyen.Service.Checkout
         /// <param name="checkoutBalanceCheckRequest"></param>
         /// <param name="requestOptions">Additional request options.</param>
         /// <returns>CheckoutBalanceCheckResponse</returns>
-        public CheckoutBalanceCheckResponse GetBalanceOfGiftCard(CheckoutBalanceCheckRequest checkoutBalanceCheckRequest, RequestOptions requestOptions = default
-)
+        public CheckoutBalanceCheckResponse GetBalanceOfGiftCard(CheckoutBalanceCheckRequest checkoutBalanceCheckRequest, RequestOptions requestOptions = default)
         {
             return GetBalanceOfGiftCardAsync(checkoutBalanceCheckRequest, requestOptions).GetAwaiter().GetResult();
         }

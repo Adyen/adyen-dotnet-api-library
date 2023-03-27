@@ -42,8 +42,7 @@ namespace Adyen.Service.Checkout
         /// <param name="requestOptions">Additional request options.</param>
         /// <returns>PaymentSetupResponse</returns>
         [Obsolete]
-        public PaymentSetupResponse PaymentSession(PaymentSetupRequest paymentSetupRequest, RequestOptions requestOptions = default
-)
+        public PaymentSetupResponse PaymentSession(PaymentSetupRequest paymentSetupRequest, RequestOptions requestOptions = default)
         {
             return PaymentSessionAsync(paymentSetupRequest, requestOptions).GetAwaiter().GetResult();
         }
@@ -72,8 +71,7 @@ namespace Adyen.Service.Checkout
         /// <param name="requestOptions">Additional request options.</param>
         /// <returns>PaymentVerificationResponse</returns>
         [Obsolete]
-        public PaymentVerificationResponse VerifyPaymentResult(PaymentVerificationRequest paymentVerificationRequest, RequestOptions requestOptions = default
-)
+        public PaymentVerificationResponse VerifyPaymentResult(PaymentVerificationRequest paymentVerificationRequest, RequestOptions requestOptions = default)
         {
             return VerifyPaymentResultAsync(paymentVerificationRequest, requestOptions).GetAwaiter().GetResult();
         }

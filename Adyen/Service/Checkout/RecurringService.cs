@@ -42,8 +42,7 @@ namespace Adyen.Service.Checkout
         /// <param name="merchantAccount">Your merchant account.</param>
         /// <param name="requestOptions">Additional request options.</param>
         /// <returns>StoredPaymentMethodResource</returns>
-        public StoredPaymentMethodResource DeleteTokenForStoredPaymentDetails(string recurringId, string shopperReference = default, string merchantAccount = default, RequestOptions requestOptions = default
-)
+        public StoredPaymentMethodResource DeleteTokenForStoredPaymentDetails(string recurringId, string shopperReference = default, string merchantAccount = default, RequestOptions requestOptions = default)
         {
             return DeleteTokenForStoredPaymentDetailsAsync(recurringId, shopperReference, merchantAccount, requestOptions).GetAwaiter().GetResult();
         }
@@ -75,8 +74,7 @@ namespace Adyen.Service.Checkout
         /// <param name="merchantAccount">Your merchant account.</param>
         /// <param name="requestOptions">Additional request options.</param>
         /// <returns>ListStoredPaymentMethodsResponse</returns>
-        public ListStoredPaymentMethodsResponse GetTokensForStoredPaymentDetails(string shopperReference = default, string merchantAccount = default, RequestOptions requestOptions = default
-)
+        public ListStoredPaymentMethodsResponse GetTokensForStoredPaymentDetails(string shopperReference = default, string merchantAccount = default, RequestOptions requestOptions = default)
         {
             return GetTokensForStoredPaymentDetailsAsync(shopperReference, merchantAccount, requestOptions).GetAwaiter().GetResult();
         }

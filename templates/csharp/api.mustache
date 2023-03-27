@@ -22,7 +22,7 @@ namespace {{packageName}}.{{apiPackage}}
         
         public {{classname}}(Client client) : base(client)
         {
-            _baseUrl = client.Config.CheckoutEndpoint + "/" + ClientConfig.CheckoutVersion;
+            _baseUrl = client.Config.CheckoutEndpoint + "/" + ClientConfig.CheckoutApiVersion;
         }
     
         {{#operation}}

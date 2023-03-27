@@ -41,8 +41,7 @@ namespace Adyen.Service.Checkout
         /// <param name="cardDetailsRequest"></param>
         /// <param name="requestOptions">Additional request options.</param>
         /// <returns>CardDetailsResponse</returns>
-        public CardDetailsResponse CardDetails(CardDetailsRequest cardDetailsRequest, RequestOptions requestOptions = default
-)
+        public CardDetailsResponse CardDetails(CardDetailsRequest cardDetailsRequest, RequestOptions requestOptions = default)
         {
             return CardDetailsAsync(cardDetailsRequest, requestOptions).GetAwaiter().GetResult();
         }
@@ -69,8 +68,7 @@ namespace Adyen.Service.Checkout
         /// <param name="paymentDonationRequest"></param>
         /// <param name="requestOptions">Additional request options.</param>
         /// <returns>DonationResponse</returns>
-        public DonationResponse Donations(PaymentDonationRequest paymentDonationRequest, RequestOptions requestOptions = default
-)
+        public DonationResponse Donations(PaymentDonationRequest paymentDonationRequest, RequestOptions requestOptions = default)
         {
             return DonationsAsync(paymentDonationRequest, requestOptions).GetAwaiter().GetResult();
         }
@@ -97,8 +95,7 @@ namespace Adyen.Service.Checkout
         /// <param name="paymentMethodsRequest"></param>
         /// <param name="requestOptions">Additional request options.</param>
         /// <returns>PaymentMethodsResponse</returns>
-        public PaymentMethodsResponse PaymentMethods(PaymentMethodsRequest paymentMethodsRequest, RequestOptions requestOptions = default
-)
+        public PaymentMethodsResponse PaymentMethods(PaymentMethodsRequest paymentMethodsRequest, RequestOptions requestOptions = default)
         {
             return PaymentMethodsAsync(paymentMethodsRequest, requestOptions).GetAwaiter().GetResult();
         }
@@ -125,8 +122,7 @@ namespace Adyen.Service.Checkout
         /// <param name="paymentRequest"></param>
         /// <param name="requestOptions">Additional request options.</param>
         /// <returns>PaymentResponse</returns>
-        public PaymentResponse Payments(PaymentRequest paymentRequest, RequestOptions requestOptions = default
-)
+        public PaymentResponse Payments(PaymentRequest paymentRequest, RequestOptions requestOptions = default)
         {
             return PaymentsAsync(paymentRequest, requestOptions).GetAwaiter().GetResult();
         }
@@ -153,8 +149,7 @@ namespace Adyen.Service.Checkout
         /// <param name="detailsRequest"></param>
         /// <param name="requestOptions">Additional request options.</param>
         /// <returns>PaymentDetailsResponse</returns>
-        public PaymentDetailsResponse PaymentsDetails(DetailsRequest detailsRequest, RequestOptions requestOptions = default
-)
+        public PaymentDetailsResponse PaymentsDetails(DetailsRequest detailsRequest, RequestOptions requestOptions = default)
         {
             return PaymentsDetailsAsync(detailsRequest, requestOptions).GetAwaiter().GetResult();
         }
@@ -181,8 +176,7 @@ namespace Adyen.Service.Checkout
         /// <param name="createCheckoutSessionRequest"></param>
         /// <param name="requestOptions">Additional request options.</param>
         /// <returns>CreateCheckoutSessionResponse</returns>
-        public CreateCheckoutSessionResponse Sessions(CreateCheckoutSessionRequest createCheckoutSessionRequest, RequestOptions requestOptions = default
-)
+        public CreateCheckoutSessionResponse Sessions(CreateCheckoutSessionRequest createCheckoutSessionRequest, RequestOptions requestOptions = default)
         {
             return SessionsAsync(createCheckoutSessionRequest, requestOptions).GetAwaiter().GetResult();
         }

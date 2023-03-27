@@ -40,8 +40,7 @@ namespace Adyen.Service.Checkout
         /// <param name="linkId">Unique identifier of the payment link.</param>
         /// <param name="requestOptions">Additional request options.</param>
         /// <returns>PaymentLinkResponse</returns>
-        public PaymentLinkResponse GetPaymentLink(string linkId, RequestOptions requestOptions = default
-)
+        public PaymentLinkResponse GetPaymentLink(string linkId, RequestOptions requestOptions = default)
         {
             return GetPaymentLinkAsync(linkId, requestOptions).GetAwaiter().GetResult();
         }
@@ -67,8 +66,7 @@ namespace Adyen.Service.Checkout
         /// <param name="updatePaymentLinkRequest"></param>
         /// <param name="requestOptions">Additional request options.</param>
         /// <returns>PaymentLinkResponse</returns>
-        public PaymentLinkResponse UpdatePaymentLink(string linkId, UpdatePaymentLinkRequest updatePaymentLinkRequest, RequestOptions requestOptions = default
-)
+        public PaymentLinkResponse UpdatePaymentLink(string linkId, UpdatePaymentLinkRequest updatePaymentLinkRequest, RequestOptions requestOptions = default)
         {
             return UpdatePaymentLinkAsync(linkId, updatePaymentLinkRequest, requestOptions).GetAwaiter().GetResult();
         }
@@ -95,8 +93,7 @@ namespace Adyen.Service.Checkout
         /// <param name="createPaymentLinkRequest"></param>
         /// <param name="requestOptions">Additional request options.</param>
         /// <returns>PaymentLinkResponse</returns>
-        public PaymentLinkResponse PaymentLinks(CreatePaymentLinkRequest createPaymentLinkRequest, RequestOptions requestOptions = default
-)
+        public PaymentLinkResponse PaymentLinks(CreatePaymentLinkRequest createPaymentLinkRequest, RequestOptions requestOptions = default)
         {
             return PaymentLinksAsync(createPaymentLinkRequest, requestOptions).GetAwaiter().GetResult();
         }

@@ -41,8 +41,7 @@ namespace Adyen.Service.Checkout
         /// <param name="createStandalonePaymentCancelRequest"></param>
         /// <param name="requestOptions">Additional request options.</param>
         /// <returns>StandalonePaymentCancelResource</returns>
-        public StandalonePaymentCancelResource CancelAuthorisedPayment(CreateStandalonePaymentCancelRequest createStandalonePaymentCancelRequest, RequestOptions requestOptions = default
-)
+        public StandalonePaymentCancelResource CancelAuthorisedPayment(CreateStandalonePaymentCancelRequest createStandalonePaymentCancelRequest, RequestOptions requestOptions = default)
         {
             return CancelAuthorisedPaymentAsync(createStandalonePaymentCancelRequest, requestOptions).GetAwaiter().GetResult();
         }
@@ -70,8 +69,7 @@ namespace Adyen.Service.Checkout
         /// <param name="createPaymentAmountUpdateRequest"></param>
         /// <param name="requestOptions">Additional request options.</param>
         /// <returns>PaymentAmountUpdateResource</returns>
-        public PaymentAmountUpdateResource UpdateAuthorisedAmount(string paymentPspReference, CreatePaymentAmountUpdateRequest createPaymentAmountUpdateRequest, RequestOptions requestOptions = default
-)
+        public PaymentAmountUpdateResource UpdateAuthorisedAmount(string paymentPspReference, CreatePaymentAmountUpdateRequest createPaymentAmountUpdateRequest, RequestOptions requestOptions = default)
         {
             return UpdateAuthorisedAmountAsync(paymentPspReference, createPaymentAmountUpdateRequest, requestOptions).GetAwaiter().GetResult();
         }
@@ -100,8 +98,7 @@ namespace Adyen.Service.Checkout
         /// <param name="createPaymentCancelRequest"></param>
         /// <param name="requestOptions">Additional request options.</param>
         /// <returns>PaymentCancelResource</returns>
-        public PaymentCancelResource CancelAuthorisedPaymentByPspReference(string paymentPspReference, CreatePaymentCancelRequest createPaymentCancelRequest, RequestOptions requestOptions = default
-)
+        public PaymentCancelResource CancelAuthorisedPaymentByPspReference(string paymentPspReference, CreatePaymentCancelRequest createPaymentCancelRequest, RequestOptions requestOptions = default)
         {
             return CancelAuthorisedPaymentByPspReferenceAsync(paymentPspReference, createPaymentCancelRequest, requestOptions).GetAwaiter().GetResult();
         }
@@ -130,8 +127,7 @@ namespace Adyen.Service.Checkout
         /// <param name="createPaymentCaptureRequest"></param>
         /// <param name="requestOptions">Additional request options.</param>
         /// <returns>PaymentCaptureResource</returns>
-        public PaymentCaptureResource CaptureAuthorisedPayment(string paymentPspReference, CreatePaymentCaptureRequest createPaymentCaptureRequest, RequestOptions requestOptions = default
-)
+        public PaymentCaptureResource CaptureAuthorisedPayment(string paymentPspReference, CreatePaymentCaptureRequest createPaymentCaptureRequest, RequestOptions requestOptions = default)
         {
             return CaptureAuthorisedPaymentAsync(paymentPspReference, createPaymentCaptureRequest, requestOptions).GetAwaiter().GetResult();
         }
@@ -160,8 +156,7 @@ namespace Adyen.Service.Checkout
         /// <param name="createPaymentRefundRequest"></param>
         /// <param name="requestOptions">Additional request options.</param>
         /// <returns>PaymentRefundResource</returns>
-        public PaymentRefundResource RefundCapturedPayment(string paymentPspReference, CreatePaymentRefundRequest createPaymentRefundRequest, RequestOptions requestOptions = default
-)
+        public PaymentRefundResource RefundCapturedPayment(string paymentPspReference, CreatePaymentRefundRequest createPaymentRefundRequest, RequestOptions requestOptions = default)
         {
             return RefundCapturedPaymentAsync(paymentPspReference, createPaymentRefundRequest, requestOptions).GetAwaiter().GetResult();
         }
@@ -190,8 +185,7 @@ namespace Adyen.Service.Checkout
         /// <param name="createPaymentReversalRequest"></param>
         /// <param name="requestOptions">Additional request options.</param>
         /// <returns>PaymentReversalResource</returns>
-        public PaymentReversalResource RefundOrCancelPayment(string paymentPspReference, CreatePaymentReversalRequest createPaymentReversalRequest, RequestOptions requestOptions = default
-)
+        public PaymentReversalResource RefundOrCancelPayment(string paymentPspReference, CreatePaymentReversalRequest createPaymentReversalRequest, RequestOptions requestOptions = default)
         {
             return RefundOrCancelPaymentAsync(paymentPspReference, createPaymentReversalRequest, requestOptions).GetAwaiter().GetResult();
         }
