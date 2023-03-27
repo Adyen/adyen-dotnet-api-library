@@ -53,7 +53,7 @@ namespace Adyen.Model.Checkout
         /// <param name="taxAmount">Tax amount, in minor units..</param>
         /// <param name="taxPercentage">Tax percentage, in minor units..</param>
         /// <param name="upc">Universal Product Code..</param>
-        public LineItem(long amountExcludingTax = default(long), long amountIncludingTax = default(long), string brand = default(string), string color = default(string), string description = default(string), string id = default(string), string imageUrl = default(string), string itemCategory = default(string), string manufacturer = default(string), string productUrl = default(string), long quantity = default(long), string receiverEmail = default(string), string size = default(string), string sku = default(string), long taxAmount = default(long), long taxPercentage = default(long), string upc = default(string))
+        public LineItem(long? amountExcludingTax = default(long?), long? amountIncludingTax = default(long?), string brand = default(string), string color = default(string), string description = default(string), string id = default(string), string imageUrl = default(string), string itemCategory = default(string), string manufacturer = default(string), string productUrl = default(string), long? quantity = default(long?), string receiverEmail = default(string), string size = default(string), string sku = default(string), long? taxAmount = default(long?), long? taxPercentage = default(long?), string upc = default(string))
         {
             this.AmountExcludingTax = amountExcludingTax;
             this.AmountIncludingTax = amountIncludingTax;
@@ -79,14 +79,14 @@ namespace Adyen.Model.Checkout
         /// </summary>
         /// <value>Item amount excluding the tax, in minor units.</value>
         [DataMember(Name = "amountExcludingTax", EmitDefaultValue = false)]
-        public long AmountExcludingTax { get; set; }
+        public long? AmountExcludingTax { get; set; }
 
         /// <summary>
         /// Item amount including the tax, in minor units.
         /// </summary>
         /// <value>Item amount including the tax, in minor units.</value>
         [DataMember(Name = "amountIncludingTax", EmitDefaultValue = false)]
-        public long AmountIncludingTax { get; set; }
+        public long? AmountIncludingTax { get; set; }
 
         /// <summary>
         /// Brand of the item.
@@ -149,7 +149,7 @@ namespace Adyen.Model.Checkout
         /// </summary>
         /// <value>Number of items.</value>
         [DataMember(Name = "quantity", EmitDefaultValue = false)]
-        public long Quantity { get; set; }
+        public long? Quantity { get; set; }
 
         /// <summary>
         /// Email associated with the given product in the basket (usually in electronic gift cards).
@@ -177,14 +177,14 @@ namespace Adyen.Model.Checkout
         /// </summary>
         /// <value>Tax amount, in minor units.</value>
         [DataMember(Name = "taxAmount", EmitDefaultValue = false)]
-        public long TaxAmount { get; set; }
+        public long? TaxAmount { get; set; }
 
         /// <summary>
         /// Tax percentage, in minor units.
         /// </summary>
         /// <value>Tax percentage, in minor units.</value>
         [DataMember(Name = "taxPercentage", EmitDefaultValue = false)]
-        public long TaxPercentage { get; set; }
+        public long? TaxPercentage { get; set; }
 
         /// <summary>
         /// Universal Product Code.

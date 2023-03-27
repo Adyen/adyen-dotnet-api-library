@@ -128,7 +128,7 @@
     {{#hasOnlyReadOnly}}
         [JsonConstructorAttribute]
     {{/hasOnlyReadOnly}}
-        public {{classname}}({{#readWriteVars}}{{{datatypeWithEnum}}}{{#isInteger}}?{{/isInteger}}{{#isEnum}}{{^isContainer}}{{^required}}?{{/required}}{{/isContainer}}{{/isEnum}} {{#lambda.camelcase_param}}{{name}}{{/lambda.camelcase_param}} = {{#defaultValue}}{{^isDateTime}}{{{defaultValue}}}{{/isDateTime}}{{#isDateTime}}default({{{datatypeWithEnum}}}){{/isDateTime}}{{/defaultValue}}{{^defaultValue}}default({{{datatypeWithEnum}}}{{#isInteger}}?{{/isInteger}}{{#isEnum}}{{^isContainer}}{{^required}}?{{/required}}{{/isContainer}}{{/isEnum}}){{/defaultValue}}{{^-last}}, {{/-last}}{{/readWriteVars}}){{#parent}} : base({{#parentVars}}{{#lambda.camelcase_param}}{{name}}{{/lambda.camelcase_param}}{{^-last}}, {{/-last}}{{/parentVars}}){{/parent}}
+        public {{classname}}({{#readWriteVars}}{{{datatypeWithEnum}}}{{#isInteger}}?{{/isInteger}}{{#isLong}}?{{/isLong}}{{#isEnum}}{{^isContainer}}{{^required}}?{{/required}}{{/isContainer}}{{/isEnum}} {{#lambda.camelcase_param}}{{name}}{{/lambda.camelcase_param}} = {{#defaultValue}}{{^isDateTime}}{{{defaultValue}}}{{/isDateTime}}{{#isDateTime}}default({{{datatypeWithEnum}}}){{/isDateTime}}{{/defaultValue}}{{^defaultValue}}default({{{datatypeWithEnum}}}{{#isInteger}}?{{/isInteger}}{{#isLong}}?{{/isLong}}{{#isEnum}}{{^isContainer}}{{^required}}?{{/required}}{{/isContainer}}{{/isEnum}}){{/defaultValue}}{{^-last}}, {{/-last}}{{/readWriteVars}}){{#parent}} : base({{#parentVars}}{{#lambda.camelcase_param}}{{name}}{{/lambda.camelcase_param}}{{^-last}}, {{/-last}}{{/parentVars}}){{/parent}}
         {
             {{#vars}}
             {{^isInherited}}
@@ -205,7 +205,7 @@
         {{#deprecated}}
         [Obsolete]
         {{/deprecated}}
-        public {{{dataType}}}{{#isInteger}}?{{/isInteger}} {{name}} { get; {{#isReadOnly}}private {{/isReadOnly}}set; }
+        public {{{dataType}}}{{#isInteger}}?{{/isInteger}}{{#isLong}}?{{/isLong}} {{name}} { get; {{#isReadOnly}}private {{/isReadOnly}}set; }
 
         {{#isReadOnly}}
         /// <summary>
