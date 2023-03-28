@@ -88,7 +88,7 @@ namespace Adyen.Model.Terminal
             sb.Append("  ShopperEmail: ").Append(ShopperEmail).Append("\n");
             sb.Append("  ShopperReference: ").Append(ShopperReference).Append("\n");
             sb.Append("  RecurringContract: ").Append(RecurringContract).Append("\n");
-            sb.Append("  RecurringProcessingModel: ").Append(RecurringContract).Append("\n");
+            sb.Append("  RecurringProcessingModel: ").Append(RecurringProcessingModel).Append("\n");
             sb.Append("  ShopperStatement: ").Append(ShopperStatement).Append("\n");
             sb.Append("  RecurringDetailName: ").Append(RecurringDetailName).Append("\n");
             sb.Append("  RecurringTokenService: ").Append(RecurringTokenService).Append("\n");
