@@ -7,7 +7,7 @@
         {{/description}}
         {{#isString}}
         {{^useGenericHost}}
-        [JsonConverter(typeof(JsonStringEnumConverter))]
+        [JsonConverter(typeof(CustomJsonStringEnumConverter))]
         {{/useGenericHost}}
         {{/isString}}
         {{>visibility}} enum {{datatypeWithEnum}}{{^datatypeWithEnum}}{{classname}}{{/datatypeWithEnum}}{{#vendorExtensions.x-enum-byte}}: byte{{/vendorExtensions.x-enum-byte}}
@@ -18,7 +18,7 @@
             /// Enum {{name}} for value: {{{value}}}
             /// </summary>
             {{#isString}}
-            [JsonPropertyName("{{{value}}}")]
+            [EnumMember(Value="{{{value}}}")]
             {{/isString}}
             {{name}}{{^isString}} = {{{value}}}{{/isString}}{{#isString}} = {{-index}}{{/isString}}{{^-last}},{{/-last}}
 

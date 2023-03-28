@@ -59,7 +59,8 @@
         {{#conditionalSerialization}}
         {{#isReadOnly}}
         [JsonPropertyName("{{baseName}}")]
-        [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]        {{#deprecated}}
+        [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
+        {{#deprecated}}
         [Obsolete]
         {{/deprecated}}
         public {{{complexType}}}{{^complexType}}{{{datatypeWithEnum}}}{{/complexType}}{{^isContainer}}{{^required}}?{{/required}}{{/isContainer}} {{name}} { get; set; }
@@ -76,7 +77,8 @@
 
         {{^isReadOnly}}
         [JsonPropertyName("{{baseName}}")]
-        [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]        {{#deprecated}}
+        [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
+        {{#deprecated}}
         [Obsolete]
         {{/deprecated}}
         public {{{complexType}}}{{^complexType}}{{{datatypeWithEnum}}}{{/complexType}}{{^isContainer}}{{^required}}?{{/required}}{{/isContainer}} {{name}}
@@ -129,7 +131,7 @@
     {{#hasOnlyReadOnly}}
         [JsonConstructorAttribute]
     {{/hasOnlyReadOnly}}
-        public {{classname}}({{#readWriteVars}}{{{datatypeWithEnum}}}{{#isInteger}}?{{/isInteger}}{{#isEnum}}{{^isContainer}}{{^required}}?{{/required}}{{/isContainer}}{{/isEnum}} {{#lambda.camelcase_param}}{{name}}{{/lambda.camelcase_param}} = {{#defaultValue}}{{^isDateTime}}{{{defaultValue}}}{{/isDateTime}}{{#isDateTime}}default({{{datatypeWithEnum}}}){{/isDateTime}}{{/defaultValue}}{{^defaultValue}}default({{{datatypeWithEnum}}}{{#isInteger}}?{{/isInteger}}{{#isEnum}}{{^isContainer}}{{^required}}?{{/required}}{{/isContainer}}{{/isEnum}}){{/defaultValue}}{{^-last}}, {{/-last}}{{/readWriteVars}}){{#parent}} : base({{#parentVars}}{{#lambda.camelcase_param}}{{name}}{{/lambda.camelcase_param}}{{^-last}}, {{/-last}}{{/parentVars}}){{/parent}}
+        public {{classname}}({{#readWriteVars}}{{{datatypeWithEnum}}}{{#isInteger}}?{{/isInteger}}{{#isEnum}}{{^isContainer}}{{^required}}?{{/required}}{{/isContainer}}{{/isEnum}} {{#lambda.camelcase_param}}{{name}}{{/lambda.camelcase_param}} = {{#defaultValue}}{{^isDateTime}}default{{/isDateTime}}{{#isDateTime}}default({{{datatypeWithEnum}}}){{/isDateTime}}{{/defaultValue}}{{^defaultValue}}default({{{datatypeWithEnum}}}{{#isInteger}}?{{/isInteger}}{{#isEnum}}{{^isContainer}}{{^required}}?{{/required}}{{/isContainer}}{{/isEnum}}){{/defaultValue}}{{^-last}}, {{/-last}}{{/readWriteVars}}){{#parent}} : base({{#parentVars}}{{#lambda.camelcase_param}}{{name}}{{/lambda.camelcase_param}}{{^-last}}, {{/-last}}{{/parentVars}}){{/parent}}
         {
             {{#vars}}
             {{^isInherited}}
@@ -200,7 +202,11 @@
         /// <value>{{.}}</value>{{/description}}
         {{^conditionalSerialization}}
         [JsonPropertyName("{{baseName}}")]
-        [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]        {{#isDate}}
+        [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
+        {{#isNumeric}}
+        [JsonNumberHandling(JsonNumberHandling.AllowReadingFromString)]
+        {{/isNumeric}}
+        {{#isDate}}
         [JsonConverter(typeof(OpenAPIDateConverter))]
         {{/isDate}}
         {{#deprecated}}
@@ -223,6 +229,9 @@
         {{#isReadOnly}}
         [JsonPropertyName("{{baseName}}")]
         [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
+        {{#isNumber}}
+        [JsonNumberHandling(JsonNumberHandling.AllowReadingFromString)]
+        {{/isNumber}}
         {{#isDate}}
         [JsonConverter(typeof(OpenAPIDateConverter))]
         {{/isDate}}
