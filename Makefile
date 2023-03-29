@@ -52,6 +52,7 @@ $(services): target/spec $(openapi-generator-jar)
 		--model-package $@ \
 		--skip-validate-spec \
 		--reserved-words-mappings Version=Version \
+		--reserved-words-mappings Configuration=Configuration \
 		--global-property modelDocs=false \
         --global-property modelTests=false \
 		--global-property models,supportingFiles \
@@ -73,6 +74,7 @@ $(full-services): target/spec $(openapi-generator-jar)
 		--api-name-suffix Service \
 		--model-package Model.$@ \
 		--reserved-words-mappings Version=Version \
+		--reserved-words-mappings Configuration=Configuration \
 		--additional-properties=serviceName=$@
 	rm -rf Adyen/Service/$@ Adyen/Model/$@
 	mv target/out/src/Adyen/Service.$@ Adyen/Service/$@
