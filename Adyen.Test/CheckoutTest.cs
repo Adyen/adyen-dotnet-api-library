@@ -702,7 +702,7 @@ namespace Adyen.Test
                     ""street"":""Happy Street""
                 },
                 ""lineItems"":[
-                {
+                { 
                     ""description"":""Shoes"",
                     ""quantity"":""1"",
                     ""amountIncludingTax"":""400"",
@@ -737,7 +737,7 @@ namespace Adyen.Test
                 CreateMockTestClientApiKeyBasedRequestAsync("Mocks/checkout/paymentResponse-3DS-ChallengeShopper.json");
             var checkout = new PaymentsService(client);
             var paymentResponse = checkout.Payments(paymentRequest);
-            Assert.AreEqual(paymentResponse.Action.GetCheckoutThreeDS2Action().Subtype, "threeDS2");
+            Assert.AreEqual(CheckoutThreeDS2Action.TypeEnum.ThreeDS2, paymentResponse.Action.GetCheckoutThreeDS2Action().Type);
         }
 
         [TestMethod]
@@ -807,6 +807,7 @@ namespace Adyen.Test
             var client = CreateMockTestClientApiKeyBasedRequestAsync("Mocks/checkout/sessions-success.json");
             var checkout = new PaymentsService(client);
             var checkoutSessionResponse = checkout.Sessions(checkoutSessionRequest);
+            Assert.AreEqual("session-test-id", checkoutSessionResponse.Id);
             Assert.AreEqual("TestMerchant", checkoutSessionResponse.MerchantAccount);
             Assert.AreEqual("TestReference", checkoutSessionResponse.Reference);
             Assert.AreEqual("http://test-url.com", checkoutSessionResponse.ReturnUrl);

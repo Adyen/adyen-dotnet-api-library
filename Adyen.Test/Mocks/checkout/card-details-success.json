@@ -2,11 +2,11 @@
   "brands": [
     {
       "type": "visa",
-      "supported": "true"
+      "supported": true
     },
     {
       "type": "cartebancaire",
-      "supported": "true"
+      "supported": true
     }
   ]
 }
