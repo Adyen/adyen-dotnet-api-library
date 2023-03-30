@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Net.Http;
 using System.Net.Security;
+using System.Threading;
 using System.Threading.Tasks;
 using Adyen.Model;
 using Newtonsoft.Json;
@@ -32,16 +33,16 @@ namespace Adyen.Service
             return JsonConvert.DeserializeObject<T>(jsonResponse);
         }
 
-        public Task<string> RequestAsync(string json, RequestOptions requestOptions = null, HttpMethod httpMethod = null)
+        public Task<string> RequestAsync(string json, RequestOptions requestOptions = null, HttpMethod httpMethod = null, CancellationToken cancellationToken = default)
         {
             var clientInterface = _abstractService.Client.HttpClient;
-            return clientInterface.RequestAsync(Endpoint, json, requestOptions, httpMethod);
+            return clientInterface.RequestAsync(Endpoint, json, requestOptions, httpMethod, cancellationToken);
         }
         
-        public async Task<T> RequestAsync<T>(string json, RequestOptions requestOptions = null, HttpMethod httpMethod = null)
+        public async Task<T> RequestAsync<T>(string json, RequestOptions requestOptions = null, HttpMethod httpMethod = null, CancellationToken cancellationToken = default)
         {
             var clientInterface = _abstractService.Client.HttpClient;
-            var jsonResponse = await clientInterface.RequestAsync(Endpoint, json, requestOptions, httpMethod);
+            var jsonResponse = await clientInterface.RequestAsync(Endpoint, json, requestOptions, httpMethod, cancellationToken);
             return JsonConvert.DeserializeObject<T>(jsonResponse);
         }
     }

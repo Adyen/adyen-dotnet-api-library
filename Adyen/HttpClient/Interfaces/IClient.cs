@@ -24,6 +24,7 @@
 using System;
 using System.Collections.Generic;
 using System.Net.Http;
+using System.Threading;
 using System.Threading.Tasks;
 using Adyen.Model;
 
@@ -48,7 +49,8 @@ namespace Adyen.HttpClient.Interfaces
         /// <param name="json">Json request parameters for Post/Patch.</param>
         /// <param name="requestOptions">Optional parameter used to specify the options for the request.</param>
         /// <param name="httpMethod">Request Method.</param>
+        /// <param name="cancellationToken">Request Method.</param>
         /// <returns>A <see cref="Task"/> with string response in json format.</returns>
-        Task<string> RequestAsync(string endpoint, string json, RequestOptions requestOptions = null, HttpMethod httpMethod = null);
+        Task<string> RequestAsync(string endpoint, string json, RequestOptions requestOptions = null, HttpMethod httpMethod = null, CancellationToken cancellationToken = default);
     }
 }
