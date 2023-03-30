@@ -1,6 +1,6 @@
 name: .NET Core
 
-on: [push, pull_request]
+on: [ push, pull_request ]
 
 jobs:
   build:
@@ -9,7 +9,7 @@ jobs:
     runs-on: ${{ matrix.os }}
     strategy:
       matrix:
-        os: [ubuntu-latest, windows-latest]
+        os: [ ubuntu-latest, windows-latest ]
     steps:
       - uses: actions/checkout@v3
       - name: Setup .NET
@@ -30,3 +30,10 @@ jobs:
 
       - name: Run test suite net6.0
         run: dotnet test --no-build -c Debug -f net6.0 Adyen.Test/Adyen.Test.csproj
+      - name: Run integration test suite netcoreapp2.1
+        run: dotnet test --no-build -c Debug -f netcoreapp2.1 Adyen.IntegrationTest/Adyen.IntegrationTest.csproj
+        if: ${{ github.event.pull_request.head.ref == 'main' }}
+
+      - name: Run integration test suite net6.0
+        run: dotnet test --no-build -c Debug -f net6.0 Adyen.IntegrationTest/Adyen.IntegrationTest.csproj
+        if: ${{ github.event.pull_request.head.ref == 'main' }}

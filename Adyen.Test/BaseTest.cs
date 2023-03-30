@@ -33,6 +33,7 @@ using System.IO;
 using System.Net;
 using System.Net.Http;
 using System.Text;
+using System.Threading;
 using Adyen.HttpClient.Interfaces;
 using Adyen.Model;
 using Environment = System.Environment;
@@ -284,7 +285,7 @@ namespace Adyen.Test
 
             clientInterfaceMock.Setup(x => x.Request(It.IsAny<string>(), It.IsAny<string>(), It.IsAny<RequestOptions>(), null)).Returns(response);
             clientInterfaceMock.Setup(x => x.Request(It.IsAny<string>(), It.IsAny<string>(), It.IsAny<RequestOptions>(), null)).Returns(response);
-            clientInterfaceMock.Setup(x => x.RequestAsync(It.IsAny<string>(), It.IsAny<string>(), It.IsAny<RequestOptions>(), null)).Returns(Task.FromResult(response));
+            clientInterfaceMock.Setup(x => x.RequestAsync(It.IsAny<string>(), It.IsAny<string>(), It.IsAny<RequestOptions>(), null, It.IsAny<CancellationToken>())).Returns(Task.FromResult(response));
             var config = new Config()
             {
                 Environment = It.IsAny<Model.Environment>()
@@ -336,7 +337,7 @@ namespace Adyen.Test
             ClientInterfaceMock = new Mock<IClient>();
             var confMock = MockPaymentData.CreateConfigApiKeyBasedMock();
             ClientInterfaceMock.Setup(x => x.RequestAsync(It.IsAny<string>(),
-                It.IsAny<string>(), It.IsAny<RequestOptions>(), It.IsAny<HttpMethod>())).ReturnsAsync(response);
+                It.IsAny<string>(), It.IsAny<RequestOptions>(), It.IsAny<HttpMethod>(), It.IsAny<CancellationToken>())).ReturnsAsync(response);
             var config = new Config()
             {
                 Environment = It.IsAny<Model.Environment>()
@@ -362,7 +363,7 @@ namespace Adyen.Test
             var clientInterfaceMock = new Mock<IClient>();
             var confMock = MockPaymentData.CreateConfigApiKeyBasedMock();
             clientInterfaceMock.Setup(x => x.RequestAsync(It.IsAny<string>(),
-                    It.IsAny<string>(), It.IsAny<RequestOptions>(), null))
+                    It.IsAny<string>(), It.IsAny<RequestOptions>(), null, It.IsAny<CancellationToken>()))
                 .ReturnsAsync(response);
             var config = new Config()
             {

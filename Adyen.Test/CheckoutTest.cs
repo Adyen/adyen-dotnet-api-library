@@ -526,7 +526,7 @@ namespace Adyen.Test
             var checkout = new PaymentLinksService(client);
             var createPaymentLinkRequest = new CreatePaymentLinkRequest(amount: new Amount(currency: "EUR", 1000),
                 merchantAccount: "MerchantAccount", reference: "YOUR_ORDER_NUMBER");
-            var paymentLinksResponse = checkout.CreatePaymentLink(createPaymentLinkRequest);
+            var paymentLinksResponse = checkout.PaymentLinks(createPaymentLinkRequest);
             Assert.AreEqual(paymentLinksResponse.Url,
                 "https://checkoutshopper-test.adyen.com/checkoutshopper/payByLink.shtml?d=YW1vdW50TWlub3JW...JRA");
             Assert.AreEqual(paymentLinksResponse.ExpiresAt, "2019-12-17T10:05:29Z");
@@ -555,7 +555,7 @@ namespace Adyen.Test
                 RecurringProcessingModel = CreatePaymentLinkRequest.RecurringProcessingModelEnum.Subscription
             };
 
-            var paymentLinksResponse = checkout.CreatePaymentLink(createPaymentLinkRequest);
+            var paymentLinksResponse = checkout.PaymentLinks(createPaymentLinkRequest);
 
             Assert.AreEqual(createPaymentLinkRequest.Reference, paymentLinksResponse.Reference);
             Assert.AreEqual(
@@ -856,7 +856,7 @@ namespace Adyen.Test
                 reference: "TestReference");
             var client = CreateMockTestClientApiKeyBasedRequestAsync("Mocks/checkout/orders-success.json");
             var checkout = new OrdersService(client);
-            var checkoutOrdersResponse = checkout.CreateOrder(checkoutCreateOrderRequest);
+            var checkoutOrdersResponse = checkout.Orders(checkoutCreateOrderRequest);
             Assert.AreEqual(CheckoutCreateOrderResponse.ResultCodeEnum.Success, checkoutOrdersResponse.ResultCode);
             Assert.AreEqual("8515930288670953", checkoutOrdersResponse.PspReference);
             Assert.AreEqual("Ab02b4c0!BQABAgBqxSuFhuXUF7IvIRvSw5bDPHN...", checkoutOrdersResponse.OrderData);
@@ -1045,7 +1045,7 @@ namespace Adyen.Test
                     CardNumber = "1234567890",
                     CountryCode = "NL"
                 };
-            var cardDetailResponse = checkout.ListBrandsOnCard(cardDetailRequest);
+            var cardDetailResponse = checkout.CardDetails(cardDetailRequest);
             Assert.AreEqual("visa",cardDetailResponse.Brands[0].Type);
             Assert.AreEqual("cartebancaire", cardDetailResponse.Brands[1].Type);
         }
