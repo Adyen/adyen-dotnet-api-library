@@ -49,8 +49,9 @@ namespace Adyen.Util
             JsonSerializer serializer)
         {
             var jsonObject = JObject.Load(reader);
+            var paymentMethodType = jsonObject["type"]?.ToString();
             var paymentMethodDetails = default(IPaymentMethodDetails);
-            switch (jsonObject["type"].ToString())
+            switch (paymentMethodType)
             {
                 case AchDetails.Ach:
                     paymentMethodDetails = new AchDetails();
@@ -58,7 +59,7 @@ namespace Adyen.Util
                 case AfterpayDetails.AfterpayDefault:
                 case AfterpayDetails.AfterpayTouch:
                 case AfterpayDetails.Afterpayb2b:
-                    paymentMethodDetails = new AfterpayDetails();
+                    paymentMethodDetails = new AfterpayDetails(type: paymentMethodType);
                     break;
                 case AmazonPayDetails.AmazonPay:
                     paymentMethodDetails = new AmazonPayDetails();
@@ -91,7 +92,7 @@ namespace Adyen.Util
                 case CardDetails.Lianlianpayebankingcredit:
                 case CardDetails.Lianlianpayebankingdebit:
                 case CardDetails.Entercash:
-                    paymentMethodDetails = new CardDetails();
+                    paymentMethodDetails = new CardDetails(type: paymentMethodType);
                     break;
                 case CellulantDetails.Cellulant:
                     paymentMethodDetails = new CellulantDetails();
@@ -186,7 +187,7 @@ namespace Adyen.Util
                     break;
                 case ZipDetails.Zip:
                 case ZipDetails.Zip_Pos:
-                    paymentMethodDetails = new ZipDetails();
+                    paymentMethodDetails = new ZipDetails(type: paymentMethodType);
                     break;
                 default:
                     paymentMethodDetails = new DefaultPaymentMethodDetails();
