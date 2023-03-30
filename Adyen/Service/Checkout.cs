@@ -117,6 +117,7 @@ namespace Adyen.Service
         ///  POST payments/details API call
         /// </summary>
         /// <param name="paymentsDetailsRequest"></param>
+        /// <param name="requestOptions"></param>
         /// <returns>PaymentsResponse</returns>
         public PaymentDetailsResponse PaymentDetails(PaymentsDetailsRequest paymentsDetailsRequest, RequestOptions requestOptions = null)
         {
@@ -129,6 +130,7 @@ namespace Adyen.Service
         ///  POST payments/details API call async
         /// </summary>
         /// <param name="paymentsDetailsRequest"></param>
+        /// <param name="requestOptions"></param>
         /// <returns>PaymentDetailsResponse</returns>
         public async Task<PaymentDetailsResponse> PaymentDetailsAsync(PaymentsDetailsRequest paymentsDetailsRequest, RequestOptions requestOptions = null)
         {
@@ -338,12 +340,13 @@ namespace Adyen.Service
         /// </summary>
         /// <param name="paymentPspReference"></param>
         /// <param name="createPaymentCaptureRequest"></param>
+        /// <param name="requestOptions"></param>
         /// <returns>PaymentCancelResource</returns>
-        public PaymentCaptureResource PaymentsCaptures(string paymentPspReference, CreatePaymentCaptureRequest createPaymentCaptureRequest)
+        public PaymentCaptureResource PaymentsCaptures(string paymentPspReference, CreatePaymentCaptureRequest createPaymentCaptureRequest, RequestOptions requestOptions = null)
         {
             var paymentsCapture = new PaymentsCapture(this, paymentPspReference);
             var jsonRequest = Util.JsonOperation.SerializeRequest(createPaymentCaptureRequest);
-            var jsonResponse = paymentsCapture.Request(jsonRequest);
+            var jsonResponse = paymentsCapture.Request(jsonRequest, requestOptions);
             return JsonConvert.DeserializeObject<PaymentCaptureResource>(jsonResponse);
         }
 
@@ -352,12 +355,13 @@ namespace Adyen.Service
         /// </summary>
         /// <param name="paymentPspReference"></param>
         /// <param name="createPaymentCaptureRequest"></param>
+        /// <param name="requestOptions"></param>
         /// <returns>PaymentCaptureResource</returns>
-        public async Task<PaymentCaptureResource> PaymentsCapturesAsync(string paymentPspReference, CreatePaymentCaptureRequest createPaymentCaptureRequest)
+        public async Task<PaymentCaptureResource> PaymentsCapturesAsync(string paymentPspReference, CreatePaymentCaptureRequest createPaymentCaptureRequest, RequestOptions requestOptions = null)
         {
             var paymentsCapture = new PaymentsCapture(this, paymentPspReference);
             var jsonRequest = Util.JsonOperation.SerializeRequest(createPaymentCaptureRequest);
-            var jsonResponse = await paymentsCapture.RequestAsync(jsonRequest);
+            var jsonResponse = await paymentsCapture.RequestAsync(jsonRequest, requestOptions);
             return JsonConvert.DeserializeObject<PaymentCaptureResource>(jsonResponse);
         }
         
@@ -366,12 +370,13 @@ namespace Adyen.Service
         /// </summary>
         /// <param name="paymentPspReference"></param>
         /// <param name="createPaymentRefundRequest"></param>
-        /// <returns>PaymentRefundResource</returns>
-        public PaymentRefundResource PaymentsRefunds(string paymentPspReference, CreatePaymentRefundRequest createPaymentRefundRequest)
+        /// <param name="requestOptions"></param>
+        /// <returns></returns>
+        public PaymentRefundResource PaymentsRefunds(string paymentPspReference, CreatePaymentRefundRequest createPaymentRefundRequest, RequestOptions requestOptions = null)
         {
             var paymentsRefunds = new PaymentsRefunds(this, paymentPspReference);
             var jsonRequest = Util.JsonOperation.SerializeRequest(createPaymentRefundRequest);
-            var jsonResponse = paymentsRefunds.Request(jsonRequest);
+            var jsonResponse = paymentsRefunds.Request(jsonRequest, requestOptions);
             return JsonConvert.DeserializeObject<PaymentRefundResource>(jsonResponse);
         }
 
@@ -380,12 +385,13 @@ namespace Adyen.Service
         /// </summary>
         /// <param name="paymentPspReference"></param>
         /// <param name="createPaymentRefundRequest"></param>
+        /// <param name="requestOptions"></param>
         /// <returns>PaymentRefundResource</returns>
-        public async Task<PaymentRefundResource> PaymentsRefundsAsync(string paymentPspReference, CreatePaymentRefundRequest createPaymentRefundRequest)
+        public async Task<PaymentRefundResource> PaymentsRefundsAsync(string paymentPspReference, CreatePaymentRefundRequest createPaymentRefundRequest, RequestOptions requestOptions = null)
         {
             var paymentsRefunds = new PaymentsRefunds(this, paymentPspReference);
             var jsonRequest = Util.JsonOperation.SerializeRequest(createPaymentRefundRequest);
-            var jsonResponse = await paymentsRefunds.RequestAsync(jsonRequest);
+            var jsonResponse = await paymentsRefunds.RequestAsync(jsonRequest, requestOptions);
             return JsonConvert.DeserializeObject<PaymentRefundResource>(jsonResponse);
         }
         
