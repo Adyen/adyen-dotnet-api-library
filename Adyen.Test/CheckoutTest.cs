@@ -670,6 +670,16 @@ namespace Adyen.Test
             Assert.IsTrue(paymentRequest.PaymentMethod is CardDetails);
             Assert.AreEqual(paymentRequest.PaymentMethod.Type, CardDetails.Lianlianpayebankingcredit);
         }
+        
+        [TestMethod]
+        public void AfterpaytouchDetailsDeserializationTest()
+        {
+            var json = "{\"amount\":{\"value\":1000,\"currency\":\"USD\"},\"merchantAccount\":\"MerchantAccountTest\",\"paymentMethod\":{\"issuer\":\"issuer\",\"shopperEmail\":\"test@test.com\",\"type\":\"afterpaytouch\"},\"reference\":\"Your order number\",\"returnUrl\":\"https://your-company.com/...\",\"applicationInfo\":{\"adyenLibrary\":{\"name\":\"adyen-java-api-library\",\"version\":\"10.1.0\"}}}";
+            var paymentRequest = JsonConvert.DeserializeObject<PaymentRequest>(json);
+            Assert.IsTrue(paymentRequest.PaymentMethod is AfterpayDetails);
+            Assert.AreEqual(paymentRequest.PaymentMethod.Type, AfterpayDetails.AfterpayTouch);
+                
+        }
 
         /// <summary>
         /// Test toJson() that includes the type in the action
