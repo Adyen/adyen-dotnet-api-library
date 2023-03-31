@@ -11,8 +11,8 @@
 */
 
 using System;
-using Newtonsoft.Json;
-using Newtonsoft.Json.Serialization;
+using System.Text.Json;
+using System.Text.Json.Serialization;
 
 namespace Adyen.Model.Checkout
 {
@@ -24,35 +24,39 @@ namespace Adyen.Model.Checkout
         /// <summary>
         ///  Custom JSON serializer
         /// </summary>
-        static public readonly JsonSerializerSettings SerializerSettings = new JsonSerializerSettings
+        static public readonly JsonSerializerOptions SerializerSettings = new JsonSerializerOptions
         {
+            DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingNull,
+            
             // OpenAPI generated types generally hide default constructors.
-            ConstructorHandling = ConstructorHandling.AllowNonPublicDefaultConstructor,
-            MissingMemberHandling = MissingMemberHandling.Error,
-            ContractResolver = new DefaultContractResolver
-            {
-                NamingStrategy = new CamelCaseNamingStrategy
-                {
-                    OverrideSpecifiedNames = false
-                }
-            }
+            // ConstructorHandling = ConstructorHandling.AllowNonPublicDefaultConstructor,
+            // MissingMemberHandling = MissingMemberHandling.Error,
+            // ContractResolver = new DefaultContractResolver
+            // {
+            //     NamingStrategy = new CamelCaseNamingStrategy
+            //     {
+            //         OverrideSpecifiedNames = false
+            //     }
+            // }
         };
 
         /// <summary>
         ///  Custom JSON serializer for objects with additional properties
         /// </summary>
-        static public readonly JsonSerializerSettings AdditionalPropertiesSerializerSettings = new JsonSerializerSettings
+        static public readonly JsonSerializerOptions AdditionalPropertiesSerializerSettings = new JsonSerializerOptions
         {
+            DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingNull,
+            
             // OpenAPI generated types generally hide default constructors.
-            ConstructorHandling = ConstructorHandling.AllowNonPublicDefaultConstructor,
-            MissingMemberHandling = MissingMemberHandling.Ignore,
-            ContractResolver = new DefaultContractResolver
-            {
-                NamingStrategy = new CamelCaseNamingStrategy
-                {
-                    OverrideSpecifiedNames = false
-                }
-            }
+            // ConstructorHandling = ConstructorHandling.AllowNonPublicDefaultConstructor,
+            // MissingMemberHandling = MissingMemberHandling.Error,
+            // ContractResolver = new DefaultContractResolver
+            // {
+            //     NamingStrategy = new CamelCaseNamingStrategy
+            //     {
+            //         OverrideSpecifiedNames = false
+            //     }
+            // }
         };
 
         /// <summary>
