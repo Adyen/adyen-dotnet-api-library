@@ -1,7 +1,7 @@
-﻿using Adyen.Model.Nexo;
+﻿using System;
+using Adyen.Model.Nexo;
 using Adyen.Service;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using System;
 
 namespace Adyen.Test
 {

@@ -1,31 +1,6 @@
-﻿#region License
-/*
- *                       ######
- *                       ######
- * ############    ####( ######  #####. ######  ############   ############
- * #############  #####( ######  #####. ######  #############  #############
- *        ######  #####( ######  #####. ######  #####  ######  #####  ######
- * ###### ######  #####( ######  #####. ######  #####  #####   #####  ######
- * ###### ######  #####( ######  #####. ######  #####          #####  ######
- * #############  #############  #############  #############  #####  ######
- *  ############   ############  #############   ############  #####  ######
- *                                      ######
- *                               #############
- *                               ############
- *
- * Adyen Dotnet API Library
- *
- * Copyright (c) 2020 Adyen B.V.
- * This file is open source and available under the MIT license.
- * See the LICENSE file for more info.
- */
-#endregion
-
-using System;
+﻿using System.Collections.Generic;
 using Adyen.Model.Checkout;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using System.Collections.Generic;
-using Adyen.Util;
 
 namespace Adyen.Test
 {
@@ -65,7 +40,7 @@ namespace Adyen.Test
         [TestMethod]
         public void TestToCollectionsStringEmpty()
         {
-            var paymentVerificationResponse = new PaymentVerificationResponse(merchantReference:"ref",shopperLocale:"NL", additionalData:new Dictionary<string, string>(){{"scaExemptionRequested","lowValue"}});
+            var paymentVerificationResponse = new PaymentVerificationResponse(merchantReference:"ref",shopperLocale:"NL", additionalData:new Dictionary<string, string> {{"scaExemptionRequested","lowValue"}});
             var expected = "\"scaExemptionRequested\": \"lowValue\"";
             Assert.IsTrue(paymentVerificationResponse.ToJson().Contains(expected));
         }
