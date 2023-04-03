@@ -1,30 +1,4 @@
-﻿#region Licence
-
-// 
-//                        ######
-//                        ######
-//  ############    ####( ######  #####. ######  ############   ############
-//  #############  #####( ######  #####. ######  #############  #############
-//         ######  #####( ######  #####. ######  #####  ######  #####  ######
-//  ###### ######  #####( ######  #####. ######  #####  #####   #####  ######
-//  ###### ######  #####( ######  #####. ######  #####          #####  ######
-//  #############  #############  #############  #############  #####  ######
-//   ############   ############  #############   ############  #####  ######
-//                                       ######
-//                                #############
-//                                ############
-// 
-//  Adyen Dotnet API Library
-// 
-//  Copyright (c) 2020 Adyen B.V.
-//  This file is open source and available under the MIT license.
-//  See the LICENSE file for more info.
-
-#endregion
-
-using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using System.Collections.Generic;
 using Adyen.Model.PosTerminalManagement;
 using Adyen.Service;
 using Microsoft.VisualStudio.TestTools.UnitTesting;

@@ -1,17 +1,14 @@
-﻿using Adyen.Model.Checkout;
-using Adyen.Service;
+﻿using System;
+using System.Collections.Generic;
+using System.Threading.Tasks;
+using Adyen.Model.Checkout;
+using Adyen.Service.Checkout;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
-using System;
-using System.Collections.Generic;
-using System.Threading.Tasks;
-using Adyen.Service.Checkout;
 using static Adyen.Model.Checkout.PaymentResponse;
-using Amount = Adyen.Model.Checkout.Amount;
 using ApplicationInfo = Adyen.Model.ApplicationInformation.ApplicationInfo;
 using Environment = Adyen.Model.Environment;
-using RecurringService = Adyen.Service.Checkout.RecurringService;
 
 namespace Adyen.Test
 {
@@ -473,16 +470,16 @@ namespace Adyen.Test
         [TestMethod]
         public void PaymentRequestAppInfoExternalTest()
         {
-            var externalPlatform = new Model.Checkout.ExternalPlatform();
-            var merchantApplication = new Model.Checkout.CommonField();
+            var externalPlatform = new ExternalPlatform();
+            var merchantApplication = new CommonField();
             externalPlatform.Integrator = "TestExternalPlatformIntegration";
             externalPlatform.Name = "TestExternalPlatformName";
             externalPlatform.Version = "TestExternalPlatformVersion";
             merchantApplication.Name = "MerchantApplicationName";
             merchantApplication.Version = "MerchantApplicationVersion";
             var paymentRequest = CreatePaymentRequestCheckout();
-            paymentRequest.ApplicationInfo = new Model.Checkout.ApplicationInfo()
-                {
+            paymentRequest.ApplicationInfo = new Model.Checkout.ApplicationInfo
+            {
                     ExternalPlatform = externalPlatform,
                     MerchantApplication = merchantApplication
                 };

@@ -1,27 +1,4 @@
-﻿#region License
-/*
- *                       ######
- *                       ######
- * ############    ####( ######  #####. ######  ############   ############
- * #############  #####( ######  #####. ######  #############  #############
- *        ######  #####( ######  #####. ######  #####  ######  #####  ######
- * ###### ######  #####( ######  #####. ######  #####  #####   #####  ######
- * ###### ######  #####( ######  #####. ######  #####          #####  ######
- * #############  #############  #############  #############  #####  ######
- *  ############   ############  #############   ############  #####  ######
- *                                      ######
- *                               #############
- *                               ############
- *
- * Adyen Dotnet API Library
- *
- * Copyright (c) 2021 Adyen B.V.
- * This file is open source and available under the MIT license.
- * See the LICENSE file for more info.
- */
-#endregion
-
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Runtime.Serialization;
@@ -33,7 +10,7 @@ namespace Adyen.Model.MarketPay
     /// UltimateParentCompany
     /// </summary>
     [DataContract(Name = "UltimateParentCompany")]
-    public partial class UltimateParentCompany : IEquatable<UltimateParentCompany>, IValidatableObject
+    public class UltimateParentCompany : IEquatable<UltimateParentCompany>, IValidatableObject
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="UltimateParentCompany" /> class.
@@ -43,9 +20,9 @@ namespace Adyen.Model.MarketPay
         /// <param name="ultimateParentCompanyCode">Adyen-generated unique alphanumeric identifier (UUID) for the entry, returned in the response when you create an ultimate parent company. Required when updating an existing entry in an &#x60;/updateAccountHolder&#x60; request..</param>
         public UltimateParentCompany(ViasAddress address = default(ViasAddress), UltimateParentCompanyBusinessDetails businessDetails = default(UltimateParentCompanyBusinessDetails), string ultimateParentCompanyCode = default(string))
         {
-            this.Address = address;
-            this.BusinessDetails = businessDetails;
-            this.UltimateParentCompanyCode = ultimateParentCompanyCode;
+            Address = address;
+            BusinessDetails = businessDetails;
+            UltimateParentCompanyCode = ultimateParentCompanyCode;
         }
 
         /// <summary>
@@ -98,7 +75,7 @@ namespace Adyen.Model.MarketPay
         /// <returns>Boolean</returns>
         public override bool Equals(object input)
         {
-            return this.Equals(input as UltimateParentCompany);
+            return Equals(input as UltimateParentCompany);
         }
 
         /// <summary>
@@ -113,19 +90,19 @@ namespace Adyen.Model.MarketPay
 
             return
                 (
-                    this.Address == input.Address ||
-                    (this.Address != null &&
-                    this.Address.Equals(input.Address))
+                    Address == input.Address ||
+                    (Address != null &&
+                    Address.Equals(input.Address))
                 ) &&
                 (
-                    this.BusinessDetails == input.BusinessDetails ||
-                    (this.BusinessDetails != null &&
-                    this.BusinessDetails.Equals(input.BusinessDetails))
+                    BusinessDetails == input.BusinessDetails ||
+                    (BusinessDetails != null &&
+                    BusinessDetails.Equals(input.BusinessDetails))
                 ) &&
                 (
-                    this.UltimateParentCompanyCode == input.UltimateParentCompanyCode ||
-                    (this.UltimateParentCompanyCode != null &&
-                    this.UltimateParentCompanyCode.Equals(input.UltimateParentCompanyCode))
+                    UltimateParentCompanyCode == input.UltimateParentCompanyCode ||
+                    (UltimateParentCompanyCode != null &&
+                    UltimateParentCompanyCode.Equals(input.UltimateParentCompanyCode))
                 );
         }
 
@@ -138,12 +115,12 @@ namespace Adyen.Model.MarketPay
             unchecked // Overflow is fine, just wrap
             {
                 int hashCode = 41;
-                if (this.Address != null)
-                    hashCode = hashCode * 59 + this.Address.GetHashCode();
-                if (this.BusinessDetails != null)
-                    hashCode = hashCode * 59 + this.BusinessDetails.GetHashCode();
-                if (this.UltimateParentCompanyCode != null)
-                    hashCode = hashCode * 59 + this.UltimateParentCompanyCode.GetHashCode();
+                if (Address != null)
+                    hashCode = hashCode * 59 + Address.GetHashCode();
+                if (BusinessDetails != null)
+                    hashCode = hashCode * 59 + BusinessDetails.GetHashCode();
+                if (UltimateParentCompanyCode != null)
+                    hashCode = hashCode * 59 + UltimateParentCompanyCode.GetHashCode();
                 return hashCode;
             }
         }
@@ -153,7 +130,7 @@ namespace Adyen.Model.MarketPay
         /// </summary>
         /// <param name="validationContext">Validation context</param>
         /// <returns>Validation Result</returns>
-        public IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> Validate(ValidationContext validationContext)
+        public IEnumerable<ValidationResult> Validate(ValidationContext validationContext)
         {
             yield break;
         }

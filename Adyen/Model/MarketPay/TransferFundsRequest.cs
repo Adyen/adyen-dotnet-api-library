@@ -1,25 +1,3 @@
-#region License
-// /*
-//  *                       ######
-//  *                       ######
-//  * ############    ####( ######  #####. ######  ############   ############
-//  * #############  #####( ######  #####. ######  #############  #############
-//  *        ######  #####( ######  #####. ######  #####  ######  #####  ######
-//  * ###### ######  #####( ######  #####. ######  #####  #####   #####  ######
-//  * ###### ######  #####( ######  #####. ######  #####          #####  ######
-//  * #############  #############  #############  #############  #####  ######
-//  *  ############   ############  #############   ############  #####  ######
-//  *                                      ######
-//  *                               #############
-//  *                               ############
-//  *
-//  * Adyen Dotnet API Library
-//  *
-//  * Copyright (c) 2020 Adyen B.V.
-//  * This file is open source and available under the MIT license.
-//  * See the LICENSE file for more info.
-//  */
-#endregion
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -51,38 +29,30 @@ namespace Adyen.Model.MarketPay
             {
                 throw new InvalidDataException("amount is a required property for TransferFundsRequest and cannot be null");
             }
-            else
-            {
-                this.Amount = amount;
-            }
+
+            Amount = amount;
             // to ensure "destinationAccountCode" is required (not null)
             if (destinationAccountCode == null)
             {
                 throw new InvalidDataException("destinationAccountCode is a required property for TransferFundsRequest and cannot be null");
             }
-            else
-            {
-                this.DestinationAccountCode = destinationAccountCode;
-            }
+
+            DestinationAccountCode = destinationAccountCode;
             // to ensure "sourceAccountCode" is required (not null)
             if (sourceAccountCode == null)
             {
                 throw new InvalidDataException("sourceAccountCode is a required property for TransferFundsRequest and cannot be null");
             }
-            else
-            {
-                this.SourceAccountCode = sourceAccountCode;
-            }
+
+            SourceAccountCode = sourceAccountCode;
             // to ensure "transferCode" is required (not null)
             if (transferCode == null)
             {
                 throw new InvalidDataException("transferCode is a required property for TransferFundsRequest and cannot be null");
             }
-            else
-            {
-                this.TransferCode = transferCode;
-            }
-            this.MerchantReference = merchantReference;
+
+            TransferCode = transferCode;
+            MerchantReference = merchantReference;
         }
 
         /// <summary>
@@ -152,7 +122,7 @@ namespace Adyen.Model.MarketPay
         /// <returns>Boolean</returns>
         public override bool Equals(object input)
         {
-            return this.Equals(input as TransferFundsRequest);
+            return Equals(input as TransferFundsRequest);
         }
 
         /// <summary>
@@ -167,29 +137,29 @@ namespace Adyen.Model.MarketPay
 
             return
                 (
-                    this.Amount == input.Amount ||
-                    (this.Amount != null &&
-                    this.Amount.Equals(input.Amount))
+                    Amount == input.Amount ||
+                    (Amount != null &&
+                    Amount.Equals(input.Amount))
                 ) &&
                 (
-                    this.DestinationAccountCode == input.DestinationAccountCode ||
-                    (this.DestinationAccountCode != null &&
-                    this.DestinationAccountCode.Equals(input.DestinationAccountCode))
+                    DestinationAccountCode == input.DestinationAccountCode ||
+                    (DestinationAccountCode != null &&
+                    DestinationAccountCode.Equals(input.DestinationAccountCode))
                 ) &&
                 (
-                    this.MerchantReference == input.MerchantReference ||
-                    (this.MerchantReference != null &&
-                    this.MerchantReference.Equals(input.MerchantReference))
+                    MerchantReference == input.MerchantReference ||
+                    (MerchantReference != null &&
+                    MerchantReference.Equals(input.MerchantReference))
                 ) &&
                 (
-                    this.SourceAccountCode == input.SourceAccountCode ||
-                    (this.SourceAccountCode != null &&
-                    this.SourceAccountCode.Equals(input.SourceAccountCode))
+                    SourceAccountCode == input.SourceAccountCode ||
+                    (SourceAccountCode != null &&
+                    SourceAccountCode.Equals(input.SourceAccountCode))
                 ) &&
                 (
-                    this.TransferCode == input.TransferCode ||
-                    (this.TransferCode != null &&
-                    this.TransferCode.Equals(input.TransferCode))
+                    TransferCode == input.TransferCode ||
+                    (TransferCode != null &&
+                    TransferCode.Equals(input.TransferCode))
                 );
         }
 
@@ -202,16 +172,16 @@ namespace Adyen.Model.MarketPay
             unchecked // Overflow is fine, just wrap
             {
                 int hashCode = 41;
-                if (this.Amount != null)
-                    hashCode = hashCode * 59 + this.Amount.GetHashCode();
-                if (this.DestinationAccountCode != null)
-                    hashCode = hashCode * 59 + this.DestinationAccountCode.GetHashCode();
-                if (this.MerchantReference != null)
-                    hashCode = hashCode * 59 + this.MerchantReference.GetHashCode();
-                if (this.SourceAccountCode != null)
-                    hashCode = hashCode * 59 + this.SourceAccountCode.GetHashCode();
-                if (this.TransferCode != null)
-                    hashCode = hashCode * 59 + this.TransferCode.GetHashCode();
+                if (Amount != null)
+                    hashCode = hashCode * 59 + Amount.GetHashCode();
+                if (DestinationAccountCode != null)
+                    hashCode = hashCode * 59 + DestinationAccountCode.GetHashCode();
+                if (MerchantReference != null)
+                    hashCode = hashCode * 59 + MerchantReference.GetHashCode();
+                if (SourceAccountCode != null)
+                    hashCode = hashCode * 59 + SourceAccountCode.GetHashCode();
+                if (TransferCode != null)
+                    hashCode = hashCode * 59 + TransferCode.GetHashCode();
                 return hashCode;
             }
         }
@@ -221,7 +191,7 @@ namespace Adyen.Model.MarketPay
         /// </summary>
         /// <param name="validationContext">Validation context</param>
         /// <returns>Validation Result</returns>
-        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+        IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
         {
             yield break;
         }

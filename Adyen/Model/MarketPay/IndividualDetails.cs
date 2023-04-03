@@ -1,26 +1,3 @@
-#region License
-// /*
-//  *                       ######
-//  *                       ######
-//  * ############    ####( ######  #####. ######  ############   ############
-//  * #############  #####( ######  #####. ######  #############  #############
-//  *        ######  #####( ######  #####. ######  #####  ######  #####  ######
-//  * ###### ######  #####( ######  #####. ######  #####  #####   #####  ######
-//  * ###### ######  #####( ######  #####. ######  #####          #####  ######
-//  * #############  #############  #############  #############  #####  ######
-//  *  ############   ############  #############   ############  #####  ######
-//  *                                      ######
-//  *                               #############
-//  *                               ############
-//  *
-//  * Adyen Dotnet API Library
-//  *
-//  * Copyright (c) 2020 Adyen B.V.
-//  * This file is open source and available under the MIT license.
-//  * See the LICENSE file for more info.
-//  */
-#endregion
-
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -34,7 +11,7 @@ namespace Adyen.Model.MarketPay
     /// IndividualDetails
     /// </summary>
     [DataContract]
-        public partial class IndividualDetails :  IEquatable<IndividualDetails>, IValidatableObject
+        public class IndividualDetails :  IEquatable<IndividualDetails>, IValidatableObject
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="IndividualDetails" /> class.
@@ -43,8 +20,8 @@ namespace Adyen.Model.MarketPay
         /// <param name="personalData">personalData.</param>
         public IndividualDetails(ViasName name = default(ViasName), ViasPersonalData personalData = default(ViasPersonalData))
         {
-            this.Name = name;
-            this.PersonalData = personalData;
+            Name = name;
+            PersonalData = personalData;
         }
         
         /// <summary>
@@ -89,7 +66,7 @@ namespace Adyen.Model.MarketPay
         /// <returns>Boolean</returns>
         public override bool Equals(object input)
         {
-            return this.Equals(input as IndividualDetails);
+            return Equals(input as IndividualDetails);
         }
 
         /// <summary>
@@ -104,14 +81,14 @@ namespace Adyen.Model.MarketPay
 
             return 
                 (
-                    this.Name == input.Name ||
-                    (this.Name != null &&
-                    this.Name.Equals(input.Name))
+                    Name == input.Name ||
+                    (Name != null &&
+                    Name.Equals(input.Name))
                 ) && 
                 (
-                    this.PersonalData == input.PersonalData ||
-                    (this.PersonalData != null &&
-                    this.PersonalData.Equals(input.PersonalData))
+                    PersonalData == input.PersonalData ||
+                    (PersonalData != null &&
+                    PersonalData.Equals(input.PersonalData))
                 );
         }
 
@@ -124,10 +101,10 @@ namespace Adyen.Model.MarketPay
             unchecked // Overflow is fine, just wrap
             {
                 int hashCode = 41;
-                if (this.Name != null)
-                    hashCode = hashCode * 59 + this.Name.GetHashCode();
-                if (this.PersonalData != null)
-                    hashCode = hashCode * 59 + this.PersonalData.GetHashCode();
+                if (Name != null)
+                    hashCode = hashCode * 59 + Name.GetHashCode();
+                if (PersonalData != null)
+                    hashCode = hashCode * 59 + PersonalData.GetHashCode();
                 return hashCode;
             }
         }
@@ -137,7 +114,7 @@ namespace Adyen.Model.MarketPay
         /// </summary>
         /// <param name="validationContext">Validation context</param>
         /// <returns>Validation Result</returns>
-        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+        IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
         {
             yield break;
         }

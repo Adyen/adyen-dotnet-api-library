@@ -1,30 +1,6 @@
-#region License
-// /*
-//  *                       ######
-//  *                       ######
-//  * ############    ####( ######  #####. ######  ############   ############
-//  * #############  #####( ######  #####. ######  #############  #############
-//  *        ######  #####( ######  #####. ######  #####  ######  #####  ######
-//  * ###### ######  #####( ######  #####. ######  #####  #####   #####  ######
-//  * ###### ######  #####( ######  #####. ######  #####          #####  ######
-//  * #############  #############  #############  #############  #####  ######
-//  *  ############   ############  #############   ############  #####  ######
-//  *                                      ######
-//  *                               #############
-//  *                               ############
-//  *
-//  * Adyen Dotnet API Library
-//  *
-//  * Copyright (c) 2020 Adyen B.V.
-//  * This file is open source and available under the MIT license.
-//  * See the LICENSE file for more info.
-//  */
-#endregion
-
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.IO;
 using System.Linq;
 using System.Runtime.Serialization;
 using System.Text;
@@ -37,7 +13,7 @@ namespace Adyen.Model.MarketPay
     /// KYCCheckStatusData
     /// </summary>
     [DataContract]
-    public partial class KYCCheckStatusData : IEquatable<KYCCheckStatusData>, IValidatableObject
+    public class KYCCheckStatusData : IEquatable<KYCCheckStatusData>, IValidatableObject
     {
         /// <summary>
         /// The status of the check. &gt;Permitted Values: &#x60;DATA_PROVIDED&#x60;, &#x60;PASSED&#x60;, &#x60;PENDING&#x60;, &#x60;AWAITING_DATA&#x60;, &#x60;RETRY_LIMIT_REACHED&#x60;, &#x60;INVALID_DATA&#x60;, &#x60;FAILED&#x60;.
@@ -146,10 +122,10 @@ namespace Adyen.Model.MarketPay
         /// <param name="type">The type of check. &gt;Permitted Values: &#x60;COMPANY_VERIFICATION&#x60;, &#x60;IDENTITY_VERIFICATION&#x60;, &#x60;PASSPORT_VERIFICATION&#x60;, &#x60;BANK_ACCOUNT_VERIFICATION&#x60;, &#x60;NONPROFIT_VERIFICATION&#x60;. (required).</param>
         public KYCCheckStatusData(List<string> requiredFields = default(List<string>), StatusEnum status = default(StatusEnum), KYCCheckSummary summary = default(KYCCheckSummary), TypeEnum type = default(TypeEnum))
         {
-            this.Status = status;
-            this.Type = type;
-            this.RequiredFields = requiredFields;
-            this.Summary = summary;
+            Status = status;
+            Type = type;
+            RequiredFields = requiredFields;
+            Summary = summary;
         }
 
         /// <summary>
@@ -199,7 +175,7 @@ namespace Adyen.Model.MarketPay
         /// <returns>Boolean</returns>
         public override bool Equals(object input)
         {
-            return this.Equals(input as KYCCheckStatusData);
+            return Equals(input as KYCCheckStatusData);
         }
 
         /// <summary>
@@ -214,23 +190,23 @@ namespace Adyen.Model.MarketPay
 
             return
                 (
-                    this.RequiredFields == input.RequiredFields ||
-                    this.RequiredFields != null &&
+                    RequiredFields == input.RequiredFields ||
+                    RequiredFields != null &&
                     input.RequiredFields != null &&
-                    this.RequiredFields.SequenceEqual(input.RequiredFields)
+                    RequiredFields.SequenceEqual(input.RequiredFields)
                 ) &&
                 (
-                    this.Status == input.Status ||
-                    this.Status.Equals(input.Status)
+                    Status == input.Status ||
+                    Status.Equals(input.Status)
                 ) &&
                 (
-                    this.Summary == input.Summary ||
-                    (this.Summary != null &&
-                    this.Summary.Equals(input.Summary))
+                    Summary == input.Summary ||
+                    (Summary != null &&
+                    Summary.Equals(input.Summary))
                 ) &&
                 (
-                    this.Type == input.Type ||
-                    this.Type.Equals(input.Type)
+                    Type == input.Type ||
+                    Type.Equals(input.Type)
                 );
         }
 
@@ -243,12 +219,12 @@ namespace Adyen.Model.MarketPay
             unchecked // Overflow is fine, just wrap
             {
                 int hashCode = 41;
-                if (this.RequiredFields != null)
-                    hashCode = hashCode * 59 + this.RequiredFields.GetHashCode();
-                hashCode = hashCode * 59 + this.Status.GetHashCode();
-                if (this.Summary != null)
-                    hashCode = hashCode * 59 + this.Summary.GetHashCode();
-                hashCode = hashCode * 59 + this.Type.GetHashCode();
+                if (RequiredFields != null)
+                    hashCode = hashCode * 59 + RequiredFields.GetHashCode();
+                hashCode = hashCode * 59 + Status.GetHashCode();
+                if (Summary != null)
+                    hashCode = hashCode * 59 + Summary.GetHashCode();
+                hashCode = hashCode * 59 + Type.GetHashCode();
                 return hashCode;
             }
         }
@@ -258,7 +234,7 @@ namespace Adyen.Model.MarketPay
         /// </summary>
         /// <param name="validationContext">Validation context</param>
         /// <returns>Validation Result</returns>
-        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+        IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
         {
             yield break;
         }

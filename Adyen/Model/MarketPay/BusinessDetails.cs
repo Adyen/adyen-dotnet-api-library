@@ -1,26 +1,3 @@
-#region License
-// /*
-//  *                       ######
-//  *                       ######
-//  * ############    ####( ######  #####. ######  ############   ############
-//  * #############  #####( ######  #####. ######  #############  #############
-//  *        ######  #####( ######  #####. ######  #####  ######  #####  ######
-//  * ###### ######  #####( ######  #####. ######  #####  #####   #####  ######
-//  * ###### ######  #####( ######  #####. ######  #####          #####  ######
-//  * #############  #############  #############  #############  #####  ######
-//  *  ############   ############  #############   ############  #####  ######
-//  *                                      ######
-//  *                               #############
-//  *                               ############
-//  *
-//  * Adyen Dotnet API Library
-//  *
-//  * Copyright (c) 2020 Adyen B.V.
-//  * This file is open source and available under the MIT license.
-//  * See the LICENSE file for more info.
-//  */
-#endregion
-
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -35,7 +12,7 @@ namespace Adyen.Model.MarketPay
     /// BusinessDetails
     /// </summary>
     [DataContract(Name = "BusinessDetails")]
-    public partial class BusinessDetails : IEquatable<BusinessDetails>, IValidatableObject
+    public class BusinessDetails : IEquatable<BusinessDetails>, IValidatableObject
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="BusinessDetails" /> class.
@@ -49,13 +26,13 @@ namespace Adyen.Model.MarketPay
         /// <param name="taxId">The tax ID of the company..</param>
         public BusinessDetails(string doingBusinessAs = default(string), string legalBusinessName = default(string), List<UltimateParentCompany> listedUltimateParentCompany = default(List<UltimateParentCompany>), string registrationNumber = default(string), List<ShareholderContact> shareholders = default(List<ShareholderContact>), List<SignatoryContact> signatories = default(List<SignatoryContact>), string taxId = default(string))
         {
-            this.DoingBusinessAs = doingBusinessAs;
-            this.LegalBusinessName = legalBusinessName;
-            this.ListedUltimateParentCompany = listedUltimateParentCompany;
-            this.RegistrationNumber = registrationNumber;
-            this.Shareholders = shareholders;
-            this.Signatories = signatories;
-            this.TaxId = taxId;
+            DoingBusinessAs = doingBusinessAs;
+            LegalBusinessName = legalBusinessName;
+            ListedUltimateParentCompany = listedUltimateParentCompany;
+            RegistrationNumber = registrationNumber;
+            Shareholders = shareholders;
+            Signatories = signatories;
+            TaxId = taxId;
         }
 
         /// <summary>
@@ -132,7 +109,7 @@ namespace Adyen.Model.MarketPay
         /// <returns>JSON string presentation of the object</returns>
         public virtual string ToJson()
         {
-            return Newtonsoft.Json.JsonConvert.SerializeObject(this, Newtonsoft.Json.Formatting.Indented);
+            return JsonConvert.SerializeObject(this, Formatting.Indented);
         }
 
         /// <summary>
@@ -142,7 +119,7 @@ namespace Adyen.Model.MarketPay
         /// <returns>Boolean</returns>
         public override bool Equals(object input)
         {
-            return this.Equals(input as BusinessDetails);
+            return Equals(input as BusinessDetails);
         }
 
         /// <summary>
@@ -157,42 +134,42 @@ namespace Adyen.Model.MarketPay
 
             return
                 (
-                    this.DoingBusinessAs == input.DoingBusinessAs ||
-                    (this.DoingBusinessAs != null &&
-                    this.DoingBusinessAs.Equals(input.DoingBusinessAs))
+                    DoingBusinessAs == input.DoingBusinessAs ||
+                    (DoingBusinessAs != null &&
+                    DoingBusinessAs.Equals(input.DoingBusinessAs))
                 ) &&
                 (
-                    this.LegalBusinessName == input.LegalBusinessName ||
-                    (this.LegalBusinessName != null &&
-                    this.LegalBusinessName.Equals(input.LegalBusinessName))
+                    LegalBusinessName == input.LegalBusinessName ||
+                    (LegalBusinessName != null &&
+                    LegalBusinessName.Equals(input.LegalBusinessName))
                 ) &&
                 (
-                    this.ListedUltimateParentCompany == input.ListedUltimateParentCompany ||
-                    this.ListedUltimateParentCompany != null &&
+                    ListedUltimateParentCompany == input.ListedUltimateParentCompany ||
+                    ListedUltimateParentCompany != null &&
                     input.ListedUltimateParentCompany != null &&
-                    this.ListedUltimateParentCompany.SequenceEqual(input.ListedUltimateParentCompany)
+                    ListedUltimateParentCompany.SequenceEqual(input.ListedUltimateParentCompany)
                 ) &&
                 (
-                    this.RegistrationNumber == input.RegistrationNumber ||
-                    (this.RegistrationNumber != null &&
-                    this.RegistrationNumber.Equals(input.RegistrationNumber))
+                    RegistrationNumber == input.RegistrationNumber ||
+                    (RegistrationNumber != null &&
+                    RegistrationNumber.Equals(input.RegistrationNumber))
                 ) &&
                 (
-                    this.Shareholders == input.Shareholders ||
-                    this.Shareholders != null &&
+                    Shareholders == input.Shareholders ||
+                    Shareholders != null &&
                     input.Shareholders != null &&
-                    this.Shareholders.SequenceEqual(input.Shareholders)
+                    Shareholders.SequenceEqual(input.Shareholders)
                 ) &&
                 (
-                    this.Signatories == input.Signatories ||
-                    this.Signatories != null &&
+                    Signatories == input.Signatories ||
+                    Signatories != null &&
                     input.Signatories != null &&
-                    this.Signatories.SequenceEqual(input.Signatories)
+                    Signatories.SequenceEqual(input.Signatories)
                 ) &&
                 (
-                    this.TaxId == input.TaxId ||
-                    (this.TaxId != null &&
-                    this.TaxId.Equals(input.TaxId))
+                    TaxId == input.TaxId ||
+                    (TaxId != null &&
+                    TaxId.Equals(input.TaxId))
                 );
         }
 
@@ -205,20 +182,20 @@ namespace Adyen.Model.MarketPay
             unchecked // Overflow is fine, just wrap
             {
                 int hashCode = 41;
-                if (this.DoingBusinessAs != null)
-                    hashCode = hashCode * 59 + this.DoingBusinessAs.GetHashCode();
-                if (this.LegalBusinessName != null)
-                    hashCode = hashCode * 59 + this.LegalBusinessName.GetHashCode();
-                if (this.ListedUltimateParentCompany != null)
-                    hashCode = hashCode * 59 + this.ListedUltimateParentCompany.GetHashCode();
-                if (this.RegistrationNumber != null)
-                    hashCode = hashCode * 59 + this.RegistrationNumber.GetHashCode();
-                if (this.Shareholders != null)
-                    hashCode = hashCode * 59 + this.Shareholders.GetHashCode();
-                if (this.Signatories != null)
-                    hashCode = hashCode * 59 + this.Signatories.GetHashCode();
-                if (this.TaxId != null)
-                    hashCode = hashCode * 59 + this.TaxId.GetHashCode();
+                if (DoingBusinessAs != null)
+                    hashCode = hashCode * 59 + DoingBusinessAs.GetHashCode();
+                if (LegalBusinessName != null)
+                    hashCode = hashCode * 59 + LegalBusinessName.GetHashCode();
+                if (ListedUltimateParentCompany != null)
+                    hashCode = hashCode * 59 + ListedUltimateParentCompany.GetHashCode();
+                if (RegistrationNumber != null)
+                    hashCode = hashCode * 59 + RegistrationNumber.GetHashCode();
+                if (Shareholders != null)
+                    hashCode = hashCode * 59 + Shareholders.GetHashCode();
+                if (Signatories != null)
+                    hashCode = hashCode * 59 + Signatories.GetHashCode();
+                if (TaxId != null)
+                    hashCode = hashCode * 59 + TaxId.GetHashCode();
                 return hashCode;
             }
         }
@@ -228,7 +205,7 @@ namespace Adyen.Model.MarketPay
         /// </summary>
         /// <param name="validationContext">Validation context</param>
         /// <returns>Validation Result</returns>
-        public IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> Validate(ValidationContext validationContext)
+        public IEnumerable<ValidationResult> Validate(ValidationContext validationContext)
         {
             yield break;
         }

@@ -1,25 +1,3 @@
-#region License
-// /*
-//  *                       ######
-//  *                       ######
-//  * ############    ####( ######  #####. ######  ############   ############
-//  * #############  #####( ######  #####. ######  #############  #############
-//  *        ######  #####( ######  #####. ######  #####  ######  #####  ######
-//  * ###### ######  #####( ######  #####. ######  #####  #####   #####  ######
-//  * ###### ######  #####( ######  #####. ######  #####          #####  ######
-//  * #############  #############  #############  #############  #####  ######
-//  *  ############   ############  #############   ############  #####  ######
-//  *                                      ######
-//  *                               #############
-//  *                               ############
-//  *
-//  * Adyen Dotnet API Library
-//  *
-//  * Copyright (c) 2020 Adyen B.V.
-//  * This file is open source and available under the MIT license.
-//  * See the LICENSE file for more info.
-//  */
-#endregion
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -34,7 +12,7 @@ namespace Adyen.Model.MarketPay
     /// DetailBalance
     /// </summary>
     [DataContract]
-    public partial class DetailBalance : IEquatable<DetailBalance>, IValidatableObject
+    public class DetailBalance : IEquatable<DetailBalance>, IValidatableObject
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="DetailBalance" /> class.
@@ -44,9 +22,9 @@ namespace Adyen.Model.MarketPay
         /// <param name="pendingBalance">The list of pending balances held by the account..</param>
         public DetailBalance(List<Amount> balance = default(List<Amount>), List<Amount> onHoldBalance = default(List<Amount>), List<Amount> pendingBalance = default(List<Amount>))
         {
-            this.Balance = balance;
-            this.OnHoldBalance = onHoldBalance;
-            this.PendingBalance = pendingBalance;
+            Balance = balance;
+            OnHoldBalance = onHoldBalance;
+            PendingBalance = pendingBalance;
         }
 
         /// <summary>
@@ -102,7 +80,7 @@ namespace Adyen.Model.MarketPay
         /// <returns>Boolean</returns>
         public override bool Equals(object input)
         {
-            return this.Equals(input as DetailBalance);
+            return Equals(input as DetailBalance);
         }
 
         /// <summary>
@@ -117,22 +95,22 @@ namespace Adyen.Model.MarketPay
 
             return
                 (
-                    this.Balance == input.Balance ||
-                    this.Balance != null &&
+                    Balance == input.Balance ||
+                    Balance != null &&
                     input.Balance != null &&
-                    this.Balance.SequenceEqual(input.Balance)
+                    Balance.SequenceEqual(input.Balance)
                 ) &&
                 (
-                    this.OnHoldBalance == input.OnHoldBalance ||
-                    this.OnHoldBalance != null &&
+                    OnHoldBalance == input.OnHoldBalance ||
+                    OnHoldBalance != null &&
                     input.OnHoldBalance != null &&
-                    this.OnHoldBalance.SequenceEqual(input.OnHoldBalance)
+                    OnHoldBalance.SequenceEqual(input.OnHoldBalance)
                 ) &&
                 (
-                    this.PendingBalance == input.PendingBalance ||
-                    this.PendingBalance != null &&
+                    PendingBalance == input.PendingBalance ||
+                    PendingBalance != null &&
                     input.PendingBalance != null &&
-                    this.PendingBalance.SequenceEqual(input.PendingBalance)
+                    PendingBalance.SequenceEqual(input.PendingBalance)
                 );
         }
 
@@ -145,12 +123,12 @@ namespace Adyen.Model.MarketPay
             unchecked // Overflow is fine, just wrap
             {
                 int hashCode = 41;
-                if (this.Balance != null)
-                    hashCode = hashCode * 59 + this.Balance.GetHashCode();
-                if (this.OnHoldBalance != null)
-                    hashCode = hashCode * 59 + this.OnHoldBalance.GetHashCode();
-                if (this.PendingBalance != null)
-                    hashCode = hashCode * 59 + this.PendingBalance.GetHashCode();
+                if (Balance != null)
+                    hashCode = hashCode * 59 + Balance.GetHashCode();
+                if (OnHoldBalance != null)
+                    hashCode = hashCode * 59 + OnHoldBalance.GetHashCode();
+                if (PendingBalance != null)
+                    hashCode = hashCode * 59 + PendingBalance.GetHashCode();
                 return hashCode;
             }
         }
@@ -160,7 +138,7 @@ namespace Adyen.Model.MarketPay
         /// </summary>
         /// <param name="validationContext">Validation context</param>
         /// <returns>Validation Result</returns>
-        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+        IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
         {
             yield break;
         }

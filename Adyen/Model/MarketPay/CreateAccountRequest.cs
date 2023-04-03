@@ -1,26 +1,3 @@
-#region License
-// /*
-//  *                       ######
-//  *                       ######
-//  * ############    ####( ######  #####. ######  ############   ############
-//  * #############  #####( ######  #####. ######  #############  #############
-//  *        ######  #####( ######  #####. ######  #####  ######  #####  ######
-//  * ###### ######  #####( ######  #####. ######  #####  #####   #####  ######
-//  * ###### ######  #####( ######  #####. ######  #####          #####  ######
-//  * #############  #############  #############  #############  #####  ######
-//  *  ############   ############  #############   ############  #####  ######
-//  *                                      ######
-//  *                               #############
-//  *                               ############
-//  *
-//  * Adyen Dotnet API Library
-//  *
-//  * Copyright (c) 2020 Adyen B.V.
-//  * This file is open source and available under the MIT license.
-//  * See the LICENSE file for more info.
-//  */
-#endregion
-
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -36,7 +13,7 @@ namespace Adyen.Model.MarketPay
     /// CreateAccountRequest
     /// </summary>
     [DataContract]
-        public partial class CreateAccountRequest :  IEquatable<CreateAccountRequest>, IValidatableObject
+        public class CreateAccountRequest :  IEquatable<CreateAccountRequest>, IValidatableObject
     {
         /// <summary>
         /// The payout schedule of the prospective account. &gt;Permitted values: &#x60;DEFAULT&#x60;, &#x60;HOLD&#x60;, &#x60;DAILY&#x60;, &#x60;WEEKLY&#x60;, &#x60;MONTHLY&#x60;.
@@ -137,15 +114,13 @@ namespace Adyen.Model.MarketPay
             {
                 throw new InvalidDataException("accountHolderCode is a required property for CreateAccountRequest and cannot be null");
             }
-            else
-            {
-                this.AccountHolderCode = accountHolderCode;
-            }
-            this.BankAccountUUID = bankAccountUUID;
-            this.Description = description;
-            this.Metadata = metadata;
-            this.PayoutSchedule = payoutSchedule;
-            this.PayoutScheduleReason = payoutScheduleReason;
+
+            AccountHolderCode = accountHolderCode;
+            BankAccountUUID = bankAccountUUID;
+            Description = description;
+            Metadata = metadata;
+            PayoutSchedule = payoutSchedule;
+            PayoutScheduleReason = payoutScheduleReason;
         }
         
         /// <summary>
@@ -218,7 +193,7 @@ namespace Adyen.Model.MarketPay
         /// <returns>Boolean</returns>
         public override bool Equals(object input)
         {
-            return this.Equals(input as CreateAccountRequest);
+            return Equals(input as CreateAccountRequest);
         }
 
         /// <summary>
@@ -233,34 +208,34 @@ namespace Adyen.Model.MarketPay
 
             return 
                 (
-                    this.AccountHolderCode == input.AccountHolderCode ||
-                    (this.AccountHolderCode != null &&
-                    this.AccountHolderCode.Equals(input.AccountHolderCode))
+                    AccountHolderCode == input.AccountHolderCode ||
+                    (AccountHolderCode != null &&
+                    AccountHolderCode.Equals(input.AccountHolderCode))
                 )&& 
                 (
-                    this.BankAccountUUID == input.BankAccountUUID ||
-                    (this.BankAccountUUID != null &&
-                     this.BankAccountUUID.Equals(input.BankAccountUUID))
+                    BankAccountUUID == input.BankAccountUUID ||
+                    (BankAccountUUID != null &&
+                     BankAccountUUID.Equals(input.BankAccountUUID))
                 ) && 
                 (
-                    this.Description == input.Description ||
-                    (this.Description != null &&
-                    this.Description.Equals(input.Description))
+                    Description == input.Description ||
+                    (Description != null &&
+                    Description.Equals(input.Description))
                 ) && 
                 (
-                    this.Metadata == input.Metadata ||
-                    (this.Metadata != null &&
-                    this.Metadata.Equals(input.Metadata))
+                    Metadata == input.Metadata ||
+                    (Metadata != null &&
+                    Metadata.Equals(input.Metadata))
                 ) && 
                 (
-                    this.PayoutSchedule == input.PayoutSchedule ||
-                    (this.PayoutSchedule != null &&
-                    this.PayoutSchedule.Equals(input.PayoutSchedule))
+                    PayoutSchedule == input.PayoutSchedule ||
+                    (PayoutSchedule != null &&
+                    PayoutSchedule.Equals(input.PayoutSchedule))
                 ) && 
                 (
-                    this.PayoutScheduleReason == input.PayoutScheduleReason ||
-                    (this.PayoutScheduleReason != null &&
-                    this.PayoutScheduleReason.Equals(input.PayoutScheduleReason))
+                    PayoutScheduleReason == input.PayoutScheduleReason ||
+                    (PayoutScheduleReason != null &&
+                    PayoutScheduleReason.Equals(input.PayoutScheduleReason))
                 );
         }
 
@@ -273,18 +248,18 @@ namespace Adyen.Model.MarketPay
             unchecked // Overflow is fine, just wrap
             {
                 int hashCode = 41;
-                if (this.AccountHolderCode != null)
-                    hashCode = hashCode * 59 + this.AccountHolderCode.GetHashCode();
-                if (this.BankAccountUUID != null)
-                    hashCode = hashCode * 59 + this.BankAccountUUID.GetHashCode();
-                if (this.Description != null)
-                    hashCode = hashCode * 59 + this.Description.GetHashCode();
-                if (this.Metadata != null)
-                    hashCode = hashCode * 59 + this.Metadata.GetHashCode();
-                if (this.PayoutSchedule != null)
-                    hashCode = hashCode * 59 + this.PayoutSchedule.GetHashCode();
-                if (this.PayoutScheduleReason != null)
-                    hashCode = hashCode * 59 + this.PayoutScheduleReason.GetHashCode();
+                if (AccountHolderCode != null)
+                    hashCode = hashCode * 59 + AccountHolderCode.GetHashCode();
+                if (BankAccountUUID != null)
+                    hashCode = hashCode * 59 + BankAccountUUID.GetHashCode();
+                if (Description != null)
+                    hashCode = hashCode * 59 + Description.GetHashCode();
+                if (Metadata != null)
+                    hashCode = hashCode * 59 + Metadata.GetHashCode();
+                if (PayoutSchedule != null)
+                    hashCode = hashCode * 59 + PayoutSchedule.GetHashCode();
+                if (PayoutScheduleReason != null)
+                    hashCode = hashCode * 59 + PayoutScheduleReason.GetHashCode();
                 return hashCode;
             }
         }
@@ -294,7 +269,7 @@ namespace Adyen.Model.MarketPay
         /// </summary>
         /// <param name="validationContext">Validation context</param>
         /// <returns>Validation Result</returns>
-        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+        IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
         {
             yield break;
         }

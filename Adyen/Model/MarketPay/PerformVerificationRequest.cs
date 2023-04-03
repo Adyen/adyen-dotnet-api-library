@@ -1,26 +1,3 @@
-#region License
-// /*
-//  *                       ######
-//  *                       ######
-//  * ############    ####( ######  #####. ######  ############   ############
-//  * #############  #####( ######  #####. ######  #############  #############
-//  *        ######  #####( ######  #####. ######  #####  ######  #####  ######
-//  * ###### ######  #####( ######  #####. ######  #####  #####   #####  ######
-//  * ###### ######  #####( ######  #####. ######  #####          #####  ######
-//  * #############  #############  #############  #############  #####  ######
-//  *  ############   ############  #############   ############  #####  ######
-//  *                                      ######
-//  *                               #############
-//  *                               ############
-//  *
-//  * Adyen Dotnet API Library
-//  *
-//  * Copyright (c) 2020 Adyen B.V.
-//  * This file is open source and available under the MIT license.
-//  * See the LICENSE file for more info.
-//  */
-#endregion
-
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -36,7 +13,7 @@ namespace Adyen.Model.MarketPay
     /// PerformVerificationRequest
     /// </summary>
     [DataContract]
-        public partial class PerformVerificationRequest :  IEquatable<PerformVerificationRequest>, IValidatableObject
+        public class PerformVerificationRequest :  IEquatable<PerformVerificationRequest>, IValidatableObject
     {
         /// <summary>
         /// The state required for the account holder. &gt; Permitted values: &#x60;Processing&#x60;, &#x60;Payout&#x60;.
@@ -94,20 +71,16 @@ namespace Adyen.Model.MarketPay
             {
                 throw new InvalidDataException("accountHolderCode is a required property for PerformVerificationRequest and cannot be null");
             }
-            else
-            {
-                this.AccountHolderCode = accountHolderCode;
-            }
+
+            AccountHolderCode = accountHolderCode;
             // to ensure "tier" is required (not null)
             if (tier == null)
             {
                 throw new InvalidDataException("tier is a required property for PerformVerificationRequest and cannot be null");
             }
-            else
-            {
-                this.Tier = tier;
-            }
-            this.AccountStateType = accountStateType;
+
+            Tier = tier;
+            AccountStateType = accountStateType;
         }
 
         /// <summary>
@@ -156,7 +129,7 @@ namespace Adyen.Model.MarketPay
         /// <returns>Boolean</returns>
         public override bool Equals(object input)
         {
-            return this.Equals(input as PerformVerificationRequest);
+            return Equals(input as PerformVerificationRequest);
         }
 
         /// <summary>
@@ -171,18 +144,18 @@ namespace Adyen.Model.MarketPay
 
             return 
                 (
-                    this.AccountHolderCode == input.AccountHolderCode ||
-                    (this.AccountHolderCode != null &&
-                    this.AccountHolderCode.Equals(input.AccountHolderCode))
+                    AccountHolderCode == input.AccountHolderCode ||
+                    (AccountHolderCode != null &&
+                    AccountHolderCode.Equals(input.AccountHolderCode))
                 ) && 
                 (
-                    this.AccountStateType == input.AccountStateType ||
-                    this.AccountStateType.Equals(input.AccountStateType)
+                    AccountStateType == input.AccountStateType ||
+                    AccountStateType.Equals(input.AccountStateType)
                 ) && 
                 (
-                    this.Tier == input.Tier ||
-                    (this.Tier != null &&
-                    this.Tier.Equals(input.Tier))
+                    Tier == input.Tier ||
+                    (Tier != null &&
+                    Tier.Equals(input.Tier))
                 );
         }
 
@@ -195,11 +168,11 @@ namespace Adyen.Model.MarketPay
             unchecked // Overflow is fine, just wrap
             {
                 int hashCode = 41;
-                if (this.AccountHolderCode != null)
-                    hashCode = hashCode * 59 + this.AccountHolderCode.GetHashCode();
-                hashCode = hashCode * 59 + this.AccountStateType.GetHashCode();
-                if (this.Tier != null)
-                    hashCode = hashCode * 59 + this.Tier.GetHashCode();
+                if (AccountHolderCode != null)
+                    hashCode = hashCode * 59 + AccountHolderCode.GetHashCode();
+                hashCode = hashCode * 59 + AccountStateType.GetHashCode();
+                if (Tier != null)
+                    hashCode = hashCode * 59 + Tier.GetHashCode();
                 return hashCode;
             }
         }
@@ -209,7 +182,7 @@ namespace Adyen.Model.MarketPay
         /// </summary>
         /// <param name="validationContext">Validation context</param>
         /// <returns>Validation Result</returns>
-        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+        IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
         {
             yield break;
         }

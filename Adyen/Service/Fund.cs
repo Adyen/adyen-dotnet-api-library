@@ -1,27 +1,4 @@
-﻿#region License
-// /*
-//  *                       ######
-//  *                       ######
-//  * ############    ####( ######  #####. ######  ############   ############
-//  * #############  #####( ######  #####. ######  #############  #############
-//  *        ######  #####( ######  #####. ######  #####  ######  #####  ######
-//  * ###### ######  #####( ######  #####. ######  #####  #####   #####  ######
-//  * ###### ######  #####( ######  #####. ######  #####          #####  ######
-//  * #############  #############  #############  #############  #####  ######
-//  *  ############   ############  #############   ############  #####  ######
-//  *                                      ######
-//  *                               #############
-//  *                               ############
-//  *
-//  * Adyen Dotnet API Library
-//  *
-//  * Copyright (c) 2020 Adyen B.V.
-//  * This file is open source and available under the MIT license.
-//  * See the LICENSE file for more info.
-//  */
-#endregion
-
-using Adyen.Model.MarketPay;
+﻿using Adyen.Model.MarketPay;
 using Adyen.Service.Resource.Fund;
 using Newtonsoft.Json;
 
@@ -29,13 +6,13 @@ namespace Adyen.Service
 {
     public class Fund : AbstractService
     {
-        private AccountHolderBalance _accountHolderBalance;
-        private AccountHolderTransactionList _accountHolderTransactionList;
-        private PayoutAccountHolder _payoutAccountHolder;
-        private TransferFunds _transferFunds;
-        private RefundFundsTransfer _refundFundsTransfer;
-        private SetupBeneficiary _setupBeneficiary;
-        private RefundNotPaidOutTransfers _refundNotPaidOutTransfers;
+        private readonly AccountHolderBalance _accountHolderBalance;
+        private readonly AccountHolderTransactionList _accountHolderTransactionList;
+        private readonly PayoutAccountHolder _payoutAccountHolder;
+        private readonly TransferFunds _transferFunds;
+        private readonly RefundFundsTransfer _refundFundsTransfer;
+        private readonly SetupBeneficiary _setupBeneficiary;
+        private readonly RefundNotPaidOutTransfers _refundNotPaidOutTransfers;
 
         public Fund(Client client)
             : base(client)

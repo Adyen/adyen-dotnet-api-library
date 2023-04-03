@@ -1,30 +1,6 @@
-#region License
-// /*
-//  *                       ######
-//  *                       ######
-//  * ############    ####( ######  #####. ######  ############   ############
-//  * #############  #####( ######  #####. ######  #############  #############
-//  *        ######  #####( ######  #####. ######  #####  ######  #####  ######
-//  * ###### ######  #####( ######  #####. ######  #####  #####   #####  ######
-//  * ###### ######  #####( ######  #####. ######  #####          #####  ######
-//  * #############  #############  #############  #############  #####  ######
-//  *  ############   ############  #############   ############  #####  ######
-//  *                                      ######
-//  *                               #############
-//  *                               ############
-//  *
-//  * Adyen Dotnet API Library
-//  *
-//  * Copyright (c) 2020 Adyen B.V.
-//  * This file is open source and available under the MIT license.
-//  * See the LICENSE file for more info.
-//  */
-#endregion
-
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.IO;
 using System.Linq;
 using System.Runtime.Serialization;
 using System.Text;
@@ -37,7 +13,7 @@ namespace Adyen.Model.MarketPay
     /// KYCSignatoryCheckResult
     /// </summary>
     [DataContract]
-        public partial class KYCSignatoryCheckResult :  IEquatable<KYCSignatoryCheckResult>, IValidatableObject
+        public class KYCSignatoryCheckResult :  IEquatable<KYCSignatoryCheckResult>, IValidatableObject
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="KYCSignatoryCheckResult" /> class.
@@ -46,8 +22,8 @@ namespace Adyen.Model.MarketPay
         /// <param name="signatoryCode">The code of the signatory to which the check applies..</param>
         public KYCSignatoryCheckResult(List<KYCCheckStatusData> checks = default(List<KYCCheckStatusData>), string signatoryCode = default(string))
         {
-            this.Checks = checks;
-            this.SignatoryCode = signatoryCode;
+            Checks = checks;
+            SignatoryCode = signatoryCode;
         }
         
         /// <summary>
@@ -94,7 +70,7 @@ namespace Adyen.Model.MarketPay
         /// <returns>Boolean</returns>
         public override bool Equals(object input)
         {
-            return this.Equals(input as KYCSignatoryCheckResult);
+            return Equals(input as KYCSignatoryCheckResult);
         }
 
         /// <summary>
@@ -109,15 +85,15 @@ namespace Adyen.Model.MarketPay
 
             return 
                 (
-                    this.Checks == input.Checks ||
-                    this.Checks != null &&
+                    Checks == input.Checks ||
+                    Checks != null &&
                     input.Checks != null &&
-                    this.Checks.SequenceEqual(input.Checks)
+                    Checks.SequenceEqual(input.Checks)
                 ) && 
                 (
-                    this.SignatoryCode == input.SignatoryCode ||
-                    (this.SignatoryCode != null &&
-                    this.SignatoryCode.Equals(input.SignatoryCode))
+                    SignatoryCode == input.SignatoryCode ||
+                    (SignatoryCode != null &&
+                    SignatoryCode.Equals(input.SignatoryCode))
                 );
         }
 
@@ -130,10 +106,10 @@ namespace Adyen.Model.MarketPay
             unchecked // Overflow is fine, just wrap
             {
                 int hashCode = 41;
-                if (this.Checks != null)
-                    hashCode = hashCode * 59 + this.Checks.GetHashCode();
-                if (this.SignatoryCode != null)
-                    hashCode = hashCode * 59 + this.SignatoryCode.GetHashCode();
+                if (Checks != null)
+                    hashCode = hashCode * 59 + Checks.GetHashCode();
+                if (SignatoryCode != null)
+                    hashCode = hashCode * 59 + SignatoryCode.GetHashCode();
                 return hashCode;
             }
         }
@@ -143,7 +119,7 @@ namespace Adyen.Model.MarketPay
         /// </summary>
         /// <param name="validationContext">Validation context</param>
         /// <returns>Validation Result</returns>
-        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+        IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
         {
             yield break;
         }

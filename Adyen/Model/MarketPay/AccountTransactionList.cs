@@ -1,25 +1,3 @@
-#region License
-// /*
-//  *                       ######
-//  *                       ######
-//  * ############    ####( ######  #####. ######  ############   ############
-//  * #############  #####( ######  #####. ######  #############  #############
-//  *        ######  #####( ######  #####. ######  #####  ######  #####  ######
-//  * ###### ######  #####( ######  #####. ######  #####  #####   #####  ######
-//  * ###### ######  #####( ######  #####. ######  #####          #####  ######
-//  * #############  #############  #############  #############  #####  ######
-//  *  ############   ############  #############   ############  #####  ######
-//  *                                      ######
-//  *                               #############
-//  *                               ############
-//  *
-//  * Adyen Dotnet API Library
-//  *
-//  * Copyright (c) 2020 Adyen B.V.
-//  * This file is open source and available under the MIT license.
-//  * See the LICENSE file for more info.
-//  */
-#endregion
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -44,9 +22,9 @@ namespace Adyen.Model.MarketPay
         /// <param name="transactions">The list of transactions..</param>
         public AccountTransactionList(string accountCode = default(string), bool? hasNextPage = default(bool?), List<Transaction> transactions = default(List<Transaction>))
         {
-            this.AccountCode = accountCode;
-            this.HasNextPage = hasNextPage;
-            this.Transactions = transactions;
+            AccountCode = accountCode;
+            HasNextPage = hasNextPage;
+            Transactions = transactions;
         }
 
         /// <summary>
@@ -101,7 +79,7 @@ namespace Adyen.Model.MarketPay
         /// <returns>Boolean</returns>
         public override bool Equals(object input)
         {
-            return this.Equals(input as AccountTransactionList);
+            return Equals(input as AccountTransactionList);
         }
 
         /// <summary>
@@ -116,20 +94,20 @@ namespace Adyen.Model.MarketPay
 
             return
                 (
-                    this.AccountCode == input.AccountCode ||
-                    (this.AccountCode != null &&
-                    this.AccountCode.Equals(input.AccountCode))
+                    AccountCode == input.AccountCode ||
+                    (AccountCode != null &&
+                    AccountCode.Equals(input.AccountCode))
                 ) &&
                 (
-                    this.HasNextPage == input.HasNextPage ||
-                    (this.HasNextPage != null &&
-                    this.HasNextPage.Equals(input.HasNextPage))
+                    HasNextPage == input.HasNextPage ||
+                    (HasNextPage != null &&
+                    HasNextPage.Equals(input.HasNextPage))
                 ) &&
                 (
-                    this.Transactions == input.Transactions ||
-                    this.Transactions != null &&
+                    Transactions == input.Transactions ||
+                    Transactions != null &&
                     input.Transactions != null &&
-                    this.Transactions.SequenceEqual(input.Transactions)
+                    Transactions.SequenceEqual(input.Transactions)
                 );
         }
 
@@ -142,12 +120,12 @@ namespace Adyen.Model.MarketPay
             unchecked // Overflow is fine, just wrap
             {
                 int hashCode = 41;
-                if (this.AccountCode != null)
-                    hashCode = hashCode * 59 + this.AccountCode.GetHashCode();
-                if (this.HasNextPage != null)
-                    hashCode = hashCode * 59 + this.HasNextPage.GetHashCode();
-                if (this.Transactions != null)
-                    hashCode = hashCode * 59 + this.Transactions.GetHashCode();
+                if (AccountCode != null)
+                    hashCode = hashCode * 59 + AccountCode.GetHashCode();
+                if (HasNextPage != null)
+                    hashCode = hashCode * 59 + HasNextPage.GetHashCode();
+                if (Transactions != null)
+                    hashCode = hashCode * 59 + Transactions.GetHashCode();
                 return hashCode;
             }
         }
@@ -157,7 +135,7 @@ namespace Adyen.Model.MarketPay
         /// </summary>
         /// <param name="validationContext">Validation context</param>
         /// <returns>Validation Result</returns>
-        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+        IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
         {
             yield break;
         }

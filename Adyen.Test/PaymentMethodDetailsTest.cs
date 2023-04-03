@@ -1,26 +1,4 @@
-﻿#region Licence
-// 
-//                        ######
-//                        ######
-//  ############    ####( ######  #####. ######  ############   ############
-//  #############  #####( ######  #####. ######  #############  #############
-//         ######  #####( ######  #####. ######  #####  ######  #####  ######
-//  ###### ######  #####( ######  #####. ######  #####  #####   #####  ######
-//  ###### ######  #####( ######  #####. ######  #####          #####  ######
-//  #############  #############  #############  #############  #####  ######
-//   ############   ############  #############   ############  #####  ######
-//                                       ######
-//                                #############
-//                                ############
-// 
-//  Adyen Dotnet API Library
-// 
-//  Copyright (c) 2020 Adyen B.V.
-//  This file is open source and available under the MIT license.
-//  See the LICENSE file for more info.
-#endregion
-
-using Adyen.Model.Checkout;
+﻿using Adyen.Model.Checkout;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace Adyen.Test
@@ -65,7 +43,7 @@ namespace Adyen.Test
         [TestMethod]
         public void TestApplePayPaymentMethod()
         {
-            var applePay = new ApplePayDetails()
+            var applePay = new ApplePayDetails
             {
                 ApplePayToken = "VNRWtuNlNEWkRCSm1xWndjMDFFbktkQU..."
             };
@@ -136,7 +114,7 @@ namespace Adyen.Test
                 MerchantAccount = "YOUR_MERCHANT_ACCOUNT",
                 Amount = new Amount("EUR", 1000),
                 Reference = "ideal test",
-                PaymentMethod = new PaymentDonationRequestPaymentMethod(new IdealDetails()
+                PaymentMethod = new PaymentDonationRequestPaymentMethod(new IdealDetails
                 {
                     Issuer = "1121"
                 }),
@@ -179,7 +157,7 @@ namespace Adyen.Test
         [TestMethod]
         public void TestPaypalSuccess()
         {
-            var paymentRequest = new PaymentRequest()
+            var paymentRequest = new PaymentRequest
             {
                 MerchantAccount = "YOUR_MERCHANT_ACCOUNT",
                 Amount = new Amount("USD", 1000),
@@ -199,7 +177,7 @@ namespace Adyen.Test
         [TestMethod]
         public void TestZipSuccess()
         {
-            var paymentRequest = new PaymentRequest()
+            var paymentRequest = new PaymentRequest
             {
                 MerchantAccount = "YOUR_MERCHANT_ACCOUNT",
                 Amount = new Amount("USD", 1000),

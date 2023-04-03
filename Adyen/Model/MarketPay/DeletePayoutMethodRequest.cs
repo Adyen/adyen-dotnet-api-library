@@ -1,26 +1,3 @@
-#region License
-// /*
-//  *                       ######
-//  *                       ######
-//  * ############    ####( ######  #####. ######  ############   ############
-//  * #############  #####( ######  #####. ######  #############  #############
-//  *        ######  #####( ######  #####. ######  #####  ######  #####  ######
-//  * ###### ######  #####( ######  #####. ######  #####  #####   #####  ######
-//  * ###### ######  #####( ######  #####. ######  #####          #####  ######
-//  * #############  #############  #############  #############  #####  ######
-//  *  ############   ############  #############   ############  #####  ######
-//  *                                      ######
-//  *                               #############
-//  *                               ############
-//  *
-//  * Adyen Dotnet API Library
-//  *
-//  * Copyright (c) 2020 Adyen B.V.
-//  * This file is open source and available under the MIT license.
-//  * See the LICENSE file for more info.
-//  */
-#endregion
-
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -36,7 +13,7 @@ namespace Adyen.Model.MarketPay
     /// DeletePayoutMethodRequest
     /// </summary>
     [DataContract]
-        public partial class DeletePayoutMethodRequest :  IEquatable<DeletePayoutMethodRequest>, IValidatableObject
+        public class DeletePayoutMethodRequest :  IEquatable<DeletePayoutMethodRequest>, IValidatableObject
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="DeletePayoutMethodRequest" /> class.
@@ -50,19 +27,15 @@ namespace Adyen.Model.MarketPay
             {
                 throw new InvalidDataException("accountHolderCode is a required property for DeletePayoutMethodRequest and cannot be null");
             }
-            else
-            {
-                this.AccountHolderCode = accountHolderCode;
-            }
+
+            AccountHolderCode = accountHolderCode;
             // to ensure "payoutMethodCodes" is required (not null)
             if (payoutMethodCodes == null)
             {
                 throw new InvalidDataException("payoutMethodCodes is a required property for DeletePayoutMethodRequest and cannot be null");
             }
-            else
-            {
-                this.PayoutMethodCodes = payoutMethodCodes;
-            }
+
+            PayoutMethodCodes = payoutMethodCodes;
         }
         
         /// <summary>
@@ -109,7 +82,7 @@ namespace Adyen.Model.MarketPay
         /// <returns>Boolean</returns>
         public override bool Equals(object input)
         {
-            return this.Equals(input as DeletePayoutMethodRequest);
+            return Equals(input as DeletePayoutMethodRequest);
         }
 
         /// <summary>
@@ -124,15 +97,15 @@ namespace Adyen.Model.MarketPay
 
             return 
                 (
-                    this.AccountHolderCode == input.AccountHolderCode ||
-                    (this.AccountHolderCode != null &&
-                    this.AccountHolderCode.Equals(input.AccountHolderCode))
+                    AccountHolderCode == input.AccountHolderCode ||
+                    (AccountHolderCode != null &&
+                    AccountHolderCode.Equals(input.AccountHolderCode))
                 ) && 
                 (
-                    this.PayoutMethodCodes == input.PayoutMethodCodes ||
-                    this.PayoutMethodCodes != null &&
+                    PayoutMethodCodes == input.PayoutMethodCodes ||
+                    PayoutMethodCodes != null &&
                     input.PayoutMethodCodes != null &&
-                    this.PayoutMethodCodes.SequenceEqual(input.PayoutMethodCodes)
+                    PayoutMethodCodes.SequenceEqual(input.PayoutMethodCodes)
                 );
         }
 
@@ -145,10 +118,10 @@ namespace Adyen.Model.MarketPay
             unchecked // Overflow is fine, just wrap
             {
                 int hashCode = 41;
-                if (this.AccountHolderCode != null)
-                    hashCode = hashCode * 59 + this.AccountHolderCode.GetHashCode();
-                if (this.PayoutMethodCodes != null)
-                    hashCode = hashCode * 59 + this.PayoutMethodCodes.GetHashCode();
+                if (AccountHolderCode != null)
+                    hashCode = hashCode * 59 + AccountHolderCode.GetHashCode();
+                if (PayoutMethodCodes != null)
+                    hashCode = hashCode * 59 + PayoutMethodCodes.GetHashCode();
                 return hashCode;
             }
         }
@@ -158,7 +131,7 @@ namespace Adyen.Model.MarketPay
         /// </summary>
         /// <param name="validationContext">Validation context</param>
         /// <returns>Validation Result</returns>
-        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+        IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
         {
             yield break;
         }
