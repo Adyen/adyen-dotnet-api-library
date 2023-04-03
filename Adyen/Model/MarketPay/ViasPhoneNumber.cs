@@ -1,26 +1,3 @@
-#region License
-// /*
-//  *                       ######
-//  *                       ######
-//  * ############    ####( ######  #####. ######  ############   ############
-//  * #############  #####( ######  #####. ######  #############  #############
-//  *        ######  #####( ######  #####. ######  #####  ######  #####  ######
-//  * ###### ######  #####( ######  #####. ######  #####  #####   #####  ######
-//  * ###### ######  #####( ######  #####. ######  #####          #####  ######
-//  * #############  #############  #############  #############  #####  ######
-//  *  ############   ############  #############   ############  #####  ######
-//  *                                      ######
-//  *                               #############
-//  *                               ############
-//  *
-//  * Adyen Dotnet API Library
-//  *
-//  * Copyright (c) 2020 Adyen B.V.
-//  * This file is open source and available under the MIT license.
-//  * See the LICENSE file for more info.
-//  */
-#endregion
-
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -36,7 +13,7 @@ namespace Adyen.Model.MarketPay
     /// ViasPhoneNumber
     /// </summary>
     [DataContract]
-        public partial class ViasPhoneNumber :  IEquatable<ViasPhoneNumber>, IValidatableObject
+        public class ViasPhoneNumber :  IEquatable<ViasPhoneNumber>, IValidatableObject
     {
         /// <summary>
         /// The type of the phone number. &gt;The following values are permitted: &#x60;Landline&#x60;, &#x60;Mobile&#x60;, &#x60;SIP&#x60;, &#x60;Fax&#x60;.
@@ -84,20 +61,16 @@ namespace Adyen.Model.MarketPay
             {
                 throw new InvalidDataException("phoneCountryCode is a required property for ViasPhoneNumber and cannot be null");
             }
-            else
-            {
-                this.PhoneCountryCode = phoneCountryCode;
-            }
+
+            PhoneCountryCode = phoneCountryCode;
             // to ensure "phoneNumber" is required (not null)
             if (phoneNumber == null)
             {
                 throw new InvalidDataException("phoneNumber is a required property for ViasPhoneNumber and cannot be null");
             }
-            else
-            {
-                this.PhoneNumber = phoneNumber;
-            }
-            this.PhoneType = phoneType;
+
+            PhoneNumber = phoneNumber;
+            PhoneType = phoneType;
         }
         
         /// <summary>
@@ -146,7 +119,7 @@ namespace Adyen.Model.MarketPay
         /// <returns>Boolean</returns>
         public override bool Equals(object input)
         {
-            return this.Equals(input as ViasPhoneNumber);
+            return Equals(input as ViasPhoneNumber);
         }
 
         /// <summary>
@@ -161,19 +134,19 @@ namespace Adyen.Model.MarketPay
 
             return 
                 (
-                    this.PhoneCountryCode == input.PhoneCountryCode ||
-                    (this.PhoneCountryCode != null &&
-                    this.PhoneCountryCode.Equals(input.PhoneCountryCode))
+                    PhoneCountryCode == input.PhoneCountryCode ||
+                    (PhoneCountryCode != null &&
+                    PhoneCountryCode.Equals(input.PhoneCountryCode))
                 ) && 
                 (
-                    this.PhoneNumber == input.PhoneNumber ||
-                    (this.PhoneNumber != null &&
-                    this.PhoneNumber.Equals(input.PhoneNumber))
+                    PhoneNumber == input.PhoneNumber ||
+                    (PhoneNumber != null &&
+                    PhoneNumber.Equals(input.PhoneNumber))
                 ) && 
                 (
-                    this.PhoneType == input.PhoneType ||
-                    (this.PhoneType != null &&
-                    this.PhoneType.Equals(input.PhoneType))
+                    PhoneType == input.PhoneType ||
+                    (PhoneType != null &&
+                    PhoneType.Equals(input.PhoneType))
                 );
         }
 
@@ -186,12 +159,12 @@ namespace Adyen.Model.MarketPay
             unchecked // Overflow is fine, just wrap
             {
                 int hashCode = 41;
-                if (this.PhoneCountryCode != null)
-                    hashCode = hashCode * 59 + this.PhoneCountryCode.GetHashCode();
-                if (this.PhoneNumber != null)
-                    hashCode = hashCode * 59 + this.PhoneNumber.GetHashCode();
-                if (this.PhoneType != null)
-                    hashCode = hashCode * 59 + this.PhoneType.GetHashCode();
+                if (PhoneCountryCode != null)
+                    hashCode = hashCode * 59 + PhoneCountryCode.GetHashCode();
+                if (PhoneNumber != null)
+                    hashCode = hashCode * 59 + PhoneNumber.GetHashCode();
+                if (PhoneType != null)
+                    hashCode = hashCode * 59 + PhoneType.GetHashCode();
                 return hashCode;
             }
         }
@@ -201,7 +174,7 @@ namespace Adyen.Model.MarketPay
         /// </summary>
         /// <param name="validationContext">Validation context</param>
         /// <returns>Validation Result</returns>
-        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+        IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
         {
             yield break;
         }

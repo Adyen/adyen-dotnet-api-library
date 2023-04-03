@@ -1,26 +1,3 @@
-#region License
-// /*
-//  *                       ######
-//  *                       ######
-//  * ############    ####( ######  #####. ######  ############   ############
-//  * #############  #####( ######  #####. ######  #############  #############
-//  *        ######  #####( ######  #####. ######  #####  ######  #####  ######
-//  * ###### ######  #####( ######  #####. ######  #####  #####   #####  ######
-//  * ###### ######  #####( ######  #####. ######  #####          #####  ######
-//  * #############  #############  #############  #############  #####  ######
-//  *  ############   ############  #############   ############  #####  ######
-//  *                                      ######
-//  *                               #############
-//  *                               ############
-//  *
-//  * Adyen Dotnet API Library
-//  *
-//  * Copyright (c) 2020 Adyen B.V.
-//  * This file is open source and available under the MIT license.
-//  * See the LICENSE file for more info.
-//  */
-#endregion
-
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -36,7 +13,7 @@ namespace Adyen.Model.MarketPay
     /// ViasName
     /// </summary>
     [DataContract]
-        public partial class ViasName :  IEquatable<ViasName>, IValidatableObject
+        public class ViasName :  IEquatable<ViasName>, IValidatableObject
     {
         /// <summary>
         /// The gender. &gt;The following values are permitted: &#x60;MALE&#x60;, &#x60;FEMALE&#x60;, &#x60;UNKNOWN&#x60;.
@@ -80,21 +57,17 @@ namespace Adyen.Model.MarketPay
             {
                 throw new InvalidDataException("firstName is a required property for ViasName and cannot be null");
             }
-            else
-            {
-                this.FirstName = firstName;
-            }
+
+            FirstName = firstName;
             // to ensure "lastName" is required (not null)
             if (lastName == null)
             {
                 throw new InvalidDataException("lastName is a required property for ViasName and cannot be null");
             }
-            else
-            {
-                this.LastName = lastName;
-            }
-            this.Gender = gender;
-            this.Infix = infix;
+
+            LastName = lastName;
+            Gender = gender;
+            Infix = infix;
         }
         
         /// <summary>
@@ -151,7 +124,7 @@ namespace Adyen.Model.MarketPay
         /// <returns>Boolean</returns>
         public override bool Equals(object input)
         {
-            return this.Equals(input as ViasName);
+            return Equals(input as ViasName);
         }
 
         /// <summary>
@@ -166,23 +139,23 @@ namespace Adyen.Model.MarketPay
 
             return 
                 (
-                    this.FirstName == input.FirstName ||
-                    (this.FirstName != null &&
-                    this.FirstName.Equals(input.FirstName))
+                    FirstName == input.FirstName ||
+                    (FirstName != null &&
+                    FirstName.Equals(input.FirstName))
                 ) && 
                 (
-                    this.Gender == input.Gender ||
-                    this.Gender.Equals(input.Gender)
+                    Gender == input.Gender ||
+                    Gender.Equals(input.Gender)
                 ) && 
                 (
-                    this.Infix == input.Infix ||
-                    (this.Infix != null &&
-                    this.Infix.Equals(input.Infix))
+                    Infix == input.Infix ||
+                    (Infix != null &&
+                    Infix.Equals(input.Infix))
                 ) && 
                 (
-                    this.LastName == input.LastName ||
-                    (this.LastName != null &&
-                    this.LastName.Equals(input.LastName))
+                    LastName == input.LastName ||
+                    (LastName != null &&
+                    LastName.Equals(input.LastName))
                 );
         }
 
@@ -195,13 +168,13 @@ namespace Adyen.Model.MarketPay
             unchecked // Overflow is fine, just wrap
             {
                 int hashCode = 41;
-                if (this.FirstName != null)
-                    hashCode = hashCode * 59 + this.FirstName.GetHashCode();
-                hashCode = hashCode * 59 + this.Gender.GetHashCode();
-                if (this.Infix != null)
-                    hashCode = hashCode * 59 + this.Infix.GetHashCode();
-                if (this.LastName != null)
-                    hashCode = hashCode * 59 + this.LastName.GetHashCode();
+                if (FirstName != null)
+                    hashCode = hashCode * 59 + FirstName.GetHashCode();
+                hashCode = hashCode * 59 + Gender.GetHashCode();
+                if (Infix != null)
+                    hashCode = hashCode * 59 + Infix.GetHashCode();
+                if (LastName != null)
+                    hashCode = hashCode * 59 + LastName.GetHashCode();
                 return hashCode;
             }
         }
@@ -211,7 +184,7 @@ namespace Adyen.Model.MarketPay
         /// </summary>
         /// <param name="validationContext">Validation context</param>
         /// <returns>Validation Result</returns>
-        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+        IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
         {
             yield break;
         }

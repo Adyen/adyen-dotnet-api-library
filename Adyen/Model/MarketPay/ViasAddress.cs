@@ -1,26 +1,3 @@
-#region License
-// /*
-//  *                       ######
-//  *                       ######
-//  * ############    ####( ######  #####. ######  ############   ############
-//  * #############  #####( ######  #####. ######  #############  #############
-//  *        ######  #####( ######  #####. ######  #####  ######  #####  ######
-//  * ###### ######  #####( ######  #####. ######  #####  #####   #####  ######
-//  * ###### ######  #####( ######  #####. ######  #####          #####  ######
-//  * #############  #############  #############  #############  #####  ######
-//  *  ############   ############  #############   ############  #####  ######
-//  *                                      ######
-//  *                               #############
-//  *                               ############
-//  *
-//  * Adyen Dotnet API Library
-//  *
-//  * Copyright (c) 2020 Adyen B.V.
-//  * This file is open source and available under the MIT license.
-//  * See the LICENSE file for more info.
-//  */
-#endregion
-
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -35,7 +12,7 @@ namespace Adyen.Model.MarketPay
     /// ViasAddress
     /// </summary>
     [DataContract]
-        public partial class ViasAddress :  IEquatable<ViasAddress>, IValidatableObject
+        public class ViasAddress :  IEquatable<ViasAddress>, IValidatableObject
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="ViasAddress" /> class.
@@ -53,15 +30,13 @@ namespace Adyen.Model.MarketPay
             {
                 throw new InvalidDataException("country is a required property for ViasAddress and cannot be null");
             }
-            else
-            {
-                this.Country = country;
-            }
-            this.City = city;
-            this.HouseNumberOrName = houseNumberOrName;
-            this.PostalCode = postalCode;
-            this.StateOrProvince = stateOrProvince;
-            this.Street = street;
+
+            Country = country;
+            City = city;
+            HouseNumberOrName = houseNumberOrName;
+            PostalCode = postalCode;
+            StateOrProvince = stateOrProvince;
+            Street = street;
         }
         
         /// <summary>
@@ -140,7 +115,7 @@ namespace Adyen.Model.MarketPay
         /// <returns>Boolean</returns>
         public override bool Equals(object input)
         {
-            return this.Equals(input as ViasAddress);
+            return Equals(input as ViasAddress);
         }
 
         /// <summary>
@@ -155,34 +130,34 @@ namespace Adyen.Model.MarketPay
 
             return 
                 (
-                    this.City == input.City ||
-                    (this.City != null &&
-                    this.City.Equals(input.City))
+                    City == input.City ||
+                    (City != null &&
+                    City.Equals(input.City))
                 ) && 
                 (
-                    this.Country == input.Country ||
-                    (this.Country != null &&
-                    this.Country.Equals(input.Country))
+                    Country == input.Country ||
+                    (Country != null &&
+                    Country.Equals(input.Country))
                 ) && 
                 (
-                    this.HouseNumberOrName == input.HouseNumberOrName ||
-                    (this.HouseNumberOrName != null &&
-                    this.HouseNumberOrName.Equals(input.HouseNumberOrName))
+                    HouseNumberOrName == input.HouseNumberOrName ||
+                    (HouseNumberOrName != null &&
+                    HouseNumberOrName.Equals(input.HouseNumberOrName))
                 ) && 
                 (
-                    this.PostalCode == input.PostalCode ||
-                    (this.PostalCode != null &&
-                    this.PostalCode.Equals(input.PostalCode))
+                    PostalCode == input.PostalCode ||
+                    (PostalCode != null &&
+                    PostalCode.Equals(input.PostalCode))
                 ) && 
                 (
-                    this.StateOrProvince == input.StateOrProvince ||
-                    (this.StateOrProvince != null &&
-                    this.StateOrProvince.Equals(input.StateOrProvince))
+                    StateOrProvince == input.StateOrProvince ||
+                    (StateOrProvince != null &&
+                    StateOrProvince.Equals(input.StateOrProvince))
                 ) && 
                 (
-                    this.Street == input.Street ||
-                    (this.Street != null &&
-                    this.Street.Equals(input.Street))
+                    Street == input.Street ||
+                    (Street != null &&
+                    Street.Equals(input.Street))
                 );
         }
 
@@ -195,18 +170,18 @@ namespace Adyen.Model.MarketPay
             unchecked // Overflow is fine, just wrap
             {
                 int hashCode = 41;
-                if (this.City != null)
-                    hashCode = hashCode * 59 + this.City.GetHashCode();
-                if (this.Country != null)
-                    hashCode = hashCode * 59 + this.Country.GetHashCode();
-                if (this.HouseNumberOrName != null)
-                    hashCode = hashCode * 59 + this.HouseNumberOrName.GetHashCode();
-                if (this.PostalCode != null)
-                    hashCode = hashCode * 59 + this.PostalCode.GetHashCode();
-                if (this.StateOrProvince != null)
-                    hashCode = hashCode * 59 + this.StateOrProvince.GetHashCode();
-                if (this.Street != null)
-                    hashCode = hashCode * 59 + this.Street.GetHashCode();
+                if (City != null)
+                    hashCode = hashCode * 59 + City.GetHashCode();
+                if (Country != null)
+                    hashCode = hashCode * 59 + Country.GetHashCode();
+                if (HouseNumberOrName != null)
+                    hashCode = hashCode * 59 + HouseNumberOrName.GetHashCode();
+                if (PostalCode != null)
+                    hashCode = hashCode * 59 + PostalCode.GetHashCode();
+                if (StateOrProvince != null)
+                    hashCode = hashCode * 59 + StateOrProvince.GetHashCode();
+                if (Street != null)
+                    hashCode = hashCode * 59 + Street.GetHashCode();
                 return hashCode;
             }
         }
@@ -216,7 +191,7 @@ namespace Adyen.Model.MarketPay
         /// </summary>
         /// <param name="validationContext">Validation context</param>
         /// <returns>Validation Result</returns>
-        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+        IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
         {
             yield break;
         }

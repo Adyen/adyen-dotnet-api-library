@@ -1,26 +1,3 @@
-#region License
-// /*
-//  *                       ######
-//  *                       ######
-//  * ############    ####( ######  #####. ######  ############   ############
-//  * #############  #####( ######  #####. ######  #############  #############
-//  *        ######  #####( ######  #####. ######  #####  ######  #####  ######
-//  * ###### ######  #####( ######  #####. ######  #####  #####   #####  ######
-//  * ###### ######  #####( ######  #####. ######  #####          #####  ######
-//  * #############  #############  #############  #############  #####  ######
-//  *  ############   ############  #############   ############  #####  ######
-//  *                                      ######
-//  *                               #############
-//  *                               ############
-//  *
-//  * Adyen Dotnet API Library
-//  *
-//  * Copyright (c) 2020 Adyen B.V.
-//  * This file is open source and available under the MIT license.
-//  * See the LICENSE file for more info.
-//  */
-#endregion
-
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -36,7 +13,7 @@ namespace Adyen.Model.MarketPay
     /// AccountEvent
     /// </summary>
     [DataContract]
-        public partial class AccountEvent :  IEquatable<AccountEvent>, IValidatableObject
+        public class AccountEvent :  IEquatable<AccountEvent>, IValidatableObject
     {
         /// <summary>
         /// The event. &gt;Permitted values: &#x60;InactivateAccount&#x60;, &#x60;RefundNotPaidOutTransfers&#x60;. For more information, refer to [Verification checks](https://docs.adyen.com/marketpay/onboarding-and-verification/verification-checks).
@@ -74,20 +51,16 @@ namespace Adyen.Model.MarketPay
             {
                 throw new InvalidDataException("executionDate is a required property for AccountEvent and cannot be null");
             }
-            else
-            {
-                this.ExecutionDate = executionDate;
-            }
+
+            ExecutionDate = executionDate;
             // to ensure "reason" is required (not null)
             if (reason == null)
             {
                 throw new InvalidDataException("reason is a required property for AccountEvent and cannot be null");
             }
-            else
-            {
-                this.Reason = reason;
-            }
-            this.Event = _event;
+
+            Reason = reason;
+            Event = _event;
         }
         
 
@@ -136,7 +109,7 @@ namespace Adyen.Model.MarketPay
         /// <returns>Boolean</returns>
         public override bool Equals(object input)
         {
-            return this.Equals(input as AccountEvent);
+            return Equals(input as AccountEvent);
         }
 
         /// <summary>
@@ -151,18 +124,18 @@ namespace Adyen.Model.MarketPay
 
             return 
                 (
-                    this.Event == input.Event ||
-                    this.Event.Equals(input.Event)
+                    Event == input.Event ||
+                    Event.Equals(input.Event)
                 ) && 
                 (
-                    this.ExecutionDate == input.ExecutionDate ||
-                    (this.ExecutionDate != null &&
-                    this.ExecutionDate.Equals(input.ExecutionDate))
+                    ExecutionDate == input.ExecutionDate ||
+                    (ExecutionDate != null &&
+                    ExecutionDate.Equals(input.ExecutionDate))
                 ) && 
                 (
-                    this.Reason == input.Reason ||
-                    (this.Reason != null &&
-                    this.Reason.Equals(input.Reason))
+                    Reason == input.Reason ||
+                    (Reason != null &&
+                    Reason.Equals(input.Reason))
                 );
         }
 
@@ -175,11 +148,11 @@ namespace Adyen.Model.MarketPay
             unchecked // Overflow is fine, just wrap
             {
                 int hashCode = 41;
-                hashCode = hashCode * 59 + this.Event.GetHashCode();
-                if (this.ExecutionDate != null)
-                    hashCode = hashCode * 59 + this.ExecutionDate.GetHashCode();
-                if (this.Reason != null)
-                    hashCode = hashCode * 59 + this.Reason.GetHashCode();
+                hashCode = hashCode * 59 + Event.GetHashCode();
+                if (ExecutionDate != null)
+                    hashCode = hashCode * 59 + ExecutionDate.GetHashCode();
+                if (Reason != null)
+                    hashCode = hashCode * 59 + Reason.GetHashCode();
                 return hashCode;
             }
         }
@@ -189,7 +162,7 @@ namespace Adyen.Model.MarketPay
         /// </summary>
         /// <param name="validationContext">Validation context</param>
         /// <returns>Validation Result</returns>
-        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+        IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
         {
             yield break;
         }

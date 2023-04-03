@@ -1,26 +1,3 @@
-#region License
-/*
-*                       ######
-*                       ######
-* ############    ####( ######  #####. ######  ############   ############
-* #############  #####( ######  #####. ######  #############  #############
-*        ######  #####( ######  #####. ######  #####  ######  #####  ######
-* ###### ######  #####( ######  #####. ######  #####  #####   #####  ######
-* ###### ######  #####( ######  #####. ######  #####          #####  ######
-* #############  #############  #############  #############  #####  ######
-*  ############   ############  #############   ############  #####  ######
-*                                      ######
-*                               #############
-*                               ############
-*
-* Adyen Dotnet API Library
-*
-* Copyright (c) 2021 Adyen N.V.
-* This file is open source and available under the MIT license.
-* See the LICENSE file for more info.
-*/
-#endregion
-
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -36,7 +13,7 @@ namespace Adyen.Model.MarketPay
     /// DocumentDetail
     /// </summary>
     [DataContract]
-    public partial class DocumentDetail : IEquatable<DocumentDetail>, IValidatableObject
+    public class DocumentDetail : IEquatable<DocumentDetail>, IValidatableObject
     {
         /// <summary>
         /// The type of the document. Refer to [Verification checks](https://docs.adyen.com/platforms/verification-checks) for details on when each document type should be submitted and for the accepted file formats.  Permitted values: * **BANK_STATEMENT**: A file containing a bank statement or other document proving ownership of a specific bank account. * **COMPANY_REGISTRATION_SCREENING** (Supported from v5 and later): A file containing a company registration document. * **CONSTITUTIONAL_DOCUMENT**: A file containing information about the account holder&#x27;s legal arrangement. * **PASSPORT**: A file containing the identity page(s) of a passport. * **ID_CARD_FRONT**: A file containing only the front of the ID card. In order for a document to be usable, both the **ID_CARD_FRONT** and **ID_CARD_BACK** must be submitted. * **ID_CARD_BACK**: A file containing only the back of the ID card. In order for a document to be usable, both the **ID_CARD_FRONT** and **ID_CARD_BACK** must be submitted. * **DRIVING_LICENCE_FRONT**: A file containing only the front of the driving licence. In order for a document to be usable, both the **DRIVING_LICENCE_FRONT** and **DRIVING_LICENCE_BACK** must be submitted. * **DRIVING_LICENCE_BACK**: A file containing only the back of the driving licence. In order for a document to be usable, both the **DRIVING_LICENCE_FRONT** and **DRIVING_LICENCE_FRONT** must be submitted. 
@@ -139,10 +116,8 @@ namespace Adyen.Model.MarketPay
                 throw new InvalidDataException(
                     "accountHolderCode is a required property for DocumentDetail and cannot be null");
             }
-            else
-            {
-                this.AccountHolderCode = accountHolderCode;
-            }
+
+            AccountHolderCode = accountHolderCode;
 
             // to ensure "documentType" is required (not null)
             if (documentType == null)
@@ -150,25 +125,21 @@ namespace Adyen.Model.MarketPay
                 throw new InvalidDataException(
                     "documentType is a required property for DocumentDetail and cannot be null");
             }
-            else
-            {
-                this.DocumentType = documentType;
-            }
+
+            DocumentType = documentType;
 
             // to ensure "filename" is required (not null)
             if (filename == null)
             {
                 throw new InvalidDataException("filename is a required property for DocumentDetail and cannot be null");
             }
-            else
-            {
-                this.Filename = filename;
-            }
 
-            this.BankAccountUUID = bankAccountUUID;
-            this.Description = description;
-            this.ShareholderCode = shareholderCode;
-            this.SignatoryCode = signatoryCode;
+            Filename = filename;
+
+            BankAccountUUID = bankAccountUUID;
+            Description = description;
+            ShareholderCode = shareholderCode;
+            SignatoryCode = signatoryCode;
         }
 
         /// <summary>
@@ -249,7 +220,7 @@ namespace Adyen.Model.MarketPay
         /// <returns>Boolean</returns>
         public override bool Equals(object input)
         {
-            return this.Equals(input as DocumentDetail);
+            return Equals(input as DocumentDetail);
         }
 
         /// <summary>
@@ -264,39 +235,39 @@ namespace Adyen.Model.MarketPay
 
             return
                 (
-                    this.AccountHolderCode == input.AccountHolderCode ||
-                    (this.AccountHolderCode != null &&
-                     this.AccountHolderCode.Equals(input.AccountHolderCode))
+                    AccountHolderCode == input.AccountHolderCode ||
+                    (AccountHolderCode != null &&
+                     AccountHolderCode.Equals(input.AccountHolderCode))
                 ) &&
                 (
-                    this.BankAccountUUID == input.BankAccountUUID ||
-                    (this.BankAccountUUID != null &&
-                     this.BankAccountUUID.Equals(input.BankAccountUUID))
+                    BankAccountUUID == input.BankAccountUUID ||
+                    (BankAccountUUID != null &&
+                     BankAccountUUID.Equals(input.BankAccountUUID))
                 ) &&
                 (
-                    this.Description == input.Description ||
-                    (this.Description != null &&
-                     this.Description.Equals(input.Description))
+                    Description == input.Description ||
+                    (Description != null &&
+                     Description.Equals(input.Description))
                 ) &&
                 (
-                    this.DocumentType == input.DocumentType ||
-                    (this.DocumentType != null &&
-                     this.DocumentType.Equals(input.DocumentType))
+                    DocumentType == input.DocumentType ||
+                    (DocumentType != null &&
+                     DocumentType.Equals(input.DocumentType))
                 ) &&
                 (
-                    this.Filename == input.Filename ||
-                    (this.Filename != null &&
-                     this.Filename.Equals(input.Filename))
+                    Filename == input.Filename ||
+                    (Filename != null &&
+                     Filename.Equals(input.Filename))
                 ) &&
                 (
-                    this.ShareholderCode == input.ShareholderCode ||
-                    (this.ShareholderCode != null &&
-                     this.ShareholderCode.Equals(input.ShareholderCode))
+                    ShareholderCode == input.ShareholderCode ||
+                    (ShareholderCode != null &&
+                     ShareholderCode.Equals(input.ShareholderCode))
                 ) &&
                 (
-                    this.SignatoryCode == input.SignatoryCode ||
-                    (this.SignatoryCode != null &&
-                     this.SignatoryCode.Equals(input.SignatoryCode))
+                    SignatoryCode == input.SignatoryCode ||
+                    (SignatoryCode != null &&
+                     SignatoryCode.Equals(input.SignatoryCode))
                 );
         }
 
@@ -309,20 +280,20 @@ namespace Adyen.Model.MarketPay
             unchecked // Overflow is fine, just wrap
             {
                 int hashCode = 41;
-                if (this.AccountHolderCode != null)
-                    hashCode = hashCode * 59 + this.AccountHolderCode.GetHashCode();
-                if (this.BankAccountUUID != null)
-                    hashCode = hashCode * 59 + this.BankAccountUUID.GetHashCode();
-                if (this.Description != null)
-                    hashCode = hashCode * 59 + this.Description.GetHashCode();
-                if (this.DocumentType != null)
-                    hashCode = hashCode * 59 + this.DocumentType.GetHashCode();
-                if (this.Filename != null)
-                    hashCode = hashCode * 59 + this.Filename.GetHashCode();
-                if (this.ShareholderCode != null)
-                    hashCode = hashCode * 59 + this.ShareholderCode.GetHashCode();
-                if (this.SignatoryCode != null)
-                    hashCode = hashCode * 59 + this.SignatoryCode.GetHashCode();
+                if (AccountHolderCode != null)
+                    hashCode = hashCode * 59 + AccountHolderCode.GetHashCode();
+                if (BankAccountUUID != null)
+                    hashCode = hashCode * 59 + BankAccountUUID.GetHashCode();
+                if (Description != null)
+                    hashCode = hashCode * 59 + Description.GetHashCode();
+                if (DocumentType != null)
+                    hashCode = hashCode * 59 + DocumentType.GetHashCode();
+                if (Filename != null)
+                    hashCode = hashCode * 59 + Filename.GetHashCode();
+                if (ShareholderCode != null)
+                    hashCode = hashCode * 59 + ShareholderCode.GetHashCode();
+                if (SignatoryCode != null)
+                    hashCode = hashCode * 59 + SignatoryCode.GetHashCode();
                 return hashCode;
             }
         }
@@ -332,7 +303,7 @@ namespace Adyen.Model.MarketPay
         /// </summary>
         /// <param name="validationContext">Validation context</param>
         /// <returns>Validation Result</returns>
-        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(
+        IEnumerable<ValidationResult> IValidatableObject.Validate(
             ValidationContext validationContext)
         {
             yield break;

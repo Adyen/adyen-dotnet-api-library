@@ -1,30 +1,6 @@
-#region License
-// /*
-//  *                       ######
-//  *                       ######
-//  * ############    ####( ######  #####. ######  ############   ############
-//  * #############  #####( ######  #####. ######  #############  #############
-//  *        ######  #####( ######  #####. ######  #####  ######  #####  ######
-//  * ###### ######  #####( ######  #####. ######  #####  #####   #####  ######
-//  * ###### ######  #####( ######  #####. ######  #####          #####  ######
-//  * #############  #############  #############  #############  #####  ######
-//  *  ############   ############  #############   ############  #####  ######
-//  *                                      ######
-//  *                               #############
-//  *                               ############
-//  *
-//  * Adyen Dotnet API Library
-//  *
-//  * Copyright (c) 2020 Adyen B.V.
-//  * This file is open source and available under the MIT license.
-//  * See the LICENSE file for more info.
-//  */
-#endregion
-
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.IO;
 using System.Linq;
 using System.Runtime.Serialization;
 using System.Text;
@@ -37,7 +13,7 @@ namespace Adyen.Model.MarketPay
     /// KYCUltimateParentCompanyCheckResult
     /// </summary>
     [DataContract]
-        public partial class KYCUltimateParentCompanyCheckResult :  IEquatable<KYCUltimateParentCompanyCheckResult>, IValidatableObject
+        public class KYCUltimateParentCompanyCheckResult :  IEquatable<KYCUltimateParentCompanyCheckResult>, IValidatableObject
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="KYCUltimateParentCompanyCheckResult" /> class.
@@ -46,8 +22,8 @@ namespace Adyen.Model.MarketPay
         /// <param name="ultimateParentCompanyCode">The code of the Ultimate Parent Company to which the check applies..</param>
         public KYCUltimateParentCompanyCheckResult(List<KYCCheckStatusData> checks = default(List<KYCCheckStatusData>), string ultimateParentCompanyCode = default(string))
         {
-            this.Checks = checks;
-            this.UltimateParentCompanyCode = ultimateParentCompanyCode;
+            Checks = checks;
+            UltimateParentCompanyCode = ultimateParentCompanyCode;
         }
         
         /// <summary>
@@ -94,7 +70,7 @@ namespace Adyen.Model.MarketPay
         /// <returns>Boolean</returns>
         public override bool Equals(object input)
         {
-            return this.Equals(input as KYCUltimateParentCompanyCheckResult);
+            return Equals(input as KYCUltimateParentCompanyCheckResult);
         }
 
         /// <summary>
@@ -109,15 +85,15 @@ namespace Adyen.Model.MarketPay
 
             return 
                 (
-                    this.Checks == input.Checks ||
-                    this.Checks != null &&
+                    Checks == input.Checks ||
+                    Checks != null &&
                     input.Checks != null &&
-                    this.Checks.SequenceEqual(input.Checks)
+                    Checks.SequenceEqual(input.Checks)
                 ) && 
                 (
-                    this.UltimateParentCompanyCode == input.UltimateParentCompanyCode ||
-                    (this.UltimateParentCompanyCode != null &&
-                    this.UltimateParentCompanyCode.Equals(input.UltimateParentCompanyCode))
+                    UltimateParentCompanyCode == input.UltimateParentCompanyCode ||
+                    (UltimateParentCompanyCode != null &&
+                    UltimateParentCompanyCode.Equals(input.UltimateParentCompanyCode))
                 );
         }
 
@@ -130,10 +106,10 @@ namespace Adyen.Model.MarketPay
             unchecked // Overflow is fine, just wrap
             {
                 int hashCode = 41;
-                if (this.Checks != null)
-                    hashCode = hashCode * 59 + this.Checks.GetHashCode();
-                if (this.UltimateParentCompanyCode != null)
-                    hashCode = hashCode * 59 + this.UltimateParentCompanyCode.GetHashCode();
+                if (Checks != null)
+                    hashCode = hashCode * 59 + Checks.GetHashCode();
+                if (UltimateParentCompanyCode != null)
+                    hashCode = hashCode * 59 + UltimateParentCompanyCode.GetHashCode();
                 return hashCode;
             }
         }
@@ -143,7 +119,7 @@ namespace Adyen.Model.MarketPay
         /// </summary>
         /// <param name="validationContext">Validation context</param>
         /// <returns>Validation Result</returns>
-        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+        IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
         {
             yield break;
         }

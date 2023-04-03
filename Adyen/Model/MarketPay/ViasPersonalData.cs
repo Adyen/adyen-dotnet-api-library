@@ -1,26 +1,3 @@
-#region License
-// /*
-//  *                       ######
-//  *                       ######
-//  * ############    ####( ######  #####. ######  ############   ############
-//  * #############  #####( ######  #####. ######  #############  #############
-//  *        ######  #####( ######  #####. ######  #####  ######  #####  ######
-//  * ###### ######  #####( ######  #####. ######  #####  #####   #####  ######
-//  * ###### ######  #####( ######  #####. ######  #####          #####  ######
-//  * #############  #############  #############  #############  #####  ######
-//  *  ############   ############  #############   ############  #####  ######
-//  *                                      ######
-//  *                               #############
-//  *                               ############
-//  *
-//  * Adyen Dotnet API Library
-//  *
-//  * Copyright (c) 2020 Adyen B.V.
-//  * This file is open source and available under the MIT license.
-//  * See the LICENSE file for more info.
-//  */
-#endregion
-
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -35,7 +12,7 @@ namespace Adyen.Model.MarketPay
     /// ViasPersonalData
     /// </summary>
     [DataContract]
-        public partial class ViasPersonalData :  IEquatable<ViasPersonalData>, IValidatableObject
+        public class ViasPersonalData :  IEquatable<ViasPersonalData>, IValidatableObject
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="ViasPersonalData" /> class.
@@ -45,9 +22,9 @@ namespace Adyen.Model.MarketPay
         /// <param name="nationality">The nationality of the person represented by a two-character country code. &gt;The permitted country codes are defined in ISO-3166-1 alpha-2 (e.g. &#x27;NL&#x27;)..</param>
         public ViasPersonalData(string dateOfBirth = default(string), List<PersonalDocumentData> documentData = default(List<PersonalDocumentData>), string nationality = default(string))
         {
-            this.DateOfBirth = dateOfBirth;
-            this.DocumentData = documentData;
-            this.Nationality = nationality;
+            DateOfBirth = dateOfBirth;
+            DocumentData = documentData;
+            Nationality = nationality;
         }
         
         /// <summary>
@@ -102,7 +79,7 @@ namespace Adyen.Model.MarketPay
         /// <returns>Boolean</returns>
         public override bool Equals(object input)
         {
-            return this.Equals(input as ViasPersonalData);
+            return Equals(input as ViasPersonalData);
         }
 
         /// <summary>
@@ -117,20 +94,20 @@ namespace Adyen.Model.MarketPay
 
             return 
                 (
-                    this.DateOfBirth == input.DateOfBirth ||
-                    (this.DateOfBirth != null &&
-                    this.DateOfBirth.Equals(input.DateOfBirth))
+                    DateOfBirth == input.DateOfBirth ||
+                    (DateOfBirth != null &&
+                    DateOfBirth.Equals(input.DateOfBirth))
                 ) && 
                 (
-                    this.DocumentData == input.DocumentData ||
-                    this.DocumentData != null &&
+                    DocumentData == input.DocumentData ||
+                    DocumentData != null &&
                     input.DocumentData != null &&
-                    this.DocumentData.SequenceEqual(input.DocumentData)
+                    DocumentData.SequenceEqual(input.DocumentData)
                 ) && 
                 (
-                    this.Nationality == input.Nationality ||
-                    (this.Nationality != null &&
-                    this.Nationality.Equals(input.Nationality))
+                    Nationality == input.Nationality ||
+                    (Nationality != null &&
+                    Nationality.Equals(input.Nationality))
                 );
         }
 
@@ -143,12 +120,12 @@ namespace Adyen.Model.MarketPay
             unchecked // Overflow is fine, just wrap
             {
                 int hashCode = 41;
-                if (this.DateOfBirth != null)
-                    hashCode = hashCode * 59 + this.DateOfBirth.GetHashCode();
-                if (this.DocumentData != null)
-                    hashCode = hashCode * 59 + this.DocumentData.GetHashCode();
-                if (this.Nationality != null)
-                    hashCode = hashCode * 59 + this.Nationality.GetHashCode();
+                if (DateOfBirth != null)
+                    hashCode = hashCode * 59 + DateOfBirth.GetHashCode();
+                if (DocumentData != null)
+                    hashCode = hashCode * 59 + DocumentData.GetHashCode();
+                if (Nationality != null)
+                    hashCode = hashCode * 59 + Nationality.GetHashCode();
                 return hashCode;
             }
         }
@@ -158,7 +135,7 @@ namespace Adyen.Model.MarketPay
         /// </summary>
         /// <param name="validationContext">Validation context</param>
         /// <returns>Validation Result</returns>
-        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+        IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
         {
             yield break;
         }

@@ -1,32 +1,8 @@
-#region Licence
-
-// 
-//                        ######
-//                        ######
-//  ############    ####( ######  #####. ######  ############   ############
-//  #############  #####( ######  #####. ######  #############  #############
-//         ######  #####( ######  #####. ######  #####  ######  #####  ######
-//  ###### ######  #####( ######  #####. ######  #####  #####   #####  ######
-//  ###### ######  #####( ######  #####. ######  #####          #####  ######
-//  #############  #############  #############  #############  #####  ######
-//   ############   ############  #############   ############  #####  ######
-//                                       ######
-//                                #############
-//                                ############
-// 
-//  Adyen Dotnet API Library
-// 
-//  Copyright (c) 2021 Adyen B.V.
-//  This file is open source and available under the MIT license.
-//  See the LICENSE file for more info.
-
-#endregion
-
 using System.Collections.Generic;
 using System.Runtime.Serialization;
 using System.Text;
-using Newtonsoft.Json;
 using Adyen.Util;
+using Newtonsoft.Json;
 
 namespace Adyen.Model.MarketPay.Notification
 {

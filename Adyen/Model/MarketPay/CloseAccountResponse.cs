@@ -1,30 +1,6 @@
-#region License
-// /*
-//  *                       ######
-//  *                       ######
-//  * ############    ####( ######  #####. ######  ############   ############
-//  * #############  #####( ######  #####. ######  #############  #############
-//  *        ######  #####( ######  #####. ######  #####  ######  #####  ######
-//  * ###### ######  #####( ######  #####. ######  #####  #####   #####  ######
-//  * ###### ######  #####( ######  #####. ######  #####          #####  ######
-//  * #############  #############  #############  #############  #####  ######
-//  *  ############   ############  #############   ############  #####  ######
-//  *                                      ######
-//  *                               #############
-//  *                               ############
-//  *
-//  * Adyen Dotnet API Library
-//  *
-//  * Copyright (c) 2020 Adyen B.V.
-//  * This file is open source and available under the MIT license.
-//  * See the LICENSE file for more info.
-//  */
-#endregion
-
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.IO;
 using System.Linq;
 using System.Runtime.Serialization;
 using System.Text;
@@ -37,7 +13,7 @@ namespace Adyen.Model.MarketPay
     /// CloseAccountResponse
     /// </summary>
     [DataContract]
-        public partial class CloseAccountResponse :  IEquatable<CloseAccountResponse>, IValidatableObject
+        public class CloseAccountResponse :  IEquatable<CloseAccountResponse>, IValidatableObject
     {
         /// <summary>
         /// The new status of the account. &gt;Permitted values: &#x60;Active&#x60;, &#x60;Inactive&#x60;, &#x60;Suspended&#x60;, &#x60;Closed&#x60;.
@@ -72,40 +48,7 @@ namespace Adyen.Model.MarketPay
         /// <value>The new status of the account. &gt;Permitted values: &#x60;Active&#x60;, &#x60;Inactive&#x60;, &#x60;Suspended&#x60;, &#x60;Closed&#x60;.</value>
         [DataMember(Name="status", EmitDefaultValue=false)]
         public StatusEnum Status { get; set; }
-        /// <summary>
-        /// Initializes a new instance of the <see cref="CloseAccountResponse" /> class.
-        /// </summary>
-        /// <param name="invalidFields">Contains field validation errors that would prevent requests from being processed..</param>
-        /// <param name="pspReference">The reference of a request.  Can be used to uniquely identify the request. (required).</param>
-        /// <param name="resultCode">The result code..</param>
-        /// <param name="status">The new status of the account. &gt;Permitted values: &#x60;Active&#x60;, &#x60;Inactive&#x60;, &#x60;Suspended&#x60;, &#x60;Closed&#x60;. (required).</param>
-        //public CloseAccountResponse(List<ErrorFieldType> invalidFields = default(List<ErrorFieldType>), string pspReference = default(string), string resultCode = default(string), StatusEnum status = default(StatusEnum))
-        //{
-        //    // to ensure "pspReference" is required (not null)
-        //    if (pspReference == null)
-        //    {
-        //        throw new InvalidDataException("pspReference is a required property for CloseAccountResponse and cannot be null");
-        //    }
-        //    else
-        //    {
-        //        this.PspReference = pspReference;
-        //    }
-        //    // to ensure "status" is required (not null)
-        //    if (status == null)
-        //    {
-        //        throw new InvalidDataException("status is a required property for CloseAccountResponse and cannot be null");
-        //    }
-        //    else
-        //    {
-        //        this.Status = status;
-        //    }
-        //    this.InvalidFields = invalidFields;
-        //    this.ResultCode = resultCode;
-        //}
-        public CloseAccountResponse()
-        {
 
-        }
         /// <summary>
         /// Contains field validation errors that would prevent requests from being processed.
         /// </summary>
@@ -160,7 +103,7 @@ namespace Adyen.Model.MarketPay
         /// <returns>Boolean</returns>
         public override bool Equals(object input)
         {
-            return this.Equals(input as CloseAccountResponse);
+            return Equals(input as CloseAccountResponse);
         }
 
         /// <summary>
@@ -175,24 +118,24 @@ namespace Adyen.Model.MarketPay
 
             return 
                 (
-                    this.InvalidFields == input.InvalidFields ||
-                    this.InvalidFields != null &&
+                    InvalidFields == input.InvalidFields ||
+                    InvalidFields != null &&
                     input.InvalidFields != null &&
-                    this.InvalidFields.SequenceEqual(input.InvalidFields)
+                    InvalidFields.SequenceEqual(input.InvalidFields)
                 ) && 
                 (
-                    this.PspReference == input.PspReference ||
-                    (this.PspReference != null &&
-                    this.PspReference.Equals(input.PspReference))
+                    PspReference == input.PspReference ||
+                    (PspReference != null &&
+                    PspReference.Equals(input.PspReference))
                 ) && 
                 (
-                    this.ResultCode == input.ResultCode ||
-                    (this.ResultCode != null &&
-                    this.ResultCode.Equals(input.ResultCode))
+                    ResultCode == input.ResultCode ||
+                    (ResultCode != null &&
+                    ResultCode.Equals(input.ResultCode))
                 ) && 
                 (
-                    this.Status == input.Status ||
-                    this.Status.Equals(input.Status)
+                    Status == input.Status ||
+                    Status.Equals(input.Status)
                 );
         }
 
@@ -205,13 +148,13 @@ namespace Adyen.Model.MarketPay
             unchecked // Overflow is fine, just wrap
             {
                 int hashCode = 41;
-                if (this.InvalidFields != null)
-                    hashCode = hashCode * 59 + this.InvalidFields.GetHashCode();
-                if (this.PspReference != null)
-                    hashCode = hashCode * 59 + this.PspReference.GetHashCode();
-                if (this.ResultCode != null)
-                    hashCode = hashCode * 59 + this.ResultCode.GetHashCode();
-                hashCode = hashCode * 59 + this.Status.GetHashCode();
+                if (InvalidFields != null)
+                    hashCode = hashCode * 59 + InvalidFields.GetHashCode();
+                if (PspReference != null)
+                    hashCode = hashCode * 59 + PspReference.GetHashCode();
+                if (ResultCode != null)
+                    hashCode = hashCode * 59 + ResultCode.GetHashCode();
+                hashCode = hashCode * 59 + Status.GetHashCode();
                 return hashCode;
             }
         }
@@ -221,7 +164,7 @@ namespace Adyen.Model.MarketPay
         /// </summary>
         /// <param name="validationContext">Validation context</param>
         /// <returns>Validation Result</returns>
-        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+        IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
         {
             yield break;
         }

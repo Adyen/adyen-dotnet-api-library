@@ -1,30 +1,6 @@
-#region License
-// /*
-//  *                       ######
-//  *                       ######
-//  * ############    ####( ######  #####. ######  ############   ############
-//  * #############  #####( ######  #####. ######  #############  #############
-//  *        ######  #####( ######  #####. ######  #####  ######  #####  ######
-//  * ###### ######  #####( ######  #####. ######  #####  #####   #####  ######
-//  * ###### ######  #####( ######  #####. ######  #####          #####  ######
-//  * #############  #############  #############  #############  #####  ######
-//  *  ############   ############  #############   ############  #####  ######
-//  *                                      ######
-//  *                               #############
-//  *                               ############
-//  *
-//  * Adyen Dotnet API Library
-//  *
-//  * Copyright (c) 2020 Adyen B.V.
-//  * This file is open source and available under the MIT license.
-//  * See the LICENSE file for more info.
-//  */
-#endregion
-
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.IO;
 using System.Linq;
 using System.Runtime.Serialization;
 using System.Text;
@@ -37,7 +13,7 @@ namespace Adyen.Model.MarketPay
     /// CreateAccountHolderResponse
     /// </summary>
     [DataContract]
-        public partial class CreateAccountHolderResponse :  IEquatable<CreateAccountHolderResponse>, IValidatableObject
+        public class CreateAccountHolderResponse :  IEquatable<CreateAccountHolderResponse>, IValidatableObject
     {
         /// <summary>
         /// The type of legal entity of the new account holder.
@@ -88,17 +64,17 @@ namespace Adyen.Model.MarketPay
         /// <param name="verification">verification (required).</param>
         public CreateAccountHolderResponse(string accountCode = default(string), string accountHolderCode = default(string), AccountHolderDetails accountHolderDetails = default(AccountHolderDetails), AccountHolderStatus accountHolderStatus = default(AccountHolderStatus), string description = default(string), List<ErrorFieldType> invalidFields = default(List<ErrorFieldType>), LegalEntityEnum legalEntity = default(LegalEntityEnum), string primaryCurrency = default(string), string pspReference = default(string), string resultCode = default(string), KYCVerificationResult verification = default(KYCVerificationResult))
         { 
-            this.PspReference = pspReference;
-            this.AccountHolderStatus = accountHolderStatus;
-            this.LegalEntity = legalEntity;
-            this.Verification = verification;
-            this.AccountHolderDetails = accountHolderDetails;
-            this.AccountHolderCode = accountHolderCode;
-            this.AccountCode = accountCode;
-            this.Description = description;
-            this.InvalidFields = invalidFields;
-            this.PrimaryCurrency = primaryCurrency;
-            this.ResultCode = resultCode;
+            PspReference = pspReference;
+            AccountHolderStatus = accountHolderStatus;
+            LegalEntity = legalEntity;
+            Verification = verification;
+            AccountHolderDetails = accountHolderDetails;
+            AccountHolderCode = accountHolderCode;
+            AccountCode = accountCode;
+            Description = description;
+            InvalidFields = invalidFields;
+            PrimaryCurrency = primaryCurrency;
+            ResultCode = resultCode;
         }
         
         /// <summary>
@@ -208,7 +184,7 @@ namespace Adyen.Model.MarketPay
         /// <returns>Boolean</returns>
         public override bool Equals(object input)
         {
-            return this.Equals(input as CreateAccountHolderResponse);
+            return Equals(input as CreateAccountHolderResponse);
         }
 
         /// <summary>
@@ -223,59 +199,59 @@ namespace Adyen.Model.MarketPay
 
             return 
                 (
-                    this.AccountCode == input.AccountCode ||
-                    (this.AccountCode != null &&
-                    this.AccountCode.Equals(input.AccountCode))
+                    AccountCode == input.AccountCode ||
+                    (AccountCode != null &&
+                    AccountCode.Equals(input.AccountCode))
                 ) && 
                 (
-                    this.AccountHolderCode == input.AccountHolderCode ||
-                    (this.AccountHolderCode != null &&
-                    this.AccountHolderCode.Equals(input.AccountHolderCode))
+                    AccountHolderCode == input.AccountHolderCode ||
+                    (AccountHolderCode != null &&
+                    AccountHolderCode.Equals(input.AccountHolderCode))
                 ) && 
                 (
-                    this.AccountHolderDetails == input.AccountHolderDetails ||
-                    (this.AccountHolderDetails != null &&
-                    this.AccountHolderDetails.Equals(input.AccountHolderDetails))
+                    AccountHolderDetails == input.AccountHolderDetails ||
+                    (AccountHolderDetails != null &&
+                    AccountHolderDetails.Equals(input.AccountHolderDetails))
                 ) && 
                 (
-                    this.AccountHolderStatus == input.AccountHolderStatus ||
-                    (this.AccountHolderStatus != null &&
-                    this.AccountHolderStatus.Equals(input.AccountHolderStatus))
+                    AccountHolderStatus == input.AccountHolderStatus ||
+                    (AccountHolderStatus != null &&
+                    AccountHolderStatus.Equals(input.AccountHolderStatus))
                 ) && 
                 (
-                    this.Description == input.Description ||
-                    (this.Description != null &&
-                    this.Description.Equals(input.Description))
+                    Description == input.Description ||
+                    (Description != null &&
+                    Description.Equals(input.Description))
                 ) && 
                 (
-                    this.InvalidFields == input.InvalidFields ||
-                    this.InvalidFields != null &&
+                    InvalidFields == input.InvalidFields ||
+                    InvalidFields != null &&
                     input.InvalidFields != null &&
-                    this.InvalidFields.SequenceEqual(input.InvalidFields)
+                    InvalidFields.SequenceEqual(input.InvalidFields)
                 ) && 
                 (
-                    this.LegalEntity == input.LegalEntity ||
-                    this.LegalEntity.Equals(input.LegalEntity)
+                    LegalEntity == input.LegalEntity ||
+                    LegalEntity.Equals(input.LegalEntity)
                 ) && 
                 (
-                    this.PrimaryCurrency == input.PrimaryCurrency ||
-                    (this.PrimaryCurrency != null &&
-                    this.PrimaryCurrency.Equals(input.PrimaryCurrency))
+                    PrimaryCurrency == input.PrimaryCurrency ||
+                    (PrimaryCurrency != null &&
+                    PrimaryCurrency.Equals(input.PrimaryCurrency))
                 ) && 
                 (
-                    this.PspReference == input.PspReference ||
-                    (this.PspReference != null &&
-                    this.PspReference.Equals(input.PspReference))
+                    PspReference == input.PspReference ||
+                    (PspReference != null &&
+                    PspReference.Equals(input.PspReference))
                 ) && 
                 (
-                    this.ResultCode == input.ResultCode ||
-                    (this.ResultCode != null &&
-                    this.ResultCode.Equals(input.ResultCode))
+                    ResultCode == input.ResultCode ||
+                    (ResultCode != null &&
+                    ResultCode.Equals(input.ResultCode))
                 ) && 
                 (
-                    this.Verification == input.Verification ||
-                    (this.Verification != null &&
-                    this.Verification.Equals(input.Verification))
+                    Verification == input.Verification ||
+                    (Verification != null &&
+                    Verification.Equals(input.Verification))
                 );
         }
 
@@ -288,27 +264,27 @@ namespace Adyen.Model.MarketPay
             unchecked // Overflow is fine, just wrap
             {
                 int hashCode = 41;
-                if (this.AccountCode != null)
-                    hashCode = hashCode * 59 + this.AccountCode.GetHashCode();
-                if (this.AccountHolderCode != null)
-                    hashCode = hashCode * 59 + this.AccountHolderCode.GetHashCode();
-                if (this.AccountHolderDetails != null)
-                    hashCode = hashCode * 59 + this.AccountHolderDetails.GetHashCode();
-                if (this.AccountHolderStatus != null)
-                    hashCode = hashCode * 59 + this.AccountHolderStatus.GetHashCode();
-                if (this.Description != null)
-                    hashCode = hashCode * 59 + this.Description.GetHashCode();
-                if (this.InvalidFields != null)
-                    hashCode = hashCode * 59 + this.InvalidFields.GetHashCode();
-                hashCode = hashCode * 59 + this.LegalEntity.GetHashCode();
-                if (this.PrimaryCurrency != null)
-                    hashCode = hashCode * 59 + this.PrimaryCurrency.GetHashCode();
-                if (this.PspReference != null)
-                    hashCode = hashCode * 59 + this.PspReference.GetHashCode();
-                if (this.ResultCode != null)
-                    hashCode = hashCode * 59 + this.ResultCode.GetHashCode();
-                if (this.Verification != null)
-                    hashCode = hashCode * 59 + this.Verification.GetHashCode();
+                if (AccountCode != null)
+                    hashCode = hashCode * 59 + AccountCode.GetHashCode();
+                if (AccountHolderCode != null)
+                    hashCode = hashCode * 59 + AccountHolderCode.GetHashCode();
+                if (AccountHolderDetails != null)
+                    hashCode = hashCode * 59 + AccountHolderDetails.GetHashCode();
+                if (AccountHolderStatus != null)
+                    hashCode = hashCode * 59 + AccountHolderStatus.GetHashCode();
+                if (Description != null)
+                    hashCode = hashCode * 59 + Description.GetHashCode();
+                if (InvalidFields != null)
+                    hashCode = hashCode * 59 + InvalidFields.GetHashCode();
+                hashCode = hashCode * 59 + LegalEntity.GetHashCode();
+                if (PrimaryCurrency != null)
+                    hashCode = hashCode * 59 + PrimaryCurrency.GetHashCode();
+                if (PspReference != null)
+                    hashCode = hashCode * 59 + PspReference.GetHashCode();
+                if (ResultCode != null)
+                    hashCode = hashCode * 59 + ResultCode.GetHashCode();
+                if (Verification != null)
+                    hashCode = hashCode * 59 + Verification.GetHashCode();
                 return hashCode;
             }
         }
@@ -318,7 +294,7 @@ namespace Adyen.Model.MarketPay
         /// </summary>
         /// <param name="validationContext">Validation context</param>
         /// <returns>Validation Result</returns>
-        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+        IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
         {
             yield break;
         }

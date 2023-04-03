@@ -1,26 +1,3 @@
-#region License
-// /*
-//  *                       ######
-//  *                       ######
-//  * ############    ####( ######  #####. ######  ############   ############
-//  * #############  #####( ######  #####. ######  #############  #############
-//  *        ######  #####( ######  #####. ######  #####  ######  #####  ######
-//  * ###### ######  #####( ######  #####. ######  #####  #####   #####  ######
-//  * ###### ######  #####( ######  #####. ######  #####          #####  ######
-//  * #############  #############  #############  #############  #####  ######
-//  *  ############   ############  #############   ############  #####  ######
-//  *                                      ######
-//  *                               #############
-//  *                               ############
-//  *
-//  * Adyen Dotnet API Library
-//  *
-//  * Copyright (c) 2020 Adyen B.V.
-//  * This file is open source and available under the MIT license.
-//  * See the LICENSE file for more info.
-//  */
-#endregion
-
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -34,7 +11,7 @@ namespace Adyen.Model.MarketPay
     /// Account
     /// </summary>
     [DataContract]
-    public partial class Account : IEquatable<Account>, IValidatableObject
+    public class Account : IEquatable<Account>, IValidatableObject
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="Account" /> class.
@@ -51,16 +28,16 @@ namespace Adyen.Model.MarketPay
         /// <param name="status">The status of the account. Possible values: &#x60;Active&#x60;, &#x60;Inactive&#x60;, &#x60;Suspended&#x60;, &#x60;Closed&#x60;..</param>
         public Account(string accountCode = default(string), string bankAccountUUID = default(string), string beneficiaryAccount = default(string), string beneficiaryMerchantReference = default(string), string description = default(string), Object metadata = default(Object), string payoutMethodCode = default(string), PayoutScheduleResponse payoutSchedule = default(PayoutScheduleResponse), string payoutSpeed = default(string), string status = default(string))
         {
-            this.AccountCode = accountCode;
-            this.BankAccountUUID = bankAccountUUID;
-            this.BeneficiaryAccount = beneficiaryAccount;
-            this.BeneficiaryMerchantReference = beneficiaryMerchantReference;
-            this.Description = description;
-            this.Metadata = metadata;
-            this.PayoutMethodCode = payoutMethodCode;
-            this.PayoutSchedule = payoutSchedule;
-            this.PayoutSpeed = payoutSpeed;
-            this.Status = status;
+            AccountCode = accountCode;
+            BankAccountUUID = bankAccountUUID;
+            BeneficiaryAccount = beneficiaryAccount;
+            BeneficiaryMerchantReference = beneficiaryMerchantReference;
+            Description = description;
+            Metadata = metadata;
+            PayoutMethodCode = payoutMethodCode;
+            PayoutSchedule = payoutSchedule;
+            PayoutSpeed = payoutSpeed;
+            Status = status;
         }
 
         /// <summary>
@@ -170,7 +147,7 @@ namespace Adyen.Model.MarketPay
         /// <returns>Boolean</returns>
         public override bool Equals(object input)
         {
-            return this.Equals(input as Account);
+            return Equals(input as Account);
         }
 
         /// <summary>
@@ -185,53 +162,53 @@ namespace Adyen.Model.MarketPay
 
             return
                 (
-                    this.AccountCode == input.AccountCode ||
-                    (this.AccountCode != null &&
-                    this.AccountCode.Equals(input.AccountCode))
+                    AccountCode == input.AccountCode ||
+                    (AccountCode != null &&
+                    AccountCode.Equals(input.AccountCode))
                 ) &&
                 (
-                    this.BankAccountUUID == input.BankAccountUUID ||
-                    (this.BankAccountUUID != null &&
-                     this.BankAccountUUID.Equals(input.BankAccountUUID))
+                    BankAccountUUID == input.BankAccountUUID ||
+                    (BankAccountUUID != null &&
+                     BankAccountUUID.Equals(input.BankAccountUUID))
                 ) &&
                 (
-                    this.BeneficiaryAccount == input.BeneficiaryAccount ||
-                    (this.BeneficiaryAccount != null &&
-                    this.BeneficiaryAccount.Equals(input.BeneficiaryAccount))
+                    BeneficiaryAccount == input.BeneficiaryAccount ||
+                    (BeneficiaryAccount != null &&
+                    BeneficiaryAccount.Equals(input.BeneficiaryAccount))
                 ) &&
                 (
-                    this.BeneficiaryMerchantReference == input.BeneficiaryMerchantReference ||
-                    (this.BeneficiaryMerchantReference != null &&
-                    this.BeneficiaryMerchantReference.Equals(input.BeneficiaryMerchantReference))
+                    BeneficiaryMerchantReference == input.BeneficiaryMerchantReference ||
+                    (BeneficiaryMerchantReference != null &&
+                    BeneficiaryMerchantReference.Equals(input.BeneficiaryMerchantReference))
                 ) &&
                 (
-                    this.Description == input.Description ||
-                    (this.Description != null &&
-                    this.Description.Equals(input.Description))
+                    Description == input.Description ||
+                    (Description != null &&
+                    Description.Equals(input.Description))
                 ) &&
                 (
-                    this.Metadata == input.Metadata ||
-                    (this.Metadata != null &&
-                    this.Metadata.Equals(input.Metadata))
+                    Metadata == input.Metadata ||
+                    (Metadata != null &&
+                    Metadata.Equals(input.Metadata))
                 ) &&
                 (
-                    this.PayoutMethodCode == input.PayoutMethodCode ||
-                    (this.PayoutMethodCode != null &&
-                     this.PayoutMethodCode.Equals(input.PayoutMethodCode))
+                    PayoutMethodCode == input.PayoutMethodCode ||
+                    (PayoutMethodCode != null &&
+                     PayoutMethodCode.Equals(input.PayoutMethodCode))
                 ) &&
                 (
-                    this.PayoutSchedule == input.PayoutSchedule ||
-                    (this.PayoutSchedule != null)
+                    PayoutSchedule == input.PayoutSchedule ||
+                    (PayoutSchedule != null)
                 ) &&
                 (
-                    this.PayoutSpeed == input.PayoutSpeed ||
-                    (this.PayoutSpeed != null &&
-                     this.PayoutSpeed.Equals(input.PayoutSpeed))
+                    PayoutSpeed == input.PayoutSpeed ||
+                    (PayoutSpeed != null &&
+                     PayoutSpeed.Equals(input.PayoutSpeed))
                 ) &&
                 (
-                    this.Status == input.Status ||
-                    (this.Status != null &&
-                    this.Status.Equals(input.Status))
+                    Status == input.Status ||
+                    (Status != null &&
+                    Status.Equals(input.Status))
                 );
         }
 
@@ -244,26 +221,26 @@ namespace Adyen.Model.MarketPay
             unchecked // Overflow is fine, just wrap
             {
                 int hashCode = 41;
-                if (this.AccountCode != null)
-                    hashCode = hashCode * 59 + this.AccountCode.GetHashCode();
-                if (this.BankAccountUUID != null)
-                    hashCode = hashCode * 59 + this.BankAccountUUID.GetHashCode();
-                if (this.BeneficiaryAccount != null)
-                    hashCode = hashCode * 59 + this.BeneficiaryAccount.GetHashCode();
-                if (this.BeneficiaryMerchantReference != null)
-                    hashCode = hashCode * 59 + this.BeneficiaryMerchantReference.GetHashCode();
-                if (this.Description != null)
-                    hashCode = hashCode * 59 + this.Description.GetHashCode();
-                if (this.Metadata != null)
-                    hashCode = hashCode * 59 + this.Metadata.GetHashCode();
-                if (this.PayoutMethodCode != null)
-                    hashCode = hashCode * 59 + this.PayoutMethodCode.GetHashCode();
-                if (this.PayoutSchedule != null)
-                    hashCode = hashCode * 59 + this.PayoutSchedule.GetHashCode();
-                if (this.PayoutSpeed != null)
-                    hashCode = hashCode * 59 + this.PayoutSpeed.GetHashCode();
-                if (this.Status != null)
-                    hashCode = hashCode * 59 + this.Status.GetHashCode();
+                if (AccountCode != null)
+                    hashCode = hashCode * 59 + AccountCode.GetHashCode();
+                if (BankAccountUUID != null)
+                    hashCode = hashCode * 59 + BankAccountUUID.GetHashCode();
+                if (BeneficiaryAccount != null)
+                    hashCode = hashCode * 59 + BeneficiaryAccount.GetHashCode();
+                if (BeneficiaryMerchantReference != null)
+                    hashCode = hashCode * 59 + BeneficiaryMerchantReference.GetHashCode();
+                if (Description != null)
+                    hashCode = hashCode * 59 + Description.GetHashCode();
+                if (Metadata != null)
+                    hashCode = hashCode * 59 + Metadata.GetHashCode();
+                if (PayoutMethodCode != null)
+                    hashCode = hashCode * 59 + PayoutMethodCode.GetHashCode();
+                if (PayoutSchedule != null)
+                    hashCode = hashCode * 59 + PayoutSchedule.GetHashCode();
+                if (PayoutSpeed != null)
+                    hashCode = hashCode * 59 + PayoutSpeed.GetHashCode();
+                if (Status != null)
+                    hashCode = hashCode * 59 + Status.GetHashCode();
                 return hashCode;
             }
         }
@@ -273,7 +250,7 @@ namespace Adyen.Model.MarketPay
         /// </summary>
         /// <param name="validationContext">Validation context</param>
         /// <returns>Validation Result</returns>
-        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+        IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
         {
             yield break;
         }

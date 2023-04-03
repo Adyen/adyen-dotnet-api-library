@@ -1,30 +1,6 @@
-#region License
-// /*
-//  *                       ######
-//  *                       ######
-//  * ############    ####( ######  #####. ######  ############   ############
-//  * #############  #####( ######  #####. ######  #############  #############
-//  *        ######  #####( ######  #####. ######  #####  ######  #####  ######
-//  * ###### ######  #####( ######  #####. ######  #####  #####   #####  ######
-//  * ###### ######  #####( ######  #####. ######  #####          #####  ######
-//  * #############  #############  #############  #############  #####  ######
-//  *  ############   ############  #############   ############  #####  ######
-//  *                                      ######
-//  *                               #############
-//  *                               ############
-//  *
-//  * Adyen Dotnet API Library
-//  *
-//  * Copyright (c) 2020 Adyen B.V.
-//  * This file is open source and available under the MIT license.
-//  * See the LICENSE file for more info.
-//  */
-#endregion
-
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.IO;
 using System.Runtime.Serialization;
 using System.Text;
 using Newtonsoft.Json;
@@ -36,7 +12,7 @@ namespace Adyen.Model.MarketPay
     /// PayoutScheduleResponse
     /// </summary>
     [DataContract]
-        public partial class PayoutScheduleResponse :  IEquatable<PayoutScheduleResponse>, IValidatableObject
+        public class PayoutScheduleResponse :  IEquatable<PayoutScheduleResponse>, IValidatableObject
     {
         /// <summary>
         /// The payout schedule of the account. &gt;Permitted values: &#x60;DEFAULT&#x60;, &#x60;HOLD&#x60;, &#x60;DAILY&#x60;, &#x60;WEEKLY&#x60;, &#x60;MONTHLY&#x60;.
@@ -128,8 +104,8 @@ namespace Adyen.Model.MarketPay
         /// <param name="schedule">The payout schedule of the account. &gt;Permitted values: &#x60;DEFAULT&#x60;, &#x60;HOLD&#x60;, &#x60;DAILY&#x60;, &#x60;WEEKLY&#x60;, &#x60;MONTHLY&#x60;. (required).</param>
         public PayoutScheduleResponse(DateTime? nextScheduledPayout = default(DateTime?), ScheduleEnum schedule = default(ScheduleEnum))
         {
-            this.Schedule = schedule;
-            this.NextScheduledPayout = nextScheduledPayout;
+            Schedule = schedule;
+            NextScheduledPayout = nextScheduledPayout;
         }
         
         /// <summary>
@@ -170,7 +146,7 @@ namespace Adyen.Model.MarketPay
         /// <returns>Boolean</returns>
         public override bool Equals(object input)
         {
-            return this.Equals(input as PayoutScheduleResponse);
+            return Equals(input as PayoutScheduleResponse);
         }
 
         /// <summary>
@@ -185,13 +161,13 @@ namespace Adyen.Model.MarketPay
 
             return 
                 (
-                    this.NextScheduledPayout == input.NextScheduledPayout ||
-                    (this.NextScheduledPayout != null &&
-                    this.NextScheduledPayout.Equals(input.NextScheduledPayout))
+                    NextScheduledPayout == input.NextScheduledPayout ||
+                    (NextScheduledPayout != null &&
+                    NextScheduledPayout.Equals(input.NextScheduledPayout))
                 ) && 
                 (
-                    this.Schedule == input.Schedule ||
-                    this.Schedule.Equals(input.Schedule)
+                    Schedule == input.Schedule ||
+                    Schedule.Equals(input.Schedule)
                 );
         }
 
@@ -204,9 +180,9 @@ namespace Adyen.Model.MarketPay
             unchecked // Overflow is fine, just wrap
             {
                 int hashCode = 41;
-                if (this.NextScheduledPayout != null)
-                    hashCode = hashCode * 59 + this.NextScheduledPayout.GetHashCode();
-                hashCode = hashCode * 59 + this.Schedule.GetHashCode();
+                if (NextScheduledPayout != null)
+                    hashCode = hashCode * 59 + NextScheduledPayout.GetHashCode();
+                hashCode = hashCode * 59 + Schedule.GetHashCode();
                 return hashCode;
             }
         }
@@ -216,7 +192,7 @@ namespace Adyen.Model.MarketPay
         /// </summary>
         /// <param name="validationContext">Validation context</param>
         /// <returns>Validation Result</returns>
-        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+        IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
         {
             yield break;
         }

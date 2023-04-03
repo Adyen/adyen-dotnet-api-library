@@ -1,26 +1,3 @@
-#region License
-// /*
-//  *                       ######
-//  *                       ######
-//  * ############    ####( ######  #####. ######  ############   ############
-//  * #############  #####( ######  #####. ######  #############  #############
-//  *        ######  #####( ######  #####. ######  #####  ######  #####  ######
-//  * ###### ######  #####( ######  #####. ######  #####  #####   #####  ######
-//  * ###### ######  #####( ######  #####. ######  #####          #####  ######
-//  * #############  #############  #############  #############  #####  ######
-//  *  ############   ############  #############   ############  #####  ######
-//  *                                      ######
-//  *                               #############
-//  *                               ############
-//  *
-//  * Adyen Dotnet API Library
-//  *
-//  * Copyright (c) 2020 Adyen B.V.
-//  * This file is open source and available under the MIT license.
-//  * See the LICENSE file for more info.
-//  */
-#endregion
-
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -36,7 +13,7 @@ namespace Adyen.Model.MarketPay
     /// AccountHolderDetails
     /// </summary>
     [DataContract]
-        public partial class AccountHolderDetails :  IEquatable<AccountHolderDetails>, IValidatableObject
+        public class AccountHolderDetails :  IEquatable<AccountHolderDetails>, IValidatableObject
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="AccountHolderDetails" /> class.
@@ -58,19 +35,17 @@ namespace Adyen.Model.MarketPay
             {
                 throw new InvalidDataException("email is a required property for AccountHolderDetails and cannot be null");
             }
-            else
-            {
-                this.Email = email;
-            }
-            this.WebAddress = webAddress;
-            this.FullPhoneNumber = fullPhoneNumber;
-            this.Address = address;
-            this.BankAccountDetails = bankAccountDetails;
-            this.BusinessDetails = businessDetails;
-            this.IndividualDetails = individualDetails;
-            this.MerchantCategoryCode = merchantCategoryCode;
-            this.Metadata = metadata;
-            this.PayoutMethods = payoutMethods;
+
+            Email = email;
+            WebAddress = webAddress;
+            FullPhoneNumber = fullPhoneNumber;
+            Address = address;
+            BankAccountDetails = bankAccountDetails;
+            BusinessDetails = businessDetails;
+            IndividualDetails = individualDetails;
+            MerchantCategoryCode = merchantCategoryCode;
+            Metadata = metadata;
+            PayoutMethods = payoutMethods;
         }
         
         /// <summary>
@@ -178,7 +153,7 @@ namespace Adyen.Model.MarketPay
         /// <returns>Boolean</returns>
         public override bool Equals(object input)
         {
-            return this.Equals(input as AccountHolderDetails);
+            return Equals(input as AccountHolderDetails);
         }
 
         /// <summary>
@@ -193,56 +168,56 @@ namespace Adyen.Model.MarketPay
 
             return 
                 (
-                    this.Address == input.Address ||
-                    (this.Address != null &&
-                    this.Address.Equals(input.Address))
+                    Address == input.Address ||
+                    (Address != null &&
+                    Address.Equals(input.Address))
                 ) && 
                 (
-                    this.BankAccountDetails == input.BankAccountDetails ||
-                    this.BankAccountDetails != null &&
+                    BankAccountDetails == input.BankAccountDetails ||
+                    BankAccountDetails != null &&
                     input.BankAccountDetails != null &&
-                    this.BankAccountDetails.SequenceEqual(input.BankAccountDetails)
+                    BankAccountDetails.SequenceEqual(input.BankAccountDetails)
                 ) && 
                 (
-                    this.BusinessDetails == input.BusinessDetails ||
-                    (this.BusinessDetails != null &&
-                    this.BusinessDetails.Equals(input.BusinessDetails))
+                    BusinessDetails == input.BusinessDetails ||
+                    (BusinessDetails != null &&
+                    BusinessDetails.Equals(input.BusinessDetails))
                 ) && 
                 (
-                    this.Email == input.Email ||
-                    (this.Email != null &&
-                    this.Email.Equals(input.Email))
+                    Email == input.Email ||
+                    (Email != null &&
+                    Email.Equals(input.Email))
                 ) && 
                 (
-                    this.FullPhoneNumber == input.FullPhoneNumber ||
-                    (this.FullPhoneNumber != null &&
-                    this.FullPhoneNumber.Equals(input.FullPhoneNumber))
+                    FullPhoneNumber == input.FullPhoneNumber ||
+                    (FullPhoneNumber != null &&
+                    FullPhoneNumber.Equals(input.FullPhoneNumber))
                 ) && 
                 (
-                    this.IndividualDetails == input.IndividualDetails ||
-                    (this.IndividualDetails != null &&
-                    this.IndividualDetails.Equals(input.IndividualDetails))
+                    IndividualDetails == input.IndividualDetails ||
+                    (IndividualDetails != null &&
+                    IndividualDetails.Equals(input.IndividualDetails))
                 ) && 
                 (
-                    this.MerchantCategoryCode == input.MerchantCategoryCode ||
-                    (this.MerchantCategoryCode != null &&
-                    this.MerchantCategoryCode.Equals(input.MerchantCategoryCode))
+                    MerchantCategoryCode == input.MerchantCategoryCode ||
+                    (MerchantCategoryCode != null &&
+                    MerchantCategoryCode.Equals(input.MerchantCategoryCode))
                 ) && 
                 (
-                    this.Metadata == input.Metadata ||
-                    (this.Metadata != null &&
-                    this.Metadata.Equals(input.Metadata))
+                    Metadata == input.Metadata ||
+                    (Metadata != null &&
+                    Metadata.Equals(input.Metadata))
                 ) && 
                 (
-                    this.PayoutMethods == input.PayoutMethods ||
-                    this.PayoutMethods != null &&
+                    PayoutMethods == input.PayoutMethods ||
+                    PayoutMethods != null &&
                     input.PayoutMethods != null &&
-                    this.PayoutMethods.SequenceEqual(input.PayoutMethods)
+                    PayoutMethods.SequenceEqual(input.PayoutMethods)
                 ) && 
                 (
-                    this.WebAddress == input.WebAddress ||
-                    (this.WebAddress != null &&
-                    this.WebAddress.Equals(input.WebAddress))
+                    WebAddress == input.WebAddress ||
+                    (WebAddress != null &&
+                    WebAddress.Equals(input.WebAddress))
                 );
         }
 
@@ -255,26 +230,26 @@ namespace Adyen.Model.MarketPay
             unchecked // Overflow is fine, just wrap
             {
                 int hashCode = 41;
-                if (this.Address != null)
-                    hashCode = hashCode * 59 + this.Address.GetHashCode();
-                if (this.BankAccountDetails != null)
-                    hashCode = hashCode * 59 + this.BankAccountDetails.GetHashCode();
-                if (this.BusinessDetails != null)
-                    hashCode = hashCode * 59 + this.BusinessDetails.GetHashCode();
-                if (this.Email != null)
-                    hashCode = hashCode * 59 + this.Email.GetHashCode();
-                if (this.FullPhoneNumber != null)
-                    hashCode = hashCode * 59 + this.FullPhoneNumber.GetHashCode();
-                if (this.IndividualDetails != null)
-                    hashCode = hashCode * 59 + this.IndividualDetails.GetHashCode();
-                if (this.MerchantCategoryCode != null)
-                    hashCode = hashCode * 59 + this.MerchantCategoryCode.GetHashCode();
-                if (this.Metadata != null)
-                    hashCode = hashCode * 59 + this.Metadata.GetHashCode();
-                if (this.PayoutMethods != null)
-                    hashCode = hashCode * 59 + this.PayoutMethods.GetHashCode();
-                if (this.WebAddress != null)
-                    hashCode = hashCode * 59 + this.WebAddress.GetHashCode();
+                if (Address != null)
+                    hashCode = hashCode * 59 + Address.GetHashCode();
+                if (BankAccountDetails != null)
+                    hashCode = hashCode * 59 + BankAccountDetails.GetHashCode();
+                if (BusinessDetails != null)
+                    hashCode = hashCode * 59 + BusinessDetails.GetHashCode();
+                if (Email != null)
+                    hashCode = hashCode * 59 + Email.GetHashCode();
+                if (FullPhoneNumber != null)
+                    hashCode = hashCode * 59 + FullPhoneNumber.GetHashCode();
+                if (IndividualDetails != null)
+                    hashCode = hashCode * 59 + IndividualDetails.GetHashCode();
+                if (MerchantCategoryCode != null)
+                    hashCode = hashCode * 59 + MerchantCategoryCode.GetHashCode();
+                if (Metadata != null)
+                    hashCode = hashCode * 59 + Metadata.GetHashCode();
+                if (PayoutMethods != null)
+                    hashCode = hashCode * 59 + PayoutMethods.GetHashCode();
+                if (WebAddress != null)
+                    hashCode = hashCode * 59 + WebAddress.GetHashCode();
                 return hashCode;
             }
         }
@@ -284,7 +259,7 @@ namespace Adyen.Model.MarketPay
         /// </summary>
         /// <param name="validationContext">Validation context</param>
         /// <returns>Validation Result</returns>
-        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+        IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
         {
             yield break;
         }
