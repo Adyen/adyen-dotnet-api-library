@@ -1,27 +1,4 @@
-﻿#region License
-// /*
-//  *                       ######
-//  *                       ######
-//  * ############    ####( ######  #####. ######  ############   ############
-//  * #############  #####( ######  #####. ######  #############  #############
-//  *        ######  #####( ######  #####. ######  #####  ######  #####  ######
-//  * ###### ######  #####( ######  #####. ######  #####  #####   #####  ######
-//  * ###### ######  #####( ######  #####. ######  #####          #####  ######
-//  * #############  #############  #############  #############  #####  ######
-//  *  ############   ############  #############   ############  #####  ######
-//  *                                      ######
-//  *                               #############
-//  *                               ############
-//  *
-//  * Adyen Dotnet API Library
-//  *
-//  * Copyright (c) 2020 Adyen B.V.
-//  * This file is open source and available under the MIT license.
-//  * See the LICENSE file for more info.
-//  */
-#endregion
-
-using Adyen.Model.MarketPay.Notification;
+﻿using Adyen.Model.MarketPay.Notification;
 using Adyen.Model.Notification;
 using Adyen.Util;
 
@@ -36,7 +13,7 @@ namespace Adyen.Notification
 
         public IGenericNotification HandleMarketpayNotificationJson(string jsonRequest)
         {
-            return Util.JsonOperation.Deserialize<IGenericNotification>(jsonRequest);
+            return JsonOperation.Deserialize<IGenericNotification>(jsonRequest);
         }
     }
 }
