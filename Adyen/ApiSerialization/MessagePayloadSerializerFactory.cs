@@ -1,4 +1,27 @@
-﻿using System;
+﻿#region License
+// /*
+//  *                       ######
+//  *                       ######
+//  * ############    ####( ######  #####. ######  ############   ############
+//  * #############  #####( ######  #####. ######  #############  #############
+//  *        ######  #####( ######  #####. ######  #####  ######  #####  ######
+//  * ###### ######  #####( ######  #####. ######  #####  #####   #####  ######
+//  * ###### ######  #####( ######  #####. ######  #####          #####  ######
+//  * #############  #############  #############  #############  #####  ######
+//  *  ############   ############  #############   ############  #####  ######
+//  *                                      ######
+//  *                               #############
+//  *                               ############
+//  *
+//  * Adyen Dotnet API Library
+//  *
+//  * Copyright (c) 2020 Adyen B.V.
+//  * This file is open source and available under the MIT license.
+//  * See the LICENSE file for more info.
+//  */
+#endregion
+
+using System;
 using Adyen.Model.Nexo;
 
 namespace Adyen.ApiSerialization
@@ -17,7 +40,7 @@ namespace Adyen.ApiSerialization
         {
             var nameSpaceSeparator = ".";
 
-            var messagePayloadName = messageCategory + messageType;
+            var messagePayloadName = messageCategory.ToString() + messageType;
             var nexoDomainNameSpace = typeof(PaymentRequest).Namespace;
 
             return string.Concat(nexoDomainNameSpace, nameSpaceSeparator, messagePayloadName);

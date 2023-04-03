@@ -1,13 +1,36 @@
-﻿using Adyen.ApiSerialization;
+﻿#region License
+// /*
+//  *                       ######
+//  *                       ######
+//  * ############    ####( ######  #####. ######  ############   ############
+//  * #############  #####( ######  #####. ######  #############  #############
+//  *        ######  #####( ######  #####. ######  #####  ######  #####  ######
+//  * ###### ######  #####( ######  #####. ######  #####  #####   #####  ######
+//  * ###### ######  #####( ######  #####. ######  #####          #####  ######
+//  * #############  #############  #############  #############  #####  ######
+//  *  ############   ############  #############   ############  #####  ######
+//  *                                      ######
+//  *                               #############
+//  *                               ############
+//  *
+//  * Adyen Dotnet API Library
+//  *
+//  * Copyright (c) 2020 Adyen B.V.
+//  * This file is open source and available under the MIT license.
+//  * See the LICENSE file for more info.
+//  */
+#endregion
+
+using Adyen.ApiSerialization;
 
 namespace Adyen.Model.Nexo
 {
     /// <remarks/>
     [System.CodeDom.Compiler.GeneratedCodeAttribute("xsd", "4.6.1055.0")]
-    [System.SerializableAttribute]
-    [System.Diagnostics.DebuggerStepThroughAttribute]
+    [System.SerializableAttribute()]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
-    public class EventNotification : IMessagePayload
+    public partial class EventNotification : IMessagePayload
     {
 
         /// <remarks/>
@@ -23,20 +46,20 @@ namespace Adyen.Model.Nexo
         public DisplayOutput DisplayOutput;
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute]
+        [System.Xml.Serialization.XmlAttributeAttribute()]
         public System.DateTime TimeStamp;
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute]
+        [System.Xml.Serialization.XmlAttributeAttribute()]
         public EventToNotifyType EventToNotify;
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute]
+        [System.Xml.Serialization.XmlAttributeAttribute()]
         [System.ComponentModel.DefaultValueAttribute(false)]
         public bool? MaintenanceRequiredFlag;
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute]
+        [System.Xml.Serialization.XmlAttributeAttribute()]
         public string CustomerLanguage;
 
 

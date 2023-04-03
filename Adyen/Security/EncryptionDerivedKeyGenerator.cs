@@ -1,6 +1,29 @@
-﻿using System.Security.Cryptography;
-using System.Text;
+﻿#region License
+// /*
+//  *                       ######
+//  *                       ######
+//  * ############    ####( ######  #####. ######  ############   ############
+//  * #############  #####( ######  #####. ######  #############  #############
+//  *        ######  #####( ######  #####. ######  #####  ######  #####  ######
+//  * ###### ######  #####( ######  #####. ######  #####  #####   #####  ######
+//  * ###### ######  #####( ######  #####. ######  #####          #####  ######
+//  * #############  #############  #############  #############  #####  ######
+//  *  ############   ############  #############   ############  #####  ######
+//  *                                      ######
+//  *                               #############
+//  *                               ############
+//  *
+//  * Adyen Dotnet API Library
+//  *
+//  * Copyright (c) 2020 Adyen B.V.
+//  * This file is open source and available under the MIT license.
+//  * See the LICENSE file for more info.
+//  */
+#endregion
+
 using Adyen.Security.Extension;
+using System.Security.Cryptography;
+using System.Text;
 
 namespace Adyen.Security
 {
@@ -15,7 +38,7 @@ namespace Adyen.Security
             var rfc2898 = new Rfc2898DeriveBytes(encryptionCredentialDetails.Password, salt, Iterations);
             byte[] key = rfc2898.GetBytes(80);
 
-            return new EncryptionDerivedKey
+            return new EncryptionDerivedKey()
             {
                 HmacKey = key.Slice(0, EncryptionDerivedKey.HmacKeyLength),
                 CipherKey = key.Slice(EncryptionDerivedKey.HmacKeyLength, EncryptionDerivedKey.HmacKeyLength + EncryptionDerivedKey.CipherKeyLength),

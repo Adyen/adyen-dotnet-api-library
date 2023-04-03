@@ -1,4 +1,27 @@
-﻿using System.Linq;
+﻿#region License
+/*
+ *                       ######
+ *                       ######
+ * ############    ####( ######  #####. ######  ############   ############
+ * #############  #####( ######  #####. ######  #############  #############
+ *        ######  #####( ######  #####. ######  #####  ######  #####  ######
+ * ###### ######  #####( ######  #####. ######  #####  #####   #####  ######
+ * ###### ######  #####( ######  #####. ######  #####          #####  ######
+ * #############  #############  #############  #############  #####  ######
+ *  ############   ############  #############   ############  #####  ######
+ *                                      ######
+ *                               #############
+ *                               ############
+ *
+ * Adyen Dotnet API Library
+ *
+ * Copyright (c) 2021 Adyen B.V.
+ * This file is open source and available under the MIT license.
+ * See the LICENSE file for more info.
+ */
+#endregion
+
+using System.Linq;
 using System.Text.RegularExpressions;
 
 namespace Adyen.Security
@@ -6,8 +29,8 @@ namespace Adyen.Security
     public static class TerminalCommonNameValidator
     {
         private static readonly string _environmentWildcard = "{environment}";
-        private static readonly string _terminalApiCnRegex = "[a-zA-Z0-9]{3,}-[0-9]{9,15}\\." + _environmentWildcard + "\\.terminal\\.adyen\\.com";
-        private static readonly string _terminalApiLegacy = "legacy-terminal-certificate." + _environmentWildcard + ".terminal.adyen.com";
+        private static string _terminalApiCnRegex = "[a-zA-Z0-9]{3,}-[0-9]{9,15}\\." + _environmentWildcard + "\\.terminal\\.adyen\\.com";
+        private static string _terminalApiLegacy = "legacy-terminal-certificate." + _environmentWildcard + ".terminal.adyen.com";
 
         public static bool ValidateCertificate(string certificateSubject, Model.Environment environment)
         {

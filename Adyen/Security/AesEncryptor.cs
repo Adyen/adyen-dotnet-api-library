@@ -1,4 +1,27 @@
-﻿using System.Security.Cryptography;
+﻿#region License
+// /*
+//  *                       ######
+//  *                       ######
+//  * ############    ####( ######  #####. ######  ############   ############
+//  * #############  #####( ######  #####. ######  #############  #############
+//  *        ######  #####( ######  #####. ######  #####  ######  #####  ######
+//  * ###### ######  #####( ######  #####. ######  #####  #####   #####  ######
+//  * ###### ######  #####( ######  #####. ######  #####          #####  ######
+//  * #############  #############  #############  #############  #####  ######
+//  *  ############   ############  #############   ############  #####  ######
+//  *                                      ######
+//  *                               #############
+//  *                               ############
+//  *
+//  * Adyen Dotnet API Library
+//  *
+//  * Copyright (c) 2020 Adyen B.V.
+//  * This file is open source and available under the MIT license.
+//  * See the LICENSE file for more info.
+//  */
+#endregion
+
+using System.Security.Cryptography;
 
 namespace Adyen.Security
 {
@@ -8,7 +31,7 @@ namespace Adyen.Security
 
         internal AesEncryptor()
         {
-            _aesManaged = new AesManaged
+            _aesManaged = new AesManaged()
             {
                 KeySize = 256,
                 BlockSize = 128,

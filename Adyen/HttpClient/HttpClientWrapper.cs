@@ -1,3 +1,29 @@
+#region License
+
+// /*
+//  *                       ######
+//  *                       ######
+//  * ############    ####( ######  #####. ######  ############   ############
+//  * #############  #####( ######  #####. ######  #############  #############
+//  *        ######  #####( ######  #####. ######  #####  ######  #####  ######
+//  * ###### ######  #####( ######  #####. ######  #####  #####   #####  ######
+//  * ###### ######  #####( ######  #####. ######  #####          #####  ######
+//  * #############  #############  #############  #############  #####  ######
+//  *  ############   ############  #############   ############  #####  ######
+//  *                                      ######
+//  *                               #############
+//  *                               ############
+//  *
+//  * Adyen Dotnet API Library
+//  *
+//  * Copyright (c) 2022 Adyen N.V.
+//  * This file is open source and available under the MIT license.
+//  * See the LICENSE file for more info.
+//  */
+
+#endregion
+
+using Adyen.Constants;
 using System;
 using System.Collections.Generic;
 using System.Net.Http;
@@ -5,9 +31,9 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Web;
-using Adyen.Constants;
 using Adyen.HttpClient.Interfaces;
 using Adyen.Model;
+using Adyen.Model.Payments;
 
 namespace Adyen.HttpClient
 {
