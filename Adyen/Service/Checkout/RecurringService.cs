@@ -67,11 +67,12 @@ namespace Adyen.Service.Checkout
         }
 
     }
-}
-
-interface IRecurringService
-{   
-        /// <summary>
+    /// <summary>
+    /// Service Interface
+    /// </summary>
+    public interface IRecurringService
+    {
+            /// <summary>
         /// Delete a token for stored payment details
         /// </summary>
         /// <param name="recurringId">The unique identifier of the token.</param>
@@ -80,7 +81,7 @@ interface IRecurringService
         /// <param name="requestOptions">Additional request options.</param>
         /// <returns>StoredPaymentMethodResource</returns>
         StoredPaymentMethodResource DeleteTokenForStoredPaymentDetails(string recurringId, string shopperReference = default, string merchantAccount = default, RequestOptions requestOptions = default);
-        /// <summary>
+            /// <summary>
         /// Delete a token for stored payment details
         /// </summary>
         /// <param name="recurringId">The unique identifier of the token.</param>
@@ -90,7 +91,7 @@ interface IRecurringService
         /// <param name="cancellationToken"> A CancellationToken enables cooperative cancellation between threads, thread pool work items, or Task objects.</param>
         /// <returns>Task of StoredPaymentMethodResource</returns>
         Task<StoredPaymentMethodResource> DeleteTokenForStoredPaymentDetailsAsync(string recurringId, string shopperReference = default, string merchantAccount = default, RequestOptions requestOptions = default, CancellationToken cancellationToken = default);
-        /// <summary>
+            /// <summary>
         /// Get tokens for stored payment details
         /// </summary>
         /// <param name="shopperReference">Your reference to uniquely identify this shopper, for example user ID or account ID. Minimum length: 3 characters. &gt; Your reference must not include personally identifiable information (PII), for example name or email address.</param>
@@ -98,7 +99,7 @@ interface IRecurringService
         /// <param name="requestOptions">Additional request options.</param>
         /// <returns>ListStoredPaymentMethodsResponse</returns>
         ListStoredPaymentMethodsResponse GetTokensForStoredPaymentDetails(string shopperReference = default, string merchantAccount = default, RequestOptions requestOptions = default);
-        /// <summary>
+            /// <summary>
         /// Get tokens for stored payment details
         /// </summary>
         /// <param name="shopperReference">Your reference to uniquely identify this shopper, for example user ID or account ID. Minimum length: 3 characters. &gt; Your reference must not include personally identifiable information (PII), for example name or email address.</param>
@@ -107,4 +108,5 @@ interface IRecurringService
         /// <param name="cancellationToken"> A CancellationToken enables cooperative cancellation between threads, thread pool work items, or Task objects.</param>
         /// <returns>Task of ListStoredPaymentMethodsResponse</returns>
         Task<ListStoredPaymentMethodsResponse> GetTokensForStoredPaymentDetailsAsync(string shopperReference = default, string merchantAccount = default, RequestOptions requestOptions = default, CancellationToken cancellationToken = default);
+    }
 }

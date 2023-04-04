@@ -107,11 +107,12 @@ namespace Adyen.Service.Checkout
         }
 
     }
-}
-
-interface IModificationsService
-{   
-        /// <summary>
+    /// <summary>
+    /// Service Interface
+    /// </summary>
+    public interface IModificationsService
+    {
+            /// <summary>
         /// Cancel an authorised payment
         /// </summary>
         /// <param name="idempotencyKey">A unique identifier for the message with a maximum of 64 characters (we recommend a UUID).</param>
@@ -119,7 +120,7 @@ interface IModificationsService
         /// <param name="requestOptions">Additional request options.</param>
         /// <returns>StandalonePaymentCancelResource</returns>
         StandalonePaymentCancelResource CancelAuthorisedPayment(CreateStandalonePaymentCancelRequest createStandalonePaymentCancelRequest, RequestOptions requestOptions = default);
-        /// <summary>
+            /// <summary>
         /// Cancel an authorised payment
         /// </summary>
         /// <param name="idempotencyKey">A unique identifier for the message with a maximum of 64 characters (we recommend a UUID).</param>
@@ -128,7 +129,7 @@ interface IModificationsService
         /// <param name="cancellationToken"> A CancellationToken enables cooperative cancellation between threads, thread pool work items, or Task objects.</param>
         /// <returns>Task of StandalonePaymentCancelResource</returns>
         Task<StandalonePaymentCancelResource> CancelAuthorisedPaymentAsync(CreateStandalonePaymentCancelRequest createStandalonePaymentCancelRequest, RequestOptions requestOptions = default, CancellationToken cancellationToken = default);
-        /// <summary>
+            /// <summary>
         /// Update an authorised amount
         /// </summary>
         /// <param name="paymentPspReference">The [&#x60;pspReference&#x60;](https://docs.adyen.com/api-explorer/#/CheckoutService/latest/post/payments__resParam_pspReference) of the payment.</param>
@@ -137,7 +138,7 @@ interface IModificationsService
         /// <param name="requestOptions">Additional request options.</param>
         /// <returns>PaymentAmountUpdateResource</returns>
         PaymentAmountUpdateResource UpdateAuthorisedAmount(string paymentPspReference, CreatePaymentAmountUpdateRequest createPaymentAmountUpdateRequest, RequestOptions requestOptions = default);
-        /// <summary>
+            /// <summary>
         /// Update an authorised amount
         /// </summary>
         /// <param name="paymentPspReference">The [&#x60;pspReference&#x60;](https://docs.adyen.com/api-explorer/#/CheckoutService/latest/post/payments__resParam_pspReference) of the payment.</param>
@@ -147,7 +148,7 @@ interface IModificationsService
         /// <param name="cancellationToken"> A CancellationToken enables cooperative cancellation between threads, thread pool work items, or Task objects.</param>
         /// <returns>Task of PaymentAmountUpdateResource</returns>
         Task<PaymentAmountUpdateResource> UpdateAuthorisedAmountAsync(string paymentPspReference, CreatePaymentAmountUpdateRequest createPaymentAmountUpdateRequest, RequestOptions requestOptions = default, CancellationToken cancellationToken = default);
-        /// <summary>
+            /// <summary>
         /// Cancel an authorised payment
         /// </summary>
         /// <param name="paymentPspReference">The [&#x60;pspReference&#x60;](https://docs.adyen.com/api-explorer/#/CheckoutService/latest/post/payments__resParam_pspReference) of the payment that you want to cancel. </param>
@@ -156,7 +157,7 @@ interface IModificationsService
         /// <param name="requestOptions">Additional request options.</param>
         /// <returns>PaymentCancelResource</returns>
         PaymentCancelResource CancelAuthorisedPaymentByPspReference(string paymentPspReference, CreatePaymentCancelRequest createPaymentCancelRequest, RequestOptions requestOptions = default);
-        /// <summary>
+            /// <summary>
         /// Cancel an authorised payment
         /// </summary>
         /// <param name="paymentPspReference">The [&#x60;pspReference&#x60;](https://docs.adyen.com/api-explorer/#/CheckoutService/latest/post/payments__resParam_pspReference) of the payment that you want to cancel. </param>
@@ -166,7 +167,7 @@ interface IModificationsService
         /// <param name="cancellationToken"> A CancellationToken enables cooperative cancellation between threads, thread pool work items, or Task objects.</param>
         /// <returns>Task of PaymentCancelResource</returns>
         Task<PaymentCancelResource> CancelAuthorisedPaymentByPspReferenceAsync(string paymentPspReference, CreatePaymentCancelRequest createPaymentCancelRequest, RequestOptions requestOptions = default, CancellationToken cancellationToken = default);
-        /// <summary>
+            /// <summary>
         /// Capture an authorised payment
         /// </summary>
         /// <param name="paymentPspReference">The [&#x60;pspReference&#x60;](https://docs.adyen.com/api-explorer/#/CheckoutService/latest/post/payments__resParam_pspReference) of the payment that you want to capture.</param>
@@ -175,7 +176,7 @@ interface IModificationsService
         /// <param name="requestOptions">Additional request options.</param>
         /// <returns>PaymentCaptureResource</returns>
         PaymentCaptureResource CaptureAuthorisedPayment(string paymentPspReference, CreatePaymentCaptureRequest createPaymentCaptureRequest, RequestOptions requestOptions = default);
-        /// <summary>
+            /// <summary>
         /// Capture an authorised payment
         /// </summary>
         /// <param name="paymentPspReference">The [&#x60;pspReference&#x60;](https://docs.adyen.com/api-explorer/#/CheckoutService/latest/post/payments__resParam_pspReference) of the payment that you want to capture.</param>
@@ -185,7 +186,7 @@ interface IModificationsService
         /// <param name="cancellationToken"> A CancellationToken enables cooperative cancellation between threads, thread pool work items, or Task objects.</param>
         /// <returns>Task of PaymentCaptureResource</returns>
         Task<PaymentCaptureResource> CaptureAuthorisedPaymentAsync(string paymentPspReference, CreatePaymentCaptureRequest createPaymentCaptureRequest, RequestOptions requestOptions = default, CancellationToken cancellationToken = default);
-        /// <summary>
+            /// <summary>
         /// Refund a captured payment
         /// </summary>
         /// <param name="paymentPspReference">The [&#x60;pspReference&#x60;](https://docs.adyen.com/api-explorer/#/CheckoutService/latest/post/payments__resParam_pspReference) of the payment that you want to refund.</param>
@@ -194,7 +195,7 @@ interface IModificationsService
         /// <param name="requestOptions">Additional request options.</param>
         /// <returns>PaymentRefundResource</returns>
         PaymentRefundResource RefundCapturedPayment(string paymentPspReference, CreatePaymentRefundRequest createPaymentRefundRequest, RequestOptions requestOptions = default);
-        /// <summary>
+            /// <summary>
         /// Refund a captured payment
         /// </summary>
         /// <param name="paymentPspReference">The [&#x60;pspReference&#x60;](https://docs.adyen.com/api-explorer/#/CheckoutService/latest/post/payments__resParam_pspReference) of the payment that you want to refund.</param>
@@ -204,7 +205,7 @@ interface IModificationsService
         /// <param name="cancellationToken"> A CancellationToken enables cooperative cancellation between threads, thread pool work items, or Task objects.</param>
         /// <returns>Task of PaymentRefundResource</returns>
         Task<PaymentRefundResource> RefundCapturedPaymentAsync(string paymentPspReference, CreatePaymentRefundRequest createPaymentRefundRequest, RequestOptions requestOptions = default, CancellationToken cancellationToken = default);
-        /// <summary>
+            /// <summary>
         /// Refund or cancel a payment
         /// </summary>
         /// <param name="paymentPspReference">The [&#x60;pspReference&#x60;](https://docs.adyen.com/api-explorer/#/CheckoutService/latest/post/payments__resParam_pspReference) of the payment that you want to reverse. </param>
@@ -213,7 +214,7 @@ interface IModificationsService
         /// <param name="requestOptions">Additional request options.</param>
         /// <returns>PaymentReversalResource</returns>
         PaymentReversalResource RefundOrCancelPayment(string paymentPspReference, CreatePaymentReversalRequest createPaymentReversalRequest, RequestOptions requestOptions = default);
-        /// <summary>
+            /// <summary>
         /// Refund or cancel a payment
         /// </summary>
         /// <param name="paymentPspReference">The [&#x60;pspReference&#x60;](https://docs.adyen.com/api-explorer/#/CheckoutService/latest/post/payments__resParam_pspReference) of the payment that you want to reverse. </param>
@@ -223,4 +224,5 @@ interface IModificationsService
         /// <param name="cancellationToken"> A CancellationToken enables cooperative cancellation between threads, thread pool work items, or Task objects.</param>
         /// <returns>Task of PaymentReversalResource</returns>
         Task<PaymentReversalResource> RefundOrCancelPaymentAsync(string paymentPspReference, CreatePaymentReversalRequest createPaymentReversalRequest, RequestOptions requestOptions = default, CancellationToken cancellationToken = default);
+    }
 }

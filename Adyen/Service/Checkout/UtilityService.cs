@@ -61,11 +61,12 @@ namespace Adyen.Service.Checkout
         }
 
     }
-}
-
-interface IUtilityService
-{   
-        /// <summary>
+    /// <summary>
+    /// Service Interface
+    /// </summary>
+    public interface IUtilityService
+    {
+            /// <summary>
         /// Get an Apple Pay session
         /// </summary>
         /// <param name="idempotencyKey">A unique identifier for the message with a maximum of 64 characters (we recommend a UUID).</param>
@@ -73,7 +74,7 @@ interface IUtilityService
         /// <param name="requestOptions">Additional request options.</param>
         /// <returns>ApplePaySessionResponse</returns>
         ApplePaySessionResponse GetApplePaySession(CreateApplePaySessionRequest createApplePaySessionRequest, RequestOptions requestOptions = default);
-        /// <summary>
+            /// <summary>
         /// Get an Apple Pay session
         /// </summary>
         /// <param name="idempotencyKey">A unique identifier for the message with a maximum of 64 characters (we recommend a UUID).</param>
@@ -82,7 +83,7 @@ interface IUtilityService
         /// <param name="cancellationToken"> A CancellationToken enables cooperative cancellation between threads, thread pool work items, or Task objects.</param>
         /// <returns>Task of ApplePaySessionResponse</returns>
         Task<ApplePaySessionResponse> GetApplePaySessionAsync(CreateApplePaySessionRequest createApplePaySessionRequest, RequestOptions requestOptions = default, CancellationToken cancellationToken = default);
-        /// <summary>
+            /// <summary>
         /// Create originKey values for domains
         /// </summary>
         /// <param name="idempotencyKey">A unique identifier for the message with a maximum of 64 characters (we recommend a UUID).</param>
@@ -91,7 +92,7 @@ interface IUtilityService
         /// <returns>CheckoutUtilityResponse</returns>
         [Obsolete]
         CheckoutUtilityResponse OriginKeys(CheckoutUtilityRequest checkoutUtilityRequest, RequestOptions requestOptions = default);
-        /// <summary>
+            /// <summary>
         /// Create originKey values for domains
         /// </summary>
         /// <param name="idempotencyKey">A unique identifier for the message with a maximum of 64 characters (we recommend a UUID).</param>
@@ -101,4 +102,5 @@ interface IUtilityService
         /// <returns>Task of CheckoutUtilityResponse</returns>
         [Obsolete]
         Task<CheckoutUtilityResponse> OriginKeysAsync(CheckoutUtilityRequest checkoutUtilityRequest, RequestOptions requestOptions = default, CancellationToken cancellationToken = default);
+    }
 }

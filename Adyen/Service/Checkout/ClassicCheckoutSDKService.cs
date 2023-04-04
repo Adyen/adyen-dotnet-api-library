@@ -63,11 +63,12 @@ namespace Adyen.Service.Checkout
         }
 
     }
-}
-
-interface IClassicCheckoutSDKService
-{   
-        /// <summary>
+    /// <summary>
+    /// Service Interface
+    /// </summary>
+    public interface IClassicCheckoutSDKService
+    {
+            /// <summary>
         /// Create a payment session
         /// </summary>
         /// <param name="idempotencyKey">A unique identifier for the message with a maximum of 64 characters (we recommend a UUID).</param>
@@ -76,7 +77,7 @@ interface IClassicCheckoutSDKService
         /// <returns>PaymentSetupResponse</returns>
         [Obsolete]
         PaymentSetupResponse PaymentSession(PaymentSetupRequest paymentSetupRequest, RequestOptions requestOptions = default);
-        /// <summary>
+            /// <summary>
         /// Create a payment session
         /// </summary>
         /// <param name="idempotencyKey">A unique identifier for the message with a maximum of 64 characters (we recommend a UUID).</param>
@@ -86,7 +87,7 @@ interface IClassicCheckoutSDKService
         /// <returns>Task of PaymentSetupResponse</returns>
         [Obsolete]
         Task<PaymentSetupResponse> PaymentSessionAsync(PaymentSetupRequest paymentSetupRequest, RequestOptions requestOptions = default, CancellationToken cancellationToken = default);
-        /// <summary>
+            /// <summary>
         /// Verify a payment result
         /// </summary>
         /// <param name="idempotencyKey">A unique identifier for the message with a maximum of 64 characters (we recommend a UUID).</param>
@@ -95,7 +96,7 @@ interface IClassicCheckoutSDKService
         /// <returns>PaymentVerificationResponse</returns>
         [Obsolete]
         PaymentVerificationResponse VerifyPaymentResult(PaymentVerificationRequest paymentVerificationRequest, RequestOptions requestOptions = default);
-        /// <summary>
+            /// <summary>
         /// Verify a payment result
         /// </summary>
         /// <param name="idempotencyKey">A unique identifier for the message with a maximum of 64 characters (we recommend a UUID).</param>
@@ -105,4 +106,5 @@ interface IClassicCheckoutSDKService
         /// <returns>Task of PaymentVerificationResponse</returns>
         [Obsolete]
         Task<PaymentVerificationResponse> VerifyPaymentResultAsync(PaymentVerificationRequest paymentVerificationRequest, RequestOptions requestOptions = default, CancellationToken cancellationToken = default);
+    }
 }

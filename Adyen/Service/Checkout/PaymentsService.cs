@@ -107,11 +107,12 @@ namespace Adyen.Service.Checkout
         }
 
     }
-}
-
-interface IPaymentsService
-{   
-        /// <summary>
+    /// <summary>
+    /// Service Interface
+    /// </summary>
+    public interface IPaymentsService
+    {
+            /// <summary>
         /// Get the list of brands on the card
         /// </summary>
         /// <param name="idempotencyKey">A unique identifier for the message with a maximum of 64 characters (we recommend a UUID).</param>
@@ -119,7 +120,7 @@ interface IPaymentsService
         /// <param name="requestOptions">Additional request options.</param>
         /// <returns>CardDetailsResponse</returns>
         CardDetailsResponse CardDetails(CardDetailsRequest cardDetailsRequest, RequestOptions requestOptions = default);
-        /// <summary>
+            /// <summary>
         /// Get the list of brands on the card
         /// </summary>
         /// <param name="idempotencyKey">A unique identifier for the message with a maximum of 64 characters (we recommend a UUID).</param>
@@ -128,7 +129,7 @@ interface IPaymentsService
         /// <param name="cancellationToken"> A CancellationToken enables cooperative cancellation between threads, thread pool work items, or Task objects.</param>
         /// <returns>Task of CardDetailsResponse</returns>
         Task<CardDetailsResponse> CardDetailsAsync(CardDetailsRequest cardDetailsRequest, RequestOptions requestOptions = default, CancellationToken cancellationToken = default);
-        /// <summary>
+            /// <summary>
         /// Start a transaction for donations
         /// </summary>
         /// <param name="idempotencyKey">A unique identifier for the message with a maximum of 64 characters (we recommend a UUID).</param>
@@ -136,7 +137,7 @@ interface IPaymentsService
         /// <param name="requestOptions">Additional request options.</param>
         /// <returns>DonationResponse</returns>
         DonationResponse Donations(PaymentDonationRequest paymentDonationRequest, RequestOptions requestOptions = default);
-        /// <summary>
+            /// <summary>
         /// Start a transaction for donations
         /// </summary>
         /// <param name="idempotencyKey">A unique identifier for the message with a maximum of 64 characters (we recommend a UUID).</param>
@@ -145,7 +146,7 @@ interface IPaymentsService
         /// <param name="cancellationToken"> A CancellationToken enables cooperative cancellation between threads, thread pool work items, or Task objects.</param>
         /// <returns>Task of DonationResponse</returns>
         Task<DonationResponse> DonationsAsync(PaymentDonationRequest paymentDonationRequest, RequestOptions requestOptions = default, CancellationToken cancellationToken = default);
-        /// <summary>
+            /// <summary>
         /// Get a list of available payment methods
         /// </summary>
         /// <param name="idempotencyKey">A unique identifier for the message with a maximum of 64 characters (we recommend a UUID).</param>
@@ -153,7 +154,7 @@ interface IPaymentsService
         /// <param name="requestOptions">Additional request options.</param>
         /// <returns>PaymentMethodsResponse</returns>
         PaymentMethodsResponse PaymentMethods(PaymentMethodsRequest paymentMethodsRequest, RequestOptions requestOptions = default);
-        /// <summary>
+            /// <summary>
         /// Get a list of available payment methods
         /// </summary>
         /// <param name="idempotencyKey">A unique identifier for the message with a maximum of 64 characters (we recommend a UUID).</param>
@@ -162,7 +163,7 @@ interface IPaymentsService
         /// <param name="cancellationToken"> A CancellationToken enables cooperative cancellation between threads, thread pool work items, or Task objects.</param>
         /// <returns>Task of PaymentMethodsResponse</returns>
         Task<PaymentMethodsResponse> PaymentMethodsAsync(PaymentMethodsRequest paymentMethodsRequest, RequestOptions requestOptions = default, CancellationToken cancellationToken = default);
-        /// <summary>
+            /// <summary>
         /// Start a transaction
         /// </summary>
         /// <param name="idempotencyKey">A unique identifier for the message with a maximum of 64 characters (we recommend a UUID).</param>
@@ -170,7 +171,7 @@ interface IPaymentsService
         /// <param name="requestOptions">Additional request options.</param>
         /// <returns>PaymentResponse</returns>
         PaymentResponse Payments(PaymentRequest paymentRequest, RequestOptions requestOptions = default);
-        /// <summary>
+            /// <summary>
         /// Start a transaction
         /// </summary>
         /// <param name="idempotencyKey">A unique identifier for the message with a maximum of 64 characters (we recommend a UUID).</param>
@@ -179,7 +180,7 @@ interface IPaymentsService
         /// <param name="cancellationToken"> A CancellationToken enables cooperative cancellation between threads, thread pool work items, or Task objects.</param>
         /// <returns>Task of PaymentResponse</returns>
         Task<PaymentResponse> PaymentsAsync(PaymentRequest paymentRequest, RequestOptions requestOptions = default, CancellationToken cancellationToken = default);
-        /// <summary>
+            /// <summary>
         /// Submit details for a payment
         /// </summary>
         /// <param name="idempotencyKey">A unique identifier for the message with a maximum of 64 characters (we recommend a UUID).</param>
@@ -187,7 +188,7 @@ interface IPaymentsService
         /// <param name="requestOptions">Additional request options.</param>
         /// <returns>PaymentDetailsResponse</returns>
         PaymentDetailsResponse PaymentsDetails(DetailsRequest detailsRequest, RequestOptions requestOptions = default);
-        /// <summary>
+            /// <summary>
         /// Submit details for a payment
         /// </summary>
         /// <param name="idempotencyKey">A unique identifier for the message with a maximum of 64 characters (we recommend a UUID).</param>
@@ -196,7 +197,7 @@ interface IPaymentsService
         /// <param name="cancellationToken"> A CancellationToken enables cooperative cancellation between threads, thread pool work items, or Task objects.</param>
         /// <returns>Task of PaymentDetailsResponse</returns>
         Task<PaymentDetailsResponse> PaymentsDetailsAsync(DetailsRequest detailsRequest, RequestOptions requestOptions = default, CancellationToken cancellationToken = default);
-        /// <summary>
+            /// <summary>
         /// Create a payment session
         /// </summary>
         /// <param name="idempotencyKey">A unique identifier for the message with a maximum of 64 characters (we recommend a UUID).</param>
@@ -204,7 +205,7 @@ interface IPaymentsService
         /// <param name="requestOptions">Additional request options.</param>
         /// <returns>CreateCheckoutSessionResponse</returns>
         CreateCheckoutSessionResponse Sessions(CreateCheckoutSessionRequest createCheckoutSessionRequest, RequestOptions requestOptions = default);
-        /// <summary>
+            /// <summary>
         /// Create a payment session
         /// </summary>
         /// <param name="idempotencyKey">A unique identifier for the message with a maximum of 64 characters (we recommend a UUID).</param>
@@ -213,4 +214,5 @@ interface IPaymentsService
         /// <param name="cancellationToken"> A CancellationToken enables cooperative cancellation between threads, thread pool work items, or Task objects.</param>
         /// <returns>Task of CreateCheckoutSessionResponse</returns>
         Task<CreateCheckoutSessionResponse> SessionsAsync(CreateCheckoutSessionRequest createCheckoutSessionRequest, RequestOptions requestOptions = default, CancellationToken cancellationToken = default);
+    }
 }
