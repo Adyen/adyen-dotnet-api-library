@@ -23,6 +23,70 @@ using Adyen.Model.Checkout;
 namespace Adyen.Service.Checkout
 {
     /// <summary>
+    /// OrdersService Interface
+    /// </summary>
+    public interface IOrdersService
+    {
+        /// <summary>
+        /// Create an order
+        /// </summary>
+        /// <param name="idempotencyKey"><see cref="string"/> A unique identifier for the message with a maximum of 64 characters (we recommend a UUID).</param>
+        /// <param name="checkoutCreateOrderRequest"><see cref="CheckoutCreateOrderRequest"/> </param>
+        /// <param name="requestOptions"><see cref="RequestOptions"/> Additional request options.</param>
+        /// <returns><see cref="CheckoutCreateOrderResponse"/>.</returns>
+        CheckoutCreateOrderResponse Orders(CheckoutCreateOrderRequest checkoutCreateOrderRequest, RequestOptions requestOptions = default);
+        
+        /// <summary>
+        /// Create an order
+        /// </summary>
+        /// <param name="idempotencyKey"><see cref="string"/> A unique identifier for the message with a maximum of 64 characters (we recommend a UUID).</param>
+        /// <param name="checkoutCreateOrderRequest"><see cref="CheckoutCreateOrderRequest"/> </param>
+        /// <param name="requestOptions"><see cref="RequestOptions"/> Additional request options.</param>
+        /// <param name="cancellationToken"> A CancellationToken enables cooperative cancellation between threads, thread pool work items, or Task objects.</param>
+        /// <returns>Task of <see cref="CheckoutCreateOrderResponse"/>.</returns>
+        Task<CheckoutCreateOrderResponse> OrdersAsync(CheckoutCreateOrderRequest checkoutCreateOrderRequest, RequestOptions requestOptions = default, CancellationToken cancellationToken = default);
+        
+        /// <summary>
+        /// Cancel an order
+        /// </summary>
+        /// <param name="idempotencyKey"><see cref="string"/> A unique identifier for the message with a maximum of 64 characters (we recommend a UUID).</param>
+        /// <param name="checkoutCancelOrderRequest"><see cref="CheckoutCancelOrderRequest"/> </param>
+        /// <param name="requestOptions"><see cref="RequestOptions"/> Additional request options.</param>
+        /// <returns><see cref="CheckoutCancelOrderResponse"/>.</returns>
+        CheckoutCancelOrderResponse CancelOrder(CheckoutCancelOrderRequest checkoutCancelOrderRequest, RequestOptions requestOptions = default);
+        
+        /// <summary>
+        /// Cancel an order
+        /// </summary>
+        /// <param name="idempotencyKey"><see cref="string"/> A unique identifier for the message with a maximum of 64 characters (we recommend a UUID).</param>
+        /// <param name="checkoutCancelOrderRequest"><see cref="CheckoutCancelOrderRequest"/> </param>
+        /// <param name="requestOptions"><see cref="RequestOptions"/> Additional request options.</param>
+        /// <param name="cancellationToken"> A CancellationToken enables cooperative cancellation between threads, thread pool work items, or Task objects.</param>
+        /// <returns>Task of <see cref="CheckoutCancelOrderResponse"/>.</returns>
+        Task<CheckoutCancelOrderResponse> CancelOrderAsync(CheckoutCancelOrderRequest checkoutCancelOrderRequest, RequestOptions requestOptions = default, CancellationToken cancellationToken = default);
+        
+        /// <summary>
+        /// Get the balance of a gift card
+        /// </summary>
+        /// <param name="idempotencyKey"><see cref="string"/> A unique identifier for the message with a maximum of 64 characters (we recommend a UUID).</param>
+        /// <param name="checkoutBalanceCheckRequest"><see cref="CheckoutBalanceCheckRequest"/> </param>
+        /// <param name="requestOptions"><see cref="RequestOptions"/> Additional request options.</param>
+        /// <returns><see cref="CheckoutBalanceCheckResponse"/>.</returns>
+        CheckoutBalanceCheckResponse GetBalanceOfGiftCard(CheckoutBalanceCheckRequest checkoutBalanceCheckRequest, RequestOptions requestOptions = default);
+        
+        /// <summary>
+        /// Get the balance of a gift card
+        /// </summary>
+        /// <param name="idempotencyKey"><see cref="string"/> A unique identifier for the message with a maximum of 64 characters (we recommend a UUID).</param>
+        /// <param name="checkoutBalanceCheckRequest"><see cref="CheckoutBalanceCheckRequest"/> </param>
+        /// <param name="requestOptions"><see cref="RequestOptions"/> Additional request options.</param>
+        /// <param name="cancellationToken"> A CancellationToken enables cooperative cancellation between threads, thread pool work items, or Task objects.</param>
+        /// <returns>Task of <see cref="CheckoutBalanceCheckResponse"/>.</returns>
+        Task<CheckoutBalanceCheckResponse> GetBalanceOfGiftCardAsync(CheckoutBalanceCheckRequest checkoutBalanceCheckRequest, RequestOptions requestOptions = default, CancellationToken cancellationToken = default);
+        
+    }
+    
+    /// <summary>
     /// Represents a collection of functions to interact with the API endpoints
     /// </summary>
     public class OrdersService : AbstractService, IOrdersService
@@ -33,7 +97,7 @@ namespace Adyen.Service.Checkout
         {
             _baseUrl = client.Config.CheckoutEndpoint + "/" + ClientConfig.CheckoutApiVersion;
         }
-    
+        
         public CheckoutCreateOrderResponse Orders(CheckoutCreateOrderRequest checkoutCreateOrderRequest, RequestOptions requestOptions = default)
         {
             return OrdersAsync(checkoutCreateOrderRequest, requestOptions).GetAwaiter().GetResult();
@@ -45,7 +109,7 @@ namespace Adyen.Service.Checkout
             var resource = new ServiceResource(this, endpoint);
             return await resource.RequestAsync<CheckoutCreateOrderResponse>(checkoutCreateOrderRequest.ToJson(), requestOptions, new HttpMethod("POST"), cancellationToken);
         }
-
+        
         public CheckoutCancelOrderResponse CancelOrder(CheckoutCancelOrderRequest checkoutCancelOrderRequest, RequestOptions requestOptions = default)
         {
             return CancelOrderAsync(checkoutCancelOrderRequest, requestOptions).GetAwaiter().GetResult();
@@ -57,7 +121,7 @@ namespace Adyen.Service.Checkout
             var resource = new ServiceResource(this, endpoint);
             return await resource.RequestAsync<CheckoutCancelOrderResponse>(checkoutCancelOrderRequest.ToJson(), requestOptions, new HttpMethod("POST"), cancellationToken);
         }
-
+        
         public CheckoutBalanceCheckResponse GetBalanceOfGiftCard(CheckoutBalanceCheckRequest checkoutBalanceCheckRequest, RequestOptions requestOptions = default)
         {
             return GetBalanceOfGiftCardAsync(checkoutBalanceCheckRequest, requestOptions).GetAwaiter().GetResult();
@@ -69,70 +133,5 @@ namespace Adyen.Service.Checkout
             var resource = new ServiceResource(this, endpoint);
             return await resource.RequestAsync<CheckoutBalanceCheckResponse>(checkoutBalanceCheckRequest.ToJson(), requestOptions, new HttpMethod("POST"), cancellationToken);
         }
-
-    }
-    
-    /// <summary>
-    /// Service Interface
-    /// </summary>
-    public interface IOrdersService
-    {
-        /// <summary>
-        /// Create an order
-        /// </summary>
-        /// <param name="idempotencyKey">A unique identifier for the message with a maximum of 64 characters (we recommend a UUID).</param>
-        /// <param name="checkoutCreateOrderRequest"></param>
-        /// <param name="requestOptions">Additional request options.</param>
-        /// <returns>CheckoutCreateOrderResponse</returns>
-        CheckoutCreateOrderResponse Orders(CheckoutCreateOrderRequest checkoutCreateOrderRequest, RequestOptions requestOptions = default);
-        
-        /// <summary>
-        /// Create an order
-        /// </summary>
-        /// <param name="idempotencyKey">A unique identifier for the message with a maximum of 64 characters (we recommend a UUID).</param>
-        /// <param name="checkoutCreateOrderRequest"></param>
-        /// <param name="requestOptions">Additional request options.</param>
-        /// <param name="cancellationToken"> A CancellationToken enables cooperative cancellation between threads, thread pool work items, or Task objects.</param>
-        /// <returns>Task of CheckoutCreateOrderResponse</returns>
-        Task<CheckoutCreateOrderResponse> OrdersAsync(CheckoutCreateOrderRequest checkoutCreateOrderRequest, RequestOptions requestOptions = default, CancellationToken cancellationToken = default);
-        
-        /// <summary>
-        /// Cancel an order
-        /// </summary>
-        /// <param name="idempotencyKey">A unique identifier for the message with a maximum of 64 characters (we recommend a UUID).</param>
-        /// <param name="checkoutCancelOrderRequest"></param>
-        /// <param name="requestOptions">Additional request options.</param>
-        /// <returns>CheckoutCancelOrderResponse</returns>
-        CheckoutCancelOrderResponse CancelOrder(CheckoutCancelOrderRequest checkoutCancelOrderRequest, RequestOptions requestOptions = default);
-        
-        /// <summary>
-        /// Cancel an order
-        /// </summary>
-        /// <param name="idempotencyKey">A unique identifier for the message with a maximum of 64 characters (we recommend a UUID).</param>
-        /// <param name="checkoutCancelOrderRequest"></param>
-        /// <param name="requestOptions">Additional request options.</param>
-        /// <param name="cancellationToken"> A CancellationToken enables cooperative cancellation between threads, thread pool work items, or Task objects.</param>
-        /// <returns>Task of CheckoutCancelOrderResponse</returns>
-        Task<CheckoutCancelOrderResponse> CancelOrderAsync(CheckoutCancelOrderRequest checkoutCancelOrderRequest, RequestOptions requestOptions = default, CancellationToken cancellationToken = default);
-        
-        /// <summary>
-        /// Get the balance of a gift card
-        /// </summary>
-        /// <param name="idempotencyKey">A unique identifier for the message with a maximum of 64 characters (we recommend a UUID).</param>
-        /// <param name="checkoutBalanceCheckRequest"></param>
-        /// <param name="requestOptions">Additional request options.</param>
-        /// <returns>CheckoutBalanceCheckResponse</returns>
-        CheckoutBalanceCheckResponse GetBalanceOfGiftCard(CheckoutBalanceCheckRequest checkoutBalanceCheckRequest, RequestOptions requestOptions = default);
-        
-        /// <summary>
-        /// Get the balance of a gift card
-        /// </summary>
-        /// <param name="idempotencyKey">A unique identifier for the message with a maximum of 64 characters (we recommend a UUID).</param>
-        /// <param name="checkoutBalanceCheckRequest"></param>
-        /// <param name="requestOptions">Additional request options.</param>
-        /// <param name="cancellationToken"> A CancellationToken enables cooperative cancellation between threads, thread pool work items, or Task objects.</param>
-        /// <returns>Task of CheckoutBalanceCheckResponse</returns>
-        Task<CheckoutBalanceCheckResponse> GetBalanceOfGiftCardAsync(CheckoutBalanceCheckRequest checkoutBalanceCheckRequest, RequestOptions requestOptions = default, CancellationToken cancellationToken = default);
-        
     }
 }
