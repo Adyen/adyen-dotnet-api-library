@@ -71,19 +71,21 @@ namespace Adyen.Service.Checkout
         }
 
     }
+    
     /// <summary>
     /// Service Interface
     /// </summary>
     public interface IPaymentLinksService
     {
-            /// <summary>
+        /// <summary>
         /// Get a payment link
         /// </summary>
         /// <param name="linkId">Unique identifier of the payment link.</param>
         /// <param name="requestOptions">Additional request options.</param>
         /// <returns>PaymentLinkResponse</returns>
         PaymentLinkResponse GetPaymentLink(string linkId, RequestOptions requestOptions = default);
-            /// <summary>
+        
+        /// <summary>
         /// Get a payment link
         /// </summary>
         /// <param name="linkId">Unique identifier of the payment link.</param>
@@ -91,7 +93,8 @@ namespace Adyen.Service.Checkout
         /// <param name="cancellationToken"> A CancellationToken enables cooperative cancellation between threads, thread pool work items, or Task objects.</param>
         /// <returns>Task of PaymentLinkResponse</returns>
         Task<PaymentLinkResponse> GetPaymentLinkAsync(string linkId, RequestOptions requestOptions = default, CancellationToken cancellationToken = default);
-            /// <summary>
+        
+        /// <summary>
         /// Update the status of a payment link
         /// </summary>
         /// <param name="linkId">Unique identifier of the payment link.</param>
@@ -99,7 +102,8 @@ namespace Adyen.Service.Checkout
         /// <param name="requestOptions">Additional request options.</param>
         /// <returns>PaymentLinkResponse</returns>
         PaymentLinkResponse UpdatePaymentLink(string linkId, UpdatePaymentLinkRequest updatePaymentLinkRequest, RequestOptions requestOptions = default);
-            /// <summary>
+        
+        /// <summary>
         /// Update the status of a payment link
         /// </summary>
         /// <param name="linkId">Unique identifier of the payment link.</param>
@@ -108,7 +112,8 @@ namespace Adyen.Service.Checkout
         /// <param name="cancellationToken"> A CancellationToken enables cooperative cancellation between threads, thread pool work items, or Task objects.</param>
         /// <returns>Task of PaymentLinkResponse</returns>
         Task<PaymentLinkResponse> UpdatePaymentLinkAsync(string linkId, UpdatePaymentLinkRequest updatePaymentLinkRequest, RequestOptions requestOptions = default, CancellationToken cancellationToken = default);
-            /// <summary>
+        
+        /// <summary>
         /// Create a payment link
         /// </summary>
         /// <param name="idempotencyKey">A unique identifier for the message with a maximum of 64 characters (we recommend a UUID).</param>
@@ -116,7 +121,8 @@ namespace Adyen.Service.Checkout
         /// <param name="requestOptions">Additional request options.</param>
         /// <returns>PaymentLinkResponse</returns>
         PaymentLinkResponse PaymentLinks(CreatePaymentLinkRequest createPaymentLinkRequest, RequestOptions requestOptions = default);
-            /// <summary>
+        
+        /// <summary>
         /// Create a payment link
         /// </summary>
         /// <param name="idempotencyKey">A unique identifier for the message with a maximum of 64 characters (we recommend a UUID).</param>
@@ -125,5 +131,6 @@ namespace Adyen.Service.Checkout
         /// <param name="cancellationToken"> A CancellationToken enables cooperative cancellation between threads, thread pool work items, or Task objects.</param>
         /// <returns>Task of PaymentLinkResponse</returns>
         Task<PaymentLinkResponse> PaymentLinksAsync(CreatePaymentLinkRequest createPaymentLinkRequest, RequestOptions requestOptions = default, CancellationToken cancellationToken = default);
+        
     }
 }
