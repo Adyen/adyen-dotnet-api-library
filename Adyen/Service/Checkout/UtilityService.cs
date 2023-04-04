@@ -30,18 +30,18 @@ namespace Adyen.Service.Checkout
         /// <summary>
         /// Get an Apple Pay session
         /// </summary>
-        /// <param name="idempotencyKey"><see cref="string"/> A unique identifier for the message with a maximum of 64 characters (we recommend a UUID).</param>
-        /// <param name="createApplePaySessionRequest"><see cref="CreateApplePaySessionRequest"/> </param>
-        /// <param name="requestOptions"><see cref="RequestOptions"/> Additional request options.</param>
+        /// <param name="idempotencyKey"><see cref="string"/> - A unique identifier for the message with a maximum of 64 characters (we recommend a UUID).</param>
+        /// <param name="createApplePaySessionRequest"><see cref="CreateApplePaySessionRequest"/> - </param>
+        /// <param name="requestOptions"><see cref="RequestOptions"/> - Additional request options.</param>
         /// <returns><see cref="ApplePaySessionResponse"/>.</returns>
         ApplePaySessionResponse GetApplePaySession(CreateApplePaySessionRequest createApplePaySessionRequest, RequestOptions requestOptions = default);
         
         /// <summary>
         /// Get an Apple Pay session
         /// </summary>
-        /// <param name="idempotencyKey"><see cref="string"/> A unique identifier for the message with a maximum of 64 characters (we recommend a UUID).</param>
-        /// <param name="createApplePaySessionRequest"><see cref="CreateApplePaySessionRequest"/> </param>
-        /// <param name="requestOptions"><see cref="RequestOptions"/> Additional request options.</param>
+        /// <param name="idempotencyKey"><see cref="string"/> - A unique identifier for the message with a maximum of 64 characters (we recommend a UUID).</param>
+        /// <param name="createApplePaySessionRequest"><see cref="CreateApplePaySessionRequest"/> - </param>
+        /// <param name="requestOptions"><see cref="RequestOptions"/> - Additional request options.</param>
         /// <param name="cancellationToken"> A CancellationToken enables cooperative cancellation between threads, thread pool work items, or Task objects.</param>
         /// <returns>Task of <see cref="ApplePaySessionResponse"/>.</returns>
         Task<ApplePaySessionResponse> GetApplePaySessionAsync(CreateApplePaySessionRequest createApplePaySessionRequest, RequestOptions requestOptions = default, CancellationToken cancellationToken = default);
@@ -49,9 +49,9 @@ namespace Adyen.Service.Checkout
         /// <summary>
         /// Create originKey values for domains
         /// </summary>
-        /// <param name="idempotencyKey"><see cref="string"/> A unique identifier for the message with a maximum of 64 characters (we recommend a UUID).</param>
-        /// <param name="checkoutUtilityRequest"><see cref="CheckoutUtilityRequest"/> </param>
-        /// <param name="requestOptions"><see cref="RequestOptions"/> Additional request options.</param>
+        /// <param name="idempotencyKey"><see cref="string"/> - A unique identifier for the message with a maximum of 64 characters (we recommend a UUID).</param>
+        /// <param name="checkoutUtilityRequest"><see cref="CheckoutUtilityRequest"/> - </param>
+        /// <param name="requestOptions"><see cref="RequestOptions"/> - Additional request options.</param>
         /// <returns><see cref="CheckoutUtilityResponse"/>.</returns>
         [Obsolete]
         CheckoutUtilityResponse OriginKeys(CheckoutUtilityRequest checkoutUtilityRequest, RequestOptions requestOptions = default);
@@ -59,9 +59,9 @@ namespace Adyen.Service.Checkout
         /// <summary>
         /// Create originKey values for domains
         /// </summary>
-        /// <param name="idempotencyKey"><see cref="string"/> A unique identifier for the message with a maximum of 64 characters (we recommend a UUID).</param>
-        /// <param name="checkoutUtilityRequest"><see cref="CheckoutUtilityRequest"/> </param>
-        /// <param name="requestOptions"><see cref="RequestOptions"/> Additional request options.</param>
+        /// <param name="idempotencyKey"><see cref="string"/> - A unique identifier for the message with a maximum of 64 characters (we recommend a UUID).</param>
+        /// <param name="checkoutUtilityRequest"><see cref="CheckoutUtilityRequest"/> - </param>
+        /// <param name="requestOptions"><see cref="RequestOptions"/> - Additional request options.</param>
         /// <param name="cancellationToken"> A CancellationToken enables cooperative cancellation between threads, thread pool work items, or Task objects.</param>
         /// <returns>Task of <see cref="CheckoutUtilityResponse"/>.</returns>
         [Obsolete]

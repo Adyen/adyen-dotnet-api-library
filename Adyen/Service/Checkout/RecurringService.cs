@@ -30,20 +30,20 @@ namespace Adyen.Service.Checkout
         /// <summary>
         /// Delete a token for stored payment details
         /// </summary>
-        /// <param name="recurringId"><see cref="string"/> The unique identifier of the token.</param>
-        /// <param name="shopperReference"><see cref="string"/> Your reference to uniquely identify this shopper, for example user ID or account ID. Minimum length: 3 characters. &gt; Your reference must not include personally identifiable information (PII), for example name or email address.</param>
-        /// <param name="merchantAccount"><see cref="string"/> Your merchant account.</param>
-        /// <param name="requestOptions"><see cref="RequestOptions"/> Additional request options.</param>
+        /// <param name="recurringId"><see cref="string"/> - The unique identifier of the token.</param>
+        /// <param name="shopperReference"><see cref="string"/> - Your reference to uniquely identify this shopper, for example user ID or account ID. Minimum length: 3 characters. &gt; Your reference must not include personally identifiable information (PII), for example name or email address.</param>
+        /// <param name="merchantAccount"><see cref="string"/> - Your merchant account.</param>
+        /// <param name="requestOptions"><see cref="RequestOptions"/> - Additional request options.</param>
         /// <returns><see cref="StoredPaymentMethodResource"/>.</returns>
         StoredPaymentMethodResource DeleteTokenForStoredPaymentDetails(string recurringId, string shopperReference = default, string merchantAccount = default, RequestOptions requestOptions = default);
         
         /// <summary>
         /// Delete a token for stored payment details
         /// </summary>
-        /// <param name="recurringId"><see cref="string"/> The unique identifier of the token.</param>
-        /// <param name="shopperReference"><see cref="string"/> Your reference to uniquely identify this shopper, for example user ID or account ID. Minimum length: 3 characters. &gt; Your reference must not include personally identifiable information (PII), for example name or email address.</param>
-        /// <param name="merchantAccount"><see cref="string"/> Your merchant account.</param>
-        /// <param name="requestOptions"><see cref="RequestOptions"/> Additional request options.</param>
+        /// <param name="recurringId"><see cref="string"/> - The unique identifier of the token.</param>
+        /// <param name="shopperReference"><see cref="string"/> - Your reference to uniquely identify this shopper, for example user ID or account ID. Minimum length: 3 characters. &gt; Your reference must not include personally identifiable information (PII), for example name or email address.</param>
+        /// <param name="merchantAccount"><see cref="string"/> - Your merchant account.</param>
+        /// <param name="requestOptions"><see cref="RequestOptions"/> - Additional request options.</param>
         /// <param name="cancellationToken"> A CancellationToken enables cooperative cancellation between threads, thread pool work items, or Task objects.</param>
         /// <returns>Task of <see cref="StoredPaymentMethodResource"/>.</returns>
         Task<StoredPaymentMethodResource> DeleteTokenForStoredPaymentDetailsAsync(string recurringId, string shopperReference = default, string merchantAccount = default, RequestOptions requestOptions = default, CancellationToken cancellationToken = default);
@@ -51,18 +51,18 @@ namespace Adyen.Service.Checkout
         /// <summary>
         /// Get tokens for stored payment details
         /// </summary>
-        /// <param name="shopperReference"><see cref="string"/> Your reference to uniquely identify this shopper, for example user ID or account ID. Minimum length: 3 characters. &gt; Your reference must not include personally identifiable information (PII), for example name or email address.</param>
-        /// <param name="merchantAccount"><see cref="string"/> Your merchant account.</param>
-        /// <param name="requestOptions"><see cref="RequestOptions"/> Additional request options.</param>
+        /// <param name="shopperReference"><see cref="string"/> - Your reference to uniquely identify this shopper, for example user ID or account ID. Minimum length: 3 characters. &gt; Your reference must not include personally identifiable information (PII), for example name or email address.</param>
+        /// <param name="merchantAccount"><see cref="string"/> - Your merchant account.</param>
+        /// <param name="requestOptions"><see cref="RequestOptions"/> - Additional request options.</param>
         /// <returns><see cref="ListStoredPaymentMethodsResponse"/>.</returns>
         ListStoredPaymentMethodsResponse GetTokensForStoredPaymentDetails(string shopperReference = default, string merchantAccount = default, RequestOptions requestOptions = default);
         
         /// <summary>
         /// Get tokens for stored payment details
         /// </summary>
-        /// <param name="shopperReference"><see cref="string"/> Your reference to uniquely identify this shopper, for example user ID or account ID. Minimum length: 3 characters. &gt; Your reference must not include personally identifiable information (PII), for example name or email address.</param>
-        /// <param name="merchantAccount"><see cref="string"/> Your merchant account.</param>
-        /// <param name="requestOptions"><see cref="RequestOptions"/> Additional request options.</param>
+        /// <param name="shopperReference"><see cref="string"/> - Your reference to uniquely identify this shopper, for example user ID or account ID. Minimum length: 3 characters. &gt; Your reference must not include personally identifiable information (PII), for example name or email address.</param>
+        /// <param name="merchantAccount"><see cref="string"/> - Your merchant account.</param>
+        /// <param name="requestOptions"><see cref="RequestOptions"/> - Additional request options.</param>
         /// <param name="cancellationToken"> A CancellationToken enables cooperative cancellation between threads, thread pool work items, or Task objects.</param>
         /// <returns>Task of <see cref="ListStoredPaymentMethodsResponse"/>.</returns>
         Task<ListStoredPaymentMethodsResponse> GetTokensForStoredPaymentDetailsAsync(string shopperReference = default, string merchantAccount = default, RequestOptions requestOptions = default, CancellationToken cancellationToken = default);

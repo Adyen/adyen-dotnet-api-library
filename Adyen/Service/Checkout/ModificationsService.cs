@@ -30,18 +30,18 @@ namespace Adyen.Service.Checkout
         /// <summary>
         /// Cancel an authorised payment
         /// </summary>
-        /// <param name="idempotencyKey"><see cref="string"/> A unique identifier for the message with a maximum of 64 characters (we recommend a UUID).</param>
-        /// <param name="createStandalonePaymentCancelRequest"><see cref="CreateStandalonePaymentCancelRequest"/> </param>
-        /// <param name="requestOptions"><see cref="RequestOptions"/> Additional request options.</param>
+        /// <param name="idempotencyKey"><see cref="string"/> - A unique identifier for the message with a maximum of 64 characters (we recommend a UUID).</param>
+        /// <param name="createStandalonePaymentCancelRequest"><see cref="CreateStandalonePaymentCancelRequest"/> - </param>
+        /// <param name="requestOptions"><see cref="RequestOptions"/> - Additional request options.</param>
         /// <returns><see cref="StandalonePaymentCancelResource"/>.</returns>
         StandalonePaymentCancelResource CancelAuthorisedPayment(CreateStandalonePaymentCancelRequest createStandalonePaymentCancelRequest, RequestOptions requestOptions = default);
         
         /// <summary>
         /// Cancel an authorised payment
         /// </summary>
-        /// <param name="idempotencyKey"><see cref="string"/> A unique identifier for the message with a maximum of 64 characters (we recommend a UUID).</param>
-        /// <param name="createStandalonePaymentCancelRequest"><see cref="CreateStandalonePaymentCancelRequest"/> </param>
-        /// <param name="requestOptions"><see cref="RequestOptions"/> Additional request options.</param>
+        /// <param name="idempotencyKey"><see cref="string"/> - A unique identifier for the message with a maximum of 64 characters (we recommend a UUID).</param>
+        /// <param name="createStandalonePaymentCancelRequest"><see cref="CreateStandalonePaymentCancelRequest"/> - </param>
+        /// <param name="requestOptions"><see cref="RequestOptions"/> - Additional request options.</param>
         /// <param name="cancellationToken"> A CancellationToken enables cooperative cancellation between threads, thread pool work items, or Task objects.</param>
         /// <returns>Task of <see cref="StandalonePaymentCancelResource"/>.</returns>
         Task<StandalonePaymentCancelResource> CancelAuthorisedPaymentAsync(CreateStandalonePaymentCancelRequest createStandalonePaymentCancelRequest, RequestOptions requestOptions = default, CancellationToken cancellationToken = default);
@@ -49,20 +49,20 @@ namespace Adyen.Service.Checkout
         /// <summary>
         /// Update an authorised amount
         /// </summary>
-        /// <param name="paymentPspReference"><see cref="string"/> The [&#x60;pspReference&#x60;](https://docs.adyen.com/api-explorer/#/CheckoutService/latest/post/payments__resParam_pspReference) of the payment.</param>
-        /// <param name="idempotencyKey"><see cref="string"/> A unique identifier for the message with a maximum of 64 characters (we recommend a UUID).</param>
-        /// <param name="createPaymentAmountUpdateRequest"><see cref="CreatePaymentAmountUpdateRequest"/> </param>
-        /// <param name="requestOptions"><see cref="RequestOptions"/> Additional request options.</param>
+        /// <param name="paymentPspReference"><see cref="string"/> - The [&#x60;pspReference&#x60;](https://docs.adyen.com/api-explorer/#/CheckoutService/latest/post/payments__resParam_pspReference) of the payment.</param>
+        /// <param name="idempotencyKey"><see cref="string"/> - A unique identifier for the message with a maximum of 64 characters (we recommend a UUID).</param>
+        /// <param name="createPaymentAmountUpdateRequest"><see cref="CreatePaymentAmountUpdateRequest"/> - </param>
+        /// <param name="requestOptions"><see cref="RequestOptions"/> - Additional request options.</param>
         /// <returns><see cref="PaymentAmountUpdateResource"/>.</returns>
         PaymentAmountUpdateResource UpdateAuthorisedAmount(string paymentPspReference, CreatePaymentAmountUpdateRequest createPaymentAmountUpdateRequest, RequestOptions requestOptions = default);
         
         /// <summary>
         /// Update an authorised amount
         /// </summary>
-        /// <param name="paymentPspReference"><see cref="string"/> The [&#x60;pspReference&#x60;](https://docs.adyen.com/api-explorer/#/CheckoutService/latest/post/payments__resParam_pspReference) of the payment.</param>
-        /// <param name="idempotencyKey"><see cref="string"/> A unique identifier for the message with a maximum of 64 characters (we recommend a UUID).</param>
-        /// <param name="createPaymentAmountUpdateRequest"><see cref="CreatePaymentAmountUpdateRequest"/> </param>
-        /// <param name="requestOptions"><see cref="RequestOptions"/> Additional request options.</param>
+        /// <param name="paymentPspReference"><see cref="string"/> - The [&#x60;pspReference&#x60;](https://docs.adyen.com/api-explorer/#/CheckoutService/latest/post/payments__resParam_pspReference) of the payment.</param>
+        /// <param name="idempotencyKey"><see cref="string"/> - A unique identifier for the message with a maximum of 64 characters (we recommend a UUID).</param>
+        /// <param name="createPaymentAmountUpdateRequest"><see cref="CreatePaymentAmountUpdateRequest"/> - </param>
+        /// <param name="requestOptions"><see cref="RequestOptions"/> - Additional request options.</param>
         /// <param name="cancellationToken"> A CancellationToken enables cooperative cancellation between threads, thread pool work items, or Task objects.</param>
         /// <returns>Task of <see cref="PaymentAmountUpdateResource"/>.</returns>
         Task<PaymentAmountUpdateResource> UpdateAuthorisedAmountAsync(string paymentPspReference, CreatePaymentAmountUpdateRequest createPaymentAmountUpdateRequest, RequestOptions requestOptions = default, CancellationToken cancellationToken = default);
@@ -70,20 +70,20 @@ namespace Adyen.Service.Checkout
         /// <summary>
         /// Cancel an authorised payment
         /// </summary>
-        /// <param name="paymentPspReference"><see cref="string"/> The [&#x60;pspReference&#x60;](https://docs.adyen.com/api-explorer/#/CheckoutService/latest/post/payments__resParam_pspReference) of the payment that you want to cancel. </param>
-        /// <param name="idempotencyKey"><see cref="string"/> A unique identifier for the message with a maximum of 64 characters (we recommend a UUID).</param>
-        /// <param name="createPaymentCancelRequest"><see cref="CreatePaymentCancelRequest"/> </param>
-        /// <param name="requestOptions"><see cref="RequestOptions"/> Additional request options.</param>
+        /// <param name="paymentPspReference"><see cref="string"/> - The [&#x60;pspReference&#x60;](https://docs.adyen.com/api-explorer/#/CheckoutService/latest/post/payments__resParam_pspReference) of the payment that you want to cancel. </param>
+        /// <param name="idempotencyKey"><see cref="string"/> - A unique identifier for the message with a maximum of 64 characters (we recommend a UUID).</param>
+        /// <param name="createPaymentCancelRequest"><see cref="CreatePaymentCancelRequest"/> - </param>
+        /// <param name="requestOptions"><see cref="RequestOptions"/> - Additional request options.</param>
         /// <returns><see cref="PaymentCancelResource"/>.</returns>
         PaymentCancelResource CancelAuthorisedPaymentByPspReference(string paymentPspReference, CreatePaymentCancelRequest createPaymentCancelRequest, RequestOptions requestOptions = default);
         
         /// <summary>
         /// Cancel an authorised payment
         /// </summary>
-        /// <param name="paymentPspReference"><see cref="string"/> The [&#x60;pspReference&#x60;](https://docs.adyen.com/api-explorer/#/CheckoutService/latest/post/payments__resParam_pspReference) of the payment that you want to cancel. </param>
-        /// <param name="idempotencyKey"><see cref="string"/> A unique identifier for the message with a maximum of 64 characters (we recommend a UUID).</param>
-        /// <param name="createPaymentCancelRequest"><see cref="CreatePaymentCancelRequest"/> </param>
-        /// <param name="requestOptions"><see cref="RequestOptions"/> Additional request options.</param>
+        /// <param name="paymentPspReference"><see cref="string"/> - The [&#x60;pspReference&#x60;](https://docs.adyen.com/api-explorer/#/CheckoutService/latest/post/payments__resParam_pspReference) of the payment that you want to cancel. </param>
+        /// <param name="idempotencyKey"><see cref="string"/> - A unique identifier for the message with a maximum of 64 characters (we recommend a UUID).</param>
+        /// <param name="createPaymentCancelRequest"><see cref="CreatePaymentCancelRequest"/> - </param>
+        /// <param name="requestOptions"><see cref="RequestOptions"/> - Additional request options.</param>
         /// <param name="cancellationToken"> A CancellationToken enables cooperative cancellation between threads, thread pool work items, or Task objects.</param>
         /// <returns>Task of <see cref="PaymentCancelResource"/>.</returns>
         Task<PaymentCancelResource> CancelAuthorisedPaymentByPspReferenceAsync(string paymentPspReference, CreatePaymentCancelRequest createPaymentCancelRequest, RequestOptions requestOptions = default, CancellationToken cancellationToken = default);
@@ -91,20 +91,20 @@ namespace Adyen.Service.Checkout
         /// <summary>
         /// Capture an authorised payment
         /// </summary>
-        /// <param name="paymentPspReference"><see cref="string"/> The [&#x60;pspReference&#x60;](https://docs.adyen.com/api-explorer/#/CheckoutService/latest/post/payments__resParam_pspReference) of the payment that you want to capture.</param>
-        /// <param name="idempotencyKey"><see cref="string"/> A unique identifier for the message with a maximum of 64 characters (we recommend a UUID).</param>
-        /// <param name="createPaymentCaptureRequest"><see cref="CreatePaymentCaptureRequest"/> </param>
-        /// <param name="requestOptions"><see cref="RequestOptions"/> Additional request options.</param>
+        /// <param name="paymentPspReference"><see cref="string"/> - The [&#x60;pspReference&#x60;](https://docs.adyen.com/api-explorer/#/CheckoutService/latest/post/payments__resParam_pspReference) of the payment that you want to capture.</param>
+        /// <param name="idempotencyKey"><see cref="string"/> - A unique identifier for the message with a maximum of 64 characters (we recommend a UUID).</param>
+        /// <param name="createPaymentCaptureRequest"><see cref="CreatePaymentCaptureRequest"/> - </param>
+        /// <param name="requestOptions"><see cref="RequestOptions"/> - Additional request options.</param>
         /// <returns><see cref="PaymentCaptureResource"/>.</returns>
         PaymentCaptureResource CaptureAuthorisedPayment(string paymentPspReference, CreatePaymentCaptureRequest createPaymentCaptureRequest, RequestOptions requestOptions = default);
         
         /// <summary>
         /// Capture an authorised payment
         /// </summary>
-        /// <param name="paymentPspReference"><see cref="string"/> The [&#x60;pspReference&#x60;](https://docs.adyen.com/api-explorer/#/CheckoutService/latest/post/payments__resParam_pspReference) of the payment that you want to capture.</param>
-        /// <param name="idempotencyKey"><see cref="string"/> A unique identifier for the message with a maximum of 64 characters (we recommend a UUID).</param>
-        /// <param name="createPaymentCaptureRequest"><see cref="CreatePaymentCaptureRequest"/> </param>
-        /// <param name="requestOptions"><see cref="RequestOptions"/> Additional request options.</param>
+        /// <param name="paymentPspReference"><see cref="string"/> - The [&#x60;pspReference&#x60;](https://docs.adyen.com/api-explorer/#/CheckoutService/latest/post/payments__resParam_pspReference) of the payment that you want to capture.</param>
+        /// <param name="idempotencyKey"><see cref="string"/> - A unique identifier for the message with a maximum of 64 characters (we recommend a UUID).</param>
+        /// <param name="createPaymentCaptureRequest"><see cref="CreatePaymentCaptureRequest"/> - </param>
+        /// <param name="requestOptions"><see cref="RequestOptions"/> - Additional request options.</param>
         /// <param name="cancellationToken"> A CancellationToken enables cooperative cancellation between threads, thread pool work items, or Task objects.</param>
         /// <returns>Task of <see cref="PaymentCaptureResource"/>.</returns>
         Task<PaymentCaptureResource> CaptureAuthorisedPaymentAsync(string paymentPspReference, CreatePaymentCaptureRequest createPaymentCaptureRequest, RequestOptions requestOptions = default, CancellationToken cancellationToken = default);
@@ -112,20 +112,20 @@ namespace Adyen.Service.Checkout
         /// <summary>
         /// Refund a captured payment
         /// </summary>
-        /// <param name="paymentPspReference"><see cref="string"/> The [&#x60;pspReference&#x60;](https://docs.adyen.com/api-explorer/#/CheckoutService/latest/post/payments__resParam_pspReference) of the payment that you want to refund.</param>
-        /// <param name="idempotencyKey"><see cref="string"/> A unique identifier for the message with a maximum of 64 characters (we recommend a UUID).</param>
-        /// <param name="createPaymentRefundRequest"><see cref="CreatePaymentRefundRequest"/> </param>
-        /// <param name="requestOptions"><see cref="RequestOptions"/> Additional request options.</param>
+        /// <param name="paymentPspReference"><see cref="string"/> - The [&#x60;pspReference&#x60;](https://docs.adyen.com/api-explorer/#/CheckoutService/latest/post/payments__resParam_pspReference) of the payment that you want to refund.</param>
+        /// <param name="idempotencyKey"><see cref="string"/> - A unique identifier for the message with a maximum of 64 characters (we recommend a UUID).</param>
+        /// <param name="createPaymentRefundRequest"><see cref="CreatePaymentRefundRequest"/> - </param>
+        /// <param name="requestOptions"><see cref="RequestOptions"/> - Additional request options.</param>
         /// <returns><see cref="PaymentRefundResource"/>.</returns>
         PaymentRefundResource RefundCapturedPayment(string paymentPspReference, CreatePaymentRefundRequest createPaymentRefundRequest, RequestOptions requestOptions = default);
         
         /// <summary>
         /// Refund a captured payment
         /// </summary>
-        /// <param name="paymentPspReference"><see cref="string"/> The [&#x60;pspReference&#x60;](https://docs.adyen.com/api-explorer/#/CheckoutService/latest/post/payments__resParam_pspReference) of the payment that you want to refund.</param>
-        /// <param name="idempotencyKey"><see cref="string"/> A unique identifier for the message with a maximum of 64 characters (we recommend a UUID).</param>
-        /// <param name="createPaymentRefundRequest"><see cref="CreatePaymentRefundRequest"/> </param>
-        /// <param name="requestOptions"><see cref="RequestOptions"/> Additional request options.</param>
+        /// <param name="paymentPspReference"><see cref="string"/> - The [&#x60;pspReference&#x60;](https://docs.adyen.com/api-explorer/#/CheckoutService/latest/post/payments__resParam_pspReference) of the payment that you want to refund.</param>
+        /// <param name="idempotencyKey"><see cref="string"/> - A unique identifier for the message with a maximum of 64 characters (we recommend a UUID).</param>
+        /// <param name="createPaymentRefundRequest"><see cref="CreatePaymentRefundRequest"/> - </param>
+        /// <param name="requestOptions"><see cref="RequestOptions"/> - Additional request options.</param>
         /// <param name="cancellationToken"> A CancellationToken enables cooperative cancellation between threads, thread pool work items, or Task objects.</param>
         /// <returns>Task of <see cref="PaymentRefundResource"/>.</returns>
         Task<PaymentRefundResource> RefundCapturedPaymentAsync(string paymentPspReference, CreatePaymentRefundRequest createPaymentRefundRequest, RequestOptions requestOptions = default, CancellationToken cancellationToken = default);
@@ -133,20 +133,20 @@ namespace Adyen.Service.Checkout
         /// <summary>
         /// Refund or cancel a payment
         /// </summary>
-        /// <param name="paymentPspReference"><see cref="string"/> The [&#x60;pspReference&#x60;](https://docs.adyen.com/api-explorer/#/CheckoutService/latest/post/payments__resParam_pspReference) of the payment that you want to reverse. </param>
-        /// <param name="idempotencyKey"><see cref="string"/> A unique identifier for the message with a maximum of 64 characters (we recommend a UUID).</param>
-        /// <param name="createPaymentReversalRequest"><see cref="CreatePaymentReversalRequest"/> </param>
-        /// <param name="requestOptions"><see cref="RequestOptions"/> Additional request options.</param>
+        /// <param name="paymentPspReference"><see cref="string"/> - The [&#x60;pspReference&#x60;](https://docs.adyen.com/api-explorer/#/CheckoutService/latest/post/payments__resParam_pspReference) of the payment that you want to reverse. </param>
+        /// <param name="idempotencyKey"><see cref="string"/> - A unique identifier for the message with a maximum of 64 characters (we recommend a UUID).</param>
+        /// <param name="createPaymentReversalRequest"><see cref="CreatePaymentReversalRequest"/> - </param>
+        /// <param name="requestOptions"><see cref="RequestOptions"/> - Additional request options.</param>
         /// <returns><see cref="PaymentReversalResource"/>.</returns>
         PaymentReversalResource RefundOrCancelPayment(string paymentPspReference, CreatePaymentReversalRequest createPaymentReversalRequest, RequestOptions requestOptions = default);
         
         /// <summary>
         /// Refund or cancel a payment
         /// </summary>
-        /// <param name="paymentPspReference"><see cref="string"/> The [&#x60;pspReference&#x60;](https://docs.adyen.com/api-explorer/#/CheckoutService/latest/post/payments__resParam_pspReference) of the payment that you want to reverse. </param>
-        /// <param name="idempotencyKey"><see cref="string"/> A unique identifier for the message with a maximum of 64 characters (we recommend a UUID).</param>
-        /// <param name="createPaymentReversalRequest"><see cref="CreatePaymentReversalRequest"/> </param>
-        /// <param name="requestOptions"><see cref="RequestOptions"/> Additional request options.</param>
+        /// <param name="paymentPspReference"><see cref="string"/> - The [&#x60;pspReference&#x60;](https://docs.adyen.com/api-explorer/#/CheckoutService/latest/post/payments__resParam_pspReference) of the payment that you want to reverse. </param>
+        /// <param name="idempotencyKey"><see cref="string"/> - A unique identifier for the message with a maximum of 64 characters (we recommend a UUID).</param>
+        /// <param name="createPaymentReversalRequest"><see cref="CreatePaymentReversalRequest"/> - </param>
+        /// <param name="requestOptions"><see cref="RequestOptions"/> - Additional request options.</param>
         /// <param name="cancellationToken"> A CancellationToken enables cooperative cancellation between threads, thread pool work items, or Task objects.</param>
         /// <returns>Task of <see cref="PaymentReversalResource"/>.</returns>
         Task<PaymentReversalResource> RefundOrCancelPaymentAsync(string paymentPspReference, CreatePaymentReversalRequest createPaymentReversalRequest, RequestOptions requestOptions = default, CancellationToken cancellationToken = default);
