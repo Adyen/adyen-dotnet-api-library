@@ -25,7 +25,7 @@ namespace Adyen.Service.Checkout
     /// <summary>
     /// Represents a collection of functions to interact with the API endpoints
     /// </summary>
-    public class ModificationsService : AbstractService
+    public class ModificationsService : AbstractService, IModificationsService
     {
         private readonly string _baseUrl;
         
@@ -34,6 +34,83 @@ namespace Adyen.Service.Checkout
             _baseUrl = client.Config.CheckoutEndpoint + "/" + ClientConfig.CheckoutApiVersion;
         }
     
+        public StandalonePaymentCancelResource CancelAuthorisedPayment(CreateStandalonePaymentCancelRequest createStandalonePaymentCancelRequest, RequestOptions requestOptions = default)
+        {
+            return CancelAuthorisedPaymentAsync(createStandalonePaymentCancelRequest, requestOptions).GetAwaiter().GetResult();
+        }
+
+        public async Task<StandalonePaymentCancelResource> CancelAuthorisedPaymentAsync(CreateStandalonePaymentCancelRequest createStandalonePaymentCancelRequest, RequestOptions requestOptions = default, CancellationToken cancellationToken = default)
+        {
+            var endpoint = _baseUrl + "/cancels";
+            var resource = new ServiceResource(this, endpoint);
+            return await resource.RequestAsync<StandalonePaymentCancelResource>(createStandalonePaymentCancelRequest.ToJson(), requestOptions, new HttpMethod("POST"), cancellationToken);
+        }
+
+        public PaymentAmountUpdateResource UpdateAuthorisedAmount(string paymentPspReference, CreatePaymentAmountUpdateRequest createPaymentAmountUpdateRequest, RequestOptions requestOptions = default)
+        {
+            return UpdateAuthorisedAmountAsync(paymentPspReference, createPaymentAmountUpdateRequest, requestOptions).GetAwaiter().GetResult();
+        }
+
+        public async Task<PaymentAmountUpdateResource> UpdateAuthorisedAmountAsync(string paymentPspReference, CreatePaymentAmountUpdateRequest createPaymentAmountUpdateRequest, RequestOptions requestOptions = default, CancellationToken cancellationToken = default)
+        {
+            var endpoint = _baseUrl + $"/payments/{paymentPspReference}/amountUpdates";
+            var resource = new ServiceResource(this, endpoint);
+            return await resource.RequestAsync<PaymentAmountUpdateResource>(createPaymentAmountUpdateRequest.ToJson(), requestOptions, new HttpMethod("POST"), cancellationToken);
+        }
+
+        public PaymentCancelResource CancelAuthorisedPaymentByPspReference(string paymentPspReference, CreatePaymentCancelRequest createPaymentCancelRequest, RequestOptions requestOptions = default)
+        {
+            return CancelAuthorisedPaymentByPspReferenceAsync(paymentPspReference, createPaymentCancelRequest, requestOptions).GetAwaiter().GetResult();
+        }
+
+        public async Task<PaymentCancelResource> CancelAuthorisedPaymentByPspReferenceAsync(string paymentPspReference, CreatePaymentCancelRequest createPaymentCancelRequest, RequestOptions requestOptions = default, CancellationToken cancellationToken = default)
+        {
+            var endpoint = _baseUrl + $"/payments/{paymentPspReference}/cancels";
+            var resource = new ServiceResource(this, endpoint);
+            return await resource.RequestAsync<PaymentCancelResource>(createPaymentCancelRequest.ToJson(), requestOptions, new HttpMethod("POST"), cancellationToken);
+        }
+
+        public PaymentCaptureResource CaptureAuthorisedPayment(string paymentPspReference, CreatePaymentCaptureRequest createPaymentCaptureRequest, RequestOptions requestOptions = default)
+        {
+            return CaptureAuthorisedPaymentAsync(paymentPspReference, createPaymentCaptureRequest, requestOptions).GetAwaiter().GetResult();
+        }
+
+        public async Task<PaymentCaptureResource> CaptureAuthorisedPaymentAsync(string paymentPspReference, CreatePaymentCaptureRequest createPaymentCaptureRequest, RequestOptions requestOptions = default, CancellationToken cancellationToken = default)
+        {
+            var endpoint = _baseUrl + $"/payments/{paymentPspReference}/captures";
+            var resource = new ServiceResource(this, endpoint);
+            return await resource.RequestAsync<PaymentCaptureResource>(createPaymentCaptureRequest.ToJson(), requestOptions, new HttpMethod("POST"), cancellationToken);
+        }
+
+        public PaymentRefundResource RefundCapturedPayment(string paymentPspReference, CreatePaymentRefundRequest createPaymentRefundRequest, RequestOptions requestOptions = default)
+        {
+            return RefundCapturedPaymentAsync(paymentPspReference, createPaymentRefundRequest, requestOptions).GetAwaiter().GetResult();
+        }
+
+        public async Task<PaymentRefundResource> RefundCapturedPaymentAsync(string paymentPspReference, CreatePaymentRefundRequest createPaymentRefundRequest, RequestOptions requestOptions = default, CancellationToken cancellationToken = default)
+        {
+            var endpoint = _baseUrl + $"/payments/{paymentPspReference}/refunds";
+            var resource = new ServiceResource(this, endpoint);
+            return await resource.RequestAsync<PaymentRefundResource>(createPaymentRefundRequest.ToJson(), requestOptions, new HttpMethod("POST"), cancellationToken);
+        }
+
+        public PaymentReversalResource RefundOrCancelPayment(string paymentPspReference, CreatePaymentReversalRequest createPaymentReversalRequest, RequestOptions requestOptions = default)
+        {
+            return RefundOrCancelPaymentAsync(paymentPspReference, createPaymentReversalRequest, requestOptions).GetAwaiter().GetResult();
+        }
+
+        public async Task<PaymentReversalResource> RefundOrCancelPaymentAsync(string paymentPspReference, CreatePaymentReversalRequest createPaymentReversalRequest, RequestOptions requestOptions = default, CancellationToken cancellationToken = default)
+        {
+            var endpoint = _baseUrl + $"/payments/{paymentPspReference}/reversals";
+            var resource = new ServiceResource(this, endpoint);
+            return await resource.RequestAsync<PaymentReversalResource>(createPaymentReversalRequest.ToJson(), requestOptions, new HttpMethod("POST"), cancellationToken);
+        }
+
+    }
+}
+
+interface IModificationsService
+{   
         /// <summary>
         /// Cancel an authorised payment
         /// </summary>
@@ -41,11 +118,7 @@ namespace Adyen.Service.Checkout
         /// <param name="createStandalonePaymentCancelRequest"></param>
         /// <param name="requestOptions">Additional request options.</param>
         /// <returns>StandalonePaymentCancelResource</returns>
-        public StandalonePaymentCancelResource CancelAuthorisedPayment(CreateStandalonePaymentCancelRequest createStandalonePaymentCancelRequest, RequestOptions requestOptions = default)
-        {
-            return CancelAuthorisedPaymentAsync(createStandalonePaymentCancelRequest, requestOptions).GetAwaiter().GetResult();
-        }
-
+        StandalonePaymentCancelResource CancelAuthorisedPayment(CreateStandalonePaymentCancelRequest createStandalonePaymentCancelRequest, RequestOptions requestOptions = default);
         /// <summary>
         /// Cancel an authorised payment
         /// </summary>
@@ -54,13 +127,7 @@ namespace Adyen.Service.Checkout
         /// <param name="requestOptions">Additional request options.</param>
         /// <param name="cancellationToken"> A CancellationToken enables cooperative cancellation between threads, thread pool work items, or Task objects.</param>
         /// <returns>Task of StandalonePaymentCancelResource</returns>
-        public async Task<StandalonePaymentCancelResource> CancelAuthorisedPaymentAsync(CreateStandalonePaymentCancelRequest createStandalonePaymentCancelRequest, RequestOptions requestOptions = default, CancellationToken cancellationToken = default)
-        {
-            var endpoint = _baseUrl + "/cancels";
-            var resource = new ServiceResource(this, endpoint);
-            return await resource.RequestAsync<StandalonePaymentCancelResource>(createStandalonePaymentCancelRequest.ToJson(), requestOptions, new HttpMethod("POST"), cancellationToken);
-        }
-
+        Task<StandalonePaymentCancelResource> CancelAuthorisedPaymentAsync(CreateStandalonePaymentCancelRequest createStandalonePaymentCancelRequest, RequestOptions requestOptions = default, CancellationToken cancellationToken = default);
         /// <summary>
         /// Update an authorised amount
         /// </summary>
@@ -69,11 +136,7 @@ namespace Adyen.Service.Checkout
         /// <param name="createPaymentAmountUpdateRequest"></param>
         /// <param name="requestOptions">Additional request options.</param>
         /// <returns>PaymentAmountUpdateResource</returns>
-        public PaymentAmountUpdateResource UpdateAuthorisedAmount(string paymentPspReference, CreatePaymentAmountUpdateRequest createPaymentAmountUpdateRequest, RequestOptions requestOptions = default)
-        {
-            return UpdateAuthorisedAmountAsync(paymentPspReference, createPaymentAmountUpdateRequest, requestOptions).GetAwaiter().GetResult();
-        }
-
+        PaymentAmountUpdateResource UpdateAuthorisedAmount(string paymentPspReference, CreatePaymentAmountUpdateRequest createPaymentAmountUpdateRequest, RequestOptions requestOptions = default);
         /// <summary>
         /// Update an authorised amount
         /// </summary>
@@ -83,13 +146,7 @@ namespace Adyen.Service.Checkout
         /// <param name="requestOptions">Additional request options.</param>
         /// <param name="cancellationToken"> A CancellationToken enables cooperative cancellation between threads, thread pool work items, or Task objects.</param>
         /// <returns>Task of PaymentAmountUpdateResource</returns>
-        public async Task<PaymentAmountUpdateResource> UpdateAuthorisedAmountAsync(string paymentPspReference, CreatePaymentAmountUpdateRequest createPaymentAmountUpdateRequest, RequestOptions requestOptions = default, CancellationToken cancellationToken = default)
-        {
-            var endpoint = _baseUrl + $"/payments/{paymentPspReference}/amountUpdates";
-            var resource = new ServiceResource(this, endpoint);
-            return await resource.RequestAsync<PaymentAmountUpdateResource>(createPaymentAmountUpdateRequest.ToJson(), requestOptions, new HttpMethod("POST"), cancellationToken);
-        }
-
+        Task<PaymentAmountUpdateResource> UpdateAuthorisedAmountAsync(string paymentPspReference, CreatePaymentAmountUpdateRequest createPaymentAmountUpdateRequest, RequestOptions requestOptions = default, CancellationToken cancellationToken = default);
         /// <summary>
         /// Cancel an authorised payment
         /// </summary>
@@ -98,11 +155,7 @@ namespace Adyen.Service.Checkout
         /// <param name="createPaymentCancelRequest"></param>
         /// <param name="requestOptions">Additional request options.</param>
         /// <returns>PaymentCancelResource</returns>
-        public PaymentCancelResource CancelAuthorisedPaymentByPspReference(string paymentPspReference, CreatePaymentCancelRequest createPaymentCancelRequest, RequestOptions requestOptions = default)
-        {
-            return CancelAuthorisedPaymentByPspReferenceAsync(paymentPspReference, createPaymentCancelRequest, requestOptions).GetAwaiter().GetResult();
-        }
-
+        PaymentCancelResource CancelAuthorisedPaymentByPspReference(string paymentPspReference, CreatePaymentCancelRequest createPaymentCancelRequest, RequestOptions requestOptions = default);
         /// <summary>
         /// Cancel an authorised payment
         /// </summary>
@@ -112,13 +165,7 @@ namespace Adyen.Service.Checkout
         /// <param name="requestOptions">Additional request options.</param>
         /// <param name="cancellationToken"> A CancellationToken enables cooperative cancellation between threads, thread pool work items, or Task objects.</param>
         /// <returns>Task of PaymentCancelResource</returns>
-        public async Task<PaymentCancelResource> CancelAuthorisedPaymentByPspReferenceAsync(string paymentPspReference, CreatePaymentCancelRequest createPaymentCancelRequest, RequestOptions requestOptions = default, CancellationToken cancellationToken = default)
-        {
-            var endpoint = _baseUrl + $"/payments/{paymentPspReference}/cancels";
-            var resource = new ServiceResource(this, endpoint);
-            return await resource.RequestAsync<PaymentCancelResource>(createPaymentCancelRequest.ToJson(), requestOptions, new HttpMethod("POST"), cancellationToken);
-        }
-
+        Task<PaymentCancelResource> CancelAuthorisedPaymentByPspReferenceAsync(string paymentPspReference, CreatePaymentCancelRequest createPaymentCancelRequest, RequestOptions requestOptions = default, CancellationToken cancellationToken = default);
         /// <summary>
         /// Capture an authorised payment
         /// </summary>
@@ -127,11 +174,7 @@ namespace Adyen.Service.Checkout
         /// <param name="createPaymentCaptureRequest"></param>
         /// <param name="requestOptions">Additional request options.</param>
         /// <returns>PaymentCaptureResource</returns>
-        public PaymentCaptureResource CaptureAuthorisedPayment(string paymentPspReference, CreatePaymentCaptureRequest createPaymentCaptureRequest, RequestOptions requestOptions = default)
-        {
-            return CaptureAuthorisedPaymentAsync(paymentPspReference, createPaymentCaptureRequest, requestOptions).GetAwaiter().GetResult();
-        }
-
+        PaymentCaptureResource CaptureAuthorisedPayment(string paymentPspReference, CreatePaymentCaptureRequest createPaymentCaptureRequest, RequestOptions requestOptions = default);
         /// <summary>
         /// Capture an authorised payment
         /// </summary>
@@ -141,13 +184,7 @@ namespace Adyen.Service.Checkout
         /// <param name="requestOptions">Additional request options.</param>
         /// <param name="cancellationToken"> A CancellationToken enables cooperative cancellation between threads, thread pool work items, or Task objects.</param>
         /// <returns>Task of PaymentCaptureResource</returns>
-        public async Task<PaymentCaptureResource> CaptureAuthorisedPaymentAsync(string paymentPspReference, CreatePaymentCaptureRequest createPaymentCaptureRequest, RequestOptions requestOptions = default, CancellationToken cancellationToken = default)
-        {
-            var endpoint = _baseUrl + $"/payments/{paymentPspReference}/captures";
-            var resource = new ServiceResource(this, endpoint);
-            return await resource.RequestAsync<PaymentCaptureResource>(createPaymentCaptureRequest.ToJson(), requestOptions, new HttpMethod("POST"), cancellationToken);
-        }
-
+        Task<PaymentCaptureResource> CaptureAuthorisedPaymentAsync(string paymentPspReference, CreatePaymentCaptureRequest createPaymentCaptureRequest, RequestOptions requestOptions = default, CancellationToken cancellationToken = default);
         /// <summary>
         /// Refund a captured payment
         /// </summary>
@@ -156,11 +193,7 @@ namespace Adyen.Service.Checkout
         /// <param name="createPaymentRefundRequest"></param>
         /// <param name="requestOptions">Additional request options.</param>
         /// <returns>PaymentRefundResource</returns>
-        public PaymentRefundResource RefundCapturedPayment(string paymentPspReference, CreatePaymentRefundRequest createPaymentRefundRequest, RequestOptions requestOptions = default)
-        {
-            return RefundCapturedPaymentAsync(paymentPspReference, createPaymentRefundRequest, requestOptions).GetAwaiter().GetResult();
-        }
-
+        PaymentRefundResource RefundCapturedPayment(string paymentPspReference, CreatePaymentRefundRequest createPaymentRefundRequest, RequestOptions requestOptions = default);
         /// <summary>
         /// Refund a captured payment
         /// </summary>
@@ -170,13 +203,7 @@ namespace Adyen.Service.Checkout
         /// <param name="requestOptions">Additional request options.</param>
         /// <param name="cancellationToken"> A CancellationToken enables cooperative cancellation between threads, thread pool work items, or Task objects.</param>
         /// <returns>Task of PaymentRefundResource</returns>
-        public async Task<PaymentRefundResource> RefundCapturedPaymentAsync(string paymentPspReference, CreatePaymentRefundRequest createPaymentRefundRequest, RequestOptions requestOptions = default, CancellationToken cancellationToken = default)
-        {
-            var endpoint = _baseUrl + $"/payments/{paymentPspReference}/refunds";
-            var resource = new ServiceResource(this, endpoint);
-            return await resource.RequestAsync<PaymentRefundResource>(createPaymentRefundRequest.ToJson(), requestOptions, new HttpMethod("POST"), cancellationToken);
-        }
-
+        Task<PaymentRefundResource> RefundCapturedPaymentAsync(string paymentPspReference, CreatePaymentRefundRequest createPaymentRefundRequest, RequestOptions requestOptions = default, CancellationToken cancellationToken = default);
         /// <summary>
         /// Refund or cancel a payment
         /// </summary>
@@ -185,11 +212,7 @@ namespace Adyen.Service.Checkout
         /// <param name="createPaymentReversalRequest"></param>
         /// <param name="requestOptions">Additional request options.</param>
         /// <returns>PaymentReversalResource</returns>
-        public PaymentReversalResource RefundOrCancelPayment(string paymentPspReference, CreatePaymentReversalRequest createPaymentReversalRequest, RequestOptions requestOptions = default)
-        {
-            return RefundOrCancelPaymentAsync(paymentPspReference, createPaymentReversalRequest, requestOptions).GetAwaiter().GetResult();
-        }
-
+        PaymentReversalResource RefundOrCancelPayment(string paymentPspReference, CreatePaymentReversalRequest createPaymentReversalRequest, RequestOptions requestOptions = default);
         /// <summary>
         /// Refund or cancel a payment
         /// </summary>
@@ -199,12 +222,5 @@ namespace Adyen.Service.Checkout
         /// <param name="requestOptions">Additional request options.</param>
         /// <param name="cancellationToken"> A CancellationToken enables cooperative cancellation between threads, thread pool work items, or Task objects.</param>
         /// <returns>Task of PaymentReversalResource</returns>
-        public async Task<PaymentReversalResource> RefundOrCancelPaymentAsync(string paymentPspReference, CreatePaymentReversalRequest createPaymentReversalRequest, RequestOptions requestOptions = default, CancellationToken cancellationToken = default)
-        {
-            var endpoint = _baseUrl + $"/payments/{paymentPspReference}/reversals";
-            var resource = new ServiceResource(this, endpoint);
-            return await resource.RequestAsync<PaymentReversalResource>(createPaymentReversalRequest.ToJson(), requestOptions, new HttpMethod("POST"), cancellationToken);
-        }
-
-    }
+        Task<PaymentReversalResource> RefundOrCancelPaymentAsync(string paymentPspReference, CreatePaymentReversalRequest createPaymentReversalRequest, RequestOptions requestOptions = default, CancellationToken cancellationToken = default);
 }

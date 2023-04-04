@@ -16,7 +16,7 @@ namespace {{packageName}}.{{apiPackage}}
     /// <summary>
     /// Represents a collection of functions to interact with the API endpoints
     /// </summary>
-    {{>visibility}} class {{classname}} : AbstractService
+    {{>visibility}} class {{classname}} : AbstractService, I{{classname}}
     {
         private readonly string _baseUrl;
         
@@ -26,8 +26,6 @@ namespace {{packageName}}.{{apiPackage}}
         }
     
         {{#operation}}
-{{>method_documentation}}{{#returnType}}
-        /// <returns>{{{returnType}}}</returns>{{/returnType}}
         {{#isDeprecated}}
         [Obsolete]
         {{/isDeprecated}}
@@ -37,9 +35,6 @@ namespace {{packageName}}.{{apiPackage}}
         }
 
         {{#supportsAsync}}
-{{>method_documentation}}
-        /// <param name="cancellationToken"> A CancellationToken enables cooperative cancellation between threads, thread pool work items, or Task objects.</param>{{#returnType}}
-        /// <returns>Task of {{{returnType}}}{{^returnType}}void{{/returnType}}</returns>{{/returnType}}
         {{#isDeprecated}}
         [Obsolete]
         {{/isDeprecated}}
@@ -61,4 +56,27 @@ namespace {{packageName}}.{{apiPackage}}
         {{/operation}}
     }
     {{/operations}}
+}
+
+interface I{{classname}}
+{   
+{{#operations}}
+{{#operation}}
+{{>method_documentation}}{{#returnType}}
+        /// <returns>{{{returnType}}}</returns>{{/returnType}}
+        {{#isDeprecated}}
+        [Obsolete]
+        {{/isDeprecated}}
+        {{{returnType}}}{{^returnType}}void{{/returnType}} {{#lambda.pascalcase}}{{vendorExtensions.x-methodName}}{{/lambda.pascalcase}}({{>api_parameters}});
+        {{#supportsAsync}}
+{{>method_documentation}}
+        /// <param name="cancellationToken"> A CancellationToken enables cooperative cancellation between threads, thread pool work items, or Task objects.</param>{{#returnType}}
+        /// <returns>Task of {{{returnType}}}{{^returnType}}void{{/returnType}}</returns>{{/returnType}}
+        {{#isDeprecated}}
+        [Obsolete]
+        {{/isDeprecated}}
+        {{#returnType}}Task<{{{.}}}>{{/returnType}}{{^returnType}}public async Task{{/returnType}} {{#lambda.pascalcase}}{{vendorExtensions.x-methodName}}{{/lambda.pascalcase}}Async({{>api_parameters_async}});
+        {{/supportsAsync}}
+        {{/operation}}
+{{/operations}}
 }
