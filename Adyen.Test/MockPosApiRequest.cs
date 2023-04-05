@@ -1,28 +1,5 @@
-﻿#region License
-// /*
-//  *                       ######
-//  *                       ######
-//  * ############    ####( ######  #####. ######  ############   ############
-//  * #############  #####( ######  #####. ######  #############  #############
-//  *        ######  #####( ######  #####. ######  #####  ######  #####  ######
-//  * ###### ######  #####( ######  #####. ######  #####  #####   #####  ######
-//  * ###### ######  #####( ######  #####. ######  #####          #####  ######
-//  * #############  #############  #############  #############  #####  ######
-//  *  ############   ############  #############   ############  #####  ######
-//  *                                      ######
-//  *                               #############
-//  *                               ############
-//  *
-//  * Adyen Dotnet API Library
-//  *
-//  * Copyright (c) 2020 Adyen B.V.
-//  * This file is open source and available under the MIT license.
-//  * See the LICENSE file for more info.
-//  */
-#endregion
-
+﻿using System;
 using Adyen.Model.Nexo;
-using System;
 using Adyen.Model.Nexo.Message;
 
 namespace Adyen.Test
@@ -36,7 +13,7 @@ namespace Adyen.Test
         /// <returns></returns>
         public static SaleToPOIRequest CreatePosPaymentRequest()
         {
-            var saleToPoiRequest = new SaleToPOIRequest()
+            var saleToPoiRequest = new SaleToPOIRequest
             {
                 MessageHeader = new MessageHeader
                 {
@@ -47,31 +24,31 @@ namespace Adyen.Test
                     POIID = "MX915-284251016",
                     ServiceID = DateTime.Now.ToString("ddHHmmss")//this should be unique
                 },
-                MessagePayload = new PaymentRequest()
+                MessagePayload = new PaymentRequest
                 {
-                    SaleData = new SaleData()
+                    SaleData = new SaleData
                     {
-                        SaleTransactionID = new TransactionIdentification()
+                        SaleTransactionID = new TransactionIdentification
                         {
                             TransactionID = "PosAuth",
                             TimeStamp = DateTime.Now
                         },
                         TokenRequestedType = TokenRequestedType.Customer,
                     },
-                    PaymentTransaction = new PaymentTransaction()
+                    PaymentTransaction = new PaymentTransaction
                     {
-                        AmountsReq = new AmountsReq()
+                        AmountsReq = new AmountsReq
                         {
                             Currency = "EUR",
                             RequestedAmount = 10100
                         }
                     },
-                    PaymentData = new PaymentData()
+                    PaymentData = new PaymentData
                     {
                         PaymentType = PaymentType.Normal
                     }
                 },
-                SecurityTrailer = new ContentInformation(){}
+                SecurityTrailer = new ContentInformation()
             };
             return saleToPoiRequest;
         }
@@ -84,7 +61,7 @@ namespace Adyen.Test
         {
             return new SaleToPOIRequest
             {
-                MessageHeader = new MessageHeader()
+                MessageHeader = new MessageHeader
                 {
                     MessageClass = MessageClassType.Device,
                     MessageCategory = MessageCategoryType.Print,
@@ -102,7 +79,7 @@ namespace Adyen.Test
                         OutputContent = new OutputContent
                         {
                             OutputFormat = OutputFormatType.Text,
-                            OutputText = new OutputText[] { new OutputText { Text = @"m\u006DÄ\u00C4" } },
+                            OutputText = new[] { new OutputText { Text = @"m\u006DÄ\u00C4" } },
                         },
                     },
                 },

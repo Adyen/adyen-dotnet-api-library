@@ -1,31 +1,7 @@
-﻿#region License
-// /*
-//  *                       ######
-//  *                       ######
-//  * ############    ####( ######  #####. ######  ############   ############
-//  * #############  #####( ######  #####. ######  #############  #############
-//  *        ######  #####( ######  #####. ######  #####  ######  #####  ######
-//  * ###### ######  #####( ######  #####. ######  #####  #####   #####  ######
-//  * ###### ######  #####( ######  #####. ######  #####          #####  ######
-//  * #############  #############  #############  #############  #####  ######
-//  *  ############   ############  #############   ############  #####  ######
-//  *                                      ######
-//  *                               #############
-//  *                               ############
-//  *
-//  * Adyen Dotnet API Library
-//  *
-//  * Copyright (c) 2020 Adyen B.V.
-//  * This file is open source and available under the MIT license.
-//  * See the LICENSE file for more info.
-//  */
-#endregion
-
-using Adyen.Model.Nexo.Message;
-using System;
+﻿using System;
 using System.Text;
 using Adyen.Model.Nexo;
-using System.Security.Cryptography;
+using Adyen.Model.Nexo.Message;
 using Adyen.Security.Exceptions;
 
 namespace Adyen.Security
@@ -88,7 +64,7 @@ namespace Adyen.Security
                                                                            saleToPoiMessageSecured.SecurityTrailer.Nonce);
             var receivedHmac = saleToPoiMessageSecured.SecurityTrailer.Hmac;
             ValidateHmac(receivedHmac, decryptedSaleToPoiMessageByteArray, encryptionDerivedKey);
-            return System.Text.Encoding.UTF8.GetString(decryptedSaleToPoiMessageByteArray);
+            return Encoding.UTF8.GetString(decryptedSaleToPoiMessageByteArray);
         }
 
         /// <summary>

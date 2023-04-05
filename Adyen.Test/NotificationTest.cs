@@ -1,36 +1,12 @@
-﻿#region License
-// /*
-//  *                       ######
-//  *                       ######
-//  * ############    ####( ######  #####. ######  ############   ############
-//  * #############  #####( ######  #####. ######  #############  #############
-//  *        ######  #####( ######  #####. ######  #####  ######  #####  ######
-//  * ###### ######  #####( ######  #####. ######  #####  #####   #####  ######
-//  * ###### ######  #####( ######  #####. ######  #####          #####  ######
-//  * #############  #############  #############  #############  #####  ######
-//  *  ############   ############  #############   ############  #####  ######
-//  *                                      ######
-//  *                               #############
-//  *                               ############
-//  *
-//  * Adyen Dotnet API Library
-//  *
-//  * Copyright (c) 2023 Adyen B.V.
-//  * This file is open source and available under the MIT license.
-//  * See the LICENSE file for more info.
-//  */
-#endregion
-
-using System;
+﻿using System;
+using System.Linq;
 using Adyen.ApiSerialization;
 using Adyen.Model.Nexo;
+using Adyen.Notification;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace Adyen.Test
 {
-    using Microsoft.VisualStudio.TestTools.UnitTesting;
-    using Notification;
-    using System.Linq;
-
     [TestClass]
     public class NotificationTest : BaseTest
     {

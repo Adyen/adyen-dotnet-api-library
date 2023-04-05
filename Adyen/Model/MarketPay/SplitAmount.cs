@@ -1,26 +1,3 @@
-#region License
-// /*
-//  *                       ######
-//  *                       ######
-//  * ############    ####( ######  #####. ######  ############   ############
-//  * #############  #####( ######  #####. ######  #############  #############
-//  *        ######  #####( ######  #####. ######  #####  ######  #####  ######
-//  * ###### ######  #####( ######  #####. ######  #####  #####   #####  ######
-//  * ###### ######  #####( ######  #####. ######  #####          #####  ######
-//  * #############  #############  #############  #############  #####  ######
-//  *  ############   ############  #############   ############  #####  ######
-//  *                                      ######
-//  *                               #############
-//  *                               ############
-//  *
-//  * Adyen Dotnet API Library
-//  *
-//  * Copyright (c) 2020 Adyen B.V.
-//  * This file is open source and available under the MIT license.
-//  * See the LICENSE file for more info.
-//  */
-#endregion
-
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -35,7 +12,7 @@ namespace Adyen.Model.MarketPay
     /// SplitAmount
     /// </summary>
     [DataContract]
-    public partial class SplitAmount : IEquatable<SplitAmount>, IValidatableObject
+    public class SplitAmount : IEquatable<SplitAmount>, IValidatableObject
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="SplitAmount" /> class.
@@ -54,10 +31,8 @@ namespace Adyen.Model.MarketPay
             {
                 throw new InvalidDataException("Value is a required property for SplitAmount and cannot be null");
             }
-            else
-            {
-                this.Value = Value;
-            }
+
+            this.Value = Value;
             this.Currency = Currency;
         }
 
@@ -105,7 +80,7 @@ namespace Adyen.Model.MarketPay
         /// <returns>Boolean</returns>
         public override bool Equals(object input)
         {
-            return this.Equals(input as SplitAmount);
+            return Equals(input as SplitAmount);
         }
 
         /// <summary>
@@ -120,14 +95,14 @@ namespace Adyen.Model.MarketPay
 
             return
                 (
-                    this.Currency == input.Currency ||
-                    (this.Currency != null &&
-                     this.Currency.Equals(input.Currency))
+                    Currency == input.Currency ||
+                    (Currency != null &&
+                     Currency.Equals(input.Currency))
                 ) &&
                 (
-                    this.Value == input.Value ||
-                    (this.Value != null &&
-                     this.Value.Equals(input.Value))
+                    Value == input.Value ||
+                    (Value != null &&
+                     Value.Equals(input.Value))
                 );
         }
 
@@ -140,10 +115,10 @@ namespace Adyen.Model.MarketPay
             unchecked // Overflow is fine, just wrap
             {
                 int hashCode = 41;
-                if (this.Currency != null)
-                    hashCode = hashCode * 59 + this.Currency.GetHashCode();
-                if (this.Value != null)
-                    hashCode = hashCode * 59 + this.Value.GetHashCode();
+                if (Currency != null)
+                    hashCode = hashCode * 59 + Currency.GetHashCode();
+                if (Value != null)
+                    hashCode = hashCode * 59 + Value.GetHashCode();
                 return hashCode;
             }
         }
@@ -153,21 +128,19 @@ namespace Adyen.Model.MarketPay
         /// </summary>
         /// <param name="validationContext">Validation context</param>
         /// <returns>Validation Result</returns>
-        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+        IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
         {
             // Currency (string) maxLength
-            if (this.Currency != null && this.Currency.Length > 3)
+            if (Currency != null && Currency.Length > 3)
             {
-                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for Currency, length must be less than 3.", new[] { "Currency" });
+                yield return new ValidationResult("Invalid value for Currency, length must be less than 3.", new[] { "Currency" });
             }
 
             // Currency (string) minLength
-            if (this.Currency != null && this.Currency.Length < 3)
+            if (Currency != null && Currency.Length < 3)
             {
-                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for Currency, length must be greater than 3.", new[] { "Currency" });
+                yield return new ValidationResult("Invalid value for Currency, length must be greater than 3.", new[] { "Currency" });
             }
-
-            yield break;
         }
     }
 }

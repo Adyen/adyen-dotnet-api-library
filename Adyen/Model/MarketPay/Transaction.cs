@@ -1,25 +1,3 @@
-#region License
-// /*
-//  *                       ######
-//  *                       ######
-//  * ############    ####( ######  #####. ######  ############   ############
-//  * #############  #####( ######  #####. ######  #############  #############
-//  *        ######  #####( ######  #####. ######  #####  ######  #####  ######
-//  * ###### ######  #####( ######  #####. ######  #####  #####   #####  ######
-//  * ###### ######  #####( ######  #####. ######  #####          #####  ######
-//  * #############  #############  #############  #############  #####  ######
-//  *  ############   ############  #############   ############  #####  ######
-//  *                                      ######
-//  *                               #############
-//  *                               ############
-//  *
-//  * Adyen Dotnet API Library
-//  *
-//  * Copyright (c) 2020 Adyen B.V.
-//  * This file is open source and available under the MIT license.
-//  * See the LICENSE file for more info.
-//  */
-#endregion
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -34,7 +12,7 @@ namespace Adyen.Model.MarketPay
     /// Transaction
     /// </summary>
     [DataContract(Name = "Transaction")]
-    public partial class Transaction : IEquatable<Transaction>, IValidatableObject
+    public class Transaction : IEquatable<Transaction>, IValidatableObject
     {
         /// <summary>
         /// The status of the transaction. &gt;Permitted values: &#x60;PendingCredit&#x60;, &#x60;CreditFailed&#x60;, &#x60;CreditClosed&#x60;, &#x60;CreditSuspended&#x60;, &#x60;Credited&#x60;, &#x60;Converted&#x60;, &#x60;PendingDebit&#x60;, &#x60;DebitFailed&#x60;, &#x60;Debited&#x60;, &#x60;DebitReversedReceived&#x60;, &#x60;DebitedReversed&#x60;, &#x60;ChargebackReceived&#x60;, &#x60;Chargeback&#x60;, &#x60;ChargebackReversedReceived&#x60;, &#x60;ChargebackReversed&#x60;, &#x60;Payout&#x60;, &#x60;PayoutReversed&#x60;, &#x60;FundTransfer&#x60;, &#x60;PendingFundTransfer&#x60;, &#x60;ManualCorrected&#x60;.
@@ -320,23 +298,23 @@ namespace Adyen.Model.MarketPay
         /// <param name="transferCode">The transfer code of the transaction..</param>
         public Transaction(Amount amount = default(Amount), string balanceAccountId = default(string), BankAccountDetail bankAccountDetail = default(BankAccountDetail), string captureMerchantReference = default(string), string capturePspReference = default(string), DateTime creationDate = default(DateTime), string description = default(string), string destinationAccountCode = default(string), string disputePspReference = default(string), string disputeReasonCode = default(string), string merchantReference = default(string), string paymentPspReference = default(string), string payoutPspReference = default(string), string pspReference = default(string), string sourceAccountCode = default(string), TransactionStatusEnum? transactionStatus = default(TransactionStatusEnum?), string transferCode = default(string))
         {
-            this.Amount = amount;
-            this.BalanceAccountId = balanceAccountId;
-            this.BankAccountDetail = bankAccountDetail;
-            this.CaptureMerchantReference = captureMerchantReference;
-            this.CapturePspReference = capturePspReference;
-            this.CreationDate = creationDate;
-            this.Description = description;
-            this.DestinationAccountCode = destinationAccountCode;
-            this.DisputePspReference = disputePspReference;
-            this.DisputeReasonCode = disputeReasonCode;
-            this.MerchantReference = merchantReference;
-            this.PaymentPspReference = paymentPspReference;
-            this.PayoutPspReference = payoutPspReference;
-            this.PspReference = pspReference;
-            this.SourceAccountCode = sourceAccountCode;
-            this.TransactionStatus = transactionStatus;
-            this.TransferCode = transferCode;
+            Amount = amount;
+            BalanceAccountId = balanceAccountId;
+            BankAccountDetail = bankAccountDetail;
+            CaptureMerchantReference = captureMerchantReference;
+            CapturePspReference = capturePspReference;
+            CreationDate = creationDate;
+            Description = description;
+            DestinationAccountCode = destinationAccountCode;
+            DisputePspReference = disputePspReference;
+            DisputeReasonCode = disputeReasonCode;
+            MerchantReference = merchantReference;
+            PaymentPspReference = paymentPspReference;
+            PayoutPspReference = payoutPspReference;
+            PspReference = pspReference;
+            SourceAccountCode = sourceAccountCode;
+            TransactionStatus = transactionStatus;
+            TransferCode = transferCode;
         }
 
         /// <summary>
@@ -484,7 +462,7 @@ namespace Adyen.Model.MarketPay
         /// <returns>JSON string presentation of the object</returns>
         public virtual string ToJson()
         {
-            return Newtonsoft.Json.JsonConvert.SerializeObject(this, Newtonsoft.Json.Formatting.Indented);
+            return JsonConvert.SerializeObject(this, Formatting.Indented);
         }
 
         /// <summary>
@@ -494,7 +472,7 @@ namespace Adyen.Model.MarketPay
         /// <returns>Boolean</returns>
         public override bool Equals(object input)
         {
-            return this.Equals(input as Transaction);
+            return Equals(input as Transaction);
         }
 
         /// <summary>
@@ -509,88 +487,88 @@ namespace Adyen.Model.MarketPay
 
             return
                 (
-                    this.Amount == input.Amount ||
-                    (this.Amount != null &&
-                    this.Amount.Equals(input.Amount))
+                    Amount == input.Amount ||
+                    (Amount != null &&
+                    Amount.Equals(input.Amount))
                 ) &&
                 (
-                    this.BalanceAccountId == input.BalanceAccountId ||
-                    (this.BalanceAccountId != null &&
-                    this.BalanceAccountId.Equals(input.BalanceAccountId))
+                    BalanceAccountId == input.BalanceAccountId ||
+                    (BalanceAccountId != null &&
+                    BalanceAccountId.Equals(input.BalanceAccountId))
                 ) &&
                 (
-                    this.BankAccountDetail == input.BankAccountDetail ||
-                    (this.BankAccountDetail != null &&
-                    this.BankAccountDetail.Equals(input.BankAccountDetail))
+                    BankAccountDetail == input.BankAccountDetail ||
+                    (BankAccountDetail != null &&
+                    BankAccountDetail.Equals(input.BankAccountDetail))
                 ) &&
                 (
-                    this.CaptureMerchantReference == input.CaptureMerchantReference ||
-                    (this.CaptureMerchantReference != null &&
-                    this.CaptureMerchantReference.Equals(input.CaptureMerchantReference))
+                    CaptureMerchantReference == input.CaptureMerchantReference ||
+                    (CaptureMerchantReference != null &&
+                    CaptureMerchantReference.Equals(input.CaptureMerchantReference))
                 ) &&
                 (
-                    this.CapturePspReference == input.CapturePspReference ||
-                    (this.CapturePspReference != null &&
-                    this.CapturePspReference.Equals(input.CapturePspReference))
+                    CapturePspReference == input.CapturePspReference ||
+                    (CapturePspReference != null &&
+                    CapturePspReference.Equals(input.CapturePspReference))
                 ) &&
                 (
-                    this.CreationDate == input.CreationDate ||
-                    (this.CreationDate != null &&
-                    this.CreationDate.Equals(input.CreationDate))
+                    CreationDate == input.CreationDate ||
+                    (CreationDate != null &&
+                    CreationDate.Equals(input.CreationDate))
                 ) &&
                 (
-                    this.Description == input.Description ||
-                    (this.Description != null &&
-                    this.Description.Equals(input.Description))
+                    Description == input.Description ||
+                    (Description != null &&
+                    Description.Equals(input.Description))
                 ) &&
                 (
-                    this.DestinationAccountCode == input.DestinationAccountCode ||
-                    (this.DestinationAccountCode != null &&
-                    this.DestinationAccountCode.Equals(input.DestinationAccountCode))
+                    DestinationAccountCode == input.DestinationAccountCode ||
+                    (DestinationAccountCode != null &&
+                    DestinationAccountCode.Equals(input.DestinationAccountCode))
                 ) &&
                 (
-                    this.DisputePspReference == input.DisputePspReference ||
-                    (this.DisputePspReference != null &&
-                    this.DisputePspReference.Equals(input.DisputePspReference))
+                    DisputePspReference == input.DisputePspReference ||
+                    (DisputePspReference != null &&
+                    DisputePspReference.Equals(input.DisputePspReference))
                 ) &&
                 (
-                    this.DisputeReasonCode == input.DisputeReasonCode ||
-                    (this.DisputeReasonCode != null &&
-                    this.DisputeReasonCode.Equals(input.DisputeReasonCode))
+                    DisputeReasonCode == input.DisputeReasonCode ||
+                    (DisputeReasonCode != null &&
+                    DisputeReasonCode.Equals(input.DisputeReasonCode))
                 ) &&
                 (
-                    this.MerchantReference == input.MerchantReference ||
-                    (this.MerchantReference != null &&
-                    this.MerchantReference.Equals(input.MerchantReference))
+                    MerchantReference == input.MerchantReference ||
+                    (MerchantReference != null &&
+                    MerchantReference.Equals(input.MerchantReference))
                 ) &&
                 (
-                    this.PaymentPspReference == input.PaymentPspReference ||
-                    (this.PaymentPspReference != null &&
-                    this.PaymentPspReference.Equals(input.PaymentPspReference))
+                    PaymentPspReference == input.PaymentPspReference ||
+                    (PaymentPspReference != null &&
+                    PaymentPspReference.Equals(input.PaymentPspReference))
                 ) &&
                 (
-                    this.PayoutPspReference == input.PayoutPspReference ||
-                    (this.PayoutPspReference != null &&
-                    this.PayoutPspReference.Equals(input.PayoutPspReference))
+                    PayoutPspReference == input.PayoutPspReference ||
+                    (PayoutPspReference != null &&
+                    PayoutPspReference.Equals(input.PayoutPspReference))
                 ) &&
                 (
-                    this.PspReference == input.PspReference ||
-                    (this.PspReference != null &&
-                    this.PspReference.Equals(input.PspReference))
+                    PspReference == input.PspReference ||
+                    (PspReference != null &&
+                    PspReference.Equals(input.PspReference))
                 ) &&
                 (
-                    this.SourceAccountCode == input.SourceAccountCode ||
-                    (this.SourceAccountCode != null &&
-                    this.SourceAccountCode.Equals(input.SourceAccountCode))
+                    SourceAccountCode == input.SourceAccountCode ||
+                    (SourceAccountCode != null &&
+                    SourceAccountCode.Equals(input.SourceAccountCode))
                 ) &&
                 (
-                    this.TransactionStatus == input.TransactionStatus ||
-                    this.TransactionStatus.Equals(input.TransactionStatus)
+                    TransactionStatus == input.TransactionStatus ||
+                    TransactionStatus.Equals(input.TransactionStatus)
                 ) &&
                 (
-                    this.TransferCode == input.TransferCode ||
-                    (this.TransferCode != null &&
-                    this.TransferCode.Equals(input.TransferCode))
+                    TransferCode == input.TransferCode ||
+                    (TransferCode != null &&
+                    TransferCode.Equals(input.TransferCode))
                 );
         }
 
@@ -603,39 +581,39 @@ namespace Adyen.Model.MarketPay
             unchecked // Overflow is fine, just wrap
             {
                 int hashCode = 41;
-                if (this.Amount != null)
-                    hashCode = hashCode * 59 + this.Amount.GetHashCode();
-                if (this.BalanceAccountId != null)
-                    hashCode = hashCode * 59 + this.BalanceAccountId.GetHashCode();
-                if (this.BankAccountDetail != null)
-                    hashCode = hashCode * 59 + this.BankAccountDetail.GetHashCode();
-                if (this.CaptureMerchantReference != null)
-                    hashCode = hashCode * 59 + this.CaptureMerchantReference.GetHashCode();
-                if (this.CapturePspReference != null)
-                    hashCode = hashCode * 59 + this.CapturePspReference.GetHashCode();
-                if (this.CreationDate != null)
-                    hashCode = hashCode * 59 + this.CreationDate.GetHashCode();
-                if (this.Description != null)
-                    hashCode = hashCode * 59 + this.Description.GetHashCode();
-                if (this.DestinationAccountCode != null)
-                    hashCode = hashCode * 59 + this.DestinationAccountCode.GetHashCode();
-                if (this.DisputePspReference != null)
-                    hashCode = hashCode * 59 + this.DisputePspReference.GetHashCode();
-                if (this.DisputeReasonCode != null)
-                    hashCode = hashCode * 59 + this.DisputeReasonCode.GetHashCode();
-                if (this.MerchantReference != null)
-                    hashCode = hashCode * 59 + this.MerchantReference.GetHashCode();
-                if (this.PaymentPspReference != null)
-                    hashCode = hashCode * 59 + this.PaymentPspReference.GetHashCode();
-                if (this.PayoutPspReference != null)
-                    hashCode = hashCode * 59 + this.PayoutPspReference.GetHashCode();
-                if (this.PspReference != null)
-                    hashCode = hashCode * 59 + this.PspReference.GetHashCode();
-                if (this.SourceAccountCode != null)
-                    hashCode = hashCode * 59 + this.SourceAccountCode.GetHashCode();
-                hashCode = hashCode * 59 + this.TransactionStatus.GetHashCode();
-                if (this.TransferCode != null)
-                    hashCode = hashCode * 59 + this.TransferCode.GetHashCode();
+                if (Amount != null)
+                    hashCode = hashCode * 59 + Amount.GetHashCode();
+                if (BalanceAccountId != null)
+                    hashCode = hashCode * 59 + BalanceAccountId.GetHashCode();
+                if (BankAccountDetail != null)
+                    hashCode = hashCode * 59 + BankAccountDetail.GetHashCode();
+                if (CaptureMerchantReference != null)
+                    hashCode = hashCode * 59 + CaptureMerchantReference.GetHashCode();
+                if (CapturePspReference != null)
+                    hashCode = hashCode * 59 + CapturePspReference.GetHashCode();
+                if (CreationDate != null)
+                    hashCode = hashCode * 59 + CreationDate.GetHashCode();
+                if (Description != null)
+                    hashCode = hashCode * 59 + Description.GetHashCode();
+                if (DestinationAccountCode != null)
+                    hashCode = hashCode * 59 + DestinationAccountCode.GetHashCode();
+                if (DisputePspReference != null)
+                    hashCode = hashCode * 59 + DisputePspReference.GetHashCode();
+                if (DisputeReasonCode != null)
+                    hashCode = hashCode * 59 + DisputeReasonCode.GetHashCode();
+                if (MerchantReference != null)
+                    hashCode = hashCode * 59 + MerchantReference.GetHashCode();
+                if (PaymentPspReference != null)
+                    hashCode = hashCode * 59 + PaymentPspReference.GetHashCode();
+                if (PayoutPspReference != null)
+                    hashCode = hashCode * 59 + PayoutPspReference.GetHashCode();
+                if (PspReference != null)
+                    hashCode = hashCode * 59 + PspReference.GetHashCode();
+                if (SourceAccountCode != null)
+                    hashCode = hashCode * 59 + SourceAccountCode.GetHashCode();
+                hashCode = hashCode * 59 + TransactionStatus.GetHashCode();
+                if (TransferCode != null)
+                    hashCode = hashCode * 59 + TransferCode.GetHashCode();
                 return hashCode;
             }
         }
@@ -645,7 +623,7 @@ namespace Adyen.Model.MarketPay
         /// </summary>
         /// <param name="validationContext">Validation context</param>
         /// <returns>Validation Result</returns>
-        public IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> Validate(ValidationContext validationContext)
+        public IEnumerable<ValidationResult> Validate(ValidationContext validationContext)
         {
             yield break;
         }

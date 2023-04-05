@@ -1,26 +1,3 @@
-#region License
-// /*
-//  *                       ######
-//  *                       ######
-//  * ############    ####( ######  #####. ######  ############   ############
-//  * #############  #####( ######  #####. ######  #############  #############
-//  *        ######  #####( ######  #####. ######  #####  ######  #####  ######
-//  * ###### ######  #####( ######  #####. ######  #####  #####   #####  ######
-//  * ###### ######  #####( ######  #####. ######  #####          #####  ######
-//  * #############  #############  #############  #############  #####  ######
-//  *  ############   ############  #############   ############  #####  ######
-//  *                                      ######
-//  *                               #############
-//  *                               ############
-//  *
-//  * Adyen Dotnet API Library
-//  *
-//  * Copyright (c) 2020 Adyen B.V.
-//  * This file is open source and available under the MIT license.
-//  * See the LICENSE file for more info.
-//  */
-#endregion
-
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -35,7 +12,7 @@ namespace Adyen.Model.MarketPay
     /// AccountPayoutState
     /// </summary>
     [DataContract]
-        public partial class AccountPayoutState :  IEquatable<AccountPayoutState>, IValidatableObject
+        public class AccountPayoutState :  IEquatable<AccountPayoutState>, IValidatableObject
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="AccountPayoutState" /> class.
@@ -53,16 +30,14 @@ namespace Adyen.Model.MarketPay
             {
                 throw new InvalidDataException("allowPayout is a required property for AccountPayoutState and cannot be null");
             }
-            else
-            {
-                this.AllowPayout = allowPayout;
-            }
 
-            this.Disabled = disabled;
-            this.NotAllowedReason = notAllowedReason;
-            this.TierNumber = tierNumber;
-            this.PayoutLimit = payoutLimit;
-            this.DisableReason = disableReason;
+            AllowPayout = allowPayout;
+
+            Disabled = disabled;
+            NotAllowedReason = notAllowedReason;
+            TierNumber = tierNumber;
+            PayoutLimit = payoutLimit;
+            DisableReason = disableReason;
         }
         
         /// <summary>
@@ -140,7 +115,7 @@ namespace Adyen.Model.MarketPay
         /// <returns>Boolean</returns>
         public override bool Equals(object input)
         {
-            return this.Equals(input as AccountPayoutState);
+            return Equals(input as AccountPayoutState);
         }
 
         /// <summary>
@@ -155,34 +130,34 @@ namespace Adyen.Model.MarketPay
 
             return 
                 (
-                    this.AllowPayout == input.AllowPayout ||
-                    (this.AllowPayout != null &&
-                    this.AllowPayout.Equals(input.AllowPayout))
+                    AllowPayout == input.AllowPayout ||
+                    (AllowPayout != null &&
+                    AllowPayout.Equals(input.AllowPayout))
                 ) && 
                 (
-                    this.DisableReason == input.DisableReason ||
-                    (this.DisableReason != null &&
-                    this.DisableReason.Equals(input.DisableReason))
+                    DisableReason == input.DisableReason ||
+                    (DisableReason != null &&
+                    DisableReason.Equals(input.DisableReason))
                 ) && 
                 (
-                    this.Disabled == input.Disabled ||
-                    (this.Disabled != null &&
-                    this.Disabled.Equals(input.Disabled))
+                    Disabled == input.Disabled ||
+                    (Disabled != null &&
+                    Disabled.Equals(input.Disabled))
                 ) && 
                 (
-                    this.NotAllowedReason == input.NotAllowedReason ||
-                    (this.NotAllowedReason != null &&
-                    this.NotAllowedReason.Equals(input.NotAllowedReason))
+                    NotAllowedReason == input.NotAllowedReason ||
+                    (NotAllowedReason != null &&
+                    NotAllowedReason.Equals(input.NotAllowedReason))
                 ) && 
                 (
-                    this.PayoutLimit == input.PayoutLimit ||
-                    (this.PayoutLimit != null &&
-                    ((Object) this.PayoutLimit).Equals(input.PayoutLimit))
+                    PayoutLimit == input.PayoutLimit ||
+                    (PayoutLimit != null &&
+                    ((Object) PayoutLimit).Equals(input.PayoutLimit))
                 ) && 
                 (
-                    this.TierNumber == input.TierNumber ||
-                    (this.TierNumber != null &&
-                    this.TierNumber.Equals(input.TierNumber))
+                    TierNumber == input.TierNumber ||
+                    (TierNumber != null &&
+                    TierNumber.Equals(input.TierNumber))
                 );
         }
 
@@ -195,18 +170,18 @@ namespace Adyen.Model.MarketPay
             unchecked // Overflow is fine, just wrap
             {
                 int hashCode = 41;
-                if (this.AllowPayout != null)
-                    hashCode = hashCode * 59 + this.AllowPayout.GetHashCode();
-                if (this.DisableReason != null)
-                    hashCode = hashCode * 59 + this.DisableReason.GetHashCode();
-                if (this.Disabled != null)
-                    hashCode = hashCode * 59 + this.Disabled.GetHashCode();
-                if (this.NotAllowedReason != null)
-                    hashCode = hashCode * 59 + this.NotAllowedReason.GetHashCode();
-                if (this.PayoutLimit != null)
-                    hashCode = hashCode * 59 + this.PayoutLimit.GetHashCode();
-                if (this.TierNumber != null)
-                    hashCode = hashCode * 59 + this.TierNumber.GetHashCode();
+                if (AllowPayout != null)
+                    hashCode = hashCode * 59 + AllowPayout.GetHashCode();
+                if (DisableReason != null)
+                    hashCode = hashCode * 59 + DisableReason.GetHashCode();
+                if (Disabled != null)
+                    hashCode = hashCode * 59 + Disabled.GetHashCode();
+                if (NotAllowedReason != null)
+                    hashCode = hashCode * 59 + NotAllowedReason.GetHashCode();
+                if (PayoutLimit != null)
+                    hashCode = hashCode * 59 + PayoutLimit.GetHashCode();
+                if (TierNumber != null)
+                    hashCode = hashCode * 59 + TierNumber.GetHashCode();
                 return hashCode;
             }
         }
@@ -216,7 +191,7 @@ namespace Adyen.Model.MarketPay
         /// </summary>
         /// <param name="validationContext">Validation context</param>
         /// <returns>Validation Result</returns>
-        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+        IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
         {
             yield break;
         }

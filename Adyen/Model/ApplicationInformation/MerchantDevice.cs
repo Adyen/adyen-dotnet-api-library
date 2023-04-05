@@ -1,27 +1,4 @@
-﻿#region License
-// /*
-//  *                       ######
-//  *                       ######
-//  * ############    ####( ######  #####. ######  ############   ############
-//  * #############  #####( ######  #####. ######  #############  #############
-//  *        ######  #####( ######  #####. ######  #####  ######  #####  ######
-//  * ###### ######  #####( ######  #####. ######  #####  #####   #####  ######
-//  * ###### ######  #####( ######  #####. ######  #####          #####  ######
-//  * #############  #############  #############  #############  #####  ######
-//  *  ############   ############  #############   ############  #####  ######
-//  *                                      ######
-//  *                               #############
-//  *                               ############
-//  *
-//  * Adyen Dotnet API Library
-//  *
-//  * Copyright (c) 2020 Adyen B.V.
-//  * This file is open source and available under the MIT license.
-//  * See the LICENSE file for more info.
-//  */
-#endregion
-
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Runtime.Serialization;
@@ -34,7 +11,7 @@ namespace Adyen.Model.ApplicationInformation
     /// MerchantDevice
     /// </summary>
     [DataContract]
-    public partial class MerchantDevice :  IEquatable<MerchantDevice>, IValidatableObject
+    public class MerchantDevice :  IEquatable<MerchantDevice>, IValidatableObject
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="MerchantDevice" /> class.
@@ -101,7 +78,7 @@ namespace Adyen.Model.ApplicationInformation
         /// <returns>Boolean</returns>
         public override bool Equals(object input)
         {
-            return this.Equals(input as MerchantDevice);
+            return Equals(input as MerchantDevice);
         }
 
         /// <summary>
@@ -116,19 +93,19 @@ namespace Adyen.Model.ApplicationInformation
 
             return 
                 (
-                    this.Os == input.Os ||
-                    (this.Os != null &&
-                    this.Os.Equals(input.Os))
+                    Os == input.Os ||
+                    (Os != null &&
+                    Os.Equals(input.Os))
                 ) && 
                 (
-                    this.OsVersion == input.OsVersion ||
-                    (this.OsVersion != null &&
-                    this.OsVersion.Equals(input.OsVersion))
+                    OsVersion == input.OsVersion ||
+                    (OsVersion != null &&
+                    OsVersion.Equals(input.OsVersion))
                 ) && 
                 (
-                    this.Reference == input.Reference ||
-                    (this.Reference != null &&
-                    this.Reference.Equals(input.Reference))
+                    Reference == input.Reference ||
+                    (Reference != null &&
+                    Reference.Equals(input.Reference))
                 );
         }
 
@@ -141,12 +118,12 @@ namespace Adyen.Model.ApplicationInformation
             unchecked // Overflow is fine, just wrap
             {
                 int hashCode = 41;
-                if (this.Os != null)
-                    hashCode = hashCode * 59 + this.Os.GetHashCode();
-                if (this.OsVersion != null)
-                    hashCode = hashCode * 59 + this.OsVersion.GetHashCode();
-                if (this.Reference != null)
-                    hashCode = hashCode * 59 + this.Reference.GetHashCode();
+                if (Os != null)
+                    hashCode = hashCode * 59 + Os.GetHashCode();
+                if (OsVersion != null)
+                    hashCode = hashCode * 59 + OsVersion.GetHashCode();
+                if (Reference != null)
+                    hashCode = hashCode * 59 + Reference.GetHashCode();
                 return hashCode;
             }
         }
@@ -156,7 +133,7 @@ namespace Adyen.Model.ApplicationInformation
         /// </summary>
         /// <param name="validationContext">Validation context</param>
         /// <returns>Validation Result</returns>
-        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+        IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
         {
             yield break;
         }

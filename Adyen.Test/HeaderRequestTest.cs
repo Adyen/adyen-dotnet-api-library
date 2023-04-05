@@ -1,28 +1,4 @@
-﻿#region License
-// /*
-//  *                       ######
-//  *                       ######
-//  * ############    ####( ######  #####. ######  ############   ############
-//  * #############  #####( ######  #####. ######  #############  #############
-//  *        ######  #####( ######  #####. ######  #####  ######  #####  ######
-//  * ###### ######  #####( ######  #####. ######  #####  #####   #####  ######
-//  * ###### ######  #####( ######  #####. ######  #####          #####  ######
-//  * #############  #############  #############  #############  #####  ######
-//  *  ############   ############  #############   ############  #####  ######
-//  *                                      ######
-//  *                               #############
-//  *                               ############
-//  *
-//  * Adyen Dotnet API Library
-//  *
-//  * Copyright (c) 2020 Adyen B.V.
-//  * This file is open source and available under the MIT license.
-//  * See the LICENSE file for more info.
-//  */
-#endregion
-
-using System;
-using System.Linq;
+﻿using System.Linq;
 using System.Net.Http;
 using Adyen.Constants;
 using Adyen.HttpClient;
@@ -88,7 +64,7 @@ namespace Adyen.Test
         public void IdempotencyKeyTest()
         {
             var client = new HttpClientWrapper(MockPaymentData.CreateConfigMock(), new System.Net.Http.HttpClient());
-            var httpWebRequest = client.GetHttpRequestMessage(_endpoint, "requestbody",new RequestOptions()
+            var httpWebRequest = client.GetHttpRequestMessage(_endpoint, "requestbody",new RequestOptions
             {
                 IdempotencyKey = "123456789"
             }, null);

@@ -1,26 +1,3 @@
-#region License
-// /*
-//  *                       ######
-//  *                       ######
-//  * ############    ####( ######  #####. ######  ############   ############
-//  * #############  #####( ######  #####. ######  #############  #############
-//  *        ######  #####( ######  #####. ######  #####  ######  #####  ######
-//  * ###### ######  #####( ######  #####. ######  #####  #####   #####  ######
-//  * ###### ######  #####( ######  #####. ######  #####          #####  ######
-//  * #############  #############  #############  #############  #####  ######
-//  *  ############   ############  #############   ############  #####  ######
-//  *                                      ######
-//  *                               #############
-//  *                               ############
-//  *
-//  * Adyen Dotnet API Library
-//  *
-//  * Copyright (c) 2020 Adyen B.V.
-//  * This file is open source and available under the MIT license.
-//  * See the LICENSE file for more info.
-//  */
-#endregion
-
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -113,11 +90,9 @@ namespace Adyen.Model.MarketPay
             {
                 throw new InvalidDataException("Amount is a required property for Split and cannot be null");
             }
-            else
-            {
-                this.Amount = Amount;
-            }
-            
+
+            this.Amount = Amount;
+
             this.Type = Type;
             this.Account = Account;
             this.Description = Description;
@@ -186,7 +161,7 @@ namespace Adyen.Model.MarketPay
         /// <returns>Boolean</returns>
         public override bool Equals(object input)
         {
-            return this.Equals(input as Split);
+            return Equals(input as Split);
         }
 
         /// <summary>
@@ -201,28 +176,28 @@ namespace Adyen.Model.MarketPay
 
             return
                 (
-                    this.Account == input.Account ||
-                    (this.Account != null &&
-                     this.Account.Equals(input.Account))
+                    Account == input.Account ||
+                    (Account != null &&
+                     Account.Equals(input.Account))
                 ) &&
                 (
-                    this.Amount == input.Amount ||
-                    (this.Amount != null &&
-                     this.Amount.Equals(input.Amount))
+                    Amount == input.Amount ||
+                    (Amount != null &&
+                     Amount.Equals(input.Amount))
                 ) &&
                 (
-                    this.Description == input.Description ||
-                    (this.Description != null &&
-                     this.Description.Equals(input.Description))
+                    Description == input.Description ||
+                    (Description != null &&
+                     Description.Equals(input.Description))
                 ) &&
                 (
-                    this.Reference == input.Reference ||
-                    (this.Reference != null &&
-                     this.Reference.Equals(input.Reference))
+                    Reference == input.Reference ||
+                    (Reference != null &&
+                     Reference.Equals(input.Reference))
                 ) &&
                 (
-                    this.Type == input.Type ||
-                    (this.Type.Equals(input.Type))
+                    Type == input.Type ||
+                    (Type.Equals(input.Type))
                 );
         }
 
@@ -235,15 +210,15 @@ namespace Adyen.Model.MarketPay
             unchecked // Overflow is fine, just wrap
             {
                 int hashCode = 41;
-                if (this.Account != null)
-                    hashCode = hashCode * 59 + this.Account.GetHashCode();
-                if (this.Amount != null)
-                    hashCode = hashCode * 59 + this.Amount.GetHashCode();
-                if (this.Description != null)
-                    hashCode = hashCode * 59 + this.Description.GetHashCode();
-                if (this.Reference != null)
-                    hashCode = hashCode * 59 + this.Reference.GetHashCode();
-                hashCode = hashCode * 59 + this.Type.GetHashCode();
+                if (Account != null)
+                    hashCode = hashCode * 59 + Account.GetHashCode();
+                if (Amount != null)
+                    hashCode = hashCode * 59 + Amount.GetHashCode();
+                if (Description != null)
+                    hashCode = hashCode * 59 + Description.GetHashCode();
+                if (Reference != null)
+                    hashCode = hashCode * 59 + Reference.GetHashCode();
+                hashCode = hashCode * 59 + Type.GetHashCode();
                 return hashCode;
             }
         }
@@ -253,7 +228,7 @@ namespace Adyen.Model.MarketPay
         /// </summary>
         /// <param name="validationContext">Validation context</param>
         /// <returns>Validation Result</returns>
-        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+        IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
         {
             yield break;
         }

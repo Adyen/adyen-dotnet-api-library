@@ -135,7 +135,7 @@ namespace Adyen.IntegrationTest
                 DeliveryAddress = address,
                 ExpiresAt = DateTime.Now.AddHours(4).ToString("yyyy-MM-ddTHH:mm:ss")
             };
-            var createPaymentLinkResponse = _paymentLinksService.CreatePaymentLink(createPaymentLinkRequest);
+            var createPaymentLinkResponse = _paymentLinksService.PaymentLinks(createPaymentLinkRequest);
             PaymentLinksGetSuccessTest(createPaymentLinkResponse.Id);
             PaymentLinksPatchSuccessTest(createPaymentLinkResponse.Id);
             Assert.IsNotNull(createPaymentLinkResponse);

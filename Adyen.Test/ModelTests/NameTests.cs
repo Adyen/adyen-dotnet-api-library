@@ -1,6 +1,6 @@
-﻿using Adyen.Model.Checkout;
+﻿using System;
+using Adyen.Model.Checkout;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using System;
 
 namespace Adyen.Test.ModelTests
 {
@@ -14,7 +14,7 @@ namespace Adyen.Test.ModelTests
         [TestMethod]
         public void CreatingNameWithoutFirstNameFails()
         {
-            Assert.ThrowsException<ArgumentNullException>(() => new Name(null, null));
+            Assert.ThrowsException<ArgumentNullException>(() => new Name());
         }
         
         /// <summary>
@@ -24,7 +24,7 @@ namespace Adyen.Test.ModelTests
         [TestMethod]
         public void CreatingNameWithoutLastNameFails()
         {
-            Assert.ThrowsException<ArgumentNullException>(() => new Name("firstName", null));
+            Assert.ThrowsException<ArgumentNullException>(() => new Name("firstName"));
         }
         
         /// <summary>

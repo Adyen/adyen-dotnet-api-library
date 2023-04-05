@@ -1,30 +1,7 @@
-﻿#region License
-// /*
-//  *                       ######
-//  *                       ######
-//  * ############    ####( ######  #####. ######  ############   ############
-//  * #############  #####( ######  #####. ######  #############  #############
-//  *        ######  #####( ######  #####. ######  #####  ######  #####  ######
-//  * ###### ######  #####( ######  #####. ######  #####  #####   #####  ######
-//  * ###### ######  #####( ######  #####. ######  #####          #####  ######
-//  * #############  #############  #############  #############  #####  ######
-//  *  ############   ############  #############   ############  #####  ######
-//  *                                      ######
-//  *                               #############
-//  *                               ############
-//  *
-//  * Adyen Dotnet API Library
-//  *
-//  * Copyright (c) 2020 Adyen B.V.
-//  * This file is open source and available under the MIT license.
-//  * See the LICENSE file for more info.
-//  */
-#endregion
-
-using Adyen.Model.Payments;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using Adyen.Constants;
+using Adyen.Model.Payments;
 using Environment = Adyen.Model.Environment;
 
 namespace Adyen.Test
@@ -57,9 +34,9 @@ namespace Adyen.Test
 
         public static PaymentRequest CreateFullPaymentRequest()
         {
-            var paymentRequest = new PaymentRequest()
+            var paymentRequest = new PaymentRequest
             {
-                ApplicationInfo = new ApplicationInfo()
+                ApplicationInfo = new ApplicationInfo
                 {
                     AdyenLibrary = new CommonField(name: ClientConfig.LibName, version: ClientConfig.LibVersion)
                 },
@@ -74,7 +51,7 @@ namespace Adyen.Test
 
         public static PaymentRequest3ds2 CreateFullPaymentRequest3DS2()
         {
-            var paymentRequest = new PaymentRequest3ds2()
+            var paymentRequest = new PaymentRequest3ds2
             {
                 MerchantAccount = "MerchantAccount",
                 Amount = new Amount("EUR", 1500),
@@ -107,9 +84,9 @@ namespace Adyen.Test
 
         public static PaymentRequest3d CreateFullPaymentRequest3D()
         {
-            var paymentRequest = new PaymentRequest3d()
+            var paymentRequest = new PaymentRequest3d
             {
-                ApplicationInfo = new ApplicationInfo()
+                ApplicationInfo = new ApplicationInfo
                 {
                     AdyenLibrary = new CommonField(name: ClientConfig.LibName, version: ClientConfig.LibVersion)
                 },

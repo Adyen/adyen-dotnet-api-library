@@ -1,34 +1,8 @@
-﻿#region License
-// /*
-//  *                       ######
-//  *                       ######
-//  * ############    ####( ######  #####. ######  ############   ############
-//  * #############  #####( ######  #####. ######  #############  #############
-//  *        ######  #####( ######  #####. ######  #####  ######  #####  ######
-//  * ###### ######  #####( ######  #####. ######  #####  #####   #####  ######
-//  * ###### ######  #####( ######  #####. ######  #####          #####  ######
-//  * #############  #############  #############  #############  #####  ######
-//  *  ############   ############  #############   ############  #####  ######
-//  *                                      ######
-//  *                               #############
-//  *                               ############
-//  *
-//  * Adyen Dotnet API Library
-//  *
-//  * Copyright (c) 2020 Adyen B.V.
-//  * This file is open source and available under the MIT license.
-//  * See the LICENSE file for more info.
-//  */
-#endregion
-
-using System;
-using System.Collections.Generic;
-using Adyen.ApiSerialization;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
-using Adyen.Model.Nexo;
 using System.Text;
-using Adyen.Model;
+using Adyen.ApiSerialization;
 using Adyen.Model.Checkout;
+using Adyen.Model.Nexo;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 using PaymentResponse = Adyen.Model.Nexo.PaymentResponse;
 
 namespace Adyen.Test

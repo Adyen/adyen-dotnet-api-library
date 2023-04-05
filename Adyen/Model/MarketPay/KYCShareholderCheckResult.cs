@@ -1,26 +1,3 @@
-#region License
-// /*
-//  *                       ######
-//  *                       ######
-//  * ############    ####( ######  #####. ######  ############   ############
-//  * #############  #####( ######  #####. ######  #############  #############
-//  *        ######  #####( ######  #####. ######  #####  ######  #####  ######
-//  * ###### ######  #####( ######  #####. ######  #####  #####   #####  ######
-//  * ###### ######  #####( ######  #####. ######  #####          #####  ######
-//  * #############  #############  #############  #############  #####  ######
-//  *  ############   ############  #############   ############  #####  ######
-//  *                                      ######
-//  *                               #############
-//  *                               ############
-//  *
-//  * Adyen Dotnet API Library
-//  *
-//  * Copyright (c) 2020 Adyen B.V.
-//  * This file is open source and available under the MIT license.
-//  * See the LICENSE file for more info.
-//  */
-#endregion
-
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -36,7 +13,7 @@ namespace Adyen.Model.MarketPay
     /// KYCShareholderCheckResult
     /// </summary>
     [DataContract]
-        public partial class KYCShareholderCheckResult :  IEquatable<KYCShareholderCheckResult>, IValidatableObject
+        public class KYCShareholderCheckResult :  IEquatable<KYCShareholderCheckResult>, IValidatableObject
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="KYCShareholderCheckResult" /> class.
@@ -50,19 +27,15 @@ namespace Adyen.Model.MarketPay
             {
                 throw new InvalidDataException("checks is a required property for KYCShareholderCheckResult and cannot be null");
             }
-            else
-            {
-                this.Checks = checks;
-            }
+
+            Checks = checks;
             // to ensure "shareholderCode" is required (not null)
             if (shareholderCode == null)
             {
                 throw new InvalidDataException("shareholderCode is a required property for KYCShareholderCheckResult and cannot be null");
             }
-            else
-            {
-                this.ShareholderCode = shareholderCode;
-            }
+
+            ShareholderCode = shareholderCode;
         }
         
         /// <summary>
@@ -109,7 +82,7 @@ namespace Adyen.Model.MarketPay
         /// <returns>Boolean</returns>
         public override bool Equals(object input)
         {
-            return this.Equals(input as KYCShareholderCheckResult);
+            return Equals(input as KYCShareholderCheckResult);
         }
 
         /// <summary>
@@ -124,15 +97,15 @@ namespace Adyen.Model.MarketPay
 
             return 
                 (
-                    this.Checks == input.Checks ||
-                    this.Checks != null &&
+                    Checks == input.Checks ||
+                    Checks != null &&
                     input.Checks != null &&
-                    this.Checks.SequenceEqual(input.Checks)
+                    Checks.SequenceEqual(input.Checks)
                 ) && 
                 (
-                    this.ShareholderCode == input.ShareholderCode ||
-                    (this.ShareholderCode != null &&
-                    this.ShareholderCode.Equals(input.ShareholderCode))
+                    ShareholderCode == input.ShareholderCode ||
+                    (ShareholderCode != null &&
+                    ShareholderCode.Equals(input.ShareholderCode))
                 );
         }
 
@@ -145,10 +118,10 @@ namespace Adyen.Model.MarketPay
             unchecked // Overflow is fine, just wrap
             {
                 int hashCode = 41;
-                if (this.Checks != null)
-                    hashCode = hashCode * 59 + this.Checks.GetHashCode();
-                if (this.ShareholderCode != null)
-                    hashCode = hashCode * 59 + this.ShareholderCode.GetHashCode();
+                if (Checks != null)
+                    hashCode = hashCode * 59 + Checks.GetHashCode();
+                if (ShareholderCode != null)
+                    hashCode = hashCode * 59 + ShareholderCode.GetHashCode();
                 return hashCode;
             }
         }
@@ -158,7 +131,7 @@ namespace Adyen.Model.MarketPay
         /// </summary>
         /// <param name="validationContext">Validation context</param>
         /// <returns>Validation Result</returns>
-        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+        IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
         {
             yield break;
         }

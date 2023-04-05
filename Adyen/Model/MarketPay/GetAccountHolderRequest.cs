@@ -1,26 +1,3 @@
-#region License
-// /*
-//  *                       ######
-//  *                       ######
-//  * ############    ####( ######  #####. ######  ############   ############
-//  * #############  #####( ######  #####. ######  #############  #############
-//  *        ######  #####( ######  #####. ######  #####  ######  #####  ######
-//  * ###### ######  #####( ######  #####. ######  #####  #####   #####  ######
-//  * ###### ######  #####( ######  #####. ######  #####          #####  ######
-//  * #############  #############  #############  #############  #####  ######
-//  *  ############   ############  #############   ############  #####  ######
-//  *                                      ######
-//  *                               #############
-//  *                               ############
-//  *
-//  * Adyen Dotnet API Library
-//  *
-//  * Copyright (c) 2020 Adyen B.V.
-//  * This file is open source and available under the MIT license.
-//  * See the LICENSE file for more info.
-//  */
-#endregion
-
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -34,7 +11,7 @@ namespace Adyen.Model.MarketPay
     /// GetAccountHolderRequest
     /// </summary>
     [DataContract]
-        public partial class GetAccountHolderRequest :  IEquatable<GetAccountHolderRequest>, IValidatableObject
+        public class GetAccountHolderRequest :  IEquatable<GetAccountHolderRequest>, IValidatableObject
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="GetAccountHolderRequest" /> class.
@@ -44,9 +21,9 @@ namespace Adyen.Model.MarketPay
         /// <param name="showDetails">True if the request should return the account holder details.</param>
         public GetAccountHolderRequest(string accountCode = default(string), string accountHolderCode = default(string), bool? showDetails = default(bool?))
         {
-            this.AccountCode = accountCode;
-            this.AccountHolderCode = accountHolderCode;
-            this.ShowDetails = showDetails;
+            AccountCode = accountCode;
+            AccountHolderCode = accountHolderCode;
+            ShowDetails = showDetails;
         }
         
         /// <summary>
@@ -101,7 +78,7 @@ namespace Adyen.Model.MarketPay
         /// <returns>Boolean</returns>
         public override bool Equals(object input)
         {
-            return this.Equals(input as GetAccountHolderRequest);
+            return Equals(input as GetAccountHolderRequest);
         }
 
         /// <summary>
@@ -116,19 +93,19 @@ namespace Adyen.Model.MarketPay
 
             return 
                 (
-                    this.AccountCode == input.AccountCode ||
-                    (this.AccountCode != null &&
-                    this.AccountCode.Equals(input.AccountCode))
+                    AccountCode == input.AccountCode ||
+                    (AccountCode != null &&
+                    AccountCode.Equals(input.AccountCode))
                 ) && 
                 (
-                    this.AccountHolderCode == input.AccountHolderCode ||
-                    (this.AccountHolderCode != null &&
-                    this.AccountHolderCode.Equals(input.AccountHolderCode))
+                    AccountHolderCode == input.AccountHolderCode ||
+                    (AccountHolderCode != null &&
+                    AccountHolderCode.Equals(input.AccountHolderCode))
                 ) && 
                 (
-                    this.ShowDetails == input.ShowDetails ||
-                    (this.ShowDetails != null &&
-                    this.ShowDetails.Equals(input.ShowDetails))
+                    ShowDetails == input.ShowDetails ||
+                    (ShowDetails != null &&
+                    ShowDetails.Equals(input.ShowDetails))
                 );
         }
 
@@ -141,12 +118,12 @@ namespace Adyen.Model.MarketPay
             unchecked // Overflow is fine, just wrap
             {
                 int hashCode = 41;
-                if (this.AccountCode != null)
-                    hashCode = hashCode * 59 + this.AccountCode.GetHashCode();
-                if (this.AccountHolderCode != null)
-                    hashCode = hashCode * 59 + this.AccountHolderCode.GetHashCode();
-                if (this.ShowDetails != null)
-                    hashCode = hashCode * 59 + this.ShowDetails.GetHashCode();
+                if (AccountCode != null)
+                    hashCode = hashCode * 59 + AccountCode.GetHashCode();
+                if (AccountHolderCode != null)
+                    hashCode = hashCode * 59 + AccountHolderCode.GetHashCode();
+                if (ShowDetails != null)
+                    hashCode = hashCode * 59 + ShowDetails.GetHashCode();
                 return hashCode;
             }
         }
@@ -156,7 +133,7 @@ namespace Adyen.Model.MarketPay
         /// </summary>
         /// <param name="validationContext">Validation context</param>
         /// <returns>Validation Result</returns>
-        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+        IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
         {
             yield break;
         }
