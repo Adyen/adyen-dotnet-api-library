@@ -66,7 +66,6 @@ namespace Adyen.Service.Checkout
         /// <summary>
         /// Create a payment link
         /// </summary>
-        /// <param name="idempotencyKey"><see cref="string"/> - A unique identifier for the message with a maximum of 64 characters (we recommend a UUID).</param>
         /// <param name="createPaymentLinkRequest"><see cref="CreatePaymentLinkRequest"/> - </param>
         /// <param name="requestOptions"><see cref="RequestOptions"/> - Additional request options.</param>
         /// <returns><see cref="PaymentLinkResponse"/>.</returns>
@@ -75,7 +74,6 @@ namespace Adyen.Service.Checkout
         /// <summary>
         /// Create a payment link
         /// </summary>
-        /// <param name="idempotencyKey"><see cref="string"/> - A unique identifier for the message with a maximum of 64 characters (we recommend a UUID).</param>
         /// <param name="createPaymentLinkRequest"><see cref="CreatePaymentLinkRequest"/> - </param>
         /// <param name="requestOptions"><see cref="RequestOptions"/> - Additional request options.</param>
         /// <param name="cancellationToken"> A CancellationToken enables cooperative cancellation between threads, thread pool work items, or Task objects.</param>

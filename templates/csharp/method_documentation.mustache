@@ -1,5 +1,13 @@
         /// <summary>
         /// {{{summary}}}
         /// </summary>
-        {{#allParams}}/// <param name="{{paramName}}"><see cref="{{dataType}}"/> - {{description}}{{#isDeprecated}} (deprecated){{/isDeprecated}}</param>
-        {{/allParams}}/// <param name="requestOptions"><see cref="RequestOptions"/> - Additional request options.</param>
+        {{#pathParams}}
+        /// <param name="{{paramName}}"><see cref="{{dataType}}"/> - {{description}}{{#isDeprecated}} (deprecated){{/isDeprecated}}</param>
+        {{/pathParams}}
+        {{#bodyParams}}
+        /// <param name="{{paramName}}"><see cref="{{dataType}}"/> - {{description}}{{#isDeprecated}} (deprecated){{/isDeprecated}}</param>
+        {{/bodyParams}}
+        {{#queryParams}}
+        /// <param name="{{paramName}}"><see cref="{{dataType}}"/> - {{description}}{{#isDeprecated}} (deprecated){{/isDeprecated}}</param>
+        {{/queryParams}}
+        /// <param name="requestOptions"><see cref="RequestOptions"/> - Additional request options.</param>

@@ -30,7 +30,6 @@ namespace Adyen.Service.Checkout
         /// <summary>
         /// Create a payment session
         /// </summary>
-        /// <param name="idempotencyKey"><see cref="string"/> - A unique identifier for the message with a maximum of 64 characters (we recommend a UUID).</param>
         /// <param name="paymentSetupRequest"><see cref="PaymentSetupRequest"/> - </param>
         /// <param name="requestOptions"><see cref="RequestOptions"/> - Additional request options.</param>
         /// <returns><see cref="PaymentSetupResponse"/>.</returns>
@@ -40,7 +39,6 @@ namespace Adyen.Service.Checkout
         /// <summary>
         /// Create a payment session
         /// </summary>
-        /// <param name="idempotencyKey"><see cref="string"/> - A unique identifier for the message with a maximum of 64 characters (we recommend a UUID).</param>
         /// <param name="paymentSetupRequest"><see cref="PaymentSetupRequest"/> - </param>
         /// <param name="requestOptions"><see cref="RequestOptions"/> - Additional request options.</param>
         /// <param name="cancellationToken"> A CancellationToken enables cooperative cancellation between threads, thread pool work items, or Task objects.</param>
@@ -51,7 +49,6 @@ namespace Adyen.Service.Checkout
         /// <summary>
         /// Verify a payment result
         /// </summary>
-        /// <param name="idempotencyKey"><see cref="string"/> - A unique identifier for the message with a maximum of 64 characters (we recommend a UUID).</param>
         /// <param name="paymentVerificationRequest"><see cref="PaymentVerificationRequest"/> - </param>
         /// <param name="requestOptions"><see cref="RequestOptions"/> - Additional request options.</param>
         /// <returns><see cref="PaymentVerificationResponse"/>.</returns>
@@ -61,7 +58,6 @@ namespace Adyen.Service.Checkout
         /// <summary>
         /// Verify a payment result
         /// </summary>
-        /// <param name="idempotencyKey"><see cref="string"/> - A unique identifier for the message with a maximum of 64 characters (we recommend a UUID).</param>
         /// <param name="paymentVerificationRequest"><see cref="PaymentVerificationRequest"/> - </param>
         /// <param name="requestOptions"><see cref="RequestOptions"/> - Additional request options.</param>
         /// <param name="cancellationToken"> A CancellationToken enables cooperative cancellation between threads, thread pool work items, or Task objects.</param>
