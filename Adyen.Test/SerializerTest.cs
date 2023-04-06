@@ -1,3 +1,4 @@
+﻿using System.Collections.Generic;
 using System.Text;
 using Adyen.ApiSerialization;
 using Adyen.Model.Checkout;
