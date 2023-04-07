@@ -64,7 +64,7 @@ $(services): target/spec $(openapi-generator-jar)
 Services:=BalancePlatform Checkout StoredValue Payments Payout Management LegalEntityManagement Transfers
 SingleFileServices:=BalanceControl BinLookup DataProtection StoredValue POSTerminalManagement Recurring
 
-all: $(Services) $(SingleFileServices))
+all: $(Services) $(SingleFileServices)
 
 $(Services): target/spec $(openapi-generator-jar)  
 	rm -rf $(output)
