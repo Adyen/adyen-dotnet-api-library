@@ -59,15 +59,21 @@ $(services): target/spec $(openapi-generator-jar)
 	mkdir Adyen/Model/$@
 	mv target/out/src/Adyen.Model/$@/* Adyen/Model/$@
 
-# Generate a full client (models and service classes) ((adjust the baseUrl const yourselves))
-full-services:= Checkout 
-$(full-services): target/spec $(openapi-generator-jar)  
+# Service Generation; split up in to templates based on the size of the service. That is, some services have no subgroups and are thus generated in one single file, others are grouped in a directory.
+
+Services:=BalancePlatform Checkout StoredValue Payments Payout Management LegalEntityManagement Transfers
+SingleFileServices:=BalanceControl BinLookup DataProtection StoredValue POSTerminalManagement Recurring
+
+all: $(Services) $(SingleFileServices))
+
+$(Services): target/spec $(openapi-generator-jar)  
 	rm -rf $(output)
 	$(openapi-generator-cli) generate \
 		-i target/spec/json/$(spec).json \
 		-g $(generator) \
 		-t templates/csharp \
 		-o $(output) \
+		--inline-schema-name-mappings PaymentDonationRequest_paymentMethod=CheckoutPaymentMethod \
 		--additional-properties packageName=Adyen \
 		--api-package Service.$@ \
 		--api-name-suffix Service \
@@ -76,6 +82,25 @@ $(full-services): target/spec $(openapi-generator-jar)
 		--additional-properties=serviceName=$@
 	rm -rf Adyen/Service/$@ Adyen/Model/$@
 	mv target/out/src/Adyen/Service.$@ Adyen/Service/$@
+	mv target/out/src/Adyen/Model.$@ Adyen/Model/$@
+	
+$(SingleFileServices): target/spec $(openapi-generator-jar)  
+	rm -rf $(output)
+	$(openapi-generator-cli) generate \
+		-i target/spec/json/$(spec).json \
+		-g $(generator) \
+		-c templates/csharp/config.yaml \
+		-o $(output) \
+		--inline-schema-name-mappings PaymentDonationRequest_paymentMethod=CheckoutPaymentMethod \
+		--additional-properties packageName=Adyen \
+		--additional-properties customApi=$@ \
+		--api-package Service.$@ \
+		--api-name-suffix Service \
+		--model-package Model.$@ \
+		--reserved-words-mappings Version=Version \
+		--additional-properties=serviceName=$@
+	rm -rf Adyen/Service/$@ Adyen/Model/$@
+	mv target/out/src/Adyen/Service.$@/*Single.cs Adyen/Service/$@Service.cs
 	mv target/out/src/Adyen/Model.$@ Adyen/Model/$@
 
 # Checkout spec (and patch version)
