@@ -33,7 +33,7 @@ namespace Adyen.Test
         protected PaymentResult CreatePaymentResultFromFile(string fileName)
         {
             var client = CreateMockTestClientApiKeyBasedRequestAsync(fileName);
-            var payment = new PaymentService(client);
+            var payment = new GeneralService(client);
             var paymentRequest = MockPaymentData.CreateFullPaymentRequest();
             var paymentResult = payment.Authorise(paymentRequest);
             return paymentResult;
@@ -42,7 +42,7 @@ namespace Adyen.Test
         protected PaymentResult CreatePaymentApiKeyBasedResultFromFile(string fileName)
         {
             var client = CreateMockTestClientApiKeyBasedRequestAsync(fileName);
-            var payment = new PaymentService(client);
+            var payment = new GeneralService(client);
             var paymentRequest = MockPaymentData.CreateFullPaymentRequest();
 
             var paymentResult = payment.Authorise(paymentRequest);
@@ -137,7 +137,7 @@ namespace Adyen.Test
                 HolderName = "John Smith"
             };
             paymentsRequest.Amount = amount;
-            paymentsRequest.PaymentMethod = new Amount.PaymentDonationRequestPaymentMethod(cardDetails);
+            paymentsRequest.PaymentMethod = new Amount.CheckoutPaymentMethod(cardDetails);
             paymentsRequest.ApplicationInfo = new Model.Checkout.ApplicationInfo(adyenLibrary: new Amount.CommonField());
             return paymentsRequest;
         }
@@ -165,7 +165,7 @@ namespace Adyen.Test
                 ExpiryYear = "2020",
                 HolderName = "John Smith"
             };
-            paymentsRequest.PaymentMethod = new Amount.PaymentDonationRequestPaymentMethod(cardDetails);
+            paymentsRequest.PaymentMethod = new Amount.CheckoutPaymentMethod(cardDetails);
             return paymentsRequest;
         }
 

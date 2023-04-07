@@ -83,7 +83,7 @@ namespace Adyen.Service.Checkout
     }
     
     /// <summary>
-    /// Represents a collection of functions to interact with the API endpoints
+    /// Represents a collection of functions to interact with the PaymentLinksService API endpoints
     /// </summary>
     public class PaymentLinksService : AbstractService, IPaymentLinksService
     {
@@ -91,7 +91,7 @@ namespace Adyen.Service.Checkout
         
         public PaymentLinksService(Client client) : base(client)
         {
-            _baseUrl = client.Config.CheckoutEndpoint + "/" + ClientConfig.CheckoutApiVersion;
+            _baseUrl = CreateBaseUrl("https://checkout-test.adyen.com/v70");
         }
         
         public PaymentLinkResponse GetPaymentLink(string linkId, RequestOptions requestOptions = default)

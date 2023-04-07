@@ -43,7 +43,7 @@ namespace Adyen.Model.Payments
         /// </summary>
         /// <param name="currency">The three-character [ISO currency code](https://docs.adyen.com/development-resources/currency-codes).  If this value is not provided, the currency in which the payment is made will be used..</param>
         /// <param name="value">The amount in [minor units](https://docs.adyen.com/development-resources/currency-codes). (required).</param>
-        public SplitAmount(string currency = default(string), long value = default(long))
+        public SplitAmount(string currency = default(string), long? value = default(long?))
         {
             this.Value = value;
             this.Currency = currency;
@@ -61,7 +61,7 @@ namespace Adyen.Model.Payments
         /// </summary>
         /// <value>The amount in [minor units](https://docs.adyen.com/development-resources/currency-codes).</value>
         [DataMember(Name = "value", IsRequired = false, EmitDefaultValue = false)]
-        public long Value { get; set; }
+        public long? Value { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object

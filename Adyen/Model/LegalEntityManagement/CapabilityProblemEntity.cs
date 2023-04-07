@@ -68,15 +68,23 @@ namespace Adyen.Model.LegalEntityManagement
         /// <summary>
         /// Initializes a new instance of the <see cref="CapabilityProblemEntity" /> class.
         /// </summary>
+        /// <param name="documents">documents.</param>
         /// <param name="id">id.</param>
         /// <param name="owner">owner.</param>
         /// <param name="type">type.</param>
-        public CapabilityProblemEntity(string id = default(string), CapabilityProblemEntityRecursive owner = default(CapabilityProblemEntityRecursive), TypeEnum? type = default(TypeEnum?))
+        public CapabilityProblemEntity(List<string> documents = default(List<string>), string id = default(string), CapabilityProblemEntityRecursive owner = default(CapabilityProblemEntityRecursive), TypeEnum? type = default(TypeEnum?))
         {
+            this.Documents = documents;
             this.Id = id;
             this.Owner = owner;
             this.Type = type;
         }
+
+        /// <summary>
+        /// Gets or Sets Documents
+        /// </summary>
+        [DataMember(Name = "documents", EmitDefaultValue = false)]
+        public List<string> Documents { get; set; }
 
         /// <summary>
         /// Gets or Sets Id
@@ -98,6 +106,7 @@ namespace Adyen.Model.LegalEntityManagement
         {
             StringBuilder sb = new StringBuilder();
             sb.Append("class CapabilityProblemEntity {\n");
+            sb.Append("  Documents: ").Append(Documents).Append("\n");
             sb.Append("  Id: ").Append(Id).Append("\n");
             sb.Append("  Owner: ").Append(Owner).Append("\n");
             sb.Append("  Type: ").Append(Type).Append("\n");
@@ -137,6 +146,12 @@ namespace Adyen.Model.LegalEntityManagement
             }
             return 
                 (
+                    this.Documents == input.Documents ||
+                    this.Documents != null &&
+                    input.Documents != null &&
+                    this.Documents.SequenceEqual(input.Documents)
+                ) && 
+                (
                     this.Id == input.Id ||
                     (this.Id != null &&
                     this.Id.Equals(input.Id))
@@ -161,6 +176,10 @@ namespace Adyen.Model.LegalEntityManagement
             unchecked // Overflow is fine, just wrap
             {
                 int hashCode = 41;
+                if (this.Documents != null)
+                {
+                    hashCode = (hashCode * 59) + this.Documents.GetHashCode();
+                }
                 if (this.Id != null)
                 {
                     hashCode = (hashCode * 59) + this.Id.GetHashCode();

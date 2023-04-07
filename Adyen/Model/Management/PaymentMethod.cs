@@ -103,7 +103,8 @@ namespace Adyen.Model.Management
         /// <param name="swish">swish.</param>
         /// <param name="type">Payment method [variant](https://docs.adyen.com/development-resources/paymentmethodvariant#management-api)..</param>
         /// <param name="verificationStatus">Payment method status. Possible values: * **valid** * **pending** * **invalid** * **rejected**.</param>
-        public PaymentMethod(bool allowed = default(bool), ApplePayInfo applePay = default(ApplePayInfo), BcmcInfo bcmc = default(BcmcInfo), string businessLineId = default(string), CartesBancairesInfo cartesBancaires = default(CartesBancairesInfo), List<string> countries = default(List<string>), List<string> currencies = default(List<string>), List<string> customRoutingFlags = default(List<string>), bool enabled = default(bool), GiroPayInfo giroPay = default(GiroPayInfo), GooglePayInfo googlePay = default(GooglePayInfo), string id = default(string), KlarnaInfo klarna = default(KlarnaInfo), MealVoucherFRInfo mealVoucherFR = default(MealVoucherFRInfo), PayPalInfo paypal = default(PayPalInfo), string reference = default(string), string shopperInteraction = default(string), SofortInfo sofort = default(SofortInfo), string storeId = default(string), SwishInfo swish = default(SwishInfo), string type = default(string), VerificationStatusEnum? verificationStatus = default(VerificationStatusEnum?))
+        /// <param name="vipps">vipps.</param>
+        public PaymentMethod(bool allowed = default(bool), ApplePayInfo applePay = default(ApplePayInfo), BcmcInfo bcmc = default(BcmcInfo), string businessLineId = default(string), CartesBancairesInfo cartesBancaires = default(CartesBancairesInfo), List<string> countries = default(List<string>), List<string> currencies = default(List<string>), List<string> customRoutingFlags = default(List<string>), bool enabled = default(bool), GiroPayInfo giroPay = default(GiroPayInfo), GooglePayInfo googlePay = default(GooglePayInfo), string id = default(string), KlarnaInfo klarna = default(KlarnaInfo), MealVoucherFRInfo mealVoucherFR = default(MealVoucherFRInfo), PayPalInfo paypal = default(PayPalInfo), string reference = default(string), string shopperInteraction = default(string), SofortInfo sofort = default(SofortInfo), string storeId = default(string), SwishInfo swish = default(SwishInfo), string type = default(string), VerificationStatusEnum? verificationStatus = default(VerificationStatusEnum?), VippsInfo vipps = default(VippsInfo))
         {
             this.Id = id;
             this.Allowed = allowed;
@@ -127,6 +128,7 @@ namespace Adyen.Model.Management
             this.Swish = swish;
             this.Type = type;
             this.VerificationStatus = verificationStatus;
+            this.Vipps = vipps;
         }
 
         /// <summary>
@@ -267,6 +269,12 @@ namespace Adyen.Model.Management
         public string Type { get; set; }
 
         /// <summary>
+        /// Gets or Sets Vipps
+        /// </summary>
+        [DataMember(Name = "vipps", EmitDefaultValue = false)]
+        public VippsInfo Vipps { get; set; }
+
+        /// <summary>
         /// Returns the string presentation of the object
         /// </summary>
         /// <returns>String presentation of the object</returns>
@@ -296,6 +304,7 @@ namespace Adyen.Model.Management
             sb.Append("  Swish: ").Append(Swish).Append("\n");
             sb.Append("  Type: ").Append(Type).Append("\n");
             sb.Append("  VerificationStatus: ").Append(VerificationStatus).Append("\n");
+            sb.Append("  Vipps: ").Append(Vipps).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -440,6 +449,11 @@ namespace Adyen.Model.Management
                 (
                     this.VerificationStatus == input.VerificationStatus ||
                     this.VerificationStatus.Equals(input.VerificationStatus)
+                ) && 
+                (
+                    this.Vipps == input.Vipps ||
+                    (this.Vipps != null &&
+                    this.Vipps.Equals(input.Vipps))
                 );
         }
 
@@ -531,6 +545,10 @@ namespace Adyen.Model.Management
                     hashCode = (hashCode * 59) + this.Type.GetHashCode();
                 }
                 hashCode = (hashCode * 59) + this.VerificationStatus.GetHashCode();
+                if (this.Vipps != null)
+                {
+                    hashCode = (hashCode * 59) + this.Vipps.GetHashCode();
+                }
                 return hashCode;
             }
         }

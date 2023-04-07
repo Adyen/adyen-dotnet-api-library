@@ -132,7 +132,7 @@ namespace Adyen.Service.Checkout
     }
     
     /// <summary>
-    /// Represents a collection of functions to interact with the API endpoints
+    /// Represents a collection of functions to interact with the PaymentsService API endpoints
     /// </summary>
     public class PaymentsService : AbstractService, IPaymentsService
     {
@@ -140,7 +140,7 @@ namespace Adyen.Service.Checkout
         
         public PaymentsService(Client client) : base(client)
         {
-            _baseUrl = client.Config.CheckoutEndpoint + "/" + ClientConfig.CheckoutApiVersion;
+            _baseUrl = CreateBaseUrl("https://checkout-test.adyen.com/v70");
         }
         
         public CardDetailsResponse CardDetails(CardDetailsRequest cardDetailsRequest, RequestOptions requestOptions = default)

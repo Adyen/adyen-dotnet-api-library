@@ -13,57 +13,69 @@
 using System;
 using System.Collections.Generic;
 using System.Net.Http;
+using System.Threading;
 using System.Threading.Tasks;
 using Adyen.Constants;
 using Adyen.Model;
 using Adyen.Service.Resource;
 using Adyen.Model.Management;
-using Newtonsoft.Json;
 
 namespace Adyen.Service.Management
 {
     /// <summary>
-    /// Represents a collection of functions to interact with the API endpoints
+    /// TerminalsTerminalLevelService Interface
     /// </summary>
-    public class TerminalsTerminalLevelService : AbstractService
+    public interface ITerminalsTerminalLevelService
+    {
+        /// <summary>
+        /// Get a list of terminals
+        /// </summary>
+        /// <param name="searchQuery"><see cref="string"/> - Returns terminals with an ID that contains the specified string. If present, other query parameters are ignored.</param>
+        /// <param name="countries"><see cref="string"/> - Returns terminals located in the countries specified by their [two-letter country code](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2).</param>
+        /// <param name="merchantIds"><see cref="string"/> - Returns terminals that belong to the merchant accounts specified by their unique merchant account ID.</param>
+        /// <param name="storeIds"><see cref="string"/> - Returns terminals that are assigned to the [stores](https://docs.adyen.com/api-explorer/#/ManagementService/latest/get/stores) specified by their unique store ID.</param>
+        /// <param name="brandModels"><see cref="string"/> - Returns terminals of the [models](https://docs.adyen.com/api-explorer/#/ManagementService/latest/get/companies/{companyId}/terminalModels) specified in the format *brand.model*.</param>
+        /// <param name="pageNumber"><see cref="int?"/> - The number of the page to fetch.</param>
+        /// <param name="pageSize"><see cref="int?"/> - The number of items to have on a page, maximum 100. The default is 20 items on a page.</param>
+        /// <param name="requestOptions"><see cref="RequestOptions"/> - Additional request options.</param>
+        /// <returns><see cref="ListTerminalsResponse"/>.</returns>
+        ListTerminalsResponse ListTerminals(string searchQuery = default, string countries = default, string merchantIds = default, string storeIds = default, string brandModels = default, int? pageNumber = default, int? pageSize = default, RequestOptions requestOptions = default);
+        
+        /// <summary>
+        /// Get a list of terminals
+        /// </summary>
+        /// <param name="searchQuery"><see cref="string"/> - Returns terminals with an ID that contains the specified string. If present, other query parameters are ignored.</param>
+        /// <param name="countries"><see cref="string"/> - Returns terminals located in the countries specified by their [two-letter country code](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2).</param>
+        /// <param name="merchantIds"><see cref="string"/> - Returns terminals that belong to the merchant accounts specified by their unique merchant account ID.</param>
+        /// <param name="storeIds"><see cref="string"/> - Returns terminals that are assigned to the [stores](https://docs.adyen.com/api-explorer/#/ManagementService/latest/get/stores) specified by their unique store ID.</param>
+        /// <param name="brandModels"><see cref="string"/> - Returns terminals of the [models](https://docs.adyen.com/api-explorer/#/ManagementService/latest/get/companies/{companyId}/terminalModels) specified in the format *brand.model*.</param>
+        /// <param name="pageNumber"><see cref="int?"/> - The number of the page to fetch.</param>
+        /// <param name="pageSize"><see cref="int?"/> - The number of items to have on a page, maximum 100. The default is 20 items on a page.</param>
+        /// <param name="requestOptions"><see cref="RequestOptions"/> - Additional request options.</param>
+        /// <param name="cancellationToken"> A CancellationToken enables cooperative cancellation between threads, thread pool work items, or Task objects.</param>
+        /// <returns>Task of <see cref="ListTerminalsResponse"/>.</returns>
+        Task<ListTerminalsResponse> ListTerminalsAsync(string searchQuery = default, string countries = default, string merchantIds = default, string storeIds = default, string brandModels = default, int? pageNumber = default, int? pageSize = default, RequestOptions requestOptions = default, CancellationToken cancellationToken = default);
+        
+    }
+    
+    /// <summary>
+    /// Represents a collection of functions to interact with the TerminalsTerminalLevelService API endpoints
+    /// </summary>
+    public class TerminalsTerminalLevelService : AbstractService, ITerminalsTerminalLevelService
     {
         private readonly string _baseUrl;
         
         public TerminalsTerminalLevelService(Client client) : base(client)
         {
-            _baseUrl = client.Config.ManagementEndpoint + "/" + ClientConfig.ManagementVersion;
+            _baseUrl = CreateBaseUrl("https://management-test.adyen.com/v1");
         }
-    
-        /// <summary>
-        /// Get a list of terminals
-        /// </summary>
-        /// <param name="searchQuery">Returns terminals with an ID that contains the specified string. If present, other query parameters are ignored.</param>
-        /// <param name="countries">Returns terminals located in the countries specified by their [two-letter country code](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2).</param>
-        /// <param name="merchantIds">Returns terminals that belong to the merchant accounts specified by their unique merchant account ID.</param>
-        /// <param name="storeIds">Returns terminals that are assigned to the [stores](https://docs.adyen.com/api-explorer/#/ManagementService/latest/get/stores) specified by their unique store ID.</param>
-        /// <param name="brandModels">Returns terminals of the [models](https://docs.adyen.com/api-explorer/#/ManagementService/latest/get/companies/{companyId}/terminalModels) specified in the format *brand.model*.</param>
-        /// <param name="pageNumber">The number of the page to fetch.</param>
-        /// <param name="pageSize">The number of items to have on a page, maximum 100. The default is 20 items on a page.</param>
-        /// <param name="requestOptions">Additional request options.</param>
-        /// <returns>ListTerminalsResponse</returns>
+        
         public ListTerminalsResponse ListTerminals(string searchQuery = default, string countries = default, string merchantIds = default, string storeIds = default, string brandModels = default, int? pageNumber = default, int? pageSize = default, RequestOptions requestOptions = default)
         {
             return ListTerminalsAsync(searchQuery, countries, merchantIds, storeIds, brandModels, pageNumber, pageSize, requestOptions).GetAwaiter().GetResult();
         }
 
-        /// <summary>
-        /// Get a list of terminals
-        /// </summary>
-        /// <param name="searchQuery">Returns terminals with an ID that contains the specified string. If present, other query parameters are ignored.</param>
-        /// <param name="countries">Returns terminals located in the countries specified by their [two-letter country code](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2).</param>
-        /// <param name="merchantIds">Returns terminals that belong to the merchant accounts specified by their unique merchant account ID.</param>
-        /// <param name="storeIds">Returns terminals that are assigned to the [stores](https://docs.adyen.com/api-explorer/#/ManagementService/latest/get/stores) specified by their unique store ID.</param>
-        /// <param name="brandModels">Returns terminals of the [models](https://docs.adyen.com/api-explorer/#/ManagementService/latest/get/companies/{companyId}/terminalModels) specified in the format *brand.model*.</param>
-        /// <param name="pageNumber">The number of the page to fetch.</param>
-        /// <param name="pageSize">The number of items to have on a page, maximum 100. The default is 20 items on a page.</param>
-        /// <param name="requestOptions">Additional request options.</param>
-        /// <returns>Task of ListTerminalsResponse</returns>
-        public async Task<ListTerminalsResponse> ListTerminalsAsync(string searchQuery = default, string countries = default, string merchantIds = default, string storeIds = default, string brandModels = default, int? pageNumber = default, int? pageSize = default, RequestOptions requestOptions = default)
+        public async Task<ListTerminalsResponse> ListTerminalsAsync(string searchQuery = default, string countries = default, string merchantIds = default, string storeIds = default, string brandModels = default, int? pageNumber = default, int? pageSize = default, RequestOptions requestOptions = default, CancellationToken cancellationToken = default)
         {
             // Build the query string
             var queryParams = new Dictionary<string, string>();
@@ -76,8 +88,7 @@ namespace Adyen.Service.Management
             if (pageSize != null) queryParams.Add("pageSize", pageSize.ToString());
             var endpoint = _baseUrl + "/terminals" + ToQueryString(queryParams);
             var resource = new ServiceResource(this, endpoint);
-            return await resource.RequestAsync<ListTerminalsResponse>(null, requestOptions, new HttpMethod("GET"));
+            return await resource.RequestAsync<ListTerminalsResponse>(null, requestOptions, new HttpMethod("GET"), cancellationToken);
         }
-
     }
 }

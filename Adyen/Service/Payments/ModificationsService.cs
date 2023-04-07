@@ -13,218 +13,264 @@
 using System;
 using System.Collections.Generic;
 using System.Net.Http;
+using System.Threading;
 using System.Threading.Tasks;
 using Adyen.Constants;
 using Adyen.Model;
 using Adyen.Service.Resource;
 using Adyen.Model.Payments;
-using Newtonsoft.Json;
 
 namespace Adyen.Service.Payments
 {
     /// <summary>
-    /// Represents a collection of functions to interact with the API endpoints
+    /// ModificationsService Interface
     /// </summary>
-    public class ModificationsService : AbstractService
+    public interface IModificationsService
+    {
+        /// <summary>
+        /// Change the authorised amount
+        /// </summary>
+        /// <param name="adjustAuthorisationRequest"><see cref="AdjustAuthorisationRequest"/> - </param>
+        /// <param name="requestOptions"><see cref="RequestOptions"/> - Additional request options.</param>
+        /// <returns><see cref="ModificationResult"/>.</returns>
+        ModificationResult AdjustAuthorisation(AdjustAuthorisationRequest adjustAuthorisationRequest, RequestOptions requestOptions = default);
+        
+        /// <summary>
+        /// Change the authorised amount
+        /// </summary>
+        /// <param name="adjustAuthorisationRequest"><see cref="AdjustAuthorisationRequest"/> - </param>
+        /// <param name="requestOptions"><see cref="RequestOptions"/> - Additional request options.</param>
+        /// <param name="cancellationToken"> A CancellationToken enables cooperative cancellation between threads, thread pool work items, or Task objects.</param>
+        /// <returns>Task of <see cref="ModificationResult"/>.</returns>
+        Task<ModificationResult> AdjustAuthorisationAsync(AdjustAuthorisationRequest adjustAuthorisationRequest, RequestOptions requestOptions = default, CancellationToken cancellationToken = default);
+        
+        /// <summary>
+        /// Cancel an authorisation
+        /// </summary>
+        /// <param name="cancelRequest"><see cref="CancelRequest"/> - </param>
+        /// <param name="requestOptions"><see cref="RequestOptions"/> - Additional request options.</param>
+        /// <returns><see cref="ModificationResult"/>.</returns>
+        ModificationResult Cancel(CancelRequest cancelRequest, RequestOptions requestOptions = default);
+        
+        /// <summary>
+        /// Cancel an authorisation
+        /// </summary>
+        /// <param name="cancelRequest"><see cref="CancelRequest"/> - </param>
+        /// <param name="requestOptions"><see cref="RequestOptions"/> - Additional request options.</param>
+        /// <param name="cancellationToken"> A CancellationToken enables cooperative cancellation between threads, thread pool work items, or Task objects.</param>
+        /// <returns>Task of <see cref="ModificationResult"/>.</returns>
+        Task<ModificationResult> CancelAsync(CancelRequest cancelRequest, RequestOptions requestOptions = default, CancellationToken cancellationToken = default);
+        
+        /// <summary>
+        /// Cancel or refund a payment
+        /// </summary>
+        /// <param name="cancelOrRefundRequest"><see cref="CancelOrRefundRequest"/> - </param>
+        /// <param name="requestOptions"><see cref="RequestOptions"/> - Additional request options.</param>
+        /// <returns><see cref="ModificationResult"/>.</returns>
+        ModificationResult CancelOrRefund(CancelOrRefundRequest cancelOrRefundRequest, RequestOptions requestOptions = default);
+        
+        /// <summary>
+        /// Cancel or refund a payment
+        /// </summary>
+        /// <param name="cancelOrRefundRequest"><see cref="CancelOrRefundRequest"/> - </param>
+        /// <param name="requestOptions"><see cref="RequestOptions"/> - Additional request options.</param>
+        /// <param name="cancellationToken"> A CancellationToken enables cooperative cancellation between threads, thread pool work items, or Task objects.</param>
+        /// <returns>Task of <see cref="ModificationResult"/>.</returns>
+        Task<ModificationResult> CancelOrRefundAsync(CancelOrRefundRequest cancelOrRefundRequest, RequestOptions requestOptions = default, CancellationToken cancellationToken = default);
+        
+        /// <summary>
+        /// Capture an authorisation
+        /// </summary>
+        /// <param name="captureRequest"><see cref="CaptureRequest"/> - </param>
+        /// <param name="requestOptions"><see cref="RequestOptions"/> - Additional request options.</param>
+        /// <returns><see cref="ModificationResult"/>.</returns>
+        ModificationResult Capture(CaptureRequest captureRequest, RequestOptions requestOptions = default);
+        
+        /// <summary>
+        /// Capture an authorisation
+        /// </summary>
+        /// <param name="captureRequest"><see cref="CaptureRequest"/> - </param>
+        /// <param name="requestOptions"><see cref="RequestOptions"/> - Additional request options.</param>
+        /// <param name="cancellationToken"> A CancellationToken enables cooperative cancellation between threads, thread pool work items, or Task objects.</param>
+        /// <returns>Task of <see cref="ModificationResult"/>.</returns>
+        Task<ModificationResult> CaptureAsync(CaptureRequest captureRequest, RequestOptions requestOptions = default, CancellationToken cancellationToken = default);
+        
+        /// <summary>
+        /// Create a donation
+        /// </summary>
+        /// <param name="donationRequest"><see cref="DonationRequest"/> - </param>
+        /// <param name="requestOptions"><see cref="RequestOptions"/> - Additional request options.</param>
+        /// <returns><see cref="ModificationResult"/>.</returns>
+        ModificationResult Donate(DonationRequest donationRequest, RequestOptions requestOptions = default);
+        
+        /// <summary>
+        /// Create a donation
+        /// </summary>
+        /// <param name="donationRequest"><see cref="DonationRequest"/> - </param>
+        /// <param name="requestOptions"><see cref="RequestOptions"/> - Additional request options.</param>
+        /// <param name="cancellationToken"> A CancellationToken enables cooperative cancellation between threads, thread pool work items, or Task objects.</param>
+        /// <returns>Task of <see cref="ModificationResult"/>.</returns>
+        Task<ModificationResult> DonateAsync(DonationRequest donationRequest, RequestOptions requestOptions = default, CancellationToken cancellationToken = default);
+        
+        /// <summary>
+        /// Refund a captured payment
+        /// </summary>
+        /// <param name="refundRequest"><see cref="RefundRequest"/> - </param>
+        /// <param name="requestOptions"><see cref="RequestOptions"/> - Additional request options.</param>
+        /// <returns><see cref="ModificationResult"/>.</returns>
+        ModificationResult Refund(RefundRequest refundRequest, RequestOptions requestOptions = default);
+        
+        /// <summary>
+        /// Refund a captured payment
+        /// </summary>
+        /// <param name="refundRequest"><see cref="RefundRequest"/> - </param>
+        /// <param name="requestOptions"><see cref="RequestOptions"/> - Additional request options.</param>
+        /// <param name="cancellationToken"> A CancellationToken enables cooperative cancellation between threads, thread pool work items, or Task objects.</param>
+        /// <returns>Task of <see cref="ModificationResult"/>.</returns>
+        Task<ModificationResult> RefundAsync(RefundRequest refundRequest, RequestOptions requestOptions = default, CancellationToken cancellationToken = default);
+        
+        /// <summary>
+        /// Cancel an authorisation using your reference
+        /// </summary>
+        /// <param name="technicalCancelRequest"><see cref="TechnicalCancelRequest"/> - </param>
+        /// <param name="requestOptions"><see cref="RequestOptions"/> - Additional request options.</param>
+        /// <returns><see cref="ModificationResult"/>.</returns>
+        ModificationResult TechnicalCancel(TechnicalCancelRequest technicalCancelRequest, RequestOptions requestOptions = default);
+        
+        /// <summary>
+        /// Cancel an authorisation using your reference
+        /// </summary>
+        /// <param name="technicalCancelRequest"><see cref="TechnicalCancelRequest"/> - </param>
+        /// <param name="requestOptions"><see cref="RequestOptions"/> - Additional request options.</param>
+        /// <param name="cancellationToken"> A CancellationToken enables cooperative cancellation between threads, thread pool work items, or Task objects.</param>
+        /// <returns>Task of <see cref="ModificationResult"/>.</returns>
+        Task<ModificationResult> TechnicalCancelAsync(TechnicalCancelRequest technicalCancelRequest, RequestOptions requestOptions = default, CancellationToken cancellationToken = default);
+        
+        /// <summary>
+        /// Cancel an in-person refund
+        /// </summary>
+        /// <param name="voidPendingRefundRequest"><see cref="VoidPendingRefundRequest"/> - </param>
+        /// <param name="requestOptions"><see cref="RequestOptions"/> - Additional request options.</param>
+        /// <returns><see cref="ModificationResult"/>.</returns>
+        ModificationResult VoidPendingRefund(VoidPendingRefundRequest voidPendingRefundRequest, RequestOptions requestOptions = default);
+        
+        /// <summary>
+        /// Cancel an in-person refund
+        /// </summary>
+        /// <param name="voidPendingRefundRequest"><see cref="VoidPendingRefundRequest"/> - </param>
+        /// <param name="requestOptions"><see cref="RequestOptions"/> - Additional request options.</param>
+        /// <param name="cancellationToken"> A CancellationToken enables cooperative cancellation between threads, thread pool work items, or Task objects.</param>
+        /// <returns>Task of <see cref="ModificationResult"/>.</returns>
+        Task<ModificationResult> VoidPendingRefundAsync(VoidPendingRefundRequest voidPendingRefundRequest, RequestOptions requestOptions = default, CancellationToken cancellationToken = default);
+        
+    }
+    
+    /// <summary>
+    /// Represents a collection of functions to interact with the ModificationsService API endpoints
+    /// </summary>
+    public class ModificationsService : AbstractService, IModificationsService
     {
         private readonly string _baseUrl;
         
         public ModificationsService(Client client) : base(client)
         {
-            _baseUrl = client.Config.Endpoint + "/pal/servlet/Payment/" + ClientConfig.ApiVersion;
+            _baseUrl = CreateBaseUrl("https://pal-test.adyen.com/pal/servlet/Payment/v68");
         }
-    
-        /// <summary>
-        /// Change the authorised amount
-        /// </summary>
-        /// <param name="adjustAuthorisationRequest"></param>
-        /// <param name="requestOptions">Additional request options.</param>
-        /// <returns>ModificationResult</returns>
+        
         public ModificationResult AdjustAuthorisation(AdjustAuthorisationRequest adjustAuthorisationRequest, RequestOptions requestOptions = default)
         {
             return AdjustAuthorisationAsync(adjustAuthorisationRequest, requestOptions).GetAwaiter().GetResult();
         }
 
-        /// <summary>
-        /// Change the authorised amount
-        /// </summary>
-        /// <param name="adjustAuthorisationRequest"></param>
-        /// <param name="requestOptions">Additional request options.</param>
-        /// <returns>Task of ModificationResult</returns>
-        public async Task<ModificationResult> AdjustAuthorisationAsync(AdjustAuthorisationRequest adjustAuthorisationRequest, RequestOptions requestOptions = default)
+        public async Task<ModificationResult> AdjustAuthorisationAsync(AdjustAuthorisationRequest adjustAuthorisationRequest, RequestOptions requestOptions = default, CancellationToken cancellationToken = default)
         {
             var endpoint = _baseUrl + "/adjustAuthorisation";
             var resource = new ServiceResource(this, endpoint);
-            return await resource.RequestAsync<ModificationResult>(adjustAuthorisationRequest.ToJson(), requestOptions, new HttpMethod("POST"));
+            return await resource.RequestAsync<ModificationResult>(adjustAuthorisationRequest.ToJson(), requestOptions, new HttpMethod("POST"), cancellationToken);
         }
-
-        /// <summary>
-        /// Cancel an authorisation
-        /// </summary>
-        /// <param name="cancelRequest"></param>
-        /// <param name="requestOptions">Additional request options.</param>
-        /// <returns>ModificationResult</returns>
+        
         public ModificationResult Cancel(CancelRequest cancelRequest, RequestOptions requestOptions = default)
         {
             return CancelAsync(cancelRequest, requestOptions).GetAwaiter().GetResult();
         }
 
-        /// <summary>
-        /// Cancel an authorisation
-        /// </summary>
-        /// <param name="cancelRequest"></param>
-        /// <param name="requestOptions">Additional request options.</param>
-        /// <returns>Task of ModificationResult</returns>
-        public async Task<ModificationResult> CancelAsync(CancelRequest cancelRequest, RequestOptions requestOptions = default)
+        public async Task<ModificationResult> CancelAsync(CancelRequest cancelRequest, RequestOptions requestOptions = default, CancellationToken cancellationToken = default)
         {
             var endpoint = _baseUrl + "/cancel";
             var resource = new ServiceResource(this, endpoint);
-            return await resource.RequestAsync<ModificationResult>(cancelRequest.ToJson(), requestOptions, new HttpMethod("POST"));
+            return await resource.RequestAsync<ModificationResult>(cancelRequest.ToJson(), requestOptions, new HttpMethod("POST"), cancellationToken);
         }
-
-        /// <summary>
-        /// Cancel or refund a payment
-        /// </summary>
-        /// <param name="cancelOrRefundRequest"></param>
-        /// <param name="requestOptions">Additional request options.</param>
-        /// <returns>ModificationResult</returns>
+        
         public ModificationResult CancelOrRefund(CancelOrRefundRequest cancelOrRefundRequest, RequestOptions requestOptions = default)
         {
             return CancelOrRefundAsync(cancelOrRefundRequest, requestOptions).GetAwaiter().GetResult();
         }
 
-        /// <summary>
-        /// Cancel or refund a payment
-        /// </summary>
-        /// <param name="cancelOrRefundRequest"></param>
-        /// <param name="requestOptions">Additional request options.</param>
-        /// <returns>Task of ModificationResult</returns>
-        public async Task<ModificationResult> CancelOrRefundAsync(CancelOrRefundRequest cancelOrRefundRequest, RequestOptions requestOptions = default)
+        public async Task<ModificationResult> CancelOrRefundAsync(CancelOrRefundRequest cancelOrRefundRequest, RequestOptions requestOptions = default, CancellationToken cancellationToken = default)
         {
             var endpoint = _baseUrl + "/cancelOrRefund";
             var resource = new ServiceResource(this, endpoint);
-            return await resource.RequestAsync<ModificationResult>(cancelOrRefundRequest.ToJson(), requestOptions, new HttpMethod("POST"));
+            return await resource.RequestAsync<ModificationResult>(cancelOrRefundRequest.ToJson(), requestOptions, new HttpMethod("POST"), cancellationToken);
         }
-
-        /// <summary>
-        /// Capture an authorisation
-        /// </summary>
-        /// <param name="captureRequest"></param>
-        /// <param name="requestOptions">Additional request options.</param>
-        /// <returns>ModificationResult</returns>
+        
         public ModificationResult Capture(CaptureRequest captureRequest, RequestOptions requestOptions = default)
         {
             return CaptureAsync(captureRequest, requestOptions).GetAwaiter().GetResult();
         }
 
-        /// <summary>
-        /// Capture an authorisation
-        /// </summary>
-        /// <param name="captureRequest"></param>
-        /// <param name="requestOptions">Additional request options.</param>
-        /// <returns>Task of ModificationResult</returns>
-        public async Task<ModificationResult> CaptureAsync(CaptureRequest captureRequest, RequestOptions requestOptions = default)
+        public async Task<ModificationResult> CaptureAsync(CaptureRequest captureRequest, RequestOptions requestOptions = default, CancellationToken cancellationToken = default)
         {
             var endpoint = _baseUrl + "/capture";
             var resource = new ServiceResource(this, endpoint);
-            return await resource.RequestAsync<ModificationResult>(captureRequest.ToJson(), requestOptions, new HttpMethod("POST"));
+            return await resource.RequestAsync<ModificationResult>(captureRequest.ToJson(), requestOptions, new HttpMethod("POST"), cancellationToken);
         }
-
-        /// <summary>
-        /// Create a donation
-        /// </summary>
-        /// <param name="donationRequest"></param>
-        /// <param name="requestOptions">Additional request options.</param>
-        /// <returns>ModificationResult</returns>
+        
         public ModificationResult Donate(DonationRequest donationRequest, RequestOptions requestOptions = default)
         {
             return DonateAsync(donationRequest, requestOptions).GetAwaiter().GetResult();
         }
 
-        /// <summary>
-        /// Create a donation
-        /// </summary>
-        /// <param name="donationRequest"></param>
-        /// <param name="requestOptions">Additional request options.</param>
-        /// <returns>Task of ModificationResult</returns>
-        public async Task<ModificationResult> DonateAsync(DonationRequest donationRequest, RequestOptions requestOptions = default)
+        public async Task<ModificationResult> DonateAsync(DonationRequest donationRequest, RequestOptions requestOptions = default, CancellationToken cancellationToken = default)
         {
             var endpoint = _baseUrl + "/donate";
             var resource = new ServiceResource(this, endpoint);
-            return await resource.RequestAsync<ModificationResult>(donationRequest.ToJson(), requestOptions, new HttpMethod("POST"));
+            return await resource.RequestAsync<ModificationResult>(donationRequest.ToJson(), requestOptions, new HttpMethod("POST"), cancellationToken);
         }
-
-        /// <summary>
-        /// Refund a captured payment
-        /// </summary>
-        /// <param name="refundRequest"></param>
-        /// <param name="requestOptions">Additional request options.</param>
-        /// <returns>ModificationResult</returns>
+        
         public ModificationResult Refund(RefundRequest refundRequest, RequestOptions requestOptions = default)
         {
             return RefundAsync(refundRequest, requestOptions).GetAwaiter().GetResult();
         }
 
-        /// <summary>
-        /// Refund a captured payment
-        /// </summary>
-        /// <param name="refundRequest"></param>
-        /// <param name="requestOptions">Additional request options.</param>
-        /// <returns>Task of ModificationResult</returns>
-        public async Task<ModificationResult> RefundAsync(RefundRequest refundRequest, RequestOptions requestOptions = default)
+        public async Task<ModificationResult> RefundAsync(RefundRequest refundRequest, RequestOptions requestOptions = default, CancellationToken cancellationToken = default)
         {
             var endpoint = _baseUrl + "/refund";
             var resource = new ServiceResource(this, endpoint);
-            return await resource.RequestAsync<ModificationResult>(refundRequest.ToJson(), requestOptions, new HttpMethod("POST"));
+            return await resource.RequestAsync<ModificationResult>(refundRequest.ToJson(), requestOptions, new HttpMethod("POST"), cancellationToken);
         }
-
-        /// <summary>
-        /// Cancel an authorisation using your reference
-        /// </summary>
-        /// <param name="technicalCancelRequest"></param>
-        /// <param name="requestOptions">Additional request options.</param>
-        /// <returns>ModificationResult</returns>
+        
         public ModificationResult TechnicalCancel(TechnicalCancelRequest technicalCancelRequest, RequestOptions requestOptions = default)
         {
             return TechnicalCancelAsync(technicalCancelRequest, requestOptions).GetAwaiter().GetResult();
         }
 
-        /// <summary>
-        /// Cancel an authorisation using your reference
-        /// </summary>
-        /// <param name="technicalCancelRequest"></param>
-        /// <param name="requestOptions">Additional request options.</param>
-        /// <returns>Task of ModificationResult</returns>
-        public async Task<ModificationResult> TechnicalCancelAsync(TechnicalCancelRequest technicalCancelRequest, RequestOptions requestOptions = default)
+        public async Task<ModificationResult> TechnicalCancelAsync(TechnicalCancelRequest technicalCancelRequest, RequestOptions requestOptions = default, CancellationToken cancellationToken = default)
         {
             var endpoint = _baseUrl + "/technicalCancel";
             var resource = new ServiceResource(this, endpoint);
-            return await resource.RequestAsync<ModificationResult>(technicalCancelRequest.ToJson(), requestOptions, new HttpMethod("POST"));
+            return await resource.RequestAsync<ModificationResult>(technicalCancelRequest.ToJson(), requestOptions, new HttpMethod("POST"), cancellationToken);
         }
-
-        /// <summary>
-        /// Cancel an in-person refund
-        /// </summary>
-        /// <param name="voidPendingRefundRequest"></param>
-        /// <param name="requestOptions">Additional request options.</param>
-        /// <returns>ModificationResult</returns>
+        
         public ModificationResult VoidPendingRefund(VoidPendingRefundRequest voidPendingRefundRequest, RequestOptions requestOptions = default)
         {
             return VoidPendingRefundAsync(voidPendingRefundRequest, requestOptions).GetAwaiter().GetResult();
         }
 
-        /// <summary>
-        /// Cancel an in-person refund
-        /// </summary>
-        /// <param name="voidPendingRefundRequest"></param>
-        /// <param name="requestOptions">Additional request options.</param>
-        /// <returns>Task of ModificationResult</returns>
-        public async Task<ModificationResult> VoidPendingRefundAsync(VoidPendingRefundRequest voidPendingRefundRequest, RequestOptions requestOptions = default)
+        public async Task<ModificationResult> VoidPendingRefundAsync(VoidPendingRefundRequest voidPendingRefundRequest, RequestOptions requestOptions = default, CancellationToken cancellationToken = default)
         {
             var endpoint = _baseUrl + "/voidPendingRefund";
             var resource = new ServiceResource(this, endpoint);
-            return await resource.RequestAsync<ModificationResult>(voidPendingRefundRequest.ToJson(), requestOptions, new HttpMethod("POST"));
+            return await resource.RequestAsync<ModificationResult>(voidPendingRefundRequest.ToJson(), requestOptions, new HttpMethod("POST"), cancellationToken);
         }
-
     }
 }

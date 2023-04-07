@@ -13,52 +13,63 @@
 using System;
 using System.Collections.Generic;
 using System.Net.Http;
+using System.Threading;
 using System.Threading.Tasks;
 using Adyen.Constants;
 using Adyen.Model;
 using Adyen.Service.Resource;
 using Adyen.Model.Management;
-using Newtonsoft.Json;
 
 namespace Adyen.Service.Management
 {
     /// <summary>
-    /// Represents a collection of functions to interact with the API endpoints
+    /// ClientKeyMerchantLevelService Interface
     /// </summary>
-    public class ClientKeyMerchantLevelService : AbstractService
+    public interface IClientKeyMerchantLevelService
+    {
+        /// <summary>
+        /// Generate new client key
+        /// </summary>
+        /// <param name="merchantId"><see cref="string"/> - The unique identifier of the merchant account.</param>
+        /// <param name="apiCredentialId"><see cref="string"/> - Unique identifier of the API credential.</param>
+        /// <param name="requestOptions"><see cref="RequestOptions"/> - Additional request options.</param>
+        /// <returns><see cref="GenerateClientKeyResponse"/>.</returns>
+        GenerateClientKeyResponse GenerateNewClientKey(string merchantId, string apiCredentialId, RequestOptions requestOptions = default);
+        
+        /// <summary>
+        /// Generate new client key
+        /// </summary>
+        /// <param name="merchantId"><see cref="string"/> - The unique identifier of the merchant account.</param>
+        /// <param name="apiCredentialId"><see cref="string"/> - Unique identifier of the API credential.</param>
+        /// <param name="requestOptions"><see cref="RequestOptions"/> - Additional request options.</param>
+        /// <param name="cancellationToken"> A CancellationToken enables cooperative cancellation between threads, thread pool work items, or Task objects.</param>
+        /// <returns>Task of <see cref="GenerateClientKeyResponse"/>.</returns>
+        Task<GenerateClientKeyResponse> GenerateNewClientKeyAsync(string merchantId, string apiCredentialId, RequestOptions requestOptions = default, CancellationToken cancellationToken = default);
+        
+    }
+    
+    /// <summary>
+    /// Represents a collection of functions to interact with the ClientKeyMerchantLevelService API endpoints
+    /// </summary>
+    public class ClientKeyMerchantLevelService : AbstractService, IClientKeyMerchantLevelService
     {
         private readonly string _baseUrl;
         
         public ClientKeyMerchantLevelService(Client client) : base(client)
         {
-            _baseUrl = client.Config.ManagementEndpoint + "/" + ClientConfig.ManagementVersion;
+            _baseUrl = CreateBaseUrl("https://management-test.adyen.com/v1");
         }
-    
-        /// <summary>
-        /// Generate new client key
-        /// </summary>
-        /// <param name="merchantId">The unique identifier of the merchant account.</param>
-        /// <param name="apiCredentialId">Unique identifier of the API credential.</param>
-        /// <param name="requestOptions">Additional request options.</param>
-        /// <returns>GenerateClientKeyResponse</returns>
+        
         public GenerateClientKeyResponse GenerateNewClientKey(string merchantId, string apiCredentialId, RequestOptions requestOptions = default)
         {
             return GenerateNewClientKeyAsync(merchantId, apiCredentialId, requestOptions).GetAwaiter().GetResult();
         }
 
-        /// <summary>
-        /// Generate new client key
-        /// </summary>
-        /// <param name="merchantId">The unique identifier of the merchant account.</param>
-        /// <param name="apiCredentialId">Unique identifier of the API credential.</param>
-        /// <param name="requestOptions">Additional request options.</param>
-        /// <returns>Task of GenerateClientKeyResponse</returns>
-        public async Task<GenerateClientKeyResponse> GenerateNewClientKeyAsync(string merchantId, string apiCredentialId, RequestOptions requestOptions = default)
+        public async Task<GenerateClientKeyResponse> GenerateNewClientKeyAsync(string merchantId, string apiCredentialId, RequestOptions requestOptions = default, CancellationToken cancellationToken = default)
         {
             var endpoint = _baseUrl + $"/merchants/{merchantId}/apiCredentials/{apiCredentialId}/generateClientKey";
             var resource = new ServiceResource(this, endpoint);
-            return await resource.RequestAsync<GenerateClientKeyResponse>(null, requestOptions, new HttpMethod("POST"));
+            return await resource.RequestAsync<GenerateClientKeyResponse>(null, requestOptions, new HttpMethod("POST"), cancellationToken);
         }
-
     }
 }

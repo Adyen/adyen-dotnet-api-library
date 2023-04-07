@@ -41,22 +41,22 @@ namespace Adyen.Model.Management
         public enum CommunicationFormatEnum
         {
             /// <summary>
-            /// Enum HTTP for value: HTTP
+            /// Enum Http for value: http
             /// </summary>
-            [EnumMember(Value = "HTTP")]
-            HTTP = 1,
+            [EnumMember(Value = "http")]
+            Http = 1,
 
             /// <summary>
-            /// Enum JSON for value: JSON
+            /// Enum Json for value: json
             /// </summary>
-            [EnumMember(Value = "JSON")]
-            JSON = 2,
+            [EnumMember(Value = "json")]
+            Json = 2,
 
             /// <summary>
-            /// Enum SOAP for value: SOAP
+            /// Enum Soap for value: soap
             /// </summary>
-            [EnumMember(Value = "SOAP")]
-            SOAP = 3
+            [EnumMember(Value = "soap")]
+            Soap = 3
 
         }
 
@@ -65,8 +65,8 @@ namespace Adyen.Model.Management
         /// Format or protocol for receiving webhooks. Possible values: * **soap** * **http** * **json** 
         /// </summary>
         /// <value>Format or protocol for receiving webhooks. Possible values: * **soap** * **http** * **json** </value>
-        [DataMember(Name = "communicationFormat", IsRequired = false, EmitDefaultValue = false)]
-        public CommunicationFormatEnum CommunicationFormat { get; set; }
+        [DataMember(Name = "communicationFormat", EmitDefaultValue = false)]
+        public CommunicationFormatEnum? CommunicationFormat { get; set; }
         /// <summary>
         /// Network type for Terminal API notification webhooks. Possible values: * **public** * **local**  Default Value: **public**.
         /// </summary>
@@ -115,52 +115,40 @@ namespace Adyen.Model.Management
             SSL = 2,
 
             /// <summary>
-            /// Enum SSLV3 for value: SSLV3
+            /// Enum SSLv3 for value: SSLv3
             /// </summary>
-            [EnumMember(Value = "SSLV3")]
-            SSLV3 = 3,
-
-            /// <summary>
-            /// Enum SSLINSECURECIPHERS for value: SSL_INSECURE_CIPHERS
-            /// </summary>
-            [EnumMember(Value = "SSL_INSECURE_CIPHERS")]
-            SSLINSECURECIPHERS = 4,
+            [EnumMember(Value = "SSLv3")]
+            SSLv3 = 3,
 
             /// <summary>
             /// Enum TLS for value: TLS
             /// </summary>
             [EnumMember(Value = "TLS")]
-            TLS = 5,
+            TLS = 4,
 
             /// <summary>
-            /// Enum TLSV1 for value: TLSV1
+            /// Enum TLSv1 for value: TLSv1
             /// </summary>
-            [EnumMember(Value = "TLSV1")]
-            TLSV1 = 6,
+            [EnumMember(Value = "TLSv1")]
+            TLSv1 = 5,
 
             /// <summary>
-            /// Enum TLSV11 for value: TLSV1_1
+            /// Enum TLSv11 for value: TLSv1.1
             /// </summary>
-            [EnumMember(Value = "TLSV1_1")]
-            TLSV11 = 7,
+            [EnumMember(Value = "TLSv1.1")]
+            TLSv11 = 6,
 
             /// <summary>
-            /// Enum TLSV12 for value: TLSV1_2
+            /// Enum TLSv12 for value: TLSv1.2
             /// </summary>
-            [EnumMember(Value = "TLSV1_2")]
-            TLSV12 = 8,
+            [EnumMember(Value = "TLSv1.2")]
+            TLSv12 = 7,
 
             /// <summary>
-            /// Enum TLSV13 for value: TLSV1_3
+            /// Enum TLSv13 for value: TLSv1.3
             /// </summary>
-            [EnumMember(Value = "TLSV1_3")]
-            TLSV13 = 9,
-
-            /// <summary>
-            /// Enum TLSV1INSECURECIPHERS for value: TLSV1_INSECURE_CIPHERS
-            /// </summary>
-            [EnumMember(Value = "TLSV1_INSECURE_CIPHERS")]
-            TLSV1INSECURECIPHERS = 10
+            [EnumMember(Value = "TLSv1.3")]
+            TLSv13 = 8
 
         }
 
@@ -174,38 +162,33 @@ namespace Adyen.Model.Management
         /// <summary>
         /// Initializes a new instance of the <see cref="UpdateMerchantWebhookRequest" /> class.
         /// </summary>
-        [JsonConstructorAttribute]
-        protected UpdateMerchantWebhookRequest() { }
-        /// <summary>
-        /// Initializes a new instance of the <see cref="UpdateMerchantWebhookRequest" /> class.
-        /// </summary>
         /// <param name="acceptsExpiredCertificate">Indicates if expired SSL certificates are accepted. Default value: **false**..</param>
         /// <param name="acceptsSelfSignedCertificate">Indicates if self-signed SSL certificates are accepted. Default value: **false**..</param>
         /// <param name="acceptsUntrustedRootCertificate">Indicates if untrusted SSL certificates are accepted. Default value: **false**..</param>
-        /// <param name="active">Indicates if the webhook configuration is active. The field must be **true** for us to send webhooks about events related an account. (required).</param>
+        /// <param name="active">Indicates if the webhook configuration is active. The field must be **true** for us to send webhooks about events related an account..</param>
         /// <param name="additionalSettings">additionalSettings.</param>
-        /// <param name="communicationFormat">Format or protocol for receiving webhooks. Possible values: * **soap** * **http** * **json**  (required).</param>
+        /// <param name="communicationFormat">Format or protocol for receiving webhooks. Possible values: * **soap** * **http** * **json** .</param>
         /// <param name="description">Your description for this webhook configuration..</param>
         /// <param name="networkType">Network type for Terminal API notification webhooks. Possible values: * **public** * **local**  Default Value: **public**..</param>
         /// <param name="password">Password to access the webhook URL..</param>
         /// <param name="populateSoapActionHeader">Indicates if the SOAP action header needs to be populated. Default value: **false**.  Only applies if &#x60;communicationFormat&#x60;: **soap**..</param>
         /// <param name="sslVersion">SSL version to access the public webhook URL specified in the &#x60;url&#x60; field. Possible values: * **TLSv1.3** * **TLSv1.2** * **HTTP** - Only allowed on Test environment.  If not specified, the webhook will use &#x60;sslVersion&#x60;: **TLSv1.2**..</param>
-        /// <param name="url">Public URL where webhooks will be sent, for example **https://www.domain.com/webhook-endpoint**. (required).</param>
+        /// <param name="url">Public URL where webhooks will be sent, for example **https://www.domain.com/webhook-endpoint**..</param>
         /// <param name="username">Username to access the webhook URL..</param>
-        public UpdateMerchantWebhookRequest(bool acceptsExpiredCertificate = default(bool), bool acceptsSelfSignedCertificate = default(bool), bool acceptsUntrustedRootCertificate = default(bool), bool active = default(bool), AdditionalSettings additionalSettings = default(AdditionalSettings), CommunicationFormatEnum communicationFormat = default(CommunicationFormatEnum), string description = default(string), NetworkTypeEnum? networkType = default(NetworkTypeEnum?), string password = default(string), bool populateSoapActionHeader = default(bool), SslVersionEnum? sslVersion = default(SslVersionEnum?), string url = default(string), string username = default(string))
+        public UpdateMerchantWebhookRequest(bool acceptsExpiredCertificate = default(bool), bool acceptsSelfSignedCertificate = default(bool), bool acceptsUntrustedRootCertificate = default(bool), bool active = default(bool), AdditionalSettings additionalSettings = default(AdditionalSettings), CommunicationFormatEnum? communicationFormat = default(CommunicationFormatEnum?), string description = default(string), NetworkTypeEnum? networkType = default(NetworkTypeEnum?), string password = default(string), bool populateSoapActionHeader = default(bool), SslVersionEnum? sslVersion = default(SslVersionEnum?), string url = default(string), string username = default(string))
         {
-            this.Active = active;
-            this.CommunicationFormat = communicationFormat;
-            this.Url = url;
             this.AcceptsExpiredCertificate = acceptsExpiredCertificate;
             this.AcceptsSelfSignedCertificate = acceptsSelfSignedCertificate;
             this.AcceptsUntrustedRootCertificate = acceptsUntrustedRootCertificate;
+            this.Active = active;
             this.AdditionalSettings = additionalSettings;
+            this.CommunicationFormat = communicationFormat;
             this.Description = description;
             this.NetworkType = networkType;
             this.Password = password;
             this.PopulateSoapActionHeader = populateSoapActionHeader;
             this.SslVersion = sslVersion;
+            this.Url = url;
             this.Username = username;
         }
 
@@ -234,7 +217,7 @@ namespace Adyen.Model.Management
         /// Indicates if the webhook configuration is active. The field must be **true** for us to send webhooks about events related an account.
         /// </summary>
         /// <value>Indicates if the webhook configuration is active. The field must be **true** for us to send webhooks about events related an account.</value>
-        [DataMember(Name = "active", IsRequired = false, EmitDefaultValue = false)]
+        [DataMember(Name = "active", EmitDefaultValue = false)]
         public bool Active { get; set; }
 
         /// <summary>
@@ -268,7 +251,7 @@ namespace Adyen.Model.Management
         /// Public URL where webhooks will be sent, for example **https://www.domain.com/webhook-endpoint**.
         /// </summary>
         /// <value>Public URL where webhooks will be sent, for example **https://www.domain.com/webhook-endpoint**.</value>
-        [DataMember(Name = "url", IsRequired = false, EmitDefaultValue = false)]
+        [DataMember(Name = "url", EmitDefaultValue = false)]
         public string Url { get; set; }
 
         /// <summary>

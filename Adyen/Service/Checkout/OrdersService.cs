@@ -81,7 +81,7 @@ namespace Adyen.Service.Checkout
     }
     
     /// <summary>
-    /// Represents a collection of functions to interact with the API endpoints
+    /// Represents a collection of functions to interact with the OrdersService API endpoints
     /// </summary>
     public class OrdersService : AbstractService, IOrdersService
     {
@@ -89,7 +89,7 @@ namespace Adyen.Service.Checkout
         
         public OrdersService(Client client) : base(client)
         {
-            _baseUrl = client.Config.CheckoutEndpoint + "/" + ClientConfig.CheckoutApiVersion;
+            _baseUrl = CreateBaseUrl("https://checkout-test.adyen.com/v70");
         }
         
         public CheckoutCreateOrderResponse Orders(CheckoutCreateOrderRequest checkoutCreateOrderRequest, RequestOptions requestOptions = default)

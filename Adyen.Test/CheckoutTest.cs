@@ -14,6 +14,7 @@ using Newtonsoft.Json.Linq;
 using static Adyen.Model.Checkout.PaymentResponse;
 using ApplicationInfo = Adyen.Model.ApplicationInformation.ApplicationInfo;
 using Environment = Adyen.Model.Environment;
+using IRecurringService = Adyen.Service.Checkout.IRecurringService;
 using RecurringService = Adyen.Service.Checkout.RecurringService;
 
 namespace Adyen.Test
@@ -1047,7 +1048,7 @@ namespace Adyen.Test
                     merchantAccount: "test_merchant_account",
                     amount: new Amount("USD", 5),
                     donationAccount: "Charity_TEST",
-                    paymentMethod: new PaymentDonationRequestPaymentMethod(new CardDetails()),
+                    paymentMethod: new CheckoutPaymentMethod(new CardDetails()),
                     reference: "179761FE-1913-4226-9F43-E475DE634BBA",
                     returnUrl: "https://your-company.com/...");
             var donationResponse = checkout.Donations(paymentDonationRequest);

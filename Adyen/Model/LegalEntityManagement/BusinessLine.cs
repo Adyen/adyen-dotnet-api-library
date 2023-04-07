@@ -113,14 +113,6 @@ namespace Adyen.Model.LegalEntityManagement
         public string Id { get; private set; }
 
         /// <summary>
-        /// Returns false as Id should not be serialized given that it's read-only.
-        /// </summary>
-        /// <returns>false (boolean)</returns>
-        public bool ShouldSerializeId()
-        {
-            return false;
-        }
-        /// <summary>
         /// A code that represents the industry of the legal entity. For example, **4431A** for computer software stores.
         /// </summary>
         /// <value>A code that represents the industry of the legal entity. For example, **4431A** for computer software stores.</value>

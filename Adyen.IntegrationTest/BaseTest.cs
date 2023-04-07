@@ -22,7 +22,7 @@ namespace Adyen.IntegrationTest
         public PaymentResult CreatePaymentResult()
         {
             var client = CreateApiKeyTestClient();
-            var payment = new PaymentService(client);
+            var payment = new GeneralService(client);
             var paymentRequest = CreateFullPaymentRequest();
             var paymentResult = payment.Authorise(paymentRequest);
 
@@ -32,7 +32,7 @@ namespace Adyen.IntegrationTest
         public async Task<PaymentResult> CreatePaymentResultAsync()
         {
             var client = CreateApiKeyTestClient();
-            var payment = new PaymentService(client);
+            var payment = new GeneralService(client);
             var paymentRequest = CreateFullPaymentRequest();
             var paymentResult = await payment.AuthoriseAsync(paymentRequest);
 
@@ -42,7 +42,7 @@ namespace Adyen.IntegrationTest
         public PaymentResult CreatePaymentResultWithApiKeyAuthentication()
         {
             var client = CreateApiKeyTestClient();
-            var payment = new PaymentService(client);
+            var payment = new GeneralService(client);
             var paymentRequest = CreateFullPaymentRequest();
             var paymentResult = payment.Authorise(paymentRequest);
 
@@ -52,7 +52,7 @@ namespace Adyen.IntegrationTest
         public PaymentResult CreatePaymentResultWithIdempotency(string idempotency)
         {
             var client = CreateApiKeyTestClient();
-            var payment = new PaymentService(client);
+            var payment = new GeneralService(client);
             var paymentRequest = CreateFullPaymentRequest();
             var paymentResult = payment.Authorise(paymentRequest, new RequestOptions{ IdempotencyKey=idempotency});
 
@@ -62,7 +62,7 @@ namespace Adyen.IntegrationTest
         public PaymentResult CreatePaymentResultWithRecurring(Recurring.ContractEnum contract)
         {
             var client = CreateApiKeyTestClient();
-            var payment = new PaymentService(client);
+            var payment = new GeneralService(client);
             var paymentRequest = CreateFullPaymentRequestWithRecurring(contract);
             var paymentResult = payment.Authorise(paymentRequest);
 
@@ -227,7 +227,7 @@ namespace Adyen.IntegrationTest
                 HolderName = "John Smith",
                 Cvc = "737"
             };
-            paymentsRequest.PaymentMethod = new PaymentDonationRequestPaymentMethod(cardDetails);
+            paymentsRequest.PaymentMethod = new CheckoutPaymentMethod(cardDetails);
             return paymentsRequest;
         }
 
@@ -243,7 +243,7 @@ namespace Adyen.IntegrationTest
             {
                 Reference = "Your order number from e2e",
                 Amount = amount,
-                PaymentMethod= new Model.Checkout.PaymentDonationRequestPaymentMethod(new IdealDetails(type: IdealDetails.TypeEnum.Ideal, issuer: "1121")),
+                PaymentMethod= new Model.Checkout.CheckoutPaymentMethod(new IdealDetails(type: IdealDetails.TypeEnum.Ideal, issuer: "1121")),
                 ReturnUrl = @"https://your-company.com/...",
                 MerchantAccount = ClientConstants.MerchantAccount,
             };

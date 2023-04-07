@@ -117,14 +117,6 @@ namespace Adyen.Model.LegalEntityManagement
         public Dictionary<string, LegalEntityCapability> Capabilities { get; private set; }
 
         /// <summary>
-        /// Returns false as Capabilities should not be serialized given that it's read-only.
-        /// </summary>
-        /// <returns>false (boolean)</returns>
-        public bool ShouldSerializeCapabilities()
-        {
-            return false;
-        }
-        /// <summary>
         /// List of documents uploaded for the legal entity.
         /// </summary>
         /// <value>List of documents uploaded for the legal entity.</value>
@@ -153,14 +145,6 @@ namespace Adyen.Model.LegalEntityManagement
         [DataMember(Name = "id", IsRequired = false, EmitDefaultValue = false)]
         public string Id { get; private set; }
 
-        /// <summary>
-        /// Returns false as Id should not be serialized given that it's read-only.
-        /// </summary>
-        /// <returns>false (boolean)</returns>
-        public bool ShouldSerializeId()
-        {
-            return false;
-        }
         /// <summary>
         /// Gets or Sets Individual
         /// </summary>
@@ -200,14 +184,6 @@ namespace Adyen.Model.LegalEntityManagement
         [DataMember(Name = "transferInstruments", EmitDefaultValue = false)]
         public List<TransferInstrumentReference> TransferInstruments { get; private set; }
 
-        /// <summary>
-        /// Returns false as TransferInstruments should not be serialized given that it's read-only.
-        /// </summary>
-        /// <returns>false (boolean)</returns>
-        public bool ShouldSerializeTransferInstruments()
-        {
-            return false;
-        }
         /// <summary>
         /// Returns the string presentation of the object
         /// </summary>

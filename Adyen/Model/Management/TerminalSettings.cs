@@ -44,6 +44,8 @@ namespace Adyen.Model.Management
         /// <param name="offlineProcessing">offlineProcessing.</param>
         /// <param name="opi">opi.</param>
         /// <param name="passcodes">passcodes.</param>
+        /// <param name="payAtTable">payAtTable.</param>
+        /// <param name="payment">payment.</param>
         /// <param name="receiptOptions">receiptOptions.</param>
         /// <param name="receiptPrinting">receiptPrinting.</param>
         /// <param name="signature">signature.</param>
@@ -51,7 +53,7 @@ namespace Adyen.Model.Management
         /// <param name="surcharge">surcharge.</param>
         /// <param name="timeouts">timeouts.</param>
         /// <param name="wifiProfiles">wifiProfiles.</param>
-        public TerminalSettings(CardholderReceipt cardholderReceipt = default(CardholderReceipt), Connectivity connectivity = default(Connectivity), List<Gratuity> gratuities = default(List<Gratuity>), Hardware hardware = default(Hardware), Nexo nexo = default(Nexo), OfflineProcessing offlineProcessing = default(OfflineProcessing), Opi opi = default(Opi), Passcodes passcodes = default(Passcodes), ReceiptOptions receiptOptions = default(ReceiptOptions), ReceiptPrinting receiptPrinting = default(ReceiptPrinting), Signature signature = default(Signature), Standalone standalone = default(Standalone), Surcharge surcharge = default(Surcharge), Timeouts timeouts = default(Timeouts), WifiProfiles wifiProfiles = default(WifiProfiles))
+        public TerminalSettings(CardholderReceipt cardholderReceipt = default(CardholderReceipt), Connectivity connectivity = default(Connectivity), List<Gratuity> gratuities = default(List<Gratuity>), Hardware hardware = default(Hardware), Nexo nexo = default(Nexo), OfflineProcessing offlineProcessing = default(OfflineProcessing), Opi opi = default(Opi), Passcodes passcodes = default(Passcodes), PayAtTable payAtTable = default(PayAtTable), Payment payment = default(Payment), ReceiptOptions receiptOptions = default(ReceiptOptions), ReceiptPrinting receiptPrinting = default(ReceiptPrinting), Signature signature = default(Signature), Standalone standalone = default(Standalone), Surcharge surcharge = default(Surcharge), Timeouts timeouts = default(Timeouts), WifiProfiles wifiProfiles = default(WifiProfiles))
         {
             this.CardholderReceipt = cardholderReceipt;
             this.Connectivity = connectivity;
@@ -61,6 +63,8 @@ namespace Adyen.Model.Management
             this.OfflineProcessing = offlineProcessing;
             this.Opi = opi;
             this.Passcodes = passcodes;
+            this.PayAtTable = payAtTable;
+            this.Payment = payment;
             this.ReceiptOptions = receiptOptions;
             this.ReceiptPrinting = receiptPrinting;
             this.Signature = signature;
@@ -120,6 +124,18 @@ namespace Adyen.Model.Management
         public Passcodes Passcodes { get; set; }
 
         /// <summary>
+        /// Gets or Sets PayAtTable
+        /// </summary>
+        [DataMember(Name = "payAtTable", EmitDefaultValue = false)]
+        public PayAtTable PayAtTable { get; set; }
+
+        /// <summary>
+        /// Gets or Sets Payment
+        /// </summary>
+        [DataMember(Name = "payment", EmitDefaultValue = false)]
+        public Payment Payment { get; set; }
+
+        /// <summary>
         /// Gets or Sets ReceiptOptions
         /// </summary>
         [DataMember(Name = "receiptOptions", EmitDefaultValue = false)]
@@ -177,6 +193,8 @@ namespace Adyen.Model.Management
             sb.Append("  OfflineProcessing: ").Append(OfflineProcessing).Append("\n");
             sb.Append("  Opi: ").Append(Opi).Append("\n");
             sb.Append("  Passcodes: ").Append(Passcodes).Append("\n");
+            sb.Append("  PayAtTable: ").Append(PayAtTable).Append("\n");
+            sb.Append("  Payment: ").Append(Payment).Append("\n");
             sb.Append("  ReceiptOptions: ").Append(ReceiptOptions).Append("\n");
             sb.Append("  ReceiptPrinting: ").Append(ReceiptPrinting).Append("\n");
             sb.Append("  Signature: ").Append(Signature).Append("\n");
@@ -261,6 +279,16 @@ namespace Adyen.Model.Management
                     this.Passcodes.Equals(input.Passcodes))
                 ) && 
                 (
+                    this.PayAtTable == input.PayAtTable ||
+                    (this.PayAtTable != null &&
+                    this.PayAtTable.Equals(input.PayAtTable))
+                ) && 
+                (
+                    this.Payment == input.Payment ||
+                    (this.Payment != null &&
+                    this.Payment.Equals(input.Payment))
+                ) && 
+                (
                     this.ReceiptOptions == input.ReceiptOptions ||
                     (this.ReceiptOptions != null &&
                     this.ReceiptOptions.Equals(input.ReceiptOptions))
@@ -337,6 +365,14 @@ namespace Adyen.Model.Management
                 if (this.Passcodes != null)
                 {
                     hashCode = (hashCode * 59) + this.Passcodes.GetHashCode();
+                }
+                if (this.PayAtTable != null)
+                {
+                    hashCode = (hashCode * 59) + this.PayAtTable.GetHashCode();
+                }
+                if (this.Payment != null)
+                {
+                    hashCode = (hashCode * 59) + this.Payment.GetHashCode();
                 }
                 if (this.ReceiptOptions != null)
                 {

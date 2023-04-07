@@ -31,16 +31,16 @@ namespace Adyen.Model.Checkout
     /// <summary>
     /// The type and required details of a payment method to use.
     /// </summary>
-    [JsonConverter(typeof(PaymentDonationRequestPaymentMethodJsonConverter))]
-    [DataContract(Name = "PaymentDonationRequest_paymentMethod")]
-    public partial class PaymentDonationRequestPaymentMethod : AbstractOpenAPISchema, IEquatable<PaymentDonationRequestPaymentMethod>, IValidatableObject
+    [JsonConverter(typeof(CheckoutPaymentMethodJsonConverter))]
+    [DataContract(Name = "CheckoutPaymentMethod")]
+    public partial class CheckoutPaymentMethod : AbstractOpenAPISchema, IEquatable<CheckoutPaymentMethod>, IValidatableObject
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="PaymentDonationRequestPaymentMethod" /> class
+        /// Initializes a new instance of the <see cref="CheckoutPaymentMethod" /> class
         /// with the <see cref="AchDetails" /> class
         /// </summary>
         /// <param name="actualInstance">An instance of AchDetails.</param>
-        public PaymentDonationRequestPaymentMethod(AchDetails actualInstance)
+        public CheckoutPaymentMethod(AchDetails actualInstance)
         {
             this.IsNullable = false;
             this.SchemaType= "oneOf";
@@ -48,11 +48,11 @@ namespace Adyen.Model.Checkout
         }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="PaymentDonationRequestPaymentMethod" /> class
+        /// Initializes a new instance of the <see cref="CheckoutPaymentMethod" /> class
         /// with the <see cref="AfterpayDetails" /> class
         /// </summary>
         /// <param name="actualInstance">An instance of AfterpayDetails.</param>
-        public PaymentDonationRequestPaymentMethod(AfterpayDetails actualInstance)
+        public CheckoutPaymentMethod(AfterpayDetails actualInstance)
         {
             this.IsNullable = false;
             this.SchemaType= "oneOf";
@@ -60,11 +60,11 @@ namespace Adyen.Model.Checkout
         }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="PaymentDonationRequestPaymentMethod" /> class
+        /// Initializes a new instance of the <see cref="CheckoutPaymentMethod" /> class
         /// with the <see cref="AmazonPayDetails" /> class
         /// </summary>
         /// <param name="actualInstance">An instance of AmazonPayDetails.</param>
-        public PaymentDonationRequestPaymentMethod(AmazonPayDetails actualInstance)
+        public CheckoutPaymentMethod(AmazonPayDetails actualInstance)
         {
             this.IsNullable = false;
             this.SchemaType= "oneOf";
@@ -72,11 +72,11 @@ namespace Adyen.Model.Checkout
         }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="PaymentDonationRequestPaymentMethod" /> class
+        /// Initializes a new instance of the <see cref="CheckoutPaymentMethod" /> class
         /// with the <see cref="AndroidPayDetails" /> class
         /// </summary>
         /// <param name="actualInstance">An instance of AndroidPayDetails.</param>
-        public PaymentDonationRequestPaymentMethod(AndroidPayDetails actualInstance)
+        public CheckoutPaymentMethod(AndroidPayDetails actualInstance)
         {
             this.IsNullable = false;
             this.SchemaType= "oneOf";
@@ -84,11 +84,11 @@ namespace Adyen.Model.Checkout
         }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="PaymentDonationRequestPaymentMethod" /> class
+        /// Initializes a new instance of the <see cref="CheckoutPaymentMethod" /> class
         /// with the <see cref="ApplePayDetails" /> class
         /// </summary>
         /// <param name="actualInstance">An instance of ApplePayDetails.</param>
-        public PaymentDonationRequestPaymentMethod(ApplePayDetails actualInstance)
+        public CheckoutPaymentMethod(ApplePayDetails actualInstance)
         {
             this.IsNullable = false;
             this.SchemaType= "oneOf";
@@ -96,11 +96,11 @@ namespace Adyen.Model.Checkout
         }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="PaymentDonationRequestPaymentMethod" /> class
+        /// Initializes a new instance of the <see cref="CheckoutPaymentMethod" /> class
         /// with the <see cref="BacsDirectDebitDetails" /> class
         /// </summary>
         /// <param name="actualInstance">An instance of BacsDirectDebitDetails.</param>
-        public PaymentDonationRequestPaymentMethod(BacsDirectDebitDetails actualInstance)
+        public CheckoutPaymentMethod(BacsDirectDebitDetails actualInstance)
         {
             this.IsNullable = false;
             this.SchemaType= "oneOf";
@@ -108,11 +108,11 @@ namespace Adyen.Model.Checkout
         }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="PaymentDonationRequestPaymentMethod" /> class
+        /// Initializes a new instance of the <see cref="CheckoutPaymentMethod" /> class
         /// with the <see cref="BillDeskDetails" /> class
         /// </summary>
         /// <param name="actualInstance">An instance of BillDeskDetails.</param>
-        public PaymentDonationRequestPaymentMethod(BillDeskDetails actualInstance)
+        public CheckoutPaymentMethod(BillDeskDetails actualInstance)
         {
             this.IsNullable = false;
             this.SchemaType= "oneOf";
@@ -120,11 +120,11 @@ namespace Adyen.Model.Checkout
         }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="PaymentDonationRequestPaymentMethod" /> class
+        /// Initializes a new instance of the <see cref="CheckoutPaymentMethod" /> class
         /// with the <see cref="BlikDetails" /> class
         /// </summary>
         /// <param name="actualInstance">An instance of BlikDetails.</param>
-        public PaymentDonationRequestPaymentMethod(BlikDetails actualInstance)
+        public CheckoutPaymentMethod(BlikDetails actualInstance)
         {
             this.IsNullable = false;
             this.SchemaType= "oneOf";
@@ -132,11 +132,11 @@ namespace Adyen.Model.Checkout
         }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="PaymentDonationRequestPaymentMethod" /> class
+        /// Initializes a new instance of the <see cref="CheckoutPaymentMethod" /> class
         /// with the <see cref="CardDetails" /> class
         /// </summary>
         /// <param name="actualInstance">An instance of CardDetails.</param>
-        public PaymentDonationRequestPaymentMethod(CardDetails actualInstance)
+        public CheckoutPaymentMethod(CardDetails actualInstance)
         {
             this.IsNullable = false;
             this.SchemaType= "oneOf";
@@ -144,11 +144,11 @@ namespace Adyen.Model.Checkout
         }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="PaymentDonationRequestPaymentMethod" /> class
+        /// Initializes a new instance of the <see cref="CheckoutPaymentMethod" /> class
         /// with the <see cref="CellulantDetails" /> class
         /// </summary>
         /// <param name="actualInstance">An instance of CellulantDetails.</param>
-        public PaymentDonationRequestPaymentMethod(CellulantDetails actualInstance)
+        public CheckoutPaymentMethod(CellulantDetails actualInstance)
         {
             this.IsNullable = false;
             this.SchemaType= "oneOf";
@@ -156,11 +156,11 @@ namespace Adyen.Model.Checkout
         }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="PaymentDonationRequestPaymentMethod" /> class
+        /// Initializes a new instance of the <see cref="CheckoutPaymentMethod" /> class
         /// with the <see cref="DokuDetails" /> class
         /// </summary>
         /// <param name="actualInstance">An instance of DokuDetails.</param>
-        public PaymentDonationRequestPaymentMethod(DokuDetails actualInstance)
+        public CheckoutPaymentMethod(DokuDetails actualInstance)
         {
             this.IsNullable = false;
             this.SchemaType= "oneOf";
@@ -168,11 +168,11 @@ namespace Adyen.Model.Checkout
         }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="PaymentDonationRequestPaymentMethod" /> class
+        /// Initializes a new instance of the <see cref="CheckoutPaymentMethod" /> class
         /// with the <see cref="DotpayDetails" /> class
         /// </summary>
         /// <param name="actualInstance">An instance of DotpayDetails.</param>
-        public PaymentDonationRequestPaymentMethod(DotpayDetails actualInstance)
+        public CheckoutPaymentMethod(DotpayDetails actualInstance)
         {
             this.IsNullable = false;
             this.SchemaType= "oneOf";
@@ -180,11 +180,11 @@ namespace Adyen.Model.Checkout
         }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="PaymentDonationRequestPaymentMethod" /> class
+        /// Initializes a new instance of the <see cref="CheckoutPaymentMethod" /> class
         /// with the <see cref="DragonpayDetails" /> class
         /// </summary>
         /// <param name="actualInstance">An instance of DragonpayDetails.</param>
-        public PaymentDonationRequestPaymentMethod(DragonpayDetails actualInstance)
+        public CheckoutPaymentMethod(DragonpayDetails actualInstance)
         {
             this.IsNullable = false;
             this.SchemaType= "oneOf";
@@ -192,11 +192,11 @@ namespace Adyen.Model.Checkout
         }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="PaymentDonationRequestPaymentMethod" /> class
+        /// Initializes a new instance of the <see cref="CheckoutPaymentMethod" /> class
         /// with the <see cref="EcontextVoucherDetails" /> class
         /// </summary>
         /// <param name="actualInstance">An instance of EcontextVoucherDetails.</param>
-        public PaymentDonationRequestPaymentMethod(EcontextVoucherDetails actualInstance)
+        public CheckoutPaymentMethod(EcontextVoucherDetails actualInstance)
         {
             this.IsNullable = false;
             this.SchemaType= "oneOf";
@@ -204,11 +204,11 @@ namespace Adyen.Model.Checkout
         }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="PaymentDonationRequestPaymentMethod" /> class
+        /// Initializes a new instance of the <see cref="CheckoutPaymentMethod" /> class
         /// with the <see cref="GenericIssuerPaymentMethodDetails" /> class
         /// </summary>
         /// <param name="actualInstance">An instance of GenericIssuerPaymentMethodDetails.</param>
-        public PaymentDonationRequestPaymentMethod(GenericIssuerPaymentMethodDetails actualInstance)
+        public CheckoutPaymentMethod(GenericIssuerPaymentMethodDetails actualInstance)
         {
             this.IsNullable = false;
             this.SchemaType= "oneOf";
@@ -216,11 +216,11 @@ namespace Adyen.Model.Checkout
         }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="PaymentDonationRequestPaymentMethod" /> class
+        /// Initializes a new instance of the <see cref="CheckoutPaymentMethod" /> class
         /// with the <see cref="GiropayDetails" /> class
         /// </summary>
         /// <param name="actualInstance">An instance of GiropayDetails.</param>
-        public PaymentDonationRequestPaymentMethod(GiropayDetails actualInstance)
+        public CheckoutPaymentMethod(GiropayDetails actualInstance)
         {
             this.IsNullable = false;
             this.SchemaType= "oneOf";
@@ -228,11 +228,11 @@ namespace Adyen.Model.Checkout
         }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="PaymentDonationRequestPaymentMethod" /> class
+        /// Initializes a new instance of the <see cref="CheckoutPaymentMethod" /> class
         /// with the <see cref="GooglePayDetails" /> class
         /// </summary>
         /// <param name="actualInstance">An instance of GooglePayDetails.</param>
-        public PaymentDonationRequestPaymentMethod(GooglePayDetails actualInstance)
+        public CheckoutPaymentMethod(GooglePayDetails actualInstance)
         {
             this.IsNullable = false;
             this.SchemaType= "oneOf";
@@ -240,11 +240,11 @@ namespace Adyen.Model.Checkout
         }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="PaymentDonationRequestPaymentMethod" /> class
+        /// Initializes a new instance of the <see cref="CheckoutPaymentMethod" /> class
         /// with the <see cref="IdealDetails" /> class
         /// </summary>
         /// <param name="actualInstance">An instance of IdealDetails.</param>
-        public PaymentDonationRequestPaymentMethod(IdealDetails actualInstance)
+        public CheckoutPaymentMethod(IdealDetails actualInstance)
         {
             this.IsNullable = false;
             this.SchemaType= "oneOf";
@@ -252,11 +252,11 @@ namespace Adyen.Model.Checkout
         }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="PaymentDonationRequestPaymentMethod" /> class
+        /// Initializes a new instance of the <see cref="CheckoutPaymentMethod" /> class
         /// with the <see cref="KlarnaDetails" /> class
         /// </summary>
         /// <param name="actualInstance">An instance of KlarnaDetails.</param>
-        public PaymentDonationRequestPaymentMethod(KlarnaDetails actualInstance)
+        public CheckoutPaymentMethod(KlarnaDetails actualInstance)
         {
             this.IsNullable = false;
             this.SchemaType= "oneOf";
@@ -264,11 +264,11 @@ namespace Adyen.Model.Checkout
         }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="PaymentDonationRequestPaymentMethod" /> class
+        /// Initializes a new instance of the <see cref="CheckoutPaymentMethod" /> class
         /// with the <see cref="MasterpassDetails" /> class
         /// </summary>
         /// <param name="actualInstance">An instance of MasterpassDetails.</param>
-        public PaymentDonationRequestPaymentMethod(MasterpassDetails actualInstance)
+        public CheckoutPaymentMethod(MasterpassDetails actualInstance)
         {
             this.IsNullable = false;
             this.SchemaType= "oneOf";
@@ -276,11 +276,11 @@ namespace Adyen.Model.Checkout
         }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="PaymentDonationRequestPaymentMethod" /> class
+        /// Initializes a new instance of the <see cref="CheckoutPaymentMethod" /> class
         /// with the <see cref="MbwayDetails" /> class
         /// </summary>
         /// <param name="actualInstance">An instance of MbwayDetails.</param>
-        public PaymentDonationRequestPaymentMethod(MbwayDetails actualInstance)
+        public CheckoutPaymentMethod(MbwayDetails actualInstance)
         {
             this.IsNullable = false;
             this.SchemaType= "oneOf";
@@ -288,11 +288,11 @@ namespace Adyen.Model.Checkout
         }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="PaymentDonationRequestPaymentMethod" /> class
+        /// Initializes a new instance of the <see cref="CheckoutPaymentMethod" /> class
         /// with the <see cref="MobilePayDetails" /> class
         /// </summary>
         /// <param name="actualInstance">An instance of MobilePayDetails.</param>
-        public PaymentDonationRequestPaymentMethod(MobilePayDetails actualInstance)
+        public CheckoutPaymentMethod(MobilePayDetails actualInstance)
         {
             this.IsNullable = false;
             this.SchemaType= "oneOf";
@@ -300,11 +300,11 @@ namespace Adyen.Model.Checkout
         }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="PaymentDonationRequestPaymentMethod" /> class
+        /// Initializes a new instance of the <see cref="CheckoutPaymentMethod" /> class
         /// with the <see cref="MolPayDetails" /> class
         /// </summary>
         /// <param name="actualInstance">An instance of MolPayDetails.</param>
-        public PaymentDonationRequestPaymentMethod(MolPayDetails actualInstance)
+        public CheckoutPaymentMethod(MolPayDetails actualInstance)
         {
             this.IsNullable = false;
             this.SchemaType= "oneOf";
@@ -312,11 +312,11 @@ namespace Adyen.Model.Checkout
         }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="PaymentDonationRequestPaymentMethod" /> class
+        /// Initializes a new instance of the <see cref="CheckoutPaymentMethod" /> class
         /// with the <see cref="OpenInvoiceDetails" /> class
         /// </summary>
         /// <param name="actualInstance">An instance of OpenInvoiceDetails.</param>
-        public PaymentDonationRequestPaymentMethod(OpenInvoiceDetails actualInstance)
+        public CheckoutPaymentMethod(OpenInvoiceDetails actualInstance)
         {
             this.IsNullable = false;
             this.SchemaType= "oneOf";
@@ -324,11 +324,11 @@ namespace Adyen.Model.Checkout
         }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="PaymentDonationRequestPaymentMethod" /> class
+        /// Initializes a new instance of the <see cref="CheckoutPaymentMethod" /> class
         /// with the <see cref="PayPalDetails" /> class
         /// </summary>
         /// <param name="actualInstance">An instance of PayPalDetails.</param>
-        public PaymentDonationRequestPaymentMethod(PayPalDetails actualInstance)
+        public CheckoutPaymentMethod(PayPalDetails actualInstance)
         {
             this.IsNullable = false;
             this.SchemaType= "oneOf";
@@ -336,11 +336,11 @@ namespace Adyen.Model.Checkout
         }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="PaymentDonationRequestPaymentMethod" /> class
+        /// Initializes a new instance of the <see cref="CheckoutPaymentMethod" /> class
         /// with the <see cref="PayUUpiDetails" /> class
         /// </summary>
         /// <param name="actualInstance">An instance of PayUUpiDetails.</param>
-        public PaymentDonationRequestPaymentMethod(PayUUpiDetails actualInstance)
+        public CheckoutPaymentMethod(PayUUpiDetails actualInstance)
         {
             this.IsNullable = false;
             this.SchemaType= "oneOf";
@@ -348,11 +348,11 @@ namespace Adyen.Model.Checkout
         }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="PaymentDonationRequestPaymentMethod" /> class
+        /// Initializes a new instance of the <see cref="CheckoutPaymentMethod" /> class
         /// with the <see cref="PayWithGoogleDetails" /> class
         /// </summary>
         /// <param name="actualInstance">An instance of PayWithGoogleDetails.</param>
-        public PaymentDonationRequestPaymentMethod(PayWithGoogleDetails actualInstance)
+        public CheckoutPaymentMethod(PayWithGoogleDetails actualInstance)
         {
             this.IsNullable = false;
             this.SchemaType= "oneOf";
@@ -360,11 +360,11 @@ namespace Adyen.Model.Checkout
         }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="PaymentDonationRequestPaymentMethod" /> class
+        /// Initializes a new instance of the <see cref="CheckoutPaymentMethod" /> class
         /// with the <see cref="PaymentDetails" /> class
         /// </summary>
         /// <param name="actualInstance">An instance of PaymentDetails.</param>
-        public PaymentDonationRequestPaymentMethod(PaymentDetails actualInstance)
+        public CheckoutPaymentMethod(PaymentDetails actualInstance)
         {
             this.IsNullable = false;
             this.SchemaType= "oneOf";
@@ -372,11 +372,11 @@ namespace Adyen.Model.Checkout
         }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="PaymentDonationRequestPaymentMethod" /> class
+        /// Initializes a new instance of the <see cref="CheckoutPaymentMethod" /> class
         /// with the <see cref="RatepayDetails" /> class
         /// </summary>
         /// <param name="actualInstance">An instance of RatepayDetails.</param>
-        public PaymentDonationRequestPaymentMethod(RatepayDetails actualInstance)
+        public CheckoutPaymentMethod(RatepayDetails actualInstance)
         {
             this.IsNullable = false;
             this.SchemaType= "oneOf";
@@ -384,11 +384,11 @@ namespace Adyen.Model.Checkout
         }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="PaymentDonationRequestPaymentMethod" /> class
+        /// Initializes a new instance of the <see cref="CheckoutPaymentMethod" /> class
         /// with the <see cref="SamsungPayDetails" /> class
         /// </summary>
         /// <param name="actualInstance">An instance of SamsungPayDetails.</param>
-        public PaymentDonationRequestPaymentMethod(SamsungPayDetails actualInstance)
+        public CheckoutPaymentMethod(SamsungPayDetails actualInstance)
         {
             this.IsNullable = false;
             this.SchemaType= "oneOf";
@@ -396,11 +396,11 @@ namespace Adyen.Model.Checkout
         }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="PaymentDonationRequestPaymentMethod" /> class
+        /// Initializes a new instance of the <see cref="CheckoutPaymentMethod" /> class
         /// with the <see cref="SepaDirectDebitDetails" /> class
         /// </summary>
         /// <param name="actualInstance">An instance of SepaDirectDebitDetails.</param>
-        public PaymentDonationRequestPaymentMethod(SepaDirectDebitDetails actualInstance)
+        public CheckoutPaymentMethod(SepaDirectDebitDetails actualInstance)
         {
             this.IsNullable = false;
             this.SchemaType= "oneOf";
@@ -408,11 +408,11 @@ namespace Adyen.Model.Checkout
         }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="PaymentDonationRequestPaymentMethod" /> class
+        /// Initializes a new instance of the <see cref="CheckoutPaymentMethod" /> class
         /// with the <see cref="StoredPaymentMethodDetails" /> class
         /// </summary>
         /// <param name="actualInstance">An instance of StoredPaymentMethodDetails.</param>
-        public PaymentDonationRequestPaymentMethod(StoredPaymentMethodDetails actualInstance)
+        public CheckoutPaymentMethod(StoredPaymentMethodDetails actualInstance)
         {
             this.IsNullable = false;
             this.SchemaType= "oneOf";
@@ -420,11 +420,11 @@ namespace Adyen.Model.Checkout
         }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="PaymentDonationRequestPaymentMethod" /> class
+        /// Initializes a new instance of the <see cref="CheckoutPaymentMethod" /> class
         /// with the <see cref="UpiCollectDetails" /> class
         /// </summary>
         /// <param name="actualInstance">An instance of UpiCollectDetails.</param>
-        public PaymentDonationRequestPaymentMethod(UpiCollectDetails actualInstance)
+        public CheckoutPaymentMethod(UpiCollectDetails actualInstance)
         {
             this.IsNullable = false;
             this.SchemaType= "oneOf";
@@ -432,11 +432,11 @@ namespace Adyen.Model.Checkout
         }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="PaymentDonationRequestPaymentMethod" /> class
+        /// Initializes a new instance of the <see cref="CheckoutPaymentMethod" /> class
         /// with the <see cref="UpiIntentDetails" /> class
         /// </summary>
         /// <param name="actualInstance">An instance of UpiIntentDetails.</param>
-        public PaymentDonationRequestPaymentMethod(UpiIntentDetails actualInstance)
+        public CheckoutPaymentMethod(UpiIntentDetails actualInstance)
         {
             this.IsNullable = false;
             this.SchemaType= "oneOf";
@@ -444,11 +444,11 @@ namespace Adyen.Model.Checkout
         }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="PaymentDonationRequestPaymentMethod" /> class
+        /// Initializes a new instance of the <see cref="CheckoutPaymentMethod" /> class
         /// with the <see cref="VippsDetails" /> class
         /// </summary>
         /// <param name="actualInstance">An instance of VippsDetails.</param>
-        public PaymentDonationRequestPaymentMethod(VippsDetails actualInstance)
+        public CheckoutPaymentMethod(VippsDetails actualInstance)
         {
             this.IsNullable = false;
             this.SchemaType= "oneOf";
@@ -456,11 +456,11 @@ namespace Adyen.Model.Checkout
         }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="PaymentDonationRequestPaymentMethod" /> class
+        /// Initializes a new instance of the <see cref="CheckoutPaymentMethod" /> class
         /// with the <see cref="VisaCheckoutDetails" /> class
         /// </summary>
         /// <param name="actualInstance">An instance of VisaCheckoutDetails.</param>
-        public PaymentDonationRequestPaymentMethod(VisaCheckoutDetails actualInstance)
+        public CheckoutPaymentMethod(VisaCheckoutDetails actualInstance)
         {
             this.IsNullable = false;
             this.SchemaType= "oneOf";
@@ -468,11 +468,11 @@ namespace Adyen.Model.Checkout
         }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="PaymentDonationRequestPaymentMethod" /> class
+        /// Initializes a new instance of the <see cref="CheckoutPaymentMethod" /> class
         /// with the <see cref="WeChatPayDetails" /> class
         /// </summary>
         /// <param name="actualInstance">An instance of WeChatPayDetails.</param>
-        public PaymentDonationRequestPaymentMethod(WeChatPayDetails actualInstance)
+        public CheckoutPaymentMethod(WeChatPayDetails actualInstance)
         {
             this.IsNullable = false;
             this.SchemaType= "oneOf";
@@ -480,11 +480,11 @@ namespace Adyen.Model.Checkout
         }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="PaymentDonationRequestPaymentMethod" /> class
+        /// Initializes a new instance of the <see cref="CheckoutPaymentMethod" /> class
         /// with the <see cref="WeChatPayMiniProgramDetails" /> class
         /// </summary>
         /// <param name="actualInstance">An instance of WeChatPayMiniProgramDetails.</param>
-        public PaymentDonationRequestPaymentMethod(WeChatPayMiniProgramDetails actualInstance)
+        public CheckoutPaymentMethod(WeChatPayMiniProgramDetails actualInstance)
         {
             this.IsNullable = false;
             this.SchemaType= "oneOf";
@@ -492,11 +492,11 @@ namespace Adyen.Model.Checkout
         }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="PaymentDonationRequestPaymentMethod" /> class
+        /// Initializes a new instance of the <see cref="CheckoutPaymentMethod" /> class
         /// with the <see cref="ZipDetails" /> class
         /// </summary>
         /// <param name="actualInstance">An instance of ZipDetails.</param>
-        public PaymentDonationRequestPaymentMethod(ZipDetails actualInstance)
+        public CheckoutPaymentMethod(ZipDetails actualInstance)
         {
             this.IsNullable = false;
             this.SchemaType= "oneOf";
@@ -1077,7 +1077,7 @@ namespace Adyen.Model.Checkout
         public override string ToString()
         {
             var sb = new StringBuilder();
-            sb.Append("class PaymentDonationRequestPaymentMethod {\n");
+            sb.Append("class CheckoutPaymentMethod {\n");
             sb.Append("  ActualInstance: ").Append(this.ActualInstance).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
@@ -1089,21 +1089,21 @@ namespace Adyen.Model.Checkout
         /// <returns>JSON string presentation of the object</returns>
         public override string ToJson()
         {
-            return JsonConvert.SerializeObject(this.ActualInstance, PaymentDonationRequestPaymentMethod.SerializerSettings);
+            return JsonConvert.SerializeObject(this.ActualInstance, CheckoutPaymentMethod.SerializerSettings);
         }
 
         /// <summary>
-        /// Converts the JSON string into an instance of PaymentDonationRequestPaymentMethod
+        /// Converts the JSON string into an instance of CheckoutPaymentMethod
         /// </summary>
         /// <param name="jsonString">JSON string</param>
-        /// <returns>An instance of PaymentDonationRequestPaymentMethod</returns>
-        public static PaymentDonationRequestPaymentMethod FromJson(string jsonString)
+        /// <returns>An instance of CheckoutPaymentMethod</returns>
+        public static CheckoutPaymentMethod FromJson(string jsonString)
         {
-            PaymentDonationRequestPaymentMethod newPaymentDonationRequestPaymentMethod = null;
+            CheckoutPaymentMethod newCheckoutPaymentMethod = null;
 
             if (string.IsNullOrEmpty(jsonString))
             {
-                return newPaymentDonationRequestPaymentMethod;
+                return newCheckoutPaymentMethod;
             }
             int match = 0;
             List<string> matchedTypes = new List<string>();
@@ -1113,11 +1113,11 @@ namespace Adyen.Model.Checkout
                 // if it does not contains "AdditionalProperties", use SerializerSettings to deserialize
                 if (typeof(AchDetails).GetProperty("AdditionalProperties") == null)
                 {
-                    newPaymentDonationRequestPaymentMethod = new PaymentDonationRequestPaymentMethod(JsonConvert.DeserializeObject<AchDetails>(jsonString, PaymentDonationRequestPaymentMethod.SerializerSettings));
+                    newCheckoutPaymentMethod = new CheckoutPaymentMethod(JsonConvert.DeserializeObject<AchDetails>(jsonString, CheckoutPaymentMethod.SerializerSettings));
                 }
                 else
                 {
-                    newPaymentDonationRequestPaymentMethod = new PaymentDonationRequestPaymentMethod(JsonConvert.DeserializeObject<AchDetails>(jsonString, PaymentDonationRequestPaymentMethod.AdditionalPropertiesSerializerSettings));
+                    newCheckoutPaymentMethod = new CheckoutPaymentMethod(JsonConvert.DeserializeObject<AchDetails>(jsonString, CheckoutPaymentMethod.AdditionalPropertiesSerializerSettings));
                 }
                 matchedTypes.Add("AchDetails");
                 match++;
@@ -1135,11 +1135,11 @@ namespace Adyen.Model.Checkout
                 // if it does not contains "AdditionalProperties", use SerializerSettings to deserialize
                 if (typeof(AfterpayDetails).GetProperty("AdditionalProperties") == null)
                 {
-                    newPaymentDonationRequestPaymentMethod = new PaymentDonationRequestPaymentMethod(JsonConvert.DeserializeObject<AfterpayDetails>(jsonString, PaymentDonationRequestPaymentMethod.SerializerSettings));
+                    newCheckoutPaymentMethod = new CheckoutPaymentMethod(JsonConvert.DeserializeObject<AfterpayDetails>(jsonString, CheckoutPaymentMethod.SerializerSettings));
                 }
                 else
                 {
-                    newPaymentDonationRequestPaymentMethod = new PaymentDonationRequestPaymentMethod(JsonConvert.DeserializeObject<AfterpayDetails>(jsonString, PaymentDonationRequestPaymentMethod.AdditionalPropertiesSerializerSettings));
+                    newCheckoutPaymentMethod = new CheckoutPaymentMethod(JsonConvert.DeserializeObject<AfterpayDetails>(jsonString, CheckoutPaymentMethod.AdditionalPropertiesSerializerSettings));
                 }
                 matchedTypes.Add("AfterpayDetails");
                 match++;
@@ -1157,11 +1157,11 @@ namespace Adyen.Model.Checkout
                 // if it does not contains "AdditionalProperties", use SerializerSettings to deserialize
                 if (typeof(AmazonPayDetails).GetProperty("AdditionalProperties") == null)
                 {
-                    newPaymentDonationRequestPaymentMethod = new PaymentDonationRequestPaymentMethod(JsonConvert.DeserializeObject<AmazonPayDetails>(jsonString, PaymentDonationRequestPaymentMethod.SerializerSettings));
+                    newCheckoutPaymentMethod = new CheckoutPaymentMethod(JsonConvert.DeserializeObject<AmazonPayDetails>(jsonString, CheckoutPaymentMethod.SerializerSettings));
                 }
                 else
                 {
-                    newPaymentDonationRequestPaymentMethod = new PaymentDonationRequestPaymentMethod(JsonConvert.DeserializeObject<AmazonPayDetails>(jsonString, PaymentDonationRequestPaymentMethod.AdditionalPropertiesSerializerSettings));
+                    newCheckoutPaymentMethod = new CheckoutPaymentMethod(JsonConvert.DeserializeObject<AmazonPayDetails>(jsonString, CheckoutPaymentMethod.AdditionalPropertiesSerializerSettings));
                 }
                 matchedTypes.Add("AmazonPayDetails");
                 match++;
@@ -1179,11 +1179,11 @@ namespace Adyen.Model.Checkout
                 // if it does not contains "AdditionalProperties", use SerializerSettings to deserialize
                 if (typeof(AndroidPayDetails).GetProperty("AdditionalProperties") == null)
                 {
-                    newPaymentDonationRequestPaymentMethod = new PaymentDonationRequestPaymentMethod(JsonConvert.DeserializeObject<AndroidPayDetails>(jsonString, PaymentDonationRequestPaymentMethod.SerializerSettings));
+                    newCheckoutPaymentMethod = new CheckoutPaymentMethod(JsonConvert.DeserializeObject<AndroidPayDetails>(jsonString, CheckoutPaymentMethod.SerializerSettings));
                 }
                 else
                 {
-                    newPaymentDonationRequestPaymentMethod = new PaymentDonationRequestPaymentMethod(JsonConvert.DeserializeObject<AndroidPayDetails>(jsonString, PaymentDonationRequestPaymentMethod.AdditionalPropertiesSerializerSettings));
+                    newCheckoutPaymentMethod = new CheckoutPaymentMethod(JsonConvert.DeserializeObject<AndroidPayDetails>(jsonString, CheckoutPaymentMethod.AdditionalPropertiesSerializerSettings));
                 }
                 matchedTypes.Add("AndroidPayDetails");
                 match++;
@@ -1201,11 +1201,11 @@ namespace Adyen.Model.Checkout
                 // if it does not contains "AdditionalProperties", use SerializerSettings to deserialize
                 if (typeof(ApplePayDetails).GetProperty("AdditionalProperties") == null)
                 {
-                    newPaymentDonationRequestPaymentMethod = new PaymentDonationRequestPaymentMethod(JsonConvert.DeserializeObject<ApplePayDetails>(jsonString, PaymentDonationRequestPaymentMethod.SerializerSettings));
+                    newCheckoutPaymentMethod = new CheckoutPaymentMethod(JsonConvert.DeserializeObject<ApplePayDetails>(jsonString, CheckoutPaymentMethod.SerializerSettings));
                 }
                 else
                 {
-                    newPaymentDonationRequestPaymentMethod = new PaymentDonationRequestPaymentMethod(JsonConvert.DeserializeObject<ApplePayDetails>(jsonString, PaymentDonationRequestPaymentMethod.AdditionalPropertiesSerializerSettings));
+                    newCheckoutPaymentMethod = new CheckoutPaymentMethod(JsonConvert.DeserializeObject<ApplePayDetails>(jsonString, CheckoutPaymentMethod.AdditionalPropertiesSerializerSettings));
                 }
                 matchedTypes.Add("ApplePayDetails");
                 match++;
@@ -1223,11 +1223,11 @@ namespace Adyen.Model.Checkout
                 // if it does not contains "AdditionalProperties", use SerializerSettings to deserialize
                 if (typeof(BacsDirectDebitDetails).GetProperty("AdditionalProperties") == null)
                 {
-                    newPaymentDonationRequestPaymentMethod = new PaymentDonationRequestPaymentMethod(JsonConvert.DeserializeObject<BacsDirectDebitDetails>(jsonString, PaymentDonationRequestPaymentMethod.SerializerSettings));
+                    newCheckoutPaymentMethod = new CheckoutPaymentMethod(JsonConvert.DeserializeObject<BacsDirectDebitDetails>(jsonString, CheckoutPaymentMethod.SerializerSettings));
                 }
                 else
                 {
-                    newPaymentDonationRequestPaymentMethod = new PaymentDonationRequestPaymentMethod(JsonConvert.DeserializeObject<BacsDirectDebitDetails>(jsonString, PaymentDonationRequestPaymentMethod.AdditionalPropertiesSerializerSettings));
+                    newCheckoutPaymentMethod = new CheckoutPaymentMethod(JsonConvert.DeserializeObject<BacsDirectDebitDetails>(jsonString, CheckoutPaymentMethod.AdditionalPropertiesSerializerSettings));
                 }
                 matchedTypes.Add("BacsDirectDebitDetails");
                 match++;
@@ -1245,11 +1245,11 @@ namespace Adyen.Model.Checkout
                 // if it does not contains "AdditionalProperties", use SerializerSettings to deserialize
                 if (typeof(BillDeskDetails).GetProperty("AdditionalProperties") == null)
                 {
-                    newPaymentDonationRequestPaymentMethod = new PaymentDonationRequestPaymentMethod(JsonConvert.DeserializeObject<BillDeskDetails>(jsonString, PaymentDonationRequestPaymentMethod.SerializerSettings));
+                    newCheckoutPaymentMethod = new CheckoutPaymentMethod(JsonConvert.DeserializeObject<BillDeskDetails>(jsonString, CheckoutPaymentMethod.SerializerSettings));
                 }
                 else
                 {
-                    newPaymentDonationRequestPaymentMethod = new PaymentDonationRequestPaymentMethod(JsonConvert.DeserializeObject<BillDeskDetails>(jsonString, PaymentDonationRequestPaymentMethod.AdditionalPropertiesSerializerSettings));
+                    newCheckoutPaymentMethod = new CheckoutPaymentMethod(JsonConvert.DeserializeObject<BillDeskDetails>(jsonString, CheckoutPaymentMethod.AdditionalPropertiesSerializerSettings));
                 }
                 matchedTypes.Add("BillDeskDetails");
                 match++;
@@ -1267,11 +1267,11 @@ namespace Adyen.Model.Checkout
                 // if it does not contains "AdditionalProperties", use SerializerSettings to deserialize
                 if (typeof(BlikDetails).GetProperty("AdditionalProperties") == null)
                 {
-                    newPaymentDonationRequestPaymentMethod = new PaymentDonationRequestPaymentMethod(JsonConvert.DeserializeObject<BlikDetails>(jsonString, PaymentDonationRequestPaymentMethod.SerializerSettings));
+                    newCheckoutPaymentMethod = new CheckoutPaymentMethod(JsonConvert.DeserializeObject<BlikDetails>(jsonString, CheckoutPaymentMethod.SerializerSettings));
                 }
                 else
                 {
-                    newPaymentDonationRequestPaymentMethod = new PaymentDonationRequestPaymentMethod(JsonConvert.DeserializeObject<BlikDetails>(jsonString, PaymentDonationRequestPaymentMethod.AdditionalPropertiesSerializerSettings));
+                    newCheckoutPaymentMethod = new CheckoutPaymentMethod(JsonConvert.DeserializeObject<BlikDetails>(jsonString, CheckoutPaymentMethod.AdditionalPropertiesSerializerSettings));
                 }
                 matchedTypes.Add("BlikDetails");
                 match++;
@@ -1289,11 +1289,11 @@ namespace Adyen.Model.Checkout
                 // if it does not contains "AdditionalProperties", use SerializerSettings to deserialize
                 if (typeof(CardDetails).GetProperty("AdditionalProperties") == null)
                 {
-                    newPaymentDonationRequestPaymentMethod = new PaymentDonationRequestPaymentMethod(JsonConvert.DeserializeObject<CardDetails>(jsonString, PaymentDonationRequestPaymentMethod.SerializerSettings));
+                    newCheckoutPaymentMethod = new CheckoutPaymentMethod(JsonConvert.DeserializeObject<CardDetails>(jsonString, CheckoutPaymentMethod.SerializerSettings));
                 }
                 else
                 {
-                    newPaymentDonationRequestPaymentMethod = new PaymentDonationRequestPaymentMethod(JsonConvert.DeserializeObject<CardDetails>(jsonString, PaymentDonationRequestPaymentMethod.AdditionalPropertiesSerializerSettings));
+                    newCheckoutPaymentMethod = new CheckoutPaymentMethod(JsonConvert.DeserializeObject<CardDetails>(jsonString, CheckoutPaymentMethod.AdditionalPropertiesSerializerSettings));
                 }
                 matchedTypes.Add("CardDetails");
                 match++;
@@ -1311,11 +1311,11 @@ namespace Adyen.Model.Checkout
                 // if it does not contains "AdditionalProperties", use SerializerSettings to deserialize
                 if (typeof(CellulantDetails).GetProperty("AdditionalProperties") == null)
                 {
-                    newPaymentDonationRequestPaymentMethod = new PaymentDonationRequestPaymentMethod(JsonConvert.DeserializeObject<CellulantDetails>(jsonString, PaymentDonationRequestPaymentMethod.SerializerSettings));
+                    newCheckoutPaymentMethod = new CheckoutPaymentMethod(JsonConvert.DeserializeObject<CellulantDetails>(jsonString, CheckoutPaymentMethod.SerializerSettings));
                 }
                 else
                 {
-                    newPaymentDonationRequestPaymentMethod = new PaymentDonationRequestPaymentMethod(JsonConvert.DeserializeObject<CellulantDetails>(jsonString, PaymentDonationRequestPaymentMethod.AdditionalPropertiesSerializerSettings));
+                    newCheckoutPaymentMethod = new CheckoutPaymentMethod(JsonConvert.DeserializeObject<CellulantDetails>(jsonString, CheckoutPaymentMethod.AdditionalPropertiesSerializerSettings));
                 }
                 matchedTypes.Add("CellulantDetails");
                 match++;
@@ -1333,11 +1333,11 @@ namespace Adyen.Model.Checkout
                 // if it does not contains "AdditionalProperties", use SerializerSettings to deserialize
                 if (typeof(DokuDetails).GetProperty("AdditionalProperties") == null)
                 {
-                    newPaymentDonationRequestPaymentMethod = new PaymentDonationRequestPaymentMethod(JsonConvert.DeserializeObject<DokuDetails>(jsonString, PaymentDonationRequestPaymentMethod.SerializerSettings));
+                    newCheckoutPaymentMethod = new CheckoutPaymentMethod(JsonConvert.DeserializeObject<DokuDetails>(jsonString, CheckoutPaymentMethod.SerializerSettings));
                 }
                 else
                 {
-                    newPaymentDonationRequestPaymentMethod = new PaymentDonationRequestPaymentMethod(JsonConvert.DeserializeObject<DokuDetails>(jsonString, PaymentDonationRequestPaymentMethod.AdditionalPropertiesSerializerSettings));
+                    newCheckoutPaymentMethod = new CheckoutPaymentMethod(JsonConvert.DeserializeObject<DokuDetails>(jsonString, CheckoutPaymentMethod.AdditionalPropertiesSerializerSettings));
                 }
                 matchedTypes.Add("DokuDetails");
                 match++;
@@ -1355,11 +1355,11 @@ namespace Adyen.Model.Checkout
                 // if it does not contains "AdditionalProperties", use SerializerSettings to deserialize
                 if (typeof(DotpayDetails).GetProperty("AdditionalProperties") == null)
                 {
-                    newPaymentDonationRequestPaymentMethod = new PaymentDonationRequestPaymentMethod(JsonConvert.DeserializeObject<DotpayDetails>(jsonString, PaymentDonationRequestPaymentMethod.SerializerSettings));
+                    newCheckoutPaymentMethod = new CheckoutPaymentMethod(JsonConvert.DeserializeObject<DotpayDetails>(jsonString, CheckoutPaymentMethod.SerializerSettings));
                 }
                 else
                 {
-                    newPaymentDonationRequestPaymentMethod = new PaymentDonationRequestPaymentMethod(JsonConvert.DeserializeObject<DotpayDetails>(jsonString, PaymentDonationRequestPaymentMethod.AdditionalPropertiesSerializerSettings));
+                    newCheckoutPaymentMethod = new CheckoutPaymentMethod(JsonConvert.DeserializeObject<DotpayDetails>(jsonString, CheckoutPaymentMethod.AdditionalPropertiesSerializerSettings));
                 }
                 matchedTypes.Add("DotpayDetails");
                 match++;
@@ -1377,11 +1377,11 @@ namespace Adyen.Model.Checkout
                 // if it does not contains "AdditionalProperties", use SerializerSettings to deserialize
                 if (typeof(DragonpayDetails).GetProperty("AdditionalProperties") == null)
                 {
-                    newPaymentDonationRequestPaymentMethod = new PaymentDonationRequestPaymentMethod(JsonConvert.DeserializeObject<DragonpayDetails>(jsonString, PaymentDonationRequestPaymentMethod.SerializerSettings));
+                    newCheckoutPaymentMethod = new CheckoutPaymentMethod(JsonConvert.DeserializeObject<DragonpayDetails>(jsonString, CheckoutPaymentMethod.SerializerSettings));
                 }
                 else
                 {
-                    newPaymentDonationRequestPaymentMethod = new PaymentDonationRequestPaymentMethod(JsonConvert.DeserializeObject<DragonpayDetails>(jsonString, PaymentDonationRequestPaymentMethod.AdditionalPropertiesSerializerSettings));
+                    newCheckoutPaymentMethod = new CheckoutPaymentMethod(JsonConvert.DeserializeObject<DragonpayDetails>(jsonString, CheckoutPaymentMethod.AdditionalPropertiesSerializerSettings));
                 }
                 matchedTypes.Add("DragonpayDetails");
                 match++;
@@ -1399,11 +1399,11 @@ namespace Adyen.Model.Checkout
                 // if it does not contains "AdditionalProperties", use SerializerSettings to deserialize
                 if (typeof(EcontextVoucherDetails).GetProperty("AdditionalProperties") == null)
                 {
-                    newPaymentDonationRequestPaymentMethod = new PaymentDonationRequestPaymentMethod(JsonConvert.DeserializeObject<EcontextVoucherDetails>(jsonString, PaymentDonationRequestPaymentMethod.SerializerSettings));
+                    newCheckoutPaymentMethod = new CheckoutPaymentMethod(JsonConvert.DeserializeObject<EcontextVoucherDetails>(jsonString, CheckoutPaymentMethod.SerializerSettings));
                 }
                 else
                 {
-                    newPaymentDonationRequestPaymentMethod = new PaymentDonationRequestPaymentMethod(JsonConvert.DeserializeObject<EcontextVoucherDetails>(jsonString, PaymentDonationRequestPaymentMethod.AdditionalPropertiesSerializerSettings));
+                    newCheckoutPaymentMethod = new CheckoutPaymentMethod(JsonConvert.DeserializeObject<EcontextVoucherDetails>(jsonString, CheckoutPaymentMethod.AdditionalPropertiesSerializerSettings));
                 }
                 matchedTypes.Add("EcontextVoucherDetails");
                 match++;
@@ -1421,11 +1421,11 @@ namespace Adyen.Model.Checkout
                 // if it does not contains "AdditionalProperties", use SerializerSettings to deserialize
                 if (typeof(GenericIssuerPaymentMethodDetails).GetProperty("AdditionalProperties") == null)
                 {
-                    newPaymentDonationRequestPaymentMethod = new PaymentDonationRequestPaymentMethod(JsonConvert.DeserializeObject<GenericIssuerPaymentMethodDetails>(jsonString, PaymentDonationRequestPaymentMethod.SerializerSettings));
+                    newCheckoutPaymentMethod = new CheckoutPaymentMethod(JsonConvert.DeserializeObject<GenericIssuerPaymentMethodDetails>(jsonString, CheckoutPaymentMethod.SerializerSettings));
                 }
                 else
                 {
-                    newPaymentDonationRequestPaymentMethod = new PaymentDonationRequestPaymentMethod(JsonConvert.DeserializeObject<GenericIssuerPaymentMethodDetails>(jsonString, PaymentDonationRequestPaymentMethod.AdditionalPropertiesSerializerSettings));
+                    newCheckoutPaymentMethod = new CheckoutPaymentMethod(JsonConvert.DeserializeObject<GenericIssuerPaymentMethodDetails>(jsonString, CheckoutPaymentMethod.AdditionalPropertiesSerializerSettings));
                 }
                 matchedTypes.Add("GenericIssuerPaymentMethodDetails");
                 match++;
@@ -1443,11 +1443,11 @@ namespace Adyen.Model.Checkout
                 // if it does not contains "AdditionalProperties", use SerializerSettings to deserialize
                 if (typeof(GiropayDetails).GetProperty("AdditionalProperties") == null)
                 {
-                    newPaymentDonationRequestPaymentMethod = new PaymentDonationRequestPaymentMethod(JsonConvert.DeserializeObject<GiropayDetails>(jsonString, PaymentDonationRequestPaymentMethod.SerializerSettings));
+                    newCheckoutPaymentMethod = new CheckoutPaymentMethod(JsonConvert.DeserializeObject<GiropayDetails>(jsonString, CheckoutPaymentMethod.SerializerSettings));
                 }
                 else
                 {
-                    newPaymentDonationRequestPaymentMethod = new PaymentDonationRequestPaymentMethod(JsonConvert.DeserializeObject<GiropayDetails>(jsonString, PaymentDonationRequestPaymentMethod.AdditionalPropertiesSerializerSettings));
+                    newCheckoutPaymentMethod = new CheckoutPaymentMethod(JsonConvert.DeserializeObject<GiropayDetails>(jsonString, CheckoutPaymentMethod.AdditionalPropertiesSerializerSettings));
                 }
                 matchedTypes.Add("GiropayDetails");
                 match++;
@@ -1465,11 +1465,11 @@ namespace Adyen.Model.Checkout
                 // if it does not contains "AdditionalProperties", use SerializerSettings to deserialize
                 if (typeof(GooglePayDetails).GetProperty("AdditionalProperties") == null)
                 {
-                    newPaymentDonationRequestPaymentMethod = new PaymentDonationRequestPaymentMethod(JsonConvert.DeserializeObject<GooglePayDetails>(jsonString, PaymentDonationRequestPaymentMethod.SerializerSettings));
+                    newCheckoutPaymentMethod = new CheckoutPaymentMethod(JsonConvert.DeserializeObject<GooglePayDetails>(jsonString, CheckoutPaymentMethod.SerializerSettings));
                 }
                 else
                 {
-                    newPaymentDonationRequestPaymentMethod = new PaymentDonationRequestPaymentMethod(JsonConvert.DeserializeObject<GooglePayDetails>(jsonString, PaymentDonationRequestPaymentMethod.AdditionalPropertiesSerializerSettings));
+                    newCheckoutPaymentMethod = new CheckoutPaymentMethod(JsonConvert.DeserializeObject<GooglePayDetails>(jsonString, CheckoutPaymentMethod.AdditionalPropertiesSerializerSettings));
                 }
                 matchedTypes.Add("GooglePayDetails");
                 match++;
@@ -1487,11 +1487,11 @@ namespace Adyen.Model.Checkout
                 // if it does not contains "AdditionalProperties", use SerializerSettings to deserialize
                 if (typeof(IdealDetails).GetProperty("AdditionalProperties") == null)
                 {
-                    newPaymentDonationRequestPaymentMethod = new PaymentDonationRequestPaymentMethod(JsonConvert.DeserializeObject<IdealDetails>(jsonString, PaymentDonationRequestPaymentMethod.SerializerSettings));
+                    newCheckoutPaymentMethod = new CheckoutPaymentMethod(JsonConvert.DeserializeObject<IdealDetails>(jsonString, CheckoutPaymentMethod.SerializerSettings));
                 }
                 else
                 {
-                    newPaymentDonationRequestPaymentMethod = new PaymentDonationRequestPaymentMethod(JsonConvert.DeserializeObject<IdealDetails>(jsonString, PaymentDonationRequestPaymentMethod.AdditionalPropertiesSerializerSettings));
+                    newCheckoutPaymentMethod = new CheckoutPaymentMethod(JsonConvert.DeserializeObject<IdealDetails>(jsonString, CheckoutPaymentMethod.AdditionalPropertiesSerializerSettings));
                 }
                 matchedTypes.Add("IdealDetails");
                 match++;
@@ -1509,11 +1509,11 @@ namespace Adyen.Model.Checkout
                 // if it does not contains "AdditionalProperties", use SerializerSettings to deserialize
                 if (typeof(KlarnaDetails).GetProperty("AdditionalProperties") == null)
                 {
-                    newPaymentDonationRequestPaymentMethod = new PaymentDonationRequestPaymentMethod(JsonConvert.DeserializeObject<KlarnaDetails>(jsonString, PaymentDonationRequestPaymentMethod.SerializerSettings));
+                    newCheckoutPaymentMethod = new CheckoutPaymentMethod(JsonConvert.DeserializeObject<KlarnaDetails>(jsonString, CheckoutPaymentMethod.SerializerSettings));
                 }
                 else
                 {
-                    newPaymentDonationRequestPaymentMethod = new PaymentDonationRequestPaymentMethod(JsonConvert.DeserializeObject<KlarnaDetails>(jsonString, PaymentDonationRequestPaymentMethod.AdditionalPropertiesSerializerSettings));
+                    newCheckoutPaymentMethod = new CheckoutPaymentMethod(JsonConvert.DeserializeObject<KlarnaDetails>(jsonString, CheckoutPaymentMethod.AdditionalPropertiesSerializerSettings));
                 }
                 matchedTypes.Add("KlarnaDetails");
                 match++;
@@ -1531,11 +1531,11 @@ namespace Adyen.Model.Checkout
                 // if it does not contains "AdditionalProperties", use SerializerSettings to deserialize
                 if (typeof(MasterpassDetails).GetProperty("AdditionalProperties") == null)
                 {
-                    newPaymentDonationRequestPaymentMethod = new PaymentDonationRequestPaymentMethod(JsonConvert.DeserializeObject<MasterpassDetails>(jsonString, PaymentDonationRequestPaymentMethod.SerializerSettings));
+                    newCheckoutPaymentMethod = new CheckoutPaymentMethod(JsonConvert.DeserializeObject<MasterpassDetails>(jsonString, CheckoutPaymentMethod.SerializerSettings));
                 }
                 else
                 {
-                    newPaymentDonationRequestPaymentMethod = new PaymentDonationRequestPaymentMethod(JsonConvert.DeserializeObject<MasterpassDetails>(jsonString, PaymentDonationRequestPaymentMethod.AdditionalPropertiesSerializerSettings));
+                    newCheckoutPaymentMethod = new CheckoutPaymentMethod(JsonConvert.DeserializeObject<MasterpassDetails>(jsonString, CheckoutPaymentMethod.AdditionalPropertiesSerializerSettings));
                 }
                 matchedTypes.Add("MasterpassDetails");
                 match++;
@@ -1553,11 +1553,11 @@ namespace Adyen.Model.Checkout
                 // if it does not contains "AdditionalProperties", use SerializerSettings to deserialize
                 if (typeof(MbwayDetails).GetProperty("AdditionalProperties") == null)
                 {
-                    newPaymentDonationRequestPaymentMethod = new PaymentDonationRequestPaymentMethod(JsonConvert.DeserializeObject<MbwayDetails>(jsonString, PaymentDonationRequestPaymentMethod.SerializerSettings));
+                    newCheckoutPaymentMethod = new CheckoutPaymentMethod(JsonConvert.DeserializeObject<MbwayDetails>(jsonString, CheckoutPaymentMethod.SerializerSettings));
                 }
                 else
                 {
-                    newPaymentDonationRequestPaymentMethod = new PaymentDonationRequestPaymentMethod(JsonConvert.DeserializeObject<MbwayDetails>(jsonString, PaymentDonationRequestPaymentMethod.AdditionalPropertiesSerializerSettings));
+                    newCheckoutPaymentMethod = new CheckoutPaymentMethod(JsonConvert.DeserializeObject<MbwayDetails>(jsonString, CheckoutPaymentMethod.AdditionalPropertiesSerializerSettings));
                 }
                 matchedTypes.Add("MbwayDetails");
                 match++;
@@ -1575,11 +1575,11 @@ namespace Adyen.Model.Checkout
                 // if it does not contains "AdditionalProperties", use SerializerSettings to deserialize
                 if (typeof(MobilePayDetails).GetProperty("AdditionalProperties") == null)
                 {
-                    newPaymentDonationRequestPaymentMethod = new PaymentDonationRequestPaymentMethod(JsonConvert.DeserializeObject<MobilePayDetails>(jsonString, PaymentDonationRequestPaymentMethod.SerializerSettings));
+                    newCheckoutPaymentMethod = new CheckoutPaymentMethod(JsonConvert.DeserializeObject<MobilePayDetails>(jsonString, CheckoutPaymentMethod.SerializerSettings));
                 }
                 else
                 {
-                    newPaymentDonationRequestPaymentMethod = new PaymentDonationRequestPaymentMethod(JsonConvert.DeserializeObject<MobilePayDetails>(jsonString, PaymentDonationRequestPaymentMethod.AdditionalPropertiesSerializerSettings));
+                    newCheckoutPaymentMethod = new CheckoutPaymentMethod(JsonConvert.DeserializeObject<MobilePayDetails>(jsonString, CheckoutPaymentMethod.AdditionalPropertiesSerializerSettings));
                 }
                 matchedTypes.Add("MobilePayDetails");
                 match++;
@@ -1597,11 +1597,11 @@ namespace Adyen.Model.Checkout
                 // if it does not contains "AdditionalProperties", use SerializerSettings to deserialize
                 if (typeof(MolPayDetails).GetProperty("AdditionalProperties") == null)
                 {
-                    newPaymentDonationRequestPaymentMethod = new PaymentDonationRequestPaymentMethod(JsonConvert.DeserializeObject<MolPayDetails>(jsonString, PaymentDonationRequestPaymentMethod.SerializerSettings));
+                    newCheckoutPaymentMethod = new CheckoutPaymentMethod(JsonConvert.DeserializeObject<MolPayDetails>(jsonString, CheckoutPaymentMethod.SerializerSettings));
                 }
                 else
                 {
-                    newPaymentDonationRequestPaymentMethod = new PaymentDonationRequestPaymentMethod(JsonConvert.DeserializeObject<MolPayDetails>(jsonString, PaymentDonationRequestPaymentMethod.AdditionalPropertiesSerializerSettings));
+                    newCheckoutPaymentMethod = new CheckoutPaymentMethod(JsonConvert.DeserializeObject<MolPayDetails>(jsonString, CheckoutPaymentMethod.AdditionalPropertiesSerializerSettings));
                 }
                 matchedTypes.Add("MolPayDetails");
                 match++;
@@ -1619,11 +1619,11 @@ namespace Adyen.Model.Checkout
                 // if it does not contains "AdditionalProperties", use SerializerSettings to deserialize
                 if (typeof(OpenInvoiceDetails).GetProperty("AdditionalProperties") == null)
                 {
-                    newPaymentDonationRequestPaymentMethod = new PaymentDonationRequestPaymentMethod(JsonConvert.DeserializeObject<OpenInvoiceDetails>(jsonString, PaymentDonationRequestPaymentMethod.SerializerSettings));
+                    newCheckoutPaymentMethod = new CheckoutPaymentMethod(JsonConvert.DeserializeObject<OpenInvoiceDetails>(jsonString, CheckoutPaymentMethod.SerializerSettings));
                 }
                 else
                 {
-                    newPaymentDonationRequestPaymentMethod = new PaymentDonationRequestPaymentMethod(JsonConvert.DeserializeObject<OpenInvoiceDetails>(jsonString, PaymentDonationRequestPaymentMethod.AdditionalPropertiesSerializerSettings));
+                    newCheckoutPaymentMethod = new CheckoutPaymentMethod(JsonConvert.DeserializeObject<OpenInvoiceDetails>(jsonString, CheckoutPaymentMethod.AdditionalPropertiesSerializerSettings));
                 }
                 matchedTypes.Add("OpenInvoiceDetails");
                 match++;
@@ -1641,11 +1641,11 @@ namespace Adyen.Model.Checkout
                 // if it does not contains "AdditionalProperties", use SerializerSettings to deserialize
                 if (typeof(PayPalDetails).GetProperty("AdditionalProperties") == null)
                 {
-                    newPaymentDonationRequestPaymentMethod = new PaymentDonationRequestPaymentMethod(JsonConvert.DeserializeObject<PayPalDetails>(jsonString, PaymentDonationRequestPaymentMethod.SerializerSettings));
+                    newCheckoutPaymentMethod = new CheckoutPaymentMethod(JsonConvert.DeserializeObject<PayPalDetails>(jsonString, CheckoutPaymentMethod.SerializerSettings));
                 }
                 else
                 {
-                    newPaymentDonationRequestPaymentMethod = new PaymentDonationRequestPaymentMethod(JsonConvert.DeserializeObject<PayPalDetails>(jsonString, PaymentDonationRequestPaymentMethod.AdditionalPropertiesSerializerSettings));
+                    newCheckoutPaymentMethod = new CheckoutPaymentMethod(JsonConvert.DeserializeObject<PayPalDetails>(jsonString, CheckoutPaymentMethod.AdditionalPropertiesSerializerSettings));
                 }
                 matchedTypes.Add("PayPalDetails");
                 match++;
@@ -1663,11 +1663,11 @@ namespace Adyen.Model.Checkout
                 // if it does not contains "AdditionalProperties", use SerializerSettings to deserialize
                 if (typeof(PayUUpiDetails).GetProperty("AdditionalProperties") == null)
                 {
-                    newPaymentDonationRequestPaymentMethod = new PaymentDonationRequestPaymentMethod(JsonConvert.DeserializeObject<PayUUpiDetails>(jsonString, PaymentDonationRequestPaymentMethod.SerializerSettings));
+                    newCheckoutPaymentMethod = new CheckoutPaymentMethod(JsonConvert.DeserializeObject<PayUUpiDetails>(jsonString, CheckoutPaymentMethod.SerializerSettings));
                 }
                 else
                 {
-                    newPaymentDonationRequestPaymentMethod = new PaymentDonationRequestPaymentMethod(JsonConvert.DeserializeObject<PayUUpiDetails>(jsonString, PaymentDonationRequestPaymentMethod.AdditionalPropertiesSerializerSettings));
+                    newCheckoutPaymentMethod = new CheckoutPaymentMethod(JsonConvert.DeserializeObject<PayUUpiDetails>(jsonString, CheckoutPaymentMethod.AdditionalPropertiesSerializerSettings));
                 }
                 matchedTypes.Add("PayUUpiDetails");
                 match++;
@@ -1685,11 +1685,11 @@ namespace Adyen.Model.Checkout
                 // if it does not contains "AdditionalProperties", use SerializerSettings to deserialize
                 if (typeof(PayWithGoogleDetails).GetProperty("AdditionalProperties") == null)
                 {
-                    newPaymentDonationRequestPaymentMethod = new PaymentDonationRequestPaymentMethod(JsonConvert.DeserializeObject<PayWithGoogleDetails>(jsonString, PaymentDonationRequestPaymentMethod.SerializerSettings));
+                    newCheckoutPaymentMethod = new CheckoutPaymentMethod(JsonConvert.DeserializeObject<PayWithGoogleDetails>(jsonString, CheckoutPaymentMethod.SerializerSettings));
                 }
                 else
                 {
-                    newPaymentDonationRequestPaymentMethod = new PaymentDonationRequestPaymentMethod(JsonConvert.DeserializeObject<PayWithGoogleDetails>(jsonString, PaymentDonationRequestPaymentMethod.AdditionalPropertiesSerializerSettings));
+                    newCheckoutPaymentMethod = new CheckoutPaymentMethod(JsonConvert.DeserializeObject<PayWithGoogleDetails>(jsonString, CheckoutPaymentMethod.AdditionalPropertiesSerializerSettings));
                 }
                 matchedTypes.Add("PayWithGoogleDetails");
                 match++;
@@ -1707,11 +1707,11 @@ namespace Adyen.Model.Checkout
                 // if it does not contains "AdditionalProperties", use SerializerSettings to deserialize
                 if (typeof(PaymentDetails).GetProperty("AdditionalProperties") == null)
                 {
-                    newPaymentDonationRequestPaymentMethod = new PaymentDonationRequestPaymentMethod(JsonConvert.DeserializeObject<PaymentDetails>(jsonString, PaymentDonationRequestPaymentMethod.SerializerSettings));
+                    newCheckoutPaymentMethod = new CheckoutPaymentMethod(JsonConvert.DeserializeObject<PaymentDetails>(jsonString, CheckoutPaymentMethod.SerializerSettings));
                 }
                 else
                 {
-                    newPaymentDonationRequestPaymentMethod = new PaymentDonationRequestPaymentMethod(JsonConvert.DeserializeObject<PaymentDetails>(jsonString, PaymentDonationRequestPaymentMethod.AdditionalPropertiesSerializerSettings));
+                    newCheckoutPaymentMethod = new CheckoutPaymentMethod(JsonConvert.DeserializeObject<PaymentDetails>(jsonString, CheckoutPaymentMethod.AdditionalPropertiesSerializerSettings));
                 }
                 matchedTypes.Add("PaymentDetails");
                 match++;
@@ -1729,11 +1729,11 @@ namespace Adyen.Model.Checkout
                 // if it does not contains "AdditionalProperties", use SerializerSettings to deserialize
                 if (typeof(RatepayDetails).GetProperty("AdditionalProperties") == null)
                 {
-                    newPaymentDonationRequestPaymentMethod = new PaymentDonationRequestPaymentMethod(JsonConvert.DeserializeObject<RatepayDetails>(jsonString, PaymentDonationRequestPaymentMethod.SerializerSettings));
+                    newCheckoutPaymentMethod = new CheckoutPaymentMethod(JsonConvert.DeserializeObject<RatepayDetails>(jsonString, CheckoutPaymentMethod.SerializerSettings));
                 }
                 else
                 {
-                    newPaymentDonationRequestPaymentMethod = new PaymentDonationRequestPaymentMethod(JsonConvert.DeserializeObject<RatepayDetails>(jsonString, PaymentDonationRequestPaymentMethod.AdditionalPropertiesSerializerSettings));
+                    newCheckoutPaymentMethod = new CheckoutPaymentMethod(JsonConvert.DeserializeObject<RatepayDetails>(jsonString, CheckoutPaymentMethod.AdditionalPropertiesSerializerSettings));
                 }
                 matchedTypes.Add("RatepayDetails");
                 match++;
@@ -1751,11 +1751,11 @@ namespace Adyen.Model.Checkout
                 // if it does not contains "AdditionalProperties", use SerializerSettings to deserialize
                 if (typeof(SamsungPayDetails).GetProperty("AdditionalProperties") == null)
                 {
-                    newPaymentDonationRequestPaymentMethod = new PaymentDonationRequestPaymentMethod(JsonConvert.DeserializeObject<SamsungPayDetails>(jsonString, PaymentDonationRequestPaymentMethod.SerializerSettings));
+                    newCheckoutPaymentMethod = new CheckoutPaymentMethod(JsonConvert.DeserializeObject<SamsungPayDetails>(jsonString, CheckoutPaymentMethod.SerializerSettings));
                 }
                 else
                 {
-                    newPaymentDonationRequestPaymentMethod = new PaymentDonationRequestPaymentMethod(JsonConvert.DeserializeObject<SamsungPayDetails>(jsonString, PaymentDonationRequestPaymentMethod.AdditionalPropertiesSerializerSettings));
+                    newCheckoutPaymentMethod = new CheckoutPaymentMethod(JsonConvert.DeserializeObject<SamsungPayDetails>(jsonString, CheckoutPaymentMethod.AdditionalPropertiesSerializerSettings));
                 }
                 matchedTypes.Add("SamsungPayDetails");
                 match++;
@@ -1773,11 +1773,11 @@ namespace Adyen.Model.Checkout
                 // if it does not contains "AdditionalProperties", use SerializerSettings to deserialize
                 if (typeof(SepaDirectDebitDetails).GetProperty("AdditionalProperties") == null)
                 {
-                    newPaymentDonationRequestPaymentMethod = new PaymentDonationRequestPaymentMethod(JsonConvert.DeserializeObject<SepaDirectDebitDetails>(jsonString, PaymentDonationRequestPaymentMethod.SerializerSettings));
+                    newCheckoutPaymentMethod = new CheckoutPaymentMethod(JsonConvert.DeserializeObject<SepaDirectDebitDetails>(jsonString, CheckoutPaymentMethod.SerializerSettings));
                 }
                 else
                 {
-                    newPaymentDonationRequestPaymentMethod = new PaymentDonationRequestPaymentMethod(JsonConvert.DeserializeObject<SepaDirectDebitDetails>(jsonString, PaymentDonationRequestPaymentMethod.AdditionalPropertiesSerializerSettings));
+                    newCheckoutPaymentMethod = new CheckoutPaymentMethod(JsonConvert.DeserializeObject<SepaDirectDebitDetails>(jsonString, CheckoutPaymentMethod.AdditionalPropertiesSerializerSettings));
                 }
                 matchedTypes.Add("SepaDirectDebitDetails");
                 match++;
@@ -1795,11 +1795,11 @@ namespace Adyen.Model.Checkout
                 // if it does not contains "AdditionalProperties", use SerializerSettings to deserialize
                 if (typeof(StoredPaymentMethodDetails).GetProperty("AdditionalProperties") == null)
                 {
-                    newPaymentDonationRequestPaymentMethod = new PaymentDonationRequestPaymentMethod(JsonConvert.DeserializeObject<StoredPaymentMethodDetails>(jsonString, PaymentDonationRequestPaymentMethod.SerializerSettings));
+                    newCheckoutPaymentMethod = new CheckoutPaymentMethod(JsonConvert.DeserializeObject<StoredPaymentMethodDetails>(jsonString, CheckoutPaymentMethod.SerializerSettings));
                 }
                 else
                 {
-                    newPaymentDonationRequestPaymentMethod = new PaymentDonationRequestPaymentMethod(JsonConvert.DeserializeObject<StoredPaymentMethodDetails>(jsonString, PaymentDonationRequestPaymentMethod.AdditionalPropertiesSerializerSettings));
+                    newCheckoutPaymentMethod = new CheckoutPaymentMethod(JsonConvert.DeserializeObject<StoredPaymentMethodDetails>(jsonString, CheckoutPaymentMethod.AdditionalPropertiesSerializerSettings));
                 }
                 matchedTypes.Add("StoredPaymentMethodDetails");
                 match++;
@@ -1817,11 +1817,11 @@ namespace Adyen.Model.Checkout
                 // if it does not contains "AdditionalProperties", use SerializerSettings to deserialize
                 if (typeof(UpiCollectDetails).GetProperty("AdditionalProperties") == null)
                 {
-                    newPaymentDonationRequestPaymentMethod = new PaymentDonationRequestPaymentMethod(JsonConvert.DeserializeObject<UpiCollectDetails>(jsonString, PaymentDonationRequestPaymentMethod.SerializerSettings));
+                    newCheckoutPaymentMethod = new CheckoutPaymentMethod(JsonConvert.DeserializeObject<UpiCollectDetails>(jsonString, CheckoutPaymentMethod.SerializerSettings));
                 }
                 else
                 {
-                    newPaymentDonationRequestPaymentMethod = new PaymentDonationRequestPaymentMethod(JsonConvert.DeserializeObject<UpiCollectDetails>(jsonString, PaymentDonationRequestPaymentMethod.AdditionalPropertiesSerializerSettings));
+                    newCheckoutPaymentMethod = new CheckoutPaymentMethod(JsonConvert.DeserializeObject<UpiCollectDetails>(jsonString, CheckoutPaymentMethod.AdditionalPropertiesSerializerSettings));
                 }
                 matchedTypes.Add("UpiCollectDetails");
                 match++;
@@ -1839,11 +1839,11 @@ namespace Adyen.Model.Checkout
                 // if it does not contains "AdditionalProperties", use SerializerSettings to deserialize
                 if (typeof(UpiIntentDetails).GetProperty("AdditionalProperties") == null)
                 {
-                    newPaymentDonationRequestPaymentMethod = new PaymentDonationRequestPaymentMethod(JsonConvert.DeserializeObject<UpiIntentDetails>(jsonString, PaymentDonationRequestPaymentMethod.SerializerSettings));
+                    newCheckoutPaymentMethod = new CheckoutPaymentMethod(JsonConvert.DeserializeObject<UpiIntentDetails>(jsonString, CheckoutPaymentMethod.SerializerSettings));
                 }
                 else
                 {
-                    newPaymentDonationRequestPaymentMethod = new PaymentDonationRequestPaymentMethod(JsonConvert.DeserializeObject<UpiIntentDetails>(jsonString, PaymentDonationRequestPaymentMethod.AdditionalPropertiesSerializerSettings));
+                    newCheckoutPaymentMethod = new CheckoutPaymentMethod(JsonConvert.DeserializeObject<UpiIntentDetails>(jsonString, CheckoutPaymentMethod.AdditionalPropertiesSerializerSettings));
                 }
                 matchedTypes.Add("UpiIntentDetails");
                 match++;
@@ -1861,11 +1861,11 @@ namespace Adyen.Model.Checkout
                 // if it does not contains "AdditionalProperties", use SerializerSettings to deserialize
                 if (typeof(VippsDetails).GetProperty("AdditionalProperties") == null)
                 {
-                    newPaymentDonationRequestPaymentMethod = new PaymentDonationRequestPaymentMethod(JsonConvert.DeserializeObject<VippsDetails>(jsonString, PaymentDonationRequestPaymentMethod.SerializerSettings));
+                    newCheckoutPaymentMethod = new CheckoutPaymentMethod(JsonConvert.DeserializeObject<VippsDetails>(jsonString, CheckoutPaymentMethod.SerializerSettings));
                 }
                 else
                 {
-                    newPaymentDonationRequestPaymentMethod = new PaymentDonationRequestPaymentMethod(JsonConvert.DeserializeObject<VippsDetails>(jsonString, PaymentDonationRequestPaymentMethod.AdditionalPropertiesSerializerSettings));
+                    newCheckoutPaymentMethod = new CheckoutPaymentMethod(JsonConvert.DeserializeObject<VippsDetails>(jsonString, CheckoutPaymentMethod.AdditionalPropertiesSerializerSettings));
                 }
                 matchedTypes.Add("VippsDetails");
                 match++;
@@ -1883,11 +1883,11 @@ namespace Adyen.Model.Checkout
                 // if it does not contains "AdditionalProperties", use SerializerSettings to deserialize
                 if (typeof(VisaCheckoutDetails).GetProperty("AdditionalProperties") == null)
                 {
-                    newPaymentDonationRequestPaymentMethod = new PaymentDonationRequestPaymentMethod(JsonConvert.DeserializeObject<VisaCheckoutDetails>(jsonString, PaymentDonationRequestPaymentMethod.SerializerSettings));
+                    newCheckoutPaymentMethod = new CheckoutPaymentMethod(JsonConvert.DeserializeObject<VisaCheckoutDetails>(jsonString, CheckoutPaymentMethod.SerializerSettings));
                 }
                 else
                 {
-                    newPaymentDonationRequestPaymentMethod = new PaymentDonationRequestPaymentMethod(JsonConvert.DeserializeObject<VisaCheckoutDetails>(jsonString, PaymentDonationRequestPaymentMethod.AdditionalPropertiesSerializerSettings));
+                    newCheckoutPaymentMethod = new CheckoutPaymentMethod(JsonConvert.DeserializeObject<VisaCheckoutDetails>(jsonString, CheckoutPaymentMethod.AdditionalPropertiesSerializerSettings));
                 }
                 matchedTypes.Add("VisaCheckoutDetails");
                 match++;
@@ -1905,11 +1905,11 @@ namespace Adyen.Model.Checkout
                 // if it does not contains "AdditionalProperties", use SerializerSettings to deserialize
                 if (typeof(WeChatPayDetails).GetProperty("AdditionalProperties") == null)
                 {
-                    newPaymentDonationRequestPaymentMethod = new PaymentDonationRequestPaymentMethod(JsonConvert.DeserializeObject<WeChatPayDetails>(jsonString, PaymentDonationRequestPaymentMethod.SerializerSettings));
+                    newCheckoutPaymentMethod = new CheckoutPaymentMethod(JsonConvert.DeserializeObject<WeChatPayDetails>(jsonString, CheckoutPaymentMethod.SerializerSettings));
                 }
                 else
                 {
-                    newPaymentDonationRequestPaymentMethod = new PaymentDonationRequestPaymentMethod(JsonConvert.DeserializeObject<WeChatPayDetails>(jsonString, PaymentDonationRequestPaymentMethod.AdditionalPropertiesSerializerSettings));
+                    newCheckoutPaymentMethod = new CheckoutPaymentMethod(JsonConvert.DeserializeObject<WeChatPayDetails>(jsonString, CheckoutPaymentMethod.AdditionalPropertiesSerializerSettings));
                 }
                 matchedTypes.Add("WeChatPayDetails");
                 match++;
@@ -1927,11 +1927,11 @@ namespace Adyen.Model.Checkout
                 // if it does not contains "AdditionalProperties", use SerializerSettings to deserialize
                 if (typeof(WeChatPayMiniProgramDetails).GetProperty("AdditionalProperties") == null)
                 {
-                    newPaymentDonationRequestPaymentMethod = new PaymentDonationRequestPaymentMethod(JsonConvert.DeserializeObject<WeChatPayMiniProgramDetails>(jsonString, PaymentDonationRequestPaymentMethod.SerializerSettings));
+                    newCheckoutPaymentMethod = new CheckoutPaymentMethod(JsonConvert.DeserializeObject<WeChatPayMiniProgramDetails>(jsonString, CheckoutPaymentMethod.SerializerSettings));
                 }
                 else
                 {
-                    newPaymentDonationRequestPaymentMethod = new PaymentDonationRequestPaymentMethod(JsonConvert.DeserializeObject<WeChatPayMiniProgramDetails>(jsonString, PaymentDonationRequestPaymentMethod.AdditionalPropertiesSerializerSettings));
+                    newCheckoutPaymentMethod = new CheckoutPaymentMethod(JsonConvert.DeserializeObject<WeChatPayMiniProgramDetails>(jsonString, CheckoutPaymentMethod.AdditionalPropertiesSerializerSettings));
                 }
                 matchedTypes.Add("WeChatPayMiniProgramDetails");
                 match++;
@@ -1949,11 +1949,11 @@ namespace Adyen.Model.Checkout
                 // if it does not contains "AdditionalProperties", use SerializerSettings to deserialize
                 if (typeof(ZipDetails).GetProperty("AdditionalProperties") == null)
                 {
-                    newPaymentDonationRequestPaymentMethod = new PaymentDonationRequestPaymentMethod(JsonConvert.DeserializeObject<ZipDetails>(jsonString, PaymentDonationRequestPaymentMethod.SerializerSettings));
+                    newCheckoutPaymentMethod = new CheckoutPaymentMethod(JsonConvert.DeserializeObject<ZipDetails>(jsonString, CheckoutPaymentMethod.SerializerSettings));
                 }
                 else
                 {
-                    newPaymentDonationRequestPaymentMethod = new PaymentDonationRequestPaymentMethod(JsonConvert.DeserializeObject<ZipDetails>(jsonString, PaymentDonationRequestPaymentMethod.AdditionalPropertiesSerializerSettings));
+                    newCheckoutPaymentMethod = new CheckoutPaymentMethod(JsonConvert.DeserializeObject<ZipDetails>(jsonString, CheckoutPaymentMethod.AdditionalPropertiesSerializerSettings));
                 }
                 matchedTypes.Add("ZipDetails");
                 match++;
@@ -1976,7 +1976,7 @@ namespace Adyen.Model.Checkout
             }
 
             // deserialization is considered successful at this point if no exception has been thrown.
-            return newPaymentDonationRequestPaymentMethod;
+            return newCheckoutPaymentMethod;
         }
 
         /// <summary>
@@ -1986,15 +1986,15 @@ namespace Adyen.Model.Checkout
         /// <returns>Boolean</returns>
         public override bool Equals(object input)
         {
-            return this.Equals(input as PaymentDonationRequestPaymentMethod);
+            return this.Equals(input as CheckoutPaymentMethod);
         }
 
         /// <summary>
-        /// Returns true if PaymentDonationRequestPaymentMethod instances are equal
+        /// Returns true if CheckoutPaymentMethod instances are equal
         /// </summary>
-        /// <param name="input">Instance of PaymentDonationRequestPaymentMethod to be compared</param>
+        /// <param name="input">Instance of CheckoutPaymentMethod to be compared</param>
         /// <returns>Boolean</returns>
-        public bool Equals(PaymentDonationRequestPaymentMethod input)
+        public bool Equals(CheckoutPaymentMethod input)
         {
             if (input == null)
                 return false;
@@ -2029,9 +2029,9 @@ namespace Adyen.Model.Checkout
     }
 
     /// <summary>
-    /// Custom JSON converter for PaymentDonationRequestPaymentMethod
+    /// Custom JSON converter for CheckoutPaymentMethod
     /// </summary>
-    public class PaymentDonationRequestPaymentMethodJsonConverter : JsonConverter
+    public class CheckoutPaymentMethodJsonConverter : JsonConverter
     {
         /// <summary>
         /// To write the JSON string
@@ -2041,7 +2041,7 @@ namespace Adyen.Model.Checkout
         /// <param name="serializer">JSON Serializer</param>
         public override void WriteJson(JsonWriter writer, object value, JsonSerializer serializer)
         {
-            writer.WriteRawValue((string)(typeof(PaymentDonationRequestPaymentMethod).GetMethod("ToJson").Invoke(value, null)));
+            writer.WriteRawValue((string)(typeof(CheckoutPaymentMethod).GetMethod("ToJson").Invoke(value, null)));
         }
 
         /// <summary>
@@ -2056,7 +2056,7 @@ namespace Adyen.Model.Checkout
         {
             if(reader.TokenType != JsonToken.Null)
             {
-                return PaymentDonationRequestPaymentMethod.FromJson(JObject.Load(reader).ToString(Formatting.None));
+                return CheckoutPaymentMethod.FromJson(JObject.Load(reader).ToString(Formatting.None));
             }
             return null;
         }

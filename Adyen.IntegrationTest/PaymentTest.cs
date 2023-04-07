@@ -100,7 +100,7 @@ namespace Adyen.IntegrationTest
                 PspReference = GetTestPspReference()
             };
             var client = CreateApiKeyTestClient();
-            var payment = new PaymentService(client);
+            var payment = new GeneralService(client);
             try
             {
                 payment.GetAuthenticationResult(authenticationResultRequest);

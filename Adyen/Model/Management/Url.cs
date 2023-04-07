@@ -36,15 +36,24 @@ namespace Adyen.Model.Management
         /// <summary>
         /// Initializes a new instance of the <see cref="Url" /> class.
         /// </summary>
+        /// <param name="encrypted">Indicates if the message sent to this URL should be encrypted..</param>
         /// <param name="password">The password for authentication of the notifications..</param>
         /// <param name="url">The URL in the format: http(s)://domain.com..</param>
         /// <param name="username">The username for authentication of the notifications..</param>
-        public Url(string password = default(string), string url = default(string), string username = default(string))
+        public Url(bool encrypted = default(bool), string password = default(string), string url = default(string), string username = default(string))
         {
+            this.Encrypted = encrypted;
             this.Password = password;
             this._Url = url;
             this.Username = username;
         }
+
+        /// <summary>
+        /// Indicates if the message sent to this URL should be encrypted.
+        /// </summary>
+        /// <value>Indicates if the message sent to this URL should be encrypted.</value>
+        [DataMember(Name = "encrypted", EmitDefaultValue = false)]
+        public bool Encrypted { get; set; }
 
         /// <summary>
         /// The password for authentication of the notifications.
@@ -75,6 +84,7 @@ namespace Adyen.Model.Management
         {
             StringBuilder sb = new StringBuilder();
             sb.Append("class Url {\n");
+            sb.Append("  Encrypted: ").Append(Encrypted).Append("\n");
             sb.Append("  Password: ").Append(Password).Append("\n");
             sb.Append("  _Url: ").Append(_Url).Append("\n");
             sb.Append("  Username: ").Append(Username).Append("\n");
@@ -114,6 +124,10 @@ namespace Adyen.Model.Management
             }
             return 
                 (
+                    this.Encrypted == input.Encrypted ||
+                    this.Encrypted.Equals(input.Encrypted)
+                ) && 
+                (
                     this.Password == input.Password ||
                     (this.Password != null &&
                     this.Password.Equals(input.Password))
@@ -139,6 +153,7 @@ namespace Adyen.Model.Management
             unchecked // Overflow is fine, just wrap
             {
                 int hashCode = 41;
+                hashCode = (hashCode * 59) + this.Encrypted.GetHashCode();
                 if (this.Password != null)
                 {
                     hashCode = (hashCode * 59) + this.Password.GetHashCode();

@@ -33,7 +33,7 @@ namespace Adyen.IntegrationTest
         [TestMethod]
         public void TestClassicPaymentErrorHandling()
         {
-            var payments = new PaymentService(_client);
+            var payments = new GeneralService(_client);
             var request = new PaymentRequest {
                 Amount = new Amount(){
                     Value = 1500,
@@ -76,7 +76,7 @@ namespace Adyen.IntegrationTest
                     Currency = "EUR"
                 },
                 CountryCode = "NL",
-                PaymentMethod = new PaymentDonationRequestPaymentMethod( new ApplePayDetails(type: ApplePayDetails.TypeEnum.Applepay)),
+                PaymentMethod = new CheckoutPaymentMethod( new ApplePayDetails(type: ApplePayDetails.TypeEnum.Applepay)),
                 Reference = "123456789",
                 ShopperReference = "Test-Payment1234",
                 ReturnUrl = "https://your-company.com/...",

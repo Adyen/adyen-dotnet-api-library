@@ -142,7 +142,7 @@ namespace Adyen.Service.Checkout
     }
     
     /// <summary>
-    /// Represents a collection of functions to interact with the API endpoints
+    /// Represents a collection of functions to interact with the ModificationsService API endpoints
     /// </summary>
     public class ModificationsService : AbstractService, IModificationsService
     {
@@ -150,7 +150,7 @@ namespace Adyen.Service.Checkout
         
         public ModificationsService(Client client) : base(client)
         {
-            _baseUrl = client.Config.CheckoutEndpoint + "/" + ClientConfig.CheckoutApiVersion;
+            _baseUrl = CreateBaseUrl("https://checkout-test.adyen.com/v70");
         }
         
         public StandalonePaymentCancelResource CancelAuthorisedPayment(CreateStandalonePaymentCancelRequest createStandalonePaymentCancelRequest, RequestOptions requestOptions = default)
