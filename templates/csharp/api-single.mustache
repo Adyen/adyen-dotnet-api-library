@@ -16,7 +16,7 @@ namespace {{packageName}}.Service
     /// <summary>
     /// {{classname}} Interface
     /// </summary>
-    public interface I{{customApi}}
+    public interface I{{customApi}}Service
     {
         {{#operation}}
 {{>method_documentation}}
@@ -44,15 +44,15 @@ namespace {{packageName}}.Service
     
     {{#operations}}
     /// <summary>
-    /// Represents a collection of functions to interact with the API endpoints
+    /// Represents a collection of functions to interact with the {{customApi}}Service API endpoints
     /// </summary>
-    {{>visibility}} class {{customApi}} : AbstractService, I{{customApi}}
+    {{>visibility}} class {{customApi}}Service : AbstractService, I{{customApi}}Service
     {
         private readonly string _baseUrl;
         
-        public {{customApi}}(Client client) : base(client)
+        public {{customApi}}Service(Client client) : base(client)
         {
-            _baseUrl = client.Config.CheckoutEndpoint + "/" + ClientConfig.CheckoutApiVersion;
+            _baseUrl = CreateBaseUrl("{{{basePath}}}");
         }
         {{#operation}}
         
