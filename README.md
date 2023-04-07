@@ -72,7 +72,13 @@ var checkout = new PaymentsService(client);
 //Make the call to the service. This example code makes a call to /payments
 var paymentResponse = checkout.Payments(paymentRequest);
 ```
-
+Or in case you would like to make an asynchronous /payments call with idempotency key and cancellation token, the last line would be instead:
+```c#
+Task<PaymentResponse> paymentResponse = checkout.PaymentsAsync(
+                paymentRequest,
+                requestOptions: myIdempotencyKey, 
+                cancellationToken: myCancellationToken);
+```
 ## Running the tests
 Navigate to adyen-dotnet-api-library folder and run the following commands.
 ```
