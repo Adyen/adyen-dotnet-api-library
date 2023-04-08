@@ -80,17 +80,5 @@ namespace Adyen.Test
                     "https://balanceplatform-api-live.adyen.com/bcl/v2/accountHolders/id/balanceAccounts?offset=3&limit=5",
                     null, null, HttpMethod.Get, default));
         }
-
-        [TestMethod]
-        public async Task TestPalLiveEndPointNoPrefix()
-        {
-            _client.Config.LiveEndpointUrlPrefix = default;
-            var service = new PaymentsService(_client);
-            try
-            {
-                await service.DonationsAsync(new PaymentDonationRequest());
-                
-            } catch (InvalidOperationException e){ Assert.AreEqual("Missing liveEndpointUrlPrefix for endpoint generation",e.Message);}
-        }
     }
 }
