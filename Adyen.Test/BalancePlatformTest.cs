@@ -1,5 +1,6 @@
 using System;
 using System.Net.Http;
+using System.Threading;
 using Adyen.Model.BalancePlatform;
 using Adyen.Service.BalancePlatform;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
@@ -71,7 +72,7 @@ namespace Adyen.Test
             var response = service.GetAllBalanceAccountsOfAccountHolderAsync("id", offset: 1, limit: 3).Result;
             Assert.AreEqual("BA32272223222B59K6ZXHBFN6", response.BalanceAccounts[0].Id);
             Assert.AreEqual(BalanceAccount.StatusEnum.Closed, response.BalanceAccounts[1].Status);
-            ClientInterfaceMock.Verify(mock => mock.RequestAsync("/v2/accountHolders/id/balanceAccounts?offset=1&limit=3", null, null, HttpMethod.Get));
+            ClientInterfaceMock.Verify(mock => mock.RequestAsync("/v2/accountHolders/id/balanceAccounts?offset=1&limit=3", null, null, HttpMethod.Get, new CancellationToken()));
         }
 
         #endregion
