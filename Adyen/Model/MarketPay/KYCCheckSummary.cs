@@ -1,26 +1,3 @@
-#region License
-// /*
-//  *                       ######
-//  *                       ######
-//  * ############    ####( ######  #####. ######  ############   ############
-//  * #############  #####( ######  #####. ######  #############  #############
-//  *        ######  #####( ######  #####. ######  #####  ######  #####  ######
-//  * ###### ######  #####( ######  #####. ######  #####  #####   #####  ######
-//  * ###### ######  #####( ######  #####. ######  #####          #####  ######
-//  * #############  #############  #############  #############  #####  ######
-//  *  ############   ############  #############   ############  #####  ######
-//  *                                      ######
-//  *                               #############
-//  *                               ############
-//  *
-//  * Adyen Dotnet API Library
-//  *
-//  * Copyright (c) 2020 Adyen B.V.
-//  * This file is open source and available under the MIT license.
-//  * See the LICENSE file for more info.
-//  */
-#endregion
-
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -34,7 +11,7 @@ namespace Adyen.Model.MarketPay
     /// KYCCheckSummary
     /// </summary>
     [DataContract]
-        public partial class KYCCheckSummary :  IEquatable<KYCCheckSummary>, IValidatableObject
+        public class KYCCheckSummary :  IEquatable<KYCCheckSummary>, IValidatableObject
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="KYCCheckSummary" /> class.
@@ -43,8 +20,8 @@ namespace Adyen.Model.MarketPay
         /// <param name="kycCheckDescription">A description of the check..</param>
         public KYCCheckSummary(int? kycCheckCode = default(int?), string kycCheckDescription = default(string))
         {
-            this.KycCheckCode = kycCheckCode;
-            this.KycCheckDescription = kycCheckDescription;
+            KycCheckCode = kycCheckCode;
+            KycCheckDescription = kycCheckDescription;
         }
         
         /// <summary>
@@ -91,7 +68,7 @@ namespace Adyen.Model.MarketPay
         /// <returns>Boolean</returns>
         public override bool Equals(object input)
         {
-            return this.Equals(input as KYCCheckSummary);
+            return Equals(input as KYCCheckSummary);
         }
 
         /// <summary>
@@ -106,14 +83,14 @@ namespace Adyen.Model.MarketPay
 
             return 
                 (
-                    this.KycCheckCode == input.KycCheckCode ||
-                    (this.KycCheckCode != null &&
-                    this.KycCheckCode.Equals(input.KycCheckCode))
+                    KycCheckCode == input.KycCheckCode ||
+                    (KycCheckCode != null &&
+                    KycCheckCode.Equals(input.KycCheckCode))
                 ) && 
                 (
-                    this.KycCheckDescription == input.KycCheckDescription ||
-                    (this.KycCheckDescription != null &&
-                    this.KycCheckDescription.Equals(input.KycCheckDescription))
+                    KycCheckDescription == input.KycCheckDescription ||
+                    (KycCheckDescription != null &&
+                    KycCheckDescription.Equals(input.KycCheckDescription))
                 );
         }
 
@@ -126,10 +103,10 @@ namespace Adyen.Model.MarketPay
             unchecked // Overflow is fine, just wrap
             {
                 int hashCode = 41;
-                if (this.KycCheckCode != null)
-                    hashCode = hashCode * 59 + this.KycCheckCode.GetHashCode();
-                if (this.KycCheckDescription != null)
-                    hashCode = hashCode * 59 + this.KycCheckDescription.GetHashCode();
+                if (KycCheckCode != null)
+                    hashCode = hashCode * 59 + KycCheckCode.GetHashCode();
+                if (KycCheckDescription != null)
+                    hashCode = hashCode * 59 + KycCheckDescription.GetHashCode();
                 return hashCode;
             }
         }
@@ -139,7 +116,7 @@ namespace Adyen.Model.MarketPay
         /// </summary>
         /// <param name="validationContext">Validation context</param>
         /// <returns>Validation Result</returns>
-        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+        IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
         {
             yield break;
         }

@@ -1,26 +1,3 @@
-#region License
-// /*
-//  *                       ######
-//  *                       ######
-//  * ############    ####( ######  #####. ######  ############   ############
-//  * #############  #####( ######  #####. ######  #############  #############
-//  *        ######  #####( ######  #####. ######  #####  ######  #####  ######
-//  * ###### ######  #####( ######  #####. ######  #####  #####   #####  ######
-//  * ###### ######  #####( ######  #####. ######  #####          #####  ######
-//  * #############  #############  #############  #############  #####  ######
-//  *  ############   ############  #############   ############  #####  ######
-//  *                                      ######
-//  *                               #############
-//  *                               ############
-//  *
-//  * Adyen Dotnet API Library
-//  *
-//  * Copyright (c) 2020 Adyen B.V.
-//  * This file is open source and available under the MIT license.
-//  * See the LICENSE file for more info.
-//  */
-#endregion
-
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -35,7 +12,7 @@ namespace Adyen.Model.MarketPay
     /// GetUploadedDocumentsRequest
     /// </summary>
     [DataContract]
-        public partial class GetUploadedDocumentsRequest :  IEquatable<GetUploadedDocumentsRequest>, IValidatableObject
+        public class GetUploadedDocumentsRequest :  IEquatable<GetUploadedDocumentsRequest>, IValidatableObject
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="GetUploadedDocumentsRequest" /> class.
@@ -50,12 +27,10 @@ namespace Adyen.Model.MarketPay
             {
                 throw new InvalidDataException("accountHolderCode is a required property for GetUploadedDocumentsRequest and cannot be null");
             }
-            else
-            {
-                this.AccountHolderCode = accountHolderCode;
-            }
-            this.BankAccountUUID = bankAccountUUID;
-            this.ShareholderCode = shareholderCode;
+
+            AccountHolderCode = accountHolderCode;
+            BankAccountUUID = bankAccountUUID;
+            ShareholderCode = shareholderCode;
         }
         
         /// <summary>
@@ -110,7 +85,7 @@ namespace Adyen.Model.MarketPay
         /// <returns>Boolean</returns>
         public override bool Equals(object input)
         {
-            return this.Equals(input as GetUploadedDocumentsRequest);
+            return Equals(input as GetUploadedDocumentsRequest);
         }
 
         /// <summary>
@@ -125,19 +100,19 @@ namespace Adyen.Model.MarketPay
 
             return 
                 (
-                    this.AccountHolderCode == input.AccountHolderCode ||
-                    (this.AccountHolderCode != null &&
-                    this.AccountHolderCode.Equals(input.AccountHolderCode))
+                    AccountHolderCode == input.AccountHolderCode ||
+                    (AccountHolderCode != null &&
+                    AccountHolderCode.Equals(input.AccountHolderCode))
                 ) && 
                 (
-                    this.BankAccountUUID == input.BankAccountUUID ||
-                    (this.BankAccountUUID != null &&
-                    this.BankAccountUUID.Equals(input.BankAccountUUID))
+                    BankAccountUUID == input.BankAccountUUID ||
+                    (BankAccountUUID != null &&
+                    BankAccountUUID.Equals(input.BankAccountUUID))
                 ) && 
                 (
-                    this.ShareholderCode == input.ShareholderCode ||
-                    (this.ShareholderCode != null &&
-                    this.ShareholderCode.Equals(input.ShareholderCode))
+                    ShareholderCode == input.ShareholderCode ||
+                    (ShareholderCode != null &&
+                    ShareholderCode.Equals(input.ShareholderCode))
                 );
         }
 
@@ -150,12 +125,12 @@ namespace Adyen.Model.MarketPay
             unchecked // Overflow is fine, just wrap
             {
                 int hashCode = 41;
-                if (this.AccountHolderCode != null)
-                    hashCode = hashCode * 59 + this.AccountHolderCode.GetHashCode();
-                if (this.BankAccountUUID != null)
-                    hashCode = hashCode * 59 + this.BankAccountUUID.GetHashCode();
-                if (this.ShareholderCode != null)
-                    hashCode = hashCode * 59 + this.ShareholderCode.GetHashCode();
+                if (AccountHolderCode != null)
+                    hashCode = hashCode * 59 + AccountHolderCode.GetHashCode();
+                if (BankAccountUUID != null)
+                    hashCode = hashCode * 59 + BankAccountUUID.GetHashCode();
+                if (ShareholderCode != null)
+                    hashCode = hashCode * 59 + ShareholderCode.GetHashCode();
                 return hashCode;
             }
         }
@@ -165,7 +140,7 @@ namespace Adyen.Model.MarketPay
         /// </summary>
         /// <param name="validationContext">Validation context</param>
         /// <returns>Validation Result</returns>
-        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+        IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
         {
             yield break;
         }

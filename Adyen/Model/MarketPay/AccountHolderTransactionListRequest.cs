@@ -1,25 +1,3 @@
-#region License
-// /*
-//  *                       ######
-//  *                       ######
-//  * ############    ####( ######  #####. ######  ############   ############
-//  * #############  #####( ######  #####. ######  #############  #############
-//  *        ######  #####( ######  #####. ######  #####  ######  #####  ######
-//  * ###### ######  #####( ######  #####. ######  #####  #####   #####  ######
-//  * ###### ######  #####( ######  #####. ######  #####          #####  ######
-//  * #############  #############  #############  #############  #####  ######
-//  *  ############   ############  #############   ############  #####  ######
-//  *                                      ######
-//  *                               #############
-//  *                               ############
-//  *
-//  * Adyen Dotnet API Library
-//  *
-//  * Copyright (c) 2020 Adyen B.V.
-//  * This file is open source and available under the MIT license.
-//  * See the LICENSE file for more info.
-//  */
-#endregion
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -189,12 +167,10 @@ namespace Adyen.Model.MarketPay
             {
                 throw new InvalidDataException("accountHolderCode is a required property for AccountHolderTransactionListRequest and cannot be null");
             }
-            else
-            {
-                this.AccountHolderCode = accountHolderCode;
-            }
-            this.TransactionListsPerAccount = transactionListsPerAccount;
-            this.TransactionStatuses = transactionStatuses;
+
+            AccountHolderCode = accountHolderCode;
+            TransactionListsPerAccount = transactionListsPerAccount;
+            TransactionStatuses = transactionStatuses;
         }
 
         /// <summary>
@@ -243,7 +219,7 @@ namespace Adyen.Model.MarketPay
         /// <returns>Boolean</returns>
         public override bool Equals(object input)
         {
-            return this.Equals(input as AccountHolderTransactionListRequest);
+            return Equals(input as AccountHolderTransactionListRequest);
         }
 
         /// <summary>
@@ -258,21 +234,21 @@ namespace Adyen.Model.MarketPay
 
             return
                 (
-                    this.AccountHolderCode == input.AccountHolderCode ||
-                    (this.AccountHolderCode != null &&
-                    this.AccountHolderCode.Equals(input.AccountHolderCode))
+                    AccountHolderCode == input.AccountHolderCode ||
+                    (AccountHolderCode != null &&
+                    AccountHolderCode.Equals(input.AccountHolderCode))
                 ) &&
                 (
-                    this.TransactionListsPerAccount == input.TransactionListsPerAccount ||
-                    this.TransactionListsPerAccount != null &&
+                    TransactionListsPerAccount == input.TransactionListsPerAccount ||
+                    TransactionListsPerAccount != null &&
                     input.TransactionListsPerAccount != null &&
-                    this.TransactionListsPerAccount.SequenceEqual(input.TransactionListsPerAccount)
+                    TransactionListsPerAccount.SequenceEqual(input.TransactionListsPerAccount)
                 ) &&
                 (
-                    this.TransactionStatuses == input.TransactionStatuses ||
-                    this.TransactionStatuses != null &&
+                    TransactionStatuses == input.TransactionStatuses ||
+                    TransactionStatuses != null &&
                     input.TransactionStatuses != null &&
-                    this.TransactionStatuses.SequenceEqual(input.TransactionStatuses)
+                    TransactionStatuses.SequenceEqual(input.TransactionStatuses)
                 );
         }
 
@@ -285,12 +261,12 @@ namespace Adyen.Model.MarketPay
             unchecked // Overflow is fine, just wrap
             {
                 int hashCode = 41;
-                if (this.AccountHolderCode != null)
-                    hashCode = hashCode * 59 + this.AccountHolderCode.GetHashCode();
-                if (this.TransactionListsPerAccount != null)
-                    hashCode = hashCode * 59 + this.TransactionListsPerAccount.GetHashCode();
-                if (this.TransactionStatuses != null)
-                    hashCode = hashCode * 59 + this.TransactionStatuses.GetHashCode();
+                if (AccountHolderCode != null)
+                    hashCode = hashCode * 59 + AccountHolderCode.GetHashCode();
+                if (TransactionListsPerAccount != null)
+                    hashCode = hashCode * 59 + TransactionListsPerAccount.GetHashCode();
+                if (TransactionStatuses != null)
+                    hashCode = hashCode * 59 + TransactionStatuses.GetHashCode();
                 return hashCode;
             }
         }
@@ -300,7 +276,7 @@ namespace Adyen.Model.MarketPay
         /// </summary>
         /// <param name="validationContext">Validation context</param>
         /// <returns>Validation Result</returns>
-        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+        IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
         {
             yield break;
         }

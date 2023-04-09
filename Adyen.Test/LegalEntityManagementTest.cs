@@ -1,7 +1,6 @@
 using System;
 using System.Collections.Generic;
 using System.Text;
-using System.Threading.Tasks;
 using Adyen.Model.LegalEntityManagement;
 using Adyen.Service.LegalEntityManagement;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
@@ -20,7 +19,7 @@ namespace Adyen.Test
         {
             var client = CreateMockTestClientApiKeyBasedRequestAsync("Mocks/legalentitymanagement/Document.json");
             var service = new DocumentsService(client);
-            var document = new Document()
+            var document = new Document
             {
                 Attachment = new Attachment()
             };
@@ -37,7 +36,7 @@ namespace Adyen.Test
         {
             var client = CreateMockTestClientApiKeyBasedRequestAsync("Mocks/legalentitymanagement/Document.json");
             var service = new DocumentsService(client);
-            var document = new Document()
+            var document = new Document
             {
                 Attachment = new Attachment()
             };
@@ -69,7 +68,7 @@ namespace Adyen.Test
         {
             var client = CreateMockTestClientApiKeyBasedRequestAsync("Mocks/legalentitymanagement/TransferInstrument.json");
             var service = new TransferInstrumentsService(client);
-            var transferInstrumentInfo = new TransferInstrumentInfo()
+            var transferInstrumentInfo = new TransferInstrumentInfo
             {
                 LegalEntityId = "",
                 Type = TransferInstrumentInfo.TypeEnum.BankAccount
@@ -86,7 +85,7 @@ namespace Adyen.Test
         {
             var client = CreateMockTestClientApiKeyBasedRequestAsync("Mocks/legalentitymanagement/TransferInstrument.json");
             var service = new TransferInstrumentsService(client);
-            var transferInstrumentInfo = new TransferInstrumentInfo()
+            var transferInstrumentInfo = new TransferInstrumentInfo
             {
                 LegalEntityId = "",
                 Type = TransferInstrumentInfo.TypeEnum.BankAccount
@@ -123,7 +122,7 @@ namespace Adyen.Test
         {
             var client = CreateMockTestClientApiKeyBasedRequestAsync("Mocks/legalentitymanagement/LegalEntity.json");
             var service = new LegalEntitiesService(client);
-            var legalEntityInfo = new LegalEntityInfo()
+            var legalEntityInfo = new LegalEntityInfo
             {
                 Organization = new Organization(),
                 Type = LegalEntityInfo.TypeEnum.Individual,
@@ -145,7 +144,7 @@ namespace Adyen.Test
         {
             var client = CreateMockTestClientApiKeyBasedRequestAsync("Mocks/legalentitymanagement/BusinessLine.json");
             var service = new BusinessLinesService(client);
-            var businessLine = new BusinessLineInfoUpdate()
+            var businessLine = new BusinessLineInfoUpdate
             {
                 IndustryCode = "124rrdfer",
                 SourceOfFunds = new SourceOfFunds()

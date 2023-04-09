@@ -1,26 +1,3 @@
-#region License
-// /*
-//  *                       ######
-//  *                       ######
-//  * ############    ####( ######  #####. ######  ############   ############
-//  * #############  #####( ######  #####. ######  #############  #############
-//  *        ######  #####( ######  #####. ######  #####  ######  #####  ######
-//  * ###### ######  #####( ######  #####. ######  #####  #####   #####  ######
-//  * ###### ######  #####( ######  #####. ######  #####          #####  ######
-//  * #############  #############  #############  #############  #####  ######
-//  *  ############   ############  #############   ############  #####  ######
-//  *                                      ######
-//  *                               #############
-//  *                               ############
-//  *
-//  * Adyen Dotnet API Library
-//  *
-//  * Copyright (c) 2020 Adyen B.V.
-//  * This file is open source and available under the MIT license.
-//  * See the LICENSE file for more info.
-//  */
-#endregion
-
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -37,7 +14,7 @@ namespace Adyen.Model.MarketPay
     /// AccountHolderStatus
     /// </summary>
     [DataContract]
-    public partial class AccountHolderStatus : IEquatable<AccountHolderStatus>, IValidatableObject
+    public class AccountHolderStatus : IEquatable<AccountHolderStatus>, IValidatableObject
     {
         /// <summary>
         /// The status of the account holder. &gt;Permitted values: &#x60;Active&#x60;, &#x60;Inactive&#x60;, &#x60;Suspended&#x60;, &#x60;Closed&#x60;.
@@ -88,30 +65,24 @@ namespace Adyen.Model.MarketPay
             {
                 throw new InvalidDataException("events is a required property for AccountHolderStatus and cannot be null");
             }
-            else
-            {
-                this.Events = events;
-            }
+
+            Events = events;
             // to ensure "payoutState" is required (not null)
             if (payoutState == null)
             {
                 throw new InvalidDataException("payoutState is a required property for AccountHolderStatus and cannot be null");
             }
-            else
-            {
-                this.PayoutState = payoutState;
-            }
+
+            PayoutState = payoutState;
             // to ensure "processingState" is required (not null)
             if (processingState == null)
             {
                 throw new InvalidDataException("processingState is a required property for AccountHolderStatus and cannot be null");
             }
-            else
-            {
-                this.ProcessingState = processingState;
-            }
-            this.Status = status;
-            this.StatusReason = statusReason;
+
+            ProcessingState = processingState;
+            Status = status;
+            StatusReason = statusReason;
 
         }
 
@@ -175,7 +146,7 @@ namespace Adyen.Model.MarketPay
         /// <returns>Boolean</returns>
         public override bool Equals(object input)
         {
-            return this.Equals(input as AccountHolderStatus);
+            return Equals(input as AccountHolderStatus);
         }
 
         /// <summary>
@@ -190,29 +161,29 @@ namespace Adyen.Model.MarketPay
 
             return
                 (
-                    this.Events == input.Events ||
-                    this.Events != null &&
+                    Events == input.Events ||
+                    Events != null &&
                     input.Events != null &&
-                    this.Events.SequenceEqual(input.Events)
+                    Events.SequenceEqual(input.Events)
                 ) &&
                 (
-                    this.PayoutState == input.PayoutState ||
-                    (this.PayoutState != null &&
-                    this.PayoutState.Equals(input.PayoutState))
+                    PayoutState == input.PayoutState ||
+                    (PayoutState != null &&
+                    PayoutState.Equals(input.PayoutState))
                 ) &&
                 (
-                    this.ProcessingState == input.ProcessingState ||
-                    (this.ProcessingState != null &&
-                    this.ProcessingState.Equals(input.ProcessingState))
+                    ProcessingState == input.ProcessingState ||
+                    (ProcessingState != null &&
+                    ProcessingState.Equals(input.ProcessingState))
                 ) &&
                 (
-                    this.Status == input.Status ||
-                    this.Status.Equals(input.Status)
+                    Status == input.Status ||
+                    Status.Equals(input.Status)
                 ) &&
                 (
-                    this.StatusReason == input.StatusReason ||
-                    (this.StatusReason != null &&
-                    this.StatusReason.Equals(input.StatusReason))
+                    StatusReason == input.StatusReason ||
+                    (StatusReason != null &&
+                    StatusReason.Equals(input.StatusReason))
                 );
         }
 
@@ -225,15 +196,15 @@ namespace Adyen.Model.MarketPay
             unchecked // Overflow is fine, just wrap
             {
                 int hashCode = 41;
-                if (this.Events != null)
-                    hashCode = hashCode * 59 + this.Events.GetHashCode();
-                if (this.PayoutState != null)
-                    hashCode = hashCode * 59 + this.PayoutState.GetHashCode();
-                if (this.ProcessingState != null)
-                    hashCode = hashCode * 59 + this.ProcessingState.GetHashCode();
-                hashCode = hashCode * 59 + this.Status.GetHashCode();
-                if (this.StatusReason != null)
-                    hashCode = hashCode * 59 + this.StatusReason.GetHashCode();
+                if (Events != null)
+                    hashCode = hashCode * 59 + Events.GetHashCode();
+                if (PayoutState != null)
+                    hashCode = hashCode * 59 + PayoutState.GetHashCode();
+                if (ProcessingState != null)
+                    hashCode = hashCode * 59 + ProcessingState.GetHashCode();
+                hashCode = hashCode * 59 + Status.GetHashCode();
+                if (StatusReason != null)
+                    hashCode = hashCode * 59 + StatusReason.GetHashCode();
                 return hashCode;
             }
         }
@@ -243,7 +214,7 @@ namespace Adyen.Model.MarketPay
         /// </summary>
         /// <param name="validationContext">Validation context</param>
         /// <returns>Validation Result</returns>
-        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+        IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
         {
             yield break;
         }

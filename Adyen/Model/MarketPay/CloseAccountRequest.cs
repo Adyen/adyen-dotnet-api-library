@@ -1,26 +1,3 @@
-#region License
-// /*
-//  *                       ######
-//  *                       ######
-//  * ############    ####( ######  #####. ######  ############   ############
-//  * #############  #####( ######  #####. ######  #############  #############
-//  *        ######  #####( ######  #####. ######  #####  ######  #####  ######
-//  * ###### ######  #####( ######  #####. ######  #####  #####   #####  ######
-//  * ###### ######  #####( ######  #####. ######  #####          #####  ######
-//  * #############  #############  #############  #############  #####  ######
-//  *  ############   ############  #############   ############  #####  ######
-//  *                                      ######
-//  *                               #############
-//  *                               ############
-//  *
-//  * Adyen Dotnet API Library
-//  *
-//  * Copyright (c) 2020 Adyen B.V.
-//  * This file is open source and available under the MIT license.
-//  * See the LICENSE file for more info.
-//  */
-#endregion
-
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -35,7 +12,7 @@ namespace Adyen.Model.MarketPay
     /// CloseAccountRequest
     /// </summary>
     [DataContract]
-        public partial class CloseAccountRequest :  IEquatable<CloseAccountRequest>, IValidatableObject
+        public class CloseAccountRequest :  IEquatable<CloseAccountRequest>, IValidatableObject
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="CloseAccountRequest" /> class.
@@ -48,10 +25,8 @@ namespace Adyen.Model.MarketPay
             {
                 throw new InvalidDataException("accountCode is a required property for CloseAccountRequest and cannot be null");
             }
-            else
-            {
-                this.AccountCode = accountCode;
-            }
+
+            AccountCode = accountCode;
         }
         
         /// <summary>
@@ -90,7 +65,7 @@ namespace Adyen.Model.MarketPay
         /// <returns>Boolean</returns>
         public override bool Equals(object input)
         {
-            return this.Equals(input as CloseAccountRequest);
+            return Equals(input as CloseAccountRequest);
         }
 
         /// <summary>
@@ -105,9 +80,9 @@ namespace Adyen.Model.MarketPay
 
             return 
                 (
-                    this.AccountCode == input.AccountCode ||
-                    (this.AccountCode != null &&
-                    this.AccountCode.Equals(input.AccountCode))
+                    AccountCode == input.AccountCode ||
+                    (AccountCode != null &&
+                    AccountCode.Equals(input.AccountCode))
                 );
         }
 
@@ -120,8 +95,8 @@ namespace Adyen.Model.MarketPay
             unchecked // Overflow is fine, just wrap
             {
                 int hashCode = 41;
-                if (this.AccountCode != null)
-                    hashCode = hashCode * 59 + this.AccountCode.GetHashCode();
+                if (AccountCode != null)
+                    hashCode = hashCode * 59 + AccountCode.GetHashCode();
                 return hashCode;
             }
         }
@@ -131,7 +106,7 @@ namespace Adyen.Model.MarketPay
         /// </summary>
         /// <param name="validationContext">Validation context</param>
         /// <returns>Validation Result</returns>
-        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+        IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
         {
             yield break;
         }

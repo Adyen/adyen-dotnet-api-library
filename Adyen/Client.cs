@@ -1,41 +1,15 @@
-﻿#region License
-// /*
-//  *                       ######
-//  *                       ######
-//  * ############    ####( ######  #####. ######  ############   ############
-//  * #############  #####( ######  #####. ######  #############  #############
-//  *        ######  #####( ######  #####. ######  #####  ######  #####  ######
-//  * ###### ######  #####( ######  #####. ######  #####  #####   #####  ######
-//  * ###### ######  #####( ######  #####. ######  #####          #####  ######
-//  * #############  #############  #############  #############  #####  ######
-//  *  ############   ############  #############   ############  #####  ######
-//  *                                      ######
-//  *                               #############
-//  *                               ############
-//  *
-//  * Adyen Dotnet API Library
-//  *
-//  * Copyright (c) 2022 Adyen N.V.
-//  * This file is open source and available under the MIT license.
-//  * See the LICENSE file for more info.
-//  */
-#endregion
-
-using System;
+﻿using System;
 using System.Net.Http;
-using System.Threading;
 using Adyen.Constants;
-using Adyen.HttpClient.Interfaces;
-using Adyen.HttpClient;
 using Adyen.Exceptions;
+using Adyen.HttpClient;
+using Adyen.HttpClient.Interfaces;
 using Environment = Adyen.Model.Environment;
 
 namespace Adyen
 {
     public class Client
     {
-        private IClient _client;
-
         public Config Config { get; set; }
 
         public string ApplicationName { get; set; }
@@ -55,7 +29,7 @@ namespace Adyen
             };
             SetEnvironment(environment, liveEndpointUrlPrefix);
             
-            _client = new HttpClientWrapper(Config, GetHttpClient());
+            HttpClient = new HttpClientWrapper(Config, GetHttpClient());
         }
         
         [Obsolete("Providing x-api-key is obsolete, please use Config instead.")]
@@ -69,7 +43,7 @@ namespace Adyen
             };
             SetEnvironment(environment, Config.LiveEndpointUrlPrefix);
 
-            _client = new HttpClientWrapper(Config, GetHttpClient());
+            HttpClient = new HttpClientWrapper(Config, GetHttpClient());
         }
 
         public Client(Config config)
@@ -77,21 +51,21 @@ namespace Adyen
             Config = config;
             SetEnvironment(Config.Environment, Config.LiveEndpointUrlPrefix);
             
-            _client = new HttpClientWrapper(Config, GetHttpClient());
+            HttpClient = new HttpClientWrapper(Config, GetHttpClient());
         }
 
         public Client(Config config, System.Net.Http.HttpClient httpClient)
         {
             Config = config;
             SetEnvironment(Config.Environment, Config.LiveEndpointUrlPrefix);
-            _client = new HttpClientWrapper(Config, httpClient);
+            HttpClient = new HttpClientWrapper(Config, httpClient);
         }
 
         public Client(Config config, IHttpClientFactory factory, string clientName = null)
         {
             Config = config;
             SetEnvironment(config.Environment, Config.LiveEndpointUrlPrefix);
-            _client = clientName != null ? new HttpClientWrapper(Config, factory.CreateClient(clientName)) : new HttpClientWrapper(Config, factory.CreateClient());
+            HttpClient = clientName != null ? new HttpClientWrapper(Config, factory.CreateClient(clientName)) : new HttpClientWrapper(Config, factory.CreateClient());
         }
 
         public void SetEnvironment(Environment environment, string liveEndpointUrlPrefix)
@@ -144,11 +118,7 @@ namespace Adyen
             return httpClient;
         }
 
-        public IClient HttpClient
-        {
-            get => _client;
-            set => _client = value;
-        }
+        public IClient HttpClient { get; set; }
 
         public string ApiVersion => ClientConfig.ApiVersion;
 

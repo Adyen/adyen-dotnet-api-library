@@ -1,25 +1,3 @@
-#region License
-// /*
-//  *                       ######
-//  *                       ######
-//  * ############    ####( ######  #####. ######  ############   ############
-//  * #############  #####( ######  #####. ######  #############  #############
-//  *        ######  #####( ######  #####. ######  #####  ######  #####  ######
-//  * ###### ######  #####( ######  #####. ######  #####  #####   #####  ######
-//  * ###### ######  #####( ######  #####. ######  #####          #####  ######
-//  * #############  #############  #############  #############  #####  ######
-//  *  ############   ############  #############   ############  #####  ######
-//  *                                      ######
-//  *                               #############
-//  *                               ############
-//  *
-//  * Adyen Dotnet API Library
-//  *
-//  * Copyright (c) 2020 Adyen B.V.
-//  * This file is open source and available under the MIT license.
-//  * See the LICENSE file for more info.
-//  */
-#endregion
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -43,9 +21,9 @@ namespace Adyen.Model.MarketPay
         /// <param name="fieldType">fieldType.</param>
         public ErrorFieldType(int? errorCode = default(int?), string errorDescription = default(string), FieldType fieldType = default(FieldType))
         {
-            this.ErrorCode = errorCode;
-            this.ErrorDescription = errorDescription;
-            this.FieldType = fieldType;
+            ErrorCode = errorCode;
+            ErrorDescription = errorDescription;
+            FieldType = fieldType;
         }
 
         /// <summary>
@@ -99,7 +77,7 @@ namespace Adyen.Model.MarketPay
         /// <returns>Boolean</returns>
         public override bool Equals(object input)
         {
-            return this.Equals(input as ErrorFieldType);
+            return Equals(input as ErrorFieldType);
         }
 
         /// <summary>
@@ -114,19 +92,19 @@ namespace Adyen.Model.MarketPay
 
             return
                 (
-                    this.ErrorCode == input.ErrorCode ||
-                    (this.ErrorCode != null &&
-                    this.ErrorCode.Equals(input.ErrorCode))
+                    ErrorCode == input.ErrorCode ||
+                    (ErrorCode != null &&
+                    ErrorCode.Equals(input.ErrorCode))
                 ) &&
                 (
-                    this.ErrorDescription == input.ErrorDescription ||
-                    (this.ErrorDescription != null &&
-                    this.ErrorDescription.Equals(input.ErrorDescription))
+                    ErrorDescription == input.ErrorDescription ||
+                    (ErrorDescription != null &&
+                    ErrorDescription.Equals(input.ErrorDescription))
                 ) &&
                 (
-                    this.FieldType == input.FieldType ||
-                    (this.FieldType != null &&
-                    this.FieldType.Equals(input.FieldType))
+                    FieldType == input.FieldType ||
+                    (FieldType != null &&
+                    FieldType.Equals(input.FieldType))
                 );
         }
 
@@ -139,12 +117,12 @@ namespace Adyen.Model.MarketPay
             unchecked // Overflow is fine, just wrap
             {
                 int hashCode = 41;
-                if (this.ErrorCode != null)
-                    hashCode = hashCode * 59 + this.ErrorCode.GetHashCode();
-                if (this.ErrorDescription != null)
-                    hashCode = hashCode * 59 + this.ErrorDescription.GetHashCode();
-                if (this.FieldType != null)
-                    hashCode = hashCode * 59 + this.FieldType.GetHashCode();
+                if (ErrorCode != null)
+                    hashCode = hashCode * 59 + ErrorCode.GetHashCode();
+                if (ErrorDescription != null)
+                    hashCode = hashCode * 59 + ErrorDescription.GetHashCode();
+                if (FieldType != null)
+                    hashCode = hashCode * 59 + FieldType.GetHashCode();
                 return hashCode;
             }
         }
@@ -154,7 +132,7 @@ namespace Adyen.Model.MarketPay
         /// </summary>
         /// <param name="validationContext">Validation context</param>
         /// <returns>Validation Result</returns>
-        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+        IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
         {
             yield break;
         }

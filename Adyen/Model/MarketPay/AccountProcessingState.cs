@@ -1,30 +1,6 @@
-#region License
-// /*
-//  *                       ######
-//  *                       ######
-//  * ############    ####( ######  #####. ######  ############   ############
-//  * #############  #####( ######  #####. ######  #############  #############
-//  *        ######  #####( ######  #####. ######  #####  ######  #####  ######
-//  * ###### ######  #####( ######  #####. ######  #####  #####   #####  ######
-//  * ###### ######  #####( ######  #####. ######  #####          #####  ######
-//  * #############  #############  #############  #############  #####  ######
-//  *  ############   ############  #############   ############  #####  ######
-//  *                                      ######
-//  *                               #############
-//  *                               ############
-//  *
-//  * Adyen Dotnet API Library
-//  *
-//  * Copyright (c) 2020 Adyen B.V.
-//  * This file is open source and available under the MIT license.
-//  * See the LICENSE file for more info.
-//  */
-#endregion
-
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.IO;
 using System.Runtime.Serialization;
 using System.Text;
 using Newtonsoft.Json;
@@ -35,7 +11,7 @@ namespace Adyen.Model.MarketPay
     /// AccountProcessingState
     /// </summary>
     [DataContract]
-        public partial class AccountProcessingState :  IEquatable<AccountProcessingState>, IValidatableObject
+        public class AccountProcessingState :  IEquatable<AccountProcessingState>, IValidatableObject
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="AccountProcessingState" /> class.
@@ -47,11 +23,11 @@ namespace Adyen.Model.MarketPay
         /// <param name="tierNumber">The processing tier that the account holder occupies. (required).</param>
         public AccountProcessingState(string disableReason = default(string), bool? disabled = default(bool?), Amount processedFrom = default(Amount), Amount processedTo = default(Amount), int? tierNumber = default(int?))
         {
-            this.TierNumber = tierNumber;
-            this.ProcessedTo = processedTo;
-            this.DisableReason = disableReason;
-            this.Disabled = disabled;
-            this.ProcessedFrom = processedFrom;
+            TierNumber = tierNumber;
+            ProcessedTo = processedTo;
+            DisableReason = disableReason;
+            Disabled = disabled;
+            ProcessedFrom = processedFrom;
         }
 
         /// <summary>
@@ -120,7 +96,7 @@ namespace Adyen.Model.MarketPay
         /// <returns>Boolean</returns>
         public override bool Equals(object input)
         {
-            return this.Equals(input as AccountProcessingState);
+            return Equals(input as AccountProcessingState);
         }
 
         /// <summary>
@@ -135,29 +111,29 @@ namespace Adyen.Model.MarketPay
 
             return 
                 (
-                    this.DisableReason == input.DisableReason ||
-                    (this.DisableReason != null &&
-                    this.DisableReason.Equals(input.DisableReason))
+                    DisableReason == input.DisableReason ||
+                    (DisableReason != null &&
+                    DisableReason.Equals(input.DisableReason))
                 ) && 
                 (
-                    this.Disabled == input.Disabled ||
-                    (this.Disabled != null &&
-                    this.Disabled.Equals(input.Disabled))
+                    Disabled == input.Disabled ||
+                    (Disabled != null &&
+                    Disabled.Equals(input.Disabled))
                 ) && 
                 (
-                    this.ProcessedFrom == input.ProcessedFrom ||
-                    (this.ProcessedFrom != null &&
-                    ((Object) this.ProcessedFrom).Equals(input.ProcessedFrom))
+                    ProcessedFrom == input.ProcessedFrom ||
+                    (ProcessedFrom != null &&
+                    ((Object) ProcessedFrom).Equals(input.ProcessedFrom))
                 ) && 
                 (
-                    this.ProcessedTo == input.ProcessedTo ||
-                    (this.ProcessedTo != null &&
-                    ((Object) this.ProcessedTo).Equals(input.ProcessedTo))
+                    ProcessedTo == input.ProcessedTo ||
+                    (ProcessedTo != null &&
+                    ((Object) ProcessedTo).Equals(input.ProcessedTo))
                 ) && 
                 (
-                    this.TierNumber == input.TierNumber ||
-                    (this.TierNumber != null &&
-                    this.TierNumber.Equals(input.TierNumber))
+                    TierNumber == input.TierNumber ||
+                    (TierNumber != null &&
+                    TierNumber.Equals(input.TierNumber))
                 );
         }
 
@@ -170,16 +146,16 @@ namespace Adyen.Model.MarketPay
             unchecked // Overflow is fine, just wrap
             {
                 int hashCode = 41;
-                if (this.DisableReason != null)
-                    hashCode = hashCode * 59 + this.DisableReason.GetHashCode();
-                if (this.Disabled != null)
-                    hashCode = hashCode * 59 + this.Disabled.GetHashCode();
-                if (this.ProcessedFrom != null)
-                    hashCode = hashCode * 59 + this.ProcessedFrom.GetHashCode();
-                if (this.ProcessedTo != null)
-                    hashCode = hashCode * 59 + this.ProcessedTo.GetHashCode();
-                if (this.TierNumber != null)
-                    hashCode = hashCode * 59 + this.TierNumber.GetHashCode();
+                if (DisableReason != null)
+                    hashCode = hashCode * 59 + DisableReason.GetHashCode();
+                if (Disabled != null)
+                    hashCode = hashCode * 59 + Disabled.GetHashCode();
+                if (ProcessedFrom != null)
+                    hashCode = hashCode * 59 + ProcessedFrom.GetHashCode();
+                if (ProcessedTo != null)
+                    hashCode = hashCode * 59 + ProcessedTo.GetHashCode();
+                if (TierNumber != null)
+                    hashCode = hashCode * 59 + TierNumber.GetHashCode();
                 return hashCode;
             }
         }
@@ -189,7 +165,7 @@ namespace Adyen.Model.MarketPay
         /// </summary>
         /// <param name="validationContext">Validation context</param>
         /// <returns>Validation Result</returns>
-        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+        IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
         {
             yield break;
         }

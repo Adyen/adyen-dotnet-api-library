@@ -1,25 +1,3 @@
-#region License
-// /*
-//  *                       ######
-//  *                       ######
-//  * ############    ####( ######  #####. ######  ############   ############
-//  * #############  #####( ######  #####. ######  #############  #############
-//  *        ######  #####( ######  #####. ######  #####  ######  #####  ######
-//  * ###### ######  #####( ######  #####. ######  #####  #####   #####  ######
-//  * ###### ######  #####( ######  #####. ######  #####          #####  ######
-//  * #############  #############  #############  #############  #####  ######
-//  *  ############   ############  #############   ############  #####  ######
-//  *                                      ######
-//  *                               #############
-//  *                               ############
-//  *
-//  * Adyen Dotnet API Library
-//  *
-//  * Copyright (c) 2020 Adyen B.V.
-//  * This file is open source and available under the MIT license.
-//  * See the LICENSE file for more info.
-//  */
-#endregion
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -48,19 +26,15 @@ namespace Adyen.Model.MarketPay
             {
                 throw new InvalidDataException("accountCode is a required property for TransactionListForAccount and cannot be null");
             }
-            else
-            {
-                this.AccountCode = accountCode;
-            }
+
+            AccountCode = accountCode;
             // to ensure "page" is required (not null)
             if (page == null)
             {
                 throw new InvalidDataException("page is a required property for TransactionListForAccount and cannot be null");
             }
-            else
-            {
-                this.Page = page;
-            }
+
+            Page = page;
         }
 
         /// <summary>
@@ -107,7 +81,7 @@ namespace Adyen.Model.MarketPay
         /// <returns>Boolean</returns>
         public override bool Equals(object input)
         {
-            return this.Equals(input as TransactionListForAccount);
+            return Equals(input as TransactionListForAccount);
         }
 
         /// <summary>
@@ -122,14 +96,14 @@ namespace Adyen.Model.MarketPay
 
             return
                 (
-                    this.AccountCode == input.AccountCode ||
-                    (this.AccountCode != null &&
-                    this.AccountCode.Equals(input.AccountCode))
+                    AccountCode == input.AccountCode ||
+                    (AccountCode != null &&
+                    AccountCode.Equals(input.AccountCode))
                 ) &&
                 (
-                    this.Page == input.Page ||
-                    (this.Page != null &&
-                    this.Page.Equals(input.Page))
+                    Page == input.Page ||
+                    (Page != null &&
+                    Page.Equals(input.Page))
                 );
         }
 
@@ -142,10 +116,10 @@ namespace Adyen.Model.MarketPay
             unchecked // Overflow is fine, just wrap
             {
                 int hashCode = 41;
-                if (this.AccountCode != null)
-                    hashCode = hashCode * 59 + this.AccountCode.GetHashCode();
-                if (this.Page != null)
-                    hashCode = hashCode * 59 + this.Page.GetHashCode();
+                if (AccountCode != null)
+                    hashCode = hashCode * 59 + AccountCode.GetHashCode();
+                if (Page != null)
+                    hashCode = hashCode * 59 + Page.GetHashCode();
                 return hashCode;
             }
         }
@@ -155,7 +129,7 @@ namespace Adyen.Model.MarketPay
         /// </summary>
         /// <param name="validationContext">Validation context</param>
         /// <returns>Validation Result</returns>
-        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+        IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
         {
             yield break;
         }

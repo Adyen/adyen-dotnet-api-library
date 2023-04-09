@@ -1,29 +1,6 @@
-﻿#region License
-// /*
-//  *                       ######
-//  *                       ######
-//  * ############    ####( ######  #####. ######  ############   ############
-//  * #############  #####( ######  #####. ######  #############  #############
-//  *        ######  #####( ######  #####. ######  #####  ######  #####  ######
-//  * ###### ######  #####( ######  #####. ######  #####  #####   #####  ######
-//  * ###### ######  #####( ######  #####. ######  #####          #####  ######
-//  * #############  #############  #############  #############  #####  ######
-//  *  ############   ############  #############   ############  #####  ######
-//  *                                      ######
-//  *                               #############
-//  *                               ############
-//  *
-//  * Adyen Dotnet API Library
-//  *
-//  * Copyright (c) 2020 Adyen B.V.
-//  * This file is open source and available under the MIT license.
-//  * See the LICENSE file for more info.
-//  */
-#endregion
-
-using Adyen.Model.Payments;
-using System;
+﻿using System;
 using System.Collections.Generic;
+using Adyen.Model.Payments;
 
 namespace Adyen.Test
 {
@@ -73,7 +50,7 @@ namespace Adyen.Test
             List<AdditionalDataOpenInvoice> invoiceLines = new List<AdditionalDataOpenInvoice>();
 
             // invoiceLine1
-            AdditionalDataOpenInvoice invoiceLine = new AdditionalDataOpenInvoice()
+            AdditionalDataOpenInvoice invoiceLine = new AdditionalDataOpenInvoice
             {
                 OpeninvoicedataLineItemNrCurrencyCode = ("EUR"),
                 OpeninvoicedataLineItemNrDescription = ("Test product"),
@@ -86,7 +63,7 @@ namespace Adyen.Test
 
             // invoiceLine2
             // invoiceLine1
-            AdditionalDataOpenInvoice invoiceLine2 = new AdditionalDataOpenInvoice()
+            AdditionalDataOpenInvoice invoiceLine2 = new AdditionalDataOpenInvoice
             {
                 OpeninvoicedataLineItemNrCurrencyCode = ("EUR"),
                 OpeninvoicedataLineItemNrDescription = ("Test product2"),

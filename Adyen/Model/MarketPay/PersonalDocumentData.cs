@@ -1,26 +1,3 @@
-#region License
-// /*
-//  *                       ######
-//  *                       ######
-//  * ############    ####( ######  #####. ######  ############   ############
-//  * #############  #####( ######  #####. ######  #############  #############
-//  *        ######  #####( ######  #####. ######  #####  ######  #####  ######
-//  * ###### ######  #####( ######  #####. ######  #####  #####   #####  ######
-//  * ###### ######  #####( ######  #####. ######  #####          #####  ######
-//  * #############  #############  #############  #############  #####  ######
-//  *  ############   ############  #############   ############  #####  ######
-//  *                                      ######
-//  *                               #############
-//  *                               ############
-//  *
-//  * Adyen Dotnet API Library
-//  *
-//  * Copyright (c) 2020 Adyen B.V.
-//  * This file is open source and available under the MIT license.
-//  * See the LICENSE file for more info.
-//  */
-#endregion
-
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -36,7 +13,7 @@ namespace Adyen.Model.MarketPay
     /// PersonalDocumentData
     /// </summary>
     [DataContract]
-        public partial class PersonalDocumentData :  IEquatable<PersonalDocumentData>, IValidatableObject
+        public class PersonalDocumentData :  IEquatable<PersonalDocumentData>, IValidatableObject
     {
         /// <summary>
         /// The type of the document. More then one item pert type does not allowed. Valid values: ID, PASSPORT, VISA, DRIVINGLICENSE
@@ -91,15 +68,13 @@ namespace Adyen.Model.MarketPay
             {
                 throw new InvalidDataException("number is a required property for PersonalDocumentData and cannot be null");
             }
-            else
-            {
-                this.Number = number;
-            }
-            
-            this.Type = type;
-            this.ExpirationDate = expirationDate;
-            this.IssuerCountry = issuerCountry;
-            this.IssuerState = issuerState;
+
+            Number = number;
+
+            Type = type;
+            ExpirationDate = expirationDate;
+            IssuerCountry = issuerCountry;
+            IssuerState = issuerState;
         }
         
         /// <summary>
@@ -164,7 +139,7 @@ namespace Adyen.Model.MarketPay
         /// <returns>Boolean</returns>
         public override bool Equals(object input)
         {
-            return this.Equals(input as PersonalDocumentData);
+            return Equals(input as PersonalDocumentData);
         }
 
         /// <summary>
@@ -179,28 +154,28 @@ namespace Adyen.Model.MarketPay
 
             return 
                 (
-                    this.ExpirationDate == input.ExpirationDate ||
-                    (this.ExpirationDate != null &&
-                    this.ExpirationDate.Equals(input.ExpirationDate))
+                    ExpirationDate == input.ExpirationDate ||
+                    (ExpirationDate != null &&
+                    ExpirationDate.Equals(input.ExpirationDate))
                 ) && 
                 (
-                    this.IssuerCountry == input.IssuerCountry ||
-                    (this.IssuerCountry != null &&
-                    this.IssuerCountry.Equals(input.IssuerCountry))
+                    IssuerCountry == input.IssuerCountry ||
+                    (IssuerCountry != null &&
+                    IssuerCountry.Equals(input.IssuerCountry))
                 ) && 
                 (
-                    this.IssuerState == input.IssuerState ||
-                    (this.IssuerState != null &&
-                    this.IssuerState.Equals(input.IssuerState))
+                    IssuerState == input.IssuerState ||
+                    (IssuerState != null &&
+                    IssuerState.Equals(input.IssuerState))
                 ) && 
                 (
-                    this.Number == input.Number ||
-                    (this.Number != null &&
-                    this.Number.Equals(input.Number))
+                    Number == input.Number ||
+                    (Number != null &&
+                    Number.Equals(input.Number))
                 ) && 
                 (
-                    this.Type == input.Type ||
-                    this.Type.Equals(input.Type)
+                    Type == input.Type ||
+                    Type.Equals(input.Type)
                 );
         }
 
@@ -213,15 +188,15 @@ namespace Adyen.Model.MarketPay
             unchecked // Overflow is fine, just wrap
             {
                 int hashCode = 41;
-                if (this.ExpirationDate != null)
-                    hashCode = hashCode * 59 + this.ExpirationDate.GetHashCode();
-                if (this.IssuerCountry != null)
-                    hashCode = hashCode * 59 + this.IssuerCountry.GetHashCode();
-                if (this.IssuerState != null)
-                    hashCode = hashCode * 59 + this.IssuerState.GetHashCode();
-                if (this.Number != null)
-                    hashCode = hashCode * 59 + this.Number.GetHashCode();
-                hashCode = hashCode * 59 + this.Type.GetHashCode();
+                if (ExpirationDate != null)
+                    hashCode = hashCode * 59 + ExpirationDate.GetHashCode();
+                if (IssuerCountry != null)
+                    hashCode = hashCode * 59 + IssuerCountry.GetHashCode();
+                if (IssuerState != null)
+                    hashCode = hashCode * 59 + IssuerState.GetHashCode();
+                if (Number != null)
+                    hashCode = hashCode * 59 + Number.GetHashCode();
+                hashCode = hashCode * 59 + Type.GetHashCode();
                 return hashCode;
             }
         }
@@ -231,7 +206,7 @@ namespace Adyen.Model.MarketPay
         /// </summary>
         /// <param name="validationContext">Validation context</param>
         /// <returns>Validation Result</returns>
-        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+        IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
         {
             yield break;
         }
