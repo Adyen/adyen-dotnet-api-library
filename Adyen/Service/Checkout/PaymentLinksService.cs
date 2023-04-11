@@ -23,9 +23,69 @@ using Adyen.Model.Checkout;
 namespace Adyen.Service.Checkout
 {
     /// <summary>
+    /// PaymentLinksService Interface
+    /// </summary>
+    public interface IPaymentLinksService
+    {
+        /// <summary>
+        /// Get a payment link
+        /// </summary>
+        /// <param name="linkId"><see cref="string"/> - Unique identifier of the payment link.</param>
+        /// <param name="requestOptions"><see cref="RequestOptions"/> - Additional request options.</param>
+        /// <returns><see cref="PaymentLinkResponse"/>.</returns>
+        PaymentLinkResponse GetPaymentLink(string linkId, RequestOptions requestOptions = default);
+        
+        /// <summary>
+        /// Get a payment link
+        /// </summary>
+        /// <param name="linkId"><see cref="string"/> - Unique identifier of the payment link.</param>
+        /// <param name="requestOptions"><see cref="RequestOptions"/> - Additional request options.</param>
+        /// <param name="cancellationToken"> A CancellationToken enables cooperative cancellation between threads, thread pool work items, or Task objects.</param>
+        /// <returns>Task of <see cref="PaymentLinkResponse"/>.</returns>
+        Task<PaymentLinkResponse> GetPaymentLinkAsync(string linkId, RequestOptions requestOptions = default, CancellationToken cancellationToken = default);
+        
+        /// <summary>
+        /// Update the status of a payment link
+        /// </summary>
+        /// <param name="linkId"><see cref="string"/> - Unique identifier of the payment link.</param>
+        /// <param name="updatePaymentLinkRequest"><see cref="UpdatePaymentLinkRequest"/> - </param>
+        /// <param name="requestOptions"><see cref="RequestOptions"/> - Additional request options.</param>
+        /// <returns><see cref="PaymentLinkResponse"/>.</returns>
+        PaymentLinkResponse UpdatePaymentLink(string linkId, UpdatePaymentLinkRequest updatePaymentLinkRequest, RequestOptions requestOptions = default);
+        
+        /// <summary>
+        /// Update the status of a payment link
+        /// </summary>
+        /// <param name="linkId"><see cref="string"/> - Unique identifier of the payment link.</param>
+        /// <param name="updatePaymentLinkRequest"><see cref="UpdatePaymentLinkRequest"/> - </param>
+        /// <param name="requestOptions"><see cref="RequestOptions"/> - Additional request options.</param>
+        /// <param name="cancellationToken"> A CancellationToken enables cooperative cancellation between threads, thread pool work items, or Task objects.</param>
+        /// <returns>Task of <see cref="PaymentLinkResponse"/>.</returns>
+        Task<PaymentLinkResponse> UpdatePaymentLinkAsync(string linkId, UpdatePaymentLinkRequest updatePaymentLinkRequest, RequestOptions requestOptions = default, CancellationToken cancellationToken = default);
+        
+        /// <summary>
+        /// Create a payment link
+        /// </summary>
+        /// <param name="createPaymentLinkRequest"><see cref="CreatePaymentLinkRequest"/> - </param>
+        /// <param name="requestOptions"><see cref="RequestOptions"/> - Additional request options.</param>
+        /// <returns><see cref="PaymentLinkResponse"/>.</returns>
+        PaymentLinkResponse PaymentLinks(CreatePaymentLinkRequest createPaymentLinkRequest, RequestOptions requestOptions = default);
+        
+        /// <summary>
+        /// Create a payment link
+        /// </summary>
+        /// <param name="createPaymentLinkRequest"><see cref="CreatePaymentLinkRequest"/> - </param>
+        /// <param name="requestOptions"><see cref="RequestOptions"/> - Additional request options.</param>
+        /// <param name="cancellationToken"> A CancellationToken enables cooperative cancellation between threads, thread pool work items, or Task objects.</param>
+        /// <returns>Task of <see cref="PaymentLinkResponse"/>.</returns>
+        Task<PaymentLinkResponse> PaymentLinksAsync(CreatePaymentLinkRequest createPaymentLinkRequest, RequestOptions requestOptions = default, CancellationToken cancellationToken = default);
+        
+    }
+    
+    /// <summary>
     /// Represents a collection of functions to interact with the API endpoints
     /// </summary>
-    public class PaymentLinksService : AbstractService
+    public class PaymentLinksService : AbstractService, IPaymentLinksService
     {
         private readonly string _baseUrl;
         
@@ -33,85 +93,41 @@ namespace Adyen.Service.Checkout
         {
             _baseUrl = client.Config.CheckoutEndpoint + "/" + ClientConfig.CheckoutApiVersion;
         }
-    
-        /// <summary>
-        /// Get a payment link
-        /// </summary>
-        /// <param name="linkId">Unique identifier of the payment link.</param>
-        /// <param name="requestOptions">Additional request options.</param>
-        /// <returns>PaymentLinkResponse</returns>
+        
         public PaymentLinkResponse GetPaymentLink(string linkId, RequestOptions requestOptions = default)
         {
             return GetPaymentLinkAsync(linkId, requestOptions).GetAwaiter().GetResult();
         }
 
-        /// <summary>
-        /// Get a payment link
-        /// </summary>
-        /// <param name="linkId">Unique identifier of the payment link.</param>
-        /// <param name="requestOptions">Additional request options.</param>
-        /// <param name="cancellationToken"> A CancellationToken enables cooperative cancellation between threads, thread pool work items, or Task objects.</param>
-        /// <returns>Task of PaymentLinkResponse</returns>
         public async Task<PaymentLinkResponse> GetPaymentLinkAsync(string linkId, RequestOptions requestOptions = default, CancellationToken cancellationToken = default)
         {
             var endpoint = _baseUrl + $"/paymentLinks/{linkId}";
             var resource = new ServiceResource(this, endpoint);
             return await resource.RequestAsync<PaymentLinkResponse>(null, requestOptions, new HttpMethod("GET"), cancellationToken);
         }
-
-        /// <summary>
-        /// Update the status of a payment link
-        /// </summary>
-        /// <param name="linkId">Unique identifier of the payment link.</param>
-        /// <param name="updatePaymentLinkRequest"></param>
-        /// <param name="requestOptions">Additional request options.</param>
-        /// <returns>PaymentLinkResponse</returns>
+        
         public PaymentLinkResponse UpdatePaymentLink(string linkId, UpdatePaymentLinkRequest updatePaymentLinkRequest, RequestOptions requestOptions = default)
         {
             return UpdatePaymentLinkAsync(linkId, updatePaymentLinkRequest, requestOptions).GetAwaiter().GetResult();
         }
 
-        /// <summary>
-        /// Update the status of a payment link
-        /// </summary>
-        /// <param name="linkId">Unique identifier of the payment link.</param>
-        /// <param name="updatePaymentLinkRequest"></param>
-        /// <param name="requestOptions">Additional request options.</param>
-        /// <param name="cancellationToken"> A CancellationToken enables cooperative cancellation between threads, thread pool work items, or Task objects.</param>
-        /// <returns>Task of PaymentLinkResponse</returns>
         public async Task<PaymentLinkResponse> UpdatePaymentLinkAsync(string linkId, UpdatePaymentLinkRequest updatePaymentLinkRequest, RequestOptions requestOptions = default, CancellationToken cancellationToken = default)
         {
             var endpoint = _baseUrl + $"/paymentLinks/{linkId}";
             var resource = new ServiceResource(this, endpoint);
             return await resource.RequestAsync<PaymentLinkResponse>(updatePaymentLinkRequest.ToJson(), requestOptions, new HttpMethod("PATCH"), cancellationToken);
         }
-
-        /// <summary>
-        /// Create a payment link
-        /// </summary>
-        /// <param name="idempotencyKey">A unique identifier for the message with a maximum of 64 characters (we recommend a UUID).</param>
-        /// <param name="createPaymentLinkRequest"></param>
-        /// <param name="requestOptions">Additional request options.</param>
-        /// <returns>PaymentLinkResponse</returns>
+        
         public PaymentLinkResponse PaymentLinks(CreatePaymentLinkRequest createPaymentLinkRequest, RequestOptions requestOptions = default)
         {
             return PaymentLinksAsync(createPaymentLinkRequest, requestOptions).GetAwaiter().GetResult();
         }
 
-        /// <summary>
-        /// Create a payment link
-        /// </summary>
-        /// <param name="idempotencyKey">A unique identifier for the message with a maximum of 64 characters (we recommend a UUID).</param>
-        /// <param name="createPaymentLinkRequest"></param>
-        /// <param name="requestOptions">Additional request options.</param>
-        /// <param name="cancellationToken"> A CancellationToken enables cooperative cancellation between threads, thread pool work items, or Task objects.</param>
-        /// <returns>Task of PaymentLinkResponse</returns>
         public async Task<PaymentLinkResponse> PaymentLinksAsync(CreatePaymentLinkRequest createPaymentLinkRequest, RequestOptions requestOptions = default, CancellationToken cancellationToken = default)
         {
             var endpoint = _baseUrl + "/paymentLinks";
             var resource = new ServiceResource(this, endpoint);
             return await resource.RequestAsync<PaymentLinkResponse>(createPaymentLinkRequest.ToJson(), requestOptions, new HttpMethod("POST"), cancellationToken);
         }
-
     }
 }
