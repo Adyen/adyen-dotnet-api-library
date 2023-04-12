@@ -38,7 +38,7 @@ namespace Adyen.Model.LegalEntityManagement
         /// </summary>
         /// <param name="currency">The type of currency. Must be EUR (or EUR equivalent).</param>
         /// <param name="value">Total value of amount. Must be &gt;&#x3D; 0.</param>
-        public Amount(string currency = default(string), long value = default(long))
+        public Amount(string currency = default(string), long? value = default(long?))
         {
             this.Currency = currency;
             this.Value = value;
@@ -56,7 +56,7 @@ namespace Adyen.Model.LegalEntityManagement
         /// </summary>
         /// <value>Total value of amount. Must be &gt;&#x3D; 0</value>
         [DataMember(Name = "value", EmitDefaultValue = false)]
-        public long Value { get; set; }
+        public long? Value { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object

@@ -150,14 +150,6 @@ namespace Adyen.Model.LegalEntityManagement
         public bool Allowed { get; private set; }
 
         /// <summary>
-        /// Returns false as Allowed should not be serialized given that it's read-only.
-        /// </summary>
-        /// <returns>false (boolean)</returns>
-        public bool ShouldSerializeAllowed()
-        {
-            return false;
-        }
-        /// <summary>
         /// Gets or Sets AllowedSettings
         /// </summary>
         [DataMember(Name = "allowedSettings", EmitDefaultValue = false)]
@@ -170,14 +162,6 @@ namespace Adyen.Model.LegalEntityManagement
         [DataMember(Name = "requested", EmitDefaultValue = false)]
         public bool Requested { get; private set; }
 
-        /// <summary>
-        /// Returns false as Requested should not be serialized given that it's read-only.
-        /// </summary>
-        /// <returns>false (boolean)</returns>
-        public bool ShouldSerializeRequested()
-        {
-            return false;
-        }
         /// <summary>
         /// Gets or Sets RequestedSettings
         /// </summary>
@@ -192,28 +176,12 @@ namespace Adyen.Model.LegalEntityManagement
         public List<SupportingEntityCapability> TransferInstruments { get; private set; }
 
         /// <summary>
-        /// Returns false as TransferInstruments should not be serialized given that it's read-only.
-        /// </summary>
-        /// <returns>false (boolean)</returns>
-        public bool ShouldSerializeTransferInstruments()
-        {
-            return false;
-        }
-        /// <summary>
         /// The status of the verification checks for the capability.  Possible values:  * **pending**: Adyen is running the verification.  * **invalid**: The verification failed. Check if the &#x60;errors&#x60; array contains more information.  * **valid**: The verification has been successfully completed.  * **rejected**: Adyen has verified the information, but found reasons to not allow the capability. 
         /// </summary>
         /// <value>The status of the verification checks for the capability.  Possible values:  * **pending**: Adyen is running the verification.  * **invalid**: The verification failed. Check if the &#x60;errors&#x60; array contains more information.  * **valid**: The verification has been successfully completed.  * **rejected**: Adyen has verified the information, but found reasons to not allow the capability. </value>
         [DataMember(Name = "verificationStatus", EmitDefaultValue = false)]
         public string VerificationStatus { get; private set; }
 
-        /// <summary>
-        /// Returns false as VerificationStatus should not be serialized given that it's read-only.
-        /// </summary>
-        /// <returns>false (boolean)</returns>
-        public bool ShouldSerializeVerificationStatus()
-        {
-            return false;
-        }
         /// <summary>
         /// Returns the string presentation of the object
         /// </summary>
