@@ -9,7 +9,7 @@ namespace Adyen.Model.MarketPay.Notification
     /// 
     /// </summary>
     [DataContract]
-    public class CompensateNegativeBalanceNotification : IWebhookNotification
+    public class CompensateNegativeBalanceNotification : IGenericNotification
     {
         /// <summary>
         /// Gets or Sets Content

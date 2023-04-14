@@ -13,7 +13,7 @@ namespace Adyen.Test.MarketPayTest
         {
             string json = GetFileContents("Mocks/marketpay/notification/account-closed-test.json");
             WebhookHandler webhookHandler = new WebhookHandler();
-            IWebhookNotification notificationMessage = webhookHandler.HandleMarketpayNotificationJson(json);
+            IGenericNotification notificationMessage = webhookHandler.HandleMarketpayNotificationJson(json);
             AccountCloseNotification accountCloseNotification = (AccountCloseNotification)notificationMessage;
             Assert.AreEqual(accountCloseNotification.EventType, "ACCOUNT_CLOSED");
             Assert.AreEqual(accountCloseNotification.PspReference, "TSTPSPR0001");
@@ -25,7 +25,7 @@ namespace Adyen.Test.MarketPayTest
         {
             string json = GetFileContents("Mocks/marketpay/notification/account-created-success.json");
            WebhookHandler webhookHandler = new WebhookHandler();
-            IWebhookNotification notificationMessage = webhookHandler.HandleMarketpayNotificationJson(json);
+            IGenericNotification notificationMessage = webhookHandler.HandleMarketpayNotificationJson(json);
             AccountCreateNotification accountCreateNotificationMessage = (AccountCreateNotification)notificationMessage;
             Assert.AreEqual("ACCOUNT_CREATED", accountCreateNotificationMessage.EventType);
             Assert.AreEqual("000", accountCreateNotificationMessage.Error.ErrorCode);
@@ -56,7 +56,7 @@ namespace Adyen.Test.MarketPayTest
         {
             string json = GetFileContents("Mocks/marketpay/notification/account-holder-created-success.json");
            WebhookHandler webhookHandler = new WebhookHandler();
-            IWebhookNotification notificationMessage = webhookHandler.HandleMarketpayNotificationJson(json);
+            IGenericNotification notificationMessage = webhookHandler.HandleMarketpayNotificationJson(json);
             AccountHolderCreateNotification accountHolderCreateNotificationMessage = (AccountHolderCreateNotification)notificationMessage;
             Assert.AreEqual("ACCOUNT_HOLDER_CREATED", accountHolderCreateNotificationMessage.EventType);
             Assert.IsNotNull(accountHolderCreateNotificationMessage.Content);
@@ -70,7 +70,7 @@ namespace Adyen.Test.MarketPayTest
         {
             string json = GetFileContents("Mocks/marketpay/notification/account-holder-verification.json");
            WebhookHandler webhookHandler = new WebhookHandler();
-            IWebhookNotification notificationMessage = webhookHandler.HandleMarketpayNotificationJson(json);
+            IGenericNotification notificationMessage = webhookHandler.HandleMarketpayNotificationJson(json);
             AccountHolderVerificationNotification notification = (AccountHolderVerificationNotification)notificationMessage;
             Assert.AreEqual("ACCOUNT_HOLDER_VERIFICATION", notification.EventType);
             Assert.IsNotNull(notification.Content);
@@ -82,7 +82,7 @@ namespace Adyen.Test.MarketPayTest
         {
             string json = GetFileContents("Mocks/marketpay/notification/account-holder-status-change.json");
            WebhookHandler webhookHandler = new WebhookHandler();
-            IWebhookNotification notificationMessage = webhookHandler.HandleMarketpayNotificationJson(json);
+            IGenericNotification notificationMessage = webhookHandler.HandleMarketpayNotificationJson(json);
             AccountHolderStatusChangeNotification notification = (AccountHolderStatusChangeNotification)notificationMessage;
             Assert.AreEqual("ACCOUNT_HOLDER_STATUS_CHANGE", notification.EventType);
             Assert.IsNotNull(notification.Content);
@@ -96,7 +96,7 @@ namespace Adyen.Test.MarketPayTest
         {
             string json = GetFileContents("Mocks/marketpay/notification/account-holder-payout-fail.json");
            WebhookHandler webhookHandler = new WebhookHandler();
-            IWebhookNotification notificationMessage = webhookHandler.HandleMarketpayNotificationJson(json);
+            IGenericNotification notificationMessage = webhookHandler.HandleMarketpayNotificationJson(json);
             AccountHolderPayoutNotification notification = (AccountHolderPayoutNotification)notificationMessage;
             Assert.AreEqual("ACCOUNT_HOLDER_PAYOUT", notification.EventType);
             Assert.IsNotNull(notification.Content);
@@ -112,7 +112,7 @@ namespace Adyen.Test.MarketPayTest
             string json = GetFileContents("Mocks/marketpay/notification/account-holder-updated.json");
            WebhookHandler webhookHandler = new WebhookHandler();
 
-            IWebhookNotification notificationMessage = webhookHandler.HandleMarketpayNotificationJson(json);
+            IGenericNotification notificationMessage = webhookHandler.HandleMarketpayNotificationJson(json);
             AccountHolderUpdateNotification notification = (AccountHolderUpdateNotification)notificationMessage;
             Assert.AreEqual("ACCOUNT_HOLDER_UPDATED", notification.EventType);
             Assert.IsNotNull(notification.Content);
@@ -127,7 +127,7 @@ namespace Adyen.Test.MarketPayTest
         {
             string json = GetFileContents("Mocks/marketpay/notification/beneficiary-setup.json");
            WebhookHandler webhookHandler = new WebhookHandler();
-            IWebhookNotification notificationMessage = webhookHandler.HandleMarketpayNotificationJson(json);
+            IGenericNotification notificationMessage = webhookHandler.HandleMarketpayNotificationJson(json);
             BeneficiarySetupNotification notification = (BeneficiarySetupNotification)notificationMessage;
             Assert.AreEqual("BENEFICIARY_SETUP", notification.EventType);
             Assert.IsNotNull(notification.Content);
@@ -141,7 +141,7 @@ namespace Adyen.Test.MarketPayTest
             string json = GetFileContents("Mocks/marketpay/notification/scheduled-refunds-test.json");
            WebhookHandler webhookHandler = new WebhookHandler();
 
-            IWebhookNotification notificationMessage = webhookHandler.HandleMarketpayNotificationJson(json);
+            IGenericNotification notificationMessage = webhookHandler.HandleMarketpayNotificationJson(json);
             ScheduledRefundsNotification notification = (ScheduledRefundsNotification)notificationMessage;
             Assert.AreEqual("SCHEDULED_REFUNDS", notification.EventType);
             Assert.IsNotNull(notification.Content);
@@ -155,7 +155,7 @@ namespace Adyen.Test.MarketPayTest
         {
             string json = GetFileContents("Mocks/marketpay/notification/compensate-negative-balance-test.json");
            WebhookHandler webhookHandler = new WebhookHandler();
-            IWebhookNotification notificationMessage = webhookHandler.HandleMarketpayNotificationJson(json);
+            IGenericNotification notificationMessage = webhookHandler.HandleMarketpayNotificationJson(json);
             CompensateNegativeBalanceNotification notification = (CompensateNegativeBalanceNotification)notificationMessage;
             Assert.AreEqual("COMPENSATE_NEGATIVE_BALANCE", notification.EventType);
             Assert.IsNotNull(notification.Content);
@@ -168,7 +168,7 @@ namespace Adyen.Test.MarketPayTest
         {
             string json = GetFileContents("Mocks/marketpay/notification/payment-failure-test.json");
            WebhookHandler webhookHandler = new WebhookHandler();
-            IWebhookNotification notificationMessage = webhookHandler.HandleMarketpayNotificationJson(json);
+            IGenericNotification notificationMessage = webhookHandler.HandleMarketpayNotificationJson(json);
             PaymentFailureNotification notification = (PaymentFailureNotification)notificationMessage;
             Assert.AreEqual("PAYMENT_FAILURE", notification.EventType);
             Assert.IsNotNull(notification.Content);
@@ -181,7 +181,7 @@ namespace Adyen.Test.MarketPayTest
         {
             string json = GetFileContents("Mocks/marketpay/notification/report-available-test.json");
            WebhookHandler webhookHandler = new WebhookHandler();
-            IWebhookNotification notificationMessage = webhookHandler.HandleMarketpayNotificationJson(json);
+            IGenericNotification notificationMessage = webhookHandler.HandleMarketpayNotificationJson(json);
             ReportAvailableNotification notification = (ReportAvailableNotification)notificationMessage;
             Assert.AreEqual("REPORT_AVAILABLE", notification.EventType);
             Assert.IsNotNull(notification.Content);
@@ -193,7 +193,7 @@ namespace Adyen.Test.MarketPayTest
         {
             string json = GetFileContents("Mocks/marketpay/notification/transfer-funds-test.json");
            WebhookHandler webhookHandler = new WebhookHandler();
-            IWebhookNotification notificationMessage = webhookHandler.HandleMarketpayNotificationJson(json);
+            IGenericNotification notificationMessage = webhookHandler.HandleMarketpayNotificationJson(json);
             TransferFundsNotification notification = (TransferFundsNotification)notificationMessage;
             Assert.AreEqual("TRANSFER_FUNDS", notification.EventType);
             Assert.IsNotNull(notification.Content);
@@ -212,7 +212,7 @@ namespace Adyen.Test.MarketPayTest
         {
             string json = GetFileContents("Mocks/marketpay/notification/account-updated-test.json");
            WebhookHandler webhookHandler = new WebhookHandler();
-            IWebhookNotification notificationMessage = webhookHandler.HandleMarketpayNotificationJson(json);
+            IGenericNotification notificationMessage = webhookHandler.HandleMarketpayNotificationJson(json);
             AccountUpdateNotification notification = (AccountUpdateNotification)notificationMessage;
             Assert.AreEqual("ACCOUNT_UPDATED", notification.EventType);
             Assert.IsNotNull(notification.Content);
@@ -224,7 +224,7 @@ namespace Adyen.Test.MarketPayTest
         {
             string json = GetFileContents("Mocks/marketpay/notification/account-funds-below-thresold-test.json");
            WebhookHandler webhookHandler = new WebhookHandler();
-            IWebhookNotification notificationMessage = webhookHandler.HandleMarketpayNotificationJson(json);
+            IGenericNotification notificationMessage = webhookHandler.HandleMarketpayNotificationJson(json);
             AccountFundsBelowThresholdNotification notification = (AccountFundsBelowThresholdNotification)notificationMessage;
             Assert.AreEqual("ACCOUNT_FUNDS_BELOW_THRESHOLD", notification.EventType);
             Assert.IsNotNull(notification.Content);
@@ -239,7 +239,7 @@ namespace Adyen.Test.MarketPayTest
             string json = GetFileContents("Mocks/marketpay/notification/account-holder-store-status-change-test.json");
            WebhookHandler webhookHandler = new WebhookHandler();
 
-            IWebhookNotification notificationMessage = webhookHandler.HandleMarketpayNotificationJson(json);
+            IGenericNotification notificationMessage = webhookHandler.HandleMarketpayNotificationJson(json);
             AccountHolderStoreStatusChangeNotification notification = (AccountHolderStoreStatusChangeNotification)notificationMessage;
 
             Assert.AreEqual("ACCOUNT_HOLDER_STORE_STATUS_CHANGE", notification.EventType);
@@ -254,7 +254,7 @@ namespace Adyen.Test.MarketPayTest
             string json = GetFileContents("Mocks/marketpay/notification/account-holder-upcoming-deadline-test.json");
            WebhookHandler webhookHandler = new WebhookHandler();
 
-            IWebhookNotification notificationMessage = webhookHandler.HandleMarketpayNotificationJson(json);
+            IGenericNotification notificationMessage = webhookHandler.HandleMarketpayNotificationJson(json);
             AccountHolderUpcomingDeadlineNotification notification = (AccountHolderUpcomingDeadlineNotification)notificationMessage;
 
             Assert.AreEqual("ACCOUNT_HOLDER_UPCOMING_DEADLINE", notification.EventType);
@@ -268,7 +268,7 @@ namespace Adyen.Test.MarketPayTest
         {
             string json = GetFileContents("Mocks/marketpay/notification/direct-debit-initiated-test.json");
            WebhookHandler webhookHandler = new WebhookHandler();
-            IWebhookNotification notificationMessage = webhookHandler.HandleMarketpayNotificationJson(json);
+            IGenericNotification notificationMessage = webhookHandler.HandleMarketpayNotificationJson(json);
             DirectDebitInitiatedNotification notification = (DirectDebitInitiatedNotification)notificationMessage;
             Assert.AreEqual("DIRECT_DEBIT_INITIATED", notification.EventType);
             Assert.IsNotNull(notification.Content);
@@ -281,7 +281,7 @@ namespace Adyen.Test.MarketPayTest
         {
             string json = GetFileContents("Mocks/marketpay/notification/refund-funds-transfer-test.json");
            WebhookHandler webhookHandler = new WebhookHandler();
-            IWebhookNotification notificationMessage = webhookHandler.HandleMarketpayNotificationJson(json);
+            IGenericNotification notificationMessage = webhookHandler.HandleMarketpayNotificationJson(json);
             RefundFundsTransferNotification notification = (RefundFundsTransferNotification)notificationMessage;
             Assert.AreEqual("REFUND_FUNDS_TRANSFER", notification.EventType);
             Assert.IsNotNull(notification.Content);

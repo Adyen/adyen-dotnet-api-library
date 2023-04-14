@@ -11,9 +11,9 @@ namespace Adyen.Webhooks
             return JsonOperation.Deserialize<NotificationRequest>(jsonRequest);
         }
 
-        public IWebhookNotification HandleMarketpayNotificationJson(string jsonRequest)
+        public IGenericNotification HandleMarketpayNotificationJson(string jsonRequest)
         {
-            return JsonOperation.Deserialize<IWebhookNotification>(jsonRequest);
+            return JsonOperation.Deserialize<IGenericNotification>(jsonRequest);
         }
     }
 }

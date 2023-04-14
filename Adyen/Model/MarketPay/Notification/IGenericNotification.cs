@@ -1,6 +1,6 @@
 ﻿namespace Adyen.Model.MarketPay.Notification
 {
-    public interface IWebhookNotification
+    public interface IGenericNotification
     {
     }
 }
