@@ -9,7 +9,7 @@ namespace Adyen.Model.MarketPay.Notification
     /// 
     /// </summary>
     [DataContract]
-    public class RefundFundsTransferNotification : IGenericNotification
+    public class RefundFundsTransferNotification : IWebhookNotification
     {
         /// <summary>
         /// Gets or Sets Content

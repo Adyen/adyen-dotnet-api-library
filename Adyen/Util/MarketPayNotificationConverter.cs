@@ -9,7 +9,7 @@ namespace Adyen.Util
     {
         public override bool CanConvert(Type objectType)
         {
-            return objectType == typeof(IGenericNotification);
+            return objectType == typeof(IWebhookNotification);
         }
         public override void WriteJson(JsonWriter writer,
             object value, JsonSerializer serializer)
@@ -22,7 +22,7 @@ namespace Adyen.Util
            JsonSerializer serializer)
         {
             var jsonObject = JObject.Load(reader);
-            var notification = default(IGenericNotification);
+            var notification = default(IWebhookNotification);
             switch (jsonObject["eventType"].ToString())
             {
                 case "ACCOUNT_CREATED":
