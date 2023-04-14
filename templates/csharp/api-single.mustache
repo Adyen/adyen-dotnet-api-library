@@ -10,13 +10,13 @@ using Adyen.Service.Resource;
 {{#hasImport}}using Adyen.{{modelPackage}};
 {{/hasImport}}
 
-namespace {{packageName}}.{{apiPackage}}
+namespace {{packageName}}.Service
 {
 {{#operations}}
     /// <summary>
     /// {{classname}} Interface
     /// </summary>
-    public interface I{{classname}}
+    public interface I{{customApi}}Service
     {
         {{#operation}}
 {{>method_documentation}}
@@ -44,13 +44,13 @@ namespace {{packageName}}.{{apiPackage}}
     
     {{#operations}}
     /// <summary>
-    /// Represents a collection of functions to interact with the {{classname}} API endpoints
+    /// Represents a collection of functions to interact with the {{customApi}}Service API endpoints
     /// </summary>
-    {{>visibility}} class {{classname}} : AbstractService, I{{classname}}
+    {{>visibility}} class {{customApi}}Service : AbstractService, I{{customApi}}Service
     {
         private readonly string _baseUrl;
         
-        public {{classname}}(Client client) : base(client)
+        public {{customApi}}Service(Client client) : base(client)
         {
             _baseUrl = CreateBaseUrl("{{{basePath}}}");
         }
