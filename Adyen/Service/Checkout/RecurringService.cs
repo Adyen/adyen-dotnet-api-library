@@ -70,7 +70,7 @@ namespace Adyen.Service.Checkout
     }
     
     /// <summary>
-    /// Represents a collection of functions to interact with the API endpoints
+    /// Represents a collection of functions to interact with the RecurringService API endpoints
     /// </summary>
     public class RecurringService : AbstractService, IRecurringService
     {
@@ -78,7 +78,7 @@ namespace Adyen.Service.Checkout
         
         public RecurringService(Client client) : base(client)
         {
-            _baseUrl = client.Config.CheckoutEndpoint + "/" + ClientConfig.CheckoutApiVersion;
+            _baseUrl = CreateBaseUrl("https://checkout-test.adyen.com/v70");
         }
         
         public StoredPaymentMethodResource DeleteTokenForStoredPaymentDetails(string recurringId, string shopperReference = default, string merchantAccount = default, RequestOptions requestOptions = default)

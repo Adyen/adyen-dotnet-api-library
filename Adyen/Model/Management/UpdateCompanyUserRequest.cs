@@ -39,15 +39,19 @@ namespace Adyen.Model.Management
         /// <param name="accountGroups">The list of [account groups](https://docs.adyen.com/account/account-structure#account-groups) associated with this user..</param>
         /// <param name="active">Indicates whether this user is active..</param>
         /// <param name="associatedMerchantAccounts">The list of [merchant accounts](https://docs.adyen.com/account/account-structure#merchant-accounts) to associate the user with..</param>
+        /// <param name="authnAppsToAdd">Set of authn apps to add to this user.</param>
+        /// <param name="authnAppsToRemove">Set of authn apps to remove from this user.</param>
         /// <param name="email">The email address of the user..</param>
         /// <param name="name">name.</param>
         /// <param name="roles">The list of [roles](https://docs.adyen.com/account/user-roles) for this user..</param>
         /// <param name="timeZoneCode">The [tz database name](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones) of the time zone of the user. For example, **Europe/Amsterdam**..</param>
-        public UpdateCompanyUserRequest(List<string> accountGroups = default(List<string>), bool active = default(bool), List<string> associatedMerchantAccounts = default(List<string>), string email = default(string), Name2 name = default(Name2), List<string> roles = default(List<string>), string timeZoneCode = default(string))
+        public UpdateCompanyUserRequest(List<string> accountGroups = default(List<string>), bool active = default(bool), List<string> associatedMerchantAccounts = default(List<string>), List<string> authnAppsToAdd = default(List<string>), List<string> authnAppsToRemove = default(List<string>), string email = default(string), Name2 name = default(Name2), List<string> roles = default(List<string>), string timeZoneCode = default(string))
         {
             this.AccountGroups = accountGroups;
             this.Active = active;
             this.AssociatedMerchantAccounts = associatedMerchantAccounts;
+            this.AuthnAppsToAdd = authnAppsToAdd;
+            this.AuthnAppsToRemove = authnAppsToRemove;
             this.Email = email;
             this.Name = name;
             this.Roles = roles;
@@ -74,6 +78,20 @@ namespace Adyen.Model.Management
         /// <value>The list of [merchant accounts](https://docs.adyen.com/account/account-structure#merchant-accounts) to associate the user with.</value>
         [DataMember(Name = "associatedMerchantAccounts", EmitDefaultValue = false)]
         public List<string> AssociatedMerchantAccounts { get; set; }
+
+        /// <summary>
+        /// Set of authn apps to add to this user
+        /// </summary>
+        /// <value>Set of authn apps to add to this user</value>
+        [DataMember(Name = "authnAppsToAdd", EmitDefaultValue = false)]
+        public List<string> AuthnAppsToAdd { get; set; }
+
+        /// <summary>
+        /// Set of authn apps to remove from this user
+        /// </summary>
+        /// <value>Set of authn apps to remove from this user</value>
+        [DataMember(Name = "authnAppsToRemove", EmitDefaultValue = false)]
+        public List<string> AuthnAppsToRemove { get; set; }
 
         /// <summary>
         /// The email address of the user.
@@ -113,6 +131,8 @@ namespace Adyen.Model.Management
             sb.Append("  AccountGroups: ").Append(AccountGroups).Append("\n");
             sb.Append("  Active: ").Append(Active).Append("\n");
             sb.Append("  AssociatedMerchantAccounts: ").Append(AssociatedMerchantAccounts).Append("\n");
+            sb.Append("  AuthnAppsToAdd: ").Append(AuthnAppsToAdd).Append("\n");
+            sb.Append("  AuthnAppsToRemove: ").Append(AuthnAppsToRemove).Append("\n");
             sb.Append("  Email: ").Append(Email).Append("\n");
             sb.Append("  Name: ").Append(Name).Append("\n");
             sb.Append("  Roles: ").Append(Roles).Append("\n");
@@ -169,6 +189,18 @@ namespace Adyen.Model.Management
                     this.AssociatedMerchantAccounts.SequenceEqual(input.AssociatedMerchantAccounts)
                 ) && 
                 (
+                    this.AuthnAppsToAdd == input.AuthnAppsToAdd ||
+                    this.AuthnAppsToAdd != null &&
+                    input.AuthnAppsToAdd != null &&
+                    this.AuthnAppsToAdd.SequenceEqual(input.AuthnAppsToAdd)
+                ) && 
+                (
+                    this.AuthnAppsToRemove == input.AuthnAppsToRemove ||
+                    this.AuthnAppsToRemove != null &&
+                    input.AuthnAppsToRemove != null &&
+                    this.AuthnAppsToRemove.SequenceEqual(input.AuthnAppsToRemove)
+                ) && 
+                (
                     this.Email == input.Email ||
                     (this.Email != null &&
                     this.Email.Equals(input.Email))
@@ -208,6 +240,14 @@ namespace Adyen.Model.Management
                 if (this.AssociatedMerchantAccounts != null)
                 {
                     hashCode = (hashCode * 59) + this.AssociatedMerchantAccounts.GetHashCode();
+                }
+                if (this.AuthnAppsToAdd != null)
+                {
+                    hashCode = (hashCode * 59) + this.AuthnAppsToAdd.GetHashCode();
+                }
+                if (this.AuthnAppsToRemove != null)
+                {
+                    hashCode = (hashCode * 59) + this.AuthnAppsToRemove.GetHashCode();
                 }
                 if (this.Email != null)
                 {

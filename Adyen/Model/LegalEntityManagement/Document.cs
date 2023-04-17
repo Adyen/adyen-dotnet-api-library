@@ -180,14 +180,6 @@ namespace Adyen.Model.LegalEntityManagement
         public DateTime CreationDate { get; private set; }
 
         /// <summary>
-        /// Returns false as CreationDate should not be serialized given that it's read-only.
-        /// </summary>
-        /// <returns>false (boolean)</returns>
-        public bool ShouldSerializeCreationDate()
-        {
-            return false;
-        }
-        /// <summary>
         /// Your description for the document.
         /// </summary>
         /// <value>Your description for the document.</value>
@@ -213,17 +205,9 @@ namespace Adyen.Model.LegalEntityManagement
         /// The unique identifier of the document.
         /// </summary>
         /// <value>The unique identifier of the document.</value>
-        [DataMember(Name = "id", IsRequired = false, EmitDefaultValue = false)]
+        [DataMember(Name = "id", EmitDefaultValue = false)]
         public string Id { get; private set; }
 
-        /// <summary>
-        /// Returns false as Id should not be serialized given that it's read-only.
-        /// </summary>
-        /// <returns>false (boolean)</returns>
-        public bool ShouldSerializeId()
-        {
-            return false;
-        }
         /// <summary>
         /// The two-character [ISO 3166-1 alpha-2](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2) country code where the document was issued. For example, **US**.
         /// </summary>
@@ -247,14 +231,6 @@ namespace Adyen.Model.LegalEntityManagement
         [DataMember(Name = "modificationDate", EmitDefaultValue = false)]
         public DateTime ModificationDate { get; private set; }
 
-        /// <summary>
-        /// Returns false as ModificationDate should not be serialized given that it's read-only.
-        /// </summary>
-        /// <returns>false (boolean)</returns>
-        public bool ShouldSerializeModificationDate()
-        {
-            return false;
-        }
         /// <summary>
         /// The number in the document.
         /// </summary>

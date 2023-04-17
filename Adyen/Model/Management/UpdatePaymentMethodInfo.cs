@@ -41,13 +41,15 @@ namespace Adyen.Model.Management
         /// <param name="customRoutingFlags">Custom routing flags for acquirer routing..</param>
         /// <param name="enabled">Indicates whether the payment method is enabled (**true**) or disabled (**false**)..</param>
         /// <param name="shopperStatement">shopperStatement.</param>
-        public UpdatePaymentMethodInfo(List<string> countries = default(List<string>), List<string> currencies = default(List<string>), List<string> customRoutingFlags = default(List<string>), bool enabled = default(bool), ShopperStatement shopperStatement = default(ShopperStatement))
+        /// <param name="storeIds">The list of stores for this payment method.</param>
+        public UpdatePaymentMethodInfo(List<string> countries = default(List<string>), List<string> currencies = default(List<string>), List<string> customRoutingFlags = default(List<string>), bool enabled = default(bool), ShopperStatement shopperStatement = default(ShopperStatement), List<string> storeIds = default(List<string>))
         {
             this.Countries = countries;
             this.Currencies = currencies;
             this.CustomRoutingFlags = customRoutingFlags;
             this.Enabled = enabled;
             this.ShopperStatement = shopperStatement;
+            this.StoreIds = storeIds;
         }
 
         /// <summary>
@@ -85,6 +87,13 @@ namespace Adyen.Model.Management
         public ShopperStatement ShopperStatement { get; set; }
 
         /// <summary>
+        /// The list of stores for this payment method
+        /// </summary>
+        /// <value>The list of stores for this payment method</value>
+        [DataMember(Name = "storeIds", EmitDefaultValue = false)]
+        public List<string> StoreIds { get; set; }
+
+        /// <summary>
         /// Returns the string presentation of the object
         /// </summary>
         /// <returns>String presentation of the object</returns>
@@ -97,6 +106,7 @@ namespace Adyen.Model.Management
             sb.Append("  CustomRoutingFlags: ").Append(CustomRoutingFlags).Append("\n");
             sb.Append("  Enabled: ").Append(Enabled).Append("\n");
             sb.Append("  ShopperStatement: ").Append(ShopperStatement).Append("\n");
+            sb.Append("  StoreIds: ").Append(StoreIds).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -158,6 +168,12 @@ namespace Adyen.Model.Management
                     this.ShopperStatement == input.ShopperStatement ||
                     (this.ShopperStatement != null &&
                     this.ShopperStatement.Equals(input.ShopperStatement))
+                ) && 
+                (
+                    this.StoreIds == input.StoreIds ||
+                    this.StoreIds != null &&
+                    input.StoreIds != null &&
+                    this.StoreIds.SequenceEqual(input.StoreIds)
                 );
         }
 
@@ -186,6 +202,10 @@ namespace Adyen.Model.Management
                 if (this.ShopperStatement != null)
                 {
                     hashCode = (hashCode * 59) + this.ShopperStatement.GetHashCode();
+                }
+                if (this.StoreIds != null)
+                {
+                    hashCode = (hashCode * 59) + this.StoreIds.GetHashCode();
                 }
                 return hashCode;
             }

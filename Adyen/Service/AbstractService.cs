@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using Adyen.Exceptions;
 using Environment = Adyen.Model.Environment;
 
 namespace Adyen.Service
@@ -50,11 +51,16 @@ namespace Adyen.Service
             if (config.Environment != Environment.Live) return url;
             if (url.Contains("pal-"))
             {
+                // TODO these errors are not easy catchable for some reason, should be fixed first
+                if (config.LiveEndpointUrlPrefix == default) {throw new InvalidOperationException(ExceptionMessages.MissingLiveEndpointUrlPrefix); }
+                
                 url = url.Replace("https://pal-test.adyen.com/pal/servlet/",
                     "https://" + config.LiveEndpointUrlPrefix + "-pal-live.adyenpayments.com/pal/servlet/");
             }
             else if (url.Contains("checkout-"))
             {
+                if (config.LiveEndpointUrlPrefix == default) {throw new InvalidOperationException(ExceptionMessages.MissingLiveEndpointUrlPrefix); }
+                
                 url = url.Replace("https://checkout-test.adyen.com/",
                     "https://" + config.LiveEndpointUrlPrefix + "-checkout-live.adyenpayments.com/checkout/");
             }

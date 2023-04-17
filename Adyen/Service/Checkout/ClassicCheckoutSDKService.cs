@@ -68,7 +68,7 @@ namespace Adyen.Service.Checkout
     }
     
     /// <summary>
-    /// Represents a collection of functions to interact with the API endpoints
+    /// Represents a collection of functions to interact with the ClassicCheckoutSDKService API endpoints
     /// </summary>
     public class ClassicCheckoutSDKService : AbstractService, IClassicCheckoutSDKService
     {
@@ -76,7 +76,7 @@ namespace Adyen.Service.Checkout
         
         public ClassicCheckoutSDKService(Client client) : base(client)
         {
-            _baseUrl = client.Config.CheckoutEndpoint + "/" + ClientConfig.CheckoutApiVersion;
+            _baseUrl = CreateBaseUrl("https://checkout-test.adyen.com/v70");
         }
         
         [Obsolete]

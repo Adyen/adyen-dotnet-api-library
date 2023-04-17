@@ -13,80 +13,261 @@
 using System;
 using System.Collections.Generic;
 using System.Net.Http;
+using System.Threading;
 using System.Threading.Tasks;
 using Adyen.Constants;
 using Adyen.Model;
 using Adyen.Service.Resource;
 using Adyen.Model.Management;
-using Newtonsoft.Json;
 
 namespace Adyen.Service.Management
 {
     /// <summary>
-    /// Represents a collection of functions to interact with the API endpoints
+    /// TerminalOrdersCompanyLevelService Interface
     /// </summary>
-    public class TerminalOrdersCompanyLevelService : AbstractService
+    public interface ITerminalOrdersCompanyLevelService
+    {
+        /// <summary>
+        /// Get a list of billing entities
+        /// </summary>
+        /// <param name="companyId"><see cref="string"/> - The unique identifier of the company account.</param>
+        /// <param name="name"><see cref="string"/> - The name of the billing entity.</param>
+        /// <param name="requestOptions"><see cref="RequestOptions"/> - Additional request options.</param>
+        /// <returns><see cref="BillingEntitiesResponse"/>.</returns>
+        BillingEntitiesResponse ListBillingEntities(string companyId, string name = default, RequestOptions requestOptions = default);
+        
+        /// <summary>
+        /// Get a list of billing entities
+        /// </summary>
+        /// <param name="companyId"><see cref="string"/> - The unique identifier of the company account.</param>
+        /// <param name="name"><see cref="string"/> - The name of the billing entity.</param>
+        /// <param name="requestOptions"><see cref="RequestOptions"/> - Additional request options.</param>
+        /// <param name="cancellationToken"> A CancellationToken enables cooperative cancellation between threads, thread pool work items, or Task objects.</param>
+        /// <returns>Task of <see cref="BillingEntitiesResponse"/>.</returns>
+        Task<BillingEntitiesResponse> ListBillingEntitiesAsync(string companyId, string name = default, RequestOptions requestOptions = default, CancellationToken cancellationToken = default);
+        
+        /// <summary>
+        /// Get a list of shipping locations
+        /// </summary>
+        /// <param name="companyId"><see cref="string"/> - The unique identifier of the company account.</param>
+        /// <param name="name"><see cref="string"/> - The name of the shipping location.</param>
+        /// <param name="offset"><see cref="int?"/> - The number of locations to skip.</param>
+        /// <param name="limit"><see cref="int?"/> - The number of locations to return.</param>
+        /// <param name="requestOptions"><see cref="RequestOptions"/> - Additional request options.</param>
+        /// <returns><see cref="ShippingLocationsResponse"/>.</returns>
+        ShippingLocationsResponse ListShippingLocations(string companyId, string name = default, int? offset = default, int? limit = default, RequestOptions requestOptions = default);
+        
+        /// <summary>
+        /// Get a list of shipping locations
+        /// </summary>
+        /// <param name="companyId"><see cref="string"/> - The unique identifier of the company account.</param>
+        /// <param name="name"><see cref="string"/> - The name of the shipping location.</param>
+        /// <param name="offset"><see cref="int?"/> - The number of locations to skip.</param>
+        /// <param name="limit"><see cref="int?"/> - The number of locations to return.</param>
+        /// <param name="requestOptions"><see cref="RequestOptions"/> - Additional request options.</param>
+        /// <param name="cancellationToken"> A CancellationToken enables cooperative cancellation between threads, thread pool work items, or Task objects.</param>
+        /// <returns>Task of <see cref="ShippingLocationsResponse"/>.</returns>
+        Task<ShippingLocationsResponse> ListShippingLocationsAsync(string companyId, string name = default, int? offset = default, int? limit = default, RequestOptions requestOptions = default, CancellationToken cancellationToken = default);
+        
+        /// <summary>
+        /// Get a list of terminal models
+        /// </summary>
+        /// <param name="companyId"><see cref="string"/> - The unique identifier of the company account.</param>
+        /// <param name="requestOptions"><see cref="RequestOptions"/> - Additional request options.</param>
+        /// <returns><see cref="TerminalModelsResponse"/>.</returns>
+        TerminalModelsResponse ListTerminalModels(string companyId, RequestOptions requestOptions = default);
+        
+        /// <summary>
+        /// Get a list of terminal models
+        /// </summary>
+        /// <param name="companyId"><see cref="string"/> - The unique identifier of the company account.</param>
+        /// <param name="requestOptions"><see cref="RequestOptions"/> - Additional request options.</param>
+        /// <param name="cancellationToken"> A CancellationToken enables cooperative cancellation between threads, thread pool work items, or Task objects.</param>
+        /// <returns>Task of <see cref="TerminalModelsResponse"/>.</returns>
+        Task<TerminalModelsResponse> ListTerminalModelsAsync(string companyId, RequestOptions requestOptions = default, CancellationToken cancellationToken = default);
+        
+        /// <summary>
+        /// Get a list of orders
+        /// </summary>
+        /// <param name="companyId"><see cref="string"/> - The unique identifier of the company account.</param>
+        /// <param name="customerOrderReference"><see cref="string"/> - Your purchase order number.</param>
+        /// <param name="status"><see cref="string"/> - The order status. Possible values (not case-sensitive): Placed, Confirmed, Cancelled, Shipped, Delivered.</param>
+        /// <param name="offset"><see cref="int?"/> - The number of orders to skip.</param>
+        /// <param name="limit"><see cref="int?"/> - The number of orders to return.</param>
+        /// <param name="requestOptions"><see cref="RequestOptions"/> - Additional request options.</param>
+        /// <returns><see cref="TerminalOrdersResponse"/>.</returns>
+        TerminalOrdersResponse ListOrders(string companyId, string customerOrderReference = default, string status = default, int? offset = default, int? limit = default, RequestOptions requestOptions = default);
+        
+        /// <summary>
+        /// Get a list of orders
+        /// </summary>
+        /// <param name="companyId"><see cref="string"/> - The unique identifier of the company account.</param>
+        /// <param name="customerOrderReference"><see cref="string"/> - Your purchase order number.</param>
+        /// <param name="status"><see cref="string"/> - The order status. Possible values (not case-sensitive): Placed, Confirmed, Cancelled, Shipped, Delivered.</param>
+        /// <param name="offset"><see cref="int?"/> - The number of orders to skip.</param>
+        /// <param name="limit"><see cref="int?"/> - The number of orders to return.</param>
+        /// <param name="requestOptions"><see cref="RequestOptions"/> - Additional request options.</param>
+        /// <param name="cancellationToken"> A CancellationToken enables cooperative cancellation between threads, thread pool work items, or Task objects.</param>
+        /// <returns>Task of <see cref="TerminalOrdersResponse"/>.</returns>
+        Task<TerminalOrdersResponse> ListOrdersAsync(string companyId, string customerOrderReference = default, string status = default, int? offset = default, int? limit = default, RequestOptions requestOptions = default, CancellationToken cancellationToken = default);
+        
+        /// <summary>
+        /// Get an order
+        /// </summary>
+        /// <param name="companyId"><see cref="string"/> - The unique identifier of the company account.</param>
+        /// <param name="orderId"><see cref="string"/> - The unique identifier of the order.</param>
+        /// <param name="requestOptions"><see cref="RequestOptions"/> - Additional request options.</param>
+        /// <returns><see cref="TerminalOrder"/>.</returns>
+        TerminalOrder GetOrder(string companyId, string orderId, RequestOptions requestOptions = default);
+        
+        /// <summary>
+        /// Get an order
+        /// </summary>
+        /// <param name="companyId"><see cref="string"/> - The unique identifier of the company account.</param>
+        /// <param name="orderId"><see cref="string"/> - The unique identifier of the order.</param>
+        /// <param name="requestOptions"><see cref="RequestOptions"/> - Additional request options.</param>
+        /// <param name="cancellationToken"> A CancellationToken enables cooperative cancellation between threads, thread pool work items, or Task objects.</param>
+        /// <returns>Task of <see cref="TerminalOrder"/>.</returns>
+        Task<TerminalOrder> GetOrderAsync(string companyId, string orderId, RequestOptions requestOptions = default, CancellationToken cancellationToken = default);
+        
+        /// <summary>
+        /// Get a list of terminal products
+        /// </summary>
+        /// <param name="companyId"><see cref="string"/> - The unique identifier of the company account.</param>
+        /// <param name="country"><see cref="string"/> - The country to return products for, in [ISO 3166-1 alpha-2](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2) format. For example, **US**</param>
+        /// <param name="terminalModelId"><see cref="string"/> - The terminal model to return products for. Use the ID returned in the [GET &#x60;/terminalModels&#x60;](https://docs.adyen.com/api-explorer/#/ManagementService/latest/get/companies/{companyId}/terminalModels) response. For example, **Verifone.M400**</param>
+        /// <param name="offset"><see cref="int?"/> - The number of products to skip.</param>
+        /// <param name="limit"><see cref="int?"/> - The number of products to return.</param>
+        /// <param name="requestOptions"><see cref="RequestOptions"/> - Additional request options.</param>
+        /// <returns><see cref="TerminalProductsResponse"/>.</returns>
+        TerminalProductsResponse ListTerminalProducts(string companyId, string country, string terminalModelId = default, int? offset = default, int? limit = default, RequestOptions requestOptions = default);
+        
+        /// <summary>
+        /// Get a list of terminal products
+        /// </summary>
+        /// <param name="companyId"><see cref="string"/> - The unique identifier of the company account.</param>
+        /// <param name="country"><see cref="string"/> - The country to return products for, in [ISO 3166-1 alpha-2](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2) format. For example, **US**</param>
+        /// <param name="terminalModelId"><see cref="string"/> - The terminal model to return products for. Use the ID returned in the [GET &#x60;/terminalModels&#x60;](https://docs.adyen.com/api-explorer/#/ManagementService/latest/get/companies/{companyId}/terminalModels) response. For example, **Verifone.M400**</param>
+        /// <param name="offset"><see cref="int?"/> - The number of products to skip.</param>
+        /// <param name="limit"><see cref="int?"/> - The number of products to return.</param>
+        /// <param name="requestOptions"><see cref="RequestOptions"/> - Additional request options.</param>
+        /// <param name="cancellationToken"> A CancellationToken enables cooperative cancellation between threads, thread pool work items, or Task objects.</param>
+        /// <returns>Task of <see cref="TerminalProductsResponse"/>.</returns>
+        Task<TerminalProductsResponse> ListTerminalProductsAsync(string companyId, string country, string terminalModelId = default, int? offset = default, int? limit = default, RequestOptions requestOptions = default, CancellationToken cancellationToken = default);
+        
+        /// <summary>
+        /// Update an order
+        /// </summary>
+        /// <param name="companyId"><see cref="string"/> - The unique identifier of the company account.</param>
+        /// <param name="orderId"><see cref="string"/> - The unique identifier of the order.</param>
+        /// <param name="terminalOrderRequest"><see cref="TerminalOrderRequest"/> - </param>
+        /// <param name="requestOptions"><see cref="RequestOptions"/> - Additional request options.</param>
+        /// <returns><see cref="TerminalOrder"/>.</returns>
+        TerminalOrder UpdateOrder(string companyId, string orderId, TerminalOrderRequest terminalOrderRequest, RequestOptions requestOptions = default);
+        
+        /// <summary>
+        /// Update an order
+        /// </summary>
+        /// <param name="companyId"><see cref="string"/> - The unique identifier of the company account.</param>
+        /// <param name="orderId"><see cref="string"/> - The unique identifier of the order.</param>
+        /// <param name="terminalOrderRequest"><see cref="TerminalOrderRequest"/> - </param>
+        /// <param name="requestOptions"><see cref="RequestOptions"/> - Additional request options.</param>
+        /// <param name="cancellationToken"> A CancellationToken enables cooperative cancellation between threads, thread pool work items, or Task objects.</param>
+        /// <returns>Task of <see cref="TerminalOrder"/>.</returns>
+        Task<TerminalOrder> UpdateOrderAsync(string companyId, string orderId, TerminalOrderRequest terminalOrderRequest, RequestOptions requestOptions = default, CancellationToken cancellationToken = default);
+        
+        /// <summary>
+        /// Create a shipping location
+        /// </summary>
+        /// <param name="companyId"><see cref="string"/> - The unique identifier of the company account.</param>
+        /// <param name="shippingLocation"><see cref="ShippingLocation"/> - </param>
+        /// <param name="requestOptions"><see cref="RequestOptions"/> - Additional request options.</param>
+        /// <returns><see cref="ShippingLocation"/>.</returns>
+        ShippingLocation CreateShippingLocation(string companyId, ShippingLocation shippingLocation, RequestOptions requestOptions = default);
+        
+        /// <summary>
+        /// Create a shipping location
+        /// </summary>
+        /// <param name="companyId"><see cref="string"/> - The unique identifier of the company account.</param>
+        /// <param name="shippingLocation"><see cref="ShippingLocation"/> - </param>
+        /// <param name="requestOptions"><see cref="RequestOptions"/> - Additional request options.</param>
+        /// <param name="cancellationToken"> A CancellationToken enables cooperative cancellation between threads, thread pool work items, or Task objects.</param>
+        /// <returns>Task of <see cref="ShippingLocation"/>.</returns>
+        Task<ShippingLocation> CreateShippingLocationAsync(string companyId, ShippingLocation shippingLocation, RequestOptions requestOptions = default, CancellationToken cancellationToken = default);
+        
+        /// <summary>
+        /// Create an order
+        /// </summary>
+        /// <param name="companyId"><see cref="string"/> - The unique identifier of the company account.</param>
+        /// <param name="terminalOrderRequest"><see cref="TerminalOrderRequest"/> - </param>
+        /// <param name="requestOptions"><see cref="RequestOptions"/> - Additional request options.</param>
+        /// <returns><see cref="TerminalOrder"/>.</returns>
+        TerminalOrder CreateOrder(string companyId, TerminalOrderRequest terminalOrderRequest, RequestOptions requestOptions = default);
+        
+        /// <summary>
+        /// Create an order
+        /// </summary>
+        /// <param name="companyId"><see cref="string"/> - The unique identifier of the company account.</param>
+        /// <param name="terminalOrderRequest"><see cref="TerminalOrderRequest"/> - </param>
+        /// <param name="requestOptions"><see cref="RequestOptions"/> - Additional request options.</param>
+        /// <param name="cancellationToken"> A CancellationToken enables cooperative cancellation between threads, thread pool work items, or Task objects.</param>
+        /// <returns>Task of <see cref="TerminalOrder"/>.</returns>
+        Task<TerminalOrder> CreateOrderAsync(string companyId, TerminalOrderRequest terminalOrderRequest, RequestOptions requestOptions = default, CancellationToken cancellationToken = default);
+        
+        /// <summary>
+        /// Cancel an order
+        /// </summary>
+        /// <param name="companyId"><see cref="string"/> - The unique identifier of the company account.</param>
+        /// <param name="orderId"><see cref="string"/> - The unique identifier of the order.</param>
+        /// <param name="requestOptions"><see cref="RequestOptions"/> - Additional request options.</param>
+        /// <returns><see cref="TerminalOrder"/>.</returns>
+        TerminalOrder CancelOrder(string companyId, string orderId, RequestOptions requestOptions = default);
+        
+        /// <summary>
+        /// Cancel an order
+        /// </summary>
+        /// <param name="companyId"><see cref="string"/> - The unique identifier of the company account.</param>
+        /// <param name="orderId"><see cref="string"/> - The unique identifier of the order.</param>
+        /// <param name="requestOptions"><see cref="RequestOptions"/> - Additional request options.</param>
+        /// <param name="cancellationToken"> A CancellationToken enables cooperative cancellation between threads, thread pool work items, or Task objects.</param>
+        /// <returns>Task of <see cref="TerminalOrder"/>.</returns>
+        Task<TerminalOrder> CancelOrderAsync(string companyId, string orderId, RequestOptions requestOptions = default, CancellationToken cancellationToken = default);
+        
+    }
+    
+    /// <summary>
+    /// Represents a collection of functions to interact with the TerminalOrdersCompanyLevelService API endpoints
+    /// </summary>
+    public class TerminalOrdersCompanyLevelService : AbstractService, ITerminalOrdersCompanyLevelService
     {
         private readonly string _baseUrl;
         
         public TerminalOrdersCompanyLevelService(Client client) : base(client)
         {
-            _baseUrl = client.Config.ManagementEndpoint + "/" + ClientConfig.ManagementVersion;
+            _baseUrl = CreateBaseUrl("https://management-test.adyen.com/v1");
         }
-    
-        /// <summary>
-        /// Get a list of billing entities
-        /// </summary>
-        /// <param name="companyId">The unique identifier of the company account.</param>
-        /// <param name="name">The name of the billing entity.</param>
-        /// <param name="requestOptions">Additional request options.</param>
-        /// <returns>BillingEntitiesResponse</returns>
+        
         public BillingEntitiesResponse ListBillingEntities(string companyId, string name = default, RequestOptions requestOptions = default)
         {
             return ListBillingEntitiesAsync(companyId, name, requestOptions).GetAwaiter().GetResult();
         }
 
-        /// <summary>
-        /// Get a list of billing entities
-        /// </summary>
-        /// <param name="companyId">The unique identifier of the company account.</param>
-        /// <param name="name">The name of the billing entity.</param>
-        /// <param name="requestOptions">Additional request options.</param>
-        /// <returns>Task of BillingEntitiesResponse</returns>
-        public async Task<BillingEntitiesResponse> ListBillingEntitiesAsync(string companyId, string name = default, RequestOptions requestOptions = default)
+        public async Task<BillingEntitiesResponse> ListBillingEntitiesAsync(string companyId, string name = default, RequestOptions requestOptions = default, CancellationToken cancellationToken = default)
         {
             // Build the query string
             var queryParams = new Dictionary<string, string>();
             if (name != null) queryParams.Add("name", name);
             var endpoint = _baseUrl + $"/companies/{companyId}/billingEntities" + ToQueryString(queryParams);
             var resource = new ServiceResource(this, endpoint);
-            return await resource.RequestAsync<BillingEntitiesResponse>(null, requestOptions, new HttpMethod("GET"));
+            return await resource.RequestAsync<BillingEntitiesResponse>(null, requestOptions, new HttpMethod("GET"), cancellationToken);
         }
-
-        /// <summary>
-        /// Get a list of shipping locations
-        /// </summary>
-        /// <param name="companyId">The unique identifier of the company account.</param>
-        /// <param name="name">The name of the shipping location.</param>
-        /// <param name="offset">The number of locations to skip.</param>
-        /// <param name="limit">The number of locations to return.</param>
-        /// <param name="requestOptions">Additional request options.</param>
-        /// <returns>ShippingLocationsResponse</returns>
+        
         public ShippingLocationsResponse ListShippingLocations(string companyId, string name = default, int? offset = default, int? limit = default, RequestOptions requestOptions = default)
         {
             return ListShippingLocationsAsync(companyId, name, offset, limit, requestOptions).GetAwaiter().GetResult();
         }
 
-        /// <summary>
-        /// Get a list of shipping locations
-        /// </summary>
-        /// <param name="companyId">The unique identifier of the company account.</param>
-        /// <param name="name">The name of the shipping location.</param>
-        /// <param name="offset">The number of locations to skip.</param>
-        /// <param name="limit">The number of locations to return.</param>
-        /// <param name="requestOptions">Additional request options.</param>
-        /// <returns>Task of ShippingLocationsResponse</returns>
-        public async Task<ShippingLocationsResponse> ListShippingLocationsAsync(string companyId, string name = default, int? offset = default, int? limit = default, RequestOptions requestOptions = default)
+        public async Task<ShippingLocationsResponse> ListShippingLocationsAsync(string companyId, string name = default, int? offset = default, int? limit = default, RequestOptions requestOptions = default, CancellationToken cancellationToken = default)
         {
             // Build the query string
             var queryParams = new Dictionary<string, string>();
@@ -95,59 +276,27 @@ namespace Adyen.Service.Management
             if (limit != null) queryParams.Add("limit", limit.ToString());
             var endpoint = _baseUrl + $"/companies/{companyId}/shippingLocations" + ToQueryString(queryParams);
             var resource = new ServiceResource(this, endpoint);
-            return await resource.RequestAsync<ShippingLocationsResponse>(null, requestOptions, new HttpMethod("GET"));
+            return await resource.RequestAsync<ShippingLocationsResponse>(null, requestOptions, new HttpMethod("GET"), cancellationToken);
         }
-
-        /// <summary>
-        /// Get a list of terminal models
-        /// </summary>
-        /// <param name="companyId">The unique identifier of the company account.</param>
-        /// <param name="requestOptions">Additional request options.</param>
-        /// <returns>TerminalModelsResponse</returns>
+        
         public TerminalModelsResponse ListTerminalModels(string companyId, RequestOptions requestOptions = default)
         {
             return ListTerminalModelsAsync(companyId, requestOptions).GetAwaiter().GetResult();
         }
 
-        /// <summary>
-        /// Get a list of terminal models
-        /// </summary>
-        /// <param name="companyId">The unique identifier of the company account.</param>
-        /// <param name="requestOptions">Additional request options.</param>
-        /// <returns>Task of TerminalModelsResponse</returns>
-        public async Task<TerminalModelsResponse> ListTerminalModelsAsync(string companyId, RequestOptions requestOptions = default)
+        public async Task<TerminalModelsResponse> ListTerminalModelsAsync(string companyId, RequestOptions requestOptions = default, CancellationToken cancellationToken = default)
         {
             var endpoint = _baseUrl + $"/companies/{companyId}/terminalModels";
             var resource = new ServiceResource(this, endpoint);
-            return await resource.RequestAsync<TerminalModelsResponse>(null, requestOptions, new HttpMethod("GET"));
+            return await resource.RequestAsync<TerminalModelsResponse>(null, requestOptions, new HttpMethod("GET"), cancellationToken);
         }
-
-        /// <summary>
-        /// Get a list of orders
-        /// </summary>
-        /// <param name="companyId">The unique identifier of the company account.</param>
-        /// <param name="customerOrderReference">Your purchase order number.</param>
-        /// <param name="status">The order status. Possible values (not case-sensitive): Placed, Confirmed, Cancelled, Shipped, Delivered.</param>
-        /// <param name="offset">The number of orders to skip.</param>
-        /// <param name="limit">The number of orders to return.</param>
-        /// <param name="requestOptions">Additional request options.</param>
-        /// <returns>TerminalOrdersResponse</returns>
+        
         public TerminalOrdersResponse ListOrders(string companyId, string customerOrderReference = default, string status = default, int? offset = default, int? limit = default, RequestOptions requestOptions = default)
         {
             return ListOrdersAsync(companyId, customerOrderReference, status, offset, limit, requestOptions).GetAwaiter().GetResult();
         }
 
-        /// <summary>
-        /// Get a list of orders
-        /// </summary>
-        /// <param name="companyId">The unique identifier of the company account.</param>
-        /// <param name="customerOrderReference">Your purchase order number.</param>
-        /// <param name="status">The order status. Possible values (not case-sensitive): Placed, Confirmed, Cancelled, Shipped, Delivered.</param>
-        /// <param name="offset">The number of orders to skip.</param>
-        /// <param name="limit">The number of orders to return.</param>
-        /// <param name="requestOptions">Additional request options.</param>
-        /// <returns>Task of TerminalOrdersResponse</returns>
-        public async Task<TerminalOrdersResponse> ListOrdersAsync(string companyId, string customerOrderReference = default, string status = default, int? offset = default, int? limit = default, RequestOptions requestOptions = default)
+        public async Task<TerminalOrdersResponse> ListOrdersAsync(string companyId, string customerOrderReference = default, string status = default, int? offset = default, int? limit = default, RequestOptions requestOptions = default, CancellationToken cancellationToken = default)
         {
             // Build the query string
             var queryParams = new Dictionary<string, string>();
@@ -157,61 +306,27 @@ namespace Adyen.Service.Management
             if (limit != null) queryParams.Add("limit", limit.ToString());
             var endpoint = _baseUrl + $"/companies/{companyId}/terminalOrders" + ToQueryString(queryParams);
             var resource = new ServiceResource(this, endpoint);
-            return await resource.RequestAsync<TerminalOrdersResponse>(null, requestOptions, new HttpMethod("GET"));
+            return await resource.RequestAsync<TerminalOrdersResponse>(null, requestOptions, new HttpMethod("GET"), cancellationToken);
         }
-
-        /// <summary>
-        /// Get an order
-        /// </summary>
-        /// <param name="companyId">The unique identifier of the company account.</param>
-        /// <param name="orderId">The unique identifier of the order.</param>
-        /// <param name="requestOptions">Additional request options.</param>
-        /// <returns>TerminalOrder</returns>
+        
         public TerminalOrder GetOrder(string companyId, string orderId, RequestOptions requestOptions = default)
         {
             return GetOrderAsync(companyId, orderId, requestOptions).GetAwaiter().GetResult();
         }
 
-        /// <summary>
-        /// Get an order
-        /// </summary>
-        /// <param name="companyId">The unique identifier of the company account.</param>
-        /// <param name="orderId">The unique identifier of the order.</param>
-        /// <param name="requestOptions">Additional request options.</param>
-        /// <returns>Task of TerminalOrder</returns>
-        public async Task<TerminalOrder> GetOrderAsync(string companyId, string orderId, RequestOptions requestOptions = default)
+        public async Task<TerminalOrder> GetOrderAsync(string companyId, string orderId, RequestOptions requestOptions = default, CancellationToken cancellationToken = default)
         {
             var endpoint = _baseUrl + $"/companies/{companyId}/terminalOrders/{orderId}";
             var resource = new ServiceResource(this, endpoint);
-            return await resource.RequestAsync<TerminalOrder>(null, requestOptions, new HttpMethod("GET"));
+            return await resource.RequestAsync<TerminalOrder>(null, requestOptions, new HttpMethod("GET"), cancellationToken);
         }
-
-        /// <summary>
-        /// Get a list of terminal products
-        /// </summary>
-        /// <param name="companyId">The unique identifier of the company account.</param>
-        /// <param name="country">The country to return products for, in [ISO 3166-1 alpha-2](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2) format. For example, **US**</param>
-        /// <param name="terminalModelId">The terminal model to return products for. Use the ID returned in the [GET &#x60;/terminalModels&#x60;](https://docs.adyen.com/api-explorer/#/ManagementService/latest/get/companies/{companyId}/terminalModels) response. For example, **Verifone.M400**</param>
-        /// <param name="offset">The number of products to skip.</param>
-        /// <param name="limit">The number of products to return.</param>
-        /// <param name="requestOptions">Additional request options.</param>
-        /// <returns>TerminalProductsResponse</returns>
+        
         public TerminalProductsResponse ListTerminalProducts(string companyId, string country, string terminalModelId = default, int? offset = default, int? limit = default, RequestOptions requestOptions = default)
         {
             return ListTerminalProductsAsync(companyId, country, terminalModelId, offset, limit, requestOptions).GetAwaiter().GetResult();
         }
 
-        /// <summary>
-        /// Get a list of terminal products
-        /// </summary>
-        /// <param name="companyId">The unique identifier of the company account.</param>
-        /// <param name="country">The country to return products for, in [ISO 3166-1 alpha-2](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2) format. For example, **US**</param>
-        /// <param name="terminalModelId">The terminal model to return products for. Use the ID returned in the [GET &#x60;/terminalModels&#x60;](https://docs.adyen.com/api-explorer/#/ManagementService/latest/get/companies/{companyId}/terminalModels) response. For example, **Verifone.M400**</param>
-        /// <param name="offset">The number of products to skip.</param>
-        /// <param name="limit">The number of products to return.</param>
-        /// <param name="requestOptions">Additional request options.</param>
-        /// <returns>Task of TerminalProductsResponse</returns>
-        public async Task<TerminalProductsResponse> ListTerminalProductsAsync(string companyId, string country, string terminalModelId = default, int? offset = default, int? limit = default, RequestOptions requestOptions = default)
+        public async Task<TerminalProductsResponse> ListTerminalProductsAsync(string companyId, string country, string terminalModelId = default, int? offset = default, int? limit = default, RequestOptions requestOptions = default, CancellationToken cancellationToken = default)
         {
             // Build the query string
             var queryParams = new Dictionary<string, string>();
@@ -221,114 +336,55 @@ namespace Adyen.Service.Management
             if (limit != null) queryParams.Add("limit", limit.ToString());
             var endpoint = _baseUrl + $"/companies/{companyId}/terminalProducts" + ToQueryString(queryParams);
             var resource = new ServiceResource(this, endpoint);
-            return await resource.RequestAsync<TerminalProductsResponse>(null, requestOptions, new HttpMethod("GET"));
+            return await resource.RequestAsync<TerminalProductsResponse>(null, requestOptions, new HttpMethod("GET"), cancellationToken);
         }
-
-        /// <summary>
-        /// Update an order
-        /// </summary>
-        /// <param name="companyId">The unique identifier of the company account.</param>
-        /// <param name="orderId">The unique identifier of the order.</param>
-        /// <param name="terminalOrderRequest"></param>
-        /// <param name="requestOptions">Additional request options.</param>
-        /// <returns>TerminalOrder</returns>
+        
         public TerminalOrder UpdateOrder(string companyId, string orderId, TerminalOrderRequest terminalOrderRequest, RequestOptions requestOptions = default)
         {
             return UpdateOrderAsync(companyId, orderId, terminalOrderRequest, requestOptions).GetAwaiter().GetResult();
         }
 
-        /// <summary>
-        /// Update an order
-        /// </summary>
-        /// <param name="companyId">The unique identifier of the company account.</param>
-        /// <param name="orderId">The unique identifier of the order.</param>
-        /// <param name="terminalOrderRequest"></param>
-        /// <param name="requestOptions">Additional request options.</param>
-        /// <returns>Task of TerminalOrder</returns>
-        public async Task<TerminalOrder> UpdateOrderAsync(string companyId, string orderId, TerminalOrderRequest terminalOrderRequest, RequestOptions requestOptions = default)
+        public async Task<TerminalOrder> UpdateOrderAsync(string companyId, string orderId, TerminalOrderRequest terminalOrderRequest, RequestOptions requestOptions = default, CancellationToken cancellationToken = default)
         {
             var endpoint = _baseUrl + $"/companies/{companyId}/terminalOrders/{orderId}";
             var resource = new ServiceResource(this, endpoint);
-            return await resource.RequestAsync<TerminalOrder>(terminalOrderRequest.ToJson(), requestOptions, new HttpMethod("PATCH"));
+            return await resource.RequestAsync<TerminalOrder>(terminalOrderRequest.ToJson(), requestOptions, new HttpMethod("PATCH"), cancellationToken);
         }
-
-        /// <summary>
-        /// Create a shipping location
-        /// </summary>
-        /// <param name="companyId">The unique identifier of the company account.</param>
-        /// <param name="shippingLocation"></param>
-        /// <param name="requestOptions">Additional request options.</param>
-        /// <returns>ShippingLocation</returns>
+        
         public ShippingLocation CreateShippingLocation(string companyId, ShippingLocation shippingLocation, RequestOptions requestOptions = default)
         {
             return CreateShippingLocationAsync(companyId, shippingLocation, requestOptions).GetAwaiter().GetResult();
         }
 
-        /// <summary>
-        /// Create a shipping location
-        /// </summary>
-        /// <param name="companyId">The unique identifier of the company account.</param>
-        /// <param name="shippingLocation"></param>
-        /// <param name="requestOptions">Additional request options.</param>
-        /// <returns>Task of ShippingLocation</returns>
-        public async Task<ShippingLocation> CreateShippingLocationAsync(string companyId, ShippingLocation shippingLocation, RequestOptions requestOptions = default)
+        public async Task<ShippingLocation> CreateShippingLocationAsync(string companyId, ShippingLocation shippingLocation, RequestOptions requestOptions = default, CancellationToken cancellationToken = default)
         {
             var endpoint = _baseUrl + $"/companies/{companyId}/shippingLocations";
             var resource = new ServiceResource(this, endpoint);
-            return await resource.RequestAsync<ShippingLocation>(shippingLocation.ToJson(), requestOptions, new HttpMethod("POST"));
+            return await resource.RequestAsync<ShippingLocation>(shippingLocation.ToJson(), requestOptions, new HttpMethod("POST"), cancellationToken);
         }
-
-        /// <summary>
-        /// Create an order
-        /// </summary>
-        /// <param name="companyId">The unique identifier of the company account.</param>
-        /// <param name="terminalOrderRequest"></param>
-        /// <param name="requestOptions">Additional request options.</param>
-        /// <returns>TerminalOrder</returns>
+        
         public TerminalOrder CreateOrder(string companyId, TerminalOrderRequest terminalOrderRequest, RequestOptions requestOptions = default)
         {
             return CreateOrderAsync(companyId, terminalOrderRequest, requestOptions).GetAwaiter().GetResult();
         }
 
-        /// <summary>
-        /// Create an order
-        /// </summary>
-        /// <param name="companyId">The unique identifier of the company account.</param>
-        /// <param name="terminalOrderRequest"></param>
-        /// <param name="requestOptions">Additional request options.</param>
-        /// <returns>Task of TerminalOrder</returns>
-        public async Task<TerminalOrder> CreateOrderAsync(string companyId, TerminalOrderRequest terminalOrderRequest, RequestOptions requestOptions = default)
+        public async Task<TerminalOrder> CreateOrderAsync(string companyId, TerminalOrderRequest terminalOrderRequest, RequestOptions requestOptions = default, CancellationToken cancellationToken = default)
         {
             var endpoint = _baseUrl + $"/companies/{companyId}/terminalOrders";
             var resource = new ServiceResource(this, endpoint);
-            return await resource.RequestAsync<TerminalOrder>(terminalOrderRequest.ToJson(), requestOptions, new HttpMethod("POST"));
+            return await resource.RequestAsync<TerminalOrder>(terminalOrderRequest.ToJson(), requestOptions, new HttpMethod("POST"), cancellationToken);
         }
-
-        /// <summary>
-        /// Cancel an order
-        /// </summary>
-        /// <param name="companyId">The unique identifier of the company account.</param>
-        /// <param name="orderId">The unique identifier of the order.</param>
-        /// <param name="requestOptions">Additional request options.</param>
-        /// <returns>TerminalOrder</returns>
+        
         public TerminalOrder CancelOrder(string companyId, string orderId, RequestOptions requestOptions = default)
         {
             return CancelOrderAsync(companyId, orderId, requestOptions).GetAwaiter().GetResult();
         }
 
-        /// <summary>
-        /// Cancel an order
-        /// </summary>
-        /// <param name="companyId">The unique identifier of the company account.</param>
-        /// <param name="orderId">The unique identifier of the order.</param>
-        /// <param name="requestOptions">Additional request options.</param>
-        /// <returns>Task of TerminalOrder</returns>
-        public async Task<TerminalOrder> CancelOrderAsync(string companyId, string orderId, RequestOptions requestOptions = default)
+        public async Task<TerminalOrder> CancelOrderAsync(string companyId, string orderId, RequestOptions requestOptions = default, CancellationToken cancellationToken = default)
         {
             var endpoint = _baseUrl + $"/companies/{companyId}/terminalOrders/{orderId}/cancel";
             var resource = new ServiceResource(this, endpoint);
-            return await resource.RequestAsync<TerminalOrder>(null, requestOptions, new HttpMethod("POST"));
+            return await resource.RequestAsync<TerminalOrder>(null, requestOptions, new HttpMethod("POST"), cancellationToken);
         }
-
     }
 }

@@ -13,122 +13,148 @@
 using System;
 using System.Collections.Generic;
 using System.Net.Http;
+using System.Threading;
 using System.Threading.Tasks;
 using Adyen.Constants;
 using Adyen.Model;
 using Adyen.Service.Resource;
 using Adyen.Model.LegalEntityManagement;
-using Newtonsoft.Json;
 
 namespace Adyen.Service.LegalEntityManagement
 {
     /// <summary>
-    /// Represents a collection of functions to interact with the API endpoints
+    /// BusinessLinesService Interface
     /// </summary>
-    public class BusinessLinesService : AbstractService
+    public interface IBusinessLinesService
+    {
+        /// <summary>
+        /// Delete a business line
+        /// </summary>
+        /// <param name="id"><see cref="string"/> - The unique identifier of the business line to be deleted.</param>
+        /// <param name="requestOptions"><see cref="RequestOptions"/> - Additional request options.</param>
+        void DeleteBusinessLine(string id, RequestOptions requestOptions = default);
+        
+        /// <summary>
+        /// Delete a business line
+        /// </summary>
+        /// <param name="id"><see cref="string"/> - The unique identifier of the business line to be deleted.</param>
+        /// <param name="requestOptions"><see cref="RequestOptions"/> - Additional request options.</param>
+        /// <param name="cancellationToken"> A CancellationToken enables cooperative cancellation between threads, thread pool work items, or Task objects.</param>
+        Task DeleteBusinessLineAsync(string id, RequestOptions requestOptions = default, CancellationToken cancellationToken = default);
+        
+        /// <summary>
+        /// Get a business line
+        /// </summary>
+        /// <param name="id"><see cref="string"/> - The unique identifier of the business line.</param>
+        /// <param name="requestOptions"><see cref="RequestOptions"/> - Additional request options.</param>
+        /// <returns><see cref="BusinessLine"/>.</returns>
+        BusinessLine GetBusinessLine(string id, RequestOptions requestOptions = default);
+        
+        /// <summary>
+        /// Get a business line
+        /// </summary>
+        /// <param name="id"><see cref="string"/> - The unique identifier of the business line.</param>
+        /// <param name="requestOptions"><see cref="RequestOptions"/> - Additional request options.</param>
+        /// <param name="cancellationToken"> A CancellationToken enables cooperative cancellation between threads, thread pool work items, or Task objects.</param>
+        /// <returns>Task of <see cref="BusinessLine"/>.</returns>
+        Task<BusinessLine> GetBusinessLineAsync(string id, RequestOptions requestOptions = default, CancellationToken cancellationToken = default);
+        
+        /// <summary>
+        /// Update a business line
+        /// </summary>
+        /// <param name="id"><see cref="string"/> - The unique identifier of the business line.</param>
+        /// <param name="businessLineInfoUpdate"><see cref="BusinessLineInfoUpdate"/> - </param>
+        /// <param name="requestOptions"><see cref="RequestOptions"/> - Additional request options.</param>
+        /// <returns><see cref="BusinessLine"/>.</returns>
+        BusinessLine UpdateBusinessLine(string id, BusinessLineInfoUpdate businessLineInfoUpdate, RequestOptions requestOptions = default);
+        
+        /// <summary>
+        /// Update a business line
+        /// </summary>
+        /// <param name="id"><see cref="string"/> - The unique identifier of the business line.</param>
+        /// <param name="businessLineInfoUpdate"><see cref="BusinessLineInfoUpdate"/> - </param>
+        /// <param name="requestOptions"><see cref="RequestOptions"/> - Additional request options.</param>
+        /// <param name="cancellationToken"> A CancellationToken enables cooperative cancellation between threads, thread pool work items, or Task objects.</param>
+        /// <returns>Task of <see cref="BusinessLine"/>.</returns>
+        Task<BusinessLine> UpdateBusinessLineAsync(string id, BusinessLineInfoUpdate businessLineInfoUpdate, RequestOptions requestOptions = default, CancellationToken cancellationToken = default);
+        
+        /// <summary>
+        /// Create a business line
+        /// </summary>
+        /// <param name="businessLineInfo"><see cref="BusinessLineInfo"/> - </param>
+        /// <param name="requestOptions"><see cref="RequestOptions"/> - Additional request options.</param>
+        /// <returns><see cref="BusinessLine"/>.</returns>
+        BusinessLine CreateBusinessLine(BusinessLineInfo businessLineInfo, RequestOptions requestOptions = default);
+        
+        /// <summary>
+        /// Create a business line
+        /// </summary>
+        /// <param name="businessLineInfo"><see cref="BusinessLineInfo"/> - </param>
+        /// <param name="requestOptions"><see cref="RequestOptions"/> - Additional request options.</param>
+        /// <param name="cancellationToken"> A CancellationToken enables cooperative cancellation between threads, thread pool work items, or Task objects.</param>
+        /// <returns>Task of <see cref="BusinessLine"/>.</returns>
+        Task<BusinessLine> CreateBusinessLineAsync(BusinessLineInfo businessLineInfo, RequestOptions requestOptions = default, CancellationToken cancellationToken = default);
+        
+    }
+    
+    /// <summary>
+    /// Represents a collection of functions to interact with the BusinessLinesService API endpoints
+    /// </summary>
+    public class BusinessLinesService : AbstractService, IBusinessLinesService
     {
         private readonly string _baseUrl;
         
         public BusinessLinesService(Client client) : base(client)
         {
-            _baseUrl = client.Config.LegalEntityManagementEndpoint + "/" + ClientConfig.LegalEntityManagementVersion;
+            _baseUrl = CreateBaseUrl("https://kyc-test.adyen.com/lem/v3");
         }
-    
-        /// <summary>
-        /// Delete a business line
-        /// </summary>
-        /// <param name="id">The unique identifier of the business line to be deleted.</param>
-        /// <param name="requestOptions">Additional request options.</param>
+        
         public void DeleteBusinessLine(string id, RequestOptions requestOptions = default)
         {
             DeleteBusinessLineAsync(id, requestOptions).GetAwaiter().GetResult();
         }
 
-        /// <summary>
-        /// Delete a business line
-        /// </summary>
-        /// <param name="id">The unique identifier of the business line to be deleted.</param>
-        /// <param name="requestOptions">Additional request options.</param>
-        public async Task DeleteBusinessLineAsync(string id, RequestOptions requestOptions = default)
+        public async Task DeleteBusinessLineAsync(string id, RequestOptions requestOptions = default, CancellationToken cancellationToken = default)
         {
             var endpoint = _baseUrl + $"/businessLines/{id}";
             var resource = new ServiceResource(this, endpoint);
-            await resource.RequestAsync(null, requestOptions, new HttpMethod("DELETE"));
+            await resource.RequestAsync(null, requestOptions, new HttpMethod("DELETE"), cancellationToken);
         }
-
-        /// <summary>
-        /// Get a business line
-        /// </summary>
-        /// <param name="id">The unique identifier of the business line.</param>
-        /// <param name="requestOptions">Additional request options.</param>
-        /// <returns>BusinessLine</returns>
+        
         public BusinessLine GetBusinessLine(string id, RequestOptions requestOptions = default)
         {
             return GetBusinessLineAsync(id, requestOptions).GetAwaiter().GetResult();
         }
 
-        /// <summary>
-        /// Get a business line
-        /// </summary>
-        /// <param name="id">The unique identifier of the business line.</param>
-        /// <param name="requestOptions">Additional request options.</param>
-        /// <returns>Task of BusinessLine</returns>
-        public async Task<BusinessLine> GetBusinessLineAsync(string id, RequestOptions requestOptions = default)
+        public async Task<BusinessLine> GetBusinessLineAsync(string id, RequestOptions requestOptions = default, CancellationToken cancellationToken = default)
         {
             var endpoint = _baseUrl + $"/businessLines/{id}";
             var resource = new ServiceResource(this, endpoint);
-            return await resource.RequestAsync<BusinessLine>(null, requestOptions, new HttpMethod("GET"));
+            return await resource.RequestAsync<BusinessLine>(null, requestOptions, new HttpMethod("GET"), cancellationToken);
         }
-
-        /// <summary>
-        /// Update a business line
-        /// </summary>
-        /// <param name="id">The unique identifier of the business line.</param>
-        /// <param name="businessLineInfoUpdate"></param>
-        /// <param name="requestOptions">Additional request options.</param>
-        /// <returns>BusinessLine</returns>
+        
         public BusinessLine UpdateBusinessLine(string id, BusinessLineInfoUpdate businessLineInfoUpdate, RequestOptions requestOptions = default)
         {
             return UpdateBusinessLineAsync(id, businessLineInfoUpdate, requestOptions).GetAwaiter().GetResult();
         }
 
-        /// <summary>
-        /// Update a business line
-        /// </summary>
-        /// <param name="id">The unique identifier of the business line.</param>
-        /// <param name="businessLineInfoUpdate"></param>
-        /// <param name="requestOptions">Additional request options.</param>
-        /// <returns>Task of BusinessLine</returns>
-        public async Task<BusinessLine> UpdateBusinessLineAsync(string id, BusinessLineInfoUpdate businessLineInfoUpdate, RequestOptions requestOptions = default)
+        public async Task<BusinessLine> UpdateBusinessLineAsync(string id, BusinessLineInfoUpdate businessLineInfoUpdate, RequestOptions requestOptions = default, CancellationToken cancellationToken = default)
         {
             var endpoint = _baseUrl + $"/businessLines/{id}";
             var resource = new ServiceResource(this, endpoint);
-            return await resource.RequestAsync<BusinessLine>(businessLineInfoUpdate.ToJson(), requestOptions, new HttpMethod("PATCH"));
+            return await resource.RequestAsync<BusinessLine>(businessLineInfoUpdate.ToJson(), requestOptions, new HttpMethod("PATCH"), cancellationToken);
         }
-
-        /// <summary>
-        /// Create a business line
-        /// </summary>
-        /// <param name="businessLineInfo"></param>
-        /// <param name="requestOptions">Additional request options.</param>
-        /// <returns>BusinessLine</returns>
+        
         public BusinessLine CreateBusinessLine(BusinessLineInfo businessLineInfo, RequestOptions requestOptions = default)
         {
             return CreateBusinessLineAsync(businessLineInfo, requestOptions).GetAwaiter().GetResult();
         }
 
-        /// <summary>
-        /// Create a business line
-        /// </summary>
-        /// <param name="businessLineInfo"></param>
-        /// <param name="requestOptions">Additional request options.</param>
-        /// <returns>Task of BusinessLine</returns>
-        public async Task<BusinessLine> CreateBusinessLineAsync(BusinessLineInfo businessLineInfo, RequestOptions requestOptions = default)
+        public async Task<BusinessLine> CreateBusinessLineAsync(BusinessLineInfo businessLineInfo, RequestOptions requestOptions = default, CancellationToken cancellationToken = default)
         {
             var endpoint = _baseUrl + "/businessLines";
             var resource = new ServiceResource(this, endpoint);
-            return await resource.RequestAsync<BusinessLine>(businessLineInfo.ToJson(), requestOptions, new HttpMethod("POST"));
+            return await resource.RequestAsync<BusinessLine>(businessLineInfo.ToJson(), requestOptions, new HttpMethod("POST"), cancellationToken);
         }
-
     }
 }

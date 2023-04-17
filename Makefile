@@ -5,7 +5,7 @@ openapi-generator-cli:=java -jar $(openapi-generator-jar)
 
 
 generator:=csharp-netcore
-services:=BinLookup Checkout LegalEntityManagement Payments Payouts PosTerminalManagement StoredValue
+services:=BalanceControl BalancePlatform BinLookup Checkout DataProtection LegalEntityManagement Management Payments Payouts PosTerminalManagement Recurring StoredValue Transfers
 models:=Adyen/Model
 output:=target/out
 
@@ -24,7 +24,6 @@ Recurring: spec=RecurringService-v68
 Payout: spec=PayoutService-v68
 Management: spec=ManagementService-v1
 LegalEntityManagement: spec=LegalEntityService-v3
-BalancePlatform: spec=BalancePlatformService-v2
 PlatformsAccount: spec=AccountService-v6
 PlatformsFund: spec=FundService-v6
 PlatformsNotificationConfiguration: spec=NotificationConfigurationService-v6
@@ -38,6 +37,7 @@ $(services): target/spec $(openapi-generator-jar)
 		-g $(generator) \
 		-t templates/csharp \
 		-o $(output) \
+		--inline-schema-name-mappings PaymentDonationRequest_paymentMethod=CheckoutPaymentMethod \
 		--model-package $@ \
 		--skip-validate-spec \
 		--reserved-words-mappings Version=Version \

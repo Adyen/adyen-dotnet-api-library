@@ -13,128 +13,154 @@
 using System;
 using System.Collections.Generic;
 using System.Net.Http;
+using System.Threading;
 using System.Threading.Tasks;
 using Adyen.Constants;
 using Adyen.Model;
 using Adyen.Service.Resource;
 using Adyen.Model.LegalEntityManagement;
-using Newtonsoft.Json;
 
 namespace Adyen.Service.LegalEntityManagement
 {
     /// <summary>
-    /// Represents a collection of functions to interact with the API endpoints
+    /// TermsOfServiceService Interface
     /// </summary>
-    public class TermsOfServiceService : AbstractService
+    public interface ITermsOfServiceService
+    {
+        /// <summary>
+        /// Get Terms of Service information for a legal entity
+        /// </summary>
+        /// <param name="id"><see cref="string"/> - The unique identifier of the legal entity.</param>
+        /// <param name="requestOptions"><see cref="RequestOptions"/> - Additional request options.</param>
+        /// <returns><see cref="GetTermsOfServiceAcceptanceInfosResponse"/>.</returns>
+        GetTermsOfServiceAcceptanceInfosResponse GetTermsOfServiceInformationForLegalEntity(string id, RequestOptions requestOptions = default);
+        
+        /// <summary>
+        /// Get Terms of Service information for a legal entity
+        /// </summary>
+        /// <param name="id"><see cref="string"/> - The unique identifier of the legal entity.</param>
+        /// <param name="requestOptions"><see cref="RequestOptions"/> - Additional request options.</param>
+        /// <param name="cancellationToken"> A CancellationToken enables cooperative cancellation between threads, thread pool work items, or Task objects.</param>
+        /// <returns>Task of <see cref="GetTermsOfServiceAcceptanceInfosResponse"/>.</returns>
+        Task<GetTermsOfServiceAcceptanceInfosResponse> GetTermsOfServiceInformationForLegalEntityAsync(string id, RequestOptions requestOptions = default, CancellationToken cancellationToken = default);
+        
+        /// <summary>
+        /// Get Terms of Service status
+        /// </summary>
+        /// <param name="id"><see cref="string"/> - The unique identifier of the legal entity.</param>
+        /// <param name="requestOptions"><see cref="RequestOptions"/> - Additional request options.</param>
+        /// <returns><see cref="CalculateTermsOfServiceStatusResponse"/>.</returns>
+        CalculateTermsOfServiceStatusResponse GetTermsOfServiceStatus(string id, RequestOptions requestOptions = default);
+        
+        /// <summary>
+        /// Get Terms of Service status
+        /// </summary>
+        /// <param name="id"><see cref="string"/> - The unique identifier of the legal entity.</param>
+        /// <param name="requestOptions"><see cref="RequestOptions"/> - Additional request options.</param>
+        /// <param name="cancellationToken"> A CancellationToken enables cooperative cancellation between threads, thread pool work items, or Task objects.</param>
+        /// <returns>Task of <see cref="CalculateTermsOfServiceStatusResponse"/>.</returns>
+        Task<CalculateTermsOfServiceStatusResponse> GetTermsOfServiceStatusAsync(string id, RequestOptions requestOptions = default, CancellationToken cancellationToken = default);
+        
+        /// <summary>
+        /// Accept Terms of Service
+        /// </summary>
+        /// <param name="id"><see cref="string"/> - The unique identifier of the legal entity.</param>
+        /// <param name="termsofservicedocumentid"><see cref="string"/> - The unique identifier of the Terms of Service document.</param>
+        /// <param name="acceptTermsOfServiceRequest"><see cref="AcceptTermsOfServiceRequest"/> - </param>
+        /// <param name="requestOptions"><see cref="RequestOptions"/> - Additional request options.</param>
+        /// <returns><see cref="AcceptTermsOfServiceResponse"/>.</returns>
+        AcceptTermsOfServiceResponse AcceptTermsOfService(string id, string termsofservicedocumentid, AcceptTermsOfServiceRequest acceptTermsOfServiceRequest, RequestOptions requestOptions = default);
+        
+        /// <summary>
+        /// Accept Terms of Service
+        /// </summary>
+        /// <param name="id"><see cref="string"/> - The unique identifier of the legal entity.</param>
+        /// <param name="termsofservicedocumentid"><see cref="string"/> - The unique identifier of the Terms of Service document.</param>
+        /// <param name="acceptTermsOfServiceRequest"><see cref="AcceptTermsOfServiceRequest"/> - </param>
+        /// <param name="requestOptions"><see cref="RequestOptions"/> - Additional request options.</param>
+        /// <param name="cancellationToken"> A CancellationToken enables cooperative cancellation between threads, thread pool work items, or Task objects.</param>
+        /// <returns>Task of <see cref="AcceptTermsOfServiceResponse"/>.</returns>
+        Task<AcceptTermsOfServiceResponse> AcceptTermsOfServiceAsync(string id, string termsofservicedocumentid, AcceptTermsOfServiceRequest acceptTermsOfServiceRequest, RequestOptions requestOptions = default, CancellationToken cancellationToken = default);
+        
+        /// <summary>
+        /// Get Terms of Service document
+        /// </summary>
+        /// <param name="id"><see cref="string"/> - The unique identifier of the legal entity.</param>
+        /// <param name="getTermsOfServiceDocumentRequest"><see cref="GetTermsOfServiceDocumentRequest"/> - </param>
+        /// <param name="requestOptions"><see cref="RequestOptions"/> - Additional request options.</param>
+        /// <returns><see cref="GetTermsOfServiceDocumentResponse"/>.</returns>
+        GetTermsOfServiceDocumentResponse GetTermsOfServiceDocument(string id, GetTermsOfServiceDocumentRequest getTermsOfServiceDocumentRequest, RequestOptions requestOptions = default);
+        
+        /// <summary>
+        /// Get Terms of Service document
+        /// </summary>
+        /// <param name="id"><see cref="string"/> - The unique identifier of the legal entity.</param>
+        /// <param name="getTermsOfServiceDocumentRequest"><see cref="GetTermsOfServiceDocumentRequest"/> - </param>
+        /// <param name="requestOptions"><see cref="RequestOptions"/> - Additional request options.</param>
+        /// <param name="cancellationToken"> A CancellationToken enables cooperative cancellation between threads, thread pool work items, or Task objects.</param>
+        /// <returns>Task of <see cref="GetTermsOfServiceDocumentResponse"/>.</returns>
+        Task<GetTermsOfServiceDocumentResponse> GetTermsOfServiceDocumentAsync(string id, GetTermsOfServiceDocumentRequest getTermsOfServiceDocumentRequest, RequestOptions requestOptions = default, CancellationToken cancellationToken = default);
+        
+    }
+    
+    /// <summary>
+    /// Represents a collection of functions to interact with the TermsOfServiceService API endpoints
+    /// </summary>
+    public class TermsOfServiceService : AbstractService, ITermsOfServiceService
     {
         private readonly string _baseUrl;
         
         public TermsOfServiceService(Client client) : base(client)
         {
-            _baseUrl = client.Config.LegalEntityManagementEndpoint + "/" + ClientConfig.LegalEntityManagementVersion;
+            _baseUrl = CreateBaseUrl("https://kyc-test.adyen.com/lem/v3");
         }
-    
-        /// <summary>
-        /// Get Terms of Service information for a legal entity
-        /// </summary>
-        /// <param name="id">The unique identifier of the legal entity.</param>
-        /// <param name="requestOptions">Additional request options.</param>
-        /// <returns>GetTermsOfServiceAcceptanceInfosResponse</returns>
+        
         public GetTermsOfServiceAcceptanceInfosResponse GetTermsOfServiceInformationForLegalEntity(string id, RequestOptions requestOptions = default)
         {
             return GetTermsOfServiceInformationForLegalEntityAsync(id, requestOptions).GetAwaiter().GetResult();
         }
 
-        /// <summary>
-        /// Get Terms of Service information for a legal entity
-        /// </summary>
-        /// <param name="id">The unique identifier of the legal entity.</param>
-        /// <param name="requestOptions">Additional request options.</param>
-        /// <returns>Task of GetTermsOfServiceAcceptanceInfosResponse</returns>
-        public async Task<GetTermsOfServiceAcceptanceInfosResponse> GetTermsOfServiceInformationForLegalEntityAsync(string id, RequestOptions requestOptions = default)
+        public async Task<GetTermsOfServiceAcceptanceInfosResponse> GetTermsOfServiceInformationForLegalEntityAsync(string id, RequestOptions requestOptions = default, CancellationToken cancellationToken = default)
         {
             var endpoint = _baseUrl + $"/legalEntities/{id}/termsOfServiceAcceptanceInfos";
             var resource = new ServiceResource(this, endpoint);
-            return await resource.RequestAsync<GetTermsOfServiceAcceptanceInfosResponse>(null, requestOptions, new HttpMethod("GET"));
+            return await resource.RequestAsync<GetTermsOfServiceAcceptanceInfosResponse>(null, requestOptions, new HttpMethod("GET"), cancellationToken);
         }
-
-        /// <summary>
-        /// Get Terms of Service status
-        /// </summary>
-        /// <param name="id">The unique identifier of the legal entity.</param>
-        /// <param name="requestOptions">Additional request options.</param>
-        /// <returns>CalculateTermsOfServiceStatusResponse</returns>
+        
         public CalculateTermsOfServiceStatusResponse GetTermsOfServiceStatus(string id, RequestOptions requestOptions = default)
         {
             return GetTermsOfServiceStatusAsync(id, requestOptions).GetAwaiter().GetResult();
         }
 
-        /// <summary>
-        /// Get Terms of Service status
-        /// </summary>
-        /// <param name="id">The unique identifier of the legal entity.</param>
-        /// <param name="requestOptions">Additional request options.</param>
-        /// <returns>Task of CalculateTermsOfServiceStatusResponse</returns>
-        public async Task<CalculateTermsOfServiceStatusResponse> GetTermsOfServiceStatusAsync(string id, RequestOptions requestOptions = default)
+        public async Task<CalculateTermsOfServiceStatusResponse> GetTermsOfServiceStatusAsync(string id, RequestOptions requestOptions = default, CancellationToken cancellationToken = default)
         {
             var endpoint = _baseUrl + $"/legalEntities/{id}/termsOfServiceStatus";
             var resource = new ServiceResource(this, endpoint);
-            return await resource.RequestAsync<CalculateTermsOfServiceStatusResponse>(null, requestOptions, new HttpMethod("GET"));
+            return await resource.RequestAsync<CalculateTermsOfServiceStatusResponse>(null, requestOptions, new HttpMethod("GET"), cancellationToken);
+        }
+        
+        public AcceptTermsOfServiceResponse AcceptTermsOfService(string id, string termsofservicedocumentid, AcceptTermsOfServiceRequest acceptTermsOfServiceRequest, RequestOptions requestOptions = default)
+        {
+            return AcceptTermsOfServiceAsync(id, termsofservicedocumentid, acceptTermsOfServiceRequest, requestOptions).GetAwaiter().GetResult();
         }
 
-        /// <summary>
-        /// Accept Terms of Service
-        /// </summary>
-        /// <param name="id">The unique identifier of the legal entity.</param>
-        /// <param name="termsofservicedocumentid">The unique identifier of the Terms of Service document.</param>
-        /// <param name="acceptTermsOfServiceRequest"></param>
-        /// <param name="requestOptions">Additional request options.</param>
-        /// <returns>AcceptTermsOfServiceResponse</returns>
-        public AcceptTermsOfServiceResponse AcceptTermsOfService(string id, string termsOfServiceDocumentId, AcceptTermsOfServiceRequest acceptTermsOfServiceRequest, RequestOptions requestOptions = default)
+        public async Task<AcceptTermsOfServiceResponse> AcceptTermsOfServiceAsync(string id, string termsofservicedocumentid, AcceptTermsOfServiceRequest acceptTermsOfServiceRequest, RequestOptions requestOptions = default, CancellationToken cancellationToken = default)
         {
-            return AcceptTermsOfServiceAsync(id, termsOfServiceDocumentId, acceptTermsOfServiceRequest, requestOptions).GetAwaiter().GetResult();
-        }
-
-        /// <summary>
-        /// Accept Terms of Service
-        /// </summary>
-        /// <param name="id">The unique identifier of the legal entity.</param>
-        /// <param name="termsofservicedocumentid">The unique identifier of the Terms of Service document.</param>
-        /// <param name="acceptTermsOfServiceRequest"></param>
-        /// <param name="requestOptions">Additional request options.</param>
-        /// <returns>Task of AcceptTermsOfServiceResponse</returns>
-        public async Task<AcceptTermsOfServiceResponse> AcceptTermsOfServiceAsync(string id, string termsOfServiceDocumentId, AcceptTermsOfServiceRequest acceptTermsOfServiceRequest, RequestOptions requestOptions = default)
-        {
-            var endpoint = _baseUrl + $"/legalEntities/{id}/termsOfService/{termsOfServiceDocumentId}";
+            var endpoint = _baseUrl + $"/legalEntities/{id}/termsOfService/{termsofservicedocumentid}";
             var resource = new ServiceResource(this, endpoint);
-            return await resource.RequestAsync<AcceptTermsOfServiceResponse>(acceptTermsOfServiceRequest.ToJson(), requestOptions, new HttpMethod("PATCH"));
+            return await resource.RequestAsync<AcceptTermsOfServiceResponse>(acceptTermsOfServiceRequest.ToJson(), requestOptions, new HttpMethod("PATCH"), cancellationToken);
         }
-
-        /// <summary>
-        /// Get Terms of Service document
-        /// </summary>
-        /// <param name="id">The unique identifier of the legal entity.</param>
-        /// <param name="getTermsOfServiceDocumentRequest"></param>
-        /// <param name="requestOptions">Additional request options.</param>
-        /// <returns>GetTermsOfServiceDocumentResponse</returns>
+        
         public GetTermsOfServiceDocumentResponse GetTermsOfServiceDocument(string id, GetTermsOfServiceDocumentRequest getTermsOfServiceDocumentRequest, RequestOptions requestOptions = default)
         {
             return GetTermsOfServiceDocumentAsync(id, getTermsOfServiceDocumentRequest, requestOptions).GetAwaiter().GetResult();
         }
 
-        /// <summary>
-        /// Get Terms of Service document
-        /// </summary>
-        /// <param name="id">The unique identifier of the legal entity.</param>
-        /// <param name="getTermsOfServiceDocumentRequest"></param>
-        /// <param name="requestOptions">Additional request options.</param>
-        /// <returns>Task of GetTermsOfServiceDocumentResponse</returns>
-        public async Task<GetTermsOfServiceDocumentResponse> GetTermsOfServiceDocumentAsync(string id, GetTermsOfServiceDocumentRequest getTermsOfServiceDocumentRequest, RequestOptions requestOptions = default)
+        public async Task<GetTermsOfServiceDocumentResponse> GetTermsOfServiceDocumentAsync(string id, GetTermsOfServiceDocumentRequest getTermsOfServiceDocumentRequest, RequestOptions requestOptions = default, CancellationToken cancellationToken = default)
         {
             var endpoint = _baseUrl + $"/legalEntities/{id}/termsOfService";
             var resource = new ServiceResource(this, endpoint);
-            return await resource.RequestAsync<GetTermsOfServiceDocumentResponse>(getTermsOfServiceDocumentRequest.ToJson(), requestOptions, new HttpMethod("POST"));
+            return await resource.RequestAsync<GetTermsOfServiceDocumentResponse>(getTermsOfServiceDocumentRequest.ToJson(), requestOptions, new HttpMethod("POST"), cancellationToken);
         }
-
     }
 }

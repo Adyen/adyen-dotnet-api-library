@@ -13,51 +13,122 @@
 using System;
 using System.Collections.Generic;
 using System.Net.Http;
+using System.Threading;
 using System.Threading.Tasks;
 using Adyen.Constants;
 using Adyen.Model;
 using Adyen.Service.Resource;
 using Adyen.Model.Management;
-using Newtonsoft.Json;
 
 namespace Adyen.Service.Management
 {
     /// <summary>
-    /// Represents a collection of functions to interact with the API endpoints
+    /// UsersCompanyLevelService Interface
     /// </summary>
-    public class UsersCompanyLevelService : AbstractService
+    public interface IUsersCompanyLevelService
+    {
+        /// <summary>
+        /// Get a list of users
+        /// </summary>
+        /// <param name="companyId"><see cref="string"/> - The unique identifier of the company account.</param>
+        /// <param name="pageNumber"><see cref="int?"/> - The number of the page to return.</param>
+        /// <param name="pageSize"><see cref="int?"/> - The number of items to have on a page. Maximum value is **100**. The default is **10** items on a page.</param>
+        /// <param name="username"><see cref="string"/> - The partial or complete username to select all users that match.</param>
+        /// <param name="requestOptions"><see cref="RequestOptions"/> - Additional request options.</param>
+        /// <returns><see cref="ListCompanyUsersResponse"/>.</returns>
+        ListCompanyUsersResponse ListUsers(string companyId, int? pageNumber = default, int? pageSize = default, string username = default, RequestOptions requestOptions = default);
+        
+        /// <summary>
+        /// Get a list of users
+        /// </summary>
+        /// <param name="companyId"><see cref="string"/> - The unique identifier of the company account.</param>
+        /// <param name="pageNumber"><see cref="int?"/> - The number of the page to return.</param>
+        /// <param name="pageSize"><see cref="int?"/> - The number of items to have on a page. Maximum value is **100**. The default is **10** items on a page.</param>
+        /// <param name="username"><see cref="string"/> - The partial or complete username to select all users that match.</param>
+        /// <param name="requestOptions"><see cref="RequestOptions"/> - Additional request options.</param>
+        /// <param name="cancellationToken"> A CancellationToken enables cooperative cancellation between threads, thread pool work items, or Task objects.</param>
+        /// <returns>Task of <see cref="ListCompanyUsersResponse"/>.</returns>
+        Task<ListCompanyUsersResponse> ListUsersAsync(string companyId, int? pageNumber = default, int? pageSize = default, string username = default, RequestOptions requestOptions = default, CancellationToken cancellationToken = default);
+        
+        /// <summary>
+        /// Get user details
+        /// </summary>
+        /// <param name="companyId"><see cref="string"/> - The unique identifier of the company account.</param>
+        /// <param name="userId"><see cref="string"/> - The unique identifier of the user.</param>
+        /// <param name="requestOptions"><see cref="RequestOptions"/> - Additional request options.</param>
+        /// <returns><see cref="CompanyUser"/>.</returns>
+        CompanyUser GetUserDetails(string companyId, string userId, RequestOptions requestOptions = default);
+        
+        /// <summary>
+        /// Get user details
+        /// </summary>
+        /// <param name="companyId"><see cref="string"/> - The unique identifier of the company account.</param>
+        /// <param name="userId"><see cref="string"/> - The unique identifier of the user.</param>
+        /// <param name="requestOptions"><see cref="RequestOptions"/> - Additional request options.</param>
+        /// <param name="cancellationToken"> A CancellationToken enables cooperative cancellation between threads, thread pool work items, or Task objects.</param>
+        /// <returns>Task of <see cref="CompanyUser"/>.</returns>
+        Task<CompanyUser> GetUserDetailsAsync(string companyId, string userId, RequestOptions requestOptions = default, CancellationToken cancellationToken = default);
+        
+        /// <summary>
+        /// Update user details
+        /// </summary>
+        /// <param name="companyId"><see cref="string"/> - The unique identifier of the company account.</param>
+        /// <param name="userId"><see cref="string"/> - The unique identifier of the user.</param>
+        /// <param name="updateCompanyUserRequest"><see cref="UpdateCompanyUserRequest"/> - </param>
+        /// <param name="requestOptions"><see cref="RequestOptions"/> - Additional request options.</param>
+        /// <returns><see cref="CompanyUser"/>.</returns>
+        CompanyUser UpdateUserDetails(string companyId, string userId, UpdateCompanyUserRequest updateCompanyUserRequest, RequestOptions requestOptions = default);
+        
+        /// <summary>
+        /// Update user details
+        /// </summary>
+        /// <param name="companyId"><see cref="string"/> - The unique identifier of the company account.</param>
+        /// <param name="userId"><see cref="string"/> - The unique identifier of the user.</param>
+        /// <param name="updateCompanyUserRequest"><see cref="UpdateCompanyUserRequest"/> - </param>
+        /// <param name="requestOptions"><see cref="RequestOptions"/> - Additional request options.</param>
+        /// <param name="cancellationToken"> A CancellationToken enables cooperative cancellation between threads, thread pool work items, or Task objects.</param>
+        /// <returns>Task of <see cref="CompanyUser"/>.</returns>
+        Task<CompanyUser> UpdateUserDetailsAsync(string companyId, string userId, UpdateCompanyUserRequest updateCompanyUserRequest, RequestOptions requestOptions = default, CancellationToken cancellationToken = default);
+        
+        /// <summary>
+        /// Create a new user
+        /// </summary>
+        /// <param name="companyId"><see cref="string"/> - The unique identifier of the company account.</param>
+        /// <param name="createCompanyUserRequest"><see cref="CreateCompanyUserRequest"/> - </param>
+        /// <param name="requestOptions"><see cref="RequestOptions"/> - Additional request options.</param>
+        /// <returns><see cref="CreateCompanyUserResponse"/>.</returns>
+        CreateCompanyUserResponse CreateNewUser(string companyId, CreateCompanyUserRequest createCompanyUserRequest, RequestOptions requestOptions = default);
+        
+        /// <summary>
+        /// Create a new user
+        /// </summary>
+        /// <param name="companyId"><see cref="string"/> - The unique identifier of the company account.</param>
+        /// <param name="createCompanyUserRequest"><see cref="CreateCompanyUserRequest"/> - </param>
+        /// <param name="requestOptions"><see cref="RequestOptions"/> - Additional request options.</param>
+        /// <param name="cancellationToken"> A CancellationToken enables cooperative cancellation between threads, thread pool work items, or Task objects.</param>
+        /// <returns>Task of <see cref="CreateCompanyUserResponse"/>.</returns>
+        Task<CreateCompanyUserResponse> CreateNewUserAsync(string companyId, CreateCompanyUserRequest createCompanyUserRequest, RequestOptions requestOptions = default, CancellationToken cancellationToken = default);
+        
+    }
+    
+    /// <summary>
+    /// Represents a collection of functions to interact with the UsersCompanyLevelService API endpoints
+    /// </summary>
+    public class UsersCompanyLevelService : AbstractService, IUsersCompanyLevelService
     {
         private readonly string _baseUrl;
         
         public UsersCompanyLevelService(Client client) : base(client)
         {
-            _baseUrl = client.Config.ManagementEndpoint + "/" + ClientConfig.ManagementVersion;
+            _baseUrl = CreateBaseUrl("https://management-test.adyen.com/v1");
         }
-    
-        /// <summary>
-        /// Get a list of users
-        /// </summary>
-        /// <param name="companyId">The unique identifier of the company account.</param>
-        /// <param name="pageNumber">The number of the page to return.</param>
-        /// <param name="pageSize">The number of items to have on a page. Maximum value is **100**. The default is **10** items on a page.</param>
-        /// <param name="username">The partial or complete username to select all users that match.</param>
-        /// <param name="requestOptions">Additional request options.</param>
-        /// <returns>ListCompanyUsersResponse</returns>
+        
         public ListCompanyUsersResponse ListUsers(string companyId, int? pageNumber = default, int? pageSize = default, string username = default, RequestOptions requestOptions = default)
         {
             return ListUsersAsync(companyId, pageNumber, pageSize, username, requestOptions).GetAwaiter().GetResult();
         }
 
-        /// <summary>
-        /// Get a list of users
-        /// </summary>
-        /// <param name="companyId">The unique identifier of the company account.</param>
-        /// <param name="pageNumber">The number of the page to return.</param>
-        /// <param name="pageSize">The number of items to have on a page. Maximum value is **100**. The default is **10** items on a page.</param>
-        /// <param name="username">The partial or complete username to select all users that match.</param>
-        /// <param name="requestOptions">Additional request options.</param>
-        /// <returns>Task of ListCompanyUsersResponse</returns>
-        public async Task<ListCompanyUsersResponse> ListUsersAsync(string companyId, int? pageNumber = default, int? pageSize = default, string username = default, RequestOptions requestOptions = default)
+        public async Task<ListCompanyUsersResponse> ListUsersAsync(string companyId, int? pageNumber = default, int? pageSize = default, string username = default, RequestOptions requestOptions = default, CancellationToken cancellationToken = default)
         {
             // Build the query string
             var queryParams = new Dictionary<string, string>();
@@ -66,88 +137,43 @@ namespace Adyen.Service.Management
             if (username != null) queryParams.Add("username", username);
             var endpoint = _baseUrl + $"/companies/{companyId}/users" + ToQueryString(queryParams);
             var resource = new ServiceResource(this, endpoint);
-            return await resource.RequestAsync<ListCompanyUsersResponse>(null, requestOptions, new HttpMethod("GET"));
+            return await resource.RequestAsync<ListCompanyUsersResponse>(null, requestOptions, new HttpMethod("GET"), cancellationToken);
         }
-
-        /// <summary>
-        /// Get user details
-        /// </summary>
-        /// <param name="companyId">The unique identifier of the company account.</param>
-        /// <param name="userId">The unique identifier of the user.</param>
-        /// <param name="requestOptions">Additional request options.</param>
-        /// <returns>CompanyUser</returns>
+        
         public CompanyUser GetUserDetails(string companyId, string userId, RequestOptions requestOptions = default)
         {
             return GetUserDetailsAsync(companyId, userId, requestOptions).GetAwaiter().GetResult();
         }
 
-        /// <summary>
-        /// Get user details
-        /// </summary>
-        /// <param name="companyId">The unique identifier of the company account.</param>
-        /// <param name="userId">The unique identifier of the user.</param>
-        /// <param name="requestOptions">Additional request options.</param>
-        /// <returns>Task of CompanyUser</returns>
-        public async Task<CompanyUser> GetUserDetailsAsync(string companyId, string userId, RequestOptions requestOptions = default)
+        public async Task<CompanyUser> GetUserDetailsAsync(string companyId, string userId, RequestOptions requestOptions = default, CancellationToken cancellationToken = default)
         {
             var endpoint = _baseUrl + $"/companies/{companyId}/users/{userId}";
             var resource = new ServiceResource(this, endpoint);
-            return await resource.RequestAsync<CompanyUser>(null, requestOptions, new HttpMethod("GET"));
+            return await resource.RequestAsync<CompanyUser>(null, requestOptions, new HttpMethod("GET"), cancellationToken);
         }
-
-        /// <summary>
-        /// Update user details
-        /// </summary>
-        /// <param name="companyId">The unique identifier of the company account.</param>
-        /// <param name="userId">The unique identifier of the user.</param>
-        /// <param name="updateCompanyUserRequest"></param>
-        /// <param name="requestOptions">Additional request options.</param>
-        /// <returns>CompanyUser</returns>
+        
         public CompanyUser UpdateUserDetails(string companyId, string userId, UpdateCompanyUserRequest updateCompanyUserRequest, RequestOptions requestOptions = default)
         {
             return UpdateUserDetailsAsync(companyId, userId, updateCompanyUserRequest, requestOptions).GetAwaiter().GetResult();
         }
 
-        /// <summary>
-        /// Update user details
-        /// </summary>
-        /// <param name="companyId">The unique identifier of the company account.</param>
-        /// <param name="userId">The unique identifier of the user.</param>
-        /// <param name="updateCompanyUserRequest"></param>
-        /// <param name="requestOptions">Additional request options.</param>
-        /// <returns>Task of CompanyUser</returns>
-        public async Task<CompanyUser> UpdateUserDetailsAsync(string companyId, string userId, UpdateCompanyUserRequest updateCompanyUserRequest, RequestOptions requestOptions = default)
+        public async Task<CompanyUser> UpdateUserDetailsAsync(string companyId, string userId, UpdateCompanyUserRequest updateCompanyUserRequest, RequestOptions requestOptions = default, CancellationToken cancellationToken = default)
         {
             var endpoint = _baseUrl + $"/companies/{companyId}/users/{userId}";
             var resource = new ServiceResource(this, endpoint);
-            return await resource.RequestAsync<CompanyUser>(updateCompanyUserRequest.ToJson(), requestOptions, new HttpMethod("PATCH"));
+            return await resource.RequestAsync<CompanyUser>(updateCompanyUserRequest.ToJson(), requestOptions, new HttpMethod("PATCH"), cancellationToken);
         }
-
-        /// <summary>
-        /// Create a new user
-        /// </summary>
-        /// <param name="companyId">The unique identifier of the company account.</param>
-        /// <param name="createCompanyUserRequest"></param>
-        /// <param name="requestOptions">Additional request options.</param>
-        /// <returns>CreateCompanyUserResponse</returns>
+        
         public CreateCompanyUserResponse CreateNewUser(string companyId, CreateCompanyUserRequest createCompanyUserRequest, RequestOptions requestOptions = default)
         {
             return CreateNewUserAsync(companyId, createCompanyUserRequest, requestOptions).GetAwaiter().GetResult();
         }
 
-        /// <summary>
-        /// Create a new user
-        /// </summary>
-        /// <param name="companyId">The unique identifier of the company account.</param>
-        /// <param name="createCompanyUserRequest"></param>
-        /// <param name="requestOptions">Additional request options.</param>
-        /// <returns>Task of CreateCompanyUserResponse</returns>
-        public async Task<CreateCompanyUserResponse> CreateNewUserAsync(string companyId, CreateCompanyUserRequest createCompanyUserRequest, RequestOptions requestOptions = default)
+        public async Task<CreateCompanyUserResponse> CreateNewUserAsync(string companyId, CreateCompanyUserRequest createCompanyUserRequest, RequestOptions requestOptions = default, CancellationToken cancellationToken = default)
         {
             var endpoint = _baseUrl + $"/companies/{companyId}/users";
             var resource = new ServiceResource(this, endpoint);
-            return await resource.RequestAsync<CreateCompanyUserResponse>(createCompanyUserRequest.ToJson(), requestOptions, new HttpMethod("POST"));
+            return await resource.RequestAsync<CreateCompanyUserResponse>(createCompanyUserRequest.ToJson(), requestOptions, new HttpMethod("POST"), cancellationToken);
         }
-
     }
 }

@@ -111,28 +111,12 @@ namespace Adyen.Model.LegalEntityManagement
         public string AssociatorId { get; private set; }
 
         /// <summary>
-        /// Returns false as AssociatorId should not be serialized given that it's read-only.
-        /// </summary>
-        /// <returns>false (boolean)</returns>
-        public bool ShouldSerializeAssociatorId()
-        {
-            return false;
-        }
-        /// <summary>
         /// The legal entity type of associated legal entity.   For example, **organization**, **soleProprietorship** or **individual**. 
         /// </summary>
         /// <value>The legal entity type of associated legal entity.   For example, **organization**, **soleProprietorship** or **individual**. </value>
         [DataMember(Name = "entityType", EmitDefaultValue = false)]
         public string EntityType { get; private set; }
 
-        /// <summary>
-        /// Returns false as EntityType should not be serialized given that it's read-only.
-        /// </summary>
-        /// <returns>false (boolean)</returns>
-        public bool ShouldSerializeEntityType()
-        {
-            return false;
-        }
         /// <summary>
         /// The individual&#39;s job title if the &#x60;type&#x60; is **uboThroughControl** or **signatory**.
         /// </summary>
@@ -154,14 +138,6 @@ namespace Adyen.Model.LegalEntityManagement
         [DataMember(Name = "name", EmitDefaultValue = false)]
         public string Name { get; private set; }
 
-        /// <summary>
-        /// Returns false as Name should not be serialized given that it's read-only.
-        /// </summary>
-        /// <returns>false (boolean)</returns>
-        public bool ShouldSerializeName()
-        {
-            return false;
-        }
         /// <summary>
         /// Returns the string presentation of the object
         /// </summary>

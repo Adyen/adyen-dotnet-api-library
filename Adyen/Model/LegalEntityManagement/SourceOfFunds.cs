@@ -58,24 +58,15 @@ namespace Adyen.Model.LegalEntityManagement
         /// <summary>
         /// Initializes a new instance of the <see cref="SourceOfFunds" /> class.
         /// </summary>
-        /// <param name="acquiringBusinessLineId">The unique identifier of the business line that will be the source of funds.This must be a business line for a **receivePayments** or **receiveFromPlatformPayments** capability..</param>
         /// <param name="adyenProcessedFunds">Indicates whether the funds are coming from transactions processed by Adyen. If **false**, a &#x60;description&#x60; is required..</param>
-        /// <param name="description">Text describing the source of funds. For example, for &#x60;type&#x60; **business**, provide a description of the business. Required when &#x60;adyenProcessedFunds&#x60; is **false**..</param>
+        /// <param name="description">Text describing the source of funds. For example, for &#x60;type&#x60; **business**, provide a description of where the business transactions come from, such as payments through bank transfer. Required when &#x60;adyenProcessedFunds&#x60; is **false**..</param>
         /// <param name="type">The type of the source of funds. Possible value: **business**..</param>
-        public SourceOfFunds(string acquiringBusinessLineId = default(string), bool adyenProcessedFunds = default(bool), string description = default(string), TypeEnum? type = default(TypeEnum?))
+        public SourceOfFunds(bool adyenProcessedFunds = default(bool), string description = default(string), TypeEnum? type = default(TypeEnum?))
         {
-            this.AcquiringBusinessLineId = acquiringBusinessLineId;
             this.AdyenProcessedFunds = adyenProcessedFunds;
             this.Description = description;
             this.Type = type;
         }
-
-        /// <summary>
-        /// The unique identifier of the business line that will be the source of funds.This must be a business line for a **receivePayments** or **receiveFromPlatformPayments** capability.
-        /// </summary>
-        /// <value>The unique identifier of the business line that will be the source of funds.This must be a business line for a **receivePayments** or **receiveFromPlatformPayments** capability.</value>
-        [DataMember(Name = "acquiringBusinessLineId", EmitDefaultValue = false)]
-        public string AcquiringBusinessLineId { get; set; }
 
         /// <summary>
         /// Indicates whether the funds are coming from transactions processed by Adyen. If **false**, a &#x60;description&#x60; is required.
@@ -85,9 +76,9 @@ namespace Adyen.Model.LegalEntityManagement
         public bool AdyenProcessedFunds { get; set; }
 
         /// <summary>
-        /// Text describing the source of funds. For example, for &#x60;type&#x60; **business**, provide a description of the business. Required when &#x60;adyenProcessedFunds&#x60; is **false**.
+        /// Text describing the source of funds. For example, for &#x60;type&#x60; **business**, provide a description of where the business transactions come from, such as payments through bank transfer. Required when &#x60;adyenProcessedFunds&#x60; is **false**.
         /// </summary>
-        /// <value>Text describing the source of funds. For example, for &#x60;type&#x60; **business**, provide a description of the business. Required when &#x60;adyenProcessedFunds&#x60; is **false**.</value>
+        /// <value>Text describing the source of funds. For example, for &#x60;type&#x60; **business**, provide a description of where the business transactions come from, such as payments through bank transfer. Required when &#x60;adyenProcessedFunds&#x60; is **false**.</value>
         [DataMember(Name = "description", EmitDefaultValue = false)]
         public string Description { get; set; }
 
@@ -99,7 +90,6 @@ namespace Adyen.Model.LegalEntityManagement
         {
             StringBuilder sb = new StringBuilder();
             sb.Append("class SourceOfFunds {\n");
-            sb.Append("  AcquiringBusinessLineId: ").Append(AcquiringBusinessLineId).Append("\n");
             sb.Append("  AdyenProcessedFunds: ").Append(AdyenProcessedFunds).Append("\n");
             sb.Append("  Description: ").Append(Description).Append("\n");
             sb.Append("  Type: ").Append(Type).Append("\n");
@@ -139,11 +129,6 @@ namespace Adyen.Model.LegalEntityManagement
             }
             return 
                 (
-                    this.AcquiringBusinessLineId == input.AcquiringBusinessLineId ||
-                    (this.AcquiringBusinessLineId != null &&
-                    this.AcquiringBusinessLineId.Equals(input.AcquiringBusinessLineId))
-                ) && 
-                (
                     this.AdyenProcessedFunds == input.AdyenProcessedFunds ||
                     this.AdyenProcessedFunds.Equals(input.AdyenProcessedFunds)
                 ) && 
@@ -167,10 +152,6 @@ namespace Adyen.Model.LegalEntityManagement
             unchecked // Overflow is fine, just wrap
             {
                 int hashCode = 41;
-                if (this.AcquiringBusinessLineId != null)
-                {
-                    hashCode = (hashCode * 59) + this.AcquiringBusinessLineId.GetHashCode();
-                }
                 hashCode = (hashCode * 59) + this.AdyenProcessedFunds.GetHashCode();
                 if (this.Description != null)
                 {
