@@ -2,7 +2,7 @@
 using System.Linq;
 using Adyen.ApiSerialization;
 using Adyen.Model.Nexo;
-using Adyen.Notification;
+using Adyen.Webhooks;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace Adyen.Test
@@ -15,8 +15,8 @@ namespace Adyen.Test
         {
             var mockPath = GetMockFilePath("Mocks/notification/authorisation-true.json");
             var jsonRequest = MockFileToString(mockPath);
-            var notificationHandler = new NotificationHandler();
-            var handleNotificationRequest = notificationHandler.HandleNotificationRequest(jsonRequest);
+            var webhookHandler = new WebhookHandler();
+            var handleNotificationRequest = webhookHandler.HandleNotificationRequest(jsonRequest);
             var notificationRequestItemContainer = handleNotificationRequest.NotificationItemContainers.FirstOrDefault();
             if (notificationRequestItemContainer == null)
                 Assert.Fail("NotificationRequestItemContainer is null");
@@ -31,8 +31,8 @@ namespace Adyen.Test
         {
             var mockPath = GetMockFilePath("Mocks/notification/capture-true.json");
             var jsonRequest = MockFileToString(mockPath);
-            var notificationHandler = new NotificationHandler();
-            var handleNotificationRequest = notificationHandler.HandleNotificationRequest(jsonRequest);
+            var webhookHandler = new WebhookHandler();
+            var handleNotificationRequest = webhookHandler.HandleNotificationRequest(jsonRequest);
             var notificationRequestItemContainer = handleNotificationRequest.NotificationItemContainers.FirstOrDefault();
             if (notificationRequestItemContainer == null)
                 Assert.Fail("NotificationRequestItemContainer is null");
@@ -49,8 +49,8 @@ namespace Adyen.Test
         {
             var mockPath = GetMockFilePath("Mocks/notification/capture-false.json");
             var jsonRequest = MockFileToString(mockPath);
-            var notificationHandler = new NotificationHandler();
-            var handleNotificationRequest = notificationHandler.HandleNotificationRequest(jsonRequest);
+            var webhookHandler = new WebhookHandler();
+            var handleNotificationRequest = webhookHandler.HandleNotificationRequest(jsonRequest);
             var notificationRequestItemContainer = handleNotificationRequest.NotificationItemContainers.FirstOrDefault();
             if (notificationRequestItemContainer == null)
                 Assert.Fail("NotificationRequestItemContainer is null");
@@ -68,8 +68,8 @@ namespace Adyen.Test
         {
             var mockPath = GetMockFilePath("Mocks/notification/refund-true.json");
             var jsonRequest = MockFileToString(mockPath);
-            var notificationHandler = new NotificationHandler();
-            var handleNotificationRequest = notificationHandler.HandleNotificationRequest(jsonRequest);
+            var webhookHandler = new WebhookHandler();
+            var handleNotificationRequest = webhookHandler.HandleNotificationRequest(jsonRequest);
             var notificationRequestItemContainer = handleNotificationRequest.NotificationItemContainers.FirstOrDefault();
             if (notificationRequestItemContainer == null)
                 Assert.Fail("NotificationRequestItemContainer is null");
@@ -87,8 +87,8 @@ namespace Adyen.Test
         {
             var mockPath = GetMockFilePath("Mocks/notification/refund-false.json");
             var jsonRequest = MockFileToString(mockPath);
-            var notificationHandler = new NotificationHandler();
-            var handleNotificationRequest = notificationHandler.HandleNotificationRequest(jsonRequest);
+            var webhookHandler = new WebhookHandler();
+            var handleNotificationRequest = webhookHandler.HandleNotificationRequest(jsonRequest);
             var notificationRequestItemContainer = handleNotificationRequest.NotificationItemContainers.FirstOrDefault();
             if (notificationRequestItemContainer == null)
                 Assert.Fail("NotificationRequestItemContainer is null");
