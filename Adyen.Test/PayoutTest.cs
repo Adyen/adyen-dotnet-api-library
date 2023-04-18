@@ -1,5 +1,5 @@
-﻿using Adyen.Model.Payouts;
-using Adyen.Service.Payouts;
+﻿using Adyen.Model.Payout;
+using Adyen.Service.Payout;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace Adyen.Test
