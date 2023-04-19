@@ -167,10 +167,10 @@ namespace Adyen.Model.Transfers
         public enum ReasonEnum
         {
             /// <summary>
-            /// Enum AmountLimitExceded for value: amountLimitExceded
+            /// Enum AmountLimitExceeded for value: amountLimitExceeded
             /// </summary>
-            [EnumMember(Value = "amountLimitExceded")]
-            AmountLimitExceded = 1,
+            [EnumMember(Value = "amountLimitExceeded")]
+            AmountLimitExceeded = 1,
 
             /// <summary>
             /// Enum Approved for value: approved
@@ -261,364 +261,370 @@ namespace Adyen.Model.Transfers
         public enum StatusEnum
         {
             /// <summary>
+            /// Enum ApprovalPending for value: approvalPending
+            /// </summary>
+            [EnumMember(Value = "approvalPending")]
+            ApprovalPending = 1,
+
+            /// <summary>
             /// Enum AtmWithdrawal for value: atmWithdrawal
             /// </summary>
             [EnumMember(Value = "atmWithdrawal")]
-            AtmWithdrawal = 1,
+            AtmWithdrawal = 2,
 
             /// <summary>
             /// Enum AtmWithdrawalReversalPending for value: atmWithdrawalReversalPending
             /// </summary>
             [EnumMember(Value = "atmWithdrawalReversalPending")]
-            AtmWithdrawalReversalPending = 2,
+            AtmWithdrawalReversalPending = 3,
 
             /// <summary>
             /// Enum AtmWithdrawalReversed for value: atmWithdrawalReversed
             /// </summary>
             [EnumMember(Value = "atmWithdrawalReversed")]
-            AtmWithdrawalReversed = 3,
+            AtmWithdrawalReversed = 4,
 
             /// <summary>
             /// Enum AuthAdjustmentAuthorised for value: authAdjustmentAuthorised
             /// </summary>
             [EnumMember(Value = "authAdjustmentAuthorised")]
-            AuthAdjustmentAuthorised = 4,
+            AuthAdjustmentAuthorised = 5,
 
             /// <summary>
             /// Enum AuthAdjustmentError for value: authAdjustmentError
             /// </summary>
             [EnumMember(Value = "authAdjustmentError")]
-            AuthAdjustmentError = 5,
+            AuthAdjustmentError = 6,
 
             /// <summary>
             /// Enum AuthAdjustmentRefused for value: authAdjustmentRefused
             /// </summary>
             [EnumMember(Value = "authAdjustmentRefused")]
-            AuthAdjustmentRefused = 6,
+            AuthAdjustmentRefused = 7,
 
             /// <summary>
             /// Enum Authorised for value: authorised
             /// </summary>
             [EnumMember(Value = "authorised")]
-            Authorised = 7,
+            Authorised = 8,
 
             /// <summary>
             /// Enum BankTransfer for value: bankTransfer
             /// </summary>
             [EnumMember(Value = "bankTransfer")]
-            BankTransfer = 8,
+            BankTransfer = 9,
 
             /// <summary>
             /// Enum BankTransferPending for value: bankTransferPending
             /// </summary>
             [EnumMember(Value = "bankTransferPending")]
-            BankTransferPending = 9,
+            BankTransferPending = 10,
 
             /// <summary>
             /// Enum Booked for value: booked
             /// </summary>
             [EnumMember(Value = "booked")]
-            Booked = 10,
+            Booked = 11,
 
             /// <summary>
             /// Enum BookingPending for value: bookingPending
             /// </summary>
             [EnumMember(Value = "bookingPending")]
-            BookingPending = 11,
+            BookingPending = 12,
 
             /// <summary>
             /// Enum Cancelled for value: cancelled
             /// </summary>
             [EnumMember(Value = "cancelled")]
-            Cancelled = 12,
+            Cancelled = 13,
 
             /// <summary>
             /// Enum CapturePending for value: capturePending
             /// </summary>
             [EnumMember(Value = "capturePending")]
-            CapturePending = 13,
+            CapturePending = 14,
 
             /// <summary>
             /// Enum CaptureReversalPending for value: captureReversalPending
             /// </summary>
             [EnumMember(Value = "captureReversalPending")]
-            CaptureReversalPending = 14,
+            CaptureReversalPending = 15,
 
             /// <summary>
             /// Enum CaptureReversed for value: captureReversed
             /// </summary>
             [EnumMember(Value = "captureReversed")]
-            CaptureReversed = 15,
+            CaptureReversed = 16,
 
             /// <summary>
             /// Enum Captured for value: captured
             /// </summary>
             [EnumMember(Value = "captured")]
-            Captured = 16,
+            Captured = 17,
 
             /// <summary>
             /// Enum Chargeback for value: chargeback
             /// </summary>
             [EnumMember(Value = "chargeback")]
-            Chargeback = 17,
+            Chargeback = 18,
 
             /// <summary>
             /// Enum ChargebackPending for value: chargebackPending
             /// </summary>
             [EnumMember(Value = "chargebackPending")]
-            ChargebackPending = 18,
+            ChargebackPending = 19,
 
             /// <summary>
             /// Enum ChargebackReversalPending for value: chargebackReversalPending
             /// </summary>
             [EnumMember(Value = "chargebackReversalPending")]
-            ChargebackReversalPending = 19,
+            ChargebackReversalPending = 20,
 
             /// <summary>
             /// Enum ChargebackReversed for value: chargebackReversed
             /// </summary>
             [EnumMember(Value = "chargebackReversed")]
-            ChargebackReversed = 20,
+            ChargebackReversed = 21,
 
             /// <summary>
             /// Enum Credited for value: credited
             /// </summary>
             [EnumMember(Value = "credited")]
-            Credited = 21,
+            Credited = 22,
 
             /// <summary>
             /// Enum DepositCorrection for value: depositCorrection
             /// </summary>
             [EnumMember(Value = "depositCorrection")]
-            DepositCorrection = 22,
+            DepositCorrection = 23,
 
             /// <summary>
             /// Enum DepositCorrectionPending for value: depositCorrectionPending
             /// </summary>
             [EnumMember(Value = "depositCorrectionPending")]
-            DepositCorrectionPending = 23,
+            DepositCorrectionPending = 24,
 
             /// <summary>
             /// Enum Dispute for value: dispute
             /// </summary>
             [EnumMember(Value = "dispute")]
-            Dispute = 24,
+            Dispute = 25,
 
             /// <summary>
             /// Enum DisputeClosed for value: disputeClosed
             /// </summary>
             [EnumMember(Value = "disputeClosed")]
-            DisputeClosed = 25,
+            DisputeClosed = 26,
 
             /// <summary>
             /// Enum DisputeExpired for value: disputeExpired
             /// </summary>
             [EnumMember(Value = "disputeExpired")]
-            DisputeExpired = 26,
+            DisputeExpired = 27,
 
             /// <summary>
             /// Enum DisputeNeedsReview for value: disputeNeedsReview
             /// </summary>
             [EnumMember(Value = "disputeNeedsReview")]
-            DisputeNeedsReview = 27,
+            DisputeNeedsReview = 28,
 
             /// <summary>
             /// Enum Error for value: error
             /// </summary>
             [EnumMember(Value = "error")]
-            Error = 28,
+            Error = 29,
 
             /// <summary>
             /// Enum Expired for value: expired
             /// </summary>
             [EnumMember(Value = "expired")]
-            Expired = 29,
+            Expired = 30,
 
             /// <summary>
             /// Enum Failed for value: failed
             /// </summary>
             [EnumMember(Value = "failed")]
-            Failed = 30,
+            Failed = 31,
 
             /// <summary>
             /// Enum Fee for value: fee
             /// </summary>
             [EnumMember(Value = "fee")]
-            Fee = 31,
+            Fee = 32,
 
             /// <summary>
             /// Enum FeePending for value: feePending
             /// </summary>
             [EnumMember(Value = "feePending")]
-            FeePending = 32,
+            FeePending = 33,
 
             /// <summary>
             /// Enum InternalTransfer for value: internalTransfer
             /// </summary>
             [EnumMember(Value = "internalTransfer")]
-            InternalTransfer = 33,
+            InternalTransfer = 34,
 
             /// <summary>
             /// Enum InternalTransferPending for value: internalTransferPending
             /// </summary>
             [EnumMember(Value = "internalTransferPending")]
-            InternalTransferPending = 34,
+            InternalTransferPending = 35,
 
             /// <summary>
             /// Enum InvoiceDeduction for value: invoiceDeduction
             /// </summary>
             [EnumMember(Value = "invoiceDeduction")]
-            InvoiceDeduction = 35,
+            InvoiceDeduction = 36,
 
             /// <summary>
             /// Enum InvoiceDeductionPending for value: invoiceDeductionPending
             /// </summary>
             [EnumMember(Value = "invoiceDeductionPending")]
-            InvoiceDeductionPending = 36,
+            InvoiceDeductionPending = 37,
 
             /// <summary>
             /// Enum ManualCorrectionPending for value: manualCorrectionPending
             /// </summary>
             [EnumMember(Value = "manualCorrectionPending")]
-            ManualCorrectionPending = 37,
+            ManualCorrectionPending = 38,
 
             /// <summary>
             /// Enum ManuallyCorrected for value: manuallyCorrected
             /// </summary>
             [EnumMember(Value = "manuallyCorrected")]
-            ManuallyCorrected = 38,
+            ManuallyCorrected = 39,
 
             /// <summary>
             /// Enum MatchedStatement for value: matchedStatement
             /// </summary>
             [EnumMember(Value = "matchedStatement")]
-            MatchedStatement = 39,
+            MatchedStatement = 40,
 
             /// <summary>
             /// Enum MatchedStatementPending for value: matchedStatementPending
             /// </summary>
             [EnumMember(Value = "matchedStatementPending")]
-            MatchedStatementPending = 40,
+            MatchedStatementPending = 41,
 
             /// <summary>
             /// Enum MerchantPayin for value: merchantPayin
             /// </summary>
             [EnumMember(Value = "merchantPayin")]
-            MerchantPayin = 41,
+            MerchantPayin = 42,
 
             /// <summary>
             /// Enum MerchantPayinPending for value: merchantPayinPending
             /// </summary>
             [EnumMember(Value = "merchantPayinPending")]
-            MerchantPayinPending = 42,
+            MerchantPayinPending = 43,
 
             /// <summary>
             /// Enum MerchantPayinReversed for value: merchantPayinReversed
             /// </summary>
             [EnumMember(Value = "merchantPayinReversed")]
-            MerchantPayinReversed = 43,
+            MerchantPayinReversed = 44,
 
             /// <summary>
             /// Enum MerchantPayinReversedPending for value: merchantPayinReversedPending
             /// </summary>
             [EnumMember(Value = "merchantPayinReversedPending")]
-            MerchantPayinReversedPending = 44,
+            MerchantPayinReversedPending = 45,
 
             /// <summary>
             /// Enum MiscCost for value: miscCost
             /// </summary>
             [EnumMember(Value = "miscCost")]
-            MiscCost = 45,
+            MiscCost = 46,
 
             /// <summary>
             /// Enum MiscCostPending for value: miscCostPending
             /// </summary>
             [EnumMember(Value = "miscCostPending")]
-            MiscCostPending = 46,
+            MiscCostPending = 47,
 
             /// <summary>
             /// Enum PaymentCost for value: paymentCost
             /// </summary>
             [EnumMember(Value = "paymentCost")]
-            PaymentCost = 47,
+            PaymentCost = 48,
 
             /// <summary>
             /// Enum PaymentCostPending for value: paymentCostPending
             /// </summary>
             [EnumMember(Value = "paymentCostPending")]
-            PaymentCostPending = 48,
+            PaymentCostPending = 49,
 
             /// <summary>
             /// Enum Received for value: received
             /// </summary>
             [EnumMember(Value = "received")]
-            Received = 49,
+            Received = 50,
 
             /// <summary>
             /// Enum RefundPending for value: refundPending
             /// </summary>
             [EnumMember(Value = "refundPending")]
-            RefundPending = 50,
+            RefundPending = 51,
 
             /// <summary>
             /// Enum RefundReversalPending for value: refundReversalPending
             /// </summary>
             [EnumMember(Value = "refundReversalPending")]
-            RefundReversalPending = 51,
+            RefundReversalPending = 52,
 
             /// <summary>
             /// Enum RefundReversed for value: refundReversed
             /// </summary>
             [EnumMember(Value = "refundReversed")]
-            RefundReversed = 52,
+            RefundReversed = 53,
 
             /// <summary>
             /// Enum Refunded for value: refunded
             /// </summary>
             [EnumMember(Value = "refunded")]
-            Refunded = 53,
+            Refunded = 54,
 
             /// <summary>
             /// Enum Refused for value: refused
             /// </summary>
             [EnumMember(Value = "refused")]
-            Refused = 54,
+            Refused = 55,
 
             /// <summary>
             /// Enum ReserveAdjustment for value: reserveAdjustment
             /// </summary>
             [EnumMember(Value = "reserveAdjustment")]
-            ReserveAdjustment = 55,
+            ReserveAdjustment = 56,
 
             /// <summary>
             /// Enum ReserveAdjustmentPending for value: reserveAdjustmentPending
             /// </summary>
             [EnumMember(Value = "reserveAdjustmentPending")]
-            ReserveAdjustmentPending = 56,
+            ReserveAdjustmentPending = 57,
 
             /// <summary>
             /// Enum Returned for value: returned
             /// </summary>
             [EnumMember(Value = "returned")]
-            Returned = 57,
+            Returned = 58,
 
             /// <summary>
             /// Enum SecondChargeback for value: secondChargeback
             /// </summary>
             [EnumMember(Value = "secondChargeback")]
-            SecondChargeback = 58,
+            SecondChargeback = 59,
 
             /// <summary>
             /// Enum SecondChargebackPending for value: secondChargebackPending
             /// </summary>
             [EnumMember(Value = "secondChargebackPending")]
-            SecondChargebackPending = 59,
+            SecondChargebackPending = 60,
 
             /// <summary>
             /// Enum Undefined for value: undefined
             /// </summary>
             [EnumMember(Value = "undefined")]
-            Undefined = 60
+            Undefined = 61
 
         }
 
@@ -641,7 +647,7 @@ namespace Adyen.Model.Transfers
         /// <param name="balanceAccountId">The unique identifier of the source [balance account](https://docs.adyen.com/api-explorer/#/balanceplatform/latest/post/balanceAccounts__resParam_id)..</param>
         /// <param name="category">The type of transfer.  Possible values:   - **bank**: Transfer to a [transfer instrument](https://docs.adyen.com/api-explorer/#/legalentity/latest/post/transferInstruments__resParam_id) or a bank account.  - **internal**: Transfer to another [balance account](https://docs.adyen.com/api-explorer/#/balanceplatform/latest/post/balanceAccounts__resParam_id) within your platform.  - **issuedCard**: Transfer initiated by a Adyen-issued card.  - **platformPayment**: Fund movements related to payments that are acquired for your users. (required).</param>
         /// <param name="counterparty">counterparty (required).</param>
-        /// <param name="description">A human-readable description for the transfer. You can use alphanumeric characters and hyphens. We recommend sending a maximum of 140 characters, otherwise the description may be truncated..</param>
+        /// <param name="description">Your description for the transfer. It is used by most banks as the transfer description. We recommend sending a maximum of 140 characters, otherwise the description may be truncated.  Supported characters: **[a-z] [A-Z] [0-9] / - ?** **: ( ) . , &#39; + Space**  Supported characters for **regular** and **fast** transfers to a US counterparty: **[a-z] [A-Z] [0-9] &amp; $ % # @** **~ &#x3D; + - _ &#39; \&quot; ! ?**.</param>
         /// <param name="direction">The direction of the transfer.  Possible values: **incoming**, **outgoing**..</param>
         /// <param name="id">The ID of the resource..</param>
         /// <param name="paymentInstrumentId">The unique identifier of the source [payment instrument](https://docs.adyen.com/api-explorer/#/balanceplatform/latest/post/paymentInstruments__resParam_id)..</param>
@@ -687,9 +693,9 @@ namespace Adyen.Model.Transfers
         public CounterpartyV3 Counterparty { get; set; }
 
         /// <summary>
-        /// A human-readable description for the transfer. You can use alphanumeric characters and hyphens. We recommend sending a maximum of 140 characters, otherwise the description may be truncated.
+        /// Your description for the transfer. It is used by most banks as the transfer description. We recommend sending a maximum of 140 characters, otherwise the description may be truncated.  Supported characters: **[a-z] [A-Z] [0-9] / - ?** **: ( ) . , &#39; + Space**  Supported characters for **regular** and **fast** transfers to a US counterparty: **[a-z] [A-Z] [0-9] &amp; $ % # @** **~ &#x3D; + - _ &#39; \&quot; ! ?**
         /// </summary>
-        /// <value>A human-readable description for the transfer. You can use alphanumeric characters and hyphens. We recommend sending a maximum of 140 characters, otherwise the description may be truncated.</value>
+        /// <value>Your description for the transfer. It is used by most banks as the transfer description. We recommend sending a maximum of 140 characters, otherwise the description may be truncated.  Supported characters: **[a-z] [A-Z] [0-9] / - ?** **: ( ) . , &#39; + Space**  Supported characters for **regular** and **fast** transfers to a US counterparty: **[a-z] [A-Z] [0-9] &amp; $ % # @** **~ &#x3D; + - _ &#39; \&quot; ! ?**</value>
         [DataMember(Name = "description", EmitDefaultValue = false)]
         public string Description { get; set; }
 

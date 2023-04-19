@@ -76,14 +76,16 @@ namespace Adyen.Model.Transfers
         /// Initializes a new instance of the <see cref="PartyIdentification2" /> class.
         /// </summary>
         /// <param name="address">address.</param>
-        /// <param name="firstName">First name of the individual. Required when &#x60;type&#x60; is **individual**..</param>
+        /// <param name="dateOfBirth">The date of birth of the individual. Format: [ISO-8601](https://www.w3.org/TR/NOTE-datetime); example: YYYY-MM-DD Allowed only when &#x60;type&#x60; is **individual**..</param>
+        /// <param name="firstName">First name of the individual. Allowed only when &#x60;type&#x60; is **individual**..</param>
         /// <param name="fullName">The name of the entity. (required).</param>
-        /// <param name="lastName">Last name of the individual. Required when &#x60;type&#x60; is **individual**..</param>
+        /// <param name="lastName">Last name of the individual. Allowed only when &#x60;type&#x60; is **individual**..</param>
         /// <param name="type">The type of entity that owns the bank account.   Possible values: **individual**, **organization**, or **unknown**. (default to TypeEnum.Unknown).</param>
-        public PartyIdentification2(Address2 address = default(Address2), string firstName = default(string), string fullName = default(string), string lastName = default(string), TypeEnum? type = TypeEnum.Unknown)
+        public PartyIdentification2(Address2 address = default(Address2), DateTime dateOfBirth = default(DateTime), string firstName = default(string), string fullName = default(string), string lastName = default(string), TypeEnum? type = TypeEnum.Unknown)
         {
             this.FullName = fullName;
             this.Address = address;
+            this.DateOfBirth = dateOfBirth;
             this.FirstName = firstName;
             this.LastName = lastName;
             this.Type = type;
@@ -96,9 +98,17 @@ namespace Adyen.Model.Transfers
         public Address2 Address { get; set; }
 
         /// <summary>
-        /// First name of the individual. Required when &#x60;type&#x60; is **individual**.
+        /// The date of birth of the individual. Format: [ISO-8601](https://www.w3.org/TR/NOTE-datetime); example: YYYY-MM-DD Allowed only when &#x60;type&#x60; is **individual**.
         /// </summary>
-        /// <value>First name of the individual. Required when &#x60;type&#x60; is **individual**.</value>
+        /// <value>The date of birth of the individual. Format: [ISO-8601](https://www.w3.org/TR/NOTE-datetime); example: YYYY-MM-DD Allowed only when &#x60;type&#x60; is **individual**.</value>
+        [DataMember(Name = "dateOfBirth", EmitDefaultValue = false)]
+        [JsonConverter(typeof(OpenAPIDateConverter))]
+        public DateTime DateOfBirth { get; set; }
+
+        /// <summary>
+        /// First name of the individual. Allowed only when &#x60;type&#x60; is **individual**.
+        /// </summary>
+        /// <value>First name of the individual. Allowed only when &#x60;type&#x60; is **individual**.</value>
         [DataMember(Name = "firstName", EmitDefaultValue = false)]
         public string FirstName { get; set; }
 
@@ -110,9 +120,9 @@ namespace Adyen.Model.Transfers
         public string FullName { get; set; }
 
         /// <summary>
-        /// Last name of the individual. Required when &#x60;type&#x60; is **individual**.
+        /// Last name of the individual. Allowed only when &#x60;type&#x60; is **individual**.
         /// </summary>
-        /// <value>Last name of the individual. Required when &#x60;type&#x60; is **individual**.</value>
+        /// <value>Last name of the individual. Allowed only when &#x60;type&#x60; is **individual**.</value>
         [DataMember(Name = "lastName", EmitDefaultValue = false)]
         public string LastName { get; set; }
 
@@ -125,6 +135,7 @@ namespace Adyen.Model.Transfers
             StringBuilder sb = new StringBuilder();
             sb.Append("class PartyIdentification2 {\n");
             sb.Append("  Address: ").Append(Address).Append("\n");
+            sb.Append("  DateOfBirth: ").Append(DateOfBirth).Append("\n");
             sb.Append("  FirstName: ").Append(FirstName).Append("\n");
             sb.Append("  FullName: ").Append(FullName).Append("\n");
             sb.Append("  LastName: ").Append(LastName).Append("\n");
@@ -170,6 +181,11 @@ namespace Adyen.Model.Transfers
                     this.Address.Equals(input.Address))
                 ) && 
                 (
+                    this.DateOfBirth == input.DateOfBirth ||
+                    (this.DateOfBirth != null &&
+                    this.DateOfBirth.Equals(input.DateOfBirth))
+                ) && 
+                (
                     this.FirstName == input.FirstName ||
                     (this.FirstName != null &&
                     this.FirstName.Equals(input.FirstName))
@@ -202,6 +218,10 @@ namespace Adyen.Model.Transfers
                 if (this.Address != null)
                 {
                     hashCode = (hashCode * 59) + this.Address.GetHashCode();
+                }
+                if (this.DateOfBirth != null)
+                {
+                    hashCode = (hashCode * 59) + this.DateOfBirth.GetHashCode();
                 }
                 if (this.FirstName != null)
                 {

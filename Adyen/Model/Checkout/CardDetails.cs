@@ -536,6 +536,12 @@ namespace Adyen.Model.Checkout
                 yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for EncryptedSecurityCode, length must be less than 10000.", new [] { "EncryptedSecurityCode" });
             }
 
+            // StoredPaymentMethodId (string) maxLength
+            if (this.StoredPaymentMethodId != null && this.StoredPaymentMethodId.Length > 64)
+            {
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for StoredPaymentMethodId, length must be less than 64.", new [] { "StoredPaymentMethodId" });
+            }
+
             // ThreeDS2SdkVersion (string) maxLength
             if (this.ThreeDS2SdkVersion != null && this.ThreeDS2SdkVersion.Length > 12)
             {

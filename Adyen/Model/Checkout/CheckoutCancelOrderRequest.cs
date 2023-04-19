@@ -43,7 +43,7 @@ namespace Adyen.Model.Checkout
         /// </summary>
         /// <param name="merchantAccount">The merchant account identifier that orderData belongs to. (required).</param>
         /// <param name="order">order (required).</param>
-        public CheckoutCancelOrderRequest(string merchantAccount = default(string), CheckoutOrder order = default(CheckoutOrder))
+        public CheckoutCancelOrderRequest(string merchantAccount = default(string), EncryptedOrderData order = default(EncryptedOrderData))
         {
             this.MerchantAccount = merchantAccount;
             this.Order = order;
@@ -60,7 +60,7 @@ namespace Adyen.Model.Checkout
         /// Gets or Sets Order
         /// </summary>
         [DataMember(Name = "order", IsRequired = false, EmitDefaultValue = false)]
-        public CheckoutOrder Order { get; set; }
+        public EncryptedOrderData Order { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object

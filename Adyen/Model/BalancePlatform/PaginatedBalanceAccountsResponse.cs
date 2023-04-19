@@ -44,7 +44,7 @@ namespace Adyen.Model.BalancePlatform
         /// <param name="balanceAccounts">List of balance accounts. (required).</param>
         /// <param name="hasNext">Indicates whether there are more items on the next page. (required).</param>
         /// <param name="hasPrevious">Indicates whether there are more items on the previous page. (required).</param>
-        public PaginatedBalanceAccountsResponse(List<BalanceAccount> balanceAccounts = default(List<BalanceAccount>), bool hasNext = default(bool), bool hasPrevious = default(bool))
+        public PaginatedBalanceAccountsResponse(List<BalanceAccountBase> balanceAccounts = default(List<BalanceAccountBase>), bool hasNext = default(bool), bool hasPrevious = default(bool))
         {
             this.BalanceAccounts = balanceAccounts;
             this.HasNext = hasNext;
@@ -56,7 +56,7 @@ namespace Adyen.Model.BalancePlatform
         /// </summary>
         /// <value>List of balance accounts.</value>
         [DataMember(Name = "balanceAccounts", IsRequired = false, EmitDefaultValue = false)]
-        public List<BalanceAccount> BalanceAccounts { get; set; }
+        public List<BalanceAccountBase> BalanceAccounts { get; set; }
 
         /// <summary>
         /// Indicates whether there are more items on the next page.
