@@ -153,19 +153,5 @@ namespace Adyen.Test
             Assert.AreEqual(response.IndustryCode, "55");
         }
         #endregion
-        
-        #region TermsOfService
-        /// <summary>
-        /// Test get TermsOfService Status
-        /// </summary>
-        [TestMethod]
-        public void GetTermsOfServiceStatus()
-        {
-            var client = CreateMockTestClientApiKeyBasedRequestAsync("Mocks/legalentitymanagement/TermsOfServiceStatus.json");
-            var service = new TermsOfServiceService(client);
-            var response = service.GetTermsOfServiceStatus("id");
-            Assert.AreEqual(response.TermsOfServiceTypes[0], CalculateTermsOfServiceStatusResponse.TermsOfServiceTypesEnum.AdyenIssuing);
-        }
-        #endregion
     }
 }

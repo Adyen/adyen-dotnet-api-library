@@ -45,23 +45,6 @@ namespace Adyen.Service.LegalEntityManagement
         Task<GetTermsOfServiceAcceptanceInfosResponse> GetTermsOfServiceInformationForLegalEntityAsync(string id, RequestOptions requestOptions = default, CancellationToken cancellationToken = default);
         
         /// <summary>
-        /// Get Terms of Service status
-        /// </summary>
-        /// <param name="id"><see cref="string"/> - The unique identifier of the legal entity.</param>
-        /// <param name="requestOptions"><see cref="RequestOptions"/> - Additional request options.</param>
-        /// <returns><see cref="CalculateTermsOfServiceStatusResponse"/>.</returns>
-        CalculateTermsOfServiceStatusResponse GetTermsOfServiceStatus(string id, RequestOptions requestOptions = default);
-        
-        /// <summary>
-        /// Get Terms of Service status
-        /// </summary>
-        /// <param name="id"><see cref="string"/> - The unique identifier of the legal entity.</param>
-        /// <param name="requestOptions"><see cref="RequestOptions"/> - Additional request options.</param>
-        /// <param name="cancellationToken"> A CancellationToken enables cooperative cancellation between threads, thread pool work items, or Task objects.</param>
-        /// <returns>Task of <see cref="CalculateTermsOfServiceStatusResponse"/>.</returns>
-        Task<CalculateTermsOfServiceStatusResponse> GetTermsOfServiceStatusAsync(string id, RequestOptions requestOptions = default, CancellationToken cancellationToken = default);
-        
-        /// <summary>
         /// Accept Terms of Service
         /// </summary>
         /// <param name="id"><see cref="string"/> - The unique identifier of the legal entity.</param>
@@ -126,19 +109,7 @@ namespace Adyen.Service.LegalEntityManagement
             var resource = new ServiceResource(this, endpoint);
             return await resource.RequestAsync<GetTermsOfServiceAcceptanceInfosResponse>(null, requestOptions, new HttpMethod("GET"), cancellationToken);
         }
-        
-        public CalculateTermsOfServiceStatusResponse GetTermsOfServiceStatus(string id, RequestOptions requestOptions = default)
-        {
-            return GetTermsOfServiceStatusAsync(id, requestOptions).GetAwaiter().GetResult();
-        }
 
-        public async Task<CalculateTermsOfServiceStatusResponse> GetTermsOfServiceStatusAsync(string id, RequestOptions requestOptions = default, CancellationToken cancellationToken = default)
-        {
-            var endpoint = _baseUrl + $"/legalEntities/{id}/termsOfServiceStatus";
-            var resource = new ServiceResource(this, endpoint);
-            return await resource.RequestAsync<CalculateTermsOfServiceStatusResponse>(null, requestOptions, new HttpMethod("GET"), cancellationToken);
-        }
-        
         public AcceptTermsOfServiceResponse AcceptTermsOfService(string id, string termsofservicedocumentid, AcceptTermsOfServiceRequest acceptTermsOfServiceRequest, RequestOptions requestOptions = default)
         {
             return AcceptTermsOfServiceAsync(id, termsofservicedocumentid, acceptTermsOfServiceRequest, requestOptions).GetAwaiter().GetResult();
