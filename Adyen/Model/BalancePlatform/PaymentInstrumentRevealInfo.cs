@@ -41,9 +41,9 @@ namespace Adyen.Model.BalancePlatform
         /// <summary>
         /// Initializes a new instance of the <see cref="PaymentInstrumentRevealInfo" /> class.
         /// </summary>
-        /// <param name="cvc">The cvc of the card. (required).</param>
+        /// <param name="cvc">The CVC2 value of the card. (required).</param>
         /// <param name="expiration">expiration (required).</param>
-        /// <param name="pan">The pan number of the card. (required).</param>
+        /// <param name="pan">The primary account number (PAN) of the card. (required).</param>
         public PaymentInstrumentRevealInfo(string cvc = default(string), Expiry expiration = default(Expiry), string pan = default(string))
         {
             this.Cvc = cvc;
@@ -52,9 +52,9 @@ namespace Adyen.Model.BalancePlatform
         }
 
         /// <summary>
-        /// The cvc of the card.
+        /// The CVC2 value of the card.
         /// </summary>
-        /// <value>The cvc of the card.</value>
+        /// <value>The CVC2 value of the card.</value>
         [DataMember(Name = "cvc", IsRequired = false, EmitDefaultValue = false)]
         public string Cvc { get; set; }
 
@@ -65,9 +65,9 @@ namespace Adyen.Model.BalancePlatform
         public Expiry Expiration { get; set; }
 
         /// <summary>
-        /// The pan number of the card.
+        /// The primary account number (PAN) of the card.
         /// </summary>
-        /// <value>The pan number of the card.</value>
+        /// <value>The primary account number (PAN) of the card.</value>
         [DataMember(Name = "pan", IsRequired = false, EmitDefaultValue = false)]
         public string Pan { get; set; }
 

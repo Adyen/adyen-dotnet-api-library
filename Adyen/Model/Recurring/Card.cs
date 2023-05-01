@@ -36,25 +36,20 @@ namespace Adyen.Model.Recurring
         /// <summary>
         /// Initializes a new instance of the <see cref="Card" /> class.
         /// </summary>
-        [JsonConstructorAttribute]
-        protected Card() { }
-        /// <summary>
-        /// Initializes a new instance of the <see cref="Card" /> class.
-        /// </summary>
         /// <param name="cvc">The [card verification code](https://docs.adyen.com/payments-fundamentals/payment-glossary#card-security-code-cvc-cvv-cid) (1-20 characters). Depending on the card brand, it is known also as: * CVV2/CVC2 – length: 3 digits * CID – length: 4 digits &gt; If you are using [Client-Side Encryption](https://docs.adyen.com/classic-integration/cse-integration-ecommerce), the CVC code is present in the encrypted data. You must never post the card details to the server. &gt; This field must be always present in a [one-click payment request](https://docs.adyen.com/classic-integration/recurring-payments). &gt; When this value is returned in a response, it is always empty because it is not stored..</param>
         /// <param name="expiryMonth">The card expiry month. Format: 2 digits, zero-padded for single digits. For example: * 03 &#x3D; March * 11 &#x3D; November.</param>
-        /// <param name="expiryYear">The card expiry year. Format: 4 digits. For example: 2020 (required).</param>
-        /// <param name="holderName">The name of the cardholder, as printed on the card. (required).</param>
+        /// <param name="expiryYear">The card expiry year. Format: 4 digits. For example: 2020.</param>
+        /// <param name="holderName">The name of the cardholder, as printed on the card..</param>
         /// <param name="issueNumber">The issue number of the card (for some UK debit cards only)..</param>
         /// <param name="number">The card number (4-19 characters). Do not use any separators. When this value is returned in a response, only the last 4 digits of the card number are returned..</param>
         /// <param name="startMonth">The month component of the start date (for some UK debit cards only)..</param>
         /// <param name="startYear">The year component of the start date (for some UK debit cards only)..</param>
         public Card(string cvc = default(string), string expiryMonth = default(string), string expiryYear = default(string), string holderName = default(string), string issueNumber = default(string), string number = default(string), string startMonth = default(string), string startYear = default(string))
         {
-            this.ExpiryYear = expiryYear;
-            this.HolderName = holderName;
             this.Cvc = cvc;
             this.ExpiryMonth = expiryMonth;
+            this.ExpiryYear = expiryYear;
+            this.HolderName = holderName;
             this.IssueNumber = issueNumber;
             this.Number = number;
             this.StartMonth = startMonth;
@@ -79,14 +74,14 @@ namespace Adyen.Model.Recurring
         /// The card expiry year. Format: 4 digits. For example: 2020
         /// </summary>
         /// <value>The card expiry year. Format: 4 digits. For example: 2020</value>
-        [DataMember(Name = "expiryYear", IsRequired = false, EmitDefaultValue = false)]
+        [DataMember(Name = "expiryYear", EmitDefaultValue = false)]
         public string ExpiryYear { get; set; }
 
         /// <summary>
         /// The name of the cardholder, as printed on the card.
         /// </summary>
         /// <value>The name of the cardholder, as printed on the card.</value>
-        [DataMember(Name = "holderName", IsRequired = false, EmitDefaultValue = false)]
+        [DataMember(Name = "holderName", EmitDefaultValue = false)]
         public string HolderName { get; set; }
 
         /// <summary>

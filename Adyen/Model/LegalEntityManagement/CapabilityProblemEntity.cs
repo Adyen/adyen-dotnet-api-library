@@ -68,7 +68,7 @@ namespace Adyen.Model.LegalEntityManagement
         /// <summary>
         /// Initializes a new instance of the <see cref="CapabilityProblemEntity" /> class.
         /// </summary>
-        /// <param name="documents">documents.</param>
+        /// <param name="documents">List of document IDs corresponding to the verification errors from capabilities..</param>
         /// <param name="id">id.</param>
         /// <param name="owner">owner.</param>
         /// <param name="type">type.</param>
@@ -81,8 +81,9 @@ namespace Adyen.Model.LegalEntityManagement
         }
 
         /// <summary>
-        /// Gets or Sets Documents
+        /// List of document IDs corresponding to the verification errors from capabilities.
         /// </summary>
+        /// <value>List of document IDs corresponding to the verification errors from capabilities.</value>
         [DataMember(Name = "documents", EmitDefaultValue = false)]
         public List<string> Documents { get; set; }
 
