@@ -895,7 +895,7 @@ namespace Adyen.Test
         {
             var checkoutCancelOrderRequest = new CheckoutCancelOrderRequest
             (merchantAccount: "TestMerchant",
-                order: new CheckoutOrder(orderData: "823fh892f8f18f4...148f13f9f3f", pspReference: "8815517812932012"));
+                order: new EncryptedOrderData(orderData: "823fh892f8f18f4...148f13f9f3f", pspReference: "8815517812932012"));
             var client = CreateMockTestClientApiKeyBasedRequestAsync("Mocks/checkout/orders-cancel-success.json");
             var checkout = new OrdersService(client);
             var checkoutOrdersCancelResponse = checkout.CancelOrder(checkoutCancelOrderRequest);
