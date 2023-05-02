@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using Adyen.Model.Payments;
+using Adyen.Model.Payment;
 
 namespace Adyen.Test
 {
