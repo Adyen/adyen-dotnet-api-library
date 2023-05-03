@@ -73,13 +73,6 @@ namespace Adyen.Model.LegalEntityManagement
         public string RealLastFour { get; set; }
 
         /// <summary>
-        /// Identifies if the TI was created from a trusted source.
-        /// </summary>
-        /// <value>Identifies if the TI was created from a trusted source.</value>
-        [DataMember(Name = "trustedSource", EmitDefaultValue = false)]
-        public bool TrustedSource { get; private set; }
-
-        /// <summary>
         /// Returns the string presentation of the object
         /// </summary>
         /// <returns>String presentation of the object</returns>
@@ -90,7 +83,6 @@ namespace Adyen.Model.LegalEntityManagement
             sb.Append("  AccountIdentifier: ").Append(AccountIdentifier).Append("\n");
             sb.Append("  Id: ").Append(Id).Append("\n");
             sb.Append("  RealLastFour: ").Append(RealLastFour).Append("\n");
-            sb.Append("  TrustedSource: ").Append(TrustedSource).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -140,10 +132,6 @@ namespace Adyen.Model.LegalEntityManagement
                     this.RealLastFour == input.RealLastFour ||
                     (this.RealLastFour != null &&
                     this.RealLastFour.Equals(input.RealLastFour))
-                ) && 
-                (
-                    this.TrustedSource == input.TrustedSource ||
-                    this.TrustedSource.Equals(input.TrustedSource)
                 );
         }
 
@@ -168,7 +156,6 @@ namespace Adyen.Model.LegalEntityManagement
                 {
                     hashCode = (hashCode * 59) + this.RealLastFour.GetHashCode();
                 }
-                hashCode = (hashCode * 59) + this.TrustedSource.GetHashCode();
                 return hashCode;
             }
         }
