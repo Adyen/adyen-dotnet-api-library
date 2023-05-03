@@ -19,7 +19,7 @@ Checkout: spec=CheckoutService-v70
 DataProtection: spec=DataProtectionService-v1
 StoredValue: spec=StoredValueService-v46
 PosTerminalManagement: spec=TfmAPIService-v1
-Payments: spec=PaymentService-v68
+Payment: spec=PaymentService-v68
 Recurring: spec=RecurringService-v68
 Payout: spec=PayoutService-v68
 Management: spec=ManagementService-v1
@@ -50,8 +50,8 @@ $(services): target/spec $(openapi-generator-jar)
 
 # Service Generation; split up in to templates based on the size of the service. That is, some services have no subgroups and are thus generated in one single file, others are grouped in a directory.
 
-Services:=BalancePlatform Checkout StoredValue Payments Payout Management LegalEntityManagement Transfers
-SingleFileServices:=BalanceControl BinLookup DataProtection StoredValue PosTerminalManagement Recurring
+Services:=BalancePlatform Checkout StoredValue Payout Management LegalEntityManagement Transfers
+SingleFileServices:=BalanceControl BinLookup DataProtection StoredValue PosTerminalManagement Recurring Payment
 
 all: $(Services) $(SingleFileServices)
 
@@ -75,6 +75,7 @@ $(Services): target/spec $(openapi-generator-jar)
 	
 $(SingleFileServices): target/spec $(openapi-generator-jar)  
 	rm -rf $(output)
+	cat <<< "$$(jq 'del(.paths[][].tags)' target/spec/json/$(spec).json)" > target/spec/json/$(spec).json
 	$(openapi-generator-cli) generate \
 		-i target/spec/json/$(spec).json \
 		-g $(generator) \

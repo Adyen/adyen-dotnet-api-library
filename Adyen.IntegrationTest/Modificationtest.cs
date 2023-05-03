@@ -1,8 +1,7 @@
 using System.Net.Http;
 using Adyen.HttpClient;
-using Adyen.Model.Payments;
+using Adyen.Model.Payment;
 using Adyen.Service;
-using Adyen.Service.Payments;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace Adyen.IntegrationTest
@@ -16,7 +15,7 @@ namespace Adyen.IntegrationTest
             var paymentResultPspReference = GetTestPspReference();
             //Call authorization test
             var client = base.CreateApiKeyTestClient();
-            var modification = new ModificationsService(client);
+            var modification = new PaymentService(client);
             //Send capture call with psp refernce
             var captureRequest = base.CreateCaptureTestRequest(paymentResultPspReference);
             var captureResult = modification.Capture(captureRequest);
@@ -29,7 +28,7 @@ namespace Adyen.IntegrationTest
             var paymentResultPspReference = GetTestPspReference();
             //Call authorization test
             var client = base.CreateApiKeyTestClient();
-            var modification = new ModificationsService(client);
+            var modification = new PaymentService(client);
             var cancelOrRefundRequest = base.CreateCancelOrRefundTestRequest(pspReference: paymentResultPspReference);
             var cancelOrRefundResult = modification.CancelOrRefund(cancelOrRefundRequest);
             Assert.AreEqual(cancelOrRefundResult.Response, ModificationResult.ResponseEnum.CancelOrRefundReceived);
@@ -41,7 +40,7 @@ namespace Adyen.IntegrationTest
             var paymentResultPspReference = GetTestPspReference();
             //Call authorization test
             var client = base.CreateApiKeyTestClient();
-            var modification = new ModificationsService(client);
+            var modification = new PaymentService(client);
             var refundRequest = base.CreateRefundTestRequest(pspReference: paymentResultPspReference);
             var refundResult = modification.Refund(refundRequest);
             Assert.AreEqual(refundResult.Response, ModificationResult.ResponseEnum.RefundReceived);
@@ -53,7 +52,7 @@ namespace Adyen.IntegrationTest
             var paymentResultPspReference = GetTestPspReference();
             //Call authorization test
             var client = base.CreateApiKeyTestClient();
-            var modification = new ModificationsService(client);
+            var modification = new PaymentService(client);
             var cancelRequest = base.CreateCancelTestRequest(pspReference: paymentResultPspReference);
             var refundResult = modification.Cancel(cancelRequest);
             Assert.AreEqual(refundResult.Response, ModificationResult.ResponseEnum.CancelReceived);
@@ -65,7 +64,7 @@ namespace Adyen.IntegrationTest
             var paymentResultPspReference = GetTestPspReference();
             //Call authorization test
             var client = base.CreateApiKeyTestClient();
-            var modification = new ModificationsService(client);
+            var modification = new PaymentService(client);
             var adjustAuthorisationtestRequest = base.CreateAdjustAuthorisationtestRequest(pspReference: paymentResultPspReference);
             var adjustAuthorisationtestResult = modification.AdjustAuthorisation(adjustAuthorisationtestRequest);
             Assert.AreEqual(adjustAuthorisationtestResult.Response, ModificationResult.ResponseEnum.AdjustAuthorisationReceived);
@@ -76,7 +75,7 @@ namespace Adyen.IntegrationTest
         {
             var pspRef = GetTestPspReference();
             var client = base.CreateApiKeyTestClient();
-            var modification = new ModificationsService(client);
+            var modification = new PaymentService(client);
             var technicalCancelRequest = new TechnicalCancelRequest()
             {
                 MerchantAccount = ClientConstants.MerchantAccount,
@@ -92,7 +91,7 @@ namespace Adyen.IntegrationTest
         {
             var pspRef = GetTestPspReference();
             var client = base.CreateApiKeyTestClient();
-            var modification = new ModificationsService(client);
+            var modification = new PaymentService(client);
             var donationRequest = new DonationRequest()
             {
                 MerchantAccount = ClientConstants.MerchantAccount,

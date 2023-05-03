@@ -5,15 +5,15 @@ using System.Threading.Tasks;
 using Adyen.Model;
 using Adyen.Model.BinLookup;
 using Adyen.Model.Checkout;
-using Adyen.Model.Payments;
+using Adyen.Model.Payment;
 using Adyen.Service;
-using Adyen.Service.Payments;
+using Adyen.Service.Checkout;
 using Amount = Adyen.Model.Checkout;
-using PaymentRequest = Adyen.Model.Payments.PaymentRequest;
-using PaymentResult = Adyen.Model.Payments.PaymentResult;
+using PaymentRequest = Adyen.Model.Payment.PaymentRequest;
+using PaymentResult = Adyen.Model.Payment.PaymentResult;
 using Environment = Adyen.Model.Environment;
 using ExternalPlatform = Adyen.Model.ApplicationInformation.ExternalPlatform;
-using Recurring = Adyen.Model.Payments.Recurring;
+using Recurring = Adyen.Model.Payment.Recurring;
 
 namespace Adyen.IntegrationTest
 {
@@ -22,7 +22,7 @@ namespace Adyen.IntegrationTest
         public PaymentResult CreatePaymentResult()
         {
             var client = CreateApiKeyTestClient();
-            var payment = new GeneralService(client);
+            var payment = new PaymentService(client);
             var paymentRequest = CreateFullPaymentRequest();
             var paymentResult = payment.Authorise(paymentRequest);
 
@@ -32,7 +32,7 @@ namespace Adyen.IntegrationTest
         public async Task<PaymentResult> CreatePaymentResultAsync()
         {
             var client = CreateApiKeyTestClient();
-            var payment = new GeneralService(client);
+            var payment = new PaymentService(client);
             var paymentRequest = CreateFullPaymentRequest();
             var paymentResult = await payment.AuthoriseAsync(paymentRequest);
 
@@ -42,7 +42,7 @@ namespace Adyen.IntegrationTest
         public PaymentResult CreatePaymentResultWithApiKeyAuthentication()
         {
             var client = CreateApiKeyTestClient();
-            var payment = new GeneralService(client);
+            var payment = new PaymentService(client);
             var paymentRequest = CreateFullPaymentRequest();
             var paymentResult = payment.Authorise(paymentRequest);
 
@@ -52,7 +52,7 @@ namespace Adyen.IntegrationTest
         public PaymentResult CreatePaymentResultWithIdempotency(string idempotency)
         {
             var client = CreateApiKeyTestClient();
-            var payment = new GeneralService(client);
+            var payment = new PaymentService(client);
             var paymentRequest = CreateFullPaymentRequest();
             var paymentResult = payment.Authorise(paymentRequest, new RequestOptions{ IdempotencyKey=idempotency});
 
@@ -62,7 +62,7 @@ namespace Adyen.IntegrationTest
         public PaymentResult CreatePaymentResultWithRecurring(Recurring.ContractEnum contract)
         {
             var client = CreateApiKeyTestClient();
-            var payment = new GeneralService(client);
+            var payment = new PaymentService(client);
             var paymentRequest = CreateFullPaymentRequestWithRecurring(contract);
             var paymentResult = payment.Authorise(paymentRequest);
 
@@ -90,7 +90,7 @@ namespace Adyen.IntegrationTest
             var captureRequest = new CaptureRequest
             {
                 MerchantAccount = ClientConstants.MerchantAccount,
-                ModificationAmount = new Adyen.Model.Payments.Amount("EUR", 150),
+                ModificationAmount = new Adyen.Model.Payment.Amount("EUR", 150),
                 Reference = "capture - " + DateTime.Now.ToString("yyyyMMdd"),
                 OriginalReference = pspReference
             };
@@ -113,7 +113,7 @@ namespace Adyen.IntegrationTest
             var refundRequest = new RefundRequest()
             {
                 MerchantAccount = ClientConstants.MerchantAccount,
-                ModificationAmount = new Adyen.Model.Payments.Amount("EUR", 150),
+                ModificationAmount = new Adyen.Model.Payment.Amount("EUR", 150),
                 Reference = "refund - " + DateTime.Now.ToString("yyyyMMdd"),
                 OriginalReference = pspReference
             };
@@ -135,7 +135,7 @@ namespace Adyen.IntegrationTest
             var adjustAuthorisationRequest = new AdjustAuthorisationRequest()
             {
                 MerchantAccount = ClientConstants.MerchantAccount,
-                ModificationAmount = new Adyen.Model.Payments.Amount("EUR", 150),
+                ModificationAmount = new Adyen.Model.Payment.Amount("EUR", 150),
                 Reference = "adjust authorisation - " + DateTime.Now.ToString("yyyyMMdd"),
                 OriginalReference = pspReference
             };
@@ -159,13 +159,13 @@ namespace Adyen.IntegrationTest
             PaymentRequest paymentRequest = new PaymentRequest
             {
                 MerchantAccount = ClientConstants.MerchantAccount,
-                Amount = new Model.Payments.Amount("EUR", 1500),
+                Amount = new Model.Payment.Amount("EUR", 1500),
                 Card = CreateTestCard(),
                 Reference = "payment - " + DateTime.Now.ToString("yyyyMMdd"),
                 AdditionalData = CreateAdditionalData(),
-                ApplicationInfo = new Model.Payments.ApplicationInfo()
+                ApplicationInfo = new Model.Payment.ApplicationInfo()
                 {
-                    ExternalPlatform = new Model.Payments.ExternalPlatform()
+                    ExternalPlatform = new Model.Payment.ExternalPlatform()
                     {
                         Integrator = "test merchant",
                         Name = "merchant name",
@@ -174,7 +174,7 @@ namespace Adyen.IntegrationTest
                 }
 
             };
-            paymentRequest.ApplicationInfo.ExternalPlatform = new Model.Payments.ExternalPlatform("test merchant", "merchant name", "2.8");
+            paymentRequest.ApplicationInfo.ExternalPlatform = new Model.Payment.ExternalPlatform("test merchant", "merchant name", "2.8");
             return paymentRequest;
         }
 
@@ -183,15 +183,15 @@ namespace Adyen.IntegrationTest
             var paymentRequest = new PaymentRequest
             {
                 MerchantAccount = ClientConstants.MerchantAccount,
-                Amount = new Model.Payments.Amount("EUR", 1500),
+                Amount = new Model.Payment.Amount("EUR", 1500),
                 Card = CreateTestCard(),
                 Reference = "payment - " + DateTime.Now.ToString("yyyyMMdd"),
                 ShopperReference = "test-1234",
                 AdditionalData = CreateAdditionalData(),
                 Recurring = new Recurring { Contract = contract },
-                ApplicationInfo = new Model.Payments.ApplicationInfo()
+                ApplicationInfo = new Model.Payment.ApplicationInfo()
                 {
-                    ExternalPlatform = new Model.Payments.ExternalPlatform()
+                    ExternalPlatform = new Model.Payment.ExternalPlatform()
                     {
                         Integrator = "test merchant",
                         Name = "merchant name",
@@ -200,7 +200,7 @@ namespace Adyen.IntegrationTest
                 }
             };
 
-            paymentRequest.ApplicationInfo.ExternalPlatform = new Adyen.Model.Payments.ExternalPlatform("test merchant", "merchant name", "2.8");
+            paymentRequest.ApplicationInfo.ExternalPlatform = new Adyen.Model.Payment.ExternalPlatform("test merchant", "merchant name", "2.8");
             return paymentRequest;
         }
 
@@ -258,9 +258,9 @@ namespace Adyen.IntegrationTest
                  amount: new Model.Checkout.Amount("EUR", 1200), returnUrl: @"https://www.yourshop.com/checkout/result", countryCode: "NL",shopperReference:"ShopperIdAlex");
         }
 
-        protected Model.Payments.Card CreateTestCard()
+        protected Model.Payment.Card CreateTestCard()
         {
-            return new Model.Payments.Card(number: "4111111111111111", expiryMonth: "03", expiryYear: "2030", cvc: "737",
+            return new Model.Payment.Card(number: "4111111111111111", expiryMonth: "03", expiryYear: "2030", cvc: "737",
                 holderName: "John Smith");
         }
 

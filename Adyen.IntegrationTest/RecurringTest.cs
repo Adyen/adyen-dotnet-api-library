@@ -14,7 +14,7 @@ namespace Adyen.IntegrationTest
         [TestMethod]
         public void TestListRecurringDetails()
         {
-            var paymentResult = base.CreatePaymentResultWithRecurring(Model.Payments.Recurring.ContractEnum.RECURRING);
+            var paymentResult = base.CreatePaymentResultWithRecurring(Model.Payment.Recurring.ContractEnum.RECURRING);
             var client = CreateApiKeyTestClient();
             var recurring = new Service.RecurringService(client);
             var recurringDetailsRequest = this.CreateRecurringDetailsRequest();
@@ -26,7 +26,7 @@ namespace Adyen.IntegrationTest
         [TestMethod]
         public void TestDisable()
         {
-            var paymentResult = base.CreatePaymentResultWithRecurring(Model.Payments.Recurring.ContractEnum.ONECLICK);
+            var paymentResult = base.CreatePaymentResultWithRecurring(Model.Payment.Recurring.ContractEnum.ONECLICK);
             var client = CreateApiKeyTestClient();
             var recurring = new Service.RecurringService(client);
             var disableRequest = this.CreateDisableRequest();
