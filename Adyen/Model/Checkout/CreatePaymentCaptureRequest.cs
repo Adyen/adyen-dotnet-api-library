@@ -42,7 +42,7 @@ namespace Adyen.Model.Checkout
         /// Initializes a new instance of the <see cref="CreatePaymentCaptureRequest" /> class.
         /// </summary>
         /// <param name="amount">amount (required).</param>
-        /// <param name="lineItems">Price and product information of the captured items, required for [partial captures](https://docs.adyen.com/online-payments/capture#partial-capture). &gt; This field is required for partial captures with 3x 4x Oney, Affirm, Afterpay, Clearpay, Klarna, Ratepay, Zip and Atome..</param>
+        /// <param name="lineItems">Price and product information of the refunded items, required for [partial refunds](https://docs.adyen.com/online-payments/refund#refund-a-payment). &gt; This field is required for partial refunds with 3x 4x Oney, Affirm, Afterpay, Atome, Clearpay, Klarna, Ratepay, Walley, and Zip..</param>
         /// <param name="merchantAccount">The merchant account that is used to process the payment. (required).</param>
         /// <param name="reference">Your reference for the capture request. Maximum length: 80 characters..</param>
         /// <param name="splits">An array of objects specifying how the amount should be split between accounts when using Adyen for Platforms. For details, refer to [Providing split information](https://docs.adyen.com/marketplaces-and-platforms/processing-payments#providing-split-information)..</param>
@@ -62,9 +62,9 @@ namespace Adyen.Model.Checkout
         public Amount Amount { get; set; }
 
         /// <summary>
-        /// Price and product information of the captured items, required for [partial captures](https://docs.adyen.com/online-payments/capture#partial-capture). &gt; This field is required for partial captures with 3x 4x Oney, Affirm, Afterpay, Clearpay, Klarna, Ratepay, Zip and Atome.
+        /// Price and product information of the refunded items, required for [partial refunds](https://docs.adyen.com/online-payments/refund#refund-a-payment). &gt; This field is required for partial refunds with 3x 4x Oney, Affirm, Afterpay, Atome, Clearpay, Klarna, Ratepay, Walley, and Zip.
         /// </summary>
-        /// <value>Price and product information of the captured items, required for [partial captures](https://docs.adyen.com/online-payments/capture#partial-capture). &gt; This field is required for partial captures with 3x 4x Oney, Affirm, Afterpay, Clearpay, Klarna, Ratepay, Zip and Atome.</value>
+        /// <value>Price and product information of the refunded items, required for [partial refunds](https://docs.adyen.com/online-payments/refund#refund-a-payment). &gt; This field is required for partial refunds with 3x 4x Oney, Affirm, Afterpay, Atome, Clearpay, Klarna, Ratepay, Walley, and Zip.</value>
         [DataMember(Name = "lineItems", EmitDefaultValue = false)]
         public List<LineItem> LineItems { get; set; }
 

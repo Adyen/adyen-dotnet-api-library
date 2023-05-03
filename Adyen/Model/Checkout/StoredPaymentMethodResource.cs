@@ -428,6 +428,18 @@ namespace Adyen.Model.Checkout
         /// <returns>Validation Result</returns>
         public IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> Validate(ValidationContext validationContext)
         {
+            // ShopperReference (string) maxLength
+            if (this.ShopperReference != null && this.ShopperReference.Length > 256)
+            {
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for ShopperReference, length must be less than 256.", new [] { "ShopperReference" });
+            }
+
+            // ShopperReference (string) minLength
+            if (this.ShopperReference != null && this.ShopperReference.Length < 3)
+            {
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for ShopperReference, length must be greater than 3.", new [] { "ShopperReference" });
+            }
+
             yield break;
         }
     }

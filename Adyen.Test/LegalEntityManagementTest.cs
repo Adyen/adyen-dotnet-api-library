@@ -1,9 +1,11 @@
 using System;
 using System.Collections.Generic;
+using System.Net.Http;
 using System.Text;
 using Adyen.Model.LegalEntityManagement;
 using Adyen.Service.LegalEntityManagement;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using Moq;
 
 namespace Adyen.Test
 {
@@ -163,8 +165,14 @@ namespace Adyen.Test
         {
             var client = CreateMockTestClientApiKeyBasedRequestAsync("Mocks/legalentitymanagement/TermsOfServiceStatus.json");
             var service = new TermsOfServiceService(client);
-            var response = service.GetTermsOfServiceStatus("id");
-            Assert.AreEqual(response.TermsOfServiceTypes[0], CalculateTermsOfServiceStatusResponse.TermsOfServiceTypesEnum.AdyenIssuing);
+            var response = service.GetTermsOfServiceInformationForLegalEntity("id123");
+            ClientInterfaceMock.Verify(mock =>
+                mock.RequestAsync(
+                    "https://kyc-test.adyen.com/lem/v3/legalEntities/id123/termsOfServiceAcceptanceInfos",
+                    null,
+                    null,
+                    new HttpMethod("GET"), default));
+            Assert.AreEqual(response.Data[0].Type, TermsOfServiceAcceptanceInfo.TypeEnum.AdyenIssuing);
         }
         #endregion
     }

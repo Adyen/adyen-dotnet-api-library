@@ -62,6 +62,40 @@ namespace Adyen.Model.BalancePlatform
         [DataMember(Name = "outcomeType", EmitDefaultValue = false)]
         public OutcomeTypeEnum? OutcomeType { get; set; }
         /// <summary>
+        /// Indicates the type of request to which the rule applies.  Possible values: **authorization**, **authentication**, **tokenization**.
+        /// </summary>
+        /// <value>Indicates the type of request to which the rule applies.  Possible values: **authorization**, **authentication**, **tokenization**.</value>
+        [JsonConverter(typeof(StringEnumConverter))]
+        public enum RequestTypeEnum
+        {
+            /// <summary>
+            /// Enum Authentication for value: authentication
+            /// </summary>
+            [EnumMember(Value = "authentication")]
+            Authentication = 1,
+
+            /// <summary>
+            /// Enum Authorization for value: authorization
+            /// </summary>
+            [EnumMember(Value = "authorization")]
+            Authorization = 2,
+
+            /// <summary>
+            /// Enum Tokenization for value: tokenization
+            /// </summary>
+            [EnumMember(Value = "tokenization")]
+            Tokenization = 3
+
+        }
+
+
+        /// <summary>
+        /// Indicates the type of request to which the rule applies.  Possible values: **authorization**, **authentication**, **tokenization**.
+        /// </summary>
+        /// <value>Indicates the type of request to which the rule applies.  Possible values: **authorization**, **authentication**, **tokenization**.</value>
+        [DataMember(Name = "requestType", EmitDefaultValue = false)]
+        public RequestTypeEnum? RequestType { get; set; }
+        /// <summary>
         /// The status of the transaction rule. If you provide a &#x60;startDate&#x60; in the request, the rule is automatically created  with an **active** status.   Possible values: **active**, **inactive**.
         /// </summary>
         /// <value>The status of the transaction rule. If you provide a &#x60;startDate&#x60; in the request, the rule is automatically created  with an **active** status.   Possible values: **active**, **inactive**.</value>
@@ -145,12 +179,13 @@ namespace Adyen.Model.BalancePlatform
         /// <param name="interval">interval (required).</param>
         /// <param name="outcomeType">The [outcome](https://docs.adyen.com/issuing/transaction-rules#outcome) that will be applied when a transaction meets the conditions of the rule. If not provided, by default, this is set to **hardBlock**.  Possible values:   * **hardBlock**: the transaction is declined.  * **scoreBased**: the transaction is assigned the &#x60;score&#x60; you specified. Adyen calculates the total score and if it exceeds 100, the transaction is declined..</param>
         /// <param name="reference">Your reference for the transaction rule, maximum 150 characters. (required).</param>
+        /// <param name="requestType">Indicates the type of request to which the rule applies.  Possible values: **authorization**, **authentication**, **tokenization**..</param>
         /// <param name="ruleRestrictions">ruleRestrictions (required).</param>
         /// <param name="score">A positive or negative score applied to the transaction if it meets the conditions of the rule. Required when &#x60;outcomeType&#x60; is **scoreBased**.  The value must be between **-100** and **100**..</param>
         /// <param name="startDate">The date when the rule will start to be evaluated, in ISO 8601 extended offset date-time format. For example, **2020-12-18T10:15:30+01:00**.  If not provided when creating a transaction rule, the &#x60;startDate&#x60; is set to the date when the rule status is set to **active**.   .</param>
         /// <param name="status">The status of the transaction rule. If you provide a &#x60;startDate&#x60; in the request, the rule is automatically created  with an **active** status.   Possible values: **active**, **inactive**..</param>
         /// <param name="type">The [type of rule](https://docs.adyen.com/issuing/transaction-rules#rule-types), which defines if a rule blocks transactions based on individual characteristics or accumulates data.  Possible values:  * **blockList**: decline a transaction when the conditions are met.  * **maxUsage**: add the amount or number of transactions for the lifetime of a payment instrument, and then decline a transaction when the specified limits are met.  * **velocity**: add the amount or number of transactions based on a specified time interval, and then decline a transaction when the specified limits are met.  (required).</param>
-        public TransactionRule(string aggregationLevel = default(string), string description = default(string), string endDate = default(string), TransactionRuleEntityKey entityKey = default(TransactionRuleEntityKey), string id = default(string), TransactionRuleInterval interval = default(TransactionRuleInterval), OutcomeTypeEnum? outcomeType = default(OutcomeTypeEnum?), string reference = default(string), TransactionRuleRestrictions ruleRestrictions = default(TransactionRuleRestrictions), int? score = default(int?), string startDate = default(string), StatusEnum? status = default(StatusEnum?), TypeEnum type = default(TypeEnum))
+        public TransactionRule(string aggregationLevel = default(string), string description = default(string), string endDate = default(string), TransactionRuleEntityKey entityKey = default(TransactionRuleEntityKey), string id = default(string), TransactionRuleInterval interval = default(TransactionRuleInterval), OutcomeTypeEnum? outcomeType = default(OutcomeTypeEnum?), string reference = default(string), RequestTypeEnum? requestType = default(RequestTypeEnum?), TransactionRuleRestrictions ruleRestrictions = default(TransactionRuleRestrictions), int? score = default(int?), string startDate = default(string), StatusEnum? status = default(StatusEnum?), TypeEnum type = default(TypeEnum))
         {
             this.Description = description;
             this.EntityKey = entityKey;
@@ -162,6 +197,7 @@ namespace Adyen.Model.BalancePlatform
             this.EndDate = endDate;
             this.Id = id;
             this.OutcomeType = outcomeType;
+            this.RequestType = requestType;
             this.Score = score;
             this.StartDate = startDate;
             this.Status = status;
@@ -250,6 +286,7 @@ namespace Adyen.Model.BalancePlatform
             sb.Append("  Interval: ").Append(Interval).Append("\n");
             sb.Append("  OutcomeType: ").Append(OutcomeType).Append("\n");
             sb.Append("  Reference: ").Append(Reference).Append("\n");
+            sb.Append("  RequestType: ").Append(RequestType).Append("\n");
             sb.Append("  RuleRestrictions: ").Append(RuleRestrictions).Append("\n");
             sb.Append("  Score: ").Append(Score).Append("\n");
             sb.Append("  StartDate: ").Append(StartDate).Append("\n");
@@ -330,6 +367,10 @@ namespace Adyen.Model.BalancePlatform
                     this.Reference.Equals(input.Reference))
                 ) && 
                 (
+                    this.RequestType == input.RequestType ||
+                    this.RequestType.Equals(input.RequestType)
+                ) && 
+                (
                     this.RuleRestrictions == input.RuleRestrictions ||
                     (this.RuleRestrictions != null &&
                     this.RuleRestrictions.Equals(input.RuleRestrictions))
@@ -391,6 +432,7 @@ namespace Adyen.Model.BalancePlatform
                 {
                     hashCode = (hashCode * 59) + this.Reference.GetHashCode();
                 }
+                hashCode = (hashCode * 59) + this.RequestType.GetHashCode();
                 if (this.RuleRestrictions != null)
                 {
                     hashCode = (hashCode * 59) + this.RuleRestrictions.GetHashCode();

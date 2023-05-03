@@ -76,9 +76,9 @@ namespace Adyen.Model.Checkout
         /// Initializes a new instance of the <see cref="PaymentMethodsRequest" /> class.
         /// </summary>
         /// <param name="additionalData">This field contains additional data, which may be required for a particular payment request.  The &#x60;additionalData&#x60; object consists of entries, each of which includes the key and value..</param>
-        /// <param name="allowedPaymentMethods">List of payment methods to be presented to the shopper. To refer to payment methods, use their &#x60;paymentMethod.type&#x60; from [Payment methods overview](https://docs.adyen.com/payment-methods).  Example: &#x60;\&quot;allowedPaymentMethods\&quot;:[\&quot;ideal\&quot;,\&quot;giropay\&quot;]&#x60;.</param>
+        /// <param name="allowedPaymentMethods">List of payment methods to be presented to the shopper. To refer to payment methods, use their [payment method type](https://docs.adyen.com/payment-methods/payment-method-types).  Example: &#x60;\&quot;allowedPaymentMethods\&quot;:[\&quot;ideal\&quot;,\&quot;giropay\&quot;]&#x60;.</param>
         /// <param name="amount">amount.</param>
-        /// <param name="blockedPaymentMethods">List of payment methods to be hidden from the shopper. To refer to payment methods, use their &#x60;paymentMethod.type&#x60; from [Payment methods overview](https://docs.adyen.com/payment-methods).  Example: &#x60;\&quot;blockedPaymentMethods\&quot;:[\&quot;ideal\&quot;,\&quot;giropay\&quot;]&#x60;.</param>
+        /// <param name="blockedPaymentMethods">List of payment methods to be hidden from the shopper. To refer to payment methods, use their [payment method type](https://docs.adyen.com/payment-methods/payment-method-types).  Example: &#x60;\&quot;blockedPaymentMethods\&quot;:[\&quot;ideal\&quot;,\&quot;giropay\&quot;]&#x60;.</param>
         /// <param name="channel">The platform where a payment transaction takes place. This field can be used for filtering out payment methods that are only available on specific platforms. Possible values: * iOS * Android * Web.</param>
         /// <param name="countryCode">The shopper&#39;s country code..</param>
         /// <param name="merchantAccount">The merchant account identifier, with which you want to process the transaction. (required).</param>
@@ -87,7 +87,7 @@ namespace Adyen.Model.Checkout
         /// <param name="shopperReference">Required for recurring payments.  Your reference to uniquely identify this shopper, for example user ID or account ID. Minimum length: 3 characters. &gt; Your reference must not include personally identifiable information (PII), for example name or email address..</param>
         /// <param name="splitCardFundingSources">Boolean value indicating whether the card payment method should be split into separate debit and credit options. (default to false).</param>
         /// <param name="store">The ecommerce or point-of-sale store that is processing the payment. Used in [partner model integrations](https://docs.adyen.com/marketplaces-and-platforms/classic/platforms-for-partners#route-payments) for Adyen for Platforms..</param>
-        public PaymentMethodsRequest(Dictionary<string, string> additionalData = default(Dictionary<string, string>), List<string> allowedPaymentMethods = default(List<string>), Amount amount = default(Amount), List<string> blockedPaymentMethods = default(List<string>), ChannelEnum? channel = default(ChannelEnum?), string countryCode = default(string), string merchantAccount = default(string), CheckoutOrder order = default(CheckoutOrder), string shopperLocale = default(string), string shopperReference = default(string), bool splitCardFundingSources = false, string store = default(string))
+        public PaymentMethodsRequest(Dictionary<string, string> additionalData = default(Dictionary<string, string>), List<string> allowedPaymentMethods = default(List<string>), Amount amount = default(Amount), List<string> blockedPaymentMethods = default(List<string>), ChannelEnum? channel = default(ChannelEnum?), string countryCode = default(string), string merchantAccount = default(string), EncryptedOrderData order = default(EncryptedOrderData), string shopperLocale = default(string), string shopperReference = default(string), bool splitCardFundingSources = false, string store = default(string))
         {
             this.MerchantAccount = merchantAccount;
             this.AdditionalData = additionalData;
@@ -111,9 +111,9 @@ namespace Adyen.Model.Checkout
         public Dictionary<string, string> AdditionalData { get; set; }
 
         /// <summary>
-        /// List of payment methods to be presented to the shopper. To refer to payment methods, use their &#x60;paymentMethod.type&#x60; from [Payment methods overview](https://docs.adyen.com/payment-methods).  Example: &#x60;\&quot;allowedPaymentMethods\&quot;:[\&quot;ideal\&quot;,\&quot;giropay\&quot;]&#x60;
+        /// List of payment methods to be presented to the shopper. To refer to payment methods, use their [payment method type](https://docs.adyen.com/payment-methods/payment-method-types).  Example: &#x60;\&quot;allowedPaymentMethods\&quot;:[\&quot;ideal\&quot;,\&quot;giropay\&quot;]&#x60;
         /// </summary>
-        /// <value>List of payment methods to be presented to the shopper. To refer to payment methods, use their &#x60;paymentMethod.type&#x60; from [Payment methods overview](https://docs.adyen.com/payment-methods).  Example: &#x60;\&quot;allowedPaymentMethods\&quot;:[\&quot;ideal\&quot;,\&quot;giropay\&quot;]&#x60;</value>
+        /// <value>List of payment methods to be presented to the shopper. To refer to payment methods, use their [payment method type](https://docs.adyen.com/payment-methods/payment-method-types).  Example: &#x60;\&quot;allowedPaymentMethods\&quot;:[\&quot;ideal\&quot;,\&quot;giropay\&quot;]&#x60;</value>
         [DataMember(Name = "allowedPaymentMethods", EmitDefaultValue = false)]
         public List<string> AllowedPaymentMethods { get; set; }
 
@@ -124,9 +124,9 @@ namespace Adyen.Model.Checkout
         public Amount Amount { get; set; }
 
         /// <summary>
-        /// List of payment methods to be hidden from the shopper. To refer to payment methods, use their &#x60;paymentMethod.type&#x60; from [Payment methods overview](https://docs.adyen.com/payment-methods).  Example: &#x60;\&quot;blockedPaymentMethods\&quot;:[\&quot;ideal\&quot;,\&quot;giropay\&quot;]&#x60;
+        /// List of payment methods to be hidden from the shopper. To refer to payment methods, use their [payment method type](https://docs.adyen.com/payment-methods/payment-method-types).  Example: &#x60;\&quot;blockedPaymentMethods\&quot;:[\&quot;ideal\&quot;,\&quot;giropay\&quot;]&#x60;
         /// </summary>
-        /// <value>List of payment methods to be hidden from the shopper. To refer to payment methods, use their &#x60;paymentMethod.type&#x60; from [Payment methods overview](https://docs.adyen.com/payment-methods).  Example: &#x60;\&quot;blockedPaymentMethods\&quot;:[\&quot;ideal\&quot;,\&quot;giropay\&quot;]&#x60;</value>
+        /// <value>List of payment methods to be hidden from the shopper. To refer to payment methods, use their [payment method type](https://docs.adyen.com/payment-methods/payment-method-types).  Example: &#x60;\&quot;blockedPaymentMethods\&quot;:[\&quot;ideal\&quot;,\&quot;giropay\&quot;]&#x60;</value>
         [DataMember(Name = "blockedPaymentMethods", EmitDefaultValue = false)]
         public List<string> BlockedPaymentMethods { get; set; }
 
@@ -148,7 +148,7 @@ namespace Adyen.Model.Checkout
         /// Gets or Sets Order
         /// </summary>
         [DataMember(Name = "order", EmitDefaultValue = false)]
-        public CheckoutOrder Order { get; set; }
+        public EncryptedOrderData Order { get; set; }
 
         /// <summary>
         /// The combination of a language code and a country code to specify the language to be used in the payment.

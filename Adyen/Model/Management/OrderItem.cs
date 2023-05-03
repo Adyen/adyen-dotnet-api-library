@@ -37,11 +37,13 @@ namespace Adyen.Model.Management
         /// Initializes a new instance of the <see cref="OrderItem" /> class.
         /// </summary>
         /// <param name="id">The unique identifier of the product..</param>
+        /// <param name="installments">The number of installments for the specified product &#x60;id&#x60;..</param>
         /// <param name="name">The name of the product..</param>
         /// <param name="quantity">The number of items with the specified product &#x60;id&#x60; included in the order..</param>
-        public OrderItem(string id = default(string), string name = default(string), int? quantity = default(int?))
+        public OrderItem(string id = default(string), long? installments = default(long?), string name = default(string), int? quantity = default(int?))
         {
             this.Id = id;
+            this.Installments = installments;
             this.Name = name;
             this.Quantity = quantity;
         }
@@ -52,6 +54,13 @@ namespace Adyen.Model.Management
         /// <value>The unique identifier of the product.</value>
         [DataMember(Name = "id", EmitDefaultValue = false)]
         public string Id { get; set; }
+
+        /// <summary>
+        /// The number of installments for the specified product &#x60;id&#x60;.
+        /// </summary>
+        /// <value>The number of installments for the specified product &#x60;id&#x60;.</value>
+        [DataMember(Name = "installments", EmitDefaultValue = false)]
+        public long? Installments { get; set; }
 
         /// <summary>
         /// The name of the product.
@@ -76,6 +85,7 @@ namespace Adyen.Model.Management
             StringBuilder sb = new StringBuilder();
             sb.Append("class OrderItem {\n");
             sb.Append("  Id: ").Append(Id).Append("\n");
+            sb.Append("  Installments: ").Append(Installments).Append("\n");
             sb.Append("  Name: ").Append(Name).Append("\n");
             sb.Append("  Quantity: ").Append(Quantity).Append("\n");
             sb.Append("}\n");
@@ -119,6 +129,10 @@ namespace Adyen.Model.Management
                     this.Id.Equals(input.Id))
                 ) && 
                 (
+                    this.Installments == input.Installments ||
+                    this.Installments.Equals(input.Installments)
+                ) && 
+                (
                     this.Name == input.Name ||
                     (this.Name != null &&
                     this.Name.Equals(input.Name))
@@ -142,6 +156,7 @@ namespace Adyen.Model.Management
                 {
                     hashCode = (hashCode * 59) + this.Id.GetHashCode();
                 }
+                hashCode = (hashCode * 59) + this.Installments.GetHashCode();
                 if (this.Name != null)
                 {
                     hashCode = (hashCode * 59) + this.Name.GetHashCode();

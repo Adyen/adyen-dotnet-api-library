@@ -34,6 +34,34 @@ namespace Adyen.Model.Transfers
     public partial class CALocalAccountIdentification : IEquatable<CALocalAccountIdentification>, IValidatableObject
     {
         /// <summary>
+        /// The bank account type.  Possible values: **checking** or **savings**. Defaults to **checking**.
+        /// </summary>
+        /// <value>The bank account type.  Possible values: **checking** or **savings**. Defaults to **checking**.</value>
+        [JsonConverter(typeof(StringEnumConverter))]
+        public enum AccountTypeEnum
+        {
+            /// <summary>
+            /// Enum Checking for value: checking
+            /// </summary>
+            [EnumMember(Value = "checking")]
+            Checking = 1,
+
+            /// <summary>
+            /// Enum Savings for value: savings
+            /// </summary>
+            [EnumMember(Value = "savings")]
+            Savings = 2
+
+        }
+
+
+        /// <summary>
+        /// The bank account type.  Possible values: **checking** or **savings**. Defaults to **checking**.
+        /// </summary>
+        /// <value>The bank account type.  Possible values: **checking** or **savings**. Defaults to **checking**.</value>
+        [DataMember(Name = "accountType", EmitDefaultValue = false)]
+        public AccountTypeEnum? AccountType { get; set; }
+        /// <summary>
         /// **caLocal**
         /// </summary>
         /// <value>**caLocal**</value>
@@ -64,15 +92,17 @@ namespace Adyen.Model.Transfers
         /// Initializes a new instance of the <see cref="CALocalAccountIdentification" /> class.
         /// </summary>
         /// <param name="accountNumber">The 5- to 12-digit bank account number, without separators or whitespace. (required).</param>
+        /// <param name="accountType">The bank account type.  Possible values: **checking** or **savings**. Defaults to **checking**. (default to AccountTypeEnum.Checking).</param>
         /// <param name="institutionNumber">The 3-digit institution number, without separators or whitespace. (required).</param>
         /// <param name="transitNumber">The 5-digit transit number, without separators or whitespace. (required).</param>
         /// <param name="type">**caLocal** (required) (default to TypeEnum.CaLocal).</param>
-        public CALocalAccountIdentification(string accountNumber = default(string), string institutionNumber = default(string), string transitNumber = default(string), TypeEnum type = TypeEnum.CaLocal)
+        public CALocalAccountIdentification(string accountNumber = default(string), AccountTypeEnum? accountType = AccountTypeEnum.Checking, string institutionNumber = default(string), string transitNumber = default(string), TypeEnum type = TypeEnum.CaLocal)
         {
             this.AccountNumber = accountNumber;
             this.InstitutionNumber = institutionNumber;
             this.TransitNumber = transitNumber;
             this.Type = type;
+            this.AccountType = accountType;
         }
 
         /// <summary>
@@ -105,6 +135,7 @@ namespace Adyen.Model.Transfers
             StringBuilder sb = new StringBuilder();
             sb.Append("class CALocalAccountIdentification {\n");
             sb.Append("  AccountNumber: ").Append(AccountNumber).Append("\n");
+            sb.Append("  AccountType: ").Append(AccountType).Append("\n");
             sb.Append("  InstitutionNumber: ").Append(InstitutionNumber).Append("\n");
             sb.Append("  TransitNumber: ").Append(TransitNumber).Append("\n");
             sb.Append("  Type: ").Append(Type).Append("\n");
@@ -149,6 +180,10 @@ namespace Adyen.Model.Transfers
                     this.AccountNumber.Equals(input.AccountNumber))
                 ) && 
                 (
+                    this.AccountType == input.AccountType ||
+                    this.AccountType.Equals(input.AccountType)
+                ) && 
+                (
                     this.InstitutionNumber == input.InstitutionNumber ||
                     (this.InstitutionNumber != null &&
                     this.InstitutionNumber.Equals(input.InstitutionNumber))
@@ -177,6 +212,7 @@ namespace Adyen.Model.Transfers
                 {
                     hashCode = (hashCode * 59) + this.AccountNumber.GetHashCode();
                 }
+                hashCode = (hashCode * 59) + this.AccountType.GetHashCode();
                 if (this.InstitutionNumber != null)
                 {
                     hashCode = (hashCode * 59) + this.InstitutionNumber.GetHashCode();

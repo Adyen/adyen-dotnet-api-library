@@ -135,6 +135,7 @@ namespace Adyen.Model.Payout
         /// </summary>
         /// <value>The date of birth. Format: [ISO-8601](https://www.w3.org/TR/NOTE-datetime); example: YYYY-MM-DD For Paysafecard it must be the same as used when registering the Paysafecard account. &gt; This field is mandatory for natural persons.</value>
         [DataMember(Name = "dateOfBirth", IsRequired = false, EmitDefaultValue = false)]
+        [JsonConverter(typeof(OpenAPIDateConverter))]
         public DateTime DateOfBirth { get; set; }
 
         /// <summary>

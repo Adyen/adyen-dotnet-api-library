@@ -130,9 +130,9 @@ namespace Adyen.Model.Checkout
         [DataMember(Name = "industryUsage", EmitDefaultValue = false)]
         public IndustryUsageEnum? IndustryUsage { get; set; }
         /// <summary>
-        /// Defines a recurring payment type. Allowed values: * &#x60;Subscription&#x60; – A transaction for a fixed or variable amount, which follows a fixed schedule. * &#x60;CardOnFile&#x60; – With a card-on-file (CoF) transaction, card details are stored to enable one-click or omnichannel journeys, or simply to streamline the checkout process. Any subscription not following a fixed schedule is also considered a card-on-file transaction. * &#x60;UnscheduledCardOnFile&#x60; – An unscheduled card-on-file (UCoF) transaction is a transaction that occurs on a non-fixed schedule and/or have variable amounts. For example, automatic top-ups when a cardholder&#39;s balance drops below a certain amount. 
+        /// Defines a recurring payment type. Required when creating a token to store payment details or using stored payment details. Allowed values: * &#x60;Subscription&#x60; – A transaction for a fixed or variable amount, which follows a fixed schedule. * &#x60;CardOnFile&#x60; – With a card-on-file (CoF) transaction, card details are stored to enable one-click or omnichannel journeys, or simply to streamline the checkout process. Any subscription not following a fixed schedule is also considered a card-on-file transaction. * &#x60;UnscheduledCardOnFile&#x60; – An unscheduled card-on-file (UCoF) transaction is a transaction that occurs on a non-fixed schedule and/or have variable amounts. For example, automatic top-ups when a cardholder&#39;s balance drops below a certain amount. 
         /// </summary>
-        /// <value>Defines a recurring payment type. Allowed values: * &#x60;Subscription&#x60; – A transaction for a fixed or variable amount, which follows a fixed schedule. * &#x60;CardOnFile&#x60; – With a card-on-file (CoF) transaction, card details are stored to enable one-click or omnichannel journeys, or simply to streamline the checkout process. Any subscription not following a fixed schedule is also considered a card-on-file transaction. * &#x60;UnscheduledCardOnFile&#x60; – An unscheduled card-on-file (UCoF) transaction is a transaction that occurs on a non-fixed schedule and/or have variable amounts. For example, automatic top-ups when a cardholder&#39;s balance drops below a certain amount. </value>
+        /// <value>Defines a recurring payment type. Required when creating a token to store payment details or using stored payment details. Allowed values: * &#x60;Subscription&#x60; – A transaction for a fixed or variable amount, which follows a fixed schedule. * &#x60;CardOnFile&#x60; – With a card-on-file (CoF) transaction, card details are stored to enable one-click or omnichannel journeys, or simply to streamline the checkout process. Any subscription not following a fixed schedule is also considered a card-on-file transaction. * &#x60;UnscheduledCardOnFile&#x60; – An unscheduled card-on-file (UCoF) transaction is a transaction that occurs on a non-fixed schedule and/or have variable amounts. For example, automatic top-ups when a cardholder&#39;s balance drops below a certain amount. </value>
         [JsonConverter(typeof(StringEnumConverter))]
         public enum RecurringProcessingModelEnum
         {
@@ -158,9 +158,9 @@ namespace Adyen.Model.Checkout
 
 
         /// <summary>
-        /// Defines a recurring payment type. Allowed values: * &#x60;Subscription&#x60; – A transaction for a fixed or variable amount, which follows a fixed schedule. * &#x60;CardOnFile&#x60; – With a card-on-file (CoF) transaction, card details are stored to enable one-click or omnichannel journeys, or simply to streamline the checkout process. Any subscription not following a fixed schedule is also considered a card-on-file transaction. * &#x60;UnscheduledCardOnFile&#x60; – An unscheduled card-on-file (UCoF) transaction is a transaction that occurs on a non-fixed schedule and/or have variable amounts. For example, automatic top-ups when a cardholder&#39;s balance drops below a certain amount. 
+        /// Defines a recurring payment type. Required when creating a token to store payment details or using stored payment details. Allowed values: * &#x60;Subscription&#x60; – A transaction for a fixed or variable amount, which follows a fixed schedule. * &#x60;CardOnFile&#x60; – With a card-on-file (CoF) transaction, card details are stored to enable one-click or omnichannel journeys, or simply to streamline the checkout process. Any subscription not following a fixed schedule is also considered a card-on-file transaction. * &#x60;UnscheduledCardOnFile&#x60; – An unscheduled card-on-file (UCoF) transaction is a transaction that occurs on a non-fixed schedule and/or have variable amounts. For example, automatic top-ups when a cardholder&#39;s balance drops below a certain amount. 
         /// </summary>
-        /// <value>Defines a recurring payment type. Allowed values: * &#x60;Subscription&#x60; – A transaction for a fixed or variable amount, which follows a fixed schedule. * &#x60;CardOnFile&#x60; – With a card-on-file (CoF) transaction, card details are stored to enable one-click or omnichannel journeys, or simply to streamline the checkout process. Any subscription not following a fixed schedule is also considered a card-on-file transaction. * &#x60;UnscheduledCardOnFile&#x60; – An unscheduled card-on-file (UCoF) transaction is a transaction that occurs on a non-fixed schedule and/or have variable amounts. For example, automatic top-ups when a cardholder&#39;s balance drops below a certain amount. </value>
+        /// <value>Defines a recurring payment type. Required when creating a token to store payment details or using stored payment details. Allowed values: * &#x60;Subscription&#x60; – A transaction for a fixed or variable amount, which follows a fixed schedule. * &#x60;CardOnFile&#x60; – With a card-on-file (CoF) transaction, card details are stored to enable one-click or omnichannel journeys, or simply to streamline the checkout process. Any subscription not following a fixed schedule is also considered a card-on-file transaction. * &#x60;UnscheduledCardOnFile&#x60; – An unscheduled card-on-file (UCoF) transaction is a transaction that occurs on a non-fixed schedule and/or have variable amounts. For example, automatic top-ups when a cardholder&#39;s balance drops below a certain amount. </value>
         [DataMember(Name = "recurringProcessingModel", EmitDefaultValue = false)]
         public RecurringProcessingModelEnum? RecurringProcessingModel { get; set; }
         /// <summary>
@@ -212,6 +212,7 @@ namespace Adyen.Model.Checkout
         /// Initializes a new instance of the <see cref="PaymentDonationRequest" /> class.
         /// </summary>
         /// <param name="accountInfo">accountInfo.</param>
+        /// <param name="additionalAmount">additionalAmount.</param>
         /// <param name="additionalData">This field contains additional data, which may be required for a particular payment request.  The &#x60;additionalData&#x60; object consists of entries, each of which includes the key and value..</param>
         /// <param name="amount">amount (required).</param>
         /// <param name="applicationInfo">applicationInfo.</param>
@@ -220,9 +221,9 @@ namespace Adyen.Model.Checkout
         /// <param name="browserInfo">browserInfo.</param>
         /// <param name="captureDelayHours">The delay between the authorisation and scheduled auto-capture, specified in hours..</param>
         /// <param name="channel">The platform where a payment transaction takes place. This field is optional for filtering out payment methods that are only available on specific platforms. If this value is not set, then we will try to infer it from the &#x60;sdkVersion&#x60; or &#x60;token&#x60;.  Possible values: * iOS * Android * Web.</param>
-        /// <param name="checkoutAttemptId">Checkout attempt ID that corresponds to the Id generated for tracking user payment journey..</param>
+        /// <param name="checkoutAttemptId">Checkout attempt ID that corresponds to the Id generated by the client SDK for tracking user payment journey..</param>
         /// <param name="company">company.</param>
-        /// <param name="conversionId">Conversion ID that corresponds to the Id generated for tracking user payment journey..</param>
+        /// <param name="conversionId">Conversion ID that corresponds to the Id generated by the client SDK for tracking user payment journey..</param>
         /// <param name="countryCode">The shopper country.  Format: [ISO 3166-1 alpha-2](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2) Example: NL or DE.</param>
         /// <param name="dateOfBirth">The shopper&#39;s date of birth.  Format [ISO-8601](https://www.w3.org/TR/NOTE-datetime): YYYY-MM-DD.</param>
         /// <param name="dccQuote">dccQuote.</param>
@@ -239,8 +240,8 @@ namespace Adyen.Model.Checkout
         /// <param name="fraudOffset">An integer value that is added to the normal fraud score. The value can be either positive or negative..</param>
         /// <param name="industryUsage">The reason for the amount update. Possible values:  * **delayedCharge**  * **noShow**  * **installment**.</param>
         /// <param name="installments">installments.</param>
-        /// <param name="lineItems">Price and product information about the purchased items, to be included on the invoice sent to the shopper. &gt; This field is required for 3x 4x Oney, Affirm, Afterpay, Clearpay, Klarna, Ratepay, Zip and Atome..</param>
-        /// <param name="localizedShopperStatement">This field allows merchants to use dynamic shopper statement in local character sets. The local shopper statement field can be supplied in markets where localized merchant descriptors are used. Currently, Adyen only supports this in the Japanese market .The available character sets at the moment are: * Processing in Japan: **ja-Kana** The character set **ja-Kana** supports UTF-8 based Katakana and alphanumeric and special characters. Merchants should send the Katakana shopperStatement in full-width characters.  An example request would be: &gt; {   \&quot;shopperStatement\&quot; : \&quot;ADYEN - SELLER-A\&quot;,   \&quot;localizedShopperStatement\&quot; : {     \&quot;ja-Kana\&quot; : \&quot;ADYEN - セラーA\&quot;   } } We recommend merchants to always supply the field localizedShopperStatement in addition to the field shopperStatement.It is issuer dependent whether the localized shopper statement field is supported. In the case of non-domestic transactions (e.g. US-issued cards processed in JP) the field &#x60;shopperStatement&#x60; is used to modify the statement of the shopper. Adyen handles the complexity of ensuring the correct descriptors are assigned..</param>
+        /// <param name="lineItems">Price and product information of the refunded items, required for [partial refunds](https://docs.adyen.com/online-payments/refund#refund-a-payment). &gt; This field is required for partial refunds with 3x 4x Oney, Affirm, Afterpay, Atome, Clearpay, Klarna, Ratepay, Walley, and Zip..</param>
+        /// <param name="localizedShopperStatement">This field allows merchants to use dynamic shopper statement in local character sets. The local shopper statement field can be supplied in markets where localized merchant descriptors are used. Currently, Adyen only supports this in the Japanese market .The available character sets at the moment are: * Processing in Japan: **ja-Kana** The character set **ja-Kana** supports UTF-8 based Katakana and alphanumeric and special characters. Merchants can use half-width or full-width characters. An example request would be: &gt; {   \&quot;shopperStatement\&quot; : \&quot;ADYEN - SELLER-A\&quot;,   \&quot;localizedShopperStatement\&quot; : {     \&quot;ja-Kana\&quot; : \&quot;ADYEN - セラーA\&quot;   } } We recommend merchants to always supply the field localizedShopperStatement in addition to the field shopperStatement.It is issuer dependent whether the localized shopper statement field is supported. In the case of non-domestic transactions (e.g. US-issued cards processed in JP) the field &#x60;shopperStatement&#x60; is used to modify the statement of the shopper. Adyen handles the complexity of ensuring the correct descriptors are assigned. Please note, this field can be used for only Visa and Mastercard transactions..</param>
         /// <param name="mandate">mandate.</param>
         /// <param name="mcc">The [merchant category code](https://en.wikipedia.org/wiki/Merchant_category_code) (MCC) is a four-digit number, which relates to a particular market segment. This code reflects the predominant activity that is conducted by the merchant..</param>
         /// <param name="merchantAccount">The merchant account identifier, with which you want to process the transaction. (required).</param>
@@ -255,7 +256,7 @@ namespace Adyen.Model.Checkout
         /// <param name="platformChargebackLogic">platformChargebackLogic.</param>
         /// <param name="recurringExpiry">Date after which no further authorisations shall be performed. Only for 3D Secure 2..</param>
         /// <param name="recurringFrequency">Minimum number of days between authorisations. Only for 3D Secure 2..</param>
-        /// <param name="recurringProcessingModel">Defines a recurring payment type. Allowed values: * &#x60;Subscription&#x60; – A transaction for a fixed or variable amount, which follows a fixed schedule. * &#x60;CardOnFile&#x60; – With a card-on-file (CoF) transaction, card details are stored to enable one-click or omnichannel journeys, or simply to streamline the checkout process. Any subscription not following a fixed schedule is also considered a card-on-file transaction. * &#x60;UnscheduledCardOnFile&#x60; – An unscheduled card-on-file (UCoF) transaction is a transaction that occurs on a non-fixed schedule and/or have variable amounts. For example, automatic top-ups when a cardholder&#39;s balance drops below a certain amount. .</param>
+        /// <param name="recurringProcessingModel">Defines a recurring payment type. Required when creating a token to store payment details or using stored payment details. Allowed values: * &#x60;Subscription&#x60; – A transaction for a fixed or variable amount, which follows a fixed schedule. * &#x60;CardOnFile&#x60; – With a card-on-file (CoF) transaction, card details are stored to enable one-click or omnichannel journeys, or simply to streamline the checkout process. Any subscription not following a fixed schedule is also considered a card-on-file transaction. * &#x60;UnscheduledCardOnFile&#x60; – An unscheduled card-on-file (UCoF) transaction is a transaction that occurs on a non-fixed schedule and/or have variable amounts. For example, automatic top-ups when a cardholder&#39;s balance drops below a certain amount. .</param>
         /// <param name="redirectFromIssuerMethod">Specifies the redirect method (GET or POST) when redirecting back from the issuer..</param>
         /// <param name="redirectToIssuerMethod">Specifies the redirect method (GET or POST) when redirecting to the issuer..</param>
         /// <param name="reference">The reference to uniquely identify a payment. This reference is used in all communication with you about the payment status. We recommend using a unique value per payment; however, it is not a requirement. If you need to provide multiple references for a transaction, separate them with hyphens (\&quot;-\&quot;). Maximum length: 80 characters. (required).</param>
@@ -277,7 +278,7 @@ namespace Adyen.Model.Checkout
         /// <param name="threeDS2RequestData">threeDS2RequestData.</param>
         /// <param name="threeDSAuthenticationOnly">If set to true, you will only perform the [3D Secure 2 authentication](https://docs.adyen.com/online-payments/3d-secure/other-3ds-flows/authentication-only), and not the payment authorisation. (default to false).</param>
         /// <param name="trustedShopper">Set to true if the payment should be routed to a trusted MID..</param>
-        public PaymentDonationRequest(AccountInfo accountInfo = default(AccountInfo), Dictionary<string, string> additionalData = default(Dictionary<string, string>), Amount amount = default(Amount), ApplicationInfo applicationInfo = default(ApplicationInfo), AuthenticationData authenticationData = default(AuthenticationData), Address billingAddress = default(Address), BrowserInfo browserInfo = default(BrowserInfo), int? captureDelayHours = default(int?), ChannelEnum? channel = default(ChannelEnum?), string checkoutAttemptId = default(string), Company company = default(Company), string conversionId = default(string), string countryCode = default(string), DateTime dateOfBirth = default(DateTime), ForexQuote dccQuote = default(ForexQuote), Address deliveryAddress = default(Address), DateTime deliveryDate = default(DateTime), string deviceFingerprint = default(string), string donationAccount = default(string), string donationOriginalPspReference = default(string), string donationToken = default(string), bool enableOneClick = default(bool), bool enablePayOut = default(bool), bool enableRecurring = default(bool), EntityTypeEnum? entityType = default(EntityTypeEnum?), int? fraudOffset = default(int?), IndustryUsageEnum? industryUsage = default(IndustryUsageEnum?), Installments installments = default(Installments), List<LineItem> lineItems = default(List<LineItem>), Dictionary<string, string> localizedShopperStatement = default(Dictionary<string, string>), Mandate mandate = default(Mandate), string mcc = default(string), string merchantAccount = default(string), string merchantOrderReference = default(string), MerchantRiskIndicator merchantRiskIndicator = default(MerchantRiskIndicator), Dictionary<string, string> metadata = default(Dictionary<string, string>), ThreeDSecureData mpiData = default(ThreeDSecureData), CheckoutOrder order = default(CheckoutOrder), string orderReference = default(string), string origin = default(string), CheckoutPaymentMethod paymentMethod = default(CheckoutPaymentMethod), PlatformChargebackLogic platformChargebackLogic = default(PlatformChargebackLogic), string recurringExpiry = default(string), string recurringFrequency = default(string), RecurringProcessingModelEnum? recurringProcessingModel = default(RecurringProcessingModelEnum?), string redirectFromIssuerMethod = default(string), string redirectToIssuerMethod = default(string), string reference = default(string), string returnUrl = default(string), RiskData riskData = default(RiskData), string sessionValidity = default(string), string shopperEmail = default(string), string shopperIP = default(string), ShopperInteractionEnum? shopperInteraction = default(ShopperInteractionEnum?), string shopperLocale = default(string), Name shopperName = default(Name), string shopperReference = default(string), string shopperStatement = default(string), string socialSecurityNumber = default(string), List<Split> splits = default(List<Split>), string store = default(string), bool storePaymentMethod = default(bool), string telephoneNumber = default(string), ThreeDS2RequestData threeDS2RequestData = default(ThreeDS2RequestData), bool threeDSAuthenticationOnly = false, bool trustedShopper = default(bool))
+        public PaymentDonationRequest(AccountInfo accountInfo = default(AccountInfo), Amount additionalAmount = default(Amount), Dictionary<string, string> additionalData = default(Dictionary<string, string>), Amount amount = default(Amount), ApplicationInfo applicationInfo = default(ApplicationInfo), AuthenticationData authenticationData = default(AuthenticationData), Address billingAddress = default(Address), BrowserInfo browserInfo = default(BrowserInfo), int? captureDelayHours = default(int?), ChannelEnum? channel = default(ChannelEnum?), string checkoutAttemptId = default(string), Company company = default(Company), string conversionId = default(string), string countryCode = default(string), DateTime dateOfBirth = default(DateTime), ForexQuote dccQuote = default(ForexQuote), Address deliveryAddress = default(Address), DateTime deliveryDate = default(DateTime), string deviceFingerprint = default(string), string donationAccount = default(string), string donationOriginalPspReference = default(string), string donationToken = default(string), bool enableOneClick = default(bool), bool enablePayOut = default(bool), bool enableRecurring = default(bool), EntityTypeEnum? entityType = default(EntityTypeEnum?), int? fraudOffset = default(int?), IndustryUsageEnum? industryUsage = default(IndustryUsageEnum?), Installments installments = default(Installments), List<LineItem> lineItems = default(List<LineItem>), Dictionary<string, string> localizedShopperStatement = default(Dictionary<string, string>), Mandate mandate = default(Mandate), string mcc = default(string), string merchantAccount = default(string), string merchantOrderReference = default(string), MerchantRiskIndicator merchantRiskIndicator = default(MerchantRiskIndicator), Dictionary<string, string> metadata = default(Dictionary<string, string>), ThreeDSecureData mpiData = default(ThreeDSecureData), EncryptedOrderData order = default(EncryptedOrderData), string orderReference = default(string), string origin = default(string), CheckoutPaymentMethod paymentMethod = default(CheckoutPaymentMethod), PlatformChargebackLogic platformChargebackLogic = default(PlatformChargebackLogic), string recurringExpiry = default(string), string recurringFrequency = default(string), RecurringProcessingModelEnum? recurringProcessingModel = default(RecurringProcessingModelEnum?), string redirectFromIssuerMethod = default(string), string redirectToIssuerMethod = default(string), string reference = default(string), string returnUrl = default(string), RiskData riskData = default(RiskData), string sessionValidity = default(string), string shopperEmail = default(string), string shopperIP = default(string), ShopperInteractionEnum? shopperInteraction = default(ShopperInteractionEnum?), string shopperLocale = default(string), Name shopperName = default(Name), string shopperReference = default(string), string shopperStatement = default(string), string socialSecurityNumber = default(string), List<Split> splits = default(List<Split>), string store = default(string), bool storePaymentMethod = default(bool), string telephoneNumber = default(string), ThreeDS2RequestData threeDS2RequestData = default(ThreeDS2RequestData), bool threeDSAuthenticationOnly = false, bool trustedShopper = default(bool))
         {
             this.Amount = amount;
             this.DonationAccount = donationAccount;
@@ -286,6 +287,7 @@ namespace Adyen.Model.Checkout
             this.Reference = reference;
             this.ReturnUrl = returnUrl;
             this.AccountInfo = accountInfo;
+            this.AdditionalAmount = additionalAmount;
             this.AdditionalData = additionalData;
             this.ApplicationInfo = applicationInfo;
             this.AuthenticationData = authenticationData;
@@ -354,6 +356,12 @@ namespace Adyen.Model.Checkout
         public AccountInfo AccountInfo { get; set; }
 
         /// <summary>
+        /// Gets or Sets AdditionalAmount
+        /// </summary>
+        [DataMember(Name = "additionalAmount", EmitDefaultValue = false)]
+        public Amount AdditionalAmount { get; set; }
+
+        /// <summary>
         /// This field contains additional data, which may be required for a particular payment request.  The &#x60;additionalData&#x60; object consists of entries, each of which includes the key and value.
         /// </summary>
         /// <value>This field contains additional data, which may be required for a particular payment request.  The &#x60;additionalData&#x60; object consists of entries, each of which includes the key and value.</value>
@@ -398,9 +406,9 @@ namespace Adyen.Model.Checkout
         public int? CaptureDelayHours { get; set; }
 
         /// <summary>
-        /// Checkout attempt ID that corresponds to the Id generated for tracking user payment journey.
+        /// Checkout attempt ID that corresponds to the Id generated by the client SDK for tracking user payment journey.
         /// </summary>
-        /// <value>Checkout attempt ID that corresponds to the Id generated for tracking user payment journey.</value>
+        /// <value>Checkout attempt ID that corresponds to the Id generated by the client SDK for tracking user payment journey.</value>
         [DataMember(Name = "checkoutAttemptId", EmitDefaultValue = false)]
         public string CheckoutAttemptId { get; set; }
 
@@ -411,10 +419,11 @@ namespace Adyen.Model.Checkout
         public Company Company { get; set; }
 
         /// <summary>
-        /// Conversion ID that corresponds to the Id generated for tracking user payment journey.
+        /// Conversion ID that corresponds to the Id generated by the client SDK for tracking user payment journey.
         /// </summary>
-        /// <value>Conversion ID that corresponds to the Id generated for tracking user payment journey.</value>
+        /// <value>Conversion ID that corresponds to the Id generated by the client SDK for tracking user payment journey.</value>
         [DataMember(Name = "conversionId", EmitDefaultValue = false)]
+        [Obsolete]
         public string ConversionId { get; set; }
 
         /// <summary>
@@ -514,16 +523,16 @@ namespace Adyen.Model.Checkout
         public Installments Installments { get; set; }
 
         /// <summary>
-        /// Price and product information about the purchased items, to be included on the invoice sent to the shopper. &gt; This field is required for 3x 4x Oney, Affirm, Afterpay, Clearpay, Klarna, Ratepay, Zip and Atome.
+        /// Price and product information of the refunded items, required for [partial refunds](https://docs.adyen.com/online-payments/refund#refund-a-payment). &gt; This field is required for partial refunds with 3x 4x Oney, Affirm, Afterpay, Atome, Clearpay, Klarna, Ratepay, Walley, and Zip.
         /// </summary>
-        /// <value>Price and product information about the purchased items, to be included on the invoice sent to the shopper. &gt; This field is required for 3x 4x Oney, Affirm, Afterpay, Clearpay, Klarna, Ratepay, Zip and Atome.</value>
+        /// <value>Price and product information of the refunded items, required for [partial refunds](https://docs.adyen.com/online-payments/refund#refund-a-payment). &gt; This field is required for partial refunds with 3x 4x Oney, Affirm, Afterpay, Atome, Clearpay, Klarna, Ratepay, Walley, and Zip.</value>
         [DataMember(Name = "lineItems", EmitDefaultValue = false)]
         public List<LineItem> LineItems { get; set; }
 
         /// <summary>
-        /// This field allows merchants to use dynamic shopper statement in local character sets. The local shopper statement field can be supplied in markets where localized merchant descriptors are used. Currently, Adyen only supports this in the Japanese market .The available character sets at the moment are: * Processing in Japan: **ja-Kana** The character set **ja-Kana** supports UTF-8 based Katakana and alphanumeric and special characters. Merchants should send the Katakana shopperStatement in full-width characters.  An example request would be: &gt; {   \&quot;shopperStatement\&quot; : \&quot;ADYEN - SELLER-A\&quot;,   \&quot;localizedShopperStatement\&quot; : {     \&quot;ja-Kana\&quot; : \&quot;ADYEN - セラーA\&quot;   } } We recommend merchants to always supply the field localizedShopperStatement in addition to the field shopperStatement.It is issuer dependent whether the localized shopper statement field is supported. In the case of non-domestic transactions (e.g. US-issued cards processed in JP) the field &#x60;shopperStatement&#x60; is used to modify the statement of the shopper. Adyen handles the complexity of ensuring the correct descriptors are assigned.
+        /// This field allows merchants to use dynamic shopper statement in local character sets. The local shopper statement field can be supplied in markets where localized merchant descriptors are used. Currently, Adyen only supports this in the Japanese market .The available character sets at the moment are: * Processing in Japan: **ja-Kana** The character set **ja-Kana** supports UTF-8 based Katakana and alphanumeric and special characters. Merchants can use half-width or full-width characters. An example request would be: &gt; {   \&quot;shopperStatement\&quot; : \&quot;ADYEN - SELLER-A\&quot;,   \&quot;localizedShopperStatement\&quot; : {     \&quot;ja-Kana\&quot; : \&quot;ADYEN - セラーA\&quot;   } } We recommend merchants to always supply the field localizedShopperStatement in addition to the field shopperStatement.It is issuer dependent whether the localized shopper statement field is supported. In the case of non-domestic transactions (e.g. US-issued cards processed in JP) the field &#x60;shopperStatement&#x60; is used to modify the statement of the shopper. Adyen handles the complexity of ensuring the correct descriptors are assigned. Please note, this field can be used for only Visa and Mastercard transactions.
         /// </summary>
-        /// <value>This field allows merchants to use dynamic shopper statement in local character sets. The local shopper statement field can be supplied in markets where localized merchant descriptors are used. Currently, Adyen only supports this in the Japanese market .The available character sets at the moment are: * Processing in Japan: **ja-Kana** The character set **ja-Kana** supports UTF-8 based Katakana and alphanumeric and special characters. Merchants should send the Katakana shopperStatement in full-width characters.  An example request would be: &gt; {   \&quot;shopperStatement\&quot; : \&quot;ADYEN - SELLER-A\&quot;,   \&quot;localizedShopperStatement\&quot; : {     \&quot;ja-Kana\&quot; : \&quot;ADYEN - セラーA\&quot;   } } We recommend merchants to always supply the field localizedShopperStatement in addition to the field shopperStatement.It is issuer dependent whether the localized shopper statement field is supported. In the case of non-domestic transactions (e.g. US-issued cards processed in JP) the field &#x60;shopperStatement&#x60; is used to modify the statement of the shopper. Adyen handles the complexity of ensuring the correct descriptors are assigned.</value>
+        /// <value>This field allows merchants to use dynamic shopper statement in local character sets. The local shopper statement field can be supplied in markets where localized merchant descriptors are used. Currently, Adyen only supports this in the Japanese market .The available character sets at the moment are: * Processing in Japan: **ja-Kana** The character set **ja-Kana** supports UTF-8 based Katakana and alphanumeric and special characters. Merchants can use half-width or full-width characters. An example request would be: &gt; {   \&quot;shopperStatement\&quot; : \&quot;ADYEN - SELLER-A\&quot;,   \&quot;localizedShopperStatement\&quot; : {     \&quot;ja-Kana\&quot; : \&quot;ADYEN - セラーA\&quot;   } } We recommend merchants to always supply the field localizedShopperStatement in addition to the field shopperStatement.It is issuer dependent whether the localized shopper statement field is supported. In the case of non-domestic transactions (e.g. US-issued cards processed in JP) the field &#x60;shopperStatement&#x60; is used to modify the statement of the shopper. Adyen handles the complexity of ensuring the correct descriptors are assigned. Please note, this field can be used for only Visa and Mastercard transactions.</value>
         [DataMember(Name = "localizedShopperStatement", EmitDefaultValue = false)]
         public Dictionary<string, string> LocalizedShopperStatement { get; set; }
 
@@ -577,7 +586,7 @@ namespace Adyen.Model.Checkout
         /// Gets or Sets Order
         /// </summary>
         [DataMember(Name = "order", EmitDefaultValue = false)]
-        public CheckoutOrder Order { get; set; }
+        public EncryptedOrderData Order { get; set; }
 
         /// <summary>
         /// When you are doing multiple partial (gift card) payments, this is the &#x60;pspReference&#x60; of the first payment. We use this to link the multiple payments to each other. As your own reference for linking multiple payments, use the &#x60;merchantOrderReference&#x60;instead.
@@ -766,6 +775,7 @@ namespace Adyen.Model.Checkout
             StringBuilder sb = new StringBuilder();
             sb.Append("class PaymentDonationRequest {\n");
             sb.Append("  AccountInfo: ").Append(AccountInfo).Append("\n");
+            sb.Append("  AdditionalAmount: ").Append(AdditionalAmount).Append("\n");
             sb.Append("  AdditionalData: ").Append(AdditionalData).Append("\n");
             sb.Append("  Amount: ").Append(Amount).Append("\n");
             sb.Append("  ApplicationInfo: ").Append(ApplicationInfo).Append("\n");
@@ -870,6 +880,11 @@ namespace Adyen.Model.Checkout
                     this.AccountInfo == input.AccountInfo ||
                     (this.AccountInfo != null &&
                     this.AccountInfo.Equals(input.AccountInfo))
+                ) && 
+                (
+                    this.AdditionalAmount == input.AdditionalAmount ||
+                    (this.AdditionalAmount != null &&
+                    this.AdditionalAmount.Equals(input.AdditionalAmount))
                 ) && 
                 (
                     this.AdditionalData == input.AdditionalData ||
@@ -1203,6 +1218,10 @@ namespace Adyen.Model.Checkout
                 {
                     hashCode = (hashCode * 59) + this.AccountInfo.GetHashCode();
                 }
+                if (this.AdditionalAmount != null)
+                {
+                    hashCode = (hashCode * 59) + this.AdditionalAmount.GetHashCode();
+                }
                 if (this.AdditionalData != null)
                 {
                     hashCode = (hashCode * 59) + this.AdditionalData.GetHashCode();
@@ -1441,9 +1460,9 @@ namespace Adyen.Model.Checkout
             }
 
             // Origin (string) maxLength
-            if (this.Origin != null && this.Origin.Length > 8000)
+            if (this.Origin != null && this.Origin.Length > 80)
             {
-                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for Origin, length must be less than 8000.", new [] { "Origin" });
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for Origin, length must be less than 80.", new [] { "Origin" });
             }
 
             // ReturnUrl (string) maxLength
