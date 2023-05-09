@@ -47,7 +47,7 @@ namespace Adyen.Model.BalancePlatform
         /// <param name="name">name (required).</param>
         /// <param name="phoneNumber">phoneNumber.</param>
         /// <param name="webAddress">The URL of the contact&#39;s website..</param>
-        public DeliveryContact(Address2 address = default(Address2), string email = default(string), string fullPhoneNumber = default(string), Name name = default(Name), PhoneNumber phoneNumber = default(PhoneNumber), string webAddress = default(string))
+        public DeliveryContact(DeliveryAddress address = default(DeliveryAddress), string email = default(string), string fullPhoneNumber = default(string), Name name = default(Name), PhoneNumber phoneNumber = default(PhoneNumber), string webAddress = default(string))
         {
             this.Address = address;
             this.Name = name;
@@ -61,7 +61,7 @@ namespace Adyen.Model.BalancePlatform
         /// Gets or Sets Address
         /// </summary>
         [DataMember(Name = "address", IsRequired = false, EmitDefaultValue = false)]
-        public Address2 Address { get; set; }
+        public DeliveryAddress Address { get; set; }
 
         /// <summary>
         /// The email address of the contact.

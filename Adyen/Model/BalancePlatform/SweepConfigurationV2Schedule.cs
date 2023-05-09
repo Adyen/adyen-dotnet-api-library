@@ -145,6 +145,7 @@ namespace Adyen.Model.BalancePlatform
             }
             int match = 0;
             List<string> matchedTypes = new List<string>();
+            var type = (string)JObject.Parse(jsonString)["type"];
 
             try
             {
@@ -157,8 +158,11 @@ namespace Adyen.Model.BalancePlatform
                 {
                     newSweepConfigurationV2Schedule = new SweepConfigurationV2Schedule(JsonConvert.DeserializeObject<CronSweepSchedule>(jsonString, SweepConfigurationV2Schedule.AdditionalPropertiesSerializerSettings));
                 }
-                matchedTypes.Add("CronSweepSchedule");
-                match++;
+                if (type != null || JsonConvert.SerializeObject((CronSweepSchedule.TypeEnum) 1).Contains(type))
+                {
+                    matchedTypes.Add("CronSweepSchedule");
+                    match++;
+                }
             }
             catch (Exception ex)
             {
@@ -179,8 +183,11 @@ namespace Adyen.Model.BalancePlatform
                 {
                     newSweepConfigurationV2Schedule = new SweepConfigurationV2Schedule(JsonConvert.DeserializeObject<SweepSchedule>(jsonString, SweepConfigurationV2Schedule.AdditionalPropertiesSerializerSettings));
                 }
-                matchedTypes.Add("SweepSchedule");
-                match++;
+                if (type != null || JsonConvert.SerializeObject((SweepSchedule.TypeEnum) 1).Contains(type))
+                {
+                    matchedTypes.Add("SweepSchedule");
+                    match++;
+                }
             }
             catch (Exception ex)
             {
@@ -194,11 +201,7 @@ namespace Adyen.Model.BalancePlatform
             {
                 throw new InvalidDataException("The JSON string `" + jsonString + "` cannot be deserialized into any schema defined.");
             }
-            else if (match > 1)
-            {
-                throw new InvalidDataException("The JSON string `" + jsonString + "` incorrectly matches more than one schema (should be exactly one match): " + matchedTypes);
-            }
-
+            
             // deserialization is considered successful at this point if no exception has been thrown.
             return newSweepConfigurationV2Schedule;
         }

@@ -32,6 +32,7 @@ namespace Adyen.Service.BalancePlatform
         /// </summary>
         /// <param name="bankAccountIdentificationValidationRequest"><see cref="BankAccountIdentificationValidationRequest"/> - </param>
         /// <param name="requestOptions"><see cref="RequestOptions"/> - Additional request options.</param>
+        /// <returns><see cref="Object"/>.</returns>
         void ValidateBankAccountIdentification(BankAccountIdentificationValidationRequest bankAccountIdentificationValidationRequest, RequestOptions requestOptions = default);
         
         /// <summary>
@@ -40,6 +41,7 @@ namespace Adyen.Service.BalancePlatform
         /// <param name="bankAccountIdentificationValidationRequest"><see cref="BankAccountIdentificationValidationRequest"/> - </param>
         /// <param name="requestOptions"><see cref="RequestOptions"/> - Additional request options.</param>
         /// <param name="cancellationToken"> A CancellationToken enables cooperative cancellation between threads, thread pool work items, or Task objects.</param>
+        /// <returns>Task of <see cref="Object"/>.</returns>
         Task ValidateBankAccountIdentificationAsync(BankAccountIdentificationValidationRequest bankAccountIdentificationValidationRequest, RequestOptions requestOptions = default, CancellationToken cancellationToken = default);
         
     }

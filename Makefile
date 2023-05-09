@@ -68,6 +68,8 @@ $(Services): target/spec $(openapi-generator-jar)
 		--api-name-suffix Service \
 		--model-package Model.$@ \
 		--reserved-words-mappings Version=Version \
+		--global-property modelDocs=false \
+        --global-property modelTests=false \
 		--additional-properties=serviceName=$@
 	rm -rf Adyen/Service/$@ Adyen/Model/$@
 	mv target/out/src/Adyen/Service.$@ Adyen/Service/$@
@@ -88,6 +90,8 @@ $(SingleFileServices): target/spec $(openapi-generator-jar)
 		--api-name-suffix Service \
 		--model-package Model.$@ \
 		--reserved-words-mappings Version=Version \
+		--global-property modelDocs=false \
+        --global-property modelTests=false \
 		--additional-properties=serviceName=$@
 	rm -rf Adyen/Service/$@ Adyen/Model/$@
 	mv target/out/src/Adyen/Service.$@/*Single.cs Adyen/Service/$@Service.cs

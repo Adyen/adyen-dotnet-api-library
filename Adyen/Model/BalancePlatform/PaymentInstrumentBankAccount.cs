@@ -145,6 +145,7 @@ namespace Adyen.Model.BalancePlatform
             }
             int match = 0;
             List<string> matchedTypes = new List<string>();
+            var type = (string)JObject.Parse(jsonString)["type"];
 
             try
             {
@@ -157,8 +158,11 @@ namespace Adyen.Model.BalancePlatform
                 {
                     newPaymentInstrumentBankAccount = new PaymentInstrumentBankAccount(JsonConvert.DeserializeObject<IbanAccountIdentification>(jsonString, PaymentInstrumentBankAccount.AdditionalPropertiesSerializerSettings));
                 }
-                matchedTypes.Add("IbanAccountIdentification");
-                match++;
+                if (type != null || JsonConvert.SerializeObject((IbanAccountIdentification.TypeEnum) 1).Contains(type))
+                {
+                    matchedTypes.Add("IbanAccountIdentification");
+                    match++;
+                }
             }
             catch (Exception ex)
             {
@@ -179,8 +183,11 @@ namespace Adyen.Model.BalancePlatform
                 {
                     newPaymentInstrumentBankAccount = new PaymentInstrumentBankAccount(JsonConvert.DeserializeObject<USLocalAccountIdentification>(jsonString, PaymentInstrumentBankAccount.AdditionalPropertiesSerializerSettings));
                 }
-                matchedTypes.Add("USLocalAccountIdentification");
-                match++;
+                if (type != null || JsonConvert.SerializeObject((USLocalAccountIdentification.TypeEnum) 1).Contains(type))
+                {
+                    matchedTypes.Add("USLocalAccountIdentification");
+                    match++;
+                }
             }
             catch (Exception ex)
             {
@@ -194,11 +201,7 @@ namespace Adyen.Model.BalancePlatform
             {
                 throw new InvalidDataException("The JSON string `" + jsonString + "` cannot be deserialized into any schema defined.");
             }
-            else if (match > 1)
-            {
-                throw new InvalidDataException("The JSON string `" + jsonString + "` incorrectly matches more than one schema (should be exactly one match): " + matchedTypes);
-            }
-
+            
             // deserialization is considered successful at this point if no exception has been thrown.
             return newPaymentInstrumentBankAccount;
         }
