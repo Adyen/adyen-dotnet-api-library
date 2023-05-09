@@ -81,7 +81,6 @@ namespace Adyen
                     Config.LegalEntityManagementEndpoint = ClientConfig.LegalEntityManagementEndpointTest;
                     Config.StoredValueEndpoint = ClientConfig.StoredValueEndpointTest;
                     Config.ManagementEndpoint = ClientConfig.ManagementEndpointTest;
-                    Config.BalancePlatformEndpoint = ClientConfig.BalancePlatformEndpointTest;
                     Config.TransfersEndpoint = ClientConfig.TransfersEndpointTest;
                     Config.DataProtectionEndpoint = ClientConfig.DataProtectionEndpointTest;
                     break;
@@ -97,7 +96,6 @@ namespace Adyen
                     Config.MarketPayEndpoint = ClientConfig.MarketpayEndPointLive;
                     Config.PosTerminalManagementEndpoint = ClientConfig.PosTerminalManagementEndpointLive;
                     Config.LegalEntityManagementEndpoint = ClientConfig.LegalEntityManagementEndpointLive;
-                    Config.BalancePlatformEndpoint = ClientConfig.BalancePlatformEndpointLive;
                     Config.StoredValueEndpoint = ClientConfig.StoredValueEndpointLive;
                     Config.ManagementEndpoint = ClientConfig.ManagementEndpointLive;
                     Config.TransfersEndpoint = ClientConfig.TransfersEndpointLive;
