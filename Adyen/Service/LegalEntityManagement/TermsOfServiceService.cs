@@ -100,38 +100,38 @@ namespace Adyen.Service.LegalEntityManagement
         
         public GetTermsOfServiceAcceptanceInfosResponse GetTermsOfServiceInformationForLegalEntity(string id, RequestOptions requestOptions = default)
         {
-            return GetTermsOfServiceInformationForLegalEntityAsync(id, requestOptions).GetAwaiter().GetResult();
+            return GetTermsOfServiceInformationForLegalEntityAsync(id, requestOptions).ConfigureAwait(false).GetAwaiter().GetResult();
         }
 
         public async Task<GetTermsOfServiceAcceptanceInfosResponse> GetTermsOfServiceInformationForLegalEntityAsync(string id, RequestOptions requestOptions = default, CancellationToken cancellationToken = default)
         {
             var endpoint = _baseUrl + $"/legalEntities/{id}/termsOfServiceAcceptanceInfos";
             var resource = new ServiceResource(this, endpoint);
-            return await resource.RequestAsync<GetTermsOfServiceAcceptanceInfosResponse>(null, requestOptions, new HttpMethod("GET"), cancellationToken);
+            return await resource.RequestAsync<GetTermsOfServiceAcceptanceInfosResponse>(null, requestOptions, new HttpMethod("GET"), cancellationToken).ConfigureAwait(false);
         }
         
         public AcceptTermsOfServiceResponse AcceptTermsOfService(string id, string termsofservicedocumentid, AcceptTermsOfServiceRequest acceptTermsOfServiceRequest, RequestOptions requestOptions = default)
         {
-            return AcceptTermsOfServiceAsync(id, termsofservicedocumentid, acceptTermsOfServiceRequest, requestOptions).GetAwaiter().GetResult();
+            return AcceptTermsOfServiceAsync(id, termsofservicedocumentid, acceptTermsOfServiceRequest, requestOptions).ConfigureAwait(false).GetAwaiter().GetResult();
         }
 
         public async Task<AcceptTermsOfServiceResponse> AcceptTermsOfServiceAsync(string id, string termsofservicedocumentid, AcceptTermsOfServiceRequest acceptTermsOfServiceRequest, RequestOptions requestOptions = default, CancellationToken cancellationToken = default)
         {
             var endpoint = _baseUrl + $"/legalEntities/{id}/termsOfService/{termsofservicedocumentid}";
             var resource = new ServiceResource(this, endpoint);
-            return await resource.RequestAsync<AcceptTermsOfServiceResponse>(acceptTermsOfServiceRequest.ToJson(), requestOptions, new HttpMethod("PATCH"), cancellationToken);
+            return await resource.RequestAsync<AcceptTermsOfServiceResponse>(acceptTermsOfServiceRequest.ToJson(), requestOptions, new HttpMethod("PATCH"), cancellationToken).ConfigureAwait(false);
         }
         
         public GetTermsOfServiceDocumentResponse GetTermsOfServiceDocument(string id, GetTermsOfServiceDocumentRequest getTermsOfServiceDocumentRequest, RequestOptions requestOptions = default)
         {
-            return GetTermsOfServiceDocumentAsync(id, getTermsOfServiceDocumentRequest, requestOptions).GetAwaiter().GetResult();
+            return GetTermsOfServiceDocumentAsync(id, getTermsOfServiceDocumentRequest, requestOptions).ConfigureAwait(false).GetAwaiter().GetResult();
         }
 
         public async Task<GetTermsOfServiceDocumentResponse> GetTermsOfServiceDocumentAsync(string id, GetTermsOfServiceDocumentRequest getTermsOfServiceDocumentRequest, RequestOptions requestOptions = default, CancellationToken cancellationToken = default)
         {
             var endpoint = _baseUrl + $"/legalEntities/{id}/termsOfService";
             var resource = new ServiceResource(this, endpoint);
-            return await resource.RequestAsync<GetTermsOfServiceDocumentResponse>(getTermsOfServiceDocumentRequest.ToJson(), requestOptions, new HttpMethod("POST"), cancellationToken);
+            return await resource.RequestAsync<GetTermsOfServiceDocumentResponse>(getTermsOfServiceDocumentRequest.ToJson(), requestOptions, new HttpMethod("POST"), cancellationToken).ConfigureAwait(false);
         }
     }
 }

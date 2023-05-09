@@ -96,38 +96,38 @@ namespace Adyen.Service.Checkout
         
         public PaymentLinkResponse GetPaymentLink(string linkId, RequestOptions requestOptions = default)
         {
-            return GetPaymentLinkAsync(linkId, requestOptions).GetAwaiter().GetResult();
+            return GetPaymentLinkAsync(linkId, requestOptions).ConfigureAwait(false).GetAwaiter().GetResult();
         }
 
         public async Task<PaymentLinkResponse> GetPaymentLinkAsync(string linkId, RequestOptions requestOptions = default, CancellationToken cancellationToken = default)
         {
             var endpoint = _baseUrl + $"/paymentLinks/{linkId}";
             var resource = new ServiceResource(this, endpoint);
-            return await resource.RequestAsync<PaymentLinkResponse>(null, requestOptions, new HttpMethod("GET"), cancellationToken);
+            return await resource.RequestAsync<PaymentLinkResponse>(null, requestOptions, new HttpMethod("GET"), cancellationToken).ConfigureAwait(false);
         }
         
         public PaymentLinkResponse UpdatePaymentLink(string linkId, UpdatePaymentLinkRequest updatePaymentLinkRequest, RequestOptions requestOptions = default)
         {
-            return UpdatePaymentLinkAsync(linkId, updatePaymentLinkRequest, requestOptions).GetAwaiter().GetResult();
+            return UpdatePaymentLinkAsync(linkId, updatePaymentLinkRequest, requestOptions).ConfigureAwait(false).GetAwaiter().GetResult();
         }
 
         public async Task<PaymentLinkResponse> UpdatePaymentLinkAsync(string linkId, UpdatePaymentLinkRequest updatePaymentLinkRequest, RequestOptions requestOptions = default, CancellationToken cancellationToken = default)
         {
             var endpoint = _baseUrl + $"/paymentLinks/{linkId}";
             var resource = new ServiceResource(this, endpoint);
-            return await resource.RequestAsync<PaymentLinkResponse>(updatePaymentLinkRequest.ToJson(), requestOptions, new HttpMethod("PATCH"), cancellationToken);
+            return await resource.RequestAsync<PaymentLinkResponse>(updatePaymentLinkRequest.ToJson(), requestOptions, new HttpMethod("PATCH"), cancellationToken).ConfigureAwait(false);
         }
         
         public PaymentLinkResponse PaymentLinks(CreatePaymentLinkRequest createPaymentLinkRequest, RequestOptions requestOptions = default)
         {
-            return PaymentLinksAsync(createPaymentLinkRequest, requestOptions).GetAwaiter().GetResult();
+            return PaymentLinksAsync(createPaymentLinkRequest, requestOptions).ConfigureAwait(false).GetAwaiter().GetResult();
         }
 
         public async Task<PaymentLinkResponse> PaymentLinksAsync(CreatePaymentLinkRequest createPaymentLinkRequest, RequestOptions requestOptions = default, CancellationToken cancellationToken = default)
         {
             var endpoint = _baseUrl + "/paymentLinks";
             var resource = new ServiceResource(this, endpoint);
-            return await resource.RequestAsync<PaymentLinkResponse>(createPaymentLinkRequest.ToJson(), requestOptions, new HttpMethod("POST"), cancellationToken);
+            return await resource.RequestAsync<PaymentLinkResponse>(createPaymentLinkRequest.ToJson(), requestOptions, new HttpMethod("POST"), cancellationToken).ConfigureAwait(false);
         }
     }
 }

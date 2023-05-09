@@ -201,7 +201,7 @@ namespace Adyen.Service.Management
         
         public ListStoresResponse ListStoresByMerchantId(string merchantId, int? pageNumber = default, int? pageSize = default, string reference = default, RequestOptions requestOptions = default)
         {
-            return ListStoresByMerchantIdAsync(merchantId, pageNumber, pageSize, reference, requestOptions).GetAwaiter().GetResult();
+            return ListStoresByMerchantIdAsync(merchantId, pageNumber, pageSize, reference, requestOptions).ConfigureAwait(false).GetAwaiter().GetResult();
         }
 
         public async Task<ListStoresResponse> ListStoresByMerchantIdAsync(string merchantId, int? pageNumber = default, int? pageSize = default, string reference = default, RequestOptions requestOptions = default, CancellationToken cancellationToken = default)
@@ -213,24 +213,24 @@ namespace Adyen.Service.Management
             if (reference != null) queryParams.Add("reference", reference);
             var endpoint = _baseUrl + $"/merchants/{merchantId}/stores" + ToQueryString(queryParams);
             var resource = new ServiceResource(this, endpoint);
-            return await resource.RequestAsync<ListStoresResponse>(null, requestOptions, new HttpMethod("GET"), cancellationToken);
+            return await resource.RequestAsync<ListStoresResponse>(null, requestOptions, new HttpMethod("GET"), cancellationToken).ConfigureAwait(false);
         }
         
         public Store GetStore(string merchantId, string storeId, RequestOptions requestOptions = default)
         {
-            return GetStoreAsync(merchantId, storeId, requestOptions).GetAwaiter().GetResult();
+            return GetStoreAsync(merchantId, storeId, requestOptions).ConfigureAwait(false).GetAwaiter().GetResult();
         }
 
         public async Task<Store> GetStoreAsync(string merchantId, string storeId, RequestOptions requestOptions = default, CancellationToken cancellationToken = default)
         {
             var endpoint = _baseUrl + $"/merchants/{merchantId}/stores/{storeId}";
             var resource = new ServiceResource(this, endpoint);
-            return await resource.RequestAsync<Store>(null, requestOptions, new HttpMethod("GET"), cancellationToken);
+            return await resource.RequestAsync<Store>(null, requestOptions, new HttpMethod("GET"), cancellationToken).ConfigureAwait(false);
         }
         
         public ListStoresResponse ListStores(int? pageNumber = default, int? pageSize = default, string reference = default, string merchantId = default, RequestOptions requestOptions = default)
         {
-            return ListStoresAsync(pageNumber, pageSize, reference, merchantId, requestOptions).GetAwaiter().GetResult();
+            return ListStoresAsync(pageNumber, pageSize, reference, merchantId, requestOptions).ConfigureAwait(false).GetAwaiter().GetResult();
         }
 
         public async Task<ListStoresResponse> ListStoresAsync(int? pageNumber = default, int? pageSize = default, string reference = default, string merchantId = default, RequestOptions requestOptions = default, CancellationToken cancellationToken = default)
@@ -243,67 +243,67 @@ namespace Adyen.Service.Management
             if (merchantId != null) queryParams.Add("merchantId", merchantId);
             var endpoint = _baseUrl + "/stores" + ToQueryString(queryParams);
             var resource = new ServiceResource(this, endpoint);
-            return await resource.RequestAsync<ListStoresResponse>(null, requestOptions, new HttpMethod("GET"), cancellationToken);
+            return await resource.RequestAsync<ListStoresResponse>(null, requestOptions, new HttpMethod("GET"), cancellationToken).ConfigureAwait(false);
         }
         
         public Store GetStoreById(string storeId, RequestOptions requestOptions = default)
         {
-            return GetStoreByIdAsync(storeId, requestOptions).GetAwaiter().GetResult();
+            return GetStoreByIdAsync(storeId, requestOptions).ConfigureAwait(false).GetAwaiter().GetResult();
         }
 
         public async Task<Store> GetStoreByIdAsync(string storeId, RequestOptions requestOptions = default, CancellationToken cancellationToken = default)
         {
             var endpoint = _baseUrl + $"/stores/{storeId}";
             var resource = new ServiceResource(this, endpoint);
-            return await resource.RequestAsync<Store>(null, requestOptions, new HttpMethod("GET"), cancellationToken);
+            return await resource.RequestAsync<Store>(null, requestOptions, new HttpMethod("GET"), cancellationToken).ConfigureAwait(false);
         }
         
         public Store UpdateStore(string merchantId, string storeId, UpdateStoreRequest updateStoreRequest, RequestOptions requestOptions = default)
         {
-            return UpdateStoreAsync(merchantId, storeId, updateStoreRequest, requestOptions).GetAwaiter().GetResult();
+            return UpdateStoreAsync(merchantId, storeId, updateStoreRequest, requestOptions).ConfigureAwait(false).GetAwaiter().GetResult();
         }
 
         public async Task<Store> UpdateStoreAsync(string merchantId, string storeId, UpdateStoreRequest updateStoreRequest, RequestOptions requestOptions = default, CancellationToken cancellationToken = default)
         {
             var endpoint = _baseUrl + $"/merchants/{merchantId}/stores/{storeId}";
             var resource = new ServiceResource(this, endpoint);
-            return await resource.RequestAsync<Store>(updateStoreRequest.ToJson(), requestOptions, new HttpMethod("PATCH"), cancellationToken);
+            return await resource.RequestAsync<Store>(updateStoreRequest.ToJson(), requestOptions, new HttpMethod("PATCH"), cancellationToken).ConfigureAwait(false);
         }
         
         public Store UpdateStoreById(string storeId, UpdateStoreRequest updateStoreRequest, RequestOptions requestOptions = default)
         {
-            return UpdateStoreByIdAsync(storeId, updateStoreRequest, requestOptions).GetAwaiter().GetResult();
+            return UpdateStoreByIdAsync(storeId, updateStoreRequest, requestOptions).ConfigureAwait(false).GetAwaiter().GetResult();
         }
 
         public async Task<Store> UpdateStoreByIdAsync(string storeId, UpdateStoreRequest updateStoreRequest, RequestOptions requestOptions = default, CancellationToken cancellationToken = default)
         {
             var endpoint = _baseUrl + $"/stores/{storeId}";
             var resource = new ServiceResource(this, endpoint);
-            return await resource.RequestAsync<Store>(updateStoreRequest.ToJson(), requestOptions, new HttpMethod("PATCH"), cancellationToken);
+            return await resource.RequestAsync<Store>(updateStoreRequest.ToJson(), requestOptions, new HttpMethod("PATCH"), cancellationToken).ConfigureAwait(false);
         }
         
         public Store CreateStoreByMerchantId(string merchantId, StoreCreationRequest storeCreationRequest, RequestOptions requestOptions = default)
         {
-            return CreateStoreByMerchantIdAsync(merchantId, storeCreationRequest, requestOptions).GetAwaiter().GetResult();
+            return CreateStoreByMerchantIdAsync(merchantId, storeCreationRequest, requestOptions).ConfigureAwait(false).GetAwaiter().GetResult();
         }
 
         public async Task<Store> CreateStoreByMerchantIdAsync(string merchantId, StoreCreationRequest storeCreationRequest, RequestOptions requestOptions = default, CancellationToken cancellationToken = default)
         {
             var endpoint = _baseUrl + $"/merchants/{merchantId}/stores";
             var resource = new ServiceResource(this, endpoint);
-            return await resource.RequestAsync<Store>(storeCreationRequest.ToJson(), requestOptions, new HttpMethod("POST"), cancellationToken);
+            return await resource.RequestAsync<Store>(storeCreationRequest.ToJson(), requestOptions, new HttpMethod("POST"), cancellationToken).ConfigureAwait(false);
         }
         
         public Store CreateStore(StoreCreationWithMerchantCodeRequest storeCreationWithMerchantCodeRequest, RequestOptions requestOptions = default)
         {
-            return CreateStoreAsync(storeCreationWithMerchantCodeRequest, requestOptions).GetAwaiter().GetResult();
+            return CreateStoreAsync(storeCreationWithMerchantCodeRequest, requestOptions).ConfigureAwait(false).GetAwaiter().GetResult();
         }
 
         public async Task<Store> CreateStoreAsync(StoreCreationWithMerchantCodeRequest storeCreationWithMerchantCodeRequest, RequestOptions requestOptions = default, CancellationToken cancellationToken = default)
         {
             var endpoint = _baseUrl + "/stores";
             var resource = new ServiceResource(this, endpoint);
-            return await resource.RequestAsync<Store>(storeCreationWithMerchantCodeRequest.ToJson(), requestOptions, new HttpMethod("POST"), cancellationToken);
+            return await resource.RequestAsync<Store>(storeCreationWithMerchantCodeRequest.ToJson(), requestOptions, new HttpMethod("POST"), cancellationToken).ConfigureAwait(false);
         }
     }
 }

@@ -33,7 +33,7 @@ namespace Adyen.Service.Payout
         /// <param name="payoutRequest"><see cref="PayoutRequest"/> - </param>
         /// <param name="requestOptions"><see cref="RequestOptions"/> - Additional request options.</param>
         /// <returns><see cref="PayoutResponse"/>.</returns>
-        PayoutResponse MakeInstantCardPayout(PayoutRequest payoutRequest, RequestOptions requestOptions = default);
+        PayoutResponse Payout(PayoutRequest payoutRequest, RequestOptions requestOptions = default);
         
         /// <summary>
         /// Make an instant card payout
@@ -42,7 +42,7 @@ namespace Adyen.Service.Payout
         /// <param name="requestOptions"><see cref="RequestOptions"/> - Additional request options.</param>
         /// <param name="cancellationToken"> A CancellationToken enables cooperative cancellation between threads, thread pool work items, or Task objects.</param>
         /// <returns>Task of <see cref="PayoutResponse"/>.</returns>
-        Task<PayoutResponse> MakeInstantCardPayoutAsync(PayoutRequest payoutRequest, RequestOptions requestOptions = default, CancellationToken cancellationToken = default);
+        Task<PayoutResponse> PayoutAsync(PayoutRequest payoutRequest, RequestOptions requestOptions = default, CancellationToken cancellationToken = default);
         
     }
     
@@ -58,16 +58,16 @@ namespace Adyen.Service.Payout
             _baseUrl = CreateBaseUrl("https://pal-test.adyen.com/pal/servlet/Payout/v68");
         }
         
-        public PayoutResponse MakeInstantCardPayout(PayoutRequest payoutRequest, RequestOptions requestOptions = default)
+        public PayoutResponse Payout(PayoutRequest payoutRequest, RequestOptions requestOptions = default)
         {
-            return MakeInstantCardPayoutAsync(payoutRequest, requestOptions).GetAwaiter().GetResult();
+            return PayoutAsync(payoutRequest, requestOptions).ConfigureAwait(false).GetAwaiter().GetResult();
         }
 
-        public async Task<PayoutResponse> MakeInstantCardPayoutAsync(PayoutRequest payoutRequest, RequestOptions requestOptions = default, CancellationToken cancellationToken = default)
+        public async Task<PayoutResponse> PayoutAsync(PayoutRequest payoutRequest, RequestOptions requestOptions = default, CancellationToken cancellationToken = default)
         {
             var endpoint = _baseUrl + "/payout";
             var resource = new ServiceResource(this, endpoint);
-            return await resource.RequestAsync<PayoutResponse>(payoutRequest.ToJson(), requestOptions, new HttpMethod("POST"), cancellationToken);
+            return await resource.RequestAsync<PayoutResponse>(payoutRequest.ToJson(), requestOptions, new HttpMethod("POST"), cancellationToken).ConfigureAwait(false);
         }
     }
 }

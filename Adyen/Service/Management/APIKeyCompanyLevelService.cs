@@ -62,14 +62,14 @@ namespace Adyen.Service.Management
         
         public GenerateApiKeyResponse GenerateNewApiKey(string companyId, string apiCredentialId, RequestOptions requestOptions = default)
         {
-            return GenerateNewApiKeyAsync(companyId, apiCredentialId, requestOptions).GetAwaiter().GetResult();
+            return GenerateNewApiKeyAsync(companyId, apiCredentialId, requestOptions).ConfigureAwait(false).GetAwaiter().GetResult();
         }
 
         public async Task<GenerateApiKeyResponse> GenerateNewApiKeyAsync(string companyId, string apiCredentialId, RequestOptions requestOptions = default, CancellationToken cancellationToken = default)
         {
             var endpoint = _baseUrl + $"/companies/{companyId}/apiCredentials/{apiCredentialId}/generateApiKey";
             var resource = new ServiceResource(this, endpoint);
-            return await resource.RequestAsync<GenerateApiKeyResponse>(null, requestOptions, new HttpMethod("POST"), cancellationToken);
+            return await resource.RequestAsync<GenerateApiKeyResponse>(null, requestOptions, new HttpMethod("POST"), cancellationToken).ConfigureAwait(false);
         }
     }
 }

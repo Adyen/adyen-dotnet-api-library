@@ -165,7 +165,7 @@ namespace Adyen.Service.Management
         
         public PaymentMethodResponse GetAllPaymentMethods(string merchantId, string storeId = default, string businessLineId = default, int? pageSize = default, int? pageNumber = default, RequestOptions requestOptions = default)
         {
-            return GetAllPaymentMethodsAsync(merchantId, storeId, businessLineId, pageSize, pageNumber, requestOptions).GetAwaiter().GetResult();
+            return GetAllPaymentMethodsAsync(merchantId, storeId, businessLineId, pageSize, pageNumber, requestOptions).ConfigureAwait(false).GetAwaiter().GetResult();
         }
 
         public async Task<PaymentMethodResponse> GetAllPaymentMethodsAsync(string merchantId, string storeId = default, string businessLineId = default, int? pageSize = default, int? pageNumber = default, RequestOptions requestOptions = default, CancellationToken cancellationToken = default)
@@ -178,67 +178,67 @@ namespace Adyen.Service.Management
             if (pageNumber != null) queryParams.Add("pageNumber", pageNumber.ToString());
             var endpoint = _baseUrl + $"/merchants/{merchantId}/paymentMethodSettings" + ToQueryString(queryParams);
             var resource = new ServiceResource(this, endpoint);
-            return await resource.RequestAsync<PaymentMethodResponse>(null, requestOptions, new HttpMethod("GET"), cancellationToken);
+            return await resource.RequestAsync<PaymentMethodResponse>(null, requestOptions, new HttpMethod("GET"), cancellationToken).ConfigureAwait(false);
         }
         
         public PaymentMethod GetPaymentMethodDetails(string merchantId, string paymentMethodId, RequestOptions requestOptions = default)
         {
-            return GetPaymentMethodDetailsAsync(merchantId, paymentMethodId, requestOptions).GetAwaiter().GetResult();
+            return GetPaymentMethodDetailsAsync(merchantId, paymentMethodId, requestOptions).ConfigureAwait(false).GetAwaiter().GetResult();
         }
 
         public async Task<PaymentMethod> GetPaymentMethodDetailsAsync(string merchantId, string paymentMethodId, RequestOptions requestOptions = default, CancellationToken cancellationToken = default)
         {
             var endpoint = _baseUrl + $"/merchants/{merchantId}/paymentMethodSettings/{paymentMethodId}";
             var resource = new ServiceResource(this, endpoint);
-            return await resource.RequestAsync<PaymentMethod>(null, requestOptions, new HttpMethod("GET"), cancellationToken);
+            return await resource.RequestAsync<PaymentMethod>(null, requestOptions, new HttpMethod("GET"), cancellationToken).ConfigureAwait(false);
         }
         
         public ApplePayInfo GetApplePayDomains(string merchantId, string paymentMethodId, RequestOptions requestOptions = default)
         {
-            return GetApplePayDomainsAsync(merchantId, paymentMethodId, requestOptions).GetAwaiter().GetResult();
+            return GetApplePayDomainsAsync(merchantId, paymentMethodId, requestOptions).ConfigureAwait(false).GetAwaiter().GetResult();
         }
 
         public async Task<ApplePayInfo> GetApplePayDomainsAsync(string merchantId, string paymentMethodId, RequestOptions requestOptions = default, CancellationToken cancellationToken = default)
         {
             var endpoint = _baseUrl + $"/merchants/{merchantId}/paymentMethodSettings/{paymentMethodId}/getApplePayDomains";
             var resource = new ServiceResource(this, endpoint);
-            return await resource.RequestAsync<ApplePayInfo>(null, requestOptions, new HttpMethod("GET"), cancellationToken);
+            return await resource.RequestAsync<ApplePayInfo>(null, requestOptions, new HttpMethod("GET"), cancellationToken).ConfigureAwait(false);
         }
         
         public PaymentMethod UpdatePaymentMethod(string merchantId, string paymentMethodId, UpdatePaymentMethodInfo updatePaymentMethodInfo, RequestOptions requestOptions = default)
         {
-            return UpdatePaymentMethodAsync(merchantId, paymentMethodId, updatePaymentMethodInfo, requestOptions).GetAwaiter().GetResult();
+            return UpdatePaymentMethodAsync(merchantId, paymentMethodId, updatePaymentMethodInfo, requestOptions).ConfigureAwait(false).GetAwaiter().GetResult();
         }
 
         public async Task<PaymentMethod> UpdatePaymentMethodAsync(string merchantId, string paymentMethodId, UpdatePaymentMethodInfo updatePaymentMethodInfo, RequestOptions requestOptions = default, CancellationToken cancellationToken = default)
         {
             var endpoint = _baseUrl + $"/merchants/{merchantId}/paymentMethodSettings/{paymentMethodId}";
             var resource = new ServiceResource(this, endpoint);
-            return await resource.RequestAsync<PaymentMethod>(updatePaymentMethodInfo.ToJson(), requestOptions, new HttpMethod("PATCH"), cancellationToken);
+            return await resource.RequestAsync<PaymentMethod>(updatePaymentMethodInfo.ToJson(), requestOptions, new HttpMethod("PATCH"), cancellationToken).ConfigureAwait(false);
         }
         
         public PaymentMethod RequestPaymentMethod(string merchantId, PaymentMethodSetupInfo paymentMethodSetupInfo, RequestOptions requestOptions = default)
         {
-            return RequestPaymentMethodAsync(merchantId, paymentMethodSetupInfo, requestOptions).GetAwaiter().GetResult();
+            return RequestPaymentMethodAsync(merchantId, paymentMethodSetupInfo, requestOptions).ConfigureAwait(false).GetAwaiter().GetResult();
         }
 
         public async Task<PaymentMethod> RequestPaymentMethodAsync(string merchantId, PaymentMethodSetupInfo paymentMethodSetupInfo, RequestOptions requestOptions = default, CancellationToken cancellationToken = default)
         {
             var endpoint = _baseUrl + $"/merchants/{merchantId}/paymentMethodSettings";
             var resource = new ServiceResource(this, endpoint);
-            return await resource.RequestAsync<PaymentMethod>(paymentMethodSetupInfo.ToJson(), requestOptions, new HttpMethod("POST"), cancellationToken);
+            return await resource.RequestAsync<PaymentMethod>(paymentMethodSetupInfo.ToJson(), requestOptions, new HttpMethod("POST"), cancellationToken).ConfigureAwait(false);
         }
         
         public void AddApplePayDomain(string merchantId, string paymentMethodId, ApplePayInfo applePayInfo, RequestOptions requestOptions = default)
         {
-            AddApplePayDomainAsync(merchantId, paymentMethodId, applePayInfo, requestOptions).GetAwaiter().GetResult();
+            AddApplePayDomainAsync(merchantId, paymentMethodId, applePayInfo, requestOptions).ConfigureAwait(false).GetAwaiter().GetResult();
         }
 
         public async Task AddApplePayDomainAsync(string merchantId, string paymentMethodId, ApplePayInfo applePayInfo, RequestOptions requestOptions = default, CancellationToken cancellationToken = default)
         {
             var endpoint = _baseUrl + $"/merchants/{merchantId}/paymentMethodSettings/{paymentMethodId}/addApplePayDomains";
             var resource = new ServiceResource(this, endpoint);
-            await resource.RequestAsync(applePayInfo.ToJson(), requestOptions, new HttpMethod("POST"), cancellationToken);
+            await resource.RequestAsync(applePayInfo.ToJson(), requestOptions, new HttpMethod("POST"), cancellationToken).ConfigureAwait(false);
         }
     }
 }

@@ -94,38 +94,38 @@ namespace Adyen.Service.Checkout
         
         public CheckoutCreateOrderResponse Orders(CheckoutCreateOrderRequest checkoutCreateOrderRequest, RequestOptions requestOptions = default)
         {
-            return OrdersAsync(checkoutCreateOrderRequest, requestOptions).GetAwaiter().GetResult();
+            return OrdersAsync(checkoutCreateOrderRequest, requestOptions).ConfigureAwait(false).GetAwaiter().GetResult();
         }
 
         public async Task<CheckoutCreateOrderResponse> OrdersAsync(CheckoutCreateOrderRequest checkoutCreateOrderRequest, RequestOptions requestOptions = default, CancellationToken cancellationToken = default)
         {
             var endpoint = _baseUrl + "/orders";
             var resource = new ServiceResource(this, endpoint);
-            return await resource.RequestAsync<CheckoutCreateOrderResponse>(checkoutCreateOrderRequest.ToJson(), requestOptions, new HttpMethod("POST"), cancellationToken);
+            return await resource.RequestAsync<CheckoutCreateOrderResponse>(checkoutCreateOrderRequest.ToJson(), requestOptions, new HttpMethod("POST"), cancellationToken).ConfigureAwait(false);
         }
         
         public CheckoutCancelOrderResponse CancelOrder(CheckoutCancelOrderRequest checkoutCancelOrderRequest, RequestOptions requestOptions = default)
         {
-            return CancelOrderAsync(checkoutCancelOrderRequest, requestOptions).GetAwaiter().GetResult();
+            return CancelOrderAsync(checkoutCancelOrderRequest, requestOptions).ConfigureAwait(false).GetAwaiter().GetResult();
         }
 
         public async Task<CheckoutCancelOrderResponse> CancelOrderAsync(CheckoutCancelOrderRequest checkoutCancelOrderRequest, RequestOptions requestOptions = default, CancellationToken cancellationToken = default)
         {
             var endpoint = _baseUrl + "/orders/cancel";
             var resource = new ServiceResource(this, endpoint);
-            return await resource.RequestAsync<CheckoutCancelOrderResponse>(checkoutCancelOrderRequest.ToJson(), requestOptions, new HttpMethod("POST"), cancellationToken);
+            return await resource.RequestAsync<CheckoutCancelOrderResponse>(checkoutCancelOrderRequest.ToJson(), requestOptions, new HttpMethod("POST"), cancellationToken).ConfigureAwait(false);
         }
         
         public CheckoutBalanceCheckResponse GetBalanceOfGiftCard(CheckoutBalanceCheckRequest checkoutBalanceCheckRequest, RequestOptions requestOptions = default)
         {
-            return GetBalanceOfGiftCardAsync(checkoutBalanceCheckRequest, requestOptions).GetAwaiter().GetResult();
+            return GetBalanceOfGiftCardAsync(checkoutBalanceCheckRequest, requestOptions).ConfigureAwait(false).GetAwaiter().GetResult();
         }
 
         public async Task<CheckoutBalanceCheckResponse> GetBalanceOfGiftCardAsync(CheckoutBalanceCheckRequest checkoutBalanceCheckRequest, RequestOptions requestOptions = default, CancellationToken cancellationToken = default)
         {
             var endpoint = _baseUrl + "/paymentMethods/balance";
             var resource = new ServiceResource(this, endpoint);
-            return await resource.RequestAsync<CheckoutBalanceCheckResponse>(checkoutBalanceCheckRequest.ToJson(), requestOptions, new HttpMethod("POST"), cancellationToken);
+            return await resource.RequestAsync<CheckoutBalanceCheckResponse>(checkoutBalanceCheckRequest.ToJson(), requestOptions, new HttpMethod("POST"), cancellationToken).ConfigureAwait(false);
         }
     }
 }

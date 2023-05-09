@@ -113,50 +113,50 @@ namespace Adyen.Service.BalancePlatform
         
         public TransactionRule DeleteTransactionRule(string transactionRuleId, RequestOptions requestOptions = default)
         {
-            return DeleteTransactionRuleAsync(transactionRuleId, requestOptions).GetAwaiter().GetResult();
+            return DeleteTransactionRuleAsync(transactionRuleId, requestOptions).ConfigureAwait(false).GetAwaiter().GetResult();
         }
 
         public async Task<TransactionRule> DeleteTransactionRuleAsync(string transactionRuleId, RequestOptions requestOptions = default, CancellationToken cancellationToken = default)
         {
             var endpoint = _baseUrl + $"/transactionRules/{transactionRuleId}";
             var resource = new ServiceResource(this, endpoint);
-            return await resource.RequestAsync<TransactionRule>(null, requestOptions, new HttpMethod("DELETE"), cancellationToken);
+            return await resource.RequestAsync<TransactionRule>(null, requestOptions, new HttpMethod("DELETE"), cancellationToken).ConfigureAwait(false);
         }
         
         public TransactionRuleResponse GetTransactionRule(string transactionRuleId, RequestOptions requestOptions = default)
         {
-            return GetTransactionRuleAsync(transactionRuleId, requestOptions).GetAwaiter().GetResult();
+            return GetTransactionRuleAsync(transactionRuleId, requestOptions).ConfigureAwait(false).GetAwaiter().GetResult();
         }
 
         public async Task<TransactionRuleResponse> GetTransactionRuleAsync(string transactionRuleId, RequestOptions requestOptions = default, CancellationToken cancellationToken = default)
         {
             var endpoint = _baseUrl + $"/transactionRules/{transactionRuleId}";
             var resource = new ServiceResource(this, endpoint);
-            return await resource.RequestAsync<TransactionRuleResponse>(null, requestOptions, new HttpMethod("GET"), cancellationToken);
+            return await resource.RequestAsync<TransactionRuleResponse>(null, requestOptions, new HttpMethod("GET"), cancellationToken).ConfigureAwait(false);
         }
         
         public TransactionRule UpdateTransactionRule(string transactionRuleId, TransactionRuleInfo transactionRuleInfo, RequestOptions requestOptions = default)
         {
-            return UpdateTransactionRuleAsync(transactionRuleId, transactionRuleInfo, requestOptions).GetAwaiter().GetResult();
+            return UpdateTransactionRuleAsync(transactionRuleId, transactionRuleInfo, requestOptions).ConfigureAwait(false).GetAwaiter().GetResult();
         }
 
         public async Task<TransactionRule> UpdateTransactionRuleAsync(string transactionRuleId, TransactionRuleInfo transactionRuleInfo, RequestOptions requestOptions = default, CancellationToken cancellationToken = default)
         {
             var endpoint = _baseUrl + $"/transactionRules/{transactionRuleId}";
             var resource = new ServiceResource(this, endpoint);
-            return await resource.RequestAsync<TransactionRule>(transactionRuleInfo.ToJson(), requestOptions, new HttpMethod("PATCH"), cancellationToken);
+            return await resource.RequestAsync<TransactionRule>(transactionRuleInfo.ToJson(), requestOptions, new HttpMethod("PATCH"), cancellationToken).ConfigureAwait(false);
         }
         
         public TransactionRule CreateTransactionRule(TransactionRuleInfo transactionRuleInfo, RequestOptions requestOptions = default)
         {
-            return CreateTransactionRuleAsync(transactionRuleInfo, requestOptions).GetAwaiter().GetResult();
+            return CreateTransactionRuleAsync(transactionRuleInfo, requestOptions).ConfigureAwait(false).GetAwaiter().GetResult();
         }
 
         public async Task<TransactionRule> CreateTransactionRuleAsync(TransactionRuleInfo transactionRuleInfo, RequestOptions requestOptions = default, CancellationToken cancellationToken = default)
         {
             var endpoint = _baseUrl + "/transactionRules";
             var resource = new ServiceResource(this, endpoint);
-            return await resource.RequestAsync<TransactionRule>(transactionRuleInfo.ToJson(), requestOptions, new HttpMethod("POST"), cancellationToken);
+            return await resource.RequestAsync<TransactionRule>(transactionRuleInfo.ToJson(), requestOptions, new HttpMethod("POST"), cancellationToken).ConfigureAwait(false);
         }
     }
 }

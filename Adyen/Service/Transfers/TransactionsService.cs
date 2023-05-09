@@ -12,7 +12,6 @@
 
 using System;
 using System.Collections.Generic;
-using System.Globalization;
 using System.Net.Http;
 using System.Threading;
 using System.Threading.Tasks;
@@ -92,7 +91,7 @@ namespace Adyen.Service.Transfers
         
         public TransactionSearchResponse GetAllTransactions(DateTime createdSince, DateTime createdUntil, string balancePlatform = default, string paymentInstrumentId = default, string accountHolderId = default, string balanceAccountId = default, string cursor = default, int? limit = default, RequestOptions requestOptions = default)
         {
-            return GetAllTransactionsAsync(createdSince, createdUntil, balancePlatform, paymentInstrumentId, accountHolderId, balanceAccountId, cursor, limit, requestOptions).GetAwaiter().GetResult();
+            return GetAllTransactionsAsync(createdSince, createdUntil, balancePlatform, paymentInstrumentId, accountHolderId, balanceAccountId, cursor, limit, requestOptions).ConfigureAwait(false).GetAwaiter().GetResult();
         }
 
         public async Task<TransactionSearchResponse> GetAllTransactionsAsync(DateTime createdSince, DateTime createdUntil, string balancePlatform = default, string paymentInstrumentId = default, string accountHolderId = default, string balanceAccountId = default, string cursor = default, int? limit = default, RequestOptions requestOptions = default, CancellationToken cancellationToken = default)
@@ -109,19 +108,19 @@ namespace Adyen.Service.Transfers
             if (limit != null) queryParams.Add("limit", limit.ToString());
             var endpoint = _baseUrl + "/transactions" + ToQueryString(queryParams);
             var resource = new ServiceResource(this, endpoint);
-            return await resource.RequestAsync<TransactionSearchResponse>(null, requestOptions, new HttpMethod("GET"), cancellationToken);
+            return await resource.RequestAsync<TransactionSearchResponse>(null, requestOptions, new HttpMethod("GET"), cancellationToken).ConfigureAwait(false);
         }
         
         public Transaction GetTransaction(string id, RequestOptions requestOptions = default)
         {
-            return GetTransactionAsync(id, requestOptions).GetAwaiter().GetResult();
+            return GetTransactionAsync(id, requestOptions).ConfigureAwait(false).GetAwaiter().GetResult();
         }
 
         public async Task<Transaction> GetTransactionAsync(string id, RequestOptions requestOptions = default, CancellationToken cancellationToken = default)
         {
             var endpoint = _baseUrl + $"/transactions/{id}";
             var resource = new ServiceResource(this, endpoint);
-            return await resource.RequestAsync<Transaction>(null, requestOptions, new HttpMethod("GET"), cancellationToken);
+            return await resource.RequestAsync<Transaction>(null, requestOptions, new HttpMethod("GET"), cancellationToken).ConfigureAwait(false);
         }
     }
 }

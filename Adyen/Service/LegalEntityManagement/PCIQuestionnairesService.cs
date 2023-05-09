@@ -117,50 +117,50 @@ namespace Adyen.Service.LegalEntityManagement
         
         public GetPciQuestionnaireInfosResponse GetPciQuestionnaireDetails(string id, RequestOptions requestOptions = default)
         {
-            return GetPciQuestionnaireDetailsAsync(id, requestOptions).GetAwaiter().GetResult();
+            return GetPciQuestionnaireDetailsAsync(id, requestOptions).ConfigureAwait(false).GetAwaiter().GetResult();
         }
 
         public async Task<GetPciQuestionnaireInfosResponse> GetPciQuestionnaireDetailsAsync(string id, RequestOptions requestOptions = default, CancellationToken cancellationToken = default)
         {
             var endpoint = _baseUrl + $"/legalEntities/{id}/pciQuestionnaires";
             var resource = new ServiceResource(this, endpoint);
-            return await resource.RequestAsync<GetPciQuestionnaireInfosResponse>(null, requestOptions, new HttpMethod("GET"), cancellationToken);
+            return await resource.RequestAsync<GetPciQuestionnaireInfosResponse>(null, requestOptions, new HttpMethod("GET"), cancellationToken).ConfigureAwait(false);
         }
         
         public GetPciQuestionnaireResponse GetPciQuestionnaire(string id, string pciid, RequestOptions requestOptions = default)
         {
-            return GetPciQuestionnaireAsync(id, pciid, requestOptions).GetAwaiter().GetResult();
+            return GetPciQuestionnaireAsync(id, pciid, requestOptions).ConfigureAwait(false).GetAwaiter().GetResult();
         }
 
         public async Task<GetPciQuestionnaireResponse> GetPciQuestionnaireAsync(string id, string pciid, RequestOptions requestOptions = default, CancellationToken cancellationToken = default)
         {
             var endpoint = _baseUrl + $"/legalEntities/{id}/pciQuestionnaires/{pciid}";
             var resource = new ServiceResource(this, endpoint);
-            return await resource.RequestAsync<GetPciQuestionnaireResponse>(null, requestOptions, new HttpMethod("GET"), cancellationToken);
+            return await resource.RequestAsync<GetPciQuestionnaireResponse>(null, requestOptions, new HttpMethod("GET"), cancellationToken).ConfigureAwait(false);
         }
         
         public GeneratePciDescriptionResponse GeneratePciQuestionnaire(string id, GeneratePciDescriptionRequest generatePciDescriptionRequest, RequestOptions requestOptions = default)
         {
-            return GeneratePciQuestionnaireAsync(id, generatePciDescriptionRequest, requestOptions).GetAwaiter().GetResult();
+            return GeneratePciQuestionnaireAsync(id, generatePciDescriptionRequest, requestOptions).ConfigureAwait(false).GetAwaiter().GetResult();
         }
 
         public async Task<GeneratePciDescriptionResponse> GeneratePciQuestionnaireAsync(string id, GeneratePciDescriptionRequest generatePciDescriptionRequest, RequestOptions requestOptions = default, CancellationToken cancellationToken = default)
         {
             var endpoint = _baseUrl + $"/legalEntities/{id}/pciQuestionnaires/generatePciTemplates";
             var resource = new ServiceResource(this, endpoint);
-            return await resource.RequestAsync<GeneratePciDescriptionResponse>(generatePciDescriptionRequest.ToJson(), requestOptions, new HttpMethod("POST"), cancellationToken);
+            return await resource.RequestAsync<GeneratePciDescriptionResponse>(generatePciDescriptionRequest.ToJson(), requestOptions, new HttpMethod("POST"), cancellationToken).ConfigureAwait(false);
         }
         
         public PciSigningResponse SignPciQuestionnaire(string id, PciSigningRequest pciSigningRequest, RequestOptions requestOptions = default)
         {
-            return SignPciQuestionnaireAsync(id, pciSigningRequest, requestOptions).GetAwaiter().GetResult();
+            return SignPciQuestionnaireAsync(id, pciSigningRequest, requestOptions).ConfigureAwait(false).GetAwaiter().GetResult();
         }
 
         public async Task<PciSigningResponse> SignPciQuestionnaireAsync(string id, PciSigningRequest pciSigningRequest, RequestOptions requestOptions = default, CancellationToken cancellationToken = default)
         {
             var endpoint = _baseUrl + $"/legalEntities/{id}/pciQuestionnaires/signPciTemplates";
             var resource = new ServiceResource(this, endpoint);
-            return await resource.RequestAsync<PciSigningResponse>(pciSigningRequest.ToJson(), requestOptions, new HttpMethod("POST"), cancellationToken);
+            return await resource.RequestAsync<PciSigningResponse>(pciSigningRequest.ToJson(), requestOptions, new HttpMethod("POST"), cancellationToken).ConfigureAwait(false);
         }
     }
 }

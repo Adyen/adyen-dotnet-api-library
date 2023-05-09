@@ -929,7 +929,7 @@ namespace Adyen.Test
             var client =
                 CreateMockTestClientApiKeyBasedRequestAsync("Mocks/checkout/get-storedPaymentMethod-success.json");
             var checkout = new RecurringService(client);
-            checkout.DeleteTokenForStoredPaymentDetails("shopperRef", "merchantAccount");
+            checkout.DeleteTokenForStoredPaymentDetails("recurringId","shopperRef", "merchantAccount");
         }
 
         #region Modification endpoints tests

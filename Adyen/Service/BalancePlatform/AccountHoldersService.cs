@@ -117,19 +117,19 @@ namespace Adyen.Service.BalancePlatform
         
         public AccountHolder GetAccountHolder(string id, RequestOptions requestOptions = default)
         {
-            return GetAccountHolderAsync(id, requestOptions).GetAwaiter().GetResult();
+            return GetAccountHolderAsync(id, requestOptions).ConfigureAwait(false).GetAwaiter().GetResult();
         }
 
         public async Task<AccountHolder> GetAccountHolderAsync(string id, RequestOptions requestOptions = default, CancellationToken cancellationToken = default)
         {
             var endpoint = _baseUrl + $"/accountHolders/{id}";
             var resource = new ServiceResource(this, endpoint);
-            return await resource.RequestAsync<AccountHolder>(null, requestOptions, new HttpMethod("GET"), cancellationToken);
+            return await resource.RequestAsync<AccountHolder>(null, requestOptions, new HttpMethod("GET"), cancellationToken).ConfigureAwait(false);
         }
         
         public PaginatedBalanceAccountsResponse GetAllBalanceAccountsOfAccountHolder(string id, int? offset = default, int? limit = default, RequestOptions requestOptions = default)
         {
-            return GetAllBalanceAccountsOfAccountHolderAsync(id, offset, limit, requestOptions).GetAwaiter().GetResult();
+            return GetAllBalanceAccountsOfAccountHolderAsync(id, offset, limit, requestOptions).ConfigureAwait(false).GetAwaiter().GetResult();
         }
 
         public async Task<PaginatedBalanceAccountsResponse> GetAllBalanceAccountsOfAccountHolderAsync(string id, int? offset = default, int? limit = default, RequestOptions requestOptions = default, CancellationToken cancellationToken = default)
@@ -140,19 +140,19 @@ namespace Adyen.Service.BalancePlatform
             if (limit != null) queryParams.Add("limit", limit.ToString());
             var endpoint = _baseUrl + $"/accountHolders/{id}/balanceAccounts" + ToQueryString(queryParams);
             var resource = new ServiceResource(this, endpoint);
-            return await resource.RequestAsync<PaginatedBalanceAccountsResponse>(null, requestOptions, new HttpMethod("GET"), cancellationToken);
+            return await resource.RequestAsync<PaginatedBalanceAccountsResponse>(null, requestOptions, new HttpMethod("GET"), cancellationToken).ConfigureAwait(false);
         }
         
         public AccountHolder UpdateAccountHolder(string id, AccountHolder accountHolder, RequestOptions requestOptions = default)
         {
-            return UpdateAccountHolderAsync(id, accountHolder, requestOptions).GetAwaiter().GetResult();
+            return UpdateAccountHolderAsync(id, accountHolder, requestOptions).ConfigureAwait(false).GetAwaiter().GetResult();
         }
 
         public async Task<AccountHolder> UpdateAccountHolderAsync(string id, AccountHolder accountHolder, RequestOptions requestOptions = default, CancellationToken cancellationToken = default)
         {
             var endpoint = _baseUrl + $"/accountHolders/{id}";
             var resource = new ServiceResource(this, endpoint);
-            return await resource.RequestAsync<AccountHolder>(accountHolder.ToJson(), requestOptions, new HttpMethod("PATCH"), cancellationToken);
+            return await resource.RequestAsync<AccountHolder>(accountHolder.ToJson(), requestOptions, new HttpMethod("PATCH"), cancellationToken).ConfigureAwait(false);
         }
         
         public AccountHolder CreateAccountHolder(AccountHolderInfo accountHolderInfo, RequestOptions requestOptions = default)

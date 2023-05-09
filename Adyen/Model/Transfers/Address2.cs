@@ -42,7 +42,7 @@ namespace Adyen.Model.Transfers
         /// Initializes a new instance of the <see cref="Address2" /> class.
         /// </summary>
         /// <param name="city">The name of the city..</param>
-        /// <param name="country">The two-character ISO 3166-1 alpha-2 country code. For example, **US**. &gt;If you don&#39;t know the country or are not collecting the country from the shopper, provide &#x60;country&#x60; as &#x60;ZZ&#x60;. (required).</param>
+        /// <param name="country">The two-character ISO 3166-1 alpha-2 country code. For example, **US**, **NL**, or **GB**. (required).</param>
         /// <param name="line1">First line of the street address..</param>
         /// <param name="line2">Second line of the street address..</param>
         /// <param name="postalCode">The postal code. Maximum length: * 5 digits for an address in the US. * 10 characters for an address in all other countries..</param>
@@ -65,9 +65,9 @@ namespace Adyen.Model.Transfers
         public string City { get; set; }
 
         /// <summary>
-        /// The two-character ISO 3166-1 alpha-2 country code. For example, **US**. &gt;If you don&#39;t know the country or are not collecting the country from the shopper, provide &#x60;country&#x60; as &#x60;ZZ&#x60;.
+        /// The two-character ISO 3166-1 alpha-2 country code. For example, **US**, **NL**, or **GB**.
         /// </summary>
-        /// <value>The two-character ISO 3166-1 alpha-2 country code. For example, **US**. &gt;If you don&#39;t know the country or are not collecting the country from the shopper, provide &#x60;country&#x60; as &#x60;ZZ&#x60;.</value>
+        /// <value>The two-character ISO 3166-1 alpha-2 country code. For example, **US**, **NL**, or **GB**.</value>
         [DataMember(Name = "country", IsRequired = false, EmitDefaultValue = false)]
         public string Country { get; set; }
 

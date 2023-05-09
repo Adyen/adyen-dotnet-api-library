@@ -28,18 +28,18 @@ using OpenAPIDateConverter = Adyen.ApiSerialization.OpenAPIDateConverter;
 namespace Adyen.Model.BalancePlatform
 {
     /// <summary>
-    /// Address2
+    /// DeliveryAddress
     /// </summary>
-    [DataContract(Name = "Address-2")]
-    public partial class Address2 : IEquatable<Address2>, IValidatableObject
+    [DataContract(Name = "DeliveryAddress")]
+    public partial class DeliveryAddress : IEquatable<DeliveryAddress>, IValidatableObject
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="Address2" /> class.
+        /// Initializes a new instance of the <see cref="DeliveryAddress" /> class.
         /// </summary>
         [JsonConstructorAttribute]
-        protected Address2() { }
+        protected DeliveryAddress() { }
         /// <summary>
-        /// Initializes a new instance of the <see cref="Address2" /> class.
+        /// Initializes a new instance of the <see cref="DeliveryAddress" /> class.
         /// </summary>
         /// <param name="city">The name of the city..</param>
         /// <param name="country">The two-character ISO-3166-1 alpha-2 country code. For example, **US**. &gt;If you don&#39;t know the country or are not collecting the country from the shopper, provide &#x60;country&#x60; as &#x60;ZZ&#x60;. (required).</param>
@@ -48,7 +48,7 @@ namespace Adyen.Model.BalancePlatform
         /// <param name="line3">Third line of the address..</param>
         /// <param name="postalCode">The postal code. Maximum length: * 5 digits for an address in the US. * 10 characters for an address in all other countries..</param>
         /// <param name="stateOrProvince">The two-letterISO 3166-2 state or province code. For example, **CA** in the US or **ON** in Canada. &gt; Required for the US and Canada..</param>
-        public Address2(string city = default(string), string country = default(string), string line1 = default(string), string line2 = default(string), string line3 = default(string), string postalCode = default(string), string stateOrProvince = default(string))
+        public DeliveryAddress(string city = default(string), string country = default(string), string line1 = default(string), string line2 = default(string), string line3 = default(string), string postalCode = default(string), string stateOrProvince = default(string))
         {
             this.Country = country;
             this.City = city;
@@ -115,7 +115,7 @@ namespace Adyen.Model.BalancePlatform
         public override string ToString()
         {
             StringBuilder sb = new StringBuilder();
-            sb.Append("class Address2 {\n");
+            sb.Append("class DeliveryAddress {\n");
             sb.Append("  City: ").Append(City).Append("\n");
             sb.Append("  Country: ").Append(Country).Append("\n");
             sb.Append("  Line1: ").Append(Line1).Append("\n");
@@ -143,15 +143,15 @@ namespace Adyen.Model.BalancePlatform
         /// <returns>Boolean</returns>
         public override bool Equals(object input)
         {
-            return this.Equals(input as Address2);
+            return this.Equals(input as DeliveryAddress);
         }
 
         /// <summary>
-        /// Returns true if Address2 instances are equal
+        /// Returns true if DeliveryAddress instances are equal
         /// </summary>
-        /// <param name="input">Instance of Address2 to be compared</param>
+        /// <param name="input">Instance of DeliveryAddress to be compared</param>
         /// <returns>Boolean</returns>
-        public bool Equals(Address2 input)
+        public bool Equals(DeliveryAddress input)
         {
             if (input == null)
             {

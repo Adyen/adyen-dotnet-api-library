@@ -130,62 +130,62 @@ namespace Adyen.Service.LegalEntityManagement
         
         public LegalEntity GetLegalEntity(string id, RequestOptions requestOptions = default)
         {
-            return GetLegalEntityAsync(id, requestOptions).GetAwaiter().GetResult();
+            return GetLegalEntityAsync(id, requestOptions).ConfigureAwait(false).GetAwaiter().GetResult();
         }
 
         public async Task<LegalEntity> GetLegalEntityAsync(string id, RequestOptions requestOptions = default, CancellationToken cancellationToken = default)
         {
             var endpoint = _baseUrl + $"/legalEntities/{id}";
             var resource = new ServiceResource(this, endpoint);
-            return await resource.RequestAsync<LegalEntity>(null, requestOptions, new HttpMethod("GET"), cancellationToken);
+            return await resource.RequestAsync<LegalEntity>(null, requestOptions, new HttpMethod("GET"), cancellationToken).ConfigureAwait(false);
         }
         
         public BusinessLines GetAllBusinessLinesUnderLegalEntity(string id, RequestOptions requestOptions = default)
         {
-            return GetAllBusinessLinesUnderLegalEntityAsync(id, requestOptions).GetAwaiter().GetResult();
+            return GetAllBusinessLinesUnderLegalEntityAsync(id, requestOptions).ConfigureAwait(false).GetAwaiter().GetResult();
         }
 
         public async Task<BusinessLines> GetAllBusinessLinesUnderLegalEntityAsync(string id, RequestOptions requestOptions = default, CancellationToken cancellationToken = default)
         {
             var endpoint = _baseUrl + $"/legalEntities/{id}/businessLines";
             var resource = new ServiceResource(this, endpoint);
-            return await resource.RequestAsync<BusinessLines>(null, requestOptions, new HttpMethod("GET"), cancellationToken);
+            return await resource.RequestAsync<BusinessLines>(null, requestOptions, new HttpMethod("GET"), cancellationToken).ConfigureAwait(false);
         }
         
         public LegalEntity UpdateLegalEntity(string id, LegalEntityInfo legalEntityInfo, RequestOptions requestOptions = default)
         {
-            return UpdateLegalEntityAsync(id, legalEntityInfo, requestOptions).GetAwaiter().GetResult();
+            return UpdateLegalEntityAsync(id, legalEntityInfo, requestOptions).ConfigureAwait(false).GetAwaiter().GetResult();
         }
 
         public async Task<LegalEntity> UpdateLegalEntityAsync(string id, LegalEntityInfo legalEntityInfo, RequestOptions requestOptions = default, CancellationToken cancellationToken = default)
         {
             var endpoint = _baseUrl + $"/legalEntities/{id}";
             var resource = new ServiceResource(this, endpoint);
-            return await resource.RequestAsync<LegalEntity>(legalEntityInfo.ToJson(), requestOptions, new HttpMethod("PATCH"), cancellationToken);
+            return await resource.RequestAsync<LegalEntity>(legalEntityInfo.ToJson(), requestOptions, new HttpMethod("PATCH"), cancellationToken).ConfigureAwait(false);
         }
         
         public LegalEntity CreateLegalEntity(LegalEntityInfoRequiredType legalEntityInfoRequiredType, RequestOptions requestOptions = default)
         {
-            return CreateLegalEntityAsync(legalEntityInfoRequiredType, requestOptions).GetAwaiter().GetResult();
+            return CreateLegalEntityAsync(legalEntityInfoRequiredType, requestOptions).ConfigureAwait(false).GetAwaiter().GetResult();
         }
 
         public async Task<LegalEntity> CreateLegalEntityAsync(LegalEntityInfoRequiredType legalEntityInfoRequiredType, RequestOptions requestOptions = default, CancellationToken cancellationToken = default)
         {
             var endpoint = _baseUrl + "/legalEntities";
             var resource = new ServiceResource(this, endpoint);
-            return await resource.RequestAsync<LegalEntity>(legalEntityInfoRequiredType.ToJson(), requestOptions, new HttpMethod("POST"), cancellationToken);
+            return await resource.RequestAsync<LegalEntity>(legalEntityInfoRequiredType.ToJson(), requestOptions, new HttpMethod("POST"), cancellationToken).ConfigureAwait(false);
         }
         
         public VerificationErrors CheckLegalEntitysVerificationErrors(string id, RequestOptions requestOptions = default)
         {
-            return CheckLegalEntitysVerificationErrorsAsync(id, requestOptions).GetAwaiter().GetResult();
+            return CheckLegalEntitysVerificationErrorsAsync(id, requestOptions).ConfigureAwait(false).GetAwaiter().GetResult();
         }
 
         public async Task<VerificationErrors> CheckLegalEntitysVerificationErrorsAsync(string id, RequestOptions requestOptions = default, CancellationToken cancellationToken = default)
         {
             var endpoint = _baseUrl + $"/legalEntities/{id}/checkVerificationErrors";
             var resource = new ServiceResource(this, endpoint);
-            return await resource.RequestAsync<VerificationErrors>(null, requestOptions, new HttpMethod("POST"), cancellationToken);
+            return await resource.RequestAsync<VerificationErrors>(null, requestOptions, new HttpMethod("POST"), cancellationToken).ConfigureAwait(false);
         }
     }
 }

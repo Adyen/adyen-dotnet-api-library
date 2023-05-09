@@ -23,7 +23,7 @@ using Adyen.Model.StoredValue;
 namespace Adyen.Service
 {
     /// <summary>
-    /// GeneralService Interface
+    /// DefaultService Interface
     /// </summary>
     public interface IStoredValueService
     {
@@ -145,74 +145,74 @@ namespace Adyen.Service
         
         public StoredValueStatusChangeResponse ChangeStatus(StoredValueStatusChangeRequest storedValueStatusChangeRequest, RequestOptions requestOptions = default)
         {
-            return ChangeStatusAsync(storedValueStatusChangeRequest, requestOptions).GetAwaiter().GetResult();
+            return ChangeStatusAsync(storedValueStatusChangeRequest, requestOptions).ConfigureAwait(false).GetAwaiter().GetResult();
         }
 
         public async Task<StoredValueStatusChangeResponse> ChangeStatusAsync(StoredValueStatusChangeRequest storedValueStatusChangeRequest, RequestOptions requestOptions = default, CancellationToken cancellationToken = default)
         {
             var endpoint = _baseUrl + "/changeStatus";
             var resource = new ServiceResource(this, endpoint);
-            return await resource.RequestAsync<StoredValueStatusChangeResponse>(storedValueStatusChangeRequest.ToJson(), requestOptions, new HttpMethod("POST"), cancellationToken);
+            return await resource.RequestAsync<StoredValueStatusChangeResponse>(storedValueStatusChangeRequest.ToJson(), requestOptions, new HttpMethod("POST"), cancellationToken).ConfigureAwait(false);
         }
         
         public StoredValueBalanceCheckResponse CheckBalance(StoredValueBalanceCheckRequest storedValueBalanceCheckRequest, RequestOptions requestOptions = default)
         {
-            return CheckBalanceAsync(storedValueBalanceCheckRequest, requestOptions).GetAwaiter().GetResult();
+            return CheckBalanceAsync(storedValueBalanceCheckRequest, requestOptions).ConfigureAwait(false).GetAwaiter().GetResult();
         }
 
         public async Task<StoredValueBalanceCheckResponse> CheckBalanceAsync(StoredValueBalanceCheckRequest storedValueBalanceCheckRequest, RequestOptions requestOptions = default, CancellationToken cancellationToken = default)
         {
             var endpoint = _baseUrl + "/checkBalance";
             var resource = new ServiceResource(this, endpoint);
-            return await resource.RequestAsync<StoredValueBalanceCheckResponse>(storedValueBalanceCheckRequest.ToJson(), requestOptions, new HttpMethod("POST"), cancellationToken);
+            return await resource.RequestAsync<StoredValueBalanceCheckResponse>(storedValueBalanceCheckRequest.ToJson(), requestOptions, new HttpMethod("POST"), cancellationToken).ConfigureAwait(false);
         }
         
         public StoredValueIssueResponse Issue(StoredValueIssueRequest storedValueIssueRequest, RequestOptions requestOptions = default)
         {
-            return IssueAsync(storedValueIssueRequest, requestOptions).GetAwaiter().GetResult();
+            return IssueAsync(storedValueIssueRequest, requestOptions).ConfigureAwait(false).GetAwaiter().GetResult();
         }
 
         public async Task<StoredValueIssueResponse> IssueAsync(StoredValueIssueRequest storedValueIssueRequest, RequestOptions requestOptions = default, CancellationToken cancellationToken = default)
         {
             var endpoint = _baseUrl + "/issue";
             var resource = new ServiceResource(this, endpoint);
-            return await resource.RequestAsync<StoredValueIssueResponse>(storedValueIssueRequest.ToJson(), requestOptions, new HttpMethod("POST"), cancellationToken);
+            return await resource.RequestAsync<StoredValueIssueResponse>(storedValueIssueRequest.ToJson(), requestOptions, new HttpMethod("POST"), cancellationToken).ConfigureAwait(false);
         }
         
         public StoredValueLoadResponse Load(StoredValueLoadRequest storedValueLoadRequest, RequestOptions requestOptions = default)
         {
-            return LoadAsync(storedValueLoadRequest, requestOptions).GetAwaiter().GetResult();
+            return LoadAsync(storedValueLoadRequest, requestOptions).ConfigureAwait(false).GetAwaiter().GetResult();
         }
 
         public async Task<StoredValueLoadResponse> LoadAsync(StoredValueLoadRequest storedValueLoadRequest, RequestOptions requestOptions = default, CancellationToken cancellationToken = default)
         {
             var endpoint = _baseUrl + "/load";
             var resource = new ServiceResource(this, endpoint);
-            return await resource.RequestAsync<StoredValueLoadResponse>(storedValueLoadRequest.ToJson(), requestOptions, new HttpMethod("POST"), cancellationToken);
+            return await resource.RequestAsync<StoredValueLoadResponse>(storedValueLoadRequest.ToJson(), requestOptions, new HttpMethod("POST"), cancellationToken).ConfigureAwait(false);
         }
         
         public StoredValueBalanceMergeResponse MergeBalance(StoredValueBalanceMergeRequest storedValueBalanceMergeRequest, RequestOptions requestOptions = default)
         {
-            return MergeBalanceAsync(storedValueBalanceMergeRequest, requestOptions).GetAwaiter().GetResult();
+            return MergeBalanceAsync(storedValueBalanceMergeRequest, requestOptions).ConfigureAwait(false).GetAwaiter().GetResult();
         }
 
         public async Task<StoredValueBalanceMergeResponse> MergeBalanceAsync(StoredValueBalanceMergeRequest storedValueBalanceMergeRequest, RequestOptions requestOptions = default, CancellationToken cancellationToken = default)
         {
             var endpoint = _baseUrl + "/mergeBalance";
             var resource = new ServiceResource(this, endpoint);
-            return await resource.RequestAsync<StoredValueBalanceMergeResponse>(storedValueBalanceMergeRequest.ToJson(), requestOptions, new HttpMethod("POST"), cancellationToken);
+            return await resource.RequestAsync<StoredValueBalanceMergeResponse>(storedValueBalanceMergeRequest.ToJson(), requestOptions, new HttpMethod("POST"), cancellationToken).ConfigureAwait(false);
         }
         
         public StoredValueVoidResponse VoidTransaction(StoredValueVoidRequest storedValueVoidRequest, RequestOptions requestOptions = default)
         {
-            return VoidTransactionAsync(storedValueVoidRequest, requestOptions).GetAwaiter().GetResult();
+            return VoidTransactionAsync(storedValueVoidRequest, requestOptions).ConfigureAwait(false).GetAwaiter().GetResult();
         }
 
         public async Task<StoredValueVoidResponse> VoidTransactionAsync(StoredValueVoidRequest storedValueVoidRequest, RequestOptions requestOptions = default, CancellationToken cancellationToken = default)
         {
             var endpoint = _baseUrl + "/voidTransaction";
             var resource = new ServiceResource(this, endpoint);
-            return await resource.RequestAsync<StoredValueVoidResponse>(storedValueVoidRequest.ToJson(), requestOptions, new HttpMethod("POST"), cancellationToken);
+            return await resource.RequestAsync<StoredValueVoidResponse>(storedValueVoidRequest.ToJson(), requestOptions, new HttpMethod("POST"), cancellationToken).ConfigureAwait(false);
         }
     }
 }

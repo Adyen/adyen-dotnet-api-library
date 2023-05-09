@@ -23,7 +23,7 @@ using Adyen.Model.BalanceControl;
 namespace Adyen.Service
 {
     /// <summary>
-    /// GeneralService Interface
+    /// DefaultService Interface
     /// </summary>
     public interface IBalanceControlService
     {
@@ -60,14 +60,14 @@ namespace Adyen.Service
         
         public BalanceTransferResponse BalanceTransfer(BalanceTransferRequest balanceTransferRequest, RequestOptions requestOptions = default)
         {
-            return BalanceTransferAsync(balanceTransferRequest, requestOptions).GetAwaiter().GetResult();
+            return BalanceTransferAsync(balanceTransferRequest, requestOptions).ConfigureAwait(false).GetAwaiter().GetResult();
         }
 
         public async Task<BalanceTransferResponse> BalanceTransferAsync(BalanceTransferRequest balanceTransferRequest, RequestOptions requestOptions = default, CancellationToken cancellationToken = default)
         {
             var endpoint = _baseUrl + "/balanceTransfer";
             var resource = new ServiceResource(this, endpoint);
-            return await resource.RequestAsync<BalanceTransferResponse>(balanceTransferRequest.ToJson(), requestOptions, new HttpMethod("POST"), cancellationToken);
+            return await resource.RequestAsync<BalanceTransferResponse>(balanceTransferRequest.ToJson(), requestOptions, new HttpMethod("POST"), cancellationToken).ConfigureAwait(false);
         }
     }
 }

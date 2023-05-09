@@ -264,158 +264,158 @@ namespace Adyen.Service
         
         public ModificationResult AdjustAuthorisation(AdjustAuthorisationRequest adjustAuthorisationRequest, RequestOptions requestOptions = default)
         {
-            return AdjustAuthorisationAsync(adjustAuthorisationRequest, requestOptions).GetAwaiter().GetResult();
+            return AdjustAuthorisationAsync(adjustAuthorisationRequest, requestOptions).ConfigureAwait(false).GetAwaiter().GetResult();
         }
 
         public async Task<ModificationResult> AdjustAuthorisationAsync(AdjustAuthorisationRequest adjustAuthorisationRequest, RequestOptions requestOptions = default, CancellationToken cancellationToken = default)
         {
             var endpoint = _baseUrl + "/adjustAuthorisation";
             var resource = new ServiceResource(this, endpoint);
-            return await resource.RequestAsync<ModificationResult>(adjustAuthorisationRequest.ToJson(), requestOptions, new HttpMethod("POST"), cancellationToken);
+            return await resource.RequestAsync<ModificationResult>(adjustAuthorisationRequest.ToJson(), requestOptions, new HttpMethod("POST"), cancellationToken).ConfigureAwait(false);
         }
         
         public PaymentResult Authorise(PaymentRequest paymentRequest, RequestOptions requestOptions = default)
         {
-            return AuthoriseAsync(paymentRequest, requestOptions).GetAwaiter().GetResult();
+            return AuthoriseAsync(paymentRequest, requestOptions).ConfigureAwait(false).GetAwaiter().GetResult();
         }
 
         public async Task<PaymentResult> AuthoriseAsync(PaymentRequest paymentRequest, RequestOptions requestOptions = default, CancellationToken cancellationToken = default)
         {
             var endpoint = _baseUrl + "/authorise";
             var resource = new ServiceResource(this, endpoint);
-            return await resource.RequestAsync<PaymentResult>(paymentRequest.ToJson(), requestOptions, new HttpMethod("POST"), cancellationToken);
+            return await resource.RequestAsync<PaymentResult>(paymentRequest.ToJson(), requestOptions, new HttpMethod("POST"), cancellationToken).ConfigureAwait(false);
         }
         
         public PaymentResult Authorise3d(PaymentRequest3d paymentRequest3d, RequestOptions requestOptions = default)
         {
-            return Authorise3dAsync(paymentRequest3d, requestOptions).GetAwaiter().GetResult();
+            return Authorise3dAsync(paymentRequest3d, requestOptions).ConfigureAwait(false).GetAwaiter().GetResult();
         }
 
         public async Task<PaymentResult> Authorise3dAsync(PaymentRequest3d paymentRequest3d, RequestOptions requestOptions = default, CancellationToken cancellationToken = default)
         {
             var endpoint = _baseUrl + "/authorise3d";
             var resource = new ServiceResource(this, endpoint);
-            return await resource.RequestAsync<PaymentResult>(paymentRequest3d.ToJson(), requestOptions, new HttpMethod("POST"), cancellationToken);
+            return await resource.RequestAsync<PaymentResult>(paymentRequest3d.ToJson(), requestOptions, new HttpMethod("POST"), cancellationToken).ConfigureAwait(false);
         }
         
         public PaymentResult Authorise3ds2(PaymentRequest3ds2 paymentRequest3ds2, RequestOptions requestOptions = default)
         {
-            return Authorise3ds2Async(paymentRequest3ds2, requestOptions).GetAwaiter().GetResult();
+            return Authorise3ds2Async(paymentRequest3ds2, requestOptions).ConfigureAwait(false).GetAwaiter().GetResult();
         }
 
         public async Task<PaymentResult> Authorise3ds2Async(PaymentRequest3ds2 paymentRequest3ds2, RequestOptions requestOptions = default, CancellationToken cancellationToken = default)
         {
             var endpoint = _baseUrl + "/authorise3ds2";
             var resource = new ServiceResource(this, endpoint);
-            return await resource.RequestAsync<PaymentResult>(paymentRequest3ds2.ToJson(), requestOptions, new HttpMethod("POST"), cancellationToken);
+            return await resource.RequestAsync<PaymentResult>(paymentRequest3ds2.ToJson(), requestOptions, new HttpMethod("POST"), cancellationToken).ConfigureAwait(false);
         }
         
         public ModificationResult Cancel(CancelRequest cancelRequest, RequestOptions requestOptions = default)
         {
-            return CancelAsync(cancelRequest, requestOptions).GetAwaiter().GetResult();
+            return CancelAsync(cancelRequest, requestOptions).ConfigureAwait(false).GetAwaiter().GetResult();
         }
 
         public async Task<ModificationResult> CancelAsync(CancelRequest cancelRequest, RequestOptions requestOptions = default, CancellationToken cancellationToken = default)
         {
             var endpoint = _baseUrl + "/cancel";
             var resource = new ServiceResource(this, endpoint);
-            return await resource.RequestAsync<ModificationResult>(cancelRequest.ToJson(), requestOptions, new HttpMethod("POST"), cancellationToken);
+            return await resource.RequestAsync<ModificationResult>(cancelRequest.ToJson(), requestOptions, new HttpMethod("POST"), cancellationToken).ConfigureAwait(false);
         }
         
         public ModificationResult CancelOrRefund(CancelOrRefundRequest cancelOrRefundRequest, RequestOptions requestOptions = default)
         {
-            return CancelOrRefundAsync(cancelOrRefundRequest, requestOptions).GetAwaiter().GetResult();
+            return CancelOrRefundAsync(cancelOrRefundRequest, requestOptions).ConfigureAwait(false).GetAwaiter().GetResult();
         }
 
         public async Task<ModificationResult> CancelOrRefundAsync(CancelOrRefundRequest cancelOrRefundRequest, RequestOptions requestOptions = default, CancellationToken cancellationToken = default)
         {
             var endpoint = _baseUrl + "/cancelOrRefund";
             var resource = new ServiceResource(this, endpoint);
-            return await resource.RequestAsync<ModificationResult>(cancelOrRefundRequest.ToJson(), requestOptions, new HttpMethod("POST"), cancellationToken);
+            return await resource.RequestAsync<ModificationResult>(cancelOrRefundRequest.ToJson(), requestOptions, new HttpMethod("POST"), cancellationToken).ConfigureAwait(false);
         }
         
         public ModificationResult Capture(CaptureRequest captureRequest, RequestOptions requestOptions = default)
         {
-            return CaptureAsync(captureRequest, requestOptions).GetAwaiter().GetResult();
+            return CaptureAsync(captureRequest, requestOptions).ConfigureAwait(false).GetAwaiter().GetResult();
         }
 
         public async Task<ModificationResult> CaptureAsync(CaptureRequest captureRequest, RequestOptions requestOptions = default, CancellationToken cancellationToken = default)
         {
             var endpoint = _baseUrl + "/capture";
             var resource = new ServiceResource(this, endpoint);
-            return await resource.RequestAsync<ModificationResult>(captureRequest.ToJson(), requestOptions, new HttpMethod("POST"), cancellationToken);
+            return await resource.RequestAsync<ModificationResult>(captureRequest.ToJson(), requestOptions, new HttpMethod("POST"), cancellationToken).ConfigureAwait(false);
         }
         
         public ModificationResult Donate(DonationRequest donationRequest, RequestOptions requestOptions = default)
         {
-            return DonateAsync(donationRequest, requestOptions).GetAwaiter().GetResult();
+            return DonateAsync(donationRequest, requestOptions).ConfigureAwait(false).GetAwaiter().GetResult();
         }
 
         public async Task<ModificationResult> DonateAsync(DonationRequest donationRequest, RequestOptions requestOptions = default, CancellationToken cancellationToken = default)
         {
             var endpoint = _baseUrl + "/donate";
             var resource = new ServiceResource(this, endpoint);
-            return await resource.RequestAsync<ModificationResult>(donationRequest.ToJson(), requestOptions, new HttpMethod("POST"), cancellationToken);
+            return await resource.RequestAsync<ModificationResult>(donationRequest.ToJson(), requestOptions, new HttpMethod("POST"), cancellationToken).ConfigureAwait(false);
         }
         
         public AuthenticationResultResponse GetAuthenticationResult(AuthenticationResultRequest authenticationResultRequest, RequestOptions requestOptions = default)
         {
-            return GetAuthenticationResultAsync(authenticationResultRequest, requestOptions).GetAwaiter().GetResult();
+            return GetAuthenticationResultAsync(authenticationResultRequest, requestOptions).ConfigureAwait(false).GetAwaiter().GetResult();
         }
 
         public async Task<AuthenticationResultResponse> GetAuthenticationResultAsync(AuthenticationResultRequest authenticationResultRequest, RequestOptions requestOptions = default, CancellationToken cancellationToken = default)
         {
             var endpoint = _baseUrl + "/getAuthenticationResult";
             var resource = new ServiceResource(this, endpoint);
-            return await resource.RequestAsync<AuthenticationResultResponse>(authenticationResultRequest.ToJson(), requestOptions, new HttpMethod("POST"), cancellationToken);
+            return await resource.RequestAsync<AuthenticationResultResponse>(authenticationResultRequest.ToJson(), requestOptions, new HttpMethod("POST"), cancellationToken).ConfigureAwait(false);
         }
         
         public ModificationResult Refund(RefundRequest refundRequest, RequestOptions requestOptions = default)
         {
-            return RefundAsync(refundRequest, requestOptions).GetAwaiter().GetResult();
+            return RefundAsync(refundRequest, requestOptions).ConfigureAwait(false).GetAwaiter().GetResult();
         }
 
         public async Task<ModificationResult> RefundAsync(RefundRequest refundRequest, RequestOptions requestOptions = default, CancellationToken cancellationToken = default)
         {
             var endpoint = _baseUrl + "/refund";
             var resource = new ServiceResource(this, endpoint);
-            return await resource.RequestAsync<ModificationResult>(refundRequest.ToJson(), requestOptions, new HttpMethod("POST"), cancellationToken);
+            return await resource.RequestAsync<ModificationResult>(refundRequest.ToJson(), requestOptions, new HttpMethod("POST"), cancellationToken).ConfigureAwait(false);
         }
         
         public ThreeDS2ResultResponse Retrieve3ds2Result(ThreeDS2ResultRequest threeDS2ResultRequest, RequestOptions requestOptions = default)
         {
-            return Retrieve3ds2ResultAsync(threeDS2ResultRequest, requestOptions).GetAwaiter().GetResult();
+            return Retrieve3ds2ResultAsync(threeDS2ResultRequest, requestOptions).ConfigureAwait(false).GetAwaiter().GetResult();
         }
 
         public async Task<ThreeDS2ResultResponse> Retrieve3ds2ResultAsync(ThreeDS2ResultRequest threeDS2ResultRequest, RequestOptions requestOptions = default, CancellationToken cancellationToken = default)
         {
             var endpoint = _baseUrl + "/retrieve3ds2Result";
             var resource = new ServiceResource(this, endpoint);
-            return await resource.RequestAsync<ThreeDS2ResultResponse>(threeDS2ResultRequest.ToJson(), requestOptions, new HttpMethod("POST"), cancellationToken);
+            return await resource.RequestAsync<ThreeDS2ResultResponse>(threeDS2ResultRequest.ToJson(), requestOptions, new HttpMethod("POST"), cancellationToken).ConfigureAwait(false);
         }
         
         public ModificationResult TechnicalCancel(TechnicalCancelRequest technicalCancelRequest, RequestOptions requestOptions = default)
         {
-            return TechnicalCancelAsync(technicalCancelRequest, requestOptions).GetAwaiter().GetResult();
+            return TechnicalCancelAsync(technicalCancelRequest, requestOptions).ConfigureAwait(false).GetAwaiter().GetResult();
         }
 
         public async Task<ModificationResult> TechnicalCancelAsync(TechnicalCancelRequest technicalCancelRequest, RequestOptions requestOptions = default, CancellationToken cancellationToken = default)
         {
             var endpoint = _baseUrl + "/technicalCancel";
             var resource = new ServiceResource(this, endpoint);
-            return await resource.RequestAsync<ModificationResult>(technicalCancelRequest.ToJson(), requestOptions, new HttpMethod("POST"), cancellationToken);
+            return await resource.RequestAsync<ModificationResult>(technicalCancelRequest.ToJson(), requestOptions, new HttpMethod("POST"), cancellationToken).ConfigureAwait(false);
         }
         
         public ModificationResult VoidPendingRefund(VoidPendingRefundRequest voidPendingRefundRequest, RequestOptions requestOptions = default)
         {
-            return VoidPendingRefundAsync(voidPendingRefundRequest, requestOptions).GetAwaiter().GetResult();
+            return VoidPendingRefundAsync(voidPendingRefundRequest, requestOptions).ConfigureAwait(false).GetAwaiter().GetResult();
         }
 
         public async Task<ModificationResult> VoidPendingRefundAsync(VoidPendingRefundRequest voidPendingRefundRequest, RequestOptions requestOptions = default, CancellationToken cancellationToken = default)
         {
             var endpoint = _baseUrl + "/voidPendingRefund";
             var resource = new ServiceResource(this, endpoint);
-            return await resource.RequestAsync<ModificationResult>(voidPendingRefundRequest.ToJson(), requestOptions, new HttpMethod("POST"), cancellationToken);
+            return await resource.RequestAsync<ModificationResult>(voidPendingRefundRequest.ToJson(), requestOptions, new HttpMethod("POST"), cancellationToken).ConfigureAwait(false);
         }
     }
 }

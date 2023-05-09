@@ -45,21 +45,21 @@ namespace Adyen.Service.BalancePlatform
         Task<PaymentInstrument> GetPaymentInstrumentAsync(string id, RequestOptions requestOptions = default, CancellationToken cancellationToken = default);
         
         /// <summary>
-        /// Get the reveal information of a payment instrument
+        /// Get the PAN of a payment instrument
         /// </summary>
         /// <param name="id"><see cref="string"/> - The unique identifier of the payment instrument.</param>
         /// <param name="requestOptions"><see cref="RequestOptions"/> - Additional request options.</param>
         /// <returns><see cref="PaymentInstrumentRevealInfo"/>.</returns>
-        PaymentInstrumentRevealInfo GetRevealInformationOfPaymentInstrument(string id, RequestOptions requestOptions = default);
+        PaymentInstrumentRevealInfo GetPanOfPaymentInstrument(string id, RequestOptions requestOptions = default);
         
         /// <summary>
-        /// Get the reveal information of a payment instrument
+        /// Get the PAN of a payment instrument
         /// </summary>
         /// <param name="id"><see cref="string"/> - The unique identifier of the payment instrument.</param>
         /// <param name="requestOptions"><see cref="RequestOptions"/> - Additional request options.</param>
         /// <param name="cancellationToken"> A CancellationToken enables cooperative cancellation between threads, thread pool work items, or Task objects.</param>
         /// <returns>Task of <see cref="PaymentInstrumentRevealInfo"/>.</returns>
-        Task<PaymentInstrumentRevealInfo> GetRevealInformationOfPaymentInstrumentAsync(string id, RequestOptions requestOptions = default, CancellationToken cancellationToken = default);
+        Task<PaymentInstrumentRevealInfo> GetPanOfPaymentInstrumentAsync(string id, RequestOptions requestOptions = default, CancellationToken cancellationToken = default);
         
         /// <summary>
         /// Get all transaction rules for a payment instrument
@@ -130,62 +130,62 @@ namespace Adyen.Service.BalancePlatform
         
         public PaymentInstrument GetPaymentInstrument(string id, RequestOptions requestOptions = default)
         {
-            return GetPaymentInstrumentAsync(id, requestOptions).GetAwaiter().GetResult();
+            return GetPaymentInstrumentAsync(id, requestOptions).ConfigureAwait(false).GetAwaiter().GetResult();
         }
 
         public async Task<PaymentInstrument> GetPaymentInstrumentAsync(string id, RequestOptions requestOptions = default, CancellationToken cancellationToken = default)
         {
             var endpoint = _baseUrl + $"/paymentInstruments/{id}";
             var resource = new ServiceResource(this, endpoint);
-            return await resource.RequestAsync<PaymentInstrument>(null, requestOptions, new HttpMethod("GET"), cancellationToken);
+            return await resource.RequestAsync<PaymentInstrument>(null, requestOptions, new HttpMethod("GET"), cancellationToken).ConfigureAwait(false);
         }
         
-        public PaymentInstrumentRevealInfo GetRevealInformationOfPaymentInstrument(string id, RequestOptions requestOptions = default)
+        public PaymentInstrumentRevealInfo GetPanOfPaymentInstrument(string id, RequestOptions requestOptions = default)
         {
-            return GetRevealInformationOfPaymentInstrumentAsync(id, requestOptions).GetAwaiter().GetResult();
+            return GetPanOfPaymentInstrumentAsync(id, requestOptions).ConfigureAwait(false).GetAwaiter().GetResult();
         }
 
-        public async Task<PaymentInstrumentRevealInfo> GetRevealInformationOfPaymentInstrumentAsync(string id, RequestOptions requestOptions = default, CancellationToken cancellationToken = default)
+        public async Task<PaymentInstrumentRevealInfo> GetPanOfPaymentInstrumentAsync(string id, RequestOptions requestOptions = default, CancellationToken cancellationToken = default)
         {
             var endpoint = _baseUrl + $"/paymentInstruments/{id}/reveal";
             var resource = new ServiceResource(this, endpoint);
-            return await resource.RequestAsync<PaymentInstrumentRevealInfo>(null, requestOptions, new HttpMethod("GET"), cancellationToken);
+            return await resource.RequestAsync<PaymentInstrumentRevealInfo>(null, requestOptions, new HttpMethod("GET"), cancellationToken).ConfigureAwait(false);
         }
         
         public TransactionRulesResponse GetAllTransactionRulesForPaymentInstrument(string id, RequestOptions requestOptions = default)
         {
-            return GetAllTransactionRulesForPaymentInstrumentAsync(id, requestOptions).GetAwaiter().GetResult();
+            return GetAllTransactionRulesForPaymentInstrumentAsync(id, requestOptions).ConfigureAwait(false).GetAwaiter().GetResult();
         }
 
         public async Task<TransactionRulesResponse> GetAllTransactionRulesForPaymentInstrumentAsync(string id, RequestOptions requestOptions = default, CancellationToken cancellationToken = default)
         {
             var endpoint = _baseUrl + $"/paymentInstruments/{id}/transactionRules";
             var resource = new ServiceResource(this, endpoint);
-            return await resource.RequestAsync<TransactionRulesResponse>(null, requestOptions, new HttpMethod("GET"), cancellationToken);
+            return await resource.RequestAsync<TransactionRulesResponse>(null, requestOptions, new HttpMethod("GET"), cancellationToken).ConfigureAwait(false);
         }
         
         public UpdatePaymentInstrument UpdatePaymentInstrument(string id, PaymentInstrumentUpdateRequest paymentInstrumentUpdateRequest, RequestOptions requestOptions = default)
         {
-            return UpdatePaymentInstrumentAsync(id, paymentInstrumentUpdateRequest, requestOptions).GetAwaiter().GetResult();
+            return UpdatePaymentInstrumentAsync(id, paymentInstrumentUpdateRequest, requestOptions).ConfigureAwait(false).GetAwaiter().GetResult();
         }
 
         public async Task<UpdatePaymentInstrument> UpdatePaymentInstrumentAsync(string id, PaymentInstrumentUpdateRequest paymentInstrumentUpdateRequest, RequestOptions requestOptions = default, CancellationToken cancellationToken = default)
         {
             var endpoint = _baseUrl + $"/paymentInstruments/{id}";
             var resource = new ServiceResource(this, endpoint);
-            return await resource.RequestAsync<UpdatePaymentInstrument>(paymentInstrumentUpdateRequest.ToJson(), requestOptions, new HttpMethod("PATCH"), cancellationToken);
+            return await resource.RequestAsync<UpdatePaymentInstrument>(paymentInstrumentUpdateRequest.ToJson(), requestOptions, new HttpMethod("PATCH"), cancellationToken).ConfigureAwait(false);
         }
         
         public PaymentInstrument CreatePaymentInstrument(PaymentInstrumentInfo paymentInstrumentInfo, RequestOptions requestOptions = default)
         {
-            return CreatePaymentInstrumentAsync(paymentInstrumentInfo, requestOptions).GetAwaiter().GetResult();
+            return CreatePaymentInstrumentAsync(paymentInstrumentInfo, requestOptions).ConfigureAwait(false).GetAwaiter().GetResult();
         }
 
         public async Task<PaymentInstrument> CreatePaymentInstrumentAsync(PaymentInstrumentInfo paymentInstrumentInfo, RequestOptions requestOptions = default, CancellationToken cancellationToken = default)
         {
             var endpoint = _baseUrl + "/paymentInstruments";
             var resource = new ServiceResource(this, endpoint);
-            return await resource.RequestAsync<PaymentInstrument>(paymentInstrumentInfo.ToJson(), requestOptions, new HttpMethod("POST"), cancellationToken);
+            return await resource.RequestAsync<PaymentInstrument>(paymentInstrumentInfo.ToJson(), requestOptions, new HttpMethod("POST"), cancellationToken).ConfigureAwait(false);
         }
     }
 }

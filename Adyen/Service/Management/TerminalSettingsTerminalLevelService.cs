@@ -115,50 +115,50 @@ namespace Adyen.Service.Management
         
         public Logo GetTerminalLogo(string terminalId, RequestOptions requestOptions = default)
         {
-            return GetTerminalLogoAsync(terminalId, requestOptions).GetAwaiter().GetResult();
+            return GetTerminalLogoAsync(terminalId, requestOptions).ConfigureAwait(false).GetAwaiter().GetResult();
         }
 
         public async Task<Logo> GetTerminalLogoAsync(string terminalId, RequestOptions requestOptions = default, CancellationToken cancellationToken = default)
         {
             var endpoint = _baseUrl + $"/terminals/{terminalId}/terminalLogos";
             var resource = new ServiceResource(this, endpoint);
-            return await resource.RequestAsync<Logo>(null, requestOptions, new HttpMethod("GET"), cancellationToken);
+            return await resource.RequestAsync<Logo>(null, requestOptions, new HttpMethod("GET"), cancellationToken).ConfigureAwait(false);
         }
         
         public TerminalSettings GetTerminalSettings(string terminalId, RequestOptions requestOptions = default)
         {
-            return GetTerminalSettingsAsync(terminalId, requestOptions).GetAwaiter().GetResult();
+            return GetTerminalSettingsAsync(terminalId, requestOptions).ConfigureAwait(false).GetAwaiter().GetResult();
         }
 
         public async Task<TerminalSettings> GetTerminalSettingsAsync(string terminalId, RequestOptions requestOptions = default, CancellationToken cancellationToken = default)
         {
             var endpoint = _baseUrl + $"/terminals/{terminalId}/terminalSettings";
             var resource = new ServiceResource(this, endpoint);
-            return await resource.RequestAsync<TerminalSettings>(null, requestOptions, new HttpMethod("GET"), cancellationToken);
+            return await resource.RequestAsync<TerminalSettings>(null, requestOptions, new HttpMethod("GET"), cancellationToken).ConfigureAwait(false);
         }
         
         public Logo UpdateLogo(string terminalId, Logo logo, RequestOptions requestOptions = default)
         {
-            return UpdateLogoAsync(terminalId, logo, requestOptions).GetAwaiter().GetResult();
+            return UpdateLogoAsync(terminalId, logo, requestOptions).ConfigureAwait(false).GetAwaiter().GetResult();
         }
 
         public async Task<Logo> UpdateLogoAsync(string terminalId, Logo logo, RequestOptions requestOptions = default, CancellationToken cancellationToken = default)
         {
             var endpoint = _baseUrl + $"/terminals/{terminalId}/terminalLogos";
             var resource = new ServiceResource(this, endpoint);
-            return await resource.RequestAsync<Logo>(logo.ToJson(), requestOptions, new HttpMethod("PATCH"), cancellationToken);
+            return await resource.RequestAsync<Logo>(logo.ToJson(), requestOptions, new HttpMethod("PATCH"), cancellationToken).ConfigureAwait(false);
         }
         
         public TerminalSettings UpdateTerminalSettings(string terminalId, TerminalSettings terminalSettings, RequestOptions requestOptions = default)
         {
-            return UpdateTerminalSettingsAsync(terminalId, terminalSettings, requestOptions).GetAwaiter().GetResult();
+            return UpdateTerminalSettingsAsync(terminalId, terminalSettings, requestOptions).ConfigureAwait(false).GetAwaiter().GetResult();
         }
 
         public async Task<TerminalSettings> UpdateTerminalSettingsAsync(string terminalId, TerminalSettings terminalSettings, RequestOptions requestOptions = default, CancellationToken cancellationToken = default)
         {
             var endpoint = _baseUrl + $"/terminals/{terminalId}/terminalSettings";
             var resource = new ServiceResource(this, endpoint);
-            return await resource.RequestAsync<TerminalSettings>(terminalSettings.ToJson(), requestOptions, new HttpMethod("PATCH"), cancellationToken);
+            return await resource.RequestAsync<TerminalSettings>(terminalSettings.ToJson(), requestOptions, new HttpMethod("PATCH"), cancellationToken).ConfigureAwait(false);
         }
     }
 }

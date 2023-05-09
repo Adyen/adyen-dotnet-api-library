@@ -23,7 +23,7 @@ using Adyen.Model.BinLookup;
 namespace Adyen.Service
 {
     /// <summary>
-    /// GeneralService Interface
+    /// DefaultService Interface
     /// </summary>
     public interface IBinLookupService
     {
@@ -77,26 +77,26 @@ namespace Adyen.Service
         
         public ThreeDSAvailabilityResponse Get3dsAvailability(ThreeDSAvailabilityRequest threeDSAvailabilityRequest, RequestOptions requestOptions = default)
         {
-            return Get3dsAvailabilityAsync(threeDSAvailabilityRequest, requestOptions).GetAwaiter().GetResult();
+            return Get3dsAvailabilityAsync(threeDSAvailabilityRequest, requestOptions).ConfigureAwait(false).GetAwaiter().GetResult();
         }
 
         public async Task<ThreeDSAvailabilityResponse> Get3dsAvailabilityAsync(ThreeDSAvailabilityRequest threeDSAvailabilityRequest, RequestOptions requestOptions = default, CancellationToken cancellationToken = default)
         {
             var endpoint = _baseUrl + "/get3dsAvailability";
             var resource = new ServiceResource(this, endpoint);
-            return await resource.RequestAsync<ThreeDSAvailabilityResponse>(threeDSAvailabilityRequest.ToJson(), requestOptions, new HttpMethod("POST"), cancellationToken);
+            return await resource.RequestAsync<ThreeDSAvailabilityResponse>(threeDSAvailabilityRequest.ToJson(), requestOptions, new HttpMethod("POST"), cancellationToken).ConfigureAwait(false);
         }
         
         public CostEstimateResponse GetCostEstimate(CostEstimateRequest costEstimateRequest, RequestOptions requestOptions = default)
         {
-            return GetCostEstimateAsync(costEstimateRequest, requestOptions).GetAwaiter().GetResult();
+            return GetCostEstimateAsync(costEstimateRequest, requestOptions).ConfigureAwait(false).GetAwaiter().GetResult();
         }
 
         public async Task<CostEstimateResponse> GetCostEstimateAsync(CostEstimateRequest costEstimateRequest, RequestOptions requestOptions = default, CancellationToken cancellationToken = default)
         {
             var endpoint = _baseUrl + "/getCostEstimate";
             var resource = new ServiceResource(this, endpoint);
-            return await resource.RequestAsync<CostEstimateResponse>(costEstimateRequest.ToJson(), requestOptions, new HttpMethod("POST"), cancellationToken);
+            return await resource.RequestAsync<CostEstimateResponse>(costEstimateRequest.ToJson(), requestOptions, new HttpMethod("POST"), cancellationToken).ConfigureAwait(false);
         }
     }
 }

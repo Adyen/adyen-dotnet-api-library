@@ -125,7 +125,7 @@ namespace Adyen.Service.Management
         
         public ListMerchantUsersResponse ListUsers(string merchantId, int? pageNumber = default, int? pageSize = default, string username = default, RequestOptions requestOptions = default)
         {
-            return ListUsersAsync(merchantId, pageNumber, pageSize, username, requestOptions).GetAwaiter().GetResult();
+            return ListUsersAsync(merchantId, pageNumber, pageSize, username, requestOptions).ConfigureAwait(false).GetAwaiter().GetResult();
         }
 
         public async Task<ListMerchantUsersResponse> ListUsersAsync(string merchantId, int? pageNumber = default, int? pageSize = default, string username = default, RequestOptions requestOptions = default, CancellationToken cancellationToken = default)
@@ -137,43 +137,43 @@ namespace Adyen.Service.Management
             if (username != null) queryParams.Add("username", username);
             var endpoint = _baseUrl + $"/merchants/{merchantId}/users" + ToQueryString(queryParams);
             var resource = new ServiceResource(this, endpoint);
-            return await resource.RequestAsync<ListMerchantUsersResponse>(null, requestOptions, new HttpMethod("GET"), cancellationToken);
+            return await resource.RequestAsync<ListMerchantUsersResponse>(null, requestOptions, new HttpMethod("GET"), cancellationToken).ConfigureAwait(false);
         }
         
         public User GetUserDetails(string merchantId, string userId, RequestOptions requestOptions = default)
         {
-            return GetUserDetailsAsync(merchantId, userId, requestOptions).GetAwaiter().GetResult();
+            return GetUserDetailsAsync(merchantId, userId, requestOptions).ConfigureAwait(false).GetAwaiter().GetResult();
         }
 
         public async Task<User> GetUserDetailsAsync(string merchantId, string userId, RequestOptions requestOptions = default, CancellationToken cancellationToken = default)
         {
             var endpoint = _baseUrl + $"/merchants/{merchantId}/users/{userId}";
             var resource = new ServiceResource(this, endpoint);
-            return await resource.RequestAsync<User>(null, requestOptions, new HttpMethod("GET"), cancellationToken);
+            return await resource.RequestAsync<User>(null, requestOptions, new HttpMethod("GET"), cancellationToken).ConfigureAwait(false);
         }
         
         public User UpdateUser(string merchantId, string userId, UpdateMerchantUserRequest updateMerchantUserRequest, RequestOptions requestOptions = default)
         {
-            return UpdateUserAsync(merchantId, userId, updateMerchantUserRequest, requestOptions).GetAwaiter().GetResult();
+            return UpdateUserAsync(merchantId, userId, updateMerchantUserRequest, requestOptions).ConfigureAwait(false).GetAwaiter().GetResult();
         }
 
         public async Task<User> UpdateUserAsync(string merchantId, string userId, UpdateMerchantUserRequest updateMerchantUserRequest, RequestOptions requestOptions = default, CancellationToken cancellationToken = default)
         {
             var endpoint = _baseUrl + $"/merchants/{merchantId}/users/{userId}";
             var resource = new ServiceResource(this, endpoint);
-            return await resource.RequestAsync<User>(updateMerchantUserRequest.ToJson(), requestOptions, new HttpMethod("PATCH"), cancellationToken);
+            return await resource.RequestAsync<User>(updateMerchantUserRequest.ToJson(), requestOptions, new HttpMethod("PATCH"), cancellationToken).ConfigureAwait(false);
         }
         
         public CreateUserResponse CreateNewUser(string merchantId, CreateMerchantUserRequest createMerchantUserRequest, RequestOptions requestOptions = default)
         {
-            return CreateNewUserAsync(merchantId, createMerchantUserRequest, requestOptions).GetAwaiter().GetResult();
+            return CreateNewUserAsync(merchantId, createMerchantUserRequest, requestOptions).ConfigureAwait(false).GetAwaiter().GetResult();
         }
 
         public async Task<CreateUserResponse> CreateNewUserAsync(string merchantId, CreateMerchantUserRequest createMerchantUserRequest, RequestOptions requestOptions = default, CancellationToken cancellationToken = default)
         {
             var endpoint = _baseUrl + $"/merchants/{merchantId}/users";
             var resource = new ServiceResource(this, endpoint);
-            return await resource.RequestAsync<CreateUserResponse>(createMerchantUserRequest.ToJson(), requestOptions, new HttpMethod("POST"), cancellationToken);
+            return await resource.RequestAsync<CreateUserResponse>(createMerchantUserRequest.ToJson(), requestOptions, new HttpMethod("POST"), cancellationToken).ConfigureAwait(false);
         }
     }
 }
