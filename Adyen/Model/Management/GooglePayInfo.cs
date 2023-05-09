@@ -36,18 +36,32 @@ namespace Adyen.Model.Management
         /// <summary>
         /// Initializes a new instance of the <see cref="GooglePayInfo" /> class.
         /// </summary>
-        /// <param name="merchantId">Google Pay [Merchant ID](https://support.google.com/paymentscenter/answer/7163092?hl&#x3D;en). Character length and limitations: 16 alphanumeric characters or 20 numeric characters..</param>
-        public GooglePayInfo(string merchantId = default(string))
+        [JsonConstructorAttribute]
+        protected GooglePayInfo() { }
+        /// <summary>
+        /// Initializes a new instance of the <see cref="GooglePayInfo" /> class.
+        /// </summary>
+        /// <param name="merchantId">Google Pay [Merchant ID](https://support.google.com/paymentscenter/answer/7163092?hl&#x3D;en). Character length and limitations: 16 alphanumeric characters or 20 numeric characters. (required).</param>
+        /// <param name="reuseMerchantId">Indicates whether the Google Pay Merchant ID is used for several merchant accounts. Default value: **false**..</param>
+        public GooglePayInfo(string merchantId = default(string), bool reuseMerchantId = default(bool))
         {
             this.MerchantId = merchantId;
+            this.ReuseMerchantId = reuseMerchantId;
         }
 
         /// <summary>
         /// Google Pay [Merchant ID](https://support.google.com/paymentscenter/answer/7163092?hl&#x3D;en). Character length and limitations: 16 alphanumeric characters or 20 numeric characters.
         /// </summary>
         /// <value>Google Pay [Merchant ID](https://support.google.com/paymentscenter/answer/7163092?hl&#x3D;en). Character length and limitations: 16 alphanumeric characters or 20 numeric characters.</value>
-        [DataMember(Name = "merchantId", EmitDefaultValue = false)]
+        [DataMember(Name = "merchantId", IsRequired = false, EmitDefaultValue = false)]
         public string MerchantId { get; set; }
+
+        /// <summary>
+        /// Indicates whether the Google Pay Merchant ID is used for several merchant accounts. Default value: **false**.
+        /// </summary>
+        /// <value>Indicates whether the Google Pay Merchant ID is used for several merchant accounts. Default value: **false**.</value>
+        [DataMember(Name = "reuseMerchantId", EmitDefaultValue = false)]
+        public bool ReuseMerchantId { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -58,6 +72,7 @@ namespace Adyen.Model.Management
             StringBuilder sb = new StringBuilder();
             sb.Append("class GooglePayInfo {\n");
             sb.Append("  MerchantId: ").Append(MerchantId).Append("\n");
+            sb.Append("  ReuseMerchantId: ").Append(ReuseMerchantId).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -97,6 +112,10 @@ namespace Adyen.Model.Management
                     this.MerchantId == input.MerchantId ||
                     (this.MerchantId != null &&
                     this.MerchantId.Equals(input.MerchantId))
+                ) && 
+                (
+                    this.ReuseMerchantId == input.ReuseMerchantId ||
+                    this.ReuseMerchantId.Equals(input.ReuseMerchantId)
                 );
         }
 
@@ -113,6 +132,7 @@ namespace Adyen.Model.Management
                 {
                     hashCode = (hashCode * 59) + this.MerchantId.GetHashCode();
                 }
+                hashCode = (hashCode * 59) + this.ReuseMerchantId.GetHashCode();
                 return hashCode;
             }
         }

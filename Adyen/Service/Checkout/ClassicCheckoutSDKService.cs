@@ -23,38 +23,68 @@ using Adyen.Model.Checkout;
 namespace Adyen.Service.Checkout
 {
     /// <summary>
-    /// Represents a collection of functions to interact with the API endpoints
+    /// ClassicCheckoutSDKService Interface
     /// </summary>
-    public class ClassicCheckoutSDKService : AbstractService
+    public interface IClassicCheckoutSDKService
+    {
+        /// <summary>
+        /// Create a payment session
+        /// </summary>
+        /// <param name="paymentSetupRequest"><see cref="PaymentSetupRequest"/> - </param>
+        /// <param name="requestOptions"><see cref="RequestOptions"/> - Additional request options.</param>
+        /// <returns><see cref="PaymentSetupResponse"/>.</returns>
+        [Obsolete]
+        PaymentSetupResponse PaymentSession(PaymentSetupRequest paymentSetupRequest, RequestOptions requestOptions = default);
+        
+        /// <summary>
+        /// Create a payment session
+        /// </summary>
+        /// <param name="paymentSetupRequest"><see cref="PaymentSetupRequest"/> - </param>
+        /// <param name="requestOptions"><see cref="RequestOptions"/> - Additional request options.</param>
+        /// <param name="cancellationToken"> A CancellationToken enables cooperative cancellation between threads, thread pool work items, or Task objects.</param>
+        /// <returns>Task of <see cref="PaymentSetupResponse"/>.</returns>
+        [Obsolete]
+        Task<PaymentSetupResponse> PaymentSessionAsync(PaymentSetupRequest paymentSetupRequest, RequestOptions requestOptions = default, CancellationToken cancellationToken = default);
+        
+        /// <summary>
+        /// Verify a payment result
+        /// </summary>
+        /// <param name="paymentVerificationRequest"><see cref="PaymentVerificationRequest"/> - </param>
+        /// <param name="requestOptions"><see cref="RequestOptions"/> - Additional request options.</param>
+        /// <returns><see cref="PaymentVerificationResponse"/>.</returns>
+        [Obsolete]
+        PaymentVerificationResponse VerifyPaymentResult(PaymentVerificationRequest paymentVerificationRequest, RequestOptions requestOptions = default);
+        
+        /// <summary>
+        /// Verify a payment result
+        /// </summary>
+        /// <param name="paymentVerificationRequest"><see cref="PaymentVerificationRequest"/> - </param>
+        /// <param name="requestOptions"><see cref="RequestOptions"/> - Additional request options.</param>
+        /// <param name="cancellationToken"> A CancellationToken enables cooperative cancellation between threads, thread pool work items, or Task objects.</param>
+        /// <returns>Task of <see cref="PaymentVerificationResponse"/>.</returns>
+        [Obsolete]
+        Task<PaymentVerificationResponse> VerifyPaymentResultAsync(PaymentVerificationRequest paymentVerificationRequest, RequestOptions requestOptions = default, CancellationToken cancellationToken = default);
+        
+    }
+    
+    /// <summary>
+    /// Represents a collection of functions to interact with the ClassicCheckoutSDKService API endpoints
+    /// </summary>
+    public class ClassicCheckoutSDKService : AbstractService, IClassicCheckoutSDKService
     {
         private readonly string _baseUrl;
         
         public ClassicCheckoutSDKService(Client client) : base(client)
         {
-            _baseUrl = client.Config.CheckoutEndpoint + "/" + ClientConfig.CheckoutApiVersion;
+            _baseUrl = CreateBaseUrl("https://checkout-test.adyen.com/v70");
         }
-    
-        /// <summary>
-        /// Create a payment session
-        /// </summary>
-        /// <param name="idempotencyKey">A unique identifier for the message with a maximum of 64 characters (we recommend a UUID).</param>
-        /// <param name="paymentSetupRequest"></param>
-        /// <param name="requestOptions">Additional request options.</param>
-        /// <returns>PaymentSetupResponse</returns>
+        
         [Obsolete]
         public PaymentSetupResponse PaymentSession(PaymentSetupRequest paymentSetupRequest, RequestOptions requestOptions = default)
         {
             return PaymentSessionAsync(paymentSetupRequest, requestOptions).GetAwaiter().GetResult();
         }
 
-        /// <summary>
-        /// Create a payment session
-        /// </summary>
-        /// <param name="idempotencyKey">A unique identifier for the message with a maximum of 64 characters (we recommend a UUID).</param>
-        /// <param name="paymentSetupRequest"></param>
-        /// <param name="requestOptions">Additional request options.</param>
-        /// <param name="cancellationToken"> A CancellationToken enables cooperative cancellation between threads, thread pool work items, or Task objects.</param>
-        /// <returns>Task of PaymentSetupResponse</returns>
         [Obsolete]
         public async Task<PaymentSetupResponse> PaymentSessionAsync(PaymentSetupRequest paymentSetupRequest, RequestOptions requestOptions = default, CancellationToken cancellationToken = default)
         {
@@ -62,28 +92,13 @@ namespace Adyen.Service.Checkout
             var resource = new ServiceResource(this, endpoint);
             return await resource.RequestAsync<PaymentSetupResponse>(paymentSetupRequest.ToJson(), requestOptions, new HttpMethod("POST"), cancellationToken);
         }
-
-        /// <summary>
-        /// Verify a payment result
-        /// </summary>
-        /// <param name="idempotencyKey">A unique identifier for the message with a maximum of 64 characters (we recommend a UUID).</param>
-        /// <param name="paymentVerificationRequest"></param>
-        /// <param name="requestOptions">Additional request options.</param>
-        /// <returns>PaymentVerificationResponse</returns>
+        
         [Obsolete]
         public PaymentVerificationResponse VerifyPaymentResult(PaymentVerificationRequest paymentVerificationRequest, RequestOptions requestOptions = default)
         {
             return VerifyPaymentResultAsync(paymentVerificationRequest, requestOptions).GetAwaiter().GetResult();
         }
 
-        /// <summary>
-        /// Verify a payment result
-        /// </summary>
-        /// <param name="idempotencyKey">A unique identifier for the message with a maximum of 64 characters (we recommend a UUID).</param>
-        /// <param name="paymentVerificationRequest"></param>
-        /// <param name="requestOptions">Additional request options.</param>
-        /// <param name="cancellationToken"> A CancellationToken enables cooperative cancellation between threads, thread pool work items, or Task objects.</param>
-        /// <returns>Task of PaymentVerificationResponse</returns>
         [Obsolete]
         public async Task<PaymentVerificationResponse> VerifyPaymentResultAsync(PaymentVerificationRequest paymentVerificationRequest, RequestOptions requestOptions = default, CancellationToken cancellationToken = default)
         {
@@ -91,6 +106,5 @@ namespace Adyen.Service.Checkout
             var resource = new ServiceResource(this, endpoint);
             return await resource.RequestAsync<PaymentVerificationResponse>(paymentVerificationRequest.ToJson(), requestOptions, new HttpMethod("POST"), cancellationToken);
         }
-
     }
 }

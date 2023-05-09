@@ -40,7 +40,7 @@ namespace Adyen.Model.Recurring
         /// <param name="details">Payment details stored for recurring payments..</param>
         /// <param name="lastKnownShopperEmail">The most recent email for this shopper (if available)..</param>
         /// <param name="shopperReference">The reference you use to uniquely identify the shopper (e.g. user ID or account ID)..</param>
-        public RecurringDetailsResult(DateTime creationDate = default(DateTime), List<RecurringDetailContainer> details = default(List<RecurringDetailContainer>), string lastKnownShopperEmail = default(string), string shopperReference = default(string))
+        public RecurringDetailsResult(DateTime creationDate = default(DateTime), List<RecurringDetailWrapper> details = default(List<RecurringDetailWrapper>), string lastKnownShopperEmail = default(string), string shopperReference = default(string))
         {
             this.CreationDate = creationDate;
             this.Details = details;
@@ -60,7 +60,7 @@ namespace Adyen.Model.Recurring
         /// </summary>
         /// <value>Payment details stored for recurring payments.</value>
         [DataMember(Name = "details", EmitDefaultValue = false)]
-        public List<RecurringDetailContainer> Details { get; set; }
+        public List<RecurringDetailWrapper> Details { get; set; }
 
         /// <summary>
         /// The most recent email for this shopper (if available).

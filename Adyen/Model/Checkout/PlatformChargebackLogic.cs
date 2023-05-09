@@ -69,12 +69,20 @@ namespace Adyen.Model.Checkout
         /// Initializes a new instance of the <see cref="PlatformChargebackLogic" /> class.
         /// </summary>
         /// <param name="behavior">behavior.</param>
+        /// <param name="costAllocationAccount">costAllocationAccount.</param>
         /// <param name="targetAccount">targetAccount.</param>
-        public PlatformChargebackLogic(BehaviorEnum? behavior = default(BehaviorEnum?), string targetAccount = default(string))
+        public PlatformChargebackLogic(BehaviorEnum? behavior = default(BehaviorEnum?), string costAllocationAccount = default(string), string targetAccount = default(string))
         {
             this.Behavior = behavior;
+            this.CostAllocationAccount = costAllocationAccount;
             this.TargetAccount = targetAccount;
         }
+
+        /// <summary>
+        /// Gets or Sets CostAllocationAccount
+        /// </summary>
+        [DataMember(Name = "costAllocationAccount", EmitDefaultValue = false)]
+        public string CostAllocationAccount { get; set; }
 
         /// <summary>
         /// Gets or Sets TargetAccount
@@ -91,6 +99,7 @@ namespace Adyen.Model.Checkout
             StringBuilder sb = new StringBuilder();
             sb.Append("class PlatformChargebackLogic {\n");
             sb.Append("  Behavior: ").Append(Behavior).Append("\n");
+            sb.Append("  CostAllocationAccount: ").Append(CostAllocationAccount).Append("\n");
             sb.Append("  TargetAccount: ").Append(TargetAccount).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
@@ -132,6 +141,11 @@ namespace Adyen.Model.Checkout
                     this.Behavior.Equals(input.Behavior)
                 ) && 
                 (
+                    this.CostAllocationAccount == input.CostAllocationAccount ||
+                    (this.CostAllocationAccount != null &&
+                    this.CostAllocationAccount.Equals(input.CostAllocationAccount))
+                ) && 
+                (
                     this.TargetAccount == input.TargetAccount ||
                     (this.TargetAccount != null &&
                     this.TargetAccount.Equals(input.TargetAccount))
@@ -148,6 +162,10 @@ namespace Adyen.Model.Checkout
             {
                 int hashCode = 41;
                 hashCode = (hashCode * 59) + this.Behavior.GetHashCode();
+                if (this.CostAllocationAccount != null)
+                {
+                    hashCode = (hashCode * 59) + this.CostAllocationAccount.GetHashCode();
+                }
                 if (this.TargetAccount != null)
                 {
                     hashCode = (hashCode * 59) + this.TargetAccount.GetHashCode();

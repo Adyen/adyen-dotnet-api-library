@@ -192,14 +192,6 @@ namespace Adyen.Model.BalancePlatform
         public bool Allowed { get; private set; }
 
         /// <summary>
-        /// Returns false as Allowed should not be serialized given that it's read-only.
-        /// </summary>
-        /// <returns>false (boolean)</returns>
-        public bool ShouldSerializeAllowed()
-        {
-            return false;
-        }
-        /// <summary>
         /// Indicates whether the capability is enabled. If **false**, the capability is temporarily disabled for the account holder.
         /// </summary>
         /// <value>Indicates whether the capability is enabled. If **false**, the capability is temporarily disabled for the account holder.</value>
@@ -213,14 +205,6 @@ namespace Adyen.Model.BalancePlatform
         [DataMember(Name = "id", EmitDefaultValue = false)]
         public string Id { get; private set; }
 
-        /// <summary>
-        /// Returns false as Id should not be serialized given that it's read-only.
-        /// </summary>
-        /// <returns>false (boolean)</returns>
-        public bool ShouldSerializeId()
-        {
-            return false;
-        }
         /// <summary>
         /// Indicates whether the capability is requested. To check whether the account holder is permitted to use the capability, refer to the &#x60;allowed&#x60; field.
         /// </summary>

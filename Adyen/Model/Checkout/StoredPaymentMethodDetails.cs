@@ -71,70 +71,82 @@ namespace Adyen.Model.Checkout
             MomoWalletApp = 5,
 
             /// <summary>
+            /// Enum Twint for value: twint
+            /// </summary>
+            [EnumMember(Value = "twint")]
+            Twint = 6,
+
+            /// <summary>
             /// Enum PaymayaWallet for value: paymaya_wallet
             /// </summary>
             [EnumMember(Value = "paymaya_wallet")]
-            PaymayaWallet = 6,
+            PaymayaWallet = 7,
 
             /// <summary>
             /// Enum GrabpaySG for value: grabpay_SG
             /// </summary>
             [EnumMember(Value = "grabpay_SG")]
-            GrabpaySG = 7,
+            GrabpaySG = 8,
 
             /// <summary>
             /// Enum GrabpayMY for value: grabpay_MY
             /// </summary>
             [EnumMember(Value = "grabpay_MY")]
-            GrabpayMY = 8,
+            GrabpayMY = 9,
 
             /// <summary>
             /// Enum GrabpayTH for value: grabpay_TH
             /// </summary>
             [EnumMember(Value = "grabpay_TH")]
-            GrabpayTH = 9,
+            GrabpayTH = 10,
 
             /// <summary>
             /// Enum GrabpayID for value: grabpay_ID
             /// </summary>
             [EnumMember(Value = "grabpay_ID")]
-            GrabpayID = 10,
+            GrabpayID = 11,
 
             /// <summary>
             /// Enum GrabpayVN for value: grabpay_VN
             /// </summary>
             [EnumMember(Value = "grabpay_VN")]
-            GrabpayVN = 11,
+            GrabpayVN = 12,
 
             /// <summary>
             /// Enum GrabpayPH for value: grabpay_PH
             /// </summary>
             [EnumMember(Value = "grabpay_PH")]
-            GrabpayPH = 12,
+            GrabpayPH = 13,
 
             /// <summary>
             /// Enum Oxxo for value: oxxo
             /// </summary>
             [EnumMember(Value = "oxxo")]
-            Oxxo = 13,
+            Oxxo = 14,
 
             /// <summary>
             /// Enum Gcash for value: gcash
             /// </summary>
             [EnumMember(Value = "gcash")]
-            Gcash = 14,
+            Gcash = 15,
 
             /// <summary>
             /// Enum Kakaopay for value: kakaopay
             /// </summary>
             [EnumMember(Value = "kakaopay")]
-            Kakaopay = 15,
+            Kakaopay = 16,
 
             /// <summary>
             /// Enum Truemoney for value: truemoney
             /// </summary>
             [EnumMember(Value = "truemoney")]
-            Truemoney = 16
+            Truemoney = 17,
+
+            /// <summary>
+            /// Enum TwintPos for value: twint_pos
+            /// </summary>
+            [EnumMember(Value = "twint_pos")]
+            TwintPos = 18
 
         }
 
@@ -282,6 +294,12 @@ namespace Adyen.Model.Checkout
         /// <returns>Validation Result</returns>
         public IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> Validate(ValidationContext validationContext)
         {
+            // StoredPaymentMethodId (string) maxLength
+            if (this.StoredPaymentMethodId != null && this.StoredPaymentMethodId.Length > 64)
+            {
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for StoredPaymentMethodId, length must be less than 64.", new [] { "StoredPaymentMethodId" });
+            }
+
             yield break;
         }
     }

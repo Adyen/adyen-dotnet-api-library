@@ -4,13 +4,13 @@ using Adyen.HttpClient;
 using Adyen.Model.Checkout;
 using Adyen.Service;
 using Adyen.Service.Checkout;
-using Adyen.Service.Payments;
+
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using Amount = Adyen.Model.Payments.Amount;
-using Card = Adyen.Model.Payments.Card;
+using Amount = Adyen.Model.Payment.Amount;
+using Card = Adyen.Model.Payment.Card;
 using Environment = Adyen.Model.Environment;
-using PaymentRequest = Adyen.Model.Payments.PaymentRequest;
-using Recurring = Adyen.Model.Payments.Recurring;
+using PaymentRequest = Adyen.Model.Payment.PaymentRequest;
+using Recurring = Adyen.Model.Payment.Recurring;
 
 namespace Adyen.IntegrationTest
 {
@@ -76,7 +76,7 @@ namespace Adyen.IntegrationTest
                     Currency = "EUR"
                 },
                 CountryCode = "NL",
-                PaymentMethod = new PaymentDonationRequestPaymentMethod( new ApplePayDetails(type: ApplePayDetails.TypeEnum.Applepay)),
+                PaymentMethod = new CheckoutPaymentMethod( new ApplePayDetails(type: ApplePayDetails.TypeEnum.Applepay)),
                 Reference = "123456789",
                 ShopperReference = "Test-Payment1234",
                 ReturnUrl = "https://your-company.com/...",

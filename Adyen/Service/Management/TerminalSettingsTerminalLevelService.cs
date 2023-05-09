@@ -13,126 +13,152 @@
 using System;
 using System.Collections.Generic;
 using System.Net.Http;
+using System.Threading;
 using System.Threading.Tasks;
 using Adyen.Constants;
 using Adyen.Model;
 using Adyen.Service.Resource;
 using Adyen.Model.Management;
-using Newtonsoft.Json;
 
 namespace Adyen.Service.Management
 {
     /// <summary>
-    /// Represents a collection of functions to interact with the API endpoints
+    /// TerminalSettingsTerminalLevelService Interface
     /// </summary>
-    public class TerminalSettingsTerminalLevelService : AbstractService
+    public interface ITerminalSettingsTerminalLevelService
+    {
+        /// <summary>
+        /// Get the terminal logo
+        /// </summary>
+        /// <param name="terminalId"><see cref="string"/> - The unique identifier of the payment terminal.</param>
+        /// <param name="requestOptions"><see cref="RequestOptions"/> - Additional request options.</param>
+        /// <returns><see cref="Logo"/>.</returns>
+        Logo GetTerminalLogo(string terminalId, RequestOptions requestOptions = default);
+        
+        /// <summary>
+        /// Get the terminal logo
+        /// </summary>
+        /// <param name="terminalId"><see cref="string"/> - The unique identifier of the payment terminal.</param>
+        /// <param name="requestOptions"><see cref="RequestOptions"/> - Additional request options.</param>
+        /// <param name="cancellationToken"> A CancellationToken enables cooperative cancellation between threads, thread pool work items, or Task objects.</param>
+        /// <returns>Task of <see cref="Logo"/>.</returns>
+        Task<Logo> GetTerminalLogoAsync(string terminalId, RequestOptions requestOptions = default, CancellationToken cancellationToken = default);
+        
+        /// <summary>
+        /// Get terminal settings
+        /// </summary>
+        /// <param name="terminalId"><see cref="string"/> - The unique identifier of the payment terminal.</param>
+        /// <param name="requestOptions"><see cref="RequestOptions"/> - Additional request options.</param>
+        /// <returns><see cref="TerminalSettings"/>.</returns>
+        TerminalSettings GetTerminalSettings(string terminalId, RequestOptions requestOptions = default);
+        
+        /// <summary>
+        /// Get terminal settings
+        /// </summary>
+        /// <param name="terminalId"><see cref="string"/> - The unique identifier of the payment terminal.</param>
+        /// <param name="requestOptions"><see cref="RequestOptions"/> - Additional request options.</param>
+        /// <param name="cancellationToken"> A CancellationToken enables cooperative cancellation between threads, thread pool work items, or Task objects.</param>
+        /// <returns>Task of <see cref="TerminalSettings"/>.</returns>
+        Task<TerminalSettings> GetTerminalSettingsAsync(string terminalId, RequestOptions requestOptions = default, CancellationToken cancellationToken = default);
+        
+        /// <summary>
+        /// Update the logo
+        /// </summary>
+        /// <param name="terminalId"><see cref="string"/> - The unique identifier of the payment terminal.</param>
+        /// <param name="logo"><see cref="Logo"/> - </param>
+        /// <param name="requestOptions"><see cref="RequestOptions"/> - Additional request options.</param>
+        /// <returns><see cref="Logo"/>.</returns>
+        Logo UpdateLogo(string terminalId, Logo logo, RequestOptions requestOptions = default);
+        
+        /// <summary>
+        /// Update the logo
+        /// </summary>
+        /// <param name="terminalId"><see cref="string"/> - The unique identifier of the payment terminal.</param>
+        /// <param name="logo"><see cref="Logo"/> - </param>
+        /// <param name="requestOptions"><see cref="RequestOptions"/> - Additional request options.</param>
+        /// <param name="cancellationToken"> A CancellationToken enables cooperative cancellation between threads, thread pool work items, or Task objects.</param>
+        /// <returns>Task of <see cref="Logo"/>.</returns>
+        Task<Logo> UpdateLogoAsync(string terminalId, Logo logo, RequestOptions requestOptions = default, CancellationToken cancellationToken = default);
+        
+        /// <summary>
+        /// Update terminal settings
+        /// </summary>
+        /// <param name="terminalId"><see cref="string"/> - The unique identifier of the payment terminal.</param>
+        /// <param name="terminalSettings"><see cref="TerminalSettings"/> - </param>
+        /// <param name="requestOptions"><see cref="RequestOptions"/> - Additional request options.</param>
+        /// <returns><see cref="TerminalSettings"/>.</returns>
+        TerminalSettings UpdateTerminalSettings(string terminalId, TerminalSettings terminalSettings, RequestOptions requestOptions = default);
+        
+        /// <summary>
+        /// Update terminal settings
+        /// </summary>
+        /// <param name="terminalId"><see cref="string"/> - The unique identifier of the payment terminal.</param>
+        /// <param name="terminalSettings"><see cref="TerminalSettings"/> - </param>
+        /// <param name="requestOptions"><see cref="RequestOptions"/> - Additional request options.</param>
+        /// <param name="cancellationToken"> A CancellationToken enables cooperative cancellation between threads, thread pool work items, or Task objects.</param>
+        /// <returns>Task of <see cref="TerminalSettings"/>.</returns>
+        Task<TerminalSettings> UpdateTerminalSettingsAsync(string terminalId, TerminalSettings terminalSettings, RequestOptions requestOptions = default, CancellationToken cancellationToken = default);
+        
+    }
+    
+    /// <summary>
+    /// Represents a collection of functions to interact with the TerminalSettingsTerminalLevelService API endpoints
+    /// </summary>
+    public class TerminalSettingsTerminalLevelService : AbstractService, ITerminalSettingsTerminalLevelService
     {
         private readonly string _baseUrl;
         
         public TerminalSettingsTerminalLevelService(Client client) : base(client)
         {
-            _baseUrl = client.Config.ManagementEndpoint + "/" + ClientConfig.ManagementVersion;
+            _baseUrl = CreateBaseUrl("https://management-test.adyen.com/v1");
         }
-    
-        /// <summary>
-        /// Get the terminal logo
-        /// </summary>
-        /// <param name="terminalId">The unique identifier of the payment terminal.</param>
-        /// <param name="requestOptions">Additional request options.</param>
-        /// <returns>Logo</returns>
+        
         public Logo GetTerminalLogo(string terminalId, RequestOptions requestOptions = default)
         {
             return GetTerminalLogoAsync(terminalId, requestOptions).GetAwaiter().GetResult();
         }
 
-        /// <summary>
-        /// Get the terminal logo
-        /// </summary>
-        /// <param name="terminalId">The unique identifier of the payment terminal.</param>
-        /// <param name="requestOptions">Additional request options.</param>
-        /// <returns>Task of Logo</returns>
-        public async Task<Logo> GetTerminalLogoAsync(string terminalId, RequestOptions requestOptions = default)
+        public async Task<Logo> GetTerminalLogoAsync(string terminalId, RequestOptions requestOptions = default, CancellationToken cancellationToken = default)
         {
             var endpoint = _baseUrl + $"/terminals/{terminalId}/terminalLogos";
             var resource = new ServiceResource(this, endpoint);
-            return await resource.RequestAsync<Logo>(null, requestOptions, new HttpMethod("GET"));
+            return await resource.RequestAsync<Logo>(null, requestOptions, new HttpMethod("GET"), cancellationToken);
         }
-
-        /// <summary>
-        /// Get terminal settings
-        /// </summary>
-        /// <param name="terminalId">The unique identifier of the payment terminal.</param>
-        /// <param name="requestOptions">Additional request options.</param>
-        /// <returns>TerminalSettings</returns>
+        
         public TerminalSettings GetTerminalSettings(string terminalId, RequestOptions requestOptions = default)
         {
             return GetTerminalSettingsAsync(terminalId, requestOptions).GetAwaiter().GetResult();
         }
 
-        /// <summary>
-        /// Get terminal settings
-        /// </summary>
-        /// <param name="terminalId">The unique identifier of the payment terminal.</param>
-        /// <param name="requestOptions">Additional request options.</param>
-        /// <returns>Task of TerminalSettings</returns>
-        public async Task<TerminalSettings> GetTerminalSettingsAsync(string terminalId, RequestOptions requestOptions = default)
+        public async Task<TerminalSettings> GetTerminalSettingsAsync(string terminalId, RequestOptions requestOptions = default, CancellationToken cancellationToken = default)
         {
             var endpoint = _baseUrl + $"/terminals/{terminalId}/terminalSettings";
             var resource = new ServiceResource(this, endpoint);
-            return await resource.RequestAsync<TerminalSettings>(null, requestOptions, new HttpMethod("GET"));
+            return await resource.RequestAsync<TerminalSettings>(null, requestOptions, new HttpMethod("GET"), cancellationToken);
         }
-
-        /// <summary>
-        /// Update the logo
-        /// </summary>
-        /// <param name="terminalId">The unique identifier of the payment terminal.</param>
-        /// <param name="logo"></param>
-        /// <param name="requestOptions">Additional request options.</param>
-        /// <returns>Logo</returns>
+        
         public Logo UpdateLogo(string terminalId, Logo logo, RequestOptions requestOptions = default)
         {
             return UpdateLogoAsync(terminalId, logo, requestOptions).GetAwaiter().GetResult();
         }
 
-        /// <summary>
-        /// Update the logo
-        /// </summary>
-        /// <param name="terminalId">The unique identifier of the payment terminal.</param>
-        /// <param name="logo"></param>
-        /// <param name="requestOptions">Additional request options.</param>
-        /// <returns>Task of Logo</returns>
-        public async Task<Logo> UpdateLogoAsync(string terminalId, Logo logo, RequestOptions requestOptions = default)
+        public async Task<Logo> UpdateLogoAsync(string terminalId, Logo logo, RequestOptions requestOptions = default, CancellationToken cancellationToken = default)
         {
             var endpoint = _baseUrl + $"/terminals/{terminalId}/terminalLogos";
             var resource = new ServiceResource(this, endpoint);
-            return await resource.RequestAsync<Logo>(logo.ToJson(), requestOptions, new HttpMethod("PATCH"));
+            return await resource.RequestAsync<Logo>(logo.ToJson(), requestOptions, new HttpMethod("PATCH"), cancellationToken);
         }
-
-        /// <summary>
-        /// Update terminal settings
-        /// </summary>
-        /// <param name="terminalId">The unique identifier of the payment terminal.</param>
-        /// <param name="terminalSettings"></param>
-        /// <param name="requestOptions">Additional request options.</param>
-        /// <returns>TerminalSettings</returns>
+        
         public TerminalSettings UpdateTerminalSettings(string terminalId, TerminalSettings terminalSettings, RequestOptions requestOptions = default)
         {
             return UpdateTerminalSettingsAsync(terminalId, terminalSettings, requestOptions).GetAwaiter().GetResult();
         }
 
-        /// <summary>
-        /// Update terminal settings
-        /// </summary>
-        /// <param name="terminalId">The unique identifier of the payment terminal.</param>
-        /// <param name="terminalSettings"></param>
-        /// <param name="requestOptions">Additional request options.</param>
-        /// <returns>Task of TerminalSettings</returns>
-        public async Task<TerminalSettings> UpdateTerminalSettingsAsync(string terminalId, TerminalSettings terminalSettings, RequestOptions requestOptions = default)
+        public async Task<TerminalSettings> UpdateTerminalSettingsAsync(string terminalId, TerminalSettings terminalSettings, RequestOptions requestOptions = default, CancellationToken cancellationToken = default)
         {
             var endpoint = _baseUrl + $"/terminals/{terminalId}/terminalSettings";
             var resource = new ServiceResource(this, endpoint);
-            return await resource.RequestAsync<TerminalSettings>(terminalSettings.ToJson(), requestOptions, new HttpMethod("PATCH"));
+            return await resource.RequestAsync<TerminalSettings>(terminalSettings.ToJson(), requestOptions, new HttpMethod("PATCH"), cancellationToken);
         }
-
     }
 }

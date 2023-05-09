@@ -357,28 +357,12 @@ namespace Adyen.Model.BalancePlatform
         public List<VerificationDeadline.CapabilitiesEnum> Capabilities { get; private set; }
 
         /// <summary>
-        /// Returns false as Capabilities should not be serialized given that it's read-only.
-        /// </summary>
-        /// <returns>false (boolean)</returns>
-        public bool ShouldSerializeCapabilities()
-        {
-            return false;
-        }
-        /// <summary>
         /// The date that verification is due by before capabilities are disallowed.
         /// </summary>
         /// <value>The date that verification is due by before capabilities are disallowed.</value>
         [DataMember(Name = "expiresAt", IsRequired = false, EmitDefaultValue = false)]
         public DateTime ExpiresAt { get; private set; }
 
-        /// <summary>
-        /// Returns false as ExpiresAt should not be serialized given that it's read-only.
-        /// </summary>
-        /// <returns>false (boolean)</returns>
-        public bool ShouldSerializeExpiresAt()
-        {
-            return false;
-        }
         /// <summary>
         /// Returns the string presentation of the object
         /// </summary>

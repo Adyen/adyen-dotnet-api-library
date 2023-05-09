@@ -68,13 +68,21 @@ namespace Adyen.Model.LegalEntityManagement
         /// <summary>
         /// Initializes a new instance of the <see cref="CapabilityProblemEntityRecursive" /> class.
         /// </summary>
+        /// <param name="documents">documents.</param>
         /// <param name="id">id.</param>
         /// <param name="type">type.</param>
-        public CapabilityProblemEntityRecursive(string id = default(string), TypeEnum? type = default(TypeEnum?))
+        public CapabilityProblemEntityRecursive(List<string> documents = default(List<string>), string id = default(string), TypeEnum? type = default(TypeEnum?))
         {
+            this.Documents = documents;
             this.Id = id;
             this.Type = type;
         }
+
+        /// <summary>
+        /// Gets or Sets Documents
+        /// </summary>
+        [DataMember(Name = "documents", EmitDefaultValue = false)]
+        public List<string> Documents { get; set; }
 
         /// <summary>
         /// Gets or Sets Id
@@ -90,6 +98,7 @@ namespace Adyen.Model.LegalEntityManagement
         {
             StringBuilder sb = new StringBuilder();
             sb.Append("class CapabilityProblemEntityRecursive {\n");
+            sb.Append("  Documents: ").Append(Documents).Append("\n");
             sb.Append("  Id: ").Append(Id).Append("\n");
             sb.Append("  Type: ").Append(Type).Append("\n");
             sb.Append("}\n");
@@ -128,6 +137,12 @@ namespace Adyen.Model.LegalEntityManagement
             }
             return 
                 (
+                    this.Documents == input.Documents ||
+                    this.Documents != null &&
+                    input.Documents != null &&
+                    this.Documents.SequenceEqual(input.Documents)
+                ) && 
+                (
                     this.Id == input.Id ||
                     (this.Id != null &&
                     this.Id.Equals(input.Id))
@@ -147,6 +162,10 @@ namespace Adyen.Model.LegalEntityManagement
             unchecked // Overflow is fine, just wrap
             {
                 int hashCode = 41;
+                if (this.Documents != null)
+                {
+                    hashCode = (hashCode * 59) + this.Documents.GetHashCode();
+                }
                 if (this.Id != null)
                 {
                     hashCode = (hashCode * 59) + this.Id.GetHashCode();

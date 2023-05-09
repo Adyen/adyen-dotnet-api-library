@@ -13,124 +13,150 @@
 using System;
 using System.Collections.Generic;
 using System.Net.Http;
+using System.Threading;
 using System.Threading.Tasks;
 using Adyen.Constants;
 using Adyen.Model;
 using Adyen.Service.Resource;
 using Adyen.Model.BalancePlatform;
-using Newtonsoft.Json;
 
 namespace Adyen.Service.BalancePlatform
 {
     /// <summary>
-    /// Represents a collection of functions to interact with the API endpoints
+    /// TransactionRulesService Interface
     /// </summary>
-    public class TransactionRulesService : AbstractService
+    public interface ITransactionRulesService
+    {
+        /// <summary>
+        /// Delete a transaction rule
+        /// </summary>
+        /// <param name="transactionRuleId"><see cref="string"/> - The unique identifier of the transaction rule.</param>
+        /// <param name="requestOptions"><see cref="RequestOptions"/> - Additional request options.</param>
+        /// <returns><see cref="TransactionRule"/>.</returns>
+        TransactionRule DeleteTransactionRule(string transactionRuleId, RequestOptions requestOptions = default);
+        
+        /// <summary>
+        /// Delete a transaction rule
+        /// </summary>
+        /// <param name="transactionRuleId"><see cref="string"/> - The unique identifier of the transaction rule.</param>
+        /// <param name="requestOptions"><see cref="RequestOptions"/> - Additional request options.</param>
+        /// <param name="cancellationToken"> A CancellationToken enables cooperative cancellation between threads, thread pool work items, or Task objects.</param>
+        /// <returns>Task of <see cref="TransactionRule"/>.</returns>
+        Task<TransactionRule> DeleteTransactionRuleAsync(string transactionRuleId, RequestOptions requestOptions = default, CancellationToken cancellationToken = default);
+        
+        /// <summary>
+        /// Get a transaction rule
+        /// </summary>
+        /// <param name="transactionRuleId"><see cref="string"/> - The unique identifier of the transaction rule.</param>
+        /// <param name="requestOptions"><see cref="RequestOptions"/> - Additional request options.</param>
+        /// <returns><see cref="TransactionRuleResponse"/>.</returns>
+        TransactionRuleResponse GetTransactionRule(string transactionRuleId, RequestOptions requestOptions = default);
+        
+        /// <summary>
+        /// Get a transaction rule
+        /// </summary>
+        /// <param name="transactionRuleId"><see cref="string"/> - The unique identifier of the transaction rule.</param>
+        /// <param name="requestOptions"><see cref="RequestOptions"/> - Additional request options.</param>
+        /// <param name="cancellationToken"> A CancellationToken enables cooperative cancellation between threads, thread pool work items, or Task objects.</param>
+        /// <returns>Task of <see cref="TransactionRuleResponse"/>.</returns>
+        Task<TransactionRuleResponse> GetTransactionRuleAsync(string transactionRuleId, RequestOptions requestOptions = default, CancellationToken cancellationToken = default);
+        
+        /// <summary>
+        /// Update a transaction rule
+        /// </summary>
+        /// <param name="transactionRuleId"><see cref="string"/> - The unique identifier of the transaction rule.</param>
+        /// <param name="transactionRuleInfo"><see cref="TransactionRuleInfo"/> - </param>
+        /// <param name="requestOptions"><see cref="RequestOptions"/> - Additional request options.</param>
+        /// <returns><see cref="TransactionRule"/>.</returns>
+        TransactionRule UpdateTransactionRule(string transactionRuleId, TransactionRuleInfo transactionRuleInfo, RequestOptions requestOptions = default);
+        
+        /// <summary>
+        /// Update a transaction rule
+        /// </summary>
+        /// <param name="transactionRuleId"><see cref="string"/> - The unique identifier of the transaction rule.</param>
+        /// <param name="transactionRuleInfo"><see cref="TransactionRuleInfo"/> - </param>
+        /// <param name="requestOptions"><see cref="RequestOptions"/> - Additional request options.</param>
+        /// <param name="cancellationToken"> A CancellationToken enables cooperative cancellation between threads, thread pool work items, or Task objects.</param>
+        /// <returns>Task of <see cref="TransactionRule"/>.</returns>
+        Task<TransactionRule> UpdateTransactionRuleAsync(string transactionRuleId, TransactionRuleInfo transactionRuleInfo, RequestOptions requestOptions = default, CancellationToken cancellationToken = default);
+        
+        /// <summary>
+        /// Create a transaction rule
+        /// </summary>
+        /// <param name="transactionRuleInfo"><see cref="TransactionRuleInfo"/> - </param>
+        /// <param name="requestOptions"><see cref="RequestOptions"/> - Additional request options.</param>
+        /// <returns><see cref="TransactionRule"/>.</returns>
+        TransactionRule CreateTransactionRule(TransactionRuleInfo transactionRuleInfo, RequestOptions requestOptions = default);
+        
+        /// <summary>
+        /// Create a transaction rule
+        /// </summary>
+        /// <param name="transactionRuleInfo"><see cref="TransactionRuleInfo"/> - </param>
+        /// <param name="requestOptions"><see cref="RequestOptions"/> - Additional request options.</param>
+        /// <param name="cancellationToken"> A CancellationToken enables cooperative cancellation between threads, thread pool work items, or Task objects.</param>
+        /// <returns>Task of <see cref="TransactionRule"/>.</returns>
+        Task<TransactionRule> CreateTransactionRuleAsync(TransactionRuleInfo transactionRuleInfo, RequestOptions requestOptions = default, CancellationToken cancellationToken = default);
+        
+    }
+    
+    /// <summary>
+    /// Represents a collection of functions to interact with the TransactionRulesService API endpoints
+    /// </summary>
+    public class TransactionRulesService : AbstractService, ITransactionRulesService
     {
         private readonly string _baseUrl;
         
         public TransactionRulesService(Client client) : base(client)
         {
-            _baseUrl = client.Config.BalancePlatformEndpoint + "/" + ClientConfig.BalancePlatformVersion;
+            _baseUrl = CreateBaseUrl("https://balanceplatform-api-test.adyen.com/bcl/v2");
         }
-    
-        /// <summary>
-        /// Delete a transaction rule
-        /// </summary>
-        /// <param name="transactionRuleId">The unique identifier of the transaction rule.</param>
-        /// <param name="requestOptions">Additional request options.</param>
-        /// <returns>TransactionRule</returns>
+        
         public TransactionRule DeleteTransactionRule(string transactionRuleId, RequestOptions requestOptions = default)
         {
             return DeleteTransactionRuleAsync(transactionRuleId, requestOptions).GetAwaiter().GetResult();
         }
 
-        /// <summary>
-        /// Delete a transaction rule
-        /// </summary>
-        /// <param name="transactionRuleId">The unique identifier of the transaction rule.</param>
-        /// <param name="requestOptions">Additional request options.</param>
-        /// <returns>Task of TransactionRule</returns>
-        public async Task<TransactionRule> DeleteTransactionRuleAsync(string transactionRuleId, RequestOptions requestOptions = default)
+        public async Task<TransactionRule> DeleteTransactionRuleAsync(string transactionRuleId, RequestOptions requestOptions = default, CancellationToken cancellationToken = default)
         {
             var endpoint = _baseUrl + $"/transactionRules/{transactionRuleId}";
             var resource = new ServiceResource(this, endpoint);
-            return await resource.RequestAsync<TransactionRule>(null, requestOptions, new HttpMethod("DELETE"));
+            return await resource.RequestAsync<TransactionRule>(null, requestOptions, new HttpMethod("DELETE"), cancellationToken);
         }
-
-        /// <summary>
-        /// Get a transaction rule
-        /// </summary>
-        /// <param name="transactionRuleId">The unique identifier of the transaction rule.</param>
-        /// <param name="requestOptions">Additional request options.</param>
-        /// <returns>TransactionRuleResponse</returns>
+        
         public TransactionRuleResponse GetTransactionRule(string transactionRuleId, RequestOptions requestOptions = default)
         {
             return GetTransactionRuleAsync(transactionRuleId, requestOptions).GetAwaiter().GetResult();
         }
 
-        /// <summary>
-        /// Get a transaction rule
-        /// </summary>
-        /// <param name="transactionRuleId">The unique identifier of the transaction rule.</param>
-        /// <param name="requestOptions">Additional request options.</param>
-        /// <returns>Task of TransactionRuleResponse</returns>
-        public async Task<TransactionRuleResponse> GetTransactionRuleAsync(string transactionRuleId, RequestOptions requestOptions = default)
+        public async Task<TransactionRuleResponse> GetTransactionRuleAsync(string transactionRuleId, RequestOptions requestOptions = default, CancellationToken cancellationToken = default)
         {
             var endpoint = _baseUrl + $"/transactionRules/{transactionRuleId}";
             var resource = new ServiceResource(this, endpoint);
-            return await resource.RequestAsync<TransactionRuleResponse>(null, requestOptions, new HttpMethod("GET"));
+            return await resource.RequestAsync<TransactionRuleResponse>(null, requestOptions, new HttpMethod("GET"), cancellationToken);
         }
-
-        /// <summary>
-        /// Update a transaction rule
-        /// </summary>
-        /// <param name="transactionRuleId">The unique identifier of the transaction rule.</param>
-        /// <param name="transactionRuleInfo"></param>
-        /// <param name="requestOptions">Additional request options.</param>
-        /// <returns>TransactionRule</returns>
+        
         public TransactionRule UpdateTransactionRule(string transactionRuleId, TransactionRuleInfo transactionRuleInfo, RequestOptions requestOptions = default)
         {
             return UpdateTransactionRuleAsync(transactionRuleId, transactionRuleInfo, requestOptions).GetAwaiter().GetResult();
         }
 
-        /// <summary>
-        /// Update a transaction rule
-        /// </summary>
-        /// <param name="transactionRuleId">The unique identifier of the transaction rule.</param>
-        /// <param name="transactionRuleInfo"></param>
-        /// <param name="requestOptions">Additional request options.</param>
-        /// <returns>Task of TransactionRule</returns>
-        public async Task<TransactionRule> UpdateTransactionRuleAsync(string transactionRuleId, TransactionRuleInfo transactionRuleInfo, RequestOptions requestOptions = default)
+        public async Task<TransactionRule> UpdateTransactionRuleAsync(string transactionRuleId, TransactionRuleInfo transactionRuleInfo, RequestOptions requestOptions = default, CancellationToken cancellationToken = default)
         {
             var endpoint = _baseUrl + $"/transactionRules/{transactionRuleId}";
             var resource = new ServiceResource(this, endpoint);
-            return await resource.RequestAsync<TransactionRule>(transactionRuleInfo.ToJson(), requestOptions, new HttpMethod("PATCH"));
+            return await resource.RequestAsync<TransactionRule>(transactionRuleInfo.ToJson(), requestOptions, new HttpMethod("PATCH"), cancellationToken);
         }
-
-        /// <summary>
-        /// Create a transaction rule
-        /// </summary>
-        /// <param name="transactionRuleInfo"></param>
-        /// <param name="requestOptions">Additional request options.</param>
-        /// <returns>TransactionRule</returns>
+        
         public TransactionRule CreateTransactionRule(TransactionRuleInfo transactionRuleInfo, RequestOptions requestOptions = default)
         {
             return CreateTransactionRuleAsync(transactionRuleInfo, requestOptions).GetAwaiter().GetResult();
         }
 
-        /// <summary>
-        /// Create a transaction rule
-        /// </summary>
-        /// <param name="transactionRuleInfo"></param>
-        /// <param name="requestOptions">Additional request options.</param>
-        /// <returns>Task of TransactionRule</returns>
-        public async Task<TransactionRule> CreateTransactionRuleAsync(TransactionRuleInfo transactionRuleInfo, RequestOptions requestOptions = default)
+        public async Task<TransactionRule> CreateTransactionRuleAsync(TransactionRuleInfo transactionRuleInfo, RequestOptions requestOptions = default, CancellationToken cancellationToken = default)
         {
             var endpoint = _baseUrl + "/transactionRules";
             var resource = new ServiceResource(this, endpoint);
-            return await resource.RequestAsync<TransactionRule>(transactionRuleInfo.ToJson(), requestOptions, new HttpMethod("POST"));
+            return await resource.RequestAsync<TransactionRule>(transactionRuleInfo.ToJson(), requestOptions, new HttpMethod("POST"), cancellationToken);
         }
-
     }
 }

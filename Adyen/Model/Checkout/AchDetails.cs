@@ -44,7 +44,13 @@ namespace Adyen.Model.Checkout
             /// Enum Ach for value: ach
             /// </summary>
             [EnumMember(Value = "ach")]
-            Ach = 1
+            Ach = 1,
+
+            /// <summary>
+            /// Enum AchPlaid for value: ach_plaid
+            /// </summary>
+            [EnumMember(Value = "ach_plaid")]
+            AchPlaid = 2
 
         }
 
@@ -292,6 +298,12 @@ namespace Adyen.Model.Checkout
         /// <returns>Validation Result</returns>
         public IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> Validate(ValidationContext validationContext)
         {
+            // StoredPaymentMethodId (string) maxLength
+            if (this.StoredPaymentMethodId != null && this.StoredPaymentMethodId.Length > 64)
+            {
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for StoredPaymentMethodId, length must be less than 64.", new [] { "StoredPaymentMethodId" });
+            }
+
             yield break;
         }
     }

@@ -36,7 +36,7 @@ namespace Adyen.Model.Management
         /// <summary>
         /// Initializes a new instance of the <see cref="Opi" /> class.
         /// </summary>
-        /// <param name="enablePayAtTable">Indicates if Pay at Table is enabled..</param>
+        /// <param name="enablePayAtTable">Indicates if Pay at table is enabled..</param>
         /// <param name="payAtTableStoreNumber">The store number to use for Pay at Table..</param>
         /// <param name="payAtTableURL">The URL and port number used for Pay at Table communication..</param>
         public Opi(bool enablePayAtTable = default(bool), string payAtTableStoreNumber = default(string), string payAtTableURL = default(string))
@@ -47,9 +47,9 @@ namespace Adyen.Model.Management
         }
 
         /// <summary>
-        /// Indicates if Pay at Table is enabled.
+        /// Indicates if Pay at table is enabled.
         /// </summary>
-        /// <value>Indicates if Pay at Table is enabled.</value>
+        /// <value>Indicates if Pay at table is enabled.</value>
         [DataMember(Name = "enablePayAtTable", EmitDefaultValue = false)]
         public bool EnablePayAtTable { get; set; }
 

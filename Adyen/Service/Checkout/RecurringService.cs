@@ -23,39 +23,69 @@ using Adyen.Model.Checkout;
 namespace Adyen.Service.Checkout
 {
     /// <summary>
-    /// Represents a collection of functions to interact with the API endpoints
+    /// RecurringService Interface
     /// </summary>
-    public class RecurringService : AbstractService
+    public interface IRecurringService
+    {
+        /// <summary>
+        /// Delete a token for stored payment details
+        /// </summary>
+        /// <param name="recurringId"><see cref="string"/> - The unique identifier of the token.</param>
+        /// <param name="shopperReference"><see cref="string"/> - Your reference to uniquely identify this shopper, for example user ID or account ID. Minimum length: 3 characters. &gt; Your reference must not include personally identifiable information (PII), for example name or email address.</param>
+        /// <param name="merchantAccount"><see cref="string"/> - Your merchant account.</param>
+        /// <param name="requestOptions"><see cref="RequestOptions"/> - Additional request options.</param>
+        /// <returns><see cref="StoredPaymentMethodResource"/>.</returns>
+        StoredPaymentMethodResource DeleteTokenForStoredPaymentDetails(string recurringId, string shopperReference = default, string merchantAccount = default, RequestOptions requestOptions = default);
+        
+        /// <summary>
+        /// Delete a token for stored payment details
+        /// </summary>
+        /// <param name="recurringId"><see cref="string"/> - The unique identifier of the token.</param>
+        /// <param name="shopperReference"><see cref="string"/> - Your reference to uniquely identify this shopper, for example user ID or account ID. Minimum length: 3 characters. &gt; Your reference must not include personally identifiable information (PII), for example name or email address.</param>
+        /// <param name="merchantAccount"><see cref="string"/> - Your merchant account.</param>
+        /// <param name="requestOptions"><see cref="RequestOptions"/> - Additional request options.</param>
+        /// <param name="cancellationToken"> A CancellationToken enables cooperative cancellation between threads, thread pool work items, or Task objects.</param>
+        /// <returns>Task of <see cref="StoredPaymentMethodResource"/>.</returns>
+        Task<StoredPaymentMethodResource> DeleteTokenForStoredPaymentDetailsAsync(string recurringId, string shopperReference = default, string merchantAccount = default, RequestOptions requestOptions = default, CancellationToken cancellationToken = default);
+        
+        /// <summary>
+        /// Get tokens for stored payment details
+        /// </summary>
+        /// <param name="shopperReference"><see cref="string"/> - Your reference to uniquely identify this shopper, for example user ID or account ID. Minimum length: 3 characters. &gt; Your reference must not include personally identifiable information (PII), for example name or email address.</param>
+        /// <param name="merchantAccount"><see cref="string"/> - Your merchant account.</param>
+        /// <param name="requestOptions"><see cref="RequestOptions"/> - Additional request options.</param>
+        /// <returns><see cref="ListStoredPaymentMethodsResponse"/>.</returns>
+        ListStoredPaymentMethodsResponse GetTokensForStoredPaymentDetails(string shopperReference = default, string merchantAccount = default, RequestOptions requestOptions = default);
+        
+        /// <summary>
+        /// Get tokens for stored payment details
+        /// </summary>
+        /// <param name="shopperReference"><see cref="string"/> - Your reference to uniquely identify this shopper, for example user ID or account ID. Minimum length: 3 characters. &gt; Your reference must not include personally identifiable information (PII), for example name or email address.</param>
+        /// <param name="merchantAccount"><see cref="string"/> - Your merchant account.</param>
+        /// <param name="requestOptions"><see cref="RequestOptions"/> - Additional request options.</param>
+        /// <param name="cancellationToken"> A CancellationToken enables cooperative cancellation between threads, thread pool work items, or Task objects.</param>
+        /// <returns>Task of <see cref="ListStoredPaymentMethodsResponse"/>.</returns>
+        Task<ListStoredPaymentMethodsResponse> GetTokensForStoredPaymentDetailsAsync(string shopperReference = default, string merchantAccount = default, RequestOptions requestOptions = default, CancellationToken cancellationToken = default);
+        
+    }
+    
+    /// <summary>
+    /// Represents a collection of functions to interact with the RecurringService API endpoints
+    /// </summary>
+    public class RecurringService : AbstractService, IRecurringService
     {
         private readonly string _baseUrl;
         
         public RecurringService(Client client) : base(client)
         {
-            _baseUrl = client.Config.CheckoutEndpoint + "/" + ClientConfig.CheckoutApiVersion;
+            _baseUrl = CreateBaseUrl("https://checkout-test.adyen.com/v70");
         }
-    
-        /// <summary>
-        /// Delete a token for stored payment details
-        /// </summary>
-        /// <param name="recurringId">The unique identifier of the token.</param>
-        /// <param name="shopperReference">Your reference to uniquely identify this shopper, for example user ID or account ID. Minimum length: 3 characters. &gt; Your reference must not include personally identifiable information (PII), for example name or email address.</param>
-        /// <param name="merchantAccount">Your merchant account.</param>
-        /// <param name="requestOptions">Additional request options.</param>
-        /// <returns>StoredPaymentMethodResource</returns>
+        
         public StoredPaymentMethodResource DeleteTokenForStoredPaymentDetails(string recurringId, string shopperReference = default, string merchantAccount = default, RequestOptions requestOptions = default)
         {
             return DeleteTokenForStoredPaymentDetailsAsync(recurringId, shopperReference, merchantAccount, requestOptions).GetAwaiter().GetResult();
         }
 
-        /// <summary>
-        /// Delete a token for stored payment details
-        /// </summary>
-        /// <param name="recurringId">The unique identifier of the token.</param>
-        /// <param name="shopperReference">Your reference to uniquely identify this shopper, for example user ID or account ID. Minimum length: 3 characters. &gt; Your reference must not include personally identifiable information (PII), for example name or email address.</param>
-        /// <param name="merchantAccount">Your merchant account.</param>
-        /// <param name="requestOptions">Additional request options.</param>
-        /// <param name="cancellationToken"> A CancellationToken enables cooperative cancellation between threads, thread pool work items, or Task objects.</param>
-        /// <returns>Task of StoredPaymentMethodResource</returns>
         public async Task<StoredPaymentMethodResource> DeleteTokenForStoredPaymentDetailsAsync(string recurringId, string shopperReference = default, string merchantAccount = default, RequestOptions requestOptions = default, CancellationToken cancellationToken = default)
         {
             // Build the query string
@@ -66,27 +96,12 @@ namespace Adyen.Service.Checkout
             var resource = new ServiceResource(this, endpoint);
             return await resource.RequestAsync<StoredPaymentMethodResource>(null, requestOptions, new HttpMethod("DELETE"), cancellationToken);
         }
-
-        /// <summary>
-        /// Get tokens for stored payment details
-        /// </summary>
-        /// <param name="shopperReference">Your reference to uniquely identify this shopper, for example user ID or account ID. Minimum length: 3 characters. &gt; Your reference must not include personally identifiable information (PII), for example name or email address.</param>
-        /// <param name="merchantAccount">Your merchant account.</param>
-        /// <param name="requestOptions">Additional request options.</param>
-        /// <returns>ListStoredPaymentMethodsResponse</returns>
+        
         public ListStoredPaymentMethodsResponse GetTokensForStoredPaymentDetails(string shopperReference = default, string merchantAccount = default, RequestOptions requestOptions = default)
         {
             return GetTokensForStoredPaymentDetailsAsync(shopperReference, merchantAccount, requestOptions).GetAwaiter().GetResult();
         }
 
-        /// <summary>
-        /// Get tokens for stored payment details
-        /// </summary>
-        /// <param name="shopperReference">Your reference to uniquely identify this shopper, for example user ID or account ID. Minimum length: 3 characters. &gt; Your reference must not include personally identifiable information (PII), for example name or email address.</param>
-        /// <param name="merchantAccount">Your merchant account.</param>
-        /// <param name="requestOptions">Additional request options.</param>
-        /// <param name="cancellationToken"> A CancellationToken enables cooperative cancellation between threads, thread pool work items, or Task objects.</param>
-        /// <returns>Task of ListStoredPaymentMethodsResponse</returns>
         public async Task<ListStoredPaymentMethodsResponse> GetTokensForStoredPaymentDetailsAsync(string shopperReference = default, string merchantAccount = default, RequestOptions requestOptions = default, CancellationToken cancellationToken = default)
         {
             // Build the query string
@@ -97,6 +112,5 @@ namespace Adyen.Service.Checkout
             var resource = new ServiceResource(this, endpoint);
             return await resource.RequestAsync<ListStoredPaymentMethodsResponse>(null, requestOptions, new HttpMethod("GET"), cancellationToken);
         }
-
     }
 }

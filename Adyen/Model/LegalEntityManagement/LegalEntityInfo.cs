@@ -106,14 +106,6 @@ namespace Adyen.Model.LegalEntityManagement
         public Dictionary<string, LegalEntityCapability> Capabilities { get; private set; }
 
         /// <summary>
-        /// Returns false as Capabilities should not be serialized given that it's read-only.
-        /// </summary>
-        /// <returns>false (boolean)</returns>
-        public bool ShouldSerializeCapabilities()
-        {
-            return false;
-        }
-        /// <summary>
         /// List of legal entities associated with the current legal entity. For example, ultimate beneficial owners associated with an organization through ownership or control, or as signatories.
         /// </summary>
         /// <value>List of legal entities associated with the current legal entity. For example, ultimate beneficial owners associated with an organization through ownership or control, or as signatories.</value>

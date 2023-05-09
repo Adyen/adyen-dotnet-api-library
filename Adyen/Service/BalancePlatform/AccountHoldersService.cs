@@ -13,73 +13,126 @@
 using System;
 using System.Collections.Generic;
 using System.Net.Http;
+using System.Threading;
 using System.Threading.Tasks;
 using Adyen.Constants;
 using Adyen.Model;
 using Adyen.Service.Resource;
 using Adyen.Model.BalancePlatform;
-using Newtonsoft.Json;
 
 namespace Adyen.Service.BalancePlatform
 {
     /// <summary>
-    /// Represents a collection of functions to interact with the API endpoints
+    /// AccountHoldersService Interface
     /// </summary>
-    public class AccountHoldersService : AbstractService
+    public interface IAccountHoldersService
+    {
+        /// <summary>
+        /// Get an account holder
+        /// </summary>
+        /// <param name="id"><see cref="string"/> - The unique identifier of the account holder.</param>
+        /// <param name="requestOptions"><see cref="RequestOptions"/> - Additional request options.</param>
+        /// <returns><see cref="AccountHolder"/>.</returns>
+        AccountHolder GetAccountHolder(string id, RequestOptions requestOptions = default);
+        
+        /// <summary>
+        /// Get an account holder
+        /// </summary>
+        /// <param name="id"><see cref="string"/> - The unique identifier of the account holder.</param>
+        /// <param name="requestOptions"><see cref="RequestOptions"/> - Additional request options.</param>
+        /// <param name="cancellationToken"> A CancellationToken enables cooperative cancellation between threads, thread pool work items, or Task objects.</param>
+        /// <returns>Task of <see cref="AccountHolder"/>.</returns>
+        Task<AccountHolder> GetAccountHolderAsync(string id, RequestOptions requestOptions = default, CancellationToken cancellationToken = default);
+        
+        /// <summary>
+        /// Get all balance accounts of an account holder
+        /// </summary>
+        /// <param name="id"><see cref="string"/> - The unique identifier of the account holder.</param>
+        /// <param name="offset"><see cref="int?"/> - The number of items that you want to skip.</param>
+        /// <param name="limit"><see cref="int?"/> - The number of items returned per page, maximum 100 items. By default, the response returns 10 items per page.</param>
+        /// <param name="requestOptions"><see cref="RequestOptions"/> - Additional request options.</param>
+        /// <returns><see cref="PaginatedBalanceAccountsResponse"/>.</returns>
+        PaginatedBalanceAccountsResponse GetAllBalanceAccountsOfAccountHolder(string id, int? offset = default, int? limit = default, RequestOptions requestOptions = default);
+        
+        /// <summary>
+        /// Get all balance accounts of an account holder
+        /// </summary>
+        /// <param name="id"><see cref="string"/> - The unique identifier of the account holder.</param>
+        /// <param name="offset"><see cref="int?"/> - The number of items that you want to skip.</param>
+        /// <param name="limit"><see cref="int?"/> - The number of items returned per page, maximum 100 items. By default, the response returns 10 items per page.</param>
+        /// <param name="requestOptions"><see cref="RequestOptions"/> - Additional request options.</param>
+        /// <param name="cancellationToken"> A CancellationToken enables cooperative cancellation between threads, thread pool work items, or Task objects.</param>
+        /// <returns>Task of <see cref="PaginatedBalanceAccountsResponse"/>.</returns>
+        Task<PaginatedBalanceAccountsResponse> GetAllBalanceAccountsOfAccountHolderAsync(string id, int? offset = default, int? limit = default, RequestOptions requestOptions = default, CancellationToken cancellationToken = default);
+        
+        /// <summary>
+        /// Update an account holder
+        /// </summary>
+        /// <param name="id"><see cref="string"/> - The unique identifier of the account holder.</param>
+        /// <param name="accountHolder"><see cref="AccountHolder"/> - </param>
+        /// <param name="requestOptions"><see cref="RequestOptions"/> - Additional request options.</param>
+        /// <returns><see cref="AccountHolder"/>.</returns>
+        AccountHolder UpdateAccountHolder(string id, AccountHolder accountHolder, RequestOptions requestOptions = default);
+        
+        /// <summary>
+        /// Update an account holder
+        /// </summary>
+        /// <param name="id"><see cref="string"/> - The unique identifier of the account holder.</param>
+        /// <param name="accountHolder"><see cref="AccountHolder"/> - </param>
+        /// <param name="requestOptions"><see cref="RequestOptions"/> - Additional request options.</param>
+        /// <param name="cancellationToken"> A CancellationToken enables cooperative cancellation between threads, thread pool work items, or Task objects.</param>
+        /// <returns>Task of <see cref="AccountHolder"/>.</returns>
+        Task<AccountHolder> UpdateAccountHolderAsync(string id, AccountHolder accountHolder, RequestOptions requestOptions = default, CancellationToken cancellationToken = default);
+        
+        /// <summary>
+        /// Create an account holder
+        /// </summary>
+        /// <param name="accountHolderInfo"><see cref="AccountHolderInfo"/> - </param>
+        /// <param name="requestOptions"><see cref="RequestOptions"/> - Additional request options.</param>
+        /// <returns><see cref="AccountHolder"/>.</returns>
+        AccountHolder CreateAccountHolder(AccountHolderInfo accountHolderInfo, RequestOptions requestOptions = default);
+        
+        /// <summary>
+        /// Create an account holder
+        /// </summary>
+        /// <param name="accountHolderInfo"><see cref="AccountHolderInfo"/> - </param>
+        /// <param name="requestOptions"><see cref="RequestOptions"/> - Additional request options.</param>
+        /// <param name="cancellationToken"> A CancellationToken enables cooperative cancellation between threads, thread pool work items, or Task objects.</param>
+        /// <returns>Task of <see cref="AccountHolder"/>.</returns>
+        Task<AccountHolder> CreateAccountHolderAsync(AccountHolderInfo accountHolderInfo, RequestOptions requestOptions = default, CancellationToken cancellationToken = default);
+        
+    }
+    
+    /// <summary>
+    /// Represents a collection of functions to interact with the AccountHoldersService API endpoints
+    /// </summary>
+    public class AccountHoldersService : AbstractService, IAccountHoldersService
     {
         private readonly string _baseUrl;
         
         public AccountHoldersService(Client client) : base(client)
         {
-            _baseUrl = client.Config.BalancePlatformEndpoint + "/" + ClientConfig.BalancePlatformVersion;
+            _baseUrl = CreateBaseUrl("https://balanceplatform-api-test.adyen.com/bcl/v2");
         }
-    
-        /// <summary>
-        /// Get an account holder
-        /// </summary>
-        /// <param name="id">The unique identifier of the account holder.</param>
-        /// <param name="requestOptions">Additional request options.</param>
-        /// <returns>AccountHolder</returns>
+        
         public AccountHolder GetAccountHolder(string id, RequestOptions requestOptions = default)
         {
             return GetAccountHolderAsync(id, requestOptions).GetAwaiter().GetResult();
         }
 
-        /// <summary>
-        /// Get an account holder
-        /// </summary>
-        /// <param name="id">The unique identifier of the account holder.</param>
-        /// <param name="requestOptions">Additional request options.</param>
-        /// <returns>Task of AccountHolder</returns>
-        public async Task<AccountHolder> GetAccountHolderAsync(string id, RequestOptions requestOptions = default)
+        public async Task<AccountHolder> GetAccountHolderAsync(string id, RequestOptions requestOptions = default, CancellationToken cancellationToken = default)
         {
             var endpoint = _baseUrl + $"/accountHolders/{id}";
             var resource = new ServiceResource(this, endpoint);
-            return await resource.RequestAsync<AccountHolder>(null, requestOptions, new HttpMethod("GET"));
+            return await resource.RequestAsync<AccountHolder>(null, requestOptions, new HttpMethod("GET"), cancellationToken);
         }
-
-        /// <summary>
-        /// Get all balance accounts of an account holder
-        /// </summary>
-        /// <param name="id">The unique identifier of the account holder.</param>
-        /// <param name="offset">The number of items that you want to skip.</param>
-        /// <param name="limit">The number of items returned per page, maximum 100 items. By default, the response returns 10 items per page.</param>
-        /// <param name="requestOptions">Additional request options.</param>
-        /// <returns>PaginatedBalanceAccountsResponse</returns>
+        
         public PaginatedBalanceAccountsResponse GetAllBalanceAccountsOfAccountHolder(string id, int? offset = default, int? limit = default, RequestOptions requestOptions = default)
         {
             return GetAllBalanceAccountsOfAccountHolderAsync(id, offset, limit, requestOptions).GetAwaiter().GetResult();
         }
 
-        /// <summary>
-        /// Get all balance accounts of an account holder
-        /// </summary>
-        /// <param name="id">The unique identifier of the account holder.</param>
-        /// <param name="offset">The number of items that you want to skip.</param>
-        /// <param name="limit">The number of items returned per page, maximum 100 items. By default, the response returns 10 items per page.</param>
-        /// <param name="requestOptions">Additional request options.</param>
-        /// <returns>Task of PaginatedBalanceAccountsResponse</returns>
-        public async Task<PaginatedBalanceAccountsResponse> GetAllBalanceAccountsOfAccountHolderAsync(string id, int? offset = default, int? limit = default, RequestOptions requestOptions = default)
+        public async Task<PaginatedBalanceAccountsResponse> GetAllBalanceAccountsOfAccountHolderAsync(string id, int? offset = default, int? limit = default, RequestOptions requestOptions = default, CancellationToken cancellationToken = default)
         {
             // Build the query string
             var queryParams = new Dictionary<string, string>();
@@ -87,58 +140,31 @@ namespace Adyen.Service.BalancePlatform
             if (limit != null) queryParams.Add("limit", limit.ToString());
             var endpoint = _baseUrl + $"/accountHolders/{id}/balanceAccounts" + ToQueryString(queryParams);
             var resource = new ServiceResource(this, endpoint);
-            return await resource.RequestAsync<PaginatedBalanceAccountsResponse>(null, requestOptions, new HttpMethod("GET"));
+            return await resource.RequestAsync<PaginatedBalanceAccountsResponse>(null, requestOptions, new HttpMethod("GET"), cancellationToken);
         }
-
-        /// <summary>
-        /// Update an account holder
-        /// </summary>
-        /// <param name="id">The unique identifier of the account holder.</param>
-        /// <param name="accountHolder"></param>
-        /// <param name="requestOptions">Additional request options.</param>
-        /// <returns>AccountHolder</returns>
+        
         public AccountHolder UpdateAccountHolder(string id, AccountHolder accountHolder, RequestOptions requestOptions = default)
         {
             return UpdateAccountHolderAsync(id, accountHolder, requestOptions).GetAwaiter().GetResult();
         }
 
-        /// <summary>
-        /// Update an account holder
-        /// </summary>
-        /// <param name="id">The unique identifier of the account holder.</param>
-        /// <param name="accountHolder"></param>
-        /// <param name="requestOptions">Additional request options.</param>
-        /// <returns>Task of AccountHolder</returns>
-        public async Task<AccountHolder> UpdateAccountHolderAsync(string id, AccountHolder accountHolder, RequestOptions requestOptions = default)
+        public async Task<AccountHolder> UpdateAccountHolderAsync(string id, AccountHolder accountHolder, RequestOptions requestOptions = default, CancellationToken cancellationToken = default)
         {
             var endpoint = _baseUrl + $"/accountHolders/{id}";
             var resource = new ServiceResource(this, endpoint);
-            return await resource.RequestAsync<AccountHolder>(accountHolder.ToJson(), requestOptions, new HttpMethod("PATCH"));
+            return await resource.RequestAsync<AccountHolder>(accountHolder.ToJson(), requestOptions, new HttpMethod("PATCH"), cancellationToken);
         }
-
-        /// <summary>
-        /// Create an account holder
-        /// </summary>
-        /// <param name="accountHolderInfo"></param>
-        /// <param name="requestOptions">Additional request options.</param>
-        /// <returns>AccountHolder</returns>
+        
         public AccountHolder CreateAccountHolder(AccountHolderInfo accountHolderInfo, RequestOptions requestOptions = default)
         {
             return CreateAccountHolderAsync(accountHolderInfo, requestOptions).GetAwaiter().GetResult();
         }
 
-        /// <summary>
-        /// Create an account holder
-        /// </summary>
-        /// <param name="accountHolderInfo"></param>
-        /// <param name="requestOptions">Additional request options.</param>
-        /// <returns>Task of AccountHolder</returns>
-        public async Task<AccountHolder> CreateAccountHolderAsync(AccountHolderInfo accountHolderInfo, RequestOptions requestOptions = default)
+        public async Task<AccountHolder> CreateAccountHolderAsync(AccountHolderInfo accountHolderInfo, RequestOptions requestOptions = default, CancellationToken cancellationToken = default)
         {
             var endpoint = _baseUrl + "/accountHolders";
             var resource = new ServiceResource(this, endpoint);
-            return await resource.RequestAsync<AccountHolder>(accountHolderInfo.ToJson(), requestOptions, new HttpMethod("POST"));
+            return await resource.RequestAsync<AccountHolder>(accountHolderInfo.ToJson(), requestOptions, new HttpMethod("POST"), cancellationToken);
         }
-
     }
 }

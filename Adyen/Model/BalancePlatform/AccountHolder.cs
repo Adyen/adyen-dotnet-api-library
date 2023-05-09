@@ -138,14 +138,6 @@ namespace Adyen.Model.BalancePlatform
         public string Id { get; private set; }
 
         /// <summary>
-        /// Returns false as Id should not be serialized given that it's read-only.
-        /// </summary>
-        /// <returns>false (boolean)</returns>
-        public bool ShouldSerializeId()
-        {
-            return false;
-        }
-        /// <summary>
         /// The unique identifier of the [legal entity](https://docs.adyen.com/api-explorer/legalentity/latest/post/legalEntities#responses-200-id) associated with the account holder. Adyen performs a verification process against the legal entity of the account holder.
         /// </summary>
         /// <value>The unique identifier of the [legal entity](https://docs.adyen.com/api-explorer/legalentity/latest/post/legalEntities#responses-200-id) associated with the account holder. Adyen performs a verification process against the legal entity of the account holder.</value>
@@ -180,14 +172,6 @@ namespace Adyen.Model.BalancePlatform
         [DataMember(Name = "verificationDeadlines", EmitDefaultValue = false)]
         public List<VerificationDeadline> VerificationDeadlines { get; private set; }
 
-        /// <summary>
-        /// Returns false as VerificationDeadlines should not be serialized given that it's read-only.
-        /// </summary>
-        /// <returns>false (boolean)</returns>
-        public bool ShouldSerializeVerificationDeadlines()
-        {
-            return false;
-        }
         /// <summary>
         /// Returns the string presentation of the object
         /// </summary>

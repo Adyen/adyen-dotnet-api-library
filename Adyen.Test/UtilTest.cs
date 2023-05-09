@@ -2,7 +2,7 @@
 using System.Text;
 using Adyen.Model.MarketPay;
 using Adyen.Model.Notification;
-using Adyen.Model.Payments;
+using Adyen.Model.Payment;
 using Adyen.Util;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Newtonsoft.Json;

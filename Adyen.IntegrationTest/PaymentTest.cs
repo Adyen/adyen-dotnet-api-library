@@ -1,12 +1,11 @@
 using System;
-using Adyen.Model.Payments;
+using Adyen.Model.Payment;
 using Adyen.Service;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using Adyen.HttpClient;
 using Adyen.Model.StoredValue;
-using Adyen.Service.Payments;
 using Environment = Adyen.Model.Environment;
 
 namespace Adyen.IntegrationTest

@@ -43,10 +43,12 @@ namespace Adyen.Model.LegalEntityManagement
         /// </summary>
         /// <param name="accountIdentifier">The masked IBAN or bank account number. (required).</param>
         /// <param name="id">The unique identifier of the resource. (required).</param>
-        public TransferInstrumentReference(string accountIdentifier = default(string), string id = default(string))
+        /// <param name="realLastFour">Four last digits of the bank account number..</param>
+        public TransferInstrumentReference(string accountIdentifier = default(string), string id = default(string), string realLastFour = default(string))
         {
             this.AccountIdentifier = accountIdentifier;
             this.Id = id;
+            this.RealLastFour = realLastFour;
         }
 
         /// <summary>
@@ -64,6 +66,13 @@ namespace Adyen.Model.LegalEntityManagement
         public string Id { get; set; }
 
         /// <summary>
+        /// Four last digits of the bank account number.
+        /// </summary>
+        /// <value>Four last digits of the bank account number.</value>
+        [DataMember(Name = "realLastFour", EmitDefaultValue = false)]
+        public string RealLastFour { get; set; }
+
+        /// <summary>
         /// Returns the string presentation of the object
         /// </summary>
         /// <returns>String presentation of the object</returns>
@@ -73,6 +82,7 @@ namespace Adyen.Model.LegalEntityManagement
             sb.Append("class TransferInstrumentReference {\n");
             sb.Append("  AccountIdentifier: ").Append(AccountIdentifier).Append("\n");
             sb.Append("  Id: ").Append(Id).Append("\n");
+            sb.Append("  RealLastFour: ").Append(RealLastFour).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -117,6 +127,11 @@ namespace Adyen.Model.LegalEntityManagement
                     this.Id == input.Id ||
                     (this.Id != null &&
                     this.Id.Equals(input.Id))
+                ) && 
+                (
+                    this.RealLastFour == input.RealLastFour ||
+                    (this.RealLastFour != null &&
+                    this.RealLastFour.Equals(input.RealLastFour))
                 );
         }
 
@@ -136,6 +151,10 @@ namespace Adyen.Model.LegalEntityManagement
                 if (this.Id != null)
                 {
                     hashCode = (hashCode * 59) + this.Id.GetHashCode();
+                }
+                if (this.RealLastFour != null)
+                {
+                    hashCode = (hashCode * 59) + this.RealLastFour.GetHashCode();
                 }
                 return hashCode;
             }

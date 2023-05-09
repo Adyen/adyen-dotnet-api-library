@@ -121,7 +121,7 @@ namespace Adyen.Model.Checkout
         /// <param name="recurringDetailReference">This is the &#x60;recurringDetailReference&#x60; returned in the response when you created the token..</param>
         /// <param name="shopperNotificationReference">The &#x60;shopperNotificationReference&#x60; returned in the response when you requested to notify the shopper. Used only for recurring payments in India..</param>
         /// <param name="storedPaymentMethodId">This is the &#x60;recurringDetailReference&#x60; returned in the response when you created the token..</param>
-        /// <param name="threeDS2SdkVersion">Version of the 3D Secure 2 mobile SDK..</param>
+        /// <param name="threeDS2SdkVersion">Required for mobile integrations. Version of the 3D Secure 2 mobile SDK..</param>
         /// <param name="type">Default payment method details. Common for scheme payment methods, and for simple payment method details. (default to TypeEnum.Scheme).</param>
         public CardDetails(string brand = default(string), string checkoutAttemptId = default(string), string cupsecureplusSmscode = default(string), string cvc = default(string), string encryptedCardNumber = default(string), string encryptedExpiryMonth = default(string), string encryptedExpiryYear = default(string), string encryptedSecurityCode = default(string), string expiryMonth = default(string), string expiryYear = default(string), FundingSourceEnum? fundingSource = default(FundingSourceEnum?), string holderName = default(string), string networkPaymentReference = default(string), string number = default(string), string recurringDetailReference = default(string), string shopperNotificationReference = default(string), string storedPaymentMethodId = default(string), string threeDS2SdkVersion = default(string), TypeEnum? type = TypeEnum.Scheme)
         {
@@ -260,9 +260,9 @@ namespace Adyen.Model.Checkout
         public string StoredPaymentMethodId { get; set; }
 
         /// <summary>
-        /// Version of the 3D Secure 2 mobile SDK.
+        /// Required for mobile integrations. Version of the 3D Secure 2 mobile SDK.
         /// </summary>
-        /// <value>Version of the 3D Secure 2 mobile SDK.</value>
+        /// <value>Required for mobile integrations. Version of the 3D Secure 2 mobile SDK.</value>
         [DataMember(Name = "threeDS2SdkVersion", EmitDefaultValue = false)]
         public string ThreeDS2SdkVersion { get; set; }
 
@@ -534,6 +534,12 @@ namespace Adyen.Model.Checkout
             if (this.EncryptedSecurityCode != null && this.EncryptedSecurityCode.Length > 10000)
             {
                 yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for EncryptedSecurityCode, length must be less than 10000.", new [] { "EncryptedSecurityCode" });
+            }
+
+            // StoredPaymentMethodId (string) maxLength
+            if (this.StoredPaymentMethodId != null && this.StoredPaymentMethodId.Length > 64)
+            {
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for StoredPaymentMethodId, length must be less than 64.", new [] { "StoredPaymentMethodId" });
             }
 
             // ThreeDS2SdkVersion (string) maxLength

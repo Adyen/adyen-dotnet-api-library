@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using Adyen.Constants;
-using Adyen.Model.Payments;
+using Adyen.Model.Payment;
 using Environment = Adyen.Model.Environment;
 
 namespace Adyen.Test

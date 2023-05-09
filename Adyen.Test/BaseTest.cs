@@ -11,12 +11,12 @@ using Adyen.HttpClient;
 using Adyen.HttpClient.Interfaces;
 using Adyen.Model;
 using Adyen.Model.Nexo;
-using Adyen.Model.Payments;
-using Adyen.Service.Payments;
+using Adyen.Model.Payment;
+using Adyen.Service;
 using Moq;
 using Amount = Adyen.Model.Checkout;
 using Environment = System.Environment;
-using PaymentResult = Adyen.Model.Payments.PaymentResult;
+using PaymentResult = Adyen.Model.Payment.PaymentResult;
 
 namespace Adyen.Test
 {
@@ -57,7 +57,7 @@ namespace Adyen.Test
             var captureRequest = new CaptureRequest
             {
                 MerchantAccount = "MerchantAccount",
-                ModificationAmount = new Model.Payments.Amount("EUR", 150),
+                ModificationAmount = new Model.Payment.Amount("EUR", 150),
                 Reference = "capture - " + DateTime.Now.ToString("yyyyMMdd"),
                 OriginalReference = pspReference,
                 AdditionalData = new Dictionary<string, string> {{"authorisationType", "PreAuth"}}
@@ -82,7 +82,7 @@ namespace Adyen.Test
             var refundRequest = new RefundRequest
             {
                 MerchantAccount = "MerchantAccount",
-                ModificationAmount = new Model.Payments.Amount("EUR", 150),
+                ModificationAmount = new Model.Payment.Amount("EUR", 150),
                 Reference = "refund - " + DateTime.Now.ToString("yyyyMMdd"),
                 OriginalReference = pspReference
             };
@@ -105,7 +105,7 @@ namespace Adyen.Test
             var adjustAuthorisationRequest = new AdjustAuthorisationRequest
             {
                 MerchantAccount = "MerchantAccount",
-                ModificationAmount = new Model.Payments.Amount("EUR", 150),
+                ModificationAmount = new Model.Payment.Amount("EUR", 150),
                 Reference = "adjustAuthorisationRequest - " + DateTime.Now.ToString("yyyyMMdd"),
                 OriginalReference = pspReference,
             };
@@ -137,7 +137,7 @@ namespace Adyen.Test
                 HolderName = "John Smith"
             };
             paymentsRequest.Amount = amount;
-            paymentsRequest.PaymentMethod = new Amount.PaymentDonationRequestPaymentMethod(cardDetails);
+            paymentsRequest.PaymentMethod = new Amount.CheckoutPaymentMethod(cardDetails);
             paymentsRequest.ApplicationInfo = new Model.Checkout.ApplicationInfo(adyenLibrary: new Amount.CommonField());
             return paymentsRequest;
         }
@@ -165,7 +165,7 @@ namespace Adyen.Test
                 ExpiryYear = "2020",
                 HolderName = "John Smith"
             };
-            paymentsRequest.PaymentMethod = new Amount.PaymentDonationRequestPaymentMethod(cardDetails);
+            paymentsRequest.PaymentMethod = new Amount.CheckoutPaymentMethod(cardDetails);
             return paymentsRequest;
         }
 

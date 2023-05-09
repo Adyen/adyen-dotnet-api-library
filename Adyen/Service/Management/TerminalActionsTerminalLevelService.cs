@@ -13,50 +13,61 @@
 using System;
 using System.Collections.Generic;
 using System.Net.Http;
+using System.Threading;
 using System.Threading.Tasks;
 using Adyen.Constants;
 using Adyen.Model;
 using Adyen.Service.Resource;
 using Adyen.Model.Management;
-using Newtonsoft.Json;
 
 namespace Adyen.Service.Management
 {
     /// <summary>
-    /// Represents a collection of functions to interact with the API endpoints
+    /// TerminalActionsTerminalLevelService Interface
     /// </summary>
-    public class TerminalActionsTerminalLevelService : AbstractService
+    public interface ITerminalActionsTerminalLevelService
+    {
+        /// <summary>
+        /// Create a terminal action
+        /// </summary>
+        /// <param name="scheduleTerminalActionsRequest"><see cref="ScheduleTerminalActionsRequest"/> - </param>
+        /// <param name="requestOptions"><see cref="RequestOptions"/> - Additional request options.</param>
+        /// <returns><see cref="ScheduleTerminalActionsResponse"/>.</returns>
+        ScheduleTerminalActionsResponse CreateTerminalAction(ScheduleTerminalActionsRequest scheduleTerminalActionsRequest, RequestOptions requestOptions = default);
+        
+        /// <summary>
+        /// Create a terminal action
+        /// </summary>
+        /// <param name="scheduleTerminalActionsRequest"><see cref="ScheduleTerminalActionsRequest"/> - </param>
+        /// <param name="requestOptions"><see cref="RequestOptions"/> - Additional request options.</param>
+        /// <param name="cancellationToken"> A CancellationToken enables cooperative cancellation between threads, thread pool work items, or Task objects.</param>
+        /// <returns>Task of <see cref="ScheduleTerminalActionsResponse"/>.</returns>
+        Task<ScheduleTerminalActionsResponse> CreateTerminalActionAsync(ScheduleTerminalActionsRequest scheduleTerminalActionsRequest, RequestOptions requestOptions = default, CancellationToken cancellationToken = default);
+        
+    }
+    
+    /// <summary>
+    /// Represents a collection of functions to interact with the TerminalActionsTerminalLevelService API endpoints
+    /// </summary>
+    public class TerminalActionsTerminalLevelService : AbstractService, ITerminalActionsTerminalLevelService
     {
         private readonly string _baseUrl;
         
         public TerminalActionsTerminalLevelService(Client client) : base(client)
         {
-            _baseUrl = client.Config.ManagementEndpoint + "/" + ClientConfig.ManagementVersion;
+            _baseUrl = CreateBaseUrl("https://management-test.adyen.com/v1");
         }
-    
-        /// <summary>
-        /// Create a terminal action
-        /// </summary>
-        /// <param name="scheduleTerminalActionsRequest"></param>
-        /// <param name="requestOptions">Additional request options.</param>
-        /// <returns>ScheduleTerminalActionsResponse</returns>
+        
         public ScheduleTerminalActionsResponse CreateTerminalAction(ScheduleTerminalActionsRequest scheduleTerminalActionsRequest, RequestOptions requestOptions = default)
         {
             return CreateTerminalActionAsync(scheduleTerminalActionsRequest, requestOptions).GetAwaiter().GetResult();
         }
 
-        /// <summary>
-        /// Create a terminal action
-        /// </summary>
-        /// <param name="scheduleTerminalActionsRequest"></param>
-        /// <param name="requestOptions">Additional request options.</param>
-        /// <returns>Task of ScheduleTerminalActionsResponse</returns>
-        public async Task<ScheduleTerminalActionsResponse> CreateTerminalActionAsync(ScheduleTerminalActionsRequest scheduleTerminalActionsRequest, RequestOptions requestOptions = default)
+        public async Task<ScheduleTerminalActionsResponse> CreateTerminalActionAsync(ScheduleTerminalActionsRequest scheduleTerminalActionsRequest, RequestOptions requestOptions = default, CancellationToken cancellationToken = default)
         {
             var endpoint = _baseUrl + "/terminals/scheduleActions";
             var resource = new ServiceResource(this, endpoint);
-            return await resource.RequestAsync<ScheduleTerminalActionsResponse>(scheduleTerminalActionsRequest.ToJson(), requestOptions, new HttpMethod("POST"));
+            return await resource.RequestAsync<ScheduleTerminalActionsResponse>(scheduleTerminalActionsRequest.ToJson(), requestOptions, new HttpMethod("POST"), cancellationToken);
         }
-
     }
 }

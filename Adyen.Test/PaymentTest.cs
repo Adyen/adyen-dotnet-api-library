@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using Adyen.Constants;
-using Adyen.Model.Payments;
-using Adyen.Service.Payments;
+using Adyen.Model.Payment;
+using Adyen.Service;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace Adyen.Test

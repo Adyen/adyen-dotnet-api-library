@@ -9,7 +9,7 @@ namespace Adyen.Model.MarketPay.Notification
     /// 
     /// </summary>
     [DataContract]
-    public class AccountHolderStoreStatusChangeNotification : IGenericNotification
+    public class AccountHolderStoreStatusChangeNotification : IGenericWebhook
     {
         /// <summary>
         /// Gets or Sets Content
