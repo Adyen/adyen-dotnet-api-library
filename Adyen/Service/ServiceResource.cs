@@ -30,16 +30,16 @@ namespace Adyen.Service
             return JsonConvert.DeserializeObject<T>(jsonResponse);
         }
 
-        public Task<string> RequestAsync(string json, RequestOptions requestOptions = null, HttpMethod httpMethod = null, CancellationToken cancellationToken = default)
+        public async Task<string> RequestAsync(string json, RequestOptions requestOptions = null, HttpMethod httpMethod = null, CancellationToken cancellationToken = default)
         {
             var clientInterface = _abstractService.Client.HttpClient;
-            return clientInterface.RequestAsync(Endpoint, json, requestOptions, httpMethod, cancellationToken);
+            return await clientInterface.RequestAsync(Endpoint, json, requestOptions, httpMethod, cancellationToken).ConfigureAwait(false);
         }
         
         public async Task<T> RequestAsync<T>(string json, RequestOptions requestOptions = null, HttpMethod httpMethod = null, CancellationToken cancellationToken = default)
         {
             var clientInterface = _abstractService.Client.HttpClient;
-            var jsonResponse = await clientInterface.RequestAsync(Endpoint, json, requestOptions, httpMethod, cancellationToken);
+            var jsonResponse = await clientInterface.RequestAsync(Endpoint, json, requestOptions, httpMethod, cancellationToken).ConfigureAwait(false);
             return JsonConvert.DeserializeObject<T>(jsonResponse);
         }
     }

@@ -157,14 +157,14 @@ namespace Adyen.Service.BalancePlatform
         
         public AccountHolder CreateAccountHolder(AccountHolderInfo accountHolderInfo, RequestOptions requestOptions = default)
         {
-            return CreateAccountHolderAsync(accountHolderInfo, requestOptions).GetAwaiter().GetResult();
+            return CreateAccountHolderAsync(accountHolderInfo, requestOptions).ConfigureAwait(false).GetAwaiter().GetResult();
         }
 
         public async Task<AccountHolder> CreateAccountHolderAsync(AccountHolderInfo accountHolderInfo, RequestOptions requestOptions = default, CancellationToken cancellationToken = default)
         {
             var endpoint = _baseUrl + "/accountHolders";
             var resource = new ServiceResource(this, endpoint);
-            return await resource.RequestAsync<AccountHolder>(accountHolderInfo.ToJson(), requestOptions, new HttpMethod("POST"), cancellationToken);
+            return await resource.RequestAsync<AccountHolder>(accountHolderInfo.ToJson(), requestOptions, new HttpMethod("POST"), cancellationToken).ConfigureAwait(false);
         }
     }
 }
