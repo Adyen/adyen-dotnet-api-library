@@ -85,8 +85,8 @@ Navigate to adyen-dotnet-api-library folder and run the following commands.
 dotnet build
 dotnet test
 ```
-## Using the Cloud API 
-In order to submit POS request with Cloud API you need to initialize the client with the Endpoints that it is closer to your region. The Endpoints are available as contacts in [ClientConfig](https://github.com/Adyen/adyen-dotnet-api-library/blob/develop/Adyen/Constants/ClientConfig.cs#L35)
+## Using the Cloud Terminal API 
+In order to submit POS request with Cloud Terminal API you need to initialize the client with the Endpoints that it is closer to your region. The Endpoints are available as contacts in [ClientConfig](https://github.com/Adyen/adyen-dotnet-api-library/blob/develop/Adyen/Constants/ClientConfig.cs#L35)
 For more information please read our [documentation](https://docs.adyen.com/point-of-sale/terminal-api-fundamentals#cloud)
 ```c#
 //Example for EU based Endpoint Syncronous
@@ -108,7 +108,7 @@ var serializer = new SaleToPoiMessageSerializer();
 var saleToPoiRequest = serializer.DeserializeNotification(your_terminal_notification);
 ~~~~
 
-## Example cloud API integration
+## Example Cloud Terminal API integration
 ```c#
 using System;
 using Adyen.Model.Nexo;
@@ -173,12 +173,30 @@ namespace Adyen.Terminal
 }
 ```
 
+## Using the Local Terminal API
+The request and response payloads are identical to the Cloud Terminal API, however an additional encryption details object is required to send the requests.
+~~~~ csharp
+var encryptionCredentialDetails = new EncryptionCredentialDetails
+    {
+        AdyenCryptoVersion = 1,
+        KeyIdentifier = "CryptoKeyIdentifier12345",
+        Password = "p@ssw0rd123456"
+    };
+var config = new Config
+    {
+        Environment = Model.Environment.Live,
+        LocalTerminalApiEndpoint = @"https://_terminal_:8443/nexo/"
+    };
+var client = new Client(config);
+var posPaymentLocalApi = new PosPaymentLocalApi(client);
+var saleToPOIResponse = posPaymentLocalApi.TerminalApiLocal(paymentRequest, encryptionCredentialDetails);
+~~~~
 To parse the terminal API notifications, please use the following custom deserializer. This method will throw an exception for non-notification requests.
 ~~~~ csharp
 var serializer = new SaleToPoiMessageSerializer();
 var saleToPoiRequest = serializer.DeserializeNotification(your_terminal_notification);
-
 ~~~~
+
 ## Contributing
 We encourage you to contribute to this repository, so everyone can benefit from new features, bug fixes, and any other improvements.
 Have a look at our [contributing guidelines](https://github.com/Adyen/adyen-dotnet-api-library/blob/develop/CONTRIBUTING.md) to find out how to raise a pull request.

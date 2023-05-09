@@ -29,6 +29,8 @@ namespace Adyen
         public string CloudApiEndPoint { get; set; }
         //POS Terminal Management 
         public string PosTerminalManagementEndpoint { get; set; }
+        // Local TAPI endpoint
+        public string LocalTerminalApiEndpoint { get; set; }
         public bool HasPassword => !string.IsNullOrEmpty(Password);
         public bool HasApiKey => !string.IsNullOrEmpty(XApiKey);
     }
