@@ -79,20 +79,20 @@ namespace Adyen.Service.Checkout
         
         public ApplePaySessionResponse GetApplePaySession(CreateApplePaySessionRequest createApplePaySessionRequest, RequestOptions requestOptions = default)
         {
-            return GetApplePaySessionAsync(createApplePaySessionRequest, requestOptions).GetAwaiter().GetResult();
+            return GetApplePaySessionAsync(createApplePaySessionRequest, requestOptions).ConfigureAwait(false).GetAwaiter().GetResult();
         }
 
         public async Task<ApplePaySessionResponse> GetApplePaySessionAsync(CreateApplePaySessionRequest createApplePaySessionRequest, RequestOptions requestOptions = default, CancellationToken cancellationToken = default)
         {
             var endpoint = _baseUrl + "/applePay/sessions";
             var resource = new ServiceResource(this, endpoint);
-            return await resource.RequestAsync<ApplePaySessionResponse>(createApplePaySessionRequest.ToJson(), requestOptions, new HttpMethod("POST"), cancellationToken);
+            return await resource.RequestAsync<ApplePaySessionResponse>(createApplePaySessionRequest.ToJson(), requestOptions, new HttpMethod("POST"), cancellationToken).ConfigureAwait(false);
         }
         
         [Obsolete]
         public CheckoutUtilityResponse OriginKeys(CheckoutUtilityRequest checkoutUtilityRequest, RequestOptions requestOptions = default)
         {
-            return OriginKeysAsync(checkoutUtilityRequest, requestOptions).GetAwaiter().GetResult();
+            return OriginKeysAsync(checkoutUtilityRequest, requestOptions).ConfigureAwait(false).GetAwaiter().GetResult();
         }
 
         [Obsolete]
@@ -100,7 +100,7 @@ namespace Adyen.Service.Checkout
         {
             var endpoint = _baseUrl + "/originKeys";
             var resource = new ServiceResource(this, endpoint);
-            return await resource.RequestAsync<CheckoutUtilityResponse>(checkoutUtilityRequest.ToJson(), requestOptions, new HttpMethod("POST"), cancellationToken);
+            return await resource.RequestAsync<CheckoutUtilityResponse>(checkoutUtilityRequest.ToJson(), requestOptions, new HttpMethod("POST"), cancellationToken).ConfigureAwait(false);
         }
     }
 }

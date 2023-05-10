@@ -111,50 +111,50 @@ namespace Adyen.Service.LegalEntityManagement
         
         public void DeleteBusinessLine(string id, RequestOptions requestOptions = default)
         {
-            DeleteBusinessLineAsync(id, requestOptions).GetAwaiter().GetResult();
+            DeleteBusinessLineAsync(id, requestOptions).ConfigureAwait(false).GetAwaiter().GetResult();
         }
 
         public async Task DeleteBusinessLineAsync(string id, RequestOptions requestOptions = default, CancellationToken cancellationToken = default)
         {
             var endpoint = _baseUrl + $"/businessLines/{id}";
             var resource = new ServiceResource(this, endpoint);
-            await resource.RequestAsync(null, requestOptions, new HttpMethod("DELETE"), cancellationToken);
+            await resource.RequestAsync(null, requestOptions, new HttpMethod("DELETE"), cancellationToken).ConfigureAwait(false);
         }
         
         public BusinessLine GetBusinessLine(string id, RequestOptions requestOptions = default)
         {
-            return GetBusinessLineAsync(id, requestOptions).GetAwaiter().GetResult();
+            return GetBusinessLineAsync(id, requestOptions).ConfigureAwait(false).GetAwaiter().GetResult();
         }
 
         public async Task<BusinessLine> GetBusinessLineAsync(string id, RequestOptions requestOptions = default, CancellationToken cancellationToken = default)
         {
             var endpoint = _baseUrl + $"/businessLines/{id}";
             var resource = new ServiceResource(this, endpoint);
-            return await resource.RequestAsync<BusinessLine>(null, requestOptions, new HttpMethod("GET"), cancellationToken);
+            return await resource.RequestAsync<BusinessLine>(null, requestOptions, new HttpMethod("GET"), cancellationToken).ConfigureAwait(false);
         }
         
         public BusinessLine UpdateBusinessLine(string id, BusinessLineInfoUpdate businessLineInfoUpdate, RequestOptions requestOptions = default)
         {
-            return UpdateBusinessLineAsync(id, businessLineInfoUpdate, requestOptions).GetAwaiter().GetResult();
+            return UpdateBusinessLineAsync(id, businessLineInfoUpdate, requestOptions).ConfigureAwait(false).GetAwaiter().GetResult();
         }
 
         public async Task<BusinessLine> UpdateBusinessLineAsync(string id, BusinessLineInfoUpdate businessLineInfoUpdate, RequestOptions requestOptions = default, CancellationToken cancellationToken = default)
         {
             var endpoint = _baseUrl + $"/businessLines/{id}";
             var resource = new ServiceResource(this, endpoint);
-            return await resource.RequestAsync<BusinessLine>(businessLineInfoUpdate.ToJson(), requestOptions, new HttpMethod("PATCH"), cancellationToken);
+            return await resource.RequestAsync<BusinessLine>(businessLineInfoUpdate.ToJson(), requestOptions, new HttpMethod("PATCH"), cancellationToken).ConfigureAwait(false);
         }
         
         public BusinessLine CreateBusinessLine(BusinessLineInfo businessLineInfo, RequestOptions requestOptions = default)
         {
-            return CreateBusinessLineAsync(businessLineInfo, requestOptions).GetAwaiter().GetResult();
+            return CreateBusinessLineAsync(businessLineInfo, requestOptions).ConfigureAwait(false).GetAwaiter().GetResult();
         }
 
         public async Task<BusinessLine> CreateBusinessLineAsync(BusinessLineInfo businessLineInfo, RequestOptions requestOptions = default, CancellationToken cancellationToken = default)
         {
             var endpoint = _baseUrl + "/businessLines";
             var resource = new ServiceResource(this, endpoint);
-            return await resource.RequestAsync<BusinessLine>(businessLineInfo.ToJson(), requestOptions, new HttpMethod("POST"), cancellationToken);
+            return await resource.RequestAsync<BusinessLine>(businessLineInfo.ToJson(), requestOptions, new HttpMethod("POST"), cancellationToken).ConfigureAwait(false);
         }
     }
 }

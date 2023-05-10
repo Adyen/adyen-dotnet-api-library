@@ -32,7 +32,6 @@ namespace Adyen.Service.BalancePlatform
         /// </summary>
         /// <param name="bankAccountIdentificationValidationRequest"><see cref="BankAccountIdentificationValidationRequest"/> - </param>
         /// <param name="requestOptions"><see cref="RequestOptions"/> - Additional request options.</param>
-        /// <returns><see cref="Object"/>.</returns>
         void ValidateBankAccountIdentification(BankAccountIdentificationValidationRequest bankAccountIdentificationValidationRequest, RequestOptions requestOptions = default);
         
         /// <summary>
@@ -41,7 +40,6 @@ namespace Adyen.Service.BalancePlatform
         /// <param name="bankAccountIdentificationValidationRequest"><see cref="BankAccountIdentificationValidationRequest"/> - </param>
         /// <param name="requestOptions"><see cref="RequestOptions"/> - Additional request options.</param>
         /// <param name="cancellationToken"> A CancellationToken enables cooperative cancellation between threads, thread pool work items, or Task objects.</param>
-        /// <returns>Task of <see cref="Object"/>.</returns>
         Task ValidateBankAccountIdentificationAsync(BankAccountIdentificationValidationRequest bankAccountIdentificationValidationRequest, RequestOptions requestOptions = default, CancellationToken cancellationToken = default);
         
     }
@@ -60,14 +58,14 @@ namespace Adyen.Service.BalancePlatform
         
         public void ValidateBankAccountIdentification(BankAccountIdentificationValidationRequest bankAccountIdentificationValidationRequest, RequestOptions requestOptions = default)
         {
-            ValidateBankAccountIdentificationAsync(bankAccountIdentificationValidationRequest, requestOptions).GetAwaiter().GetResult();
+            ValidateBankAccountIdentificationAsync(bankAccountIdentificationValidationRequest, requestOptions).ConfigureAwait(false).GetAwaiter().GetResult();
         }
 
         public async Task ValidateBankAccountIdentificationAsync(BankAccountIdentificationValidationRequest bankAccountIdentificationValidationRequest, RequestOptions requestOptions = default, CancellationToken cancellationToken = default)
         {
             var endpoint = _baseUrl + "/validateBankAccountIdentification";
             var resource = new ServiceResource(this, endpoint);
-            await resource.RequestAsync(bankAccountIdentificationValidationRequest.ToJson(), requestOptions, new HttpMethod("POST"), cancellationToken);
+            await resource.RequestAsync<Object>(bankAccountIdentificationValidationRequest.ToJson(), requestOptions, new HttpMethod("POST"), cancellationToken).ConfigureAwait(false);
         }
     }
 }

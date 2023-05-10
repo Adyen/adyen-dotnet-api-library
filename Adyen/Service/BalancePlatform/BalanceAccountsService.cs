@@ -214,19 +214,19 @@ namespace Adyen.Service.BalancePlatform
         
         public void DeleteSweep(string balanceAccountId, string sweepId, RequestOptions requestOptions = default)
         {
-            DeleteSweepAsync(balanceAccountId, sweepId, requestOptions).GetAwaiter().GetResult();
+            DeleteSweepAsync(balanceAccountId, sweepId, requestOptions).ConfigureAwait(false).GetAwaiter().GetResult();
         }
 
         public async Task DeleteSweepAsync(string balanceAccountId, string sweepId, RequestOptions requestOptions = default, CancellationToken cancellationToken = default)
         {
             var endpoint = _baseUrl + $"/balanceAccounts/{balanceAccountId}/sweeps/{sweepId}";
             var resource = new ServiceResource(this, endpoint);
-            await resource.RequestAsync(null, requestOptions, new HttpMethod("DELETE"), cancellationToken);
+            await resource.RequestAsync(null, requestOptions, new HttpMethod("DELETE"), cancellationToken).ConfigureAwait(false);
         }
         
         public BalanceSweepConfigurationsResponse GetAllSweepsForBalanceAccount(string balanceAccountId, int? offset = default, int? limit = default, RequestOptions requestOptions = default)
         {
-            return GetAllSweepsForBalanceAccountAsync(balanceAccountId, offset, limit, requestOptions).GetAwaiter().GetResult();
+            return GetAllSweepsForBalanceAccountAsync(balanceAccountId, offset, limit, requestOptions).ConfigureAwait(false).GetAwaiter().GetResult();
         }
 
         public async Task<BalanceSweepConfigurationsResponse> GetAllSweepsForBalanceAccountAsync(string balanceAccountId, int? offset = default, int? limit = default, RequestOptions requestOptions = default, CancellationToken cancellationToken = default)
@@ -237,36 +237,36 @@ namespace Adyen.Service.BalancePlatform
             if (limit != null) queryParams.Add("limit", limit.ToString());
             var endpoint = _baseUrl + $"/balanceAccounts/{balanceAccountId}/sweeps" + ToQueryString(queryParams);
             var resource = new ServiceResource(this, endpoint);
-            return await resource.RequestAsync<BalanceSweepConfigurationsResponse>(null, requestOptions, new HttpMethod("GET"), cancellationToken);
+            return await resource.RequestAsync<BalanceSweepConfigurationsResponse>(null, requestOptions, new HttpMethod("GET"), cancellationToken).ConfigureAwait(false);
         }
         
         public SweepConfigurationV2 GetSweep(string balanceAccountId, string sweepId, RequestOptions requestOptions = default)
         {
-            return GetSweepAsync(balanceAccountId, sweepId, requestOptions).GetAwaiter().GetResult();
+            return GetSweepAsync(balanceAccountId, sweepId, requestOptions).ConfigureAwait(false).GetAwaiter().GetResult();
         }
 
         public async Task<SweepConfigurationV2> GetSweepAsync(string balanceAccountId, string sweepId, RequestOptions requestOptions = default, CancellationToken cancellationToken = default)
         {
             var endpoint = _baseUrl + $"/balanceAccounts/{balanceAccountId}/sweeps/{sweepId}";
             var resource = new ServiceResource(this, endpoint);
-            return await resource.RequestAsync<SweepConfigurationV2>(null, requestOptions, new HttpMethod("GET"), cancellationToken);
+            return await resource.RequestAsync<SweepConfigurationV2>(null, requestOptions, new HttpMethod("GET"), cancellationToken).ConfigureAwait(false);
         }
         
         public BalanceAccount GetBalanceAccount(string id, RequestOptions requestOptions = default)
         {
-            return GetBalanceAccountAsync(id, requestOptions).GetAwaiter().GetResult();
+            return GetBalanceAccountAsync(id, requestOptions).ConfigureAwait(false).GetAwaiter().GetResult();
         }
 
         public async Task<BalanceAccount> GetBalanceAccountAsync(string id, RequestOptions requestOptions = default, CancellationToken cancellationToken = default)
         {
             var endpoint = _baseUrl + $"/balanceAccounts/{id}";
             var resource = new ServiceResource(this, endpoint);
-            return await resource.RequestAsync<BalanceAccount>(null, requestOptions, new HttpMethod("GET"), cancellationToken);
+            return await resource.RequestAsync<BalanceAccount>(null, requestOptions, new HttpMethod("GET"), cancellationToken).ConfigureAwait(false);
         }
         
         public PaginatedPaymentInstrumentsResponse GetAllPaymentInstrumentsForBalanceAccount(string id, int? offset = default, int? limit = default, RequestOptions requestOptions = default)
         {
-            return GetAllPaymentInstrumentsForBalanceAccountAsync(id, offset, limit, requestOptions).GetAwaiter().GetResult();
+            return GetAllPaymentInstrumentsForBalanceAccountAsync(id, offset, limit, requestOptions).ConfigureAwait(false).GetAwaiter().GetResult();
         }
 
         public async Task<PaginatedPaymentInstrumentsResponse> GetAllPaymentInstrumentsForBalanceAccountAsync(string id, int? offset = default, int? limit = default, RequestOptions requestOptions = default, CancellationToken cancellationToken = default)
@@ -277,55 +277,55 @@ namespace Adyen.Service.BalancePlatform
             if (limit != null) queryParams.Add("limit", limit.ToString());
             var endpoint = _baseUrl + $"/balanceAccounts/{id}/paymentInstruments" + ToQueryString(queryParams);
             var resource = new ServiceResource(this, endpoint);
-            return await resource.RequestAsync<PaginatedPaymentInstrumentsResponse>(null, requestOptions, new HttpMethod("GET"), cancellationToken);
+            return await resource.RequestAsync<PaginatedPaymentInstrumentsResponse>(null, requestOptions, new HttpMethod("GET"), cancellationToken).ConfigureAwait(false);
         }
         
         public SweepConfigurationV2 UpdateSweep(string balanceAccountId, string sweepId, SweepConfigurationV2 sweepConfigurationV2, RequestOptions requestOptions = default)
         {
-            return UpdateSweepAsync(balanceAccountId, sweepId, sweepConfigurationV2, requestOptions).GetAwaiter().GetResult();
+            return UpdateSweepAsync(balanceAccountId, sweepId, sweepConfigurationV2, requestOptions).ConfigureAwait(false).GetAwaiter().GetResult();
         }
 
         public async Task<SweepConfigurationV2> UpdateSweepAsync(string balanceAccountId, string sweepId, SweepConfigurationV2 sweepConfigurationV2, RequestOptions requestOptions = default, CancellationToken cancellationToken = default)
         {
             var endpoint = _baseUrl + $"/balanceAccounts/{balanceAccountId}/sweeps/{sweepId}";
             var resource = new ServiceResource(this, endpoint);
-            return await resource.RequestAsync<SweepConfigurationV2>(sweepConfigurationV2.ToJson(), requestOptions, new HttpMethod("PATCH"), cancellationToken);
+            return await resource.RequestAsync<SweepConfigurationV2>(sweepConfigurationV2.ToJson(), requestOptions, new HttpMethod("PATCH"), cancellationToken).ConfigureAwait(false);
         }
         
         public BalanceAccount UpdateBalanceAccount(string id, BalanceAccountUpdateRequest balanceAccountUpdateRequest, RequestOptions requestOptions = default)
         {
-            return UpdateBalanceAccountAsync(id, balanceAccountUpdateRequest, requestOptions).GetAwaiter().GetResult();
+            return UpdateBalanceAccountAsync(id, balanceAccountUpdateRequest, requestOptions).ConfigureAwait(false).GetAwaiter().GetResult();
         }
 
         public async Task<BalanceAccount> UpdateBalanceAccountAsync(string id, BalanceAccountUpdateRequest balanceAccountUpdateRequest, RequestOptions requestOptions = default, CancellationToken cancellationToken = default)
         {
             var endpoint = _baseUrl + $"/balanceAccounts/{id}";
             var resource = new ServiceResource(this, endpoint);
-            return await resource.RequestAsync<BalanceAccount>(balanceAccountUpdateRequest.ToJson(), requestOptions, new HttpMethod("PATCH"), cancellationToken);
+            return await resource.RequestAsync<BalanceAccount>(balanceAccountUpdateRequest.ToJson(), requestOptions, new HttpMethod("PATCH"), cancellationToken).ConfigureAwait(false);
         }
         
         public BalanceAccount CreateBalanceAccount(BalanceAccountInfo balanceAccountInfo, RequestOptions requestOptions = default)
         {
-            return CreateBalanceAccountAsync(balanceAccountInfo, requestOptions).GetAwaiter().GetResult();
+            return CreateBalanceAccountAsync(balanceAccountInfo, requestOptions).ConfigureAwait(false).GetAwaiter().GetResult();
         }
 
         public async Task<BalanceAccount> CreateBalanceAccountAsync(BalanceAccountInfo balanceAccountInfo, RequestOptions requestOptions = default, CancellationToken cancellationToken = default)
         {
             var endpoint = _baseUrl + "/balanceAccounts";
             var resource = new ServiceResource(this, endpoint);
-            return await resource.RequestAsync<BalanceAccount>(balanceAccountInfo.ToJson(), requestOptions, new HttpMethod("POST"), cancellationToken);
+            return await resource.RequestAsync<BalanceAccount>(balanceAccountInfo.ToJson(), requestOptions, new HttpMethod("POST"), cancellationToken).ConfigureAwait(false);
         }
         
         public SweepConfigurationV2 CreateSweep(string balanceAccountId, SweepConfigurationV2 sweepConfigurationV2, RequestOptions requestOptions = default)
         {
-            return CreateSweepAsync(balanceAccountId, sweepConfigurationV2, requestOptions).GetAwaiter().GetResult();
+            return CreateSweepAsync(balanceAccountId, sweepConfigurationV2, requestOptions).ConfigureAwait(false).GetAwaiter().GetResult();
         }
 
         public async Task<SweepConfigurationV2> CreateSweepAsync(string balanceAccountId, SweepConfigurationV2 sweepConfigurationV2, RequestOptions requestOptions = default, CancellationToken cancellationToken = default)
         {
             var endpoint = _baseUrl + $"/balanceAccounts/{balanceAccountId}/sweeps";
             var resource = new ServiceResource(this, endpoint);
-            return await resource.RequestAsync<SweepConfigurationV2>(sweepConfigurationV2.ToJson(), requestOptions, new HttpMethod("POST"), cancellationToken);
+            return await resource.RequestAsync<SweepConfigurationV2>(sweepConfigurationV2.ToJson(), requestOptions, new HttpMethod("POST"), cancellationToken).ConfigureAwait(false);
         }
     }
 }

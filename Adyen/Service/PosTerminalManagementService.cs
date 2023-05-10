@@ -23,7 +23,7 @@ using Adyen.Model.PosTerminalManagement;
 namespace Adyen.Service
 {
     /// <summary>
-    /// GeneralService Interface
+    /// DefaultService Interface
     /// </summary>
     public interface IPosTerminalManagementService
     {
@@ -128,62 +128,62 @@ namespace Adyen.Service
         
         public AssignTerminalsResponse AssignTerminals(AssignTerminalsRequest assignTerminalsRequest, RequestOptions requestOptions = default)
         {
-            return AssignTerminalsAsync(assignTerminalsRequest, requestOptions).GetAwaiter().GetResult();
+            return AssignTerminalsAsync(assignTerminalsRequest, requestOptions).ConfigureAwait(false).GetAwaiter().GetResult();
         }
 
         public async Task<AssignTerminalsResponse> AssignTerminalsAsync(AssignTerminalsRequest assignTerminalsRequest, RequestOptions requestOptions = default, CancellationToken cancellationToken = default)
         {
             var endpoint = _baseUrl + "/assignTerminals";
             var resource = new ServiceResource(this, endpoint);
-            return await resource.RequestAsync<AssignTerminalsResponse>(assignTerminalsRequest.ToJson(), requestOptions, new HttpMethod("POST"), cancellationToken);
+            return await resource.RequestAsync<AssignTerminalsResponse>(assignTerminalsRequest.ToJson(), requestOptions, new HttpMethod("POST"), cancellationToken).ConfigureAwait(false);
         }
         
         public FindTerminalResponse FindTerminal(FindTerminalRequest findTerminalRequest, RequestOptions requestOptions = default)
         {
-            return FindTerminalAsync(findTerminalRequest, requestOptions).GetAwaiter().GetResult();
+            return FindTerminalAsync(findTerminalRequest, requestOptions).ConfigureAwait(false).GetAwaiter().GetResult();
         }
 
         public async Task<FindTerminalResponse> FindTerminalAsync(FindTerminalRequest findTerminalRequest, RequestOptions requestOptions = default, CancellationToken cancellationToken = default)
         {
             var endpoint = _baseUrl + "/findTerminal";
             var resource = new ServiceResource(this, endpoint);
-            return await resource.RequestAsync<FindTerminalResponse>(findTerminalRequest.ToJson(), requestOptions, new HttpMethod("POST"), cancellationToken);
+            return await resource.RequestAsync<FindTerminalResponse>(findTerminalRequest.ToJson(), requestOptions, new HttpMethod("POST"), cancellationToken).ConfigureAwait(false);
         }
         
         public GetStoresUnderAccountResponse GetStoresUnderAccount(GetStoresUnderAccountRequest getStoresUnderAccountRequest, RequestOptions requestOptions = default)
         {
-            return GetStoresUnderAccountAsync(getStoresUnderAccountRequest, requestOptions).GetAwaiter().GetResult();
+            return GetStoresUnderAccountAsync(getStoresUnderAccountRequest, requestOptions).ConfigureAwait(false).GetAwaiter().GetResult();
         }
 
         public async Task<GetStoresUnderAccountResponse> GetStoresUnderAccountAsync(GetStoresUnderAccountRequest getStoresUnderAccountRequest, RequestOptions requestOptions = default, CancellationToken cancellationToken = default)
         {
             var endpoint = _baseUrl + "/getStoresUnderAccount";
             var resource = new ServiceResource(this, endpoint);
-            return await resource.RequestAsync<GetStoresUnderAccountResponse>(getStoresUnderAccountRequest.ToJson(), requestOptions, new HttpMethod("POST"), cancellationToken);
+            return await resource.RequestAsync<GetStoresUnderAccountResponse>(getStoresUnderAccountRequest.ToJson(), requestOptions, new HttpMethod("POST"), cancellationToken).ConfigureAwait(false);
         }
         
         public GetTerminalDetailsResponse GetTerminalDetails(GetTerminalDetailsRequest getTerminalDetailsRequest, RequestOptions requestOptions = default)
         {
-            return GetTerminalDetailsAsync(getTerminalDetailsRequest, requestOptions).GetAwaiter().GetResult();
+            return GetTerminalDetailsAsync(getTerminalDetailsRequest, requestOptions).ConfigureAwait(false).GetAwaiter().GetResult();
         }
 
         public async Task<GetTerminalDetailsResponse> GetTerminalDetailsAsync(GetTerminalDetailsRequest getTerminalDetailsRequest, RequestOptions requestOptions = default, CancellationToken cancellationToken = default)
         {
             var endpoint = _baseUrl + "/getTerminalDetails";
             var resource = new ServiceResource(this, endpoint);
-            return await resource.RequestAsync<GetTerminalDetailsResponse>(getTerminalDetailsRequest.ToJson(), requestOptions, new HttpMethod("POST"), cancellationToken);
+            return await resource.RequestAsync<GetTerminalDetailsResponse>(getTerminalDetailsRequest.ToJson(), requestOptions, new HttpMethod("POST"), cancellationToken).ConfigureAwait(false);
         }
         
         public GetTerminalsUnderAccountResponse GetTerminalsUnderAccount(GetTerminalsUnderAccountRequest getTerminalsUnderAccountRequest, RequestOptions requestOptions = default)
         {
-            return GetTerminalsUnderAccountAsync(getTerminalsUnderAccountRequest, requestOptions).GetAwaiter().GetResult();
+            return GetTerminalsUnderAccountAsync(getTerminalsUnderAccountRequest, requestOptions).ConfigureAwait(false).GetAwaiter().GetResult();
         }
 
         public async Task<GetTerminalsUnderAccountResponse> GetTerminalsUnderAccountAsync(GetTerminalsUnderAccountRequest getTerminalsUnderAccountRequest, RequestOptions requestOptions = default, CancellationToken cancellationToken = default)
         {
             var endpoint = _baseUrl + "/getTerminalsUnderAccount";
             var resource = new ServiceResource(this, endpoint);
-            return await resource.RequestAsync<GetTerminalsUnderAccountResponse>(getTerminalsUnderAccountRequest.ToJson(), requestOptions, new HttpMethod("POST"), cancellationToken);
+            return await resource.RequestAsync<GetTerminalsUnderAccountResponse>(getTerminalsUnderAccountRequest.ToJson(), requestOptions, new HttpMethod("POST"), cancellationToken).ConfigureAwait(false);
         }
     }
 }

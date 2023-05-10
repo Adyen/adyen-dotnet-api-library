@@ -94,38 +94,38 @@ namespace Adyen.Service.BalancePlatform
         
         public PaymentInstrumentGroup GetPaymentInstrumentGroup(string id, RequestOptions requestOptions = default)
         {
-            return GetPaymentInstrumentGroupAsync(id, requestOptions).GetAwaiter().GetResult();
+            return GetPaymentInstrumentGroupAsync(id, requestOptions).ConfigureAwait(false).GetAwaiter().GetResult();
         }
 
         public async Task<PaymentInstrumentGroup> GetPaymentInstrumentGroupAsync(string id, RequestOptions requestOptions = default, CancellationToken cancellationToken = default)
         {
             var endpoint = _baseUrl + $"/paymentInstrumentGroups/{id}";
             var resource = new ServiceResource(this, endpoint);
-            return await resource.RequestAsync<PaymentInstrumentGroup>(null, requestOptions, new HttpMethod("GET"), cancellationToken);
+            return await resource.RequestAsync<PaymentInstrumentGroup>(null, requestOptions, new HttpMethod("GET"), cancellationToken).ConfigureAwait(false);
         }
         
         public TransactionRulesResponse GetAllTransactionRulesForPaymentInstrumentGroup(string id, RequestOptions requestOptions = default)
         {
-            return GetAllTransactionRulesForPaymentInstrumentGroupAsync(id, requestOptions).GetAwaiter().GetResult();
+            return GetAllTransactionRulesForPaymentInstrumentGroupAsync(id, requestOptions).ConfigureAwait(false).GetAwaiter().GetResult();
         }
 
         public async Task<TransactionRulesResponse> GetAllTransactionRulesForPaymentInstrumentGroupAsync(string id, RequestOptions requestOptions = default, CancellationToken cancellationToken = default)
         {
             var endpoint = _baseUrl + $"/paymentInstrumentGroups/{id}/transactionRules";
             var resource = new ServiceResource(this, endpoint);
-            return await resource.RequestAsync<TransactionRulesResponse>(null, requestOptions, new HttpMethod("GET"), cancellationToken);
+            return await resource.RequestAsync<TransactionRulesResponse>(null, requestOptions, new HttpMethod("GET"), cancellationToken).ConfigureAwait(false);
         }
         
         public PaymentInstrumentGroup CreatePaymentInstrumentGroup(PaymentInstrumentGroupInfo paymentInstrumentGroupInfo, RequestOptions requestOptions = default)
         {
-            return CreatePaymentInstrumentGroupAsync(paymentInstrumentGroupInfo, requestOptions).GetAwaiter().GetResult();
+            return CreatePaymentInstrumentGroupAsync(paymentInstrumentGroupInfo, requestOptions).ConfigureAwait(false).GetAwaiter().GetResult();
         }
 
         public async Task<PaymentInstrumentGroup> CreatePaymentInstrumentGroupAsync(PaymentInstrumentGroupInfo paymentInstrumentGroupInfo, RequestOptions requestOptions = default, CancellationToken cancellationToken = default)
         {
             var endpoint = _baseUrl + "/paymentInstrumentGroups";
             var resource = new ServiceResource(this, endpoint);
-            return await resource.RequestAsync<PaymentInstrumentGroup>(paymentInstrumentGroupInfo.ToJson(), requestOptions, new HttpMethod("POST"), cancellationToken);
+            return await resource.RequestAsync<PaymentInstrumentGroup>(paymentInstrumentGroupInfo.ToJson(), requestOptions, new HttpMethod("POST"), cancellationToken).ConfigureAwait(false);
         }
     }
 }

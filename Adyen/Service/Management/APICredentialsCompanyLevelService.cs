@@ -123,7 +123,7 @@ namespace Adyen.Service.Management
         
         public ListCompanyApiCredentialsResponse ListApiCredentials(string companyId, int? pageNumber = default, int? pageSize = default, RequestOptions requestOptions = default)
         {
-            return ListApiCredentialsAsync(companyId, pageNumber, pageSize, requestOptions).GetAwaiter().GetResult();
+            return ListApiCredentialsAsync(companyId, pageNumber, pageSize, requestOptions).ConfigureAwait(false).GetAwaiter().GetResult();
         }
 
         public async Task<ListCompanyApiCredentialsResponse> ListApiCredentialsAsync(string companyId, int? pageNumber = default, int? pageSize = default, RequestOptions requestOptions = default, CancellationToken cancellationToken = default)
@@ -134,43 +134,43 @@ namespace Adyen.Service.Management
             if (pageSize != null) queryParams.Add("pageSize", pageSize.ToString());
             var endpoint = _baseUrl + $"/companies/{companyId}/apiCredentials" + ToQueryString(queryParams);
             var resource = new ServiceResource(this, endpoint);
-            return await resource.RequestAsync<ListCompanyApiCredentialsResponse>(null, requestOptions, new HttpMethod("GET"), cancellationToken);
+            return await resource.RequestAsync<ListCompanyApiCredentialsResponse>(null, requestOptions, new HttpMethod("GET"), cancellationToken).ConfigureAwait(false);
         }
         
         public CompanyApiCredential GetApiCredential(string companyId, string apiCredentialId, RequestOptions requestOptions = default)
         {
-            return GetApiCredentialAsync(companyId, apiCredentialId, requestOptions).GetAwaiter().GetResult();
+            return GetApiCredentialAsync(companyId, apiCredentialId, requestOptions).ConfigureAwait(false).GetAwaiter().GetResult();
         }
 
         public async Task<CompanyApiCredential> GetApiCredentialAsync(string companyId, string apiCredentialId, RequestOptions requestOptions = default, CancellationToken cancellationToken = default)
         {
             var endpoint = _baseUrl + $"/companies/{companyId}/apiCredentials/{apiCredentialId}";
             var resource = new ServiceResource(this, endpoint);
-            return await resource.RequestAsync<CompanyApiCredential>(null, requestOptions, new HttpMethod("GET"), cancellationToken);
+            return await resource.RequestAsync<CompanyApiCredential>(null, requestOptions, new HttpMethod("GET"), cancellationToken).ConfigureAwait(false);
         }
         
         public CompanyApiCredential UpdateApiCredential(string companyId, string apiCredentialId, UpdateCompanyApiCredentialRequest updateCompanyApiCredentialRequest, RequestOptions requestOptions = default)
         {
-            return UpdateApiCredentialAsync(companyId, apiCredentialId, updateCompanyApiCredentialRequest, requestOptions).GetAwaiter().GetResult();
+            return UpdateApiCredentialAsync(companyId, apiCredentialId, updateCompanyApiCredentialRequest, requestOptions).ConfigureAwait(false).GetAwaiter().GetResult();
         }
 
         public async Task<CompanyApiCredential> UpdateApiCredentialAsync(string companyId, string apiCredentialId, UpdateCompanyApiCredentialRequest updateCompanyApiCredentialRequest, RequestOptions requestOptions = default, CancellationToken cancellationToken = default)
         {
             var endpoint = _baseUrl + $"/companies/{companyId}/apiCredentials/{apiCredentialId}";
             var resource = new ServiceResource(this, endpoint);
-            return await resource.RequestAsync<CompanyApiCredential>(updateCompanyApiCredentialRequest.ToJson(), requestOptions, new HttpMethod("PATCH"), cancellationToken);
+            return await resource.RequestAsync<CompanyApiCredential>(updateCompanyApiCredentialRequest.ToJson(), requestOptions, new HttpMethod("PATCH"), cancellationToken).ConfigureAwait(false);
         }
         
         public CreateCompanyApiCredentialResponse CreateApiCredential(string companyId, CreateCompanyApiCredentialRequest createCompanyApiCredentialRequest, RequestOptions requestOptions = default)
         {
-            return CreateApiCredentialAsync(companyId, createCompanyApiCredentialRequest, requestOptions).GetAwaiter().GetResult();
+            return CreateApiCredentialAsync(companyId, createCompanyApiCredentialRequest, requestOptions).ConfigureAwait(false).GetAwaiter().GetResult();
         }
 
         public async Task<CreateCompanyApiCredentialResponse> CreateApiCredentialAsync(string companyId, CreateCompanyApiCredentialRequest createCompanyApiCredentialRequest, RequestOptions requestOptions = default, CancellationToken cancellationToken = default)
         {
             var endpoint = _baseUrl + $"/companies/{companyId}/apiCredentials";
             var resource = new ServiceResource(this, endpoint);
-            return await resource.RequestAsync<CreateCompanyApiCredentialResponse>(createCompanyApiCredentialRequest.ToJson(), requestOptions, new HttpMethod("POST"), cancellationToken);
+            return await resource.RequestAsync<CreateCompanyApiCredentialResponse>(createCompanyApiCredentialRequest.ToJson(), requestOptions, new HttpMethod("POST"), cancellationToken).ConfigureAwait(false);
         }
     }
 }

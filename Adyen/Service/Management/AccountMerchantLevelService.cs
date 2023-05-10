@@ -113,7 +113,7 @@ namespace Adyen.Service.Management
         
         public ListMerchantResponse ListMerchantAccounts(int? pageNumber = default, int? pageSize = default, RequestOptions requestOptions = default)
         {
-            return ListMerchantAccountsAsync(pageNumber, pageSize, requestOptions).GetAwaiter().GetResult();
+            return ListMerchantAccountsAsync(pageNumber, pageSize, requestOptions).ConfigureAwait(false).GetAwaiter().GetResult();
         }
 
         public async Task<ListMerchantResponse> ListMerchantAccountsAsync(int? pageNumber = default, int? pageSize = default, RequestOptions requestOptions = default, CancellationToken cancellationToken = default)
@@ -124,43 +124,43 @@ namespace Adyen.Service.Management
             if (pageSize != null) queryParams.Add("pageSize", pageSize.ToString());
             var endpoint = _baseUrl + "/merchants" + ToQueryString(queryParams);
             var resource = new ServiceResource(this, endpoint);
-            return await resource.RequestAsync<ListMerchantResponse>(null, requestOptions, new HttpMethod("GET"), cancellationToken);
+            return await resource.RequestAsync<ListMerchantResponse>(null, requestOptions, new HttpMethod("GET"), cancellationToken).ConfigureAwait(false);
         }
         
         public Merchant GetMerchantAccount(string merchantId, RequestOptions requestOptions = default)
         {
-            return GetMerchantAccountAsync(merchantId, requestOptions).GetAwaiter().GetResult();
+            return GetMerchantAccountAsync(merchantId, requestOptions).ConfigureAwait(false).GetAwaiter().GetResult();
         }
 
         public async Task<Merchant> GetMerchantAccountAsync(string merchantId, RequestOptions requestOptions = default, CancellationToken cancellationToken = default)
         {
             var endpoint = _baseUrl + $"/merchants/{merchantId}";
             var resource = new ServiceResource(this, endpoint);
-            return await resource.RequestAsync<Merchant>(null, requestOptions, new HttpMethod("GET"), cancellationToken);
+            return await resource.RequestAsync<Merchant>(null, requestOptions, new HttpMethod("GET"), cancellationToken).ConfigureAwait(false);
         }
         
         public CreateMerchantResponse CreateMerchantAccount(CreateMerchantRequest createMerchantRequest, RequestOptions requestOptions = default)
         {
-            return CreateMerchantAccountAsync(createMerchantRequest, requestOptions).GetAwaiter().GetResult();
+            return CreateMerchantAccountAsync(createMerchantRequest, requestOptions).ConfigureAwait(false).GetAwaiter().GetResult();
         }
 
         public async Task<CreateMerchantResponse> CreateMerchantAccountAsync(CreateMerchantRequest createMerchantRequest, RequestOptions requestOptions = default, CancellationToken cancellationToken = default)
         {
             var endpoint = _baseUrl + "/merchants";
             var resource = new ServiceResource(this, endpoint);
-            return await resource.RequestAsync<CreateMerchantResponse>(createMerchantRequest.ToJson(), requestOptions, new HttpMethod("POST"), cancellationToken);
+            return await resource.RequestAsync<CreateMerchantResponse>(createMerchantRequest.ToJson(), requestOptions, new HttpMethod("POST"), cancellationToken).ConfigureAwait(false);
         }
         
         public RequestActivationResponse RequestToActivateMerchantAccount(string merchantId, RequestOptions requestOptions = default)
         {
-            return RequestToActivateMerchantAccountAsync(merchantId, requestOptions).GetAwaiter().GetResult();
+            return RequestToActivateMerchantAccountAsync(merchantId, requestOptions).ConfigureAwait(false).GetAwaiter().GetResult();
         }
 
         public async Task<RequestActivationResponse> RequestToActivateMerchantAccountAsync(string merchantId, RequestOptions requestOptions = default, CancellationToken cancellationToken = default)
         {
             var endpoint = _baseUrl + $"/merchants/{merchantId}/activate";
             var resource = new ServiceResource(this, endpoint);
-            return await resource.RequestAsync<RequestActivationResponse>(null, requestOptions, new HttpMethod("POST"), cancellationToken);
+            return await resource.RequestAsync<RequestActivationResponse>(null, requestOptions, new HttpMethod("POST"), cancellationToken).ConfigureAwait(false);
         }
     }
 }

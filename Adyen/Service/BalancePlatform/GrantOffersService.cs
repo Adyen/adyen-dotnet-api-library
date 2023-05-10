@@ -77,7 +77,7 @@ namespace Adyen.Service.BalancePlatform
         
         public GrantOffers GetAllAvailableGrantOffers(string accountHolderId, RequestOptions requestOptions = default)
         {
-            return GetAllAvailableGrantOffersAsync(accountHolderId, requestOptions).GetAwaiter().GetResult();
+            return GetAllAvailableGrantOffersAsync(accountHolderId, requestOptions).ConfigureAwait(false).GetAwaiter().GetResult();
         }
 
         public async Task<GrantOffers> GetAllAvailableGrantOffersAsync(string accountHolderId, RequestOptions requestOptions = default, CancellationToken cancellationToken = default)
@@ -87,19 +87,19 @@ namespace Adyen.Service.BalancePlatform
             if (accountHolderId != null) queryParams.Add("accountHolderId", accountHolderId);
             var endpoint = _baseUrl + "/grantOffers" + ToQueryString(queryParams);
             var resource = new ServiceResource(this, endpoint);
-            return await resource.RequestAsync<GrantOffers>(null, requestOptions, new HttpMethod("GET"), cancellationToken);
+            return await resource.RequestAsync<GrantOffers>(null, requestOptions, new HttpMethod("GET"), cancellationToken).ConfigureAwait(false);
         }
         
         public GrantOffer GetGrantOffer(string grantOfferId, RequestOptions requestOptions = default)
         {
-            return GetGrantOfferAsync(grantOfferId, requestOptions).GetAwaiter().GetResult();
+            return GetGrantOfferAsync(grantOfferId, requestOptions).ConfigureAwait(false).GetAwaiter().GetResult();
         }
 
         public async Task<GrantOffer> GetGrantOfferAsync(string grantOfferId, RequestOptions requestOptions = default, CancellationToken cancellationToken = default)
         {
             var endpoint = _baseUrl + $"/grantOffers/{grantOfferId}";
             var resource = new ServiceResource(this, endpoint);
-            return await resource.RequestAsync<GrantOffer>(null, requestOptions, new HttpMethod("GET"), cancellationToken);
+            return await resource.RequestAsync<GrantOffer>(null, requestOptions, new HttpMethod("GET"), cancellationToken).ConfigureAwait(false);
         }
     }
 }

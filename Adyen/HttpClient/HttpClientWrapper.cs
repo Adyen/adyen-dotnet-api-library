@@ -32,9 +32,9 @@ namespace Adyen.HttpClient
         public async Task<string> RequestAsync(string endpoint, string requestBody, RequestOptions requestOptions = null, HttpMethod httpMethod = null, CancellationToken cancellationToken = default)
         {
             using (var request = GetHttpRequestMessage(endpoint, requestBody, requestOptions, httpMethod))
-            using (var httpResponseMessage = await _httpClient.SendAsync(request, cancellationToken))
+            using (var httpResponseMessage = await _httpClient.SendAsync(request, cancellationToken).ConfigureAwait(false))
             {
-                var responseText = await httpResponseMessage.Content.ReadAsStringAsync();
+                var responseText = await httpResponseMessage.Content.ReadAsStringAsync().ConfigureAwait(false);
                 if(httpResponseMessage.IsSuccessStatusCode)
                 {
                     return responseText;

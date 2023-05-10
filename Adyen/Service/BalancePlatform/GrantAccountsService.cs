@@ -60,14 +60,14 @@ namespace Adyen.Service.BalancePlatform
         
         public CapitalGrantAccount GetGrantAccount(string id, RequestOptions requestOptions = default)
         {
-            return GetGrantAccountAsync(id, requestOptions).GetAwaiter().GetResult();
+            return GetGrantAccountAsync(id, requestOptions).ConfigureAwait(false).GetAwaiter().GetResult();
         }
 
         public async Task<CapitalGrantAccount> GetGrantAccountAsync(string id, RequestOptions requestOptions = default, CancellationToken cancellationToken = default)
         {
             var endpoint = _baseUrl + $"/grantAccounts/{id}";
             var resource = new ServiceResource(this, endpoint);
-            return await resource.RequestAsync<CapitalGrantAccount>(null, requestOptions, new HttpMethod("GET"), cancellationToken);
+            return await resource.RequestAsync<CapitalGrantAccount>(null, requestOptions, new HttpMethod("GET"), cancellationToken).ConfigureAwait(false);
         }
     }
 }

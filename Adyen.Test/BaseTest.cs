@@ -384,7 +384,11 @@ namespace Adyen.Test
         /// <returns>IClient implementation</returns>
         protected Client CreateMockTestClientPosLocalApiRequest(string fileName)
         {
-            var config = new Config { Endpoint = @"https://_terminal_:8443/nexo/" };
+            var config = new Config
+            {
+                Environment = Model.Environment.Live,
+                LocalTerminalApiEndpoint = @"https://_terminal_:8443/nexo/"
+            };
             var mockPath = GetMockFilePath(fileName);
             var response = MockFileToString(mockPath);
             //Create a mock interface

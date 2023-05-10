@@ -61,7 +61,7 @@ namespace {{packageName}}.{{apiPackage}}
         {{/isDeprecated}}
         public {{{returnType}}}{{^returnType}}void{{/returnType}} {{#lambda.pascalcase}}{{vendorExtensions.x-methodName}}{{/lambda.pascalcase}}({{>api_parameters}})
         {
-            {{#returnType}}return {{/returnType}}{{#lambda.pascalcase}}{{vendorExtensions.x-methodName}}{{/lambda.pascalcase}}Async({{>api_invoke}}).GetAwaiter().GetResult();
+            {{#returnType}}return {{/returnType}}{{#lambda.pascalcase}}{{vendorExtensions.x-methodName}}{{/lambda.pascalcase}}Async({{>api_invoke}}).ConfigureAwait(false).GetAwaiter().GetResult();
         }
 
         {{#supportsAsync}}
@@ -79,7 +79,7 @@ namespace {{packageName}}.{{apiPackage}}
             {{/hasQueryParams}}
             var endpoint = _baseUrl + {{#hasPathParams}}${{/hasPathParams}}"{{{path}}}"{{#hasQueryParams}} + ToQueryString(queryParams){{/hasQueryParams}};
             var resource = new ServiceResource(this, endpoint);
-            {{#returnType}}return {{/returnType}}await resource.RequestAsync{{#returnType}}<{{returnType}}>{{/returnType}}({{#bodyParam}}{{paramName}}.ToJson(){{/bodyParam}}{{^bodyParam}}null{{/bodyParam}}, requestOptions, new HttpMethod("{{httpMethod}}"), cancellationToken);
+            {{#returnType}}return {{/returnType}}await resource.RequestAsync{{#returnType}}<{{returnType}}>{{/returnType}}({{#bodyParam}}{{paramName}}.ToJson(){{/bodyParam}}{{^bodyParam}}null{{/bodyParam}}, requestOptions, new HttpMethod("{{httpMethod}}"), cancellationToken).ConfigureAwait(false);
         }
         {{/supportsAsync}}
         {{/operation}}
