@@ -94,38 +94,38 @@ namespace Adyen.Service.LegalEntityManagement
         
         public OnboardingThemes ListHostedOnboardingPageThemes(RequestOptions requestOptions = default)
         {
-            return ListHostedOnboardingPageThemesAsync(requestOptions).GetAwaiter().GetResult();
+            return ListHostedOnboardingPageThemesAsync(requestOptions).ConfigureAwait(false).GetAwaiter().GetResult();
         }
 
         public async Task<OnboardingThemes> ListHostedOnboardingPageThemesAsync(RequestOptions requestOptions = default, CancellationToken cancellationToken = default)
         {
             var endpoint = _baseUrl + "/themes";
             var resource = new ServiceResource(this, endpoint);
-            return await resource.RequestAsync<OnboardingThemes>(null, requestOptions, new HttpMethod("GET"), cancellationToken);
+            return await resource.RequestAsync<OnboardingThemes>(null, requestOptions, new HttpMethod("GET"), cancellationToken).ConfigureAwait(false);
         }
         
         public OnboardingTheme GetOnboardingLinkTheme(string id, RequestOptions requestOptions = default)
         {
-            return GetOnboardingLinkThemeAsync(id, requestOptions).GetAwaiter().GetResult();
+            return GetOnboardingLinkThemeAsync(id, requestOptions).ConfigureAwait(false).GetAwaiter().GetResult();
         }
 
         public async Task<OnboardingTheme> GetOnboardingLinkThemeAsync(string id, RequestOptions requestOptions = default, CancellationToken cancellationToken = default)
         {
             var endpoint = _baseUrl + $"/themes/{id}";
             var resource = new ServiceResource(this, endpoint);
-            return await resource.RequestAsync<OnboardingTheme>(null, requestOptions, new HttpMethod("GET"), cancellationToken);
+            return await resource.RequestAsync<OnboardingTheme>(null, requestOptions, new HttpMethod("GET"), cancellationToken).ConfigureAwait(false);
         }
         
         public OnboardingLink GetLinkToAdyenhostedOnboardingPage(string id, OnboardingLinkInfo onboardingLinkInfo, RequestOptions requestOptions = default)
         {
-            return GetLinkToAdyenhostedOnboardingPageAsync(id, onboardingLinkInfo, requestOptions).GetAwaiter().GetResult();
+            return GetLinkToAdyenhostedOnboardingPageAsync(id, onboardingLinkInfo, requestOptions).ConfigureAwait(false).GetAwaiter().GetResult();
         }
 
         public async Task<OnboardingLink> GetLinkToAdyenhostedOnboardingPageAsync(string id, OnboardingLinkInfo onboardingLinkInfo, RequestOptions requestOptions = default, CancellationToken cancellationToken = default)
         {
             var endpoint = _baseUrl + $"/legalEntities/{id}/onboardingLinks";
             var resource = new ServiceResource(this, endpoint);
-            return await resource.RequestAsync<OnboardingLink>(onboardingLinkInfo.ToJson(), requestOptions, new HttpMethod("POST"), cancellationToken);
+            return await resource.RequestAsync<OnboardingLink>(onboardingLinkInfo.ToJson(), requestOptions, new HttpMethod("POST"), cancellationToken).ConfigureAwait(false);
         }
     }
 }

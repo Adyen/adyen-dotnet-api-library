@@ -119,7 +119,7 @@ namespace Adyen.Service.Management
         
         public Logo GetTerminalLogo(string merchantId, string model, RequestOptions requestOptions = default)
         {
-            return GetTerminalLogoAsync(merchantId, model, requestOptions).GetAwaiter().GetResult();
+            return GetTerminalLogoAsync(merchantId, model, requestOptions).ConfigureAwait(false).GetAwaiter().GetResult();
         }
 
         public async Task<Logo> GetTerminalLogoAsync(string merchantId, string model, RequestOptions requestOptions = default, CancellationToken cancellationToken = default)
@@ -129,24 +129,24 @@ namespace Adyen.Service.Management
             if (model != null) queryParams.Add("model", model);
             var endpoint = _baseUrl + $"/merchants/{merchantId}/terminalLogos" + ToQueryString(queryParams);
             var resource = new ServiceResource(this, endpoint);
-            return await resource.RequestAsync<Logo>(null, requestOptions, new HttpMethod("GET"), cancellationToken);
+            return await resource.RequestAsync<Logo>(null, requestOptions, new HttpMethod("GET"), cancellationToken).ConfigureAwait(false);
         }
         
         public TerminalSettings GetTerminalSettings(string merchantId, RequestOptions requestOptions = default)
         {
-            return GetTerminalSettingsAsync(merchantId, requestOptions).GetAwaiter().GetResult();
+            return GetTerminalSettingsAsync(merchantId, requestOptions).ConfigureAwait(false).GetAwaiter().GetResult();
         }
 
         public async Task<TerminalSettings> GetTerminalSettingsAsync(string merchantId, RequestOptions requestOptions = default, CancellationToken cancellationToken = default)
         {
             var endpoint = _baseUrl + $"/merchants/{merchantId}/terminalSettings";
             var resource = new ServiceResource(this, endpoint);
-            return await resource.RequestAsync<TerminalSettings>(null, requestOptions, new HttpMethod("GET"), cancellationToken);
+            return await resource.RequestAsync<TerminalSettings>(null, requestOptions, new HttpMethod("GET"), cancellationToken).ConfigureAwait(false);
         }
         
         public Logo UpdateTerminalLogo(string merchantId, Logo logo, string model, RequestOptions requestOptions = default)
         {
-            return UpdateTerminalLogoAsync(merchantId, logo, model, requestOptions).GetAwaiter().GetResult();
+            return UpdateTerminalLogoAsync(merchantId, logo, model, requestOptions).ConfigureAwait(false).GetAwaiter().GetResult();
         }
 
         public async Task<Logo> UpdateTerminalLogoAsync(string merchantId, Logo logo, string model, RequestOptions requestOptions = default, CancellationToken cancellationToken = default)
@@ -156,19 +156,19 @@ namespace Adyen.Service.Management
             if (model != null) queryParams.Add("model", model);
             var endpoint = _baseUrl + $"/merchants/{merchantId}/terminalLogos" + ToQueryString(queryParams);
             var resource = new ServiceResource(this, endpoint);
-            return await resource.RequestAsync<Logo>(logo.ToJson(), requestOptions, new HttpMethod("PATCH"), cancellationToken);
+            return await resource.RequestAsync<Logo>(logo.ToJson(), requestOptions, new HttpMethod("PATCH"), cancellationToken).ConfigureAwait(false);
         }
         
         public TerminalSettings UpdateTerminalSettings(string merchantId, TerminalSettings terminalSettings, RequestOptions requestOptions = default)
         {
-            return UpdateTerminalSettingsAsync(merchantId, terminalSettings, requestOptions).GetAwaiter().GetResult();
+            return UpdateTerminalSettingsAsync(merchantId, terminalSettings, requestOptions).ConfigureAwait(false).GetAwaiter().GetResult();
         }
 
         public async Task<TerminalSettings> UpdateTerminalSettingsAsync(string merchantId, TerminalSettings terminalSettings, RequestOptions requestOptions = default, CancellationToken cancellationToken = default)
         {
             var endpoint = _baseUrl + $"/merchants/{merchantId}/terminalSettings";
             var resource = new ServiceResource(this, endpoint);
-            return await resource.RequestAsync<TerminalSettings>(terminalSettings.ToJson(), requestOptions, new HttpMethod("PATCH"), cancellationToken);
+            return await resource.RequestAsync<TerminalSettings>(terminalSettings.ToJson(), requestOptions, new HttpMethod("PATCH"), cancellationToken).ConfigureAwait(false);
         }
     }
 }

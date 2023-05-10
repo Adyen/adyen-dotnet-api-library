@@ -111,50 +111,50 @@ namespace Adyen.Service.LegalEntityManagement
         
         public void DeleteTransferInstrument(string id, RequestOptions requestOptions = default)
         {
-            DeleteTransferInstrumentAsync(id, requestOptions).GetAwaiter().GetResult();
+            DeleteTransferInstrumentAsync(id, requestOptions).ConfigureAwait(false).GetAwaiter().GetResult();
         }
 
         public async Task DeleteTransferInstrumentAsync(string id, RequestOptions requestOptions = default, CancellationToken cancellationToken = default)
         {
             var endpoint = _baseUrl + $"/transferInstruments/{id}";
             var resource = new ServiceResource(this, endpoint);
-            await resource.RequestAsync(null, requestOptions, new HttpMethod("DELETE"), cancellationToken);
+            await resource.RequestAsync(null, requestOptions, new HttpMethod("DELETE"), cancellationToken).ConfigureAwait(false);
         }
         
         public TransferInstrument GetTransferInstrument(string id, RequestOptions requestOptions = default)
         {
-            return GetTransferInstrumentAsync(id, requestOptions).GetAwaiter().GetResult();
+            return GetTransferInstrumentAsync(id, requestOptions).ConfigureAwait(false).GetAwaiter().GetResult();
         }
 
         public async Task<TransferInstrument> GetTransferInstrumentAsync(string id, RequestOptions requestOptions = default, CancellationToken cancellationToken = default)
         {
             var endpoint = _baseUrl + $"/transferInstruments/{id}";
             var resource = new ServiceResource(this, endpoint);
-            return await resource.RequestAsync<TransferInstrument>(null, requestOptions, new HttpMethod("GET"), cancellationToken);
+            return await resource.RequestAsync<TransferInstrument>(null, requestOptions, new HttpMethod("GET"), cancellationToken).ConfigureAwait(false);
         }
         
         public TransferInstrument UpdateTransferInstrument(string id, TransferInstrumentInfo transferInstrumentInfo, RequestOptions requestOptions = default)
         {
-            return UpdateTransferInstrumentAsync(id, transferInstrumentInfo, requestOptions).GetAwaiter().GetResult();
+            return UpdateTransferInstrumentAsync(id, transferInstrumentInfo, requestOptions).ConfigureAwait(false).GetAwaiter().GetResult();
         }
 
         public async Task<TransferInstrument> UpdateTransferInstrumentAsync(string id, TransferInstrumentInfo transferInstrumentInfo, RequestOptions requestOptions = default, CancellationToken cancellationToken = default)
         {
             var endpoint = _baseUrl + $"/transferInstruments/{id}";
             var resource = new ServiceResource(this, endpoint);
-            return await resource.RequestAsync<TransferInstrument>(transferInstrumentInfo.ToJson(), requestOptions, new HttpMethod("PATCH"), cancellationToken);
+            return await resource.RequestAsync<TransferInstrument>(transferInstrumentInfo.ToJson(), requestOptions, new HttpMethod("PATCH"), cancellationToken).ConfigureAwait(false);
         }
         
         public TransferInstrument CreateTransferInstrument(TransferInstrumentInfo transferInstrumentInfo, RequestOptions requestOptions = default)
         {
-            return CreateTransferInstrumentAsync(transferInstrumentInfo, requestOptions).GetAwaiter().GetResult();
+            return CreateTransferInstrumentAsync(transferInstrumentInfo, requestOptions).ConfigureAwait(false).GetAwaiter().GetResult();
         }
 
         public async Task<TransferInstrument> CreateTransferInstrumentAsync(TransferInstrumentInfo transferInstrumentInfo, RequestOptions requestOptions = default, CancellationToken cancellationToken = default)
         {
             var endpoint = _baseUrl + "/transferInstruments";
             var resource = new ServiceResource(this, endpoint);
-            return await resource.RequestAsync<TransferInstrument>(transferInstrumentInfo.ToJson(), requestOptions, new HttpMethod("POST"), cancellationToken);
+            return await resource.RequestAsync<TransferInstrument>(transferInstrumentInfo.ToJson(), requestOptions, new HttpMethod("POST"), cancellationToken).ConfigureAwait(false);
         }
     }
 }

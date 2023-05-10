@@ -33,7 +33,7 @@ namespace Adyen.Service.Payout
         /// <param name="storeDetailRequest"><see cref="StoreDetailRequest"/> - </param>
         /// <param name="requestOptions"><see cref="RequestOptions"/> - Additional request options.</param>
         /// <returns><see cref="StoreDetailResponse"/>.</returns>
-        StoreDetailResponse StorePayoutDetails(StoreDetailRequest storeDetailRequest, RequestOptions requestOptions = default);
+        StoreDetailResponse StoreDetail(StoreDetailRequest storeDetailRequest, RequestOptions requestOptions = default);
         
         /// <summary>
         /// Store payout details
@@ -42,7 +42,7 @@ namespace Adyen.Service.Payout
         /// <param name="requestOptions"><see cref="RequestOptions"/> - Additional request options.</param>
         /// <param name="cancellationToken"> A CancellationToken enables cooperative cancellation between threads, thread pool work items, or Task objects.</param>
         /// <returns>Task of <see cref="StoreDetailResponse"/>.</returns>
-        Task<StoreDetailResponse> StorePayoutDetailsAsync(StoreDetailRequest storeDetailRequest, RequestOptions requestOptions = default, CancellationToken cancellationToken = default);
+        Task<StoreDetailResponse> StoreDetailAsync(StoreDetailRequest storeDetailRequest, RequestOptions requestOptions = default, CancellationToken cancellationToken = default);
         
         /// <summary>
         /// Store details and submit a payout
@@ -50,7 +50,7 @@ namespace Adyen.Service.Payout
         /// <param name="storeDetailAndSubmitRequest"><see cref="StoreDetailAndSubmitRequest"/> - </param>
         /// <param name="requestOptions"><see cref="RequestOptions"/> - Additional request options.</param>
         /// <returns><see cref="StoreDetailAndSubmitResponse"/>.</returns>
-        StoreDetailAndSubmitResponse StoreDetailsAndSubmitPayout(StoreDetailAndSubmitRequest storeDetailAndSubmitRequest, RequestOptions requestOptions = default);
+        StoreDetailAndSubmitResponse StoreDetailAndSubmitThirdParty(StoreDetailAndSubmitRequest storeDetailAndSubmitRequest, RequestOptions requestOptions = default);
         
         /// <summary>
         /// Store details and submit a payout
@@ -59,7 +59,7 @@ namespace Adyen.Service.Payout
         /// <param name="requestOptions"><see cref="RequestOptions"/> - Additional request options.</param>
         /// <param name="cancellationToken"> A CancellationToken enables cooperative cancellation between threads, thread pool work items, or Task objects.</param>
         /// <returns>Task of <see cref="StoreDetailAndSubmitResponse"/>.</returns>
-        Task<StoreDetailAndSubmitResponse> StoreDetailsAndSubmitPayoutAsync(StoreDetailAndSubmitRequest storeDetailAndSubmitRequest, RequestOptions requestOptions = default, CancellationToken cancellationToken = default);
+        Task<StoreDetailAndSubmitResponse> StoreDetailAndSubmitThirdPartyAsync(StoreDetailAndSubmitRequest storeDetailAndSubmitRequest, RequestOptions requestOptions = default, CancellationToken cancellationToken = default);
         
         /// <summary>
         /// Submit a payout
@@ -67,7 +67,7 @@ namespace Adyen.Service.Payout
         /// <param name="submitRequest"><see cref="SubmitRequest"/> - </param>
         /// <param name="requestOptions"><see cref="RequestOptions"/> - Additional request options.</param>
         /// <returns><see cref="SubmitResponse"/>.</returns>
-        SubmitResponse SubmitPayout(SubmitRequest submitRequest, RequestOptions requestOptions = default);
+        SubmitResponse SubmitThirdParty(SubmitRequest submitRequest, RequestOptions requestOptions = default);
         
         /// <summary>
         /// Submit a payout
@@ -76,7 +76,7 @@ namespace Adyen.Service.Payout
         /// <param name="requestOptions"><see cref="RequestOptions"/> - Additional request options.</param>
         /// <param name="cancellationToken"> A CancellationToken enables cooperative cancellation between threads, thread pool work items, or Task objects.</param>
         /// <returns>Task of <see cref="SubmitResponse"/>.</returns>
-        Task<SubmitResponse> SubmitPayoutAsync(SubmitRequest submitRequest, RequestOptions requestOptions = default, CancellationToken cancellationToken = default);
+        Task<SubmitResponse> SubmitThirdPartyAsync(SubmitRequest submitRequest, RequestOptions requestOptions = default, CancellationToken cancellationToken = default);
         
     }
     
@@ -92,40 +92,40 @@ namespace Adyen.Service.Payout
             _baseUrl = CreateBaseUrl("https://pal-test.adyen.com/pal/servlet/Payout/v68");
         }
         
-        public StoreDetailResponse StorePayoutDetails(StoreDetailRequest storeDetailRequest, RequestOptions requestOptions = default)
+        public StoreDetailResponse StoreDetail(StoreDetailRequest storeDetailRequest, RequestOptions requestOptions = default)
         {
-            return StorePayoutDetailsAsync(storeDetailRequest, requestOptions).GetAwaiter().GetResult();
+            return StoreDetailAsync(storeDetailRequest, requestOptions).ConfigureAwait(false).GetAwaiter().GetResult();
         }
 
-        public async Task<StoreDetailResponse> StorePayoutDetailsAsync(StoreDetailRequest storeDetailRequest, RequestOptions requestOptions = default, CancellationToken cancellationToken = default)
+        public async Task<StoreDetailResponse> StoreDetailAsync(StoreDetailRequest storeDetailRequest, RequestOptions requestOptions = default, CancellationToken cancellationToken = default)
         {
             var endpoint = _baseUrl + "/storeDetail";
             var resource = new ServiceResource(this, endpoint);
-            return await resource.RequestAsync<StoreDetailResponse>(storeDetailRequest.ToJson(), requestOptions, new HttpMethod("POST"), cancellationToken);
+            return await resource.RequestAsync<StoreDetailResponse>(storeDetailRequest.ToJson(), requestOptions, new HttpMethod("POST"), cancellationToken).ConfigureAwait(false);
         }
         
-        public StoreDetailAndSubmitResponse StoreDetailsAndSubmitPayout(StoreDetailAndSubmitRequest storeDetailAndSubmitRequest, RequestOptions requestOptions = default)
+        public StoreDetailAndSubmitResponse StoreDetailAndSubmitThirdParty(StoreDetailAndSubmitRequest storeDetailAndSubmitRequest, RequestOptions requestOptions = default)
         {
-            return StoreDetailsAndSubmitPayoutAsync(storeDetailAndSubmitRequest, requestOptions).GetAwaiter().GetResult();
+            return StoreDetailAndSubmitThirdPartyAsync(storeDetailAndSubmitRequest, requestOptions).ConfigureAwait(false).GetAwaiter().GetResult();
         }
 
-        public async Task<StoreDetailAndSubmitResponse> StoreDetailsAndSubmitPayoutAsync(StoreDetailAndSubmitRequest storeDetailAndSubmitRequest, RequestOptions requestOptions = default, CancellationToken cancellationToken = default)
+        public async Task<StoreDetailAndSubmitResponse> StoreDetailAndSubmitThirdPartyAsync(StoreDetailAndSubmitRequest storeDetailAndSubmitRequest, RequestOptions requestOptions = default, CancellationToken cancellationToken = default)
         {
             var endpoint = _baseUrl + "/storeDetailAndSubmitThirdParty";
             var resource = new ServiceResource(this, endpoint);
-            return await resource.RequestAsync<StoreDetailAndSubmitResponse>(storeDetailAndSubmitRequest.ToJson(), requestOptions, new HttpMethod("POST"), cancellationToken);
+            return await resource.RequestAsync<StoreDetailAndSubmitResponse>(storeDetailAndSubmitRequest.ToJson(), requestOptions, new HttpMethod("POST"), cancellationToken).ConfigureAwait(false);
         }
         
-        public SubmitResponse SubmitPayout(SubmitRequest submitRequest, RequestOptions requestOptions = default)
+        public SubmitResponse SubmitThirdParty(SubmitRequest submitRequest, RequestOptions requestOptions = default)
         {
-            return SubmitPayoutAsync(submitRequest, requestOptions).GetAwaiter().GetResult();
+            return SubmitThirdPartyAsync(submitRequest, requestOptions).ConfigureAwait(false).GetAwaiter().GetResult();
         }
 
-        public async Task<SubmitResponse> SubmitPayoutAsync(SubmitRequest submitRequest, RequestOptions requestOptions = default, CancellationToken cancellationToken = default)
+        public async Task<SubmitResponse> SubmitThirdPartyAsync(SubmitRequest submitRequest, RequestOptions requestOptions = default, CancellationToken cancellationToken = default)
         {
             var endpoint = _baseUrl + "/submitThirdParty";
             var resource = new ServiceResource(this, endpoint);
-            return await resource.RequestAsync<SubmitResponse>(submitRequest.ToJson(), requestOptions, new HttpMethod("POST"), cancellationToken);
+            return await resource.RequestAsync<SubmitResponse>(submitRequest.ToJson(), requestOptions, new HttpMethod("POST"), cancellationToken).ConfigureAwait(false);
         }
     }
 }

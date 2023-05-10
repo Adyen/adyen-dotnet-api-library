@@ -14,7 +14,7 @@ namespace Adyen.Test
             var payout = new InitializationService(client);
 
             var request = new StoreDetailAndSubmitRequest();
-            var result = payout.StoreDetailsAndSubmitPayout(request);
+            var result = payout.StoreDetailAndSubmitThirdParty(request);
 
             Assert.AreEqual("[payout-submit-received]", result.ResultCode);
             Assert.AreEqual("8515131751004933", result.PspReference);
@@ -29,7 +29,7 @@ namespace Adyen.Test
             var payout = new InitializationService(client);
 
             var request = new StoreDetailRequest();
-            var result = payout.StorePayoutDetails(request);
+            var result = payout.StoreDetail(request);
 
             Assert.AreEqual("Success", result.ResultCode);
             Assert.AreEqual("8515136787207087", result.PspReference);
@@ -43,7 +43,7 @@ namespace Adyen.Test
             var payout = new ReviewingService(client);
 
             var request = new ModifyRequest();
-            var result = payout.ConfirmPayout(request);
+            var result = payout.ConfirmThirdParty(request);
 
             Assert.AreEqual("[payout-confirm-received]", result.Response);
             Assert.AreEqual("8815131762537886", result.PspReference);
@@ -55,7 +55,7 @@ namespace Adyen.Test
             var client = CreateMockTestClientApiKeyBasedRequestAsync("Mocks/payout/submitResponse-success.json");
             var payout = new InitializationService(client);
             var request = new SubmitRequest();
-            var result = payout.SubmitPayout(request);
+            var result = payout.SubmitThirdParty(request);
             Assert.AreEqual("[payout-submit-received]", result.ResultCode);
             Assert.AreEqual("8815131768219992", result.PspReference);
             Assert.AreEqual("GREEN", result.AdditionalData["fraudResultType"]);
@@ -68,7 +68,7 @@ namespace Adyen.Test
             var client = CreateMockTestClientApiKeyBasedRequestAsync("Mocks/payout/modifyResponse-success.json");
             var payout = new ReviewingService(client);
             var request = new ModifyRequest();
-            var result = payout.CancelPayout(request);
+            var result = payout.DeclineThirdParty(request);
             Assert.AreEqual("[payout-confirm-received]", result.Response);
             Assert.AreEqual("8815131762537886", result.PspReference);
         }
@@ -79,7 +79,7 @@ namespace Adyen.Test
             var client = CreateMockTestClientApiKeyBasedRequestAsync("Mocks/payout/payout-success.json");
             var payout = new InstantPayoutsService(client);
             var request = new PayoutRequest();
-            var result = payout.MakeInstantCardPayout(request);
+            var result = payout.Payout(request);
             Assert.AreEqual("8814689190961342", result.PspReference);
             Assert.AreEqual("12345", result.AuthCode);
         }

@@ -123,7 +123,7 @@ namespace Adyen.Service.Management
         
         public ListMerchantApiCredentialsResponse ListApiCredentials(string merchantId, int? pageNumber = default, int? pageSize = default, RequestOptions requestOptions = default)
         {
-            return ListApiCredentialsAsync(merchantId, pageNumber, pageSize, requestOptions).GetAwaiter().GetResult();
+            return ListApiCredentialsAsync(merchantId, pageNumber, pageSize, requestOptions).ConfigureAwait(false).GetAwaiter().GetResult();
         }
 
         public async Task<ListMerchantApiCredentialsResponse> ListApiCredentialsAsync(string merchantId, int? pageNumber = default, int? pageSize = default, RequestOptions requestOptions = default, CancellationToken cancellationToken = default)
@@ -134,43 +134,43 @@ namespace Adyen.Service.Management
             if (pageSize != null) queryParams.Add("pageSize", pageSize.ToString());
             var endpoint = _baseUrl + $"/merchants/{merchantId}/apiCredentials" + ToQueryString(queryParams);
             var resource = new ServiceResource(this, endpoint);
-            return await resource.RequestAsync<ListMerchantApiCredentialsResponse>(null, requestOptions, new HttpMethod("GET"), cancellationToken);
+            return await resource.RequestAsync<ListMerchantApiCredentialsResponse>(null, requestOptions, new HttpMethod("GET"), cancellationToken).ConfigureAwait(false);
         }
         
         public ApiCredential GetApiCredential(string merchantId, string apiCredentialId, RequestOptions requestOptions = default)
         {
-            return GetApiCredentialAsync(merchantId, apiCredentialId, requestOptions).GetAwaiter().GetResult();
+            return GetApiCredentialAsync(merchantId, apiCredentialId, requestOptions).ConfigureAwait(false).GetAwaiter().GetResult();
         }
 
         public async Task<ApiCredential> GetApiCredentialAsync(string merchantId, string apiCredentialId, RequestOptions requestOptions = default, CancellationToken cancellationToken = default)
         {
             var endpoint = _baseUrl + $"/merchants/{merchantId}/apiCredentials/{apiCredentialId}";
             var resource = new ServiceResource(this, endpoint);
-            return await resource.RequestAsync<ApiCredential>(null, requestOptions, new HttpMethod("GET"), cancellationToken);
+            return await resource.RequestAsync<ApiCredential>(null, requestOptions, new HttpMethod("GET"), cancellationToken).ConfigureAwait(false);
         }
         
         public ApiCredential UpdateApiCredential(string merchantId, string apiCredentialId, UpdateMerchantApiCredentialRequest updateMerchantApiCredentialRequest, RequestOptions requestOptions = default)
         {
-            return UpdateApiCredentialAsync(merchantId, apiCredentialId, updateMerchantApiCredentialRequest, requestOptions).GetAwaiter().GetResult();
+            return UpdateApiCredentialAsync(merchantId, apiCredentialId, updateMerchantApiCredentialRequest, requestOptions).ConfigureAwait(false).GetAwaiter().GetResult();
         }
 
         public async Task<ApiCredential> UpdateApiCredentialAsync(string merchantId, string apiCredentialId, UpdateMerchantApiCredentialRequest updateMerchantApiCredentialRequest, RequestOptions requestOptions = default, CancellationToken cancellationToken = default)
         {
             var endpoint = _baseUrl + $"/merchants/{merchantId}/apiCredentials/{apiCredentialId}";
             var resource = new ServiceResource(this, endpoint);
-            return await resource.RequestAsync<ApiCredential>(updateMerchantApiCredentialRequest.ToJson(), requestOptions, new HttpMethod("PATCH"), cancellationToken);
+            return await resource.RequestAsync<ApiCredential>(updateMerchantApiCredentialRequest.ToJson(), requestOptions, new HttpMethod("PATCH"), cancellationToken).ConfigureAwait(false);
         }
         
         public CreateApiCredentialResponse CreateApiCredential(string merchantId, CreateMerchantApiCredentialRequest createMerchantApiCredentialRequest, RequestOptions requestOptions = default)
         {
-            return CreateApiCredentialAsync(merchantId, createMerchantApiCredentialRequest, requestOptions).GetAwaiter().GetResult();
+            return CreateApiCredentialAsync(merchantId, createMerchantApiCredentialRequest, requestOptions).ConfigureAwait(false).GetAwaiter().GetResult();
         }
 
         public async Task<CreateApiCredentialResponse> CreateApiCredentialAsync(string merchantId, CreateMerchantApiCredentialRequest createMerchantApiCredentialRequest, RequestOptions requestOptions = default, CancellationToken cancellationToken = default)
         {
             var endpoint = _baseUrl + $"/merchants/{merchantId}/apiCredentials";
             var resource = new ServiceResource(this, endpoint);
-            return await resource.RequestAsync<CreateApiCredentialResponse>(createMerchantApiCredentialRequest.ToJson(), requestOptions, new HttpMethod("POST"), cancellationToken);
+            return await resource.RequestAsync<CreateApiCredentialResponse>(createMerchantApiCredentialRequest.ToJson(), requestOptions, new HttpMethod("POST"), cancellationToken).ConfigureAwait(false);
         }
     }
 }

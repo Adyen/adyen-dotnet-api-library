@@ -23,7 +23,7 @@ using Adyen.Model.Recurring;
 namespace Adyen.Service
 {
     /// <summary>
-    /// GeneralService Interface
+    /// DefaultService Interface
     /// </summary>
     public interface IRecurringService
     {
@@ -145,74 +145,74 @@ namespace Adyen.Service
         
         public CreatePermitResult CreatePermit(CreatePermitRequest createPermitRequest, RequestOptions requestOptions = default)
         {
-            return CreatePermitAsync(createPermitRequest, requestOptions).GetAwaiter().GetResult();
+            return CreatePermitAsync(createPermitRequest, requestOptions).ConfigureAwait(false).GetAwaiter().GetResult();
         }
 
         public async Task<CreatePermitResult> CreatePermitAsync(CreatePermitRequest createPermitRequest, RequestOptions requestOptions = default, CancellationToken cancellationToken = default)
         {
             var endpoint = _baseUrl + "/createPermit";
             var resource = new ServiceResource(this, endpoint);
-            return await resource.RequestAsync<CreatePermitResult>(createPermitRequest.ToJson(), requestOptions, new HttpMethod("POST"), cancellationToken);
+            return await resource.RequestAsync<CreatePermitResult>(createPermitRequest.ToJson(), requestOptions, new HttpMethod("POST"), cancellationToken).ConfigureAwait(false);
         }
         
         public DisableResult Disable(DisableRequest disableRequest, RequestOptions requestOptions = default)
         {
-            return DisableAsync(disableRequest, requestOptions).GetAwaiter().GetResult();
+            return DisableAsync(disableRequest, requestOptions).ConfigureAwait(false).GetAwaiter().GetResult();
         }
 
         public async Task<DisableResult> DisableAsync(DisableRequest disableRequest, RequestOptions requestOptions = default, CancellationToken cancellationToken = default)
         {
             var endpoint = _baseUrl + "/disable";
             var resource = new ServiceResource(this, endpoint);
-            return await resource.RequestAsync<DisableResult>(disableRequest.ToJson(), requestOptions, new HttpMethod("POST"), cancellationToken);
+            return await resource.RequestAsync<DisableResult>(disableRequest.ToJson(), requestOptions, new HttpMethod("POST"), cancellationToken).ConfigureAwait(false);
         }
         
         public DisablePermitResult DisablePermit(DisablePermitRequest disablePermitRequest, RequestOptions requestOptions = default)
         {
-            return DisablePermitAsync(disablePermitRequest, requestOptions).GetAwaiter().GetResult();
+            return DisablePermitAsync(disablePermitRequest, requestOptions).ConfigureAwait(false).GetAwaiter().GetResult();
         }
 
         public async Task<DisablePermitResult> DisablePermitAsync(DisablePermitRequest disablePermitRequest, RequestOptions requestOptions = default, CancellationToken cancellationToken = default)
         {
             var endpoint = _baseUrl + "/disablePermit";
             var resource = new ServiceResource(this, endpoint);
-            return await resource.RequestAsync<DisablePermitResult>(disablePermitRequest.ToJson(), requestOptions, new HttpMethod("POST"), cancellationToken);
+            return await resource.RequestAsync<DisablePermitResult>(disablePermitRequest.ToJson(), requestOptions, new HttpMethod("POST"), cancellationToken).ConfigureAwait(false);
         }
         
         public RecurringDetailsResult ListRecurringDetails(RecurringDetailsRequest recurringDetailsRequest, RequestOptions requestOptions = default)
         {
-            return ListRecurringDetailsAsync(recurringDetailsRequest, requestOptions).GetAwaiter().GetResult();
+            return ListRecurringDetailsAsync(recurringDetailsRequest, requestOptions).ConfigureAwait(false).GetAwaiter().GetResult();
         }
 
         public async Task<RecurringDetailsResult> ListRecurringDetailsAsync(RecurringDetailsRequest recurringDetailsRequest, RequestOptions requestOptions = default, CancellationToken cancellationToken = default)
         {
             var endpoint = _baseUrl + "/listRecurringDetails";
             var resource = new ServiceResource(this, endpoint);
-            return await resource.RequestAsync<RecurringDetailsResult>(recurringDetailsRequest.ToJson(), requestOptions, new HttpMethod("POST"), cancellationToken);
+            return await resource.RequestAsync<RecurringDetailsResult>(recurringDetailsRequest.ToJson(), requestOptions, new HttpMethod("POST"), cancellationToken).ConfigureAwait(false);
         }
         
         public NotifyShopperResult NotifyShopper(NotifyShopperRequest notifyShopperRequest, RequestOptions requestOptions = default)
         {
-            return NotifyShopperAsync(notifyShopperRequest, requestOptions).GetAwaiter().GetResult();
+            return NotifyShopperAsync(notifyShopperRequest, requestOptions).ConfigureAwait(false).GetAwaiter().GetResult();
         }
 
         public async Task<NotifyShopperResult> NotifyShopperAsync(NotifyShopperRequest notifyShopperRequest, RequestOptions requestOptions = default, CancellationToken cancellationToken = default)
         {
             var endpoint = _baseUrl + "/notifyShopper";
             var resource = new ServiceResource(this, endpoint);
-            return await resource.RequestAsync<NotifyShopperResult>(notifyShopperRequest.ToJson(), requestOptions, new HttpMethod("POST"), cancellationToken);
+            return await resource.RequestAsync<NotifyShopperResult>(notifyShopperRequest.ToJson(), requestOptions, new HttpMethod("POST"), cancellationToken).ConfigureAwait(false);
         }
         
         public ScheduleAccountUpdaterResult ScheduleAccountUpdater(ScheduleAccountUpdaterRequest scheduleAccountUpdaterRequest, RequestOptions requestOptions = default)
         {
-            return ScheduleAccountUpdaterAsync(scheduleAccountUpdaterRequest, requestOptions).GetAwaiter().GetResult();
+            return ScheduleAccountUpdaterAsync(scheduleAccountUpdaterRequest, requestOptions).ConfigureAwait(false).GetAwaiter().GetResult();
         }
 
         public async Task<ScheduleAccountUpdaterResult> ScheduleAccountUpdaterAsync(ScheduleAccountUpdaterRequest scheduleAccountUpdaterRequest, RequestOptions requestOptions = default, CancellationToken cancellationToken = default)
         {
             var endpoint = _baseUrl + "/scheduleAccountUpdater";
             var resource = new ServiceResource(this, endpoint);
-            return await resource.RequestAsync<ScheduleAccountUpdaterResult>(scheduleAccountUpdaterRequest.ToJson(), requestOptions, new HttpMethod("POST"), cancellationToken);
+            return await resource.RequestAsync<ScheduleAccountUpdaterResult>(scheduleAccountUpdaterRequest.ToJson(), requestOptions, new HttpMethod("POST"), cancellationToken).ConfigureAwait(false);
         }
     }
 }

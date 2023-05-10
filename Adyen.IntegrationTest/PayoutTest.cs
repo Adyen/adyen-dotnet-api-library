@@ -29,7 +29,7 @@ namespace Adyen.IntegrationTest
         public void PayoutSuccessTest()
         {
             var payoutRequest = CreatePayoutRequest(ClientConstants.MerchantAccount);
-            var result = _instantPayoutsService.MakeInstantCardPayout(payoutRequest);
+            var result = _instantPayoutsService.Payout(payoutRequest);
             Assert.AreEqual(result.ResultCode, PayoutResponse.ResultCodeEnum.Refused);
         }
 
@@ -38,7 +38,7 @@ namespace Adyen.IntegrationTest
         public void PayoutErrorMissingMerchantTest()
         {
             var payoutRequest = CreatePayoutRequest("");
-            var ex = Assert.ThrowsException<HttpClientException>(() => _instantPayoutsService.MakeInstantCardPayout(payoutRequest));
+            var ex = Assert.ThrowsException<HttpClientException>(() => _instantPayoutsService.Payout(payoutRequest));
             Assert.AreEqual(ex.Code, 403);
         }
 
@@ -47,7 +47,7 @@ namespace Adyen.IntegrationTest
         {
             var payoutRequest = CreatePayoutRequest(ClientConstants.MerchantAccount);
             payoutRequest.Reference = "";
-            var ex = Assert.ThrowsException<HttpClientException>(() => _instantPayoutsService.MakeInstantCardPayout(payoutRequest));
+            var ex = Assert.ThrowsException<HttpClientException>(() => _instantPayoutsService.Payout(payoutRequest));
             Assert.AreEqual("{\"status\":422,\"errorCode\":\"130\",\"message\":\"Required field 'reference' is not provided.\",\"errorType\":\"validation\"}",ex.ResponseBody);
             Assert.AreEqual(422, ex.Code);
         }

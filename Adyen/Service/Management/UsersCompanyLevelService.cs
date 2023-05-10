@@ -125,7 +125,7 @@ namespace Adyen.Service.Management
         
         public ListCompanyUsersResponse ListUsers(string companyId, int? pageNumber = default, int? pageSize = default, string username = default, RequestOptions requestOptions = default)
         {
-            return ListUsersAsync(companyId, pageNumber, pageSize, username, requestOptions).GetAwaiter().GetResult();
+            return ListUsersAsync(companyId, pageNumber, pageSize, username, requestOptions).ConfigureAwait(false).GetAwaiter().GetResult();
         }
 
         public async Task<ListCompanyUsersResponse> ListUsersAsync(string companyId, int? pageNumber = default, int? pageSize = default, string username = default, RequestOptions requestOptions = default, CancellationToken cancellationToken = default)
@@ -137,43 +137,43 @@ namespace Adyen.Service.Management
             if (username != null) queryParams.Add("username", username);
             var endpoint = _baseUrl + $"/companies/{companyId}/users" + ToQueryString(queryParams);
             var resource = new ServiceResource(this, endpoint);
-            return await resource.RequestAsync<ListCompanyUsersResponse>(null, requestOptions, new HttpMethod("GET"), cancellationToken);
+            return await resource.RequestAsync<ListCompanyUsersResponse>(null, requestOptions, new HttpMethod("GET"), cancellationToken).ConfigureAwait(false);
         }
         
         public CompanyUser GetUserDetails(string companyId, string userId, RequestOptions requestOptions = default)
         {
-            return GetUserDetailsAsync(companyId, userId, requestOptions).GetAwaiter().GetResult();
+            return GetUserDetailsAsync(companyId, userId, requestOptions).ConfigureAwait(false).GetAwaiter().GetResult();
         }
 
         public async Task<CompanyUser> GetUserDetailsAsync(string companyId, string userId, RequestOptions requestOptions = default, CancellationToken cancellationToken = default)
         {
             var endpoint = _baseUrl + $"/companies/{companyId}/users/{userId}";
             var resource = new ServiceResource(this, endpoint);
-            return await resource.RequestAsync<CompanyUser>(null, requestOptions, new HttpMethod("GET"), cancellationToken);
+            return await resource.RequestAsync<CompanyUser>(null, requestOptions, new HttpMethod("GET"), cancellationToken).ConfigureAwait(false);
         }
         
         public CompanyUser UpdateUserDetails(string companyId, string userId, UpdateCompanyUserRequest updateCompanyUserRequest, RequestOptions requestOptions = default)
         {
-            return UpdateUserDetailsAsync(companyId, userId, updateCompanyUserRequest, requestOptions).GetAwaiter().GetResult();
+            return UpdateUserDetailsAsync(companyId, userId, updateCompanyUserRequest, requestOptions).ConfigureAwait(false).GetAwaiter().GetResult();
         }
 
         public async Task<CompanyUser> UpdateUserDetailsAsync(string companyId, string userId, UpdateCompanyUserRequest updateCompanyUserRequest, RequestOptions requestOptions = default, CancellationToken cancellationToken = default)
         {
             var endpoint = _baseUrl + $"/companies/{companyId}/users/{userId}";
             var resource = new ServiceResource(this, endpoint);
-            return await resource.RequestAsync<CompanyUser>(updateCompanyUserRequest.ToJson(), requestOptions, new HttpMethod("PATCH"), cancellationToken);
+            return await resource.RequestAsync<CompanyUser>(updateCompanyUserRequest.ToJson(), requestOptions, new HttpMethod("PATCH"), cancellationToken).ConfigureAwait(false);
         }
         
         public CreateCompanyUserResponse CreateNewUser(string companyId, CreateCompanyUserRequest createCompanyUserRequest, RequestOptions requestOptions = default)
         {
-            return CreateNewUserAsync(companyId, createCompanyUserRequest, requestOptions).GetAwaiter().GetResult();
+            return CreateNewUserAsync(companyId, createCompanyUserRequest, requestOptions).ConfigureAwait(false).GetAwaiter().GetResult();
         }
 
         public async Task<CreateCompanyUserResponse> CreateNewUserAsync(string companyId, CreateCompanyUserRequest createCompanyUserRequest, RequestOptions requestOptions = default, CancellationToken cancellationToken = default)
         {
             var endpoint = _baseUrl + $"/companies/{companyId}/users";
             var resource = new ServiceResource(this, endpoint);
-            return await resource.RequestAsync<CreateCompanyUserResponse>(createCompanyUserRequest.ToJson(), requestOptions, new HttpMethod("POST"), cancellationToken);
+            return await resource.RequestAsync<CreateCompanyUserResponse>(createCompanyUserRequest.ToJson(), requestOptions, new HttpMethod("POST"), cancellationToken).ConfigureAwait(false);
         }
     }
 }

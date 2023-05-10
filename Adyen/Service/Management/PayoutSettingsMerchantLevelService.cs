@@ -136,62 +136,62 @@ namespace Adyen.Service.Management
         
         public void DeletePayoutSetting(string merchantId, string payoutSettingsId, RequestOptions requestOptions = default)
         {
-            DeletePayoutSettingAsync(merchantId, payoutSettingsId, requestOptions).GetAwaiter().GetResult();
+            DeletePayoutSettingAsync(merchantId, payoutSettingsId, requestOptions).ConfigureAwait(false).GetAwaiter().GetResult();
         }
 
         public async Task DeletePayoutSettingAsync(string merchantId, string payoutSettingsId, RequestOptions requestOptions = default, CancellationToken cancellationToken = default)
         {
             var endpoint = _baseUrl + $"/merchants/{merchantId}/payoutSettings/{payoutSettingsId}";
             var resource = new ServiceResource(this, endpoint);
-            await resource.RequestAsync(null, requestOptions, new HttpMethod("DELETE"), cancellationToken);
+            await resource.RequestAsync(null, requestOptions, new HttpMethod("DELETE"), cancellationToken).ConfigureAwait(false);
         }
         
         public PayoutSettingsResponse ListPayoutSettings(string merchantId, RequestOptions requestOptions = default)
         {
-            return ListPayoutSettingsAsync(merchantId, requestOptions).GetAwaiter().GetResult();
+            return ListPayoutSettingsAsync(merchantId, requestOptions).ConfigureAwait(false).GetAwaiter().GetResult();
         }
 
         public async Task<PayoutSettingsResponse> ListPayoutSettingsAsync(string merchantId, RequestOptions requestOptions = default, CancellationToken cancellationToken = default)
         {
             var endpoint = _baseUrl + $"/merchants/{merchantId}/payoutSettings";
             var resource = new ServiceResource(this, endpoint);
-            return await resource.RequestAsync<PayoutSettingsResponse>(null, requestOptions, new HttpMethod("GET"), cancellationToken);
+            return await resource.RequestAsync<PayoutSettingsResponse>(null, requestOptions, new HttpMethod("GET"), cancellationToken).ConfigureAwait(false);
         }
         
         public PayoutSettings GetPayoutSetting(string merchantId, string payoutSettingsId, RequestOptions requestOptions = default)
         {
-            return GetPayoutSettingAsync(merchantId, payoutSettingsId, requestOptions).GetAwaiter().GetResult();
+            return GetPayoutSettingAsync(merchantId, payoutSettingsId, requestOptions).ConfigureAwait(false).GetAwaiter().GetResult();
         }
 
         public async Task<PayoutSettings> GetPayoutSettingAsync(string merchantId, string payoutSettingsId, RequestOptions requestOptions = default, CancellationToken cancellationToken = default)
         {
             var endpoint = _baseUrl + $"/merchants/{merchantId}/payoutSettings/{payoutSettingsId}";
             var resource = new ServiceResource(this, endpoint);
-            return await resource.RequestAsync<PayoutSettings>(null, requestOptions, new HttpMethod("GET"), cancellationToken);
+            return await resource.RequestAsync<PayoutSettings>(null, requestOptions, new HttpMethod("GET"), cancellationToken).ConfigureAwait(false);
         }
         
         public PayoutSettings UpdatePayoutSetting(string merchantId, string payoutSettingsId, UpdatePayoutSettingsRequest updatePayoutSettingsRequest, RequestOptions requestOptions = default)
         {
-            return UpdatePayoutSettingAsync(merchantId, payoutSettingsId, updatePayoutSettingsRequest, requestOptions).GetAwaiter().GetResult();
+            return UpdatePayoutSettingAsync(merchantId, payoutSettingsId, updatePayoutSettingsRequest, requestOptions).ConfigureAwait(false).GetAwaiter().GetResult();
         }
 
         public async Task<PayoutSettings> UpdatePayoutSettingAsync(string merchantId, string payoutSettingsId, UpdatePayoutSettingsRequest updatePayoutSettingsRequest, RequestOptions requestOptions = default, CancellationToken cancellationToken = default)
         {
             var endpoint = _baseUrl + $"/merchants/{merchantId}/payoutSettings/{payoutSettingsId}";
             var resource = new ServiceResource(this, endpoint);
-            return await resource.RequestAsync<PayoutSettings>(updatePayoutSettingsRequest.ToJson(), requestOptions, new HttpMethod("PATCH"), cancellationToken);
+            return await resource.RequestAsync<PayoutSettings>(updatePayoutSettingsRequest.ToJson(), requestOptions, new HttpMethod("PATCH"), cancellationToken).ConfigureAwait(false);
         }
         
         public PayoutSettings AddPayoutSetting(string merchantId, PayoutSettingsRequest payoutSettingsRequest, RequestOptions requestOptions = default)
         {
-            return AddPayoutSettingAsync(merchantId, payoutSettingsRequest, requestOptions).GetAwaiter().GetResult();
+            return AddPayoutSettingAsync(merchantId, payoutSettingsRequest, requestOptions).ConfigureAwait(false).GetAwaiter().GetResult();
         }
 
         public async Task<PayoutSettings> AddPayoutSettingAsync(string merchantId, PayoutSettingsRequest payoutSettingsRequest, RequestOptions requestOptions = default, CancellationToken cancellationToken = default)
         {
             var endpoint = _baseUrl + $"/merchants/{merchantId}/payoutSettings";
             var resource = new ServiceResource(this, endpoint);
-            return await resource.RequestAsync<PayoutSettings>(payoutSettingsRequest.ToJson(), requestOptions, new HttpMethod("POST"), cancellationToken);
+            return await resource.RequestAsync<PayoutSettings>(payoutSettingsRequest.ToJson(), requestOptions, new HttpMethod("POST"), cancellationToken).ConfigureAwait(false);
         }
     }
 }

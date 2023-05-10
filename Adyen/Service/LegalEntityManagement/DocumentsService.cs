@@ -113,50 +113,50 @@ namespace Adyen.Service.LegalEntityManagement
         
         public Object DeleteDocument(string id, RequestOptions requestOptions = default)
         {
-            return DeleteDocumentAsync(id, requestOptions).GetAwaiter().GetResult();
+            return DeleteDocumentAsync(id, requestOptions).ConfigureAwait(false).GetAwaiter().GetResult();
         }
 
         public async Task<Object> DeleteDocumentAsync(string id, RequestOptions requestOptions = default, CancellationToken cancellationToken = default)
         {
             var endpoint = _baseUrl + $"/documents/{id}";
             var resource = new ServiceResource(this, endpoint);
-            return await resource.RequestAsync<Object>(null, requestOptions, new HttpMethod("DELETE"), cancellationToken);
+            return await resource.RequestAsync<Object>(null, requestOptions, new HttpMethod("DELETE"), cancellationToken).ConfigureAwait(false);
         }
         
         public Document GetDocument(string id, RequestOptions requestOptions = default)
         {
-            return GetDocumentAsync(id, requestOptions).GetAwaiter().GetResult();
+            return GetDocumentAsync(id, requestOptions).ConfigureAwait(false).GetAwaiter().GetResult();
         }
 
         public async Task<Document> GetDocumentAsync(string id, RequestOptions requestOptions = default, CancellationToken cancellationToken = default)
         {
             var endpoint = _baseUrl + $"/documents/{id}";
             var resource = new ServiceResource(this, endpoint);
-            return await resource.RequestAsync<Document>(null, requestOptions, new HttpMethod("GET"), cancellationToken);
+            return await resource.RequestAsync<Document>(null, requestOptions, new HttpMethod("GET"), cancellationToken).ConfigureAwait(false);
         }
         
         public Document UpdateDocument(string id, Document document, RequestOptions requestOptions = default)
         {
-            return UpdateDocumentAsync(id, document, requestOptions).GetAwaiter().GetResult();
+            return UpdateDocumentAsync(id, document, requestOptions).ConfigureAwait(false).GetAwaiter().GetResult();
         }
 
         public async Task<Document> UpdateDocumentAsync(string id, Document document, RequestOptions requestOptions = default, CancellationToken cancellationToken = default)
         {
             var endpoint = _baseUrl + $"/documents/{id}";
             var resource = new ServiceResource(this, endpoint);
-            return await resource.RequestAsync<Document>(document.ToJson(), requestOptions, new HttpMethod("PATCH"), cancellationToken);
+            return await resource.RequestAsync<Document>(document.ToJson(), requestOptions, new HttpMethod("PATCH"), cancellationToken).ConfigureAwait(false);
         }
         
         public Document UploadDocumentForVerificationChecks(Document document, RequestOptions requestOptions = default)
         {
-            return UploadDocumentForVerificationChecksAsync(document, requestOptions).GetAwaiter().GetResult();
+            return UploadDocumentForVerificationChecksAsync(document, requestOptions).ConfigureAwait(false).GetAwaiter().GetResult();
         }
 
         public async Task<Document> UploadDocumentForVerificationChecksAsync(Document document, RequestOptions requestOptions = default, CancellationToken cancellationToken = default)
         {
             var endpoint = _baseUrl + "/documents";
             var resource = new ServiceResource(this, endpoint);
-            return await resource.RequestAsync<Document>(document.ToJson(), requestOptions, new HttpMethod("POST"), cancellationToken);
+            return await resource.RequestAsync<Document>(document.ToJson(), requestOptions, new HttpMethod("POST"), cancellationToken).ConfigureAwait(false);
         }
     }
 }

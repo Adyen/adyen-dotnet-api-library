@@ -81,19 +81,19 @@ namespace Adyen.Service.BalancePlatform
         
         public Model.BalancePlatform.BalancePlatform GetBalancePlatform(string id, RequestOptions requestOptions = default)
         {
-            return GetBalancePlatformAsync(id, requestOptions).GetAwaiter().GetResult();
+            return GetBalancePlatformAsync(id, requestOptions).ConfigureAwait(false).GetAwaiter().GetResult();
         }
 
         public async Task<Model.BalancePlatform.BalancePlatform> GetBalancePlatformAsync(string id, RequestOptions requestOptions = default, CancellationToken cancellationToken = default)
         {
             var endpoint = _baseUrl + $"/balancePlatforms/{id}";
             var resource = new ServiceResource(this, endpoint);
-            return await resource.RequestAsync<Model.BalancePlatform.BalancePlatform>(null, requestOptions, new HttpMethod("GET"), cancellationToken);
+            return await resource.RequestAsync<Model.BalancePlatform.BalancePlatform>(null, requestOptions, new HttpMethod("GET"), cancellationToken).ConfigureAwait(false);
         }
         
         public PaginatedAccountHoldersResponse GetAllAccountHoldersUnderBalancePlatform(string id, int? offset = default, int? limit = default, RequestOptions requestOptions = default)
         {
-            return GetAllAccountHoldersUnderBalancePlatformAsync(id, offset, limit, requestOptions).GetAwaiter().GetResult();
+            return GetAllAccountHoldersUnderBalancePlatformAsync(id, offset, limit, requestOptions).ConfigureAwait(false).GetAwaiter().GetResult();
         }
 
         public async Task<PaginatedAccountHoldersResponse> GetAllAccountHoldersUnderBalancePlatformAsync(string id, int? offset = default, int? limit = default, RequestOptions requestOptions = default, CancellationToken cancellationToken = default)
@@ -104,7 +104,7 @@ namespace Adyen.Service.BalancePlatform
             if (limit != null) queryParams.Add("limit", limit.ToString());
             var endpoint = _baseUrl + $"/balancePlatforms/{id}/accountHolders" + ToQueryString(queryParams);
             var resource = new ServiceResource(this, endpoint);
-            return await resource.RequestAsync<PaginatedAccountHoldersResponse>(null, requestOptions, new HttpMethod("GET"), cancellationToken);
+            return await resource.RequestAsync<PaginatedAccountHoldersResponse>(null, requestOptions, new HttpMethod("GET"), cancellationToken).ConfigureAwait(false);
         }
     }
 }
