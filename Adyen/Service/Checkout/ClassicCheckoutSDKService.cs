@@ -82,7 +82,7 @@ namespace Adyen.Service.Checkout
         [Obsolete]
         public PaymentSetupResponse PaymentSession(PaymentSetupRequest paymentSetupRequest, RequestOptions requestOptions = default)
         {
-            return PaymentSessionAsync(paymentSetupRequest, requestOptions).GetAwaiter().GetResult();
+            return PaymentSessionAsync(paymentSetupRequest, requestOptions).ConfigureAwait(false).GetAwaiter().GetResult();
         }
 
         [Obsolete]
@@ -90,13 +90,13 @@ namespace Adyen.Service.Checkout
         {
             var endpoint = _baseUrl + "/paymentSession";
             var resource = new ServiceResource(this, endpoint);
-            return await resource.RequestAsync<PaymentSetupResponse>(paymentSetupRequest.ToJson(), requestOptions, new HttpMethod("POST"), cancellationToken);
+            return await resource.RequestAsync<PaymentSetupResponse>(paymentSetupRequest.ToJson(), requestOptions, new HttpMethod("POST"), cancellationToken).ConfigureAwait(false);
         }
         
         [Obsolete]
         public PaymentVerificationResponse VerifyPaymentResult(PaymentVerificationRequest paymentVerificationRequest, RequestOptions requestOptions = default)
         {
-            return VerifyPaymentResultAsync(paymentVerificationRequest, requestOptions).GetAwaiter().GetResult();
+            return VerifyPaymentResultAsync(paymentVerificationRequest, requestOptions).ConfigureAwait(false).GetAwaiter().GetResult();
         }
 
         [Obsolete]
@@ -104,7 +104,7 @@ namespace Adyen.Service.Checkout
         {
             var endpoint = _baseUrl + "/payments/result";
             var resource = new ServiceResource(this, endpoint);
-            return await resource.RequestAsync<PaymentVerificationResponse>(paymentVerificationRequest.ToJson(), requestOptions, new HttpMethod("POST"), cancellationToken);
+            return await resource.RequestAsync<PaymentVerificationResponse>(paymentVerificationRequest.ToJson(), requestOptions, new HttpMethod("POST"), cancellationToken).ConfigureAwait(false);
         }
     }
 }

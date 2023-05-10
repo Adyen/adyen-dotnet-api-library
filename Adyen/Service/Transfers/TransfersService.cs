@@ -60,14 +60,14 @@ namespace Adyen.Service.Transfers
         
         public Transfer TransferFunds(TransferInfo transferInfo, RequestOptions requestOptions = default)
         {
-            return TransferFundsAsync(transferInfo, requestOptions).GetAwaiter().GetResult();
+            return TransferFundsAsync(transferInfo, requestOptions).ConfigureAwait(false).GetAwaiter().GetResult();
         }
 
         public async Task<Transfer> TransferFundsAsync(TransferInfo transferInfo, RequestOptions requestOptions = default, CancellationToken cancellationToken = default)
         {
             var endpoint = _baseUrl + "/transfers";
             var resource = new ServiceResource(this, endpoint);
-            return await resource.RequestAsync<Transfer>(transferInfo.ToJson(), requestOptions, new HttpMethod("POST"), cancellationToken);
+            return await resource.RequestAsync<Transfer>(transferInfo.ToJson(), requestOptions, new HttpMethod("POST"), cancellationToken).ConfigureAwait(false);
         }
     }
 }

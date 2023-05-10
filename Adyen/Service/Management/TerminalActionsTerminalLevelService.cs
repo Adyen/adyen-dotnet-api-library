@@ -60,14 +60,14 @@ namespace Adyen.Service.Management
         
         public ScheduleTerminalActionsResponse CreateTerminalAction(ScheduleTerminalActionsRequest scheduleTerminalActionsRequest, RequestOptions requestOptions = default)
         {
-            return CreateTerminalActionAsync(scheduleTerminalActionsRequest, requestOptions).GetAwaiter().GetResult();
+            return CreateTerminalActionAsync(scheduleTerminalActionsRequest, requestOptions).ConfigureAwait(false).GetAwaiter().GetResult();
         }
 
         public async Task<ScheduleTerminalActionsResponse> CreateTerminalActionAsync(ScheduleTerminalActionsRequest scheduleTerminalActionsRequest, RequestOptions requestOptions = default, CancellationToken cancellationToken = default)
         {
             var endpoint = _baseUrl + "/terminals/scheduleActions";
             var resource = new ServiceResource(this, endpoint);
-            return await resource.RequestAsync<ScheduleTerminalActionsResponse>(scheduleTerminalActionsRequest.ToJson(), requestOptions, new HttpMethod("POST"), cancellationToken);
+            return await resource.RequestAsync<ScheduleTerminalActionsResponse>(scheduleTerminalActionsRequest.ToJson(), requestOptions, new HttpMethod("POST"), cancellationToken).ConfigureAwait(false);
         }
     }
 }

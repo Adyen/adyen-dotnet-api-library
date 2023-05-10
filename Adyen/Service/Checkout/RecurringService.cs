@@ -35,7 +35,7 @@ namespace Adyen.Service.Checkout
         /// <param name="merchantAccount"><see cref="string"/> - Your merchant account.</param>
         /// <param name="requestOptions"><see cref="RequestOptions"/> - Additional request options.</param>
         /// <returns><see cref="StoredPaymentMethodResource"/>.</returns>
-        StoredPaymentMethodResource DeleteTokenForStoredPaymentDetails(string recurringId, string shopperReference = default, string merchantAccount = default, RequestOptions requestOptions = default);
+        StoredPaymentMethodResource DeleteTokenForStoredPaymentDetails(string recurringId, string shopperReference, string merchantAccount, RequestOptions requestOptions = default);
         
         /// <summary>
         /// Delete a token for stored payment details
@@ -46,7 +46,7 @@ namespace Adyen.Service.Checkout
         /// <param name="requestOptions"><see cref="RequestOptions"/> - Additional request options.</param>
         /// <param name="cancellationToken"> A CancellationToken enables cooperative cancellation between threads, thread pool work items, or Task objects.</param>
         /// <returns>Task of <see cref="StoredPaymentMethodResource"/>.</returns>
-        Task<StoredPaymentMethodResource> DeleteTokenForStoredPaymentDetailsAsync(string recurringId, string shopperReference = default, string merchantAccount = default, RequestOptions requestOptions = default, CancellationToken cancellationToken = default);
+        Task<StoredPaymentMethodResource> DeleteTokenForStoredPaymentDetailsAsync(string recurringId, string shopperReference, string merchantAccount, RequestOptions requestOptions = default, CancellationToken cancellationToken = default);
         
         /// <summary>
         /// Get tokens for stored payment details
@@ -81,12 +81,12 @@ namespace Adyen.Service.Checkout
             _baseUrl = CreateBaseUrl("https://checkout-test.adyen.com/v70");
         }
         
-        public StoredPaymentMethodResource DeleteTokenForStoredPaymentDetails(string recurringId, string shopperReference = default, string merchantAccount = default, RequestOptions requestOptions = default)
+        public StoredPaymentMethodResource DeleteTokenForStoredPaymentDetails(string recurringId, string shopperReference, string merchantAccount, RequestOptions requestOptions = default)
         {
-            return DeleteTokenForStoredPaymentDetailsAsync(recurringId, shopperReference, merchantAccount, requestOptions).GetAwaiter().GetResult();
+            return DeleteTokenForStoredPaymentDetailsAsync(recurringId, shopperReference, merchantAccount, requestOptions).ConfigureAwait(false).GetAwaiter().GetResult();
         }
 
-        public async Task<StoredPaymentMethodResource> DeleteTokenForStoredPaymentDetailsAsync(string recurringId, string shopperReference = default, string merchantAccount = default, RequestOptions requestOptions = default, CancellationToken cancellationToken = default)
+        public async Task<StoredPaymentMethodResource> DeleteTokenForStoredPaymentDetailsAsync(string recurringId, string shopperReference, string merchantAccount, RequestOptions requestOptions = default, CancellationToken cancellationToken = default)
         {
             // Build the query string
             var queryParams = new Dictionary<string, string>();
@@ -94,12 +94,12 @@ namespace Adyen.Service.Checkout
             if (merchantAccount != null) queryParams.Add("merchantAccount", merchantAccount);
             var endpoint = _baseUrl + $"/storedPaymentMethods/{recurringId}" + ToQueryString(queryParams);
             var resource = new ServiceResource(this, endpoint);
-            return await resource.RequestAsync<StoredPaymentMethodResource>(null, requestOptions, new HttpMethod("DELETE"), cancellationToken);
+            return await resource.RequestAsync<StoredPaymentMethodResource>(null, requestOptions, new HttpMethod("DELETE"), cancellationToken).ConfigureAwait(false);
         }
         
         public ListStoredPaymentMethodsResponse GetTokensForStoredPaymentDetails(string shopperReference = default, string merchantAccount = default, RequestOptions requestOptions = default)
         {
-            return GetTokensForStoredPaymentDetailsAsync(shopperReference, merchantAccount, requestOptions).GetAwaiter().GetResult();
+            return GetTokensForStoredPaymentDetailsAsync(shopperReference, merchantAccount, requestOptions).ConfigureAwait(false).GetAwaiter().GetResult();
         }
 
         public async Task<ListStoredPaymentMethodsResponse> GetTokensForStoredPaymentDetailsAsync(string shopperReference = default, string merchantAccount = default, RequestOptions requestOptions = default, CancellationToken cancellationToken = default)
@@ -110,7 +110,7 @@ namespace Adyen.Service.Checkout
             if (merchantAccount != null) queryParams.Add("merchantAccount", merchantAccount);
             var endpoint = _baseUrl + "/storedPaymentMethods" + ToQueryString(queryParams);
             var resource = new ServiceResource(this, endpoint);
-            return await resource.RequestAsync<ListStoredPaymentMethodsResponse>(null, requestOptions, new HttpMethod("GET"), cancellationToken);
+            return await resource.RequestAsync<ListStoredPaymentMethodsResponse>(null, requestOptions, new HttpMethod("GET"), cancellationToken).ConfigureAwait(false);
         }
     }
 }

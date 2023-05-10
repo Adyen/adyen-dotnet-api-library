@@ -129,7 +129,7 @@ namespace Adyen.Service.Management
         
         public AndroidAppsResponse ListAndroidApps(string companyId, int? pageNumber = default, int? pageSize = default, RequestOptions requestOptions = default)
         {
-            return ListAndroidAppsAsync(companyId, pageNumber, pageSize, requestOptions).GetAwaiter().GetResult();
+            return ListAndroidAppsAsync(companyId, pageNumber, pageSize, requestOptions).ConfigureAwait(false).GetAwaiter().GetResult();
         }
 
         public async Task<AndroidAppsResponse> ListAndroidAppsAsync(string companyId, int? pageNumber = default, int? pageSize = default, RequestOptions requestOptions = default, CancellationToken cancellationToken = default)
@@ -140,12 +140,12 @@ namespace Adyen.Service.Management
             if (pageSize != null) queryParams.Add("pageSize", pageSize.ToString());
             var endpoint = _baseUrl + $"/companies/{companyId}/androidApps" + ToQueryString(queryParams);
             var resource = new ServiceResource(this, endpoint);
-            return await resource.RequestAsync<AndroidAppsResponse>(null, requestOptions, new HttpMethod("GET"), cancellationToken);
+            return await resource.RequestAsync<AndroidAppsResponse>(null, requestOptions, new HttpMethod("GET"), cancellationToken).ConfigureAwait(false);
         }
         
         public AndroidCertificatesResponse ListAndroidCertificates(string companyId, int? pageNumber = default, int? pageSize = default, RequestOptions requestOptions = default)
         {
-            return ListAndroidCertificatesAsync(companyId, pageNumber, pageSize, requestOptions).GetAwaiter().GetResult();
+            return ListAndroidCertificatesAsync(companyId, pageNumber, pageSize, requestOptions).ConfigureAwait(false).GetAwaiter().GetResult();
         }
 
         public async Task<AndroidCertificatesResponse> ListAndroidCertificatesAsync(string companyId, int? pageNumber = default, int? pageSize = default, RequestOptions requestOptions = default, CancellationToken cancellationToken = default)
@@ -156,12 +156,12 @@ namespace Adyen.Service.Management
             if (pageSize != null) queryParams.Add("pageSize", pageSize.ToString());
             var endpoint = _baseUrl + $"/companies/{companyId}/androidCertificates" + ToQueryString(queryParams);
             var resource = new ServiceResource(this, endpoint);
-            return await resource.RequestAsync<AndroidCertificatesResponse>(null, requestOptions, new HttpMethod("GET"), cancellationToken);
+            return await resource.RequestAsync<AndroidCertificatesResponse>(null, requestOptions, new HttpMethod("GET"), cancellationToken).ConfigureAwait(false);
         }
         
         public ListExternalTerminalActionsResponse ListTerminalActions(string companyId, int? pageNumber = default, int? pageSize = default, string status = default, string type = default, RequestOptions requestOptions = default)
         {
-            return ListTerminalActionsAsync(companyId, pageNumber, pageSize, status, type, requestOptions).GetAwaiter().GetResult();
+            return ListTerminalActionsAsync(companyId, pageNumber, pageSize, status, type, requestOptions).ConfigureAwait(false).GetAwaiter().GetResult();
         }
 
         public async Task<ListExternalTerminalActionsResponse> ListTerminalActionsAsync(string companyId, int? pageNumber = default, int? pageSize = default, string status = default, string type = default, RequestOptions requestOptions = default, CancellationToken cancellationToken = default)
@@ -174,19 +174,19 @@ namespace Adyen.Service.Management
             if (type != null) queryParams.Add("type", type);
             var endpoint = _baseUrl + $"/companies/{companyId}/terminalActions" + ToQueryString(queryParams);
             var resource = new ServiceResource(this, endpoint);
-            return await resource.RequestAsync<ListExternalTerminalActionsResponse>(null, requestOptions, new HttpMethod("GET"), cancellationToken);
+            return await resource.RequestAsync<ListExternalTerminalActionsResponse>(null, requestOptions, new HttpMethod("GET"), cancellationToken).ConfigureAwait(false);
         }
         
         public ExternalTerminalAction GetTerminalAction(string companyId, string actionId, RequestOptions requestOptions = default)
         {
-            return GetTerminalActionAsync(companyId, actionId, requestOptions).GetAwaiter().GetResult();
+            return GetTerminalActionAsync(companyId, actionId, requestOptions).ConfigureAwait(false).GetAwaiter().GetResult();
         }
 
         public async Task<ExternalTerminalAction> GetTerminalActionAsync(string companyId, string actionId, RequestOptions requestOptions = default, CancellationToken cancellationToken = default)
         {
             var endpoint = _baseUrl + $"/companies/{companyId}/terminalActions/{actionId}";
             var resource = new ServiceResource(this, endpoint);
-            return await resource.RequestAsync<ExternalTerminalAction>(null, requestOptions, new HttpMethod("GET"), cancellationToken);
+            return await resource.RequestAsync<ExternalTerminalAction>(null, requestOptions, new HttpMethod("GET"), cancellationToken).ConfigureAwait(false);
         }
     }
 }

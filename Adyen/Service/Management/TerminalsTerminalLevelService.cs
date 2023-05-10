@@ -72,7 +72,7 @@ namespace Adyen.Service.Management
         
         public ListTerminalsResponse ListTerminals(string searchQuery = default, string countries = default, string merchantIds = default, string storeIds = default, string brandModels = default, int? pageNumber = default, int? pageSize = default, RequestOptions requestOptions = default)
         {
-            return ListTerminalsAsync(searchQuery, countries, merchantIds, storeIds, brandModels, pageNumber, pageSize, requestOptions).GetAwaiter().GetResult();
+            return ListTerminalsAsync(searchQuery, countries, merchantIds, storeIds, brandModels, pageNumber, pageSize, requestOptions).ConfigureAwait(false).GetAwaiter().GetResult();
         }
 
         public async Task<ListTerminalsResponse> ListTerminalsAsync(string searchQuery = default, string countries = default, string merchantIds = default, string storeIds = default, string brandModels = default, int? pageNumber = default, int? pageSize = default, RequestOptions requestOptions = default, CancellationToken cancellationToken = default)
@@ -88,7 +88,7 @@ namespace Adyen.Service.Management
             if (pageSize != null) queryParams.Add("pageSize", pageSize.ToString());
             var endpoint = _baseUrl + "/terminals" + ToQueryString(queryParams);
             var resource = new ServiceResource(this, endpoint);
-            return await resource.RequestAsync<ListTerminalsResponse>(null, requestOptions, new HttpMethod("GET"), cancellationToken);
+            return await resource.RequestAsync<ListTerminalsResponse>(null, requestOptions, new HttpMethod("GET"), cancellationToken).ConfigureAwait(false);
         }
     }
 }

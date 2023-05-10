@@ -180,19 +180,19 @@ namespace Adyen.Service.Management
         
         public void RemoveWebhook(string merchantId, string webhookId, RequestOptions requestOptions = default)
         {
-            RemoveWebhookAsync(merchantId, webhookId, requestOptions).GetAwaiter().GetResult();
+            RemoveWebhookAsync(merchantId, webhookId, requestOptions).ConfigureAwait(false).GetAwaiter().GetResult();
         }
 
         public async Task RemoveWebhookAsync(string merchantId, string webhookId, RequestOptions requestOptions = default, CancellationToken cancellationToken = default)
         {
             var endpoint = _baseUrl + $"/merchants/{merchantId}/webhooks/{webhookId}";
             var resource = new ServiceResource(this, endpoint);
-            await resource.RequestAsync(null, requestOptions, new HttpMethod("DELETE"), cancellationToken);
+            await resource.RequestAsync(null, requestOptions, new HttpMethod("DELETE"), cancellationToken).ConfigureAwait(false);
         }
         
         public ListWebhooksResponse ListAllWebhooks(string merchantId, int? pageNumber = default, int? pageSize = default, RequestOptions requestOptions = default)
         {
-            return ListAllWebhooksAsync(merchantId, pageNumber, pageSize, requestOptions).GetAwaiter().GetResult();
+            return ListAllWebhooksAsync(merchantId, pageNumber, pageSize, requestOptions).ConfigureAwait(false).GetAwaiter().GetResult();
         }
 
         public async Task<ListWebhooksResponse> ListAllWebhooksAsync(string merchantId, int? pageNumber = default, int? pageSize = default, RequestOptions requestOptions = default, CancellationToken cancellationToken = default)
@@ -203,67 +203,67 @@ namespace Adyen.Service.Management
             if (pageSize != null) queryParams.Add("pageSize", pageSize.ToString());
             var endpoint = _baseUrl + $"/merchants/{merchantId}/webhooks" + ToQueryString(queryParams);
             var resource = new ServiceResource(this, endpoint);
-            return await resource.RequestAsync<ListWebhooksResponse>(null, requestOptions, new HttpMethod("GET"), cancellationToken);
+            return await resource.RequestAsync<ListWebhooksResponse>(null, requestOptions, new HttpMethod("GET"), cancellationToken).ConfigureAwait(false);
         }
         
         public Webhook GetWebhook(string merchantId, string webhookId, RequestOptions requestOptions = default)
         {
-            return GetWebhookAsync(merchantId, webhookId, requestOptions).GetAwaiter().GetResult();
+            return GetWebhookAsync(merchantId, webhookId, requestOptions).ConfigureAwait(false).GetAwaiter().GetResult();
         }
 
         public async Task<Webhook> GetWebhookAsync(string merchantId, string webhookId, RequestOptions requestOptions = default, CancellationToken cancellationToken = default)
         {
             var endpoint = _baseUrl + $"/merchants/{merchantId}/webhooks/{webhookId}";
             var resource = new ServiceResource(this, endpoint);
-            return await resource.RequestAsync<Webhook>(null, requestOptions, new HttpMethod("GET"), cancellationToken);
+            return await resource.RequestAsync<Webhook>(null, requestOptions, new HttpMethod("GET"), cancellationToken).ConfigureAwait(false);
         }
         
         public Webhook UpdateWebhook(string merchantId, string webhookId, UpdateMerchantWebhookRequest updateMerchantWebhookRequest, RequestOptions requestOptions = default)
         {
-            return UpdateWebhookAsync(merchantId, webhookId, updateMerchantWebhookRequest, requestOptions).GetAwaiter().GetResult();
+            return UpdateWebhookAsync(merchantId, webhookId, updateMerchantWebhookRequest, requestOptions).ConfigureAwait(false).GetAwaiter().GetResult();
         }
 
         public async Task<Webhook> UpdateWebhookAsync(string merchantId, string webhookId, UpdateMerchantWebhookRequest updateMerchantWebhookRequest, RequestOptions requestOptions = default, CancellationToken cancellationToken = default)
         {
             var endpoint = _baseUrl + $"/merchants/{merchantId}/webhooks/{webhookId}";
             var resource = new ServiceResource(this, endpoint);
-            return await resource.RequestAsync<Webhook>(updateMerchantWebhookRequest.ToJson(), requestOptions, new HttpMethod("PATCH"), cancellationToken);
+            return await resource.RequestAsync<Webhook>(updateMerchantWebhookRequest.ToJson(), requestOptions, new HttpMethod("PATCH"), cancellationToken).ConfigureAwait(false);
         }
         
         public Webhook SetUpWebhook(string merchantId, CreateMerchantWebhookRequest createMerchantWebhookRequest, RequestOptions requestOptions = default)
         {
-            return SetUpWebhookAsync(merchantId, createMerchantWebhookRequest, requestOptions).GetAwaiter().GetResult();
+            return SetUpWebhookAsync(merchantId, createMerchantWebhookRequest, requestOptions).ConfigureAwait(false).GetAwaiter().GetResult();
         }
 
         public async Task<Webhook> SetUpWebhookAsync(string merchantId, CreateMerchantWebhookRequest createMerchantWebhookRequest, RequestOptions requestOptions = default, CancellationToken cancellationToken = default)
         {
             var endpoint = _baseUrl + $"/merchants/{merchantId}/webhooks";
             var resource = new ServiceResource(this, endpoint);
-            return await resource.RequestAsync<Webhook>(createMerchantWebhookRequest.ToJson(), requestOptions, new HttpMethod("POST"), cancellationToken);
+            return await resource.RequestAsync<Webhook>(createMerchantWebhookRequest.ToJson(), requestOptions, new HttpMethod("POST"), cancellationToken).ConfigureAwait(false);
         }
         
         public GenerateHmacKeyResponse GenerateHmacKey(string merchantId, string webhookId, RequestOptions requestOptions = default)
         {
-            return GenerateHmacKeyAsync(merchantId, webhookId, requestOptions).GetAwaiter().GetResult();
+            return GenerateHmacKeyAsync(merchantId, webhookId, requestOptions).ConfigureAwait(false).GetAwaiter().GetResult();
         }
 
         public async Task<GenerateHmacKeyResponse> GenerateHmacKeyAsync(string merchantId, string webhookId, RequestOptions requestOptions = default, CancellationToken cancellationToken = default)
         {
             var endpoint = _baseUrl + $"/merchants/{merchantId}/webhooks/{webhookId}/generateHmac";
             var resource = new ServiceResource(this, endpoint);
-            return await resource.RequestAsync<GenerateHmacKeyResponse>(null, requestOptions, new HttpMethod("POST"), cancellationToken);
+            return await resource.RequestAsync<GenerateHmacKeyResponse>(null, requestOptions, new HttpMethod("POST"), cancellationToken).ConfigureAwait(false);
         }
         
         public TestWebhookResponse TestWebhook(string merchantId, string webhookId, TestWebhookRequest testWebhookRequest, RequestOptions requestOptions = default)
         {
-            return TestWebhookAsync(merchantId, webhookId, testWebhookRequest, requestOptions).GetAwaiter().GetResult();
+            return TestWebhookAsync(merchantId, webhookId, testWebhookRequest, requestOptions).ConfigureAwait(false).GetAwaiter().GetResult();
         }
 
         public async Task<TestWebhookResponse> TestWebhookAsync(string merchantId, string webhookId, TestWebhookRequest testWebhookRequest, RequestOptions requestOptions = default, CancellationToken cancellationToken = default)
         {
             var endpoint = _baseUrl + $"/merchants/{merchantId}/webhooks/{webhookId}/test";
             var resource = new ServiceResource(this, endpoint);
-            return await resource.RequestAsync<TestWebhookResponse>(testWebhookRequest.ToJson(), requestOptions, new HttpMethod("POST"), cancellationToken);
+            return await resource.RequestAsync<TestWebhookResponse>(testWebhookRequest.ToJson(), requestOptions, new HttpMethod("POST"), cancellationToken).ConfigureAwait(false);
         }
     }
 }

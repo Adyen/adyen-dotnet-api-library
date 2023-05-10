@@ -249,7 +249,7 @@ namespace Adyen.Service.Management
         
         public BillingEntitiesResponse ListBillingEntities(string merchantId, string name = default, RequestOptions requestOptions = default)
         {
-            return ListBillingEntitiesAsync(merchantId, name, requestOptions).GetAwaiter().GetResult();
+            return ListBillingEntitiesAsync(merchantId, name, requestOptions).ConfigureAwait(false).GetAwaiter().GetResult();
         }
 
         public async Task<BillingEntitiesResponse> ListBillingEntitiesAsync(string merchantId, string name = default, RequestOptions requestOptions = default, CancellationToken cancellationToken = default)
@@ -259,12 +259,12 @@ namespace Adyen.Service.Management
             if (name != null) queryParams.Add("name", name);
             var endpoint = _baseUrl + $"/merchants/{merchantId}/billingEntities" + ToQueryString(queryParams);
             var resource = new ServiceResource(this, endpoint);
-            return await resource.RequestAsync<BillingEntitiesResponse>(null, requestOptions, new HttpMethod("GET"), cancellationToken);
+            return await resource.RequestAsync<BillingEntitiesResponse>(null, requestOptions, new HttpMethod("GET"), cancellationToken).ConfigureAwait(false);
         }
         
         public ShippingLocationsResponse ListShippingLocations(string merchantId, string name = default, int? offset = default, int? limit = default, RequestOptions requestOptions = default)
         {
-            return ListShippingLocationsAsync(merchantId, name, offset, limit, requestOptions).GetAwaiter().GetResult();
+            return ListShippingLocationsAsync(merchantId, name, offset, limit, requestOptions).ConfigureAwait(false).GetAwaiter().GetResult();
         }
 
         public async Task<ShippingLocationsResponse> ListShippingLocationsAsync(string merchantId, string name = default, int? offset = default, int? limit = default, RequestOptions requestOptions = default, CancellationToken cancellationToken = default)
@@ -276,24 +276,24 @@ namespace Adyen.Service.Management
             if (limit != null) queryParams.Add("limit", limit.ToString());
             var endpoint = _baseUrl + $"/merchants/{merchantId}/shippingLocations" + ToQueryString(queryParams);
             var resource = new ServiceResource(this, endpoint);
-            return await resource.RequestAsync<ShippingLocationsResponse>(null, requestOptions, new HttpMethod("GET"), cancellationToken);
+            return await resource.RequestAsync<ShippingLocationsResponse>(null, requestOptions, new HttpMethod("GET"), cancellationToken).ConfigureAwait(false);
         }
         
         public TerminalModelsResponse ListTerminalModels(string merchantId, RequestOptions requestOptions = default)
         {
-            return ListTerminalModelsAsync(merchantId, requestOptions).GetAwaiter().GetResult();
+            return ListTerminalModelsAsync(merchantId, requestOptions).ConfigureAwait(false).GetAwaiter().GetResult();
         }
 
         public async Task<TerminalModelsResponse> ListTerminalModelsAsync(string merchantId, RequestOptions requestOptions = default, CancellationToken cancellationToken = default)
         {
             var endpoint = _baseUrl + $"/merchants/{merchantId}/terminalModels";
             var resource = new ServiceResource(this, endpoint);
-            return await resource.RequestAsync<TerminalModelsResponse>(null, requestOptions, new HttpMethod("GET"), cancellationToken);
+            return await resource.RequestAsync<TerminalModelsResponse>(null, requestOptions, new HttpMethod("GET"), cancellationToken).ConfigureAwait(false);
         }
         
         public TerminalOrdersResponse ListOrders(string merchantId, string customerOrderReference = default, string status = default, int? offset = default, int? limit = default, RequestOptions requestOptions = default)
         {
-            return ListOrdersAsync(merchantId, customerOrderReference, status, offset, limit, requestOptions).GetAwaiter().GetResult();
+            return ListOrdersAsync(merchantId, customerOrderReference, status, offset, limit, requestOptions).ConfigureAwait(false).GetAwaiter().GetResult();
         }
 
         public async Task<TerminalOrdersResponse> ListOrdersAsync(string merchantId, string customerOrderReference = default, string status = default, int? offset = default, int? limit = default, RequestOptions requestOptions = default, CancellationToken cancellationToken = default)
@@ -306,24 +306,24 @@ namespace Adyen.Service.Management
             if (limit != null) queryParams.Add("limit", limit.ToString());
             var endpoint = _baseUrl + $"/merchants/{merchantId}/terminalOrders" + ToQueryString(queryParams);
             var resource = new ServiceResource(this, endpoint);
-            return await resource.RequestAsync<TerminalOrdersResponse>(null, requestOptions, new HttpMethod("GET"), cancellationToken);
+            return await resource.RequestAsync<TerminalOrdersResponse>(null, requestOptions, new HttpMethod("GET"), cancellationToken).ConfigureAwait(false);
         }
         
         public TerminalOrder GetOrder(string merchantId, string orderId, RequestOptions requestOptions = default)
         {
-            return GetOrderAsync(merchantId, orderId, requestOptions).GetAwaiter().GetResult();
+            return GetOrderAsync(merchantId, orderId, requestOptions).ConfigureAwait(false).GetAwaiter().GetResult();
         }
 
         public async Task<TerminalOrder> GetOrderAsync(string merchantId, string orderId, RequestOptions requestOptions = default, CancellationToken cancellationToken = default)
         {
             var endpoint = _baseUrl + $"/merchants/{merchantId}/terminalOrders/{orderId}";
             var resource = new ServiceResource(this, endpoint);
-            return await resource.RequestAsync<TerminalOrder>(null, requestOptions, new HttpMethod("GET"), cancellationToken);
+            return await resource.RequestAsync<TerminalOrder>(null, requestOptions, new HttpMethod("GET"), cancellationToken).ConfigureAwait(false);
         }
         
         public TerminalProductsResponse ListTerminalProducts(string merchantId, string country, string terminalModelId = default, int? offset = default, int? limit = default, RequestOptions requestOptions = default)
         {
-            return ListTerminalProductsAsync(merchantId, country, terminalModelId, offset, limit, requestOptions).GetAwaiter().GetResult();
+            return ListTerminalProductsAsync(merchantId, country, terminalModelId, offset, limit, requestOptions).ConfigureAwait(false).GetAwaiter().GetResult();
         }
 
         public async Task<TerminalProductsResponse> ListTerminalProductsAsync(string merchantId, string country, string terminalModelId = default, int? offset = default, int? limit = default, RequestOptions requestOptions = default, CancellationToken cancellationToken = default)
@@ -336,55 +336,55 @@ namespace Adyen.Service.Management
             if (limit != null) queryParams.Add("limit", limit.ToString());
             var endpoint = _baseUrl + $"/merchants/{merchantId}/terminalProducts" + ToQueryString(queryParams);
             var resource = new ServiceResource(this, endpoint);
-            return await resource.RequestAsync<TerminalProductsResponse>(null, requestOptions, new HttpMethod("GET"), cancellationToken);
+            return await resource.RequestAsync<TerminalProductsResponse>(null, requestOptions, new HttpMethod("GET"), cancellationToken).ConfigureAwait(false);
         }
         
         public TerminalOrder UpdateOrder(string merchantId, string orderId, TerminalOrderRequest terminalOrderRequest, RequestOptions requestOptions = default)
         {
-            return UpdateOrderAsync(merchantId, orderId, terminalOrderRequest, requestOptions).GetAwaiter().GetResult();
+            return UpdateOrderAsync(merchantId, orderId, terminalOrderRequest, requestOptions).ConfigureAwait(false).GetAwaiter().GetResult();
         }
 
         public async Task<TerminalOrder> UpdateOrderAsync(string merchantId, string orderId, TerminalOrderRequest terminalOrderRequest, RequestOptions requestOptions = default, CancellationToken cancellationToken = default)
         {
             var endpoint = _baseUrl + $"/merchants/{merchantId}/terminalOrders/{orderId}";
             var resource = new ServiceResource(this, endpoint);
-            return await resource.RequestAsync<TerminalOrder>(terminalOrderRequest.ToJson(), requestOptions, new HttpMethod("PATCH"), cancellationToken);
+            return await resource.RequestAsync<TerminalOrder>(terminalOrderRequest.ToJson(), requestOptions, new HttpMethod("PATCH"), cancellationToken).ConfigureAwait(false);
         }
         
         public ShippingLocation CreateShippingLocation(string merchantId, ShippingLocation shippingLocation, RequestOptions requestOptions = default)
         {
-            return CreateShippingLocationAsync(merchantId, shippingLocation, requestOptions).GetAwaiter().GetResult();
+            return CreateShippingLocationAsync(merchantId, shippingLocation, requestOptions).ConfigureAwait(false).GetAwaiter().GetResult();
         }
 
         public async Task<ShippingLocation> CreateShippingLocationAsync(string merchantId, ShippingLocation shippingLocation, RequestOptions requestOptions = default, CancellationToken cancellationToken = default)
         {
             var endpoint = _baseUrl + $"/merchants/{merchantId}/shippingLocations";
             var resource = new ServiceResource(this, endpoint);
-            return await resource.RequestAsync<ShippingLocation>(shippingLocation.ToJson(), requestOptions, new HttpMethod("POST"), cancellationToken);
+            return await resource.RequestAsync<ShippingLocation>(shippingLocation.ToJson(), requestOptions, new HttpMethod("POST"), cancellationToken).ConfigureAwait(false);
         }
         
         public TerminalOrder CreateOrder(string merchantId, TerminalOrderRequest terminalOrderRequest, RequestOptions requestOptions = default)
         {
-            return CreateOrderAsync(merchantId, terminalOrderRequest, requestOptions).GetAwaiter().GetResult();
+            return CreateOrderAsync(merchantId, terminalOrderRequest, requestOptions).ConfigureAwait(false).GetAwaiter().GetResult();
         }
 
         public async Task<TerminalOrder> CreateOrderAsync(string merchantId, TerminalOrderRequest terminalOrderRequest, RequestOptions requestOptions = default, CancellationToken cancellationToken = default)
         {
             var endpoint = _baseUrl + $"/merchants/{merchantId}/terminalOrders";
             var resource = new ServiceResource(this, endpoint);
-            return await resource.RequestAsync<TerminalOrder>(terminalOrderRequest.ToJson(), requestOptions, new HttpMethod("POST"), cancellationToken);
+            return await resource.RequestAsync<TerminalOrder>(terminalOrderRequest.ToJson(), requestOptions, new HttpMethod("POST"), cancellationToken).ConfigureAwait(false);
         }
         
         public TerminalOrder CancelOrder(string merchantId, string orderId, RequestOptions requestOptions = default)
         {
-            return CancelOrderAsync(merchantId, orderId, requestOptions).GetAwaiter().GetResult();
+            return CancelOrderAsync(merchantId, orderId, requestOptions).ConfigureAwait(false).GetAwaiter().GetResult();
         }
 
         public async Task<TerminalOrder> CancelOrderAsync(string merchantId, string orderId, RequestOptions requestOptions = default, CancellationToken cancellationToken = default)
         {
             var endpoint = _baseUrl + $"/merchants/{merchantId}/terminalOrders/{orderId}/cancel";
             var resource = new ServiceResource(this, endpoint);
-            return await resource.RequestAsync<TerminalOrder>(null, requestOptions, new HttpMethod("POST"), cancellationToken);
+            return await resource.RequestAsync<TerminalOrder>(null, requestOptions, new HttpMethod("POST"), cancellationToken).ConfigureAwait(false);
         }
     }
 }

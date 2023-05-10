@@ -33,7 +33,7 @@ namespace Adyen.Service.Payout
         /// <param name="modifyRequest"><see cref="ModifyRequest"/> - </param>
         /// <param name="requestOptions"><see cref="RequestOptions"/> - Additional request options.</param>
         /// <returns><see cref="ModifyResponse"/>.</returns>
-        ModifyResponse ConfirmPayout(ModifyRequest modifyRequest, RequestOptions requestOptions = default);
+        ModifyResponse ConfirmThirdParty(ModifyRequest modifyRequest, RequestOptions requestOptions = default);
         
         /// <summary>
         /// Confirm a payout
@@ -42,7 +42,7 @@ namespace Adyen.Service.Payout
         /// <param name="requestOptions"><see cref="RequestOptions"/> - Additional request options.</param>
         /// <param name="cancellationToken"> A CancellationToken enables cooperative cancellation between threads, thread pool work items, or Task objects.</param>
         /// <returns>Task of <see cref="ModifyResponse"/>.</returns>
-        Task<ModifyResponse> ConfirmPayoutAsync(ModifyRequest modifyRequest, RequestOptions requestOptions = default, CancellationToken cancellationToken = default);
+        Task<ModifyResponse> ConfirmThirdPartyAsync(ModifyRequest modifyRequest, RequestOptions requestOptions = default, CancellationToken cancellationToken = default);
         
         /// <summary>
         /// Cancel a payout
@@ -50,7 +50,7 @@ namespace Adyen.Service.Payout
         /// <param name="modifyRequest"><see cref="ModifyRequest"/> - </param>
         /// <param name="requestOptions"><see cref="RequestOptions"/> - Additional request options.</param>
         /// <returns><see cref="ModifyResponse"/>.</returns>
-        ModifyResponse CancelPayout(ModifyRequest modifyRequest, RequestOptions requestOptions = default);
+        ModifyResponse DeclineThirdParty(ModifyRequest modifyRequest, RequestOptions requestOptions = default);
         
         /// <summary>
         /// Cancel a payout
@@ -59,7 +59,7 @@ namespace Adyen.Service.Payout
         /// <param name="requestOptions"><see cref="RequestOptions"/> - Additional request options.</param>
         /// <param name="cancellationToken"> A CancellationToken enables cooperative cancellation between threads, thread pool work items, or Task objects.</param>
         /// <returns>Task of <see cref="ModifyResponse"/>.</returns>
-        Task<ModifyResponse> CancelPayoutAsync(ModifyRequest modifyRequest, RequestOptions requestOptions = default, CancellationToken cancellationToken = default);
+        Task<ModifyResponse> DeclineThirdPartyAsync(ModifyRequest modifyRequest, RequestOptions requestOptions = default, CancellationToken cancellationToken = default);
         
     }
     
@@ -75,28 +75,28 @@ namespace Adyen.Service.Payout
             _baseUrl = CreateBaseUrl("https://pal-test.adyen.com/pal/servlet/Payout/v68");
         }
         
-        public ModifyResponse ConfirmPayout(ModifyRequest modifyRequest, RequestOptions requestOptions = default)
+        public ModifyResponse ConfirmThirdParty(ModifyRequest modifyRequest, RequestOptions requestOptions = default)
         {
-            return ConfirmPayoutAsync(modifyRequest, requestOptions).GetAwaiter().GetResult();
+            return ConfirmThirdPartyAsync(modifyRequest, requestOptions).ConfigureAwait(false).GetAwaiter().GetResult();
         }
 
-        public async Task<ModifyResponse> ConfirmPayoutAsync(ModifyRequest modifyRequest, RequestOptions requestOptions = default, CancellationToken cancellationToken = default)
+        public async Task<ModifyResponse> ConfirmThirdPartyAsync(ModifyRequest modifyRequest, RequestOptions requestOptions = default, CancellationToken cancellationToken = default)
         {
             var endpoint = _baseUrl + "/confirmThirdParty";
             var resource = new ServiceResource(this, endpoint);
-            return await resource.RequestAsync<ModifyResponse>(modifyRequest.ToJson(), requestOptions, new HttpMethod("POST"), cancellationToken);
+            return await resource.RequestAsync<ModifyResponse>(modifyRequest.ToJson(), requestOptions, new HttpMethod("POST"), cancellationToken).ConfigureAwait(false);
         }
         
-        public ModifyResponse CancelPayout(ModifyRequest modifyRequest, RequestOptions requestOptions = default)
+        public ModifyResponse DeclineThirdParty(ModifyRequest modifyRequest, RequestOptions requestOptions = default)
         {
-            return CancelPayoutAsync(modifyRequest, requestOptions).GetAwaiter().GetResult();
+            return DeclineThirdPartyAsync(modifyRequest, requestOptions).ConfigureAwait(false).GetAwaiter().GetResult();
         }
 
-        public async Task<ModifyResponse> CancelPayoutAsync(ModifyRequest modifyRequest, RequestOptions requestOptions = default, CancellationToken cancellationToken = default)
+        public async Task<ModifyResponse> DeclineThirdPartyAsync(ModifyRequest modifyRequest, RequestOptions requestOptions = default, CancellationToken cancellationToken = default)
         {
             var endpoint = _baseUrl + "/declineThirdParty";
             var resource = new ServiceResource(this, endpoint);
-            return await resource.RequestAsync<ModifyResponse>(modifyRequest.ToJson(), requestOptions, new HttpMethod("POST"), cancellationToken);
+            return await resource.RequestAsync<ModifyResponse>(modifyRequest.ToJson(), requestOptions, new HttpMethod("POST"), cancellationToken).ConfigureAwait(false);
         }
     }
 }

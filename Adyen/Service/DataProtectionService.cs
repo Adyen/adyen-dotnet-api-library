@@ -23,7 +23,7 @@ using Adyen.Model.DataProtection;
 namespace Adyen.Service
 {
     /// <summary>
-    /// GeneralService Interface
+    /// DefaultService Interface
     /// </summary>
     public interface IDataProtectionService
     {
@@ -60,14 +60,14 @@ namespace Adyen.Service
         
         public SubjectErasureResponse RequestSubjectErasure(SubjectErasureByPspReferenceRequest subjectErasureByPspReferenceRequest, RequestOptions requestOptions = default)
         {
-            return RequestSubjectErasureAsync(subjectErasureByPspReferenceRequest, requestOptions).GetAwaiter().GetResult();
+            return RequestSubjectErasureAsync(subjectErasureByPspReferenceRequest, requestOptions).ConfigureAwait(false).GetAwaiter().GetResult();
         }
 
         public async Task<SubjectErasureResponse> RequestSubjectErasureAsync(SubjectErasureByPspReferenceRequest subjectErasureByPspReferenceRequest, RequestOptions requestOptions = default, CancellationToken cancellationToken = default)
         {
             var endpoint = _baseUrl + "/requestSubjectErasure";
             var resource = new ServiceResource(this, endpoint);
-            return await resource.RequestAsync<SubjectErasureResponse>(subjectErasureByPspReferenceRequest.ToJson(), requestOptions, new HttpMethod("POST"), cancellationToken);
+            return await resource.RequestAsync<SubjectErasureResponse>(subjectErasureByPspReferenceRequest.ToJson(), requestOptions, new HttpMethod("POST"), cancellationToken).ConfigureAwait(false);
         }
     }
 }

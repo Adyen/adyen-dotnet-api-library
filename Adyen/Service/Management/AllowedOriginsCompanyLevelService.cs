@@ -123,50 +123,50 @@ namespace Adyen.Service.Management
         
         public void DeleteAllowedOrigin(string companyId, string apiCredentialId, string originId, RequestOptions requestOptions = default)
         {
-            DeleteAllowedOriginAsync(companyId, apiCredentialId, originId, requestOptions).GetAwaiter().GetResult();
+            DeleteAllowedOriginAsync(companyId, apiCredentialId, originId, requestOptions).ConfigureAwait(false).GetAwaiter().GetResult();
         }
 
         public async Task DeleteAllowedOriginAsync(string companyId, string apiCredentialId, string originId, RequestOptions requestOptions = default, CancellationToken cancellationToken = default)
         {
             var endpoint = _baseUrl + $"/companies/{companyId}/apiCredentials/{apiCredentialId}/allowedOrigins/{originId}";
             var resource = new ServiceResource(this, endpoint);
-            await resource.RequestAsync(null, requestOptions, new HttpMethod("DELETE"), cancellationToken);
+            await resource.RequestAsync(null, requestOptions, new HttpMethod("DELETE"), cancellationToken).ConfigureAwait(false);
         }
         
         public AllowedOriginsResponse ListAllowedOrigins(string companyId, string apiCredentialId, RequestOptions requestOptions = default)
         {
-            return ListAllowedOriginsAsync(companyId, apiCredentialId, requestOptions).GetAwaiter().GetResult();
+            return ListAllowedOriginsAsync(companyId, apiCredentialId, requestOptions).ConfigureAwait(false).GetAwaiter().GetResult();
         }
 
         public async Task<AllowedOriginsResponse> ListAllowedOriginsAsync(string companyId, string apiCredentialId, RequestOptions requestOptions = default, CancellationToken cancellationToken = default)
         {
             var endpoint = _baseUrl + $"/companies/{companyId}/apiCredentials/{apiCredentialId}/allowedOrigins";
             var resource = new ServiceResource(this, endpoint);
-            return await resource.RequestAsync<AllowedOriginsResponse>(null, requestOptions, new HttpMethod("GET"), cancellationToken);
+            return await resource.RequestAsync<AllowedOriginsResponse>(null, requestOptions, new HttpMethod("GET"), cancellationToken).ConfigureAwait(false);
         }
         
         public AllowedOrigin GetAllowedOrigin(string companyId, string apiCredentialId, string originId, RequestOptions requestOptions = default)
         {
-            return GetAllowedOriginAsync(companyId, apiCredentialId, originId, requestOptions).GetAwaiter().GetResult();
+            return GetAllowedOriginAsync(companyId, apiCredentialId, originId, requestOptions).ConfigureAwait(false).GetAwaiter().GetResult();
         }
 
         public async Task<AllowedOrigin> GetAllowedOriginAsync(string companyId, string apiCredentialId, string originId, RequestOptions requestOptions = default, CancellationToken cancellationToken = default)
         {
             var endpoint = _baseUrl + $"/companies/{companyId}/apiCredentials/{apiCredentialId}/allowedOrigins/{originId}";
             var resource = new ServiceResource(this, endpoint);
-            return await resource.RequestAsync<AllowedOrigin>(null, requestOptions, new HttpMethod("GET"), cancellationToken);
+            return await resource.RequestAsync<AllowedOrigin>(null, requestOptions, new HttpMethod("GET"), cancellationToken).ConfigureAwait(false);
         }
         
         public AllowedOriginsResponse CreateAllowedOrigin(string companyId, string apiCredentialId, AllowedOrigin allowedOrigin, RequestOptions requestOptions = default)
         {
-            return CreateAllowedOriginAsync(companyId, apiCredentialId, allowedOrigin, requestOptions).GetAwaiter().GetResult();
+            return CreateAllowedOriginAsync(companyId, apiCredentialId, allowedOrigin, requestOptions).ConfigureAwait(false).GetAwaiter().GetResult();
         }
 
         public async Task<AllowedOriginsResponse> CreateAllowedOriginAsync(string companyId, string apiCredentialId, AllowedOrigin allowedOrigin, RequestOptions requestOptions = default, CancellationToken cancellationToken = default)
         {
             var endpoint = _baseUrl + $"/companies/{companyId}/apiCredentials/{apiCredentialId}/allowedOrigins";
             var resource = new ServiceResource(this, endpoint);
-            return await resource.RequestAsync<AllowedOriginsResponse>(allowedOrigin.ToJson(), requestOptions, new HttpMethod("POST"), cancellationToken);
+            return await resource.RequestAsync<AllowedOriginsResponse>(allowedOrigin.ToJson(), requestOptions, new HttpMethod("POST"), cancellationToken).ConfigureAwait(false);
         }
     }
 }
