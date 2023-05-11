@@ -405,6 +405,7 @@ namespace Adyen.Model.BalancePlatform
             }
             int match = 0;
             List<string> matchedTypes = new List<string>();
+            var type = (string)JObject.Parse(jsonString)["type"];
 
             try
             {
@@ -417,8 +418,11 @@ namespace Adyen.Model.BalancePlatform
                 {
                     newBankAccountIdentificationValidationRequestAccountIdentification = new BankAccountIdentificationValidationRequestAccountIdentification(JsonConvert.DeserializeObject<AULocalAccountIdentification>(jsonString, BankAccountIdentificationValidationRequestAccountIdentification.AdditionalPropertiesSerializerSettings));
                 }
-                matchedTypes.Add("AULocalAccountIdentification");
-                match++;
+                if (type != null || JsonConvert.SerializeObject((AULocalAccountIdentification.TypeEnum) 1).Contains(type))
+                {
+                    matchedTypes.Add("AULocalAccountIdentification");
+                    match++;
+                }
             }
             catch (Exception ex)
             {
@@ -439,8 +443,11 @@ namespace Adyen.Model.BalancePlatform
                 {
                     newBankAccountIdentificationValidationRequestAccountIdentification = new BankAccountIdentificationValidationRequestAccountIdentification(JsonConvert.DeserializeObject<CALocalAccountIdentification>(jsonString, BankAccountIdentificationValidationRequestAccountIdentification.AdditionalPropertiesSerializerSettings));
                 }
-                matchedTypes.Add("CALocalAccountIdentification");
-                match++;
+                if (type != null || JsonConvert.SerializeObject((CALocalAccountIdentification.TypeEnum) 1).Contains(type))
+                {
+                    matchedTypes.Add("CALocalAccountIdentification");
+                    match++;
+                }
             }
             catch (Exception ex)
             {
@@ -461,8 +468,11 @@ namespace Adyen.Model.BalancePlatform
                 {
                     newBankAccountIdentificationValidationRequestAccountIdentification = new BankAccountIdentificationValidationRequestAccountIdentification(JsonConvert.DeserializeObject<CZLocalAccountIdentification>(jsonString, BankAccountIdentificationValidationRequestAccountIdentification.AdditionalPropertiesSerializerSettings));
                 }
-                matchedTypes.Add("CZLocalAccountIdentification");
-                match++;
+                if (type != null || JsonConvert.SerializeObject((CZLocalAccountIdentification.TypeEnum) 1).Contains(type))
+                {
+                    matchedTypes.Add("CZLocalAccountIdentification");
+                    match++;
+                }
             }
             catch (Exception ex)
             {
@@ -483,8 +493,11 @@ namespace Adyen.Model.BalancePlatform
                 {
                     newBankAccountIdentificationValidationRequestAccountIdentification = new BankAccountIdentificationValidationRequestAccountIdentification(JsonConvert.DeserializeObject<HULocalAccountIdentification>(jsonString, BankAccountIdentificationValidationRequestAccountIdentification.AdditionalPropertiesSerializerSettings));
                 }
-                matchedTypes.Add("HULocalAccountIdentification");
-                match++;
+                if (type != null || JsonConvert.SerializeObject((HULocalAccountIdentification.TypeEnum) 1).Contains(type))
+                {
+                    matchedTypes.Add("HULocalAccountIdentification");
+                    match++;
+                }
             }
             catch (Exception ex)
             {
@@ -505,8 +518,11 @@ namespace Adyen.Model.BalancePlatform
                 {
                     newBankAccountIdentificationValidationRequestAccountIdentification = new BankAccountIdentificationValidationRequestAccountIdentification(JsonConvert.DeserializeObject<IbanAccountIdentification>(jsonString, BankAccountIdentificationValidationRequestAccountIdentification.AdditionalPropertiesSerializerSettings));
                 }
-                matchedTypes.Add("IbanAccountIdentification");
-                match++;
+                if (type != null || JsonConvert.SerializeObject((IbanAccountIdentification.TypeEnum) 1).Contains(type))
+                {
+                    matchedTypes.Add("IbanAccountIdentification");
+                    match++;
+                }
             }
             catch (Exception ex)
             {
@@ -527,8 +543,11 @@ namespace Adyen.Model.BalancePlatform
                 {
                     newBankAccountIdentificationValidationRequestAccountIdentification = new BankAccountIdentificationValidationRequestAccountIdentification(JsonConvert.DeserializeObject<NOLocalAccountIdentification>(jsonString, BankAccountIdentificationValidationRequestAccountIdentification.AdditionalPropertiesSerializerSettings));
                 }
-                matchedTypes.Add("NOLocalAccountIdentification");
-                match++;
+                if (type != null || JsonConvert.SerializeObject((NOLocalAccountIdentification.TypeEnum) 1).Contains(type))
+                {
+                    matchedTypes.Add("NOLocalAccountIdentification");
+                    match++;
+                }
             }
             catch (Exception ex)
             {
@@ -549,8 +568,11 @@ namespace Adyen.Model.BalancePlatform
                 {
                     newBankAccountIdentificationValidationRequestAccountIdentification = new BankAccountIdentificationValidationRequestAccountIdentification(JsonConvert.DeserializeObject<NumberAndBicAccountIdentification>(jsonString, BankAccountIdentificationValidationRequestAccountIdentification.AdditionalPropertiesSerializerSettings));
                 }
-                matchedTypes.Add("NumberAndBicAccountIdentification");
-                match++;
+                if (type != null || JsonConvert.SerializeObject((NumberAndBicAccountIdentification.TypeEnum) 1).Contains(type))
+                {
+                    matchedTypes.Add("NumberAndBicAccountIdentification");
+                    match++;
+                }
             }
             catch (Exception ex)
             {
@@ -571,8 +593,11 @@ namespace Adyen.Model.BalancePlatform
                 {
                     newBankAccountIdentificationValidationRequestAccountIdentification = new BankAccountIdentificationValidationRequestAccountIdentification(JsonConvert.DeserializeObject<PLLocalAccountIdentification>(jsonString, BankAccountIdentificationValidationRequestAccountIdentification.AdditionalPropertiesSerializerSettings));
                 }
-                matchedTypes.Add("PLLocalAccountIdentification");
-                match++;
+                if (type != null || JsonConvert.SerializeObject((PLLocalAccountIdentification.TypeEnum) 1).Contains(type))
+                {
+                    matchedTypes.Add("PLLocalAccountIdentification");
+                    match++;
+                }
             }
             catch (Exception ex)
             {
@@ -593,8 +618,11 @@ namespace Adyen.Model.BalancePlatform
                 {
                     newBankAccountIdentificationValidationRequestAccountIdentification = new BankAccountIdentificationValidationRequestAccountIdentification(JsonConvert.DeserializeObject<SELocalAccountIdentification>(jsonString, BankAccountIdentificationValidationRequestAccountIdentification.AdditionalPropertiesSerializerSettings));
                 }
-                matchedTypes.Add("SELocalAccountIdentification");
-                match++;
+                if (type != null || JsonConvert.SerializeObject((SELocalAccountIdentification.TypeEnum) 1).Contains(type))
+                {
+                    matchedTypes.Add("SELocalAccountIdentification");
+                    match++;
+                }
             }
             catch (Exception ex)
             {
@@ -615,8 +643,11 @@ namespace Adyen.Model.BalancePlatform
                 {
                     newBankAccountIdentificationValidationRequestAccountIdentification = new BankAccountIdentificationValidationRequestAccountIdentification(JsonConvert.DeserializeObject<SGLocalAccountIdentification>(jsonString, BankAccountIdentificationValidationRequestAccountIdentification.AdditionalPropertiesSerializerSettings));
                 }
-                matchedTypes.Add("SGLocalAccountIdentification");
-                match++;
+                if (type != null || JsonConvert.SerializeObject((SGLocalAccountIdentification.TypeEnum) 1).Contains(type))
+                {
+                    matchedTypes.Add("SGLocalAccountIdentification");
+                    match++;
+                }
             }
             catch (Exception ex)
             {
@@ -637,8 +668,11 @@ namespace Adyen.Model.BalancePlatform
                 {
                     newBankAccountIdentificationValidationRequestAccountIdentification = new BankAccountIdentificationValidationRequestAccountIdentification(JsonConvert.DeserializeObject<UKLocalAccountIdentification>(jsonString, BankAccountIdentificationValidationRequestAccountIdentification.AdditionalPropertiesSerializerSettings));
                 }
-                matchedTypes.Add("UKLocalAccountIdentification");
-                match++;
+                if (type != null || JsonConvert.SerializeObject((UKLocalAccountIdentification.TypeEnum) 1).Contains(type))
+                {
+                    matchedTypes.Add("UKLocalAccountIdentification");
+                    match++;
+                }
             }
             catch (Exception ex)
             {
@@ -659,8 +693,11 @@ namespace Adyen.Model.BalancePlatform
                 {
                     newBankAccountIdentificationValidationRequestAccountIdentification = new BankAccountIdentificationValidationRequestAccountIdentification(JsonConvert.DeserializeObject<USLocalAccountIdentification>(jsonString, BankAccountIdentificationValidationRequestAccountIdentification.AdditionalPropertiesSerializerSettings));
                 }
-                matchedTypes.Add("USLocalAccountIdentification");
-                match++;
+                if (type != null || JsonConvert.SerializeObject((USLocalAccountIdentification.TypeEnum) 1).Contains(type))
+                {
+                    matchedTypes.Add("USLocalAccountIdentification");
+                    match++;
+                }
             }
             catch (Exception ex)
             {
@@ -674,11 +711,7 @@ namespace Adyen.Model.BalancePlatform
             {
                 throw new InvalidDataException("The JSON string `" + jsonString + "` cannot be deserialized into any schema defined.");
             }
-            else if (match > 1)
-            {
-                throw new InvalidDataException("The JSON string `" + jsonString + "` incorrectly matches more than one schema (should be exactly one match): " + matchedTypes);
-            }
-
+            
             // deserialization is considered successful at this point if no exception has been thrown.
             return newBankAccountIdentificationValidationRequestAccountIdentification;
         }

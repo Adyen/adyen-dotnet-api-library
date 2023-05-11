@@ -1,0 +1,20 @@
+{
+  "balancePlatform": "BalandePlatformExample",
+  "contactDetails": {
+    "address": {
+      "city": "Amsterdam",
+      "country": "NL",
+      "houseNumberOrName": "274",
+      "postalCode": "1020CD",
+      "street": "Brannan Street"
+    },
+    "email": "s.hopper@example.com",
+    "phone": {
+      "number": "+315551231234",
+      "type": "Mobile"
+    }
+  },
+  "description": "S.Hopper - Staff 123",
+  "id": "AH32272223222B5CM4MWJ892H",
+  "status": "active"
+}

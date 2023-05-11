@@ -1,0 +1,15 @@
+{
+  "counterparty": {
+    "merchantAccount": "YOUR_MERCHANT_ACCOUNT"
+  },
+  "triggerAmount": {
+    "currency": "EUR",
+    "value": 50000
+  },
+  "currency": "EUR",
+  "schedule": {
+    "type": "balance"
+  },
+  "type": "pull",
+  "status": "active"
+}

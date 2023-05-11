@@ -33,7 +33,7 @@ namespace Adyen.Service.LegalEntityManagement
         /// <param name="id"><see cref="string"/> - The unique identifier of the document to be deleted.</param>
         /// <param name="requestOptions"><see cref="RequestOptions"/> - Additional request options.</param>
         /// <returns><see cref="Object"/>.</returns>
-        Object DeleteDocument(string id, RequestOptions requestOptions = default);
+        void DeleteDocument(string id, RequestOptions requestOptions = default);
         
         /// <summary>
         /// Delete a document
@@ -42,7 +42,7 @@ namespace Adyen.Service.LegalEntityManagement
         /// <param name="requestOptions"><see cref="RequestOptions"/> - Additional request options.</param>
         /// <param name="cancellationToken"> A CancellationToken enables cooperative cancellation between threads, thread pool work items, or Task objects.</param>
         /// <returns>Task of <see cref="Object"/>.</returns>
-        Task<Object> DeleteDocumentAsync(string id, RequestOptions requestOptions = default, CancellationToken cancellationToken = default);
+        Task DeleteDocumentAsync(string id, RequestOptions requestOptions = default, CancellationToken cancellationToken = default);
         
         /// <summary>
         /// Get a document
@@ -111,16 +111,16 @@ namespace Adyen.Service.LegalEntityManagement
             _baseUrl = CreateBaseUrl("https://kyc-test.adyen.com/lem/v3");
         }
         
-        public Object DeleteDocument(string id, RequestOptions requestOptions = default)
+        public void DeleteDocument(string id, RequestOptions requestOptions = default)
         {
-            return DeleteDocumentAsync(id, requestOptions).ConfigureAwait(false).GetAwaiter().GetResult();
+            DeleteDocumentAsync(id, requestOptions).ConfigureAwait(false).GetAwaiter().GetResult();
         }
 
-        public async Task<Object> DeleteDocumentAsync(string id, RequestOptions requestOptions = default, CancellationToken cancellationToken = default)
+        public async Task DeleteDocumentAsync(string id, RequestOptions requestOptions = default, CancellationToken cancellationToken = default)
         {
             var endpoint = _baseUrl + $"/documents/{id}";
             var resource = new ServiceResource(this, endpoint);
-            return await resource.RequestAsync<Object>(null, requestOptions, new HttpMethod("DELETE"), cancellationToken).ConfigureAwait(false);
+            await resource.RequestAsync(null, requestOptions, new HttpMethod("DELETE"), cancellationToken).ConfigureAwait(false);
         }
         
         public Document GetDocument(string id, RequestOptions requestOptions = default)

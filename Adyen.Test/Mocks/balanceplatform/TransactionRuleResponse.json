@@ -1,0 +1,15 @@
+{
+  "transactionRule": {
+    "description": "Allow 5 transactions per month",
+    "interval": {
+      "type": "monthly"
+    },
+    "maxTransactions": 5,
+    "paymentInstrumentId": "PI3227C223222B59KGTXP884R",
+    "reference": "myRule12345",
+    "startDate": "2021-01-25T12:46:35",
+    "status": "active",
+    "type": "velocity",
+    "id": "TR32272223222B5CMD3V73HXG"
+  }
+}
