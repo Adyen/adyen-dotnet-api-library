@@ -1,26 +1,3 @@
-#region License
-// /*
-//  *                       ######
-//  *                       ######
-//  * ############    ####( ######  #####. ######  ############   ############
-//  * #############  #####( ######  #####. ######  #############  #############
-//  *        ######  #####( ######  #####. ######  #####  ######  #####  ######
-//  * ###### ######  #####( ######  #####. ######  #####  #####   #####  ######
-//  * ###### ######  #####( ######  #####. ######  #####          #####  ######
-//  * #############  #############  #############  #############  #####  ######
-//  *  ############   ############  #############   ############  #####  ######
-//  *                                      ######
-//  *                               #############
-//  *                               ############
-//  *
-//  * Adyen Dotnet API Library
-//  *
-//  * Copyright (c) 2020 Adyen B.V.
-//  * This file is open source and available under the MIT license.
-//  * See the LICENSE file for more info.
-//  */
-#endregion
-
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -36,7 +13,7 @@ namespace Adyen.Model.MarketPay
     /// PayoutMethod
     /// </summary>
     [DataContract]
-        public partial class PayoutMethod :  IEquatable<PayoutMethod>, IValidatableObject
+        public class PayoutMethod :  IEquatable<PayoutMethod>, IValidatableObject
     {
         /// <summary>
         /// Defines PayoutMethodType
@@ -69,30 +46,24 @@ namespace Adyen.Model.MarketPay
             {
                 throw new InvalidDataException("merchantAccount is a required property for PayoutMethod and cannot be null");
             }
-            else
-            {
-                this.MerchantAccount = merchantAccount;
-            }
+
+            MerchantAccount = merchantAccount;
             // to ensure "recurringDetailReference" is required (not null)
             if (recurringDetailReference == null)
             {
                 throw new InvalidDataException("recurringDetailReference is a required property for PayoutMethod and cannot be null");
             }
-            else
-            {
-                this.RecurringDetailReference = recurringDetailReference;
-            }
+
+            RecurringDetailReference = recurringDetailReference;
             // to ensure "shopperReference" is required (not null)
             if (shopperReference == null)
             {
                 throw new InvalidDataException("shopperReference is a required property for PayoutMethod and cannot be null");
             }
-            else
-            {
-                this.ShopperReference = shopperReference;
-            }
-            this.PayoutMethodCode = payoutMethodCode;
-            this.PayoutMethodType = payoutMethodType;
+
+            ShopperReference = shopperReference;
+            PayoutMethodCode = payoutMethodCode;
+            PayoutMethodType = payoutMethodType;
         }
         
         /// <summary>
@@ -153,7 +124,7 @@ namespace Adyen.Model.MarketPay
         /// <returns>Boolean</returns>
         public override bool Equals(object input)
         {
-            return this.Equals(input as PayoutMethod);
+            return Equals(input as PayoutMethod);
         }
 
         /// <summary>
@@ -168,29 +139,29 @@ namespace Adyen.Model.MarketPay
 
             return 
                 (
-                    this.MerchantAccount == input.MerchantAccount ||
-                    (this.MerchantAccount != null &&
-                    this.MerchantAccount.Equals(input.MerchantAccount))
+                    MerchantAccount == input.MerchantAccount ||
+                    (MerchantAccount != null &&
+                    MerchantAccount.Equals(input.MerchantAccount))
                 ) && 
                 (
-                    this.PayoutMethodCode == input.PayoutMethodCode ||
-                    (this.PayoutMethodCode != null &&
-                    this.PayoutMethodCode.Equals(input.PayoutMethodCode))
+                    PayoutMethodCode == input.PayoutMethodCode ||
+                    (PayoutMethodCode != null &&
+                    PayoutMethodCode.Equals(input.PayoutMethodCode))
                 ) && 
                 (
-                    this.PayoutMethodType == input.PayoutMethodType ||
-                    (this.PayoutMethodType != null &&
-                    this.PayoutMethodType.Equals(input.PayoutMethodType))
+                    PayoutMethodType == input.PayoutMethodType ||
+                    (PayoutMethodType != null &&
+                    PayoutMethodType.Equals(input.PayoutMethodType))
                 ) && 
                 (
-                    this.RecurringDetailReference == input.RecurringDetailReference ||
-                    (this.RecurringDetailReference != null &&
-                    this.RecurringDetailReference.Equals(input.RecurringDetailReference))
+                    RecurringDetailReference == input.RecurringDetailReference ||
+                    (RecurringDetailReference != null &&
+                    RecurringDetailReference.Equals(input.RecurringDetailReference))
                 ) && 
                 (
-                    this.ShopperReference == input.ShopperReference ||
-                    (this.ShopperReference != null &&
-                    this.ShopperReference.Equals(input.ShopperReference))
+                    ShopperReference == input.ShopperReference ||
+                    (ShopperReference != null &&
+                    ShopperReference.Equals(input.ShopperReference))
                 );
         }
 
@@ -203,16 +174,16 @@ namespace Adyen.Model.MarketPay
             unchecked // Overflow is fine, just wrap
             {
                 int hashCode = 41;
-                if (this.MerchantAccount != null)
-                    hashCode = hashCode * 59 + this.MerchantAccount.GetHashCode();
-                if (this.PayoutMethodCode != null)
-                    hashCode = hashCode * 59 + this.PayoutMethodCode.GetHashCode();
-                if (this.PayoutMethodType != null)
-                    hashCode = hashCode * 59 + this.PayoutMethodType.GetHashCode();
-                if (this.RecurringDetailReference != null)
-                    hashCode = hashCode * 59 + this.RecurringDetailReference.GetHashCode();
-                if (this.ShopperReference != null)
-                    hashCode = hashCode * 59 + this.ShopperReference.GetHashCode();
+                if (MerchantAccount != null)
+                    hashCode = hashCode * 59 + MerchantAccount.GetHashCode();
+                if (PayoutMethodCode != null)
+                    hashCode = hashCode * 59 + PayoutMethodCode.GetHashCode();
+                if (PayoutMethodType != null)
+                    hashCode = hashCode * 59 + PayoutMethodType.GetHashCode();
+                if (RecurringDetailReference != null)
+                    hashCode = hashCode * 59 + RecurringDetailReference.GetHashCode();
+                if (ShopperReference != null)
+                    hashCode = hashCode * 59 + ShopperReference.GetHashCode();
                 return hashCode;
             }
         }
@@ -222,7 +193,7 @@ namespace Adyen.Model.MarketPay
         /// </summary>
         /// <param name="validationContext">Validation context</param>
         /// <returns>Validation Result</returns>
-        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+        IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
         {
             yield break;
         }

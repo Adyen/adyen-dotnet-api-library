@@ -1,26 +1,3 @@
-#region License
-// /*
-//  *                       ######
-//  *                       ######
-//  * ############    ####( ######  #####. ######  ############   ############
-//  * #############  #####( ######  #####. ######  #############  #############
-//  *        ######  #####( ######  #####. ######  #####  ######  #####  ######
-//  * ###### ######  #####( ######  #####. ######  #####  #####   #####  ######
-//  * ###### ######  #####( ######  #####. ######  #####          #####  ######
-//  * #############  #############  #############  #############  #####  ######
-//  *  ############   ############  #############   ############  #####  ######
-//  *                                      ######
-//  *                               #############
-//  *                               ############
-//  *
-//  * Adyen Dotnet API Library
-//  *
-//  * Copyright (c) 2020 Adyen B.V.
-//  * This file is open source and available under the MIT license.
-//  * See the LICENSE file for more info.
-//  */
-#endregion
-
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -36,7 +13,7 @@ namespace Adyen.Model.MarketPay
     /// UpdateAccountHolderStateRequest
     /// </summary>
     [DataContract]
-        public partial class UpdateAccountHolderStateRequest :  IEquatable<UpdateAccountHolderStateRequest>, IValidatableObject
+        public class UpdateAccountHolderStateRequest :  IEquatable<UpdateAccountHolderStateRequest>, IValidatableObject
     {
         /// <summary>
         /// The state to be updated. &gt;Permitted values are: &#x60;Processing&#x60;, &#x60;Payout&#x60;
@@ -95,22 +72,18 @@ namespace Adyen.Model.MarketPay
             {
                 throw new InvalidDataException("accountHolderCode is a required property for UpdateAccountHolderStateRequest and cannot be null");
             }
-            else
-            {
-                this.AccountHolderCode = accountHolderCode;
-            }
+
+            AccountHolderCode = accountHolderCode;
             // to ensure "disable" is required (not null)
             if (disable == null)
             {
                 throw new InvalidDataException("disable is a required property for UpdateAccountHolderStateRequest and cannot be null");
             }
-            else
-            {
-                this.Disable = disable;
-            }
-            
-            this.StateType = stateType;       
-            this.Reason = reason;
+
+            Disable = disable;
+
+            StateType = stateType;       
+            Reason = reason;
         }
         
         /// <summary>
@@ -167,7 +140,7 @@ namespace Adyen.Model.MarketPay
         /// <returns>Boolean</returns>
         public override bool Equals(object input)
         {
-            return this.Equals(input as UpdateAccountHolderStateRequest);
+            return Equals(input as UpdateAccountHolderStateRequest);
         }
 
         /// <summary>
@@ -182,23 +155,23 @@ namespace Adyen.Model.MarketPay
 
             return 
                 (
-                    this.AccountHolderCode == input.AccountHolderCode ||
-                    (this.AccountHolderCode != null &&
-                    this.AccountHolderCode.Equals(input.AccountHolderCode))
+                    AccountHolderCode == input.AccountHolderCode ||
+                    (AccountHolderCode != null &&
+                    AccountHolderCode.Equals(input.AccountHolderCode))
                 ) && 
                 (
-                    this.Disable == input.Disable ||
-                    (this.Disable != null &&
-                    this.Disable.Equals(input.Disable))
+                    Disable == input.Disable ||
+                    (Disable != null &&
+                    Disable.Equals(input.Disable))
                 ) && 
                 (
-                    this.Reason == input.Reason ||
-                    (this.Reason != null &&
-                    this.Reason.Equals(input.Reason))
+                    Reason == input.Reason ||
+                    (Reason != null &&
+                    Reason.Equals(input.Reason))
                 ) && 
                 (
-                    this.StateType == input.StateType ||
-                    this.StateType.Equals(input.StateType)
+                    StateType == input.StateType ||
+                    StateType.Equals(input.StateType)
                 );
         }
 
@@ -211,13 +184,13 @@ namespace Adyen.Model.MarketPay
             unchecked // Overflow is fine, just wrap
             {
                 int hashCode = 41;
-                if (this.AccountHolderCode != null)
-                    hashCode = hashCode * 59 + this.AccountHolderCode.GetHashCode();
-                if (this.Disable != null)
-                    hashCode = hashCode * 59 + this.Disable.GetHashCode();
-                if (this.Reason != null)
-                    hashCode = hashCode * 59 + this.Reason.GetHashCode();
-                hashCode = hashCode * 59 + this.StateType.GetHashCode();
+                if (AccountHolderCode != null)
+                    hashCode = hashCode * 59 + AccountHolderCode.GetHashCode();
+                if (Disable != null)
+                    hashCode = hashCode * 59 + Disable.GetHashCode();
+                if (Reason != null)
+                    hashCode = hashCode * 59 + Reason.GetHashCode();
+                hashCode = hashCode * 59 + StateType.GetHashCode();
                 return hashCode;
             }
         }
@@ -227,7 +200,7 @@ namespace Adyen.Model.MarketPay
         /// </summary>
         /// <param name="validationContext">Validation context</param>
         /// <returns>Validation Result</returns>
-        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+        IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
         {
             yield break;
         }

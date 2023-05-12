@@ -1,10 +1,10 @@
 using System;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Adyen.Service;
-using Adyen.Model.Payouts;
+using Adyen.Model.Payout;
 using Adyen.Model;
 using Adyen.HttpClient;
-using Adyen.Service.Payouts;
+using Adyen.Service.Payout;
 
 namespace Adyen.IntegrationTest
 {
@@ -29,7 +29,7 @@ namespace Adyen.IntegrationTest
         public void PayoutSuccessTest()
         {
             var payoutRequest = CreatePayoutRequest(ClientConstants.MerchantAccount);
-            var result = _instantPayoutsService.MakeInstantCardPayout(payoutRequest);
+            var result = _instantPayoutsService.Payout(payoutRequest);
             Assert.AreEqual(result.ResultCode, PayoutResponse.ResultCodeEnum.Refused);
         }
 
@@ -38,7 +38,7 @@ namespace Adyen.IntegrationTest
         public void PayoutErrorMissingMerchantTest()
         {
             var payoutRequest = CreatePayoutRequest("");
-            var ex = Assert.ThrowsException<HttpClientException>(() => _instantPayoutsService.MakeInstantCardPayout(payoutRequest));
+            var ex = Assert.ThrowsException<HttpClientException>(() => _instantPayoutsService.Payout(payoutRequest));
             Assert.AreEqual(ex.Code, 403);
         }
 
@@ -47,7 +47,7 @@ namespace Adyen.IntegrationTest
         {
             var payoutRequest = CreatePayoutRequest(ClientConstants.MerchantAccount);
             payoutRequest.Reference = "";
-            var ex = Assert.ThrowsException<HttpClientException>(() => _instantPayoutsService.MakeInstantCardPayout(payoutRequest));
+            var ex = Assert.ThrowsException<HttpClientException>(() => _instantPayoutsService.Payout(payoutRequest));
             Assert.AreEqual("{\"status\":422,\"errorCode\":\"130\",\"message\":\"Required field 'reference' is not provided.\",\"errorType\":\"validation\"}",ex.ResponseBody);
             Assert.AreEqual(422, ex.Code);
         }
@@ -56,8 +56,8 @@ namespace Adyen.IntegrationTest
         {
             var payoutRequest = new PayoutRequest
             {
-                Amount = new Model.Payouts.Amount { Currency = "EUR", Value = 10 },
-                Card = new Model.Payouts.Card
+                Amount = new Model.Payout.Amount { Currency = "EUR", Value = 10 },
+                Card = new Model.Payout.Card
                 {
                     Number = "4111111111111111",
                     ExpiryMonth = "03",

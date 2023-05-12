@@ -1,31 +1,9 @@
-#region License
-// /*
-//  *                       ######
-//  *                       ######
-//  * ############    ####( ######  #####. ######  ############   ############
-//  * #############  #####( ######  #####. ######  #############  #############
-//  *        ######  #####( ######  #####. ######  #####  ######  #####  ######
-//  * ###### ######  #####( ######  #####. ######  #####  #####   #####  ######
-//  * ###### ######  #####( ######  #####. ######  #####          #####  ######
-//  * #############  #############  #############  #############  #####  ######
-//  *  ############   ############  #############   ############  #####  ######
-//  *                                      ######
-//  *                               #############
-//  *                               ############
-//  *
-//  * Adyen Dotnet API Library
-//  *
-//  * Copyright (c) 2020 Adyen B.V.
-//  * This file is open source and available under the MIT license.
-//  * See the LICENSE file for more info.
-//  */
-#endregion
 using System;
-using System.Text;
 using System.Collections.Generic;
-using System.Runtime.Serialization;
-using Newtonsoft.Json;
 using System.ComponentModel.DataAnnotations;
+using System.Runtime.Serialization;
+using System.Text;
+using Newtonsoft.Json;
 
 namespace Adyen.Model.MarketPay
 {
@@ -42,8 +20,8 @@ namespace Adyen.Model.MarketPay
         /// <param name="detailBalance">detailBalance.</param>
         public AccountDetailBalance(string accountCode = default(string), DetailBalance detailBalance = default(DetailBalance))
         {
-            this.AccountCode = accountCode;
-            this.DetailBalance = detailBalance;
+            AccountCode = accountCode;
+            DetailBalance = detailBalance;
         }
 
         /// <summary>
@@ -91,7 +69,7 @@ namespace Adyen.Model.MarketPay
         /// <returns>Boolean</returns>
         public override bool Equals(object input)
         {
-            return this.Equals(input as AccountDetailBalance);
+            return Equals(input as AccountDetailBalance);
         }
 
         /// <summary>
@@ -106,14 +84,14 @@ namespace Adyen.Model.MarketPay
 
             return
                 (
-                    this.AccountCode == input.AccountCode ||
-                    (this.AccountCode != null &&
-                    this.AccountCode.Equals(input.AccountCode))
+                    AccountCode == input.AccountCode ||
+                    (AccountCode != null &&
+                    AccountCode.Equals(input.AccountCode))
                 ) &&
                 (
-                    this.DetailBalance == input.DetailBalance ||
-                    (this.DetailBalance != null &&
-                    this.DetailBalance.Equals(input.DetailBalance))
+                    DetailBalance == input.DetailBalance ||
+                    (DetailBalance != null &&
+                    DetailBalance.Equals(input.DetailBalance))
                 );
         }
 
@@ -126,10 +104,10 @@ namespace Adyen.Model.MarketPay
             unchecked // Overflow is fine, just wrap
             {
                 int hashCode = 41;
-                if (this.AccountCode != null)
-                    hashCode = hashCode * 59 + this.AccountCode.GetHashCode();
-                if (this.DetailBalance != null)
-                    hashCode = hashCode * 59 + this.DetailBalance.GetHashCode();
+                if (AccountCode != null)
+                    hashCode = hashCode * 59 + AccountCode.GetHashCode();
+                if (DetailBalance != null)
+                    hashCode = hashCode * 59 + DetailBalance.GetHashCode();
                 return hashCode;
             }
         }
@@ -139,7 +117,7 @@ namespace Adyen.Model.MarketPay
         /// </summary>
         /// <param name="validationContext">Validation context</param>
         /// <returns>Validation Result</returns>
-        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+        IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
         {
             yield break;
         }

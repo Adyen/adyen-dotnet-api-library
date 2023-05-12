@@ -13,53 +13,162 @@
 using System;
 using System.Collections.Generic;
 using System.Net.Http;
+using System.Threading;
 using System.Threading.Tasks;
 using Adyen.Constants;
 using Adyen.Model;
 using Adyen.Service.Resource;
 using Adyen.Model.Management;
-using Newtonsoft.Json;
 
 namespace Adyen.Service.Management
 {
     /// <summary>
-    /// Represents a collection of functions to interact with the API endpoints
+    /// PaymentMethodsMerchantLevelService Interface
     /// </summary>
-    public class PaymentMethodsMerchantLevelService : AbstractService
+    public interface IPaymentMethodsMerchantLevelService
+    {
+        /// <summary>
+        /// Get all payment methods
+        /// </summary>
+        /// <param name="merchantId"><see cref="string"/> - The unique identifier of the merchant account.</param>
+        /// <param name="storeId"><see cref="string"/> - The unique identifier of the store for which to return the payment methods.</param>
+        /// <param name="businessLineId"><see cref="string"/> - The unique identifier of the Business Line for which to return the payment methods.</param>
+        /// <param name="pageSize"><see cref="int?"/> - The number of items to have on a page, maximum 100. The default is 10 items on a page.</param>
+        /// <param name="pageNumber"><see cref="int?"/> - The number of the page to fetch.</param>
+        /// <param name="requestOptions"><see cref="RequestOptions"/> - Additional request options.</param>
+        /// <returns><see cref="PaymentMethodResponse"/>.</returns>
+        PaymentMethodResponse GetAllPaymentMethods(string merchantId, string storeId = default, string businessLineId = default, int? pageSize = default, int? pageNumber = default, RequestOptions requestOptions = default);
+        
+        /// <summary>
+        /// Get all payment methods
+        /// </summary>
+        /// <param name="merchantId"><see cref="string"/> - The unique identifier of the merchant account.</param>
+        /// <param name="storeId"><see cref="string"/> - The unique identifier of the store for which to return the payment methods.</param>
+        /// <param name="businessLineId"><see cref="string"/> - The unique identifier of the Business Line for which to return the payment methods.</param>
+        /// <param name="pageSize"><see cref="int?"/> - The number of items to have on a page, maximum 100. The default is 10 items on a page.</param>
+        /// <param name="pageNumber"><see cref="int?"/> - The number of the page to fetch.</param>
+        /// <param name="requestOptions"><see cref="RequestOptions"/> - Additional request options.</param>
+        /// <param name="cancellationToken"> A CancellationToken enables cooperative cancellation between threads, thread pool work items, or Task objects.</param>
+        /// <returns>Task of <see cref="PaymentMethodResponse"/>.</returns>
+        Task<PaymentMethodResponse> GetAllPaymentMethodsAsync(string merchantId, string storeId = default, string businessLineId = default, int? pageSize = default, int? pageNumber = default, RequestOptions requestOptions = default, CancellationToken cancellationToken = default);
+        
+        /// <summary>
+        /// Get payment method details
+        /// </summary>
+        /// <param name="merchantId"><see cref="string"/> - The unique identifier of the merchant account.</param>
+        /// <param name="paymentMethodId"><see cref="string"/> - The unique identifier of the payment method.</param>
+        /// <param name="requestOptions"><see cref="RequestOptions"/> - Additional request options.</param>
+        /// <returns><see cref="PaymentMethod"/>.</returns>
+        PaymentMethod GetPaymentMethodDetails(string merchantId, string paymentMethodId, RequestOptions requestOptions = default);
+        
+        /// <summary>
+        /// Get payment method details
+        /// </summary>
+        /// <param name="merchantId"><see cref="string"/> - The unique identifier of the merchant account.</param>
+        /// <param name="paymentMethodId"><see cref="string"/> - The unique identifier of the payment method.</param>
+        /// <param name="requestOptions"><see cref="RequestOptions"/> - Additional request options.</param>
+        /// <param name="cancellationToken"> A CancellationToken enables cooperative cancellation between threads, thread pool work items, or Task objects.</param>
+        /// <returns>Task of <see cref="PaymentMethod"/>.</returns>
+        Task<PaymentMethod> GetPaymentMethodDetailsAsync(string merchantId, string paymentMethodId, RequestOptions requestOptions = default, CancellationToken cancellationToken = default);
+        
+        /// <summary>
+        /// Get Apple Pay domains
+        /// </summary>
+        /// <param name="merchantId"><see cref="string"/> - The unique identifier of the merchant account.</param>
+        /// <param name="paymentMethodId"><see cref="string"/> - The unique identifier of the payment method.</param>
+        /// <param name="requestOptions"><see cref="RequestOptions"/> - Additional request options.</param>
+        /// <returns><see cref="ApplePayInfo"/>.</returns>
+        ApplePayInfo GetApplePayDomains(string merchantId, string paymentMethodId, RequestOptions requestOptions = default);
+        
+        /// <summary>
+        /// Get Apple Pay domains
+        /// </summary>
+        /// <param name="merchantId"><see cref="string"/> - The unique identifier of the merchant account.</param>
+        /// <param name="paymentMethodId"><see cref="string"/> - The unique identifier of the payment method.</param>
+        /// <param name="requestOptions"><see cref="RequestOptions"/> - Additional request options.</param>
+        /// <param name="cancellationToken"> A CancellationToken enables cooperative cancellation between threads, thread pool work items, or Task objects.</param>
+        /// <returns>Task of <see cref="ApplePayInfo"/>.</returns>
+        Task<ApplePayInfo> GetApplePayDomainsAsync(string merchantId, string paymentMethodId, RequestOptions requestOptions = default, CancellationToken cancellationToken = default);
+        
+        /// <summary>
+        /// Update a payment method
+        /// </summary>
+        /// <param name="merchantId"><see cref="string"/> - The unique identifier of the merchant account.</param>
+        /// <param name="paymentMethodId"><see cref="string"/> - The unique identifier of the payment method.</param>
+        /// <param name="updatePaymentMethodInfo"><see cref="UpdatePaymentMethodInfo"/> - </param>
+        /// <param name="requestOptions"><see cref="RequestOptions"/> - Additional request options.</param>
+        /// <returns><see cref="PaymentMethod"/>.</returns>
+        PaymentMethod UpdatePaymentMethod(string merchantId, string paymentMethodId, UpdatePaymentMethodInfo updatePaymentMethodInfo, RequestOptions requestOptions = default);
+        
+        /// <summary>
+        /// Update a payment method
+        /// </summary>
+        /// <param name="merchantId"><see cref="string"/> - The unique identifier of the merchant account.</param>
+        /// <param name="paymentMethodId"><see cref="string"/> - The unique identifier of the payment method.</param>
+        /// <param name="updatePaymentMethodInfo"><see cref="UpdatePaymentMethodInfo"/> - </param>
+        /// <param name="requestOptions"><see cref="RequestOptions"/> - Additional request options.</param>
+        /// <param name="cancellationToken"> A CancellationToken enables cooperative cancellation between threads, thread pool work items, or Task objects.</param>
+        /// <returns>Task of <see cref="PaymentMethod"/>.</returns>
+        Task<PaymentMethod> UpdatePaymentMethodAsync(string merchantId, string paymentMethodId, UpdatePaymentMethodInfo updatePaymentMethodInfo, RequestOptions requestOptions = default, CancellationToken cancellationToken = default);
+        
+        /// <summary>
+        /// Request a payment method
+        /// </summary>
+        /// <param name="merchantId"><see cref="string"/> - The unique identifier of the merchant account.</param>
+        /// <param name="paymentMethodSetupInfo"><see cref="PaymentMethodSetupInfo"/> - </param>
+        /// <param name="requestOptions"><see cref="RequestOptions"/> - Additional request options.</param>
+        /// <returns><see cref="PaymentMethod"/>.</returns>
+        PaymentMethod RequestPaymentMethod(string merchantId, PaymentMethodSetupInfo paymentMethodSetupInfo, RequestOptions requestOptions = default);
+        
+        /// <summary>
+        /// Request a payment method
+        /// </summary>
+        /// <param name="merchantId"><see cref="string"/> - The unique identifier of the merchant account.</param>
+        /// <param name="paymentMethodSetupInfo"><see cref="PaymentMethodSetupInfo"/> - </param>
+        /// <param name="requestOptions"><see cref="RequestOptions"/> - Additional request options.</param>
+        /// <param name="cancellationToken"> A CancellationToken enables cooperative cancellation between threads, thread pool work items, or Task objects.</param>
+        /// <returns>Task of <see cref="PaymentMethod"/>.</returns>
+        Task<PaymentMethod> RequestPaymentMethodAsync(string merchantId, PaymentMethodSetupInfo paymentMethodSetupInfo, RequestOptions requestOptions = default, CancellationToken cancellationToken = default);
+        
+        /// <summary>
+        /// Add an Apple Pay domain
+        /// </summary>
+        /// <param name="merchantId"><see cref="string"/> - The unique identifier of the merchant account.</param>
+        /// <param name="paymentMethodId"><see cref="string"/> - The unique identifier of the payment method.</param>
+        /// <param name="applePayInfo"><see cref="ApplePayInfo"/> - </param>
+        /// <param name="requestOptions"><see cref="RequestOptions"/> - Additional request options.</param>
+        void AddApplePayDomain(string merchantId, string paymentMethodId, ApplePayInfo applePayInfo, RequestOptions requestOptions = default);
+        
+        /// <summary>
+        /// Add an Apple Pay domain
+        /// </summary>
+        /// <param name="merchantId"><see cref="string"/> - The unique identifier of the merchant account.</param>
+        /// <param name="paymentMethodId"><see cref="string"/> - The unique identifier of the payment method.</param>
+        /// <param name="applePayInfo"><see cref="ApplePayInfo"/> - </param>
+        /// <param name="requestOptions"><see cref="RequestOptions"/> - Additional request options.</param>
+        /// <param name="cancellationToken"> A CancellationToken enables cooperative cancellation between threads, thread pool work items, or Task objects.</param>
+        Task AddApplePayDomainAsync(string merchantId, string paymentMethodId, ApplePayInfo applePayInfo, RequestOptions requestOptions = default, CancellationToken cancellationToken = default);
+        
+    }
+    
+    /// <summary>
+    /// Represents a collection of functions to interact with the PaymentMethodsMerchantLevelService API endpoints
+    /// </summary>
+    public class PaymentMethodsMerchantLevelService : AbstractService, IPaymentMethodsMerchantLevelService
     {
         private readonly string _baseUrl;
         
         public PaymentMethodsMerchantLevelService(Client client) : base(client)
         {
-            _baseUrl = client.Config.ManagementEndpoint + "/" + ClientConfig.ManagementVersion;
+            _baseUrl = CreateBaseUrl("https://management-test.adyen.com/v1");
         }
-    
-        /// <summary>
-        /// Get all payment methods
-        /// </summary>
-        /// <param name="merchantId">The unique identifier of the merchant account.</param>
-        /// <param name="storeId">The unique identifier of the store for which to return the payment methods.</param>
-        /// <param name="businessLineId">The unique identifier of the Business Line for which to return the payment methods.</param>
-        /// <param name="pageSize">The number of items to have on a page, maximum 100. The default is 10 items on a page.</param>
-        /// <param name="pageNumber">The number of the page to fetch.</param>
-        /// <param name="requestOptions">Additional request options.</param>
-        /// <returns>PaymentMethodResponse</returns>
+        
         public PaymentMethodResponse GetAllPaymentMethods(string merchantId, string storeId = default, string businessLineId = default, int? pageSize = default, int? pageNumber = default, RequestOptions requestOptions = default)
         {
-            return GetAllPaymentMethodsAsync(merchantId, storeId, businessLineId, pageSize, pageNumber, requestOptions).GetAwaiter().GetResult();
+            return GetAllPaymentMethodsAsync(merchantId, storeId, businessLineId, pageSize, pageNumber, requestOptions).ConfigureAwait(false).GetAwaiter().GetResult();
         }
 
-        /// <summary>
-        /// Get all payment methods
-        /// </summary>
-        /// <param name="merchantId">The unique identifier of the merchant account.</param>
-        /// <param name="storeId">The unique identifier of the store for which to return the payment methods.</param>
-        /// <param name="businessLineId">The unique identifier of the Business Line for which to return the payment methods.</param>
-        /// <param name="pageSize">The number of items to have on a page, maximum 100. The default is 10 items on a page.</param>
-        /// <param name="pageNumber">The number of the page to fetch.</param>
-        /// <param name="requestOptions">Additional request options.</param>
-        /// <returns>Task of PaymentMethodResponse</returns>
-        public async Task<PaymentMethodResponse> GetAllPaymentMethodsAsync(string merchantId, string storeId = default, string businessLineId = default, int? pageSize = default, int? pageNumber = default, RequestOptions requestOptions = default)
+        public async Task<PaymentMethodResponse> GetAllPaymentMethodsAsync(string merchantId, string storeId = default, string businessLineId = default, int? pageSize = default, int? pageNumber = default, RequestOptions requestOptions = default, CancellationToken cancellationToken = default)
         {
             // Build the query string
             var queryParams = new Dictionary<string, string>();
@@ -69,140 +178,67 @@ namespace Adyen.Service.Management
             if (pageNumber != null) queryParams.Add("pageNumber", pageNumber.ToString());
             var endpoint = _baseUrl + $"/merchants/{merchantId}/paymentMethodSettings" + ToQueryString(queryParams);
             var resource = new ServiceResource(this, endpoint);
-            return await resource.RequestAsync<PaymentMethodResponse>(null, requestOptions, new HttpMethod("GET"));
+            return await resource.RequestAsync<PaymentMethodResponse>(null, requestOptions, new HttpMethod("GET"), cancellationToken).ConfigureAwait(false);
         }
-
-        /// <summary>
-        /// Get payment method details
-        /// </summary>
-        /// <param name="merchantId">The unique identifier of the merchant account.</param>
-        /// <param name="paymentMethodId">The unique identifier of the payment method.</param>
-        /// <param name="requestOptions">Additional request options.</param>
-        /// <returns>PaymentMethod</returns>
+        
         public PaymentMethod GetPaymentMethodDetails(string merchantId, string paymentMethodId, RequestOptions requestOptions = default)
         {
-            return GetPaymentMethodDetailsAsync(merchantId, paymentMethodId, requestOptions).GetAwaiter().GetResult();
+            return GetPaymentMethodDetailsAsync(merchantId, paymentMethodId, requestOptions).ConfigureAwait(false).GetAwaiter().GetResult();
         }
 
-        /// <summary>
-        /// Get payment method details
-        /// </summary>
-        /// <param name="merchantId">The unique identifier of the merchant account.</param>
-        /// <param name="paymentMethodId">The unique identifier of the payment method.</param>
-        /// <param name="requestOptions">Additional request options.</param>
-        /// <returns>Task of PaymentMethod</returns>
-        public async Task<PaymentMethod> GetPaymentMethodDetailsAsync(string merchantId, string paymentMethodId, RequestOptions requestOptions = default)
+        public async Task<PaymentMethod> GetPaymentMethodDetailsAsync(string merchantId, string paymentMethodId, RequestOptions requestOptions = default, CancellationToken cancellationToken = default)
         {
             var endpoint = _baseUrl + $"/merchants/{merchantId}/paymentMethodSettings/{paymentMethodId}";
             var resource = new ServiceResource(this, endpoint);
-            return await resource.RequestAsync<PaymentMethod>(null, requestOptions, new HttpMethod("GET"));
+            return await resource.RequestAsync<PaymentMethod>(null, requestOptions, new HttpMethod("GET"), cancellationToken).ConfigureAwait(false);
         }
-
-        /// <summary>
-        /// Get Apple Pay domains
-        /// </summary>
-        /// <param name="merchantId">The unique identifier of the merchant account.</param>
-        /// <param name="paymentMethodId">The unique identifier of the payment method.</param>
-        /// <param name="requestOptions">Additional request options.</param>
-        /// <returns>ApplePayInfo</returns>
+        
         public ApplePayInfo GetApplePayDomains(string merchantId, string paymentMethodId, RequestOptions requestOptions = default)
         {
-            return GetApplePayDomainsAsync(merchantId, paymentMethodId, requestOptions).GetAwaiter().GetResult();
+            return GetApplePayDomainsAsync(merchantId, paymentMethodId, requestOptions).ConfigureAwait(false).GetAwaiter().GetResult();
         }
 
-        /// <summary>
-        /// Get Apple Pay domains
-        /// </summary>
-        /// <param name="merchantId">The unique identifier of the merchant account.</param>
-        /// <param name="paymentMethodId">The unique identifier of the payment method.</param>
-        /// <param name="requestOptions">Additional request options.</param>
-        /// <returns>Task of ApplePayInfo</returns>
-        public async Task<ApplePayInfo> GetApplePayDomainsAsync(string merchantId, string paymentMethodId, RequestOptions requestOptions = default)
+        public async Task<ApplePayInfo> GetApplePayDomainsAsync(string merchantId, string paymentMethodId, RequestOptions requestOptions = default, CancellationToken cancellationToken = default)
         {
             var endpoint = _baseUrl + $"/merchants/{merchantId}/paymentMethodSettings/{paymentMethodId}/getApplePayDomains";
             var resource = new ServiceResource(this, endpoint);
-            return await resource.RequestAsync<ApplePayInfo>(null, requestOptions, new HttpMethod("GET"));
+            return await resource.RequestAsync<ApplePayInfo>(null, requestOptions, new HttpMethod("GET"), cancellationToken).ConfigureAwait(false);
         }
-
-        /// <summary>
-        /// Update a payment method
-        /// </summary>
-        /// <param name="merchantId">The unique identifier of the merchant account.</param>
-        /// <param name="paymentMethodId">The unique identifier of the payment method.</param>
-        /// <param name="updatePaymentMethodInfo"></param>
-        /// <param name="requestOptions">Additional request options.</param>
-        /// <returns>PaymentMethod</returns>
+        
         public PaymentMethod UpdatePaymentMethod(string merchantId, string paymentMethodId, UpdatePaymentMethodInfo updatePaymentMethodInfo, RequestOptions requestOptions = default)
         {
-            return UpdatePaymentMethodAsync(merchantId, paymentMethodId, updatePaymentMethodInfo, requestOptions).GetAwaiter().GetResult();
+            return UpdatePaymentMethodAsync(merchantId, paymentMethodId, updatePaymentMethodInfo, requestOptions).ConfigureAwait(false).GetAwaiter().GetResult();
         }
 
-        /// <summary>
-        /// Update a payment method
-        /// </summary>
-        /// <param name="merchantId">The unique identifier of the merchant account.</param>
-        /// <param name="paymentMethodId">The unique identifier of the payment method.</param>
-        /// <param name="updatePaymentMethodInfo"></param>
-        /// <param name="requestOptions">Additional request options.</param>
-        /// <returns>Task of PaymentMethod</returns>
-        public async Task<PaymentMethod> UpdatePaymentMethodAsync(string merchantId, string paymentMethodId, UpdatePaymentMethodInfo updatePaymentMethodInfo, RequestOptions requestOptions = default)
+        public async Task<PaymentMethod> UpdatePaymentMethodAsync(string merchantId, string paymentMethodId, UpdatePaymentMethodInfo updatePaymentMethodInfo, RequestOptions requestOptions = default, CancellationToken cancellationToken = default)
         {
             var endpoint = _baseUrl + $"/merchants/{merchantId}/paymentMethodSettings/{paymentMethodId}";
             var resource = new ServiceResource(this, endpoint);
-            return await resource.RequestAsync<PaymentMethod>(updatePaymentMethodInfo.ToJson(), requestOptions, new HttpMethod("PATCH"));
+            return await resource.RequestAsync<PaymentMethod>(updatePaymentMethodInfo.ToJson(), requestOptions, new HttpMethod("PATCH"), cancellationToken).ConfigureAwait(false);
         }
-
-        /// <summary>
-        /// Request a payment method
-        /// </summary>
-        /// <param name="merchantId">The unique identifier of the merchant account.</param>
-        /// <param name="paymentMethodSetupInfo"></param>
-        /// <param name="requestOptions">Additional request options.</param>
-        /// <returns>PaymentMethod</returns>
+        
         public PaymentMethod RequestPaymentMethod(string merchantId, PaymentMethodSetupInfo paymentMethodSetupInfo, RequestOptions requestOptions = default)
         {
-            return RequestPaymentMethodAsync(merchantId, paymentMethodSetupInfo, requestOptions).GetAwaiter().GetResult();
+            return RequestPaymentMethodAsync(merchantId, paymentMethodSetupInfo, requestOptions).ConfigureAwait(false).GetAwaiter().GetResult();
         }
 
-        /// <summary>
-        /// Request a payment method
-        /// </summary>
-        /// <param name="merchantId">The unique identifier of the merchant account.</param>
-        /// <param name="paymentMethodSetupInfo"></param>
-        /// <param name="requestOptions">Additional request options.</param>
-        /// <returns>Task of PaymentMethod</returns>
-        public async Task<PaymentMethod> RequestPaymentMethodAsync(string merchantId, PaymentMethodSetupInfo paymentMethodSetupInfo, RequestOptions requestOptions = default)
+        public async Task<PaymentMethod> RequestPaymentMethodAsync(string merchantId, PaymentMethodSetupInfo paymentMethodSetupInfo, RequestOptions requestOptions = default, CancellationToken cancellationToken = default)
         {
             var endpoint = _baseUrl + $"/merchants/{merchantId}/paymentMethodSettings";
             var resource = new ServiceResource(this, endpoint);
-            return await resource.RequestAsync<PaymentMethod>(paymentMethodSetupInfo.ToJson(), requestOptions, new HttpMethod("POST"));
+            return await resource.RequestAsync<PaymentMethod>(paymentMethodSetupInfo.ToJson(), requestOptions, new HttpMethod("POST"), cancellationToken).ConfigureAwait(false);
         }
-
-        /// <summary>
-        /// Add an Apple Pay domain
-        /// </summary>
-        /// <param name="merchantId">The unique identifier of the merchant account.</param>
-        /// <param name="paymentMethodId">The unique identifier of the payment method.</param>
-        /// <param name="applePayInfo"></param>
-        /// <param name="requestOptions">Additional request options.</param>
+        
         public void AddApplePayDomain(string merchantId, string paymentMethodId, ApplePayInfo applePayInfo, RequestOptions requestOptions = default)
         {
-            AddApplePayDomainAsync(merchantId, paymentMethodId, applePayInfo, requestOptions).GetAwaiter().GetResult();
+            AddApplePayDomainAsync(merchantId, paymentMethodId, applePayInfo, requestOptions).ConfigureAwait(false).GetAwaiter().GetResult();
         }
 
-        /// <summary>
-        /// Add an Apple Pay domain
-        /// </summary>
-        /// <param name="merchantId">The unique identifier of the merchant account.</param>
-        /// <param name="paymentMethodId">The unique identifier of the payment method.</param>
-        /// <param name="applePayInfo"></param>
-        /// <param name="requestOptions">Additional request options.</param>
-        public async Task AddApplePayDomainAsync(string merchantId, string paymentMethodId, ApplePayInfo applePayInfo, RequestOptions requestOptions = default)
+        public async Task AddApplePayDomainAsync(string merchantId, string paymentMethodId, ApplePayInfo applePayInfo, RequestOptions requestOptions = default, CancellationToken cancellationToken = default)
         {
             var endpoint = _baseUrl + $"/merchants/{merchantId}/paymentMethodSettings/{paymentMethodId}/addApplePayDomains";
             var resource = new ServiceResource(this, endpoint);
-            await resource.RequestAsync(applePayInfo.ToJson(), requestOptions, new HttpMethod("POST"));
+            await resource.RequestAsync(applePayInfo.ToJson(), requestOptions, new HttpMethod("POST"), cancellationToken).ConfigureAwait(false);
         }
-
     }
 }

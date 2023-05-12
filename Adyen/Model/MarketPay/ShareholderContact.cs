@@ -1,27 +1,3 @@
-#region License
-// /*
-//  *                       ######
-//  *                       ######
-//  * ############    ####( ######  #####. ######  ############   ############
-//  * #############  #####( ######  #####. ######  #############  #############
-//  *        ######  #####( ######  #####. ######  #####  ######  #####  ######
-//  * ###### ######  #####( ######  #####. ######  #####  #####   #####  ######
-//  * ###### ######  #####( ######  #####. ######  #####          #####  ######
-//  * #############  #############  #############  #############  #####  ######
-//  *  ############   ############  #############   ############  #####  ######
-//  *                                      ######
-//  *                               #############
-//  *                               ############
-//  *
-//  * Adyen Dotnet API Library
-//  *
-//  * Copyright (c) 2022 Adyen N.V.
-//  * This file is open source and available under the MIT license.
-//  * See the LICENSE file for more info.
-//  */
-
-#endregion
-
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -36,7 +12,7 @@ namespace Adyen.Model.MarketPay
     /// ShareholderContact
     /// </summary>
     [DataContract]
-    public partial class ShareholderContact : IEquatable<ShareholderContact>, IValidatableObject
+    public class ShareholderContact : IEquatable<ShareholderContact>, IValidatableObject
     {
         /// <summary>
         /// Specifies how the person is associated with the account holder.   Possible values:   * **Owner**: Individuals who directly or indirectly own 25% or more of a company.  * **Controller**: Individuals who are members of senior management staff responsible for managing a company or organization.
@@ -87,16 +63,16 @@ namespace Adyen.Model.MarketPay
             string shareholderCode = default(string), string shareholderReference = default(string),
             ShareholderTypeEnum? shareholderType = default(ShareholderTypeEnum?), string webAddress = default(string))
         {
-            this.Address = address;
-            this.Email = email;
-            this.FullPhoneNumber = fullPhoneNumber;
-            this.JobTitle = jobTitle;
-            this.Name = name;
-            this.PersonalData = personalData;
-            this.ShareholderCode = shareholderCode;
-            this.ShareholderReference = shareholderReference;
-            this.ShareholderType = shareholderType;
-            this.WebAddress = webAddress;
+            Address = address;
+            Email = email;
+            FullPhoneNumber = fullPhoneNumber;
+            JobTitle = jobTitle;
+            Name = name;
+            PersonalData = personalData;
+            ShareholderCode = shareholderCode;
+            ShareholderReference = shareholderReference;
+            ShareholderType = shareholderType;
+            WebAddress = webAddress;
         }
 
         /// <summary>
@@ -198,7 +174,7 @@ namespace Adyen.Model.MarketPay
         /// <returns>Boolean</returns>
         public override bool Equals(object input)
         {
-            return this.Equals(input as ShareholderContact);
+            return Equals(input as ShareholderContact);
         }
 
         /// <summary>
@@ -213,54 +189,54 @@ namespace Adyen.Model.MarketPay
 
             return
                 (
-                    this.Address == input.Address ||
-                    (this.Address != null &&
-                     this.Address.Equals(input.Address))
+                    Address == input.Address ||
+                    (Address != null &&
+                     Address.Equals(input.Address))
                 ) &&
                 (
-                    this.Email == input.Email ||
-                    (this.Email != null &&
-                     this.Email.Equals(input.Email))
+                    Email == input.Email ||
+                    (Email != null &&
+                     Email.Equals(input.Email))
                 ) &&
                 (
-                    this.FullPhoneNumber == input.FullPhoneNumber ||
-                    (this.FullPhoneNumber != null &&
-                     this.FullPhoneNumber.Equals(input.FullPhoneNumber))
+                    FullPhoneNumber == input.FullPhoneNumber ||
+                    (FullPhoneNumber != null &&
+                     FullPhoneNumber.Equals(input.FullPhoneNumber))
                 ) &&
                 (
-                    this.JobTitle == input.JobTitle ||
-                    (this.JobTitle != null &&
-                     this.JobTitle.Equals(input.JobTitle))
+                    JobTitle == input.JobTitle ||
+                    (JobTitle != null &&
+                     JobTitle.Equals(input.JobTitle))
                 ) &&
                 (
-                    this.Name == input.Name ||
-                    (this.Name != null &&
-                     this.Name.Equals(input.Name))
+                    Name == input.Name ||
+                    (Name != null &&
+                     Name.Equals(input.Name))
                 ) &&
                 (
-                    this.PersonalData == input.PersonalData ||
-                    (this.PersonalData != null &&
-                     this.PersonalData.Equals(input.PersonalData))
+                    PersonalData == input.PersonalData ||
+                    (PersonalData != null &&
+                     PersonalData.Equals(input.PersonalData))
                 ) &&
                 (
-                    this.ShareholderCode == input.ShareholderCode ||
-                    (this.ShareholderCode != null &&
-                     this.ShareholderCode.Equals(input.ShareholderCode))
+                    ShareholderCode == input.ShareholderCode ||
+                    (ShareholderCode != null &&
+                     ShareholderCode.Equals(input.ShareholderCode))
                 ) &&
                 (
-                    this.ShareholderReference == input.ShareholderReference ||
-                    (this.ShareholderReference != null &&
-                     this.ShareholderReference.Equals(input.ShareholderReference))
+                    ShareholderReference == input.ShareholderReference ||
+                    (ShareholderReference != null &&
+                     ShareholderReference.Equals(input.ShareholderReference))
                 ) &&
                 (
-                    this.ShareholderType == input.ShareholderType ||
-                    (this.ShareholderType != null &&
-                     this.ShareholderType.Equals(input.ShareholderType))
+                    ShareholderType == input.ShareholderType ||
+                    (ShareholderType != null &&
+                     ShareholderType.Equals(input.ShareholderType))
                 ) &&
                 (
-                    this.WebAddress == input.WebAddress ||
-                    (this.WebAddress != null &&
-                     this.WebAddress.Equals(input.WebAddress))
+                    WebAddress == input.WebAddress ||
+                    (WebAddress != null &&
+                     WebAddress.Equals(input.WebAddress))
                 );
         }
 
@@ -273,26 +249,26 @@ namespace Adyen.Model.MarketPay
             unchecked // Overflow is fine, just wrap
             {
                 int hashCode = 41;
-                if (this.Address != null)
-                    hashCode = hashCode * 59 + this.Address.GetHashCode();
-                if (this.Email != null)
-                    hashCode = hashCode * 59 + this.Email.GetHashCode();
-                if (this.FullPhoneNumber != null)
-                    hashCode = hashCode * 59 + this.FullPhoneNumber.GetHashCode();
-                if (this.JobTitle != null)
-                    hashCode = hashCode * 59 + this.JobTitle.GetHashCode();
-                if (this.Name != null)
-                    hashCode = hashCode * 59 + this.Name.GetHashCode();
-                if (this.PersonalData != null)
-                    hashCode = hashCode * 59 + this.PersonalData.GetHashCode();
-                if (this.ShareholderCode != null)
-                    hashCode = hashCode * 59 + this.ShareholderCode.GetHashCode();
-                if (this.ShareholderReference != null)
-                    hashCode = hashCode * 59 + this.ShareholderReference.GetHashCode();
-                if (this.ShareholderType != null)
-                    hashCode = hashCode * 59 + this.ShareholderType.GetHashCode();
-                if (this.WebAddress != null)
-                    hashCode = hashCode * 59 + this.WebAddress.GetHashCode();
+                if (Address != null)
+                    hashCode = hashCode * 59 + Address.GetHashCode();
+                if (Email != null)
+                    hashCode = hashCode * 59 + Email.GetHashCode();
+                if (FullPhoneNumber != null)
+                    hashCode = hashCode * 59 + FullPhoneNumber.GetHashCode();
+                if (JobTitle != null)
+                    hashCode = hashCode * 59 + JobTitle.GetHashCode();
+                if (Name != null)
+                    hashCode = hashCode * 59 + Name.GetHashCode();
+                if (PersonalData != null)
+                    hashCode = hashCode * 59 + PersonalData.GetHashCode();
+                if (ShareholderCode != null)
+                    hashCode = hashCode * 59 + ShareholderCode.GetHashCode();
+                if (ShareholderReference != null)
+                    hashCode = hashCode * 59 + ShareholderReference.GetHashCode();
+                if (ShareholderType != null)
+                    hashCode = hashCode * 59 + ShareholderType.GetHashCode();
+                if (WebAddress != null)
+                    hashCode = hashCode * 59 + WebAddress.GetHashCode();
                 return hashCode;
             }
         }
@@ -302,7 +278,7 @@ namespace Adyen.Model.MarketPay
         /// </summary>
         /// <param name="validationContext">Validation context</param>
         /// <returns>Validation Result</returns>
-        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(
+        IEnumerable<ValidationResult> IValidatableObject.Validate(
             ValidationContext validationContext)
         {
             yield break;

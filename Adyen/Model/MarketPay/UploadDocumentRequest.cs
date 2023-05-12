@@ -1,26 +1,3 @@
-#region License
-// /*
-//  *                       ######
-//  *                       ######
-//  * ############    ####( ######  #####. ######  ############   ############
-//  * #############  #####( ######  #####. ######  #############  #############
-//  *        ######  #####( ######  #####. ######  #####  ######  #####  ######
-//  * ###### ######  #####( ######  #####. ######  #####  #####   #####  ######
-//  * ###### ######  #####( ######  #####. ######  #####          #####  ######
-//  * #############  #############  #############  #############  #####  ######
-//  *  ############   ############  #############   ############  #####  ######
-//  *                                      ######
-//  *                               #############
-//  *                               ############
-//  *
-//  * Adyen Dotnet API Library
-//  *
-//  * Copyright (c) 2020 Adyen B.V.
-//  * This file is open source and available under the MIT license.
-//  * See the LICENSE file for more info.
-//  */
-#endregion
-
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -35,7 +12,7 @@ namespace Adyen.Model.MarketPay
     /// UploadDocumentRequest
     /// </summary>
     [DataContract]
-        public partial class UploadDocumentRequest :  IEquatable<UploadDocumentRequest>, IValidatableObject
+        public class UploadDocumentRequest :  IEquatable<UploadDocumentRequest>, IValidatableObject
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="UploadDocumentRequest" /> class.
@@ -49,19 +26,15 @@ namespace Adyen.Model.MarketPay
             {
                 throw new InvalidDataException("documentContent is a required property for UploadDocumentRequest and cannot be null");
             }
-            else
-            {
-                this.DocumentContent = documentContent;
-            }
+
+            DocumentContent = documentContent;
             // to ensure "documentDetail" is required (not null)
             if (documentDetail == null)
             {
                 throw new InvalidDataException("documentDetail is a required property for UploadDocumentRequest and cannot be null");
             }
-            else
-            {
-                this.DocumentDetail = documentDetail;
-            }
+
+            DocumentDetail = documentDetail;
         }
         
         /// <summary>
@@ -107,7 +80,7 @@ namespace Adyen.Model.MarketPay
         /// <returns>Boolean</returns>
         public override bool Equals(object input)
         {
-            return this.Equals(input as UploadDocumentRequest);
+            return Equals(input as UploadDocumentRequest);
         }
 
         /// <summary>
@@ -122,14 +95,14 @@ namespace Adyen.Model.MarketPay
 
             return 
                 (
-                    this.DocumentContent == input.DocumentContent ||
-                    (this.DocumentContent != null &&
-                    this.DocumentContent.Equals(input.DocumentContent))
+                    DocumentContent == input.DocumentContent ||
+                    (DocumentContent != null &&
+                    DocumentContent.Equals(input.DocumentContent))
                 ) && 
                 (
-                    this.DocumentDetail == input.DocumentDetail ||
-                    (this.DocumentDetail != null &&
-                    this.DocumentDetail.Equals(input.DocumentDetail))
+                    DocumentDetail == input.DocumentDetail ||
+                    (DocumentDetail != null &&
+                    DocumentDetail.Equals(input.DocumentDetail))
                 );
         }
 
@@ -142,10 +115,10 @@ namespace Adyen.Model.MarketPay
             unchecked // Overflow is fine, just wrap
             {
                 int hashCode = 41;
-                if (this.DocumentContent != null)
-                    hashCode = hashCode * 59 + this.DocumentContent.GetHashCode();
-                if (this.DocumentDetail != null)
-                    hashCode = hashCode * 59 + this.DocumentDetail.GetHashCode();
+                if (DocumentContent != null)
+                    hashCode = hashCode * 59 + DocumentContent.GetHashCode();
+                if (DocumentDetail != null)
+                    hashCode = hashCode * 59 + DocumentDetail.GetHashCode();
                 return hashCode;
             }
         }
@@ -155,7 +128,7 @@ namespace Adyen.Model.MarketPay
         /// </summary>
         /// <param name="validationContext">Validation context</param>
         /// <returns>Validation Result</returns>
-        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+        IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
         {
             yield break;
         }

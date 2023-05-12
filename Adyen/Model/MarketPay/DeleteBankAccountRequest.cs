@@ -1,26 +1,3 @@
-#region License
-// /*
-//  *                       ######
-//  *                       ######
-//  * ############    ####( ######  #####. ######  ############   ############
-//  * #############  #####( ######  #####. ######  #############  #############
-//  *        ######  #####( ######  #####. ######  #####  ######  #####  ######
-//  * ###### ######  #####( ######  #####. ######  #####  #####   #####  ######
-//  * ###### ######  #####( ######  #####. ######  #####          #####  ######
-//  * #############  #############  #############  #############  #####  ######
-//  *  ############   ############  #############   ############  #####  ######
-//  *                                      ######
-//  *                               #############
-//  *                               ############
-//  *
-//  * Adyen Dotnet API Library
-//  *
-//  * Copyright (c) 2020 Adyen B.V.
-//  * This file is open source and available under the MIT license.
-//  * See the LICENSE file for more info.
-//  */
-#endregion
-
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -36,7 +13,7 @@ namespace Adyen.Model.MarketPay
     /// DeleteBankAccountRequest
     /// </summary>
     [DataContract]
-        public partial class DeleteBankAccountRequest :  IEquatable<DeleteBankAccountRequest>, IValidatableObject
+        public class DeleteBankAccountRequest :  IEquatable<DeleteBankAccountRequest>, IValidatableObject
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="DeleteBankAccountRequest" /> class.
@@ -50,19 +27,15 @@ namespace Adyen.Model.MarketPay
             {
                 throw new InvalidDataException("accountHolderCode is a required property for DeleteBankAccountRequest and cannot be null");
             }
-            else
-            {
-                this.AccountHolderCode = accountHolderCode;
-            }
+
+            AccountHolderCode = accountHolderCode;
             // to ensure "bankAccountUUIDs" is required (not null)
             if (bankAccountUUIDs == null)
             {
                 throw new InvalidDataException("bankAccountUUIDs is a required property for DeleteBankAccountRequest and cannot be null");
             }
-            else
-            {
-                this.BankAccountUUIDs = bankAccountUUIDs;
-            }
+
+            BankAccountUUIDs = bankAccountUUIDs;
         }
         
         /// <summary>
@@ -109,7 +82,7 @@ namespace Adyen.Model.MarketPay
         /// <returns>Boolean</returns>
         public override bool Equals(object input)
         {
-            return this.Equals(input as DeleteBankAccountRequest);
+            return Equals(input as DeleteBankAccountRequest);
         }
 
         /// <summary>
@@ -124,15 +97,15 @@ namespace Adyen.Model.MarketPay
 
             return 
                 (
-                    this.AccountHolderCode == input.AccountHolderCode ||
-                    (this.AccountHolderCode != null &&
-                    this.AccountHolderCode.Equals(input.AccountHolderCode))
+                    AccountHolderCode == input.AccountHolderCode ||
+                    (AccountHolderCode != null &&
+                    AccountHolderCode.Equals(input.AccountHolderCode))
                 ) && 
                 (
-                    this.BankAccountUUIDs == input.BankAccountUUIDs ||
-                    this.BankAccountUUIDs != null &&
+                    BankAccountUUIDs == input.BankAccountUUIDs ||
+                    BankAccountUUIDs != null &&
                     input.BankAccountUUIDs != null &&
-                    this.BankAccountUUIDs.SequenceEqual(input.BankAccountUUIDs)
+                    BankAccountUUIDs.SequenceEqual(input.BankAccountUUIDs)
                 );
         }
 
@@ -145,10 +118,10 @@ namespace Adyen.Model.MarketPay
             unchecked // Overflow is fine, just wrap
             {
                 int hashCode = 41;
-                if (this.AccountHolderCode != null)
-                    hashCode = hashCode * 59 + this.AccountHolderCode.GetHashCode();
-                if (this.BankAccountUUIDs != null)
-                    hashCode = hashCode * 59 + this.BankAccountUUIDs.GetHashCode();
+                if (AccountHolderCode != null)
+                    hashCode = hashCode * 59 + AccountHolderCode.GetHashCode();
+                if (BankAccountUUIDs != null)
+                    hashCode = hashCode * 59 + BankAccountUUIDs.GetHashCode();
                 return hashCode;
             }
         }
@@ -158,7 +131,7 @@ namespace Adyen.Model.MarketPay
         /// </summary>
         /// <param name="validationContext">Validation context</param>
         /// <returns>Validation Result</returns>
-        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+        IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
         {
             yield break;
         }

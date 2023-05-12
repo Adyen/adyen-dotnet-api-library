@@ -1,28 +1,4 @@
-﻿#region Licence
-
-// 
-//                        ######
-//                        ######
-//  ############    ####( ######  #####. ######  ############   ############
-//  #############  #####( ######  #####. ######  #############  #############
-//         ######  #####( ######  #####. ######  #####  ######  #####  ######
-//  ###### ######  #####( ######  #####. ######  #####  #####   #####  ######
-//  ###### ######  #####( ######  #####. ######  #####          #####  ######
-//  #############  #############  #############  #############  #####  ######
-//   ############   ############  #############   ############  #####  ######
-//                                       ######
-//                                #############
-//                                ############
-// 
-//  Adyen Dotnet API Library
-// 
-//  Copyright (c) 2021 Adyen B.V.
-//  This file is open source and available under the MIT license.
-//  See the LICENSE file for more info.
-
-#endregion
-
-using System;
+﻿using System;
 using Adyen.Model.MarketPay.Notification;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
@@ -33,7 +9,7 @@ namespace Adyen.Util
     {
         public override bool CanConvert(Type objectType)
         {
-            return objectType == typeof(IGenericNotification);
+            return objectType == typeof(IGenericWebhook);
         }
         public override void WriteJson(JsonWriter writer,
             object value, JsonSerializer serializer)
@@ -46,7 +22,7 @@ namespace Adyen.Util
            JsonSerializer serializer)
         {
             var jsonObject = JObject.Load(reader);
-            var notification = default(IGenericNotification);
+            var notification = default(IGenericWebhook);
             switch (jsonObject["eventType"].ToString())
             {
                 case "ACCOUNT_CREATED":

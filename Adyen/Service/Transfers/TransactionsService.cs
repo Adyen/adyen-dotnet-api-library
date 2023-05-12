@@ -13,59 +13,88 @@
 using System;
 using System.Collections.Generic;
 using System.Net.Http;
+using System.Threading;
 using System.Threading.Tasks;
 using Adyen.Constants;
 using Adyen.Model;
 using Adyen.Service.Resource;
 using Adyen.Model.Transfers;
-using Newtonsoft.Json;
 
 namespace Adyen.Service.Transfers
 {
     /// <summary>
-    /// Represents a collection of functions to interact with the API endpoints
+    /// TransactionsService Interface
     /// </summary>
-    public class TransactionsService : AbstractService
+    public interface ITransactionsService
+    {
+        /// <summary>
+        /// Get all transactions
+        /// </summary>
+        /// <param name="balancePlatform"><see cref="string"/> - Unique identifier of the [balance platform](https://docs.adyen.com/api-explorer/#/balanceplatform/latest/get/balancePlatforms/{id}__queryParam_id).</param>
+        /// <param name="paymentInstrumentId"><see cref="string"/> - Unique identifier of the [payment instrument](https://docs.adyen.com/api-explorer/balanceplatform/latest/get/paymentInstruments/_id_).</param>
+        /// <param name="accountHolderId"><see cref="string"/> - Unique identifier of the [account holder](https://docs.adyen.com/api-explorer/#/balanceplatform/latest/get/accountHolders/{id}__queryParam_id).</param>
+        /// <param name="balanceAccountId"><see cref="string"/> - Unique identifier of the [balance account](https://docs.adyen.com/api-explorer/#/balanceplatform/latest/get/balanceAccounts/{id}__queryParam_id).</param>
+        /// <param name="cursor"><see cref="string"/> - The &#x60;cursor&#x60; returned in the links of the previous response.</param>
+        /// <param name="createdSince"><see cref="DateTime"/> - Only include transactions that have been created on or after this point in time. The value must be in ISO 8601 format. For example, **2021-05-30T15:07:40Z**.</param>
+        /// <param name="createdUntil"><see cref="DateTime"/> - Only include transactions that have been created on or before this point in time. The value must be in ISO 8601 format. For example, **2021-05-30T15:07:40Z**.</param>
+        /// <param name="limit"><see cref="int?"/> - The number of items returned per page, maximum of 100 items. By default, the response returns 10 items per page.</param>
+        /// <param name="requestOptions"><see cref="RequestOptions"/> - Additional request options.</param>
+        /// <returns><see cref="TransactionSearchResponse"/>.</returns>
+        TransactionSearchResponse GetAllTransactions(DateTime createdSince, DateTime createdUntil, string balancePlatform = default, string paymentInstrumentId = default, string accountHolderId = default, string balanceAccountId = default, string cursor = default, int? limit = default, RequestOptions requestOptions = default);
+        
+        /// <summary>
+        /// Get all transactions
+        /// </summary>
+        /// <param name="balancePlatform"><see cref="string"/> - Unique identifier of the [balance platform](https://docs.adyen.com/api-explorer/#/balanceplatform/latest/get/balancePlatforms/{id}__queryParam_id).</param>
+        /// <param name="paymentInstrumentId"><see cref="string"/> - Unique identifier of the [payment instrument](https://docs.adyen.com/api-explorer/balanceplatform/latest/get/paymentInstruments/_id_).</param>
+        /// <param name="accountHolderId"><see cref="string"/> - Unique identifier of the [account holder](https://docs.adyen.com/api-explorer/#/balanceplatform/latest/get/accountHolders/{id}__queryParam_id).</param>
+        /// <param name="balanceAccountId"><see cref="string"/> - Unique identifier of the [balance account](https://docs.adyen.com/api-explorer/#/balanceplatform/latest/get/balanceAccounts/{id}__queryParam_id).</param>
+        /// <param name="cursor"><see cref="string"/> - The &#x60;cursor&#x60; returned in the links of the previous response.</param>
+        /// <param name="createdSince"><see cref="DateTime"/> - Only include transactions that have been created on or after this point in time. The value must be in ISO 8601 format. For example, **2021-05-30T15:07:40Z**.</param>
+        /// <param name="createdUntil"><see cref="DateTime"/> - Only include transactions that have been created on or before this point in time. The value must be in ISO 8601 format. For example, **2021-05-30T15:07:40Z**.</param>
+        /// <param name="limit"><see cref="int?"/> - The number of items returned per page, maximum of 100 items. By default, the response returns 10 items per page.</param>
+        /// <param name="requestOptions"><see cref="RequestOptions"/> - Additional request options.</param>
+        /// <param name="cancellationToken"> A CancellationToken enables cooperative cancellation between threads, thread pool work items, or Task objects.</param>
+        /// <returns>Task of <see cref="TransactionSearchResponse"/>.</returns>
+        Task<TransactionSearchResponse> GetAllTransactionsAsync(DateTime createdSince, DateTime createdUntil, string balancePlatform = default, string paymentInstrumentId = default, string accountHolderId = default, string balanceAccountId = default, string cursor = default, int? limit = default, RequestOptions requestOptions = default, CancellationToken cancellationToken = default);
+        
+        /// <summary>
+        /// Get a transaction
+        /// </summary>
+        /// <param name="id"><see cref="string"/> - Unique identifier of the transaction.</param>
+        /// <param name="requestOptions"><see cref="RequestOptions"/> - Additional request options.</param>
+        /// <returns><see cref="Transaction"/>.</returns>
+        Transaction GetTransaction(string id, RequestOptions requestOptions = default);
+        
+        /// <summary>
+        /// Get a transaction
+        /// </summary>
+        /// <param name="id"><see cref="string"/> - Unique identifier of the transaction.</param>
+        /// <param name="requestOptions"><see cref="RequestOptions"/> - Additional request options.</param>
+        /// <param name="cancellationToken"> A CancellationToken enables cooperative cancellation between threads, thread pool work items, or Task objects.</param>
+        /// <returns>Task of <see cref="Transaction"/>.</returns>
+        Task<Transaction> GetTransactionAsync(string id, RequestOptions requestOptions = default, CancellationToken cancellationToken = default);
+        
+    }
+    
+    /// <summary>
+    /// Represents a collection of functions to interact with the TransactionsService API endpoints
+    /// </summary>
+    public class TransactionsService : AbstractService, ITransactionsService
     {
         private readonly string _baseUrl;
         
         public TransactionsService(Client client) : base(client)
         {
-            _baseUrl = client.Config.TransfersEndpoint + "/" + ClientConfig.TransfersVersion;
+            _baseUrl = CreateBaseUrl("https://balanceplatform-api-test.adyen.com/btl/v3");
         }
-    
-        /// <summary>
-        /// Get all transactions
-        /// </summary>
-        /// <param name="createdSince">Only include transactions that have been created on or after this point in time. The value must be in ISO 8601 format. For example, **2021-05-30T15:07:40Z**.</param>
-        /// <param name="createdUntil">Only include transactions that have been created on or before this point in time. The value must be in ISO 8601 format. For example, **2021-05-30T15:07:40Z**.</param>
-        /// <param name="balancePlatform">Unique identifier of the [balance platform](https://docs.adyen.com/api-explorer/#/balanceplatform/latest/get/balancePlatforms/{id}__queryParam_id).</param>
-        /// <param name="paymentInstrumentId">Unique identifier of the [payment instrument](https://docs.adyen.com/api-explorer/balanceplatform/latest/get/paymentInstruments/_id_).</param>
-        /// <param name="accountHolderId">Unique identifier of the [account holder](https://docs.adyen.com/api-explorer/#/balanceplatform/latest/get/accountHolders/{id}__queryParam_id).</param>
-        /// <param name="balanceAccountId">Unique identifier of the [balance account](https://docs.adyen.com/api-explorer/#/balanceplatform/latest/get/balanceAccounts/{id}__queryParam_id).</param>
-        /// <param name="cursor">The &#x60;cursor&#x60; returned in the links of the previous response.</param>
-        /// <param name="limit">The number of items returned per page, maximum of 100 items. By default, the response returns 10 items per page.</param>
-        /// <param name="requestOptions">Additional request options.</param>
-        /// <returns>TransactionSearchResponse</returns>
+        
         public TransactionSearchResponse GetAllTransactions(DateTime createdSince, DateTime createdUntil, string balancePlatform = default, string paymentInstrumentId = default, string accountHolderId = default, string balanceAccountId = default, string cursor = default, int? limit = default, RequestOptions requestOptions = default)
         {
-            return GetAllTransactionsAsync(createdSince, createdUntil, balancePlatform, paymentInstrumentId, accountHolderId, balanceAccountId, cursor, limit, requestOptions).GetAwaiter().GetResult();
+            return GetAllTransactionsAsync(createdSince, createdUntil, balancePlatform, paymentInstrumentId, accountHolderId, balanceAccountId, cursor, limit, requestOptions).ConfigureAwait(false).GetAwaiter().GetResult();
         }
 
-        /// <summary>
-        /// Get all transactions
-        /// </summary>
-        /// <param name="createdSince">Only include transactions that have been created on or after this point in time. The value must be in ISO 8601 format. For example, **2021-05-30T15:07:40Z**.</param>
-        /// <param name="createdUntil">Only include transactions that have been created on or before this point in time. The value must be in ISO 8601 format. For example, **2021-05-30T15:07:40Z**.</param>
-        /// <param name="balancePlatform">Unique identifier of the [balance platform](https://docs.adyen.com/api-explorer/#/balanceplatform/latest/get/balancePlatforms/{id}__queryParam_id).</param>
-        /// <param name="paymentInstrumentId">Unique identifier of the [payment instrument](https://docs.adyen.com/api-explorer/balanceplatform/latest/get/paymentInstruments/_id_).</param>
-        /// <param name="accountHolderId">Unique identifier of the [account holder](https://docs.adyen.com/api-explorer/#/balanceplatform/latest/get/accountHolders/{id}__queryParam_id).</param>
-        /// <param name="balanceAccountId">Unique identifier of the [balance account](https://docs.adyen.com/api-explorer/#/balanceplatform/latest/get/balanceAccounts/{id}__queryParam_id).</param>
-        /// <param name="cursor">The &#x60;cursor&#x60; returned in the links of the previous response.</param>
-        /// <param name="limit">The number of items returned per page, maximum of 100 items. By default, the response returns 10 items per page.</param>
-        /// <param name="requestOptions">Additional request options.</param>
-        /// <returns>Task of TransactionSearchResponse</returns>
-        public async Task<TransactionSearchResponse> GetAllTransactionsAsync(DateTime createdSince, DateTime createdUntil, string balancePlatform = default, string paymentInstrumentId = default, string accountHolderId = default, string balanceAccountId = default, string cursor = default, int? limit = default, RequestOptions requestOptions = default)
+        public async Task<TransactionSearchResponse> GetAllTransactionsAsync(DateTime createdSince, DateTime createdUntil, string balancePlatform = default, string paymentInstrumentId = default, string accountHolderId = default, string balanceAccountId = default, string cursor = default, int? limit = default, RequestOptions requestOptions = default, CancellationToken cancellationToken = default)
         {
             // Build the query string
             var queryParams = new Dictionary<string, string>();
@@ -79,32 +108,19 @@ namespace Adyen.Service.Transfers
             if (limit != null) queryParams.Add("limit", limit.ToString());
             var endpoint = _baseUrl + "/transactions" + ToQueryString(queryParams);
             var resource = new ServiceResource(this, endpoint);
-            return await resource.RequestAsync<TransactionSearchResponse>(null, requestOptions, new HttpMethod("GET"));
+            return await resource.RequestAsync<TransactionSearchResponse>(null, requestOptions, new HttpMethod("GET"), cancellationToken).ConfigureAwait(false);
         }
-
-        /// <summary>
-        /// Get a transaction
-        /// </summary>
-        /// <param name="id">Unique identifier of the transaction.</param>
-        /// <param name="requestOptions">Additional request options.</param>
-        /// <returns>Transaction</returns>
+        
         public Transaction GetTransaction(string id, RequestOptions requestOptions = default)
         {
-            return GetTransactionAsync(id, requestOptions).GetAwaiter().GetResult();
+            return GetTransactionAsync(id, requestOptions).ConfigureAwait(false).GetAwaiter().GetResult();
         }
 
-        /// <summary>
-        /// Get a transaction
-        /// </summary>
-        /// <param name="id">Unique identifier of the transaction.</param>
-        /// <param name="requestOptions">Additional request options.</param>
-        /// <returns>Task of Transaction</returns>
-        public async Task<Transaction> GetTransactionAsync(string id, RequestOptions requestOptions = default)
+        public async Task<Transaction> GetTransactionAsync(string id, RequestOptions requestOptions = default, CancellationToken cancellationToken = default)
         {
             var endpoint = _baseUrl + $"/transactions/{id}";
             var resource = new ServiceResource(this, endpoint);
-            return await resource.RequestAsync<Transaction>(null, requestOptions, new HttpMethod("GET"));
+            return await resource.RequestAsync<Transaction>(null, requestOptions, new HttpMethod("GET"), cancellationToken).ConfigureAwait(false);
         }
-
     }
 }

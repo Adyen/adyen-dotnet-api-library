@@ -1,26 +1,4 @@
-﻿#region Licence
-// 
-//                        ######
-//                        ######
-//  ############    ####( ######  #####. ######  ############   ############
-//  #############  #####( ######  #####. ######  #############  #############
-//         ######  #####( ######  #####. ######  #####  ######  #####  ######
-//  ###### ######  #####( ######  #####. ######  #####  #####   #####  ######
-//  ###### ######  #####( ######  #####. ######  #####          #####  ######
-//  #############  #############  #############  #############  #####  ######
-//   ############   ############  #############   ############  #####  ######
-//                                       ######
-//                                #############
-//                                ############
-// 
-//  Adyen Dotnet API Library
-// 
-//  Copyright (c) 2020 Adyen B.V.
-//  This file is open source and available under the MIT license.
-//  See the LICENSE file for more info.
-#endregion
-
-using Adyen.Model.Checkout;
+﻿using Adyen.Model.Checkout;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace Adyen.Test
@@ -43,7 +21,7 @@ namespace Adyen.Test
                 MerchantAccount = "YOUR_MERCHANT_ACCOUNT",
                 Amount = new Amount("EUR", 1000),
                 Reference = "ACH test",
-                PaymentMethod = new PaymentDonationRequestPaymentMethod(achDetails),
+                PaymentMethod = new CheckoutPaymentMethod(achDetails),
                 ShopperIP = "192.0.2.1",
                 Channel = PaymentRequest.ChannelEnum.Web,
                 Origin = "https://your-company.com",
@@ -65,7 +43,7 @@ namespace Adyen.Test
         [TestMethod]
         public void TestApplePayPaymentMethod()
         {
-            var applePay = new ApplePayDetails()
+            var applePay = new ApplePayDetails
             {
                 ApplePayToken = "VNRWtuNlNEWkRCSm1xWndjMDFFbktkQU..."
             };
@@ -74,7 +52,7 @@ namespace Adyen.Test
                 MerchantAccount = "YOUR_MERCHANT_ACCOUNT",
                 Amount = new Amount("EUR", 1000),
                 Reference = "apple pay test",
-                PaymentMethod = new PaymentDonationRequestPaymentMethod(applePay),
+                PaymentMethod = new CheckoutPaymentMethod(applePay),
                 ReturnUrl = "https://your-company.com/checkout?shopperOrder=12xy.."
             };
             var paymentMethodDetails = paymentRequest.PaymentMethod.GetApplePayDetails();
@@ -93,7 +71,7 @@ namespace Adyen.Test
                 MerchantAccount = "YOUR_MERCHANT_ACCOUNT",
                 Amount = new Amount("EUR", 1000),
                 Reference = "giro pay test",
-                PaymentMethod = new PaymentDonationRequestPaymentMethod(new GiropayDetails()),
+                PaymentMethod = new CheckoutPaymentMethod(new GiropayDetails()),
                 ReturnUrl = "https://your-company.com/checkout?shopperOrder=12xy.."
             };
             var paymentMethodDetails = (GiropayDetails)paymentRequest.PaymentMethod.ActualInstance;
@@ -111,7 +89,7 @@ namespace Adyen.Test
                 MerchantAccount = "YOUR_MERCHANT_ACCOUNT",
                 Amount = new Amount("EUR", 1000),
                 Reference = "google pay test",
-                PaymentMethod = new PaymentDonationRequestPaymentMethod(new GooglePayDetails
+                PaymentMethod = new CheckoutPaymentMethod(new GooglePayDetails
                 {
                     GooglePayToken = "==Payload as retrieved from Google Pay response==",
                     FundingSource = GooglePayDetails.FundingSourceEnum.Debit
@@ -136,7 +114,7 @@ namespace Adyen.Test
                 MerchantAccount = "YOUR_MERCHANT_ACCOUNT",
                 Amount = new Amount("EUR", 1000),
                 Reference = "ideal test",
-                PaymentMethod = new PaymentDonationRequestPaymentMethod(new IdealDetails()
+                PaymentMethod = new CheckoutPaymentMethod(new IdealDetails
                 {
                     Issuer = "1121"
                 }),
@@ -157,7 +135,7 @@ namespace Adyen.Test
                 MerchantAccount = "YOUR_MERCHANT_ACCOUNT",
                 Amount = new Amount("GBP", 1000),
                 Reference = "bacs direct debit test",
-                PaymentMethod = new PaymentDonationRequestPaymentMethod(new BacsDirectDebitDetails
+                PaymentMethod = new CheckoutPaymentMethod(new BacsDirectDebitDetails
                 {
                     BankAccountNumber = "NL0123456789",
                     BankLocationId = "121000358",
@@ -179,12 +157,12 @@ namespace Adyen.Test
         [TestMethod]
         public void TestPaypalSuccess()
         {
-            var paymentRequest = new PaymentRequest()
+            var paymentRequest = new PaymentRequest
             {
                 MerchantAccount = "YOUR_MERCHANT_ACCOUNT",
                 Amount = new Amount("USD", 1000),
                 Reference = "paypal test",
-                PaymentMethod = new PaymentDonationRequestPaymentMethod( new PayPalDetails
+                PaymentMethod = new CheckoutPaymentMethod( new PayPalDetails
                 {
                     Subtype = PayPalDetails.SubtypeEnum.Sdk,
                     StoredPaymentMethodId = "2345654212345432345"
@@ -199,12 +177,12 @@ namespace Adyen.Test
         [TestMethod]
         public void TestZipSuccess()
         {
-            var paymentRequest = new PaymentRequest()
+            var paymentRequest = new PaymentRequest
             {
                 MerchantAccount = "YOUR_MERCHANT_ACCOUNT",
                 Amount = new Amount("USD", 1000),
                 Reference = "zip test",
-                PaymentMethod = new PaymentDonationRequestPaymentMethod(new ZipDetails
+                PaymentMethod = new CheckoutPaymentMethod(new ZipDetails
                 {
                     Type = ZipDetails.TypeEnum.Zip
                 }),          

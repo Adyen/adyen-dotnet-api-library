@@ -34,9 +34,9 @@ namespace Adyen.Model.Checkout
     public partial class AuthenticationData : IEquatable<AuthenticationData>, IValidatableObject
     {
         /// <summary>
-        /// Indicates when 3D Secure authentication should be attempted. This overrides all other rules, including [Dynamic 3D Secure settings](https://docs.adyen.com/risk-management/dynamic-3d-secure).  Possible values:  * **always**: Perform 3D Secure authentication. * **never**: Don&#39;t perform 3D Secure authentication. If PSD2 SCA or other national regulations require authentication, the transaction gets declined. * **preferNo**: Do not perform 3D Secure authentication if not required by PSD2 SCA or other national regulations.
+        /// Indicates when 3D Secure authentication should be attempted. This overrides all other rules, including [Dynamic 3D Secure settings](https://docs.adyen.com/risk-management/dynamic-3d-secure).  Possible values:  * **always**: Perform 3D Secure authentication. * **never**: Don&#39;t perform 3D Secure authentication. If PSD2 SCA or other national regulations require authentication, the transaction gets declined.
         /// </summary>
-        /// <value>Indicates when 3D Secure authentication should be attempted. This overrides all other rules, including [Dynamic 3D Secure settings](https://docs.adyen.com/risk-management/dynamic-3d-secure).  Possible values:  * **always**: Perform 3D Secure authentication. * **never**: Don&#39;t perform 3D Secure authentication. If PSD2 SCA or other national regulations require authentication, the transaction gets declined. * **preferNo**: Do not perform 3D Secure authentication if not required by PSD2 SCA or other national regulations.</value>
+        /// <value>Indicates when 3D Secure authentication should be attempted. This overrides all other rules, including [Dynamic 3D Secure settings](https://docs.adyen.com/risk-management/dynamic-3d-secure).  Possible values:  * **always**: Perform 3D Secure authentication. * **never**: Don&#39;t perform 3D Secure authentication. If PSD2 SCA or other national regulations require authentication, the transaction gets declined.</value>
         [JsonConverter(typeof(StringEnumConverter))]
         public enum AttemptAuthenticationEnum
         {
@@ -56,16 +56,16 @@ namespace Adyen.Model.Checkout
 
 
         /// <summary>
-        /// Indicates when 3D Secure authentication should be attempted. This overrides all other rules, including [Dynamic 3D Secure settings](https://docs.adyen.com/risk-management/dynamic-3d-secure).  Possible values:  * **always**: Perform 3D Secure authentication. * **never**: Don&#39;t perform 3D Secure authentication. If PSD2 SCA or other national regulations require authentication, the transaction gets declined. * **preferNo**: Do not perform 3D Secure authentication if not required by PSD2 SCA or other national regulations.
+        /// Indicates when 3D Secure authentication should be attempted. This overrides all other rules, including [Dynamic 3D Secure settings](https://docs.adyen.com/risk-management/dynamic-3d-secure).  Possible values:  * **always**: Perform 3D Secure authentication. * **never**: Don&#39;t perform 3D Secure authentication. If PSD2 SCA or other national regulations require authentication, the transaction gets declined.
         /// </summary>
-        /// <value>Indicates when 3D Secure authentication should be attempted. This overrides all other rules, including [Dynamic 3D Secure settings](https://docs.adyen.com/risk-management/dynamic-3d-secure).  Possible values:  * **always**: Perform 3D Secure authentication. * **never**: Don&#39;t perform 3D Secure authentication. If PSD2 SCA or other national regulations require authentication, the transaction gets declined. * **preferNo**: Do not perform 3D Secure authentication if not required by PSD2 SCA or other national regulations.</value>
+        /// <value>Indicates when 3D Secure authentication should be attempted. This overrides all other rules, including [Dynamic 3D Secure settings](https://docs.adyen.com/risk-management/dynamic-3d-secure).  Possible values:  * **always**: Perform 3D Secure authentication. * **never**: Don&#39;t perform 3D Secure authentication. If PSD2 SCA or other national regulations require authentication, the transaction gets declined.</value>
         [DataMember(Name = "attemptAuthentication", EmitDefaultValue = false)]
         public AttemptAuthenticationEnum? AttemptAuthentication { get; set; }
         /// <summary>
         /// Initializes a new instance of the <see cref="AuthenticationData" /> class.
         /// </summary>
-        /// <param name="attemptAuthentication">Indicates when 3D Secure authentication should be attempted. This overrides all other rules, including [Dynamic 3D Secure settings](https://docs.adyen.com/risk-management/dynamic-3d-secure).  Possible values:  * **always**: Perform 3D Secure authentication. * **never**: Don&#39;t perform 3D Secure authentication. If PSD2 SCA or other national regulations require authentication, the transaction gets declined. * **preferNo**: Do not perform 3D Secure authentication if not required by PSD2 SCA or other national regulations..</param>
-        /// <param name="authenticationOnly">If set to true, you will only perform the [3D Secure 2 authentication](https://docs.adyen.com/online-payments/3d-secure/other-3ds-flows/authentication-only), and not the payment authorisation. Default: *false**. (default to false).</param>
+        /// <param name="attemptAuthentication">Indicates when 3D Secure authentication should be attempted. This overrides all other rules, including [Dynamic 3D Secure settings](https://docs.adyen.com/risk-management/dynamic-3d-secure).  Possible values:  * **always**: Perform 3D Secure authentication. * **never**: Don&#39;t perform 3D Secure authentication. If PSD2 SCA or other national regulations require authentication, the transaction gets declined..</param>
+        /// <param name="authenticationOnly">If set to true, you will only perform the [3D Secure 2 authentication](https://docs.adyen.com/online-payments/3d-secure/other-3ds-flows/authentication-only), and not the payment authorisation. Default: **false**. (default to false).</param>
         /// <param name="threeDSRequestData">threeDSRequestData.</param>
         public AuthenticationData(AttemptAuthenticationEnum? attemptAuthentication = default(AttemptAuthenticationEnum?), bool authenticationOnly = false, ThreeDSRequestData threeDSRequestData = default(ThreeDSRequestData))
         {
@@ -75,9 +75,9 @@ namespace Adyen.Model.Checkout
         }
 
         /// <summary>
-        /// If set to true, you will only perform the [3D Secure 2 authentication](https://docs.adyen.com/online-payments/3d-secure/other-3ds-flows/authentication-only), and not the payment authorisation. Default: *false**.
+        /// If set to true, you will only perform the [3D Secure 2 authentication](https://docs.adyen.com/online-payments/3d-secure/other-3ds-flows/authentication-only), and not the payment authorisation. Default: **false**.
         /// </summary>
-        /// <value>If set to true, you will only perform the [3D Secure 2 authentication](https://docs.adyen.com/online-payments/3d-secure/other-3ds-flows/authentication-only), and not the payment authorisation. Default: *false**.</value>
+        /// <value>If set to true, you will only perform the [3D Secure 2 authentication](https://docs.adyen.com/online-payments/3d-secure/other-3ds-flows/authentication-only), and not the payment authorisation. Default: **false**.</value>
         [DataMember(Name = "authenticationOnly", EmitDefaultValue = false)]
         public bool AuthenticationOnly { get; set; }
 

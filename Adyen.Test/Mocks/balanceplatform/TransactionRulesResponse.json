@@ -1,0 +1,33 @@
+{
+  "transactionRules": [
+    {
+      "description": "Allow 5 transactions per month",
+      "interval": {
+        "type": "monthly"
+      },
+      "maxTransactions": 5,
+      "paymentInstrumentGroupId": "PG3227C223222B5CMD3FJFKGZ",
+      "reference": "myRule12345",
+      "startDate": "2021-01-25T12:46:35",
+      "status": "active",
+      "type": "velocity",
+      "id": "TR32272223222B5CMDGMC9F4F"
+    },
+    {
+      "amount": {
+        "currency": "EUR",
+        "value": 10000
+      },
+      "description": "Allow up to 100 EUR per month",
+      "interval": {
+        "type": "monthly"
+      },
+      "paymentInstrumentGroupId": "PG3227C223222B5CMD3FJFKGZ",
+      "reference": "myRule16378",
+      "startDate": "2021-01-25T12:46:35",
+      "status": "active",
+      "type": "velocity",
+      "id": "TR32272223222B5CMDGT89F4F"
+    }
+  ]
+}

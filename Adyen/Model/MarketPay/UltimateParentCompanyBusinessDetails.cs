@@ -1,27 +1,4 @@
-﻿#region License
-/*
- *                       ######
- *                       ######
- * ############    ####( ######  #####. ######  ############   ############
- * #############  #####( ######  #####. ######  #############  #############
- *        ######  #####( ######  #####. ######  #####  ######  #####  ######
- * ###### ######  #####( ######  #####. ######  #####  #####   #####  ######
- * ###### ######  #####( ######  #####. ######  #####          #####  ######
- * #############  #############  #############  #############  #####  ######
- *  ############   ############  #############   ############  #####  ######
- *                                      ######
- *                               #############
- *                               ############
- *
- * Adyen Dotnet API Library
- *
- * Copyright (c) 2020 Adyen B.V.
- * This file is open source and available under the MIT license.
- * See the LICENSE file for more info.
- */
-#endregion
-
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Runtime.Serialization;
@@ -33,7 +10,7 @@ namespace Adyen.Model.MarketPay
     /// UltimateParentCompanyBusinessDetails
     /// </summary>
     [DataContract(Name = "UltimateParentCompanyBusinessDetails")]
-    public partial class UltimateParentCompanyBusinessDetails : IEquatable<UltimateParentCompanyBusinessDetails>, IValidatableObject
+    public class UltimateParentCompanyBusinessDetails : IEquatable<UltimateParentCompanyBusinessDetails>, IValidatableObject
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="UltimateParentCompanyBusinessDetails" /> class.
@@ -45,11 +22,11 @@ namespace Adyen.Model.MarketPay
         /// <param name="stockTicker">Stock Ticker symbol..</param>
         public UltimateParentCompanyBusinessDetails(string legalBusinessName = default(string), string registrationNumber = default(string), string stockExchange = default(string), string stockNumber = default(string), string stockTicker = default(string))
         {
-            this.LegalBusinessName = legalBusinessName;
-            this.RegistrationNumber = registrationNumber;
-            this.StockExchange = stockExchange;
-            this.StockNumber = stockNumber;
-            this.StockTicker = stockTicker;
+            LegalBusinessName = legalBusinessName;
+            RegistrationNumber = registrationNumber;
+            StockExchange = stockExchange;
+            StockNumber = stockNumber;
+            StockTicker = stockTicker;
         }
 
         /// <summary>
@@ -120,7 +97,7 @@ namespace Adyen.Model.MarketPay
         /// <returns>Boolean</returns>
         public override bool Equals(object input)
         {
-            return this.Equals(input as UltimateParentCompanyBusinessDetails);
+            return Equals(input as UltimateParentCompanyBusinessDetails);
         }
 
         /// <summary>
@@ -135,29 +112,29 @@ namespace Adyen.Model.MarketPay
 
             return
                 (
-                    this.LegalBusinessName == input.LegalBusinessName ||
-                    (this.LegalBusinessName != null &&
-                    this.LegalBusinessName.Equals(input.LegalBusinessName))
+                    LegalBusinessName == input.LegalBusinessName ||
+                    (LegalBusinessName != null &&
+                    LegalBusinessName.Equals(input.LegalBusinessName))
                 ) &&
                 (
-                    this.RegistrationNumber == input.RegistrationNumber ||
-                    (this.RegistrationNumber != null &&
-                    this.RegistrationNumber.Equals(input.RegistrationNumber))
+                    RegistrationNumber == input.RegistrationNumber ||
+                    (RegistrationNumber != null &&
+                    RegistrationNumber.Equals(input.RegistrationNumber))
                 ) &&
                 (
-                    this.StockExchange == input.StockExchange ||
-                    (this.StockExchange != null &&
-                    this.StockExchange.Equals(input.StockExchange))
+                    StockExchange == input.StockExchange ||
+                    (StockExchange != null &&
+                    StockExchange.Equals(input.StockExchange))
                 ) &&
                 (
-                    this.StockNumber == input.StockNumber ||
-                    (this.StockNumber != null &&
-                    this.StockNumber.Equals(input.StockNumber))
+                    StockNumber == input.StockNumber ||
+                    (StockNumber != null &&
+                    StockNumber.Equals(input.StockNumber))
                 ) &&
                 (
-                    this.StockTicker == input.StockTicker ||
-                    (this.StockTicker != null &&
-                    this.StockTicker.Equals(input.StockTicker))
+                    StockTicker == input.StockTicker ||
+                    (StockTicker != null &&
+                    StockTicker.Equals(input.StockTicker))
                 );
         }
 
@@ -170,16 +147,16 @@ namespace Adyen.Model.MarketPay
             unchecked // Overflow is fine, just wrap
             {
                 int hashCode = 41;
-                if (this.LegalBusinessName != null)
-                    hashCode = hashCode * 59 + this.LegalBusinessName.GetHashCode();
-                if (this.RegistrationNumber != null)
-                    hashCode = hashCode * 59 + this.RegistrationNumber.GetHashCode();
-                if (this.StockExchange != null)
-                    hashCode = hashCode * 59 + this.StockExchange.GetHashCode();
-                if (this.StockNumber != null)
-                    hashCode = hashCode * 59 + this.StockNumber.GetHashCode();
-                if (this.StockTicker != null)
-                    hashCode = hashCode * 59 + this.StockTicker.GetHashCode();
+                if (LegalBusinessName != null)
+                    hashCode = hashCode * 59 + LegalBusinessName.GetHashCode();
+                if (RegistrationNumber != null)
+                    hashCode = hashCode * 59 + RegistrationNumber.GetHashCode();
+                if (StockExchange != null)
+                    hashCode = hashCode * 59 + StockExchange.GetHashCode();
+                if (StockNumber != null)
+                    hashCode = hashCode * 59 + StockNumber.GetHashCode();
+                if (StockTicker != null)
+                    hashCode = hashCode * 59 + StockTicker.GetHashCode();
                 return hashCode;
             }
         }
@@ -189,7 +166,7 @@ namespace Adyen.Model.MarketPay
         /// </summary>
         /// <param name="validationContext">Validation context</param>
         /// <returns>Validation Result</returns>
-        public IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> Validate(ValidationContext validationContext)
+        public IEnumerable<ValidationResult> Validate(ValidationContext validationContext)
         {
             yield break;
         }

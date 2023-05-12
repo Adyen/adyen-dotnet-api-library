@@ -193,10 +193,11 @@ namespace Adyen.Model.Checkout
         /// <summary>
         /// Initializes a new instance of the <see cref="PaymentLinkResponse" /> class.
         /// </summary>
-        /// <param name="allowedPaymentMethods">List of payment methods to be presented to the shopper. To refer to payment methods, use their &#x60;paymentMethod.type&#x60; from [Payment methods overview](https://docs.adyen.com/payment-methods).  Example: &#x60;\&quot;allowedPaymentMethods\&quot;:[\&quot;ideal\&quot;,\&quot;giropay\&quot;]&#x60;.</param>
+        /// <param name="allowedPaymentMethods">List of payment methods to be presented to the shopper. To refer to payment methods, use their [payment method type](https://docs.adyen.com/payment-methods/payment-method-types).  Example: &#x60;\&quot;allowedPaymentMethods\&quot;:[\&quot;ideal\&quot;,\&quot;giropay\&quot;]&#x60;.</param>
         /// <param name="amount">amount (required).</param>
+        /// <param name="applicationInfo">applicationInfo.</param>
         /// <param name="billingAddress">billingAddress.</param>
-        /// <param name="blockedPaymentMethods">List of payment methods to be hidden from the shopper. To refer to payment methods, use their &#x60;paymentMethod.type&#x60; from [Payment methods overview](https://docs.adyen.com/payment-methods).  Example: &#x60;\&quot;blockedPaymentMethods\&quot;:[\&quot;ideal\&quot;,\&quot;giropay\&quot;]&#x60;.</param>
+        /// <param name="blockedPaymentMethods">List of payment methods to be hidden from the shopper. To refer to payment methods, use their [payment method type](https://docs.adyen.com/payment-methods/payment-method-types).  Example: &#x60;\&quot;blockedPaymentMethods\&quot;:[\&quot;ideal\&quot;,\&quot;giropay\&quot;]&#x60;.</param>
         /// <param name="captureDelayHours">The delay between the authorisation and scheduled auto-capture, specified in hours..</param>
         /// <param name="countryCode">The shopper&#39;s two-letter country code..</param>
         /// <param name="dateOfBirth">The shopper&#39;s date of birth.  Format [ISO-8601](https://www.w3.org/TR/NOTE-datetime): YYYY-MM-DD.</param>
@@ -232,13 +233,14 @@ namespace Adyen.Model.Checkout
         /// <param name="telephoneNumber">The shopper&#39;s telephone number..</param>
         /// <param name="themeId">A [theme](https://docs.adyen.com/unified-commerce/pay-by-link/payment-links/api#themes) to customize the appearance of the payment page. If not specified, the payment page is rendered according to the theme set as default in your Customer Area..</param>
         /// <param name="updatedAt">The date when the payment link status was updated.  [ISO 8601](https://www.w3.org/TR/NOTE-datetime) format: YYYY-MM-DDThh:mm:ss+TZD, for example, **2020-12-18T10:15:30+01:00**..</param>
-        public PaymentLinkResponse(List<string> allowedPaymentMethods = default(List<string>), Amount amount = default(Amount), Address billingAddress = default(Address), List<string> blockedPaymentMethods = default(List<string>), int? captureDelayHours = default(int?), string countryCode = default(string), DateTime dateOfBirth = default(DateTime), DateTime deliverAt = default(DateTime), Address deliveryAddress = default(Address), string description = default(string), string expiresAt = default(string), Dictionary<string, InstallmentOption> installmentOptions = default(Dictionary<string, InstallmentOption>), List<LineItem> lineItems = default(List<LineItem>), bool manualCapture = default(bool), string mcc = default(string), string merchantAccount = default(string), string merchantOrderReference = default(string), Dictionary<string, string> metadata = default(Dictionary<string, string>), RecurringProcessingModelEnum? recurringProcessingModel = default(RecurringProcessingModelEnum?), string reference = default(string), List<RequiredShopperFieldsEnum> requiredShopperFields = default(List<RequiredShopperFieldsEnum>), string returnUrl = default(string), bool reusable = default(bool), RiskData riskData = default(RiskData), string shopperEmail = default(string), string shopperLocale = default(string), Name shopperName = default(Name), string shopperReference = default(string), string shopperStatement = default(string), bool showRemovePaymentMethodButton = true, string socialSecurityNumber = default(string), bool splitCardFundingSources = false, List<Split> splits = default(List<Split>), StatusEnum status = default(StatusEnum), string store = default(string), StorePaymentMethodModeEnum? storePaymentMethodMode = default(StorePaymentMethodModeEnum?), string telephoneNumber = default(string), string themeId = default(string), DateTime updatedAt = default(DateTime))
+        public PaymentLinkResponse(List<string> allowedPaymentMethods = default(List<string>), Amount amount = default(Amount), ApplicationInfo applicationInfo = default(ApplicationInfo), Address billingAddress = default(Address), List<string> blockedPaymentMethods = default(List<string>), int? captureDelayHours = default(int?), string countryCode = default(string), DateTime dateOfBirth = default(DateTime), DateTime deliverAt = default(DateTime), Address deliveryAddress = default(Address), string description = default(string), string expiresAt = default(string), Dictionary<string, InstallmentOption> installmentOptions = default(Dictionary<string, InstallmentOption>), List<LineItem> lineItems = default(List<LineItem>), bool manualCapture = default(bool), string mcc = default(string), string merchantAccount = default(string), string merchantOrderReference = default(string), Dictionary<string, string> metadata = default(Dictionary<string, string>), RecurringProcessingModelEnum? recurringProcessingModel = default(RecurringProcessingModelEnum?), string reference = default(string), List<RequiredShopperFieldsEnum> requiredShopperFields = default(List<RequiredShopperFieldsEnum>), string returnUrl = default(string), bool reusable = default(bool), RiskData riskData = default(RiskData), string shopperEmail = default(string), string shopperLocale = default(string), Name shopperName = default(Name), string shopperReference = default(string), string shopperStatement = default(string), bool showRemovePaymentMethodButton = true, string socialSecurityNumber = default(string), bool splitCardFundingSources = false, List<Split> splits = default(List<Split>), StatusEnum status = default(StatusEnum), string store = default(string), StorePaymentMethodModeEnum? storePaymentMethodMode = default(StorePaymentMethodModeEnum?), string telephoneNumber = default(string), string themeId = default(string), DateTime updatedAt = default(DateTime))
         {
             this.Amount = amount;
             this.MerchantAccount = merchantAccount;
             this.Reference = reference;
             this.Status = status;
             this.AllowedPaymentMethods = allowedPaymentMethods;
+            this.ApplicationInfo = applicationInfo;
             this.BillingAddress = billingAddress;
             this.BlockedPaymentMethods = blockedPaymentMethods;
             this.CaptureDelayHours = captureDelayHours;
@@ -276,9 +278,9 @@ namespace Adyen.Model.Checkout
         }
 
         /// <summary>
-        /// List of payment methods to be presented to the shopper. To refer to payment methods, use their &#x60;paymentMethod.type&#x60; from [Payment methods overview](https://docs.adyen.com/payment-methods).  Example: &#x60;\&quot;allowedPaymentMethods\&quot;:[\&quot;ideal\&quot;,\&quot;giropay\&quot;]&#x60;
+        /// List of payment methods to be presented to the shopper. To refer to payment methods, use their [payment method type](https://docs.adyen.com/payment-methods/payment-method-types).  Example: &#x60;\&quot;allowedPaymentMethods\&quot;:[\&quot;ideal\&quot;,\&quot;giropay\&quot;]&#x60;
         /// </summary>
-        /// <value>List of payment methods to be presented to the shopper. To refer to payment methods, use their &#x60;paymentMethod.type&#x60; from [Payment methods overview](https://docs.adyen.com/payment-methods).  Example: &#x60;\&quot;allowedPaymentMethods\&quot;:[\&quot;ideal\&quot;,\&quot;giropay\&quot;]&#x60;</value>
+        /// <value>List of payment methods to be presented to the shopper. To refer to payment methods, use their [payment method type](https://docs.adyen.com/payment-methods/payment-method-types).  Example: &#x60;\&quot;allowedPaymentMethods\&quot;:[\&quot;ideal\&quot;,\&quot;giropay\&quot;]&#x60;</value>
         [DataMember(Name = "allowedPaymentMethods", EmitDefaultValue = false)]
         public List<string> AllowedPaymentMethods { get; set; }
 
@@ -289,15 +291,21 @@ namespace Adyen.Model.Checkout
         public Amount Amount { get; set; }
 
         /// <summary>
+        /// Gets or Sets ApplicationInfo
+        /// </summary>
+        [DataMember(Name = "applicationInfo", EmitDefaultValue = false)]
+        public ApplicationInfo ApplicationInfo { get; set; }
+
+        /// <summary>
         /// Gets or Sets BillingAddress
         /// </summary>
         [DataMember(Name = "billingAddress", EmitDefaultValue = false)]
         public Address BillingAddress { get; set; }
 
         /// <summary>
-        /// List of payment methods to be hidden from the shopper. To refer to payment methods, use their &#x60;paymentMethod.type&#x60; from [Payment methods overview](https://docs.adyen.com/payment-methods).  Example: &#x60;\&quot;blockedPaymentMethods\&quot;:[\&quot;ideal\&quot;,\&quot;giropay\&quot;]&#x60;
+        /// List of payment methods to be hidden from the shopper. To refer to payment methods, use their [payment method type](https://docs.adyen.com/payment-methods/payment-method-types).  Example: &#x60;\&quot;blockedPaymentMethods\&quot;:[\&quot;ideal\&quot;,\&quot;giropay\&quot;]&#x60;
         /// </summary>
-        /// <value>List of payment methods to be hidden from the shopper. To refer to payment methods, use their &#x60;paymentMethod.type&#x60; from [Payment methods overview](https://docs.adyen.com/payment-methods).  Example: &#x60;\&quot;blockedPaymentMethods\&quot;:[\&quot;ideal\&quot;,\&quot;giropay\&quot;]&#x60;</value>
+        /// <value>List of payment methods to be hidden from the shopper. To refer to payment methods, use their [payment method type](https://docs.adyen.com/payment-methods/payment-method-types).  Example: &#x60;\&quot;blockedPaymentMethods\&quot;:[\&quot;ideal\&quot;,\&quot;giropay\&quot;]&#x60;</value>
         [DataMember(Name = "blockedPaymentMethods", EmitDefaultValue = false)]
         public List<string> BlockedPaymentMethods { get; set; }
 
@@ -357,14 +365,6 @@ namespace Adyen.Model.Checkout
         [DataMember(Name = "id", IsRequired = false, EmitDefaultValue = false)]
         public string Id { get; private set; }
 
-        /// <summary>
-        /// Returns false as Id should not be serialized given that it's read-only.
-        /// </summary>
-        /// <returns>false (boolean)</returns>
-        public bool ShouldSerializeId()
-        {
-            return false;
-        }
         /// <summary>
         /// A set of key-value pairs that specifies the installment options available per payment method. The key must be a payment method name in lowercase. For example, **card** to specify installment options for all cards, or **visa** or **mc**. The value must be an object containing the installment options.
         /// </summary>
@@ -546,14 +546,6 @@ namespace Adyen.Model.Checkout
         public string Url { get; private set; }
 
         /// <summary>
-        /// Returns false as Url should not be serialized given that it's read-only.
-        /// </summary>
-        /// <returns>false (boolean)</returns>
-        public bool ShouldSerializeUrl()
-        {
-            return false;
-        }
-        /// <summary>
         /// Returns the string presentation of the object
         /// </summary>
         /// <returns>String presentation of the object</returns>
@@ -563,6 +555,7 @@ namespace Adyen.Model.Checkout
             sb.Append("class PaymentLinkResponse {\n");
             sb.Append("  AllowedPaymentMethods: ").Append(AllowedPaymentMethods).Append("\n");
             sb.Append("  Amount: ").Append(Amount).Append("\n");
+            sb.Append("  ApplicationInfo: ").Append(ApplicationInfo).Append("\n");
             sb.Append("  BillingAddress: ").Append(BillingAddress).Append("\n");
             sb.Append("  BlockedPaymentMethods: ").Append(BlockedPaymentMethods).Append("\n");
             sb.Append("  CaptureDelayHours: ").Append(CaptureDelayHours).Append("\n");
@@ -647,6 +640,11 @@ namespace Adyen.Model.Checkout
                     this.Amount == input.Amount ||
                     (this.Amount != null &&
                     this.Amount.Equals(input.Amount))
+                ) && 
+                (
+                    this.ApplicationInfo == input.ApplicationInfo ||
+                    (this.ApplicationInfo != null &&
+                    this.ApplicationInfo.Equals(input.ApplicationInfo))
                 ) && 
                 (
                     this.BillingAddress == input.BillingAddress ||
@@ -860,6 +858,10 @@ namespace Adyen.Model.Checkout
                 {
                     hashCode = (hashCode * 59) + this.Amount.GetHashCode();
                 }
+                if (this.ApplicationInfo != null)
+                {
+                    hashCode = (hashCode * 59) + this.ApplicationInfo.GetHashCode();
+                }
                 if (this.BillingAddress != null)
                 {
                     hashCode = (hashCode * 59) + this.BillingAddress.GetHashCode();
@@ -1002,6 +1004,18 @@ namespace Adyen.Model.Checkout
         /// <returns>Validation Result</returns>
         public IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> Validate(ValidationContext validationContext)
         {
+            // ShopperReference (string) maxLength
+            if (this.ShopperReference != null && this.ShopperReference.Length > 256)
+            {
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for ShopperReference, length must be less than 256.", new [] { "ShopperReference" });
+            }
+
+            // ShopperReference (string) minLength
+            if (this.ShopperReference != null && this.ShopperReference.Length < 3)
+            {
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for ShopperReference, length must be greater than 3.", new [] { "ShopperReference" });
+            }
+
             yield break;
         }
     }

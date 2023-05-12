@@ -1,4 +1,4 @@
-﻿/*
+/*
 * Adyen BinLookup API
 *
 *
@@ -13,74 +13,90 @@
 using System;
 using System.Collections.Generic;
 using System.Net.Http;
+using System.Threading;
 using System.Threading.Tasks;
 using Adyen.Constants;
 using Adyen.Model;
 using Adyen.Service.Resource;
 using Adyen.Model.BinLookup;
-using Newtonsoft.Json;
 
 namespace Adyen.Service
 {
     /// <summary>
-    /// Represents a collection of functions to interact with the API endpoints
+    /// DefaultService Interface
     /// </summary>
-    public class BinLookupService : AbstractService
+    public interface IBinLookupService
+    {
+        /// <summary>
+        /// Check if 3D Secure is available
+        /// </summary>
+        /// <param name="threeDSAvailabilityRequest"><see cref="ThreeDSAvailabilityRequest"/> - </param>
+        /// <param name="requestOptions"><see cref="RequestOptions"/> - Additional request options.</param>
+        /// <returns><see cref="ThreeDSAvailabilityResponse"/>.</returns>
+        ThreeDSAvailabilityResponse Get3dsAvailability(ThreeDSAvailabilityRequest threeDSAvailabilityRequest, RequestOptions requestOptions = default);
+        
+        /// <summary>
+        /// Check if 3D Secure is available
+        /// </summary>
+        /// <param name="threeDSAvailabilityRequest"><see cref="ThreeDSAvailabilityRequest"/> - </param>
+        /// <param name="requestOptions"><see cref="RequestOptions"/> - Additional request options.</param>
+        /// <param name="cancellationToken"> A CancellationToken enables cooperative cancellation between threads, thread pool work items, or Task objects.</param>
+        /// <returns>Task of <see cref="ThreeDSAvailabilityResponse"/>.</returns>
+        Task<ThreeDSAvailabilityResponse> Get3dsAvailabilityAsync(ThreeDSAvailabilityRequest threeDSAvailabilityRequest, RequestOptions requestOptions = default, CancellationToken cancellationToken = default);
+        
+        /// <summary>
+        /// Get a fees cost estimate
+        /// </summary>
+        /// <param name="costEstimateRequest"><see cref="CostEstimateRequest"/> - </param>
+        /// <param name="requestOptions"><see cref="RequestOptions"/> - Additional request options.</param>
+        /// <returns><see cref="CostEstimateResponse"/>.</returns>
+        CostEstimateResponse GetCostEstimate(CostEstimateRequest costEstimateRequest, RequestOptions requestOptions = default);
+        
+        /// <summary>
+        /// Get a fees cost estimate
+        /// </summary>
+        /// <param name="costEstimateRequest"><see cref="CostEstimateRequest"/> - </param>
+        /// <param name="requestOptions"><see cref="RequestOptions"/> - Additional request options.</param>
+        /// <param name="cancellationToken"> A CancellationToken enables cooperative cancellation between threads, thread pool work items, or Task objects.</param>
+        /// <returns>Task of <see cref="CostEstimateResponse"/>.</returns>
+        Task<CostEstimateResponse> GetCostEstimateAsync(CostEstimateRequest costEstimateRequest, RequestOptions requestOptions = default, CancellationToken cancellationToken = default);
+        
+    }
+    
+    /// <summary>
+    /// Represents a collection of functions to interact with the BinLookupService API endpoints
+    /// </summary>
+    public class BinLookupService : AbstractService, IBinLookupService
     {
         private readonly string _baseUrl;
         
         public BinLookupService(Client client) : base(client)
         {
-            _baseUrl = client.Config.Endpoint + ClientConfig.BinLookupPalSuffix + ClientConfig.BinLookupApiVersion;
+            _baseUrl = CreateBaseUrl("https://pal-test.adyen.com/pal/servlet/BinLookup/v54");
         }
-    
-        /// <summary>
-        /// Check if 3D Secure is available
-        /// </summary>
-        /// <param name="threeDSAvailabilityRequest"></param>
-        /// <param name="requestOptions">Additional request options.</param>
-        /// <returns>ThreeDSAvailabilityResponse</returns>
+        
         public ThreeDSAvailabilityResponse Get3dsAvailability(ThreeDSAvailabilityRequest threeDSAvailabilityRequest, RequestOptions requestOptions = default)
         {
-            return Get3dsAvailabilityAsync(threeDSAvailabilityRequest, requestOptions).GetAwaiter().GetResult();
+            return Get3dsAvailabilityAsync(threeDSAvailabilityRequest, requestOptions).ConfigureAwait(false).GetAwaiter().GetResult();
         }
 
-        /// <summary>
-        /// Check if 3D Secure is available
-        /// </summary>
-        /// <param name="threeDSAvailabilityRequest"></param>
-        /// <param name="requestOptions">Additional request options.</param>
-        /// <returns>Task of ThreeDSAvailabilityResponse</returns>
-        public async Task<ThreeDSAvailabilityResponse> Get3dsAvailabilityAsync(ThreeDSAvailabilityRequest threeDSAvailabilityRequest, RequestOptions requestOptions = default)
+        public async Task<ThreeDSAvailabilityResponse> Get3dsAvailabilityAsync(ThreeDSAvailabilityRequest threeDSAvailabilityRequest, RequestOptions requestOptions = default, CancellationToken cancellationToken = default)
         {
             var endpoint = _baseUrl + "/get3dsAvailability";
             var resource = new ServiceResource(this, endpoint);
-            return await resource.RequestAsync<ThreeDSAvailabilityResponse>(threeDSAvailabilityRequest.ToJson(), requestOptions, new HttpMethod("POST"));
+            return await resource.RequestAsync<ThreeDSAvailabilityResponse>(threeDSAvailabilityRequest.ToJson(), requestOptions, new HttpMethod("POST"), cancellationToken).ConfigureAwait(false);
         }
-
-        /// <summary>
-        /// Get a fees cost estimate
-        /// </summary>
-        /// <param name="costEstimateRequest"></param>
-        /// <param name="requestOptions">Additional request options.</param>
-        /// <returns>CostEstimateResponse</returns>
+        
         public CostEstimateResponse GetCostEstimate(CostEstimateRequest costEstimateRequest, RequestOptions requestOptions = default)
         {
-            return GetCostEstimateAsync(costEstimateRequest, requestOptions).GetAwaiter().GetResult();
+            return GetCostEstimateAsync(costEstimateRequest, requestOptions).ConfigureAwait(false).GetAwaiter().GetResult();
         }
 
-        /// <summary>
-        /// Get a fees cost estimate
-        /// </summary>
-        /// <param name="costEstimateRequest"></param>
-        /// <param name="requestOptions">Additional request options.</param>
-        /// <returns>Task of CostEstimateResponse</returns>
-        public async Task<CostEstimateResponse> GetCostEstimateAsync(CostEstimateRequest costEstimateRequest, RequestOptions requestOptions = default)
+        public async Task<CostEstimateResponse> GetCostEstimateAsync(CostEstimateRequest costEstimateRequest, RequestOptions requestOptions = default, CancellationToken cancellationToken = default)
         {
             var endpoint = _baseUrl + "/getCostEstimate";
             var resource = new ServiceResource(this, endpoint);
-            return await resource.RequestAsync<CostEstimateResponse>(costEstimateRequest.ToJson(), requestOptions, new HttpMethod("POST"));
+            return await resource.RequestAsync<CostEstimateResponse>(costEstimateRequest.ToJson(), requestOptions, new HttpMethod("POST"), cancellationToken).ConfigureAwait(false);
         }
-
     }
 }

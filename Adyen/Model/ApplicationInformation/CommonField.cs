@@ -1,27 +1,4 @@
-﻿#region License
-// /*
-//  *                       ######
-//  *                       ######
-//  * ############    ####( ######  #####. ######  ############   ############
-//  * #############  #####( ######  #####. ######  #############  #############
-//  *        ######  #####( ######  #####. ######  #####  ######  #####  ######
-//  * ###### ######  #####( ######  #####. ######  #####  #####   #####  ######
-//  * ###### ######  #####( ######  #####. ######  #####          #####  ######
-//  * #############  #############  #############  #############  #####  ######
-//  *  ############   ############  #############   ############  #####  ######
-//  *                                      ######
-//  *                               #############
-//  *                               ############
-//  *
-//  * Adyen Dotnet API Library
-//  *
-//  * Copyright (c) 2020 Adyen B.V.
-//  * This file is open source and available under the MIT license.
-//  * See the LICENSE file for more info.
-//  */
-#endregion
-
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Runtime.Serialization;
@@ -34,7 +11,7 @@ namespace Adyen.Model.ApplicationInformation
     /// CommonField
     /// </summary>
     [DataContract]
-    public partial class CommonField :  IEquatable<CommonField>, IValidatableObject
+    public class CommonField :  IEquatable<CommonField>, IValidatableObject
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="CommonField" /> class.
@@ -91,7 +68,7 @@ namespace Adyen.Model.ApplicationInformation
         /// <returns>Boolean</returns>
         public override bool Equals(object input)
         {
-            return this.Equals(input as CommonField);
+            return Equals(input as CommonField);
         }
 
         /// <summary>
@@ -106,14 +83,14 @@ namespace Adyen.Model.ApplicationInformation
 
             return 
                 (
-                    this.Name == input.Name ||
-                    (this.Name != null &&
-                    this.Name.Equals(input.Name))
+                    Name == input.Name ||
+                    (Name != null &&
+                    Name.Equals(input.Name))
                 ) && 
                 (
-                    this.Version == input.Version ||
-                    (this.Version != null &&
-                    this.Version.Equals(input.Version))
+                    Version == input.Version ||
+                    (Version != null &&
+                    Version.Equals(input.Version))
                 );
         }
 
@@ -126,10 +103,10 @@ namespace Adyen.Model.ApplicationInformation
             unchecked // Overflow is fine, just wrap
             {
                 int hashCode = 41;
-                if (this.Name != null)
-                    hashCode = hashCode * 59 + this.Name.GetHashCode();
-                if (this.Version != null)
-                    hashCode = hashCode * 59 + this.Version.GetHashCode();
+                if (Name != null)
+                    hashCode = hashCode * 59 + Name.GetHashCode();
+                if (Version != null)
+                    hashCode = hashCode * 59 + Version.GetHashCode();
                 return hashCode;
             }
         }
@@ -139,7 +116,7 @@ namespace Adyen.Model.ApplicationInformation
         /// </summary>
         /// <param name="validationContext">Validation context</param>
         /// <returns>Validation Result</returns>
-        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+        IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
         {
             yield break;
         }

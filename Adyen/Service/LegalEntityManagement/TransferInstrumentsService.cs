@@ -13,122 +13,148 @@
 using System;
 using System.Collections.Generic;
 using System.Net.Http;
+using System.Threading;
 using System.Threading.Tasks;
 using Adyen.Constants;
 using Adyen.Model;
 using Adyen.Service.Resource;
 using Adyen.Model.LegalEntityManagement;
-using Newtonsoft.Json;
 
 namespace Adyen.Service.LegalEntityManagement
 {
     /// <summary>
-    /// Represents a collection of functions to interact with the API endpoints
+    /// TransferInstrumentsService Interface
     /// </summary>
-    public class TransferInstrumentsService : AbstractService
+    public interface ITransferInstrumentsService
+    {
+        /// <summary>
+        /// Delete a transfer instrument
+        /// </summary>
+        /// <param name="id"><see cref="string"/> - The unique identifier of the transfer instrument to be deleted.</param>
+        /// <param name="requestOptions"><see cref="RequestOptions"/> - Additional request options.</param>
+        void DeleteTransferInstrument(string id, RequestOptions requestOptions = default);
+        
+        /// <summary>
+        /// Delete a transfer instrument
+        /// </summary>
+        /// <param name="id"><see cref="string"/> - The unique identifier of the transfer instrument to be deleted.</param>
+        /// <param name="requestOptions"><see cref="RequestOptions"/> - Additional request options.</param>
+        /// <param name="cancellationToken"> A CancellationToken enables cooperative cancellation between threads, thread pool work items, or Task objects.</param>
+        Task DeleteTransferInstrumentAsync(string id, RequestOptions requestOptions = default, CancellationToken cancellationToken = default);
+        
+        /// <summary>
+        /// Get a transfer instrument
+        /// </summary>
+        /// <param name="id"><see cref="string"/> - The unique identifier of the transfer instrument.</param>
+        /// <param name="requestOptions"><see cref="RequestOptions"/> - Additional request options.</param>
+        /// <returns><see cref="TransferInstrument"/>.</returns>
+        TransferInstrument GetTransferInstrument(string id, RequestOptions requestOptions = default);
+        
+        /// <summary>
+        /// Get a transfer instrument
+        /// </summary>
+        /// <param name="id"><see cref="string"/> - The unique identifier of the transfer instrument.</param>
+        /// <param name="requestOptions"><see cref="RequestOptions"/> - Additional request options.</param>
+        /// <param name="cancellationToken"> A CancellationToken enables cooperative cancellation between threads, thread pool work items, or Task objects.</param>
+        /// <returns>Task of <see cref="TransferInstrument"/>.</returns>
+        Task<TransferInstrument> GetTransferInstrumentAsync(string id, RequestOptions requestOptions = default, CancellationToken cancellationToken = default);
+        
+        /// <summary>
+        /// Update a transfer instrument
+        /// </summary>
+        /// <param name="id"><see cref="string"/> - The unique identifier of the transfer instrument.</param>
+        /// <param name="transferInstrumentInfo"><see cref="TransferInstrumentInfo"/> - </param>
+        /// <param name="requestOptions"><see cref="RequestOptions"/> - Additional request options.</param>
+        /// <returns><see cref="TransferInstrument"/>.</returns>
+        TransferInstrument UpdateTransferInstrument(string id, TransferInstrumentInfo transferInstrumentInfo, RequestOptions requestOptions = default);
+        
+        /// <summary>
+        /// Update a transfer instrument
+        /// </summary>
+        /// <param name="id"><see cref="string"/> - The unique identifier of the transfer instrument.</param>
+        /// <param name="transferInstrumentInfo"><see cref="TransferInstrumentInfo"/> - </param>
+        /// <param name="requestOptions"><see cref="RequestOptions"/> - Additional request options.</param>
+        /// <param name="cancellationToken"> A CancellationToken enables cooperative cancellation between threads, thread pool work items, or Task objects.</param>
+        /// <returns>Task of <see cref="TransferInstrument"/>.</returns>
+        Task<TransferInstrument> UpdateTransferInstrumentAsync(string id, TransferInstrumentInfo transferInstrumentInfo, RequestOptions requestOptions = default, CancellationToken cancellationToken = default);
+        
+        /// <summary>
+        /// Create a transfer instrument
+        /// </summary>
+        /// <param name="transferInstrumentInfo"><see cref="TransferInstrumentInfo"/> - </param>
+        /// <param name="requestOptions"><see cref="RequestOptions"/> - Additional request options.</param>
+        /// <returns><see cref="TransferInstrument"/>.</returns>
+        TransferInstrument CreateTransferInstrument(TransferInstrumentInfo transferInstrumentInfo, RequestOptions requestOptions = default);
+        
+        /// <summary>
+        /// Create a transfer instrument
+        /// </summary>
+        /// <param name="transferInstrumentInfo"><see cref="TransferInstrumentInfo"/> - </param>
+        /// <param name="requestOptions"><see cref="RequestOptions"/> - Additional request options.</param>
+        /// <param name="cancellationToken"> A CancellationToken enables cooperative cancellation between threads, thread pool work items, or Task objects.</param>
+        /// <returns>Task of <see cref="TransferInstrument"/>.</returns>
+        Task<TransferInstrument> CreateTransferInstrumentAsync(TransferInstrumentInfo transferInstrumentInfo, RequestOptions requestOptions = default, CancellationToken cancellationToken = default);
+        
+    }
+    
+    /// <summary>
+    /// Represents a collection of functions to interact with the TransferInstrumentsService API endpoints
+    /// </summary>
+    public class TransferInstrumentsService : AbstractService, ITransferInstrumentsService
     {
         private readonly string _baseUrl;
         
         public TransferInstrumentsService(Client client) : base(client)
         {
-            _baseUrl = client.Config.LegalEntityManagementEndpoint + "/" + ClientConfig.LegalEntityManagementVersion;
+            _baseUrl = CreateBaseUrl("https://kyc-test.adyen.com/lem/v3");
         }
-    
-        /// <summary>
-        /// Delete a transfer instrument
-        /// </summary>
-        /// <param name="id">The unique identifier of the transfer instrument to be deleted.</param>
-        /// <param name="requestOptions">Additional request options.</param>
+        
         public void DeleteTransferInstrument(string id, RequestOptions requestOptions = default)
         {
-            DeleteTransferInstrumentAsync(id, requestOptions).GetAwaiter().GetResult();
+            DeleteTransferInstrumentAsync(id, requestOptions).ConfigureAwait(false).GetAwaiter().GetResult();
         }
 
-        /// <summary>
-        /// Delete a transfer instrument
-        /// </summary>
-        /// <param name="id">The unique identifier of the transfer instrument to be deleted.</param>
-        /// <param name="requestOptions">Additional request options.</param>
-        public async Task DeleteTransferInstrumentAsync(string id, RequestOptions requestOptions = default)
+        public async Task DeleteTransferInstrumentAsync(string id, RequestOptions requestOptions = default, CancellationToken cancellationToken = default)
         {
             var endpoint = _baseUrl + $"/transferInstruments/{id}";
             var resource = new ServiceResource(this, endpoint);
-            await resource.RequestAsync(null, requestOptions, new HttpMethod("DELETE"));
+            await resource.RequestAsync(null, requestOptions, new HttpMethod("DELETE"), cancellationToken).ConfigureAwait(false);
         }
-
-        /// <summary>
-        /// Get a transfer instrument
-        /// </summary>
-        /// <param name="id">The unique identifier of the transfer instrument.</param>
-        /// <param name="requestOptions">Additional request options.</param>
-        /// <returns>TransferInstrument</returns>
+        
         public TransferInstrument GetTransferInstrument(string id, RequestOptions requestOptions = default)
         {
-            return GetTransferInstrumentAsync(id, requestOptions).GetAwaiter().GetResult();
+            return GetTransferInstrumentAsync(id, requestOptions).ConfigureAwait(false).GetAwaiter().GetResult();
         }
 
-        /// <summary>
-        /// Get a transfer instrument
-        /// </summary>
-        /// <param name="id">The unique identifier of the transfer instrument.</param>
-        /// <param name="requestOptions">Additional request options.</param>
-        /// <returns>Task of TransferInstrument</returns>
-        public async Task<TransferInstrument> GetTransferInstrumentAsync(string id, RequestOptions requestOptions = default)
+        public async Task<TransferInstrument> GetTransferInstrumentAsync(string id, RequestOptions requestOptions = default, CancellationToken cancellationToken = default)
         {
             var endpoint = _baseUrl + $"/transferInstruments/{id}";
             var resource = new ServiceResource(this, endpoint);
-            return await resource.RequestAsync<TransferInstrument>(null, requestOptions, new HttpMethod("GET"));
+            return await resource.RequestAsync<TransferInstrument>(null, requestOptions, new HttpMethod("GET"), cancellationToken).ConfigureAwait(false);
         }
-
-        /// <summary>
-        /// Update a transfer instrument
-        /// </summary>
-        /// <param name="id">The unique identifier of the transfer instrument.</param>
-        /// <param name="transferInstrumentInfo"></param>
-        /// <param name="requestOptions">Additional request options.</param>
-        /// <returns>TransferInstrument</returns>
+        
         public TransferInstrument UpdateTransferInstrument(string id, TransferInstrumentInfo transferInstrumentInfo, RequestOptions requestOptions = default)
         {
-            return UpdateTransferInstrumentAsync(id, transferInstrumentInfo, requestOptions).GetAwaiter().GetResult();
+            return UpdateTransferInstrumentAsync(id, transferInstrumentInfo, requestOptions).ConfigureAwait(false).GetAwaiter().GetResult();
         }
 
-        /// <summary>
-        /// Update a transfer instrument
-        /// </summary>
-        /// <param name="id">The unique identifier of the transfer instrument.</param>
-        /// <param name="transferInstrumentInfo"></param>
-        /// <param name="requestOptions">Additional request options.</param>
-        /// <returns>Task of TransferInstrument</returns>
-        public async Task<TransferInstrument> UpdateTransferInstrumentAsync(string id, TransferInstrumentInfo transferInstrumentInfo, RequestOptions requestOptions = default)
+        public async Task<TransferInstrument> UpdateTransferInstrumentAsync(string id, TransferInstrumentInfo transferInstrumentInfo, RequestOptions requestOptions = default, CancellationToken cancellationToken = default)
         {
             var endpoint = _baseUrl + $"/transferInstruments/{id}";
             var resource = new ServiceResource(this, endpoint);
-            return await resource.RequestAsync<TransferInstrument>(transferInstrumentInfo.ToJson(), requestOptions, new HttpMethod("PATCH"));
+            return await resource.RequestAsync<TransferInstrument>(transferInstrumentInfo.ToJson(), requestOptions, new HttpMethod("PATCH"), cancellationToken).ConfigureAwait(false);
         }
-
-        /// <summary>
-        /// Create a transfer instrument
-        /// </summary>
-        /// <param name="transferInstrumentInfo"></param>
-        /// <param name="requestOptions">Additional request options.</param>
-        /// <returns>TransferInstrument</returns>
+        
         public TransferInstrument CreateTransferInstrument(TransferInstrumentInfo transferInstrumentInfo, RequestOptions requestOptions = default)
         {
-            return CreateTransferInstrumentAsync(transferInstrumentInfo, requestOptions).GetAwaiter().GetResult();
+            return CreateTransferInstrumentAsync(transferInstrumentInfo, requestOptions).ConfigureAwait(false).GetAwaiter().GetResult();
         }
 
-        /// <summary>
-        /// Create a transfer instrument
-        /// </summary>
-        /// <param name="transferInstrumentInfo"></param>
-        /// <param name="requestOptions">Additional request options.</param>
-        /// <returns>Task of TransferInstrument</returns>
-        public async Task<TransferInstrument> CreateTransferInstrumentAsync(TransferInstrumentInfo transferInstrumentInfo, RequestOptions requestOptions = default)
+        public async Task<TransferInstrument> CreateTransferInstrumentAsync(TransferInstrumentInfo transferInstrumentInfo, RequestOptions requestOptions = default, CancellationToken cancellationToken = default)
         {
             var endpoint = _baseUrl + "/transferInstruments";
             var resource = new ServiceResource(this, endpoint);
-            return await resource.RequestAsync<TransferInstrument>(transferInstrumentInfo.ToJson(), requestOptions, new HttpMethod("POST"));
+            return await resource.RequestAsync<TransferInstrument>(transferInstrumentInfo.ToJson(), requestOptions, new HttpMethod("POST"), cancellationToken).ConfigureAwait(false);
         }
-
     }
 }

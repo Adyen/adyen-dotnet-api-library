@@ -1,47 +1,22 @@
-﻿#region License
-// /*
-//  *                       ######
-//  *                       ######
-//  * ############    ####( ######  #####. ######  ############   ############
-//  * #############  #####( ######  #####. ######  #############  #############
-//  *        ######  #####( ######  #####. ######  #####  ######  #####  ######
-//  * ###### ######  #####( ######  #####. ######  #####  #####   #####  ######
-//  * ###### ######  #####( ######  #####. ######  #####          #####  ######
-//  * #############  #############  #############  #############  #####  ######
-//  *  ############   ############  #############   ############  #####  ######
-//  *                                      ######
-//  *                               #############
-//  *                               ############
-//  *
-//  * Adyen Dotnet API Library
-//  *
-//  * Copyright (c) 2020 Adyen B.V.
-//  * This file is open source and available under the MIT license.
-//  * See the LICENSE file for more info.
-//  */
-#endregion
-
-using Adyen.Constants;
-using Adyen.HttpClient;
-using Adyen.Model.Payments;
-using Adyen.Model.Nexo;
-using Adyen.Service;
-using Moq;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Net;
 using System.Net.Http;
 using System.Text;
+using System.Threading;
+using System.Threading.Tasks;
+using Adyen.Constants;
+using Adyen.HttpClient;
 using Adyen.HttpClient.Interfaces;
 using Adyen.Model;
-using Environment = System.Environment;
+using Adyen.Model.Nexo;
+using Adyen.Model.Payment;
+using Adyen.Service;
+using Moq;
 using Amount = Adyen.Model.Checkout;
-using PaymentResult = Adyen.Model.Payments.PaymentResult;
-using Adyen.Model.Checkout;
-using System.Threading.Tasks;
-using Adyen.Service.Payments;
-using CommonField = Adyen.Model.Checkout.CommonField;
+using Environment = System.Environment;
+using PaymentResult = Adyen.Model.Payment.PaymentResult;
 
 namespace Adyen.Test
 {
@@ -82,7 +57,7 @@ namespace Adyen.Test
             var captureRequest = new CaptureRequest
             {
                 MerchantAccount = "MerchantAccount",
-                ModificationAmount = new Model.Payments.Amount("EUR", 150),
+                ModificationAmount = new Model.Payment.Amount("EUR", 150),
                 Reference = "capture - " + DateTime.Now.ToString("yyyyMMdd"),
                 OriginalReference = pspReference,
                 AdditionalData = new Dictionary<string, string> {{"authorisationType", "PreAuth"}}
@@ -93,7 +68,7 @@ namespace Adyen.Test
 
         protected CancelOrRefundRequest CreateCancelOrRefundTestRequest(string pspReference)
         {
-            var cancelOrRefundRequest = new CancelOrRefundRequest()
+            var cancelOrRefundRequest = new CancelOrRefundRequest
             {
                 MerchantAccount = "MerchantAccount",
                 Reference = "cancelOrRefund - " + DateTime.Now.ToString("yyyyMMdd"),
@@ -104,10 +79,10 @@ namespace Adyen.Test
 
         protected RefundRequest CreateRefundTestRequest(string pspReference)
         {
-            var refundRequest = new RefundRequest()
+            var refundRequest = new RefundRequest
             {
                 MerchantAccount = "MerchantAccount",
-                ModificationAmount = new Model.Payments.Amount("EUR", 150),
+                ModificationAmount = new Model.Payment.Amount("EUR", 150),
                 Reference = "refund - " + DateTime.Now.ToString("yyyyMMdd"),
                 OriginalReference = pspReference
             };
@@ -116,7 +91,7 @@ namespace Adyen.Test
 
         protected CancelRequest CreateCancelTestRequest(string pspReference)
         {
-            var cancelRequest = new CancelRequest()
+            var cancelRequest = new CancelRequest
             {
                 MerchantAccount = "MerchantAccount",
                 Reference = "cancel - " + DateTime.Now.ToString("yyyyMMdd"),
@@ -127,10 +102,10 @@ namespace Adyen.Test
 
         protected AdjustAuthorisationRequest CreateAdjustAuthorisationRequest(string pspReference)
         {
-            var adjustAuthorisationRequest = new AdjustAuthorisationRequest()
+            var adjustAuthorisationRequest = new AdjustAuthorisationRequest
             {
                 MerchantAccount = "MerchantAccount",
-                ModificationAmount = new Model.Payments.Amount("EUR", 150),
+                ModificationAmount = new Model.Payment.Amount("EUR", 150),
                 Reference = "adjustAuthorisationRequest - " + DateTime.Now.ToString("yyyyMMdd"),
                 OriginalReference = pspReference,
             };
@@ -154,7 +129,7 @@ namespace Adyen.Test
                 MerchantAccount = "MerchantAccount",
                 CaptureDelayHours = 0
             };
-            var cardDetails = new Model.Checkout.CardDetails()
+            var cardDetails = new Amount.CardDetails
             {
                 Number = "4111111111111111",
                 ExpiryMonth = "10",
@@ -162,8 +137,8 @@ namespace Adyen.Test
                 HolderName = "John Smith"
             };
             paymentsRequest.Amount = amount;
-            paymentsRequest.PaymentMethod = new PaymentDonationRequestPaymentMethod(cardDetails);
-            paymentsRequest.ApplicationInfo = new Model.Checkout.ApplicationInfo(adyenLibrary: new CommonField());
+            paymentsRequest.PaymentMethod = new Amount.CheckoutPaymentMethod(cardDetails);
+            paymentsRequest.ApplicationInfo = new Model.Checkout.ApplicationInfo(adyenLibrary: new Amount.CommonField());
             return paymentsRequest;
         }
         
@@ -183,14 +158,14 @@ namespace Adyen.Test
                 MerchantAccount = "MerchantAccount",
                 Channel = Model.Checkout.PaymentRequest.ChannelEnum.Web
             };
-            var cardDetails = new Model.Checkout.CardDetails()
+            var cardDetails = new Amount.CardDetails
             {
                 Number = "4111111111111111",
                 ExpiryMonth = "10",
                 ExpiryYear = "2020",
                 HolderName = "John Smith"
             };
-            paymentsRequest.PaymentMethod = new PaymentDonationRequestPaymentMethod(cardDetails);
+            paymentsRequest.PaymentMethod = new Amount.CheckoutPaymentMethod(cardDetails);
             return paymentsRequest;
         }
 
@@ -198,15 +173,15 @@ namespace Adyen.Test
         ///Checkout Details request
         /// </summary>
         /// <returns>Returns a sample PaymentsDetailsRequest object with test data</returns>
-        protected DetailsRequest CreateDetailsRequest()
+        protected Amount.DetailsRequest CreateDetailsRequest()
         {
             var paymentData = "Ab02b4c0!BQABAgCJN1wRZuGJmq8dMncmypvknj9s7l5Tj...";
-            var details = new PaymentCompletionDetails()
+            var details = new Amount.PaymentCompletionDetails
             {
                 MD= "sdfsdfsdf...",
                 PaReq = "sdfsdfsdf..."
             };
-            var paymentsDetailsRequest = new DetailsRequest(details: details, paymentData: paymentData);
+            var paymentsDetailsRequest = new Amount.DetailsRequest(details: details, paymentData: paymentData);
 
             return paymentsDetailsRequest;
         }
@@ -215,30 +190,30 @@ namespace Adyen.Test
         /// Checkout paymentMethodsRequest
         /// </summary>
         /// <returns></returns>
-        protected PaymentMethodsRequest CreatePaymentMethodRequest(string merchantAccount)
+        protected Amount.PaymentMethodsRequest CreatePaymentMethodRequest(string merchantAccount)
         {
-            return new PaymentMethodsRequest(merchantAccount: merchantAccount);
+            return new Amount.PaymentMethodsRequest(merchantAccount: merchantAccount);
         }
 
         /// <summary>
         /// Checkout paymentsessionRequest
         /// </summary>
         /// <returns></returns>
-        protected PaymentSetupRequest CreatePaymentSetupRequest()
+        protected Amount.PaymentSetupRequest CreatePaymentSetupRequest()
         {
-            return new PaymentSetupRequest(merchantAccount: "MerchantAccount", reference: "MerchantReference",
+            return new Amount.PaymentSetupRequest(merchantAccount: "MerchantAccount", reference: "MerchantReference",
                  amount: new Model.Checkout.Amount("EUR", 1200), returnUrl: @"https://your-company.com/...", countryCode: "NL",
-                 channel: PaymentSetupRequest.ChannelEnum.Web, sdkVersion: "1.3.0", captureDelayHours:0);
+                 channel: Amount.PaymentSetupRequest.ChannelEnum.Web, sdkVersion: "1.3.0", captureDelayHours:0);
         }
 
         /// <summary>
         /// Checkout paymentResultRequest
         /// </summary>
         /// <returns></returns>
-        protected PaymentVerificationRequest CreatePaymentVerificationRequest()
+        protected Amount.PaymentVerificationRequest CreatePaymentVerificationRequest()
         {
             var payload = @"Ab0oCC2/wy96FiEMLvoI8RfayxEmZHQZcw...riRbNBzP3pQscLYBHN/MfZkgfGHdqy7JfQoQbRUmA==";
-            return new PaymentVerificationRequest(payload: payload);
+            return new Amount.PaymentVerificationRequest(payload: payload);
         }
 
         #endregion
@@ -257,7 +232,7 @@ namespace Adyen.Test
             var confMock = MockPaymentData.CreateConfigMock();
 
             clientInterfaceMock.Setup(x => x.Request(It.IsAny<string>(), It.IsAny<string>(), It.IsAny<RequestOptions>(), null)).Returns(response);
-            var config = new Config()
+            var config = new Config
             {
                 Environment = It.IsAny<Model.Environment>()
             };
@@ -284,8 +259,8 @@ namespace Adyen.Test
 
             clientInterfaceMock.Setup(x => x.Request(It.IsAny<string>(), It.IsAny<string>(), It.IsAny<RequestOptions>(), null)).Returns(response);
             clientInterfaceMock.Setup(x => x.Request(It.IsAny<string>(), It.IsAny<string>(), It.IsAny<RequestOptions>(), null)).Returns(response);
-            clientInterfaceMock.Setup(x => x.RequestAsync(It.IsAny<string>(), It.IsAny<string>(), It.IsAny<RequestOptions>(), null)).Returns(Task.FromResult(response));
-            var config = new Config()
+            clientInterfaceMock.Setup(x => x.RequestAsync(It.IsAny<string>(), It.IsAny<string>(), It.IsAny<RequestOptions>(), null, It.IsAny<CancellationToken>())).Returns(Task.FromResult(response));
+            var config = new Config
             {
                 Environment = It.IsAny<Model.Environment>()
             };
@@ -311,7 +286,7 @@ namespace Adyen.Test
             var confMock = MockPaymentData.CreateConfigApiKeyBasedMock();
             clientInterfaceMock.Setup(x => x.Request(It.IsAny<string>(),
                 It.IsAny<string>(), It.IsAny<RequestOptions>(), null)).Returns(response);
-            var config = new Config()
+            var config = new Config
             {
                 Environment = It.IsAny<Model.Environment>()
             };
@@ -336,8 +311,8 @@ namespace Adyen.Test
             ClientInterfaceMock = new Mock<IClient>();
             var confMock = MockPaymentData.CreateConfigApiKeyBasedMock();
             ClientInterfaceMock.Setup(x => x.RequestAsync(It.IsAny<string>(),
-                It.IsAny<string>(), It.IsAny<RequestOptions>(), It.IsAny<HttpMethod>())).ReturnsAsync(response);
-            var config = new Config()
+                It.IsAny<string>(), It.IsAny<RequestOptions>(), It.IsAny<HttpMethod>(), It.IsAny<CancellationToken>())).ReturnsAsync(response);
+            var config = new Config
             {
                 Environment = It.IsAny<Model.Environment>()
             };
@@ -362,9 +337,9 @@ namespace Adyen.Test
             var clientInterfaceMock = new Mock<IClient>();
             var confMock = MockPaymentData.CreateConfigApiKeyBasedMock();
             clientInterfaceMock.Setup(x => x.RequestAsync(It.IsAny<string>(),
-                    It.IsAny<string>(), It.IsAny<RequestOptions>(), null))
+                    It.IsAny<string>(), It.IsAny<RequestOptions>(), null, It.IsAny<CancellationToken>()))
                 .ReturnsAsync(response);
-            var config = new Config()
+            var config = new Config
             {
                 Environment = It.IsAny<Model.Environment>()
             };
@@ -390,7 +365,7 @@ namespace Adyen.Test
             var clientInterfaceMock = new Mock<IClient>();
             clientInterfaceMock.Setup(x => x.Request(It.IsAny<string>(),
                 It.IsAny<string>(), It.IsAny<RequestOptions>(), null)).Returns(response);
-            var anyConfig = new Config()
+            var anyConfig = new Config
             {
                 Environment = It.IsAny<Model.Environment>()
             };
@@ -409,7 +384,11 @@ namespace Adyen.Test
         /// <returns>IClient implementation</returns>
         protected Client CreateMockTestClientPosLocalApiRequest(string fileName)
         {
-            var config = new Config { Endpoint = @"https://_terminal_:8443/nexo/" };
+            var config = new Config
+            {
+                Environment = Model.Environment.Live,
+                LocalTerminalApiEndpoint = @"https://_terminal_:8443/nexo/"
+            };
             var mockPath = GetMockFilePath(fileName);
             var response = MockFileToString(mockPath);
             //Create a mock interface
@@ -419,7 +398,7 @@ namespace Adyen.Test
                 It.IsAny<RequestOptions>(), null
                ))
                 .Returns(response);
-            var anyConfig = new Config()
+            var anyConfig = new Config
             {
                 Environment = It.IsAny<Model.Environment>()
             };
@@ -449,7 +428,7 @@ namespace Adyen.Test
 
             clientInterfaceMock.Setup(x => x.Request(It.IsAny<string>(),
                 It.IsAny<string>(), It.IsAny<RequestOptions>(), null)).Throws(httpClientException);
-            var config = new Config()
+            var config = new Config
             {
                 Environment = It.IsAny<Model.Environment>()
             };
@@ -532,9 +511,9 @@ namespace Adyen.Test
         /// Create dummy AuthenticationResultRequest
         /// </summary>
         /// <returns>AuthenticationResultRequest</returns>
-        protected Model.Payments.AuthenticationResultRequest CreateAuthenticationResultRequest()
+        protected AuthenticationResultRequest CreateAuthenticationResultRequest()
         {
-            return new Model.Payments.AuthenticationResultRequest
+            return new AuthenticationResultRequest
             {
                 MerchantAccount = "MerchantAccount",
                 PspReference = "pspReference"

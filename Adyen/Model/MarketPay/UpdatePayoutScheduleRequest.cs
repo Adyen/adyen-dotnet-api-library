@@ -1,30 +1,6 @@
-#region License
-// /*
-//  *                       ######
-//  *                       ######
-//  * ############    ####( ######  #####. ######  ############   ############
-//  * #############  #####( ######  #####. ######  #############  #############
-//  *        ######  #####( ######  #####. ######  #####  ######  #####  ######
-//  * ###### ######  #####( ######  #####. ######  #####  #####   #####  ######
-//  * ###### ######  #####( ######  #####. ######  #####          #####  ######
-//  * #############  #############  #############  #############  #####  ######
-//  *  ############   ############  #############   ############  #####  ######
-//  *                                      ######
-//  *                               #############
-//  *                               ############
-//  *
-//  * Adyen Dotnet API Library
-//  *
-//  * Copyright (c) 2020 Adyen B.V.
-//  * This file is open source and available under the MIT license.
-//  * See the LICENSE file for more info.
-//  */
-#endregion
-
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.IO;
 using System.Runtime.Serialization;
 using System.Text;
 using Newtonsoft.Json;
@@ -36,7 +12,7 @@ namespace Adyen.Model.MarketPay
     /// UpdatePayoutScheduleRequest
     /// </summary>
     [DataContract]
-        public partial class UpdatePayoutScheduleRequest :  IEquatable<UpdatePayoutScheduleRequest>, IValidatableObject
+        public class UpdatePayoutScheduleRequest :  IEquatable<UpdatePayoutScheduleRequest>, IValidatableObject
     {
         /// <summary>
         /// Direction on how to handle any payouts that have already been scheduled. Permitted values: * &#x60;CLOSE&#x60; will close the existing batch of payouts. * &#x60;UPDATE&#x60; will reschedule the existing batch to the new schedule. * &#x60;NOTHING&#x60; (**default**) will allow the payout to proceed.
@@ -157,9 +133,9 @@ namespace Adyen.Model.MarketPay
         /// <param name="schedule">The payout schedule to which the account is to be updated. Permitted values: &#x60;DEFAULT&#x60;, &#x60;HOLD&#x60;, &#x60;DAILY&#x60;, &#x60;WEEKLY&#x60;, &#x60;MONTHLY&#x60;. &#x60;HOLD&#x60; will prevent scheduled payouts from happening but will still allow manual payouts to occur. (required).</param>
         public UpdatePayoutScheduleRequest(ActionEnum? action = default(ActionEnum?), string reason = default(string), ScheduleEnum schedule = default(ScheduleEnum))
         {
-            this.Schedule = schedule;
-            this.Action = action;
-            this.Reason = reason;
+            Schedule = schedule;
+            Action = action;
+            Reason = reason;
         }
         
 
@@ -202,7 +178,7 @@ namespace Adyen.Model.MarketPay
         /// <returns>Boolean</returns>
         public override bool Equals(object input)
         {
-            return this.Equals(input as UpdatePayoutScheduleRequest);
+            return Equals(input as UpdatePayoutScheduleRequest);
         }
 
         /// <summary>
@@ -217,18 +193,18 @@ namespace Adyen.Model.MarketPay
 
             return 
                 (
-                    this.Action == input.Action ||
-                    (this.Action != null &&
-                    this.Action.Equals(input.Action))
+                    Action == input.Action ||
+                    (Action != null &&
+                    Action.Equals(input.Action))
                 ) && 
                 (
-                    this.Reason == input.Reason ||
-                    (this.Reason != null &&
-                    this.Reason.Equals(input.Reason))
+                    Reason == input.Reason ||
+                    (Reason != null &&
+                    Reason.Equals(input.Reason))
                 ) && 
                 (
-                    this.Schedule == input.Schedule ||
-                    this.Schedule.Equals(input.Schedule)
+                    Schedule == input.Schedule ||
+                    Schedule.Equals(input.Schedule)
                 );
         }
 
@@ -241,11 +217,11 @@ namespace Adyen.Model.MarketPay
             unchecked // Overflow is fine, just wrap
             {
                 int hashCode = 41;
-                if (this.Action != null)
-                    hashCode = hashCode * 59 + this.Action.GetHashCode();
-                if (this.Reason != null)
-                    hashCode = hashCode * 59 + this.Reason.GetHashCode();
-                hashCode = hashCode * 59 + this.Schedule.GetHashCode();
+                if (Action != null)
+                    hashCode = hashCode * 59 + Action.GetHashCode();
+                if (Reason != null)
+                    hashCode = hashCode * 59 + Reason.GetHashCode();
+                hashCode = hashCode * 59 + Schedule.GetHashCode();
                 return hashCode;
             }
         }
@@ -255,7 +231,7 @@ namespace Adyen.Model.MarketPay
         /// </summary>
         /// <param name="validationContext">Validation context</param>
         /// <returns>Validation Result</returns>
-        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+        IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
         {
             yield break;
         }

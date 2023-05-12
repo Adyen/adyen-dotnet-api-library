@@ -1,29 +1,5 @@
-#region License
-// /*
-//  *                       ######
-//  *                       ######
-//  * ############    ####( ######  #####. ######  ############   ############
-//  * #############  #####( ######  #####. ######  #############  #############
-//  *        ######  #####( ######  #####. ######  #####  ######  #####  ######
-//  * ###### ######  #####( ######  #####. ######  #####  #####   #####  ######
-//  * ###### ######  #####( ######  #####. ######  #####          #####  ######
-//  * #############  #############  #############  #############  #####  ######
-//  *  ############   ############  #############   ############  #####  ######
-//  *                                      ######
-//  *                               #############
-//  *                               ############
-//  *
-//  * Adyen Dotnet API Library
-//  *
-//  * Copyright (c) 2022 Adyen N.V.
-//  * This file is open source and available under the MIT license.
-//  * See the LICENSE file for more info.
-//  */
-#endregion
-
-using System;
 using System.Net;
-using Environment = Adyen.Model.Environment;
+using Adyen.Model;
 
 namespace Adyen
 {
@@ -53,6 +29,8 @@ namespace Adyen
         public string CloudApiEndPoint { get; set; }
         //POS Terminal Management 
         public string PosTerminalManagementEndpoint { get; set; }
+        // Local TAPI endpoint
+        public string LocalTerminalApiEndpoint { get; set; }
         public bool HasPassword => !string.IsNullOrEmpty(Password);
         public bool HasApiKey => !string.IsNullOrEmpty(XApiKey);
     }

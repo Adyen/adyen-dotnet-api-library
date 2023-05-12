@@ -5,7 +5,7 @@ openapi-generator-cli:=java -jar $(openapi-generator-jar)
 
 
 generator:=csharp-netcore
-services:=BinLookup Checkout LegalEntityManagement Payments Payouts PosTerminalManagement StoredValue
+services:=BalanceControl BalancePlatform BinLookup Checkout DataProtection LegalEntityManagement Management Payment Payout PosTerminalManagement Recurring StoredValue Transfers
 models:=Adyen/Model
 output:=target/out
 
@@ -13,34 +13,22 @@ output:=target/out
 models: $(services)
 
 BalanceControl: spec=BalanceControlService-v1
-BalanceControl: service=balanceControlService
 BalancePlatform: spec=BalancePlatformService-v2
 BinLookup: spec=BinLookupService-v54
-BinLookup: service=binLookup
 Checkout: spec=CheckoutService-v70
-Checkout: service=checkout
 DataProtection: spec=DataProtectionService-v1
-DataProtection: service=dataProtection
 StoredValue: spec=StoredValueService-v46
-StoredValue: service=storedvalue
 PosTerminalManagement: spec=TfmAPIService-v1
-Payments: spec=PaymentService-v68
-Payments: service=payments
+Payment: spec=PaymentService-v68
 Recurring: spec=RecurringService-v68
-Recurring: service=recurring
-Payouts: spec=PayoutService-v68
-Payouts: service=payoutsService
+Payout: spec=PayoutService-v68
 Management: spec=ManagementService-v1
-Management: service=management
 LegalEntityManagement: spec=LegalEntityService-v3
-LegalEntityManagement: service=legalEntityManagement
-BalancePlatform: spec=BalancePlatformService-v2
 PlatformsAccount: spec=AccountService-v6
 PlatformsFund: spec=FundService-v6
 PlatformsNotificationConfiguration: spec=NotificationConfigurationService-v6
 PlatformsHostedOnboardingPage: spec=HopService-v6
 Transfers: spec=TransferService-v3
-Transfers: service=transfers
 
 $(services): target/spec $(openapi-generator-jar) 
 	rm -rf $(models)/$@ $(output)
@@ -49,6 +37,7 @@ $(services): target/spec $(openapi-generator-jar)
 		-g $(generator) \
 		-t templates/csharp \
 		-o $(output) \
+		--inline-schema-name-mappings PaymentDonationRequest_paymentMethod=CheckoutPaymentMethod \
 		--model-package $@ \
 		--skip-validate-spec \
 		--reserved-words-mappings Version=Version \
@@ -59,15 +48,21 @@ $(services): target/spec $(openapi-generator-jar)
 	mkdir Adyen/Model/$@
 	mv target/out/src/Adyen.Model/$@/* Adyen/Model/$@
 
-# Generate a full client (models and service classes)
-full-services:=LegalEntityManagement PosTerminalManagement
-$(full-services): target/spec $(openapi-generator-jar)  
+# Service Generation; split up in to templates based on the size of the service. That is, some services have no subgroups and are thus generated in one single file, others are grouped in a directory.
+
+Services:=BalancePlatform Checkout StoredValue Payout Management LegalEntityManagement Transfers
+SingleFileServices:=BalanceControl BinLookup DataProtection StoredValue PosTerminalManagement Recurring Payment
+
+all: $(Services) $(SingleFileServices)
+
+$(Services): target/spec $(openapi-generator-jar)  
 	rm -rf $(output)
 	$(openapi-generator-cli) generate \
 		-i target/spec/json/$(spec).json \
 		-g $(generator) \
 		-t templates/csharp \
 		-o $(output) \
+		--inline-schema-name-mappings PaymentDonationRequest_paymentMethod=CheckoutPaymentMethod \
 		--additional-properties packageName=Adyen \
 		--api-package Service.$@ \
 		--api-name-suffix Service \
@@ -76,6 +71,26 @@ $(full-services): target/spec $(openapi-generator-jar)
 		--additional-properties=serviceName=$@
 	rm -rf Adyen/Service/$@ Adyen/Model/$@
 	mv target/out/src/Adyen/Service.$@ Adyen/Service/$@
+	mv target/out/src/Adyen/Model.$@ Adyen/Model/$@
+	
+$(SingleFileServices): target/spec $(openapi-generator-jar)  
+	rm -rf $(output)
+	cat <<< "$$(jq 'del(.paths[][].tags)' target/spec/json/$(spec).json)" > target/spec/json/$(spec).json
+	$(openapi-generator-cli) generate \
+		-i target/spec/json/$(spec).json \
+		-g $(generator) \
+		-c templates/csharp/config.yaml \
+		-o $(output) \
+		--inline-schema-name-mappings PaymentDonationRequest_paymentMethod=CheckoutPaymentMethod \
+		--additional-properties packageName=Adyen \
+		--additional-properties customApi=$@ \
+		--api-package Service.$@ \
+		--api-name-suffix Service \
+		--model-package Model.$@ \
+		--reserved-words-mappings Version=Version \
+		--additional-properties=serviceName=$@
+	rm -rf Adyen/Service/$@ Adyen/Model/$@
+	mv target/out/src/Adyen/Service.$@/*Single.cs Adyen/Service/$@Service.cs
 	mv target/out/src/Adyen/Model.$@ Adyen/Model/$@
 
 # Checkout spec (and patch version)

@@ -43,7 +43,7 @@ namespace Adyen.Model.Recurring
         /// </summary>
         /// <param name="currency">The three-character [ISO currency code](https://docs.adyen.com/development-resources/currency-codes). (required).</param>
         /// <param name="value">The amount of the transaction, in [minor units](https://docs.adyen.com/development-resources/currency-codes). (required).</param>
-        public Amount(string currency = default(string), long value = default(long))
+        public Amount(string currency = default(string), long? value = default(long?))
         {
             this.Currency = currency;
             this.Value = value;
@@ -61,7 +61,7 @@ namespace Adyen.Model.Recurring
         /// </summary>
         /// <value>The amount of the transaction, in [minor units](https://docs.adyen.com/development-resources/currency-codes).</value>
         [DataMember(Name = "value", IsRequired = false, EmitDefaultValue = false)]
-        public long Value { get; set; }
+        public long? Value { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object

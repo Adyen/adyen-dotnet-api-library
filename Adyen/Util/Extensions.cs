@@ -1,30 +1,6 @@
-﻿#region License
-// /*
-//  *                       ######
-//  *                       ######
-//  * ############    ####( ######  #####. ######  ############   ############
-//  * #############  #####( ######  #####. ######  #############  #############
-//  *        ######  #####( ######  #####. ######  #####  ######  #####  ######
-//  * ###### ######  #####( ######  #####. ######  #####  #####   #####  ######
-//  * ###### ######  #####( ######  #####. ######  #####          #####  ######
-//  * #############  #############  #############  #############  #####  ######
-//  *  ############   ############  #############   ############  #####  ######
-//  *                                      ######
-//  *                               #############
-//  *                               ############
-//  *
-//  * Adyen Dotnet API Library
-//  *
-//  * Copyright (c) 2020 Adyen B.V.
-//  * This file is open source and available under the MIT license.
-//  * See the LICENSE file for more info.
-//  */
-#endregion
-
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using Newtonsoft.Json;
 
 namespace Adyen.Util
 {
@@ -102,7 +78,7 @@ namespace Adyen.Util
         {
             if (itemlist != null && itemlist.Any())
             {
-               return itemlist.Aggregate("\n\t{ ", (current, item) => current + " " + item.ToString() + "\n") + " }";
+               return itemlist.Aggregate("\n\t{ ", (current, item) => current + " " + item + "\n") + " }";
             }
             return "";
         }

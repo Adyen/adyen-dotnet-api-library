@@ -1,25 +1,3 @@
-#region License
-/*
- *                       ######
- *                       ######
- * ############    ####( ######  #####. ######  ############   ############
- * #############  #####( ######  #####. ######  #############  #############
- *        ######  #####( ######  #####. ######  #####  ######  #####  ######
- * ###### ######  #####( ######  #####. ######  #####  #####   #####  ######
- * ###### ######  #####( ######  #####. ######  #####          #####  ######
- * #############  #############  #############  #############  #####  ######
- *  ############   ############  #############   ############  #####  ######
- *                                      ######
- *                               #############
- *                               ############
- *
- * Adyen Dotnet API Library
- *
- * Copyright (c) 2021 Adyen B.V.
- * This file is open source and available under the MIT license.
- * See the LICENSE file for more info.
-*/
-#endregion
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -34,7 +12,7 @@ namespace Adyen.Model.MarketPay
     /// FieldType
     /// </summary>
     [DataContract]
-    public partial class FieldType : IEquatable<FieldType>, IValidatableObject
+    public class FieldType : IEquatable<FieldType>, IValidatableObject
     {
         /// <summary>
         /// The type of the field.
@@ -976,9 +954,9 @@ namespace Adyen.Model.MarketPay
         /// <param name="shareholderCode">The code of the shareholder that the field belongs to. If empty, the field belongs to an account holder..</param>
         public FieldType(string field = default(string), FieldNameEnum? fieldName = default(FieldNameEnum?), string shareholderCode = default(string))
         {
-            this.Field = field;
-            this.FieldName = fieldName;
-            this.ShareholderCode = shareholderCode;
+            Field = field;
+            FieldName = fieldName;
+            ShareholderCode = shareholderCode;
         }
 
         /// <summary>
@@ -1017,7 +995,7 @@ namespace Adyen.Model.MarketPay
         /// <returns>JSON string presentation of the object</returns>
         public virtual string ToJson()
         {
-            return Newtonsoft.Json.JsonConvert.SerializeObject(this, Newtonsoft.Json.Formatting.Indented);
+            return JsonConvert.SerializeObject(this, Formatting.Indented);
         }
 
         /// <summary>
@@ -1027,7 +1005,7 @@ namespace Adyen.Model.MarketPay
         /// <returns>Boolean</returns>
         public override bool Equals(object input)
         {
-            return this.Equals(input as FieldType);
+            return Equals(input as FieldType);
         }
 
         /// <summary>
@@ -1042,19 +1020,19 @@ namespace Adyen.Model.MarketPay
 
             return
                 (
-                    this.Field == input.Field ||
-                    (this.Field != null &&
-                    this.Field.Equals(input.Field))
+                    Field == input.Field ||
+                    (Field != null &&
+                    Field.Equals(input.Field))
                 ) &&
                 (
-                    this.FieldName == input.FieldName ||
-                    (this.FieldName != null &&
-                    this.FieldName.Equals(input.FieldName))
+                    FieldName == input.FieldName ||
+                    (FieldName != null &&
+                    FieldName.Equals(input.FieldName))
                 ) &&
                 (
-                    this.ShareholderCode == input.ShareholderCode ||
-                    (this.ShareholderCode != null &&
-                    this.ShareholderCode.Equals(input.ShareholderCode))
+                    ShareholderCode == input.ShareholderCode ||
+                    (ShareholderCode != null &&
+                    ShareholderCode.Equals(input.ShareholderCode))
                 );
         }
 
@@ -1067,12 +1045,12 @@ namespace Adyen.Model.MarketPay
             unchecked // Overflow is fine, just wrap
             {
                 int hashCode = 41;
-                if (this.Field != null)
-                    hashCode = hashCode * 59 + this.Field.GetHashCode();
-                if (this.FieldName != null)
-                    hashCode = hashCode * 59 + this.FieldName.GetHashCode();
-                if (this.ShareholderCode != null)
-                    hashCode = hashCode * 59 + this.ShareholderCode.GetHashCode();
+                if (Field != null)
+                    hashCode = hashCode * 59 + Field.GetHashCode();
+                if (FieldName != null)
+                    hashCode = hashCode * 59 + FieldName.GetHashCode();
+                if (ShareholderCode != null)
+                    hashCode = hashCode * 59 + ShareholderCode.GetHashCode();
                 return hashCode;
             }
         }
@@ -1082,7 +1060,7 @@ namespace Adyen.Model.MarketPay
         /// </summary>
         /// <param name="validationContext">Validation context</param>
         /// <returns>Validation Result</returns>
-        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+        IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
         {
             yield break;
         }

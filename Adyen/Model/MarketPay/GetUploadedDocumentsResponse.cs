@@ -1,26 +1,3 @@
-#region License
-// /*
-//  *                       ######
-//  *                       ######
-//  * ############    ####( ######  #####. ######  ############   ############
-//  * #############  #####( ######  #####. ######  #############  #############
-//  *        ######  #####( ######  #####. ######  #####  ######  #####  ######
-//  * ###### ######  #####( ######  #####. ######  #####  #####   #####  ######
-//  * ###### ######  #####( ######  #####. ######  #####          #####  ######
-//  * #############  #############  #############  #############  #####  ######
-//  *  ############   ############  #############   ############  #####  ######
-//  *                                      ######
-//  *                               #############
-//  *                               ############
-//  *
-//  * Adyen Dotnet API Library
-//  *
-//  * Copyright (c) 2020 Adyen B.V.
-//  * This file is open source and available under the MIT license.
-//  * See the LICENSE file for more info.
-//  */
-#endregion
-
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -36,7 +13,7 @@ namespace Adyen.Model.MarketPay
     /// GetUploadedDocumentsResponse
     /// </summary>
     [DataContract]
-        public partial class GetUploadedDocumentsResponse :  IEquatable<GetUploadedDocumentsResponse>, IValidatableObject
+        public class GetUploadedDocumentsResponse :  IEquatable<GetUploadedDocumentsResponse>, IValidatableObject
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="GetUploadedDocumentsResponse" /> class.
@@ -52,13 +29,11 @@ namespace Adyen.Model.MarketPay
             {
                 throw new InvalidDataException("pspReference is a required property for GetUploadedDocumentsResponse and cannot be null");
             }
-            else
-            {
-                this.PspReference = pspReference;
-            }
-            this.DocumentDetails = documentDetails;
-            this.InvalidFields = invalidFields;
-            this.ResultCode = resultCode;
+
+            PspReference = pspReference;
+            DocumentDetails = documentDetails;
+            InvalidFields = invalidFields;
+            ResultCode = resultCode;
         }
         
         /// <summary>
@@ -121,7 +96,7 @@ namespace Adyen.Model.MarketPay
         /// <returns>Boolean</returns>
         public override bool Equals(object input)
         {
-            return this.Equals(input as GetUploadedDocumentsResponse);
+            return Equals(input as GetUploadedDocumentsResponse);
         }
 
         /// <summary>
@@ -136,26 +111,26 @@ namespace Adyen.Model.MarketPay
 
             return 
                 (
-                    this.DocumentDetails == input.DocumentDetails ||
-                    this.DocumentDetails != null &&
+                    DocumentDetails == input.DocumentDetails ||
+                    DocumentDetails != null &&
                     input.DocumentDetails != null &&
-                    this.DocumentDetails.SequenceEqual(input.DocumentDetails)
+                    DocumentDetails.SequenceEqual(input.DocumentDetails)
                 ) && 
                 (
-                    this.InvalidFields == input.InvalidFields ||
-                    this.InvalidFields != null &&
+                    InvalidFields == input.InvalidFields ||
+                    InvalidFields != null &&
                     input.InvalidFields != null &&
-                    this.InvalidFields.SequenceEqual(input.InvalidFields)
+                    InvalidFields.SequenceEqual(input.InvalidFields)
                 ) && 
                 (
-                    this.PspReference == input.PspReference ||
-                    (this.PspReference != null &&
-                    this.PspReference.Equals(input.PspReference))
+                    PspReference == input.PspReference ||
+                    (PspReference != null &&
+                    PspReference.Equals(input.PspReference))
                 ) && 
                 (
-                    this.ResultCode == input.ResultCode ||
-                    (this.ResultCode != null &&
-                    this.ResultCode.Equals(input.ResultCode))
+                    ResultCode == input.ResultCode ||
+                    (ResultCode != null &&
+                    ResultCode.Equals(input.ResultCode))
                 );
         }
 
@@ -168,14 +143,14 @@ namespace Adyen.Model.MarketPay
             unchecked // Overflow is fine, just wrap
             {
                 int hashCode = 41;
-                if (this.DocumentDetails != null)
-                    hashCode = hashCode * 59 + this.DocumentDetails.GetHashCode();
-                if (this.InvalidFields != null)
-                    hashCode = hashCode * 59 + this.InvalidFields.GetHashCode();
-                if (this.PspReference != null)
-                    hashCode = hashCode * 59 + this.PspReference.GetHashCode();
-                if (this.ResultCode != null)
-                    hashCode = hashCode * 59 + this.ResultCode.GetHashCode();
+                if (DocumentDetails != null)
+                    hashCode = hashCode * 59 + DocumentDetails.GetHashCode();
+                if (InvalidFields != null)
+                    hashCode = hashCode * 59 + InvalidFields.GetHashCode();
+                if (PspReference != null)
+                    hashCode = hashCode * 59 + PspReference.GetHashCode();
+                if (ResultCode != null)
+                    hashCode = hashCode * 59 + ResultCode.GetHashCode();
                 return hashCode;
             }
         }
@@ -185,7 +160,7 @@ namespace Adyen.Model.MarketPay
         /// </summary>
         /// <param name="validationContext">Validation context</param>
         /// <returns>Validation Result</returns>
-        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+        IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
         {
             yield break;
         }

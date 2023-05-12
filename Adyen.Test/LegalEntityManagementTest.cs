@@ -1,10 +1,11 @@
 using System;
 using System.Collections.Generic;
+using System.Net.Http;
 using System.Text;
-using System.Threading.Tasks;
 using Adyen.Model.LegalEntityManagement;
 using Adyen.Service.LegalEntityManagement;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using Moq;
 
 namespace Adyen.Test
 {
@@ -20,7 +21,7 @@ namespace Adyen.Test
         {
             var client = CreateMockTestClientApiKeyBasedRequestAsync("Mocks/legalentitymanagement/Document.json");
             var service = new DocumentsService(client);
-            var document = new Document()
+            var document = new Document
             {
                 Attachment = new Attachment()
             };
@@ -37,7 +38,7 @@ namespace Adyen.Test
         {
             var client = CreateMockTestClientApiKeyBasedRequestAsync("Mocks/legalentitymanagement/Document.json");
             var service = new DocumentsService(client);
-            var document = new Document()
+            var document = new Document
             {
                 Attachment = new Attachment()
             };
@@ -59,6 +60,7 @@ namespace Adyen.Test
 
         }
         #endregion
+        
         #region TransferInstruments
         /// <summary>
         /// Test createTransferInstruments
@@ -68,7 +70,7 @@ namespace Adyen.Test
         {
             var client = CreateMockTestClientApiKeyBasedRequestAsync("Mocks/legalentitymanagement/TransferInstrument.json");
             var service = new TransferInstrumentsService(client);
-            var transferInstrumentInfo = new TransferInstrumentInfo()
+            var transferInstrumentInfo = new TransferInstrumentInfo
             {
                 LegalEntityId = "",
                 Type = TransferInstrumentInfo.TypeEnum.BankAccount
@@ -85,7 +87,7 @@ namespace Adyen.Test
         {
             var client = CreateMockTestClientApiKeyBasedRequestAsync("Mocks/legalentitymanagement/TransferInstrument.json");
             var service = new TransferInstrumentsService(client);
-            var transferInstrumentInfo = new TransferInstrumentInfo()
+            var transferInstrumentInfo = new TransferInstrumentInfo
             {
                 LegalEntityId = "",
                 Type = TransferInstrumentInfo.TypeEnum.BankAccount
@@ -122,7 +124,7 @@ namespace Adyen.Test
         {
             var client = CreateMockTestClientApiKeyBasedRequestAsync("Mocks/legalentitymanagement/LegalEntity.json");
             var service = new LegalEntitiesService(client);
-            var legalEntityInfo = new LegalEntityInfo()
+            var legalEntityInfo = new LegalEntityInfo
             {
                 Organization = new Organization(),
                 Type = LegalEntityInfo.TypeEnum.Individual,
@@ -144,7 +146,7 @@ namespace Adyen.Test
         {
             var client = CreateMockTestClientApiKeyBasedRequestAsync("Mocks/legalentitymanagement/BusinessLine.json");
             var service = new BusinessLinesService(client);
-            var businessLine = new BusinessLineInfoUpdate()
+            var businessLine = new BusinessLineInfoUpdate
             {
                 IndustryCode = "124rrdfer",
                 SourceOfFunds = new SourceOfFunds()
@@ -164,8 +166,14 @@ namespace Adyen.Test
         {
             var client = CreateMockTestClientApiKeyBasedRequestAsync("Mocks/legalentitymanagement/TermsOfServiceStatus.json");
             var service = new TermsOfServiceService(client);
-            var response = service.GetTermsOfServiceStatus("id");
-            Assert.AreEqual(response.TermsOfServiceTypes[0], CalculateTermsOfServiceStatusResponse.TermsOfServiceTypesEnum.AdyenIssuing);
+            var response = service.GetTermsOfServiceInformationForLegalEntity("id123");
+            ClientInterfaceMock.Verify(mock =>
+                mock.RequestAsync(
+                    "https://kyc-test.adyen.com/lem/v3/legalEntities/id123/termsOfServiceAcceptanceInfos",
+                    null,
+                    null,
+                    new HttpMethod("GET"), default));
+            Assert.AreEqual(response.Data[0].Type, TermsOfServiceAcceptanceInfo.TypeEnum.AdyenIssuing);
         }
         #endregion
     }

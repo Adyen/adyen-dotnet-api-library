@@ -1,5 +1,11 @@
 {
-  "termsOfServiceTypes": [
-    "adyenIssuing"
+  "data": [
+    {
+      "acceptedBy": "YOUR_LEGAL_ENTITY_2",
+      "acceptedFor": "YOUR_LEGAL_ENTITY_1",
+      "createdAt": "2022-12-05T13:36:58.212253Z",
+      "id": "TOSA000AB00000000B2AAAB2BA0AA0",
+      "type": "adyenIssuing"
+    }
   ]
 }

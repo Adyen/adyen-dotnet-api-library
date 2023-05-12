@@ -1,27 +1,4 @@
-﻿#region License
-/*
- *                       ######
- *                       ######
- * ############    ####( ######  #####. ######  ############   ############
- * #############  #####( ######  #####. ######  #############  #############
- *        ######  #####( ######  #####. ######  #####  ######  #####  ######
- * ###### ######  #####( ######  #####. ######  #####  #####   #####  ######
- * ###### ######  #####( ######  #####. ######  #####          #####  ######
- * #############  #############  #############  #############  #####  ######
- *  ############   ############  #############   ############  #####  ######
- *                                      ######
- *                               #############
- *                               ############
- *
- * Adyen Dotnet API Library
- *
- * Copyright (c) 2021 Adyen B.V.
- * This file is open source and available under the MIT license.
- * See the LICENSE file for more info.
- */
-#endregion
-
-namespace Adyen.Constants
+﻿namespace Adyen.Constants
 {
     public class ClientConfig
     {
@@ -72,6 +49,6 @@ namespace Adyen.Constants
         public static string DataProtectionVersion = "v1";
 
         public static string LibName = "adyen-dotnet-api-library";
-        public static string LibVersion = "10.0.0-beta";
+        public static string LibVersion = "10.0.0";
     }
 }

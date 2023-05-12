@@ -13,51 +13,122 @@
 using System;
 using System.Collections.Generic;
 using System.Net.Http;
+using System.Threading;
 using System.Threading.Tasks;
 using Adyen.Constants;
 using Adyen.Model;
 using Adyen.Service.Resource;
 using Adyen.Model.Management;
-using Newtonsoft.Json;
 
 namespace Adyen.Service.Management
 {
     /// <summary>
-    /// Represents a collection of functions to interact with the API endpoints
+    /// UsersMerchantLevelService Interface
     /// </summary>
-    public class UsersMerchantLevelService : AbstractService
+    public interface IUsersMerchantLevelService
+    {
+        /// <summary>
+        /// Get a list of users
+        /// </summary>
+        /// <param name="merchantId"><see cref="string"/> - Unique identifier of the merchant.</param>
+        /// <param name="pageNumber"><see cref="int?"/> - The number of the page to fetch.</param>
+        /// <param name="pageSize"><see cref="int?"/> - The number of items to have on a page. Maximum value is **100**. The default is **10** items on a page.</param>
+        /// <param name="username"><see cref="string"/> - The partial or complete username to select all users that match.</param>
+        /// <param name="requestOptions"><see cref="RequestOptions"/> - Additional request options.</param>
+        /// <returns><see cref="ListMerchantUsersResponse"/>.</returns>
+        ListMerchantUsersResponse ListUsers(string merchantId, int? pageNumber = default, int? pageSize = default, string username = default, RequestOptions requestOptions = default);
+        
+        /// <summary>
+        /// Get a list of users
+        /// </summary>
+        /// <param name="merchantId"><see cref="string"/> - Unique identifier of the merchant.</param>
+        /// <param name="pageNumber"><see cref="int?"/> - The number of the page to fetch.</param>
+        /// <param name="pageSize"><see cref="int?"/> - The number of items to have on a page. Maximum value is **100**. The default is **10** items on a page.</param>
+        /// <param name="username"><see cref="string"/> - The partial or complete username to select all users that match.</param>
+        /// <param name="requestOptions"><see cref="RequestOptions"/> - Additional request options.</param>
+        /// <param name="cancellationToken"> A CancellationToken enables cooperative cancellation between threads, thread pool work items, or Task objects.</param>
+        /// <returns>Task of <see cref="ListMerchantUsersResponse"/>.</returns>
+        Task<ListMerchantUsersResponse> ListUsersAsync(string merchantId, int? pageNumber = default, int? pageSize = default, string username = default, RequestOptions requestOptions = default, CancellationToken cancellationToken = default);
+        
+        /// <summary>
+        /// Get user details
+        /// </summary>
+        /// <param name="merchantId"><see cref="string"/> - Unique identifier of the merchant.</param>
+        /// <param name="userId"><see cref="string"/> - Unique identifier of the user.</param>
+        /// <param name="requestOptions"><see cref="RequestOptions"/> - Additional request options.</param>
+        /// <returns><see cref="User"/>.</returns>
+        User GetUserDetails(string merchantId, string userId, RequestOptions requestOptions = default);
+        
+        /// <summary>
+        /// Get user details
+        /// </summary>
+        /// <param name="merchantId"><see cref="string"/> - Unique identifier of the merchant.</param>
+        /// <param name="userId"><see cref="string"/> - Unique identifier of the user.</param>
+        /// <param name="requestOptions"><see cref="RequestOptions"/> - Additional request options.</param>
+        /// <param name="cancellationToken"> A CancellationToken enables cooperative cancellation between threads, thread pool work items, or Task objects.</param>
+        /// <returns>Task of <see cref="User"/>.</returns>
+        Task<User> GetUserDetailsAsync(string merchantId, string userId, RequestOptions requestOptions = default, CancellationToken cancellationToken = default);
+        
+        /// <summary>
+        /// Update a user
+        /// </summary>
+        /// <param name="merchantId"><see cref="string"/> - Unique identifier of the merchant.</param>
+        /// <param name="userId"><see cref="string"/> - Unique identifier of the user.</param>
+        /// <param name="updateMerchantUserRequest"><see cref="UpdateMerchantUserRequest"/> - </param>
+        /// <param name="requestOptions"><see cref="RequestOptions"/> - Additional request options.</param>
+        /// <returns><see cref="User"/>.</returns>
+        User UpdateUser(string merchantId, string userId, UpdateMerchantUserRequest updateMerchantUserRequest, RequestOptions requestOptions = default);
+        
+        /// <summary>
+        /// Update a user
+        /// </summary>
+        /// <param name="merchantId"><see cref="string"/> - Unique identifier of the merchant.</param>
+        /// <param name="userId"><see cref="string"/> - Unique identifier of the user.</param>
+        /// <param name="updateMerchantUserRequest"><see cref="UpdateMerchantUserRequest"/> - </param>
+        /// <param name="requestOptions"><see cref="RequestOptions"/> - Additional request options.</param>
+        /// <param name="cancellationToken"> A CancellationToken enables cooperative cancellation between threads, thread pool work items, or Task objects.</param>
+        /// <returns>Task of <see cref="User"/>.</returns>
+        Task<User> UpdateUserAsync(string merchantId, string userId, UpdateMerchantUserRequest updateMerchantUserRequest, RequestOptions requestOptions = default, CancellationToken cancellationToken = default);
+        
+        /// <summary>
+        /// Create a new user
+        /// </summary>
+        /// <param name="merchantId"><see cref="string"/> - Unique identifier of the merchant.</param>
+        /// <param name="createMerchantUserRequest"><see cref="CreateMerchantUserRequest"/> - </param>
+        /// <param name="requestOptions"><see cref="RequestOptions"/> - Additional request options.</param>
+        /// <returns><see cref="CreateUserResponse"/>.</returns>
+        CreateUserResponse CreateNewUser(string merchantId, CreateMerchantUserRequest createMerchantUserRequest, RequestOptions requestOptions = default);
+        
+        /// <summary>
+        /// Create a new user
+        /// </summary>
+        /// <param name="merchantId"><see cref="string"/> - Unique identifier of the merchant.</param>
+        /// <param name="createMerchantUserRequest"><see cref="CreateMerchantUserRequest"/> - </param>
+        /// <param name="requestOptions"><see cref="RequestOptions"/> - Additional request options.</param>
+        /// <param name="cancellationToken"> A CancellationToken enables cooperative cancellation between threads, thread pool work items, or Task objects.</param>
+        /// <returns>Task of <see cref="CreateUserResponse"/>.</returns>
+        Task<CreateUserResponse> CreateNewUserAsync(string merchantId, CreateMerchantUserRequest createMerchantUserRequest, RequestOptions requestOptions = default, CancellationToken cancellationToken = default);
+        
+    }
+    
+    /// <summary>
+    /// Represents a collection of functions to interact with the UsersMerchantLevelService API endpoints
+    /// </summary>
+    public class UsersMerchantLevelService : AbstractService, IUsersMerchantLevelService
     {
         private readonly string _baseUrl;
         
         public UsersMerchantLevelService(Client client) : base(client)
         {
-            _baseUrl = client.Config.ManagementEndpoint + "/" + ClientConfig.ManagementVersion;
+            _baseUrl = CreateBaseUrl("https://management-test.adyen.com/v1");
         }
-    
-        /// <summary>
-        /// Get a list of users
-        /// </summary>
-        /// <param name="merchantId">Unique identifier of the merchant.</param>
-        /// <param name="pageNumber">The number of the page to fetch.</param>
-        /// <param name="pageSize">The number of items to have on a page. Maximum value is **100**. The default is **10** items on a page.</param>
-        /// <param name="username">The partial or complete username to select all users that match.</param>
-        /// <param name="requestOptions">Additional request options.</param>
-        /// <returns>ListMerchantUsersResponse</returns>
+        
         public ListMerchantUsersResponse ListUsers(string merchantId, int? pageNumber = default, int? pageSize = default, string username = default, RequestOptions requestOptions = default)
         {
-            return ListUsersAsync(merchantId, pageNumber, pageSize, username, requestOptions).GetAwaiter().GetResult();
+            return ListUsersAsync(merchantId, pageNumber, pageSize, username, requestOptions).ConfigureAwait(false).GetAwaiter().GetResult();
         }
 
-        /// <summary>
-        /// Get a list of users
-        /// </summary>
-        /// <param name="merchantId">Unique identifier of the merchant.</param>
-        /// <param name="pageNumber">The number of the page to fetch.</param>
-        /// <param name="pageSize">The number of items to have on a page. Maximum value is **100**. The default is **10** items on a page.</param>
-        /// <param name="username">The partial or complete username to select all users that match.</param>
-        /// <param name="requestOptions">Additional request options.</param>
-        /// <returns>Task of ListMerchantUsersResponse</returns>
-        public async Task<ListMerchantUsersResponse> ListUsersAsync(string merchantId, int? pageNumber = default, int? pageSize = default, string username = default, RequestOptions requestOptions = default)
+        public async Task<ListMerchantUsersResponse> ListUsersAsync(string merchantId, int? pageNumber = default, int? pageSize = default, string username = default, RequestOptions requestOptions = default, CancellationToken cancellationToken = default)
         {
             // Build the query string
             var queryParams = new Dictionary<string, string>();
@@ -66,88 +137,43 @@ namespace Adyen.Service.Management
             if (username != null) queryParams.Add("username", username);
             var endpoint = _baseUrl + $"/merchants/{merchantId}/users" + ToQueryString(queryParams);
             var resource = new ServiceResource(this, endpoint);
-            return await resource.RequestAsync<ListMerchantUsersResponse>(null, requestOptions, new HttpMethod("GET"));
+            return await resource.RequestAsync<ListMerchantUsersResponse>(null, requestOptions, new HttpMethod("GET"), cancellationToken).ConfigureAwait(false);
         }
-
-        /// <summary>
-        /// Get user details
-        /// </summary>
-        /// <param name="merchantId">Unique identifier of the merchant.</param>
-        /// <param name="userId">Unique identifier of the user.</param>
-        /// <param name="requestOptions">Additional request options.</param>
-        /// <returns>User</returns>
+        
         public User GetUserDetails(string merchantId, string userId, RequestOptions requestOptions = default)
         {
-            return GetUserDetailsAsync(merchantId, userId, requestOptions).GetAwaiter().GetResult();
+            return GetUserDetailsAsync(merchantId, userId, requestOptions).ConfigureAwait(false).GetAwaiter().GetResult();
         }
 
-        /// <summary>
-        /// Get user details
-        /// </summary>
-        /// <param name="merchantId">Unique identifier of the merchant.</param>
-        /// <param name="userId">Unique identifier of the user.</param>
-        /// <param name="requestOptions">Additional request options.</param>
-        /// <returns>Task of User</returns>
-        public async Task<User> GetUserDetailsAsync(string merchantId, string userId, RequestOptions requestOptions = default)
+        public async Task<User> GetUserDetailsAsync(string merchantId, string userId, RequestOptions requestOptions = default, CancellationToken cancellationToken = default)
         {
             var endpoint = _baseUrl + $"/merchants/{merchantId}/users/{userId}";
             var resource = new ServiceResource(this, endpoint);
-            return await resource.RequestAsync<User>(null, requestOptions, new HttpMethod("GET"));
+            return await resource.RequestAsync<User>(null, requestOptions, new HttpMethod("GET"), cancellationToken).ConfigureAwait(false);
         }
-
-        /// <summary>
-        /// Update a user
-        /// </summary>
-        /// <param name="merchantId">Unique identifier of the merchant.</param>
-        /// <param name="userId">Unique identifier of the user.</param>
-        /// <param name="updateMerchantUserRequest"></param>
-        /// <param name="requestOptions">Additional request options.</param>
-        /// <returns>User</returns>
+        
         public User UpdateUser(string merchantId, string userId, UpdateMerchantUserRequest updateMerchantUserRequest, RequestOptions requestOptions = default)
         {
-            return UpdateUserAsync(merchantId, userId, updateMerchantUserRequest, requestOptions).GetAwaiter().GetResult();
+            return UpdateUserAsync(merchantId, userId, updateMerchantUserRequest, requestOptions).ConfigureAwait(false).GetAwaiter().GetResult();
         }
 
-        /// <summary>
-        /// Update a user
-        /// </summary>
-        /// <param name="merchantId">Unique identifier of the merchant.</param>
-        /// <param name="userId">Unique identifier of the user.</param>
-        /// <param name="updateMerchantUserRequest"></param>
-        /// <param name="requestOptions">Additional request options.</param>
-        /// <returns>Task of User</returns>
-        public async Task<User> UpdateUserAsync(string merchantId, string userId, UpdateMerchantUserRequest updateMerchantUserRequest, RequestOptions requestOptions = default)
+        public async Task<User> UpdateUserAsync(string merchantId, string userId, UpdateMerchantUserRequest updateMerchantUserRequest, RequestOptions requestOptions = default, CancellationToken cancellationToken = default)
         {
             var endpoint = _baseUrl + $"/merchants/{merchantId}/users/{userId}";
             var resource = new ServiceResource(this, endpoint);
-            return await resource.RequestAsync<User>(updateMerchantUserRequest.ToJson(), requestOptions, new HttpMethod("PATCH"));
+            return await resource.RequestAsync<User>(updateMerchantUserRequest.ToJson(), requestOptions, new HttpMethod("PATCH"), cancellationToken).ConfigureAwait(false);
         }
-
-        /// <summary>
-        /// Create a new user
-        /// </summary>
-        /// <param name="merchantId">Unique identifier of the merchant.</param>
-        /// <param name="createMerchantUserRequest"></param>
-        /// <param name="requestOptions">Additional request options.</param>
-        /// <returns>CreateUserResponse</returns>
+        
         public CreateUserResponse CreateNewUser(string merchantId, CreateMerchantUserRequest createMerchantUserRequest, RequestOptions requestOptions = default)
         {
-            return CreateNewUserAsync(merchantId, createMerchantUserRequest, requestOptions).GetAwaiter().GetResult();
+            return CreateNewUserAsync(merchantId, createMerchantUserRequest, requestOptions).ConfigureAwait(false).GetAwaiter().GetResult();
         }
 
-        /// <summary>
-        /// Create a new user
-        /// </summary>
-        /// <param name="merchantId">Unique identifier of the merchant.</param>
-        /// <param name="createMerchantUserRequest"></param>
-        /// <param name="requestOptions">Additional request options.</param>
-        /// <returns>Task of CreateUserResponse</returns>
-        public async Task<CreateUserResponse> CreateNewUserAsync(string merchantId, CreateMerchantUserRequest createMerchantUserRequest, RequestOptions requestOptions = default)
+        public async Task<CreateUserResponse> CreateNewUserAsync(string merchantId, CreateMerchantUserRequest createMerchantUserRequest, RequestOptions requestOptions = default, CancellationToken cancellationToken = default)
         {
             var endpoint = _baseUrl + $"/merchants/{merchantId}/users";
             var resource = new ServiceResource(this, endpoint);
-            return await resource.RequestAsync<CreateUserResponse>(createMerchantUserRequest.ToJson(), requestOptions, new HttpMethod("POST"));
+            return await resource.RequestAsync<CreateUserResponse>(createMerchantUserRequest.ToJson(), requestOptions, new HttpMethod("POST"), cancellationToken).ConfigureAwait(false);
         }
-
     }
 }

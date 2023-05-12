@@ -1,27 +1,3 @@
-#region Licence
-
-// 
-//                        ######
-//                        ######
-//  ############    ####( ######  #####. ######  ############   ############
-//  #############  #####( ######  #####. ######  #############  #############
-//         ######  #####( ######  #####. ######  #####  ######  #####  ######
-//  ###### ######  #####( ######  #####. ######  #####  #####   #####  ######
-//  ###### ######  #####( ######  #####. ######  #####          #####  ######
-//  #############  #############  #############  #############  #####  ######
-//   ############   ############  #############   ############  #####  ######
-//                                       ######
-//                                #############
-//                                ############
-// 
-//  Adyen Dotnet API Library
-// 
-//  Copyright (c) 2021 Adyen B.V.
-//  This file is open source and available under the MIT license.
-//  See the LICENSE file for more info.
-
-#endregion
-
 using System;
 using System.Runtime.Serialization;
 using System.Text;
@@ -33,7 +9,7 @@ namespace Adyen.Model.MarketPay.Notification
     /// 
     /// </summary>
     [DataContract]
-    public class DirectDebitInitiatedNotification : IGenericNotification
+    public class DirectDebitInitiatedNotification : IGenericWebhook
     {
         /// <summary>
         /// Gets or Sets Content

@@ -1,31 +1,9 @@
-﻿#region License
-
-// /*
-//  *                       ######
-//  *                       ######
-//  * ############    ####( ######  #####. ######  ############   ############
-//  * #############  #####( ######  #####. ######  #############  #############
-//  *        ######  #####( ######  #####. ######  #####  ######  #####  ######
-//  * ###### ######  #####( ######  #####. ######  #####  #####   #####  ######
-//  * ###### ######  #####( ######  #####. ######  #####          #####  ######
-//  * #############  #############  #############  #############  #####  ######
-//  *  ############   ############  #############   ############  #####  ######
-//  *                                      ######
-//  *                               #############
-//  *                               ############
-//  *
-//  * Adyen Dotnet API Library
-//  *
-//  * Copyright (c) 2020 Adyen B.V.
-//  * This file is open source and available under the MIT license.
-//  * See the LICENSE file for more info.
-//  */
-
-#endregion
-
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using Adyen.Exceptions;
+using Environment = Adyen.Model.Environment;
 
 namespace Adyen.Service
 {
@@ -35,7 +13,7 @@ namespace Adyen.Service
 
         protected AbstractService(Client client)
         {
-            this.Client = client;
+            Client = client;
         }
 
         /// <summary>
@@ -59,6 +37,37 @@ namespace Adyen.Service
             }
 
             return string.Empty;
+        }
+        
+        /// <summary>
+        /// The base URL creation for Live environment
+        /// </summary>
+        /// <param name="url">String</param>
+        /// <returns>baseURL</returns>
+        private protected string CreateBaseUrl(string url)
+        {
+            var config = Client.Config;
+            // Change base url for Live environment
+            if (config.Environment != Environment.Live) return url;
+            if (url.Contains("pal-"))
+            {
+                // TODO these errors are not easy catchable for some reason, should be fixed first
+                if (config.LiveEndpointUrlPrefix == default) {throw new InvalidOperationException(ExceptionMessages.MissingLiveEndpointUrlPrefix); }
+                
+                url = url.Replace("https://pal-test.adyen.com/pal/servlet/",
+                    "https://" + config.LiveEndpointUrlPrefix + "-pal-live.adyenpayments.com/pal/servlet/");
+            }
+            else if (url.Contains("checkout-"))
+            {
+                if (config.LiveEndpointUrlPrefix == default) {throw new InvalidOperationException(ExceptionMessages.MissingLiveEndpointUrlPrefix); }
+                
+                url = url.Replace("https://checkout-test.adyen.com/",
+                    "https://" + config.LiveEndpointUrlPrefix + "-checkout-live.adyenpayments.com/checkout/");
+            }
+                
+            // If no prefix is required just replace "test" -> "live"
+            url = url.Replace("-test", "-live");
+            return url;
         }
     }
 }

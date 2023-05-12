@@ -1,10 +1,5 @@
 using System;
-using System.Collections.Generic;
-using System.Text;
-using System.Threading.Tasks;
-using Adyen.Model.LegalEntityManagement;
 using Adyen.Model.Transfers;
-using Adyen.Service.LegalEntityManagement;
 using Adyen.Service.Transfers;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 

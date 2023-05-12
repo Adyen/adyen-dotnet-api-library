@@ -1,27 +1,4 @@
-﻿#region License
-/*
- *                       ######
- *                       ######
- * ############    ####( ######  #####. ######  ############   ############
- * #############  #####( ######  #####. ######  #############  #############
- *        ######  #####( ######  #####. ######  #####  ######  #####  ######
- * ###### ######  #####( ######  #####. ######  #####  #####   #####  ######
- * ###### ######  #####( ######  #####. ######  #####          #####  ######
- * #############  #############  #############  #############  #####  ######
- *  ############   ############  #############   ############  #####  ######
- *                                      ######
- *                               #############
- *                               ############
- *
- * Adyen Dotnet API Library
- *
- * Copyright (c) 2021 Adyen B.V.
- * This file is open source and available under the MIT license.
- * See the LICENSE file for more info.
- */
-#endregion
-
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Runtime.Serialization;
@@ -33,7 +10,7 @@ namespace Adyen.Model.MarketPay
     /// SignatoryContact
     /// </summary>
     [DataContract(Name = "SignatoryContact")]
-    public partial class SignatoryContact : IEquatable<SignatoryContact>, IValidatableObject
+    public class SignatoryContact : IEquatable<SignatoryContact>, IValidatableObject
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="SignatoryContact" /> class.
@@ -50,16 +27,16 @@ namespace Adyen.Model.MarketPay
         /// <param name="webAddress">The URL of the person&#39;s website..</param>
         public SignatoryContact(ViasAddress address = default(ViasAddress), string email = default(string), string fullPhoneNumber = default(string), string jobTitle = default(string), ViasName name = default(ViasName), ViasPersonalData personalData = default(ViasPersonalData), ViasPhoneNumber phoneNumber = default(ViasPhoneNumber), string signatoryCode = default(string), string signatoryReference = default(string), string webAddress = default(string))
         {
-            this.Address = address;
-            this.Email = email;
-            this.FullPhoneNumber = fullPhoneNumber;
-            this.JobTitle = jobTitle;
-            this.Name = name;
-            this.PersonalData = personalData;
-            this.PhoneNumber = phoneNumber;
-            this.SignatoryCode = signatoryCode;
-            this.SignatoryReference = signatoryReference;
-            this.WebAddress = webAddress;
+            Address = address;
+            Email = email;
+            FullPhoneNumber = fullPhoneNumber;
+            JobTitle = jobTitle;
+            Name = name;
+            PersonalData = personalData;
+            PhoneNumber = phoneNumber;
+            SignatoryCode = signatoryCode;
+            SignatoryReference = signatoryReference;
+            WebAddress = webAddress;
         }
 
         /// <summary>
@@ -166,7 +143,7 @@ namespace Adyen.Model.MarketPay
         /// <returns>Boolean</returns>
         public override bool Equals(object input)
         {
-            return this.Equals(input as SignatoryContact);
+            return Equals(input as SignatoryContact);
         }
 
         /// <summary>
@@ -181,54 +158,54 @@ namespace Adyen.Model.MarketPay
 
             return
                 (
-                    this.Address == input.Address ||
-                    (this.Address != null &&
-                    this.Address.Equals(input.Address))
+                    Address == input.Address ||
+                    (Address != null &&
+                    Address.Equals(input.Address))
                 ) &&
                 (
-                    this.Email == input.Email ||
-                    (this.Email != null &&
-                    this.Email.Equals(input.Email))
+                    Email == input.Email ||
+                    (Email != null &&
+                    Email.Equals(input.Email))
                 ) &&
                 (
-                    this.FullPhoneNumber == input.FullPhoneNumber ||
-                    (this.FullPhoneNumber != null &&
-                    this.FullPhoneNumber.Equals(input.FullPhoneNumber))
+                    FullPhoneNumber == input.FullPhoneNumber ||
+                    (FullPhoneNumber != null &&
+                    FullPhoneNumber.Equals(input.FullPhoneNumber))
                 ) &&
                 (
-                    this.JobTitle == input.JobTitle ||
-                    (this.JobTitle != null &&
-                    this.JobTitle.Equals(input.JobTitle))
+                    JobTitle == input.JobTitle ||
+                    (JobTitle != null &&
+                    JobTitle.Equals(input.JobTitle))
                 ) &&
                 (
-                    this.Name == input.Name ||
-                    (this.Name != null &&
-                    this.Name.Equals(input.Name))
+                    Name == input.Name ||
+                    (Name != null &&
+                    Name.Equals(input.Name))
                 ) &&
                 (
-                    this.PersonalData == input.PersonalData ||
-                    (this.PersonalData != null &&
-                    this.PersonalData.Equals(input.PersonalData))
+                    PersonalData == input.PersonalData ||
+                    (PersonalData != null &&
+                    PersonalData.Equals(input.PersonalData))
                 ) &&
                 (
-                    this.PhoneNumber == input.PhoneNumber ||
-                    (this.PhoneNumber != null &&
-                    this.PhoneNumber.Equals(input.PhoneNumber))
+                    PhoneNumber == input.PhoneNumber ||
+                    (PhoneNumber != null &&
+                    PhoneNumber.Equals(input.PhoneNumber))
                 ) &&
                 (
-                    this.SignatoryCode == input.SignatoryCode ||
-                    (this.SignatoryCode != null &&
-                    this.SignatoryCode.Equals(input.SignatoryCode))
+                    SignatoryCode == input.SignatoryCode ||
+                    (SignatoryCode != null &&
+                    SignatoryCode.Equals(input.SignatoryCode))
                 ) &&
                 (
-                    this.SignatoryReference == input.SignatoryReference ||
-                    (this.SignatoryReference != null &&
-                    this.SignatoryReference.Equals(input.SignatoryReference))
+                    SignatoryReference == input.SignatoryReference ||
+                    (SignatoryReference != null &&
+                    SignatoryReference.Equals(input.SignatoryReference))
                 ) &&
                 (
-                    this.WebAddress == input.WebAddress ||
-                    (this.WebAddress != null &&
-                    this.WebAddress.Equals(input.WebAddress))
+                    WebAddress == input.WebAddress ||
+                    (WebAddress != null &&
+                    WebAddress.Equals(input.WebAddress))
                 );
         }
 
@@ -241,26 +218,26 @@ namespace Adyen.Model.MarketPay
             unchecked // Overflow is fine, just wrap
             {
                 int hashCode = 41;
-                if (this.Address != null)
-                    hashCode = hashCode * 59 + this.Address.GetHashCode();
-                if (this.Email != null)
-                    hashCode = hashCode * 59 + this.Email.GetHashCode();
-                if (this.FullPhoneNumber != null)
-                    hashCode = hashCode * 59 + this.FullPhoneNumber.GetHashCode();
-                if (this.JobTitle != null)
-                    hashCode = hashCode * 59 + this.JobTitle.GetHashCode();
-                if (this.Name != null)
-                    hashCode = hashCode * 59 + this.Name.GetHashCode();
-                if (this.PersonalData != null)
-                    hashCode = hashCode * 59 + this.PersonalData.GetHashCode();
-                if (this.PhoneNumber != null)
-                    hashCode = hashCode * 59 + this.PhoneNumber.GetHashCode();
-                if (this.SignatoryCode != null)
-                    hashCode = hashCode * 59 + this.SignatoryCode.GetHashCode();
-                if (this.SignatoryReference != null)
-                    hashCode = hashCode * 59 + this.SignatoryReference.GetHashCode();
-                if (this.WebAddress != null)
-                    hashCode = hashCode * 59 + this.WebAddress.GetHashCode();
+                if (Address != null)
+                    hashCode = hashCode * 59 + Address.GetHashCode();
+                if (Email != null)
+                    hashCode = hashCode * 59 + Email.GetHashCode();
+                if (FullPhoneNumber != null)
+                    hashCode = hashCode * 59 + FullPhoneNumber.GetHashCode();
+                if (JobTitle != null)
+                    hashCode = hashCode * 59 + JobTitle.GetHashCode();
+                if (Name != null)
+                    hashCode = hashCode * 59 + Name.GetHashCode();
+                if (PersonalData != null)
+                    hashCode = hashCode * 59 + PersonalData.GetHashCode();
+                if (PhoneNumber != null)
+                    hashCode = hashCode * 59 + PhoneNumber.GetHashCode();
+                if (SignatoryCode != null)
+                    hashCode = hashCode * 59 + SignatoryCode.GetHashCode();
+                if (SignatoryReference != null)
+                    hashCode = hashCode * 59 + SignatoryReference.GetHashCode();
+                if (WebAddress != null)
+                    hashCode = hashCode * 59 + WebAddress.GetHashCode();
                 return hashCode;
             }
         }
@@ -270,7 +247,7 @@ namespace Adyen.Model.MarketPay
         /// </summary>
         /// <param name="validationContext">Validation context</param>
         /// <returns>Validation Result</returns>
-        public IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> Validate(ValidationContext validationContext)
+        public IEnumerable<ValidationResult> Validate(ValidationContext validationContext)
         {
             yield break;
         }

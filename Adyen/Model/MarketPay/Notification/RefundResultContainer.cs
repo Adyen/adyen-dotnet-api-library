@@ -1,25 +1,5 @@
-﻿// 
-//                        ######
-//                        ######
-//  ############    ####( ######  #####. ######  ############   ############
-//  #############  #####( ######  #####. ######  #############  #############
-//         ######  #####( ######  #####. ######  #####  ######  #####  ######
-//  ###### ######  #####( ######  #####. ######  #####  #####   #####  ######
-//  ###### ######  #####( ######  #####. ######  #####          #####  ######
-//  #############  #############  #############  #############  #####  ######
-//   ############   ############  #############   ############  #####  ######
-//                                       ######
-//                                #############
-//                                ############
-// 
-//  Adyen Dotnet API Library
-// 
-//  Copyright (c) 2021 Adyen B.V.
-//  This file is open source and available under the MIT license.
-//  See the LICENSE file for more info.
-
+﻿using System.Runtime.Serialization;
 using Newtonsoft.Json;
-using System.Runtime.Serialization;
 
 namespace Adyen.Model.MarketPay.Notification
 {

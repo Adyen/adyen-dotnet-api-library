@@ -1,36 +1,12 @@
-﻿#region License
-// /*
-//  *                       ######
-//  *                       ######
-//  * ############    ####( ######  #####. ######  ############   ############
-//  * #############  #####( ######  #####. ######  #############  #############
-//  *        ######  #####( ######  #####. ######  #####  ######  #####  ######
-//  * ###### ######  #####( ######  #####. ######  #####  #####   #####  ######
-//  * ###### ######  #####( ######  #####. ######  #####          #####  ######
-//  * #############  #############  #############  #############  #####  ######
-//  *  ############   ############  #############   ############  #####  ######
-//  *                                      ######
-//  *                               #############
-//  *                               ############
-//  *
-//  * Adyen Dotnet API Library
-//  *
-//  * Copyright (c) 2023 Adyen B.V.
-//  * This file is open source and available under the MIT license.
-//  * See the LICENSE file for more info.
-//  */
-#endregion
-
-using System;
+﻿using System;
+using System.Linq;
 using Adyen.ApiSerialization;
 using Adyen.Model.Nexo;
+using Adyen.Webhooks;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace Adyen.Test
 {
-    using Microsoft.VisualStudio.TestTools.UnitTesting;
-    using Notification;
-    using System.Linq;
-
     [TestClass]
     public class NotificationTest : BaseTest
     {
@@ -39,8 +15,8 @@ namespace Adyen.Test
         {
             var mockPath = GetMockFilePath("Mocks/notification/authorisation-true.json");
             var jsonRequest = MockFileToString(mockPath);
-            var notificationHandler = new NotificationHandler();
-            var handleNotificationRequest = notificationHandler.HandleNotificationRequest(jsonRequest);
+            var webhookHandler = new WebhookHandler();
+            var handleNotificationRequest = webhookHandler.HandleNotificationRequest(jsonRequest);
             var notificationRequestItemContainer = handleNotificationRequest.NotificationItemContainers.FirstOrDefault();
             if (notificationRequestItemContainer == null)
                 Assert.Fail("NotificationRequestItemContainer is null");
@@ -55,8 +31,8 @@ namespace Adyen.Test
         {
             var mockPath = GetMockFilePath("Mocks/notification/capture-true.json");
             var jsonRequest = MockFileToString(mockPath);
-            var notificationHandler = new NotificationHandler();
-            var handleNotificationRequest = notificationHandler.HandleNotificationRequest(jsonRequest);
+            var webhookHandler = new WebhookHandler();
+            var handleNotificationRequest = webhookHandler.HandleNotificationRequest(jsonRequest);
             var notificationRequestItemContainer = handleNotificationRequest.NotificationItemContainers.FirstOrDefault();
             if (notificationRequestItemContainer == null)
                 Assert.Fail("NotificationRequestItemContainer is null");
@@ -73,8 +49,8 @@ namespace Adyen.Test
         {
             var mockPath = GetMockFilePath("Mocks/notification/capture-false.json");
             var jsonRequest = MockFileToString(mockPath);
-            var notificationHandler = new NotificationHandler();
-            var handleNotificationRequest = notificationHandler.HandleNotificationRequest(jsonRequest);
+            var webhookHandler = new WebhookHandler();
+            var handleNotificationRequest = webhookHandler.HandleNotificationRequest(jsonRequest);
             var notificationRequestItemContainer = handleNotificationRequest.NotificationItemContainers.FirstOrDefault();
             if (notificationRequestItemContainer == null)
                 Assert.Fail("NotificationRequestItemContainer is null");
@@ -92,8 +68,8 @@ namespace Adyen.Test
         {
             var mockPath = GetMockFilePath("Mocks/notification/refund-true.json");
             var jsonRequest = MockFileToString(mockPath);
-            var notificationHandler = new NotificationHandler();
-            var handleNotificationRequest = notificationHandler.HandleNotificationRequest(jsonRequest);
+            var webhookHandler = new WebhookHandler();
+            var handleNotificationRequest = webhookHandler.HandleNotificationRequest(jsonRequest);
             var notificationRequestItemContainer = handleNotificationRequest.NotificationItemContainers.FirstOrDefault();
             if (notificationRequestItemContainer == null)
                 Assert.Fail("NotificationRequestItemContainer is null");
@@ -111,8 +87,8 @@ namespace Adyen.Test
         {
             var mockPath = GetMockFilePath("Mocks/notification/refund-false.json");
             var jsonRequest = MockFileToString(mockPath);
-            var notificationHandler = new NotificationHandler();
-            var handleNotificationRequest = notificationHandler.HandleNotificationRequest(jsonRequest);
+            var webhookHandler = new WebhookHandler();
+            var handleNotificationRequest = webhookHandler.HandleNotificationRequest(jsonRequest);
             var notificationRequestItemContainer = handleNotificationRequest.NotificationItemContainers.FirstOrDefault();
             if (notificationRequestItemContainer == null)
                 Assert.Fail("NotificationRequestItemContainer is null");

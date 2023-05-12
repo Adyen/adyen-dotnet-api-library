@@ -57,14 +57,6 @@ namespace Adyen.Model.LegalEntityManagement
         public string WebAddressId { get; private set; }
 
         /// <summary>
-        /// Returns false as WebAddressId should not be serialized given that it's read-only.
-        /// </summary>
-        /// <returns>false (boolean)</returns>
-        public bool ShouldSerializeWebAddressId()
-        {
-            return false;
-        }
-        /// <summary>
         /// Returns the string presentation of the object
         /// </summary>
         /// <returns>String presentation of the object</returns>

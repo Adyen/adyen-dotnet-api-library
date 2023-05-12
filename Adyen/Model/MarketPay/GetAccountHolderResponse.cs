@@ -1,26 +1,3 @@
-#region License
-// /*
-//  *                       ######
-//  *                       ######
-//  * ############    ####( ######  #####. ######  ############   ############
-//  * #############  #####( ######  #####. ######  #############  #############
-//  *        ######  #####( ######  #####. ######  #####  ######  #####  ######
-//  * ###### ######  #####( ######  #####. ######  #####  #####   #####  ######
-//  * ###### ######  #####( ######  #####. ######  #####          #####  ######
-//  * #############  #############  #############  #############  #####  ######
-//  *  ############   ############  #############   ############  #####  ######
-//  *                                      ######
-//  *                               #############
-//  *                               ############
-//  *
-//  * Adyen Dotnet API Library
-//  *
-//  * Copyright (c) 2020 Adyen B.V.
-//  * This file is open source and available under the MIT license.
-//  * See the LICENSE file for more info.
-//  */
-#endregion
-
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -37,7 +14,7 @@ namespace Adyen.Model.MarketPay
     /// GetAccountHolderResponse
     /// </summary>
     [DataContract]
-        public partial class GetAccountHolderResponse :  IEquatable<GetAccountHolderResponse>, IValidatableObject
+        public class GetAccountHolderResponse :  IEquatable<GetAccountHolderResponse>, IValidatableObject
     {
         /// <summary>
         /// The legal entity of the account holder.
@@ -94,53 +71,43 @@ namespace Adyen.Model.MarketPay
             {
                 throw new InvalidDataException("accountHolderCode is a required property for GetAccountHolderResponse and cannot be null");
             }
-            else
-            {
-                this.AccountHolderCode = accountHolderCode;
-            }
+
+            AccountHolderCode = accountHolderCode;
             // to ensure "accountHolderDetails" is required (not null)
             if (accountHolderDetails == null)
             {
                 throw new InvalidDataException("accountHolderDetails is a required property for GetAccountHolderResponse and cannot be null");
             }
-            else
-            {
-                this.AccountHolderDetails = accountHolderDetails;
-            }
+
+            AccountHolderDetails = accountHolderDetails;
             // to ensure "accountHolderStatus" is required (not null)
             if (accountHolderStatus == null)
             {
                 throw new InvalidDataException("accountHolderStatus is a required property for GetAccountHolderResponse and cannot be null");
             }
-            else
-            {
-                this.AccountHolderStatus = accountHolderStatus;
-            }
+
+            AccountHolderStatus = accountHolderStatus;
             // to ensure "pspReference" is required (not null)
             if (pspReference == null)
             {
                 throw new InvalidDataException("pspReference is a required property for GetAccountHolderResponse and cannot be null");
             }
-            else
-            {
-                this.PspReference = pspReference;
-            }
+
+            PspReference = pspReference;
             // to ensure "verification" is required (not null)
             if (verification == null)
             {
                 throw new InvalidDataException("verification is a required property for GetAccountHolderResponse and cannot be null");
             }
-            else
-            {
-                this.Verification = verification;
-            }
-            this.LegalEntity = legalEntity;
-            this.Accounts = accounts;
-            this.Description = description;
-            this.InvalidFields = invalidFields;
-            this.PrimaryCurrency = primaryCurrency;
-            this.ResultCode = resultCode;
-            this.SystemUpToDateTime = systemUpToDateTime;
+
+            Verification = verification;
+            LegalEntity = legalEntity;
+            Accounts = accounts;
+            Description = description;
+            InvalidFields = invalidFields;
+            PrimaryCurrency = primaryCurrency;
+            ResultCode = resultCode;
+            SystemUpToDateTime = systemUpToDateTime;
         }
         
         /// <summary>
@@ -258,7 +225,7 @@ namespace Adyen.Model.MarketPay
         /// <returns>Boolean</returns>
         public override bool Equals(object input)
         {
-            return this.Equals(input as GetAccountHolderResponse);
+            return Equals(input as GetAccountHolderResponse);
         }
 
         /// <summary>
@@ -273,65 +240,65 @@ namespace Adyen.Model.MarketPay
 
             return 
                 (
-                    this.AccountHolderCode == input.AccountHolderCode ||
-                    (this.AccountHolderCode != null &&
-                    this.AccountHolderCode.Equals(input.AccountHolderCode))
+                    AccountHolderCode == input.AccountHolderCode ||
+                    (AccountHolderCode != null &&
+                    AccountHolderCode.Equals(input.AccountHolderCode))
                 ) && 
                 (
-                    this.AccountHolderDetails == input.AccountHolderDetails ||
-                    (this.AccountHolderDetails != null &&
-                    this.AccountHolderDetails.Equals(input.AccountHolderDetails))
+                    AccountHolderDetails == input.AccountHolderDetails ||
+                    (AccountHolderDetails != null &&
+                    AccountHolderDetails.Equals(input.AccountHolderDetails))
                 ) && 
                 (
-                    this.AccountHolderStatus == input.AccountHolderStatus ||
-                    (this.AccountHolderStatus != null &&
-                    this.AccountHolderStatus.Equals(input.AccountHolderStatus))
+                    AccountHolderStatus == input.AccountHolderStatus ||
+                    (AccountHolderStatus != null &&
+                    AccountHolderStatus.Equals(input.AccountHolderStatus))
                 ) && 
                 (
-                    this.Accounts == input.Accounts ||
-                    this.Accounts != null &&
+                    Accounts == input.Accounts ||
+                    Accounts != null &&
                     input.Accounts != null &&
-                    this.Accounts.SequenceEqual(input.Accounts)
+                    Accounts.SequenceEqual(input.Accounts)
                 ) && 
                 (
-                    this.Description == input.Description ||
-                    (this.Description != null &&
-                    this.Description.Equals(input.Description))
+                    Description == input.Description ||
+                    (Description != null &&
+                    Description.Equals(input.Description))
                 ) && 
                 (
-                    this.InvalidFields == input.InvalidFields ||
-                    this.InvalidFields != null &&
+                    InvalidFields == input.InvalidFields ||
+                    InvalidFields != null &&
                     input.InvalidFields != null &&
-                    this.InvalidFields.SequenceEqual(input.InvalidFields)
+                    InvalidFields.SequenceEqual(input.InvalidFields)
                 ) && 
                 (
-                    this.LegalEntity == input.LegalEntity ||
-                    this.LegalEntity.Equals(input.LegalEntity)
+                    LegalEntity == input.LegalEntity ||
+                    LegalEntity.Equals(input.LegalEntity)
                 ) && 
                 (
-                    this.PrimaryCurrency == input.PrimaryCurrency ||
-                    (this.PrimaryCurrency != null &&
-                    this.PrimaryCurrency.Equals(input.PrimaryCurrency))
+                    PrimaryCurrency == input.PrimaryCurrency ||
+                    (PrimaryCurrency != null &&
+                    PrimaryCurrency.Equals(input.PrimaryCurrency))
                 ) && 
                 (
-                    this.PspReference == input.PspReference ||
-                    (this.PspReference != null &&
-                    this.PspReference.Equals(input.PspReference))
+                    PspReference == input.PspReference ||
+                    (PspReference != null &&
+                    PspReference.Equals(input.PspReference))
                 ) && 
                 (
-                    this.ResultCode == input.ResultCode ||
-                    (this.ResultCode != null &&
-                    this.ResultCode.Equals(input.ResultCode))
+                    ResultCode == input.ResultCode ||
+                    (ResultCode != null &&
+                    ResultCode.Equals(input.ResultCode))
                 ) && 
                 (
-                    this.SystemUpToDateTime == input.SystemUpToDateTime ||
-                    (this.SystemUpToDateTime != null &&
-                    this.SystemUpToDateTime.Equals(input.SystemUpToDateTime))
+                    SystemUpToDateTime == input.SystemUpToDateTime ||
+                    (SystemUpToDateTime != null &&
+                    SystemUpToDateTime.Equals(input.SystemUpToDateTime))
                 ) && 
                 (
-                    this.Verification == input.Verification ||
-                    (this.Verification != null &&
-                    this.Verification.Equals(input.Verification))
+                    Verification == input.Verification ||
+                    (Verification != null &&
+                    Verification.Equals(input.Verification))
                 );
         }
 
@@ -344,29 +311,29 @@ namespace Adyen.Model.MarketPay
             unchecked // Overflow is fine, just wrap
             {
                 int hashCode = 41;
-                if (this.AccountHolderCode != null)
-                    hashCode = hashCode * 59 + this.AccountHolderCode.GetHashCode();
-                if (this.AccountHolderDetails != null)
-                    hashCode = hashCode * 59 + this.AccountHolderDetails.GetHashCode();
-                if (this.AccountHolderStatus != null)
-                    hashCode = hashCode * 59 + this.AccountHolderStatus.GetHashCode();
-                if (this.Accounts != null)
-                    hashCode = hashCode * 59 + this.Accounts.GetHashCode();
-                if (this.Description != null)
-                    hashCode = hashCode * 59 + this.Description.GetHashCode();
-                if (this.InvalidFields != null)
-                    hashCode = hashCode * 59 + this.InvalidFields.GetHashCode();
-                hashCode = hashCode * 59 + this.LegalEntity.GetHashCode();
-                if (this.PrimaryCurrency != null)
-                    hashCode = hashCode * 59 + this.PrimaryCurrency.GetHashCode();
-                if (this.PspReference != null)
-                    hashCode = hashCode * 59 + this.PspReference.GetHashCode();
-                if (this.ResultCode != null)
-                    hashCode = hashCode * 59 + this.ResultCode.GetHashCode();
-                if (this.SystemUpToDateTime != null)
-                    hashCode = hashCode * 59 + this.SystemUpToDateTime.GetHashCode();
-                if (this.Verification != null)
-                    hashCode = hashCode * 59 + this.Verification.GetHashCode();
+                if (AccountHolderCode != null)
+                    hashCode = hashCode * 59 + AccountHolderCode.GetHashCode();
+                if (AccountHolderDetails != null)
+                    hashCode = hashCode * 59 + AccountHolderDetails.GetHashCode();
+                if (AccountHolderStatus != null)
+                    hashCode = hashCode * 59 + AccountHolderStatus.GetHashCode();
+                if (Accounts != null)
+                    hashCode = hashCode * 59 + Accounts.GetHashCode();
+                if (Description != null)
+                    hashCode = hashCode * 59 + Description.GetHashCode();
+                if (InvalidFields != null)
+                    hashCode = hashCode * 59 + InvalidFields.GetHashCode();
+                hashCode = hashCode * 59 + LegalEntity.GetHashCode();
+                if (PrimaryCurrency != null)
+                    hashCode = hashCode * 59 + PrimaryCurrency.GetHashCode();
+                if (PspReference != null)
+                    hashCode = hashCode * 59 + PspReference.GetHashCode();
+                if (ResultCode != null)
+                    hashCode = hashCode * 59 + ResultCode.GetHashCode();
+                if (SystemUpToDateTime != null)
+                    hashCode = hashCode * 59 + SystemUpToDateTime.GetHashCode();
+                if (Verification != null)
+                    hashCode = hashCode * 59 + Verification.GetHashCode();
                 return hashCode;
             }
         }
@@ -376,7 +343,7 @@ namespace Adyen.Model.MarketPay
         /// </summary>
         /// <param name="validationContext">Validation context</param>
         /// <returns>Validation Result</returns>
-        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+        IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
         {
             yield break;
         }

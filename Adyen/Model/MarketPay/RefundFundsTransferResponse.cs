@@ -1,25 +1,3 @@
-#region License
-// /*
-//  *                       ######
-//  *                       ######
-//  * ############    ####( ######  #####. ######  ############   ############
-//  * #############  #####( ######  #####. ######  #############  #############
-//  *        ######  #####( ######  #####. ######  #####  ######  #####  ######
-//  * ###### ######  #####( ######  #####. ######  #####  #####   #####  ######
-//  * ###### ######  #####( ######  #####. ######  #####          #####  ######
-//  * #############  #############  #############  #############  #####  ######
-//  *  ############   ############  #############   ############  #####  ######
-//  *                                      ######
-//  *                               #############
-//  *                               ############
-//  *
-//  * Adyen Dotnet API Library
-//  *
-//  * Copyright (c) 2020 Adyen B.V.
-//  * This file is open source and available under the MIT license.
-//  * See the LICENSE file for more info.
-//  */
-#endregion
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -53,15 +31,13 @@ namespace Adyen.Model.MarketPay
             {
                 throw new InvalidDataException("pspReference is a required property for RefundFundsTransferResponse and cannot be null");
             }
-            else
-            {
-                this.PspReference = pspReference;
-            }
-            this.InvalidFields = invalidFields;
-            this.MerchantReference = merchantReference;
-            this.Message = message;
-            this.OriginalReference = originalReference;
-            this.ResultCode = resultCode;
+
+            PspReference = pspReference;
+            InvalidFields = invalidFields;
+            MerchantReference = merchantReference;
+            Message = message;
+            OriginalReference = originalReference;
+            ResultCode = resultCode;
         }
 
         /// <summary>
@@ -139,7 +115,7 @@ namespace Adyen.Model.MarketPay
         /// <returns>Boolean</returns>
         public override bool Equals(object input)
         {
-            return this.Equals(input as RefundFundsTransferResponse);
+            return Equals(input as RefundFundsTransferResponse);
         }
 
         /// <summary>
@@ -154,35 +130,35 @@ namespace Adyen.Model.MarketPay
 
             return
                 (
-                    this.InvalidFields == input.InvalidFields ||
-                    this.InvalidFields != null &&
+                    InvalidFields == input.InvalidFields ||
+                    InvalidFields != null &&
                     input.InvalidFields != null &&
-                    this.InvalidFields.SequenceEqual(input.InvalidFields)
+                    InvalidFields.SequenceEqual(input.InvalidFields)
                 ) &&
                 (
-                    this.MerchantReference == input.MerchantReference ||
-                    (this.MerchantReference != null &&
-                    this.MerchantReference.Equals(input.MerchantReference))
+                    MerchantReference == input.MerchantReference ||
+                    (MerchantReference != null &&
+                    MerchantReference.Equals(input.MerchantReference))
                 ) &&
                 (
-                    this.Message == input.Message ||
-                    (this.Message != null &&
-                    this.Message.Equals(input.Message))
+                    Message == input.Message ||
+                    (Message != null &&
+                    Message.Equals(input.Message))
                 ) &&
                 (
-                    this.OriginalReference == input.OriginalReference ||
-                    (this.OriginalReference != null &&
-                    this.OriginalReference.Equals(input.OriginalReference))
+                    OriginalReference == input.OriginalReference ||
+                    (OriginalReference != null &&
+                    OriginalReference.Equals(input.OriginalReference))
                 ) &&
                 (
-                    this.PspReference == input.PspReference ||
-                    (this.PspReference != null &&
-                    this.PspReference.Equals(input.PspReference))
+                    PspReference == input.PspReference ||
+                    (PspReference != null &&
+                    PspReference.Equals(input.PspReference))
                 ) &&
                 (
-                    this.ResultCode == input.ResultCode ||
-                    (this.ResultCode != null &&
-                    this.ResultCode.Equals(input.ResultCode))
+                    ResultCode == input.ResultCode ||
+                    (ResultCode != null &&
+                    ResultCode.Equals(input.ResultCode))
                 );
         }
 
@@ -195,18 +171,18 @@ namespace Adyen.Model.MarketPay
             unchecked // Overflow is fine, just wrap
             {
                 int hashCode = 41;
-                if (this.InvalidFields != null)
-                    hashCode = hashCode * 59 + this.InvalidFields.GetHashCode();
-                if (this.MerchantReference != null)
-                    hashCode = hashCode * 59 + this.MerchantReference.GetHashCode();
-                if (this.Message != null)
-                    hashCode = hashCode * 59 + this.Message.GetHashCode();
-                if (this.OriginalReference != null)
-                    hashCode = hashCode * 59 + this.OriginalReference.GetHashCode();
-                if (this.PspReference != null)
-                    hashCode = hashCode * 59 + this.PspReference.GetHashCode();
-                if (this.ResultCode != null)
-                    hashCode = hashCode * 59 + this.ResultCode.GetHashCode();
+                if (InvalidFields != null)
+                    hashCode = hashCode * 59 + InvalidFields.GetHashCode();
+                if (MerchantReference != null)
+                    hashCode = hashCode * 59 + MerchantReference.GetHashCode();
+                if (Message != null)
+                    hashCode = hashCode * 59 + Message.GetHashCode();
+                if (OriginalReference != null)
+                    hashCode = hashCode * 59 + OriginalReference.GetHashCode();
+                if (PspReference != null)
+                    hashCode = hashCode * 59 + PspReference.GetHashCode();
+                if (ResultCode != null)
+                    hashCode = hashCode * 59 + ResultCode.GetHashCode();
                 return hashCode;
             }
         }
@@ -216,7 +192,7 @@ namespace Adyen.Model.MarketPay
         /// </summary>
         /// <param name="validationContext">Validation context</param>
         /// <returns>Validation Result</returns>
-        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+        IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
         {
             yield break;
         }

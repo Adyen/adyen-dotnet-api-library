@@ -1,35 +1,11 @@
-#region License
-
-// /*
-//  *                       ######
-//  *                       ######
-//  * ############    ####( ######  #####. ######  ############   ############
-//  * #############  #####( ######  #####. ######  #############  #############
-//  *        ######  #####( ######  #####. ######  #####  ######  #####  ######
-//  * ###### ######  #####( ######  #####. ######  #####  #####   #####  ######
-//  * ###### ######  #####( ######  #####. ######  #####          #####  ######
-//  * #############  #############  #############  #############  #####  ######
-//  *  ############   ############  #############   ############  #####  ######
-//  *                                      ######
-//  *                               #############
-//  *                               ############
-//  *
-//  * Adyen Dotnet API Library
-//  *
-//  * Copyright (c) 2022 Adyen N.V.
-//  * This file is open source and available under the MIT license.
-//  * See the LICENSE file for more info.
-//  */
-
-#endregion
-
-using Adyen.Constants;
 using System;
 using System.Collections.Generic;
 using System.Net.Http;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Web;
+using Adyen.Constants;
 using Adyen.HttpClient.Interfaces;
 using Adyen.Model;
 
@@ -53,12 +29,12 @@ namespace Adyen.HttpClient
             return RequestAsync(endpoint, requestBody, requestOptions,  httpMethod).ConfigureAwait(false).GetAwaiter().GetResult();
         }
 
-        public async Task<string> RequestAsync(string endpoint, string requestBody, RequestOptions requestOptions = null, HttpMethod httpMethod = null)
+        public async Task<string> RequestAsync(string endpoint, string requestBody, RequestOptions requestOptions = null, HttpMethod httpMethod = null, CancellationToken cancellationToken = default)
         {
             using (var request = GetHttpRequestMessage(endpoint, requestBody, requestOptions, httpMethod))
-            using (var httpResponseMessage = await _httpClient.SendAsync(request))
+            using (var httpResponseMessage = await _httpClient.SendAsync(request, cancellationToken).ConfigureAwait(false))
             {
-                var responseText = await httpResponseMessage.Content.ReadAsStringAsync();
+                var responseText = await httpResponseMessage.Content.ReadAsStringAsync().ConfigureAwait(false);
                 if(httpResponseMessage.IsSuccessStatusCode)
                 {
                     return responseText;

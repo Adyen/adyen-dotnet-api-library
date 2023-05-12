@@ -13,50 +13,61 @@
 using System;
 using System.Collections.Generic;
 using System.Net.Http;
+using System.Threading;
 using System.Threading.Tasks;
 using Adyen.Constants;
 using Adyen.Model;
 using Adyen.Service.Resource;
 using Adyen.Model.DataProtection;
-using Newtonsoft.Json;
 
 namespace Adyen.Service
 {
     /// <summary>
-    /// Represents a collection of functions to interact with the API endpoints
+    /// DefaultService Interface
     /// </summary>
-    public class DataProtectionService : AbstractService
+    public interface IDataProtectionService
+    {
+        /// <summary>
+        /// Submit a Subject Erasure Request.
+        /// </summary>
+        /// <param name="subjectErasureByPspReferenceRequest"><see cref="SubjectErasureByPspReferenceRequest"/> - </param>
+        /// <param name="requestOptions"><see cref="RequestOptions"/> - Additional request options.</param>
+        /// <returns><see cref="SubjectErasureResponse"/>.</returns>
+        SubjectErasureResponse RequestSubjectErasure(SubjectErasureByPspReferenceRequest subjectErasureByPspReferenceRequest, RequestOptions requestOptions = default);
+        
+        /// <summary>
+        /// Submit a Subject Erasure Request.
+        /// </summary>
+        /// <param name="subjectErasureByPspReferenceRequest"><see cref="SubjectErasureByPspReferenceRequest"/> - </param>
+        /// <param name="requestOptions"><see cref="RequestOptions"/> - Additional request options.</param>
+        /// <param name="cancellationToken"> A CancellationToken enables cooperative cancellation between threads, thread pool work items, or Task objects.</param>
+        /// <returns>Task of <see cref="SubjectErasureResponse"/>.</returns>
+        Task<SubjectErasureResponse> RequestSubjectErasureAsync(SubjectErasureByPspReferenceRequest subjectErasureByPspReferenceRequest, RequestOptions requestOptions = default, CancellationToken cancellationToken = default);
+        
+    }
+    
+    /// <summary>
+    /// Represents a collection of functions to interact with the DataProtectionService API endpoints
+    /// </summary>
+    public class DataProtectionService : AbstractService, IDataProtectionService
     {
         private readonly string _baseUrl;
         
         public DataProtectionService(Client client) : base(client)
         {
-            _baseUrl = client.Config.DataProtectionEndpoint + "/" + ClientConfig.DataProtectionVersion;
+            _baseUrl = CreateBaseUrl("https://ca-test.adyen.com/ca/services/DataProtectionService/v1");
         }
-    
-        /// <summary>
-        /// Submit a Subject Erasure Request.
-        /// </summary>
-        /// <param name="subjectErasureByPspReferenceRequest"></param>
-        /// <param name="requestOptions">Additional request options.</param>
-        /// <returns>SubjectErasureResponse</returns>
+        
         public SubjectErasureResponse RequestSubjectErasure(SubjectErasureByPspReferenceRequest subjectErasureByPspReferenceRequest, RequestOptions requestOptions = default)
         {
-            return RequestSubjectErasureAsync(subjectErasureByPspReferenceRequest, requestOptions).GetAwaiter().GetResult();
+            return RequestSubjectErasureAsync(subjectErasureByPspReferenceRequest, requestOptions).ConfigureAwait(false).GetAwaiter().GetResult();
         }
 
-        /// <summary>
-        /// Submit a Subject Erasure Request.
-        /// </summary>
-        /// <param name="subjectErasureByPspReferenceRequest"></param>
-        /// <param name="requestOptions">Additional request options.</param>
-        /// <returns>Task of SubjectErasureResponse</returns>
-        public async Task<SubjectErasureResponse> RequestSubjectErasureAsync(SubjectErasureByPspReferenceRequest subjectErasureByPspReferenceRequest, RequestOptions requestOptions = default)
+        public async Task<SubjectErasureResponse> RequestSubjectErasureAsync(SubjectErasureByPspReferenceRequest subjectErasureByPspReferenceRequest, RequestOptions requestOptions = default, CancellationToken cancellationToken = default)
         {
             var endpoint = _baseUrl + "/requestSubjectErasure";
             var resource = new ServiceResource(this, endpoint);
-            return await resource.RequestAsync<SubjectErasureResponse>(subjectErasureByPspReferenceRequest.ToJson(), requestOptions, new HttpMethod("POST"));
+            return await resource.RequestAsync<SubjectErasureResponse>(subjectErasureByPspReferenceRequest.ToJson(), requestOptions, new HttpMethod("POST"), cancellationToken).ConfigureAwait(false);
         }
-
     }
 }

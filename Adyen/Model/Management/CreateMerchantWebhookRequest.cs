@@ -41,22 +41,22 @@ namespace Adyen.Model.Management
         public enum CommunicationFormatEnum
         {
             /// <summary>
-            /// Enum HTTP for value: HTTP
+            /// Enum Http for value: http
             /// </summary>
-            [EnumMember(Value = "HTTP")]
-            HTTP = 1,
+            [EnumMember(Value = "http")]
+            Http = 1,
 
             /// <summary>
-            /// Enum JSON for value: JSON
+            /// Enum Json for value: json
             /// </summary>
-            [EnumMember(Value = "JSON")]
-            JSON = 2,
+            [EnumMember(Value = "json")]
+            Json = 2,
 
             /// <summary>
-            /// Enum SOAP for value: SOAP
+            /// Enum Soap for value: soap
             /// </summary>
-            [EnumMember(Value = "SOAP")]
-            SOAP = 3
+            [EnumMember(Value = "soap")]
+            Soap = 3
 
         }
 
@@ -115,52 +115,40 @@ namespace Adyen.Model.Management
             SSL = 2,
 
             /// <summary>
-            /// Enum SSLV3 for value: SSLV3
+            /// Enum SSLv3 for value: SSLv3
             /// </summary>
-            [EnumMember(Value = "SSLV3")]
-            SSLV3 = 3,
-
-            /// <summary>
-            /// Enum SSLINSECURECIPHERS for value: SSL_INSECURE_CIPHERS
-            /// </summary>
-            [EnumMember(Value = "SSL_INSECURE_CIPHERS")]
-            SSLINSECURECIPHERS = 4,
+            [EnumMember(Value = "SSLv3")]
+            SSLv3 = 3,
 
             /// <summary>
             /// Enum TLS for value: TLS
             /// </summary>
             [EnumMember(Value = "TLS")]
-            TLS = 5,
+            TLS = 4,
 
             /// <summary>
-            /// Enum TLSV1 for value: TLSV1
+            /// Enum TLSv1 for value: TLSv1
             /// </summary>
-            [EnumMember(Value = "TLSV1")]
-            TLSV1 = 6,
+            [EnumMember(Value = "TLSv1")]
+            TLSv1 = 5,
 
             /// <summary>
-            /// Enum TLSV11 for value: TLSV1_1
+            /// Enum TLSv11 for value: TLSv1.1
             /// </summary>
-            [EnumMember(Value = "TLSV1_1")]
-            TLSV11 = 7,
+            [EnumMember(Value = "TLSv1.1")]
+            TLSv11 = 6,
 
             /// <summary>
-            /// Enum TLSV12 for value: TLSV1_2
+            /// Enum TLSv12 for value: TLSv1.2
             /// </summary>
-            [EnumMember(Value = "TLSV1_2")]
-            TLSV12 = 8,
+            [EnumMember(Value = "TLSv1.2")]
+            TLSv12 = 7,
 
             /// <summary>
-            /// Enum TLSV13 for value: TLSV1_3
+            /// Enum TLSv13 for value: TLSv1.3
             /// </summary>
-            [EnumMember(Value = "TLSV1_3")]
-            TLSV13 = 9,
-
-            /// <summary>
-            /// Enum TLSV1INSECURECIPHERS for value: TLSV1_INSECURE_CIPHERS
-            /// </summary>
-            [EnumMember(Value = "TLSV1_INSECURE_CIPHERS")]
-            TLSV1INSECURECIPHERS = 10
+            [EnumMember(Value = "TLSv1.3")]
+            TLSv13 = 8
 
         }
 

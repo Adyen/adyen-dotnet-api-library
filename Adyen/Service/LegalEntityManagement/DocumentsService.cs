@@ -13,124 +13,150 @@
 using System;
 using System.Collections.Generic;
 using System.Net.Http;
+using System.Threading;
 using System.Threading.Tasks;
 using Adyen.Constants;
 using Adyen.Model;
 using Adyen.Service.Resource;
 using Adyen.Model.LegalEntityManagement;
-using Newtonsoft.Json;
 
 namespace Adyen.Service.LegalEntityManagement
 {
     /// <summary>
-    /// Represents a collection of functions to interact with the API endpoints
+    /// DocumentsService Interface
     /// </summary>
-    public class DocumentsService : AbstractService
+    public interface IDocumentsService
+    {
+        /// <summary>
+        /// Delete a document
+        /// </summary>
+        /// <param name="id"><see cref="string"/> - The unique identifier of the document to be deleted.</param>
+        /// <param name="requestOptions"><see cref="RequestOptions"/> - Additional request options.</param>
+        /// <returns><see cref="Object"/>.</returns>
+        void DeleteDocument(string id, RequestOptions requestOptions = default);
+        
+        /// <summary>
+        /// Delete a document
+        /// </summary>
+        /// <param name="id"><see cref="string"/> - The unique identifier of the document to be deleted.</param>
+        /// <param name="requestOptions"><see cref="RequestOptions"/> - Additional request options.</param>
+        /// <param name="cancellationToken"> A CancellationToken enables cooperative cancellation between threads, thread pool work items, or Task objects.</param>
+        /// <returns>Task of <see cref="Object"/>.</returns>
+        Task DeleteDocumentAsync(string id, RequestOptions requestOptions = default, CancellationToken cancellationToken = default);
+        
+        /// <summary>
+        /// Get a document
+        /// </summary>
+        /// <param name="id"><see cref="string"/> - The unique identifier of the document.</param>
+        /// <param name="requestOptions"><see cref="RequestOptions"/> - Additional request options.</param>
+        /// <returns><see cref="Document"/>.</returns>
+        Document GetDocument(string id, RequestOptions requestOptions = default);
+        
+        /// <summary>
+        /// Get a document
+        /// </summary>
+        /// <param name="id"><see cref="string"/> - The unique identifier of the document.</param>
+        /// <param name="requestOptions"><see cref="RequestOptions"/> - Additional request options.</param>
+        /// <param name="cancellationToken"> A CancellationToken enables cooperative cancellation between threads, thread pool work items, or Task objects.</param>
+        /// <returns>Task of <see cref="Document"/>.</returns>
+        Task<Document> GetDocumentAsync(string id, RequestOptions requestOptions = default, CancellationToken cancellationToken = default);
+        
+        /// <summary>
+        /// Update a document
+        /// </summary>
+        /// <param name="id"><see cref="string"/> - The unique identifier of the document to be updated.</param>
+        /// <param name="document"><see cref="Document"/> - </param>
+        /// <param name="requestOptions"><see cref="RequestOptions"/> - Additional request options.</param>
+        /// <returns><see cref="Document"/>.</returns>
+        Document UpdateDocument(string id, Document document, RequestOptions requestOptions = default);
+        
+        /// <summary>
+        /// Update a document
+        /// </summary>
+        /// <param name="id"><see cref="string"/> - The unique identifier of the document to be updated.</param>
+        /// <param name="document"><see cref="Document"/> - </param>
+        /// <param name="requestOptions"><see cref="RequestOptions"/> - Additional request options.</param>
+        /// <param name="cancellationToken"> A CancellationToken enables cooperative cancellation between threads, thread pool work items, or Task objects.</param>
+        /// <returns>Task of <see cref="Document"/>.</returns>
+        Task<Document> UpdateDocumentAsync(string id, Document document, RequestOptions requestOptions = default, CancellationToken cancellationToken = default);
+        
+        /// <summary>
+        /// Upload a document for verification checks
+        /// </summary>
+        /// <param name="document"><see cref="Document"/> - </param>
+        /// <param name="requestOptions"><see cref="RequestOptions"/> - Additional request options.</param>
+        /// <returns><see cref="Document"/>.</returns>
+        Document UploadDocumentForVerificationChecks(Document document, RequestOptions requestOptions = default);
+        
+        /// <summary>
+        /// Upload a document for verification checks
+        /// </summary>
+        /// <param name="document"><see cref="Document"/> - </param>
+        /// <param name="requestOptions"><see cref="RequestOptions"/> - Additional request options.</param>
+        /// <param name="cancellationToken"> A CancellationToken enables cooperative cancellation between threads, thread pool work items, or Task objects.</param>
+        /// <returns>Task of <see cref="Document"/>.</returns>
+        Task<Document> UploadDocumentForVerificationChecksAsync(Document document, RequestOptions requestOptions = default, CancellationToken cancellationToken = default);
+        
+    }
+    
+    /// <summary>
+    /// Represents a collection of functions to interact with the DocumentsService API endpoints
+    /// </summary>
+    public class DocumentsService : AbstractService, IDocumentsService
     {
         private readonly string _baseUrl;
         
         public DocumentsService(Client client) : base(client)
         {
-            _baseUrl = client.Config.LegalEntityManagementEndpoint + "/" + ClientConfig.LegalEntityManagementVersion;
+            _baseUrl = CreateBaseUrl("https://kyc-test.adyen.com/lem/v3");
         }
-    
-        /// <summary>
-        /// Delete a document
-        /// </summary>
-        /// <param name="id">The unique identifier of the document to be deleted.</param>
-        /// <param name="requestOptions">Additional request options.</param>
-        /// <returns>Object</returns>
-        public Object DeleteDocument(string id, RequestOptions requestOptions = default)
+        
+        public void DeleteDocument(string id, RequestOptions requestOptions = default)
         {
-            return DeleteDocumentAsync(id, requestOptions).GetAwaiter().GetResult();
+            DeleteDocumentAsync(id, requestOptions).ConfigureAwait(false).GetAwaiter().GetResult();
         }
 
-        /// <summary>
-        /// Delete a document
-        /// </summary>
-        /// <param name="id">The unique identifier of the document to be deleted.</param>
-        /// <param name="requestOptions">Additional request options.</param>
-        /// <returns>Task of Object</returns>
-        public async Task<Object> DeleteDocumentAsync(string id, RequestOptions requestOptions = default)
+        public async Task DeleteDocumentAsync(string id, RequestOptions requestOptions = default, CancellationToken cancellationToken = default)
         {
             var endpoint = _baseUrl + $"/documents/{id}";
             var resource = new ServiceResource(this, endpoint);
-            return await resource.RequestAsync<Object>(null, requestOptions, new HttpMethod("DELETE"));
+            await resource.RequestAsync(null, requestOptions, new HttpMethod("DELETE"), cancellationToken).ConfigureAwait(false);
         }
-
-        /// <summary>
-        /// Get a document
-        /// </summary>
-        /// <param name="id">The unique identifier of the document.</param>
-        /// <param name="requestOptions">Additional request options.</param>
-        /// <returns>Document</returns>
+        
         public Document GetDocument(string id, RequestOptions requestOptions = default)
         {
-            return GetDocumentAsync(id, requestOptions).GetAwaiter().GetResult();
+            return GetDocumentAsync(id, requestOptions).ConfigureAwait(false).GetAwaiter().GetResult();
         }
 
-        /// <summary>
-        /// Get a document
-        /// </summary>
-        /// <param name="id">The unique identifier of the document.</param>
-        /// <param name="requestOptions">Additional request options.</param>
-        /// <returns>Task of Document</returns>
-        public async Task<Document> GetDocumentAsync(string id, RequestOptions requestOptions = default)
+        public async Task<Document> GetDocumentAsync(string id, RequestOptions requestOptions = default, CancellationToken cancellationToken = default)
         {
             var endpoint = _baseUrl + $"/documents/{id}";
             var resource = new ServiceResource(this, endpoint);
-            return await resource.RequestAsync<Document>(null, requestOptions, new HttpMethod("GET"));
+            return await resource.RequestAsync<Document>(null, requestOptions, new HttpMethod("GET"), cancellationToken).ConfigureAwait(false);
         }
-
-        /// <summary>
-        /// Update a document
-        /// </summary>
-        /// <param name="id">The unique identifier of the document to be updated.</param>
-        /// <param name="document"></param>
-        /// <param name="requestOptions">Additional request options.</param>
-        /// <returns>Document</returns>
+        
         public Document UpdateDocument(string id, Document document, RequestOptions requestOptions = default)
         {
-            return UpdateDocumentAsync(id, document, requestOptions).GetAwaiter().GetResult();
+            return UpdateDocumentAsync(id, document, requestOptions).ConfigureAwait(false).GetAwaiter().GetResult();
         }
 
-        /// <summary>
-        /// Update a document
-        /// </summary>
-        /// <param name="id">The unique identifier of the document to be updated.</param>
-        /// <param name="document"></param>
-        /// <param name="requestOptions">Additional request options.</param>
-        /// <returns>Task of Document</returns>
-        public async Task<Document> UpdateDocumentAsync(string id, Document document, RequestOptions requestOptions = default)
+        public async Task<Document> UpdateDocumentAsync(string id, Document document, RequestOptions requestOptions = default, CancellationToken cancellationToken = default)
         {
             var endpoint = _baseUrl + $"/documents/{id}";
             var resource = new ServiceResource(this, endpoint);
-            return await resource.RequestAsync<Document>(document.ToJson(), requestOptions, new HttpMethod("PATCH"));
+            return await resource.RequestAsync<Document>(document.ToJson(), requestOptions, new HttpMethod("PATCH"), cancellationToken).ConfigureAwait(false);
         }
-
-        /// <summary>
-        /// Upload a document for verification checks
-        /// </summary>
-        /// <param name="document"></param>
-        /// <param name="requestOptions">Additional request options.</param>
-        /// <returns>Document</returns>
+        
         public Document UploadDocumentForVerificationChecks(Document document, RequestOptions requestOptions = default)
         {
-            return UploadDocumentForVerificationChecksAsync(document, requestOptions).GetAwaiter().GetResult();
+            return UploadDocumentForVerificationChecksAsync(document, requestOptions).ConfigureAwait(false).GetAwaiter().GetResult();
         }
 
-        /// <summary>
-        /// Upload a document for verification checks
-        /// </summary>
-        /// <param name="document"></param>
-        /// <param name="requestOptions">Additional request options.</param>
-        /// <returns>Task of Document</returns>
-        public async Task<Document> UploadDocumentForVerificationChecksAsync(Document document, RequestOptions requestOptions = default)
+        public async Task<Document> UploadDocumentForVerificationChecksAsync(Document document, RequestOptions requestOptions = default, CancellationToken cancellationToken = default)
         {
             var endpoint = _baseUrl + "/documents";
             var resource = new ServiceResource(this, endpoint);
-            return await resource.RequestAsync<Document>(document.ToJson(), requestOptions, new HttpMethod("POST"));
+            return await resource.RequestAsync<Document>(document.ToJson(), requestOptions, new HttpMethod("POST"), cancellationToken).ConfigureAwait(false);
         }
-
     }
 }
