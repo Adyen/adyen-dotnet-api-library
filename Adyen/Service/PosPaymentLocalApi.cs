@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Net.Security;
+using System.Threading;
 using System.Threading.Tasks;
 using Adyen.ApiSerialization;
 using Adyen.Model.Nexo;
@@ -53,14 +54,15 @@ namespace Adyen.Service
         /// </summary>
         /// <param name="saleToPoiRequest"></param>
         /// <param name="encryptionCredentialDetails"></param>
+        /// <param name="cancellationToken"></param>
         /// <returns></returns>
-        public async Task<SaleToPOIResponse> TerminalApiLocalAsync(SaleToPOIMessage saleToPoiRequest, EncryptionCredentialDetails encryptionCredentialDetails)
+        public async Task<SaleToPOIResponse> TerminalApiLocalAsync(SaleToPOIMessage saleToPoiRequest, EncryptionCredentialDetails encryptionCredentialDetails, CancellationToken cancellationToken = default)
         {
             var saleToPoiRequestMessageSerialized = _saleToPoiMessageSerializer.Serialize(saleToPoiRequest);
             Client.LogLine("Request: \n" + saleToPoiRequestMessageSerialized);
             var saleToPoiRequestMessageSecured = _messageSecuredEncryptor.Encrypt(saleToPoiRequestMessageSerialized, saleToPoiRequest.MessageHeader, encryptionCredentialDetails);
             var serializeSaleToPoiRequestMessageSecured = _saleToPoiMessageSerializer.Serialize(saleToPoiRequestMessageSecured);
-            var response = await _terminalApiLocal.RequestAsync(serializeSaleToPoiRequestMessageSecured);
+            var response = await _terminalApiLocal.RequestAsync(serializeSaleToPoiRequestMessageSecured, cancellationToken: cancellationToken).ConfigureAwait(false);
             if (string.IsNullOrEmpty(response))
             {
                 return null;
