@@ -28,23 +28,6 @@ namespace Adyen.Service.BalancePlatform
     public interface IPlatformService
     {
         /// <summary>
-        /// Get a balance platform
-        /// </summary>
-        /// <param name="id"><see cref="string"/> - The unique identifier of the balance platform.</param>
-        /// <param name="requestOptions"><see cref="RequestOptions"/> - Additional request options.</param>
-        /// <returns><see cref="BalancePlatform"/>.</returns>
-        Model.BalancePlatform.BalancePlatform GetBalancePlatform(string id, RequestOptions requestOptions = default);
-        
-        /// <summary>
-        /// Get a balance platform
-        /// </summary>
-        /// <param name="id"><see cref="string"/> - The unique identifier of the balance platform.</param>
-        /// <param name="requestOptions"><see cref="RequestOptions"/> - Additional request options.</param>
-        /// <param name="cancellationToken"> A CancellationToken enables cooperative cancellation between threads, thread pool work items, or Task objects.</param>
-        /// <returns>Task of <see cref="BalancePlatform"/>.</returns>
-        Task<Model.BalancePlatform.BalancePlatform> GetBalancePlatformAsync(string id, RequestOptions requestOptions = default, CancellationToken cancellationToken = default);
-        
-        /// <summary>
         /// Get all account holders under a balance platform
         /// </summary>
         /// <param name="id"><see cref="string"/> - The unique identifier of the balance platform.</param>
@@ -65,6 +48,23 @@ namespace Adyen.Service.BalancePlatform
         /// <returns>Task of <see cref="PaginatedAccountHoldersResponse"/>.</returns>
         Task<PaginatedAccountHoldersResponse> GetAllAccountHoldersUnderBalancePlatformAsync(string id, int? offset = default, int? limit = default, RequestOptions requestOptions = default, CancellationToken cancellationToken = default);
         
+        /// <summary>
+        /// Get a balance platform
+        /// </summary>
+        /// <param name="id"><see cref="string"/> - The unique identifier of the balance platform.</param>
+        /// <param name="requestOptions"><see cref="RequestOptions"/> - Additional request options.</param>
+        /// <returns><see cref="BalancePlatform"/>.</returns>
+        Model.BalancePlatform.BalancePlatform GetBalancePlatform(string id, RequestOptions requestOptions = default);
+        
+        /// <summary>
+        /// Get a balance platform
+        /// </summary>
+        /// <param name="id"><see cref="string"/> - The unique identifier of the balance platform.</param>
+        /// <param name="requestOptions"><see cref="RequestOptions"/> - Additional request options.</param>
+        /// <param name="cancellationToken"> A CancellationToken enables cooperative cancellation between threads, thread pool work items, or Task objects.</param>
+        /// <returns>Task of <see cref="BalancePlatform"/>.</returns>
+        Task<Model.BalancePlatform.BalancePlatform> GetBalancePlatformAsync(string id, RequestOptions requestOptions = default, CancellationToken cancellationToken = default);
+        
     }
     
     /// <summary>
@@ -77,18 +77,6 @@ namespace Adyen.Service.BalancePlatform
         public PlatformService(Client client) : base(client)
         {
             _baseUrl = CreateBaseUrl("https://balanceplatform-api-test.adyen.com/bcl/v2");
-        }
-        
-        public Model.BalancePlatform.BalancePlatform GetBalancePlatform(string id, RequestOptions requestOptions = default)
-        {
-            return GetBalancePlatformAsync(id, requestOptions).ConfigureAwait(false).GetAwaiter().GetResult();
-        }
-
-        public async Task<Model.BalancePlatform.BalancePlatform> GetBalancePlatformAsync(string id, RequestOptions requestOptions = default, CancellationToken cancellationToken = default)
-        {
-            var endpoint = _baseUrl + $"/balancePlatforms/{id}";
-            var resource = new ServiceResource(this, endpoint);
-            return await resource.RequestAsync<Model.BalancePlatform.BalancePlatform>(null, requestOptions, new HttpMethod("GET"), cancellationToken).ConfigureAwait(false);
         }
         
         public PaginatedAccountHoldersResponse GetAllAccountHoldersUnderBalancePlatform(string id, int? offset = default, int? limit = default, RequestOptions requestOptions = default)
@@ -105,6 +93,18 @@ namespace Adyen.Service.BalancePlatform
             var endpoint = _baseUrl + $"/balancePlatforms/{id}/accountHolders" + ToQueryString(queryParams);
             var resource = new ServiceResource(this, endpoint);
             return await resource.RequestAsync<PaginatedAccountHoldersResponse>(null, requestOptions, new HttpMethod("GET"), cancellationToken).ConfigureAwait(false);
+        }
+        
+        public Model.BalancePlatform.BalancePlatform GetBalancePlatform(string id, RequestOptions requestOptions = default)
+        {
+            return GetBalancePlatformAsync(id, requestOptions).ConfigureAwait(false).GetAwaiter().GetResult();
+        }
+
+        public async Task<Model.BalancePlatform.BalancePlatform> GetBalancePlatformAsync(string id, RequestOptions requestOptions = default, CancellationToken cancellationToken = default)
+        {
+            var endpoint = _baseUrl + $"/balancePlatforms/{id}";
+            var resource = new ServiceResource(this, endpoint);
+            return await resource.RequestAsync<Model.BalancePlatform.BalancePlatform>(null, requestOptions, new HttpMethod("GET"), cancellationToken).ConfigureAwait(false);
         }
     }
 }

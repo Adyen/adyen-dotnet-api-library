@@ -28,23 +28,6 @@ namespace Adyen.Service.LegalEntityManagement
     public interface ITermsOfServiceService
     {
         /// <summary>
-        /// Get Terms of Service information for a legal entity
-        /// </summary>
-        /// <param name="id"><see cref="string"/> - The unique identifier of the legal entity.</param>
-        /// <param name="requestOptions"><see cref="RequestOptions"/> - Additional request options.</param>
-        /// <returns><see cref="GetTermsOfServiceAcceptanceInfosResponse"/>.</returns>
-        GetTermsOfServiceAcceptanceInfosResponse GetTermsOfServiceInformationForLegalEntity(string id, RequestOptions requestOptions = default);
-        
-        /// <summary>
-        /// Get Terms of Service information for a legal entity
-        /// </summary>
-        /// <param name="id"><see cref="string"/> - The unique identifier of the legal entity.</param>
-        /// <param name="requestOptions"><see cref="RequestOptions"/> - Additional request options.</param>
-        /// <param name="cancellationToken"> A CancellationToken enables cooperative cancellation between threads, thread pool work items, or Task objects.</param>
-        /// <returns>Task of <see cref="GetTermsOfServiceAcceptanceInfosResponse"/>.</returns>
-        Task<GetTermsOfServiceAcceptanceInfosResponse> GetTermsOfServiceInformationForLegalEntityAsync(string id, RequestOptions requestOptions = default, CancellationToken cancellationToken = default);
-        
-        /// <summary>
         /// Accept Terms of Service
         /// </summary>
         /// <param name="id"><see cref="string"/> - The unique identifier of the legal entity.</param>
@@ -84,6 +67,23 @@ namespace Adyen.Service.LegalEntityManagement
         /// <returns>Task of <see cref="GetTermsOfServiceDocumentResponse"/>.</returns>
         Task<GetTermsOfServiceDocumentResponse> GetTermsOfServiceDocumentAsync(string id, GetTermsOfServiceDocumentRequest getTermsOfServiceDocumentRequest, RequestOptions requestOptions = default, CancellationToken cancellationToken = default);
         
+        /// <summary>
+        /// Get Terms of Service information for a legal entity
+        /// </summary>
+        /// <param name="id"><see cref="string"/> - The unique identifier of the legal entity.</param>
+        /// <param name="requestOptions"><see cref="RequestOptions"/> - Additional request options.</param>
+        /// <returns><see cref="GetTermsOfServiceAcceptanceInfosResponse"/>.</returns>
+        GetTermsOfServiceAcceptanceInfosResponse GetTermsOfServiceInformationForLegalEntity(string id, RequestOptions requestOptions = default);
+        
+        /// <summary>
+        /// Get Terms of Service information for a legal entity
+        /// </summary>
+        /// <param name="id"><see cref="string"/> - The unique identifier of the legal entity.</param>
+        /// <param name="requestOptions"><see cref="RequestOptions"/> - Additional request options.</param>
+        /// <param name="cancellationToken"> A CancellationToken enables cooperative cancellation between threads, thread pool work items, or Task objects.</param>
+        /// <returns>Task of <see cref="GetTermsOfServiceAcceptanceInfosResponse"/>.</returns>
+        Task<GetTermsOfServiceAcceptanceInfosResponse> GetTermsOfServiceInformationForLegalEntityAsync(string id, RequestOptions requestOptions = default, CancellationToken cancellationToken = default);
+        
     }
     
     /// <summary>
@@ -96,18 +96,6 @@ namespace Adyen.Service.LegalEntityManagement
         public TermsOfServiceService(Client client) : base(client)
         {
             _baseUrl = CreateBaseUrl("https://kyc-test.adyen.com/lem/v3");
-        }
-        
-        public GetTermsOfServiceAcceptanceInfosResponse GetTermsOfServiceInformationForLegalEntity(string id, RequestOptions requestOptions = default)
-        {
-            return GetTermsOfServiceInformationForLegalEntityAsync(id, requestOptions).ConfigureAwait(false).GetAwaiter().GetResult();
-        }
-
-        public async Task<GetTermsOfServiceAcceptanceInfosResponse> GetTermsOfServiceInformationForLegalEntityAsync(string id, RequestOptions requestOptions = default, CancellationToken cancellationToken = default)
-        {
-            var endpoint = _baseUrl + $"/legalEntities/{id}/termsOfServiceAcceptanceInfos";
-            var resource = new ServiceResource(this, endpoint);
-            return await resource.RequestAsync<GetTermsOfServiceAcceptanceInfosResponse>(null, requestOptions, new HttpMethod("GET"), cancellationToken).ConfigureAwait(false);
         }
         
         public AcceptTermsOfServiceResponse AcceptTermsOfService(string id, string termsofservicedocumentid, AcceptTermsOfServiceRequest acceptTermsOfServiceRequest, RequestOptions requestOptions = default)
@@ -132,6 +120,18 @@ namespace Adyen.Service.LegalEntityManagement
             var endpoint = _baseUrl + $"/legalEntities/{id}/termsOfService";
             var resource = new ServiceResource(this, endpoint);
             return await resource.RequestAsync<GetTermsOfServiceDocumentResponse>(getTermsOfServiceDocumentRequest.ToJson(), requestOptions, new HttpMethod("POST"), cancellationToken).ConfigureAwait(false);
+        }
+        
+        public GetTermsOfServiceAcceptanceInfosResponse GetTermsOfServiceInformationForLegalEntity(string id, RequestOptions requestOptions = default)
+        {
+            return GetTermsOfServiceInformationForLegalEntityAsync(id, requestOptions).ConfigureAwait(false).GetAwaiter().GetResult();
+        }
+
+        public async Task<GetTermsOfServiceAcceptanceInfosResponse> GetTermsOfServiceInformationForLegalEntityAsync(string id, RequestOptions requestOptions = default, CancellationToken cancellationToken = default)
+        {
+            var endpoint = _baseUrl + $"/legalEntities/{id}/termsOfServiceAcceptanceInfos";
+            var resource = new ServiceResource(this, endpoint);
+            return await resource.RequestAsync<GetTermsOfServiceAcceptanceInfosResponse>(null, requestOptions, new HttpMethod("GET"), cancellationToken).ConfigureAwait(false);
         }
     }
 }

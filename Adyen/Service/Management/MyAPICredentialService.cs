@@ -28,49 +28,21 @@ namespace Adyen.Service.Management
     public interface IMyAPICredentialService
     {
         /// <summary>
-        /// Remove allowed origin
+        /// Add allowed origin
         /// </summary>
-        /// <param name="originId"><see cref="string"/> - Unique identifier of the allowed origin.</param>
+        /// <param name="createAllowedOriginRequest"><see cref="CreateAllowedOriginRequest"/> - </param>
         /// <param name="requestOptions"><see cref="RequestOptions"/> - Additional request options.</param>
-        void RemoveAllowedOrigin(string originId, RequestOptions requestOptions = default);
+        /// <returns><see cref="AllowedOrigin"/>.</returns>
+        AllowedOrigin AddAllowedOrigin(CreateAllowedOriginRequest createAllowedOriginRequest, RequestOptions requestOptions = default);
         
         /// <summary>
-        /// Remove allowed origin
+        /// Add allowed origin
         /// </summary>
-        /// <param name="originId"><see cref="string"/> - Unique identifier of the allowed origin.</param>
+        /// <param name="createAllowedOriginRequest"><see cref="CreateAllowedOriginRequest"/> - </param>
         /// <param name="requestOptions"><see cref="RequestOptions"/> - Additional request options.</param>
         /// <param name="cancellationToken"> A CancellationToken enables cooperative cancellation between threads, thread pool work items, or Task objects.</param>
-        Task RemoveAllowedOriginAsync(string originId, RequestOptions requestOptions = default, CancellationToken cancellationToken = default);
-        
-        /// <summary>
-        /// Get API credential details
-        /// </summary>
-        /// <param name="requestOptions"><see cref="RequestOptions"/> - Additional request options.</param>
-        /// <returns><see cref="MeApiCredential"/>.</returns>
-        MeApiCredential GetApiCredentialDetails(RequestOptions requestOptions = default);
-        
-        /// <summary>
-        /// Get API credential details
-        /// </summary>
-        /// <param name="requestOptions"><see cref="RequestOptions"/> - Additional request options.</param>
-        /// <param name="cancellationToken"> A CancellationToken enables cooperative cancellation between threads, thread pool work items, or Task objects.</param>
-        /// <returns>Task of <see cref="MeApiCredential"/>.</returns>
-        Task<MeApiCredential> GetApiCredentialDetailsAsync(RequestOptions requestOptions = default, CancellationToken cancellationToken = default);
-        
-        /// <summary>
-        /// Get allowed origins
-        /// </summary>
-        /// <param name="requestOptions"><see cref="RequestOptions"/> - Additional request options.</param>
-        /// <returns><see cref="AllowedOriginsResponse"/>.</returns>
-        AllowedOriginsResponse GetAllowedOrigins(RequestOptions requestOptions = default);
-        
-        /// <summary>
-        /// Get allowed origins
-        /// </summary>
-        /// <param name="requestOptions"><see cref="RequestOptions"/> - Additional request options.</param>
-        /// <param name="cancellationToken"> A CancellationToken enables cooperative cancellation between threads, thread pool work items, or Task objects.</param>
-        /// <returns>Task of <see cref="AllowedOriginsResponse"/>.</returns>
-        Task<AllowedOriginsResponse> GetAllowedOriginsAsync(RequestOptions requestOptions = default, CancellationToken cancellationToken = default);
+        /// <returns>Task of <see cref="AllowedOrigin"/>.</returns>
+        Task<AllowedOrigin> AddAllowedOriginAsync(CreateAllowedOriginRequest createAllowedOriginRequest, RequestOptions requestOptions = default, CancellationToken cancellationToken = default);
         
         /// <summary>
         /// Get allowed origin details
@@ -90,21 +62,49 @@ namespace Adyen.Service.Management
         Task<AllowedOrigin> GetAllowedOriginDetailsAsync(string originId, RequestOptions requestOptions = default, CancellationToken cancellationToken = default);
         
         /// <summary>
-        /// Add allowed origin
+        /// Get allowed origins
         /// </summary>
-        /// <param name="createAllowedOriginRequest"><see cref="CreateAllowedOriginRequest"/> - </param>
         /// <param name="requestOptions"><see cref="RequestOptions"/> - Additional request options.</param>
-        /// <returns><see cref="AllowedOrigin"/>.</returns>
-        AllowedOrigin AddAllowedOrigin(CreateAllowedOriginRequest createAllowedOriginRequest, RequestOptions requestOptions = default);
+        /// <returns><see cref="AllowedOriginsResponse"/>.</returns>
+        AllowedOriginsResponse GetAllowedOrigins(RequestOptions requestOptions = default);
         
         /// <summary>
-        /// Add allowed origin
+        /// Get allowed origins
         /// </summary>
-        /// <param name="createAllowedOriginRequest"><see cref="CreateAllowedOriginRequest"/> - </param>
         /// <param name="requestOptions"><see cref="RequestOptions"/> - Additional request options.</param>
         /// <param name="cancellationToken"> A CancellationToken enables cooperative cancellation between threads, thread pool work items, or Task objects.</param>
-        /// <returns>Task of <see cref="AllowedOrigin"/>.</returns>
-        Task<AllowedOrigin> AddAllowedOriginAsync(CreateAllowedOriginRequest createAllowedOriginRequest, RequestOptions requestOptions = default, CancellationToken cancellationToken = default);
+        /// <returns>Task of <see cref="AllowedOriginsResponse"/>.</returns>
+        Task<AllowedOriginsResponse> GetAllowedOriginsAsync(RequestOptions requestOptions = default, CancellationToken cancellationToken = default);
+        
+        /// <summary>
+        /// Get API credential details
+        /// </summary>
+        /// <param name="requestOptions"><see cref="RequestOptions"/> - Additional request options.</param>
+        /// <returns><see cref="MeApiCredential"/>.</returns>
+        MeApiCredential GetApiCredentialDetails(RequestOptions requestOptions = default);
+        
+        /// <summary>
+        /// Get API credential details
+        /// </summary>
+        /// <param name="requestOptions"><see cref="RequestOptions"/> - Additional request options.</param>
+        /// <param name="cancellationToken"> A CancellationToken enables cooperative cancellation between threads, thread pool work items, or Task objects.</param>
+        /// <returns>Task of <see cref="MeApiCredential"/>.</returns>
+        Task<MeApiCredential> GetApiCredentialDetailsAsync(RequestOptions requestOptions = default, CancellationToken cancellationToken = default);
+        
+        /// <summary>
+        /// Remove allowed origin
+        /// </summary>
+        /// <param name="originId"><see cref="string"/> - Unique identifier of the allowed origin.</param>
+        /// <param name="requestOptions"><see cref="RequestOptions"/> - Additional request options.</param>
+        void RemoveAllowedOrigin(string originId, RequestOptions requestOptions = default);
+        
+        /// <summary>
+        /// Remove allowed origin
+        /// </summary>
+        /// <param name="originId"><see cref="string"/> - Unique identifier of the allowed origin.</param>
+        /// <param name="requestOptions"><see cref="RequestOptions"/> - Additional request options.</param>
+        /// <param name="cancellationToken"> A CancellationToken enables cooperative cancellation between threads, thread pool work items, or Task objects.</param>
+        Task RemoveAllowedOriginAsync(string originId, RequestOptions requestOptions = default, CancellationToken cancellationToken = default);
         
     }
     
@@ -120,40 +120,16 @@ namespace Adyen.Service.Management
             _baseUrl = CreateBaseUrl("https://management-test.adyen.com/v1");
         }
         
-        public void RemoveAllowedOrigin(string originId, RequestOptions requestOptions = default)
+        public AllowedOrigin AddAllowedOrigin(CreateAllowedOriginRequest createAllowedOriginRequest, RequestOptions requestOptions = default)
         {
-            RemoveAllowedOriginAsync(originId, requestOptions).ConfigureAwait(false).GetAwaiter().GetResult();
+            return AddAllowedOriginAsync(createAllowedOriginRequest, requestOptions).ConfigureAwait(false).GetAwaiter().GetResult();
         }
 
-        public async Task RemoveAllowedOriginAsync(string originId, RequestOptions requestOptions = default, CancellationToken cancellationToken = default)
-        {
-            var endpoint = _baseUrl + $"/me/allowedOrigins/{originId}";
-            var resource = new ServiceResource(this, endpoint);
-            await resource.RequestAsync(null, requestOptions, new HttpMethod("DELETE"), cancellationToken).ConfigureAwait(false);
-        }
-        
-        public MeApiCredential GetApiCredentialDetails(RequestOptions requestOptions = default)
-        {
-            return GetApiCredentialDetailsAsync(requestOptions).ConfigureAwait(false).GetAwaiter().GetResult();
-        }
-
-        public async Task<MeApiCredential> GetApiCredentialDetailsAsync(RequestOptions requestOptions = default, CancellationToken cancellationToken = default)
-        {
-            var endpoint = _baseUrl + "/me";
-            var resource = new ServiceResource(this, endpoint);
-            return await resource.RequestAsync<MeApiCredential>(null, requestOptions, new HttpMethod("GET"), cancellationToken).ConfigureAwait(false);
-        }
-        
-        public AllowedOriginsResponse GetAllowedOrigins(RequestOptions requestOptions = default)
-        {
-            return GetAllowedOriginsAsync(requestOptions).ConfigureAwait(false).GetAwaiter().GetResult();
-        }
-
-        public async Task<AllowedOriginsResponse> GetAllowedOriginsAsync(RequestOptions requestOptions = default, CancellationToken cancellationToken = default)
+        public async Task<AllowedOrigin> AddAllowedOriginAsync(CreateAllowedOriginRequest createAllowedOriginRequest, RequestOptions requestOptions = default, CancellationToken cancellationToken = default)
         {
             var endpoint = _baseUrl + "/me/allowedOrigins";
             var resource = new ServiceResource(this, endpoint);
-            return await resource.RequestAsync<AllowedOriginsResponse>(null, requestOptions, new HttpMethod("GET"), cancellationToken).ConfigureAwait(false);
+            return await resource.RequestAsync<AllowedOrigin>(createAllowedOriginRequest.ToJson(), requestOptions, new HttpMethod("POST"), cancellationToken).ConfigureAwait(false);
         }
         
         public AllowedOrigin GetAllowedOriginDetails(string originId, RequestOptions requestOptions = default)
@@ -168,16 +144,40 @@ namespace Adyen.Service.Management
             return await resource.RequestAsync<AllowedOrigin>(null, requestOptions, new HttpMethod("GET"), cancellationToken).ConfigureAwait(false);
         }
         
-        public AllowedOrigin AddAllowedOrigin(CreateAllowedOriginRequest createAllowedOriginRequest, RequestOptions requestOptions = default)
+        public AllowedOriginsResponse GetAllowedOrigins(RequestOptions requestOptions = default)
         {
-            return AddAllowedOriginAsync(createAllowedOriginRequest, requestOptions).ConfigureAwait(false).GetAwaiter().GetResult();
+            return GetAllowedOriginsAsync(requestOptions).ConfigureAwait(false).GetAwaiter().GetResult();
         }
 
-        public async Task<AllowedOrigin> AddAllowedOriginAsync(CreateAllowedOriginRequest createAllowedOriginRequest, RequestOptions requestOptions = default, CancellationToken cancellationToken = default)
+        public async Task<AllowedOriginsResponse> GetAllowedOriginsAsync(RequestOptions requestOptions = default, CancellationToken cancellationToken = default)
         {
             var endpoint = _baseUrl + "/me/allowedOrigins";
             var resource = new ServiceResource(this, endpoint);
-            return await resource.RequestAsync<AllowedOrigin>(createAllowedOriginRequest.ToJson(), requestOptions, new HttpMethod("POST"), cancellationToken).ConfigureAwait(false);
+            return await resource.RequestAsync<AllowedOriginsResponse>(null, requestOptions, new HttpMethod("GET"), cancellationToken).ConfigureAwait(false);
+        }
+        
+        public MeApiCredential GetApiCredentialDetails(RequestOptions requestOptions = default)
+        {
+            return GetApiCredentialDetailsAsync(requestOptions).ConfigureAwait(false).GetAwaiter().GetResult();
+        }
+
+        public async Task<MeApiCredential> GetApiCredentialDetailsAsync(RequestOptions requestOptions = default, CancellationToken cancellationToken = default)
+        {
+            var endpoint = _baseUrl + "/me";
+            var resource = new ServiceResource(this, endpoint);
+            return await resource.RequestAsync<MeApiCredential>(null, requestOptions, new HttpMethod("GET"), cancellationToken).ConfigureAwait(false);
+        }
+        
+        public void RemoveAllowedOrigin(string originId, RequestOptions requestOptions = default)
+        {
+            RemoveAllowedOriginAsync(originId, requestOptions).ConfigureAwait(false).GetAwaiter().GetResult();
+        }
+
+        public async Task RemoveAllowedOriginAsync(string originId, RequestOptions requestOptions = default, CancellationToken cancellationToken = default)
+        {
+            var endpoint = _baseUrl + $"/me/allowedOrigins/{originId}";
+            var resource = new ServiceResource(this, endpoint);
+            await resource.RequestAsync(null, requestOptions, new HttpMethod("DELETE"), cancellationToken).ConfigureAwait(false);
         }
     }
 }

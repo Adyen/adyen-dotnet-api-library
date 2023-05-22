@@ -28,21 +28,38 @@ namespace Adyen.Service.LegalEntityManagement
     public interface ILegalEntitiesService
     {
         /// <summary>
-        /// Get a legal entity
+        /// Check a legal entity's verification errors
         /// </summary>
         /// <param name="id"><see cref="string"/> - The unique identifier of the legal entity.</param>
         /// <param name="requestOptions"><see cref="RequestOptions"/> - Additional request options.</param>
-        /// <returns><see cref="LegalEntity"/>.</returns>
-        LegalEntity GetLegalEntity(string id, RequestOptions requestOptions = default);
+        /// <returns><see cref="VerificationErrors"/>.</returns>
+        VerificationErrors CheckLegalEntitysVerificationErrors(string id, RequestOptions requestOptions = default);
         
         /// <summary>
-        /// Get a legal entity
+        /// Check a legal entity's verification errors
         /// </summary>
         /// <param name="id"><see cref="string"/> - The unique identifier of the legal entity.</param>
         /// <param name="requestOptions"><see cref="RequestOptions"/> - Additional request options.</param>
         /// <param name="cancellationToken"> A CancellationToken enables cooperative cancellation between threads, thread pool work items, or Task objects.</param>
+        /// <returns>Task of <see cref="VerificationErrors"/>.</returns>
+        Task<VerificationErrors> CheckLegalEntitysVerificationErrorsAsync(string id, RequestOptions requestOptions = default, CancellationToken cancellationToken = default);
+        
+        /// <summary>
+        /// Create a legal entity
+        /// </summary>
+        /// <param name="legalEntityInfoRequiredType"><see cref="LegalEntityInfoRequiredType"/> - </param>
+        /// <param name="requestOptions"><see cref="RequestOptions"/> - Additional request options.</param>
+        /// <returns><see cref="LegalEntity"/>.</returns>
+        LegalEntity CreateLegalEntity(LegalEntityInfoRequiredType legalEntityInfoRequiredType, RequestOptions requestOptions = default);
+        
+        /// <summary>
+        /// Create a legal entity
+        /// </summary>
+        /// <param name="legalEntityInfoRequiredType"><see cref="LegalEntityInfoRequiredType"/> - </param>
+        /// <param name="requestOptions"><see cref="RequestOptions"/> - Additional request options.</param>
+        /// <param name="cancellationToken"> A CancellationToken enables cooperative cancellation between threads, thread pool work items, or Task objects.</param>
         /// <returns>Task of <see cref="LegalEntity"/>.</returns>
-        Task<LegalEntity> GetLegalEntityAsync(string id, RequestOptions requestOptions = default, CancellationToken cancellationToken = default);
+        Task<LegalEntity> CreateLegalEntityAsync(LegalEntityInfoRequiredType legalEntityInfoRequiredType, RequestOptions requestOptions = default, CancellationToken cancellationToken = default);
         
         /// <summary>
         /// Get all business lines under a legal entity
@@ -60,6 +77,23 @@ namespace Adyen.Service.LegalEntityManagement
         /// <param name="cancellationToken"> A CancellationToken enables cooperative cancellation between threads, thread pool work items, or Task objects.</param>
         /// <returns>Task of <see cref="BusinessLines"/>.</returns>
         Task<BusinessLines> GetAllBusinessLinesUnderLegalEntityAsync(string id, RequestOptions requestOptions = default, CancellationToken cancellationToken = default);
+        
+        /// <summary>
+        /// Get a legal entity
+        /// </summary>
+        /// <param name="id"><see cref="string"/> - The unique identifier of the legal entity.</param>
+        /// <param name="requestOptions"><see cref="RequestOptions"/> - Additional request options.</param>
+        /// <returns><see cref="LegalEntity"/>.</returns>
+        LegalEntity GetLegalEntity(string id, RequestOptions requestOptions = default);
+        
+        /// <summary>
+        /// Get a legal entity
+        /// </summary>
+        /// <param name="id"><see cref="string"/> - The unique identifier of the legal entity.</param>
+        /// <param name="requestOptions"><see cref="RequestOptions"/> - Additional request options.</param>
+        /// <param name="cancellationToken"> A CancellationToken enables cooperative cancellation between threads, thread pool work items, or Task objects.</param>
+        /// <returns>Task of <see cref="LegalEntity"/>.</returns>
+        Task<LegalEntity> GetLegalEntityAsync(string id, RequestOptions requestOptions = default, CancellationToken cancellationToken = default);
         
         /// <summary>
         /// Update a legal entity
@@ -80,40 +114,6 @@ namespace Adyen.Service.LegalEntityManagement
         /// <returns>Task of <see cref="LegalEntity"/>.</returns>
         Task<LegalEntity> UpdateLegalEntityAsync(string id, LegalEntityInfo legalEntityInfo, RequestOptions requestOptions = default, CancellationToken cancellationToken = default);
         
-        /// <summary>
-        /// Create a legal entity
-        /// </summary>
-        /// <param name="legalEntityInfoRequiredType"><see cref="LegalEntityInfoRequiredType"/> - </param>
-        /// <param name="requestOptions"><see cref="RequestOptions"/> - Additional request options.</param>
-        /// <returns><see cref="LegalEntity"/>.</returns>
-        LegalEntity CreateLegalEntity(LegalEntityInfoRequiredType legalEntityInfoRequiredType, RequestOptions requestOptions = default);
-        
-        /// <summary>
-        /// Create a legal entity
-        /// </summary>
-        /// <param name="legalEntityInfoRequiredType"><see cref="LegalEntityInfoRequiredType"/> - </param>
-        /// <param name="requestOptions"><see cref="RequestOptions"/> - Additional request options.</param>
-        /// <param name="cancellationToken"> A CancellationToken enables cooperative cancellation between threads, thread pool work items, or Task objects.</param>
-        /// <returns>Task of <see cref="LegalEntity"/>.</returns>
-        Task<LegalEntity> CreateLegalEntityAsync(LegalEntityInfoRequiredType legalEntityInfoRequiredType, RequestOptions requestOptions = default, CancellationToken cancellationToken = default);
-        
-        /// <summary>
-        /// Check a legal entity's verification errors
-        /// </summary>
-        /// <param name="id"><see cref="string"/> - The unique identifier of the legal entity.</param>
-        /// <param name="requestOptions"><see cref="RequestOptions"/> - Additional request options.</param>
-        /// <returns><see cref="VerificationErrors"/>.</returns>
-        VerificationErrors CheckLegalEntitysVerificationErrors(string id, RequestOptions requestOptions = default);
-        
-        /// <summary>
-        /// Check a legal entity's verification errors
-        /// </summary>
-        /// <param name="id"><see cref="string"/> - The unique identifier of the legal entity.</param>
-        /// <param name="requestOptions"><see cref="RequestOptions"/> - Additional request options.</param>
-        /// <param name="cancellationToken"> A CancellationToken enables cooperative cancellation between threads, thread pool work items, or Task objects.</param>
-        /// <returns>Task of <see cref="VerificationErrors"/>.</returns>
-        Task<VerificationErrors> CheckLegalEntitysVerificationErrorsAsync(string id, RequestOptions requestOptions = default, CancellationToken cancellationToken = default);
-        
     }
     
     /// <summary>
@@ -128,40 +128,16 @@ namespace Adyen.Service.LegalEntityManagement
             _baseUrl = CreateBaseUrl("https://kyc-test.adyen.com/lem/v3");
         }
         
-        public LegalEntity GetLegalEntity(string id, RequestOptions requestOptions = default)
+        public VerificationErrors CheckLegalEntitysVerificationErrors(string id, RequestOptions requestOptions = default)
         {
-            return GetLegalEntityAsync(id, requestOptions).ConfigureAwait(false).GetAwaiter().GetResult();
+            return CheckLegalEntitysVerificationErrorsAsync(id, requestOptions).ConfigureAwait(false).GetAwaiter().GetResult();
         }
 
-        public async Task<LegalEntity> GetLegalEntityAsync(string id, RequestOptions requestOptions = default, CancellationToken cancellationToken = default)
+        public async Task<VerificationErrors> CheckLegalEntitysVerificationErrorsAsync(string id, RequestOptions requestOptions = default, CancellationToken cancellationToken = default)
         {
-            var endpoint = _baseUrl + $"/legalEntities/{id}";
+            var endpoint = _baseUrl + $"/legalEntities/{id}/checkVerificationErrors";
             var resource = new ServiceResource(this, endpoint);
-            return await resource.RequestAsync<LegalEntity>(null, requestOptions, new HttpMethod("GET"), cancellationToken).ConfigureAwait(false);
-        }
-        
-        public BusinessLines GetAllBusinessLinesUnderLegalEntity(string id, RequestOptions requestOptions = default)
-        {
-            return GetAllBusinessLinesUnderLegalEntityAsync(id, requestOptions).ConfigureAwait(false).GetAwaiter().GetResult();
-        }
-
-        public async Task<BusinessLines> GetAllBusinessLinesUnderLegalEntityAsync(string id, RequestOptions requestOptions = default, CancellationToken cancellationToken = default)
-        {
-            var endpoint = _baseUrl + $"/legalEntities/{id}/businessLines";
-            var resource = new ServiceResource(this, endpoint);
-            return await resource.RequestAsync<BusinessLines>(null, requestOptions, new HttpMethod("GET"), cancellationToken).ConfigureAwait(false);
-        }
-        
-        public LegalEntity UpdateLegalEntity(string id, LegalEntityInfo legalEntityInfo, RequestOptions requestOptions = default)
-        {
-            return UpdateLegalEntityAsync(id, legalEntityInfo, requestOptions).ConfigureAwait(false).GetAwaiter().GetResult();
-        }
-
-        public async Task<LegalEntity> UpdateLegalEntityAsync(string id, LegalEntityInfo legalEntityInfo, RequestOptions requestOptions = default, CancellationToken cancellationToken = default)
-        {
-            var endpoint = _baseUrl + $"/legalEntities/{id}";
-            var resource = new ServiceResource(this, endpoint);
-            return await resource.RequestAsync<LegalEntity>(legalEntityInfo.ToJson(), requestOptions, new HttpMethod("PATCH"), cancellationToken).ConfigureAwait(false);
+            return await resource.RequestAsync<VerificationErrors>(null, requestOptions, new HttpMethod("POST"), cancellationToken).ConfigureAwait(false);
         }
         
         public LegalEntity CreateLegalEntity(LegalEntityInfoRequiredType legalEntityInfoRequiredType, RequestOptions requestOptions = default)
@@ -176,16 +152,40 @@ namespace Adyen.Service.LegalEntityManagement
             return await resource.RequestAsync<LegalEntity>(legalEntityInfoRequiredType.ToJson(), requestOptions, new HttpMethod("POST"), cancellationToken).ConfigureAwait(false);
         }
         
-        public VerificationErrors CheckLegalEntitysVerificationErrors(string id, RequestOptions requestOptions = default)
+        public BusinessLines GetAllBusinessLinesUnderLegalEntity(string id, RequestOptions requestOptions = default)
         {
-            return CheckLegalEntitysVerificationErrorsAsync(id, requestOptions).ConfigureAwait(false).GetAwaiter().GetResult();
+            return GetAllBusinessLinesUnderLegalEntityAsync(id, requestOptions).ConfigureAwait(false).GetAwaiter().GetResult();
         }
 
-        public async Task<VerificationErrors> CheckLegalEntitysVerificationErrorsAsync(string id, RequestOptions requestOptions = default, CancellationToken cancellationToken = default)
+        public async Task<BusinessLines> GetAllBusinessLinesUnderLegalEntityAsync(string id, RequestOptions requestOptions = default, CancellationToken cancellationToken = default)
         {
-            var endpoint = _baseUrl + $"/legalEntities/{id}/checkVerificationErrors";
+            var endpoint = _baseUrl + $"/legalEntities/{id}/businessLines";
             var resource = new ServiceResource(this, endpoint);
-            return await resource.RequestAsync<VerificationErrors>(null, requestOptions, new HttpMethod("POST"), cancellationToken).ConfigureAwait(false);
+            return await resource.RequestAsync<BusinessLines>(null, requestOptions, new HttpMethod("GET"), cancellationToken).ConfigureAwait(false);
+        }
+        
+        public LegalEntity GetLegalEntity(string id, RequestOptions requestOptions = default)
+        {
+            return GetLegalEntityAsync(id, requestOptions).ConfigureAwait(false).GetAwaiter().GetResult();
+        }
+
+        public async Task<LegalEntity> GetLegalEntityAsync(string id, RequestOptions requestOptions = default, CancellationToken cancellationToken = default)
+        {
+            var endpoint = _baseUrl + $"/legalEntities/{id}";
+            var resource = new ServiceResource(this, endpoint);
+            return await resource.RequestAsync<LegalEntity>(null, requestOptions, new HttpMethod("GET"), cancellationToken).ConfigureAwait(false);
+        }
+        
+        public LegalEntity UpdateLegalEntity(string id, LegalEntityInfo legalEntityInfo, RequestOptions requestOptions = default)
+        {
+            return UpdateLegalEntityAsync(id, legalEntityInfo, requestOptions).ConfigureAwait(false).GetAwaiter().GetResult();
+        }
+
+        public async Task<LegalEntity> UpdateLegalEntityAsync(string id, LegalEntityInfo legalEntityInfo, RequestOptions requestOptions = default, CancellationToken cancellationToken = default)
+        {
+            var endpoint = _baseUrl + $"/legalEntities/{id}";
+            var resource = new ServiceResource(this, endpoint);
+            return await resource.RequestAsync<LegalEntity>(legalEntityInfo.ToJson(), requestOptions, new HttpMethod("PATCH"), cancellationToken).ConfigureAwait(false);
         }
     }
 }

@@ -38,22 +38,21 @@ namespace Adyen.Model.Payment
         /// </summary>
         /// <param name="lodgingCheckInDate">The arrival date. * Date format: **yyyyMmDd**. For example, for 2023 April 22, **20230422**..</param>
         /// <param name="lodgingCheckOutDate">The departure date. * Date format: **yyyyMmDd**. For example, for 2023 April 22, **20230422**..</param>
-        /// <param name="lodgingCustomerServiceTollFreeNumber">The toll-free phone number for the lodging. * Format: alphanumeric. * Max length: 17 characters. * For US numbers: must start with 3 digits and be at least 10 characters in length. Otherwise, the capture can fail..</param>
-        /// <param name="lodgingFireSafetyActIndicator">Identifies that the facility complies with the Hotel and Motel Fire Safety Act of 1990. Values can be: &#39;Y&#39; or &#39;N&#39;. * Format: alphabetic. * Max length: 1 character..</param>
-        /// <param name="lodgingFolioCashAdvances">The folio cash advances. * Format: numeric. * Max length: 12 characters..</param>
-        /// <param name="lodgingFolioNumber">The card acceptor’s internal invoice or billing ID reference number. * Format: alphanumeric. * Max length: 25 characters..</param>
-        /// <param name="lodgingFoodBeverageCharges">The additional charges for food and beverages associated with the booking. * Format: numeric. * Max length: 12 characters..</param>
-        /// <param name="lodgingNoShowIndicator">Indicates if the customer didn&#39;t check in for their booking.  Possible values:   * **Y**: the customer didn&#39;t check in.   **N**: the customer checked in..</param>
-        /// <param name="lodgingPrepaidExpenses">The prepaid expenses for the booking. * Format: numeric. * Max length: 12 characters..</param>
-        /// <param name="lodgingPropertyPhoneNumber">Identifies the location of the lodging by its local phone number. * Format: alphanumeric. * Max length: 17 characters. * For US numbers: must start with 3 digits and be at least 10 characters in length. Otherwise, the capture can fail..</param>
-        /// <param name="lodgingRoom1NumberOfNights">The total number of nights the room is booked for. * Format: numeric. * Max length: 4 characters..</param>
-        /// <param name="lodgingRoom1Rate">The rate of the room. * Format: numeric. * Max length: 12 characters. * Must be in [minor units](https://docs.adyen.com/development-resources/currency-codes)..</param>
-        /// <param name="lodgingRoom1Tax">The total amount of tax to be paid. * Format: numeric. * Max length: 12 chracters. * Must be in [minor units](https://docs.adyen.com/development-resources/currency-codes)..</param>
-        /// <param name="lodgingTotalRoomTax">The total room tax amount. * Format: numeric. * Max length: 12 characters. * Must be in [minor units](https://docs.adyen.com/development-resources/currency-codes)..</param>
-        /// <param name="lodgingTotalTax">The total tax amount. * Format: numeric. * Max length: 12 characters. * Must be in [minor units](https://docs.adyen.com/development-resources/currency-codes)..</param>
-        /// <param name="travelEntertainmentAuthDataDuration">The number of nights. This should be included in the auth message. * Format: numeric. * Max length: 2 characters..</param>
-        /// <param name="travelEntertainmentAuthDataMarket">Indicates what market-specific dataset will be submitted or is being submitted. Value should be \&quot;H\&quot; for Hotel. This should be included in the auth message.  * Format: alphanumeric. * Max length: 1 character..</param>
-        public AdditionalDataLodging(string lodgingCheckInDate = default(string), string lodgingCheckOutDate = default(string), string lodgingCustomerServiceTollFreeNumber = default(string), string lodgingFireSafetyActIndicator = default(string), string lodgingFolioCashAdvances = default(string), string lodgingFolioNumber = default(string), string lodgingFoodBeverageCharges = default(string), string lodgingNoShowIndicator = default(string), string lodgingPrepaidExpenses = default(string), string lodgingPropertyPhoneNumber = default(string), string lodgingRoom1NumberOfNights = default(string), string lodgingRoom1Rate = default(string), string lodgingRoom1Tax = default(string), string lodgingTotalRoomTax = default(string), string lodgingTotalTax = default(string), string travelEntertainmentAuthDataDuration = default(string), string travelEntertainmentAuthDataMarket = default(string))
+        /// <param name="lodgingCustomerServiceTollFreeNumber">The toll-free phone number for the lodging. * Format: numeric * Max length: 17 characters. * For US and CA numbers must be 10 characters in length * Must not start with a space * Must not be all zeros * Must not contain any special characters such as + or -.</param>
+        /// <param name="lodgingFireSafetyActIndicator">Identifies that the facility complies with the Hotel and Motel Fire Safety Act of 1990. Must be &#39;Y&#39; or &#39;N&#39;. * Format: alphabetic * Max length: 1 character.</param>
+        /// <param name="lodgingFolioCashAdvances">The folio cash advances, in [minor units](https://docs.adyen.com/development-resources/currency-codes). * Format: numeric * Max length: 12 characters.</param>
+        /// <param name="lodgingFolioNumber">The card acceptor’s internal invoice or billing ID reference number. * Max length: 25 characters. * Must not start with a space * Must not be all zeros.</param>
+        /// <param name="lodgingFoodBeverageCharges">Any charges for food and beverages associated with the booking, in [minor units](https://docs.adyen.com/development-resources/currency-codes). * Format: numeric * Max length: 12 characters.</param>
+        /// <param name="lodgingNoShowIndicator">Indicates if the customer didn&#39;t check in for their booking.  Possible values:  * **Y**: the customer didn&#39;t check in  * **N**: the customer checked in.</param>
+        /// <param name="lodgingPrepaidExpenses">The prepaid expenses for the booking. * Format: numeric * Max length: 12 characters.</param>
+        /// <param name="lodgingPropertyPhoneNumber">The lodging property location&#39;s phone number. * Format: numeric. * Min length: 10 characters * Max length: 17 characters * For US and CA numbers must be 10 characters in length * Must not start with a space * Must not be all zeros * Must not contain any special characters such as + or -.</param>
+        /// <param name="lodgingRoom1NumberOfNights">The total number of nights the room is booked for. * Format: numeric * Must be a number between 0 and 99 * Max length: 2 characters.</param>
+        /// <param name="lodgingRoom1Rate">The rate for the room, in [minor units](https://docs.adyen.com/development-resources/currency-codes). * Format: numeric * Max length: 12 characters * Must not be a negative number.</param>
+        /// <param name="lodgingTotalRoomTax">The total room tax amount, in [minor units](https://docs.adyen.com/development-resources/currency-codes). * Format: numeric * Max length: 12 characters * Must not be a negative number.</param>
+        /// <param name="lodgingTotalTax">The total tax amount, in [minor units](https://docs.adyen.com/development-resources/currency-codes). * Format: numeric * Max length: 12 characters * Must not be a negative number.</param>
+        /// <param name="travelEntertainmentAuthDataDuration">The number of nights. This should be included in the auth message. * Format: numeric * Max length: 2 characters.</param>
+        /// <param name="travelEntertainmentAuthDataMarket">Indicates what market-specific dataset will be submitted. Must be &#39;H&#39; for Hotel. This should be included in the auth message.  * Format: alphanumeric * Max length: 1 character.</param>
+        public AdditionalDataLodging(string lodgingCheckInDate = default(string), string lodgingCheckOutDate = default(string), string lodgingCustomerServiceTollFreeNumber = default(string), string lodgingFireSafetyActIndicator = default(string), string lodgingFolioCashAdvances = default(string), string lodgingFolioNumber = default(string), string lodgingFoodBeverageCharges = default(string), string lodgingNoShowIndicator = default(string), string lodgingPrepaidExpenses = default(string), string lodgingPropertyPhoneNumber = default(string), string lodgingRoom1NumberOfNights = default(string), string lodgingRoom1Rate = default(string), string lodgingTotalRoomTax = default(string), string lodgingTotalTax = default(string), string travelEntertainmentAuthDataDuration = default(string), string travelEntertainmentAuthDataMarket = default(string))
         {
             this.LodgingCheckInDate = lodgingCheckInDate;
             this.LodgingCheckOutDate = lodgingCheckOutDate;
@@ -67,7 +66,6 @@ namespace Adyen.Model.Payment
             this.LodgingPropertyPhoneNumber = lodgingPropertyPhoneNumber;
             this.LodgingRoom1NumberOfNights = lodgingRoom1NumberOfNights;
             this.LodgingRoom1Rate = lodgingRoom1Rate;
-            this.LodgingRoom1Tax = lodgingRoom1Tax;
             this.LodgingTotalRoomTax = lodgingTotalRoomTax;
             this.LodgingTotalTax = lodgingTotalTax;
             this.TravelEntertainmentAuthDataDuration = travelEntertainmentAuthDataDuration;
@@ -89,107 +87,100 @@ namespace Adyen.Model.Payment
         public string LodgingCheckOutDate { get; set; }
 
         /// <summary>
-        /// The toll-free phone number for the lodging. * Format: alphanumeric. * Max length: 17 characters. * For US numbers: must start with 3 digits and be at least 10 characters in length. Otherwise, the capture can fail.
+        /// The toll-free phone number for the lodging. * Format: numeric * Max length: 17 characters. * For US and CA numbers must be 10 characters in length * Must not start with a space * Must not be all zeros * Must not contain any special characters such as + or -
         /// </summary>
-        /// <value>The toll-free phone number for the lodging. * Format: alphanumeric. * Max length: 17 characters. * For US numbers: must start with 3 digits and be at least 10 characters in length. Otherwise, the capture can fail.</value>
+        /// <value>The toll-free phone number for the lodging. * Format: numeric * Max length: 17 characters. * For US and CA numbers must be 10 characters in length * Must not start with a space * Must not be all zeros * Must not contain any special characters such as + or -</value>
         [DataMember(Name = "lodging.customerServiceTollFreeNumber", EmitDefaultValue = false)]
         public string LodgingCustomerServiceTollFreeNumber { get; set; }
 
         /// <summary>
-        /// Identifies that the facility complies with the Hotel and Motel Fire Safety Act of 1990. Values can be: &#39;Y&#39; or &#39;N&#39;. * Format: alphabetic. * Max length: 1 character.
+        /// Identifies that the facility complies with the Hotel and Motel Fire Safety Act of 1990. Must be &#39;Y&#39; or &#39;N&#39;. * Format: alphabetic * Max length: 1 character
         /// </summary>
-        /// <value>Identifies that the facility complies with the Hotel and Motel Fire Safety Act of 1990. Values can be: &#39;Y&#39; or &#39;N&#39;. * Format: alphabetic. * Max length: 1 character.</value>
+        /// <value>Identifies that the facility complies with the Hotel and Motel Fire Safety Act of 1990. Must be &#39;Y&#39; or &#39;N&#39;. * Format: alphabetic * Max length: 1 character</value>
         [DataMember(Name = "lodging.fireSafetyActIndicator", EmitDefaultValue = false)]
         public string LodgingFireSafetyActIndicator { get; set; }
 
         /// <summary>
-        /// The folio cash advances. * Format: numeric. * Max length: 12 characters.
+        /// The folio cash advances, in [minor units](https://docs.adyen.com/development-resources/currency-codes). * Format: numeric * Max length: 12 characters
         /// </summary>
-        /// <value>The folio cash advances. * Format: numeric. * Max length: 12 characters.</value>
+        /// <value>The folio cash advances, in [minor units](https://docs.adyen.com/development-resources/currency-codes). * Format: numeric * Max length: 12 characters</value>
         [DataMember(Name = "lodging.folioCashAdvances", EmitDefaultValue = false)]
         public string LodgingFolioCashAdvances { get; set; }
 
         /// <summary>
-        /// The card acceptor’s internal invoice or billing ID reference number. * Format: alphanumeric. * Max length: 25 characters.
+        /// The card acceptor’s internal invoice or billing ID reference number. * Max length: 25 characters. * Must not start with a space * Must not be all zeros
         /// </summary>
-        /// <value>The card acceptor’s internal invoice or billing ID reference number. * Format: alphanumeric. * Max length: 25 characters.</value>
+        /// <value>The card acceptor’s internal invoice or billing ID reference number. * Max length: 25 characters. * Must not start with a space * Must not be all zeros</value>
         [DataMember(Name = "lodging.folioNumber", EmitDefaultValue = false)]
         public string LodgingFolioNumber { get; set; }
 
         /// <summary>
-        /// The additional charges for food and beverages associated with the booking. * Format: numeric. * Max length: 12 characters.
+        /// Any charges for food and beverages associated with the booking, in [minor units](https://docs.adyen.com/development-resources/currency-codes). * Format: numeric * Max length: 12 characters
         /// </summary>
-        /// <value>The additional charges for food and beverages associated with the booking. * Format: numeric. * Max length: 12 characters.</value>
+        /// <value>Any charges for food and beverages associated with the booking, in [minor units](https://docs.adyen.com/development-resources/currency-codes). * Format: numeric * Max length: 12 characters</value>
         [DataMember(Name = "lodging.foodBeverageCharges", EmitDefaultValue = false)]
         public string LodgingFoodBeverageCharges { get; set; }
 
         /// <summary>
-        /// Indicates if the customer didn&#39;t check in for their booking.  Possible values:   * **Y**: the customer didn&#39;t check in.   **N**: the customer checked in.
+        /// Indicates if the customer didn&#39;t check in for their booking.  Possible values:  * **Y**: the customer didn&#39;t check in  * **N**: the customer checked in
         /// </summary>
-        /// <value>Indicates if the customer didn&#39;t check in for their booking.  Possible values:   * **Y**: the customer didn&#39;t check in.   **N**: the customer checked in.</value>
+        /// <value>Indicates if the customer didn&#39;t check in for their booking.  Possible values:  * **Y**: the customer didn&#39;t check in  * **N**: the customer checked in</value>
         [DataMember(Name = "lodging.noShowIndicator", EmitDefaultValue = false)]
         public string LodgingNoShowIndicator { get; set; }
 
         /// <summary>
-        /// The prepaid expenses for the booking. * Format: numeric. * Max length: 12 characters.
+        /// The prepaid expenses for the booking. * Format: numeric * Max length: 12 characters
         /// </summary>
-        /// <value>The prepaid expenses for the booking. * Format: numeric. * Max length: 12 characters.</value>
+        /// <value>The prepaid expenses for the booking. * Format: numeric * Max length: 12 characters</value>
         [DataMember(Name = "lodging.prepaidExpenses", EmitDefaultValue = false)]
         public string LodgingPrepaidExpenses { get; set; }
 
         /// <summary>
-        /// Identifies the location of the lodging by its local phone number. * Format: alphanumeric. * Max length: 17 characters. * For US numbers: must start with 3 digits and be at least 10 characters in length. Otherwise, the capture can fail.
+        /// The lodging property location&#39;s phone number. * Format: numeric. * Min length: 10 characters * Max length: 17 characters * For US and CA numbers must be 10 characters in length * Must not start with a space * Must not be all zeros * Must not contain any special characters such as + or -
         /// </summary>
-        /// <value>Identifies the location of the lodging by its local phone number. * Format: alphanumeric. * Max length: 17 characters. * For US numbers: must start with 3 digits and be at least 10 characters in length. Otherwise, the capture can fail.</value>
+        /// <value>The lodging property location&#39;s phone number. * Format: numeric. * Min length: 10 characters * Max length: 17 characters * For US and CA numbers must be 10 characters in length * Must not start with a space * Must not be all zeros * Must not contain any special characters such as + or -</value>
         [DataMember(Name = "lodging.propertyPhoneNumber", EmitDefaultValue = false)]
         public string LodgingPropertyPhoneNumber { get; set; }
 
         /// <summary>
-        /// The total number of nights the room is booked for. * Format: numeric. * Max length: 4 characters.
+        /// The total number of nights the room is booked for. * Format: numeric * Must be a number between 0 and 99 * Max length: 2 characters
         /// </summary>
-        /// <value>The total number of nights the room is booked for. * Format: numeric. * Max length: 4 characters.</value>
+        /// <value>The total number of nights the room is booked for. * Format: numeric * Must be a number between 0 and 99 * Max length: 2 characters</value>
         [DataMember(Name = "lodging.room1.numberOfNights", EmitDefaultValue = false)]
         public string LodgingRoom1NumberOfNights { get; set; }
 
         /// <summary>
-        /// The rate of the room. * Format: numeric. * Max length: 12 characters. * Must be in [minor units](https://docs.adyen.com/development-resources/currency-codes).
+        /// The rate for the room, in [minor units](https://docs.adyen.com/development-resources/currency-codes). * Format: numeric * Max length: 12 characters * Must not be a negative number
         /// </summary>
-        /// <value>The rate of the room. * Format: numeric. * Max length: 12 characters. * Must be in [minor units](https://docs.adyen.com/development-resources/currency-codes).</value>
+        /// <value>The rate for the room, in [minor units](https://docs.adyen.com/development-resources/currency-codes). * Format: numeric * Max length: 12 characters * Must not be a negative number</value>
         [DataMember(Name = "lodging.room1.rate", EmitDefaultValue = false)]
         public string LodgingRoom1Rate { get; set; }
 
         /// <summary>
-        /// The total amount of tax to be paid. * Format: numeric. * Max length: 12 chracters. * Must be in [minor units](https://docs.adyen.com/development-resources/currency-codes).
+        /// The total room tax amount, in [minor units](https://docs.adyen.com/development-resources/currency-codes). * Format: numeric * Max length: 12 characters * Must not be a negative number
         /// </summary>
-        /// <value>The total amount of tax to be paid. * Format: numeric. * Max length: 12 chracters. * Must be in [minor units](https://docs.adyen.com/development-resources/currency-codes).</value>
-        [DataMember(Name = "lodging.room1.tax", EmitDefaultValue = false)]
-        public string LodgingRoom1Tax { get; set; }
-
-        /// <summary>
-        /// The total room tax amount. * Format: numeric. * Max length: 12 characters. * Must be in [minor units](https://docs.adyen.com/development-resources/currency-codes).
-        /// </summary>
-        /// <value>The total room tax amount. * Format: numeric. * Max length: 12 characters. * Must be in [minor units](https://docs.adyen.com/development-resources/currency-codes).</value>
+        /// <value>The total room tax amount, in [minor units](https://docs.adyen.com/development-resources/currency-codes). * Format: numeric * Max length: 12 characters * Must not be a negative number</value>
         [DataMember(Name = "lodging.totalRoomTax", EmitDefaultValue = false)]
         public string LodgingTotalRoomTax { get; set; }
 
         /// <summary>
-        /// The total tax amount. * Format: numeric. * Max length: 12 characters. * Must be in [minor units](https://docs.adyen.com/development-resources/currency-codes).
+        /// The total tax amount, in [minor units](https://docs.adyen.com/development-resources/currency-codes). * Format: numeric * Max length: 12 characters * Must not be a negative number
         /// </summary>
-        /// <value>The total tax amount. * Format: numeric. * Max length: 12 characters. * Must be in [minor units](https://docs.adyen.com/development-resources/currency-codes).</value>
+        /// <value>The total tax amount, in [minor units](https://docs.adyen.com/development-resources/currency-codes). * Format: numeric * Max length: 12 characters * Must not be a negative number</value>
         [DataMember(Name = "lodging.totalTax", EmitDefaultValue = false)]
         public string LodgingTotalTax { get; set; }
 
         /// <summary>
-        /// The number of nights. This should be included in the auth message. * Format: numeric. * Max length: 2 characters.
+        /// The number of nights. This should be included in the auth message. * Format: numeric * Max length: 2 characters
         /// </summary>
-        /// <value>The number of nights. This should be included in the auth message. * Format: numeric. * Max length: 2 characters.</value>
+        /// <value>The number of nights. This should be included in the auth message. * Format: numeric * Max length: 2 characters</value>
         [DataMember(Name = "travelEntertainmentAuthData.duration", EmitDefaultValue = false)]
         public string TravelEntertainmentAuthDataDuration { get; set; }
 
         /// <summary>
-        /// Indicates what market-specific dataset will be submitted or is being submitted. Value should be \&quot;H\&quot; for Hotel. This should be included in the auth message.  * Format: alphanumeric. * Max length: 1 character.
+        /// Indicates what market-specific dataset will be submitted. Must be &#39;H&#39; for Hotel. This should be included in the auth message.  * Format: alphanumeric * Max length: 1 character
         /// </summary>
-        /// <value>Indicates what market-specific dataset will be submitted or is being submitted. Value should be \&quot;H\&quot; for Hotel. This should be included in the auth message.  * Format: alphanumeric. * Max length: 1 character.</value>
+        /// <value>Indicates what market-specific dataset will be submitted. Must be &#39;H&#39; for Hotel. This should be included in the auth message.  * Format: alphanumeric * Max length: 1 character</value>
         [DataMember(Name = "travelEntertainmentAuthData.market", EmitDefaultValue = false)]
         public string TravelEntertainmentAuthDataMarket { get; set; }
 
@@ -213,7 +204,6 @@ namespace Adyen.Model.Payment
             sb.Append("  LodgingPropertyPhoneNumber: ").Append(LodgingPropertyPhoneNumber).Append("\n");
             sb.Append("  LodgingRoom1NumberOfNights: ").Append(LodgingRoom1NumberOfNights).Append("\n");
             sb.Append("  LodgingRoom1Rate: ").Append(LodgingRoom1Rate).Append("\n");
-            sb.Append("  LodgingRoom1Tax: ").Append(LodgingRoom1Tax).Append("\n");
             sb.Append("  LodgingTotalRoomTax: ").Append(LodgingTotalRoomTax).Append("\n");
             sb.Append("  LodgingTotalTax: ").Append(LodgingTotalTax).Append("\n");
             sb.Append("  TravelEntertainmentAuthDataDuration: ").Append(TravelEntertainmentAuthDataDuration).Append("\n");
@@ -314,11 +304,6 @@ namespace Adyen.Model.Payment
                     this.LodgingRoom1Rate.Equals(input.LodgingRoom1Rate))
                 ) && 
                 (
-                    this.LodgingRoom1Tax == input.LodgingRoom1Tax ||
-                    (this.LodgingRoom1Tax != null &&
-                    this.LodgingRoom1Tax.Equals(input.LodgingRoom1Tax))
-                ) && 
-                (
                     this.LodgingTotalRoomTax == input.LodgingTotalRoomTax ||
                     (this.LodgingTotalRoomTax != null &&
                     this.LodgingTotalRoomTax.Equals(input.LodgingTotalRoomTax))
@@ -396,10 +381,6 @@ namespace Adyen.Model.Payment
                 if (this.LodgingRoom1Rate != null)
                 {
                     hashCode = (hashCode * 59) + this.LodgingRoom1Rate.GetHashCode();
-                }
-                if (this.LodgingRoom1Tax != null)
-                {
-                    hashCode = (hashCode * 59) + this.LodgingRoom1Tax.GetHashCode();
                 }
                 if (this.LodgingTotalRoomTax != null)
                 {

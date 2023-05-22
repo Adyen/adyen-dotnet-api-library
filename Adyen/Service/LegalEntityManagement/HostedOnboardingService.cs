@@ -28,19 +28,23 @@ namespace Adyen.Service.LegalEntityManagement
     public interface IHostedOnboardingService
     {
         /// <summary>
-        /// Get a list of hosted onboarding page themes
+        /// Get a link to an Adyen-hosted onboarding page
         /// </summary>
+        /// <param name="id"><see cref="string"/> - The unique identifier of the legal entity</param>
+        /// <param name="onboardingLinkInfo"><see cref="OnboardingLinkInfo"/> - </param>
         /// <param name="requestOptions"><see cref="RequestOptions"/> - Additional request options.</param>
-        /// <returns><see cref="OnboardingThemes"/>.</returns>
-        OnboardingThemes ListHostedOnboardingPageThemes(RequestOptions requestOptions = default);
+        /// <returns><see cref="OnboardingLink"/>.</returns>
+        OnboardingLink GetLinkToAdyenhostedOnboardingPage(string id, OnboardingLinkInfo onboardingLinkInfo, RequestOptions requestOptions = default);
         
         /// <summary>
-        /// Get a list of hosted onboarding page themes
+        /// Get a link to an Adyen-hosted onboarding page
         /// </summary>
+        /// <param name="id"><see cref="string"/> - The unique identifier of the legal entity</param>
+        /// <param name="onboardingLinkInfo"><see cref="OnboardingLinkInfo"/> - </param>
         /// <param name="requestOptions"><see cref="RequestOptions"/> - Additional request options.</param>
         /// <param name="cancellationToken"> A CancellationToken enables cooperative cancellation between threads, thread pool work items, or Task objects.</param>
-        /// <returns>Task of <see cref="OnboardingThemes"/>.</returns>
-        Task<OnboardingThemes> ListHostedOnboardingPageThemesAsync(RequestOptions requestOptions = default, CancellationToken cancellationToken = default);
+        /// <returns>Task of <see cref="OnboardingLink"/>.</returns>
+        Task<OnboardingLink> GetLinkToAdyenhostedOnboardingPageAsync(string id, OnboardingLinkInfo onboardingLinkInfo, RequestOptions requestOptions = default, CancellationToken cancellationToken = default);
         
         /// <summary>
         /// Get an onboarding link theme
@@ -60,23 +64,19 @@ namespace Adyen.Service.LegalEntityManagement
         Task<OnboardingTheme> GetOnboardingLinkThemeAsync(string id, RequestOptions requestOptions = default, CancellationToken cancellationToken = default);
         
         /// <summary>
-        /// Get a link to an Adyen-hosted onboarding page
+        /// Get a list of hosted onboarding page themes
         /// </summary>
-        /// <param name="id"><see cref="string"/> - The unique identifier of the legal entity</param>
-        /// <param name="onboardingLinkInfo"><see cref="OnboardingLinkInfo"/> - </param>
         /// <param name="requestOptions"><see cref="RequestOptions"/> - Additional request options.</param>
-        /// <returns><see cref="OnboardingLink"/>.</returns>
-        OnboardingLink GetLinkToAdyenhostedOnboardingPage(string id, OnboardingLinkInfo onboardingLinkInfo, RequestOptions requestOptions = default);
+        /// <returns><see cref="OnboardingThemes"/>.</returns>
+        OnboardingThemes ListHostedOnboardingPageThemes(RequestOptions requestOptions = default);
         
         /// <summary>
-        /// Get a link to an Adyen-hosted onboarding page
+        /// Get a list of hosted onboarding page themes
         /// </summary>
-        /// <param name="id"><see cref="string"/> - The unique identifier of the legal entity</param>
-        /// <param name="onboardingLinkInfo"><see cref="OnboardingLinkInfo"/> - </param>
         /// <param name="requestOptions"><see cref="RequestOptions"/> - Additional request options.</param>
         /// <param name="cancellationToken"> A CancellationToken enables cooperative cancellation between threads, thread pool work items, or Task objects.</param>
-        /// <returns>Task of <see cref="OnboardingLink"/>.</returns>
-        Task<OnboardingLink> GetLinkToAdyenhostedOnboardingPageAsync(string id, OnboardingLinkInfo onboardingLinkInfo, RequestOptions requestOptions = default, CancellationToken cancellationToken = default);
+        /// <returns>Task of <see cref="OnboardingThemes"/>.</returns>
+        Task<OnboardingThemes> ListHostedOnboardingPageThemesAsync(RequestOptions requestOptions = default, CancellationToken cancellationToken = default);
         
     }
     
@@ -92,16 +92,16 @@ namespace Adyen.Service.LegalEntityManagement
             _baseUrl = CreateBaseUrl("https://kyc-test.adyen.com/lem/v3");
         }
         
-        public OnboardingThemes ListHostedOnboardingPageThemes(RequestOptions requestOptions = default)
+        public OnboardingLink GetLinkToAdyenhostedOnboardingPage(string id, OnboardingLinkInfo onboardingLinkInfo, RequestOptions requestOptions = default)
         {
-            return ListHostedOnboardingPageThemesAsync(requestOptions).ConfigureAwait(false).GetAwaiter().GetResult();
+            return GetLinkToAdyenhostedOnboardingPageAsync(id, onboardingLinkInfo, requestOptions).ConfigureAwait(false).GetAwaiter().GetResult();
         }
 
-        public async Task<OnboardingThemes> ListHostedOnboardingPageThemesAsync(RequestOptions requestOptions = default, CancellationToken cancellationToken = default)
+        public async Task<OnboardingLink> GetLinkToAdyenhostedOnboardingPageAsync(string id, OnboardingLinkInfo onboardingLinkInfo, RequestOptions requestOptions = default, CancellationToken cancellationToken = default)
         {
-            var endpoint = _baseUrl + "/themes";
+            var endpoint = _baseUrl + $"/legalEntities/{id}/onboardingLinks";
             var resource = new ServiceResource(this, endpoint);
-            return await resource.RequestAsync<OnboardingThemes>(null, requestOptions, new HttpMethod("GET"), cancellationToken).ConfigureAwait(false);
+            return await resource.RequestAsync<OnboardingLink>(onboardingLinkInfo.ToJson(), requestOptions, new HttpMethod("POST"), cancellationToken).ConfigureAwait(false);
         }
         
         public OnboardingTheme GetOnboardingLinkTheme(string id, RequestOptions requestOptions = default)
@@ -116,16 +116,16 @@ namespace Adyen.Service.LegalEntityManagement
             return await resource.RequestAsync<OnboardingTheme>(null, requestOptions, new HttpMethod("GET"), cancellationToken).ConfigureAwait(false);
         }
         
-        public OnboardingLink GetLinkToAdyenhostedOnboardingPage(string id, OnboardingLinkInfo onboardingLinkInfo, RequestOptions requestOptions = default)
+        public OnboardingThemes ListHostedOnboardingPageThemes(RequestOptions requestOptions = default)
         {
-            return GetLinkToAdyenhostedOnboardingPageAsync(id, onboardingLinkInfo, requestOptions).ConfigureAwait(false).GetAwaiter().GetResult();
+            return ListHostedOnboardingPageThemesAsync(requestOptions).ConfigureAwait(false).GetAwaiter().GetResult();
         }
 
-        public async Task<OnboardingLink> GetLinkToAdyenhostedOnboardingPageAsync(string id, OnboardingLinkInfo onboardingLinkInfo, RequestOptions requestOptions = default, CancellationToken cancellationToken = default)
+        public async Task<OnboardingThemes> ListHostedOnboardingPageThemesAsync(RequestOptions requestOptions = default, CancellationToken cancellationToken = default)
         {
-            var endpoint = _baseUrl + $"/legalEntities/{id}/onboardingLinks";
+            var endpoint = _baseUrl + "/themes";
             var resource = new ServiceResource(this, endpoint);
-            return await resource.RequestAsync<OnboardingLink>(onboardingLinkInfo.ToJson(), requestOptions, new HttpMethod("POST"), cancellationToken).ConfigureAwait(false);
+            return await resource.RequestAsync<OnboardingThemes>(null, requestOptions, new HttpMethod("GET"), cancellationToken).ConfigureAwait(false);
         }
     }
 }

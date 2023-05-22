@@ -28,6 +28,23 @@ namespace Adyen.Service.LegalEntityManagement
     public interface IBusinessLinesService
     {
         /// <summary>
+        /// Create a business line
+        /// </summary>
+        /// <param name="businessLineInfo"><see cref="BusinessLineInfo"/> - </param>
+        /// <param name="requestOptions"><see cref="RequestOptions"/> - Additional request options.</param>
+        /// <returns><see cref="BusinessLine"/>.</returns>
+        BusinessLine CreateBusinessLine(BusinessLineInfo businessLineInfo, RequestOptions requestOptions = default);
+        
+        /// <summary>
+        /// Create a business line
+        /// </summary>
+        /// <param name="businessLineInfo"><see cref="BusinessLineInfo"/> - </param>
+        /// <param name="requestOptions"><see cref="RequestOptions"/> - Additional request options.</param>
+        /// <param name="cancellationToken"> A CancellationToken enables cooperative cancellation between threads, thread pool work items, or Task objects.</param>
+        /// <returns>Task of <see cref="BusinessLine"/>.</returns>
+        Task<BusinessLine> CreateBusinessLineAsync(BusinessLineInfo businessLineInfo, RequestOptions requestOptions = default, CancellationToken cancellationToken = default);
+        
+        /// <summary>
         /// Delete a business line
         /// </summary>
         /// <param name="id"><see cref="string"/> - The unique identifier of the business line to be deleted.</param>
@@ -78,23 +95,6 @@ namespace Adyen.Service.LegalEntityManagement
         /// <returns>Task of <see cref="BusinessLine"/>.</returns>
         Task<BusinessLine> UpdateBusinessLineAsync(string id, BusinessLineInfoUpdate businessLineInfoUpdate, RequestOptions requestOptions = default, CancellationToken cancellationToken = default);
         
-        /// <summary>
-        /// Create a business line
-        /// </summary>
-        /// <param name="businessLineInfo"><see cref="BusinessLineInfo"/> - </param>
-        /// <param name="requestOptions"><see cref="RequestOptions"/> - Additional request options.</param>
-        /// <returns><see cref="BusinessLine"/>.</returns>
-        BusinessLine CreateBusinessLine(BusinessLineInfo businessLineInfo, RequestOptions requestOptions = default);
-        
-        /// <summary>
-        /// Create a business line
-        /// </summary>
-        /// <param name="businessLineInfo"><see cref="BusinessLineInfo"/> - </param>
-        /// <param name="requestOptions"><see cref="RequestOptions"/> - Additional request options.</param>
-        /// <param name="cancellationToken"> A CancellationToken enables cooperative cancellation between threads, thread pool work items, or Task objects.</param>
-        /// <returns>Task of <see cref="BusinessLine"/>.</returns>
-        Task<BusinessLine> CreateBusinessLineAsync(BusinessLineInfo businessLineInfo, RequestOptions requestOptions = default, CancellationToken cancellationToken = default);
-        
     }
     
     /// <summary>
@@ -107,6 +107,18 @@ namespace Adyen.Service.LegalEntityManagement
         public BusinessLinesService(Client client) : base(client)
         {
             _baseUrl = CreateBaseUrl("https://kyc-test.adyen.com/lem/v3");
+        }
+        
+        public BusinessLine CreateBusinessLine(BusinessLineInfo businessLineInfo, RequestOptions requestOptions = default)
+        {
+            return CreateBusinessLineAsync(businessLineInfo, requestOptions).ConfigureAwait(false).GetAwaiter().GetResult();
+        }
+
+        public async Task<BusinessLine> CreateBusinessLineAsync(BusinessLineInfo businessLineInfo, RequestOptions requestOptions = default, CancellationToken cancellationToken = default)
+        {
+            var endpoint = _baseUrl + "/businessLines";
+            var resource = new ServiceResource(this, endpoint);
+            return await resource.RequestAsync<BusinessLine>(businessLineInfo.ToJson(), requestOptions, new HttpMethod("POST"), cancellationToken).ConfigureAwait(false);
         }
         
         public void DeleteBusinessLine(string id, RequestOptions requestOptions = default)
@@ -143,18 +155,6 @@ namespace Adyen.Service.LegalEntityManagement
             var endpoint = _baseUrl + $"/businessLines/{id}";
             var resource = new ServiceResource(this, endpoint);
             return await resource.RequestAsync<BusinessLine>(businessLineInfoUpdate.ToJson(), requestOptions, new HttpMethod("PATCH"), cancellationToken).ConfigureAwait(false);
-        }
-        
-        public BusinessLine CreateBusinessLine(BusinessLineInfo businessLineInfo, RequestOptions requestOptions = default)
-        {
-            return CreateBusinessLineAsync(businessLineInfo, requestOptions).ConfigureAwait(false).GetAwaiter().GetResult();
-        }
-
-        public async Task<BusinessLine> CreateBusinessLineAsync(BusinessLineInfo businessLineInfo, RequestOptions requestOptions = default, CancellationToken cancellationToken = default)
-        {
-            var endpoint = _baseUrl + "/businessLines";
-            var resource = new ServiceResource(this, endpoint);
-            return await resource.RequestAsync<BusinessLine>(businessLineInfo.ToJson(), requestOptions, new HttpMethod("POST"), cancellationToken).ConfigureAwait(false);
         }
     }
 }

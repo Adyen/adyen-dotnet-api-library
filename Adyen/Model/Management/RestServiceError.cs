@@ -50,7 +50,7 @@ namespace Adyen.Model.Management
         /// <param name="status">The HTTP status code. (required).</param>
         /// <param name="title">A short, human-readable summary of the problem type. (required).</param>
         /// <param name="type">A URI that identifies the problem type, pointing to human-readable documentation on this problem type. (required).</param>
-        public RestServiceError(string detail = default(string), string errorCode = default(string), string instance = default(string), List<InvalidField> invalidFields = default(List<InvalidField>), string requestId = default(string), JSONObject response = default(JSONObject), int? status = default(int?), string title = default(string), string type = default(string))
+        public RestServiceError(string detail = default(string), string errorCode = default(string), string instance = default(string), List<InvalidFieldWrapper> invalidFields = default(List<InvalidFieldWrapper>), string requestId = default(string), JSONObject response = default(JSONObject), int? status = default(int?), string title = default(string), string type = default(string))
         {
             this.Detail = detail;
             this.ErrorCode = errorCode;
@@ -89,7 +89,7 @@ namespace Adyen.Model.Management
         /// </summary>
         /// <value>Detailed explanation of each validation error, when applicable.</value>
         [DataMember(Name = "invalidFields", EmitDefaultValue = false)]
-        public List<InvalidField> InvalidFields { get; set; }
+        public List<InvalidFieldWrapper> InvalidFields { get; set; }
 
         /// <summary>
         /// A unique reference for the request, essentially the same as &#x60;pspReference&#x60;.

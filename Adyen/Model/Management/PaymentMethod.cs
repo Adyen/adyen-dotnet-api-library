@@ -81,11 +81,13 @@ namespace Adyen.Model.Management
         /// <summary>
         /// Initializes a new instance of the <see cref="PaymentMethod" /> class.
         /// </summary>
+        /// <param name="afterpayTouch">afterpayTouch.</param>
         /// <param name="allowed">Indicates whether receiving payments is allowed. This value is set to **true** by Adyen after screening your merchant account..</param>
         /// <param name="applePay">applePay.</param>
         /// <param name="bcmc">bcmc.</param>
         /// <param name="businessLineId">The unique identifier of the business line..</param>
         /// <param name="cartesBancaires">cartesBancaires.</param>
+        /// <param name="clearpay">clearpay.</param>
         /// <param name="countries">The list of countries where a payment method is available. By default, all countries supported by the payment method..</param>
         /// <param name="currencies">The list of currencies that a payment method supports. By default, all currencies supported by the payment method..</param>
         /// <param name="customRoutingFlags">The list of custom routing flags to route payment to the intended acquirer..</param>
@@ -101,17 +103,20 @@ namespace Adyen.Model.Management
         /// <param name="sofort">sofort.</param>
         /// <param name="storeId">The ID of the [store](https://docs.adyen.com/api-explorer/#/ManagementService/latest/post/stores__resParam_id), if any..</param>
         /// <param name="swish">swish.</param>
+        /// <param name="twint">twint.</param>
         /// <param name="type">Payment method [variant](https://docs.adyen.com/development-resources/paymentmethodvariant#management-api)..</param>
         /// <param name="verificationStatus">Payment method status. Possible values: * **valid** * **pending** * **invalid** * **rejected**.</param>
         /// <param name="vipps">vipps.</param>
-        public PaymentMethod(bool allowed = default(bool), ApplePayInfo applePay = default(ApplePayInfo), BcmcInfo bcmc = default(BcmcInfo), string businessLineId = default(string), CartesBancairesInfo cartesBancaires = default(CartesBancairesInfo), List<string> countries = default(List<string>), List<string> currencies = default(List<string>), List<string> customRoutingFlags = default(List<string>), bool enabled = default(bool), GiroPayInfo giroPay = default(GiroPayInfo), GooglePayInfo googlePay = default(GooglePayInfo), string id = default(string), KlarnaInfo klarna = default(KlarnaInfo), MealVoucherFRInfo mealVoucherFR = default(MealVoucherFRInfo), PayPalInfo paypal = default(PayPalInfo), string reference = default(string), string shopperInteraction = default(string), SofortInfo sofort = default(SofortInfo), string storeId = default(string), SwishInfo swish = default(SwishInfo), string type = default(string), VerificationStatusEnum? verificationStatus = default(VerificationStatusEnum?), VippsInfo vipps = default(VippsInfo))
+        public PaymentMethod(AfterpayTouchInfo afterpayTouch = default(AfterpayTouchInfo), bool allowed = default(bool), ApplePayInfo applePay = default(ApplePayInfo), BcmcInfo bcmc = default(BcmcInfo), string businessLineId = default(string), CartesBancairesInfo cartesBancaires = default(CartesBancairesInfo), ClearpayInfo clearpay = default(ClearpayInfo), List<string> countries = default(List<string>), List<string> currencies = default(List<string>), List<string> customRoutingFlags = default(List<string>), bool enabled = default(bool), GiroPayInfo giroPay = default(GiroPayInfo), GooglePayInfo googlePay = default(GooglePayInfo), string id = default(string), KlarnaInfo klarna = default(KlarnaInfo), MealVoucherFRInfo mealVoucherFR = default(MealVoucherFRInfo), PayPalInfo paypal = default(PayPalInfo), string reference = default(string), string shopperInteraction = default(string), SofortInfo sofort = default(SofortInfo), string storeId = default(string), SwishInfo swish = default(SwishInfo), TwintInfo twint = default(TwintInfo), string type = default(string), VerificationStatusEnum? verificationStatus = default(VerificationStatusEnum?), VippsInfo vipps = default(VippsInfo))
         {
             this.Id = id;
+            this.AfterpayTouch = afterpayTouch;
             this.Allowed = allowed;
             this.ApplePay = applePay;
             this.Bcmc = bcmc;
             this.BusinessLineId = businessLineId;
             this.CartesBancaires = cartesBancaires;
+            this.Clearpay = clearpay;
             this.Countries = countries;
             this.Currencies = currencies;
             this.CustomRoutingFlags = customRoutingFlags;
@@ -126,10 +131,17 @@ namespace Adyen.Model.Management
             this.Sofort = sofort;
             this.StoreId = storeId;
             this.Swish = swish;
+            this.Twint = twint;
             this.Type = type;
             this.VerificationStatus = verificationStatus;
             this.Vipps = vipps;
         }
+
+        /// <summary>
+        /// Gets or Sets AfterpayTouch
+        /// </summary>
+        [DataMember(Name = "afterpayTouch", EmitDefaultValue = false)]
+        public AfterpayTouchInfo AfterpayTouch { get; set; }
 
         /// <summary>
         /// Indicates whether receiving payments is allowed. This value is set to **true** by Adyen after screening your merchant account.
@@ -162,6 +174,12 @@ namespace Adyen.Model.Management
         /// </summary>
         [DataMember(Name = "cartesBancaires", EmitDefaultValue = false)]
         public CartesBancairesInfo CartesBancaires { get; set; }
+
+        /// <summary>
+        /// Gets or Sets Clearpay
+        /// </summary>
+        [DataMember(Name = "clearpay", EmitDefaultValue = false)]
+        public ClearpayInfo Clearpay { get; set; }
 
         /// <summary>
         /// The list of countries where a payment method is available. By default, all countries supported by the payment method.
@@ -262,6 +280,12 @@ namespace Adyen.Model.Management
         public SwishInfo Swish { get; set; }
 
         /// <summary>
+        /// Gets or Sets Twint
+        /// </summary>
+        [DataMember(Name = "twint", EmitDefaultValue = false)]
+        public TwintInfo Twint { get; set; }
+
+        /// <summary>
         /// Payment method [variant](https://docs.adyen.com/development-resources/paymentmethodvariant#management-api).
         /// </summary>
         /// <value>Payment method [variant](https://docs.adyen.com/development-resources/paymentmethodvariant#management-api).</value>
@@ -282,11 +306,13 @@ namespace Adyen.Model.Management
         {
             StringBuilder sb = new StringBuilder();
             sb.Append("class PaymentMethod {\n");
+            sb.Append("  AfterpayTouch: ").Append(AfterpayTouch).Append("\n");
             sb.Append("  Allowed: ").Append(Allowed).Append("\n");
             sb.Append("  ApplePay: ").Append(ApplePay).Append("\n");
             sb.Append("  Bcmc: ").Append(Bcmc).Append("\n");
             sb.Append("  BusinessLineId: ").Append(BusinessLineId).Append("\n");
             sb.Append("  CartesBancaires: ").Append(CartesBancaires).Append("\n");
+            sb.Append("  Clearpay: ").Append(Clearpay).Append("\n");
             sb.Append("  Countries: ").Append(Countries).Append("\n");
             sb.Append("  Currencies: ").Append(Currencies).Append("\n");
             sb.Append("  CustomRoutingFlags: ").Append(CustomRoutingFlags).Append("\n");
@@ -302,6 +328,7 @@ namespace Adyen.Model.Management
             sb.Append("  Sofort: ").Append(Sofort).Append("\n");
             sb.Append("  StoreId: ").Append(StoreId).Append("\n");
             sb.Append("  Swish: ").Append(Swish).Append("\n");
+            sb.Append("  Twint: ").Append(Twint).Append("\n");
             sb.Append("  Type: ").Append(Type).Append("\n");
             sb.Append("  VerificationStatus: ").Append(VerificationStatus).Append("\n");
             sb.Append("  Vipps: ").Append(Vipps).Append("\n");
@@ -341,6 +368,11 @@ namespace Adyen.Model.Management
             }
             return 
                 (
+                    this.AfterpayTouch == input.AfterpayTouch ||
+                    (this.AfterpayTouch != null &&
+                    this.AfterpayTouch.Equals(input.AfterpayTouch))
+                ) && 
+                (
                     this.Allowed == input.Allowed ||
                     this.Allowed.Equals(input.Allowed)
                 ) && 
@@ -363,6 +395,11 @@ namespace Adyen.Model.Management
                     this.CartesBancaires == input.CartesBancaires ||
                     (this.CartesBancaires != null &&
                     this.CartesBancaires.Equals(input.CartesBancaires))
+                ) && 
+                (
+                    this.Clearpay == input.Clearpay ||
+                    (this.Clearpay != null &&
+                    this.Clearpay.Equals(input.Clearpay))
                 ) && 
                 (
                     this.Countries == input.Countries ||
@@ -442,6 +479,11 @@ namespace Adyen.Model.Management
                     this.Swish.Equals(input.Swish))
                 ) && 
                 (
+                    this.Twint == input.Twint ||
+                    (this.Twint != null &&
+                    this.Twint.Equals(input.Twint))
+                ) && 
+                (
                     this.Type == input.Type ||
                     (this.Type != null &&
                     this.Type.Equals(input.Type))
@@ -466,6 +508,10 @@ namespace Adyen.Model.Management
             unchecked // Overflow is fine, just wrap
             {
                 int hashCode = 41;
+                if (this.AfterpayTouch != null)
+                {
+                    hashCode = (hashCode * 59) + this.AfterpayTouch.GetHashCode();
+                }
                 hashCode = (hashCode * 59) + this.Allowed.GetHashCode();
                 if (this.ApplePay != null)
                 {
@@ -482,6 +528,10 @@ namespace Adyen.Model.Management
                 if (this.CartesBancaires != null)
                 {
                     hashCode = (hashCode * 59) + this.CartesBancaires.GetHashCode();
+                }
+                if (this.Clearpay != null)
+                {
+                    hashCode = (hashCode * 59) + this.Clearpay.GetHashCode();
                 }
                 if (this.Countries != null)
                 {
@@ -539,6 +589,10 @@ namespace Adyen.Model.Management
                 if (this.Swish != null)
                 {
                     hashCode = (hashCode * 59) + this.Swish.GetHashCode();
+                }
+                if (this.Twint != null)
+                {
+                    hashCode = (hashCode * 59) + this.Twint.GetHashCode();
                 }
                 if (this.Type != null)
                 {

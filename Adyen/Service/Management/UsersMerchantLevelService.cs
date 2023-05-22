@@ -28,6 +28,44 @@ namespace Adyen.Service.Management
     public interface IUsersMerchantLevelService
     {
         /// <summary>
+        /// Create a new user
+        /// </summary>
+        /// <param name="merchantId"><see cref="string"/> - Unique identifier of the merchant.</param>
+        /// <param name="createMerchantUserRequest"><see cref="CreateMerchantUserRequest"/> - </param>
+        /// <param name="requestOptions"><see cref="RequestOptions"/> - Additional request options.</param>
+        /// <returns><see cref="CreateUserResponse"/>.</returns>
+        CreateUserResponse CreateNewUser(string merchantId, CreateMerchantUserRequest createMerchantUserRequest, RequestOptions requestOptions = default);
+        
+        /// <summary>
+        /// Create a new user
+        /// </summary>
+        /// <param name="merchantId"><see cref="string"/> - Unique identifier of the merchant.</param>
+        /// <param name="createMerchantUserRequest"><see cref="CreateMerchantUserRequest"/> - </param>
+        /// <param name="requestOptions"><see cref="RequestOptions"/> - Additional request options.</param>
+        /// <param name="cancellationToken"> A CancellationToken enables cooperative cancellation between threads, thread pool work items, or Task objects.</param>
+        /// <returns>Task of <see cref="CreateUserResponse"/>.</returns>
+        Task<CreateUserResponse> CreateNewUserAsync(string merchantId, CreateMerchantUserRequest createMerchantUserRequest, RequestOptions requestOptions = default, CancellationToken cancellationToken = default);
+        
+        /// <summary>
+        /// Get user details
+        /// </summary>
+        /// <param name="merchantId"><see cref="string"/> - Unique identifier of the merchant.</param>
+        /// <param name="userId"><see cref="string"/> - Unique identifier of the user.</param>
+        /// <param name="requestOptions"><see cref="RequestOptions"/> - Additional request options.</param>
+        /// <returns><see cref="User"/>.</returns>
+        User GetUserDetails(string merchantId, string userId, RequestOptions requestOptions = default);
+        
+        /// <summary>
+        /// Get user details
+        /// </summary>
+        /// <param name="merchantId"><see cref="string"/> - Unique identifier of the merchant.</param>
+        /// <param name="userId"><see cref="string"/> - Unique identifier of the user.</param>
+        /// <param name="requestOptions"><see cref="RequestOptions"/> - Additional request options.</param>
+        /// <param name="cancellationToken"> A CancellationToken enables cooperative cancellation between threads, thread pool work items, or Task objects.</param>
+        /// <returns>Task of <see cref="User"/>.</returns>
+        Task<User> GetUserDetailsAsync(string merchantId, string userId, RequestOptions requestOptions = default, CancellationToken cancellationToken = default);
+        
+        /// <summary>
         /// Get a list of users
         /// </summary>
         /// <param name="merchantId"><see cref="string"/> - Unique identifier of the merchant.</param>
@@ -51,25 +89,6 @@ namespace Adyen.Service.Management
         Task<ListMerchantUsersResponse> ListUsersAsync(string merchantId, int? pageNumber = default, int? pageSize = default, string username = default, RequestOptions requestOptions = default, CancellationToken cancellationToken = default);
         
         /// <summary>
-        /// Get user details
-        /// </summary>
-        /// <param name="merchantId"><see cref="string"/> - Unique identifier of the merchant.</param>
-        /// <param name="userId"><see cref="string"/> - Unique identifier of the user.</param>
-        /// <param name="requestOptions"><see cref="RequestOptions"/> - Additional request options.</param>
-        /// <returns><see cref="User"/>.</returns>
-        User GetUserDetails(string merchantId, string userId, RequestOptions requestOptions = default);
-        
-        /// <summary>
-        /// Get user details
-        /// </summary>
-        /// <param name="merchantId"><see cref="string"/> - Unique identifier of the merchant.</param>
-        /// <param name="userId"><see cref="string"/> - Unique identifier of the user.</param>
-        /// <param name="requestOptions"><see cref="RequestOptions"/> - Additional request options.</param>
-        /// <param name="cancellationToken"> A CancellationToken enables cooperative cancellation between threads, thread pool work items, or Task objects.</param>
-        /// <returns>Task of <see cref="User"/>.</returns>
-        Task<User> GetUserDetailsAsync(string merchantId, string userId, RequestOptions requestOptions = default, CancellationToken cancellationToken = default);
-        
-        /// <summary>
         /// Update a user
         /// </summary>
         /// <param name="merchantId"><see cref="string"/> - Unique identifier of the merchant.</param>
@@ -90,25 +109,6 @@ namespace Adyen.Service.Management
         /// <returns>Task of <see cref="User"/>.</returns>
         Task<User> UpdateUserAsync(string merchantId, string userId, UpdateMerchantUserRequest updateMerchantUserRequest, RequestOptions requestOptions = default, CancellationToken cancellationToken = default);
         
-        /// <summary>
-        /// Create a new user
-        /// </summary>
-        /// <param name="merchantId"><see cref="string"/> - Unique identifier of the merchant.</param>
-        /// <param name="createMerchantUserRequest"><see cref="CreateMerchantUserRequest"/> - </param>
-        /// <param name="requestOptions"><see cref="RequestOptions"/> - Additional request options.</param>
-        /// <returns><see cref="CreateUserResponse"/>.</returns>
-        CreateUserResponse CreateNewUser(string merchantId, CreateMerchantUserRequest createMerchantUserRequest, RequestOptions requestOptions = default);
-        
-        /// <summary>
-        /// Create a new user
-        /// </summary>
-        /// <param name="merchantId"><see cref="string"/> - Unique identifier of the merchant.</param>
-        /// <param name="createMerchantUserRequest"><see cref="CreateMerchantUserRequest"/> - </param>
-        /// <param name="requestOptions"><see cref="RequestOptions"/> - Additional request options.</param>
-        /// <param name="cancellationToken"> A CancellationToken enables cooperative cancellation between threads, thread pool work items, or Task objects.</param>
-        /// <returns>Task of <see cref="CreateUserResponse"/>.</returns>
-        Task<CreateUserResponse> CreateNewUserAsync(string merchantId, CreateMerchantUserRequest createMerchantUserRequest, RequestOptions requestOptions = default, CancellationToken cancellationToken = default);
-        
     }
     
     /// <summary>
@@ -121,6 +121,30 @@ namespace Adyen.Service.Management
         public UsersMerchantLevelService(Client client) : base(client)
         {
             _baseUrl = CreateBaseUrl("https://management-test.adyen.com/v1");
+        }
+        
+        public CreateUserResponse CreateNewUser(string merchantId, CreateMerchantUserRequest createMerchantUserRequest, RequestOptions requestOptions = default)
+        {
+            return CreateNewUserAsync(merchantId, createMerchantUserRequest, requestOptions).ConfigureAwait(false).GetAwaiter().GetResult();
+        }
+
+        public async Task<CreateUserResponse> CreateNewUserAsync(string merchantId, CreateMerchantUserRequest createMerchantUserRequest, RequestOptions requestOptions = default, CancellationToken cancellationToken = default)
+        {
+            var endpoint = _baseUrl + $"/merchants/{merchantId}/users";
+            var resource = new ServiceResource(this, endpoint);
+            return await resource.RequestAsync<CreateUserResponse>(createMerchantUserRequest.ToJson(), requestOptions, new HttpMethod("POST"), cancellationToken).ConfigureAwait(false);
+        }
+        
+        public User GetUserDetails(string merchantId, string userId, RequestOptions requestOptions = default)
+        {
+            return GetUserDetailsAsync(merchantId, userId, requestOptions).ConfigureAwait(false).GetAwaiter().GetResult();
+        }
+
+        public async Task<User> GetUserDetailsAsync(string merchantId, string userId, RequestOptions requestOptions = default, CancellationToken cancellationToken = default)
+        {
+            var endpoint = _baseUrl + $"/merchants/{merchantId}/users/{userId}";
+            var resource = new ServiceResource(this, endpoint);
+            return await resource.RequestAsync<User>(null, requestOptions, new HttpMethod("GET"), cancellationToken).ConfigureAwait(false);
         }
         
         public ListMerchantUsersResponse ListUsers(string merchantId, int? pageNumber = default, int? pageSize = default, string username = default, RequestOptions requestOptions = default)
@@ -140,18 +164,6 @@ namespace Adyen.Service.Management
             return await resource.RequestAsync<ListMerchantUsersResponse>(null, requestOptions, new HttpMethod("GET"), cancellationToken).ConfigureAwait(false);
         }
         
-        public User GetUserDetails(string merchantId, string userId, RequestOptions requestOptions = default)
-        {
-            return GetUserDetailsAsync(merchantId, userId, requestOptions).ConfigureAwait(false).GetAwaiter().GetResult();
-        }
-
-        public async Task<User> GetUserDetailsAsync(string merchantId, string userId, RequestOptions requestOptions = default, CancellationToken cancellationToken = default)
-        {
-            var endpoint = _baseUrl + $"/merchants/{merchantId}/users/{userId}";
-            var resource = new ServiceResource(this, endpoint);
-            return await resource.RequestAsync<User>(null, requestOptions, new HttpMethod("GET"), cancellationToken).ConfigureAwait(false);
-        }
-        
         public User UpdateUser(string merchantId, string userId, UpdateMerchantUserRequest updateMerchantUserRequest, RequestOptions requestOptions = default)
         {
             return UpdateUserAsync(merchantId, userId, updateMerchantUserRequest, requestOptions).ConfigureAwait(false).GetAwaiter().GetResult();
@@ -162,18 +174,6 @@ namespace Adyen.Service.Management
             var endpoint = _baseUrl + $"/merchants/{merchantId}/users/{userId}";
             var resource = new ServiceResource(this, endpoint);
             return await resource.RequestAsync<User>(updateMerchantUserRequest.ToJson(), requestOptions, new HttpMethod("PATCH"), cancellationToken).ConfigureAwait(false);
-        }
-        
-        public CreateUserResponse CreateNewUser(string merchantId, CreateMerchantUserRequest createMerchantUserRequest, RequestOptions requestOptions = default)
-        {
-            return CreateNewUserAsync(merchantId, createMerchantUserRequest, requestOptions).ConfigureAwait(false).GetAwaiter().GetResult();
-        }
-
-        public async Task<CreateUserResponse> CreateNewUserAsync(string merchantId, CreateMerchantUserRequest createMerchantUserRequest, RequestOptions requestOptions = default, CancellationToken cancellationToken = default)
-        {
-            var endpoint = _baseUrl + $"/merchants/{merchantId}/users";
-            var resource = new ServiceResource(this, endpoint);
-            return await resource.RequestAsync<CreateUserResponse>(createMerchantUserRequest.ToJson(), requestOptions, new HttpMethod("POST"), cancellationToken).ConfigureAwait(false);
         }
     }
 }

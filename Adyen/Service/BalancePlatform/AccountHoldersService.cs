@@ -28,6 +28,23 @@ namespace Adyen.Service.BalancePlatform
     public interface IAccountHoldersService
     {
         /// <summary>
+        /// Create an account holder
+        /// </summary>
+        /// <param name="accountHolderInfo"><see cref="AccountHolderInfo"/> - </param>
+        /// <param name="requestOptions"><see cref="RequestOptions"/> - Additional request options.</param>
+        /// <returns><see cref="AccountHolder"/>.</returns>
+        AccountHolder CreateAccountHolder(AccountHolderInfo accountHolderInfo, RequestOptions requestOptions = default);
+        
+        /// <summary>
+        /// Create an account holder
+        /// </summary>
+        /// <param name="accountHolderInfo"><see cref="AccountHolderInfo"/> - </param>
+        /// <param name="requestOptions"><see cref="RequestOptions"/> - Additional request options.</param>
+        /// <param name="cancellationToken"> A CancellationToken enables cooperative cancellation between threads, thread pool work items, or Task objects.</param>
+        /// <returns>Task of <see cref="AccountHolder"/>.</returns>
+        Task<AccountHolder> CreateAccountHolderAsync(AccountHolderInfo accountHolderInfo, RequestOptions requestOptions = default, CancellationToken cancellationToken = default);
+        
+        /// <summary>
         /// Get an account holder
         /// </summary>
         /// <param name="id"><see cref="string"/> - The unique identifier of the account holder.</param>
@@ -84,23 +101,6 @@ namespace Adyen.Service.BalancePlatform
         /// <returns>Task of <see cref="AccountHolder"/>.</returns>
         Task<AccountHolder> UpdateAccountHolderAsync(string id, AccountHolder accountHolder, RequestOptions requestOptions = default, CancellationToken cancellationToken = default);
         
-        /// <summary>
-        /// Create an account holder
-        /// </summary>
-        /// <param name="accountHolderInfo"><see cref="AccountHolderInfo"/> - </param>
-        /// <param name="requestOptions"><see cref="RequestOptions"/> - Additional request options.</param>
-        /// <returns><see cref="AccountHolder"/>.</returns>
-        AccountHolder CreateAccountHolder(AccountHolderInfo accountHolderInfo, RequestOptions requestOptions = default);
-        
-        /// <summary>
-        /// Create an account holder
-        /// </summary>
-        /// <param name="accountHolderInfo"><see cref="AccountHolderInfo"/> - </param>
-        /// <param name="requestOptions"><see cref="RequestOptions"/> - Additional request options.</param>
-        /// <param name="cancellationToken"> A CancellationToken enables cooperative cancellation between threads, thread pool work items, or Task objects.</param>
-        /// <returns>Task of <see cref="AccountHolder"/>.</returns>
-        Task<AccountHolder> CreateAccountHolderAsync(AccountHolderInfo accountHolderInfo, RequestOptions requestOptions = default, CancellationToken cancellationToken = default);
-        
     }
     
     /// <summary>
@@ -113,6 +113,18 @@ namespace Adyen.Service.BalancePlatform
         public AccountHoldersService(Client client) : base(client)
         {
             _baseUrl = CreateBaseUrl("https://balanceplatform-api-test.adyen.com/bcl/v2");
+        }
+        
+        public AccountHolder CreateAccountHolder(AccountHolderInfo accountHolderInfo, RequestOptions requestOptions = default)
+        {
+            return CreateAccountHolderAsync(accountHolderInfo, requestOptions).ConfigureAwait(false).GetAwaiter().GetResult();
+        }
+
+        public async Task<AccountHolder> CreateAccountHolderAsync(AccountHolderInfo accountHolderInfo, RequestOptions requestOptions = default, CancellationToken cancellationToken = default)
+        {
+            var endpoint = _baseUrl + "/accountHolders";
+            var resource = new ServiceResource(this, endpoint);
+            return await resource.RequestAsync<AccountHolder>(accountHolderInfo.ToJson(), requestOptions, new HttpMethod("POST"), cancellationToken).ConfigureAwait(false);
         }
         
         public AccountHolder GetAccountHolder(string id, RequestOptions requestOptions = default)
@@ -153,18 +165,6 @@ namespace Adyen.Service.BalancePlatform
             var endpoint = _baseUrl + $"/accountHolders/{id}";
             var resource = new ServiceResource(this, endpoint);
             return await resource.RequestAsync<AccountHolder>(accountHolder.ToJson(), requestOptions, new HttpMethod("PATCH"), cancellationToken).ConfigureAwait(false);
-        }
-        
-        public AccountHolder CreateAccountHolder(AccountHolderInfo accountHolderInfo, RequestOptions requestOptions = default)
-        {
-            return CreateAccountHolderAsync(accountHolderInfo, requestOptions).ConfigureAwait(false).GetAwaiter().GetResult();
-        }
-
-        public async Task<AccountHolder> CreateAccountHolderAsync(AccountHolderInfo accountHolderInfo, RequestOptions requestOptions = default, CancellationToken cancellationToken = default)
-        {
-            var endpoint = _baseUrl + "/accountHolders";
-            var resource = new ServiceResource(this, endpoint);
-            return await resource.RequestAsync<AccountHolder>(accountHolderInfo.ToJson(), requestOptions, new HttpMethod("POST"), cancellationToken).ConfigureAwait(false);
         }
     }
 }

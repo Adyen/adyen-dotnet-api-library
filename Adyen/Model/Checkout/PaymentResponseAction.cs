@@ -275,6 +275,7 @@ namespace Adyen.Model.Checkout
             }
             int match = 0;
             List<string> matchedTypes = new List<string>();
+            var type = (string)JObject.Parse(jsonString)["type"];
 
             try
             {
@@ -287,8 +288,11 @@ namespace Adyen.Model.Checkout
                 {
                     newPaymentResponseAction = new PaymentResponseAction(JsonConvert.DeserializeObject<CheckoutAwaitAction>(jsonString, PaymentResponseAction.AdditionalPropertiesSerializerSettings));
                 }
-                matchedTypes.Add("CheckoutAwaitAction");
-                match++;
+                if (type != null || JsonConvert.SerializeObject((CheckoutAwaitAction.TypeEnum) 1).Contains(type))
+                {
+                    matchedTypes.Add("CheckoutAwaitAction");
+                    match++;
+                }
             }
             catch (Exception ex)
             {
@@ -309,8 +313,11 @@ namespace Adyen.Model.Checkout
                 {
                     newPaymentResponseAction = new PaymentResponseAction(JsonConvert.DeserializeObject<CheckoutNativeRedirectAction>(jsonString, PaymentResponseAction.AdditionalPropertiesSerializerSettings));
                 }
-                matchedTypes.Add("CheckoutNativeRedirectAction");
-                match++;
+                if (type != null || JsonConvert.SerializeObject((CheckoutNativeRedirectAction.TypeEnum) 1).Contains(type))
+                {
+                    matchedTypes.Add("CheckoutNativeRedirectAction");
+                    match++;
+                }
             }
             catch (Exception ex)
             {
@@ -331,8 +338,11 @@ namespace Adyen.Model.Checkout
                 {
                     newPaymentResponseAction = new PaymentResponseAction(JsonConvert.DeserializeObject<CheckoutQrCodeAction>(jsonString, PaymentResponseAction.AdditionalPropertiesSerializerSettings));
                 }
-                matchedTypes.Add("CheckoutQrCodeAction");
-                match++;
+                if (type != null || JsonConvert.SerializeObject((CheckoutQrCodeAction.TypeEnum) 1).Contains(type))
+                {
+                    matchedTypes.Add("CheckoutQrCodeAction");
+                    match++;
+                }
             }
             catch (Exception ex)
             {
@@ -353,8 +363,11 @@ namespace Adyen.Model.Checkout
                 {
                     newPaymentResponseAction = new PaymentResponseAction(JsonConvert.DeserializeObject<CheckoutRedirectAction>(jsonString, PaymentResponseAction.AdditionalPropertiesSerializerSettings));
                 }
-                matchedTypes.Add("CheckoutRedirectAction");
-                match++;
+                if (type != null || JsonConvert.SerializeObject((CheckoutRedirectAction.TypeEnum) 1).Contains(type))
+                {
+                    matchedTypes.Add("CheckoutRedirectAction");
+                    match++;
+                }
             }
             catch (Exception ex)
             {
@@ -375,8 +388,11 @@ namespace Adyen.Model.Checkout
                 {
                     newPaymentResponseAction = new PaymentResponseAction(JsonConvert.DeserializeObject<CheckoutSDKAction>(jsonString, PaymentResponseAction.AdditionalPropertiesSerializerSettings));
                 }
-                matchedTypes.Add("CheckoutSDKAction");
-                match++;
+                if (type != null || JsonConvert.SerializeObject((CheckoutSDKAction.TypeEnum) 1).Contains(type))
+                {
+                    matchedTypes.Add("CheckoutSDKAction");
+                    match++;
+                }
             }
             catch (Exception ex)
             {
@@ -397,8 +413,11 @@ namespace Adyen.Model.Checkout
                 {
                     newPaymentResponseAction = new PaymentResponseAction(JsonConvert.DeserializeObject<CheckoutThreeDS2Action>(jsonString, PaymentResponseAction.AdditionalPropertiesSerializerSettings));
                 }
-                matchedTypes.Add("CheckoutThreeDS2Action");
-                match++;
+                if (type != null || JsonConvert.SerializeObject((CheckoutThreeDS2Action.TypeEnum) 1).Contains(type))
+                {
+                    matchedTypes.Add("CheckoutThreeDS2Action");
+                    match++;
+                }
             }
             catch (Exception ex)
             {
@@ -419,8 +438,11 @@ namespace Adyen.Model.Checkout
                 {
                     newPaymentResponseAction = new PaymentResponseAction(JsonConvert.DeserializeObject<CheckoutVoucherAction>(jsonString, PaymentResponseAction.AdditionalPropertiesSerializerSettings));
                 }
-                matchedTypes.Add("CheckoutVoucherAction");
-                match++;
+                if (type != null || JsonConvert.SerializeObject((CheckoutVoucherAction.TypeEnum) 1).Contains(type))
+                {
+                    matchedTypes.Add("CheckoutVoucherAction");
+                    match++;
+                }
             }
             catch (Exception ex)
             {
@@ -434,11 +456,7 @@ namespace Adyen.Model.Checkout
             {
                 throw new InvalidDataException("The JSON string `" + jsonString + "` cannot be deserialized into any schema defined.");
             }
-            else if (match > 1)
-            {
-                throw new InvalidDataException("The JSON string `" + jsonString + "` incorrectly matches more than one schema (should be exactly one match): " + matchedTypes);
-            }
-
+            
             // deserialization is considered successful at this point if no exception has been thrown.
             return newPaymentResponseAction;
         }

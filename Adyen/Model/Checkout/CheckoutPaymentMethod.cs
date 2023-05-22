@@ -1107,6 +1107,7 @@ namespace Adyen.Model.Checkout
             }
             int match = 0;
             List<string> matchedTypes = new List<string>();
+            var type = (string)JObject.Parse(jsonString)["type"];
 
             try
             {
@@ -1119,8 +1120,11 @@ namespace Adyen.Model.Checkout
                 {
                     newCheckoutPaymentMethod = new CheckoutPaymentMethod(JsonConvert.DeserializeObject<AchDetails>(jsonString, CheckoutPaymentMethod.AdditionalPropertiesSerializerSettings));
                 }
-                matchedTypes.Add("AchDetails");
-                match++;
+                if (type != null || JsonConvert.SerializeObject((AchDetails.TypeEnum) 1).Contains(type))
+                {
+                    matchedTypes.Add("AchDetails");
+                    match++;
+                }
             }
             catch (Exception ex)
             {
@@ -1141,8 +1145,11 @@ namespace Adyen.Model.Checkout
                 {
                     newCheckoutPaymentMethod = new CheckoutPaymentMethod(JsonConvert.DeserializeObject<AfterpayDetails>(jsonString, CheckoutPaymentMethod.AdditionalPropertiesSerializerSettings));
                 }
-                matchedTypes.Add("AfterpayDetails");
-                match++;
+                if (type != null || JsonConvert.SerializeObject((AfterpayDetails.TypeEnum) 1).Contains(type))
+                {
+                    matchedTypes.Add("AfterpayDetails");
+                    match++;
+                }
             }
             catch (Exception ex)
             {
@@ -1163,8 +1170,11 @@ namespace Adyen.Model.Checkout
                 {
                     newCheckoutPaymentMethod = new CheckoutPaymentMethod(JsonConvert.DeserializeObject<AmazonPayDetails>(jsonString, CheckoutPaymentMethod.AdditionalPropertiesSerializerSettings));
                 }
-                matchedTypes.Add("AmazonPayDetails");
-                match++;
+                if (type != null || JsonConvert.SerializeObject((AmazonPayDetails.TypeEnum) 1).Contains(type))
+                {
+                    matchedTypes.Add("AmazonPayDetails");
+                    match++;
+                }
             }
             catch (Exception ex)
             {
@@ -1185,8 +1195,11 @@ namespace Adyen.Model.Checkout
                 {
                     newCheckoutPaymentMethod = new CheckoutPaymentMethod(JsonConvert.DeserializeObject<AndroidPayDetails>(jsonString, CheckoutPaymentMethod.AdditionalPropertiesSerializerSettings));
                 }
-                matchedTypes.Add("AndroidPayDetails");
-                match++;
+                if (type != null || JsonConvert.SerializeObject((AndroidPayDetails.TypeEnum) 1).Contains(type))
+                {
+                    matchedTypes.Add("AndroidPayDetails");
+                    match++;
+                }
             }
             catch (Exception ex)
             {
@@ -1207,8 +1220,11 @@ namespace Adyen.Model.Checkout
                 {
                     newCheckoutPaymentMethod = new CheckoutPaymentMethod(JsonConvert.DeserializeObject<ApplePayDetails>(jsonString, CheckoutPaymentMethod.AdditionalPropertiesSerializerSettings));
                 }
-                matchedTypes.Add("ApplePayDetails");
-                match++;
+                if (type != null || JsonConvert.SerializeObject((ApplePayDetails.TypeEnum) 1).Contains(type))
+                {
+                    matchedTypes.Add("ApplePayDetails");
+                    match++;
+                }
             }
             catch (Exception ex)
             {
@@ -1229,8 +1245,11 @@ namespace Adyen.Model.Checkout
                 {
                     newCheckoutPaymentMethod = new CheckoutPaymentMethod(JsonConvert.DeserializeObject<BacsDirectDebitDetails>(jsonString, CheckoutPaymentMethod.AdditionalPropertiesSerializerSettings));
                 }
-                matchedTypes.Add("BacsDirectDebitDetails");
-                match++;
+                if (type != null || JsonConvert.SerializeObject((BacsDirectDebitDetails.TypeEnum) 1).Contains(type))
+                {
+                    matchedTypes.Add("BacsDirectDebitDetails");
+                    match++;
+                }
             }
             catch (Exception ex)
             {
@@ -1251,8 +1270,11 @@ namespace Adyen.Model.Checkout
                 {
                     newCheckoutPaymentMethod = new CheckoutPaymentMethod(JsonConvert.DeserializeObject<BillDeskDetails>(jsonString, CheckoutPaymentMethod.AdditionalPropertiesSerializerSettings));
                 }
-                matchedTypes.Add("BillDeskDetails");
-                match++;
+                if (type != null || JsonConvert.SerializeObject((BillDeskDetails.TypeEnum) 1).Contains(type))
+                {
+                    matchedTypes.Add("BillDeskDetails");
+                    match++;
+                }
             }
             catch (Exception ex)
             {
@@ -1273,8 +1295,11 @@ namespace Adyen.Model.Checkout
                 {
                     newCheckoutPaymentMethod = new CheckoutPaymentMethod(JsonConvert.DeserializeObject<BlikDetails>(jsonString, CheckoutPaymentMethod.AdditionalPropertiesSerializerSettings));
                 }
-                matchedTypes.Add("BlikDetails");
-                match++;
+                if (type != null || JsonConvert.SerializeObject((BlikDetails.TypeEnum) 1).Contains(type))
+                {
+                    matchedTypes.Add("BlikDetails");
+                    match++;
+                }
             }
             catch (Exception ex)
             {
@@ -1295,8 +1320,11 @@ namespace Adyen.Model.Checkout
                 {
                     newCheckoutPaymentMethod = new CheckoutPaymentMethod(JsonConvert.DeserializeObject<CardDetails>(jsonString, CheckoutPaymentMethod.AdditionalPropertiesSerializerSettings));
                 }
-                matchedTypes.Add("CardDetails");
-                match++;
+                if (type != null || JsonConvert.SerializeObject((CardDetails.TypeEnum) 1).Contains(type))
+                {
+                    matchedTypes.Add("CardDetails");
+                    match++;
+                }
             }
             catch (Exception ex)
             {
@@ -1317,8 +1345,11 @@ namespace Adyen.Model.Checkout
                 {
                     newCheckoutPaymentMethod = new CheckoutPaymentMethod(JsonConvert.DeserializeObject<CellulantDetails>(jsonString, CheckoutPaymentMethod.AdditionalPropertiesSerializerSettings));
                 }
-                matchedTypes.Add("CellulantDetails");
-                match++;
+                if (type != null || JsonConvert.SerializeObject((CellulantDetails.TypeEnum) 1).Contains(type))
+                {
+                    matchedTypes.Add("CellulantDetails");
+                    match++;
+                }
             }
             catch (Exception ex)
             {
@@ -1339,8 +1370,11 @@ namespace Adyen.Model.Checkout
                 {
                     newCheckoutPaymentMethod = new CheckoutPaymentMethod(JsonConvert.DeserializeObject<DokuDetails>(jsonString, CheckoutPaymentMethod.AdditionalPropertiesSerializerSettings));
                 }
-                matchedTypes.Add("DokuDetails");
-                match++;
+                if (type != null || JsonConvert.SerializeObject((DokuDetails.TypeEnum) 1).Contains(type))
+                {
+                    matchedTypes.Add("DokuDetails");
+                    match++;
+                }
             }
             catch (Exception ex)
             {
@@ -1361,8 +1395,11 @@ namespace Adyen.Model.Checkout
                 {
                     newCheckoutPaymentMethod = new CheckoutPaymentMethod(JsonConvert.DeserializeObject<DotpayDetails>(jsonString, CheckoutPaymentMethod.AdditionalPropertiesSerializerSettings));
                 }
-                matchedTypes.Add("DotpayDetails");
-                match++;
+                if (type != null || JsonConvert.SerializeObject((DotpayDetails.TypeEnum) 1).Contains(type))
+                {
+                    matchedTypes.Add("DotpayDetails");
+                    match++;
+                }
             }
             catch (Exception ex)
             {
@@ -1383,8 +1420,11 @@ namespace Adyen.Model.Checkout
                 {
                     newCheckoutPaymentMethod = new CheckoutPaymentMethod(JsonConvert.DeserializeObject<DragonpayDetails>(jsonString, CheckoutPaymentMethod.AdditionalPropertiesSerializerSettings));
                 }
-                matchedTypes.Add("DragonpayDetails");
-                match++;
+                if (type != null || JsonConvert.SerializeObject((DragonpayDetails.TypeEnum) 1).Contains(type))
+                {
+                    matchedTypes.Add("DragonpayDetails");
+                    match++;
+                }
             }
             catch (Exception ex)
             {
@@ -1405,8 +1445,11 @@ namespace Adyen.Model.Checkout
                 {
                     newCheckoutPaymentMethod = new CheckoutPaymentMethod(JsonConvert.DeserializeObject<EcontextVoucherDetails>(jsonString, CheckoutPaymentMethod.AdditionalPropertiesSerializerSettings));
                 }
-                matchedTypes.Add("EcontextVoucherDetails");
-                match++;
+                if (type != null || JsonConvert.SerializeObject((EcontextVoucherDetails.TypeEnum) 1).Contains(type))
+                {
+                    matchedTypes.Add("EcontextVoucherDetails");
+                    match++;
+                }
             }
             catch (Exception ex)
             {
@@ -1427,8 +1470,11 @@ namespace Adyen.Model.Checkout
                 {
                     newCheckoutPaymentMethod = new CheckoutPaymentMethod(JsonConvert.DeserializeObject<GenericIssuerPaymentMethodDetails>(jsonString, CheckoutPaymentMethod.AdditionalPropertiesSerializerSettings));
                 }
-                matchedTypes.Add("GenericIssuerPaymentMethodDetails");
-                match++;
+                if (type != null || JsonConvert.SerializeObject((GenericIssuerPaymentMethodDetails.TypeEnum) 1).Contains(type))
+                {
+                    matchedTypes.Add("GenericIssuerPaymentMethodDetails");
+                    match++;
+                }
             }
             catch (Exception ex)
             {
@@ -1449,8 +1495,11 @@ namespace Adyen.Model.Checkout
                 {
                     newCheckoutPaymentMethod = new CheckoutPaymentMethod(JsonConvert.DeserializeObject<GiropayDetails>(jsonString, CheckoutPaymentMethod.AdditionalPropertiesSerializerSettings));
                 }
-                matchedTypes.Add("GiropayDetails");
-                match++;
+                if (type != null || JsonConvert.SerializeObject((GiropayDetails.TypeEnum) 1).Contains(type))
+                {
+                    matchedTypes.Add("GiropayDetails");
+                    match++;
+                }
             }
             catch (Exception ex)
             {
@@ -1471,8 +1520,11 @@ namespace Adyen.Model.Checkout
                 {
                     newCheckoutPaymentMethod = new CheckoutPaymentMethod(JsonConvert.DeserializeObject<GooglePayDetails>(jsonString, CheckoutPaymentMethod.AdditionalPropertiesSerializerSettings));
                 }
-                matchedTypes.Add("GooglePayDetails");
-                match++;
+                if (type != null || JsonConvert.SerializeObject((GooglePayDetails.TypeEnum) 1).Contains(type))
+                {
+                    matchedTypes.Add("GooglePayDetails");
+                    match++;
+                }
             }
             catch (Exception ex)
             {
@@ -1493,8 +1545,11 @@ namespace Adyen.Model.Checkout
                 {
                     newCheckoutPaymentMethod = new CheckoutPaymentMethod(JsonConvert.DeserializeObject<IdealDetails>(jsonString, CheckoutPaymentMethod.AdditionalPropertiesSerializerSettings));
                 }
-                matchedTypes.Add("IdealDetails");
-                match++;
+                if (type != null || JsonConvert.SerializeObject((IdealDetails.TypeEnum) 1).Contains(type))
+                {
+                    matchedTypes.Add("IdealDetails");
+                    match++;
+                }
             }
             catch (Exception ex)
             {
@@ -1515,8 +1570,11 @@ namespace Adyen.Model.Checkout
                 {
                     newCheckoutPaymentMethod = new CheckoutPaymentMethod(JsonConvert.DeserializeObject<KlarnaDetails>(jsonString, CheckoutPaymentMethod.AdditionalPropertiesSerializerSettings));
                 }
-                matchedTypes.Add("KlarnaDetails");
-                match++;
+                if (type != null || JsonConvert.SerializeObject((KlarnaDetails.TypeEnum) 1).Contains(type))
+                {
+                    matchedTypes.Add("KlarnaDetails");
+                    match++;
+                }
             }
             catch (Exception ex)
             {
@@ -1537,8 +1595,11 @@ namespace Adyen.Model.Checkout
                 {
                     newCheckoutPaymentMethod = new CheckoutPaymentMethod(JsonConvert.DeserializeObject<MasterpassDetails>(jsonString, CheckoutPaymentMethod.AdditionalPropertiesSerializerSettings));
                 }
-                matchedTypes.Add("MasterpassDetails");
-                match++;
+                if (type != null || JsonConvert.SerializeObject((MasterpassDetails.TypeEnum) 1).Contains(type))
+                {
+                    matchedTypes.Add("MasterpassDetails");
+                    match++;
+                }
             }
             catch (Exception ex)
             {
@@ -1559,8 +1620,11 @@ namespace Adyen.Model.Checkout
                 {
                     newCheckoutPaymentMethod = new CheckoutPaymentMethod(JsonConvert.DeserializeObject<MbwayDetails>(jsonString, CheckoutPaymentMethod.AdditionalPropertiesSerializerSettings));
                 }
-                matchedTypes.Add("MbwayDetails");
-                match++;
+                if (type != null || JsonConvert.SerializeObject((MbwayDetails.TypeEnum) 1).Contains(type))
+                {
+                    matchedTypes.Add("MbwayDetails");
+                    match++;
+                }
             }
             catch (Exception ex)
             {
@@ -1581,8 +1645,11 @@ namespace Adyen.Model.Checkout
                 {
                     newCheckoutPaymentMethod = new CheckoutPaymentMethod(JsonConvert.DeserializeObject<MobilePayDetails>(jsonString, CheckoutPaymentMethod.AdditionalPropertiesSerializerSettings));
                 }
-                matchedTypes.Add("MobilePayDetails");
-                match++;
+                if (type != null || JsonConvert.SerializeObject((MobilePayDetails.TypeEnum) 1).Contains(type))
+                {
+                    matchedTypes.Add("MobilePayDetails");
+                    match++;
+                }
             }
             catch (Exception ex)
             {
@@ -1603,8 +1670,11 @@ namespace Adyen.Model.Checkout
                 {
                     newCheckoutPaymentMethod = new CheckoutPaymentMethod(JsonConvert.DeserializeObject<MolPayDetails>(jsonString, CheckoutPaymentMethod.AdditionalPropertiesSerializerSettings));
                 }
-                matchedTypes.Add("MolPayDetails");
-                match++;
+                if (type != null || JsonConvert.SerializeObject((MolPayDetails.TypeEnum) 1).Contains(type))
+                {
+                    matchedTypes.Add("MolPayDetails");
+                    match++;
+                }
             }
             catch (Exception ex)
             {
@@ -1625,8 +1695,11 @@ namespace Adyen.Model.Checkout
                 {
                     newCheckoutPaymentMethod = new CheckoutPaymentMethod(JsonConvert.DeserializeObject<OpenInvoiceDetails>(jsonString, CheckoutPaymentMethod.AdditionalPropertiesSerializerSettings));
                 }
-                matchedTypes.Add("OpenInvoiceDetails");
-                match++;
+                if (type != null || JsonConvert.SerializeObject((OpenInvoiceDetails.TypeEnum) 1).Contains(type))
+                {
+                    matchedTypes.Add("OpenInvoiceDetails");
+                    match++;
+                }
             }
             catch (Exception ex)
             {
@@ -1647,8 +1720,11 @@ namespace Adyen.Model.Checkout
                 {
                     newCheckoutPaymentMethod = new CheckoutPaymentMethod(JsonConvert.DeserializeObject<PayPalDetails>(jsonString, CheckoutPaymentMethod.AdditionalPropertiesSerializerSettings));
                 }
-                matchedTypes.Add("PayPalDetails");
-                match++;
+                if (type != null || JsonConvert.SerializeObject((PayPalDetails.TypeEnum) 1).Contains(type))
+                {
+                    matchedTypes.Add("PayPalDetails");
+                    match++;
+                }
             }
             catch (Exception ex)
             {
@@ -1669,8 +1745,11 @@ namespace Adyen.Model.Checkout
                 {
                     newCheckoutPaymentMethod = new CheckoutPaymentMethod(JsonConvert.DeserializeObject<PayUUpiDetails>(jsonString, CheckoutPaymentMethod.AdditionalPropertiesSerializerSettings));
                 }
-                matchedTypes.Add("PayUUpiDetails");
-                match++;
+                if (type != null || JsonConvert.SerializeObject((PayUUpiDetails.TypeEnum) 1).Contains(type))
+                {
+                    matchedTypes.Add("PayUUpiDetails");
+                    match++;
+                }
             }
             catch (Exception ex)
             {
@@ -1691,8 +1770,11 @@ namespace Adyen.Model.Checkout
                 {
                     newCheckoutPaymentMethod = new CheckoutPaymentMethod(JsonConvert.DeserializeObject<PayWithGoogleDetails>(jsonString, CheckoutPaymentMethod.AdditionalPropertiesSerializerSettings));
                 }
-                matchedTypes.Add("PayWithGoogleDetails");
-                match++;
+                if (type != null || JsonConvert.SerializeObject((PayWithGoogleDetails.TypeEnum) 1).Contains(type))
+                {
+                    matchedTypes.Add("PayWithGoogleDetails");
+                    match++;
+                }
             }
             catch (Exception ex)
             {
@@ -1713,8 +1795,11 @@ namespace Adyen.Model.Checkout
                 {
                     newCheckoutPaymentMethod = new CheckoutPaymentMethod(JsonConvert.DeserializeObject<PaymentDetails>(jsonString, CheckoutPaymentMethod.AdditionalPropertiesSerializerSettings));
                 }
-                matchedTypes.Add("PaymentDetails");
-                match++;
+                if (type != null || JsonConvert.SerializeObject((PaymentDetails.TypeEnum) 1).Contains(type))
+                {
+                    matchedTypes.Add("PaymentDetails");
+                    match++;
+                }
             }
             catch (Exception ex)
             {
@@ -1735,8 +1820,11 @@ namespace Adyen.Model.Checkout
                 {
                     newCheckoutPaymentMethod = new CheckoutPaymentMethod(JsonConvert.DeserializeObject<RatepayDetails>(jsonString, CheckoutPaymentMethod.AdditionalPropertiesSerializerSettings));
                 }
-                matchedTypes.Add("RatepayDetails");
-                match++;
+                if (type != null || JsonConvert.SerializeObject((RatepayDetails.TypeEnum) 1).Contains(type))
+                {
+                    matchedTypes.Add("RatepayDetails");
+                    match++;
+                }
             }
             catch (Exception ex)
             {
@@ -1757,8 +1845,11 @@ namespace Adyen.Model.Checkout
                 {
                     newCheckoutPaymentMethod = new CheckoutPaymentMethod(JsonConvert.DeserializeObject<SamsungPayDetails>(jsonString, CheckoutPaymentMethod.AdditionalPropertiesSerializerSettings));
                 }
-                matchedTypes.Add("SamsungPayDetails");
-                match++;
+                if (type != null || JsonConvert.SerializeObject((SamsungPayDetails.TypeEnum) 1).Contains(type))
+                {
+                    matchedTypes.Add("SamsungPayDetails");
+                    match++;
+                }
             }
             catch (Exception ex)
             {
@@ -1779,8 +1870,11 @@ namespace Adyen.Model.Checkout
                 {
                     newCheckoutPaymentMethod = new CheckoutPaymentMethod(JsonConvert.DeserializeObject<SepaDirectDebitDetails>(jsonString, CheckoutPaymentMethod.AdditionalPropertiesSerializerSettings));
                 }
-                matchedTypes.Add("SepaDirectDebitDetails");
-                match++;
+                if (type != null || JsonConvert.SerializeObject((SepaDirectDebitDetails.TypeEnum) 1).Contains(type))
+                {
+                    matchedTypes.Add("SepaDirectDebitDetails");
+                    match++;
+                }
             }
             catch (Exception ex)
             {
@@ -1801,8 +1895,11 @@ namespace Adyen.Model.Checkout
                 {
                     newCheckoutPaymentMethod = new CheckoutPaymentMethod(JsonConvert.DeserializeObject<StoredPaymentMethodDetails>(jsonString, CheckoutPaymentMethod.AdditionalPropertiesSerializerSettings));
                 }
-                matchedTypes.Add("StoredPaymentMethodDetails");
-                match++;
+                if (type != null || JsonConvert.SerializeObject((StoredPaymentMethodDetails.TypeEnum) 1).Contains(type))
+                {
+                    matchedTypes.Add("StoredPaymentMethodDetails");
+                    match++;
+                }
             }
             catch (Exception ex)
             {
@@ -1823,8 +1920,11 @@ namespace Adyen.Model.Checkout
                 {
                     newCheckoutPaymentMethod = new CheckoutPaymentMethod(JsonConvert.DeserializeObject<UpiCollectDetails>(jsonString, CheckoutPaymentMethod.AdditionalPropertiesSerializerSettings));
                 }
-                matchedTypes.Add("UpiCollectDetails");
-                match++;
+                if (type != null || JsonConvert.SerializeObject((UpiCollectDetails.TypeEnum) 1).Contains(type))
+                {
+                    matchedTypes.Add("UpiCollectDetails");
+                    match++;
+                }
             }
             catch (Exception ex)
             {
@@ -1845,8 +1945,11 @@ namespace Adyen.Model.Checkout
                 {
                     newCheckoutPaymentMethod = new CheckoutPaymentMethod(JsonConvert.DeserializeObject<UpiIntentDetails>(jsonString, CheckoutPaymentMethod.AdditionalPropertiesSerializerSettings));
                 }
-                matchedTypes.Add("UpiIntentDetails");
-                match++;
+                if (type != null || JsonConvert.SerializeObject((UpiIntentDetails.TypeEnum) 1).Contains(type))
+                {
+                    matchedTypes.Add("UpiIntentDetails");
+                    match++;
+                }
             }
             catch (Exception ex)
             {
@@ -1867,8 +1970,11 @@ namespace Adyen.Model.Checkout
                 {
                     newCheckoutPaymentMethod = new CheckoutPaymentMethod(JsonConvert.DeserializeObject<VippsDetails>(jsonString, CheckoutPaymentMethod.AdditionalPropertiesSerializerSettings));
                 }
-                matchedTypes.Add("VippsDetails");
-                match++;
+                if (type != null || JsonConvert.SerializeObject((VippsDetails.TypeEnum) 1).Contains(type))
+                {
+                    matchedTypes.Add("VippsDetails");
+                    match++;
+                }
             }
             catch (Exception ex)
             {
@@ -1889,8 +1995,11 @@ namespace Adyen.Model.Checkout
                 {
                     newCheckoutPaymentMethod = new CheckoutPaymentMethod(JsonConvert.DeserializeObject<VisaCheckoutDetails>(jsonString, CheckoutPaymentMethod.AdditionalPropertiesSerializerSettings));
                 }
-                matchedTypes.Add("VisaCheckoutDetails");
-                match++;
+                if (type != null || JsonConvert.SerializeObject((VisaCheckoutDetails.TypeEnum) 1).Contains(type))
+                {
+                    matchedTypes.Add("VisaCheckoutDetails");
+                    match++;
+                }
             }
             catch (Exception ex)
             {
@@ -1911,8 +2020,11 @@ namespace Adyen.Model.Checkout
                 {
                     newCheckoutPaymentMethod = new CheckoutPaymentMethod(JsonConvert.DeserializeObject<WeChatPayDetails>(jsonString, CheckoutPaymentMethod.AdditionalPropertiesSerializerSettings));
                 }
-                matchedTypes.Add("WeChatPayDetails");
-                match++;
+                if (type != null || JsonConvert.SerializeObject((WeChatPayDetails.TypeEnum) 1).Contains(type))
+                {
+                    matchedTypes.Add("WeChatPayDetails");
+                    match++;
+                }
             }
             catch (Exception ex)
             {
@@ -1933,8 +2045,11 @@ namespace Adyen.Model.Checkout
                 {
                     newCheckoutPaymentMethod = new CheckoutPaymentMethod(JsonConvert.DeserializeObject<WeChatPayMiniProgramDetails>(jsonString, CheckoutPaymentMethod.AdditionalPropertiesSerializerSettings));
                 }
-                matchedTypes.Add("WeChatPayMiniProgramDetails");
-                match++;
+                if (type != null || JsonConvert.SerializeObject((WeChatPayMiniProgramDetails.TypeEnum) 1).Contains(type))
+                {
+                    matchedTypes.Add("WeChatPayMiniProgramDetails");
+                    match++;
+                }
             }
             catch (Exception ex)
             {
@@ -1955,8 +2070,11 @@ namespace Adyen.Model.Checkout
                 {
                     newCheckoutPaymentMethod = new CheckoutPaymentMethod(JsonConvert.DeserializeObject<ZipDetails>(jsonString, CheckoutPaymentMethod.AdditionalPropertiesSerializerSettings));
                 }
-                matchedTypes.Add("ZipDetails");
-                match++;
+                if (type != null || JsonConvert.SerializeObject((ZipDetails.TypeEnum) 1).Contains(type))
+                {
+                    matchedTypes.Add("ZipDetails");
+                    match++;
+                }
             }
             catch (Exception ex)
             {
@@ -1970,11 +2088,7 @@ namespace Adyen.Model.Checkout
             {
                 throw new InvalidDataException("The JSON string `" + jsonString + "` cannot be deserialized into any schema defined.");
             }
-            else if (match > 1)
-            {
-                throw new InvalidDataException("The JSON string `" + jsonString + "` incorrectly matches more than one schema (should be exactly one match): " + matchedTypes);
-            }
-
+            
             // deserialization is considered successful at this point if no exception has been thrown.
             return newCheckoutPaymentMethod;
         }

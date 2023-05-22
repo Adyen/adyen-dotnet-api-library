@@ -28,6 +28,25 @@ namespace Adyen.Service.Management
     public interface ITerminalActionsCompanyLevelService
     {
         /// <summary>
+        /// Get terminal action
+        /// </summary>
+        /// <param name="companyId"><see cref="string"/> - The unique identifier of the company account.</param>
+        /// <param name="actionId"><see cref="string"/> - The unique identifier of the terminal action.</param>
+        /// <param name="requestOptions"><see cref="RequestOptions"/> - Additional request options.</param>
+        /// <returns><see cref="ExternalTerminalAction"/>.</returns>
+        ExternalTerminalAction GetTerminalAction(string companyId, string actionId, RequestOptions requestOptions = default);
+        
+        /// <summary>
+        /// Get terminal action
+        /// </summary>
+        /// <param name="companyId"><see cref="string"/> - The unique identifier of the company account.</param>
+        /// <param name="actionId"><see cref="string"/> - The unique identifier of the terminal action.</param>
+        /// <param name="requestOptions"><see cref="RequestOptions"/> - Additional request options.</param>
+        /// <param name="cancellationToken"> A CancellationToken enables cooperative cancellation between threads, thread pool work items, or Task objects.</param>
+        /// <returns>Task of <see cref="ExternalTerminalAction"/>.</returns>
+        Task<ExternalTerminalAction> GetTerminalActionAsync(string companyId, string actionId, RequestOptions requestOptions = default, CancellationToken cancellationToken = default);
+        
+        /// <summary>
         /// Get a list of Android apps
         /// </summary>
         /// <param name="companyId"><see cref="string"/> - The unique identifier of the company account.</param>
@@ -94,25 +113,6 @@ namespace Adyen.Service.Management
         /// <returns>Task of <see cref="ListExternalTerminalActionsResponse"/>.</returns>
         Task<ListExternalTerminalActionsResponse> ListTerminalActionsAsync(string companyId, int? pageNumber = default, int? pageSize = default, string status = default, string type = default, RequestOptions requestOptions = default, CancellationToken cancellationToken = default);
         
-        /// <summary>
-        /// Get terminal action
-        /// </summary>
-        /// <param name="companyId"><see cref="string"/> - The unique identifier of the company account.</param>
-        /// <param name="actionId"><see cref="string"/> - The unique identifier of the terminal action.</param>
-        /// <param name="requestOptions"><see cref="RequestOptions"/> - Additional request options.</param>
-        /// <returns><see cref="ExternalTerminalAction"/>.</returns>
-        ExternalTerminalAction GetTerminalAction(string companyId, string actionId, RequestOptions requestOptions = default);
-        
-        /// <summary>
-        /// Get terminal action
-        /// </summary>
-        /// <param name="companyId"><see cref="string"/> - The unique identifier of the company account.</param>
-        /// <param name="actionId"><see cref="string"/> - The unique identifier of the terminal action.</param>
-        /// <param name="requestOptions"><see cref="RequestOptions"/> - Additional request options.</param>
-        /// <param name="cancellationToken"> A CancellationToken enables cooperative cancellation between threads, thread pool work items, or Task objects.</param>
-        /// <returns>Task of <see cref="ExternalTerminalAction"/>.</returns>
-        Task<ExternalTerminalAction> GetTerminalActionAsync(string companyId, string actionId, RequestOptions requestOptions = default, CancellationToken cancellationToken = default);
-        
     }
     
     /// <summary>
@@ -125,6 +125,18 @@ namespace Adyen.Service.Management
         public TerminalActionsCompanyLevelService(Client client) : base(client)
         {
             _baseUrl = CreateBaseUrl("https://management-test.adyen.com/v1");
+        }
+        
+        public ExternalTerminalAction GetTerminalAction(string companyId, string actionId, RequestOptions requestOptions = default)
+        {
+            return GetTerminalActionAsync(companyId, actionId, requestOptions).ConfigureAwait(false).GetAwaiter().GetResult();
+        }
+
+        public async Task<ExternalTerminalAction> GetTerminalActionAsync(string companyId, string actionId, RequestOptions requestOptions = default, CancellationToken cancellationToken = default)
+        {
+            var endpoint = _baseUrl + $"/companies/{companyId}/terminalActions/{actionId}";
+            var resource = new ServiceResource(this, endpoint);
+            return await resource.RequestAsync<ExternalTerminalAction>(null, requestOptions, new HttpMethod("GET"), cancellationToken).ConfigureAwait(false);
         }
         
         public AndroidAppsResponse ListAndroidApps(string companyId, int? pageNumber = default, int? pageSize = default, RequestOptions requestOptions = default)
@@ -175,18 +187,6 @@ namespace Adyen.Service.Management
             var endpoint = _baseUrl + $"/companies/{companyId}/terminalActions" + ToQueryString(queryParams);
             var resource = new ServiceResource(this, endpoint);
             return await resource.RequestAsync<ListExternalTerminalActionsResponse>(null, requestOptions, new HttpMethod("GET"), cancellationToken).ConfigureAwait(false);
-        }
-        
-        public ExternalTerminalAction GetTerminalAction(string companyId, string actionId, RequestOptions requestOptions = default)
-        {
-            return GetTerminalActionAsync(companyId, actionId, requestOptions).ConfigureAwait(false).GetAwaiter().GetResult();
-        }
-
-        public async Task<ExternalTerminalAction> GetTerminalActionAsync(string companyId, string actionId, RequestOptions requestOptions = default, CancellationToken cancellationToken = default)
-        {
-            var endpoint = _baseUrl + $"/companies/{companyId}/terminalActions/{actionId}";
-            var resource = new ServiceResource(this, endpoint);
-            return await resource.RequestAsync<ExternalTerminalAction>(null, requestOptions, new HttpMethod("GET"), cancellationToken).ConfigureAwait(false);
         }
     }
 }

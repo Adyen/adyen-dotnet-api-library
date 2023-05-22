@@ -28,21 +28,23 @@ namespace Adyen.Service.LegalEntityManagement
     public interface IPCIQuestionnairesService
     {
         /// <summary>
-        /// Get PCI questionnaire details
+        /// Generate PCI questionnaire
         /// </summary>
-        /// <param name="id"><see cref="string"/> - The unique identifier of the legal entity to get PCI questionnaire information.</param>
+        /// <param name="id"><see cref="string"/> - The legal entity ID of the individual who will sign the PCI questionnaire.</param>
+        /// <param name="generatePciDescriptionRequest"><see cref="GeneratePciDescriptionRequest"/> - </param>
         /// <param name="requestOptions"><see cref="RequestOptions"/> - Additional request options.</param>
-        /// <returns><see cref="GetPciQuestionnaireInfosResponse"/>.</returns>
-        GetPciQuestionnaireInfosResponse GetPciQuestionnaireDetails(string id, RequestOptions requestOptions = default);
+        /// <returns><see cref="GeneratePciDescriptionResponse"/>.</returns>
+        GeneratePciDescriptionResponse GeneratePciQuestionnaire(string id, GeneratePciDescriptionRequest generatePciDescriptionRequest, RequestOptions requestOptions = default);
         
         /// <summary>
-        /// Get PCI questionnaire details
+        /// Generate PCI questionnaire
         /// </summary>
-        /// <param name="id"><see cref="string"/> - The unique identifier of the legal entity to get PCI questionnaire information.</param>
+        /// <param name="id"><see cref="string"/> - The legal entity ID of the individual who will sign the PCI questionnaire.</param>
+        /// <param name="generatePciDescriptionRequest"><see cref="GeneratePciDescriptionRequest"/> - </param>
         /// <param name="requestOptions"><see cref="RequestOptions"/> - Additional request options.</param>
         /// <param name="cancellationToken"> A CancellationToken enables cooperative cancellation between threads, thread pool work items, or Task objects.</param>
-        /// <returns>Task of <see cref="GetPciQuestionnaireInfosResponse"/>.</returns>
-        Task<GetPciQuestionnaireInfosResponse> GetPciQuestionnaireDetailsAsync(string id, RequestOptions requestOptions = default, CancellationToken cancellationToken = default);
+        /// <returns>Task of <see cref="GeneratePciDescriptionResponse"/>.</returns>
+        Task<GeneratePciDescriptionResponse> GeneratePciQuestionnaireAsync(string id, GeneratePciDescriptionRequest generatePciDescriptionRequest, RequestOptions requestOptions = default, CancellationToken cancellationToken = default);
         
         /// <summary>
         /// Get PCI questionnaire
@@ -64,23 +66,21 @@ namespace Adyen.Service.LegalEntityManagement
         Task<GetPciQuestionnaireResponse> GetPciQuestionnaireAsync(string id, string pciid, RequestOptions requestOptions = default, CancellationToken cancellationToken = default);
         
         /// <summary>
-        /// Generate PCI questionnaire
+        /// Get PCI questionnaire details
         /// </summary>
-        /// <param name="id"><see cref="string"/> - The legal entity ID of the individual who will sign the PCI questionnaire.</param>
-        /// <param name="generatePciDescriptionRequest"><see cref="GeneratePciDescriptionRequest"/> - </param>
+        /// <param name="id"><see cref="string"/> - The unique identifier of the legal entity to get PCI questionnaire information.</param>
         /// <param name="requestOptions"><see cref="RequestOptions"/> - Additional request options.</param>
-        /// <returns><see cref="GeneratePciDescriptionResponse"/>.</returns>
-        GeneratePciDescriptionResponse GeneratePciQuestionnaire(string id, GeneratePciDescriptionRequest generatePciDescriptionRequest, RequestOptions requestOptions = default);
+        /// <returns><see cref="GetPciQuestionnaireInfosResponse"/>.</returns>
+        GetPciQuestionnaireInfosResponse GetPciQuestionnaireDetails(string id, RequestOptions requestOptions = default);
         
         /// <summary>
-        /// Generate PCI questionnaire
+        /// Get PCI questionnaire details
         /// </summary>
-        /// <param name="id"><see cref="string"/> - The legal entity ID of the individual who will sign the PCI questionnaire.</param>
-        /// <param name="generatePciDescriptionRequest"><see cref="GeneratePciDescriptionRequest"/> - </param>
+        /// <param name="id"><see cref="string"/> - The unique identifier of the legal entity to get PCI questionnaire information.</param>
         /// <param name="requestOptions"><see cref="RequestOptions"/> - Additional request options.</param>
         /// <param name="cancellationToken"> A CancellationToken enables cooperative cancellation between threads, thread pool work items, or Task objects.</param>
-        /// <returns>Task of <see cref="GeneratePciDescriptionResponse"/>.</returns>
-        Task<GeneratePciDescriptionResponse> GeneratePciQuestionnaireAsync(string id, GeneratePciDescriptionRequest generatePciDescriptionRequest, RequestOptions requestOptions = default, CancellationToken cancellationToken = default);
+        /// <returns>Task of <see cref="GetPciQuestionnaireInfosResponse"/>.</returns>
+        Task<GetPciQuestionnaireInfosResponse> GetPciQuestionnaireDetailsAsync(string id, RequestOptions requestOptions = default, CancellationToken cancellationToken = default);
         
         /// <summary>
         /// Sign PCI questionnaire
@@ -115,16 +115,16 @@ namespace Adyen.Service.LegalEntityManagement
             _baseUrl = CreateBaseUrl("https://kyc-test.adyen.com/lem/v3");
         }
         
-        public GetPciQuestionnaireInfosResponse GetPciQuestionnaireDetails(string id, RequestOptions requestOptions = default)
+        public GeneratePciDescriptionResponse GeneratePciQuestionnaire(string id, GeneratePciDescriptionRequest generatePciDescriptionRequest, RequestOptions requestOptions = default)
         {
-            return GetPciQuestionnaireDetailsAsync(id, requestOptions).ConfigureAwait(false).GetAwaiter().GetResult();
+            return GeneratePciQuestionnaireAsync(id, generatePciDescriptionRequest, requestOptions).ConfigureAwait(false).GetAwaiter().GetResult();
         }
 
-        public async Task<GetPciQuestionnaireInfosResponse> GetPciQuestionnaireDetailsAsync(string id, RequestOptions requestOptions = default, CancellationToken cancellationToken = default)
+        public async Task<GeneratePciDescriptionResponse> GeneratePciQuestionnaireAsync(string id, GeneratePciDescriptionRequest generatePciDescriptionRequest, RequestOptions requestOptions = default, CancellationToken cancellationToken = default)
         {
-            var endpoint = _baseUrl + $"/legalEntities/{id}/pciQuestionnaires";
+            var endpoint = _baseUrl + $"/legalEntities/{id}/pciQuestionnaires/generatePciTemplates";
             var resource = new ServiceResource(this, endpoint);
-            return await resource.RequestAsync<GetPciQuestionnaireInfosResponse>(null, requestOptions, new HttpMethod("GET"), cancellationToken).ConfigureAwait(false);
+            return await resource.RequestAsync<GeneratePciDescriptionResponse>(generatePciDescriptionRequest.ToJson(), requestOptions, new HttpMethod("POST"), cancellationToken).ConfigureAwait(false);
         }
         
         public GetPciQuestionnaireResponse GetPciQuestionnaire(string id, string pciid, RequestOptions requestOptions = default)
@@ -139,16 +139,16 @@ namespace Adyen.Service.LegalEntityManagement
             return await resource.RequestAsync<GetPciQuestionnaireResponse>(null, requestOptions, new HttpMethod("GET"), cancellationToken).ConfigureAwait(false);
         }
         
-        public GeneratePciDescriptionResponse GeneratePciQuestionnaire(string id, GeneratePciDescriptionRequest generatePciDescriptionRequest, RequestOptions requestOptions = default)
+        public GetPciQuestionnaireInfosResponse GetPciQuestionnaireDetails(string id, RequestOptions requestOptions = default)
         {
-            return GeneratePciQuestionnaireAsync(id, generatePciDescriptionRequest, requestOptions).ConfigureAwait(false).GetAwaiter().GetResult();
+            return GetPciQuestionnaireDetailsAsync(id, requestOptions).ConfigureAwait(false).GetAwaiter().GetResult();
         }
 
-        public async Task<GeneratePciDescriptionResponse> GeneratePciQuestionnaireAsync(string id, GeneratePciDescriptionRequest generatePciDescriptionRequest, RequestOptions requestOptions = default, CancellationToken cancellationToken = default)
+        public async Task<GetPciQuestionnaireInfosResponse> GetPciQuestionnaireDetailsAsync(string id, RequestOptions requestOptions = default, CancellationToken cancellationToken = default)
         {
-            var endpoint = _baseUrl + $"/legalEntities/{id}/pciQuestionnaires/generatePciTemplates";
+            var endpoint = _baseUrl + $"/legalEntities/{id}/pciQuestionnaires";
             var resource = new ServiceResource(this, endpoint);
-            return await resource.RequestAsync<GeneratePciDescriptionResponse>(generatePciDescriptionRequest.ToJson(), requestOptions, new HttpMethod("POST"), cancellationToken).ConfigureAwait(false);
+            return await resource.RequestAsync<GetPciQuestionnaireInfosResponse>(null, requestOptions, new HttpMethod("GET"), cancellationToken).ConfigureAwait(false);
         }
         
         public PciSigningResponse SignPciQuestionnaire(string id, PciSigningRequest pciSigningRequest, RequestOptions requestOptions = default)

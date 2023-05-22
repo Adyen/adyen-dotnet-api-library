@@ -81,16 +81,34 @@ namespace Adyen.Model.Checkout
             Giftcard = 3,
 
             /// <summary>
+            /// Enum MealVoucherFRGroupeup for value: mealVoucher_FR_groupeup
+            /// </summary>
+            [EnumMember(Value = "mealVoucher_FR_groupeup")]
+            MealVoucherFRGroupeup = 4,
+
+            /// <summary>
+            /// Enum MealVoucherFRNatixis for value: mealVoucher_FR_natixis
+            /// </summary>
+            [EnumMember(Value = "mealVoucher_FR_natixis")]
+            MealVoucherFRNatixis = 5,
+
+            /// <summary>
+            /// Enum MealVoucherFRSodexo for value: mealVoucher_FR_sodexo
+            /// </summary>
+            [EnumMember(Value = "mealVoucher_FR_sodexo")]
+            MealVoucherFRSodexo = 6,
+
+            /// <summary>
             /// Enum Alliancedata for value: alliancedata
             /// </summary>
             [EnumMember(Value = "alliancedata")]
-            Alliancedata = 4,
+            Alliancedata = 7,
 
             /// <summary>
             /// Enum Card for value: card
             /// </summary>
             [EnumMember(Value = "card")]
-            Card = 5
+            Card = 8
 
         }
 

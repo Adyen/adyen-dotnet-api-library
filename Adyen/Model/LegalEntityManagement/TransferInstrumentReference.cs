@@ -73,9 +73,9 @@ namespace Adyen.Model.LegalEntityManagement
         public string RealLastFour { get; set; }
 
         /// <summary>
-        /// Identifies if the TI was created from a trusted source.
+        /// Identifies if the bank account was created through [instant bank verification](https://docs.adyen.com/release-notes/platforms-and-financial-products#releaseNote&#x3D;2023-05-08-hosted-onboarding).
         /// </summary>
-        /// <value>Identifies if the TI was created from a trusted source.</value>
+        /// <value>Identifies if the bank account was created through [instant bank verification](https://docs.adyen.com/release-notes/platforms-and-financial-products#releaseNote&#x3D;2023-05-08-hosted-onboarding).</value>
         [DataMember(Name = "trustedSource", EmitDefaultValue = false)]
         public bool TrustedSource { get; private set; }
 

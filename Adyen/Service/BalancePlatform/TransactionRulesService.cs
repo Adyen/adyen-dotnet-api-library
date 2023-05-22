@@ -28,6 +28,23 @@ namespace Adyen.Service.BalancePlatform
     public interface ITransactionRulesService
     {
         /// <summary>
+        /// Create a transaction rule
+        /// </summary>
+        /// <param name="transactionRuleInfo"><see cref="TransactionRuleInfo"/> - </param>
+        /// <param name="requestOptions"><see cref="RequestOptions"/> - Additional request options.</param>
+        /// <returns><see cref="TransactionRule"/>.</returns>
+        TransactionRule CreateTransactionRule(TransactionRuleInfo transactionRuleInfo, RequestOptions requestOptions = default);
+        
+        /// <summary>
+        /// Create a transaction rule
+        /// </summary>
+        /// <param name="transactionRuleInfo"><see cref="TransactionRuleInfo"/> - </param>
+        /// <param name="requestOptions"><see cref="RequestOptions"/> - Additional request options.</param>
+        /// <param name="cancellationToken"> A CancellationToken enables cooperative cancellation between threads, thread pool work items, or Task objects.</param>
+        /// <returns>Task of <see cref="TransactionRule"/>.</returns>
+        Task<TransactionRule> CreateTransactionRuleAsync(TransactionRuleInfo transactionRuleInfo, RequestOptions requestOptions = default, CancellationToken cancellationToken = default);
+        
+        /// <summary>
         /// Delete a transaction rule
         /// </summary>
         /// <param name="transactionRuleId"><see cref="string"/> - The unique identifier of the transaction rule.</param>
@@ -80,23 +97,6 @@ namespace Adyen.Service.BalancePlatform
         /// <returns>Task of <see cref="TransactionRule"/>.</returns>
         Task<TransactionRule> UpdateTransactionRuleAsync(string transactionRuleId, TransactionRuleInfo transactionRuleInfo, RequestOptions requestOptions = default, CancellationToken cancellationToken = default);
         
-        /// <summary>
-        /// Create a transaction rule
-        /// </summary>
-        /// <param name="transactionRuleInfo"><see cref="TransactionRuleInfo"/> - </param>
-        /// <param name="requestOptions"><see cref="RequestOptions"/> - Additional request options.</param>
-        /// <returns><see cref="TransactionRule"/>.</returns>
-        TransactionRule CreateTransactionRule(TransactionRuleInfo transactionRuleInfo, RequestOptions requestOptions = default);
-        
-        /// <summary>
-        /// Create a transaction rule
-        /// </summary>
-        /// <param name="transactionRuleInfo"><see cref="TransactionRuleInfo"/> - </param>
-        /// <param name="requestOptions"><see cref="RequestOptions"/> - Additional request options.</param>
-        /// <param name="cancellationToken"> A CancellationToken enables cooperative cancellation between threads, thread pool work items, or Task objects.</param>
-        /// <returns>Task of <see cref="TransactionRule"/>.</returns>
-        Task<TransactionRule> CreateTransactionRuleAsync(TransactionRuleInfo transactionRuleInfo, RequestOptions requestOptions = default, CancellationToken cancellationToken = default);
-        
     }
     
     /// <summary>
@@ -109,6 +109,18 @@ namespace Adyen.Service.BalancePlatform
         public TransactionRulesService(Client client) : base(client)
         {
             _baseUrl = CreateBaseUrl("https://balanceplatform-api-test.adyen.com/bcl/v2");
+        }
+        
+        public TransactionRule CreateTransactionRule(TransactionRuleInfo transactionRuleInfo, RequestOptions requestOptions = default)
+        {
+            return CreateTransactionRuleAsync(transactionRuleInfo, requestOptions).ConfigureAwait(false).GetAwaiter().GetResult();
+        }
+
+        public async Task<TransactionRule> CreateTransactionRuleAsync(TransactionRuleInfo transactionRuleInfo, RequestOptions requestOptions = default, CancellationToken cancellationToken = default)
+        {
+            var endpoint = _baseUrl + "/transactionRules";
+            var resource = new ServiceResource(this, endpoint);
+            return await resource.RequestAsync<TransactionRule>(transactionRuleInfo.ToJson(), requestOptions, new HttpMethod("POST"), cancellationToken).ConfigureAwait(false);
         }
         
         public TransactionRule DeleteTransactionRule(string transactionRuleId, RequestOptions requestOptions = default)
@@ -145,18 +157,6 @@ namespace Adyen.Service.BalancePlatform
             var endpoint = _baseUrl + $"/transactionRules/{transactionRuleId}";
             var resource = new ServiceResource(this, endpoint);
             return await resource.RequestAsync<TransactionRule>(transactionRuleInfo.ToJson(), requestOptions, new HttpMethod("PATCH"), cancellationToken).ConfigureAwait(false);
-        }
-        
-        public TransactionRule CreateTransactionRule(TransactionRuleInfo transactionRuleInfo, RequestOptions requestOptions = default)
-        {
-            return CreateTransactionRuleAsync(transactionRuleInfo, requestOptions).ConfigureAwait(false).GetAwaiter().GetResult();
-        }
-
-        public async Task<TransactionRule> CreateTransactionRuleAsync(TransactionRuleInfo transactionRuleInfo, RequestOptions requestOptions = default, CancellationToken cancellationToken = default)
-        {
-            var endpoint = _baseUrl + "/transactionRules";
-            var resource = new ServiceResource(this, endpoint);
-            return await resource.RequestAsync<TransactionRule>(transactionRuleInfo.ToJson(), requestOptions, new HttpMethod("POST"), cancellationToken).ConfigureAwait(false);
         }
     }
 }

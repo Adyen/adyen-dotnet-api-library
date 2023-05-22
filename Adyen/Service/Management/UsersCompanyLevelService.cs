@@ -28,6 +28,44 @@ namespace Adyen.Service.Management
     public interface IUsersCompanyLevelService
     {
         /// <summary>
+        /// Create a new user
+        /// </summary>
+        /// <param name="companyId"><see cref="string"/> - The unique identifier of the company account.</param>
+        /// <param name="createCompanyUserRequest"><see cref="CreateCompanyUserRequest"/> - </param>
+        /// <param name="requestOptions"><see cref="RequestOptions"/> - Additional request options.</param>
+        /// <returns><see cref="CreateCompanyUserResponse"/>.</returns>
+        CreateCompanyUserResponse CreateNewUser(string companyId, CreateCompanyUserRequest createCompanyUserRequest, RequestOptions requestOptions = default);
+        
+        /// <summary>
+        /// Create a new user
+        /// </summary>
+        /// <param name="companyId"><see cref="string"/> - The unique identifier of the company account.</param>
+        /// <param name="createCompanyUserRequest"><see cref="CreateCompanyUserRequest"/> - </param>
+        /// <param name="requestOptions"><see cref="RequestOptions"/> - Additional request options.</param>
+        /// <param name="cancellationToken"> A CancellationToken enables cooperative cancellation between threads, thread pool work items, or Task objects.</param>
+        /// <returns>Task of <see cref="CreateCompanyUserResponse"/>.</returns>
+        Task<CreateCompanyUserResponse> CreateNewUserAsync(string companyId, CreateCompanyUserRequest createCompanyUserRequest, RequestOptions requestOptions = default, CancellationToken cancellationToken = default);
+        
+        /// <summary>
+        /// Get user details
+        /// </summary>
+        /// <param name="companyId"><see cref="string"/> - The unique identifier of the company account.</param>
+        /// <param name="userId"><see cref="string"/> - The unique identifier of the user.</param>
+        /// <param name="requestOptions"><see cref="RequestOptions"/> - Additional request options.</param>
+        /// <returns><see cref="CompanyUser"/>.</returns>
+        CompanyUser GetUserDetails(string companyId, string userId, RequestOptions requestOptions = default);
+        
+        /// <summary>
+        /// Get user details
+        /// </summary>
+        /// <param name="companyId"><see cref="string"/> - The unique identifier of the company account.</param>
+        /// <param name="userId"><see cref="string"/> - The unique identifier of the user.</param>
+        /// <param name="requestOptions"><see cref="RequestOptions"/> - Additional request options.</param>
+        /// <param name="cancellationToken"> A CancellationToken enables cooperative cancellation between threads, thread pool work items, or Task objects.</param>
+        /// <returns>Task of <see cref="CompanyUser"/>.</returns>
+        Task<CompanyUser> GetUserDetailsAsync(string companyId, string userId, RequestOptions requestOptions = default, CancellationToken cancellationToken = default);
+        
+        /// <summary>
         /// Get a list of users
         /// </summary>
         /// <param name="companyId"><see cref="string"/> - The unique identifier of the company account.</param>
@@ -51,25 +89,6 @@ namespace Adyen.Service.Management
         Task<ListCompanyUsersResponse> ListUsersAsync(string companyId, int? pageNumber = default, int? pageSize = default, string username = default, RequestOptions requestOptions = default, CancellationToken cancellationToken = default);
         
         /// <summary>
-        /// Get user details
-        /// </summary>
-        /// <param name="companyId"><see cref="string"/> - The unique identifier of the company account.</param>
-        /// <param name="userId"><see cref="string"/> - The unique identifier of the user.</param>
-        /// <param name="requestOptions"><see cref="RequestOptions"/> - Additional request options.</param>
-        /// <returns><see cref="CompanyUser"/>.</returns>
-        CompanyUser GetUserDetails(string companyId, string userId, RequestOptions requestOptions = default);
-        
-        /// <summary>
-        /// Get user details
-        /// </summary>
-        /// <param name="companyId"><see cref="string"/> - The unique identifier of the company account.</param>
-        /// <param name="userId"><see cref="string"/> - The unique identifier of the user.</param>
-        /// <param name="requestOptions"><see cref="RequestOptions"/> - Additional request options.</param>
-        /// <param name="cancellationToken"> A CancellationToken enables cooperative cancellation between threads, thread pool work items, or Task objects.</param>
-        /// <returns>Task of <see cref="CompanyUser"/>.</returns>
-        Task<CompanyUser> GetUserDetailsAsync(string companyId, string userId, RequestOptions requestOptions = default, CancellationToken cancellationToken = default);
-        
-        /// <summary>
         /// Update user details
         /// </summary>
         /// <param name="companyId"><see cref="string"/> - The unique identifier of the company account.</param>
@@ -90,25 +109,6 @@ namespace Adyen.Service.Management
         /// <returns>Task of <see cref="CompanyUser"/>.</returns>
         Task<CompanyUser> UpdateUserDetailsAsync(string companyId, string userId, UpdateCompanyUserRequest updateCompanyUserRequest, RequestOptions requestOptions = default, CancellationToken cancellationToken = default);
         
-        /// <summary>
-        /// Create a new user
-        /// </summary>
-        /// <param name="companyId"><see cref="string"/> - The unique identifier of the company account.</param>
-        /// <param name="createCompanyUserRequest"><see cref="CreateCompanyUserRequest"/> - </param>
-        /// <param name="requestOptions"><see cref="RequestOptions"/> - Additional request options.</param>
-        /// <returns><see cref="CreateCompanyUserResponse"/>.</returns>
-        CreateCompanyUserResponse CreateNewUser(string companyId, CreateCompanyUserRequest createCompanyUserRequest, RequestOptions requestOptions = default);
-        
-        /// <summary>
-        /// Create a new user
-        /// </summary>
-        /// <param name="companyId"><see cref="string"/> - The unique identifier of the company account.</param>
-        /// <param name="createCompanyUserRequest"><see cref="CreateCompanyUserRequest"/> - </param>
-        /// <param name="requestOptions"><see cref="RequestOptions"/> - Additional request options.</param>
-        /// <param name="cancellationToken"> A CancellationToken enables cooperative cancellation between threads, thread pool work items, or Task objects.</param>
-        /// <returns>Task of <see cref="CreateCompanyUserResponse"/>.</returns>
-        Task<CreateCompanyUserResponse> CreateNewUserAsync(string companyId, CreateCompanyUserRequest createCompanyUserRequest, RequestOptions requestOptions = default, CancellationToken cancellationToken = default);
-        
     }
     
     /// <summary>
@@ -121,6 +121,30 @@ namespace Adyen.Service.Management
         public UsersCompanyLevelService(Client client) : base(client)
         {
             _baseUrl = CreateBaseUrl("https://management-test.adyen.com/v1");
+        }
+        
+        public CreateCompanyUserResponse CreateNewUser(string companyId, CreateCompanyUserRequest createCompanyUserRequest, RequestOptions requestOptions = default)
+        {
+            return CreateNewUserAsync(companyId, createCompanyUserRequest, requestOptions).ConfigureAwait(false).GetAwaiter().GetResult();
+        }
+
+        public async Task<CreateCompanyUserResponse> CreateNewUserAsync(string companyId, CreateCompanyUserRequest createCompanyUserRequest, RequestOptions requestOptions = default, CancellationToken cancellationToken = default)
+        {
+            var endpoint = _baseUrl + $"/companies/{companyId}/users";
+            var resource = new ServiceResource(this, endpoint);
+            return await resource.RequestAsync<CreateCompanyUserResponse>(createCompanyUserRequest.ToJson(), requestOptions, new HttpMethod("POST"), cancellationToken).ConfigureAwait(false);
+        }
+        
+        public CompanyUser GetUserDetails(string companyId, string userId, RequestOptions requestOptions = default)
+        {
+            return GetUserDetailsAsync(companyId, userId, requestOptions).ConfigureAwait(false).GetAwaiter().GetResult();
+        }
+
+        public async Task<CompanyUser> GetUserDetailsAsync(string companyId, string userId, RequestOptions requestOptions = default, CancellationToken cancellationToken = default)
+        {
+            var endpoint = _baseUrl + $"/companies/{companyId}/users/{userId}";
+            var resource = new ServiceResource(this, endpoint);
+            return await resource.RequestAsync<CompanyUser>(null, requestOptions, new HttpMethod("GET"), cancellationToken).ConfigureAwait(false);
         }
         
         public ListCompanyUsersResponse ListUsers(string companyId, int? pageNumber = default, int? pageSize = default, string username = default, RequestOptions requestOptions = default)
@@ -140,18 +164,6 @@ namespace Adyen.Service.Management
             return await resource.RequestAsync<ListCompanyUsersResponse>(null, requestOptions, new HttpMethod("GET"), cancellationToken).ConfigureAwait(false);
         }
         
-        public CompanyUser GetUserDetails(string companyId, string userId, RequestOptions requestOptions = default)
-        {
-            return GetUserDetailsAsync(companyId, userId, requestOptions).ConfigureAwait(false).GetAwaiter().GetResult();
-        }
-
-        public async Task<CompanyUser> GetUserDetailsAsync(string companyId, string userId, RequestOptions requestOptions = default, CancellationToken cancellationToken = default)
-        {
-            var endpoint = _baseUrl + $"/companies/{companyId}/users/{userId}";
-            var resource = new ServiceResource(this, endpoint);
-            return await resource.RequestAsync<CompanyUser>(null, requestOptions, new HttpMethod("GET"), cancellationToken).ConfigureAwait(false);
-        }
-        
         public CompanyUser UpdateUserDetails(string companyId, string userId, UpdateCompanyUserRequest updateCompanyUserRequest, RequestOptions requestOptions = default)
         {
             return UpdateUserDetailsAsync(companyId, userId, updateCompanyUserRequest, requestOptions).ConfigureAwait(false).GetAwaiter().GetResult();
@@ -162,18 +174,6 @@ namespace Adyen.Service.Management
             var endpoint = _baseUrl + $"/companies/{companyId}/users/{userId}";
             var resource = new ServiceResource(this, endpoint);
             return await resource.RequestAsync<CompanyUser>(updateCompanyUserRequest.ToJson(), requestOptions, new HttpMethod("PATCH"), cancellationToken).ConfigureAwait(false);
-        }
-        
-        public CreateCompanyUserResponse CreateNewUser(string companyId, CreateCompanyUserRequest createCompanyUserRequest, RequestOptions requestOptions = default)
-        {
-            return CreateNewUserAsync(companyId, createCompanyUserRequest, requestOptions).ConfigureAwait(false).GetAwaiter().GetResult();
-        }
-
-        public async Task<CreateCompanyUserResponse> CreateNewUserAsync(string companyId, CreateCompanyUserRequest createCompanyUserRequest, RequestOptions requestOptions = default, CancellationToken cancellationToken = default)
-        {
-            var endpoint = _baseUrl + $"/companies/{companyId}/users";
-            var resource = new ServiceResource(this, endpoint);
-            return await resource.RequestAsync<CreateCompanyUserResponse>(createCompanyUserRequest.ToJson(), requestOptions, new HttpMethod("POST"), cancellationToken).ConfigureAwait(false);
         }
     }
 }

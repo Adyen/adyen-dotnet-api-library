@@ -28,40 +28,31 @@ using OpenAPIDateConverter = Adyen.ApiSerialization.OpenAPIDateConverter;
 namespace Adyen.Model.Management
 {
     /// <summary>
-    /// VippsInfo
+    /// AfterpayTouchInfo
     /// </summary>
-    [DataContract(Name = "VippsInfo")]
-    public partial class VippsInfo : IEquatable<VippsInfo>, IValidatableObject
+    [DataContract(Name = "AfterpayTouchInfo")]
+    public partial class AfterpayTouchInfo : IEquatable<AfterpayTouchInfo>, IValidatableObject
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="VippsInfo" /> class.
+        /// Initializes a new instance of the <see cref="AfterpayTouchInfo" /> class.
         /// </summary>
         [JsonConstructorAttribute]
-        protected VippsInfo() { }
+        protected AfterpayTouchInfo() { }
         /// <summary>
-        /// Initializes a new instance of the <see cref="VippsInfo" /> class.
+        /// Initializes a new instance of the <see cref="AfterpayTouchInfo" /> class.
         /// </summary>
-        /// <param name="logo">Vipps logo. Format: Base64-encoded string. (required).</param>
-        /// <param name="subscriptionCancelUrl">Vipps subscription cancel url (required in case of [recurring payments](https://docs.adyen.com/online-payments/tokenization)).</param>
-        public VippsInfo(string logo = default(string), string subscriptionCancelUrl = default(string))
+        /// <param name="supportUrl">Support Url (required).</param>
+        public AfterpayTouchInfo(string supportUrl = default(string))
         {
-            this.Logo = logo;
-            this.SubscriptionCancelUrl = subscriptionCancelUrl;
+            this.SupportUrl = supportUrl;
         }
 
         /// <summary>
-        /// Vipps logo. Format: Base64-encoded string.
+        /// Support Url
         /// </summary>
-        /// <value>Vipps logo. Format: Base64-encoded string.</value>
-        [DataMember(Name = "logo", IsRequired = false, EmitDefaultValue = false)]
-        public string Logo { get; set; }
-
-        /// <summary>
-        /// Vipps subscription cancel url (required in case of [recurring payments](https://docs.adyen.com/online-payments/tokenization))
-        /// </summary>
-        /// <value>Vipps subscription cancel url (required in case of [recurring payments](https://docs.adyen.com/online-payments/tokenization))</value>
-        [DataMember(Name = "subscriptionCancelUrl", EmitDefaultValue = false)]
-        public string SubscriptionCancelUrl { get; set; }
+        /// <value>Support Url</value>
+        [DataMember(Name = "supportUrl", IsRequired = false, EmitDefaultValue = false)]
+        public string SupportUrl { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -70,9 +61,8 @@ namespace Adyen.Model.Management
         public override string ToString()
         {
             StringBuilder sb = new StringBuilder();
-            sb.Append("class VippsInfo {\n");
-            sb.Append("  Logo: ").Append(Logo).Append("\n");
-            sb.Append("  SubscriptionCancelUrl: ").Append(SubscriptionCancelUrl).Append("\n");
+            sb.Append("class AfterpayTouchInfo {\n");
+            sb.Append("  SupportUrl: ").Append(SupportUrl).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -93,15 +83,15 @@ namespace Adyen.Model.Management
         /// <returns>Boolean</returns>
         public override bool Equals(object input)
         {
-            return this.Equals(input as VippsInfo);
+            return this.Equals(input as AfterpayTouchInfo);
         }
 
         /// <summary>
-        /// Returns true if VippsInfo instances are equal
+        /// Returns true if AfterpayTouchInfo instances are equal
         /// </summary>
-        /// <param name="input">Instance of VippsInfo to be compared</param>
+        /// <param name="input">Instance of AfterpayTouchInfo to be compared</param>
         /// <returns>Boolean</returns>
-        public bool Equals(VippsInfo input)
+        public bool Equals(AfterpayTouchInfo input)
         {
             if (input == null)
             {
@@ -109,14 +99,9 @@ namespace Adyen.Model.Management
             }
             return 
                 (
-                    this.Logo == input.Logo ||
-                    (this.Logo != null &&
-                    this.Logo.Equals(input.Logo))
-                ) && 
-                (
-                    this.SubscriptionCancelUrl == input.SubscriptionCancelUrl ||
-                    (this.SubscriptionCancelUrl != null &&
-                    this.SubscriptionCancelUrl.Equals(input.SubscriptionCancelUrl))
+                    this.SupportUrl == input.SupportUrl ||
+                    (this.SupportUrl != null &&
+                    this.SupportUrl.Equals(input.SupportUrl))
                 );
         }
 
@@ -129,13 +114,9 @@ namespace Adyen.Model.Management
             unchecked // Overflow is fine, just wrap
             {
                 int hashCode = 41;
-                if (this.Logo != null)
+                if (this.SupportUrl != null)
                 {
-                    hashCode = (hashCode * 59) + this.Logo.GetHashCode();
-                }
-                if (this.SubscriptionCancelUrl != null)
-                {
-                    hashCode = (hashCode * 59) + this.SubscriptionCancelUrl.GetHashCode();
+                    hashCode = (hashCode * 59) + this.SupportUrl.GetHashCode();
                 }
                 return hashCode;
             }

@@ -28,141 +28,6 @@ namespace Adyen.Service.BalancePlatform
     public interface IBalanceAccountsService
     {
         /// <summary>
-        /// Delete a sweep
-        /// </summary>
-        /// <param name="balanceAccountId"><see cref="string"/> - The unique identifier of the balance account.</param>
-        /// <param name="sweepId"><see cref="string"/> - The unique identifier of the sweep.</param>
-        /// <param name="requestOptions"><see cref="RequestOptions"/> - Additional request options.</param>
-        void DeleteSweep(string balanceAccountId, string sweepId, RequestOptions requestOptions = default);
-        
-        /// <summary>
-        /// Delete a sweep
-        /// </summary>
-        /// <param name="balanceAccountId"><see cref="string"/> - The unique identifier of the balance account.</param>
-        /// <param name="sweepId"><see cref="string"/> - The unique identifier of the sweep.</param>
-        /// <param name="requestOptions"><see cref="RequestOptions"/> - Additional request options.</param>
-        /// <param name="cancellationToken"> A CancellationToken enables cooperative cancellation between threads, thread pool work items, or Task objects.</param>
-        Task DeleteSweepAsync(string balanceAccountId, string sweepId, RequestOptions requestOptions = default, CancellationToken cancellationToken = default);
-        
-        /// <summary>
-        /// Get all sweeps for a balance account
-        /// </summary>
-        /// <param name="balanceAccountId"><see cref="string"/> - The unique identifier of the balance account.</param>
-        /// <param name="offset"><see cref="int?"/> - The number of items that you want to skip.</param>
-        /// <param name="limit"><see cref="int?"/> - The number of items returned per page, maximum 100 items. By default, the response returns 10 items per page.</param>
-        /// <param name="requestOptions"><see cref="RequestOptions"/> - Additional request options.</param>
-        /// <returns><see cref="BalanceSweepConfigurationsResponse"/>.</returns>
-        BalanceSweepConfigurationsResponse GetAllSweepsForBalanceAccount(string balanceAccountId, int? offset = default, int? limit = default, RequestOptions requestOptions = default);
-        
-        /// <summary>
-        /// Get all sweeps for a balance account
-        /// </summary>
-        /// <param name="balanceAccountId"><see cref="string"/> - The unique identifier of the balance account.</param>
-        /// <param name="offset"><see cref="int?"/> - The number of items that you want to skip.</param>
-        /// <param name="limit"><see cref="int?"/> - The number of items returned per page, maximum 100 items. By default, the response returns 10 items per page.</param>
-        /// <param name="requestOptions"><see cref="RequestOptions"/> - Additional request options.</param>
-        /// <param name="cancellationToken"> A CancellationToken enables cooperative cancellation between threads, thread pool work items, or Task objects.</param>
-        /// <returns>Task of <see cref="BalanceSweepConfigurationsResponse"/>.</returns>
-        Task<BalanceSweepConfigurationsResponse> GetAllSweepsForBalanceAccountAsync(string balanceAccountId, int? offset = default, int? limit = default, RequestOptions requestOptions = default, CancellationToken cancellationToken = default);
-        
-        /// <summary>
-        /// Get a sweep
-        /// </summary>
-        /// <param name="balanceAccountId"><see cref="string"/> - The unique identifier of the balance account.</param>
-        /// <param name="sweepId"><see cref="string"/> - The unique identifier of the sweep.</param>
-        /// <param name="requestOptions"><see cref="RequestOptions"/> - Additional request options.</param>
-        /// <returns><see cref="SweepConfigurationV2"/>.</returns>
-        SweepConfigurationV2 GetSweep(string balanceAccountId, string sweepId, RequestOptions requestOptions = default);
-        
-        /// <summary>
-        /// Get a sweep
-        /// </summary>
-        /// <param name="balanceAccountId"><see cref="string"/> - The unique identifier of the balance account.</param>
-        /// <param name="sweepId"><see cref="string"/> - The unique identifier of the sweep.</param>
-        /// <param name="requestOptions"><see cref="RequestOptions"/> - Additional request options.</param>
-        /// <param name="cancellationToken"> A CancellationToken enables cooperative cancellation between threads, thread pool work items, or Task objects.</param>
-        /// <returns>Task of <see cref="SweepConfigurationV2"/>.</returns>
-        Task<SweepConfigurationV2> GetSweepAsync(string balanceAccountId, string sweepId, RequestOptions requestOptions = default, CancellationToken cancellationToken = default);
-        
-        /// <summary>
-        /// Get a balance account
-        /// </summary>
-        /// <param name="id"><see cref="string"/> - The unique identifier of the balance account.</param>
-        /// <param name="requestOptions"><see cref="RequestOptions"/> - Additional request options.</param>
-        /// <returns><see cref="BalanceAccount"/>.</returns>
-        BalanceAccount GetBalanceAccount(string id, RequestOptions requestOptions = default);
-        
-        /// <summary>
-        /// Get a balance account
-        /// </summary>
-        /// <param name="id"><see cref="string"/> - The unique identifier of the balance account.</param>
-        /// <param name="requestOptions"><see cref="RequestOptions"/> - Additional request options.</param>
-        /// <param name="cancellationToken"> A CancellationToken enables cooperative cancellation between threads, thread pool work items, or Task objects.</param>
-        /// <returns>Task of <see cref="BalanceAccount"/>.</returns>
-        Task<BalanceAccount> GetBalanceAccountAsync(string id, RequestOptions requestOptions = default, CancellationToken cancellationToken = default);
-        
-        /// <summary>
-        /// Get all payment instruments for a balance account
-        /// </summary>
-        /// <param name="id"><see cref="string"/> - The unique identifier of the balance account.</param>
-        /// <param name="offset"><see cref="int?"/> - The number of items that you want to skip.</param>
-        /// <param name="limit"><see cref="int?"/> - The number of items returned per page, maximum 100 items. By default, the response returns 10 items per page.</param>
-        /// <param name="requestOptions"><see cref="RequestOptions"/> - Additional request options.</param>
-        /// <returns><see cref="PaginatedPaymentInstrumentsResponse"/>.</returns>
-        PaginatedPaymentInstrumentsResponse GetAllPaymentInstrumentsForBalanceAccount(string id, int? offset = default, int? limit = default, RequestOptions requestOptions = default);
-        
-        /// <summary>
-        /// Get all payment instruments for a balance account
-        /// </summary>
-        /// <param name="id"><see cref="string"/> - The unique identifier of the balance account.</param>
-        /// <param name="offset"><see cref="int?"/> - The number of items that you want to skip.</param>
-        /// <param name="limit"><see cref="int?"/> - The number of items returned per page, maximum 100 items. By default, the response returns 10 items per page.</param>
-        /// <param name="requestOptions"><see cref="RequestOptions"/> - Additional request options.</param>
-        /// <param name="cancellationToken"> A CancellationToken enables cooperative cancellation between threads, thread pool work items, or Task objects.</param>
-        /// <returns>Task of <see cref="PaginatedPaymentInstrumentsResponse"/>.</returns>
-        Task<PaginatedPaymentInstrumentsResponse> GetAllPaymentInstrumentsForBalanceAccountAsync(string id, int? offset = default, int? limit = default, RequestOptions requestOptions = default, CancellationToken cancellationToken = default);
-        
-        /// <summary>
-        /// Update a sweep
-        /// </summary>
-        /// <param name="balanceAccountId"><see cref="string"/> - The unique identifier of the balance account.</param>
-        /// <param name="sweepId"><see cref="string"/> - The unique identifier of the sweep.</param>
-        /// <param name="sweepConfigurationV2"><see cref="SweepConfigurationV2"/> - </param>
-        /// <param name="requestOptions"><see cref="RequestOptions"/> - Additional request options.</param>
-        /// <returns><see cref="SweepConfigurationV2"/>.</returns>
-        SweepConfigurationV2 UpdateSweep(string balanceAccountId, string sweepId, SweepConfigurationV2 sweepConfigurationV2, RequestOptions requestOptions = default);
-        
-        /// <summary>
-        /// Update a sweep
-        /// </summary>
-        /// <param name="balanceAccountId"><see cref="string"/> - The unique identifier of the balance account.</param>
-        /// <param name="sweepId"><see cref="string"/> - The unique identifier of the sweep.</param>
-        /// <param name="sweepConfigurationV2"><see cref="SweepConfigurationV2"/> - </param>
-        /// <param name="requestOptions"><see cref="RequestOptions"/> - Additional request options.</param>
-        /// <param name="cancellationToken"> A CancellationToken enables cooperative cancellation between threads, thread pool work items, or Task objects.</param>
-        /// <returns>Task of <see cref="SweepConfigurationV2"/>.</returns>
-        Task<SweepConfigurationV2> UpdateSweepAsync(string balanceAccountId, string sweepId, SweepConfigurationV2 sweepConfigurationV2, RequestOptions requestOptions = default, CancellationToken cancellationToken = default);
-        
-        /// <summary>
-        /// Update a balance account
-        /// </summary>
-        /// <param name="id"><see cref="string"/> - The unique identifier of the balance account.</param>
-        /// <param name="balanceAccountUpdateRequest"><see cref="BalanceAccountUpdateRequest"/> - </param>
-        /// <param name="requestOptions"><see cref="RequestOptions"/> - Additional request options.</param>
-        /// <returns><see cref="BalanceAccount"/>.</returns>
-        BalanceAccount UpdateBalanceAccount(string id, BalanceAccountUpdateRequest balanceAccountUpdateRequest, RequestOptions requestOptions = default);
-        
-        /// <summary>
-        /// Update a balance account
-        /// </summary>
-        /// <param name="id"><see cref="string"/> - The unique identifier of the balance account.</param>
-        /// <param name="balanceAccountUpdateRequest"><see cref="BalanceAccountUpdateRequest"/> - </param>
-        /// <param name="requestOptions"><see cref="RequestOptions"/> - Additional request options.</param>
-        /// <param name="cancellationToken"> A CancellationToken enables cooperative cancellation between threads, thread pool work items, or Task objects.</param>
-        /// <returns>Task of <see cref="BalanceAccount"/>.</returns>
-        Task<BalanceAccount> UpdateBalanceAccountAsync(string id, BalanceAccountUpdateRequest balanceAccountUpdateRequest, RequestOptions requestOptions = default, CancellationToken cancellationToken = default);
-        
-        /// <summary>
         /// Create a balance account
         /// </summary>
         /// <param name="balanceAccountInfo"><see cref="BalanceAccountInfo"/> - </param>
@@ -198,6 +63,141 @@ namespace Adyen.Service.BalancePlatform
         /// <returns>Task of <see cref="SweepConfigurationV2"/>.</returns>
         Task<SweepConfigurationV2> CreateSweepAsync(string balanceAccountId, SweepConfigurationV2 sweepConfigurationV2, RequestOptions requestOptions = default, CancellationToken cancellationToken = default);
         
+        /// <summary>
+        /// Delete a sweep
+        /// </summary>
+        /// <param name="balanceAccountId"><see cref="string"/> - The unique identifier of the balance account.</param>
+        /// <param name="sweepId"><see cref="string"/> - The unique identifier of the sweep.</param>
+        /// <param name="requestOptions"><see cref="RequestOptions"/> - Additional request options.</param>
+        void DeleteSweep(string balanceAccountId, string sweepId, RequestOptions requestOptions = default);
+        
+        /// <summary>
+        /// Delete a sweep
+        /// </summary>
+        /// <param name="balanceAccountId"><see cref="string"/> - The unique identifier of the balance account.</param>
+        /// <param name="sweepId"><see cref="string"/> - The unique identifier of the sweep.</param>
+        /// <param name="requestOptions"><see cref="RequestOptions"/> - Additional request options.</param>
+        /// <param name="cancellationToken"> A CancellationToken enables cooperative cancellation between threads, thread pool work items, or Task objects.</param>
+        Task DeleteSweepAsync(string balanceAccountId, string sweepId, RequestOptions requestOptions = default, CancellationToken cancellationToken = default);
+        
+        /// <summary>
+        /// Get all payment instruments for a balance account
+        /// </summary>
+        /// <param name="id"><see cref="string"/> - The unique identifier of the balance account.</param>
+        /// <param name="offset"><see cref="int?"/> - The number of items that you want to skip.</param>
+        /// <param name="limit"><see cref="int?"/> - The number of items returned per page, maximum 100 items. By default, the response returns 10 items per page.</param>
+        /// <param name="requestOptions"><see cref="RequestOptions"/> - Additional request options.</param>
+        /// <returns><see cref="PaginatedPaymentInstrumentsResponse"/>.</returns>
+        PaginatedPaymentInstrumentsResponse GetAllPaymentInstrumentsForBalanceAccount(string id, int? offset = default, int? limit = default, RequestOptions requestOptions = default);
+        
+        /// <summary>
+        /// Get all payment instruments for a balance account
+        /// </summary>
+        /// <param name="id"><see cref="string"/> - The unique identifier of the balance account.</param>
+        /// <param name="offset"><see cref="int?"/> - The number of items that you want to skip.</param>
+        /// <param name="limit"><see cref="int?"/> - The number of items returned per page, maximum 100 items. By default, the response returns 10 items per page.</param>
+        /// <param name="requestOptions"><see cref="RequestOptions"/> - Additional request options.</param>
+        /// <param name="cancellationToken"> A CancellationToken enables cooperative cancellation between threads, thread pool work items, or Task objects.</param>
+        /// <returns>Task of <see cref="PaginatedPaymentInstrumentsResponse"/>.</returns>
+        Task<PaginatedPaymentInstrumentsResponse> GetAllPaymentInstrumentsForBalanceAccountAsync(string id, int? offset = default, int? limit = default, RequestOptions requestOptions = default, CancellationToken cancellationToken = default);
+        
+        /// <summary>
+        /// Get all sweeps for a balance account
+        /// </summary>
+        /// <param name="balanceAccountId"><see cref="string"/> - The unique identifier of the balance account.</param>
+        /// <param name="offset"><see cref="int?"/> - The number of items that you want to skip.</param>
+        /// <param name="limit"><see cref="int?"/> - The number of items returned per page, maximum 100 items. By default, the response returns 10 items per page.</param>
+        /// <param name="requestOptions"><see cref="RequestOptions"/> - Additional request options.</param>
+        /// <returns><see cref="BalanceSweepConfigurationsResponse"/>.</returns>
+        BalanceSweepConfigurationsResponse GetAllSweepsForBalanceAccount(string balanceAccountId, int? offset = default, int? limit = default, RequestOptions requestOptions = default);
+        
+        /// <summary>
+        /// Get all sweeps for a balance account
+        /// </summary>
+        /// <param name="balanceAccountId"><see cref="string"/> - The unique identifier of the balance account.</param>
+        /// <param name="offset"><see cref="int?"/> - The number of items that you want to skip.</param>
+        /// <param name="limit"><see cref="int?"/> - The number of items returned per page, maximum 100 items. By default, the response returns 10 items per page.</param>
+        /// <param name="requestOptions"><see cref="RequestOptions"/> - Additional request options.</param>
+        /// <param name="cancellationToken"> A CancellationToken enables cooperative cancellation between threads, thread pool work items, or Task objects.</param>
+        /// <returns>Task of <see cref="BalanceSweepConfigurationsResponse"/>.</returns>
+        Task<BalanceSweepConfigurationsResponse> GetAllSweepsForBalanceAccountAsync(string balanceAccountId, int? offset = default, int? limit = default, RequestOptions requestOptions = default, CancellationToken cancellationToken = default);
+        
+        /// <summary>
+        /// Get a balance account
+        /// </summary>
+        /// <param name="id"><see cref="string"/> - The unique identifier of the balance account.</param>
+        /// <param name="requestOptions"><see cref="RequestOptions"/> - Additional request options.</param>
+        /// <returns><see cref="BalanceAccount"/>.</returns>
+        BalanceAccount GetBalanceAccount(string id, RequestOptions requestOptions = default);
+        
+        /// <summary>
+        /// Get a balance account
+        /// </summary>
+        /// <param name="id"><see cref="string"/> - The unique identifier of the balance account.</param>
+        /// <param name="requestOptions"><see cref="RequestOptions"/> - Additional request options.</param>
+        /// <param name="cancellationToken"> A CancellationToken enables cooperative cancellation between threads, thread pool work items, or Task objects.</param>
+        /// <returns>Task of <see cref="BalanceAccount"/>.</returns>
+        Task<BalanceAccount> GetBalanceAccountAsync(string id, RequestOptions requestOptions = default, CancellationToken cancellationToken = default);
+        
+        /// <summary>
+        /// Get a sweep
+        /// </summary>
+        /// <param name="balanceAccountId"><see cref="string"/> - The unique identifier of the balance account.</param>
+        /// <param name="sweepId"><see cref="string"/> - The unique identifier of the sweep.</param>
+        /// <param name="requestOptions"><see cref="RequestOptions"/> - Additional request options.</param>
+        /// <returns><see cref="SweepConfigurationV2"/>.</returns>
+        SweepConfigurationV2 GetSweep(string balanceAccountId, string sweepId, RequestOptions requestOptions = default);
+        
+        /// <summary>
+        /// Get a sweep
+        /// </summary>
+        /// <param name="balanceAccountId"><see cref="string"/> - The unique identifier of the balance account.</param>
+        /// <param name="sweepId"><see cref="string"/> - The unique identifier of the sweep.</param>
+        /// <param name="requestOptions"><see cref="RequestOptions"/> - Additional request options.</param>
+        /// <param name="cancellationToken"> A CancellationToken enables cooperative cancellation between threads, thread pool work items, or Task objects.</param>
+        /// <returns>Task of <see cref="SweepConfigurationV2"/>.</returns>
+        Task<SweepConfigurationV2> GetSweepAsync(string balanceAccountId, string sweepId, RequestOptions requestOptions = default, CancellationToken cancellationToken = default);
+        
+        /// <summary>
+        /// Update a balance account
+        /// </summary>
+        /// <param name="id"><see cref="string"/> - The unique identifier of the balance account.</param>
+        /// <param name="balanceAccountUpdateRequest"><see cref="BalanceAccountUpdateRequest"/> - </param>
+        /// <param name="requestOptions"><see cref="RequestOptions"/> - Additional request options.</param>
+        /// <returns><see cref="BalanceAccount"/>.</returns>
+        BalanceAccount UpdateBalanceAccount(string id, BalanceAccountUpdateRequest balanceAccountUpdateRequest, RequestOptions requestOptions = default);
+        
+        /// <summary>
+        /// Update a balance account
+        /// </summary>
+        /// <param name="id"><see cref="string"/> - The unique identifier of the balance account.</param>
+        /// <param name="balanceAccountUpdateRequest"><see cref="BalanceAccountUpdateRequest"/> - </param>
+        /// <param name="requestOptions"><see cref="RequestOptions"/> - Additional request options.</param>
+        /// <param name="cancellationToken"> A CancellationToken enables cooperative cancellation between threads, thread pool work items, or Task objects.</param>
+        /// <returns>Task of <see cref="BalanceAccount"/>.</returns>
+        Task<BalanceAccount> UpdateBalanceAccountAsync(string id, BalanceAccountUpdateRequest balanceAccountUpdateRequest, RequestOptions requestOptions = default, CancellationToken cancellationToken = default);
+        
+        /// <summary>
+        /// Update a sweep
+        /// </summary>
+        /// <param name="balanceAccountId"><see cref="string"/> - The unique identifier of the balance account.</param>
+        /// <param name="sweepId"><see cref="string"/> - The unique identifier of the sweep.</param>
+        /// <param name="sweepConfigurationV2"><see cref="SweepConfigurationV2"/> - </param>
+        /// <param name="requestOptions"><see cref="RequestOptions"/> - Additional request options.</param>
+        /// <returns><see cref="SweepConfigurationV2"/>.</returns>
+        SweepConfigurationV2 UpdateSweep(string balanceAccountId, string sweepId, SweepConfigurationV2 sweepConfigurationV2, RequestOptions requestOptions = default);
+        
+        /// <summary>
+        /// Update a sweep
+        /// </summary>
+        /// <param name="balanceAccountId"><see cref="string"/> - The unique identifier of the balance account.</param>
+        /// <param name="sweepId"><see cref="string"/> - The unique identifier of the sweep.</param>
+        /// <param name="sweepConfigurationV2"><see cref="SweepConfigurationV2"/> - </param>
+        /// <param name="requestOptions"><see cref="RequestOptions"/> - Additional request options.</param>
+        /// <param name="cancellationToken"> A CancellationToken enables cooperative cancellation between threads, thread pool work items, or Task objects.</param>
+        /// <returns>Task of <see cref="SweepConfigurationV2"/>.</returns>
+        Task<SweepConfigurationV2> UpdateSweepAsync(string balanceAccountId, string sweepId, SweepConfigurationV2 sweepConfigurationV2, RequestOptions requestOptions = default, CancellationToken cancellationToken = default);
+        
     }
     
     /// <summary>
@@ -210,98 +210,6 @@ namespace Adyen.Service.BalancePlatform
         public BalanceAccountsService(Client client) : base(client)
         {
             _baseUrl = CreateBaseUrl("https://balanceplatform-api-test.adyen.com/bcl/v2");
-        }
-        
-        public void DeleteSweep(string balanceAccountId, string sweepId, RequestOptions requestOptions = default)
-        {
-            DeleteSweepAsync(balanceAccountId, sweepId, requestOptions).ConfigureAwait(false).GetAwaiter().GetResult();
-        }
-
-        public async Task DeleteSweepAsync(string balanceAccountId, string sweepId, RequestOptions requestOptions = default, CancellationToken cancellationToken = default)
-        {
-            var endpoint = _baseUrl + $"/balanceAccounts/{balanceAccountId}/sweeps/{sweepId}";
-            var resource = new ServiceResource(this, endpoint);
-            await resource.RequestAsync(null, requestOptions, new HttpMethod("DELETE"), cancellationToken).ConfigureAwait(false);
-        }
-        
-        public BalanceSweepConfigurationsResponse GetAllSweepsForBalanceAccount(string balanceAccountId, int? offset = default, int? limit = default, RequestOptions requestOptions = default)
-        {
-            return GetAllSweepsForBalanceAccountAsync(balanceAccountId, offset, limit, requestOptions).ConfigureAwait(false).GetAwaiter().GetResult();
-        }
-
-        public async Task<BalanceSweepConfigurationsResponse> GetAllSweepsForBalanceAccountAsync(string balanceAccountId, int? offset = default, int? limit = default, RequestOptions requestOptions = default, CancellationToken cancellationToken = default)
-        {
-            // Build the query string
-            var queryParams = new Dictionary<string, string>();
-            if (offset != null) queryParams.Add("offset", offset.ToString());
-            if (limit != null) queryParams.Add("limit", limit.ToString());
-            var endpoint = _baseUrl + $"/balanceAccounts/{balanceAccountId}/sweeps" + ToQueryString(queryParams);
-            var resource = new ServiceResource(this, endpoint);
-            return await resource.RequestAsync<BalanceSweepConfigurationsResponse>(null, requestOptions, new HttpMethod("GET"), cancellationToken).ConfigureAwait(false);
-        }
-        
-        public SweepConfigurationV2 GetSweep(string balanceAccountId, string sweepId, RequestOptions requestOptions = default)
-        {
-            return GetSweepAsync(balanceAccountId, sweepId, requestOptions).ConfigureAwait(false).GetAwaiter().GetResult();
-        }
-
-        public async Task<SweepConfigurationV2> GetSweepAsync(string balanceAccountId, string sweepId, RequestOptions requestOptions = default, CancellationToken cancellationToken = default)
-        {
-            var endpoint = _baseUrl + $"/balanceAccounts/{balanceAccountId}/sweeps/{sweepId}";
-            var resource = new ServiceResource(this, endpoint);
-            return await resource.RequestAsync<SweepConfigurationV2>(null, requestOptions, new HttpMethod("GET"), cancellationToken).ConfigureAwait(false);
-        }
-        
-        public BalanceAccount GetBalanceAccount(string id, RequestOptions requestOptions = default)
-        {
-            return GetBalanceAccountAsync(id, requestOptions).ConfigureAwait(false).GetAwaiter().GetResult();
-        }
-
-        public async Task<BalanceAccount> GetBalanceAccountAsync(string id, RequestOptions requestOptions = default, CancellationToken cancellationToken = default)
-        {
-            var endpoint = _baseUrl + $"/balanceAccounts/{id}";
-            var resource = new ServiceResource(this, endpoint);
-            return await resource.RequestAsync<BalanceAccount>(null, requestOptions, new HttpMethod("GET"), cancellationToken).ConfigureAwait(false);
-        }
-        
-        public PaginatedPaymentInstrumentsResponse GetAllPaymentInstrumentsForBalanceAccount(string id, int? offset = default, int? limit = default, RequestOptions requestOptions = default)
-        {
-            return GetAllPaymentInstrumentsForBalanceAccountAsync(id, offset, limit, requestOptions).ConfigureAwait(false).GetAwaiter().GetResult();
-        }
-
-        public async Task<PaginatedPaymentInstrumentsResponse> GetAllPaymentInstrumentsForBalanceAccountAsync(string id, int? offset = default, int? limit = default, RequestOptions requestOptions = default, CancellationToken cancellationToken = default)
-        {
-            // Build the query string
-            var queryParams = new Dictionary<string, string>();
-            if (offset != null) queryParams.Add("offset", offset.ToString());
-            if (limit != null) queryParams.Add("limit", limit.ToString());
-            var endpoint = _baseUrl + $"/balanceAccounts/{id}/paymentInstruments" + ToQueryString(queryParams);
-            var resource = new ServiceResource(this, endpoint);
-            return await resource.RequestAsync<PaginatedPaymentInstrumentsResponse>(null, requestOptions, new HttpMethod("GET"), cancellationToken).ConfigureAwait(false);
-        }
-        
-        public SweepConfigurationV2 UpdateSweep(string balanceAccountId, string sweepId, SweepConfigurationV2 sweepConfigurationV2, RequestOptions requestOptions = default)
-        {
-            return UpdateSweepAsync(balanceAccountId, sweepId, sweepConfigurationV2, requestOptions).ConfigureAwait(false).GetAwaiter().GetResult();
-        }
-
-        public async Task<SweepConfigurationV2> UpdateSweepAsync(string balanceAccountId, string sweepId, SweepConfigurationV2 sweepConfigurationV2, RequestOptions requestOptions = default, CancellationToken cancellationToken = default)
-        {
-            var endpoint = _baseUrl + $"/balanceAccounts/{balanceAccountId}/sweeps/{sweepId}";
-            var resource = new ServiceResource(this, endpoint);
-            return await resource.RequestAsync<SweepConfigurationV2>(sweepConfigurationV2.ToJson(), requestOptions, new HttpMethod("PATCH"), cancellationToken).ConfigureAwait(false);
-        }
-        
-        public BalanceAccount UpdateBalanceAccount(string id, BalanceAccountUpdateRequest balanceAccountUpdateRequest, RequestOptions requestOptions = default)
-        {
-            return UpdateBalanceAccountAsync(id, balanceAccountUpdateRequest, requestOptions).ConfigureAwait(false).GetAwaiter().GetResult();
-        }
-
-        public async Task<BalanceAccount> UpdateBalanceAccountAsync(string id, BalanceAccountUpdateRequest balanceAccountUpdateRequest, RequestOptions requestOptions = default, CancellationToken cancellationToken = default)
-        {
-            var endpoint = _baseUrl + $"/balanceAccounts/{id}";
-            var resource = new ServiceResource(this, endpoint);
-            return await resource.RequestAsync<BalanceAccount>(balanceAccountUpdateRequest.ToJson(), requestOptions, new HttpMethod("PATCH"), cancellationToken).ConfigureAwait(false);
         }
         
         public BalanceAccount CreateBalanceAccount(BalanceAccountInfo balanceAccountInfo, RequestOptions requestOptions = default)
@@ -326,6 +234,98 @@ namespace Adyen.Service.BalancePlatform
             var endpoint = _baseUrl + $"/balanceAccounts/{balanceAccountId}/sweeps";
             var resource = new ServiceResource(this, endpoint);
             return await resource.RequestAsync<SweepConfigurationV2>(sweepConfigurationV2.ToJson(), requestOptions, new HttpMethod("POST"), cancellationToken).ConfigureAwait(false);
+        }
+        
+        public void DeleteSweep(string balanceAccountId, string sweepId, RequestOptions requestOptions = default)
+        {
+            DeleteSweepAsync(balanceAccountId, sweepId, requestOptions).ConfigureAwait(false).GetAwaiter().GetResult();
+        }
+
+        public async Task DeleteSweepAsync(string balanceAccountId, string sweepId, RequestOptions requestOptions = default, CancellationToken cancellationToken = default)
+        {
+            var endpoint = _baseUrl + $"/balanceAccounts/{balanceAccountId}/sweeps/{sweepId}";
+            var resource = new ServiceResource(this, endpoint);
+            await resource.RequestAsync(null, requestOptions, new HttpMethod("DELETE"), cancellationToken).ConfigureAwait(false);
+        }
+        
+        public PaginatedPaymentInstrumentsResponse GetAllPaymentInstrumentsForBalanceAccount(string id, int? offset = default, int? limit = default, RequestOptions requestOptions = default)
+        {
+            return GetAllPaymentInstrumentsForBalanceAccountAsync(id, offset, limit, requestOptions).ConfigureAwait(false).GetAwaiter().GetResult();
+        }
+
+        public async Task<PaginatedPaymentInstrumentsResponse> GetAllPaymentInstrumentsForBalanceAccountAsync(string id, int? offset = default, int? limit = default, RequestOptions requestOptions = default, CancellationToken cancellationToken = default)
+        {
+            // Build the query string
+            var queryParams = new Dictionary<string, string>();
+            if (offset != null) queryParams.Add("offset", offset.ToString());
+            if (limit != null) queryParams.Add("limit", limit.ToString());
+            var endpoint = _baseUrl + $"/balanceAccounts/{id}/paymentInstruments" + ToQueryString(queryParams);
+            var resource = new ServiceResource(this, endpoint);
+            return await resource.RequestAsync<PaginatedPaymentInstrumentsResponse>(null, requestOptions, new HttpMethod("GET"), cancellationToken).ConfigureAwait(false);
+        }
+        
+        public BalanceSweepConfigurationsResponse GetAllSweepsForBalanceAccount(string balanceAccountId, int? offset = default, int? limit = default, RequestOptions requestOptions = default)
+        {
+            return GetAllSweepsForBalanceAccountAsync(balanceAccountId, offset, limit, requestOptions).ConfigureAwait(false).GetAwaiter().GetResult();
+        }
+
+        public async Task<BalanceSweepConfigurationsResponse> GetAllSweepsForBalanceAccountAsync(string balanceAccountId, int? offset = default, int? limit = default, RequestOptions requestOptions = default, CancellationToken cancellationToken = default)
+        {
+            // Build the query string
+            var queryParams = new Dictionary<string, string>();
+            if (offset != null) queryParams.Add("offset", offset.ToString());
+            if (limit != null) queryParams.Add("limit", limit.ToString());
+            var endpoint = _baseUrl + $"/balanceAccounts/{balanceAccountId}/sweeps" + ToQueryString(queryParams);
+            var resource = new ServiceResource(this, endpoint);
+            return await resource.RequestAsync<BalanceSweepConfigurationsResponse>(null, requestOptions, new HttpMethod("GET"), cancellationToken).ConfigureAwait(false);
+        }
+        
+        public BalanceAccount GetBalanceAccount(string id, RequestOptions requestOptions = default)
+        {
+            return GetBalanceAccountAsync(id, requestOptions).ConfigureAwait(false).GetAwaiter().GetResult();
+        }
+
+        public async Task<BalanceAccount> GetBalanceAccountAsync(string id, RequestOptions requestOptions = default, CancellationToken cancellationToken = default)
+        {
+            var endpoint = _baseUrl + $"/balanceAccounts/{id}";
+            var resource = new ServiceResource(this, endpoint);
+            return await resource.RequestAsync<BalanceAccount>(null, requestOptions, new HttpMethod("GET"), cancellationToken).ConfigureAwait(false);
+        }
+        
+        public SweepConfigurationV2 GetSweep(string balanceAccountId, string sweepId, RequestOptions requestOptions = default)
+        {
+            return GetSweepAsync(balanceAccountId, sweepId, requestOptions).ConfigureAwait(false).GetAwaiter().GetResult();
+        }
+
+        public async Task<SweepConfigurationV2> GetSweepAsync(string balanceAccountId, string sweepId, RequestOptions requestOptions = default, CancellationToken cancellationToken = default)
+        {
+            var endpoint = _baseUrl + $"/balanceAccounts/{balanceAccountId}/sweeps/{sweepId}";
+            var resource = new ServiceResource(this, endpoint);
+            return await resource.RequestAsync<SweepConfigurationV2>(null, requestOptions, new HttpMethod("GET"), cancellationToken).ConfigureAwait(false);
+        }
+        
+        public BalanceAccount UpdateBalanceAccount(string id, BalanceAccountUpdateRequest balanceAccountUpdateRequest, RequestOptions requestOptions = default)
+        {
+            return UpdateBalanceAccountAsync(id, balanceAccountUpdateRequest, requestOptions).ConfigureAwait(false).GetAwaiter().GetResult();
+        }
+
+        public async Task<BalanceAccount> UpdateBalanceAccountAsync(string id, BalanceAccountUpdateRequest balanceAccountUpdateRequest, RequestOptions requestOptions = default, CancellationToken cancellationToken = default)
+        {
+            var endpoint = _baseUrl + $"/balanceAccounts/{id}";
+            var resource = new ServiceResource(this, endpoint);
+            return await resource.RequestAsync<BalanceAccount>(balanceAccountUpdateRequest.ToJson(), requestOptions, new HttpMethod("PATCH"), cancellationToken).ConfigureAwait(false);
+        }
+        
+        public SweepConfigurationV2 UpdateSweep(string balanceAccountId, string sweepId, SweepConfigurationV2 sweepConfigurationV2, RequestOptions requestOptions = default)
+        {
+            return UpdateSweepAsync(balanceAccountId, sweepId, sweepConfigurationV2, requestOptions).ConfigureAwait(false).GetAwaiter().GetResult();
+        }
+
+        public async Task<SweepConfigurationV2> UpdateSweepAsync(string balanceAccountId, string sweepId, SweepConfigurationV2 sweepConfigurationV2, RequestOptions requestOptions = default, CancellationToken cancellationToken = default)
+        {
+            var endpoint = _baseUrl + $"/balanceAccounts/{balanceAccountId}/sweeps/{sweepId}";
+            var resource = new ServiceResource(this, endpoint);
+            return await resource.RequestAsync<SweepConfigurationV2>(sweepConfigurationV2.ToJson(), requestOptions, new HttpMethod("PATCH"), cancellationToken).ConfigureAwait(false);
         }
     }
 }

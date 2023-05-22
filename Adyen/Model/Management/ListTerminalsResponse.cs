@@ -36,11 +36,28 @@ namespace Adyen.Model.Management
         /// <summary>
         /// Initializes a new instance of the <see cref="ListTerminalsResponse" /> class.
         /// </summary>
+        [JsonConstructorAttribute]
+        protected ListTerminalsResponse() { }
+        /// <summary>
+        /// Initializes a new instance of the <see cref="ListTerminalsResponse" /> class.
+        /// </summary>
+        /// <param name="links">links.</param>
         /// <param name="data">The list of terminals..</param>
-        public ListTerminalsResponse(List<Terminal> data = default(List<Terminal>))
+        /// <param name="itemsTotal">Total number of items. (required).</param>
+        /// <param name="pagesTotal">Total number of pages. (required).</param>
+        public ListTerminalsResponse(PaginationLinks links = default(PaginationLinks), List<Terminal> data = default(List<Terminal>), int? itemsTotal = default(int?), int? pagesTotal = default(int?))
         {
+            this.ItemsTotal = itemsTotal;
+            this.PagesTotal = pagesTotal;
+            this.Links = links;
             this.Data = data;
         }
+
+        /// <summary>
+        /// Gets or Sets Links
+        /// </summary>
+        [DataMember(Name = "_links", EmitDefaultValue = false)]
+        public PaginationLinks Links { get; set; }
 
         /// <summary>
         /// The list of terminals.
@@ -50,6 +67,20 @@ namespace Adyen.Model.Management
         public List<Terminal> Data { get; set; }
 
         /// <summary>
+        /// Total number of items.
+        /// </summary>
+        /// <value>Total number of items.</value>
+        [DataMember(Name = "itemsTotal", IsRequired = false, EmitDefaultValue = false)]
+        public int? ItemsTotal { get; set; }
+
+        /// <summary>
+        /// Total number of pages.
+        /// </summary>
+        /// <value>Total number of pages.</value>
+        [DataMember(Name = "pagesTotal", IsRequired = false, EmitDefaultValue = false)]
+        public int? PagesTotal { get; set; }
+
+        /// <summary>
         /// Returns the string presentation of the object
         /// </summary>
         /// <returns>String presentation of the object</returns>
@@ -57,7 +88,10 @@ namespace Adyen.Model.Management
         {
             StringBuilder sb = new StringBuilder();
             sb.Append("class ListTerminalsResponse {\n");
+            sb.Append("  Links: ").Append(Links).Append("\n");
             sb.Append("  Data: ").Append(Data).Append("\n");
+            sb.Append("  ItemsTotal: ").Append(ItemsTotal).Append("\n");
+            sb.Append("  PagesTotal: ").Append(PagesTotal).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -94,10 +128,23 @@ namespace Adyen.Model.Management
             }
             return 
                 (
+                    this.Links == input.Links ||
+                    (this.Links != null &&
+                    this.Links.Equals(input.Links))
+                ) && 
+                (
                     this.Data == input.Data ||
                     this.Data != null &&
                     input.Data != null &&
                     this.Data.SequenceEqual(input.Data)
+                ) && 
+                (
+                    this.ItemsTotal == input.ItemsTotal ||
+                    this.ItemsTotal.Equals(input.ItemsTotal)
+                ) && 
+                (
+                    this.PagesTotal == input.PagesTotal ||
+                    this.PagesTotal.Equals(input.PagesTotal)
                 );
         }
 
@@ -110,10 +157,16 @@ namespace Adyen.Model.Management
             unchecked // Overflow is fine, just wrap
             {
                 int hashCode = 41;
+                if (this.Links != null)
+                {
+                    hashCode = (hashCode * 59) + this.Links.GetHashCode();
+                }
                 if (this.Data != null)
                 {
                     hashCode = (hashCode * 59) + this.Data.GetHashCode();
                 }
+                hashCode = (hashCode * 59) + this.ItemsTotal.GetHashCode();
+                hashCode = (hashCode * 59) + this.PagesTotal.GetHashCode();
                 return hashCode;
             }
         }

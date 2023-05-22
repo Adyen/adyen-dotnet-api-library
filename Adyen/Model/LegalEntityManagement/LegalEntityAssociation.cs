@@ -34,9 +34,9 @@ namespace Adyen.Model.LegalEntityManagement
     public partial class LegalEntityAssociation : IEquatable<LegalEntityAssociation>, IValidatableObject
     {
         /// <summary>
-        /// Defines the relationship of the legal entity to the current legal entity.   Possible values for organizations: **uboThroughOwnership**, **uboThroughControl**, **signatory**, or **ultimateParentCompany**.   Possible values for sole proprietorships: **soleProprietorship**. 
+        /// Defines the relationship of the legal entity to the current legal entity.  Possible values for organizations: **uboThroughOwnership**, **uboThroughControl**, **signatory**, or **ultimateParentCompany**.  Possible values for sole proprietorships: **soleProprietorship**.
         /// </summary>
-        /// <value>Defines the relationship of the legal entity to the current legal entity.   Possible values for organizations: **uboThroughOwnership**, **uboThroughControl**, **signatory**, or **ultimateParentCompany**.   Possible values for sole proprietorships: **soleProprietorship**. </value>
+        /// <value>Defines the relationship of the legal entity to the current legal entity.  Possible values for organizations: **uboThroughOwnership**, **uboThroughControl**, **signatory**, or **ultimateParentCompany**.  Possible values for sole proprietorships: **soleProprietorship**.</value>
         [JsonConverter(typeof(StringEnumConverter))]
         public enum TypeEnum
         {
@@ -80,9 +80,9 @@ namespace Adyen.Model.LegalEntityManagement
 
 
         /// <summary>
-        /// Defines the relationship of the legal entity to the current legal entity.   Possible values for organizations: **uboThroughOwnership**, **uboThroughControl**, **signatory**, or **ultimateParentCompany**.   Possible values for sole proprietorships: **soleProprietorship**. 
+        /// Defines the relationship of the legal entity to the current legal entity.  Possible values for organizations: **uboThroughOwnership**, **uboThroughControl**, **signatory**, or **ultimateParentCompany**.  Possible values for sole proprietorships: **soleProprietorship**.
         /// </summary>
-        /// <value>Defines the relationship of the legal entity to the current legal entity.   Possible values for organizations: **uboThroughOwnership**, **uboThroughControl**, **signatory**, or **ultimateParentCompany**.   Possible values for sole proprietorships: **soleProprietorship**. </value>
+        /// <value>Defines the relationship of the legal entity to the current legal entity.  Possible values for organizations: **uboThroughOwnership**, **uboThroughControl**, **signatory**, or **ultimateParentCompany**.  Possible values for sole proprietorships: **soleProprietorship**.</value>
         [DataMember(Name = "type", IsRequired = false, EmitDefaultValue = false)]
         public TypeEnum Type { get; set; }
         /// <summary>
@@ -95,7 +95,7 @@ namespace Adyen.Model.LegalEntityManagement
         /// </summary>
         /// <param name="jobTitle">The individual&#39;s job title if the &#x60;type&#x60; is **uboThroughControl** or **signatory**..</param>
         /// <param name="legalEntityId">The unique identifier of the associated [legal entity](https://docs.adyen.com/api-explorer/legalentity/latest/post/legalEntities#responses-200-id). (required).</param>
-        /// <param name="type">Defines the relationship of the legal entity to the current legal entity.   Possible values for organizations: **uboThroughOwnership**, **uboThroughControl**, **signatory**, or **ultimateParentCompany**.   Possible values for sole proprietorships: **soleProprietorship**.  (required).</param>
+        /// <param name="type">Defines the relationship of the legal entity to the current legal entity.  Possible values for organizations: **uboThroughOwnership**, **uboThroughControl**, **signatory**, or **ultimateParentCompany**.  Possible values for sole proprietorships: **soleProprietorship**. (required).</param>
         public LegalEntityAssociation(string jobTitle = default(string), string legalEntityId = default(string), TypeEnum type = default(TypeEnum))
         {
             this.LegalEntityId = legalEntityId;
@@ -111,9 +111,9 @@ namespace Adyen.Model.LegalEntityManagement
         public string AssociatorId { get; private set; }
 
         /// <summary>
-        /// The legal entity type of associated legal entity.   For example, **organization**, **soleProprietorship** or **individual**. 
+        /// The legal entity type of associated legal entity.  For example, **organization**, **soleProprietorship** or **individual**.
         /// </summary>
-        /// <value>The legal entity type of associated legal entity.   For example, **organization**, **soleProprietorship** or **individual**. </value>
+        /// <value>The legal entity type of associated legal entity.  For example, **organization**, **soleProprietorship** or **individual**.</value>
         [DataMember(Name = "entityType", EmitDefaultValue = false)]
         public string EntityType { get; private set; }
 

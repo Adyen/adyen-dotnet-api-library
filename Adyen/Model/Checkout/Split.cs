@@ -71,34 +71,70 @@ namespace Adyen.Model.Checkout
             PaymentFee = 5,
 
             /// <summary>
+            /// Enum PaymentFeeAcquiring for value: PaymentFeeAcquiring
+            /// </summary>
+            [EnumMember(Value = "PaymentFeeAcquiring")]
+            PaymentFeeAcquiring = 6,
+
+            /// <summary>
+            /// Enum PaymentFeeAdyen for value: PaymentFeeAdyen
+            /// </summary>
+            [EnumMember(Value = "PaymentFeeAdyen")]
+            PaymentFeeAdyen = 7,
+
+            /// <summary>
+            /// Enum PaymentFeeAdyenCommission for value: PaymentFeeAdyenCommission
+            /// </summary>
+            [EnumMember(Value = "PaymentFeeAdyenCommission")]
+            PaymentFeeAdyenCommission = 8,
+
+            /// <summary>
+            /// Enum PaymentFeeAdyenMarkup for value: PaymentFeeAdyenMarkup
+            /// </summary>
+            [EnumMember(Value = "PaymentFeeAdyenMarkup")]
+            PaymentFeeAdyenMarkup = 9,
+
+            /// <summary>
+            /// Enum PaymentFeeInterchange for value: PaymentFeeInterchange
+            /// </summary>
+            [EnumMember(Value = "PaymentFeeInterchange")]
+            PaymentFeeInterchange = 10,
+
+            /// <summary>
+            /// Enum PaymentFeeSchemeFee for value: PaymentFeeSchemeFee
+            /// </summary>
+            [EnumMember(Value = "PaymentFeeSchemeFee")]
+            PaymentFeeSchemeFee = 11,
+
+            /// <summary>
             /// Enum Remainder for value: Remainder
             /// </summary>
             [EnumMember(Value = "Remainder")]
-            Remainder = 6,
+            Remainder = 12,
 
             /// <summary>
             /// Enum Surcharge for value: Surcharge
             /// </summary>
             [EnumMember(Value = "Surcharge")]
-            Surcharge = 7,
+            Surcharge = 13,
 
             /// <summary>
             /// Enum Tip for value: Tip
             /// </summary>
             [EnumMember(Value = "Tip")]
-            Tip = 8,
+            Tip = 14,
 
             /// <summary>
             /// Enum VAT for value: VAT
             /// </summary>
             [EnumMember(Value = "VAT")]
-            VAT = 9,
+            VAT = 15,
 
             /// <summary>
             /// Enum Verification for value: Verification
             /// </summary>
             [EnumMember(Value = "Verification")]
-            Verification = 10
+            Verification = 16
 
         }
 

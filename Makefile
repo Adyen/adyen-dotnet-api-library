@@ -67,6 +67,7 @@ $(Services): target/spec $(openapi-generator-jar)
 		--api-package Service.$@ \
 		--api-name-suffix Service \
 		--model-package Model.$@ \
+		--skip-validate-spec \
 		--reserved-words-mappings Version=Version \
 		--additional-properties=serviceName=$@
 	rm -rf Adyen/Service/$@ Adyen/Model/$@
@@ -75,9 +76,9 @@ $(Services): target/spec $(openapi-generator-jar)
 	
 $(SingleFileServices): target/spec $(openapi-generator-jar)  
 	rm -rf $(output)
-	cat <<< "$$(jq 'del(.paths[][].tags)' target/spec/json/$(spec).json)" > target/spec/json/$(spec).json
+	node -p "let json=require('./target/spec/json/$(spec).json');for(k in json['paths']){for (i in json['paths'][k]){delete json['paths'][k][i]['tags']}};console.log(JSON.stringify(json, null, 2));" > target/spec/$(spec).json
 	$(openapi-generator-cli) generate \
-		-i target/spec/json/$(spec).json \
+		-i target/spec/$(spec).json \
 		-g $(generator) \
 		-c templates/csharp/config.yaml \
 		-o $(output) \
@@ -87,8 +88,10 @@ $(SingleFileServices): target/spec $(openapi-generator-jar)
 		--api-package Service.$@ \
 		--api-name-suffix Service \
 		--model-package Model.$@ \
+		--skip-validate-spec \
 		--reserved-words-mappings Version=Version \
 		--additional-properties=serviceName=$@
+	rm -rf target/spec/$(spec).json
 	rm -rf Adyen/Service/$@ Adyen/Model/$@
 	mv target/out/src/Adyen/Service.$@/*Single.cs Adyen/Service/$@Service.cs
 	mv target/out/src/Adyen/Model.$@ Adyen/Model/$@

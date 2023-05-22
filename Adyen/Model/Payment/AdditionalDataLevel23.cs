@@ -36,23 +36,23 @@ namespace Adyen.Model.Payment
         /// <summary>
         /// Initializes a new instance of the <see cref="AdditionalDataLevel23" /> class.
         /// </summary>
-        /// <param name="enhancedSchemeDataCustomerReference">Customer code, if supplied by a customer.  Encoding: ASCII.  Max length: 25 characters.  &gt; Required for Level 2 and Level 3 data..</param>
-        /// <param name="enhancedSchemeDataDestinationCountryCode">Destination country code.  Encoding: ASCII.  Max length: 3 characters..</param>
-        /// <param name="enhancedSchemeDataDestinationPostalCode">The postal code of a destination address.  Encoding: ASCII.  Max length: 10 characters.  &gt; Required for American Express..</param>
-        /// <param name="enhancedSchemeDataDestinationStateProvinceCode">Destination state or province code.  Encoding: ASCII.Max length: 3 characters..</param>
-        /// <param name="enhancedSchemeDataDutyAmount">Duty amount, in minor units.  For example, 2000 means USD 20.00.  Max length: 12 characters..</param>
-        /// <param name="enhancedSchemeDataFreightAmount">Shipping amount, in minor units.  For example, 2000 means USD 20.00.  Max length: 12 characters..</param>
-        /// <param name="enhancedSchemeDataItemDetailLineItemNrCommodityCode">Item commodity code.  Encoding: ASCII.  Max length: 12 characters..</param>
-        /// <param name="enhancedSchemeDataItemDetailLineItemNrDescription">Item description.  Encoding: ASCII.  Max length: 26 characters..</param>
-        /// <param name="enhancedSchemeDataItemDetailLineItemNrDiscountAmount">Discount amount, in minor units.  For example, 2000 means USD 20.00.  Max length: 12 characters..</param>
-        /// <param name="enhancedSchemeDataItemDetailLineItemNrProductCode">Product code.  Encoding: ASCII.  Max length: 12 characters..</param>
-        /// <param name="enhancedSchemeDataItemDetailLineItemNrQuantity">Quantity, specified as an integer value.  Value must be greater than 0.  Max length: 12 characters..</param>
-        /// <param name="enhancedSchemeDataItemDetailLineItemNrTotalAmount">Total amount, in minor units.  For example, 2000 means USD 20.00.  Max length: 12 characters..</param>
-        /// <param name="enhancedSchemeDataItemDetailLineItemNrUnitOfMeasure">Item unit of measurement.  Encoding: ASCII.  Max length: 3 characters..</param>
-        /// <param name="enhancedSchemeDataItemDetailLineItemNrUnitPrice">Unit price, specified in [minor units](https://docs.adyen.com/development-resources/currency-codes).  Max length: 12 characters..</param>
-        /// <param name="enhancedSchemeDataOrderDate">Order date. * Format: &#x60;ddMMyy&#x60;  Encoding: ASCII.  Max length: 6 characters..</param>
-        /// <param name="enhancedSchemeDataShipFromPostalCode">The postal code of a \&quot;ship-from\&quot; address.  Encoding: ASCII.  Max length: 10 characters..</param>
-        /// <param name="enhancedSchemeDataTotalTaxAmount">Total tax amount, in minor units.  For example, 2000 means USD 20.00.  Max length: 12 characters.  &gt; Required for Level 2 and Level 3 data..</param>
+        /// <param name="enhancedSchemeDataCustomerReference">The customer code, if supplied by a customer.  Encoding: ASCII  Max length: 25 characters  Must not start with a space or be all spaces  Must not be all zeros.</param>
+        /// <param name="enhancedSchemeDataDestinationCountryCode">The three-letter [ISO 3166-1 alpha-3 country code](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-3) for the destination address.  Encoding: ASCII  Fixed length: 3 characters.</param>
+        /// <param name="enhancedSchemeDataDestinationPostalCode">The postal code of the destination address.  Encoding: ASCII  Max length: 10 characters  Must not start with a space.</param>
+        /// <param name="enhancedSchemeDataDestinationStateProvinceCode">Destination state or province code.  Encoding: ASCII  Max length: 3 characters  Must not start with a space.</param>
+        /// <param name="enhancedSchemeDataDutyAmount">The duty amount, in [minor units](https://docs.adyen.com/development-resources/currency-codes).  For example, 2000 means USD 20.00.  Encoding: Numeric  Max length: 12 characters.</param>
+        /// <param name="enhancedSchemeDataFreightAmount">The shipping amount, in [minor units](https://docs.adyen.com/development-resources/currency-codes).  For example, 2000 means USD 20.00.  Encoding: Numeric  Max length: 12 characters.</param>
+        /// <param name="enhancedSchemeDataItemDetailLineItemNrCommodityCode">The [UNSPC commodity code](https://www.unspsc.org/) of the item.  Encoding: ASCII  Max length: 12 characters  Must not start with a space or be all spaces  Must not be all zeros.</param>
+        /// <param name="enhancedSchemeDataItemDetailLineItemNrDescription">A description of the item.  Encoding: ASCII  Max length: 26 characters  Must not start with a space or be all spaces  Must not be all zeros.</param>
+        /// <param name="enhancedSchemeDataItemDetailLineItemNrDiscountAmount">The discount amount, in [minor units](https://docs.adyen.com/development-resources/currency-codes).  For example, 2000 means USD 20.00.  Encoding: Numeric  Max length: 12 characters.</param>
+        /// <param name="enhancedSchemeDataItemDetailLineItemNrProductCode">The product code.  Encoding: ASCII.  Max length: 12 characters  Must not start with a space or be all spaces  Must not be all zeros.</param>
+        /// <param name="enhancedSchemeDataItemDetailLineItemNrQuantity">The number of items. Must be an integer greater than zero.  Encoding: Numeric  Max length: 12 characters  Must not start with a space or be all spaces  .</param>
+        /// <param name="enhancedSchemeDataItemDetailLineItemNrTotalAmount">The total amount, in [minor units](https://docs.adyen.com/development-resources/currency-codes).  For example, 2000 means USD 20.00.  Max length: 12 characters  Must not start with a space or be all spaces  Must not be all zeros.</param>
+        /// <param name="enhancedSchemeDataItemDetailLineItemNrUnitOfMeasure">The unit of measurement for an item.  Encoding: ASCII  Max length: 3 characters  Must not start with a space or be all spaces  Must not be all zeros.</param>
+        /// <param name="enhancedSchemeDataItemDetailLineItemNrUnitPrice">The unit price in [minor units](https://docs.adyen.com/development-resources/currency-codes).  For example, 2000 means USD 20.00.  Encoding: Numeric  Max length: 12 characters.</param>
+        /// <param name="enhancedSchemeDataOrderDate">The order date. * Format: &#x60;ddMMyy&#x60;  Encoding: ASCII  Max length: 6 characters.</param>
+        /// <param name="enhancedSchemeDataShipFromPostalCode">The postal code of the address the item is shipped from.  Encoding: ASCII  Max length: 10 characters  Must not start with a space or be all spaces  Must not be all zeros.</param>
+        /// <param name="enhancedSchemeDataTotalTaxAmount">The total tax amount, in [minor units](https://docs.adyen.com/development-resources/currency-codes).  For example, 2000 means USD 20.00.  Encoding: Numeric  Max length: 12 characters  .</param>
         public AdditionalDataLevel23(string enhancedSchemeDataCustomerReference = default(string), string enhancedSchemeDataDestinationCountryCode = default(string), string enhancedSchemeDataDestinationPostalCode = default(string), string enhancedSchemeDataDestinationStateProvinceCode = default(string), string enhancedSchemeDataDutyAmount = default(string), string enhancedSchemeDataFreightAmount = default(string), string enhancedSchemeDataItemDetailLineItemNrCommodityCode = default(string), string enhancedSchemeDataItemDetailLineItemNrDescription = default(string), string enhancedSchemeDataItemDetailLineItemNrDiscountAmount = default(string), string enhancedSchemeDataItemDetailLineItemNrProductCode = default(string), string enhancedSchemeDataItemDetailLineItemNrQuantity = default(string), string enhancedSchemeDataItemDetailLineItemNrTotalAmount = default(string), string enhancedSchemeDataItemDetailLineItemNrUnitOfMeasure = default(string), string enhancedSchemeDataItemDetailLineItemNrUnitPrice = default(string), string enhancedSchemeDataOrderDate = default(string), string enhancedSchemeDataShipFromPostalCode = default(string), string enhancedSchemeDataTotalTaxAmount = default(string))
         {
             this.EnhancedSchemeDataCustomerReference = enhancedSchemeDataCustomerReference;
@@ -75,121 +75,121 @@ namespace Adyen.Model.Payment
         }
 
         /// <summary>
-        /// Customer code, if supplied by a customer.  Encoding: ASCII.  Max length: 25 characters.  &gt; Required for Level 2 and Level 3 data.
+        /// The customer code, if supplied by a customer.  Encoding: ASCII  Max length: 25 characters  Must not start with a space or be all spaces  Must not be all zeros
         /// </summary>
-        /// <value>Customer code, if supplied by a customer.  Encoding: ASCII.  Max length: 25 characters.  &gt; Required for Level 2 and Level 3 data.</value>
+        /// <value>The customer code, if supplied by a customer.  Encoding: ASCII  Max length: 25 characters  Must not start with a space or be all spaces  Must not be all zeros</value>
         [DataMember(Name = "enhancedSchemeData.customerReference", EmitDefaultValue = false)]
         public string EnhancedSchemeDataCustomerReference { get; set; }
 
         /// <summary>
-        /// Destination country code.  Encoding: ASCII.  Max length: 3 characters.
+        /// The three-letter [ISO 3166-1 alpha-3 country code](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-3) for the destination address.  Encoding: ASCII  Fixed length: 3 characters
         /// </summary>
-        /// <value>Destination country code.  Encoding: ASCII.  Max length: 3 characters.</value>
+        /// <value>The three-letter [ISO 3166-1 alpha-3 country code](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-3) for the destination address.  Encoding: ASCII  Fixed length: 3 characters</value>
         [DataMember(Name = "enhancedSchemeData.destinationCountryCode", EmitDefaultValue = false)]
         public string EnhancedSchemeDataDestinationCountryCode { get; set; }
 
         /// <summary>
-        /// The postal code of a destination address.  Encoding: ASCII.  Max length: 10 characters.  &gt; Required for American Express.
+        /// The postal code of the destination address.  Encoding: ASCII  Max length: 10 characters  Must not start with a space
         /// </summary>
-        /// <value>The postal code of a destination address.  Encoding: ASCII.  Max length: 10 characters.  &gt; Required for American Express.</value>
+        /// <value>The postal code of the destination address.  Encoding: ASCII  Max length: 10 characters  Must not start with a space</value>
         [DataMember(Name = "enhancedSchemeData.destinationPostalCode", EmitDefaultValue = false)]
         public string EnhancedSchemeDataDestinationPostalCode { get; set; }
 
         /// <summary>
-        /// Destination state or province code.  Encoding: ASCII.Max length: 3 characters.
+        /// Destination state or province code.  Encoding: ASCII  Max length: 3 characters  Must not start with a space
         /// </summary>
-        /// <value>Destination state or province code.  Encoding: ASCII.Max length: 3 characters.</value>
+        /// <value>Destination state or province code.  Encoding: ASCII  Max length: 3 characters  Must not start with a space</value>
         [DataMember(Name = "enhancedSchemeData.destinationStateProvinceCode", EmitDefaultValue = false)]
         public string EnhancedSchemeDataDestinationStateProvinceCode { get; set; }
 
         /// <summary>
-        /// Duty amount, in minor units.  For example, 2000 means USD 20.00.  Max length: 12 characters.
+        /// The duty amount, in [minor units](https://docs.adyen.com/development-resources/currency-codes).  For example, 2000 means USD 20.00.  Encoding: Numeric  Max length: 12 characters
         /// </summary>
-        /// <value>Duty amount, in minor units.  For example, 2000 means USD 20.00.  Max length: 12 characters.</value>
+        /// <value>The duty amount, in [minor units](https://docs.adyen.com/development-resources/currency-codes).  For example, 2000 means USD 20.00.  Encoding: Numeric  Max length: 12 characters</value>
         [DataMember(Name = "enhancedSchemeData.dutyAmount", EmitDefaultValue = false)]
         public string EnhancedSchemeDataDutyAmount { get; set; }
 
         /// <summary>
-        /// Shipping amount, in minor units.  For example, 2000 means USD 20.00.  Max length: 12 characters.
+        /// The shipping amount, in [minor units](https://docs.adyen.com/development-resources/currency-codes).  For example, 2000 means USD 20.00.  Encoding: Numeric  Max length: 12 characters
         /// </summary>
-        /// <value>Shipping amount, in minor units.  For example, 2000 means USD 20.00.  Max length: 12 characters.</value>
+        /// <value>The shipping amount, in [minor units](https://docs.adyen.com/development-resources/currency-codes).  For example, 2000 means USD 20.00.  Encoding: Numeric  Max length: 12 characters</value>
         [DataMember(Name = "enhancedSchemeData.freightAmount", EmitDefaultValue = false)]
         public string EnhancedSchemeDataFreightAmount { get; set; }
 
         /// <summary>
-        /// Item commodity code.  Encoding: ASCII.  Max length: 12 characters.
+        /// The [UNSPC commodity code](https://www.unspsc.org/) of the item.  Encoding: ASCII  Max length: 12 characters  Must not start with a space or be all spaces  Must not be all zeros
         /// </summary>
-        /// <value>Item commodity code.  Encoding: ASCII.  Max length: 12 characters.</value>
+        /// <value>The [UNSPC commodity code](https://www.unspsc.org/) of the item.  Encoding: ASCII  Max length: 12 characters  Must not start with a space or be all spaces  Must not be all zeros</value>
         [DataMember(Name = "enhancedSchemeData.itemDetailLine[itemNr].commodityCode", EmitDefaultValue = false)]
         public string EnhancedSchemeDataItemDetailLineItemNrCommodityCode { get; set; }
 
         /// <summary>
-        /// Item description.  Encoding: ASCII.  Max length: 26 characters.
+        /// A description of the item.  Encoding: ASCII  Max length: 26 characters  Must not start with a space or be all spaces  Must not be all zeros
         /// </summary>
-        /// <value>Item description.  Encoding: ASCII.  Max length: 26 characters.</value>
+        /// <value>A description of the item.  Encoding: ASCII  Max length: 26 characters  Must not start with a space or be all spaces  Must not be all zeros</value>
         [DataMember(Name = "enhancedSchemeData.itemDetailLine[itemNr].description", EmitDefaultValue = false)]
         public string EnhancedSchemeDataItemDetailLineItemNrDescription { get; set; }
 
         /// <summary>
-        /// Discount amount, in minor units.  For example, 2000 means USD 20.00.  Max length: 12 characters.
+        /// The discount amount, in [minor units](https://docs.adyen.com/development-resources/currency-codes).  For example, 2000 means USD 20.00.  Encoding: Numeric  Max length: 12 characters
         /// </summary>
-        /// <value>Discount amount, in minor units.  For example, 2000 means USD 20.00.  Max length: 12 characters.</value>
+        /// <value>The discount amount, in [minor units](https://docs.adyen.com/development-resources/currency-codes).  For example, 2000 means USD 20.00.  Encoding: Numeric  Max length: 12 characters</value>
         [DataMember(Name = "enhancedSchemeData.itemDetailLine[itemNr].discountAmount", EmitDefaultValue = false)]
         public string EnhancedSchemeDataItemDetailLineItemNrDiscountAmount { get; set; }
 
         /// <summary>
-        /// Product code.  Encoding: ASCII.  Max length: 12 characters.
+        /// The product code.  Encoding: ASCII.  Max length: 12 characters  Must not start with a space or be all spaces  Must not be all zeros
         /// </summary>
-        /// <value>Product code.  Encoding: ASCII.  Max length: 12 characters.</value>
+        /// <value>The product code.  Encoding: ASCII.  Max length: 12 characters  Must not start with a space or be all spaces  Must not be all zeros</value>
         [DataMember(Name = "enhancedSchemeData.itemDetailLine[itemNr].productCode", EmitDefaultValue = false)]
         public string EnhancedSchemeDataItemDetailLineItemNrProductCode { get; set; }
 
         /// <summary>
-        /// Quantity, specified as an integer value.  Value must be greater than 0.  Max length: 12 characters.
+        /// The number of items. Must be an integer greater than zero.  Encoding: Numeric  Max length: 12 characters  Must not start with a space or be all spaces  
         /// </summary>
-        /// <value>Quantity, specified as an integer value.  Value must be greater than 0.  Max length: 12 characters.</value>
+        /// <value>The number of items. Must be an integer greater than zero.  Encoding: Numeric  Max length: 12 characters  Must not start with a space or be all spaces  </value>
         [DataMember(Name = "enhancedSchemeData.itemDetailLine[itemNr].quantity", EmitDefaultValue = false)]
         public string EnhancedSchemeDataItemDetailLineItemNrQuantity { get; set; }
 
         /// <summary>
-        /// Total amount, in minor units.  For example, 2000 means USD 20.00.  Max length: 12 characters.
+        /// The total amount, in [minor units](https://docs.adyen.com/development-resources/currency-codes).  For example, 2000 means USD 20.00.  Max length: 12 characters  Must not start with a space or be all spaces  Must not be all zeros
         /// </summary>
-        /// <value>Total amount, in minor units.  For example, 2000 means USD 20.00.  Max length: 12 characters.</value>
+        /// <value>The total amount, in [minor units](https://docs.adyen.com/development-resources/currency-codes).  For example, 2000 means USD 20.00.  Max length: 12 characters  Must not start with a space or be all spaces  Must not be all zeros</value>
         [DataMember(Name = "enhancedSchemeData.itemDetailLine[itemNr].totalAmount", EmitDefaultValue = false)]
         public string EnhancedSchemeDataItemDetailLineItemNrTotalAmount { get; set; }
 
         /// <summary>
-        /// Item unit of measurement.  Encoding: ASCII.  Max length: 3 characters.
+        /// The unit of measurement for an item.  Encoding: ASCII  Max length: 3 characters  Must not start with a space or be all spaces  Must not be all zeros
         /// </summary>
-        /// <value>Item unit of measurement.  Encoding: ASCII.  Max length: 3 characters.</value>
+        /// <value>The unit of measurement for an item.  Encoding: ASCII  Max length: 3 characters  Must not start with a space or be all spaces  Must not be all zeros</value>
         [DataMember(Name = "enhancedSchemeData.itemDetailLine[itemNr].unitOfMeasure", EmitDefaultValue = false)]
         public string EnhancedSchemeDataItemDetailLineItemNrUnitOfMeasure { get; set; }
 
         /// <summary>
-        /// Unit price, specified in [minor units](https://docs.adyen.com/development-resources/currency-codes).  Max length: 12 characters.
+        /// The unit price in [minor units](https://docs.adyen.com/development-resources/currency-codes).  For example, 2000 means USD 20.00.  Encoding: Numeric  Max length: 12 characters
         /// </summary>
-        /// <value>Unit price, specified in [minor units](https://docs.adyen.com/development-resources/currency-codes).  Max length: 12 characters.</value>
+        /// <value>The unit price in [minor units](https://docs.adyen.com/development-resources/currency-codes).  For example, 2000 means USD 20.00.  Encoding: Numeric  Max length: 12 characters</value>
         [DataMember(Name = "enhancedSchemeData.itemDetailLine[itemNr].unitPrice", EmitDefaultValue = false)]
         public string EnhancedSchemeDataItemDetailLineItemNrUnitPrice { get; set; }
 
         /// <summary>
-        /// Order date. * Format: &#x60;ddMMyy&#x60;  Encoding: ASCII.  Max length: 6 characters.
+        /// The order date. * Format: &#x60;ddMMyy&#x60;  Encoding: ASCII  Max length: 6 characters
         /// </summary>
-        /// <value>Order date. * Format: &#x60;ddMMyy&#x60;  Encoding: ASCII.  Max length: 6 characters.</value>
+        /// <value>The order date. * Format: &#x60;ddMMyy&#x60;  Encoding: ASCII  Max length: 6 characters</value>
         [DataMember(Name = "enhancedSchemeData.orderDate", EmitDefaultValue = false)]
         public string EnhancedSchemeDataOrderDate { get; set; }
 
         /// <summary>
-        /// The postal code of a \&quot;ship-from\&quot; address.  Encoding: ASCII.  Max length: 10 characters.
+        /// The postal code of the address the item is shipped from.  Encoding: ASCII  Max length: 10 characters  Must not start with a space or be all spaces  Must not be all zeros
         /// </summary>
-        /// <value>The postal code of a \&quot;ship-from\&quot; address.  Encoding: ASCII.  Max length: 10 characters.</value>
+        /// <value>The postal code of the address the item is shipped from.  Encoding: ASCII  Max length: 10 characters  Must not start with a space or be all spaces  Must not be all zeros</value>
         [DataMember(Name = "enhancedSchemeData.shipFromPostalCode", EmitDefaultValue = false)]
         public string EnhancedSchemeDataShipFromPostalCode { get; set; }
 
         /// <summary>
-        /// Total tax amount, in minor units.  For example, 2000 means USD 20.00.  Max length: 12 characters.  &gt; Required for Level 2 and Level 3 data.
+        /// The total tax amount, in [minor units](https://docs.adyen.com/development-resources/currency-codes).  For example, 2000 means USD 20.00.  Encoding: Numeric  Max length: 12 characters  
         /// </summary>
-        /// <value>Total tax amount, in minor units.  For example, 2000 means USD 20.00.  Max length: 12 characters.  &gt; Required for Level 2 and Level 3 data.</value>
+        /// <value>The total tax amount, in [minor units](https://docs.adyen.com/development-resources/currency-codes).  For example, 2000 means USD 20.00.  Encoding: Numeric  Max length: 12 characters  </value>
         [DataMember(Name = "enhancedSchemeData.totalTaxAmount", EmitDefaultValue = false)]
         public string EnhancedSchemeDataTotalTaxAmount { get; set; }
 
