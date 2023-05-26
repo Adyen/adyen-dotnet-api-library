@@ -49,7 +49,7 @@ In order to submit http request to Adyen API you need to initialize the client. 
 using Adyen;
 using Adyen.Model.Checkout;
 using Adyen.Service;
-using Environment = Adyen.Model.Enum.Environment;
+using Environment = Adyen.Model.Environment;
 
 // Create a paymentsRequest
 var amount = new Amount("USD", 1000);
@@ -114,7 +114,7 @@ using System;
 using Adyen.Model.Nexo;
 using Adyen.Model.Nexo.Message;
 using Adyen.Service;
-using Environment = Adyen.Model.Enum.Environment;
+using Environment = Adyen.Model.Environment;
  
 namespace Adyen.Terminal
 {
