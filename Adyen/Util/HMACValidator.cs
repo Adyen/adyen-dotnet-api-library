@@ -91,7 +91,15 @@ namespace Adyen.Util
         public bool isValidHmac(string hmacKey, string hmacSignature, string payload)
         {
             var calculatedSign = CalculateHmac(payload, hmacSignature);
-            return hmacKey == calculatedSign;
+            return TimeSafeEquals(Encoding.UTF8.GetBytes(hmacKey), Encoding.UTF8.GetBytes(calculatedSign));
+        }
+        
+        // This method compares two bytestrings in constant time based on length of shortest bytestring to prevent timing attacks
+        private static bool TimeSafeEquals(byte[] a, byte[] b)
+        {
+            uint diff = (uint)a.Length ^ (uint)b.Length;
+            for (int i = 0; i < a.Length && i < b.Length; i++) { diff |= (uint)(a[i] ^ b[i]); }
+            return diff == 0;
         }
     }
 }
