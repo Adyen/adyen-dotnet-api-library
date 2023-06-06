@@ -48,7 +48,7 @@ In order to submit http request to Adyen API you need to initialize the client. 
 // Create a paymentsRequest
 using Adyen;
 using Adyen.Model.Checkout;
-using Adyen.Service;
+using Adyen.Service.Checkout;
 using Environment = Adyen.Model.Environment;
 
 // Create a paymentsRequest
