@@ -49,6 +49,6 @@
         public static string DataProtectionVersion = "v1";
 
         public static string LibName = "adyen-dotnet-api-library";
-        public static string LibVersion = "10.1.0";
+        public static string LibVersion = "10.0.0";
     }
 }

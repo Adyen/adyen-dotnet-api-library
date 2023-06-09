@@ -36,33 +36,21 @@ namespace Adyen.Model.Management
         /// <summary>
         /// Initializes a new instance of the <see cref="UpdatePaymentMethodInfo" /> class.
         /// </summary>
-        /// <param name="bcmc">bcmc.</param>
-        /// <param name="cartesBancaires">cartesBancaires.</param>
         /// <param name="countries">The list of countries where a payment method is available. By default, all countries supported by the payment method..</param>
         /// <param name="currencies">The list of currencies that a payment method supports. By default, all currencies supported by the payment method..</param>
+        /// <param name="customRoutingFlags">Custom routing flags for acquirer routing..</param>
         /// <param name="enabled">Indicates whether the payment method is enabled (**true**) or disabled (**false**)..</param>
+        /// <param name="shopperStatement">shopperStatement.</param>
         /// <param name="storeIds">The list of stores for this payment method.</param>
-        public UpdatePaymentMethodInfo(BcmcInfo bcmc = default(BcmcInfo), CartesBancairesInfo cartesBancaires = default(CartesBancairesInfo), List<string> countries = default(List<string>), List<string> currencies = default(List<string>), bool enabled = default(bool), List<string> storeIds = default(List<string>))
+        public UpdatePaymentMethodInfo(List<string> countries = default(List<string>), List<string> currencies = default(List<string>), List<string> customRoutingFlags = default(List<string>), bool enabled = default(bool), ShopperStatement shopperStatement = default(ShopperStatement), List<string> storeIds = default(List<string>))
         {
-            this.Bcmc = bcmc;
-            this.CartesBancaires = cartesBancaires;
             this.Countries = countries;
             this.Currencies = currencies;
+            this.CustomRoutingFlags = customRoutingFlags;
             this.Enabled = enabled;
+            this.ShopperStatement = shopperStatement;
             this.StoreIds = storeIds;
         }
-
-        /// <summary>
-        /// Gets or Sets Bcmc
-        /// </summary>
-        [DataMember(Name = "bcmc", EmitDefaultValue = false)]
-        public BcmcInfo Bcmc { get; set; }
-
-        /// <summary>
-        /// Gets or Sets CartesBancaires
-        /// </summary>
-        [DataMember(Name = "cartesBancaires", EmitDefaultValue = false)]
-        public CartesBancairesInfo CartesBancaires { get; set; }
 
         /// <summary>
         /// The list of countries where a payment method is available. By default, all countries supported by the payment method.
@@ -79,11 +67,24 @@ namespace Adyen.Model.Management
         public List<string> Currencies { get; set; }
 
         /// <summary>
+        /// Custom routing flags for acquirer routing.
+        /// </summary>
+        /// <value>Custom routing flags for acquirer routing.</value>
+        [DataMember(Name = "customRoutingFlags", EmitDefaultValue = false)]
+        public List<string> CustomRoutingFlags { get; set; }
+
+        /// <summary>
         /// Indicates whether the payment method is enabled (**true**) or disabled (**false**).
         /// </summary>
         /// <value>Indicates whether the payment method is enabled (**true**) or disabled (**false**).</value>
         [DataMember(Name = "enabled", EmitDefaultValue = false)]
         public bool Enabled { get; set; }
+
+        /// <summary>
+        /// Gets or Sets ShopperStatement
+        /// </summary>
+        [DataMember(Name = "shopperStatement", EmitDefaultValue = false)]
+        public ShopperStatement ShopperStatement { get; set; }
 
         /// <summary>
         /// The list of stores for this payment method
@@ -100,11 +101,11 @@ namespace Adyen.Model.Management
         {
             StringBuilder sb = new StringBuilder();
             sb.Append("class UpdatePaymentMethodInfo {\n");
-            sb.Append("  Bcmc: ").Append(Bcmc).Append("\n");
-            sb.Append("  CartesBancaires: ").Append(CartesBancaires).Append("\n");
             sb.Append("  Countries: ").Append(Countries).Append("\n");
             sb.Append("  Currencies: ").Append(Currencies).Append("\n");
+            sb.Append("  CustomRoutingFlags: ").Append(CustomRoutingFlags).Append("\n");
             sb.Append("  Enabled: ").Append(Enabled).Append("\n");
+            sb.Append("  ShopperStatement: ").Append(ShopperStatement).Append("\n");
             sb.Append("  StoreIds: ").Append(StoreIds).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
@@ -142,16 +143,6 @@ namespace Adyen.Model.Management
             }
             return 
                 (
-                    this.Bcmc == input.Bcmc ||
-                    (this.Bcmc != null &&
-                    this.Bcmc.Equals(input.Bcmc))
-                ) && 
-                (
-                    this.CartesBancaires == input.CartesBancaires ||
-                    (this.CartesBancaires != null &&
-                    this.CartesBancaires.Equals(input.CartesBancaires))
-                ) && 
-                (
                     this.Countries == input.Countries ||
                     this.Countries != null &&
                     input.Countries != null &&
@@ -164,8 +155,19 @@ namespace Adyen.Model.Management
                     this.Currencies.SequenceEqual(input.Currencies)
                 ) && 
                 (
+                    this.CustomRoutingFlags == input.CustomRoutingFlags ||
+                    this.CustomRoutingFlags != null &&
+                    input.CustomRoutingFlags != null &&
+                    this.CustomRoutingFlags.SequenceEqual(input.CustomRoutingFlags)
+                ) && 
+                (
                     this.Enabled == input.Enabled ||
                     this.Enabled.Equals(input.Enabled)
+                ) && 
+                (
+                    this.ShopperStatement == input.ShopperStatement ||
+                    (this.ShopperStatement != null &&
+                    this.ShopperStatement.Equals(input.ShopperStatement))
                 ) && 
                 (
                     this.StoreIds == input.StoreIds ||
@@ -184,14 +186,6 @@ namespace Adyen.Model.Management
             unchecked // Overflow is fine, just wrap
             {
                 int hashCode = 41;
-                if (this.Bcmc != null)
-                {
-                    hashCode = (hashCode * 59) + this.Bcmc.GetHashCode();
-                }
-                if (this.CartesBancaires != null)
-                {
-                    hashCode = (hashCode * 59) + this.CartesBancaires.GetHashCode();
-                }
                 if (this.Countries != null)
                 {
                     hashCode = (hashCode * 59) + this.Countries.GetHashCode();
@@ -200,7 +194,15 @@ namespace Adyen.Model.Management
                 {
                     hashCode = (hashCode * 59) + this.Currencies.GetHashCode();
                 }
+                if (this.CustomRoutingFlags != null)
+                {
+                    hashCode = (hashCode * 59) + this.CustomRoutingFlags.GetHashCode();
+                }
                 hashCode = (hashCode * 59) + this.Enabled.GetHashCode();
+                if (this.ShopperStatement != null)
+                {
+                    hashCode = (hashCode * 59) + this.ShopperStatement.GetHashCode();
+                }
                 if (this.StoreIds != null)
                 {
                     hashCode = (hashCode * 59) + this.StoreIds.GetHashCode();
