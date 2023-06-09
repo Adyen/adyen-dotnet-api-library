@@ -89,6 +89,7 @@ namespace Adyen.Model.Management
         /// </summary>
         /// <value>The [assignment status](https://docs.adyen.com/point-of-sale/automating-terminal-management/assign-terminals-api) of the terminal. If true, the terminal is assigned. If false, the terminal is in inventory and can&#39;t be boarded.</value>
         [DataMember(Name = "assigned", EmitDefaultValue = false)]
+        [Obsolete]
         public bool Assigned { get; set; }
 
         /// <summary>
@@ -96,6 +97,7 @@ namespace Adyen.Model.Management
         /// </summary>
         /// <value>The Bluetooth IP address of the terminal.</value>
         [DataMember(Name = "bluetoothIp", EmitDefaultValue = false)]
+        [Obsolete]
         public string BluetoothIp { get; set; }
 
         /// <summary>
@@ -110,6 +112,7 @@ namespace Adyen.Model.Management
         /// </summary>
         /// <value>The city where the terminal is located.</value>
         [DataMember(Name = "city", EmitDefaultValue = false)]
+        [Obsolete]
         public string City { get; set; }
 
         /// <summary>
@@ -117,6 +120,7 @@ namespace Adyen.Model.Management
         /// </summary>
         /// <value>The company account that the terminal is associated with. If this is the only account level shown in the response, the terminal is assigned to the inventory of the company account.</value>
         [DataMember(Name = "companyAccount", EmitDefaultValue = false)]
+        [Obsolete]
         public string CompanyAccount { get; set; }
 
         /// <summary>
@@ -124,6 +128,7 @@ namespace Adyen.Model.Management
         /// </summary>
         /// <value>The country code of the country where the terminal is located.</value>
         [DataMember(Name = "countryCode", EmitDefaultValue = false)]
+        [Obsolete]
         public string CountryCode { get; set; }
 
         /// <summary>
@@ -131,6 +136,7 @@ namespace Adyen.Model.Management
         /// </summary>
         /// <value>The model name of the terminal.</value>
         [DataMember(Name = "deviceModel", EmitDefaultValue = false)]
+        [Obsolete]
         public string DeviceModel { get; set; }
 
         /// <summary>
@@ -138,6 +144,7 @@ namespace Adyen.Model.Management
         /// </summary>
         /// <value>The ethernet IP address of the terminal.</value>
         [DataMember(Name = "ethernetIp", EmitDefaultValue = false)]
+        [Obsolete]
         public string EthernetIp { get; set; }
 
         /// <summary>
@@ -145,6 +152,7 @@ namespace Adyen.Model.Management
         /// </summary>
         /// <value>The ethernet MAC address of the terminal.</value>
         [DataMember(Name = "ethernetMac", EmitDefaultValue = false)]
+        [Obsolete]
         public string EthernetMac { get; set; }
 
         /// <summary>
@@ -159,6 +167,7 @@ namespace Adyen.Model.Management
         /// </summary>
         /// <value>The integrated circuit card identifier (ICCID) of the SIM card in the terminal.</value>
         [DataMember(Name = "iccid", EmitDefaultValue = false)]
+        [Obsolete]
         public string Iccid { get; set; }
 
         /// <summary>
@@ -173,6 +182,7 @@ namespace Adyen.Model.Management
         /// </summary>
         /// <value>Date and time of the last activity on the terminal. Not included when the last activity was more than 14 days ago.</value>
         [DataMember(Name = "lastActivityDateTime", EmitDefaultValue = false)]
+        [Obsolete]
         public DateTime LastActivityDateTime { get; set; }
 
         /// <summary>
@@ -180,6 +190,7 @@ namespace Adyen.Model.Management
         /// </summary>
         /// <value>Date and time of the last transaction on the terminal. Not included when the last transaction was more than 14 days ago.</value>
         [DataMember(Name = "lastTransactionDateTime", EmitDefaultValue = false)]
+        [Obsolete]
         public DateTime LastTransactionDateTime { get; set; }
 
         /// <summary>
@@ -187,6 +198,7 @@ namespace Adyen.Model.Management
         /// </summary>
         /// <value>The Ethernet link negotiation that the terminal uses:  - &#x60;auto&#x60;: Auto-negotiation  - &#x60;100full&#x60;: 100 Mbps full duplex</value>
         [DataMember(Name = "linkNegotiation", EmitDefaultValue = false)]
+        [Obsolete]
         public string LinkNegotiation { get; set; }
 
         /// <summary>
@@ -201,6 +213,7 @@ namespace Adyen.Model.Management
         /// </summary>
         /// <value>On a terminal that supports 3G or 4G connectivity, indicates the status of the SIM card in the terminal: ACTIVE or INVENTORY.</value>
         [DataMember(Name = "simStatus", EmitDefaultValue = false)]
+        [Obsolete]
         public string SimStatus { get; set; }
 
         /// <summary>
@@ -208,6 +221,7 @@ namespace Adyen.Model.Management
         /// </summary>
         /// <value>Indicates when the terminal was last online, whether the terminal is being reassigned, or whether the terminal is turned off. If the terminal was last online more that a week ago, it is also shown as turned off.</value>
         [DataMember(Name = "status", EmitDefaultValue = false)]
+        [Obsolete]
         public string Status { get; set; }
 
         /// <summary>
@@ -215,6 +229,7 @@ namespace Adyen.Model.Management
         /// </summary>
         /// <value>The status of the store that the terminal is assigned to.</value>
         [DataMember(Name = "storeStatus", EmitDefaultValue = false)]
+        [Obsolete]
         public string StoreStatus { get; set; }
 
         /// <summary>
@@ -222,6 +237,7 @@ namespace Adyen.Model.Management
         /// </summary>
         /// <value>The terminal&#39;s IP address in your Wi-Fi network.</value>
         [DataMember(Name = "wifiIp", EmitDefaultValue = false)]
+        [Obsolete]
         public string WifiIp { get; set; }
 
         /// <summary>
@@ -229,6 +245,7 @@ namespace Adyen.Model.Management
         /// </summary>
         /// <value>The terminal&#39;s MAC address in your Wi-Fi network.</value>
         [DataMember(Name = "wifiMac", EmitDefaultValue = false)]
+        [Obsolete]
         public string WifiMac { get; set; }
 
         /// <summary>
@@ -236,6 +253,7 @@ namespace Adyen.Model.Management
         /// </summary>
         /// <value>The SSID of the Wi-Fi network that your terminal is connected to.</value>
         [DataMember(Name = "wifiSsid", EmitDefaultValue = false)]
+        [Obsolete]
         public string WifiSsid { get; set; }
 
         /// <summary>

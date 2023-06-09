@@ -39,13 +39,15 @@ namespace Adyen.Model.Management
         /// <param name="billingEntityId">The identification of the billing entity to use for the order..</param>
         /// <param name="customerOrderReference">The merchant-defined purchase order reference..</param>
         /// <param name="items">The products included in the order..</param>
+        /// <param name="orderType">Type of order.</param>
         /// <param name="shippingLocationId">The identification of the shipping location to use for the order..</param>
         /// <param name="taxId">The tax number of the billing entity..</param>
-        public TerminalOrderRequest(string billingEntityId = default(string), string customerOrderReference = default(string), List<OrderItem> items = default(List<OrderItem>), string shippingLocationId = default(string), string taxId = default(string))
+        public TerminalOrderRequest(string billingEntityId = default(string), string customerOrderReference = default(string), List<OrderItem> items = default(List<OrderItem>), string orderType = default(string), string shippingLocationId = default(string), string taxId = default(string))
         {
             this.BillingEntityId = billingEntityId;
             this.CustomerOrderReference = customerOrderReference;
             this.Items = items;
+            this.OrderType = orderType;
             this.ShippingLocationId = shippingLocationId;
             this.TaxId = taxId;
         }
@@ -72,6 +74,13 @@ namespace Adyen.Model.Management
         public List<OrderItem> Items { get; set; }
 
         /// <summary>
+        /// Type of order
+        /// </summary>
+        /// <value>Type of order</value>
+        [DataMember(Name = "orderType", EmitDefaultValue = false)]
+        public string OrderType { get; set; }
+
+        /// <summary>
         /// The identification of the shipping location to use for the order.
         /// </summary>
         /// <value>The identification of the shipping location to use for the order.</value>
@@ -96,6 +105,7 @@ namespace Adyen.Model.Management
             sb.Append("  BillingEntityId: ").Append(BillingEntityId).Append("\n");
             sb.Append("  CustomerOrderReference: ").Append(CustomerOrderReference).Append("\n");
             sb.Append("  Items: ").Append(Items).Append("\n");
+            sb.Append("  OrderType: ").Append(OrderType).Append("\n");
             sb.Append("  ShippingLocationId: ").Append(ShippingLocationId).Append("\n");
             sb.Append("  TaxId: ").Append(TaxId).Append("\n");
             sb.Append("}\n");
@@ -150,6 +160,11 @@ namespace Adyen.Model.Management
                     this.Items.SequenceEqual(input.Items)
                 ) && 
                 (
+                    this.OrderType == input.OrderType ||
+                    (this.OrderType != null &&
+                    this.OrderType.Equals(input.OrderType))
+                ) && 
+                (
                     this.ShippingLocationId == input.ShippingLocationId ||
                     (this.ShippingLocationId != null &&
                     this.ShippingLocationId.Equals(input.ShippingLocationId))
@@ -181,6 +196,10 @@ namespace Adyen.Model.Management
                 if (this.Items != null)
                 {
                     hashCode = (hashCode * 59) + this.Items.GetHashCode();
+                }
+                if (this.OrderType != null)
+                {
+                    hashCode = (hashCode * 59) + this.OrderType.GetHashCode();
                 }
                 if (this.ShippingLocationId != null)
                 {
