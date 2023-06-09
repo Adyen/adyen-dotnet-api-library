@@ -42,12 +42,12 @@ namespace Adyen.Model.Management
         /// Initializes a new instance of the <see cref="StoreCreationWithMerchantCodeRequest" /> class.
         /// </summary>
         /// <param name="address">address (required).</param>
-        /// <param name="businessLineIds">The unique identifiers of the [business lines](https://docs.adyen.com/api-explorer/legalentity/latest/post/businessLines#responses-200-id) that the store is associated with. If not specified, the business line of the merchant account is used. Required when there are multiple business lines under the merchant account..</param>
+        /// <param name="businessLineIds">The unique identifiers of the [business lines](https://docs.adyen.com/api-explorer/#/legalentity/latest/post/businesslines__resParam_id) that the store is associated with. If not specified, the business line of the merchant account is used. Required when there are multiple business lines under the merchant account..</param>
         /// <param name="description">Your description of the store. (required).</param>
         /// <param name="externalReferenceId">When using the Zip payment method: The location ID that Zip has assigned to your store..</param>
         /// <param name="merchantId">The unique identifier of the merchant account that the store belongs to. (required).</param>
         /// <param name="phoneNumber">The phone number of the store, including &#39;+&#39; and country code. (required).</param>
-        /// <param name="reference">Your reference to recognize the store by. Also known as the store code.  Allowed characters: lowercase and uppercase letters without diacritics, numbers 0 through 9, hyphen (-), and underscore (_).  If you do not provide a reference in your POST request, it is populated with the Adyen-generated [id](https://docs.adyen.com/api-explorer/Management/latest/post/stores#responses-200-id)..</param>
+        /// <param name="reference">Your reference to recognize the store by. Also known as the store code.  Allowed characters: Lowercase and uppercase letters without diacritics, numbers 0 through 9, hyphen (-), and underscore (_)..</param>
         /// <param name="shopperStatement">The store name to be shown on the shopper&#39;s bank or credit card statement and on the shopper receipt. Maximum length: 22 characters; can&#39;t be all numbers. (required).</param>
         /// <param name="splitConfiguration">splitConfiguration.</param>
         public StoreCreationWithMerchantCodeRequest(StoreLocation address = default(StoreLocation), List<string> businessLineIds = default(List<string>), string description = default(string), string externalReferenceId = default(string), string merchantId = default(string), string phoneNumber = default(string), string reference = default(string), string shopperStatement = default(string), StoreSplitConfiguration splitConfiguration = default(StoreSplitConfiguration))
@@ -70,9 +70,9 @@ namespace Adyen.Model.Management
         public StoreLocation Address { get; set; }
 
         /// <summary>
-        /// The unique identifiers of the [business lines](https://docs.adyen.com/api-explorer/legalentity/latest/post/businessLines#responses-200-id) that the store is associated with. If not specified, the business line of the merchant account is used. Required when there are multiple business lines under the merchant account.
+        /// The unique identifiers of the [business lines](https://docs.adyen.com/api-explorer/#/legalentity/latest/post/businesslines__resParam_id) that the store is associated with. If not specified, the business line of the merchant account is used. Required when there are multiple business lines under the merchant account.
         /// </summary>
-        /// <value>The unique identifiers of the [business lines](https://docs.adyen.com/api-explorer/legalentity/latest/post/businessLines#responses-200-id) that the store is associated with. If not specified, the business line of the merchant account is used. Required when there are multiple business lines under the merchant account.</value>
+        /// <value>The unique identifiers of the [business lines](https://docs.adyen.com/api-explorer/#/legalentity/latest/post/businesslines__resParam_id) that the store is associated with. If not specified, the business line of the merchant account is used. Required when there are multiple business lines under the merchant account.</value>
         [DataMember(Name = "businessLineIds", EmitDefaultValue = false)]
         public List<string> BusinessLineIds { get; set; }
 
@@ -105,9 +105,9 @@ namespace Adyen.Model.Management
         public string PhoneNumber { get; set; }
 
         /// <summary>
-        /// Your reference to recognize the store by. Also known as the store code.  Allowed characters: lowercase and uppercase letters without diacritics, numbers 0 through 9, hyphen (-), and underscore (_).  If you do not provide a reference in your POST request, it is populated with the Adyen-generated [id](https://docs.adyen.com/api-explorer/Management/latest/post/stores#responses-200-id).
+        /// Your reference to recognize the store by. Also known as the store code.  Allowed characters: Lowercase and uppercase letters without diacritics, numbers 0 through 9, hyphen (-), and underscore (_).
         /// </summary>
-        /// <value>Your reference to recognize the store by. Also known as the store code.  Allowed characters: lowercase and uppercase letters without diacritics, numbers 0 through 9, hyphen (-), and underscore (_).  If you do not provide a reference in your POST request, it is populated with the Adyen-generated [id](https://docs.adyen.com/api-explorer/Management/latest/post/stores#responses-200-id).</value>
+        /// <value>Your reference to recognize the store by. Also known as the store code.  Allowed characters: Lowercase and uppercase letters without diacritics, numbers 0 through 9, hyphen (-), and underscore (_).</value>
         [DataMember(Name = "reference", EmitDefaultValue = false)]
         public string Reference { get; set; }
 

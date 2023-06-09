@@ -42,7 +42,7 @@ namespace Adyen.Model.Management
         /// Initializes a new instance of the <see cref="VippsInfo" /> class.
         /// </summary>
         /// <param name="logo">Vipps logo. Format: Base64-encoded string. (required).</param>
-        /// <param name="subscriptionCancelUrl">Vipps subscription cancel url (required in case of [recurring payments](https://docs.adyen.com/online-payments/tokenization)).</param>
+        /// <param name="subscriptionCancelUrl">Vipps subscription cancel url.</param>
         public VippsInfo(string logo = default(string), string subscriptionCancelUrl = default(string))
         {
             this.Logo = logo;
@@ -57,9 +57,9 @@ namespace Adyen.Model.Management
         public string Logo { get; set; }
 
         /// <summary>
-        /// Vipps subscription cancel url (required in case of [recurring payments](https://docs.adyen.com/online-payments/tokenization))
+        /// Vipps subscription cancel url
         /// </summary>
-        /// <value>Vipps subscription cancel url (required in case of [recurring payments](https://docs.adyen.com/online-payments/tokenization))</value>
+        /// <value>Vipps subscription cancel url</value>
         [DataMember(Name = "subscriptionCancelUrl", EmitDefaultValue = false)]
         public string SubscriptionCancelUrl { get; set; }
 

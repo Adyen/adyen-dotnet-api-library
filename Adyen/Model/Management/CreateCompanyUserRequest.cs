@@ -43,18 +43,20 @@ namespace Adyen.Model.Management
         /// </summary>
         /// <param name="accountGroups">The list of [account groups](https://docs.adyen.com/account/account-structure#account-groups) associated with this user..</param>
         /// <param name="associatedMerchantAccounts">The list of [merchant accounts](https://docs.adyen.com/account/account-structure#merchant-accounts) associated with this user..</param>
+        /// <param name="authnApps">Set of authn apps to add to this user.</param>
         /// <param name="email">The email address of the user. (required).</param>
         /// <param name="name">name (required).</param>
         /// <param name="roles">The list of [roles](https://docs.adyen.com/account/user-roles) for this user..</param>
         /// <param name="timeZoneCode">The [tz database name](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones) of the time zone of the user. For example, **Europe/Amsterdam**..</param>
-        /// <param name="username">The user&#39;s email address that will be their username. Must be the same as the one in the &#x60;email&#x60; field. (required).</param>
-        public CreateCompanyUserRequest(List<string> accountGroups = default(List<string>), List<string> associatedMerchantAccounts = default(List<string>), string email = default(string), Name name = default(Name), List<string> roles = default(List<string>), string timeZoneCode = default(string), string username = default(string))
+        /// <param name="username">The username for this user. Allowed length: 255 alphanumeric characters. (required).</param>
+        public CreateCompanyUserRequest(List<string> accountGroups = default(List<string>), List<string> associatedMerchantAccounts = default(List<string>), List<string> authnApps = default(List<string>), string email = default(string), Name name = default(Name), List<string> roles = default(List<string>), string timeZoneCode = default(string), string username = default(string))
         {
             this.Email = email;
             this.Name = name;
             this.Username = username;
             this.AccountGroups = accountGroups;
             this.AssociatedMerchantAccounts = associatedMerchantAccounts;
+            this.AuthnApps = authnApps;
             this.Roles = roles;
             this.TimeZoneCode = timeZoneCode;
         }
@@ -72,6 +74,13 @@ namespace Adyen.Model.Management
         /// <value>The list of [merchant accounts](https://docs.adyen.com/account/account-structure#merchant-accounts) associated with this user.</value>
         [DataMember(Name = "associatedMerchantAccounts", EmitDefaultValue = false)]
         public List<string> AssociatedMerchantAccounts { get; set; }
+
+        /// <summary>
+        /// Set of authn apps to add to this user
+        /// </summary>
+        /// <value>Set of authn apps to add to this user</value>
+        [DataMember(Name = "authnApps", EmitDefaultValue = false)]
+        public List<string> AuthnApps { get; set; }
 
         /// <summary>
         /// The email address of the user.
@@ -101,9 +110,9 @@ namespace Adyen.Model.Management
         public string TimeZoneCode { get; set; }
 
         /// <summary>
-        /// The user&#39;s email address that will be their username. Must be the same as the one in the &#x60;email&#x60; field.
+        /// The username for this user. Allowed length: 255 alphanumeric characters.
         /// </summary>
-        /// <value>The user&#39;s email address that will be their username. Must be the same as the one in the &#x60;email&#x60; field.</value>
+        /// <value>The username for this user. Allowed length: 255 alphanumeric characters.</value>
         [DataMember(Name = "username", IsRequired = false, EmitDefaultValue = false)]
         public string Username { get; set; }
 
@@ -117,6 +126,7 @@ namespace Adyen.Model.Management
             sb.Append("class CreateCompanyUserRequest {\n");
             sb.Append("  AccountGroups: ").Append(AccountGroups).Append("\n");
             sb.Append("  AssociatedMerchantAccounts: ").Append(AssociatedMerchantAccounts).Append("\n");
+            sb.Append("  AuthnApps: ").Append(AuthnApps).Append("\n");
             sb.Append("  Email: ").Append(Email).Append("\n");
             sb.Append("  Name: ").Append(Name).Append("\n");
             sb.Append("  Roles: ").Append(Roles).Append("\n");
@@ -170,6 +180,12 @@ namespace Adyen.Model.Management
                     this.AssociatedMerchantAccounts.SequenceEqual(input.AssociatedMerchantAccounts)
                 ) && 
                 (
+                    this.AuthnApps == input.AuthnApps ||
+                    this.AuthnApps != null &&
+                    input.AuthnApps != null &&
+                    this.AuthnApps.SequenceEqual(input.AuthnApps)
+                ) && 
+                (
                     this.Email == input.Email ||
                     (this.Email != null &&
                     this.Email.Equals(input.Email))
@@ -213,6 +229,10 @@ namespace Adyen.Model.Management
                 if (this.AssociatedMerchantAccounts != null)
                 {
                     hashCode = (hashCode * 59) + this.AssociatedMerchantAccounts.GetHashCode();
+                }
+                if (this.AuthnApps != null)
+                {
+                    hashCode = (hashCode * 59) + this.AuthnApps.GetHashCode();
                 }
                 if (this.Email != null)
                 {

@@ -223,7 +223,6 @@ namespace Adyen.Model.Management
             }
             int match = 0;
             List<string> matchedTypes = new List<string>();
-            var type = (string)JObject.Parse(jsonString)["type"];
 
             try
             {
@@ -236,11 +235,8 @@ namespace Adyen.Model.Management
                 {
                     newScheduleTerminalActionsRequestActionDetails = new ScheduleTerminalActionsRequestActionDetails(JsonConvert.DeserializeObject<InstallAndroidAppDetails>(jsonString, ScheduleTerminalActionsRequestActionDetails.AdditionalPropertiesSerializerSettings));
                 }
-                if (type != null || JsonConvert.SerializeObject((InstallAndroidAppDetails.TypeEnum) 1).Contains(type))
-                {
-                    matchedTypes.Add("InstallAndroidAppDetails");
-                    match++;
-                }
+                matchedTypes.Add("InstallAndroidAppDetails");
+                match++;
             }
             catch (Exception ex)
             {
@@ -261,11 +257,8 @@ namespace Adyen.Model.Management
                 {
                     newScheduleTerminalActionsRequestActionDetails = new ScheduleTerminalActionsRequestActionDetails(JsonConvert.DeserializeObject<InstallAndroidCertificateDetails>(jsonString, ScheduleTerminalActionsRequestActionDetails.AdditionalPropertiesSerializerSettings));
                 }
-                if (type != null || JsonConvert.SerializeObject((InstallAndroidCertificateDetails.TypeEnum) 1).Contains(type))
-                {
-                    matchedTypes.Add("InstallAndroidCertificateDetails");
-                    match++;
-                }
+                matchedTypes.Add("InstallAndroidCertificateDetails");
+                match++;
             }
             catch (Exception ex)
             {
@@ -286,11 +279,8 @@ namespace Adyen.Model.Management
                 {
                     newScheduleTerminalActionsRequestActionDetails = new ScheduleTerminalActionsRequestActionDetails(JsonConvert.DeserializeObject<ReleaseUpdateDetails>(jsonString, ScheduleTerminalActionsRequestActionDetails.AdditionalPropertiesSerializerSettings));
                 }
-                if (type != null || JsonConvert.SerializeObject((ReleaseUpdateDetails.TypeEnum) 1).Contains(type))
-                {
-                    matchedTypes.Add("ReleaseUpdateDetails");
-                    match++;
-                }
+                matchedTypes.Add("ReleaseUpdateDetails");
+                match++;
             }
             catch (Exception ex)
             {
@@ -311,11 +301,8 @@ namespace Adyen.Model.Management
                 {
                     newScheduleTerminalActionsRequestActionDetails = new ScheduleTerminalActionsRequestActionDetails(JsonConvert.DeserializeObject<UninstallAndroidAppDetails>(jsonString, ScheduleTerminalActionsRequestActionDetails.AdditionalPropertiesSerializerSettings));
                 }
-                if (type != null || JsonConvert.SerializeObject((UninstallAndroidAppDetails.TypeEnum) 1).Contains(type))
-                {
-                    matchedTypes.Add("UninstallAndroidAppDetails");
-                    match++;
-                }
+                matchedTypes.Add("UninstallAndroidAppDetails");
+                match++;
             }
             catch (Exception ex)
             {
@@ -336,11 +323,8 @@ namespace Adyen.Model.Management
                 {
                     newScheduleTerminalActionsRequestActionDetails = new ScheduleTerminalActionsRequestActionDetails(JsonConvert.DeserializeObject<UninstallAndroidCertificateDetails>(jsonString, ScheduleTerminalActionsRequestActionDetails.AdditionalPropertiesSerializerSettings));
                 }
-                if (type != null || JsonConvert.SerializeObject((UninstallAndroidCertificateDetails.TypeEnum) 1).Contains(type))
-                {
-                    matchedTypes.Add("UninstallAndroidCertificateDetails");
-                    match++;
-                }
+                matchedTypes.Add("UninstallAndroidCertificateDetails");
+                match++;
             }
             catch (Exception ex)
             {
@@ -354,7 +338,11 @@ namespace Adyen.Model.Management
             {
                 throw new InvalidDataException("The JSON string `" + jsonString + "` cannot be deserialized into any schema defined.");
             }
-            
+            else if (match > 1)
+            {
+                throw new InvalidDataException("The JSON string `" + jsonString + "` incorrectly matches more than one schema (should be exactly one match): " + matchedTypes);
+            }
+
             // deserialization is considered successful at this point if no exception has been thrown.
             return newScheduleTerminalActionsRequestActionDetails;
         }

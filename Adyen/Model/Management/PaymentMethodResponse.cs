@@ -292,52 +292,40 @@ namespace Adyen.Model.Management
             Trustly = 42,
 
             /// <summary>
-            /// Enum Twint for value: twint
-            /// </summary>
-            [EnumMember(Value = "twint")]
-            Twint = 43,
-
-            /// <summary>
-            /// Enum TwintPos for value: twint_pos
-            /// </summary>
-            [EnumMember(Value = "twint_pos")]
-            TwintPos = 44,
-
-            /// <summary>
             /// Enum Vipps for value: vipps
             /// </summary>
             [EnumMember(Value = "vipps")]
-            Vipps = 45,
+            Vipps = 43,
 
             /// <summary>
             /// Enum Visa for value: visa
             /// </summary>
             [EnumMember(Value = "visa")]
-            Visa = 46,
+            Visa = 44,
 
             /// <summary>
             /// Enum Visadebit for value: visadebit
             /// </summary>
             [EnumMember(Value = "visadebit")]
-            Visadebit = 47,
+            Visadebit = 45,
 
             /// <summary>
             /// Enum Vpay for value: vpay
             /// </summary>
             [EnumMember(Value = "vpay")]
-            Vpay = 48,
+            Vpay = 46,
 
             /// <summary>
             /// Enum Wechatpay for value: wechatpay
             /// </summary>
             [EnumMember(Value = "wechatpay")]
-            Wechatpay = 49,
+            Wechatpay = 47,
 
             /// <summary>
             /// Enum WechatpayPos for value: wechatpay_pos
             /// </summary>
             [EnumMember(Value = "wechatpay_pos")]
-            WechatpayPos = 50
+            WechatpayPos = 48
 
         }
 
@@ -354,7 +342,7 @@ namespace Adyen.Model.Management
         /// <param name="itemsTotal">Total number of items. (required).</param>
         /// <param name="pagesTotal">Total number of pages. (required).</param>
         /// <param name="typesWithErrors">Payment method types with errors..</param>
-        public PaymentMethodResponse(PaginationLinks links = default(PaginationLinks), List<PaymentMethodWrapper> data = default(List<PaymentMethodWrapper>), int? itemsTotal = default(int?), int? pagesTotal = default(int?), List<TypesWithErrorsEnum> typesWithErrors = default(List<TypesWithErrorsEnum>))
+        public PaymentMethodResponse(PaginationLinks links = default(PaginationLinks), List<PaymentMethod> data = default(List<PaymentMethod>), int? itemsTotal = default(int?), int? pagesTotal = default(int?), List<TypesWithErrorsEnum> typesWithErrors = default(List<TypesWithErrorsEnum>))
         {
             this.ItemsTotal = itemsTotal;
             this.PagesTotal = pagesTotal;
@@ -374,7 +362,7 @@ namespace Adyen.Model.Management
         /// </summary>
         /// <value>Payment methods details.</value>
         [DataMember(Name = "data", EmitDefaultValue = false)]
-        public List<PaymentMethodWrapper> Data { get; set; }
+        public List<PaymentMethod> Data { get; set; }
 
         /// <summary>
         /// Total number of items.

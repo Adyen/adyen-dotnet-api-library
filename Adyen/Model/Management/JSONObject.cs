@@ -38,7 +38,7 @@ namespace Adyen.Model.Management
         /// </summary>
         /// <param name="paths">paths.</param>
         /// <param name="rootPath">rootPath.</param>
-        public JSONObject(List<JSONPathWrapper> paths = default(List<JSONPathWrapper>), JSONPath rootPath = default(JSONPath))
+        public JSONObject(List<JSONPath> paths = default(List<JSONPath>), JSONPath rootPath = default(JSONPath))
         {
             this.Paths = paths;
             this.RootPath = rootPath;
@@ -48,7 +48,7 @@ namespace Adyen.Model.Management
         /// Gets or Sets Paths
         /// </summary>
         [DataMember(Name = "paths", EmitDefaultValue = false)]
-        public List<JSONPathWrapper> Paths { get; set; }
+        public List<JSONPath> Paths { get; set; }
 
         /// <summary>
         /// Gets or Sets RootPath
