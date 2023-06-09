@@ -75,7 +75,8 @@ $(Services): target/spec $(openapi-generator-jar)
 	
 $(SingleFileServices): target/spec $(openapi-generator-jar)  
 	rm -rf $(output)
-	cat <<< "$$(jq 'del(.paths[][].tags)' target/spec/json/$(spec).json)" > target/spec/json/$(spec).json
+	jq -e 'del(.paths[][].tags)' target/spec/json/$(spec).json > target/spec/json/$(spec).tmp
+	mv target/spec/json/$(spec).tmp target/spec/json/$(spec).json
 	$(openapi-generator-cli) generate \
 		-i target/spec/json/$(spec).json \
 		-g $(generator) \
