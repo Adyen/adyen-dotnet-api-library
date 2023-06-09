@@ -1,4 +1,5 @@
 using System.Net.Security;
+using System.Threading;
 using System.Threading.Tasks;
 using Adyen.Model.Nexo;
 using Adyen.Security;
@@ -21,7 +22,7 @@ namespace Adyen.Service
         /// <param name="saleToPoiRequest"></param>
         /// <param name="encryptionCredentialDetails"></param>
         /// <returns></returns>
-        Task<SaleToPOIResponse> TerminalApiLocalAsync(SaleToPOIMessage saleToPoiRequest, EncryptionCredentialDetails encryptionCredentialDetails);
+        Task<SaleToPOIResponse> TerminalApiLocalAsync(SaleToPOIMessage saleToPoiRequest, EncryptionCredentialDetails encryptionCredentialDetails, CancellationToken cancellationToken = default);
 
         /// <summary>
         /// Terminal Api https call
