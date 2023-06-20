@@ -114,4 +114,12 @@ clean:
 	git clean -f -d $(models) Adyen/Service/Management
 
 
-.PHONY: templates models $(services)
+# Release
+version:
+	echo "CURRENT_VERSION=10.1.0" >> "$GITHUB_OUTPUT"
+
+bump:
+	echo using $$NEXT_VERSION
+	exit 1
+
+.PHONY: templates models $(services) bump
