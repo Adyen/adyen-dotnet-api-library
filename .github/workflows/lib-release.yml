@@ -9,9 +9,10 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
-        with:
-          ref: main
+        # with:
+        #   ref: main
       - name: Reset promotion branch
+        if: false
         run: |
           git fetch origin develop:develop
           git reset --hard develop
@@ -38,8 +39,7 @@ jobs:
           NEXT_VERSION: ${{steps.release.outputs.nextVersion}}
       
       - name: Delete the release script
-        run: |
-          rm -f ./.github/scripts/release.js
+        run: rm -f ./.github/scripts/release.js
       - name: Create Pull Request
         id: cpr
         uses: peter-evans/create-pull-request@284f54f989303d2699d373481a0cfa13ad5a6666 # v5.0.1
