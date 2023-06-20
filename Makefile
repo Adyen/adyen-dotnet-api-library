@@ -116,7 +116,7 @@ clean:
 
 # Release
 version:
-	echo "CURRENT_VERSION=10.1.0" >> "$GITHUB_OUTPUT"
+	echo "CURRENT_VERSION=10.1.0" >> "$$GITHUB_OUTPUT"
 
 bump:
 	echo using $$NEXT_VERSION
