@@ -22,11 +22,11 @@ jobs:
         env:
           GH_TOKEN: ${{ secrets.ADYEN_AUTOMATION_BOT_ACCESS_TOKEN }}
         run: |
-          gh release create v${{steps.current-release.outputs.currentVersion}} \
-            --title 'Adyen ${{ inputs.project-name }} API Library v${{steps.current-release.outputs.currentVersion}}' \
+          gh release create v${{steps.current-version.outputs.currentVersion}} \
+            --title 'Adyen ${{ inputs.project-name }} API Library v${{steps.current-version.outputs.currentVersion}}' \
             --generate-notes --target main --draft
       - name: Update develop branch
         run: |
           git checkout develop
-          git merge main
+          git merge origin/main
           git push origin develop
