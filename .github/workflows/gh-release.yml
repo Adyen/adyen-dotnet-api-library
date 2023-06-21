@@ -5,7 +5,6 @@ on:
     push:
       branches:
         - main
-        - ITT-65
 
 jobs:
   gh_release:

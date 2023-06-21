@@ -9,10 +9,9 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
-        # with:
-        #   ref: main
+        with:
+          ref: main
       - name: Reset promotion branch
-        if: false
         run: |
           git fetch origin develop:develop
           git reset --hard develop

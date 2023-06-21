@@ -24,7 +24,7 @@ jobs:
         run: |
           gh release create v${{steps.current-version.outputs.currentVersion}} \
             --title 'Adyen ${{ inputs.project-name }} API Library v${{steps.current-version.outputs.currentVersion}}' \
-            --generate-notes --target main --draft
+            --generate-notes --target main
       - name: Update develop branch
         run: |
           git checkout develop

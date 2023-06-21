@@ -5,7 +5,6 @@ on:
     push:
       branches:
         - develop
-        - ITT-65
 
 jobs:
   release:
