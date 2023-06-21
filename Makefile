@@ -118,7 +118,9 @@ clean:
 version:
 	perl -lne 'print "currentVersion=$$1" if /LibVersion = "(\d+\.\d+\.\d+)"/' < Adyen/Constants/ClientConfig.cs >> "$$GITHUB_OUTPUT"
 
+version_files:=Adyen/Adyen.csproj Adyen.Test/Adyen.Test.csproj Adyen/Constants/ClientConfig.cs
 bump:
-	perl -i -pe 's/LibVersion = "(\d+\.\d+\.\d+)"/LibVersion = "$$ENV{"NEXT_VERSION"}"/' Adyen/Constants/ClientConfig.cs
+	perl -i -pe 's/$$ENV{"CURRENT_VERSION"}/$$ENV{"NEXT_VERSION"}/' $(version_files) 
+    
 
-.PHONY: templates models $(services) bump
+.PHONY: templates models $(services) version bump

@@ -19,11 +19,9 @@ jobs:
       - name: Get the release script
         run: |
           wget https://raw.githubusercontent.com/Adyen/adyen-node-api-library/develop/.github/scripts/release.js -P ./.github/scripts
-
       - name: Grab current version
         id: current-version
         run: make version
-
       - name: Prepare release request
         uses: actions/github-script@v6
         id: release
@@ -32,13 +30,12 @@ jobs:
             const release = require('./.github/scripts/release.js')
             const options = { github, context, core, getCurrentVersion: () => "${{ steps.current-version.outputs.currentVersion }}"};
             await release.bump(options);
-
       - name: Bump version
         if: steps.release.outputs.nextVersion != steps.current-version.outputs.currentVersion
         run: make bump
         env: 
+          CURRENT_VERSION: ${{steps.current-version.outputs.currentVersion}}
           NEXT_VERSION: ${{steps.release.outputs.nextVersion}}
-      
       - name: Delete the release script
         run: rm -f ./.github/scripts/release.js
       - name: Create Pull Request
