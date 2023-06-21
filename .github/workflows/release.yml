@@ -13,3 +13,4 @@ jobs:
       contents: write
       pull-requests: write
     uses: ./.github/workflows/lib-release.yml
+    secrets: inherit
