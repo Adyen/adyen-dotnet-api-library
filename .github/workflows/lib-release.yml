@@ -30,10 +30,11 @@ jobs:
         with:
           script: |
             const release = require('./.github/scripts/release.js')
-            const options = { github, context, core, getCurrentVersion: () => "${{ steps.current-version.outputs.CURRENT_VERSION }}"};
+            const options = { github, context, core, getCurrentVersion: () => "${{ steps.current-version.outputs.currentVersion }}"};
             await release.bump(options);
 
       - name: Bump version
+        if: steps.release.outputs.nextVersion != steps.current-version.outputs.currentVersion
         run: make bump
         env: 
           NEXT_VERSION: ${{steps.release.outputs.nextVersion}}

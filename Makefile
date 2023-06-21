@@ -114,12 +114,11 @@ clean:
 	git clean -f -d $(models) Adyen/Service/Management
 
 
-# Release
+## Release
 version:
-	echo "CURRENT_VERSION=10.1.0" >> "$$GITHUB_OUTPUT"
+	perl -lne 'print "currentVersion=$$1" if /LibVersion = "(\d+\.\d+\.\d+)"/' < Adyen/Constants/ClientConfig.cs >> "$$GITHUB_OUTPUT"
 
 bump:
-	echo using $$NEXT_VERSION
-	exit 1
+	perl -i -pe 's/LibVersion = "(\d+\.\d+\.\d+)"/LibVersion = "$$ENV{"NEXT_VERSION"}"/' Adyen/Constants/ClientConfig.cs
 
 .PHONY: templates models $(services) bump
