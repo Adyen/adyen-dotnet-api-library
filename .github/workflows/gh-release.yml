@@ -1,0 +1,17 @@
+name: Github Release
+
+on:
+    workflow_dispatch:
+    push:
+      branches:
+        - main
+        - ITT-65
+
+jobs:
+  gh_release:
+    permissions:
+      contents: write
+    uses: ./.github/workflows/lib-gh-release.yml
+    with:
+      project-name: .NET
+    secrets: inherit
