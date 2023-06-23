@@ -79,7 +79,8 @@ $(Services): target/spec $(openapi-generator-jar)
 	
 $(SingleFileServices): target/spec $(openapi-generator-jar)  
 	rm -rf $(output)
-	cat <<< "$$(jq 'del(.paths[][].tags)' target/spec/json/$(spec).json)" > target/spec/json/$(spec).json
+	jq -e 'del(.paths[][].tags)' target/spec/json/$(spec).json > target/spec/json/$(spec).tmp
+	mv target/spec/json/$(spec).tmp target/spec/json/$(spec).json
 	$(openapi-generator-cli) generate \
 		-i target/spec/json/$(spec).json \
 		-g $(generator) \
@@ -117,4 +118,13 @@ clean:
 	git clean -f -d $(models) Adyen/Service/Management
 
 
-.PHONY: templates models $(services)
+## Release
+version:
+	perl -lne 'print "currentVersion=$$1" if /LibVersion = "(\d+\.\d+\.\d+)"/' < Adyen/Constants/ClientConfig.cs >> "$$GITHUB_OUTPUT"
+
+version_files:=Adyen/Adyen.csproj Adyen.Test/Adyen.Test.csproj Adyen/Constants/ClientConfig.cs
+bump:
+	perl -i -pe 's/$$ENV{"CURRENT_VERSION"}/$$ENV{"NEXT_VERSION"}/' $(version_files) 
+    
+
+.PHONY: templates models $(services) version bump
