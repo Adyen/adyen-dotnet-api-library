@@ -150,7 +150,7 @@ namespace Adyen.Test
             var signKey = "D7DD5BA6146493707BF0BE7496F6404EC7A63616B7158EC927B9F54BB436765F";
             var hmacKey = "9Qz9S/0xpar1klkniKdshxpAhRKbiSAewPpWoxKefQA=";
             var hmacValidator = new HmacValidator();
-            bool response = hmacValidator.isValidHmac(hmacKey, signKey, notification);
+            bool response = hmacValidator.IsValidBankingHmac(hmacKey, signKey, notification);
             Assert.IsTrue(response);
         }
         
