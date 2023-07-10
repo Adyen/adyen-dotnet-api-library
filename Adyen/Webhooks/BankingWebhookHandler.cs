@@ -1,83 +1,125 @@
 using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Reflection;
+using System.Runtime.Serialization;
 using Adyen.Model.ReportNotification;
 using Adyen.Model.ConfigurationNotification;
 using Adyen.Model.TransferNotification;
 using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 
 namespace Adyen.Webhooks
 {
     public class BankingWebhookHandler
     {
-        private string _jsonRequest;
+        private readonly string _jsonRequest;
+        public BankingWebhookHandler(string webhook)
+        {
+            _jsonRequest = webhook;
+        }
 
         private object Deserialize<T>()
         {
             return JsonConvert.DeserializeObject<T>(_jsonRequest);
         }
 
-        public dynamic HandleBankingWebhooks(string jsonWebhook)
+        public dynamic HandleBankingWebhooks()
         {
-            _jsonRequest = jsonWebhook;
-            var response = new object();
-            var match = 0;
-            
-            // Configuration
-            try { response = Deserialize<AccountHolderNotificationRequest>(); match++; } catch (JsonSerializationException) {}
-            try { response = Deserialize<BalanceAccountNotificationRequest>(); match++;} catch (JsonSerializationException) {}
-            try { response = Deserialize<CardOrderNotificationRequest>(); match++;} catch (JsonSerializationException) {}
-            try { response = Deserialize<PaymentNotificationRequest>(); match++;} catch (JsonSerializationException) {}
-            try { response = Deserialize<SweepConfigurationNotificationRequest>(); match++;} catch (JsonSerializationException) {}
-            // Report
-            try { response = Deserialize<ReportNotificationRequest>(); match++;} catch (JsonSerializationException) {}
-            // Transfer
-            try { response = Deserialize<TransferNotificationRequest>(); match++;} catch (JsonSerializationException) {}
-            
-            if (match != 1)
+            // Retrieve the webhook type
+            var type = (string)JObject.Parse(_jsonRequest).GetValue("type") 
+                       ?? throw new NullReferenceException("Webhook type is not populated");
+
+            // Configuration webhooks
+            if (ContainsValue<AccountHolderNotificationRequest.TypeEnum>(type))
             {
-                throw new JsonSerializationException($"Could not deserialise the webhook: {jsonWebhook}");
+                return Deserialize<AccountHolderNotificationRequest>();
             }
-            // make dynamic object
-            dynamic data = response;
-            return data;
-        }
-        public PaymentNotificationRequest GetPaymentNotificationRequest(string jsonRequest)
-        {
-            return (PaymentNotificationRequest)HandleBankingWebhooks(jsonRequest);
-        }
-        
-        public AccountHolderNotificationRequest GetAccountHolderNotificationRequest(string jsonRequest)
-        {
-            return (AccountHolderNotificationRequest)HandleBankingWebhooks(jsonRequest);
-        }
-        
-        public BalanceAccountNotificationRequest GetBalanceAccountNotificationRequest(string jsonRequest)
-        {
-            return (BalanceAccountNotificationRequest)HandleBankingWebhooks(jsonRequest);
-        }
-        
-        public CardOrderNotificationRequest GetCardOrderNotificationRequest(string jsonRequest)
-        {
-            return (CardOrderNotificationRequest)HandleBankingWebhooks(jsonRequest);
-        }
-        
-        public PaymentNotificationRequest GetConfigurationPaymentNotificationRequest(string jsonRequest)
-        {
-            return (PaymentNotificationRequest)HandleBankingWebhooks(jsonRequest);
-        }
-        
-        public SweepConfigurationNotificationRequest GetSweepConfigurationNotificationRequest(string jsonRequest)
-        {
-            return (SweepConfigurationNotificationRequest)HandleBankingWebhooks(jsonRequest);
+            if (ContainsValue<BalanceAccountNotificationRequest.TypeEnum>(type))
+            {
+                return Deserialize<BalanceAccountNotificationRequest>();
+            }
+            if (ContainsValue<CardOrderNotificationRequest.TypeEnum>(type)) 
+            {
+                return Deserialize<CardOrderNotificationRequest>();
+            }
+            if (ContainsValue<PaymentNotificationRequest.TypeEnum>(type)) 
+            {
+                return Deserialize<PaymentNotificationRequest>();
+            }
+            if (ContainsValue<SweepConfigurationNotificationRequest.TypeEnum>(type)) 
+            {
+                return Deserialize<SweepConfigurationNotificationRequest>();
+            }
+            // Report Webhooks
+            if (ContainsValue<ReportNotificationRequest.TypeEnum>(type)) 
+            {
+                return Deserialize<ReportNotificationRequest>();
+            }
+            // Transfer Webhooks
+            if (ContainsValue<TransferNotificationRequest.TypeEnum>(type)) 
+            {
+                return Deserialize<TransferNotificationRequest>();
+            }
+
+            throw new JsonSerializationException("Could not parse the banking webhook");
         }
         
-        public ReportNotificationRequest GetReportNotificationRequest(string jsonRequest)
+        // Check if the enum contains a Enum Member Value
+        private static bool ContainsValue<T>(string value) where T : struct, IConvertible
         {
-            return (ReportNotificationRequest)HandleBankingWebhooks(jsonRequest);
+            List<string> list = new List<string>();
+            var members = typeof(T)
+                .GetTypeInfo()
+                .DeclaredMembers;
+            foreach (var member in members)
+            {
+                var val = member?.GetCustomAttribute<EnumMemberAttribute>(false)?.Value;
+                if (!string.IsNullOrEmpty(val))
+                    list.Add(val);
+            }
+
+            return list.Contains(value);
         }
         
-        public TransferNotificationRequest GetTransferNotificationRequest(string jsonRequest)
+        public PaymentNotificationRequest GetPaymentNotificationRequest()
         {
-            return (TransferNotificationRequest)HandleBankingWebhooks(jsonRequest);
+            return (PaymentNotificationRequest)HandleBankingWebhooks();
+        }
+        
+        public AccountHolderNotificationRequest GetAccountHolderNotificationRequest()
+        {
+            return (AccountHolderNotificationRequest)HandleBankingWebhooks();
+        }
+        
+        public BalanceAccountNotificationRequest GetBalanceAccountNotificationRequest()
+        {
+            return (BalanceAccountNotificationRequest)HandleBankingWebhooks();
+        }
+        
+        public CardOrderNotificationRequest GetCardOrderNotificationRequest()
+        {
+            return (CardOrderNotificationRequest)HandleBankingWebhooks();
+        }
+        
+        public PaymentNotificationRequest GetConfigurationPaymentNotificationRequest()
+        {
+            return (PaymentNotificationRequest)HandleBankingWebhooks();
+        }
+        
+        public SweepConfigurationNotificationRequest GetSweepConfigurationNotificationRequest()
+        {
+            return (SweepConfigurationNotificationRequest)HandleBankingWebhooks();
+        }
+        
+        public ReportNotificationRequest GetReportNotificationRequest()
+        {
+            return (ReportNotificationRequest)HandleBankingWebhooks();
+        }
+        
+        public TransferNotificationRequest GetTransferNotificationRequest()
+        {
+            return (TransferNotificationRequest)HandleBankingWebhooks();
         }
     }
 }
