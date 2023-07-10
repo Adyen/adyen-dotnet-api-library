@@ -157,32 +157,32 @@ namespace Adyen.Test
         [TestMethod]
         public void Given_BalancePlatformBalanceAccountHolderCreated_When_Valid_Webhook_Then_Result_Should_Deserialize()
         {
-            var handler = new BankingWebhookHandler();
-            AccountHolderNotificationRequest webhook = handler.GetAccountHolderNotificationRequest(@"{
-            'data': {
-                'balancePlatform': 'YOUR_BALANCE_PLATFORM',
-                'accountHolder': {
-                    'contactDetails': {
-                        'address': {
-                            'country': 'NL',
-                            'houseNumberOrName': '274',
-                            'postalCode': '1020CD',
-                            'street': 'Brannan Street'
+            var handler = new BankingWebhookHandler(
+                @"{ 'data': {
+                    'balancePlatform': 'YOUR_BALANCE_PLATFORM',
+                    'accountHolder': {
+                        'contactDetails': {
+                            'address': {
+                                'country': 'NL',
+                                'houseNumberOrName': '274',
+                                'postalCode': '1020CD',
+                                'street': 'Brannan Street'
+                            },
+                            'email': 's.hopper@example.com',
+                            'phone': {
+                                'number': '+315551231234',
+                                'type': 'Mobile'
+                            }
                         },
-                        'email': 's.hopper@example.com',
-                        'phone': {
-                            'number': '+315551231234',
-                            'type': 'Mobile'
-                        }
-                    },
-                    'description': 'S.Hopper - Staff 123',
-                    'id': 'AH00000000000000000000001',
-                    'status': 'Active'
-                }
-            },
-            'environment': 'test',
-            'type': 'balancePlatform.accountHolder.created'
+                        'description': 'S.Hopper - Staff 123',
+                        'id': 'AH00000000000000000000001',
+                        'status': 'Active'
+                    }
+                },
+                'environment': 'test',
+                'type': 'balancePlatform.accountHolder.created'
             }");
+            AccountHolderNotificationRequest webhook = handler.GetAccountHolderNotificationRequest();
             Assert.IsNotNull(webhook);
             Assert.AreEqual(webhook.Data.BalancePlatform, "YOUR_BALANCE_PLATFORM");
 
