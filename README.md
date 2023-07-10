@@ -210,7 +210,7 @@ var saleToPoiRequest = serializer.DeserializeNotification(your_terminal_notifica
 In order to parse banking webhooks, first validate the webhooks (recommended) by retrieving the hmac key from the webhook header and the hmac signature from the Balance Platform CA configuration page respectively.
 ~~~~ csharp
 var hmacValidator = new HmacValidator();
-bool isValid = hmacValidator.isValidHmac("yourHmacKey", "yourHmacSignature", bankingWebhook);
+bool isValid = hmacValidator.IsValidBankingHmac("yourHmacKey", "yourHmacSignature", bankingWebhookPayload);
 if (isValid) {
     dynamic webhook = handler.HandleBankingWebhooks(bankingWebhook);
 }

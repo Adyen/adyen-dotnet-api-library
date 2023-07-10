@@ -70,6 +70,12 @@ namespace Adyen.Util
             return String.Join(":", signedDataList);
         }
 
+        /// <summary>
+        /// Validate a payment webhook with your hmac.
+        /// </summary>
+        /// <param name="notificationRequestItem"><see cref="NotificationRequestItem"/> The payment webhook payload object</param>
+        /// <param name="key"><see cref="string"/> The payment webhook payload object</param>
+        /// <returns><see cref="bool"/> Webhook authenticity </returns>
         public bool IsValidHmac(NotificationRequestItem notificationRequestItem, string key)
         {
             if (notificationRequestItem.AdditionalData == null)
@@ -86,7 +92,14 @@ namespace Adyen.Util
             return string.Equals(expectedSign, merchantSign);
         }
 
-        public bool isValidHmac(string hmacKey, string hmacSignature, string payload)
+        /// <summary>
+        /// Validate a banking webhook with your hmac-key and hmac-signature.
+        /// </summary>
+        /// <param name="hmacKey"><see cref="string"/> The hmac key, retrieve from CA </param>
+        /// <param name="hmacSignature"><see cref="string"/> The hmac signature, retrieved from the webhook header </param>
+        /// /// <param name="payload"><see cref="string"/> The banking webhook payload </param>
+        /// <returns><see cref="bool"/> Webhook authenticity </returns>
+        public bool IsValidBankingHmac(string hmacKey, string hmacSignature, string payload)
         {
             var calculatedSign = CalculateHmac(payload, hmacSignature);
             return TimeSafeEquals(Encoding.UTF8.GetBytes(hmacKey), Encoding.UTF8.GetBytes(calculatedSign));
