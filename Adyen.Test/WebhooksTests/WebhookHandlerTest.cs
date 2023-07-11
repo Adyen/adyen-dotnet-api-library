@@ -1,13 +1,11 @@
 using System;
 using System.Linq;
 using Adyen.ApiSerialization;
-using Adyen.Model.ConfigurationNotification;
 using Adyen.Model.Nexo;
-using Adyen.Util;
-using Adyen.Webhooks;
+using Adyen.Test;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-namespace Adyen.Test
+namespace Adyen.Webhooks.Test
 {
     [TestClass]
     public class WebhookTest : BaseTest
@@ -114,7 +112,7 @@ namespace Adyen.Test
             Assert.AreEqual(displayRequest.DisplayOutput[0].OutputContent.OutputFormat, OutputFormatType.MessageRef);
             Assert.AreEqual(displayRequest.DisplayOutput[0].Device, DeviceType.CashierDisplay);
         }
-        
+
         [TestMethod]
         public void TestPOSEventNotification()
         {
@@ -138,86 +136,9 @@ namespace Adyen.Test
             }";
             var serializer = new SaleToPoiMessageSerializer();
             var saleToPoiRequest = serializer.DeserializeNotification(notification);
-            var eventNotification = (EventNotification)saleToPoiRequest.MessagePayload;
+            var eventNotification = (EventNotification) saleToPoiRequest.MessagePayload;
             Assert.AreEqual(eventNotification.EventDetails, "newstate=IDLE&oldstate=START");
             Assert.AreEqual(eventNotification.TimeStamp, new DateTime(2019, 8, 7, 10, 16, 10));
-        }
-        
-        [TestMethod]
-        public void Given_BalancePlatformBalanceAccountSweep_When_Is_Valid_Hmac_Then_Result_Should_Be_True()
-        {
-            var notification = "{\"data\":{\"balancePlatform\":\"Integration_tools_test\",\"accountId\":\"BA32272223222H5HVKTBK4MLB\",\"sweep\":{\"id\":\"SWPC42272223222H5HVKV6H8C64DP5\",\"schedule\":{\"type\":\"balance\"},\"status\":\"active\",\"targetAmount\":{\"currency\":\"EUR\",\"value\":0},\"triggerAmount\":{\"currency\":\"EUR\",\"value\":0},\"type\":\"pull\",\"counterparty\":{\"balanceAccountId\":\"BA3227C223222H5HVKT3H9WLC\"},\"currency\":\"EUR\"}},\"environment\":\"test\",\"type\":\"balancePlatform.balanceAccountSweep.updated\"}";
-            var signKey = "D7DD5BA6146493707BF0BE7496F6404EC7A63616B7158EC927B9F54BB436765F";
-            var hmacKey = "9Qz9S/0xpar1klkniKdshxpAhRKbiSAewPpWoxKefQA=";
-            var hmacValidator = new HmacValidator();
-            bool response = hmacValidator.IsValidBankingHmac(hmacKey, signKey, notification);
-            Assert.IsTrue(response);
-        }
-        
-        [TestMethod]
-        public void Given_BalancePlatformBalanceAccountHolderCreated_When_Valid_Webhook_Then_Result_Should_Deserialize()
-        {
-            var handler = new BankingWebhookHandler(
-                @"{ 'data': {
-                    'balancePlatform': 'YOUR_BALANCE_PLATFORM',
-                    'accountHolder': {
-                        'contactDetails': {
-                            'address': {
-                                'country': 'NL',
-                                'houseNumberOrName': '274',
-                                'postalCode': '1020CD',
-                                'street': 'Brannan Street'
-                            },
-                            'email': 's.hopper@example.com',
-                            'phone': {
-                                'number': '+315551231234',
-                                'type': 'Mobile'
-                            }
-                        },
-                        'description': 'S.Hopper - Staff 123',
-                        'id': 'AH00000000000000000000001',
-                        'status': 'Active'
-                    }
-                },
-                'environment': 'test',
-                'type': 'balancePlatform.accountHolder.created'
-            }");
-            AccountHolderNotificationRequest webhook = handler.GetAccountHolderNotificationRequest();
-            Assert.IsNotNull(webhook);
-            Assert.AreEqual(webhook.Data.BalancePlatform, "YOUR_BALANCE_PLATFORM");
-        }
-        
-        [TestMethod]
-        public void Given_BalancePlatformBalanceAccountHolderCreated_When_Valid_Webhook_Then_Dynamic_Result_Should_Deserialize()
-        {
-            var handler = new BankingWebhookHandler(
-                @"{ 'data': {
-                    'balancePlatform': 'YOUR_BALANCE_PLATFORM',
-                    'accountHolder': {
-                        'contactDetails': {
-                            'address': {
-                                'country': 'NL',
-                                'houseNumberOrName': '274',
-                                'postalCode': '1020CD',
-                                'street': 'Brannan Street'
-                            },
-                            'email': 's.hopper@example.com',
-                            'phone': {
-                                'number': '+315551231234',
-                                'type': 'Mobile'
-                            }
-                        },
-                        'description': 'S.Hopper - Staff 123',
-                        'id': 'AH00000000000000000000001',
-                        'status': 'Active'
-                    }
-                },
-                'environment': 'test',
-                'type': 'balancePlatform.accountHolder.created'
-            }");
-            var webhook = handler.HandleBankingWebhooks();
-            Assert.AreEqual(webhook.GetType(), typeof(AccountHolderNotificationRequest));
-            Assert.AreEqual(webhook.Type, AccountHolderNotificationRequest.TypeEnum.Created);
         }
     }
 }
