@@ -9,6 +9,28 @@ namespace Adyen.Webhooks
 {
     public class BalancePlatformWebhookHandler
     {
+        // After doing the POC, I realized that it would be nice to deserialize to a generic webhook ) with a "type",
+        //and based off the type write a Converter that can deserialize accordingly
+
+        // Pseudo code:
+        ///[HttpPost("api/webhooks/notifications")]
+        //public async Task<ActionResult<string>> Webhooks(IBalanacePlatformWebhook webhook) // public Type {get;set;}
+        //{
+        //    var handler = new BalancePlatformWebhookHandler();
+        //    _logger.LogInformation($"Webhook received: \n{webhook}\n");
+        //    // Do a switch statement here
+        //    if (webhook.Type == "balancePlatform.paymentInstrument.updated")
+        //        PaymentNotificationRequest paymentInstrument = handler.GetPaymentInstrumentNotificationRequestFrom(webhook).... etc.
+        //    else if (webhook.Type == "balancePlatform.cardorder.crated") ...
+        //}
+
+        // vs. Now developers need to do something like this with the current implementation.
+        //[HttpPost("api/webhooks/notifications")]
+        //public async Task<ActionResult<string>> Webhooks(string jsonPayload) // public Type {get;set;}
+        //{
+        //    _logger.LogInformation($"Webhook received: \n{jsonPayload}\n");
+        //}
+
         public BalancePlatformWebhookHandler()
         {
         }
@@ -19,7 +41,6 @@ namespace Adyen.Webhooks
         /// <param name="jsonPayload">The json payload of the webhook.</param>
         /// <param name="result"><see cref="AccountHolderNotificationRequest"/>.</param>
         /// <returns>A return value indicates whether the deserialization succeeded.</returns>
-        /// <exception cref="ArgumentOutOfRangeException">Throws when type is not specified.</exception>
         /// <exception cref="JsonReaderException">Throws when json is invalid.</exception>
         public bool GetAccountHolderNotificationRequest(string jsonPayload, out AccountHolderNotificationRequest result)
         {
@@ -44,7 +65,6 @@ namespace Adyen.Webhooks
         /// <param name="jsonPayload">The json payload of the webhook.</param>
         /// <param name="result"><see cref="BalanceAccountNotificationRequest"/>.</param>
         /// <returns>A return value indicates whether the deserialization succeeded.</returns>
-        /// <exception cref="ArgumentOutOfRangeException">Throws when type is not specified.</exception>
         /// <exception cref="JsonReaderException">Throws when json is invalid.</exception>
         public bool GetBalanceAccountNotificationRequest(string jsonPayload, out BalanceAccountNotificationRequest result)
         {
@@ -69,7 +89,6 @@ namespace Adyen.Webhooks
         /// <param name="jsonPayload">The json payload of the webhook.</param>
         /// <param name="result"><see cref="CardOrderNotificationRequest"/>.</param>
         /// <returns>A return value indicates whether the deserialization succeeded.</returns>
-        /// <exception cref="ArgumentOutOfRangeException">Throws when type is not specified.</exception>
         /// <exception cref="JsonReaderException">Throws when json is invalid.</exception>
         public bool GetCardOrderNotificationRequest(string jsonPayload, out CardOrderNotificationRequest result)
         {
@@ -94,7 +113,6 @@ namespace Adyen.Webhooks
         /// <param name="jsonPayload">The json payload of the webhook.</param>
         /// <param name="result"><see cref="PaymentNotificationRequest"/>.</param>
         /// <returns>A return value indicates whether the deserialization succeeded.</returns>
-        /// <exception cref="ArgumentOutOfRangeException">Throws when type is not specified.</exception>
         /// <exception cref="JsonReaderException">Throws when json is invalid.</exception>
         public bool GetPaymentNotificationRequest(string jsonPayload, out PaymentNotificationRequest result) // This class-name is confusing as it's referring to a paymentInstrument -> Rename to PaymentInstrumentNotificationRequest?
         {
@@ -118,7 +136,6 @@ namespace Adyen.Webhooks
         /// <param name="jsonPayload">The json payload of the webhook.</param>
         /// <param name="result"><see cref="SweepConfigurationNotificationRequest"/>.</param>
         /// <returns>A return value indicates whether the deserialization succeeded.</returns>
-        /// <exception cref="ArgumentOutOfRangeException">Throws when type is not specified.</exception>
         /// <exception cref="JsonReaderException">Throws when json is invalid.</exception>
         public bool GetSweepConfigurationNotificationRequest(string jsonPayload, out SweepConfigurationNotificationRequest result)
         {
@@ -144,7 +161,6 @@ namespace Adyen.Webhooks
         /// <param name="jsonPayload">The json payload of the webhook.</param>>
         /// <param name="result"><see cref="ReportNotificationRequest"/>.</param>
         /// <returns>A return value indicates whether the deserialization succeeded.</returns>
-        /// <exception cref="ArgumentOutOfRangeException">Throws when type is not specified.</exception>
         /// <exception cref="JsonReaderException">Throws when json is invalid.</exception>
         public bool GetReportNotificationRequest(string jsonPayload, out ReportNotificationRequest result)
         {
@@ -168,7 +184,6 @@ namespace Adyen.Webhooks
         /// <param name="jsonPayload">The json payload of the webhook.</param>
         /// <param name="result"><see cref="TransferNotificationRequest"/>.</param>
         /// <returns>A return value indicates whether the deserialization succeeded.</returns>
-        /// <exception cref="ArgumentOutOfRangeException">Throws when type is not specified.</exception>
         /// <exception cref="JsonReaderException">Throws when json is invalid.</exception>
         public bool GetTransferNotificationRequest(string jsonPayload, out TransferNotificationRequest result)
         {
