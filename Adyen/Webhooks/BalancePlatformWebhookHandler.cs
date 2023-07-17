@@ -1,7 +1,11 @@
 using System;
+using System.Collections.Generic;
+using System.Reflection;
+using System.Runtime.Serialization;
 using Adyen.Model.ReportNotification;
 using Adyen.Model.ConfigurationNotification;
 using Adyen.Model.TransferNotification;
+using Adyen.Util;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 
@@ -9,32 +13,50 @@ namespace Adyen.Webhooks
 {
     public class BalancePlatformWebhookHandler
     {
-        // After doing the POC, I realized that it would be nice to deserialize to a generic webhook ) with a "type",
-        //and based off the type write a Converter that can deserialize accordingly
-
-        // Pseudo code:
-        ///[HttpPost("api/webhooks/notifications")]
-        //public async Task<ActionResult<string>> Webhooks(IBalanacePlatformWebhook webhook) // public Type {get;set;}
-        //{
-        //    var handler = new BalancePlatformWebhookHandler();
-        //    _logger.LogInformation($"Webhook received: \n{webhook}\n");
-        //    // Do a switch statement here
-        //    if (webhook.Type == "balancePlatform.paymentInstrument.updated")
-        //        PaymentNotificationRequest paymentInstrument = handler.GetPaymentInstrumentNotificationRequestFrom(webhook).... etc.
-        //    else if (webhook.Type == "balancePlatform.cardorder.crated") ...
-        //}
-
-        // vs. Now developers need to do something like this with the current implementation.
-        //[HttpPost("api/webhooks/notifications")]
-        //public async Task<ActionResult<string>> Webhooks(string jsonPayload) // public Type {get;set;}
-        //{
-        //    _logger.LogInformation($"Webhook received: \n{jsonPayload}\n");
-        //}
-
-        public BalancePlatformWebhookHandler()
+        /// <summary>
+        /// Deserializes to a generic banking webhook from the <paramref name="jsonPayload"/>. Use this either to catch the
+        /// webhook type if unknown or if the explicit type is not required.
+        /// </summary>
+        /// <param name="jsonPayload">The json payload of the webhook.</param>
+        /// <returns>The parsed webhook packaged in a dynamic object.</returns>
+        /// <exception cref="JsonReaderException">Throws when json is invalid.</exception>
+        public dynamic GetGenericBalancePlatformWebhook(string jsonPayload)
         {
+            if (GetAccountHolderNotificationRequest(jsonPayload, out var accountHolderNotificationRequest)) 
+            {
+                return accountHolderNotificationRequest;
+            }
+            
+            if (GetBalanceAccountNotificationRequest(jsonPayload, out var balanceAccountNotificationRequest))
+            {
+                return balanceAccountNotificationRequest;
+            }
+            
+            if (GetCardOrderNotificationRequest(jsonPayload, out var cardOrderNotificationRequest))
+            {
+                return cardOrderNotificationRequest;
+            }
+            
+            if (GetPaymentNotificationRequest(jsonPayload, out var paymentNotificationRequest))
+            {
+                return paymentNotificationRequest;
+            }
+            
+            if (GetSweepConfigurationNotificationRequest(jsonPayload, out var sweepConfigurationNotificationRequest))
+            {
+                return sweepConfigurationNotificationRequest;
+            }
+            
+            if (GetReportNotificationRequest(jsonPayload, out var reportNotificationRequest))
+            {
+                return reportNotificationRequest;
+            }
+            if (GetTransferNotificationRequest(jsonPayload, out var transferNotificationRequest))
+            {
+                return transferNotificationRequest;
+            }
+            throw new JsonReaderException("Could not parse webhook");
         }
-
         /// <summary>
         /// Deserializes <see cref="AccountHolderNotificationRequest"/> from the <paramref name="jsonPayload"/>.
         /// </summary>
@@ -45,18 +67,9 @@ namespace Adyen.Webhooks
         public bool GetAccountHolderNotificationRequest(string jsonPayload, out AccountHolderNotificationRequest result)
         {
             result = null;
-            JToken typeToken = JObject.Parse(jsonPayload).GetValue("type");
-            string type = typeToken?.Value<string>();
-            
-            switch (type)
-            {
-                case "balancePlatform.accountHolder.updated":
-                case "balancePlatform.accountHolder.created":
-                    result = JsonConvert.DeserializeObject<AccountHolderNotificationRequest>(jsonPayload);
-                    return true;
-                default:
-                    return false;
-            }
+            if (!ContainsValue<AccountHolderNotificationRequest.TypeEnum>(jsonPayload)) return false;
+            result = JsonConvert.DeserializeObject<AccountHolderNotificationRequest>(jsonPayload);
+            return true;
         }
         
         /// <summary>
@@ -69,18 +82,9 @@ namespace Adyen.Webhooks
         public bool GetBalanceAccountNotificationRequest(string jsonPayload, out BalanceAccountNotificationRequest result)
         {
             result = null;
-            JToken typeToken = JObject.Parse(jsonPayload).GetValue("type");
-            string type = typeToken?.Value<string>();
-            
-            switch (type)
-            {
-                case "balancePlatform.balanceAccount.updated":
-                case "balancePlatform.balanceAccount.created":
-                    result = JsonConvert.DeserializeObject<BalanceAccountNotificationRequest>(jsonPayload);
-                    return true;
-                default:
-                    return false;
-            }
+            if (!ContainsValue<BalanceAccountNotificationRequest.TypeEnum>(jsonPayload)) return false;
+            result = JsonConvert.DeserializeObject<BalanceAccountNotificationRequest>(jsonPayload);
+            return true;
         }
 
         /// <summary>
@@ -93,18 +97,9 @@ namespace Adyen.Webhooks
         public bool GetCardOrderNotificationRequest(string jsonPayload, out CardOrderNotificationRequest result)
         {
             result = null;
-            JToken typeToken = JObject.Parse(jsonPayload).GetValue("type");
-            string type = typeToken?.Value<string>();
-
-            switch (type)
-            {
-                case "balancePlatform.cardorder.updated":
-                case "balancePlatform.cardorder.created":
-                    result = JsonConvert.DeserializeObject<CardOrderNotificationRequest>(jsonPayload);
-                    return true;
-                default:
-                    return false;
-            }
+            if (!ContainsValue<CardOrderNotificationRequest.TypeEnum>(jsonPayload)) return false;
+            result = JsonConvert.DeserializeObject<CardOrderNotificationRequest>(jsonPayload);
+            return true;
         }
 
         /// <summary>
@@ -117,17 +112,9 @@ namespace Adyen.Webhooks
         public bool GetPaymentNotificationRequest(string jsonPayload, out PaymentNotificationRequest result) // This class-name is confusing as it's referring to a paymentInstrument -> Rename to PaymentInstrumentNotificationRequest?
         {
             result = null;
-            JToken typeToken = JObject.Parse(jsonPayload).GetValue("type");
-            string type = typeToken?.Value<string>();
-            switch (type)
-            {
-                case "balancePlatform.paymentInstrument.updated":
-                case "balancePlatform.paymentInstrument.created":
-                    result = JsonConvert.DeserializeObject<PaymentNotificationRequest>(jsonPayload);
-                    return true;
-                default:
-                    return false;
-            }
+            if (!ContainsValue<PaymentNotificationRequest.TypeEnum>(jsonPayload)) return false;
+            result = JsonConvert.DeserializeObject<PaymentNotificationRequest>(jsonPayload);
+            return true;
         }
         
         /// <summary>
@@ -140,19 +127,9 @@ namespace Adyen.Webhooks
         public bool GetSweepConfigurationNotificationRequest(string jsonPayload, out SweepConfigurationNotificationRequest result)
         {
             result = null;
-            JToken typeToken = JObject.Parse(jsonPayload).GetValue("type");
-            string type = typeToken?.Value<string>();
-            
-            switch (type)
-            {
-                case "balancePlatform.balanceAccountSweep.updated":
-                case "balancePlatform.balanceAccountSweep.created":
-                case "balancePlatform.balanceAccountSweep.deleted":
-                    result = JsonConvert.DeserializeObject<SweepConfigurationNotificationRequest>(jsonPayload);
-                    return true;
-                default:
-                    return false;
-            }
+            if (!ContainsValue<SweepConfigurationNotificationRequest.TypeEnum>(jsonPayload)) return false;
+            result = JsonConvert.DeserializeObject<SweepConfigurationNotificationRequest>(jsonPayload);
+            return true;
         }
         
         /// <summary>
@@ -165,17 +142,9 @@ namespace Adyen.Webhooks
         public bool GetReportNotificationRequest(string jsonPayload, out ReportNotificationRequest result)
         {
             result = null;
-            JToken typeToken = JObject.Parse(jsonPayload).GetValue("type");
-            string type = typeToken?.Value<string>();
-            
-            switch (type)
-            {
-                case "balancePlatform.report.created":
-                    result = JsonConvert.DeserializeObject<ReportNotificationRequest>(jsonPayload);
-                    return true;
-                default:
-                    return false;
-            }
+            if (!ContainsValue<ReportNotificationRequest.TypeEnum>(jsonPayload)) return false;
+            result = JsonConvert.DeserializeObject<ReportNotificationRequest>(jsonPayload);
+            return true;
         }
         
         /// <summary>
@@ -188,18 +157,31 @@ namespace Adyen.Webhooks
         public bool GetTransferNotificationRequest(string jsonPayload, out TransferNotificationRequest result)
         {
             result = null;
+            if (!ContainsValue<TransferNotificationRequest.TypeEnum>(jsonPayload)) return false;
+            result = JsonConvert.DeserializeObject<TransferNotificationRequest>(jsonPayload);
+            return true;
+        }
+        
+        // Check if the <T> contains TypeEnum value
+        private static bool ContainsValue<T>(string jsonPayload) where T : struct, IConvertible
+        {
+            // Retrieve type from payload
             JToken typeToken = JObject.Parse(jsonPayload).GetValue("type");
             string type = typeToken?.Value<string>();
             
-            switch (type)
+            // Search for type in <T>.TypeEnum
+            List<string> list = new List<string>();
+            var members = typeof(T)
+                .GetTypeInfo()
+                .DeclaredMembers;
+            foreach (var member in members)
             {
-                case "balancePlatform.transfer.updated":
-                case "balancePlatform.transfer.created":
-                    result = JsonConvert.DeserializeObject<TransferNotificationRequest>(jsonPayload);
-                    return true;
-                default:
-                    return false;
+                var val = member?.GetCustomAttribute<EnumMemberAttribute>(false)?.Value;
+                if (!string.IsNullOrEmpty(val))
+                    list.Add(val);
             }
+
+            return list.Contains(type);
         }
     }
 }

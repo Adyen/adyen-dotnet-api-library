@@ -1,9 +1,9 @@
 ﻿using Adyen.Model.ConfigurationNotification;
-using Adyen.Test;
+using Adyen.Webhooks;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Newtonsoft.Json;
 
-namespace Adyen.Webhooks.Test
+namespace Adyen.Test.WebhooksTests
 {
     [TestClass]
     public class BalancePlatformWebhookHandlerTest : BaseTest
@@ -81,12 +81,9 @@ namespace Adyen.Webhooks.Test
             string jsonPayload = "{ invalid,.json; }";
             Assert.ThrowsException<JsonReaderException>(() => _target.GetAccountHolderNotificationRequest(jsonPayload, out var _));
         }
-
-        // TODO: Add other tests for BalanceAccount, CardOrder, PaymentInstrument, BalanceAccountSweep, Report, and Transfer.
-
-
-        // POC integration
-        public void POC_Integration()
+        
+        [TestMethod]
+        public void Test_POC_Integration()
         {
             string jsonPayload =
                 @"{ 'data': {
@@ -115,81 +112,26 @@ namespace Adyen.Webhooks.Test
             }";
 
             var handler = new BalancePlatformWebhookHandler();
+            var response = handler.GetGenericBalancePlatformWebhook(jsonPayload);
             try
             {
-                if (handler.GetPaymentNotificationRequest(jsonPayload, out var paymentInstrumentNotificationRequest))
+                if (response.GetType() == typeof(AccountHolderNotificationRequest))
                 {
-                    // Do work, valid hmac etc.
-                    //paymentInstrumentNotificationRequest.Data.BalancePlatform.
-                    return;
+                    var accountHolderNotificationRequest = (AccountHolderNotificationRequest)response;
+                    Assert.AreEqual(accountHolderNotificationRequest.Environment, "test");
                 }
 
-                if (handler.GetReportNotificationRequest(jsonPayload, out var reportNotificationRequest))
+                if (response.GetType() == typeof(BalanceAccountNotificationRequest))
                 {
-                    // Do work, valid hmac etc.
-                    //reportNotificationRequest.Data.  
-                    return;
-                }
-
-                if (handler.GetTransferNotificationRequest(jsonPayload, out var transferNotificationRequest))
-                {
-                    // Do work, valid hmac etc.
-                    //transferNotificationRequest.Data. 
-                    return;
-                }
-
-                if (handler.GetAccountHolderNotificationRequest(jsonPayload, out var accountHolderNotificationRequest))
-                {
-                    // Do work, valid hmac etc.
-                    //accountHolderNotificationRequest.Data. 
-                    return;
-                }
-
-                if (handler.GetBalanceAccountNotificationRequest(jsonPayload, out var balanceAccountNotificationRequest))
-                {
-                    // Do work, valid hmac etc.
-                    //balanceAccountNotificationRequest.Data. 
-                    return;
-                }
-
-                if (handler.GetCardOrderNotificationRequest(jsonPayload, out var cardOrderNotificationRequest))
-                {
-                    // Do work, valid hmac etc.
-                    //cardOrderNotificationRequest.Data. 
-                    return;
-                }
-
-                if (handler.GetSweepConfigurationNotificationRequest(jsonPayload, out var sweepConfigurationNotificationRequest))
-                {
-                    // Do work, valid hmac etc.
-                    //sweepConfigurationNotificationRequest.Data. 
-                    return;
+                    var balanceAccountNotificationRequest = (BalanceAccountNotificationRequest)response;
+                    Assert.Fail(balanceAccountNotificationRequest.Data.BalancePlatform);
                 }
             }
             catch (System.Exception e)
             {
+                Assert.Fail();
                 throw new System.Exception(e.ToString());
             }
         }
-
-        /// Even better: 
-        // POC -> It would be nice to deserialize to a generic webhook with a "type", and based off the type write a Converter that can deserialize accordingly
-        //[HttpPost("api/webhooks/notifications")]
-        //public async Task<ActionResult<string>> Webhooks(IPlatformWebhook webhook) // public Type {get;set;}
-        //{
-        //    var handler = new BalancePlatformWebhookHandler();
-        //    _logger.LogInformation($"Webhook received: \n{webhook}\n");
-        //    // Do a switch statement here
-        //    if (webhook.Type == "balancePlatform.paymentInstrument.updated")
-        //        PaymentNotificationRequest paymentInstrument = handler.GetPaymentInstrumentNotificationRequestFrom(webhook).... etc.
-        //    else if (webhook.Type == "balancePlatform.cardorder.crated") ...
-        //}
-
-        // vs. Now developers need to do something like this with the current implementation.
-        //[HttpPost("api/webhooks/notifications")]
-        //public async Task<ActionResult<string>> Webhooks(string jsonPayload) // public Type {get;set;}
-        //{
-        //    _logger.LogInformation($"Webhook received: \n{jsonPayload}\n");
-        //}
     }
 }

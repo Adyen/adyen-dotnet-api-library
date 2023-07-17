@@ -2,10 +2,10 @@ using System;
 using System.Linq;
 using Adyen.ApiSerialization;
 using Adyen.Model.Nexo;
-using Adyen.Test;
+using Adyen.Webhooks;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-namespace Adyen.Webhooks.Test
+namespace Adyen.Test.WebhooksTests
 {
     [TestClass]
     public class WebhookTest : BaseTest
