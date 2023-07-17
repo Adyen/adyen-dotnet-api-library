@@ -32,7 +32,7 @@ ReportNotification: spec=BalancePlatformReportNotification-v1
 TransferNotification: spec=BalancePlatformTransferNotification-v3
 
 # Generate models (for each service and banking webhook)
-allModels: $(Models)
+models: $(Models)
 
 $(Models): target/spec $(openapi-generator-jar) 
 	rm -rf $(Models)/$@ $(output)
