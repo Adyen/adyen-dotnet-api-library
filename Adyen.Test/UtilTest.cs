@@ -1,6 +1,4 @@
 ﻿using System.Collections.Generic;
-using System.Text;
-using Adyen.Model.MarketPay;
 using Adyen.Model.Notification;
 using Adyen.Model.Payment;
 using Adyen.Util;
@@ -37,7 +35,7 @@ namespace Adyen.Test
             var expectedSign = "ipnxGCaUZ4l8TUW75a71/ghd2Fe5ffvX0pV4TLTntIc=";
             var additionalData = new Dictionary<string, string>
             {
-                { Constants.AdditionalData.HmacSignature, expectedSign }
+                { "hmacSignature", expectedSign }
             };
             var notificationRequestItem = new NotificationRequestItem
             {
@@ -56,7 +54,7 @@ namespace Adyen.Test
             var encrypted = hmacValidator.CalculateHmac(notificationRequestItem, key);
             Assert.AreEqual(expectedSign, encrypted);
             Assert.IsTrue(hmacValidator.IsValidHmac(notificationRequestItem, key));
-            notificationRequestItem.AdditionalData[Constants.AdditionalData.HmacSignature] = "notValidSign";
+            notificationRequestItem.AdditionalData["hmacSignature"] = "notValidSign";
             Assert.IsFalse(hmacValidator.IsValidHmac(notificationRequestItem, key));
         }
         
@@ -151,20 +149,6 @@ namespace Adyen.Test
             var notificationRequestItem = JsonConvert.DeserializeObject<NotificationRequestItem>(jsonNotification);
             var isValidHmac = hmacValidator.IsValidHmac(notificationRequestItem, "74F490DD33F7327BAECC88B2947C011FC02D014A473AAA33A8EC93E4DC069174");
             Assert.IsTrue(isValidHmac);
-        }
-        
-        [TestMethod]
-        public void TestByteArrayConverter()
-        {
-            // Encoding UTF8 characters to assess if they get serialised as UTF8 Characters
-            var content = Encoding.UTF8.GetBytes("√√√123456789");
-            var detail = new DocumentDetail(accountHolderCode: "123456789", filename: "filename");
-            var request =
-                new UploadDocumentRequest(documentContent: content, documentDetail: detail);
-            
-            var jsonstring = JsonOperation.SerializeRequest(request);
-            Assert.AreEqual(jsonstring,
-                "{\"documentContent\":\"√√√123456789\",\"documentDetail\":{\"accountHolderCode\":\"123456789\",\"filename\":\"filename\"}}");
         }
     }
 }

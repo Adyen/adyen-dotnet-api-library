@@ -29,11 +29,15 @@ namespace Adyen.Test
         [TestMethod]
         public void CheckoutEndpointTestEnvironmentSuccessTest()
         {
-            var config = new Config();
-            var client = new Client(config);
+            var client = CreateMockForAdyenClientTest(new Config());
             client.SetEnvironment(Environment.Test, "companyUrl");
-            Assert.AreEqual(config.CheckoutEndpoint, @"https://checkout-test.adyen.com");
-            Assert.AreEqual(config.Endpoint, @"https://pal-test.adyen.com");
+            var checkout = new PaymentsService(client);
+            checkout.PaymentsAsync(new PaymentRequest()).GetAwaiter();
+            ClientInterfaceMock.Verify(
+                    mock =>
+                        mock.RequestAsync(
+                            "https://checkout-test.adyen.com/v70/payments",
+                            "{}", null, new HttpMethod("POST"), default));
         }
 
         /// <summary>
@@ -42,11 +46,15 @@ namespace Adyen.Test
         [TestMethod]
         public void CheckoutEndpointLiveEnvironmentSuccessTest()
         {
-            var config = new Config();
-            var client = new Client(config);
+            var client = CreateMockForAdyenClientTest(new Config());
             client.SetEnvironment(Environment.Live, "companyUrl");
-            Assert.AreEqual(config.CheckoutEndpoint, @"https://companyUrl-checkout-live.adyenpayments.com/checkout");
-            Assert.AreEqual(config.Endpoint, @"https://companyUrl-pal-live.adyenpayments.com");
+            var checkout = new PaymentsService(client);
+            checkout.PaymentsAsync(new PaymentRequest()).GetAwaiter();
+            ClientInterfaceMock.Verify(
+                mock =>
+                    mock.RequestAsync(
+                        "https://companyUrl-checkout-live.adyenpayments.com/checkout/v70/payments",
+                        "{}", null, new HttpMethod("POST"), default));
         }
 
         /// <summary>
@@ -76,9 +84,21 @@ namespace Adyen.Test
         [TestMethod]
         public void CheckoutEndpointLiveWithBasicAuthTest()
         {
-            var client = new Client("ws_*******", "******", Environment.Live, "live-url");
-            Assert.AreEqual(client.Config.CheckoutEndpoint,
-                "https://live-url-checkout-live.adyenpayments.com/checkout");
+            var client = CreateMockForAdyenClientTest(
+                new Config
+                {
+                    Username = "ws_*******",
+                    Password = "******",
+                    Environment = Environment.Live,
+                    LiveEndpointUrlPrefix = "live-url"
+                });
+            var checkout = new PaymentsService(client);
+            checkout.PaymentsAsync(new PaymentRequest()).GetAwaiter();
+            ClientInterfaceMock.Verify(
+                mock =>
+                    mock.RequestAsync(
+                        "https://live-url-checkout-live.adyenpayments.com/checkout/v70/payments",
+                        "{}", null, new HttpMethod("POST"), default));
         }
 
         /// <summary>
@@ -87,9 +107,20 @@ namespace Adyen.Test
         [TestMethod]
         public void CheckoutEndpointLiveWithAPIKeyTest()
         {
-            var client = new Client("xapikey", Environment.Live, "live-url");
-            Assert.AreEqual(client.Config.CheckoutEndpoint,
-                "https://live-url-checkout-live.adyenpayments.com/checkout");
+            var client = CreateMockForAdyenClientTest(
+                new Config
+                {
+                    XApiKey = "xapikey",
+                    Environment = Environment.Live,
+                    LiveEndpointUrlPrefix = "live-url"
+                });
+            var checkout = new PaymentsService(client);
+            checkout.PaymentsAsync(new PaymentRequest()).GetAwaiter();
+            ClientInterfaceMock.Verify(
+                mock =>
+                    mock.RequestAsync(
+                        "https://live-url-checkout-live.adyenpayments.com/checkout/v70/payments",
+                        "{}", null, new HttpMethod("POST"), default));
         }
 
         /// <summary>
@@ -469,13 +500,6 @@ namespace Adyen.Test
             ApplicationInfo applicationInfo = new ApplicationInfo();
             Assert.AreEqual(applicationInfo.AdyenLibrary.Name, Constants.ClientConfig.LibName);
             Assert.AreEqual(applicationInfo.AdyenLibrary.Version, Constants.ClientConfig.LibVersion);
-        }
-
-        [TestMethod]
-        public void ClientEndpointsSetTest()
-        {
-            var client = new Client(new Config());
-            Assert.IsNotNull(client.Config.Endpoint);
         }
 
         [Ignore] // The adyen library info will not be added anymore by default, let's investigate if we should.

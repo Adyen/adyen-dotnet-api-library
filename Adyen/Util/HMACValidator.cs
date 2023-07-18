@@ -8,6 +8,8 @@ namespace Adyen.Util
 {
     public class HmacValidator
     {
+        private const string HmacSignature = "hmacSignature";
+
         // Computes the Base64 encoded signature using the HMAC algorithm with the HMACSHA256 hashing function.
         public string CalculateHmac(string signingstring, string hmacKey)
         {
@@ -77,12 +79,12 @@ namespace Adyen.Util
                 return false;
             }
 
-            if (!notificationRequestItem.AdditionalData.ContainsKey(Constants.AdditionalData.HmacSignature))
+            if (!notificationRequestItem.AdditionalData.ContainsKey(HmacSignature))
             {
                 return false;
             }
             var expectedSign = CalculateHmac(notificationRequestItem, key);
-            var merchantSign = notificationRequestItem.AdditionalData[Constants.AdditionalData.HmacSignature];
+            var merchantSign = notificationRequestItem.AdditionalData[HmacSignature];
             return string.Equals(expectedSign, merchantSign);
         }
     }

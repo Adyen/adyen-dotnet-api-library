@@ -18,8 +18,7 @@ namespace Adyen.Test
                 Password = "Password",
                 ApplicationName = "Appname",
                 MerchantAccount = "TestMerchant",
-                Endpoint = "endpoint",
-                HmacKey = "DFB1EB5485895CFA84146406857104ABB4CBCABDC8AAF103A624C8F6A3EAAB00"
+                Endpoint = "endpoint"
             };
         }
 

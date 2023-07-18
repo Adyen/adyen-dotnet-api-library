@@ -70,36 +70,22 @@ namespace Adyen
 
         public void SetEnvironment(Environment environment, string liveEndpointUrlPrefix)
         {
+            Config.Environment = environment;
+            Config.LiveEndpointUrlPrefix = liveEndpointUrlPrefix;
+            
             switch (environment)
             {
                 case Environment.Test:
-                    Config.Endpoint = ClientConfig.EndpointTest;
                     Config.CloudApiEndPoint = ClientConfig.CloudApiEndPointTest;
-                    Config.CheckoutEndpoint = ClientConfig.CheckoutEndpointTest;
                     Config.MarketPayEndpoint = ClientConfig.MarketpayEndPointTest;
-                    Config.PosTerminalManagementEndpoint = ClientConfig.PosTerminalManagementEndpointTest;
-                    Config.LegalEntityManagementEndpoint = ClientConfig.LegalEntityManagementEndpointTest;
-                    Config.StoredValueEndpoint = ClientConfig.StoredValueEndpointTest;
-                    Config.ManagementEndpoint = ClientConfig.ManagementEndpointTest;
-                    Config.TransfersEndpoint = ClientConfig.TransfersEndpointTest;
-                    Config.DataProtectionEndpoint = ClientConfig.DataProtectionEndpointTest;
                     break;
                 case Environment.Live:
                     if (string.IsNullOrEmpty(liveEndpointUrlPrefix))
                     {
                         throw new InvalidOperationException(ExceptionMessages.MissingLiveEndpointUrlPrefix);
                     }
-
-                    Config.Endpoint = ClientConfig.EndpointProtocol + liveEndpointUrlPrefix + ClientConfig.EndpointLiveSuffix;
                     Config.CloudApiEndPoint = ClientConfig.CloudApiEndPointEULive;
-                    Config.CheckoutEndpoint = ClientConfig.EndpointProtocol + liveEndpointUrlPrefix + ClientConfig.CheckoutEndpointLiveSuffix;
                     Config.MarketPayEndpoint = ClientConfig.MarketpayEndPointLive;
-                    Config.PosTerminalManagementEndpoint = ClientConfig.PosTerminalManagementEndpointLive;
-                    Config.LegalEntityManagementEndpoint = ClientConfig.LegalEntityManagementEndpointLive;
-                    Config.StoredValueEndpoint = ClientConfig.StoredValueEndpointLive;
-                    Config.ManagementEndpoint = ClientConfig.ManagementEndpointLive;
-                    Config.TransfersEndpoint = ClientConfig.TransfersEndpointLive;
-                    Config.DataProtectionEndpoint = ClientConfig.DataProtectionEndpointLive;
                     break;
             }
         }
