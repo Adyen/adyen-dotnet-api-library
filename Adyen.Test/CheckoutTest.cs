@@ -64,7 +64,8 @@ namespace Adyen.Test
         {
             var config = new Config();
             var client = new Client(config);
-            Assert.ThrowsException<InvalidOperationException>(() => client.SetEnvironment(Environment.Live, null));
+            client.SetEnvironment(Environment.Live, null);
+            Assert.ThrowsException<InvalidOperationException>(() => new PaymentsService(client));
         }
 
         /// <summary>
@@ -73,8 +74,15 @@ namespace Adyen.Test
         [TestMethod]
         public void CheckoutEndpointLiveWithBasicAuthErrorTest()
         {
+            var client = new Client(new Config()
+            {
+                Username = "ws_*******",
+                Password = "*******",
+                Environment = Environment.Live
+                
+            });
             Assert.ThrowsException<InvalidOperationException>(
-                () => new Client("ws_*******", "******", Environment.Live));
+                () => new PaymentsService(client));
         }
 
         /// <summary>

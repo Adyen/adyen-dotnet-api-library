@@ -50,7 +50,6 @@ namespace Adyen.Test
             {
                 Username = "Username",
                 Password = "Password",
-                MerchantAccount = "TestMerchant",
                 XApiKey = "AQEyhmfxK....LAG84XwzP5pSpVd"
             };
             

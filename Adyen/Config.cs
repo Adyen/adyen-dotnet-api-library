@@ -8,11 +8,9 @@ namespace Adyen
         //Merchant details
         public string Username { get; set; }
         public string Password { get; set; }
-        public string MerchantAccount { get; set; }
         public Environment Environment { get; set; }
         public string LiveEndpointUrlPrefix { get; set; }
         public string Endpoint { get; set; }
-        public string MarketPayEndpoint { get; set; }
         public string ApplicationName { get; set; }
         public IWebProxy Proxy { get; set; }
         //Terminal cloud api

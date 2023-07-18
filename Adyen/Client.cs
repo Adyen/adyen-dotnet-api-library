@@ -76,11 +76,9 @@ namespace Adyen
             {
                 case Environment.Test:
                     Config.CloudApiEndPoint = ClientConfig.CloudApiEndPointTest;
-                    Config.MarketPayEndpoint = ClientConfig.MarketpayEndPointTest;
                     break;
                 case Environment.Live:
                     Config.CloudApiEndPoint = ClientConfig.CloudApiEndPointEULive;
-                    Config.MarketPayEndpoint = ClientConfig.MarketpayEndPointLive;
                     break;
             }
         }
@@ -98,10 +96,6 @@ namespace Adyen
         }
 
         public IClient HttpClient { get; set; }
-
-        public string ApiVersion => ClientConfig.ApiVersion;
-
-        public string RecurringApiVersion => ClientConfig.RecurringApiVersion;
 
         public string LibraryVersion => ClientConfig.LibVersion;
 
