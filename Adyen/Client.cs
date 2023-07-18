@@ -50,7 +50,6 @@ namespace Adyen
         {
             Config = config;
             SetEnvironment(Config.Environment, Config.LiveEndpointUrlPrefix);
-            
             HttpClient = new HttpClientWrapper(Config, GetHttpClient());
         }
 
@@ -68,7 +67,7 @@ namespace Adyen
             HttpClient = clientName != null ? new HttpClientWrapper(Config, factory.CreateClient(clientName)) : new HttpClientWrapper(Config, factory.CreateClient());
         }
 
-        public void SetEnvironment(Environment environment, string liveEndpointUrlPrefix)
+        public void SetEnvironment(Environment environment, string liveEndpointUrlPrefix = "")
         {
             Config.Environment = environment;
             Config.LiveEndpointUrlPrefix = liveEndpointUrlPrefix;
@@ -80,10 +79,6 @@ namespace Adyen
                     Config.MarketPayEndpoint = ClientConfig.MarketpayEndPointTest;
                     break;
                 case Environment.Live:
-                    if (string.IsNullOrEmpty(liveEndpointUrlPrefix))
-                    {
-                        throw new InvalidOperationException(ExceptionMessages.MissingLiveEndpointUrlPrefix);
-                    }
                     Config.CloudApiEndPoint = ClientConfig.CloudApiEndPointEULive;
                     Config.MarketPayEndpoint = ClientConfig.MarketpayEndPointLive;
                     break;
