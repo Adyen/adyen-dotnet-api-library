@@ -74,7 +74,7 @@ namespace {{packageName}}.{{apiPackage}}
             // Build the query string
             var queryParams = new Dictionary<string, string>();
             {{#queryParams}}
-            if ({{paramName}} != null) queryParams.Add("{{baseName}}", {{paramName}}{{^isString}}.ToString(){{/isString}});
+            {{^required}}if ({{paramName}} != null) {{/required}}queryParams.Add("{{baseName}}", {{paramName}}{{^isString}}.ToString(){{/isString}});
             {{/queryParams}}
             {{/hasQueryParams}}
             var endpoint = _baseUrl + {{#hasPathParams}}${{/hasPathParams}}"{{{path}}}"{{#hasQueryParams}} + ToQueryString(queryParams){{/hasQueryParams}};
