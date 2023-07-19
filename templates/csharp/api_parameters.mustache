@@ -1,2 +1,2 @@
 {{! Path and body are required, followed by optional query string and request options }}
-{{#requiredParams}}{{{dataType}}} {{paramName}}, {{/requiredParams}}{{#optionalParams}}{{{dataType}}} {{paramName}} = default, {{/optionalParams}}RequestOptions requestOptions = default
+{{#requiredParams}}{{>api_parameter_ordering_required}}{{/requiredParams}}{{#optionalParams}}{{>api_parameter_ordering}}{{/optionalParams}}RequestOptions requestOptions = default
