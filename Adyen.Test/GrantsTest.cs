@@ -16,6 +16,7 @@ namespace Adyen.Test
             Assert.AreEqual(response.Id, "CG00000000000000000000001");
             Assert.AreEqual(response.GrantAccountId, "CG00000000000000000000001");
             Assert.AreEqual(response.Status, CapitalGrant.StatusEnum.Pending);
+            Assert.IsNotNull(response.Balances);
         }
     }
 }
