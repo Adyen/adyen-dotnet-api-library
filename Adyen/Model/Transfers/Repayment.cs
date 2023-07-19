@@ -27,38 +27,47 @@ using OpenAPIDateConverter = Adyen.ApiSerialization.OpenAPIDateConverter;
 namespace Adyen.Model.Transfers
 {
     /// <summary>
-    /// BankAccountV3
+    /// Repayment
     /// </summary>
-    [DataContract(Name = "BankAccountV3")]
-    public partial class BankAccountV3 : IEquatable<BankAccountV3>, IValidatableObject
+    [DataContract(Name = "Repayment")]
+    public partial class Repayment : IEquatable<Repayment>, IValidatableObject
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="BankAccountV3" /> class.
+        /// Initializes a new instance of the <see cref="Repayment" /> class.
         /// </summary>
         [JsonConstructorAttribute]
-        protected BankAccountV3() { }
+        protected Repayment() { }
         /// <summary>
-        /// Initializes a new instance of the <see cref="BankAccountV3" /> class.
+        /// Initializes a new instance of the <see cref="Repayment" /> class.
         /// </summary>
-        /// <param name="accountHolder">accountHolder (required).</param>
-        /// <param name="accountIdentification">accountIdentification (required).</param>
-        public BankAccountV3(PartyIdentification2 accountHolder = default(PartyIdentification2), BankAccountV3AccountIdentification accountIdentification = default(BankAccountV3AccountIdentification))
+        /// <param name="basisPoints">The repayment that is deducted daily from incoming net volume, in [basis points](https://www.investopedia.com/terms/b/basispoint.asp). (required).</param>
+        /// <param name="term">term.</param>
+        /// <param name="threshold">threshold.</param>
+        public Repayment(int? basisPoints = default(int?), RepaymentTerm term = default(RepaymentTerm), ThresholdRepayment threshold = default(ThresholdRepayment))
         {
-            this.AccountHolder = accountHolder;
-            this.AccountIdentification = accountIdentification;
+            this.BasisPoints = basisPoints;
+            this.Term = term;
+            this.Threshold = threshold;
         }
 
         /// <summary>
-        /// Gets or Sets AccountHolder
+        /// The repayment that is deducted daily from incoming net volume, in [basis points](https://www.investopedia.com/terms/b/basispoint.asp).
         /// </summary>
-        [DataMember(Name = "accountHolder", IsRequired = false, EmitDefaultValue = false)]
-        public PartyIdentification2 AccountHolder { get; set; }
+        /// <value>The repayment that is deducted daily from incoming net volume, in [basis points](https://www.investopedia.com/terms/b/basispoint.asp).</value>
+        [DataMember(Name = "basisPoints", IsRequired = false, EmitDefaultValue = false)]
+        public int? BasisPoints { get; set; }
 
         /// <summary>
-        /// Gets or Sets AccountIdentification
+        /// Gets or Sets Term
         /// </summary>
-        [DataMember(Name = "accountIdentification", IsRequired = false, EmitDefaultValue = false)]
-        public BankAccountV3AccountIdentification AccountIdentification { get; set; }
+        [DataMember(Name = "term", EmitDefaultValue = false)]
+        public RepaymentTerm Term { get; set; }
+
+        /// <summary>
+        /// Gets or Sets Threshold
+        /// </summary>
+        [DataMember(Name = "threshold", EmitDefaultValue = false)]
+        public ThresholdRepayment Threshold { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -67,9 +76,10 @@ namespace Adyen.Model.Transfers
         public override string ToString()
         {
             StringBuilder sb = new StringBuilder();
-            sb.Append("class BankAccountV3 {\n");
-            sb.Append("  AccountHolder: ").Append(AccountHolder).Append("\n");
-            sb.Append("  AccountIdentification: ").Append(AccountIdentification).Append("\n");
+            sb.Append("class Repayment {\n");
+            sb.Append("  BasisPoints: ").Append(BasisPoints).Append("\n");
+            sb.Append("  Term: ").Append(Term).Append("\n");
+            sb.Append("  Threshold: ").Append(Threshold).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -90,15 +100,15 @@ namespace Adyen.Model.Transfers
         /// <returns>Boolean</returns>
         public override bool Equals(object input)
         {
-            return this.Equals(input as BankAccountV3);
+            return this.Equals(input as Repayment);
         }
 
         /// <summary>
-        /// Returns true if BankAccountV3 instances are equal
+        /// Returns true if Repayment instances are equal
         /// </summary>
-        /// <param name="input">Instance of BankAccountV3 to be compared</param>
+        /// <param name="input">Instance of Repayment to be compared</param>
         /// <returns>Boolean</returns>
-        public bool Equals(BankAccountV3 input)
+        public bool Equals(Repayment input)
         {
             if (input == null)
             {
@@ -106,14 +116,18 @@ namespace Adyen.Model.Transfers
             }
             return 
                 (
-                    this.AccountHolder == input.AccountHolder ||
-                    (this.AccountHolder != null &&
-                    this.AccountHolder.Equals(input.AccountHolder))
+                    this.BasisPoints == input.BasisPoints ||
+                    this.BasisPoints.Equals(input.BasisPoints)
                 ) && 
                 (
-                    this.AccountIdentification == input.AccountIdentification ||
-                    (this.AccountIdentification != null &&
-                    this.AccountIdentification.Equals(input.AccountIdentification))
+                    this.Term == input.Term ||
+                    (this.Term != null &&
+                    this.Term.Equals(input.Term))
+                ) && 
+                (
+                    this.Threshold == input.Threshold ||
+                    (this.Threshold != null &&
+                    this.Threshold.Equals(input.Threshold))
                 );
         }
 
@@ -126,13 +140,14 @@ namespace Adyen.Model.Transfers
             unchecked // Overflow is fine, just wrap
             {
                 int hashCode = 41;
-                if (this.AccountHolder != null)
+                hashCode = (hashCode * 59) + this.BasisPoints.GetHashCode();
+                if (this.Term != null)
                 {
-                    hashCode = (hashCode * 59) + this.AccountHolder.GetHashCode();
+                    hashCode = (hashCode * 59) + this.Term.GetHashCode();
                 }
-                if (this.AccountIdentification != null)
+                if (this.Threshold != null)
                 {
-                    hashCode = (hashCode * 59) + this.AccountIdentification.GetHashCode();
+                    hashCode = (hashCode * 59) + this.Threshold.GetHashCode();
                 }
                 return hashCode;
             }

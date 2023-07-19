@@ -27,41 +27,42 @@ using OpenAPIDateConverter = Adyen.ApiSerialization.OpenAPIDateConverter;
 namespace Adyen.Model.Transfers
 {
     /// <summary>
-    /// CounterpartyInfoV3
+    /// Counterparty2
     /// </summary>
-    [DataContract(Name = "CounterpartyInfoV3")]
-    public partial class CounterpartyInfoV3 : IEquatable<CounterpartyInfoV3>, IValidatableObject
+    [DataContract(Name = "Counterparty-2")]
+    public partial class Counterparty2 : IEquatable<Counterparty2>, IValidatableObject
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="CounterpartyInfoV3" /> class.
+        /// Initializes a new instance of the <see cref="Counterparty2" /> class.
         /// </summary>
-        /// <param name="balanceAccountId">Unique identifier of the [balance account](https://docs.adyen.com/api-explorer/#/balanceplatform/latest/post/balanceAccounts__resParam_id)..</param>
-        /// <param name="bankAccount">bankAccount.</param>
-        /// <param name="transferInstrumentId">Unique identifier of the [transfer instrument](https://docs.adyen.com/api-explorer/#/legalentity/latest/post/transferInstruments__resParam_id)..</param>
-        public CounterpartyInfoV3(string balanceAccountId = default(string), BankAccountV3 bankAccount = default(BankAccountV3), string transferInstrumentId = default(string))
+        /// <param name="accountHolderId">The identifier of the receiving account holder. The payout will default to the primary balance account of this account holder if no &#x60;balanceAccountId&#x60; is provided..</param>
+        /// <param name="balanceAccountId">The identifier of the balance account that belongs to the receiving account holder..</param>
+        /// <param name="transferInstrumentId">The identifier of the transfer instrument that belongs to the legal entity of the account holder..</param>
+        public Counterparty2(string accountHolderId = default(string), string balanceAccountId = default(string), string transferInstrumentId = default(string))
         {
+            this.AccountHolderId = accountHolderId;
             this.BalanceAccountId = balanceAccountId;
-            this.BankAccount = bankAccount;
             this.TransferInstrumentId = transferInstrumentId;
         }
 
         /// <summary>
-        /// Unique identifier of the [balance account](https://docs.adyen.com/api-explorer/#/balanceplatform/latest/post/balanceAccounts__resParam_id).
+        /// The identifier of the receiving account holder. The payout will default to the primary balance account of this account holder if no &#x60;balanceAccountId&#x60; is provided.
         /// </summary>
-        /// <value>Unique identifier of the [balance account](https://docs.adyen.com/api-explorer/#/balanceplatform/latest/post/balanceAccounts__resParam_id).</value>
+        /// <value>The identifier of the receiving account holder. The payout will default to the primary balance account of this account holder if no &#x60;balanceAccountId&#x60; is provided.</value>
+        [DataMember(Name = "accountHolderId", EmitDefaultValue = false)]
+        public string AccountHolderId { get; set; }
+
+        /// <summary>
+        /// The identifier of the balance account that belongs to the receiving account holder.
+        /// </summary>
+        /// <value>The identifier of the balance account that belongs to the receiving account holder.</value>
         [DataMember(Name = "balanceAccountId", EmitDefaultValue = false)]
         public string BalanceAccountId { get; set; }
 
         /// <summary>
-        /// Gets or Sets BankAccount
+        /// The identifier of the transfer instrument that belongs to the legal entity of the account holder.
         /// </summary>
-        [DataMember(Name = "bankAccount", EmitDefaultValue = false)]
-        public BankAccountV3 BankAccount { get; set; }
-
-        /// <summary>
-        /// Unique identifier of the [transfer instrument](https://docs.adyen.com/api-explorer/#/legalentity/latest/post/transferInstruments__resParam_id).
-        /// </summary>
-        /// <value>Unique identifier of the [transfer instrument](https://docs.adyen.com/api-explorer/#/legalentity/latest/post/transferInstruments__resParam_id).</value>
+        /// <value>The identifier of the transfer instrument that belongs to the legal entity of the account holder.</value>
         [DataMember(Name = "transferInstrumentId", EmitDefaultValue = false)]
         public string TransferInstrumentId { get; set; }
 
@@ -72,9 +73,9 @@ namespace Adyen.Model.Transfers
         public override string ToString()
         {
             StringBuilder sb = new StringBuilder();
-            sb.Append("class CounterpartyInfoV3 {\n");
+            sb.Append("class Counterparty2 {\n");
+            sb.Append("  AccountHolderId: ").Append(AccountHolderId).Append("\n");
             sb.Append("  BalanceAccountId: ").Append(BalanceAccountId).Append("\n");
-            sb.Append("  BankAccount: ").Append(BankAccount).Append("\n");
             sb.Append("  TransferInstrumentId: ").Append(TransferInstrumentId).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
@@ -96,15 +97,15 @@ namespace Adyen.Model.Transfers
         /// <returns>Boolean</returns>
         public override bool Equals(object input)
         {
-            return this.Equals(input as CounterpartyInfoV3);
+            return this.Equals(input as Counterparty2);
         }
 
         /// <summary>
-        /// Returns true if CounterpartyInfoV3 instances are equal
+        /// Returns true if Counterparty2 instances are equal
         /// </summary>
-        /// <param name="input">Instance of CounterpartyInfoV3 to be compared</param>
+        /// <param name="input">Instance of Counterparty2 to be compared</param>
         /// <returns>Boolean</returns>
-        public bool Equals(CounterpartyInfoV3 input)
+        public bool Equals(Counterparty2 input)
         {
             if (input == null)
             {
@@ -112,14 +113,14 @@ namespace Adyen.Model.Transfers
             }
             return 
                 (
+                    this.AccountHolderId == input.AccountHolderId ||
+                    (this.AccountHolderId != null &&
+                    this.AccountHolderId.Equals(input.AccountHolderId))
+                ) && 
+                (
                     this.BalanceAccountId == input.BalanceAccountId ||
                     (this.BalanceAccountId != null &&
                     this.BalanceAccountId.Equals(input.BalanceAccountId))
-                ) && 
-                (
-                    this.BankAccount == input.BankAccount ||
-                    (this.BankAccount != null &&
-                    this.BankAccount.Equals(input.BankAccount))
                 ) && 
                 (
                     this.TransferInstrumentId == input.TransferInstrumentId ||
@@ -137,13 +138,13 @@ namespace Adyen.Model.Transfers
             unchecked // Overflow is fine, just wrap
             {
                 int hashCode = 41;
+                if (this.AccountHolderId != null)
+                {
+                    hashCode = (hashCode * 59) + this.AccountHolderId.GetHashCode();
+                }
                 if (this.BalanceAccountId != null)
                 {
                     hashCode = (hashCode * 59) + this.BalanceAccountId.GetHashCode();
-                }
-                if (this.BankAccount != null)
-                {
-                    hashCode = (hashCode * 59) + this.BankAccount.GetHashCode();
                 }
                 if (this.TransferInstrumentId != null)
                 {

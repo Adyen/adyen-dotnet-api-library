@@ -27,38 +27,31 @@ using OpenAPIDateConverter = Adyen.ApiSerialization.OpenAPIDateConverter;
 namespace Adyen.Model.Transfers
 {
     /// <summary>
-    /// BankAccountV3
+    /// CapitalGrants
     /// </summary>
-    [DataContract(Name = "BankAccountV3")]
-    public partial class BankAccountV3 : IEquatable<BankAccountV3>, IValidatableObject
+    [DataContract(Name = "CapitalGrants")]
+    public partial class CapitalGrants : IEquatable<CapitalGrants>, IValidatableObject
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="BankAccountV3" /> class.
+        /// Initializes a new instance of the <see cref="CapitalGrants" /> class.
         /// </summary>
         [JsonConstructorAttribute]
-        protected BankAccountV3() { }
+        protected CapitalGrants() { }
         /// <summary>
-        /// Initializes a new instance of the <see cref="BankAccountV3" /> class.
+        /// Initializes a new instance of the <see cref="CapitalGrants" /> class.
         /// </summary>
-        /// <param name="accountHolder">accountHolder (required).</param>
-        /// <param name="accountIdentification">accountIdentification (required).</param>
-        public BankAccountV3(PartyIdentification2 accountHolder = default(PartyIdentification2), BankAccountV3AccountIdentification accountIdentification = default(BankAccountV3AccountIdentification))
+        /// <param name="grants">The unique identifier of the grant. (required).</param>
+        public CapitalGrants(List<CapitalGrant> grants = default(List<CapitalGrant>))
         {
-            this.AccountHolder = accountHolder;
-            this.AccountIdentification = accountIdentification;
+            this.Grants = grants;
         }
 
         /// <summary>
-        /// Gets or Sets AccountHolder
+        /// The unique identifier of the grant.
         /// </summary>
-        [DataMember(Name = "accountHolder", IsRequired = false, EmitDefaultValue = false)]
-        public PartyIdentification2 AccountHolder { get; set; }
-
-        /// <summary>
-        /// Gets or Sets AccountIdentification
-        /// </summary>
-        [DataMember(Name = "accountIdentification", IsRequired = false, EmitDefaultValue = false)]
-        public BankAccountV3AccountIdentification AccountIdentification { get; set; }
+        /// <value>The unique identifier of the grant.</value>
+        [DataMember(Name = "grants", IsRequired = false, EmitDefaultValue = false)]
+        public List<CapitalGrant> Grants { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -67,9 +60,8 @@ namespace Adyen.Model.Transfers
         public override string ToString()
         {
             StringBuilder sb = new StringBuilder();
-            sb.Append("class BankAccountV3 {\n");
-            sb.Append("  AccountHolder: ").Append(AccountHolder).Append("\n");
-            sb.Append("  AccountIdentification: ").Append(AccountIdentification).Append("\n");
+            sb.Append("class CapitalGrants {\n");
+            sb.Append("  Grants: ").Append(Grants).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -90,15 +82,15 @@ namespace Adyen.Model.Transfers
         /// <returns>Boolean</returns>
         public override bool Equals(object input)
         {
-            return this.Equals(input as BankAccountV3);
+            return this.Equals(input as CapitalGrants);
         }
 
         /// <summary>
-        /// Returns true if BankAccountV3 instances are equal
+        /// Returns true if CapitalGrants instances are equal
         /// </summary>
-        /// <param name="input">Instance of BankAccountV3 to be compared</param>
+        /// <param name="input">Instance of CapitalGrants to be compared</param>
         /// <returns>Boolean</returns>
-        public bool Equals(BankAccountV3 input)
+        public bool Equals(CapitalGrants input)
         {
             if (input == null)
             {
@@ -106,14 +98,10 @@ namespace Adyen.Model.Transfers
             }
             return 
                 (
-                    this.AccountHolder == input.AccountHolder ||
-                    (this.AccountHolder != null &&
-                    this.AccountHolder.Equals(input.AccountHolder))
-                ) && 
-                (
-                    this.AccountIdentification == input.AccountIdentification ||
-                    (this.AccountIdentification != null &&
-                    this.AccountIdentification.Equals(input.AccountIdentification))
+                    this.Grants == input.Grants ||
+                    this.Grants != null &&
+                    input.Grants != null &&
+                    this.Grants.SequenceEqual(input.Grants)
                 );
         }
 
@@ -126,13 +114,9 @@ namespace Adyen.Model.Transfers
             unchecked // Overflow is fine, just wrap
             {
                 int hashCode = 41;
-                if (this.AccountHolder != null)
+                if (this.Grants != null)
                 {
-                    hashCode = (hashCode * 59) + this.AccountHolder.GetHashCode();
-                }
-                if (this.AccountIdentification != null)
-                {
-                    hashCode = (hashCode * 59) + this.AccountIdentification.GetHashCode();
+                    hashCode = (hashCode * 59) + this.Grants.GetHashCode();
                 }
                 return hashCode;
             }

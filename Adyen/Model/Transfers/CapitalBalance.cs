@@ -27,25 +27,29 @@ using OpenAPIDateConverter = Adyen.ApiSerialization.OpenAPIDateConverter;
 namespace Adyen.Model.Transfers
 {
     /// <summary>
-    /// Amount
+    /// CapitalBalance
     /// </summary>
-    [DataContract(Name = "Amount")]
-    public partial class Amount : IEquatable<Amount>, IValidatableObject
+    [DataContract(Name = "CapitalBalance")]
+    public partial class CapitalBalance : IEquatable<CapitalBalance>, IValidatableObject
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="Amount" /> class.
+        /// Initializes a new instance of the <see cref="CapitalBalance" /> class.
         /// </summary>
         [JsonConstructorAttribute]
-        protected Amount() { }
+        protected CapitalBalance() { }
         /// <summary>
-        /// Initializes a new instance of the <see cref="Amount" /> class.
+        /// Initializes a new instance of the <see cref="CapitalBalance" /> class.
         /// </summary>
         /// <param name="currency">The three-character [ISO currency code](https://docs.adyen.com/development-resources/currency-codes). (required).</param>
-        /// <param name="value">The amount of the transaction, in [minor units](https://docs.adyen.com/development-resources/currency-codes). (required).</param>
-        public Amount(string currency = default(string), long? value = default(long?))
+        /// <param name="fee">Fee amount. (required).</param>
+        /// <param name="principal">Principal amount. (required).</param>
+        /// <param name="total">Total amount. A sum of principal amount and fee amount. (required).</param>
+        public CapitalBalance(string currency = default(string), long? fee = default(long?), long? principal = default(long?), long? total = default(long?))
         {
             this.Currency = currency;
-            this.Value = value;
+            this.Fee = fee;
+            this.Principal = principal;
+            this.Total = total;
         }
 
         /// <summary>
@@ -56,11 +60,25 @@ namespace Adyen.Model.Transfers
         public string Currency { get; set; }
 
         /// <summary>
-        /// The amount of the transaction, in [minor units](https://docs.adyen.com/development-resources/currency-codes).
+        /// Fee amount.
         /// </summary>
-        /// <value>The amount of the transaction, in [minor units](https://docs.adyen.com/development-resources/currency-codes).</value>
-        [DataMember(Name = "value", IsRequired = false, EmitDefaultValue = false)]
-        public long? Value { get; set; }
+        /// <value>Fee amount.</value>
+        [DataMember(Name = "fee", IsRequired = false, EmitDefaultValue = false)]
+        public long? Fee { get; set; }
+
+        /// <summary>
+        /// Principal amount.
+        /// </summary>
+        /// <value>Principal amount.</value>
+        [DataMember(Name = "principal", IsRequired = false, EmitDefaultValue = false)]
+        public long? Principal { get; set; }
+
+        /// <summary>
+        /// Total amount. A sum of principal amount and fee amount.
+        /// </summary>
+        /// <value>Total amount. A sum of principal amount and fee amount.</value>
+        [DataMember(Name = "total", IsRequired = false, EmitDefaultValue = false)]
+        public long? Total { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -69,9 +87,11 @@ namespace Adyen.Model.Transfers
         public override string ToString()
         {
             StringBuilder sb = new StringBuilder();
-            sb.Append("class Amount {\n");
+            sb.Append("class CapitalBalance {\n");
             sb.Append("  Currency: ").Append(Currency).Append("\n");
-            sb.Append("  Value: ").Append(Value).Append("\n");
+            sb.Append("  Fee: ").Append(Fee).Append("\n");
+            sb.Append("  Principal: ").Append(Principal).Append("\n");
+            sb.Append("  Total: ").Append(Total).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -92,15 +112,15 @@ namespace Adyen.Model.Transfers
         /// <returns>Boolean</returns>
         public override bool Equals(object input)
         {
-            return this.Equals(input as Amount);
+            return this.Equals(input as CapitalBalance);
         }
 
         /// <summary>
-        /// Returns true if Amount instances are equal
+        /// Returns true if CapitalBalance instances are equal
         /// </summary>
-        /// <param name="input">Instance of Amount to be compared</param>
+        /// <param name="input">Instance of CapitalBalance to be compared</param>
         /// <returns>Boolean</returns>
-        public bool Equals(Amount input)
+        public bool Equals(CapitalBalance input)
         {
             if (input == null)
             {
@@ -113,8 +133,16 @@ namespace Adyen.Model.Transfers
                     this.Currency.Equals(input.Currency))
                 ) && 
                 (
-                    this.Value == input.Value ||
-                    this.Value.Equals(input.Value)
+                    this.Fee == input.Fee ||
+                    this.Fee.Equals(input.Fee)
+                ) && 
+                (
+                    this.Principal == input.Principal ||
+                    this.Principal.Equals(input.Principal)
+                ) && 
+                (
+                    this.Total == input.Total ||
+                    this.Total.Equals(input.Total)
                 );
         }
 
@@ -131,7 +159,9 @@ namespace Adyen.Model.Transfers
                 {
                     hashCode = (hashCode * 59) + this.Currency.GetHashCode();
                 }
-                hashCode = (hashCode * 59) + this.Value.GetHashCode();
+                hashCode = (hashCode * 59) + this.Fee.GetHashCode();
+                hashCode = (hashCode * 59) + this.Principal.GetHashCode();
+                hashCode = (hashCode * 59) + this.Total.GetHashCode();
                 return hashCode;
             }
         }
@@ -142,18 +172,6 @@ namespace Adyen.Model.Transfers
         /// <returns>Validation Result</returns>
         public IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> Validate(ValidationContext validationContext)
         {
-            // Currency (string) maxLength
-            if (this.Currency != null && this.Currency.Length > 3)
-            {
-                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for Currency, length must be less than 3.", new [] { "Currency" });
-            }
-
-            // Currency (string) minLength
-            if (this.Currency != null && this.Currency.Length < 3)
-            {
-                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for Currency, length must be greater than 3.", new [] { "Currency" });
-            }
-
             yield break;
         }
     }

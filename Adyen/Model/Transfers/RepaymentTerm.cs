@@ -27,38 +27,40 @@ using OpenAPIDateConverter = Adyen.ApiSerialization.OpenAPIDateConverter;
 namespace Adyen.Model.Transfers
 {
     /// <summary>
-    /// BankAccountV3
+    /// RepaymentTerm
     /// </summary>
-    [DataContract(Name = "BankAccountV3")]
-    public partial class BankAccountV3 : IEquatable<BankAccountV3>, IValidatableObject
+    [DataContract(Name = "RepaymentTerm")]
+    public partial class RepaymentTerm : IEquatable<RepaymentTerm>, IValidatableObject
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="BankAccountV3" /> class.
+        /// Initializes a new instance of the <see cref="RepaymentTerm" /> class.
         /// </summary>
         [JsonConstructorAttribute]
-        protected BankAccountV3() { }
+        protected RepaymentTerm() { }
         /// <summary>
-        /// Initializes a new instance of the <see cref="BankAccountV3" /> class.
+        /// Initializes a new instance of the <see cref="RepaymentTerm" /> class.
         /// </summary>
-        /// <param name="accountHolder">accountHolder (required).</param>
-        /// <param name="accountIdentification">accountIdentification (required).</param>
-        public BankAccountV3(PartyIdentification2 accountHolder = default(PartyIdentification2), BankAccountV3AccountIdentification accountIdentification = default(BankAccountV3AccountIdentification))
+        /// <param name="estimatedDays">The estimated term for repaying the grant, in days. (required).</param>
+        /// <param name="maximumDays">The maximum term for repaying the grant, in days. Only applies when &#x60;contractType&#x60; is **loan**..</param>
+        public RepaymentTerm(int? estimatedDays = default(int?), int? maximumDays = default(int?))
         {
-            this.AccountHolder = accountHolder;
-            this.AccountIdentification = accountIdentification;
+            this.EstimatedDays = estimatedDays;
+            this.MaximumDays = maximumDays;
         }
 
         /// <summary>
-        /// Gets or Sets AccountHolder
+        /// The estimated term for repaying the grant, in days.
         /// </summary>
-        [DataMember(Name = "accountHolder", IsRequired = false, EmitDefaultValue = false)]
-        public PartyIdentification2 AccountHolder { get; set; }
+        /// <value>The estimated term for repaying the grant, in days.</value>
+        [DataMember(Name = "estimatedDays", IsRequired = false, EmitDefaultValue = false)]
+        public int? EstimatedDays { get; set; }
 
         /// <summary>
-        /// Gets or Sets AccountIdentification
+        /// The maximum term for repaying the grant, in days. Only applies when &#x60;contractType&#x60; is **loan**.
         /// </summary>
-        [DataMember(Name = "accountIdentification", IsRequired = false, EmitDefaultValue = false)]
-        public BankAccountV3AccountIdentification AccountIdentification { get; set; }
+        /// <value>The maximum term for repaying the grant, in days. Only applies when &#x60;contractType&#x60; is **loan**.</value>
+        [DataMember(Name = "maximumDays", EmitDefaultValue = false)]
+        public int? MaximumDays { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -67,9 +69,9 @@ namespace Adyen.Model.Transfers
         public override string ToString()
         {
             StringBuilder sb = new StringBuilder();
-            sb.Append("class BankAccountV3 {\n");
-            sb.Append("  AccountHolder: ").Append(AccountHolder).Append("\n");
-            sb.Append("  AccountIdentification: ").Append(AccountIdentification).Append("\n");
+            sb.Append("class RepaymentTerm {\n");
+            sb.Append("  EstimatedDays: ").Append(EstimatedDays).Append("\n");
+            sb.Append("  MaximumDays: ").Append(MaximumDays).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -90,15 +92,15 @@ namespace Adyen.Model.Transfers
         /// <returns>Boolean</returns>
         public override bool Equals(object input)
         {
-            return this.Equals(input as BankAccountV3);
+            return this.Equals(input as RepaymentTerm);
         }
 
         /// <summary>
-        /// Returns true if BankAccountV3 instances are equal
+        /// Returns true if RepaymentTerm instances are equal
         /// </summary>
-        /// <param name="input">Instance of BankAccountV3 to be compared</param>
+        /// <param name="input">Instance of RepaymentTerm to be compared</param>
         /// <returns>Boolean</returns>
-        public bool Equals(BankAccountV3 input)
+        public bool Equals(RepaymentTerm input)
         {
             if (input == null)
             {
@@ -106,14 +108,12 @@ namespace Adyen.Model.Transfers
             }
             return 
                 (
-                    this.AccountHolder == input.AccountHolder ||
-                    (this.AccountHolder != null &&
-                    this.AccountHolder.Equals(input.AccountHolder))
+                    this.EstimatedDays == input.EstimatedDays ||
+                    this.EstimatedDays.Equals(input.EstimatedDays)
                 ) && 
                 (
-                    this.AccountIdentification == input.AccountIdentification ||
-                    (this.AccountIdentification != null &&
-                    this.AccountIdentification.Equals(input.AccountIdentification))
+                    this.MaximumDays == input.MaximumDays ||
+                    this.MaximumDays.Equals(input.MaximumDays)
                 );
         }
 
@@ -126,14 +126,8 @@ namespace Adyen.Model.Transfers
             unchecked // Overflow is fine, just wrap
             {
                 int hashCode = 41;
-                if (this.AccountHolder != null)
-                {
-                    hashCode = (hashCode * 59) + this.AccountHolder.GetHashCode();
-                }
-                if (this.AccountIdentification != null)
-                {
-                    hashCode = (hashCode * 59) + this.AccountIdentification.GetHashCode();
-                }
+                hashCode = (hashCode * 59) + this.EstimatedDays.GetHashCode();
+                hashCode = (hashCode * 59) + this.MaximumDays.GetHashCode();
                 return hashCode;
             }
         }
