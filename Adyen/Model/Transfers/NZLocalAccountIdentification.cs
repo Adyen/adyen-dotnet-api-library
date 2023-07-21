@@ -27,62 +27,71 @@ using OpenAPIDateConverter = Adyen.ApiSerialization.OpenAPIDateConverter;
 namespace Adyen.Model.Transfers
 {
     /// <summary>
-    /// CZLocalAccountIdentification
+    /// NZLocalAccountIdentification
     /// </summary>
-    [DataContract(Name = "CZLocalAccountIdentification")]
-    public partial class CZLocalAccountIdentification : IEquatable<CZLocalAccountIdentification>, IValidatableObject
+    [DataContract(Name = "NZLocalAccountIdentification")]
+    public partial class NZLocalAccountIdentification : IEquatable<NZLocalAccountIdentification>, IValidatableObject
     {
         /// <summary>
-        /// **czLocal**
+        /// **nzLocal**
         /// </summary>
-        /// <value>**czLocal**</value>
+        /// <value>**nzLocal**</value>
         [JsonConverter(typeof(StringEnumConverter))]
         public enum TypeEnum
         {
             /// <summary>
-            /// Enum CzLocal for value: czLocal
+            /// Enum NzLocal for value: nzLocal
             /// </summary>
-            [EnumMember(Value = "czLocal")]
-            CzLocal = 1
+            [EnumMember(Value = "nzLocal")]
+            NzLocal = 1
 
         }
 
 
         /// <summary>
-        /// **czLocal**
+        /// **nzLocal**
         /// </summary>
-        /// <value>**czLocal**</value>
+        /// <value>**nzLocal**</value>
         [DataMember(Name = "type", IsRequired = false, EmitDefaultValue = false)]
         public TypeEnum Type { get; set; }
         /// <summary>
-        /// Initializes a new instance of the <see cref="CZLocalAccountIdentification" /> class.
+        /// Initializes a new instance of the <see cref="NZLocalAccountIdentification" /> class.
         /// </summary>
         [JsonConstructorAttribute]
-        protected CZLocalAccountIdentification() { }
+        protected NZLocalAccountIdentification() { }
         /// <summary>
-        /// Initializes a new instance of the <see cref="CZLocalAccountIdentification" /> class.
+        /// Initializes a new instance of the <see cref="NZLocalAccountIdentification" /> class.
         /// </summary>
-        /// <param name="accountNumber">The 2- to 16-digit bank account number (Číslo účtu) in the following format:  - The optional prefix (předčíslí).  - The required second part (základní část) which must be at least two non-zero digits.  Examples:  - **19-123457** (with prefix)  - **123457** (without prefix)  - **000019-0000123457** (with prefix, normalized)  - **000000-0000123457** (without prefix, normalized) (required).</param>
-        /// <param name="bankCode">The 4-digit bank code (Kód banky), without separators or whitespace. (required).</param>
-        /// <param name="type">**czLocal** (required) (default to TypeEnum.CzLocal).</param>
-        public CZLocalAccountIdentification(string accountNumber = default(string), string bankCode = default(string), TypeEnum type = TypeEnum.CzLocal)
+        /// <param name="accountNumber">The 7-digit bank account number, without separators or whitespace. (required).</param>
+        /// <param name="accountSuffix">The 2- to 3-digit account suffix, without separators or whitespace. (required).</param>
+        /// <param name="bankCode">The 6-digit bank code including the 2-digit bank code and 4-digit branch code, without separators or whitespace. (required).</param>
+        /// <param name="type">**nzLocal** (required) (default to TypeEnum.NzLocal).</param>
+        public NZLocalAccountIdentification(string accountNumber = default(string), string accountSuffix = default(string), string bankCode = default(string), TypeEnum type = TypeEnum.NzLocal)
         {
             this.AccountNumber = accountNumber;
+            this.AccountSuffix = accountSuffix;
             this.BankCode = bankCode;
             this.Type = type;
         }
 
         /// <summary>
-        /// The 2- to 16-digit bank account number (Číslo účtu) in the following format:  - The optional prefix (předčíslí).  - The required second part (základní část) which must be at least two non-zero digits.  Examples:  - **19-123457** (with prefix)  - **123457** (without prefix)  - **000019-0000123457** (with prefix, normalized)  - **000000-0000123457** (without prefix, normalized)
+        /// The 7-digit bank account number, without separators or whitespace.
         /// </summary>
-        /// <value>The 2- to 16-digit bank account number (Číslo účtu) in the following format:  - The optional prefix (předčíslí).  - The required second part (základní část) which must be at least two non-zero digits.  Examples:  - **19-123457** (with prefix)  - **123457** (without prefix)  - **000019-0000123457** (with prefix, normalized)  - **000000-0000123457** (without prefix, normalized)</value>
+        /// <value>The 7-digit bank account number, without separators or whitespace.</value>
         [DataMember(Name = "accountNumber", IsRequired = false, EmitDefaultValue = false)]
         public string AccountNumber { get; set; }
 
         /// <summary>
-        /// The 4-digit bank code (Kód banky), without separators or whitespace.
+        /// The 2- to 3-digit account suffix, without separators or whitespace.
         /// </summary>
-        /// <value>The 4-digit bank code (Kód banky), without separators or whitespace.</value>
+        /// <value>The 2- to 3-digit account suffix, without separators or whitespace.</value>
+        [DataMember(Name = "accountSuffix", IsRequired = false, EmitDefaultValue = false)]
+        public string AccountSuffix { get; set; }
+
+        /// <summary>
+        /// The 6-digit bank code including the 2-digit bank code and 4-digit branch code, without separators or whitespace.
+        /// </summary>
+        /// <value>The 6-digit bank code including the 2-digit bank code and 4-digit branch code, without separators or whitespace.</value>
         [DataMember(Name = "bankCode", IsRequired = false, EmitDefaultValue = false)]
         public string BankCode { get; set; }
 
@@ -93,8 +102,9 @@ namespace Adyen.Model.Transfers
         public override string ToString()
         {
             StringBuilder sb = new StringBuilder();
-            sb.Append("class CZLocalAccountIdentification {\n");
+            sb.Append("class NZLocalAccountIdentification {\n");
             sb.Append("  AccountNumber: ").Append(AccountNumber).Append("\n");
+            sb.Append("  AccountSuffix: ").Append(AccountSuffix).Append("\n");
             sb.Append("  BankCode: ").Append(BankCode).Append("\n");
             sb.Append("  Type: ").Append(Type).Append("\n");
             sb.Append("}\n");
@@ -117,15 +127,15 @@ namespace Adyen.Model.Transfers
         /// <returns>Boolean</returns>
         public override bool Equals(object input)
         {
-            return this.Equals(input as CZLocalAccountIdentification);
+            return this.Equals(input as NZLocalAccountIdentification);
         }
 
         /// <summary>
-        /// Returns true if CZLocalAccountIdentification instances are equal
+        /// Returns true if NZLocalAccountIdentification instances are equal
         /// </summary>
-        /// <param name="input">Instance of CZLocalAccountIdentification to be compared</param>
+        /// <param name="input">Instance of NZLocalAccountIdentification to be compared</param>
         /// <returns>Boolean</returns>
-        public bool Equals(CZLocalAccountIdentification input)
+        public bool Equals(NZLocalAccountIdentification input)
         {
             if (input == null)
             {
@@ -136,6 +146,11 @@ namespace Adyen.Model.Transfers
                     this.AccountNumber == input.AccountNumber ||
                     (this.AccountNumber != null &&
                     this.AccountNumber.Equals(input.AccountNumber))
+                ) && 
+                (
+                    this.AccountSuffix == input.AccountSuffix ||
+                    (this.AccountSuffix != null &&
+                    this.AccountSuffix.Equals(input.AccountSuffix))
                 ) && 
                 (
                     this.BankCode == input.BankCode ||
@@ -161,6 +176,10 @@ namespace Adyen.Model.Transfers
                 {
                     hashCode = (hashCode * 59) + this.AccountNumber.GetHashCode();
                 }
+                if (this.AccountSuffix != null)
+                {
+                    hashCode = (hashCode * 59) + this.AccountSuffix.GetHashCode();
+                }
                 if (this.BankCode != null)
                 {
                     hashCode = (hashCode * 59) + this.BankCode.GetHashCode();
@@ -177,27 +196,39 @@ namespace Adyen.Model.Transfers
         public IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> Validate(ValidationContext validationContext)
         {
             // AccountNumber (string) maxLength
-            if (this.AccountNumber != null && this.AccountNumber.Length > 17)
+            if (this.AccountNumber != null && this.AccountNumber.Length > 7)
             {
-                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for AccountNumber, length must be less than 17.", new [] { "AccountNumber" });
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for AccountNumber, length must be less than 7.", new [] { "AccountNumber" });
             }
 
             // AccountNumber (string) minLength
-            if (this.AccountNumber != null && this.AccountNumber.Length < 2)
+            if (this.AccountNumber != null && this.AccountNumber.Length < 7)
             {
-                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for AccountNumber, length must be greater than 2.", new [] { "AccountNumber" });
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for AccountNumber, length must be greater than 7.", new [] { "AccountNumber" });
+            }
+
+            // AccountSuffix (string) maxLength
+            if (this.AccountSuffix != null && this.AccountSuffix.Length > 3)
+            {
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for AccountSuffix, length must be less than 3.", new [] { "AccountSuffix" });
+            }
+
+            // AccountSuffix (string) minLength
+            if (this.AccountSuffix != null && this.AccountSuffix.Length < 2)
+            {
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for AccountSuffix, length must be greater than 2.", new [] { "AccountSuffix" });
             }
 
             // BankCode (string) maxLength
-            if (this.BankCode != null && this.BankCode.Length > 4)
+            if (this.BankCode != null && this.BankCode.Length > 6)
             {
-                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for BankCode, length must be less than 4.", new [] { "BankCode" });
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for BankCode, length must be less than 6.", new [] { "BankCode" });
             }
 
             // BankCode (string) minLength
-            if (this.BankCode != null && this.BankCode.Length < 4)
+            if (this.BankCode != null && this.BankCode.Length < 6)
             {
-                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for BankCode, length must be greater than 4.", new [] { "BankCode" });
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for BankCode, length must be greater than 6.", new [] { "BankCode" });
             }
 
             yield break;
