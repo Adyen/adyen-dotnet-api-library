@@ -81,7 +81,7 @@ namespace Adyen.Model.Checkout
         /// Boolean value indicating if the shopper&#39;s browser is able to execute Java.
         /// </summary>
         /// <value>Boolean value indicating if the shopper&#39;s browser is able to execute Java.</value>
-        [DataMember(Name = "javaEnabled", IsRequired = false, EmitDefaultValue = false)]
+        [DataMember(Name = "javaEnabled", IsRequired = true)]
         public bool JavaEnabled { get; set; }
 
         /// <summary>
