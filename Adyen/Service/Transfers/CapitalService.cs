@@ -14,9 +14,7 @@ using System.Collections.Generic;
 using System.Net.Http;
 using System.Threading;
 using System.Threading.Tasks;
-using Adyen.Constants;
 using Adyen.Model;
-using Adyen.Service.Resource;
 using Adyen.Model.Transfers;
 
 namespace Adyen.Service.Transfers
@@ -32,7 +30,7 @@ namespace Adyen.Service.Transfers
         /// <param name="counterpartyAccountHolderId"><see cref="string"/> - The counterparty account holder id.</param>
         /// <param name="requestOptions"><see cref="RequestOptions"/> - Additional request options.</param>
         /// <returns><see cref="CapitalGrants"/>.</returns>
-        CapitalGrants GetCapitalAccount(string counterpartyAccountHolderId = default, RequestOptions requestOptions = default);
+        Model.Transfers.CapitalGrants GetCapitalAccount(string counterpartyAccountHolderId = default, RequestOptions requestOptions = default);
         
         /// <summary>
         /// Get a capital account
@@ -41,7 +39,7 @@ namespace Adyen.Service.Transfers
         /// <param name="requestOptions"><see cref="RequestOptions"/> - Additional request options.</param>
         /// <param name="cancellationToken"> A CancellationToken enables cooperative cancellation between threads, thread pool work items, or Task objects.</param>
         /// <returns>Task of <see cref="CapitalGrants"/>.</returns>
-        Task<CapitalGrants> GetCapitalAccountAsync(string counterpartyAccountHolderId = default, RequestOptions requestOptions = default, CancellationToken cancellationToken = default);
+        Task<Model.Transfers.CapitalGrants> GetCapitalAccountAsync(string counterpartyAccountHolderId = default, RequestOptions requestOptions = default, CancellationToken cancellationToken = default);
         
         /// <summary>
         /// Get grant reference details
@@ -49,7 +47,7 @@ namespace Adyen.Service.Transfers
         /// <param name="id"><see cref="string"/> - The unique identifier of the grant.</param>
         /// <param name="requestOptions"><see cref="RequestOptions"/> - Additional request options.</param>
         /// <returns><see cref="CapitalGrant"/>.</returns>
-        CapitalGrant GetGrantReferenceDetails(string id, RequestOptions requestOptions = default);
+        Model.Transfers.CapitalGrant GetGrantReferenceDetails(string id, RequestOptions requestOptions = default);
         
         /// <summary>
         /// Get grant reference details
@@ -58,7 +56,7 @@ namespace Adyen.Service.Transfers
         /// <param name="requestOptions"><see cref="RequestOptions"/> - Additional request options.</param>
         /// <param name="cancellationToken"> A CancellationToken enables cooperative cancellation between threads, thread pool work items, or Task objects.</param>
         /// <returns>Task of <see cref="CapitalGrant"/>.</returns>
-        Task<CapitalGrant> GetGrantReferenceDetailsAsync(string id, RequestOptions requestOptions = default, CancellationToken cancellationToken = default);
+        Task<Model.Transfers.CapitalGrant> GetGrantReferenceDetailsAsync(string id, RequestOptions requestOptions = default, CancellationToken cancellationToken = default);
         
         /// <summary>
         /// Request a grant payout
@@ -66,7 +64,7 @@ namespace Adyen.Service.Transfers
         /// <param name="capitalGrantInfo"><see cref="CapitalGrantInfo"/> - </param>
         /// <param name="requestOptions"><see cref="RequestOptions"/> - Additional request options.</param>
         /// <returns><see cref="CapitalGrant"/>.</returns>
-        CapitalGrant RequestGrantPayout(CapitalGrantInfo capitalGrantInfo, RequestOptions requestOptions = default);
+        Model.Transfers.CapitalGrant RequestGrantPayout(CapitalGrantInfo capitalGrantInfo = default, RequestOptions requestOptions = default);
         
         /// <summary>
         /// Request a grant payout
@@ -75,7 +73,7 @@ namespace Adyen.Service.Transfers
         /// <param name="requestOptions"><see cref="RequestOptions"/> - Additional request options.</param>
         /// <param name="cancellationToken"> A CancellationToken enables cooperative cancellation between threads, thread pool work items, or Task objects.</param>
         /// <returns>Task of <see cref="CapitalGrant"/>.</returns>
-        Task<CapitalGrant> RequestGrantPayoutAsync(CapitalGrantInfo capitalGrantInfo, RequestOptions requestOptions = default, CancellationToken cancellationToken = default);
+        Task<Model.Transfers.CapitalGrant> RequestGrantPayoutAsync(CapitalGrantInfo capitalGrantInfo = default, RequestOptions requestOptions = default, CancellationToken cancellationToken = default);
         
     }
     
@@ -91,43 +89,43 @@ namespace Adyen.Service.Transfers
             _baseUrl = CreateBaseUrl("https://balanceplatform-api-test.adyen.com/btl/v3");
         }
         
-        public CapitalGrants GetCapitalAccount(string counterpartyAccountHolderId = default, RequestOptions requestOptions = default)
+        public Model.Transfers.CapitalGrants GetCapitalAccount(string counterpartyAccountHolderId = default, RequestOptions requestOptions = default)
         {
             return GetCapitalAccountAsync(counterpartyAccountHolderId, requestOptions).ConfigureAwait(false).GetAwaiter().GetResult();
         }
 
-        public async Task<CapitalGrants> GetCapitalAccountAsync(string counterpartyAccountHolderId = default, RequestOptions requestOptions = default, CancellationToken cancellationToken = default)
+        public async Task<Model.Transfers.CapitalGrants> GetCapitalAccountAsync(string counterpartyAccountHolderId = default, RequestOptions requestOptions = default, CancellationToken cancellationToken = default)
         {
             // Build the query string
             var queryParams = new Dictionary<string, string>();
             if (counterpartyAccountHolderId != null) queryParams.Add("counterpartyAccountHolderId", counterpartyAccountHolderId);
             var endpoint = _baseUrl + "/grants" + ToQueryString(queryParams);
             var resource = new ServiceResource(this, endpoint);
-            return await resource.RequestAsync<CapitalGrants>(null, requestOptions, new HttpMethod("GET"), cancellationToken).ConfigureAwait(false);
+            return await resource.RequestAsync<Model.Transfers.CapitalGrants>(null, requestOptions, new HttpMethod("GET"), cancellationToken).ConfigureAwait(false);
         }
         
-        public CapitalGrant GetGrantReferenceDetails(string id, RequestOptions requestOptions = default)
+        public Model.Transfers.CapitalGrant GetGrantReferenceDetails(string id, RequestOptions requestOptions = default)
         {
             return GetGrantReferenceDetailsAsync(id, requestOptions).ConfigureAwait(false).GetAwaiter().GetResult();
         }
 
-        public async Task<CapitalGrant> GetGrantReferenceDetailsAsync(string id, RequestOptions requestOptions = default, CancellationToken cancellationToken = default)
+        public async Task<Model.Transfers.CapitalGrant> GetGrantReferenceDetailsAsync(string id, RequestOptions requestOptions = default, CancellationToken cancellationToken = default)
         {
             var endpoint = _baseUrl + $"/grants/{id}";
             var resource = new ServiceResource(this, endpoint);
-            return await resource.RequestAsync<CapitalGrant>(null, requestOptions, new HttpMethod("GET"), cancellationToken).ConfigureAwait(false);
+            return await resource.RequestAsync<Model.Transfers.CapitalGrant>(null, requestOptions, new HttpMethod("GET"), cancellationToken).ConfigureAwait(false);
         }
         
-        public CapitalGrant RequestGrantPayout(CapitalGrantInfo capitalGrantInfo, RequestOptions requestOptions = default)
+        public Model.Transfers.CapitalGrant RequestGrantPayout(CapitalGrantInfo capitalGrantInfo = default, RequestOptions requestOptions = default)
         {
             return RequestGrantPayoutAsync(capitalGrantInfo, requestOptions).ConfigureAwait(false).GetAwaiter().GetResult();
         }
 
-        public async Task<CapitalGrant> RequestGrantPayoutAsync(CapitalGrantInfo capitalGrantInfo, RequestOptions requestOptions = default, CancellationToken cancellationToken = default)
+        public async Task<Model.Transfers.CapitalGrant> RequestGrantPayoutAsync(CapitalGrantInfo capitalGrantInfo = default, RequestOptions requestOptions = default, CancellationToken cancellationToken = default)
         {
             var endpoint = _baseUrl + "/grants";
             var resource = new ServiceResource(this, endpoint);
-            return await resource.RequestAsync<CapitalGrant>(capitalGrantInfo.ToJson(), requestOptions, new HttpMethod("POST"), cancellationToken).ConfigureAwait(false);
+            return await resource.RequestAsync<Model.Transfers.CapitalGrant>(capitalGrantInfo.ToJson(), requestOptions, new HttpMethod("POST"), cancellationToken).ConfigureAwait(false);
         }
     }
 }

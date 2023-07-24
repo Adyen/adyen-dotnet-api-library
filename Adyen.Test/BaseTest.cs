@@ -173,7 +173,7 @@ namespace Adyen.Test
         ///Checkout Details request
         /// </summary>
         /// <returns>Returns a sample PaymentsDetailsRequest object with test data</returns>
-        protected Amount.DetailsRequest CreateDetailsRequest()
+        protected Amount.PaymentDetailsRequest CreateDetailsRequest()
         {
             var paymentData = "Ab02b4c0!BQABAgCJN1wRZuGJmq8dMncmypvknj9s7l5Tj...";
             var details = new Amount.PaymentCompletionDetails
@@ -181,7 +181,7 @@ namespace Adyen.Test
                 MD= "sdfsdfsdf...",
                 PaReq = "sdfsdfsdf..."
             };
-            var paymentsDetailsRequest = new Amount.DetailsRequest(details: details, paymentData: paymentData);
+            var paymentsDetailsRequest = new Amount.PaymentDetailsRequest(details: details, paymentData: paymentData);
 
             return paymentsDetailsRequest;
         }
