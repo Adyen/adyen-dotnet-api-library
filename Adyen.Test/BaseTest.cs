@@ -217,6 +217,24 @@ namespace Adyen.Test
         }
 
         #endregion
+        
+        /// <summary>
+        /// Creates mock test client without any response
+        /// </summary>
+        /// <returns>IClient implementation</returns>
+        protected Client CreateMockForAdyenClientTest(Config config)
+        {
+            //Create a mock interface
+            ClientInterfaceMock = new Mock<IClient>();
+            ClientInterfaceMock.Setup(x => x.RequestAsync(It.IsAny<string>(),
+                It.IsAny<string>(), It.IsAny<RequestOptions>(), It.IsAny<HttpMethod>(), It.IsAny<CancellationToken>())).ReturnsAsync(It.IsAny<string>());
+            var clientMock = new Client(config)
+            {
+                HttpClient = ClientInterfaceMock.Object,
+                Config = config
+            };
+            return clientMock;
+        }
 
         /// <summary>
         /// Creates mock test client 
