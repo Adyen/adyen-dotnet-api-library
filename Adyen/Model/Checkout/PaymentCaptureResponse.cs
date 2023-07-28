@@ -72,7 +72,7 @@ namespace Adyen.Model.Checkout
         /// <param name="splits">An array of objects specifying how the amount should be split between accounts when using Adyen for Platforms. For details, refer to [Providing split information](https://docs.adyen.com/marketplaces-and-platforms/processing-payments#providing-split-information)..</param>
         /// <param name="status">The status of your request. This will always have the value **received**. (required).</param>
         /// <param name="subMerchants">List of sub-merchants..</param>
-        public PaymentCaptureResponse(Amount amount = default(Amount), List<LineItem> lineItems = default(List<LineItem>), string merchantAccount = default(string), string paymentPspReference = default(string), PlatformChargebackLogic platformChargebackLogic = default(PlatformChargebackLogic), string pspReference = default(string), string reference = default(string), List<Split> splits = default(List<Split>), StatusEnum status = default(StatusEnum), List<SubMerchant2> subMerchants = default(List<SubMerchant2>))
+        public PaymentCaptureResponse(Amount amount = default(Amount), List<LineItem> lineItems = default(List<LineItem>), string merchantAccount = default(string), string paymentPspReference = default(string), PlatformChargebackLogic platformChargebackLogic = default(PlatformChargebackLogic), string pspReference = default(string), string reference = default(string), List<Split> splits = default(List<Split>), StatusEnum status = default(StatusEnum), List<SubMerchantInfo> subMerchants = default(List<SubMerchantInfo>))
         {
             this.Amount = amount;
             this.MerchantAccount = merchantAccount;
@@ -145,7 +145,7 @@ namespace Adyen.Model.Checkout
         /// </summary>
         /// <value>List of sub-merchants.</value>
         [DataMember(Name = "subMerchants", EmitDefaultValue = false)]
-        public List<SubMerchant2> SubMerchants { get; set; }
+        public List<SubMerchantInfo> SubMerchants { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
