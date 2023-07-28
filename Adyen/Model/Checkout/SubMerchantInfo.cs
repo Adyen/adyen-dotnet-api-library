@@ -27,20 +27,20 @@ using OpenAPIDateConverter = Adyen.ApiSerialization.OpenAPIDateConverter;
 namespace Adyen.Model.Checkout
 {
     /// <summary>
-    /// SubMerchant2
+    /// SubMerchantInfo
     /// </summary>
-    [DataContract(Name = "SubMerchant-2")]
-    public partial class SubMerchant2 : IEquatable<SubMerchant2>, IValidatableObject
+    [DataContract(Name = "SubMerchantInfo")]
+    public partial class SubMerchantInfo : IEquatable<SubMerchantInfo>, IValidatableObject
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="SubMerchant2" /> class.
+        /// Initializes a new instance of the <see cref="SubMerchantInfo" /> class.
         /// </summary>
         /// <param name="address">address.</param>
         /// <param name="id">id.</param>
         /// <param name="mcc">mcc.</param>
         /// <param name="name">name.</param>
         /// <param name="taxId">taxId.</param>
-        public SubMerchant2(Address address = default(Address), string id = default(string), string mcc = default(string), string name = default(string), string taxId = default(string))
+        public SubMerchantInfo(Address address = default(Address), string id = default(string), string mcc = default(string), string name = default(string), string taxId = default(string))
         {
             this.Address = address;
             this.Id = id;
@@ -86,7 +86,7 @@ namespace Adyen.Model.Checkout
         public override string ToString()
         {
             StringBuilder sb = new StringBuilder();
-            sb.Append("class SubMerchant2 {\n");
+            sb.Append("class SubMerchantInfo {\n");
             sb.Append("  Address: ").Append(Address).Append("\n");
             sb.Append("  Id: ").Append(Id).Append("\n");
             sb.Append("  Mcc: ").Append(Mcc).Append("\n");
@@ -112,15 +112,15 @@ namespace Adyen.Model.Checkout
         /// <returns>Boolean</returns>
         public override bool Equals(object input)
         {
-            return this.Equals(input as SubMerchant2);
+            return this.Equals(input as SubMerchantInfo);
         }
 
         /// <summary>
-        /// Returns true if SubMerchant2 instances are equal
+        /// Returns true if SubMerchantInfo instances are equal
         /// </summary>
-        /// <param name="input">Instance of SubMerchant2 to be compared</param>
+        /// <param name="input">Instance of SubMerchantInfo to be compared</param>
         /// <returns>Boolean</returns>
-        public bool Equals(SubMerchant2 input)
+        public bool Equals(SubMerchantInfo input)
         {
             if (input == null)
             {
