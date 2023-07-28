@@ -14,9 +14,7 @@ using System.Collections.Generic;
 using System.Net.Http;
 using System.Threading;
 using System.Threading.Tasks;
-using Adyen.Constants;
 using Adyen.Model;
-using Adyen.Service.Resource;
 using Adyen.Model.Transfers;
 
 namespace Adyen.Service.Transfers
@@ -32,7 +30,7 @@ namespace Adyen.Service.Transfers
         /// <param name="transferInfo"><see cref="TransferInfo"/> - </param>
         /// <param name="requestOptions"><see cref="RequestOptions"/> - Additional request options.</param>
         /// <returns><see cref="Transfer"/>.</returns>
-        Transfer TransferFunds(TransferInfo transferInfo, RequestOptions requestOptions = default);
+        Model.Transfers.Transfer TransferFunds(TransferInfo transferInfo = default, RequestOptions requestOptions = default);
         
         /// <summary>
         /// Transfer funds
@@ -41,7 +39,7 @@ namespace Adyen.Service.Transfers
         /// <param name="requestOptions"><see cref="RequestOptions"/> - Additional request options.</param>
         /// <param name="cancellationToken"> A CancellationToken enables cooperative cancellation between threads, thread pool work items, or Task objects.</param>
         /// <returns>Task of <see cref="Transfer"/>.</returns>
-        Task<Transfer> TransferFundsAsync(TransferInfo transferInfo, RequestOptions requestOptions = default, CancellationToken cancellationToken = default);
+        Task<Model.Transfers.Transfer> TransferFundsAsync(TransferInfo transferInfo = default, RequestOptions requestOptions = default, CancellationToken cancellationToken = default);
         
     }
     
@@ -57,16 +55,16 @@ namespace Adyen.Service.Transfers
             _baseUrl = CreateBaseUrl("https://balanceplatform-api-test.adyen.com/btl/v3");
         }
         
-        public Transfer TransferFunds(TransferInfo transferInfo, RequestOptions requestOptions = default)
+        public Model.Transfers.Transfer TransferFunds(TransferInfo transferInfo = default, RequestOptions requestOptions = default)
         {
             return TransferFundsAsync(transferInfo, requestOptions).ConfigureAwait(false).GetAwaiter().GetResult();
         }
 
-        public async Task<Transfer> TransferFundsAsync(TransferInfo transferInfo, RequestOptions requestOptions = default, CancellationToken cancellationToken = default)
+        public async Task<Model.Transfers.Transfer> TransferFundsAsync(TransferInfo transferInfo = default, RequestOptions requestOptions = default, CancellationToken cancellationToken = default)
         {
             var endpoint = _baseUrl + "/transfers";
             var resource = new ServiceResource(this, endpoint);
-            return await resource.RequestAsync<Transfer>(transferInfo.ToJson(), requestOptions, new HttpMethod("POST"), cancellationToken).ConfigureAwait(false);
+            return await resource.RequestAsync<Model.Transfers.Transfer>(transferInfo.ToJson(), requestOptions, new HttpMethod("POST"), cancellationToken).ConfigureAwait(false);
         }
     }
 }

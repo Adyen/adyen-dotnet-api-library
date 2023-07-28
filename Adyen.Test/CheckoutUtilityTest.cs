@@ -15,7 +15,7 @@ namespace Adyen.Test
         [TestMethod]
         public void OriginKeysSuccessTest()
         {
-            var checkoutUtilityRequest = new CheckoutUtilityRequest(originDomains: new List<string> { "www.test.com", "https://www.your-domain2.com" });
+            var checkoutUtilityRequest = new UtilityRequest(originDomains: new List<string> { "www.test.com", "https://www.your-domain2.com" });
             var client = CreateMockTestClientApiKeyBasedRequestAsync("Mocks/checkoututility/originkeys-success.json");
             var _checkout = new UtilityService(client);
             var originKeysResponse = _checkout.OriginKeys(checkoutUtilityRequest);

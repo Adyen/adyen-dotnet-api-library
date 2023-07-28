@@ -37,7 +37,7 @@ $(services): target/spec $(openapi-generator-jar)
 		-g $(generator) \
 		-t templates/csharp \
 		-o $(output) \
-		--inline-schema-name-mappings CheckoutDonationPaymentRequest_paymentMethod=CheckoutPaymentMethod \
+		--inline-schema-name-mappings DonationPaymentRequest_paymentMethod=CheckoutPaymentMethod \
 		--model-package $@ \
 		--skip-validate-spec \
 		--reserved-words-mappings Version=Version \
@@ -62,7 +62,7 @@ $(Services): target/spec $(openapi-generator-jar)
 		-g $(generator) \
 		-t templates/csharp \
 		-o $(output) \
-		--inline-schema-name-mappings CheckoutDonationPaymentRequest_paymentMethod=CheckoutPaymentMethod \
+		--inline-schema-name-mappings DonationPaymentRequest_paymentMethod=CheckoutPaymentMethod \
 		--additional-properties packageName=Adyen \
 		--api-package Service.$@ \
 		--api-name-suffix Service \
@@ -82,7 +82,7 @@ $(SingleFileServices): target/spec $(openapi-generator-jar)
 		-g $(generator) \
 		-c templates/csharp/config.yaml \
 		-o $(output) \
-		--inline-schema-name-mappings CheckoutDonationPaymentRequest_paymentMethod=CheckoutPaymentMethod \
+		--inline-schema-name-mappings DonationPaymentRequest_paymentMethod=CheckoutPaymentMethod \
 		--additional-properties packageName=Adyen \
 		--additional-properties customApi=$@ \
 		--api-package Service.$@ \
