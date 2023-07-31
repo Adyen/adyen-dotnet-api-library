@@ -9,6 +9,7 @@ using Adyen.Model.Checkout;
 using Adyen.Service;
 using Adyen.Service.Checkout;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using Moq;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using static Adyen.Model.Checkout.PaymentResponse;
@@ -36,7 +37,7 @@ namespace Adyen.Test
                     mock =>
                         mock.RequestAsync(
                             "https://checkout-test.adyen.com/v70/payments",
-                            "{}", null, new HttpMethod("POST"), default));
+                            It.IsAny<string>(), null, new HttpMethod("POST"), default));
         }
 
         /// <summary>
@@ -53,7 +54,7 @@ namespace Adyen.Test
                 mock =>
                     mock.RequestAsync(
                         "https://companyUrl-checkout-live.adyenpayments.com/checkout/v70/payments",
-                        "{}", null, new HttpMethod("POST"), default));
+                        It.IsAny<string>(), null, new HttpMethod("POST"), default));
         }
 
         /// <summary>
@@ -105,7 +106,7 @@ namespace Adyen.Test
                 mock =>
                     mock.RequestAsync(
                         "https://live-url-checkout-live.adyenpayments.com/checkout/v70/payments",
-                        "{}", null, new HttpMethod("POST"), default));
+                        It.IsAny<string>(), null, new HttpMethod("POST"), default));
         }
 
         /// <summary>
@@ -127,7 +128,7 @@ namespace Adyen.Test
                 mock =>
                     mock.RequestAsync(
                         "https://live-url-checkout-live.adyenpayments.com/checkout/v70/payments",
-                        "{}", null, new HttpMethod("POST"), default));
+                        It.IsAny<string>(), null, new HttpMethod("POST"), default));
         }
 
         /// <summary>
