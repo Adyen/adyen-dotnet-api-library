@@ -17,6 +17,7 @@ namespace Adyen
         public delegate void CallbackLogHandler(string message);
 
         public event CallbackLogHandler LogCallback;
+        private static System.Net.Http.HttpClient _httpClient;
 
         [Obsolete("Providing username and password are obsolete, please use Config instead.")]
         public Client(string username, string password, Environment environment, string liveEndpointUrlPrefix = null)
@@ -50,7 +51,6 @@ namespace Adyen
         {
             Config = config;
             SetEnvironment(Config.Environment, Config.LiveEndpointUrlPrefix);
-            
             HttpClient = new HttpClientWrapper(Config, GetHttpClient());
         }
 
@@ -68,59 +68,36 @@ namespace Adyen
             HttpClient = clientName != null ? new HttpClientWrapper(Config, factory.CreateClient(clientName)) : new HttpClientWrapper(Config, factory.CreateClient());
         }
 
-        public void SetEnvironment(Environment environment, string liveEndpointUrlPrefix)
+        public void SetEnvironment(Environment environment, string liveEndpointUrlPrefix = "")
         {
+            Config.Environment = environment;
+            Config.LiveEndpointUrlPrefix = liveEndpointUrlPrefix;
+            
             switch (environment)
             {
                 case Environment.Test:
-                    Config.Endpoint = ClientConfig.EndpointTest;
                     Config.CloudApiEndPoint = ClientConfig.CloudApiEndPointTest;
-                    Config.CheckoutEndpoint = ClientConfig.CheckoutEndpointTest;
-                    Config.MarketPayEndpoint = ClientConfig.MarketpayEndPointTest;
-                    Config.PosTerminalManagementEndpoint = ClientConfig.PosTerminalManagementEndpointTest;
-                    Config.LegalEntityManagementEndpoint = ClientConfig.LegalEntityManagementEndpointTest;
-                    Config.StoredValueEndpoint = ClientConfig.StoredValueEndpointTest;
-                    Config.ManagementEndpoint = ClientConfig.ManagementEndpointTest;
-                    Config.TransfersEndpoint = ClientConfig.TransfersEndpointTest;
-                    Config.DataProtectionEndpoint = ClientConfig.DataProtectionEndpointTest;
                     break;
                 case Environment.Live:
-                    if (string.IsNullOrEmpty(liveEndpointUrlPrefix))
-                    {
-                        throw new InvalidOperationException(ExceptionMessages.MissingLiveEndpointUrlPrefix);
-                    }
-
-                    Config.Endpoint = ClientConfig.EndpointProtocol + liveEndpointUrlPrefix + ClientConfig.EndpointLiveSuffix;
                     Config.CloudApiEndPoint = ClientConfig.CloudApiEndPointEULive;
-                    Config.CheckoutEndpoint = ClientConfig.EndpointProtocol + liveEndpointUrlPrefix + ClientConfig.CheckoutEndpointLiveSuffix;
-                    Config.MarketPayEndpoint = ClientConfig.MarketpayEndPointLive;
-                    Config.PosTerminalManagementEndpoint = ClientConfig.PosTerminalManagementEndpointLive;
-                    Config.LegalEntityManagementEndpoint = ClientConfig.LegalEntityManagementEndpointLive;
-                    Config.StoredValueEndpoint = ClientConfig.StoredValueEndpointLive;
-                    Config.ManagementEndpoint = ClientConfig.ManagementEndpointLive;
-                    Config.TransfersEndpoint = ClientConfig.TransfersEndpointLive;
-                    Config.DataProtectionEndpoint = ClientConfig.DataProtectionEndpointLive;
                     break;
             }
         }
-
+        
         // Get a new HttpClient and set a timeout
         private System.Net.Http.HttpClient GetHttpClient()
         {
+            if (_httpClient == null)
+                _httpClient = new System.Net.Http.HttpClient(HttpClientExtensions.ConfigureHttpMessageHandler(Config));
             // Set Timeout for HttpClient
-            var httpClient = new System.Net.Http.HttpClient();
             if (Config.Timeout != default)
             {
-                httpClient.Timeout = TimeSpan.FromMilliseconds(Config.Timeout);
+                _httpClient.Timeout = TimeSpan.FromMilliseconds(Config.Timeout);
             }
-            return httpClient;
+            return _httpClient;
         }
 
         public IClient HttpClient { get; set; }
-
-        public string ApiVersion => ClientConfig.ApiVersion;
-
-        public string RecurringApiVersion => ClientConfig.RecurringApiVersion;
 
         public string LibraryVersion => ClientConfig.LibVersion;
 

@@ -47,7 +47,7 @@ namespace Adyen.Test
             var client = CreateMockTestClientApiKeyBasedRequestAsync("Mocks/management/logo.json");
             var service = new TerminalSettingsCompanyLevelService(client);
 
-            var logo = await service.UpdateTerminalLogoAsync("123ABC", new Logo("base64"), "E355");
+            var logo = await service.UpdateTerminalLogoAsync("123ABC", "E355", new Logo("base64"));
 
             Assert.AreEqual("BASE-64_ENCODED_STRING_FROM_THE_REQUEST", logo.Data);
             ClientInterfaceMock.Verify(mock =>

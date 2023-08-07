@@ -1,1 +1,1 @@
-{{#pathParams}}{{paramName}}, {{/pathParams}}{{#bodyParams}}{{paramName}}, {{/bodyParams}}{{#queryParams}}{{paramName}}, {{/queryParams}}requestOptions
+{{#requiredParams}}{{#isPathParam}}{{paramName}}, {{/isPathParam}}{{#isBodyParam}}{{paramName}}, {{/isBodyParam}}{{#isQueryParam}}{{paramName}}, {{/isQueryParam}}{{/requiredParams}}{{#optionalParams}}{{#isPathParam}}{{paramName}}, {{/isPathParam}}{{#isBodyParam}}{{paramName}}, {{/isBodyParam}}{{#isQueryParam}}{{paramName}}, {{/isQueryParam}}{{/optionalParams}}requestOptions

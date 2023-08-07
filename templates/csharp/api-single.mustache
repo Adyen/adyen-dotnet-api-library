@@ -6,7 +6,6 @@ using System.Threading;
 using System.Threading.Tasks;
 using Adyen.Constants;
 using Adyen.Model;
-using Adyen.Service.Resource;
 {{#hasImport}}using Adyen.{{modelPackage}};
 {{/hasImport}}
 
@@ -26,7 +25,7 @@ namespace {{packageName}}.Service
         {{#isDeprecated}}
         [Obsolete]
         {{/isDeprecated}}
-        {{{returnType}}}{{^returnType}}void{{/returnType}} {{#lambda.pascalcase}}{{vendorExtensions.x-methodName}}{{/lambda.pascalcase}}({{>api_parameters}});
+        {{#returnType}}{{modelPackage}}.{{{.}}}{{/returnType}}{{^returnType}}void{{/returnType}} {{#lambda.pascalcase}}{{vendorExtensions.x-methodName}}{{/lambda.pascalcase}}({{>api_parameters}});
         
         {{#supportsAsync}}
 {{>method_documentation}}
@@ -35,7 +34,7 @@ namespace {{packageName}}.Service
         {{#isDeprecated}}
         [Obsolete]
         {{/isDeprecated}}
-        {{#returnType}}Task<{{{.}}}>{{/returnType}}{{^returnType}}Task{{/returnType}} {{#lambda.pascalcase}}{{vendorExtensions.x-methodName}}{{/lambda.pascalcase}}Async({{>api_parameters_async}});
+        {{#returnType}}Task<{{modelPackage}}.{{{.}}}>{{/returnType}}{{^returnType}}Task{{/returnType}} {{#lambda.pascalcase}}{{vendorExtensions.x-methodName}}{{/lambda.pascalcase}}Async({{>api_parameters_async}});
         
         {{/supportsAsync}}
         {{/operation}}
@@ -59,7 +58,7 @@ namespace {{packageName}}.Service
         {{#isDeprecated}}
         [Obsolete]
         {{/isDeprecated}}
-        public {{{returnType}}}{{^returnType}}void{{/returnType}} {{#lambda.pascalcase}}{{vendorExtensions.x-methodName}}{{/lambda.pascalcase}}({{>api_parameters}})
+        public {{#returnType}}{{modelPackage}}.{{{.}}}{{/returnType}}{{^returnType}}void{{/returnType}} {{#lambda.pascalcase}}{{vendorExtensions.x-methodName}}{{/lambda.pascalcase}}({{>api_parameters}})
         {
             {{#returnType}}return {{/returnType}}{{#lambda.pascalcase}}{{vendorExtensions.x-methodName}}{{/lambda.pascalcase}}Async({{>api_invoke}}).ConfigureAwait(false).GetAwaiter().GetResult();
         }
@@ -68,18 +67,18 @@ namespace {{packageName}}.Service
         {{#isDeprecated}}
         [Obsolete]
         {{/isDeprecated}}
-        {{#returnType}}public async Task<{{{.}}}>{{/returnType}}{{^returnType}}public async Task{{/returnType}} {{#lambda.pascalcase}}{{vendorExtensions.x-methodName}}{{/lambda.pascalcase}}Async({{>api_parameters_async}})
+        {{#returnType}}public async Task<{{modelPackage}}.{{{.}}}>{{/returnType}}{{^returnType}}public async Task{{/returnType}} {{#lambda.pascalcase}}{{vendorExtensions.x-methodName}}{{/lambda.pascalcase}}Async({{>api_parameters_async}})
         {
             {{#hasQueryParams}}
             // Build the query string
             var queryParams = new Dictionary<string, string>();
             {{#queryParams}}
-            if ({{paramName}} != null) queryParams.Add("{{baseName}}", {{paramName}}{{^isString}}.ToString(){{/isString}});
+            {{^required}}if ({{paramName}} != null) {{/required}}queryParams.Add("{{baseName}}", {{paramName}}{{^isString}}.ToString(){{/isString}});
             {{/queryParams}}
             {{/hasQueryParams}}
             var endpoint = _baseUrl + {{#hasPathParams}}${{/hasPathParams}}"{{{path}}}"{{#hasQueryParams}} + ToQueryString(queryParams){{/hasQueryParams}};
             var resource = new ServiceResource(this, endpoint);
-            {{#returnType}}return {{/returnType}}await resource.RequestAsync{{#returnType}}<{{returnType}}>{{/returnType}}({{#bodyParam}}{{paramName}}.ToJson(){{/bodyParam}}{{^bodyParam}}null{{/bodyParam}}, requestOptions, new HttpMethod("{{httpMethod}}"), cancellationToken).ConfigureAwait(false);
+            {{#returnType}}return {{/returnType}}await resource.RequestAsync{{#returnType}}<{{modelPackage}}.{{returnType}}>{{/returnType}}({{#bodyParam}}{{paramName}}.ToJson(){{/bodyParam}}{{^bodyParam}}null{{/bodyParam}}, requestOptions, new HttpMethod("{{httpMethod}}"), cancellationToken).ConfigureAwait(false);
         }
         {{/supportsAsync}}
         {{/operation}}

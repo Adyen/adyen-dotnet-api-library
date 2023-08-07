@@ -37,7 +37,7 @@ $(services): target/spec $(openapi-generator-jar)
 		-g $(generator) \
 		-t templates/csharp \
 		-o $(output) \
-		--inline-schema-name-mappings PaymentDonationRequest_paymentMethod=CheckoutPaymentMethod \
+		--inline-schema-name-mappings DonationPaymentRequest_paymentMethod=CheckoutPaymentMethod \
 		--model-package $@ \
 		--skip-validate-spec \
 		--reserved-words-mappings Version=Version \
@@ -62,7 +62,7 @@ $(Services): target/spec $(openapi-generator-jar)
 		-g $(generator) \
 		-t templates/csharp \
 		-o $(output) \
-		--inline-schema-name-mappings PaymentDonationRequest_paymentMethod=CheckoutPaymentMethod \
+		--inline-schema-name-mappings DonationPaymentRequest_paymentMethod=CheckoutPaymentMethod \
 		--additional-properties packageName=Adyen \
 		--api-package Service.$@ \
 		--api-name-suffix Service \
@@ -82,7 +82,7 @@ $(SingleFileServices): target/spec $(openapi-generator-jar)
 		-g $(generator) \
 		-c templates/csharp/config.yaml \
 		-o $(output) \
-		--inline-schema-name-mappings PaymentDonationRequest_paymentMethod=CheckoutPaymentMethod \
+		--inline-schema-name-mappings DonationPaymentRequest_paymentMethod=CheckoutPaymentMethod \
 		--additional-properties packageName=Adyen \
 		--additional-properties customApi=$@ \
 		--api-package Service.$@ \
@@ -114,4 +114,13 @@ clean:
 	git clean -f -d $(models) Adyen/Service/Management
 
 
-.PHONY: templates models $(services)
+## Release
+version:
+	perl -lne 'print "currentVersion=$$1" if /LibVersion = "(\d+\.\d+\.\d+)"/' < Adyen/Constants/ClientConfig.cs >> "$$GITHUB_OUTPUT"
+
+version_files:=Adyen/Adyen.csproj Adyen.Test/Adyen.Test.csproj Adyen/Constants/ClientConfig.cs
+bump:
+	perl -i -pe 's/$$ENV{"CURRENT_VERSION"}/$$ENV{"NEXT_VERSION"}/' $(version_files) 
+    
+
+.PHONY: templates models $(services) version bump

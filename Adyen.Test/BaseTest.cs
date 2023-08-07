@@ -173,7 +173,7 @@ namespace Adyen.Test
         ///Checkout Details request
         /// </summary>
         /// <returns>Returns a sample PaymentsDetailsRequest object with test data</returns>
-        protected Amount.DetailsRequest CreateDetailsRequest()
+        protected Amount.PaymentDetailsRequest CreateDetailsRequest()
         {
             var paymentData = "Ab02b4c0!BQABAgCJN1wRZuGJmq8dMncmypvknj9s7l5Tj...";
             var details = new Amount.PaymentCompletionDetails
@@ -181,7 +181,7 @@ namespace Adyen.Test
                 MD= "sdfsdfsdf...",
                 PaReq = "sdfsdfsdf..."
             };
-            var paymentsDetailsRequest = new Amount.DetailsRequest(details: details, paymentData: paymentData);
+            var paymentsDetailsRequest = new Amount.PaymentDetailsRequest(details: details, paymentData: paymentData);
 
             return paymentsDetailsRequest;
         }
@@ -217,6 +217,24 @@ namespace Adyen.Test
         }
 
         #endregion
+        
+        /// <summary>
+        /// Creates mock test client without any response
+        /// </summary>
+        /// <returns>IClient implementation</returns>
+        protected Client CreateMockForAdyenClientTest(Config config)
+        {
+            //Create a mock interface
+            ClientInterfaceMock = new Mock<IClient>();
+            ClientInterfaceMock.Setup(x => x.RequestAsync(It.IsAny<string>(),
+                It.IsAny<string>(), It.IsAny<RequestOptions>(), It.IsAny<HttpMethod>(), It.IsAny<CancellationToken>())).ReturnsAsync(It.IsAny<string>());
+            var clientMock = new Client(config)
+            {
+                HttpClient = ClientInterfaceMock.Object,
+                Config = config
+            };
+            return clientMock;
+        }
 
         /// <summary>
         /// Creates mock test client 

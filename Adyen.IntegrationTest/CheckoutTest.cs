@@ -126,7 +126,7 @@ namespace Adyen.IntegrationTest
         {
             var amount = new Amount("EUR", 1000);
             var address = new Address(country: "NL", city: "Amsterdam", houseNumberOrName: "11", postalCode: "1234AB", street: "ams");
-            var createPaymentLinkRequest = new CreatePaymentLinkRequest(amount: amount, merchantAccount: ClientConstants.MerchantAccount, reference: "Reference")
+            var createPaymentLinkRequest = new PaymentLinkRequest(amount: amount, merchantAccount: ClientConstants.MerchantAccount, reference: "Reference")
             {
                 CountryCode = "NL",
                 ShopperReference = "Unique_shopper_reference",
@@ -229,7 +229,7 @@ namespace Adyen.IntegrationTest
         public void ModificationsCapturesTest()
         {
             var paymentsResponse = _checkout.Payments(CreatePaymentRequestCheckout());
-            var createPaymentCaptureRequest = new Model.Checkout.CreatePaymentCaptureRequest(
+            var createPaymentCaptureRequest = new Model.Checkout.PaymentCaptureRequest(
                 amount: new Model.Checkout.Amount(currency: "EUR", value: 500L), reference: "my_capture_reference",
                 merchantAccount: MerchantAccount);
             var paymentCaptureResource =
@@ -246,7 +246,7 @@ namespace Adyen.IntegrationTest
         public void ModificationsCancelsTest()
         {
             var paymentsResponse = _checkout.Payments(CreatePaymentRequestCheckout());
-            var createPaymentCancelRequest = new Model.Checkout.CreatePaymentCancelRequest(reference: "my_cancel_reference",
+            var createPaymentCancelRequest = new Model.Checkout.PaymentCancelRequest(reference: "my_cancel_reference",
                 merchantAccount: MerchantAccount);
             var paymentCancelResource =
                 _modifications.CancelAuthorisedPaymentByPspReference(paymentsResponse.PspReference, createPaymentCancelRequest);
@@ -262,7 +262,7 @@ namespace Adyen.IntegrationTest
         public void ModificationReversalsTest()
         {
             var paymentsResponse = _checkout.Payments(CreatePaymentRequestCheckout());
-            var createPaymentReversalRequest = new Model.Checkout.CreatePaymentReversalRequest(reference: "my_reversal_reference",
+            var createPaymentReversalRequest = new Model.Checkout.PaymentReversalRequest(reference: "my_reversal_reference",
                 merchantAccount: MerchantAccount);
             var paymentReversalResource =
                 _modifications.RefundOrCancelPayment(paymentsResponse.PspReference, createPaymentReversalRequest);
@@ -278,7 +278,7 @@ namespace Adyen.IntegrationTest
         public void ModificationsRefundsTest()
         {
             var paymentsResponse = _checkout.Payments(CreatePaymentRequestCheckout());
-            var createPaymentRefundRequest = new Model.Checkout.CreatePaymentRefundRequest(
+            var createPaymentRefundRequest = new Model.Checkout.PaymentRefundRequest(
                 amount: new Model.Checkout.Amount(currency: "EUR", value: 500L), reference: "my_refund_reference",
                 merchantAccount: MerchantAccount);
             var paymentRefundResource =
@@ -295,7 +295,7 @@ namespace Adyen.IntegrationTest
         public void ModificationsAmountUpdatesTest()
         {
             var paymentsResponse = _checkout.Payments(CreatePaymentRequestCheckout());
-            var createPaymentAmountUpdateRequest = new Model.Checkout.CreatePaymentAmountUpdateRequest(
+            var createPaymentAmountUpdateRequest = new Model.Checkout.PaymentAmountUpdateRequest(
                 amount: new Model.Checkout.Amount(currency: "EUR", value: 500L), reference: "my_updates_reference",
                 merchantAccount: MerchantAccount);
             var paymentAmountUpdateResource =

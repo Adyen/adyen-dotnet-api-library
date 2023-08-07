@@ -8,6 +8,7 @@ using Adyen.Service;
 using Adyen.Service.BalancePlatform;
 using Adyen.Service.Checkout;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using Moq;
 using Environment = Adyen.Model.Environment;
 
 namespace Adyen.Test
@@ -63,11 +64,11 @@ namespace Adyen.Test
         public void TestCheckoutLiveEndPoint()
         {
             var service = new PaymentsService(_client);
-            service.Donations(new PaymentDonationRequest());
+            service.Donations(new DonationPaymentRequest());
             ClientInterfaceMock.Verify(mock =>
                 mock.RequestAsync(
-                    "https://prefix-checkout-live.adyenpayments.com/checkout/v70/donations",
-                    "{}", null, HttpMethod.Post, default));
+                    "https://prefix-checkout-live.adyenpayments.com/checkout/v70/donations", 
+                    It.IsAny<string>(), null, HttpMethod.Post, default));
         }
 
         [TestMethod]

@@ -38,7 +38,7 @@ namespace Adyen.Model.Notification
             StringBuilder sb = new StringBuilder();
             sb.Append("class NotificationRequestItemContainer {\n");
 
-            sb.Append("  notificationItem: ").Append(NotificationItem.ToIndentedString()).Append("\n");
+            sb.Append("  notificationItem: ").Append(NotificationItem).Append("\n");
             sb.Append("}");
             return sb.ToString();
         }
