@@ -141,27 +141,27 @@ namespace Adyen.Model.LegalEntityManagement
         /// Initializes a new instance of the <see cref="Document" /> class.
         /// </summary>
         /// <param name="attachment">attachment.</param>
-        /// <param name="attachments">Array that contains the document. The array supports multiple attachments for uploading different sides or pages of a document. (required).</param>
+        /// <param name="attachments">Array that contains the document. The array supports multiple attachments for uploading different sides or pages of a document..</param>
         /// <param name="description">Your description for the document. (required).</param>
         /// <param name="expiryDate">The expiry date of the document, in YYYY-MM-DD format..</param>
         /// <param name="fileName">The filename of the document..</param>
         /// <param name="issuerCountry">The two-character [ISO 3166-1 alpha-2](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2) country code where the document was issued. For example, **US**..</param>
         /// <param name="issuerState">The state or province where the document was issued (AU only)..</param>
         /// <param name="number">The number in the document..</param>
-        /// <param name="owner">owner (required).</param>
+        /// <param name="owner">owner.</param>
         /// <param name="type">Type of document, used when providing an ID number or uploading a document. The possible values depend on the legal entity type.  * For **organization**, the &#x60;type&#x60; values can be **proofOfAddress**, **registrationDocument**, **vatDocument**, **proofOfOrganizationTaxInfo**, **proofOfOwnership**, **proofOfIndustry**, or **proofOfFundingOrWealthSource**.  * For **individual**, the &#x60;type&#x60; values can be **identityCard**, **driversLicense**, **passport**, **proofOfNationalIdNumber**, **proofOfResidency**, **proofOfIndustry**, **proofOfIndividualTaxId**, or **proofOfFundingOrWealthSource**.  * For **soleProprietorship**, the &#x60;type&#x60; values can be **constitutionalDocument**, **proofOfAddress**, or **proofOfIndustry**.  * Use **bankStatement** to upload documents for a [transfer instrument](https://docs.adyen.com/api-explorer/#/legalentity/latest/post/transferInstruments__resParam_id). (required).</param>
         public Document(Attachment attachment = default(Attachment), List<Attachment> attachments = default(List<Attachment>), string description = default(string), string expiryDate = default(string), string fileName = default(string), string issuerCountry = default(string), string issuerState = default(string), string number = default(string), OwnerEntity owner = default(OwnerEntity), TypeEnum type = default(TypeEnum))
         {
-            this.Attachments = attachments;
             this.Description = description;
-            this.Owner = owner;
             this.Type = type;
             this.Attachment = attachment;
+            this.Attachments = attachments;
             this.ExpiryDate = expiryDate;
             this.FileName = fileName;
             this.IssuerCountry = issuerCountry;
             this.IssuerState = issuerState;
             this.Number = number;
+            this.Owner = owner;
         }
 
         /// <summary>
@@ -174,7 +174,7 @@ namespace Adyen.Model.LegalEntityManagement
         /// Array that contains the document. The array supports multiple attachments for uploading different sides or pages of a document.
         /// </summary>
         /// <value>Array that contains the document. The array supports multiple attachments for uploading different sides or pages of a document.</value>
-        [DataMember(Name = "attachments", IsRequired = false, EmitDefaultValue = false)]
+        [DataMember(Name = "attachments", EmitDefaultValue = false)]
         public List<Attachment> Attachments { get; set; }
 
         /// <summary>
@@ -246,7 +246,7 @@ namespace Adyen.Model.LegalEntityManagement
         /// <summary>
         /// Gets or Sets Owner
         /// </summary>
-        [DataMember(Name = "owner", IsRequired = false, EmitDefaultValue = false)]
+        [DataMember(Name = "owner", EmitDefaultValue = false)]
         public OwnerEntity Owner { get; set; }
 
         /// <summary>

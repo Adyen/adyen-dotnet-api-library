@@ -99,13 +99,8 @@ namespace Adyen.Model.LegalEntityManagement
         /// The service for which you are creating the business line.  Possible values: **paymentProcessing**, **issuing**, **banking**
         /// </summary>
         /// <value>The service for which you are creating the business line.  Possible values: **paymentProcessing**, **issuing**, **banking**</value>
-        [DataMember(Name = "service", IsRequired = false, EmitDefaultValue = false)]
-        public ServiceEnum Service { get; set; }
-        /// <summary>
-        /// Initializes a new instance of the <see cref="BusinessLineInfoUpdate" /> class.
-        /// </summary>
-        [JsonConstructorAttribute]
-        protected BusinessLineInfoUpdate() { }
+        [DataMember(Name = "service", EmitDefaultValue = false)]
+        public ServiceEnum? Service { get; set; }
         /// <summary>
         /// Initializes a new instance of the <see cref="BusinessLineInfoUpdate" /> class.
         /// </summary>
@@ -113,17 +108,17 @@ namespace Adyen.Model.LegalEntityManagement
         /// <param name="industryCode">A code that represents the industry of your legal entity. For example, **4431A** for computer software stores..</param>
         /// <param name="legalEntityId">Unique identifier of the [legal entity](https://docs.adyen.com/api-explorer/#/legalentity/latest/post/legalEntities__resParam_id) that owns the business line..</param>
         /// <param name="salesChannels">A list of channels where goods or services are sold.  Possible values: **pos**, **posMoto**, **eCommerce**, **ecomMoto**, **payByLink**.  Required only in combination with the &#x60;service&#x60; **paymentProcessing**..</param>
-        /// <param name="service">The service for which you are creating the business line.  Possible values: **paymentProcessing**, **issuing**, **banking** (required).</param>
+        /// <param name="service">The service for which you are creating the business line.  Possible values: **paymentProcessing**, **issuing**, **banking**.</param>
         /// <param name="sourceOfFunds">sourceOfFunds.</param>
         /// <param name="webData">List of website URLs where your user&#39;s goods or services are sold. When this is required for a service but your user does not have an online presence, provide the reason in the &#x60;webDataExemption&#x60; object..</param>
         /// <param name="webDataExemption">webDataExemption.</param>
-        public BusinessLineInfoUpdate(CapabilityEnum? capability = default(CapabilityEnum?), string industryCode = default(string), string legalEntityId = default(string), List<string> salesChannels = default(List<string>), ServiceEnum service = default(ServiceEnum), SourceOfFunds sourceOfFunds = default(SourceOfFunds), List<WebData> webData = default(List<WebData>), WebDataExemption webDataExemption = default(WebDataExemption))
+        public BusinessLineInfoUpdate(CapabilityEnum? capability = default(CapabilityEnum?), string industryCode = default(string), string legalEntityId = default(string), List<string> salesChannels = default(List<string>), ServiceEnum? service = default(ServiceEnum?), SourceOfFunds sourceOfFunds = default(SourceOfFunds), List<WebData> webData = default(List<WebData>), WebDataExemption webDataExemption = default(WebDataExemption))
         {
-            this.Service = service;
             this.Capability = capability;
             this.IndustryCode = industryCode;
             this.LegalEntityId = legalEntityId;
             this.SalesChannels = salesChannels;
+            this.Service = service;
             this.SourceOfFunds = sourceOfFunds;
             this.WebData = webData;
             this.WebDataExemption = webDataExemption;
