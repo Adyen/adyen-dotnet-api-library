@@ -17,6 +17,7 @@ namespace Adyen
         public delegate void CallbackLogHandler(string message);
 
         public event CallbackLogHandler LogCallback;
+        private static System.Net.Http.HttpClient _httpClient;
 
         [Obsolete("Providing username and password are obsolete, please use Config instead.")]
         public Client(string username, string password, Environment environment, string liveEndpointUrlPrefix = null)
@@ -82,17 +83,18 @@ namespace Adyen
                     break;
             }
         }
-
+        
         // Get a new HttpClient and set a timeout
         private System.Net.Http.HttpClient GetHttpClient()
         {
+            if (_httpClient == null)
+                _httpClient = new System.Net.Http.HttpClient(HttpClientExtensions.ConfigureHttpMessageHandler(Config));
             // Set Timeout for HttpClient
-            var httpClient = new System.Net.Http.HttpClient(HttpClientExtensions.ConfigureHttpMessageHandler(Config));
             if (Config.Timeout != default)
             {
-                httpClient.Timeout = TimeSpan.FromMilliseconds(Config.Timeout);
+                _httpClient.Timeout = TimeSpan.FromMilliseconds(Config.Timeout);
             }
-            return httpClient;
+            return _httpClient;
         }
 
         public IClient HttpClient { get; set; }
