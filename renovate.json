@@ -7,4 +7,5 @@
       "matchPackageNames": ["moq"],
       "allowedVersions": "<=4.18"
     }
+  ]
 }
