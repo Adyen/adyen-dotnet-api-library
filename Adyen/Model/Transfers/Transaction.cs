@@ -312,7 +312,9 @@ namespace Adyen.Model.Transfers
         /// <param name="category">The category of the transaction indicating the type of activity.   Possible values:  * **platformPayment**: The transaction is a payment or payment modification made with an Adyen merchant account.  * **internal**: The transaction resulted from an internal adjustment such as a deposit correction or invoice deduction.  * **bank**: The transaction is a bank-related activity, such as sending a payout or receiving funds.  * **issuedCard**: The transaction is a card-related activity, such as using an Adyen-issued card to pay online.  .</param>
         /// <param name="counterparty">counterparty (required).</param>
         /// <param name="createdAt">The date the transaction was created. (required).</param>
+        /// <param name="creationDate">The date and time when the event was triggered, in ISO 8601 extended format. For example, **2020-12-18T10:15:30+01:00**..</param>
         /// <param name="description">The &#x60;description&#x60; from the &#x60;/transfers&#x60; request..</param>
+        /// <param name="eventId">The PSP reference in the journal..</param>
         /// <param name="id">Unique identifier of the transaction. (required).</param>
         /// <param name="instructedAmount">instructedAmount.</param>
         /// <param name="paymentInstrumentId">Unique identifier of the payment instrument that was used for the transaction..</param>
@@ -322,7 +324,7 @@ namespace Adyen.Model.Transfers
         /// <param name="transferId">Unique identifier of the related transfer..</param>
         /// <param name="type">The type of the transaction.   Possible values: **payment**, **capture**, **captureReversal**, **refund** **refundReversal**, **chargeback**, **chargebackReversal**, **secondChargeback**, **atmWithdrawal**, **atmWithdrawalReversal**, **internalTransfer**, **manualCorrection**, **invoiceDeduction**, **depositCorrection**, **bankTransfer**, **miscCost**, **paymentCost**, **fee**.</param>
         /// <param name="valueDate">The date the transfer amount becomes available in the balance account. (required).</param>
-        public Transaction(string accountHolderId = default(string), Amount amount = default(Amount), string balanceAccountId = default(string), string balancePlatform = default(string), DateTime bookingDate = default(DateTime), CategoryEnum? category = default(CategoryEnum?), CounterpartyV3 counterparty = default(CounterpartyV3), DateTime createdAt = default(DateTime), string description = default(string), string id = default(string), Amount instructedAmount = default(Amount), string paymentInstrumentId = default(string), string reference = default(string), string referenceForBeneficiary = default(string), StatusEnum status = default(StatusEnum), string transferId = default(string), TypeEnum? type = default(TypeEnum?), DateTime valueDate = default(DateTime))
+        public Transaction(string accountHolderId = default(string), Amount amount = default(Amount), string balanceAccountId = default(string), string balancePlatform = default(string), DateTime bookingDate = default(DateTime), CategoryEnum? category = default(CategoryEnum?), CounterpartyV3 counterparty = default(CounterpartyV3), DateTime createdAt = default(DateTime), DateTime creationDate = default(DateTime), string description = default(string), string eventId = default(string), string id = default(string), Amount instructedAmount = default(Amount), string paymentInstrumentId = default(string), string reference = default(string), string referenceForBeneficiary = default(string), StatusEnum status = default(StatusEnum), string transferId = default(string), TypeEnum? type = default(TypeEnum?), DateTime valueDate = default(DateTime))
         {
             this.AccountHolderId = accountHolderId;
             this.Amount = amount;
@@ -336,7 +338,9 @@ namespace Adyen.Model.Transfers
             this.Status = status;
             this.ValueDate = valueDate;
             this.Category = category;
+            this.CreationDate = creationDate;
             this.Description = description;
+            this.EventId = eventId;
             this.InstructedAmount = instructedAmount;
             this.PaymentInstrumentId = paymentInstrumentId;
             this.ReferenceForBeneficiary = referenceForBeneficiary;
@@ -392,11 +396,25 @@ namespace Adyen.Model.Transfers
         public DateTime CreatedAt { get; set; }
 
         /// <summary>
+        /// The date and time when the event was triggered, in ISO 8601 extended format. For example, **2020-12-18T10:15:30+01:00**.
+        /// </summary>
+        /// <value>The date and time when the event was triggered, in ISO 8601 extended format. For example, **2020-12-18T10:15:30+01:00**.</value>
+        [DataMember(Name = "creationDate", EmitDefaultValue = false)]
+        public DateTime CreationDate { get; set; }
+
+        /// <summary>
         /// The &#x60;description&#x60; from the &#x60;/transfers&#x60; request.
         /// </summary>
         /// <value>The &#x60;description&#x60; from the &#x60;/transfers&#x60; request.</value>
         [DataMember(Name = "description", EmitDefaultValue = false)]
         public string Description { get; set; }
+
+        /// <summary>
+        /// The PSP reference in the journal.
+        /// </summary>
+        /// <value>The PSP reference in the journal.</value>
+        [DataMember(Name = "eventId", EmitDefaultValue = false)]
+        public string EventId { get; set; }
 
         /// <summary>
         /// Unique identifier of the transaction.
@@ -462,7 +480,9 @@ namespace Adyen.Model.Transfers
             sb.Append("  Category: ").Append(Category).Append("\n");
             sb.Append("  Counterparty: ").Append(Counterparty).Append("\n");
             sb.Append("  CreatedAt: ").Append(CreatedAt).Append("\n");
+            sb.Append("  CreationDate: ").Append(CreationDate).Append("\n");
             sb.Append("  Description: ").Append(Description).Append("\n");
+            sb.Append("  EventId: ").Append(EventId).Append("\n");
             sb.Append("  Id: ").Append(Id).Append("\n");
             sb.Append("  InstructedAmount: ").Append(InstructedAmount).Append("\n");
             sb.Append("  PaymentInstrumentId: ").Append(PaymentInstrumentId).Append("\n");
@@ -547,9 +567,19 @@ namespace Adyen.Model.Transfers
                     this.CreatedAt.Equals(input.CreatedAt))
                 ) && 
                 (
+                    this.CreationDate == input.CreationDate ||
+                    (this.CreationDate != null &&
+                    this.CreationDate.Equals(input.CreationDate))
+                ) && 
+                (
                     this.Description == input.Description ||
                     (this.Description != null &&
                     this.Description.Equals(input.Description))
+                ) && 
+                (
+                    this.EventId == input.EventId ||
+                    (this.EventId != null &&
+                    this.EventId.Equals(input.EventId))
                 ) && 
                 (
                     this.Id == input.Id ||
@@ -634,9 +664,17 @@ namespace Adyen.Model.Transfers
                 {
                     hashCode = (hashCode * 59) + this.CreatedAt.GetHashCode();
                 }
+                if (this.CreationDate != null)
+                {
+                    hashCode = (hashCode * 59) + this.CreationDate.GetHashCode();
+                }
                 if (this.Description != null)
                 {
                     hashCode = (hashCode * 59) + this.Description.GetHashCode();
+                }
+                if (this.EventId != null)
+                {
+                    hashCode = (hashCode * 59) + this.EventId.GetHashCode();
                 }
                 if (this.Id != null)
                 {

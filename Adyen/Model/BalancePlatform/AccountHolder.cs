@@ -85,7 +85,7 @@ namespace Adyen.Model.BalancePlatform
         /// <param name="contactDetails">contactDetails.</param>
         /// <param name="description">Your description for the account holder, maximum 300 characters..</param>
         /// <param name="legalEntityId">The unique identifier of the [legal entity](https://docs.adyen.com/api-explorer/legalentity/latest/post/legalEntities#responses-200-id) associated with the account holder. Adyen performs a verification process against the legal entity of the account holder. (required).</param>
-        /// <param name="metadata">A set of key and value pairs for general use by the merchant. The keys do not have specific names and may be used for storing miscellaneous data as desired. &gt; Note that during an update of metadata, the omission of existing key-value pairs will result in the deletion of those key-value pairs..</param>
+        /// <param name="metadata">A set of key and value pairs for general use. The keys do not have specific names and may be used for storing miscellaneous data as desired. &gt; Note that during an update of metadata, the omission of existing key-value pairs will result in the deletion of those key-value pairs..</param>
         /// <param name="primaryBalanceAccount">The ID of the account holder&#39;s primary balance account. By default, this is set to the first balance account that you create for the account holder. To assign a different balance account, send a PATCH request..</param>
         /// <param name="reference">Your reference for the account holder, maximum 150 characters..</param>
         /// <param name="status">The status of the account holder.  Possible values:    * **active**: The account holder is active. This is the default status when creating an account holder.    * **inactive (Deprecated)**: The account holder is temporarily inactive due to missing KYC details. You can set the account back to active by providing the missing KYC details.    * **suspended**: The account holder is permanently deactivated by Adyen. This action cannot be undone.   * **closed**: The account holder is permanently deactivated by you. This action cannot be undone..</param>
@@ -146,11 +146,18 @@ namespace Adyen.Model.BalancePlatform
         public string LegalEntityId { get; set; }
 
         /// <summary>
-        /// A set of key and value pairs for general use by the merchant. The keys do not have specific names and may be used for storing miscellaneous data as desired. &gt; Note that during an update of metadata, the omission of existing key-value pairs will result in the deletion of those key-value pairs.
+        /// A set of key and value pairs for general use. The keys do not have specific names and may be used for storing miscellaneous data as desired. &gt; Note that during an update of metadata, the omission of existing key-value pairs will result in the deletion of those key-value pairs.
         /// </summary>
-        /// <value>A set of key and value pairs for general use by the merchant. The keys do not have specific names and may be used for storing miscellaneous data as desired. &gt; Note that during an update of metadata, the omission of existing key-value pairs will result in the deletion of those key-value pairs.</value>
+        /// <value>A set of key and value pairs for general use. The keys do not have specific names and may be used for storing miscellaneous data as desired. &gt; Note that during an update of metadata, the omission of existing key-value pairs will result in the deletion of those key-value pairs.</value>
         [DataMember(Name = "metadata", EmitDefaultValue = false)]
         public Dictionary<string, string> Metadata { get; set; }
+
+        /// <summary>
+        /// The unique identifier of the migrated account holder in the classic integration.
+        /// </summary>
+        /// <value>The unique identifier of the migrated account holder in the classic integration.</value>
+        [DataMember(Name = "migratedAccountHolderCode", EmitDefaultValue = false)]
+        public string MigratedAccountHolderCode { get; private set; }
 
         /// <summary>
         /// The ID of the account holder&#39;s primary balance account. By default, this is set to the first balance account that you create for the account holder. To assign a different balance account, send a PATCH request.
@@ -195,6 +202,7 @@ namespace Adyen.Model.BalancePlatform
             sb.Append("  Id: ").Append(Id).Append("\n");
             sb.Append("  LegalEntityId: ").Append(LegalEntityId).Append("\n");
             sb.Append("  Metadata: ").Append(Metadata).Append("\n");
+            sb.Append("  MigratedAccountHolderCode: ").Append(MigratedAccountHolderCode).Append("\n");
             sb.Append("  PrimaryBalanceAccount: ").Append(PrimaryBalanceAccount).Append("\n");
             sb.Append("  Reference: ").Append(Reference).Append("\n");
             sb.Append("  Status: ").Append(Status).Append("\n");
@@ -273,6 +281,11 @@ namespace Adyen.Model.BalancePlatform
                     this.Metadata.SequenceEqual(input.Metadata)
                 ) && 
                 (
+                    this.MigratedAccountHolderCode == input.MigratedAccountHolderCode ||
+                    (this.MigratedAccountHolderCode != null &&
+                    this.MigratedAccountHolderCode.Equals(input.MigratedAccountHolderCode))
+                ) && 
+                (
                     this.PrimaryBalanceAccount == input.PrimaryBalanceAccount ||
                     (this.PrimaryBalanceAccount != null &&
                     this.PrimaryBalanceAccount.Equals(input.PrimaryBalanceAccount))
@@ -335,6 +348,10 @@ namespace Adyen.Model.BalancePlatform
                 if (this.Metadata != null)
                 {
                     hashCode = (hashCode * 59) + this.Metadata.GetHashCode();
+                }
+                if (this.MigratedAccountHolderCode != null)
+                {
+                    hashCode = (hashCode * 59) + this.MigratedAccountHolderCode.GetHashCode();
                 }
                 if (this.PrimaryBalanceAccount != null)
                 {
