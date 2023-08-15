@@ -96,6 +96,18 @@ namespace Adyen.Model.Transfers
 
         /// <summary>
         /// Initializes a new instance of the <see cref="BankAccountV3AccountIdentification" /> class
+        /// with the <see cref="HKLocalAccountIdentification" /> class
+        /// </summary>
+        /// <param name="actualInstance">An instance of HKLocalAccountIdentification.</param>
+        public BankAccountV3AccountIdentification(HKLocalAccountIdentification actualInstance)
+        {
+            this.IsNullable = false;
+            this.SchemaType= "oneOf";
+            this.ActualInstance = actualInstance ?? throw new ArgumentException("Invalid instance found. Must not be null.");
+        }
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="BankAccountV3AccountIdentification" /> class
         /// with the <see cref="HULocalAccountIdentification" /> class
         /// </summary>
         /// <param name="actualInstance">An instance of HULocalAccountIdentification.</param>
@@ -248,6 +260,10 @@ namespace Adyen.Model.Transfers
                 {
                     this._actualInstance = value;
                 }
+                else if (value.GetType() == typeof(HKLocalAccountIdentification))
+                {
+                    this._actualInstance = value;
+                }
                 else if (value.GetType() == typeof(HULocalAccountIdentification))
                 {
                     this._actualInstance = value;
@@ -290,7 +306,7 @@ namespace Adyen.Model.Transfers
                 }
                 else
                 {
-                    throw new ArgumentException("Invalid instance found. Must be the following types: AULocalAccountIdentification, BRLocalAccountIdentification, CALocalAccountIdentification, CZLocalAccountIdentification, DKLocalAccountIdentification, HULocalAccountIdentification, IbanAccountIdentification, NOLocalAccountIdentification, NZLocalAccountIdentification, NumberAndBicAccountIdentification, PLLocalAccountIdentification, SELocalAccountIdentification, SGLocalAccountIdentification, UKLocalAccountIdentification, USLocalAccountIdentification");
+                    throw new ArgumentException("Invalid instance found. Must be the following types: AULocalAccountIdentification, BRLocalAccountIdentification, CALocalAccountIdentification, CZLocalAccountIdentification, DKLocalAccountIdentification, HKLocalAccountIdentification, HULocalAccountIdentification, IbanAccountIdentification, NOLocalAccountIdentification, NZLocalAccountIdentification, NumberAndBicAccountIdentification, PLLocalAccountIdentification, SELocalAccountIdentification, SGLocalAccountIdentification, UKLocalAccountIdentification, USLocalAccountIdentification");
                 }
             }
         }
@@ -343,6 +359,16 @@ namespace Adyen.Model.Transfers
         public DKLocalAccountIdentification GetDKLocalAccountIdentification()
         {
             return (DKLocalAccountIdentification)this.ActualInstance;
+        }
+
+        /// <summary>
+        /// Get the actual instance of `HKLocalAccountIdentification`. If the actual instance is not `HKLocalAccountIdentification`,
+        /// the InvalidClassException will be thrown
+        /// </summary>
+        /// <returns>An instance of HKLocalAccountIdentification</returns>
+        public HKLocalAccountIdentification GetHKLocalAccountIdentification()
+        {
+            return (HKLocalAccountIdentification)this.ActualInstance;
         }
 
         /// <summary>
@@ -598,6 +624,31 @@ namespace Adyen.Model.Transfers
                 if (type != null || JsonConvert.SerializeObject((DKLocalAccountIdentification.TypeEnum) 1).Contains(type))
                 {
                     matchedTypes.Add("DKLocalAccountIdentification");
+                    match++;
+                }
+            }
+            catch (Exception ex)
+            {
+                if (!(ex is JsonSerializationException))
+                {
+                    throw new Exception(string.Format("Failed to deserialize `{0}` into CheckoutThreeDS2Action: {1}", jsonString, ex.ToString()));
+                }
+            }
+
+            try
+            {
+                // if it does not contains "AdditionalProperties", use SerializerSettings to deserialize
+                if (typeof(HKLocalAccountIdentification).GetProperty("AdditionalProperties") == null)
+                {
+                    newBankAccountV3AccountIdentification = new BankAccountV3AccountIdentification(JsonConvert.DeserializeObject<HKLocalAccountIdentification>(jsonString, BankAccountV3AccountIdentification.SerializerSettings));
+                }
+                else
+                {
+                    newBankAccountV3AccountIdentification = new BankAccountV3AccountIdentification(JsonConvert.DeserializeObject<HKLocalAccountIdentification>(jsonString, BankAccountV3AccountIdentification.AdditionalPropertiesSerializerSettings));
+                }
+                if (type != null || JsonConvert.SerializeObject((HKLocalAccountIdentification.TypeEnum) 1).Contains(type))
+                {
+                    matchedTypes.Add("HKLocalAccountIdentification");
                     match++;
                 }
             }

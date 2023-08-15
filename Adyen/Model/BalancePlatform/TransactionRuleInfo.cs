@@ -80,10 +80,16 @@ namespace Adyen.Model.BalancePlatform
             Authorization = 2,
 
             /// <summary>
+            /// Enum BankTransfer for value: bankTransfer
+            /// </summary>
+            [EnumMember(Value = "bankTransfer")]
+            BankTransfer = 3,
+
+            /// <summary>
             /// Enum Tokenization for value: tokenization
             /// </summary>
             [EnumMember(Value = "tokenization")]
-            Tokenization = 3
+            Tokenization = 4
 
         }
 

@@ -48,6 +48,18 @@ namespace Adyen.Model.BalancePlatform
 
         /// <summary>
         /// Initializes a new instance of the <see cref="BankAccountIdentificationValidationRequestAccountIdentification" /> class
+        /// with the <see cref="BRLocalAccountIdentification" /> class
+        /// </summary>
+        /// <param name="actualInstance">An instance of BRLocalAccountIdentification.</param>
+        public BankAccountIdentificationValidationRequestAccountIdentification(BRLocalAccountIdentification actualInstance)
+        {
+            this.IsNullable = false;
+            this.SchemaType= "oneOf";
+            this.ActualInstance = actualInstance ?? throw new ArgumentException("Invalid instance found. Must not be null.");
+        }
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="BankAccountIdentificationValidationRequestAccountIdentification" /> class
         /// with the <see cref="CALocalAccountIdentification" /> class
         /// </summary>
         /// <param name="actualInstance">An instance of CALocalAccountIdentification.</param>
@@ -64,6 +76,30 @@ namespace Adyen.Model.BalancePlatform
         /// </summary>
         /// <param name="actualInstance">An instance of CZLocalAccountIdentification.</param>
         public BankAccountIdentificationValidationRequestAccountIdentification(CZLocalAccountIdentification actualInstance)
+        {
+            this.IsNullable = false;
+            this.SchemaType= "oneOf";
+            this.ActualInstance = actualInstance ?? throw new ArgumentException("Invalid instance found. Must not be null.");
+        }
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="BankAccountIdentificationValidationRequestAccountIdentification" /> class
+        /// with the <see cref="DKLocalAccountIdentification" /> class
+        /// </summary>
+        /// <param name="actualInstance">An instance of DKLocalAccountIdentification.</param>
+        public BankAccountIdentificationValidationRequestAccountIdentification(DKLocalAccountIdentification actualInstance)
+        {
+            this.IsNullable = false;
+            this.SchemaType= "oneOf";
+            this.ActualInstance = actualInstance ?? throw new ArgumentException("Invalid instance found. Must not be null.");
+        }
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="BankAccountIdentificationValidationRequestAccountIdentification" /> class
+        /// with the <see cref="HKLocalAccountIdentification" /> class
+        /// </summary>
+        /// <param name="actualInstance">An instance of HKLocalAccountIdentification.</param>
+        public BankAccountIdentificationValidationRequestAccountIdentification(HKLocalAccountIdentification actualInstance)
         {
             this.IsNullable = false;
             this.SchemaType= "oneOf";
@@ -100,6 +136,18 @@ namespace Adyen.Model.BalancePlatform
         /// </summary>
         /// <param name="actualInstance">An instance of NOLocalAccountIdentification.</param>
         public BankAccountIdentificationValidationRequestAccountIdentification(NOLocalAccountIdentification actualInstance)
+        {
+            this.IsNullable = false;
+            this.SchemaType= "oneOf";
+            this.ActualInstance = actualInstance ?? throw new ArgumentException("Invalid instance found. Must not be null.");
+        }
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="BankAccountIdentificationValidationRequestAccountIdentification" /> class
+        /// with the <see cref="NZLocalAccountIdentification" /> class
+        /// </summary>
+        /// <param name="actualInstance">An instance of NZLocalAccountIdentification.</param>
+        public BankAccountIdentificationValidationRequestAccountIdentification(NZLocalAccountIdentification actualInstance)
         {
             this.IsNullable = false;
             this.SchemaType= "oneOf";
@@ -196,11 +244,23 @@ namespace Adyen.Model.BalancePlatform
                 {
                     this._actualInstance = value;
                 }
+                else if (value.GetType() == typeof(BRLocalAccountIdentification))
+                {
+                    this._actualInstance = value;
+                }
                 else if (value.GetType() == typeof(CALocalAccountIdentification))
                 {
                     this._actualInstance = value;
                 }
                 else if (value.GetType() == typeof(CZLocalAccountIdentification))
+                {
+                    this._actualInstance = value;
+                }
+                else if (value.GetType() == typeof(DKLocalAccountIdentification))
+                {
+                    this._actualInstance = value;
+                }
+                else if (value.GetType() == typeof(HKLocalAccountIdentification))
                 {
                     this._actualInstance = value;
                 }
@@ -213,6 +273,10 @@ namespace Adyen.Model.BalancePlatform
                     this._actualInstance = value;
                 }
                 else if (value.GetType() == typeof(NOLocalAccountIdentification))
+                {
+                    this._actualInstance = value;
+                }
+                else if (value.GetType() == typeof(NZLocalAccountIdentification))
                 {
                     this._actualInstance = value;
                 }
@@ -242,7 +306,7 @@ namespace Adyen.Model.BalancePlatform
                 }
                 else
                 {
-                    throw new ArgumentException("Invalid instance found. Must be the following types: AULocalAccountIdentification, CALocalAccountIdentification, CZLocalAccountIdentification, HULocalAccountIdentification, IbanAccountIdentification, NOLocalAccountIdentification, NumberAndBicAccountIdentification, PLLocalAccountIdentification, SELocalAccountIdentification, SGLocalAccountIdentification, UKLocalAccountIdentification, USLocalAccountIdentification");
+                    throw new ArgumentException("Invalid instance found. Must be the following types: AULocalAccountIdentification, BRLocalAccountIdentification, CALocalAccountIdentification, CZLocalAccountIdentification, DKLocalAccountIdentification, HKLocalAccountIdentification, HULocalAccountIdentification, IbanAccountIdentification, NOLocalAccountIdentification, NZLocalAccountIdentification, NumberAndBicAccountIdentification, PLLocalAccountIdentification, SELocalAccountIdentification, SGLocalAccountIdentification, UKLocalAccountIdentification, USLocalAccountIdentification");
                 }
             }
         }
@@ -255,6 +319,16 @@ namespace Adyen.Model.BalancePlatform
         public AULocalAccountIdentification GetAULocalAccountIdentification()
         {
             return (AULocalAccountIdentification)this.ActualInstance;
+        }
+
+        /// <summary>
+        /// Get the actual instance of `BRLocalAccountIdentification`. If the actual instance is not `BRLocalAccountIdentification`,
+        /// the InvalidClassException will be thrown
+        /// </summary>
+        /// <returns>An instance of BRLocalAccountIdentification</returns>
+        public BRLocalAccountIdentification GetBRLocalAccountIdentification()
+        {
+            return (BRLocalAccountIdentification)this.ActualInstance;
         }
 
         /// <summary>
@@ -275,6 +349,26 @@ namespace Adyen.Model.BalancePlatform
         public CZLocalAccountIdentification GetCZLocalAccountIdentification()
         {
             return (CZLocalAccountIdentification)this.ActualInstance;
+        }
+
+        /// <summary>
+        /// Get the actual instance of `DKLocalAccountIdentification`. If the actual instance is not `DKLocalAccountIdentification`,
+        /// the InvalidClassException will be thrown
+        /// </summary>
+        /// <returns>An instance of DKLocalAccountIdentification</returns>
+        public DKLocalAccountIdentification GetDKLocalAccountIdentification()
+        {
+            return (DKLocalAccountIdentification)this.ActualInstance;
+        }
+
+        /// <summary>
+        /// Get the actual instance of `HKLocalAccountIdentification`. If the actual instance is not `HKLocalAccountIdentification`,
+        /// the InvalidClassException will be thrown
+        /// </summary>
+        /// <returns>An instance of HKLocalAccountIdentification</returns>
+        public HKLocalAccountIdentification GetHKLocalAccountIdentification()
+        {
+            return (HKLocalAccountIdentification)this.ActualInstance;
         }
 
         /// <summary>
@@ -305,6 +399,16 @@ namespace Adyen.Model.BalancePlatform
         public NOLocalAccountIdentification GetNOLocalAccountIdentification()
         {
             return (NOLocalAccountIdentification)this.ActualInstance;
+        }
+
+        /// <summary>
+        /// Get the actual instance of `NZLocalAccountIdentification`. If the actual instance is not `NZLocalAccountIdentification`,
+        /// the InvalidClassException will be thrown
+        /// </summary>
+        /// <returns>An instance of NZLocalAccountIdentification</returns>
+        public NZLocalAccountIdentification GetNZLocalAccountIdentification()
+        {
+            return (NZLocalAccountIdentification)this.ActualInstance;
         }
 
         /// <summary>
@@ -434,6 +538,31 @@ namespace Adyen.Model.BalancePlatform
             try
             {
                 // if it does not contains "AdditionalProperties", use SerializerSettings to deserialize
+                if (typeof(BRLocalAccountIdentification).GetProperty("AdditionalProperties") == null)
+                {
+                    newBankAccountIdentificationValidationRequestAccountIdentification = new BankAccountIdentificationValidationRequestAccountIdentification(JsonConvert.DeserializeObject<BRLocalAccountIdentification>(jsonString, BankAccountIdentificationValidationRequestAccountIdentification.SerializerSettings));
+                }
+                else
+                {
+                    newBankAccountIdentificationValidationRequestAccountIdentification = new BankAccountIdentificationValidationRequestAccountIdentification(JsonConvert.DeserializeObject<BRLocalAccountIdentification>(jsonString, BankAccountIdentificationValidationRequestAccountIdentification.AdditionalPropertiesSerializerSettings));
+                }
+                if (type != null || JsonConvert.SerializeObject((BRLocalAccountIdentification.TypeEnum) 1).Contains(type))
+                {
+                    matchedTypes.Add("BRLocalAccountIdentification");
+                    match++;
+                }
+            }
+            catch (Exception ex)
+            {
+                if (!(ex is JsonSerializationException))
+                {
+                    throw new Exception(string.Format("Failed to deserialize `{0}` into CheckoutThreeDS2Action: {1}", jsonString, ex.ToString()));
+                }
+            }
+
+            try
+            {
+                // if it does not contains "AdditionalProperties", use SerializerSettings to deserialize
                 if (typeof(CALocalAccountIdentification).GetProperty("AdditionalProperties") == null)
                 {
                     newBankAccountIdentificationValidationRequestAccountIdentification = new BankAccountIdentificationValidationRequestAccountIdentification(JsonConvert.DeserializeObject<CALocalAccountIdentification>(jsonString, BankAccountIdentificationValidationRequestAccountIdentification.SerializerSettings));
@@ -470,6 +599,56 @@ namespace Adyen.Model.BalancePlatform
                 if (type != null || JsonConvert.SerializeObject((CZLocalAccountIdentification.TypeEnum) 1).Contains(type))
                 {
                     matchedTypes.Add("CZLocalAccountIdentification");
+                    match++;
+                }
+            }
+            catch (Exception ex)
+            {
+                if (!(ex is JsonSerializationException))
+                {
+                    throw new Exception(string.Format("Failed to deserialize `{0}` into CheckoutThreeDS2Action: {1}", jsonString, ex.ToString()));
+                }
+            }
+
+            try
+            {
+                // if it does not contains "AdditionalProperties", use SerializerSettings to deserialize
+                if (typeof(DKLocalAccountIdentification).GetProperty("AdditionalProperties") == null)
+                {
+                    newBankAccountIdentificationValidationRequestAccountIdentification = new BankAccountIdentificationValidationRequestAccountIdentification(JsonConvert.DeserializeObject<DKLocalAccountIdentification>(jsonString, BankAccountIdentificationValidationRequestAccountIdentification.SerializerSettings));
+                }
+                else
+                {
+                    newBankAccountIdentificationValidationRequestAccountIdentification = new BankAccountIdentificationValidationRequestAccountIdentification(JsonConvert.DeserializeObject<DKLocalAccountIdentification>(jsonString, BankAccountIdentificationValidationRequestAccountIdentification.AdditionalPropertiesSerializerSettings));
+                }
+                if (type != null || JsonConvert.SerializeObject((DKLocalAccountIdentification.TypeEnum) 1).Contains(type))
+                {
+                    matchedTypes.Add("DKLocalAccountIdentification");
+                    match++;
+                }
+            }
+            catch (Exception ex)
+            {
+                if (!(ex is JsonSerializationException))
+                {
+                    throw new Exception(string.Format("Failed to deserialize `{0}` into CheckoutThreeDS2Action: {1}", jsonString, ex.ToString()));
+                }
+            }
+
+            try
+            {
+                // if it does not contains "AdditionalProperties", use SerializerSettings to deserialize
+                if (typeof(HKLocalAccountIdentification).GetProperty("AdditionalProperties") == null)
+                {
+                    newBankAccountIdentificationValidationRequestAccountIdentification = new BankAccountIdentificationValidationRequestAccountIdentification(JsonConvert.DeserializeObject<HKLocalAccountIdentification>(jsonString, BankAccountIdentificationValidationRequestAccountIdentification.SerializerSettings));
+                }
+                else
+                {
+                    newBankAccountIdentificationValidationRequestAccountIdentification = new BankAccountIdentificationValidationRequestAccountIdentification(JsonConvert.DeserializeObject<HKLocalAccountIdentification>(jsonString, BankAccountIdentificationValidationRequestAccountIdentification.AdditionalPropertiesSerializerSettings));
+                }
+                if (type != null || JsonConvert.SerializeObject((HKLocalAccountIdentification.TypeEnum) 1).Contains(type))
+                {
+                    matchedTypes.Add("HKLocalAccountIdentification");
                     match++;
                 }
             }
@@ -545,6 +724,31 @@ namespace Adyen.Model.BalancePlatform
                 if (type != null || JsonConvert.SerializeObject((NOLocalAccountIdentification.TypeEnum) 1).Contains(type))
                 {
                     matchedTypes.Add("NOLocalAccountIdentification");
+                    match++;
+                }
+            }
+            catch (Exception ex)
+            {
+                if (!(ex is JsonSerializationException))
+                {
+                    throw new Exception(string.Format("Failed to deserialize `{0}` into CheckoutThreeDS2Action: {1}", jsonString, ex.ToString()));
+                }
+            }
+
+            try
+            {
+                // if it does not contains "AdditionalProperties", use SerializerSettings to deserialize
+                if (typeof(NZLocalAccountIdentification).GetProperty("AdditionalProperties") == null)
+                {
+                    newBankAccountIdentificationValidationRequestAccountIdentification = new BankAccountIdentificationValidationRequestAccountIdentification(JsonConvert.DeserializeObject<NZLocalAccountIdentification>(jsonString, BankAccountIdentificationValidationRequestAccountIdentification.SerializerSettings));
+                }
+                else
+                {
+                    newBankAccountIdentificationValidationRequestAccountIdentification = new BankAccountIdentificationValidationRequestAccountIdentification(JsonConvert.DeserializeObject<NZLocalAccountIdentification>(jsonString, BankAccountIdentificationValidationRequestAccountIdentification.AdditionalPropertiesSerializerSettings));
+                }
+                if (type != null || JsonConvert.SerializeObject((NZLocalAccountIdentification.TypeEnum) 1).Contains(type))
+                {
+                    matchedTypes.Add("NZLocalAccountIdentification");
                     match++;
                 }
             }
