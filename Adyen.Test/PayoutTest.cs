@@ -10,7 +10,7 @@ namespace Adyen.Test
         [TestMethod]
         public void StoreDetailAndSubmitThirdPartySuccessTest()
         {
-            var client = CreateMockTestClientApiKeyBasedRequestAsync("Mocks/payout/storeDetailAndSubmitThirdParty-success.json");
+            var client = CreateMockTestClientApiKeyBasedRequestAsync("mocks/payout/storeDetailAndSubmitThirdParty-success.json");
             var payout = new InitializationService(client);
 
             var request = new StoreDetailAndSubmitRequest();
@@ -25,7 +25,7 @@ namespace Adyen.Test
         [TestMethod]
         public void StoreDetailSuccessTest()
         {
-            var client = CreateMockTestClientApiKeyBasedRequestAsync("Mocks/payout/storeDetail-success.json");
+            var client = CreateMockTestClientApiKeyBasedRequestAsync("mocks/payout/storeDetail-success.json");
             var payout = new InitializationService(client);
 
             var request = new StoreDetailRequest();
@@ -39,7 +39,7 @@ namespace Adyen.Test
         [TestMethod]
         public void ConfirmThirdPartySuccessTest()
         {
-            var client = CreateMockTestClientApiKeyBasedRequestAsync("Mocks/payout/modifyResponse-success.json");
+            var client = CreateMockTestClientApiKeyBasedRequestAsync("mocks/payout/modifyResponse-success.json");
             var payout = new ReviewingService(client);
 
             var request = new ModifyRequest();
@@ -52,7 +52,7 @@ namespace Adyen.Test
         [TestMethod]
         public void SubmitThirdPartySuccessTest()
         {
-            var client = CreateMockTestClientApiKeyBasedRequestAsync("Mocks/payout/submitResponse-success.json");
+            var client = CreateMockTestClientApiKeyBasedRequestAsync("mocks/payout/submitResponse-success.json");
             var payout = new InitializationService(client);
             var request = new SubmitRequest();
             var result = payout.SubmitThirdParty(request);
@@ -65,7 +65,7 @@ namespace Adyen.Test
         [TestMethod]
         public void DeclineThirdPartySuccessTest()
         {
-            var client = CreateMockTestClientApiKeyBasedRequestAsync("Mocks/payout/modifyResponse-success.json");
+            var client = CreateMockTestClientApiKeyBasedRequestAsync("mocks/payout/modifyResponse-success.json");
             var payout = new ReviewingService(client);
             var request = new ModifyRequest();
             var result = payout.DeclineThirdParty(request);
@@ -76,7 +76,7 @@ namespace Adyen.Test
         [TestMethod]
         public void PayoutSuccessTest()
         {
-            var client = CreateMockTestClientApiKeyBasedRequestAsync("Mocks/payout/payout-success.json");
+            var client = CreateMockTestClientApiKeyBasedRequestAsync("mocks/payout/payout-success.json");
             var payout = new InstantPayoutsService(client);
             var request = new PayoutRequest();
             var result = payout.Payout(request);

@@ -13,7 +13,7 @@ namespace Adyen.Test
         [TestMethod]
         public void TestAuthorisationSuccess()
         {
-            var mockPath = GetMockFilePath("Mocks/notification/authorisation-true.json");
+            var mockPath = GetMockFilePath("mocks/notification/authorisation-true.json");
             var jsonRequest = MockFileToString(mockPath);
             var webhookHandler = new WebhookHandler();
             var handleNotificationRequest = webhookHandler.HandleNotificationRequest(jsonRequest);
@@ -29,7 +29,7 @@ namespace Adyen.Test
         [TestMethod]
         public void TestCaptureSuccess()
         {
-            var mockPath = GetMockFilePath("Mocks/notification/capture-true.json");
+            var mockPath = GetMockFilePath("mocks/notification/capture-true.json");
             var jsonRequest = MockFileToString(mockPath);
             var webhookHandler = new WebhookHandler();
             var handleNotificationRequest = webhookHandler.HandleNotificationRequest(jsonRequest);
@@ -47,7 +47,7 @@ namespace Adyen.Test
         [TestMethod]
         public void TestCaptureFail()
         {
-            var mockPath = GetMockFilePath("Mocks/notification/capture-false.json");
+            var mockPath = GetMockFilePath("mocks/notification/capture-false.json");
             var jsonRequest = MockFileToString(mockPath);
             var webhookHandler = new WebhookHandler();
             var handleNotificationRequest = webhookHandler.HandleNotificationRequest(jsonRequest);
@@ -66,7 +66,7 @@ namespace Adyen.Test
         [TestMethod]
         public void TestRefundSuccess()
         {
-            var mockPath = GetMockFilePath("Mocks/notification/refund-true.json");
+            var mockPath = GetMockFilePath("mocks/notification/refund-true.json");
             var jsonRequest = MockFileToString(mockPath);
             var webhookHandler = new WebhookHandler();
             var handleNotificationRequest = webhookHandler.HandleNotificationRequest(jsonRequest);
@@ -85,7 +85,7 @@ namespace Adyen.Test
         [TestMethod]
         public void TestRefundFail()
         {
-            var mockPath = GetMockFilePath("Mocks/notification/refund-false.json");
+            var mockPath = GetMockFilePath("mocks/notification/refund-false.json");
             var jsonRequest = MockFileToString(mockPath);
             var webhookHandler = new WebhookHandler();
             var handleNotificationRequest = webhookHandler.HandleNotificationRequest(jsonRequest);

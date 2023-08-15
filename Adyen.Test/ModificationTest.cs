@@ -12,7 +12,7 @@ namespace Adyen.Test
         {
             var paymentResultPspReference = MockPaymentData.GetTestPspReferenceMocked();
             //Call authorization test
-            var client = CreateMockTestClientApiKeyBasedRequestAsync("Mocks/capture-success.json");
+            var client = CreateMockTestClientApiKeyBasedRequestAsync("mocks/capture-success.json");
             var modification = new PaymentService(client);
             //Send capture call with psp refernce
             var captureRequest = CreateCaptureTestRequest(paymentResultPspReference);
@@ -26,7 +26,7 @@ namespace Adyen.Test
         {
             var paymentResultPspReference = MockPaymentData.GetTestPspReferenceMocked();
             //Call authorization test
-            var client = CreateMockTestClientApiKeyBasedRequestAsync("Mocks/cancelOrRefund-received.json");
+            var client = CreateMockTestClientApiKeyBasedRequestAsync("mocks/cancelOrRefund-received.json");
             var modification = new PaymentService(client);
             var cancelOrRefundRequest = CreateCancelOrRefundTestRequest(pspReference: paymentResultPspReference);
             var cancelOrRefundResult = modification.CancelOrRefund(cancelOrRefundRequest);
@@ -38,7 +38,7 @@ namespace Adyen.Test
         {
             var paymentResultPspReference = MockPaymentData.GetTestPspReferenceMocked();
             //Call authorization test
-            var client = CreateMockTestClientApiKeyBasedRequestAsync("Mocks/refund-received.json");
+            var client = CreateMockTestClientApiKeyBasedRequestAsync("mocks/refund-received.json");
             var modification = new PaymentService(client);
             var refundRequest = CreateRefundTestRequest(pspReference: paymentResultPspReference);
             var refundResult = modification.Refund(refundRequest);
@@ -50,7 +50,7 @@ namespace Adyen.Test
         {
             var paymentResultPspReference = MockPaymentData.GetTestPspReferenceMocked();
             //Call authorization test
-            var client = CreateMockTestClientApiKeyBasedRequestAsync("Mocks/cancel-received.json");
+            var client = CreateMockTestClientApiKeyBasedRequestAsync("mocks/cancel-received.json");
             var modification = new PaymentService(client);
             var cancelRequest = CreateCancelTestRequest(pspReference: paymentResultPspReference);
             var cancelResult = modification.Cancel(cancelRequest);
@@ -62,7 +62,7 @@ namespace Adyen.Test
         {
             var paymentResultPspReference = MockPaymentData.GetTestPspReferenceMocked();
             //Call authorization test
-            var client = CreateMockTestClientApiKeyBasedRequestAsync("Mocks/adjustAuthorisation-received.json");
+            var client = CreateMockTestClientApiKeyBasedRequestAsync("mocks/adjustAuthorisation-received.json");
             var modification = new PaymentService(client);
             var authorisationRequest = CreateAdjustAuthorisationRequest(pspReference: paymentResultPspReference);
             var adjustAuthorisationResult = modification.AdjustAuthorisation(authorisationRequest);
@@ -118,7 +118,7 @@ namespace Adyen.Test
         [TestMethod]
         public void TestPendingRefundReceived()
         {
-            var client = CreateMockTestClientApiKeyBasedRequestAsync("Mocks/voidPendingRefund-received.json");
+            var client = CreateMockTestClientApiKeyBasedRequestAsync("mocks/voidPendingRefund-received.json");
             var modification = new PaymentService(client);
             var voidPendingRefundRequest = new VoidPendingRefundRequest();
             var modificationResult = modification.VoidPendingRefund(voidPendingRefundRequest);

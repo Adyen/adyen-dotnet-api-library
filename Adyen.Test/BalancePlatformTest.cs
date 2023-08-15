@@ -19,7 +19,7 @@ namespace Adyen.Test
         [TestMethod]
         public void GetAccountHoldersIdTest()
         {
-            var client = CreateMockTestClientApiKeyBasedRequestAsync("Mocks/balanceplatform/AccountHolder.json");
+            var client = CreateMockTestClientApiKeyBasedRequestAsync("mocks/balanceplatform/AccountHolder.json");
             var service = new AccountHoldersService(client);
             
             var response = service.GetAccountHolder("AH32272223222B5CM4MWJ892H");
@@ -33,7 +33,7 @@ namespace Adyen.Test
         [TestMethod]
         public void PostAccountHoldersTest()
         {
-            var client = CreateMockTestClientApiKeyBasedRequestAsync("Mocks/balanceplatform/AccountHolder.json");
+            var client = CreateMockTestClientApiKeyBasedRequestAsync("mocks/balanceplatform/AccountHolder.json");
             var service = new AccountHoldersService(client);
             var accountHolder = new AccountHolderInfo()
             {
@@ -50,7 +50,7 @@ namespace Adyen.Test
         [TestMethod]
         public void PatchAccountHoldersIdTest()
         {
-            var client = CreateMockTestClientApiKeyBasedRequestAsync("Mocks/balanceplatform/AccountHolder.json");
+            var client = CreateMockTestClientApiKeyBasedRequestAsync("mocks/balanceplatform/AccountHolder.json");
             var service = new AccountHoldersService(client);
             var accountHolder = new AccountHolder()
             {
@@ -67,7 +67,7 @@ namespace Adyen.Test
         [TestMethod]
         public void GetAccountHoldersIdBalanceAccountsAsyncTest()
         {
-            var client = CreateMockTestClientApiKeyBasedRequestAsync("Mocks/balanceplatform/PaginatedBalanceAccountsResponse.json");
+            var client = CreateMockTestClientApiKeyBasedRequestAsync("mocks/balanceplatform/PaginatedBalanceAccountsResponse.json");
             var service = new AccountHoldersService(client);
             
             var response = service.GetAllBalanceAccountsOfAccountHolderAsync("id", offset: 1, limit: 3).Result;
@@ -86,7 +86,7 @@ namespace Adyen.Test
         [TestMethod]
         public void GetBalanceAccountsIdTest()
         {
-            var client = CreateMockTestClientApiKeyBasedRequestAsync("Mocks/balanceplatform/BalanceAccount.json");
+            var client = CreateMockTestClientApiKeyBasedRequestAsync("mocks/balanceplatform/BalanceAccount.json");
             var service = new  BalanceAccountsService(client);
             
             var response = service.GetBalanceAccount("AH32272223222B5CM4MWJ892H");
@@ -100,7 +100,7 @@ namespace Adyen.Test
         [TestMethod]
         public void PostBalanceAccountsTest()
         {
-            var client = CreateMockTestClientApiKeyBasedRequestAsync("Mocks/balanceplatform/BalanceAccount.json");
+            var client = CreateMockTestClientApiKeyBasedRequestAsync("mocks/balanceplatform/BalanceAccount.json");
             var service = new BalanceAccountsService(client);
             var balanceAccountInfo = new BalanceAccountInfo()
             {
@@ -117,7 +117,7 @@ namespace Adyen.Test
         [TestMethod]
         public void PatchBalanceAccountsIdAsyncTest()
         {
-            var client = CreateMockTestClientApiKeyBasedRequestAsync("Mocks/balanceplatform/BalanceAccount.json");
+            var client = CreateMockTestClientApiKeyBasedRequestAsync("mocks/balanceplatform/BalanceAccount.json");
             var service = new BalanceAccountsService(client);
             var response = service.UpdateBalanceAccountAsync("BA3227C223222B5BLP6JQC3FD", new BalanceAccountUpdateRequest()).Result;
             Assert.AreEqual(response.Status, BalanceAccount.StatusEnum.Active);
@@ -130,7 +130,7 @@ namespace Adyen.Test
         [TestMethod]
         public void PostBalanceAccountsBalanceAccountIdSweepsTest()
         {
-            var client = CreateMockTestClientApiKeyBasedRequestAsync("Mocks/balanceplatform/SweepConfiguration.json");
+            var client = CreateMockTestClientApiKeyBasedRequestAsync("mocks/balanceplatform/SweepConfiguration.json");
             var service = new BalanceAccountsService(client);
             
             var response = service.CreateSweep("1245yhgeswkrw", new SweepConfigurationV2());
@@ -144,7 +144,7 @@ namespace Adyen.Test
         [TestMethod]
         public void GetBalanceAccountsBalanceAccountIdSweepsTest()
         {
-            var client = CreateMockTestClientApiKeyBasedRequestAsync("Mocks/balanceplatform/BalanceSweepConfigurationsResponse.json");
+            var client = CreateMockTestClientApiKeyBasedRequestAsync("mocks/balanceplatform/BalanceSweepConfigurationsResponse.json");
             var service = new BalanceAccountsService(client);
             
             var response = service.GetAllSweepsForBalanceAccount("balanceAccountId");
@@ -165,7 +165,7 @@ namespace Adyen.Test
         [TestMethod]
         public void PatchBalanceAccountsBalanceAccountIdSweepsSweepIdTest()
         {
-            var client = CreateMockTestClientApiKeyBasedRequestAsync("Mocks/balanceplatform/SweepConfiguration.json");
+            var client = CreateMockTestClientApiKeyBasedRequestAsync("mocks/balanceplatform/SweepConfiguration.json");
             var service = new BalanceAccountsService(client);
             
             var response = service.UpdateSweep("balanceID", "sweepId",new SweepConfigurationV2());
@@ -179,7 +179,7 @@ namespace Adyen.Test
         [TestMethod]
         public void DeleteBalanceAccountsBalanceAccountIdSweepsSweepIdTest()
         {
-            var client = CreateMockTestClientApiKeyBasedRequestAsync("Mocks/balanceplatform/SweepConfiguration.json");
+            var client = CreateMockTestClientApiKeyBasedRequestAsync("mocks/balanceplatform/SweepConfiguration.json");
             var service = new BalanceAccountsService(client);
             service.DeleteSweep("balanceID", "sweepId");
         }
@@ -190,7 +190,7 @@ namespace Adyen.Test
         [TestMethod]
         public void GetBalanceAccountsIdPaymentInstrumentsTest()
         {
-            var client = CreateMockTestClientApiKeyBasedRequestAsync("Mocks/balanceplatform/PaginatedPaymentInstrumentsResponse.json");
+            var client = CreateMockTestClientApiKeyBasedRequestAsync("mocks/balanceplatform/PaginatedPaymentInstrumentsResponse.json");
             var service = new BalanceAccountsService(client);
             
             var response = service.GetAllPaymentInstrumentsForBalanceAccount("balanceID");
@@ -207,7 +207,7 @@ namespace Adyen.Test
         [TestMethod]
         public void GetBalancePlatformsIdTest()
         {
-            var client = CreateMockTestClientApiKeyBasedRequestAsync("Mocks/balanceplatform/BalancePlatform.json");
+            var client = CreateMockTestClientApiKeyBasedRequestAsync("mocks/balanceplatform/BalancePlatform.json");
             var service = new PlatformService(client);
             
             var response = service.GetBalancePlatform("uniqueIdentifier");
@@ -221,7 +221,7 @@ namespace Adyen.Test
         [TestMethod]
         public void GetBalancePlatformsIdAccountHoldersTest()
         {
-            var client = CreateMockTestClientApiKeyBasedRequestAsync("Mocks/balanceplatform/PaginatedAccountHoldersResponse.json");
+            var client = CreateMockTestClientApiKeyBasedRequestAsync("mocks/balanceplatform/PaginatedAccountHoldersResponse.json");
             var service = new PlatformService(client);
             
             var response = service.GetAllAccountHoldersUnderBalancePlatform("uniqueIdentifier");
@@ -239,7 +239,7 @@ namespace Adyen.Test
         [TestMethod]
         public void GetPaymentInstrumentGroupsIdTest()
         {
-            var client = CreateMockTestClientApiKeyBasedRequestAsync("Mocks/balanceplatform/PaymentInstrumentGroup.json");
+            var client = CreateMockTestClientApiKeyBasedRequestAsync("mocks/balanceplatform/PaymentInstrumentGroup.json");
             var service = new PaymentInstrumentGroupsService(client);
             
             var response = service.GetPaymentInstrumentGroup("uniqueIdentifier");
@@ -253,7 +253,7 @@ namespace Adyen.Test
         [TestMethod]
         public void PostPaymentInstrumentGroupsTest()
         {
-            var client = CreateMockTestClientApiKeyBasedRequestAsync("Mocks/balanceplatform/PaymentInstrumentGroup.json");
+            var client = CreateMockTestClientApiKeyBasedRequestAsync("mocks/balanceplatform/PaymentInstrumentGroup.json");
             var service = new PaymentInstrumentGroupsService(client);
             
             var response = service.CreatePaymentInstrumentGroup(new PaymentInstrumentGroupInfo());
@@ -267,7 +267,7 @@ namespace Adyen.Test
         [TestMethod]
         public void GetPaymentInstrumentGroupsIdTransactionRulesTest()
         {
-            var client = CreateMockTestClientApiKeyBasedRequestAsync("Mocks/balanceplatform/TransactionRulesResponse.json");
+            var client = CreateMockTestClientApiKeyBasedRequestAsync("mocks/balanceplatform/TransactionRulesResponse.json");
             var service = new PaymentInstrumentGroupsService(client);
             
             var response = service.GetAllTransactionRulesForPaymentInstrumentGroup("id");
@@ -285,7 +285,7 @@ namespace Adyen.Test
         [TestMethod]
         public void PostPaymentInstrumentsTest()
         {
-            var client = CreateMockTestClientApiKeyBasedRequestAsync("Mocks/balanceplatform/PaymentInstrument.json");
+            var client = CreateMockTestClientApiKeyBasedRequestAsync("mocks/balanceplatform/PaymentInstrument.json");
             var service = new PaymentInstrumentsService(client);
             
             var response = service.CreatePaymentInstrument(new PaymentInstrumentInfo());
@@ -299,7 +299,7 @@ namespace Adyen.Test
         [TestMethod]
         public void PatchPaymentInstrumentsIdTest()
         {
-            var client = CreateMockTestClientApiKeyBasedRequestAsync("Mocks/balanceplatform/PaymentInstrument.json");
+            var client = CreateMockTestClientApiKeyBasedRequestAsync("mocks/balanceplatform/PaymentInstrument.json");
             var service = new PaymentInstrumentsService(client);
             
             var response = service.UpdatePaymentInstrument("id", new PaymentInstrumentUpdateRequest());
@@ -313,7 +313,7 @@ namespace Adyen.Test
         [TestMethod]
         public void GetPaymentInstrumentsIdTest()
         {
-            var client = CreateMockTestClientApiKeyBasedRequestAsync("Mocks/balanceplatform/PaymentInstrument.json");
+            var client = CreateMockTestClientApiKeyBasedRequestAsync("mocks/balanceplatform/PaymentInstrument.json");
             var service = new PaymentInstrumentsService(client);
             
             var response = service.GetPaymentInstrument("id");
@@ -327,7 +327,7 @@ namespace Adyen.Test
         [TestMethod]
         public void GetPaymentInstrumentsIdTransactionRulesTest()
         {
-            var client = CreateMockTestClientApiKeyBasedRequestAsync("Mocks/balanceplatform/TransactionRulesResponse.json");
+            var client = CreateMockTestClientApiKeyBasedRequestAsync("mocks/balanceplatform/TransactionRulesResponse.json");
             var service = new PaymentInstrumentsService(client);
             
             var response = service.GetAllTransactionRulesForPaymentInstrument("id");
@@ -345,7 +345,7 @@ namespace Adyen.Test
         [TestMethod]
         public void PostTransactionRulesTest()
         {
-            var client = CreateMockTestClientApiKeyBasedRequestAsync("Mocks/balanceplatform/TransactionRule.json");
+            var client = CreateMockTestClientApiKeyBasedRequestAsync("mocks/balanceplatform/TransactionRule.json");
             var service = new TransactionRulesService(client);
             
             var response = service.CreateTransactionRule(new TransactionRuleInfo());
@@ -360,7 +360,7 @@ namespace Adyen.Test
         [TestMethod]
         public void PatchTransactionRulesTransactionRuleIdTest()
         {
-            var client = CreateMockTestClientApiKeyBasedRequestAsync("Mocks/balanceplatform/TransactionRule.json");
+            var client = CreateMockTestClientApiKeyBasedRequestAsync("mocks/balanceplatform/TransactionRule.json");
             var service = new TransactionRulesService(client);
             
             var response = service.UpdateTransactionRule("transactionRuleId", new TransactionRuleInfo());
@@ -375,7 +375,7 @@ namespace Adyen.Test
         [TestMethod]
         public void GetTransactionRulesTransactionRuleIdTest()
         {
-            var client = CreateMockTestClientApiKeyBasedRequestAsync("Mocks/balanceplatform/TransactionRuleResponse.json");
+            var client = CreateMockTestClientApiKeyBasedRequestAsync("mocks/balanceplatform/TransactionRuleResponse.json");
             var service = new TransactionRulesService(client);
             
             var response = service.GetTransactionRule("transactionRuleId");
@@ -389,7 +389,7 @@ namespace Adyen.Test
         [TestMethod]
         public void DeleteTransactionRulesTransactionRuleIdTest()
         {
-            var client = CreateMockTestClientApiKeyBasedRequestAsync("Mocks/balanceplatform/TransactionRuleResponse.json");
+            var client = CreateMockTestClientApiKeyBasedRequestAsync("mocks/balanceplatform/TransactionRuleResponse.json");
             var service = new TransactionRulesService(client);
             var response = service.DeleteTransactionRule("transactionRuleId");
             
@@ -403,7 +403,7 @@ namespace Adyen.Test
         [TestMethod]
         public void ValidateBankAccountTest()
         {
-            var client = CreateMockTestClientApiKeyBasedRequestAsync("Mocks/balanceplatform/TransactionRuleResponse.json");
+            var client = CreateMockTestClientApiKeyBasedRequestAsync("mocks/balanceplatform/TransactionRuleResponse.json");
             var service = new BankAccountValidationService(client);
             var bankAccountIdentificationValidationRequest = new BankAccountIdentificationValidationRequest
             {

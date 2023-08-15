@@ -29,7 +29,7 @@ namespace Adyen.Test
                //encrypt the request using encryption credentials
                 var paymentRequest = MockPosApiRequest.CreatePosPaymentRequest();
                 //create a mock client
-                var client = CreateMockTestClientPosLocalApiRequest("Mocks/terminalapi/pospayment-encrypted-success.json");
+                var client = CreateMockTestClientPosLocalApiRequest("mocks/terminalapi/pospayment-encrypted-success.json");
                 var posPaymentLocalApi = new PosPaymentLocalApi(client);
                 var configEndpoint = posPaymentLocalApi.Client.Config.LocalTerminalApiEndpoint;
                 var saleToPoiResponse = posPaymentLocalApi.TerminalApiLocal(paymentRequest, _encryptionCredentialDetails);
@@ -50,7 +50,7 @@ namespace Adyen.Test
                 //encrypt the request using encryption credentials
                 var paymentRequest = MockPosApiRequest.CreatePosPaymentRequest();
                 //create a mock client
-                var client = CreateMockTestClientPosLocalApiRequest("Mocks/terminalapi/pospayment-encrypted-success.json");
+                var client = CreateMockTestClientPosLocalApiRequest("mocks/terminalapi/pospayment-encrypted-success.json");
                 var posPaymentLocalApi = new PosPaymentLocalApi(client);
                 var configEndpoint = posPaymentLocalApi.Client.Config.LocalTerminalApiEndpoint;
                 var saleToPoiResponse = posPaymentLocalApi.TerminalApiLocalAsync(paymentRequest, _encryptionCredentialDetails);

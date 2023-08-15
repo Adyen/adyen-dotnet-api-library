@@ -12,7 +12,7 @@ namespace Adyen.Test
         [TestMethod]
         public void TestAuthoriseBasicAuthenticationSuccessMockedResponse()
         {
-            var paymentResult = CreatePaymentResultFromFile("Mocks/authorise-success.json");
+            var paymentResult = CreatePaymentResultFromFile("mocks/authorise-success.json");
             Assert.AreEqual(paymentResult.ResultCode, PaymentResult.ResultCodeEnum.Authorised);
             Assert.AreEqual("411111", GetAdditionalData(paymentResult.AdditionalData, "cardBin"));
             Assert.AreEqual("43733", GetAdditionalData(paymentResult.AdditionalData, "authCode"));
@@ -24,7 +24,7 @@ namespace Adyen.Test
         [TestMethod]
         public void TestAuthoriseApiKeyBasedSuccessMockedResponse()
         {
-            var paymentResult = CreatePaymentApiKeyBasedResultFromFile("Mocks/authorise-success.json");
+            var paymentResult = CreatePaymentApiKeyBasedResultFromFile("mocks/authorise-success.json");
             Assert.AreEqual(paymentResult.ResultCode, PaymentResult.ResultCodeEnum.Authorised);
             Assert.AreEqual("411111", GetAdditionalData(paymentResult.AdditionalData, "cardBin"));
             Assert.AreEqual("43733", GetAdditionalData(paymentResult.AdditionalData, "authCode"));
@@ -36,7 +36,7 @@ namespace Adyen.Test
         [TestMethod]
         public void TestAuthoriseSuccess3DMocked()
         {
-            var client = CreateMockTestClientApiKeyBasedRequestAsync("Mocks/authorise-success-3d.json");
+            var client = CreateMockTestClientApiKeyBasedRequestAsync("mocks/authorise-success-3d.json");
             var payment = new PaymentService(client);
             var paymentRequest = MockPaymentData.CreateFullPaymentRequest();
             var paymentResult = payment.Authorise(paymentRequest);
@@ -48,7 +48,7 @@ namespace Adyen.Test
         [TestMethod]
         public void TestAuthorise3DS2IdentifyShopperMocked()
         {
-            var client = CreateMockTestClientApiKeyBasedRequestAsync("Mocks/threedsecure2/authorise-response-identifyshopper.json");
+            var client = CreateMockTestClientApiKeyBasedRequestAsync("mocks/threedsecure2/authorise-response-identifyshopper.json");
             var payment = new PaymentService(client);
             var paymentRequest = MockPaymentData.CreateFullPaymentRequest3DS2();
             var paymentResult = payment.Authorise3ds2(paymentRequest);
@@ -64,7 +64,7 @@ namespace Adyen.Test
         [TestMethod]
         public void TestAuthorise3DS2ChallengeShopperMocked()
         {
-            var client = CreateMockTestClientApiKeyBasedRequestAsync("Mocks/threedsecure2/authorise3ds2-response-challengeshopper.json");
+            var client = CreateMockTestClientApiKeyBasedRequestAsync("mocks/threedsecure2/authorise3ds2-response-challengeshopper.json");
             var payment = new PaymentService(client);
             var paymentRequest = MockPaymentData.CreateFullPaymentRequest3DS2();
             var paymentResult = payment.Authorise3ds2(paymentRequest);
@@ -86,7 +86,7 @@ namespace Adyen.Test
         [TestMethod]
         public void TestAuthorise3DS2SuccessMocked()
         {
-            var client = CreateMockTestClientApiKeyBasedRequestAsync("Mocks/threedsecure2/authorise3ds2-success.json");
+            var client = CreateMockTestClientApiKeyBasedRequestAsync("mocks/threedsecure2/authorise3ds2-success.json");
             var payment = new PaymentService(client);
             var paymentRequest = MockPaymentData.CreateFullPaymentRequest3DS2();
             var paymentResult = payment.Authorise3ds2(paymentRequest);
@@ -98,7 +98,7 @@ namespace Adyen.Test
         [TestMethod]
         public void TestAuthorise3DSuccessMocked()
         {
-            var client = CreateMockTestClientApiKeyBasedRequestAsync("Mocks/authorise3d-success.json");
+            var client = CreateMockTestClientApiKeyBasedRequestAsync("mocks/authorise3d-success.json");
             var payment = new PaymentService(client);
             var paymentRequest = MockPaymentData.CreateFullPaymentRequest3D();
             var paymentResult = payment.Authorise3d(paymentRequest);
@@ -109,21 +109,21 @@ namespace Adyen.Test
         [TestMethod]
         public void TestAuthoriseErrorCvcDeclinedMocked()
         {
-            var paymentResult = CreatePaymentResultFromFile("Mocks/authorise-error-cvc-declined.json");
+            var paymentResult = CreatePaymentResultFromFile("mocks/authorise-error-cvc-declined.json");
             Assert.AreEqual(PaymentResult.ResultCodeEnum.Refused, paymentResult.ResultCode);
         }
 
         [TestMethod]
         public void TestAuthoriseCseSuccessMocked()
         {
-            var paymentResult = CreatePaymentResultFromFile("Mocks/authorise-success-cse.json");
+            var paymentResult = CreatePaymentResultFromFile("mocks/authorise-success-cse.json");
             Assert.AreEqual(PaymentResult.ResultCodeEnum.Authorised, paymentResult.ResultCode);
         }
         [Ignore] // Fix this test -> not sure how to add additionalDataOpenInvoice class to paymentrequest
         [TestMethod]
         public void TestOpenInvoice()
         {
-            var client = CreateMockTestClientRequest("Mocks/authorise-success-klarna.json");
+            var client = CreateMockTestClientRequest("mocks/authorise-success-klarna.json");
             var payment = new PaymentService(client);
             var paymentRequest = MockOpenInvoicePayment.CreateOpenInvoicePaymentRequest();
             var paymentResult = payment.Authorise(paymentRequest);
@@ -161,7 +161,7 @@ namespace Adyen.Test
         [TestMethod]
         public void TestAuthenticationResult3ds1Success()
         {
-            var client = CreateMockTestClientApiKeyBasedRequestAsync("Mocks/authentication-result-success-3ds1.json");
+            var client = CreateMockTestClientApiKeyBasedRequestAsync("mocks/authentication-result-success-3ds1.json");
             var payment = new PaymentService(client);
             var authenticationResultRequest = new AuthenticationResultRequest();
             var authenticationResultResponse = payment.GetAuthenticationResult(authenticationResultRequest);
@@ -173,7 +173,7 @@ namespace Adyen.Test
         [TestMethod]
         public void TestAuthenticationResult3ds2Success()
         {
-            var client = CreateMockTestClientApiKeyBasedRequestAsync("Mocks/authentication-result-success-3ds2.json");
+            var client = CreateMockTestClientApiKeyBasedRequestAsync("mocks/authentication-result-success-3ds2.json");
             var payment = new PaymentService(client);
             var authenticationResultRequest = new AuthenticationResultRequest();
             var authenticationResultResponse = payment.GetAuthenticationResult(authenticationResultRequest);
@@ -185,7 +185,7 @@ namespace Adyen.Test
         [TestMethod]
         public void TestRetrieve3ds2ResultSuccess()
         {
-            var client = CreateMockTestClientApiKeyBasedRequestAsync("Mocks/ThreeDS2Result.json");
+            var client = CreateMockTestClientApiKeyBasedRequestAsync("mocks/ThreeDS2Result.json");
             var payment = new PaymentService(client);
             var authenticationResultRequest = new AuthenticationResultRequest();
             var ThreeDSTwoResult = payment.GetAuthenticationResult(authenticationResultRequest);
