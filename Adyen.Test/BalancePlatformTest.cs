@@ -150,8 +150,8 @@ namespace Adyen.Test
             var response = service.GetAllSweepsForBalanceAccount("balanceAccountId");
             Assert.AreEqual(response.Sweeps[0].Status, SweepConfigurationV2.StatusEnum.Active);
             Assert.AreEqual(response.Sweeps[0].Id, "SWPC4227C224555B5FTD2NT2JV4WN5");
-            var schedule = response.Sweeps[0].Schedule.GetCronSweepSchedule();
-            Assert.AreEqual(schedule.Type, CronSweepSchedule.TypeEnum.Daily);
+            var schedule = response.Sweeps[0].Schedule.Type;
+            Assert.AreEqual(schedule, SweepSchedule.TypeEnum.Daily);
             ClientInterfaceMock.Verify(mock => mock.RequestAsync(
                 "https://balanceplatform-api-test.adyen.com/bcl/v2/balanceAccounts/balanceAccountId/sweeps",
                 null,
