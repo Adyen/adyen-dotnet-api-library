@@ -11,7 +11,7 @@ namespace Adyen.Test
         [TestMethod]
         public void BalanceTransferTest()
         {
-            var client = CreateMockTestClientApiKeyBasedRequestAsync("Mocks/balance-control-transfer.json");
+            var client = CreateMockTestClientApiKeyBasedRequestAsync("mocks/balance-control-transfer.json");
             var service = new BalanceControlService(client);
             var response = service.BalanceTransfer(new BalanceTransferRequest());
             Assert.AreEqual(response.CreatedAt, new DateTime(2022,01, 24));

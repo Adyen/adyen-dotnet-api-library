@@ -10,7 +10,7 @@ namespace Adyen.Test
         [TestMethod]
         public void TestRequestSubjectErasure()
         {
-            var client = CreateMockTestClientApiKeyBasedRequestAsync("Mocks/data-protection-response.json");
+            var client = CreateMockTestClientApiKeyBasedRequestAsync("mocks/data-protection-response.json");
             var service = new DataProtectionService(client);
             var response = service.RequestSubjectErasure(new SubjectErasureByPspReferenceRequest());
             Assert.AreEqual(response.Result, SubjectErasureResponse.ResultEnum.ACTIVERECURRINGTOKENEXISTS);
