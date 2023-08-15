@@ -176,7 +176,7 @@ namespace Adyen.Terminal
 
 ## Using the Local Terminal API
 The request and response payloads are identical to the Cloud Terminal API, however an additional encryption details object is required to send the requests.
-~~~~ csharp
+```c#
 var encryptionCredentialDetails = new EncryptionCredentialDetails
     {
         AdyenCryptoVersion = 1,
@@ -191,12 +191,12 @@ var config = new Config
 var client = new Client(config);
 var posPaymentLocalApi = new PosPaymentLocalApi(client);
 var saleToPOIResponse = posPaymentLocalApi.TerminalApiLocal(paymentRequest, encryptionCredentialDetails);
-~~~~
+```
 To parse the terminal API notifications, please use the following custom deserializer. This method will throw an exception for non-notification requests.
-~~~~ csharp
+```c#
 var serializer = new SaleToPoiMessageSerializer();
 var saleToPoiRequest = serializer.DeserializeNotification(your_terminal_notification);
-~~~~
+```
 
 ## Feedback
 We value your input! Help us enhance our API Libraries and improve the integration experience by providing your feedback. Please take a moment to fill out [our feedback form](https://forms.gle/A4EERrR6CWgKWe5r9) to share your thoughts, suggestions or ideas. 
