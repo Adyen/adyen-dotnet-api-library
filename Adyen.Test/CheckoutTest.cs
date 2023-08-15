@@ -675,9 +675,21 @@ namespace Adyen.Test
         public void ApplePayDetailsDeserializationTest()
         {
             var json = "{\"type\": \"applepay\",\"applePayToken\": \"VNRWtuNlNEWkRCSm1xWndjMDFFbktkQU...\"}";
-            var result = Util.JsonOperation.Deserialize<ApplePayDetails>(json);
-            Assert.IsInstanceOfType<ApplePayDetails>(result);
-            Assert.AreEqual(result.Type, ApplePayDetails.TypeEnum.Applepay);
+            var result = CheckoutPaymentMethod.FromJson(json);
+            Assert.IsInstanceOfType<ApplePayDetails>(result.ActualInstance);
+            Assert.AreEqual(result.GetApplePayDetails().Type, ApplePayDetails.TypeEnum.Applepay);
+        }
+
+        [TestMethod]
+        public void CheckoutPaymentMethodDeserializationWithUnknownValuesTest()
+        {
+            var json = "{\"type\": \"applepay\",\"someValue\": \"notInSpec\",\"applePayToken\": \"VNRWtuNlNEWkRCSm1xWndjMDFFbktkQU...\"}";
+            var result = CheckoutPaymentMethod.FromJson(json);
+            var json2 = "{\"type\": \"paywithgoogle\",\"someValue\": \"notInSpec\",\"googlePayToken\": \"==Payload as retrieved from Google Pay response==\"}";
+            var result2 = CheckoutPaymentMethod.FromJson(json2);
+            Assert.IsInstanceOfType<ApplePayDetails>(result.ActualInstance);
+            Assert.IsInstanceOfType<PayWithGoogleDetails>(result2.ActualInstance);
+            Assert.AreEqual(result2.GetPayWithGoogleDetails().GooglePayToken, "==Payload as retrieved from Google Pay response==");
         }
 
         [TestMethod]

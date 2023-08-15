@@ -300,211 +300,83 @@ namespace Adyen.Model.Checkout
             }
             int match = 0;
             List<string> matchedTypes = new List<string>();
-            var type = (string)JObject.Parse(jsonString)["type"];
-
+            JToken typeToken = JObject.Parse(jsonString).GetValue("type");
+            string type = typeToken?.Value<string>();
+            // Throw exception if jsonString does not contain type param
+            if (type == null)
+            {
+                throw new InvalidDataException("JsonString does not contain required enum type for deserialization.");
+            }
             try
             {
-                // if it does not contains "AdditionalProperties", use SerializerSettings to deserialize
-                if (typeof(CheckoutAwaitAction).GetProperty("AdditionalProperties") == null)
+                // Check if the jsonString type enum matches the CheckoutAwaitAction type enums
+                if (ContainsValue<CheckoutAwaitAction.TypeEnum>(type))
                 {
                     newPaymentResponseAction = new PaymentResponseAction(JsonConvert.DeserializeObject<CheckoutAwaitAction>(jsonString, PaymentResponseAction.SerializerSettings));
-                }
-                else
-                {
-                    newPaymentResponseAction = new PaymentResponseAction(JsonConvert.DeserializeObject<CheckoutAwaitAction>(jsonString, PaymentResponseAction.AdditionalPropertiesSerializerSettings));
-                }
-                if (type != null || JsonConvert.SerializeObject((CheckoutAwaitAction.TypeEnum) 1).Contains(type))
-                {
                     matchedTypes.Add("CheckoutAwaitAction");
                     match++;
                 }
-            }
-            catch (Exception ex)
-            {
-                if (!(ex is JsonSerializationException))
-                {
-                    throw new Exception(string.Format("Failed to deserialize `{0}` into CheckoutThreeDS2Action: {1}", jsonString, ex.ToString()));
-                }
-            }
-
-            try
-            {
-                // if it does not contains "AdditionalProperties", use SerializerSettings to deserialize
-                if (typeof(CheckoutDelegatedAuthenticationAction).GetProperty("AdditionalProperties") == null)
+                // Check if the jsonString type enum matches the CheckoutDelegatedAuthenticationAction type enums
+                if (ContainsValue<CheckoutDelegatedAuthenticationAction.TypeEnum>(type))
                 {
                     newPaymentResponseAction = new PaymentResponseAction(JsonConvert.DeserializeObject<CheckoutDelegatedAuthenticationAction>(jsonString, PaymentResponseAction.SerializerSettings));
-                }
-                else
-                {
-                    newPaymentResponseAction = new PaymentResponseAction(JsonConvert.DeserializeObject<CheckoutDelegatedAuthenticationAction>(jsonString, PaymentResponseAction.AdditionalPropertiesSerializerSettings));
-                }
-                if (type != null || JsonConvert.SerializeObject((CheckoutDelegatedAuthenticationAction.TypeEnum) 1).Contains(type))
-                {
                     matchedTypes.Add("CheckoutDelegatedAuthenticationAction");
                     match++;
                 }
-            }
-            catch (Exception ex)
-            {
-                if (!(ex is JsonSerializationException))
-                {
-                    throw new Exception(string.Format("Failed to deserialize `{0}` into CheckoutThreeDS2Action: {1}", jsonString, ex.ToString()));
-                }
-            }
-
-            try
-            {
-                // if it does not contains "AdditionalProperties", use SerializerSettings to deserialize
-                if (typeof(CheckoutNativeRedirectAction).GetProperty("AdditionalProperties") == null)
+                // Check if the jsonString type enum matches the CheckoutNativeRedirectAction type enums
+                if (ContainsValue<CheckoutNativeRedirectAction.TypeEnum>(type))
                 {
                     newPaymentResponseAction = new PaymentResponseAction(JsonConvert.DeserializeObject<CheckoutNativeRedirectAction>(jsonString, PaymentResponseAction.SerializerSettings));
-                }
-                else
-                {
-                    newPaymentResponseAction = new PaymentResponseAction(JsonConvert.DeserializeObject<CheckoutNativeRedirectAction>(jsonString, PaymentResponseAction.AdditionalPropertiesSerializerSettings));
-                }
-                if (type != null || JsonConvert.SerializeObject((CheckoutNativeRedirectAction.TypeEnum) 1).Contains(type))
-                {
                     matchedTypes.Add("CheckoutNativeRedirectAction");
                     match++;
                 }
-            }
-            catch (Exception ex)
-            {
-                if (!(ex is JsonSerializationException))
-                {
-                    throw new Exception(string.Format("Failed to deserialize `{0}` into CheckoutThreeDS2Action: {1}", jsonString, ex.ToString()));
-                }
-            }
-
-            try
-            {
-                // if it does not contains "AdditionalProperties", use SerializerSettings to deserialize
-                if (typeof(CheckoutQrCodeAction).GetProperty("AdditionalProperties") == null)
+                // Check if the jsonString type enum matches the CheckoutQrCodeAction type enums
+                if (ContainsValue<CheckoutQrCodeAction.TypeEnum>(type))
                 {
                     newPaymentResponseAction = new PaymentResponseAction(JsonConvert.DeserializeObject<CheckoutQrCodeAction>(jsonString, PaymentResponseAction.SerializerSettings));
-                }
-                else
-                {
-                    newPaymentResponseAction = new PaymentResponseAction(JsonConvert.DeserializeObject<CheckoutQrCodeAction>(jsonString, PaymentResponseAction.AdditionalPropertiesSerializerSettings));
-                }
-                if (type != null || JsonConvert.SerializeObject((CheckoutQrCodeAction.TypeEnum) 1).Contains(type))
-                {
                     matchedTypes.Add("CheckoutQrCodeAction");
                     match++;
                 }
-            }
-            catch (Exception ex)
-            {
-                if (!(ex is JsonSerializationException))
-                {
-                    throw new Exception(string.Format("Failed to deserialize `{0}` into CheckoutThreeDS2Action: {1}", jsonString, ex.ToString()));
-                }
-            }
-
-            try
-            {
-                // if it does not contains "AdditionalProperties", use SerializerSettings to deserialize
-                if (typeof(CheckoutRedirectAction).GetProperty("AdditionalProperties") == null)
+                // Check if the jsonString type enum matches the CheckoutRedirectAction type enums
+                if (ContainsValue<CheckoutRedirectAction.TypeEnum>(type))
                 {
                     newPaymentResponseAction = new PaymentResponseAction(JsonConvert.DeserializeObject<CheckoutRedirectAction>(jsonString, PaymentResponseAction.SerializerSettings));
-                }
-                else
-                {
-                    newPaymentResponseAction = new PaymentResponseAction(JsonConvert.DeserializeObject<CheckoutRedirectAction>(jsonString, PaymentResponseAction.AdditionalPropertiesSerializerSettings));
-                }
-                if (type != null || JsonConvert.SerializeObject((CheckoutRedirectAction.TypeEnum) 1).Contains(type))
-                {
                     matchedTypes.Add("CheckoutRedirectAction");
                     match++;
                 }
-            }
-            catch (Exception ex)
-            {
-                if (!(ex is JsonSerializationException))
-                {
-                    throw new Exception(string.Format("Failed to deserialize `{0}` into CheckoutThreeDS2Action: {1}", jsonString, ex.ToString()));
-                }
-            }
-
-            try
-            {
-                // if it does not contains "AdditionalProperties", use SerializerSettings to deserialize
-                if (typeof(CheckoutSDKAction).GetProperty("AdditionalProperties") == null)
+                // Check if the jsonString type enum matches the CheckoutSDKAction type enums
+                if (ContainsValue<CheckoutSDKAction.TypeEnum>(type))
                 {
                     newPaymentResponseAction = new PaymentResponseAction(JsonConvert.DeserializeObject<CheckoutSDKAction>(jsonString, PaymentResponseAction.SerializerSettings));
-                }
-                else
-                {
-                    newPaymentResponseAction = new PaymentResponseAction(JsonConvert.DeserializeObject<CheckoutSDKAction>(jsonString, PaymentResponseAction.AdditionalPropertiesSerializerSettings));
-                }
-                if (type != null || JsonConvert.SerializeObject((CheckoutSDKAction.TypeEnum) 1).Contains(type))
-                {
                     matchedTypes.Add("CheckoutSDKAction");
                     match++;
                 }
-            }
-            catch (Exception ex)
-            {
-                if (!(ex is JsonSerializationException))
-                {
-                    throw new Exception(string.Format("Failed to deserialize `{0}` into CheckoutThreeDS2Action: {1}", jsonString, ex.ToString()));
-                }
-            }
-
-            try
-            {
-                // if it does not contains "AdditionalProperties", use SerializerSettings to deserialize
-                if (typeof(CheckoutThreeDS2Action).GetProperty("AdditionalProperties") == null)
+                // Check if the jsonString type enum matches the CheckoutThreeDS2Action type enums
+                if (ContainsValue<CheckoutThreeDS2Action.TypeEnum>(type))
                 {
                     newPaymentResponseAction = new PaymentResponseAction(JsonConvert.DeserializeObject<CheckoutThreeDS2Action>(jsonString, PaymentResponseAction.SerializerSettings));
-                }
-                else
-                {
-                    newPaymentResponseAction = new PaymentResponseAction(JsonConvert.DeserializeObject<CheckoutThreeDS2Action>(jsonString, PaymentResponseAction.AdditionalPropertiesSerializerSettings));
-                }
-                if (type != null || JsonConvert.SerializeObject((CheckoutThreeDS2Action.TypeEnum) 1).Contains(type))
-                {
                     matchedTypes.Add("CheckoutThreeDS2Action");
                     match++;
                 }
-            }
-            catch (Exception ex)
-            {
-                if (!(ex is JsonSerializationException))
-                {
-                    throw new Exception(string.Format("Failed to deserialize `{0}` into CheckoutThreeDS2Action: {1}", jsonString, ex.ToString()));
-                }
-            }
-
-            try
-            {
-                // if it does not contains "AdditionalProperties", use SerializerSettings to deserialize
-                if (typeof(CheckoutVoucherAction).GetProperty("AdditionalProperties") == null)
+                // Check if the jsonString type enum matches the CheckoutVoucherAction type enums
+                if (ContainsValue<CheckoutVoucherAction.TypeEnum>(type))
                 {
                     newPaymentResponseAction = new PaymentResponseAction(JsonConvert.DeserializeObject<CheckoutVoucherAction>(jsonString, PaymentResponseAction.SerializerSettings));
-                }
-                else
-                {
-                    newPaymentResponseAction = new PaymentResponseAction(JsonConvert.DeserializeObject<CheckoutVoucherAction>(jsonString, PaymentResponseAction.AdditionalPropertiesSerializerSettings));
-                }
-                if (type != null || JsonConvert.SerializeObject((CheckoutVoucherAction.TypeEnum) 1).Contains(type))
-                {
                     matchedTypes.Add("CheckoutVoucherAction");
                     match++;
                 }
-            }
+            } 
             catch (Exception ex)
             {
                 if (!(ex is JsonSerializationException))
                 {
-                    throw new Exception(string.Format("Failed to deserialize `{0}` into CheckoutThreeDS2Action: {1}", jsonString, ex.ToString()));
+                     throw new InvalidDataException(string.Format("Failed to deserialize `{0}` into target: {1}", jsonString, ex.ToString()));
                 }
             }
 
-            if (match == 0)
+            if (match != 1)
             {
-                throw new InvalidDataException("The JSON string `" + jsonString + "` cannot be deserialized into any schema defined.");
+                throw new InvalidDataException("The JSON string `" + jsonString + "` cannot be deserialized into any schema defined. MatchedTypes are: " + matchedTypes);
             }
             
             // deserialization is considered successful at this point if no exception has been thrown.

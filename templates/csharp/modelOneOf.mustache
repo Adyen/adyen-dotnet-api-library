@@ -143,38 +143,36 @@
             {{/useOneOfDiscriminatorLookup}}
             int match = 0;
             List<string> matchedTypes = new List<string>();
-            var type = (string)JObject.Parse(jsonString)["type"];
-            {{#oneOf}}
-
+            JToken typeToken = JObject.Parse(jsonString).GetValue("type");
+            string type = typeToken?.Value<string>();
+            // Throw exception if jsonString does not contain type param
+            if (type == null)
+            {
+                throw new InvalidDataException("JsonString does not contain required enum type for deserialization.");
+            }
             try
             {
-                // if it does not contains "AdditionalProperties", use SerializerSettings to deserialize
-                if (typeof({{{.}}}).GetProperty("AdditionalProperties") == null)
+            {{#oneOf}}
+                // Check if the jsonString type enum matches the {{{.}}} type enums
+                if (ContainsValue<{{{.}}}.TypeEnum>(type))
                 {
                     new{{classname}} = new {{classname}}(JsonConvert.DeserializeObject<{{{.}}}>(jsonString, {{classname}}.SerializerSettings));
-                }
-                else
-                {
-                    new{{classname}} = new {{classname}}(JsonConvert.DeserializeObject<{{{.}}}>(jsonString, {{classname}}.AdditionalPropertiesSerializerSettings));
-                }
-                if (type != null || JsonConvert.SerializeObject(({{{.}}}.TypeEnum) 1).Contains(type))
-                {
                     matchedTypes.Add("{{{.}}}");
                     match++;
                 }
-            }
+            {{/oneOf}}
+            } 
             catch (Exception ex)
             {
                 if (!(ex is JsonSerializationException))
                 {
-                    throw new Exception(string.Format("Failed to deserialize `{0}` into CheckoutThreeDS2Action: {1}", jsonString, ex.ToString()));
+                     throw new InvalidDataException(string.Format("Failed to deserialize `{0}` into target: {1}", jsonString, ex.ToString()));
                 }
             }
-            {{/oneOf}}
 
-            if (match == 0)
+            if (match != 1)
             {
-                throw new InvalidDataException("The JSON string `" + jsonString + "` cannot be deserialized into any schema defined.");
+                throw new InvalidDataException("The JSON string `" + jsonString + "` cannot be deserialized into any schema defined. MatchedTypes are: " + matchedTypes);
             }
             
             // deserialization is considered successful at this point if no exception has been thrown.
