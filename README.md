@@ -41,33 +41,37 @@ PM> Install-Package Adyen -Version x.x.x
 
 In order to submit http request to Adyen API you need to initialize the client. The following example makes a checkout payment request:
 ```c#
+    using Adyen;
+    using Adyen.Model.Checkout;
+    using Adyen.Service.Checkout;
+    using Environment = Adyen.Model.Environment;
 
-// Create a paymentsRequest
-using Adyen;
-using Adyen.Model.Checkout;
-using Adyen.Service.Checkout;
-using Environment = Adyen.Model.Environment;
-
-// Create a paymentsRequest
-var amount = new Amount("USD", 1000);
-var paymentRequest = new PaymentRequest
-{
-    Reference = "Your order number",
-    Amount = amount,
-    ReturnUrl = @"https://your-company.com/...",
-    MerchantAccount = "Your merchantAccount",
-};
-
-//Create the http client
-var config = new Config
-{
-    XApiKey = "Your merchant XAPI key",
-    Environment = Environment.Test
-};
-var client = new Client(config);
-var checkout = new PaymentsService(client);
-//Make the call to the service. This example code makes a call to /payments
-var paymentResponse = checkout.Payments(paymentRequest);
+            var config = new Config()
+            {
+                XApiKey = "your-api-key",
+                Environment = Environment.Test
+            };
+            var client = new Client(config);
+            var paymentsService = new PaymentsService(client);
+            var amount = new Model.Checkout.Amount("USD", 1000);
+            var cardDetails = new CardDetails
+            {
+                Number = "4111111111111111",
+                Cvc = "737",
+                ExpiryMonth = "03",
+                ExpiryYear = "2030",
+                HolderName = "John Smith",
+                Type = CardDetails.TypeEnum.Card
+            };
+            var paymentsRequest = new Model.Checkout.PaymentRequest
+            {
+                Reference = "Your order number ",
+                ReturnUrl = @"https://your-company.com/...",
+                MerchantAccount = "your-merchant-account",
+                Amount = amount,
+                PaymentMethod = new CheckoutPaymentMethod(cardDetails)
+            };
+            var paymentResponse = paymentsService.Payments(paymentsRequest);
 ```
 Or in case you would like to make an asynchronous /payments call with idempotency key and cancellation token, the last line would be instead:
 ```c#
