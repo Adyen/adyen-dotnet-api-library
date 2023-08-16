@@ -23,10 +23,10 @@ namespace Adyen.Test
             var amount = new Model.Checkout.Amount("USD", 1000);
             var cardDetails = new CardDetails
             {
-                Number = "4111111111111111",
-                Cvc = "737",
-                ExpiryMonth = "03",
-                ExpiryYear = "2030",
+                EncryptedCardNumber = "test_4111111111111111",
+                EncryptedSecurityCode = "test_737",
+                EncryptedExpiryMonth = "test_03",
+                EncryptedExpiryYear = "test_2030",
                 HolderName = "John Smith",
                 Type = CardDetails.TypeEnum.Card
             };
