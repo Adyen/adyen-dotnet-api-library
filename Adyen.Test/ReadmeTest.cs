@@ -9,6 +9,7 @@ namespace Adyen.Test
     [TestClass]
     public class ReadmeTest
     {
+        //Only test if compiles properly. It is not an integration test
         [TestMethod]
         public void PaymentTest()
         {
@@ -37,12 +38,6 @@ namespace Adyen.Test
                 Amount = amount,
                 PaymentMethod = new CheckoutPaymentMethod(cardDetails)
             };
-            if (!string.Equals(config.XApiKey , "your-api-key"))
-            {
-                var paymentResponse = paymentsService.Payments(paymentsRequest);
-                Assert.IsNotNull(paymentResponse);
-                Assert.IsNotNull(paymentResponse.PspReference);
-            }
         }
     }
 }
