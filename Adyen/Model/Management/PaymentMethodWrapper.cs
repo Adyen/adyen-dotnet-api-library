@@ -27,40 +27,25 @@ using OpenAPIDateConverter = Adyen.ApiSerialization.OpenAPIDateConverter;
 namespace Adyen.Model.Management
 {
     /// <summary>
-    /// SofortInfo
+    /// PaymentMethodWrapper
     /// </summary>
-    [DataContract(Name = "SofortInfo")]
-    public partial class SofortInfo : IEquatable<SofortInfo>, IValidatableObject
+    [DataContract(Name = "PaymentMethodWrapper")]
+    public partial class PaymentMethodWrapper : IEquatable<PaymentMethodWrapper>, IValidatableObject
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="SofortInfo" /> class.
+        /// Initializes a new instance of the <see cref="PaymentMethodWrapper" /> class.
         /// </summary>
-        [JsonConstructorAttribute]
-        protected SofortInfo() { }
-        /// <summary>
-        /// Initializes a new instance of the <see cref="SofortInfo" /> class.
-        /// </summary>
-        /// <param name="currencyCode">Sofort currency code. For example, **EUR**. (required).</param>
-        /// <param name="logo">Sofort logo. Format: Base64-encoded string. (required).</param>
-        public SofortInfo(string currencyCode = default(string), string logo = default(string))
+        /// <param name="paymentMethod">paymentMethod.</param>
+        public PaymentMethodWrapper(PaymentMethod paymentMethod = default(PaymentMethod))
         {
-            this.CurrencyCode = currencyCode;
-            this.Logo = logo;
+            this.PaymentMethod = paymentMethod;
         }
 
         /// <summary>
-        /// Sofort currency code. For example, **EUR**.
+        /// Gets or Sets PaymentMethod
         /// </summary>
-        /// <value>Sofort currency code. For example, **EUR**.</value>
-        [DataMember(Name = "currencyCode", IsRequired = false, EmitDefaultValue = false)]
-        public string CurrencyCode { get; set; }
-
-        /// <summary>
-        /// Sofort logo. Format: Base64-encoded string.
-        /// </summary>
-        /// <value>Sofort logo. Format: Base64-encoded string.</value>
-        [DataMember(Name = "logo", IsRequired = false, EmitDefaultValue = false)]
-        public string Logo { get; set; }
+        [DataMember(Name = "PaymentMethod", EmitDefaultValue = false)]
+        public PaymentMethod PaymentMethod { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -69,9 +54,8 @@ namespace Adyen.Model.Management
         public override string ToString()
         {
             StringBuilder sb = new StringBuilder();
-            sb.Append("class SofortInfo {\n");
-            sb.Append("  CurrencyCode: ").Append(CurrencyCode).Append("\n");
-            sb.Append("  Logo: ").Append(Logo).Append("\n");
+            sb.Append("class PaymentMethodWrapper {\n");
+            sb.Append("  PaymentMethod: ").Append(PaymentMethod).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -92,15 +76,15 @@ namespace Adyen.Model.Management
         /// <returns>Boolean</returns>
         public override bool Equals(object input)
         {
-            return this.Equals(input as SofortInfo);
+            return this.Equals(input as PaymentMethodWrapper);
         }
 
         /// <summary>
-        /// Returns true if SofortInfo instances are equal
+        /// Returns true if PaymentMethodWrapper instances are equal
         /// </summary>
-        /// <param name="input">Instance of SofortInfo to be compared</param>
+        /// <param name="input">Instance of PaymentMethodWrapper to be compared</param>
         /// <returns>Boolean</returns>
-        public bool Equals(SofortInfo input)
+        public bool Equals(PaymentMethodWrapper input)
         {
             if (input == null)
             {
@@ -108,14 +92,9 @@ namespace Adyen.Model.Management
             }
             return 
                 (
-                    this.CurrencyCode == input.CurrencyCode ||
-                    (this.CurrencyCode != null &&
-                    this.CurrencyCode.Equals(input.CurrencyCode))
-                ) && 
-                (
-                    this.Logo == input.Logo ||
-                    (this.Logo != null &&
-                    this.Logo.Equals(input.Logo))
+                    this.PaymentMethod == input.PaymentMethod ||
+                    (this.PaymentMethod != null &&
+                    this.PaymentMethod.Equals(input.PaymentMethod))
                 );
         }
 
@@ -128,13 +107,9 @@ namespace Adyen.Model.Management
             unchecked // Overflow is fine, just wrap
             {
                 int hashCode = 41;
-                if (this.CurrencyCode != null)
+                if (this.PaymentMethod != null)
                 {
-                    hashCode = (hashCode * 59) + this.CurrencyCode.GetHashCode();
-                }
-                if (this.Logo != null)
-                {
-                    hashCode = (hashCode * 59) + this.Logo.GetHashCode();
+                    hashCode = (hashCode * 59) + this.PaymentMethod.GetHashCode();
                 }
                 return hashCode;
             }
