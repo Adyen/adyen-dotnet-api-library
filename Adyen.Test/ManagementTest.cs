@@ -1,6 +1,5 @@
 using System.Linq;
 using System.Net.Http;
-using System.Threading;
 using System.Threading.Tasks;
 using Adyen.Model.Management;
 using Adyen.Service.Management;
@@ -37,7 +36,7 @@ namespace Adyen.Test
             Assert.AreEqual("YOUR_MERCHANT_ACCOUNT_1", response.Data[0].Id);
             ClientInterfaceMock.Verify(mock =>
                 mock.RequestAsync(
-                    "https://management-test.adyen.com/v1/companies/ABC123/merchants?pageNumber=1&pageSize=10", null, null,
+                    "https://management-test.adyen.com/v3/companies/ABC123/merchants?pageNumber=1&pageSize=10", null, null,
                     HttpMethod.Get, default));
         }
 
@@ -52,7 +51,7 @@ namespace Adyen.Test
             Assert.AreEqual("BASE-64_ENCODED_STRING_FROM_THE_REQUEST", logo.Data);
             ClientInterfaceMock.Verify(mock =>
                 mock.RequestAsync(
-                    "https://management-test.adyen.com/v1/companies/123ABC/terminalLogos?model=E355",
+                    "https://management-test.adyen.com/v3/companies/123ABC/terminalLogos?model=E355",
                     It.IsRegex(@"""data"": ""base64"""),
                     null,
                     new HttpMethod("PATCH"), default));
@@ -69,13 +68,13 @@ namespace Adyen.Test
             Assert.AreEqual(2, terminals.Data.Count);
             ClientInterfaceMock.Verify(mock =>
                 mock.RequestAsync(
-                    "https://management-test.adyen.com/v1/terminals?searchQuery=ABC+OR+123&pageSize=2",
+                    "https://management-test.adyen.com/v3/terminals?searchQuery=ABC+OR+123&pageSize=2",
                     null, null, new HttpMethod("GET"), default));
             var terminal =
                 from o in terminals.Data
-                where o.SerialNumber == "080-020-970" && o.Status == "onlineLast1Day"
+                where o.SerialNumber == "080-020-970"
                 select o;
-            Assert.AreEqual("6064364710330000000", terminal.First().Iccid);
+            Assert.AreEqual("V400m-080020970", terminal.First().Id);
         }
     }
 }
