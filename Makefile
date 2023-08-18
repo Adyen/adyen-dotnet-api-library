@@ -22,13 +22,13 @@ PosTerminalManagement: spec=TfmAPIService-v1
 Payment: spec=PaymentService-v68
 Recurring: spec=RecurringService-v68
 Payout: spec=PayoutService-v68
-Management: spec=ManagementService-v1
+Management: spec=ManagementService-v3
 LegalEntityManagement: spec=LegalEntityService-v3
 PlatformsAccount: spec=AccountService-v6
 PlatformsFund: spec=FundService-v6
 PlatformsNotificationConfiguration: spec=NotificationConfigurationService-v6
 PlatformsHostedOnboardingPage: spec=HopService-v6
-Transfers: spec=TransferService-v3
+Transfers: spec=TransferService-v4
 
 $(services): target/spec $(openapi-generator-jar) 
 	rm -rf $(models)/$@ $(output)
