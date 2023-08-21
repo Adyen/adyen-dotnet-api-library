@@ -217,6 +217,11 @@ var saleToPoiRequest = serializer.DeserializeNotification(your_terminal_notifica
 ## Parsing Banking Webhooks
 In order to parse banking webhooks, first validate the webhooks (recommended) by retrieving the hmac key from the webhook header and the hmac signature from the Balance Platform CA configuration page respectively.
 ```c#
+using Adyen.Model.ConfigurationNotification;
+using Adyen.Webhooks;
+using Adyen.Util;
+
+...
 var hmacValidator = new HmacValidator();
 var handler = new BalancePlatformWebhookHandler();
 bool isValid = hmacValidator.IsValidBankingHmac("yourHmacKey", "yourHmacSignature", webhookPayload);
