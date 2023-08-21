@@ -192,12 +192,17 @@ var client = new Client(config);
 var posPaymentLocalApi = new PosPaymentLocalApi(client);
 var saleToPOIResponse = posPaymentLocalApi.TerminalApiLocal(paymentRequest, encryptionCredentialDetails);
 ```
+Alternatively one can use the local terminal API without encryption. This is only allowed in the TEST environment and in order for this to work one has to remove any encryption details from the Customer Area.
+```c#
+var client = new Client(config);
+var posPaymentLocalApiUnencrypted = new PosPaymentLocalApiUnencrypted(client);
+var saleToPOIResponse = posPaymentLocalApiUnencrypted.TerminalApiLocal(paymentRequest);
+```
 To parse the terminal API notifications, please use the following custom deserializer. This method will throw an exception for non-notification requests.
 ```c#
 var serializer = new SaleToPoiMessageSerializer();
 var saleToPoiRequest = serializer.DeserializeNotification(your_terminal_notification);
 ```
-
 ## Feedback
 We value your input! Help us enhance our API Libraries and improve the integration experience by providing your feedback. Please take a moment to fill out [our feedback form](https://forms.gle/A4EERrR6CWgKWe5r9) to share your thoughts, suggestions or ideas. 
 
