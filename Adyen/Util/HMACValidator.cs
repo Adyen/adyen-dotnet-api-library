@@ -89,7 +89,7 @@ namespace Adyen.Util
             {
                 return false;
             }
-            var expectedSign = CalculateHmac(notificationRequestItem, key);
+            var expectedSign = CalculateHmac(notificationRequestItem, hmacKey);
             var merchantSign = notificationRequestItem.AdditionalData[HmacSignature];
             return string.Equals(expectedSign, merchantSign);
         }
