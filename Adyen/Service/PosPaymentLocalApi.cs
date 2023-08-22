@@ -11,7 +11,7 @@ namespace Adyen.Service
    {
        private readonly TerminalLocalApi _terminalLocalApi;
        
-       [Obsolete("This in person payment class is deprecated and will be removed in the next major, please refer to TerminalCloudApi.cs")]
+       [Obsolete("This in person payment class is deprecated and will be removed in the next major, please refer to TerminalLocalApi.cs")]
         public PosPaymentLocalApi(Client client)
             : base(client)
         {
@@ -24,7 +24,7 @@ namespace Adyen.Service
         /// <param name="saleToPoiRequest"></param>
         /// <param name="encryptionCredentialDetails"></param>
         /// <returns></returns>
-        [Obsolete("This in person payment class is deprecated and will be removed in the next major, please refer to TerminalCloudApi.cs")]
+        [Obsolete("This in person payment class is deprecated and will be removed in the next major, please refer to TerminalLocalApi.cs")]
         public SaleToPOIResponse TerminalApiLocal(SaleToPOIMessage saleToPoiRequest, EncryptionCredentialDetails encryptionCredentialDetails)
         {
             return _terminalLocalApi.TerminalRequest(saleToPoiRequest, encryptionCredentialDetails);
@@ -37,7 +37,7 @@ namespace Adyen.Service
         /// <param name="encryptionCredentialDetails"></param>
         /// <param name="cancellationToken"></param>
         /// <returns></returns>
-        [Obsolete("This in person payment class is deprecated and will be removed in the next major, please refer to TerminalCloudApi.cs")]
+        [Obsolete("This in person payment class is deprecated and will be removed in the next major, please refer to TerminalLocalApi.cs")]
         public async Task<SaleToPOIResponse> TerminalApiLocalAsync(SaleToPOIMessage saleToPoiRequest, EncryptionCredentialDetails encryptionCredentialDetails, CancellationToken cancellationToken = default)
         {
             return await _terminalLocalApi.TerminalRequestAsync(saleToPoiRequest, encryptionCredentialDetails, cancellationToken);
@@ -62,7 +62,7 @@ namespace Adyen.Service
         /// <param name="notification"></param>
         /// <param name="encryptionCredentialDetails"></param>
         /// <returns></returns>
-        [Obsolete("This in person payment class is deprecated and will be removed in the next major, please refer to TerminalCloudApi.cs")]
+        [Obsolete("This in person payment class is deprecated and will be removed in the next major, please refer to TerminalLocalApi.cs")]
         public string DecryptNotification(string notification, EncryptionCredentialDetails encryptionCredentialDetails)
         {
             return _terminalLocalApi.DecryptNotification(notification, encryptionCredentialDetails);
