@@ -17,7 +17,7 @@ namespace Adyen.Service
         /// <param name="saleToPoiRequest"></param>
         /// <param name="encryptionCredentialDetails"></param>
         /// <returns></returns>
-        SaleToPOIResponse TerminalApiLocal(SaleToPOIMessage saleToPoiRequest, EncryptionCredentialDetails encryptionCredentialDetails);
+        SaleToPOIResponse TerminalRequest(SaleToPOIMessage saleToPoiRequest, EncryptionCredentialDetails encryptionCredentialDetails);
     
         /// <summary>
         /// Terminal Api async https call
@@ -25,7 +25,7 @@ namespace Adyen.Service
         /// <param name="saleToPoiRequest"></param>
         /// <param name="encryptionCredentialDetails"></param>
         /// <returns></returns>
-        Task<SaleToPOIResponse> TerminalApiLocalAsync(SaleToPOIMessage saleToPoiRequest, EncryptionCredentialDetails encryptionCredentialDetails, CancellationToken cancellationToken = default);
+        Task<SaleToPOIResponse> TerminalRequestAsync(SaleToPOIMessage saleToPoiRequest, EncryptionCredentialDetails encryptionCredentialDetails, CancellationToken cancellationToken = default);
 
         /// <summary>
         /// Terminal Api https call
@@ -34,7 +34,7 @@ namespace Adyen.Service
         /// <param name="encryptionCredentialDetails"></param>
         /// <param name="remoteCertificateValidationCallback"></param>
         /// <returns></returns>
-        SaleToPOIResponse TerminalApiLocal(SaleToPOIMessage saleToPoiRequest, EncryptionCredentialDetails encryptionCredentialDetails, RemoteCertificateValidationCallback remoteCertificateValidationCallback);
+        SaleToPOIResponse TerminalRequest(SaleToPOIMessage saleToPoiRequest, EncryptionCredentialDetails encryptionCredentialDetails, RemoteCertificateValidationCallback remoteCertificateValidationCallback);
 
         /// <summary>
         /// Used to decrypt the notification received
@@ -62,7 +62,7 @@ namespace Adyen.Service
             _saleToPoiMessageSecuredSerializer = new SaleToPoiMessageSecuredSerializer();
         }
 
-        public SaleToPOIResponse TerminalApiLocal(SaleToPOIMessage saleToPoiRequest, EncryptionCredentialDetails encryptionCredentialDetails)
+        public SaleToPOIResponse TerminalRequest(SaleToPOIMessage saleToPoiRequest, EncryptionCredentialDetails encryptionCredentialDetails)
         {
             var saleToPoiRequestMessageSerialized = _saleToPoiMessageSerializer.Serialize(saleToPoiRequest);
             Client.LogLine("Request: \n" + saleToPoiRequestMessageSerialized);
@@ -79,7 +79,7 @@ namespace Adyen.Service
             return _saleToPoiMessageSerializer.Deserialize(decryptResponse);
         }
 
-        public async Task<SaleToPOIResponse> TerminalApiLocalAsync(SaleToPOIMessage saleToPoiRequest, EncryptionCredentialDetails encryptionCredentialDetails, CancellationToken cancellationToken = default)
+        public async Task<SaleToPOIResponse> TerminalRequestAsync(SaleToPOIMessage saleToPoiRequest, EncryptionCredentialDetails encryptionCredentialDetails, CancellationToken cancellationToken = default)
         {
             var saleToPoiRequestMessageSerialized = _saleToPoiMessageSerializer.Serialize(saleToPoiRequest);
             Client.LogLine("Request: \n" + saleToPoiRequestMessageSerialized);
@@ -97,9 +97,9 @@ namespace Adyen.Service
         }
 
         [Obsolete("Use the overload of the method without passing RemoteCertificateValidationCallback. The terminal certificate validation is handled at the http request the adyen library")]
-        public SaleToPOIResponse TerminalApiLocal(SaleToPOIMessage saleToPoiRequest, EncryptionCredentialDetails encryptionCredentialDetails, RemoteCertificateValidationCallback remoteCertificateValidationCallback)
+        public SaleToPOIResponse TerminalRequest(SaleToPOIMessage saleToPoiRequest, EncryptionCredentialDetails encryptionCredentialDetails, RemoteCertificateValidationCallback remoteCertificateValidationCallback)
         {
-            return TerminalApiLocal(saleToPoiRequest: saleToPoiRequest, encryptionCredentialDetails: encryptionCredentialDetails);
+            return TerminalRequest(saleToPoiRequest: saleToPoiRequest, encryptionCredentialDetails: encryptionCredentialDetails);
         }
 
         public string DecryptNotification(string notification, EncryptionCredentialDetails encryptionCredentialDetails)

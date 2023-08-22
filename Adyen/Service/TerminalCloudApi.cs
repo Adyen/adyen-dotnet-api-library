@@ -12,28 +12,28 @@ namespace Adyen.Service
         /// </summary>
         /// <param name="saleToPoiRequest"></param>
         /// <returns></returns>
-        SaleToPOIResponse TerminalApiCloudAsync(SaleToPOIMessage saleToPoiRequest);
+        SaleToPOIResponse TerminalRequestAsync(SaleToPOIMessage saleToPoiRequest);
 
         /// <summary>
         /// CloudApi synchronous call
         /// </summary>
         /// <param name="saleToPoiRequest"></param>
         /// <returns></returns>
-        SaleToPOIResponse TerminalApiCloudSync(SaleToPOIMessage saleToPoiRequest);
+        SaleToPOIResponse TerminalRequestSync(SaleToPOIMessage saleToPoiRequest);
 
         /// <summary>
         ///  Task async CloudApi asynchronous call
         /// </summary>
         /// <param name="saleToPoiRequest"></param>
         /// <returns></returns>
-        Task<SaleToPOIResponse> TerminalApiCloudAsynchronousAsync(SaleToPOIMessage saleToPoiRequest);
+        Task<SaleToPOIResponse> TerminalRequestAsynchronousAsync(SaleToPOIMessage saleToPoiRequest);
 
         /// <summary>
         ///  Task async CloudApi synchronous call
         /// </summary>
         /// <param name="saleToPoiRequest"></param>
         /// <returns></returns>
-        Task<SaleToPOIResponse> TerminalApiCloudSynchronousAsync(SaleToPOIMessage saleToPoiRequest);
+        Task<SaleToPOIResponse> TerminalRequestSynchronousAsync(SaleToPOIMessage saleToPoiRequest);
     }
     public class TerminalCloudApi : AbstractService, ITerminalCloudApi 
     {
@@ -49,7 +49,7 @@ namespace Adyen.Service
             _terminalApiSync = new TerminalApi(this, false);
         }
 
-        public SaleToPOIResponse TerminalApiCloudAsync(SaleToPOIMessage saleToPoiRequest)
+        public SaleToPOIResponse TerminalRequestAsync(SaleToPOIMessage saleToPoiRequest)
         {
             var serializedMessage = _saleToPoiMessageSerializer.Serialize(saleToPoiRequest);
             Client.LogLine("Request: \n" + serializedMessage);
@@ -62,7 +62,7 @@ namespace Adyen.Service
             return _saleToPoiMessageSerializer.Deserialize(response);
         }
         
-        public SaleToPOIResponse TerminalApiCloudSync(SaleToPOIMessage saleToPoiRequest)
+        public SaleToPOIResponse TerminalRequestSync(SaleToPOIMessage saleToPoiRequest)
         {
             var serializedMessage = _saleToPoiMessageSerializer.Serialize(saleToPoiRequest);
             Client.LogLine("Request: \n"+ serializedMessage);
@@ -75,7 +75,7 @@ namespace Adyen.Service
             return _saleToPoiMessageSerializer.Deserialize(response);
         }
         
-        public async Task<SaleToPOIResponse> TerminalApiCloudAsynchronousAsync(SaleToPOIMessage saleToPoiRequest)
+        public async Task<SaleToPOIResponse> TerminalRequestAsynchronousAsync(SaleToPOIMessage saleToPoiRequest)
         {
             var serializedMessage = _saleToPoiMessageSerializer.Serialize(saleToPoiRequest);
             Client.LogLine("Request: \n" + serializedMessage);
@@ -88,7 +88,7 @@ namespace Adyen.Service
             return _saleToPoiMessageSerializer.Deserialize(response);
         }
         
-        public async Task<SaleToPOIResponse> TerminalApiCloudSynchronousAsync(SaleToPOIMessage saleToPoiRequest)
+        public async Task<SaleToPOIResponse> TerminalRequestSynchronousAsync(SaleToPOIMessage saleToPoiRequest)
         {
             var serializedMessage = _saleToPoiMessageSerializer.Serialize(saleToPoiRequest);
             Client.LogLine("Request: \n" + serializedMessage);

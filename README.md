@@ -125,8 +125,8 @@ namespace Adyen.Terminal
         private static void Main(string[] args)
         {
             var client = new Client(XApiKey, Environment.Test);
-            PosPaymentCloudApi posPaymentCloudApi = new PosPaymentCloudApi(client);
-            SaleToPOIResponse response = posPaymentCloudApi.TerminalApiCloudSync(PaymentRequest());
+            TerminalCloudApi terminalCloudApi = new TerminalCloudApi(client);
+            SaleToPOIResponse response = terminalCloudApi.TerminalRequestSync(PaymentRequest());
             PaymentResponse paymentResponse = (PaymentResponse) response.MessagePayload;
             Console.WriteLine(paymentResponse.Response.Result);
         }
@@ -189,14 +189,14 @@ var config = new Config
         LocalTerminalApiEndpoint = @"https://_terminal_:8443/nexo/"
     };
 var client = new Client(config);
-var posPaymentLocalApi = new PosPaymentLocalApi(client);
-var saleToPOIResponse = posPaymentLocalApi.TerminalApiLocal(paymentRequest, encryptionCredentialDetails);
+var terminalLocalApi = new TerminalLocalApi(client);
+var saleToPOIResponse = terminalLocalApi.TerminalRequest(paymentRequest, encryptionCredentialDetails);
 ```
 Alternatively one can use the local terminal API without encryption. This is only allowed in the TEST environment and in order for this to work one has to remove any encryption details from the Customer Area.
 ```c#
 var client = new Client(config);
 var terminalLocalApiUnencrypted = new TerminalLocalApiUnencrypted(client);
-var saleToPOIResponse = terminalLocalApiUnencrypted.TerminalApiLocal(paymentRequest);
+var saleToPOIResponse = terminalLocalApiUnencrypted.TerminalRequest(paymentRequest);
 ```
 To parse the terminal API notifications, please use the following custom deserializer. This method will throw an exception for non-notification requests.
 ```c#

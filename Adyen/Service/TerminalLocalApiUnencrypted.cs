@@ -34,7 +34,7 @@ namespace Adyen.Service
         /// </summary>
         /// <param name="saleToPoiRequest">SaleToPOIMessage</param>
         /// <returns>SaleToPOIResponse</returns>
-        public SaleToPOIResponse TerminalApiLocal(SaleToPOIMessage saleToPoiRequest)
+        public SaleToPOIResponse TerminalRequest(SaleToPOIMessage saleToPoiRequest)
         {
             var saleToPoiRequestJson = _saleToPoiMessageSerializer.Serialize(saleToPoiRequest);
             Client.LogLine("Request: \n" + saleToPoiRequestJson);
@@ -49,7 +49,7 @@ namespace Adyen.Service
         /// <param name="saleToPoiRequest">SaleToPOIMessage</param>
         /// <param name="cancellationToken">CancellationToken</param>
         /// <returns>Task of SaleToPOIResponse</returns>
-        public async Task<SaleToPOIResponse> TerminalApiLocalAsync(SaleToPOIMessage saleToPoiRequest, CancellationToken cancellationToken = default)
+        public async Task<SaleToPOIResponse> TerminalRequestAsync(SaleToPOIMessage saleToPoiRequest, CancellationToken cancellationToken = default)
         {
             var saleToPoiRequestJson = _saleToPoiMessageSerializer.Serialize(saleToPoiRequest);
             Client.LogLine("Request: \n" + saleToPoiRequestJson);

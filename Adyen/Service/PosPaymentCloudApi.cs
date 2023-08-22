@@ -8,7 +8,7 @@ namespace Adyen.Service
     {
         private readonly TerminalCloudApi _terminalCloudApi;
         
-        [Obsolete("This in person payment class in deprecated and will be remove in the next major, please refer to TerminalCloudApi.cs")]
+        [Obsolete("This in person payment class is deprecated and will be removed in the next major, please refer to TerminalCloudApi.cs")]
         public PosPaymentCloudApi(Client client)
             : base(client)
         {
@@ -20,10 +20,10 @@ namespace Adyen.Service
         /// </summary>
         /// <param name="saleToPoiRequest"></param>
         /// <returns></returns>
-        [Obsolete("This in person payment class in deprecated and will be remove in the next major, please refer to TerminalCloudApi.cs")]
+        [Obsolete("This in person payment class is deprecated and will be removed in the next major, please refer to TerminalCloudApi.cs")]
         public SaleToPOIResponse TerminalApiCloudAsync(SaleToPOIMessage saleToPoiRequest)
         {
-            return _terminalCloudApi.TerminalApiCloudAsync(saleToPoiRequest);
+            return _terminalCloudApi.TerminalRequestAsync(saleToPoiRequest);
         }
 
         /// <summary>
@@ -31,10 +31,10 @@ namespace Adyen.Service
         /// </summary>
         /// <param name="saleToPoiRequest"></param>
         /// <returns></returns>
-        [Obsolete("This in person payment class in deprecated and will be remove in the next major, please refer to TerminalCloudApi.cs")]
+        [Obsolete("This in person payment class is deprecated and will be removed in the next major, please refer to TerminalCloudApi.cs")]
         public SaleToPOIResponse TerminalApiCloudSync(SaleToPOIMessage saleToPoiRequest)
         {
-            return _terminalCloudApi.TerminalApiCloudSync(saleToPoiRequest);
+            return _terminalCloudApi.TerminalRequestSync(saleToPoiRequest);
         }
 
         /// <summary>
@@ -42,10 +42,10 @@ namespace Adyen.Service
         /// </summary>
         /// <param name="saleToPoiRequest"></param>
         /// <returns></returns>
-        [Obsolete("This in person payment class in deprecated and will be remove in the next major, please refer to TerminalCloudApi.cs")]
+        [Obsolete("This in person payment class is deprecated and will be removed in the next major, please refer to TerminalCloudApi.cs")]
         public async Task<SaleToPOIResponse> TerminalApiCloudAsynchronousAsync(SaleToPOIMessage saleToPoiRequest)
         {
-            return await _terminalCloudApi.TerminalApiCloudAsynchronousAsync(saleToPoiRequest);
+            return await _terminalCloudApi.TerminalRequestAsynchronousAsync(saleToPoiRequest);
         }
 
         /// <summary>
@@ -53,10 +53,10 @@ namespace Adyen.Service
         /// </summary>
         /// <param name="saleToPoiRequest"></param>
         /// <returns></returns>
-        [Obsolete("This in person payment class in deprecated and will be remove in the next major, please refer to TerminalCloudApi.cs")]
+        [Obsolete("This in person payment class is deprecated and will be removed in the next major, please refer to TerminalCloudApi.cs")]
         public async Task<SaleToPOIResponse> TerminalApiCloudSynchronousAsync(SaleToPOIMessage saleToPoiRequest)
         {
-            return await _terminalCloudApi.TerminalApiCloudAsynchronousAsync(saleToPoiRequest);
+            return await _terminalCloudApi.TerminalRequestSynchronousAsync(saleToPoiRequest);
         }
     }
 }
