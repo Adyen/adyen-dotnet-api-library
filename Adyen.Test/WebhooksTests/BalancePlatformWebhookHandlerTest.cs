@@ -1,4 +1,4 @@
-﻿using Adyen.Model.ConfigurationNotification;
+﻿using Adyen.Model.ConfigurationWebhooks;
 using Adyen.Webhooks;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Newtonsoft.Json;

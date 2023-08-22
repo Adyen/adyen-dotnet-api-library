@@ -2,10 +2,9 @@ using System;
 using System.Collections.Generic;
 using System.Reflection;
 using System.Runtime.Serialization;
-using Adyen.Model.ReportNotification;
-using Adyen.Model.ConfigurationNotification;
-using Adyen.Model.TransferNotification;
-using Adyen.Util;
+using Adyen.Model.ReportWebhooks;
+using Adyen.Model.ConfigurationWebhooks;
+using Adyen.Model.TransferWebhooks;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 
