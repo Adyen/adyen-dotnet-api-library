@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Reflection;
 using System.Runtime.Serialization;
+using Adyen.Model.AcsWebhooks;
 using Adyen.Model.ReportWebhooks;
 using Adyen.Model.ConfigurationWebhooks;
 using Adyen.Model.TransferWebhooks;
@@ -21,6 +22,11 @@ namespace Adyen.Webhooks
         /// <exception cref="JsonReaderException">Throws when json is invalid.</exception>
         public dynamic GetGenericBalancePlatformWebhook(string jsonPayload)
         {
+            if (GetAuthenticationNotificationRequest(jsonPayload, out var authenticationNotificationRequest)) 
+            {
+                return authenticationNotificationRequest;
+            }
+            
             if (GetAccountHolderNotificationRequest(jsonPayload, out var accountHolderNotificationRequest)) 
             {
                 return accountHolderNotificationRequest;
@@ -56,6 +62,21 @@ namespace Adyen.Webhooks
             }
             throw new JsonReaderException("Could not parse webhook");
         }
+        /// <summary>
+        /// Deserializes <see cref="AuthenticationNotificationRequest"/> from the <paramref name="jsonPayload"/>.
+        /// </summary>
+        /// <param name="jsonPayload">The json payload of the webhook.</param>
+        /// <param name="result"><see cref="AuthenticationNotificationRequest"/>.</param>
+        /// <returns>A return value indicates whether the deserialization succeeded.</returns>
+        /// <exception cref="JsonReaderException">Throws when json is invalid.</exception>
+        public bool GetAuthenticationNotificationRequest(string jsonPayload, out AuthenticationNotificationRequest result)
+        {
+            result = null;
+            if (!ContainsValue<AuthenticationNotificationRequest.TypeEnum>(jsonPayload)) return false;
+            result = JsonConvert.DeserializeObject<AuthenticationNotificationRequest>(jsonPayload);
+            return true;
+        }
+        
         /// <summary>
         /// Deserializes <see cref="AccountHolderNotificationRequest"/> from the <paramref name="jsonPayload"/>.
         /// </summary>
