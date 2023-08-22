@@ -1106,986 +1106,300 @@ namespace Adyen.Model.Checkout
             }
             int match = 0;
             List<string> matchedTypes = new List<string>();
-            var type = (string)JObject.Parse(jsonString)["type"];
-
+            JToken typeToken = JObject.Parse(jsonString).GetValue("type");
+            string type = typeToken?.Value<string>();
+            // Throw exception if jsonString does not contain type param
+            if (type == null)
+            {
+                throw new InvalidDataException("JsonString does not contain required enum type for deserialization.");
+            }
             try
             {
-                // if it does not contains "AdditionalProperties", use SerializerSettings to deserialize
-                if (typeof(AchDetails).GetProperty("AdditionalProperties") == null)
+                // Check if the jsonString type enum matches the AchDetails type enums
+                if (ContainsValue<AchDetails.TypeEnum>(type))
                 {
                     newCheckoutPaymentMethod = new CheckoutPaymentMethod(JsonConvert.DeserializeObject<AchDetails>(jsonString, CheckoutPaymentMethod.SerializerSettings));
-                }
-                else
-                {
-                    newCheckoutPaymentMethod = new CheckoutPaymentMethod(JsonConvert.DeserializeObject<AchDetails>(jsonString, CheckoutPaymentMethod.AdditionalPropertiesSerializerSettings));
-                }
-                if (type != null || JsonConvert.SerializeObject((AchDetails.TypeEnum) 1).Contains(type))
-                {
                     matchedTypes.Add("AchDetails");
                     match++;
                 }
-            }
-            catch (Exception ex)
-            {
-                if (!(ex is JsonSerializationException))
-                {
-                    throw new Exception(string.Format("Failed to deserialize `{0}` into CheckoutThreeDS2Action: {1}", jsonString, ex.ToString()));
-                }
-            }
-
-            try
-            {
-                // if it does not contains "AdditionalProperties", use SerializerSettings to deserialize
-                if (typeof(AfterpayDetails).GetProperty("AdditionalProperties") == null)
+                // Check if the jsonString type enum matches the AfterpayDetails type enums
+                if (ContainsValue<AfterpayDetails.TypeEnum>(type))
                 {
                     newCheckoutPaymentMethod = new CheckoutPaymentMethod(JsonConvert.DeserializeObject<AfterpayDetails>(jsonString, CheckoutPaymentMethod.SerializerSettings));
-                }
-                else
-                {
-                    newCheckoutPaymentMethod = new CheckoutPaymentMethod(JsonConvert.DeserializeObject<AfterpayDetails>(jsonString, CheckoutPaymentMethod.AdditionalPropertiesSerializerSettings));
-                }
-                if (type != null || JsonConvert.SerializeObject((AfterpayDetails.TypeEnum) 1).Contains(type))
-                {
                     matchedTypes.Add("AfterpayDetails");
                     match++;
                 }
-            }
-            catch (Exception ex)
-            {
-                if (!(ex is JsonSerializationException))
-                {
-                    throw new Exception(string.Format("Failed to deserialize `{0}` into CheckoutThreeDS2Action: {1}", jsonString, ex.ToString()));
-                }
-            }
-
-            try
-            {
-                // if it does not contains "AdditionalProperties", use SerializerSettings to deserialize
-                if (typeof(AmazonPayDetails).GetProperty("AdditionalProperties") == null)
+                // Check if the jsonString type enum matches the AmazonPayDetails type enums
+                if (ContainsValue<AmazonPayDetails.TypeEnum>(type))
                 {
                     newCheckoutPaymentMethod = new CheckoutPaymentMethod(JsonConvert.DeserializeObject<AmazonPayDetails>(jsonString, CheckoutPaymentMethod.SerializerSettings));
-                }
-                else
-                {
-                    newCheckoutPaymentMethod = new CheckoutPaymentMethod(JsonConvert.DeserializeObject<AmazonPayDetails>(jsonString, CheckoutPaymentMethod.AdditionalPropertiesSerializerSettings));
-                }
-                if (type != null || JsonConvert.SerializeObject((AmazonPayDetails.TypeEnum) 1).Contains(type))
-                {
                     matchedTypes.Add("AmazonPayDetails");
                     match++;
                 }
-            }
-            catch (Exception ex)
-            {
-                if (!(ex is JsonSerializationException))
-                {
-                    throw new Exception(string.Format("Failed to deserialize `{0}` into CheckoutThreeDS2Action: {1}", jsonString, ex.ToString()));
-                }
-            }
-
-            try
-            {
-                // if it does not contains "AdditionalProperties", use SerializerSettings to deserialize
-                if (typeof(AndroidPayDetails).GetProperty("AdditionalProperties") == null)
+                // Check if the jsonString type enum matches the AndroidPayDetails type enums
+                if (ContainsValue<AndroidPayDetails.TypeEnum>(type))
                 {
                     newCheckoutPaymentMethod = new CheckoutPaymentMethod(JsonConvert.DeserializeObject<AndroidPayDetails>(jsonString, CheckoutPaymentMethod.SerializerSettings));
-                }
-                else
-                {
-                    newCheckoutPaymentMethod = new CheckoutPaymentMethod(JsonConvert.DeserializeObject<AndroidPayDetails>(jsonString, CheckoutPaymentMethod.AdditionalPropertiesSerializerSettings));
-                }
-                if (type != null || JsonConvert.SerializeObject((AndroidPayDetails.TypeEnum) 1).Contains(type))
-                {
                     matchedTypes.Add("AndroidPayDetails");
                     match++;
                 }
-            }
-            catch (Exception ex)
-            {
-                if (!(ex is JsonSerializationException))
-                {
-                    throw new Exception(string.Format("Failed to deserialize `{0}` into CheckoutThreeDS2Action: {1}", jsonString, ex.ToString()));
-                }
-            }
-
-            try
-            {
-                // if it does not contains "AdditionalProperties", use SerializerSettings to deserialize
-                if (typeof(ApplePayDetails).GetProperty("AdditionalProperties") == null)
+                // Check if the jsonString type enum matches the ApplePayDetails type enums
+                if (ContainsValue<ApplePayDetails.TypeEnum>(type))
                 {
                     newCheckoutPaymentMethod = new CheckoutPaymentMethod(JsonConvert.DeserializeObject<ApplePayDetails>(jsonString, CheckoutPaymentMethod.SerializerSettings));
-                }
-                else
-                {
-                    newCheckoutPaymentMethod = new CheckoutPaymentMethod(JsonConvert.DeserializeObject<ApplePayDetails>(jsonString, CheckoutPaymentMethod.AdditionalPropertiesSerializerSettings));
-                }
-                if (type != null || JsonConvert.SerializeObject((ApplePayDetails.TypeEnum) 1).Contains(type))
-                {
                     matchedTypes.Add("ApplePayDetails");
                     match++;
                 }
-            }
-            catch (Exception ex)
-            {
-                if (!(ex is JsonSerializationException))
-                {
-                    throw new Exception(string.Format("Failed to deserialize `{0}` into CheckoutThreeDS2Action: {1}", jsonString, ex.ToString()));
-                }
-            }
-
-            try
-            {
-                // if it does not contains "AdditionalProperties", use SerializerSettings to deserialize
-                if (typeof(BacsDirectDebitDetails).GetProperty("AdditionalProperties") == null)
+                // Check if the jsonString type enum matches the BacsDirectDebitDetails type enums
+                if (ContainsValue<BacsDirectDebitDetails.TypeEnum>(type))
                 {
                     newCheckoutPaymentMethod = new CheckoutPaymentMethod(JsonConvert.DeserializeObject<BacsDirectDebitDetails>(jsonString, CheckoutPaymentMethod.SerializerSettings));
-                }
-                else
-                {
-                    newCheckoutPaymentMethod = new CheckoutPaymentMethod(JsonConvert.DeserializeObject<BacsDirectDebitDetails>(jsonString, CheckoutPaymentMethod.AdditionalPropertiesSerializerSettings));
-                }
-                if (type != null || JsonConvert.SerializeObject((BacsDirectDebitDetails.TypeEnum) 1).Contains(type))
-                {
                     matchedTypes.Add("BacsDirectDebitDetails");
                     match++;
                 }
-            }
-            catch (Exception ex)
-            {
-                if (!(ex is JsonSerializationException))
-                {
-                    throw new Exception(string.Format("Failed to deserialize `{0}` into CheckoutThreeDS2Action: {1}", jsonString, ex.ToString()));
-                }
-            }
-
-            try
-            {
-                // if it does not contains "AdditionalProperties", use SerializerSettings to deserialize
-                if (typeof(BillDeskDetails).GetProperty("AdditionalProperties") == null)
+                // Check if the jsonString type enum matches the BillDeskDetails type enums
+                if (ContainsValue<BillDeskDetails.TypeEnum>(type))
                 {
                     newCheckoutPaymentMethod = new CheckoutPaymentMethod(JsonConvert.DeserializeObject<BillDeskDetails>(jsonString, CheckoutPaymentMethod.SerializerSettings));
-                }
-                else
-                {
-                    newCheckoutPaymentMethod = new CheckoutPaymentMethod(JsonConvert.DeserializeObject<BillDeskDetails>(jsonString, CheckoutPaymentMethod.AdditionalPropertiesSerializerSettings));
-                }
-                if (type != null || JsonConvert.SerializeObject((BillDeskDetails.TypeEnum) 1).Contains(type))
-                {
                     matchedTypes.Add("BillDeskDetails");
                     match++;
                 }
-            }
-            catch (Exception ex)
-            {
-                if (!(ex is JsonSerializationException))
-                {
-                    throw new Exception(string.Format("Failed to deserialize `{0}` into CheckoutThreeDS2Action: {1}", jsonString, ex.ToString()));
-                }
-            }
-
-            try
-            {
-                // if it does not contains "AdditionalProperties", use SerializerSettings to deserialize
-                if (typeof(BlikDetails).GetProperty("AdditionalProperties") == null)
+                // Check if the jsonString type enum matches the BlikDetails type enums
+                if (ContainsValue<BlikDetails.TypeEnum>(type))
                 {
                     newCheckoutPaymentMethod = new CheckoutPaymentMethod(JsonConvert.DeserializeObject<BlikDetails>(jsonString, CheckoutPaymentMethod.SerializerSettings));
-                }
-                else
-                {
-                    newCheckoutPaymentMethod = new CheckoutPaymentMethod(JsonConvert.DeserializeObject<BlikDetails>(jsonString, CheckoutPaymentMethod.AdditionalPropertiesSerializerSettings));
-                }
-                if (type != null || JsonConvert.SerializeObject((BlikDetails.TypeEnum) 1).Contains(type))
-                {
                     matchedTypes.Add("BlikDetails");
                     match++;
                 }
-            }
-            catch (Exception ex)
-            {
-                if (!(ex is JsonSerializationException))
-                {
-                    throw new Exception(string.Format("Failed to deserialize `{0}` into CheckoutThreeDS2Action: {1}", jsonString, ex.ToString()));
-                }
-            }
-
-            try
-            {
-                // if it does not contains "AdditionalProperties", use SerializerSettings to deserialize
-                if (typeof(CardDetails).GetProperty("AdditionalProperties") == null)
+                // Check if the jsonString type enum matches the CardDetails type enums
+                if (ContainsValue<CardDetails.TypeEnum>(type))
                 {
                     newCheckoutPaymentMethod = new CheckoutPaymentMethod(JsonConvert.DeserializeObject<CardDetails>(jsonString, CheckoutPaymentMethod.SerializerSettings));
-                }
-                else
-                {
-                    newCheckoutPaymentMethod = new CheckoutPaymentMethod(JsonConvert.DeserializeObject<CardDetails>(jsonString, CheckoutPaymentMethod.AdditionalPropertiesSerializerSettings));
-                }
-                if (type != null || JsonConvert.SerializeObject((CardDetails.TypeEnum) 1).Contains(type))
-                {
                     matchedTypes.Add("CardDetails");
                     match++;
                 }
-            }
-            catch (Exception ex)
-            {
-                if (!(ex is JsonSerializationException))
-                {
-                    throw new Exception(string.Format("Failed to deserialize `{0}` into CheckoutThreeDS2Action: {1}", jsonString, ex.ToString()));
-                }
-            }
-
-            try
-            {
-                // if it does not contains "AdditionalProperties", use SerializerSettings to deserialize
-                if (typeof(CellulantDetails).GetProperty("AdditionalProperties") == null)
+                // Check if the jsonString type enum matches the CellulantDetails type enums
+                if (ContainsValue<CellulantDetails.TypeEnum>(type))
                 {
                     newCheckoutPaymentMethod = new CheckoutPaymentMethod(JsonConvert.DeserializeObject<CellulantDetails>(jsonString, CheckoutPaymentMethod.SerializerSettings));
-                }
-                else
-                {
-                    newCheckoutPaymentMethod = new CheckoutPaymentMethod(JsonConvert.DeserializeObject<CellulantDetails>(jsonString, CheckoutPaymentMethod.AdditionalPropertiesSerializerSettings));
-                }
-                if (type != null || JsonConvert.SerializeObject((CellulantDetails.TypeEnum) 1).Contains(type))
-                {
                     matchedTypes.Add("CellulantDetails");
                     match++;
                 }
-            }
-            catch (Exception ex)
-            {
-                if (!(ex is JsonSerializationException))
-                {
-                    throw new Exception(string.Format("Failed to deserialize `{0}` into CheckoutThreeDS2Action: {1}", jsonString, ex.ToString()));
-                }
-            }
-
-            try
-            {
-                // if it does not contains "AdditionalProperties", use SerializerSettings to deserialize
-                if (typeof(DokuDetails).GetProperty("AdditionalProperties") == null)
+                // Check if the jsonString type enum matches the DokuDetails type enums
+                if (ContainsValue<DokuDetails.TypeEnum>(type))
                 {
                     newCheckoutPaymentMethod = new CheckoutPaymentMethod(JsonConvert.DeserializeObject<DokuDetails>(jsonString, CheckoutPaymentMethod.SerializerSettings));
-                }
-                else
-                {
-                    newCheckoutPaymentMethod = new CheckoutPaymentMethod(JsonConvert.DeserializeObject<DokuDetails>(jsonString, CheckoutPaymentMethod.AdditionalPropertiesSerializerSettings));
-                }
-                if (type != null || JsonConvert.SerializeObject((DokuDetails.TypeEnum) 1).Contains(type))
-                {
                     matchedTypes.Add("DokuDetails");
                     match++;
                 }
-            }
-            catch (Exception ex)
-            {
-                if (!(ex is JsonSerializationException))
-                {
-                    throw new Exception(string.Format("Failed to deserialize `{0}` into CheckoutThreeDS2Action: {1}", jsonString, ex.ToString()));
-                }
-            }
-
-            try
-            {
-                // if it does not contains "AdditionalProperties", use SerializerSettings to deserialize
-                if (typeof(DotpayDetails).GetProperty("AdditionalProperties") == null)
+                // Check if the jsonString type enum matches the DotpayDetails type enums
+                if (ContainsValue<DotpayDetails.TypeEnum>(type))
                 {
                     newCheckoutPaymentMethod = new CheckoutPaymentMethod(JsonConvert.DeserializeObject<DotpayDetails>(jsonString, CheckoutPaymentMethod.SerializerSettings));
-                }
-                else
-                {
-                    newCheckoutPaymentMethod = new CheckoutPaymentMethod(JsonConvert.DeserializeObject<DotpayDetails>(jsonString, CheckoutPaymentMethod.AdditionalPropertiesSerializerSettings));
-                }
-                if (type != null || JsonConvert.SerializeObject((DotpayDetails.TypeEnum) 1).Contains(type))
-                {
                     matchedTypes.Add("DotpayDetails");
                     match++;
                 }
-            }
-            catch (Exception ex)
-            {
-                if (!(ex is JsonSerializationException))
-                {
-                    throw new Exception(string.Format("Failed to deserialize `{0}` into CheckoutThreeDS2Action: {1}", jsonString, ex.ToString()));
-                }
-            }
-
-            try
-            {
-                // if it does not contains "AdditionalProperties", use SerializerSettings to deserialize
-                if (typeof(DragonpayDetails).GetProperty("AdditionalProperties") == null)
+                // Check if the jsonString type enum matches the DragonpayDetails type enums
+                if (ContainsValue<DragonpayDetails.TypeEnum>(type))
                 {
                     newCheckoutPaymentMethod = new CheckoutPaymentMethod(JsonConvert.DeserializeObject<DragonpayDetails>(jsonString, CheckoutPaymentMethod.SerializerSettings));
-                }
-                else
-                {
-                    newCheckoutPaymentMethod = new CheckoutPaymentMethod(JsonConvert.DeserializeObject<DragonpayDetails>(jsonString, CheckoutPaymentMethod.AdditionalPropertiesSerializerSettings));
-                }
-                if (type != null || JsonConvert.SerializeObject((DragonpayDetails.TypeEnum) 1).Contains(type))
-                {
                     matchedTypes.Add("DragonpayDetails");
                     match++;
                 }
-            }
-            catch (Exception ex)
-            {
-                if (!(ex is JsonSerializationException))
-                {
-                    throw new Exception(string.Format("Failed to deserialize `{0}` into CheckoutThreeDS2Action: {1}", jsonString, ex.ToString()));
-                }
-            }
-
-            try
-            {
-                // if it does not contains "AdditionalProperties", use SerializerSettings to deserialize
-                if (typeof(EcontextVoucherDetails).GetProperty("AdditionalProperties") == null)
+                // Check if the jsonString type enum matches the EcontextVoucherDetails type enums
+                if (ContainsValue<EcontextVoucherDetails.TypeEnum>(type))
                 {
                     newCheckoutPaymentMethod = new CheckoutPaymentMethod(JsonConvert.DeserializeObject<EcontextVoucherDetails>(jsonString, CheckoutPaymentMethod.SerializerSettings));
-                }
-                else
-                {
-                    newCheckoutPaymentMethod = new CheckoutPaymentMethod(JsonConvert.DeserializeObject<EcontextVoucherDetails>(jsonString, CheckoutPaymentMethod.AdditionalPropertiesSerializerSettings));
-                }
-                if (type != null || JsonConvert.SerializeObject((EcontextVoucherDetails.TypeEnum) 1).Contains(type))
-                {
                     matchedTypes.Add("EcontextVoucherDetails");
                     match++;
                 }
-            }
-            catch (Exception ex)
-            {
-                if (!(ex is JsonSerializationException))
-                {
-                    throw new Exception(string.Format("Failed to deserialize `{0}` into CheckoutThreeDS2Action: {1}", jsonString, ex.ToString()));
-                }
-            }
-
-            try
-            {
-                // if it does not contains "AdditionalProperties", use SerializerSettings to deserialize
-                if (typeof(GenericIssuerPaymentMethodDetails).GetProperty("AdditionalProperties") == null)
+                // Check if the jsonString type enum matches the GenericIssuerPaymentMethodDetails type enums
+                if (ContainsValue<GenericIssuerPaymentMethodDetails.TypeEnum>(type))
                 {
                     newCheckoutPaymentMethod = new CheckoutPaymentMethod(JsonConvert.DeserializeObject<GenericIssuerPaymentMethodDetails>(jsonString, CheckoutPaymentMethod.SerializerSettings));
-                }
-                else
-                {
-                    newCheckoutPaymentMethod = new CheckoutPaymentMethod(JsonConvert.DeserializeObject<GenericIssuerPaymentMethodDetails>(jsonString, CheckoutPaymentMethod.AdditionalPropertiesSerializerSettings));
-                }
-                if (type != null || JsonConvert.SerializeObject((GenericIssuerPaymentMethodDetails.TypeEnum) 1).Contains(type))
-                {
                     matchedTypes.Add("GenericIssuerPaymentMethodDetails");
                     match++;
                 }
-            }
-            catch (Exception ex)
-            {
-                if (!(ex is JsonSerializationException))
-                {
-                    throw new Exception(string.Format("Failed to deserialize `{0}` into CheckoutThreeDS2Action: {1}", jsonString, ex.ToString()));
-                }
-            }
-
-            try
-            {
-                // if it does not contains "AdditionalProperties", use SerializerSettings to deserialize
-                if (typeof(GiropayDetails).GetProperty("AdditionalProperties") == null)
+                // Check if the jsonString type enum matches the GiropayDetails type enums
+                if (ContainsValue<GiropayDetails.TypeEnum>(type))
                 {
                     newCheckoutPaymentMethod = new CheckoutPaymentMethod(JsonConvert.DeserializeObject<GiropayDetails>(jsonString, CheckoutPaymentMethod.SerializerSettings));
-                }
-                else
-                {
-                    newCheckoutPaymentMethod = new CheckoutPaymentMethod(JsonConvert.DeserializeObject<GiropayDetails>(jsonString, CheckoutPaymentMethod.AdditionalPropertiesSerializerSettings));
-                }
-                if (type != null || JsonConvert.SerializeObject((GiropayDetails.TypeEnum) 1).Contains(type))
-                {
                     matchedTypes.Add("GiropayDetails");
                     match++;
                 }
-            }
-            catch (Exception ex)
-            {
-                if (!(ex is JsonSerializationException))
-                {
-                    throw new Exception(string.Format("Failed to deserialize `{0}` into CheckoutThreeDS2Action: {1}", jsonString, ex.ToString()));
-                }
-            }
-
-            try
-            {
-                // if it does not contains "AdditionalProperties", use SerializerSettings to deserialize
-                if (typeof(GooglePayDetails).GetProperty("AdditionalProperties") == null)
+                // Check if the jsonString type enum matches the GooglePayDetails type enums
+                if (ContainsValue<GooglePayDetails.TypeEnum>(type))
                 {
                     newCheckoutPaymentMethod = new CheckoutPaymentMethod(JsonConvert.DeserializeObject<GooglePayDetails>(jsonString, CheckoutPaymentMethod.SerializerSettings));
-                }
-                else
-                {
-                    newCheckoutPaymentMethod = new CheckoutPaymentMethod(JsonConvert.DeserializeObject<GooglePayDetails>(jsonString, CheckoutPaymentMethod.AdditionalPropertiesSerializerSettings));
-                }
-                if (type != null || JsonConvert.SerializeObject((GooglePayDetails.TypeEnum) 1).Contains(type))
-                {
                     matchedTypes.Add("GooglePayDetails");
                     match++;
                 }
-            }
-            catch (Exception ex)
-            {
-                if (!(ex is JsonSerializationException))
-                {
-                    throw new Exception(string.Format("Failed to deserialize `{0}` into CheckoutThreeDS2Action: {1}", jsonString, ex.ToString()));
-                }
-            }
-
-            try
-            {
-                // if it does not contains "AdditionalProperties", use SerializerSettings to deserialize
-                if (typeof(IdealDetails).GetProperty("AdditionalProperties") == null)
+                // Check if the jsonString type enum matches the IdealDetails type enums
+                if (ContainsValue<IdealDetails.TypeEnum>(type))
                 {
                     newCheckoutPaymentMethod = new CheckoutPaymentMethod(JsonConvert.DeserializeObject<IdealDetails>(jsonString, CheckoutPaymentMethod.SerializerSettings));
-                }
-                else
-                {
-                    newCheckoutPaymentMethod = new CheckoutPaymentMethod(JsonConvert.DeserializeObject<IdealDetails>(jsonString, CheckoutPaymentMethod.AdditionalPropertiesSerializerSettings));
-                }
-                if (type != null || JsonConvert.SerializeObject((IdealDetails.TypeEnum) 1).Contains(type))
-                {
                     matchedTypes.Add("IdealDetails");
                     match++;
                 }
-            }
-            catch (Exception ex)
-            {
-                if (!(ex is JsonSerializationException))
-                {
-                    throw new Exception(string.Format("Failed to deserialize `{0}` into CheckoutThreeDS2Action: {1}", jsonString, ex.ToString()));
-                }
-            }
-
-            try
-            {
-                // if it does not contains "AdditionalProperties", use SerializerSettings to deserialize
-                if (typeof(KlarnaDetails).GetProperty("AdditionalProperties") == null)
+                // Check if the jsonString type enum matches the KlarnaDetails type enums
+                if (ContainsValue<KlarnaDetails.TypeEnum>(type))
                 {
                     newCheckoutPaymentMethod = new CheckoutPaymentMethod(JsonConvert.DeserializeObject<KlarnaDetails>(jsonString, CheckoutPaymentMethod.SerializerSettings));
-                }
-                else
-                {
-                    newCheckoutPaymentMethod = new CheckoutPaymentMethod(JsonConvert.DeserializeObject<KlarnaDetails>(jsonString, CheckoutPaymentMethod.AdditionalPropertiesSerializerSettings));
-                }
-                if (type != null || JsonConvert.SerializeObject((KlarnaDetails.TypeEnum) 1).Contains(type))
-                {
                     matchedTypes.Add("KlarnaDetails");
                     match++;
                 }
-            }
-            catch (Exception ex)
-            {
-                if (!(ex is JsonSerializationException))
-                {
-                    throw new Exception(string.Format("Failed to deserialize `{0}` into CheckoutThreeDS2Action: {1}", jsonString, ex.ToString()));
-                }
-            }
-
-            try
-            {
-                // if it does not contains "AdditionalProperties", use SerializerSettings to deserialize
-                if (typeof(MasterpassDetails).GetProperty("AdditionalProperties") == null)
+                // Check if the jsonString type enum matches the MasterpassDetails type enums
+                if (ContainsValue<MasterpassDetails.TypeEnum>(type))
                 {
                     newCheckoutPaymentMethod = new CheckoutPaymentMethod(JsonConvert.DeserializeObject<MasterpassDetails>(jsonString, CheckoutPaymentMethod.SerializerSettings));
-                }
-                else
-                {
-                    newCheckoutPaymentMethod = new CheckoutPaymentMethod(JsonConvert.DeserializeObject<MasterpassDetails>(jsonString, CheckoutPaymentMethod.AdditionalPropertiesSerializerSettings));
-                }
-                if (type != null || JsonConvert.SerializeObject((MasterpassDetails.TypeEnum) 1).Contains(type))
-                {
                     matchedTypes.Add("MasterpassDetails");
                     match++;
                 }
-            }
-            catch (Exception ex)
-            {
-                if (!(ex is JsonSerializationException))
-                {
-                    throw new Exception(string.Format("Failed to deserialize `{0}` into CheckoutThreeDS2Action: {1}", jsonString, ex.ToString()));
-                }
-            }
-
-            try
-            {
-                // if it does not contains "AdditionalProperties", use SerializerSettings to deserialize
-                if (typeof(MbwayDetails).GetProperty("AdditionalProperties") == null)
+                // Check if the jsonString type enum matches the MbwayDetails type enums
+                if (ContainsValue<MbwayDetails.TypeEnum>(type))
                 {
                     newCheckoutPaymentMethod = new CheckoutPaymentMethod(JsonConvert.DeserializeObject<MbwayDetails>(jsonString, CheckoutPaymentMethod.SerializerSettings));
-                }
-                else
-                {
-                    newCheckoutPaymentMethod = new CheckoutPaymentMethod(JsonConvert.DeserializeObject<MbwayDetails>(jsonString, CheckoutPaymentMethod.AdditionalPropertiesSerializerSettings));
-                }
-                if (type != null || JsonConvert.SerializeObject((MbwayDetails.TypeEnum) 1).Contains(type))
-                {
                     matchedTypes.Add("MbwayDetails");
                     match++;
                 }
-            }
-            catch (Exception ex)
-            {
-                if (!(ex is JsonSerializationException))
-                {
-                    throw new Exception(string.Format("Failed to deserialize `{0}` into CheckoutThreeDS2Action: {1}", jsonString, ex.ToString()));
-                }
-            }
-
-            try
-            {
-                // if it does not contains "AdditionalProperties", use SerializerSettings to deserialize
-                if (typeof(MobilePayDetails).GetProperty("AdditionalProperties") == null)
+                // Check if the jsonString type enum matches the MobilePayDetails type enums
+                if (ContainsValue<MobilePayDetails.TypeEnum>(type))
                 {
                     newCheckoutPaymentMethod = new CheckoutPaymentMethod(JsonConvert.DeserializeObject<MobilePayDetails>(jsonString, CheckoutPaymentMethod.SerializerSettings));
-                }
-                else
-                {
-                    newCheckoutPaymentMethod = new CheckoutPaymentMethod(JsonConvert.DeserializeObject<MobilePayDetails>(jsonString, CheckoutPaymentMethod.AdditionalPropertiesSerializerSettings));
-                }
-                if (type != null || JsonConvert.SerializeObject((MobilePayDetails.TypeEnum) 1).Contains(type))
-                {
                     matchedTypes.Add("MobilePayDetails");
                     match++;
                 }
-            }
-            catch (Exception ex)
-            {
-                if (!(ex is JsonSerializationException))
-                {
-                    throw new Exception(string.Format("Failed to deserialize `{0}` into CheckoutThreeDS2Action: {1}", jsonString, ex.ToString()));
-                }
-            }
-
-            try
-            {
-                // if it does not contains "AdditionalProperties", use SerializerSettings to deserialize
-                if (typeof(MolPayDetails).GetProperty("AdditionalProperties") == null)
+                // Check if the jsonString type enum matches the MolPayDetails type enums
+                if (ContainsValue<MolPayDetails.TypeEnum>(type))
                 {
                     newCheckoutPaymentMethod = new CheckoutPaymentMethod(JsonConvert.DeserializeObject<MolPayDetails>(jsonString, CheckoutPaymentMethod.SerializerSettings));
-                }
-                else
-                {
-                    newCheckoutPaymentMethod = new CheckoutPaymentMethod(JsonConvert.DeserializeObject<MolPayDetails>(jsonString, CheckoutPaymentMethod.AdditionalPropertiesSerializerSettings));
-                }
-                if (type != null || JsonConvert.SerializeObject((MolPayDetails.TypeEnum) 1).Contains(type))
-                {
                     matchedTypes.Add("MolPayDetails");
                     match++;
                 }
-            }
-            catch (Exception ex)
-            {
-                if (!(ex is JsonSerializationException))
-                {
-                    throw new Exception(string.Format("Failed to deserialize `{0}` into CheckoutThreeDS2Action: {1}", jsonString, ex.ToString()));
-                }
-            }
-
-            try
-            {
-                // if it does not contains "AdditionalProperties", use SerializerSettings to deserialize
-                if (typeof(OpenInvoiceDetails).GetProperty("AdditionalProperties") == null)
+                // Check if the jsonString type enum matches the OpenInvoiceDetails type enums
+                if (ContainsValue<OpenInvoiceDetails.TypeEnum>(type))
                 {
                     newCheckoutPaymentMethod = new CheckoutPaymentMethod(JsonConvert.DeserializeObject<OpenInvoiceDetails>(jsonString, CheckoutPaymentMethod.SerializerSettings));
-                }
-                else
-                {
-                    newCheckoutPaymentMethod = new CheckoutPaymentMethod(JsonConvert.DeserializeObject<OpenInvoiceDetails>(jsonString, CheckoutPaymentMethod.AdditionalPropertiesSerializerSettings));
-                }
-                if (type != null || JsonConvert.SerializeObject((OpenInvoiceDetails.TypeEnum) 1).Contains(type))
-                {
                     matchedTypes.Add("OpenInvoiceDetails");
                     match++;
                 }
-            }
-            catch (Exception ex)
-            {
-                if (!(ex is JsonSerializationException))
-                {
-                    throw new Exception(string.Format("Failed to deserialize `{0}` into CheckoutThreeDS2Action: {1}", jsonString, ex.ToString()));
-                }
-            }
-
-            try
-            {
-                // if it does not contains "AdditionalProperties", use SerializerSettings to deserialize
-                if (typeof(PayPalDetails).GetProperty("AdditionalProperties") == null)
+                // Check if the jsonString type enum matches the PayPalDetails type enums
+                if (ContainsValue<PayPalDetails.TypeEnum>(type))
                 {
                     newCheckoutPaymentMethod = new CheckoutPaymentMethod(JsonConvert.DeserializeObject<PayPalDetails>(jsonString, CheckoutPaymentMethod.SerializerSettings));
-                }
-                else
-                {
-                    newCheckoutPaymentMethod = new CheckoutPaymentMethod(JsonConvert.DeserializeObject<PayPalDetails>(jsonString, CheckoutPaymentMethod.AdditionalPropertiesSerializerSettings));
-                }
-                if (type != null || JsonConvert.SerializeObject((PayPalDetails.TypeEnum) 1).Contains(type))
-                {
                     matchedTypes.Add("PayPalDetails");
                     match++;
                 }
-            }
-            catch (Exception ex)
-            {
-                if (!(ex is JsonSerializationException))
-                {
-                    throw new Exception(string.Format("Failed to deserialize `{0}` into CheckoutThreeDS2Action: {1}", jsonString, ex.ToString()));
-                }
-            }
-
-            try
-            {
-                // if it does not contains "AdditionalProperties", use SerializerSettings to deserialize
-                if (typeof(PayUUpiDetails).GetProperty("AdditionalProperties") == null)
+                // Check if the jsonString type enum matches the PayUUpiDetails type enums
+                if (ContainsValue<PayUUpiDetails.TypeEnum>(type))
                 {
                     newCheckoutPaymentMethod = new CheckoutPaymentMethod(JsonConvert.DeserializeObject<PayUUpiDetails>(jsonString, CheckoutPaymentMethod.SerializerSettings));
-                }
-                else
-                {
-                    newCheckoutPaymentMethod = new CheckoutPaymentMethod(JsonConvert.DeserializeObject<PayUUpiDetails>(jsonString, CheckoutPaymentMethod.AdditionalPropertiesSerializerSettings));
-                }
-                if (type != null || JsonConvert.SerializeObject((PayUUpiDetails.TypeEnum) 1).Contains(type))
-                {
                     matchedTypes.Add("PayUUpiDetails");
                     match++;
                 }
-            }
-            catch (Exception ex)
-            {
-                if (!(ex is JsonSerializationException))
-                {
-                    throw new Exception(string.Format("Failed to deserialize `{0}` into CheckoutThreeDS2Action: {1}", jsonString, ex.ToString()));
-                }
-            }
-
-            try
-            {
-                // if it does not contains "AdditionalProperties", use SerializerSettings to deserialize
-                if (typeof(PayWithGoogleDetails).GetProperty("AdditionalProperties") == null)
+                // Check if the jsonString type enum matches the PayWithGoogleDetails type enums
+                if (ContainsValue<PayWithGoogleDetails.TypeEnum>(type))
                 {
                     newCheckoutPaymentMethod = new CheckoutPaymentMethod(JsonConvert.DeserializeObject<PayWithGoogleDetails>(jsonString, CheckoutPaymentMethod.SerializerSettings));
-                }
-                else
-                {
-                    newCheckoutPaymentMethod = new CheckoutPaymentMethod(JsonConvert.DeserializeObject<PayWithGoogleDetails>(jsonString, CheckoutPaymentMethod.AdditionalPropertiesSerializerSettings));
-                }
-                if (type != null || JsonConvert.SerializeObject((PayWithGoogleDetails.TypeEnum) 1).Contains(type))
-                {
                     matchedTypes.Add("PayWithGoogleDetails");
                     match++;
                 }
-            }
-            catch (Exception ex)
-            {
-                if (!(ex is JsonSerializationException))
-                {
-                    throw new Exception(string.Format("Failed to deserialize `{0}` into CheckoutThreeDS2Action: {1}", jsonString, ex.ToString()));
-                }
-            }
-
-            try
-            {
-                // if it does not contains "AdditionalProperties", use SerializerSettings to deserialize
-                if (typeof(PaymentDetails).GetProperty("AdditionalProperties") == null)
+                // Check if the jsonString type enum matches the PaymentDetails type enums
+                if (ContainsValue<PaymentDetails.TypeEnum>(type))
                 {
                     newCheckoutPaymentMethod = new CheckoutPaymentMethod(JsonConvert.DeserializeObject<PaymentDetails>(jsonString, CheckoutPaymentMethod.SerializerSettings));
-                }
-                else
-                {
-                    newCheckoutPaymentMethod = new CheckoutPaymentMethod(JsonConvert.DeserializeObject<PaymentDetails>(jsonString, CheckoutPaymentMethod.AdditionalPropertiesSerializerSettings));
-                }
-                if (type != null || JsonConvert.SerializeObject((PaymentDetails.TypeEnum) 1).Contains(type))
-                {
                     matchedTypes.Add("PaymentDetails");
                     match++;
                 }
-            }
-            catch (Exception ex)
-            {
-                if (!(ex is JsonSerializationException))
-                {
-                    throw new Exception(string.Format("Failed to deserialize `{0}` into CheckoutThreeDS2Action: {1}", jsonString, ex.ToString()));
-                }
-            }
-
-            try
-            {
-                // if it does not contains "AdditionalProperties", use SerializerSettings to deserialize
-                if (typeof(RatepayDetails).GetProperty("AdditionalProperties") == null)
+                // Check if the jsonString type enum matches the RatepayDetails type enums
+                if (ContainsValue<RatepayDetails.TypeEnum>(type))
                 {
                     newCheckoutPaymentMethod = new CheckoutPaymentMethod(JsonConvert.DeserializeObject<RatepayDetails>(jsonString, CheckoutPaymentMethod.SerializerSettings));
-                }
-                else
-                {
-                    newCheckoutPaymentMethod = new CheckoutPaymentMethod(JsonConvert.DeserializeObject<RatepayDetails>(jsonString, CheckoutPaymentMethod.AdditionalPropertiesSerializerSettings));
-                }
-                if (type != null || JsonConvert.SerializeObject((RatepayDetails.TypeEnum) 1).Contains(type))
-                {
                     matchedTypes.Add("RatepayDetails");
                     match++;
                 }
-            }
-            catch (Exception ex)
-            {
-                if (!(ex is JsonSerializationException))
-                {
-                    throw new Exception(string.Format("Failed to deserialize `{0}` into CheckoutThreeDS2Action: {1}", jsonString, ex.ToString()));
-                }
-            }
-
-            try
-            {
-                // if it does not contains "AdditionalProperties", use SerializerSettings to deserialize
-                if (typeof(SamsungPayDetails).GetProperty("AdditionalProperties") == null)
+                // Check if the jsonString type enum matches the SamsungPayDetails type enums
+                if (ContainsValue<SamsungPayDetails.TypeEnum>(type))
                 {
                     newCheckoutPaymentMethod = new CheckoutPaymentMethod(JsonConvert.DeserializeObject<SamsungPayDetails>(jsonString, CheckoutPaymentMethod.SerializerSettings));
-                }
-                else
-                {
-                    newCheckoutPaymentMethod = new CheckoutPaymentMethod(JsonConvert.DeserializeObject<SamsungPayDetails>(jsonString, CheckoutPaymentMethod.AdditionalPropertiesSerializerSettings));
-                }
-                if (type != null || JsonConvert.SerializeObject((SamsungPayDetails.TypeEnum) 1).Contains(type))
-                {
                     matchedTypes.Add("SamsungPayDetails");
                     match++;
                 }
-            }
-            catch (Exception ex)
-            {
-                if (!(ex is JsonSerializationException))
-                {
-                    throw new Exception(string.Format("Failed to deserialize `{0}` into CheckoutThreeDS2Action: {1}", jsonString, ex.ToString()));
-                }
-            }
-
-            try
-            {
-                // if it does not contains "AdditionalProperties", use SerializerSettings to deserialize
-                if (typeof(SepaDirectDebitDetails).GetProperty("AdditionalProperties") == null)
+                // Check if the jsonString type enum matches the SepaDirectDebitDetails type enums
+                if (ContainsValue<SepaDirectDebitDetails.TypeEnum>(type))
                 {
                     newCheckoutPaymentMethod = new CheckoutPaymentMethod(JsonConvert.DeserializeObject<SepaDirectDebitDetails>(jsonString, CheckoutPaymentMethod.SerializerSettings));
-                }
-                else
-                {
-                    newCheckoutPaymentMethod = new CheckoutPaymentMethod(JsonConvert.DeserializeObject<SepaDirectDebitDetails>(jsonString, CheckoutPaymentMethod.AdditionalPropertiesSerializerSettings));
-                }
-                if (type != null || JsonConvert.SerializeObject((SepaDirectDebitDetails.TypeEnum) 1).Contains(type))
-                {
                     matchedTypes.Add("SepaDirectDebitDetails");
                     match++;
                 }
-            }
-            catch (Exception ex)
-            {
-                if (!(ex is JsonSerializationException))
-                {
-                    throw new Exception(string.Format("Failed to deserialize `{0}` into CheckoutThreeDS2Action: {1}", jsonString, ex.ToString()));
-                }
-            }
-
-            try
-            {
-                // if it does not contains "AdditionalProperties", use SerializerSettings to deserialize
-                if (typeof(StoredPaymentMethodDetails).GetProperty("AdditionalProperties") == null)
+                // Check if the jsonString type enum matches the StoredPaymentMethodDetails type enums
+                if (ContainsValue<StoredPaymentMethodDetails.TypeEnum>(type))
                 {
                     newCheckoutPaymentMethod = new CheckoutPaymentMethod(JsonConvert.DeserializeObject<StoredPaymentMethodDetails>(jsonString, CheckoutPaymentMethod.SerializerSettings));
-                }
-                else
-                {
-                    newCheckoutPaymentMethod = new CheckoutPaymentMethod(JsonConvert.DeserializeObject<StoredPaymentMethodDetails>(jsonString, CheckoutPaymentMethod.AdditionalPropertiesSerializerSettings));
-                }
-                if (type != null || JsonConvert.SerializeObject((StoredPaymentMethodDetails.TypeEnum) 1).Contains(type))
-                {
                     matchedTypes.Add("StoredPaymentMethodDetails");
                     match++;
                 }
-            }
-            catch (Exception ex)
-            {
-                if (!(ex is JsonSerializationException))
-                {
-                    throw new Exception(string.Format("Failed to deserialize `{0}` into CheckoutThreeDS2Action: {1}", jsonString, ex.ToString()));
-                }
-            }
-
-            try
-            {
-                // if it does not contains "AdditionalProperties", use SerializerSettings to deserialize
-                if (typeof(UpiCollectDetails).GetProperty("AdditionalProperties") == null)
+                // Check if the jsonString type enum matches the UpiCollectDetails type enums
+                if (ContainsValue<UpiCollectDetails.TypeEnum>(type))
                 {
                     newCheckoutPaymentMethod = new CheckoutPaymentMethod(JsonConvert.DeserializeObject<UpiCollectDetails>(jsonString, CheckoutPaymentMethod.SerializerSettings));
-                }
-                else
-                {
-                    newCheckoutPaymentMethod = new CheckoutPaymentMethod(JsonConvert.DeserializeObject<UpiCollectDetails>(jsonString, CheckoutPaymentMethod.AdditionalPropertiesSerializerSettings));
-                }
-                if (type != null || JsonConvert.SerializeObject((UpiCollectDetails.TypeEnum) 1).Contains(type))
-                {
                     matchedTypes.Add("UpiCollectDetails");
                     match++;
                 }
-            }
-            catch (Exception ex)
-            {
-                if (!(ex is JsonSerializationException))
-                {
-                    throw new Exception(string.Format("Failed to deserialize `{0}` into CheckoutThreeDS2Action: {1}", jsonString, ex.ToString()));
-                }
-            }
-
-            try
-            {
-                // if it does not contains "AdditionalProperties", use SerializerSettings to deserialize
-                if (typeof(UpiIntentDetails).GetProperty("AdditionalProperties") == null)
+                // Check if the jsonString type enum matches the UpiIntentDetails type enums
+                if (ContainsValue<UpiIntentDetails.TypeEnum>(type))
                 {
                     newCheckoutPaymentMethod = new CheckoutPaymentMethod(JsonConvert.DeserializeObject<UpiIntentDetails>(jsonString, CheckoutPaymentMethod.SerializerSettings));
-                }
-                else
-                {
-                    newCheckoutPaymentMethod = new CheckoutPaymentMethod(JsonConvert.DeserializeObject<UpiIntentDetails>(jsonString, CheckoutPaymentMethod.AdditionalPropertiesSerializerSettings));
-                }
-                if (type != null || JsonConvert.SerializeObject((UpiIntentDetails.TypeEnum) 1).Contains(type))
-                {
                     matchedTypes.Add("UpiIntentDetails");
                     match++;
                 }
-            }
-            catch (Exception ex)
-            {
-                if (!(ex is JsonSerializationException))
-                {
-                    throw new Exception(string.Format("Failed to deserialize `{0}` into CheckoutThreeDS2Action: {1}", jsonString, ex.ToString()));
-                }
-            }
-
-            try
-            {
-                // if it does not contains "AdditionalProperties", use SerializerSettings to deserialize
-                if (typeof(VippsDetails).GetProperty("AdditionalProperties") == null)
+                // Check if the jsonString type enum matches the VippsDetails type enums
+                if (ContainsValue<VippsDetails.TypeEnum>(type))
                 {
                     newCheckoutPaymentMethod = new CheckoutPaymentMethod(JsonConvert.DeserializeObject<VippsDetails>(jsonString, CheckoutPaymentMethod.SerializerSettings));
-                }
-                else
-                {
-                    newCheckoutPaymentMethod = new CheckoutPaymentMethod(JsonConvert.DeserializeObject<VippsDetails>(jsonString, CheckoutPaymentMethod.AdditionalPropertiesSerializerSettings));
-                }
-                if (type != null || JsonConvert.SerializeObject((VippsDetails.TypeEnum) 1).Contains(type))
-                {
                     matchedTypes.Add("VippsDetails");
                     match++;
                 }
-            }
-            catch (Exception ex)
-            {
-                if (!(ex is JsonSerializationException))
-                {
-                    throw new Exception(string.Format("Failed to deserialize `{0}` into CheckoutThreeDS2Action: {1}", jsonString, ex.ToString()));
-                }
-            }
-
-            try
-            {
-                // if it does not contains "AdditionalProperties", use SerializerSettings to deserialize
-                if (typeof(VisaCheckoutDetails).GetProperty("AdditionalProperties") == null)
+                // Check if the jsonString type enum matches the VisaCheckoutDetails type enums
+                if (ContainsValue<VisaCheckoutDetails.TypeEnum>(type))
                 {
                     newCheckoutPaymentMethod = new CheckoutPaymentMethod(JsonConvert.DeserializeObject<VisaCheckoutDetails>(jsonString, CheckoutPaymentMethod.SerializerSettings));
-                }
-                else
-                {
-                    newCheckoutPaymentMethod = new CheckoutPaymentMethod(JsonConvert.DeserializeObject<VisaCheckoutDetails>(jsonString, CheckoutPaymentMethod.AdditionalPropertiesSerializerSettings));
-                }
-                if (type != null || JsonConvert.SerializeObject((VisaCheckoutDetails.TypeEnum) 1).Contains(type))
-                {
                     matchedTypes.Add("VisaCheckoutDetails");
                     match++;
                 }
-            }
-            catch (Exception ex)
-            {
-                if (!(ex is JsonSerializationException))
-                {
-                    throw new Exception(string.Format("Failed to deserialize `{0}` into CheckoutThreeDS2Action: {1}", jsonString, ex.ToString()));
-                }
-            }
-
-            try
-            {
-                // if it does not contains "AdditionalProperties", use SerializerSettings to deserialize
-                if (typeof(WeChatPayDetails).GetProperty("AdditionalProperties") == null)
+                // Check if the jsonString type enum matches the WeChatPayDetails type enums
+                if (ContainsValue<WeChatPayDetails.TypeEnum>(type))
                 {
                     newCheckoutPaymentMethod = new CheckoutPaymentMethod(JsonConvert.DeserializeObject<WeChatPayDetails>(jsonString, CheckoutPaymentMethod.SerializerSettings));
-                }
-                else
-                {
-                    newCheckoutPaymentMethod = new CheckoutPaymentMethod(JsonConvert.DeserializeObject<WeChatPayDetails>(jsonString, CheckoutPaymentMethod.AdditionalPropertiesSerializerSettings));
-                }
-                if (type != null || JsonConvert.SerializeObject((WeChatPayDetails.TypeEnum) 1).Contains(type))
-                {
                     matchedTypes.Add("WeChatPayDetails");
                     match++;
                 }
-            }
-            catch (Exception ex)
-            {
-                if (!(ex is JsonSerializationException))
-                {
-                    throw new Exception(string.Format("Failed to deserialize `{0}` into CheckoutThreeDS2Action: {1}", jsonString, ex.ToString()));
-                }
-            }
-
-            try
-            {
-                // if it does not contains "AdditionalProperties", use SerializerSettings to deserialize
-                if (typeof(WeChatPayMiniProgramDetails).GetProperty("AdditionalProperties") == null)
+                // Check if the jsonString type enum matches the WeChatPayMiniProgramDetails type enums
+                if (ContainsValue<WeChatPayMiniProgramDetails.TypeEnum>(type))
                 {
                     newCheckoutPaymentMethod = new CheckoutPaymentMethod(JsonConvert.DeserializeObject<WeChatPayMiniProgramDetails>(jsonString, CheckoutPaymentMethod.SerializerSettings));
-                }
-                else
-                {
-                    newCheckoutPaymentMethod = new CheckoutPaymentMethod(JsonConvert.DeserializeObject<WeChatPayMiniProgramDetails>(jsonString, CheckoutPaymentMethod.AdditionalPropertiesSerializerSettings));
-                }
-                if (type != null || JsonConvert.SerializeObject((WeChatPayMiniProgramDetails.TypeEnum) 1).Contains(type))
-                {
                     matchedTypes.Add("WeChatPayMiniProgramDetails");
                     match++;
                 }
-            }
-            catch (Exception ex)
-            {
-                if (!(ex is JsonSerializationException))
-                {
-                    throw new Exception(string.Format("Failed to deserialize `{0}` into CheckoutThreeDS2Action: {1}", jsonString, ex.ToString()));
-                }
-            }
-
-            try
-            {
-                // if it does not contains "AdditionalProperties", use SerializerSettings to deserialize
-                if (typeof(ZipDetails).GetProperty("AdditionalProperties") == null)
+                // Check if the jsonString type enum matches the ZipDetails type enums
+                if (ContainsValue<ZipDetails.TypeEnum>(type))
                 {
                     newCheckoutPaymentMethod = new CheckoutPaymentMethod(JsonConvert.DeserializeObject<ZipDetails>(jsonString, CheckoutPaymentMethod.SerializerSettings));
-                }
-                else
-                {
-                    newCheckoutPaymentMethod = new CheckoutPaymentMethod(JsonConvert.DeserializeObject<ZipDetails>(jsonString, CheckoutPaymentMethod.AdditionalPropertiesSerializerSettings));
-                }
-                if (type != null || JsonConvert.SerializeObject((ZipDetails.TypeEnum) 1).Contains(type))
-                {
                     matchedTypes.Add("ZipDetails");
                     match++;
                 }
-            }
+            } 
             catch (Exception ex)
             {
                 if (!(ex is JsonSerializationException))
                 {
-                    throw new Exception(string.Format("Failed to deserialize `{0}` into CheckoutThreeDS2Action: {1}", jsonString, ex.ToString()));
+                     throw new InvalidDataException(string.Format("Failed to deserialize `{0}` into target: {1}", jsonString, ex.ToString()));
                 }
             }
 
-            if (match == 0)
+            if (match != 1)
             {
-                throw new InvalidDataException("The JSON string `" + jsonString + "` cannot be deserialized into any schema defined.");
+                throw new InvalidDataException("The JSON string `" + jsonString + "` cannot be deserialized into any schema defined. MatchedTypes are: " + matchedTypes);
             }
             
             // deserialization is considered successful at this point if no exception has been thrown.

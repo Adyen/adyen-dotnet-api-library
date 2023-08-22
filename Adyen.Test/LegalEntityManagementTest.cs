@@ -19,7 +19,7 @@ namespace Adyen.Test
         [TestMethod]
         public void CreateDocument()
         {
-            var client = CreateMockTestClientApiKeyBasedRequestAsync("Mocks/legalentitymanagement/Document.json");
+            var client = CreateMockTestClientApiKeyBasedRequestAsync("mocks/legalentitymanagement/Document.json");
             var service = new DocumentsService(client);
             var document = new Document
             {
@@ -36,7 +36,7 @@ namespace Adyen.Test
         [TestMethod]
         public void UpdateDocument()
         {
-            var client = CreateMockTestClientApiKeyBasedRequestAsync("Mocks/legalentitymanagement/Document.json");
+            var client = CreateMockTestClientApiKeyBasedRequestAsync("mocks/legalentitymanagement/Document.json");
             var service = new DocumentsService(client);
             var document = new Document
             {
@@ -54,7 +54,7 @@ namespace Adyen.Test
         [TestMethod]
         public void DeleteDocumentTest()
         {
-            var client = CreateMockTestClientApiKeyBasedRequestAsync("Mocks/legalentitymanagement/Document.json");
+            var client = CreateMockTestClientApiKeyBasedRequestAsync("mocks/legalentitymanagement/Document.json");
             var service = new DocumentsService(client);
             service.DeleteDocument("SE322KT223222D5FJ7TJN2986");
 
@@ -68,7 +68,7 @@ namespace Adyen.Test
         [TestMethod]
         public void CreateTransferInstrumentsTest()
         {
-            var client = CreateMockTestClientApiKeyBasedRequestAsync("Mocks/legalentitymanagement/TransferInstrument.json");
+            var client = CreateMockTestClientApiKeyBasedRequestAsync("mocks/legalentitymanagement/TransferInstrument.json");
             var service = new TransferInstrumentsService(client);
             var transferInstrumentInfo = new TransferInstrumentInfo
             {
@@ -85,7 +85,7 @@ namespace Adyen.Test
         [TestMethod]
         public void UpdateTransferInstrumentsTest()
         {
-            var client = CreateMockTestClientApiKeyBasedRequestAsync("Mocks/legalentitymanagement/TransferInstrument.json");
+            var client = CreateMockTestClientApiKeyBasedRequestAsync("mocks/legalentitymanagement/TransferInstrument.json");
             var service = new TransferInstrumentsService(client);
             var transferInstrumentInfo = new TransferInstrumentInfo
             {
@@ -106,7 +106,7 @@ namespace Adyen.Test
         [TestMethod]
         public void ListThemesTest()
         {
-            var client = CreateMockTestClientApiKeyBasedRequestAsync("Mocks/legalentitymanagement/OnboardingThemes.json");
+            var client = CreateMockTestClientApiKeyBasedRequestAsync("mocks/legalentitymanagement/OnboardingThemes.json");
             var service = new HostedOnboardingService(client);
             var task = service.ListHostedOnboardingPageThemesAsync();
             var response = task.Result;
@@ -122,7 +122,7 @@ namespace Adyen.Test
         [TestMethod]
         public void UpdateLegalEntitiesTest()
         {
-            var client = CreateMockTestClientApiKeyBasedRequestAsync("Mocks/legalentitymanagement/LegalEntity.json");
+            var client = CreateMockTestClientApiKeyBasedRequestAsync("mocks/legalentitymanagement/LegalEntity.json");
             var service = new LegalEntitiesService(client);
             var legalEntityInfo = new LegalEntityInfo
             {
@@ -144,7 +144,7 @@ namespace Adyen.Test
         [TestMethod]
         public void UpdateBusinessLinesTest()
         {
-            var client = CreateMockTestClientApiKeyBasedRequestAsync("Mocks/legalentitymanagement/BusinessLine.json");
+            var client = CreateMockTestClientApiKeyBasedRequestAsync("mocks/legalentitymanagement/BusinessLine.json");
             var service = new BusinessLinesService(client);
             var businessLine = new BusinessLineInfoUpdate
             {
@@ -164,7 +164,7 @@ namespace Adyen.Test
         [TestMethod]
         public void GetTermsOfServiceStatus()
         {
-            var client = CreateMockTestClientApiKeyBasedRequestAsync("Mocks/legalentitymanagement/TermsOfServiceStatus.json");
+            var client = CreateMockTestClientApiKeyBasedRequestAsync("mocks/legalentitymanagement/TermsOfServiceStatus.json");
             var service = new TermsOfServiceService(client);
             var response = service.GetTermsOfServiceInformationForLegalEntity("id123");
             ClientInterfaceMock.Verify(mock =>

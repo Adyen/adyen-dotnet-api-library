@@ -16,7 +16,7 @@ namespace Adyen.Test
                 //encrypt the request using encryption credentials
                 var paymentRequest = MockPosApiRequest.CreatePosPaymentRequest();
                 //create a mock client
-                var client = CreateMockTestClientPosLocalApiRequest("Mocks/terminalapi/input-request-response.json");
+                var client = CreateMockTestClientPosLocalApiRequest("mocks/terminalapi/input-request-response.json");
                 var posPaymentLocalApi = new PosPaymentCloudApi(client);
                 var configEndpoint = posPaymentLocalApi.Client.Config.Endpoint;
                 var saleToPoiResponse = posPaymentLocalApi.TerminalApiCloudSync(paymentRequest);
@@ -39,7 +39,7 @@ namespace Adyen.Test
                 //encrypt the request using encryption credentials
                 var paymentRequest = MockPosApiRequest.CreatePosPaymentRequest();
                 //create a mock client
-                var client = CreateMockTestClientPosCloudApiRequest("Mocks/terminalapi/repeated-response-message.json");
+                var client = CreateMockTestClientPosCloudApiRequest("mocks/terminalapi/repeated-response-message.json");
                 var posPaymentCloudApiApi = new PosPaymentCloudApi(client);
 
                 var saleToPoiResponse = posPaymentCloudApiApi.TerminalApiCloudAsync(paymentRequest);
@@ -60,7 +60,7 @@ namespace Adyen.Test
             {
                 var paymentRequest = MockPosApiRequest.CreatePosPaymentRequest();
                 var client =
-                    CreateMockTestClientPosLocalApiRequest("Mocks/terminalapi/cardAcquisitionResponse-success.json");
+                    CreateMockTestClientPosLocalApiRequest("mocks/terminalapi/cardAcquisitionResponse-success.json");
                 var posPaymentCloudApiApi = new PosPaymentCloudApi(client);
                 var saleToPoiResponse = posPaymentCloudApiApi.TerminalApiCloudAsync(paymentRequest);
                 var payloadResponse = (CardAcquisitionResponse) saleToPoiResponse.MessagePayload;

@@ -84,17 +84,19 @@ namespace Adyen.Model.BalancePlatform
         /// <param name="defaultCurrencyCode">The default three-character [ISO currency code](https://docs.adyen.com/development-resources/currency-codes) of the balance account. The default value is **EUR**..</param>
         /// <param name="description">A human-readable description of the balance account, maximum 300 characters. You can use this parameter to distinguish between multiple balance accounts under an account holder..</param>
         /// <param name="id">The unique identifier of the balance account. (required).</param>
-        /// <param name="metadata">A set of key and value pairs for general use by the merchant. The keys do not have specific names and may be used for storing miscellaneous data as desired. &gt; Note that during an update of metadata, the omission of existing key-value pairs will result in the deletion of those key-value pairs..</param>
+        /// <param name="metadata">A set of key and value pairs for general use. The keys do not have specific names and may be used for storing miscellaneous data as desired. &gt; Note that during an update of metadata, the omission of existing key-value pairs will result in the deletion of those key-value pairs..</param>
+        /// <param name="platformPaymentConfiguration">platformPaymentConfiguration.</param>
         /// <param name="reference">Your reference for the balance account, maximum 150 characters..</param>
         /// <param name="status">The status of the balance account, set to **active** by default.  .</param>
         /// <param name="timeZone">The time zone of the balance account. For example, **Europe/Amsterdam**. Defaults to the time zone of the account holder if no time zone is set. For possible values, see the [list of time zone codes](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones)..</param>
-        public BalanceAccountBase(string accountHolderId = default(string), string defaultCurrencyCode = default(string), string description = default(string), string id = default(string), Dictionary<string, string> metadata = default(Dictionary<string, string>), string reference = default(string), StatusEnum? status = default(StatusEnum?), string timeZone = default(string))
+        public BalanceAccountBase(string accountHolderId = default(string), string defaultCurrencyCode = default(string), string description = default(string), string id = default(string), Dictionary<string, string> metadata = default(Dictionary<string, string>), PlatformPaymentConfiguration platformPaymentConfiguration = default(PlatformPaymentConfiguration), string reference = default(string), StatusEnum? status = default(StatusEnum?), string timeZone = default(string))
         {
             this.AccountHolderId = accountHolderId;
             this.Id = id;
             this.DefaultCurrencyCode = defaultCurrencyCode;
             this.Description = description;
             this.Metadata = metadata;
+            this.PlatformPaymentConfiguration = platformPaymentConfiguration;
             this.Reference = reference;
             this.Status = status;
             this.TimeZone = timeZone;
@@ -129,11 +131,24 @@ namespace Adyen.Model.BalancePlatform
         public string Id { get; set; }
 
         /// <summary>
-        /// A set of key and value pairs for general use by the merchant. The keys do not have specific names and may be used for storing miscellaneous data as desired. &gt; Note that during an update of metadata, the omission of existing key-value pairs will result in the deletion of those key-value pairs.
+        /// A set of key and value pairs for general use. The keys do not have specific names and may be used for storing miscellaneous data as desired. &gt; Note that during an update of metadata, the omission of existing key-value pairs will result in the deletion of those key-value pairs.
         /// </summary>
-        /// <value>A set of key and value pairs for general use by the merchant. The keys do not have specific names and may be used for storing miscellaneous data as desired. &gt; Note that during an update of metadata, the omission of existing key-value pairs will result in the deletion of those key-value pairs.</value>
+        /// <value>A set of key and value pairs for general use. The keys do not have specific names and may be used for storing miscellaneous data as desired. &gt; Note that during an update of metadata, the omission of existing key-value pairs will result in the deletion of those key-value pairs.</value>
         [DataMember(Name = "metadata", EmitDefaultValue = false)]
         public Dictionary<string, string> Metadata { get; set; }
+
+        /// <summary>
+        /// The unique identifier of the account of the migrated account holder in the classic integration.
+        /// </summary>
+        /// <value>The unique identifier of the account of the migrated account holder in the classic integration.</value>
+        [DataMember(Name = "migratedAccountCode", EmitDefaultValue = false)]
+        public string MigratedAccountCode { get; private set; }
+
+        /// <summary>
+        /// Gets or Sets PlatformPaymentConfiguration
+        /// </summary>
+        [DataMember(Name = "platformPaymentConfiguration", EmitDefaultValue = false)]
+        public PlatformPaymentConfiguration PlatformPaymentConfiguration { get; set; }
 
         /// <summary>
         /// Your reference for the balance account, maximum 150 characters.
@@ -162,6 +177,8 @@ namespace Adyen.Model.BalancePlatform
             sb.Append("  Description: ").Append(Description).Append("\n");
             sb.Append("  Id: ").Append(Id).Append("\n");
             sb.Append("  Metadata: ").Append(Metadata).Append("\n");
+            sb.Append("  MigratedAccountCode: ").Append(MigratedAccountCode).Append("\n");
+            sb.Append("  PlatformPaymentConfiguration: ").Append(PlatformPaymentConfiguration).Append("\n");
             sb.Append("  Reference: ").Append(Reference).Append("\n");
             sb.Append("  Status: ").Append(Status).Append("\n");
             sb.Append("  TimeZone: ").Append(TimeZone).Append("\n");
@@ -227,6 +244,16 @@ namespace Adyen.Model.BalancePlatform
                     this.Metadata.SequenceEqual(input.Metadata)
                 ) && 
                 (
+                    this.MigratedAccountCode == input.MigratedAccountCode ||
+                    (this.MigratedAccountCode != null &&
+                    this.MigratedAccountCode.Equals(input.MigratedAccountCode))
+                ) && 
+                (
+                    this.PlatformPaymentConfiguration == input.PlatformPaymentConfiguration ||
+                    (this.PlatformPaymentConfiguration != null &&
+                    this.PlatformPaymentConfiguration.Equals(input.PlatformPaymentConfiguration))
+                ) && 
+                (
                     this.Reference == input.Reference ||
                     (this.Reference != null &&
                     this.Reference.Equals(input.Reference))
@@ -270,6 +297,14 @@ namespace Adyen.Model.BalancePlatform
                 if (this.Metadata != null)
                 {
                     hashCode = (hashCode * 59) + this.Metadata.GetHashCode();
+                }
+                if (this.MigratedAccountCode != null)
+                {
+                    hashCode = (hashCode * 59) + this.MigratedAccountCode.GetHashCode();
+                }
+                if (this.PlatformPaymentConfiguration != null)
+                {
+                    hashCode = (hashCode * 59) + this.PlatformPaymentConfiguration.GetHashCode();
                 }
                 if (this.Reference != null)
                 {

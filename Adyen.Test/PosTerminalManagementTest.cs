@@ -14,7 +14,7 @@ namespace Adyen.Test
         [TestMethod]
         public void FindTerminalSuccess()
         {
-            var client = CreateMockTestClientApiKeyBasedRequestAsync("Mocks/pos-terminal-management/find-terminals-success.json");
+            var client = CreateMockTestClientApiKeyBasedRequestAsync("mocks/pos-terminal-management/find-terminals-success.json");
             var posTerminalManagement = new PosTerminalManagementService(client);
             var findTerminalRequest = new FindTerminalRequest
             {
@@ -33,7 +33,7 @@ namespace Adyen.Test
         [TestMethod]
         public void AssignTerminalsSuccess()
         {
-            var client = CreateMockTestClientApiKeyBasedRequestAsync("Mocks/pos-terminal-management/assing-terminals-success.json");
+            var client = CreateMockTestClientApiKeyBasedRequestAsync("mocks/pos-terminal-management/assing-terminals-success.json");
             var posTerminalManagement = new PosTerminalManagementService(client);
             var assignTerminalsRequest = new AssignTerminalsRequest
             {
@@ -53,7 +53,7 @@ namespace Adyen.Test
         [TestMethod]
         public void GetTerminalsUnderAccountSuccess()
         {
-            var client = CreateMockTestClientApiKeyBasedRequestAsync("Mocks/pos-terminal-management/get-terminals-under-account-success.json");
+            var client = CreateMockTestClientApiKeyBasedRequestAsync("mocks/pos-terminal-management/get-terminals-under-account-success.json");
             var posTerminalManagement = new PosTerminalManagementService(client);
             var getTerminalsUnderAccountRequest = new GetTerminalsUnderAccountRequest
             {
@@ -84,7 +84,7 @@ namespace Adyen.Test
         {
             var client =
                 CreateMockTestClientApiKeyBasedRequestAsync(
-                    "Mocks/pos-terminal-management/get-terminals-details-success.json");
+                    "mocks/pos-terminal-management/get-terminals-details-success.json");
             var posTerminalManagement = new PosTerminalManagementService(client);
             var getTerminalDetailsRequest = new GetTerminalDetailsRequest
             {
@@ -112,7 +112,7 @@ namespace Adyen.Test
         public void GetStoresUnderAccountSuccess()
         {
             var client = CreateMockTestClientApiKeyBasedRequestAsync(
-                    "Mocks/pos-terminal-management/get-stores-under-account-success.json");
+                    "mocks/pos-terminal-management/get-stores-under-account-success.json");
             var posTerminalManagement = new PosTerminalManagementService(client);
             var getStoresUnderAccountSuccessRequest = new GetStoresUnderAccountRequest
             {

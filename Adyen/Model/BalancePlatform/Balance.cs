@@ -43,13 +43,15 @@ namespace Adyen.Model.BalancePlatform
         /// <param name="available">The remaining amount available for spending. (required).</param>
         /// <param name="balance">The total amount in the balance. (required).</param>
         /// <param name="currency">The three-character [ISO currency code](https://docs.adyen.com/development-resources/currency-codes) of the balance. (required).</param>
+        /// <param name="pending">The amount pending to be paid out but not yet available in the balance..</param>
         /// <param name="reserved">The amount reserved for payments that have been authorised, but have not been captured yet. (required).</param>
-        public Balance(long? available = default(long?), long? balance = default(long?), string currency = default(string), long? reserved = default(long?))
+        public Balance(long? available = default(long?), long? balance = default(long?), string currency = default(string), long? pending = default(long?), long? reserved = default(long?))
         {
             this.Available = available;
             this._Balance = balance;
             this.Currency = currency;
             this.Reserved = reserved;
+            this.Pending = pending;
         }
 
         /// <summary>
@@ -74,6 +76,13 @@ namespace Adyen.Model.BalancePlatform
         public string Currency { get; set; }
 
         /// <summary>
+        /// The amount pending to be paid out but not yet available in the balance.
+        /// </summary>
+        /// <value>The amount pending to be paid out but not yet available in the balance.</value>
+        [DataMember(Name = "pending", EmitDefaultValue = false)]
+        public long? Pending { get; set; }
+
+        /// <summary>
         /// The amount reserved for payments that have been authorised, but have not been captured yet.
         /// </summary>
         /// <value>The amount reserved for payments that have been authorised, but have not been captured yet.</value>
@@ -91,6 +100,7 @@ namespace Adyen.Model.BalancePlatform
             sb.Append("  Available: ").Append(Available).Append("\n");
             sb.Append("  _Balance: ").Append(_Balance).Append("\n");
             sb.Append("  Currency: ").Append(Currency).Append("\n");
+            sb.Append("  Pending: ").Append(Pending).Append("\n");
             sb.Append("  Reserved: ").Append(Reserved).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
@@ -141,6 +151,10 @@ namespace Adyen.Model.BalancePlatform
                     this.Currency.Equals(input.Currency))
                 ) && 
                 (
+                    this.Pending == input.Pending ||
+                    this.Pending.Equals(input.Pending)
+                ) && 
+                (
                     this.Reserved == input.Reserved ||
                     this.Reserved.Equals(input.Reserved)
                 );
@@ -161,6 +175,7 @@ namespace Adyen.Model.BalancePlatform
                 {
                     hashCode = (hashCode * 59) + this.Currency.GetHashCode();
                 }
+                hashCode = (hashCode * 59) + this.Pending.GetHashCode();
                 hashCode = (hashCode * 59) + this.Reserved.GetHashCode();
                 return hashCode;
             }

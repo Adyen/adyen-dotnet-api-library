@@ -11,7 +11,7 @@ namespace Adyen.Test
         [TestMethod]
         public void TestListRecurringDetails()
         {
-            var client = CreateMockTestClientApiKeyBasedRequestAsync("Mocks/recurring/listRecurringDetails-success.json");
+            var client = CreateMockTestClientApiKeyBasedRequestAsync("mocks/recurring/listRecurringDetails-success.json");
             var recurring = new Service.RecurringService(client);
             var recurringDetailsRequest = CreateRecurringDetailsRequest();
             var recurringDetailsResult = recurring.ListRecurringDetails(recurringDetailsRequest);
@@ -26,7 +26,7 @@ namespace Adyen.Test
         [TestMethod]
         public async Task TestListRecurringDetailsAsync()
         {
-            var client = CreateMockTestClientApiKeyBasedRequestAsync("Mocks/recurring/listRecurringDetails-success.json");
+            var client = CreateMockTestClientApiKeyBasedRequestAsync("mocks/recurring/listRecurringDetails-success.json");
             var recurring = new Service.RecurringService(client);
             var recurringDetailsRequest = CreateRecurringDetailsRequest();
             var recurringDetailsResult = await recurring.ListRecurringDetailsAsync(recurringDetailsRequest);
@@ -40,7 +40,7 @@ namespace Adyen.Test
         [TestMethod]
         public void TestDisable()
         {
-            var client = CreateMockTestClientApiKeyBasedRequestAsync("Mocks/recurring/disable-success.json");
+            var client = CreateMockTestClientApiKeyBasedRequestAsync("mocks/recurring/disable-success.json");
             var recurring = new Service.RecurringService(client);
             var disableRequest = CreateDisableRequest();
             var disableResult = recurring.Disable(disableRequest);
@@ -50,7 +50,7 @@ namespace Adyen.Test
         [TestMethod]
         public async Task TestDisableAsync()
         {
-            var client = CreateMockTestClientApiKeyBasedRequestAsync("Mocks/recurring/disable-success.json");
+            var client = CreateMockTestClientApiKeyBasedRequestAsync("mocks/recurring/disable-success.json");
             var recurring = new Service.RecurringService(client);
             var disableRequest = CreateDisableRequest();
             var disableResult = await recurring.DisableAsync(disableRequest);
@@ -60,7 +60,7 @@ namespace Adyen.Test
         [TestMethod]
         public void NotifyShopperTest()
         {
-            Client client = CreateMockTestClientApiKeyBasedRequestAsync("Mocks/recurring/notifyShopper-success.json");
+            Client client = CreateMockTestClientApiKeyBasedRequestAsync("mocks/recurring/notifyShopper-success.json");
             var recurring = new Service.RecurringService(client);
             NotifyShopperRequest request = CreateNotifyShopperRequest();
             NotifyShopperResult result = recurring.NotifyShopper(request);
@@ -76,7 +76,7 @@ namespace Adyen.Test
         [TestMethod]
         public void CreatePermitTest()
         {
-            Client client = CreateMockTestClientApiKeyBasedRequestAsync("Mocks/recurring/createPermit-success.json");
+            Client client = CreateMockTestClientApiKeyBasedRequestAsync("mocks/recurring/createPermit-success.json");
             var recurring = new Service.RecurringService(client);
             var createPermitResult = recurring.CreatePermit(new CreatePermitRequest());
             Assert.IsNotNull(createPermitResult);
@@ -87,7 +87,7 @@ namespace Adyen.Test
         [TestMethod]
         public void DisablePermitTest()
         {
-            Client client = CreateMockTestClientApiKeyBasedRequestAsync("Mocks/recurring/disablePermit-success.json");
+            Client client = CreateMockTestClientApiKeyBasedRequestAsync("mocks/recurring/disablePermit-success.json");
             var recurring = new Service.RecurringService(client);
             var disablePermitResult = recurring.DisablePermit(new DisablePermitRequest());
             Assert.IsNotNull(disablePermitResult);
@@ -98,7 +98,7 @@ namespace Adyen.Test
         [TestMethod]
         public void ScheduleAccountUpdaterTest()
         {
-            Client client = CreateMockTestClientApiKeyBasedRequestAsync("Mocks/recurring/scheduleAccountUpdater-success.json");
+            Client client = CreateMockTestClientApiKeyBasedRequestAsync("mocks/recurring/scheduleAccountUpdater-success.json");
             var recurring = new Service.RecurringService(client);
             var scheduleAccountUpdaterResult = recurring.ScheduleAccountUpdater(new ScheduleAccountUpdaterRequest());
             Assert.IsNotNull(scheduleAccountUpdaterResult);

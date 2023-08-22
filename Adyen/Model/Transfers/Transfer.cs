@@ -554,94 +554,118 @@ namespace Adyen.Model.Transfers
             MiscCostPending = 49,
 
             /// <summary>
+            /// Enum OperationAuthorized for value: operationAuthorized
+            /// </summary>
+            [EnumMember(Value = "operationAuthorized")]
+            OperationAuthorized = 50,
+
+            /// <summary>
+            /// Enum OperationBooked for value: operationBooked
+            /// </summary>
+            [EnumMember(Value = "operationBooked")]
+            OperationBooked = 51,
+
+            /// <summary>
+            /// Enum OperationPending for value: operationPending
+            /// </summary>
+            [EnumMember(Value = "operationPending")]
+            OperationPending = 52,
+
+            /// <summary>
+            /// Enum OperationReceived for value: operationReceived
+            /// </summary>
+            [EnumMember(Value = "operationReceived")]
+            OperationReceived = 53,
+
+            /// <summary>
             /// Enum PaymentCost for value: paymentCost
             /// </summary>
             [EnumMember(Value = "paymentCost")]
-            PaymentCost = 50,
+            PaymentCost = 54,
 
             /// <summary>
             /// Enum PaymentCostPending for value: paymentCostPending
             /// </summary>
             [EnumMember(Value = "paymentCostPending")]
-            PaymentCostPending = 51,
+            PaymentCostPending = 55,
 
             /// <summary>
             /// Enum Received for value: received
             /// </summary>
             [EnumMember(Value = "received")]
-            Received = 52,
+            Received = 56,
 
             /// <summary>
             /// Enum RefundPending for value: refundPending
             /// </summary>
             [EnumMember(Value = "refundPending")]
-            RefundPending = 53,
+            RefundPending = 57,
 
             /// <summary>
             /// Enum RefundReversalPending for value: refundReversalPending
             /// </summary>
             [EnumMember(Value = "refundReversalPending")]
-            RefundReversalPending = 54,
+            RefundReversalPending = 58,
 
             /// <summary>
             /// Enum RefundReversed for value: refundReversed
             /// </summary>
             [EnumMember(Value = "refundReversed")]
-            RefundReversed = 55,
+            RefundReversed = 59,
 
             /// <summary>
             /// Enum Refunded for value: refunded
             /// </summary>
             [EnumMember(Value = "refunded")]
-            Refunded = 56,
+            Refunded = 60,
 
             /// <summary>
             /// Enum RefundedExternally for value: refundedExternally
             /// </summary>
             [EnumMember(Value = "refundedExternally")]
-            RefundedExternally = 57,
+            RefundedExternally = 61,
 
             /// <summary>
             /// Enum Refused for value: refused
             /// </summary>
             [EnumMember(Value = "refused")]
-            Refused = 58,
+            Refused = 62,
 
             /// <summary>
             /// Enum ReserveAdjustment for value: reserveAdjustment
             /// </summary>
             [EnumMember(Value = "reserveAdjustment")]
-            ReserveAdjustment = 59,
+            ReserveAdjustment = 63,
 
             /// <summary>
             /// Enum ReserveAdjustmentPending for value: reserveAdjustmentPending
             /// </summary>
             [EnumMember(Value = "reserveAdjustmentPending")]
-            ReserveAdjustmentPending = 60,
+            ReserveAdjustmentPending = 64,
 
             /// <summary>
             /// Enum Returned for value: returned
             /// </summary>
             [EnumMember(Value = "returned")]
-            Returned = 61,
+            Returned = 65,
 
             /// <summary>
             /// Enum SecondChargeback for value: secondChargeback
             /// </summary>
             [EnumMember(Value = "secondChargeback")]
-            SecondChargeback = 62,
+            SecondChargeback = 66,
 
             /// <summary>
             /// Enum SecondChargebackPending for value: secondChargebackPending
             /// </summary>
             [EnumMember(Value = "secondChargebackPending")]
-            SecondChargebackPending = 63,
+            SecondChargebackPending = 67,
 
             /// <summary>
             /// Enum Undefined for value: undefined
             /// </summary>
             [EnumMember(Value = "undefined")]
-            Undefined = 64
+            Undefined = 68
 
         }
 

@@ -77,7 +77,7 @@ namespace Adyen.Model.BalancePlatform
         /// <param name="authentication">authentication.</param>
         /// <param name="bin">The bank identification number (BIN) of the card number..</param>
         /// <param name="brand">The brand of the physical or the virtual card. Possible values: **visa**, **mc**. (required).</param>
-        /// <param name="brandVariant">The brand variant of the physical or the virtual card. &gt;Contact your Adyen Implementation Manager to get the values that are relevant to your integration. Examples: **visadebit**, **mcprepaid**. (required).</param>
+        /// <param name="brandVariant">The brand variant of the physical or the virtual card. For example, **visadebit** or **mcprepaid**. &gt;Reach out to your Adyen contact to get the values relevant for your integration. (required).</param>
         /// <param name="cardholderName">The name of the cardholder.  Maximum length: 26 characters. (required).</param>
         /// <param name="configuration">configuration.</param>
         /// <param name="cvc">The CVC2 value of the card. &gt; The CVC2 is not sent by default. This is only returned in the &#x60;POST&#x60; response for single-use virtual cards..</param>
@@ -85,7 +85,8 @@ namespace Adyen.Model.BalancePlatform
         /// <param name="expiration">expiration.</param>
         /// <param name="formFactor">The form factor of the card. Possible values: **virtual**, **physical**. (required).</param>
         /// <param name="lastFour">Last last four digits of the card number..</param>
-        public Card(Authentication authentication = default(Authentication), string bin = default(string), string brand = default(string), string brandVariant = default(string), string cardholderName = default(string), CardConfiguration configuration = default(CardConfiguration), string cvc = default(string), DeliveryContact deliveryContact = default(DeliveryContact), Expiry expiration = default(Expiry), FormFactorEnum formFactor = default(FormFactorEnum), string lastFour = default(string))
+        /// <param name="threeDSecure">Allocates a specific product range for either a physical or a virtual card. Possible values: **fullySupported**, **secureCorporate**. &gt;Reach out to your Adyen contact to get the values relevant for your integration..</param>
+        public Card(Authentication authentication = default(Authentication), string bin = default(string), string brand = default(string), string brandVariant = default(string), string cardholderName = default(string), CardConfiguration configuration = default(CardConfiguration), string cvc = default(string), DeliveryContact deliveryContact = default(DeliveryContact), Expiry expiration = default(Expiry), FormFactorEnum formFactor = default(FormFactorEnum), string lastFour = default(string), string threeDSecure = default(string))
         {
             this.Brand = brand;
             this.BrandVariant = brandVariant;
@@ -98,6 +99,7 @@ namespace Adyen.Model.BalancePlatform
             this.DeliveryContact = deliveryContact;
             this.Expiration = expiration;
             this.LastFour = lastFour;
+            this.ThreeDSecure = threeDSecure;
         }
 
         /// <summary>
@@ -121,9 +123,9 @@ namespace Adyen.Model.BalancePlatform
         public string Brand { get; set; }
 
         /// <summary>
-        /// The brand variant of the physical or the virtual card. &gt;Contact your Adyen Implementation Manager to get the values that are relevant to your integration. Examples: **visadebit**, **mcprepaid**.
+        /// The brand variant of the physical or the virtual card. For example, **visadebit** or **mcprepaid**. &gt;Reach out to your Adyen contact to get the values relevant for your integration.
         /// </summary>
-        /// <value>The brand variant of the physical or the virtual card. &gt;Contact your Adyen Implementation Manager to get the values that are relevant to your integration. Examples: **visadebit**, **mcprepaid**.</value>
+        /// <value>The brand variant of the physical or the virtual card. For example, **visadebit** or **mcprepaid**. &gt;Reach out to your Adyen contact to get the values relevant for your integration.</value>
         [DataMember(Name = "brandVariant", IsRequired = false, EmitDefaultValue = false)]
         public string BrandVariant { get; set; }
 
@@ -174,6 +176,13 @@ namespace Adyen.Model.BalancePlatform
         public string Number { get; private set; }
 
         /// <summary>
+        /// Allocates a specific product range for either a physical or a virtual card. Possible values: **fullySupported**, **secureCorporate**. &gt;Reach out to your Adyen contact to get the values relevant for your integration.
+        /// </summary>
+        /// <value>Allocates a specific product range for either a physical or a virtual card. Possible values: **fullySupported**, **secureCorporate**. &gt;Reach out to your Adyen contact to get the values relevant for your integration.</value>
+        [DataMember(Name = "threeDSecure", EmitDefaultValue = false)]
+        public string ThreeDSecure { get; set; }
+
+        /// <summary>
         /// Returns the string presentation of the object
         /// </summary>
         /// <returns>String presentation of the object</returns>
@@ -193,6 +202,7 @@ namespace Adyen.Model.BalancePlatform
             sb.Append("  FormFactor: ").Append(FormFactor).Append("\n");
             sb.Append("  LastFour: ").Append(LastFour).Append("\n");
             sb.Append("  Number: ").Append(Number).Append("\n");
+            sb.Append("  ThreeDSecure: ").Append(ThreeDSecure).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -286,6 +296,11 @@ namespace Adyen.Model.BalancePlatform
                     this.Number == input.Number ||
                     (this.Number != null &&
                     this.Number.Equals(input.Number))
+                ) && 
+                (
+                    this.ThreeDSecure == input.ThreeDSecure ||
+                    (this.ThreeDSecure != null &&
+                    this.ThreeDSecure.Equals(input.ThreeDSecure))
                 );
         }
 
@@ -342,6 +357,10 @@ namespace Adyen.Model.BalancePlatform
                 if (this.Number != null)
                 {
                     hashCode = (hashCode * 59) + this.Number.GetHashCode();
+                }
+                if (this.ThreeDSecure != null)
+                {
+                    hashCode = (hashCode * 59) + this.ThreeDSecure.GetHashCode();
                 }
                 return hashCode;
             }

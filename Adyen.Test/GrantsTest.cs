@@ -10,7 +10,7 @@ namespace Adyen.Test
         [TestMethod]
         public void StoredValueIssueTest()
         {
-            var client = CreateMockTestClientApiKeyBasedRequestAsync("Mocks/grants/post-grants-success.json");
+            var client = CreateMockTestClientApiKeyBasedRequestAsync("mocks/grants/post-grants-success.json");
             var service = new CapitalService(client);
             var response = service.RequestGrantPayout(new CapitalGrantInfo());
             Assert.AreEqual(response.Id, "CG00000000000000000000001");

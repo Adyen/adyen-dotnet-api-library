@@ -24,7 +24,7 @@ namespace Adyen.Test
         {
             try
             {
-                var client = CreateMockTestClientPosCloudApiRequest("Mocks/terminalapi/pospayment-success.json");
+                var client = CreateMockTestClientPosCloudApiRequest("mocks/terminalapi/pospayment-success.json");
                 var payment = new PosPaymentCloudApi(client);
                 var saleToPoiResponse = payment.TerminalApiCloudSync(_paymentRequest);
 
@@ -41,7 +41,7 @@ namespace Adyen.Test
         {
             try
             {
-                var client = CreateMockTestClientPosCloudApiRequest("Mocks/terminalapi/pospayment-success.json");
+                var client = CreateMockTestClientPosCloudApiRequest("mocks/terminalapi/pospayment-success.json");
                 var payment = new PosPaymentCloudApi(client);
                 var saleToPoiResponse = payment.TerminalApiCloudAsync(_paymentRequest);
 
@@ -57,7 +57,7 @@ namespace Adyen.Test
         public void TestCloudApiTransactionStatusResponseSuccess()
         {
             var client =
-                CreateMockTestClientPosCloudApiRequest("Mocks/terminalapi/pospayment-transaction-status-response.json");
+                CreateMockTestClientPosCloudApiRequest("mocks/terminalapi/pospayment-transaction-status-response.json");
             var payment = new PosPaymentCloudApi(client);
             var saleToPoiResponse = payment.TerminalApiCloudSync(_paymentRequest);
         
@@ -104,7 +104,7 @@ namespace Adyen.Test
             {
                 var client =
                     CreateMockTestClientPosCloudApiRequest(
-                        "Mocks/terminalapi/pospayment-notification-error-response.json");
+                        "mocks/terminalapi/pospayment-notification-error-response.json");
                 var payment = new PosPaymentCloudApi(client);
                 var saleToPoiResponse = payment.TerminalApiCloudSync(_paymentRequest);
                 var messagePayload = (EventNotification)saleToPoiResponse.MessagePayload;
@@ -128,7 +128,7 @@ namespace Adyen.Test
             {
                 var client =
                     CreateMockTestClientPosCloudApiRequest(
-                        "Mocks/terminalapi/display-response-success.json");
+                        "mocks/terminalapi/display-response-success.json");
                 var payment = new PosPaymentCloudApi(client);
                 var saleToPoiResponse = payment.TerminalApiCloudSync(_paymentRequest);
                 Assert.IsNotNull(saleToPoiResponse);
@@ -149,7 +149,7 @@ namespace Adyen.Test
             {
                 var client =
                     CreateMockTestClientPosCloudApiRequest(
-                        "Mocks/terminalapi/pospayment-reversal-response-success.json");
+                        "mocks/terminalapi/pospayment-reversal-response-success.json");
                 var payment = new PosPaymentCloudApi(client);
                 var saleToPoiResponse = payment.TerminalApiCloudSync(_paymentRequest);
                 Assert.IsNotNull(saleToPoiResponse);
@@ -174,7 +174,7 @@ namespace Adyen.Test
         {
             try
             {
-                var mockPath = GetMockFilePath("Mocks/terminalapi/pospayment-card-acquisition-request.json");
+                var mockPath = GetMockFilePath("mocks/terminalapi/pospayment-card-acquisition-request.json");
                 var message = MockFileToString(mockPath);
                 var saleToPoiMessageSerializer = new SaleToPoiMessageSerializer();
                 var saleToMessage = saleToPoiMessageSerializer.Deserialize(message);
@@ -198,7 +198,7 @@ namespace Adyen.Test
         {
             try
             {
-                var client = CreateAsyncMockTestClientApiKeyBasedRequest("Mocks/terminalapi/pospayment-success.json");
+                var client = CreateAsyncMockTestClientApiKeyBasedRequest("mocks/terminalapi/pospayment-success.json");
                 var payment = new PosPaymentCloudApi(client);
                 var saleToPoiResponse = payment.TerminalApiCloudSynchronousAsync(_paymentRequest).Result;
                 Assert.IsNotNull(saleToPoiResponse);
@@ -217,7 +217,7 @@ namespace Adyen.Test
         {
             try
             {
-                var client = CreateAsyncMockTestClientApiKeyBasedRequest("Mocks/terminalapi/pospayment-success.json");
+                var client = CreateAsyncMockTestClientApiKeyBasedRequest("mocks/terminalapi/pospayment-success.json");
                 var payment = new PosPaymentCloudApi(client);
                 var saleToPoiResponse = payment.TerminalApiCloudAsynchronousAsync(_paymentRequest).Result;
                 Assert.IsNotNull(saleToPoiResponse);
@@ -238,7 +238,7 @@ namespace Adyen.Test
             {
                 var client =
                     CreateAsyncMockTestClientApiKeyBasedRequest(
-                        "Mocks/terminalapi/pospayment-notification-error-response.json");
+                        "mocks/terminalapi/pospayment-notification-error-response.json");
                 var payment = new PosPaymentCloudApi(client);
                 var saleToPoiResponse = payment.TerminalApiCloudSynchronousAsync(_paymentRequest).Result;
                 var messagePayload = (EventNotification)saleToPoiResponse.MessagePayload;

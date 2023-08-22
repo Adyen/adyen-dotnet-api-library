@@ -263,60 +263,6 @@ namespace Adyen.Test
         }
 
         /// <summary>
-        /// Creates mock test client 
-        /// </summary>
-        /// <param name="fileName">The file that is returned</param>
-        /// <returns>IClient implementation</returns>
-        protected Client CreateMockTestClientNullRequiredFieldsRequest(string fileName)
-        {
-            var mockPath = GetMockFilePath(fileName);
-            var response = MockFileToString(mockPath);
-            //Create a mock interface
-            var clientInterfaceMock = new Mock<IClient>();
-            var confMock = MockPaymentData.CreateConfigMock();
-
-            clientInterfaceMock.Setup(x => x.Request(It.IsAny<string>(), It.IsAny<string>(), It.IsAny<RequestOptions>(), null)).Returns(response);
-            clientInterfaceMock.Setup(x => x.Request(It.IsAny<string>(), It.IsAny<string>(), It.IsAny<RequestOptions>(), null)).Returns(response);
-            clientInterfaceMock.Setup(x => x.RequestAsync(It.IsAny<string>(), It.IsAny<string>(), It.IsAny<RequestOptions>(), null, It.IsAny<CancellationToken>())).Returns(Task.FromResult(response));
-            var config = new Config
-            {
-                Environment = It.IsAny<Model.Environment>()
-            };
-            var clientMock = new Client(config)
-            {
-                HttpClient = clientInterfaceMock.Object,
-                Config = confMock
-            };
-            return clientMock;
-        }
-
-        /// <summary>
-        /// Creates mock test client 
-        /// </summary>
-        /// <param name="fileName">The file that is returned</param>
-        /// <returns>IClient implementation</returns>
-        protected Client CreateMockTestClientApiKeyBasedRequest(string fileName)
-        {
-            var mockPath = GetMockFilePath(fileName);
-            var response = MockFileToString(mockPath);
-            //Create a mock interface
-            var clientInterfaceMock = new Mock<IClient>();
-            var confMock = MockPaymentData.CreateConfigApiKeyBasedMock();
-            clientInterfaceMock.Setup(x => x.Request(It.IsAny<string>(),
-                It.IsAny<string>(), It.IsAny<RequestOptions>(), null)).Returns(response);
-            var config = new Config
-            {
-                Environment = It.IsAny<Model.Environment>()
-            };
-            var clientMock = new Client(config)
-            {
-                HttpClient = clientInterfaceMock.Object,
-                Config = confMock
-            };
-            return clientMock;
-        }
-        
-        /// <summary>
         /// Creates mock test client
         /// </summary>
         /// <param name="fileName">The file that is returned</param>
@@ -427,38 +373,7 @@ namespace Adyen.Test
             };
             return clientMock;
         }
-
-        /// <summary>
-        /// Creates mock test client errors
-        /// </summary>
-        /// <param name="status"></param>
-        /// <param name="fileName"></param>
-        /// <returns></returns>
-        protected Client CreateMockTestClientForErrors(int status, string fileName)
-        {
-            var mockPath = GetMockFilePath(fileName);
-            var response = MockFileToString(mockPath);
-            //Create a mock interface
-            var clientInterfaceMock = new Mock<IClient>();
-            var confMock = MockPaymentData.CreateConfigMock();
-            var httpClientException =
-                new HttpClientException(status, "An error occured", new WebHeaderCollection(), response);
-
-            clientInterfaceMock.Setup(x => x.Request(It.IsAny<string>(),
-                It.IsAny<string>(), It.IsAny<RequestOptions>(), null)).Throws(httpClientException);
-            var config = new Config
-            {
-                Environment = It.IsAny<Model.Environment>()
-            };
-            var clientMock = new Client(config)
-            {
-                HttpClient = clientInterfaceMock.Object,
-                Config = confMock
-            };
-            return clientMock;
-        }
-                
-
+        
         protected string MockFileToString(string fileName)
         {
             string text = "";
@@ -483,18 +398,6 @@ namespace Adyen.Test
         }
 
         /// <summary>
-        /// Helper for file reading
-        /// </summary>
-        /// <param name="fileName"></param>
-        /// <returns></returns>
-        public string GetFileContents(string fileName)
-        {
-            string mockPath = GetMockFilePath(fileName);
-            return MockFileToString(mockPath);
-        }
-
-
-        /// <summary>
         /// Create dummy Nexo message header
         /// </summary>
         /// <returns></returns>
@@ -511,31 +414,6 @@ namespace Adyen.Test
                 ServiceID = (new Random()).Next(1, 9999).ToString()
             };
             return header;
-        }
-
-        /// <summary>
-        /// Create dummy VoidPendingRefundRequest
-        /// </summary>
-        /// <returns>VoidPendingRefundRequest</returns>
-        protected VoidPendingRefundRequest CreateVoidPendingRefundRequest()
-        {
-            return new VoidPendingRefundRequest
-            {
-                TenderReference = "TenderReference"
-            };
-        }
-
-        /// <summary>
-        /// Create dummy AuthenticationResultRequest
-        /// </summary>
-        /// <returns>AuthenticationResultRequest</returns>
-        protected AuthenticationResultRequest CreateAuthenticationResultRequest()
-        {
-            return new AuthenticationResultRequest
-            {
-                MerchantAccount = "MerchantAccount",
-                PspReference = "pspReference"
-            };
         }
 
         protected static string GetMockFilePath(string fileName)

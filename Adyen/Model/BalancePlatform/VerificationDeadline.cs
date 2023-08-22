@@ -356,6 +356,13 @@ namespace Adyen.Model.BalancePlatform
         public List<VerificationDeadline.CapabilitiesEnum> Capabilities { get; private set; }
 
         /// <summary>
+        /// The unique identifiers of the bank account(s) that the deadline applies to
+        /// </summary>
+        /// <value>The unique identifiers of the bank account(s) that the deadline applies to</value>
+        [DataMember(Name = "entityIds", EmitDefaultValue = false)]
+        public List<string> EntityIds { get; private set; }
+
+        /// <summary>
         /// The date that verification is due by before capabilities are disallowed.
         /// </summary>
         /// <value>The date that verification is due by before capabilities are disallowed.</value>
@@ -371,6 +378,7 @@ namespace Adyen.Model.BalancePlatform
             StringBuilder sb = new StringBuilder();
             sb.Append("class VerificationDeadline {\n");
             sb.Append("  Capabilities: ").Append(Capabilities).Append("\n");
+            sb.Append("  EntityIds: ").Append(EntityIds).Append("\n");
             sb.Append("  ExpiresAt: ").Append(ExpiresAt).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
@@ -414,6 +422,12 @@ namespace Adyen.Model.BalancePlatform
                     this.Capabilities.SequenceEqual(input.Capabilities)
                 ) && 
                 (
+                    this.EntityIds == input.EntityIds ||
+                    this.EntityIds != null &&
+                    input.EntityIds != null &&
+                    this.EntityIds.SequenceEqual(input.EntityIds)
+                ) && 
+                (
                     this.ExpiresAt == input.ExpiresAt ||
                     (this.ExpiresAt != null &&
                     this.ExpiresAt.Equals(input.ExpiresAt))
@@ -432,6 +446,10 @@ namespace Adyen.Model.BalancePlatform
                 if (this.Capabilities != null)
                 {
                     hashCode = (hashCode * 59) + this.Capabilities.GetHashCode();
+                }
+                if (this.EntityIds != null)
+                {
+                    hashCode = (hashCode * 59) + this.EntityIds.GetHashCode();
                 }
                 if (this.ExpiresAt != null)
                 {

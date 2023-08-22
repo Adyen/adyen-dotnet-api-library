@@ -27,10 +27,10 @@ using OpenAPIDateConverter = Adyen.ApiSerialization.OpenAPIDateConverter;
 namespace Adyen.Model.BalancePlatform
 {
     /// <summary>
-    /// SweepConfigurationV2
+    /// UpdateSweepConfigurationV2
     /// </summary>
-    [DataContract(Name = "SweepConfigurationV2")]
-    public partial class SweepConfigurationV2 : IEquatable<SweepConfigurationV2>, IValidatableObject
+    [DataContract(Name = "UpdateSweepConfigurationV2")]
+    public partial class UpdateSweepConfigurationV2 : IEquatable<UpdateSweepConfigurationV2>, IValidatableObject
     {
         /// <summary>
         /// The type of transfer that results from the sweep.  Possible values:   - **bank**: Sweep to a [transfer instrument](https://docs.adyen.com/api-explorer/#/legalentity/latest/post/transferInstruments__resParam_id).  - **internal**: Transfer to another [balance account](https://docs.adyen.com/api-explorer/#/balanceplatform/latest/post/balanceAccounts__resParam_id) within your platform.  Required when setting &#x60;priorities&#x60;.
@@ -276,32 +276,27 @@ namespace Adyen.Model.BalancePlatform
         [DataMember(Name = "type", EmitDefaultValue = false)]
         public TypeEnum? Type { get; set; }
         /// <summary>
-        /// Initializes a new instance of the <see cref="SweepConfigurationV2" /> class.
-        /// </summary>
-        [JsonConstructorAttribute]
-        protected SweepConfigurationV2() { }
-        /// <summary>
-        /// Initializes a new instance of the <see cref="SweepConfigurationV2" /> class.
+        /// Initializes a new instance of the <see cref="UpdateSweepConfigurationV2" /> class.
         /// </summary>
         /// <param name="category">The type of transfer that results from the sweep.  Possible values:   - **bank**: Sweep to a [transfer instrument](https://docs.adyen.com/api-explorer/#/legalentity/latest/post/transferInstruments__resParam_id).  - **internal**: Transfer to another [balance account](https://docs.adyen.com/api-explorer/#/balanceplatform/latest/post/balanceAccounts__resParam_id) within your platform.  Required when setting &#x60;priorities&#x60;..</param>
-        /// <param name="counterparty">counterparty (required).</param>
-        /// <param name="currency">The three-character [ISO currency code](https://docs.adyen.com/development-resources/currency-codes) in uppercase. For example, **EUR**.  The sweep currency must match any of the [balances currencies](https://docs.adyen.com/api-explorer/#/balanceplatform/latest/get/balanceAccounts/{id}__resParam_balances). (required).</param>
+        /// <param name="counterparty">counterparty.</param>
+        /// <param name="currency">The three-character [ISO currency code](https://docs.adyen.com/development-resources/currency-codes) in uppercase. For example, **EUR**.  The sweep currency must match any of the [balances currencies](https://docs.adyen.com/api-explorer/#/balanceplatform/latest/get/balanceAccounts/{id}__resParam_balances)..</param>
         /// <param name="description">The message that will be used in the sweep transfer&#39;s description body with a maximum length of 140 characters.  If the message is longer after replacing placeholders, the message will be cut off at 140 characters..</param>
         /// <param name="priorities">The list of priorities for the bank transfer. This sets the speed at which the transfer is sent and the fees that you have to pay. You can provide multiple priorities. Adyen will try to pay out using the priority listed first, and if that&#39;s not possible, it moves on to the next option in the order of provided priorities.  Possible values:  * **regular**: For normal, low-value transactions.  * **fast**: Faster way to transfer funds but has higher fees. Recommended for high-priority, low-value transactions.  * **wire**: Fastest way to transfer funds but has the highest fees. Recommended for high-priority, high-value transactions.  * **instant**: Instant way to transfer funds in [SEPA countries](https://www.ecb.europa.eu/paym/integration/retail/sepa/html/index.en.html).  * **crossBorder**: High-value transfer to a recipient in a different country.  * **internal**: Transfer to an Adyen-issued business bank account (by bank account number/IBAN).  Set &#x60;category&#x60; to **bank**. For more details, see [optional priorities setup](https://docs.adyen.com/marketplaces-and-platforms/payout-to-users/scheduled-payouts#optional-priorities-setup)..</param>
-        /// <param name="schedule">schedule (required).</param>
+        /// <param name="schedule">schedule.</param>
         /// <param name="status">The status of the sweep. If not provided, by default, this is set to **active**.  Possible values:    * **active**:  the sweep is enabled and funds will be pulled in or pushed out based on the defined configuration.    * **inactive**: the sweep is disabled and cannot be triggered.   .</param>
         /// <param name="sweepAmount">sweepAmount.</param>
         /// <param name="targetAmount">targetAmount.</param>
         /// <param name="triggerAmount">triggerAmount.</param>
         /// <param name="type">The direction of sweep, whether pushing out or pulling in funds to the balance account. If not provided, by default, this is set to **push**.  Possible values:   * **push**: _push out funds_ to a destination balance account or transfer instrument.   * **pull**: _pull in funds_ from a source merchant account, transfer instrument, or balance account. (default to TypeEnum.Push).</param>
-        public SweepConfigurationV2(CategoryEnum? category = default(CategoryEnum?), SweepCounterparty counterparty = default(SweepCounterparty), string currency = default(string), string description = default(string), List<PrioritiesEnum> priorities = default(List<PrioritiesEnum>), SweepSchedule schedule = default(SweepSchedule), StatusEnum? status = default(StatusEnum?), Amount sweepAmount = default(Amount), Amount targetAmount = default(Amount), Amount triggerAmount = default(Amount), TypeEnum? type = TypeEnum.Push)
+        public UpdateSweepConfigurationV2(CategoryEnum? category = default(CategoryEnum?), SweepCounterparty counterparty = default(SweepCounterparty), string currency = default(string), string description = default(string), List<PrioritiesEnum> priorities = default(List<PrioritiesEnum>), SweepSchedule schedule = default(SweepSchedule), StatusEnum? status = default(StatusEnum?), Amount sweepAmount = default(Amount), Amount targetAmount = default(Amount), Amount triggerAmount = default(Amount), TypeEnum? type = TypeEnum.Push)
         {
+            this.Category = category;
             this.Counterparty = counterparty;
             this.Currency = currency;
-            this.Schedule = schedule;
-            this.Category = category;
             this.Description = description;
             this.Priorities = priorities;
+            this.Schedule = schedule;
             this.Status = status;
             this.SweepAmount = sweepAmount;
             this.TargetAmount = targetAmount;
@@ -312,14 +307,14 @@ namespace Adyen.Model.BalancePlatform
         /// <summary>
         /// Gets or Sets Counterparty
         /// </summary>
-        [DataMember(Name = "counterparty", IsRequired = false, EmitDefaultValue = false)]
+        [DataMember(Name = "counterparty", EmitDefaultValue = false)]
         public SweepCounterparty Counterparty { get; set; }
 
         /// <summary>
         /// The three-character [ISO currency code](https://docs.adyen.com/development-resources/currency-codes) in uppercase. For example, **EUR**.  The sweep currency must match any of the [balances currencies](https://docs.adyen.com/api-explorer/#/balanceplatform/latest/get/balanceAccounts/{id}__resParam_balances).
         /// </summary>
         /// <value>The three-character [ISO currency code](https://docs.adyen.com/development-resources/currency-codes) in uppercase. For example, **EUR**.  The sweep currency must match any of the [balances currencies](https://docs.adyen.com/api-explorer/#/balanceplatform/latest/get/balanceAccounts/{id}__resParam_balances).</value>
-        [DataMember(Name = "currency", IsRequired = false, EmitDefaultValue = false)]
+        [DataMember(Name = "currency", EmitDefaultValue = false)]
         public string Currency { get; set; }
 
         /// <summary>
@@ -333,7 +328,7 @@ namespace Adyen.Model.BalancePlatform
         /// The unique identifier of the sweep.
         /// </summary>
         /// <value>The unique identifier of the sweep.</value>
-        [DataMember(Name = "id", IsRequired = false, EmitDefaultValue = false)]
+        [DataMember(Name = "id", EmitDefaultValue = false)]
         public string Id { get; private set; }
 
         /// <summary>
@@ -341,12 +336,12 @@ namespace Adyen.Model.BalancePlatform
         /// </summary>
         /// <value>The list of priorities for the bank transfer. This sets the speed at which the transfer is sent and the fees that you have to pay. You can provide multiple priorities. Adyen will try to pay out using the priority listed first, and if that&#39;s not possible, it moves on to the next option in the order of provided priorities.  Possible values:  * **regular**: For normal, low-value transactions.  * **fast**: Faster way to transfer funds but has higher fees. Recommended for high-priority, low-value transactions.  * **wire**: Fastest way to transfer funds but has the highest fees. Recommended for high-priority, high-value transactions.  * **instant**: Instant way to transfer funds in [SEPA countries](https://www.ecb.europa.eu/paym/integration/retail/sepa/html/index.en.html).  * **crossBorder**: High-value transfer to a recipient in a different country.  * **internal**: Transfer to an Adyen-issued business bank account (by bank account number/IBAN).  Set &#x60;category&#x60; to **bank**. For more details, see [optional priorities setup](https://docs.adyen.com/marketplaces-and-platforms/payout-to-users/scheduled-payouts#optional-priorities-setup).</value>
         [DataMember(Name = "priorities", EmitDefaultValue = false)]
-        public List<SweepConfigurationV2.PrioritiesEnum> Priorities { get; set; }
+        public List<UpdateSweepConfigurationV2.PrioritiesEnum> Priorities { get; set; }
 
         /// <summary>
         /// Gets or Sets Schedule
         /// </summary>
-        [DataMember(Name = "schedule", IsRequired = false, EmitDefaultValue = false)]
+        [DataMember(Name = "schedule", EmitDefaultValue = false)]
         public SweepSchedule Schedule { get; set; }
 
         /// <summary>
@@ -374,7 +369,7 @@ namespace Adyen.Model.BalancePlatform
         public override string ToString()
         {
             StringBuilder sb = new StringBuilder();
-            sb.Append("class SweepConfigurationV2 {\n");
+            sb.Append("class UpdateSweepConfigurationV2 {\n");
             sb.Append("  Category: ").Append(Category).Append("\n");
             sb.Append("  Counterparty: ").Append(Counterparty).Append("\n");
             sb.Append("  Currency: ").Append(Currency).Append("\n");
@@ -408,15 +403,15 @@ namespace Adyen.Model.BalancePlatform
         /// <returns>Boolean</returns>
         public override bool Equals(object input)
         {
-            return this.Equals(input as SweepConfigurationV2);
+            return this.Equals(input as UpdateSweepConfigurationV2);
         }
 
         /// <summary>
-        /// Returns true if SweepConfigurationV2 instances are equal
+        /// Returns true if UpdateSweepConfigurationV2 instances are equal
         /// </summary>
-        /// <param name="input">Instance of SweepConfigurationV2 to be compared</param>
+        /// <param name="input">Instance of UpdateSweepConfigurationV2 to be compared</param>
         /// <returns>Boolean</returns>
-        public bool Equals(SweepConfigurationV2 input)
+        public bool Equals(UpdateSweepConfigurationV2 input)
         {
             if (input == null)
             {

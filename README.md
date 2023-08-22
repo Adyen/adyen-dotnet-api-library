@@ -41,33 +41,37 @@ PM> Install-Package Adyen -Version x.x.x
 
 In order to submit http request to Adyen API you need to initialize the client. The following example makes a checkout payment request:
 ```c#
+    using Adyen;
+    using Adyen.Model.Checkout;
+    using Adyen.Service.Checkout;
+    using Environment = Adyen.Model.Environment;
 
-// Create a paymentsRequest
-using Adyen;
-using Adyen.Model.Checkout;
-using Adyen.Service.Checkout;
-using Environment = Adyen.Model.Environment;
-
-// Create a paymentsRequest
-var amount = new Amount("USD", 1000);
-var paymentRequest = new PaymentRequest
-{
-    Reference = "Your order number",
-    Amount = amount,
-    ReturnUrl = @"https://your-company.com/...",
-    MerchantAccount = "Your merchantAccount",
-};
-
-//Create the http client
-var config = new Config
-{
-    XApiKey = "Your merchant XAPI key",
-    Environment = Environment.Test
-};
-var client = new Client(config);
-var checkout = new PaymentsService(client);
-//Make the call to the service. This example code makes a call to /payments
-var paymentResponse = checkout.Payments(paymentRequest);
+            var config = new Config()
+            {
+                XApiKey = "your-api-key",
+                Environment = Environment.Test
+            };
+            var client = new Client(config);
+            var paymentsService = new PaymentsService(client);
+            var amount = new Model.Checkout.Amount("USD", 1000);
+            var cardDetails = new CardDetails
+            {
+                EncryptedCardNumber = "test_4111111111111111",
+                EncryptedSecurityCode = "test_737",
+                EncryptedExpiryMonth = "test_03",
+                EncryptedExpiryYear = "test_2030",
+                HolderName = "John Smith",
+                Type = CardDetails.TypeEnum.Card
+            };
+            var paymentsRequest = new Model.Checkout.PaymentRequest
+            {
+                Reference = "Your order number ",
+                ReturnUrl = @"https://your-company.com/...",
+                MerchantAccount = "your-merchant-account",
+                Amount = amount,
+                PaymentMethod = new CheckoutPaymentMethod(cardDetails)
+            };
+            var paymentResponse = paymentsService.Payments(paymentsRequest);
 ```
 Or in case you would like to make an asynchronous /payments call with idempotency key and cancellation token, the last line would be instead:
 ```c#
@@ -172,7 +176,7 @@ namespace Adyen.Terminal
 
 ## Using the Local Terminal API
 The request and response payloads are identical to the Cloud Terminal API, however an additional encryption details object is required to send the requests.
-~~~~ csharp
+```c#
 var encryptionCredentialDetails = new EncryptionCredentialDetails
     {
         AdyenCryptoVersion = 1,
@@ -187,12 +191,12 @@ var config = new Config
 var client = new Client(config);
 var posPaymentLocalApi = new PosPaymentLocalApi(client);
 var saleToPOIResponse = posPaymentLocalApi.TerminalApiLocal(paymentRequest, encryptionCredentialDetails);
-~~~~
+```
 To parse the terminal API notifications, please use the following custom deserializer. This method will throw an exception for non-notification requests.
-~~~~ csharp
+```c#
 var serializer = new SaleToPoiMessageSerializer();
 var saleToPoiRequest = serializer.DeserializeNotification(your_terminal_notification);
-~~~~
+```
 
 ## Feedback
 We value your input! Help us enhance our API Libraries and improve the integration experience by providing your feedback. Please take a moment to fill out [our feedback form](https://forms.gle/A4EERrR6CWgKWe5r9) to share your thoughts, suggestions or ideas. 

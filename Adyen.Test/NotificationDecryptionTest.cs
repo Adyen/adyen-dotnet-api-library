@@ -30,7 +30,7 @@ namespace Adyen.Test
                 var expectedDecryption = @"{ ""SaleToPOIRequest"": { ""EventNotification"": { ""EventDetails"": ""reference_id=9876"", ""TimeStamp"": ""2020-11-13T09:02:35.697Z"", ""EventToNotify"": ""SaleWakeUp"" }, ""MessageHeader"": { ""ProtocolVersion"": ""3.0"", ""SaleID"": ""null"", ""MessageClass"": ""Event"", ""MessageCategory"": ""Event"", ""POIID"": ""P400Plus-275102806"", ""MessageType"": ""Notification"", ""DeviceID"": ""5"" } } }";
 
                 //create a mock client
-                var client = CreateMockTestClientPosLocalApiRequest("Mocks/terminalapi/pospayment-encrypted-success.json");
+                var client = CreateMockTestClientPosLocalApiRequest("mocks/terminalapi/pospayment-encrypted-success.json");
                 var posPaymentLocalApi = new PosPaymentLocalApi(client);
                 var decryptedNotification = posPaymentLocalApi.DecryptNotification(encryptedNotification, _encryptionCredentialDetails);
                 Assert.AreEqual(decryptedNotification, expectedDecryption);

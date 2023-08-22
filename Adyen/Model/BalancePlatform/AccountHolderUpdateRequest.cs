@@ -27,36 +27,73 @@ using OpenAPIDateConverter = Adyen.ApiSerialization.OpenAPIDateConverter;
 namespace Adyen.Model.BalancePlatform
 {
     /// <summary>
-    /// AccountHolderInfo
+    /// AccountHolderUpdateRequest
     /// </summary>
-    [DataContract(Name = "AccountHolderInfo")]
-    public partial class AccountHolderInfo : IEquatable<AccountHolderInfo>, IValidatableObject
+    [DataContract(Name = "AccountHolderUpdateRequest")]
+    public partial class AccountHolderUpdateRequest : IEquatable<AccountHolderUpdateRequest>, IValidatableObject
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="AccountHolderInfo" /> class.
+        /// The status of the account holder.  Possible values:    * **active**: The account holder is active. This is the default status when creating an account holder.    * **inactive (Deprecated)**: The account holder is temporarily inactive due to missing KYC details. You can set the account back to active by providing the missing KYC details.    * **suspended**: The account holder is permanently deactivated by Adyen. This action cannot be undone.   * **closed**: The account holder is permanently deactivated by you. This action cannot be undone.
         /// </summary>
-        [JsonConstructorAttribute]
-        protected AccountHolderInfo() { }
+        /// <value>The status of the account holder.  Possible values:    * **active**: The account holder is active. This is the default status when creating an account holder.    * **inactive (Deprecated)**: The account holder is temporarily inactive due to missing KYC details. You can set the account back to active by providing the missing KYC details.    * **suspended**: The account holder is permanently deactivated by Adyen. This action cannot be undone.   * **closed**: The account holder is permanently deactivated by you. This action cannot be undone.</value>
+        [JsonConverter(typeof(StringEnumConverter))]
+        public enum StatusEnum
+        {
+            /// <summary>
+            /// Enum Active for value: active
+            /// </summary>
+            [EnumMember(Value = "active")]
+            Active = 1,
+
+            /// <summary>
+            /// Enum Closed for value: closed
+            /// </summary>
+            [EnumMember(Value = "closed")]
+            Closed = 2,
+
+            /// <summary>
+            /// Enum Inactive for value: inactive
+            /// </summary>
+            [EnumMember(Value = "inactive")]
+            Inactive = 3,
+
+            /// <summary>
+            /// Enum Suspended for value: suspended
+            /// </summary>
+            [EnumMember(Value = "suspended")]
+            Suspended = 4
+
+        }
+
+
         /// <summary>
-        /// Initializes a new instance of the <see cref="AccountHolderInfo" /> class.
+        /// The status of the account holder.  Possible values:    * **active**: The account holder is active. This is the default status when creating an account holder.    * **inactive (Deprecated)**: The account holder is temporarily inactive due to missing KYC details. You can set the account back to active by providing the missing KYC details.    * **suspended**: The account holder is permanently deactivated by Adyen. This action cannot be undone.   * **closed**: The account holder is permanently deactivated by you. This action cannot be undone.
+        /// </summary>
+        /// <value>The status of the account holder.  Possible values:    * **active**: The account holder is active. This is the default status when creating an account holder.    * **inactive (Deprecated)**: The account holder is temporarily inactive due to missing KYC details. You can set the account back to active by providing the missing KYC details.    * **suspended**: The account holder is permanently deactivated by Adyen. This action cannot be undone.   * **closed**: The account holder is permanently deactivated by you. This action cannot be undone.</value>
+        [DataMember(Name = "status", EmitDefaultValue = false)]
+        public StatusEnum? Status { get; set; }
+        /// <summary>
+        /// Initializes a new instance of the <see cref="AccountHolderUpdateRequest" /> class.
         /// </summary>
         /// <param name="balancePlatform">The unique identifier of the [balance platform](https://docs.adyen.com/api-explorer/#/balanceplatform/latest/get/balancePlatforms/{id}__queryParam_id) to which the account holder belongs. Required in the request if your API credentials can be used for multiple balance platforms..</param>
         /// <param name="capabilities">Contains key-value pairs that specify the actions that an account holder can do in your platform. The key is a capability required for your integration. For example, **issueCard** for Issuing. The value is an object containing the settings for the capability..</param>
         /// <param name="contactDetails">contactDetails.</param>
         /// <param name="description">Your description for the account holder, maximum 300 characters..</param>
-        /// <param name="legalEntityId">The unique identifier of the [legal entity](https://docs.adyen.com/api-explorer/legalentity/latest/post/legalEntities#responses-200-id) associated with the account holder. Adyen performs a verification process against the legal entity of the account holder. (required).</param>
         /// <param name="metadata">A set of key and value pairs for general use. The keys do not have specific names and may be used for storing miscellaneous data as desired. &gt; Note that during an update of metadata, the omission of existing key-value pairs will result in the deletion of those key-value pairs..</param>
+        /// <param name="primaryBalanceAccount">The ID of the account holder&#39;s primary balance account. By default, this is set to the first balance account that you create for the account holder. To assign a different balance account, send a PATCH request..</param>
         /// <param name="reference">Your reference for the account holder, maximum 150 characters..</param>
+        /// <param name="status">The status of the account holder.  Possible values:    * **active**: The account holder is active. This is the default status when creating an account holder.    * **inactive (Deprecated)**: The account holder is temporarily inactive due to missing KYC details. You can set the account back to active by providing the missing KYC details.    * **suspended**: The account holder is permanently deactivated by Adyen. This action cannot be undone.   * **closed**: The account holder is permanently deactivated by you. This action cannot be undone..</param>
         /// <param name="timeZone">The time zone of the account holder. For example, **Europe/Amsterdam**. Defaults to the time zone of the balance platform if no time zone is set. For possible values, see the [list of time zone codes](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones)..</param>
-        public AccountHolderInfo(string balancePlatform = default(string), Dictionary<string, AccountHolderCapability> capabilities = default(Dictionary<string, AccountHolderCapability>), ContactDetails contactDetails = default(ContactDetails), string description = default(string), string legalEntityId = default(string), Dictionary<string, string> metadata = default(Dictionary<string, string>), string reference = default(string), string timeZone = default(string))
+        public AccountHolderUpdateRequest(string balancePlatform = default(string), Dictionary<string, AccountHolderCapability> capabilities = default(Dictionary<string, AccountHolderCapability>), ContactDetails contactDetails = default(ContactDetails), string description = default(string), Dictionary<string, string> metadata = default(Dictionary<string, string>), string primaryBalanceAccount = default(string), string reference = default(string), StatusEnum? status = default(StatusEnum?), string timeZone = default(string))
         {
-            this.LegalEntityId = legalEntityId;
             this.BalancePlatform = balancePlatform;
             this.Capabilities = capabilities;
             this.ContactDetails = contactDetails;
             this.Description = description;
             this.Metadata = metadata;
+            this.PrimaryBalanceAccount = primaryBalanceAccount;
             this.Reference = reference;
+            this.Status = status;
             this.TimeZone = timeZone;
         }
 
@@ -88,13 +125,6 @@ namespace Adyen.Model.BalancePlatform
         public string Description { get; set; }
 
         /// <summary>
-        /// The unique identifier of the [legal entity](https://docs.adyen.com/api-explorer/legalentity/latest/post/legalEntities#responses-200-id) associated with the account holder. Adyen performs a verification process against the legal entity of the account holder.
-        /// </summary>
-        /// <value>The unique identifier of the [legal entity](https://docs.adyen.com/api-explorer/legalentity/latest/post/legalEntities#responses-200-id) associated with the account holder. Adyen performs a verification process against the legal entity of the account holder.</value>
-        [DataMember(Name = "legalEntityId", IsRequired = false, EmitDefaultValue = false)]
-        public string LegalEntityId { get; set; }
-
-        /// <summary>
         /// A set of key and value pairs for general use. The keys do not have specific names and may be used for storing miscellaneous data as desired. &gt; Note that during an update of metadata, the omission of existing key-value pairs will result in the deletion of those key-value pairs.
         /// </summary>
         /// <value>A set of key and value pairs for general use. The keys do not have specific names and may be used for storing miscellaneous data as desired. &gt; Note that during an update of metadata, the omission of existing key-value pairs will result in the deletion of those key-value pairs.</value>
@@ -107,6 +137,13 @@ namespace Adyen.Model.BalancePlatform
         /// <value>The unique identifier of the migrated account holder in the classic integration.</value>
         [DataMember(Name = "migratedAccountHolderCode", EmitDefaultValue = false)]
         public string MigratedAccountHolderCode { get; private set; }
+
+        /// <summary>
+        /// The ID of the account holder&#39;s primary balance account. By default, this is set to the first balance account that you create for the account holder. To assign a different balance account, send a PATCH request.
+        /// </summary>
+        /// <value>The ID of the account holder&#39;s primary balance account. By default, this is set to the first balance account that you create for the account holder. To assign a different balance account, send a PATCH request.</value>
+        [DataMember(Name = "primaryBalanceAccount", EmitDefaultValue = false)]
+        public string PrimaryBalanceAccount { get; set; }
 
         /// <summary>
         /// Your reference for the account holder, maximum 150 characters.
@@ -123,22 +160,31 @@ namespace Adyen.Model.BalancePlatform
         public string TimeZone { get; set; }
 
         /// <summary>
+        /// List of verification deadlines and the capabilities that will be disallowed if verification errors are not resolved.
+        /// </summary>
+        /// <value>List of verification deadlines and the capabilities that will be disallowed if verification errors are not resolved.</value>
+        [DataMember(Name = "verificationDeadlines", EmitDefaultValue = false)]
+        public List<VerificationDeadline> VerificationDeadlines { get; private set; }
+
+        /// <summary>
         /// Returns the string presentation of the object
         /// </summary>
         /// <returns>String presentation of the object</returns>
         public override string ToString()
         {
             StringBuilder sb = new StringBuilder();
-            sb.Append("class AccountHolderInfo {\n");
+            sb.Append("class AccountHolderUpdateRequest {\n");
             sb.Append("  BalancePlatform: ").Append(BalancePlatform).Append("\n");
             sb.Append("  Capabilities: ").Append(Capabilities).Append("\n");
             sb.Append("  ContactDetails: ").Append(ContactDetails).Append("\n");
             sb.Append("  Description: ").Append(Description).Append("\n");
-            sb.Append("  LegalEntityId: ").Append(LegalEntityId).Append("\n");
             sb.Append("  Metadata: ").Append(Metadata).Append("\n");
             sb.Append("  MigratedAccountHolderCode: ").Append(MigratedAccountHolderCode).Append("\n");
+            sb.Append("  PrimaryBalanceAccount: ").Append(PrimaryBalanceAccount).Append("\n");
             sb.Append("  Reference: ").Append(Reference).Append("\n");
+            sb.Append("  Status: ").Append(Status).Append("\n");
             sb.Append("  TimeZone: ").Append(TimeZone).Append("\n");
+            sb.Append("  VerificationDeadlines: ").Append(VerificationDeadlines).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -159,15 +205,15 @@ namespace Adyen.Model.BalancePlatform
         /// <returns>Boolean</returns>
         public override bool Equals(object input)
         {
-            return this.Equals(input as AccountHolderInfo);
+            return this.Equals(input as AccountHolderUpdateRequest);
         }
 
         /// <summary>
-        /// Returns true if AccountHolderInfo instances are equal
+        /// Returns true if AccountHolderUpdateRequest instances are equal
         /// </summary>
-        /// <param name="input">Instance of AccountHolderInfo to be compared</param>
+        /// <param name="input">Instance of AccountHolderUpdateRequest to be compared</param>
         /// <returns>Boolean</returns>
-        public bool Equals(AccountHolderInfo input)
+        public bool Equals(AccountHolderUpdateRequest input)
         {
             if (input == null)
             {
@@ -196,11 +242,6 @@ namespace Adyen.Model.BalancePlatform
                     this.Description.Equals(input.Description))
                 ) && 
                 (
-                    this.LegalEntityId == input.LegalEntityId ||
-                    (this.LegalEntityId != null &&
-                    this.LegalEntityId.Equals(input.LegalEntityId))
-                ) && 
-                (
                     this.Metadata == input.Metadata ||
                     this.Metadata != null &&
                     input.Metadata != null &&
@@ -212,14 +253,29 @@ namespace Adyen.Model.BalancePlatform
                     this.MigratedAccountHolderCode.Equals(input.MigratedAccountHolderCode))
                 ) && 
                 (
+                    this.PrimaryBalanceAccount == input.PrimaryBalanceAccount ||
+                    (this.PrimaryBalanceAccount != null &&
+                    this.PrimaryBalanceAccount.Equals(input.PrimaryBalanceAccount))
+                ) && 
+                (
                     this.Reference == input.Reference ||
                     (this.Reference != null &&
                     this.Reference.Equals(input.Reference))
                 ) && 
                 (
+                    this.Status == input.Status ||
+                    this.Status.Equals(input.Status)
+                ) && 
+                (
                     this.TimeZone == input.TimeZone ||
                     (this.TimeZone != null &&
                     this.TimeZone.Equals(input.TimeZone))
+                ) && 
+                (
+                    this.VerificationDeadlines == input.VerificationDeadlines ||
+                    this.VerificationDeadlines != null &&
+                    input.VerificationDeadlines != null &&
+                    this.VerificationDeadlines.SequenceEqual(input.VerificationDeadlines)
                 );
         }
 
@@ -248,10 +304,6 @@ namespace Adyen.Model.BalancePlatform
                 {
                     hashCode = (hashCode * 59) + this.Description.GetHashCode();
                 }
-                if (this.LegalEntityId != null)
-                {
-                    hashCode = (hashCode * 59) + this.LegalEntityId.GetHashCode();
-                }
                 if (this.Metadata != null)
                 {
                     hashCode = (hashCode * 59) + this.Metadata.GetHashCode();
@@ -260,13 +312,22 @@ namespace Adyen.Model.BalancePlatform
                 {
                     hashCode = (hashCode * 59) + this.MigratedAccountHolderCode.GetHashCode();
                 }
+                if (this.PrimaryBalanceAccount != null)
+                {
+                    hashCode = (hashCode * 59) + this.PrimaryBalanceAccount.GetHashCode();
+                }
                 if (this.Reference != null)
                 {
                     hashCode = (hashCode * 59) + this.Reference.GetHashCode();
                 }
+                hashCode = (hashCode * 59) + this.Status.GetHashCode();
                 if (this.TimeZone != null)
                 {
                     hashCode = (hashCode * 59) + this.TimeZone.GetHashCode();
+                }
+                if (this.VerificationDeadlines != null)
+                {
+                    hashCode = (hashCode * 59) + this.VerificationDeadlines.GetHashCode();
                 }
                 return hashCode;
             }
