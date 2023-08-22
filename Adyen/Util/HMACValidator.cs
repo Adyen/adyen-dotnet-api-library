@@ -87,6 +87,12 @@ namespace Adyen.Util
             var merchantSign = notificationRequestItem.AdditionalData[HmacSignature];
             return string.Equals(expectedSign, merchantSign);
         }
+
+        public bool isValidHmac(string hmacKey, string hmacSignature, string payload)
+        {
+            var calculatedSign = CalculateHmac(payload, hmacSignature);
+            return hmacKey == calculatedSign;
+        }
     }
 }
 

@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Linq;
 using Adyen.ApiSerialization;
+using Adyen.Model.ConfigurationNotification;
 using Adyen.Model.Nexo;
+using Adyen.Util;
 using Adyen.Webhooks;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
@@ -139,6 +141,51 @@ namespace Adyen.Test
             var eventNotification = (EventNotification)saleToPoiRequest.MessagePayload;
             Assert.AreEqual(eventNotification.EventDetails, "newstate=IDLE&oldstate=START");
             Assert.AreEqual(eventNotification.TimeStamp, new DateTime(2019, 8, 7, 10, 16, 10));
+        }
+        
+        [TestMethod]
+        public void TestBankingWebhookHmacValidation()
+        {
+            var notification = "{\"data\":{\"balancePlatform\":\"Integration_tools_test\",\"accountId\":\"BA32272223222H5HVKTBK4MLB\",\"sweep\":{\"id\":\"SWPC42272223222H5HVKV6H8C64DP5\",\"schedule\":{\"type\":\"balance\"},\"status\":\"active\",\"targetAmount\":{\"currency\":\"EUR\",\"value\":0},\"triggerAmount\":{\"currency\":\"EUR\",\"value\":0},\"type\":\"pull\",\"counterparty\":{\"balanceAccountId\":\"BA3227C223222H5HVKT3H9WLC\"},\"currency\":\"EUR\"}},\"environment\":\"test\",\"type\":\"balancePlatform.balanceAccountSweep.updated\"}";
+            var signKey = "D7DD5BA6146493707BF0BE7496F6404EC7A63616B7158EC927B9F54BB436765F";
+            var hmacKey = "9Qz9S/0xpar1klkniKdshxpAhRKbiSAewPpWoxKefQA=";
+            var hmacValidator = new HmacValidator();
+            bool response = hmacValidator.isValidHmac(hmacKey, signKey, notification);
+            Assert.IsTrue(response);
+        }
+        
+        [TestMethod]
+        public void TestBankingWebhooks()
+        {
+            var handler = new BankingWebhookHandler();
+            AccountHolderNotificationRequest webhook = handler.GetAccountHolderNotificationRequest(@"{
+            'data': {
+                'balancePlatform': 'YOUR_BALANCE_PLATFORM',
+                'accountHolder': {
+                    'contactDetails': {
+                        'address': {
+                            'country': 'NL',
+                            'houseNumberOrName': '274',
+                            'postalCode': '1020CD',
+                            'street': 'Brannan Street'
+                        },
+                        'email': 's.hopper@example.com',
+                        'phone': {
+                            'number': '+315551231234',
+                            'type': 'Mobile'
+                        }
+                    },
+                    'description': 'S.Hopper - Staff 123',
+                    'id': 'AH00000000000000000000001',
+                    'status': 'Active'
+                }
+            },
+            'environment': 'test',
+            'type': 'balancePlatform.accountHolder.created'
+            }");
+            Assert.IsNotNull(webhook);
+            Assert.AreEqual(webhook.Data.BalancePlatform, "YOUR_BALANCE_PLATFORM");
+
         }
     }
 }
