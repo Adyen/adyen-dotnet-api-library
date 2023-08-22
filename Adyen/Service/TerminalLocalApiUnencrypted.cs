@@ -7,10 +7,11 @@ using Adyen.Service.Resource.Terminal;
 
 namespace Adyen.Service
 {
-    public class PosPaymentLocalApiUnencrypted : AbstractService
+    public class TerminalLocalApiUnencrypted : AbstractService
     {
         private readonly TerminalApiLocal _terminalApiLocal;
         private readonly SaleToPoiMessageSerializer _saleToPoiMessageSerializer;
+        private ITerminalLocalApi _terminalLocalApiImplementation;
 
         /// <summary>
         /// [UNENCRYPTED] Local Terminal Api.
@@ -18,7 +19,7 @@ namespace Adyen.Service
         /// </summary>
         /// <param name="client">Client</param>
         /// <returns></returns>
-        public PosPaymentLocalApiUnencrypted(Client client)
+        public TerminalLocalApiUnencrypted(Client client)
             : base(client)
         {
             // Set default server certificate validation to true so no certificate check is performed
