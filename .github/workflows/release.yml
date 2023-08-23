@@ -1,15 +1,22 @@
-name: Release request
+name: Prepare release
 
 on:
-    workflow_dispatch:
-    push:
-      branches:
-        - develop
+  workflow_dispatch:
+  push:
+    branches:
+      - develop
 
 jobs:
   release:
     permissions:
       contents: write
       pull-requests: write
-    uses: Adyen/adyen-node-api-library/.github/workflows/lib-release.yml@develop
-    secrets: inherit
+    runs-on: ubuntu-latest
+    steps:
+      - name: Prepare the next main release
+        uses: Adyen/release-automation-action@v1.0.0
+        with:
+          token: ${{ secrets.ADYEN_AUTOMATION_BOT_ACCESS_TOKEN }}
+          develop-branch: develop
+          release-branch: main
+          version-files: Adyen/Adyen.csproj Adyen.Test/Adyen.Test.csproj Adyen/Constants/ClientConfig.cs

@@ -1,16 +1,19 @@
-name: Github Release
+name: Automatic Github release
 
 on:
-    workflow_dispatch:
-    push:
-      branches:
-        - main
+  workflow_dispatch:
+  push:
+    branches:
+      - main
 
 jobs:
   gh_release:
     permissions:
       contents: write
-    uses: Adyen/adyen-node-api-library/.github/workflows/lib-gh-release.yml@develop
+    uses: Adyen/release-automation-action/.github/workflows/reusable-github-release.yml@v1.0.0
     with:
-      project-name: .NET
-    secrets: inherit
+      release-title: Adyen .NET API Library 
+      develop-branch: develop
+      release-branch: main
+    secrets:
+      token: ${{ secrets.ADYEN_AUTOMATION_BOT_ACCESS_TOKEN }}
