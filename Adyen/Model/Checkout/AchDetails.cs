@@ -33,6 +33,64 @@ namespace Adyen.Model.Checkout
     public partial class AchDetails : IEquatable<AchDetails>, IValidatableObject
     {
         /// <summary>
+        /// The bank account type (checking, savings...).
+        /// </summary>
+        /// <value>The bank account type (checking, savings...).</value>
+        [JsonConverter(typeof(StringEnumConverter))]
+        public enum BankAccountTypeEnum
+        {
+            /// <summary>
+            /// Enum Balance for value: balance
+            /// </summary>
+            [EnumMember(Value = "balance")]
+            Balance = 1,
+
+            /// <summary>
+            /// Enum Checking for value: checking
+            /// </summary>
+            [EnumMember(Value = "checking")]
+            Checking = 2,
+
+            /// <summary>
+            /// Enum Deposit for value: deposit
+            /// </summary>
+            [EnumMember(Value = "deposit")]
+            Deposit = 3,
+
+            /// <summary>
+            /// Enum General for value: general
+            /// </summary>
+            [EnumMember(Value = "general")]
+            General = 4,
+
+            /// <summary>
+            /// Enum Other for value: other
+            /// </summary>
+            [EnumMember(Value = "other")]
+            Other = 5,
+
+            /// <summary>
+            /// Enum Payment for value: payment
+            /// </summary>
+            [EnumMember(Value = "payment")]
+            Payment = 6,
+
+            /// <summary>
+            /// Enum Savings for value: savings
+            /// </summary>
+            [EnumMember(Value = "savings")]
+            Savings = 7
+
+        }
+
+
+        /// <summary>
+        /// The bank account type (checking, savings...).
+        /// </summary>
+        /// <value>The bank account type (checking, savings...).</value>
+        [DataMember(Name = "bankAccountType", EmitDefaultValue = false)]
+        public BankAccountTypeEnum? BankAccountType { get; set; }
+        /// <summary>
         /// **ach**
         /// </summary>
         /// <value>**ach**</value>
@@ -69,6 +127,7 @@ namespace Adyen.Model.Checkout
         /// Initializes a new instance of the <see cref="AchDetails" /> class.
         /// </summary>
         /// <param name="bankAccountNumber">The bank account number (without separators). (required).</param>
+        /// <param name="bankAccountType">The bank account type (checking, savings...)..</param>
         /// <param name="bankLocationId">The bank routing number of the account. The field value is &#x60;nil&#x60; in most cases..</param>
         /// <param name="checkoutAttemptId">The checkout attempt identifier..</param>
         /// <param name="encryptedBankAccountNumber">Encrypted bank account number. The bank account number (without separators)..</param>
@@ -77,9 +136,10 @@ namespace Adyen.Model.Checkout
         /// <param name="recurringDetailReference">This is the &#x60;recurringDetailReference&#x60; returned in the response when you created the token..</param>
         /// <param name="storedPaymentMethodId">This is the &#x60;recurringDetailReference&#x60; returned in the response when you created the token..</param>
         /// <param name="type">**ach** (default to TypeEnum.Ach).</param>
-        public AchDetails(string bankAccountNumber = default(string), string bankLocationId = default(string), string checkoutAttemptId = default(string), string encryptedBankAccountNumber = default(string), string encryptedBankLocationId = default(string), string ownerName = default(string), string recurringDetailReference = default(string), string storedPaymentMethodId = default(string), TypeEnum? type = TypeEnum.Ach)
+        public AchDetails(string bankAccountNumber = default(string), BankAccountTypeEnum? bankAccountType = default(BankAccountTypeEnum?), string bankLocationId = default(string), string checkoutAttemptId = default(string), string encryptedBankAccountNumber = default(string), string encryptedBankLocationId = default(string), string ownerName = default(string), string recurringDetailReference = default(string), string storedPaymentMethodId = default(string), TypeEnum? type = TypeEnum.Ach)
         {
             this.BankAccountNumber = bankAccountNumber;
+            this.BankAccountType = bankAccountType;
             this.BankLocationId = bankLocationId;
             this.CheckoutAttemptId = checkoutAttemptId;
             this.EncryptedBankAccountNumber = encryptedBankAccountNumber;
@@ -156,6 +216,7 @@ namespace Adyen.Model.Checkout
             StringBuilder sb = new StringBuilder();
             sb.Append("class AchDetails {\n");
             sb.Append("  BankAccountNumber: ").Append(BankAccountNumber).Append("\n");
+            sb.Append("  BankAccountType: ").Append(BankAccountType).Append("\n");
             sb.Append("  BankLocationId: ").Append(BankLocationId).Append("\n");
             sb.Append("  CheckoutAttemptId: ").Append(CheckoutAttemptId).Append("\n");
             sb.Append("  EncryptedBankAccountNumber: ").Append(EncryptedBankAccountNumber).Append("\n");
@@ -203,6 +264,10 @@ namespace Adyen.Model.Checkout
                     this.BankAccountNumber == input.BankAccountNumber ||
                     (this.BankAccountNumber != null &&
                     this.BankAccountNumber.Equals(input.BankAccountNumber))
+                ) && 
+                (
+                    this.BankAccountType == input.BankAccountType ||
+                    this.BankAccountType.Equals(input.BankAccountType)
                 ) && 
                 (
                     this.BankLocationId == input.BankLocationId ||
@@ -258,6 +323,7 @@ namespace Adyen.Model.Checkout
                 {
                     hashCode = (hashCode * 59) + this.BankAccountNumber.GetHashCode();
                 }
+                hashCode = (hashCode * 59) + this.BankAccountType.GetHashCode();
                 if (this.BankLocationId != null)
                 {
                     hashCode = (hashCode * 59) + this.BankLocationId.GetHashCode();

@@ -214,7 +214,7 @@ namespace Adyen.Model.BalancePlatform
         /// </summary>
         /// <value>Contains verification errors and the actions that you can take to resolve them.</value>
         [DataMember(Name = "problems", EmitDefaultValue = false)]
-        public List<Object> Problems { get; private set; }
+        public List<CapabilityProblem> Problems { get; private set; }
 
         /// <summary>
         /// Indicates whether the capability is requested. To check whether the account holder is permitted to use the capability, refer to the &#x60;allowed&#x60; field.

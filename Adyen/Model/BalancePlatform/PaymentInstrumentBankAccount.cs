@@ -144,61 +144,41 @@ namespace Adyen.Model.BalancePlatform
             }
             int match = 0;
             List<string> matchedTypes = new List<string>();
-            var type = (string)JObject.Parse(jsonString)["type"];
-
+            JToken typeToken = JObject.Parse(jsonString).GetValue("type");
+            string type = typeToken?.Value<string>();
+            // Throw exception if jsonString does not contain type param
+            if (type == null)
+            {
+                throw new InvalidDataException("JsonString does not contain required enum type for deserialization.");
+            }
             try
             {
-                // if it does not contains "AdditionalProperties", use SerializerSettings to deserialize
-                if (typeof(IbanAccountIdentification).GetProperty("AdditionalProperties") == null)
+                // Check if the jsonString type enum matches the IbanAccountIdentification type enums
+                if (ContainsValue<IbanAccountIdentification.TypeEnum>(type))
                 {
                     newPaymentInstrumentBankAccount = new PaymentInstrumentBankAccount(JsonConvert.DeserializeObject<IbanAccountIdentification>(jsonString, PaymentInstrumentBankAccount.SerializerSettings));
-                }
-                else
-                {
-                    newPaymentInstrumentBankAccount = new PaymentInstrumentBankAccount(JsonConvert.DeserializeObject<IbanAccountIdentification>(jsonString, PaymentInstrumentBankAccount.AdditionalPropertiesSerializerSettings));
-                }
-                if (type != null || JsonConvert.SerializeObject((IbanAccountIdentification.TypeEnum) 1).Contains(type))
-                {
                     matchedTypes.Add("IbanAccountIdentification");
                     match++;
                 }
-            }
-            catch (Exception ex)
-            {
-                if (!(ex is JsonSerializationException))
-                {
-                    throw new Exception(string.Format("Failed to deserialize `{0}` into CheckoutThreeDS2Action: {1}", jsonString, ex.ToString()));
-                }
-            }
-
-            try
-            {
-                // if it does not contains "AdditionalProperties", use SerializerSettings to deserialize
-                if (typeof(USLocalAccountIdentification).GetProperty("AdditionalProperties") == null)
+                // Check if the jsonString type enum matches the USLocalAccountIdentification type enums
+                if (ContainsValue<USLocalAccountIdentification.TypeEnum>(type))
                 {
                     newPaymentInstrumentBankAccount = new PaymentInstrumentBankAccount(JsonConvert.DeserializeObject<USLocalAccountIdentification>(jsonString, PaymentInstrumentBankAccount.SerializerSettings));
-                }
-                else
-                {
-                    newPaymentInstrumentBankAccount = new PaymentInstrumentBankAccount(JsonConvert.DeserializeObject<USLocalAccountIdentification>(jsonString, PaymentInstrumentBankAccount.AdditionalPropertiesSerializerSettings));
-                }
-                if (type != null || JsonConvert.SerializeObject((USLocalAccountIdentification.TypeEnum) 1).Contains(type))
-                {
                     matchedTypes.Add("USLocalAccountIdentification");
                     match++;
                 }
-            }
+            } 
             catch (Exception ex)
             {
                 if (!(ex is JsonSerializationException))
                 {
-                    throw new Exception(string.Format("Failed to deserialize `{0}` into CheckoutThreeDS2Action: {1}", jsonString, ex.ToString()));
+                     throw new InvalidDataException(string.Format("Failed to deserialize `{0}` into target: {1}", jsonString, ex.ToString()));
                 }
             }
 
-            if (match == 0)
+            if (match != 1)
             {
-                throw new InvalidDataException("The JSON string `" + jsonString + "` cannot be deserialized into any schema defined.");
+                throw new InvalidDataException("The JSON string `" + jsonString + "` cannot be deserialized into any schema defined. MatchedTypes are: " + matchedTypes);
             }
             
             // deserialization is considered successful at this point if no exception has been thrown.
