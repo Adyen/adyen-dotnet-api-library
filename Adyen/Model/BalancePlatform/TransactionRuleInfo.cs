@@ -40,16 +40,22 @@ namespace Adyen.Model.BalancePlatform
         public enum OutcomeTypeEnum
         {
             /// <summary>
+            /// Enum EnforceSCA for value: enforceSCA
+            /// </summary>
+            [EnumMember(Value = "enforceSCA")]
+            EnforceSCA = 1,
+
+            /// <summary>
             /// Enum HardBlock for value: hardBlock
             /// </summary>
             [EnumMember(Value = "hardBlock")]
-            HardBlock = 1,
+            HardBlock = 2,
 
             /// <summary>
             /// Enum ScoreBased for value: scoreBased
             /// </summary>
             [EnumMember(Value = "scoreBased")]
-            ScoreBased = 2
+            ScoreBased = 3
 
         }
 

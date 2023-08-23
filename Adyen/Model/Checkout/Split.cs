@@ -124,16 +124,22 @@ namespace Adyen.Model.Checkout
             Tip = 14,
 
             /// <summary>
+            /// Enum TopUp for value: TopUp
+            /// </summary>
+            [EnumMember(Value = "TopUp")]
+            TopUp = 15,
+
+            /// <summary>
             /// Enum VAT for value: VAT
             /// </summary>
             [EnumMember(Value = "VAT")]
-            VAT = 15,
+            VAT = 16,
 
             /// <summary>
             /// Enum Verification for value: Verification
             /// </summary>
             [EnumMember(Value = "Verification")]
-            Verification = 16
+            Verification = 17
 
         }
 
