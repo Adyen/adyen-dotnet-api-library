@@ -1,16 +1,16 @@
 {
   "_links": {
     "first": {
-      "href": "https://management-test.adyen.com/v1/companies/YOUR_COMPANY_ACCOUNT/merchants?pageNumber=1&pageSize=10"
+      "href": "https://management-test.adyen.com/v3/companies/YOUR_COMPANY_ACCOUNT/merchants?pageNumber=1&pageSize=10"
     },
     "last": {
-      "href": "https://management-test.adyen.com/v1/companies/YOUR_COMPANY_ACCOUNT/merchants?pageNumber=3&pageSize=10"
+      "href": "https://management-test.adyen.com/v3/companies/YOUR_COMPANY_ACCOUNT/merchants?pageNumber=3&pageSize=10"
     },
     "next": {
-      "href": "https://management-test.adyen.com/v1/companies/YOUR_COMPANY_ACCOUNT/merchants?pageNumber=2&pageSize=10"
+      "href": "https://management-test.adyen.com/v3/companies/YOUR_COMPANY_ACCOUNT/merchants?pageNumber=2&pageSize=10"
     },
     "self": {
-      "href": "https://management-test.adyen.com/v1/companies/YOUR_COMPANY_ACCOUNT/merchants?pageNumber=1&pageSize=10"
+      "href": "https://management-test.adyen.com/v3/companies/YOUR_COMPANY_ACCOUNT/merchants?pageNumber=1&pageSize=10"
     }
   },
   "itemsTotal": 22,
@@ -27,16 +27,16 @@
       "primarySettlementCurrency": "EUR",
       "_links": {
         "self": {
-          "href": "https://management-test.adyen.com/v1/merchants/YOUR_MERCHANT_ACCOUNT_1"
+          "href": "https://management-test.adyen.com/v3/merchants/YOUR_MERCHANT_ACCOUNT_1"
         },
         "apiCredentials": {
-          "href": "https://management-test.adyen.com/v1/merchants/YOUR_MERCHANT_ACCOUNT_1/apiCredentials"
+          "href": "https://management-test.adyen.com/v3/merchants/YOUR_MERCHANT_ACCOUNT_1/apiCredentials"
         },
         "users": {
-          "href": "https://management-test.adyen.com/v1/merchants/YOUR_MERCHANT_ACCOUNT_1/users"
+          "href": "https://management-test.adyen.com/v3/merchants/YOUR_MERCHANT_ACCOUNT_1/users"
         },
         "webhooks": {
-          "href": "https://management-test.adyen.com/v1/merchants/YOUR_MERCHANT_ACCOUNT_1/webhooks"
+          "href": "https://management-test.adyen.com/v3/merchants/YOUR_MERCHANT_ACCOUNT_1/webhooks"
         }
       }
     },
@@ -51,16 +51,16 @@
       "primarySettlementCurrency": "EUR",
       "_links": {
         "self": {
-          "href": "https://management-test.adyen.com/v1/merchants/YOUR_MERCHANT_ACCOUNT_2"
+          "href": "https://management-test.adyen.com/v3/merchants/YOUR_MERCHANT_ACCOUNT_2"
         },
         "apiCredentials": {
-          "href": "https://management-test.adyen.com/v1/merchants/YOUR_MERCHANT_ACCOUNT_2/apiCredentials"
+          "href": "https://management-test.adyen.com/v3/merchants/YOUR_MERCHANT_ACCOUNT_2/apiCredentials"
         },
         "users": {
-          "href": "https://management-test.adyen.com/v1/merchants/YOUR_MERCHANT_ACCOUNT_2/users"
+          "href": "https://management-test.adyen.com/v3/merchants/YOUR_MERCHANT_ACCOUNT_2/users"
         },
         "webhooks": {
-          "href": "https://management-test.adyen.com/v1/merchants/YOUR_MERCHANT_ACCOUNT_2/webhooks"
+          "href": "https://management-test.adyen.com/v3/merchants/YOUR_MERCHANT_ACCOUNT_2/webhooks"
         }
       }
     },
@@ -71,16 +71,16 @@
       "primarySettlementCurrency": "EUR",
       "_links": {
         "self": {
-          "href": "https://management-test.adyen.com/v1/merchants/YOUR_MERCHANT_ACCOUNT_3"
+          "href": "https://management-test.adyen.com/v3/merchants/YOUR_MERCHANT_ACCOUNT_3"
         },
         "apiCredentials": {
-          "href": "https://management-test.adyen.com/v1/merchants/YOUR_MERCHANT_ACCOUNT_3/apiCredentials"
+          "href": "https://management-test.adyen.com/v3/merchants/YOUR_MERCHANT_ACCOUNT_3/apiCredentials"
         },
         "users": {
-          "href": "https://management-test.adyen.com/v1/merchants/YOUR_MERCHANT_ACCOUNT_3/users"
+          "href": "https://management-test.adyen.com/v3/merchants/YOUR_MERCHANT_ACCOUNT_3/users"
         },
         "webhooks": {
-          "href": "https://management-test.adyen.com/v1/merchants/YOUR_MERCHANT_ACCOUNT_3/webhooks"
+          "href": "https://management-test.adyen.com/v3/merchants/YOUR_MERCHANT_ACCOUNT_3/webhooks"
         }
       }
     },
@@ -95,16 +95,16 @@
       "primarySettlementCurrency": "BRL",
       "_links": {
         "self": {
-          "href": "https://management-test.adyen.com/v1/merchants/YOUR_MERCHANT_ACCOUNT_4"
+          "href": "https://management-test.adyen.com/v3/merchants/YOUR_MERCHANT_ACCOUNT_4"
         },
         "apiCredentials": {
-          "href": "https://management-test.adyen.com/v1/merchants/YOUR_MERCHANT_ACCOUNT_4/apiCredentials"
+          "href": "https://management-test.adyen.com/v3/merchants/YOUR_MERCHANT_ACCOUNT_4/apiCredentials"
         },
         "users": {
-          "href": "https://management-test.adyen.com/v1/merchants/YOUR_MERCHANT_ACCOUNT_4/users"
+          "href": "https://management-test.adyen.com/v3/merchants/YOUR_MERCHANT_ACCOUNT_4/users"
         },
         "webhooks": {
-          "href": "https://management-test.adyen.com/v1/merchants/YOUR_MERCHANT_ACCOUNT_4/webhooks"
+          "href": "https://management-test.adyen.com/v3/merchants/YOUR_MERCHANT_ACCOUNT_4/webhooks"
         }
       }
     },
@@ -118,16 +118,16 @@
       "primarySettlementCurrency": "EUR",
       "_links": {
         "self": {
-          "href": "https://management-test.adyen.com/v1/merchants/YOUR_MERCHANT_ACCOUNT_5"
+          "href": "https://management-test.adyen.com/v3/merchants/YOUR_MERCHANT_ACCOUNT_5"
         },
         "apiCredentials": {
-          "href": "https://management-test.adyen.com/v1/merchants/YOUR_MERCHANT_ACCOUNT_5/apiCredentials"
+          "href": "https://management-test.adyen.com/v3/merchants/YOUR_MERCHANT_ACCOUNT_5/apiCredentials"
         },
         "users": {
-          "href": "https://management-test.adyen.com/v1/merchants/YOUR_MERCHANT_ACCOUNT_5/users"
+          "href": "https://management-test.adyen.com/v3/merchants/YOUR_MERCHANT_ACCOUNT_5/users"
         },
         "webhooks": {
-          "href": "https://management-test.adyen.com/v1/merchants/YOUR_MERCHANT_ACCOUNT_5/webhooks"
+          "href": "https://management-test.adyen.com/v3/merchants/YOUR_MERCHANT_ACCOUNT_5/webhooks"
         }
       }
     },
@@ -142,16 +142,16 @@
       "primarySettlementCurrency": "BRL",
       "_links": {
         "self": {
-          "href": "https://management-test.adyen.com/v1/merchants/YOUR_MERCHANT_ACCOUNT_6"
+          "href": "https://management-test.adyen.com/v3/merchants/YOUR_MERCHANT_ACCOUNT_6"
         },
         "apiCredentials": {
-          "href": "https://management-test.adyen.com/v1/merchants/YOUR_MERCHANT_ACCOUNT_6/apiCredentials"
+          "href": "https://management-test.adyen.com/v3/merchants/YOUR_MERCHANT_ACCOUNT_6/apiCredentials"
         },
         "users": {
-          "href": "https://management-test.adyen.com/v1/merchants/YOUR_MERCHANT_ACCOUNT_6/users"
+          "href": "https://management-test.adyen.com/v3/merchants/YOUR_MERCHANT_ACCOUNT_6/users"
         },
         "webhooks": {
-          "href": "https://management-test.adyen.com/v1/merchants/YOUR_MERCHANT_ACCOUNT_6/webhooks"
+          "href": "https://management-test.adyen.com/v3/merchants/YOUR_MERCHANT_ACCOUNT_6/webhooks"
         }
       }
     },
@@ -166,16 +166,16 @@
       "primarySettlementCurrency": "EUR",
       "_links": {
         "self": {
-          "href": "https://management-test.adyen.com/v1/merchants/YOUR_MERCHANT_ACCOUNT_7"
+          "href": "https://management-test.adyen.com/v3/merchants/YOUR_MERCHANT_ACCOUNT_7"
         },
         "apiCredentials": {
-          "href": "https://management-test.adyen.com/v1/merchants/YOUR_MERCHANT_ACCOUNT_7/apiCredentials"
+          "href": "https://management-test.adyen.com/v3/merchants/YOUR_MERCHANT_ACCOUNT_7/apiCredentials"
         },
         "users": {
-          "href": "https://management-test.adyen.com/v1/merchants/YOUR_MERCHANT_ACCOUNT_7/users"
+          "href": "https://management-test.adyen.com/v3/merchants/YOUR_MERCHANT_ACCOUNT_7/users"
         },
         "webhooks": {
-          "href": "https://management-test.adyen.com/v1/merchants/YOUR_MERCHANT_ACCOUNT_7/webhooks"
+          "href": "https://management-test.adyen.com/v3/merchants/YOUR_MERCHANT_ACCOUNT_7/webhooks"
         }
       }
     },
@@ -190,16 +190,16 @@
       "primarySettlementCurrency": "EUR",
       "_links": {
         "self": {
-          "href": "https://management-test.adyen.com/v1/merchants/YOUR_MERCHANT_ACCOUNT_8"
+          "href": "https://management-test.adyen.com/v3/merchants/YOUR_MERCHANT_ACCOUNT_8"
         },
         "apiCredentials": {
-          "href": "https://management-test.adyen.com/v1/merchants/YOUR_MERCHANT_ACCOUNT_8/apiCredentials"
+          "href": "https://management-test.adyen.com/v3/merchants/YOUR_MERCHANT_ACCOUNT_8/apiCredentials"
         },
         "users": {
-          "href": "https://management-test.adyen.com/v1/merchants/YOUR_MERCHANT_ACCOUNT_8/users"
+          "href": "https://management-test.adyen.com/v3/merchants/YOUR_MERCHANT_ACCOUNT_8/users"
         },
         "webhooks": {
-          "href": "https://management-test.adyen.com/v1/merchants/YOUR_MERCHANT_ACCOUNT_8/webhooks"
+          "href": "https://management-test.adyen.com/v3/merchants/YOUR_MERCHANT_ACCOUNT_8/webhooks"
         }
       }
     },
@@ -214,16 +214,16 @@
       "primarySettlementCurrency": "EUR",
       "_links": {
         "self": {
-          "href": "https://management-test.adyen.com/v1/merchants/YOUR_MERCHANT_ACCOUNT_9"
+          "href": "https://management-test.adyen.com/v3/merchants/YOUR_MERCHANT_ACCOUNT_9"
         },
         "apiCredentials": {
-          "href": "https://management-test.adyen.com/v1/merchants/YOUR_MERCHANT_ACCOUNT_9/apiCredentials"
+          "href": "https://management-test.adyen.com/v3/merchants/YOUR_MERCHANT_ACCOUNT_9/apiCredentials"
         },
         "users": {
-          "href": "https://management-test.adyen.com/v1/merchants/YOUR_MERCHANT_ACCOUNT_9/users"
+          "href": "https://management-test.adyen.com/v3/merchants/YOUR_MERCHANT_ACCOUNT_9/users"
         },
         "webhooks": {
-          "href": "https://management-test.adyen.com/v1/merchants/YOUR_MERCHANT_ACCOUNT_9/webhooks"
+          "href": "https://management-test.adyen.com/v3/merchants/YOUR_MERCHANT_ACCOUNT_9/webhooks"
         }
       }
     },
@@ -238,16 +238,16 @@
       "primarySettlementCurrency": "EUR",
       "_links": {
         "self": {
-          "href": "https://management-test.adyen.com/v1/merchants/YOUR_MERCHANT_ACCOUNT_10"
+          "href": "https://management-test.adyen.com/v3/merchants/YOUR_MERCHANT_ACCOUNT_10"
         },
         "apiCredentials": {
-          "href": "https://management-test.adyen.com/v1/merchants/YOUR_MERCHANT_ACCOUNT_10/apiCredentials"
+          "href": "https://management-test.adyen.com/v3/merchants/YOUR_MERCHANT_ACCOUNT_10/apiCredentials"
         },
         "users": {
-          "href": "https://management-test.adyen.com/v1/merchants/YOUR_MERCHANT_ACCOUNT_10/users"
+          "href": "https://management-test.adyen.com/v3/merchants/YOUR_MERCHANT_ACCOUNT_10/users"
         },
         "webhooks": {
-          "href": "https://management-test.adyen.com/v1/merchants/YOUR_MERCHANT_ACCOUNT_10/webhooks"
+          "href": "https://management-test.adyen.com/v3/merchants/YOUR_MERCHANT_ACCOUNT_10/webhooks"
         }
       }
     }
