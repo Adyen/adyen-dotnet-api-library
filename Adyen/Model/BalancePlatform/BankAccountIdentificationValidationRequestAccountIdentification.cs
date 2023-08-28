@@ -508,411 +508,139 @@ namespace Adyen.Model.BalancePlatform
             }
             int match = 0;
             List<string> matchedTypes = new List<string>();
-            var type = (string)JObject.Parse(jsonString)["type"];
-
+            JToken typeToken = JObject.Parse(jsonString).GetValue("type");
+            string type = typeToken?.Value<string>();
+            // Throw exception if jsonString does not contain type param
+            if (type == null)
+            {
+                throw new InvalidDataException("JsonString does not contain required enum type for deserialization.");
+            }
             try
             {
-                // if it does not contains "AdditionalProperties", use SerializerSettings to deserialize
-                if (typeof(AULocalAccountIdentification).GetProperty("AdditionalProperties") == null)
+                // Check if the jsonString type enum matches the AULocalAccountIdentification type enums
+                if (ContainsValue<AULocalAccountIdentification.TypeEnum>(type))
                 {
                     newBankAccountIdentificationValidationRequestAccountIdentification = new BankAccountIdentificationValidationRequestAccountIdentification(JsonConvert.DeserializeObject<AULocalAccountIdentification>(jsonString, BankAccountIdentificationValidationRequestAccountIdentification.SerializerSettings));
-                }
-                else
-                {
-                    newBankAccountIdentificationValidationRequestAccountIdentification = new BankAccountIdentificationValidationRequestAccountIdentification(JsonConvert.DeserializeObject<AULocalAccountIdentification>(jsonString, BankAccountIdentificationValidationRequestAccountIdentification.AdditionalPropertiesSerializerSettings));
-                }
-                if (type != null || JsonConvert.SerializeObject((AULocalAccountIdentification.TypeEnum) 1).Contains(type))
-                {
                     matchedTypes.Add("AULocalAccountIdentification");
                     match++;
                 }
-            }
-            catch (Exception ex)
-            {
-                if (!(ex is JsonSerializationException))
-                {
-                    throw new Exception(string.Format("Failed to deserialize `{0}` into CheckoutThreeDS2Action: {1}", jsonString, ex.ToString()));
-                }
-            }
-
-            try
-            {
-                // if it does not contains "AdditionalProperties", use SerializerSettings to deserialize
-                if (typeof(BRLocalAccountIdentification).GetProperty("AdditionalProperties") == null)
+                // Check if the jsonString type enum matches the BRLocalAccountIdentification type enums
+                if (ContainsValue<BRLocalAccountIdentification.TypeEnum>(type))
                 {
                     newBankAccountIdentificationValidationRequestAccountIdentification = new BankAccountIdentificationValidationRequestAccountIdentification(JsonConvert.DeserializeObject<BRLocalAccountIdentification>(jsonString, BankAccountIdentificationValidationRequestAccountIdentification.SerializerSettings));
-                }
-                else
-                {
-                    newBankAccountIdentificationValidationRequestAccountIdentification = new BankAccountIdentificationValidationRequestAccountIdentification(JsonConvert.DeserializeObject<BRLocalAccountIdentification>(jsonString, BankAccountIdentificationValidationRequestAccountIdentification.AdditionalPropertiesSerializerSettings));
-                }
-                if (type != null || JsonConvert.SerializeObject((BRLocalAccountIdentification.TypeEnum) 1).Contains(type))
-                {
                     matchedTypes.Add("BRLocalAccountIdentification");
                     match++;
                 }
-            }
-            catch (Exception ex)
-            {
-                if (!(ex is JsonSerializationException))
-                {
-                    throw new Exception(string.Format("Failed to deserialize `{0}` into CheckoutThreeDS2Action: {1}", jsonString, ex.ToString()));
-                }
-            }
-
-            try
-            {
-                // if it does not contains "AdditionalProperties", use SerializerSettings to deserialize
-                if (typeof(CALocalAccountIdentification).GetProperty("AdditionalProperties") == null)
+                // Check if the jsonString type enum matches the CALocalAccountIdentification type enums
+                if (ContainsValue<CALocalAccountIdentification.TypeEnum>(type))
                 {
                     newBankAccountIdentificationValidationRequestAccountIdentification = new BankAccountIdentificationValidationRequestAccountIdentification(JsonConvert.DeserializeObject<CALocalAccountIdentification>(jsonString, BankAccountIdentificationValidationRequestAccountIdentification.SerializerSettings));
-                }
-                else
-                {
-                    newBankAccountIdentificationValidationRequestAccountIdentification = new BankAccountIdentificationValidationRequestAccountIdentification(JsonConvert.DeserializeObject<CALocalAccountIdentification>(jsonString, BankAccountIdentificationValidationRequestAccountIdentification.AdditionalPropertiesSerializerSettings));
-                }
-                if (type != null || JsonConvert.SerializeObject((CALocalAccountIdentification.TypeEnum) 1).Contains(type))
-                {
                     matchedTypes.Add("CALocalAccountIdentification");
                     match++;
                 }
-            }
-            catch (Exception ex)
-            {
-                if (!(ex is JsonSerializationException))
-                {
-                    throw new Exception(string.Format("Failed to deserialize `{0}` into CheckoutThreeDS2Action: {1}", jsonString, ex.ToString()));
-                }
-            }
-
-            try
-            {
-                // if it does not contains "AdditionalProperties", use SerializerSettings to deserialize
-                if (typeof(CZLocalAccountIdentification).GetProperty("AdditionalProperties") == null)
+                // Check if the jsonString type enum matches the CZLocalAccountIdentification type enums
+                if (ContainsValue<CZLocalAccountIdentification.TypeEnum>(type))
                 {
                     newBankAccountIdentificationValidationRequestAccountIdentification = new BankAccountIdentificationValidationRequestAccountIdentification(JsonConvert.DeserializeObject<CZLocalAccountIdentification>(jsonString, BankAccountIdentificationValidationRequestAccountIdentification.SerializerSettings));
-                }
-                else
-                {
-                    newBankAccountIdentificationValidationRequestAccountIdentification = new BankAccountIdentificationValidationRequestAccountIdentification(JsonConvert.DeserializeObject<CZLocalAccountIdentification>(jsonString, BankAccountIdentificationValidationRequestAccountIdentification.AdditionalPropertiesSerializerSettings));
-                }
-                if (type != null || JsonConvert.SerializeObject((CZLocalAccountIdentification.TypeEnum) 1).Contains(type))
-                {
                     matchedTypes.Add("CZLocalAccountIdentification");
                     match++;
                 }
-            }
-            catch (Exception ex)
-            {
-                if (!(ex is JsonSerializationException))
-                {
-                    throw new Exception(string.Format("Failed to deserialize `{0}` into CheckoutThreeDS2Action: {1}", jsonString, ex.ToString()));
-                }
-            }
-
-            try
-            {
-                // if it does not contains "AdditionalProperties", use SerializerSettings to deserialize
-                if (typeof(DKLocalAccountIdentification).GetProperty("AdditionalProperties") == null)
+                // Check if the jsonString type enum matches the DKLocalAccountIdentification type enums
+                if (ContainsValue<DKLocalAccountIdentification.TypeEnum>(type))
                 {
                     newBankAccountIdentificationValidationRequestAccountIdentification = new BankAccountIdentificationValidationRequestAccountIdentification(JsonConvert.DeserializeObject<DKLocalAccountIdentification>(jsonString, BankAccountIdentificationValidationRequestAccountIdentification.SerializerSettings));
-                }
-                else
-                {
-                    newBankAccountIdentificationValidationRequestAccountIdentification = new BankAccountIdentificationValidationRequestAccountIdentification(JsonConvert.DeserializeObject<DKLocalAccountIdentification>(jsonString, BankAccountIdentificationValidationRequestAccountIdentification.AdditionalPropertiesSerializerSettings));
-                }
-                if (type != null || JsonConvert.SerializeObject((DKLocalAccountIdentification.TypeEnum) 1).Contains(type))
-                {
                     matchedTypes.Add("DKLocalAccountIdentification");
                     match++;
                 }
-            }
-            catch (Exception ex)
-            {
-                if (!(ex is JsonSerializationException))
-                {
-                    throw new Exception(string.Format("Failed to deserialize `{0}` into CheckoutThreeDS2Action: {1}", jsonString, ex.ToString()));
-                }
-            }
-
-            try
-            {
-                // if it does not contains "AdditionalProperties", use SerializerSettings to deserialize
-                if (typeof(HKLocalAccountIdentification).GetProperty("AdditionalProperties") == null)
+                // Check if the jsonString type enum matches the HKLocalAccountIdentification type enums
+                if (ContainsValue<HKLocalAccountIdentification.TypeEnum>(type))
                 {
                     newBankAccountIdentificationValidationRequestAccountIdentification = new BankAccountIdentificationValidationRequestAccountIdentification(JsonConvert.DeserializeObject<HKLocalAccountIdentification>(jsonString, BankAccountIdentificationValidationRequestAccountIdentification.SerializerSettings));
-                }
-                else
-                {
-                    newBankAccountIdentificationValidationRequestAccountIdentification = new BankAccountIdentificationValidationRequestAccountIdentification(JsonConvert.DeserializeObject<HKLocalAccountIdentification>(jsonString, BankAccountIdentificationValidationRequestAccountIdentification.AdditionalPropertiesSerializerSettings));
-                }
-                if (type != null || JsonConvert.SerializeObject((HKLocalAccountIdentification.TypeEnum) 1).Contains(type))
-                {
                     matchedTypes.Add("HKLocalAccountIdentification");
                     match++;
                 }
-            }
-            catch (Exception ex)
-            {
-                if (!(ex is JsonSerializationException))
-                {
-                    throw new Exception(string.Format("Failed to deserialize `{0}` into CheckoutThreeDS2Action: {1}", jsonString, ex.ToString()));
-                }
-            }
-
-            try
-            {
-                // if it does not contains "AdditionalProperties", use SerializerSettings to deserialize
-                if (typeof(HULocalAccountIdentification).GetProperty("AdditionalProperties") == null)
+                // Check if the jsonString type enum matches the HULocalAccountIdentification type enums
+                if (ContainsValue<HULocalAccountIdentification.TypeEnum>(type))
                 {
                     newBankAccountIdentificationValidationRequestAccountIdentification = new BankAccountIdentificationValidationRequestAccountIdentification(JsonConvert.DeserializeObject<HULocalAccountIdentification>(jsonString, BankAccountIdentificationValidationRequestAccountIdentification.SerializerSettings));
-                }
-                else
-                {
-                    newBankAccountIdentificationValidationRequestAccountIdentification = new BankAccountIdentificationValidationRequestAccountIdentification(JsonConvert.DeserializeObject<HULocalAccountIdentification>(jsonString, BankAccountIdentificationValidationRequestAccountIdentification.AdditionalPropertiesSerializerSettings));
-                }
-                if (type != null || JsonConvert.SerializeObject((HULocalAccountIdentification.TypeEnum) 1).Contains(type))
-                {
                     matchedTypes.Add("HULocalAccountIdentification");
                     match++;
                 }
-            }
-            catch (Exception ex)
-            {
-                if (!(ex is JsonSerializationException))
-                {
-                    throw new Exception(string.Format("Failed to deserialize `{0}` into CheckoutThreeDS2Action: {1}", jsonString, ex.ToString()));
-                }
-            }
-
-            try
-            {
-                // if it does not contains "AdditionalProperties", use SerializerSettings to deserialize
-                if (typeof(IbanAccountIdentification).GetProperty("AdditionalProperties") == null)
+                // Check if the jsonString type enum matches the IbanAccountIdentification type enums
+                if (ContainsValue<IbanAccountIdentification.TypeEnum>(type))
                 {
                     newBankAccountIdentificationValidationRequestAccountIdentification = new BankAccountIdentificationValidationRequestAccountIdentification(JsonConvert.DeserializeObject<IbanAccountIdentification>(jsonString, BankAccountIdentificationValidationRequestAccountIdentification.SerializerSettings));
-                }
-                else
-                {
-                    newBankAccountIdentificationValidationRequestAccountIdentification = new BankAccountIdentificationValidationRequestAccountIdentification(JsonConvert.DeserializeObject<IbanAccountIdentification>(jsonString, BankAccountIdentificationValidationRequestAccountIdentification.AdditionalPropertiesSerializerSettings));
-                }
-                if (type != null || JsonConvert.SerializeObject((IbanAccountIdentification.TypeEnum) 1).Contains(type))
-                {
                     matchedTypes.Add("IbanAccountIdentification");
                     match++;
                 }
-            }
-            catch (Exception ex)
-            {
-                if (!(ex is JsonSerializationException))
-                {
-                    throw new Exception(string.Format("Failed to deserialize `{0}` into CheckoutThreeDS2Action: {1}", jsonString, ex.ToString()));
-                }
-            }
-
-            try
-            {
-                // if it does not contains "AdditionalProperties", use SerializerSettings to deserialize
-                if (typeof(NOLocalAccountIdentification).GetProperty("AdditionalProperties") == null)
+                // Check if the jsonString type enum matches the NOLocalAccountIdentification type enums
+                if (ContainsValue<NOLocalAccountIdentification.TypeEnum>(type))
                 {
                     newBankAccountIdentificationValidationRequestAccountIdentification = new BankAccountIdentificationValidationRequestAccountIdentification(JsonConvert.DeserializeObject<NOLocalAccountIdentification>(jsonString, BankAccountIdentificationValidationRequestAccountIdentification.SerializerSettings));
-                }
-                else
-                {
-                    newBankAccountIdentificationValidationRequestAccountIdentification = new BankAccountIdentificationValidationRequestAccountIdentification(JsonConvert.DeserializeObject<NOLocalAccountIdentification>(jsonString, BankAccountIdentificationValidationRequestAccountIdentification.AdditionalPropertiesSerializerSettings));
-                }
-                if (type != null || JsonConvert.SerializeObject((NOLocalAccountIdentification.TypeEnum) 1).Contains(type))
-                {
                     matchedTypes.Add("NOLocalAccountIdentification");
                     match++;
                 }
-            }
-            catch (Exception ex)
-            {
-                if (!(ex is JsonSerializationException))
-                {
-                    throw new Exception(string.Format("Failed to deserialize `{0}` into CheckoutThreeDS2Action: {1}", jsonString, ex.ToString()));
-                }
-            }
-
-            try
-            {
-                // if it does not contains "AdditionalProperties", use SerializerSettings to deserialize
-                if (typeof(NZLocalAccountIdentification).GetProperty("AdditionalProperties") == null)
+                // Check if the jsonString type enum matches the NZLocalAccountIdentification type enums
+                if (ContainsValue<NZLocalAccountIdentification.TypeEnum>(type))
                 {
                     newBankAccountIdentificationValidationRequestAccountIdentification = new BankAccountIdentificationValidationRequestAccountIdentification(JsonConvert.DeserializeObject<NZLocalAccountIdentification>(jsonString, BankAccountIdentificationValidationRequestAccountIdentification.SerializerSettings));
-                }
-                else
-                {
-                    newBankAccountIdentificationValidationRequestAccountIdentification = new BankAccountIdentificationValidationRequestAccountIdentification(JsonConvert.DeserializeObject<NZLocalAccountIdentification>(jsonString, BankAccountIdentificationValidationRequestAccountIdentification.AdditionalPropertiesSerializerSettings));
-                }
-                if (type != null || JsonConvert.SerializeObject((NZLocalAccountIdentification.TypeEnum) 1).Contains(type))
-                {
                     matchedTypes.Add("NZLocalAccountIdentification");
                     match++;
                 }
-            }
-            catch (Exception ex)
-            {
-                if (!(ex is JsonSerializationException))
-                {
-                    throw new Exception(string.Format("Failed to deserialize `{0}` into CheckoutThreeDS2Action: {1}", jsonString, ex.ToString()));
-                }
-            }
-
-            try
-            {
-                // if it does not contains "AdditionalProperties", use SerializerSettings to deserialize
-                if (typeof(NumberAndBicAccountIdentification).GetProperty("AdditionalProperties") == null)
+                // Check if the jsonString type enum matches the NumberAndBicAccountIdentification type enums
+                if (ContainsValue<NumberAndBicAccountIdentification.TypeEnum>(type))
                 {
                     newBankAccountIdentificationValidationRequestAccountIdentification = new BankAccountIdentificationValidationRequestAccountIdentification(JsonConvert.DeserializeObject<NumberAndBicAccountIdentification>(jsonString, BankAccountIdentificationValidationRequestAccountIdentification.SerializerSettings));
-                }
-                else
-                {
-                    newBankAccountIdentificationValidationRequestAccountIdentification = new BankAccountIdentificationValidationRequestAccountIdentification(JsonConvert.DeserializeObject<NumberAndBicAccountIdentification>(jsonString, BankAccountIdentificationValidationRequestAccountIdentification.AdditionalPropertiesSerializerSettings));
-                }
-                if (type != null || JsonConvert.SerializeObject((NumberAndBicAccountIdentification.TypeEnum) 1).Contains(type))
-                {
                     matchedTypes.Add("NumberAndBicAccountIdentification");
                     match++;
                 }
-            }
-            catch (Exception ex)
-            {
-                if (!(ex is JsonSerializationException))
-                {
-                    throw new Exception(string.Format("Failed to deserialize `{0}` into CheckoutThreeDS2Action: {1}", jsonString, ex.ToString()));
-                }
-            }
-
-            try
-            {
-                // if it does not contains "AdditionalProperties", use SerializerSettings to deserialize
-                if (typeof(PLLocalAccountIdentification).GetProperty("AdditionalProperties") == null)
+                // Check if the jsonString type enum matches the PLLocalAccountIdentification type enums
+                if (ContainsValue<PLLocalAccountIdentification.TypeEnum>(type))
                 {
                     newBankAccountIdentificationValidationRequestAccountIdentification = new BankAccountIdentificationValidationRequestAccountIdentification(JsonConvert.DeserializeObject<PLLocalAccountIdentification>(jsonString, BankAccountIdentificationValidationRequestAccountIdentification.SerializerSettings));
-                }
-                else
-                {
-                    newBankAccountIdentificationValidationRequestAccountIdentification = new BankAccountIdentificationValidationRequestAccountIdentification(JsonConvert.DeserializeObject<PLLocalAccountIdentification>(jsonString, BankAccountIdentificationValidationRequestAccountIdentification.AdditionalPropertiesSerializerSettings));
-                }
-                if (type != null || JsonConvert.SerializeObject((PLLocalAccountIdentification.TypeEnum) 1).Contains(type))
-                {
                     matchedTypes.Add("PLLocalAccountIdentification");
                     match++;
                 }
-            }
-            catch (Exception ex)
-            {
-                if (!(ex is JsonSerializationException))
-                {
-                    throw new Exception(string.Format("Failed to deserialize `{0}` into CheckoutThreeDS2Action: {1}", jsonString, ex.ToString()));
-                }
-            }
-
-            try
-            {
-                // if it does not contains "AdditionalProperties", use SerializerSettings to deserialize
-                if (typeof(SELocalAccountIdentification).GetProperty("AdditionalProperties") == null)
+                // Check if the jsonString type enum matches the SELocalAccountIdentification type enums
+                if (ContainsValue<SELocalAccountIdentification.TypeEnum>(type))
                 {
                     newBankAccountIdentificationValidationRequestAccountIdentification = new BankAccountIdentificationValidationRequestAccountIdentification(JsonConvert.DeserializeObject<SELocalAccountIdentification>(jsonString, BankAccountIdentificationValidationRequestAccountIdentification.SerializerSettings));
-                }
-                else
-                {
-                    newBankAccountIdentificationValidationRequestAccountIdentification = new BankAccountIdentificationValidationRequestAccountIdentification(JsonConvert.DeserializeObject<SELocalAccountIdentification>(jsonString, BankAccountIdentificationValidationRequestAccountIdentification.AdditionalPropertiesSerializerSettings));
-                }
-                if (type != null || JsonConvert.SerializeObject((SELocalAccountIdentification.TypeEnum) 1).Contains(type))
-                {
                     matchedTypes.Add("SELocalAccountIdentification");
                     match++;
                 }
-            }
-            catch (Exception ex)
-            {
-                if (!(ex is JsonSerializationException))
-                {
-                    throw new Exception(string.Format("Failed to deserialize `{0}` into CheckoutThreeDS2Action: {1}", jsonString, ex.ToString()));
-                }
-            }
-
-            try
-            {
-                // if it does not contains "AdditionalProperties", use SerializerSettings to deserialize
-                if (typeof(SGLocalAccountIdentification).GetProperty("AdditionalProperties") == null)
+                // Check if the jsonString type enum matches the SGLocalAccountIdentification type enums
+                if (ContainsValue<SGLocalAccountIdentification.TypeEnum>(type))
                 {
                     newBankAccountIdentificationValidationRequestAccountIdentification = new BankAccountIdentificationValidationRequestAccountIdentification(JsonConvert.DeserializeObject<SGLocalAccountIdentification>(jsonString, BankAccountIdentificationValidationRequestAccountIdentification.SerializerSettings));
-                }
-                else
-                {
-                    newBankAccountIdentificationValidationRequestAccountIdentification = new BankAccountIdentificationValidationRequestAccountIdentification(JsonConvert.DeserializeObject<SGLocalAccountIdentification>(jsonString, BankAccountIdentificationValidationRequestAccountIdentification.AdditionalPropertiesSerializerSettings));
-                }
-                if (type != null || JsonConvert.SerializeObject((SGLocalAccountIdentification.TypeEnum) 1).Contains(type))
-                {
                     matchedTypes.Add("SGLocalAccountIdentification");
                     match++;
                 }
-            }
-            catch (Exception ex)
-            {
-                if (!(ex is JsonSerializationException))
-                {
-                    throw new Exception(string.Format("Failed to deserialize `{0}` into CheckoutThreeDS2Action: {1}", jsonString, ex.ToString()));
-                }
-            }
-
-            try
-            {
-                // if it does not contains "AdditionalProperties", use SerializerSettings to deserialize
-                if (typeof(UKLocalAccountIdentification).GetProperty("AdditionalProperties") == null)
+                // Check if the jsonString type enum matches the UKLocalAccountIdentification type enums
+                if (ContainsValue<UKLocalAccountIdentification.TypeEnum>(type))
                 {
                     newBankAccountIdentificationValidationRequestAccountIdentification = new BankAccountIdentificationValidationRequestAccountIdentification(JsonConvert.DeserializeObject<UKLocalAccountIdentification>(jsonString, BankAccountIdentificationValidationRequestAccountIdentification.SerializerSettings));
-                }
-                else
-                {
-                    newBankAccountIdentificationValidationRequestAccountIdentification = new BankAccountIdentificationValidationRequestAccountIdentification(JsonConvert.DeserializeObject<UKLocalAccountIdentification>(jsonString, BankAccountIdentificationValidationRequestAccountIdentification.AdditionalPropertiesSerializerSettings));
-                }
-                if (type != null || JsonConvert.SerializeObject((UKLocalAccountIdentification.TypeEnum) 1).Contains(type))
-                {
                     matchedTypes.Add("UKLocalAccountIdentification");
                     match++;
                 }
-            }
-            catch (Exception ex)
-            {
-                if (!(ex is JsonSerializationException))
-                {
-                    throw new Exception(string.Format("Failed to deserialize `{0}` into CheckoutThreeDS2Action: {1}", jsonString, ex.ToString()));
-                }
-            }
-
-            try
-            {
-                // if it does not contains "AdditionalProperties", use SerializerSettings to deserialize
-                if (typeof(USLocalAccountIdentification).GetProperty("AdditionalProperties") == null)
+                // Check if the jsonString type enum matches the USLocalAccountIdentification type enums
+                if (ContainsValue<USLocalAccountIdentification.TypeEnum>(type))
                 {
                     newBankAccountIdentificationValidationRequestAccountIdentification = new BankAccountIdentificationValidationRequestAccountIdentification(JsonConvert.DeserializeObject<USLocalAccountIdentification>(jsonString, BankAccountIdentificationValidationRequestAccountIdentification.SerializerSettings));
-                }
-                else
-                {
-                    newBankAccountIdentificationValidationRequestAccountIdentification = new BankAccountIdentificationValidationRequestAccountIdentification(JsonConvert.DeserializeObject<USLocalAccountIdentification>(jsonString, BankAccountIdentificationValidationRequestAccountIdentification.AdditionalPropertiesSerializerSettings));
-                }
-                if (type != null || JsonConvert.SerializeObject((USLocalAccountIdentification.TypeEnum) 1).Contains(type))
-                {
                     matchedTypes.Add("USLocalAccountIdentification");
                     match++;
                 }
-            }
+            } 
             catch (Exception ex)
             {
                 if (!(ex is JsonSerializationException))
                 {
-                    throw new Exception(string.Format("Failed to deserialize `{0}` into CheckoutThreeDS2Action: {1}", jsonString, ex.ToString()));
+                     throw new InvalidDataException(string.Format("Failed to deserialize `{0}` into target: {1}", jsonString, ex.ToString()));
                 }
             }
 
-            if (match == 0)
+            if (match != 1)
             {
-                throw new InvalidDataException("The JSON string `" + jsonString + "` cannot be deserialized into any schema defined.");
+                throw new InvalidDataException("The JSON string `" + jsonString + "` cannot be deserialized into any schema defined. MatchedTypes are: " + matchedTypes);
             }
             
             // deserialization is considered successful at this point if no exception has been thrown.

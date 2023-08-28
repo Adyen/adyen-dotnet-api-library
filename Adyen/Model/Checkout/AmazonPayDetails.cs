@@ -57,20 +57,22 @@ namespace Adyen.Model.Checkout
         /// <summary>
         /// Initializes a new instance of the <see cref="AmazonPayDetails" /> class.
         /// </summary>
-        /// <param name="amazonPayToken">This is the &#x60;amazonPayToken&#x60; that you obtained from the [Get Checkout Session](https://amazon-pay-acquirer-guide.s3-eu-west-1.amazonaws.com/v1/amazon-pay-api-v2/checkout-session.html#get-checkout-session) response..</param>
+        /// <param name="amazonPayToken">This is the &#x60;amazonPayToken&#x60; that you obtained from the [Get Checkout Session](https://amazon-pay-acquirer-guide.s3-eu-west-1.amazonaws.com/v1/amazon-pay-api-v2/checkout-session.html#get-checkout-session) response. This token is used for API only integration specifically..</param>
         /// <param name="checkoutAttemptId">The checkout attempt identifier..</param>
+        /// <param name="checkoutSessionId">The &#x60;checkoutSessionId&#x60; is used to identify the checkout session at the Amazon Pay side. This field is required only for drop-in and components integration, where it replaces the amazonPayToken..</param>
         /// <param name="type">**amazonpay** (default to TypeEnum.Amazonpay).</param>
-        public AmazonPayDetails(string amazonPayToken = default(string), string checkoutAttemptId = default(string), TypeEnum? type = TypeEnum.Amazonpay)
+        public AmazonPayDetails(string amazonPayToken = default(string), string checkoutAttemptId = default(string), string checkoutSessionId = default(string), TypeEnum? type = TypeEnum.Amazonpay)
         {
             this.AmazonPayToken = amazonPayToken;
             this.CheckoutAttemptId = checkoutAttemptId;
+            this.CheckoutSessionId = checkoutSessionId;
             this.Type = type;
         }
 
         /// <summary>
-        /// This is the &#x60;amazonPayToken&#x60; that you obtained from the [Get Checkout Session](https://amazon-pay-acquirer-guide.s3-eu-west-1.amazonaws.com/v1/amazon-pay-api-v2/checkout-session.html#get-checkout-session) response.
+        /// This is the &#x60;amazonPayToken&#x60; that you obtained from the [Get Checkout Session](https://amazon-pay-acquirer-guide.s3-eu-west-1.amazonaws.com/v1/amazon-pay-api-v2/checkout-session.html#get-checkout-session) response. This token is used for API only integration specifically.
         /// </summary>
-        /// <value>This is the &#x60;amazonPayToken&#x60; that you obtained from the [Get Checkout Session](https://amazon-pay-acquirer-guide.s3-eu-west-1.amazonaws.com/v1/amazon-pay-api-v2/checkout-session.html#get-checkout-session) response.</value>
+        /// <value>This is the &#x60;amazonPayToken&#x60; that you obtained from the [Get Checkout Session](https://amazon-pay-acquirer-guide.s3-eu-west-1.amazonaws.com/v1/amazon-pay-api-v2/checkout-session.html#get-checkout-session) response. This token is used for API only integration specifically.</value>
         [DataMember(Name = "amazonPayToken", EmitDefaultValue = false)]
         public string AmazonPayToken { get; set; }
 
@@ -82,6 +84,13 @@ namespace Adyen.Model.Checkout
         public string CheckoutAttemptId { get; set; }
 
         /// <summary>
+        /// The &#x60;checkoutSessionId&#x60; is used to identify the checkout session at the Amazon Pay side. This field is required only for drop-in and components integration, where it replaces the amazonPayToken.
+        /// </summary>
+        /// <value>The &#x60;checkoutSessionId&#x60; is used to identify the checkout session at the Amazon Pay side. This field is required only for drop-in and components integration, where it replaces the amazonPayToken.</value>
+        [DataMember(Name = "checkoutSessionId", EmitDefaultValue = false)]
+        public string CheckoutSessionId { get; set; }
+
+        /// <summary>
         /// Returns the string presentation of the object
         /// </summary>
         /// <returns>String presentation of the object</returns>
@@ -91,6 +100,7 @@ namespace Adyen.Model.Checkout
             sb.Append("class AmazonPayDetails {\n");
             sb.Append("  AmazonPayToken: ").Append(AmazonPayToken).Append("\n");
             sb.Append("  CheckoutAttemptId: ").Append(CheckoutAttemptId).Append("\n");
+            sb.Append("  CheckoutSessionId: ").Append(CheckoutSessionId).Append("\n");
             sb.Append("  Type: ").Append(Type).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
@@ -138,6 +148,11 @@ namespace Adyen.Model.Checkout
                     this.CheckoutAttemptId.Equals(input.CheckoutAttemptId))
                 ) && 
                 (
+                    this.CheckoutSessionId == input.CheckoutSessionId ||
+                    (this.CheckoutSessionId != null &&
+                    this.CheckoutSessionId.Equals(input.CheckoutSessionId))
+                ) && 
+                (
                     this.Type == input.Type ||
                     this.Type.Equals(input.Type)
                 );
@@ -159,6 +174,10 @@ namespace Adyen.Model.Checkout
                 if (this.CheckoutAttemptId != null)
                 {
                     hashCode = (hashCode * 59) + this.CheckoutAttemptId.GetHashCode();
+                }
+                if (this.CheckoutSessionId != null)
+                {
+                    hashCode = (hashCode * 59) + this.CheckoutSessionId.GetHashCode();
                 }
                 hashCode = (hashCode * 59) + this.Type.GetHashCode();
                 return hashCode;

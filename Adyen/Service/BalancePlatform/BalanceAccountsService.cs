@@ -124,21 +124,21 @@ namespace Adyen.Service.BalancePlatform
         /// </summary>
         /// <param name="balanceAccountId"><see cref="string"/> - The unique identifier of the balance account.</param>
         /// <param name="sweepId"><see cref="string"/> - The unique identifier of the sweep.</param>
-        /// <param name="sweepConfigurationV2"><see cref="SweepConfigurationV2"/> - </param>
+        /// <param name="updateSweepConfigurationV2"><see cref="UpdateSweepConfigurationV2"/> - </param>
         /// <param name="requestOptions"><see cref="RequestOptions"/> - Additional request options.</param>
         /// <returns><see cref="SweepConfigurationV2"/>.</returns>
-        Model.BalancePlatform.SweepConfigurationV2 UpdateSweep(string balanceAccountId, string sweepId, SweepConfigurationV2 sweepConfigurationV2 = default, RequestOptions requestOptions = default);
+        Model.BalancePlatform.SweepConfigurationV2 UpdateSweep(string balanceAccountId, string sweepId, UpdateSweepConfigurationV2 updateSweepConfigurationV2 = default, RequestOptions requestOptions = default);
         
         /// <summary>
         /// Update a sweep
         /// </summary>
         /// <param name="balanceAccountId"><see cref="string"/> - The unique identifier of the balance account.</param>
         /// <param name="sweepId"><see cref="string"/> - The unique identifier of the sweep.</param>
-        /// <param name="sweepConfigurationV2"><see cref="SweepConfigurationV2"/> - </param>
+        /// <param name="updateSweepConfigurationV2"><see cref="UpdateSweepConfigurationV2"/> - </param>
         /// <param name="requestOptions"><see cref="RequestOptions"/> - Additional request options.</param>
         /// <param name="cancellationToken"> A CancellationToken enables cooperative cancellation between threads, thread pool work items, or Task objects.</param>
         /// <returns>Task of <see cref="SweepConfigurationV2"/>.</returns>
-        Task<Model.BalancePlatform.SweepConfigurationV2> UpdateSweepAsync(string balanceAccountId, string sweepId, SweepConfigurationV2 sweepConfigurationV2 = default, RequestOptions requestOptions = default, CancellationToken cancellationToken = default);
+        Task<Model.BalancePlatform.SweepConfigurationV2> UpdateSweepAsync(string balanceAccountId, string sweepId, UpdateSweepConfigurationV2 updateSweepConfigurationV2 = default, RequestOptions requestOptions = default, CancellationToken cancellationToken = default);
         
         /// <summary>
         /// Update a balance account
@@ -277,16 +277,16 @@ namespace Adyen.Service.BalancePlatform
             return await resource.RequestAsync<Model.BalancePlatform.PaginatedPaymentInstrumentsResponse>(null, requestOptions, new HttpMethod("GET"), cancellationToken).ConfigureAwait(false);
         }
         
-        public Model.BalancePlatform.SweepConfigurationV2 UpdateSweep(string balanceAccountId, string sweepId, SweepConfigurationV2 sweepConfigurationV2 = default, RequestOptions requestOptions = default)
+        public Model.BalancePlatform.SweepConfigurationV2 UpdateSweep(string balanceAccountId, string sweepId, UpdateSweepConfigurationV2 updateSweepConfigurationV2 = default, RequestOptions requestOptions = default)
         {
-            return UpdateSweepAsync(balanceAccountId, sweepId, sweepConfigurationV2, requestOptions).ConfigureAwait(false).GetAwaiter().GetResult();
+            return UpdateSweepAsync(balanceAccountId, sweepId, updateSweepConfigurationV2, requestOptions).ConfigureAwait(false).GetAwaiter().GetResult();
         }
 
-        public async Task<Model.BalancePlatform.SweepConfigurationV2> UpdateSweepAsync(string balanceAccountId, string sweepId, SweepConfigurationV2 sweepConfigurationV2 = default, RequestOptions requestOptions = default, CancellationToken cancellationToken = default)
+        public async Task<Model.BalancePlatform.SweepConfigurationV2> UpdateSweepAsync(string balanceAccountId, string sweepId, UpdateSweepConfigurationV2 updateSweepConfigurationV2 = default, RequestOptions requestOptions = default, CancellationToken cancellationToken = default)
         {
             var endpoint = _baseUrl + $"/balanceAccounts/{balanceAccountId}/sweeps/{sweepId}";
             var resource = new ServiceResource(this, endpoint);
-            return await resource.RequestAsync<Model.BalancePlatform.SweepConfigurationV2>(sweepConfigurationV2.ToJson(), requestOptions, new HttpMethod("PATCH"), cancellationToken).ConfigureAwait(false);
+            return await resource.RequestAsync<Model.BalancePlatform.SweepConfigurationV2>(updateSweepConfigurationV2.ToJson(), requestOptions, new HttpMethod("PATCH"), cancellationToken).ConfigureAwait(false);
         }
         
         public Model.BalancePlatform.BalanceAccount UpdateBalanceAccount(string id, BalanceAccountUpdateRequest balanceAccountUpdateRequest = default, RequestOptions requestOptions = default)

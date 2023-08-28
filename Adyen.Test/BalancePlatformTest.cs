@@ -52,7 +52,7 @@ namespace Adyen.Test
         {
             var client = CreateMockTestClientApiKeyBasedRequestAsync("mocks/balanceplatform/AccountHolder.json");
             var service = new AccountHoldersService(client);
-            var accountHolder = new AccountHolder()
+            var accountHolder = new AccountHolderUpdateRequest()
             {
                 BalancePlatform = "balance"
             };
@@ -168,7 +168,7 @@ namespace Adyen.Test
             var client = CreateMockTestClientApiKeyBasedRequestAsync("mocks/balanceplatform/SweepConfiguration.json");
             var service = new BalanceAccountsService(client);
             
-            var response = service.UpdateSweep("balanceID", "sweepId",new SweepConfigurationV2());
+            var response = service.UpdateSweep("balanceID", "sweepId",new UpdateSweepConfigurationV2());
             Assert.AreEqual(response.Status, SweepConfigurationV2.StatusEnum.Active);
             Assert.AreEqual(response.Type, SweepConfigurationV2.TypeEnum.Pull);
         }
