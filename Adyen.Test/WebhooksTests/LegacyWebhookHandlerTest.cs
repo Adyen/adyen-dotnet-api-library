@@ -8,7 +8,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 namespace Adyen.Test.WebhooksTests
 {
     [TestClass]
-    public class WebhookTest : BaseTest
+    public class LegacyWebhookTest : BaseTest
     {
         [TestMethod]
         public void TestAuthorisationSuccess()
