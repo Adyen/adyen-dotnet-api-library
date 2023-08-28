@@ -104,8 +104,9 @@ namespace Adyen.Model.Checkout
         /// <param name="personalDetails">Shopper name, date of birth, phone number, and email address..</param>
         /// <param name="recurringDetailReference">This is the &#x60;recurringDetailReference&#x60; returned in the response when you created the token..</param>
         /// <param name="storedPaymentMethodId">This is the &#x60;recurringDetailReference&#x60; returned in the response when you created the token..</param>
+        /// <param name="subtype">The type of flow to initiate..</param>
         /// <param name="type">**klarna** (required) (default to TypeEnum.Klarna).</param>
-        public KlarnaDetails(string billingAddress = default(string), string checkoutAttemptId = default(string), string deliveryAddress = default(string), string personalDetails = default(string), string recurringDetailReference = default(string), string storedPaymentMethodId = default(string), TypeEnum type = TypeEnum.Klarna)
+        public KlarnaDetails(string billingAddress = default(string), string checkoutAttemptId = default(string), string deliveryAddress = default(string), string personalDetails = default(string), string recurringDetailReference = default(string), string storedPaymentMethodId = default(string), string subtype = default(string), TypeEnum type = TypeEnum.Klarna)
         {
             this.Type = type;
             this.BillingAddress = billingAddress;
@@ -114,6 +115,7 @@ namespace Adyen.Model.Checkout
             this.PersonalDetails = personalDetails;
             this.RecurringDetailReference = recurringDetailReference;
             this.StoredPaymentMethodId = storedPaymentMethodId;
+            this.Subtype = subtype;
         }
 
         /// <summary>
@@ -160,6 +162,13 @@ namespace Adyen.Model.Checkout
         public string StoredPaymentMethodId { get; set; }
 
         /// <summary>
+        /// The type of flow to initiate.
+        /// </summary>
+        /// <value>The type of flow to initiate.</value>
+        [DataMember(Name = "subtype", EmitDefaultValue = false)]
+        public string Subtype { get; set; }
+
+        /// <summary>
         /// Returns the string presentation of the object
         /// </summary>
         /// <returns>String presentation of the object</returns>
@@ -173,6 +182,7 @@ namespace Adyen.Model.Checkout
             sb.Append("  PersonalDetails: ").Append(PersonalDetails).Append("\n");
             sb.Append("  RecurringDetailReference: ").Append(RecurringDetailReference).Append("\n");
             sb.Append("  StoredPaymentMethodId: ").Append(StoredPaymentMethodId).Append("\n");
+            sb.Append("  Subtype: ").Append(Subtype).Append("\n");
             sb.Append("  Type: ").Append(Type).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
@@ -240,6 +250,11 @@ namespace Adyen.Model.Checkout
                     this.StoredPaymentMethodId.Equals(input.StoredPaymentMethodId))
                 ) && 
                 (
+                    this.Subtype == input.Subtype ||
+                    (this.Subtype != null &&
+                    this.Subtype.Equals(input.Subtype))
+                ) && 
+                (
                     this.Type == input.Type ||
                     this.Type.Equals(input.Type)
                 );
@@ -277,6 +292,10 @@ namespace Adyen.Model.Checkout
                 if (this.StoredPaymentMethodId != null)
                 {
                     hashCode = (hashCode * 59) + this.StoredPaymentMethodId.GetHashCode();
+                }
+                if (this.Subtype != null)
+                {
+                    hashCode = (hashCode * 59) + this.Subtype.GetHashCode();
                 }
                 hashCode = (hashCode * 59) + this.Type.GetHashCode();
                 return hashCode;
