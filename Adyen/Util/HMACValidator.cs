@@ -33,10 +33,10 @@ namespace Adyen.Util
             }
         }
 
-        public string CalculateHmac(NotificationRequestItem notificationRequestItem, string key)
+        public string CalculateHmac(NotificationRequestItem notificationRequestItem, string hmacKey)
         {
             var notificationRequestItemData = GetDataToSign(notificationRequestItem);
-            return CalculateHmac(notificationRequestItemData, key);
+            return CalculateHmac(notificationRequestItemData, hmacKey);
         }
 
         private byte[] PackH(string hex)
@@ -72,7 +72,13 @@ namespace Adyen.Util
             return String.Join(":", signedDataList);
         }
 
-        public bool IsValidHmac(NotificationRequestItem notificationRequestItem, string key)
+        /// <summary>
+        /// Validates a regular webhook with the given <paramref name="hmacKey"/>.
+        /// </summary>
+        /// <param name="notificationRequestItem"><see cref="NotificationRequestItem"/>.</param>
+        /// <param name="hmacKey">The HMAC key, retrieved from the Adyen Customer Area.</param>
+        /// <returns>A return value indicates the HMAC validation succeeded.</returns>
+        public bool IsValidHmac(NotificationRequestItem notificationRequestItem, string hmacKey)
         {
             if (notificationRequestItem.AdditionalData == null)
             {
@@ -83,9 +89,30 @@ namespace Adyen.Util
             {
                 return false;
             }
-            var expectedSign = CalculateHmac(notificationRequestItem, key);
+            var expectedSign = CalculateHmac(notificationRequestItem, hmacKey);
             var merchantSign = notificationRequestItem.AdditionalData[HmacSignature];
             return string.Equals(expectedSign, merchantSign);
+        }
+
+        /// <summary>
+        /// Validates a balance platform and management webhook payload with the given <paramref name="hmacKey"/> and <paramref name="hmacSignature"/>.
+        /// </summary>
+        /// <param name="hmacKey">The HMAC key, retrieved from the Adyen Customer Area.</param>
+        /// <param name="hmacSignature">The HMAC signature, retrieved from the request header.</param>
+        /// <param name="payload">The webhook payload.</param>
+        /// <returns>A return value indicates the HMAC validation succeeded.</returns>
+        public bool IsValidWebhook(string hmacKey, string hmacSignature, string payload)
+        {
+            var calculatedSign = CalculateHmac(payload, hmacSignature);
+            return TimeSafeEquals(Encoding.UTF8.GetBytes(hmacKey), Encoding.UTF8.GetBytes(calculatedSign));
+        }
+        
+        /// This method compares two bytestrings in constant time based on length of shortest bytestring to prevent timing attacks.
+        private static bool TimeSafeEquals(byte[] a, byte[] b)
+        {
+            uint diff = (uint)a.Length ^ (uint)b.Length;
+            for (int i = 0; i < a.Length && i < b.Length; i++) { diff |= (uint)(a[i] ^ b[i]); }
+            return diff == 0;
         }
     }
 }

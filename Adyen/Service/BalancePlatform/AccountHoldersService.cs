@@ -66,20 +66,20 @@ namespace Adyen.Service.BalancePlatform
         /// Update an account holder
         /// </summary>
         /// <param name="id"><see cref="string"/> - The unique identifier of the account holder.</param>
-        /// <param name="accountHolder"><see cref="AccountHolder"/> - </param>
+        /// <param name="accountHolderUpdateRequest"><see cref="AccountHolderUpdateRequest"/> - </param>
         /// <param name="requestOptions"><see cref="RequestOptions"/> - Additional request options.</param>
         /// <returns><see cref="AccountHolder"/>.</returns>
-        Model.BalancePlatform.AccountHolder UpdateAccountHolder(string id, AccountHolder accountHolder = default, RequestOptions requestOptions = default);
+        Model.BalancePlatform.AccountHolder UpdateAccountHolder(string id, AccountHolderUpdateRequest accountHolderUpdateRequest = default, RequestOptions requestOptions = default);
         
         /// <summary>
         /// Update an account holder
         /// </summary>
         /// <param name="id"><see cref="string"/> - The unique identifier of the account holder.</param>
-        /// <param name="accountHolder"><see cref="AccountHolder"/> - </param>
+        /// <param name="accountHolderUpdateRequest"><see cref="AccountHolderUpdateRequest"/> - </param>
         /// <param name="requestOptions"><see cref="RequestOptions"/> - Additional request options.</param>
         /// <param name="cancellationToken"> A CancellationToken enables cooperative cancellation between threads, thread pool work items, or Task objects.</param>
         /// <returns>Task of <see cref="AccountHolder"/>.</returns>
-        Task<Model.BalancePlatform.AccountHolder> UpdateAccountHolderAsync(string id, AccountHolder accountHolder = default, RequestOptions requestOptions = default, CancellationToken cancellationToken = default);
+        Task<Model.BalancePlatform.AccountHolder> UpdateAccountHolderAsync(string id, AccountHolderUpdateRequest accountHolderUpdateRequest = default, RequestOptions requestOptions = default, CancellationToken cancellationToken = default);
         
         /// <summary>
         /// Create an account holder
@@ -140,16 +140,16 @@ namespace Adyen.Service.BalancePlatform
             return await resource.RequestAsync<Model.BalancePlatform.PaginatedBalanceAccountsResponse>(null, requestOptions, new HttpMethod("GET"), cancellationToken).ConfigureAwait(false);
         }
         
-        public Model.BalancePlatform.AccountHolder UpdateAccountHolder(string id, AccountHolder accountHolder = default, RequestOptions requestOptions = default)
+        public Model.BalancePlatform.AccountHolder UpdateAccountHolder(string id, AccountHolderUpdateRequest accountHolderUpdateRequest = default, RequestOptions requestOptions = default)
         {
-            return UpdateAccountHolderAsync(id, accountHolder, requestOptions).ConfigureAwait(false).GetAwaiter().GetResult();
+            return UpdateAccountHolderAsync(id, accountHolderUpdateRequest, requestOptions).ConfigureAwait(false).GetAwaiter().GetResult();
         }
 
-        public async Task<Model.BalancePlatform.AccountHolder> UpdateAccountHolderAsync(string id, AccountHolder accountHolder = default, RequestOptions requestOptions = default, CancellationToken cancellationToken = default)
+        public async Task<Model.BalancePlatform.AccountHolder> UpdateAccountHolderAsync(string id, AccountHolderUpdateRequest accountHolderUpdateRequest = default, RequestOptions requestOptions = default, CancellationToken cancellationToken = default)
         {
             var endpoint = _baseUrl + $"/accountHolders/{id}";
             var resource = new ServiceResource(this, endpoint);
-            return await resource.RequestAsync<Model.BalancePlatform.AccountHolder>(accountHolder.ToJson(), requestOptions, new HttpMethod("PATCH"), cancellationToken).ConfigureAwait(false);
+            return await resource.RequestAsync<Model.BalancePlatform.AccountHolder>(accountHolderUpdateRequest.ToJson(), requestOptions, new HttpMethod("PATCH"), cancellationToken).ConfigureAwait(false);
         }
         
         public Model.BalancePlatform.AccountHolder CreateAccountHolder(AccountHolderInfo accountHolderInfo = default, RequestOptions requestOptions = default)

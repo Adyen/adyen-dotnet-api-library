@@ -1,22 +1,18 @@
-﻿using System.Threading.Tasks;
-using Adyen.ApiSerialization;
+﻿using System;
+using System.Threading.Tasks;
 using Adyen.Model.Nexo;
-using Adyen.Service.Resource.Terminal;
 
 namespace Adyen.Service
 {
     public class PosPaymentCloudApi : AbstractService, IPosPaymentCloudApi
     {
-        private readonly TerminalApi _terminalApiAsync;
-        private readonly TerminalApi _terminalApiSync;
-        private readonly SaleToPoiMessageSerializer _saleToPoiMessageSerializer;
-       
+        private readonly TerminalCloudApi _terminalCloudApi;
+        
+        [Obsolete("This in person payment class is deprecated and will be removed in the next major, please refer to TerminalCloudApi.cs")]
         public PosPaymentCloudApi(Client client)
             : base(client)
         {
-            _saleToPoiMessageSerializer = new SaleToPoiMessageSerializer();
-            _terminalApiAsync = new TerminalApi(this, true);
-            _terminalApiSync = new TerminalApi(this, false);
+            _terminalCloudApi = new TerminalCloudApi(client);
         }
 
         /// <summary>
@@ -24,17 +20,10 @@ namespace Adyen.Service
         /// </summary>
         /// <param name="saleToPoiRequest"></param>
         /// <returns></returns>
+        [Obsolete("This in person payment class is deprecated and will be removed in the next major, please refer to TerminalCloudApi.cs")]
         public SaleToPOIResponse TerminalApiCloudAsync(SaleToPOIMessage saleToPoiRequest)
         {
-            var serializedMessage = _saleToPoiMessageSerializer.Serialize(saleToPoiRequest);
-            Client.LogLine("Request: \n" + serializedMessage);
-            var response = _terminalApiAsync.Request(serializedMessage);
-            Client.LogLine("Response: \n" + response);
-            if (string.IsNullOrEmpty(response) || string.Equals("ok", response))
-            {
-                return null;
-            }
-            return _saleToPoiMessageSerializer.Deserialize(response);
+            return _terminalCloudApi.TerminalRequestAsync(saleToPoiRequest);
         }
 
         /// <summary>
@@ -42,17 +31,10 @@ namespace Adyen.Service
         /// </summary>
         /// <param name="saleToPoiRequest"></param>
         /// <returns></returns>
+        [Obsolete("This in person payment class is deprecated and will be removed in the next major, please refer to TerminalCloudApi.cs")]
         public SaleToPOIResponse TerminalApiCloudSync(SaleToPOIMessage saleToPoiRequest)
         {
-            var serializedMessage = _saleToPoiMessageSerializer.Serialize(saleToPoiRequest);
-            Client.LogLine("Request: \n"+ serializedMessage);
-            var response = _terminalApiSync.Request(serializedMessage);
-            Client.LogLine("Response: \n"+ response);
-            if (string.IsNullOrEmpty(response) || string.Equals("ok", response))
-            {
-                return null;
-            }
-            return _saleToPoiMessageSerializer.Deserialize(response);
+            return _terminalCloudApi.TerminalRequestSync(saleToPoiRequest);
         }
 
         /// <summary>
@@ -60,17 +42,10 @@ namespace Adyen.Service
         /// </summary>
         /// <param name="saleToPoiRequest"></param>
         /// <returns></returns>
+        [Obsolete("This in person payment class is deprecated and will be removed in the next major, please refer to TerminalCloudApi.cs")]
         public async Task<SaleToPOIResponse> TerminalApiCloudAsynchronousAsync(SaleToPOIMessage saleToPoiRequest)
         {
-            var serializedMessage = _saleToPoiMessageSerializer.Serialize(saleToPoiRequest);
-            Client.LogLine("Request: \n" + serializedMessage);
-            var response = await _terminalApiAsync.RequestAsync(serializedMessage);
-            Client.LogLine("Response: \n" + response);
-            if (string.IsNullOrEmpty(response) || string.Equals("ok", response))
-            {
-                return null;
-            }
-            return _saleToPoiMessageSerializer.Deserialize(response);
+            return await _terminalCloudApi.TerminalRequestAsynchronousAsync(saleToPoiRequest);
         }
 
         /// <summary>
@@ -78,17 +53,10 @@ namespace Adyen.Service
         /// </summary>
         /// <param name="saleToPoiRequest"></param>
         /// <returns></returns>
+        [Obsolete("This in person payment class is deprecated and will be removed in the next major, please refer to TerminalCloudApi.cs")]
         public async Task<SaleToPOIResponse> TerminalApiCloudSynchronousAsync(SaleToPOIMessage saleToPoiRequest)
         {
-            var serializedMessage = _saleToPoiMessageSerializer.Serialize(saleToPoiRequest);
-            Client.LogLine("Request: \n" + serializedMessage);
-            var response = await _terminalApiSync.RequestAsync(serializedMessage);
-            Client.LogLine("Response: \n" + response);
-            if (string.IsNullOrEmpty(response) || string.Equals("ok", response))
-            {
-                return null;
-            }
-            return _saleToPoiMessageSerializer.Deserialize(response);
+            return await _terminalCloudApi.TerminalRequestSynchronousAsync(saleToPoiRequest);
         }
     }
 }
