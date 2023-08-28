@@ -1,4 +1,6 @@
-﻿using Adyen.Model.ConfigurationWebhooks;
+﻿using System;
+using Adyen.Model.ConfigurationWebhooks;
+using Adyen.Model.ManagementWebhooks;
 using Adyen.Webhooks;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Newtonsoft.Json;
@@ -6,13 +8,15 @@ using Newtonsoft.Json;
 namespace Adyen.Test.WebhooksTests
 {
     [TestClass]
-    public class BalancePlatformWebhookHandlerTest : BaseTest
+    public class NewWebhookHandlerTest : BaseTest
     {
         private readonly BalancePlatformWebhookHandler _target;
+        private readonly ManagementWebhookHandler _managementWebhookHandler;
 
-        public BalancePlatformWebhookHandlerTest()
+        public NewWebhookHandlerTest()
         {
             _target = new BalancePlatformWebhookHandler();
+            _managementWebhookHandler = new ManagementWebhookHandler();
         }
 
         [TestMethod]
@@ -132,6 +136,86 @@ namespace Adyen.Test.WebhooksTests
                 Assert.Fail();
                 throw new System.Exception(e.ToString());
             }
+        }
+
+        [TestMethod]
+        public void Test_Management_Webhook_PaymentMethodCreated()
+        {
+            const string jsonPayload = @"{
+              'createdAt': '2022-01-24T14:59:11+01:00',
+                'data': {
+                    'id': 'PM3224R223224K5FH4M2K9B86',
+                    'merchantId': 'MERCHANT_ACCOUNT',
+                    'result': 'SUCCESS',
+                    'storeId': 'ST322LJ223223K5F4SQNR9XL5',
+                    'type': 'visa'
+                },
+                'environment': 'test',
+                'type': 'paymentMethod.created'
+            }";
+            var response = _managementWebhookHandler.GetPaymentMethodCreatedNotificationRequest(jsonPayload, out var webhook);
+            if (response)
+            {
+                Assert.AreEqual(webhook.Type, PaymentMethodCreatedNotificationRequest.TypeEnum.PaymentMethodCreated);
+                Assert.AreEqual(webhook.Data.Id, "PM3224R223224K5FH4M2K9B86");
+            }
+        }
+        
+        [TestMethod]
+        public void Test_Management_Webhook_MerchantUpdated()
+        {
+            const string jsonPayload = @"{
+                'type': 'merchant.updated',
+                'environment': 'test',
+                'createdAt': '2022-09-20T13:42:31+02:00',
+                'data': {
+                    'capabilities': {
+                        'receivePayments': {
+                            'allowed': true,
+                            'requested': true,
+                            'requestedLevel': 'notApplicable',
+                            'verificationStatus': 'valid'
+                        }
+                    },
+                    'legalEntityId': 'LE322KH223222F5GNNW694PZN',
+                    'merchantId': 'YOUR_MERCHANT_ID',
+                    'status': 'PreActive'
+                }
+            }";
+            var response = _managementWebhookHandler.GetMerchantUpdatedNotificationRequest(jsonPayload, out var webhook);
+            Assert.IsTrue(response);
+            Assert.AreEqual(webhook.Type, MerchantUpdatedNotificationRequest.TypeEnum.MerchantUpdated);
+            Assert.IsTrue(webhook.Data.Capabilities.TryGetValue("receivePayments", out var data));
+            Assert.AreEqual(data.RequestedLevel, "notApplicable");
+            Assert.AreEqual(data.Requested, true);
+        }
+        
+        [TestMethod]
+        public void Test_Management_Webhook_MerchantCreated()
+        {
+            const string jsonPayload = @"{
+                'type': 'merchant.created',
+                'environment': 'test',
+                'createdAt': '2022-08-12T10:50:01+02:00',
+                'data': {
+                    'capabilities': {
+                        'sendToTransferInstrument': {
+                            'requested': true,
+                            'requestedLevel': 'notApplicable'
+                        }
+                    },
+                    'companyId': 'YOUR_COMPANY_ID',
+                    'merchantId': 'MC3224X22322535GH8D537TJR',
+                    'status': 'PreActive'
+                }
+            }";
+            Assert.IsFalse(_managementWebhookHandler.GetMerchantUpdatedNotificationRequest(jsonPayload, out var dummy));
+            var response = _managementWebhookHandler.GetMerchantCreatedNotificationRequest(jsonPayload, out var webhook);
+            Assert.IsTrue(response);
+            Assert.AreEqual(webhook.Type, MerchantCreatedNotificationRequest.TypeEnum.MerchantCreated);
+            Assert.IsTrue(webhook.Data.Capabilities.TryGetValue("sendToTransferInstrument", out var data));
+            Assert.AreEqual(data.RequestedLevel, "notApplicable");
+            Assert.AreEqual(data.Requested, true);
         }
     }
 }

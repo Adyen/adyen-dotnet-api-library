@@ -5,7 +5,7 @@ openapi-generator-cli:=java -jar $(openapi-generator-jar)
 
 
 generator:=csharp-netcore
-Models:=AcsWebhooks BalanceControl BalancePlatform BinLookup Checkout DataProtection LegalEntityManagement Management Payment Payout PosTerminalManagement Recurring StoredValue Transfers ConfigurationWebhooks ReportWebhooks TransferWebhooks
+Models:=AcsWebhooks BalanceControl BalancePlatform BinLookup Checkout DataProtection LegalEntityManagement Management ManagementWebhooks Payment Payout PosTerminalManagement Recurring StoredValue Transfers ConfigurationWebhooks ReportWebhooks TransferWebhooks
 models:=Adyen/Model
 output:=target/out
 
@@ -27,10 +27,12 @@ PlatformsNotificationConfiguration: spec=NotificationConfigurationService-v6
 PlatformsHostedOnboardingPage: spec=HopService-v6
 Transfers: spec=TransferService-v3
 
+#Webhooks
 ConfigurationWebhooks: spec=BalancePlatformConfigurationNotification-v1
 ReportWebhooks: spec=BalancePlatformReportNotification-v1
 TransferWebhooks: spec=BalancePlatformTransferNotification-v3
 AcsWebhooks: spec=BalancePlatformAcsNotification-v1
+ManagementWebhooks: spec=ManagementNotificationService-v1
 
 # Generate models (for each service and banking webhook)
 models: $(Models)

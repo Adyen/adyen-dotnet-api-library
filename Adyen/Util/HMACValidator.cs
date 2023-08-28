@@ -95,13 +95,13 @@ namespace Adyen.Util
         }
 
         /// <summary>
-        /// Validates a balance platform webhook with the given <paramref name="hmacKey"/> and <paramref name="hmacSignature"/>.
+        /// Validates a balance platform and management webhook payload with the given <paramref name="hmacKey"/> and <paramref name="hmacSignature"/>.
         /// </summary>
         /// <param name="hmacKey">The HMAC key, retrieved from the Adyen Customer Area.</param>
         /// <param name="hmacSignature">The HMAC signature, retrieved from the request header.</param>
-        /// <param name="payload">The balance platform webhook payload.</param>
+        /// <param name="payload">The webhook payload.</param>
         /// <returns>A return value indicates the HMAC validation succeeded.</returns>
-        public bool IsValidBalancePlatformHmac(string hmacKey, string hmacSignature, string payload)
+        public bool IsValidWebhook(string hmacKey, string hmacSignature, string payload)
         {
             var calculatedSign = CalculateHmac(payload, hmacSignature);
             return TimeSafeEquals(Encoding.UTF8.GetBytes(hmacKey), Encoding.UTF8.GetBytes(calculatedSign));
