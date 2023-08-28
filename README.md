@@ -22,6 +22,17 @@ The library supports all APIs under the following services:
 | [Terminal API (Local communications)](https://docs.adyen.com/point-of-sale/choose-your-architecture/local) | Our point-of-sale integration.                                                                                                                                                                                                                                    | [Local-based Terminal API](Adyen/Service/PosPaymentLocalApi.cs)     | Local-based Terminal API |      |
 | [POS Terminal Management API](https://docs.adyen.com/api-explorer/postfmapi/1/overview)                 | This API provides endpoints for managing your point-of-sale (POS) payment terminals. You can use the API to obtain information about a specific terminal, retrieve overviews of your terminals and stores, and assign terminals to a merchant account or store.                                                                                                                                                                                                       | [POSTerminalManagement](Adyen/Service/POSTerminalManagementService.cs) | **v1**                                                           |
 
+## Supported Webhook versions
+The library supports all webhooks under the following model directories:
+
+| Webhooks                                                                                          | Description                                                                                                                                                                             | Model Name                                                 | Supported Version |
+|---------------------------------------------------------------------------------------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|------------------------------------------------------------|-------------------|
+| [Authentication Webhooks](https://docs.adyen.com/api-explorer/Checkout/latest/overview)           | You can use the same integration for payments made with cards (including 3D Secure), mobile wallets, and local payment methods (for example, iDEAL and Sofort).                         | [AcsWebhooks](Adyen/Model/AcsWebhooks)                     | **v1**            |
+| [Configuration Webhooks](https://docs.adyen.com/api-explorer/balanceplatform-webhooks/1/overview) | You can use these webhooks to build your implementation. For example, you can use this information to update internal statuses when the status of a capability is changed.              | [ConfigurationWebhooks](Adyen/Model/ConfigurationWebhooks) | **v1**            |
+| [Transfer Webhooks](https://docs.adyen.com/api-explorer/transfer-webhooks/3/overview)             | You can use these webhooks to build your implementation. For example, you can use this information to update balances in your own dashboards or to keep track of incoming funds.        | [TransferWebhooks](Adyen/Model/TransferWebhooks)           | **v3**            |
+| [Report Webhooks](https://docs.adyen.com/api-explorer/report-webhooks/1/overview)                 | You can download reports programmatically by making an HTTP GET request, or manually from your Balance Platform Customer Area                                                           | [ReportWebhooks](Adyen/Model/ReportWebhooks)               | **v1**            |
+| [Notification Webhooks](https://docs.adyen.com/api-explorer/Webhooks/1/overview)                  | We use webhooks to send you updates about payment status updates, newly available reports, and other events that you can subscribe to. For more information, refer to our documentation | [Notification](Adyen/Model/Notification)                   | **v1**            |
+
 
 For more information, refer to our [documentation](https://docs.adyen.com/) or the [API Explorer](https://docs.adyen.com/api-explorer/).
 
@@ -202,6 +213,29 @@ To parse the terminal API notifications, please use the following custom deseria
 ```c#
 var serializer = new SaleToPoiMessageSerializer();
 var saleToPoiRequest = serializer.DeserializeNotification(your_terminal_notification);
+```
+
+## Parsing Banking Webhooks
+In order to parse banking webhooks, first validate the webhooks (recommended) by retrieving the hmac key from the webhook header and the hmac signature from the Balance Platform CA configuration page respectively.
+```c#
+using Adyen.Model.ConfigurationWebhooks;
+using Adyen.Webhooks;
+using Adyen.Util;
+
+...
+var hmacValidator = new HmacValidator();
+var handler = new BalancePlatformWebhookHandler();
+bool isValid = hmacValidator.IsValidBankingHmac("yourHmacKey", "yourHmacSignature", webhookPayload);
+
+if (isValid) {
+    dynamic webhook = handler.GetGenericBalancePlatformWebhook(webhookPayload);
+}
+```
+If you know which specific webhook you receive, check the type and retrieve if the type is correct:
+```c#
+var handler = new BalancePlatformWebhookHandler();
+bool isAccountHolderNotification = handler.GetAccountHolderNotificationRequest(json_payload, out AccountHolderNotificationRequest webhook)
+// Your logic here based on wether the webhook parsed correctly or not
 ```
 ## Feedback
 We value your input! Help us enhance our API Libraries and improve the integration experience by providing your feedback. Please take a moment to fill out [our feedback form](https://forms.gle/A4EERrR6CWgKWe5r9) to share your thoughts, suggestions or ideas. 

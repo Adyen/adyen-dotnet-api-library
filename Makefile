@@ -5,12 +5,9 @@ openapi-generator-cli:=java -jar $(openapi-generator-jar)
 
 
 generator:=csharp-netcore
-services:=BalanceControl BalancePlatform BinLookup Checkout DataProtection LegalEntityManagement Management Payment Payout PosTerminalManagement Recurring StoredValue Transfers
+Models:=AcsWebhooks BalanceControl BalancePlatform BinLookup Checkout DataProtection LegalEntityManagement Management Payment Payout PosTerminalManagement Recurring StoredValue Transfers ConfigurationWebhooks ReportWebhooks TransferWebhooks
 models:=Adyen/Model
 output:=target/out
-
-# Generate models (for each service)
-models: $(services)
 
 BalanceControl: spec=BalanceControlService-v1
 BalancePlatform: spec=BalancePlatformService-v2
@@ -30,8 +27,16 @@ PlatformsNotificationConfiguration: spec=NotificationConfigurationService-v6
 PlatformsHostedOnboardingPage: spec=HopService-v6
 Transfers: spec=TransferService-v3
 
-$(services): target/spec $(openapi-generator-jar) 
-	rm -rf $(models)/$@ $(output)
+ConfigurationWebhooks: spec=BalancePlatformConfigurationNotification-v1
+ReportWebhooks: spec=BalancePlatformReportNotification-v1
+TransferWebhooks: spec=BalancePlatformTransferNotification-v3
+AcsWebhooks: spec=BalancePlatformAcsNotification-v1
+
+# Generate models (for each service and banking webhook)
+models: $(Models)
+
+$(Models): target/spec $(openapi-generator-jar) 
+	rm -rf $(Models)/$@ $(output)
 	$(openapi-generator-cli) generate \
 		-i target/spec/json/$(spec).json \
 		-g $(generator) \
@@ -53,7 +58,7 @@ $(services): target/spec $(openapi-generator-jar)
 Services:=BalancePlatform Checkout StoredValue Payout Management LegalEntityManagement Transfers
 SingleFileServices:=BalanceControl BinLookup DataProtection StoredValue PosTerminalManagement Recurring Payment
 
-all: $(Services) $(SingleFileServices)
+allServices: $(Services) $(SingleFileServices)
 
 $(Services): target/spec $(openapi-generator-jar)  
 	rm -rf $(output)
