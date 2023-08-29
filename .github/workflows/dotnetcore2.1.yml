@@ -22,10 +22,10 @@ jobs:
           dotnet restore
 
       - name: Build Debug
-        run: dotnet build -c Debug -f netcoreapp2.1
+        run: dotnet build -c Debug
 
       - name: Run test suite netcoreapp2.1
-        run: dotnet test --no-build -c Debug -f netcoreapp2.1 Adyen.Test/Adyen.Test.csproj
+        run: dotnet test --no-build -c Debug -f netcoreapp2.1 Adyen.Test/Adyen.Test.csproj /p:Framework=netcoreapp2.1
 
       - name: Run integration test suite netcoreapp2.1
         run: dotnet test --no-build -c Debug -f netcoreapp2.1 Adyen.IntegrationTest/Adyen.IntegrationTest.csproj
