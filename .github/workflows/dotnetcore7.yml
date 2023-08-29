@@ -1,6 +1,6 @@
 name: .NET Core
 
-on: [ workflow_dispatch ]
+on: [ push ]
 
 jobs:
   build:
@@ -16,7 +16,7 @@ jobs:
         uses: actions/setup-dotnet@v3
         with:
           dotnet-version: |
-            2.1.x
+            7.0.x
       - name: Install tools
         run: |
           dotnet restore
@@ -24,9 +24,9 @@ jobs:
       - name: Build Debug
         run: dotnet build -c Debug
 
-      - name: Run test suite netcoreapp2.1
-        run: dotnet test --no-build -c Debug -f netcoreapp2.1 Adyen.Test/Adyen.Test.csproj /p:Framework=netcoreapp2.1
+      - name: Run test suite net7.0
+        run: dotnet test --no-build -c Debug -f net7.0 Adyen.Test/Adyen.Test.csproj /p:Framework=netcoreapp2.1
 
-      - name: Run integration test suite netcoreapp2.1
-        run: dotnet test --no-build -c Debug -f netcoreapp2.1 Adyen.IntegrationTest/Adyen.IntegrationTest.csproj
+      - name: Run integration test suite netcoreapp7.0
+        run: dotnet test --no-build -c Debug -f net7.0 Adyen.IntegrationTest/Adyen.IntegrationTest.csproj
         if: ${{ github.event.pull_request.head.ref == 'main' }}
