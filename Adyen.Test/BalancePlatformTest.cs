@@ -4,7 +4,7 @@ using System.Threading;
 using Adyen.Model.BalancePlatform;
 using Adyen.Service.BalancePlatform;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using Moq;
+using NSubstitute;
 
 namespace Adyen.Test
 {
@@ -73,7 +73,10 @@ namespace Adyen.Test
             var response = service.GetAllBalanceAccountsOfAccountHolderAsync("id", offset: 1, limit: 3).Result;
             Assert.AreEqual("BA32272223222B59K6ZXHBFN6", response.BalanceAccounts[0].Id);
             Assert.AreEqual(BalanceAccountBase.StatusEnum.Closed, response.BalanceAccounts[1].Status);
-            ClientInterfaceMock.Verify(mock => mock.RequestAsync("https://balanceplatform-api-test.adyen.com/bcl/v2/accountHolders/id/balanceAccounts?offset=1&limit=3", null, null, HttpMethod.Get, new CancellationToken()));
+            ClientInterfaceSubstitute.Received()
+                .RequestAsync(
+                    "https://balanceplatform-api-test.adyen.com/bcl/v2/accountHolders/id/balanceAccounts?offset=1&limit=3",
+                    null, null, HttpMethod.Get, default);
         }
 
         #endregion
@@ -152,11 +155,10 @@ namespace Adyen.Test
             Assert.AreEqual(response.Sweeps[0].Id, "SWPC4227C224555B5FTD2NT2JV4WN5");
             var schedule = response.Sweeps[0].Schedule.Type;
             Assert.AreEqual(schedule, SweepSchedule.TypeEnum.Daily);
-            ClientInterfaceMock.Verify(mock => mock.RequestAsync(
+            ClientInterfaceSubstitute.Received().RequestAsync(
                 "https://balanceplatform-api-test.adyen.com/bcl/v2/balanceAccounts/balanceAccountId/sweeps",
                 null,
-                null, HttpMethod.Get, new CancellationToken())
-            );
+                null, HttpMethod.Get, new CancellationToken());
         }
         
         /// <summary>
@@ -416,12 +418,10 @@ namespace Adyen.Test
                 })
             };
             service.ValidateBankAccountIdentification(bankAccountIdentificationValidationRequest);
-            ClientInterfaceMock.Verify(mock => mock.RequestAsync(
+            ClientInterfaceSubstitute.Received().RequestAsync(
                 "https://balanceplatform-api-test.adyen.com/bcl/v2/validateBankAccountIdentification",
-                It.IsAny<String>(),
-                null, HttpMethod.Post, new CancellationToken())
-            );
-
+                Arg.Any<String>(),
+                null, HttpMethod.Post, new CancellationToken());
         }
         #endregion
     }

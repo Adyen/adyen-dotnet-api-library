@@ -1,19 +1,16 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Net;
 using System.Net.Http;
 using System.Text;
 using System.Threading;
-using System.Threading.Tasks;
 using Adyen.Constants;
-using Adyen.HttpClient;
 using Adyen.HttpClient.Interfaces;
 using Adyen.Model;
 using Adyen.Model.Nexo;
 using Adyen.Model.Payment;
 using Adyen.Service;
-using Moq;
+using NSubstitute;
 using Amount = Adyen.Model.Checkout;
 using Environment = System.Environment;
 using PaymentResult = Adyen.Model.Payment.PaymentResult;
@@ -22,7 +19,7 @@ namespace Adyen.Test
 {
     public class BaseTest
     {
-        private protected Mock<IClient> ClientInterfaceMock;
+        private protected IClient ClientInterfaceSubstitute;
 
         #region Payment request 
         /// <summary>
@@ -225,12 +222,15 @@ namespace Adyen.Test
         protected Client CreateMockForAdyenClientTest(Config config)
         {
             //Create a mock interface
-            ClientInterfaceMock = new Mock<IClient>();
-            ClientInterfaceMock.Setup(x => x.RequestAsync(It.IsAny<string>(),
-                It.IsAny<string>(), It.IsAny<RequestOptions>(), It.IsAny<HttpMethod>(), It.IsAny<CancellationToken>())).ReturnsAsync(It.IsAny<string>());
+            ClientInterfaceSubstitute = Substitute.For<IClient>();
+            
+            ClientInterfaceSubstitute.RequestAsync(Arg.Any<string>(),
+                Arg.Any<string>(), Arg.Any<RequestOptions>(), Arg.Any<HttpMethod>(),
+                Arg.Any<CancellationToken>()).Returns("");
+
             var clientMock = new Client(config)
             {
-                HttpClient = ClientInterfaceMock.Object,
+                HttpClient = ClientInterfaceSubstitute,
                 Config = config
             };
             return clientMock;
@@ -245,19 +245,20 @@ namespace Adyen.Test
         {
             var mockPath = GetMockFilePath(fileName);
             var response = MockFileToString(mockPath);
-            //Create a mock interface
-            var clientInterfaceMock = new Mock<IClient>();
-            var confMock = MockPaymentData.CreateConfigMock();
-
-            clientInterfaceMock.Setup(x => x.Request(It.IsAny<string>(), It.IsAny<string>(), It.IsAny<RequestOptions>(), null)).Returns(response);
+            
+            ClientInterfaceSubstitute = Substitute.For<IClient>();
+            
+            ClientInterfaceSubstitute.RequestAsync(Arg.Any<string>(),
+                Arg.Any<string>(), Arg.Any<RequestOptions>(), Arg.Any<HttpMethod>(),
+                Arg.Any<CancellationToken>()).Returns(response);
             var config = new Config
             {
-                Environment = It.IsAny<Model.Environment>()
+                Environment = Model.Environment.Test
             };
             var clientMock = new Client(config)
             {
-                HttpClient = clientInterfaceMock.Object,
-                Config = confMock
+                HttpClient = ClientInterfaceSubstitute,
+                Config = MockPaymentData.CreateConfigMock()
             };
             return clientMock;
         }
@@ -272,18 +273,19 @@ namespace Adyen.Test
             var mockPath = GetMockFilePath(fileName);
             var response = MockFileToString(mockPath);
             //Create a mock interface
-            ClientInterfaceMock = new Mock<IClient>();
-            var confMock = MockPaymentData.CreateConfigApiKeyBasedMock();
-            ClientInterfaceMock.Setup(x => x.RequestAsync(It.IsAny<string>(),
-                It.IsAny<string>(), It.IsAny<RequestOptions>(), It.IsAny<HttpMethod>(), It.IsAny<CancellationToken>())).ReturnsAsync(response);
+            ClientInterfaceSubstitute = Substitute.For<IClient>();
+            
+            ClientInterfaceSubstitute.RequestAsync(Arg.Any<string>(),
+                Arg.Any<string>(), Arg.Any<RequestOptions>(), Arg.Any<HttpMethod>(),
+                Arg.Any<CancellationToken>()).Returns(response);
             var config = new Config
             {
-                Environment = It.IsAny<Model.Environment>()
+                Environment = Model.Environment.Test
             };
             var clientMock = new Client(config)
             {
-                HttpClient = ClientInterfaceMock.Object,
-                Config = confMock
+                HttpClient = ClientInterfaceSubstitute,
+                Config = MockPaymentData.CreateConfigMock()
             };
             return clientMock;
         }
@@ -298,18 +300,21 @@ namespace Adyen.Test
             var mockPath = GetMockFilePath(fileName);
             var response = MockFileToString(mockPath);
             //Create a mock interface
-            var clientInterfaceMock = new Mock<IClient>();
             var confMock = MockPaymentData.CreateConfigApiKeyBasedMock();
-            clientInterfaceMock.Setup(x => x.RequestAsync(It.IsAny<string>(),
-                    It.IsAny<string>(), It.IsAny<RequestOptions>(), null, It.IsAny<CancellationToken>()))
-                .ReturnsAsync(response);
+            
+            ClientInterfaceSubstitute = Substitute.For<IClient>();
+            
+            ClientInterfaceSubstitute.RequestAsync(Arg.Any<string>(),
+                Arg.Any<string>(), Arg.Any<RequestOptions>(), Arg.Any<HttpMethod>(),
+                Arg.Any<CancellationToken>()).Returns(response);
+            
             var config = new Config
             {
-                Environment = It.IsAny<Model.Environment>()
+                Environment = Model.Environment.Test
             };
             var clientMock = new Client(config)
             {
-                HttpClient = clientInterfaceMock.Object,
+                HttpClient = ClientInterfaceSubstitute,
                 Config = confMock
             };
             return clientMock;
@@ -325,17 +330,19 @@ namespace Adyen.Test
             var config = new Config { CloudApiEndPoint = ClientConfig.CloudApiEndPointTest };
             var mockPath = GetMockFilePath(fileName);
             var response = MockFileToString(mockPath);
+            
             //Create a mock interface
-            var clientInterfaceMock = new Mock<IClient>();
-            clientInterfaceMock.Setup(x => x.Request(It.IsAny<string>(),
-                It.IsAny<string>(), It.IsAny<RequestOptions>(), null)).Returns(response);
+            ClientInterfaceSubstitute = Substitute.For<IClient>();
+            
+            ClientInterfaceSubstitute.Request(Arg.Any<string>(),
+                Arg.Any<string>(), Arg.Any<RequestOptions>(), Arg.Any<HttpMethod>()).Returns(response);
             var anyConfig = new Config
             {
-                Environment = It.IsAny<Model.Environment>()
+                Environment = Model.Environment.Test
             };
             var clientMock = new Client(anyConfig)
             {
-                HttpClient = clientInterfaceMock.Object,
+                HttpClient = ClientInterfaceSubstitute,
                 Config = config
             };
             return clientMock;
@@ -356,19 +363,17 @@ namespace Adyen.Test
             var mockPath = GetMockFilePath(fileName);
             var response = MockFileToString(mockPath);
             //Create a mock interface
-            var clientInterfaceMock = new Mock<IClient>();
-            clientInterfaceMock.Setup(x => x.Request(It.IsAny<string>(),
-                It.IsAny<string>(),
-                It.IsAny<RequestOptions>(), null
-               ))
-                .Returns(response);
+            ClientInterfaceSubstitute = Substitute.For<IClient>();
+            
+            ClientInterfaceSubstitute.Request(Arg.Any<string>(),
+                Arg.Any<string>(), Arg.Any<RequestOptions>(), Arg.Any<HttpMethod>()).Returns(response);
             var anyConfig = new Config
             {
-                Environment = It.IsAny<Model.Environment>()
+                Environment = Model.Environment.Test
             };
             var clientMock = new Client(anyConfig)
             {
-                HttpClient = clientInterfaceMock.Object,
+                HttpClient = ClientInterfaceSubstitute,
                 Config = config
             };
             return clientMock;

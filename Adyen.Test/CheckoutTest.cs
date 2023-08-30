@@ -6,12 +6,11 @@ using System.Threading.Tasks;
 using Adyen.HttpClient.Interfaces;
 using Adyen.Model;
 using Adyen.Model.Checkout;
-using Adyen.Service;
 using Adyen.Service.Checkout;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using Moq;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
+using NSubstitute;
 using static Adyen.Model.Checkout.PaymentResponse;
 using ApplicationInfo = Adyen.Model.ApplicationInformation.ApplicationInfo;
 using Environment = Adyen.Model.Environment;
@@ -33,11 +32,9 @@ namespace Adyen.Test
             client.SetEnvironment(Environment.Test, "companyUrl");
             var checkout = new PaymentsService(client);
             checkout.PaymentsAsync(new PaymentRequest()).GetAwaiter();
-            ClientInterfaceMock.Verify(
-                    mock =>
-                        mock.RequestAsync(
-                            "https://checkout-test.adyen.com/v70/payments",
-                            It.IsAny<string>(), null, new HttpMethod("POST"), default));
+
+            ClientInterfaceSubstitute.Received().RequestAsync("https://checkout-test.adyen.com/v70/payments",
+                Arg.Any<string>(), null, new HttpMethod("POST"), default);
         }
 
         /// <summary>
@@ -50,11 +47,10 @@ namespace Adyen.Test
             client.SetEnvironment(Environment.Live, "companyUrl");
             var checkout = new PaymentsService(client);
             checkout.PaymentsAsync(new PaymentRequest()).GetAwaiter();
-            ClientInterfaceMock.Verify(
-                mock =>
-                    mock.RequestAsync(
-                        "https://companyUrl-checkout-live.adyenpayments.com/checkout/v70/payments",
-                        It.IsAny<string>(), null, new HttpMethod("POST"), default));
+
+            ClientInterfaceSubstitute.Received().RequestAsync(
+                "https://companyUrl-checkout-live.adyenpayments.com/checkout/v70/payments",
+                Arg.Any<string>(), null, new HttpMethod("POST"), Arg.Any<CancellationToken>());
         }
 
         /// <summary>
@@ -102,11 +98,8 @@ namespace Adyen.Test
                 });
             var checkout = new PaymentsService(client);
             checkout.PaymentsAsync(new PaymentRequest()).GetAwaiter();
-            ClientInterfaceMock.Verify(
-                mock =>
-                    mock.RequestAsync(
-                        "https://live-url-checkout-live.adyenpayments.com/checkout/v70/payments",
-                        It.IsAny<string>(), null, new HttpMethod("POST"), default));
+            ClientInterfaceSubstitute.Received().RequestAsync("https://live-url-checkout-live.adyenpayments.com/checkout/v70/payments",
+                Arg.Any<string>(), null, new HttpMethod("POST"), default);
         }
 
         /// <summary>
@@ -124,11 +117,8 @@ namespace Adyen.Test
                 });
             var checkout = new PaymentsService(client);
             checkout.PaymentsAsync(new PaymentRequest()).GetAwaiter();
-            ClientInterfaceMock.Verify(
-                mock =>
-                    mock.RequestAsync(
-                        "https://live-url-checkout-live.adyenpayments.com/checkout/v70/payments",
-                        It.IsAny<string>(), null, new HttpMethod("POST"), default));
+            ClientInterfaceSubstitute.Received().RequestAsync("https://live-url-checkout-live.adyenpayments.com/checkout/v70/payments",
+                Arg.Any<string>(), null, new HttpMethod("POST"), Arg.Any<CancellationToken>());
         }
 
         /// <summary>
