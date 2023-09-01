@@ -85,22 +85,7 @@ namespace Adyen
                     Config.CloudApiEndPoint = ClientConfig.CloudApiEndPointTest;
                     break;
                 case Environment.Live:
-                    switch (Config.CloudApiLiveRegion)
-                    {
-                        // Default value
-                        case CloudApiLiveRegionEnum.EU:
-                            Config.CloudApiEndPoint = ClientConfig.CloudApiEndPointEULive;
-                            break;
-                        case CloudApiLiveRegionEnum.AU:
-                            Config.CloudApiEndPoint = ClientConfig.CloudApiEndPointAULive;
-                            break;
-                        case CloudApiLiveRegionEnum.US:
-                            Config.CloudApiEndPoint = ClientConfig.CloudApiEndPointUSLive;
-                            break;
-                        case CloudApiLiveRegionEnum.APSE:
-                            Config.CloudApiEndPoint = ClientConfig.CloudApiEndPointAPSELive;
-                            break;
-                    }
+                    Config.CloudApiEndPoint = ClientConfig.CloudApiEndPointEULive;
                     break;
             }
         }

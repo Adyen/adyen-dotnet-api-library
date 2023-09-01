@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Net.Http;
 using Adyen.ApiSerialization;
+using Adyen.Constants;
 using Adyen.Model;
 using Adyen.Model.Nexo;
 using Adyen.Model.Nexo.Message;
@@ -267,7 +268,7 @@ namespace Adyen.Test
             var config = new Config()
             {
                 Environment = Environment.Live,
-                CloudApiLiveRegion = CloudApiLiveRegionEnum.US
+                CloudApiEndPoint = ClientConfig.CloudApiEndPointUSLive
             };
             var client = CreateMockForAdyenClientTest(config);
             var service = new TerminalCloudApi(client);

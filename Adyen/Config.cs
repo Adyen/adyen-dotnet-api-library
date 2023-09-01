@@ -22,14 +22,5 @@ namespace Adyen
         public string LocalTerminalApiEndpoint { get; set; }
         public bool HasPassword => !string.IsNullOrEmpty(Password);
         public bool HasApiKey => !string.IsNullOrEmpty(XApiKey);
-
-        public CloudApiLiveRegionEnum CloudApiLiveRegion { get; set; }
-    }
-    
-    public enum CloudApiLiveRegionEnum {
-        EU = 0,
-        AU = 1,
-        APSE = 2,
-        US = 3
     }
 }
