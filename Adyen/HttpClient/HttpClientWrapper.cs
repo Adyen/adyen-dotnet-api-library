@@ -31,6 +31,11 @@ namespace Adyen.HttpClient
 
         public async Task<string> RequestAsync(string endpoint, string requestBody, RequestOptions requestOptions = null, HttpMethod httpMethod = null, CancellationToken cancellationToken = default)
         {
+            if (requestBody == null && httpMethod == HttpMethod.Post || httpMethod == new HttpMethod("PATCH"))
+            {
+                requestBody = "";
+            }
+
             using (var request = GetHttpRequestMessage(endpoint, requestBody, requestOptions, httpMethod))
             using (var httpResponseMessage = await _httpClient.SendAsync(request, cancellationToken).ConfigureAwait(false))
             {
