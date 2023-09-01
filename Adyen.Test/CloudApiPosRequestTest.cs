@@ -1,9 +1,13 @@
 ﻿using System;
+using System.Net.Http;
 using Adyen.ApiSerialization;
+using Adyen.Model;
 using Adyen.Model.Nexo;
 using Adyen.Model.Nexo.Message;
 using Adyen.Service;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NSubstitute;
+using Environment = Adyen.Model.Environment;
 
 namespace Adyen.Test
 {
@@ -252,6 +256,42 @@ namespace Adyen.Test
             {
                 Assert.Fail();
             }
+        }
+        
+        /// <summary>
+        /// TestCloudApiEndpoint 
+        /// </summary>
+        [TestMethod]
+        public void TestTerminalCloudEndpointLiveSetRegionValue()
+        {
+            var config = new Config()
+            {
+                Environment = Environment.Live,
+                CloudApiLiveRegion = CloudApiLiveRegionEnum.US
+            };
+            var client = CreateMockForAdyenClientTest(config);
+            var service = new TerminalCloudApi(client);
+            service.TerminalRequestAsync(_paymentRequest);
+            ClientInterfaceSubstitute.Received().Request(
+                "https://terminal-api-live-us.adyen.com/async", Arg.Any<String>(), Arg.Any<RequestOptions>(), null);
+        }
+        
+        /// <summary>
+        /// TestCloudApiEndpoint 
+        /// </summary>
+        [TestMethod]
+        public void TestTerminalCloudEndpointLiveSetCustomValue()
+        {
+            var config = new Config()
+            {
+                Environment = Environment.Live,
+                CloudApiEndPoint = "https://custom-value-endpoint"
+            };
+            var client = CreateMockForAdyenClientTest(config);
+            var service = new TerminalCloudApi(client);
+            service.TerminalRequestAsync(_paymentRequest);
+            ClientInterfaceSubstitute.Received().Request(
+                "https://custom-value-endpoint/async", Arg.Any<String>(), Arg.Any<RequestOptions>(), null);
         }
     }
 }
