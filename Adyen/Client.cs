@@ -78,7 +78,7 @@ namespace Adyen
             {
                 return;
             }
-            // If not switch through environment and region
+            // If not switch through environment and set default EU
             switch (environment)
             {
                 case Environment.Test:
