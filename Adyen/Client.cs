@@ -72,7 +72,13 @@ namespace Adyen
         {
             Config.Environment = environment;
             Config.LiveEndpointUrlPrefix = liveEndpointUrlPrefix;
-            
+    
+            // Check if the cloud api endpoint has not already been set
+            if (Config.CloudApiEndPoint != null)
+            {
+                return;
+            }
+            // If not switch through environment and set default EU
             switch (environment)
             {
                 case Environment.Test:
