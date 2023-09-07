@@ -100,8 +100,8 @@ namespace Adyen.Service.Transfers
             if (accountHolderId != null) queryParams.Add("accountHolderId", accountHolderId);
             if (balanceAccountId != null) queryParams.Add("balanceAccountId", balanceAccountId);
             if (cursor != null) queryParams.Add("cursor", cursor);
-            queryParams.Add("createdSince", createdSince.ToString());
-            queryParams.Add("createdUntil", createdUntil.ToString());
+            queryParams.Add("createdSince", createdSince.ToString("yyyy-MM-ddTHH:mm:ssK"));
+            queryParams.Add("createdUntil", createdUntil.ToString("yyyy-MM-ddTHH:mm:ssK"));
             if (limit != null) queryParams.Add("limit", limit.ToString());
             var endpoint = _baseUrl + "/transactions" + ToQueryString(queryParams);
             var resource = new ServiceResource(this, endpoint);
