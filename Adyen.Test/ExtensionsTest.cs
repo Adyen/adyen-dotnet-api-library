@@ -1,14 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Net.Http;
-using System.Threading.Tasks;
 using Adyen.Model.BalanceControl;
 using Adyen.Model.Checkout;
 using Adyen.Service;
 using Adyen.Service.BalancePlatform;
 using Adyen.Service.Checkout;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using Moq;
+using NSubstitute;
 using Environment = Adyen.Model.Environment;
 
 namespace Adyen.Test
@@ -54,10 +52,9 @@ namespace Adyen.Test
         {
             var service = new BalanceControlService(_client);
             service.BalanceTransfer(new BalanceTransferRequest());
-            ClientInterfaceMock.Verify(mock =>
-                mock.RequestAsync(
-                    "https://prefix-pal-live.adyenpayments.com/pal/servlet/BalanceControl/v1/balanceTransfer",
-                    "{}", null, HttpMethod.Post, default));
+            ClientInterfaceSubstitute.Received().RequestAsync(
+                "https://prefix-pal-live.adyenpayments.com/pal/servlet/BalanceControl/v1/balanceTransfer",
+                "{}", null, HttpMethod.Post, default);
         }
 
         [TestMethod]
@@ -65,10 +62,9 @@ namespace Adyen.Test
         {
             var service = new PaymentsService(_client);
             service.Donations(new DonationPaymentRequest());
-            ClientInterfaceMock.Verify(mock =>
-                mock.RequestAsync(
-                    "https://prefix-checkout-live.adyenpayments.com/checkout/v70/donations", 
-                    It.IsAny<string>(), null, HttpMethod.Post, default));
+            ClientInterfaceSubstitute.Received().RequestAsync(
+                "https://prefix-checkout-live.adyenpayments.com/checkout/v70/donations",
+                Arg.Any<string>(), null, HttpMethod.Post, default);
         }
 
         [TestMethod]
@@ -76,10 +72,9 @@ namespace Adyen.Test
         {
             var service = new AccountHoldersService(_client);
             service.GetAllBalanceAccountsOfAccountHolder("id", offset: 3, limit: 5);
-            ClientInterfaceMock.Verify(mock =>
-                mock.RequestAsync(
-                    "https://balanceplatform-api-live.adyen.com/bcl/v2/accountHolders/id/balanceAccounts?offset=3&limit=5",
-                    null, null, HttpMethod.Get, default));
+            ClientInterfaceSubstitute.Received().RequestAsync(
+                "https://balanceplatform-api-live.adyen.com/bcl/v2/accountHolders/id/balanceAccounts?offset=3&limit=5",
+                null, null, HttpMethod.Get, default);
         }
     }
 }

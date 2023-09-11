@@ -1,19 +1,20 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFrameworks>net6.0</TargetFrameworks>
+    <SuppressTfmSupportBuildWarnings>true</SuppressTfmSupportBuildWarnings>
+    <TargetFrameworks>net6.0;netstandard2.0</TargetFrameworks>
 
     <IsPackable>false</IsPackable>
 
-    <AssemblyVersion>11.1.0</AssemblyVersion>
+    <AssemblyVersion>11.1.1</AssemblyVersion>
 
-    <FileVersion>11.1.0</FileVersion>
+    <FileVersion>11.1.1</FileVersion>
 
-    <Version>11.1.0</Version>
+    <Version>11.1.1</Version>
 
     <LangVersion>7.2</LangVersion>
 
-    <PackageVersion>11.1.0</PackageVersion>
+    <PackageVersion>11.1.1</PackageVersion>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
@@ -36,12 +37,12 @@
 
   <ItemGroup>
     <PackageReference Include="Microsoft.CSharp" Version="4.7.0" />
-    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.7.1" />
-
-    <PackageReference Include="Moq" Version="4.18.4" />
+    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.7.2" />
     <PackageReference Include="MSTest.TestAdapter" Version="3.1.1" />
 
     <PackageReference Include="MSTest.TestFramework" Version="3.1.1" />
+
+    <PackageReference Include="NSubstitute" Version="5.1.0" />
   </ItemGroup>
 
   <ItemGroup>
