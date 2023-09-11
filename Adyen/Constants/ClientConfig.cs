@@ -14,6 +14,6 @@
         public static string NexoProtocolVersion = "3.0";
 
         public static string LibName = "adyen-dotnet-api-library";
-        public static string LibVersion = "11.1.0";
+        public static string LibVersion = "11.1.1";
     }
 }
