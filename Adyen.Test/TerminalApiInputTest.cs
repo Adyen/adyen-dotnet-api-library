@@ -17,9 +17,9 @@ namespace Adyen.Test
                 var paymentRequest = MockPosApiRequest.CreatePosPaymentRequest();
                 //create a mock client
                 var client = CreateMockTestClientPosLocalApiRequest("mocks/terminalapi/input-request-response.json");
-                var posPaymentLocalApi = new PosPaymentCloudApi(client);
-                var configEndpoint = posPaymentLocalApi.Client.Config.Endpoint;
-                var saleToPoiResponse = posPaymentLocalApi.TerminalApiCloudSync(paymentRequest);
+                var terminalCloudApi = new TerminalCloudApi(client);
+                var configEndpoint = terminalCloudApi.Client.Config.Endpoint;
+                var saleToPoiResponse = terminalCloudApi.TerminalRequestSync(paymentRequest);
                 Assert.IsNotNull(saleToPoiResponse);
                 var inputResponse = (InputResponse)saleToPoiResponse.MessagePayload;
                 Assert.AreEqual(inputResponse.InputResult.Input.MenuEntryNumber.Length,2);
@@ -40,9 +40,8 @@ namespace Adyen.Test
                 var paymentRequest = MockPosApiRequest.CreatePosPaymentRequest();
                 //create a mock client
                 var client = CreateMockTestClientPosCloudApiRequest("mocks/terminalapi/repeated-response-message.json");
-                var posPaymentCloudApiApi = new PosPaymentCloudApi(client);
-
-                var saleToPoiResponse = posPaymentCloudApiApi.TerminalApiCloudAsync(paymentRequest);
+                var terminalCloudApi = new TerminalCloudApi(client);
+                var saleToPoiResponse = terminalCloudApi.TerminalRequestAsync(paymentRequest);
                 Assert.IsNotNull(saleToPoiResponse);
                 var repeatedMessageResponse = (TransactionStatusResponse)saleToPoiResponse.MessagePayload;
                 Assert.IsNotNull(repeatedMessageResponse);
@@ -61,8 +60,8 @@ namespace Adyen.Test
                 var paymentRequest = MockPosApiRequest.CreatePosPaymentRequest();
                 var client =
                     CreateMockTestClientPosLocalApiRequest("mocks/terminalapi/cardAcquisitionResponse-success.json");
-                var posPaymentCloudApiApi = new PosPaymentCloudApi(client);
-                var saleToPoiResponse = posPaymentCloudApiApi.TerminalApiCloudAsync(paymentRequest);
+                var terminalCloudApi = new TerminalCloudApi(client);
+                var saleToPoiResponse = terminalCloudApi.TerminalRequestAsync(paymentRequest);
                 var payloadResponse = (CardAcquisitionResponse) saleToPoiResponse.MessagePayload;
                 Assert.IsNotNull(payloadResponse.LoyaltyAccount);
                 Assert.AreEqual(payloadResponse.LoyaltyAccount[0].LoyaltyAccountID.LoyaltyID, "aaaa:aa:11111:a");
