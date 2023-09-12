@@ -3,7 +3,7 @@ using System.Net.Security;
 using System.Threading;
 using System.Threading.Tasks;
 using Adyen.ApiSerialization;
-using Adyen.Model.Nexo;
+using Adyen.Model.TerminalApi;
 using Adyen.Security;
 using Adyen.Service.Resource.Terminal;
 

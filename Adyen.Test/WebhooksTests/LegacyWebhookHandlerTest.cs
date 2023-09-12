@@ -1,7 +1,7 @@
 using System;
 using System.Linq;
 using Adyen.ApiSerialization;
-using Adyen.Model.Nexo;
+using Adyen.Model.TerminalApi;
 using Adyen.Webhooks;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 

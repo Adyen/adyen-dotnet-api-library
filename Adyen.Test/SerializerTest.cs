@@ -3,11 +3,11 @@ using System.Collections.Generic;
 using System.Text;
 using Adyen.ApiSerialization;
 using Adyen.Model.Checkout;
-using Adyen.Model.Nexo;
+using Adyen.Model.TerminalApi;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
-using PaymentResponse = Adyen.Model.Nexo.PaymentResponse;
+using PaymentResponse = Adyen.Model.TerminalApi.PaymentResponse;
 
 namespace Adyen.Test
 {

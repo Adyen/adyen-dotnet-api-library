@@ -125,8 +125,8 @@ var saleToPoiRequest = serializer.DeserializeNotification(your_terminal_notifica
 ## Example Cloud Terminal API integration
 ```c#
 using System;
-using Adyen.Model.Nexo;
-using Adyen.Model.Nexo.Message;
+using Adyen.Model.TerminalApi;
+using Adyen.Model.TerminalApi.Message;
 using Adyen.Service;
 using Environment = Adyen.Model.Environment;
  
