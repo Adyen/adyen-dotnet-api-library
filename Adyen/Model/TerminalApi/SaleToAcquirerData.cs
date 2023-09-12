@@ -26,7 +26,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace Adyen.Model.Terminal
+namespace Adyen.Model.TerminalApi
 {
     public class SaleToAcquirerData
     {
