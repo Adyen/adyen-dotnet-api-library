@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using Adyen.Constants;
 using Adyen.Model.ApplicationInformation;
-using Adyen.Model.TerminalApi;
+using Adyen.Model.Terminal;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace Adyen.Test
