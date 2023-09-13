@@ -37,11 +37,13 @@ namespace Adyen.Model.LegalEntityManagement
         /// </summary>
         /// <param name="accountIdentification">accountIdentification.</param>
         /// <param name="accountType">The type of bank account..</param>
+        /// <param name="bankName">The name of the banking institution where the bank account is held..</param>
         /// <param name="countryCode">The two-character [ISO 3166-1 alpha-2](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2) country code where the bank account is registered. For example, **NL**..</param>
-        public BankAccountInfo(BankAccountInfoAccountIdentification accountIdentification = default(BankAccountInfoAccountIdentification), string accountType = default(string), string countryCode = default(string))
+        public BankAccountInfo(BankAccountInfoAccountIdentification accountIdentification = default(BankAccountInfoAccountIdentification), string accountType = default(string), string bankName = default(string), string countryCode = default(string))
         {
             this.AccountIdentification = accountIdentification;
             this.AccountType = accountType;
+            this.BankName = bankName;
             this.CountryCode = countryCode;
         }
 
@@ -58,6 +60,13 @@ namespace Adyen.Model.LegalEntityManagement
         [DataMember(Name = "accountType", EmitDefaultValue = false)]
         [Obsolete]
         public string AccountType { get; set; }
+
+        /// <summary>
+        /// The name of the banking institution where the bank account is held.
+        /// </summary>
+        /// <value>The name of the banking institution where the bank account is held.</value>
+        [DataMember(Name = "bankName", EmitDefaultValue = false)]
+        public string BankName { get; set; }
 
         /// <summary>
         /// The two-character [ISO 3166-1 alpha-2](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2) country code where the bank account is registered. For example, **NL**.
@@ -83,6 +92,7 @@ namespace Adyen.Model.LegalEntityManagement
             sb.Append("class BankAccountInfo {\n");
             sb.Append("  AccountIdentification: ").Append(AccountIdentification).Append("\n");
             sb.Append("  AccountType: ").Append(AccountType).Append("\n");
+            sb.Append("  BankName: ").Append(BankName).Append("\n");
             sb.Append("  CountryCode: ").Append(CountryCode).Append("\n");
             sb.Append("  TrustedSource: ").Append(TrustedSource).Append("\n");
             sb.Append("}\n");
@@ -131,6 +141,11 @@ namespace Adyen.Model.LegalEntityManagement
                     this.AccountType.Equals(input.AccountType))
                 ) && 
                 (
+                    this.BankName == input.BankName ||
+                    (this.BankName != null &&
+                    this.BankName.Equals(input.BankName))
+                ) && 
+                (
                     this.CountryCode == input.CountryCode ||
                     (this.CountryCode != null &&
                     this.CountryCode.Equals(input.CountryCode))
@@ -157,6 +172,10 @@ namespace Adyen.Model.LegalEntityManagement
                 if (this.AccountType != null)
                 {
                     hashCode = (hashCode * 59) + this.AccountType.GetHashCode();
+                }
+                if (this.BankName != null)
+                {
+                    hashCode = (hashCode * 59) + this.BankName.GetHashCode();
                 }
                 if (this.CountryCode != null)
                 {

@@ -91,9 +91,8 @@ namespace Adyen.Model.ConfigurationWebhooks
         /// <param name="platformPaymentConfiguration">platformPaymentConfiguration.</param>
         /// <param name="reference">Your reference for the balance account, maximum 150 characters..</param>
         /// <param name="status">The status of the balance account, set to **Active** by default.  .</param>
-        /// <param name="sweepConfigurations">Contains key-value pairs that specify configurations for balance sweeps per currency code. A sweep pulls in or pushes out funds based on a defined schedule, amount, and a source (for pulling funds) or a destination (for pushing funds).  The key must be a three-character [ISO currency code](https://docs.adyen.com/development-resources/currency-codes) in uppercase. For example, **EUR**. The value must be an object containing the sweep configuration..</param>
         /// <param name="timeZone">The time zone of the balance account. For example, **Europe/Amsterdam**. Defaults to the time zone of the account holder if no time zone is set. For possible values, see the [list of time zone codes](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones)..</param>
-        public BalanceAccount(string accountHolderId = default(string), List<Balance> balances = default(List<Balance>), string defaultCurrencyCode = default(string), string description = default(string), string id = default(string), Dictionary<string, string> metadata = default(Dictionary<string, string>), string migratedAccountCode = default(string), List<PaymentInstrumentReference> paymentInstruments = default(List<PaymentInstrumentReference>), PlatformPaymentConfiguration platformPaymentConfiguration = default(PlatformPaymentConfiguration), string reference = default(string), StatusEnum? status = default(StatusEnum?), Dictionary<string, SweepConfiguration> sweepConfigurations = default(Dictionary<string, SweepConfiguration>), string timeZone = default(string))
+        public BalanceAccount(string accountHolderId = default(string), List<Balance> balances = default(List<Balance>), string defaultCurrencyCode = default(string), string description = default(string), string id = default(string), Dictionary<string, string> metadata = default(Dictionary<string, string>), string migratedAccountCode = default(string), List<PaymentInstrumentReference> paymentInstruments = default(List<PaymentInstrumentReference>), PlatformPaymentConfiguration platformPaymentConfiguration = default(PlatformPaymentConfiguration), string reference = default(string), StatusEnum? status = default(StatusEnum?), string timeZone = default(string))
         {
             this.AccountHolderId = accountHolderId;
             this.Id = id;
@@ -106,7 +105,6 @@ namespace Adyen.Model.ConfigurationWebhooks
             this.PlatformPaymentConfiguration = platformPaymentConfiguration;
             this.Reference = reference;
             this.Status = status;
-            this.SweepConfigurations = sweepConfigurations;
             this.TimeZone = timeZone;
         }
 
@@ -180,13 +178,6 @@ namespace Adyen.Model.ConfigurationWebhooks
         public string Reference { get; set; }
 
         /// <summary>
-        /// Contains key-value pairs that specify configurations for balance sweeps per currency code. A sweep pulls in or pushes out funds based on a defined schedule, amount, and a source (for pulling funds) or a destination (for pushing funds).  The key must be a three-character [ISO currency code](https://docs.adyen.com/development-resources/currency-codes) in uppercase. For example, **EUR**. The value must be an object containing the sweep configuration.
-        /// </summary>
-        /// <value>Contains key-value pairs that specify configurations for balance sweeps per currency code. A sweep pulls in or pushes out funds based on a defined schedule, amount, and a source (for pulling funds) or a destination (for pushing funds).  The key must be a three-character [ISO currency code](https://docs.adyen.com/development-resources/currency-codes) in uppercase. For example, **EUR**. The value must be an object containing the sweep configuration.</value>
-        [DataMember(Name = "sweepConfigurations", EmitDefaultValue = false)]
-        public Dictionary<string, SweepConfiguration> SweepConfigurations { get; set; }
-
-        /// <summary>
         /// The time zone of the balance account. For example, **Europe/Amsterdam**. Defaults to the time zone of the account holder if no time zone is set. For possible values, see the [list of time zone codes](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones).
         /// </summary>
         /// <value>The time zone of the balance account. For example, **Europe/Amsterdam**. Defaults to the time zone of the account holder if no time zone is set. For possible values, see the [list of time zone codes](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones).</value>
@@ -212,7 +203,6 @@ namespace Adyen.Model.ConfigurationWebhooks
             sb.Append("  PlatformPaymentConfiguration: ").Append(PlatformPaymentConfiguration).Append("\n");
             sb.Append("  Reference: ").Append(Reference).Append("\n");
             sb.Append("  Status: ").Append(Status).Append("\n");
-            sb.Append("  SweepConfigurations: ").Append(SweepConfigurations).Append("\n");
             sb.Append("  TimeZone: ").Append(TimeZone).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
@@ -307,12 +297,6 @@ namespace Adyen.Model.ConfigurationWebhooks
                     this.Status.Equals(input.Status)
                 ) && 
                 (
-                    this.SweepConfigurations == input.SweepConfigurations ||
-                    this.SweepConfigurations != null &&
-                    input.SweepConfigurations != null &&
-                    this.SweepConfigurations.SequenceEqual(input.SweepConfigurations)
-                ) && 
-                (
                     this.TimeZone == input.TimeZone ||
                     (this.TimeZone != null &&
                     this.TimeZone.Equals(input.TimeZone))
@@ -369,10 +353,6 @@ namespace Adyen.Model.ConfigurationWebhooks
                     hashCode = (hashCode * 59) + this.Reference.GetHashCode();
                 }
                 hashCode = (hashCode * 59) + this.Status.GetHashCode();
-                if (this.SweepConfigurations != null)
-                {
-                    hashCode = (hashCode * 59) + this.SweepConfigurations.GetHashCode();
-                }
                 if (this.TimeZone != null)
                 {
                     hashCode = (hashCode * 59) + this.TimeZone.GetHashCode();
