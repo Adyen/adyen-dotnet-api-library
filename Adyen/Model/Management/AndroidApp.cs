@@ -41,17 +41,19 @@ namespace Adyen.Model.Management
         /// Initializes a new instance of the <see cref="AndroidApp" /> class.
         /// </summary>
         /// <param name="description">The description that was provided when uploading the app. The description is not shown on the terminal..</param>
+        /// <param name="errorCode">The error code of the app. It exists if the status is error or invalid..</param>
         /// <param name="id">The unique identifier of the app. (required).</param>
         /// <param name="label">The app name that is shown on the terminal..</param>
         /// <param name="packageName">The package name that uniquely identifies the Android app..</param>
-        /// <param name="status">The status of the app. Possible values:  * &#x60;processing&#x60;: The app is being signed and converted to a format that the terminal can handle. * &#x60;error&#x60;: Something went wrong. Check that the app matches the [requirements](https://docs.adyen.com/point-of-sale/android-terminals/app-requirements). * &#x60;invalid&#x60;: There is something wrong with the APK file of the app. * &#x60;ready&#x60;: The app has been signed and converted. * &#x60;archived&#x60;: The app is no longer available. (required).</param>
+        /// <param name="status">The status of the app. Possible values:  * &#x60;processing&#x60;: the app is being signed and converted to a format that the terminal can handle. * &#x60;error&#x60;: something went wrong. Check that the app matches the [requirements](https://docs.adyen.com/point-of-sale/android-terminals/app-requirements). * &#x60;invalid&#x60;: there is something wrong with the APK file of the app. * &#x60;ready&#x60;: the app has been signed and converted. * &#x60;archived&#x60;: the app is no longer available. (required).</param>
         /// <param name="versionCode">The version number of the app..</param>
         /// <param name="versionName">The app version number that is shown on the terminal..</param>
-        public AndroidApp(string description = default(string), string id = default(string), string label = default(string), string packageName = default(string), string status = default(string), int? versionCode = default(int?), string versionName = default(string))
+        public AndroidApp(string description = default(string), string errorCode = default(string), string id = default(string), string label = default(string), string packageName = default(string), string status = default(string), int? versionCode = default(int?), string versionName = default(string))
         {
             this.Id = id;
             this.Status = status;
             this.Description = description;
+            this.ErrorCode = errorCode;
             this.Label = label;
             this.PackageName = packageName;
             this.VersionCode = versionCode;
@@ -64,6 +66,13 @@ namespace Adyen.Model.Management
         /// <value>The description that was provided when uploading the app. The description is not shown on the terminal.</value>
         [DataMember(Name = "description", EmitDefaultValue = false)]
         public string Description { get; set; }
+
+        /// <summary>
+        /// The error code of the app. It exists if the status is error or invalid.
+        /// </summary>
+        /// <value>The error code of the app. It exists if the status is error or invalid.</value>
+        [DataMember(Name = "errorCode", EmitDefaultValue = false)]
+        public string ErrorCode { get; set; }
 
         /// <summary>
         /// The unique identifier of the app.
@@ -87,9 +96,9 @@ namespace Adyen.Model.Management
         public string PackageName { get; set; }
 
         /// <summary>
-        /// The status of the app. Possible values:  * &#x60;processing&#x60;: The app is being signed and converted to a format that the terminal can handle. * &#x60;error&#x60;: Something went wrong. Check that the app matches the [requirements](https://docs.adyen.com/point-of-sale/android-terminals/app-requirements). * &#x60;invalid&#x60;: There is something wrong with the APK file of the app. * &#x60;ready&#x60;: The app has been signed and converted. * &#x60;archived&#x60;: The app is no longer available.
+        /// The status of the app. Possible values:  * &#x60;processing&#x60;: the app is being signed and converted to a format that the terminal can handle. * &#x60;error&#x60;: something went wrong. Check that the app matches the [requirements](https://docs.adyen.com/point-of-sale/android-terminals/app-requirements). * &#x60;invalid&#x60;: there is something wrong with the APK file of the app. * &#x60;ready&#x60;: the app has been signed and converted. * &#x60;archived&#x60;: the app is no longer available.
         /// </summary>
-        /// <value>The status of the app. Possible values:  * &#x60;processing&#x60;: The app is being signed and converted to a format that the terminal can handle. * &#x60;error&#x60;: Something went wrong. Check that the app matches the [requirements](https://docs.adyen.com/point-of-sale/android-terminals/app-requirements). * &#x60;invalid&#x60;: There is something wrong with the APK file of the app. * &#x60;ready&#x60;: The app has been signed and converted. * &#x60;archived&#x60;: The app is no longer available.</value>
+        /// <value>The status of the app. Possible values:  * &#x60;processing&#x60;: the app is being signed and converted to a format that the terminal can handle. * &#x60;error&#x60;: something went wrong. Check that the app matches the [requirements](https://docs.adyen.com/point-of-sale/android-terminals/app-requirements). * &#x60;invalid&#x60;: there is something wrong with the APK file of the app. * &#x60;ready&#x60;: the app has been signed and converted. * &#x60;archived&#x60;: the app is no longer available.</value>
         [DataMember(Name = "status", IsRequired = false, EmitDefaultValue = false)]
         public string Status { get; set; }
 
@@ -116,6 +125,7 @@ namespace Adyen.Model.Management
             StringBuilder sb = new StringBuilder();
             sb.Append("class AndroidApp {\n");
             sb.Append("  Description: ").Append(Description).Append("\n");
+            sb.Append("  ErrorCode: ").Append(ErrorCode).Append("\n");
             sb.Append("  Id: ").Append(Id).Append("\n");
             sb.Append("  Label: ").Append(Label).Append("\n");
             sb.Append("  PackageName: ").Append(PackageName).Append("\n");
@@ -163,6 +173,11 @@ namespace Adyen.Model.Management
                     this.Description.Equals(input.Description))
                 ) && 
                 (
+                    this.ErrorCode == input.ErrorCode ||
+                    (this.ErrorCode != null &&
+                    this.ErrorCode.Equals(input.ErrorCode))
+                ) && 
+                (
                     this.Id == input.Id ||
                     (this.Id != null &&
                     this.Id.Equals(input.Id))
@@ -205,6 +220,10 @@ namespace Adyen.Model.Management
                 if (this.Description != null)
                 {
                     hashCode = (hashCode * 59) + this.Description.GetHashCode();
+                }
+                if (this.ErrorCode != null)
+                {
+                    hashCode = (hashCode * 59) + this.ErrorCode.GetHashCode();
                 }
                 if (this.Id != null)
                 {

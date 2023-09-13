@@ -1,5 +1,5 @@
 /*
-* Management API
+* Configuration webhooks
 *
 *
 * The version of the OpenAPI document: 1
@@ -24,42 +24,38 @@ using Newtonsoft.Json.Linq;
 using System.ComponentModel.DataAnnotations;
 using OpenAPIDateConverter = Adyen.ApiSerialization.OpenAPIDateConverter;
 
-namespace Adyen.Model.Management
+namespace Adyen.Model.ConfigurationWebhooks
 {
     /// <summary>
-    /// CartesBancairesInfo
+    /// RemediatingAction
     /// </summary>
-    [DataContract(Name = "CartesBancairesInfo")]
-    public partial class CartesBancairesInfo : IEquatable<CartesBancairesInfo>, IValidatableObject
+    [DataContract(Name = "RemediatingAction")]
+    public partial class RemediatingAction : IEquatable<RemediatingAction>, IValidatableObject
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="CartesBancairesInfo" /> class.
+        /// Initializes a new instance of the <see cref="RemediatingAction" /> class.
         /// </summary>
-        [JsonConstructorAttribute]
-        protected CartesBancairesInfo() { }
-        /// <summary>
-        /// Initializes a new instance of the <see cref="CartesBancairesInfo" /> class.
-        /// </summary>
-        /// <param name="siret">Cartes Bancaires SIRET. Format: 14 digits. (required).</param>
-        /// <param name="transactionDescription">transactionDescription.</param>
-        public CartesBancairesInfo(string siret = default(string), TransactionDescriptionInfo transactionDescription = default(TransactionDescriptionInfo))
+        /// <param name="code">The remediating action code..</param>
+        /// <param name="message">A description of how you can resolve the verification error..</param>
+        public RemediatingAction(string code = default(string), string message = default(string))
         {
-            this.Siret = siret;
-            this.TransactionDescription = transactionDescription;
+            this.Code = code;
+            this.Message = message;
         }
 
         /// <summary>
-        /// Cartes Bancaires SIRET. Format: 14 digits.
+        /// The remediating action code.
         /// </summary>
-        /// <value>Cartes Bancaires SIRET. Format: 14 digits.</value>
-        [DataMember(Name = "siret", IsRequired = false, EmitDefaultValue = false)]
-        public string Siret { get; set; }
+        /// <value>The remediating action code.</value>
+        [DataMember(Name = "code", EmitDefaultValue = false)]
+        public string Code { get; set; }
 
         /// <summary>
-        /// Gets or Sets TransactionDescription
+        /// A description of how you can resolve the verification error.
         /// </summary>
-        [DataMember(Name = "transactionDescription", EmitDefaultValue = false)]
-        public TransactionDescriptionInfo TransactionDescription { get; set; }
+        /// <value>A description of how you can resolve the verification error.</value>
+        [DataMember(Name = "message", EmitDefaultValue = false)]
+        public string Message { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -68,9 +64,9 @@ namespace Adyen.Model.Management
         public override string ToString()
         {
             StringBuilder sb = new StringBuilder();
-            sb.Append("class CartesBancairesInfo {\n");
-            sb.Append("  Siret: ").Append(Siret).Append("\n");
-            sb.Append("  TransactionDescription: ").Append(TransactionDescription).Append("\n");
+            sb.Append("class RemediatingAction {\n");
+            sb.Append("  Code: ").Append(Code).Append("\n");
+            sb.Append("  Message: ").Append(Message).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -91,15 +87,15 @@ namespace Adyen.Model.Management
         /// <returns>Boolean</returns>
         public override bool Equals(object input)
         {
-            return this.Equals(input as CartesBancairesInfo);
+            return this.Equals(input as RemediatingAction);
         }
 
         /// <summary>
-        /// Returns true if CartesBancairesInfo instances are equal
+        /// Returns true if RemediatingAction instances are equal
         /// </summary>
-        /// <param name="input">Instance of CartesBancairesInfo to be compared</param>
+        /// <param name="input">Instance of RemediatingAction to be compared</param>
         /// <returns>Boolean</returns>
-        public bool Equals(CartesBancairesInfo input)
+        public bool Equals(RemediatingAction input)
         {
             if (input == null)
             {
@@ -107,14 +103,14 @@ namespace Adyen.Model.Management
             }
             return 
                 (
-                    this.Siret == input.Siret ||
-                    (this.Siret != null &&
-                    this.Siret.Equals(input.Siret))
+                    this.Code == input.Code ||
+                    (this.Code != null &&
+                    this.Code.Equals(input.Code))
                 ) && 
                 (
-                    this.TransactionDescription == input.TransactionDescription ||
-                    (this.TransactionDescription != null &&
-                    this.TransactionDescription.Equals(input.TransactionDescription))
+                    this.Message == input.Message ||
+                    (this.Message != null &&
+                    this.Message.Equals(input.Message))
                 );
         }
 
@@ -127,13 +123,13 @@ namespace Adyen.Model.Management
             unchecked // Overflow is fine, just wrap
             {
                 int hashCode = 41;
-                if (this.Siret != null)
+                if (this.Code != null)
                 {
-                    hashCode = (hashCode * 59) + this.Siret.GetHashCode();
+                    hashCode = (hashCode * 59) + this.Code.GetHashCode();
                 }
-                if (this.TransactionDescription != null)
+                if (this.Message != null)
                 {
-                    hashCode = (hashCode * 59) + this.TransactionDescription.GetHashCode();
+                    hashCode = (hashCode * 59) + this.Message.GetHashCode();
                 }
                 return hashCode;
             }

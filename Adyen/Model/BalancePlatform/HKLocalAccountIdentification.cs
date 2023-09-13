@@ -62,29 +62,29 @@ namespace Adyen.Model.BalancePlatform
         /// <summary>
         /// Initializes a new instance of the <see cref="HKLocalAccountIdentification" /> class.
         /// </summary>
-        /// <param name="accountNumber">The 6- to 19-character bank account number (alphanumeric), without separators or whitespace. (required).</param>
-        /// <param name="bankCode">The 6-digit bank code including the 3-digit bank code and 3-digit branch code, without separators or whitespace. (required).</param>
+        /// <param name="accountNumber">The 9- to 12-character bank account number (alphanumeric), without separators or whitespace. Starts with the 3-digit branch code. (required).</param>
+        /// <param name="clearingCode">The 3-digit clearing code, without separators or whitespace. (required).</param>
         /// <param name="type">**hkLocal** (required) (default to TypeEnum.HkLocal).</param>
-        public HKLocalAccountIdentification(string accountNumber = default(string), string bankCode = default(string), TypeEnum type = TypeEnum.HkLocal)
+        public HKLocalAccountIdentification(string accountNumber = default(string), string clearingCode = default(string), TypeEnum type = TypeEnum.HkLocal)
         {
             this.AccountNumber = accountNumber;
-            this.BankCode = bankCode;
+            this.ClearingCode = clearingCode;
             this.Type = type;
         }
 
         /// <summary>
-        /// The 6- to 19-character bank account number (alphanumeric), without separators or whitespace.
+        /// The 9- to 12-character bank account number (alphanumeric), without separators or whitespace. Starts with the 3-digit branch code.
         /// </summary>
-        /// <value>The 6- to 19-character bank account number (alphanumeric), without separators or whitespace.</value>
+        /// <value>The 9- to 12-character bank account number (alphanumeric), without separators or whitespace. Starts with the 3-digit branch code.</value>
         [DataMember(Name = "accountNumber", IsRequired = false, EmitDefaultValue = false)]
         public string AccountNumber { get; set; }
 
         /// <summary>
-        /// The 6-digit bank code including the 3-digit bank code and 3-digit branch code, without separators or whitespace.
+        /// The 3-digit clearing code, without separators or whitespace.
         /// </summary>
-        /// <value>The 6-digit bank code including the 3-digit bank code and 3-digit branch code, without separators or whitespace.</value>
-        [DataMember(Name = "bankCode", IsRequired = false, EmitDefaultValue = false)]
-        public string BankCode { get; set; }
+        /// <value>The 3-digit clearing code, without separators or whitespace.</value>
+        [DataMember(Name = "clearingCode", IsRequired = false, EmitDefaultValue = false)]
+        public string ClearingCode { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -95,7 +95,7 @@ namespace Adyen.Model.BalancePlatform
             StringBuilder sb = new StringBuilder();
             sb.Append("class HKLocalAccountIdentification {\n");
             sb.Append("  AccountNumber: ").Append(AccountNumber).Append("\n");
-            sb.Append("  BankCode: ").Append(BankCode).Append("\n");
+            sb.Append("  ClearingCode: ").Append(ClearingCode).Append("\n");
             sb.Append("  Type: ").Append(Type).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
@@ -138,9 +138,9 @@ namespace Adyen.Model.BalancePlatform
                     this.AccountNumber.Equals(input.AccountNumber))
                 ) && 
                 (
-                    this.BankCode == input.BankCode ||
-                    (this.BankCode != null &&
-                    this.BankCode.Equals(input.BankCode))
+                    this.ClearingCode == input.ClearingCode ||
+                    (this.ClearingCode != null &&
+                    this.ClearingCode.Equals(input.ClearingCode))
                 ) && 
                 (
                     this.Type == input.Type ||
@@ -161,9 +161,9 @@ namespace Adyen.Model.BalancePlatform
                 {
                     hashCode = (hashCode * 59) + this.AccountNumber.GetHashCode();
                 }
-                if (this.BankCode != null)
+                if (this.ClearingCode != null)
                 {
-                    hashCode = (hashCode * 59) + this.BankCode.GetHashCode();
+                    hashCode = (hashCode * 59) + this.ClearingCode.GetHashCode();
                 }
                 hashCode = (hashCode * 59) + this.Type.GetHashCode();
                 return hashCode;
@@ -177,27 +177,27 @@ namespace Adyen.Model.BalancePlatform
         public IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> Validate(ValidationContext validationContext)
         {
             // AccountNumber (string) maxLength
-            if (this.AccountNumber != null && this.AccountNumber.Length > 19)
+            if (this.AccountNumber != null && this.AccountNumber.Length > 12)
             {
-                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for AccountNumber, length must be less than 19.", new [] { "AccountNumber" });
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for AccountNumber, length must be less than 12.", new [] { "AccountNumber" });
             }
 
             // AccountNumber (string) minLength
-            if (this.AccountNumber != null && this.AccountNumber.Length < 6)
+            if (this.AccountNumber != null && this.AccountNumber.Length < 9)
             {
-                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for AccountNumber, length must be greater than 6.", new [] { "AccountNumber" });
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for AccountNumber, length must be greater than 9.", new [] { "AccountNumber" });
             }
 
-            // BankCode (string) maxLength
-            if (this.BankCode != null && this.BankCode.Length > 6)
+            // ClearingCode (string) maxLength
+            if (this.ClearingCode != null && this.ClearingCode.Length > 3)
             {
-                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for BankCode, length must be less than 6.", new [] { "BankCode" });
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for ClearingCode, length must be less than 3.", new [] { "ClearingCode" });
             }
 
-            // BankCode (string) minLength
-            if (this.BankCode != null && this.BankCode.Length < 6)
+            // ClearingCode (string) minLength
+            if (this.ClearingCode != null && this.ClearingCode.Length < 3)
             {
-                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for BankCode, length must be greater than 6.", new [] { "BankCode" });
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for ClearingCode, length must be greater than 3.", new [] { "ClearingCode" });
             }
 
             yield break;

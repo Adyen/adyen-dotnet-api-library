@@ -67,9 +67,9 @@ namespace Adyen.Model.BalancePlatform
         [DataMember(Name = "outcomeType", EmitDefaultValue = false)]
         public OutcomeTypeEnum? OutcomeType { get; set; }
         /// <summary>
-        /// Indicates the type of request to which the rule applies.  Possible values: **authorization**, **authentication**, **tokenization**.
+        /// Indicates the type of request to which the rule applies. If not provided, by default, this is set to **authorization**.  Possible values: **authorization**, **authentication**, **tokenization**, **bankTransfer**.
         /// </summary>
-        /// <value>Indicates the type of request to which the rule applies.  Possible values: **authorization**, **authentication**, **tokenization**.</value>
+        /// <value>Indicates the type of request to which the rule applies. If not provided, by default, this is set to **authorization**.  Possible values: **authorization**, **authentication**, **tokenization**, **bankTransfer**.</value>
         [JsonConverter(typeof(StringEnumConverter))]
         public enum RequestTypeEnum
         {
@@ -101,9 +101,9 @@ namespace Adyen.Model.BalancePlatform
 
 
         /// <summary>
-        /// Indicates the type of request to which the rule applies.  Possible values: **authorization**, **authentication**, **tokenization**.
+        /// Indicates the type of request to which the rule applies. If not provided, by default, this is set to **authorization**.  Possible values: **authorization**, **authentication**, **tokenization**, **bankTransfer**.
         /// </summary>
-        /// <value>Indicates the type of request to which the rule applies.  Possible values: **authorization**, **authentication**, **tokenization**.</value>
+        /// <value>Indicates the type of request to which the rule applies. If not provided, by default, this is set to **authorization**.  Possible values: **authorization**, **authentication**, **tokenization**, **bankTransfer**.</value>
         [DataMember(Name = "requestType", EmitDefaultValue = false)]
         public RequestTypeEnum? RequestType { get; set; }
         /// <summary>
@@ -189,7 +189,7 @@ namespace Adyen.Model.BalancePlatform
         /// <param name="interval">interval (required).</param>
         /// <param name="outcomeType">The [outcome](https://docs.adyen.com/issuing/transaction-rules#outcome) that will be applied when a transaction meets the conditions of the rule. If not provided, by default, this is set to **hardBlock**.  Possible values:   * **hardBlock**: the transaction is declined.  * **scoreBased**: the transaction is assigned the &#x60;score&#x60; you specified. Adyen calculates the total score and if it exceeds 100, the transaction is declined..</param>
         /// <param name="reference">Your reference for the transaction rule, maximum 150 characters. (required).</param>
-        /// <param name="requestType">Indicates the type of request to which the rule applies.  Possible values: **authorization**, **authentication**, **tokenization**..</param>
+        /// <param name="requestType">Indicates the type of request to which the rule applies. If not provided, by default, this is set to **authorization**.  Possible values: **authorization**, **authentication**, **tokenization**, **bankTransfer**..</param>
         /// <param name="ruleRestrictions">ruleRestrictions (required).</param>
         /// <param name="score">A positive or negative score applied to the transaction if it meets the conditions of the rule. Required when &#x60;outcomeType&#x60; is **scoreBased**.  The value must be between **-100** and **100**..</param>
         /// <param name="startDate">The date when the rule will start to be evaluated, in ISO 8601 extended offset date-time format. For example, **2020-12-18T10:15:30+01:00**.  If not provided when creating a transaction rule, the &#x60;startDate&#x60; is set to the date when the rule status is set to **active**.   .</param>

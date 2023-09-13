@@ -27,33 +27,19 @@ using OpenAPIDateConverter = Adyen.ApiSerialization.OpenAPIDateConverter;
 namespace Adyen.Model.Management
 {
     /// <summary>
-    /// CartesBancairesInfo
+    /// GenericPmWithTdiInfo
     /// </summary>
-    [DataContract(Name = "CartesBancairesInfo")]
-    public partial class CartesBancairesInfo : IEquatable<CartesBancairesInfo>, IValidatableObject
+    [DataContract(Name = "GenericPmWithTdiInfo")]
+    public partial class GenericPmWithTdiInfo : IEquatable<GenericPmWithTdiInfo>, IValidatableObject
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="CartesBancairesInfo" /> class.
+        /// Initializes a new instance of the <see cref="GenericPmWithTdiInfo" /> class.
         /// </summary>
-        [JsonConstructorAttribute]
-        protected CartesBancairesInfo() { }
-        /// <summary>
-        /// Initializes a new instance of the <see cref="CartesBancairesInfo" /> class.
-        /// </summary>
-        /// <param name="siret">Cartes Bancaires SIRET. Format: 14 digits. (required).</param>
         /// <param name="transactionDescription">transactionDescription.</param>
-        public CartesBancairesInfo(string siret = default(string), TransactionDescriptionInfo transactionDescription = default(TransactionDescriptionInfo))
+        public GenericPmWithTdiInfo(TransactionDescriptionInfo transactionDescription = default(TransactionDescriptionInfo))
         {
-            this.Siret = siret;
             this.TransactionDescription = transactionDescription;
         }
-
-        /// <summary>
-        /// Cartes Bancaires SIRET. Format: 14 digits.
-        /// </summary>
-        /// <value>Cartes Bancaires SIRET. Format: 14 digits.</value>
-        [DataMember(Name = "siret", IsRequired = false, EmitDefaultValue = false)]
-        public string Siret { get; set; }
 
         /// <summary>
         /// Gets or Sets TransactionDescription
@@ -68,8 +54,7 @@ namespace Adyen.Model.Management
         public override string ToString()
         {
             StringBuilder sb = new StringBuilder();
-            sb.Append("class CartesBancairesInfo {\n");
-            sb.Append("  Siret: ").Append(Siret).Append("\n");
+            sb.Append("class GenericPmWithTdiInfo {\n");
             sb.Append("  TransactionDescription: ").Append(TransactionDescription).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
@@ -91,26 +76,21 @@ namespace Adyen.Model.Management
         /// <returns>Boolean</returns>
         public override bool Equals(object input)
         {
-            return this.Equals(input as CartesBancairesInfo);
+            return this.Equals(input as GenericPmWithTdiInfo);
         }
 
         /// <summary>
-        /// Returns true if CartesBancairesInfo instances are equal
+        /// Returns true if GenericPmWithTdiInfo instances are equal
         /// </summary>
-        /// <param name="input">Instance of CartesBancairesInfo to be compared</param>
+        /// <param name="input">Instance of GenericPmWithTdiInfo to be compared</param>
         /// <returns>Boolean</returns>
-        public bool Equals(CartesBancairesInfo input)
+        public bool Equals(GenericPmWithTdiInfo input)
         {
             if (input == null)
             {
                 return false;
             }
             return 
-                (
-                    this.Siret == input.Siret ||
-                    (this.Siret != null &&
-                    this.Siret.Equals(input.Siret))
-                ) && 
                 (
                     this.TransactionDescription == input.TransactionDescription ||
                     (this.TransactionDescription != null &&
@@ -127,10 +107,6 @@ namespace Adyen.Model.Management
             unchecked // Overflow is fine, just wrap
             {
                 int hashCode = 41;
-                if (this.Siret != null)
-                {
-                    hashCode = (hashCode * 59) + this.Siret.GetHashCode();
-                }
                 if (this.TransactionDescription != null)
                 {
                     hashCode = (hashCode * 59) + this.TransactionDescription.GetHashCode();

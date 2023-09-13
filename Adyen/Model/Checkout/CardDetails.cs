@@ -62,34 +62,40 @@ namespace Adyen.Model.Checkout
         public enum TypeEnum
         {
             /// <summary>
+            /// Enum Bcmc for value: bcmc
+            /// </summary>
+            [EnumMember(Value = "bcmc")]
+            Bcmc = 1,
+
+            /// <summary>
             /// Enum Scheme for value: scheme
             /// </summary>
             [EnumMember(Value = "scheme")]
-            Scheme = 1,
+            Scheme = 2,
 
             /// <summary>
             /// Enum NetworkToken for value: networkToken
             /// </summary>
             [EnumMember(Value = "networkToken")]
-            NetworkToken = 2,
+            NetworkToken = 3,
 
             /// <summary>
             /// Enum Giftcard for value: giftcard
             /// </summary>
             [EnumMember(Value = "giftcard")]
-            Giftcard = 3,
+            Giftcard = 4,
 
             /// <summary>
             /// Enum Alliancedata for value: alliancedata
             /// </summary>
             [EnumMember(Value = "alliancedata")]
-            Alliancedata = 4,
+            Alliancedata = 5,
 
             /// <summary>
             /// Enum Card for value: card
             /// </summary>
             [EnumMember(Value = "card")]
-            Card = 5
+            Card = 6
 
         }
 
@@ -512,27 +518,27 @@ namespace Adyen.Model.Checkout
         public IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> Validate(ValidationContext validationContext)
         {
             // EncryptedCardNumber (string) maxLength
-            if (this.EncryptedCardNumber != null && this.EncryptedCardNumber.Length > 10000)
+            if (this.EncryptedCardNumber != null && this.EncryptedCardNumber.Length > 15000)
             {
-                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for EncryptedCardNumber, length must be less than 10000.", new [] { "EncryptedCardNumber" });
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for EncryptedCardNumber, length must be less than 15000.", new [] { "EncryptedCardNumber" });
             }
 
             // EncryptedExpiryMonth (string) maxLength
-            if (this.EncryptedExpiryMonth != null && this.EncryptedExpiryMonth.Length > 10000)
+            if (this.EncryptedExpiryMonth != null && this.EncryptedExpiryMonth.Length > 15000)
             {
-                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for EncryptedExpiryMonth, length must be less than 10000.", new [] { "EncryptedExpiryMonth" });
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for EncryptedExpiryMonth, length must be less than 15000.", new [] { "EncryptedExpiryMonth" });
             }
 
             // EncryptedExpiryYear (string) maxLength
-            if (this.EncryptedExpiryYear != null && this.EncryptedExpiryYear.Length > 10000)
+            if (this.EncryptedExpiryYear != null && this.EncryptedExpiryYear.Length > 15000)
             {
-                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for EncryptedExpiryYear, length must be less than 10000.", new [] { "EncryptedExpiryYear" });
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for EncryptedExpiryYear, length must be less than 15000.", new [] { "EncryptedExpiryYear" });
             }
 
             // EncryptedSecurityCode (string) maxLength
-            if (this.EncryptedSecurityCode != null && this.EncryptedSecurityCode.Length > 10000)
+            if (this.EncryptedSecurityCode != null && this.EncryptedSecurityCode.Length > 15000)
             {
-                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for EncryptedSecurityCode, length must be less than 10000.", new [] { "EncryptedSecurityCode" });
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for EncryptedSecurityCode, length must be less than 15000.", new [] { "EncryptedSecurityCode" });
             }
 
             // StoredPaymentMethodId (string) maxLength

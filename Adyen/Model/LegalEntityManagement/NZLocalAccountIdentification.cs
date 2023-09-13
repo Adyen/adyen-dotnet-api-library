@@ -27,64 +27,55 @@ using OpenAPIDateConverter = Adyen.ApiSerialization.OpenAPIDateConverter;
 namespace Adyen.Model.LegalEntityManagement
 {
     /// <summary>
-    /// HKLocalAccountIdentification
+    /// NZLocalAccountIdentification
     /// </summary>
-    [DataContract(Name = "HKLocalAccountIdentification")]
-    public partial class HKLocalAccountIdentification : IEquatable<HKLocalAccountIdentification>, IValidatableObject
+    [DataContract(Name = "NZLocalAccountIdentification")]
+    public partial class NZLocalAccountIdentification : IEquatable<NZLocalAccountIdentification>, IValidatableObject
     {
         /// <summary>
-        /// **hkLocal**
+        /// **nzLocal**
         /// </summary>
-        /// <value>**hkLocal**</value>
+        /// <value>**nzLocal**</value>
         [JsonConverter(typeof(StringEnumConverter))]
         public enum TypeEnum
         {
             /// <summary>
-            /// Enum HkLocal for value: hkLocal
+            /// Enum NzLocal for value: nzLocal
             /// </summary>
-            [EnumMember(Value = "hkLocal")]
-            HkLocal = 1
+            [EnumMember(Value = "nzLocal")]
+            NzLocal = 1
 
         }
 
 
         /// <summary>
-        /// **hkLocal**
+        /// **nzLocal**
         /// </summary>
-        /// <value>**hkLocal**</value>
+        /// <value>**nzLocal**</value>
         [DataMember(Name = "type", IsRequired = false, EmitDefaultValue = false)]
         public TypeEnum Type { get; set; }
         /// <summary>
-        /// Initializes a new instance of the <see cref="HKLocalAccountIdentification" /> class.
+        /// Initializes a new instance of the <see cref="NZLocalAccountIdentification" /> class.
         /// </summary>
         [JsonConstructorAttribute]
-        protected HKLocalAccountIdentification() { }
+        protected NZLocalAccountIdentification() { }
         /// <summary>
-        /// Initializes a new instance of the <see cref="HKLocalAccountIdentification" /> class.
+        /// Initializes a new instance of the <see cref="NZLocalAccountIdentification" /> class.
         /// </summary>
-        /// <param name="accountNumber">The 9- to 12-character bank account number (alphanumeric), without separators or whitespace. Starts with the 3-digit branch code. (required).</param>
-        /// <param name="clearingCode">The 3-digit clearing code, without separators or whitespace. (required).</param>
-        /// <param name="type">**hkLocal** (required) (default to TypeEnum.HkLocal).</param>
-        public HKLocalAccountIdentification(string accountNumber = default(string), string clearingCode = default(string), TypeEnum type = TypeEnum.HkLocal)
+        /// <param name="accountNumber">The 15-16 digit bank account number. The first 2 digits are the bank number, the next 4 digits are the branch number, the next 7 digits are the account number, and the final 2-3 digits are the suffix. (required).</param>
+        /// <param name="type">**nzLocal** (required) (default to TypeEnum.NzLocal).</param>
+        public NZLocalAccountIdentification(string accountNumber = default(string), TypeEnum type = TypeEnum.NzLocal)
         {
             this.AccountNumber = accountNumber;
-            this.ClearingCode = clearingCode;
             this.Type = type;
         }
 
         /// <summary>
-        /// The 9- to 12-character bank account number (alphanumeric), without separators or whitespace. Starts with the 3-digit branch code.
+        /// The 15-16 digit bank account number. The first 2 digits are the bank number, the next 4 digits are the branch number, the next 7 digits are the account number, and the final 2-3 digits are the suffix.
         /// </summary>
-        /// <value>The 9- to 12-character bank account number (alphanumeric), without separators or whitespace. Starts with the 3-digit branch code.</value>
+        /// <value>The 15-16 digit bank account number. The first 2 digits are the bank number, the next 4 digits are the branch number, the next 7 digits are the account number, and the final 2-3 digits are the suffix.</value>
         [DataMember(Name = "accountNumber", IsRequired = false, EmitDefaultValue = false)]
         public string AccountNumber { get; set; }
-
-        /// <summary>
-        /// The 3-digit clearing code, without separators or whitespace.
-        /// </summary>
-        /// <value>The 3-digit clearing code, without separators or whitespace.</value>
-        [DataMember(Name = "clearingCode", IsRequired = false, EmitDefaultValue = false)]
-        public string ClearingCode { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -93,9 +84,8 @@ namespace Adyen.Model.LegalEntityManagement
         public override string ToString()
         {
             StringBuilder sb = new StringBuilder();
-            sb.Append("class HKLocalAccountIdentification {\n");
+            sb.Append("class NZLocalAccountIdentification {\n");
             sb.Append("  AccountNumber: ").Append(AccountNumber).Append("\n");
-            sb.Append("  ClearingCode: ").Append(ClearingCode).Append("\n");
             sb.Append("  Type: ").Append(Type).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
@@ -117,15 +107,15 @@ namespace Adyen.Model.LegalEntityManagement
         /// <returns>Boolean</returns>
         public override bool Equals(object input)
         {
-            return this.Equals(input as HKLocalAccountIdentification);
+            return this.Equals(input as NZLocalAccountIdentification);
         }
 
         /// <summary>
-        /// Returns true if HKLocalAccountIdentification instances are equal
+        /// Returns true if NZLocalAccountIdentification instances are equal
         /// </summary>
-        /// <param name="input">Instance of HKLocalAccountIdentification to be compared</param>
+        /// <param name="input">Instance of NZLocalAccountIdentification to be compared</param>
         /// <returns>Boolean</returns>
-        public bool Equals(HKLocalAccountIdentification input)
+        public bool Equals(NZLocalAccountIdentification input)
         {
             if (input == null)
             {
@@ -136,11 +126,6 @@ namespace Adyen.Model.LegalEntityManagement
                     this.AccountNumber == input.AccountNumber ||
                     (this.AccountNumber != null &&
                     this.AccountNumber.Equals(input.AccountNumber))
-                ) && 
-                (
-                    this.ClearingCode == input.ClearingCode ||
-                    (this.ClearingCode != null &&
-                    this.ClearingCode.Equals(input.ClearingCode))
                 ) && 
                 (
                     this.Type == input.Type ||
@@ -161,10 +146,6 @@ namespace Adyen.Model.LegalEntityManagement
                 {
                     hashCode = (hashCode * 59) + this.AccountNumber.GetHashCode();
                 }
-                if (this.ClearingCode != null)
-                {
-                    hashCode = (hashCode * 59) + this.ClearingCode.GetHashCode();
-                }
                 hashCode = (hashCode * 59) + this.Type.GetHashCode();
                 return hashCode;
             }
@@ -177,27 +158,15 @@ namespace Adyen.Model.LegalEntityManagement
         public IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> Validate(ValidationContext validationContext)
         {
             // AccountNumber (string) maxLength
-            if (this.AccountNumber != null && this.AccountNumber.Length > 12)
+            if (this.AccountNumber != null && this.AccountNumber.Length > 16)
             {
-                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for AccountNumber, length must be less than 12.", new [] { "AccountNumber" });
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for AccountNumber, length must be less than 16.", new [] { "AccountNumber" });
             }
 
             // AccountNumber (string) minLength
-            if (this.AccountNumber != null && this.AccountNumber.Length < 9)
+            if (this.AccountNumber != null && this.AccountNumber.Length < 15)
             {
-                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for AccountNumber, length must be greater than 9.", new [] { "AccountNumber" });
-            }
-
-            // ClearingCode (string) maxLength
-            if (this.ClearingCode != null && this.ClearingCode.Length > 3)
-            {
-                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for ClearingCode, length must be less than 3.", new [] { "ClearingCode" });
-            }
-
-            // ClearingCode (string) minLength
-            if (this.ClearingCode != null && this.ClearingCode.Length < 3)
-            {
-                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for ClearingCode, length must be greater than 3.", new [] { "ClearingCode" });
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for AccountNumber, length must be greater than 15.", new [] { "AccountNumber" });
             }
 
             yield break;

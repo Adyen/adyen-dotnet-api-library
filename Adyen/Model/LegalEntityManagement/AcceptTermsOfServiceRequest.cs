@@ -40,7 +40,7 @@ namespace Adyen.Model.LegalEntityManagement
         /// <summary>
         /// Initializes a new instance of the <see cref="AcceptTermsOfServiceRequest" /> class.
         /// </summary>
-        /// <param name="acceptedBy">The individual legal entity ID of the user accepting the Terms of Service. This can also be the legal entity ID of the signatory for an organization. (required).</param>
+        /// <param name="acceptedBy">The individual legal entity ID of the user accepting the Terms of Service. For organizations, this must be the legal entity ID of an authorized signatory for the organization. (required).</param>
         /// <param name="ipAddress">The IP address of the user accepting the Terms of Service..</param>
         public AcceptTermsOfServiceRequest(string acceptedBy = default(string), string ipAddress = default(string))
         {
@@ -49,9 +49,9 @@ namespace Adyen.Model.LegalEntityManagement
         }
 
         /// <summary>
-        /// The individual legal entity ID of the user accepting the Terms of Service. This can also be the legal entity ID of the signatory for an organization.
+        /// The individual legal entity ID of the user accepting the Terms of Service. For organizations, this must be the legal entity ID of an authorized signatory for the organization.
         /// </summary>
-        /// <value>The individual legal entity ID of the user accepting the Terms of Service. This can also be the legal entity ID of the signatory for an organization.</value>
+        /// <value>The individual legal entity ID of the user accepting the Terms of Service. For organizations, this must be the legal entity ID of an authorized signatory for the organization.</value>
         [DataMember(Name = "acceptedBy", IsRequired = false, EmitDefaultValue = false)]
         public string AcceptedBy { get; set; }
 
