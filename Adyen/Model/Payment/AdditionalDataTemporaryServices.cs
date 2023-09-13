@@ -36,8 +36,8 @@ namespace Adyen.Model.Payment
         /// Initializes a new instance of the <see cref="AdditionalDataTemporaryServices" /> class.
         /// </summary>
         /// <param name="enhancedSchemeDataCustomerReference">The customer code, if supplied by a customer. * Encoding: ASCII * maxLength: 25.</param>
-        /// <param name="enhancedSchemeDataEmployeeName">The name or ID of the person working in a temporary capacity. * maxLength: 40 * Must not be all zeros * Must not be all spaces.</param>
-        /// <param name="enhancedSchemeDataJobDescription">The job description of the person working in a temporary capacity. * maxLength: 40 * Must not be all zeros * Must not be all spaces.</param>
+        /// <param name="enhancedSchemeDataEmployeeName">The name or ID of the person working in a temporary capacity. * maxLength: 40.   * Must not be all spaces.  *Must not be all zeros..</param>
+        /// <param name="enhancedSchemeDataJobDescription">The job description of the person working in a temporary capacity. * maxLength: 40  * Must not be all spaces.  *Must not be all zeros..</param>
         /// <param name="enhancedSchemeDataRegularHoursRate">The amount paid for regular hours worked, [minor units](https://docs.adyen.com/development-resources/currency-codes). * maxLength: 7 * Must not be empty * Can be all zeros.</param>
         /// <param name="enhancedSchemeDataRegularHoursWorked">The hours worked. * maxLength: 7 * Must not be empty * Can be all zeros.</param>
         /// <param name="enhancedSchemeDataRequestName">The name of the person requesting temporary services. * maxLength: 40 * Must not be all zeros * Must not be all spaces.</param>
@@ -65,16 +65,16 @@ namespace Adyen.Model.Payment
         public string EnhancedSchemeDataCustomerReference { get; set; }
 
         /// <summary>
-        /// The name or ID of the person working in a temporary capacity. * maxLength: 40 * Must not be all zeros * Must not be all spaces
+        /// The name or ID of the person working in a temporary capacity. * maxLength: 40.   * Must not be all spaces.  *Must not be all zeros.
         /// </summary>
-        /// <value>The name or ID of the person working in a temporary capacity. * maxLength: 40 * Must not be all zeros * Must not be all spaces</value>
+        /// <value>The name or ID of the person working in a temporary capacity. * maxLength: 40.   * Must not be all spaces.  *Must not be all zeros.</value>
         [DataMember(Name = "enhancedSchemeData.employeeName", EmitDefaultValue = false)]
         public string EnhancedSchemeDataEmployeeName { get; set; }
 
         /// <summary>
-        /// The job description of the person working in a temporary capacity. * maxLength: 40 * Must not be all zeros * Must not be all spaces
+        /// The job description of the person working in a temporary capacity. * maxLength: 40  * Must not be all spaces.  *Must not be all zeros.
         /// </summary>
-        /// <value>The job description of the person working in a temporary capacity. * maxLength: 40 * Must not be all zeros * Must not be all spaces</value>
+        /// <value>The job description of the person working in a temporary capacity. * maxLength: 40  * Must not be all spaces.  *Must not be all zeros.</value>
         [DataMember(Name = "enhancedSchemeData.jobDescription", EmitDefaultValue = false)]
         public string EnhancedSchemeDataJobDescription { get; set; }
 

@@ -165,7 +165,7 @@ namespace Adyen.Model.ConfigurationWebhooks
         /// <param name="requestedSettings">requestedSettings.</param>
         /// <param name="transferInstruments">Contains the status of the transfer instruments associated with this capability. .</param>
         /// <param name="verificationStatus">The status of the verification checks for the capability.  Possible values:  * **pending**: Adyen is running the verification.  * **invalid**: The verification failed. Check if the &#x60;errors&#x60; array contains more information.  * **valid**: The verification has been successfully completed.  * **rejected**: Adyen has verified the information, but found reasons to not allow the capability. .</param>
-        public AccountHolderCapability(bool? allowed = default(bool?), AllowedLevelEnum? allowedLevel = default(AllowedLevelEnum?), CapabilitySettings allowedSettings = default(CapabilitySettings), bool? enabled = default(bool?), List<Object> problems = default(List<Object>), bool? requested = default(bool?), RequestedLevelEnum? requestedLevel = default(RequestedLevelEnum?), CapabilitySettings requestedSettings = default(CapabilitySettings), List<AccountSupportingEntityCapability> transferInstruments = default(List<AccountSupportingEntityCapability>), VerificationStatusEnum? verificationStatus = default(VerificationStatusEnum?))
+        public AccountHolderCapability(bool? allowed = default(bool?), AllowedLevelEnum? allowedLevel = default(AllowedLevelEnum?), CapabilitySettings allowedSettings = default(CapabilitySettings), bool? enabled = default(bool?), List<CapabilityProblem> problems = default(List<CapabilityProblem>), bool? requested = default(bool?), RequestedLevelEnum? requestedLevel = default(RequestedLevelEnum?), CapabilitySettings requestedSettings = default(CapabilitySettings), List<AccountSupportingEntityCapability> transferInstruments = default(List<AccountSupportingEntityCapability>), VerificationStatusEnum? verificationStatus = default(VerificationStatusEnum?))
         {
             this.Allowed = allowed;
             this.AllowedLevel = allowedLevel;
@@ -204,7 +204,7 @@ namespace Adyen.Model.ConfigurationWebhooks
         /// </summary>
         /// <value>Contains verification errors and the actions that you can take to resolve them.</value>
         [DataMember(Name = "problems", EmitDefaultValue = false)]
-        public List<Object> Problems { get; set; }
+        public List<CapabilityProblem> Problems { get; set; }
 
         /// <summary>
         /// Indicates whether the capability is requested. To check whether the account holder is permitted to use the capability, refer to the &#x60;allowed&#x60; field.

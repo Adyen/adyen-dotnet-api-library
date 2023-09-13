@@ -38,7 +38,7 @@ ManagementWebhooks: spec=ManagementNotificationService-v1
 models: $(Models)
 
 $(Models): target/spec $(openapi-generator-jar) 
-	rm -rf $(Models)/$@ $(output)
+	rm -rf $(models)/$@ $(output)
 	$(openapi-generator-cli) generate \
 		-i target/spec/json/$(spec).json \
 		-g $(generator) \
