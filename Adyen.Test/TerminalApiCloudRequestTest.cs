@@ -224,7 +224,7 @@ namespace Adyen.Test
             {
                 var client = CreateAsyncMockTestClientApiKeyBasedRequest("mocks/terminalapi/pospayment-success.json");
                 var payment = new TerminalCloudApi(client);
-                var saleToPoiResponse = payment.TerminalRequestSynchronousAsync(_paymentRequest);
+                var saleToPoiResponse = payment.TerminalRequestAsynchronousAsync(_paymentRequest).Result;
                 Assert.IsNotNull(saleToPoiResponse);
             }
             catch (Exception)
