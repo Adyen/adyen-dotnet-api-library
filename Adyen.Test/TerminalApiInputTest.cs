@@ -16,7 +16,7 @@ namespace Adyen.Test
                 //encrypt the request using encryption credentials
                 var paymentRequest = MockPosApiRequest.CreatePosPaymentRequest();
                 //create a mock client
-                var client = CreateMockTestClientPosLocalApiRequest("mocks/terminalapi/input-request-response.json");
+                var client = CreateMockTestClientPosCloudApiRequest("mocks/terminalapi/input-request-response.json");
                 var terminalCloudApi = new TerminalCloudApi(client);
                 var configEndpoint = terminalCloudApi.Client.Config.Endpoint;
                 var saleToPoiResponse = terminalCloudApi.TerminalRequestSync(paymentRequest);
@@ -59,7 +59,7 @@ namespace Adyen.Test
             {
                 var paymentRequest = MockPosApiRequest.CreatePosPaymentRequest();
                 var client =
-                    CreateMockTestClientPosLocalApiRequest("mocks/terminalapi/cardAcquisitionResponse-success.json");
+                    CreateMockTestClientPosCloudApiRequest("mocks/terminalapi/cardAcquisitionResponse-success.json");
                 var terminalCloudApi = new TerminalCloudApi(client);
                 var saleToPoiResponse = terminalCloudApi.TerminalRequestAsync(paymentRequest);
                 var payloadResponse = (CardAcquisitionResponse) saleToPoiResponse.MessagePayload;
