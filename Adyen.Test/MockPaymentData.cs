@@ -16,7 +16,8 @@ namespace Adyen.Test
             {
                 Username = "Username",
                 Password = "Password",
-                ApplicationName = "Appname"
+                ApplicationName = "Appname",
+                Endpoint = "endpoint"
             };
         }
 
