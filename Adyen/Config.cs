@@ -10,6 +10,7 @@ namespace Adyen
         public string Password { get; set; }
         public Environment Environment { get; set; }
         public string LiveEndpointUrlPrefix { get; set; }
+        public string Endpoint { get; set; }
         public string ApplicationName { get; set; }
         public IWebProxy Proxy { get; set; }
         //Terminal cloud api
