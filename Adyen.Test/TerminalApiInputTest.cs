@@ -18,7 +18,6 @@ namespace Adyen.Test
                 //create a mock client
                 var client = CreateMockTestClientPosLocalApiRequest("mocks/terminalapi/input-request-response.json");
                 var posPaymentLocalApi = new PosPaymentCloudApi(client);
-                var configEndpoint = posPaymentLocalApi.Client.Config.Endpoint;
                 var saleToPoiResponse = posPaymentLocalApi.TerminalApiCloudSync(paymentRequest);
                 Assert.IsNotNull(saleToPoiResponse);
                 var inputResponse = (InputResponse)saleToPoiResponse.MessagePayload;
