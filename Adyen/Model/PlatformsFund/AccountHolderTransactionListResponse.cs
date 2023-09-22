@@ -39,7 +39,7 @@ namespace Adyen.Model.PlatformsFund
         /// <param name="invalidFields">Contains field validation errors that would prevent requests from being processed..</param>
         /// <param name="pspReference">The reference of a request. Can be used to uniquely identify the request..</param>
         /// <param name="resultCode">The result code..</param>
-        public AccountHolderTransactionListResponse(List<AccountTransactionAccountTransactionList> accountTransactionLists = default(List<AccountTransactionAccountTransactionList>), List<ErrorFieldType> invalidFields = default(List<ErrorFieldType>), string pspReference = default(string), string resultCode = default(string))
+        public AccountHolderTransactionListResponse(List<AccountTransactionList> accountTransactionLists = default(List<AccountTransactionList>), List<ErrorFieldType> invalidFields = default(List<ErrorFieldType>), string pspReference = default(string), string resultCode = default(string))
         {
             this.AccountTransactionLists = accountTransactionLists;
             this.InvalidFields = invalidFields;
@@ -52,7 +52,7 @@ namespace Adyen.Model.PlatformsFund
         /// </summary>
         /// <value>A list of the transactions.</value>
         [DataMember(Name = "accountTransactionLists", EmitDefaultValue = false)]
-        public List<AccountTransactionAccountTransactionList> AccountTransactionLists { get; set; }
+        public List<AccountTransactionList> AccountTransactionLists { get; set; }
 
         /// <summary>
         /// Contains field validation errors that would prevent requests from being processed.

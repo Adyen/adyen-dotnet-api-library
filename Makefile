@@ -57,8 +57,8 @@ $(Models): target/spec $(openapi-generator-jar)
 
 # Service Generation; split up in to templates based on the size of the service. That is, some services have no subgroups and are thus generated in one single file, others are grouped in a directory.
 
-Services:=BalancePlatform Checkout Management LegalEntityManagement StoredValue Payout PlatformsAccount PlatformsHostedOnboardingPage Transfers
-SingleFileServices:=BalanceControl BinLookup DataProtection StoredValue Payment PlatformsFund PlatformsNotificationConfiguration PosTerminalManagement Recurring
+Services:=BalancePlatform Checkout Management LegalEntityManagement StoredValue Payout Transfers
+SingleFileServices:=BalanceControl BinLookup DataProtection StoredValue Payment PosTerminalManagement Recurring
 
 allServices: $(Services) $(SingleFileServices)
 
