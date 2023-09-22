@@ -82,7 +82,7 @@ namespace Adyen.Service
         /// <param name="body"><see cref="Object"/> - </param>
         /// <param name="requestOptions"><see cref="RequestOptions"/> - Additional request options.</param>
         /// <returns><see cref="GetNotificationConfigurationListResponse"/>.</returns>
-        Model.PlatformsNotificationConfiguration.GetNotificationConfigurationListResponse GetNotificationConfigurationList(Object body = default, RequestOptions requestOptions = default);
+        Model.PlatformsNotificationConfiguration.GetNotificationConfigurationListResponse GetNotificationConfigurationList(RequestOptions requestOptions = default);
         
         /// <summary>
         /// Get a list of notification subscription configurations
@@ -91,7 +91,7 @@ namespace Adyen.Service
         /// <param name="requestOptions"><see cref="RequestOptions"/> - Additional request options.</param>
         /// <param name="cancellationToken"> A CancellationToken enables cooperative cancellation between threads, thread pool work items, or Task objects.</param>
         /// <returns>Task of <see cref="GetNotificationConfigurationListResponse"/>.</returns>
-        Task<Model.PlatformsNotificationConfiguration.GetNotificationConfigurationListResponse> GetNotificationConfigurationListAsync(Object body = default, RequestOptions requestOptions = default, CancellationToken cancellationToken = default);
+        Task<Model.PlatformsNotificationConfiguration.GetNotificationConfigurationListResponse> GetNotificationConfigurationListAsync(RequestOptions requestOptions = default, CancellationToken cancellationToken = default);
         
         /// <summary>
         /// Test a notification configuration
@@ -177,16 +177,16 @@ namespace Adyen.Service
             return await resource.RequestAsync<Model.PlatformsNotificationConfiguration.GetNotificationConfigurationResponse>(getNotificationConfigurationRequest.ToJson(), requestOptions, new HttpMethod("POST"), cancellationToken).ConfigureAwait(false);
         }
         
-        public Model.PlatformsNotificationConfiguration.GetNotificationConfigurationListResponse GetNotificationConfigurationList(Object body = default, RequestOptions requestOptions = default)
+        public Model.PlatformsNotificationConfiguration.GetNotificationConfigurationListResponse GetNotificationConfigurationList(RequestOptions requestOptions = default)
         {
-            return GetNotificationConfigurationListAsync(body, requestOptions).ConfigureAwait(false).GetAwaiter().GetResult();
+            return GetNotificationConfigurationListAsync(requestOptions).ConfigureAwait(false).GetAwaiter().GetResult();
         }
 
-        public async Task<Model.PlatformsNotificationConfiguration.GetNotificationConfigurationListResponse> GetNotificationConfigurationListAsync(Object body = default, RequestOptions requestOptions = default, CancellationToken cancellationToken = default)
+        public async Task<Model.PlatformsNotificationConfiguration.GetNotificationConfigurationListResponse> GetNotificationConfigurationListAsync(RequestOptions requestOptions = default, CancellationToken cancellationToken = default)
         {
             var endpoint = _baseUrl + "/getNotificationConfigurationList";
             var resource = new ServiceResource(this, endpoint);
-            return await resource.RequestAsync<Model.PlatformsNotificationConfiguration.GetNotificationConfigurationListResponse>(body.ToJson(), requestOptions, new HttpMethod("POST"), cancellationToken).ConfigureAwait(false);
+            return await resource.RequestAsync<Model.PlatformsNotificationConfiguration.GetNotificationConfigurationListResponse>(null, requestOptions, new HttpMethod("POST"), cancellationToken).ConfigureAwait(false);
         }
         
         public Model.PlatformsNotificationConfiguration.TestNotificationConfigurationResponse TestNotificationConfiguration(TestNotificationConfigurationRequest testNotificationConfigurationRequest = default, RequestOptions requestOptions = default)
