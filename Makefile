@@ -5,7 +5,7 @@ openapi-generator-cli:=java -jar $(openapi-generator-jar)
 
 
 generator:=csharp-netcore
-Models:=AcsWebhooks BalanceControl BalancePlatform BinLookup Checkout DataProtection LegalEntityManagement Management ManagementWebhooks Payment Payout PosTerminalManagement Recurring StoredValue Transfers ConfigurationWebhooks ReportWebhooks TransferWebhooks
+Models:=AcsWebhooks BalanceControl BalancePlatform BinLookup Checkout ConfigurationWebhooks DataProtection LegalEntityManagement Management ManagementWebhooks Payment Payout PlatformsAccount PlatformsFund PlatformsNotificationConfiguration PlatformsHostedOnboardingPage PosTerminalManagement Recurring ReportWebhooks StoredValue TransferWebhooks Transfers
 models:=Adyen/Model
 output:=target/out
 
@@ -57,8 +57,8 @@ $(Models): target/spec $(openapi-generator-jar)
 
 # Service Generation; split up in to templates based on the size of the service. That is, some services have no subgroups and are thus generated in one single file, others are grouped in a directory.
 
-Services:=BalancePlatform Checkout StoredValue Payout Management LegalEntityManagement Transfers
-SingleFileServices:=BalanceControl BinLookup DataProtection StoredValue PosTerminalManagement Recurring Payment
+Services:=BalancePlatform Checkout Management LegalEntityManagement StoredValue Payout PlatformsAccount PlatformsHostedOnboardingPage Transfers
+SingleFileServices:=BalanceControl BinLookup DataProtection StoredValue Payment PlatformsFund PlatformsNotificationConfiguration PosTerminalManagement Recurring
 
 allServices: $(Services) $(SingleFileServices)
 
