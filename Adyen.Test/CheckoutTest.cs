@@ -1144,8 +1144,7 @@ namespace Adyen.Test
             var client =
                 CreateMockTestClientApiKeyBasedRequestAsync("mocks/checkout/get-storedPaymentMethod-success.json");
             var checkout = new MyRecurringService(client);
-            var response = checkout.DeleteTokenForStoredPaymentDetails("shopperRef", "merchantAccount");
-            Assert.AreEqual(response, new StoredPaymentMethodResource());
+            checkout.DeleteTokenForStoredPaymentDetails("shopperRef", "merchantAccount");
         }
     }
 
@@ -1158,15 +1157,13 @@ namespace Adyen.Test
             _client = client.HttpClient;
         }
         
-        public StoredPaymentMethodResource DeleteTokenForStoredPaymentDetails(string recurringId, string shopperReference = default,
+        public void DeleteTokenForStoredPaymentDetails(string recurringId, string shopperReference = default,
             string merchantAccount = default, RequestOptions requestOptions = default)
         {
             var response = _client.Request("", "json", requestOptions, HttpMethod.Delete);
-            // Do something with the json response
-            return new StoredPaymentMethodResource();
         }
 
-        public Task<StoredPaymentMethodResource> DeleteTokenForStoredPaymentDetailsAsync(string recurringId, string shopperReference = default,
+        public Task DeleteTokenForStoredPaymentDetailsAsync(string recurringId, string shopperReference = default,
             string merchantAccount = default, RequestOptions requestOptions = default,
             CancellationToken cancellationToken = default)
         {
