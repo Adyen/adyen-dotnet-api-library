@@ -55,7 +55,13 @@ namespace Adyen.Model.Checkout
             /// Enum AfterpayB2b for value: afterpay_b2b
             /// </summary>
             [EnumMember(Value = "afterpay_b2b")]
-            AfterpayB2b = 3
+            AfterpayB2b = 3,
+
+            /// <summary>
+            /// Enum Clearpay for value: clearpay
+            /// </summary>
+            [EnumMember(Value = "clearpay")]
+            Clearpay = 4
 
         }
 

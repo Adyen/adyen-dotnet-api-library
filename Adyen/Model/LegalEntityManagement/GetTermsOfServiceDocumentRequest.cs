@@ -98,7 +98,7 @@ namespace Adyen.Model.LegalEntityManagement
         /// <summary>
         /// Initializes a new instance of the <see cref="GetTermsOfServiceDocumentRequest" /> class.
         /// </summary>
-        /// <param name="language">The language to be used for the Terms of Service document, specified by the two letter [ISO 639-1](https://en.wikipedia.org/wiki/List_of_ISO_639-1_codes) language code. For example, **nl** for Dutch. (required).</param>
+        /// <param name="language">The language to be used for the Terms of Service document, specified by the two-letter [ISO 639-1](https://en.wikipedia.org/wiki/List_of_ISO_639-1_codes) language code. Possible value: **en** for English. (required).</param>
         /// <param name="type">The type of Terms of Service. (required).</param>
         public GetTermsOfServiceDocumentRequest(string language = default(string), TypeEnum type = default(TypeEnum))
         {
@@ -107,9 +107,9 @@ namespace Adyen.Model.LegalEntityManagement
         }
 
         /// <summary>
-        /// The language to be used for the Terms of Service document, specified by the two letter [ISO 639-1](https://en.wikipedia.org/wiki/List_of_ISO_639-1_codes) language code. For example, **nl** for Dutch.
+        /// The language to be used for the Terms of Service document, specified by the two-letter [ISO 639-1](https://en.wikipedia.org/wiki/List_of_ISO_639-1_codes) language code. Possible value: **en** for English.
         /// </summary>
-        /// <value>The language to be used for the Terms of Service document, specified by the two letter [ISO 639-1](https://en.wikipedia.org/wiki/List_of_ISO_639-1_codes) language code. For example, **nl** for Dutch.</value>
+        /// <value>The language to be used for the Terms of Service document, specified by the two-letter [ISO 639-1](https://en.wikipedia.org/wiki/List_of_ISO_639-1_codes) language code. Possible value: **en** for English.</value>
         [DataMember(Name = "language", IsRequired = false, EmitDefaultValue = false)]
         public string Language { get; set; }
 
