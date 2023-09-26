@@ -180,20 +180,20 @@ namespace Adyen.Service.BalancePlatform
         /// Create a sweep
         /// </summary>
         /// <param name="balanceAccountId"><see cref="string"/> - The unique identifier of the balance account.</param>
-        /// <param name="sweepConfigurationV2"><see cref="SweepConfigurationV2"/> - </param>
+        /// <param name="createSweepConfigurationV2"><see cref="CreateSweepConfigurationV2"/> - </param>
         /// <param name="requestOptions"><see cref="RequestOptions"/> - Additional request options.</param>
         /// <returns><see cref="SweepConfigurationV2"/>.</returns>
-        Model.BalancePlatform.SweepConfigurationV2 CreateSweep(string balanceAccountId, SweepConfigurationV2 sweepConfigurationV2 = default, RequestOptions requestOptions = default);
+        Model.BalancePlatform.SweepConfigurationV2 CreateSweep(string balanceAccountId, CreateSweepConfigurationV2 createSweepConfigurationV2 = default, RequestOptions requestOptions = default);
         
         /// <summary>
         /// Create a sweep
         /// </summary>
         /// <param name="balanceAccountId"><see cref="string"/> - The unique identifier of the balance account.</param>
-        /// <param name="sweepConfigurationV2"><see cref="SweepConfigurationV2"/> - </param>
+        /// <param name="createSweepConfigurationV2"><see cref="CreateSweepConfigurationV2"/> - </param>
         /// <param name="requestOptions"><see cref="RequestOptions"/> - Additional request options.</param>
         /// <param name="cancellationToken"> A CancellationToken enables cooperative cancellation between threads, thread pool work items, or Task objects.</param>
         /// <returns>Task of <see cref="SweepConfigurationV2"/>.</returns>
-        Task<Model.BalancePlatform.SweepConfigurationV2> CreateSweepAsync(string balanceAccountId, SweepConfigurationV2 sweepConfigurationV2 = default, RequestOptions requestOptions = default, CancellationToken cancellationToken = default);
+        Task<Model.BalancePlatform.SweepConfigurationV2> CreateSweepAsync(string balanceAccountId, CreateSweepConfigurationV2 createSweepConfigurationV2 = default, RequestOptions requestOptions = default, CancellationToken cancellationToken = default);
         
     }
     
@@ -313,16 +313,16 @@ namespace Adyen.Service.BalancePlatform
             return await resource.RequestAsync<Model.BalancePlatform.BalanceAccount>(balanceAccountInfo.ToJson(), requestOptions, new HttpMethod("POST"), cancellationToken).ConfigureAwait(false);
         }
         
-        public Model.BalancePlatform.SweepConfigurationV2 CreateSweep(string balanceAccountId, SweepConfigurationV2 sweepConfigurationV2 = default, RequestOptions requestOptions = default)
+        public Model.BalancePlatform.SweepConfigurationV2 CreateSweep(string balanceAccountId, CreateSweepConfigurationV2 createSweepConfigurationV2 = default, RequestOptions requestOptions = default)
         {
-            return CreateSweepAsync(balanceAccountId, sweepConfigurationV2, requestOptions).ConfigureAwait(false).GetAwaiter().GetResult();
+            return CreateSweepAsync(balanceAccountId, createSweepConfigurationV2, requestOptions).ConfigureAwait(false).GetAwaiter().GetResult();
         }
 
-        public async Task<Model.BalancePlatform.SweepConfigurationV2> CreateSweepAsync(string balanceAccountId, SweepConfigurationV2 sweepConfigurationV2 = default, RequestOptions requestOptions = default, CancellationToken cancellationToken = default)
+        public async Task<Model.BalancePlatform.SweepConfigurationV2> CreateSweepAsync(string balanceAccountId, CreateSweepConfigurationV2 createSweepConfigurationV2 = default, RequestOptions requestOptions = default, CancellationToken cancellationToken = default)
         {
             var endpoint = _baseUrl + $"/balanceAccounts/{balanceAccountId}/sweeps";
             var resource = new ServiceResource(this, endpoint);
-            return await resource.RequestAsync<Model.BalancePlatform.SweepConfigurationV2>(sweepConfigurationV2.ToJson(), requestOptions, new HttpMethod("POST"), cancellationToken).ConfigureAwait(false);
+            return await resource.RequestAsync<Model.BalancePlatform.SweepConfigurationV2>(createSweepConfigurationV2.ToJson(), requestOptions, new HttpMethod("POST"), cancellationToken).ConfigureAwait(false);
         }
     }
 }
