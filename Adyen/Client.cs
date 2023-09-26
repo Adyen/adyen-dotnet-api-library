@@ -83,7 +83,7 @@ namespace Adyen
 
             // If not switch through environment and return default EU
             if(Environment == Environment.Live) {
-                ClientConfig.CloudApiEndPointEULive
+                return ClientConfig.CloudApiEndPointEULive;
             }
 
             return ClientConfig.CloudApiEndPointTest;
