@@ -72,22 +72,21 @@ namespace Adyen
         {
             Config.Environment = environment;
             Config.LiveEndpointUrlPrefix = liveEndpointUrlPrefix;
-    
+        }
+
+        public void GetCloudApiEndpoint() {
             // Check if the cloud api endpoint has not already been set
             if (Config.CloudApiEndPoint != null)
             {
-                return;
+                return Config.CloudApiEndPoint;
             }
-            // If not switch through environment and set default EU
-            switch (environment)
-            {
-                case Environment.Test:
-                    Config.CloudApiEndPoint = ClientConfig.CloudApiEndPointTest;
-                    break;
-                case Environment.Live:
-                    Config.CloudApiEndPoint = ClientConfig.CloudApiEndPointEULive;
-                    break;
+
+            // If not switch through environment and return default EU
+            if(Environment == Environment.Live) {
+                ClientConfig.CloudApiEndPointEULive
             }
+
+            return ClientConfig.CloudApiEndPointTest;
         }
         
         // Get a new HttpClient and set a timeout

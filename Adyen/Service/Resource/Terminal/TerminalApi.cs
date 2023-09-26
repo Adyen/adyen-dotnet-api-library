@@ -6,9 +6,9 @@
             : base(abstractService, abstractService.Client.Config.Endpoint)
         {
             if (asynchronous) {
-                Endpoint = abstractService.Client.Config.CloudApiEndPoint+ "/async";
+                Endpoint = abstractService.Client.GetCloudApiEndpoint()+ "/async";
             } else {
-                Endpoint = abstractService.Client.Config.CloudApiEndPoint + "/sync";
+                Endpoint = abstractServiceClient.GetCloudApiEndpoint() + "/sync";
             }
         }
     }

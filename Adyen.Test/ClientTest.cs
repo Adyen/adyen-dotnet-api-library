@@ -16,7 +16,6 @@ namespace Adyen.Test
         }
 
         [TestMethod]
-        [Ignore]
         public void TestSetEnvironment()
         {
             var client = new Client(new Config());
