@@ -78,7 +78,7 @@ namespace Adyen
             // Check if the cloud api endpoint has not already been set
             if (Config.CloudApiEndPoint != null)
             {
-                return Config.CloudApiEndPoint;
+                return ClientConfig.CloudApiEndPoint;
             }
 
             // If not switch through environment and return default EU
