@@ -8,7 +8,7 @@
             if (asynchronous) {
                 Endpoint = abstractService.Client.GetCloudApiEndpoint()+ "/async";
             } else {
-                Endpoint = abstractServiceClient.GetCloudApiEndpoint() + "/sync";
+                Endpoint = abstractService.Client.GetCloudApiEndpoint() + "/sync";
             }
         }
     }

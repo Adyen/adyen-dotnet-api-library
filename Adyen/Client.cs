@@ -74,15 +74,15 @@ namespace Adyen
             Config.LiveEndpointUrlPrefix = liveEndpointUrlPrefix;
         }
 
-        public void GetCloudApiEndpoint() {
+        public string GetCloudApiEndpoint() {
             // Check if the cloud api endpoint has not already been set
             if (Config.CloudApiEndPoint != null)
             {
-                return ClientConfig.CloudApiEndPoint;
+                return Config.CloudApiEndPoint;
             }
 
             // If not switch through environment and return default EU
-            if(Environment == Environment.Live) {
+            if(Config.Environment == Environment.Live) {
                 return ClientConfig.CloudApiEndPointEULive;
             }
 
