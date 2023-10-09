@@ -1,6 +1,7 @@
 using System.Threading.Tasks;
 using Adyen.ApiSerialization;
 using Adyen.Model.Nexo;
+using Adyen.Model;
 using Adyen.Service.Resource.Terminal;
 
 namespace Adyen.Service
@@ -40,6 +41,8 @@ namespace Adyen.Service
         private readonly TerminalApi _terminalApiAsync;
         private readonly TerminalApi _terminalApiSync;
         private readonly SaleToPoiMessageSerializer _saleToPoiMessageSerializer;
+        private readonly string _baseUrl;
+
        
         public TerminalCloudApi(Client client)
             : base(client)
@@ -47,6 +50,8 @@ namespace Adyen.Service
             _saleToPoiMessageSerializer = new SaleToPoiMessageSerializer();
             _terminalApiAsync = new TerminalApi(this, true);
             _terminalApiSync = new TerminalApi(this, false);
+            _baseUrl = client.GetCloudApiEndpoint();
+
         }
 
         public SaleToPOIResponse TerminalRequestAsync(SaleToPOIMessage saleToPoiRequest)
