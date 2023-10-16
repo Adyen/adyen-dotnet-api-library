@@ -41,9 +41,11 @@ namespace Adyen.Model.Management
         /// Initializes a new instance of the <see cref="CartesBancairesInfo" /> class.
         /// </summary>
         /// <param name="siret">Cartes Bancaires SIRET. Format: 14 digits. (required).</param>
-        public CartesBancairesInfo(string siret = default(string))
+        /// <param name="transactionDescription">transactionDescription.</param>
+        public CartesBancairesInfo(string siret = default(string), TransactionDescriptionInfo transactionDescription = default(TransactionDescriptionInfo))
         {
             this.Siret = siret;
+            this.TransactionDescription = transactionDescription;
         }
 
         /// <summary>
@@ -54,6 +56,12 @@ namespace Adyen.Model.Management
         public string Siret { get; set; }
 
         /// <summary>
+        /// Gets or Sets TransactionDescription
+        /// </summary>
+        [DataMember(Name = "transactionDescription", EmitDefaultValue = false)]
+        public TransactionDescriptionInfo TransactionDescription { get; set; }
+
+        /// <summary>
         /// Returns the string presentation of the object
         /// </summary>
         /// <returns>String presentation of the object</returns>
@@ -62,6 +70,7 @@ namespace Adyen.Model.Management
             StringBuilder sb = new StringBuilder();
             sb.Append("class CartesBancairesInfo {\n");
             sb.Append("  Siret: ").Append(Siret).Append("\n");
+            sb.Append("  TransactionDescription: ").Append(TransactionDescription).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -101,6 +110,11 @@ namespace Adyen.Model.Management
                     this.Siret == input.Siret ||
                     (this.Siret != null &&
                     this.Siret.Equals(input.Siret))
+                ) && 
+                (
+                    this.TransactionDescription == input.TransactionDescription ||
+                    (this.TransactionDescription != null &&
+                    this.TransactionDescription.Equals(input.TransactionDescription))
                 );
         }
 
@@ -116,6 +130,10 @@ namespace Adyen.Model.Management
                 if (this.Siret != null)
                 {
                     hashCode = (hashCode * 59) + this.Siret.GetHashCode();
+                }
+                if (this.TransactionDescription != null)
+                {
+                    hashCode = (hashCode * 59) + this.TransactionDescription.GetHashCode();
                 }
                 return hashCode;
             }

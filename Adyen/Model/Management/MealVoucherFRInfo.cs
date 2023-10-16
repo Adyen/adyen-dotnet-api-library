@@ -42,7 +42,7 @@ namespace Adyen.Model.Management
         /// </summary>
         /// <param name="conecsId">Meal Voucher conecsId. Format: digits only (required).</param>
         /// <param name="siret">Meal Voucher siret. Format: 14 digits. (required).</param>
-        /// <param name="subTypes">The list of additional payment methods. Allowed values: **mealVoucher_FR_endenred**, **mealVoucher_FR_groupeup**, **mealVoucher_FR_natixis**, **mealVoucher_FR_sodexo**. (required).</param>
+        /// <param name="subTypes">The list of additional payment methods. Allowed values: **mealVoucher_FR_edenred**, **mealVoucher_FR_groupeup**, **mealVoucher_FR_natixis**, **mealVoucher_FR_sodexo**. (required).</param>
         public MealVoucherFRInfo(string conecsId = default(string), string siret = default(string), List<string> subTypes = default(List<string>))
         {
             this.ConecsId = conecsId;
@@ -65,9 +65,9 @@ namespace Adyen.Model.Management
         public string Siret { get; set; }
 
         /// <summary>
-        /// The list of additional payment methods. Allowed values: **mealVoucher_FR_endenred**, **mealVoucher_FR_groupeup**, **mealVoucher_FR_natixis**, **mealVoucher_FR_sodexo**.
+        /// The list of additional payment methods. Allowed values: **mealVoucher_FR_edenred**, **mealVoucher_FR_groupeup**, **mealVoucher_FR_natixis**, **mealVoucher_FR_sodexo**.
         /// </summary>
-        /// <value>The list of additional payment methods. Allowed values: **mealVoucher_FR_endenred**, **mealVoucher_FR_groupeup**, **mealVoucher_FR_natixis**, **mealVoucher_FR_sodexo**.</value>
+        /// <value>The list of additional payment methods. Allowed values: **mealVoucher_FR_edenred**, **mealVoucher_FR_groupeup**, **mealVoucher_FR_natixis**, **mealVoucher_FR_sodexo**.</value>
         [DataMember(Name = "subTypes", IsRequired = false, EmitDefaultValue = false)]
         public List<string> SubTypes { get; set; }
 

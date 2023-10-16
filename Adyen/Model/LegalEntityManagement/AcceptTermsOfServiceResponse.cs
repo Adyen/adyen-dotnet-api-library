@@ -96,7 +96,7 @@ namespace Adyen.Model.LegalEntityManagement
         /// <param name="acceptedBy">The unique identifier of the user that accepted the Terms of Service..</param>
         /// <param name="id">The unique identifier of the Terms of Service acceptance..</param>
         /// <param name="ipAddress">The IP address of the user that accepted the Terms of Service..</param>
-        /// <param name="language">The language used for the Terms of Service document, specified by the two letter [ISO 639-1](https://en.wikipedia.org/wiki/List_of_ISO_639-1_codes) language code. For example, **nl** for Dutch..</param>
+        /// <param name="language">The language used for the Terms of Service document, specified by the two-letter [ISO 639-1](https://en.wikipedia.org/wiki/List_of_ISO_639-1_codes) language code. Possible value: **en** for English..</param>
         /// <param name="termsOfServiceDocumentId">The unique identifier of the Terms of Service document..</param>
         /// <param name="type">The type of Terms of Service..</param>
         public AcceptTermsOfServiceResponse(string acceptedBy = default(string), string id = default(string), string ipAddress = default(string), string language = default(string), string termsOfServiceDocumentId = default(string), TypeEnum? type = default(TypeEnum?))
@@ -131,9 +131,9 @@ namespace Adyen.Model.LegalEntityManagement
         public string IpAddress { get; set; }
 
         /// <summary>
-        /// The language used for the Terms of Service document, specified by the two letter [ISO 639-1](https://en.wikipedia.org/wiki/List_of_ISO_639-1_codes) language code. For example, **nl** for Dutch.
+        /// The language used for the Terms of Service document, specified by the two-letter [ISO 639-1](https://en.wikipedia.org/wiki/List_of_ISO_639-1_codes) language code. Possible value: **en** for English.
         /// </summary>
-        /// <value>The language used for the Terms of Service document, specified by the two letter [ISO 639-1](https://en.wikipedia.org/wiki/List_of_ISO_639-1_codes) language code. For example, **nl** for Dutch.</value>
+        /// <value>The language used for the Terms of Service document, specified by the two-letter [ISO 639-1](https://en.wikipedia.org/wiki/List_of_ISO_639-1_codes) language code. Possible value: **en** for English.</value>
         [DataMember(Name = "language", EmitDefaultValue = false)]
         public string Language { get; set; }
 

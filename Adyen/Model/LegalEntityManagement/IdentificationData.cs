@@ -33,103 +33,25 @@ namespace Adyen.Model.LegalEntityManagement
     public partial class IdentificationData : IEquatable<IdentificationData>, IValidatableObject
     {
         /// <summary>
-        /// Type of document, used when providing an ID number or uploading a document. The possible values depend on the legal entity type.  * For **organization**, the &#x60;type&#x60; values can be **proofOfAddress**, **registrationDocument**, **vatDocument**, **proofOfOrganizationTaxInfo**, **proofOfOwnership**, **proofOfIndustry**, or **proofOfFundingOrWealthSource**.  * For **individual**, the &#x60;type&#x60; values can be **identityCard**, **driversLicense**, **passport**, **proofOfNationalIdNumber**, **proofOfResidency**, **proofOfIndustry**, **proofOfIndividualTaxId**, or **proofOfFundingOrWealthSource**.  * For **soleProprietorship**, the &#x60;type&#x60; values can be **constitutionalDocument**, **proofOfAddress**, or **proofOfIndustry**.  * Use **bankStatement** to upload documents for a [transfer instrument](https://docs.adyen.com/api-explorer/#/legalentity/latest/post/transferInstruments__resParam_id).
+        /// Type of identity data. For **individual**, the &#x60;type&#x60; value is **nationalIdNumber**.
         /// </summary>
-        /// <value>Type of document, used when providing an ID number or uploading a document. The possible values depend on the legal entity type.  * For **organization**, the &#x60;type&#x60; values can be **proofOfAddress**, **registrationDocument**, **vatDocument**, **proofOfOrganizationTaxInfo**, **proofOfOwnership**, **proofOfIndustry**, or **proofOfFundingOrWealthSource**.  * For **individual**, the &#x60;type&#x60; values can be **identityCard**, **driversLicense**, **passport**, **proofOfNationalIdNumber**, **proofOfResidency**, **proofOfIndustry**, **proofOfIndividualTaxId**, or **proofOfFundingOrWealthSource**.  * For **soleProprietorship**, the &#x60;type&#x60; values can be **constitutionalDocument**, **proofOfAddress**, or **proofOfIndustry**.  * Use **bankStatement** to upload documents for a [transfer instrument](https://docs.adyen.com/api-explorer/#/legalentity/latest/post/transferInstruments__resParam_id).</value>
+        /// <value>Type of identity data. For **individual**, the &#x60;type&#x60; value is **nationalIdNumber**.</value>
         [JsonConverter(typeof(StringEnumConverter))]
         public enum TypeEnum
         {
             /// <summary>
-            /// Enum BankStatement for value: bankStatement
-            /// </summary>
-            [EnumMember(Value = "bankStatement")]
-            BankStatement = 1,
-
-            /// <summary>
-            /// Enum DriversLicense for value: driversLicense
-            /// </summary>
-            [EnumMember(Value = "driversLicense")]
-            DriversLicense = 2,
-
-            /// <summary>
-            /// Enum IdentityCard for value: identityCard
-            /// </summary>
-            [EnumMember(Value = "identityCard")]
-            IdentityCard = 3,
-
-            /// <summary>
-            /// Enum NationalIdNumber for value: nationalIdNumber
-            /// </summary>
-            [EnumMember(Value = "nationalIdNumber")]
-            NationalIdNumber = 4,
-
-            /// <summary>
-            /// Enum Passport for value: passport
-            /// </summary>
-            [EnumMember(Value = "passport")]
-            Passport = 5,
-
-            /// <summary>
-            /// Enum ProofOfAddress for value: proofOfAddress
-            /// </summary>
-            [EnumMember(Value = "proofOfAddress")]
-            ProofOfAddress = 6,
-
-            /// <summary>
             /// Enum ProofOfNationalIdNumber for value: proofOfNationalIdNumber
             /// </summary>
             [EnumMember(Value = "proofOfNationalIdNumber")]
-            ProofOfNationalIdNumber = 7,
-
-            /// <summary>
-            /// Enum ProofOfResidency for value: proofOfResidency
-            /// </summary>
-            [EnumMember(Value = "proofOfResidency")]
-            ProofOfResidency = 8,
-
-            /// <summary>
-            /// Enum RegistrationDocument for value: registrationDocument
-            /// </summary>
-            [EnumMember(Value = "registrationDocument")]
-            RegistrationDocument = 9,
-
-            /// <summary>
-            /// Enum VatDocument for value: vatDocument
-            /// </summary>
-            [EnumMember(Value = "vatDocument")]
-            VatDocument = 10,
-
-            /// <summary>
-            /// Enum ProofOfOrganizationTaxInfo for value: proofOfOrganizationTaxInfo
-            /// </summary>
-            [EnumMember(Value = "proofOfOrganizationTaxInfo")]
-            ProofOfOrganizationTaxInfo = 11,
-
-            /// <summary>
-            /// Enum ProofOfIndustry for value: proofOfIndustry
-            /// </summary>
-            [EnumMember(Value = "proofOfIndustry")]
-            ProofOfIndustry = 12,
-
-            /// <summary>
-            /// Enum ConstitutionalDocument for value: constitutionalDocument
-            /// </summary>
-            [EnumMember(Value = "constitutionalDocument")]
-            ConstitutionalDocument = 13,
-
-            /// <summary>
-            /// Enum ProofOfFundingOrWealthSource for value: proofOfFundingOrWealthSource
-            /// </summary>
-            [EnumMember(Value = "proofOfFundingOrWealthSource")]
-            ProofOfFundingOrWealthSource = 14
+            ProofOfNationalIdNumber = 1
 
         }
 
 
         /// <summary>
-        /// Type of document, used when providing an ID number or uploading a document. The possible values depend on the legal entity type.  * For **organization**, the &#x60;type&#x60; values can be **proofOfAddress**, **registrationDocument**, **vatDocument**, **proofOfOrganizationTaxInfo**, **proofOfOwnership**, **proofOfIndustry**, or **proofOfFundingOrWealthSource**.  * For **individual**, the &#x60;type&#x60; values can be **identityCard**, **driversLicense**, **passport**, **proofOfNationalIdNumber**, **proofOfResidency**, **proofOfIndustry**, **proofOfIndividualTaxId**, or **proofOfFundingOrWealthSource**.  * For **soleProprietorship**, the &#x60;type&#x60; values can be **constitutionalDocument**, **proofOfAddress**, or **proofOfIndustry**.  * Use **bankStatement** to upload documents for a [transfer instrument](https://docs.adyen.com/api-explorer/#/legalentity/latest/post/transferInstruments__resParam_id).
+        /// Type of identity data. For **individual**, the &#x60;type&#x60; value is **nationalIdNumber**.
         /// </summary>
-        /// <value>Type of document, used when providing an ID number or uploading a document. The possible values depend on the legal entity type.  * For **organization**, the &#x60;type&#x60; values can be **proofOfAddress**, **registrationDocument**, **vatDocument**, **proofOfOrganizationTaxInfo**, **proofOfOwnership**, **proofOfIndustry**, or **proofOfFundingOrWealthSource**.  * For **individual**, the &#x60;type&#x60; values can be **identityCard**, **driversLicense**, **passport**, **proofOfNationalIdNumber**, **proofOfResidency**, **proofOfIndustry**, **proofOfIndividualTaxId**, or **proofOfFundingOrWealthSource**.  * For **soleProprietorship**, the &#x60;type&#x60; values can be **constitutionalDocument**, **proofOfAddress**, or **proofOfIndustry**.  * Use **bankStatement** to upload documents for a [transfer instrument](https://docs.adyen.com/api-explorer/#/legalentity/latest/post/transferInstruments__resParam_id).</value>
+        /// <value>Type of identity data. For **individual**, the &#x60;type&#x60; value is **nationalIdNumber**.</value>
         [DataMember(Name = "type", IsRequired = false, EmitDefaultValue = false)]
         public TypeEnum Type { get; set; }
         /// <summary>
@@ -146,7 +68,7 @@ namespace Adyen.Model.LegalEntityManagement
         /// <param name="issuerState">The state or province where the document was issued (AU only)..</param>
         /// <param name="nationalIdExempt">Applies only to individuals in the US. Set to **true** if the individual does not have an SSN. To verify their identity, Adyen will require them to upload an ID document..</param>
         /// <param name="number">The number in the document..</param>
-        /// <param name="type">Type of document, used when providing an ID number or uploading a document. The possible values depend on the legal entity type.  * For **organization**, the &#x60;type&#x60; values can be **proofOfAddress**, **registrationDocument**, **vatDocument**, **proofOfOrganizationTaxInfo**, **proofOfOwnership**, **proofOfIndustry**, or **proofOfFundingOrWealthSource**.  * For **individual**, the &#x60;type&#x60; values can be **identityCard**, **driversLicense**, **passport**, **proofOfNationalIdNumber**, **proofOfResidency**, **proofOfIndustry**, **proofOfIndividualTaxId**, or **proofOfFundingOrWealthSource**.  * For **soleProprietorship**, the &#x60;type&#x60; values can be **constitutionalDocument**, **proofOfAddress**, or **proofOfIndustry**.  * Use **bankStatement** to upload documents for a [transfer instrument](https://docs.adyen.com/api-explorer/#/legalentity/latest/post/transferInstruments__resParam_id). (required).</param>
+        /// <param name="type">Type of identity data. For **individual**, the &#x60;type&#x60; value is **nationalIdNumber**. (required).</param>
         public IdentificationData(string cardNumber = default(string), string expiryDate = default(string), string issuerCountry = default(string), string issuerState = default(string), bool? nationalIdExempt = default(bool?), string number = default(string), TypeEnum type = default(TypeEnum))
         {
             this.Type = type;

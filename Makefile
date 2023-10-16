@@ -5,7 +5,7 @@ openapi-generator-cli:=java -jar $(openapi-generator-jar)
 
 
 generator:=csharp-netcore
-Models:=AcsWebhooks BalanceControl BalancePlatform BinLookup Checkout DataProtection LegalEntityManagement Management ManagementWebhooks Payment Payout PosTerminalManagement Recurring StoredValue Transfers ConfigurationWebhooks ReportWebhooks TransferWebhooks
+Models:=AcsWebhooks BalanceControl BalancePlatform BinLookup Checkout ConfigurationWebhooks DataProtection LegalEntityManagement Management ManagementWebhooks Payment Payout PlatformsAccount PlatformsFund PlatformsNotificationConfiguration PlatformsHostedOnboardingPage PosTerminalManagement Recurring ReportWebhooks StoredValue TransferWebhooks Transfers
 models:=Adyen/Model
 output:=target/out
 
@@ -14,6 +14,7 @@ BalancePlatform: spec=BalancePlatformService-v2
 BinLookup: spec=BinLookupService-v54
 Checkout: spec=CheckoutService-v70
 DataProtection: spec=DataProtectionService-v1
+Disputes: spec=DisputeService-v30
 StoredValue: spec=StoredValueService-v46
 PosTerminalManagement: spec=TfmAPIService-v1
 Payment: spec=PaymentService-v68
@@ -38,7 +39,7 @@ ManagementWebhooks: spec=ManagementNotificationService-v1
 models: $(Models)
 
 $(Models): target/spec $(openapi-generator-jar) 
-	rm -rf $(Models)/$@ $(output)
+	rm -rf $(models)/$@ $(output)
 	$(openapi-generator-cli) generate \
 		-i target/spec/json/$(spec).json \
 		-g $(generator) \
@@ -57,8 +58,8 @@ $(Models): target/spec $(openapi-generator-jar)
 
 # Service Generation; split up in to templates based on the size of the service. That is, some services have no subgroups and are thus generated in one single file, others are grouped in a directory.
 
-Services:=BalancePlatform Checkout StoredValue Payout Management LegalEntityManagement Transfers
-SingleFileServices:=BalanceControl BinLookup DataProtection StoredValue PosTerminalManagement Recurring Payment
+Services:=BalancePlatform Checkout Management LegalEntityManagement StoredValue Payout Transfers
+SingleFileServices:=BalanceControl BinLookup DataProtection StoredValue Payment PosTerminalManagement Recurring Disputes
 
 allServices: $(Services) $(SingleFileServices)
 
