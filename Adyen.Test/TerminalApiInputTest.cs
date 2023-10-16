@@ -18,7 +18,6 @@ namespace Adyen.Test
                 //create a mock client
                 var client = CreateMockTestClientPosCloudApiRequest("mocks/terminalapi/input-request-response.json");
                 var terminalCloudApi = new TerminalCloudApi(client);
-                var configEndpoint = terminalCloudApi.Client.Config.Endpoint;
                 var saleToPoiResponse = terminalCloudApi.TerminalRequestSync(paymentRequest);
                 Assert.IsNotNull(saleToPoiResponse);
                 var inputResponse = (InputResponse)saleToPoiResponse.MessagePayload;
