@@ -42,9 +42,9 @@ namespace Adyen.Model.BalancePlatform
         /// </summary>
         /// <param name="city">The name of the city..</param>
         /// <param name="country">The two-character ISO-3166-1 alpha-2 country code. For example, **US**. &gt;If you don&#39;t know the country or are not collecting the country from the shopper, provide &#x60;country&#x60; as &#x60;ZZ&#x60;. (required).</param>
-        /// <param name="line1">First line of the address..</param>
-        /// <param name="line2">Second line of the address..</param>
-        /// <param name="line3">Third line of the address..</param>
+        /// <param name="line1">The street name. For example, if the address is \&quot;Rokin 49\&quot;, provide \&quot;Rokin\&quot;..</param>
+        /// <param name="line2">The house number or name. For example, if the address is \&quot;Rokin 49\&quot;, provide \&quot;49\&quot;..</param>
+        /// <param name="line3">Optional information about the address..</param>
         /// <param name="postalCode">The postal code. Maximum length: * 5 digits for an address in the US. * 10 characters for an address in all other countries..</param>
         /// <param name="stateOrProvince">The two-letterISO 3166-2 state or province code. For example, **CA** in the US or **ON** in Canada. &gt; Required for the US and Canada..</param>
         public DeliveryAddress(string city = default(string), string country = default(string), string line1 = default(string), string line2 = default(string), string line3 = default(string), string postalCode = default(string), string stateOrProvince = default(string))
@@ -73,23 +73,23 @@ namespace Adyen.Model.BalancePlatform
         public string Country { get; set; }
 
         /// <summary>
-        /// First line of the address.
+        /// The street name. For example, if the address is \&quot;Rokin 49\&quot;, provide \&quot;Rokin\&quot;.
         /// </summary>
-        /// <value>First line of the address.</value>
+        /// <value>The street name. For example, if the address is \&quot;Rokin 49\&quot;, provide \&quot;Rokin\&quot;.</value>
         [DataMember(Name = "line1", EmitDefaultValue = false)]
         public string Line1 { get; set; }
 
         /// <summary>
-        /// Second line of the address.
+        /// The house number or name. For example, if the address is \&quot;Rokin 49\&quot;, provide \&quot;49\&quot;.
         /// </summary>
-        /// <value>Second line of the address.</value>
+        /// <value>The house number or name. For example, if the address is \&quot;Rokin 49\&quot;, provide \&quot;49\&quot;.</value>
         [DataMember(Name = "line2", EmitDefaultValue = false)]
         public string Line2 { get; set; }
 
         /// <summary>
-        /// Third line of the address.
+        /// Optional information about the address.
         /// </summary>
-        /// <value>Third line of the address.</value>
+        /// <value>Optional information about the address.</value>
         [DataMember(Name = "line3", EmitDefaultValue = false)]
         public string Line3 { get; set; }
 

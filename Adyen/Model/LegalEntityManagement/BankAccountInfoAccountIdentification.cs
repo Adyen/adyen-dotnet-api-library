@@ -132,6 +132,18 @@ namespace Adyen.Model.LegalEntityManagement
 
         /// <summary>
         /// Initializes a new instance of the <see cref="BankAccountInfoAccountIdentification" /> class
+        /// with the <see cref="NZLocalAccountIdentification" /> class
+        /// </summary>
+        /// <param name="actualInstance">An instance of NZLocalAccountIdentification.</param>
+        public BankAccountInfoAccountIdentification(NZLocalAccountIdentification actualInstance)
+        {
+            this.IsNullable = false;
+            this.SchemaType= "oneOf";
+            this.ActualInstance = actualInstance ?? throw new ArgumentException("Invalid instance found. Must not be null.");
+        }
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="BankAccountInfoAccountIdentification" /> class
         /// with the <see cref="NumberAndBicAccountIdentification" /> class
         /// </summary>
         /// <param name="actualInstance">An instance of NumberAndBicAccountIdentification.</param>
@@ -248,6 +260,10 @@ namespace Adyen.Model.LegalEntityManagement
                 {
                     this._actualInstance = value;
                 }
+                else if (value.GetType() == typeof(NZLocalAccountIdentification))
+                {
+                    this._actualInstance = value;
+                }
                 else if (value.GetType() == typeof(NumberAndBicAccountIdentification))
                 {
                     this._actualInstance = value;
@@ -274,7 +290,7 @@ namespace Adyen.Model.LegalEntityManagement
                 }
                 else
                 {
-                    throw new ArgumentException("Invalid instance found. Must be the following types: AULocalAccountIdentification, CALocalAccountIdentification, CZLocalAccountIdentification, DKLocalAccountIdentification, HKLocalAccountIdentification, HULocalAccountIdentification, IbanAccountIdentification, NOLocalAccountIdentification, NumberAndBicAccountIdentification, PLLocalAccountIdentification, SELocalAccountIdentification, SGLocalAccountIdentification, UKLocalAccountIdentification, USLocalAccountIdentification");
+                    throw new ArgumentException("Invalid instance found. Must be the following types: AULocalAccountIdentification, CALocalAccountIdentification, CZLocalAccountIdentification, DKLocalAccountIdentification, HKLocalAccountIdentification, HULocalAccountIdentification, IbanAccountIdentification, NOLocalAccountIdentification, NZLocalAccountIdentification, NumberAndBicAccountIdentification, PLLocalAccountIdentification, SELocalAccountIdentification, SGLocalAccountIdentification, UKLocalAccountIdentification, USLocalAccountIdentification");
                 }
             }
         }
@@ -357,6 +373,16 @@ namespace Adyen.Model.LegalEntityManagement
         public NOLocalAccountIdentification GetNOLocalAccountIdentification()
         {
             return (NOLocalAccountIdentification)this.ActualInstance;
+        }
+
+        /// <summary>
+        /// Get the actual instance of `NZLocalAccountIdentification`. If the actual instance is not `NZLocalAccountIdentification`,
+        /// the InvalidClassException will be thrown
+        /// </summary>
+        /// <returns>An instance of NZLocalAccountIdentification</returns>
+        public NZLocalAccountIdentification GetNZLocalAccountIdentification()
+        {
+            return (NZLocalAccountIdentification)this.ActualInstance;
         }
 
         /// <summary>
@@ -519,6 +545,13 @@ namespace Adyen.Model.LegalEntityManagement
                 {
                     newBankAccountInfoAccountIdentification = new BankAccountInfoAccountIdentification(JsonConvert.DeserializeObject<NOLocalAccountIdentification>(jsonString, BankAccountInfoAccountIdentification.SerializerSettings));
                     matchedTypes.Add("NOLocalAccountIdentification");
+                    match++;
+                }
+                // Check if the jsonString type enum matches the NZLocalAccountIdentification type enums
+                if (ContainsValue<NZLocalAccountIdentification.TypeEnum>(type))
+                {
+                    newBankAccountInfoAccountIdentification = new BankAccountInfoAccountIdentification(JsonConvert.DeserializeObject<NZLocalAccountIdentification>(jsonString, BankAccountInfoAccountIdentification.SerializerSettings));
+                    matchedTypes.Add("NZLocalAccountIdentification");
                     match++;
                 }
                 // Check if the jsonString type enum matches the NumberAndBicAccountIdentification type enums

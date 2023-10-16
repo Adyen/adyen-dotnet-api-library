@@ -136,7 +136,7 @@ namespace Adyen.Test
             var client = CreateMockTestClientApiKeyBasedRequestAsync("mocks/balanceplatform/SweepConfiguration.json");
             var service = new BalanceAccountsService(client);
             
-            var response = service.CreateSweep("1245yhgeswkrw", new SweepConfigurationV2());
+            var response = service.CreateSweep("1245yhgeswkrw", new CreateSweepConfigurationV2());
             Assert.AreEqual(response.Status, SweepConfigurationV2.StatusEnum.Active);
             Assert.AreEqual(response.Type, SweepConfigurationV2.TypeEnum.Pull);
         }
