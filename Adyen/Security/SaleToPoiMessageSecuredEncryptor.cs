@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Text;
-using Adyen.Model.Nexo;
-using Adyen.Model.Nexo.Message;
+using Adyen.Model.TerminalApi;
+using Adyen.Model.TerminalApi.Message;
 using Adyen.Security.Exceptions;
 
 namespace Adyen.Security

@@ -2,7 +2,7 @@
 using System.Net.Security;
 using System.Threading;
 using System.Threading.Tasks;
-using Adyen.Model.Nexo;
+using Adyen.Model.TerminalApi;
 using Adyen.Security;
 
 namespace Adyen.Service

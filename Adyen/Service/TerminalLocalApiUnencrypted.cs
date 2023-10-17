@@ -2,7 +2,7 @@ using System.Net.Http;
 using System.Threading;
 using System.Threading.Tasks;
 using Adyen.ApiSerialization;
-using Adyen.Model.Nexo;
+using Adyen.Model.TerminalApi;
 using Adyen.Service.Resource.Terminal;
 
 namespace Adyen.Service

@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Threading.Tasks;
-using Adyen.Model.Nexo;
+using Adyen.Model.TerminalApi;
 
 namespace Adyen.Service
 {

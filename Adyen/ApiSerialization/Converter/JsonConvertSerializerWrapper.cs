@@ -1,4 +1,4 @@
-﻿using Adyen.Model.Nexo;
+﻿using Adyen.Model.TerminalApi;
 using Adyen.Security;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;

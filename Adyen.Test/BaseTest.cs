@@ -7,7 +7,7 @@ using System.Threading;
 using Adyen.Constants;
 using Adyen.HttpClient.Interfaces;
 using Adyen.Model;
-using Adyen.Model.Nexo;
+using Adyen.Model.TerminalApi;
 using Adyen.Model.Payment;
 using Adyen.Service;
 using NSubstitute;
