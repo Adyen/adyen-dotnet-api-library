@@ -1,6 +1,6 @@
 ﻿using System;
-using Adyen.Model.Nexo;
-using Adyen.Model.Nexo.Message;
+using Adyen.Model.TerminalApi;
+using Adyen.Model.TerminalApi.Message;
 
 namespace Adyen.Test
 {

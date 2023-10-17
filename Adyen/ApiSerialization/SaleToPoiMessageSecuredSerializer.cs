@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Runtime.Serialization;
 using Adyen.Exceptions;
-using Adyen.Model.Nexo;
+using Adyen.Model.TerminalApi;
 using Adyen.Security;
 using Newtonsoft.Json.Linq;
 

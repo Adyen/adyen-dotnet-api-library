@@ -1,5 +1,5 @@
 ﻿using System;
-using Adyen.Model.Nexo;
+using Adyen.Model.TerminalApi;
 using Adyen.Service;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
