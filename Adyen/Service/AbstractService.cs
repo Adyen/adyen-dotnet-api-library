@@ -11,6 +11,9 @@ namespace Adyen.Service
     {
         public Client Client { get; set; }
 
+        private const string PaymentPrefix = "pal-";
+        private const string CheckoutPrefix = "checkout-";
+
         protected AbstractService(Client client)
         {
             Client = client;
@@ -40,26 +43,74 @@ namespace Adyen.Service
         }
         
         /// <summary>
-        /// The base URL creation for Live environment
+        /// The base URL creation for the environment
         /// </summary>
         /// <param name="url">String</param>
         /// <returns>baseURL</returns>
         private protected string CreateBaseUrl(string url)
         {
             var config = Client.Config;
+            return config.Environment == Environment.Live
+                ? ConstructLiveUrl(config,
+                    url)
+                : ConstructTestUrl(config,
+                    url);
+        }
+
+        /// <summary>
+        /// Allow users to override the baseUrl in a test environment
+        /// </summary>
+        /// <param name="config">Config</param>
+        /// <param name="url">String</param>
+        /// <returns>baseUrl</returns>
+        private static string ConstructTestUrl(Config config, string url)
+        {
+            if (config.BaseUrlConfig == null) return url;
+                
+            var baseUrl = config.BaseUrlConfig.BaseUrl;
+            if (url.Contains(PaymentPrefix) 
+                && !string.IsNullOrEmpty(config.BaseUrlConfig.PaymentUrl))
+            {
+                baseUrl = config.BaseUrlConfig.PaymentUrl;
+            } else if (url.Contains(CheckoutPrefix) 
+                       && !string.IsNullOrEmpty(config.BaseUrlConfig.CheckoutUrl))
+            {
+                baseUrl = config.BaseUrlConfig.CheckoutUrl;
+            }
+
+            var urlPath = new Uri(url).AbsolutePath;
+            var returnUrl = new Uri(baseUrl + urlPath).ToString();
+            
+            return returnUrl;
+        }
+
+        /// <summary>
+        /// Construct live baseUrl 
+        /// </summary>
+        /// <param name="config">Config</param>
+        /// <param name="url">String</param>
+        /// <returns>baseUrl</returns>
+        /// <exception cref="InvalidOperationException"></exception>
+        private static string ConstructLiveUrl(Config config, string url)
+        {
             // Change base url for Live environment
-            if (config.Environment != Environment.Live) return url;
-            if (url.Contains("pal-"))
+            if (url.Contains(PaymentPrefix))
             {
                 // TODO these errors are not easy catchable for some reason, should be fixed first
-                if (config.LiveEndpointUrlPrefix == default) {throw new InvalidOperationException(ExceptionMessages.MissingLiveEndpointUrlPrefix); }
+                if (config.LiveEndpointUrlPrefix == default)
+                {
+                    throw new InvalidOperationException(ExceptionMessages.MissingLiveEndpointUrlPrefix);
+                }
                 
                 url = url.Replace("https://pal-test.adyen.com/pal/servlet/",
                     "https://" + config.LiveEndpointUrlPrefix + "-pal-live.adyenpayments.com/pal/servlet/");
             }
-            else if (url.Contains("checkout-"))
+            else if (url.Contains(CheckoutPrefix))
             {
-                if (config.LiveEndpointUrlPrefix == default) {throw new InvalidOperationException(ExceptionMessages.MissingLiveEndpointUrlPrefix); }
+                if (config.LiveEndpointUrlPrefix == default)
+                {
+                    throw new InvalidOperationException(ExceptionMessages.MissingLiveEndpointUrlPrefix);
+                }
                 
                 url = url.Replace("https://checkout-test.adyen.com/",
                     "https://" + config.LiveEndpointUrlPrefix + "-checkout-live.adyenpayments.com/checkout/");
