@@ -29,6 +29,9 @@ PlatformsFund: spec=FundService-v6
 PlatformsNotificationConfiguration: spec=NotificationConfigurationService-v6
 PlatformsHostedOnboardingPage: spec=HopService-v6
 Transfers: spec=TransferService-v4
+ManagmentNotificationService: spec=ManagmentNotificationService-v3
+BalancePlatformTransferNotification: spec=BalancePlatformTransferNotification-v4
+
 
 $(services): target/spec $(openapi-generator-jar) 
 	rm -rf $(models)/$@ $(output)
