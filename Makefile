@@ -5,7 +5,7 @@ openapi-generator-cli:=java -jar $(openapi-generator-jar)
 
 
 generator:=csharp-netcore
-services:=BalanceControl BalancePlatform BinLookup Checkout DataProtection LegalEntityManagement Management Payment Payout PosTerminalManagement Recurring StoredValue Transfers ManagmentNotificationService BalancePlatformTransferNotification
+services:=BalanceControl BalancePlatform BinLookup Checkout DataProtection LegalEntityManagement Management Payment Payout PosTerminalManagement Recurring StoredValue Transfers ManagementNotificationService BalancePlatformTransferNotification
 models:=Adyen/Model
 output:=target/out
 
@@ -29,7 +29,7 @@ PlatformsFund: spec=FundService-v6
 PlatformsNotificationConfiguration: spec=NotificationConfigurationService-v6
 PlatformsHostedOnboardingPage: spec=HopService-v6
 Transfers: spec=TransferService-v4
-ManagmentNotificationService: spec=ManagementNotificationService-v3
+ManagementNotificationService: spec=ManagementNotificationService-v3
 BalancePlatformTransferNotification: spec=BalancePlatformTransferNotification-v4
 
 
