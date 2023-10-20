@@ -31,7 +31,7 @@ Transfers: spec=TransferService-v4
 #Webhooks
 ConfigurationWebhooks: spec=BalancePlatformConfigurationNotification-v1
 ReportWebhooks: spec=BalancePlatformReportNotification-v1
-TransferWebhooks: spec=BalancePlatformTransferNotification-v3
+TransferWebhooks: spec=BalancePlatformTransferNotification-v4
 AcsWebhooks: spec=BalancePlatformAcsNotification-v1
 ManagementWebhooks: spec=ManagementNotificationService-v1
 
