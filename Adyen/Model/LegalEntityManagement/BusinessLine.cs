@@ -112,7 +112,7 @@ namespace Adyen.Model.LegalEntityManagement
         /// <param name="capability">The capability for which you are creating the business line.  Possible values: **receivePayments**, **receiveFromPlatformPayments**, **issueBankAccount**.</param>
         /// <param name="industryCode">A code that represents the industry of the legal entity. For example, **4431A** for computer software stores. (required).</param>
         /// <param name="legalEntityId">Unique identifier of the [legal entity](https://docs.adyen.com/api-explorer/#/legalentity/latest/post/legalEntities__resParam_id) that owns the business line. (required).</param>
-        /// <param name="problems">List of the verification errors from capabilities for this supporting entity..</param>
+        /// <param name="problems">The verification errors related to capabilities for this supporting entity..</param>
         /// <param name="salesChannels">A list of channels where goods or services are sold.  Possible values: **pos**, **posMoto**, **eCommerce**, **ecomMoto**, **payByLink**.  Required only in combination with the &#x60;service&#x60; **paymentProcessing**..</param>
         /// <param name="service">The service for which you are creating the business line.  Possible values: **paymentProcessing**, **issuing**, **banking** (required).</param>
         /// <param name="sourceOfFunds">sourceOfFunds.</param>
@@ -153,9 +153,9 @@ namespace Adyen.Model.LegalEntityManagement
         public string LegalEntityId { get; set; }
 
         /// <summary>
-        /// List of the verification errors from capabilities for this supporting entity.
+        /// The verification errors related to capabilities for this supporting entity.
         /// </summary>
-        /// <value>List of the verification errors from capabilities for this supporting entity.</value>
+        /// <value>The verification errors related to capabilities for this supporting entity.</value>
         [DataMember(Name = "problems", EmitDefaultValue = false)]
         public List<CapabilityProblem> Problems { get; set; }
 

@@ -79,7 +79,13 @@ namespace Adyen.Model.BalancePlatform
             /// Enum PlatformPayment for value: platformPayment
             /// </summary>
             [EnumMember(Value = "platformPayment")]
-            PlatformPayment = 7
+            PlatformPayment = 7,
+
+            /// <summary>
+            /// Enum Upgrade for value: upgrade
+            /// </summary>
+            [EnumMember(Value = "upgrade")]
+            Upgrade = 8
 
         }
 
@@ -145,28 +151,19 @@ namespace Adyen.Model.BalancePlatform
         /// <summary>
         /// Initializes a new instance of the <see cref="TransferRoute" /> class.
         /// </summary>
-        /// <param name="balancePlatform">The unique identifier assigned to the balance platform associated with the account holder..</param>
         /// <param name="category"> The type of transfer.   Possible values:    - **bank**: Transfer to a [transfer instrument](https://docs.adyen.com/api-explorer/#/legalentity/latest/post/transferInstruments__resParam_id) or a bank account. .</param>
         /// <param name="country">The two-character ISO-3166-1 alpha-2 country code of the counterparty. For example, **US** or **NL**..</param>
         /// <param name="currency">The three-character ISO currency code of transfer. For example, **USD** or **EUR**..</param>
         /// <param name="priority">The priority for the bank transfer. This sets the speed at which the transfer is sent and the fees that you have to pay. Possible values:  * **regular**: For normal, low-value transactions.  * **fast**: Faster way to transfer funds but has higher fees. Recommended for high-priority, low-value transactions.  * **wire**: Fastest way to transfer funds but has the highest fees. Recommended for high-priority, high-value transactions.  * **instant**: Instant way to transfer funds in [SEPA countries](https://www.ecb.europa.eu/paym/integration/retail/sepa/html/index.en.html).  * **crossBorder**: High-value transfer to a recipient in a different country.  * **internal**: Transfer to an Adyen-issued business bank account (by bank account number/IBAN)..</param>
         /// <param name="requirements">requirements.</param>
-        public TransferRoute(string balancePlatform = default(string), CategoryEnum? category = default(CategoryEnum?), string country = default(string), string currency = default(string), PriorityEnum? priority = default(PriorityEnum?), TransferRouteRequirements requirements = default(TransferRouteRequirements))
+        public TransferRoute(CategoryEnum? category = default(CategoryEnum?), string country = default(string), string currency = default(string), PriorityEnum? priority = default(PriorityEnum?), TransferRouteRequirements requirements = default(TransferRouteRequirements))
         {
-            this.BalancePlatform = balancePlatform;
             this.Category = category;
             this.Country = country;
             this.Currency = currency;
             this.Priority = priority;
             this.Requirements = requirements;
         }
-
-        /// <summary>
-        /// The unique identifier assigned to the balance platform associated with the account holder.
-        /// </summary>
-        /// <value>The unique identifier assigned to the balance platform associated with the account holder.</value>
-        [DataMember(Name = "balancePlatform", EmitDefaultValue = false)]
-        public string BalancePlatform { get; set; }
 
         /// <summary>
         /// The two-character ISO-3166-1 alpha-2 country code of the counterparty. For example, **US** or **NL**.
@@ -196,7 +193,6 @@ namespace Adyen.Model.BalancePlatform
         {
             StringBuilder sb = new StringBuilder();
             sb.Append("class TransferRoute {\n");
-            sb.Append("  BalancePlatform: ").Append(BalancePlatform).Append("\n");
             sb.Append("  Category: ").Append(Category).Append("\n");
             sb.Append("  Country: ").Append(Country).Append("\n");
             sb.Append("  Currency: ").Append(Currency).Append("\n");
@@ -238,11 +234,6 @@ namespace Adyen.Model.BalancePlatform
             }
             return 
                 (
-                    this.BalancePlatform == input.BalancePlatform ||
-                    (this.BalancePlatform != null &&
-                    this.BalancePlatform.Equals(input.BalancePlatform))
-                ) && 
-                (
                     this.Category == input.Category ||
                     this.Category.Equals(input.Category)
                 ) && 
@@ -276,10 +267,6 @@ namespace Adyen.Model.BalancePlatform
             unchecked // Overflow is fine, just wrap
             {
                 int hashCode = 41;
-                if (this.BalancePlatform != null)
-                {
-                    hashCode = (hashCode * 59) + this.BalancePlatform.GetHashCode();
-                }
                 hashCode = (hashCode * 59) + this.Category.GetHashCode();
                 if (this.Country != null)
                 {
