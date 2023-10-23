@@ -33,7 +33,7 @@ ConfigurationWebhooks: spec=BalancePlatformConfigurationNotification-v1
 ReportWebhooks: spec=BalancePlatformReportNotification-v1
 TransferWebhooks: spec=BalancePlatformTransferNotification-v4
 AcsWebhooks: spec=BalancePlatformAcsNotification-v1
-ManagementWebhooks: spec=ManagementNotificationService-v1
+ManagementWebhooks: spec=ManagementNotificationService-v3
 
 # Generate models (for each service and banking webhook)
 models: $(Models)
