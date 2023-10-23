@@ -27,55 +27,59 @@ using OpenAPIDateConverter = Adyen.ApiSerialization.OpenAPIDateConverter;
 namespace Adyen.Model.TransferWebhooks
 {
     /// <summary>
-    /// HULocalAccountIdentification
+    /// InternalCategoryData
     /// </summary>
-    [DataContract(Name = "HULocalAccountIdentification")]
-    public partial class HULocalAccountIdentification : IEquatable<HULocalAccountIdentification>, IValidatableObject
+    [DataContract(Name = "InternalCategoryData")]
+    public partial class InternalCategoryData : IEquatable<InternalCategoryData>, IValidatableObject
     {
         /// <summary>
-        /// **huLocal**
+        /// **internal**
         /// </summary>
-        /// <value>**huLocal**</value>
+        /// <value>**internal**</value>
         [JsonConverter(typeof(StringEnumConverter))]
         public enum TypeEnum
         {
             /// <summary>
-            /// Enum HuLocal for value: huLocal
+            /// Enum Internal for value: internal
             /// </summary>
-            [EnumMember(Value = "huLocal")]
-            HuLocal = 1
+            [EnumMember(Value = "internal")]
+            Internal = 1
 
         }
 
 
         /// <summary>
-        /// **huLocal**
+        /// **internal**
         /// </summary>
-        /// <value>**huLocal**</value>
-        [DataMember(Name = "type", IsRequired = false, EmitDefaultValue = false)]
-        public TypeEnum Type { get; set; }
+        /// <value>**internal**</value>
+        [DataMember(Name = "type", EmitDefaultValue = false)]
+        public TypeEnum? Type { get; set; }
         /// <summary>
-        /// Initializes a new instance of the <see cref="HULocalAccountIdentification" /> class.
+        /// Initializes a new instance of the <see cref="InternalCategoryData" /> class.
         /// </summary>
-        [JsonConstructorAttribute]
-        protected HULocalAccountIdentification() { }
-        /// <summary>
-        /// Initializes a new instance of the <see cref="HULocalAccountIdentification" /> class.
-        /// </summary>
-        /// <param name="accountNumber">The 24-digit bank account number, without separators or whitespace. (required).</param>
-        /// <param name="type">**huLocal** (required) (default to TypeEnum.HuLocal).</param>
-        public HULocalAccountIdentification(string accountNumber = default(string), TypeEnum type = TypeEnum.HuLocal)
+        /// <param name="modificationMerchantReference">The capture&#39;s merchant reference included in the transfer..</param>
+        /// <param name="modificationPspReference">The capture reference included in the transfer..</param>
+        /// <param name="type">**internal** (default to TypeEnum.Internal).</param>
+        public InternalCategoryData(string modificationMerchantReference = default(string), string modificationPspReference = default(string), TypeEnum? type = TypeEnum.Internal)
         {
-            this.AccountNumber = accountNumber;
+            this.ModificationMerchantReference = modificationMerchantReference;
+            this.ModificationPspReference = modificationPspReference;
             this.Type = type;
         }
 
         /// <summary>
-        /// The 24-digit bank account number, without separators or whitespace.
+        /// The capture&#39;s merchant reference included in the transfer.
         /// </summary>
-        /// <value>The 24-digit bank account number, without separators or whitespace.</value>
-        [DataMember(Name = "accountNumber", IsRequired = false, EmitDefaultValue = false)]
-        public string AccountNumber { get; set; }
+        /// <value>The capture&#39;s merchant reference included in the transfer.</value>
+        [DataMember(Name = "modificationMerchantReference", EmitDefaultValue = false)]
+        public string ModificationMerchantReference { get; set; }
+
+        /// <summary>
+        /// The capture reference included in the transfer.
+        /// </summary>
+        /// <value>The capture reference included in the transfer.</value>
+        [DataMember(Name = "modificationPspReference", EmitDefaultValue = false)]
+        public string ModificationPspReference { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -84,8 +88,9 @@ namespace Adyen.Model.TransferWebhooks
         public override string ToString()
         {
             StringBuilder sb = new StringBuilder();
-            sb.Append("class HULocalAccountIdentification {\n");
-            sb.Append("  AccountNumber: ").Append(AccountNumber).Append("\n");
+            sb.Append("class InternalCategoryData {\n");
+            sb.Append("  ModificationMerchantReference: ").Append(ModificationMerchantReference).Append("\n");
+            sb.Append("  ModificationPspReference: ").Append(ModificationPspReference).Append("\n");
             sb.Append("  Type: ").Append(Type).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
@@ -107,15 +112,15 @@ namespace Adyen.Model.TransferWebhooks
         /// <returns>Boolean</returns>
         public override bool Equals(object input)
         {
-            return this.Equals(input as HULocalAccountIdentification);
+            return this.Equals(input as InternalCategoryData);
         }
 
         /// <summary>
-        /// Returns true if HULocalAccountIdentification instances are equal
+        /// Returns true if InternalCategoryData instances are equal
         /// </summary>
-        /// <param name="input">Instance of HULocalAccountIdentification to be compared</param>
+        /// <param name="input">Instance of InternalCategoryData to be compared</param>
         /// <returns>Boolean</returns>
-        public bool Equals(HULocalAccountIdentification input)
+        public bool Equals(InternalCategoryData input)
         {
             if (input == null)
             {
@@ -123,9 +128,14 @@ namespace Adyen.Model.TransferWebhooks
             }
             return 
                 (
-                    this.AccountNumber == input.AccountNumber ||
-                    (this.AccountNumber != null &&
-                    this.AccountNumber.Equals(input.AccountNumber))
+                    this.ModificationMerchantReference == input.ModificationMerchantReference ||
+                    (this.ModificationMerchantReference != null &&
+                    this.ModificationMerchantReference.Equals(input.ModificationMerchantReference))
+                ) && 
+                (
+                    this.ModificationPspReference == input.ModificationPspReference ||
+                    (this.ModificationPspReference != null &&
+                    this.ModificationPspReference.Equals(input.ModificationPspReference))
                 ) && 
                 (
                     this.Type == input.Type ||
@@ -142,9 +152,13 @@ namespace Adyen.Model.TransferWebhooks
             unchecked // Overflow is fine, just wrap
             {
                 int hashCode = 41;
-                if (this.AccountNumber != null)
+                if (this.ModificationMerchantReference != null)
                 {
-                    hashCode = (hashCode * 59) + this.AccountNumber.GetHashCode();
+                    hashCode = (hashCode * 59) + this.ModificationMerchantReference.GetHashCode();
+                }
+                if (this.ModificationPspReference != null)
+                {
+                    hashCode = (hashCode * 59) + this.ModificationPspReference.GetHashCode();
                 }
                 hashCode = (hashCode * 59) + this.Type.GetHashCode();
                 return hashCode;
@@ -157,18 +171,6 @@ namespace Adyen.Model.TransferWebhooks
         /// <returns>Validation Result</returns>
         public IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> Validate(ValidationContext validationContext)
         {
-            // AccountNumber (string) maxLength
-            if (this.AccountNumber != null && this.AccountNumber.Length > 24)
-            {
-                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for AccountNumber, length must be less than 24.", new [] { "AccountNumber" });
-            }
-
-            // AccountNumber (string) minLength
-            if (this.AccountNumber != null && this.AccountNumber.Length < 24)
-            {
-                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for AccountNumber, length must be greater than 24.", new [] { "AccountNumber" });
-            }
-
             yield break;
         }
     }

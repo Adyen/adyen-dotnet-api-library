@@ -27,10 +27,10 @@ using OpenAPIDateConverter = Adyen.ApiSerialization.OpenAPIDateConverter;
 namespace Adyen.Model.ManagementWebhooks
 {
     /// <summary>
-    /// MerchantCreatedNotificationRequest
+    /// PaymentMethodRequestRemovedNotificationRequest
     /// </summary>
-    [DataContract(Name = "MerchantCreatedNotificationRequest")]
-    public partial class MerchantCreatedNotificationRequest : IEquatable<MerchantCreatedNotificationRequest>, IValidatableObject
+    [DataContract(Name = "PaymentMethodRequestRemovedNotificationRequest")]
+    public partial class PaymentMethodRequestRemovedNotificationRequest : IEquatable<PaymentMethodRequestRemovedNotificationRequest>, IValidatableObject
     {
         /// <summary>
         /// Type of notification.
@@ -40,10 +40,10 @@ namespace Adyen.Model.ManagementWebhooks
         public enum TypeEnum
         {
             /// <summary>
-            /// Enum MerchantCreated for value: merchant.created
+            /// Enum PaymentMethodRequestRemoved for value: paymentMethod.requestRemoved
             /// </summary>
-            [EnumMember(Value = "merchant.created")]
-            MerchantCreated = 1
+            [EnumMember(Value = "paymentMethod.requestRemoved")]
+            PaymentMethodRequestRemoved = 1
 
         }
 
@@ -55,18 +55,18 @@ namespace Adyen.Model.ManagementWebhooks
         [DataMember(Name = "type", IsRequired = false, EmitDefaultValue = false)]
         public TypeEnum Type { get; set; }
         /// <summary>
-        /// Initializes a new instance of the <see cref="MerchantCreatedNotificationRequest" /> class.
+        /// Initializes a new instance of the <see cref="PaymentMethodRequestRemovedNotificationRequest" /> class.
         /// </summary>
         [JsonConstructorAttribute]
-        protected MerchantCreatedNotificationRequest() { }
+        protected PaymentMethodRequestRemovedNotificationRequest() { }
         /// <summary>
-        /// Initializes a new instance of the <see cref="MerchantCreatedNotificationRequest" /> class.
+        /// Initializes a new instance of the <see cref="PaymentMethodRequestRemovedNotificationRequest" /> class.
         /// </summary>
         /// <param name="createdAt">Timestamp for when the webhook was created. (required).</param>
         /// <param name="data">data (required).</param>
         /// <param name="environment">The environment from which the webhook originated.  Possible values: **test**, **live**. (required).</param>
         /// <param name="type">Type of notification. (required).</param>
-        public MerchantCreatedNotificationRequest(DateTime createdAt = default(DateTime), AccountCreateNotificationData data = default(AccountCreateNotificationData), string environment = default(string), TypeEnum type = default(TypeEnum))
+        public PaymentMethodRequestRemovedNotificationRequest(DateTime createdAt = default(DateTime), MidServiceNotificationData data = default(MidServiceNotificationData), string environment = default(string), TypeEnum type = default(TypeEnum))
         {
             this.CreatedAt = createdAt;
             this.Data = data;
@@ -85,7 +85,7 @@ namespace Adyen.Model.ManagementWebhooks
         /// Gets or Sets Data
         /// </summary>
         [DataMember(Name = "data", IsRequired = false, EmitDefaultValue = false)]
-        public AccountCreateNotificationData Data { get; set; }
+        public MidServiceNotificationData Data { get; set; }
 
         /// <summary>
         /// The environment from which the webhook originated.  Possible values: **test**, **live**.
@@ -101,7 +101,7 @@ namespace Adyen.Model.ManagementWebhooks
         public override string ToString()
         {
             StringBuilder sb = new StringBuilder();
-            sb.Append("class MerchantCreatedNotificationRequest {\n");
+            sb.Append("class PaymentMethodRequestRemovedNotificationRequest {\n");
             sb.Append("  CreatedAt: ").Append(CreatedAt).Append("\n");
             sb.Append("  Data: ").Append(Data).Append("\n");
             sb.Append("  Environment: ").Append(Environment).Append("\n");
@@ -126,15 +126,15 @@ namespace Adyen.Model.ManagementWebhooks
         /// <returns>Boolean</returns>
         public override bool Equals(object input)
         {
-            return this.Equals(input as MerchantCreatedNotificationRequest);
+            return this.Equals(input as PaymentMethodRequestRemovedNotificationRequest);
         }
 
         /// <summary>
-        /// Returns true if MerchantCreatedNotificationRequest instances are equal
+        /// Returns true if PaymentMethodRequestRemovedNotificationRequest instances are equal
         /// </summary>
-        /// <param name="input">Instance of MerchantCreatedNotificationRequest to be compared</param>
+        /// <param name="input">Instance of PaymentMethodRequestRemovedNotificationRequest to be compared</param>
         /// <returns>Boolean</returns>
-        public bool Equals(MerchantCreatedNotificationRequest input)
+        public bool Equals(PaymentMethodRequestRemovedNotificationRequest input)
         {
             if (input == null)
             {

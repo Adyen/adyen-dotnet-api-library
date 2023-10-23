@@ -31,7 +31,7 @@ namespace Adyen.Test
             var service = new TransactionsService(client);
             var response = service.GetTransaction("id");
             Assert.AreEqual(response.Status, Transaction.StatusEnum.Booked);
-            Assert.AreEqual(response.Type, Transaction.TypeEnum.BankTransfer);
+            Assert.AreEqual(response.Transfer.Id, "48TYZO5ZVURJ2FCW");
         }
         
         [TestMethod]

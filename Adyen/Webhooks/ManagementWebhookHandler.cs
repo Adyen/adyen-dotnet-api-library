@@ -34,6 +34,16 @@ namespace Adyen.Webhooks
                 return paymentMethodCreatedNotificationRequest;
             }
             
+            if (GetPaymentMethodRequestRemovedNotificationRequest(jsonPayload, out var PaymentMethodRequestRemovedNotificationRequest)) 
+            {
+                return PaymentMethodRequestRemovedNotificationRequest;
+            }
+            
+            if (GetPaymentMethodScheduledForRemovalNotificationRequest(jsonPayload, out var PaymentMethodScheduledForRemovalNotificationRequest)) 
+            {
+                return PaymentMethodScheduledForRemovalNotificationRequest;
+            }
+            
             throw new JsonReaderException("Could not parse webhook");
         }
         
@@ -79,6 +89,36 @@ namespace Adyen.Webhooks
             result = null;
             if (!ContainsValue<PaymentMethodCreatedNotificationRequest.TypeEnum>(jsonPayload)) return false;
             result = JsonConvert.DeserializeObject<PaymentMethodCreatedNotificationRequest>(jsonPayload);
+            return true;
+        }
+        
+        /// <summary>
+        /// Deserializes <see cref="PaymentMethodRequestRemovedNotificationRequest"/> from the <paramref name="jsonPayload"/>.
+        /// </summary>
+        /// <param name="jsonPayload">The json payload of the webhook.</param>
+        /// <param name="result"><see cref="PaymentMethodRequestRemovedNotificationRequest"/>.</param>
+        /// <returns>A return value indicates whether the deserialization succeeded.</returns>
+        /// <exception cref="JsonReaderException">Throws when json is invalid.</exception>
+        public bool GetPaymentMethodRequestRemovedNotificationRequest(string jsonPayload, out PaymentMethodRequestRemovedNotificationRequest result)
+        {
+            result = null;
+            if (!ContainsValue<PaymentMethodRequestRemovedNotificationRequest.TypeEnum>(jsonPayload)) return false;
+            result = JsonConvert.DeserializeObject<PaymentMethodRequestRemovedNotificationRequest>(jsonPayload);
+            return true;
+        }
+        
+        /// <summary>
+        /// Deserializes <see cref="PaymentMethodScheduledForRemovalNotificationRequest"/> from the <paramref name="jsonPayload"/>.
+        /// </summary>
+        /// <param name="jsonPayload">The json payload of the webhook.</param>
+        /// <param name="result"><see cref="PaymentMethodScheduledForRemovalNotificationRequest"/>.</param>
+        /// <returns>A return value indicates whether the deserialization succeeded.</returns>
+        /// <exception cref="JsonReaderException">Throws when json is invalid.</exception>
+        public bool GetPaymentMethodScheduledForRemovalNotificationRequest(string jsonPayload, out PaymentMethodScheduledForRemovalNotificationRequest result)
+        {
+            result = null;
+            if (!ContainsValue<PaymentMethodScheduledForRemovalNotificationRequest.TypeEnum>(jsonPayload)) return false;
+            result = JsonConvert.DeserializeObject<PaymentMethodScheduledForRemovalNotificationRequest>(jsonPayload);
             return true;
         }
         
