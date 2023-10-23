@@ -1082,7 +1082,7 @@ namespace Adyen.Test
                     merchantAccount: "test_merchant_account",
                     amount: new Amount("USD", 5),
                     donationAccount: "Charity_TEST",
-                    paymentMethod: new CheckoutPaymentMethod(new CardDetails()),
+                    paymentMethod: new DonationPaymentMethod(new CardDetails()),
                     reference: "179761FE-1913-4226-9F43-E475DE634BBA",
                     returnUrl: "https://your-company.com/...");
             var donationResponse = checkout.Donations(paymentDonationRequest);

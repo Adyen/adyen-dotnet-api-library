@@ -31,8 +31,8 @@ namespace Adyen.Test
 
                 //create a mock client
                 var client = CreateMockTestClientPosLocalApiRequest("mocks/terminalapi/pospayment-encrypted-success.json");
-                var posPaymentLocalApi = new PosPaymentLocalApi(client);
-                var decryptedNotification = posPaymentLocalApi.DecryptNotification(encryptedNotification, _encryptionCredentialDetails);
+                var terminalLocalApi = new TerminalLocalApi(client);
+                var decryptedNotification = terminalLocalApi.DecryptNotification(encryptedNotification, _encryptionCredentialDetails);
                 Assert.AreEqual(decryptedNotification, expectedDecryption);
             }
             catch (Exception)

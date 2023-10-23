@@ -5,9 +5,9 @@
     <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
     <Copyright>Adyen</Copyright>
 
-    <Version>11.2.1</Version>
-    <AssemblyVersion>11.2.1</AssemblyVersion>
-    <FileVersion>11.2.1</FileVersion>
+    <Version>12.0.0-beta</Version>
+    <AssemblyVersion>12.0.0</AssemblyVersion>
+    <FileVersion>12.0.0-beta</FileVersion>
 
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <Description>The Adyen API Library for .net core enables you to work with Adyen APIs, Hosted Payment Pages and terminal api with any .net application.</Description>
@@ -15,7 +15,7 @@
     <RepositoryUrl>https://github.com/Adyen/adyen-dotnet-api-library</RepositoryUrl>
     <RepositoryType>git</RepositoryType>
 
-    <PackageTags>11.2.1</PackageTags>
+    <PackageTags>12.0.0-beta</PackageTags>
 
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
     <Authors>Adyen</Authors>
@@ -28,7 +28,7 @@
     <AssemblyOriginatorKeyFile>adyen-dotnet-api-library-key.snk</AssemblyOriginatorKeyFile>
     <PackageIcon>adyen-logo.png</PackageIcon>
     <PackageReadmeFile>README.md</PackageReadmeFile>
-    <PackageVersion>11.2.1</PackageVersion>
+    <PackageVersion>12.0.0</PackageVersion>
   </PropertyGroup>
   <ItemGroup>
     <PackageReference Include="Microsoft.CSharp" Version="4.7.0" />

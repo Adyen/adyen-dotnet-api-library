@@ -62,38 +62,20 @@ namespace Adyen.Model.BalancePlatform
         /// <summary>
         /// Initializes a new instance of the <see cref="NZLocalAccountIdentification" /> class.
         /// </summary>
-        /// <param name="accountNumber">The 7-digit bank account number, without separators or whitespace. (required).</param>
-        /// <param name="accountSuffix">The 2- to 3-digit account suffix, without separators or whitespace. (required).</param>
-        /// <param name="bankCode">The 6-digit bank code including the 2-digit bank code and 4-digit branch code, without separators or whitespace. (required).</param>
+        /// <param name="accountNumber">The 15-16 digit bank account number. The first 2 digits are the bank number, the next 4 digits are the branch number, the next 7 digits are the account number, and the final 2-3 digits are the suffix. (required).</param>
         /// <param name="type">**nzLocal** (required) (default to TypeEnum.NzLocal).</param>
-        public NZLocalAccountIdentification(string accountNumber = default(string), string accountSuffix = default(string), string bankCode = default(string), TypeEnum type = TypeEnum.NzLocal)
+        public NZLocalAccountIdentification(string accountNumber = default(string), TypeEnum type = TypeEnum.NzLocal)
         {
             this.AccountNumber = accountNumber;
-            this.AccountSuffix = accountSuffix;
-            this.BankCode = bankCode;
             this.Type = type;
         }
 
         /// <summary>
-        /// The 7-digit bank account number, without separators or whitespace.
+        /// The 15-16 digit bank account number. The first 2 digits are the bank number, the next 4 digits are the branch number, the next 7 digits are the account number, and the final 2-3 digits are the suffix.
         /// </summary>
-        /// <value>The 7-digit bank account number, without separators or whitespace.</value>
+        /// <value>The 15-16 digit bank account number. The first 2 digits are the bank number, the next 4 digits are the branch number, the next 7 digits are the account number, and the final 2-3 digits are the suffix.</value>
         [DataMember(Name = "accountNumber", IsRequired = false, EmitDefaultValue = false)]
         public string AccountNumber { get; set; }
-
-        /// <summary>
-        /// The 2- to 3-digit account suffix, without separators or whitespace.
-        /// </summary>
-        /// <value>The 2- to 3-digit account suffix, without separators or whitespace.</value>
-        [DataMember(Name = "accountSuffix", IsRequired = false, EmitDefaultValue = false)]
-        public string AccountSuffix { get; set; }
-
-        /// <summary>
-        /// The 6-digit bank code including the 2-digit bank code and 4-digit branch code, without separators or whitespace.
-        /// </summary>
-        /// <value>The 6-digit bank code including the 2-digit bank code and 4-digit branch code, without separators or whitespace.</value>
-        [DataMember(Name = "bankCode", IsRequired = false, EmitDefaultValue = false)]
-        public string BankCode { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -104,8 +86,6 @@ namespace Adyen.Model.BalancePlatform
             StringBuilder sb = new StringBuilder();
             sb.Append("class NZLocalAccountIdentification {\n");
             sb.Append("  AccountNumber: ").Append(AccountNumber).Append("\n");
-            sb.Append("  AccountSuffix: ").Append(AccountSuffix).Append("\n");
-            sb.Append("  BankCode: ").Append(BankCode).Append("\n");
             sb.Append("  Type: ").Append(Type).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
@@ -148,16 +128,6 @@ namespace Adyen.Model.BalancePlatform
                     this.AccountNumber.Equals(input.AccountNumber))
                 ) && 
                 (
-                    this.AccountSuffix == input.AccountSuffix ||
-                    (this.AccountSuffix != null &&
-                    this.AccountSuffix.Equals(input.AccountSuffix))
-                ) && 
-                (
-                    this.BankCode == input.BankCode ||
-                    (this.BankCode != null &&
-                    this.BankCode.Equals(input.BankCode))
-                ) && 
-                (
                     this.Type == input.Type ||
                     this.Type.Equals(input.Type)
                 );
@@ -176,14 +146,6 @@ namespace Adyen.Model.BalancePlatform
                 {
                     hashCode = (hashCode * 59) + this.AccountNumber.GetHashCode();
                 }
-                if (this.AccountSuffix != null)
-                {
-                    hashCode = (hashCode * 59) + this.AccountSuffix.GetHashCode();
-                }
-                if (this.BankCode != null)
-                {
-                    hashCode = (hashCode * 59) + this.BankCode.GetHashCode();
-                }
                 hashCode = (hashCode * 59) + this.Type.GetHashCode();
                 return hashCode;
             }
@@ -196,39 +158,15 @@ namespace Adyen.Model.BalancePlatform
         public IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> Validate(ValidationContext validationContext)
         {
             // AccountNumber (string) maxLength
-            if (this.AccountNumber != null && this.AccountNumber.Length > 7)
+            if (this.AccountNumber != null && this.AccountNumber.Length > 16)
             {
-                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for AccountNumber, length must be less than 7.", new [] { "AccountNumber" });
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for AccountNumber, length must be less than 16.", new [] { "AccountNumber" });
             }
 
             // AccountNumber (string) minLength
-            if (this.AccountNumber != null && this.AccountNumber.Length < 7)
+            if (this.AccountNumber != null && this.AccountNumber.Length < 15)
             {
-                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for AccountNumber, length must be greater than 7.", new [] { "AccountNumber" });
-            }
-
-            // AccountSuffix (string) maxLength
-            if (this.AccountSuffix != null && this.AccountSuffix.Length > 3)
-            {
-                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for AccountSuffix, length must be less than 3.", new [] { "AccountSuffix" });
-            }
-
-            // AccountSuffix (string) minLength
-            if (this.AccountSuffix != null && this.AccountSuffix.Length < 2)
-            {
-                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for AccountSuffix, length must be greater than 2.", new [] { "AccountSuffix" });
-            }
-
-            // BankCode (string) maxLength
-            if (this.BankCode != null && this.BankCode.Length > 6)
-            {
-                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for BankCode, length must be less than 6.", new [] { "BankCode" });
-            }
-
-            // BankCode (string) minLength
-            if (this.BankCode != null && this.BankCode.Length < 6)
-            {
-                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for BankCode, length must be greater than 6.", new [] { "BankCode" });
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for AccountNumber, length must be greater than 15.", new [] { "AccountNumber" });
             }
 
             yield break;

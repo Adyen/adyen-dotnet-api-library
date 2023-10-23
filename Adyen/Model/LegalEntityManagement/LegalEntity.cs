@@ -91,7 +91,7 @@ namespace Adyen.Model.LegalEntityManagement
         /// <param name="entityAssociations">List of legal entities associated with the current legal entity. For example, ultimate beneficial owners associated with an organization through ownership or control, or as signatories..</param>
         /// <param name="individual">individual.</param>
         /// <param name="organization">organization.</param>
-        /// <param name="problems">List of the verification errors from capabilities for the legal entity..</param>
+        /// <param name="problems">List of verification errors related to capabilities for the legal entity..</param>
         /// <param name="reference">Your reference for the legal entity, maximum 150 characters..</param>
         /// <param name="soleProprietorship">soleProprietorship.</param>
         /// <param name="type">The type of legal entity.   Possible values: **individual**, **organization**, or **soleProprietorship**..</param>
@@ -157,9 +157,9 @@ namespace Adyen.Model.LegalEntityManagement
         public Organization Organization { get; set; }
 
         /// <summary>
-        /// List of the verification errors from capabilities for the legal entity.
+        /// List of verification errors related to capabilities for the legal entity.
         /// </summary>
-        /// <value>List of the verification errors from capabilities for the legal entity.</value>
+        /// <value>List of verification errors related to capabilities for the legal entity.</value>
         [DataMember(Name = "problems", EmitDefaultValue = false)]
         public List<CapabilityProblem> Problems { get; set; }
 

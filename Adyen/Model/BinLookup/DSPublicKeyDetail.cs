@@ -39,12 +39,14 @@ namespace Adyen.Model.BinLookup
         /// <param name="directoryServerId">Directory Server (DS) identifier..</param>
         /// <param name="fromSDKVersion">The version of the mobile 3D Secure 2 SDK. For the possible values, refer to the versions in [Adyen 3DS2 Android](https://github.com/Adyen/adyen-3ds2-android/releases) and [Adyen 3DS2 iOS](https://github.com/Adyen/adyen-3ds2-ios/releases)..</param>
         /// <param name="publicKey">Public key. The 3D Secure 2 SDK encrypts the device information by using the DS public key..</param>
-        public DSPublicKeyDetail(string brand = default(string), string directoryServerId = default(string), string fromSDKVersion = default(string), byte[] publicKey = default(byte[]))
+        /// <param name="rootCertificates">Directory Server root certificates. The 3D Secure 2 SDK verifies the ACS signed content using the rootCertificates..</param>
+        public DSPublicKeyDetail(string brand = default(string), string directoryServerId = default(string), string fromSDKVersion = default(string), byte[] publicKey = default(byte[]), string rootCertificates = default(string))
         {
             this.Brand = brand;
             this.DirectoryServerId = directoryServerId;
             this.FromSDKVersion = fromSDKVersion;
             this.PublicKey = publicKey;
+            this.RootCertificates = rootCertificates;
         }
 
         /// <summary>
@@ -76,6 +78,13 @@ namespace Adyen.Model.BinLookup
         public byte[] PublicKey { get; set; }
 
         /// <summary>
+        /// Directory Server root certificates. The 3D Secure 2 SDK verifies the ACS signed content using the rootCertificates.
+        /// </summary>
+        /// <value>Directory Server root certificates. The 3D Secure 2 SDK verifies the ACS signed content using the rootCertificates.</value>
+        [DataMember(Name = "rootCertificates", EmitDefaultValue = false)]
+        public string RootCertificates { get; set; }
+
+        /// <summary>
         /// Returns the string presentation of the object
         /// </summary>
         /// <returns>String presentation of the object</returns>
@@ -87,6 +96,7 @@ namespace Adyen.Model.BinLookup
             sb.Append("  DirectoryServerId: ").Append(DirectoryServerId).Append("\n");
             sb.Append("  FromSDKVersion: ").Append(FromSDKVersion).Append("\n");
             sb.Append("  PublicKey: ").Append(PublicKey).Append("\n");
+            sb.Append("  RootCertificates: ").Append(RootCertificates).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -141,6 +151,11 @@ namespace Adyen.Model.BinLookup
                     this.PublicKey == input.PublicKey ||
                     (this.PublicKey != null &&
                     this.PublicKey.Equals(input.PublicKey))
+                ) && 
+                (
+                    this.RootCertificates == input.RootCertificates ||
+                    (this.RootCertificates != null &&
+                    this.RootCertificates.Equals(input.RootCertificates))
                 );
         }
 
@@ -168,6 +183,10 @@ namespace Adyen.Model.BinLookup
                 if (this.PublicKey != null)
                 {
                     hashCode = (hashCode * 59) + this.PublicKey.GetHashCode();
+                }
+                if (this.RootCertificates != null)
+                {
+                    hashCode = (hashCode * 59) + this.RootCertificates.GetHashCode();
                 }
                 return hashCode;
             }

@@ -142,9 +142,9 @@ namespace Adyen.Model.LegalEntityManagement
         }
 
         /// <summary>
-        /// Indicates whether the capability is allowed. Adyen sets this to **true** if the verification is successful 
+        /// Indicates whether the capability is allowed. Adyen sets this to **true** if the verification is successful.
         /// </summary>
-        /// <value>Indicates whether the capability is allowed. Adyen sets this to **true** if the verification is successful </value>
+        /// <value>Indicates whether the capability is allowed. Adyen sets this to **true** if the verification is successful.</value>
         [DataMember(Name = "allowed", EmitDefaultValue = false)]
         public bool? Allowed { get; private set; }
 
@@ -155,9 +155,9 @@ namespace Adyen.Model.LegalEntityManagement
         public CapabilitySettings AllowedSettings { get; set; }
 
         /// <summary>
-        /// Indicates whether the capability is requested. To check whether the Legal Entity is permitted to use the capability, 
+        /// Indicates whether the capability is requested. To check whether the legal entity is permitted to use the capability, refer to the &#x60;allowed&#x60; field.
         /// </summary>
-        /// <value>Indicates whether the capability is requested. To check whether the Legal Entity is permitted to use the capability, </value>
+        /// <value>Indicates whether the capability is requested. To check whether the legal entity is permitted to use the capability, refer to the &#x60;allowed&#x60; field.</value>
         [DataMember(Name = "requested", EmitDefaultValue = false)]
         public bool? Requested { get; private set; }
 
@@ -168,9 +168,9 @@ namespace Adyen.Model.LegalEntityManagement
         public CapabilitySettings RequestedSettings { get; set; }
 
         /// <summary>
-        /// Capability status for transfer instruments associated with legal entity
+        /// The capability status of transfer instruments associated with the legal entity.
         /// </summary>
-        /// <value>Capability status for transfer instruments associated with legal entity</value>
+        /// <value>The capability status of transfer instruments associated with the legal entity.</value>
         [DataMember(Name = "transferInstruments", EmitDefaultValue = false)]
         public List<SupportingEntityCapability> TransferInstruments { get; private set; }
 

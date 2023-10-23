@@ -79,40 +79,34 @@ namespace Adyen.Model.BalancePlatform
             CrossBorder = 1,
 
             /// <summary>
-            /// Enum DirectDebit for value: directDebit
-            /// </summary>
-            [EnumMember(Value = "directDebit")]
-            DirectDebit = 2,
-
-            /// <summary>
             /// Enum Fast for value: fast
             /// </summary>
             [EnumMember(Value = "fast")]
-            Fast = 3,
+            Fast = 2,
 
             /// <summary>
             /// Enum Instant for value: instant
             /// </summary>
             [EnumMember(Value = "instant")]
-            Instant = 4,
+            Instant = 3,
 
             /// <summary>
             /// Enum Internal for value: internal
             /// </summary>
             [EnumMember(Value = "internal")]
-            Internal = 5,
+            Internal = 4,
 
             /// <summary>
             /// Enum Regular for value: regular
             /// </summary>
             [EnumMember(Value = "regular")]
-            Regular = 6,
+            Regular = 5,
 
             /// <summary>
             /// Enum Wire for value: wire
             /// </summary>
             [EnumMember(Value = "wire")]
-            Wire = 7
+            Wire = 6
 
         }
 
@@ -136,70 +130,88 @@ namespace Adyen.Model.BalancePlatform
             Approved = 2,
 
             /// <summary>
+            /// Enum BalanceAccountTemporarilyBlockedByTransactionRule for value: balanceAccountTemporarilyBlockedByTransactionRule
+            /// </summary>
+            [EnumMember(Value = "balanceAccountTemporarilyBlockedByTransactionRule")]
+            BalanceAccountTemporarilyBlockedByTransactionRule = 3,
+
+            /// <summary>
             /// Enum CounterpartyAccountBlocked for value: counterpartyAccountBlocked
             /// </summary>
             [EnumMember(Value = "counterpartyAccountBlocked")]
-            CounterpartyAccountBlocked = 3,
+            CounterpartyAccountBlocked = 4,
 
             /// <summary>
             /// Enum CounterpartyAccountClosed for value: counterpartyAccountClosed
             /// </summary>
             [EnumMember(Value = "counterpartyAccountClosed")]
-            CounterpartyAccountClosed = 4,
+            CounterpartyAccountClosed = 5,
 
             /// <summary>
             /// Enum CounterpartyAccountNotFound for value: counterpartyAccountNotFound
             /// </summary>
             [EnumMember(Value = "counterpartyAccountNotFound")]
-            CounterpartyAccountNotFound = 5,
+            CounterpartyAccountNotFound = 6,
 
             /// <summary>
             /// Enum CounterpartyAddressRequired for value: counterpartyAddressRequired
             /// </summary>
             [EnumMember(Value = "counterpartyAddressRequired")]
-            CounterpartyAddressRequired = 6,
+            CounterpartyAddressRequired = 7,
 
             /// <summary>
             /// Enum CounterpartyBankTimedOut for value: counterpartyBankTimedOut
             /// </summary>
             [EnumMember(Value = "counterpartyBankTimedOut")]
-            CounterpartyBankTimedOut = 7,
+            CounterpartyBankTimedOut = 8,
 
             /// <summary>
             /// Enum CounterpartyBankUnavailable for value: counterpartyBankUnavailable
             /// </summary>
             [EnumMember(Value = "counterpartyBankUnavailable")]
-            CounterpartyBankUnavailable = 8,
+            CounterpartyBankUnavailable = 9,
+
+            /// <summary>
+            /// Enum DeclinedByTransactionRule for value: declinedByTransactionRule
+            /// </summary>
+            [EnumMember(Value = "declinedByTransactionRule")]
+            DeclinedByTransactionRule = 10,
 
             /// <summary>
             /// Enum Error for value: error
             /// </summary>
             [EnumMember(Value = "error")]
-            Error = 9,
+            Error = 11,
 
             /// <summary>
             /// Enum NotEnoughBalance for value: notEnoughBalance
             /// </summary>
             [EnumMember(Value = "notEnoughBalance")]
-            NotEnoughBalance = 10,
+            NotEnoughBalance = 12,
 
             /// <summary>
             /// Enum RefusedByCounterpartyBank for value: refusedByCounterpartyBank
             /// </summary>
             [EnumMember(Value = "refusedByCounterpartyBank")]
-            RefusedByCounterpartyBank = 11,
+            RefusedByCounterpartyBank = 13,
 
             /// <summary>
             /// Enum RouteNotFound for value: routeNotFound
             /// </summary>
             [EnumMember(Value = "routeNotFound")]
-            RouteNotFound = 12,
+            RouteNotFound = 14,
+
+            /// <summary>
+            /// Enum ScaFailed for value: scaFailed
+            /// </summary>
+            [EnumMember(Value = "scaFailed")]
+            ScaFailed = 15,
 
             /// <summary>
             /// Enum Unknown for value: unknown
             /// </summary>
             [EnumMember(Value = "unknown")]
-            Unknown = 13
+            Unknown = 16
 
         }
 

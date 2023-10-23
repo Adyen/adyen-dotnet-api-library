@@ -40,10 +40,10 @@ namespace Adyen.Model.LegalEntityManagement
         public enum TypeEnum
         {
             /// <summary>
-            /// Enum ProofOfNationalIdNumber for value: proofOfNationalIdNumber
+            /// Enum NationalIdNumber for value: nationalIdNumber
             /// </summary>
-            [EnumMember(Value = "proofOfNationalIdNumber")]
-            ProofOfNationalIdNumber = 1
+            [EnumMember(Value = "nationalIdNumber")]
+            NationalIdNumber = 1
 
         }
 

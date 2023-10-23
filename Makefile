@@ -14,25 +14,26 @@ BalancePlatform: spec=BalancePlatformService-v2
 BinLookup: spec=BinLookupService-v54
 Checkout: spec=CheckoutService-v70
 DataProtection: spec=DataProtectionService-v1
+Disputes: spec=DisputeService-v30
 StoredValue: spec=StoredValueService-v46
 PosTerminalManagement: spec=TfmAPIService-v1
 Payment: spec=PaymentService-v68
 Recurring: spec=RecurringService-v68
 Payout: spec=PayoutService-v68
-Management: spec=ManagementService-v1
+Management: spec=ManagementService-v3
 LegalEntityManagement: spec=LegalEntityService-v3
 PlatformsAccount: spec=AccountService-v6
 PlatformsFund: spec=FundService-v6
 PlatformsNotificationConfiguration: spec=NotificationConfigurationService-v6
 PlatformsHostedOnboardingPage: spec=HopService-v6
-Transfers: spec=TransferService-v3
+Transfers: spec=TransferService-v4
 
 #Webhooks
 ConfigurationWebhooks: spec=BalancePlatformConfigurationNotification-v1
 ReportWebhooks: spec=BalancePlatformReportNotification-v1
-TransferWebhooks: spec=BalancePlatformTransferNotification-v3
+TransferWebhooks: spec=BalancePlatformTransferNotification-v4
 AcsWebhooks: spec=BalancePlatformAcsNotification-v1
-ManagementWebhooks: spec=ManagementNotificationService-v1
+ManagementWebhooks: spec=ManagementNotificationService-v3
 
 # Generate models (for each service and banking webhook)
 models: $(Models)
@@ -44,7 +45,8 @@ $(Models): target/spec $(openapi-generator-jar)
 		-g $(generator) \
 		-t templates/csharp \
 		-o $(output) \
-		--inline-schema-name-mappings DonationPaymentRequest_paymentMethod=CheckoutPaymentMethod \
+		--inline-schema-name-mappings PaymentRequest_paymentMethod=CheckoutPaymentMethod \
+		--inline-schema-name-mappings DonationPaymentRequest_paymentMethod=DonationPaymentMethod \
 		--model-package $@ \
 		--skip-validate-spec \
 		--reserved-words-mappings Version=Version \
@@ -58,7 +60,7 @@ $(Models): target/spec $(openapi-generator-jar)
 # Service Generation; split up in to templates based on the size of the service. That is, some services have no subgroups and are thus generated in one single file, others are grouped in a directory.
 
 Services:=BalancePlatform Checkout Management LegalEntityManagement StoredValue Payout Transfers
-SingleFileServices:=BalanceControl BinLookup DataProtection StoredValue Payment PosTerminalManagement Recurring
+SingleFileServices:=BalanceControl BinLookup DataProtection StoredValue Payment PosTerminalManagement Recurring Disputes
 
 allServices: $(Services) $(SingleFileServices)
 
@@ -69,7 +71,8 @@ $(Services): target/spec $(openapi-generator-jar)
 		-g $(generator) \
 		-t templates/csharp \
 		-o $(output) \
-		--inline-schema-name-mappings DonationPaymentRequest_paymentMethod=CheckoutPaymentMethod \
+		--inline-schema-name-mappings PaymentRequest_paymentMethod=CheckoutPaymentMethod \
+		--inline-schema-name-mappings DonationPaymentRequest_paymentMethod=DonationPaymentMethod \
 		--additional-properties packageName=Adyen \
 		--api-package Service.$@ \
 		--api-name-suffix Service \
@@ -89,7 +92,8 @@ $(SingleFileServices): target/spec $(openapi-generator-jar)
 		-g $(generator) \
 		-c templates/csharp/config.yaml \
 		-o $(output) \
-		--inline-schema-name-mappings DonationPaymentRequest_paymentMethod=CheckoutPaymentMethod \
+		--inline-schema-name-mappings PaymentRequest_paymentMethod=CheckoutPaymentMethod \
+		--inline-schema-name-mappings DonationPaymentRequest_paymentMethod=DonationPaymentMethod \
 		--additional-properties packageName=Adyen \
 		--additional-properties customApi=$@ \
 		--api-package Service.$@ \

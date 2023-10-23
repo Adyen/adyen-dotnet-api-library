@@ -1,5 +1,5 @@
 ﻿using System;
-using Adyen.Model.Nexo;
+using Adyen.Model.TerminalApi;
 using Newtonsoft.Json;
 
 namespace Adyen.ApiSerialization.Converter
