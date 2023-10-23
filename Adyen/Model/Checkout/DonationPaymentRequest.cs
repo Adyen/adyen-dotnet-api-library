@@ -95,6 +95,28 @@ namespace Adyen.Model.Checkout
         [DataMember(Name = "entityType", EmitDefaultValue = false)]
         public EntityTypeEnum? EntityType { get; set; }
         /// <summary>
+        /// The funding source that should be used when multiple sources are available. For Brazilian combo cards, by default the funding source is credit. To use debit, set this value to **debit**.
+        /// </summary>
+        /// <value>The funding source that should be used when multiple sources are available. For Brazilian combo cards, by default the funding source is credit. To use debit, set this value to **debit**.</value>
+        [JsonConverter(typeof(StringEnumConverter))]
+        public enum FundingSourceEnum
+        {
+            /// <summary>
+            /// Enum Debit for value: debit
+            /// </summary>
+            [EnumMember(Value = "debit")]
+            Debit = 1
+
+        }
+
+
+        /// <summary>
+        /// The funding source that should be used when multiple sources are available. For Brazilian combo cards, by default the funding source is credit. To use debit, set this value to **debit**.
+        /// </summary>
+        /// <value>The funding source that should be used when multiple sources are available. For Brazilian combo cards, by default the funding source is credit. To use debit, set this value to **debit**.</value>
+        [DataMember(Name = "fundingSource", EmitDefaultValue = false)]
+        public FundingSourceEnum? FundingSource { get; set; }
+        /// <summary>
         /// The reason for the amount update. Possible values:  * **delayedCharge**  * **noShow**  * **installment**
         /// </summary>
         /// <value>The reason for the amount update. Possible values:  * **delayedCharge**  * **noShow**  * **installment**</value>
@@ -213,10 +235,12 @@ namespace Adyen.Model.Checkout
         /// <param name="accountInfo">accountInfo.</param>
         /// <param name="additionalAmount">additionalAmount.</param>
         /// <param name="additionalData">This field contains additional data, which may be required for a particular payment request.  The &#x60;additionalData&#x60; object consists of entries, each of which includes the key and value..</param>
+        /// <param name="allowedPaymentMethods">List of payment methods to be presented to the shopper. To refer to payment methods, use their [payment method type](https://docs.adyen.com/payment-methods/payment-method-types).  Example: &#x60;\&quot;allowedPaymentMethods\&quot;:[\&quot;ideal\&quot;,\&quot;giropay\&quot;]&#x60;.</param>
         /// <param name="amount">amount (required).</param>
         /// <param name="applicationInfo">applicationInfo.</param>
         /// <param name="authenticationData">authenticationData.</param>
         /// <param name="billingAddress">billingAddress.</param>
+        /// <param name="blockedPaymentMethods">List of payment methods to be hidden from the shopper. To refer to payment methods, use their [payment method type](https://docs.adyen.com/payment-methods/payment-method-types).  Example: &#x60;\&quot;blockedPaymentMethods\&quot;:[\&quot;ideal\&quot;,\&quot;giropay\&quot;]&#x60;.</param>
         /// <param name="browserInfo">browserInfo.</param>
         /// <param name="captureDelayHours">The delay between the authorisation and scheduled auto-capture, specified in hours..</param>
         /// <param name="channel">The platform where a payment transaction takes place. This field is optional for filtering out payment methods that are only available on specific platforms. If this value is not set, then we will try to infer it from the &#x60;sdkVersion&#x60; or &#x60;token&#x60;.  Possible values: * iOS * Android * Web.</param>
@@ -240,6 +264,7 @@ namespace Adyen.Model.Checkout
         /// <param name="fraudOffset">An integer value that is added to the normal fraud score. The value can be either positive or negative..</param>
         /// <param name="fundOrigin">fundOrigin.</param>
         /// <param name="fundRecipient">fundRecipient.</param>
+        /// <param name="fundingSource">The funding source that should be used when multiple sources are available. For Brazilian combo cards, by default the funding source is credit. To use debit, set this value to **debit**..</param>
         /// <param name="industryUsage">The reason for the amount update. Possible values:  * **delayedCharge**  * **noShow**  * **installment**.</param>
         /// <param name="installments">installments.</param>
         /// <param name="lineItems">Price and product information about the purchased items, to be included on the invoice sent to the shopper. &gt; This field is required for 3x 4x Oney, Affirm, Afterpay, Clearpay, Klarna, Ratepay, and Zip..</param>
@@ -264,6 +289,7 @@ namespace Adyen.Model.Checkout
         /// <param name="reference">The reference to uniquely identify a payment. This reference is used in all communication with you about the payment status. We recommend using a unique value per payment; however, it is not a requirement. If you need to provide multiple references for a transaction, separate them with hyphens (\&quot;-\&quot;). Maximum length: 80 characters. (required).</param>
         /// <param name="returnUrl">The URL to return to in case of a redirection. The format depends on the channel. This URL can have a maximum of 1024 characters. * For web, include the protocol &#x60;http://&#x60; or &#x60;https://&#x60;. You can also include your own additional query parameters, for example, shopper ID or order reference number. Example: &#x60;https://your-company.com/checkout?shopperOrder&#x3D;12xy&#x60; * For iOS, use the custom URL for your app. To know more about setting custom URL schemes, refer to the [Apple Developer documentation](https://developer.apple.com/documentation/uikit/inter-process_communication/allowing_apps_and_websites_to_link_to_your_content/defining_a_custom_url_scheme_for_your_app). Example: &#x60;my-app://&#x60; * For Android, use a custom URL handled by an Activity on your app. You can configure it with an [intent filter](https://developer.android.com/guide/components/intents-filters). Example: &#x60;my-app://your.package.name&#x60; (required).</param>
         /// <param name="riskData">riskData.</param>
+        /// <param name="selectedRecurringDetailReference">The &#x60;recurringDetailReference&#x60; you want to use for this payment. The value &#x60;LATEST&#x60; can be used to select the most recently stored recurring detail..</param>
         /// <param name="sessionValidity">The date and time until when the session remains valid, in [ISO 8601](https://www.w3.org/TR/NOTE-datetime) format.  For example: 2020-07-18T15:42:40.428+01:00.</param>
         /// <param name="shopperEmail">The shopper&#39;s email address. We recommend that you provide this data, as it is used in velocity fraud checks. &gt; For 3D Secure 2 transactions, schemes require &#x60;shopperEmail&#x60; for all browser-based and mobile implementations..</param>
         /// <param name="shopperIP">The shopper&#39;s IP address. In general, we recommend that you provide this data, as it is used in a number of risk checks (for instance, number of payment attempts or location-based checks). &gt; For 3D Secure 2 transactions, schemes require &#x60;shopperIP&#x60; for all browser-based implementations. This field is also mandatory for some merchants depending on your business model. For more information, [contact Support](https://www.adyen.help/hc/en-us/requests/new)..</param>
@@ -280,7 +306,7 @@ namespace Adyen.Model.Checkout
         /// <param name="threeDS2RequestData">threeDS2RequestData.</param>
         /// <param name="threeDSAuthenticationOnly">If set to true, you will only perform the [3D Secure 2 authentication](https://docs.adyen.com/online-payments/3d-secure/other-3ds-flows/authentication-only), and not the payment authorisation. (default to false).</param>
         /// <param name="trustedShopper">Set to true if the payment should be routed to a trusted MID..</param>
-        public DonationPaymentRequest(AccountInfo accountInfo = default(AccountInfo), Amount additionalAmount = default(Amount), Dictionary<string, string> additionalData = default(Dictionary<string, string>), Amount amount = default(Amount), ApplicationInfo applicationInfo = default(ApplicationInfo), AuthenticationData authenticationData = default(AuthenticationData), Address billingAddress = default(Address), BrowserInfo browserInfo = default(BrowserInfo), int? captureDelayHours = default(int?), ChannelEnum? channel = default(ChannelEnum?), string checkoutAttemptId = default(string), Company company = default(Company), string conversionId = default(string), string countryCode = default(string), DateTime dateOfBirth = default(DateTime), ForexQuote dccQuote = default(ForexQuote), DateTime deliverAt = default(DateTime), Address deliveryAddress = default(Address), DateTime deliveryDate = default(DateTime), string deviceFingerprint = default(string), string donationAccount = default(string), string donationOriginalPspReference = default(string), string donationToken = default(string), bool? enableOneClick = default(bool?), bool? enablePayOut = default(bool?), bool? enableRecurring = default(bool?), EntityTypeEnum? entityType = default(EntityTypeEnum?), int? fraudOffset = default(int?), FundOrigin fundOrigin = default(FundOrigin), FundRecipient fundRecipient = default(FundRecipient), IndustryUsageEnum? industryUsage = default(IndustryUsageEnum?), Installments installments = default(Installments), List<LineItem> lineItems = default(List<LineItem>), Dictionary<string, string> localizedShopperStatement = default(Dictionary<string, string>), Mandate mandate = default(Mandate), string mcc = default(string), string merchantAccount = default(string), string merchantOrderReference = default(string), MerchantRiskIndicator merchantRiskIndicator = default(MerchantRiskIndicator), Dictionary<string, string> metadata = default(Dictionary<string, string>), ThreeDSecureData mpiData = default(ThreeDSecureData), EncryptedOrderData order = default(EncryptedOrderData), string orderReference = default(string), string origin = default(string), CheckoutPaymentMethod paymentMethod = default(CheckoutPaymentMethod), PlatformChargebackLogic platformChargebackLogic = default(PlatformChargebackLogic), string recurringExpiry = default(string), string recurringFrequency = default(string), RecurringProcessingModelEnum? recurringProcessingModel = default(RecurringProcessingModelEnum?), string redirectFromIssuerMethod = default(string), string redirectToIssuerMethod = default(string), string reference = default(string), string returnUrl = default(string), RiskData riskData = default(RiskData), string sessionValidity = default(string), string shopperEmail = default(string), string shopperIP = default(string), ShopperInteractionEnum? shopperInteraction = default(ShopperInteractionEnum?), string shopperLocale = default(string), Name shopperName = default(Name), string shopperReference = default(string), string shopperStatement = default(string), string socialSecurityNumber = default(string), List<Split> splits = default(List<Split>), string store = default(string), bool? storePaymentMethod = default(bool?), string telephoneNumber = default(string), ThreeDS2RequestData2 threeDS2RequestData = default(ThreeDS2RequestData2), bool? threeDSAuthenticationOnly = false, bool? trustedShopper = default(bool?))
+        public DonationPaymentRequest(AccountInfo accountInfo = default(AccountInfo), Amount additionalAmount = default(Amount), Dictionary<string, string> additionalData = default(Dictionary<string, string>), List<string> allowedPaymentMethods = default(List<string>), Amount amount = default(Amount), ApplicationInfo applicationInfo = default(ApplicationInfo), AuthenticationData authenticationData = default(AuthenticationData), BillingAddress billingAddress = default(BillingAddress), List<string> blockedPaymentMethods = default(List<string>), BrowserInfo browserInfo = default(BrowserInfo), int? captureDelayHours = default(int?), ChannelEnum? channel = default(ChannelEnum?), string checkoutAttemptId = default(string), Company company = default(Company), string conversionId = default(string), string countryCode = default(string), DateTime dateOfBirth = default(DateTime), ForexQuote dccQuote = default(ForexQuote), DateTime deliverAt = default(DateTime), DeliveryAddress deliveryAddress = default(DeliveryAddress), DateTime deliveryDate = default(DateTime), string deviceFingerprint = default(string), string donationAccount = default(string), string donationOriginalPspReference = default(string), string donationToken = default(string), bool? enableOneClick = default(bool?), bool? enablePayOut = default(bool?), bool? enableRecurring = default(bool?), EntityTypeEnum? entityType = default(EntityTypeEnum?), int? fraudOffset = default(int?), FundOrigin fundOrigin = default(FundOrigin), FundRecipient fundRecipient = default(FundRecipient), FundingSourceEnum? fundingSource = default(FundingSourceEnum?), IndustryUsageEnum? industryUsage = default(IndustryUsageEnum?), Installments installments = default(Installments), List<LineItem> lineItems = default(List<LineItem>), Dictionary<string, string> localizedShopperStatement = default(Dictionary<string, string>), Mandate mandate = default(Mandate), string mcc = default(string), string merchantAccount = default(string), string merchantOrderReference = default(string), MerchantRiskIndicator merchantRiskIndicator = default(MerchantRiskIndicator), Dictionary<string, string> metadata = default(Dictionary<string, string>), ThreeDSecureData mpiData = default(ThreeDSecureData), EncryptedOrderData order = default(EncryptedOrderData), string orderReference = default(string), string origin = default(string), DonationPaymentMethod paymentMethod = default(DonationPaymentMethod), PlatformChargebackLogic platformChargebackLogic = default(PlatformChargebackLogic), string recurringExpiry = default(string), string recurringFrequency = default(string), RecurringProcessingModelEnum? recurringProcessingModel = default(RecurringProcessingModelEnum?), string redirectFromIssuerMethod = default(string), string redirectToIssuerMethod = default(string), string reference = default(string), string returnUrl = default(string), RiskData riskData = default(RiskData), string selectedRecurringDetailReference = default(string), string sessionValidity = default(string), string shopperEmail = default(string), string shopperIP = default(string), ShopperInteractionEnum? shopperInteraction = default(ShopperInteractionEnum?), string shopperLocale = default(string), Name shopperName = default(Name), string shopperReference = default(string), string shopperStatement = default(string), string socialSecurityNumber = default(string), List<Split> splits = default(List<Split>), string store = default(string), bool? storePaymentMethod = default(bool?), string telephoneNumber = default(string), ThreeDS2RequestData2 threeDS2RequestData = default(ThreeDS2RequestData2), bool? threeDSAuthenticationOnly = false, bool? trustedShopper = default(bool?))
         {
             this.Amount = amount;
             this.DonationAccount = donationAccount;
@@ -291,9 +317,11 @@ namespace Adyen.Model.Checkout
             this.AccountInfo = accountInfo;
             this.AdditionalAmount = additionalAmount;
             this.AdditionalData = additionalData;
+            this.AllowedPaymentMethods = allowedPaymentMethods;
             this.ApplicationInfo = applicationInfo;
             this.AuthenticationData = authenticationData;
             this.BillingAddress = billingAddress;
+            this.BlockedPaymentMethods = blockedPaymentMethods;
             this.BrowserInfo = browserInfo;
             this.CaptureDelayHours = captureDelayHours;
             this.Channel = channel;
@@ -316,6 +344,7 @@ namespace Adyen.Model.Checkout
             this.FraudOffset = fraudOffset;
             this.FundOrigin = fundOrigin;
             this.FundRecipient = fundRecipient;
+            this.FundingSource = fundingSource;
             this.IndustryUsage = industryUsage;
             this.Installments = installments;
             this.LineItems = lineItems;
@@ -336,6 +365,7 @@ namespace Adyen.Model.Checkout
             this.RedirectFromIssuerMethod = redirectFromIssuerMethod;
             this.RedirectToIssuerMethod = redirectToIssuerMethod;
             this.RiskData = riskData;
+            this.SelectedRecurringDetailReference = selectedRecurringDetailReference;
             this.SessionValidity = sessionValidity;
             this.ShopperEmail = shopperEmail;
             this.ShopperIP = shopperIP;
@@ -374,6 +404,13 @@ namespace Adyen.Model.Checkout
         public Dictionary<string, string> AdditionalData { get; set; }
 
         /// <summary>
+        /// List of payment methods to be presented to the shopper. To refer to payment methods, use their [payment method type](https://docs.adyen.com/payment-methods/payment-method-types).  Example: &#x60;\&quot;allowedPaymentMethods\&quot;:[\&quot;ideal\&quot;,\&quot;giropay\&quot;]&#x60;
+        /// </summary>
+        /// <value>List of payment methods to be presented to the shopper. To refer to payment methods, use their [payment method type](https://docs.adyen.com/payment-methods/payment-method-types).  Example: &#x60;\&quot;allowedPaymentMethods\&quot;:[\&quot;ideal\&quot;,\&quot;giropay\&quot;]&#x60;</value>
+        [DataMember(Name = "allowedPaymentMethods", EmitDefaultValue = false)]
+        public List<string> AllowedPaymentMethods { get; set; }
+
+        /// <summary>
         /// Gets or Sets Amount
         /// </summary>
         [DataMember(Name = "amount", IsRequired = false, EmitDefaultValue = false)]
@@ -395,7 +432,14 @@ namespace Adyen.Model.Checkout
         /// Gets or Sets BillingAddress
         /// </summary>
         [DataMember(Name = "billingAddress", EmitDefaultValue = false)]
-        public Address BillingAddress { get; set; }
+        public BillingAddress BillingAddress { get; set; }
+
+        /// <summary>
+        /// List of payment methods to be hidden from the shopper. To refer to payment methods, use their [payment method type](https://docs.adyen.com/payment-methods/payment-method-types).  Example: &#x60;\&quot;blockedPaymentMethods\&quot;:[\&quot;ideal\&quot;,\&quot;giropay\&quot;]&#x60;
+        /// </summary>
+        /// <value>List of payment methods to be hidden from the shopper. To refer to payment methods, use their [payment method type](https://docs.adyen.com/payment-methods/payment-method-types).  Example: &#x60;\&quot;blockedPaymentMethods\&quot;:[\&quot;ideal\&quot;,\&quot;giropay\&quot;]&#x60;</value>
+        [DataMember(Name = "blockedPaymentMethods", EmitDefaultValue = false)]
+        public List<string> BlockedPaymentMethods { get; set; }
 
         /// <summary>
         /// Gets or Sets BrowserInfo
@@ -462,14 +506,13 @@ namespace Adyen.Model.Checkout
         /// Gets or Sets DeliveryAddress
         /// </summary>
         [DataMember(Name = "deliveryAddress", EmitDefaultValue = false)]
-        public Address DeliveryAddress { get; set; }
+        public DeliveryAddress DeliveryAddress { get; set; }
 
         /// <summary>
         /// The date and time the purchased goods should be delivered.  Format [ISO 8601](https://www.w3.org/TR/NOTE-datetime): YYYY-MM-DDThh:mm:ss.sssTZD  Example: 2017-07-17T13:42:40.428+01:00
         /// </summary>
         /// <value>The date and time the purchased goods should be delivered.  Format [ISO 8601](https://www.w3.org/TR/NOTE-datetime): YYYY-MM-DDThh:mm:ss.sssTZD  Example: 2017-07-17T13:42:40.428+01:00</value>
         [DataMember(Name = "deliveryDate", EmitDefaultValue = false)]
-        [Obsolete]
         public DateTime DeliveryDate { get; set; }
 
         /// <summary>
@@ -630,7 +673,7 @@ namespace Adyen.Model.Checkout
         /// Gets or Sets PaymentMethod
         /// </summary>
         [DataMember(Name = "paymentMethod", IsRequired = false, EmitDefaultValue = false)]
-        public CheckoutPaymentMethod PaymentMethod { get; set; }
+        public DonationPaymentMethod PaymentMethod { get; set; }
 
         /// <summary>
         /// Gets or Sets PlatformChargebackLogic
@@ -685,6 +728,13 @@ namespace Adyen.Model.Checkout
         /// </summary>
         [DataMember(Name = "riskData", EmitDefaultValue = false)]
         public RiskData RiskData { get; set; }
+
+        /// <summary>
+        /// The &#x60;recurringDetailReference&#x60; you want to use for this payment. The value &#x60;LATEST&#x60; can be used to select the most recently stored recurring detail.
+        /// </summary>
+        /// <value>The &#x60;recurringDetailReference&#x60; you want to use for this payment. The value &#x60;LATEST&#x60; can be used to select the most recently stored recurring detail.</value>
+        [DataMember(Name = "selectedRecurringDetailReference", EmitDefaultValue = false)]
+        public string SelectedRecurringDetailReference { get; set; }
 
         /// <summary>
         /// The date and time until when the session remains valid, in [ISO 8601](https://www.w3.org/TR/NOTE-datetime) format.  For example: 2020-07-18T15:42:40.428+01:00
@@ -801,10 +851,12 @@ namespace Adyen.Model.Checkout
             sb.Append("  AccountInfo: ").Append(AccountInfo).Append("\n");
             sb.Append("  AdditionalAmount: ").Append(AdditionalAmount).Append("\n");
             sb.Append("  AdditionalData: ").Append(AdditionalData).Append("\n");
+            sb.Append("  AllowedPaymentMethods: ").Append(AllowedPaymentMethods).Append("\n");
             sb.Append("  Amount: ").Append(Amount).Append("\n");
             sb.Append("  ApplicationInfo: ").Append(ApplicationInfo).Append("\n");
             sb.Append("  AuthenticationData: ").Append(AuthenticationData).Append("\n");
             sb.Append("  BillingAddress: ").Append(BillingAddress).Append("\n");
+            sb.Append("  BlockedPaymentMethods: ").Append(BlockedPaymentMethods).Append("\n");
             sb.Append("  BrowserInfo: ").Append(BrowserInfo).Append("\n");
             sb.Append("  CaptureDelayHours: ").Append(CaptureDelayHours).Append("\n");
             sb.Append("  Channel: ").Append(Channel).Append("\n");
@@ -828,6 +880,7 @@ namespace Adyen.Model.Checkout
             sb.Append("  FraudOffset: ").Append(FraudOffset).Append("\n");
             sb.Append("  FundOrigin: ").Append(FundOrigin).Append("\n");
             sb.Append("  FundRecipient: ").Append(FundRecipient).Append("\n");
+            sb.Append("  FundingSource: ").Append(FundingSource).Append("\n");
             sb.Append("  IndustryUsage: ").Append(IndustryUsage).Append("\n");
             sb.Append("  Installments: ").Append(Installments).Append("\n");
             sb.Append("  LineItems: ").Append(LineItems).Append("\n");
@@ -852,6 +905,7 @@ namespace Adyen.Model.Checkout
             sb.Append("  Reference: ").Append(Reference).Append("\n");
             sb.Append("  ReturnUrl: ").Append(ReturnUrl).Append("\n");
             sb.Append("  RiskData: ").Append(RiskData).Append("\n");
+            sb.Append("  SelectedRecurringDetailReference: ").Append(SelectedRecurringDetailReference).Append("\n");
             sb.Append("  SessionValidity: ").Append(SessionValidity).Append("\n");
             sb.Append("  ShopperEmail: ").Append(ShopperEmail).Append("\n");
             sb.Append("  ShopperIP: ").Append(ShopperIP).Append("\n");
@@ -920,6 +974,12 @@ namespace Adyen.Model.Checkout
                     this.AdditionalData.SequenceEqual(input.AdditionalData)
                 ) && 
                 (
+                    this.AllowedPaymentMethods == input.AllowedPaymentMethods ||
+                    this.AllowedPaymentMethods != null &&
+                    input.AllowedPaymentMethods != null &&
+                    this.AllowedPaymentMethods.SequenceEqual(input.AllowedPaymentMethods)
+                ) && 
+                (
                     this.Amount == input.Amount ||
                     (this.Amount != null &&
                     this.Amount.Equals(input.Amount))
@@ -938,6 +998,12 @@ namespace Adyen.Model.Checkout
                     this.BillingAddress == input.BillingAddress ||
                     (this.BillingAddress != null &&
                     this.BillingAddress.Equals(input.BillingAddress))
+                ) && 
+                (
+                    this.BlockedPaymentMethods == input.BlockedPaymentMethods ||
+                    this.BlockedPaymentMethods != null &&
+                    input.BlockedPaymentMethods != null &&
+                    this.BlockedPaymentMethods.SequenceEqual(input.BlockedPaymentMethods)
                 ) && 
                 (
                     this.BrowserInfo == input.BrowserInfo ||
@@ -1046,6 +1112,10 @@ namespace Adyen.Model.Checkout
                     this.FundRecipient == input.FundRecipient ||
                     (this.FundRecipient != null &&
                     this.FundRecipient.Equals(input.FundRecipient))
+                ) && 
+                (
+                    this.FundingSource == input.FundingSource ||
+                    this.FundingSource.Equals(input.FundingSource)
                 ) && 
                 (
                     this.IndustryUsage == input.IndustryUsage ||
@@ -1169,6 +1239,11 @@ namespace Adyen.Model.Checkout
                     this.RiskData.Equals(input.RiskData))
                 ) && 
                 (
+                    this.SelectedRecurringDetailReference == input.SelectedRecurringDetailReference ||
+                    (this.SelectedRecurringDetailReference != null &&
+                    this.SelectedRecurringDetailReference.Equals(input.SelectedRecurringDetailReference))
+                ) && 
+                (
                     this.SessionValidity == input.SessionValidity ||
                     (this.SessionValidity != null &&
                     this.SessionValidity.Equals(input.SessionValidity))
@@ -1268,6 +1343,10 @@ namespace Adyen.Model.Checkout
                 {
                     hashCode = (hashCode * 59) + this.AdditionalData.GetHashCode();
                 }
+                if (this.AllowedPaymentMethods != null)
+                {
+                    hashCode = (hashCode * 59) + this.AllowedPaymentMethods.GetHashCode();
+                }
                 if (this.Amount != null)
                 {
                     hashCode = (hashCode * 59) + this.Amount.GetHashCode();
@@ -1283,6 +1362,10 @@ namespace Adyen.Model.Checkout
                 if (this.BillingAddress != null)
                 {
                     hashCode = (hashCode * 59) + this.BillingAddress.GetHashCode();
+                }
+                if (this.BlockedPaymentMethods != null)
+                {
+                    hashCode = (hashCode * 59) + this.BlockedPaymentMethods.GetHashCode();
                 }
                 if (this.BrowserInfo != null)
                 {
@@ -1355,6 +1438,7 @@ namespace Adyen.Model.Checkout
                 {
                     hashCode = (hashCode * 59) + this.FundRecipient.GetHashCode();
                 }
+                hashCode = (hashCode * 59) + this.FundingSource.GetHashCode();
                 hashCode = (hashCode * 59) + this.IndustryUsage.GetHashCode();
                 if (this.Installments != null)
                 {
@@ -1444,6 +1528,10 @@ namespace Adyen.Model.Checkout
                 if (this.RiskData != null)
                 {
                     hashCode = (hashCode * 59) + this.RiskData.GetHashCode();
+                }
+                if (this.SelectedRecurringDetailReference != null)
+                {
+                    hashCode = (hashCode * 59) + this.SelectedRecurringDetailReference.GetHashCode();
                 }
                 if (this.SessionValidity != null)
                 {

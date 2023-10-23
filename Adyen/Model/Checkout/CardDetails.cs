@@ -62,40 +62,22 @@ namespace Adyen.Model.Checkout
         public enum TypeEnum
         {
             /// <summary>
-            /// Enum Bcmc for value: bcmc
-            /// </summary>
-            [EnumMember(Value = "bcmc")]
-            Bcmc = 1,
-
-            /// <summary>
             /// Enum Scheme for value: scheme
             /// </summary>
             [EnumMember(Value = "scheme")]
-            Scheme = 2,
+            Scheme = 1,
 
             /// <summary>
             /// Enum NetworkToken for value: networkToken
             /// </summary>
             [EnumMember(Value = "networkToken")]
-            NetworkToken = 3,
-
-            /// <summary>
-            /// Enum Giftcard for value: giftcard
-            /// </summary>
-            [EnumMember(Value = "giftcard")]
-            Giftcard = 4,
-
-            /// <summary>
-            /// Enum Alliancedata for value: alliancedata
-            /// </summary>
-            [EnumMember(Value = "alliancedata")]
-            Alliancedata = 5,
+            NetworkToken = 2,
 
             /// <summary>
             /// Enum Card for value: card
             /// </summary>
             [EnumMember(Value = "card")]
-            Card = 6
+            Card = 3
 
         }
 

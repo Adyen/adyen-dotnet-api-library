@@ -40,7 +40,7 @@ namespace Adyen.Model.Checkout
         /// <param name="mcc">mcc.</param>
         /// <param name="name">name.</param>
         /// <param name="taxId">taxId.</param>
-        public SubMerchantInfo(Address address = default(Address), string id = default(string), string mcc = default(string), string name = default(string), string taxId = default(string))
+        public SubMerchantInfo(BillingAddress address = default(BillingAddress), string id = default(string), string mcc = default(string), string name = default(string), string taxId = default(string))
         {
             this.Address = address;
             this.Id = id;
@@ -53,7 +53,7 @@ namespace Adyen.Model.Checkout
         /// Gets or Sets Address
         /// </summary>
         [DataMember(Name = "address", EmitDefaultValue = false)]
-        public Address Address { get; set; }
+        public BillingAddress Address { get; set; }
 
         /// <summary>
         /// Gets or Sets Id

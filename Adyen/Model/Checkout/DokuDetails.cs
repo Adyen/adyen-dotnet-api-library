@@ -91,7 +91,19 @@ namespace Adyen.Model.Checkout
             /// Enum Indomaret for value: doku_indomaret
             /// </summary>
             [EnumMember(Value = "doku_indomaret")]
-            Indomaret = 9
+            Indomaret = 9,
+
+            /// <summary>
+            /// Enum Wallet for value: doku_wallet
+            /// </summary>
+            [EnumMember(Value = "doku_wallet")]
+            Wallet = 10,
+
+            /// <summary>
+            /// Enum Ovo for value: doku_ovo
+            /// </summary>
+            [EnumMember(Value = "doku_ovo")]
+            Ovo = 11
 
         }
 
