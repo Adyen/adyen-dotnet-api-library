@@ -30,9 +30,9 @@ namespace Adyen.Test
                 var paymentRequest = MockPosApiRequest.CreatePosPaymentRequest();
                 //create a mock client
                 var client = CreateMockTestClientPosLocalApiRequest("mocks/terminalapi/pospayment-encrypted-success.json");
-                var posPaymentLocalApi = new PosPaymentLocalApi(client);
-                var configEndpoint = posPaymentLocalApi.Client.Config.LocalTerminalApiEndpoint;
-                var saleToPoiResponse = posPaymentLocalApi.TerminalApiLocal(paymentRequest, _encryptionCredentialDetails);
+                var terminalLocalApi = new TerminalLocalApi(client);
+                var configEndpoint = terminalLocalApi.Client.Config.LocalTerminalApiEndpoint;
+                var saleToPoiResponse = terminalLocalApi.TerminalRequest(paymentRequest, _encryptionCredentialDetails);
                 Assert.AreEqual(configEndpoint, @"https://_terminal_:8443/nexo/");
                 Assert.IsNotNull(saleToPoiResponse);
             }
@@ -51,9 +51,9 @@ namespace Adyen.Test
                 var paymentRequest = MockPosApiRequest.CreatePosPaymentRequest();
                 //create a mock client
                 var client = CreateMockTestClientPosLocalApiRequest("mocks/terminalapi/pospayment-encrypted-success.json");
-                var posPaymentLocalApi = new PosPaymentLocalApi(client);
-                var configEndpoint = posPaymentLocalApi.Client.Config.LocalTerminalApiEndpoint;
-                var saleToPoiResponse = posPaymentLocalApi.TerminalApiLocalAsync(paymentRequest, _encryptionCredentialDetails);
+                var terminalLocalApi = new TerminalLocalApi(client);
+                var configEndpoint = terminalLocalApi.Client.Config.LocalTerminalApiEndpoint;
+                var saleToPoiResponse = terminalLocalApi.TerminalRequestAsync(paymentRequest, _encryptionCredentialDetails);
                 Assert.AreEqual(configEndpoint, @"https://_terminal_:8443/nexo/");
                 Assert.IsNotNull(saleToPoiResponse);
             }
@@ -72,8 +72,8 @@ namespace Adyen.Test
                 var paymentRequest = MockPosApiRequest.CreatePosPaymentRequest();
                 //create a mock client
                 var client = CreateMockTestClientPosLocalApiRequest("");
-                var posPaymentLocalApi = new PosPaymentLocalApi(client);
-                var saleToPoiResponse = posPaymentLocalApi.TerminalApiLocal(paymentRequest, _encryptionCredentialDetails);
+                var terminalLocalApi = new TerminalLocalApi(client);
+                var saleToPoiResponse = terminalLocalApi.TerminalRequest(paymentRequest, _encryptionCredentialDetails);
                 Assert.IsNull(saleToPoiResponse);
             }
             catch (Exception)
