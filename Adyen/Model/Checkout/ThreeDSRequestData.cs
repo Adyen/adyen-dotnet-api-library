@@ -136,15 +136,15 @@ namespace Adyen.Model.Checkout
         public enum ThreeDSVersionEnum
         {
             /// <summary>
-            /// Enum _10 for value: V_2_1_0
+            /// Enum _10 for value: 2.1.0
             /// </summary>
-            [EnumMember(Value = "V_2_1_0")]
+            [EnumMember(Value = "2.1.0")]
             _10 = 1,
 
             /// <summary>
-            /// Enum _20 for value: V_2_2_0
+            /// Enum _20 for value: 2.2.0
             /// </summary>
-            [EnumMember(Value = "V_2_2_0")]
+            [EnumMember(Value = "2.2.0")]
             _20 = 2
 
         }

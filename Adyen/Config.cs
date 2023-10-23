@@ -21,5 +21,6 @@ namespace Adyen
         public string LocalTerminalApiEndpoint { get; set; }
         public bool HasPassword => !string.IsNullOrEmpty(Password);
         public bool HasApiKey => !string.IsNullOrEmpty(XApiKey);
+        public BaseUrlConfig BaseUrlConfig { get; set; }
     }
 }

@@ -69,10 +69,10 @@ namespace Adyen.Model.LegalEntityManagement
         /// Initializes a new instance of the <see cref="TransferInstrument" /> class.
         /// </summary>
         /// <param name="bankAccount">bankAccount (required).</param>
-        /// <param name="capabilities">List of capabilities for this supporting entity..</param>
+        /// <param name="capabilities">List of capabilities for this transfer instrument..</param>
         /// <param name="documentDetails">List of documents uploaded for the transfer instrument..</param>
         /// <param name="legalEntityId">The unique identifier of the [legal entity](https://docs.adyen.com/api-explorer/legalentity/latest/post/legalEntities#responses-200-id) that owns the transfer instrument. (required).</param>
-        /// <param name="problems">List of the verification errors from capabilities for this supporting entity..</param>
+        /// <param name="problems">The verification errors related to capabilities for this transfer instrument..</param>
         /// <param name="type">The type of transfer instrument.  Possible value: **bankAccount**. (required).</param>
         public TransferInstrument(BankAccountInfo bankAccount = default(BankAccountInfo), Dictionary<string, SupportingEntityCapability> capabilities = default(Dictionary<string, SupportingEntityCapability>), List<DocumentReference> documentDetails = default(List<DocumentReference>), string legalEntityId = default(string), List<CapabilityProblem> problems = default(List<CapabilityProblem>), TypeEnum type = default(TypeEnum))
         {
@@ -91,9 +91,9 @@ namespace Adyen.Model.LegalEntityManagement
         public BankAccountInfo BankAccount { get; set; }
 
         /// <summary>
-        /// List of capabilities for this supporting entity.
+        /// List of capabilities for this transfer instrument.
         /// </summary>
-        /// <value>List of capabilities for this supporting entity.</value>
+        /// <value>List of capabilities for this transfer instrument.</value>
         [DataMember(Name = "capabilities", EmitDefaultValue = false)]
         public Dictionary<string, SupportingEntityCapability> Capabilities { get; set; }
 
@@ -119,9 +119,9 @@ namespace Adyen.Model.LegalEntityManagement
         public string LegalEntityId { get; set; }
 
         /// <summary>
-        /// List of the verification errors from capabilities for this supporting entity.
+        /// The verification errors related to capabilities for this transfer instrument.
         /// </summary>
-        /// <value>List of the verification errors from capabilities for this supporting entity.</value>
+        /// <value>The verification errors related to capabilities for this transfer instrument.</value>
         [DataMember(Name = "problems", EmitDefaultValue = false)]
         public List<CapabilityProblem> Problems { get; set; }
 

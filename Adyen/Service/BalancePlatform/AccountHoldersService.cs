@@ -63,6 +63,27 @@ namespace Adyen.Service.BalancePlatform
         Task<Model.BalancePlatform.PaginatedBalanceAccountsResponse> GetAllBalanceAccountsOfAccountHolderAsync(string id, int? offset = default, int? limit = default, RequestOptions requestOptions = default, CancellationToken cancellationToken = default);
         
         /// <summary>
+        /// Get a tax form
+        /// </summary>
+        /// <param name="id"><see cref="string"/> - The unique identifier of the account holder.</param>
+        /// <param name="formType"><see cref="string"/> - The type of tax form you want to retrieve. Accepted values are **us1099k** and **us1099nec**</param>
+        /// <param name="year"><see cref="int"/> - The tax year in YYYY format for the tax form you want to retrieve</param>
+        /// <param name="requestOptions"><see cref="RequestOptions"/> - Additional request options.</param>
+        /// <returns><see cref="GetTaxFormResponse"/>.</returns>
+        Model.BalancePlatform.GetTaxFormResponse GetTaxForm(string id, string formType, int year, RequestOptions requestOptions = default);
+        
+        /// <summary>
+        /// Get a tax form
+        /// </summary>
+        /// <param name="id"><see cref="string"/> - The unique identifier of the account holder.</param>
+        /// <param name="formType"><see cref="string"/> - The type of tax form you want to retrieve. Accepted values are **us1099k** and **us1099nec**</param>
+        /// <param name="year"><see cref="int"/> - The tax year in YYYY format for the tax form you want to retrieve</param>
+        /// <param name="requestOptions"><see cref="RequestOptions"/> - Additional request options.</param>
+        /// <param name="cancellationToken"> A CancellationToken enables cooperative cancellation between threads, thread pool work items, or Task objects.</param>
+        /// <returns>Task of <see cref="GetTaxFormResponse"/>.</returns>
+        Task<Model.BalancePlatform.GetTaxFormResponse> GetTaxFormAsync(string id, string formType, int year, RequestOptions requestOptions = default, CancellationToken cancellationToken = default);
+        
+        /// <summary>
         /// Update an account holder
         /// </summary>
         /// <param name="id"><see cref="string"/> - The unique identifier of the account holder.</param>
@@ -138,6 +159,22 @@ namespace Adyen.Service.BalancePlatform
             var endpoint = _baseUrl + $"/accountHolders/{id}/balanceAccounts" + ToQueryString(queryParams);
             var resource = new ServiceResource(this, endpoint);
             return await resource.RequestAsync<Model.BalancePlatform.PaginatedBalanceAccountsResponse>(null, requestOptions, new HttpMethod("GET"), cancellationToken).ConfigureAwait(false);
+        }
+        
+        public Model.BalancePlatform.GetTaxFormResponse GetTaxForm(string id, string formType, int year, RequestOptions requestOptions = default)
+        {
+            return GetTaxFormAsync(id, formType, year, requestOptions).ConfigureAwait(false).GetAwaiter().GetResult();
+        }
+
+        public async Task<Model.BalancePlatform.GetTaxFormResponse> GetTaxFormAsync(string id, string formType, int year, RequestOptions requestOptions = default, CancellationToken cancellationToken = default)
+        {
+            // Build the query string
+            var queryParams = new Dictionary<string, string>();
+            queryParams.Add("formType", formType);
+            queryParams.Add("year", year.ToString());
+            var endpoint = _baseUrl + $"/accountHolders/{id}/taxForms" + ToQueryString(queryParams);
+            var resource = new ServiceResource(this, endpoint);
+            return await resource.RequestAsync<Model.BalancePlatform.GetTaxFormResponse>(null, requestOptions, new HttpMethod("GET"), cancellationToken).ConfigureAwait(false);
         }
         
         public Model.BalancePlatform.AccountHolder UpdateAccountHolder(string id, AccountHolderUpdateRequest accountHolderUpdateRequest = default, RequestOptions requestOptions = default)
