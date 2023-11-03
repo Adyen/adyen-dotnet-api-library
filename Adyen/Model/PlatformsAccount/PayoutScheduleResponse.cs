@@ -40,7 +40,7 @@ namespace Adyen.Model.PlatformsAccount
         public enum ScheduleEnum
         {
             /// <summary>
-            /// Enum BIWEEKLYON1STAND15THATMIDNIGHT for value: BIWEEKLY_ON_1ST_AND_15TH_AT_MIDNIGHT
+            /// Enum DEFAULT for value: DEFAULT
             /// </summary>
             [EnumMember(Value = "DEFAULT")]
             DEFAULT = 1,
