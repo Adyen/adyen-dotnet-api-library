@@ -33,7 +33,7 @@ namespace Adyen.Test
             var checkout = new PaymentsService(client);
             checkout.PaymentsAsync(new PaymentRequest()).GetAwaiter();
 
-            ClientInterfaceSubstitute.Received().RequestAsync("https://checkout-test.adyen.com/v70/payments",
+            ClientInterfaceSubstitute.Received().RequestAsync("https://checkout-test.adyen.com/v71/payments",
                 Arg.Any<string>(), null, new HttpMethod("POST"), default);
         }
 
@@ -49,7 +49,7 @@ namespace Adyen.Test
             checkout.PaymentsAsync(new PaymentRequest()).GetAwaiter();
 
             ClientInterfaceSubstitute.Received().RequestAsync(
-                "https://companyUrl-checkout-live.adyenpayments.com/checkout/v70/payments",
+                "https://companyUrl-checkout-live.adyenpayments.com/checkout/v71/payments",
                 Arg.Any<string>(), null, new HttpMethod("POST"), Arg.Any<CancellationToken>());
         }
 
@@ -98,7 +98,7 @@ namespace Adyen.Test
                 });
             var checkout = new PaymentsService(client);
             checkout.PaymentsAsync(new PaymentRequest()).GetAwaiter();
-            ClientInterfaceSubstitute.Received().RequestAsync("https://live-url-checkout-live.adyenpayments.com/checkout/v70/payments",
+            ClientInterfaceSubstitute.Received().RequestAsync("https://live-url-checkout-live.adyenpayments.com/checkout/v71/payments",
                 Arg.Any<string>(), null, new HttpMethod("POST"), default);
         }
 
@@ -117,7 +117,7 @@ namespace Adyen.Test
                 });
             var checkout = new PaymentsService(client);
             checkout.PaymentsAsync(new PaymentRequest()).GetAwaiter();
-            ClientInterfaceSubstitute.Received().RequestAsync("https://live-url-checkout-live.adyenpayments.com/checkout/v70/payments",
+            ClientInterfaceSubstitute.Received().RequestAsync("https://live-url-checkout-live.adyenpayments.com/checkout/v71/payments",
                 Arg.Any<string>(), null, new HttpMethod("POST"), Arg.Any<CancellationToken>());
         }
 
@@ -570,7 +570,7 @@ namespace Adyen.Test
             var paymentLinksResponse = checkout.PaymentLinks(createPaymentLinkRequest);
             Assert.AreEqual(paymentLinksResponse.Url,
                 "https://checkoutshopper-test.adyen.com/checkoutshopper/payByLink.shtml?d=YW1vdW50TWlub3JW...JRA");
-            Assert.AreEqual(paymentLinksResponse.ExpiresAt, "2019-12-17T10:05:29Z");
+            Assert.AreEqual(paymentLinksResponse.ExpiresAt, new DateTime(2019,12,17,10,05,29));
             Assert.AreEqual(paymentLinksResponse.Reference, "YOUR_ORDER_NUMBER");
             Assert.IsNotNull(paymentLinksResponse.Amount);
         }
