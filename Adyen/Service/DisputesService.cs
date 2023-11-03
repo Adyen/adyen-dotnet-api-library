@@ -77,23 +77,6 @@ namespace Adyen.Service
         Task<Model.Disputes.DeleteDefenseDocumentResponse> DeleteDisputeDefenseDocumentAsync(DeleteDefenseDocumentRequest deleteDefenseDocumentRequest = default, RequestOptions requestOptions = default, CancellationToken cancellationToken = default);
         
         /// <summary>
-        /// Download a defense document
-        /// </summary>
-        /// <param name="downloadDefenseDocumentRequest"><see cref="DownloadDefenseDocumentRequest"/> - </param>
-        /// <param name="requestOptions"><see cref="RequestOptions"/> - Additional request options.</param>
-        /// <returns><see cref="DownloadDefenseDocumentResponse"/>.</returns>
-        Model.Disputes.DownloadDefenseDocumentResponse DownloadDisputeDefenseDocument(DownloadDefenseDocumentRequest downloadDefenseDocumentRequest = default, RequestOptions requestOptions = default);
-        
-        /// <summary>
-        /// Download a defense document
-        /// </summary>
-        /// <param name="downloadDefenseDocumentRequest"><see cref="DownloadDefenseDocumentRequest"/> - </param>
-        /// <param name="requestOptions"><see cref="RequestOptions"/> - Additional request options.</param>
-        /// <param name="cancellationToken"> A CancellationToken enables cooperative cancellation between threads, thread pool work items, or Task objects.</param>
-        /// <returns>Task of <see cref="DownloadDefenseDocumentResponse"/>.</returns>
-        Task<Model.Disputes.DownloadDefenseDocumentResponse> DownloadDisputeDefenseDocumentAsync(DownloadDefenseDocumentRequest downloadDefenseDocumentRequest = default, RequestOptions requestOptions = default, CancellationToken cancellationToken = default);
-        
-        /// <summary>
         /// Get applicable defense reasons
         /// </summary>
         /// <param name="defenseReasonsRequest"><see cref="DefenseReasonsRequest"/> - </param>
@@ -175,18 +158,6 @@ namespace Adyen.Service
             var endpoint = _baseUrl + "/deleteDisputeDefenseDocument";
             var resource = new ServiceResource(this, endpoint);
             return await resource.RequestAsync<Model.Disputes.DeleteDefenseDocumentResponse>(deleteDefenseDocumentRequest.ToJson(), requestOptions, new HttpMethod("POST"), cancellationToken).ConfigureAwait(false);
-        }
-        
-        public Model.Disputes.DownloadDefenseDocumentResponse DownloadDisputeDefenseDocument(DownloadDefenseDocumentRequest downloadDefenseDocumentRequest = default, RequestOptions requestOptions = default)
-        {
-            return DownloadDisputeDefenseDocumentAsync(downloadDefenseDocumentRequest, requestOptions).ConfigureAwait(false).GetAwaiter().GetResult();
-        }
-
-        public async Task<Model.Disputes.DownloadDefenseDocumentResponse> DownloadDisputeDefenseDocumentAsync(DownloadDefenseDocumentRequest downloadDefenseDocumentRequest = default, RequestOptions requestOptions = default, CancellationToken cancellationToken = default)
-        {
-            var endpoint = _baseUrl + "/downloadDisputeDefenseDocument";
-            var resource = new ServiceResource(this, endpoint);
-            return await resource.RequestAsync<Model.Disputes.DownloadDefenseDocumentResponse>(downloadDefenseDocumentRequest.ToJson(), requestOptions, new HttpMethod("POST"), cancellationToken).ConfigureAwait(false);
         }
         
         public Model.Disputes.DefenseReasonsResponse RetrieveApplicableDefenseReasons(DefenseReasonsRequest defenseReasonsRequest = default, RequestOptions requestOptions = default)
