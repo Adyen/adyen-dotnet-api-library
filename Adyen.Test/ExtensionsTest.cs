@@ -63,7 +63,7 @@ namespace Adyen.Test
             var service = new PaymentsService(_client);
             service.Donations(new DonationPaymentRequest());
             ClientInterfaceSubstitute.Received().RequestAsync(
-                "https://prefix-checkout-live.adyenpayments.com/checkout/v70/donations",
+                "https://prefix-checkout-live.adyenpayments.com/checkout/v71/donations",
                 Arg.Any<string>(), null, HttpMethod.Post, default);
         }
 
