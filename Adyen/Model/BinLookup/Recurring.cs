@@ -83,7 +83,19 @@ namespace Adyen.Model.BinLookup
             /// Enum MCTOKENSERVICE for value: MCTOKENSERVICE
             /// </summary>
             [EnumMember(Value = "MCTOKENSERVICE")]
-            MCTOKENSERVICE = 2
+            MCTOKENSERVICE = 2,
+
+            /// <summary>
+            /// Enum AMEXTOKENSERVICE for value: AMEXTOKENSERVICE
+            /// </summary>
+            [EnumMember(Value = "AMEXTOKENSERVICE")]
+            AMEXTOKENSERVICE = 3,
+
+            /// <summary>
+            /// Enum TOKENSHARING for value: TOKEN_SHARING
+            /// </summary>
+            [EnumMember(Value = "TOKEN_SHARING")]
+            TOKENSHARING = 4
 
         }
 

@@ -27,11 +27,117 @@ using OpenAPIDateConverter = Adyen.ApiSerialization.OpenAPIDateConverter;
 namespace Adyen.Model.LegalEntityManagement
 {
     /// <summary>
-    /// SoleProprietorship
+    /// Trust
     /// </summary>
-    [DataContract(Name = "SoleProprietorship")]
-    public partial class SoleProprietorship : IEquatable<SoleProprietorship>, IValidatableObject
+    [DataContract(Name = "Trust")]
+    public partial class Trust : IEquatable<Trust>, IValidatableObject
     {
+        /// <summary>
+        /// Type of trust.  Possible values for Australian trusts: **cashManagementTrust**, **corporateUnitTrust**, **deceasedEstate**, **discretionaryInvestmentTrust**, **discretionaryServicesManagementTrust**, **discretionaryTradingTrust**, **firstHomeSaverAccountsTrust**, **fixedTrust**, **fixedUnitTrust**, **hybridTrust**, **listedPublicUnitTrust**, **otherTrust**, **pooledSuperannuationTrust**, **publicTradingTrust**, **unlistedPublicUnitTrust**.
+        /// </summary>
+        /// <value>Type of trust.  Possible values for Australian trusts: **cashManagementTrust**, **corporateUnitTrust**, **deceasedEstate**, **discretionaryInvestmentTrust**, **discretionaryServicesManagementTrust**, **discretionaryTradingTrust**, **firstHomeSaverAccountsTrust**, **fixedTrust**, **fixedUnitTrust**, **hybridTrust**, **listedPublicUnitTrust**, **otherTrust**, **pooledSuperannuationTrust**, **publicTradingTrust**, **unlistedPublicUnitTrust**.</value>
+        [JsonConverter(typeof(StringEnumConverter))]
+        public enum TypeEnum
+        {
+            /// <summary>
+            /// Enum CashManagementTrust for value: cashManagementTrust
+            /// </summary>
+            [EnumMember(Value = "cashManagementTrust")]
+            CashManagementTrust = 1,
+
+            /// <summary>
+            /// Enum CorporateUnitTrust for value: corporateUnitTrust
+            /// </summary>
+            [EnumMember(Value = "corporateUnitTrust")]
+            CorporateUnitTrust = 2,
+
+            /// <summary>
+            /// Enum DeceasedEstate for value: deceasedEstate
+            /// </summary>
+            [EnumMember(Value = "deceasedEstate")]
+            DeceasedEstate = 3,
+
+            /// <summary>
+            /// Enum DiscretionaryInvestmentTrust for value: discretionaryInvestmentTrust
+            /// </summary>
+            [EnumMember(Value = "discretionaryInvestmentTrust")]
+            DiscretionaryInvestmentTrust = 4,
+
+            /// <summary>
+            /// Enum DiscretionaryServicesManagementTrust for value: discretionaryServicesManagementTrust
+            /// </summary>
+            [EnumMember(Value = "discretionaryServicesManagementTrust")]
+            DiscretionaryServicesManagementTrust = 5,
+
+            /// <summary>
+            /// Enum DiscretionaryTradingTrust for value: discretionaryTradingTrust
+            /// </summary>
+            [EnumMember(Value = "discretionaryTradingTrust")]
+            DiscretionaryTradingTrust = 6,
+
+            /// <summary>
+            /// Enum FirstHomeSaverAccountsTrust for value: firstHomeSaverAccountsTrust
+            /// </summary>
+            [EnumMember(Value = "firstHomeSaverAccountsTrust")]
+            FirstHomeSaverAccountsTrust = 7,
+
+            /// <summary>
+            /// Enum FixedTrust for value: fixedTrust
+            /// </summary>
+            [EnumMember(Value = "fixedTrust")]
+            FixedTrust = 8,
+
+            /// <summary>
+            /// Enum FixedUnitTrust for value: fixedUnitTrust
+            /// </summary>
+            [EnumMember(Value = "fixedUnitTrust")]
+            FixedUnitTrust = 9,
+
+            /// <summary>
+            /// Enum HybridTrust for value: hybridTrust
+            /// </summary>
+            [EnumMember(Value = "hybridTrust")]
+            HybridTrust = 10,
+
+            /// <summary>
+            /// Enum ListedPublicUnitTrust for value: listedPublicUnitTrust
+            /// </summary>
+            [EnumMember(Value = "listedPublicUnitTrust")]
+            ListedPublicUnitTrust = 11,
+
+            /// <summary>
+            /// Enum OtherTrust for value: otherTrust
+            /// </summary>
+            [EnumMember(Value = "otherTrust")]
+            OtherTrust = 12,
+
+            /// <summary>
+            /// Enum PooledSuperannuationTrust for value: pooledSuperannuationTrust
+            /// </summary>
+            [EnumMember(Value = "pooledSuperannuationTrust")]
+            PooledSuperannuationTrust = 13,
+
+            /// <summary>
+            /// Enum PublicTradingTrust for value: publicTradingTrust
+            /// </summary>
+            [EnumMember(Value = "publicTradingTrust")]
+            PublicTradingTrust = 14,
+
+            /// <summary>
+            /// Enum UnlistedPublicUnitTrust for value: unlistedPublicUnitTrust
+            /// </summary>
+            [EnumMember(Value = "unlistedPublicUnitTrust")]
+            UnlistedPublicUnitTrust = 15
+
+        }
+
+
+        /// <summary>
+        /// Type of trust.  Possible values for Australian trusts: **cashManagementTrust**, **corporateUnitTrust**, **deceasedEstate**, **discretionaryInvestmentTrust**, **discretionaryServicesManagementTrust**, **discretionaryTradingTrust**, **firstHomeSaverAccountsTrust**, **fixedTrust**, **fixedUnitTrust**, **hybridTrust**, **listedPublicUnitTrust**, **otherTrust**, **pooledSuperannuationTrust**, **publicTradingTrust**, **unlistedPublicUnitTrust**.
+        /// </summary>
+        /// <value>Type of trust.  Possible values for Australian trusts: **cashManagementTrust**, **corporateUnitTrust**, **deceasedEstate**, **discretionaryInvestmentTrust**, **discretionaryServicesManagementTrust**, **discretionaryTradingTrust**, **firstHomeSaverAccountsTrust**, **fixedTrust**, **fixedUnitTrust**, **hybridTrust**, **listedPublicUnitTrust**, **otherTrust**, **pooledSuperannuationTrust**, **publicTradingTrust**, **unlistedPublicUnitTrust**.</value>
+        [DataMember(Name = "type", IsRequired = false, EmitDefaultValue = false)]
+        public TypeEnum Type { get; set; }
         /// <summary>
         /// The reason for not providing a VAT number.  Possible values: **industryExemption**, **belowTaxThreshold**.
         /// </summary>
@@ -61,12 +167,12 @@ namespace Adyen.Model.LegalEntityManagement
         [DataMember(Name = "vatAbsenceReason", EmitDefaultValue = false)]
         public VatAbsenceReasonEnum? VatAbsenceReason { get; set; }
         /// <summary>
-        /// Initializes a new instance of the <see cref="SoleProprietorship" /> class.
+        /// Initializes a new instance of the <see cref="Trust" /> class.
         /// </summary>
         [JsonConstructorAttribute]
-        protected SoleProprietorship() { }
+        protected Trust() { }
         /// <summary>
-        /// Initializes a new instance of the <see cref="SoleProprietorship" /> class.
+        /// Initializes a new instance of the <see cref="Trust" /> class.
         /// </summary>
         /// <param name="countryOfGoverningLaw">The two-character [ISO 3166-1 alpha-2](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2) country code of the governing country. (required).</param>
         /// <param name="dateOfIncorporation">The date when the legal arrangement was incorporated in YYYY-MM-DD format..</param>
@@ -76,18 +182,22 @@ namespace Adyen.Model.LegalEntityManagement
         /// <param name="registeredAddress">registeredAddress (required).</param>
         /// <param name="registrationNumber">The registration number..</param>
         /// <param name="taxInformation">The tax information of the entity..</param>
+        /// <param name="type">Type of trust.  Possible values for Australian trusts: **cashManagementTrust**, **corporateUnitTrust**, **deceasedEstate**, **discretionaryInvestmentTrust**, **discretionaryServicesManagementTrust**, **discretionaryTradingTrust**, **firstHomeSaverAccountsTrust**, **fixedTrust**, **fixedUnitTrust**, **hybridTrust**, **listedPublicUnitTrust**, **otherTrust**, **pooledSuperannuationTrust**, **publicTradingTrust**, **unlistedPublicUnitTrust**. (required).</param>
+        /// <param name="undefinedBeneficiaryInfo">The undefined beneficiary information of the entity..</param>
         /// <param name="vatAbsenceReason">The reason for not providing a VAT number.  Possible values: **industryExemption**, **belowTaxThreshold**..</param>
         /// <param name="vatNumber">The VAT number..</param>
-        public SoleProprietorship(string countryOfGoverningLaw = default(string), string dateOfIncorporation = default(string), string doingBusinessAs = default(string), string name = default(string), Address principalPlaceOfBusiness = default(Address), Address registeredAddress = default(Address), string registrationNumber = default(string), List<TaxInformation> taxInformation = default(List<TaxInformation>), VatAbsenceReasonEnum? vatAbsenceReason = default(VatAbsenceReasonEnum?), string vatNumber = default(string))
+        public Trust(string countryOfGoverningLaw = default(string), string dateOfIncorporation = default(string), string doingBusinessAs = default(string), string name = default(string), Address principalPlaceOfBusiness = default(Address), Address registeredAddress = default(Address), string registrationNumber = default(string), List<TaxInformation> taxInformation = default(List<TaxInformation>), TypeEnum type = default(TypeEnum), List<UndefinedBeneficiary> undefinedBeneficiaryInfo = default(List<UndefinedBeneficiary>), VatAbsenceReasonEnum? vatAbsenceReason = default(VatAbsenceReasonEnum?), string vatNumber = default(string))
         {
             this.CountryOfGoverningLaw = countryOfGoverningLaw;
             this.Name = name;
             this.RegisteredAddress = registeredAddress;
+            this.Type = type;
             this.DateOfIncorporation = dateOfIncorporation;
             this.DoingBusinessAs = doingBusinessAs;
             this.PrincipalPlaceOfBusiness = principalPlaceOfBusiness;
             this.RegistrationNumber = registrationNumber;
             this.TaxInformation = taxInformation;
+            this.UndefinedBeneficiaryInfo = undefinedBeneficiaryInfo;
             this.VatAbsenceReason = vatAbsenceReason;
             this.VatNumber = vatNumber;
         }
@@ -147,6 +257,13 @@ namespace Adyen.Model.LegalEntityManagement
         public List<TaxInformation> TaxInformation { get; set; }
 
         /// <summary>
+        /// The undefined beneficiary information of the entity.
+        /// </summary>
+        /// <value>The undefined beneficiary information of the entity.</value>
+        [DataMember(Name = "undefinedBeneficiaryInfo", EmitDefaultValue = false)]
+        public List<UndefinedBeneficiary> UndefinedBeneficiaryInfo { get; set; }
+
+        /// <summary>
         /// The VAT number.
         /// </summary>
         /// <value>The VAT number.</value>
@@ -160,7 +277,7 @@ namespace Adyen.Model.LegalEntityManagement
         public override string ToString()
         {
             StringBuilder sb = new StringBuilder();
-            sb.Append("class SoleProprietorship {\n");
+            sb.Append("class Trust {\n");
             sb.Append("  CountryOfGoverningLaw: ").Append(CountryOfGoverningLaw).Append("\n");
             sb.Append("  DateOfIncorporation: ").Append(DateOfIncorporation).Append("\n");
             sb.Append("  DoingBusinessAs: ").Append(DoingBusinessAs).Append("\n");
@@ -169,6 +286,8 @@ namespace Adyen.Model.LegalEntityManagement
             sb.Append("  RegisteredAddress: ").Append(RegisteredAddress).Append("\n");
             sb.Append("  RegistrationNumber: ").Append(RegistrationNumber).Append("\n");
             sb.Append("  TaxInformation: ").Append(TaxInformation).Append("\n");
+            sb.Append("  Type: ").Append(Type).Append("\n");
+            sb.Append("  UndefinedBeneficiaryInfo: ").Append(UndefinedBeneficiaryInfo).Append("\n");
             sb.Append("  VatAbsenceReason: ").Append(VatAbsenceReason).Append("\n");
             sb.Append("  VatNumber: ").Append(VatNumber).Append("\n");
             sb.Append("}\n");
@@ -191,15 +310,15 @@ namespace Adyen.Model.LegalEntityManagement
         /// <returns>Boolean</returns>
         public override bool Equals(object input)
         {
-            return this.Equals(input as SoleProprietorship);
+            return this.Equals(input as Trust);
         }
 
         /// <summary>
-        /// Returns true if SoleProprietorship instances are equal
+        /// Returns true if Trust instances are equal
         /// </summary>
-        /// <param name="input">Instance of SoleProprietorship to be compared</param>
+        /// <param name="input">Instance of Trust to be compared</param>
         /// <returns>Boolean</returns>
-        public bool Equals(SoleProprietorship input)
+        public bool Equals(Trust input)
         {
             if (input == null)
             {
@@ -246,6 +365,16 @@ namespace Adyen.Model.LegalEntityManagement
                     this.TaxInformation != null &&
                     input.TaxInformation != null &&
                     this.TaxInformation.SequenceEqual(input.TaxInformation)
+                ) && 
+                (
+                    this.Type == input.Type ||
+                    this.Type.Equals(input.Type)
+                ) && 
+                (
+                    this.UndefinedBeneficiaryInfo == input.UndefinedBeneficiaryInfo ||
+                    this.UndefinedBeneficiaryInfo != null &&
+                    input.UndefinedBeneficiaryInfo != null &&
+                    this.UndefinedBeneficiaryInfo.SequenceEqual(input.UndefinedBeneficiaryInfo)
                 ) && 
                 (
                     this.VatAbsenceReason == input.VatAbsenceReason ||
@@ -298,6 +427,11 @@ namespace Adyen.Model.LegalEntityManagement
                 if (this.TaxInformation != null)
                 {
                     hashCode = (hashCode * 59) + this.TaxInformation.GetHashCode();
+                }
+                hashCode = (hashCode * 59) + this.Type.GetHashCode();
+                if (this.UndefinedBeneficiaryInfo != null)
+                {
+                    hashCode = (hashCode * 59) + this.UndefinedBeneficiaryInfo.GetHashCode();
                 }
                 hashCode = (hashCode * 59) + this.VatAbsenceReason.GetHashCode();
                 if (this.VatNumber != null)

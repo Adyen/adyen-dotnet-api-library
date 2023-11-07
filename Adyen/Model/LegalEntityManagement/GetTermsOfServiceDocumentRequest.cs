@@ -33,9 +33,9 @@ namespace Adyen.Model.LegalEntityManagement
     public partial class GetTermsOfServiceDocumentRequest : IEquatable<GetTermsOfServiceDocumentRequest>, IValidatableObject
     {
         /// <summary>
-        /// The type of Terms of Service.
+        /// The type of Terms of Service.  Possible values: *  **adyenForPlatformsManage** *  **adyenIssuing** *  **adyenForPlatformsAdvanced** *  **adyenCapital** *  **adyenAccount** *  **adyenCard** *  **adyenFranchisee**  
         /// </summary>
-        /// <value>The type of Terms of Service.</value>
+        /// <value>The type of Terms of Service.  Possible values: *  **adyenForPlatformsManage** *  **adyenIssuing** *  **adyenForPlatformsAdvanced** *  **adyenCapital** *  **adyenAccount** *  **adyenCard** *  **adyenFranchisee**  </value>
         [JsonConverter(typeof(StringEnumConverter))]
         public enum TypeEnum
         {
@@ -85,9 +85,9 @@ namespace Adyen.Model.LegalEntityManagement
 
 
         /// <summary>
-        /// The type of Terms of Service.
+        /// The type of Terms of Service.  Possible values: *  **adyenForPlatformsManage** *  **adyenIssuing** *  **adyenForPlatformsAdvanced** *  **adyenCapital** *  **adyenAccount** *  **adyenCard** *  **adyenFranchisee**  
         /// </summary>
-        /// <value>The type of Terms of Service.</value>
+        /// <value>The type of Terms of Service.  Possible values: *  **adyenForPlatformsManage** *  **adyenIssuing** *  **adyenForPlatformsAdvanced** *  **adyenCapital** *  **adyenAccount** *  **adyenCard** *  **adyenFranchisee**  </value>
         [DataMember(Name = "type", IsRequired = false, EmitDefaultValue = false)]
         public TypeEnum Type { get; set; }
         /// <summary>
@@ -99,7 +99,7 @@ namespace Adyen.Model.LegalEntityManagement
         /// Initializes a new instance of the <see cref="GetTermsOfServiceDocumentRequest" /> class.
         /// </summary>
         /// <param name="language">The language to be used for the Terms of Service document, specified by the two-letter [ISO 639-1](https://en.wikipedia.org/wiki/List_of_ISO_639-1_codes) language code. Possible value: **en** for English. (required).</param>
-        /// <param name="type">The type of Terms of Service. (required).</param>
+        /// <param name="type">The type of Terms of Service.  Possible values: *  **adyenForPlatformsManage** *  **adyenIssuing** *  **adyenForPlatformsAdvanced** *  **adyenCapital** *  **adyenAccount** *  **adyenCard** *  **adyenFranchisee**   (required).</param>
         public GetTermsOfServiceDocumentRequest(string language = default(string), TypeEnum type = default(TypeEnum))
         {
             this.Language = language;
