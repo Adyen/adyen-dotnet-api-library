@@ -5,6 +5,7 @@ using System.Runtime.Serialization;
 using Adyen.Model.AcsWebhooks;
 using Adyen.Model.ReportWebhooks;
 using Adyen.Model.ConfigurationWebhooks;
+using Adyen.Model.TransactionWebhooks;
 using Adyen.Model.TransferWebhooks;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
@@ -59,6 +60,10 @@ namespace Adyen.Webhooks
             if (GetTransferNotificationRequest(jsonPayload, out var transferNotificationRequest))
             {
                 return transferNotificationRequest;
+            }
+            if (GetTransactionNotificationRequestV4(jsonPayload, out var transactionNotificationRequestV4))
+            {
+                return transactionNotificationRequestV4;
             }
             throw new JsonReaderException("Could not parse webhook");
         }
@@ -179,6 +184,21 @@ namespace Adyen.Webhooks
             result = null;
             if (!ContainsValue<TransferNotificationRequest.TypeEnum>(jsonPayload)) return false;
             result = JsonConvert.DeserializeObject<TransferNotificationRequest>(jsonPayload);
+            return true;
+        }
+        
+        /// <summary>
+        /// Deserializes <see cref="TransactionNotificationRequestV4"/> from the <paramref name="jsonPayload"/>.
+        /// </summary>
+        /// <param name="jsonPayload">The json payload of the webhook.</param>
+        /// <param name="result"><see cref="TransactionNotificationRequestV4"/>.</param>
+        /// <returns>A return value indicates whether the deserialization succeeded.</returns>
+        /// <exception cref="JsonReaderException">Throws when json is invalid.</exception>
+        public bool GetTransactionNotificationRequestV4(string jsonPayload, out TransactionNotificationRequestV4 result)
+        {
+            result = null;
+            if (!ContainsValue<TransactionNotificationRequestV4.TypeEnum>(jsonPayload)) return false;
+            result = JsonConvert.DeserializeObject<TransactionNotificationRequestV4>(jsonPayload);
             return true;
         }
         

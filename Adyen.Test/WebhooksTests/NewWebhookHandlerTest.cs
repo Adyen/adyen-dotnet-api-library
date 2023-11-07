@@ -1,6 +1,7 @@
 ﻿using System;
 using Adyen.Model.ConfigurationWebhooks;
 using Adyen.Model.ManagementWebhooks;
+using Adyen.Model.TransactionWebhooks;
 using Adyen.Webhooks;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Newtonsoft.Json;
@@ -216,6 +217,48 @@ namespace Adyen.Test.WebhooksTests
             Assert.IsTrue(webhook.Data.Capabilities.TryGetValue("sendToTransferInstrument", out var data));
             Assert.AreEqual(data.RequestedLevel, "notApplicable");
             Assert.AreEqual(data.Requested, true);
+        }
+        
+        [TestMethod]
+        public void Test_TransactionWebhook_V4()
+        {
+            const string jsonPayload = @"{
+                'data': {
+                'id': 'EVJN42272224222B5JB8BRC84N686ZEUR',
+                'amount': {
+                    'value': 7000,
+                    'currency': 'EUR'
+                },
+                'status': 'booked',
+                'transfer': {
+                    'id': 'JN4227222422265',
+                    'reference': 'Split_item_1',
+                },
+                'valueDate': '2023-03-01T00:00:00+02:00',
+                'bookingDate': '2023-02-28T13:30:20+02:00',
+                'creationDate': '2023-02-28T13:30:05+02:00',
+                'accountHolder': {
+                    'id': 'AH00000000000000000000001',
+                    'description': 'Your description for the account holder',
+                    'reference': 'Your reference for the account holder'
+                },
+                'balanceAccount': {
+                    'id': 'BA00000000000000000000001',
+                    'description': 'Your description for the balance account',
+                    'reference': 'Your reference for the balance account'
+                },
+                'balancePlatform': 'YOUR_BALANCE_PLATFORM'
+                },
+                'type': 'balancePlatform.transaction.created',
+                'environment': 'test'
+            }";
+            Assert.IsFalse(_target.GetPaymentNotificationRequest(jsonPayload, out var dummy));
+            var response = _target.GetTransactionNotificationRequestV4(jsonPayload, out var webhook);
+            Assert.IsTrue(response);
+            Assert.AreEqual(webhook.Type, TransactionNotificationRequestV4.TypeEnum.BalancePlatformTransactionCreated);
+            Assert.IsTrue(webhook.Data.ValueDate.Equals(DateTime.Parse("2023-03-01T00:00:00+02:00")));
+            Assert.AreEqual(webhook.Data.BalanceAccount.Id, "BA00000000000000000000001");
+            Assert.AreEqual(webhook.Data.Status, Transaction.StatusEnum.Booked);
         }
     }
 }
