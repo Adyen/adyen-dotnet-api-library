@@ -111,5 +111,51 @@ namespace Adyen.Test
                    "     \"Currency\" : \"EUR\",\r\n               \"RequestedAmount\" : 15.25 \r\n            },\r\n            \"TransactionConditions\" : {}\r\n         },\r\n      " +
                    "   \"PaymentData\" : {\"PaymentType\" : \"Normal\"}\r\n      }\r\n   }\r\n}\r\n";
         }
+        /// <summary>
+        /// Dummy terminal api json api/terminal api request without security trailer set for test
+        /// enviroment
+        /// </summary>
+        /// <returns></returns>
+        public static SaleToPOIRequest CreatePosPaymentRequestEmptySecurityTrailer()
+        {
+            var saleToPoiRequest = new SaleToPOIRequest
+            {
+                MessageHeader = new MessageHeader
+                {
+                    MessageType = MessageType.Request,
+                    MessageClass = MessageClassType.Service,
+                    MessageCategory = MessageCategoryType.Payment,
+                    SaleID = "POSSystemID12345",
+                    POIID = "MX915-284251016",
+                    ServiceID = DateTime.Now.ToString("ddHHmmss")//this should be unique
+                },
+                MessagePayload = new PaymentRequest
+                {
+                    SaleData = new SaleData
+                    {
+                        SaleTransactionID = new TransactionIdentification
+                        {
+                            TransactionID = "PosAuth",
+                            TimeStamp = DateTime.Now
+                        },
+                        TokenRequestedType = TokenRequestedType.Customer,
+                    },
+                    PaymentTransaction = new PaymentTransaction
+                    {
+                        AmountsReq = new AmountsReq
+                        {
+                            Currency = "EUR",
+                            RequestedAmount = 10100
+                        }
+                    },
+                    PaymentData = new PaymentData
+                    {
+                        PaymentType = PaymentType.Normal
+                    }
+                },
+                SecurityTrailer = null
+            };
+            return saleToPoiRequest;
+        }
     }
 }

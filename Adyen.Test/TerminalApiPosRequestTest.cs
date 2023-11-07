@@ -1,4 +1,6 @@
 ﻿using System;
+using Adyen.Model.TerminalApi;
+using Adyen.Model.TerminalApi.Message;
 using Adyen.Security;
 using Adyen.Service;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
@@ -80,6 +82,26 @@ namespace Adyen.Test
             {
                 Assert.Fail();
             }
-        }      
+        }
+        
+        [TestMethod]
+        public void TestTerminalApiRequestEmptySecurityTrailer()
+        {
+            try
+            {
+                var paymentRequest = MockPosApiRequest.CreatePosPaymentRequestEmptySecurityTrailer();
+                //create a mock client
+                var client = CreateMockTestClientPosLocalApiRequest("mocks/terminalapi/pospayment-no-security-trailer.json");
+                var terminalLocalApi = new TerminalLocalApi(client);
+                var configEndpoint = terminalLocalApi.Client.Config.LocalTerminalApiEndpoint;
+                var saleToPoiResponse = terminalLocalApi.TerminalRequest(paymentRequest, _encryptionCredentialDetails);
+                Assert.AreEqual(configEndpoint, @"https://_terminal_:8443/nexo/");
+                Assert.IsNotNull(saleToPoiResponse);
+            }
+            catch (Exception ex)
+            {
+                Assert.Fail();
+            }
+        }
     }
 }
