@@ -33,17 +33,17 @@ namespace Adyen.Model.Management
     public partial class TerminalAssignment : IEquatable<TerminalAssignment>, IValidatableObject
     {
         /// <summary>
-        /// The status of the reassignment. Possible values:   * &#x60;reassignmentInProgress&#x60;: the terminal was boarded and is now scheduled to remove the configuration. Wait for the terminal to synchronize with the Adyen platform.  * &#x60;deployed&#x60;: the terminal is deployed and reassigned.   * &#x60;inventory&#x60;: the terminal is in inventory and cannot process transactions.  
+        /// The status of the reassignment. Possible values:   * &#x60;reassignmentInProgress&#x60;: the terminal was boarded and is now scheduled to remove the configuration. Wait for the terminal to synchronize with the Adyen platform.  * &#x60;deployed&#x60;: the terminal is deployed and reassigned.   * &#x60;inventory&#x60;: the terminal is in inventory and cannot process transactions.   * &#x60;boarded&#x60;: the terminal is boarded to a store, or a merchant account representing a store, and can process transactions.  
         /// </summary>
-        /// <value>The status of the reassignment. Possible values:   * &#x60;reassignmentInProgress&#x60;: the terminal was boarded and is now scheduled to remove the configuration. Wait for the terminal to synchronize with the Adyen platform.  * &#x60;deployed&#x60;: the terminal is deployed and reassigned.   * &#x60;inventory&#x60;: the terminal is in inventory and cannot process transactions.  </value>
+        /// <value>The status of the reassignment. Possible values:   * &#x60;reassignmentInProgress&#x60;: the terminal was boarded and is now scheduled to remove the configuration. Wait for the terminal to synchronize with the Adyen platform.  * &#x60;deployed&#x60;: the terminal is deployed and reassigned.   * &#x60;inventory&#x60;: the terminal is in inventory and cannot process transactions.   * &#x60;boarded&#x60;: the terminal is boarded to a store, or a merchant account representing a store, and can process transactions.  </value>
         [JsonConverter(typeof(StringEnumConverter))]
         public enum StatusEnum
         {
             /// <summary>
-            /// Enum ReassignmentInProgress for value: reassignmentInProgress
+            /// Enum Boarded for value: boarded
             /// </summary>
-            [EnumMember(Value = "reassignmentInProgress")]
-            ReassignmentInProgress = 1,
+            [EnumMember(Value = "boarded")]
+            Boarded = 1,
 
             /// <summary>
             /// Enum Deployed for value: deployed
@@ -55,15 +55,21 @@ namespace Adyen.Model.Management
             /// Enum Inventory for value: inventory
             /// </summary>
             [EnumMember(Value = "inventory")]
-            Inventory = 3
+            Inventory = 3,
+
+            /// <summary>
+            /// Enum ReassignmentInProgress for value: reassignmentInProgress
+            /// </summary>
+            [EnumMember(Value = "reassignmentInProgress")]
+            ReassignmentInProgress = 4
 
         }
 
 
         /// <summary>
-        /// The status of the reassignment. Possible values:   * &#x60;reassignmentInProgress&#x60;: the terminal was boarded and is now scheduled to remove the configuration. Wait for the terminal to synchronize with the Adyen platform.  * &#x60;deployed&#x60;: the terminal is deployed and reassigned.   * &#x60;inventory&#x60;: the terminal is in inventory and cannot process transactions.  
+        /// The status of the reassignment. Possible values:   * &#x60;reassignmentInProgress&#x60;: the terminal was boarded and is now scheduled to remove the configuration. Wait for the terminal to synchronize with the Adyen platform.  * &#x60;deployed&#x60;: the terminal is deployed and reassigned.   * &#x60;inventory&#x60;: the terminal is in inventory and cannot process transactions.   * &#x60;boarded&#x60;: the terminal is boarded to a store, or a merchant account representing a store, and can process transactions.  
         /// </summary>
-        /// <value>The status of the reassignment. Possible values:   * &#x60;reassignmentInProgress&#x60;: the terminal was boarded and is now scheduled to remove the configuration. Wait for the terminal to synchronize with the Adyen platform.  * &#x60;deployed&#x60;: the terminal is deployed and reassigned.   * &#x60;inventory&#x60;: the terminal is in inventory and cannot process transactions.  </value>
+        /// <value>The status of the reassignment. Possible values:   * &#x60;reassignmentInProgress&#x60;: the terminal was boarded and is now scheduled to remove the configuration. Wait for the terminal to synchronize with the Adyen platform.  * &#x60;deployed&#x60;: the terminal is deployed and reassigned.   * &#x60;inventory&#x60;: the terminal is in inventory and cannot process transactions.   * &#x60;boarded&#x60;: the terminal is boarded to a store, or a merchant account representing a store, and can process transactions.  </value>
         [DataMember(Name = "status", IsRequired = false, EmitDefaultValue = false)]
         public StatusEnum Status { get; set; }
         /// <summary>
@@ -77,7 +83,7 @@ namespace Adyen.Model.Management
         /// <param name="companyId">The unique identifier of the company account to which terminal is assigned. (required).</param>
         /// <param name="merchantId">The unique identifier of the merchant account to which terminal is assigned..</param>
         /// <param name="reassignmentTarget">reassignmentTarget.</param>
-        /// <param name="status">The status of the reassignment. Possible values:   * &#x60;reassignmentInProgress&#x60;: the terminal was boarded and is now scheduled to remove the configuration. Wait for the terminal to synchronize with the Adyen platform.  * &#x60;deployed&#x60;: the terminal is deployed and reassigned.   * &#x60;inventory&#x60;: the terminal is in inventory and cannot process transactions.   (required).</param>
+        /// <param name="status">The status of the reassignment. Possible values:   * &#x60;reassignmentInProgress&#x60;: the terminal was boarded and is now scheduled to remove the configuration. Wait for the terminal to synchronize with the Adyen platform.  * &#x60;deployed&#x60;: the terminal is deployed and reassigned.   * &#x60;inventory&#x60;: the terminal is in inventory and cannot process transactions.   * &#x60;boarded&#x60;: the terminal is boarded to a store, or a merchant account representing a store, and can process transactions.   (required).</param>
         /// <param name="storeId">The unique identifier of the store to which terminal is assigned..</param>
         public TerminalAssignment(string companyId = default(string), string merchantId = default(string), TerminalReassignmentTarget reassignmentTarget = default(TerminalReassignmentTarget), StatusEnum status = default(StatusEnum), string storeId = default(string))
         {

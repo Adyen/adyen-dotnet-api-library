@@ -92,7 +92,6 @@ namespace Adyen.Model.LegalEntityManagement
         /// </summary>
         /// <value>The expiry date of the document, in YYYY-MM-DD format.</value>
         [DataMember(Name = "expiryDate", EmitDefaultValue = false)]
-        [Obsolete]
         public string ExpiryDate { get; set; }
 
         /// <summary>

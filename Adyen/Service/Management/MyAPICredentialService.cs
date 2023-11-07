@@ -104,19 +104,19 @@ namespace Adyen.Service.Management
         Task<Model.Management.AllowedOrigin> AddAllowedOriginAsync(CreateAllowedOriginRequest createAllowedOriginRequest = default, RequestOptions requestOptions = default, CancellationToken cancellationToken = default);
         
         /// <summary>
-        /// Generate new client key for self
+        /// Generate a client key
         /// </summary>
         /// <param name="requestOptions"><see cref="RequestOptions"/> - Additional request options.</param>
         /// <returns><see cref="GenerateClientKeyResponse"/>.</returns>
-        Model.Management.GenerateClientKeyResponse GenerateNewClientKeyForSelf(RequestOptions requestOptions = default);
+        Model.Management.GenerateClientKeyResponse GenerateClientKey(RequestOptions requestOptions = default);
         
         /// <summary>
-        /// Generate new client key for self
+        /// Generate a client key
         /// </summary>
         /// <param name="requestOptions"><see cref="RequestOptions"/> - Additional request options.</param>
         /// <param name="cancellationToken"> A CancellationToken enables cooperative cancellation between threads, thread pool work items, or Task objects.</param>
         /// <returns>Task of <see cref="GenerateClientKeyResponse"/>.</returns>
-        Task<Model.Management.GenerateClientKeyResponse> GenerateNewClientKeyForSelfAsync(RequestOptions requestOptions = default, CancellationToken cancellationToken = default);
+        Task<Model.Management.GenerateClientKeyResponse> GenerateClientKeyAsync(RequestOptions requestOptions = default, CancellationToken cancellationToken = default);
         
     }
     
@@ -192,12 +192,12 @@ namespace Adyen.Service.Management
             return await resource.RequestAsync<Model.Management.AllowedOrigin>(createAllowedOriginRequest.ToJson(), requestOptions, new HttpMethod("POST"), cancellationToken).ConfigureAwait(false);
         }
         
-        public Model.Management.GenerateClientKeyResponse GenerateNewClientKeyForSelf(RequestOptions requestOptions = default)
+        public Model.Management.GenerateClientKeyResponse GenerateClientKey(RequestOptions requestOptions = default)
         {
-            return GenerateNewClientKeyForSelfAsync(requestOptions).ConfigureAwait(false).GetAwaiter().GetResult();
+            return GenerateClientKeyAsync(requestOptions).ConfigureAwait(false).GetAwaiter().GetResult();
         }
 
-        public async Task<Model.Management.GenerateClientKeyResponse> GenerateNewClientKeyForSelfAsync(RequestOptions requestOptions = default, CancellationToken cancellationToken = default)
+        public async Task<Model.Management.GenerateClientKeyResponse> GenerateClientKeyAsync(RequestOptions requestOptions = default, CancellationToken cancellationToken = default)
         {
             var endpoint = _baseUrl + "/me/generateClientKey";
             var resource = new ServiceResource(this, endpoint);

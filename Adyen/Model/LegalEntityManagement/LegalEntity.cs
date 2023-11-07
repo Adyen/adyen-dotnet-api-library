@@ -33,9 +33,9 @@ namespace Adyen.Model.LegalEntityManagement
     public partial class LegalEntity : IEquatable<LegalEntity>, IValidatableObject
     {
         /// <summary>
-        /// The type of legal entity.   Possible values: **individual**, **organization**, or **soleProprietorship**.
+        /// The type of legal entity.  Possible values: **individual**, **organization**, **soleProprietorship**, or **trust**.
         /// </summary>
-        /// <value>The type of legal entity.   Possible values: **individual**, **organization**, or **soleProprietorship**.</value>
+        /// <value>The type of legal entity.  Possible values: **individual**, **organization**, **soleProprietorship**, or **trust**.</value>
         [JsonConverter(typeof(StringEnumConverter))]
         public enum TypeEnum
         {
@@ -73,9 +73,9 @@ namespace Adyen.Model.LegalEntityManagement
 
 
         /// <summary>
-        /// The type of legal entity.   Possible values: **individual**, **organization**, or **soleProprietorship**.
+        /// The type of legal entity.  Possible values: **individual**, **organization**, **soleProprietorship**, or **trust**.
         /// </summary>
-        /// <value>The type of legal entity.   Possible values: **individual**, **organization**, or **soleProprietorship**.</value>
+        /// <value>The type of legal entity.  Possible values: **individual**, **organization**, **soleProprietorship**, or **trust**.</value>
         [DataMember(Name = "type", EmitDefaultValue = false)]
         public TypeEnum? Type { get; set; }
         /// <summary>
@@ -94,8 +94,9 @@ namespace Adyen.Model.LegalEntityManagement
         /// <param name="problems">List of verification errors related to capabilities for the legal entity..</param>
         /// <param name="reference">Your reference for the legal entity, maximum 150 characters..</param>
         /// <param name="soleProprietorship">soleProprietorship.</param>
-        /// <param name="type">The type of legal entity.   Possible values: **individual**, **organization**, or **soleProprietorship**..</param>
-        public LegalEntity(List<DocumentReference> documentDetails = default(List<DocumentReference>), List<EntityReference> documents = default(List<EntityReference>), List<LegalEntityAssociation> entityAssociations = default(List<LegalEntityAssociation>), Individual individual = default(Individual), Organization organization = default(Organization), List<CapabilityProblem> problems = default(List<CapabilityProblem>), string reference = default(string), SoleProprietorship soleProprietorship = default(SoleProprietorship), TypeEnum? type = default(TypeEnum?))
+        /// <param name="trust">trust.</param>
+        /// <param name="type">The type of legal entity.  Possible values: **individual**, **organization**, **soleProprietorship**, or **trust**..</param>
+        public LegalEntity(List<DocumentReference> documentDetails = default(List<DocumentReference>), List<EntityReference> documents = default(List<EntityReference>), List<LegalEntityAssociation> entityAssociations = default(List<LegalEntityAssociation>), Individual individual = default(Individual), Organization organization = default(Organization), List<CapabilityProblem> problems = default(List<CapabilityProblem>), string reference = default(string), SoleProprietorship soleProprietorship = default(SoleProprietorship), Trust trust = default(Trust), TypeEnum? type = default(TypeEnum?))
         {
             this.DocumentDetails = documentDetails;
             this.Documents = documents;
@@ -105,6 +106,7 @@ namespace Adyen.Model.LegalEntityManagement
             this.Problems = problems;
             this.Reference = reference;
             this.SoleProprietorship = soleProprietorship;
+            this.Trust = trust;
             this.Type = type;
         }
 
@@ -184,6 +186,12 @@ namespace Adyen.Model.LegalEntityManagement
         public List<TransferInstrumentReference> TransferInstruments { get; private set; }
 
         /// <summary>
+        /// Gets or Sets Trust
+        /// </summary>
+        [DataMember(Name = "trust", EmitDefaultValue = false)]
+        public Trust Trust { get; set; }
+
+        /// <summary>
         /// List of verification deadlines and the capabilities that will be disallowed if verification errors are not resolved.
         /// </summary>
         /// <value>List of verification deadlines and the capabilities that will be disallowed if verification errors are not resolved.</value>
@@ -209,6 +217,7 @@ namespace Adyen.Model.LegalEntityManagement
             sb.Append("  Reference: ").Append(Reference).Append("\n");
             sb.Append("  SoleProprietorship: ").Append(SoleProprietorship).Append("\n");
             sb.Append("  TransferInstruments: ").Append(TransferInstruments).Append("\n");
+            sb.Append("  Trust: ").Append(Trust).Append("\n");
             sb.Append("  Type: ").Append(Type).Append("\n");
             sb.Append("  VerificationDeadlines: ").Append(VerificationDeadlines).Append("\n");
             sb.Append("}\n");
@@ -308,6 +317,11 @@ namespace Adyen.Model.LegalEntityManagement
                     this.TransferInstruments.SequenceEqual(input.TransferInstruments)
                 ) && 
                 (
+                    this.Trust == input.Trust ||
+                    (this.Trust != null &&
+                    this.Trust.Equals(input.Trust))
+                ) && 
+                (
                     this.Type == input.Type ||
                     this.Type.Equals(input.Type)
                 ) && 
@@ -371,6 +385,10 @@ namespace Adyen.Model.LegalEntityManagement
                 if (this.TransferInstruments != null)
                 {
                     hashCode = (hashCode * 59) + this.TransferInstruments.GetHashCode();
+                }
+                if (this.Trust != null)
+                {
+                    hashCode = (hashCode * 59) + this.Trust.GetHashCode();
                 }
                 hashCode = (hashCode * 59) + this.Type.GetHashCode();
                 if (this.VerificationDeadlines != null)

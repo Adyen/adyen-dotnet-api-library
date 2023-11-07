@@ -33,9 +33,9 @@ namespace Adyen.Model.LegalEntityManagement
     public partial class TermsOfServiceAcceptanceInfo : IEquatable<TermsOfServiceAcceptanceInfo>, IValidatableObject
     {
         /// <summary>
-        /// The type of Terms of Service.
+        /// The type of Terms of Service.  Possible values: *  **adyenForPlatformsManage** *  **adyenIssuing** *  **adyenForPlatformsAdvanced** *  **adyenCapital** *  **adyenAccount** *  **adyenCard** *  **adyenFranchisee**  
         /// </summary>
-        /// <value>The type of Terms of Service.</value>
+        /// <value>The type of Terms of Service.  Possible values: *  **adyenForPlatformsManage** *  **adyenIssuing** *  **adyenForPlatformsAdvanced** *  **adyenCapital** *  **adyenAccount** *  **adyenCard** *  **adyenFranchisee**  </value>
         [JsonConverter(typeof(StringEnumConverter))]
         public enum TypeEnum
         {
@@ -85,9 +85,9 @@ namespace Adyen.Model.LegalEntityManagement
 
 
         /// <summary>
-        /// The type of Terms of Service.
+        /// The type of Terms of Service.  Possible values: *  **adyenForPlatformsManage** *  **adyenIssuing** *  **adyenForPlatformsAdvanced** *  **adyenCapital** *  **adyenAccount** *  **adyenCard** *  **adyenFranchisee**  
         /// </summary>
-        /// <value>The type of Terms of Service.</value>
+        /// <value>The type of Terms of Service.  Possible values: *  **adyenForPlatformsManage** *  **adyenIssuing** *  **adyenForPlatformsAdvanced** *  **adyenCapital** *  **adyenAccount** *  **adyenCard** *  **adyenFranchisee**  </value>
         [DataMember(Name = "type", EmitDefaultValue = false)]
         public TypeEnum? Type { get; set; }
         /// <summary>
@@ -97,7 +97,7 @@ namespace Adyen.Model.LegalEntityManagement
         /// <param name="acceptedFor">The unique identifier of the legal entity for which the Terms of Service are accepted..</param>
         /// <param name="createdAt">The date when the Terms of Service were accepted..</param>
         /// <param name="id">An Adyen-generated reference for the accepted Terms of Service..</param>
-        /// <param name="type">The type of Terms of Service..</param>
+        /// <param name="type">The type of Terms of Service.  Possible values: *  **adyenForPlatformsManage** *  **adyenIssuing** *  **adyenForPlatformsAdvanced** *  **adyenCapital** *  **adyenAccount** *  **adyenCard** *  **adyenFranchisee**  .</param>
         public TermsOfServiceAcceptanceInfo(string acceptedBy = default(string), string acceptedFor = default(string), DateTime createdAt = default(DateTime), string id = default(string), TypeEnum? type = default(TypeEnum?))
         {
             this.AcceptedBy = acceptedBy;

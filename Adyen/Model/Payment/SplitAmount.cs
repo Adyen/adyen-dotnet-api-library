@@ -40,8 +40,8 @@ namespace Adyen.Model.Payment
         /// <summary>
         /// Initializes a new instance of the <see cref="SplitAmount" /> class.
         /// </summary>
-        /// <param name="currency">The three-character [ISO currency code](https://docs.adyen.com/development-resources/currency-codes).  If this value is not provided, the currency in which the payment is made will be used..</param>
-        /// <param name="value">The amount in [minor units](https://docs.adyen.com/development-resources/currency-codes). (required).</param>
+        /// <param name="currency">The three-character [ISO currency code](https://docs.adyen.com/development-resources/currency-codes). By default, this is the original payment currency..</param>
+        /// <param name="value">The value of the split amount, in [minor units](https://docs.adyen.com/development-resources/currency-codes). (required).</param>
         public SplitAmount(string currency = default(string), long? value = default(long?))
         {
             this.Value = value;
@@ -49,16 +49,16 @@ namespace Adyen.Model.Payment
         }
 
         /// <summary>
-        /// The three-character [ISO currency code](https://docs.adyen.com/development-resources/currency-codes).  If this value is not provided, the currency in which the payment is made will be used.
+        /// The three-character [ISO currency code](https://docs.adyen.com/development-resources/currency-codes). By default, this is the original payment currency.
         /// </summary>
-        /// <value>The three-character [ISO currency code](https://docs.adyen.com/development-resources/currency-codes).  If this value is not provided, the currency in which the payment is made will be used.</value>
+        /// <value>The three-character [ISO currency code](https://docs.adyen.com/development-resources/currency-codes). By default, this is the original payment currency.</value>
         [DataMember(Name = "currency", EmitDefaultValue = false)]
         public string Currency { get; set; }
 
         /// <summary>
-        /// The amount in [minor units](https://docs.adyen.com/development-resources/currency-codes).
+        /// The value of the split amount, in [minor units](https://docs.adyen.com/development-resources/currency-codes).
         /// </summary>
-        /// <value>The amount in [minor units](https://docs.adyen.com/development-resources/currency-codes).</value>
+        /// <value>The value of the split amount, in [minor units](https://docs.adyen.com/development-resources/currency-codes).</value>
         [DataMember(Name = "value", IsRequired = false, EmitDefaultValue = false)]
         public long? Value { get; set; }
 
