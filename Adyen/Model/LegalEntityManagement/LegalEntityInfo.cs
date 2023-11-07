@@ -33,9 +33,9 @@ namespace Adyen.Model.LegalEntityManagement
     public partial class LegalEntityInfo : IEquatable<LegalEntityInfo>, IValidatableObject
     {
         /// <summary>
-        /// The type of legal entity.   Possible values: **individual**, **organization**, or **soleProprietorship**.
+        /// The type of legal entity.  Possible values: **individual**, **organization**, **soleProprietorship**, or **trust**.
         /// </summary>
-        /// <value>The type of legal entity.   Possible values: **individual**, **organization**, or **soleProprietorship**.</value>
+        /// <value>The type of legal entity.  Possible values: **individual**, **organization**, **soleProprietorship**, or **trust**.</value>
         [JsonConverter(typeof(StringEnumConverter))]
         public enum TypeEnum
         {
@@ -73,9 +73,9 @@ namespace Adyen.Model.LegalEntityManagement
 
 
         /// <summary>
-        /// The type of legal entity.   Possible values: **individual**, **organization**, or **soleProprietorship**.
+        /// The type of legal entity.  Possible values: **individual**, **organization**, **soleProprietorship**, or **trust**.
         /// </summary>
-        /// <value>The type of legal entity.   Possible values: **individual**, **organization**, or **soleProprietorship**.</value>
+        /// <value>The type of legal entity.  Possible values: **individual**, **organization**, **soleProprietorship**, or **trust**.</value>
         [DataMember(Name = "type", EmitDefaultValue = false)]
         public TypeEnum? Type { get; set; }
         /// <summary>
@@ -86,14 +86,16 @@ namespace Adyen.Model.LegalEntityManagement
         /// <param name="organization">organization.</param>
         /// <param name="reference">Your reference for the legal entity, maximum 150 characters..</param>
         /// <param name="soleProprietorship">soleProprietorship.</param>
-        /// <param name="type">The type of legal entity.   Possible values: **individual**, **organization**, or **soleProprietorship**..</param>
-        public LegalEntityInfo(List<LegalEntityAssociation> entityAssociations = default(List<LegalEntityAssociation>), Individual individual = default(Individual), Organization organization = default(Organization), string reference = default(string), SoleProprietorship soleProprietorship = default(SoleProprietorship), TypeEnum? type = default(TypeEnum?))
+        /// <param name="trust">trust.</param>
+        /// <param name="type">The type of legal entity.  Possible values: **individual**, **organization**, **soleProprietorship**, or **trust**..</param>
+        public LegalEntityInfo(List<LegalEntityAssociation> entityAssociations = default(List<LegalEntityAssociation>), Individual individual = default(Individual), Organization organization = default(Organization), string reference = default(string), SoleProprietorship soleProprietorship = default(SoleProprietorship), Trust trust = default(Trust), TypeEnum? type = default(TypeEnum?))
         {
             this.EntityAssociations = entityAssociations;
             this.Individual = individual;
             this.Organization = organization;
             this.Reference = reference;
             this.SoleProprietorship = soleProprietorship;
+            this.Trust = trust;
             this.Type = type;
         }
 
@@ -137,6 +139,12 @@ namespace Adyen.Model.LegalEntityManagement
         public SoleProprietorship SoleProprietorship { get; set; }
 
         /// <summary>
+        /// Gets or Sets Trust
+        /// </summary>
+        [DataMember(Name = "trust", EmitDefaultValue = false)]
+        public Trust Trust { get; set; }
+
+        /// <summary>
         /// Returns the string presentation of the object
         /// </summary>
         /// <returns>String presentation of the object</returns>
@@ -150,6 +158,7 @@ namespace Adyen.Model.LegalEntityManagement
             sb.Append("  Organization: ").Append(Organization).Append("\n");
             sb.Append("  Reference: ").Append(Reference).Append("\n");
             sb.Append("  SoleProprietorship: ").Append(SoleProprietorship).Append("\n");
+            sb.Append("  Trust: ").Append(Trust).Append("\n");
             sb.Append("  Type: ").Append(Type).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
@@ -219,6 +228,11 @@ namespace Adyen.Model.LegalEntityManagement
                     this.SoleProprietorship.Equals(input.SoleProprietorship))
                 ) && 
                 (
+                    this.Trust == input.Trust ||
+                    (this.Trust != null &&
+                    this.Trust.Equals(input.Trust))
+                ) && 
+                (
                     this.Type == input.Type ||
                     this.Type.Equals(input.Type)
                 );
@@ -256,6 +270,10 @@ namespace Adyen.Model.LegalEntityManagement
                 if (this.SoleProprietorship != null)
                 {
                     hashCode = (hashCode * 59) + this.SoleProprietorship.GetHashCode();
+                }
+                if (this.Trust != null)
+                {
+                    hashCode = (hashCode * 59) + this.Trust.GetHashCode();
                 }
                 hashCode = (hashCode * 59) + this.Type.GetHashCode();
                 return hashCode;

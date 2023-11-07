@@ -33,15 +33,6 @@ namespace Adyen.Test
             var response = disputes.DeleteDisputeDefenseDocument(new DeleteDefenseDocumentRequest());
             Assert.IsTrue(response.DisputeServiceResult.Success);
         }
-
-        [TestMethod]
-        public void DownloadDisputesDefenceDocumentSuccess()
-        {
-            var client = CreateMockTestClientApiKeyBasedRequestAsync("mocks/disputes/download-defense-document.json");
-            var disputes = new DisputesService(client);
-            var response = disputes.DownloadDisputeDefenseDocument(new DownloadDefenseDocumentRequest());
-            Assert.IsTrue(response.DisputeServiceResult.Success);
-        }
         
         [TestMethod]
         public void RetrieveApplicableDefenseReasonsSuccess()

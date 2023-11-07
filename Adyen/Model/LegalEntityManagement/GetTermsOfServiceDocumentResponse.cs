@@ -33,9 +33,9 @@ namespace Adyen.Model.LegalEntityManagement
     public partial class GetTermsOfServiceDocumentResponse : IEquatable<GetTermsOfServiceDocumentResponse>, IValidatableObject
     {
         /// <summary>
-        /// The type of Terms of Service.
+        /// The type of Terms of Service.  Possible values: *  **adyenForPlatformsManage** *  **adyenIssuing** *  **adyenForPlatformsAdvanced** *  **adyenCapital** *  **adyenAccount** *  **adyenCard** *  **adyenFranchisee**  
         /// </summary>
-        /// <value>The type of Terms of Service.</value>
+        /// <value>The type of Terms of Service.  Possible values: *  **adyenForPlatformsManage** *  **adyenIssuing** *  **adyenForPlatformsAdvanced** *  **adyenCapital** *  **adyenAccount** *  **adyenCard** *  **adyenFranchisee**  </value>
         [JsonConverter(typeof(StringEnumConverter))]
         public enum TypeEnum
         {
@@ -85,9 +85,9 @@ namespace Adyen.Model.LegalEntityManagement
 
 
         /// <summary>
-        /// The type of Terms of Service.
+        /// The type of Terms of Service.  Possible values: *  **adyenForPlatformsManage** *  **adyenIssuing** *  **adyenForPlatformsAdvanced** *  **adyenCapital** *  **adyenAccount** *  **adyenCard** *  **adyenFranchisee**  
         /// </summary>
-        /// <value>The type of Terms of Service.</value>
+        /// <value>The type of Terms of Service.  Possible values: *  **adyenForPlatformsManage** *  **adyenIssuing** *  **adyenForPlatformsAdvanced** *  **adyenCapital** *  **adyenAccount** *  **adyenCard** *  **adyenFranchisee**  </value>
         [DataMember(Name = "type", EmitDefaultValue = false)]
         public TypeEnum? Type { get; set; }
         /// <summary>
@@ -97,7 +97,7 @@ namespace Adyen.Model.LegalEntityManagement
         /// <param name="id">The unique identifier of the legal entity..</param>
         /// <param name="language">The language used for the Terms of Service document, specified by the two-letter [ISO 639-1](https://en.wikipedia.org/wiki/List_of_ISO_639-1_codes) language code. Possible value: **en** for English..</param>
         /// <param name="termsOfServiceDocumentId">The unique identifier of the Terms of Service document..</param>
-        /// <param name="type">The type of Terms of Service..</param>
+        /// <param name="type">The type of Terms of Service.  Possible values: *  **adyenForPlatformsManage** *  **adyenIssuing** *  **adyenForPlatformsAdvanced** *  **adyenCapital** *  **adyenAccount** *  **adyenCard** *  **adyenFranchisee**  .</param>
         public GetTermsOfServiceDocumentResponse(byte[] document = default(byte[]), string id = default(string), string language = default(string), string termsOfServiceDocumentId = default(string), TypeEnum? type = default(TypeEnum?))
         {
             this.Document = document;

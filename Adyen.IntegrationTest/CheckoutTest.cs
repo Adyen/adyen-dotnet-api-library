@@ -133,7 +133,7 @@ namespace Adyen.IntegrationTest
                 ShopperEmail = "test@shopperEmail.com",
                 BillingAddress = address,
                 DeliveryAddress = address,
-                ExpiresAt = DateTime.Now.AddHours(4).ToString("yyyy-MM-ddTHH:mm:ss")
+                ExpiresAt = DateTime.Now.AddHours(4)
             };
             var createPaymentLinkResponse = _paymentLinksService.PaymentLinks(createPaymentLinkRequest);
             PaymentLinksGetSuccessTest(createPaymentLinkResponse.Id);

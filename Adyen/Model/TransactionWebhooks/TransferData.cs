@@ -1,5 +1,5 @@
 /*
-* Transfers API
+* Transaction webhooks
 *
 *
 * The version of the OpenAPI document: 4
@@ -24,36 +24,43 @@ using Newtonsoft.Json.Linq;
 using System.ComponentModel.DataAnnotations;
 using OpenAPIDateConverter = Adyen.ApiSerialization.OpenAPIDateConverter;
 
-namespace Adyen.Model.Transfers
+namespace Adyen.Model.TransactionWebhooks
 {
     /// <summary>
-    /// JSONObject
+    /// TransferData
     /// </summary>
-    [DataContract(Name = "JSONObject")]
-    public partial class JSONObject : IEquatable<JSONObject>, IValidatableObject
+    [DataContract(Name = "TransferData")]
+    public partial class TransferData : IEquatable<TransferData>, IValidatableObject
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="JSONObject" /> class.
+        /// Initializes a new instance of the <see cref="TransferData" /> class.
         /// </summary>
-        /// <param name="paths">paths.</param>
-        /// <param name="rootPath">rootPath.</param>
-        public JSONObject(List<JSONPath> paths = default(List<JSONPath>), JSONPath rootPath = default(JSONPath))
+        [JsonConstructorAttribute]
+        protected TransferData() { }
+        /// <summary>
+        /// Initializes a new instance of the <see cref="TransferData" /> class.
+        /// </summary>
+        /// <param name="id">The ID of the resource..</param>
+        /// <param name="reference">The [&#x60;reference&#x60;](https://docs.adyen.com/api-explorer/#/transfers/latest/post/transfers__reqParam_reference) from the &#x60;/transfers&#x60; request. If you haven&#39;t provided any, Adyen generates a unique reference. (required).</param>
+        public TransferData(string id = default(string), string reference = default(string))
         {
-            this.Paths = paths;
-            this.RootPath = rootPath;
+            this.Reference = reference;
+            this.Id = id;
         }
 
         /// <summary>
-        /// Gets or Sets Paths
+        /// The ID of the resource.
         /// </summary>
-        [DataMember(Name = "paths", EmitDefaultValue = false)]
-        public List<JSONPath> Paths { get; set; }
+        /// <value>The ID of the resource.</value>
+        [DataMember(Name = "id", EmitDefaultValue = false)]
+        public string Id { get; set; }
 
         /// <summary>
-        /// Gets or Sets RootPath
+        /// The [&#x60;reference&#x60;](https://docs.adyen.com/api-explorer/#/transfers/latest/post/transfers__reqParam_reference) from the &#x60;/transfers&#x60; request. If you haven&#39;t provided any, Adyen generates a unique reference.
         /// </summary>
-        [DataMember(Name = "rootPath", EmitDefaultValue = false)]
-        public JSONPath RootPath { get; set; }
+        /// <value>The [&#x60;reference&#x60;](https://docs.adyen.com/api-explorer/#/transfers/latest/post/transfers__reqParam_reference) from the &#x60;/transfers&#x60; request. If you haven&#39;t provided any, Adyen generates a unique reference.</value>
+        [DataMember(Name = "reference", IsRequired = false, EmitDefaultValue = false)]
+        public string Reference { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -62,9 +69,9 @@ namespace Adyen.Model.Transfers
         public override string ToString()
         {
             StringBuilder sb = new StringBuilder();
-            sb.Append("class JSONObject {\n");
-            sb.Append("  Paths: ").Append(Paths).Append("\n");
-            sb.Append("  RootPath: ").Append(RootPath).Append("\n");
+            sb.Append("class TransferData {\n");
+            sb.Append("  Id: ").Append(Id).Append("\n");
+            sb.Append("  Reference: ").Append(Reference).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -85,15 +92,15 @@ namespace Adyen.Model.Transfers
         /// <returns>Boolean</returns>
         public override bool Equals(object input)
         {
-            return this.Equals(input as JSONObject);
+            return this.Equals(input as TransferData);
         }
 
         /// <summary>
-        /// Returns true if JSONObject instances are equal
+        /// Returns true if TransferData instances are equal
         /// </summary>
-        /// <param name="input">Instance of JSONObject to be compared</param>
+        /// <param name="input">Instance of TransferData to be compared</param>
         /// <returns>Boolean</returns>
-        public bool Equals(JSONObject input)
+        public bool Equals(TransferData input)
         {
             if (input == null)
             {
@@ -101,15 +108,14 @@ namespace Adyen.Model.Transfers
             }
             return 
                 (
-                    this.Paths == input.Paths ||
-                    this.Paths != null &&
-                    input.Paths != null &&
-                    this.Paths.SequenceEqual(input.Paths)
+                    this.Id == input.Id ||
+                    (this.Id != null &&
+                    this.Id.Equals(input.Id))
                 ) && 
                 (
-                    this.RootPath == input.RootPath ||
-                    (this.RootPath != null &&
-                    this.RootPath.Equals(input.RootPath))
+                    this.Reference == input.Reference ||
+                    (this.Reference != null &&
+                    this.Reference.Equals(input.Reference))
                 );
         }
 
@@ -122,13 +128,13 @@ namespace Adyen.Model.Transfers
             unchecked // Overflow is fine, just wrap
             {
                 int hashCode = 41;
-                if (this.Paths != null)
+                if (this.Id != null)
                 {
-                    hashCode = (hashCode * 59) + this.Paths.GetHashCode();
+                    hashCode = (hashCode * 59) + this.Id.GetHashCode();
                 }
-                if (this.RootPath != null)
+                if (this.Reference != null)
                 {
-                    hashCode = (hashCode * 59) + this.RootPath.GetHashCode();
+                    hashCode = (hashCode * 59) + this.Reference.GetHashCode();
                 }
                 return hashCode;
             }

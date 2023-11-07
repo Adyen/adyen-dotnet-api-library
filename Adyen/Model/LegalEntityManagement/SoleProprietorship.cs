@@ -75,9 +75,10 @@ namespace Adyen.Model.LegalEntityManagement
         /// <param name="principalPlaceOfBusiness">principalPlaceOfBusiness.</param>
         /// <param name="registeredAddress">registeredAddress (required).</param>
         /// <param name="registrationNumber">The registration number..</param>
+        /// <param name="taxInformation">The tax information of the entity..</param>
         /// <param name="vatAbsenceReason">The reason for not providing a VAT number.  Possible values: **industryExemption**, **belowTaxThreshold**..</param>
         /// <param name="vatNumber">The VAT number..</param>
-        public SoleProprietorship(string countryOfGoverningLaw = default(string), string dateOfIncorporation = default(string), string doingBusinessAs = default(string), string name = default(string), Address principalPlaceOfBusiness = default(Address), Address registeredAddress = default(Address), string registrationNumber = default(string), VatAbsenceReasonEnum? vatAbsenceReason = default(VatAbsenceReasonEnum?), string vatNumber = default(string))
+        public SoleProprietorship(string countryOfGoverningLaw = default(string), string dateOfIncorporation = default(string), string doingBusinessAs = default(string), string name = default(string), Address principalPlaceOfBusiness = default(Address), Address registeredAddress = default(Address), string registrationNumber = default(string), List<TaxInformation> taxInformation = default(List<TaxInformation>), VatAbsenceReasonEnum? vatAbsenceReason = default(VatAbsenceReasonEnum?), string vatNumber = default(string))
         {
             this.CountryOfGoverningLaw = countryOfGoverningLaw;
             this.Name = name;
@@ -86,6 +87,7 @@ namespace Adyen.Model.LegalEntityManagement
             this.DoingBusinessAs = doingBusinessAs;
             this.PrincipalPlaceOfBusiness = principalPlaceOfBusiness;
             this.RegistrationNumber = registrationNumber;
+            this.TaxInformation = taxInformation;
             this.VatAbsenceReason = vatAbsenceReason;
             this.VatNumber = vatNumber;
         }
@@ -138,6 +140,13 @@ namespace Adyen.Model.LegalEntityManagement
         public string RegistrationNumber { get; set; }
 
         /// <summary>
+        /// The tax information of the entity.
+        /// </summary>
+        /// <value>The tax information of the entity.</value>
+        [DataMember(Name = "taxInformation", EmitDefaultValue = false)]
+        public List<TaxInformation> TaxInformation { get; set; }
+
+        /// <summary>
         /// The VAT number.
         /// </summary>
         /// <value>The VAT number.</value>
@@ -159,6 +168,7 @@ namespace Adyen.Model.LegalEntityManagement
             sb.Append("  PrincipalPlaceOfBusiness: ").Append(PrincipalPlaceOfBusiness).Append("\n");
             sb.Append("  RegisteredAddress: ").Append(RegisteredAddress).Append("\n");
             sb.Append("  RegistrationNumber: ").Append(RegistrationNumber).Append("\n");
+            sb.Append("  TaxInformation: ").Append(TaxInformation).Append("\n");
             sb.Append("  VatAbsenceReason: ").Append(VatAbsenceReason).Append("\n");
             sb.Append("  VatNumber: ").Append(VatNumber).Append("\n");
             sb.Append("}\n");
@@ -232,6 +242,12 @@ namespace Adyen.Model.LegalEntityManagement
                     this.RegistrationNumber.Equals(input.RegistrationNumber))
                 ) && 
                 (
+                    this.TaxInformation == input.TaxInformation ||
+                    this.TaxInformation != null &&
+                    input.TaxInformation != null &&
+                    this.TaxInformation.SequenceEqual(input.TaxInformation)
+                ) && 
+                (
                     this.VatAbsenceReason == input.VatAbsenceReason ||
                     this.VatAbsenceReason.Equals(input.VatAbsenceReason)
                 ) && 
@@ -278,6 +294,10 @@ namespace Adyen.Model.LegalEntityManagement
                 if (this.RegistrationNumber != null)
                 {
                     hashCode = (hashCode * 59) + this.RegistrationNumber.GetHashCode();
+                }
+                if (this.TaxInformation != null)
+                {
+                    hashCode = (hashCode * 59) + this.TaxInformation.GetHashCode();
                 }
                 hashCode = (hashCode * 59) + this.VatAbsenceReason.GetHashCode();
                 if (this.VatNumber != null)

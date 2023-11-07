@@ -5,14 +5,14 @@ openapi-generator-cli:=java -jar $(openapi-generator-jar)
 
 
 generator:=csharp-netcore
-Models:=AcsWebhooks BalanceControl BalancePlatform BinLookup Checkout ConfigurationWebhooks DataProtection LegalEntityManagement Management ManagementWebhooks Payment Payout PlatformsAccount PlatformsFund PlatformsNotificationConfiguration PlatformsHostedOnboardingPage PosTerminalManagement Recurring ReportWebhooks StoredValue TransferWebhooks Transfers
+Models:=AcsWebhooks BalanceControl BalancePlatform BinLookup Checkout ConfigurationWebhooks DataProtection LegalEntityManagement Management ManagementWebhooks Payment Payout PlatformsAccount PlatformsFund PlatformsNotificationConfiguration PlatformsHostedOnboardingPage PosTerminalManagement Recurring ReportWebhooks StoredValue TransactionWebhooks TransferWebhooks Transfers
 models:=Adyen/Model
 output:=target/out
 
 BalanceControl: spec=BalanceControlService-v1
 BalancePlatform: spec=BalancePlatformService-v2
 BinLookup: spec=BinLookupService-v54
-Checkout: spec=CheckoutService-v70
+Checkout: spec=CheckoutService-v71
 DataProtection: spec=DataProtectionService-v1
 Disputes: spec=DisputeService-v30
 StoredValue: spec=StoredValueService-v46
@@ -32,6 +32,7 @@ Transfers: spec=TransferService-v4
 ConfigurationWebhooks: spec=BalancePlatformConfigurationNotification-v1
 ReportWebhooks: spec=BalancePlatformReportNotification-v1
 TransferWebhooks: spec=BalancePlatformTransferNotification-v4
+TransactionWebhooks: spec=BalancePlatformTransactionNotification-v4
 AcsWebhooks: spec=BalancePlatformAcsNotification-v1
 ManagementWebhooks: spec=ManagementNotificationService-v3
 

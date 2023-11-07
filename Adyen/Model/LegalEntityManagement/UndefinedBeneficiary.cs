@@ -1,5 +1,5 @@
 /*
-* Management API
+* Legal Entity Management API
 *
 *
 * The version of the OpenAPI document: 3
@@ -24,36 +24,38 @@ using Newtonsoft.Json.Linq;
 using System.ComponentModel.DataAnnotations;
 using OpenAPIDateConverter = Adyen.ApiSerialization.OpenAPIDateConverter;
 
-namespace Adyen.Model.Management
+namespace Adyen.Model.LegalEntityManagement
 {
     /// <summary>
-    /// JSONObject
+    /// UndefinedBeneficiary
     /// </summary>
-    [DataContract(Name = "JSONObject")]
-    public partial class JSONObject : IEquatable<JSONObject>, IValidatableObject
+    [DataContract(Name = "UndefinedBeneficiary")]
+    public partial class UndefinedBeneficiary : IEquatable<UndefinedBeneficiary>, IValidatableObject
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="JSONObject" /> class.
+        /// Initializes a new instance of the <see cref="UndefinedBeneficiary" /> class.
         /// </summary>
-        /// <param name="paths">paths.</param>
-        /// <param name="rootPath">rootPath.</param>
-        public JSONObject(List<JSONPath> paths = default(List<JSONPath>), JSONPath rootPath = default(JSONPath))
+        /// <param name="description">The details of the undefined beneficiary..</param>
+        /// <param name="reference">The reference of the undefined beneficiary..</param>
+        public UndefinedBeneficiary(string description = default(string), string reference = default(string))
         {
-            this.Paths = paths;
-            this.RootPath = rootPath;
+            this.Description = description;
+            this.Reference = reference;
         }
 
         /// <summary>
-        /// Gets or Sets Paths
+        /// The details of the undefined beneficiary.
         /// </summary>
-        [DataMember(Name = "paths", EmitDefaultValue = false)]
-        public List<JSONPath> Paths { get; set; }
+        /// <value>The details of the undefined beneficiary.</value>
+        [DataMember(Name = "description", EmitDefaultValue = false)]
+        public string Description { get; set; }
 
         /// <summary>
-        /// Gets or Sets RootPath
+        /// The reference of the undefined beneficiary.
         /// </summary>
-        [DataMember(Name = "rootPath", EmitDefaultValue = false)]
-        public JSONPath RootPath { get; set; }
+        /// <value>The reference of the undefined beneficiary.</value>
+        [DataMember(Name = "reference", EmitDefaultValue = false)]
+        public string Reference { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -62,9 +64,9 @@ namespace Adyen.Model.Management
         public override string ToString()
         {
             StringBuilder sb = new StringBuilder();
-            sb.Append("class JSONObject {\n");
-            sb.Append("  Paths: ").Append(Paths).Append("\n");
-            sb.Append("  RootPath: ").Append(RootPath).Append("\n");
+            sb.Append("class UndefinedBeneficiary {\n");
+            sb.Append("  Description: ").Append(Description).Append("\n");
+            sb.Append("  Reference: ").Append(Reference).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -85,15 +87,15 @@ namespace Adyen.Model.Management
         /// <returns>Boolean</returns>
         public override bool Equals(object input)
         {
-            return this.Equals(input as JSONObject);
+            return this.Equals(input as UndefinedBeneficiary);
         }
 
         /// <summary>
-        /// Returns true if JSONObject instances are equal
+        /// Returns true if UndefinedBeneficiary instances are equal
         /// </summary>
-        /// <param name="input">Instance of JSONObject to be compared</param>
+        /// <param name="input">Instance of UndefinedBeneficiary to be compared</param>
         /// <returns>Boolean</returns>
-        public bool Equals(JSONObject input)
+        public bool Equals(UndefinedBeneficiary input)
         {
             if (input == null)
             {
@@ -101,15 +103,14 @@ namespace Adyen.Model.Management
             }
             return 
                 (
-                    this.Paths == input.Paths ||
-                    this.Paths != null &&
-                    input.Paths != null &&
-                    this.Paths.SequenceEqual(input.Paths)
+                    this.Description == input.Description ||
+                    (this.Description != null &&
+                    this.Description.Equals(input.Description))
                 ) && 
                 (
-                    this.RootPath == input.RootPath ||
-                    (this.RootPath != null &&
-                    this.RootPath.Equals(input.RootPath))
+                    this.Reference == input.Reference ||
+                    (this.Reference != null &&
+                    this.Reference.Equals(input.Reference))
                 );
         }
 
@@ -122,13 +123,13 @@ namespace Adyen.Model.Management
             unchecked // Overflow is fine, just wrap
             {
                 int hashCode = 41;
-                if (this.Paths != null)
+                if (this.Description != null)
                 {
-                    hashCode = (hashCode * 59) + this.Paths.GetHashCode();
+                    hashCode = (hashCode * 59) + this.Description.GetHashCode();
                 }
-                if (this.RootPath != null)
+                if (this.Reference != null)
                 {
-                    hashCode = (hashCode * 59) + this.RootPath.GetHashCode();
+                    hashCode = (hashCode * 59) + this.Reference.GetHashCode();
                 }
                 return hashCode;
             }

@@ -45,11 +45,11 @@ namespace Adyen.Model.Transfers
         /// <param name="instance">A unique URI that identifies the specific occurrence of the problem..</param>
         /// <param name="invalidFields">Detailed explanation of each validation error, when applicable..</param>
         /// <param name="requestId">A unique reference for the request, essentially the same as &#x60;pspReference&#x60;..</param>
-        /// <param name="response">response.</param>
+        /// <param name="response">JSON response payload..</param>
         /// <param name="status">The HTTP status code. (required).</param>
         /// <param name="title">A short, human-readable summary of the problem type. (required).</param>
         /// <param name="type">A URI that identifies the problem type, pointing to human-readable documentation on this problem type. (required).</param>
-        public RestServiceError(string detail = default(string), string errorCode = default(string), string instance = default(string), List<InvalidField> invalidFields = default(List<InvalidField>), string requestId = default(string), JSONObject response = default(JSONObject), int? status = default(int?), string title = default(string), string type = default(string))
+        public RestServiceError(string detail = default(string), string errorCode = default(string), string instance = default(string), List<InvalidField> invalidFields = default(List<InvalidField>), string requestId = default(string), Object response = default(Object), int? status = default(int?), string title = default(string), string type = default(string))
         {
             this.Detail = detail;
             this.ErrorCode = errorCode;
@@ -98,10 +98,11 @@ namespace Adyen.Model.Transfers
         public string RequestId { get; set; }
 
         /// <summary>
-        /// Gets or Sets Response
+        /// JSON response payload.
         /// </summary>
+        /// <value>JSON response payload.</value>
         [DataMember(Name = "response", EmitDefaultValue = false)]
-        public JSONObject Response { get; set; }
+        public Object Response { get; set; }
 
         /// <summary>
         /// The HTTP status code.

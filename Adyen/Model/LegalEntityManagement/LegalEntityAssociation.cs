@@ -33,55 +33,103 @@ namespace Adyen.Model.LegalEntityManagement
     public partial class LegalEntityAssociation : IEquatable<LegalEntityAssociation>, IValidatableObject
     {
         /// <summary>
-        /// Defines the relationship of the legal entity to the current legal entity.  Possible values for organizations: **uboThroughOwnership**, **uboThroughControl**, **director**, **signatory**, or **ultimateParentCompany**.  Possible values for sole proprietorships: **soleProprietorship**.
+        /// Defines the relationship of the legal entity to the current legal entity.  Possible values for organizations: **uboThroughOwnership**, **uboThroughControl**, **director**, **signatory**, or **ultimateParentCompany**.  Possible values for sole proprietorships: **soleProprietorship**.  Possible value for trusts: **trust**  Possible values for trust members: **definedBeneficiary**, **protector**, **secondaryTrustee**, **settlor**, **uboThroughControl**, or **uboThroughOwnership**.
         /// </summary>
-        /// <value>Defines the relationship of the legal entity to the current legal entity.  Possible values for organizations: **uboThroughOwnership**, **uboThroughControl**, **director**, **signatory**, or **ultimateParentCompany**.  Possible values for sole proprietorships: **soleProprietorship**.</value>
+        /// <value>Defines the relationship of the legal entity to the current legal entity.  Possible values for organizations: **uboThroughOwnership**, **uboThroughControl**, **director**, **signatory**, or **ultimateParentCompany**.  Possible values for sole proprietorships: **soleProprietorship**.  Possible value for trusts: **trust**  Possible values for trust members: **definedBeneficiary**, **protector**, **secondaryTrustee**, **settlor**, **uboThroughControl**, or **uboThroughOwnership**.</value>
         [JsonConverter(typeof(StringEnumConverter))]
         public enum TypeEnum
         {
             /// <summary>
+            /// Enum DefinedBeneficiary for value: definedBeneficiary
+            /// </summary>
+            [EnumMember(Value = "definedBeneficiary")]
+            DefinedBeneficiary = 1,
+
+            /// <summary>
+            /// Enum Director for value: director
+            /// </summary>
+            [EnumMember(Value = "director")]
+            Director = 2,
+
+            /// <summary>
             /// Enum PciSignatory for value: pciSignatory
             /// </summary>
             [EnumMember(Value = "pciSignatory")]
-            PciSignatory = 1,
+            PciSignatory = 3,
+
+            /// <summary>
+            /// Enum Protector for value: protector
+            /// </summary>
+            [EnumMember(Value = "protector")]
+            Protector = 4,
+
+            /// <summary>
+            /// Enum SecondaryTrustee for value: secondaryTrustee
+            /// </summary>
+            [EnumMember(Value = "secondaryTrustee")]
+            SecondaryTrustee = 5,
+
+            /// <summary>
+            /// Enum Settlor for value: settlor
+            /// </summary>
+            [EnumMember(Value = "settlor")]
+            Settlor = 6,
 
             /// <summary>
             /// Enum Signatory for value: signatory
             /// </summary>
             [EnumMember(Value = "signatory")]
-            Signatory = 2,
+            Signatory = 7,
 
             /// <summary>
             /// Enum SoleProprietorship for value: soleProprietorship
             /// </summary>
             [EnumMember(Value = "soleProprietorship")]
-            SoleProprietorship = 3,
+            SoleProprietorship = 8,
+
+            /// <summary>
+            /// Enum Trust for value: trust
+            /// </summary>
+            [EnumMember(Value = "trust")]
+            Trust = 9,
+
+            /// <summary>
+            /// Enum TrustOwnership for value: trustOwnership
+            /// </summary>
+            [EnumMember(Value = "trustOwnership")]
+            TrustOwnership = 10,
 
             /// <summary>
             /// Enum UboThroughControl for value: uboThroughControl
             /// </summary>
             [EnumMember(Value = "uboThroughControl")]
-            UboThroughControl = 4,
+            UboThroughControl = 11,
 
             /// <summary>
             /// Enum UboThroughOwnership for value: uboThroughOwnership
             /// </summary>
             [EnumMember(Value = "uboThroughOwnership")]
-            UboThroughOwnership = 5,
+            UboThroughOwnership = 12,
 
             /// <summary>
             /// Enum UltimateParentCompany for value: ultimateParentCompany
             /// </summary>
             [EnumMember(Value = "ultimateParentCompany")]
-            UltimateParentCompany = 6
+            UltimateParentCompany = 13,
+
+            /// <summary>
+            /// Enum UndefinedBeneficiary for value: undefinedBeneficiary
+            /// </summary>
+            [EnumMember(Value = "undefinedBeneficiary")]
+            UndefinedBeneficiary = 14
 
         }
 
 
         /// <summary>
-        /// Defines the relationship of the legal entity to the current legal entity.  Possible values for organizations: **uboThroughOwnership**, **uboThroughControl**, **director**, **signatory**, or **ultimateParentCompany**.  Possible values for sole proprietorships: **soleProprietorship**.
+        /// Defines the relationship of the legal entity to the current legal entity.  Possible values for organizations: **uboThroughOwnership**, **uboThroughControl**, **director**, **signatory**, or **ultimateParentCompany**.  Possible values for sole proprietorships: **soleProprietorship**.  Possible value for trusts: **trust**  Possible values for trust members: **definedBeneficiary**, **protector**, **secondaryTrustee**, **settlor**, **uboThroughControl**, or **uboThroughOwnership**.
         /// </summary>
-        /// <value>Defines the relationship of the legal entity to the current legal entity.  Possible values for organizations: **uboThroughOwnership**, **uboThroughControl**, **director**, **signatory**, or **ultimateParentCompany**.  Possible values for sole proprietorships: **soleProprietorship**.</value>
+        /// <value>Defines the relationship of the legal entity to the current legal entity.  Possible values for organizations: **uboThroughOwnership**, **uboThroughControl**, **director**, **signatory**, or **ultimateParentCompany**.  Possible values for sole proprietorships: **soleProprietorship**.  Possible value for trusts: **trust**  Possible values for trust members: **definedBeneficiary**, **protector**, **secondaryTrustee**, **settlor**, **uboThroughControl**, or **uboThroughOwnership**.</value>
         [DataMember(Name = "type", IsRequired = false, EmitDefaultValue = false)]
         public TypeEnum Type { get; set; }
         /// <summary>
@@ -94,7 +142,7 @@ namespace Adyen.Model.LegalEntityManagement
         /// </summary>
         /// <param name="jobTitle">The individual&#39;s job title if the &#x60;type&#x60; is **uboThroughControl** or **signatory**..</param>
         /// <param name="legalEntityId">The unique identifier of the associated [legal entity](https://docs.adyen.com/api-explorer/legalentity/latest/post/legalEntities#responses-200-id). (required).</param>
-        /// <param name="type">Defines the relationship of the legal entity to the current legal entity.  Possible values for organizations: **uboThroughOwnership**, **uboThroughControl**, **director**, **signatory**, or **ultimateParentCompany**.  Possible values for sole proprietorships: **soleProprietorship**. (required).</param>
+        /// <param name="type">Defines the relationship of the legal entity to the current legal entity.  Possible values for organizations: **uboThroughOwnership**, **uboThroughControl**, **director**, **signatory**, or **ultimateParentCompany**.  Possible values for sole proprietorships: **soleProprietorship**.  Possible value for trusts: **trust**  Possible values for trust members: **definedBeneficiary**, **protector**, **secondaryTrustee**, **settlor**, **uboThroughControl**, or **uboThroughOwnership**. (required).</param>
         public LegalEntityAssociation(string jobTitle = default(string), string legalEntityId = default(string), TypeEnum type = default(TypeEnum))
         {
             this.LegalEntityId = legalEntityId;
@@ -138,6 +186,13 @@ namespace Adyen.Model.LegalEntityManagement
         public string Name { get; private set; }
 
         /// <summary>
+        /// Defines the Kyc Exemption Reason for a Settlor associated with a trust.  For example, **professionalServiceProvider**, **deceased**, or **contributionBelowThreshold**.
+        /// </summary>
+        /// <value>Defines the Kyc Exemption Reason for a Settlor associated with a trust.  For example, **professionalServiceProvider**, **deceased**, or **contributionBelowThreshold**.</value>
+        [DataMember(Name = "settlorExemptionReason", EmitDefaultValue = false)]
+        public List<string> SettlorExemptionReason { get; private set; }
+
+        /// <summary>
         /// Returns the string presentation of the object
         /// </summary>
         /// <returns>String presentation of the object</returns>
@@ -150,6 +205,7 @@ namespace Adyen.Model.LegalEntityManagement
             sb.Append("  JobTitle: ").Append(JobTitle).Append("\n");
             sb.Append("  LegalEntityId: ").Append(LegalEntityId).Append("\n");
             sb.Append("  Name: ").Append(Name).Append("\n");
+            sb.Append("  SettlorExemptionReason: ").Append(SettlorExemptionReason).Append("\n");
             sb.Append("  Type: ").Append(Type).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
@@ -212,6 +268,12 @@ namespace Adyen.Model.LegalEntityManagement
                     this.Name.Equals(input.Name))
                 ) && 
                 (
+                    this.SettlorExemptionReason == input.SettlorExemptionReason ||
+                    this.SettlorExemptionReason != null &&
+                    input.SettlorExemptionReason != null &&
+                    this.SettlorExemptionReason.SequenceEqual(input.SettlorExemptionReason)
+                ) && 
+                (
                     this.Type == input.Type ||
                     this.Type.Equals(input.Type)
                 );
@@ -245,6 +307,10 @@ namespace Adyen.Model.LegalEntityManagement
                 if (this.Name != null)
                 {
                     hashCode = (hashCode * 59) + this.Name.GetHashCode();
+                }
+                if (this.SettlorExemptionReason != null)
+                {
+                    hashCode = (hashCode * 59) + this.SettlorExemptionReason.GetHashCode();
                 }
                 hashCode = (hashCode * 59) + this.Type.GetHashCode();
                 return hashCode;
