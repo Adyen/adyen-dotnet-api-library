@@ -48,6 +48,8 @@ namespace Adyen.ApiSerialization
         {
             var saleToPoiMessageSecured = new SaleToPoiMessageSecured();
             saleToPoiMessageSecured.MessageHeader = saleToPoiMessageSecuredJToken.SelectToken("MessageHeader").ToObject<MessageHeader>();
+            saleToPoiMessageSecured.SecurityTrailer = saleToPoiMessageSecuredJToken.SelectToken("SecurityTrailer")
+                .ToObject<SecurityTrailer>();
             try
             {
                 saleToPoiMessageSecured.NexoBlob = saleToPoiMessageSecuredJToken.SelectToken("NexoBlob").ToObject<string>();
@@ -56,16 +58,7 @@ namespace Adyen.ApiSerialization
             {
                 throw new DeserializationException("NexoBlob is empty in the response",ex.InnerException);
             }
-            try
-            {
-                saleToPoiMessageSecured.SecurityTrailer = saleToPoiMessageSecuredJToken.SelectToken("SecurityTrailer")
-                    .ToObject<SecurityTrailer>();
-            }
-            catch (Exception ex)
-            {
-                throw new DeserializationException("SecurityTrailer is empty in the response",ex.InnerException);
-            }
-            
+
             return saleToPoiMessageSecured;
         }
     }
