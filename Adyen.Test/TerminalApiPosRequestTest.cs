@@ -1,6 +1,5 @@
 ﻿using System;
-using Adyen.Model.TerminalApi;
-using Adyen.Model.TerminalApi.Message;
+using Adyen.Exceptions;
 using Adyen.Security;
 using Adyen.Service;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
@@ -96,11 +95,10 @@ namespace Adyen.Test
                 var configEndpoint = terminalLocalApi.Client.Config.LocalTerminalApiEndpoint;
                 var saleToPoiResponse = terminalLocalApi.TerminalRequest(paymentRequest, _encryptionCredentialDetails);
                 Assert.AreEqual(configEndpoint, @"https://_terminal_:8443/nexo/");
-                Assert.IsNotNull(saleToPoiResponse);
             }
             catch (Exception ex)
             {
-                Assert.Fail();
+                Assert.AreEqual(ex.Message,"NexoBlob is empty in the response");
             }
         }
     }
